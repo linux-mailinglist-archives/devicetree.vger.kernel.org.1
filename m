@@ -1,135 +1,134 @@
-Return-Path: <devicetree+bounces-204658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61EBEB263D9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:12:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2091BB263DF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:13:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BFA89E1DE3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 11:06:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6B355A2ADB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 11:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E13B52E7F25;
-	Thu, 14 Aug 2025 11:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B5CB2F39A4;
+	Thu, 14 Aug 2025 11:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GXBZcrUX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d1bMqAlm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C222E1741;
-	Thu, 14 Aug 2025 11:06:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D674E2367DC;
+	Thu, 14 Aug 2025 11:13:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755169587; cv=none; b=dWCKrbiPk4bY3jk5cnlnRlp9LyISyvGYdlZ6DQ3iD2iGW+9OtfTSgLE0wFPL0Cw4iMd06i43aPcXW5ViIQMsXUwKGWcBSAeGMRGz5OjGFTrTfSnX3VNcGaFQpHbky2DJoLqPMVIc/WiLx3t+A6U2PMhARp8WDbk449Rs7UvGEcU=
+	t=1755169981; cv=none; b=kXn217NXqRkUHT2sN7FsAz76ylU8GBCbGv45qyn1zTyh5G0lguEtrnx8uNC2d0RyhJtGiCiGIVa3buEwr/S+MQSGkilg9KU+cbzSzj6uJ5ncAEL46SW64PQIKX2MyLTlMF38shYhmEmTkmDsN7T7d0FWZmwoJfFTOlSVJGiACNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755169587; c=relaxed/simple;
-	bh=rT8vpugLy20aEThSawYZskApeynAixeH8erAiCJiS8A=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JX7Vo9By0uabN9VfHfHzPLVq9DmJbG9dThjYz9l6hn+zH0CqZOxifdwnFG806zMR1eNnLhlRVmmUBRS6gaMpIIQv4H2bh8XPyElxMRqTT5duEU49nhPtu/hCMi84r4sHSg7+x50NItUcp4RVzOpOiB+I+1CzLlKp+igX761C9Go=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GXBZcrUX; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57EB6ERR1866430;
-	Thu, 14 Aug 2025 06:06:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755169575;
-	bh=eXx4QX6GlD1ye8FFz2m4mlJAlk6n+EGxro0PcZGIkPw=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=GXBZcrUXGbzBJoBc6Y76HkE6W6wG2F8A4R4wVqO2nO8Z0pBUdThZ8Uj7nLXM3WilB
-	 CnLYuzm/hs57jA1nA48D1u4WAfArhwZTD53LdimriHiaoWIL9k6qo/WmEzCuc9htvf
-	 nbLRGP6IKsOt0NWly2fis7w1lcrynndCIdCyT3AU=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57EB6E541669453
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 14 Aug 2025 06:06:14 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 14
- Aug 2025 06:06:14 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 14 Aug 2025 06:06:14 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57EB6EsG3819943;
-	Thu, 14 Aug 2025 06:06:14 -0500
-Date: Thu, 14 Aug 2025 06:06:14 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, David Airlie <airlied@gmail.com>,
-        Maxime
- Ripard <mripard@kernel.org>,
-        Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Jason Kridner <jkridner@beagleboard.org>, <afd@ti.com>
-Subject: Re: [PATCH V2 3/3] drm/bridge: it66121: Add it66122 support
-Message-ID: <20250814110614.ziwsadnrxuoxknpk@oxidation>
-References: <20250813204106.580141-1-nm@ti.com>
- <20250813204106.580141-4-nm@ti.com>
- <0c684542-aacb-4e8c-a1c0-7fc0da78c733@ideasonboard.com>
+	s=arc-20240116; t=1755169981; c=relaxed/simple;
+	bh=qvFXkQEAgZQeQPAEOlRWM+fljWJSBRL8RNC+gJJ4bs8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Dfefy95HGQjpKSpFMyQybwRbWffz5elj2Qexv2OaKMRy6EvSITFkTyobE4RdAfNZ/ixntUPuDNMWKldoQfmExkTCI9O3UrzmcD1uHBTo3iMzHxsqNvqRj9jAkYItazwWFBY35X+ltaYoXIZIvQBljBD38SEGEK+IvlH6/5whDsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d1bMqAlm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31F11C4CEED;
+	Thu, 14 Aug 2025 11:12:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755169981;
+	bh=qvFXkQEAgZQeQPAEOlRWM+fljWJSBRL8RNC+gJJ4bs8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=d1bMqAlml60uDBu7HgXJusFn2S2/1yWFCmXxzMdDN+u2Ut3jhsGUvNzgOzt8adtUC
+	 z5ljIuajRE6ziOlgCFRwatW70MuPpZR1lVEqYSReb0j7wXLtHLJh7p268WaLtEkpjk
+	 +RiOLa3JiAfJrNgQWutbDVGPjmR5VmecCZMXfBO0nGO57/WggMYAFzDZwA9eLFmDKd
+	 f6XRliSFnQechdABH84IwQkXn986HnpAYQttrsTDDGDYvrDdoKl90Ke3RJXlbr31OB
+	 8wzCW2yVvybqxBbp2GYXVZX5vgTwKj3fyQUT6zJUBWkJgIfB0/S/+mZ3o2iDLJ9L49
+	 Ui3YE2+OwlsqA==
+Message-ID: <faaa0466-80b2-4411-b352-0bbfb1507f1d@kernel.org>
+Date: Thu, 14 Aug 2025 13:12:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <0c684542-aacb-4e8c-a1c0-7fc0da78c733@ideasonboard.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] reset: bcm6345: add support for bcm63xx ephy control
+ register
+To: Kyle Hendry <kylehendrydev@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250709024740.194520-1-kylehendrydev@gmail.com>
+ <20250709024740.194520-2-kylehendrydev@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250709024740.194520-2-kylehendrydev@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 13:32-20250814, Tomi Valkeinen wrote:
-
-Thanks for looking at this closer, Tomi.
-
+On 09/07/2025 04:47, Kyle Hendry wrote:
+> The ephy control register on bcm63xx SoCs contain bits for
+> resetting individual internal phys. Use the existing bcm6345-reset
+> driver to set bits.
 > 
-> On 13/08/2025 23:41, Nishanth Menon wrote:
-> > The IT66122 is a drop in replacement for the IT66122. The part is
-                                                      ^^
-
-Uggh.. I just realized I made a typo here -> should have stated: "
-"The IT66122 is a drop in replacement for the IT66121."
-
-> > register compatible with what we use of the IT66121. The only relevant
+> Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
+> ---
+>  drivers/reset/reset-bcm6345.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> The intro letter said "practical purposes is drop in replacement for
-> IT66121". Here you say "with what we use of the IT66121".
-> 
-> What does that mean? Are they identical, except the IDs? Or are they
+> diff --git a/drivers/reset/reset-bcm6345.c b/drivers/reset/reset-bcm6345.c
+> index aa9353439e70..56518f7bfbb3 100644
+> --- a/drivers/reset/reset-bcm6345.c
+> +++ b/drivers/reset/reset-bcm6345.c
+> @@ -119,6 +119,7 @@ static int bcm6345_reset_probe(struct platform_device *pdev)
+>  
+>  static const struct of_device_id bcm6345_reset_of_match[] = {
+>  	{ .compatible = "brcm,bcm6345-reset" },
+> +	{ .compatible = "brcm,bcm63xx-ephy-ctrl" },
+So devices are compatible?
 
-The only difference we had been told at the time about is that they are
-identical from operation perspective except for the ID register (I
-understand it is some sort of manufacturing change or something that is
-not visible to s/w - Robert/Jason could add more).
-
-> different, but the features and registers this driver uses are
-> identical? Or different, but only identical wrt. the driver's features
-> TI uses?
-
-Minor clarification: This is used on BeagleBoard.org foundation boards
-BeagleY-AI to be specific and not on Texas Instruments EVMs/SK.
-
-Personally, I have just looked at the features that BeagleY-AI platform
-uses. Though, searching via llms tells me there may be additional
-features, but I don't have the specific details to confirm beyond what
-the BeagleY-AI platform does.
-
-I am hoping BeagleBoard.org Foundation folks OR anyone on the list who
-have contacts with ITE Tech. INC. could probably add information.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-https://ti.com/opensource
+Best regards,
+Krzysztof
 
