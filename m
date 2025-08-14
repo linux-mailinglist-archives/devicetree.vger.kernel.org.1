@@ -1,235 +1,89 @@
-Return-Path: <devicetree+bounces-204503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CDAB25D02
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:22:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE2A9B25D62
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:31:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB196162031
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:21:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91B885C0AE7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669F4264F85;
-	Thu, 14 Aug 2025 07:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46AD226D4C4;
+	Thu, 14 Aug 2025 07:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UJEXMVqL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GzcT4JWH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C677B255F31;
-	Thu, 14 Aug 2025 07:21:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE9626CE36;
+	Thu, 14 Aug 2025 07:26:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755156066; cv=none; b=NwMLtQog7xsr9e63w5+qe0mWqpBrZdFZfDHYmZjvVecaQxG+eeFHI13EIavbv++RyZPa/Y14pEH9BmMH8WSv7aFBSg5HgugekHzdtuxIrXXfNZzRXMs2BJVSm+8WZiazhh0EFi/FEOjCoBFGpfDmYRtD5o40ieoWTLANNpoZRFw=
+	t=1755156362; cv=none; b=e0NP/0n5Npx5KVBoYEhRNiyIQVmYfaKGuRC4F1wC1JUiFSwSRp9n+Bu9dNzgD/thBnM7qTYCmhKShjon043NSSdLjxvUzhzJ6FyJ6TsSdvSAouWaKodAgzimN1TWsk1rXRWSb6BWb10lvdig5FCzN+6gw2ZJpF26sFb868eZipA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755156066; c=relaxed/simple;
-	bh=QVWJfxryv5an2qu/yYFf6jH5snA22fzCZz+X9kWErqY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=PPqLHBzRplgvJGqzGYfLm6pwfxpmygc2Pwt2Vxntng3GEhBlxUv6nPcbVUPGhqWAEuZ8uv+KpEH/HFSLbnpuo4bvvmY9LMWQu+5CPdMfTLRsP3S4HLsCmzGndTGB6N9Opi7K0zDPGzGFu+8YfgCJjV2bcfyXQSgTGMQsTPy2sfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UJEXMVqL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57DLkD4k031974;
-	Thu, 14 Aug 2025 07:20:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	RsScPcpy4lyc0qyWfKF/vKWfu+4Gt4nFM/6cBTbAPSw=; b=UJEXMVqLLcZi+p3N
-	A2lCRP16sPiscs5eIT/WBC+BLzjgjQz3HwTkUl/mEyfXFs95l3YC3XFmZZaTrWy8
-	Z0q26ZpvykYw1yEW5W+wmowIocUU2RWgw1qvoZLNWyyW7D2ZM/GdvDSKt7ZvoeVZ
-	DOOXWO8ppvLnUQmnmW9fpe6gSqOarUV/QCxKXX9ULJvQlsSK5ip+gizxxZsZZb+L
-	TBiT3oN2bSKldWGUZpa/ABlXTpfTq/7Obfe6VudWCtpAoiqISX3SKc9sU7nCfHEy
-	XYJAtk33KfZE3y0atJjlN6rzhF3OrvvTwW2pycCVTO63qp7ZJAhjr3Yr8t1CBK74
-	cryiFA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48fem4jq28-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Aug 2025 07:20:29 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57E7KSFX021991
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Aug 2025 07:20:28 GMT
-Received: from [10.216.15.102] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 14 Aug
- 2025 00:20:21 -0700
-Message-ID: <bc001360-1cfe-4886-a023-367a8edc21c5@quicinc.com>
-Date: Thu, 14 Aug 2025 12:50:17 +0530
+	s=arc-20240116; t=1755156362; c=relaxed/simple;
+	bh=bCODuuaMFmNNXeW6jzV9cEYu0VFKOJKB7DKgj/ELYos=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TkcnN/6tUtHsGkASnufPOybqosXjdzoR4+AvrVj8fle2H33laCI+2wMcT/pdo/aKfoUnwIumiItPfeNZF8On/G7XvvxoqmXmtu1h0ETdhkrZHQgQ+w/le7nQX1MtvB4z7ISuQPXiQd4XIlNcuy4KP8WcSm6M7Ds+bQthiaZitsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GzcT4JWH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 182D1C4CEEF;
+	Thu, 14 Aug 2025 07:26:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755156361;
+	bh=bCODuuaMFmNNXeW6jzV9cEYu0VFKOJKB7DKgj/ELYos=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GzcT4JWHuGjOBbjQSAT1kvFbLihB9CHP4Pz6CKXlFQKshniRyUBIPb5xQ2/Ff2IKY
+	 05LQZ217yrCAKXlkEhEM4Y8v+GiBtiLGKuj/OsLjJFhjkTHFWIM8uJhXR1yTE43RiZ
+	 hZTKqFv3NlDZO+NeoJhz5w2MKll5M90pEnXe+C2a9Df5dFQohbk4b7Wl5R4/MBgJbj
+	 lbvyDROT8813rhPTEltxkHe8yvSkLCb9BqIYD7MnvNp3iew+UVrXsIzrqsNcTxUBgG
+	 hZ6VIDb5Ykn2uMun5+0FQazZRQgevqXd4jPtJvp6SUBJK5PuOlXVVD9nHYh7SA0Ng2
+	 tE4Xm1Qq07RBw==
+Date: Thu, 14 Aug 2025 09:25:58 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 08/11] dt-bindings: iio: adc: ad7476: Drop redundant
+ prop: true
+Message-ID: <20250814-authentic-silky-lyrebird-05cbdd@kuoka>
+References: <cover.1754901948.git.mazziesaccount@gmail.com>
+ <bee66444bf628ba9a34a02738a1842e2abc14290.1754901948.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dts: describe x1e80100 ufs
-To: Harrison Vanderbyl <harrison.vanderbyl@gmail.com>, <marcus@nazgul.ch>,
-        <kirill@korins.ky>, <vkoul@kernel.org>, <kishon@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mani@kernel.org>, <alim.akhtar@samsung.com>, <avri.altman@wdc.com>,
-        <bvanassche@acm.org>, <andersson@kernel.org>, <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-scsi@vger.kernel.org>
-References: <20250814005904.39173-1-harrison.vanderbyl@gmail.com>
- <20250814005904.39173-4-harrison.vanderbyl@gmail.com>
-Content-Language: en-US
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <20250814005904.39173-4-harrison.vanderbyl@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YSxe04GFzNwz5z3pryrGGbxCF4rljt4H
-X-Proofpoint-ORIG-GUID: YSxe04GFzNwz5z3pryrGGbxCF4rljt4H
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDA2OCBTYWx0ZWRfX7ifYVO1VrwO9
- 2uaWKsyal7TYIgXXTDi76hHS/MDZcG5/kwWI8LvPyih8rS8SUwv2m9/RdrKv7CB+5QqlgJJu1tI
- kCBeRajqk3vMF041wqz+XxZjZImXndbDYYiJDjSaQjo4At/aOr3NVPliiLTrX5s7Tydf/3u+imt
- XjjlsOaL0mDzFHlzw0q8iogO4Ztdh/L7igK9STf4hMZpJzDzAgJmq3gasMwHEMuclRGDGi8Im7b
- VRPFb68lUDDuCJfXYrdVcy7C7CQ9JVzM88KRCjyk7ThV3sFwcrot+b2dwEnhKmTCzTbWyqWdXPD
- HG7AsZoMs5gTD+plgSe/1u4gW/gqnaq1v76zWo8wTNdLt0ghUYE8pBQvypHJlgdulzFJE8KoSYv
- 9op27r2X
-X-Authority-Analysis: v=2.4 cv=YMafyQGx c=1 sm=1 tr=0 ts=689d8e3d cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8 a=bSFmR1_Cq-7rNE1wWKgA:9
- a=Kjs97tkqnXMi_ocT:21 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-13_02,2025-08-11_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1011 priorityscore=1501 spamscore=0 suspectscore=0
- adultscore=0 impostorscore=0 malwarescore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508110068
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <bee66444bf628ba9a34a02738a1842e2abc14290.1754901948.git.mazziesaccount@gmail.com>
 
-
-
-On 8/14/2025 6:29 AM, Harrison Vanderbyl wrote:
-> Describe device tree entry for x1e80100 ufs device
-> Signed-off-by: Harrison Vanderbyl <harrison.vanderbyl@gmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 91 ++++++++++++++++++++++++++
->   1 file changed, 91 insertions(+)
+On Mon, Aug 11, 2025 at 11:51:50AM +0300, Matti Vaittinen wrote:
+> The ad7476 supports a few variants with different power-supplies and
+> control GPIOs. The binding first unconditionally introduces all the
+> properties, and later sets them 'true' or 'false' based on the
+> combatible.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index a9a7bb676c6f..effa776e3dd0 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -2819,6 +2819,97 @@ tsens3: thermal-sensor@c274000 {
->   			#thermal-sensor-cells = <1>;
->   		};
->   
-> +
-> +		ufs_mem_hc: ufs@1d84000 {
-> +			compatible = "qcom,x1e80100-ufshc",
-> +			"qcom,ufshc", "jedec,ufs-2.0";
-> +			reg = <0 0x01d84000 0 0x3000>;
-> +			
-> +			
-> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			phys = <&ufs_mem_phy>;
-> +			phy-names = "ufsphy";
-> +
-> +			lanes-per-direction = <2>;
-> +
-> +			#reset-cells = <1>;
-> +			resets = <&gcc GCC_UFS_PHY_BCR>;
-> +
-> +			reset-gpios = <&tlmm 238 GPIO_ACTIVE_LOW>;
-> +			reset-names = "rst";
-> +
-> +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
-> +
-> +			iommus = <&apps_smmu 0x1a0 0x0>;
-> +
-> +			clock-names = "core_clk",
-> +				      "bus_aggr_clk",
-> +				      "iface_clk",
-> +				      "core_clk_unipro",
-> +				      "ref_clk",
-> +				      "tx_lane0_sync_clk",
-> +				      "rx_lane0_sync_clk",
-> +				      "rx_lane1_sync_clk";
-> +
-> +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
-> +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-> +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
-> +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-> +				 <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-> +
-> +			freq-table-hz = <100000000 403000000>,
-> +					<0 0>,
-> +					<0 0>,
-> +					<100000000 403000000>,
-> +					<100000000 403000000>,
-> +					<0 0>,
-> +					<0 0>,
-> +					<0 0>;
-> +
-Please use OPP table instead of freq-table-hz.
+> The 'true' seems to be implied by the initial property introduction so
+> the 'true' -branches in later conditional handling (based on the
+> compatible) can be omitted.
+> 
+> Drop the redundant true -branches.
+> 
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> 
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
-> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-> +					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
-
-For Config Path, use QCOM_ICC_TAG_ACTIVE_ONLY.
-
-YOu can refer to ICC discussion link for SM8750 - 
-https://lore.kernel.org/linux-devicetree/354f8710-a5ec-47b5-bcfa-bff75ac3ca71@oss.qualcomm.com/ 
-
-
-
-
-> +			interconnect-names = "ufs-ddr", "cpu-ufs";
-> +
-> +			qcom,ice = <&ice>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		ufs_mem_phy: phy@1d80000 {
-> +			compatible = "qcom,x1e80100-qmp-ufs-phy";
-> +			reg = <0 0x01d80000 0 0x2000>;
-> +
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
-> +
-> +			clock-names = "ref",
-> +				      "ref_aux",
-> +				      "qref";
-> +
-> +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
-> +
-> +			resets = <&ufs_mem_hc 0>;
-> +			reset-names = "ufsphy";
-> +
-> +			#phy-cells = <0>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		ice: crypto@1d90000 {
-> +			compatible = "qcom,x1e80100-inline-crypto-engine",
-> +				     "qcom,inline-crypto-engine";
-> +			reg = <0 0x1d88000 0 0x8000>;
-> +
-> +			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
-> +		};
-> +
->   		usb_1_ss0_hsphy: phy@fd3000 {
->   			compatible = "qcom,x1e80100-snps-eusb2-phy",
->   				     "qcom,sm8550-snps-eusb2-phy";
+Best regards,
+Krzysztof
 
 
