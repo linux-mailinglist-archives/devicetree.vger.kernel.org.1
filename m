@@ -1,216 +1,186 @@
-Return-Path: <devicetree+bounces-204498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD6A7B25CE2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:18:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1DC0B25CEF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:19:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26F411888A0C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:15:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6969586394
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D50C23A9AD;
-	Thu, 14 Aug 2025 07:15:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A39E926A0C5;
+	Thu, 14 Aug 2025 07:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OqteK6wp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Elut8q4g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B971A9F8F;
-	Thu, 14 Aug 2025 07:15:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7905C24468A;
+	Thu, 14 Aug 2025 07:18:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755155733; cv=none; b=KuTVBHejsxyNCQbNI68blXCaNw7DXAL2023KJ1VBxtqThZCVVDBzZbc8ZzR6FOb4jOAwGy9Rc23cM+BL560qgO/hKNKGJB5LnrcuE6LJIUNUgWOPAHqxkrDVVTPml4D5ML2IiorRFNAq9UpIe4oEQJSUlA5CtrMpPDLI636CSQE=
+	t=1755155906; cv=none; b=BA/dLWCuLxY8prQ5HD8KgNRWRhenReEJaXROD5GOfzcOhoV4W2cxGX2AMUtAb5CsjzjksKJ1xq8AAadXFXOG13t/vD3j+1TuYrPifD0+NntgvNlqtxTd8sqX7BiEntIjpZa8AAIIQMlOK6Vee50OcYytmU8OnpApuR6lcEigyRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755155733; c=relaxed/simple;
-	bh=Q76elz5OfAOCUyiPxLaPswZ/mRc86NecebFPSfGGyCU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=F7wrcw2Q/oYINv0w0GyIHNCH1tQJih66ArJeP/3d3ngRDI3wo5luUvUuYQ/RAGa12ywtQjnQp6806ujkEbxEdLDcy+8Qcqqw3ySia7hCViPfAYvNXQfUTaJul+SRDAS09NQEURQYG4kNbiTgmsspsbtfObHsKKNbHyoEcYV6Db4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OqteK6wp; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57DNS32b025686;
-	Thu, 14 Aug 2025 07:15:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	MVJ2/ZBIIfsqqOG7o0XSDJgZ8RX55I7X6cWhwMyyOS4=; b=OqteK6wpH4Yf/IMk
-	rRsdvBCEc6bm1FaSCf481VRDkxtMFUlWo0fDyX7sMXqs692hKLJcq5wG/Yj3wwvr
-	O7mUQ/9jKw9p/gp3luL3DUG8LTyetw9Bkt620eUhPdH+V/rFutrZltNuucFHKN37
-	AkzBYpQAAJW8n6XGYznW4HycmxMkX970dr0Y2ZZFEOSQxbwiEe6DHLhCdkUdY56+
-	k3NN/KfaD1AGd7MhUDNbm1UeD2rWioKyZY8A3Xf69ZDF4NnvAsyhOAF8JRd2jieX
-	pJE2yb9hdgm2PjeA9m9YOUETjpIjWinaqIjct2Wb9oUT1TFM0e8duToDrnjVPEBD
-	R5ly3w==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dy3gene1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Aug 2025 07:15:27 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57E7FRhq022400
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Aug 2025 07:15:27 GMT
-Received: from [10.204.78.60] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 14 Aug
- 2025 00:15:21 -0700
-Message-ID: <dda9a2ef-5b86-4883-8347-b5ccf25e8d5d@quicinc.com>
-Date: Thu, 14 Aug 2025 12:45:18 +0530
+	s=arc-20240116; t=1755155906; c=relaxed/simple;
+	bh=dimKx23huTNq7ndUo5JXI5Ve5ilX+nFkk6o+pI2E0Ic=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OA/SmkJvtfnQq71Va5LP86mq6YZEashYVdMD/FJ0xEpsgy7Bgwju8/zYTWcXXUZgqucfWsY1qzWfcRkmsXT9ldUAUserl+vpGbPg21U24JmLjhwQNJBGg8YOUv+KY87g4nJBwGITBZYIi6eIUhClR6OgLa8JqPcwga2Di0cWN9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Elut8q4g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 539AFC4CEEF;
+	Thu, 14 Aug 2025 07:18:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755155906;
+	bh=dimKx23huTNq7ndUo5JXI5Ve5ilX+nFkk6o+pI2E0Ic=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Elut8q4gK/DQnVF2FTu3JSUuMHfdp5tASCwvQDMXk+I2sjuMCH2k7HKXw1uymxgoh
+	 CtiucKFzY/s70niahonbQtlc1w67bqX70HaADHkFK4TnWSR1Y0dQS7YVJuNvbwEPsK
+	 bbuk3AE1PyL1bXAbZM1zytiELb923yQ8yxCKaobfwwPkLiADA76QggCYGYT/k13550
+	 WrvfK2I9Gc3VUDUazB5PfRpyeBI0S2uJZgJ4CkMm/a7i56408y0+1Kl0nLxCYzRk+C
+	 quycfUywHu25bGb9PiuGkRbwSs4dMoZZ8p9t4nMEvD7zQdJl4zCGf49ZXn00IumOcc
+	 0BsCbvN4Cdkcw==
+Date: Thu, 14 Aug 2025 12:47:58 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
+	Srinivas Kalaga <Srinivas.Kalaga2@arm.com>
+Subject: Re: [PATCH v19 2/6] remoteproc: Add TEE support
+Message-ID: <aJ2Npmru9RLPTj7c@sumit-X1>
+References: <20250625094028.758016-1-arnaud.pouliquen@foss.st.com>
+ <20250625094028.758016-3-arnaud.pouliquen@foss.st.com>
+ <aJzAkk-k4nfXY7Ux@e130802.arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 4/4] arm64: dts: qcom: sm8550: Remove SDR104/SDR50
- broken capabilities
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>
-CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <quic_cang@quicinc.com>, <quic_nguyenb@quicinc.com>,
-        <quic_rampraka@quicinc.com>, <quic_pragalla@quicinc.com>,
-        <quic_sayalil@quicinc.com>, <quic_nitirawa@quicinc.com>,
-        <quic_bhaskarv@quicinc.com>, <kernel@oss.qualcomm.com>
-References: <20250801084518.2259767-1-quic_sartgarg@quicinc.com>
- <20250801084518.2259767-5-quic_sartgarg@quicinc.com>
- <69f2807c-9a28-4b31-97cc-2756f0ab9fd4@kernel.org>
- <c7e36755-9255-4209-9d53-20077bd1d3ba@quicinc.com>
- <8b023e56-435b-43df-8b15-c562a494e06f@kernel.org>
- <ab5d3811-9fbf-4749-9463-4457fbf50023@quicinc.com>
- <4091c488-996c-4318-82ad-c054a9ef5a22@oss.qualcomm.com>
- <a93fb5bf-1fd5-4e00-8338-b8608a9ba8fa@kernel.org>
- <f2f13082-20d6-4f22-8dfb-f11b01cd6706@oss.qualcomm.com>
-Content-Language: en-US
-From: Sarthak Garg <quic_sartgarg@quicinc.com>
-In-Reply-To: <f2f13082-20d6-4f22-8dfb-f11b01cd6706@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=X4lSKHTe c=1 sm=1 tr=0 ts=689d8d0f cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
- a=bExINVLK0oqGhwCZNEEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzMSBTYWx0ZWRfX8CUu284FyLnM
- IwIk9PTqDxDN5GrBUfAzjyOrwijF6Ued3IbM4tWsz+u7O3gWV5nqWCD8QDYJd3rt/x13SoqKkTI
- jKzFrGtueFaHWKEJj7OT6eDVdYDBI34u1XHoj7jLgSoKHlAx8SfnXoY6l1LHiun+OrRqOGo/v+R
- 6/NoSufiekkDfMLLjsuYKEcu1SOAVsxhynnXeZjhnKiNsBJAWYLQCwYx3M8zo/O/6Rm6eZJOdoz
- Csp2QHMs7pfViljnOw+ld68t4lY+k9Wj0AaXZpxYF6xtyTuTnLEJJ10GSLJ3Qe8tQIYsbn5W0FD
- XzfiJbZjjK0oq9hAuUOcBh6VVnAl7hS2UQcSbVNSHpC3q7zJS8/ZXJkBT672xR8AJ7cIMgfBwOH
- zZjpfmsm
-X-Proofpoint-GUID: r5uJAFNl0ZtT51drEVfGfxf6wGMoljaP
-X-Proofpoint-ORIG-GUID: r5uJAFNl0ZtT51drEVfGfxf6wGMoljaP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-13_02,2025-08-11_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 adultscore=0
- spamscore=0 bulkscore=0 suspectscore=0 impostorscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508090031
+In-Reply-To: <aJzAkk-k4nfXY7Ux@e130802.arm.com>
 
+Hi Abdellatif,
 
-
-On 8/13/2025 5:37 PM, Konrad Dybcio wrote:
-> On 8/13/25 1:56 PM, Krzysztof Kozlowski wrote:
->> On 13/08/2025 13:21, Konrad Dybcio wrote:
->>> On 8/13/25 1:08 PM, Sarthak Garg wrote:
->>>>
->>>>
->>>> On 8/5/2025 2:55 PM, Krzysztof Kozlowski wrote:
->>>>> On 05/08/2025 11:19, Sarthak Garg wrote:
->>>>>>
->>>>>>
->>>>>> On 8/1/2025 2:32 PM, Krzysztof Kozlowski wrote:
->>>>>>> On 01/08/2025 10:45, Sarthak Garg wrote:
->>>>>>>> The kernel now handles level shifter limitations affecting SD card
->>>>>>>> modes, making it unnecessary to explicitly disable SDR104 and SDR50
->>>>>>>> capabilities in the device tree.
->>>>>>>>
->>>>>>>> However, due to board-specific hardware constraints particularly related
->>>>>>>> to level shifter in this case the maximum frequency for SD High-Speed
->>>>>>>> (HS) mode must be limited to 37.5 MHz to ensure reliable operation of SD
->>>>>>>> card in HS mode. This is achieved using the max-sd-hs-frequency property
->>>>>>>> in the board DTS.
->>>>>>>>
->>>>>>>> Signed-off-by: Sarthak Garg <quic_sartgarg@quicinc.com>
->>>>>>>> ---
->>>>>>>>     arch/arm64/boot/dts/qcom/sm8550-hdk.dts                     | 1 +
->>>>>>>>     arch/arm64/boot/dts/qcom/sm8550-mtp.dts                     | 1 +
->>>>>>>>     arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts | 1 +
->>>>>>>>     arch/arm64/boot/dts/qcom/sm8550.dtsi                        | 3 ---
->>>>>>>>     4 files changed, 3 insertions(+), 3 deletions(-)
->>>>>>>>
->>>>>>>
->>>>>>> This will break MMC for all of the users and nothing in commit msg or
->>>>>>> cover letter explains that or mentions merging strategy.
->>>>>>>
->>>>>>> Exactly this case is covered by your internal guideline, no? Please read it.
->>>>>>>
->>>>>>> Best regards,
->>>>>>> Krzysztof
->>>>>>
->>>>>> Just to make sure I’m addressing the right concern — are you primarily
->>>>>> worried about the introduction of the max-sd-hs-frequency property in
->>>>>> the board DTS files, or about the removal of the sdhci-caps-mask
->>>>>> from the common sm8550.dtsi?
->>>>>
->>>>>
->>>>> Apply this patch and test MMC. Does it work? No. Was it working? Yes.
->>>>>
->>>>>
->>>>> Best regards,
->>>>> Krzysztof
->>>>
->>>>
->>>> You're absolutely right to raise the concern about potential breakage.
->>>> After conducting additional testing across multiple boards, I’ve confirmed that the removal of SDR104/SDR50 broken capabilities does indeed affect V1 SM8550 devices.
->>>
->>> v1 is a prototype revision, please forget it exists, we most definitely
->>> do not support it upstream
->>
->>
->> You should double check. SM8450 (not v1!) needed it, so either it was
->> copied to SM8550 (v2!) by mistake or was also needed.
+On Wed, Aug 13, 2025 at 05:42:58PM +0100, Abdellatif El Khlifi wrote:
+> Hi Arnaud,
 > 
-> I believe that the speed capabilities are indeed restricted on 8550-final
-> and that's why this patchset exists in the first place
+> > Add a remoteproc TEE (Trusted Execution Environment) driver that will be
+> > probed by the TEE bus. If the associated Trusted application is supported
+> > on the secure part, this driver offers a client interface to load firmware
+> > by the secure part.
+> > This firmware could be authenticated by the secure trusted application.
+> > 
+> > A specificity of the implementation is that the firmware has to be
+> > authenticated and optionally decrypted to access the resource table.
+> > 
+> > Consequently, the boot sequence is:
+> > 
+> > 1) rproc_parse_fw --> rproc_tee_parse_fw
+> >    remoteproc TEE:
+> >    - Requests the TEE application to authenticate and load the firmware
+> >      in the remote processor memories.
+> >    - Requests the TEE application for the address of the resource table.
+> >    - Creates a copy of the resource table stored in rproc->cached_table.
+> > 
+> > 2) rproc_load_segments --> rproc_tee_load_fw
+> >    remoteproc TEE:
+> >    - Requests the TEE application to load the firmware. Nothing is done
+> >      at the TEE application as the firmware is already loaded.
+> >    - In case of recovery, the TEE application has to reload the firmware.
+> > 
+> > 3) rproc_tee_get_loaded_rsc_table
+> >    remoteproc TEE requests the TEE application for the address of the
+> >    resource table.
+> > 
+> > 4) rproc_start --> rproc_tee_start
+> >    - Requests the TEE application to start the remote processor.
+> > 
+> > The shutdown sequence is:
+> > 
+> > 5) rproc_stop --> rproc_tee_stop
+> >    - Requests the TEE application to stop the remote processor.
+> > 
+> > 6) rproc_tee_release_fw
+> >    This function is used to request the TEE application to perform actions
+> >    to return to the initial state on stop or on error during the boot
+> >    sequence.
+> > 
+> > Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> ...
+> > +
+> > +static const struct tee_client_device_id rproc_tee_id_table[] = {
+> > +	{UUID_INIT(0x80a4c275, 0x0a47, 0x4905, 0x82, 0x85, 0x14, 0x86, 0xa9, 0x77, 0x1a, 0x08)},
+> > +	{}
+> > +};
 > 
-> Konrad
+> Other implementations may use different UUIDs.
+> What about adding a kernel configuration option which, when enabled, allows
+> alternative implementations to override this table?
 
-Hi Krzysztof, Konrad,
+You don't need any other kernel configuration option for table override
+but rather you extend this table with UUID for service provided by
+TS-TEE.
 
-Konrad is right — this patch series addresses limitations seen on
-SM8550-final silicon.
+> 
+> > +/**
+> > + * rproc_tee_register() - Register a remote processor controlled by the TEE application.
+> ...
+> > +
+> > +static int rproc_tee_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
+> > +{
+> > +	/* Today we support only the OP-TEE, could be extend to other tees */
+> > +	return (ver->impl_id == TEE_IMPL_ID_OPTEE);
+> > +}
+> 
+> Could we make ver->impl_id user-configurable please ? for example, by reading
+> it from the device tree since it isn’t discoverable at runtime? In our setup, we’d set
+> it to TEE_IMPL_ID_TSTEE.
 
-SDR50 mode: The tuning support introduced in this series helps ensure
-reliable operation.
-SDR104 mode: limitations are resolved in SM8550 v2.
+In case the TS-TEE service gets enumerated on TEE bus then the
+ver->impl_id will get automatically configured to TEE_IMPL_ID_TSTEE. It
+is how the driver will get to know if it is communicating with an OP-TEE
+based service of TS-TEE based service.
 
-But still to avoid regressions, *I’ll like to retain sdhci-caps-mask in
-sm8550.dtsi for now and revisit its removal for future targets after
-thorough validation and testing from the beginning.*
+> 
+> > +
+> > +static int rproc_tee_probe(struct device *dev)
+> > +{
+> > +	struct tee_context *tee_ctx;
+> > +	int ret;
+> > +
+> > +	/* Open context with TEE driver */
+> > +	tee_ctx = tee_client_open_context(NULL, rproc_tee_ctx_match, NULL, NULL);
+> > +	if (IS_ERR(tee_ctx))
+> > +		return PTR_ERR(tee_ctx);
+> > +
+> > +	ret = mutex_lock_interruptible(&ctx_lock);
+> > +	if (ret)
+> > +		return ret;
+> 
+> In some TEEs, the client driver might need to perform extra work during probing.
+> For example, when using TS TEE, calling tee_shm_alloc_kernel_buf() is required.
+> Could we introduce an rproc_tee_ops and add a TEE probe operation called by the
+> remoteproc driver for performing custom TEE setup ?
 
-Konrad suggested placing max-sd-hs-frequency in the SoC dtsi.
-Krzysztof, could you please share your thoughts on this approach?
+Sure, as I mentioned above the driver will be able to know if it's
+communicating with TS-TEE then the additional functionality needed can
+be conditionally implemented during probe.
 
-Best regards,
-Sarthak Garg
+I think it is really the next step after this patch-set lands where we
+have to support the remoteproc service hosted under different TEE
+implementations like OP-TEE, TS-TEE or QTEE etc.
+
+-Sumit
 
