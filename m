@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-204768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 726C1B26C18
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 18:11:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F7EB26C16
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 18:11:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 871E1A04299
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 16:07:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B6DFA040DB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 16:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C5528CF50;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4804288C1E;
 	Thu, 14 Aug 2025 16:07:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BfNbBkm+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qpw4hO0d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7743524EAB1
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 16:07:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99903248894
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 16:07:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755187628; cv=none; b=WrkbAz1C8mY0k//WwbMuuzksKvhc+MlCvSjbp394zMVZDtzA+Ql9FW23uQTGczSVEL+XQRu0i8BB6PpimvMs95Nv9giZi2bIJ7rUhYNwKi1OgN9CJjxNrJ4cHvbZUZl/3o/O95lZyOKoTae0qUqoWO95GCa+A4qNc+f0cpLvTBQ=
+	t=1755187628; cv=none; b=aeyUk1vVg9zsCJFYFuaVUo/0rMVsHv8wSyrozN9nOkzeWWvfmZX5V0LH1RrMEJ0FfjgA6DCH86QgjjyiSibNCmY2P5xkb52Xgz61V6QmyXeYtpZCR9cbNenoJCT8apsT7cToCLW/S76MS7TaxubI+aZGcssDRf4hwEkUY9cXebU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1755187628; c=relaxed/simple;
-	bh=CLq0x//RJ1+g8/wsiBtMX89qchTr6zzzAuw6KnvXyPQ=;
+	bh=tGr7ZdC9lWhIzCCUsw+rFlJmgOHa5c1oy9NRasjlofM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rVkx6rWkf9TwD4fi5AlgT1o6JODNNtTRxFb2zGldkeQrDd22FSCVkPLvQeLNgr3i4IyZDhCoqyTs/8rX76xwSYDSIjrVZcaryrq9VRoNtsDxn91nHtHnKQSGkm0MsZk/BtMNQXgaRVg4GbspYZb49FUPydckoM1ai4vEwX7nppg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BfNbBkm+; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:To:Cc; b=hg4PL+GXRKATMtbe+78lxE7iUMHmTfSP9UA76QjWWdRtZ5OKb6aUTZoI+9T288oWeTkoD2mO4IBmWK2dTPI9it89AYsoofmJ6dnZMl5FPhrm7SZRBoYSD/9GxUh3PWN0rLhAR5NV6GgJzEt3UiGap3TxCzMbHVn+Wd9bVLqzsjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qpw4hO0d; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45a1b0bd237so8669685e9.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 09:07:05 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-45a1b05fe23so5990725e9.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 09:07:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755187624; x=1755792424; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755187625; x=1755792425; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=G4vuRjFCf3vC4nZa1AB/3PAeoOAW0nxzKRYHE4PiFcg=;
-        b=BfNbBkm+/qP+o+hsycsZUgAJKmo1n5950rHNgCZoNG7Bxm0swDxb296pqAzlQib5/v
-         G0QBZ5Vk8qXutb5tAHpQTwv8aYYj1XdWK+3POUzsPBCGLbC6SrTp8Jnzj/JjYQ6ySsmD
-         9rFXPONjArHuPbpAAA+q6bLhSQd9h7VYmDIupH50jfZRNSE+hJNrSJWNdhsTCHXWOY/j
-         Of4K6SJl+FKCx1yXwVT0dyH9fpTFmwS4Kr/HnsxZOLWdzjNaXSKr+YeIuMSkClhklofA
-         ICxgdbJfIrbBMUiPzfoOu3ePUC08itzVNBZfvrk6HA5jRhEGEU2MzzemXv0q+q81+6CC
-         pTAA==
+        bh=kIP40WisTeT4zrEy6wQwK47oVAaa0UgJRrDSFCcyNWg=;
+        b=Qpw4hO0dtRi+GaLCNUcinFGipsBEL+i/BFhL4ouvTZeBy/fZfOYCvQ2LXd3+6CXxa1
+         X4BXls5DLFYyej9wdnEspJL5svTXa/N+SvA8rDaTrkKbNxozcnwgqzpQm+0huOu7wdYc
+         Xt0N5GQ9XhwMm9fk7fHmsFsCE+QiY54o9y9So6k6ATPg4QcESDo5C9p37CbwOwHgowA3
+         WshOA4B8nMzBqLQXB3csqDJ0WmchHB0lRAp1VT1T9eKUXvN355UyF0iBYEMrzdd/IeS9
+         CaVC0ZqpeTZv1yWUGhUDpRG510PE4aMR4sTZ96h1f8lFGIJGtMC0WaeP8IkjfooyVTLb
+         oeHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755187624; x=1755792424;
+        d=1e100.net; s=20230601; t=1755187625; x=1755792425;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=G4vuRjFCf3vC4nZa1AB/3PAeoOAW0nxzKRYHE4PiFcg=;
-        b=kXc71wyZmBlxO3KjAYVLnzzzYA+Bwn+BEuwgvCY+mOjPUQWZeyNWO/Ca6hpLr93pnM
-         8v6RszUhBJZ2/K0cRvnYecGmdpYOjsyQDtS/X3feLtDhkJneyVVsWnarq0dNsr3iHjIb
-         YWOzWfMuqBXPPd1nmFS7inMi64rHfov7UbJl0F+dESZArhmkMeskroSebyJI+oU9znxA
-         OFznSOS1YP3sB1Q54+bnPEzLP/NKAxD12XMNyZKUfizAUf8Q5zVHMGB72CyClccXrEo3
-         wsctkulfG1+uuyTwze58x2x6sqkpMa2r9CtyQmTdOP9gHEbdcpXvEolLrNauujTSz1QW
-         67rw==
-X-Forwarded-Encrypted: i=1; AJvYcCXwAKihBQjDPBWkKcxO908PFrUmjVvM27QKywZ2rMIjY2BEkXggy5yuPERUMX3rmxYwbcI1PhPpsgFq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlXIfd8bC2n5MT1W4WlPdeOyrdMHeYrEw1g8MV5zIXqwJF1vFl
-	4AKNttfh0/dUhi0KpYYmT/YtqzZySDErd2EkSMIFN0jHse0jagKBymZcqTcSJBK+fc0=
-X-Gm-Gg: ASbGnct7o96vHFrrFCeUysZwuoOb3YgUyHOcjq0gSkZRaYh8ZndQc/yFubWd7s4Xf9B
-	IJrrxtICl9kPNlDAxCeaIeMC/RbELux5+xZ9kgv+2kMFKUNla/mAEh2raIuzXGIBSENRohaSPzh
-	pkNIhBgWYv9CHMQHb5TxbocSdbsPQX8d8JoiuxBD/7saIk8GY06OipxrGhsUKngLBA0WFNuFSPi
-	4sftbf1v7tg/TmKtL36bECjY2DQ/++9QNOsq5zXJG4FQ65WiXMfWIbg/XCaSTu75SsPeocc6EDU
-	3yrT/cb9JN49VWgK15xrdvvkt3xed8eDHRqR4iv1AtijJStpEoEg0BqTOiNnAdE9tyyofDuVNGB
-	DEQIaJE3+7hfsl7NNo8R/w8UR2xfrENk=
-X-Google-Smtp-Source: AGHT+IH/+4jZEpKRE7MfihNgsJ2kDCK+C5ucKz6591vTGYsk5Mbo7reqdiCgmL0v7c+F3KACTVzlYA==
-X-Received: by 2002:a05:600c:1c97:b0:459:ddd6:1cc7 with SMTP id 5b1f17b1804b1-45a1b597881mr34789795e9.0.1755187623699;
-        Thu, 14 Aug 2025 09:07:03 -0700 (PDT)
+        bh=kIP40WisTeT4zrEy6wQwK47oVAaa0UgJRrDSFCcyNWg=;
+        b=A0ukWQ5xoaDRCIWscrNQdv2tIP6brWn/AMq3IpSkocf88+0qUluGsbPje8oTlchkWW
+         uO3P30sHh9JGZVWQmFkyh0oam2jfNfJ5ey+sDoD/rnadXOWD4fwFx8WJHZxXyxLZiwlq
+         s2QIxjDwT1CAmN9caD2JPYXDaMcyf9RIqjnCbC8h+xx4dvLauVlM8Uj5exM1gVlGjU/h
+         KwjcSiWd6CvqrfLLfTjKYv0jgcbLAQccWinA2KtMJfSDY+nY/kfTYoHiPZnZoiOFSL4T
+         uGv6o7HJA5GZxo848H8nYhXJU2yfCo7fUsMC9OLiEUjhR7R6KWAVcvdNj+LNjCw1V+4o
+         eZlA==
+X-Forwarded-Encrypted: i=1; AJvYcCXqgMrOCvXaBd+byI3rD4I2VUwEGEgIAS5NCTKj0Q0XOOv/zUEUFzd8cgPSk2NgnoN6RR3Sn8hcmp/Y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7ICNkLmSQZ4GLb6bqlXC+QGHIgNGHDfVPkpneUJOs2cojlZWR
+	tUA5mNO+HS7cRxr4Ljkzk9DeSGVdx/NBuuGtE9+cHjfoLLybkAZiu5dep51FhYsgH6g=
+X-Gm-Gg: ASbGncswtv/8n8ie0C9p1QaoimGsQtnPWoSJvaulTm9bP5BKYN6E/Q69cyslbgBZX0n
+	dSgKb+xeX7HBxEJFseQm8o4fy68LrPRHC5lg3DJ5ulLDmXGzGurtNq1Lo0sEwUaWbD0S8ixjZr8
+	AzDlS4aBiyWzGqVyoglxyQ2i0CWFrUku/+OGw/9dXC1zp+jbVsmsxb3kdKnu6VYBYmQz16vjH3h
+	+T+dyxUdWG56LQvlqkSodvdAgGiBTTHcP6K3Mkgd7LV1GW/mPqiqb2QmxnAXQsJg5+heFVkV6iU
+	3+g2AqfjImtMQ8XZHTQ7Pj5s2f3Xxyp1hrfv4gbHb5Na2CdKZBxIiIj+jRimpfNMgNxWXMNyMsG
+	7PB+q+uy+jfEDT/rO+LmxfCuarHkuWt4=
+X-Google-Smtp-Source: AGHT+IFHK7GjTXRXCwZAe8/WmOBTSJ+eME2lZCidVPBvgVxCWAF3s0hzjYhWMNTNHWm2p91GYyv0Yw==
+X-Received: by 2002:a05:600c:4715:b0:459:ddad:a3a3 with SMTP id 5b1f17b1804b1-45a1b657876mr28054405e9.25.1755187624778;
+        Thu, 14 Aug 2025 09:07:04 -0700 (PDT)
 Received: from ho-tower-lan.lan ([185.48.76.109])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1c6bd172sm28363495e9.6.2025.08.14.09.07.02
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1c6bd172sm28363495e9.6.2025.08.14.09.07.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Aug 2025 09:07:03 -0700 (PDT)
+        Thu, 14 Aug 2025 09:07:04 -0700 (PDT)
 From: James Clark <james.clark@linaro.org>
-Date: Thu, 14 Aug 2025 17:06:42 +0100
-Subject: [PATCH 02/13] spi: spi-fsl-lpspi: Set correct chip-select polarity
- bit
+Date: Thu, 14 Aug 2025 17:06:43 +0100
+Subject: [PATCH 03/13] spi: spi-fsl-lpspi: Reset FIFO and disable module on
+ transfer abort
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250814-james-nxp-lpspi-v1-2-9586d7815d14@linaro.org>
+Message-Id: <20250814-james-nxp-lpspi-v1-3-9586d7815d14@linaro.org>
 References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
 In-Reply-To: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
 To: Frank Li <Frank.Li@nxp.com>, Mark Brown <broonie@kernel.org>, 
@@ -105,41 +105,37 @@ X-Mailer: b4 0.14.0
 
 From: Larisa Grigore <larisa.grigore@nxp.com>
 
-The driver currently supports multiple chip-selects, but only sets the
-polarity for the first one (CS 0). Fix it by setting the PCSPOL bit for
-the desired chip-select.
+In DMA mode fsl_lpspi_reset() is always called at the end, even when the
+transfer is aborted. When not using DMA, aborts skip the reset leaving
+the FIFO filled and the module enabled.
 
-Fixes: 5314987de5e5 ("spi: imx: add lpspi bus driver")
+Fix it by always calling fsl_lpspi_reset().
+
+Fixes: a15dc3d657fa ("spi: lpspi: Fix CLK pin becomes low before one transfer")
 Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- drivers/spi/spi-fsl-lpspi.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/spi/spi-fsl-lpspi.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/drivers/spi/spi-fsl-lpspi.c b/drivers/spi/spi-fsl-lpspi.c
-index d44a23f7d6c1..c65eb6d31ee7 100644
+index c65eb6d31ee7..aab92ee7eb94 100644
 --- a/drivers/spi/spi-fsl-lpspi.c
 +++ b/drivers/spi/spi-fsl-lpspi.c
-@@ -70,7 +70,7 @@
- #define DER_TDDE	BIT(0)
- #define CFGR1_PCSCFG	BIT(27)
- #define CFGR1_PINCFG	(BIT(24)|BIT(25))
--#define CFGR1_PCSPOL	BIT(8)
-+#define CFGR1_PCSPOL_MASK	GENMASK(11, 8)
- #define CFGR1_NOSTALL	BIT(3)
- #define CFGR1_HOST	BIT(0)
- #define FSR_TXCOUNT	(0xFF)
-@@ -425,7 +425,9 @@ static int fsl_lpspi_config(struct fsl_lpspi_data *fsl_lpspi)
- 	else
- 		temp = CFGR1_PINCFG;
- 	if (fsl_lpspi->config.mode & SPI_CS_HIGH)
--		temp |= CFGR1_PCSPOL;
-+		temp |= FIELD_PREP(CFGR1_PCSPOL_MASK,
-+				   BIT(fsl_lpspi->config.chip_select));
-+
- 	writel(temp, fsl_lpspi->base + IMX7ULP_CFGR1);
+@@ -734,12 +734,10 @@ static int fsl_lpspi_pio_transfer(struct spi_controller *controller,
+ 	fsl_lpspi_write_tx_fifo(fsl_lpspi);
  
- 	temp = readl(fsl_lpspi->base + IMX7ULP_CR);
+ 	ret = fsl_lpspi_wait_for_completion(controller);
+-	if (ret)
+-		return ret;
+ 
+ 	fsl_lpspi_reset(fsl_lpspi);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static int fsl_lpspi_transfer_one(struct spi_controller *controller,
 
 -- 
 2.34.1
