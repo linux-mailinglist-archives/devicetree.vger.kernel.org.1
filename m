@@ -1,142 +1,83 @@
-Return-Path: <devicetree+bounces-204536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B937B25E67
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:09:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7757AB25E5F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:08:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE43B3BF7D3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:07:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 764EF165C3C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5718C2E7172;
-	Thu, 14 Aug 2025 08:07:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48CEA2E7635;
+	Thu, 14 Aug 2025 08:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="0i/93Bll"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V5/XWItu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB78E2E54AF
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 08:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17AFD2D12E7;
+	Thu, 14 Aug 2025 08:05:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755158841; cv=none; b=APglq6iLI35h8n3AJ/FFUhVDoqcA6Wun2j+jGNi+MwcoTb0Up1v7cqhsExNzhWgijdvs2tQt7xf9eQ4+wj/sWAoVJlSzA3YSknzhgD3bveBwYdZP/QAB9NbB/ZKWTWnPfWrQYocLyrF767j/6y1puXT54Dt7a2Owo33louS8j9o=
+	t=1755158756; cv=none; b=l/iN5dPjMes5CSEM/TBxkjvNeH4Zqr3etFshXAgJWqGHFhRKioHlUBveswjaHxknSnXfnkhpMrsDhmFajwjTeLjGpmrRsQvDXGSfB4YfLvPZaSw3+sK4Hll8kVmbNIvYy3sT2WUdDCewtjisxJI9I+5CroeiBb075GrRIOaDdYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755158841; c=relaxed/simple;
-	bh=lMpxQL3vxiHjhSQ6qRV95klnp1jlsr1g47iiI4+lswU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lxbqMLR+15WQWxt1gSkXuOoIF7oV6RgrBDaMs5OKRSKsIGhCbtgd8Vhy5dqFWWF0zIJkLWnRdcfacyN9qhm4y39ow0zfW5flpkZtQ+J+FA6UPwxyC78ACNYQtn9FWRh/vKEWEp+ELkJHnjK4W13ju7ablEstJKRc3DkQzLse3xk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=0i/93Bll; arc=none smtp.client-ip=212.77.101.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 2740 invoked from network); 14 Aug 2025 10:07:12 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1755158832; bh=xDw4DWxZS/qq7zJvdZ1W4x8BSzX0OHBxZaPftTdF3V8=;
-          h=From:To:Cc:Subject;
-          b=0i/93Bllel6CaR24SeXMSfhI7vsF37jckxENf3TF1po9XifsrvU8tANdRx4YsXmD9
-           cmIbivbL3lGCqGfK6lXPirXKcXTx2RJa/aoE0IlW8kZ5lyiG6y1taL5DBayKfmbcmD
-           i2Bnrwlp8/T6SUUs1crZFSmKSL6rFkmQaHGNS69iSSqIp79urBkbvAEeZsKMDD8AkF
-           c6Syg3LUuhwrseWYCTtMkOAcE4K2bCjqIi4hM4Tz6KdZnrh4O7X60oV/JlGbH+KJvn
-           5LgKGheSf9fI5Cf2kj4yN+Qmz8MqkaVwmDZU7lCKmDJByIjGY3cgQp7x5FsLQX8zoQ
-           lzbShrv7Ue8aw==
-Received: from 83.24.134.210.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.134.210])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <jdelvare@suse.com>; 14 Aug 2025 10:07:12 +0200
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: jdelvare@suse.com,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	fe@dev.tdt.de,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1755158756; c=relaxed/simple;
+	bh=HUjRoUBiPA6qKjrIqUqj+tWWPwrwSnjORUlp6OeXZaE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iPr992x7Gp9VpQoDCF+wEg+899DHgvOppOOLxUTRwK2OcRSlT6RslGK/EOFw8cGRBmXX7Gvm0DYguYeyhN6L36wfGe19cEBS1HQy80KkMIk7+XubUy+8fXT/bIjNqzzHwCxBATck7tPP8pF7nX8Io+dCuE2YjoSYDCO7Rn2qrIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V5/XWItu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CA8DC4CEF4;
+	Thu, 14 Aug 2025 08:05:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755158755;
+	bh=HUjRoUBiPA6qKjrIqUqj+tWWPwrwSnjORUlp6OeXZaE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V5/XWItusZsyqPyNHbtQySAAEa88+ND8yVFrvjobJDf7KWOF+a4XTNQZykaPKTQ45
+	 dTQCjk9f7QGHcTJXyWBcO2D2AscS7DK4YWE2q8MxtfiWHKhxa9kkSWymw4D1Jc9bT5
+	 XoRURi3jFZDfmwLWdgv8fYfNyiYJ5wxxOIxEnKHMFobWJGP6Rm//potJokUboqP9s8
+	 5cafsbJ5tm5K/zuDz5TkTo74gTe9ZG8vJsniKpjTB74pWq4RPr9V/unVE419nSMqCf
+	 T3X3BdFaSKeZOVkfhU30BdvFdxKs+RfoHmnwQg1x2JE0msRQgeOqRQdoZEGzLk+EDo
+	 5yzo7BRy3iFbQ==
+Date: Thu, 14 Aug 2025 10:05:52 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Taniya Das <quic_tdas@quicinc.com>, Ajit Pandey <quic_ajipan@quicinc.com>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH v2] dt-bindings: hwmon: convert lantiq-cputemp to yaml
-Date: Thu, 14 Aug 2025 10:04:41 +0200
-Message-ID: <20250814080708.3054732-1-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.2
+Subject: Re: [PATCH v4 1/7] dt-bindings: clock: qcom-rpmhcc: Add support for
+ Glymur SoCs
+Message-ID: <20250814-positive-defiant-hyrax-f62bad@kuoka>
+References: <20250813-glymur-clock-controller-v4-v4-0-a408b390b22c@oss.qualcomm.com>
+ <20250813-glymur-clock-controller-v4-v4-1-a408b390b22c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                                      
-X-WP-MailID: 02e1e0d59fb63bd60bbca17161f711ee
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 000000A [4QPE]                               
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250813-glymur-clock-controller-v4-v4-1-a408b390b22c@oss.qualcomm.com>
 
-Convert the Lantiq cpu temperature sensor bindings to yaml format.
+On Wed, Aug 13, 2025 at 01:25:17PM +0530, Taniya Das wrote:
+> Add bindings and update documentation compatible for RPMh clock
+> controller on Glymur SoC.
+> 
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
-v2:
-- added reg property 
----
- .../bindings/hwmon/lantiq,cputemp.yaml        | 30 +++++++++++++++++++
- .../devicetree/bindings/hwmon/ltq-cputemp.txt | 10 -------
- 2 files changed, 30 insertions(+), 10 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/lantiq,cputemp.yaml
- delete mode 100644 Documentation/devicetree/bindings/hwmon/ltq-cputemp.txt
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/hwmon/lantiq,cputemp.yaml b/Documentation/devicetree/bindings/hwmon/lantiq,cputemp.yaml
-new file mode 100644
-index 000000000000..9419b481ff35
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/lantiq,cputemp.yaml
-@@ -0,0 +1,30 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/lantiq,cputemp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lantiq cpu temperature sensor
-+
-+maintainers:
-+  - Florian Eckert <fe@dev.tdt.de>
-+
-+properties:
-+  compatible:
-+    const: lantiq,cputemp
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    cputemp@103040 {
-+        compatible = "lantiq,cputemp";
-+        reg = <0x103040 0x4>;
-+    };
-diff --git a/Documentation/devicetree/bindings/hwmon/ltq-cputemp.txt b/Documentation/devicetree/bindings/hwmon/ltq-cputemp.txt
-deleted file mode 100644
-index 473b34c876dd..000000000000
---- a/Documentation/devicetree/bindings/hwmon/ltq-cputemp.txt
-+++ /dev/null
-@@ -1,10 +0,0 @@
--Lantiq cpu temperature sensor
--
--Requires node properties:
--- compatible value :
--	"lantiq,cputemp"
--
--Example:
--	cputemp@0 {
--		compatible = "lantiq,cputemp";
--	};
--- 
-2.47.2
+Best regards,
+Krzysztof
 
 
