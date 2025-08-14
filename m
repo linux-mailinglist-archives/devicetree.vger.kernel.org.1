@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-204650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87629B263AB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:00:31 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B0DDB26380
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 12:57:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEDA1564E58
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:57:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F8C44E0F0F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41B632FC898;
-	Thu, 14 Aug 2025 10:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DCFC301029;
+	Thu, 14 Aug 2025 10:56:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38AE2FB991
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 10:56:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA011301011
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 10:56:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755168962; cv=none; b=pYSEf2poy6mxk4jRXaI9yzFYaKffFg93hOaScJ0v8hSwUfqpAPZrYAsMmrHtWgLWWEeC/s/PgivLETpZgMOfmFmtV9K+rsD548SdVKhAkOkv2lq4RCDtC+UfdM4JwtlVEa2gI0GuoWf5ZEySkmtGUyIjiD9wnsxKU8arJI/posw=
+	t=1755168983; cv=none; b=RHJ4ZhLQGpVZouN9fa9oPuIinnaUKcrgBdQE+2hBM0AhEszluuC6QdW0lgCMlVgQ+zWXVWGjDcp09Zb5+l5aTJz4ndQ5qmw/gdhi35LNBTBE/U2Lp23cj0UqQuyvyZPB0jspw4rW3uYg1SqJZJUjZeuVZt5aomguLZ6zVhtAHWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755168962; c=relaxed/simple;
-	bh=Ev6nTniyqvf5QNlY+rf18W4fR/OBBWfAIRWRURDlFyE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=nlsbNO8B0fCw9y3YPS+Z+wCIc9Lc3Ej/XZihVWnVA7DK40vuE3i/dlLS+Q6GyXRg5cbTLS0kn/0rjVlqLOJH0xqDY1oHQq7tbJ1WwryEe+hLv8drj9QamR3aVAM6W93XEZtKXvBUFS1SCqK5/Sekbt+o4ixioE50Rm1s46M33K0=
+	s=arc-20240116; t=1755168983; c=relaxed/simple;
+	bh=3+OfW9BOfjYv2yldcC6Z/G9UCY1xuSmIk3TDJoWLvCc=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=hXWYxzbWedBuvSCOvKSDyJyZbxM6yN/VgDCvJU7v6Df2uOUBzM5LtvoFIqoj3EEtUMv+L3NM3FohJ+EtFPBlOwfs1+P7cWSFr/w7YC6NTDLL6cw3muhjCiYZ4CArDqO+IXJIDyhFCdkyak7qepIFTf0EJK7jd1MwRicmO7hzVFU=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,31 +33,34 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1umVcZ-0001Vn-1f; Thu, 14 Aug 2025 12:55:47 +0200
+	id 1umVcq-0001YI-AE; Thu, 14 Aug 2025 12:56:04 +0200
 Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1umVcX-000EyH-2M;
-	Thu, 14 Aug 2025 12:55:45 +0200
+	id 1umVcp-000EyL-36;
+	Thu, 14 Aug 2025 12:56:03 +0200
 Received: from pza by lupine with local (Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1umVcX-000HwQ-25;
-	Thu, 14 Aug 2025 12:55:45 +0200
-Message-ID: <8d21aeee5bd111aa010c8e6b8a4870298ac72cbf.camel@pengutronix.de>
-Subject: Re: [PATCH 0/2] reset: th1520: add VOSYS resets for DPU/HDMI/DSI
+	id 1umVcp-000Hxp-2o;
+	Thu, 14 Aug 2025 12:56:03 +0200
+Message-ID: <7933061270daa3f9c53021064f92f7431fdac9de.camel@pengutronix.de>
+Subject: Re: [PATCH v12 0/3] Add support for AST2700 clk driver
 From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Icenowy Zheng <uwu@icenowy.me>, Drew Fustini <fustini@kernel.org>, Guo
- Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>, Yao Zi
- <ziyao@disroot.org>,  Han Gao <rabenda.cn@gmail.com>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Date: Thu, 14 Aug 2025 12:55:45 +0200
-In-Reply-To: <20250813081716.2181843-1-uwu@icenowy.me>
-References: <20250813081716.2181843-1-uwu@icenowy.me>
+To: Ryan Chen <ryan_chen@aspeedtech.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Joel Stanley
+ <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Mo Elbadry
+ <elbadrym@google.com>, Rom Lemarchand <romlem@google.com>, William
+ Kennington <wak@google.com>, Yuxiao Zhang <yuxiaozhang@google.com>,
+ wthai@nvidia.com,  leohu@nvidia.com, dkodihalli@nvidia.com,
+ spuranik@nvidia.com
+Date: Thu, 14 Aug 2025 12:56:03 +0200
+In-Reply-To: <20250708052909.4145983-1-ryan_chen@aspeedtech.com>
+References: <20250708052909.4145983-1-ryan_chen@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -72,24 +75,21 @@ X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mi, 2025-08-13 at 16:17 +0800, Icenowy Zheng wrote:
-> The VOSYS subsystem of T-Head TH1520 SoC contains a set of display
-> pipeline in addition to the GPU. The display pipeline contains a DPU
-> (display controller), a HDMI controller and 2 DSI controllers.
+On Di, 2025-07-08 at 13:29 +0800, Ryan Chen wrote:
+> This patch series is add clk driver for AST2700.
 >=20
-> This patchset adds reset controls for these devices.
+> AST2700 is the 8th generation of Integrated Remote Management Processor
+> introduced by ASPEED Technology Inc. Which is Board Management controller
+> (BMC) SoC family. AST2700 have two SoC connected, one is SoC0, another
+> is SoC1, it has it's own scu, this driver inlcude SCU0 and SCU1 driver.
 >=20
-> Icenowy Zheng (2):
->   dt-bindings: reset: thead,th1520-reset: add more VOSYS resets
->   reset: th1520: add resets for display pipeline
+> v12:
 [...]
 
-Applied to reset/next, thanks!
+Applied patch 2 to reset/next, thanks!
 
-[1/2] dt-bindings: reset: thead,th1520-reset: add more VOSYS resets
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3Df443d7c9ed46
-[2/2] reset: th1520: add resets for display pipeline
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3Dd342031a5238
+[2/3] reset: aspeed: register AST2700 reset auxiliary bus device
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D9c50f99c1353
 
 regards
 Philipp
