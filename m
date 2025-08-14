@@ -1,90 +1,144 @@
-Return-Path: <devicetree+bounces-204847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15AB7B270A7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 23:17:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D491EB270B1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 23:19:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13BE31BC80D6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 21:17:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6BF9562046
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 21:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C503273805;
-	Thu, 14 Aug 2025 21:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E239D26D4EE;
+	Thu, 14 Aug 2025 21:18:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g/ueKFr2"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="ErQ4pAp+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF1224DFE6;
-	Thu, 14 Aug 2025 21:16:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54BC524DFE6
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 21:18:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755206219; cv=none; b=QovQL/0KQLj2xMLqwXFUtHb34bKtiN6raGtF6Jjx9h56S33KNXkV2utJU1XJbax8Q5rgyOQ8luXGKOr6XU21LOTwH7XPuG5PSxNYIijgo+Lblp32TlcD1wvALxAfgyB/8Q2+B5rhS+3rCLHYzbqPUnK40W9P3NfH9IIlQiowj50=
+	t=1755206314; cv=none; b=XT7lrIuUJUBMB2ZIrAa45q6k3AhbdihM41XZtyIY6X5aPqg7rBz4OR2caFS1d7woZjnbK4DE85XfHed7PhROrb+G1PBWHeN8QsKBVZSGqjtucQXfwfsmhAcQlW2Vm01676GVv/mmL0MK9Hv3mtvoOyHF4NHdm6nYJSh5cgmajl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755206219; c=relaxed/simple;
-	bh=7mVKEQKMNEIRj9xSvfxfFDaMvYFrSJwGFWyxPNN9BYE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=FQS08YRCdahQhPAnbQB8WwMNyZIv6sO1tmgjMjDEXGH49l5SlqkugPvyb8oH9FisYlGRx5a6niOOwnPfMEV78UVDnztX/BiV6lk5RYU9ywaw8UbvYsbbDLi0E7/6/6Tqzrs0EbxJagYZsHosJpCbAGTe1kJUjcVtfGXPUF+ld3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g/ueKFr2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7863BC4CEED;
-	Thu, 14 Aug 2025 21:16:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755206218;
-	bh=7mVKEQKMNEIRj9xSvfxfFDaMvYFrSJwGFWyxPNN9BYE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=g/ueKFr2aF8+mvYmRNIGBdU+rP1u57UCPsJlMNN2dUBoQgIE34CWcYYg1S1WaBCvP
-	 e5USPHW8qKEKoyiwj0RVYBMg1RIsH4eXwNCHh0NVUTkYVpW3dvcn8xSGm+U4MeRLTl
-	 YgKlLmbak2b7WLGDAML99z2WV6R1kbYLkZlQLiCS2P/WuIjsctZGEyk2+FcQQtD07f
-	 pIKGUVdA6vroOB9qdd9rOpoiQW4dfrqDUufEttb5Ur5NlXECGyGy5vXuqPgR4JHJYI
-	 M2NoChsEFxxV1w3wqhq7p38P4lx6Q0V63FXyJxmFipWRVxrYQcQeddkumHTQoQWjfa
-	 nTpHpxiZSuk9w==
-Date: Thu, 14 Aug 2025 16:16:57 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: hans.zhang@cixtech.com
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	mani@kernel.org, robh@kernel.org, kwilczynski@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mpillai@cadence.com,
-	fugang.duan@cixtech.com, guoyin.chen@cixtech.com,
-	peter.chen@cixtech.com, cix-kernel-upstream@cixtech.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 02/13] PCI: cadence: Split PCIe controller header file
-Message-ID: <20250814211657.GA349149@bhelgaas>
+	s=arc-20240116; t=1755206314; c=relaxed/simple;
+	bh=DGT/jWa8qfrlAoBv9pWpgQ5DVzDhdHztGsHRb9C0uD8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BU3N21bhAImW3DT8SVZLQj0oKGqr++LwkzlwoPPdc7F7p9FRxI3NxAWv1OvVPV68jGZc3SEVC+DTSIyv/DKzC3/OpUxUefpPF9SOjHONC41DByh9p25oF9Fb/Ha8qgQQGi124/wDHmkNcsTtVMjXIudYNI+MyJtt3KSP/wDIoJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=ErQ4pAp+; arc=none smtp.client-ip=209.85.160.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-4b109bd8b09so18497091cf.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 14:18:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1755206312; x=1755811112; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=JAdg0B99nBx176JSa2IHf0Gqum3MIVsaAKCTeNllKPY=;
+        b=ErQ4pAp+Q2phEVPynngi6eZVkntSCSZDJyTU78/37UCwnUlkSeOkoiZrDlDZYuzfA3
+         ObKrN2/tAVfwjJYyA7cfgJUbM7feVzjsyu4cd1cWHvbkgY2aW+3rn+rSzUWamoP+pFmz
+         ZQfBiDbM7pTt0lZWqukielgQOaTfthDBXTMqE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755206312; x=1755811112;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JAdg0B99nBx176JSa2IHf0Gqum3MIVsaAKCTeNllKPY=;
+        b=mOwl4h4H6dvVqKY+uTWeGkrPXXII6iK5vWnRCquh9jykL2F2bzSrE+rPO3lFMZBkvm
+         1hP3otadJejMphDrD5QcYTi7wQ4qJJAiRVn/iy0n2aujL7hMJm2Jc8UG+K8y3PysLqRR
+         Ys52psvRB8KikHFoJqpCGDuuXi0Sbqiac0P5DxeceUcMcgKzFV2Qab8DToht6hIzMg82
+         bvM0R9GBVjjmojyNyyFiMY84K5R/C2Cze6sQnO36Ck4vvxt8SHhF4gpM9pdu/wy4Ug92
+         MBupUxRyuMkBFwBij0JVWpvcLxMO4OShKkepx+FrokflWQZJRKKYT9pFnyp45txK6Eb+
+         LanA==
+X-Forwarded-Encrypted: i=1; AJvYcCWey1++PnuntXQs6Ib/ZrpZHuKYvPkAX0RmJ8jm9jDNeubUOX7QXOkU9k6cKlGwMRmm6Nd4vc1Uipu5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8p6LKJj4eTrICxvwl5rIkyu0B5LPDXzc024p+2cfG2kKPb5Nl
+	iFZvLjnBwVTXYxMmX6JlYSjxLCi/jmKUmVCzXB6S/IUjsU9RYdfW/IcGAcg1H+0p2Q==
+X-Gm-Gg: ASbGncs6bLi98dDkgYxrDDke7wWdOUbEW5TY4ISZkGyx0zf1fyL6V9ZDbJhOGrQgW+C
+	fEo1VRag2+iuLPj2cNkjHF0BrMKIcsuyj3MrLlGS1K2Hmd0kGxOg9sruC1n5t4j8QUOQWJ3i/+q
+	213B3s1T14Q0bMszVGVKo915Dnb6QG3xGB7vg/cgyEY3raM5XquKLsaPqkZyG62iakZjibiFCr/
+	F+GcWOHDNcPnO40M8WHq2OInCCKpsZjHxVvFDB/8wA8DM/uXSeDi2oJ/xXhuHx5OXlOVym/g3YW
+	tYqjQOmYkjdO9HKjM0AP2Bfj3T+hpt4SM3cxAwZh9eRinTiRyer8ARLddKleqHNyHLkhNDz3Ec7
+	MK+ln6LVREAqP7+9esELE3tn+69VGrzoWKhGNWNYktuzsp038OqSpZATf1SrpZB87xQ==
+X-Google-Smtp-Source: AGHT+IEkyDNQAVKyJmRDAdsYevWYyNxbZ/vyLLcRBzDMVeiEDD92XcTmdKvPGNmmapwrDIe+yHQzFQ==
+X-Received: by 2002:a05:622a:5b0d:b0:4b0:89c2:68fe with SMTP id d75a77b69052e-4b10c5d9357mr58049511cf.52.1755206312164;
+        Thu, 14 Aug 2025 14:18:32 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4b11aa1216fsm1550341cf.37.2025.08.14.14.18.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Aug 2025 14:18:31 -0700 (PDT)
+Message-ID: <84811e34-05ca-4988-b5e5-64c31e2733e9@broadcom.com>
+Date: Thu, 14 Aug 2025 14:18:29 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250813042331.1258272-3-hans.zhang@cixtech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: serial: brcm,bcm7271-uart: Constrain clocks
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Al Cooper <alcooperx@gmail.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-serial@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: stable@vger.kernel.org
+References: <20250812121630.67072-2-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20250812121630.67072-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Aug 13, 2025 at 12:23:20PM +0800, hans.zhang@cixtech.com wrote:
-> From: Manikandan K Pillai <mpillai@cadence.com>
+On 8/12/25 05:16, Krzysztof Kozlowski wrote:
+> Lists should have fixed constraints, because binding must be specific in
+> respect to hardware, thus add missing constraints to number of clocks.
 > 
-> Split the Cadence PCIe header file by moving the Legacy(LGA)
-> controller register definitions to a separate header file for
-> support of next generation PCIe controller architecture.
+> Cc: <stable@vger.kernel.org>
+> Fixes: 88a499cd70d4 ("dt-bindings: Add support for the Broadcom UART driver")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-s/Legacy(LGA)/Legacy (LGA)/
-
-Similar for "HPA(High Performance architecture)" elsewhere.
-
-> +++ b/drivers/pci/controller/cadence/pcie-cadence-lga-regs.h
-> @@ -0,0 +1,228 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +// Copyright (c) 2017 Cadence
-> +// Cadence PCIe controller driver.
-> +// Author: Manikandan K Pillai <mpillai@cadence.com>
-
-I'm not trying to be a killjoy, but the only author listed in
-pcie-cadence.h is Cyrille Pitchen, and I don't think simply moving
-these definitions to a separate file really counts as becoming the
-author.  I would at least preserve Cyrille's authorship.
-
-Bjorn
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+--
+Florian
 
