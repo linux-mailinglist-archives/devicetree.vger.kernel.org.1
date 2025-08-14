@@ -1,83 +1,101 @@
-Return-Path: <devicetree+bounces-204537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E4AB25E6B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:09:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA590B25E75
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:10:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A15D9E40AD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:07:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F52F7B108D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:09:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3716C2E2664;
-	Thu, 14 Aug 2025 08:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE21B2E717D;
+	Thu, 14 Aug 2025 08:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AMbSvPVC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DLbJ0NC1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 089BF27A12B;
-	Thu, 14 Aug 2025 08:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F3827587D;
+	Thu, 14 Aug 2025 08:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755158868; cv=none; b=Togle0F3RUDUBf3L9FkVuyUtGfHjRUSejWLQ6lTojhkr+skG6pzAKQ5+HncZgklUI/TLGW7+KOz8gLX68IP6+PLG8pNTZBFVpahm2NpjFhmPFPUES5DKNQpkhS+NrSJETUS/OX9p/M6Ol/Jxn+br+z6iKIEkDCZ1KAXPRARDofg=
+	t=1755159040; cv=none; b=jJStjg3CQoB6VRd5bYjK8QCOTCqxyRaKUasbvLD8GrHPoRjfzrmQdKfwZpJ7D8B0RCZXTd1t1P3VnXmU6NXv1M4JKBN5cYs237/WHEGYAKsoNRysPYCJS8XmfybdDyECY6JBL9v9sGUUSTQ1ogSCcjft8Q960WDoFDTW4OUYpPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755158868; c=relaxed/simple;
-	bh=dfyZkSlhfRb8C+mRal/9hfwP4qe/7qNX1aM5rmGNAms=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=md3adNuPyH6ZN0hT/+evISSFmJM9MMhkcK+OQrtaDBNukFopwTKLqxZcxF1E9dAVd16nDP7bNTDGfZ7SscXnfT5wqW37SolA3nz/cdVSrDKrZdP7ghKxS6E3WuyZpZRX8UQuozDY7CAlYJEMKEw3GC3INY0S/bliZOkIWR+dRqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AMbSvPVC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 245D3C4CEEF;
-	Thu, 14 Aug 2025 08:07:46 +0000 (UTC)
+	s=arc-20240116; t=1755159040; c=relaxed/simple;
+	bh=8PGdpqI11ac8Y8fSWkUX0aKnppBjPfTLxK1xdjlz6cE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=PtEhGhFRSOTxnEqm7Iw+VTGJAl/s2l//MyjB190sPlDAMHS3ZvQdETwlYsCdXKPua1bPmE1RTTOGtRFQaDUXjXMIxslxEgL5z79wF+3QR70LNp6f21x80Mn1umGoKqbWT0Gx5qW/G1HalFm7cr1FO7jY4ZPM0didQIlUC3S2O10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DLbJ0NC1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2747C4CEF4;
+	Thu, 14 Aug 2025 08:10:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755158867;
-	bh=dfyZkSlhfRb8C+mRal/9hfwP4qe/7qNX1aM5rmGNAms=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AMbSvPVCsrm1o+ZQ72m27MmwPONtPgbJGl5/sxesiw6pUBrGHBWUND1H+NchXqsNt
-	 4q9+bGDANwK8dz2QSs04Bj3tmfp64+DeIXAfbcQ9FxQm5BW4NGcX/PHZ0EPLiSOIxd
-	 a+MWDa5kgTzvSID98x1sUKDn3iQY+X8z9LBhniBsV4w8gr3HwmbeaWBtm39dUXggKT
-	 YG8Tj+xTtvxC7CnUprOuCpxWhc4oQon9A1FkaqapiLjkt+kNyk6meOEASlAsuvlMkd
-	 wTBoy7DiHKYm69yTLPOxFNOokrZkoxAu++IkGWXj4ol8aj3YGdak/uuC2Es6stlPqM
-	 /73ecvVZ2TjEQ==
-Date: Thu, 14 Aug 2025 10:07:45 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Taniya Das <quic_tdas@quicinc.com>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/7] dt-bindings: clock: qcom: Document the Glymur SoC
- TCSR Clock Controller
-Message-ID: <20250814-warping-hawk-of-brotherhood-0a34be@kuoka>
-References: <20250813-glymur-clock-controller-v4-v4-0-a408b390b22c@oss.qualcomm.com>
- <20250813-glymur-clock-controller-v4-v4-2-a408b390b22c@oss.qualcomm.com>
+	s=k20201202; t=1755159040;
+	bh=8PGdpqI11ac8Y8fSWkUX0aKnppBjPfTLxK1xdjlz6cE=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
+	b=DLbJ0NC153asI54kpXF/bKi1f5qTjJYsdUrlcRx7KzPAUp3hOB3VlFXB2QW7nMuiK
+	 tNAuNlLZzXMh5kyDx4qeuZA+eFTi9ZHbFPq7QZ4nIOLtndciGqwzCJN/rXowebYeng
+	 h7yTuboG83nXDd+Buqo5VVartYvky3YZ+6YMqRrsaYBUGjjRudUE6LutBc93y9fZAG
+	 VflSSnl1UZlFjNfQWsNH8ltDGKwlrLSo3XQeaAvYbjQMoaq9r9jWSxc41YktvdTf8C
+	 qqZ3E+bbhcSlbLc0C0YRYrSk15I0J2lvCVoRPuhIQwY1gjU0+JBx5AVe9d72U5QYeA
+	 FRGRzpivjT7zg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250813-glymur-clock-controller-v4-v4-2-a408b390b22c@oss.qualcomm.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 14 Aug 2025 10:10:31 +0200
+Message-Id: <DC1ZY7PYGCK6.2LDYPXE3XSUMK@kernel.org>
+Cc: <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <rust-for-linux@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <linux-kselftest@vger.kernel.org>, <kunit-dev@googlegroups.com>,
+ <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-acpi@vger.kernel.org>
+Subject: Re: [PATCH v3 11/11] rust: acpi: use `core::ffi::CStr` method names
+From: "Benno Lossin" <lossin@kernel.org>
+To: "Tamir Duberstein" <tamird@gmail.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, "Dave Ertman"
+ <david.m.ertman@intel.com>, "Ira Weiny" <ira.weiny@intel.com>, "Leon
+ Romanovsky" <leon@kernel.org>, "Breno Leitao" <leitao@debian.org>, "Rafael
+ J. Wysocki" <rafael@kernel.org>, "Viresh Kumar" <viresh.kumar@linaro.org>,
+ "Luis Chamberlain" <mcgrof@kernel.org>, "Russ Weight"
+ <russ.weight@linux.dev>, "Brendan Higgins" <brendan.higgins@linux.dev>,
+ "David Gow" <davidgow@google.com>, "Rae Moar" <rmoar@google.com>, "FUJITA
+ Tomonori" <fujita.tomonori@gmail.com>, "Rob Herring" <robh@kernel.org>,
+ "Saravana Kannan" <saravanak@google.com>, "Jocelyn Falempe"
+ <jfalempe@redhat.com>, "Javier Martinez Canillas" <javierm@redhat.com>,
+ "Arnd Bergmann" <arnd@arndb.de>, "Len Brown" <lenb@kernel.org>
+X-Mailer: aerc 0.20.1
+References: <20250813-core-cstr-fanout-1-v3-0-545c14bc44ff@gmail.com>
+ <20250813-core-cstr-fanout-1-v3-11-545c14bc44ff@gmail.com>
+In-Reply-To: <20250813-core-cstr-fanout-1-v3-11-545c14bc44ff@gmail.com>
 
-On Wed, Aug 13, 2025 at 01:25:18PM +0530, Taniya Das wrote:
-> The Glymur SoC TCSR block provides CLKREF clocks for EDP, PCIe, and USB. Add
-> this to the TCSR clock controller binding together with identifiers for
-> the clocks.
+On Wed Aug 13, 2025 at 5:42 PM CEST, Tamir Duberstein wrote:
+> Prepare for `core::ffi::CStr` taking the place of `kernel::str::CStr` by
+> avoid methods that only exist on the latter.
+>
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 
-If there is going to be resend:
+Reviewed-by: Benno Lossin <lossin@kernel.org>
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+---
+Cheers,
+Benno
 
-Best regards,
-Krzysztof
-
+> ---
+>  rust/kernel/acpi.rs | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
 
