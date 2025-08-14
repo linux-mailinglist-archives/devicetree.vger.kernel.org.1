@@ -1,217 +1,105 @@
-Return-Path: <devicetree+bounces-204549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84C94B25EFE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:35:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8536CB25F05
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:37:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D60778828E9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:35:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C3DD5A6DDA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B3262D63E0;
-	Thu, 14 Aug 2025 08:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57059291864;
+	Thu, 14 Aug 2025 08:36:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TH3QWULM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZu4Se1s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67ACA2580D7;
-	Thu, 14 Aug 2025 08:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27B691FDE01;
+	Thu, 14 Aug 2025 08:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755160546; cv=none; b=kyJxr+vEneqVM0pvcxLft9fTvASTwOyao02TftHWJD7Mb3E2jv8yTNg6KK6OErYxr0jgmujC6ck4xCYat44EPrjzYzB+zZ8IOzrALGwDqVwxbGmcIE0g2sHXTiwGahNWZALPLPmymvqoAF+JL+Jm/XfsAxfKfcTgK42UTczwtR4=
+	t=1755160619; cv=none; b=IEFgyNE1I6iefUpUrtijR2GV5Ym8HhUSafOM/vSdvFzmvhJfiFocvE7EnNHfVwS8sT7oHWbZUiYjth/unIZcf4gCgK4TE9rZDFvBC2vkM3YPpjsoMJfJ3T6iBoEaU2jPx+DXsALtSE+2EEfns5v1SGP/5Z9R8e3ehtCFWttWNGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755160546; c=relaxed/simple;
-	bh=WaOHZZiP2R3EwHbR/iA9SjuRqyg+X3URHBMmj281Ryg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lDMFd9CEabDVemU7LBgQEEi4LWdvKUWiUXxXEpg0qaTpJt5XOuaeTOioI6WnYhFP2StRvji3ut/vEnZ5Rpn9kLD3mH3xU1Cs3jJqEk+KXlOWP+/JY9OXEU8xYWlFSLoMmTlGbF5PxjITUHZwSvKzvU6emR22qCfQhi8JYgn0MGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TH3QWULM; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-55ce509127bso529666e87.0;
-        Thu, 14 Aug 2025 01:35:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755160542; x=1755765342; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ht4+WuCclIjF62P/XUWWfv84cD1c1L3az5bzoDE1sSQ=;
-        b=TH3QWULMb9/YnJVO0uUes49sjhm9sAF6Zc0Qpk4t9U+xpANzzOF3vi9T6+BH5bsEUQ
-         e6b+Op9mhBFUoFiKhDXiDGQKdfbe5Kz1zk/2dCHBilHCUUwb0LK0pcunM4e4KOvHRj0+
-         Np2ScB0X8XhsV/jhnEmFCCvXScwNTj8I1qZfyOJlH+sQtcO2UDyHZTBEroyos0+avVl+
-         DylvWZXVpbKP19VBSK8p9ylV6hnS+8kyTRXqEgf0yVz0eoV5AqLy4odk8XGodEsmQ6rU
-         YjCe3sJYKJLw4mzRBvdO9s6eANWH1EA3q8mgMFcBQb5jtX+jDvpju+0ptf66Hztt3zUB
-         f0Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755160542; x=1755765342;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ht4+WuCclIjF62P/XUWWfv84cD1c1L3az5bzoDE1sSQ=;
-        b=UNkB1eJDlVUgKe95fz6yfjBztpSe+KOgKpJCdH0Ox4W/9iItFI2JaRXkt1rQ2Xqsws
-         TbBGR8hKTgqlDNfZ2sdEevB4PaRC1d0E+wutPw5zDq4NchnOT4KBcKY6XxZVTGf1T/9I
-         ExXZIQmnjGXsc9IjkFUvOYeATkifnALoo2/lryOKPvu/FaBTbDWoAflmaFS+X4lW+jKP
-         +31T4b2jaj8rM8ELLVTIlMuFeJdhnXLcJ6EPz+p3bfXK9Frmwm1wmXahP9eZ0WVX9ySS
-         GUXIFo9cXozmiFUP5s4yfTLI9yCGUdXsJIOgza2DE6cEdp3zYIvlcJXNROzPK26mOZHD
-         clqA==
-X-Forwarded-Encrypted: i=1; AJvYcCVj+5372a/Vn1FXU2DAb2ScpD3e59p3hON/9x8jhIY5UzFiShWsHQC2MfNlPClNjnzQBm2B8ZuDQWSz@vger.kernel.org, AJvYcCWM4dFGc+N51iNHRtgG+HTZz57NrKTUryRzt3kIOaPG9XD0P5dPFxArfr/zWaWmx6Aku3RHVujiFENWVq2q@vger.kernel.org, AJvYcCWvieeMaOo4UJXyC2ZEL3Sf2hASAKY4HlJpRjb+CYBzqrJRUUgIURx1UW6b3lOymVUdzrMieh9yCAL9@vger.kernel.org
-X-Gm-Message-State: AOJu0YydRGJDoiODtTD3a7ZbWwdsk+vx3eqcyJxLogTlMnIoE6T96qDk
-	Q1B/OkHFg4YbmGwCbfA/YS7Im2k6aS5YeABbUHslCjW2OdWQ+jKpKF/I9Wtmqw==
-X-Gm-Gg: ASbGncuU0mCubIjhmchG8hYQ0jGscKvdMhJtZrQr7BnoqQLWJnSE6E268RbigruvtJX
-	JdsChkALYtJyYbVKhTtQ09jt9CYbQ9FLLzKIyZQ4i5Qx7ppOM7nVFvLxjiBMODqS8BoevROxJQt
-	xW+GdD2F9QKMCJEpy2hIQsF6V4JU2EoybgWq/OpmlhsDLtAomukcZYW2AFypKKsZBw8uGVJdpqC
-	TgqxYaUYV23bGrlotsT56jp0jsDlxInjm7QpJzRaGRL9roFZayNZQGrAC1wD9TTE9axujWZYdjz
-	FglM/ECQIGZgZO2tao5xT3oWahiQZRRQCtnSPezlht6qowtP1jbfGXlxAfZ9WIj6bpvgqFr1hQH
-	qxFbxut75AtwwMahLXvFNF4yM
-X-Google-Smtp-Source: AGHT+IFx5zwb/Nodxv8hOdTbdKr/qi9nYS9WK66oxmazbUzRaJePPvUXSXJSUnrthUlk4i5mLboKhg==
-X-Received: by 2002:a05:6512:1302:b0:55b:885b:390d with SMTP id 2adb3069b0e04-55ce4fd6963mr852944e87.0.1755160542169;
-        Thu, 14 Aug 2025 01:35:42 -0700 (PDT)
-Received: from mva-rohm ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b88c99057sm5572085e87.91.2025.08.14.01.35.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Aug 2025 01:35:41 -0700 (PDT)
-Date: Thu, 14 Aug 2025 11:35:37 +0300
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Sukrut Bellary <sbellary@baylibre.com>,
-	Lothar Rubusch <l.rubusch@gmail.com>
-Subject: [PATCH 3/3] iio: adc: adc128s052: Support ROHM BD7910[0,1,2,3]
-Message-ID: <e43c184fc6aa5c768045fc772b64d812fdb06254.1755159847.git.mazziesaccount@gmail.com>
-References: <cover.1755159847.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1755160619; c=relaxed/simple;
+	bh=tU5iipaDEUy6NFDdG2V1HfYPchwAoL9oGgj2hDb7VKU=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=lGy8lUNYDmRHX+X9dZs7lMjVvu16SoDONUMs57vech8R87Qv2gK9e/SejATK1dVI51C0j+Wuqp5+IO6OWaXtuqiCBhfZKJ9Nk036fa3BNrieoUVguYGJKJhs8u2reRZ58hfvP9in9L6QzvXPEgseHXntT37agMEv5C5QJXCWcEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pZu4Se1s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BBFFC4CEEF;
+	Thu, 14 Aug 2025 08:36:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755160618;
+	bh=tU5iipaDEUy6NFDdG2V1HfYPchwAoL9oGgj2hDb7VKU=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=pZu4Se1sZSkaFhuobBWv5m5jYhXyjrZqrSLVIZlP/GORW8EWSCa99FpaW2FWGtfkt
+	 xu1InKq/CuaJWBLvZ7pJQGoNuBe2sPScF66BCDX+pNwdmvvNKhSjF/toNx3/QnXF0I
+	 xdhYkFS5wTLQBJQGeEhsZuH4hWzKKcxgtu5j8eAvecGIlDcnQTO5OUODPVKkJNkChr
+	 Jx46Q0YsHVAICsW4cQpYhsfSkFwL1tGfclIe7JEJo+885OM/yAATBU2wvNVJCGKhel
+	 x9wkBhXYljY9TUKieG2RGzAa3Whl+anh+Is6jA2of4EAO0NmeR/BsjASqGZxEo32Me
+	 Txwbl8N0bO5aA==
+Date: Thu, 14 Aug 2025 03:36:57 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RBe/8Sbrp2Y9Vhm6"
-Content-Disposition: inline
-In-Reply-To: <cover.1755159847.git.mazziesaccount@gmail.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Russell King <linux@armlinux.org.uk>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>, 
+ Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>, 
+ linux-kernel@vger.kernel.org, Simon Horman <horms@kernel.org>, 
+ netdev@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>
+To: David Yang <mmyangfl@gmail.com>
+In-Reply-To: <20250814065032.3766988-2-mmyangfl@gmail.com>
+References: <20250814065032.3766988-1-mmyangfl@gmail.com>
+ <20250814065032.3766988-2-mmyangfl@gmail.com>
+Message-Id: <175516061769.1975599.3085098117739247200.robh@kernel.org>
+Subject: Re: [RFC net-next 1/3] dt-bindings: net: dsa: yt921x: Add
+ Motorcomm YT921x switch support
 
 
---RBe/8Sbrp2Y9Vhm6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 14 Aug 2025 14:50:20 +0800, David Yang wrote:
+> The Motorcomm YT921x series is a family of Ethernet switches with up to
+> 8 internal GbE PHYs and up to 2 GMACs.
+> 
+> Signed-off-by: David Yang <mmyangfl@gmail.com>
+> ---
+>  .../bindings/net/dsa/motorcomm,yt921x.yaml    | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml
+> 
 
-The ROHM BD79100, BD79101, BD79102, BD79103 are very similar ADCs as the
-ROHM BD79104. The BD79100 has only 1 channel. BD79101 has 2 channels and
-the BD79102 has 4 channels. Both BD79103 and BD79104 have 4 channels,
-and, based on the data sheets, they seem identical from the software
-point-of-view.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+yamllint warnings/errors:
 
----
-Tested only using the BD79104. The ROHM hardware colleagues swore this
-testing should be sufficient...
----
- drivers/iio/adc/ti-adc128s052.c | 36 +++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml: motorcomm,switch-id: missing type definition
 
-diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s05=
-2.c
-index 81153253529e..2f2ed438cf4e 100644
---- a/drivers/iio/adc/ti-adc128s052.c
-+++ b/drivers/iio/adc/ti-adc128s052.c
-@@ -122,6 +122,10 @@ static const struct iio_chan_spec adc124s021_channels[=
-] =3D {
- 	ADC128_VOLTAGE_CHANNEL(3),
- };
-=20
-+static const struct iio_chan_spec bd79100_channels[] =3D {
-+	ADC128_VOLTAGE_CHANNEL(0),
-+};
-+
- static const char * const bd79104_regulators[] =3D { "iovdd" };
-=20
- static const struct adc128_configuration adc122s_config =3D {
-@@ -142,6 +146,30 @@ static const struct adc128_configuration adc128s_confi=
-g =3D {
- 	.refname =3D "vref",
- };
-=20
-+static const struct adc128_configuration bd79100_config =3D {
-+	.channels =3D bd79100_channels,
-+	.num_channels =3D ARRAY_SIZE(bd79100_channels),
-+	.refname =3D "vdd",
-+	.other_regulators =3D &bd79104_regulators,
-+	.num_other_regulators =3D 1,
-+};
-+
-+static const struct adc128_configuration bd79101_config =3D {
-+	.channels =3D adc122s021_channels,
-+	.num_channels =3D ARRAY_SIZE(adc122s021_channels),
-+	.refname =3D "vdd",
-+	.other_regulators =3D &bd79104_regulators,
-+	.num_other_regulators =3D 1,
-+};
-+
-+static const struct adc128_configuration bd79102_config =3D {
-+	.channels =3D adc124s021_channels,
-+	.num_channels =3D ARRAY_SIZE(adc124s021_channels),
-+	.refname =3D "vdd",
-+	.other_regulators =3D &bd79104_regulators,
-+	.num_other_regulators =3D 1,
-+};
-+
- static const struct adc128_configuration bd79104_config =3D {
- 	.channels =3D adc128s052_channels,
- 	.num_channels =3D ARRAY_SIZE(adc128s052_channels),
-@@ -210,6 +238,10 @@ static const struct of_device_id adc128_of_match[] =3D=
- {
- 	{ .compatible =3D "ti,adc124s021", .data =3D &adc124s_config },
- 	{ .compatible =3D "ti,adc124s051", .data =3D &adc124s_config },
- 	{ .compatible =3D "ti,adc124s101", .data =3D &adc124s_config },
-+	{ .compatible =3D "rohm,bd79100", .data =3D &bd79100_config },
-+	{ .compatible =3D "rohm,bd79101", .data =3D &bd79101_config },
-+	{ .compatible =3D "rohm,bd79102", .data =3D &bd79102_config },
-+	{ .compatible =3D "rohm,bd79103", .data =3D &bd79104_config },
- 	{ .compatible =3D "rohm,bd79104", .data =3D &bd79104_config },
- 	{ }
- };
-@@ -223,6 +255,10 @@ static const struct spi_device_id adc128_id[] =3D {
- 	{ "adc124s021", (kernel_ulong_t)&adc124s_config },
- 	{ "adc124s051", (kernel_ulong_t)&adc124s_config },
- 	{ "adc124s101", (kernel_ulong_t)&adc124s_config },
-+	{ "bd79100", (kernel_ulong_t)&bd79100_config },
-+	{ "bd79101", (kernel_ulong_t)&bd79101_config },
-+	{ "bd79102", (kernel_ulong_t)&bd79102_config },
-+	{ "bd79103", (kernel_ulong_t)&bd79104_config },
- 	{ "bd79104", (kernel_ulong_t)&bd79104_config },
- 	{ }
- };
---=20
-2.50.1
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250814065032.3766988-2-mmyangfl@gmail.com
 
---RBe/8Sbrp2Y9Vhm6
-Content-Type: application/pgp-signature; name=signature.asc
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
------BEGIN PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmidn9kACgkQeFA3/03a
-ocUznwgAvCP4xHU3F2/KzfDwqTy7VJckfUH9qjtfncnPla8SWorSvSeEIBCiCQB/
-z/L1l11/heB2OlnaheXWfhRQv06+vaq14/fDePG4qvgf4MgiLrkwVEtg6z5EYd+a
-rCfQw7dr3cfuyknLS/Um5GKtEq1vvMXF04Xh16JhVVANGQZEeKNNl/ck7z/Edtls
-aFoQWyLxYjAB8OrICcvjJDqMiY1B2twKROzoUJH37toOd8EfgJDUQyoCdU5dWeos
-UJ+rAc4Jy8URpb5FUi/TMmtHvIVVDunj+hfJOuaP+3hDC9Iw4uKTlU+Q3+9sFJq8
-Zr95OOhqnCqzvs1HQJXb6prGjIldCA==
-=pioM
------END PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
---RBe/8Sbrp2Y9Vhm6--
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
