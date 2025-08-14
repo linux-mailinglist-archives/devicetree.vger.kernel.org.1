@@ -1,241 +1,132 @@
-Return-Path: <devicetree+bounces-204670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14670B264C8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:56:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC86EB264D0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:00:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A30B07251FC
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 11:55:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A69A47AC2D8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 11:58:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D8F2FB971;
-	Thu, 14 Aug 2025 11:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 653022FC86B;
+	Thu, 14 Aug 2025 11:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="f/hxzrDp"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="roAPRZVu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77B032EAB9D
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 11:55:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979CF2FB97A
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 11:59:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755172552; cv=none; b=jFDtP/4vftj5UsxWxTK/j3jXJQqII07IFYkK3Yx0FM92H+3Eio/1j2b1KuqhubjGFW+lsVSKw1AlfuxC1GTHQMAhiP6cCaqkBFxj/dhaFXw9GmeSXIuqpZXzdpHEuaLZ4btIzA3yv8Gwja7x74POsIJ+Islh3OK1bYwFAP+KJbI=
+	t=1755172798; cv=none; b=i2Rmy1hTlcSEuyUkVMr2Tk2QL/ebzPVKJgidctr7/5ZJhzDq7qLFmfabMV4mGFur1h2KjgCusCM+pqa3ESTqPlYCzO8olGHJXdvE0GjeaWXJSltWVOfiGoNTJjFX0oNvhTn3gKPhnS2YSsWMzODRmRmtP8jfnykMUJBZmmY05e8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755172552; c=relaxed/simple;
-	bh=a4PCDUN3BWKJQof73UOlnWBtwCz9o5k7rIL0T7w2yDg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VBK81OcFRGEDHN041djfHYv7QE48xNGQtYNT/PULFwZMFEJHPFKfdydNZvUMBrYnR4ggwH1HlWbQylbNkljHpcTHR4UFVw/Hdm9PXHLSQDvfpONOdkZabyNa5tW+Hg1nseZeD7EIiclZgzHST9eTR9Sd8ePZkuvlxRNqkMDIpXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=f/hxzrDp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57E8leSG030070
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 11:55:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=KwaUoxCOeIrDWwA8MlhquWgH
-	JPxXaTq1KQH7JgKMBMY=; b=f/hxzrDpyJJBp6bHh10DNPL4BxwP+hS/6GNa2af/
-	kCwkSAX3lPXVFDQoUuReh+6mV5Ldm+9d0JnrtCGHNhSAdze7NYm4nq0Ey7/4Y47q
-	pMIr91TaLzYMy2KckdySSHg+MQb1lfJu67Yhb5AUdXAH6C4gYJHKMrOi7+7kl8AB
-	+fA9oJ9uUeH/RSTS5cAxaH54hq19sVstF0kmMJHCXe9eFxrYt+Dtsb26+Ls/bw6d
-	/CknuDnqcL29vPlPa56tJmfcJtjP5DAZ3fG+LPJ+OqENzYITxp0MroUYDm7Km7IR
-	wzsPzGtckcyxaS/krzZ82e4K5ZWUUOD4jEMxu0wPXi0nog==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48fm3vteu0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 11:55:49 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b109ae72caso20472771cf.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 04:55:49 -0700 (PDT)
+	s=arc-20240116; t=1755172798; c=relaxed/simple;
+	bh=HFX/Qwld+Sh0z4QKTMLIPR1Ye4VR7lyGLk0gc7fQ85w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KnrHOLtD9txW4/E7DVS7+7TZDyKUc79ag13TVokuO8L56LgNyOJ3ESdsb9i46MKQQipa4uXSFDZNFZdv3BajtbBULcJ4cJ4l2DvJ1rj1Hx+wDSOT7sqnlDd76q58JuhJxPIfw+HN4Th7SPH37xS1G1szI18j9NP2AvP1uMB3pA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=roAPRZVu; arc=none smtp.client-ip=209.85.166.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-3e56fe7a3d6so8503005ab.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 04:59:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755172796; x=1755777596; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VkZ6MdXAK8oUuFYjzHuswEeWUTNOi4hs6qI/H9CSMKA=;
+        b=roAPRZVumjhXSJMNbOOKCt7VTy16wBXw0WVHlLt6mdtIXZk83X5YibLjoUe14l+prN
+         fW7d/bas93KoNHsatXcMhgWsAmvc2gQi5fOyxQEkfxfbXovmCDkk/YtBEcrkWhV0bkCM
+         qY3abYbLqOZduAZGRLzhY7TDIdI2Bg+suk2QK5iQ0bHOF/DTSwTBEef4pDTXc3TsrVL1
+         Cpt+bwgopxNd5MFDyjknyD7TfduO5QpRTVQlyIbTi5mHq2gIjp9BTNf9kbs7Gu0gLgom
+         wv+NR7SEMY/a4IaEOILN9/Zvg/spwkdsSNDSCGdpMoCJkjfsHJP3f+JNpmYBOxM8lEgt
+         S7HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755172548; x=1755777348;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KwaUoxCOeIrDWwA8MlhquWgHJPxXaTq1KQH7JgKMBMY=;
-        b=Rvniho9OrEsPbIWE/V4J/dj8xgKCMmKl5p/O3Qh9X7b9bN4yniIASH3YxFZ046q8Lc
-         yOkdUwkG2j3+znMvCt94z06Y8baR/LnN/ibLU76/sw2ahU4cmT1lqblojV+qhbqyTPpx
-         2KDazBvmkelmlFDC7vefT3MZc8Log2xQ67apUqyzW6YCqWeNfv/C4GzmXO37+qL7any3
-         E1fjvNsupN1IiDMT6AXE/5qFzIdX547N2qulQR4pOcCXqCuwHpK6x/Ni3ZZNLldFK+Cd
-         IDkZfo8rELXosTfr3pFyZ7WT9le54FkGcZ/zbdTQkOcfqpGq4048aCWH9u82m71cWuVa
-         9ggw==
-X-Forwarded-Encrypted: i=1; AJvYcCWiRsiYGrG3nrzVaqwqGO8SF+jnZRtSgYQD6n+qtbi9c9CUMhW+utMEkH2VaHteT+jmf3d3XUNT6hVJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxq0WG5usHIt48LBb0FthkLRNc0teNz4oSvL7hgaEnL8v6LvugR
-	Y9LO06QfSTW48dZs3Nlf9roBxc/3nG/TESxqt5AFZC3l5MIbhUYOJvpF7kcDcZMjl9hzAuhMW/u
-	W+NqNhKdln37uMS4NRXT8xsmbrQFIg3yrtqIael09mkn2qugEwSuVAzErIv/GB8d/
-X-Gm-Gg: ASbGncuB8kvNQjbYZCFkpchHPBg1fiLa3Ej2AY8qzj61YiUpzvMawpUOj6D4Fe1cCT9
-	rPSqYT6l2Kr++aKsNbKD1f/tdQ2avvYJWQ+uh6+Xv/w9/np/KgpFbQi3z6HHENzhBqnrxq+F2Lj
-	+PSLQ2xp2agyxBocW7n17rfrRio7EDTcD0ILA5gZypBG9j9Ldr8eA04g2Z7qx2YlLI+M6DDgCFb
-	bTmztwZFBrqtjajl9PrKof6eVJi95OmSKbwXVDa3vNr8HdiYL5fwxmsheYUgV71rj87Qbec+yJ6
-	tpvT4wZZj2EdkeQ4Q5/uG3/dvPxRaHkYhnb3ravQLvEekI1dJbFNAusjV99aCcjcAIWxD3w6pgD
-	mtnv9/S5WCe6cutxnMmbUW09EI7myQOutADBRn2cI9P0pKEzqFwVT
-X-Received: by 2002:a05:622a:181b:b0:4b0:81b2:a028 with SMTP id d75a77b69052e-4b10a9599a6mr38768611cf.9.1755172548326;
-        Thu, 14 Aug 2025 04:55:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH5PGTOUVfkkOdPwUV4mfK2TYoGc7cZ5ZdF55FySgMx3O0MHYR346J62Rlv5Z/fmOpnbr4S+g==
-X-Received: by 2002:a05:622a:181b:b0:4b0:81b2:a028 with SMTP id d75a77b69052e-4b10a9599a6mr38768071cf.9.1755172547762;
-        Thu, 14 Aug 2025 04:55:47 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55c78c9123bsm3781616e87.44.2025.08.14.04.55.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Aug 2025 04:55:46 -0700 (PDT)
-Date: Thu, 14 Aug 2025 14:55:44 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Danilo Krummrich <dakr@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>, Michael Walle <mwalle@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/2] driver core: platform: / drm/msm: dp: Delay applying
- clock defaults
-Message-ID: <flybqtcacqa3mtvav4ba7qcqtn6b7ocziweydeuo4v2iosqdqe@4oj7z4ps7d2c>
-References: <20250814-platform-delay-clk-defaults-v1-0-4aae5b33512f@linaro.org>
+        d=1e100.net; s=20230601; t=1755172796; x=1755777596;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VkZ6MdXAK8oUuFYjzHuswEeWUTNOi4hs6qI/H9CSMKA=;
+        b=qX0uuNYbBTXMwT6nlNR4RtM+mFdCRfU/6suN0ZgN5eZ34DEYaNmKabkA9pANTxc9NB
+         sdaeaA0Ot9fz6Z2coHxtBKZ3JWYOFDC8Y0b1l4j0L25sjiwjCurDh6t8dgYrDR1F7eLC
+         lBXS+qrf1U05zi+YC5MCEZVgc0WEGzCucx4JuZho2+R4nhSj/toBiN+RBI6bHVsgUX/P
+         kjWMEB5rNsOTHX0AG7IaUYRSzxUClDfkQgB4IzrfQYHHFb0ighsW2APDWhArZlTaysUD
+         Jh7D2KNWBxvC4HzVMlJhZIg69ubVJbMR/I0MS4aK4Eeql0cPzRbHgzfWf1Pauv9yqOD/
+         A2Uw==
+X-Forwarded-Encrypted: i=1; AJvYcCXvMAR8I/8Z+jFRgJ3BEL7lu4b2+g2YzP+pJ1At+4djxIDfHECl4MWV6vmaRkiCmh6yeLW+9NNGA3KT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzc7pVWQn37v5CQ00Ao8Xi7J22q34VQvC5b9t0jJmQ4KJXuO+Fz
+	lFv2VX16M94DjA/BBev6HIdaAgWDYNpzwdAvtZ931J59dSMPb/mgsRRp25/pibdW7kM=
+X-Gm-Gg: ASbGncsfB/OU7GdHbtOXAxrPOFfBOqpd15KpxNbIlst0HXI90WJlnqKEXP4mwFhNQfG
+	QyPxAXSSSmSx7fn0eH2zOWYwSFGBQy3KKlUzjltxGQoxreMywUEoLAM8MajO4xIyNDyDObNJzGs
+	DiiFw7EluuJwSx4W9BK/D54rvbPvw4rLZwWctsH4qhFjpyoAMZg685cyjQehdpNyn3RlyG3Pv/j
+	7IjDpsUPqglYNKDuaZPamyGbp2UN0lfHSITTF7yBib6g05bJGKm3IdF+rj/On4tlZ3UqR0AUvPd
+	LdfZmSN7LzJixHseTJJO8TjRnEAAIB0AcMj6577qyLeD/ryyOdC0Dj5UgCbNBc1mbRPJ4ER9LPd
+	Znxa3t+z1/n9L771EQfCUsC9ALJcAGyMTQRYEEDi2rb31ItyqPFKlGpzLS8un1w==
+X-Google-Smtp-Source: AGHT+IE3y11zxXdSZ7xsXLUpghewNnJCpWK8G2mFkAzcKjVS5vSn5G3dmjKvLqQoKez3LPNe1hHEcQ==
+X-Received: by 2002:a05:6e02:184c:b0:3e5:6daf:ddfe with SMTP id e9e14a558f8ab-3e57084ff05mr51337105ab.10.1755172795698;
+        Thu, 14 Aug 2025 04:59:55 -0700 (PDT)
+Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-50ae9cbb659sm4480210173.93.2025.08.14.04.59.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Aug 2025 04:59:55 -0700 (PDT)
+Message-ID: <86174012-fd87-41d7-9568-f9c0b544c1c4@riscstar.com>
+Date: Thu, 14 Aug 2025 06:59:53 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250814-platform-delay-clk-defaults-v1-0-4aae5b33512f@linaro.org>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDEwNyBTYWx0ZWRfX7+qcSXu7v+Xo
- S+RdKccs9QSzVQshQs+IQykIGcaxE8NM0LVM5UuxnxF4shRceik3TVyiZ52ZEa/guzfAqEQOrQl
- ycEclexIU57jKZw61u2/8RBPDU2Yh0/3m9NOJYhS+EvMSLuEZZaVZjUJ+qRpzZLQ8/61zzrMm0e
- TbZ1PUIsqyiPTcJZNkdHjWhL0XRul0hG7mqIQsJUClTRdyy425Zkp+4aj/+nGqzDdqYqCITI1lN
- AbrNrrUPWk/tPzzm0QqT3IiNG2mWoz6V/LgPM30h0WdUYKN6XTAIfxkC2q6jw+KMzrO9ozZKDGO
- azQLFYW5c1waVfu/o/4aHQeSrPCiDxiYnXLuPlUmAPhdLV1prCeX/SBvbQGCD/xP2Q/TRAIGchN
- 7H4LQBmM
-X-Proofpoint-GUID: li9qvBOXGta7Bkbd5a_OK37Q4RWypEdU
-X-Authority-Analysis: v=2.4 cv=A+1sP7WG c=1 sm=1 tr=0 ts=689dcec5 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=PpI7sDOo-OXBv82Lu10A:9
- a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: li9qvBOXGta7Bkbd5a_OK37Q4RWypEdU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-13_02,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 priorityscore=1501 malwarescore=0 spamscore=0
- phishscore=0 clxscore=1015 adultscore=0 bulkscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508110107
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: phy: spacemit: add SpacemiT PCIe/combo
+ PHY
+To: Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org,
+ kwilczynski@kernel.org, mani@kernel.org, bhelgaas@google.com,
+ vkoul@kernel.org, kishon@kernel.org
+Cc: dlan@gentoo.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+ tglx@linutronix.de, johan+linaro@kernel.org, thippeswamy.havalige@amd.com,
+ namcao@linutronix.de, mayank.rana@oss.qualcomm.com, shradha.t@samsung.com,
+ inochiama@gmail.com, quic_schintav@quicinc.com, fan.ni@samsung.com,
+ devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-pci@vger.kernel.org, spacemit@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250813184701.2444372-1-elder@riscstar.com>
+ <20250813184701.2444372-2-elder@riscstar.com>
+ <22bd5b5b-ca06-4499-b21f-22c2ff202167@kernel.org>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <22bd5b5b-ca06-4499-b21f-22c2ff202167@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 14, 2025 at 11:18:05AM +0200, Stephan Gerhold wrote:
-> Currently, the platform driver core always calls of_clk_set_defaults()
-> before calling the driver probe() function. This will apply any
-> "assigned-clock-parents" and "assigned-clock-rates" specified in the device
-> tree. However, in some situations, these defaults cannot be safely applied
-> before the driver has performed some early initialization. Otherwise, the
-> clock operations might fail or the device could malfunction.
+On 8/14/25 1:11 AM, Krzysztof Kozlowski wrote:
+> On 13/08/2025 20:46, Alex Elder wrote:
+>> +                      "mstr",
+>> +                      "slv",
+>> +                      "global";
+>> +        spacemit,syscon-pmu = <&syscon_apmu>;
+>> +        #phy-cells = <1>;
+>> +        status = "disabled";
 > 
-> This is the case for the DP/DSI controller on some Qualcomm platforms. We
-> use assigned-clock-parents there to bind the DP/DSI link clocks to the PHY,
-> but this fails if the PHY is not already powered on. We often bypass this
-> problem because the boot firmware already sets up the correct clock parent,
-> but this is not always the case.
-
-So, the issue is that our abstraction is loose and we register a clock
-before it becomes usable. Would it be better to delay registering a
-clock until it's actually useable? (and then maybe to unregister on the
-link shutdown)
-
+> You cannot have disabled examples. This also means it could not be
+> checked/tested.
 > 
-> Michael had a somewhat related problem in the PVR driver recently [1],
-> where of_clk_set_defaults() needs to be called a second time from the PVR
-> driver (after the GPU has been powered on) to make the assigned-clock-rates
-> work correctly.
+>> +    };
 > 
-> I propose adding a simple flag to the platform_driver struct that skips the
-> call to of_clk_set_defaults(). The platform driver can then call it later
-> after the necessary initialization was performed (in my case: after the PHY
-> was fully enabled for the first time).
-> 
-> There are also alternative solutions that I considered, but so far
-> I discarded them in favor of this simple one:
-> 
->  - Avoid use of assigned-clock-parents: We could move the clocks from
->    "assigned-clock-parents" to "clocks" and call clk_set_parent() manually
->    from the driver. This is what we did for DSI on SM8750 (see commit
->    80dd5911cbfd ("drm/msm/dsi: Add support for SM8750")).
-> 
->    This is the most realistic alternative, but it has a few disadvantages:
-> 
->     - We need additional boilerplate in the driver to assign all the clock
->       parents, that would be normally hidden by of_clk_set_defaults().
-> 
->     - We need to change the existing DT bindings for a number of platforms
->       just to workaround this limitation in the Linux driver stack. The DT
->       does not specify when to apply the assigned-clock-parents, so there
->       is nothing wrong with the current hardware description.
-> 
->  - Use clock subsystem CLK_OPS_PARENT_ENABLE flag: In theory, this would
->    enable the new parent before we try to reparent to it. It does not work
->    in this situation, because the clock subsystem does not have enough
->    information to power on the PHY. Only the DP/DSI driver has.
-> 
-Another possible option would be to introduce the 'not useable' state /
-flag to the CCF, pointing out that the clock is registered, but should
-not be considered for parenting operations.
-
->  - Cache the new parent in the clock driver: We could try to workaround
->    this problem in the clock driver, by delaying application of the new
->    clock parent until the parent actually gets enabled. From the
->    perspective of the clock subsystem, the clock would be already
->    reparented. This would create an inconsistent state: What if the clock
->    is already running off some other parent and we get a clk_set_rate()
->    before the parent clock gets enabled? It would operate on the new
->    parent, but the actual rate is still being derived from the old parent.
-> 
-
-But... Generally it feels that we should be able to bring up the clocks
-in some 'safe' configuration, so that the set_parent / set_rate calls
-can succeed. E.g. DISP_CC_MDSS_DPTX0_LINK_CLK_SRC can be clocked from XO
-until we actually need to switch it to a proper rate. I see that
-e.g. dispcc-sm8550.c sets 'CLK_SET_RATE_PARENT' on some of DP clock
-sources for no reason (PHY clock rates can not be set through CCF, they
-are controlled through PHY ops).
-
-> [1]: https://lore.kernel.org/r/20250716134717.4085567-3-mwalle@kernel.org/
-> 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> ---
-> Stephan Gerhold (2):
->       driver core: platform: Add option to skip/delay applying clock defaults
->       drm/msm: dp: Delay applying clock defaults until PHY is fully enabled
-> 
->  drivers/base/platform.c             |  8 +++++---
->  drivers/gpu/drm/msm/dp/dp_ctrl.c    | 10 ++++++++++
->  drivers/gpu/drm/msm/dp/dp_display.c |  2 ++
->  include/linux/platform_device.h     |  6 ++++++
->  4 files changed, 23 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
-> change-id: 20250812-platform-delay-clk-defaults-44002859f5c5
 > 
 > Best regards,
-> -- 
-> Stephan Gerhold <stephan.gerhold@linaro.org>
-> 
+> Krzysztof
 
--- 
-With best wishes
-Dmitry
+OK I'll fix that in both places.  I think I just copied in the
+actual DTS content, but I now understand the problem.
+
+Thanks.
+
+					-Alex
 
