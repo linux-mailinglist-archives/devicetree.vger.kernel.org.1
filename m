@@ -1,82 +1,58 @@
-Return-Path: <devicetree+bounces-204449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1309B2598D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 04:40:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 516D6B25994
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 04:42:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FE831C85313
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 02:40:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06A887BA501
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 02:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FAA32561AF;
-	Thu, 14 Aug 2025 02:39:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C5DA2580F1;
+	Thu, 14 Aug 2025 02:42:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Jjb+VH9x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WKSv53dd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2B1341AA
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 02:39:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B0A24C68B;
+	Thu, 14 Aug 2025 02:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755139194; cv=none; b=aScfwiiCSDjZm6AMImyjnXTABK4zE1PdMXJPHwIibwlMQBXwKVRsJuo8WJ9JKSb8BoEhMK5OV1T79XV5QhE5U5+Zm1hhOBhRHak0FzGYjBe1CZ0AlZqAPiNB4lOx7cORqTYfKG0UOBxp6JyCtMpN5Pzi7xSSl4qG668pf92fdgQ=
+	t=1755139350; cv=none; b=ijdqSR52skSKB5QQEs0T4U5i140cEqXF8BA2vvEtj5u95IMEiOTtYnx05Q+BP+D96tT9Lgmd6NSlVLtHp+Gd2fMWycj4B8tujXDanPLkC8q4QRsJDNTxfEHu6T7IvtFhZBwB+8QcFhIeDmoEm45/o1IHoKYSfeFXdjRA46ypZtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755139194; c=relaxed/simple;
-	bh=kZBxCxwwuBypyz569GQAIINeywgbqq/2j3P0gkbFBLQ=;
+	s=arc-20240116; t=1755139350; c=relaxed/simple;
+	bh=gO3lJXgabc7AUPzva2vdMGiplMe6IOlcwtjT6/u0L4k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OtfFqpPC4edd4sDlHSaJufUr8cip+cVbhsoD5Qi6QGBLZYUsqoxpf20SM9iYcVVWKV8FMSslooPxhvYaG3ReNg//U6C0RdH7NklxliLGZC1RboDvrYHKjhPxT0uXZWMGxKFy0N0C/AEwyb+aJQsW2GxQ5GPzr4Zdh9k21+WxdnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Jjb+VH9x; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1755139190;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8lmfqcZ52puICOqfYpqD3N/QRVedlIIDloCFgvva9KY=;
-	b=Jjb+VH9xMT2eERDYthG1Nq3G2aXX7RQOWn9D5TOqNdtckEVPCVl7uIXvdgJLGnkgXS9AL+
-	LWx8OO2Nn0A++OAtLW1O2LLsV8Y4r6uEkrRI7lyo1YpYE5AsyZKBMeyhNl3/Q/k/e2HgSN
-	UwXY2JWOlNMzdmXRAwvCVqkxGqEJjxA=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-158-8oGBpyq0OiSQ-YizA1p2zA-1; Wed,
- 13 Aug 2025 22:39:47 -0400
-X-MC-Unique: 8oGBpyq0OiSQ-YizA1p2zA-1
-X-Mimecast-MFC-AGG-ID: 8oGBpyq0OiSQ-YizA1p2zA_1755139184
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id A590618003FD;
-	Thu, 14 Aug 2025 02:39:43 +0000 (UTC)
-Received: from localhost (unknown [10.72.112.89])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 67FF71800446;
-	Thu, 14 Aug 2025 02:39:41 +0000 (UTC)
-Date: Thu, 14 Aug 2025 10:39:36 +0800
-From: Baoquan He <bhe@redhat.com>
-To: Brian Mak <makb@juniper.net>
-Cc: Dave Young <dyoung@redhat.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Alexander Graf <graf@amazon.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"H. Peter Anvin" <hpa@zytor.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	"x86@kernel.org" <x86@kernel.org>,
-	"kexec@lists.infradead.org" <kexec@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] x86/kexec: Carry forward the boot DTB on kexec
-Message-ID: <aJ1MaPVWZCp0qpU2@MiWiFi-R3L-srv>
-References: <20250805211527.122367-1-makb@juniper.net>
- <9B71EC74-D1F4-4F7D-837A-A43E53CEBB89@juniper.net>
- <CALu+AoQnXfYtuKQxVKK32sC4D98Y+Yn30TjTr2xmXhZcHe0x=A@mail.gmail.com>
- <A402BEF1-EB1A-48F0-997F-502429AAD92E@juniper.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=iM7Qse65lbYRApOBSIJ2oB1QhXvsHDkMgEiJqxeH78yFeBv5P66Qw4Lp1UOJCiKuKrqAvDu4my5IlQ/jsTKzOFO2xV9NGXNo23NCJVsj1I+LkwCaPtRm0WocrNa1hGaalJbrKbR3B1+pOpM6mJRml3187Qtjl4VLIh6TPLCijlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WKSv53dd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94629C4CEEB;
+	Thu, 14 Aug 2025 02:42:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755139349;
+	bh=gO3lJXgabc7AUPzva2vdMGiplMe6IOlcwtjT6/u0L4k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WKSv53ddCeFZktY6OTHrIsl/pgos9p00zm1sqO2e4PozAJ2sBskiudD4873TCmr/F
+	 0GZMdS/bl9LHR4T1vDPy0fBzdVA7ftX7HTxsyetASg9t0jLT/18/EWl2CVWv3bSTqy
+	 8v9DcoQ1yNCsd+45madOmFEVYNIt2LVTGVPqr0QooP2BGuKbt3OhGOBhdXQf/M2HHX
+	 Z//mD73GnVVHdhFNKPGFeY+l7dJt8YUs/6Q4tbSW/5N2OHydmvfkRDLX3hb0cBCI/V
+	 4dw4a2ic2Xm4QREt25fdp2ZSzZS+SYvzbb7t3V+rACvq33MnArlB/Ikq7UI54dC0b9
+	 86W8UyaTdGbnw==
+Date: Wed, 13 Aug 2025 21:42:26 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Harrison Vanderbyl <harrison.vanderbyl@gmail.com>
+Cc: marcus@nazgul.ch, kirill@korins.ky, vkoul@kernel.org, 
+	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	mani@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
+	agross@kernel.org, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org
+Subject: Re: [PATCH 3/3] dts: describe x1e80100 ufs
+Message-ID: <tlkv63ccpnti367am47ymhaw3agjnyuonqstgtfaazhhptvgsp@q4wzuzdph323>
+References: <20250814005904.39173-1-harrison.vanderbyl@gmail.com>
+ <20250814005904.39173-4-harrison.vanderbyl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,98 +61,143 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <A402BEF1-EB1A-48F0-997F-502429AAD92E@juniper.net>
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+In-Reply-To: <20250814005904.39173-4-harrison.vanderbyl@gmail.com>
 
-On 08/13/25 at 07:24pm, Brian Mak wrote:
-> On Aug 12, 2025, at 8:54 PM, Dave Young <dyoung@redhat.com> wrote:
-> 
-> > Hi, The #ifdef CONFIG_* which can be replaced by #if defined(), but I
-> > do not have a strong opinion.  other than that do you have kexec-tools
-> > patch ready? It would be better to provide a link so that people can
-> > try and test it.
-> 
-> Hi Dave,
-> 
-> Thanks for looking at this! The #ifdef CONFIG_* is used, as it matches
-> the style of other ifdefs in this file. I'd like to keep it as-is for
-> consistency.
-> 
-> I do have a prototype kexec-tools patch ready for testing. The changes
-> can be found at this repo:
-> 
-> https://github.com/makb-juniper/kexec-tools.git
-> 
-> I've also placed the diff below.
+On Thu, Aug 14, 2025 at 10:59:04AM +1000, Harrison Vanderbyl wrote:
 
-Thanks, I will apply your patch and take a test.
+Welcome to LKML, Harrison. Some small things to improve.
 
-Usually, Andrew will merge kexec/kdump patch if the patch is OK to him.
-I will add comment if I have concern. Otherwise, I don't want Andrew to
-bother to add my ACK.
+Please extend the subject prefix to match other changes in the files of
+each patch, e.g. this one would be "arm64: dts: qcom: x1e80100: ".
 
+"git log --oneline -- file" is your friend here.
+
+> Describe device tree entry for x1e80100 ufs device
+
+A blank line here please.
+
+> Signed-off-by: Harrison Vanderbyl <harrison.vanderbyl@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 91 ++++++++++++++++++++++++++
+>  1 file changed, 91 insertions(+)
 > 
-> diff --git a/kexec/kexec-syscall.h b/kexec/kexec-syscall.h
-> index 9b17578..8419b23 100644
-> --- a/kexec/kexec-syscall.h
-> +++ b/kexec/kexec-syscall.h
-> @@ -124,6 +124,8 @@ static inline long kexec_file_load(int kernel_fd, int initrd_fd,
->  #define KEXEC_FILE_ON_CRASH	0x00000002
->  #define KEXEC_FILE_NO_INITRAMFS	0x00000004
->  #define KEXEC_FILE_DEBUG	0x00000008
-> +#define KEXEC_FILE_NO_CMA	0x00000010
-> +#define KEXEC_FILE_FORCE_DTB	0x00000020
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index a9a7bb676c6f..effa776e3dd0 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -2819,6 +2819,97 @@ tsens3: thermal-sensor@c274000 {
+>  			#thermal-sensor-cells = <1>;
+>  		};
 >  
->  /* These values match the ELF architecture values. 
->   * Unless there is a good reason that should continue to be the case.
-> diff --git a/kexec/kexec.c b/kexec/kexec.c
-> index 6bf12d7..0e13b6b 100644
-> --- a/kexec/kexec.c
-> +++ b/kexec/kexec.c
-> @@ -1102,6 +1102,7 @@ void usage(void)
->  	       " --hotplug            Do in-kernel update of kexec segments on CPU/Memory\n"
->  	       "                      hot add/remove events, avoiding the need to reload\n"
->  	       "                      kdump kernel on online/offline events.\n"
-> +	       " --force-dtb          Carry over the current boot's device tree blob (x86 only).\n"
->  	       " -d, --debug          Enable debugging to help spot a failure.\n"
->  	       " -S, --status         Return 1 if the type (by default crash) is loaded,\n"
->  	       "                      0 if not.\n"
-> @@ -1640,6 +1641,9 @@ int main(int argc, char *argv[])
->  		case OPT_HOTPLUG:
->  			do_hotplug = 1;
->  			break;
-> +		case OPT_FORCE_DTB:
-> +			kexec_file_flags |= KEXEC_FILE_FORCE_DTB;
-> +			break;
->  		default:
->  			break;
->  		}
-> diff --git a/kexec/kexec.h b/kexec/kexec.h
-> index a2e19c4..2235aa2 100644
-> --- a/kexec/kexec.h
-> +++ b/kexec/kexec.h
-> @@ -235,7 +235,8 @@ extern int file_types;
->  #define OPT_LOAD_LIVE_UPDATE	263
->  #define OPT_EXEC_LIVE_UPDATE	264
->  #define OPT_HOTPLUG		        265
-> -#define OPT_MAX		266
-> +#define OPT_FORCE_DTB		266
-> +#define OPT_MAX		267
->  #define KEXEC_OPTIONS \
->  	{ "help",		0, 0, OPT_HELP }, \
->  	{ "version",		0, 0, OPT_VERSION }, \
-> @@ -263,6 +264,7 @@ extern int file_types;
->  	{ "status",		0, 0, OPT_STATUS }, \
->  	{ "print-ckr-size",     0, 0, OPT_PRINT_CKR_SIZE }, \
->  	{ "hotplug",		    0, 0, OPT_HOTPLUG }, \
-> +	{ "force-dtb",          0, 0, OPT_FORCE_DTB }, \
->  
->  #define KEXEC_OPT_STR "h?vdfixyluet:pscaS"
->  
-> 
-> base-commit: daa29443819d3045338792b5ba950ed90e79d7a5
+> +
+
+Watch out for unnecessary white spaces, we want to keep things neat and
+tidy.
+
+> +		ufs_mem_hc: ufs@1d84000 {
+
+Please place nodes sorted based on address, then name, then label (i.e.
+in this case, only address).
+
+> +			compatible = "qcom,x1e80100-ufshc",
+> +			"qcom,ufshc", "jedec,ufs-2.0";
+
+This line break is a bit weird, please indent it.
+
+Regards,
+Bjorn
+
+> +			reg = <0 0x01d84000 0 0x3000>;     
+> +			
+> +			
+> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			phys = <&ufs_mem_phy>;
+> +			phy-names = "ufsphy";
+> +
+> +			lanes-per-direction = <2>;
+> +
+> +			#reset-cells = <1>;
+> +			resets = <&gcc GCC_UFS_PHY_BCR>;
+> +
+> +			reset-gpios = <&tlmm 238 GPIO_ACTIVE_LOW>;
+> +			reset-names = "rst";
+> +
+> +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
+> +
+> +			iommus = <&apps_smmu 0x1a0 0x0>;
+> +
+> +			clock-names = "core_clk",
+> +				      "bus_aggr_clk",
+> +				      "iface_clk",
+> +				      "core_clk_unipro",
+> +				      "ref_clk",
+> +				      "tx_lane0_sync_clk",
+> +				      "rx_lane0_sync_clk",
+> +				      "rx_lane1_sync_clk";
+> +
+> +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+> +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
+> +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+> +
+> +			freq-table-hz = <100000000 403000000>,
+> +					<0 0>,
+> +					<0 0>,
+> +					<100000000 403000000>,
+> +					<100000000 403000000>,
+> +					<0 0>,
+> +					<0 0>,
+> +					<0 0>;
+> +
+> +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> +					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
+> +			interconnect-names = "ufs-ddr", "cpu-ufs";
+> +
+> +			qcom,ice = <&ice>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		ufs_mem_phy: phy@1d80000 {
+> +			compatible = "qcom,x1e80100-qmp-ufs-phy";
+> +			reg = <0 0x01d80000 0 0x2000>;
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> +
+> +			clock-names = "ref",
+> +				      "ref_aux",
+> +				      "qref";
+> +
+> +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
+> +
+> +			resets = <&ufs_mem_hc 0>;
+> +			reset-names = "ufsphy";
+> +
+> +			#phy-cells = <0>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		ice: crypto@1d90000 {
+> +			compatible = "qcom,x1e80100-inline-crypto-engine",
+> +				     "qcom,inline-crypto-engine";
+> +			reg = <0 0x1d88000 0 0x8000>;
+> +
+> +			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+> +		};
+> +
+>  		usb_1_ss0_hsphy: phy@fd3000 {
+>  			compatible = "qcom,x1e80100-snps-eusb2-phy",
+>  				     "qcom,sm8550-snps-eusb2-phy";
 > -- 
-> 2.25.1
+> 2.48.1
 > 
-
 
