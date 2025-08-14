@@ -1,155 +1,108 @@
-Return-Path: <devicetree+bounces-204711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52D3AB267DF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 15:45:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E7CFB267E6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 15:47:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F933189A257
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:36:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F093F1CE2CE5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79DC730E0DE;
-	Thu, 14 Aug 2025 13:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3042F3C3C;
+	Thu, 14 Aug 2025 13:33:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GIQ2hTZk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z3TFREvM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9796E307AF9
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 13:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33AF21514E4;
+	Thu, 14 Aug 2025 13:33:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755178253; cv=none; b=QQ5qrFI+0Sc8qNfKvtIlWBltki4jpJDVvXi/tle1lPk9RtzyySWDjFggVBF2mVwBLIzBju4cx+Nm9CpRVT9JkAfj2Hg4m1ydR3cQX0croF3xi2IIAzXsTtefqktl+QPX1N6l5zpKReE2jQmTtsnUksayBHOWgCnDH5Eri4kvXOE=
+	t=1755178429; cv=none; b=dUpTggMM4qq5R4lleY+gKe9vBHUvY8aWrXd6qFWB8QFTnBUmxZxbN95dNG7KTAu73qpHlERP/FbzIMn0B7eLE4+0vfVBOe7uIytP46leyuH9ptMfxEHNrr8UVwCwIs4FeqgQ6CuYMw8nQ99xJiZqj863nT813D5l9e6XFA52LZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755178253; c=relaxed/simple;
-	bh=QynsBKDQL2BzLf0bIXsFSHjH/GTgsrvYFywFlGIP3TU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nw6nCLFMnTYWHLRVqrYPQVEta6K7kL3Z+QdDDy6oyR80UMfs77DqtzIzgEx1zkgb3KkbT5hymyZD38h+t0vOP5r//C2DTw2iQlFfPqCv4yNN7m+qeyG+jBC5OUlfMLAuvw8pzQ4od/qlDS1ljaFOoaLFgkfmjT6m5gxMTrnViA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GIQ2hTZk; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45a1b0d224dso4909135e9.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 06:30:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755178250; x=1755783050; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jwSXTCKpuxO5xRMtx8jKiOAluJgz+rUMYQemGXnn4yk=;
-        b=GIQ2hTZktUGejYNRmtZ9jzKDhaZYVmYhpuhY/ExkK07i6oXs5/3kQUST2hZih6b40C
-         OofEu5TFtNBS+oPIKtGEbraTpDOpREDP73bpp7+Uz9CBH1uNfz9y+/caFNY7aC+cEX3m
-         lpVerFOWroxP0jSwKGZak+eSE9cKZBI3xLPU9vtlor9dsA/bQ8Cz1oCWrwSTYyxPwN9F
-         L0rF4RM0sJ12yiWbaI4Bf+eXf7olopsTPKFjIR1eqHJvzV9vcQktvmIFBs/T/At4D34H
-         Z/BtPByBlHvWjFRr5lBIWGFo6gGPXLa8CV7EKMA9XQxQQcmJqzumojyK0l2o/Dtskwop
-         BnUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755178250; x=1755783050;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jwSXTCKpuxO5xRMtx8jKiOAluJgz+rUMYQemGXnn4yk=;
-        b=q3qDpbugdyMgXTxOIu4Fjd8Xw2PbjWLAAYxxXRw2+F/T92oEC9lu5O+lbMyV5ZRhDK
-         ytdf6KWFN68QVUZ6TfQkYoGYqzUMlFv20OQxVIsKEDcY7Cshnke492G9JwfDlKgd5kwR
-         2vqC2WRssXeTGm+7DjRXX8sOJ/rJyemKiXb1E+RdtFLcRmO25vKZJll+8pMwYLEjkAhs
-         82Z2GYXmwqWE5+jQbFiGLz9LimqTPNnA0PCt9PMmaf/R+9U36AlFKKr4DKqiwuPlLZ97
-         XqbNYiV9DmvSs6OWuVDhFL0JuTP3oXVSwaZrzTL9L4xhOaCUCom5gb5da4kP0gR/xRAf
-         7fgg==
-X-Forwarded-Encrypted: i=1; AJvYcCVUj45h4eTbJtVx2fDdqtUAMqxz6rv6+LDLh9MHypnwYc2/refKD5DXjWbVVFllRbXvUBhHP8z+vwwE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyENubywkCewFEl/YBsywzFvrXGOshl7aha3Qmtxn+pjU6vqqi
-	SvfScLxbxNt8PWcy2jHbfoRBeCUvJ27/j6QFwVu0tsFiNwerrY4PqjE088DTZD2pv8k=
-X-Gm-Gg: ASbGnctFojIXABWkAsZicLGA/VDHFFTAl+G4E13iMrzUs+IX3ChEZbXqI9UTtc4/rAw
-	o/DA3ajhLatohXfArmXAY8zFZNjJ10h89Wtm/t0aeDhs0GyR97btFmm4T+tBD3aCD9/Z6Eq6Iwq
-	pz0NwfsqKHulO4X1TUrLbVlPyRDspxl0ey2GOljO6BNA5/WYE5ilce1vxYC4UpE07eBfQiEhzJy
-	wrJirvWVvIpUFk/PaOVvd1hkrrrcyXQDdcRpsn2Il7YqKXgYwiggoR0V/NlUZn7GqT28xwWO4bh
-	ZcmiShqgWDY5i6sEE4XftHHXT03DsebFj9yqREbJDJjZU7tuQ+iwWRVnn+Tv0hOv1NHQwJ0cLiP
-	XvlDKLg4igjNhAodCgbTSkdLEOuY+00wCrgeh
-X-Google-Smtp-Source: AGHT+IGt5cRVYspwQNW34QgGfD2H+qX9Ylgeh1WDh9AMn63El+afvTplduM9mj+PIQpeny+iXM3kBQ==
-X-Received: by 2002:a05:600c:1d16:b0:456:db0:4f3d with SMTP id 5b1f17b1804b1-45a1b66828emr24158145e9.24.1755178249900;
-        Thu, 14 Aug 2025 06:30:49 -0700 (PDT)
-Received: from [127.0.0.2] ([2a02:2454:ff21:ef41:9c1:e029:fc81:a800])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1c6bc85csm21468385e9.5.2025.08.14.06.30.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Aug 2025 06:30:49 -0700 (PDT)
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-Date: Thu, 14 Aug 2025 15:30:36 +0200
-Subject: [PATCH 9/9] arm64: dts: qcom: x1e80100-qcp: Add missing pinctrl
- for eDP HPD
+	s=arc-20240116; t=1755178429; c=relaxed/simple;
+	bh=qzHOrb660hNBXkxGw6DWMOMC3lLxUoz/yT/E1S7tZKI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JmW4Ys8h5pnFaqpq+frJ4K4nAngN0V+2GyoD/vJoQZlO52BH2aWWRTUSHGnEoX5FjZB29zUTjpP9SFJx4OGHtWitt9MmpOeq1DmYT57s2KYd4XOUWx2vLxq/Fo66hTY+vUBehFBgY1khBjqdBoZwkxM445CzOBWTmoYYQEidB/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z3TFREvM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24D9DC4CEED;
+	Thu, 14 Aug 2025 13:33:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755178428;
+	bh=qzHOrb660hNBXkxGw6DWMOMC3lLxUoz/yT/E1S7tZKI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z3TFREvMs1WoLOVL2tGaVT1AakYVA6W35J8m4vEyfQfAyM33dod6zbIvi5EZ1o4ab
+	 +wMY1hRryZmJya4eBLPwosoXvYCs7Hm8DP4mJqMxIjz+fK3bTqZyQyIajhMwZadJ3A
+	 VgKFpqwqWMz5XEiP87KZltrdbdpp7ekrl4gAU2w5KnSxbY9Tc79i75ZmxsSbc6noSa
+	 14Zr9EcpAfOR6dYy1EH27ORo6AzIYNG9OjyukxBmc9XHqR84SWyKav01vmYQ15nCYc
+	 kS4Zb/fu4eIRpPpxjviCrOuPbqL1PgkfEYx1n7Bl6BVDLraINW34jdIQrNZEM8PE8E
+	 hX7jkkQX4Kkqg==
+Date: Thu, 14 Aug 2025 14:33:42 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: linux-kernel@vger.kernel.org, andreas@kemnade.info,
+	peter.ujfalusi@gmail.com, dmitry.torokhov@gmail.com,
+	robh@kernel.org, krzk+dt@kernel.org, lgirdwood@gmail.com,
+	tiwai@suse.com, conor+dt@kernel.org, lee@kernel.org,
+	ukleinek@kernel.org, gregkh@linuxfoundation.org,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pwm@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-usb@vger.kernel.org, shuah@kernel.org
+Subject: Re: [PATCH v2 7/9] Documentation: omap-twl4030: convert to DT schema
+Message-ID: <8c9366a5-482e-4bf2-b8cc-79e789bf2ff0@sirena.org.uk>
+References: <20250814132129.138943-1-jihed.chaibi.dev@gmail.com>
+ <20250814132129.138943-8-jihed.chaibi.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250814-x1e80100-add-edp-hpd-v1-9-a52804db53f6@linaro.org>
-References: <20250814-x1e80100-add-edp-hpd-v1-0-a52804db53f6@linaro.org>
-In-Reply-To: <20250814-x1e80100-add-edp-hpd-v1-0-a52804db53f6@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>, 
- Abel Vesa <abel.vesa@linaro.org>, Xilin Wu <wuxilin123@gmail.com>, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
- Srinivas Kandagatla <srini@kernel.org>, 
- Sibi Sankar <quic_sibis@quicinc.com>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Johan Hovold <johan@kernel.org>, 
- Christopher Obbard <christopher.obbard@linaro.org>
-X-Mailer: b4 0.14.2
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4nUJ618zm+2DpXSV"
+Content-Disposition: inline
+In-Reply-To: <20250814132129.138943-8-jihed.chaibi.dev@gmail.com>
+X-Cookie: This sentence no verb.
 
-At the moment, we indirectly rely on the boot firmware to set up the
-pinctrl for the eDP HPD line coming from the internal display. If the boot
-firmware does not configure the display (e.g. because a different display
-is selected for output in the UEFI settings), then the display fails to
-come up and there are several errors in the kernel log:
 
- [drm:dpu_encoder_phys_vid_wait_for_commit_done:544] [dpu error]vblank timeout: 80020041
- [drm:dpu_kms_wait_for_commit_done:524] [dpu error]wait for commit done returned -110
- [drm:dpu_encoder_frame_done_timeout:2715] [dpu error]enc40 frame done timeout
- ...
+--4nUJ618zm+2DpXSV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fix this by adding the missing pinctrl for gpio119 (func1/edp0_hot and
-bias-disable according to the ACPI DSDT).
+On Thu, Aug 14, 2025 at 03:21:27PM +0200, Jihed Chaibi wrote:
+> Convert the legacy TXT binding for the OMAP TWL4030 sound card
+> to the modern YAML DT schema format. This adds formal validation
+> and improves documentation.
 
-Fixes: f9a9c11471da ("arm64: dts: qcom: x1e80100-qcp: Enable more support")
-Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+> Changes in v2:
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-index 9369b76c668b5c008fefd85d5ca18e87ab9ce93f..c7f9f0dfdfac187ea88b1b207a882eaaeabe749a 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-@@ -915,6 +915,9 @@ &mdss_dp2_out {
- &mdss_dp3 {
- 	/delete-property/ #sound-dai-cells;
- 
-+	pinctrl-0 = <&edp_hpd_default>;
-+	pinctrl-names = "default";
-+
- 	status = "okay";
- 
- 	aux-bus {
-@@ -1179,6 +1182,12 @@ &tlmm {
- 			       <44 4>, /* SPI (TPM) */
- 			       <238 1>; /* UFS Reset */
- 
-+	edp_hpd_default: edp-hpd-default-state {
-+		pins = "gpio119";
-+		function = "edp0_hot";
-+		bias-disable;
-+	};
-+
- 	edp_reg_en: edp-reg-en-state {
- 		pins = "gpio70";
- 		function = "gpio";
+This should go after the ---, tools use this to remove the changelog
+when committing.
 
--- 
-2.50.1
+> - Fixed comment formatting (added spaces for better alignment).
+> - Updated commit subject to align with subsystem style.
 
+Should be ASoC: dt-bindings:=20
+
+--4nUJ618zm+2DpXSV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmid5bUACgkQJNaLcl1U
+h9A2/gf8DYx2qBWKgxDl5J/9xk1Tol23Uwe7rnV2+wSVddxlxcPYEO+lCQ+ktiYz
+EJi0x9SUpw/em43nQulrEBY7vvJH6jlOMpM7qehbhuCdkAqIN1Be8e7/bR3LfGCM
+27wWzx1+Hxoun9V4q7w0MuKhjztsmti5MouUB03NQbR13uGmV9kNxJWF9juqAujI
+xfcamPWNGGyPF6GRjiuuBhPmrjl8yFh8u2UyiI4E1IS/GL3kth1FjC8igDAMniou
+2Fgn4M+BQrHi94iGGe+T19uAue1VARcg2RkYU6WUkuiBSRr673eL1OJQVOIoiFn6
+dm6JtgM4fu3FxSdbGp+fonGTJEdUZA==
+=3+dF
+-----END PGP SIGNATURE-----
+
+--4nUJ618zm+2DpXSV--
 
