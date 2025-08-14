@@ -1,117 +1,208 @@
-Return-Path: <devicetree+bounces-204459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12CD7B25A7E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 06:33:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08442B25AC0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:20:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCE9F7ABFA0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 04:32:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F0033A8998
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 05:20:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D3E1DE4F6;
-	Thu, 14 Aug 2025 04:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4831F461A;
+	Thu, 14 Aug 2025 05:20:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cp7JjuGC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6611611185;
-	Thu, 14 Aug 2025 04:33:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3301D63CD;
+	Thu, 14 Aug 2025 05:20:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755146018; cv=none; b=m37NYawKytzl/0vUskIkublsH36z7t7ODgeGJsX8s2CPKTI+3kiIIE6NVVwI3ueO/tPN6yohMvPJv7rEkS3UbzOgjTVMs7DfxZq5DOKiWi3l4bKlFuCYQxE73ELIkP/fSpcJoeJ7U7CSLgI0AcZZ9OaA+H6kxkS5UTNBZDGu8UU=
+	t=1755148807; cv=none; b=St6lKtNCfX5RHYYVCzXec4sGQSLr80rvo6YnpHksYG7oc15JbEVC4NZNGpf244w7DFvcujjwVujXjZVo2PlLdvAb5EeKOrMCCCCSZUvpbm7yRbUO5tAZZj0FjjAjXyz1pL+nX8odp/SPK3Zq+hqArFTDJbOE1klZIeGFZFeouH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755146018; c=relaxed/simple;
-	bh=0UChQ8NT6vgwHUxSU2UAnaKaxvepeo0bFHfSHBvALBA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M93g5wKf5IGRnD+3UMYoeg6U+7Cv070DIPwQ+hlENjJuDKQOo1FJQNkzIQO7GggZ1GLlNH+8IB+oZ19Nn7iMHZNwG2scKmrFZYD1Z+1WmrPehDN7tNhJBpzHcwLUQQVgPxYPIE6aIx5QaiqUTb6oa6ANcZXJGzpyD2K6nRU6gYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn; spf=pass smtp.mailfrom=t-chip.com.cn; arc=none smtp.client-ip=54.204.34.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-chip.com.cn
-X-QQ-mid: esmtpsz20t1755146002teef8830e
-X-QQ-Originating-IP: Peg8pNWex+cqhVtTMZ0ezMqa3HAUy9biynpsprY/6KQ=
-Received: from localhost.localdomain ( [183.51.121.135])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 14 Aug 2025 12:33:20 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 6940595432327476163
-EX-QQ-RecipientCnt: 15
-From: Kaison Deng <dkx@t-chip.com.cn>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de
-Cc: honyuenkwun@gmail.com,
-	cenk.uluisik@googlemail.com,
-	i@chainsx.cn,
-	damon.ding@rock-chips.com,
-	jbx6244@gmail.com,
-	sebastian.reichel@collabora.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Kaison Deng <dkx@t-chip.com.cn>
-Subject: [PATCH] arm64: dts: rockchip: fix es8388 address on rk3588s-roc-pc
-Date: Thu, 14 Aug 2025 12:32:30 +0800
-Message-Id: <20250814043230.2774813-1-dkx@t-chip.com.cn>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1755148807; c=relaxed/simple;
+	bh=955GqPAx8+URVP5fY56hA3MhwoymFtwtrSWj9sBohN4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tBpWP4XWdjiypf0oYuQV2nhJSQdbt9mcqpSUM6Bq5cBcbUiHSV71iyUFppcvyR270YLLU0X+IIz9rIn6yJMGEXLmNPIdusl3t5onj9ieEo3drCT/OJwkttt+DPQVcfESAu9pVB0ME7sU5KY8OJWKIKk8nnibFwCesqmv1QYj0uE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cp7JjuGC; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57DNM9In012828;
+	Thu, 14 Aug 2025 05:20:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	uszgH5P/IYDYRsCNm3CMGbNPevj32rAgSJ0vjKqpt8I=; b=cp7JjuGC9m4cg9Bk
+	hJavT0pHqiOmnT/oAsWfz/z43HzZ4xD00lWiY0Kkptq3LUptXdQVcVAsZMmWC51J
+	GzCDpRdb6MB2YKyyX41Lb9EwASkzJkUfVUzH7m9rQnu7g3ZmoCNycvpscKZANhcz
+	viMNPljp+b32keX0N2RKcjtrG/66W37Wl1SENhSGDaPpobKeOxoFLJG4D+Q/Iut0
+	p4as+onvt+kaN59QdG7N6ZhdcZp66UDJHRhYXzB8jsWJgTxGvMBDKdMlVTM4U168
+	6hOZqUw71TVYAnJd0gdLlGcXZUPdFrIgmoSceXTQ4vZ4qB1tTnd29VqMzxHuthxW
+	kzAruw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48eqhxcgqb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Aug 2025 05:20:00 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57E5Jxru014048
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Aug 2025 05:19:59 GMT
+Received: from [10.216.12.89] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 13 Aug
+ 2025 22:19:55 -0700
+Message-ID: <eaafc695-642c-f2db-3745-d17375365621@quicinc.com>
+Date: Thu, 14 Aug 2025 10:49:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:t-chip.com.cn:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: MLtv/SBKWfQ6vyMfDVz14T/w4Z88LK3E5Ts5efiQ8sb49PfgSJ5b7Vx4
-	xT4huA5DNZaXqT7RQ5VkuQpi+V8aEcuuGCyBdjIQkGW97Yqaqw9INZ7DREWu9q6oyp6vv77
-	fAXJsk0sNhAKkvB+8iwCTCLOm4DwqVRCtFTBC9pGfG4ZzvcWwcIAj58iGzckFBeIK320u6j
-	qN7ak6Lk8B9cfE8JsmUJNfGMD8p1BKX/G8w2gijZYVfWcVzb3A6JOZ8zU87a0jSs5dPADVg
-	tdZtMhXxfMDULWmERN5U4WPq0sXT3h1OA6m+ea/wsq9vFnLQRzSly8TvQr/sc35aj+pSu6Q
-	ZLG7RsA0+PBuVV69493q0VzIir/dUmb8gCZh1gicS1HRaeSOUTihZaU/dZJHH2bbG2bTe44
-	D3TFgWp0/rL8BoSE/cTiGNqq+xfRNxzBvdh7yMRYfUxDMB84KVZrTuAoWWbxtxn9kA2B3uf
-	9TSy7bREcPWMPQsv2BSvLJua/640KZPTkOHsOYnooBL16A5X30uF//30gG5iqjobd/J2kUK
-	3ZotavFxG6Wzvla1KFmceVHaWSdhdHA2g6tOy0Z8M7b8rhGqbrg18kqP3HbaqmJ6zGgBOHy
-	xhfWRAWz0ih6m34IjvwFGxmn13Ask7RW/EZauYkqgiC7w18KXe3ge7sP+3ozjvajME/AFdY
-	I/3VD5Y249rim0xRNPmPK6PncPvZIxcCw950sTD9Thv8ypFXTeKfcftAShijUtUWYPf1Cfi
-	o7C48soGuf6lOdRaAK393QcJ9IP5LVZwwVnbTGlk7T1kmnQB9DrjqLr6f6pgl/PZ1vVdZsr
-	CWGjOjgMd8xSvUt+1g03a9fLngRVqNyTvY/CMWP5U8eWcUyDU8nfODG+ZW0fs+iQaz7bFK3
-	YZUwi844i9aziaipOGEid9DtiDTP3ENUdB2JuzNv3cxFFn2nPaGXyO6qFZ7tjq6vTUeUEo5
-	ijzgXEhIKgKokX5sWDIAGCrlcgxaYRILKuAKGY3hru355G2dpi21xVeZSzr4+1MHP9BXYYB
-	nFJ6HKNzRiMb9pQN3S5IpuWnu7HTcu1oy8v0mgmfwsYPuJ4zQ2YXZVePGegoPOXL2v0/Q6E
-	A==
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-X-QQ-RECHKSPAM: 0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH RFC v2 1/3] arm64: dts: qcom: sm8750: Add Iris VPU v3.5
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Prakash Gupta <quic_guptap@quicinc.com>
+References: <20250806-b4-sm8750-iris-dts-v2-0-2ce197525eed@linaro.org>
+ <20250806-b4-sm8750-iris-dts-v2-1-2ce197525eed@linaro.org>
+ <e414163e-e171-466f-965d-afb9203d32fa@oss.qualcomm.com>
+ <2ok6o4e5pz4ichhchycqkns2afzce5y6ppjr2av4yz3wc3iatk@m3cdck7csavt>
+ <956e5828-303a-44ce-d41e-0f7b977581a8@quicinc.com>
+ <2vtxgzwsr6sztu35zeebuho3ie4bbifb75v5usxfzcys2ufx4f@fnig7kqij3us>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <2vtxgzwsr6sztu35zeebuho3ie4bbifb75v5usxfzcys2ufx4f@fnig7kqij3us>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODEwMDA1NyBTYWx0ZWRfX9yZJTlTvqGDe
+ Ab/2j9CK9A7CdW9MGycVkIjGtX7B3VCZ/TeqbfB1B5lg8KWFwHmaOL/Ofadw8H+5U0NYp7B+s5a
+ K9gZJYQR8/IIwMBosR8rgqJAsCUUDsJf7QMaC0TM1SeTJFs2Rqn1r4qewRKrQtLZfatRWagijZU
+ 49vZqe8EFzM4bpSgrYaZ39c1TBieM2WolWexLsAgrKzY9yaKc+YQ6lKgX85uTQ4lEn32XT036a0
+ +Tn9gQQhabosJJYWT128xAmv+JUqWeu2S56YQNtiG4EjfjRKmnjJGTvJ3Fu/EkMy81aW+ast18d
+ BoI/ZVJL+n9wYj+vUZnTp2SErA8yzA2v9boiBdFyVz5PTZ+c9kVUydv1aUeEtaDtUKtKhyAYzW4
+ g6RZOXJz
+X-Proofpoint-GUID: nl1WqAgO1vGZ5pv-OxhJA5Q_i_MV_r-b
+X-Authority-Analysis: v=2.4 cv=aYNhnQot c=1 sm=1 tr=0 ts=689d7200 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
+ a=KKAkSRfTAAAA:8 a=IRH4XuX63il44M5YX5MA:9 a=QEXdDO2ut3YA:10
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: nl1WqAgO1vGZ5pv-OxhJA5Q_i_MV_r-b
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-13_02,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 priorityscore=1501 suspectscore=0 phishscore=0
+ impostorscore=0 bulkscore=0 malwarescore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508100057
 
-Use the correct es8388 address for rk3588s-roc-ps
 
-Signed-off-by: Kaison Deng <dkx@t-chip.com.cn>
----
- arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
-index 7434ac39246f..7e179862da6e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
-@@ -320,9 +320,9 @@ hym8563: rtc@51 {
- &i2c3 {
- 	status = "okay";
- 
--	es8388: audio-codec@10 {
-+	es8388: audio-codec@11 {
- 		compatible = "everest,es8388", "everest,es8328";
--		reg = <0x10>;
-+		reg = <0x11>;
- 		clocks = <&cru I2S1_8CH_MCLKOUT>;
- 		AVDD-supply = <&vcc_3v3_s0>;
- 		DVDD-supply = <&vcc_1v8_s0>;
+On 8/14/2025 12:11 AM, Dmitry Baryshkov wrote:
+> On Tue, Aug 12, 2025 at 09:01:36PM +0530, Vikash Garodia wrote:
+>>
+>> On 8/12/2025 8:09 PM, Dmitry Baryshkov wrote:
+>>> On Tue, Aug 12, 2025 at 04:21:12PM +0200, Konrad Dybcio wrote:
+>>>> On 8/6/25 2:38 PM, Krzysztof Kozlowski wrote:
+>>>>> Add Iris video codec to SM8750 SoC, which comes with significantly
+>>>>> different powering up sequence than previous SM8650, thus different
+>>>>> clocks and resets.  For consistency keep existing clock and clock-names
+>>>>> naming, so the list shares common part.
+>>>>>
+>>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>
+>>>>> ---
+>>>>
+>>>> [...]
+>>>>
+>>>>> +			iris_opp_table: opp-table {
+>>>>> +				compatible = "operating-points-v2";
+>>>>> +
+>>>>> +				opp-240000000 {
+>>>>> +					opp-hz = /bits/ 64 <240000000>;
+>>>>> +					required-opps = <&rpmhpd_opp_low_svs_d1>,
+>>>>> +							<&rpmhpd_opp_low_svs_d1>;
+>>>>> +				};
+>>>>> +
+>>>>> +				opp-338000000 {
+>>>>> +					opp-hz = /bits/ 64 <338000000>;
+>>>>> +					required-opps = <&rpmhpd_opp_low_svs>,
+>>>>> +							<&rpmhpd_opp_low_svs>;
+>>>>> +				};
+>>>>> +
+>>>>> +				opp-420000000 {
+>>>>> +					opp-hz = /bits/ 64 <420000000>;
+>>>>> +					required-opps = <&rpmhpd_opp_svs>,
+>>>>> +							<&rpmhpd_opp_svs>;
+>>>>> +				};
+>>>>> +
+>>>>> +				opp-444000000 {
+>>>>> +					opp-hz = /bits/ 64 <444000000>;
+>>>>> +					required-opps = <&rpmhpd_opp_svs_l1>,
+>>>>> +							<&rpmhpd_opp_svs_l1>;
+>>>>> +				};
+>>>>> +
+>>>>> +				opp-533333334 {
+>>>>> +					opp-hz = /bits/ 64 <533333334>;
+>>>>> +					required-opps = <&rpmhpd_opp_nom>,
+>>>>> +							<&rpmhpd_opp_nom>;
+>>>>> +				};
+>>>>
+>>>> There's an additional OPP: 570 MHz @ NOM_L1
+>>>>
+>>>> +Dmitry, Vikash, please make sure you're OK with the iommu entries
+>>>
+>>> We still don't have a way to describe it other way at this point.
+>>
+>> I could validate the extended "iommu-map-masks" proposal. Given that we have a
+> 
+> Was it posted? If not, let's get it ASAP.
 
-base-commit: 7f0817eee7ba40b48e956955d6fd8ba14750168c
--- 
-2.25.1
+iommu-range (+Prakash) is a WIP, which is needed alognwith iommu-map-mask.
 
+> 
+>> new binding for SM8750 [1] , does it make sense to add iommus min/max as [1,5] ?
+> 
+> Why [1, 5]? It should be [1, 2] or just [1, 1] + your proposal.
+
+[1,2] should be good for the iris device and remaining SIDs can be covered with
+device allocated dynamically via iommu-map-mask proposal
+
+> 
+>> such that later if new property is introduced "iommu-map-mask", it does not
+>> break ABI.
+>>
+>> iommus = <&apps_smmu 0x1940 0>;
+>> iommu-map-masks = <0 &apps_smmu 0x1947 1 0>;
+>>
+>> [1] https://lore.kernel.org/all/20250804-sm8750-iris-v2-1-6d78407f8078@linaro.org/
+>>
+>> Regards,
+>> Vikash
+>>>
+>>>>
+>>>> the other properties look OK
+>>>>
+>>>> Konrad
+>>>
+> 
 
