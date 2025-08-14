@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-204835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AA6FB27056
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 22:48:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0FE1B2705D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 22:49:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F9D45C0A41
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 20:48:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1CCFAA3C09
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 20:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 944E927280E;
-	Thu, 14 Aug 2025 20:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39CA82749C9;
+	Thu, 14 Aug 2025 20:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hyljDCIn"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="icXcVjtb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B5DA26FA46;
-	Thu, 14 Aug 2025 20:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E747192D97;
+	Thu, 14 Aug 2025 20:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755204476; cv=none; b=YqYbZEeJ839OvBWtlIiJA40bSnA4M1yJzX7SzR2wSxst6yds8RT+7AO7QlP+sTfvG2ggJ3EqGD2qfNIxIjWH9c4O0vP+YVue0kA8+oaWZv/kleQdlHAOfNZFSGk8Fjnw5/+Xr/eN1gDeese35r/UgRevnRFnIr5Ihjvo0iTMZJ0=
+	t=1755204537; cv=none; b=HZkM9MOBqrSx3Pm+e/sjFjclQnl1eeHSSWgbKNzdXvoFjZ6kK8ZshW139MOJkUA57pGD3ZMhdyty5UGW8SFZcgXe73bwx5tJT66pOzGF4/uU1yu75kJ1QoQqL5obs2OYTNilL83tGbXoyvfJOdfcJEK5VGSjywgjhMntuAFlVJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755204476; c=relaxed/simple;
-	bh=dW2X3K+YNEEybIjB/hvQn0QPs5bkqXpod+RF3HGN1Ww=;
+	s=arc-20240116; t=1755204537; c=relaxed/simple;
+	bh=ZXdOUZiTPx1pSGhcCAzQtGhqj/s3tSp3R+Sg88K2uE0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TNo+ceVhaxlRrLwbhU5aUWnpNUT8kWnCdlcCsJykzLNV0ac42QYBVNmFGal4aQXIHXmtQ+HGl0ngAdL3Vtrwd6p4lvxpYagyEAt44gwz9ew/jewJkmA4BAPr8bFJDY7L39KZ521QFbHDuMpLCw7dm127oVrfl1ujap3yl6Vp7ak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hyljDCIn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96ACCC4CEED;
-	Thu, 14 Aug 2025 20:47:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OJT8zZCVST5DvQBv2Av/WkFwuQ48CbGas5ZKE9Bi7t8YeKe6bRenpO6/ETtpQ7e23KR7+03Uk4f1L0yDp1xN5tZEY9TY1aWZ9FnBNTLQv/y9jFT/0NXBlBz0Klcti6FQ+vqCLMTd992RZ5jrjgODrl8emv/+QRLLoZg7CDqJlw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=icXcVjtb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3C8FC4CEEF;
+	Thu, 14 Aug 2025 20:48:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755204476;
-	bh=dW2X3K+YNEEybIjB/hvQn0QPs5bkqXpod+RF3HGN1Ww=;
+	s=k20201202; t=1755204536;
+	bh=ZXdOUZiTPx1pSGhcCAzQtGhqj/s3tSp3R+Sg88K2uE0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hyljDCInxy4DZe5+LqOU5BtQaF5XM9gDosYxRaa9juQwUuvcrW1FvamJ6xPGg91DD
-	 fUXRlTttT3XiiH9eSF4b10REomGxBctST+vQl/x/jXBHI5hWswt2LY+nAp+Ik82kRx
-	 acWzZcsFBNLk6/krrevxXoKhaz3je3+uqoNuqT3eB6iUyUANeU2XLgytpA53nl8ofM
-	 744IpUoHWzklkEkIxDQopORQmjQ7MYWLp7Joh58cLQ5n/9GvAMSVh+eMzSOwJLgxwh
-	 2f3A30uAwiyXH7koz6bjOMpq47yhcxWqS7lcSmHdS1ZoCp2//pnxNfolysQfhT6z2o
-	 x2pH/NAwuISgA==
-Date: Thu, 14 Aug 2025 21:47:51 +0100
+	b=icXcVjtbKgE1h+2EQzpHFxcmyfwiJFC8pzLvR3SZhZOFvCF22oK/2eoiZlGXNoe8d
+	 TTH0NXfUoZZlDuYGPUMCaTYvJrmGKHWv/7jtYGuTg5MQXsu8OctatoVa3CT5xFxS8M
+	 paoS+qstFB0VEH/9IpWwLBOdV1YV5BcCqvGlDcwS9c8FpGKmSKERwAKV/Yu0zQynQ1
+	 BeLei+6aRWL78B7yzbvukpixeaJ4SUbMwfMn4wLZ/pp9IbTzeSoJoca/mEGnJL3fSE
+	 w025/YaKcNXF1pNr0mCjMCNK7COR7avkT2HwcXKKqS7hQMBadcgnMQ6bt5lWT2YHKT
+	 42wnZ4uZnU8+A==
+Date: Thu, 14 Aug 2025 21:48:52 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Markus Heidelberg <m.heidelberg@cab.de>
-Cc: Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Christian Eggers <ceggers@arri.de>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Jiri Prchal <jiri.prchal@aksignal.cz>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: eeprom: at25: use "size" for FRAMs
- without device ID
-Message-ID: <20250814-platinum-imminent-43a126e82871@spud>
-References: <20250814111546.617131-1-m.heidelberg@cab.de>
- <20250814111546.617131-2-m.heidelberg@cab.de>
+To: Aleksander Jan Bajkowski <olek2@wp.pl>,
+	y@spud.smtp.subspace.kernel.org
+Cc: tsbogend@alpha.franken.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mips: lantiq: Document lantiq dcdc
+ binding
+Message-ID: <20250814-vocation-viscous-b54bc343e8c6@spud>
+References: <20250814082705.3183231-1-olek2@wp.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,55 +59,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="t2bYXlAxP2do4p8E"
+	protocol="application/pgp-signature"; boundary="InbThig5viQLZRYJ"
 Content-Disposition: inline
-In-Reply-To: <20250814111546.617131-2-m.heidelberg@cab.de>
+In-Reply-To: <20250814082705.3183231-1-olek2@wp.pl>
 
 
---t2bYXlAxP2do4p8E
+--InbThig5viQLZRYJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 14, 2025 at 01:15:30PM +0200, Markus Heidelberg wrote:
-> Link: https://lore.kernel.org/all/20250401133148.38330-1-m.heidelberg@cab=
-=2Ede/
-> Signed-off-by: Markus Heidelberg <m.heidelberg@cab.de>
-
-Missing commit message body explaining why this change is needed.
-
+On Thu, Aug 14, 2025 at 10:26:56AM +0200, Aleksander Jan Bajkowski wrote:
+> Lantiq DCDC is a voltage converter with a voltage sensor.
+>=20
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
 > ---
->  Documentation/devicetree/bindings/eeprom/at25.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../mips/lantiq/lantiq,dcdc-xrx200.yaml       | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mips/lantiq/lantiq,=
+dcdc-xrx200.yaml
 >=20
-> diff --git a/Documentation/devicetree/bindings/eeprom/at25.yaml b/Documen=
-tation/devicetree/bindings/eeprom/at25.yaml
-> index c31e5e719525..d6fe84091ad4 100644
-> --- a/Documentation/devicetree/bindings/eeprom/at25.yaml
-> +++ b/Documentation/devicetree/bindings/eeprom/at25.yaml
-> @@ -56,6 +56,7 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
->        Total eeprom size in bytes.
-> +      Also used for FRAMs without device ID where the size cannot be det=
-ected.
-> =20
->    address-width:
->      $ref: /schemas/types.yaml#/definitions/uint32
+> diff --git a/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xr=
+x200.yaml b/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx20=
+0.yaml
+> new file mode 100644
+> index 000000000000..5648b9676b3c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.ya=
+ml
+> @@ -0,0 +1,32 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mips/lantiq/lantiq,dcdc-xrx200.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Lantiq DCDC (DC-DC converter with voltage sensor)
+> +
+> +maintainers:
+> +  - Aleksander Jan Bajkowski <olek2@wp.pl>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - lantiq,dcdc-xrx200
+
+What is "xrx2000" in this context?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dcdc@106a00 {
+> +        compatible =3D "lantiq,dcdc-xrx200";
+> +        reg =3D <0x106a00 0x200>;
+> +    };
 > --=20
-> 2.43.0
+> 2.47.2
 >=20
 
---t2bYXlAxP2do4p8E
+--InbThig5viQLZRYJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJ5LdwAKCRB4tDGHoIJi
-0jQSAP426ncFjNObVwHIFLzAYrq15xnNP9fneSFS5jCBOx/spwD+JhnOgosXTbLH
-2sybJAZUGxRtdwDVPEZpf1tg3JKzVgw=
-=bsl9
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJ5LtAAKCRB4tDGHoIJi
+0viMAP42q3/sznYQ027brpcyIW+wenz34Kt088Rd5gpOLTcgXQEA/MDfhv80ltj2
+wsbUUrEVKqCqUGUR9Y9IHzznzdXEaQs=
+=cXYA
 -----END PGP SIGNATURE-----
 
---t2bYXlAxP2do4p8E--
+--InbThig5viQLZRYJ--
 
