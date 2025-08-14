@@ -1,164 +1,154 @@
-Return-Path: <devicetree+bounces-204755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3C2B26A07
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 16:52:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D86B26A46
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 17:00:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B74131BC23E1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:48:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57389A00925
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9A21FBEB9;
-	Thu, 14 Aug 2025 14:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8620921ABAC;
+	Thu, 14 Aug 2025 14:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HY/USMe8"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BppAGEUt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2724A192580
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 14:47:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B1B432142C
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 14:51:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755182854; cv=none; b=nzTEeX/gtzFqyjukzckZgKo33Q6iuajHpB3vUgbq7z4XVmG2TJ3Y9yPso2FBlxNn0+9TMKWwHENVxpwjh9wqkuYHim8G42HwsJzsSCGOJGwLN9vl6mIjKnhstdEpo/U4Z0NdclAhDUA31SAoDcId6fCDsWGJgbBWy8j/05NLfuQ=
+	t=1755183079; cv=none; b=GeDMcvAqvkGt11EwjNl/IsMjxLU8TwgRh//2uEcda+ZQiB3vVCarrcrBWkg5thXDwkmdrTFJQsnj9aBbHCcTt3N/hvvuODJE4CBuUiLriFTY2jvWBwFVcC4F9n4HKeGmt0QP9qEvNbg0rMB5NKwYKtsWurCDBQZaog6uf3YWFZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755182854; c=relaxed/simple;
-	bh=FvgXrhJBchDglMj+MOf60VzgeTEvZMxp4caGmrdlrSg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ghNDSpGsn2jZRV718mJd51LNZsVL6fGGBOQykdbMAjUEPIuOsTgtuSs7SpS31IEhnmm2c9pQqgB0AFgpqIReoWLzp1vfDi+l6g1KtOUe3iRU1wGXq2RU8TDxAmiB/3G3D22HndtJSmAE6sNdSWvgdhfS3ob/alrhfuXhOPxcrI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HY/USMe8; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-45a1b098f43so7121935e9.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 07:47:32 -0700 (PDT)
+	s=arc-20240116; t=1755183079; c=relaxed/simple;
+	bh=fyP/OLr3beYwssW4o3anr5GsJIQEhtOVd8ngVUetdSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jYpLsTsIkuK7wVH3WvgLSz2luHdLeJZjm4grkxlkc4Qt6EwNeuVJhElflEqvmXv2y4GXjGsWc8D/hb6RFfSKm0RU/Aa0ss/6UWdGY4zKxYnia3T5XF1cFLUmsNitx21q9nbo0AwfDav0558BjON/EH5w2qosyvu5xwReC1S+7iE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BppAGEUt; arc=none smtp.client-ip=209.85.160.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-30cce52ba30so991280fac.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 07:51:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755182851; x=1755787651; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fZAqDF3XnpGXDPLOHIJz9Ec4YzJw9DgnDjI6cQZHRtQ=;
-        b=HY/USMe8okexpKlUrKfbbNpKDfIBDuP4SY3bl8ibbi7B9RDgpRXy6KNgueAyLplG3+
-         sEwkSJmAx0UqXPcx62eb3cb4xj9jH7L7+lGAugRIRUaidmYWnAI1Tt8OSCTO98eFhqib
-         GUJdhWjwnbyD0H93XEvuks8UpQf1KTaF1WdSSJNQOyyzFwzyvyGoqOHnmacNU718JCEF
-         STbUIRVorrPja0LTfArPxONKhJJGV2EiMI8fARlKalaTo4o+8/s7Ds20TGXsOKM4B0hf
-         Fl7cgygPWhmbxTYgWxA616xue3rW7/aZ0I1AXXKMuYJsAKuZBSrVTwLLHr5Zwyci1DFo
-         /MTQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1755183075; x=1755787875; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NhLbtz2pbCynkwC1z2ilVubEr1pcqPcdknoxUGu5RA0=;
+        b=BppAGEUtHHtmsexkVgMOslgdxIUReQ8vAOm59cKPcjPnjmIxbidYBt0Q+MCtzFIw2g
+         OPWMj1DaHSHkHPEMlALAA+QCUKxu+iroLsvOY6hiBJQl0+Oesrvspmcj7lSBRWIAwGeW
+         J13NeImus4GIgqybGU+oVoC2AeOKP4T7W/73m8TTsN99Ug9ESQWmWHlVbyVfDQsQ9h68
+         pzizqRKMLmdX4SNIWW0guvzFHnsClC2irrsD9L/yDRMM8MY7p+uNj6OJtQn+IInf5h5j
+         7H2qw/K8S6NNhqdDXpzqN5TG9JgbyUmWoKSQ7AVBKZtr1c48QotX5nXyK9EWNv0lvHZV
+         M+CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755182851; x=1755787651;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fZAqDF3XnpGXDPLOHIJz9Ec4YzJw9DgnDjI6cQZHRtQ=;
-        b=aHEI7Cn4nhAUhqKoiVDYLPEbYJSOOYnjrMvvLvOTysWQx8HQErO20GT/F532/KNaON
-         O9AwEdumcU8JqumSoPwFKdv+9+BSxsGbVG1Wcl/sGHkRuugSVoZoC8rkNY+S9tKp97+d
-         aNzg2Bp+NnYcwBtNJSZiIlu+98q9wIyBiqN6KbMcB0cOMo3a4XEd6tvg7BcqVmU1ZmWn
-         ox3Hk+Xtoy/E0XjlhMu7l1eRX87vpzf17hq8bq7Zbm2ADqAJm7Of3O1IQXNW/Zgj3t2m
-         Sf7/7hJQuHikK7xEf3DXfSSRbQWm06zfryowtCpJXJUkn6p3s5rVGbf7z4Ei8zWDCj/Q
-         6ElA==
-X-Forwarded-Encrypted: i=1; AJvYcCWyljZBig0gsJddMDgfPE1vEI36+YgHF0HuFZNGdaUtOsfriKtetCBgu+N2Y9d7VuWaiEBC8IjDuefS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuvdGiBJ6RAHRcFBChd0u61SIbG2KqxD19No4eHDoBotu2fpqp
-	XJfsvr2P/bQ/uaQDMUia/QHn0MMNBfFlQfaZY/+hQSiHyR+tMbBUKX77KDSYAUz9s5o=
-X-Gm-Gg: ASbGncvSNh0Wk2R4qOnpid2Wli3q22hxZvjGAiQnXsMsiu/kKIWebUtvv4uXLx+iG1B
-	QvdCTJe68VrlRPUMSpxvP0SN0TOg9bWbPIxyPfAIMshbpGtoGymbSgjRiifNmbYUK2inUNZfoRo
-	8l/TatGFI5u9veb9mjZ7sPTLTGvOODZIM7irEdAaYNVMUPPLnitOQ6VDAnp6BdRDxcKrSppEODq
-	DATJ33TRfjc10kg0HFx/+c8jQK15xD+9NEAHAPS1bPLYpUdxkYhyKd6ZkuF7R9hsjL1OCkW5wUj
-	yGLbYk3z6ORBt2wuBPhsZuArlJbYTYJmKCH/FWFDvcWgcOpA/D0S1d3sAdemtvM9nwsAgSKwdCs
-	pvUSLgnq4fHwyYVkhQ6FLK+mAqDYmXwoN
-X-Google-Smtp-Source: AGHT+IFhoWtHYN9QFJ0tW1CKBLQo56CkK5ldL2L/K77pZLZH70ja4pUfhvkjKDkzC2VxincZw5xstA==
-X-Received: by 2002:a05:600c:3b87:b0:456:2a9:f815 with SMTP id 5b1f17b1804b1-45a1b615307mr29980105e9.4.1755182851303;
-        Thu, 14 Aug 2025 07:47:31 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:1e8b:1779:ed5:b6f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1c74ad27sm25133535e9.18.2025.08.14.07.47.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Aug 2025 07:47:30 -0700 (PDT)
-Date: Thu, 14 Aug 2025 16:47:25 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Christopher Obbard <christopher.obbard@linaro.org>
-Cc: Johan Hovold <johan@kernel.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Rui Miguel Silva <rui.silva@linaro.org>,
-	Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: x1e78100-t14s: add hpd gpio to
- dp controller
-Message-ID: <aJ325wUrBjydnc1m@linaro.org>
-References: <20250731-wip-obbardc-qcom-t14s-oled-panel-v6-0-4782074104d1@linaro.org>
- <20250731-wip-obbardc-qcom-t14s-oled-panel-v6-1-4782074104d1@linaro.org>
- <aJCyBbwNjZvTHnjT@hovoldconsulting.com>
- <CACr-zFCq08Pu2=eLfe5=sYdGWEHmy7w+=Eo++9AjP96uCLCNcQ@mail.gmail.com>
- <536dd237-e668-4a88-ac2b-3bc88dca8a3e@linaro.org>
+        d=1e100.net; s=20230601; t=1755183075; x=1755787875;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NhLbtz2pbCynkwC1z2ilVubEr1pcqPcdknoxUGu5RA0=;
+        b=xDHJ17IaLS9EfvOoQ0/CfPlZoQZo+WMFzlx3GsJyJjItZK14WGoA3dbOXwPuLfWvdb
+         JQWWwetaTcRovGJp2VZwIHARvzXXQcbUlupeqQvS8wFuUoXWG/K7kRNjNhekGeG+72Ek
+         TNGX7wHUP37KwZyJ3w2uP6u7ti1GpC5nuBVOipE7HYd3MM/Eda0EI2+uenxmtQ4jzAsQ
+         ZE5EIC/bnDvDzJ/6oOu+0vTy8u1xplfiv/RaEEL4bApjyseDTATJ6yeEpvYArnUrCCD3
+         NKPNnAyxIHZ5CAxTseLaS+xBf01RCQJQ0yxhrh0ZqbAEAbxaYhhlPTvfWbjK0jR3cMLB
+         URhA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRVz1zK5xFp0tWlCdd+n1MhXcCPoLvZmkEAo7gsyFASvUt7IP8hbOYKr+B5gVSdp1YLDfLBFl/DPZA@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJY5AAdj04SKROpSxKInvTrnZmIZzS8TP3OFU36BhY+hFKDGe2
+	eh2HZcAe/EBbmPDviRG7Afhq7Byb5xrn8tc2g64Zz2rOSo9subWQvh9BTonxQz/3gJtF+SE9BXt
+	RsA2q
+X-Gm-Gg: ASbGnctvr1Y7DWUoshUTUSvCHkCLdKZxXrg25Vlv3mR9GbxlcGRBuq/z+4lNQpUx4ab
+	Lc3W8Q/dlODKywPkMMhB1O+ADYKzhgBmWblQsUs7Ss6+7Qwj1yWrsKYpRZJhK6gHilbV4B1XmfF
+	nRd/R1s9aMY5rhEfy7k69uOZiuN+vsApgw3wxftjU6YMwCo4/TVZ1OymoduACsVsfpLuyYaSFYb
+	/Ki35GWjSvrpmnLUbPxeyB0cZi8AVSh7UhR9v0kMp7lBIPTKWTvSh7jxxqqSEIYAwec9X7iTDmS
+	MbC869/PHKicaxYnGEjOfDlP9hy7WQLv/97rFT08FlaOH/uOGe+XcgQuRxLO/cVq7P1VDc/XHVP
+	HUN4B4cjTsq2o/dPm6UknPS17JbiCIXV2EYNxN9iNR5bp1ys0Idk16iylBm9xNTozb27ifiz5HC
+	o=
+X-Google-Smtp-Source: AGHT+IGBSpWFh7v66sa0tHjx26XHgGotdF9DhOCF3YJvgTAZk5dQT2EANWxR0b3KAVLYLKWGk2J75w==
+X-Received: by 2002:a05:6871:6a5:b0:30b:582d:8eed with SMTP id 586e51a60fabf-30cd1399dbamr2002074fac.39.1755183075184;
+        Thu, 14 Aug 2025 07:51:15 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:2d9b:959c:3c59:5831? ([2600:8803:e7e4:1d00:2d9b:959c:3c59:5831])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7436f879fabsm1436841a34.13.2025.08.14.07.51.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Aug 2025 07:51:14 -0700 (PDT)
+Message-ID: <b1cc499b-403e-4dcf-9e6a-10d4d43a8b30@baylibre.com>
+Date: Thu, 14 Aug 2025 09:51:13 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <536dd237-e668-4a88-ac2b-3bc88dca8a3e@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: Add BD7910[0,1,2,3]
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1755159847.git.mazziesaccount@gmail.com>
+ <8ef78e3cffcfdf99153a3fcf57860771890f1632.1755159847.git.mazziesaccount@gmail.com>
+ <175ce750-7f5d-477c-8d18-dd418ba749be@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <175ce750-7f5d-477c-8d18-dd418ba749be@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Aug 14, 2025 at 04:21:09PM +0200, Neil Armstrong wrote:
-> On 09/08/2025 00:28, Christopher Obbard wrote:
-> > On Mon, 4 Aug 2025 at 14:13, Johan Hovold <johan@kernel.org> wrote:
-> > > 
-> > > On Thu, Jul 31, 2025 at 09:51:26PM +0100, Christopher Obbard wrote:
-> > > > The eDP controller has an HPD GPIO. Describe it in the device tree
-> > > > for the generic T14s model, as the HPD GPIO is used in both the
-> > > > OLED and LCD models which inherit this device tree.
-> > > 
-> > > > @@ -5779,6 +5779,11 @@ tlmm: pinctrl@f100000 {
-> > > >                        gpio-ranges = <&tlmm 0 0 239>;
-> > > >                        wakeup-parent = <&pdc>;
-> > > > 
-> > > > +                     edp_hpd_active: edp-hpd-active-state {
-> > > 
-> > > The node name and label needs an index as this SoC has two edp hpd pins
-> > > as I already pointed out.
-> > 
-> > Sure. After looking at the schematics this should be called
-> > edp0_hpd_active. I will fix this in the next revision.
-> > 
-> > 
-> > > > +                             pins = "gpio119";
-> > > > +                             function = "edp0_hot";
-> > > 
-> > > And you also need to configure the bias somewhere as you should not rely
-> > > on the firmware having configured things for you (as I also pointed out
-> > > before).
-> > > 
-> > > On my T14s the internal pull-up has been disabled.
-> > 
-> > I am still unsure of what else needs to be set here. Can you help me
-> > with the correct settings?
+On 8/14/25 4:57 AM, Matti Vaittinen wrote:
+> On 14/08/2025 11:35, Matti Vaittinen wrote:
+>> The ROHM BD79100, BD79101, BD79102, BD79103 are very similar ADCs as the
+>> ROHM BD79104. The BD79100 has only 1 channel. BD79101 has 2 channels and
+>> the BD79102 has 4 channels. Both BD79103 and BD79104 have 4 channels,
+
+Is it just a difference in max sample rate? or pinout?
+
+>> and, based on the data sheets, they seem identical from the software
+>> point-of-view.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>> ---
+>>   .../devicetree/bindings/iio/adc/rohm,bd79104.yaml     | 11 ++++++++++-
+>>   1 file changed, 10 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/adc/rohm,bd79104.yaml b/Documentation/devicetree/bindings/iio/adc/rohm,bd79104.yaml
+>> index f0a1347ba4db..6a6e6ab4aca3 100644
+>> --- a/Documentation/devicetree/bindings/iio/adc/rohm,bd79104.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/adc/rohm,bd79104.yaml
+>> @@ -14,7 +14,16 @@ description: |
+>>     properties:
+>>     compatible:
+>> -    const: rohm,bd79104
+>> +    oneOf:
+>> +      - items:
+
+You can drop the items: here since there is only one item.
+
+>> +          - enum:
+>> +              - rohm,bd79100
+>> +              - rohm,bd79101
+>> +              - rohm,bd79102
+>> +              - rohm,bd79104
+>> +      - items:
+>> +          - const: rohm,bd79104
+>> +          - const: rohm,bd79103
 > 
-> Just add bias-disable;
+> Oops. I believe the order of the compatibles is wrong for the fallback.
+
+Indeed.
+
 > 
+>>       reg:
+>>       maxItems: 1
+> 
+> Yours,
+>     -- Matti
 
-I sent a patch fixing this for all the X1 devices upstream earlier [1],
-so you could also just send v7 with just the second patch of your
-series.
-
-The bias-disable is really somewhat device-specific (what if there is no
-pull down on the device side and someone disconnects the panel
-entirely?), so I put it into each board DT separately like Johan
-requested on v5. We have the same for the PCIe pinctrl.
-
-Thanks,
-Stephan
-
-[1]: https://lore.kernel.org/linux-arm-msm/20250814-x1e80100-add-edp-hpd-v1-0-a52804db53f6@linaro.org/T/
 
