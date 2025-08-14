@@ -1,192 +1,122 @@
-Return-Path: <devicetree+bounces-204454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14197B259A5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 04:54:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43064B259C0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 05:16:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58EA99A18CC
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 02:54:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 035BB6834BB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 03:16:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B4325C80D;
-	Thu, 14 Aug 2025 02:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CCF1DB958;
+	Thu, 14 Aug 2025 03:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bR6tajBe"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="BYb8Pipl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A928725A2A7;
-	Thu, 14 Aug 2025 02:54:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC0B156CA;
+	Thu, 14 Aug 2025 03:16:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755140062; cv=none; b=GURvsMibw9CB3MPwyJfatAXkOQu3TaB/LpW13ubdAUAnH75QfvaCAQwqfeJx5AMdh62MoXfPSzzNgetHChbXwjh23J76nQuIF28ixYyfq85pPJakyzWxbkXJzkAPsng9KsU/OHvlsfPm3Qj11sIhstalfapMGcwBygGLI0Qy54s=
+	t=1755141372; cv=none; b=WcDzZGNWYUsLndAxBHMSlNZql9ipLvrzF9JkqhAo5Talif5VaZwQTVgsRA2wyVVGNk0eOx0g/JQdXIGmHA4FYo65KusmuUwbhaN7BLr3VV28fZXkU0bdWdmjJvK/HUFuNjKuYKUPGT8HTCfsJGkrF/K6d/45Ye0yn8pqFGUPlYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755140062; c=relaxed/simple;
-	bh=DUD+i5GUorzmyFBIbvOlFraLYTZ2PMn7XBjxYVx4gNA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ffnzng3vIe42OjwS1ircvbjTcZmvP5sxW6xfGSCatU3peK46HCb2EOrLRAwP6L19U7iPxkrEShZ+J1R3NmJXQd9g1/S7vMwr+J5WLLqJQYqcCAhI5C7GW225v0H9eAjVWpWwp48dOuqGZww2nw8v0E9kOJKM/937lKqE0H8G4Is=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bR6tajBe; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-76e2e614b84so542559b3a.0;
-        Wed, 13 Aug 2025 19:54:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755140060; x=1755744860; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QcSr48CYfkXX8nf/xlhKJbn2nmydypNX8xOgSCNkXgQ=;
-        b=bR6tajBehw+q5/lVVjX9Ge+9B+ZrP/dMW/TqQxvMOY72BO4SSckYFOT4wZwMi4nOzX
-         kiSR8BvhnEsbPgE/bnem4Y3hEM9PU95nXVBJXHfG8Xef2ltUzd0Pjt5rPjhk4s0OaDBl
-         LBXv0zFRH6LBT6jegV4dGM+ODz2kKTL/qAwWTFWR/NF4AjMmyrvw9QXP17MLjafFt4r8
-         1TluBBaPv1qyk+AT1T0xHj8gwocAiMz88Oxp9bDh5iFFIe0au+YKXaPPC3QAIsfm0gjw
-         e/WVeyus7HTg0o/wnfQgc/NdB3uH0/ybaFSmENML8aFFrNY8TTumJHb2Tojt9g+kVrdQ
-         wqow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755140060; x=1755744860;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QcSr48CYfkXX8nf/xlhKJbn2nmydypNX8xOgSCNkXgQ=;
-        b=V5wzDG7tAbz9sz+4p64xZNVx+XNYfECJaciIIiwv/sSIEegivsssdRJjUJji5/u851
-         UcflXGdmOnTkycIPbNVwSHgU6HTqN+yqAxXP1dEmpn09o7C0mc+7d2ed/zxTUinjGScG
-         0OY39GrLmWueRabRuTg1Fy3yuKdZm84fbTGUwSGIa+uu2uQjLdm9sMIwKprgbrzLfT7G
-         lEJIhWnx0nMLee9gK6TnAN4VAFpLsEVUXB6n4A0ovlrOqi/cRZqm3lX/3aaFoquLn1aS
-         MBnAgazR1+zctWDYEBWBUjLF3Hh+vPG4Yc9GWWfOawxDpIpehEQMpO1Khdo31TgUs/6H
-         YUbg==
-X-Forwarded-Encrypted: i=1; AJvYcCU/xQl3ifVVQ/fflJ2S+G2I9t6l0qf9gesHDdcNWkg1it4+GOrqFNVwnZKf0rrZ4B7ItHgoCdBYqPx+@vger.kernel.org, AJvYcCXaCle4ldoscoYg1B4fku1W5ld7RMvKFujViciOcawfLx/6dwVGKbfZsDQyzZIhq68Fo55eaQeejJ8v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzxhiu1GR091E6OgUt7MsRYuBSP/1CFt2b82EneKregVc3kLd5V
-	0IL8mjpvttPtV70Tajc0Hr065pHFZrSJq4/R1U13WvutZdxpTy7Wbfhv
-X-Gm-Gg: ASbGncuRGL6GWiu5kojPEjibXdamZzbUN2GwiS2ipINqRnEvRjXPUkKaxUGCxmzo/GJ
-	N5kzRTP70/+MOg8K/iIQcOpupp37zhPufReET50BK+4kwaBHoQWiDBmmBgxw/3K7Y+GH2u+FVM8
-	OaI0urjWBAt6uRjpPJGO669IOWsoFVoo+1KmDNGnCGTHgEXAfbwZkfqFOgXtmKTrsYGgRLHXiMs
-	zMAwKR7jqDhzJVOeaITkigXNgLciN8xh1QsoRiBOVcc1CzSslddDWy0kwh/v2LEPhcxAmInfr6M
-	BstvMkuh8v3PYqVAHk3gSTYu3C1fVahDNavXhIwMsHyFEZ1EDMxfg0i8XIPV3BEnx8tgRuVEAn3
-	f2slpZaxHEjjIanci+j8vxie2WqPm6A==
-X-Google-Smtp-Source: AGHT+IElBKzQsJtO7lQISS0E15pxdO9aXaHMpROIQ192oq/xulwkXmjJ3tYdIcSz+3pkY6DlmwYArg==
-X-Received: by 2002:a05:6a00:a29:b0:76b:f01c:ff08 with SMTP id d2e1a72fcca58-76e2fbe9206mr2083620b3a.2.1755140059842;
-        Wed, 13 Aug 2025 19:54:19 -0700 (PDT)
-Received: from [127.0.1.1] ([2401:4900:1c45:768d:a218:ee72:b12d:78b])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76c09adf8efsm24716473b3a.68.2025.08.13.19.54.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Aug 2025 19:54:19 -0700 (PDT)
-From: Dixit Parmar <dixitparmar19@gmail.com>
-Date: Thu, 14 Aug 2025 08:23:44 +0530
-Subject: [PATCH v4 2/2] dt-bindings: iio: magnetometer: document Infineon
- TLV493D 3D Magnetic sensor
+	s=arc-20240116; t=1755141372; c=relaxed/simple;
+	bh=+gwX6XfqciK40bLgmrE2RKSD1uSrAVArunK4uRxe5ys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Np/Fi5CtxGOokgS35vLVzIkToZZTr4o8gzJanuOA5MI+v0bzac7uS+bZRWGvJ2dQeO/AaVrC5Yt44T0lNN3FVCrmQVsbDiSVG5e4s9obW4AtUyMxQu6tf0XcXPR3cT6te6B+Rf3CI/uZhbR97Upc55L0WLPI1I9/7ntEBjV3WUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=BYb8Pipl; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id AD43220D9F;
+	Thu, 14 Aug 2025 05:16:09 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id sV2kU1G9oo8O; Thu, 14 Aug 2025 05:16:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1755141368; bh=+gwX6XfqciK40bLgmrE2RKSD1uSrAVArunK4uRxe5ys=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=BYb8Piplu8vS0NzxOjEloKUnqa+ivjFhNEJ84q8JoSv+woxhSNH1bCqk6Dh0r56n5
+	 Ufa5ZfGkZP/c7s6h4Wkd3inOMr8/yn6PE7AB9q7Vo41Tf7GvehBQlfHvbBuYh8kNOw
+	 gUncBkS/HzC9PbiYgCW5DLD6wcEUT1DkHU00wqvkudXnDxNNyzAXCqbEGMOu4GC2Ii
+	 E5zka9dLuMyvDhoTYuJFoq8QIKD0fF0Q5pHUKFpjB7oH8S+QmM1mtGHjZ+5UOZFJuw
+	 wJtBlHAjKsnCOpy+JMhNM4y5+e5/5Ss37rczyHp2Ch0mBLvKxGHLfDdlPx0SQEGK6g
+	 xDkmRgrveO5uQ==
+Date: Thu, 14 Aug 2025 03:15:45 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
+	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+Subject: Re: [PATCH 2/3] pinctrl: ls2k0300: Support Loongson 2K0300 SoC
+Message-ID: <aJ1U4RdkyCy4bxyd@pie>
+References: <20250811163749.47028-2-ziyao@disroot.org>
+ <20250811163749.47028-4-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250814-tlv493d-sensor-v6_16-rc5-v4-2-81b82805aae0@gmail.com>
-References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
-In-Reply-To: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, Dixit Parmar <dixitparmar19@gmail.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755140034; l=2793;
- i=dixitparmar19@gmail.com; s=20250726; h=from:subject:message-id;
- bh=DUD+i5GUorzmyFBIbvOlFraLYTZ2PMn7XBjxYVx4gNA=;
- b=fKg+LPMNgMuRk1CcfnY3/tDWxLXHdQ5qWhJcu9wUbiWhO7/eZI8pdTnvLcpg5mS1kUxdhMW9/
- rbWwEcVUvETC2CmZpQYfaUzqZRB60T/A9wNYR2pOcv2LP/oQd1k8uZS
-X-Developer-Key: i=dixitparmar19@gmail.com; a=ed25519;
- pk=TI6k8pjTuLFcYiHazsate3W8rZGU2lbOrSJ4IWNoQhI=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250811163749.47028-4-ziyao@disroot.org>
 
-Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
-controlled by I2C interface. Main applications includes joysticks, control
-elements (white goods, multifunction knops), or electric meters (anti-
-tampering).
-Drop duplicate entry for infineon,tlv493d from trivial-devices.yaml as
-its documented in this separate dt-binding file now.
+On Mon, Aug 11, 2025 at 04:37:49PM +0000, Yao Zi wrote:
+> Support pin multiplexing and drive-strength setting for Loongson 2K0300
+> SoC. Pin multiplexing could be done separately for each pin, while
+> drive-strength could be only configured on function basis. This differs
+> a lot from the driver for previous generation of Loongson SoC, where
+> pinmux setting is based on group.
+> 
+> Pins are represented with pinmux properties in devicetrees, and we use
+> the generic pinmux API for parsing. The common pinconf interface isn't
+> used for drive-strength setting, since it handles pinconf settings at a
+> unit of pin groups or smaller.
+> 
+> Instead, the driver configures drive-strength settings just after
+> parsing the devicetree. The devicetree's structure ensures no conflicts
+> could happen in drive-strength settings.
+> 
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> ---
+>  MAINTAINERS                        |   1 +
+>  drivers/pinctrl/Kconfig            |  14 +
+>  drivers/pinctrl/Makefile           |   1 +
+>  drivers/pinctrl/pinctrl-ls2k0300.c | 515 +++++++++++++++++++++++++++++
+>  4 files changed, 531 insertions(+)
+>  create mode 100644 drivers/pinctrl/pinctrl-ls2k0300.c
 
-Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
----
- .../iio/magnetometer/infineon,tlv493d-a1b6.yaml    | 45 ++++++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml       |  2 -
- 2 files changed, 45 insertions(+), 2 deletions(-)
+...
 
-diff --git a/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml
-new file mode 100644
-index 000000000000..dd23a9370a71
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/magnetometer/infineon,tlv493d-a1b6.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Infineon Technologies TLV493D Low-Power 3D Magnetic Sensor
-+
-+maintainers:
-+  - Dixit Parmar <dixitparmar19@gmail.com>
-+
-+properties:
-+  $nodename:
-+    pattern: '^magnetometer@[0-9a-f]+$'
-+
-+  compatible:
-+    const: infineon,tlv493d-a1b6
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: 2.8V to 3.5V VDD supply
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      magnetometer@5e {
-+        compatible = "infineon,tlv493d-a1b6";
-+        reg = <0x5e>;
-+        vdd-supply = <&hall_vcc>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 27930708ccd5..9e0eb5c873d2 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -125,8 +125,6 @@ properties:
-           - infineon,ir36021
-             # Infineon IRPS5401 Voltage Regulator (PMIC)
-           - infineon,irps5401
--            # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
--          - infineon,tlv493d-a1b6
-             # Infineon Hot-swap controller xdp710
-           - infineon,xdp710
-             # Infineon Multi-phase Digital VR Controller xdpe11280
+> diff --git a/drivers/pinctrl/pinctrl-ls2k0300.c b/drivers/pinctrl/pinctrl-ls2k0300.c
+> new file mode 100644
+> index 000000000000..11d448ba333d
+> --- /dev/null
+> +++ b/drivers/pinctrl/pinctrl-ls2k0300.c
 
--- 
-2.43.0
+...
 
+> +static const struct pinmux_ops ls2k0300_pmux_ops = {
+> +	.get_functions_count	= ls2k0300_pinmux_get_functions_count,
+> +	.get_function_name	= ls2k0300_pinmux_get_function_name,
+> +	.get_function_groups	= ls2k0300_pinmux_get_function_groups,
+> +	.set_mux		= ls2k0300_pinmux_set_mux,
+> +};
+
+I forgot to enable strict mode for the pinmux operations. Will correct
+this in v2. I'll wait a few days for more comments before sending it,
+thanks for your time.
+
+Best regards,
+Yao Zi
 
