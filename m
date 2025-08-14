@@ -1,282 +1,156 @@
-Return-Path: <devicetree+bounces-204532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBE0FB25E43
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:04:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44070B25E53
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:06:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBB73175DFC
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:04:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 252F91882158
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:05:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD352E54CF;
-	Thu, 14 Aug 2025 08:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA5B28506D;
+	Thu, 14 Aug 2025 08:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0QPM3oC"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="RRPD7QhE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469282E613C;
-	Thu, 14 Aug 2025 08:03:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755158636; cv=none; b=pLl2V/CSBbqGKwg07qVCNH2pXyKLC4QczvoRqGZkgU4rky91ZsKWFkhL1hVnrj+jQVm5CjZwUczO9bJUc/aFKifemZ0owVPRjNvra7me/CEsCXA7Z3svc32QEhZHJ3vI+il9Voi7/NIr1+vADlqKoHXNc++8+rc2F2baipUabsI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755158636; c=relaxed/simple;
-	bh=X3Zkv1GgYGEV/PFrhjV6JjLBSwA81+ffdc9QPdchXLk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=suJ6p7tQDtmEG0HUdmvdhMMkhGTLvcQ9KBU2eBY1EOUJRasPCIOJj2bFhHgWNXSigW2ZNiZhJUWpjr710k919m1N/pO9fKq0J7LkU23o6bz0j6zoE0Xju443vQqdr7IRe8bTczeIhmEiHmE1rDvwOgAUGY5Q0Wh/Me71EeTGsjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0QPM3oC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 342F5C4CEEF;
-	Thu, 14 Aug 2025 08:03:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755158635;
-	bh=X3Zkv1GgYGEV/PFrhjV6JjLBSwA81+ffdc9QPdchXLk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y0QPM3oCyMK9LWNRNmg59i3pAgrctvv8lnJBbGzCuDxjDcLS7utfL0DmwKI0yFcs3
-	 KL+xoza2Ywl9NslWcJ9zrBL25photeR9qQI+4PtMKU0RrWpuWjwSmj+ujtvvkyKqWi
-	 xcC9OH2qzbJOqjV6OHFgnYBbEiwPKUllpthQbNaTQqhk+piDNONSb2KXV6HuC3O3nx
-	 zRw2GLuDnxvEYkz0oYB8TnHK690hqLWxX884VsND1y8fe7d+sxk37Pcxs9k8HHS9RP
-	 OAFT8UjwaXQ02146plSOQyVNK4hhbUb3WIrFLwX7wWywlsx4m8yZFvSbWRt4UvVQPN
-	 EW6hIEZvRnGEQ==
-Date: Thu, 14 Aug 2025 10:03:52 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
-	Kevin Chen <kevin_chen@aspeedtech.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: aspeed: Add
- parent compatibles and refine documentation
-Message-ID: <20250814-auspicious-thundering-jaybird-b76f4f@kuoka>
-References: <20250812100830.145578-1-ryan_chen@aspeedtech.com>
- <20250812100830.145578-2-ryan_chen@aspeedtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD0E5275108;
+	Thu, 14 Aug 2025 08:04:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755158691; cv=pass; b=OUiwh7PpOMNAp0eEsOkpWgt/zRVph4jHLrUqw8KFyjHFV9P9Zycj5oWNHj7+L0YAuJkZMBbQR7a1EMc/iAg/aEDoEQ2wozZQewoHS2buSHOR0eTeAvhojcyYHT1FyQ+89bUYGrd21T+pY7K89fCjegd6hv8SrARO0Dj9mvIZ/0E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755158691; c=relaxed/simple;
+	bh=FMmVn36sWG1jpRXXy04zEk9a4w0ZdpUm4kL73V8H7N8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=QPFbl0h4bk9iOcbxe917RWlH1eJd9jEraD12Rz+0cS12eq45BWiGFivbaCq4j3r9Z69Vtb7isX1WLV4b2lZiSmXIq+PQHfsl2S6bK4lezvxzx9F46nqhepHKC61+uo1rVoNU0b9eFR+mlsqqltJwt35WGaHPj8TM43aKg+awSR0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=RRPD7QhE; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1755158675; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Rb4ombeV9ei2da0W8tsF5zKnNPD7MkNetzD+zYg2mN0IAMeoia6Fs04cycCTUKm0u2luvT4+b+abw5ZLn9nzOOkj6SAMlJG5pd+PvlL41qxrN7WMSGGAw2p6ayEBi02UTj1KDPiAi5P1f3kaVt+oPof9zL2abCaKA8uZP8TRIrM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1755158675; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=FMmVn36sWG1jpRXXy04zEk9a4w0ZdpUm4kL73V8H7N8=; 
+	b=OwtG6yxSMdMQZYm3AgFqgQSs45w8EL8xKkgt1rKTCNrUeou/3QHFDSIldjLfCIIG2zJCIKaQho9YOf4RbPEePlycyda+l/d9zC4iwYSnXgU+wqyfkKo1eodDX4DzF8xw+jrhiK3dn2xwli45+mzY4QGNFxLuBhW7rUQNJ4Jc1fw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1755158675;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=FMmVn36sWG1jpRXXy04zEk9a4w0ZdpUm4kL73V8H7N8=;
+	b=RRPD7QhEVP4jcWvzvjCWF18xmvpUE+4BpOs5rnpkJc5puWa+up9q2kE1ZGjWrjPZ
+	FWW7ZZNHysWowq09w3ToykOEsmWiuZxJm+45pVxLjH0+M9v9s2ouXkUB9Hhm1+g7umN
+	In5jJawDo/wEz6mD/4K9zpXcHua3mjCvCwEOJ62526IBokUt8ZC1hR/M+l3Qc3hC9/k
+	/FmBFVX1eCetFiZ99YMEJRw9JuLAhUO1Z7FCwPmtZ/x1cSrjgqCxsVdUtmRwi7+gsXj
+	D1kdlGUf6A+q7xY955PPWrgc6ttEQrjr420SBSa69hqAVbSMiEHKsaXI2XftjpDaW9i
+	grcTDD4wDw==
+Received: by mx.zohomail.com with SMTPS id 175515867452093.35323223534306;
+	Thu, 14 Aug 2025 01:04:34 -0700 (PDT)
+Message-ID: <ec0a7543f9feb5dc096f3030c8b3d73d71834a36.camel@icenowy.me>
+Subject: Re: [RFC PATCH 2/4] dt-bindings: firmware: thead,th1520-aon: add a
+ mailbox name for SBI
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Drew Fustini
+ <fustini@kernel.org>,  Guo Ren <guoren@kernel.org>, Fu Wei
+ <wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jassi Brar
+ <jassisinghbrar@gmail.com>, Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Inochi Amaoto <inochiama@gmail.com>, Yao
+ Zi <ziyao@disroot.org>, linux-riscv@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 14 Aug 2025 16:04:27 +0800
+In-Reply-To: <026419bc-c0f8-4891-a348-311f51cb999f@kernel.org>
+References: <20250814070757.2267325-1-uwu@icenowy.me>
+	 <20250814070757.2267325-3-uwu@icenowy.me>
+	 <d0d4c9e7-c350-4996-a53b-09b13bdb9409@kernel.org>
+	 <1b63d1872f5b2c89f2fafdf717bda5ec29589b69.camel@icenowy.me>
+	 <026419bc-c0f8-4891-a348-311f51cb999f@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250812100830.145578-2-ryan_chen@aspeedtech.com>
+X-ZohoMailClient: External
 
-On Tue, Aug 12, 2025 at 06:08:29PM +0800, Ryan Chen wrote:
-> AST2700 contains two independent top-level interrupt controllers (INTC0,
-> INTC1). Each occupies its own register space and handles different sets of
-> peripherals. Above them, the PSP (CA35) GIC is the root interrupt
-> aggregator. In hardware, INTC1 outputs are routed into INTC0, and INTC0
-> outputs are routed into the GIC.
-> 
-> Introduce distinct compatibles for these parent blocks so the DT can model
-> the hierarchy and register space layout accurately:
-> 
->   - aspeed,ast2700-intc0  (parent node at 0x12100000)
->   - aspeed,ast2700-intc1  (parent node at 0x14c18000)
-> 
-> The existing child compatible:
-> 
->   - aspeed,ast2700-intc-ic
-> 
-> continues to describe the interrupt-controller instances within each INTC
-> block (e.g. INTC0_0..INTC0_11 and INTC1_0..INTC1_5).
-> 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
->  .../aspeed,ast2700-intc.yaml                  | 158 +++++++++++++-----
->  1 file changed, 115 insertions(+), 43 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
-> index 55636d06a674..81304b53c112 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
-> @@ -10,6 +10,33 @@ description:
->    This interrupt controller hardware is second level interrupt controller that
->    is hooked to a parent interrupt controller. It's useful to combine multiple
->    interrupt sources into 1 interrupt to parent interrupt controller.
-> +  Depend to which INTC0 or INTC1 used.
-> +  INTC0 and INTC1 are two kinds of interrupt controller with enable and raw
-> +  status registers for use.
-> +  INTC0 is used to assert GIC if interrupt in INTC1 asserted.
-> +  INTC1 is used to assert INTC0 if interrupt of modules asserted.
-> +  +-----+   +---------+
-> +  | GIC |---|  INTC0  |
-> +  +-----+   +---------+
+=E5=9C=A8 2025-08-14=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 09:49 +0200=EF=BC=
+=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 14/08/2025 09:30, Icenowy Zheng wrote:
+> > =E5=9C=A8 2025-08-14=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 09:18 +0200=EF=
+=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> > > On 14/08/2025 09:07, Icenowy Zheng wrote:
+> > > > The SBI firmware might want to communicate to the AON firmware
+> > > > too.
+> > > >=20
+> > > > Add a mbox-name item to allow to allocate a mailbox for SBI.
+> > > >=20
+> > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > ---
+> > > > =C2=A0.../devicetree/bindings/firmware/thead,th1520-aon.yaml=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 7
+> > > > ++++---
+> > > > =C2=A01 file changed, 4 insertions(+), 3 deletions(-)
+> > > >=20
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/firmware/thead,th1520-
+> > > > aon.yaml
+> > > > b/Documentation/devicetree/bindings/firmware/thead,th1520-
+> > > > aon.yaml
+> > > > index 3365124c7fd47..555465f4aab4e 100644
+> > > > --- a/Documentation/devicetree/bindings/firmware/thead,th1520-
+> > > > aon.yaml
+> > > > +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-
+> > > > aon.yaml
+> > > > @@ -26,11 +26,12 @@ properties:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 const: thead,th1520-aon
+> > > > =C2=A0
+> > > > =C2=A0=C2=A0 mboxes:
+> > > > -=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 2
+> > >=20
+> > >=20
+> > > ABI break without explanation why ("allow" is not a reason to
+> > > affect
+> > > ABI) and its impact.
+> >=20
+> > Is adding items an ABI break?
+>=20
+> Adding required items is ABI break. You can easily test it. Apply
+> patch
+> #1 and test your DTS. Apply patch #2 and test your DTS. New warnings
+> appear, so that's a proof of ABI impact.
 
-Same problem as last time. This tells me intc0 has not children...
+Ah sorry I don't mean that item is required.
 
-> +            +---------+
-> +            |         |---module0
-> +            | INTC0_0 |---module1
-> +            |         |---...
-> +            +---------+---module31
-> +            |---....  |
-> +            +---------+
-> +            |         |     +---------+
-> +            | INTC0_11| +---| INTC1   |
-> +            |         |     +---------+
+>=20
+>=20
+> >=20
+> > Or should I explicitly say "minItems: 1" here?
+>=20
+> Yes, but you should clearly explain the impact. Is it working? Not
+> working? Are you fixing something?
 
-...This tells that inc1 has no children (only intc0_11, which you said
-is aspeed,ast2700-intc-ic !!!)....
-(keep scrolling)
+The jsonschema draft says "Omitting this keyword has the same behavior
+as a value of 0." for minItems. [1]
 
-> +            +---------+     +---------+---module0
-> +                            | INTC1_0 |---module1
-> +                            |         |---...
-> +                            +---------+---module31
-> +                            ...
-> +                            +---------+---module0
-> +                            | INTC1_5 |---module1
-> +                            |         |---...
-> +                            +---------+---module31
->  
->  maintainers:
->    - Kevin Chen <kevin_chen@aspeedtech.com>
-> @@ -17,49 +44,70 @@ maintainers:
->  properties:
->    compatible:
->      enum:
-> -      - aspeed,ast2700-intc-ic
-> +      - aspeed,ast2700-intc0
-> +      - aspeed,ast2700-intc1
->  
->    reg:
->      maxItems: 1
->  
-> -  interrupt-controller: true
-> +  '#address-cells':
-> +    const: 2
->  
-> -  '#interrupt-cells':
-> +  '#size-cells':
->      const: 2
-> -    description:
-> -      The first cell is the IRQ number, the second cell is the trigger
-> -      type as defined in interrupt.txt in this directory.
-> -
-> -  interrupts:
-> -    maxItems: 6
-> -    description: |
-> -      Depend to which INTC0 or INTC1 used.
-> -      INTC0 and INTC1 are two kinds of interrupt controller with enable and raw
-> -      status registers for use.
-> -      INTC0 is used to assert GIC if interrupt in INTC1 asserted.
-> -      INTC1 is used to assert INTC0 if interrupt of modules asserted.
-> -      +-----+   +-------+     +---------+---module0
-> -      | GIC |---| INTC0 |--+--| INTC1_0 |---module2
-> -      |     |   |       |  |  |         |---...
-> -      +-----+   +-------+  |  +---------+---module31
-> -                           |
-> -                           |   +---------+---module0
-> -                           +---| INTC1_1 |---module2
-> -                           |   |         |---...
-> -                           |   +---------+---module31
-> -                          ...
-> -                           |   +---------+---module0
-> -                           +---| INTC1_5 |---module2
-> -                               |         |---...
-> -                               +---------+---module31
->  
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^interrupt-controller@":
+[1]
+https://json-schema.org/draft/2020-12/json-schema-validation#section-6.4.2-=
+3
 
-... but this tells me that intc0 and intc1 has children.
-
-> +    type: object
-> +    description: Interrupt group child nodes
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - aspeed,ast2700-intc-ic
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupt-controller: true
-> +
-> +      '#interrupt-cells':
-> +        const: 2
-> +        description:
-> +          The first cell is the IRQ number, the second cell is the trigger
-> +          type.
-> +
-> +      interrupts:
-> +        minItems: 1
-> +        maxItems: 6
-> +        description: |
-> +          The interrupts provided by this interrupt controller.
-> +
-> +      interrupts-extended:
-> +        minItems: 1
-> +        maxItems: 6
-> +        description: |
-> +          This property is required when defining a cascaded interrupt controller
-> +          that is connected under another interrupt controller. It specifies the
-> +          parent interrupt(s) in the upstream controller to which this controller
-> +          is connected.
-
-No, you do not define two. Only interrupts.
-
-> +
-> +    oneOf:
-> +      - required: [interrupts]
-> +      - required: [interrupts-extended]
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupt-controller
-> +      - '#interrupt-cells'
->  
->  required:
->    - compatible
->    - reg
-> -  - interrupt-controller
-> -  - '#interrupt-cells'
-> -  - interrupts
->  
->  additionalProperties: false
->  
-> @@ -68,19 +116,43 @@ examples:
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->  
->      bus {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      intc0: interrupt-controller@12100000 {
-> +        compatible = "aspeed,ast2700-intc0";
-> +        reg = <0 0x12100000 0 0x4000>;
-> +        ranges = <0x0 0x0 0x0 0x12100000 0x0 0x4000>;
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        intc0_11: interrupt-controller@1b00 {
-> +          compatible = "aspeed,ast2700-intc-ic";
-> +          reg = <0 0x12101b00 0 0x10>;
-
-
-... and that's quite wrong unit address. Also no resources in the
-parent, so this entire split seems superficial and incorrect.
-
-This binding is not improving. You are not responding to REAL problems
-described to you. What's more, you send it in a way making our life
-difficult, look:
-
-b4 diff '20250812100830.145578-2-ryan_chen@aspeedtech.com'
-Using cached copy of the lookup
----
-Analyzing 3 messages in the thread
-Could not find lower series to compare against.
-
-Best regards,
-Krzysztof
+>=20
+> Best regards,
+> Krzysztof
 
 
