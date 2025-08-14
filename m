@@ -1,208 +1,135 @@
-Return-Path: <devicetree+bounces-204460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08442B25AC0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:20:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28D8AB25B59
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:55:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F0033A8998
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 05:20:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7ECA724B5B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 05:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4831F461A;
-	Thu, 14 Aug 2025 05:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159F922ACF3;
+	Thu, 14 Aug 2025 05:55:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cp7JjuGC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ndjiftL7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3301D63CD;
-	Thu, 14 Aug 2025 05:20:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A882264DC;
+	Thu, 14 Aug 2025 05:55:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755148807; cv=none; b=St6lKtNCfX5RHYYVCzXec4sGQSLr80rvo6YnpHksYG7oc15JbEVC4NZNGpf244w7DFvcujjwVujXjZVo2PlLdvAb5EeKOrMCCCCSZUvpbm7yRbUO5tAZZj0FjjAjXyz1pL+nX8odp/SPK3Zq+hqArFTDJbOE1klZIeGFZFeouH8=
+	t=1755150907; cv=none; b=bPKQz54koOMHZcXbZ+R3+LSq1zwGfk9qnbJDKG+iQ0sWn+zOllt6LZ2XNNdCJuzgzwuFJS8D2LowWUeY8EkiWFq4t58Bbs0hPpiKQ9oZwI1s7axP006MuAK2AZaS9SW/W7nihMONCQGrFIsTzpnE3Y2ccFb3CW75w48qNOa29vA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755148807; c=relaxed/simple;
-	bh=955GqPAx8+URVP5fY56hA3MhwoymFtwtrSWj9sBohN4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tBpWP4XWdjiypf0oYuQV2nhJSQdbt9mcqpSUM6Bq5cBcbUiHSV71iyUFppcvyR270YLLU0X+IIz9rIn6yJMGEXLmNPIdusl3t5onj9ieEo3drCT/OJwkttt+DPQVcfESAu9pVB0ME7sU5KY8OJWKIKk8nnibFwCesqmv1QYj0uE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cp7JjuGC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57DNM9In012828;
-	Thu, 14 Aug 2025 05:20:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uszgH5P/IYDYRsCNm3CMGbNPevj32rAgSJ0vjKqpt8I=; b=cp7JjuGC9m4cg9Bk
-	hJavT0pHqiOmnT/oAsWfz/z43HzZ4xD00lWiY0Kkptq3LUptXdQVcVAsZMmWC51J
-	GzCDpRdb6MB2YKyyX41Lb9EwASkzJkUfVUzH7m9rQnu7g3ZmoCNycvpscKZANhcz
-	viMNPljp+b32keX0N2RKcjtrG/66W37Wl1SENhSGDaPpobKeOxoFLJG4D+Q/Iut0
-	p4as+onvt+kaN59QdG7N6ZhdcZp66UDJHRhYXzB8jsWJgTxGvMBDKdMlVTM4U168
-	6hOZqUw71TVYAnJd0gdLlGcXZUPdFrIgmoSceXTQ4vZ4qB1tTnd29VqMzxHuthxW
-	kzAruw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48eqhxcgqb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Aug 2025 05:20:00 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57E5Jxru014048
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Aug 2025 05:19:59 GMT
-Received: from [10.216.12.89] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 13 Aug
- 2025 22:19:55 -0700
-Message-ID: <eaafc695-642c-f2db-3745-d17375365621@quicinc.com>
-Date: Thu, 14 Aug 2025 10:49:52 +0530
+	s=arc-20240116; t=1755150907; c=relaxed/simple;
+	bh=bbyK3ySf7EsEeidieaJF4Q2vkvws/lNmnML01l39Usk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HI0Xr2pb/NZfvcvuV90hEvsGMCq/g3aH5zIU7apihmcGXe8RUb2CeM5iBNUm8z0cT9Vj8flZ7qGb1Kf4wcY8T5OLAZbeaa4XtQbwBstrXgpSN4nLosDJS3VrSIUWagGf+vm9aGFIYtVOSYw53LdQRYiDfxcl/Dr/5EsFJEm7dbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ndjiftL7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF20EC4CEEF;
+	Thu, 14 Aug 2025 05:55:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755150905;
+	bh=bbyK3ySf7EsEeidieaJF4Q2vkvws/lNmnML01l39Usk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ndjiftL7TKYfTnMIkL/oW8XmDqdSNKSgnBzMFxdCBIpupvvghm2XUecheOgH6Dat0
+	 5L6W4e3lhJEzvrBAvoHUiykE8jWEoNK0bcbihG5sgTBASEWCijrMf2Zr2Gl5gWIEWi
+	 01aSIl7I44NGWRdwOM8QFYFteY5LPVY4wlvL3O0X9m3/KpawRJoHNNfQpoyWMkxOHA
+	 hnE0Ez5+RPRvkjGDfwTfpZjo8X1MLqsFSasFC06Orvym5ykdfQX6Pqxag/SxPTsFzS
+	 yXEJJVtpULFubUO3ewof0Py6VUDKhlAXVFiyw60663R+qOQWgfjqL1moLI/NvSqIsV
+	 /3tZnent6AEcw==
+Message-ID: <cdaf0a50-379c-458e-9ad3-c796979a856d@kernel.org>
+Date: Thu, 14 Aug 2025 07:55:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH RFC v2 1/3] arm64: dts: qcom: sm8750: Add Iris VPU v3.5
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCHv2 2/3] wifi: ath9k: ahb: add led pin OF support
+To: Rosen Penev <rosenp@gmail.com>
+Cc: linux-wireless@vger.kernel.org, =?UTF-8?Q?Toke_H=C3=B8iland-J=C3=B8rgens?=
+ =?UTF-8?Q?en?= <toke@toke.dk>, Johannes Berg <johannes@sipsolutions.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ "open list:MIPS" <linux-mips@vger.kernel.org>
+References: <20250812192334.11651-1-rosenp@gmail.com>
+ <20250812192334.11651-3-rosenp@gmail.com>
+ <74d5ccda-89f7-4ddc-9574-ba7e8d4a2488@kernel.org>
+ <CAKxU2N91q=d_c===x=AL+pwXkz8K1B8eXj8ePfm6dK_4cAk9Gg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Prakash Gupta <quic_guptap@quicinc.com>
-References: <20250806-b4-sm8750-iris-dts-v2-0-2ce197525eed@linaro.org>
- <20250806-b4-sm8750-iris-dts-v2-1-2ce197525eed@linaro.org>
- <e414163e-e171-466f-965d-afb9203d32fa@oss.qualcomm.com>
- <2ok6o4e5pz4ichhchycqkns2afzce5y6ppjr2av4yz3wc3iatk@m3cdck7csavt>
- <956e5828-303a-44ce-d41e-0f7b977581a8@quicinc.com>
- <2vtxgzwsr6sztu35zeebuho3ie4bbifb75v5usxfzcys2ufx4f@fnig7kqij3us>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <2vtxgzwsr6sztu35zeebuho3ie4bbifb75v5usxfzcys2ufx4f@fnig7kqij3us>
-Content-Type: text/plain; charset="UTF-8"
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAKxU2N91q=d_c===x=AL+pwXkz8K1B8eXj8ePfm6dK_4cAk9Gg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODEwMDA1NyBTYWx0ZWRfX9yZJTlTvqGDe
- Ab/2j9CK9A7CdW9MGycVkIjGtX7B3VCZ/TeqbfB1B5lg8KWFwHmaOL/Ofadw8H+5U0NYp7B+s5a
- K9gZJYQR8/IIwMBosR8rgqJAsCUUDsJf7QMaC0TM1SeTJFs2Rqn1r4qewRKrQtLZfatRWagijZU
- 49vZqe8EFzM4bpSgrYaZ39c1TBieM2WolWexLsAgrKzY9yaKc+YQ6lKgX85uTQ4lEn32XT036a0
- +Tn9gQQhabosJJYWT128xAmv+JUqWeu2S56YQNtiG4EjfjRKmnjJGTvJ3Fu/EkMy81aW+ast18d
- BoI/ZVJL+n9wYj+vUZnTp2SErA8yzA2v9boiBdFyVz5PTZ+c9kVUydv1aUeEtaDtUKtKhyAYzW4
- g6RZOXJz
-X-Proofpoint-GUID: nl1WqAgO1vGZ5pv-OxhJA5Q_i_MV_r-b
-X-Authority-Analysis: v=2.4 cv=aYNhnQot c=1 sm=1 tr=0 ts=689d7200 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
- a=KKAkSRfTAAAA:8 a=IRH4XuX63il44M5YX5MA:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: nl1WqAgO1vGZ5pv-OxhJA5Q_i_MV_r-b
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-13_02,2025-08-11_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 priorityscore=1501 suspectscore=0 phishscore=0
- impostorscore=0 bulkscore=0 malwarescore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508100057
 
-
-
-On 8/14/2025 12:11 AM, Dmitry Baryshkov wrote:
-> On Tue, Aug 12, 2025 at 09:01:36PM +0530, Vikash Garodia wrote:
+On 14/08/2025 00:59, Rosen Penev wrote:
 >>
->> On 8/12/2025 8:09 PM, Dmitry Baryshkov wrote:
->>> On Tue, Aug 12, 2025 at 04:21:12PM +0200, Konrad Dybcio wrote:
->>>> On 8/6/25 2:38 PM, Krzysztof Kozlowski wrote:
->>>>> Add Iris video codec to SM8750 SoC, which comes with significantly
->>>>> different powering up sequence than previous SM8650, thus different
->>>>> clocks and resets.  For consistency keep existing clock and clock-names
->>>>> naming, so the list shares common part.
->>>>>
->>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>
->>>>> ---
->>>>
->>>> [...]
->>>>
->>>>> +			iris_opp_table: opp-table {
->>>>> +				compatible = "operating-points-v2";
->>>>> +
->>>>> +				opp-240000000 {
->>>>> +					opp-hz = /bits/ 64 <240000000>;
->>>>> +					required-opps = <&rpmhpd_opp_low_svs_d1>,
->>>>> +							<&rpmhpd_opp_low_svs_d1>;
->>>>> +				};
->>>>> +
->>>>> +				opp-338000000 {
->>>>> +					opp-hz = /bits/ 64 <338000000>;
->>>>> +					required-opps = <&rpmhpd_opp_low_svs>,
->>>>> +							<&rpmhpd_opp_low_svs>;
->>>>> +				};
->>>>> +
->>>>> +				opp-420000000 {
->>>>> +					opp-hz = /bits/ 64 <420000000>;
->>>>> +					required-opps = <&rpmhpd_opp_svs>,
->>>>> +							<&rpmhpd_opp_svs>;
->>>>> +				};
->>>>> +
->>>>> +				opp-444000000 {
->>>>> +					opp-hz = /bits/ 64 <444000000>;
->>>>> +					required-opps = <&rpmhpd_opp_svs_l1>,
->>>>> +							<&rpmhpd_opp_svs_l1>;
->>>>> +				};
->>>>> +
->>>>> +				opp-533333334 {
->>>>> +					opp-hz = /bits/ 64 <533333334>;
->>>>> +					required-opps = <&rpmhpd_opp_nom>,
->>>>> +							<&rpmhpd_opp_nom>;
->>>>> +				};
->>>>
->>>> There's an additional OPP: 570 MHz @ NOM_L1
->>>>
->>>> +Dmitry, Vikash, please make sure you're OK with the iommu entries
->>>
->>> We still don't have a way to describe it other way at this point.
+>>> +             u32 led_pin;
+>>> +
+>>> +             if (!of_property_read_u32(np, "reg", &led_pin))
+>>> +                     ah->led_pin = led_pin;
+>>> +
+>>> +             ah->config.led_active_high = !of_property_read_bool(np, "led-active-low");
+>>> +             of_node_put(np);
+>>> +     }
 >>
->> I could validate the extended "iommu-map-masks" proposal. Given that we have a
+>> Leaking OF node.
 > 
-> Was it posted? If not, let's get it ASAP.
+> Not following here.
 
-iommu-range (+Prakash) is a WIP, which is needed alognwith iommu-map-mask.
+You miss proper cleanup, leaking of node.
 
-> 
->> new binding for SM8750 [1] , does it make sense to add iommus min/max as [1,5] ?
-> 
-> Why [1, 5]? It should be [1, 2] or just [1, 1] + your proposal.
-
-[1,2] should be good for the iris device and remaining SIDs can be covered with
-device allocated dynamically via iommu-map-mask proposal
-
-> 
->> such that later if new property is introduced "iommu-map-mask", it does not
->> break ABI.
->>
->> iommus = <&apps_smmu 0x1940 0>;
->> iommu-map-masks = <0 &apps_smmu 0x1947 1 0>;
->>
->> [1] https://lore.kernel.org/all/20250804-sm8750-iris-v2-1-6d78407f8078@linaro.org/
->>
->> Regards,
->> Vikash
->>>
->>>>
->>>> the other properties look OK
->>>>
->>>> Konrad
->>>
-> 
+Best regards,
+Krzysztof
 
