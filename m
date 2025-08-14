@@ -1,57 +1,62 @@
-Return-Path: <devicetree+bounces-204842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8308B27089
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 23:04:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DB4EB27094
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 23:12:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE35D1BC7418
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 21:04:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 350175663A9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 21:12:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 465C7272E42;
-	Thu, 14 Aug 2025 21:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57822273810;
+	Thu, 14 Aug 2025 21:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k9UbsbGD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FllSOPqY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B2026D4DD
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 21:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24FB83597B;
+	Thu, 14 Aug 2025 21:12:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755205463; cv=none; b=T/7eRfFHqBaDKwy/DR98AxSKD2QpXehAdn6xsQNEH4U9Cus39LLD747Y/gonzjEyvK2e4kF+dBnWgr4EFX7xB7T+u7an3KTs+1Al/6xwM3sR3/Ar344uBPEvPvUIVkDUjR8bXGujumniUl2mfbLIu2xatiEtfK34q2Vrhjpn69U=
+	t=1755205921; cv=none; b=k9vByMbr1QNJ6XeZBhi6IYXcbtALfAhY+irCZrPOzKjY2ojuw/03E5C2qcU/eFP6yy6Bvkr1ECl6e6Cpfae5fKBEmPK86+906+IyA/XCtZLY5NpcmzRLFE/VwWQoxhoRdpYiMGw+7AR9g2Z6R1hU8yxJ1+1xOl6DoSDcXEfsEXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755205463; c=relaxed/simple;
-	bh=n13b5HQISlhA/70Cv5syYWGpEOsvm9HFOMaW2LiyC80=;
+	s=arc-20240116; t=1755205921; c=relaxed/simple;
+	bh=Z4EeFVPF1em/O3CNPJOKEevSnWIxuVv3NAboAYUqiqE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cpMTxh7bzvJE4dzUXHkw19tkRILwuLwqRUop7LH8Mm9Dp8xAQj4BIQYhVLQtwBuXaff+oTqENC4jvLX+vxH/VVM4aHs0X5VORFteOFxs+stMtkCY1Kwtiu5bWoZyLM3up3X6KJsw+AGfJex4Aj/3Hy2rsA5rXexMQIQzrj+widc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k9UbsbGD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 848BFC4CEED;
-	Thu, 14 Aug 2025 21:04:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ovfUMOu4us6DGyfljEQ+gM6gfSEJsQnHnjFBRwd5G7khlK1x4THz064d0rWqox2KvvWY2Y5dZVzXC/5aYTnoELDeb4E3Lw0eN/UMqMaHqlNwkbS1DuBNvLgLp1BZQAjRPPkqetnHMNtHq7Y2NFSWyZ5SiAmh/BIV2ckyiWXi/ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FllSOPqY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 814A3C4CEED;
+	Thu, 14 Aug 2025 21:12:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755205462;
-	bh=n13b5HQISlhA/70Cv5syYWGpEOsvm9HFOMaW2LiyC80=;
+	s=k20201202; t=1755205920;
+	bh=Z4EeFVPF1em/O3CNPJOKEevSnWIxuVv3NAboAYUqiqE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k9UbsbGDQ8YDvU1zxj6IvmOWierLnzXIcfTj3I2z/1kvlZY07CSJlxgWGOgfN+E55
-	 v/ZSrVKkZhTd89dB0WnoF1gqw3tKLCvj91Ep5lRM3qrqScJ74CKxB2AXYJTKSOcJ06
-	 uoll0I5NMxa+EARnlcD4UEHyzrCBRJphjw+0cEj1tpCEIE9H6WCq7JlgvVRWCWzo31
-	 FCir+mFiK9iVYCEDi4b9uODINZbPHRU21kTuMn9stDif9DP/iINjhWVwRTYKoBdoOR
-	 0L+nOrI7kT7XnKk3VhVC+BRtLCmqyyGLdY2sELoEwSoCKJMkrVxmIcJ42Ky5ItzbjQ
-	 jDn0c1lNYmcrA==
-Date: Thu, 14 Aug 2025 16:04:21 -0500
+	b=FllSOPqYzIEsdidYZFcoLP93zCsufkrQeTD8A7A+WbcA8OTiPqPWDZWgcpX5xGgRl
+	 UbvR7VVGW+XURGpvx9YYudVYLylGQSQCxF9OQmBgw4NaK9lfGxuga6SZk7GQSaek2j
+	 tjy619s6UD97+Ar1ICc0OoqC7VPBCMgXMq9x2xtm292VY7XBZir+PYewdBq7M1uwXQ
+	 sBAaS7ui4P2kp2NMbxdJRVMBu4Ex+pqJohMJ1hNa/zZWH3uLaxNp4F2+LdooKnvaNt
+	 C3kk50O05TWXdYEk3R87AZ06FtnZS4Wy70ktEXVecWElAPXFLk/UID16grlCp2RoBg
+	 BcmaZe5HM+Rwg==
+Date: Thu, 14 Aug 2025 16:11:59 -0500
 From: Rob Herring <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] dt-bindings: arm: List actiontec devices
-Message-ID: <20250814210421.GB3905129-robh@kernel.org>
-References: <20250814-ixp4xx-mi424wr-dts-v1-0-b7c10f3c4193@linaro.org>
- <20250814-ixp4xx-mi424wr-dts-v1-2-b7c10f3c4193@linaro.org>
+	Kumar M <anil.mamidala@xilinx.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, "Guoniu.zhou" <guoniu.zhou@nxp.com>,
+	Stefan Hladnik <stefan.hladnik@gmail.com>,
+	Florian Rebaudo <frebaudo@witekio.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: media: i2c: Add bindings for AP1302
+Message-ID: <20250814211159.GA3912850-robh@kernel.org>
+References: <20250811-ap1302-v4-0-80cc41b91662@nxp.com>
+ <20250811-ap1302-v4-1-80cc41b91662@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,38 +65,165 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250814-ixp4xx-mi424wr-dts-v1-2-b7c10f3c4193@linaro.org>
+In-Reply-To: <20250811-ap1302-v4-1-80cc41b91662@nxp.com>
 
-On Thu, Aug 14, 2025 at 06:40:04PM +0200, Linus Walleij wrote:
-> One two IXP4xx device families from OpenWrts backlog:
-> Actiontec MI424WR revision A/C and revision D, both
-> of these are IXP4xx devices.
-
-Also, 'ixp4xx' should be in the subject.
-
+On Mon, Aug 11, 2025 at 04:42:30PM -0400, Frank Li wrote:
+> From: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
 > 
-> Revisions E and later use different chipsets.
+> The AP1302 is a standalone ISP for ON Semiconductor sensors, which can
+> connect RAW sensors (AR0144).
 > 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Add corresponding DT bindings.
+> 
+> Signed-off-by: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Stefan Hladnik <stefan.hladnik@gmail.com>
+> Signed-off-by: Florian Rebaudo <frebaudo@witekio.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Previous try:
+> https://lore.kernel.org/linux-media/1631091372-16191-2-git-send-email-anil.mamidala@xilinx.com/
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml b/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> index d60792b1d995f909f621b3326e62d19223f6683c..b7b430896596aacb792983d8538b84f389cc5bd1 100644
-> --- a/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> +++ b/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> @@ -16,6 +16,8 @@ properties:
->      oneOf:
->        - items:
->            - enum:
-> +              - actiontec,mi424wr-ac
-> +              - actiontec,mi424wr-d
->                - adieng,coyote
->                - arcom,vulcan
->                - dlink,dsm-g600-a
+> Change in v4:
+> - base on discussion https://lore.kernel.org/imx/CAL_JsqLUj2h1OxUokOGFL34czroJnJ33cpvn9jO8b8=cu8Fz0g@mail.gmail.com/
+>   change to use onnn,model property to descript connected raw sensor
+> - Overall roll back to v2, move raw sensor information under "sensor" from
+>   ports.
+> - regs use enum [0, 1] to restrict address range
+> - add supply name from sensor
 > 
-> -- 
-> 2.50.1
+> Change in v3:
+> - Move sensors under ports
+> - use compatible string to indentify connected raw sensors
+> - Add onnn,ar0144.yaml
+> ---
+>  .../devicetree/bindings/media/i2c/onnn,ap1302.yaml | 184 +++++++++++++++++++++
+>  MAINTAINERS                                        |   8 +
+>  2 files changed, 192 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..d66962d2eadca3f4d86c99a68d5ae7996bd1a522
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
+> @@ -0,0 +1,184 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/onnn,ap1302.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ON Semiconductor AP1302 Advanced Image Coprocessor
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description:
+
+You need a '>'
+
+> +  The AP1302 is a standalone ISP for ON Semiconductor sensors. It interfaces to
+> +  up to two RAW CMOS sensors over MIPI CSI-2 connections, processes the two
+> +  video streams and outputs YUV frames to the host over a MIPI CSI-2 interface.
+> +  Frames are output side by side or on two virtual channels.
+> +
+> +  The sensors must be identical. They are connected to the AP1302 on dedicated
+> +  I2C buses, and are controlled by the AP1302 firmware. They are not accessible
+> +  from the host.
+> +
+> +properties:
+> +  compatible:
+> +    const: onnn,ap1302
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description:
+> +          Reference to the CLK clock.
+> +
+> +  enable-gpios:
+> +    items:
+> +      - description:
+> +          Reference to the GPIO connected to the EN pin (active high).
+> +
+> +  reset-gpios:
+> +    items:
+> +      - description:
+> +          Reference to the GPIO connected to the RST pin (active low).
+> +
+> +  standby-gpios:
+> +    items:
+> +      - description:
+> +          Reference to the GPIO connected to the STANDBY pin (active high).
+> +
+> +  dvdd-supply: true
+> +
+> +  hmisc-supply: true
+> +
+> +  smisc-supply: true
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    unevaluatedProperties: false
+> +    description: MIPI CSI-2 output interface to the host.
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            oneOf:
+> +              - items:
+> +                  - const: 1
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +
+> +        required:
+> +          - data-lanes
+> +
+> +  sensors:
+> +    type: object
+> +    additionalProperties: false
+> +    description: List of connected sensors
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +      onnn,model:
+> +        enum:
+> +          - onnn,ar0144
+> +          - onnn,ar0330
+> +          - onnn,ar1335
+> +        description:
+
+You need a '>'
+
+> +          Model of the connected sensors. Must be a valid compatible string.
+> +
+> +          If no sensor is connected, this property must no be specified, and
+> +          the AP1302 can be used with it's internal test pattern generator.
+> +
+> +    patternProperties:
+> +      "^sensor@[01]":
+
+"^sensor@[01]$"
+
+With those fixed,
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
