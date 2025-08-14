@@ -1,120 +1,87 @@
-Return-Path: <devicetree+bounces-204543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B9BCB25ECF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:29:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 202EAB25EC6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:28:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E27511CC153B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:27:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4494B7B5BEA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:26:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90AC2E7BBB;
-	Thu, 14 Aug 2025 08:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992D82E92B5;
+	Thu, 14 Aug 2025 08:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="FTl6uR42"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JY0w+pPJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A30E134A8
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 08:27:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6798D2E92A6;
+	Thu, 14 Aug 2025 08:27:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755160040; cv=none; b=UWlUzLdnYEghbI1SkMsBEsHVorOrSNU9TkMaEKH/7zDPjh05qX9yWC5KbZRMSKQ85P0qb4o2uyeoP6r97fK+jtR1BQtx5Jw3E/8S7dOoXOz2g4uzRvjUIWTX2WzrfrM0+DmX+fkvScRmf6DGHQ9H7DuJLmGfvt9ulU09dm3HwbQ=
+	t=1755160060; cv=none; b=t7ZkiWCCFnnw8Cqp2FGTy4rlBsGGOo1K3it/XcS/zEZp/gFWoFUVnGHupQd2E20YPa6UqyhbuJIJ3QEVT87NXiTgkOhmbleyy7KY4jAuS2EC1RSSAYHWGe5Q/DtM/0/XzvLE5hVdXWdZKZ2Kjo7YUFP5+VEMeHzRL4rAKLHpJfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755160040; c=relaxed/simple;
-	bh=1KDDCtMP5rn2S+bWZv8aHe43udyp20+1Xfy9+tbLosc=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=ixCXBu5hLYO9QEqgXQYkb3BOOjuZOmVwGf3IdLpRLZR4MZvlQo5VM11FJPBa+y+McSjuwHMAUPdyimi3zxWTcMMhgXg/EgNfdbIs0JFiIxacq1CwM4Xe+aX5go1hK20LaEWh5mIz8oR23LU9YWC2lcWAce2Bcts0oeGi7VaQRuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=FTl6uR42; arc=none smtp.client-ip=212.77.101.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 26832 invoked from network); 14 Aug 2025 10:27:12 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1755160032; bh=WXs3BxbiT7j5x5jkHN7EEuuUOr7la7ajmzr15IXcVzI=;
-          h=From:To:Subject;
-          b=FTl6uR425f8Njkn8OmAXW1RdSSlBExWi6rsXhSy3cvrtk9xvPDP7/VKAI/t4o0Egf
-           LyjqcZJ4oQ8lzb9466kMDKWvIYbl/GAjhOOL+/tE6VhrYGw1w947khFlJ7JBnEiTO0
-           c7jlQhllkTHZyxv0uNNhC9mHHkbSKM8qqraP6g8YrQX+y1PCgrpFhfflTXOzHpriow
-           deYrYFwx7rOxqdAYpS5IYpSKyvEHqfoh+lq5FipWBmU099Q7RKz8b3OAXuUms+Yw9S
-           y1uyg7Pw0GGYYxxoxaKTMNeq92dfEoLIURAF2+vQfua/ZazmB4BAjshev/DK0XB97z
-           DO9XMi+pRI3/Q==
-Received: from 83.24.134.210.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.134.210])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <tsbogend@alpha.franken.de>; 14 Aug 2025 10:27:12 +0200
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: tsbogend@alpha.franken.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	olek2@wp.pl,
-	linux-mips@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: mips: lantiq: Document lantiq dcdc binding
-Date: Thu, 14 Aug 2025 10:26:56 +0200
-Message-ID: <20250814082705.3183231-1-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1755160060; c=relaxed/simple;
+	bh=eBNqxL8xbh9FbFpZHtEdueQLB4k/JgbhTZ6T5smPqmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R2xxft2nZYQFGKvOefazyJIqgJ3hiHt1xrDAev/X9WeKdKsLlVqE3330yUZH/Iav21NDKdh0z6FLwnvKC0LEJr7xyrbzksmguiuqig82LgC/7fc6nPFirbFYAuoO3QoGU0/YX6FaJNpQsfyAr96hhyZKohp8AHtZSBki+WLf3EE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JY0w+pPJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A383C4CEEF;
+	Thu, 14 Aug 2025 08:27:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755160059;
+	bh=eBNqxL8xbh9FbFpZHtEdueQLB4k/JgbhTZ6T5smPqmg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JY0w+pPJyBMijIG29BFD7uVwbZG1a5GqJ6r/mdil8fW9VAnKwk8z8xzZCeIAk84nC
+	 Enhn1cq0Xp8rL1AWKLfXEaUp5gB4oHlIGnd3dfVp8CmJn9JyJYRlVCNa/wVEPz7nx9
+	 3kdKTzJe6WcwXwUtbKA5CD74rYNXappJQq2vWbL56uQvf+W5xTLzlpO1o/Axm6o3v/
+	 UHf6LV4s0wpk9TN4oY5o2PUn/bL9X7u7KbRyIQ7xUwZlK7V9GDb+MNUHpEelQux4Hz
+	 C/64O2E6+uxcv3VSNixFxdHcQPIwItqbE7iyHUHGhX3SZPDkZfnDmzRHcWyTjz3llC
+	 hx5ujnjYh5NiQ==
+Date: Thu, 14 Aug 2025 10:27:37 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	richardcochran@gmail.com, claudiu.manoil@nxp.com, vladimir.oltean@nxp.com, 
+	xiaoning.wang@nxp.com, andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, vadim.fedorenko@linux.dev, Frank.Li@nxp.com, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, fushi.peng@nxp.com, 
+	devicetree@vger.kernel.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, kernel@pengutronix.de
+Subject: Re: [PATCH v3 net-next 02/15] dt-bindings: net: add ptp-timer
+ property
+Message-ID: <20250814-icy-intelligent-sambar-e504ec@kuoka>
+References: <20250812094634.489901-1-wei.fang@nxp.com>
+ <20250812094634.489901-3-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-MailID: 71d407e100f7fde7e78cbb4499c72f21
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 000000A [USNU]                               
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250812094634.489901-3-wei.fang@nxp.com>
 
-Lantiq DCDC is a voltage converter with a voltage sensor.
+On Tue, Aug 12, 2025 at 05:46:21PM +0800, Wei Fang wrote:
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> 
+> ---
+> v3 changes:
+> New patch, add a generic property instead of adding a property to
+> fsl,enetc.yaml
+> ---
+>  .../devicetree/bindings/net/ethernet-controller.yaml         | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- .../mips/lantiq/lantiq,dcdc-xrx200.yaml       | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml
+In the same patch please remove redundancies: fsl,fman-dtsec.yaml and
+maybe more. That's always one logical change. Otherwise you introduce
+redundant or duplicated code.
 
-diff --git a/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml b/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml
-new file mode 100644
-index 000000000000..5648b9676b3c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml
-@@ -0,0 +1,32 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mips/lantiq/lantiq,dcdc-xrx200.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lantiq DCDC (DC-DC converter with voltage sensor)
-+
-+maintainers:
-+  - Aleksander Jan Bajkowski <olek2@wp.pl>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - lantiq,dcdc-xrx200
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dcdc@106a00 {
-+        compatible = "lantiq,dcdc-xrx200";
-+        reg = <0x106a00 0x200>;
-+    };
--- 
-2.47.2
+Best regards,
+Krzysztof
 
 
