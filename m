@@ -1,151 +1,137 @@
-Return-Path: <devicetree+bounces-204739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82876B26921
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 16:25:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B36DB26988
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 16:36:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E84B01CE820F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:14:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F81C604A10
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E6421CA1D;
-	Thu, 14 Aug 2025 14:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2751C8612;
+	Thu, 14 Aug 2025 14:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="Bea4MgOI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lfApQ2B/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B2BE1F0E29;
-	Thu, 14 Aug 2025 14:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD04F1B87F0;
+	Thu, 14 Aug 2025 14:15:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755180670; cv=none; b=ZD30SoFwekHVOraoTPMxrevxf0uWqc9K+WinuUBNekkddVgF6dPrlwWorHu2Svop7Ar8ZozHIneIDqD/qID3uBBDri7Zd0I3FNHe0B5kt+kUhD3dQ4M142SH9O8+QIwTOXYMVQJ1eLyXwuqDym8jUPlnBnfPKyXLxwGuaVaw/PY=
+	t=1755180915; cv=none; b=upE+4t7DKE4S9QEBJt8qkzNbQyx64WyY+rCz08I17VVLHKeieP5sS3BfKP8uxaP+GeiNFfFnFzQb4jNZCHcGFjXLCF02Xxk94JcZqK/ff+S/dyKOVWKWpsLAMcGIlSu9m8L3Z/s2KPA1pdMP0yHr9hkqM/RbYiC5it7ZKFc1yLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755180670; c=relaxed/simple;
-	bh=g5nEgrfMvzqF5xAHkSQGZWNmxD88JGyjLjhNV/ORsvQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PEgWLGZg4sJ29OoN5B8KJOsHRptTTz7NgqLIwU4jHpOzquJS8cevoWtKyl8C7u3av0rFFhA48IOfjYVlUpkFOujAJUjd6YWjnmmBMrlTsw9pBmRVLVpsH4lpyhp13HFLvqzbCll3yFfYj+Y8d5w4cinmOQmx1n2YctjXkANgS6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=Bea4MgOI; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=AleR0jYJ5DHvKnLDLo4Rx8JfI+/zLDkGskHcM2qem8E=; b=Bea4MgOIZSyDaDYUB4fy8WFhWl
-	Mw9jANWLwS7UTPEsJOwcvtj9FwG0X17GFAEqhuHxxITyPfcRoO0im2PJVFI2OIxGWPOoHm9977Ich
-	yYBG9NnEGuDyD1ISeujvQ1jAJQNHs8Ic0/ykuI5Tm3yimx1TUEEZ/nyvN0vkRz2JaAs7K8rIQMl+U
-	P/RPBkhNB3hv4KSf7ayQAQ7LNVtWuRxgDkyMPJarySK1J3+uEVrLjwmHDLxipCExD6YUYp/xlbGHe
-	wUp5RhfjAYd2qBsMeeE7S2pahhjUpRH1OxiBaFKHV0WMoc3ofHGP5/0syIywALRkCqyL7a1ohm873
-	P0HjMvIA==;
-Date: Thu, 14 Aug 2025 16:10:55 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: linux-kernel@vger.kernel.org, peter.ujfalusi@gmail.com,
- dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- lgirdwood@gmail.com, tiwai@suse.com, conor+dt@kernel.org, lee@kernel.org,
- ukleinek@kernel.org, broonie@kernel.org, gregkh@linuxfoundation.org,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-usb@vger.kernel.org, shuah@kernel.org
-Subject: Re: [PATCH v2 4/9] mfd: dt-bindings: ti,twl4030-power: convert to
- DT schema
-Message-ID: <20250814161055.332a829a@akair>
-In-Reply-To: <20250814132129.138943-5-jihed.chaibi.dev@gmail.com>
-References: <20250814132129.138943-1-jihed.chaibi.dev@gmail.com>
-	<20250814132129.138943-5-jihed.chaibi.dev@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1755180915; c=relaxed/simple;
+	bh=yPVowiQqVM3E/dNnPZ3g8sdf8tynSeuFLgbfdgPO6EQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xz31bshQHUoVHS1AKxVfji15l860k1Kp3v5hQgZHBQ3xylh/1w5/GN06tb2E2hmuBWkrHrzbHFTZRGLGq78ROQ/gAsyFuBH4qumIWVqY7mJPR1daobAFSeDBHiaG6wxO4yQCNqmXwGeIKxlPQETy3fLPHVHbS/Rk37LueOf2M4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lfApQ2B/; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45a1b281d25so4132315e9.3;
+        Thu, 14 Aug 2025 07:15:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755180912; x=1755785712; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nBptkyV5QJodqYn42iZ/F2qxr/d9CoCHpSVW2UDctRE=;
+        b=lfApQ2B/iZfS9o/itgrnIRX4wLkwmK/HRLoLReGdcB5HbtslxHkYYHufJpPEKe69j8
+         LcVFlXKhN/ofHNmf/Ruh8kHm1naGlNpiTiY91l8hdBEVWxu1t/OOvr//SzF2Va8gV2w2
+         ArrkYOz/FhVv1kmcBfkiQgntepKIGB4vn1DvvtbLt7zBk8cg3Ek6cYcHWHkyNRg/trVk
+         k3VnU0iHkTLGvlBSVh96+PYWgjos1Dlnqiw0qfFlRQxGezvDOM3yAq+UDztJHE94eyQ4
+         zFaU4UO2k9V3olmzZ+/GiUAi5clKnvuWQwh7j4s7d6BqeJy1fDWT4+3AtiARA5rwQEVp
+         o/2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755180912; x=1755785712;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nBptkyV5QJodqYn42iZ/F2qxr/d9CoCHpSVW2UDctRE=;
+        b=BtX0FYt7pzPzJvJ6T+7ZkdFWi8Rdl1+PGZR8DE9BMWw+Ttj/Ck7nmAtkFackYWpz7f
+         iSjSDMPerv0Wh+aUsEbIihDLvTxl2QlEUDhuLslRXv1zAwzM8u/iEWOwfewxbBnphAZb
+         gWWYsbNSD9ddBOmiU8nSa1CVAff1+RFUhu+IfAH63zLLo6inoVsoNs8JhI0tpo0Mh6JO
+         3I1dVjzkYtshZUCCU7XEC+cpLQzbGaGk+tsO5mWT4fKFQFmdwTAUeMBx2L32BCwGLiVb
+         P9O2LkPir6Q5omBo4cd7p3kg3gztE8XDM5z2pDv5YpAeK2BgwYBflTwQse9+dxBBMzal
+         qyew==
+X-Forwarded-Encrypted: i=1; AJvYcCW1AILwu4kW0ELfkF1fP0P7Tyel42JN11lbTG+/WJcUDnaFRkTHSmEc+8385ehvRnfi/FI67YD3mXwj4D4=@vger.kernel.org, AJvYcCWfQJXyUnD+CaJbf6ucV7ax736Oxuq2J6+5CUfQD7gVXiR6Xovz7O2UOSc0mRB0YSPfZVWBvJcc9T+Z@vger.kernel.org, AJvYcCWgLXd2HcL4V6Ve5IkAyMkDAoyoOpXRUcVrFQvVAi0HfawD4+UFtTYLsv+MCNGbyz/KJBSYcwGiwCmYSbJ2@vger.kernel.org, AJvYcCXVQudboI83YYkUvV7uwnYAj0spi3XxOpEcfMfZhTstWBnVesu1bs22gBuxXWH2AdhSrETwnIDnFk8Q@vger.kernel.org, AJvYcCXg4vjOoxAATwZ4PnkKwoYIRKwPt8+JdMXROG7cQLTzlAHP3XhI+HtKMeOEc5JoVv7ak/imqs6/WA2lgQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyN9krdOAZkI+Zibk/BOv6C8HBo7OIldbhdi0CJDFtHXqc8ugAn
+	cf8wg8CoAN4aKyYwJm5LGfsqqC14FZV+B1BimpV1XXeAS9szX01DoqLP
+X-Gm-Gg: ASbGncuZ1LSa2vnuuO/XJXGwz+kl6zjNyeSLoZ1X3DpD3ChvwNCMdmGeSxg6tcSKd85
+	D5EDxs98zMZNQReZC7NMhjGuyuzhgZIf2uDzoRCQ5s5AN6UEtARQuiBJJjUKQlhJBvnffrO/ssk
+	LgYbcHJFumV+w3o/En73j8rfvKqD1lgs7tUNGxEkv26GYhIXQtNlY6Xf7ZmNKowO1hDaXvbJEe1
+	ZmkuOEv4jV96NCBScHQcg+r9JuFuEgygscTBeZMrwcZdDOz2XJQZ3XU+zDY75YR7c6QKSU5boDP
+	yEJIMXRQmxZtc0GKtrLjBPq1auUXWCFMKpQnHGr95RKegWQkKLZa7OMPqeyO8TWu7CVyEJJfLxq
+	naNNZJw5/pr0sPanLSV+Nvg==
+X-Google-Smtp-Source: AGHT+IEWzjfR1gbJqCZmJrgJqMinjzSs5IctFqqaunulBjBxcuz13GcRmAcP3E1L6fMs9mb0y6MslQ==
+X-Received: by 2002:a05:600c:1c14:b0:456:285b:db24 with SMTP id 5b1f17b1804b1-45a2017a75emr440855e9.28.1755180911841;
+        Thu, 14 Aug 2025 07:15:11 -0700 (PDT)
+Received: from nsa ([185.128.9.90])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1f7082absm9211735e9.24.2025.08.14.07.15.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Aug 2025 07:15:11 -0700 (PDT)
+Date: Thu, 14 Aug 2025 15:15:29 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: nuno.sa@analog.com, linux-hwmon@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-doc@vger.kernel.org, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH 0/6] mfd: Add support for the LTC4283 Hot Swap Controller
+Message-ID: <2svr42ee7akwxwj5nizwe4a4hqdk4rslv7ivxraqg3jy6m3mxz@lfpn2nx4jdmm>
+References: <20250814-ltc4283-support-v1-0-88b2cef773f2@analog.com>
+ <5713bb5b-3301-46bc-b30a-d2e4c58d1036@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5713bb5b-3301-46bc-b30a-d2e4c58d1036@roeck-us.net>
 
-Am Thu, 14 Aug 2025 15:21:24 +0200
-schrieb Jihed Chaibi <jihed.chaibi.dev@gmail.com>:
+On Thu, Aug 14, 2025 at 05:54:26AM -0700, Guenter Roeck wrote:
+> On 8/14/25 03:52, Nuno Sá via B4 Relay wrote:
+> > The LTC4283 device features programmable current limit with foldback and
+> > independently adjustable inrush current to optimize the MOSFET safe
+> > operating area (SOA). The SOA timer limits MOSFET temperature rise for
+> > reliable protection against overstresses.
+> > 
+> > An I2C interface and onboard ADC allow monitoring of board current, voltage,
+> > power, energy, and fault status.
+> > 
+> > It also features 8 pins that can be configured as GPIO devices. But since
+> > the main usage for this device is monitoring, the GPIO part is optional
+> > while the HWMON is being made as required.
+> > 
+> > Also to note that the device has some similarities with the already
+> > supported ltc4282 hwmon driver but it is different enough to be in it's own
+> > driver (apart from being added as MFD). The register map is also fairly
+> > different.
+> > 
+> > Last time (for the ltc4282) I tried to add the gpio bits directly in the
+> > hwmon driver but Guenter did not really liked it and so this time I'm doing
+> > it as MFD.
+> > 
+> Nowadays I suggest that people use auxiliary drivers in such situations.
 
-> Convert the legacy TXT binding for the TWL4030 power module
-> to the modern YAML DT schema format. This adds formal validation
-> and improves documentation.
+I see. But do you have any issue with it being MFD?
+
+I'm anyways tempted to the auxiliary device idea. The main usage for
+this device is HWMON and I dunno anyone would use it only as a GPIO
+controller. With the auxiliary device we would only need one bindings file
+and slightly better bindings for the pins functionality.
+
+- Nuno Sá
+
 > 
-> Changes in v2:
-> Simplified the description field by removing redundant '|' as it
-> does not affect formatting in this context.
+> Guenter
 > 
-> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-> ---
->  .../bindings/mfd/ti,twl4030-power.yaml        | 69 +++++++++++++++++++
->  .../devicetree/bindings/mfd/twl4030-power.txt | 48 -------------
->  2 files changed, 69 insertions(+), 48 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,twl4030-power.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mfd/twl4030-power.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl4030-power.yaml b/Documentation/devicetree/bindings/mfd/ti,twl4030-power.yaml
-> new file mode 100644
-> index 000000000..713e2facf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/ti,twl4030-power.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/ti,twl4030-power.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments TWL4030-family Power Management Module
-> +
-> +maintainers:
-> +  - Peter Ujfalusi <peter.ujfalusi@gmail.com>
-> +
-> +description:
-> +  The power management module inside the TWL family provides several facilities
-> +  to control the power resources, including power scripts. For now, the
-> +  binding only supports the complete shutdown of the system after poweroff.
-> +
-> +properties:
-> +  compatible:
-> +    description: |
-> +      The compatible string determines the specific power configuration.
-> +        "ti,twl4030-power": Standard power control.
-> +        "ti,twl4030-power-reset": Recommended for OMAP3530 and similar SoCs
-> +          that require a special configuration for warm reset to work correctly.
-> +        "ti,twl4030-power-idle": Loads the TI-recommended configuration for
-> +          idle modes into the PMIC.
-> +        "ti,twl4030-power-idle-osc-off": Uses the recommended idle configuration
-> +          but also shuts down the external oscillator. This may not work on all
-> +          boards depending on the oscillator wiring.
-> +
-> +    enum:
-> +      - ti,twl4030-power
-> +      - ti,twl4030-power-reset
-> +      - ti,twl4030-power-idle
-> +      - ti,twl4030-power-idle-osc-off
-> +
-yes, this is ugly use of compatible, but not easy being patched away.
-
-> +  ti,system-power-controller:
-> +    type: boolean
-> +    description:
-> +      Indicates that the TWL4030 is the power supply master of the system,
-> +      allowing it to initiate system power-off.
-> +
-this too is deprecated, we already have the system-power-controller
-node in the parent.
-
-> +  ti,use_poweroff:
-> +    type: boolean
-> +    description: Deprecated name for ti,system-power-controller.
-> +    deprecated: true
-> +
-I think we can even totally drop this and maybe add this whole stuff to
-ti,twl.yaml, no extra file.
-
-Regards,
-Andreas
 
