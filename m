@@ -1,163 +1,315 @@
-Return-Path: <devicetree+bounces-204529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E131CB25DF8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:50:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80946B25E42
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:03:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 036587B9A15
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:48:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07FA21881F70
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E497A280334;
-	Thu, 14 Aug 2025 07:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1DC2E2F1D;
+	Thu, 14 Aug 2025 08:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AblpmqcX"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="hxQo3WhH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD31C286D52;
-	Thu, 14 Aug 2025 07:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755157796; cv=none; b=MDpSWlIJJg343YqiHrwjfX7mwIu3R5/dV78pBwxwFwSIyzb/sgu9UWI9b7i/73Jsv2uiRRDIAUA6Kv/4hGQGpxJ3r96GuntYwlvf7eCKXYftjJtvro1TNwsUGL932pg/Cyf7AK7oUQuM43GNoMzP+Bgn83Fj0BOKHWxtCwtGQo4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755157796; c=relaxed/simple;
-	bh=f35AnSEo6H6Mj8LPGStUWaOusqBiWbWyTlU3soOSje4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ic0qKuHh4WHZyoOQxmZx/kgCbRxOxSmn3eTHeyA3CH7p0XbEY9nppQFbCxgOT8HWshQGgE+Gfunb2Iu/uCeLnTtTNGEGJFo6EoFLwQsQYHQTwrD2rpcfqHGFqOBuSJaOhNGUUpKEgrbksVCqOYs+TWTvlLNDcFRaCmd8wLGteTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AblpmqcX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 585FDC4CEEF;
-	Thu, 14 Aug 2025 07:49:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755157796;
-	bh=f35AnSEo6H6Mj8LPGStUWaOusqBiWbWyTlU3soOSje4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AblpmqcXAN4ysoqlSXpI2+ce7BroJRKBqENO6jOU8nbQ1sWveX0r75s4ALXlEDAAR
-	 8mR61mUCUsjNonJRaMp6ttbamG8Pp9VfNXBjVbeItoBFdRWbEvvVidFXOPHV6+om96
-	 Xa7Ik0Aj6APGF4HuTd56kHnDxFfcR2JoHI4O49I2kvCIOEhs9wyylg2fpM4YQ1ZGT7
-	 3F1xigHsaH2t6HzqRYPVxKIPC0sgD8U6GuA5T3MKBnqgpEc1Z1uzIz6gqpyNe27esM
-	 MUZXs96VAjJtRnW33VuXnzT0WubpZQbG9Vet2r635PaqVC1miOxC1YmUQC36pWAQpt
-	 cjI7rgK2HoKHA==
-Message-ID: <026419bc-c0f8-4891-a348-311f51cb999f@kernel.org>
-Date: Thu, 14 Aug 2025 09:49:50 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 607EF1A9F89;
+	Thu, 14 Aug 2025 08:02:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755158573; cv=pass; b=hJUH4TWYq6IPCQxKwXIkRrmPkA/lF0Fkr8+VpFxmSEFIFn/9mSGyQ1XsgMFRaLTkgIUjaCRonq6n2mS3WGob0o9O7ROiS/3Z4iHTDqSEV1cV1a2eMrSAVTyIcB0eIpSkAOXcL6bMkD/SAigLinfpqU02YxIbG8TYDLvogf4NSC8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755158573; c=relaxed/simple;
+	bh=f/wKxshUZhaZNar0Zlch7+Twy7pAeN7yogFZWA9yzTY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=u5t2h4/5AZaLMDwliHJxOse7yfDpIeXbVWrJaoy7JcXgsDkxYcYR+uzG/G/aOJtc3Y/HmfjDj+JCzdd9el7HtQuQf3YgPXk5N1CRf1d3JSXBNcdSztSHVxMAchTRMN3yo+t2oSCUeVIS36lU5xA2siyP/G5+zqgODF4jeWKiJYg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=hxQo3WhH; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1755158558; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=RHXixHNBdTtrBxOJXA/yYxkQVxqfR19st3YD0phMaoazzsr2SYL0Rbc+bOIRpKjL+7mam3OWtdUWhQtQsBS7oeDA5hWRa/Sp+x4xnHSbQ98URYhwDEl3cLFrKgIMYM3VwRu4K3CelG8p+UPPT99AKkoeMjFT+swrn/FhLZm28XE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1755158558; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=f/wKxshUZhaZNar0Zlch7+Twy7pAeN7yogFZWA9yzTY=; 
+	b=hFBdleHrmRANj/Jk+JaQ+IZwC0cNGJTa8s2apbvVEnhSg/9CR5LmamlobmtsjelYE3e2SKCnY/f2y8M/tOePBj9Td4ZfrfL1RZz5wEkbFF3xuDOoL16ZdRu3lWIHoxI3E3vWxxlj8qJYJPWKMrUxhC/3Ca19AEpibAjOnhoGyyM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1755158558;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=f/wKxshUZhaZNar0Zlch7+Twy7pAeN7yogFZWA9yzTY=;
+	b=hxQo3WhHcLWjG4/Sp34MDf5LMOtLVC5CjRMuRXPyqNs0d1/Q/+9nM29ShSqNxzPm
+	B8Z5cN1RJquJL5TcGVdl3EzNQtPBcuZQ/rvxD8LqbGqimfqE6KSlwxjtndsCwTEIL1Q
+	lmPwB17Od520unjr4YYgihaIN4HFyoRUrz4RWSGPnwFS8l15aZQOoE0CcG0iS6zrPOj
+	la6mdf6za4TRuww8VN63YIpB9bJy0XywrBwClNwGGvWDrJ1PfDJphd2J+3MSpizCOWu
+	IpvUQoqbKhAH4kg9dhuzW6k2PjpBYFbSrnDKJATwUIrosAgID8kmTOm2VjH7ZmtJwyo
+	XRLgbPDuaA==
+Received: by mx.zohomail.com with SMTPS id 1755158555780524.3523869099616;
+	Thu, 14 Aug 2025 01:02:35 -0700 (PDT)
+Message-ID: <1b0619dc692308fc5d9b9a89535f9cda2567d1f8.camel@icenowy.me>
+Subject: Re: [RFC PATCH 1/4] dt-bindings: mailbox: thead,th1520-mbox:
+ retrofit for other mailboxes
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Drew Fustini
+ <fustini@kernel.org>,  Guo Ren <guoren@kernel.org>, Fu Wei
+ <wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jassi Brar
+ <jassisinghbrar@gmail.com>, Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Inochi Amaoto <inochiama@gmail.com>, Yao
+ Zi <ziyao@disroot.org>, linux-riscv@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 14 Aug 2025 16:02:29 +0800
+In-Reply-To: <ad3f03da-696d-4e87-a218-9c9f26f830f7@kernel.org>
+References: <20250814070757.2267325-1-uwu@icenowy.me>
+	 <20250814070757.2267325-2-uwu@icenowy.me>
+	 <d7278d14-2c7e-4414-9ae6-7639d8f69c94@kernel.org>
+	 <b4216bc75530702e9e0bb951f566c04e959ac7a6.camel@icenowy.me>
+	 <ad3f03da-696d-4e87-a218-9c9f26f830f7@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/4] dt-bindings: firmware: thead,th1520-aon: add a
- mailbox name for SBI
-To: Icenowy Zheng <uwu@icenowy.me>, Drew Fustini <fustini@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Inochi Amaoto <inochiama@gmail.com>,
- Yao Zi <ziyao@disroot.org>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250814070757.2267325-1-uwu@icenowy.me>
- <20250814070757.2267325-3-uwu@icenowy.me>
- <d0d4c9e7-c350-4996-a53b-09b13bdb9409@kernel.org>
- <1b63d1872f5b2c89f2fafdf717bda5ec29589b69.camel@icenowy.me>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <1b63d1872f5b2c89f2fafdf717bda5ec29589b69.camel@icenowy.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On 14/08/2025 09:30, Icenowy Zheng wrote:
-> 在 2025-08-14星期四的 09:18 +0200，Krzysztof Kozlowski写道：
->> On 14/08/2025 09:07, Icenowy Zheng wrote:
->>> The SBI firmware might want to communicate to the AON firmware too.
->>>
->>> Add a mbox-name item to allow to allocate a mailbox for SBI.
->>>
->>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
->>> ---
->>>  .../devicetree/bindings/firmware/thead,th1520-aon.yaml     | 7
->>> ++++---
->>>  1 file changed, 4 insertions(+), 3 deletions(-)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
->>> b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
->>> index 3365124c7fd47..555465f4aab4e 100644
->>> --- a/Documentation/devicetree/bindings/firmware/thead,th1520-
->>> aon.yaml
->>> +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-
->>> aon.yaml
->>> @@ -26,11 +26,12 @@ properties:
->>>      const: thead,th1520-aon
->>>  
->>>    mboxes:
->>> -    maxItems: 1
->>> +    maxItems: 2
->>
->>
->> ABI break without explanation why ("allow" is not a reason to affect
->> ABI) and its impact.
-> 
-> Is adding items an ABI break?
+=E5=9C=A8 2025-08-14=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 09:48 +0200=EF=BC=
+=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 14/08/2025 09:34, Icenowy Zheng wrote:
+> > =E5=9C=A8 2025-08-14=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 09:18 +0200=EF=
+=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> > > On 14/08/2025 09:07, Icenowy Zheng wrote:
+> > > > The current binding of thead,th1520-mbox can only apply to the
+> > > > C910T
+> > > > mailbox (which has an ID of 0).
+> > > >=20
+> > > > Because of the weird mailbox register mapping practice for
+> > > > world
+> > > > seperation on TH1520, the binding needs some reword, in
+> > > > addition to
+> > > > add
+> > > > a property for mailbox ID, to describe other mailboxes.
+> > > >=20
+> > > > Update the binding, in order to make it suitable to describe
+> > > > other
+> > >=20
+> > > But I do not see any new device being added.
+> >=20
+> > See PATCH 3/4 in this patchset.
+> >=20
+> > Or do you mean I need to add new compatibles as I said below?
+>=20
+> I don't know... you say there are some other mailboxes (I understand
+> as
+> mailbox controllers) but I don't see anything being added here.
+>=20
+>=20
+> >=20
+> > >=20
+> > > > mailboxes. The example is also updated, with an addition of
+> > > > mbox_c910t
+> > > > label to show that the example describes this specfiic mailbox,
+> > > > mailbox
+> > > > ID added and the register window sizes updated to the values
+> > > > from
+> > > > the
+> > > > manual (previously the remote-icu0 register windows is declared
+> > > > to
+> > > > be
+> > > > overly small that it would never work).
+> > > >=20
+> > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > ---
+> > > > =C2=A0.../bindings/mailbox/thead,th1520-mbox.yaml=C2=A0=C2=A0 | 49
+> > > > ++++++++++++++-
+> > > > ----
+> > > > =C2=A01 file changed, 36 insertions(+), 13 deletions(-)
+> > > >=20
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/mailbox/thead,th1520-
+> > > > mbox.yaml
+> > > > b/Documentation/devicetree/bindings/mailbox/thead,th1520-
+> > > > mbox.yaml
+> > > > index 0971fb97896ef..5a24d2e8a6a8c 100644
+> > > > --- a/Documentation/devicetree/bindings/mailbox/thead,th1520-
+> > > > mbox.yaml
+> > > > +++ b/Documentation/devicetree/bindings/mailbox/thead,th1520-
+> > > > mbox.yaml
+> > > > @@ -12,6 +12,17 @@ description:
+> > > > =C2=A0=C2=A0 through mailbox channels. It also allows one core to s=
+ignal
+> > > > another processor
+> > > > =C2=A0=C2=A0 using interrupts via the Interrupt Controller Unit (IC=
+U).
+> > > > =C2=A0
+> > > > +=C2=A0 The SoC is divided to two worlds, REE and TEE, although it'=
+s
+> > > > currently unknown
+> > > > +=C2=A0 how to enable the seperation between worlds so the
+> > > > seperation
+> > > > does not exist
+> > > > +=C2=A0 yet. However each mailbox is assigned to a certain world,
+> > > > and
+> > > > register windows
+> > > > +=C2=A0 for mailboxes are assigned to different worlds too. In a
+> > > > certain
+> > > > world's
+> > > > +=C2=A0 register windows for mailboxes, only mailboxes assigned to
+> > > > this
+> > > > world will
+> > > > +=C2=A0 have the local ICU part mapped (in addition to the remote
+> > > > ICU
+> > > > part of the
+> > > > +=C2=A0 other same-world mailbox), and mailboxes assigned to the
+> > > > other
+> > > > world have
+> > > > +=C2=A0 only the coressponding remote ICU part mapped to this world=
+.
+> > > > Two
+> > > > mailboxes
+> > > > +=C2=A0 (C910T and E902) are assigned to the TEE world and two
+> > > > mailboxes
+> > > > (C906 and
+> > > > +=C2=A0 C910R) are assigned to the REE world.
+> > > > +
+> > > > =C2=A0maintainers:
+> > > > =C2=A0=C2=A0 - Michal Wilczynski <m.wilczynski@samsung.com>
+> > > > =C2=A0
+> > > > @@ -22,9 +33,9 @@ properties:
+> > > > =C2=A0=C2=A0 clocks:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 items:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Clock for the l=
+ocal mailbox
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Clock for remote ICU=
+ 0
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Clock for remote ICU=
+ 1
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Clock for remote ICU=
+ 2
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Clock for the other =
+mailbox in the same
+> > > > world
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Clock for the first =
+mailbox in the other
+> > > > world
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Clock for the second=
+ mailbox in the other
+> > > > world
+> > > > =C2=A0
+> > > > =C2=A0=C2=A0 clock-names:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 items:
+> > > > @@ -35,10 +46,14 @@ properties:
+> > > > =C2=A0
+> > > > =C2=A0=C2=A0 reg:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 items:
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Mailbox local base a=
+ddress
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Remote ICU 0 base ad=
+dress
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Remote ICU 1 base ad=
+dress
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Remote ICU 2 base ad=
+dress
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Base address of this=
+ specific mailbox
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Base address of the =
+other mailbox in the
+> > > > same
+> > > > world
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Base addres=
+s of the register window in this world
+> > > > corresponding to the
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 first other=
+-world mailbox.
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Base addres=
+s of the register window in this world
+> > > > corresponding to the
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 second othe=
+r-world mailbox.
+> > >=20
+> > > This feels like ABI change.
+> > >=20
+> > > > =C2=A0
+> > > > =C2=A0=C2=A0 reg-names:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 items:
+> > > > @@ -50,10 +65,17 @@ properties:
+> > > > =C2=A0=C2=A0 interrupts:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > =C2=A0
+> > > > +=C2=A0 thead,mbox-id:
+> > > > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +=C2=A0=C2=A0=C2=A0 description:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 The ID of this specific mailbox tha=
+t this device tree
+> > > > node
+> > > > describes. For
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatibility with old device trees=
+, if missing, the ID
+> > > > is
+> > > > default to 0,
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the C910T mailbox.
+> > >=20
+> > > No, you cannot have instance IDs. It's even explicitly documented
+> > > in
+> > > writing bindings.
+> >=20
+> > The problem is that the mailbox cannot send to itself, so the
+> > "sending
+> > to self" slot is redefined to other meaning.
+>=20
+> I don't know what is sending to self...
 
-Adding required items is ABI break. You can easily test it. Apply patch
-#1 and test your DTS. Apply patch #2 and test your DTS. New warnings
-appear, so that's a proof of ABI impact.
+The first mailbox's definition is {global_control,
+receiving_from_mailbox_1, receiving_from_mailbox_2,
+receiving_from_mailbox_3}, and the second one's is
+{receiving_from_mailbox_0, global_control, receiving_from_mailbox_2,
+receiving_from_mailbox_3}, in such a pattern.
 
+The current compatible works for the first mailbox only because it
+assumes the mailbox is the first one, thus expecting the 0x0 offset of
+receiving end is the global control.
 
-> 
-> Or should I explicitly say "minItems: 1" here?
+Well, by totally drop the current compatible and write a new one from
+scratch, and specify all these ports in reg property (instead writing a
+single local-icu register window), all these problems could be solved -
+- but in this case even the mailbox consumer will be affected, because
+in this case the mailbox channel cell will be correspond to register
+zones instead of hardware-based mailbox IDs. (in the current binding
+<&mbox 0> is forbidden because it means sending from mailbox 0 to
+mailbox 0, an invalid operation; but in the new binding <&mbox 0> will
+be sending to the mailbox specified with reg-name "tx-0" instead.)
 
-Yes, but you should clearly explain the impact. Is it working? Not
-working? Are you fixing something?
+>=20
+> >=20
+> > Or should I assign different compatible strings to all 4 mailboxes
+> > because they have different registers in the "sending to self"
+> > slot,
+> > which have different offset because of instance ID?
+>=20
+> Commit msg is quite vague in describing hardware. It has a lot of
+> text
+> but no answers to questions. What are the differences? What is the
+> hardware?
+>=20
+> if you have different programming model, then you have different
+> compatibles, usually.
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
-Best regards,
-Krzysztof
 
