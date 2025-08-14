@@ -1,176 +1,120 @@
-Return-Path: <devicetree+bounces-204542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E2F8B25EB8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:25:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9BCB25ECF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:29:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A4F1582488
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:25:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E27511CC153B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:27:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AFB82E7BBB;
-	Thu, 14 Aug 2025 08:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90AC2E7BBB;
+	Thu, 14 Aug 2025 08:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VcjcHZsA"
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="FTl6uR42"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF0B25B2E3;
-	Thu, 14 Aug 2025 08:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A30E134A8
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 08:27:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755159918; cv=none; b=gFWp9R1ZJZmXfFKfzMD/Lbs9R1bSQVrszgLNrJ0r9zCfivIHBjNaF9qQfobhxsGo5N/uSu0m5qa5cXr8EUZcnNpoiHBSpjmNVoPtk0xuBmdfctvTBULkPFvFDY1WYG/tZa/k+jjpZhC3NZkY4dLhywFj4WvHI+KSXo02oZVSODQ=
+	t=1755160040; cv=none; b=UWlUzLdnYEghbI1SkMsBEsHVorOrSNU9TkMaEKH/7zDPjh05qX9yWC5KbZRMSKQ85P0qb4o2uyeoP6r97fK+jtR1BQtx5Jw3E/8S7dOoXOz2g4uzRvjUIWTX2WzrfrM0+DmX+fkvScRmf6DGHQ9H7DuJLmGfvt9ulU09dm3HwbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755159918; c=relaxed/simple;
-	bh=dYIA7UOSbS43SOyG7AKwv7s6w9he9lCrJcBrQ8/YkyA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uAeoUWsw2BuT5lO/JwrpJchwCA7dv/bKXyDNUqeudC6emwJ86se9tNc5bdhGQnXrVzs5FrD8BiwiTrGD8ONxYZU3OQXhrQEmI9T8xYSo2bdX5tp2mN4CHDqpRJ6ClW8rb2che1YMnJAP4EXPUo1PcQsMGaah8+PXx3ViU36mwrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VcjcHZsA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C9B7C4CEEF;
-	Thu, 14 Aug 2025 08:25:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755159916;
-	bh=dYIA7UOSbS43SOyG7AKwv7s6w9he9lCrJcBrQ8/YkyA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VcjcHZsADqs+sJkzu1Gy0PLfHNkyWqX5C1yiQZT6Ji8Y3UIHwyg1VW9Yk3Lbou9z2
-	 BBQU9UpGiecRCltFBSP3//i7bBxsjPJdo/D0nOKb9CIU3siKvO4OOYHY5KnN1hrmNI
-	 i/wH74GN9f8VbEdv174T/xKjoDLhZyHVmt9L/ZbcqXflZ3O7Lev1n8udGv7UAhn68P
-	 C70orfCyHjDRw6S/GFhJF74mcL8Mt7bV9y+zEbJ8Go2aiErMmXDT1NzFWpRZUFoIFM
-	 MUgWi3HWNJ45jJSQWS7Hs9vDi62A0V4J19MuKZeBbOv+uOUbw6WFJ+OLB3m6pImxvN
-	 X/LTl4OHH2FfA==
-Date: Thu, 14 Aug 2025 10:25:14 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	richardcochran@gmail.com, claudiu.manoil@nxp.com, vladimir.oltean@nxp.com, 
-	xiaoning.wang@nxp.com, andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
-	kuba@kernel.org, pabeni@redhat.com, vadim.fedorenko@linux.dev, Frank.Li@nxp.com, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, fushi.peng@nxp.com, 
-	devicetree@vger.kernel.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, kernel@pengutronix.de
-Subject: Re: [PATCH v3 net-next 01/15] dt-bindings: ptp: add NETC Timer PTP
- clock
-Message-ID: <20250814-hospitable-hyrax-of-health-21eef3@kuoka>
-References: <20250812094634.489901-1-wei.fang@nxp.com>
- <20250812094634.489901-2-wei.fang@nxp.com>
+	s=arc-20240116; t=1755160040; c=relaxed/simple;
+	bh=1KDDCtMP5rn2S+bWZv8aHe43udyp20+1Xfy9+tbLosc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=ixCXBu5hLYO9QEqgXQYkb3BOOjuZOmVwGf3IdLpRLZR4MZvlQo5VM11FJPBa+y+McSjuwHMAUPdyimi3zxWTcMMhgXg/EgNfdbIs0JFiIxacq1CwM4Xe+aX5go1hK20LaEWh5mIz8oR23LU9YWC2lcWAce2Bcts0oeGi7VaQRuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=FTl6uR42; arc=none smtp.client-ip=212.77.101.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 26832 invoked from network); 14 Aug 2025 10:27:12 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1755160032; bh=WXs3BxbiT7j5x5jkHN7EEuuUOr7la7ajmzr15IXcVzI=;
+          h=From:To:Subject;
+          b=FTl6uR425f8Njkn8OmAXW1RdSSlBExWi6rsXhSy3cvrtk9xvPDP7/VKAI/t4o0Egf
+           LyjqcZJ4oQ8lzb9466kMDKWvIYbl/GAjhOOL+/tE6VhrYGw1w947khFlJ7JBnEiTO0
+           c7jlQhllkTHZyxv0uNNhC9mHHkbSKM8qqraP6g8YrQX+y1PCgrpFhfflTXOzHpriow
+           deYrYFwx7rOxqdAYpS5IYpSKyvEHqfoh+lq5FipWBmU099Q7RKz8b3OAXuUms+Yw9S
+           y1uyg7Pw0GGYYxxoxaKTMNeq92dfEoLIURAF2+vQfua/ZazmB4BAjshev/DK0XB97z
+           DO9XMi+pRI3/Q==
+Received: from 83.24.134.210.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.134.210])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <tsbogend@alpha.franken.de>; 14 Aug 2025 10:27:12 +0200
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+To: tsbogend@alpha.franken.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	olek2@wp.pl,
+	linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: mips: lantiq: Document lantiq dcdc binding
+Date: Thu, 14 Aug 2025 10:26:56 +0200
+Message-ID: <20250814082705.3183231-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250812094634.489901-2-wei.fang@nxp.com>
+Content-Transfer-Encoding: 8bit
+X-WP-MailID: 71d407e100f7fde7e78cbb4499c72f21
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 000000A [USNU]                               
 
-On Tue, Aug 12, 2025 at 05:46:20PM +0800, Wei Fang wrote:
-> NXP NETC (Ethernet Controller) is a multi-function PCIe Root Complex
-> Integrated Endpoint (RCiEP), the Timer is one of its functions which
-> provides current time with nanosecond resolution, precise periodic
-> pulse, pulse on timeout (alarm), and time capture on external pulse
-> support. And also supports time synchronization as required for IEEE
-> 1588 and IEEE 802.1AS-2020. So add device tree binding doc for the
-> PTP clock based on NETC Timer.
-> 
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> 
-> ---
-> v2 changes:
-> 1. Refine the subject and the commit message
-> 2. Remove "nxp,pps-channel"
-> 3. Add description to "clocks" and "clock-names"
-> v3 changes:
-> 1. Remove the "system" clock from clock-names
-> ---
->  .../devicetree/bindings/ptp/nxp,ptp-netc.yaml | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml b/Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
-> new file mode 100644
-> index 000000000000..60fb2513fd76
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ptp/nxp,ptp-netc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP NETC V4 Timer PTP clock
-> +
-> +description:
-> +  NETC V4 Timer provides current time with nanosecond resolution, precise
-> +  periodic pulse, pulse on timeout (alarm), and time capture on external
-> +  pulse support. And it supports time synchronization as required for
-> +  IEEE 1588 and IEEE 802.1AS-2020.
-> +
-> +maintainers:
-> +  - Wei Fang <wei.fang@nxp.com>
-> +  - Clark Wang <xiaoning.wang@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - pci1131,ee02
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description:
-> +      The reference clock of NETC Timer, if not present, indicates that
-> +      the system clock of NETC IP is selected as the reference clock.
-> +
-> +  clock-names:
-> +    description:
-> +      The "ccm_timer" means the reference clock comes from CCM of SoC.
-> +      The "ext_1588" means the reference clock comes from external IO
-> +      pins.
-> +    enum:
-> +      - ccm_timer
+Lantiq DCDC is a voltage converter with a voltage sensor.
 
-You should name here how the input pin is called, not the source. Pin is
-"ref"?
+Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+---
+ .../mips/lantiq/lantiq,dcdc-xrx200.yaml       | 32 +++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml
 
-> +      - ext_1588
-
-This should be just "ext"? We probably talked about this, but this feels
-like you describe one input in different ways.
-
-You will get the same questions in the future, if commit msg does not
-reflect previous talks.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-device.yaml
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    pcie {
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +
-> +        ethernet@18,0 {
-
-That's rather timer or ptp-timer or your binding is incorrect. Please
-describe COMPLETE device in your binding.
-
-> +            compatible = "pci1131,ee02";
-> +            reg = <0x00c000 0 0 0 0>;
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml b/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml
+new file mode 100644
+index 000000000000..5648b9676b3c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml
+@@ -0,0 +1,32 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mips/lantiq/lantiq,dcdc-xrx200.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Lantiq DCDC (DC-DC converter with voltage sensor)
++
++maintainers:
++  - Aleksander Jan Bajkowski <olek2@wp.pl>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - lantiq,dcdc-xrx200
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    dcdc@106a00 {
++        compatible = "lantiq,dcdc-xrx200";
++        reg = <0x106a00 0x200>;
++    };
+-- 
+2.47.2
 
 
