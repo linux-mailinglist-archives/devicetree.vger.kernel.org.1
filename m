@@ -1,186 +1,155 @@
-Return-Path: <devicetree+bounces-204559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A210B25F60
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:45:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 670FCB25F85
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:50:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60886B63F6C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:42:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1F631C82663
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53D12EFDA5;
-	Thu, 14 Aug 2025 08:42:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D391A2E8DE9;
+	Thu, 14 Aug 2025 08:50:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VjgLBkhT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tr7ERJbE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA592EFD88;
-	Thu, 14 Aug 2025 08:42:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E019427144D
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 08:50:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755160951; cv=none; b=UzxBZe/fSEhNzux5U7ImmlNXJBBvpB/LNBtOHMU390y/JGPUlCJAS0x+WZWtfRoHdn3CV87IOTciNdN90mlsR3lm+vNvhsgEUN3IM0/LO7yTdbBi1m8VsFfPST6FuHcPHc9TYeqK8lj+dW19IbGYgcNPckqiy9qgvFIq2IbQHIM=
+	t=1755161432; cv=none; b=OgqdRkaMrmjKjMN4uY7fOYmKqkrLJZ+m/dukJyx9V3A86znZcvP2m4d7qygD4xO0tGDi7YTlUge3Ry+IDIqIK+JTP9gSRIzzryso2miA8FlejUVZYzx7YyGJ9w+PrgodL7aFucff2nKUeMlStlqsKvyUxBt39M+TqWSy2pY2kRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755160951; c=relaxed/simple;
-	bh=sJWYGnT1WWEG+kqtUxqmZBzwgmvbVmwP8qD+SOYqeyA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=OeGjeGqXtSsm7c5E6JWABpd6EBGRJghzUUnkZ1kZTg36X1khYKF1HeyXKZxjV9nRc0710qQ4JGPusdKCR+s2/iIBMepE/5hPX6fH6+p2KTa34X524RUmxOW7TdVZG+nRgQFJxUbK22MS65uS6GNG7K6IovoEzX84n6Bhfp3JZiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VjgLBkhT; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45a1b004a31so4611985e9.0;
-        Thu, 14 Aug 2025 01:42:29 -0700 (PDT)
+	s=arc-20240116; t=1755161432; c=relaxed/simple;
+	bh=hW/O9G7IgmILusfUj0IWPaVApb+q/27reNADXspEMho=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B9EX5xYIzHbz08TrLDCMFa2CdJSXXW+fHII6EUNZ4tGJtMA8j1RH0KnSPnkeuvhkZaXhF6O8oaVM6w4dSjd7othtHXmRZvAg+azmxxd2x87pYhfzkEncgFmK1qjXdda3dy1JYdaR/DTfhAA9ubrUfukF8Nh99BTArmKVyilDOh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Tr7ERJbE; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-afcb7abfc5cso119556066b.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 01:50:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755160948; x=1755765748; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iWlw5Ms5yTVtOwXxGv7Ts8LYQp05G0qkRwNzIO4qfS4=;
-        b=VjgLBkhTFVXG+HuwEomlkG8A8GeOZL+WW/FQeCE/JwkDu2Js+P0nmAlgVE6TW59O/L
-         xIDSc0EzfdsDOSraew+W+mP5rGF2EVQUhBijIADfbaGMhe8aC8LdINwI9vRVxh/Iqs8/
-         S1TF1MZ1HjH4/U7PhNNBdDmDZpcb90f8I39tbjV4kmbz+uFz9hvc+Rwdy7SNDrReMX2O
-         no14HHKF0+MReDFRJKOYMrSxtIuzUklahq2hv2jKKk+TUC4iU0kZX/cbTFpUMBbovt90
-         qNPo3kGq1Y05nq8CTae3tOTcbBtj5bJ9TgruU7iE2H5DOO9UnfnB/tDhMWZ0b18a6y7P
-         3tPQ==
+        d=linaro.org; s=google; t=1755161429; x=1755766229; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lTNSw9oc6wzrpyE+IZc30gYg25qmqZrCj3OycJEGey0=;
+        b=Tr7ERJbEFVy3aXDtqrb5IqQ2x6B6H+NtG5E8YlJqQ5Ggv5Cq4oR6Zwzr6zQ42uf7j6
+         GZsNE0g/59yU/75I/jy1XhtoHJl8aC8pd/elRlAJ7UdcRH7w6dxR3VVQxCcE6Borlf8z
+         dLXg1fZj8atCk6FsOMhCjKSZKhflZwWf1WDU921NFxboBG5TcwgrHT1gTmCVqbgxrhFv
+         rF5Ze0bg3QTH2Fz82JaHqE1QXiMWcJFDY/S7mapiL+4sRKi5ruZqRd4O8TAlPfMZnSO6
+         jZSrpJqv/R/N8aHqaQywKeM3V7ZLhQxnAm7nj/jCBJfOSV45nQJqKjC01nv8bLLbweyf
+         nDSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755160948; x=1755765748;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iWlw5Ms5yTVtOwXxGv7Ts8LYQp05G0qkRwNzIO4qfS4=;
-        b=nRA8kAP6kQwM3yFRabAHZO6qNT0Adh6c9ZJtMm/YIYC27yCfEcRu5vYfOTK51YwE9Q
-         50GzCKnArVemtZiJIX5k7mfrRix+unsObZ2G5hUnzuVKQshoDGuDgqD6ebmHHdLn7Sjo
-         H5i2ksIvIQKwZ5M4xetYmGDhgYhSRVVzJW1I7AbzHSQ0YzHf3aHR0O15hFl4svfF49Pe
-         b2/7icSMRT4yP6VkkekG9dsJJLqmz5f7UVtZwgqVp1OGf7irgSJnu6CV7MoCLJs2vUHW
-         +8NML/LVEgOQn4r6cxyYv8ICUVoXfTWZQXLYrU3mASWmvlQyumbWkJe2Wcpr+HPNlMGN
-         RLRA==
-X-Forwarded-Encrypted: i=1; AJvYcCUcBhNwITYOVprNpr+BUQ+/98W6Y0WGa/FrQIA5Ckn9QFPObM/PoAVgs8+J+JpzrpIrQcmH0bb/5EKi@vger.kernel.org, AJvYcCWfhUpEcMB2rfqTXBvikL3OZteyuAznfjkS3DZpweVClf6fW1shX2ZrYSJgohIN5UdK0/J3EM1+07GrH/EA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeH1uz6A9kKG67WMBgJ/exZAATyzofeZylCkt7MZPIxdxakfd+
-	N1HfzU5ZO0X7OdPPrj1ivDjxqXtPxoR/lcvSQVS8Me1Sp7+0kiAunP/W
-X-Gm-Gg: ASbGncuTqWl8FVfbwCztsPW4+4TIMaA0wRpN8EJyjkfKc5zne42o0X6JgcQDiQbdITn
-	3n1QAQV0/aKJ+5n0llUTsZWmUt6sAyOWipifB8CywoOPNMQ3p09HXExcCIhmJ4Vn50Gi5YL6Nj4
-	Y3UnUp4cUYOYdXvac1Atuz+LoJYVyuCTzqveGX0wvcTaCTFCeHB5JnN6hgJwhK6AYcACmiqeb9h
-	WEOST+O44CwjyBY1rxXCIVL22b/TgBFPvKN9KamnF0DTGzIx513RNM8OJVwUGlEPIIe4drfamCs
-	drhtAIFLspTgsjUXABf1wFgkO5xyXnvUWNpOYU4EM1sdJfQVACx79unXXmHpEL97+1525ia6zlG
-	fPoR2vebX6LC9AOr49YQN3vsLPPDDStvsyg==
-X-Google-Smtp-Source: AGHT+IEU57fYybpMMX4gtzdy06CQx4fqP4lkitpYTPTwDLN7UudJOEyCJmNn9h6kaZbB3y6cb0LX6w==
-X-Received: by 2002:a05:600c:3b93:b0:43c:f44c:72a6 with SMTP id 5b1f17b1804b1-45a1b605070mr13966415e9.2.1755160948068;
-        Thu, 14 Aug 2025 01:42:28 -0700 (PDT)
-Received: from taln60.nuvoton.co.il ([212.199.177.18])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1c6e336csm13114565e9.16.2025.08.14.01.42.26
+        d=1e100.net; s=20230601; t=1755161429; x=1755766229;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lTNSw9oc6wzrpyE+IZc30gYg25qmqZrCj3OycJEGey0=;
+        b=WyV0PfbTjK9N1hFpwlE+ZdSdH9cepfYcvm2CynxQyeo4ZqoVi62nd7LBq/eLl/5UU2
+         36HBc2a8B4edqmPvqLW0TQRT5Ji5k+Vb3dryZceQmgMjo/MkePOblaiTvcoG98hpsyy9
+         EQjTHoo9BSZ55L6QtfU8NNG+n6r4D+QRCrMuE7+geJWJzrPHHjK+trDydQh0RZCZ6CzZ
+         LIArlX3OdHRXRrfAZ6Ja+Ka54DEQ4y4VMwekMTzTOZNs9/ARLJxlo+9dQ+Benduab/gd
+         BpH8GkFeo4rQToNuXFiQFDSDqHUzdyIoLBOSmTWhqhahd9ksLI0IQBpIdKw7cMTNpOEm
+         FmVw==
+X-Forwarded-Encrypted: i=1; AJvYcCX6lNTkH7w9cR1PKp4p4qf5mbgLh09nfUuZrPaA4RQPA+M2RRBJ0B5Hr04nD1HJzgW+y07hWz/oExjE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzPXKG1OvJgsC6IARsFTl3eQzXqZD05BPLWCEkA78LQX92sz8Y
+	jVWGdv5VWOo1klN98dKog8pGTJE/B7bT1YuXfOauYXgx+Admk7kpOUV/9A3AZRIboyU=
+X-Gm-Gg: ASbGnctVuUuH9nRZbMbUZSl75hrQ1n5uWT2+EMWgfCijJshK7gurGZ4m+ZtIm0n5EF2
+	dDudCc3lfs4TrwuK5xznsYKNC0sYpm6iX6HRZUelO9IqS1OULMBP8RjjN+ZmFIYyIZ3HrCYGPWo
+	LT7W65gM8Ep8OrWGe+hEIxzLOZO6auj3Bmfypv4OQohIcWdhAvG402BQvjZPlY6pr+6X5f8JKQq
+	xFaQfJRG+4EM15IbHV6KbGP8oSdevswY2ZTAq2uG97nHaI/DTeutBdJ0Dk02J/uEgaeM80FC2qc
+	SEpsOUpWTtxkNWW21LWgjwPdiGzibn/zEtUwS0kV+zZ7X4EBj5dYuAwN6ZTI9NlVyqlXmWY470Q
+	2YV7/ZCiLtYV53xtp4w9RWIw9E4RKedOI6y4=
+X-Google-Smtp-Source: AGHT+IHLXrSfTIPAKGMxZ00QdZB/8mDbm+vGJBS91ORg//JjE3LnG31wgWeozZezROslUUb9Abi/4w==
+X-Received: by 2002:a17:906:9f85:b0:af9:5260:9ed3 with SMTP id a640c23a62f3a-afcb9799755mr188094366b.14.1755161429200;
+        Thu, 14 Aug 2025 01:50:29 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:ef30:b68e:8fe9:fd92:805e])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af99148eab9sm1604853966b.77.2025.08.14.01.50.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Aug 2025 01:42:27 -0700 (PDT)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	avifishman70@gmail.com,
-	tali.perry1@gmail.com,
-	joel@jms.id.au,
-	venture@google.com,
-	yuenn@google.com,
-	benjaminfair@google.com
-Cc: openbmc@lists.ozlabs.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: nuvoton: add refclk and update peripheral clocks for NPCM845
-Date: Thu, 14 Aug 2025 11:42:18 +0300
-Message-Id: <20250814084218.1171386-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250814084218.1171386-1-tmaimon77@gmail.com>
-References: <20250814084218.1171386-1-tmaimon77@gmail.com>
+        Thu, 14 Aug 2025 01:50:28 -0700 (PDT)
+Date: Thu, 14 Aug 2025 10:50:24 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+	Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH 0/9] arm64: dts: qcom: x1: Disable audio codecs by default
+Message-ID: <aJ2jUDaBAgeRcYfz@linaro.org>
+References: <20250813-x1e80100-disable-audio-codecs-v1-0-af82d9576f80@linaro.org>
+ <5de00c2e-2b81-42f4-ab17-6db0f1daf7ff@oss.qualcomm.com>
+ <c4a63197-9fef-4261-a0e0-9d57e009263a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c4a63197-9fef-4261-a0e0-9d57e009263a@linaro.org>
 
-Add a 25 MHz fixed-clock node (refclk) in the NPCM845-EVB board device
-tree to represent the external reference clock used by the NPCM845 reset
-and clock controller.
+On Thu, Aug 14, 2025 at 08:07:17AM +0200, Krzysztof Kozlowski wrote:
+> On 14/08/2025 01:09, Konrad Dybcio wrote:
+> > On 8/13/25 5:58 PM, Stephan Gerhold wrote:
+> >> Currently, the macro audio codecs are enabled by default in x1e80100.dtsi.
+> >> However, they do not probe without the ADSP remoteproc, which is disabled
+> >> by default.
+> > 
+> > FWIW if the ADSP doesn't start, you can't really consider the platform
+> > working.. It just does oversees too much of the SoC to even seriously
+> > consider using the device without it
+> 
+> 
+> I agree. ADSP is supposed to come up for every or almost every platform,
+> because it is crucial for USB and charging.
+> 
 
-Update peripherals (timer0, watchdog0-2) in the NPCM845 device tree to
-reference this refclk directly instead of the previous clock controller
-output (NPCM8XX_CLK_REFCLK).
+I agree with that as well, especially because I have an upcoming patch
+series that allows reusing the "lite" ADSP firmware from UEFI for USB
+and charging, so you don't even need to have firmware present for that.
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 9 +++++----
- arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts     | 6 ++++++
- 2 files changed, 11 insertions(+), 4 deletions(-)
+The question for this patch series is separate though: Should we enable
+the SoC audio codecs by default? What happens if a board does not make
+use of them?
 
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-index e4053ffefe90..ee7da5e8f95b 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-@@ -47,6 +47,7 @@ clk: rstc: reset-controller@f0801000 {
- 			reg = <0x0 0xf0801000 0x0 0xC4>;
- 			nuvoton,sysgcr = <&gcr>;
- 			#reset-cells = <2>;
-+			clocks = <&refclk>;
- 			#clock-cells = <1>;
- 		};
- 
-@@ -71,7 +72,7 @@ timer0: timer@8000 {
- 				compatible = "nuvoton,npcm845-timer";
- 				interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x8000 0x1C>;
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				clock-names = "refclk";
- 			};
- 
-@@ -143,7 +144,7 @@ watchdog0: watchdog@801c {
- 				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x801c 0x4>;
- 				status = "disabled";
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				syscon = <&gcr>;
- 			};
- 
-@@ -152,7 +153,7 @@ watchdog1: watchdog@901c {
- 				interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x901c 0x4>;
- 				status = "disabled";
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				syscon = <&gcr>;
- 			};
- 
-@@ -161,7 +162,7 @@ watchdog2: watchdog@a01c {
- 				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0xa01c 0x4>;
- 				status = "disabled";
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				syscon = <&gcr>;
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-index eeceb5b292a8..2638ee1c3846 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-@@ -19,6 +19,12 @@ chosen {
- 	memory@0 {
- 		reg = <0x0 0x0 0x0 0x40000000>;
- 	};
-+
-+	refclk: refclk-25mhz {
-+		compatible = "fixed-clock";
-+		clock-frequency = <25000000>;
-+		#clock-cells = <0>;
-+	};
- };
- 
- &serial0 {
--- 
-2.34.1
+> It's true that LPASS macro codec nodes need resources from ADSP, but
+> still these are resources internal to the SoC. We disable nodes in DTI
+> which need an external resource. That's not really the case for LPASS.
 
+The reason that triggered this patch series is that I was seeing an
+error from the va_macro when testing on x1e001de-devkit. That board does
+not have DMICs defined, so it doesn't make direct use of the va_macro:
+
+ va_macro 6d44000.codec: qcom,dmic-sample-rate dt entry missing
+
+We should fix this in the lpass-va-macro driver. You could take this
+case one step further though: What if a board uses none of the audio
+functionality? Apparently, X1E is also going to be an IoT platform. It's
+very well possible we will end up with a board that doesn't have any
+audio functionality. I would argue it's valid to use a minimal kernel
+config in that case that has all of the audio subsystem disabled. That
+won't work though, since we need to probe all the enabled audio codecs
+to reach sync_state().
+
+This might be a Linux issue unrelated to the device tree, but in my
+opinion an audio codec without audio inputs/outputs is not
+"operational", it should not be status = "okay". That's quite subjective
+though.
+
+At the end, I realized that x1e001de-devkit actually does have DMICs and
+I just need to enable them properly to get rid of the error. I only sent
+this series because I believe it fits better to our conventions. Given
+that I don't need it anymore, I'm also happy to just drop it. Let me
+know what you prefer.
+
+Thanks,
+Stephan
 
