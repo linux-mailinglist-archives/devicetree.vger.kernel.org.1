@@ -1,137 +1,207 @@
-Return-Path: <devicetree+bounces-204430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B8DB25811
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 02:10:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A94C2B25817
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 02:15:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E5C82A70DB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 00:10:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BD63623A7C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 00:15:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BF92FF65A;
-	Thu, 14 Aug 2025 00:10:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B936A1A288;
+	Thu, 14 Aug 2025 00:15:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gDBjSgkH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DOVR/Bm/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29BF52FF642
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 00:10:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CAE563B9
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 00:15:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755130223; cv=none; b=ICT54ew0Z2lB/cNf7L9TyAKtrsYQdwv8qIg296r02tu0pMF7ljIEBB7ASnAviIBryviGSN6/5Fa6E5SCOK40gvrsNcKu3Ta4+VDLRG730ZvX16YoDUhwtDs2a/J6HxXHbwzIFQfZl+GjJWRTNjGLActo9JZ1a3UKQs7tM9Dg/kk=
+	t=1755130506; cv=none; b=c9VAUHTl9joGGSF6EqNmUJv6BhIOV7V8+pmIf1QZIP2QXrcHgnYxFpAlSlLiTZpMbSmZoFUDnxrXZZSs6acoPLH1iDVao+QYz4wQNlhA2MCR3cYpWv9BtjyqXHvQfda1FlEwKF0VKiUXST2qPXpXsVoQ4YxMAGpv/FcV7iYeWiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755130223; c=relaxed/simple;
-	bh=r1QCrmN8tVo4aJpeIo0LUvhjUnUqAZ5cDFytjwJaPAk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=pjruZhX1xkJUgYJZkwOW+YsgkvqbNebV1b39gOot2olzb2KqQxdsI91YZ8LWXHA03GGxE2W2XPPzqvtk1zDn351zDh0e5YZgXdL06Jg5Hk/1IBAKuHOY3NtGurdY+LwVm5CHP7i+tAJbS8xrJmPRH0P7MhZt+OI5OVbHoreAcao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gDBjSgkH; arc=none smtp.client-ip=209.85.221.52
+	s=arc-20240116; t=1755130506; c=relaxed/simple;
+	bh=zwJo72iTk2tgFMJYTVRLk79sFfVI+zpiBHz9nT1PoVk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pIPIA0o5j336pV6kjg4IixWqDaL6nGTjLZGfoVKbEfIt7dNII8vQ9LsaU6KBUIQTDVhAX5Zf1S6Fsj1hhP8SnSvuE4HYPsxcGpo6xKeaI6MvwgjtZvdc19m38TZwNeqAzUJpoubjOqM8R38jo1VId5TTSkjaMTHaCdBHlXm3Abc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DOVR/Bm/; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b916fda762so717546f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 17:10:19 -0700 (PDT)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45a1b004a31so2355225e9.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 17:15:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755130218; x=1755735018; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gpKIMCug5prSO8UBINdYvWrP0TkGisSi9mxT6awdEX8=;
-        b=gDBjSgkHkE1DcZ8ecoJHcRpsd84Odlscj+9dOKuA26g4J2691NnFt+59dIajYA0rkJ
-         uDN2O+Mvm6uS9DXHJv3Ft8pDKkv5DC/JbtNVENuU+mmpwCh2RS26vdIWBi8f/3qJTPb6
-         zE/2ycRw6wBtLEKaMCXgrpYkHpVEXgAU/eH+WuJAr8xOIQ4x/rbM1dbJmG0AJ6PWMKKF
-         sehdD5KELkext8T+V0+kOh62Zkl873v1zqojpKFKjkenBb/dh+QfB2vnHkGEPI0mymfs
-         AiEYhDSvPaE8G5CD1kBlui6YUsXIPvBTqzqtA8wW5A33cp/IsUKqARWHfRDIyjyg/fGx
-         /WXg==
+        d=linaro.org; s=google; t=1755130502; x=1755735302; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Js8h6ldMj+gdFZOOeslA8bqfXFQEBcc6o5WLKiebJLY=;
+        b=DOVR/Bm/r0eN+Soz+Y3N2SXB8jkRvWWtup7un/rnkyOR8PdaGD1K/OQXpVMSBLtGIt
+         nLsMZssen5RAxbfBq8EIzqXmec2aTqHBUOB2C4wTiJ5m+pqR37nNjqflxKzBRJk5n4RV
+         Hptxpa8QkvJJDKpD3qWhDt0ig6ymqrA4mNi5cugLO2a6ikgZZ9Q+4UjCIr7hImoXcNrf
+         95V3N/UDx32zX79ky71WFTs8P6QUx4FzPICnVE2OCodT+STgFTwmJ86avFLjm9rLNanr
+         Ul/FS3C4Rxd+qOxDOYnecr6+uzSA6C5eYA0xRXs3mOmE4hHlMzSY/LvLXBe+R4gTQmc1
+         +RIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755130218; x=1755735018;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gpKIMCug5prSO8UBINdYvWrP0TkGisSi9mxT6awdEX8=;
-        b=cuZisXcnDF5MNAresa23rbgTX4/JoQCAc8tokdvIYEKVo3WBu40utGmApLP6/sxDKN
-         1ULUHpy7RT4gpoo2BiEqsxdggan1S7l9P5jf8K6p2gTr+OitgyIPJihzRq9AeBk+86Zx
-         GWK5Nd8M436bfLXCsQL7xZZmrpze9eejXm58Cvw/M8FHVGID+M3F1aWh1vv1G0f3ui8q
-         JEkRe6udJZCBNmlEfBc13IQ+baUsRoj7hMxqp7puA+HcenDVqRWcJp5nLiECdGDMO7AA
-         s8XBPBuZvuzSQfOjzPD9PGQz2ZHBQGl9d3b8HoPS4DKwTQKDJ9mTXhwwefkReaOHhNEK
-         CCcg==
-X-Forwarded-Encrypted: i=1; AJvYcCX0HhXOgYE6gMd8fvEOfLr7dJMrm7yf3lTaLY81mtixkp+ysF9Bt4zG9mMOZcxRS0/OlbtbrLhZXEPJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwF9DXGyLV+rylyCBBsTKUwfbEAqvS69JmbRUSj6UWHTPSQLJ4d
-	Narj0rBcPK4jHi2FWV5khzDp8E/4GoCv23mReFHlg7mDXMrEBKb4XBpY985P1/z8EjsaQtaFUZ1
-	d4Ft3
-X-Gm-Gg: ASbGncvDkEKXtRJTb18AUWg+ElFONEBSbmxpflEXkKy0p6squRtFatR6VRSHxCYQq5D
-	rRjlhg2z1zUt+TWvtQA/ERf8AmKj/vb/NxMVOGniNa9Equdxygfutqet7rB/6948iI+2sz3Erz2
-	RWbkIgNC5zAi1mRIRqzCYhh34QSdWG0nwtHlxYbPaCi25G85FvOIBM+R0bf8KKIITOTzY8vKeIO
-	KgOqS5Yq2ALA8KK4OHDhj5BT/jmiAKxY08v3pEPGMNxL3V5xcry/YgZ1Orn8BsIyc/OhyZ6flvw
-	01IXtMySDvUYdLghMGd+HhFjTtTHvSgTxHnw+kEu/CJstQsDH3CHKeMF0YzxlbXwj2QAcvdMmNZ
-	iTeWYMVKEkZt5EIZhrdxgfo4yt3Y=
-X-Google-Smtp-Source: AGHT+IEL5c2Xg+0dBRlOrtdb9SKnnns8CAIkWnJ+rAhdQ3/ikKH0DsK1f2QeK/B8eUDvA0MAmimMfA==
-X-Received: by 2002:a05:6000:200f:b0:3b7:908e:e4ac with SMTP id ffacd0b85a97d-3ba50662180mr342068f8f.2.1755130218457;
-        Wed, 13 Aug 2025 17:10:18 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7259:a00:7f3a:5ab2:26aa:831f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3ac093sm51686067f8f.9.2025.08.13.17.10.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Aug 2025 17:10:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755130502; x=1755735302;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Js8h6ldMj+gdFZOOeslA8bqfXFQEBcc6o5WLKiebJLY=;
+        b=JdLEElazRc0h6H5djxNrnZLmLL2O/s+u5kf7FpJegZChpBKUs4qaakEd7F2ZJ2zn/x
+         N9xLP+bi6biiYbAmFJchS4ZGlT+vDMe4WD3rUTK9PlcAQAs5iW3k+tM8z30jGqdrGi9C
+         E16l94gb/inzcUm//KOpt3+elwJ88rQHeg1Jt9laL773If0OIJlBpEkzJmaXwlnEXaKx
+         s7wdG+9ZQ+novLPtz7Mb+EaEVAOjG/dBwn7YQxlI97pFaLA9yCBGOiJaHtLeTRglnX1l
+         VmgehbXBStDx2AGLIkzy3t3/tFaqyvODFtKFCD4GabMwdLOhPuFQIEibumbWwEiIFMjk
+         MSww==
+X-Forwarded-Encrypted: i=1; AJvYcCVtawkHEhKz6/2z1l4Zhx+83mOovAvypOZVLIQjeOSr/njXSM91HLALFgjV2CmVLNqx37JGTUgbqHrW@vger.kernel.org
+X-Gm-Message-State: AOJu0YydX32+9Fo4XLUOJJvpOH0exw3e5EdJz5oPZ9yuIaQe5BxMVB/c
+	68SzbrBl6pWkCxasHb05zUm0otOK4jp+xw2qqEK7Uf2F4O28hG2vMIrFfTzk6Zlfmho=
+X-Gm-Gg: ASbGncuuFBmS/hq56tlT8TAxl4Fm4Exf9iSUnMJCc97+aUx+MbiNh2z0/5px9FT/LZw
+	5OXCxGHyKuglR2OSRezn8P6xSm9Ocok6mdFmsGuBvGB96helBjdtE5XlzJzdJ3w7DlhKDH0xRRI
+	RDwYcpE1uGrcYyKsIAd/Y7heV+2eNuiCaNLSrQ2LMkqOK0U9mLEXo6pZH7rmEKBl07q3nHFposP
+	3hUm0vtQE8Lf0BszY6JOa2OCoRy9y6GHGsvPaMcBKX4vu3PL1389dv9zq9d5UOxhjA9sG8MEE/a
+	84HveEUvC8kg30zBn4dKr6WcEsyrvHGx8yxAsHYZm12xeE1HWCxBm1S0bzGUXLhxK2+oM4/KUVe
+	9Oe6Y4BUZL2dcVOFAwolZfS7aNiEk
+X-Google-Smtp-Source: AGHT+IEE/qJ2A+EGcLK5KKpvuXaOVb/kTUWQl2Zzg8RdrlyOQ/B0cgj/6qwXHlkz+00A1J55dDOw1w==
+X-Received: by 2002:a05:600c:3541:b0:441:b698:3431 with SMTP id 5b1f17b1804b1-45a1b655a8cmr4647785e9.28.1755130501766;
+        Wed, 13 Aug 2025 17:15:01 -0700 (PDT)
+Received: from orion.home ([2a02:c7c:7259:a00:7f3a:5ab2:26aa:831f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1a540e1esm18449065e9.28.2025.08.13.17.15.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Aug 2025 17:15:01 -0700 (PDT)
+From: Alexey Klimov <alexey.klimov@linaro.org>
+Subject: [PATCH v3 0/3] Add PM4125 audio codec driver
+Date: Thu, 14 Aug 2025 01:14:46 +0100
+Message-Id: <20250814-pm4125_audio_codec_v1-v3-0-31a6ea0b368b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 14 Aug 2025 01:10:16 +0100
-Message-Id: <DC1PQIF1FR6Y.JO8TBH3K6TS1@linaro.org>
-Subject: Re: [PATCH 0/9] arm64: dts: qcom: x1: Disable audio codecs by
- default
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Stephan Gerhold" <stephan.gerhold@linaro.org>
-Cc: "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konradybcio@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski@linaro.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Abel Vesa"
- <abel.vesa@linaro.org>, "Johan Hovold" <johan@kernel.org>
-X-Mailer: aerc 0.20.0
-References: <20250813-x1e80100-disable-audio-codecs-v1-0-af82d9576f80@linaro.org>
-In-Reply-To: <20250813-x1e80100-disable-audio-codecs-v1-0-af82d9576f80@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHcqnWgC/4XN0QrCIBTG8VcZXmfocWrrqveIGKJnm1BzaEkx9
+ u653UQX0eX/g/M7M0kYPSZyrGYSMfvkw1hC7CpiBzP2SL0rTYCBZAoUnW41B9mah/OhtcGhbTO
+ nDKzRRjDmnCXldorY+efmni+lB5/uIb62N5mv6z9xRSlKaISwNTSGna5+NDHsQ+zJSmb4MJrzX
+ wwUhgtU3UFIpbX5YpZleQPo0+7TAgEAAA==
+X-Change-ID: 20250626-pm4125_audio_codec_v1-02ca7a300ddc
+To: Srinivas Kandagatla <srini@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>, 
+ christophe.jaillet@wanadoo.fr, Alexey Klimov <alexey.klimov@linaro.org>
+X-Mailer: b4 0.14.2
 
-On Wed Aug 13, 2025 at 4:58 PM BST, Stephan Gerhold wrote:
-> Currently, the macro audio codecs are enabled by default in x1e80100.dtsi=
-.
-> However, they do not probe without the ADSP remoteproc, which is disabled
-> by default. Also, not all boards make use of all the audio codecs, e.g.
-> there are several boards with just two speakers. In this case, the
-> &lpass_wsa2macro is not used.
->
-> Disable the audio codecs by default in x1e80100.dtsi and enable only the
-> used macros for each device.
->
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> ---
-> Stephan Gerhold (9):
->       arm64: dts: qcom: x1-asus-zenbook-a14: Explicitly enable used audio=
- codecs
->       arm64: dts: qcom: x1-crd: Explicitly enable used audio codecs
->       arm64: dts: qcom: x1e001de-devkit: Explicitly enable used audio cod=
-ecs
->       arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s: Explicitly enable =
-used audio codecs
->       arm64: dts: qcom: x1e80100-hp-omnibook-x14: Explicitly enable used =
-audio codecs
->       arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Explicitly enable us=
-ed audio codecs
->       arm64: dts: qcom: x1e80100-microsoft-romulus: Explicitly enable use=
-d audio codecs
->       arm64: dts: qcom: x1e80100-qcp: Explicitly enable used audio codecs
+PMICs like PM4125 have in-built audio codec IC. The series here
+adds support for this codec driver: DT bindings and codec driver
+itself that consists mainly of two parts: soundwire devices and
+codec part itself.
 
-The subject or title is a bit confusing. "Disable audio codecs" and bunch
-of enable commits.
-Maybe "Move audio codecs enablement out of .dtsi into whatever"?
+This audio codec can be found on platforms like QCM2290 and
+on Qualcomm QRB2210 RB1 board.
 
->       arm64: dts: qcom: x1e80100: Disable audio codecs by default
+We are working on this together with Srini
+(srinivas.kandagatla@oss.qualcomm.com or srini@kernel.org).
+
+This driver also has a bit limited support for concurrent playback,
+since line out path is connected to left input channel.
+
+Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+---
+Changes in v3:
+-- added qcom,pm4125-codec compatible to qcom,spmi-pmic.yaml
+   as suggested by Krzysztof;
+-- added braces around if-else branch in pm4125_probe, removed coma in
+   pm4125_slave_id[] as suggested by Christophe Jaillet;
+-- slightly re-ordered header files in pm4125.c;
+-- reworked how driver deals with regulators after Christophe Jaillet
+   noted that it is broken, devm_regulator_bulk_get_enable() is used,
+   it looks like there is no need for regulator_bulk_{disable,free};
+-- PDM watchdog irqs are moved to separate (new) widgets
+   as suggested by Srini, therefore audio routing and events for
+   HPH{L,R},LO and ERA PGAs are changed;
+-- extended pr_err() msg in pm4125_get_micb_vout_ctl_val();
+-- small styling code adjustment in pm4125_get_compander();
+-- added/reworked pm4125_bind() to add error paths
+   as suggested by Christophe Jaillet;
+-- removed of_node_put() in pm4125_add_slave_components() after Krzysztof
+   pointed out that of_node_put() is out of place, it looks like
+   of_parse_phandle() gets the node and component_release_of() will
+   do of_node_put() on dev release so no need for of_node_put();
+-- Link to v2: https://lore.kernel.org/r/20250711-pm4125_audio_codec_v1-v2-0-13e6f835677a@linaro.org
+
+Changes in v2:
+
+-- added rxclk dapm widget, fixed/changed RX1/RX2 widgets;
+-- added comment for pm4125_wd_handle_irq();
+-- registers access permission routines have been reworked;
+-- changed pm4125_sdw_* functions to static inline;
+-- cleaned a bit pm4125_{rx,tx}_sdw_channels;
+-- got rid of most of hardcoded magic numbers (for the remaining regs+values I don't have documentation);
+-- updated commit messages;
+-- pm4125_tx_sdw_ports has been updated;
+-- removed of_match_ptr() and OF ifdef;
+-- removed couple of pm_runtime_mark_last_busy() calls;
+-- removed swap_gnd_mic;
+-- removed __pm4125_codec_enable_micbias_pullup();
+-- reordered sequence of calls in pm4125_probe() to make it a bit more logical;
+-- removed excessive regulator_bulk_free() and in error path in _probe();
+-- re-aligned for 100-chars length;
+-- removed of_node_get(), replaced with of_node_put();
+-- corrected some dev_err() messages;
+-- corrected some comments;
+-- removed legacy "WCD" from stream_name, replaced with "PM4125";
+-- removed null callbacks from struct wcd_mbhc_cb;
+-- removed "HPH Type" and "HPH{L,R} Impedance";
+-- pm4125_codec_enable_micbias() has been updated;
+-- pm4125_micbias_control() and pm4125_codec_enable_adc have been implemented;
+-- pm4125_codec_enable_dmic() has been updated;
+-- cleaned struct pm4125_priv;
+-- some rework to pm4125_handle_post_irq() and pm4125_regmap_irq_chip;
+-- updated Kconfig+Makefile (to make things be in sorting order);
+-- new patch: adding new files to MAINTAINERS file;
+
+For dt bindings:
+-- I think all requested comments from Krzysztof were implemented;
+-- squashed qcom,spmi-pmic change into previous patch to avoid warnings on dtbs check;
+
+Not done:
+-- Mark suggested to look at reimplementing this as a child mfd device from
+MFD PMIC without device tree description.
+
+- Link to v1: https://lore.kernel.org/r/20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org
+
+---
+Alexey Klimov (3):
+      dt-bindings: sound: add bindings for pm4125 audio codec
+      ASoC: codecs: add new pm4125 audio codec driver
+      MAINTAINERS: add Qualcomm PM4125 audio codec to drivers list
+
+ .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |    7 +-
+ .../bindings/sound/qcom,pm4125-codec.yaml          |  134 ++
+ .../devicetree/bindings/sound/qcom,pm4125-sdw.yaml |   79 +
+ MAINTAINERS                                        |    2 +
+ sound/soc/codecs/Kconfig                           |   18 +
+ sound/soc/codecs/Makefile                          |    8 +
+ sound/soc/codecs/pm4125-sdw.c                      |  547 ++++++
+ sound/soc/codecs/pm4125.c                          | 1793 ++++++++++++++++++++
+ sound/soc/codecs/pm4125.h                          |  313 ++++
+ 9 files changed, 2900 insertions(+), 1 deletion(-)
+---
+base-commit: 43c3c17f0c805882d1b48818b1085747a68c80ec
+change-id: 20250626-pm4125_audio_codec_v1-02ca7a300ddc
 
 Best regards,
-Alexey
+-- 
+Alexey Klimov <alexey.klimov@linaro.org>
+
 
