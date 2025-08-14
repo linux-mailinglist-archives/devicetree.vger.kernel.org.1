@@ -1,97 +1,120 @@
-Return-Path: <devicetree+bounces-204539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E869B25E80
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:14:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3897AB25E8E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:17:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79E6156685A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:13:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A41E91C2552C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D2A2E719D;
-	Thu, 14 Aug 2025 08:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88E042E2DCD;
+	Thu, 14 Aug 2025 08:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UmDFlGeu"
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="SS3K9Ijq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4F62E610E;
-	Thu, 14 Aug 2025 08:13:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7AC22E765B
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 08:15:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755159220; cv=none; b=Xkf9U+0qzx61G+/to5D77jnL105R3MIHyXVte37Xvq5v6wfrYy228CwIy07qke0qpDC1XhPcBANPuioA/rcc7FF9X6pIK33hKFalws4bZwBAYVO+6fk9mTIOi9//tgFJLsiEHZp8jwRDIh1QOfxh6ayPY014r3UYFiGue4TNrbo=
+	t=1755159341; cv=none; b=G5gWKROyt0ehvQIzy1VRMX8vMs26fo51ha76lTcD7zAXeCuBKNleXFCDhqG8Y5Clqsi7PT1q40KLbR/QT/UqgWNkNxryTLva8JJcktFbiNRyZnqt1pbSPy6RxgvetZbaa39fIJdR5KckxJ5wevWInep6FbDdSSZF4ioJP3Ca04w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755159220; c=relaxed/simple;
-	bh=2D1OOFtNbdpnycHdnojgPyCPrVecspF1AWE0YpTc5Ms=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HEDkaHYk4AlLhNu108pBEHi0RUIa5OhusOZQ0wGgdm46ycWj2t4Z9YnxE7psVB36PAmUlO4TCoCMWfY4xRb+xRaSapCglJMfhNZulI5JGvxjAMPGmrJiI8J2GGTR241+lfErNrxvdAYM8TxjsQl6K3xB9/4Sbn4D30TdTwgVmiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UmDFlGeu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDC14C4CEF4;
-	Thu, 14 Aug 2025 08:13:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755159218;
-	bh=2D1OOFtNbdpnycHdnojgPyCPrVecspF1AWE0YpTc5Ms=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UmDFlGeuPH1XfHlUH4Z3k2aCt3AaRHbvrNWNEngpXoKELe0G7p8j9wn597XTJ6iRN
-	 L3uQCWlFV7V11dHkYcctJnDXVUiM/pnqLIpHn5b6459R2ZpjsJfxczmbkz0dyiIr6k
-	 lRmDayR2Z4PLhL5m8hChhnNuaQ2eJT6crOpObWEpHB59dqLxSjv7imEUReeqZk4Z3Z
-	 vWNlmem+zPdfiStTM7Gsgo9euIJOjnoSjYx9dEXDLUFQ84fUlCDU8TYPkepLsnbB0n
-	 VYJJgnTxtFcVsbm1BqiBT7BQtfg9fASWovDCmdB+MXojxqkC+WjgOCGfrg4DLdXPZD
-	 4qmMis49DPJYQ==
-Date: Thu, 14 Aug 2025 10:13:35 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shradha Todi <shradha.t@samsung.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org, 
-	robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, alim.akhtar@samsung.com, vkoul@kernel.org, kishon@kernel.org, 
-	arnd@arndb.de, m.szyprowski@samsung.com, jh80.chung@samsung.com, 
-	pankaj.dubey@samsung.com
-Subject: Re: [PATCH v3 08/12] dt-bindings: phy: Add PCIe PHY support for FSD
- SoC
-Message-ID: <20250814-refreshing-watchful-lemming-4feb03@kuoka>
-References: <20250811154638.95732-1-shradha.t@samsung.com>
- <CGME20250811154729epcas5p456ddb0d1ba34b992204f54724b57a401@epcas5p4.samsung.com>
- <20250811154638.95732-9-shradha.t@samsung.com>
+	s=arc-20240116; t=1755159341; c=relaxed/simple;
+	bh=vyBNpa/h0nKYr0F+MWJtAcla1gioP/9iiUzs4ZKIUgk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=utHl219W5aLqUCe6U8rzXvI8Ya9KJva6ryhFJxL6+KmNB80z7bn93Tu3FwMoyB8tujMEF9r0ysGjas8ueSzqZyX7sWhbAYWKFOXApuJc7RmamT/Y1jB6Jf3IemcGDs55A/y7C4IGE96R3fd1KbYjcH6QhmH6FvZfkwu3o+t1DWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=SS3K9Ijq; arc=none smtp.client-ip=212.77.101.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 8117 invoked from network); 14 Aug 2025 10:15:34 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1755159334; bh=siCawFjKEYaGDYTl/uHnk23Bcm/PTLCbRpO7IOPBWQQ=;
+          h=From:To:Subject;
+          b=SS3K9IjqiSkBYSBWV0NU1PfY+/BXJRIlHlQCq6ppBotafgtbBKibQygFfrjFpleEU
+           VTTWj7FmR2jAYttry3byzTi+Pvriv7Qo4k7E1uuJYQ/eeL+C2iAjR8CLGvplFdKO74
+           Ole95/xAgi9OSrGgn5B+qmglrqsqG3nCwxskxCg+hAOues9+cjrbmDBESSslihhwQe
+           P5eWAno+hqy68owIy780i9XLc9uuaW1DFQV9V0RlSGMcJvFhLU+r4gbgnIsn7ncUo6
+           2W3e6kTCJUJE1oQrSCccwUL+U6+ws7KFZXwOc0Hu1IkDTwLlA+68JnihZUob83MIWw
+           1oDuNBTWAMf2Q==
+Received: from 83.24.134.210.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.134.210])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <tsbogend@alpha.franken.de>; 14 Aug 2025 10:15:34 +0200
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+To: tsbogend@alpha.franken.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	olek2@wp.pl,
+	linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: mips: lantiq: Document lantiq dcdc binding
+Date: Thu, 14 Aug 2025 10:15:21 +0200
+Message-ID: <20250814081525.3058069-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250811154638.95732-9-shradha.t@samsung.com>
+Content-Transfer-Encoding: 8bit
+X-WP-MailID: 74f88ab005c4f5654f7aaf5d4b4f85a5
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 000000A [0QN0]                               
 
-On Mon, Aug 11, 2025 at 09:16:34PM +0530, Shradha Todi wrote:
-> Since Tesla FSD SoC uses Samsung PCIe PHY, add support in
-> exynos PCIe PHY bindings.
-> 
-> In Tesla FSD SoC, the two PHY instances, although having identical
-> hardware design and register maps, are placed in different locations
-> (Placement and routing) inside the SoC and have distinct
-> PHY-to-Controller topologies. (One instance is connected to two PCIe
-> controllers, while the other is connected to only one). As a result,
-> they experience different analog environments, including varying
-> channel losses and noise profiles.
-> 
-> Since these PHYs lack internal adaptation mechanisms and f/w based
-> tuning, manual register programming is required for analog tuning.
-> To ensure optimal signal integrity, it is essential to use different
-> register values for each PHY instance, despite their identical hardware
-> design. This is because the same register values may not be suitable
-> for both instances due to their differing environments and topologies.
+TODO: Description
 
-Would be nice if above (or most of it) would be reflected in binding
-description. Please do so and:
+Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+---
+ .../mips/lantiq/lantiq,dcdc-xrx200.yaml       | 32 +++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml b/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml
+new file mode 100644
+index 000000000000..5648b9676b3c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx200.yaml
+@@ -0,0 +1,32 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mips/lantiq/lantiq,dcdc-xrx200.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Lantiq DCDC (DC-DC converter with voltage sensor)
++
++maintainers:
++  - Aleksander Jan Bajkowski <olek2@wp.pl>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - lantiq,dcdc-xrx200
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    dcdc@106a00 {
++        compatible = "lantiq,dcdc-xrx200";
++        reg = <0x106a00 0x200>;
++    };
+-- 
+2.47.2
 
 
