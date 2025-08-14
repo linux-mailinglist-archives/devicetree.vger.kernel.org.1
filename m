@@ -1,66 +1,61 @@
-Return-Path: <devicetree+bounces-204906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88ED6B272D0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 01:10:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DA77B27300
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 01:30:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E4D01889077
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 23:10:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 340B15C451A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 23:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8082528850C;
-	Thu, 14 Aug 2025 23:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C270E244696;
+	Thu, 14 Aug 2025 23:30:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qb75p/oo"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="mFpxwWvY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE9012882BC;
-	Thu, 14 Aug 2025 23:09:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B212219E0
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 23:30:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755212987; cv=none; b=j+prE7K+JdDcoV+s00R0GKRTIdcF3o8AlwxLCM+rTJ/DghU+Q8f7PHypqdJz0/eW24lNxB9Onpqn/Mgbi2x24OW9XXBKp9sn6f8cT5d2wScZKWKzbtroXLy/dFTUjkKFpGNnUMdAT9DZN5z69pLIf4WKQ1+lrKi+s0ckP8SqIws=
+	t=1755214225; cv=none; b=QMJhlpFE35Gksq3PZ0jaHKMSnJYNCMsI5gTn/9viJc+qEumrV7Jh7gSViSXnX3ad57aS0nBV5M99EUrEy59RIyQXvGgGJgUOPwWjvmwRy74lUJ2ELc38XQx3twzeU8dbJ9ra/SOdfIajPEJW3gsRKSkNkMZJsZwWxsDHDw4RfME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755212987; c=relaxed/simple;
-	bh=mKoae9MecbXNFCvFS646eLVMVdadneD5NIJTRY7VQzA=;
+	s=arc-20240116; t=1755214225; c=relaxed/simple;
+	bh=1qMHNrAntP47/3sI+MxFungka23Ot422MCBrtY+Cx/4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RxPoZu7+vlUpXuYDhi9aJo2o93DRAeePGnbjXlryjQONb3xzUaJmCwRkpt40GtjFC1Q73bTMIzlZHXkdxOKFf2Lmos5vQR9Q0fXxxWuoBe3LRRnS8JspWoXnE/X6sMUFKxianQm8Oqmc1W523/pEXibdCW+LAo/19TDFiZX9Hz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qb75p/oo; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=DTCz0hGBofhdVx2iiYQG59mbPXFd0G/0V1YI5EH/HnY=; b=qb75p/ooganBGScylMakCyEKE3
-	UJqcQFio0tRaQn9LEgPbPgZdgLngcJ12CfXXLFyr1dmXvzEH6H/VvWgOfFBlz7ASKQnIcyzjO60u0
-	s0MeUYqyEK8eWBCP28GtCgTBnMo4V/nROYOJ1xkVO9FPCI5Yg0NDEbjV40wB+mPl0Os8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1umh4j-004l3a-GY; Fri, 15 Aug 2025 01:09:37 +0200
-Date: Fri, 15 Aug 2025 01:09:37 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: David Yang <mmyangfl@gmail.com>, netdev@vger.kernel.org,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC net-next 1/3] dt-bindings: net: dsa: yt921x: Add Motorcomm
- YT921x switch support
-Message-ID: <0c94e763-8963-4a04-8157-87725e80075c@lunn.ch>
-References: <20250814065032.3766988-1-mmyangfl@gmail.com>
- <20250814065032.3766988-2-mmyangfl@gmail.com>
- <ef95652d-eafd-45e1-9603-16c4edcb8e9e@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OgAYtP9U1VN0Gz3VS7oB9Czxc7k9Mu2M0b8AL5n5wxsISOKFEftcmyQdUuyq6azG/SYzGi3U/x0AX6K1R6o9GYVlO9bZHIDYD7fXap9jBOfMx5qzbmmBqJ8yGIWBXPFQHrd2alyXg/CiZVIBQg5UF30AadOga09rwpd9E02ED5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=mFpxwWvY; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: by linux.microsoft.com (Postfix, from userid 1152)
+	id 18EBF2018F18; Thu, 14 Aug 2025 16:30:18 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 18EBF2018F18
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1755214218;
+	bh=HJpg2pS7/i5/eJlR85F2V9d17QqSosoQgMmN8Oxuetc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mFpxwWvYUtB7xtV+IEmQnssxxYT8+OJINsLzStaw5+XVPEGLowQhZZQd5A+IyC97p
+	 k/XxIeFcy/t6UkH30eLkDXWkafBTl+BQIoTt+YoyJ14kTP+LbLHcKKzrgdX9FPb4c1
+	 X+Knpbr9bVs6ctgbJeEGGOXFjs4PzWndk1zR58d0=
+Date: Thu, 14 Aug 2025 16:30:18 -0700
+From: Shyam Saini <shyamsaini@linux.microsoft.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, virtualization@lists.linux.dev,
+	will@kernel.org, jacob.pan@linux.microsoft.com,
+	eric.auger@redhat.com, code@tyhicks.com,
+	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
+	bboscaccy@linux.microsoft.com, robh@kernel.org,
+	saravanak@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lizhi.hou@amd.com, clement.leger@bootlin.com
+Subject: Re: [PATCH v3 2/3] iommu/of: fix device tree configuration for PCI
+ devices
+Message-ID: <20250814233018.GA31418@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <20250806215539.1240561-1-shyamsaini@linux.microsoft.com>
+ <20250806215539.1240561-3-shyamsaini@linux.microsoft.com>
+ <20250808121515.GE377696@ziepe.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,47 +64,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ef95652d-eafd-45e1-9603-16c4edcb8e9e@kernel.org>
+In-Reply-To: <20250808121515.GE377696@ziepe.ca>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-> > +  motorcomm,switch-id:
-> > +    description: |
-> > +      When managed via mdio, hard-configured switch id to distinguish between
-> > +      multiple devices.
+Hi Jason,
+
+On Fri, Aug 08, 2025 at 09:15:15AM -0300, Jason Gunthorpe wrote:
+> On Wed, Aug 06, 2025 at 02:55:38PM -0700, Shyam Saini wrote:
+> > Individual PCI devices lack dedicated device tree nodes, but
 > 
-> IDs are not allowed.
+> This is not the case, you can put PCI devices in the DT as well, there
+> is a syntax for it. Why not do that and have the FW populate it on the
+> device node itself?
 
-Please describe in more detail what this is used for.
+sorry, I missed that, were you referring to [1] CONFIG_PCI_DYNAMIC_OF_NODES
+approach?
 
-When the switch is hanging off an MDIO bus, there is a reg
-property. Maybe that is what you mean here? Take a look at mv88e6xxx,
-and other DSA devices which are on MDIO busses.
+I tried a PoC with that and got the expected results. However, it requires
+hardcoding PCI device IDs using DECLARE_PCI_FIXUP_FINAL?
 
-> > +    enum: [0, 1, 2, 3]
-> > +    default: 0
-> > +
-> > +  mdio:
-> > +    $ref: /schemas/net/mdio.yaml#
-> > +    unevaluatedProperties: false
-> > +    description: MDIO bus for the internal GbE PHYs.
-> > +
-> > +  mdio-external:
-> > +    $ref: /schemas/net/mdio.yaml#
-> > +    unevaluatedProperties: false
-> > +    description: External MDIO bus.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: motorcomm,yt921x-mdio-external
+or were you referring to [2]?
+
+In that case, the PCI child node data needs to be parsed, which is
+currently handled individually by each host controller driver.
+
+This might not be a strong argument, but since firmware updates tend
+to happen less frequently than OS updates, any addition or modification
+to the FDT would require a firmware update. Wouldn't it be more
+maintainable to keep this logic in Linux, which is easier to update
+and typically updated more often?
+  
+> You should CC all the device tree maintainers on something like this
+> as well.
 > 
-> Incomplete compatible... but also not needed in the first place.
 
-So this device has two MDIO busses. You need to somehow describe each
-in DT, so you can PHYs off them. And you need to know which is
-which. For mv88e6xxx, which i know is maybe not the best example
-because a lot of best practices have changed since then, some variants
-also have two MDIO busses, and we give the second one a compatible so
-we can tell it part from the other which is common to all mv88e6xxx
-devices.
+sure, Cc'd some more folks
 
-	Andrew
+[1] https://lwn.net/Articles/939317/
+[2] https://elixir.bootlin.com/linux/v6.16/source/arch/arm64/boot/dts/nvidia/tegra186.dtsi#L1340
+
+Thanks,
+Shyam
 
