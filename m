@@ -1,72 +1,62 @@
-Return-Path: <devicetree+bounces-204714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E67A3B2680B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 15:52:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DD74B2683F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 15:58:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F6393BDE1A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:47:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78469683472
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:52:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0823009F2;
-	Thu, 14 Aug 2025 13:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504293002CA;
+	Thu, 14 Aug 2025 13:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Z/GCGjvG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n4s69L1v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB6E3009E7;
-	Thu, 14 Aug 2025 13:47:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 249F52FE064;
+	Thu, 14 Aug 2025 13:52:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755179229; cv=none; b=ojO1NWcjuVWfrQ/vC5jeurRjOFA/l1XHGTJBULZ6JUUSCs5Y34srBetzPdlB1H3LQofpB+QLikHcmNh2hI1BLJDGqdoAKUIKy07oKPItzPDQxz8NG4RtFBTLDYvvEyhSfCuA5ffeo1QL0FTnWPAe1Rnat37n984U91vPFKVWLxU=
+	t=1755179561; cv=none; b=BvIBaIad0Dh6Dd0ZE0m7lFbqGNoeCyNPrvnuRunNToc8lvxAFGP2/6rVKYDnlmaZ76T8zzyWh6sEtN/skzKjjP1E9yr2SIBxjTIX4UkxKirHXc//u+IQowiI64P+prfTkrdApklk+Oyakb3Yns7b/Ll6qQhYvOLXEKDN6OiiiEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755179229; c=relaxed/simple;
-	bh=lDvxS32hdxTWk+QbrjIF1OqHcRJC6N9gm4cLOcrBODo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Y2SSjyrUiyCYe8aR2b4u8NUBc/MA6XbHTCmC5z2211L/gRo59asJDI8+Ns4YbEgpb7jUgIDiW2F+JXssta1JeM3kR2xzp+rAlZC5GHZ/T7LZv1l7s8p82D6o1FXOisOJwbYmjVlKsnq8Lzgi8iRdwItYMly8T7DNXMDOUurd6S8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Z/GCGjvG; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57EDl1gg1890369;
-	Thu, 14 Aug 2025 08:47:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755179221;
-	bh=kcD25U2aC3p0wP+5f8KI7KX1hON58t0yb8dyeFLFTs4=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Z/GCGjvG8fdJClRGu3fqXfD0BwOFgJwal9+mjvc7Fz14/ZQiIbI/qGDiwxcNSEzqQ
-	 tpmAgyCnARdouzgF/vLKF+J9SGPUwH/Kdhfvgh/YAQ6ko5+HnSwwcfdtOuZp4LAJWJ
-	 h1tfvWQIz1ivBrVogZyWH8hLa07x3swN94iDEq1M=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57EDl1xX1748940
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 14 Aug 2025 08:47:01 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 14
- Aug 2025 08:47:00 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 14 Aug 2025 08:47:00 -0500
-Received: from localhost (dhcp-172-24-233-105.dhcp.ti.com [172.24.233.105])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57EDkxLr3688581;
-	Thu, 14 Aug 2025 08:47:00 -0500
-From: Anshul Dalal <anshuld@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: Anshul Dalal <anshuld@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 4/4] arm64: dts: ti: Add support for AM6254atl SiP SK
-Date: Thu, 14 Aug 2025 19:15:30 +0530
-Message-ID: <20250814134531.2743874-5-anshuld@ti.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250814134531.2743874-1-anshuld@ti.com>
-References: <20250814134531.2743874-1-anshuld@ti.com>
+	s=arc-20240116; t=1755179561; c=relaxed/simple;
+	bh=YVEL4qHwQgtfbHG+I3WiGlyaT3HMVv50NMOTP8/4a9U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=F2WOmNFgED8eIJGdtcP2FEOk/5Ru8IsADgdmWoNp5lvkZ6ajMx9e3+cUvAEj79pcsC7nXwVq0fw7sIYD7v1dsKwd+m5KtwJQpzaeqmvUOynw7ZcWbMw9m7tIjizq6/tguO06zC/hr/GcbEjf1Rm/18zynXl1TWWxMCyuqbAcp/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n4s69L1v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E80EC4CEED;
+	Thu, 14 Aug 2025 13:52:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755179560;
+	bh=YVEL4qHwQgtfbHG+I3WiGlyaT3HMVv50NMOTP8/4a9U=;
+	h=From:To:Cc:Subject:Date:From;
+	b=n4s69L1vyfn02IWPi3qjxNuzZiiTe6HbC5SpHqwwZRZovypprfjb3V54PPxZHRjEh
+	 yye9ad09dvbTaNYJyohgDJBSfnb42xo8WjqVqMjWfKrAhPU5Ezbwa4LqcbWAGqPICx
+	 bVn0b/VL6RkbQijQ4dEedlg2li+pLzWBZL7cdjW8ylhVdR67fdPO0vmFEa3amnhZaq
+	 rxNUxGuD1M+MqUFmqCD1Z0Jkpp8E9Q/6Rm9lvI+zLwybxbJ11O6UdVvlxylko9VrLL
+	 35QiMbP3DELeBk1Mj1P6ThCN60wA1Ij0rEfjgbchRn4WiIGAaz+xlVwDnOfA2HXsjv
+	 SwZV1Q2GHUDJA==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Scott Wood <oss@buserror.net>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH v2] dt-bindings: powerpc: Drop duplicate fsl/mpic.txt
+Date: Thu, 14 Aug 2025 08:51:56 -0500
+Message-ID: <20250814135157.2747346-2-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,702 +64,294 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-This patch adds the dt for SK-AM62-SIP, which uses the existing
-SK-AM62 board design with the new AM6254atl SiP. This changes the
-location of memory node from the board dts to SoC level dtsi
-(k3-am6254atl in our case).
+The chrp,open-pic binding schema already supports the "fsl,mpic"
+compatible. Add a couple of missing properties and support for 4
+"#interrupt-cells" to the chrp,open-pic binding, so fsl/mpic.txt can be
+removed.
 
-Therefore this patch introduces the new 'k3-am625-sk-common.dtsi'
-which represents the common hardware used for both 'am625-sk' and
-'am6254atl-sk' boards with the inheritance hierarchy modified to:
-
-k3-am625-sk.dts:
-
-     k3-am62    k3-am62x-sk-common
-        |            |
-    k3-am625    k3-am625-sk-common
-        |            |
-        +-----+------+
-              |
-         k3-am625-sk
-
-k3-am6254atl-sk.dts:
-
-     k3-am62
-        |
-     k3-am625       k3-am62x-sk-common
-        |                |
-    k3-am6254atl    k3-am625-sk-common
-        |                |
-        +-------+--------+
-                |
-         k3-am6254atl-sk
-
-Signed-off-by: Anshul Dalal <anshuld@ti.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/ti/Makefile               |   1 +
- .../arm64/boot/dts/ti/k3-am625-sk-common.dtsi | 296 ++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am625-sk.dts        | 296 +-----------------
- arch/arm64/boot/dts/ti/k3-am6254atl-sk.dts    |  15 +
- 4 files changed, 313 insertions(+), 295 deletions(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-sk-common.dtsi
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6254atl-sk.dts
+v2:
+ - Add support for 4 #interrupt-cells
+---
+ .../interrupt-controller/chrp,open-pic.yaml   |  17 +-
+ .../devicetree/bindings/powerpc/fsl/mpic.txt  | 231 ------------------
+ 2 files changed, 16 insertions(+), 232 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/powerpc/fsl/mpic.txt
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index aad9177930e6..72f8755a0f30 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -28,6 +28,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62x-phyboard-lyra-gpio-fan.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk-nand.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am62-pocketbeagle2.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am6254atl-sk.dtb
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/chrp,open-pic.yaml b/Documentation/devicetree/bindings/interrupt-controller/chrp,open-pic.yaml
+index f0d9bbd7d510..642738512f3c 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/chrp,open-pic.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/chrp,open-pic.yaml
+@@ -36,12 +36,27 @@ properties:
+     const: 0
  
- # Boards with AM62Ax SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am625-sk-common.dtsi
-new file mode 100644
-index 000000000000..fe0b98e1d105
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk-common.dtsi
-@@ -0,0 +1,296 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Common dtsi for AM625 SK and derivatives
-+ *
-+ * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+#include "k3-am62x-sk-common.dtsi"
-+
-+/ {
-+	opp-table {
-+		/* Add 1.4GHz OPP for am625-sk board. Requires VDD_CORE to be at 0.85V */
-+		opp-1400000000 {
-+			opp-hz = /bits/ 64 <1400000000>;
-+			opp-supported-hw = <0x01 0x0004>;
-+			clock-latency-ns = <6000000>;
-+		};
-+	};
-+
-+	vmain_pd: regulator-0 {
-+		/* TPS65988 PD CONTROLLER OUTPUT */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vmain_pd";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vcc_5v0: regulator-1 {
-+		/* Output of LM34936 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vmain_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vcc_3v3_sys: regulator-2 {
-+		/* output of LM61460-Q1 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_sys";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vmain_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vdd_mmc1: regulator-3 {
-+		/* TPS22918DBVR */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vcc_3v3_sys>;
-+		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
-+		bootph-all;
-+	};
-+
-+	vdd_sd_dv: regulator-4 {
-+		/* Output of TLV71033 */
-+		compatible = "regulator-gpio";
-+		regulator-name = "tlv71033";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vcc_5v0>;
-+		gpios = <&main_gpio0 31 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+		bootph-all;
-+	};
-+
-+	vcc_1v8: regulator-5 {
-+		/* output of TPS6282518DMQ */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_mmc0_pins_default: main-mmc0-default-pins {
-+		bootph-all;
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x220, PIN_INPUT, 0) /* (Y3) MMC0_CMD */
-+			AM62X_IOPAD(0x218, PIN_INPUT, 0) /* (AB1) MMC0_CLK */
-+			AM62X_IOPAD(0x214, PIN_INPUT, 0) /* (AA2) MMC0_DAT0 */
-+			AM62X_IOPAD(0x210, PIN_INPUT_PULLUP, 0) /* (AA1) MMC0_DAT1 */
-+			AM62X_IOPAD(0x20c, PIN_INPUT_PULLUP, 0) /* (AA3) MMC0_DAT2 */
-+			AM62X_IOPAD(0x208, PIN_INPUT_PULLUP, 0) /* (Y4) MMC0_DAT3 */
-+			AM62X_IOPAD(0x204, PIN_INPUT_PULLUP, 0) /* (AB2) MMC0_DAT4 */
-+			AM62X_IOPAD(0x200, PIN_INPUT_PULLUP, 0) /* (AC1) MMC0_DAT5 */
-+			AM62X_IOPAD(0x1fc, PIN_INPUT_PULLUP, 0) /* (AD2) MMC0_DAT6 */
-+			AM62X_IOPAD(0x1f8, PIN_INPUT_PULLUP, 0) /* (AC2) MMC0_DAT7 */
-+		>;
-+	};
-+
-+	main_rgmii2_pins_default: main-rgmii2-default-pins {
-+		bootph-all;
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x184, PIN_INPUT, 0) /* (AE23) RGMII2_RD0 */
-+			AM62X_IOPAD(0x188, PIN_INPUT, 0) /* (AB20) RGMII2_RD1 */
-+			AM62X_IOPAD(0x18c, PIN_INPUT, 0) /* (AC21) RGMII2_RD2 */
-+			AM62X_IOPAD(0x190, PIN_INPUT, 0) /* (AE22) RGMII2_RD3 */
-+			AM62X_IOPAD(0x180, PIN_INPUT, 0) /* (AD23) RGMII2_RXC */
-+			AM62X_IOPAD(0x17c, PIN_INPUT, 0) /* (AD22) RGMII2_RX_CTL */
-+			AM62X_IOPAD(0x16c, PIN_OUTPUT, 0) /* (Y18) RGMII2_TD0 */
-+			AM62X_IOPAD(0x170, PIN_OUTPUT, 0) /* (AA18) RGMII2_TD1 */
-+			AM62X_IOPAD(0x174, PIN_OUTPUT, 0) /* (AD21) RGMII2_TD2 */
-+			AM62X_IOPAD(0x178, PIN_OUTPUT, 0) /* (AC20) RGMII2_TD3 */
-+			AM62X_IOPAD(0x168, PIN_OUTPUT, 0) /* (AE21) RGMII2_TXC */
-+			AM62X_IOPAD(0x164, PIN_OUTPUT, 0) /* (AA19) RGMII2_TX_CTL */
-+		>;
-+	};
-+
-+	ospi0_pins_default: ospi0-default-pins {
-+		bootph-all;
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x000, PIN_OUTPUT, 0) /* (H24) OSPI0_CLK */
-+			AM62X_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F23) OSPI0_CSn0 */
-+			AM62X_IOPAD(0x00c, PIN_INPUT, 0) /* (E25) OSPI0_D0 */
-+			AM62X_IOPAD(0x010, PIN_INPUT, 0) /* (G24) OSPI0_D1 */
-+			AM62X_IOPAD(0x014, PIN_INPUT, 0) /* (F25) OSPI0_D2 */
-+			AM62X_IOPAD(0x018, PIN_INPUT, 0) /* (F24) OSPI0_D3 */
-+			AM62X_IOPAD(0x01c, PIN_INPUT, 0) /* (J23) OSPI0_D4 */
-+			AM62X_IOPAD(0x020, PIN_INPUT, 0) /* (J25) OSPI0_D5 */
-+			AM62X_IOPAD(0x024, PIN_INPUT, 0) /* (H25) OSPI0_D6 */
-+			AM62X_IOPAD(0x028, PIN_INPUT, 0) /* (J22) OSPI0_D7 */
-+			AM62X_IOPAD(0x008, PIN_INPUT, 0) /* (J24) OSPI0_DQS */
-+		>;
-+	};
-+
-+	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x07c, PIN_OUTPUT, 7) /* (P25) GPMC0_CLK.GPIO0_31 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_gpio1_ioexp_intr_pins_default: main-gpio1-ioexp-intr-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
-+		>;
-+		bootph-all;
-+	};
-+};
-+
-+&main_gpio0 {
-+	bootph-all;
-+};
-+
-+&main_gpio1 {
-+	bootph-all;
-+};
-+
-+&main_i2c1 {
-+	exp1: gpio@22 {
-+		compatible = "ti,tca6424";
-+		reg = <0x22>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&main_gpio1_ioexp_intr_pins_default>;
-+		interrupt-parent = <&main_gpio1>;
-+		interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "GPIO_CPSW2_RST", "GPIO_CPSW1_RST",
-+				   "PRU_DETECT", "MMC1_SD_EN",
-+				   "VPP_LDO_EN", "EXP_PS_3V3_En",
-+				   "EXP_PS_5V0_En", "EXP_HAT_DETECT",
-+				   "GPIO_AUD_RSTn", "GPIO_eMMC_RSTn",
-+				   "UART1_FET_BUF_EN", "WL_LT_EN",
-+				   "GPIO_HDMI_RSTn", "CSI_GPIO1",
-+				   "CSI_GPIO2", "PRU_3V3_EN",
-+				   "HDMI_INTn", "PD_I2C_IRQ",
-+				   "MCASP1_FET_EN", "MCASP1_BUF_BT_EN",
-+				   "MCASP1_FET_SEL", "UART1_FET_SEL",
-+				   "TSINT#", "IO_EXP_TEST_LED";
-+		bootph-all;
-+	};
-+};
-+
-+&sdhci0 {
-+	bootph-all;
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mmc0_pins_default>;
-+	disable-wp;
-+};
-+
-+&sdhci1 {
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv>;
-+};
-+
-+&cpsw3g {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_rgmii1_pins_default>, <&main_rgmii2_pins_default>;
-+};
-+
-+&cpsw_port2 {
-+	/* PCB provides an internal delay of 2ns */
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&cpsw3g_phy1>;
-+};
-+
-+&cpsw3g_mdio {
-+	cpsw3g_phy1: ethernet-phy@1 {
-+		reg = <1>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&fss {
-+	bootph-all;
-+};
-+
-+&ospi0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ospi0_pins_default>;
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-tx-bus-width = <8>;
-+		spi-rx-bus-width = <8>;
-+		spi-max-frequency = <25000000>;
-+		cdns,tshsl-ns = <60>;
-+		cdns,tsd2d-ns = <60>;
-+		cdns,tchsh-ns = <60>;
-+		cdns,tslch-ns = <60>;
-+		cdns,read-delay = <4>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			bootph-all;
-+
-+			partition@0 {
-+				label = "ospi.tiboot3";
-+				reg = <0x0 0x80000>;
-+			};
-+
-+			partition@80000 {
-+				label = "ospi.tispl";
-+				reg = <0x80000 0x200000>;
-+			};
-+
-+			partition@280000 {
-+				label = "ospi.u-boot";
-+				reg = <0x280000 0x400000>;
-+			};
-+
-+			partition@680000 {
-+				label = "ospi.env";
-+				reg = <0x680000 0x40000>;
-+			};
-+
-+			partition@6c0000 {
-+				label = "ospi.env.backup";
-+				reg = <0x6c0000 0x40000>;
-+			};
-+
-+			partition@800000 {
-+				label = "ospi.rootfs";
-+				reg = <0x800000 0x37c0000>;
-+			};
-+
-+			partition@3fc0000 {
-+				bootph-pre-ram;
-+				label = "ospi.phypattern";
-+				reg = <0x3fc0000 0x40000>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-index 1c6812a8ae9b..52954c77df80 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -8,310 +8,16 @@
- /dts-v1/;
+   '#interrupt-cells':
+-    const: 2
++    description:
++      A value of 4 means that interrupt specifiers contain the interrupt-type or
++      type-specific information cells.
++    enum: [ 2, 4 ]
  
- #include "k3-am625.dtsi"
--#include "k3-am62x-sk-common.dtsi"
-+#include "k3-am625-sk-common.dtsi"
+   pic-no-reset:
+     description: Indicates the PIC shall not be reset during runtime initialization.
+     type: boolean
  
- / {
- 	compatible = "ti,am625-sk", "ti,am625";
- 	model = "Texas Instruments AM625 SK";
- 
--	opp-table {
--		/* Add 1.4GHz OPP for am625-sk board. Requires VDD_CORE to be at 0.85V */
--		opp-1400000000 {
--			opp-hz = /bits/ 64 <1400000000>;
--			opp-supported-hw = <0x01 0x0004>;
--			clock-latency-ns = <6000000>;
--		};
--	};
++  single-cpu-affinity:
++    description:
++      If present, non-IPI interrupts will be routed to a single CPU at a time.
++    type: boolean
++
++  last-interrupt-source:
++    description:
++      Some MPICs do not correctly report the number of hardware sources in the
++      global feature registers. This value, if specified, overrides the value
++      read from MPIC_GREG_FEATURE_LAST_SRC.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/powerpc/fsl/mpic.txt b/Documentation/devicetree/bindings/powerpc/fsl/mpic.txt
+deleted file mode 100644
+index dc5744636a57..000000000000
+--- a/Documentation/devicetree/bindings/powerpc/fsl/mpic.txt
++++ /dev/null
+@@ -1,231 +0,0 @@
+-=====================================================================
+-Freescale MPIC Interrupt Controller Node
+-Copyright (C) 2010,2011 Freescale Semiconductor Inc.
+-=====================================================================
 -
- 	memory@80000000 {
- 		/* 2G RAM */
- 		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
- 		device_type = "memory";
- 		bootph-pre-ram;
- 	};
+-The Freescale MPIC interrupt controller is found on all PowerQUICC
+-and QorIQ processors and is compatible with the Open PIC.  The
+-notable difference from Open PIC binding is the addition of 2
+-additional cells in the interrupt specifier defining interrupt type
+-information.
 -
--	vmain_pd: regulator-0 {
--		/* TPS65988 PD CONTROLLER OUTPUT */
--		bootph-all;
--		compatible = "regulator-fixed";
--		regulator-name = "vmain_pd";
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--		regulator-always-on;
--		regulator-boot-on;
--	};
+-PROPERTIES
 -
--	vcc_5v0: regulator-1 {
--		/* Output of LM34936 */
--		bootph-all;
--		compatible = "regulator-fixed";
--		regulator-name = "vcc_5v0";
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--		vin-supply = <&vmain_pd>;
--		regulator-always-on;
--		regulator-boot-on;
--	};
+-  - compatible
+-      Usage: required
+-      Value type: <string>
+-      Definition: Shall include "fsl,mpic".  Freescale MPIC
+-          controllers compatible with this binding have Block
+-          Revision Registers BRR1 and BRR2 at offset 0x0 and
+-          0x10 in the MPIC.
 -
--	vcc_3v3_sys: regulator-2 {
--		/* output of LM61460-Q1 */
--		bootph-all;
--		compatible = "regulator-fixed";
--		regulator-name = "vcc_3v3_sys";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		vin-supply = <&vmain_pd>;
--		regulator-always-on;
--		regulator-boot-on;
--	};
+-  - reg
+-      Usage: required
+-      Value type: <prop-encoded-array>
+-      Definition: A standard property.  Specifies the physical
+-          offset and length of the device's registers within the
+-          CCSR address space.
 -
--	vdd_mmc1: regulator-3 {
--		/* TPS22918DBVR */
--		bootph-all;
--		compatible = "regulator-fixed";
--		regulator-name = "vdd_mmc1";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		regulator-boot-on;
--		enable-active-high;
--		vin-supply = <&vcc_3v3_sys>;
--		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
--	};
+-  - interrupt-controller
+-      Usage: required
+-      Value type: <empty>
+-      Definition: Specifies that this node is an interrupt
+-          controller
 -
--	vdd_sd_dv: regulator-4 {
--		/* Output of TLV71033 */
--		bootph-all;
--		compatible = "regulator-gpio";
--		regulator-name = "tlv71033";
--		pinctrl-names = "default";
--		pinctrl-0 = <&vdd_sd_dv_pins_default>;
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <3300000>;
--		regulator-boot-on;
--		vin-supply = <&vcc_5v0>;
--		gpios = <&main_gpio0 31 GPIO_ACTIVE_HIGH>;
--		states = <1800000 0x0>,
--			 <3300000 0x1>;
--	};
+-  - #interrupt-cells
+-      Usage: required
+-      Value type: <u32>
+-      Definition: Shall be 2 or 4.  A value of 2 means that interrupt
+-          specifiers do not contain the interrupt-type or type-specific
+-          information cells.
 -
--	vcc_1v8: regulator-5 {
--		/* output of TPS6282518DMQ */
--		compatible = "regulator-fixed";
--		regulator-name = "vcc_1v8";
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
--		vin-supply = <&vcc_3v3_sys>;
--		regulator-always-on;
--		regulator-boot-on;
--	};
--};
+-  - #address-cells
+-      Usage: required
+-      Value type: <u32>
+-      Definition: Shall be 0.
 -
--&main_pmx0 {
--	main_mmc0_pins_default: main-mmc0-default-pins {
--		bootph-all;
--		pinctrl-single,pins = <
--			AM62X_IOPAD(0x220, PIN_INPUT, 0) /* (Y3) MMC0_CMD */
--			AM62X_IOPAD(0x218, PIN_INPUT, 0) /* (AB1) MMC0_CLK */
--			AM62X_IOPAD(0x214, PIN_INPUT, 0) /* (AA2) MMC0_DAT0 */
--			AM62X_IOPAD(0x210, PIN_INPUT_PULLUP, 0) /* (AA1) MMC0_DAT1 */
--			AM62X_IOPAD(0x20c, PIN_INPUT_PULLUP, 0) /* (AA3) MMC0_DAT2 */
--			AM62X_IOPAD(0x208, PIN_INPUT_PULLUP, 0) /* (Y4) MMC0_DAT3 */
--			AM62X_IOPAD(0x204, PIN_INPUT_PULLUP, 0) /* (AB2) MMC0_DAT4 */
--			AM62X_IOPAD(0x200, PIN_INPUT_PULLUP, 0) /* (AC1) MMC0_DAT5 */
--			AM62X_IOPAD(0x1fc, PIN_INPUT_PULLUP, 0) /* (AD2) MMC0_DAT6 */
--			AM62X_IOPAD(0x1f8, PIN_INPUT_PULLUP, 0) /* (AC2) MMC0_DAT7 */
--		>;
--	};
+-  - pic-no-reset
+-      Usage: optional
+-      Value type: <empty>
+-      Definition: The presence of this property specifies that the
+-          MPIC must not be reset by the client program, and that
+-          the boot program has initialized all interrupt source
+-          configuration registers to a sane state-- masked or
+-          directed at other cores.  This ensures that the client
+-          program will not receive interrupts for sources not belonging
+-          to the client.  The presence of this property also mandates
+-          that any initialization related to interrupt sources shall
+-          be limited to sources explicitly referenced in the device tree.
 -
--	main_rgmii2_pins_default: main-rgmii2-default-pins {
--		bootph-all;
--		pinctrl-single,pins = <
--			AM62X_IOPAD(0x184, PIN_INPUT, 0) /* (AE23) RGMII2_RD0 */
--			AM62X_IOPAD(0x188, PIN_INPUT, 0) /* (AB20) RGMII2_RD1 */
--			AM62X_IOPAD(0x18c, PIN_INPUT, 0) /* (AC21) RGMII2_RD2 */
--			AM62X_IOPAD(0x190, PIN_INPUT, 0) /* (AE22) RGMII2_RD3 */
--			AM62X_IOPAD(0x180, PIN_INPUT, 0) /* (AD23) RGMII2_RXC */
--			AM62X_IOPAD(0x17c, PIN_INPUT, 0) /* (AD22) RGMII2_RX_CTL */
--			AM62X_IOPAD(0x16c, PIN_OUTPUT, 0) /* (Y18) RGMII2_TD0 */
--			AM62X_IOPAD(0x170, PIN_OUTPUT, 0) /* (AA18) RGMII2_TD1 */
--			AM62X_IOPAD(0x174, PIN_OUTPUT, 0) /* (AD21) RGMII2_TD2 */
--			AM62X_IOPAD(0x178, PIN_OUTPUT, 0) /* (AC20) RGMII2_TD3 */
--			AM62X_IOPAD(0x168, PIN_OUTPUT, 0) /* (AE21) RGMII2_TXC */
--			AM62X_IOPAD(0x164, PIN_OUTPUT, 0) /* (AA19) RGMII2_TX_CTL */
--		>;
--	};
+-  - big-endian
+-      Usage: optional
+-      Value type: <empty>
+-          If present the MPIC will be assumed to be big-endian.  Some
+-          device-trees omit this property on MPIC nodes even when the MPIC is
+-          in fact big-endian, so certain boards override this property.
 -
--	ospi0_pins_default: ospi0-default-pins {
--		bootph-all;
--		pinctrl-single,pins = <
--			AM62X_IOPAD(0x000, PIN_OUTPUT, 0) /* (H24) OSPI0_CLK */
--			AM62X_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F23) OSPI0_CSn0 */
--			AM62X_IOPAD(0x00c, PIN_INPUT, 0) /* (E25) OSPI0_D0 */
--			AM62X_IOPAD(0x010, PIN_INPUT, 0) /* (G24) OSPI0_D1 */
--			AM62X_IOPAD(0x014, PIN_INPUT, 0) /* (F25) OSPI0_D2 */
--			AM62X_IOPAD(0x018, PIN_INPUT, 0) /* (F24) OSPI0_D3 */
--			AM62X_IOPAD(0x01c, PIN_INPUT, 0) /* (J23) OSPI0_D4 */
--			AM62X_IOPAD(0x020, PIN_INPUT, 0) /* (J25) OSPI0_D5 */
--			AM62X_IOPAD(0x024, PIN_INPUT, 0) /* (H25) OSPI0_D6 */
--			AM62X_IOPAD(0x028, PIN_INPUT, 0) /* (J22) OSPI0_D7 */
--			AM62X_IOPAD(0x008, PIN_INPUT, 0) /* (J24) OSPI0_DQS */
--		>;
--	};
+-  - single-cpu-affinity
+-      Usage: optional
+-      Value type: <empty>
+-          If present the MPIC will be assumed to only be able to route
+-          non-IPI interrupts to a single CPU at a time (EG: Freescale MPIC).
 -
--	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
--		bootph-all;
--		pinctrl-single,pins = <
--			AM62X_IOPAD(0x07c, PIN_OUTPUT, 7) /* (P25) GPMC0_CLK.GPIO0_31 */
--		>;
--	};
+-  - last-interrupt-source
+-      Usage: optional
+-      Value type: <u32>
+-          Some MPICs do not correctly report the number of hardware sources
+-          in the global feature registers.  If specified, this field will
+-          override the value read from MPIC_GREG_FEATURE_LAST_SRC.
 -
--	main_gpio1_ioexp_intr_pins_default: main-gpio1-ioexp-intr-default-pins {
--		bootph-all;
--		pinctrl-single,pins = <
--			AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
--		>;
--	};
--};
+-INTERRUPT SPECIFIER DEFINITION
 -
--&main_gpio0 {
--	bootph-all;
--};
+-  Interrupt specifiers consists of 4 cells encoded as
+-  follows:
 -
--&main_gpio1 {
--	bootph-all;
--};
+-   <1st-cell>   interrupt-number
 -
--&main_i2c1 {
--	bootph-all;
--	exp1: gpio@22 {
--		bootph-all;
--		compatible = "ti,tca6424";
--		reg = <0x22>;
--		gpio-controller;
--		#gpio-cells = <2>;
--		gpio-line-names = "GPIO_CPSW2_RST", "GPIO_CPSW1_RST",
--				   "PRU_DETECT", "MMC1_SD_EN",
--				   "VPP_LDO_EN", "EXP_PS_3V3_En",
--				   "EXP_PS_5V0_En", "EXP_HAT_DETECT",
--				   "GPIO_AUD_RSTn", "GPIO_eMMC_RSTn",
--				   "UART1_FET_BUF_EN", "WL_LT_EN",
--				   "GPIO_HDMI_RSTn", "CSI_GPIO1",
--				   "CSI_GPIO2", "PRU_3V3_EN",
--				   "HDMI_INTn", "PD_I2C_IRQ",
--				   "MCASP1_FET_EN", "MCASP1_BUF_BT_EN",
--				   "MCASP1_FET_SEL", "UART1_FET_SEL",
--				   "TSINT#", "IO_EXP_TEST_LED";
+-                Identifies the interrupt source.  The meaning
+-                depends on the type of interrupt.
 -
--		interrupt-parent = <&main_gpio1>;
--		interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
+-                Note: If the interrupt-type cell is undefined
+-                (i.e. #interrupt-cells = 2), this cell
+-                should be interpreted the same as for
+-                interrupt-type 0-- i.e. an external or
+-                normal SoC device interrupt.
+-
+-   <2nd-cell>   level-sense information, encoded as follows:
+-                    0 = low-to-high edge triggered
+-                    1 = active low level-sensitive
+-                    2 = active high level-sensitive
+-                    3 = high-to-low edge triggered
+-
+-   <3rd-cell>   interrupt-type
+-
+-                The following types are supported:
+-
+-                  0 = external or normal SoC device interrupt
+-
+-                      The interrupt-number cell contains
+-                      the SoC device interrupt number.  The
+-                      type-specific cell is undefined.  The
+-                      interrupt-number is derived from the
+-                      MPIC a block of registers referred to as
+-                      the "Interrupt Source Configuration Registers".
+-                      Each source has 32-bytes of registers
+-                      (vector/priority and destination) in this
+-                      region.   So interrupt 0 is at offset 0x0,
+-                      interrupt 1 is at offset 0x20, and so on.
+-
+-                  1 = error interrupt
+-
+-                      The interrupt-number cell contains
+-                      the SoC device interrupt number for
+-                      the error interrupt.  The type-specific
+-                      cell identifies the specific error
+-                      interrupt number.
+-
+-                  2 = MPIC inter-processor interrupt (IPI)
+-
+-                      The interrupt-number cell identifies
+-                      the MPIC IPI number.  The type-specific
+-                      cell is undefined.
+-
+-                  3 = MPIC timer interrupt
+-
+-                      The interrupt-number cell identifies
+-                      the MPIC timer number.  The type-specific
+-                      cell is undefined.
+-
+-   <4th-cell>   type-specific information
+-
+-                The type-specific cell is encoded as follows:
+-
+-                 - For interrupt-type 1 (error interrupt),
+-                   the type-specific cell contains the
+-                   bit number of the error interrupt in the
+-                   Error Interrupt Summary Register.
+-
+-EXAMPLE 1
+-	/*
+-	 * mpic interrupt controller with 4 cells per specifier
+-	 */
+-	mpic: pic@40000 {
+-		compatible = "fsl,mpic";
 -		interrupt-controller;
--		#interrupt-cells = <2>;
--
--		pinctrl-names = "default";
--		pinctrl-0 = <&main_gpio1_ioexp_intr_pins_default>;
+-		#interrupt-cells = <4>;
+-		#address-cells = <0>;
+-		reg = <0x40000 0x40000>;
 -	};
--};
 -
--&sdhci0 {
--	bootph-all;
--	non-removable;
--	pinctrl-names = "default";
--	pinctrl-0 = <&main_mmc0_pins_default>;
--	status = "okay";
--};
--
--&sdhci1 {
--	vmmc-supply = <&vdd_mmc1>;
--	vqmmc-supply = <&vdd_sd_dv>;
--};
--
--&cpsw3g {
--	pinctrl-names = "default";
--	pinctrl-0 = <&main_rgmii1_pins_default>, <&main_rgmii2_pins_default>;
--};
--
--&cpsw_port2 {
--	phy-mode = "rgmii-rxid";
--	phy-handle = <&cpsw3g_phy1>;
--};
--
--&cpsw3g_mdio {
--	cpsw3g_phy1: ethernet-phy@1 {
--		reg = <1>;
--		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
--		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
--		ti,min-output-impedance;
+-EXAMPLE 2
+-	/*
+-	 * The MPC8544 I2C controller node has an internal
+-	 * interrupt number of 27.  As per the reference manual
+-	 * this corresponds to interrupt source configuration
+-	 * registers at 0x5_0560.
+-	 *
+-	 * The interrupt source configuration registers begin
+-	 * at 0x5_0000.
+-	 *
+-	 * To compute the interrupt specifier interrupt number
+-         *
+-	 *       0x560 >> 5 = 43
+-	 *
+-	 * The interrupt source configuration registers begin
+-	 * at 0x5_0000, and so the i2c vector/priority registers
+-	 * are at 0x5_0560.
+-	 */
+-	i2c@3000 {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		cell-index = <0>;
+-		compatible = "fsl-i2c";
+-		reg = <0x3000 0x100>;
+-		interrupts = <43 2>;
+-		interrupt-parent = <&mpic>;
+-		dfsrr;
 -	};
--};
 -
--&fss {
--	bootph-all;
--};
 -
--&ospi0 {
--	bootph-all;
--	status = "okay";
--	pinctrl-names = "default";
--	pinctrl-0 = <&ospi0_pins_default>;
--
--	flash@0 {
--		bootph-all;
--		compatible = "jedec,spi-nor";
--		reg = <0x0>;
--		spi-tx-bus-width = <8>;
--		spi-rx-bus-width = <8>;
--		spi-max-frequency = <25000000>;
--		cdns,tshsl-ns = <60>;
--		cdns,tsd2d-ns = <60>;
--		cdns,tchsh-ns = <60>;
--		cdns,tslch-ns = <60>;
--		cdns,read-delay = <4>;
--
--		partitions {
--			bootph-all;
--			compatible = "fixed-partitions";
--			#address-cells = <1>;
--			#size-cells = <1>;
--
--			partition@0 {
--				label = "ospi.tiboot3";
--				reg = <0x0 0x80000>;
--			};
--
--			partition@80000 {
--				label = "ospi.tispl";
--				reg = <0x80000 0x200000>;
--			};
--
--			partition@280000 {
--				label = "ospi.u-boot";
--				reg = <0x280000 0x400000>;
--			};
--
--			partition@680000 {
--				label = "ospi.env";
--				reg = <0x680000 0x40000>;
--			};
--
--			partition@6c0000 {
--				label = "ospi.env.backup";
--				reg = <0x6c0000 0x40000>;
--			};
--
--			partition@800000 {
--				label = "ospi.rootfs";
--				reg = <0x800000 0x37c0000>;
--			};
--
--			partition@3fc0000 {
--				bootph-pre-ram;
--				label = "ospi.phypattern";
--				reg = <0x3fc0000 0x40000>;
--			};
--		};
+-EXAMPLE 3
+-	/*
+-	 *  Definition of a node defining the 4
+-	 *  MPIC IPI interrupts.  Note the interrupt
+-	 *  type of 2.
+-	 */
+-	ipi@410a0 {
+-		compatible = "fsl,mpic-ipi";
+-		reg = <0x40040 0x10>;
+-		interrupts = <0 0 2 0
+-		              1 0 2 0
+-		              2 0 2 0
+-		              3 0 2 0>;
 -	};
--};
 -
--&tlv320aic3106 {
--	DVDD-supply = <&vcc_1v8>;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am6254atl-sk.dts b/arch/arm64/boot/dts/ti/k3-am6254atl-sk.dts
-new file mode 100644
-index 000000000000..055e63a3fbb1
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6254atl-sk.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * AM6254atl SiP SK: https://www.ti.com/lit/df/sprr482b/sprr482b.zip
-+ * Webpage: https://www.ti.com/tool/SK-AM62-SIP
-+ *
-+ * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+#include "k3-am6254atl.dtsi"
-+#include "k3-am625-sk-common.dtsi"
-+
-+/ {
-+	model = "Texas Instruments AM6254atl SK";
-+	compatible = "ti,am6254atl-sk", "ti,am6254atl", "ti,am625";
-+};
+-EXAMPLE 4
+-	/*
+-	 *  Definition of a node defining the MPIC
+-	 *  global timers.  Note the interrupt
+-	 *  type of 3.
+-	 */
+-	timer0: timer@41100 {
+-		compatible = "fsl,mpic-global-timer";
+-		reg = <0x41100 0x100 0x41300 4>;
+-		interrupts = <0 0 3 0
+-		              1 0 3 0
+-		              2 0 3 0
+-		              3 0 3 0>;
+-	};
+-
+-EXAMPLE 5
+-	/*
+-	 * Definition of an error interrupt (interrupt type 1).
+-	 * SoC interrupt number is 16 and the specific error
+-         * interrupt bit in the error interrupt summary register
+-	 * is 23.
+-	 */
+-	memory-controller@8000 {
+-		compatible = "fsl,p4080-memory-controller";
+-		reg = <0x8000 0x1000>;
+-		interrupts = <16 2 1 23>;
+-	};
 -- 
-2.50.1
+2.47.2
 
 
