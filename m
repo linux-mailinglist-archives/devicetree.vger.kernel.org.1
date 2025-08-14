@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A6DAB25C8E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:04:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CF73B25C9F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:05:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C013F724676
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:04:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C94C562450
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:05:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C1825F790;
-	Thu, 14 Aug 2025 07:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97DA922DA08;
+	Thu, 14 Aug 2025 07:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cOlEDaW5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J3fLZeeO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B553325A326;
-	Thu, 14 Aug 2025 07:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DE1E220F55;
+	Thu, 14 Aug 2025 07:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755155052; cv=none; b=qVaOdipGv9V4BWAN0FCQg8A+6nDna5chfEeA9BI9BoH6uG5o7/9zK8bXwUfw29fg0diSJlQfCIajiFvRngoPAhym6Pfet5yaPU9ny/XqeqBbmMmCSKez4AdIQ7uWGMExJ6YzRg07jiuurDqP7tTrxVbHqKDkgRUAnbrQj7eT0TE=
+	t=1755155131; cv=none; b=UQu54drrNs8y6o6teOq0IazuXivQOyhY24qkfY4VclFql6OCLtQXNwDoTLzd7m8Z6gJQemCd1QhZNtdAtuJuQpqXjiX0YEbeT+c+39/oh7V/fgWgXCv6jnuoLRo067GGxTt4EX14e9NLp3UNoZpQCTuzMcCETI5GLd3a19/Uiic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755155052; c=relaxed/simple;
-	bh=7pJ0Fl261mW06QcqNKqe/+yuvQAesZpRiKlzp/hYupk=;
+	s=arc-20240116; t=1755155131; c=relaxed/simple;
+	bh=O2S7U/O9ic0eEx6tW5zDq142rGA1A3vTG39FVuEOvqo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Jvp6WGAr32t5Kc8yXYPe0H98KJ2NJzhPxhUzQzgD9MvpLef5LKtDRKL5NAuip1EfWYHtEnZWKiTgEn9lbCpsD3biq6bmoLnRgXTZTpoyEZrcIAk8MEdXCAWgqAKfDsBsB9aSp2dOjeh0Qyfx+9ifkO7ZUKSMuQDuKM2UrRUeWuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cOlEDaW5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFBB6C4CEEF;
-	Thu, 14 Aug 2025 07:04:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=fGbMHYtc6uWjpT3zQM7MtRYYSiyYgOdzXcU7uVjgTZwvXWQQj/2xTbihXpjFy4ur0LlsdAIiydy9GN/JGFf5XmiAS1GgkbURkZDrSfRAlXyos+G2QYP6TVFRrFQ71wUv0YrxgiAKL7UvGmS1DBe2S5d6GIfOeLO9ryHOAA4um6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J3fLZeeO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B4F6C4CEEF;
+	Thu, 14 Aug 2025 07:05:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755155052;
-	bh=7pJ0Fl261mW06QcqNKqe/+yuvQAesZpRiKlzp/hYupk=;
+	s=k20201202; t=1755155131;
+	bh=O2S7U/O9ic0eEx6tW5zDq142rGA1A3vTG39FVuEOvqo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cOlEDaW5ECeXrzN6DPKXy+8yDJuFotlq5GGenZw4h+YwpzB27POapMjDf3zI2vNjr
-	 7NGamYhZSAESN4SQsIT14gGugSgp+qc5VyanSZjUgRXYx0EiQ5hlNzuM82YktHn1SC
-	 meXT1qphP5QpMiGzFMoBZHOkw6J7eCAHNu3buCi2dNwSVn4dR25j1/jqFCj5ZEzSzE
-	 BcbDoXXDkkfc3RYyRXcaUemNEndurNv9zZQrDzBFkaHHZPSJXDXNMTj/W9zW3U4vu1
-	 6OWOvaUk7zcckhKDF/u2VgIFRSlRKylp3gRiHycSNwAJK1zKdQlfobKZYwwDHXyE76
-	 DBbgISTw3I/0w==
-Message-ID: <ef95652d-eafd-45e1-9603-16c4edcb8e9e@kernel.org>
-Date: Thu, 14 Aug 2025 09:04:06 +0200
+	b=J3fLZeeOVzkrNTxaKA2ttziDdY7wDBWrwCv781eOPgWUZZJ3j1W4M4AFxrXj4wt8j
+	 mCvovBFiaojPBN75hjtDKX32B5okOlYvxBeAbN7xTds9ICbvNDJblFY5AAdAwv1f7f
+	 YLnaEmuTXAcB/X7NKnh8IqwqtK/pm6BE4BjgisbO+08t5UzxXJyS4a2mV/bNpY9cDV
+	 iuqkB3UOlsNgXXBV5r9C30lA0ECN45Z1w00HpaQMTdy5Cl0gV4mkmrsYiIQuKkbcIX
+	 g4Uamb8AmmvrCMReZHB6LoKtHjwGyT6jTPBbKygyPooewyz5fyYTxaKeKADMiRunUB
+	 kFYYXsyMiQXRw==
+Message-ID: <ea477661-9b2a-4e79-a21c-4043d0afff88@kernel.org>
+Date: Thu, 14 Aug 2025 09:05:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC net-next 1/3] dt-bindings: net: dsa: yt921x: Add Motorcomm
- YT921x switch support
-To: David Yang <mmyangfl@gmail.com>, netdev@vger.kernel.org
-Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
- Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250814065032.3766988-1-mmyangfl@gmail.com>
- <20250814065032.3766988-2-mmyangfl@gmail.com>
+Subject: Re: [PATCH v1 1/4] [v1,01/04]dt-bindings: mailbox: add cmdq yaml for
+ MT8189
+To: Xiandong Wang <xiandong.wang@mediatek.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Houlong Wei <houlong.wei@mediatek.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ sirius.wang@mediatek.com, vince-wl.liu@mediatek.com, jh.hsu@mediatek.com,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250814070401.13432-1-xiandong.wang@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,114 +108,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250814065032.3766988-2-mmyangfl@gmail.com>
+In-Reply-To: <20250814070401.13432-1-xiandong.wang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/08/2025 08:50, David Yang wrote:
-> The Motorcomm YT921x series is a family of Ethernet switches with up to
-> 8 internal GbE PHYs and up to 2 GMACs.
+On 14/08/2025 09:03, Xiandong Wang wrote:
+> Add compatible string to support cmdq for MT8189.
 > 
-> Signed-off-by: David Yang <mmyangfl@gmail.com>
-> ---
->  .../bindings/net/dsa/motorcomm,yt921x.yaml    | 121 ++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml b/Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml
-> new file mode 100644
-> index 000000000000..2f0e4532e73e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml
-> @@ -0,0 +1,121 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/dsa/motorcomm,yt921x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Motorcomm YT921x Ethernet switch family
-> +
-> +maintainers:
-> +  - David Yang <mmyangfl@gmail.com>
-> +
-> +description: |
-> +  The Motorcomm YT921x series is a family of Ethernet switches with up to 8
-> +  internal GbE PHYs and up to 2 GMACs, including YT9213NB, YT9214NB, YT9215RB,
-> +  YT9215S, YT9215SC, YT9218N, YT9218MB.
-> +
-> +  For now, only YT9215 is supported.
+> Signed-off-by: Xiandong Wang <xiandong.wang@mediatek.com>
 
-Please describe complete hardware. Drivers are not relevant here and
-binding cannot support anything, thus this feels like comment about drivers.
+Your patches have corrupted PATCH prefix. Use standard tools, b4 or git
+format-patch.
 
-> +
-> +properties:
-> +  compatible:
-> +    const: motorcomm,yt9215
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: Optional gpio specifier for a reset line
 
-Drop comment, 100% redundant.
 
-> +    maxItems: 1
-> +
-> +  motorcomm,switch-id:
-> +    description: |
-> +      When managed via mdio, hard-configured switch id to distinguish between
-> +      multiple devices.
-
-IDs are not allowed.
-
-> +    enum: [0, 1, 2, 3]
-> +    default: 0
-> +
-> +  mdio:
-> +    $ref: /schemas/net/mdio.yaml#
-> +    unevaluatedProperties: false
-> +    description: MDIO bus for the internal GbE PHYs.
-> +
-> +  mdio-external:
-> +    $ref: /schemas/net/mdio.yaml#
-> +    unevaluatedProperties: false
-> +    description: External MDIO bus.
-> +
-> +    properties:
-> +      compatible:
-> +        const: motorcomm,yt921x-mdio-external
-
-Incomplete compatible... but also not needed in the first place.
-
-> +
-> +    required:
-> +      - compatible
-> +
-> +allOf:
-> +  - $ref: dsa.yaml#/$defs/ethernet-ports
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    mdio {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        switch@1d {
-> +            compatible = "motorcomm,yt9215";
-> +            reg = <0x1d>;
-> +
-
-Incomplete example. Where are all other properties?
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
