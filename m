@@ -1,201 +1,407 @@
-Return-Path: <devicetree+bounces-204820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 164F8B26F73
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 21:04:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AF38B26F96
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 21:19:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFA955C1EEF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 19:02:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 695EE5E7B68
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 19:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7AD0319862;
-	Thu, 14 Aug 2025 19:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0DDC200BAE;
+	Thu, 14 Aug 2025 19:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="cqffIUSb"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MyHhOdAo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013048.outbound.protection.outlook.com [40.107.162.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5E6631986D;
-	Thu, 14 Aug 2025 19:02:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755198152; cv=fail; b=GTI/1mcrU33qCGBF+DUj4MAeBkeOPKvCLfuMaorjcfSRnpJuZ2p0R0O7nEQMmnXzSSsu4gL9YILkKoWLKQyDSaLSo4rQyfpkRAITozG4B5uTs+Bkf8nXzc5zQCR1jdI6iSuvCONT5ctvErDhNdAgFX2Vn4XlhiGmG4FF7HR0XIw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755198152; c=relaxed/simple;
-	bh=yC6k5uJaKX1OCp9449+fcLr5hepKoxR57vBeFUZHenU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=W7mfbtIloTqOTOk62UPOoSZYPiTvoxkeJTClRz/tIdJhBoDZGB0aNx5vMOH0LarMDES/YM4m6qG3KuuVgDlBAIichSKqcOxBlYRlI5Ij/jHDH0HQN/rJ7u6ubudJ2Hqv/jIak+g5d74dvQMx+6Q42gVvBLX/bhbdezj6fvXy9So=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=cqffIUSb; arc=fail smtp.client-ip=40.107.162.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n79hs+fIjRDxsUZL/FLftVjp83b24ujLqiJo8Extf6dmbNgxb6K8uibP0Lvu54CnicyZ3hNZuafkq/YXISQlLGP+vxzj0TkBHJz6sPmpBuyMTZqMBIBqLjjot9p4SUq9MjItUjwkEzTDtCMo9sywXtma+2d8vRVIRbvrCx/LPK/+fNbcuL4iajc9+q8JE9oWPAd2xJ7AZncWVqS069CTvZGP6lTlp15Qpxp7HwPFyp/FQef79dnosgltGz3zGG9gMwI5RE1dbsJerT/4wKW2pPcIGFdXnYZ5ZaoI3KKRtRZQMStmYHodQxnD2kFZ5en31BBwngcI1aFt0/JZ5gHcVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vw8K/kYp3skJqr334lGHwwn6jeB0ETsGdF7dqU2Bw3s=;
- b=perYwaedkTo+6BKF/PEcKcF9DPdk3Mz5d6hL87QnZKx+hssTTTFLOCpGNG16rk/8ip7iina+NChttp5f3Gfsd9AlYHTiD1lmoc3+jR6+Ivu/aWFyyxdhzBPcrvBsQbxm5FiBeyzkuMjIP+YiQUXMBMEwb/O0nOUW/sfEd4qUZN3X0uTq86itlimagfO2UkVIqH7FCUA6+9OVlBLvP5piWoGDBqD3+Aos3A7VcoULb7KO8E4TO2vHg5GRFboq5o1+5etOpvkaDOqqhOjjEmH8SqWGPlPK9MkZ1ds/+VEFoNzP3Jp/1dx2NW0J0/DRRxy4DzniKHTsMWd+ewHM1AlWFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vw8K/kYp3skJqr334lGHwwn6jeB0ETsGdF7dqU2Bw3s=;
- b=cqffIUSbD6gzNsU+6dAEmYYeoM5HYgZK4I9a1GIaEanJvtIr4Tz79h5EpJol9m84+tmlwJOTFypNgByQl7RXjYPlwxj4YTVf9pfZ8VZjzzqAyCSMYwSiMrNtn3BikX/2T6nkH9DsV36AN63Yk1UnrIcHaGAjFTOBP256O1KaK6OBAEf6UE8xRhgPFzdvi621cml/B/Ad9GO0ZNrvHzI8UXSVVyYJ5Rx3jRlRO7vipYR6x9e7/bRA2oQmhmos0CJ7zI4dIkntjYsVK+pHRJhEnZMF/wmgYayyhaM83twqFqarbBrK0+dp6E4ZssXufitRJ6qfFIHNU3R9xVtyBgAZYg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM9PR04MB8906.eurprd04.prod.outlook.com (2603:10a6:20b:409::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.16; Thu, 14 Aug
- 2025 19:02:27 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.9031.014; Thu, 14 Aug 2025
- 19:02:27 +0000
-Date: Thu, 14 Aug 2025 15:02:18 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: l.stach@pengutronix.de, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, bhelgaas@google.com, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Add vaux for
- i.MX PCIe
-Message-ID: <aJ4yuo6bULFy7uAv@lizhi-Precision-Tower-5810>
-References: <20250814085920.590101-1-hongxing.zhu@nxp.com>
- <20250814085920.590101-2-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250814085920.590101-2-hongxing.zhu@nxp.com>
-X-ClientProxiedBy: SJ0PR13CA0190.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::15) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3221A8F6D
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 19:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755199156; cv=none; b=AODxJ3jgvLYHmgrddzNPEu1QlOdKJxmOoASD7WfNeavMb5BxC+3JCSwu58TSIQjdUdXpLLIrlQuBGz0zLazGDeaPRuz+v2ma/pVj1+aX9b2z9dQjw2yJ2+1frvaf2dMY2P4tDnOlIfI5qh3mfox2BQ/O4rXS7JDzffjA3F4Tsbc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755199156; c=relaxed/simple;
+	bh=/3Oi3VazqyGm0PeORCVjsiqkf6UkknyKmJJsa4Pofvg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fL/kX1yqNF6iJAm0bUZV9gXgYzywIAdSvMGF3REuHxq4bHdl+a6kYw11Bwvzf/1jJ89qhk+rq34yjvZrAEyVZQffBPGtv54O1ZoL11R7s9C6zkxYbmuqmSiX/1pAQIfXurLQwlZrcGQiZSj49A4zWJWYyreYUjTVC/re8a3RJ1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MyHhOdAo; arc=none smtp.client-ip=209.85.161.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-61bd4c80e5eso793157eaf.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 12:19:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1755199154; x=1755803954; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lKpvExu7aXzMVLXuKaV0X/F1bQZBD6Xg+Sr7F0G9AWM=;
+        b=MyHhOdAoB+eaDGl6rvDLn7KG8fVcXIAXlPjpGbAifNBsWORNx0/eJcU3J47uO444Ui
+         3tHTAz0Zs9oDB5LfbrJ3hjjx1h11db9FxGyKJ047Zu8FsLDsUdqxPXhbpHk3J+mNxshR
+         mZeR2f6cG1kT4rPTGb0kJjs9I+CLkPwLJTQ+rBlTlwEOA9tX9pSKzW1rTDmqYCiFZqbK
+         mX1dTQ2qHINM/OTii5N9PqQognM5PtFsmrR7Q6/27+a28stz7BbXUMjGaROjnnK3jjIl
+         l/iaFrCOU+DnQ5q0ylhH/arkLjYQ3KFmJKF+nwOVocztICuBXQCpK4glsM8BEG3Mw5HB
+         7YrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755199154; x=1755803954;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lKpvExu7aXzMVLXuKaV0X/F1bQZBD6Xg+Sr7F0G9AWM=;
+        b=oEla8HaQBFGU2bxw6KIDgyIyBWAvKV4DCKuH52JjBdcjbg22MMLqk2HUvfYW/vQbF+
+         ngaAJ7UNqESploOTzF+xaNUZhKYocpQp2ChfFt8SOWgdX8jkC9S1ZE7A2TqAP8jiyT+X
+         qTlkDePJPFr9j4areRnBl1Xh3M//QlO0kYdcLbu8Qvn0+VolPqi1vLqM0SuQp+XlQl2C
+         gFrREwQltyHzFtRxDgkZCUjetmK//dVW+zhxmMb6jEqVdEmzLIqdKeuHwl7TArrMu+wc
+         T8yEa58vYfgHPHozowWCRSTeznoYb4YRc5OgZqSI0NSMQKxalsEXKGGI4Z/w/w0xlwx1
+         FHKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUGSjeg5uu6HuGGcVJo4bUg/LDdx6VHrtBzQ1WNt3l/6vDJxDeahcCpgRz1OEnuBtg5Vn9mIN0ciZB+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8rwEi6SioPmumt4nGTAmSJQ6BWyLZKo4whpm9DKMbWfmEdG5u
+	dNav47UR4LnugijarSikN6eJeycCqT9pe5WBlYYE5Sjpdk1ka7HnbrwY9/vfd0lIRp8=
+X-Gm-Gg: ASbGncspY7i8eRKUhOVxefW6HrXE9H8TUYIl7J2DLHhyENz1GYEnZ2G5QiSlyfa5dcm
+	PB8O/oMKHHgRLKJBgFPfFGTEq57DgtW4UPJS75B9+krJe8LOwjEngAp8EB2cxmiWC7Zy6KcNCz8
+	reqxZ3+RphWJC91ijV20nsMcoDjDu3jOLMUqIhdalnVKyyWXk5dUFSNuvZoylYWlyut6TRpKGgH
+	z2WbMTwPpXfbrKvjI8pyGkLEsYyVNF4gnmfB0f9ORjXitQ6XxVTaA0rc+0jVWsurhodfwpiCae4
+	50UG7F4HdbmpiBTF0utNsZqPLv55+ro1o7UZHERKz3tfQcqhxDSjZ9NI9OGFN3rsXmQEoEbXE7z
+	iMxoDZ/YqMTsnyGdfole179wKBaPof2OBLoVpcc3sY0HL5hwZt7oPulwxByxe6KvYudgpZqTiL8
+	o=
+X-Google-Smtp-Source: AGHT+IHxBlU8JZPfMMJtvM979h02jPySYJMewnbLlNqo4fjxMOlippIrgeq9IW091eL4W/Zoa+r99A==
+X-Received: by 2002:a05:6808:2197:b0:433:fa92:69e9 with SMTP id 5614622812f47-435e051f643mr2916773b6e.34.1755199153544;
+        Thu, 14 Aug 2025 12:19:13 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:2d9b:959c:3c59:5831? ([2600:8803:e7e4:1d00:2d9b:959c:3c59:5831])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-435ce856832sm1237911b6e.23.2025.08.14.12.19.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Aug 2025 12:19:13 -0700 (PDT)
+Message-ID: <31dea455-f5c4-47a9-9ba8-6a284b12ccfe@baylibre.com>
+Date: Thu, 14 Aug 2025 14:19:12 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8906:EE_
-X-MS-Office365-Filtering-Correlation-Id: 153f8fcc-0663-470b-49a7-08dddb651c99
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|1800799024|7416014|376014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?R+pNdvlxSeLQ5ggPXvGnuAg7Af1dQz643Hv64p53C6uuLuQASyP1Bflcow/8?=
- =?us-ascii?Q?xx7A8i9lDsscVCX0E+oqOuQJFhMhrU1kHoqlBMNiaJKZ79MDmkIP0bNqtVcP?=
- =?us-ascii?Q?FRH6FoYNZs4ohNaaegCqcFyg0dXwOCkVsxl+sRGDdU5Pv1+4nnSEbHeWJmPn?=
- =?us-ascii?Q?1JibqrN+btAVQYQxLYB9fNJlaeyLdITWI9nJJvobWxexYLiTCh9mtE40oDur?=
- =?us-ascii?Q?DkM4r/5MaVwtFGZNrXqqGYs5I6sgUwj1r15lXYKsT3OO5eJhO4zsgXNm5uNY?=
- =?us-ascii?Q?Aaz//ztComfFV4wX9bDJtMayowH2DR5xbRKHqtKe34+V+INyI4ozO9jebGq9?=
- =?us-ascii?Q?AERPVo+Yih7+LFyPjrg0zNhE272LSqkbGoKW4YDWM2O+0VBVqYzkNvrAWpga?=
- =?us-ascii?Q?IiSfoEcOXsU+JjJekVpbVmTTweJU1ZJYabmGZcvCBaq25k/aCRctpg6VmlBT?=
- =?us-ascii?Q?fZj2qNY8dWNB/fEDNO8EMY+JhuyK+kGuI2HTDxO1sIscqPtZVn5m3rlWBBLU?=
- =?us-ascii?Q?wDJm/+2AZ78HfXaOqwIWbVUDP39y5qO+nGS5bWczlHfEjliXH4EyPAGuGy/8?=
- =?us-ascii?Q?ZknXFNqF6M3VvivJAbtubvWQwOsZhF3+T86+LrXQvcrkvcP/uIHS2Pu5ohEO?=
- =?us-ascii?Q?cSXCHF+W2b+e6drid10QvCfiFEio2hpm7GIl2OSaRtCPtIOUCo0gawxW4Bae?=
- =?us-ascii?Q?WMfpH6u1CjhX70bKSRoK77RKvS+vvAtPqR4JcZQ55dCMtQG0PuGLH1ZmVWPx?=
- =?us-ascii?Q?pQA0KVESx3mhF7i3tSBDgLwNWavKBZYyAbzk0r+6ida282XesHzaxAJr5bka?=
- =?us-ascii?Q?YMj4NEUslzk0mJ9AvgOOYxbibRereqCStgcBz+mcDIENppyaKirKQ+AbsUP2?=
- =?us-ascii?Q?xx3+VJDJWzMsdLv2eKPcIIfYsFMZvf7xr8BktZDuD9ffgwrwGnIUk7g57TmX?=
- =?us-ascii?Q?BAn4GxiTcpXGfWykCqjeTzoEIJ9CiuwtIRzUhOKUYsGitenvb4joJxyh0/Kv?=
- =?us-ascii?Q?/KhuJnHZpx12Y+JhDUDgsl2cCWmidYU2IpGXw7j/x0InQsgWeP5zn3/I5dQ6?=
- =?us-ascii?Q?P1GNPT9yRzgR32YoxPZ0b9hVd853I7s0ELRRJKjsaz6OB9KD8Q/72f5oF7AI?=
- =?us-ascii?Q?o9fhmyW4ej31mVKtHtzZWa2grv1kFxrcYRO5iC+mIU+BUi+tdmJT5nkGO29A?=
- =?us-ascii?Q?/KSwaakoD2/z6KTie6tUNLpEIRnZ7rdJUbLRshPHXIdbYySvofoDRRsRZgR4?=
- =?us-ascii?Q?zpDBI2rBkBuNbrhD02qxc/zFfS0b37AYa05s/0WTucqKXNx+Q///eFQ2PfSa?=
- =?us-ascii?Q?2PUET9Vg5hwXMkwO67SD50I4eR7dAnvEdcDykPd2N6XO5efUlNOIsPiX8XkB?=
- =?us-ascii?Q?PMUhXmtmylpPIQi17CAqFEhD7ENGu3CxmwTAmyyRJrqvU6V444SUeQgaCQmd?=
- =?us-ascii?Q?3syJQh7v1k3ORKAkJt8uy1GVsHRR+HxXrHBzSO7UiehoYq6qaBm1iQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(7416014)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?SIDBPIJMYkFo8NBIjaatbUsBTfaogxdePO6LsHuB09146DgwzWPbqwu2Qk8t?=
- =?us-ascii?Q?BRe+FqQM4GzZR+ouhGK71pcq1X5nyEK8FUMday9w6MJSkwWvalBbGfJKgKIe?=
- =?us-ascii?Q?HWgM5MFNqfxnwiu4SaiURrSFKRCeH+uqWr3q9EkYHKYMbhXL/G5p7OIEyPmm?=
- =?us-ascii?Q?Oqf0GVlusr6LU8PF9gtimXNXfQElBjPbiY7Vh4+KWarqsCe3ORzhZ5vHwVev?=
- =?us-ascii?Q?eM037KcxCBn3yBjxvPg+fVROYjZlGlRaptUv46x2DSeYUQuRTQOiTyduybQv?=
- =?us-ascii?Q?J1Vi0necCqPpw/vf8/YuqjDQ05a3boK5OVbfrOLB5Rluzwly708vZPc7u8XR?=
- =?us-ascii?Q?iIatkXELdihdNPtBFtaNOtE9++wNwGKeZ+9kBJ4gczjPL0mMljHnZETF7FER?=
- =?us-ascii?Q?W8nEZsx7cz32LtxLQLyj01YOnh191w+5p7IximVNfjmEp0m6loUzJytZWIfQ?=
- =?us-ascii?Q?2YSA1eUu6Z5zNh54tutTcMhkcNuybsKWXUp65fBuPzii1JmPuNc3CczOe3qX?=
- =?us-ascii?Q?pMd/9vxchkYhX9o4ppdoqhaeTX99JVHQxaGcTYUgxir+2q86nemaLhe09E7h?=
- =?us-ascii?Q?hR5J7yHyA2/3wgPVx2dwQZSfmloaK36egdHUr0KG1fzxxhAzqJ4UmKB6jdFQ?=
- =?us-ascii?Q?dY0LvFDNG17RbDBZP/CmrvFxgjgXaHnCfifxM9uSYYp3fABScyNRtGsnR7yK?=
- =?us-ascii?Q?HOJVHw9OOoD0SUkxY0MFruzKzoM+ogQuk/oDb+sKlJGT1PBb48iAHiJkZALc?=
- =?us-ascii?Q?SENDCjfHO1Bts75VQMkwhRFnwWrbyr7noWC8xMRdp0MCrPOV1Z1IvcCQ5hCm?=
- =?us-ascii?Q?4U+8Pxcgt3EaBi/glzZ9nBE1Xm75+pIKpxRdxunjjGh8LveuXa35Hotu5z3U?=
- =?us-ascii?Q?8PLAgoHvlP+vEqr/GOfT/lS+8ibgyiKST5bIEv6o0bmtm5/c1WONnxKKrKHS?=
- =?us-ascii?Q?/Z5cpwevu+ER5lAjW0sHRecnRqMdLbr8zpsExlpaicPqODjcKJ7jZ0MEcbMq?=
- =?us-ascii?Q?sJbalSBahXiHLLX1RArS8K93CZuwYQGBDtka/YUSwpAeymaQg1O4Agf8+uwH?=
- =?us-ascii?Q?e7qWREtBpK5td8+9rLOvo8gnsd++RcZ1DfrFmClD/koGEuI2P7RjD+tlKH8P?=
- =?us-ascii?Q?xQ9WgnjAGk4v+ZSDd/+yw/pjSfCI2lfcuSGBWYsiqBkDc4cZLUvJhj82Yzje?=
- =?us-ascii?Q?Rv8R72x9ww+NLhk2ReT693cgq7U5J1vxh7+tO6qftgYBfNib0QOyXPrCgpfW?=
- =?us-ascii?Q?ejt4AJwB8G95jCv//rEjK7AFK5rozwn7Ncsg+WgWuEHXOoPRC02yp1Tq6M8g?=
- =?us-ascii?Q?SR0lEGVzCfn/f7jl5oR9Af1LidfVB/C8m1e8+INRBmsAqhMDSnsozkjvcJl3?=
- =?us-ascii?Q?xIq1sTpB+4xkgqhIMhR7AwdmlYVsOm3v1j3E7GRo9Kj5dSu7SB3BUaqa0Wei?=
- =?us-ascii?Q?b/od4oaFgsqMewDUgv9HLAtntUZCiWvcbU5EyJj49kF4rEW750VULI/h5NOs?=
- =?us-ascii?Q?zMf2eu//Iau94wGOSnE7rRpyNEuAx74IZCUJMn5wyZ4frXogw4cU+C7MDYxm?=
- =?us-ascii?Q?StQJTwYLPE4sO64rq+HtlMFfg9GxvUcVzXAGMHKu?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 153f8fcc-0663-470b-49a7-08dddb651c99
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2025 19:02:27.6167
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /KLQ+qILbgouQAUrM9fVPimP2BjDSrzDg887m7Fel00CZD5AMa0tYJ+e5zPAX6EairOXxMJGn/3GOLDw/FGMrg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8906
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] iio: adc: ltc2497: add temperature sensor support
+To: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250814-ltc2495-v3-0-c2a6cecd6b99@gmail.com>
+ <20250814-ltc2495-v3-3-c2a6cecd6b99@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250814-ltc2495-v3-3-c2a6cecd6b99@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 14, 2025 at 04:59:19PM +0800, Richard Zhu wrote:
-> Refer to PCIe CEM r6.0, sec 2.3 WAKE# Signal, WAKE# signal is only
-> asserted by the Add-in Card when all its functions are in D3Cold state
-> and at least one of its functions is enabled for wakeup generation.
->
-> The 3.3V auxiliary power (+3.3Vaux) must be present and used for wakeup
-> process. Since the main power supply would be gated off to let Add-in
-> Card to be in D3Cold, add the vaux and keep it enabled to power up WAKE#
-> circuit for the entire PCIe controller lifecycle when WAKE# is supported.
-
-if it is standard, it should move to snps,dw-pcie-common.yaml.
-
-Frank
->
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+On 8/14/25 6:00 AM, Yusuf Alper Bilgin wrote:
+> Support for reading the internal temperature sensor on LTC2495 and
+> LTC2499 via a standard IIO temperature channel.
+> 
+> Signed-off-by: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
 > ---
->  .../devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml      | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> index cddbe21f99f2b..13fddf731ab8c 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> @@ -98,6 +98,12 @@ properties:
->    phy-names:
->      const: pcie-phy
->
-> +  vaux-supply:
-> +    description: Should specify the regulator in charge of power source
-> +      of the WAKE# generation on the PCIe connector. When the WAKE# is
-> +      enabled, this regualor would be always on and used to power up
-> +      WAKE# circuit (optional required).
+>  drivers/iio/adc/ltc2497-core.c | 141 ++++++++++++++++++++++++++++++-----------
+>  drivers/iio/adc/ltc2497.c      |  28 +++++++-
+>  drivers/iio/adc/ltc2497.h      |  15 +++++
+>  3 files changed, 145 insertions(+), 39 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ltc2497-core.c b/drivers/iio/adc/ltc2497-core.c
+> index 2dc5c704426949a4ec62c42591d6c2c40ffb79cc..bbb7948f81933ee35103e37cb2ba94354f61b32e 100644
+> --- a/drivers/iio/adc/ltc2497-core.c
+> +++ b/drivers/iio/adc/ltc2497-core.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/units.h>
+>  
+>  #include "ltc2497.h"
+>  
+> @@ -95,10 +96,53 @@ static int ltc2497core_read_raw(struct iio_dev *indio_dev,
+>  		if (ret < 0)
+>  			return ret;
+>  
+> -		*val = ret / 1000;
+> -		*val2 = ddata->chip_info->resolution + 1;
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			*val = ret / 1000;
+> +			*val2 = ddata->chip_info->resolution + 1;
 > +
->    vpcie-supply:
->      description: Should specify the regulator in charge of PCIe port power.
->        The regulator will be enabled when initializing the PCIe host and
-> --
-> 2.37.1
->
+> +			return IIO_VAL_FRACTIONAL_LOG2;
+> +
+> +		case IIO_TEMP:
+> +			if (!ddata->chip_info->has_temp_channel)
+> +				return -EINVAL;
+> +
+> +			/*
+> +			 * The datasheet formula to get Temperature in Celsius is:
+> +			 * Temp_C = (DATAOUT * Vref_V / temp_scale) - 273
+> +			 *
+> +			 * To match the IIO framework's model of (raw + offset) * scale,
+> +			 * and to get the final result in millidegrees Celsius:
+> +			 *
+> +			 * Temp_mC = ((DATAOUT * Vref_mV / temp_scale_mV) - 273) * 1000
+> +			 * Temp_mC = (DATAOUT - (273 * temp_scale_mV / Vref_mv)) * 1000 *
+> +			 *           Vref_mV / temp_scale_mV
+> +			 *
+> +			 * This gives us:
+> +			 * scale  = Vref_mV * 1000 / temp_scale_mV
+> +			 * offset = -273 * temp_scale / Vref_mV
+> +			 */
+
+Probably don't need quite so much comments here. TBH, I though just the
+comment in struct ltc2497_chip_info was enough.
+
+> +			*val = ret;
+> +			*val2 = ddata->chip_info->temp_scale_mV;
+> +
+> +			return IIO_VAL_FRACTIONAL;
+> +
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		if (chan->type != IIO_TEMP)
+> +			return -EINVAL;
+> +
+> +		/* see the calculation above. Offset with (-273 * temp_scale / Vref) */
+> +		ret = regulator_get_voltage(ddata->ref);
+> +		if (ret < 0)
+> +			return ret;
+>  
+> -		return IIO_VAL_FRACTIONAL_LOG2;
+> +		*val = kelvin_to_celsius(0) * ddata->chip_info->temp_scale_mV;
+> +		*val2 = ret / 1000;
+> +
+> +		return IIO_VAL_FRACTIONAL;
+>  
+>  	default:
+>  		return -EINVAL;
+> @@ -126,39 +170,56 @@ static int ltc2497core_read_raw(struct iio_dev *indio_dev,
+>  	.differential = 1, \
+>  }
+>  
+> +#define LTC2497_TEMPERATURE_CHAN \
+> +{												\
+> +	.type = IIO_TEMP,									\
+> +	.channel = 0,										\
+
+No need for channel if indexed == 0.
+
+> +	.address = (LTC2497_ENABLE_TEMPERATURE_CONV),						\
+
+Since this can't be used the same was as the voltage address
+field, not sure it makes sense to set this. Later, we can
+just check the channel.type instead.
+
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),						\
+> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_OFFSET),	\
+> +}
+> +
+> +#define LTC2497_VOLTAGE_CHANNEL_LIST \
+> +	LTC2497_CHAN(0, LTC2497_SGL, "CH0"),			\
+> +	LTC2497_CHAN(1, LTC2497_SGL, "CH1"),			\
+> +	LTC2497_CHAN(2, LTC2497_SGL, "CH2"),			\
+> +	LTC2497_CHAN(3, LTC2497_SGL, "CH3"),			\
+> +	LTC2497_CHAN(4, LTC2497_SGL, "CH4"),			\
+> +	LTC2497_CHAN(5, LTC2497_SGL, "CH5"),			\
+> +	LTC2497_CHAN(6, LTC2497_SGL, "CH6"),			\
+> +	LTC2497_CHAN(7, LTC2497_SGL, "CH7"),			\
+> +	LTC2497_CHAN(8, LTC2497_SGL, "CH8"),			\
+> +	LTC2497_CHAN(9, LTC2497_SGL, "CH9"),			\
+> +	LTC2497_CHAN(10, LTC2497_SGL, "CH10"),			\
+> +	LTC2497_CHAN(11, LTC2497_SGL, "CH11"),			\
+> +	LTC2497_CHAN(12, LTC2497_SGL, "CH12"),			\
+> +	LTC2497_CHAN(13, LTC2497_SGL, "CH13"),			\
+> +	LTC2497_CHAN(14, LTC2497_SGL, "CH14"),			\
+> +	LTC2497_CHAN(15, LTC2497_SGL, "CH15"),			\
+> +	LTC2497_CHAN_DIFF(0, LTC2497_DIFF),			\
+> +	LTC2497_CHAN_DIFF(1, LTC2497_DIFF),			\
+> +	LTC2497_CHAN_DIFF(2, LTC2497_DIFF),			\
+> +	LTC2497_CHAN_DIFF(3, LTC2497_DIFF),			\
+> +	LTC2497_CHAN_DIFF(4, LTC2497_DIFF),			\
+> +	LTC2497_CHAN_DIFF(5, LTC2497_DIFF),			\
+> +	LTC2497_CHAN_DIFF(6, LTC2497_DIFF),			\
+> +	LTC2497_CHAN_DIFF(7, LTC2497_DIFF),			\
+> +	LTC2497_CHAN_DIFF(0, LTC2497_DIFF | LTC2497_SIGN),	\
+> +	LTC2497_CHAN_DIFF(1, LTC2497_DIFF | LTC2497_SIGN),	\
+> +	LTC2497_CHAN_DIFF(2, LTC2497_DIFF | LTC2497_SIGN),	\
+> +	LTC2497_CHAN_DIFF(3, LTC2497_DIFF | LTC2497_SIGN),	\
+> +	LTC2497_CHAN_DIFF(4, LTC2497_DIFF | LTC2497_SIGN),	\
+> +	LTC2497_CHAN_DIFF(5, LTC2497_DIFF | LTC2497_SIGN),	\
+> +	LTC2497_CHAN_DIFF(6, LTC2497_DIFF | LTC2497_SIGN),	\
+> +	LTC2497_CHAN_DIFF(7, LTC2497_DIFF | LTC2497_SIGN)
+> +
+>  static const struct iio_chan_spec ltc2497core_channel[] = {
+> -	LTC2497_CHAN(0, LTC2497_SGL, "CH0"),
+> -	LTC2497_CHAN(1, LTC2497_SGL, "CH1"),
+> -	LTC2497_CHAN(2, LTC2497_SGL, "CH2"),
+> -	LTC2497_CHAN(3, LTC2497_SGL, "CH3"),
+> -	LTC2497_CHAN(4, LTC2497_SGL, "CH4"),
+> -	LTC2497_CHAN(5, LTC2497_SGL, "CH5"),
+> -	LTC2497_CHAN(6, LTC2497_SGL, "CH6"),
+> -	LTC2497_CHAN(7, LTC2497_SGL, "CH7"),
+> -	LTC2497_CHAN(8, LTC2497_SGL, "CH8"),
+> -	LTC2497_CHAN(9, LTC2497_SGL, "CH9"),
+> -	LTC2497_CHAN(10, LTC2497_SGL, "CH10"),
+> -	LTC2497_CHAN(11, LTC2497_SGL, "CH11"),
+> -	LTC2497_CHAN(12, LTC2497_SGL, "CH12"),
+> -	LTC2497_CHAN(13, LTC2497_SGL, "CH13"),
+> -	LTC2497_CHAN(14, LTC2497_SGL, "CH14"),
+> -	LTC2497_CHAN(15, LTC2497_SGL, "CH15"),
+> -	LTC2497_CHAN_DIFF(0, LTC2497_DIFF),
+> -	LTC2497_CHAN_DIFF(1, LTC2497_DIFF),
+> -	LTC2497_CHAN_DIFF(2, LTC2497_DIFF),
+> -	LTC2497_CHAN_DIFF(3, LTC2497_DIFF),
+> -	LTC2497_CHAN_DIFF(4, LTC2497_DIFF),
+> -	LTC2497_CHAN_DIFF(5, LTC2497_DIFF),
+> -	LTC2497_CHAN_DIFF(6, LTC2497_DIFF),
+> -	LTC2497_CHAN_DIFF(7, LTC2497_DIFF),
+> -	LTC2497_CHAN_DIFF(0, LTC2497_DIFF | LTC2497_SIGN),
+> -	LTC2497_CHAN_DIFF(1, LTC2497_DIFF | LTC2497_SIGN),
+> -	LTC2497_CHAN_DIFF(2, LTC2497_DIFF | LTC2497_SIGN),
+> -	LTC2497_CHAN_DIFF(3, LTC2497_DIFF | LTC2497_SIGN),
+> -	LTC2497_CHAN_DIFF(4, LTC2497_DIFF | LTC2497_SIGN),
+> -	LTC2497_CHAN_DIFF(5, LTC2497_DIFF | LTC2497_SIGN),
+> -	LTC2497_CHAN_DIFF(6, LTC2497_DIFF | LTC2497_SIGN),
+> -	LTC2497_CHAN_DIFF(7, LTC2497_DIFF | LTC2497_SIGN),
+> +	LTC2497_VOLTAGE_CHANNEL_LIST,
+> +};
+> +
+> +static const struct iio_chan_spec ltc2497core_channel_with_temperature[] = {
+> +	LTC2497_VOLTAGE_CHANNEL_LIST,
+> +	LTC2497_TEMPERATURE_CHAN,
+>  };
+>  
+>  static const struct iio_info ltc2497core_info = {
+> @@ -182,8 +243,14 @@ int ltc2497core_probe(struct device *dev, struct iio_dev *indio_dev)
+>  
+>  	indio_dev->info = &ltc2497core_info;
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
+> -	indio_dev->channels = ltc2497core_channel;
+> -	indio_dev->num_channels = ARRAY_SIZE(ltc2497core_channel);
+> +
+> +	if (ddata->chip_info->has_temp_channel) {
+> +		indio_dev->channels = ltc2497core_channel_with_temperature;
+> +		indio_dev->num_channels = ARRAY_SIZE(ltc2497core_channel_with_temperature);
+> +	} else {
+> +		indio_dev->channels = ltc2497core_channel;
+> +		indio_dev->num_channels = ARRAY_SIZE(ltc2497core_channel);
+> +	}
+>  
+>  	ret = ddata->result_and_measure(ddata, LTC2497_CONFIG_DEFAULT, NULL);
+>  	if (ret < 0)
+> diff --git a/drivers/iio/adc/ltc2497.c b/drivers/iio/adc/ltc2497.c
+> index 8f4665547b5b0d32084599f8557c40102c37a4ce..07fced79aeead3778964b114d479fdcb643c16df 100644
+> --- a/drivers/iio/adc/ltc2497.c
+> +++ b/drivers/iio/adc/ltc2497.c
+> @@ -86,8 +86,28 @@ static int ltc2497_result_and_measure(struct ltc2497core_driverdata *ddata,
+>  			return 0;
+>  	}
+>  
+> -	ret = i2c_smbus_write_byte(st->client,
+> -				   LTC2497_ENABLE | address);
+> +	/*
+> +	 * Chips with temperature sensor support (e.g., LTC2495/LTC2499)
+> +	 * require a two-byte command format to select any channel.
+> +	 *
+> +	 * To read the internal temperature, LTC2497_ENABLE_TEMPERATURE_CONV
+> +	 * is sent as the second byte. To read a voltage channel, LTC2497_EN2
+> +	 * is sent, which sets the default configuration: simultaneous 50/60Hz
+> +	 * rejection, 1x speed, and gain=1.
+> +	 *
+> +	 * Chips without this feature use a standard single-byte command.
+> +	 */
+> +	if (ddata->chip_info->has_temp_channel) {
+> +		if (address == LTC2497_ENABLE_TEMPERATURE_CONV)
+
+Here we can just check the channel type.
+
+> +			ret = i2c_smbus_write_byte_data(st->client, LTC2497_ENABLE,
+> +							LTC2497_ENABLE_TEMPERATURE_CONV);
+
+And use LTC2497_EN2 | LTC2497_IM here.
+
+> +		else
+> +			ret = i2c_smbus_write_byte_data(st->client, LTC2497_ENABLE | address,
+> +							LTC2497_EN2);
+> +	} else {
+> +		ret = i2c_smbus_write_byte(st->client, LTC2497_ENABLE | address);
+> +	}
+> +
+>  	if (ret)
+>  		dev_err(&st->client->dev, "i2c transfer failed: %pe\n",
+>  			ERR_PTR(ret));
+> @@ -135,6 +155,8 @@ static const struct ltc2497_chip_info ltc2497_info[] = {
+>  	[TYPE_LTC2495] = {
+>  		.resolution = 16,
+>  		.name = "ltc2495",
+> +		.has_temp_channel = true,
+> +		.temp_scale_mV = 12250,
+>  	},
+>  	[TYPE_LTC2497] = {
+>  		.resolution = 16,
+> @@ -143,6 +165,8 @@ static const struct ltc2497_chip_info ltc2497_info[] = {
+>  	[TYPE_LTC2499] = {
+>  		.resolution = 24,
+>  		.name = "ltc2499",
+> +		.has_temp_channel = true,
+> +		.temp_scale_mV = 1570000,
+>  	},
+>  };
+>  
+> diff --git a/drivers/iio/adc/ltc2497.h b/drivers/iio/adc/ltc2497.h
+> index 64e81c95a3dd05911b6717c09ac0560c9f47f304..65f406bc61c24b912de4beed604a074b3ea9df91 100644
+> --- a/drivers/iio/adc/ltc2497.h
+> +++ b/drivers/iio/adc/ltc2497.h
+> @@ -3,10 +3,25 @@
+>  #define LTC2497_ENABLE			0xA0
+>  #define LTC2497_CONFIG_DEFAULT		LTC2497_ENABLE
+>  #define LTC2497_CONVERSION_TIME_MS	150ULL
+> +#define LTC2497_EN2			BIT(7)
+> +/* Enable the internal temperature sensor */
+> +#define LTC2497_IM                      BIT(6)
+
+These should go directly above:
+
+#define LTC2497_SGL			BIT(4)
+
+in the .c file. No need to have them in the header.
+
+
+> +/* Second command byte value to initiate a temperature conversion */
+> +#define LTC2497_ENABLE_TEMPERATURE_CONV	(LTC2497_EN2 | LTC2497_IM)
+
+This macro seems odd. We usually don't make macros for combined bits
+like this. And the way it is being used in the code feels a bit odd
+as well. We can probably rework the code to not need it as suggested
+in some of the comments above.
+
+>  
+>  struct ltc2497_chip_info {
+>  	u32 resolution;
+>  	const char *name;
+> +	/*
+> +	 * Represents the datasheet constant from the temperature formula:
+> +	 * T_Kelvin = (DATAOUT * Vref) / temp_scale, where Vref is in Volts.
+> +	 *
+> +	 * To allow the driver to use Vref in millivolts for the calculation
+> +	 * and also to avoid floating points, this stored value represents the
+> +	 * datasheet constant scaled by 1000.
+> +	 */
+> +	u32 temp_scale_mV;
+> +	bool has_temp_channel;
+>  };
+>  
+>  struct ltc2497core_driverdata {
+> 
+
 
