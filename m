@@ -1,388 +1,241 @@
-Return-Path: <devicetree+bounces-204443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ACEFB2590B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 03:30:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A21DBB25925
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 03:34:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD414188A120
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 01:30:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 385F81BC7778
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 01:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307A7188000;
-	Thu, 14 Aug 2025 01:29:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE7A1E8322;
+	Thu, 14 Aug 2025 01:34:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="TxPa0XVF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023079.outbound.protection.outlook.com [52.101.127.79])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011050.outbound.protection.outlook.com [52.101.65.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295E515E5C2;
-	Thu, 14 Aug 2025 01:29:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.79
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF14163;
+	Thu, 14 Aug 2025 01:34:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.50
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755134998; cv=fail; b=u6yhQWff2Xdg27s52+LEBE6rpA4IvrZcHD0xL4SGhCEtBdetC//8JwnJweo0h83fG3o7nbtEPDPuMNKIOqgqbIWmHCv1PNKvO5MIqouW3Q5v6AtXVcrQ4IhzIiMgAcVJLVr7ajjQLRsHRRjxDkAup0InF0Tq6Wj9GaVk6oKRx3M=
+	t=1755135278; cv=fail; b=V5CFQzk9KW1MtBjNgD6nsn+EG9wj9XWpUj7aN1mfvjGMwpy/5gv+d9gcyiGLWzVajrE7HlKCLLe8Uj/DVaEyOn/KpSS/iz6GMI4xSWueTgVioPmONXhL6/GYHHV1rQgvUzOByqOOWUB4NTqa1lSJ+UwLT0/c7/2LvaUTulaQCyU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755134998; c=relaxed/simple;
-	bh=ptQo96hpOtnGgZAeaNRUaZNJTG58oIvnSjWxWyCvjKQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PrCoc2Ldhq2QixZowZ24rAgYc8vOf+XP3mxTTvTlMVD8VUBG31GboOvhY668b7QJoAoJLH81HOLHYIAuCgLMxaY78ANgB6xUD89Mrns3RLjdqE4E/6WuYtNiJ9xXnQxDRYVrcIZOUCcxKbGRXjMj84xaA2uVHyzyvErprtlpp8E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.79
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+	s=arc-20240116; t=1755135278; c=relaxed/simple;
+	bh=SwxyPrwQ7TVpDm2uVNJ2GkMoJHbUKXoW1p6czDJllnU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=gSVzCVu4riaLjYrDFRZKlmoSdotk/D+tuV5f3IBs1+jHKRmasro/WJ8BXZoRRphArTgRM7GgyXyQzTzLUA5dpbAqULRJY4/y2wLJyxO8sCOFML+gBz20b0XePaPMUQqHPtSED1Q+mUvL2HbLqjYPPcpCayxHWHgWvkAcM099QkA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=TxPa0XVF; arc=fail smtp.client-ip=52.101.65.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DnvPq5T5sUpxkiY+9ueIe6grBqLkFIY++w0WtbnVeWyc+xW8X4fYwTc9z0fadIfhabjBRv8wiNKRSGvvaUKj+GF5+37ht7hZYkDEr5iDj6WIJFNKTjVHlM5cPwiAMwGdozuWRlGmoqYd6J0aVQJOfJlU46IQiB9fwTd7GgXwl8ipI+GMCT+khCa7A/8H2aplJwR1lvNTRZ8XoFbpeEhr6xi7vADtcZD0NXidad1kEs+sTk8W+FATlfKyThNZcCBpXy/BY/GDezzLaEQ4d5P9BkhI58Da0Rq1h/CU4ANCb+fWwE4/vPIaIwbRV+EVKyX1AdDfrcyH1qyx7ACBw7WOIQ==
+ b=dqO5VZWU8ML3C+BN7suh76ku1eG9xjemVItGX3v4ZTz8sGFLBQ6dI8Xlpfd0HvT7bFM+QijszXoqriT+zVYL7fIUL/OOzF1P3DKaZbMXhq5KGc+htHYW/ZMGNZihS80fwzDl2UimsHGRnvb8t5pPUqmnu4R3X2MdpRRIlJbfHzKcmMCv9FnRLdCP8kJ5AjBrkDKX7PEb32FJAqBeFy5BbC5TlinRaR+smyFQWn4ajOKTYobFFR0wjRkEtlqG0FAWlkPtauUHf9VKL7XFUxZ86iky5Z3VJQo95HLdmshUrfGRxxgxYJms+9Waxoo8I7OHDxGctVe3lLOv8974jVxyEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RNwd/QRMBAqmiGeN+XARuaw1UOVS2v8ZYplUkTmZcp0=;
- b=JRfywWdctZjpYmp69ZuOkpshzkFxxGOgUMLuO2f04M2WCWVCKK245jzEEGox7fvmf3Crg8IBJ42A9sKfHj5K1KpMmLIAUutTq0VTjCbRHTbbYdneXjx1BIHGOrTgZXg+lsvZcbFp0U7SLE0QZXHbK7xFN5RDMeP0dFmr9C18Q2x6jtaeTtOw98AaiwWZ5UQWmbTboz18BuSGXRH+70+Q+BP8gERmfSr19NsTQCd8J+1ivGxUcuiZ8hqSbWe5b3wQEC88UV1sEmKwArZmYAG/VZW9O71FDVEV1PTU++mUNBwtvDzf47VNEbgHXmu9XYVGYTGLJU0jYCZB+EpC4Z8hhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PS2PR02CA0091.apcprd02.prod.outlook.com (2603:1096:300:5c::31)
- by JH0PR06MB7199.apcprd06.prod.outlook.com (2603:1096:990:99::6) with
+ bh=zpDHu4OshJqNXbbORc8+kYFsA10o3vSd391WwxvWB1I=;
+ b=X0wvX7181cAoJLiNr79HnxQI6KjhSzWE4wB4lsN9A0LTqe7m90KvbXLLd+EsLRLzmgoX5CiV89ZFmFbkAk+dzmOdnhnWdfwNM+Q+z0vlnfCK6uy7OIPyh9oQvPc1dKmD7F3YLLfwEoZp6w7XuaxuGsT+xsr6p5abkncgc52Rn32fBzpnh8NoRfUomTHzgRuu/D7QR7CRR1h1UAdhLWmgheQmsUZa10p4GpbEPdEzH7m1ESO5NBNO7DTqB3hhBLwAtE9XLH//bsnOZdKouzCSrKOyPAdLtsGX4YMCNYEBbh8EdJF9Uw4ThyWSSVO7v1ooZxQdMEk2kZWBv4TshCNX3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zpDHu4OshJqNXbbORc8+kYFsA10o3vSd391WwxvWB1I=;
+ b=TxPa0XVFn4qkZDayLGtXHDFJvD1CVW9I//J7SD2U6+JQJLCdHPxifgnJjVh+POQ7RLfTIgbCT/UNa5yO7wpGTiYIZnAB1mS5Ff3UJHEXXOMjX0HcIWh63yXJ7NJ3C71HxF3jPRUc7E/LT7xP0V9W7alXUUtRNvWIkS8T+6v9Bv0QR+cGi7NKNVKKygkQ6gAfJnJZyA+AnqqWM8FJyrf0vMyL/tOMeKtOgU++zoBCAFYsSzA7tjPTQV0mFMOe4VSMWqgIA0wdFd1CsdZskY+jMgQY9CfuTAs51MA+nJw5S/iu1emOfx8QFuFpqmXdiOk7MrsTWRH9Itr3zmLMfPk3bQ==
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
+ by VI2PR04MB10224.eurprd04.prod.outlook.com (2603:10a6:800:228::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.17; Thu, 14 Aug
- 2025 01:29:48 +0000
-Received: from TY2PEPF0000AB83.apcprd03.prod.outlook.com
- (2603:1096:300:5c:cafe::6f) by PS2PR02CA0091.outlook.office365.com
- (2603:1096:300:5c::31) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9031.16 via Frontend Transport; Thu,
- 14 Aug 2025 01:29:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB83.mail.protection.outlook.com (10.167.253.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9031.11 via Frontend Transport; Thu, 14 Aug 2025 01:29:46 +0000
-Received: from [172.16.64.208] (unknown [172.16.64.208])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 6FA1344C3CBA;
-	Thu, 14 Aug 2025 09:29:45 +0800 (CST)
-Message-ID: <c05f3e8b-b205-4d6b-8423-23edbfcc9f2b@cixtech.com>
-Date: Thu, 14 Aug 2025 09:29:45 +0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.12; Thu, 14 Aug
+ 2025 01:34:32 +0000
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db%5]) with mapi id 15.20.9031.012; Thu, 14 Aug 2025
+ 01:34:32 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: Frank Li <frank.li@nxp.com>
+CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"richardcochran@gmail.com" <richardcochran@gmail.com>, Claudiu Manoil
+	<claudiu.manoil@nxp.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, Clark
+ Wang <xiaoning.wang@nxp.com>, "andrew+netdev@lunn.ch"
+	<andrew+netdev@lunn.ch>, "davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>, "kuba@kernel.org"
+	<kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
+	<s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, "F.S.
+ Peng" <fushi.peng@nxp.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: RE: [PATCH v3 net-next 03/15] dt-bindings: net: add an example for
+ ENETC v4
+Thread-Topic: [PATCH v3 net-next 03/15] dt-bindings: net: add an example for
+ ENETC v4
+Thread-Index: AQHcC3DkGmTUNwk2xESr59nb08m5z7RfFqQAgAC3jbCAAOOvAIAArjeQ
+Date: Thu, 14 Aug 2025 01:34:32 +0000
+Message-ID:
+ <PAXPR04MB85100738E2AD741CA5C8E9648835A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+References: <20250812094634.489901-1-wei.fang@nxp.com>
+ <20250812094634.489901-4-wei.fang@nxp.com>
+ <aJtR4j9+w5fVsJL4@lizhi-Precision-Tower-5810>
+ <PAXPR04MB8510925387F9F72A8E99AB82882AA@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <aJyq2h+y+KBjqmsr@lizhi-Precision-Tower-5810>
+In-Reply-To: <aJyq2h+y+KBjqmsr@lizhi-Precision-Tower-5810>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|VI2PR04MB10224:EE_
+x-ms-office365-filtering-correlation-id: 964b26ab-0288-494f-6b4e-08dddad2b822
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|19092799006|366016|1800799024|7416014|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?BtSojcYyHJ1wJgwDiWsStI57d8dXCtbjITm8xT4viJFjx3Qi/bl7nHUiWXTV?=
+ =?us-ascii?Q?Iz5MTZjwSmvkG6vyuJo96eOxErRB9gZtOlkZq0ZnBOpKWU3+9JZztBISBk0z?=
+ =?us-ascii?Q?yjkuT8S7iLc/yBO5KzqC7k8fbx7RT0pfBNcoZCo320AbJlZFjLn9PXpmRPQy?=
+ =?us-ascii?Q?5GO42hNdu1GABbwj34YdD9aHIqrXvf5wDmn5tDEe2b3lZCYvPPSlQHI2fijs?=
+ =?us-ascii?Q?bpA67Yta0Z6a4LEpJLTNzGBeIzw03WzSQnQSN7t6VtSs/iUSmchTiXPHhKdO?=
+ =?us-ascii?Q?fplPg7efkhUuhlui/w6x5itbxrPQdgGcoPgum2GbcFjuq/fj9wzKLOQX59JE?=
+ =?us-ascii?Q?IlHSp4gVGoBEV216+kSdChe3b37eqmcEizd/2ROJQUsYl6BLKH3OTsqdVS7D?=
+ =?us-ascii?Q?3iBfJe9uEKCcUtpu27aUAbzi2gP5PNhMS1TX48YROleBOewW1e2sMMiSJNL1?=
+ =?us-ascii?Q?+v0uu2OtkEB4ZHTqeKrDmKs4DzzhJM9cYqWG1Ve202tTkq2aPyr4s2J4Nnk0?=
+ =?us-ascii?Q?rHLS/qGWhAMBYHP1/QEB5KDWEPLa90a+5QrA+2XOm9Wp3dP0Sbs5MAjvxp+0?=
+ =?us-ascii?Q?DFr11i4vCqjQMCZ7p2wGP8s9X/xCAo9MNWPwpI7E5+mAzdap8Y1IBJ59pbkf?=
+ =?us-ascii?Q?0NX0PjS45PhCLUjEF6sZrqb9gk+TJveugZhWo46ieSo5zNzNdVphomTOGY8R?=
+ =?us-ascii?Q?lg2gfMQhrhVaQtL0D4pY+Jgb8kzr2aO8SIelllqFy/QOK8uTToBCkmscDfZI?=
+ =?us-ascii?Q?CIsnCoP8C6TH7bzxYgpTQqULoLRyDwJAUXj4EdySMoXqfDSpQjdU5BEu52md?=
+ =?us-ascii?Q?4T6M0rJfvH5NcJ9wOgc5NJwMr/Ewj2yYVrHXkfpQvnn1NWd2QVMWUO147vS7?=
+ =?us-ascii?Q?kNbSRphAuROl/6o4c/mnTl1sNgRFPmkDyPpaIPG35lNqJLuVj3MaVmGt6yBB?=
+ =?us-ascii?Q?4Yqn1ryvy3zg0pLlnwPAh6ccbtSZnpe/U3KuuxxCbe4uWI5X9uvVPMbF4zd/?=
+ =?us-ascii?Q?l4+YRQylY0NijKjpKAOOmLlehZH5fjzAbY5e50daDh32zYxmy3vl9ffmnDtD?=
+ =?us-ascii?Q?2Ww9VBDIYMtbW9vm1vWqs5GDnr3hlmqUOhvaNG6/EhpsdhYEebA6IHNBW8Kc?=
+ =?us-ascii?Q?0qnb0onaAPm1gO/qW4aSvVJp+KfK0Q4Ca6ihDZDAuDEZ2vzz5XrIwCNJ6AVY?=
+ =?us-ascii?Q?Q58rO5ReKh3i+r8rk9Pxvneg4kCjErzICh/FP0XrZtpMt+KldHPedoUCR8p9?=
+ =?us-ascii?Q?5QcoBPnWmLxgVkq4XyHBd8ePEpQQbuHf5C3h5qgg39QogEbL3p8W5eIMVpoG?=
+ =?us-ascii?Q?WHHydw+QESpg1C5/0BvyFROnUK9XzUJE3o8ZPKf5s7rZGjYo+9ILM/uB5IRj?=
+ =?us-ascii?Q?ayx97IHxIcVajb8Qy3ooJMUnvilWF6tO0cGgWSyJgrveyCX3RcjD2FjAM4ef?=
+ =?us-ascii?Q?BJGkBr1axkbgXAby/BRmNMFdLyYw/mR+91b3Ge7awxinJ9QbY0Kr8w=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(7416014)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?dT3QBu/tNjDBcCliyKGjBmHWQjy63PNtDl6QLgfXLDih1Rh9myO6gyJUnhKO?=
+ =?us-ascii?Q?Ppqz7BZ/MYqLgGiiB5hxXZfZpxOcD3OFRKHmM25A8a+dBq8XCdsSyBmtvWOZ?=
+ =?us-ascii?Q?IKPlRIg3Zm4YZdMoUqE9CuTxYC48brbjTONHFiFFYCu9UAjO247BNG2lik7V?=
+ =?us-ascii?Q?u+BlotK6WAwBlbCLf7oV5U6pzqtHwyfkJnaHt+PZdBB+1nRiCiL7JnXO1eTe?=
+ =?us-ascii?Q?e3uj1CAqjw/Fb+JK9UspNcgBIlNOsmucDqjNmCIcfe+2Zkjv3CZpNZrEac9U?=
+ =?us-ascii?Q?jZ0NIX+xHDkdrfv5bvoaxfs6erKiuJIMj46ivwEV1s2F7NvTKdESk+23eYVS?=
+ =?us-ascii?Q?fjNvdBGMkyC8cVZAi8BD5oqwW5WkPCdBk4wAEKPPfaZFB+RM5sLTvJQ+nEbk?=
+ =?us-ascii?Q?GYEMfqqcLdZMv0ac3mMZZ5lIgsdsM89SVLg/9faeufJHoa2Y0Hji3KAxW1q9?=
+ =?us-ascii?Q?DFoBNqBUHuSh0qaXhgPcADHKQrtEIFiwpLfcq83kdY5AKGUTYFhEKEg60pIy?=
+ =?us-ascii?Q?jcbP7nxBXOwG6h4u1UG8kGTdQ4n8oOSe4RVA9e9URFbGzMDvagd2eMzT8vba?=
+ =?us-ascii?Q?pKAOp2zdrEOb6vkKjZTYxcYeh1Xy5jR8bbMKKAsRTUoCoZpvZfaLMAFsY176?=
+ =?us-ascii?Q?wFMC8XZUQzAlcGD4n0b/PCdWAR9XpQl3QmLddAKMGjR9YY8yVvqbwW+T1yYX?=
+ =?us-ascii?Q?HiwRkTfernlqBrya/jIE5qnfaelD/XlC6HBNJiri4qhz86ftdBV6zo0EaiIK?=
+ =?us-ascii?Q?oNzEEn7xv3YHCxfGuEl5AxAeRMOxZGlSHkN4U+cAIhlCgWy2Siz6Dg+LYfkP?=
+ =?us-ascii?Q?7UWd/Egcp1P/6yAwBsrkAvqped1aG8Vzsr5KjepSgHvB8V4coaku8a8UIVJ3?=
+ =?us-ascii?Q?eS5xG19lUEoXg/X9XvGI4IbZP89R4RsqqlnkM/Q8O0jYQCr5hupV48bZfGPM?=
+ =?us-ascii?Q?ujnC9wrSYYPsNjxFyoDLb0Z5OccE5qXMG5L9tfVcDv2mL9I5nZEhHGujSG7z?=
+ =?us-ascii?Q?vZncbij+CKSf9C2LE2PjMxHqOxrLBimmI8X0lGcoMlLqhZ+sjGCwhm+2sEeI?=
+ =?us-ascii?Q?nI8gOrYl2jpTDN7ZmR6R51l/bnUqsp780Z74iKXzTUbiwuK6xa8AP9sPnwJ4?=
+ =?us-ascii?Q?RSYgYjHZzLHoVqapV1g4SBAjLKl2nu+qjnPronJGVYZ+XWB0D/Uh2tnaU0/Y?=
+ =?us-ascii?Q?CmK4VyWQenYIo6kn1CU58jw1fw6aY0kqavfTFoCC0SnZnamnid+gXCmgNHNV?=
+ =?us-ascii?Q?2+fn9m36VT1ijd4N96hctCva5YRU3dEJzatCE1WwHIO0emvASFvJxkY6jsK3?=
+ =?us-ascii?Q?yH8WcEwueha9QlNwOlWmQFRnaBSt3xjTxmnsUREjeT4ydDYU00SqNu5CVyLS?=
+ =?us-ascii?Q?Z0wovz5XrRXOS+IZ6PGExOSfbV2Qoh4ImxDesP72LxOSVqierGcLQWxpVngp?=
+ =?us-ascii?Q?eolb38Xp7YtU18t/g6Z016j1cnCA7dlgWEGFdEyOCMKbrV6gb8mqZb9hUmN9?=
+ =?us-ascii?Q?f7avxaUPT3v6r0dToMK1GdgVoUAaxi5g32miM3mfDeHUQaQ8XSqi5NBdKWxj?=
+ =?us-ascii?Q?6Jb2tGsIwrjxgYq8SME=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 10/13] PCI: sky1: Add PCIe host support for CIX Sky1
-To: Krzysztof Kozlowski <krzk@kernel.org>, bhelgaas@google.com,
- lpieralisi@kernel.org, kw@linux.com, mani@kernel.org, robh@kernel.org,
- kwilczynski@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: mpillai@cadence.com, fugang.duan@cixtech.com, guoyin.chen@cixtech.com,
- peter.chen@cixtech.com, cix-kernel-upstream@cixtech.com,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250813042331.1258272-1-hans.zhang@cixtech.com>
- <20250813042331.1258272-11-hans.zhang@cixtech.com>
- <beaa6802-8abe-4cc7-a852-8ecbd60a536c@kernel.org>
-Content-Language: en-US
-From: Hans Zhang <hans.zhang@cixtech.com>
-In-Reply-To: <beaa6802-8abe-4cc7-a852-8ecbd60a536c@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB83:EE_|JH0PR06MB7199:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f36768c-18ea-47f7-9086-08dddad20dc7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?K3dGNmFqalZ4bjVLL0VPeTVaMTdTRnh2WUc0K0RrVmRaOXBZNnlMWDh3R0tm?=
- =?utf-8?B?eExVbWozOVdiTjJRRzIxZStlSGl4L2xXdm1XbmloYjkwOTc3R3JZeEZXaTZK?=
- =?utf-8?B?QzFJajJsVDVIREF5bmFkUXl5UVErSm1CemVxcmM1ZC90QmxVTFRFNUlCMWVv?=
- =?utf-8?B?cTFocnF6KzRkVG9Vd3lFOHVqa3EwZ3hSWlArd2Mxd0FVcmdUdE9FaEZGODlk?=
- =?utf-8?B?T3JrUi93dnBCRUQ3SEtldkRYdzFEeStHWlhsRXV3OW5DbTBGZ2NaMGJnYnRv?=
- =?utf-8?B?VHdLTHNBZG81Q1BRODlrV25zOHZ0YTI1b29PMW0yY1l1eTdheHhlL0Q5bSsx?=
- =?utf-8?B?QXpGcTBlTlhFb2FWRVIrWXFJSjlYYnhHcHNlQmU0K2cvcC9Kb2duNlJhWHY1?=
- =?utf-8?B?eHVBYk5GaDZKdFoyVy9PZnlkY1BIdGtoeWFScm9HNWZFekVoTUtSOTBTNHJw?=
- =?utf-8?B?UU9oSnd6c3I2MGxiSmhudVVaVXF0VTdwMHpBMjZicVNUWThqaFE0T0VhdWdM?=
- =?utf-8?B?d1VydEJIR3JCRHFidG4rYjdHNExwczBOcGFuN2N2a05oc1g2cHZ1ZFB3Qlla?=
- =?utf-8?B?cUtaSGJaWDA2T1BjbnJzeEFEMjZjeGUvc2J4NzhXU1J3ZzdubkhjSk55R3do?=
- =?utf-8?B?ZWtINElaaUF4K0ducVVtN1FPRVVDUW9tMEt5VjNCc2hxaGdhbFpaclg3dmVt?=
- =?utf-8?B?SzVWVnlRTFlBZ1RXMW5kZm5wQ2JNc1BncTVFdWU4ZmZYd2RwYitDZUczMlZ6?=
- =?utf-8?B?RHdFZFVnWTNxRHkxNy9aeEN0TnlUODdzRFd1MFNkdWpneTg0bmJEWG9qOC9t?=
- =?utf-8?B?MnlOOThOK2RjMm8wOHJLeVNxTW5LeEljUE1iTHZHSklmZ1lVVk9PMGpydzFO?=
- =?utf-8?B?RnpUZTVacHgvM3BJbEVNTnExMW1TV2dQbE5wU2gzdzNOY1JFcTJNcGtYS1lM?=
- =?utf-8?B?R3ZPWXpyMFk4MXZZT00ra2ZmSGNSL0NyNnlldERnSnI0OS9pdDRrb1Q0bkcv?=
- =?utf-8?B?QlltTldYZ3RQRGRta2ttbEc0dUNPejFLaHl4NWFnSEVlSkJ2eUczM2NUVGQv?=
- =?utf-8?B?aVUrbEJKQ1BYNEJzRityclRibEJNb0lIeHd0MUpnelFHTTdqZXJJalowQlBY?=
- =?utf-8?B?OG1ZWEs5Sm1aWWRaTVRFU2Nvbm5iaXpWeHBiZ01DSUlnRzVJa2wzZ09IWDdI?=
- =?utf-8?B?OTQ3bGpUaDlwL3o0RlZMbUUxSHdBZzBJcVM2ZVhzSElxTVdUQUljQXArNFVt?=
- =?utf-8?B?aS9GQjJteHViVmRyWnJIZk8xZ3dHMTlqRCtnV2JEcitlY2p0ZVNpbHhlQ0g3?=
- =?utf-8?B?YURacFFQbnd6ZllvOWJwVVEvS0RkdDR0eGVOeGs3RC9DQUFNVWlQdHluUE5R?=
- =?utf-8?B?VHU3MHFJTVRrVlg2R09sOE81WW4vUHZRN0FzUnRFRnh6S29KQ3cvL0d6YVQy?=
- =?utf-8?B?cUd0TXRXbU1McHNiU1ZVUTVwbnhOQldjZnBVYnVLODJqdE5Fd0dUMHhJNU51?=
- =?utf-8?B?K3l2R3lkS1pVbTF1MGtVY0hnL2twSFN5anphUEdyZmFibHpVQ05vM3N1eC8r?=
- =?utf-8?B?TEN5TE51Z2ZWUXZxK2ZHQ3FrSTRhOEtOU1FsMVhWbGppdjArUDZ0TU1yWnI0?=
- =?utf-8?B?cThKbUNxVFJWMjM2YnJhK3pVdnNsZFF4NkpGbk03Y0Rlb0NlZjBsR1N3SDF2?=
- =?utf-8?B?NDFGNDBqQ2VMb294c2dnTWVKakI2NHRpa0xSVm1WalBxZWJQUmRMYVcrWlFS?=
- =?utf-8?B?bllUcnYzNm5PczkxbWFSSTBnZjNpQXlTMGdWdVJ0R1NNcGZZQkJ1TDg3VDV4?=
- =?utf-8?B?dVFlSWo2UzVITGExamlMQ01CSngyZXM4a3gyamZIL2d4THlCSFBQaUU4YjYv?=
- =?utf-8?B?THp6dnkrRnNWNDkrZWtrNDVMQzFZNmZTZlNUMTl3L3kwWHRaNHpjUFg4a2pY?=
- =?utf-8?B?RE9NZlFjVkNaajJLVWdTQ2UzUTNkVHBXdW02R3MzNGsvQzEwcnFpbEI5Mm5P?=
- =?utf-8?B?MTJ2SUtnM1VKaEpXV2ZJY1pib0FHM3BESTZrMmpxQk5BY1pkaXVPYUNESFll?=
- =?utf-8?Q?HVEc1N?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(7416014)(1800799024);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2025 01:29:46.3594
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 964b26ab-0288-494f-6b4e-08dddad2b822
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Aug 2025 01:34:32.3393
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f36768c-18ea-47f7-9086-08dddad20dc7
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	TY2PEPF0000AB83.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB7199
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +9XD5m+U5W4kD33FjCo35itQovRBseElfMa1VQ2z7D+w7WMpD/9ZCgDRu776JMSFcaaIg6EE5V1u6HQpiRZcOw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10224
 
+> On Wed, Aug 13, 2025 at 01:38:55AM +0000, Wei Fang wrote:
+> > > On Tue, Aug 12, 2025 at 05:46:22PM +0800, Wei Fang wrote:
+> > > > Add a DT node example for ENETC v4 device.
+> > >
+> > > Not sure why need add examples here? Any big difference with existed
+> > > example?
+> > >
+> >
+> > For enetc v4, we have added clocks, and it also supports ptp-timer
+> > property, these are different from enetc v1, so I think it is better to
+> > add an example for v4.
+>=20
+> If there are not big change, needn't duplicate one example at yaml file,
+> the content should be in dts file already. Pass DTB_CHECK should be okay.
+>
 
+Okay, I can remove this patch in next version
 
-On 2025/8/14 03:16, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL
-> 
-> On 13/08/2025 06:23, hans.zhang@cixtech.com wrote:
->> +static int sky1_pcie_parse_mem(struct sky1_pcie *pcie)
->> +{
->> +     struct device *dev = pcie->dev;
->> +     struct platform_device *pdev = to_platform_device(dev);
->> +     struct resource *res;
->> +     void __iomem *base;
->> +     int ret = 0;
->> +
->> +     base = devm_platform_ioremap_resource_byname(pdev, "reg");
->> +     if (IS_ERR(base)) {
->> +             dev_err(dev, "Parse \"reg\" resource err\n");
-> 
-> Syntax is return dev_err_probe, and without \" so grepping works
-> correctly (see coding style).
-
-Dear Krzysztof,
-
-Thank you very much for your reply. Will change.
-
-> 
->> +             return PTR_ERR(base);
->> +     }
->> +     pcie->reg_base = base;
->> +
->> +     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
->> +     if (!res) {
->> +             dev_err(dev, "Parse \"cfg\" resource err\n");
->> +             return -ENXIO;
->> +     }
->> +     pcie->cfg_res = res;
->> +
->> +     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "rcsu");
->> +     if (!res) {
->> +             dev_err(dev, "Parse \"rcsu\" resource err\n");
->> +             return -ENXIO;
->> +     }
->> +     pcie->rcsu_base = devm_ioremap(dev, res->start, resource_size(res));
-> 
-> Why aren't you using wrapper over get_resource and ioremap? Isn't
-> devm_platform_ioremap_resource_byname exactly what you want?
-> 
-
-Thank you for the reminder. Will change.
-
-> And if argument from previous versions was - you need to backport it for
-> ancient 3.10 kernel - then it would be a no go.
-
-Ok, will change.
-
-> 
->> +     if (!pcie->rcsu_base) {
->> +             dev_err(dev, "ioremap failed for resource %pR\n", res);
->> +             return -ENOMEM;
->> +     }
->> +
->> +     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "msg");
->> +     if (!res) {
->> +             dev_err(dev, "Parse \"msg\" resource err\n");
->> +             return -ENXIO;
->> +     }
->> +     pcie->msg_res = res;
->> +     pcie->msg_base = devm_ioremap(dev, res->start, resource_size(res));
->> +     if (!pcie->msg_base) {
->> +             dev_err(dev, "ioremap failed for resource %pR\n", res);
->> +             return -ENOMEM;
->> +     }
->> +
->> +     return ret;
->> +}
->> +
->> +static int sky1_pcie_parse_property(struct platform_device *pdev,
->> +                                 struct sky1_pcie *pcie)
->> +{
->> +     int ret = 0;
->> +
->> +     ret = sky1_pcie_parse_mem(pcie);
->> +     if (ret < 0)
->> +             return ret;
->> +
->> +     sky1_pcie_init_bases(pcie);
->> +
->> +     return ret;
->> +}
->> +
->> +static int sky1_pcie_start_link(struct cdns_pcie *cdns_pcie)
->> +{
->> +     struct sky1_pcie *pcie = dev_get_drvdata(cdns_pcie->dev);
->> +
->> +     sky1_pcie_clear_and_set_dword(pcie->strap_base + STRAP_REG(1),
->> +                                   0, LINK_TRAINING_ENABLE);
->> +
->> +     return 0;
->> +}
->> +
->> +static void sky1_pcie_stop_link(struct cdns_pcie *cdns_pcie)
->> +{
->> +     struct sky1_pcie *pcie = dev_get_drvdata(cdns_pcie->dev);
->> +
->> +     sky1_pcie_clear_and_set_dword(pcie->strap_base + STRAP_REG(1),
->> +                                   LINK_TRAINING_ENABLE, 0);
->> +}
->> +
->> +
->> +static bool sky1_pcie_link_up(struct cdns_pcie *cdns_pcie)
->> +{
->> +     u32 val;
->> +
->> +     val = cdns_pcie_hpa_readl(cdns_pcie, REG_BANK_IP_REG,
->> +                               IP_REG_I_DBG_STS_0);
->> +     return val & LINK_COMPLETE;
->> +}
->> +
->> +static const struct cdns_pcie_ops sky1_pcie_ops = {
->> +     .start_link = sky1_pcie_start_link,
->> +     .stop_link = sky1_pcie_stop_link,
->> +     .link_up = sky1_pcie_link_up,
->> +};
->> +
->> +static int sky1_pcie_probe(struct platform_device *pdev)
->> +{
->> +     const struct sky1_pcie_data *data;
->> +     struct device *dev = &pdev->dev;
->> +     struct pci_host_bridge *bridge;
->> +     struct cdns_pcie *cdns_pcie;
->> +     struct resource_entry *bus;
->> +     struct cdns_pcie_rc *rc;
->> +     struct sky1_pcie *pcie;
->> +     int ret;
->> +
->> +     pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
->> +     if (!pcie)
->> +             return -ENOMEM;
->> +
->> +     data = of_device_get_match_data(dev);
->> +     if (!data)
->> +             return -EINVAL;
->> +
->> +     pcie->data = data;
->> +     pcie->dev = dev;
->> +     dev_set_drvdata(dev, pcie);
->> +
->> +     bridge = devm_pci_alloc_host_bridge(dev, sizeof(*rc));
->> +     if (!bridge)
->> +             return -ENOMEM;
->> +
->> +     bus = resource_list_first_type(&bridge->windows, IORESOURCE_BUS);
->> +     if (!bus)
->> +             return -ENODEV;
->> +
->> +     ret = sky1_pcie_parse_property(pdev, pcie);
->> +     if (ret < 0)
->> +             return -ENXIO;
->> +
->> +     pcie->cfg = pci_ecam_create(dev, pcie->cfg_res, bus->res,
->> +                                 &pci_generic_ecam_ops);
->> +     if (IS_ERR(pcie->cfg))
->> +             return PTR_ERR(pcie->cfg);
->> +
->> +     bridge->ops = (struct pci_ops *)&pci_generic_ecam_ops.pci_ops;
->> +     rc = pci_host_bridge_priv(bridge);
->> +     rc->ecam_support_flag = 1;
->> +     rc->cfg_base = pcie->cfg->win;
->> +     rc->cfg_res = &pcie->cfg->res;
->> +
->> +     cdns_pcie = &rc->pcie;
->> +     cdns_pcie->dev = dev;
->> +     cdns_pcie->ops = &sky1_pcie_ops;
->> +     cdns_pcie->reg_base = pcie->reg_base;
->> +     cdns_pcie->msg_res = pcie->msg_res;
->> +     cdns_pcie->cdns_pcie_reg_offsets = &data->reg_off;
->> +     cdns_pcie->is_rc = data->reg_off.is_rc;
->> +
->> +     pcie->cdns_pcie = cdns_pcie;
->> +     pcie->cdns_pcie_rc = rc;
->> +     pcie->cfg_base = rc->cfg_base;
->> +     bridge->sysdata = pcie->cfg;
->> +
->> +     if (data->soc_type == CIX_SKY1) {
-> 
-> 
-> Dead code or rather if (true) code. Don't do it, it's more difficult to
-> read.
-
-Will remove.
-
-> 
->> +             rc->vendor_id = PCI_VENDOR_ID_CIX;
->> +             rc->device_id = PCI_DEVICE_ID_CIX_SKY1;
->> +             rc->no_inbound_flag = 1;
->> +     }
->> +
->> +     ret = cdns_pcie_hpa_host_setup(rc);
->> +     if (ret < 0) {
->> +             pci_ecam_free(pcie->cfg);
->> +             return ret;
->> +     }
->> +
->> +     return 0;
->> +}
->> +
->> +static const struct sky1_pcie_data sky1_pcie_rc_data = {
->> +     .reg_off = {
->> +             .is_rc = true,
->> +             .ip_reg_bank_offset = SKY1_IP_REG_BANK_OFFSET,
->> +             .ip_cfg_ctrl_reg_offset = SKY1_IP_CFG_CTRL_REG_BANK_OFFSET,
->> +             .axi_mstr_common_offset = SKY1_IP_AXI_MASTER_COMMON_OFFSET,
->> +             .axi_slave_offset = SKY1_AXI_SLAVE_OFFSET,
->> +             .axi_master_offset = SKY1_AXI_MASTER_OFFSET,
->> +             .axi_hls_offset = SKY1_AXI_HLS_REGISTERS_OFFSET,
->> +             .axi_ras_offset = SKY1_AXI_RAS_REGISTERS_OFFSET,
->> +             .axi_dti_offset = SKY1_DTI_REGISTERS_OFFSET,
->> +     },
->> +     .soc_type = CIX_SKY1,
-> 
-> You have only one device variant, so this entire pcie_data feels redundant.
-> 
-
-Will remove.
-
->> +};
->> +
->> +static const struct of_device_id of_sky1_pcie_match[] = {
->> +     {
->> +             .compatible = "cix,sky1-pcie-host",
->> +             .data = &sky1_pcie_rc_data,
->> +     },
->> +     {},
-> 
-
-
-Best regards,
-Hans
-
+=20
+> >
+> > >
+> > > >
+> > > > Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> > > >
+> > > > ---
+> > > > v2 changes:
+> > > > new patch
+> > > > v3 changes:
+> > > > 1. Rename the subject
+> > > > 2. Remove nxp,netc-timer property and use ptp-timer in the example
+> > > > ---
+> > > >  .../devicetree/bindings/net/fsl,enetc.yaml        | 15
+> +++++++++++++++
+> > > >  1 file changed, 15 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/net/fsl,enetc.yaml
+> > > > b/Documentation/devicetree/bindings/net/fsl,enetc.yaml
+> > > > index ca70f0050171..a545b54c9e5d 100644
+> > > > --- a/Documentation/devicetree/bindings/net/fsl,enetc.yaml
+> > > > +++ b/Documentation/devicetree/bindings/net/fsl,enetc.yaml
+> > > > @@ -86,3 +86,18 @@ examples:
+> > > >              };
+> > > >          };
+> > > >      };
+> > > > +  - |
+> > > > +    pcie {
+> > > > +      #address-cells =3D <3>;
+> > > > +      #size-cells =3D <2>;
+> > > > +
+> > > > +      ethernet@0,0 {
+> > > > +          compatible =3D "pci1131,e101";
+> > > > +          reg =3D <0x000000 0 0 0 0>;
+> > > > +          clocks =3D <&scmi_clk 102>;
+> > > > +          clock-names =3D "ref";
+> > > > +          phy-handle =3D <&ethphy0>;
+> > > > +          phy-mode =3D "rgmii-id";
+> > > > +          ptp-timer =3D <&netc_timer>;
+> > > > +      };
+> > > > +    };
+> > > > --
+> > > > 2.34.1
+> > > >
 
