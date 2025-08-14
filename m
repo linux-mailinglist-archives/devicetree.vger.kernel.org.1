@@ -1,92 +1,120 @@
-Return-Path: <devicetree+bounces-204849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46886B270B6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 23:19:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2945B270C6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 23:25:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4836E4E4417
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 21:19:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC8285C27AD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 21:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8612D26E6E5;
-	Thu, 14 Aug 2025 21:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E0B275AED;
+	Thu, 14 Aug 2025 21:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V+rQbFKV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="soiXpx2/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 558FC2550D8;
-	Thu, 14 Aug 2025 21:19:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FBF226CE3B;
+	Thu, 14 Aug 2025 21:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755206370; cv=none; b=VHGq1lluj5waUAcI2Sf4K4bi5UNNpnsracZBuoGhRB+kKCqIAXvK9rNR3CrqM0fD6X17fbhr9vSo4WObcERbH6x8J7KC/mHwxx5Qm7PoihQ4xX6mmhw4jUTOqwt8rl8R6+ZTDRMnhANAepePD5eB9oNSf4kQIinNZPERs1TlpQA=
+	t=1755206699; cv=none; b=JmQ5hjYvPYoZT3ocOQY1wkBaAqmQDaPEsSKqLCej3Wc+t76ASHq6KaYS9Hd8RNkP1Ih7ElhV4kQT4qvb/KEAZJKWvm1ltdA8zLa33nHjI0anP+z01A2cTVY9xY9eOR2py7jMGhXnWRG9bJa7J8bO3Q+tfoaX9C/yLX0X+FZTEVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755206370; c=relaxed/simple;
-	bh=Rp5HHClNCs4aOkUL7sssHUYQCKwZAsLIt4TkTxZMYCE=;
+	s=arc-20240116; t=1755206699; c=relaxed/simple;
+	bh=ZkPze2CRy6TGrshQh0qEp2iisTy50jGvZFAixZL50sk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KsH5y2wfaz7w2jW90hB+Lv4HAEvKcG8TQEKtoNK/+8IRjN5lUikpECf+VVhFpww14GiC8sLl5R2Z51mF2rOFcdXHIenmoS0udRjsKGb0bYY2xter0wfjxgDPpxlik63hY3totGdo7QJdwFmyGvyFu0zj6R9m/9u3QTIOzefHZdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V+rQbFKV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 942BEC4CEED;
-	Thu, 14 Aug 2025 21:19:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OYlIGwJqm7Pxloc9p0T5kAAtt6i09QjS2wxninX8s+Tv228o2aKKkGEr+96kfl/mt7WfN9Wk+f80R1EjYkRRELs2XHZHuB3GfmnjkpYFOb7WpAF0c/10jrFPBuiBxYwRb46yaFN1h4NvzwIzwcVd+aGxkxr6z+zO3qOvxsUuWbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=soiXpx2/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 746E6C4CEED;
+	Thu, 14 Aug 2025 21:24:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755206369;
-	bh=Rp5HHClNCs4aOkUL7sssHUYQCKwZAsLIt4TkTxZMYCE=;
+	s=k20201202; t=1755206698;
+	bh=ZkPze2CRy6TGrshQh0qEp2iisTy50jGvZFAixZL50sk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V+rQbFKVXCy3Sn8DBpesxLjl6NFd1ScybynS/VPY7zsautaMPzoRADvFhi9FNFQJY
-	 TajrqgMT0GWizoOGGVulu1WBdho5MadPbUiaGFxUgn1A07BooZCYtZpoB6jo4IioYm
-	 zaPWxltuzg9r9dsujVY0P7Z3V5UQGO6h4PAd0drh9OGiZh+Zu9wxlcJQe/LhF0wBeG
-	 58pgSRfIKRs4U48cEwkfqqNLdVNz9oy2gTjrINuyiiluHIJiTjBcwIF0T3+LcF0pH+
-	 eEDx9sZg1+uchZpXOqP0yxPOWPmxdsLXx3X58wQq/V62JB4eAAhGgUA8tpsDe8lwif
-	 12xBuCBuPxd+Q==
-Date: Thu, 14 Aug 2025 16:19:28 -0500
+	b=soiXpx2/Ehg30HA8wao4TDS1XDczgMVlDjd8rleJHWRYAksTKPkuaVq1ms35VCRqo
+	 hVwEX2Xy4HpEXNvIuqcKKhr3L1UwQ8PyvEABrOz2ViJsbSs7VFH1wTRTVUWMFeW8cT
+	 I1VsrzDtlJfKo12ee70racW90A1hXokPBdccsWACwJvYfkdNVBXTkuLl3nufpVAo3c
+	 33X0AuHjLVWkK7zNgqmSBwVO1gHmR1wsIT6+EnbF2cdbdzuJ1Jacfk9DlnbUEfsmGY
+	 xdwa/zKdAzd8dKJdDcKCrAR4Cm64ziBYgaDwmvkgwIbBLQ282ZV8UFfuIi6kNCyAL2
+	 +7hjQk8ubsEyQ==
+Date: Thu, 14 Aug 2025 16:24:57 -0500
 From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: rtc: Add Apple SMC RTC
-Message-ID: <20250814211928.GA3922106-robh@kernel.org>
-References: <20250812-wip-smc-rtc-v1-0-66a8e96dad60@kernel.org>
- <20250812-wip-smc-rtc-v1-1-66a8e96dad60@kernel.org>
- <074fcd4c-0da8-42c4-a567-64fa7e173894@kernel.org>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: tiwai@suse.com, devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+	gregkh@linuxfoundation.org, ukleinek@kernel.org, krzk+dt@kernel.org,
+	dmitry.torokhov@gmail.com, broonie@kernel.org,
+	linux-pwm@vger.kernel.org, lee@kernel.org,
+	linux-sound@vger.kernel.org, lgirdwood@gmail.com,
+	peter.ujfalusi@gmail.com, linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org, shuah@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH 2/8] mfd: dt-bindings: ti,twl6040: convert to DT schema
+Message-ID: <20250814212457.GA3932653-robh@kernel.org>
+References: <20250811224739.53869-1-jihed.chaibi.dev@gmail.com>
+ <20250811224739.53869-3-jihed.chaibi.dev@gmail.com>
+ <175496188325.1486426.9118766970247515386.robh@kernel.org>
+ <20250812145415.GA3607226-robh@kernel.org>
+ <CANBuOYrCAcgp+x+TL98V3ih_ThyPF7x6VgXxVi4YnAdOC3nZvA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <074fcd4c-0da8-42c4-a567-64fa7e173894@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANBuOYrCAcgp+x+TL98V3ih_ThyPF7x6VgXxVi4YnAdOC3nZvA@mail.gmail.com>
 
-On Wed, Aug 13, 2025 at 08:14:51AM +0200, Krzysztof Kozlowski wrote:
-> On 12/08/2025 20:25, Sven Peter wrote:
-> > +maintainers:
-> > +  - Sven Peter <sven@kernel.org>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: apple,smc-rtc
-> > +
+On Tue, Aug 12, 2025 at 06:06:53PM +0200, Jihed Chaibi wrote:
+> On Tue, Aug 12, 2025 at 4:54 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, Aug 11, 2025 at 08:24:43PM -0500, Rob Herring (Arm) wrote:
+> > >
+> > > On Tue, 12 Aug 2025 00:47:33 +0200, Jihed Chaibi wrote:
+> > > > Convert the legacy TXT binding for the TWL6040 MFD
+> > > > to the modern YAML DT schema format. This adds formal validation
+> > > > and improves documentation.
+> > > >
+> > > > Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+> > > > ---
+> > > >  .../devicetree/bindings/mfd/ti,twl6040.yaml   | 155 ++++++++++++++++++
+> > > >  .../devicetree/bindings/mfd/twl6040.txt       |  67 --------
+> > > >  2 files changed, 155 insertions(+), 67 deletions(-)
+> > > >  create mode 100644 Documentation/devicetree/bindings/mfd/ti,twl6040.yaml
+> > > >  delete mode 100644 Documentation/devicetree/bindings/mfd/twl6040.txt
+> > > >
+> > >
+> > > My bot found errors running 'make dt_binding_check' on your patch:
+> > >
+> > > yamllint warnings/errors:
+> > >
+> > > dtschema/dtc warnings/errors:
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,twl6040.example.dtb:
+> > > twl@4b (ti,twl6040): 'twl6040,audpwron-gpio' does not match any of
+> > > the regexes: '^#.*',
+> > > '^(at25|bm|devbus|dmacap|dsa|exynos|fsi[ab]|gpio-fan|gpio-key|gpio|gpmc|hdmi|i2c-gpio),.*',
+> > > '^(keypad|m25p|max8952|max8997|max8998|mpmc),.*',
+> > > '^(pciclass|pinctrl-single|#pinctrl-single|PowerPC),.*',
+> > > '^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*',
+> > > '^(simple-audio-card|st-plgpio|st-spics|ts),.*',
+> >
+> > You will need to add 'twl6040' to this list of exceptions in
+> > vendor-prefixes.yaml.
+> >
+> > Rob
 > 
-> No resources except nvmem? This should be folded into the parent. Don't
-> create device node to instantiate drivers.
+> Hi Rob, thanks for the feedback.
+> 
+> Wouldn't it be simpler if we put 'ti' (the actual vendor) instead of 'twl6040'?
+> No other file is using the current name, so there would be no need for
+> additional editing.
 
-Well, the reboot node has nvmem entries too, so probably better to keep 
-this as child node.
-
-Is there more functionality planned/needed here (for the mfd)? If so, 
-please send it all at once. One child node at a time makes DT 
-maintainers grumpy.
+Indeed. Actually, just drop the property because the driver doesn't use 
+it either. Just note the change in the commit msg.
 
 Rob
 
