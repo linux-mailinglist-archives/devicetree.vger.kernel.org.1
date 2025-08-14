@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2091BB263DF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0EF3B263E3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:14:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6B355A2ADB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 11:13:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AF7F5A60E3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 11:13:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B5CB2F39A4;
-	Thu, 14 Aug 2025 11:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9EAE2F39A4;
+	Thu, 14 Aug 2025 11:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d1bMqAlm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="otfkq/6Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D674E2367DC;
-	Thu, 14 Aug 2025 11:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E6EF2EA739;
+	Thu, 14 Aug 2025 11:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755169981; cv=none; b=kXn217NXqRkUHT2sN7FsAz76ylU8GBCbGv45qyn1zTyh5G0lguEtrnx8uNC2d0RyhJtGiCiGIVa3buEwr/S+MQSGkilg9KU+cbzSzj6uJ5ncAEL46SW64PQIKX2MyLTlMF38shYhmEmTkmDsN7T7d0FWZmwoJfFTOlSVJGiACNg=
+	t=1755169998; cv=none; b=WkZOKfduAMBNPok1oVyPda+f69BcqLg/6KF00wCygrP3a/uy5ZqRtel0U0R03S/e+AbjULWdhvo1VCbeu/Fkj958hSuhmk7zyotFcID4hfNuaJTSHqbjpmxMNDCyOXaysMsMH0tVfRIWQk1/kELFMCblUrPM/66iYUVGvrpqblo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755169981; c=relaxed/simple;
-	bh=qvFXkQEAgZQeQPAEOlRWM+fljWJSBRL8RNC+gJJ4bs8=;
+	s=arc-20240116; t=1755169998; c=relaxed/simple;
+	bh=C1XIsStx9E9IM/CbcdSL0pvA1gyuKpIrMZPQ1JKSxco=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dfefy95HGQjpKSpFMyQybwRbWffz5elj2Qexv2OaKMRy6EvSITFkTyobE4RdAfNZ/ixntUPuDNMWKldoQfmExkTCI9O3UrzmcD1uHBTo3iMzHxsqNvqRj9jAkYItazwWFBY35X+ltaYoXIZIvQBljBD38SEGEK+IvlH6/5whDsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d1bMqAlm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31F11C4CEED;
-	Thu, 14 Aug 2025 11:12:58 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=e44EYTraTkmQ+VDvYeGYYKzmIcXg0Mmc/B5+I//P2ZuVimx2G0VUdIDq/6ve8o252V8U1QpHMeLFeWW4rtO/FufZbQhGf+LcU86rYol1418Lu+PJdNM1OV3SmIcPMdCp+eMo0qEf38MTvBt/dOlNHvKK23OsDqKzuuobHj/4zE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=otfkq/6Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7041DC4CEED;
+	Thu, 14 Aug 2025 11:13:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755169981;
-	bh=qvFXkQEAgZQeQPAEOlRWM+fljWJSBRL8RNC+gJJ4bs8=;
+	s=k20201202; t=1755169998;
+	bh=C1XIsStx9E9IM/CbcdSL0pvA1gyuKpIrMZPQ1JKSxco=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d1bMqAlml60uDBu7HgXJusFn2S2/1yWFCmXxzMdDN+u2Ut3jhsGUvNzgOzt8adtUC
-	 z5ljIuajRE6ziOlgCFRwatW70MuPpZR1lVEqYSReb0j7wXLtHLJh7p268WaLtEkpjk
-	 +RiOLa3JiAfJrNgQWutbDVGPjmR5VmecCZMXfBO0nGO57/WggMYAFzDZwA9eLFmDKd
-	 f6XRliSFnQechdABH84IwQkXn986HnpAYQttrsTDDGDYvrDdoKl90Ke3RJXlbr31OB
-	 8wzCW2yVvybqxBbp2GYXVZX5vgTwKj3fyQUT6zJUBWkJgIfB0/S/+mZ3o2iDLJ9L49
-	 Ui3YE2+OwlsqA==
-Message-ID: <faaa0466-80b2-4411-b352-0bbfb1507f1d@kernel.org>
-Date: Thu, 14 Aug 2025 13:12:57 +0200
+	b=otfkq/6ZYm+354gfDySmPIDzjOTNWHNafQng+2pa5BD95UchFUljZLw16emBP4+tR
+	 FSLu1DbmF3vt74NvlIMRmZQ7paphKAL+xVQEFoAtN7cdo5EQfuI9a17eqlPrFxovkD
+	 RIOy4A3iSHrCVERGUHsD4I7ZDLKZJz42qNnyNkYkgUhrhMgVKdFvXgiCMuwuPmjlRS
+	 nqp0Cdw0zgMnQ/9jrDYF60H9ahUSkcZxr2668ziqnIgWl7wykozj/sFSCUDpcLWXvj
+	 gi8l1AUJigoyzrrpNs5wjxHwScxCDFLYJJkgV6Mn9ecMjGB1QdqOp90NLVeaAzByqc
+	 xY4k8wJ8aNNcw==
+Message-ID: <1a336bb5-4673-4c30-a1a2-6a9d81f8d1b7@kernel.org>
+Date: Thu, 14 Aug 2025 13:13:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] reset: bcm6345: add support for bcm63xx ephy control
- register
+Subject: Re: [PATCH 2/6] dt-bindings: reset: add compatible for bcm63xx ephy
+ control
 To: Kyle Hendry <kylehendrydev@gmail.com>,
  Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20250709024740.194520-1-kylehendrydev@gmail.com>
- <20250709024740.194520-2-kylehendrydev@gmail.com>
+ <20250709024740.194520-3-kylehendrydev@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,30 +104,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250709024740.194520-2-kylehendrydev@gmail.com>
+In-Reply-To: <20250709024740.194520-3-kylehendrydev@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 09/07/2025 04:47, Kyle Hendry wrote:
-> The ephy control register on bcm63xx SoCs contain bits for
-> resetting individual internal phys. Use the existing bcm6345-reset
-> driver to set bits.
+> Add compatible string for bcm63xx ephy control.
 > 
 > Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
 > ---
->  drivers/reset/reset-bcm6345.c | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/reset/brcm,bcm6345-reset.yaml         | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/reset/reset-bcm6345.c b/drivers/reset/reset-bcm6345.c
-> index aa9353439e70..56518f7bfbb3 100644
-> --- a/drivers/reset/reset-bcm6345.c
-> +++ b/drivers/reset/reset-bcm6345.c
-> @@ -119,6 +119,7 @@ static int bcm6345_reset_probe(struct platform_device *pdev)
+> diff --git a/Documentation/devicetree/bindings/reset/brcm,bcm6345-reset.yaml b/Documentation/devicetree/bindings/reset/brcm,bcm6345-reset.yaml
+> index 00150b93fca0..b8a320bb1776 100644
+> --- a/Documentation/devicetree/bindings/reset/brcm,bcm6345-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/brcm,bcm6345-reset.yaml
+> @@ -13,7 +13,9 @@ maintainers:
 >  
->  static const struct of_device_id bcm6345_reset_of_match[] = {
->  	{ .compatible = "brcm,bcm6345-reset" },
-> +	{ .compatible = "brcm,bcm63xx-ephy-ctrl" },
-So devices are compatible?
+>  properties:
+>    compatible:
+> -    const: brcm,bcm6345-reset
+> +    enum:
+> +      - brcm,bcm6345-reset
+> +      - brcm,bcm63xx-ephy-ctrl
+
+Don't use wildcards.
 
 Best regards,
 Krzysztof
