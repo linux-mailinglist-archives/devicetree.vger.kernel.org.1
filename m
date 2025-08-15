@@ -1,153 +1,164 @@
-Return-Path: <devicetree+bounces-205068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82E03B27D1F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:30:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BECDB27D44
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:39:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C73B189086C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:26:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8A993BF386
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA732DAFCD;
-	Fri, 15 Aug 2025 09:26:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KBfGXCgO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C5F12E5436;
+	Fri, 15 Aug 2025 09:36:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD13B2D9790;
-	Fri, 15 Aug 2025 09:26:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+Received: from zg8tmja5ljk3lje4mi4ymjia.icoremail.net (zg8tmja5ljk3lje4mi4ymjia.icoremail.net [209.97.182.222])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E82E8192D97;
+	Fri, 15 Aug 2025 09:36:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.97.182.222
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755249992; cv=none; b=GiwjmzFnCk0bBvIvDKKJ76aGqWcNJ3FmJqxBq3vVtgUFAcfYCw4+PR59PGhJ+bRdt2nW2ejfcugg7Kk56BtllVG3vFjClnobYHXfaCJM6ybSpL3SP/bGFpxz8e16E/KNORxCC/mlZ6sJgD4XtmneqbDhvs1rh6blALlmLGUdO3A=
+	t=1755250571; cv=none; b=pCYz1mR1vFl28IZ3x18j4+oClQ8VELgwsdP28U309+/H5lns9iaD/iN30KdtyLshUFZU/CxF+uWk4DBoWbVTIwDSVh9zjHMZ9xwTkogqwI7w1LC5AZ4Vc/tFrKPET10lCGtnaYnbNX9Bk/5HxwuZzVhB4+u67pG5JH4kQ+S7J0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755249992; c=relaxed/simple;
-	bh=hfyXKa7VqlCzw0dsZGP8/PsmTOCbKgzez9WpVykwbe0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BkQ90NTEFKJKfRBhv+qYSryhuCi3ypx/a5/BuuM90qDS49gcp2jg2bHkfrRbQfiD/TgrpJh2N9K3i6ajdXbuHdEKpiu6G6JjfdySGjVmA4u2lUcqOQ5vQCJOCPcFbkL67cxIx9PtVYEvd1ciyOA73Rw+rPFcpgh9V8ws4cutubY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KBfGXCgO; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2445806e03cso19545665ad.1;
-        Fri, 15 Aug 2025 02:26:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755249990; x=1755854790; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Uo7uf3WJ6z+yWzRmAPAiNGEx7EWhy5TbeTpgbpYSOgk=;
-        b=KBfGXCgO14RMkaWX+78CvgENILksJViDbnXzuXMO3h37m1XUlFHD6jKITzHKY0FeKR
-         FXI3mtpMiLUYqHMMBe5Agk4hmV4Rs54WjogAdPU7AijxsHeoi13hoYhW+yPpQ194EM7a
-         ZotV6S04Cdb9lfeZYzFSlBgq9rWbg9cnzQRyz3sBAdfdg5fV9aaCnbesH4axx99cZdRf
-         JYom5Be6b36zl57oMdEHpwoqr7C5T5RZJ2QWidReyuNPPE7Zq+myCXqi/99Wsvltq7xp
-         d0BwFmUWAen+SfdVojHJ4L1O025rdTlOOroyQ8q1rDC9CUNAk/+ukDbAP86Px5txhXjS
-         7r9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755249990; x=1755854790;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Uo7uf3WJ6z+yWzRmAPAiNGEx7EWhy5TbeTpgbpYSOgk=;
-        b=CnSLgbNA4SswWSOy92xu0/o68DFcFPGUmPNSU8WFDCFxquFAP+Twd5TcCBBQnMuonJ
-         /GukfwCJWSHxY2QnTfinX0RGAM+LblXBbf0qu161WrLLwkaVHMMNvtsEAjSwvVYT2f3A
-         K0P5ilima+1bjqFhUiVIZhsrW8fau40pBMC4sA6bEkHC+cAOdZDgHOVnMCycJgXochju
-         TU/m4Mk5jYsgebljJ/Q2xsC9xgvzYHmt+WghlSrQXEcjKsAsnoJlWG0D1JEvgswgz2aX
-         38QB0mXzIZcfryKH2wD4QAki82fftRSnMKVTRu8d7loZFmF9fyA+lafIEUt0BMjytAg/
-         Asow==
-X-Forwarded-Encrypted: i=1; AJvYcCW/mNT4irCCVzQDuQwQOI+vaE4K7iXrLtW/L6AcC6r+XHkacDDizgMcidUwtuZmHklZC8n1pF+BKr/B@vger.kernel.org, AJvYcCW4JJHnT0nCAmeMd6IiB5Xe/0Qnfp5HIgBlQ+etEIFIseC1okDQywxyPBC0DFrJotMGbXvnPuSUuODaiTiWdQ==@vger.kernel.org, AJvYcCX8iiOjMEOHyH3gWLWaFyoWjn12xP8hUEIoaWBQq+JQ3B2wBosBkFw0sHFZlgeX9W7gOj1hRNFMFFzBJPLY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSUOJX1qlfZDZ03hE/Jzl9SDATGHo+Ts4OFKU/ndqrqoz8nm/U
-	BBgCDc1C6rtW7Io13p/cqrJlWlro8oRb6jeq43GQi487au5oihuKDzyXnGaLfW/URudotJX/yel
-	wHLCEtISWaSnkUvLtAKjZVQ/sPso6fQ==
-X-Gm-Gg: ASbGncvH4sOSxTxX1/dZx/P77W6GM2DFCbrpk28OWe4F4HVvAyIwfW8U4Kd8FhL0UOL
-	v/cSh/dIH1i9m/6bs69Yma9C7lXJRP1xnqfHU2mlJwlp7RhtS9urSfPmXPEv55JlTLg6axy5GLT
-	bGbbOm6042BQtefki2QJ+a+WeWmtevfkT8oxI92o+o/rpiuKicES7fvlu/VjZZt+RM8tAyUQvH7
-	Sop3V4=
-X-Google-Smtp-Source: AGHT+IEJs0DhVKkrYh27R/JACZ6LJCcxDtk4IGIzVD8IWl0nJ02HH+2s5qsqeAyyLggmI8EGAqi731EEjfq3cr44tco=
-X-Received: by 2002:a17:903:2381:b0:240:3f36:fa78 with SMTP id
- d9443c01a7336-2446d7a5a7cmr18869945ad.21.1755249990018; Fri, 15 Aug 2025
- 02:26:30 -0700 (PDT)
+	s=arc-20240116; t=1755250571; c=relaxed/simple;
+	bh=xCrzwTtukmApHlzLgvOkumWzJgSzcKNdfEs8OU3tVYg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=k20MS1ID1v/c0LrzuEQSeP51wFHBWCWqFJO1uExLhv0IhWmyo/S8cHJNgEnA24WwU9SDZu47jLn3qSU/FX6HRxycy/EFFa4INCrfyX1IaMPJermOq/otfIJpmHT4netuMRL2LhLsa2HFmjeWrz73ES4+ZIQqtsY5mw0cHfyvzjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=209.97.182.222
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app1 (Coremail) with SMTP id TAJkCgAHHxB1_55ouQy_AA--.59061S2;
+	Fri, 15 Aug 2025 17:35:51 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	linux-riscv@lists.infradead.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v4 0/3] Add driver support for ESWIN eic700 SoC clock controller
+Date: Fri, 15 Aug 2025 17:35:39 +0800
+Message-Id: <20250815093539.975-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250814-x1e80100-add-edp-hpd-v1-0-a52804db53f6@linaro.org> <20250814-x1e80100-add-edp-hpd-v1-1-a52804db53f6@linaro.org>
-In-Reply-To: <20250814-x1e80100-add-edp-hpd-v1-1-a52804db53f6@linaro.org>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Fri, 15 Aug 2025 11:26:19 +0200
-X-Gm-Features: Ac12FXzyj1y7ogC1MOBpDITJybutBYnpxJuu6wGW3-_8QXjEWbVdNPWvMl09xCI
-Message-ID: <CAMcHhXpsY9PQ6v3Jizt6ZnQkKtzd30T2XbC8mo571nMeG-0WpA@mail.gmail.com>
-Subject: Re: [PATCH 1/9] arm64: dts: qcom: x1-asus-zenbook-a14: Add missing
- pinctrl for eDP HPD
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Abel Vesa <abel.vesa@linaro.org>, Xilin Wu <wuxilin123@gmail.com>, 
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>, Srinivas Kandagatla <srini@kernel.org>, 
-	Sibi Sankar <quic_sibis@quicinc.com>, Rajendra Nayak <quic_rjendra@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
-	Christopher Obbard <christopher.obbard@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgAHHxB1_55ouQy_AA--.59061S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxAF15GF15Cw1UGrW3Kr4kJFb_yoW5KF45pF
+	4kCr98Cr1qgryxXan7ta4IgFyrZanxXFWjkryxXw15Z3429a4vyF4ftFy5AF97Ar1fAw1D
+	tr1aga10kF4UZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRuHqcUUUUU=
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
 
-On Thu, 14 Aug 2025 at 15:30, Stephan Gerhold
-<stephan.gerhold@linaro.org> wrote:
->
-> At the moment, we indirectly rely on the boot firmware to set up the
-> pinctrl for the eDP HPD line coming from the internal display. If the boot
-> firmware does not configure the display (e.g. because a different display
-> is selected for output in the UEFI settings), then the display fails to
-> come up and there are several errors in the kernel log:
->
->  [drm:dpu_encoder_phys_vid_wait_for_commit_done:544] [dpu error]vblank timeout: 80020041
->  [drm:dpu_kms_wait_for_commit_done:524] [dpu error]wait for commit done returned -110
->  [drm:dpu_encoder_frame_done_timeout:2715] [dpu error]enc40 frame done timeout
->  ...
->
-> Fix this by adding the missing pinctrl for gpio119 (func1/edp0_hot and
-> bias-disable according to the ACPI DSDT).
->
-> Fixes: 6516961352a1 ("arm64: dts: qcom: Add support for X1-based Asus Zenbook A14")
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-Tested-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>    # FHD OLED
-Reviewed-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+This series depends on the vendor prefix patch [1] and config option patch [2].
 
-> ---
->  arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-> index 16d045cf64c08c02c420787e000f4f45cfc2c6ff..613c675aac296f931293a1ba3d8506c6663bad21 100644
-> --- a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-> @@ -1001,6 +1001,9 @@ &mdss_dp1_out {
->  &mdss_dp3 {
->         /delete-property/ #sound-dai-cells;
->
-> +       pinctrl-0 = <&edp_hpd_default>;
-> +       pinctrl-names = "default";
-> +
->         status = "okay";
->
->         aux-bus {
-> @@ -1236,6 +1239,12 @@ cam_indicator_en: cam-indicator-en-state {
->                 bias-disable;
->         };
->
-> +       edp_hpd_default: edp-hpd-default-state {
-> +               pins = "gpio119";
-> +               function = "edp0_hot";
-> +               bias-disable;
-> +       };
-> +
->         edp_reg_en: edp-reg-en-state {
->                 pins = "gpio70";
->                 function = "gpio";
->
-> --
-> 2.50.1
->
+[1] https://lore.kernel.org/all/20250616112316.3833343-4-pinkesh.vaghela@einfochips.com/
+[2] https://lore.kernel.org/all/20250616112316.3833343-3-pinkesh.vaghela@einfochips.com/
+
+Updates:
+
+  Changes in v4:
+  - Updated YAML file
+    - Changed name from cpu-default-frequency to cpu-default-freq-hz.
+    - Dropped $ref of cpu-default-frequency.
+    - Added cpu-default-frequency for required.
+    - Removed cpu-default-frequency in updated file, because there was no
+      need to add cpu-default-frequency.
+    - Moved DIVIDER to DIV.
+    - Arranged the IDs in order.
+    - Dropped EIC7700_NR_CLKS.
+    - Removed dt-bindings eswin,eic7700-clock.h. Because IDs was not used,
+      and used clock device nodes.
+    - According to the updated driver codes, the YAML has been updated.
+  - Updated driver file
+    - Remove undocumented parameters "cpu_no_boost_1_6ghz" and
+      "cpu-default-frequency".
+    - Modified the comment and used the correct Linux coding style.
+    - Removed codes of voltage, because it was not the clock driver.
+    - Updated the formula of clock frequency calculation. Removed the logic
+      that only used register selection.
+    - Used CLK_OF_DECLARE() to register clocks. Registered pll-clock,
+      mux-clock, divider-clock, and gate-clock in clk-eic7700.c.
+      The specific implementation of clock registration was in clk.c.
+    - Added eic7700-clocks.dtsi.
+    - Moved device information to DTS. Put all clocks' node in the
+      eic7700-clocks.dtsi.
+
+  - Link to v3: https://lore.kernel.org/all/20250624103212.287-1-dongxuyang@eswincomputing.com/
+
+  Changes in v3:
+  - Update example, drop child node and add '#clock-cells' to the parent
+    node.
+  - Change parent node from sys-crg to clock-controller for this yaml.
+  - Drop "syscon", "simple-mfd" to clear warnings/errors by using "make
+    dt_binding_check". And these are not necessary.
+  - Add "cpu-default-frequency" definition in yaml for "undocumented ABI".
+  - Drop Reviewed-by, this is misunderstanding. We have not received such
+    an email.
+  - Link to v2: https://lore.kernel.org/all/20250523090747.1830-1-dongxuyang@eswincomputing.com/
+
+  Changes in v2:
+  - Update example, drop child node.
+  - Clear warnings/errors for using "make dt_binding_check".
+  - Change to the correct format.
+  - Drop some non-stanard code.
+  - Use dev_err_probe() in probe functions.
+  - Link to v1: https://lore.kernel.org/all/20250514002233.187-1-dongxuyang@eswincomputing.com/
+
+Xuyang Dong (3):
+  clock: eswin: Documentation for eic7700 SoC
+  clock: eswin: Add eic7700 clock driver
+  riscv: dts: eswin: Add clock driver support
+
+ .../bindings/clock/eswin,eic7700-clock.yaml   |  381 +++
+ arch/riscv/boot/dts/eswin/eic7700-clocks.dtsi | 2283 +++++++++++++++++
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/eswin/Kconfig                     |   10 +
+ drivers/clk/eswin/Makefile                    |    8 +
+ drivers/clk/eswin/clk-eic7700.c               |   44 +
+ drivers/clk/eswin/clk.c                       |  734 ++++++
+ drivers/clk/eswin/clk.h                       |   69 +
+ 9 files changed, 3531 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+ create mode 100644 arch/riscv/boot/dts/eswin/eic7700-clocks.dtsi
+ create mode 100644 drivers/clk/eswin/Kconfig
+ create mode 100644 drivers/clk/eswin/Makefile
+ create mode 100644 drivers/clk/eswin/clk-eic7700.c
+ create mode 100644 drivers/clk/eswin/clk.c
+ create mode 100644 drivers/clk/eswin/clk.h
+
+--
+2.17.1
+
 
