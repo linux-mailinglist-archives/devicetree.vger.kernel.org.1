@@ -1,119 +1,80 @@
-Return-Path: <devicetree+bounces-204930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A39CB27641
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 04:44:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42755B2768D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:12:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 893181C83887
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 02:42:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A5F7583B50
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E4F26B0BE;
-	Fri, 15 Aug 2025 02:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E994429ACD1;
+	Fri, 15 Aug 2025 03:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RxjyzX1G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IoZWQmH+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA8B25B1F4;
-	Fri, 15 Aug 2025 02:42:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6191F1302;
+	Fri, 15 Aug 2025 03:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755225733; cv=none; b=c9iZ/Bsf5lX6l47jXaOlwiIhB9wUZ2OK0byZD1HiOqJYLUZ7zN/NtTkTa5nCSuxwh73brw06Qevt6tySbB8PZE8yodCgPFFAG+iGVXbBiJI5V4pzklnGo7Vy/qK97rqNNdF+3+AounsXaG7bGo+1Lu2wPaLvZkDo8VW0OUaD7FM=
+	t=1755227572; cv=none; b=dYBArkKUrl3nVx1tGXdGyt4qZqwy1K+2SH/cCp9J3poP9kzP5NpKFwxFlPDNfNssSzK7TElzeR7b5sFtlwnjXvVtE1JCL75WWhZ64zO9+sJ1+n08tq70QqCIsOqnNmakkO9vNfJVNcXGRYtW7f605bsApb9KeRd9Aml2dJQ7/cE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755225733; c=relaxed/simple;
-	bh=8Jnwog2oz4VwDiCj8F3rlocE1pPuSsttCobur+qqLvg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=g/id2Ttukf0XnyyvQs7S7LZb5dyCQakSogTx1PAg92CyW6alzvoeYOy2Lj7gEiSUrvPvv9/MbIvoKC7ab4KOcRP2FGaYvVyRMYOLIVlK8PsCTSy9oo7hjqGqa4VWD+PEARXRha2BeKX8AuU7mu8UaubC+zNOSeSwYLylvuodHs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RxjyzX1G; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57F2g5SR2436546;
-	Thu, 14 Aug 2025 21:42:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755225725;
-	bh=wUO/5xkUeyV8DJVK1z5fhVBOB3vtOs7Z91loZr+p2WE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=RxjyzX1GBZYGYFGlpvl9RDJrEnOgEmnDtuElW+1H5grwk9I0peQVpgi+fRRHOGx5r
-	 vgRCEnVSw/G5Ner1+Sm1nADbBxmq5D3T3S4axIUu5yqVGpsWWeMbQsZ7EnBoHdRR58
-	 6gbmQqooLwbJeLUXu2CGi5kwvU6Rlr6PuuzQsYuE=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57F2g5aH2279690
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 14 Aug 2025 21:42:05 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 14
- Aug 2025 21:42:05 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 14 Aug 2025 21:42:04 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57F2fxG9357354;
-	Thu, 14 Aug 2025 21:42:00 -0500
-Message-ID: <f49bf01b-6704-4a03-9b3d-7f7495e544e0@ti.com>
-Date: Fri, 15 Aug 2025 08:11:59 +0530
+	s=arc-20240116; t=1755227572; c=relaxed/simple;
+	bh=YsEDhpiQu05cFEIH2kVfWAb7P2ooH9l6nt2L+56tavM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qhSiYKH0UIKfr7hZa1fEofc9TM6K+nc/te9533HR3yKXFeqIt6wUFtHyE04srGbTQ0PQnEj1UWW/r4EkhizLCPlbeRfZQLkpZFm/dAsCjAQ0w77uC9USVgMDYxj1iGgcP+9e2E23K17/QTcinzNu9Dk9/fQ5QERLGWOuUzbHraY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IoZWQmH+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E48DEC4CEED;
+	Fri, 15 Aug 2025 03:12:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755227572;
+	bh=YsEDhpiQu05cFEIH2kVfWAb7P2ooH9l6nt2L+56tavM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=IoZWQmH+xAXJ4szSnsB+t4diKW7Sn7Pkpj4ga2o8MKDn2Hs4bXnHvj58ePVw5Ormf
+	 6rGul3TCWfZX3zY1duNwjlvZxyWdKHoFsqhCdtphwHHWdE3yMtdfsYuH3r5qWPip5I
+	 iJHan41lnDXyTpfTuNN6rRJluvV1CuJbDq4x7QRLIxHPu7euG81nN+RlyOTrZhzV7F
+	 SdjQnXfo/B+eMbddMcnbaSnK87WQnBgJM9tPb509CWHOKZjilnQlgkgD+MilhrYAgb
+	 IRF/cilwpgthSv3MenIu0k70TdCNaqCe8edvZ31nCbBwBELk4Obb8+ikOaT5xhPSNc
+	 04IopRkojfIeg==
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Richard Leitner <richard.leitner@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] usb: usb251xb: support usage case without I2C control
+Date: Fri, 15 Aug 2025 10:55:38 +0800
+Message-ID: <20250815025540.30575-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 33/33] arm64: dts: ti: k3-j7*-ti-ipc-firmware: Switch MCU
- R5F cluster to Split-mode
-To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <afd@ti.com>, <hnagalla@ti.com>, <jm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20250814223839.3256046-1-b-padhi@ti.com>
- <20250814223839.3256046-34-b-padhi@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20250814223839.3256046-34-b-padhi@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Refactor so that register writes for configuration are only performed if
+the device has a i2c_client provided and also register as a platform
+driver. This allows the driver to be used to manage GPIO based control
+of the device.
 
-On 8/15/2025 4:08 AM, Beleswar Padhi wrote:
-> Several TI K3 SoCs like J7200, J721E, J721S2, J784S4 and J742S2 have a
-> R5F cluster in the MCU domain which is configured for LockStep mode at
-> the moment. The necessary support to use MCU R5F cluster in split mode
-> was added in the bootloader. And the TI IPC firmware for the split
-> processors is already available public.
+Jisheng Zhang (2):
+  dt-bindings: usb: usb251xb: make reg optional for no I2C ctrl use case
+  usb: usb251xb: support usage case without I2C control
 
-It will be better to mention sha id of bootloader with links, may be 
-below tear-line
+ .../devicetree/bindings/usb/usb251xb.yaml     |   1 -
+ drivers/usb/misc/usb251xb.c                   | 108 +++++++++++++++---
+ 2 files changed, 94 insertions(+), 15 deletions(-)
 
-
-> Therefore, Switch this R5F cluster to Split mode by default in all the
-> boards using TI IPC Firmware config (k3-j7*-ti-ipc-firmware). This
-> gives out an extra general purpose R5F core free to run any applications
-> as required. Lockstep mode remains default in the SoC level dtsi, so
-> downstream board dts which do not use TI IPC Firmware config should not
-> be impacted by this switch.
->
-> Users who prefer to use the fault-tolerant lockstep mode with TI IPC
-> firmware config, can do that by setting `ti,cluster-mode` property to 1.
-
-IMO,  you need to change boot-loader as well for this,
-
-
->
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi             | 1 +
->   arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi             | 1 +
->   arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi            | 1 +
->   .../boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi     | 1 +
->   4 files changed, 4 insertions(+)
-> [..]
+-- 
+2.50.0
 
 
