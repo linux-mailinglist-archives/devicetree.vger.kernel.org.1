@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-205217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D77D7B285E9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 20:42:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 182E5B285FE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 20:49:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A7B41CE7C2D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 18:43:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB504AA8513
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 18:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9482253E1;
-	Fri, 15 Aug 2025 18:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E052580CC;
+	Fri, 15 Aug 2025 18:49:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GTeAPr8g"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ykjmhjZF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20593317714;
-	Fri, 15 Aug 2025 18:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0421317714;
+	Fri, 15 Aug 2025 18:49:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755283370; cv=none; b=Z5vFhXgnjwYtxhfloKjpCsjGu5UJTrFR1aW6M3CZcrDRvZiUMejqTMSmb8cmGTElruk64rNuLTTzwYyhLIgk91TT2+tcwwlxBDEx2h13mSe/ABkZcgZ7uIB2g5MRFhioAmBHyrOot3WogQBm9OZdlv58VDml7hQKSmhTeEiSr1E=
+	t=1755283781; cv=none; b=po6UrKqU+YJJz3Z0jatRqL/2uC6WRnxYE2Lmt5au9ukfkS4ljCMPECIlzz0o8COYWBAfpfrDUuYF/6ID+Qs8ddBM9m4VCgnQIRNjqVafL/8y+v7GmCpi8scIhq68LDDhVe2jJlH/YKW2zXH5V69Jfhes0zKOrLACwScgYjzGKw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755283370; c=relaxed/simple;
-	bh=BgbitYwqALEt/YYM1kuQOWc5srz0g9nkyyToP19KYgc=;
+	s=arc-20240116; t=1755283781; c=relaxed/simple;
+	bh=b/i+po+8/sV24lvo2g/QG1HgwE9bX25ATZUwg6dBnpM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TET8T36KaOFNtEgEDd9Mku1tvRrOJsYCjHv2YbacakLPwKRqdQFBPS0euz4iT+vndvmPl4pJupD4mcrroZ4kQqfGR+sw2AmiznMRejoXyIicAx4/IZDWl/cHC8o28C16HHpC7AHqdn0hzERMWMJ+2huhNrhC48efu1yQCZFXUhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GTeAPr8g; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=N3r7zVs01oXy459n9gulZmMfGj0+92rfekdy8O7rUhIy002+Fxy983UHb9j416BHavtYWyuw83JRpmswtJcomcPpB4PAq1McNtDQ3xKJco6Dt0hBKn2inWckh40yHjTKHSPWha0RhLhVJg2ihJNfomyQVDkUPk2xUyw49MZOsS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ykjmhjZF; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,33 +36,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=NFEat3zirg8C2/2oLxu6X/ZdyOC05vJhFKTQnZhl0cg=; b=GTeAPr8gn7YNZKVQbSxG+bF1QA
-	CtBH83Hd9XObTUvCNk45wDj5dQNcibQ7ra2s4ipaVsEQqMj7iguXuby5CTgruIH7T60llxk4xKsQ5
-	+Nh+55C3QG53q0Kaj2eiMYJmqtcEyE5S+tvSg6m7oWR4pTBfDE7tNVHxQKRDffL+EBxI=;
+	bh=1PlEMtUUWsb2dchVb0gw1B5xKWMiUdAV11zCeHtQwZ0=; b=ykjmhjZFazc8fArusi/DDEiVqK
+	/BBu7eARMFrwumSTf43pgb5XkErvzEYhpzACpjeSbPxNyxUYQAyAor+rWNBfgQLiHsNlfUFOaNzgp
+	rHdZV7KxNwZkHBTRk1BhMg3i2Hh4CNY0f7PEMK2USMwiSOD5wrGzxANwlkc+UXZImBTM=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1umzNj-004qvW-Bo; Fri, 15 Aug 2025 20:42:27 +0200
-Date: Fri, 15 Aug 2025 20:42:27 +0200
+	id 1umzUd-004qzR-85; Fri, 15 Aug 2025 20:49:35 +0200
+Date: Fri, 15 Aug 2025 20:49:35 +0200
 From: Andrew Lunn <andrew@lunn.ch>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S . Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Simon Horman <horms@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	Po-Yu Chuang <ratbert@faraday-tech.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	taoren@meta.com, bmc-sw2@aspeedtech.com
-Subject: Re: [net-next v2 0/4] Add AST2600 RGMII delay into ftgmac100
-Message-ID: <a9ef3c51-fe35-4949-a041-81af59314522@lunn.ch>
-References: <20250813063301.338851-1-jacky_chou@aspeedtech.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH 1/5] net: cadence: macb: Set upper 32bits of DMA ring
+ buffer
+Message-ID: <507730df-a882-4d75-af8a-a0c0b1124b78@lunn.ch>
+References: <20250815135911.1383385-1-svarbanov@suse.de>
+ <20250815135911.1383385-2-svarbanov@suse.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,21 +76,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250813063301.338851-1-jacky_chou@aspeedtech.com>
+In-Reply-To: <20250815135911.1383385-2-svarbanov@suse.de>
 
-On Wed, Aug 13, 2025 at 02:32:57PM +0800, Jacky Chou wrote:
-> This patch series adds support for configuring RGMII internal delays for the 
-> Aspeed AST2600 FTGMAC100 Ethernet MACs.
+On Fri, Aug 15, 2025 at 04:59:07PM +0300, Stanimir Varbanov wrote:
+> In case of rx queue reset and 64bit capable hardware, set the upper
+> 32bits of DMA ring buffer address.
+> 
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
 
-So i think you are doing things in the wrong order. You first need to
-sort out the mess of most, if not all, AST2600 have the wrong
-phy-mode, because the RGMII delay configuration is hidden, and set
-wrongly.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Please fix that first.
-
-Then consider how you can add fine tuning of the delays. Maybe that
-needs to wait for AST2700.
-
-	Andrew
+    Andrew
 
