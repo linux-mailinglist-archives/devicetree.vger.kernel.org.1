@@ -1,266 +1,109 @@
-Return-Path: <devicetree+bounces-204934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC314B27690
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:13:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1317BB27671
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:04:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 863171CE3C0E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:13:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1641D621C8D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFCFD2BE623;
-	Fri, 15 Aug 2025 03:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29DB72BD5AF;
+	Fri, 15 Aug 2025 03:03:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tWu/0bso"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="eFSyTybM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866AB29ACD1;
-	Fri, 15 Aug 2025 03:12:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECFBB29898B
+	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 03:03:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755227577; cv=none; b=eiWXR8xLihYR6BH3m119F/S0WivRXPPxMRVPbA/baRKBHJe/B3mN4Yoekwe/l9lr7iQf165XVTIkktYkHBakqxnJWbZVuvw6FmdC5hQXZRrpIAjFdwftwpoXBvBLP1u9Ij9PDww1FnRZcR+9LYB3HqGiiBOofHVpLD8+V+Wzq8U=
+	t=1755227036; cv=none; b=C8geY1lVDyhTXZZ5+/0MkMDsdP4nQ5LNdKqTkEwRoas/BiyT1fvRjy3j9EYCEmoHdw30XMns4VFUpTCxAGqth7+/OwX4cu/p878rl8exLcg8W4Rbj6l+l23ZbMr8dJZxOw05LFECiBdo3cPVxT71oKL54sMLruMsalhkx2PVhho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755227577; c=relaxed/simple;
-	bh=MN6grN1k65SjfjMv0Gt1FohyMOWXmsBPqK6RgkmtpVs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HqilGi3amET06C+GolbUtlsGReez62MKkVCWGqC81/KfhuWUDwaie8Q10++PYkHqOADka/Xf4A8DIk7U8bCJGr/GrWV3KU3gJE0wps6q66yL284fbNOAWaMdcwoWappSRyBEf3IkoNjTzELKwtlxSHZiEytUaYOPURCPvoJN3yk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tWu/0bso; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50BBEC4CEF1;
-	Fri, 15 Aug 2025 03:12:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755227577;
-	bh=MN6grN1k65SjfjMv0Gt1FohyMOWXmsBPqK6RgkmtpVs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=tWu/0bsoZkT+G3gMCPQ+ztfK3ArlCLIot22EpstExKo6v3A30r0P9d6kwkGNrtBxM
-	 VB7RsQsDuuDyxpFa67q1+mydKaaOexBcvWTAZpvpYdqVsffJzvVV2jaZgcCTFAsplW
-	 a4U5/j2wU1MrAbCCGmsHk5N2O1nlAD8OZ4cORTTxZmqnNZFVcuLOgeCrtlPyOzDOir
-	 Bk7MYdCrsNgoGYNQV0AZ5DRvGCZ6I+9OYQSEADC4K0VIP0CDv8r1u65PHOXswiRmot
-	 5wDd8gVNLxVTBH6nPY6sP3jO9UN3O7XxGdQdbtW6ygkSW1S8wa5Th5Fhu0ya/GLpOG
-	 5G6Gq3OiarLMA==
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Richard Leitner <richard.leitner@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] usb: usb251xb: support usage case without I2C control
-Date: Fri, 15 Aug 2025 10:55:40 +0800
-Message-ID: <20250815025540.30575-3-jszhang@kernel.org>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250815025540.30575-1-jszhang@kernel.org>
-References: <20250815025540.30575-1-jszhang@kernel.org>
+	s=arc-20240116; t=1755227036; c=relaxed/simple;
+	bh=HinHQKZUtxe4t41iR9D9bn+PEZ105vFBbOQmMnTwk9Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HROLUVa3zwhXKI7Nm3Ye6bPVpquFVpKKW8Hih0v5jacJXG2fkcTgz8yYJoukl47WUPSpmjE6z7sDUp7YNfnntPuRabnB0kHDuzN15B2pd300sKjj3gzA/27VG6yp3CckXHMu1ah2IxFd6SXOj8Sy0TS4AVFlPrbwrTMCVm0GnQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=eFSyTybM; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-55ce52b01caso1699236e87.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 20:03:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1755227031; x=1755831831; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HinHQKZUtxe4t41iR9D9bn+PEZ105vFBbOQmMnTwk9Y=;
+        b=eFSyTybMep2zGs8cgTE9pFyv+RTx1qg/TRgwPwPzjOQ7yhv/VSIHID5g3GxVInSYYs
+         MEYzYAInQbb171Zo4sOPVbxWclPPKuptT/OeJ9TBJAvsCWXlngg9fkFLbU6PW1q805dl
+         OiqErf0N1aN3mvk2cDicMkezFJiuU/xQAQxCQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755227031; x=1755831831;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HinHQKZUtxe4t41iR9D9bn+PEZ105vFBbOQmMnTwk9Y=;
+        b=EuLV+Go9J8KAMYGodYUEeuXecqmBc/2uD7EErvClzpIQ1wjpHc6R7tr7sR4zqkYJi+
+         QnrEmEExQQmdBl8+o2g87Yb7OlcP1auG/4bwCSC3vmq4O/bAwdW8jV8G+iJvFv9bHZ3i
+         XYgN16PZ8+DViPNsJtLeW+BsV/s2XK4av0CWdZ7Zl2bMbJhiFaJL+bRFPTzOXB0Z/jNo
+         jsFgfgl2dCRCGoxw/KQfXVGFRBca6b8W0UTiuP6OEjM3kHthySuDcJdrE3ddp07f+D6O
+         zR9PIOeavR5OZXWNn2WSLS/AMsCFsCzxCg5apyz862DxzCgyhAnjueBETVP5t919MMce
+         ax1g==
+X-Forwarded-Encrypted: i=1; AJvYcCXAr7YY/iy4KAYWgabYctinmrrZWzpxU1RIr3podEkqSYz7095e7HULPaOUGBt0wGr/ViqkWIGRiBAc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6iFj0MBifZcUplMs1FX3DEHgiPi1u6MJrsHll0XPUxq5cM0TP
+	yyw1WHzaC0s2PlFw5ad+49g5cN/UISW3ZOy7g/gFBa4cp7+syf5XBA5l3/+q4dEw740P59pCm4Y
+	2j0hGWbDZI1JNSrn2aPrKZhZrcQ0q0Lsos51uN1vv
+X-Gm-Gg: ASbGncsi9QwFTOuWkdr3NFsBvSMbfojpovMeRQ3oYTByw72Y6V7ygwZ1ahvIFFY0wBm
+	jnmBqzXMmdERgstxy9ccAWYjpA6tLPhcOzXIuBXxP+x+6baBI0WJ7uKyt/MJR24sf7dx5ggoSsT
+	Knzxjq1bYD4bfne3cwgJv6eugD5A4u2ArD2/yf8JvYsMzbEv2PlieqoQ27hespaGdp4sm+xFt6W
+	TvIqvgmVoofKRs3sdFOdhwMHdG2WZ6D8YsvLg==
+X-Google-Smtp-Source: AGHT+IE5oudoWOuExXFcWc613ObdeU+xcba/kkjYM4lQww+ElYzSmi2/gSXFiaP7UzcFCgh/kx+W9zwxu3OJ8SIUDuU=
+X-Received: by 2002:a05:6512:1104:b0:553:a9af:9e43 with SMTP id
+ 2adb3069b0e04-55ceeb906demr143594e87.53.1755227031067; Thu, 14 Aug 2025
+ 20:03:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250805135447.149231-1-laura.nao@collabora.com> <20250805135447.149231-2-laura.nao@collabora.com>
+In-Reply-To: <20250805135447.149231-2-laura.nao@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 15 Aug 2025 12:03:40 +0900
+X-Gm-Features: Ac12FXzlE2kni0q5NyqXgX7d170kjvAVh0V3KwwS63urIxRRXRRBW2zdHpmR4vA
+Message-ID: <CAGXv+5GDU45O46A+mpdu1HQ_sfT2Su4fgFCtr4xPjoRPzwOWmg@mail.gmail.com>
+Subject: Re: [PATCH v4 01/27] clk: mediatek: clk-pll: Add set/clr regs for
+ shared PLL enable control
+To: Laura Nao <laura.nao@collabora.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
+	richardcochran@gmail.com, guangjie.song@mediatek.com, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	kernel@collabora.com, =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Refactor so that register writes for configuration are only performed if
-the device has a i2c_client provided and also register as a platform
-driver. This allows the driver to be used to manage GPIO based control
-of the device.
+On Tue, Aug 5, 2025 at 10:55=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
+ wrote:
+>
+> On MT8196, there are set/clr registers to control a shared PLL enable
+> register. These are intended to prevent different masters from
+> manipulating the PLLs independently. Add the corresponding en_set_reg
+> and en_clr_reg fields to the mtk_pll_data structure.
+>
+> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
 
-Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
----
- drivers/usb/misc/usb251xb.c | 108 +++++++++++++++++++++++++++++++-----
- 1 file changed, 94 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/usb/misc/usb251xb.c b/drivers/usb/misc/usb251xb.c
-index 4fb453ca5450..ef5873009599 100644
---- a/drivers/usb/misc/usb251xb.c
-+++ b/drivers/usb/misc/usb251xb.c
-@@ -17,6 +17,7 @@
- #include <linux/module.h>
- #include <linux/nls.h>
- #include <linux/of.h>
-+#include <linux/platform_device.h>
- #include <linux/regulator/consumer.h>
- #include <linux/slab.h>
- 
-@@ -242,15 +243,19 @@ static int usb251xb_check_dev_children(struct device *dev, void *child)
- static int usb251x_check_gpio_chip(struct usb251xb *hub)
- {
- 	struct gpio_chip *gc = gpiod_to_chip(hub->gpio_reset);
--	struct i2c_adapter *adap = hub->i2c->adapter;
-+	struct i2c_adapter *adap;
- 	int ret;
- 
-+	if (!hub->i2c)
-+		return 0;
-+
- 	if (!hub->gpio_reset)
- 		return 0;
- 
- 	if (!gc)
- 		return -EINVAL;
- 
-+	adap = hub->i2c->adapter;
- 	ret = usb251xb_check_dev_children(&adap->dev, gc->parent);
- 	if (ret) {
- 		dev_err(hub->dev, "Reset GPIO chip is at the same i2c-bus\n");
-@@ -271,7 +276,8 @@ static void usb251xb_reset(struct usb251xb *hub)
- 	if (!hub->gpio_reset)
- 		return;
- 
--	i2c_lock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
-+	if (hub->i2c)
-+		i2c_lock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
- 
- 	gpiod_set_value_cansleep(hub->gpio_reset, 1);
- 	usleep_range(1, 10);	/* >=1us RESET_N asserted */
-@@ -280,7 +286,8 @@ static void usb251xb_reset(struct usb251xb *hub)
- 	/* wait for hub recovery/stabilization */
- 	usleep_range(500, 750);	/* >=500us after RESET_N deasserted */
- 
--	i2c_unlock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
-+	if (hub->i2c)
-+		i2c_unlock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
- }
- 
- static int usb251xb_connect(struct usb251xb *hub)
-@@ -289,7 +296,11 @@ static int usb251xb_connect(struct usb251xb *hub)
- 	int err, i;
- 	char i2c_wb[USB251XB_I2C_REG_SZ];
- 
--	memset(i2c_wb, 0, USB251XB_I2C_REG_SZ);
-+	if (!hub->i2c) {
-+		usb251xb_reset(hub);
-+		dev_info(dev, "hub is put in default configuration.\n");
-+		return 0;
-+	}
- 
- 	if (hub->skip_config) {
- 		dev_info(dev, "Skip hub configuration, only attach.\n");
-@@ -698,18 +709,13 @@ static int usb251xb_i2c_probe(struct i2c_client *i2c)
- 	return usb251xb_probe(hub);
- }
- 
--static int __maybe_unused usb251xb_suspend(struct device *dev)
-+static int usb251xb_suspend(struct usb251xb *hub)
- {
--	struct i2c_client *client = to_i2c_client(dev);
--	struct usb251xb *hub = i2c_get_clientdata(client);
--
- 	return regulator_disable(hub->vdd);
- }
- 
--static int __maybe_unused usb251xb_resume(struct device *dev)
-+static int usb251xb_resume(struct usb251xb *hub)
- {
--	struct i2c_client *client = to_i2c_client(dev);
--	struct usb251xb *hub = i2c_get_clientdata(client);
- 	int err;
- 
- 	err = regulator_enable(hub->vdd);
-@@ -719,7 +725,23 @@ static int __maybe_unused usb251xb_resume(struct device *dev)
- 	return usb251xb_connect(hub);
- }
- 
--static SIMPLE_DEV_PM_OPS(usb251xb_pm_ops, usb251xb_suspend, usb251xb_resume);
-+static int usb251xb_i2c_suspend(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct usb251xb *hub = i2c_get_clientdata(client);
-+
-+	return usb251xb_suspend(hub);
-+}
-+
-+static int usb251xb_i2c_resume(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct usb251xb *hub = i2c_get_clientdata(client);
-+
-+	return usb251xb_resume(hub);
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(usb251xb_i2c_pm_ops, usb251xb_i2c_suspend, usb251xb_i2c_resume);
- 
- static const struct i2c_device_id usb251xb_id[] = {
- 	{ "usb2422" },
-@@ -739,13 +761,71 @@ static struct i2c_driver usb251xb_i2c_driver = {
- 	.driver = {
- 		.name = DRIVER_NAME,
- 		.of_match_table = usb251xb_of_match,
--		.pm = &usb251xb_pm_ops,
-+		.pm = pm_sleep_ptr(&usb251xb_i2c_pm_ops),
- 	},
- 	.probe = usb251xb_i2c_probe,
- 	.id_table = usb251xb_id,
- };
- 
--module_i2c_driver(usb251xb_i2c_driver);
-+static int usb251xb_plat_probe(struct platform_device *pdev)
-+{
-+	struct usb251xb *hub;
-+
-+	hub = devm_kzalloc(&pdev->dev, sizeof(*hub), GFP_KERNEL);
-+	if (!hub)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, hub);
-+	hub->dev = &pdev->dev;
-+
-+	return usb251xb_probe(hub);
-+}
-+
-+static int usb251xb_plat_suspend(struct device *dev)
-+{
-+	return usb251xb_suspend(dev_get_drvdata(dev));
-+}
-+
-+static int usb251xb_plat_resume(struct device *dev)
-+{
-+	return usb251xb_resume(dev_get_drvdata(dev));
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(usb251xb_plat_pm_ops, usb251xb_plat_suspend, usb251xb_plat_resume);
-+
-+static struct platform_driver usb251xb_plat_driver = {
-+	.driver = {
-+		.name = DRIVER_NAME,
-+		.of_match_table = of_match_ptr(usb251xb_of_match),
-+		.pm = pm_ptr(&usb251xb_plat_pm_ops),
-+	},
-+	.probe		= usb251xb_plat_probe,
-+};
-+
-+static int __init usb251xb_init(void)
-+{
-+	int err;
-+
-+	err = i2c_add_driver(&usb251xb_i2c_driver);
-+	if (err)
-+		return err;
-+
-+	err = platform_driver_register(&usb251xb_plat_driver);
-+	if (err) {
-+		i2c_del_driver(&usb251xb_i2c_driver);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+module_init(usb251xb_init);
-+
-+static void __exit usb251xb_exit(void)
-+{
-+	platform_driver_unregister(&usb251xb_plat_driver);
-+	i2c_del_driver(&usb251xb_i2c_driver);
-+}
-+module_exit(usb251xb_exit);
- 
- MODULE_AUTHOR("Richard Leitner <richard.leitner@skidata.com>");
- MODULE_DESCRIPTION("USB251x/xBi USB 2.0 Hub Controller Driver");
--- 
-2.50.0
-
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
