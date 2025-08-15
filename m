@@ -1,133 +1,182 @@
-Return-Path: <devicetree+bounces-205261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47A67B288BE
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 01:28:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4B14B288D6
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 01:38:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F80B17C804
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 23:28:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 770F0165FC6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 23:38:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF4192D373A;
-	Fri, 15 Aug 2025 23:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA432857F9;
+	Fri, 15 Aug 2025 23:38:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ORlsdhRQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LQutKugk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 445C926B747;
-	Fri, 15 Aug 2025 23:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D7926E6FF
+	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 23:38:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755300520; cv=none; b=jwCBMn4um+TRwjXS23Ip/8RrqK3knHIet3HcdRL+HSNuUhtoWIvITqKfJFYD/r5CxJB3l3RH/7xEELuc4pcBtoe62YTVVT8pzpCjnqyHyWYCfEoGMlhFPacc9fIylZAOelrEXVPGZIFfPuzk7dAPe+Xe8wtj6qNn1q1Mlf8/a8E=
+	t=1755301135; cv=none; b=KuUR9sRdHUz8qlCEOLo7P6s4ncyh/sKpAez4n6Q3H6/bZL7hN/lHfJsK5j83GgyZQJKp+iRcqlt5opMkIFTR4U4fSewoIX12ix9pMiMsL3cpjfYki8xpkfq5hBeHeI1Q2pgXPePkBXYW5JT60n/Cd48WYV/CCWXLq1ZSDtI+XyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755300520; c=relaxed/simple;
-	bh=UvoYpGdpZ518sX1C9ntrRKU5XcSUp21l1zLHFegmRU0=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=QgMnsVefoqHrui7yryZ9gVV+SsJOsALGXITrJnEiS9RxQW6dba6coeYvyE4vgu6HlIG8XfIuXVKEL/EezGnvSlfp5hpxgTRUjd3iUbFm7+OxpCj9hV6riJA9av/zjILUzxkd7YmSMXcb8LEgRC2Sqblcu4lb4C1aDNU21DfNjBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ORlsdhRQ; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-244582738b5so21324275ad.3;
-        Fri, 15 Aug 2025 16:28:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755300516; x=1755905316; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=vJTHdLNFpJHwfmgbDDHn1yEdiFV4xKdd+LYG/JjzbEo=;
-        b=ORlsdhRQtkpqUdgnXT1PmdSXSyR1EDT5yUCshZpiBYcR2U8O3b/KHNqXh8IF8m6gLb
-         shWbaT2k5WIQKIdQWcaqGi7WLYB8uxd9kzwJCXtZMhb5RzVcri6H0SHU5mpN77KwqwtJ
-         ym3huelUXDyOCUmBumrvm5xY9w+w4yGX7gNVahlngTW93lUKuk+/bxM2t8tP7yjuxsVq
-         oOoxWh7wSWHL9GcUhwKPA2dDYddFrJqt5paHCFS2fCPPSs0y5ls/0qSQtBUQqa69uRxX
-         klwJH4UVCMxPp8wKl+EuyulFzNn6OgqslUTszc5zSMdWgRDJ4v9E2rrQpsD9nUSKTu69
-         0qBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755300516; x=1755905316;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vJTHdLNFpJHwfmgbDDHn1yEdiFV4xKdd+LYG/JjzbEo=;
-        b=dHl8BUfv9CS66na14GaNAxFcvGYVt0a7NJDEgZKnY2i6nitKgtMCLISiutoU/zRK4m
-         T0g2Bk4ND5EbqSjBLGJbd1qqLWzZS+2ypXfttMA54gnrQeRXGKEYy7MIDrftehgi7Zv8
-         R5Q5j4YY6pkMoOpoOLePY3L79nnHiX47eUkTL628Au3IGttC98VeRtVtGnIDRfeHfPD6
-         QhygEwcV5OYCsOGozyw+uLz2ub1sRAMUwq9oE4BJ0Ke606TrHDZubqEs8uAHjuNhceFd
-         KbpNu9TnJTdjRZh4KDI4rowknJ71jVeMSR1XWrZ57YdXaRX2jpwqHectE+wCCuvjPHjf
-         rfww==
-X-Forwarded-Encrypted: i=1; AJvYcCVtI++qQm4Pe1y/nDgVOFRNvjnc1Juz4QO98CYMzUNfhxZh49mcjUQEA9b7M8E2fl0HyoC2O7Pr4R9q@vger.kernel.org, AJvYcCX49eKExEN845wUJIROyCcHicNnNpb0cmNxnRXrl+bNI1dPr3Y5u1knT9NQlXDXwoB9jp7iPANZ7AnF5ZygjQ==@vger.kernel.org, AJvYcCXZY5NMvWhhJ77BNV+cORtz9F8eGRgAwRkydWW5qpzTrncwtD/Rm804gfoJIh9Rm4tBN/4XhPpc+GF7t36N@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2rIgwgga5QCfizelmZmFPPuTt0xT33V/MpcFlXoL9QCoKqCMR
-	oDzJMbdq6N+ebBdMLZl991fqKAoOcEbvzaavnzxZH+ueJ8FQe4GFxY4p
-X-Gm-Gg: ASbGncsyXtFIdKr/XnvHUvfFqlofHEkmVBuKb/5RB9h7zRh1nLHYB/u7z+NH0wgEfHN
-	HJa95884iEksgyjkoSFG9/kF1uke8ok0CdcBIAn+aZUo4QwTSahd9EpZHo8Ib44NIv+Qc+OgRFh
-	ZfQEQuQ1Dtp8dolFBUogbKAw8AVom4FX9pymPGF/P6E4+ppzwwylVB0aFO3KvKNYxMWusW9V2E7
-	Xh1I+ee9MJeWJpCMesMRVB0WI2S96ec7D7A5FTKwDSQ+Ptlo9oIMMb4IPqJ8BpK7FX7hl+KD7Zz
-	eAwkFQqXWrhD7RS1o0uMr9sn8oh/gUD5lKt00Hfg4FkgVXy3blkucmnyAaG2KbTbERZfXa7rQPD
-	36NscRKainRTx5U02ViNzFfe1ZjVagkRt1QBFzHGH8hX1iq/hzh16UbOoj79d1CjecT4=
-X-Google-Smtp-Source: AGHT+IFzx9EtbLSYVs1fz25p0drTFKOY0IALI0Ty8HFwEEwX9LRI2JXlSWi6o2ZeRHrSFKMPMeeoLg==
-X-Received: by 2002:a17:902:cccb:b0:235:7c6:ebdb with SMTP id d9443c01a7336-2446d6dc1bemr48990105ad.10.1755300516361;
-        Fri, 15 Aug 2025 16:28:36 -0700 (PDT)
-Received: from ehlo.thunderbird.net (201-0-28-218.dsl.telesp.net.br. [201.0.28.218])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2446cb0101esm22696205ad.46.2025.08.15.16.28.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Aug 2025 16:28:35 -0700 (PDT)
-Date: Fri, 15 Aug 2025 20:28:32 -0300
-From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v1_2/2=5D_arm64=3A_dts=3A_qcom=3A_add_?=
- =?US-ASCII?Q?initial_support_for_Samsung_Galaxy_S20_FE?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <xmxo5uogkexiwq5zh2eza53pnl5jrqidd7an7bftjtq4wpaup5@mlekuufdbg5v>
-References: <20250815151426.32023-1-ghatto404@gmail.com> <20250815151426.32023-3-ghatto404@gmail.com> <xmxo5uogkexiwq5zh2eza53pnl5jrqidd7an7bftjtq4wpaup5@mlekuufdbg5v>
-Message-ID: <31CA09B3-E451-4EC1-8273-A1F09735D1FB@gmail.com>
+	s=arc-20240116; t=1755301135; c=relaxed/simple;
+	bh=r1Vq7mA+j9OXBWosTNsWgWDh/jOXc+SDmqEDap08/Oc=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=AJpxe28sEjRu7+V1XYA0aHJaIpvnnb6A2WscQEG4PtZnhSicsiQf/ekMBtqUxpLMASrCR+42GKHkGHQHyqZfLbfi4k6Dv+/jaig/NJrHflbbZAlGa361DIcqTI91nGfuI5Bijj5wMyVT/zz2Xgz2xPaxx/baX1ju7DL9trCo1S0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LQutKugk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78F9FC4CEEB;
+	Fri, 15 Aug 2025 23:38:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755301134;
+	bh=r1Vq7mA+j9OXBWosTNsWgWDh/jOXc+SDmqEDap08/Oc=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=LQutKugkJGGn54Oq+cSgY6i2Lv/Wyg26+cVKSib/qRuhStmffBn3/hFonevcqwy+I
+	 NhuwJ1mNDO1GwRk5I+paI4LIJRUTHAA6scSLJbtU06a4uOAeQXAuXDgjxlKF5SwtTM
+	 ODeA3dTB4+0RA+fQTs5numTXi9pHCaQoNQf9fXnxYvc9q23xwkevLNmVH059fSCY1G
+	 d0cfi7cce+WtprBT6uUOSteIqrKI9nwhUdjN0S0a139ixwFjQygukJLoPKgUa+FzfL
+	 rcGejXA3shCoQkySFUeOEd5DaLw8SMvF9ypZG4epUZgv14L+MtA+NKpBbfJQPEDXu7
+	 IbQYGT5678I6g==
+Date: Fri, 15 Aug 2025 18:38:53 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-aspeed@lists.ozlabs.org, conor+dt@kernel.org, 
+ devicetree@vger.kernel.org, andrew@codeconstruct.com.au, krzk+dt@kernel.org
+To: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <20250815194730.41695-1-eajames@linux.ibm.com>
+References: <20250815194730.41695-1-eajames@linux.ibm.com>
+Message-Id: <175530106096.3523003.10423924922951806073.robh@kernel.org>
+Subject: Re: [PATCH v4 0/4] ARM: dts: aspeed: Add Balcones system
+
+
+On Fri, 15 Aug 2025 14:47:26 -0500, Eddie James wrote:
+> The Balcones system is similar to Bonnell but with a POWER11 processor.
+> 
+> Changes since v3:
+>  - Add max31785 to the max31790 document instead of to trivial-devices
+>  - Fix minor formatting in dps310 document
+> 
+> Changes since v2:
+>  - Fix a couple of incorrect i2c addresses
+>  - Document dps310 and max31785 properly
+>  - Drop the UCD binding documentation update, it's been fixed
+> 
+> Changes since v1:
+>  - Add all the ucd9000 driver supported compatible strings
+>  - Fix node ordering in Balcones device tree
+>  - Improve commit message to explain addition of ibm-power11-dual.dtsi
+> 
+> Eddie James (4):
+>   dt-bindings: arm: aspeed: add IBM Balcones board
+>   dt-bindings: iio: Add Infineon DPS310 sensor documentation
+>   dt-bindings: hwmon: Move max31785 compatibles to max31790 document
+>   ARM: dts: aspeed: Add Balcones system
+> 
+>  .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+>  .../devicetree/bindings/hwmon/max31785.txt    |  22 -
+>  .../bindings/hwmon/maxim,max31790.yaml        |   6 +-
+>  .../iio/pressure/infineon,dps310.yaml         |  44 +
+>  .../devicetree/bindings/trivial-devices.yaml  |   2 -
+>  MAINTAINERS                                   |   1 +
+>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>  .../dts/aspeed/aspeed-bmc-ibm-balcones.dts    | 609 ++++++++++++++
+>  .../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779 ++++++++++++++++++
+>  .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +----------------
+>  10 files changed, 1442 insertions(+), 792 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/max31785.txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dts
+>  create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-dual.dtsi
+> 
+> --
+> 2.50.1
+> 
+> 
+> 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250815 (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250815194730.41695-1-eajames@linux.ibm.com:
+
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-witherspoon.dtb: max31785@52 (maxim,max31785a): '#address-cells', '#size-cells' do not match any of the regexes: '^fan-[0-9]+$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): '#address-cells', '#size-cells', 'fan@0', 'fan@1', 'fan@2', 'fan@3' do not match any of the regexes: '^fan-[0-9]+$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: timer (arm,armv7-timer): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: bus@1e600000 (aspeed,ast2600-ahbc): compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
+	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: syscon@1e6e2000 (aspeed,ast2600-scu): 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^pinctrl-[0-9]+$', '^silicon-id@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: crypto@1e6fa000 (aspeed,ast2600-acry): 'aspeed,ahbc' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: lpc@1e789000 (aspeed,ast2600-lpc-v2): reg-io-width: 4 is not of type 'object'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: lpc@1e789000 (aspeed,ast2600-lpc-v2): lpc-snoop@80: 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: sdc@1e740000 (aspeed,ast2600-sd-controller): sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: sdc@1e740000 (aspeed,ast2600-sd-controller): sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: pwm@52 (maxim,max31785a): '#address-cells', '#size-cells' do not match any of the regexes: '^fan-[0-9]+$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): '#address-cells', '#size-cells', 'fan@0', 'fan@1', 'fan@2', 'fan@3' do not match any of the regexes: '^fan-[0-9]+$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): '#address-cells', '#size-cells', 'fan@0', 'fan@1', 'fan@2', 'fan@3', 'fan@4', 'fan@5' do not match any of the regexes: '^fan-[0-9]+$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: /: failed to match any schema with compatible: ['ibm,bonnell-bmc', 'aspeed,ast2600']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): '#address-cells', '#size-cells', 'fan@0', 'fan@1', 'fan@2', 'fan@3', 'fan@4', 'fan@5' do not match any of the regexes: '^fan-[0-9]+$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): '#address-cells', '#size-cells', 'fan@0', 'fan@1', 'fan@2', 'fan@3', 'fan@4', 'fan@5' do not match any of the regexes: '^fan-[0-9]+$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: max31785@52 (maxim,max31785a): '#address-cells', '#size-cells', 'fan@0', 'fan@1' do not match any of the regexes: '^fan-[0-9]+$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
 
 
 
-On August 15, 2025 19:03:20 GMT-03:00, Dmitry Baryshkov <dmitry=2Ebaryshko=
-v@oss=2Equalcomm=2Ecom> wrote:
->On Fri, Aug 15, 2025 at 03:14:26PM +0000, Eric Gon=C3=A7alves wrote:
->> Add new device support for the Samsung Galaxy S20 FE 4G/5G
->>  (SM-G980/SM-G981B) phone
->>=20
->> What works:
->> - SimpleFB
->> - Pstore/ramoops
->
->While the patch is correct, are there any obstacles in enabling more
->devices on the phone? I'd say, buttons, remoteprocs, PCI and USB
->peripherals should be low hanging fruits=2E If you can read pmic_array
->from debugfs/qcom_socinfo, then you should be able to identify PMICs and
->add corresponding regulators too=2E
->
->> Signed-off-by: Eric Gon=C3=A7alves <ghatto404@gmail=2Ecom>
->> ---
->>  arch/arm64/boot/dts/qcom/Makefile             |  1 +
->>  =2E=2E=2E/boot/dts/qcom/sm8250-samsung-r8q=2Edts      | 47 +++++++++++=
-++++++++
->>  2 files changed, 48 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/qcom/sm8250-samsung-r8q=2Edts
->
-Hello Dmitry,
 
-Recently my device's battery stopped responding and I was not able to work=
- on the DT any further, so I decided to upstream what I already have so far=
-=2E Thanks for the feedback, I'll include more features on future patches=
-=2E
 
-Best regards,
-Eric
 
