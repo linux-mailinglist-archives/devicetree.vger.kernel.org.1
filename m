@@ -1,228 +1,261 @@
-Return-Path: <devicetree+bounces-204936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4063BB27694
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:14:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67B79B276AA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:18:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82EA71CE3C04
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:14:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4F7FA03DDE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:18:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441C729BD93;
-	Fri, 15 Aug 2025 03:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6831029CB2B;
+	Fri, 15 Aug 2025 03:18:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="Cr9ylydc";
-	dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="hEwMstxW"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kHvVaBrK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com [205.220.165.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F9029B78E;
-	Fri, 15 Aug 2025 03:14:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.165.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755227665; cv=fail; b=RAwpkqceCHaJvHl5dLgxCm1fZ/3B8iP4yyaBcpbXic1KBjt4q7yWcbTOtyaNM52VGLEYspubKgI56yRQpma50VLmNky9cpAKDuyVDbjt2xuTFAQiJZ4KPGLCBTcvmhy62+WQeI+FgiEKnS981YXtdMYAH3tyBv+JsgB21Qw2+k0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755227665; c=relaxed/simple;
-	bh=ABtKi9HxXmJosbUc1mY6sALeU48J+wwWe3JLPBTM6cs=;
-	h=To:Cc:Subject:From:In-Reply-To:Message-ID:References:Date:
-	 Content-Type:MIME-Version; b=lF9THXPMGS2hWKnRObKjfRwu6im2Dwz/LXJQPabY5L/QwOa4oBoMbx7Q+Wc8DQ/ZjGyo2BKBBAqZnPojuE2PcbbVIerpWag++J4HfY+XpiJOsJlhUrzIPSftpcf0fvvVwFVruwMZKiWkvEUj4/eykMDrs05iiNeJwL2C6CfKxeo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=Cr9ylydc; dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b=hEwMstxW; arc=fail smtp.client-ip=205.220.165.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
-Received: from pps.filterd (m0246627.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57EHfprm011952;
-	Fri, 15 Aug 2025 03:14:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=corp-2025-04-25; bh=s55qKsv61VzQ8gXjcv
-	R6ae3KcQI+fldP7bFixaMEO0g=; b=Cr9ylydcPIUWJNTkX1KHJ4eA3hVuoGaOon
-	PbUTZDFGWm9yn3EgsF3U26k5PHUmmTb4Vgg5Wz3TqX/Gfa5kXMS3J+95ckh+qoUi
-	GPQ42jXOIT/wGQOIqpRaPw1fN0OkIJ5cTgO03gjSy6sllq/0xKY+KQUnXdwqbnhy
-	wwwxOjYFKu2F87y0wGTX+Wx6naeD7v74oQ7ls2SNwIR5PwGrsPSzKovJMwILzhMC
-	UqXbit0MeqwZYCKJWamG4DMQkUGxGHqW1siQxc+qBRoQSsypGykE3sJ/Yx5Lwe4b
-	jxvvynsJEv1x/k8rzzrc711WF6E1yOyzqQXJlt52Dcgv68soru4w==
-Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta03.appoci.oracle.com [138.1.37.129])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 48dvx4kb07-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 15 Aug 2025 03:14:04 +0000 (GMT)
-Received: from pps.filterd (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-	by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 57F1dPwA016805;
-	Fri, 15 Aug 2025 03:14:03 GMT
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
-	by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 48dvsdhgec-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 15 Aug 2025 03:14:03 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sGVprQVmasgUrT2FGIwFUX35cg5V2jsChVVxgb6i+yZtioZOGXw2bUgKsn2W607O/shSobobAKcWzzHlo3UhWj+JYk/0oBFq+rN8uydPrqy6h339CfoBVOghozpOlHQhD/KVB60ojCXHsgeZmbD8KOQMOrdYCdsPA7/4rBzUlLY+EJPH7QSs3PWS1F/f4lzc1cnG9fM3y+6Z/fll3BFRrQmYaEsdutwBDjKLlgkYHSUiNb61haisRtuBf3S22oWHNQ0hRId/QJtPqoCxxHYPf7x+M92rIWAEKuhR7UyGWykB/fEG5DCdjyslnxPt4HGQacxBUdV3QEH7K5nk4bKm2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s55qKsv61VzQ8gXjcvR6ae3KcQI+fldP7bFixaMEO0g=;
- b=PG6X9CjGTbUXKRAWlVVjyed5Fz0mWtusL8hg5jpqy5+2pjm1putaJTaUWSkPFzGK2FvlPgIrP8dLX/2Mj1D3ncOKGCi3168JO/RugFs7iAfu+/w3yIj9BEt+8rr6W9f8ql5hn7WTcnlvRoI8iNmjYhpLYCxB8if3XoRcujbiNA2CvUQGsNjeUJV708fYVhl6tuGRixtcdnerqVCVKkl0Yx1pmtKT69ngMvec30jV/ZEdPqVhrSsl4pdZcHqQ4iE2Wx27vyMtfyy1zYZF3gC16BRUvGqJOGJ/FGxtl8x+Z3LtzQTVGZTjEq72cZNzZvKaKlZctnc89Hx/OIE4qKgahw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E9D293B75
+	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 03:18:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755227909; cv=none; b=r+flZryWKhjzR+CX+jlKBTqYCxD4u7Y9hv+Ta2p4LrYbX+kPzsupciEyMrW6ZhqZC/3gpP3shPhcMPFYoWi8UwT3o0zcW+K6K2XmsevTQz/BfZ++aSQt30PPQbZA3c+/OsURjaeyUuYudMvHFV/5Kkyenyn+J8iN4znrfWY2M7I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755227909; c=relaxed/simple;
+	bh=jKT5nWw9vmP9Z0FRgLZt/Ds93pTqdST6BRO8N8k9BMI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eHelsyVZvefMFfLN+mTrDJgNDsIlPpi4rRoIsfD7ZUTzBD6l/b/fCFrdZ2C+/Q/oBFx8NfNXLtqNl2N+nTo58VGXSspoZffbu/PHnXakChxBq9YFQWNHXt/Q3ZoZL2EvcwLxskwB1CgEEbIj8mYKZXJkwG0DCoZUnfB/4c5LU14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=kHvVaBrK; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-333f8d24c6fso14086471fa.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 20:18:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s55qKsv61VzQ8gXjcvR6ae3KcQI+fldP7bFixaMEO0g=;
- b=hEwMstxWZQf/n5tSo+/xHPHzGJ1I/rjHLMMYkWR0u7TOiVSSw167zoqju5vLur5w2nEcPZQZkFej0NLUaiCbCAplcKM5mNLAdCPX51IaTwt6JiVbY9U5c12/Z1Q0eK7jIxh2qT1t9DaEfkBbyDD090AC5SadOVY3cE10A9Q0Jsg=
-Received: from CH0PR10MB5338.namprd10.prod.outlook.com (2603:10b6:610:cb::8)
- by CY8PR10MB6516.namprd10.prod.outlook.com (2603:10b6:930:5c::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.15; Fri, 15 Aug
- 2025 03:14:01 +0000
-Received: from CH0PR10MB5338.namprd10.prod.outlook.com
- ([fe80::5cca:2bcc:cedb:d9bf]) by CH0PR10MB5338.namprd10.prod.outlook.com
- ([fe80::5cca:2bcc:cedb:d9bf%6]) with mapi id 15.20.9031.014; Fri, 15 Aug 2025
- 03:14:00 +0000
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman
- <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Rob Herring
- <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ram Kumar
- Dwivedi <quic_rdwivedi@quicinc.com>
-Subject: Re: [PATCH v2 0/3] dt-bindings: ufs: qcom: Split SC7180, SM8650 and
- similar into separate file
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-In-Reply-To: <20250731-dt-bindings-ufs-qcom-v2-0-53bb634bf95a@linaro.org>
-	(Krzysztof Kozlowski's message of "Thu, 31 Jul 2025 09:15:51 +0200")
-Organization: Oracle Corporation
-Message-ID: <yq1ms81qnxa.fsf@ca-mkp.ca.oracle.com>
-References: <20250731-dt-bindings-ufs-qcom-v2-0-53bb634bf95a@linaro.org>
-Date: Thu, 14 Aug 2025 23:13:55 -0400
-Content-Type: text/plain
-X-ClientProxiedBy: PH1PEPF00013317.namprd07.prod.outlook.com
- (2603:10b6:518:1::7) To CH0PR10MB5338.namprd10.prod.outlook.com
- (2603:10b6:610:cb::8)
+        d=chromium.org; s=google; t=1755227905; x=1755832705; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L/gqheUAiJBZVnBDKCO9AHvkTlNKIjI8xnUPe2UrTYE=;
+        b=kHvVaBrK+uGmIhpE/x6XrTpzkz8RDBNzFnitv0fywrymBq/hWzG20467ns6WN4qdpz
+         s0fZOVDyDUwLLvUtBY8mSMl9oGeGV0kG4BoVFrqt8Aar+rTY2/lLGsg6Yo3OnLLN1KFd
+         Y176X7Ywq6clpYfRP8CoR02Qe2hqyisadMBAw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755227905; x=1755832705;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L/gqheUAiJBZVnBDKCO9AHvkTlNKIjI8xnUPe2UrTYE=;
+        b=CQtBNJzf+4U/rsOPEoRB7t88aQi3rtpf5A3t2slpaePZXGx3TUAO0Yg/NdnpxI1hDg
+         Ma2m0ZreBD0sw94I/wiEgNuGjqgqY871NNe2GK6Kten5BVxy7M/QQ72Uv7X2b8Lv8GLM
+         rgTKHkmjMgZzK6H1dEz84ID+znRSxgdmRdUUxFMMBvp+1ZC7aLLDFRgzrfyvu9sUxpzr
+         yhYiPCCh40w/2ep6wW/NtbHO48jkMWmLy8GcXy6TCJRt1Koxn2wxl+YkLuFB49C3lOOt
+         XTDgjDbrZdXayocl+DfNJiJl+QQ/PRQdYKMOxRzp/2vIoHpiE/SssWfwzb5vIjGbF7pf
+         mhxg==
+X-Forwarded-Encrypted: i=1; AJvYcCVHf1A4dBaKpZQZeZ+Pm3xLUKuUnP9jiu7TCeS6IC7YHsyCspwObtKiGS6F1tLrJDnLZnaiwiSYERdu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxTpJi53vYzLPE/DWb/8QllPZiGaa3fI8mBwyb6fsQURkwzU/0
+	HeBE0FviQV5zw2zPwQjoJKW/EKbt/IUyigXrLxynQzhgF8gZk90wuZL3wqK0Ku90pld6X3M58nU
+	rsOOjRG7UBnCy++opRmHWZU4mE/sBG7ztA0nlcbE+
+X-Gm-Gg: ASbGncvFELcyPRgMmHELIfA3/2QFLRV6vaTMJ+t7dl5CrxCdNyv+WptgOh74cPh+66e
+	yJVoWYHlju8t+2/z6glQy2ZwPz3JRbPe9TQGRqfIVPvv7lqvgejhgFDx3lX59NBrGq+5o7dQu44
+	PnK85udDn7CIePjOYj0UxayqGmU5Lk5WRFlnWn1O3NiX8neYR8svaQvNqCMYZesoerSunDG2EWV
+	U67KaPoLqJJx5TSnFAw/g11ew8fKcJQsqLhVw==
+X-Google-Smtp-Source: AGHT+IH45CMxbyHBWhXJ/RabdXbIvSLoKeM5EMqrf7xlLady27fRhPu6U8KzyNXc6RGLGWgakK4Y6MekAcD2c3hLvVo=
+X-Received: by 2002:a2e:b8c5:0:b0:332:6304:3076 with SMTP id
+ 38308e7fff4ca-33409809835mr1950611fa.1.1755227905389; Thu, 14 Aug 2025
+ 20:18:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR10MB5338:EE_|CY8PR10MB6516:EE_
-X-MS-Office365-Filtering-Correlation-Id: 58520670-ddc7-47d7-6fae-08dddba9c6ba
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?W+YA/oC3B7w5hZD9tC53BBv6JUokmgOQltaDuLIxIOGWHRNLHiKzhx2avoST?=
- =?us-ascii?Q?HjzrNbl15rfOaC28Bt692KJNn8BDcr0jrl8QVXepcKt5c5obezBu4Wyq7oU1?=
- =?us-ascii?Q?sLKyKwP1NjaNjf09fz0WHtLB5VoygY06/cgaOFI1ZwkYjF/U+j1kwh9++a36?=
- =?us-ascii?Q?miWxdcSCrHvj/ebShDpuOhvuiHmdhJlbHFg4nEnPGs/vVxqey8KBfkSnTPkO?=
- =?us-ascii?Q?7pm/cCqufM7OnjFHWZGKom5Di3Tp0gknwcka9wiCMcjxAK+Xfa9nJ7aTZ9H4?=
- =?us-ascii?Q?OeCylkVK+JhK1hfBxBjC+WNx49dWV6QMm5sJD4G6niy9X56P+QKlg/R8PECZ?=
- =?us-ascii?Q?oWPx617wD6B98l+dMJX9sJDiMa8nRUCk/DTeW/YHlzX5HbKaOARUV9zvMOYV?=
- =?us-ascii?Q?hjI1oxgdD8BAUGrrQm0ijtJPMD6VcKYYQks++KPU82fxmyXrI2PRlOnamlqi?=
- =?us-ascii?Q?vXkV53BRIvFe/XMWmxBEDOhHLoJygC0kodmI6Ov8gBHj55g5fb58dSzAB9Al?=
- =?us-ascii?Q?IG9IGoejiiXUlV7pl2DZJYswcJ4WFPpnw5hqocc84EoyyBrwymUvXQM4y8gt?=
- =?us-ascii?Q?bq7l4kb/PDwIMWWwaNjU3BjLxQN3uWjv3wD/RNpk/hKpFXZvBmoAxgSgs/Uu?=
- =?us-ascii?Q?hDPGuMb/UpXAODekGT3Z0gFmOvotinKPrcn90OaAyP1+vIUUcd4tiy4fcOk9?=
- =?us-ascii?Q?QCNYJoQBFbeVn+C8fyKEjtEnwHDo87ZzP97pwS69zKpPpnEEM4qMXvgfUMzg?=
- =?us-ascii?Q?SEM8F42C/CMq3LbIJQjF75bFRtUqt7WXl8c9JVSaDx8BadBYhc0rnEiEvlwg?=
- =?us-ascii?Q?Ocmy1cS46HiVPQ1QbJV/yn5ycFNiBgMz3FEMF0XIYtMrsIgi3NkNvJj3cBtT?=
- =?us-ascii?Q?rH2bHKtbOMyKAvUPO2MfTeMqfZloy9UIqL5XKvOf93mreSAJztqOh7hEMiin?=
- =?us-ascii?Q?iuuedg0wJTDU8KRiL9miB46c8eAwFNrlFvi4b/AUPbSGmcbdYKzQhyMOE7IQ?=
- =?us-ascii?Q?4rXanLBIUL5pehu75USjuPTwt0WeDZjLhtqIlT4rYNqBTBymHg/2cMfRpqgl?=
- =?us-ascii?Q?1lYElxfYx7BhNr3cK4ePZeYpLB11IDPhrfilNUSEEhAev9lVO6OsqR4CvBKg?=
- =?us-ascii?Q?q4JwZ1Lds9YZ0zGKXU3ZiuvLDNsqHw3hNnZrvCZlzO41MAfZMFdpbS9U6Ziy?=
- =?us-ascii?Q?WRR6r4itrTyM3APCcM8HO4LIi5qt+JD2eLmUYs5/JeHrz9xLLsNlZAlbg0zj?=
- =?us-ascii?Q?8WTObzeFUx3pwEYCpk9xvZcWuFmji1EkcHFYkiDtw1MH1bPiHtjGTmvB4Axz?=
- =?us-ascii?Q?1VUz3jTH1c0sf0eOZQK/fXJp72pprbyagwOixUZIUBW2lXk7pTGvXerpDrfq?=
- =?us-ascii?Q?mBOdiTw8FPglMjKh5yOaLYhgHBpglBZ4MHb1dwhWQAsAS15WWm9XAvJLm+M7?=
- =?us-ascii?Q?ibgf+HbexaE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH0PR10MB5338.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?e4lI1tJnlxMWUyxZLs1eJteXr0sGfJdALRuuH6rJkw4YtYg+cJfLjAyaVISJ?=
- =?us-ascii?Q?eeaGXMYvH1vGmdNBs+58MLuIEncj/L85+FJ7qm2GJwpQHR5vksbKADHXj86y?=
- =?us-ascii?Q?m7TWVZBdydqaSWnpFgah/iWpTgXgJiPJ+CrG8XHeDQ/HD/Moj81Gou+03fj5?=
- =?us-ascii?Q?wJlZMn5o5SNLUK/TQxuvY5ub+0e++louiZngUpOkEopErv1oLGIBXVtGcEcO?=
- =?us-ascii?Q?aww68NyLOOT1prSqVqAHNAijYdHcnkmt/Vs+qHndYhyCS9uNqolpS3unIafr?=
- =?us-ascii?Q?nLpAT46XnZ+NFZlxGO3EOWj4LVQVLkvjbhkepDHv5NB3JeS4i/F/Hi8J0Btb?=
- =?us-ascii?Q?qF54e8wG62xr/st1MIyDRvh/Ryzs6wJ1U2e0gsrILB3Gt1v9QKz2gIhbjlb2?=
- =?us-ascii?Q?0RRkNjoxTk2YZ7IhHbdCi+/G/xyen6Xp7BEfc05ggZKs/zHPNauH83Lwph27?=
- =?us-ascii?Q?10S+0mZ5x0mBe/xeRkidG7pJ/bwXcuWidHYVAAADuDZOw3hYp28bUW+uqaeO?=
- =?us-ascii?Q?YIYsAbr7kzmME1KZ+3xk9meFx791G2GZJjrOFIrRJQ2Zz6lgkVWMBWyp3Av4?=
- =?us-ascii?Q?HJ9RuyRVyh0qSroSR3qdNkxy/BQ9S2ImGk/DwvnT9NWbGluTTWXj3p7Frj9X?=
- =?us-ascii?Q?7X+9OBOkbP+E8BLYTlrh3nNEO7FEoWZE8MWi4UWl2gjay16HetzDednhGzoh?=
- =?us-ascii?Q?5a2TQhr/v5LBTUfMoEGmVWZcm/AFaBE3T+Pt+CHTMTiaJ1VaQaFFEoCfVFVP?=
- =?us-ascii?Q?95IJKvkK56rfeKTQlaLui6omMzm8hbc+LhmTAuzYqdhEcdEPdEdsam6lpU9T?=
- =?us-ascii?Q?+CfB0GKT+AYmKawT7BouEEq6OTu3bf10IbXMUwkhhbRZDwJUDzCOMUjyO3E9?=
- =?us-ascii?Q?OYOszb/6sZkgGRk4EcyaCliPM9eEAtAVn+yp+LaqIKa6rD08mbi9x4WmF1nO?=
- =?us-ascii?Q?P41AB2IvIWXq0xrZtzkiFlc1j0UkDHkjTJGkyy/QIEbq8D8TSNfnDAaI6QU8?=
- =?us-ascii?Q?KtZMWPyShS4LsxXZabQG49/NgEu+vgFuMbD6ub71hQDXqO5aMKA8w+OROhDr?=
- =?us-ascii?Q?221eXw/RQ38w4CmaxQ2qk4QiUJ5hNWKF2z0rVK1wOZec9Hdwn/1nhnwQ+I5v?=
- =?us-ascii?Q?/ZUNJdDzhy3BfUVr/u/UPb3KHy0wgydKiWcMTr/S8ep/gXUA5AAgxGPr9vDn?=
- =?us-ascii?Q?nJR3guV81cStRAkI3gjjh4+l1l/e638+Ur7dZ20Ni/MPLovpLxwIn2hwzCvL?=
- =?us-ascii?Q?TVKtMOekuZTTEWz1sSvSVhnRUGdJbKaKFRIl6IuqLmpbnKvU/FIc6PWRcM0c?=
- =?us-ascii?Q?0Eoc65r9m83HD6OiYbeaODoSmPSa0cipgdLZEa02gmdsst4s2KvrSaMgmk20?=
- =?us-ascii?Q?gKle9bZ4I4mYO6dp4iCBpwpqUnTH19ZIX6vP5i4e6jSkBGlJDq2nY2oOEwPV?=
- =?us-ascii?Q?csKJBor7Wgg8PVSpeGAUtyQUKSKIyrTRPZ+IAHIPifDxwzKlyXuCaLdztCb+?=
- =?us-ascii?Q?Wq1h2TUwxjuFUgyvWVD6kPSI2AExsRPCnhaETWs2CCmjMsqPYWWF89sFCRw4?=
- =?us-ascii?Q?nSQxoJAF6CLv6Gyx1z74fWPOohY41PzBVcFnGkKrohAGUhmJdzoaZ/sonbo/?=
- =?us-ascii?Q?bg=3D=3D?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
-	hq4/7yW0iFBUapTgCkJbBsui3STA6IiTQuXH8p+Q8Ik4JoYqivus8g+xZty9423/yLrCVjRretKhuMVRVkUKHXgNO3+QDzER1bnLTePA+qLDP+QCaY2OpK8bleICRxSCcUrpyZ8Og9Hk4mZvmeFguvmHjYUSlkHx3+tde4KDv9z/FPvEGqj9HgUypMFwKylgZc7R/DjF9GMLUKXOIrv/h08Y2J+MbQ06297vREAlR4XItDFE5sFDMNvEqCU3X6WGm8IwghUQNrX6aAJnuTqM/jO/TZ2YrdZdchi5vtZhCfY6yMJyVGRLiGzdfYuJnhUC4FfhRFeseSky6LgNZOXl6fCAIoHsU5SJumC8O8dzIkPuy/SohEise7C69VSBnnsRYdGUOjSrSfoAJhjDe4WSz1Vl+yR7058t9tZPhgjSQyUgARwL/YBJ4Q4lV2M6ziQMlJoU186UBeiZ8AZkfSUxqs9K9aCYAxtNcG0PAxeV92yPs99J8gPrHhF3vMCXdc1Goy9VoZuwX2C/RP+MxgAEm43tChdbdU/FZVC6ChqZPfPl4gEBwXofWpu6aPu7ZCRjLMGSlN5nuRaT+SPFUCfNknRTtF4dl+GlYhCSL05D+/A=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58520670-ddc7-47d7-6fae-08dddba9c6ba
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR10MB5338.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2025 03:14:00.8827
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dm8+JB0BrOOOgtWgW8GdZF8LquH3Ygqo/8OGUPcjGtrgHDyySTHtDqEIaNou7NeoMERbRIkAvm+84zxS7/B9NhVcUnNfrk1pabJs0Y/BQgw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR10MB6516
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-15_01,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 malwarescore=0 bulkscore=0
- phishscore=0 suspectscore=0 mlxlogscore=999 adultscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2507300000
- definitions=main-2508150024
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE1MDAyMyBTYWx0ZWRfX7x27tSsKK4Ec
- xGMWjjS7Y6x9iPhXQpUUQSI+LtubeT25dSpiEtGpkcvE3MxnTrupcuBBR+d5EyTLnbKoFv3o8We
- 6w4i1M6wpgIksvUAHcEYy1Wbz74+m27e+LM+m90mvlv0/xkw/h0AjQcRwvPhcbmThX/cf/wmiIL
- DpqpS44FfGaVQ9Vz0ZjhSSChJXwj/MsU5aQd4lv0kiWgFOcXtyvKYJhmBNF1BVLvsKYbTPUqFgr
- YwDudaVNguLwoXFEu+thhWUlkNu09Am64Q/35K6jVmIBtQxic3fYrHkEgSlzvm6DRtvx5wBsOTY
- iozwuMgP2z89OKYF13PeamAJPFFfxJlrxDfTmPe+vHCrl10V9Cu08RWBJYtXFnMLzDywTugmBQv
- qFhhXU1Eu/LFYzwNWZveIun8ICMgjoAwlSpj8/JYyYsihV55yCLa2FIiRHZSnV8pLDNQ/AKV
-X-Authority-Analysis: v=2.4 cv=eIsTjGp1 c=1 sm=1 tr=0 ts=689ea5fc b=1 cx=c_pps
- a=WeWmnZmh0fydH62SvGsd2A==:117 a=WeWmnZmh0fydH62SvGsd2A==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
- a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=2OwXVqhp2XgA:10
- a=GoEa3M9JfhUA:10 a=3naVu_GUDoUUrRWhfsUA:9
-X-Proofpoint-GUID: IHQxxnL6fOueAoB5g8Nr1p9wvhtS1TvA
-X-Proofpoint-ORIG-GUID: IHQxxnL6fOueAoB5g8Nr1p9wvhtS1TvA
+References: <20250805135447.149231-1-laura.nao@collabora.com> <20250805135447.149231-3-laura.nao@collabora.com>
+In-Reply-To: <20250805135447.149231-3-laura.nao@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 15 Aug 2025 12:18:14 +0900
+X-Gm-Features: Ac12FXwqbJqR6dXDCHoREy9cuJVuDHi_sxjr2uRku7Hw7ujClZ2WhTJ_l5duokI
+Message-ID: <CAGXv+5Fnaict=9Agixn1vCrP3GkugaR3qEKmEYyYiXCGx8ZZ6w@mail.gmail.com>
+Subject: Re: [PATCH v4 02/27] clk: mediatek: clk-pll: Add ops for PLLs using
+ set/clr regs and FENC
+To: Laura Nao <laura.nao@collabora.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
+	richardcochran@gmail.com, guangjie.song@mediatek.com, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	kernel@collabora.com, =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Aug 5, 2025 at 10:55=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
+ wrote:
+>
+> MT8196 uses a combination of set/clr registers to control the PLL
+> enable state, along with a FENC bit to check the preparation status.
+> Add new set of PLL clock operations with support for set/clr enable and
+> FENC status logic.
+>
+> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+> ---
+>  drivers/clk/mediatek/clk-pll.c | 42 +++++++++++++++++++++++++++++++++-
+>  drivers/clk/mediatek/clk-pll.h |  5 ++++
+>  2 files changed, 46 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/clk/mediatek/clk-pll.c b/drivers/clk/mediatek/clk-pl=
+l.c
+> index 49ca25dd5418..8f46de77f42d 100644
+> --- a/drivers/clk/mediatek/clk-pll.c
+> +++ b/drivers/clk/mediatek/clk-pll.c
+> @@ -37,6 +37,13 @@ int mtk_pll_is_prepared(struct clk_hw *hw)
+>         return (readl(pll->en_addr) & BIT(pll->data->pll_en_bit)) !=3D 0;
+>  }
+>
+> +static int mtk_pll_fenc_is_prepared(struct clk_hw *hw)
+> +{
+> +       struct mtk_clk_pll *pll =3D to_mtk_clk_pll(hw);
+> +
+> +       return readl(pll->fenc_addr) & pll->fenc_mask;
 
-Krzysztof,
+Nits:
 
-> The binding for Qualcomm SoC UFS controllers grew and it will grow
-> further. It already includes several conditionals, partially for
-> difference in handling encryption block (ICE, either as phandle or as
-> IO address space) but it will further grow for MCQ.
+I'd do a double-negate (!!) just to indicate that we only care about
+true or false.
 
-Applied to 6.18/scsi-staging, thanks!
+Also, why do we need to store fenc_mask instead of just shifting the bit
+here? Same goes for the register address. |pll| has the base address.
+Why do we need to pre-calculate it?
 
--- 
-Martin K. Petersen
+The code is OK; it just seems a bit wasteful on memory.
+
+Either way, this is
+
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+
+> +}
+> +
+>  static unsigned long __mtk_pll_recalc_rate(struct mtk_clk_pll *pll, u32 =
+fin,
+>                 u32 pcw, int postdiv)
+>  {
+> @@ -274,6 +281,25 @@ void mtk_pll_unprepare(struct clk_hw *hw)
+>         writel(r, pll->pwr_addr);
+>  }
+>
+> +static int mtk_pll_prepare_setclr(struct clk_hw *hw)
+> +{
+> +       struct mtk_clk_pll *pll =3D to_mtk_clk_pll(hw);
+> +
+> +       writel(BIT(pll->data->pll_en_bit), pll->en_set_addr);
+> +
+> +       /* Wait 20us after enable for the PLL to stabilize */
+> +       udelay(20);
+> +
+> +       return 0;
+> +}
+> +
+> +static void mtk_pll_unprepare_setclr(struct clk_hw *hw)
+> +{
+> +       struct mtk_clk_pll *pll =3D to_mtk_clk_pll(hw);
+> +
+> +       writel(BIT(pll->data->pll_en_bit), pll->en_clr_addr);
+> +}
+> +
+>  const struct clk_ops mtk_pll_ops =3D {
+>         .is_prepared    =3D mtk_pll_is_prepared,
+>         .prepare        =3D mtk_pll_prepare,
+> @@ -283,6 +309,16 @@ const struct clk_ops mtk_pll_ops =3D {
+>         .set_rate       =3D mtk_pll_set_rate,
+>  };
+>
+> +const struct clk_ops mtk_pll_fenc_clr_set_ops =3D {
+> +       .is_prepared    =3D mtk_pll_fenc_is_prepared,
+> +       .prepare        =3D mtk_pll_prepare_setclr,
+> +       .unprepare      =3D mtk_pll_unprepare_setclr,
+> +       .recalc_rate    =3D mtk_pll_recalc_rate,
+> +       .round_rate     =3D mtk_pll_round_rate,
+> +       .set_rate       =3D mtk_pll_set_rate,
+> +};
+> +EXPORT_SYMBOL_GPL(mtk_pll_fenc_clr_set_ops);
+> +
+>  struct clk_hw *mtk_clk_register_pll_ops(struct mtk_clk_pll *pll,
+>                                         const struct mtk_pll_data *data,
+>                                         void __iomem *base,
+> @@ -315,6 +351,9 @@ struct clk_hw *mtk_clk_register_pll_ops(struct mtk_cl=
+k_pll *pll,
+>         pll->hw.init =3D &init;
+>         pll->data =3D data;
+>
+> +       pll->fenc_addr =3D base + data->fenc_sta_ofs;
+> +       pll->fenc_mask =3D BIT(data->fenc_sta_bit);
+> +
+>         init.name =3D data->name;
+>         init.flags =3D (data->flags & PLL_AO) ? CLK_IS_CRITICAL : 0;
+>         init.ops =3D pll_ops;
+> @@ -337,12 +376,13 @@ struct clk_hw *mtk_clk_register_pll(const struct mt=
+k_pll_data *data,
+>  {
+>         struct mtk_clk_pll *pll;
+>         struct clk_hw *hw;
+> +       const struct clk_ops *pll_ops =3D data->ops ? data->ops : &mtk_pl=
+l_ops;
+>
+>         pll =3D kzalloc(sizeof(*pll), GFP_KERNEL);
+>         if (!pll)
+>                 return ERR_PTR(-ENOMEM);
+>
+> -       hw =3D mtk_clk_register_pll_ops(pll, data, base, &mtk_pll_ops);
+> +       hw =3D mtk_clk_register_pll_ops(pll, data, base, pll_ops);
+>         if (IS_ERR(hw))
+>                 kfree(pll);
+>
+> diff --git a/drivers/clk/mediatek/clk-pll.h b/drivers/clk/mediatek/clk-pl=
+l.h
+> index c4d06bb11516..7fdc5267a2b5 100644
+> --- a/drivers/clk/mediatek/clk-pll.h
+> +++ b/drivers/clk/mediatek/clk-pll.h
+> @@ -29,6 +29,7 @@ struct mtk_pll_data {
+>         u32 reg;
+>         u32 pwr_reg;
+>         u32 en_mask;
+> +       u32 fenc_sta_ofs;
+>         u32 pd_reg;
+>         u32 tuner_reg;
+>         u32 tuner_en_reg;
+> @@ -51,6 +52,7 @@ struct mtk_pll_data {
+>         u32 en_clr_reg;
+>         u8 pll_en_bit; /* Assume 0, indicates BIT(0) by default */
+>         u8 pcw_chg_bit;
+> +       u8 fenc_sta_bit;
+>  };
+>
+>  /*
+> @@ -72,6 +74,8 @@ struct mtk_clk_pll {
+>         void __iomem    *en_addr;
+>         void __iomem    *en_set_addr;
+>         void __iomem    *en_clr_addr;
+> +       void __iomem    *fenc_addr;
+> +       u32             fenc_mask;
+>         const struct mtk_pll_data *data;
+>  };
+>
+> @@ -82,6 +86,7 @@ void mtk_clk_unregister_plls(const struct mtk_pll_data =
+*plls, int num_plls,
+>                              struct clk_hw_onecell_data *clk_data);
+>
+>  extern const struct clk_ops mtk_pll_ops;
+> +extern const struct clk_ops mtk_pll_fenc_clr_set_ops;
+>
+>  static inline struct mtk_clk_pll *to_mtk_clk_pll(struct clk_hw *hw)
+>  {
+> --
+> 2.39.5
+>
 
