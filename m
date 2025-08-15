@@ -1,211 +1,92 @@
-Return-Path: <devicetree+bounces-205127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27C08B280F3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 15:55:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86099B2811A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 16:00:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F03926023DA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 13:55:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D71AD622C84
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 13:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B242D63FF;
-	Fri, 15 Aug 2025 13:54:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73BC1303CB1;
+	Fri, 15 Aug 2025 13:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oI/47SlC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="beQv9/Vl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D809B29D05;
-	Fri, 15 Aug 2025 13:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A744301012;
+	Fri, 15 Aug 2025 13:56:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755266097; cv=none; b=HSlKINuqxwbF3usaYbWaqNZmir64TqotN2M/V5Q2kHPr12/6u4fl9mEeqj2ZkaBmoRzq0KgZFr6lv8GsbFwkjIQnxGe2W96Kuz5jwDsMbz3TsAZxz9wQqJbln4rOQWgVbMv22rHcaXyn1WtlF1qTXpH0HaTC575b5M3vAcnAhdQ=
+	t=1755266178; cv=none; b=WFXKeaOMZc+BMNhwrWRPK1di+NStvTeioVMHjebpGHLqbUTG1CxoSqxo7DT8W8b8DQochwO9NE3DDKukX9Ucso1otRw68pQgCtzGUAs0U9aK601qrjxlgdvqX/9/ibDKaVkZ9mc6tDLJxDOMu0FdqWa4nDfelksK7ZnePo0tpGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755266097; c=relaxed/simple;
-	bh=tYsWtmPOfcq/QPB4m2EIfnmTpbZxcQGoKksqm4Nf578=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Hb9blVbRHLKnSfTh5iVWuXnYQHj2/8L+87LA3sLbiH7MmcPj9z3+T5RM9DBrVorSNekNSAQc3+q7/148W3lRJ7K5yKcEj0QIf3Lf/kk6rv0MAKYwtrd96CtoKZUkWcIWPh7jGDvAe27t7rjMRbbJe8NAV7wXzCFJinosDCN3oQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oI/47SlC; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57FDsaVF2166057;
-	Fri, 15 Aug 2025 08:54:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755266076;
-	bh=yo96BNTH5gwA2pF19/gHstAx+MYnVBFRjR3H0r/l9bk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=oI/47SlClztqsbLxw7gQ3pDAxuUoMUIkBpSI3KoMnoJJCpdLOzt3xdfD+zOFp/UI6
-	 Y+pWQ3ePg3hL1iS/lFblGC7AoriGZ0qXqYaTRzup/KynZktLFVg0pB2jGO8WbwkdRh
-	 7/y041Qhf50F6ed+Dg7WAiKcvG+LVnIOBJqT8o2Y=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57FDsadR2481498
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 15 Aug 2025 08:54:36 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 15
- Aug 2025 08:54:35 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 15 Aug 2025 08:54:35 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57FDsZ9R1072620;
-	Fri, 15 Aug 2025 08:54:35 -0500
-Message-ID: <5c3174f6-ab7e-48ec-a552-a682a22b184d@ti.com>
-Date: Fri, 15 Aug 2025 08:54:34 -0500
+	s=arc-20240116; t=1755266178; c=relaxed/simple;
+	bh=7xgGUBhDpJ7vJUXt1k1FnSW8F5xQodmmjxLCdZderyI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PV7i64JdJ3tY8RROPz722e6C+RSJy4gd963Tvh9x7Md67/Oi4DTG+sMG5fE+gy8oH+cFrh0jYg/H3a5T2k3Pi3d8JSsPc/qDnpimSUeLWWdflXiJvY/vhe7qozWuf2jJ6hRnGh76aot22Op/eU9qDf9yFrwiDqKSUpJb9201xOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=beQv9/Vl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EC94C4CEF0;
+	Fri, 15 Aug 2025 13:56:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755266177;
+	bh=7xgGUBhDpJ7vJUXt1k1FnSW8F5xQodmmjxLCdZderyI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=beQv9/Vld8lwC2zn3EuigwakuWTBrOO4jlLrkaXCjDpv30gZ/kQPMLLHsNKsZV+Ss
+	 HuOF5KbYIrPI3LtjkFqNIEOhvkRhBLCxbySUVXeOftPwizOq12J5Bc3WSiIoawW1DV
+	 hYKLDrw81aFuMNM93uT1Md6xR4XhqMUH7DnW4ql5W+JRonjXOCLnd80MeZXxUlYWHs
+	 0jFCGQbbVFn7m1a5mRSH/QZJU4oKlTn5TORQ9lAlsawweL0orlAnDlB6XQKD3Ov/u5
+	 D/VTRZj94pTgfBHebUdma7YVSnU4E0V73J8sVQFzxnIbdtpjhNT9Kn2fUWIJoV5xi3
+	 kUbKZBJ3qF1rQ==
+Date: Fri, 15 Aug 2025 08:56:15 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Violet <ghatto404@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	konradybcio@kernel.org, robh@kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: qcom: document r0q board binding
+Message-ID: <bnxq2bb7hhcrelm466oskqbqvnywkrur7yv4z7tkcxbngf3hoj@tjnpbvn2a3ns>
+References: <20250615204438.1130213-1-ghatto404@gmail.com>
+ <175503322852.231048.4441689312374680275.b4-ty@kernel.org>
+ <3685D796-B3E5-49AE-BBEA-A9F04C1B6BAC@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 4/4] drm/bridge: it66121: Add minimal it66122 support
-To: Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, David Airlie
-	<airlied@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        <tomi.valkeinen@ideasonboard.com>, <devarsht@ti.com>
-References: <20250815034105.1276548-1-nm@ti.com>
- <20250815034105.1276548-5-nm@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250815034105.1276548-5-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3685D796-B3E5-49AE-BBEA-A9F04C1B6BAC@gmail.com>
 
-On 8/14/25 10:41 PM, Nishanth Menon wrote:
-> The IT66122 is a pin compatible replacement for the IT66122. Based on
-> empirical testing, the new device looks to be compatible with IT66121.
-> However due to a lack of public data sheet at this time beyond overall
-> feature list[1] (which seems to add additional features vs ITT66121),
-> it is hard to determine that additional register operations required
-> to enable additional features.
+On Wed, Aug 13, 2025 at 11:13:00PM -0300, Violet wrote:
 > 
-> So, introduce the device as a new compatible that we will detect based
-> on vid/pid match, with explicit id that can be used to extend the
-> driver capability as information becomes available later on.
 > 
-> [1] https://www.ite.com.tw/en/product/cate1/IT66122
-> 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
-> Changes in V3:
-> * Dropped the claim that it is 1-1 replacement of IT66121.
-> * Based on emperical test result[2], introduce the same configuration of
->    IT66121, but provide ID as suggested by Devarsh to allow for future
->    expansion of functionality.
-> 
-> NOTE: I did consider the possibility of converting the chip_id into a
-> bitfield, but decided it is over-engineering, so kept the enum.
-> 
+> On August 12, 2025 18:13:44 GMT-03:00, Bjorn Andersson <andersson@kernel.org> wrote:
+> >
+> >On Sun, 15 Jun 2025 20:44:37 +0000, Eric Gonçalves wrote:
+> >> Adds compatible for the Samsung Galaxy S22 (SM-S901E) (r0q), based on the Snapdragon 8 Gen 1 SoC.
+> >> 
+> >> 
+> >
+> >Applied, thanks!
+> >
+> >[1/1] dt-bindings: arm: qcom: document r0q board binding
+> >      commit: ebfe5797ac3e6e9fb56340b6b228d2747fdec912
+> >[1/1] arm64: dts: qcom: add initial device tree for Samsung Galaxy S22
+> >      commit: 46952305d2b64e9a2498c53046a832b51c93e5a8
+> >
+> >Best regards,
+> Huh? I got comments on this DTS, why was it applied early?
 
-But over-engineering is so much more fun :D
+I missed that there was newer versions of the series, with feedback.
+Thanks for letting me know, I'll revert this version.
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+Looking forward to see the final version.
 
-> [2] https://github.com/beagleboard/linux/commits/v6.1.83-ti-rt-r40
-> 
-> V2: https://lore.kernel.org/all/20250813204106.580141-4-nm@ti.com/
-> 
->   drivers/gpu/drm/bridge/ite-it66121.c | 14 +++++++++-----
->   1 file changed, 9 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-> index 5ac9631bcd9a..a108d287722d 100644
-> --- a/drivers/gpu/drm/bridge/ite-it66121.c
-> +++ b/drivers/gpu/drm/bridge/ite-it66121.c
-> @@ -287,6 +287,7 @@
->   enum chip_id {
->   	ID_IT6610,
->   	ID_IT66121,
-> +	ID_IT66122,
->   };
->   
->   struct it66121_chip_info {
-> @@ -402,7 +403,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
->   		if (ret)
->   			return ret;
->   
-> -		if (ctx->id == ID_IT66121) {
-> +		if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
->   			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
->   						IT66121_AFE_IP_EC1, 0);
->   			if (ret)
-> @@ -428,7 +429,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
->   		if (ret)
->   			return ret;
->   
-> -		if (ctx->id == ID_IT66121) {
-> +		if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
->   			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
->   						IT66121_AFE_IP_EC1,
->   						IT66121_AFE_IP_EC1);
-> @@ -599,7 +600,7 @@ static int it66121_bridge_attach(struct drm_bridge *bridge,
->   	if (ret)
->   		return ret;
->   
-> -	if (ctx->id == ID_IT66121) {
-> +	if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
->   		ret = regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
->   					IT66121_CLK_BANK_PWROFF_RCLK, 0);
->   		if (ret)
-> @@ -802,7 +803,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
->   	if (regmap_write(ctx->regmap, IT66121_HDMI_MODE_REG, IT66121_HDMI_MODE_HDMI))
->   		goto unlock;
->   
-> -	if (ctx->id == ID_IT66121 &&
-> +	if ((ctx->id == ID_IT66121 || ctx->id == ID_IT66122) &&
->   	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
->   			      IT66121_CLK_BANK_PWROFF_TXCLK,
->   			      IT66121_CLK_BANK_PWROFF_TXCLK)) {
-> @@ -815,7 +816,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
->   	if (it66121_configure_afe(ctx, adjusted_mode))
->   		goto unlock;
->   
-> -	if (ctx->id == ID_IT66121 &&
-> +	if ((ctx->id == ID_IT66121 || ctx->id == ID_IT66122) &&
->   	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
->   			      IT66121_CLK_BANK_PWROFF_TXCLK, 0)) {
->   		goto unlock;
-> @@ -1614,12 +1615,14 @@ static void it66121_remove(struct i2c_client *client)
->   }
->   
->   static const struct it66121_chip_info it66xx_chip_info[] = {
-> +	{.id = ID_IT66122, .vid = 0x4954, .pid = 0x0622 },
->   	{.id = ID_IT66121, .vid = 0x4954, .pid = 0x0612 },
->   	{.id = ID_IT6610, .vid = 0xca00, .pid = 0x0611 },
->   	{ }
->   };
->   
->   static const struct of_device_id it66121_dt_match[] = {
-> +	{ .compatible = "ite,it66122", &it66xx_chip_info },
->   	{ .compatible = "ite,it66121", &it66xx_chip_info },
->   	{ .compatible = "ite,it6610", &it66xx_chip_info },
->   	{ }
-> @@ -1627,6 +1630,7 @@ static const struct of_device_id it66121_dt_match[] = {
->   MODULE_DEVICE_TABLE(of, it66121_dt_match);
->   
->   static const struct i2c_device_id it66121_id[] = {
-> +	{ "it66122", (kernel_ulong_t)&it66xx_chip_info },
->   	{ "it66121", (kernel_ulong_t)&it66xx_chip_info },
->   	{ "it6610", (kernel_ulong_t)&it66xx_chip_info },
->   	{ }
-
+Thanks,
+Bjorn
 
