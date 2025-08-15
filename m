@@ -1,236 +1,97 @@
-Return-Path: <devicetree+bounces-205159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E17E2B28266
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 16:49:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4808B28288
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 17:00:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 316121C23CB2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 14:48:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1650B7A513A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 14:59:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04432741CD;
-	Fri, 15 Aug 2025 14:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6234C1E8836;
+	Fri, 15 Aug 2025 15:00:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="iIZ3t3JI"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="HumWy2W5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3302264AA
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 14:47:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B92218A6AD;
+	Fri, 15 Aug 2025 15:00:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755269272; cv=none; b=ho0elkqaUj5E/xJ1sXWgG65aPss74LhFyTVoN4Rl4gZNU4SSlRWz9+VozjmSc6UbcbfXS4H7WfsbZHk2kzm5D5ukbqk/3texuym1fDni3HwXnQTHz7AduqYLHmeck5jiRqc8bPS3+NMnVHf1otSkXQh+gpnvWmrP51dUmGXFrr4=
+	t=1755270033; cv=none; b=aPEExRM6VXzKpDriNPSqm/pdlxTebL/d9avWXWRWUaHXzNUj4mvTgMqrAHpES/gmNoC2bNKyH7Ku4Tny7OZISv7f6nwFIYZWo3FFgicJRkJbNHAmYl/O5edST4Se+N4dstO7JvSlOwUJHTNcVTS3aLLMrAE9gVTmiVNS3B02xCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755269272; c=relaxed/simple;
-	bh=LwC42usex+8ylvFt4aTbq/GyJFYNsHX5kH2ui/VE6nY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aqxTUCUQ+iRGfDUosGACRaPZt1pWVXfhnw1RAePp1mn5kgBHLfSL9TO68L4QNvBd9IpX9O67sLWOsYAydqfzXb3o2mJSP9783Bzo0YQRDboJ+vnq1ZwNS/fi/39q3Z1/qUYwWqtej93VTfyrHdKMwFQegQS5Gya351Yeo6698jk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=iIZ3t3JI; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1755269269;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=sg1fwPS7sBPbcXc/VRMT8Ax3SswWQxZY6NUgMTsaTNw=;
-	b=iIZ3t3JIO5hdtlpoH+zFOAuLQsO2jjMjawMbZaqKgPxXtFOtx1gKvvvOu695x7WKLbFZhn
-	2pqTZWgwbpYA2J6ho30SGso7SLZVNTqVkluCF8mkQcc72yLRm4e22vGJU7Mn/YtMtFEhTt
-	RQfnjr95J2Ct8bJSFOo7xqKMtDHjqiU=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-550-LDJkOuj_Ms-GMEMsX_2qtA-1; Fri,
- 15 Aug 2025 10:47:45 -0400
-X-MC-Unique: LDJkOuj_Ms-GMEMsX_2qtA-1
-X-Mimecast-MFC-AGG-ID: LDJkOuj_Ms-GMEMsX_2qtA_1755269264
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 271CD18011D2;
-	Fri, 15 Aug 2025 14:47:42 +0000 (UTC)
-Received: from p16v.redhat.com (unknown [10.45.224.184])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 79F5930001A6;
-	Fri, 15 Aug 2025 14:47:37 +0000 (UTC)
-From: Ivan Vecera <ivecera@redhat.com>
-To: netdev@vger.kernel.org
-Cc: mschmidt@redhat.com,
-	poros@redhat.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet reference property
-Date: Fri, 15 Aug 2025 16:47:35 +0200
-Message-ID: <20250815144736.1438060-1-ivecera@redhat.com>
+	s=arc-20240116; t=1755270033; c=relaxed/simple;
+	bh=QJ+GefEzyFcEwAS+70vDAuvMPZmfhf58cwap67z0FT8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=enZKrn3zYdxSFoB90oZuSK2WyPjo0vt+/N0RW8luf/TKBC8GyTeGsLDdQezv0Cm+9dq67aVt82dzPs74+gNzc6ySmlza1IdrqcaItPXLGNfu+uDDgFaieUnw5ignbPQ6ZwCUoMAGoyeQy/R8GqgNxwd/sKcBc813+oJhLnRqBIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=HumWy2W5; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=7hYqEYSofQc4Pj12ju3DeTtrqcNDIsRYqOnPsCVaJuE=; b=HumWy2W5Pvqz6AOjgYftSFfXVz
+	UWNwt12IsOQBLoxoSTy4YfFHO6pLItA/LIDGAAcIi2EA3wqJvV/UzhRWfGxpo+7FLHMyx3KRj85bC
+	Xhupv9tiTGrpYFDv7eOCEO9AP7HIef2MILjsAYQVq5eKTJSvIHgMB01QxKjupyBDTMz/ifdrdVxKE
+	Jzz7PC7ntAG/29qqgG+w7vV0S25B4P9zhOQu27peU1HcRTC3lQ5h1uWKFQxrACIqJpwLn67yEuaEf
+	g0CQbAYY6kR/AWjMl56V1tG9e2D5Tepoy+AG0OmCCVaHX91oLucXB2uKmZPPQBk02PQh0c+VpecIb
+	Hp/uJSxw==;
+Date: Fri, 15 Aug 2025 17:00:13 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: linux-kernel@vger.kernel.org, peter.ujfalusi@gmail.com,
+ dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ lgirdwood@gmail.com, tiwai@suse.com, conor+dt@kernel.org, lee@kernel.org,
+ ukleinek@kernel.org, broonie@kernel.org, gregkh@linuxfoundation.org,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-sound@vger.kernel.org,
+ linux-usb@vger.kernel.org, shuah@kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH v2 0/9] dt-bindings: Convert TWL4030/6040 family binding
+ to DT schema
+Message-ID: <20250815170013.6ffdac69@akair>
+In-Reply-To: <20250814132129.138943-1-jihed.chaibi.dev@gmail.com>
+References: <20250814132129.138943-1-jihed.chaibi.dev@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-In case of SyncE scenario a DPLL channels generates a clean frequency
-synchronous Ethernet clock (SyncE) and feeds it into the NIC transmit
-path. The DPLL channel can be locked either to the recovered clock
-from the NIC's PHY (Loop timing scenario) or to some external signal
-source (e.g. GNSS) (Externally timed scenario).
+Hi,
 
-The example shows both situations. NIC1 recovers the input SyncE signal
-that is used as an input reference for DPLL channel 1. The channel locks
-to this signal, filters jitter/wander and provides holdover. On output
-the channel feeds a stable, phase-aligned clock back into the NIC1.
-In the 2nd case the DPLL channel 2 locks to a master clock from GNSS and
-feeds a clean SyncE signal into the NIC2.
+Am Thu, 14 Aug 2025 15:21:20 +0200
+schrieb Jihed Chaibi <jihed.chaibi.dev@gmail.com>:
 
-		   +-----------+
-		+--|   NIC 1   |<-+
-		|  +-----------+  |
-		|                 |
-		| RxCLK     TxCLK |
-		|                 |
-		|  +-----------+  |
-		+->| channel 1 |--+
-+------+	   |-- DPLL ---|
-| GNSS |---------->| channel 2 |--+
-+------+  RefCLK   +-----------+  |
-				  |
-			    TxCLK |
-				  |
-		   +-----------+  |
-		   |   NIC 2   |<-+
-		   +-----------+
+> Hi,
+> 
+> This series modernizes the Device Tree bindings for the Texas
+> Instruments TWL4030/TWL6040 family by converting all remaining
+> legacy TXT bindings to the structured YAML DT schema format.
+> 
+> This improves the bindings by adding formal type checking, clear property
+> definitions, and machine-readable examples, which allows for automated
+> validation and better documentation for developers.
+> 
+> This v2 series addresses feedback from the initial submission, adds a new
+> patch to fix validation errors that were uncovered by the stricter schemas,
+> and includes several other minor improvements.
+> 
+for further submissions:
++CC: linux-omap@vger.kernel.org
 
-In the situations above the DPLL channels should be registered into
-the DPLL sub-system with the same Clock Identity as PHCs present
-in the NICs (for the example above DPLL channel 1 uses the same
-Clock ID as NIC1's PHC and the channel 2 as NIC2's PHC).
+That will help bringing the related people together. Apparently
+MAINTAINERS needs to be updated, too. The drivers .c-files are listed
+but not the bindings.
 
-Because a NIC PHC's Clock ID is derived from the NIC's MAC address,
-add a per-channel property 'ethernet-handle' that specifies a reference
-to a node representing an Ethernet device that uses this channel
-to synchronize its hardware clock. Additionally convert existing
-'dpll-types' list property to 'dpll-type' per-channel property.
-
-Suggested-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Ivan Vecera <ivecera@redhat.com>
----
- .../devicetree/bindings/dpll/dpll-device.yaml | 40 ++++++++++++++++---
- .../bindings/dpll/microchip,zl30731.yaml      | 29 +++++++++++++-
- 2 files changed, 62 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-index fb8d7a9a3693f..798c5484657cf 100644
---- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-+++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-@@ -27,11 +27,41 @@ properties:
-   "#size-cells":
-     const: 0
- 
--  dpll-types:
--    description: List of DPLL channel types, one per DPLL instance.
--    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
--    items:
--      enum: [pps, eec]
-+  channels:
-+    type: object
-+    description: DPLL channels
-+    unevaluatedProperties: false
-+
-+    properties:
-+      "#address-cells":
-+        const: 1
-+      "#size-cells":
-+        const: 0
-+
-+    patternProperties:
-+      "^channel@[0-9a-f]+$":
-+        type: object
-+        description: DPLL channel
-+        unevaluatedProperties: false
-+
-+        properties:
-+          reg:
-+            description: Hardware index of the DPLL channel
-+            maxItems: 1
-+
-+          dpll-type:
-+            description: DPLL channel type
-+            $ref: /schemas/types.yaml#/definitions/string
-+            enum: [pps, eec]
-+
-+          ethernet-handle:
-+            description:
-+              Specifies a reference to a node representing an Ethernet device
-+              that uses this channel to synchronize its hardware clock.
-+            $ref: /schemas/types.yaml#/definitions/phandle
-+
-+        required:
-+          - reg
- 
-   input-pins:
-     type: object
-diff --git a/Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml b/Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml
-index 17747f754b845..bc6d6cc1dd47f 100644
---- a/Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml
-+++ b/Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml
-@@ -44,9 +44,26 @@ examples:
-       #size-cells = <0>;
- 
-       dpll@70 {
-+        #address-cells = <0>;
-+        #size-cells = <0>;
-         compatible = "microchip,zl30732";
-         reg = <0x70>;
--        dpll-types = "pps", "eec";
-+
-+        channels {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          channel@0 {
-+            reg = <0>;
-+            dpll-type = "pps";
-+          };
-+
-+          channel@1 {
-+            reg = <1>;
-+            dpll-type = "eec";
-+            ethernet-handle = <&ethernet0>;
-+          };
-+        };
- 
-         input-pins {
-           #address-cells = <1>;
-@@ -84,7 +101,15 @@ examples:
-         reg = <0x70>;
-         spi-max-frequency = <12500000>;
- 
--        dpll-types = "pps";
-+        channels {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          channel@0 {
-+            reg = <0>;
-+            dpll-type = "pps";
-+          };
-+        };
- 
-         input-pins {
-           #address-cells = <1>;
--- 
-2.49.1
-
+Regards,
+Andreas
 
