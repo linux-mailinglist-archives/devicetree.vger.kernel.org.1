@@ -1,183 +1,271 @@
-Return-Path: <devicetree+bounces-204940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72931B276BD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:26:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9653B2770E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:48:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3318B5C5C03
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:26:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15761AA3188
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:48:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893E829CB45;
-	Fri, 15 Aug 2025 03:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BC5121A43C;
+	Fri, 15 Aug 2025 03:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NJmjePcs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r0HnJXWN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5EE274B59;
-	Fri, 15 Aug 2025 03:26:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA8D1A9F8D;
+	Fri, 15 Aug 2025 03:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755228393; cv=none; b=a0bGeka3cyUYnhaU8jGOpsIw4TseSXjjB/zVt+h9J1x0DnYT1oaCItnyli6Pl8vZGjAJLp1eAq/0s+b0yrZvSHfToGlLLaSTqQo7qUeQKCX44tEbur5d7OSdaTzxdaqVq1dY7voIMF/rMgwqglQgaRnaKyPtw7kaP8/+1lHZb8I=
+	t=1755229720; cv=none; b=cGAHtJ60u+5Pj0fHFget7ern9ZdRO0KPjjwOFDBcjc9o9Rq4YfFbO4lAmtx7JAx3oKE89UlJ6H7ZKYlnZq+HB7LPTcheBYf1ns4odi7jL3BEOUkeMth/ZusXnf0RPvG39PLK4YWJ/Bqoept8EOCux3ZTwT/L9kGYQJ+YyH4+6GI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755228393; c=relaxed/simple;
-	bh=5CtCyWuTgP/8clYLR9mQb2RLKdITFXhoF9CEAmqsi5s=;
+	s=arc-20240116; t=1755229720; c=relaxed/simple;
+	bh=7ZvPQE2Tk/BmvEi7qJOyCFeaGxT4/yzj3ZM/wpuyf6M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qmrpcg8AKT4RYSae+DCpQnFOpoXdMUT37+RPWWHZ397RtnUtW11WR0YftqZxR/7KvyaSDFAsnteovtpAS5fQT2P3kPnMGjUnXT40QS+tLYxdoqrf1ys2bfre8VPNTdnmPRzAT8zmlW5+thOTmpTCwTH/hWz9fu3LPFMcLWhzInM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NJmjePcs; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755228392; x=1786764392;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5CtCyWuTgP/8clYLR9mQb2RLKdITFXhoF9CEAmqsi5s=;
-  b=NJmjePcs/mhbFZRKmWBh7g8+FoLPJtrS8FkYtyA9wd+DX4QWC48yV1FD
-   tUV6acLkiP+cYNesgvHtdvxRJCYv8NQ7wYK5eMBlnnRUj4qI+XBeV2krt
-   TKYryQs4u48H9Cx9oeciMSzo4I5uU3JqVoC0vn+nFfuG2HvK8hch1mUlQ
-   GVtufrFaS8lZTlyIvnF92gkhLUD8829hMhERH+/mZuqpcSRQ8W/ODbTVb
-   8izH0y5eJcvkE/WecjqIcwzLBfHbWQYWrp4fFctLNSPKeGjOQniZ7Cva3
-   sySt/a1F/y/Th77bRg0ycdf6iLS2sDVu2NuIuvTbZY8IEvtobCrAzZ8ku
-   g==;
-X-CSE-ConnectionGUID: /LwyjmUcSbOSsp7cyaA1gA==
-X-CSE-MsgGUID: aZU7XggRS2C8vz+UUBUnSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11522"; a="57465781"
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; 
-   d="scan'208";a="57465781"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Aug 2025 20:26:31 -0700
-X-CSE-ConnectionGUID: NPGfBA5+Th+3cPDrRLUODQ==
-X-CSE-MsgGUID: oGTsP8FHQlCdwpSczOAxDA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; 
-   d="scan'208";a="197916558"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by orviesa002.jf.intel.com with ESMTP; 14 Aug 2025 20:26:25 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uml4v-000BVU-2v;
-	Fri, 15 Aug 2025 03:26:10 +0000
-Date: Fri, 15 Aug 2025 11:25:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>, davem@davemloft.net
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ywehu4j3FyxFOR6dtojBZwEXvd970PBxZBnDzlCvn7ZQA1O/TO8dufs27BlulNrEaM3P6bC3kUC9Rt3DGIiIWCxyeWw40P7sg18y/ewSAAmg7wu04jBMQN12DB/YbFFY37qJquagwdfEdulohbpFzuaqyt9klWQ7GjMweRM3PZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r0HnJXWN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBE1DC4CEEB;
+	Fri, 15 Aug 2025 03:48:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755229718;
+	bh=7ZvPQE2Tk/BmvEi7qJOyCFeaGxT4/yzj3ZM/wpuyf6M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r0HnJXWNZsP7K/L4kLEZqqVmelL87bCorBCVx+h5uzwfdxJdcvjQtD8PF1FNFxCjU
+	 e4t76juY3j3N5imuNrIXxAaTKjyoSRHWt+toTN8Op3ZDM0BgQ9dyXFLRUGGbEZ//B7
+	 wuNR4xjnpdov57RoZjiuZEAsbczy8NjEIYsB9VpGJZgZKrzHvQqIqAdk9FbW/vGqTc
+	 4Kv+1lddt93bqyICk9f9t/Vd6oHg7m9XXakTy2NuW5eljiq6MvdXYLIyGz/9gMIpuc
+	 9y6Q1Nyi5Zf0yKpYgGWvHb7LOGTUzmm8HQ1COAPp0gZW2f2+xgkQPSsuwrJY83HQbL
+	 YIcmNUlCzT+9Q==
+Date: Fri, 15 Aug 2025 11:31:26 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Richard Leitner <richard.leitner@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH net-next v11 08/16] net: phy: Introduce generic SFP
- handling for PHY drivers
-Message-ID: <202508151058.jqJsn9VB-lkp@intel.com>
-References: <20250814135832.174911-9-maxime.chevallier@bootlin.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] usb: usb251xb: support usage case without I2C control
+Message-ID: <aJ6qDlumTAwwLMpN@xhacker>
+References: <20250815025540.30575-1-jszhang@kernel.org>
+ <20250815025540.30575-3-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250814135832.174911-9-maxime.chevallier@bootlin.com>
+In-Reply-To: <20250815025540.30575-3-jszhang@kernel.org>
 
-Hi Maxime,
+On Fri, Aug 15, 2025 at 10:55:40AM +0800, Jisheng Zhang wrote:
+> Refactor so that register writes for configuration are only performed if
+> the device has a i2c_client provided and also register as a platform
+> driver. This allows the driver to be used to manage GPIO based control
+> of the device.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  drivers/usb/misc/usb251xb.c | 108 +++++++++++++++++++++++++++++++-----
+>  1 file changed, 94 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/usb/misc/usb251xb.c b/drivers/usb/misc/usb251xb.c
+> index 4fb453ca5450..ef5873009599 100644
+> --- a/drivers/usb/misc/usb251xb.c
+> +++ b/drivers/usb/misc/usb251xb.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/module.h>
+>  #include <linux/nls.h>
+>  #include <linux/of.h>
+> +#include <linux/platform_device.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/slab.h>
+>  
+> @@ -242,15 +243,19 @@ static int usb251xb_check_dev_children(struct device *dev, void *child)
+>  static int usb251x_check_gpio_chip(struct usb251xb *hub)
+>  {
+>  	struct gpio_chip *gc = gpiod_to_chip(hub->gpio_reset);
+> -	struct i2c_adapter *adap = hub->i2c->adapter;
+> +	struct i2c_adapter *adap;
+>  	int ret;
+>  
+> +	if (!hub->i2c)
+> +		return 0;
+> +
+>  	if (!hub->gpio_reset)
+>  		return 0;
+>  
+>  	if (!gc)
+>  		return -EINVAL;
+>  
+> +	adap = hub->i2c->adapter;
+>  	ret = usb251xb_check_dev_children(&adap->dev, gc->parent);
+>  	if (ret) {
+>  		dev_err(hub->dev, "Reset GPIO chip is at the same i2c-bus\n");
+> @@ -271,7 +276,8 @@ static void usb251xb_reset(struct usb251xb *hub)
+>  	if (!hub->gpio_reset)
+>  		return;
+>  
+> -	i2c_lock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
+> +	if (hub->i2c)
+> +		i2c_lock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
+>  
+>  	gpiod_set_value_cansleep(hub->gpio_reset, 1);
+>  	usleep_range(1, 10);	/* >=1us RESET_N asserted */
+> @@ -280,7 +286,8 @@ static void usb251xb_reset(struct usb251xb *hub)
+>  	/* wait for hub recovery/stabilization */
+>  	usleep_range(500, 750);	/* >=500us after RESET_N deasserted */
+>  
+> -	i2c_unlock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
+> +	if (hub->i2c)
+> +		i2c_unlock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
+>  }
+>  
+>  static int usb251xb_connect(struct usb251xb *hub)
+> @@ -289,7 +296,11 @@ static int usb251xb_connect(struct usb251xb *hub)
+>  	int err, i;
+>  	char i2c_wb[USB251XB_I2C_REG_SZ];
+>  
+> -	memset(i2c_wb, 0, USB251XB_I2C_REG_SZ);
+> +	if (!hub->i2c) {
+> +		usb251xb_reset(hub);
+> +		dev_info(dev, "hub is put in default configuration.\n");
+> +		return 0;
+> +	}
+>  
+>  	if (hub->skip_config) {
+>  		dev_info(dev, "Skip hub configuration, only attach.\n");
+> @@ -698,18 +709,13 @@ static int usb251xb_i2c_probe(struct i2c_client *i2c)
+>  	return usb251xb_probe(hub);
+>  }
+>  
+> -static int __maybe_unused usb251xb_suspend(struct device *dev)
+> +static int usb251xb_suspend(struct usb251xb *hub)
+>  {
+> -	struct i2c_client *client = to_i2c_client(dev);
+> -	struct usb251xb *hub = i2c_get_clientdata(client);
+> -
+>  	return regulator_disable(hub->vdd);
+>  }
+>  
+> -static int __maybe_unused usb251xb_resume(struct device *dev)
+> +static int usb251xb_resume(struct usb251xb *hub)
+>  {
+> -	struct i2c_client *client = to_i2c_client(dev);
+> -	struct usb251xb *hub = i2c_get_clientdata(client);
+>  	int err;
+>  
+>  	err = regulator_enable(hub->vdd);
+> @@ -719,7 +725,23 @@ static int __maybe_unused usb251xb_resume(struct device *dev)
+>  	return usb251xb_connect(hub);
+>  }
+>  
+> -static SIMPLE_DEV_PM_OPS(usb251xb_pm_ops, usb251xb_suspend, usb251xb_resume);
+> +static int usb251xb_i2c_suspend(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct usb251xb *hub = i2c_get_clientdata(client);
+> +
+> +	return usb251xb_suspend(hub);
+> +}
+> +
+> +static int usb251xb_i2c_resume(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct usb251xb *hub = i2c_get_clientdata(client);
+> +
+> +	return usb251xb_resume(hub);
+> +}
+> +
+> +static DEFINE_SIMPLE_DEV_PM_OPS(usb251xb_i2c_pm_ops, usb251xb_i2c_suspend, usb251xb_i2c_resume);
 
-kernel test robot noticed the following build warnings:
+It seems this PM macros usage should be in a seperate patch. I will send a v2 this
+night.
 
-[auto build test WARNING on net-next/main]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Maxime-Chevallier/dt-bindings-net-Introduce-the-ethernet-connector-description/20250814-221559
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20250814135832.174911-9-maxime.chevallier%40bootlin.com
-patch subject: [PATCH net-next v11 08/16] net: phy: Introduce generic SFP handling for PHY drivers
-config: i386-randconfig-013-20250815 (https://download.01.org/0day-ci/archive/20250815/202508151058.jqJsn9VB-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250815/202508151058.jqJsn9VB-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508151058.jqJsn9VB-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/net/phy/phy_device.c:1625:47: warning: variable 'iface' is uninitialized when used here [-Wuninitialized]
-    1625 |                 return port->ops->configure_mii(port, true, iface);
-         |                                                             ^~~~~
-   drivers/net/phy/phy_device.c:1597:2: note: variable 'iface' is declared here
-    1597 |         phy_interface_t iface;
-         |         ^
-   1 warning generated.
-
-
-vim +/iface +1625 drivers/net/phy/phy_device.c
-
-  1589	
-  1590	static int phy_sfp_module_insert(void *upstream, const struct sfp_eeprom_id *id)
-  1591	{
-  1592		struct phy_device *phydev = upstream;
-  1593		struct phy_port *port;
-  1594	
-  1595		__ETHTOOL_DECLARE_LINK_MODE_MASK(sfp_support);
-  1596		DECLARE_PHY_INTERFACE_MASK(interfaces);
-  1597		phy_interface_t iface;
-  1598	
-  1599		linkmode_zero(sfp_support);
-  1600	
-  1601		port = phy_get_sfp_port(phydev);
-  1602		if (!port)
-  1603			return -EINVAL;
-  1604	
-  1605		sfp_parse_support(phydev->sfp_bus, id, sfp_support, interfaces);
-  1606	
-  1607		if (phydev->n_ports == 1)
-  1608			phydev->port = sfp_parse_port(phydev->sfp_bus, id, sfp_support);
-  1609	
-  1610		linkmode_and(sfp_support, port->supported, sfp_support);
-  1611		linkmode_and(interfaces, interfaces, port->interfaces);
-  1612	
-  1613		if (linkmode_empty(sfp_support)) {
-  1614			dev_err(&phydev->mdio.dev, "incompatible SFP module inserted, no common linkmode\n");
-  1615			return -EINVAL;
-  1616		}
-  1617	
-  1618		/* Check that this interface is supported */
-  1619		if (!test_bit(iface, port->interfaces)) {
-  1620			dev_err(&phydev->mdio.dev, "PHY %s does not support the SFP module's requested MII interfaces\n", phydev_name(phydev));
-  1621			return -EINVAL;
-  1622		}
-  1623	
-  1624		if (port->ops && port->ops->configure_mii)
-> 1625			return port->ops->configure_mii(port, true, iface);
-  1626	
-  1627		return 0;
-  1628	}
-  1629	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>  
+>  static const struct i2c_device_id usb251xb_id[] = {
+>  	{ "usb2422" },
+> @@ -739,13 +761,71 @@ static struct i2c_driver usb251xb_i2c_driver = {
+>  	.driver = {
+>  		.name = DRIVER_NAME,
+>  		.of_match_table = usb251xb_of_match,
+> -		.pm = &usb251xb_pm_ops,
+> +		.pm = pm_sleep_ptr(&usb251xb_i2c_pm_ops),
+>  	},
+>  	.probe = usb251xb_i2c_probe,
+>  	.id_table = usb251xb_id,
+>  };
+>  
+> -module_i2c_driver(usb251xb_i2c_driver);
+> +static int usb251xb_plat_probe(struct platform_device *pdev)
+> +{
+> +	struct usb251xb *hub;
+> +
+> +	hub = devm_kzalloc(&pdev->dev, sizeof(*hub), GFP_KERNEL);
+> +	if (!hub)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, hub);
+> +	hub->dev = &pdev->dev;
+> +
+> +	return usb251xb_probe(hub);
+> +}
+> +
+> +static int usb251xb_plat_suspend(struct device *dev)
+> +{
+> +	return usb251xb_suspend(dev_get_drvdata(dev));
+> +}
+> +
+> +static int usb251xb_plat_resume(struct device *dev)
+> +{
+> +	return usb251xb_resume(dev_get_drvdata(dev));
+> +}
+> +
+> +static DEFINE_SIMPLE_DEV_PM_OPS(usb251xb_plat_pm_ops, usb251xb_plat_suspend, usb251xb_plat_resume);
+> +
+> +static struct platform_driver usb251xb_plat_driver = {
+> +	.driver = {
+> +		.name = DRIVER_NAME,
+> +		.of_match_table = of_match_ptr(usb251xb_of_match),
+> +		.pm = pm_ptr(&usb251xb_plat_pm_ops),
+> +	},
+> +	.probe		= usb251xb_plat_probe,
+> +};
+> +
+> +static int __init usb251xb_init(void)
+> +{
+> +	int err;
+> +
+> +	err = i2c_add_driver(&usb251xb_i2c_driver);
+> +	if (err)
+> +		return err;
+> +
+> +	err = platform_driver_register(&usb251xb_plat_driver);
+> +	if (err) {
+> +		i2c_del_driver(&usb251xb_i2c_driver);
+> +		return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +module_init(usb251xb_init);
+> +
+> +static void __exit usb251xb_exit(void)
+> +{
+> +	platform_driver_unregister(&usb251xb_plat_driver);
+> +	i2c_del_driver(&usb251xb_i2c_driver);
+> +}
+> +module_exit(usb251xb_exit);
+>  
+>  MODULE_AUTHOR("Richard Leitner <richard.leitner@skidata.com>");
+>  MODULE_DESCRIPTION("USB251x/xBi USB 2.0 Hub Controller Driver");
+> -- 
+> 2.50.0
+> 
 
