@@ -1,207 +1,194 @@
-Return-Path: <devicetree+bounces-204945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04E1EB276F2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:41:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99EAFB276FE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:43:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDBDE1CC6DF9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:41:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 471DEAA244C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 455D229E0F5;
-	Fri, 15 Aug 2025 03:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8448D2BDC31;
+	Fri, 15 Aug 2025 03:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vAcSgHgd"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="n6P0IZ3d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472D721C9F2;
-	Fri, 15 Aug 2025 03:41:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E6D21ABAA
+	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 03:42:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755229279; cv=none; b=OjckHth8OnAQ+PYbVWu71S3oWfaSFXKmOO/lG/nLgO1gtlrec/vEyaD+tY+k1upWoogBmibML52nC7mh3Vfp2BY42Q2enuE7jwU9OZtLy4cqNpDyCI3ncv5yAHwWpEzgSAdhKbHZu5nawjPUvsHcSrZqA/DRpyw6VhWR3yF3TQk=
+	t=1755229342; cv=none; b=N5TRt19mQ4LPAN4lquGaTYe5kKHxLpmv1s0THegwDaBt0VA53MuSkBXEfv0NpExJA+UU0Y2wl15UwprRX5JiDlKVFacqFod82TFHlNE6Hs1dRsC5GHPKgYMBBwlLo6DUtvhn+CavoBxU9EOa/bh94g4caN5frs9oYKeXDDFch0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755229279; c=relaxed/simple;
-	bh=LZ2oIlScxMjEVE6sXZQIp9eGC6mhAMoZRGIJjY9WN+Y=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QMWfcxOMaRWdMsokzWwepN0ibC3VzvQm6rHIv84uyuRn+1G0jpa1UkgR7LoZSbcWH/06DxRQMKDldt2k6+f+qr3gPjFHncWQBJNZqX4gnYPCpr98OiBv9fBaiUukT8G+IdM5PzR3HoESwYhqtfnG5uVFqRsbTHMmYK9BzbH52qY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vAcSgHgd; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57F3f99E2526244;
-	Thu, 14 Aug 2025 22:41:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755229269;
-	bh=0nnpdAsOqPmBlFg4DS1pedpp234rEjm3RCMYFwuD8kk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=vAcSgHgd28beLrAuWTo2dKUj3yNnZ4aw21dE5eBoQnPqe7LPLo3ntLaRGA1kvUq0i
-	 HYyyYEhOCLXsmn4nEfuoPsn5at7rfOVAuBOJ4dLJvv+BV2kQocM0KY3LisrQNA3Fwv
-	 IdX0mzC6ZgCMgW9hEJzNcgzT5mCP4nZSQ6vgBXew=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57F3f9Wf1320969
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 14 Aug 2025 22:41:09 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 14
- Aug 2025 22:41:08 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 14 Aug 2025 22:41:08 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57F3f82p727660;
-	Thu, 14 Aug 2025 22:41:08 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, David Airlie
-	<airlied@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Jason Kridner <jkridner@beagleboard.org>, <afd@ti.com>,
-        <tomi.valkeinen@ideasonboard.com>, <devarsht@ti.com>,
-        Nishanth Menon
-	<nm@ti.com>
-Subject: [PATCH V3 4/4] drm/bridge: it66121: Add minimal it66122 support
-Date: Thu, 14 Aug 2025 22:41:05 -0500
-Message-ID: <20250815034105.1276548-5-nm@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250815034105.1276548-1-nm@ti.com>
-References: <20250815034105.1276548-1-nm@ti.com>
+	s=arc-20240116; t=1755229342; c=relaxed/simple;
+	bh=vsQ52WTwmO3+8ssw1w1cMYYmcVawrOSq6WzepbrpO70=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nje0F2gPXPCESwPlJeWnfbtEvgtrsJ8t7vsQBf3BudgbEQtgguO4oDABqnUr4nkbW525r54hLHAeOgwcofTyDOSSpygXy3lCnX/wYBuH9FyOlXppN49A+lrEIHmp/hcemvwW2I7ZF500C68R1V3O0YS62CxlMkXxTpQveG1Ja+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=n6P0IZ3d; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-55ce4d3b746so1993586e87.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 20:42:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1755229337; x=1755834137; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HLAZnsZy8mysFSYeQu/zRgcIgupbd8f4aYQXFFI2MWI=;
+        b=n6P0IZ3dVwDyLuzIVnFEG9e8AzVR+RUueC+3GZKs95LqUkbTrECHkRIKM74+Q0KBfE
+         IaXH4cTmi6cQ5ePzxrRKjW24eg6mn/tfbtZBy8BLLzZBU8+OA4WjUcpM/PIA114pFehW
+         WCKday2Y/RZxYJoSYcI8ZSUe/4+RCpKFcy8rk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755229337; x=1755834137;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HLAZnsZy8mysFSYeQu/zRgcIgupbd8f4aYQXFFI2MWI=;
+        b=Dz4fWVYdaSo1/+xMn3G8BZXzpdOssyqrVmTsn+2SZFX76+n6Lj6l9v5U1pgI4KpMeg
+         7iPVdtXwNrXtlDHiWX0hk4een+t3E1KDZm3NfMbG3Yd99Zr118vMGPwE40IYnXS6Evrh
+         FvcbGr2lg31T/VZTHU+QXd4naeGU2kw8LFYD7ghhfpi+TPZUo3Olq/j6ZSWForzJWeys
+         HtN7d14XGc3/Y91AOZQ2TG1Rl0jRqSd8t8N1Fqnjntw44NqRexEOW3/TT1lqME2bs6dE
+         hJ75KJrFc8ZKR6kcTKIFfej2JVqxbvb79WkBuFcc8ydiYUGF6DPgIpx+RezZDnb7YrAp
+         BTZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWIZAMcXjJ5Cn7YK5aq+Im17bBoeZqd6+En5ybS7s3HMH/gld/hU3uYWRAp9ktEUOclILmXb1gK8dpV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcJaVcLvqdl8iNG8XoLpLPpMFu0DJD41zEFQZrlR6zBt3eXexP
+	28DOehAYynsVS/7geEGTCJvrQ/5Eu3cssCOryc3iFqqHpLaBbckrrNnAwmh8HinMV+5YnxvqdXC
+	RS6sbOQJPG5R2Hr8CTa111v+DRPRBjqlT7as2eovj
+X-Gm-Gg: ASbGnctJ/iWMOHcBKwjCNLr/x7vwmvhnOnWf516ZGJxX0b9FAja+cKj/hM7umzddjI/
+	HBhn5N6GD9/mEwiIimP9YSAyOvWh14rlLHcnK0LpXNSxiZhnma7LtEdUCY05v9cFPsqbJkw/Gk3
+	xtFJ7KGsVYAU+CPWDWD+pRVuPldYMUcqM3UVXibulphxASXv8H4bCkMPfdaugHJUw95TcQA3yeZ
+	XoCfptdphQwVOajRii8ytYWFjFjctdZQBaEkw==
+X-Google-Smtp-Source: AGHT+IG4MHT9xlQA8q+aRzeI2TOWcXJ3eWM4zAEjXRmpGzb6++EC3UVO4G2WwSWQHvNm7WXOwl7nEj1UnHJTPSq8Yys=
+X-Received: by 2002:a05:6512:230a:b0:55c:d6c9:38df with SMTP id
+ 2adb3069b0e04-55ce62cd258mr1499674e87.21.1755229337315; Thu, 14 Aug 2025
+ 20:42:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250805135447.149231-1-laura.nao@collabora.com> <20250805135447.149231-7-laura.nao@collabora.com>
+In-Reply-To: <20250805135447.149231-7-laura.nao@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 15 Aug 2025 12:42:06 +0900
+X-Gm-Features: Ac12FXy2dCuPlbnz3eN56WS0B1sITUha0hiPx6j9G95oILsqMsxPgE4MrEBU4UM
+Message-ID: <CAGXv+5GxJs03EcMt0jm-x_fDuy_RtCrnOmyJvVVgAP9O9R6E2Q@mail.gmail.com>
+Subject: Re: [PATCH v4 06/27] clk: mediatek: clk-gate: Refactor
+ mtk_clk_register_gate to use mtk_gate struct
+To: Laura Nao <laura.nao@collabora.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
+	richardcochran@gmail.com, guangjie.song@mediatek.com, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	kernel@collabora.com, =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The IT66122 is a pin compatible replacement for the IT66122. Based on
-empirical testing, the new device looks to be compatible with IT66121.
-However due to a lack of public data sheet at this time beyond overall
-feature list[1] (which seems to add additional features vs ITT66121),
-it is hard to determine that additional register operations required
-to enable additional features.
+On Tue, Aug 5, 2025 at 10:55=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
+ wrote:
+>
+> MT8196 uses a HW voter for gate enable/disable control, with
+> set/clr/sta registers located in a separate regmap. Refactor
+> mtk_clk_register_gate() to take a struct mtk_gate instead of individual
+> parameters, avoiding the need to add three extra arguments to support
+> HW voter register offsets.
+>
+> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+> ---
+>  drivers/clk/mediatek/clk-gate.c | 35 ++++++++++++---------------------
+>  1 file changed, 13 insertions(+), 22 deletions(-)
+>
+> diff --git a/drivers/clk/mediatek/clk-gate.c b/drivers/clk/mediatek/clk-g=
+ate.c
+> index 67d9e741c5e7..0375ccad4be3 100644
+> --- a/drivers/clk/mediatek/clk-gate.c
+> +++ b/drivers/clk/mediatek/clk-gate.c
+> @@ -152,12 +152,9 @@ const struct clk_ops mtk_clk_gate_ops_no_setclr_inv =
+=3D {
+>  };
+>  EXPORT_SYMBOL_GPL(mtk_clk_gate_ops_no_setclr_inv);
+>
+> -static struct clk_hw *mtk_clk_register_gate(struct device *dev, const ch=
+ar *name,
+> -                                        const char *parent_name,
+> -                                        struct regmap *regmap, int set_o=
+fs,
+> -                                        int clr_ofs, int sta_ofs, u8 bit=
+,
+> -                                        const struct clk_ops *ops,
+> -                                        unsigned long flags)
+> +static struct clk_hw *mtk_clk_register_gate(struct device *dev,
+> +                                               const struct mtk_gate *ga=
+te,
+> +                                               struct regmap *regmap)
+>  {
+>         struct mtk_clk_gate *cg;
+>         int ret;
+> @@ -167,17 +164,17 @@ static struct clk_hw *mtk_clk_register_gate(struct =
+device *dev, const char *name
+>         if (!cg)
+>                 return ERR_PTR(-ENOMEM);
+>
+> -       init.name =3D name;
+> -       init.flags =3D flags | CLK_SET_RATE_PARENT;
+> -       init.parent_names =3D parent_name ? &parent_name : NULL;
+> -       init.num_parents =3D parent_name ? 1 : 0;
+> -       init.ops =3D ops;
+> +       init.name =3D gate->name;
+> +       init.flags =3D gate->flags | CLK_SET_RATE_PARENT;
+> +       init.parent_names =3D gate->parent_name ? &gate->parent_name : NU=
+LL;
+> +       init.num_parents =3D gate->parent_name ? 1 : 0;
+> +       init.ops =3D gate->ops;
+>
+>         cg->regmap =3D regmap;
+> -       cg->set_ofs =3D set_ofs;
+> -       cg->clr_ofs =3D clr_ofs;
+> -       cg->sta_ofs =3D sta_ofs;
+> -       cg->bit =3D bit;
+> +       cg->set_ofs =3D gate->regs->set_ofs;
+> +       cg->clr_ofs =3D gate->regs->clr_ofs;
+> +       cg->sta_ofs =3D gate->regs->sta_ofs;
+> +       cg->bit =3D gate->shift;
 
-So, introduce the device as a new compatible that we will detect based
-on vid/pid match, with explicit id that can be used to extend the
-driver capability as information becomes available later on.
+I'd rather see |struct mtk_clk_gate| (the runtime data) gain a pointer
+to the static data |struct mtk_gate| instead of doing all the copying.
+This is just needless duplication.
 
-[1] https://www.ite.com.tw/en/product/cate1/IT66122
+ChenYu
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
-Changes in V3:
-* Dropped the claim that it is 1-1 replacement of IT66121.
-* Based on emperical test result[2], introduce the same configuration of
-  IT66121, but provide ID as suggested by Devarsh to allow for future
-  expansion of functionality.
-
-NOTE: I did consider the possibility of converting the chip_id into a
-bitfield, but decided it is over-engineering, so kept the enum.
-
-[2] https://github.com/beagleboard/linux/commits/v6.1.83-ti-rt-r40
-
-V2: https://lore.kernel.org/all/20250813204106.580141-4-nm@ti.com/
-
- drivers/gpu/drm/bridge/ite-it66121.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-index 5ac9631bcd9a..a108d287722d 100644
---- a/drivers/gpu/drm/bridge/ite-it66121.c
-+++ b/drivers/gpu/drm/bridge/ite-it66121.c
-@@ -287,6 +287,7 @@
- enum chip_id {
- 	ID_IT6610,
- 	ID_IT66121,
-+	ID_IT66122,
- };
- 
- struct it66121_chip_info {
-@@ -402,7 +403,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
- 		if (ret)
- 			return ret;
- 
--		if (ctx->id == ID_IT66121) {
-+		if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
- 						IT66121_AFE_IP_EC1, 0);
- 			if (ret)
-@@ -428,7 +429,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
- 		if (ret)
- 			return ret;
- 
--		if (ctx->id == ID_IT66121) {
-+		if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
- 						IT66121_AFE_IP_EC1,
- 						IT66121_AFE_IP_EC1);
-@@ -599,7 +600,7 @@ static int it66121_bridge_attach(struct drm_bridge *bridge,
- 	if (ret)
- 		return ret;
- 
--	if (ctx->id == ID_IT66121) {
-+	if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 		ret = regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 					IT66121_CLK_BANK_PWROFF_RCLK, 0);
- 		if (ret)
-@@ -802,7 +803,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
- 	if (regmap_write(ctx->regmap, IT66121_HDMI_MODE_REG, IT66121_HDMI_MODE_HDMI))
- 		goto unlock;
- 
--	if (ctx->id == ID_IT66121 &&
-+	if ((ctx->id == ID_IT66121 || ctx->id == ID_IT66122) &&
- 	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK)) {
-@@ -815,7 +816,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
- 	if (it66121_configure_afe(ctx, adjusted_mode))
- 		goto unlock;
- 
--	if (ctx->id == ID_IT66121 &&
-+	if ((ctx->id == ID_IT66121 || ctx->id == ID_IT66122) &&
- 	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK, 0)) {
- 		goto unlock;
-@@ -1614,12 +1615,14 @@ static void it66121_remove(struct i2c_client *client)
- }
- 
- static const struct it66121_chip_info it66xx_chip_info[] = {
-+	{.id = ID_IT66122, .vid = 0x4954, .pid = 0x0622 },
- 	{.id = ID_IT66121, .vid = 0x4954, .pid = 0x0612 },
- 	{.id = ID_IT6610, .vid = 0xca00, .pid = 0x0611 },
- 	{ }
- };
- 
- static const struct of_device_id it66121_dt_match[] = {
-+	{ .compatible = "ite,it66122", &it66xx_chip_info },
- 	{ .compatible = "ite,it66121", &it66xx_chip_info },
- 	{ .compatible = "ite,it6610", &it66xx_chip_info },
- 	{ }
-@@ -1627,6 +1630,7 @@ static const struct of_device_id it66121_dt_match[] = {
- MODULE_DEVICE_TABLE(of, it66121_dt_match);
- 
- static const struct i2c_device_id it66121_id[] = {
-+	{ "it66122", (kernel_ulong_t)&it66xx_chip_info },
- 	{ "it66121", (kernel_ulong_t)&it66xx_chip_info },
- 	{ "it6610", (kernel_ulong_t)&it66xx_chip_info },
- 	{ }
--- 
-2.47.0
-
+>         cg->hw.init =3D &init;
+>
+> @@ -228,13 +225,7 @@ int mtk_clk_register_gates(struct device *dev, struc=
+t device_node *node,
+>                         continue;
+>                 }
+>
+> -               hw =3D mtk_clk_register_gate(dev, gate->name, gate->paren=
+t_name,
+> -                                           regmap,
+> -                                           gate->regs->set_ofs,
+> -                                           gate->regs->clr_ofs,
+> -                                           gate->regs->sta_ofs,
+> -                                           gate->shift, gate->ops,
+> -                                           gate->flags);
+> +               hw =3D mtk_clk_register_gate(dev, gate, regmap);
+>
+>                 if (IS_ERR(hw)) {
+>                         pr_err("Failed to register clk %s: %pe\n", gate->=
+name,
+> --
+> 2.39.5
+>
 
