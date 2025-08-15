@@ -1,134 +1,153 @@
-Return-Path: <devicetree+bounces-205083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D566BB27D8F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:54:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0A59B27D97
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:57:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5C745A6A31
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:54:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 504061894948
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294BC2FC89B;
-	Fri, 15 Aug 2025 09:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C36E2FCBF0;
+	Fri, 15 Aug 2025 09:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="dGiTHQlJ"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="UVobh7EZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76AAC2FC872;
-	Fri, 15 Aug 2025 09:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755251640; cv=pass; b=UkY7l8WN8+dzev4xSk27BRMTEAWY8/SrH9dypZSr1dh1DKN4GvR7oplzlFiVmpO+3R9nh55mMFoN/J7+FSvxWmY3loLQbb+4PIkRkfx+IFeubhRaytCCXwwiYceRDyay2VpVoQ6zMB/Jb58jfhr1M39/psKnwS+bymWpoFdNF2M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755251640; c=relaxed/simple;
-	bh=4R7tfCuYW4ZartBCW5YVMr9XfWVj465U64fgiTEkXis=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=V7xOlDxokquYVxhhXsTW0kQVVcHT5QaIRStKNeqb1gFX7K9S7EP9P6+QdnsCyj/Cn+QaiWc0ziEvEh0Lu2ecX2rdLg6tLo5x4ImBJo1kpLAi+PD4IIlJ7v2XwCGzh3vG81y2GG1KNK4EBYAgZabViupDgD1A6e67CRExWa4EtZ4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=dGiTHQlJ; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1755251602; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=koHlOkAgBWsUbUj+b24o/ctUd2mqOBqSeG4hv5l5rm+kkMCxaBfgD8KyfJGwIblmsj8SbL5UP6lbO/cyGtSNFmvJYwfXiO5zcDsRP4GTvaJ3HPAkNqdpPadOuNDiioSPAnQrI0l8iPOmqfc3wqiuhgFNu43E0tBase2P0TwBilE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1755251602; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=4R7tfCuYW4ZartBCW5YVMr9XfWVj465U64fgiTEkXis=; 
-	b=ZiJTO94CyuhBtoV18GI/qII0uRZ5oGao6SZwUEzQQbC0mN4oapdpdlNxUQ2tNzD3w4JIu1wQtM0QnyM7CY8Qjv9b5rtXKF07FDb/8LIpZx3WjSfN3jXF4z4hJ0cADjAyM9kiVCKVdYfTFUYnwDNVwsJ7YYYaNUmwwpE0udlCI3I=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1755251602;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=4R7tfCuYW4ZartBCW5YVMr9XfWVj465U64fgiTEkXis=;
-	b=dGiTHQlJXwDfK3pjDKBjJBKsOC68jlD1/jjKV8gxOixvhk8FxYn2D1xZeR8o56xq
-	DR9yBVRnAQkFWf+oFZ7eh7+qjNnfpXlly8RlnClnL3viSri4Hnd1HEiDhOjcu9K5rMO
-	lWFbQwWEFWUAoPhmKzH8MCtMy+p40PtYnv31E6mI56V1oPaxsc37t0hRyDa9eqWSkpp
-	IGzja9J56MTPWH2+Rbctn7WEC0ldB2Za/6Z6WPkNWmCiG8yUFhGci9u1y7zD9fQZimY
-	2XbTcVLeSLL9NJkpCyc/bqQ+WKJajubKPav4XqNU0JV1+FmxHh6xhzN5UD6XRqDZIr6
-	ovEjMhg0Pg==
-Received: by mx.zohomail.com with SMTPS id 1755251600358465.4611508627105;
-	Fri, 15 Aug 2025 02:53:20 -0700 (PDT)
-Message-ID: <4655d43b17c732947246f0e0deac14265fa07ca1.camel@icenowy.me>
-Subject: Re: [RFC PATCH 2/8] dt-bindings: display: add versilicon,dc
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Drew Fustini
- <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
- <wefu@redhat.com>,  Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner
- <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Michal
- Wilczynski <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, Yao
- Zi <ziyao@disroot.org>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org
-Date: Fri, 15 Aug 2025 17:53:10 +0800
-In-Reply-To: <5af90b60-d65b-4e80-9a27-44938bbd450b@kernel.org>
-References: <20250814164048.2336043-1-uwu@icenowy.me>
-	 <20250814164048.2336043-3-uwu@icenowy.me>
-	 <20250814220444.GA3988176-robh@kernel.org>
-	 <5af90b60-d65b-4e80-9a27-44938bbd450b@kernel.org>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02A252FCBE2;
+	Fri, 15 Aug 2025 09:57:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755251867; cv=none; b=L5P9zOSeFLK0ETH63LabM8wVSYdWWvyX/HFnf3yanIFLw/xzBDSO8R9jaSX/q9ZZAcjqzhkftePqK7p1khoTj+R96yyQ7+uRrvYm5WtmI48fJkI+JYQpuGL6+HV79mQ9FWNar3PsavGKBa3DcsqXleODuwbFh+t2qrwNOqsr0wM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755251867; c=relaxed/simple;
+	bh=Tf6Ci2fYzP5icFYzoJDkCvYLNjKoaUFLrXvPDgXtaIc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VJkwn397eIcn4gznotfhBa/YMrteimWwwRZ9beol9mUMcMy0fZtCkwrY8h3EHtSJsK6AEg9Hz4YKBGWykHPzkBzGCQKjPH1L9WUirUbn/Z1MI/tV0LulMAL0mXtrBpdT1EzbfU71VLxtDu0mpzIBpxIWvwj8rjLMDbKWviYua/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=UVobh7EZ; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57F7rB10007721;
+	Fri, 15 Aug 2025 05:57:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=pl8T11+ItcqhN5V9kxIxCAXhzKU
+	TKTPpBmn6X2bo8r4=; b=UVobh7EZAiNhw1+ftmDFasSuspRPnDbgYFa5BfLAk4l
+	Ilc81y4nNOBDlPbGMnNN6V6d6YI7S1uMb6pvO1AZGlfjnfTSncFiE/5h0sZfVwWW
+	ecRriedYhGpFeRksW9GqsPiLqFZH5rwCEjPnxEpxIC5XU1M6clOGhMKZUEdSbp5x
+	99hb+oXN8rwPN9VjGVjh5/51wfTJ5ca2CB1RKMgpaj2Vsa10T+433zNyvUgW1f/c
+	OXoo6U0XG4hFf/As7xAEQ5SKilAzfRykRSN9Ny2SNd9kqhB/E87TJ3ozzaEI40xx
+	XB62qdJxbg7t/VAdVYKVSRHJax4tC5KvDfDix+fQ2AQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 48h51egp24-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Aug 2025 05:57:30 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 57F9vTuQ034239
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 15 Aug 2025 05:57:29 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 15 Aug
+ 2025 05:57:29 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 15 Aug 2025 05:57:29 -0400
+Received: from Ubuntu.ad.analog.com (AMICLAUS-L01.ad.analog.com [10.48.65.226])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 57F9vJis027486;
+	Fri, 15 Aug 2025 05:57:21 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v4 0/5] iio: adc: add support for ADE9000 Energy Monitoring IC
+Date: Fri, 15 Aug 2025 09:56:33 +0000
+Message-ID: <20250815095713.9830-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=BNezrEQG c=1 sm=1 tr=0 ts=689f048a cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=2OwXVqhp2XgA:10 a=MilyVcYQlkyFfA35S9cA:9
+X-Proofpoint-GUID: lN7yi3OXjRBCUhEn8RQRO33I6wgEU6aK
+X-Proofpoint-ORIG-GUID: lN7yi3OXjRBCUhEn8RQRO33I6wgEU6aK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODEzMDIyNCBTYWx0ZWRfX8UaeMja87cyl
+ FqiZD8QrLnqmnEAiaresZ6xb9yUr9eaI1AunxQyGkIGClCKWZLiEOIBi1l3FgATNgjR84SrVKcH
+ mQdYpEFytXlnVd6lERDNbeL4ug62N26Dkomu2d3Pq2KeEiSEEaC+6HU5vpotMXBVzwYXooiY4ZW
+ VoiRK4564V24CsSxZl7wrYNyr8KUWpUxvb6SOqyXol1Hhwyh0k/Du+LgAhEDtC4cJlybAv3eY2f
+ mTvtZQnlyJCR0S5nL6NF3CtJNkmTvuH04nt1jgX+WTSl4ainUrPmgDzrvIQD3BBfOumzzgp6gbR
+ HwN5q2n7rX8zmvZZSpBR6jb2Rc8Bx69W+hkpkPs4HPcYjR0GpARNGywdexO68ReWlgVCf892GhJ
+ bD0oq2pm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-15_03,2025-08-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1015 bulkscore=0 impostorscore=0 malwarescore=0
+ spamscore=0 priorityscore=1501 suspectscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508130224
 
-=E5=9C=A8 2025-08-15=E6=98=9F=E6=9C=9F=E4=BA=94=E7=9A=84 11:09 +0200=EF=BC=
-=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
-> On 15/08/2025 00:04, Rob Herring wrote:
-> > > +
-> > > +maintainers:
-> > > +=C2=A0 - Icenowy Zheng <uwu@icenowy.me>
-> > > +
-> > > +properties:
-> > > +=C2=A0 $nodename:
-> > > +=C2=A0=C2=A0=C2=A0 pattern: "^display@[0-9a-f]+$"
-> > > +
-> > > +=C2=A0 compatible:
-> > > +=C2=A0=C2=A0=C2=A0 const: verisilicon,dc
-> >=20
-> > If the clocks or resets varies by platform, then you need an SoC=20
-> > specific compatible still. If these clocks/resets are straight from
-> > the=20
-> > RTL and any other number of clocks/resets is wrong, then we can
-> > stick=20
-> > with just this compatible.
->=20
-> Shouldn't we have here always SoC compatible? Can it be ever used
-> alone,
-> outside of given SoC?
->=20
-> I could imagine now:
->=20
-> items:
-> =C2=A0 - {}
-> =C2=A0 - const: verisilicon,dc
+This patch series adds support for the Analog Devices ADE9000, a highly
+accurate, fully integrated, multiphase energy and power quality monitoring
+device. The ADE9000 is capable of measuring energy consumption and power
+quality parameters in industrial and commercial applications.
 
-I followed the `vivante,gc` situation here, because the registers
-before 0x1400 (where real display-related things start) seems to follow
-the same scheme with GC-series GPUs, including the identification
-registers.
+The series includes:
 
->=20
->=20
-> Best regards,
-> Krzysztof
+1. New IIO modifiers for power and energy measurement devices, including
+   support for active/reactive/apparent power, RMS masurements.
+
+2. Device tree bindings for the ADE9000, supporting waveform buffer
+   configuration, phase configuration, and trigger settings.
+
+3. Complete driver implementation supporting:
+   - Multi-phase energy measurement (3-phase support)
+   - Power quality monitoring (voltage swell/dip detection)
+   - Waveform buffer capture with configurable triggering
+   - Energy accumulation with configurable time windows
+   - IIO buffer interface for continuous data streaming
+   - Event-based notifications for power quality events
+
+The driver provides a comprehensive interface for energy monitoring
+applications through the IIO framework, enabling userspace applications
+to monitor power consumption, quality, and waveform data.
+
+The driver will be extended in the future to support multiple parts such as
+ade9039.
+
+Antoniu Miclaus (5):
+  iio: add IIO_ALTCURRENT channel type
+  iio: add power and energy measurement modifiers
+  dt-bindings: iio: adc: add ade9000
+  iio: adc: add ade9000 support
+  Documentation: ABI: iio: add sinc4+lp
+
+ Documentation/ABI/testing/sysfs-bus-iio       |   28 +
+ .../bindings/iio/adc/adi,ade9000.yaml         |  108 +
+ drivers/iio/adc/Kconfig                       |   19 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/ade9000.c                     | 2051 +++++++++++++++++
+ drivers/iio/industrialio-core.c               |    6 +
+ include/linux/iio/types.h                     |    1 +
+ include/uapi/linux/iio/types.h                |    5 +
+ tools/iio/iio_event_monitor.c                 |    2 +
+ 9 files changed, 2221 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
+ create mode 100644 drivers/iio/adc/ade9000.c
+
+-- 
+2.43.0
 
 
