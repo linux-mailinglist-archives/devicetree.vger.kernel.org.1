@@ -1,152 +1,107 @@
-Return-Path: <devicetree+bounces-204927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3940CB2760D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 04:39:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 034FAB2760B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 04:38:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB1FE1BC1D0C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 02:36:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67A0D580913
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 02:37:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 696172D46B4;
-	Fri, 15 Aug 2025 02:30:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4E6299A8C;
+	Fri, 15 Aug 2025 02:32:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YbkiXE4x"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="BOcqGEZc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D3602BDC0F;
-	Fri, 15 Aug 2025 02:30:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52CC2951BD
+	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 02:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755225043; cv=none; b=CAFT2eMhqMEp2nr7tJTnS8/QaWzPXFgjRhPq6OfuG+4nlgPW8REqPHfAjNo7tFjt+MRGFl6EC7KtKiZEs6ELBt1QB23zzQ6Kt0vnoMquQB0sd8aq5C59YS7lXewN1FzsvJG2cwsZxI9jHq0JH3SfrHcXvVLH7Jw+hSJDNCeHma0=
+	t=1755225158; cv=none; b=VNtTZGmZAHbWypZklECMGpDbwppu7ughgaTFONmWKWYcz1BWYQPJYD9l8bjhsr59Yk59WH1Q9QOL5HquaR6ZZkyjCCxAyb2OjP3urBz7toCmxtWpXrLb5Lr1/OXP4A5E0BA7bg7O6fmRlF4bKr3LXZZ7GEi2pMOhbUbFXIfzC18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755225043; c=relaxed/simple;
-	bh=PtMYn1bxHqEqoN5r8hBTrpcsmhF4r1fGu8YhJ3RnVwc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=I0yWqEl65mDobvWrxeH4AMWPdjPXmqvNU9UlgmKt9EnHgDldpxKQW4CkDt+kcgL1VHRj3QCtvcuiF3loLY082OXv4BvgL+OIKGmuaqvnmVN3CWJSHJyzFNLCw4hJOcPiW2PgnwEiP1NRRwhbQkr3Tx0fx7n/NW+c2/Gtt+69LSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YbkiXE4x; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57F2UX4w2063384;
-	Thu, 14 Aug 2025 21:30:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755225033;
-	bh=nhX7uXaxU+2Gglt/gH8ZNapg5luz/gjuSFA1JXtTgps=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=YbkiXE4xIQaGr2nwUV9gmOBmbvOu5Jk/yHJ/yhd2p2s1X7W1uaX9ey/kmzL0SVU3X
-	 W+Db6tFTNhwjtZe7XpalDtE4/FG2eQb+M+KfXmdVtIrWmtgBV1XSWPgzIvLdWb9dME
-	 Ge+O3TmrGxjTCQnST6Qa5HU01avr6h9WsO6rYkYk=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57F2UXhG1585090
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 14 Aug 2025 21:30:33 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 14
- Aug 2025 21:30:33 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 14 Aug 2025 21:30:33 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57F2US52344700;
-	Thu, 14 Aug 2025 21:30:29 -0500
-Message-ID: <b257999d-df16-405c-830b-5397da37c6ed@ti.com>
-Date: Fri, 15 Aug 2025 08:00:28 +0530
+	s=arc-20240116; t=1755225158; c=relaxed/simple;
+	bh=jb5aUAIOPmXQlX/Gkg+Ce77q59K2k4DHix2ig07Lyyo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eQOv0Q6hScSFivK9FoPYAoM27WjuItrLrd+PvWwVWLB/Rp5TbtRk3AhT4vURf93Yfk8Tfpwd8TQ0yp/kx1m2Hw1KpPKKxiqDQjqCrPj6+n3wCPQ7Y88T+KQ6P6ecnDbcBsTqgzSGB+AgC62nz2l5nxTMpz6s7Vf+FzGeJDEiVvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=BOcqGEZc; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: by linux.microsoft.com (Postfix, from userid 1152)
+	id 440FB2015E67; Thu, 14 Aug 2025 19:32:36 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 440FB2015E67
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1755225156;
+	bh=SfVLrp5MpeYOXpVpoxxNlTvQJ1uMnDQpTS8cxvxTiM8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BOcqGEZcYK/2LHjZDb7xkXurRNzYTfC7qbXD1W0BEtudQ+SR358Agacb9YpCR7Pii
+	 5dOU+pKT38r+DtzAhG0k5ZVAQ6Ky89TFgGDHKZxvbiFNW8N6BJOuEehjvAg/BA8JFH
+	 q9OoHT6v9cg0jfey0UKbmRyGV6j3tz2MujrkMF6c=
+Date: Thu, 14 Aug 2025 19:32:36 -0700
+From: Shyam Saini <shyamsaini@linux.microsoft.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, virtualization@lists.linux.dev,
+	will@kernel.org, jacob.pan@linux.microsoft.com,
+	eric.auger@redhat.com, code@tyhicks.com,
+	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
+	bboscaccy@linux.microsoft.com, robh@kernel.org,
+	saravanak@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lizhi.hou@amd.com, clement.leger@bootlin.com
+Subject: Re: [PATCH v3 2/3] iommu/of: fix device tree configuration for PCI
+ devices
+Message-ID: <20250815023236.GA30997@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <20250806215539.1240561-1-shyamsaini@linux.microsoft.com>
+ <20250806215539.1240561-3-shyamsaini@linux.microsoft.com>
+ <20250808121515.GE377696@ziepe.ca>
+ <20250814233018.GA31418@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20250815003958.GE599331@ziepe.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/33] arm64: dts: ti: k3-j7200: Enable remote processors
- at board level
-To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <afd@ti.com>, <hnagalla@ti.com>, <jm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <u-kumar1@ti.com>
-References: <20250814223839.3256046-1-b-padhi@ti.com>
- <20250814223839.3256046-2-b-padhi@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20250814223839.3256046-2-b-padhi@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250815003958.GE599331@ziepe.ca>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-Hello Beleswar,
+On Thu, Aug 14, 2025 at 09:39:58PM -0300, Jason Gunthorpe wrote:
+> On Thu, Aug 14, 2025 at 04:30:18PM -0700, Shyam Saini wrote:
+> > or were you referring to [2]?
+> > 
+> > In that case, the PCI child node data needs to be parsed, which is
+> > currently handled individually by each host controller driver.
+> 
+> Yes, this looks like it may be what I was thinking of, the pci@1,0
+> specifes the BDF effectively
+> 
 
-On 8/15/2025 4:08 AM, Beleswar Padhi wrote:
-> Remote Processors defined in top-level J7200 SoC dtsi files are
-> incomplete without the memory carveouts and mailbox assignments which
-> are only known at board integration level.
->
-> Therefore, disable the remote processors at SoC level and enable them at
-> board level where above information is available.
->
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi       | 3 +++
->   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 3 +++
->   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi     | 9 +++++++++
->   3 files changed, 15 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> index 5ce5f0a3d6f5..628ff89dd72f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> @@ -1516,6 +1516,7 @@ main_r5fss0: r5fss@5c00000 {
->   		ranges = <0x5c00000 0x00 0x5c00000 0x20000>,
->   			 <0x5d00000 0x00 0x5d00000 0x20000>;
->   		power-domains = <&k3_pds 243 TI_SCI_PD_EXCLUSIVE>;
-> +		status = "disabled";
->   
->   		main_r5fss0_core0: r5f@5c00000 {
->   			compatible = "ti,j7200-r5f";
-> @@ -1530,6 +1531,7 @@ main_r5fss0_core0: r5f@5c00000 {
->   			ti,atcm-enable = <1>;
->   			ti,btcm-enable = <1>;
->   			ti,loczrama = <1>;
-> +			status = "disabled";
->   		};
->   
->   		main_r5fss0_core1: r5f@5d00000 {
-> @@ -1545,6 +1547,7 @@ main_r5fss0_core1: r5f@5d00000 {
->   			ti,atcm-enable = <1>;
->   			ti,btcm-enable = <1>;
->   			ti,loczrama = <1>;
-> +			status = "disabled";
->   		};
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> index 56ab144fea07..692c4745040e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> @@ -612,6 +612,7 @@ mcu_r5fss0: r5fss@41000000 {
->   		ranges = <0x41000000 0x00 0x41000000 0x20000>,
->   			 <0x41400000 0x00 0x41400000 0x20000>;
->   		power-domains = <&k3_pds 249 TI_SCI_PD_EXCLUSIVE>;
-> +		status = "disabled";
->   
+In that case, we'll need to parse the child DTS nodes properly
+within of_iommu_get_resv_regions(). I'll include this in v4.
 
-Please leave boot critical fw as is.
+> > This might not be a strong argument, but since firmware updates tend
+> > to happen less frequently than OS updates, any addition or modification
+> > to the FDT would require a firmware update. Wouldn't it be more
+> > maintainable to keep this logic in Linux, which is easier to update
+> > and typically updated more often?
+> 
+> The DT is supposed to describe the HW, if the PCI device has an issue
+> with its dma ranges then it seems reasonable to me the FW will use the
+> existing standards based way to describe that issue?
 
-Here are my suggestions
+If that's the preferred approach, I'll revise the next version accordingly
 
-  create one boot-critical-fw-dtsi for mcu_r5fss0 , include this fw 
-files in all boards.
+> Presumably this is a fixed issue of the platform. You never did
+> explain how your system has such werdio behavior, or how something
+> like iommu=pt can function on it...
+Yes, this issue is platform-specific. On this platform, the default MSI IOVA
+range overlaps with an address region that is reserved for another purpose,
+Other than that we haven't observed any obvious issues for DMA operations
 
-other IPC optional firmware can reside in one dtsi or dtso,
-
-
-> [..]
+Thanks,
+Shyam
 
