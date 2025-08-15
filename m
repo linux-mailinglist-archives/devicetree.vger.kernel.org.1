@@ -1,292 +1,339 @@
-Return-Path: <devicetree+bounces-205211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA440B28573
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 20:01:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30A38B285A0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 20:12:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F11E81D03E8E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 18:01:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FA7A16B023
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 18:11:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F1B184E;
-	Fri, 15 Aug 2025 18:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3E5E2F9C5D;
+	Fri, 15 Aug 2025 18:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="BdYhSOg6"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="lP+0lnPU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011053.outbound.protection.outlook.com [40.107.130.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 253B13176EB;
-	Fri, 15 Aug 2025 18:01:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33E6317714;
+	Fri, 15 Aug 2025 18:11:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.53
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755280877; cv=pass; b=k1NuXcJ2Hqey+5Rrw3wEduvttwCDBB6Y4L6m0hatPRgeCpKnE7e8GkslwX4jncV1rytzz70tqVhVytPBR5EPji92ClzRAdKnFeGxIIrGGWgdfiwg/94Z1/R//OyaytaHUrCnvgYsfLQ4Vy6uYgV8AEQ9LLgPPvYS8PYTeAfut7E=
+	t=1755281476; cv=fail; b=Ok1VFTasAUMsv4r7SkQA2afwSXwYu43ZZPmeqg1B6d7XFLtzNtDmfVIna6zpl9tc6A7VgP5Kq+zBkEJDyfr3TfYr6YW9wN4NP+/Q253zs30HxLS43ccA2JRXt/G6ZMMwuvSyF0mRyBS5iZis7Ra0hw4Adv6XFy7xWclPh/w2vjs=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755280877; c=relaxed/simple;
-	bh=c2ne2qKVVh9A8E5LN3yNQJTIrb3SeBmNk2Q4pAFF0JY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ISegN6XmJHfuZd/8lIlCEo0GjbcTZpWKkruhpFhIU7/CiqwuWQ27oQ1MZ8VqDyQ2wy3DXmK7CaO1Y40N/aZlqN3qKB1j+BAEY1h7AK8nNYGHINRjhsCMDGmuQI+1K+CNeKUcO8PRe0g/UrYWHKUN3W++PLnmlphr3q84lDmn1Kg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=BdYhSOg6; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1755280843; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=NlbByFuhXezVODUStqQ84WvMGy+5YsDPBL0TKQQe4bOJ44hdUPmGFkqP/C5av+VhyVcYF/2FfVMm1YwAXWs2qVD/Q/0JxkJkxYdPWJWPuem3Q2O5LwvkKSVyjHQlrzcGu5h8gDJU57UdrriPjViyqdKb5fHJYB7xx8B1PmCYav0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1755280843; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=h6WWDsR1xkHievKSbr8PoalxXKVtmn2ufWXDQEvTs+o=; 
-	b=Suh3tTS5T5LP6oKAr347zBroRiVDrqH0kptirEwqvIl+XoJMnVcBSR5HC4eMGw86h8yjbz3ZLvfc/L9ahvb4YNSsjaHbeWRk3j/uxet+9R2kMdhdbt43IziKti4tPU5J+d9RfGdQKsB6F2Dj+dHwyqfbkpiqERYGles2H0y9NBk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1755280843;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=h6WWDsR1xkHievKSbr8PoalxXKVtmn2ufWXDQEvTs+o=;
-	b=BdYhSOg6YW1MJKsvAoDqN9fVKJXyPo9eERlXwyI/MrIxnKWLdh25YWMnZUTzviPt
-	kN5sqMK+2cvjeL+Hc8AtkwhRaNJFLMgMiZWxAFZeAUByqrZUgkpdcuXVe56cCHJPsDx
-	9E7ioB1GPTNUnVpj14wulRpNUylptS11YXjvrZ0Y=
-Received: by mx.zohomail.com with SMTPS id 1755280840867964.6365292186097;
-	Fri, 15 Aug 2025 11:00:40 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id B581A180FE9; Fri, 15 Aug 2025 20:00:35 +0200 (CEST)
-Date: Fri, 15 Aug 2025 20:00:35 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Andy Yan <andyshrk@163.com>
-Cc: dmitry.baryshkov@oss.qualcomm.com, neil.armstrong@linaro.org, 
-	heiko@sntech.de, stephen@radxa.com, dri-devel@lists.freedesktop.org, 
-	hjc@rock-chips.com, mripard@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, yubing.zhang@rock-chips.com, 
-	naoki@radxa.com, Laurent.pinchart@ideasonboard.com, 
-	Andy Yan <andy.yan@rock-chips.com>, krzk+dt@kernel.org, robh@kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 09/10] arm64: dts: rockchip: Enable DisplayPort for
- rk3588s Cool Pi 4B
-Message-ID: <xhoi2lqzef5qeissr6oboxp6bqgxrk5hzkrgs5wrv3kjuiausm@3ypollf6gdme>
-References: <20250728082846.3811429-1-andyshrk@163.com>
- <20250728082846.3811429-10-andyshrk@163.com>
- <hbvwlucm5mnjpve6hb6h7dusgrokvdxzbpq5zrwib4yesrdakp@v77ofq7u2vv2>
- <5deac95c.8ec2.1985b428b0b.Coremail.andyshrk@163.com>
- <6c84556c.29cb.1985e658afb.Coremail.andyshrk@163.com>
+	s=arc-20240116; t=1755281476; c=relaxed/simple;
+	bh=gZ+xtq4Qw8J8ksOEY7G1Tx1wbHZSePzybvPbG60RaSc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=qB1bUFrD1sV0vAnDeOvrK+xw6c/MXH+c0UeufbVGBqZp1PPQvRxmtdqw7bo3sqy6RlG+NedpiJ3jWbzFa9r0ryLfhBG8wBCdDjBFAUZX/zBk9UQ9i/XNd/+Bll5PpuRZS3AR+m8o7kLL5mJgnheCmfHbWNNZKpu8RpSXuwa+D1Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=lP+0lnPU; arc=fail smtp.client-ip=40.107.130.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fYUu+xtwskJboTQ/vcwXJUUVdvDjJ/WMCJTX6IINcoNxlhEcBv8djq+wrIpGHGyAICGgytjV0mQgoJqwV5fEy4g7gI5W8KbjgTC3f4BxCTNcyic6OXtfc/Gdkn6nEuInmamESCJnmzFXfsZQwHfZBxSnkQRaj4iWtRKKNWSqErVU1mmpJCakUslrLtTagtEp+bnTW8M3tYDx81PhEpl6LD66C7mVSvxSjcz8KXO5jhpn+NBx7TqS4hiwKCGxA5UdnwNc2G54xG/Ao3t1BHg7mjNUpHrm4aUuMPAtSMwplwABvsQqmCAudDX9mPWP5PySXyIdigwdHr2r6t1jCtW9CQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p5CTdoGcWjITS+srWVt2qJynegFPcSq1dvyh03XonRQ=;
+ b=KSnN6IPlW8WfMChFsxSGJz9B7DL+KUg2VFvia/FhHaVzeX3qhIoU96ZG/RsPpyH93NOjoZ3fxvNII+YC+ul4p+g2khiH516jQLSUxOUTsakTAGk9I/qKvof+PmhQ4UOsP6TAWbZulGPn2MBAe/svCcLFEQh892xGHoQC5Awods4WZW2vyoO8hQIldVVCwfnLwcKQI3KjqN5cpqVTJBw/rmULm97rpkQcl/Zp9hcjCfQjFw7E+tNXw3XmY5GnurHKp2hBJdEgAunJm/uydnf2JwDM/6ILWXQUtmlnrgiIe68grPvbsVBA695TPPasImmJXbfTricS7Ur3NDn0LCGrpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p5CTdoGcWjITS+srWVt2qJynegFPcSq1dvyh03XonRQ=;
+ b=lP+0lnPUt3b+AInmkfNgiyiLa9qPAvC/QGaC6NDYNouaCNwtdS645r90KIx1MEzQiRZqYkd2cg+eJOUDwHsPRj8dLq0o4f56IgT1JKZmhOvJ4/uQT6aKhElfzWbyWSPQGSQ1t3TPm6qh6i/gg55101w3P0BU/09X8Hun+P0TFAyN8B570lTVQgiG7KmtJrb4dfn8HVYmwEEUEKBsHq8gTAvSicx2PWwFPFs0pc0k/NtPu7w77H0DnYNOaSugPWIR5mlNXVXU9eyHrsf7Uap2IhskOO54x1QLrzEeVscWaE6NV1TFjVks733Sz09k9g1W7atHiUiQwgDfQfx7qTDKyA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM8PR04MB7410.eurprd04.prod.outlook.com (2603:10a6:20b:1d5::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.7; Fri, 15 Aug
+ 2025 18:11:10 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.9052.006; Fri, 15 Aug 2025
+ 18:11:10 +0000
+Date: Fri, 15 Aug 2025 14:11:00 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Wei Fang <wei.fang@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, richardcochran@gmail.com,
+	claudiu.manoil@nxp.com, vladimir.oltean@nxp.com,
+	xiaoning.wang@nxp.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	vadim.fedorenko@linux.dev, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, festevam@gmail.com, fushi.peng@nxp.com,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	kernel@pengutronix.de
+Subject: Re: [PATCH v3 net-next 01/15] dt-bindings: ptp: add NETC Timer PTP
+ clock
+Message-ID: <aJ94NL34kpdMKaH6@lizhi-Precision-Tower-5810>
+References: <20250812094634.489901-1-wei.fang@nxp.com>
+ <20250812094634.489901-2-wei.fang@nxp.com>
+ <20250814-hospitable-hyrax-of-health-21eef3@kuoka>
+ <aJ4v4D71OAaV3ZXy@lizhi-Precision-Tower-5810>
+ <cf531bbd-dc07-4c13-9dbb-774c8dfca70c@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cf531bbd-dc07-4c13-9dbb-774c8dfca70c@kernel.org>
+X-ClientProxiedBy: BY5PR13CA0018.namprd13.prod.outlook.com
+ (2603:10b6:a03:180::31) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="woxxqm7gbt6grmgk"
-Content-Disposition: inline
-In-Reply-To: <6c84556c.29cb.1985e658afb.Coremail.andyshrk@163.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.3/255.239.27
-X-ZohoMailClient: External
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM8PR04MB7410:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31ee72e8-a579-4f92-0bc1-08dddc271c9f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|52116014|19092799006|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?J8PmKC+jWd03W9c0f74u3VKtrq9yJLvi1ABf6khDTuVoq7zl941tEkt7UHBW?=
+ =?us-ascii?Q?24JOJPzRq6c0Hg3HaaPfKsFZW6KOSPxsc08E16czXUWKurHcdSZvKmSXcwjB?=
+ =?us-ascii?Q?0cUlY4/ClaSvMn1cxsc0QZujWA3Wni06ehZj3ZAC7+4v8MNlC4D2khqcGCtA?=
+ =?us-ascii?Q?Fg5LXl/onDsG9MiylAgjREPCylw+71/G2B1Z0OfKXG3Gq6HrhEfX3A5+lpsz?=
+ =?us-ascii?Q?uPOqIicTe4RmQ5rcgwSYSbEPlg7InDxVFfFVV8am4lOxy9FpgpF0ErKklaiO?=
+ =?us-ascii?Q?4GeqwsoW31dqh1+/JDuzWCbiVnhvheF4T0W+ic/JcWD9USVGKfggltWZZq3A?=
+ =?us-ascii?Q?lmt50XwcPpgoa5alRZoYjDndgcNWXfzwRlsrB5Lw0bXY3Wkonc4BG1KikOjz?=
+ =?us-ascii?Q?OZxGpRL8VHRGqg1RWNNeJPNbAK0zjnsMbqMNG8GXeYiqY1yabbDWUNwwLCVo?=
+ =?us-ascii?Q?U9ZaJTdPja7BJEPA/h0FMb85rXXOHPauPRgTZ1CuV1lQDEcmn6azSC4cWppo?=
+ =?us-ascii?Q?TuMT8cNMnD18ovw7AvtVUz5zH6h+lwpbweBzMPCnj/7ferf3goBYWBBtQnQm?=
+ =?us-ascii?Q?Fqz/6Qnnv6WMQ4N0svWJ95fvWbzFOEbPcXTtbVT2RGbJYOCGu5kXiDmC+bNw?=
+ =?us-ascii?Q?JRulIAz0nDsl/9284kw/vm0aODzmn5QSiXUwz7w19Z0106zRaID2OR6oTH9E?=
+ =?us-ascii?Q?UZ/Duw7d4wTVn1yP2pNdmfoiUmxBIrJZMP4eg920vle3eSW3ZSZrHBXTCh+a?=
+ =?us-ascii?Q?515FX0qFZvvEdqa9D6AhjXhNB5f9SDIWZcDl4TP/xc3TkivyRS3syTyYVtIT?=
+ =?us-ascii?Q?v2TiwZMuRlH+w+L6ntX65V/Ryqo++drkIF1QXyIWIg89q9H7wYr3yMxHrDYp?=
+ =?us-ascii?Q?4PeraSUHPJJMef5N1BCMTf9xg7hqNLAmLJ7lFOBKlpEa9L3Elc36TRYFWqXW?=
+ =?us-ascii?Q?e9W+RaL6SFLubr8+7CiNhNiussi3nauwfJyeK5by7q+g0dFB8CA2/POsBd6t?=
+ =?us-ascii?Q?ACcSgSlDYhV7uk2OMq3/jzhWIU9u7iGOGXtX6iJseSW00EXW0F2E3ysc6Qiv?=
+ =?us-ascii?Q?rqKTk7if/l2MDGYg+0T4sZus40bSDH4Xow/63fiHHW1LHfK5GuWTYbTtfAZE?=
+ =?us-ascii?Q?l+uBQI0l8CDtYNkPUgHrZq/jD8FtY7q7furPs3Zseq2uceFDM/170wcDXg10?=
+ =?us-ascii?Q?Uo3+SQaXa3eoIhJD8m1nfjqTrgLTuAjEWqzuP9Iv2fSQYdBFCCUFxuR54nHe?=
+ =?us-ascii?Q?OXACq+QDOUIMPcVBLcKdoWGNfI4SrkEYB1Ln/2u980qiQRfK8IbQaxxO6K2O?=
+ =?us-ascii?Q?Ag3+XBEYmJ4i9H9zN0hsDwcBvijrZmE0sFPmoXUgZfU7fvW+B81epijsZqEr?=
+ =?us-ascii?Q?WpaRpoM3lFa1ziDu1c89uEE9VhUNLGe5PM1u0pYjhbrv8QXks3wfyEMP6LVt?=
+ =?us-ascii?Q?MqNWXNA92vH5c9gPKn28zoMJbMqvTStr?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(19092799006)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?CoDUq1f/1+P34F6rgPmSnqV1xnrRWlmB9M8rvM7IWIriNh3MzKF8+d+/6t7f?=
+ =?us-ascii?Q?MILPOehJuB+MtRGGSD9mcX2ejIevdFqz45d/IAz8kEhlzU3vREi0si/fHefQ?=
+ =?us-ascii?Q?d2ZTDguk353JCN4zV4HXFobLeDrQtbQb9BuOkwzorfHRXgveAfPaCDs9lZmr?=
+ =?us-ascii?Q?7DJdhaIHFtL2LzhDl1Bd+3IBOzcZSXcHtIOeEfkDLMS1Hb6+p+EuIM4vS/EL?=
+ =?us-ascii?Q?zpxz9MmkBHwtdDWi+ZqP+Hb2OzDP4a02jbdK5YMcNUUEoZ7rwBGWmGgl1AJd?=
+ =?us-ascii?Q?Q9dfUfCkuNCHlQbiqtIQiHDjJm7Dqeuio+9WvMyzw5hRr73QZKf5Y29T66WL?=
+ =?us-ascii?Q?AxdxBR2nw7KCJ8pFVoZ6W/ffhh0i94Azu62wvYbXiBTabBxVsom3t7rCKCWb?=
+ =?us-ascii?Q?wgP+eoCMNRQe6bQYkg7pFCa1zAvn+JDxYnNznj9coZRSkU8u8lR/qA7iIr6E?=
+ =?us-ascii?Q?Yr+zEWKJJDvx7t7sei5gvrJSw6PefR4lcGDTmxmuz8lBIBtxsoVqwlKxfK96?=
+ =?us-ascii?Q?n8F7lVq6nTwAwgnkdx4PwBTWJ7CIcpDKTCvLgUvkTYvMn2VYjCtJPvfyg6Vk?=
+ =?us-ascii?Q?n5fwpSJU1+msaCjG+5V4JmptKRsPuyx/4rdb1gyrm9tey0b6S7nGtsND6olL?=
+ =?us-ascii?Q?vwybGXHvSly025xRwo/o4YzQFQQRH806LHUHh6EWI7aYlI/nlTm3FM0y8rVE?=
+ =?us-ascii?Q?wwNrU2UJukT3SIhq64aciaYLl3cD2F/AFE6aCt+docA5GQOdfONKrlCkPI/h?=
+ =?us-ascii?Q?IfBzyo8zfczOpbZy/kzB4P+9AayUZ+DzUREkRdwnio6/71wBy3ALakCv3/Kg?=
+ =?us-ascii?Q?DmdfvHs6oSuLPPo+BtUdHztW+G6B4iwxqki6zv9MQoK1oGagc91OHy+huv9u?=
+ =?us-ascii?Q?Ih8jTpsT6wOSdDg6O6t1mTzKopYA6e24BoYIbKkk/jaPZKvBM7GMdp4lLjkM?=
+ =?us-ascii?Q?vsXrtgIwN6s3EknJLStjXPDc8SXzyY0JlVEcOX5qrdrFkNT8eRl5oUV84YJZ?=
+ =?us-ascii?Q?1ooa05Ytx2zHTTCFuRnfknDrep1c2YVs4t45OV85rAHOyOpXT4R0okAb2DUv?=
+ =?us-ascii?Q?i9Be+P7TXrsD7iIgCd8riRV/1dALOzL0CPNJfjpfa7d6i4SHIX/jwgfFoReX?=
+ =?us-ascii?Q?mEMZE2p8m/+tw4QLbqCA5gqGtwN+U/SuN6d2A7sPe1gY9ITl1dcWmzXTd1Yg?=
+ =?us-ascii?Q?kg7idaETBtg5XkiENcRV9w57/yWmN4zAkhBsT28IKoxVTBRiSR22vkwK+IcD?=
+ =?us-ascii?Q?yT7ApqNwu7lUlgKsBAG0QU+4wBfE/3lfaYIKVzv7IL/wGuSyEp8NV3HvvaDO?=
+ =?us-ascii?Q?Aa/R+p9Kbys8k/zJmmsgZcDBByTuSYegWdfF4ImI4jokY8cD/1pSzfHgw4AP?=
+ =?us-ascii?Q?HQ9bo2fwkRQiIdugH6lfQ/FtqtNWM4wn7sOMObLl5qhitUPJFnvFmlJioHez?=
+ =?us-ascii?Q?HF6+0rSrElmd52zYVAGjJ6PORVQTjdTCfiyRDl4RMO4O3hRC/Gdz594FIp85?=
+ =?us-ascii?Q?BP4mnQ9bjx3YT4tDcajWQQMUKl+0FZVVuc+ZCT6xugVTEhONbzA8oLGGLW0F?=
+ =?us-ascii?Q?DuqjDsAl5IVRTHVjcEa4KvivIbLlgdnnxI3F3T6n?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31ee72e8-a579-4f92-0bc1-08dddc271c9f
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2025 18:11:10.1414
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9tV7baC0/VPmKCPlDOLSy9l2TZpoo8VQ8vQ8YLWW0W/8uJZTj3AXCtO4XRmnpe0vK7hcJY3MmV6r6FjSB9trRQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7410
 
-
---woxxqm7gbt6grmgk
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 09/10] arm64: dts: rockchip: Enable DisplayPort for
- rk3588s Cool Pi 4B
-MIME-Version: 1.0
-
-Hi,
-
-On Thu, Jul 31, 2025 at 10:52:49AM +0800, Andy Yan wrote:
->=20
-> Hello Sebastian=EF=BC=8C
->=20
-> =E5=9C=A8 2025-07-30 20:15:44=EF=BC=8C"Andy Yan" <andyshrk@163.com> =E5=
-=86=99=E9=81=93=EF=BC=9A
-> >
-> >
-> >Hello Sebastian=EF=BC=8C
-> >
-> >At 2025-07-30 01:09:41, "Sebastian Reichel" <sebastian.reichel@collabora=
-=2Ecom> wrote:
-> >>Hi,
-> >>
-> >>On Mon, Jul 28, 2025 at 04:28:34PM +0800, Andy Yan wrote:
-> >>> From: Andy Yan <andy.yan@rock-chips.com>
-> >>>=20
-> >>> Enable the Mini DisplayPort on this board.
-> >>> Note that ROCKCHIP_VOP2_EP_DP0 is defined as 10 in dt-binding header,
-> >>> but it will trigger a dtc warning like "graph node unit address error,
-> >>> expected "a"" if we use it directly after endpoint, so we use "a"
-> >>> instead here.
-> >>>=20
-> >>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> >>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+On Fri, Aug 15, 2025 at 08:05:12AM +0200, Krzysztof Kozlowski wrote:
+> On 14/08/2025 20:50, Frank Li wrote:
+> > On Thu, Aug 14, 2025 at 10:25:14AM +0200, Krzysztof Kozlowski wrote:
+> >> On Tue, Aug 12, 2025 at 05:46:20PM +0800, Wei Fang wrote:
+> >>> NXP NETC (Ethernet Controller) is a multi-function PCIe Root Complex
+> >>> Integrated Endpoint (RCiEP), the Timer is one of its functions which
+> >>> provides current time with nanosecond resolution, precise periodic
+> >>> pulse, pulse on timeout (alarm), and time capture on external pulse
+> >>> support. And also supports time synchronization as required for IEEE
+> >>> 1588 and IEEE 802.1AS-2020. So add device tree binding doc for the
+> >>> PTP clock based on NETC Timer.
+> >>>
+> >>> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> >>>
 > >>> ---
+> >>> v2 changes:
+> >>> 1. Refine the subject and the commit message
+> >>> 2. Remove "nxp,pps-channel"
+> >>> 3. Add description to "clocks" and "clock-names"
+> >>> v3 changes:
+> >>> 1. Remove the "system" clock from clock-names
+> >>> ---
+> >>>  .../devicetree/bindings/ptp/nxp,ptp-netc.yaml | 63 +++++++++++++++++++
+> >>>  1 file changed, 63 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml b/Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..60fb2513fd76
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
+> >>> @@ -0,0 +1,63 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/ptp/nxp,ptp-netc.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: NXP NETC V4 Timer PTP clock
+> >>> +
+> >>> +description:
+> >>> +  NETC V4 Timer provides current time with nanosecond resolution, precise
+> >>> +  periodic pulse, pulse on timeout (alarm), and time capture on external
+> >>> +  pulse support. And it supports time synchronization as required for
+> >>> +  IEEE 1588 and IEEE 802.1AS-2020.
+> >>> +
+> >>> +maintainers:
+> >>> +  - Wei Fang <wei.fang@nxp.com>
+> >>> +  - Clark Wang <xiaoning.wang@nxp.com>
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    enum:
+> >>> +      - pci1131,ee02
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clocks:
+> >>> +    maxItems: 1
+> >>> +    description:
+> >>> +      The reference clock of NETC Timer, if not present, indicates that
+> >>> +      the system clock of NETC IP is selected as the reference clock.
+> >>> +
+> >>> +  clock-names:
+> >>> +    description:
+> >>> +      The "ccm_timer" means the reference clock comes from CCM of SoC.
+> >>> +      The "ext_1588" means the reference clock comes from external IO
+> >>> +      pins.
+> >>> +    enum:
+> >>> +      - ccm_timer
 > >>
-> >>The graph currently looks like this:
+> >> You should name here how the input pin is called, not the source. Pin is
+> >> "ref"?
 > >>
-> >>VOP <-> DP controller <-> DP Connector
+> >>> +      - ext_1588
 > >>
-> >>IIUIC this does not work for USB-C and needs to look like this,
-> >>because the USBDP PHY handles the lane muxing and thus must be
-> >>the thing connected to the USB-C controller/connector:
+> >> This should be just "ext"? We probably talked about this, but this feels
+> >> like you describe one input in different ways.
+> >>
+> >> You will get the same questions in the future, if commit msg does not
+> >> reflect previous talks.
+> >>
+> >>> +
+> >>> +required:
+> >>> +  - compatible
+> >>> +  - reg
+> >>> +
+> >>> +allOf:
+> >>> +  - $ref: /schemas/pci/pci-device.yaml
+> >>> +
+> >>> +unevaluatedProperties: false
+> >>> +
+> >>> +examples:
+> >>> +  - |
+> >>> +    pcie {
+> >>> +        #address-cells = <3>;
+> >>> +        #size-cells = <2>;
+> >>> +
+> >>> +        ethernet@18,0 {
+> >>
+> >> That's rather timer or ptp-timer or your binding is incorrect. Please
+> >> describe COMPLETE device in your binding.
 > >
-> >I previously tests USB-C Altmode on Linux 5.15 using Rock 5b,  this func=
-tion works well.=20
-> >However, when the same dts configuration is used on Linux 6.16 and teste=
-d with Rock 5b in USB-C Altmode,=20
-> >the HPD interrupt of DP cannot be triggered. I'm not sure yet what chang=
-es have occurred between them.
-> >Moreover, I noticed that on your test branch[1], the DTS configuration h=
-as also changed compared to before.
-> >I would greatly appreciate it if you could share some details.
->=20
-> Some updates:
->       After comment out pd-version(Your previous DTS didn't include this =
-property.) on linux 6.16[2]
->      //pd-revision =3D /bits/ 8 <0x2 0x0 0x1 0x2>;
->     The USB-C Alt Mode output can work as before=E3=80=82
->     I still have relatively limited knowledge about USB-C, so I hope to h=
-ear more of your opinions.
-
-I got a bit distracted by some regressions introduced during the
-merge window. It does not really make sense, that limiting the
-pd-revision breaks DP AltMode. I did get it working once, but I
-think there is some race condition involved in the USB-PD area.
-
-I'm pretty sure this is in the USB-C PD/AltMode handling and thus
-more or less independent of this series. Also my question regarding
-the proper DT binding effectively affects the USBDP PHY binding, so
-I'm fine to see this series merged (It looks like all necessary
-Reviewed-by have been collected) and having a closer look at the
-USBDP PHY binding separately in the next step.
-
-Greetings,
-
--- Sebastian
-
->=20
->=20
+> > Krzysztof:
 > >
+> > 	I have question about "COMPLETE" here. For some MFD/syscon, I know
+> > need descript all children nodes to make MFD/syscon complete.
 > >
+> > 	But here it is PCIe device.
 > >
-> >[0]https://github.com/andyshrk/linux/commit/b9f87a562d431fb59b664b7aed41=
-869a8f184de3
-> >[1]https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/=
--/commit/0e7e90494482cf77d5bb058a47583b6747b140f4
->   [2]https://github.com/andyshrk/linux/tree/rk3588-dp-upstream-v6
->=20
-> >>
-> >>VOP <-> DP controller <-> USBDP PHY <-> USB-C Connector
-> >>
-> >>I wonder if the simple case not involving USB-C should also have
-> >>the USBDP PHY described in the graph as a transparent bridge?
-> >>Note, that the USBDP PHY DT binding is currently not ready for
-> >>this (this also affects the next patch, but should be enough to
-> >>discuss this once :)).
-> >>
-> >>Greetings,
-> >>
-> >>-- Sebastian
-> >>
-> >>>=20
-> >>> (no changes since v2)
-> >>>=20
-> >>> Changes in v2:
-> >>> - Sort in alphabetical order
-> >>>=20
-> >>>  .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   | 37 +++++++++++++++++=
-++
-> >>>  1 file changed, 37 insertions(+)
-> >>>=20
-> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts b/arc=
-h/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
-> >>> index 8b717c4017a46..5393c6cc493c3 100644
-> >>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
-> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
-> >>> @@ -39,6 +39,18 @@ chosen {
-> >>>  		stdout-path =3D "serial2:1500000n8";
-> >>>  	};
-> >>> =20
-> >>> +	dp-con {
-> >>> +		compatible =3D "dp-connector";
-> >>> +		label =3D "DP OUT";
-> >>> +		type =3D "mini";
-> >>> +
-> >>> +		port {
-> >>> +			dp_con_in: endpoint {
-> >>> +				remote-endpoint =3D <&dp0_out_con>;
-> >>> +			};
-> >>> +		};
-> >>> +	};
-> >>> +
-> >>>  	hdmi-con {
-> >>>  		compatible =3D "hdmi-connector";
-> >>>  		type =3D "d";
-> >>> @@ -215,6 +227,24 @@ &cpu_b2 {
-> >>>  	cpu-supply =3D <&vdd_cpu_big1_s0>;
-> >>>  };
-> >>> =20
-> >>> +&dp0 {
-> >>> +	status =3D "okay";
-> >>> +	pinctrl-0 =3D <&dp0m0_pins>;
-> >>> +	pinctrl-names =3D "default";
-> >>> +};
-> >>> +
-> >>> +&dp0_in {
-> >>> +	dp0_in_vp2: endpoint {
-> >>> +		remote-endpoint =3D <&vp2_out_dp0>;
-> >>> +	};
-> >>> +};
-> >>> +
-> >>> +&dp0_out {
-> >>> +	dp0_out_con: endpoint {
-> >>> +		remote-endpoint =3D <&dp_con_in>;
-> >>> +	};
-> >>> +};
-> >>> +
-> >>>  &gpu {
-> >>>  	mali-supply =3D <&vdd_gpu_s0>;
-> >>>  	status =3D "okay";
-> >>> @@ -889,3 +919,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-> >>>  		remote-endpoint =3D <&hdmi0_in_vp0>;
-> >>>  	};
-> >>>  };
-> >>> +
-> >>> +&vp2 {
-> >>> +	vp2_out_dp0: endpoint@a {
-> >>> +		reg =3D <ROCKCHIP_VOP2_EP_DP0>;
-> >>> +		remote-endpoint =3D <&dp0_in_vp2>;
-> >>> +	};
-> >>> +};
-> >>> --=20
-> >>> 2.43.0
-> >>>=20
-> >_______________________________________________
-> >Linux-rockchip mailing list
-> >Linux-rockchip@lists.infradead.org
-> >http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> > pcie_4ca00000: pcie@4ca00000 {
+> > 	compatible = "pci-host-ecam-generic";
+> > 	...
+> >
+> > 	enetc_port0: ethernet@0,0 {
+> >         	compatible = "fsl,imx95-enetc", "...";
+> > 		...
+> >
+> > 	ptp-timer@18,0 {
+> > 		compatible = "pci1131,ee02";
+> > 	}
+> > };
+> >
+> > 	parent "pci-host-ecam-generic" is common pci binding, each children
+> > is indepentant part.
+> >
+> > 	I am not sure how to decript COMPLETE device for PCI devices.
+>
+> I don't know what is missing here, but naming it ethernet suggested
+> there are other functions not being described in the binding.
 
---woxxqm7gbt6grmgk
-Content-Type: application/pgp-signature; name="signature.asc"
+name 'ethernet@18,0' is wrong, which should be fixed as 'ptp-timer@18,0'.
 
------BEGIN PGP SIGNATURE-----
+which is independence device. This file descript its's bindings.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmifdb8ACgkQ2O7X88g7
-+ppMng/7BSgjHXMbR9F6+FVwbXlrvZPBmAugkwFvgOVM1xA2L7WMzhAH4zSKHrCp
-FUaVyLUsmwwmhl4oFFUxiC5iqM3t5DVt8bYFX/vaRVdWzqss+Eo3/wG2Bye4EBF4
-TQhtAxaLSZbUR+Trk1WMJoSAQi0Wi/KeuBe52nIoW+TTLrr/REJCwDCEeKhxJk+w
-Vnhv2wHGC1lkSxbDv0ejHuUulZaeUpBeq9fqDkNgfo/pTOWWnqGESuaUCEJp5SxL
-JtLd9vvMG7jj051QZjp4WIgy4DhFOCzXDIqMrCesWXo/z/MbP+9QLEBPE9JbtfoL
-6+mTn6gGOrsqxt9PHecW9s73urPiNpGMkHC1xQPU9Y57XE/UY9UMJqbj4Snuee2A
-O6u+FMq4xFLOvAIFwfiqyNDA4XQ7jFPvwDKmlPHWrCcScNtkbXE+xUkXiXx1jlz2
-W5icc7ybnf//1ULy2NqGz2Xe9cXPPZPkCisVHymM/Lv/gHV0IitBehFz7kaLY25T
-Spj4ROPpXVl35pj8REYCulS5yF83JV0hiCztVKhcZNFjE5CLgUm0B0GIMiLfTurc
-/9vKllwnUmZ8XgYSsdRXh1z8y72ia68yoibVFOyPNTiqe2PHj7iC4HYx0LAWVmhb
-rjklRqwtwofHHMJquecoSDUXBrxC/ngidR8Y78c1jQMjU9oQjDw=
-=pYFV
------END PGP SIGNATURE-----
+Other embedded pcie devices located in ENETC submodule is descript by other
+binding files.
 
---woxxqm7gbt6grmgk--
+Such as MIDO: Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
+NIC: Documentation/devicetree/bindings/net/fsl,enetc.yaml
+
+For ptp-timer, I think it should be complete enough. Do we need descirpt
+its's consumer? An example
+
+https://lore.kernel.org/imx/20250812094634.489901-4-wei.fang@nxp.com/
+
++    pcie {
++      #address-cells = <3>;
++      #size-cells = <2>;
++
++      ethernet@0,0 {
++          compatible = "pci1131,e101";
++          reg = <0x000000 0 0 0 0>;
++          clocks = <&scmi_clk 102>;
++          clock-names = "ref";
++          phy-handle = <&ethphy0>;
++          phy-mode = "rgmii-id";
++          ptp-timer = <&netc_timer>;
+
+This phandle point to ptp-timer@18,0
+
++      };
++    };
+
+Frank
+>
+>
+>
+> Best regards,
+> Krzysztof
 
