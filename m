@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-205239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C1BBB28768
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 22:52:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DDFFB2878A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 23:14:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40C1E1B6033F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 20:52:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D485AE4009
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 21:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D967A23C4EA;
-	Fri, 15 Aug 2025 20:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF04823D2A3;
+	Fri, 15 Aug 2025 21:14:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53AFA26AF3;
-	Fri, 15 Aug 2025 20:52:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 599DC218AAA;
+	Fri, 15 Aug 2025 21:14:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755291141; cv=none; b=sDcxltmiqmmSfRVD3oxAa/VcKHBusTLljFwKEtBjH0pre3AUL5z16bJu2vgVPgqZlls9qIl88hSJjIaASjb7cd+NEP9zV4n4+1mrNVZj2Y3oaZ+jxw0810fN4EZ9/ibJYVcKHAwJ79BfXV5umjvxLeotmgIga4mGI6+f6/KPyis=
+	t=1755292462; cv=none; b=qefwn90CgCCu/9roct5hVsSCbHkJXNYHiLzyWlGBtPcEXRTrY8OquOkFPz220YkQDOkOVWG8Yow3bAK+FCAC9uMxcHh/2FLEXypP9q9FUjII0FBFnqScp48yMCYsHVHrlKNRh2nsf6whdbuaEMETt2AWn2xOe4YVXBNSyMmij5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755291141; c=relaxed/simple;
-	bh=3/t9Nj77xUmviwQe4XdqVzXk0hYy88KvnKXP+2T3MaU=;
+	s=arc-20240116; t=1755292462; c=relaxed/simple;
+	bh=9p9okCGYvGPHo8sJcrzTn4FAmsxYbsgLB6jhERDRiP0=;
 	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=qOQ/tU5CRF+/kAKRmlygIF/zmSY63/HmDT8RCfWHkL8abHxxACn732MpP7x0N5tjFaw25YG6e1K2h/6U9cU92sNIrlh5sVkMlXmkcOpBHsibdx663rRX4j+0oKkTlcsS+pXZHF3aSl6JfwBiGdjPvm9pvWnrMbmfrd1/WmTc2k8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu; spf=pass smtp.mailfrom=artur-rojek.eu; arc=none smtp.client-ip=217.70.183.195
+	 Message-ID:Content-Type; b=B+DF0oCQjTFGNd3sByqqZZ5egQyOLncqMSL0stCW7wU1XZ8ZjZKSH78WPIkF7xGARWxQSkrliXiDBMy0lYEg0joPQUj5ZClzZ1c0S8MkyN4QD9am12YuWUFTVcy4h/jrPpd+T1vNgHnP29CgNtPqc2gkCH+c73+rt+dJUprLFJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu; spf=pass smtp.mailfrom=artur-rojek.eu; arc=none smtp.client-ip=217.70.183.196
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=artur-rojek.eu
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 095071F47A;
-	Fri, 15 Aug 2025 20:52:04 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 16AF041DE2;
+	Fri, 15 Aug 2025 21:14:08 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 15 Aug 2025 22:52:04 +0200
+Date: Fri, 15 Aug 2025 23:14:08 +0200
 From: Artur Rojek <contact@artur-rojek.eu>
 To: Andrew Lunn <andrew@lunn.ch>
 Cc: Rob Landley <rob@landley.net>, Jeff Dionne <jeff@coresemi.io>, John Paul
@@ -49,63 +49,88 @@ Cc: Rob Landley <rob@landley.net>, Jeff Dionne <jeff@coresemi.io>, John Paul
  <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 Subject: Re: [PATCH 3/3] net: j2: Introduce J-Core EMAC
-In-Reply-To: <973c6f96-6020-43e0-a7cf-9c129611da13@lunn.ch>
+In-Reply-To: <b1a9b50471d80d51691dfbe1c0dbe6fb@artur-rojek.eu>
 References: <20250815194806.1202589-1-contact@artur-rojek.eu>
  <20250815194806.1202589-4-contact@artur-rojek.eu>
  <973c6f96-6020-43e0-a7cf-9c129611da13@lunn.ch>
-Message-ID: <b1a9b50471d80d51691dfbe1c0dbe6fb@artur-rojek.eu>
+ <b1a9b50471d80d51691dfbe1c0dbe6fb@artur-rojek.eu>
+Message-ID: <02ce17e8f00955bab53194a366b9a542@artur-rojek.eu>
 X-Sender: contact@artur-rojek.eu
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
 Content-Transfer-Encoding: 7bit
 X-GND-State: clean
 X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddugeegleejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhfkgigtgfesthejjhdttddtvdenucfhrhhomheptehrthhurhcutfhojhgvkhcuoegtohhnthgrtghtsegrrhhtuhhrqdhrohhjvghkrdgvuheqnecuggftrfgrthhtvghrnheptdejuedtgefgtdfhgfdugefgffffteetteffuddtgfefheekgedvtdekvddvtdeknecukfhppedutddrvddttddrvddtuddrudelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddtrddvtddtrddvtddurdduledphhgvlhhopeifvggsmhgrihhlrdhgrghnughirdhnvghtpdhmrghilhhfrhhomheptghonhhtrggtthesrghrthhurhdqrhhojhgvkhdrvghupdhnsggprhgtphhtthhopeduiedprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehrohgssehlrghnughlvgihrdhnvghtpdhrtghpthhtohepjhgvfhhfsegtohhrvghsvghmihdrihhopdhrtghpthhtohepghhlrghusghithiisehphhihshhikhdrfhhuqdgsvghrlhhinhdruggvpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopegrnhgurhgvf
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddugeehtdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhfkgigtgfesthejjhdttddtvdenucfhrhhomheptehrthhurhcutfhojhgvkhcuoegtohhnthgrtghtsegrrhhtuhhrqdhrohhjvghkrdgvuheqnecuggftrfgrthhtvghrnheptdejuedtgefgtdfhgfdugefgffffteetteffuddtgfefheekgedvtdekvddvtdeknecukfhppedutddrvddttddrvddtuddrudelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddtrddvtddtrddvtddurdduledphhgvlhhopeifvggsmhgrihhlrdhgrghnughirdhnvghtpdhmrghilhhfrhhomheptghonhhtrggtthesrghrthhurhdqrhhojhgvkhdrvghupdhnsggprhgtphhtthhopeduiedprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehrohgssehlrghnughlvgihrdhnvghtpdhrtghpthhtohepjhgvfhhfsegtohhrvghsvghmihdrihhopdhrtghpthhtohepghhlrghusghithiisehphhihshhikhdrfhhuqdgsvghrlhhinhdruggvpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopegrnhgurhgvf
  idonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhm
 X-GND-Sasl: contact@artur-rojek.eu
 
-On 2025-08-15 22:16, Andrew Lunn wrote:
+On 2025-08-15 22:52, Artur Rojek wrote:
+> On 2025-08-15 22:16, Andrew Lunn wrote:
+> 
+> Hi Andrew,
+> thanks for the review!
+> 
+>>> +static irqreturn_t jcore_emac_irq(int irq, void *data)
+>>> +{
+>>> +	struct jcore_emac *priv = data;
+>>> +	struct net_device *ndev = priv->ndev;
+>>> +	struct sk_buff *skb;
+>>> +	struct {
+>>> +		int packets;
+>>> +		int bytes;
+>>> +		int dropped;
+>>> +		int crc_errors;
+>>> +	} stats = {};
+>>> +	unsigned int status, pkt_len, i;
+>> 
+>> netdev uses 'reverse christmas tree' for local variables. They should
+>> be sorted longest to shortest. This sometimes means you need to move
+>> assignments into the body of the function, in this case, ndev.
 
-Hi Andrew,
-thanks for the review!
+Should I move the struct stats members into stand alone variables as
+well? Or is below sorting acceptable with regards to stats vs skb:
 
->> +static irqreturn_t jcore_emac_irq(int irq, void *data)
->> +{
->> +	struct jcore_emac *priv = data;
->> +	struct net_device *ndev = priv->ndev;
->> +	struct sk_buff *skb;
->> +	struct {
->> +		int packets;
->> +		int bytes;
->> +		int dropped;
->> +		int crc_errors;
->> +	} stats = {};
->> +	unsigned int status, pkt_len, i;
-> 
-> netdev uses 'reverse christmas tree' for local variables. They should
-> be sorted longest to shortest. This sometimes means you need to move
-> assignments into the body of the function, in this case, ndev.
-> 
->> +	jcore_emac_read_hw_addr(priv, mac);
->> +	if (is_zero_ether_addr(mac)) {
-> 
-> It would be more normal to use !is_valid_ether_addr()
-> 
-> What support is there for MDIO? Normally the MAC driver would not be
-> setting the carrier status, phylink or phylib would do that.
+> 	unsigned int status, pkt_len, i;
+> 	struct jcore_emac *priv = data;
+> 	struct net_device *ndev;
+> 	struct {
+> 		int crc_errors;
+> 		int dropped;
+> 		int packets;
+> 		int bytes;
+> 	} stats = {};
+> 	struct sk_buff *skb;
 
- From what I can tell, none. This is a very simple FPGA RTL
-implementation of a MAC, and looking at the VHDL, I don't see any MDIO
-registers. Moreover, the MDIO pin on the PHY IC on my dev board also
-appears unconnected. Perhaps Rob L. or Jeff can shine more light on this
-design wise.
-
-Cheers,
-Artur
-
+>> 
+>>> +	jcore_emac_read_hw_addr(priv, mac);
+>>> +	if (is_zero_ether_addr(mac)) {
+>> 
+>> It would be more normal to use !is_valid_ether_addr()
+>> 
+>> What support is there for MDIO? Normally the MAC driver would not be
+>> setting the carrier status, phylink or phylib would do that.
 > 
->     Andrew
+> From what I can tell, none. This is a very simple FPGA RTL
+> implementation of a MAC, and looking at the VHDL, I don't see any MDIO
+> registers.
+
+> Moreover, the MDIO pin on the PHY IC on my dev board also
+> appears unconnected.
+
+I spoke too soon on that one. It appears to be connected through a trace
+that goes under the IC. Nevertheless, I don't think MDIO support is in
+the IP core design.
+
+> Perhaps Rob L. or Jeff can shine more light on this
+> design wise.
 > 
-> ---
-> pw-bot: cr
+> Cheers,
+> Artur
+> 
+>> 
+>>     Andrew
+>> 
+>> ---
+>> pw-bot: cr
 
