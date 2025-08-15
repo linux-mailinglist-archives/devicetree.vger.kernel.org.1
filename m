@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-205243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 680B5B287A0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 23:19:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED396B287A7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 23:21:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5996FAE6C45
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 21:19:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81F2F18814B8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 21:20:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCBA2874ED;
-	Fri, 15 Aug 2025 21:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A99C2BE7DA;
+	Fri, 15 Aug 2025 21:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z3e5v6U9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H86O9bnz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4969926D4DF
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 21:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5085E2BE044;
+	Fri, 15 Aug 2025 21:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755292751; cv=none; b=Na68dLIgFST+MmS7fQkHP1UGQbniuGkqSrHx/mwdhCH4nyiUoH1DvBCSAs95Y0Zf1RLbuKnghVwm2uKExjZLVfiW9otnJn/sMHOJdYdqm2Y6MPGbtpA+dd0WJRR+4LSDooYhMkNhrFOqz9fWxw8Jlf1qYYoWasbLOmwQVjGNEuw=
+	t=1755292752; cv=none; b=aJ6VbK3d95AQnSzv5efoLi3qm10V69ZnmAU6XhEw//PwcycimVAu37IgjZElsrouSjpW7lx+qbJo+xTvLx6I0pfIh/eSwy49zYfYNZGKWY81U3HeKX/HDUFbGGLURuuXwotlGI9XIl2Kt94TXqKoPhlEisE8WIsGVtFECgPC/Z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755292751; c=relaxed/simple;
-	bh=AWF7ROMiI+AFCkdDNOd6X3SLMWbwQ51ClYm8LtWloJQ=;
+	s=arc-20240116; t=1755292752; c=relaxed/simple;
+	bh=cJhl0OslGGxuBTiQrTRj+9aBCfXCW2Jm4WVhzEwl87Y=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=KF+a/cMdOYGVKUhRccJKwfKmDogJ5FYlPPgVI0A5lOjl1//JCEC0zhJFGyIsMSVlYLhN5+ogzAPejGG5xaAgcfCYw4AIW7O0CIgVPlmuw5VdeqJ/nKi3K0KnwsFW5V8xGBhi1VueCTWCjDYJxZBmxNUQfEfZGfOgmif6/wZ1B+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z3e5v6U9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C685EC4CEEB;
-	Fri, 15 Aug 2025 21:19:10 +0000 (UTC)
+	 Message-Id:Subject; b=baKNowSYc2OdxN5tt6GFFgbTEcpHaRLpe0RFfyXuJtSW7V7I0/i9+03K+wLQcBL+mob47D3p8/x8gFTzKK8C3ssSoYb72hyboAZivxegl13HQ7aS8d39Kz423/Ez3rV8YGfyyuH246XiF6WP4vDaZX83qOpTxEAlQ2AeI9SRoDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H86O9bnz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B913CC4CEF8;
+	Fri, 15 Aug 2025 21:19:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755292750;
-	bh=AWF7ROMiI+AFCkdDNOd6X3SLMWbwQ51ClYm8LtWloJQ=;
+	s=k20201202; t=1755292751;
+	bh=cJhl0OslGGxuBTiQrTRj+9aBCfXCW2Jm4WVhzEwl87Y=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Z3e5v6U9jNUaD41ytw6FxJKG/p6EF4RS26+LYK6VtArQ4DSVyNj2/faRMNOQPxeSS
-	 iCpnbvjGMFjPRKbNtHNj7a8TuWitLBPIimAcqcIfEffZGKcl7Wc17tLXMLzT51AXW8
-	 ucVQQzzOYfdhEJNWcSie+kE7SoJC2lumk4R9fHqWxJ5npWdaNK2o+jltI9/73Q9ssF
-	 Hm2FSzfpcOpClw4L6zjDSChVbzyjakQTfg3frK3ab/lwjz7SbGM4T2UjE+Ssc5YumZ
-	 ps7FnmyBDfEULcwsWr0xLzxQfOAgVH4oyvoX3bidX62RBbOjWxN/oBu8dKLggfJYBB
-	 JXA2CFaarqhuQ==
-Date: Fri, 15 Aug 2025 16:19:10 -0500
+	b=H86O9bnz9X1b8H1xu/xBQtEiPymWyHyurxwQ884fE4MynR5nygyGrARiRtqulgDrM
+	 4oz5B2gxZsExmYQYX/T4LcpD1h7Y8lFeTqLG9ofIcy8k6lmuuFpJc5tZfM60f3bxZ1
+	 RufZaGvs9OfPz4z8Dm6Zp/y7cTI+RpIe7lM1evnwvhMYSMh8MGNmVQTKUmeaBSE14m
+	 dlTfAtjLgbtH5S2pHCgKz7b5QhhtOHTPc5Gu7SPNocR8d+/LbREeeQP2jorVB1vu6G
+	 b34hE7GpoD7V/kIaRl8rgy6UAsEgy/++Yr96cyrWb4IRG1dd2R48GXWBsHYprCrvQ+
+	 vdLN2LNqTzoow==
+Date: Fri, 15 Aug 2025 16:19:11 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,47 +51,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, 
- devicetree@vger.kernel.org
-To: Linus Walleij <linus.walleij@linaro.org>
-In-Reply-To: <20250814-ixp4xx-mi424wr-dts-v1-0-b7c10f3c4193@linaro.org>
-References: <20250814-ixp4xx-mi424wr-dts-v1-0-b7c10f3c4193@linaro.org>
-Message-Id: <175529260025.3212383.1843651240268969923.robh@kernel.org>
-Subject: Re: [PATCH 0/3] ARM: dts: ixp4xx: Add device trees for MI424WR
+Cc: imx@lists.linux.dev, Fabio Estevam <festevam@gmail.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Shawn Guo <shawnguo@kernel.org>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Csaba Buday <buday.csaba@prolan.hu>, linux-arm-kernel@lists.infradead.org
+To: =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
+In-Reply-To: <20250815-b4-tx6ul-dt-phy-rst-v1-1-9b65e315d9d3@prolan.hu>
+References: <20250815-b4-tx6ul-dt-phy-rst-v1-1-9b65e315d9d3@prolan.hu>
+Message-Id: <175529260064.3212410.10009645356875369525.robh@kernel.org>
+Subject: Re: [PATCH] ARM: dts: imx6ul-tx6ul: Switch away from deprecated
+ `phy-reset-gpios`
 
 
-On Thu, 14 Aug 2025 18:40:02 +0200, Linus Walleij wrote:
-> This patch series adds device trees for Actiontec MI424WR
-> versions A, C and D.
+On Fri, 15 Aug 2025 17:17:37 +0200, Bence Csókás wrote:
+> The Ethernet PHY's reset GPIO should be specified in the node of the PHY
+> itself, instead of the MAC (`fec`). The latter is deprecated, and was an
+> i.MX-specific extension, incompatible with the new reset controller
+> subsystem.
 > 
-> These routers are quite common in the Americas and uses
-> the IXP4xx SoC.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Co-developed-by: Csaba Buday <buday.csaba@prolan.hu>
+> Signed-off-by: Csaba Buday <buday.csaba@prolan.hu>
+> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
 > ---
-> Linus Walleij (3):
->       dt-bindings: Add Actiontec vendor prefix
->       dt-bindings: arm: List actiontec devices
->       ARM: dts: Add ixp4xx Actiontec MI424WR device trees
-> 
->  .../devicetree/bindings/arm/intel-ixp4xx.yaml      |   2 +
->  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
->  arch/arm/boot/dts/intel/ixp/Makefile               |   2 +
->  .../ixp/intel-ixp42x-actiontec-mi424wr-ac.dts      |  37 +++
->  .../intel/ixp/intel-ixp42x-actiontec-mi424wr-d.dts |  38 +++
->  .../intel/ixp/intel-ixp42x-actiontec-mi424wr.dtsi  | 273 +++++++++++++++++++++
->  6 files changed, 354 insertions(+)
-> ---
-> base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
-> change-id: 20250814-ixp4xx-mi424wr-dts-afef5c00d68d
-> 
-> Best regards,
-> --
-> Linus Walleij <linus.walleij@linaro.org>
-> 
-> 
+>  arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
 
 
@@ -110,19 +96,21 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
- Base: using specified base-commit 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+ Base: using specified base-commit 0cc53520e68bea7fb80fdc6bdf8d226d1b6a98d9
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/intel/' for 20250814-ixp4xx-mi424wr-dts-v1-0-b7c10f3c4193@linaro.org:
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/nxp/' for 20250815-b4-tx6ul-dt-phy-rst-v1-1-9b65e315d9d3@prolan.hu:
 
-arch/arm/boot/dts/intel/ixp/intel-ixp42x-actiontec-mi424wr-ac.dtb: gpio@1,0 (brcm,bcm6345-gpio): 'bank-width', 'intel,ixp4xx-eb-write-enable', 'pci-reset-hog', 'pstn-relay-hog-1', 'pstn-relay-hog-2' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-mmio.yaml#
-arch/arm/boot/dts/intel/ixp/intel-ixp42x-actiontec-mi424wr-ac.dtb: /soc/usb@c800b000: failed to match any schema with compatible: ['intel,ixp4xx-udc']
-arch/arm/boot/dts/intel/ixp/intel-ixp42x-actiontec-mi424wr-d.dtb: gpio@1,0 (brcm,bcm6345-gpio): 'bank-width', 'intel,ixp4xx-eb-write-enable', 'pci-reset-hog', 'pstn-relay-hog-1', 'pstn-relay-hog-2' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-mmio.yaml#
-arch/arm/boot/dts/intel/ixp/intel-ixp42x-actiontec-mi424wr-d.dtb: /soc/usb@c800b000: failed to match any schema with compatible: ['intel,ixp4xx-udc']
+arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0011.dtb: / (karo,imx6ul-tx6ul): i2c-gpio: {'compatible': ['i2c-gpio'], '#address-cells': 1, '#size-cells': 0, 'pinctrl-names': ['default'], 'pinctrl-0': [[69]], 'sda-gpios': [[48, 1, 0]], 'scl-gpios': [[48, 0, 0]], 'clock-frequency': 400000, 'status': ['okay'], 'rtc@68': {'compatible': ['dallas,ds1339'], 'reg': [[104]], 'status': ['disabled']}} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0010.dtb: / (karo,imx6ul-tx6ul): i2c-gpio: {'compatible': ['i2c-gpio'], '#address-cells': 1, '#size-cells': 0, 'pinctrl-names': ['default'], 'pinctrl-0': [[68]], 'sda-gpios': [[48, 1, 0]], 'scl-gpios': [[48, 0, 0]], 'clock-frequency': 400000, 'status': ['okay'], 'rtc@68': {'compatible': ['dallas,ds1339'], 'reg': [[104]], 'status': ['disabled']}} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0011.dtb: ethernet-phy@0 (ethernet-phy-ieee802.3-c22): 'resets' is a dependency of 'reset-names'
+	from schema $id: http://devicetree.org/schemas/reset/reset.yaml#
+arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0010.dtb: ethernet-phy@0 (ethernet-phy-ieee802.3-c22): 'resets' is a dependency of 'reset-names'
+	from schema $id: http://devicetree.org/schemas/reset/reset.yaml#
 
 
 
