@@ -1,231 +1,150 @@
-Return-Path: <devicetree+bounces-205027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A110B27BAA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 10:51:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD6DB27BCF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 10:55:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11CFAAA4745
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 08:51:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BDD818908D7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 08:54:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8329725E822;
-	Fri, 15 Aug 2025 08:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC252D46BA;
+	Fri, 15 Aug 2025 08:53:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VVsM8c/2"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ofoG9Owt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE72B2417D1
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 08:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E282BE64F;
+	Fri, 15 Aug 2025 08:53:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755247894; cv=none; b=pH0+npDm8AHyaSXtk0rWQfYC5HN19Vsgu8/tn3xuzY6zO3DnoaXxa7LpT2ikq/J+007s16yrd6IJiw/2wYhhGPKUNRC1xHlKR5vw2UwH++SkdIc6xaFPHsjkzCwi2/rzbWLBBCBRCj7bASBwQrMVXoiHVNfkz90grdDlhqg6Sfk=
+	t=1755247984; cv=none; b=OFh4YS0ZaJq3leuLqicqRG15AX1rDhBMgjPhjecjcw+IGH1qkTyVo7yZ2FW6p9ISx43Fxk0TSN/euTAiDdj6tCp4Qx7Ey21h3rFjnsyFQPVNQejPEl6dhBx8xoSybgcJNzfUE1WhcUbikhoK9beIgVG9p2FQLYMwnHEqdkJTySM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755247894; c=relaxed/simple;
-	bh=UF5qyNpTXdoXNJ7pnDXzfEVK9jteDAQF6rVcXALvFwY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UNjQy5XQNgIWYWftZlaNLf2S7GvC6iTwXspXnlBZuwOB4pdMe/8+LQpejbpoPvJZsZce94EyL6pxcv/ml04wIPzX45LlqiiJ3vdUpJ7Eo2gsmx/kq8EwDPjjYFk2dLm6azmSRg85cGEF0UCQHOzhIDrwFLEvHosJSyvvsgwCVMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VVsM8c/2; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57F87ua2031866
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 08:51:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	viA0ftgPjs8CYNz5BU9g3zq8XF4gr1cHoqz5uG+TLmk=; b=VVsM8c/2HJspZpHO
-	88q0sMUufJIP/OZqja2CN8vMlHuCxsOdYbW9mMkkd8VefDLfmoolFz+n6u8TlqQl
-	VvxnrOK3eJP1CtPqTTCfg9Ckq3/4mbgj6b3Q7wqWBq7C6wf1+Z67yavWodqNxClk
-	qPdlvRmvFEvX8RmO0IrN7mYqxZOOdDPv11GgXTQ1SJ8uBoWV/Z0m+AX1Et7YdLDM
-	vEKoAj7hjqe1wtjFa8nnFxjc4BNtTBYaSFTCl7OIZQX6ZYezBifgIx1sMUwUFCL3
-	QdYVLhRB8zfiuG73916yBy7gDgbUdZIL6Mu3UreaOy7do9KGBCr+D4qfAg9oZx8s
-	nc/Yfw==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48fem4pgb1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 08:51:31 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2445823e49fso18069755ad.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 01:51:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755247890; x=1755852690;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=viA0ftgPjs8CYNz5BU9g3zq8XF4gr1cHoqz5uG+TLmk=;
-        b=TGyqHp9+WT3hE/uWtzVsJ4IOulD+hT39Zj8MCzxyPsgUj7vAstLCrysXp2i/BOATV/
-         lthSFbHcmYOGJ+ZMO4aKyX0A4/3rzqLG2AkUY3AHSCUicuuIqaTJKdLEx3jo7IueS6ed
-         0y+l3kuKSphhsoOLoMeNOhYsscTJYngn7p6QDTPg5tU7zcja3X71jKfO9IlYmWmNXJuM
-         k7OlPZ3o6qrEFxlbBgJhB2VSwoiT0nse32OcpC0qpa4hpFYEaXZUcgVgCf8Mws5FOdgH
-         BDnCDQvhszAjtxNB2EERAGxxsvodwdPxATn1TgApvXm/HJAKyBoQ7Ib/DOq6gkpAMKTE
-         vqzw==
-X-Forwarded-Encrypted: i=1; AJvYcCUAqCNDVWFVJMv+aR9+YmqoPpnBt2R3gf2PoFlUmK+2NVAaodorZbH0fXz7qNHKdpNejCIzCVyykTRG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWLJMIKG7GbUBKiglHmlJx1MDpX8uAO6wqh+hT4zREQcOO+p9G
-	DMuWb+2YJOpQVCEwoiiAIvjEp1gvhuOil0BsKUjHm1E513hLYB7GMiCR0Zl+AUCikHXGslFZhbx
-	SGanRily2Eazi00Rrt1YBp1EXoqcqAxx0yVEr8qUnW1wG6gOOQeANR9oqNEAtobSC
-X-Gm-Gg: ASbGnctVyUDixbfoljqwoc1XNlFQW6XLK/avUe+17/wvnNltpwwA1W3pkS8wuLVH9TR
-	KKmLYRUy0ORlpWPKN6bFb+PxD3eOhzOa3t0j5hhhV9nXbpJ8Bjv0Eb8ASR/pSHJyru2JYb2TB0+
-	R9YkSglQRqUkg3gTdpsxXJYmSzTPrOhLGgxaz4BY3/YIP0K9HgGXCk6+78fGs4v0E9EE+F7eJLg
-	JIPP8Gc7K99Ul3PITRhBuAb3eLlO/a9sBcpkRa++ptLHcbSZ+vvPCD8mE9eiXqKHDvKNYjQZAZd
-	MTUbqzuydRcI6V3+UsZLh5qV0uhEHvefMVmthA+1dMlKz6BhZkWvhkY3YEsAoXsc125k2madacV
-	Ml/HPNz0FY4PTCB4Ui1tkqVgWHPK3
-X-Received: by 2002:a17:902:cece:b0:234:b41e:37a4 with SMTP id d9443c01a7336-2446d5af49bmr20126865ad.6.1755247890323;
-        Fri, 15 Aug 2025 01:51:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFRZ3xoE0Z01Gar2LyZr8un5sb4pG+FITKlhbiCZfOjE53dG11yImWKgWB0zMbX+CcHUtPEvw==
-X-Received: by 2002:a17:902:cece:b0:234:b41e:37a4 with SMTP id d9443c01a7336-2446d5af49bmr20126405ad.6.1755247889823;
-        Fri, 15 Aug 2025 01:51:29 -0700 (PDT)
-Received: from [10.133.33.31] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2446d55035fsm9240305ad.132.2025.08.15.01.51.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Aug 2025 01:51:29 -0700 (PDT)
-Message-ID: <c931bbc5-f246-4d34-9280-0c1a551a1e7e@oss.qualcomm.com>
-Date: Fri, 15 Aug 2025 16:51:20 +0800
+	s=arc-20240116; t=1755247984; c=relaxed/simple;
+	bh=yLYc9mdIHzjvB5jXOJT+kj/pdbIAfVCIgHmjcYwvGbU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KkG7XL3neE2OtO/GnQstbEUcmqFsP4Rhtqhz7CWKp7MxMT38EKMh+WvuWoWXLA14S2xlX3QzrENlrGLNXFZGyBgCqOFk+22BntRIcRQEzyo1H3VrUWR/2by1jsKVmrIdKjqErOKdGZ+ae0DHKe1QyPzRab7y+4GMT5QUggIxi7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ofoG9Owt; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 375c3f0279b511f08729452bf625a8b4-20250815
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=m8b7ww2HModMWqJw4ufn2iUaA5FiOaPyS039PaHKMDw=;
+	b=ofoG9OwtQq0eNthDpfkW5zIv/HCsJ+TAZ83ZGCCkXk45sn5qfHebWekNkFKQTFhNbX+WVx7jV8nCGoPCOiCWniz2PvSabrmH01HjYNOpsOj6FSV+8E7y1WezHiuH//FZutKTTvsKvLpfu3KwZQl/M8bFYVHOBrltWCzMU/S7YpU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.3,REQID:dc225ad0-a24b-456f-854e-d44aece59474,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:f1326cf,CLOUDID:2a45f7f3-66cd-4ff9-9728-6a6f64661009,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:-5,Content:0|15|50,EDM:-3,IP:
+	nil,URL:99|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:
+	0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 375c3f0279b511f08729452bf625a8b4-20250815
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1929980233; Fri, 15 Aug 2025 16:52:47 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 15 Aug 2025 16:52:44 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 15 Aug 2025 16:52:44 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>
+CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, Yunfei
+ Dong <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v2 00/14] media: mediatek: vcodec: support video decoder in mt8196
+Date: Fri, 15 Aug 2025 16:52:13 +0800
+Message-ID: <20250815085232.30240-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 0/5] pci: qcom: Add QCS8300 PCIe support
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-        kw@linux.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-References: <20250811071131.982983-1-ziyue.zhang@oss.qualcomm.com>
-Content-Language: en-US
-From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-In-Reply-To: <20250811071131.982983-1-ziyue.zhang@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 9F1K_e4NkaR1-TX6aw6KqCwl-rf9xtPe
-X-Proofpoint-ORIG-GUID: 9F1K_e4NkaR1-TX6aw6KqCwl-rf9xtPe
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDA2OCBTYWx0ZWRfX2qKTEvelBUse
- IawKDcyoyt8ID0EBc8B/KRma711TVfNHJA85zKt8AbnRatBTPS/VK2nrgir63vytCrNYRKKXwcW
- VU5vI0UYl2/1fT6Pl82DUgtxsAYEXM8r3DlJybR0Nbv4GVtWE5KPXnNOCqA6o5t1Sm8uPmbCyo7
- 0tl7iUetWmx4nkqhQvpLnUc/UMTZRozJpah44UF57qH+XKIM87pNo6VyNcEaNgmEWZLIHgbNXR7
- MlIdyV+mtbRQRfYB/dQr6/cSGTFBfvoJTRS64g1FHROIGvFfnBWUHEfbt/ln/BpSYQ0bF/v9Qa5
- 2185twKWIpU43bB5ymLxdaM3XmgoVRKZN6wGCpnsTWYTAGxH7N3StXlokOduW8VoFVAyL5a6K2H
- W1hvFSrA
-X-Authority-Analysis: v=2.4 cv=YMafyQGx c=1 sm=1 tr=0 ts=689ef513 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=QyXUC8HyAAAA:8 a=IHEL40AIkIxnPEiLsFYA:9 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-15_03,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 priorityscore=1501 spamscore=0 suspectscore=0
- adultscore=0 impostorscore=0 malwarescore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508110068
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
+Using vcp micro processor to support video decoder in mt8196 platform,
+need to add new firmware interface to communicate with vcp in kernel
+side. Then add mt8196 compatible, codec levels/profiles and private data.
+Re-write av1 driver to support extend vsi struct, then change irq table
+and cdf table size.
 
-On 8/11/2025 3:11 PM, Ziyue Zhang wrote:
-> This series depend on the sa8775p gcc_aux_clock and link_down reset change
-> https://lore.kernel.org/all/20250725102231.3608298-2-ziyue.zhang@oss.qualcomm.com/
->
-> This series adds document, phy, configs support for PCIe in QCS8300.
-> It also adds 'link_down' reset for sa8775p.
->
-> Have follwing changes:
-> 	- Add dedicated schema for the PCIe controllers found on QCS8300.
-> 	- Add compatible for qcs8300 platform.
-> 	- Add configurations in devicetree for PCIe0, including registers, clocks, interrupts and phy setting sequence.
-> 	- Add configurations in devicetree for PCIe1, including registers, clocks, interrupts and phy setting sequence.
->
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> ---
-> Changes in v10:
-> - Update PHY max_items (Johan)
-> - Link to v9: https://lore.kernel.org/all/20250725104037.4054070-1-ziyue.zhang@oss.qualcomm.com/
->
-> Changes in v9:
-> - Fix DTB error (Vinod)
-> - Link to v8: https://lore.kernel.org/all/20250714081529.3847385-1-ziyue.zhang@oss.qualcomm.com/
->
-> Changes in v8:
-> - rebase sc8280xp-qmp-pcie-phy change to solve conflicts.
-> - Add Fixes tag to phy change (Johan)
-> - Link to v7: https://lore.kernel.org/all/20250625092539.762075-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v7:
-> - rebase qcs8300-ride.dtsi change to solve conflicts.
-> - Link to v6: https://lore.kernel.org/all/20250529035635.4162149-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v6:
-> - move the qcs8300 and sa8775p phy compatibility entry into the list of PHYs that require six clocks
-> - Update QCS8300 and sa8775p phy dt, remove aux clock.
-> - Fixed compile error found by kernel test robot
-> - Link to v5: https://lore.kernel.org/all/20250507031019.4080541-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v5:
-> - Add QCOM PCIe controller version in commit msg (Mani)
-> - Modify platform dts change subject (Dmitry)
-> - Fixed compile error found by kernel test robot
-> - Link to v4: https://lore.kernel.org/linux-phy/20241220055239.2744024-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v4:
-> - Add received tag
-> - Fixed compile error found by kernel test robot
-> - Link to v3: https://lore.kernel.org/lkml/202412211301.bQO6vXpo-lkp@intel.com/T/#mdd63e5be39acbf879218aef91c87b12d4540e0f7
->
-> Changes in v3:
-> - Add received tag(Rob & Dmitry)
-> - Update pcie_phy in gcc node to soc dtsi(Dmitry & Konrad)
-> - remove pcieprot0 node(Konrad & Mani)
-> - Fix format comments(Konrad)
-> - Update base-commit to tag: next-20241213(Bjorn)
-> - Corrected of_device_id.data from 1.9.0 to 1.34.0.
-> - Link to v2: https://lore.kernel.org/all/20241128081056.1361739-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v2:
-> - Fix some format comments and match the style in x1e80100(Konrad)
-> - Add global interrupt for PCIe0 and PCIe1(Konrad)
-> - split the soc dtsi and the platform dts into two changes(Konrad)
-> - Link to v1: https://lore.kernel.org/all/20241114095409.2682558-1-quic_ziyuzhan@quicinc.com/
->
-> Ziyue Zhang (5):
->    dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Update pcie phy bindings
->      for qcs8300
->    arm64: dts: qcom: qcs8300: enable pcie0
->    arm64: dts: qcom: qcs8300-ride: enable pcie0 interface
->    arm64: dts: qcom: qcs8300: enable pcie1
->    arm64: dts: qcom: qcs8300-ride: enable pcie1 interface
->
->   .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |  17 +-
->   arch/arm64/boot/dts/qcom/qcs8300-ride.dts     |  80 +++++
->   arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 296 +++++++++++++++++-
->   3 files changed, 376 insertions(+), 17 deletions(-)
->
->
-> base-commit: e2622a23e8405644c7188af39d4c1bd2b405bb27
-Hi Maintainers,
+This patch set depends on "Add VCP support for mt8196"[1]
 
-It seems the patches get reviewed tag for a long time, can you give this
+[1] https://patchwork.kernel.org/project/linux-remoteproc/patch/20250402092134.12293-2-xiangzhi.tang@mediatek.com/
+---
+Changed in v2:
+- re-write the commit message for patch 1
+---
+Yunfei Dong (14):
+  dt-bindings: media: mediatek: vcodec: add decoder dt-bindings for
+    mt8196
+  media: mediatek: vcodec: add decoder compatible to support mt8196
+  media: mediatek: vcodec: add driver to support vcp
+  media: mediatek: vcodec: add driver to support vcp encoder
+  media: mediatek: vcodec: get different firmware ipi id
+  media: mediatek: vcodec: get share memory address
+  media: mediatek: vcodec: define MT8196 vcodec levels.
+  media: mediatek: vcodec: support vcp architecture
+  media: mediatek: vcodec: support 36bit iova address
+  media: mediatek: vcodec: clean xpc status
+  media: mediatek: vcodec: add debug information
+  media: mediatek: vcodec: send share memory address to vcp
+  media: mediatek: decoder: fill av1 buffer size with picinfo
+  media: mediatek: decoder: support av1 extend vsi
 
-series further comment or help me to merge them ?
+ .../media/mediatek,vcodec-subdev-decoder.yaml |   1 +
+ .../media/platform/mediatek/vcodec/Kconfig    |   4 +
+ .../platform/mediatek/vcodec/common/Makefile  |   4 +
+ .../mediatek/vcodec/common/mtk_vcodec_dbgfs.c |  21 +-
+ .../mediatek/vcodec/common/mtk_vcodec_fw.c    |  16 +
+ .../mediatek/vcodec/common/mtk_vcodec_fw.h    |   2 +
+ .../vcodec/common/mtk_vcodec_fw_priv.h        |  12 +
+ .../vcodec/common/mtk_vcodec_fw_vcp.c         | 493 ++++++++++++++++++
+ .../vcodec/common/mtk_vcodec_fw_vcp.h         | 151 ++++++
+ .../vcodec/decoder/mtk_vcodec_dec_drv.c       |  16 +
+ .../vcodec/decoder/mtk_vcodec_dec_drv.h       |   1 +
+ .../vcodec/decoder/mtk_vcodec_dec_hw.c        |  28 +
+ .../vcodec/decoder/mtk_vcodec_dec_hw.h        |  13 +-
+ .../vcodec/decoder/mtk_vcodec_dec_stateless.c |   6 +
+ .../vcodec/decoder/vdec/vdec_av1_req_lat_if.c |  85 ++-
+ .../decoder/vdec/vdec_h264_req_multi_if.c     |  10 +-
+ .../decoder/vdec/vdec_hevc_req_multi_if.c     |  11 +-
+ .../vcodec/decoder/vdec/vdec_vp8_req_if.c     |   4 +-
+ .../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c |  20 +-
+ .../mediatek/vcodec/decoder/vdec_ipi_msg.h    |   2 +
+ .../mediatek/vcodec/decoder/vdec_vpu_if.c     |   9 +-
+ .../mediatek/vcodec/encoder/mtk_vcodec_enc.c  |   1 -
+ .../mediatek/vcodec/encoder/mtk_vcodec_enc.h  |   2 +
+ include/linux/remoteproc/mtk_vcp_public.h     |   2 +-
+ 24 files changed, 871 insertions(+), 43 deletions(-)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
+ create mode 100644 drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.h
 
-Thanks very much.
+-- 
+2.45.2
 
-The phy binding's dependency is merged, the patch do not need to rebase.
-
-dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Update pcie phy bindings
-commit: aac1256a41cfbbaca12d6c0a5753d1e3b8d2d8bf
-
-
-BRs
-Ziyue
 
