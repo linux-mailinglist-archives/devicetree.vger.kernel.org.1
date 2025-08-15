@@ -1,160 +1,192 @@
-Return-Path: <devicetree+bounces-204979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 951DDB278D9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 08:08:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C90DB278E3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 08:13:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04D5E5E3300
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 06:08:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86884A283FE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 06:13:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4D3F25A2B5;
-	Fri, 15 Aug 2025 06:08:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9589529614F;
+	Fri, 15 Aug 2025 06:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l5fZdyXJ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XE6Aqgot"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A20512580CC;
-	Fri, 15 Aug 2025 06:08:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A604F2253FB
+	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 06:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755238110; cv=none; b=MfaEnZ04IEtk1Gxx6/FcMsP0J/nhL3NoL0/slnX63nrQkyPwUtIXQ0IBXgeNZKKMDDXATCOFEXxNjmj9vv1Ym0hW0liGH3y9ijiTwGAF5elm6IiRi3DO6AtQGGJqVivCZn+GTJdaE0b+//5HXNiyEDq0SbSGc0R/wv1cMiF9aGE=
+	t=1755238402; cv=none; b=Pg9JHotS80sdud/oG8BbeBRRbe5CPCUI1v8tnuWqZW/zjUljLfP6A7VkfzlVo/14er0m+NJ9eEYhFiDlyFDiNfWaaQDXORn/toqcQW+q5piVOTIbZZFR3lQS/fGgBMgXenv7Vhf63kqQdrWZM68ajowbZ840nzsbnQg4K/I7jzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755238110; c=relaxed/simple;
-	bh=bG2c4T+pSmpVev0zsHpv/hBpG9AoZxYK5gAarWih2dI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M3z5/rKxmG5N+OSK6cmTkaDAPlSfdB7Soek6nw9LO2FI+/USyzw/oI8W5P0epOqfmuWluPraURRfmVGSMkVr7LLJOlsN55FE/75bBLxUaRgAkIdSya6CgTSzMu7w45iuf9p97QCkcVR88ONciX/sByXmiHTktUv19ugFmFCGgsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l5fZdyXJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BAE2C4CEEB;
-	Fri, 15 Aug 2025 06:08:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755238110;
-	bh=bG2c4T+pSmpVev0zsHpv/hBpG9AoZxYK5gAarWih2dI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=l5fZdyXJhS8IEJAfL3VjqchEOe+rhQv0EZoG6QCbD7+kZvA41gkQV4W4aQxpWjJRc
-	 S/eoPz/XhvMT1lMHnj4SEflOXoqKOwSSvDSdKWeXiFiem7OJ45DdP3yr/a+zu22QOw
-	 zr505omg93vnFg5bYhmuC7fDOVS1D3+aQwD+LPMLWGkB+bob1OyXcbQ/7wLlI6CRFI
-	 dit5sIFz5D38vqthkxy0dJAkiJkoS7DnDffI+e0xDhHaoZtAsmB9mr8G6DGVBW1Gao
-	 h6ocfLUxsxfd2VzbTcVkGNFART4sR3800DCOeifAG0y2cRtCHxo480tUhHcFoFeZLp
-	 fJXwuhShJspUw==
-Message-ID: <5e79b123-b29a-4edb-8e70-3b7fa6cd3674@kernel.org>
-Date: Fri, 15 Aug 2025 08:08:24 +0200
+	s=arc-20240116; t=1755238402; c=relaxed/simple;
+	bh=vMrFQzr7OTiak+1lD6iO+FORdNYn5TfuuqQIRneeZjo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ua/byZd6NH6zLJZt/X22LQsa/bmjFBxspfZ6TucrnqA8nkttwiC0/7cmrU3o8U9U2viKctmVj1x4Nw2rFSBz9erm1qGDKAsQYMSsRfkPz4cN8rcSanIQQXJUqr0YwwIPEcq2WiVMZY8upfB6xmt1qmWz59LjxtZA5t7NBU/AN3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=XE6Aqgot; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-55ce528a0f5so1706096e87.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 23:13:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1755238398; x=1755843198; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TXrqAOGSKlkHkTRQ7lUZKBYVIpeSl7z2gePyrfHvoQU=;
+        b=XE6Aqgot9/vP4IL3AV7sUSGvkROF2ehxGNeIsh1yCt83JXB/1HRv411+4O6wtq1gPK
+         6ThjU4DjpsScxjpeW3UR03V8dOq6X74HhekBYQfE8Q+GjLz2MEfhKMz5v6L/gPFPIsJk
+         xd5Vb2pOp2EQTFkcqdVVYv+bWFSlZhlSBo6KQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755238398; x=1755843198;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TXrqAOGSKlkHkTRQ7lUZKBYVIpeSl7z2gePyrfHvoQU=;
+        b=LNxTio4IqIK4FHXKxD/dpnrxMQUU1GsyJyIOBIsU1HzZR5LiNO1W0Kk4TFiSKuF740
+         MagtOKBWrRquDTywdNWUi+/dnBXuytWbIrjT3xlR0Fvvve4oe4d6n3FfDiDahmRLxa4v
+         lri2iyqT+630IhlR5KGsf1/0Lun1za5bvret8FNqU3HW+pvccjj35Ok4NL5dFgZGCvEa
+         LNTs4QvCkPDdpjYFIzb3eKrrhMvBhN4WHBuP9t0PPOgz/4WVdRaPgBlVH52B/xaW6bzk
+         KMXuvR8wSJnPHVS1YL+xhhJ68RPFRaOEkcl0SfO8WrKTrLMEDcgyoJ7pq2W3QtCE5bHk
+         6g6g==
+X-Forwarded-Encrypted: i=1; AJvYcCXF18zv1HSNVEfNPXssyMj92wxLN7sbGY45UAC4s5/D4GyAI8YaYeBad8oBv9TmT3N+HrcX2p31kWna@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2jVHvHDQR0hWkHDkc2z06c9dAxviLrbu6q4e2x1a+5BWKWQlB
+	sdv6GTMMccZgjABWwy/MQ4MHPsr7gDcenFE/k4MCzs4wIt9/iGV7WUXh41TVFFq3Wa3229zqFAr
+	g7dcLhfgw8M1/l+6lFX+7Z950MMAVw7iXFQDzLGHQ
+X-Gm-Gg: ASbGncsNUgvEV0BWmWxrJ6EcltRrp9MSEtmpoUqXav67GEFmG0rEjQ8UTI+yiDzvUUX
+	7YMF0JKVZgMbo99FijurqqpZIUBz9trx36Mywa2hieMZgw/ua4poN8PuZ81MnJf1UxB5z56LcgZ
+	HKKOK+bOQdxZEAefa0YqMQj3VrpkecZ5cAcAs+MveKnVHWaS1HB8OFxUGFqNDdhY7j9Pj0pqhjN
+	xk0sEAGa8PlnUzX0R4uzFaloQ65EYuOQqV+OQ==
+X-Google-Smtp-Source: AGHT+IHgien6Ta30w9thH606OXZ37uev4E3SyZFiYtbUjF+ewjbtl9wYml18XdGcJArNMrSrqAKCEoyzfxTTcxLF8kw=
+X-Received: by 2002:a05:6512:401a:b0:55c:e61c:6969 with SMTP id
+ 2adb3069b0e04-55ceeb8e474mr204360e87.45.1755238397730; Thu, 14 Aug 2025
+ 23:13:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 2/5] dt-bindings: power: Add Marvell PXA1908 domains
-To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20250806-pxa1908-genpd-v1-0-16409309fc72@dujemihanovic.xyz>
- <2017616.PYKUYFuaPT@radijator>
- <dfaa36d6-41b2-46c1-ba14-e2fb5c9815e6@kernel.org>
- <1950265.tdWV9SEqCh@radijator>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <1950265.tdWV9SEqCh@radijator>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250805135447.149231-1-laura.nao@collabora.com> <20250805135447.149231-18-laura.nao@collabora.com>
+In-Reply-To: <20250805135447.149231-18-laura.nao@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 15 Aug 2025 15:13:06 +0900
+X-Gm-Features: Ac12FXzr5keexSM3h938Aqs72YKWpIyCvPBM6Nr2RSvEz3GKsQxqYO4KthSuqtA
+Message-ID: <CAGXv+5EDxVe6k7FQM2HenDaHM1Rz7eEcQhVL1q1AqUFfr9apnA@mail.gmail.com>
+Subject: Re: [PATCH v4 17/27] clk: mediatek: Add MT8196 I2C clock support
+To: Laura Nao <laura.nao@collabora.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
+	richardcochran@gmail.com, guangjie.song@mediatek.com, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	kernel@collabora.com, =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 15/08/2025 00:08, Duje Mihanović wrote:
-> On Monday, 11 August 2025 08:38:15 Central European Summer Time 
-> Krzysztof Kozlowski wrote:
->> On 08/08/2025 21:46, Duje Mihanović wrote:
->>> On Friday, 8 August 2025 09:34:54 Central European Summer Time Krzysztof 
->>> Kozlowski wrote:
->>>> On Wed, Aug 06, 2025 at 07:33:21PM +0200, Duje Mihanović wrote:
->>>>> +          A number of phandles to clocks that need to be enabled during
->>>>> domain +          power up.
->>>>
->>>> This does not exist in your example, so it is just confusing.
->>>
->>> This is because I have not implemented any of the clocks used by the
->>> domains at this moment.
->>>
->>> Actually, I am not sure anymore whether it is necessary to assign
->>> clocks to the domains as I have just yesterday successfully brought up
->>> the GPU with some out-of-tree code and that did not require giving the
->>> domains any clocks even though the vendor kernel does this. Should I
->>> just go with that and drop all clock handling from the power domain
->>> driver, at which point there would be no need for the individual domain
->>> nodes? If not, how should I in the future assign clocks to the domains?
->>
->> I am asking to see complete binding with complete DTS in example and
->> submitted to SoC maintainer.
-> 
-> Hm, so if in the example (and the actual DTS) each domain is assigned a clock, 
-> can I then keep the domain and domain controller nodes like Mediatek and 
-> Rockchip have?
+On Tue, Aug 5, 2025 at 10:55=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
+ wrote:
+>
+> Add support for the MT8196 I2C clock controller, which provides clock
+> gate control for I2C.
+>
+> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+> ---
+>  drivers/clk/mediatek/Kconfig                  |   7 ++
+>  drivers/clk/mediatek/Makefile                 |   1 +
+>  .../clk/mediatek/clk-mt8196-imp_iic_wrap.c    | 117 ++++++++++++++++++
+>  3 files changed, 125 insertions(+)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8196-imp_iic_wrap.c
+>
+> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
+> index c977719046a4..fe2697b64ef0 100644
+> --- a/drivers/clk/mediatek/Kconfig
+> +++ b/drivers/clk/mediatek/Kconfig
+> @@ -1010,6 +1010,13 @@ config COMMON_CLK_MT8196
+>         help
+>           This driver supports MediaTek MT8196 basic clocks.
+>
+> +config COMMON_CLK_MT8196_IMP_IIC_WRAP
+> +       tristate "Clock driver for MediaTek MT8196 imp_iic_wrap"
+> +       depends on COMMON_CLK_MT8196
+> +       default COMMON_CLK_MT8196
+> +       help
+> +         This driver supports MediaTek MT8196 i2c clocks.
+> +
+>  config COMMON_CLK_MT8196_PEXTPSYS
+>         tristate "Clock driver for MediaTek MT8196 pextpsys"
+>         depends on COMMON_CLK_MT8196
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefil=
+e
+> index 88f7d8a229c2..241e7f5e7316 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -153,6 +153,7 @@ obj-$(CONFIG_COMMON_CLK_MT8195_WPESYS) +=3D clk-mt819=
+5-wpe.o
+>  obj-$(CONFIG_COMMON_CLK_MT8196) +=3D clk-mt8196-apmixedsys.o clk-mt8196-=
+topckgen.o \
+>                                    clk-mt8196-topckgen2.o clk-mt8196-vlpc=
+kgen.o \
+>                                    clk-mt8196-peri_ao.o
+> +obj-$(CONFIG_COMMON_CLK_MT8196_IMP_IIC_WRAP) +=3D clk-mt8196-imp_iic_wra=
+p.o
+>  obj-$(CONFIG_COMMON_CLK_MT8196_PEXTPSYS) +=3D clk-mt8196-pextp.o
+>  obj-$(CONFIG_COMMON_CLK_MT8196_UFSSYS) +=3D clk-mt8196-ufs_ao.o
+>  obj-$(CONFIG_COMMON_CLK_MT8365) +=3D clk-mt8365-apmixedsys.o clk-mt8365.=
+o
+> diff --git a/drivers/clk/mediatek/clk-mt8196-imp_iic_wrap.c b/drivers/clk=
+/mediatek/clk-mt8196-imp_iic_wrap.c
+> new file mode 100644
+> index 000000000000..98db1476e72c
+> --- /dev/null
+> +++ b/drivers/clk/mediatek/clk-mt8196-imp_iic_wrap.c
+> @@ -0,0 +1,117 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2025 MediaTek Inc.
+> + *                    Guangjie Song <guangjie.song@mediatek.com>
+> + * Copyright (c) 2025 Collabora Ltd.
+> + *                    Laura Nao <laura.nao@collabora.com>
+> + */
+> +#include <dt-bindings/clock/mediatek,mt8196-clock.h>
 
-You would need to point me to specific files or show some code.
+Nit: add line for separation.
 
-> 
-> Does SoC maintainer here mean the SoC mailing list or the maintainer of the 
-> particular SoC family in question?
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "clk-gate.h"
+> +#include "clk-mtk.h"
+> +
+> +static const struct mtk_gate_regs imp_cg_regs =3D {
+> +       .set_ofs =3D 0xe08,
+> +       .clr_ofs =3D 0xe04,
+> +       .sta_ofs =3D 0xe00,
+> +};
+> +
+> +#define GATE_IMP(_id, _name, _parent, _shift) {        \
+> +               .id =3D _id,                              \
+> +               .name =3D _name,                          \
+> +               .parent_name =3D _parent,                 \
+> +               .regs =3D &imp_cg_regs,                   \
+> +               .shift =3D _shift,                        \
+> +               .flags =3D CLK_OPS_PARENT_ENABLE,         \
 
-I meant rather post complete DTS to mailing lists (so maintainer of
-given SoC family can see it as well), does not have to be the same patchset.
+So here it likely works because the parent for all the gates are the same,
+which is the clock feeding this block.
 
 
-
-Best regards,
-Krzysztof
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
