@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0F14B278C5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 08:05:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 951DDB278D9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 08:08:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 247A31CE79E0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 06:05:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04D5E5E3300
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 06:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE0828642D;
-	Fri, 15 Aug 2025 06:05:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4D3F25A2B5;
+	Fri, 15 Aug 2025 06:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kllvPuZw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l5fZdyXJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D0925334B;
-	Fri, 15 Aug 2025 06:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A20512580CC;
+	Fri, 15 Aug 2025 06:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755237920; cv=none; b=qxpy9I10Q+C/2GfN+vtnSBCeCO8chzY5ARb2Rly6O4QSZIjwoHlE8Xd6VjFljEi+XlI52r/VQROarH3luiEnbRmS1M2GDAeYIgHbowYfr7JCoS2DjkZjnr1Y7+qaeAeEkg3ZCKETyB9NFQN3YQlELzhwl9V9SZDi3eyh7nAkRnM=
+	t=1755238110; cv=none; b=MfaEnZ04IEtk1Gxx6/FcMsP0J/nhL3NoL0/slnX63nrQkyPwUtIXQ0IBXgeNZKKMDDXATCOFEXxNjmj9vv1Ym0hW0liGH3y9ijiTwGAF5elm6IiRi3DO6AtQGGJqVivCZn+GTJdaE0b+//5HXNiyEDq0SbSGc0R/wv1cMiF9aGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755237920; c=relaxed/simple;
-	bh=yTQcmNIN/VvgA8Q36hNqkRMmGQohgKcXOjpdoM0mOL4=;
+	s=arc-20240116; t=1755238110; c=relaxed/simple;
+	bh=bG2c4T+pSmpVev0zsHpv/hBpG9AoZxYK5gAarWih2dI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qGmEa+wJWwZ5YuneWTonleKXvRawfZz9iqaa/jC0d/7YgWelPnrQ6d4oV4W6DxyLW3/ztZPNxOQBxni02lVoRexQbGduR2EbJaltTHumRHyEdZSyPTGQT5+Zv0R+KdU1/CM4JOlasTDrwJ0lAQR9wvpPL88e38g1Ud8BZPNLs9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kllvPuZw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4483AC4CEF4;
-	Fri, 15 Aug 2025 06:05:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=M3z5/rKxmG5N+OSK6cmTkaDAPlSfdB7Soek6nw9LO2FI+/USyzw/oI8W5P0epOqfmuWluPraURRfmVGSMkVr7LLJOlsN55FE/75bBLxUaRgAkIdSya6CgTSzMu7w45iuf9p97QCkcVR88ONciX/sByXmiHTktUv19ugFmFCGgsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l5fZdyXJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BAE2C4CEEB;
+	Fri, 15 Aug 2025 06:08:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755237919;
-	bh=yTQcmNIN/VvgA8Q36hNqkRMmGQohgKcXOjpdoM0mOL4=;
+	s=k20201202; t=1755238110;
+	bh=bG2c4T+pSmpVev0zsHpv/hBpG9AoZxYK5gAarWih2dI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kllvPuZw0FL1+4uxxDTXdseXW4cN4rayzjyy7AeypGp3egpPAZ/pBM7v1Tx3IVgic
-	 XLk1ayha77yqniWw+KZOpqTk8OxMV0+MkWNTgZtbtbZ+8sa+RhH4k/bR4zRM65RWu1
-	 QSFJcR+tunt76s9KBrKrZx90WFa/opDmJttR0y1K5HXlklW1/xnVezZ/O7D8lE3DXm
-	 S5/0yg53xvOtz7meKTiredPA5eodn93y2o1Rj+EjCyS4RRgbZPfTxESDPb0reYawhY
-	 sKLTVnjXE2ulNWc+VtrX91S1zMUyo+In7OKOPV+MtgzkMFUTbcl3KD9nsMkWfgNcKg
-	 Y2D2Ba27YScJg==
-Message-ID: <cf531bbd-dc07-4c13-9dbb-774c8dfca70c@kernel.org>
-Date: Fri, 15 Aug 2025 08:05:12 +0200
+	b=l5fZdyXJhS8IEJAfL3VjqchEOe+rhQv0EZoG6QCbD7+kZvA41gkQV4W4aQxpWjJRc
+	 S/eoPz/XhvMT1lMHnj4SEflOXoqKOwSSvDSdKWeXiFiem7OJ45DdP3yr/a+zu22QOw
+	 zr505omg93vnFg5bYhmuC7fDOVS1D3+aQwD+LPMLWGkB+bob1OyXcbQ/7wLlI6CRFI
+	 dit5sIFz5D38vqthkxy0dJAkiJkoS7DnDffI+e0xDhHaoZtAsmB9mr8G6DGVBW1Gao
+	 h6ocfLUxsxfd2VzbTcVkGNFART4sR3800DCOeifAG0y2cRtCHxo480tUhHcFoFeZLp
+	 fJXwuhShJspUw==
+Message-ID: <5e79b123-b29a-4edb-8e70-3b7fa6cd3674@kernel.org>
+Date: Fri, 15 Aug 2025 08:08:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 net-next 01/15] dt-bindings: ptp: add NETC Timer PTP
- clock
-To: Frank Li <Frank.li@nxp.com>
-Cc: Wei Fang <wei.fang@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, richardcochran@gmail.com, claudiu.manoil@nxp.com,
- vladimir.oltean@nxp.com, xiaoning.wang@nxp.com, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, vadim.fedorenko@linux.dev, shawnguo@kernel.org,
- s.hauer@pengutronix.de, festevam@gmail.com, fushi.peng@nxp.com,
- devicetree@vger.kernel.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, kernel@pengutronix.de
-References: <20250812094634.489901-1-wei.fang@nxp.com>
- <20250812094634.489901-2-wei.fang@nxp.com>
- <20250814-hospitable-hyrax-of-health-21eef3@kuoka>
- <aJ4v4D71OAaV3ZXy@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH RFC 2/5] dt-bindings: power: Add Marvell PXA1908 domains
+To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20250806-pxa1908-genpd-v1-0-16409309fc72@dujemihanovic.xyz>
+ <2017616.PYKUYFuaPT@radijator>
+ <dfaa36d6-41b2-46c1-ba14-e2fb5c9815e6@kernel.org>
+ <1950265.tdWV9SEqCh@radijator>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,140 +110,48 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aJ4v4D71OAaV3ZXy@lizhi-Precision-Tower-5810>
+In-Reply-To: <1950265.tdWV9SEqCh@radijator>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/08/2025 20:50, Frank Li wrote:
-> On Thu, Aug 14, 2025 at 10:25:14AM +0200, Krzysztof Kozlowski wrote:
->> On Tue, Aug 12, 2025 at 05:46:20PM +0800, Wei Fang wrote:
->>> NXP NETC (Ethernet Controller) is a multi-function PCIe Root Complex
->>> Integrated Endpoint (RCiEP), the Timer is one of its functions which
->>> provides current time with nanosecond resolution, precise periodic
->>> pulse, pulse on timeout (alarm), and time capture on external pulse
->>> support. And also supports time synchronization as required for IEEE
->>> 1588 and IEEE 802.1AS-2020. So add device tree binding doc for the
->>> PTP clock based on NETC Timer.
+On 15/08/2025 00:08, Duje Mihanović wrote:
+> On Monday, 11 August 2025 08:38:15 Central European Summer Time 
+> Krzysztof Kozlowski wrote:
+>> On 08/08/2025 21:46, Duje Mihanović wrote:
+>>> On Friday, 8 August 2025 09:34:54 Central European Summer Time Krzysztof 
+>>> Kozlowski wrote:
+>>>> On Wed, Aug 06, 2025 at 07:33:21PM +0200, Duje Mihanović wrote:
+>>>>> +          A number of phandles to clocks that need to be enabled during
+>>>>> domain +          power up.
+>>>>
+>>>> This does not exist in your example, so it is just confusing.
 >>>
->>> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+>>> This is because I have not implemented any of the clocks used by the
+>>> domains at this moment.
 >>>
->>> ---
->>> v2 changes:
->>> 1. Refine the subject and the commit message
->>> 2. Remove "nxp,pps-channel"
->>> 3. Add description to "clocks" and "clock-names"
->>> v3 changes:
->>> 1. Remove the "system" clock from clock-names
->>> ---
->>>  .../devicetree/bindings/ptp/nxp,ptp-netc.yaml | 63 +++++++++++++++++++
->>>  1 file changed, 63 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml b/Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
->>> new file mode 100644
->>> index 000000000000..60fb2513fd76
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
->>> @@ -0,0 +1,63 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/ptp/nxp,ptp-netc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: NXP NETC V4 Timer PTP clock
->>> +
->>> +description:
->>> +  NETC V4 Timer provides current time with nanosecond resolution, precise
->>> +  periodic pulse, pulse on timeout (alarm), and time capture on external
->>> +  pulse support. And it supports time synchronization as required for
->>> +  IEEE 1588 and IEEE 802.1AS-2020.
->>> +
->>> +maintainers:
->>> +  - Wei Fang <wei.fang@nxp.com>
->>> +  - Clark Wang <xiaoning.wang@nxp.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - pci1131,ee02
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +    description:
->>> +      The reference clock of NETC Timer, if not present, indicates that
->>> +      the system clock of NETC IP is selected as the reference clock.
->>> +
->>> +  clock-names:
->>> +    description:
->>> +      The "ccm_timer" means the reference clock comes from CCM of SoC.
->>> +      The "ext_1588" means the reference clock comes from external IO
->>> +      pins.
->>> +    enum:
->>> +      - ccm_timer
+>>> Actually, I am not sure anymore whether it is necessary to assign
+>>> clocks to the domains as I have just yesterday successfully brought up
+>>> the GPU with some out-of-tree code and that did not require giving the
+>>> domains any clocks even though the vendor kernel does this. Should I
+>>> just go with that and drop all clock handling from the power domain
+>>> driver, at which point there would be no need for the individual domain
+>>> nodes? If not, how should I in the future assign clocks to the domains?
 >>
->> You should name here how the input pin is called, not the source. Pin is
->> "ref"?
->>
->>> +      - ext_1588
->>
->> This should be just "ext"? We probably talked about this, but this feels
->> like you describe one input in different ways.
->>
->> You will get the same questions in the future, if commit msg does not
->> reflect previous talks.
->>
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +allOf:
->>> +  - $ref: /schemas/pci/pci-device.yaml
->>> +
->>> +unevaluatedProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    pcie {
->>> +        #address-cells = <3>;
->>> +        #size-cells = <2>;
->>> +
->>> +        ethernet@18,0 {
->>
->> That's rather timer or ptp-timer or your binding is incorrect. Please
->> describe COMPLETE device in your binding.
+>> I am asking to see complete binding with complete DTS in example and
+>> submitted to SoC maintainer.
 > 
-> Krzysztof:
-> 
-> 	I have question about "COMPLETE" here. For some MFD/syscon, I know
-> need descript all children nodes to make MFD/syscon complete.
-> 
-> 	But here it is PCIe device.
-> 
-> pcie_4ca00000: pcie@4ca00000 {
-> 	compatible = "pci-host-ecam-generic";
-> 	...
-> 
-> 	enetc_port0: ethernet@0,0 {
->         	compatible = "fsl,imx95-enetc", "...";
-> 		...
-> 
-> 	ptp-timer@18,0 {
-> 		compatible = "pci1131,ee02";
-> 	}
-> };
-> 
-> 	parent "pci-host-ecam-generic" is common pci binding, each children
-> is indepentant part.
-> 
-> 	I am not sure how to decript COMPLETE device for PCI devices.
+> Hm, so if in the example (and the actual DTS) each domain is assigned a clock, 
+> can I then keep the domain and domain controller nodes like Mediatek and 
+> Rockchip have?
 
-I don't know what is missing here, but naming it ethernet suggested
-there are other functions not being described in the binding.
+You would need to point me to specific files or show some code.
+
+> 
+> Does SoC maintainer here mean the SoC mailing list or the maintainer of the 
+> particular SoC family in question?
+
+I meant rather post complete DTS to mailing lists (so maintainer of
+given SoC family can see it as well), does not have to be the same patchset.
 
 
 
