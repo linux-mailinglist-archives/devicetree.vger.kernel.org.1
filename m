@@ -1,192 +1,133 @@
-Return-Path: <devicetree+bounces-204980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C90DB278E3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 08:13:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 120D3B278EE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 08:14:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86884A283FE
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 06:13:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 597FE5E628B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 06:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9589529614F;
-	Fri, 15 Aug 2025 06:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E65542BD02A;
+	Fri, 15 Aug 2025 06:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XE6Aqgot"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bn+KwkaY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A604F2253FB
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 06:13:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0172BD58C;
+	Fri, 15 Aug 2025 06:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755238402; cv=none; b=Pg9JHotS80sdud/oG8BbeBRRbe5CPCUI1v8tnuWqZW/zjUljLfP6A7VkfzlVo/14er0m+NJ9eEYhFiDlyFDiNfWaaQDXORn/toqcQW+q5piVOTIbZZFR3lQS/fGgBMgXenv7Vhf63kqQdrWZM68ajowbZ840nzsbnQg4K/I7jzU=
+	t=1755238478; cv=none; b=NUJrsq+P/x3GgSd+sVVUGABaKG5XPAwRsmnAl9CpRv4bx3b1kW3GTJdjMdkxabgM7Pq1xBC5S9CmFwLAIVB44t5foeu75We8wrtWnVesr9t93BIecN7w584FcfVDfX9FrRW6UmVNBmA338y0m7+0nJmskWR/yWvQ1xLImfRg1Nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755238402; c=relaxed/simple;
-	bh=vMrFQzr7OTiak+1lD6iO+FORdNYn5TfuuqQIRneeZjo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ua/byZd6NH6zLJZt/X22LQsa/bmjFBxspfZ6TucrnqA8nkttwiC0/7cmrU3o8U9U2viKctmVj1x4Nw2rFSBz9erm1qGDKAsQYMSsRfkPz4cN8rcSanIQQXJUqr0YwwIPEcq2WiVMZY8upfB6xmt1qmWz59LjxtZA5t7NBU/AN3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=XE6Aqgot; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-55ce528a0f5so1706096e87.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 23:13:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1755238398; x=1755843198; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TXrqAOGSKlkHkTRQ7lUZKBYVIpeSl7z2gePyrfHvoQU=;
-        b=XE6Aqgot9/vP4IL3AV7sUSGvkROF2ehxGNeIsh1yCt83JXB/1HRv411+4O6wtq1gPK
-         6ThjU4DjpsScxjpeW3UR03V8dOq6X74HhekBYQfE8Q+GjLz2MEfhKMz5v6L/gPFPIsJk
-         xd5Vb2pOp2EQTFkcqdVVYv+bWFSlZhlSBo6KQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755238398; x=1755843198;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TXrqAOGSKlkHkTRQ7lUZKBYVIpeSl7z2gePyrfHvoQU=;
-        b=LNxTio4IqIK4FHXKxD/dpnrxMQUU1GsyJyIOBIsU1HzZR5LiNO1W0Kk4TFiSKuF740
-         MagtOKBWrRquDTywdNWUi+/dnBXuytWbIrjT3xlR0Fvvve4oe4d6n3FfDiDahmRLxa4v
-         lri2iyqT+630IhlR5KGsf1/0Lun1za5bvret8FNqU3HW+pvccjj35Ok4NL5dFgZGCvEa
-         LNTs4QvCkPDdpjYFIzb3eKrrhMvBhN4WHBuP9t0PPOgz/4WVdRaPgBlVH52B/xaW6bzk
-         KMXuvR8wSJnPHVS1YL+xhhJ68RPFRaOEkcl0SfO8WrKTrLMEDcgyoJ7pq2W3QtCE5bHk
-         6g6g==
-X-Forwarded-Encrypted: i=1; AJvYcCXF18zv1HSNVEfNPXssyMj92wxLN7sbGY45UAC4s5/D4GyAI8YaYeBad8oBv9TmT3N+HrcX2p31kWna@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2jVHvHDQR0hWkHDkc2z06c9dAxviLrbu6q4e2x1a+5BWKWQlB
-	sdv6GTMMccZgjABWwy/MQ4MHPsr7gDcenFE/k4MCzs4wIt9/iGV7WUXh41TVFFq3Wa3229zqFAr
-	g7dcLhfgw8M1/l+6lFX+7Z950MMAVw7iXFQDzLGHQ
-X-Gm-Gg: ASbGncsNUgvEV0BWmWxrJ6EcltRrp9MSEtmpoUqXav67GEFmG0rEjQ8UTI+yiDzvUUX
-	7YMF0JKVZgMbo99FijurqqpZIUBz9trx36Mywa2hieMZgw/ua4poN8PuZ81MnJf1UxB5z56LcgZ
-	HKKOK+bOQdxZEAefa0YqMQj3VrpkecZ5cAcAs+MveKnVHWaS1HB8OFxUGFqNDdhY7j9Pj0pqhjN
-	xk0sEAGa8PlnUzX0R4uzFaloQ65EYuOQqV+OQ==
-X-Google-Smtp-Source: AGHT+IHgien6Ta30w9thH606OXZ37uev4E3SyZFiYtbUjF+ewjbtl9wYml18XdGcJArNMrSrqAKCEoyzfxTTcxLF8kw=
-X-Received: by 2002:a05:6512:401a:b0:55c:e61c:6969 with SMTP id
- 2adb3069b0e04-55ceeb8e474mr204360e87.45.1755238397730; Thu, 14 Aug 2025
- 23:13:17 -0700 (PDT)
+	s=arc-20240116; t=1755238478; c=relaxed/simple;
+	bh=BV60D2QJ9EpbBzyTAPJEV/IYllLD/I3nj0o+FEOJJD0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DxTrjHLg/lrkcL8LMSTUgJlU3hyZIQkC1MKvr0tk4twdzFFTgpzzvNl20oPPVvldKYI/9ufaUiMHZfzyHYJYkY2udx7QqqY9wkGJFHct605E+DGN0aZpKB/usjIB+zEQ/j8SaMAG5fOdlVMYtLFQxIyNpUJbPTtC2slLcjL/AY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bn+KwkaY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4887C4CEF7;
+	Fri, 15 Aug 2025 06:14:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755238478;
+	bh=BV60D2QJ9EpbBzyTAPJEV/IYllLD/I3nj0o+FEOJJD0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bn+KwkaYkXcflJGGwbROf6xOlWGsoIwCLZ6V/2Qj7PgeeeRqu0UvwWlzYwD9WFXpJ
+	 /7qQYuU8yqJv5326uMZESNku3JoYgoe9IrRR/4FXa9yq0Mir3CVig3IsHhWoG3c+rA
+	 ozQ2Iu/a50D0zGx/ZFIPjF7Ogq/8UD7rgn6ByYCdY485Mnqo4r1tgfAfQ2LlN6qcFC
+	 x4A6qmf3RbajpFwK6GBo4pMuX9LfttnnuVDArJmwLEz5wb7NBHSq4Zd43dCKTKrIUk
+	 vweCfHJySeTjnPEUcuPeSaBJQp6aqxE0yrwSdK0Kh+c8w+S+DiRI8Eb5JFXZVy77Vw
+	 CFQLgJ2S7SHUA==
+Message-ID: <8dfc4020-975d-40fb-960b-539a2923c81c@kernel.org>
+Date: Fri, 15 Aug 2025 08:14:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250805135447.149231-1-laura.nao@collabora.com> <20250805135447.149231-18-laura.nao@collabora.com>
-In-Reply-To: <20250805135447.149231-18-laura.nao@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 15 Aug 2025 15:13:06 +0900
-X-Gm-Features: Ac12FXzr5keexSM3h938Aqs72YKWpIyCvPBM6Nr2RSvEz3GKsQxqYO4KthSuqtA
-Message-ID: <CAGXv+5EDxVe6k7FQM2HenDaHM1Rz7eEcQhVL1q1AqUFfr9apnA@mail.gmail.com>
-Subject: Re: [PATCH v4 17/27] clk: mediatek: Add MT8196 I2C clock support
-To: Laura Nao <laura.nao@collabora.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
-	richardcochran@gmail.com, guangjie.song@mediatek.com, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
-	kernel@collabora.com, =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/4] dt-bindings: firmware: thead,th1520-aon: add a
+ mailbox name for SBI
+To: Icenowy Zheng <uwu@icenowy.me>, Drew Fustini <fustini@kernel.org>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Inochi Amaoto <inochiama@gmail.com>,
+ Yao Zi <ziyao@disroot.org>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250814070757.2267325-1-uwu@icenowy.me>
+ <20250814070757.2267325-3-uwu@icenowy.me>
+ <d0d4c9e7-c350-4996-a53b-09b13bdb9409@kernel.org>
+ <1b63d1872f5b2c89f2fafdf717bda5ec29589b69.camel@icenowy.me>
+ <026419bc-c0f8-4891-a348-311f51cb999f@kernel.org>
+ <ec0a7543f9feb5dc096f3030c8b3d73d71834a36.camel@icenowy.me>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <ec0a7543f9feb5dc096f3030c8b3d73d71834a36.camel@icenowy.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 5, 2025 at 10:55=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
- wrote:
->
-> Add support for the MT8196 I2C clock controller, which provides clock
-> gate control for I2C.
->
-> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> Signed-off-by: Laura Nao <laura.nao@collabora.com>
-> ---
->  drivers/clk/mediatek/Kconfig                  |   7 ++
->  drivers/clk/mediatek/Makefile                 |   1 +
->  .../clk/mediatek/clk-mt8196-imp_iic_wrap.c    | 117 ++++++++++++++++++
->  3 files changed, 125 insertions(+)
->  create mode 100644 drivers/clk/mediatek/clk-mt8196-imp_iic_wrap.c
->
-> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-> index c977719046a4..fe2697b64ef0 100644
-> --- a/drivers/clk/mediatek/Kconfig
-> +++ b/drivers/clk/mediatek/Kconfig
-> @@ -1010,6 +1010,13 @@ config COMMON_CLK_MT8196
->         help
->           This driver supports MediaTek MT8196 basic clocks.
->
-> +config COMMON_CLK_MT8196_IMP_IIC_WRAP
-> +       tristate "Clock driver for MediaTek MT8196 imp_iic_wrap"
-> +       depends on COMMON_CLK_MT8196
-> +       default COMMON_CLK_MT8196
-> +       help
-> +         This driver supports MediaTek MT8196 i2c clocks.
-> +
->  config COMMON_CLK_MT8196_PEXTPSYS
->         tristate "Clock driver for MediaTek MT8196 pextpsys"
->         depends on COMMON_CLK_MT8196
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefil=
-e
-> index 88f7d8a229c2..241e7f5e7316 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -153,6 +153,7 @@ obj-$(CONFIG_COMMON_CLK_MT8195_WPESYS) +=3D clk-mt819=
-5-wpe.o
->  obj-$(CONFIG_COMMON_CLK_MT8196) +=3D clk-mt8196-apmixedsys.o clk-mt8196-=
-topckgen.o \
->                                    clk-mt8196-topckgen2.o clk-mt8196-vlpc=
-kgen.o \
->                                    clk-mt8196-peri_ao.o
-> +obj-$(CONFIG_COMMON_CLK_MT8196_IMP_IIC_WRAP) +=3D clk-mt8196-imp_iic_wra=
-p.o
->  obj-$(CONFIG_COMMON_CLK_MT8196_PEXTPSYS) +=3D clk-mt8196-pextp.o
->  obj-$(CONFIG_COMMON_CLK_MT8196_UFSSYS) +=3D clk-mt8196-ufs_ao.o
->  obj-$(CONFIG_COMMON_CLK_MT8365) +=3D clk-mt8365-apmixedsys.o clk-mt8365.=
-o
-> diff --git a/drivers/clk/mediatek/clk-mt8196-imp_iic_wrap.c b/drivers/clk=
-/mediatek/clk-mt8196-imp_iic_wrap.c
-> new file mode 100644
-> index 000000000000..98db1476e72c
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt8196-imp_iic_wrap.c
-> @@ -0,0 +1,117 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2025 MediaTek Inc.
-> + *                    Guangjie Song <guangjie.song@mediatek.com>
-> + * Copyright (c) 2025 Collabora Ltd.
-> + *                    Laura Nao <laura.nao@collabora.com>
-> + */
-> +#include <dt-bindings/clock/mediatek,mt8196-clock.h>
+On 14/08/2025 10:04, Icenowy Zheng wrote:
+>>
+>>>
+>>> Or should I explicitly say "minItems: 1" here?
+>>
+>> Yes, but you should clearly explain the impact. Is it working? Not
+>> working? Are you fixing something?
+> 
+> The jsonschema draft says "Omitting this keyword has the same behavior
+> as a value of 0." for minItems. [1]
 
-Nit: add line for separation.
+No, omitting this means it is implied by maxItems, see fixups.py:130.
 
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "clk-gate.h"
-> +#include "clk-mtk.h"
-> +
-> +static const struct mtk_gate_regs imp_cg_regs =3D {
-> +       .set_ofs =3D 0xe08,
-> +       .clr_ofs =3D 0xe04,
-> +       .sta_ofs =3D 0xe00,
-> +};
-> +
-> +#define GATE_IMP(_id, _name, _parent, _shift) {        \
-> +               .id =3D _id,                              \
-> +               .name =3D _name,                          \
-> +               .parent_name =3D _parent,                 \
-> +               .regs =3D &imp_cg_regs,                   \
-> +               .shift =3D _shift,                        \
-> +               .flags =3D CLK_OPS_PARENT_ENABLE,         \
-
-So here it likely works because the parent for all the gates are the same,
-which is the clock feeding this block.
-
-
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Best regards,
+Krzysztof
 
