@@ -1,67 +1,60 @@
-Return-Path: <devicetree+bounces-205043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70DD9B27BEC
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 10:59:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AD31B27C1E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:06:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA042166B05
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 08:56:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3807A3AC23B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD8582BDC21;
-	Fri, 15 Aug 2025 08:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6792F3C11;
+	Fri, 15 Aug 2025 08:56:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i6+BpbAd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r1REpBiW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92CB329D284;
-	Fri, 15 Aug 2025 08:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2FBC2F39DC;
+	Fri, 15 Aug 2025 08:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755248044; cv=none; b=YFl1RjSk9/K9kJYZlGQZ9fIP2bWYwNAi/dzI6JZY3+3TzdEczGwBrd2Ha7gTIVFlVDTBmfNpJrRkBuwGEewFEGQraW9/RlX/3AwjiFjzEgJHLLdusrXW6R5tGlfRIM7yRRMxrM+JpFtKyVspHQ2Z0iV074Z7Qzy9IKiCO7ZinxU=
+	t=1755248198; cv=none; b=ZVnT9KXVNPUbXW5RV/U1rPORRH3xhq1tRmR51iXDuCLc1b2o5P+xann9tc6Go3sUZ0zq9TBsCP5g8fj+xL28tH/DN4pllL4GCsTZijzRMc0PBwkcf49OU8gpJLgY3aP5sYrdfnvuu+5N3vK/lp/QS2jOgqnCJ5+FKpWlsYswAiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755248044; c=relaxed/simple;
-	bh=fkLFrZT5rOePvj8oL1FKGxrVLn/3EwqTARx7crpxGnM=;
+	s=arc-20240116; t=1755248198; c=relaxed/simple;
+	bh=RGMlpvpTQSMExozJzkOz6BmL8Zte6c4xFpuKD3X1WCY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WK+CDSKL7jTfjzVHeHRnj4br3xLThYa4tD3v8ErHWd0/uNVcu3hm42G2diZ3nMZO60G1BOCuAhMS0UNQuVJHxaAPTfGEwoqAVAnj0UsZnh2eJQ52PskUl3RtHtFJMfJ+DnlFZOLLGfdG5/3TNdv5U1qV73s59t+d/SV23dHQVFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i6+BpbAd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68880C4CEF5;
-	Fri, 15 Aug 2025 08:54:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SazMiw7fFMAKdOcxFFAQrvZlKqMBV7kc22EaokLvkXl0x1Ap8Qn5lE3FD9q3FtqlEHbOrycJz7EGLOOr3L4+F6s0/41LCm7UCSG1mdxwwgghX+EYeE6ercUyf9s9QcRh4W6RlRoWU4tTDriEQUrI2g7NSqgGPZUWcw1z1lACw/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r1REpBiW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6E35C4CEEB;
+	Fri, 15 Aug 2025 08:56:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755248044;
-	bh=fkLFrZT5rOePvj8oL1FKGxrVLn/3EwqTARx7crpxGnM=;
+	s=k20201202; t=1755248197;
+	bh=RGMlpvpTQSMExozJzkOz6BmL8Zte6c4xFpuKD3X1WCY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i6+BpbAdMl1b7cUK3TpFifshNNefnhQLvVcVU+acszFV7a8rNmULcOC0ybwIMtZ0X
-	 LpLegNnz/QMJLIak1ZcpGljvgrWbliBYbaYC0m0DV4TJEpOatp2i9cKrr3K7SxuO8n
-	 rqMNnDHnMRNRkqKWS3JuZ3cyMKFQ52+lUAo/r7nHsfQu3h9G3t+AhcDXEAyUwy8lKk
-	 jLxFc6Ji/coGoghOWOl72f7EdOjamppbzH7YP2nlHoMWWFqH8N0UPv0QHKYHumx2KR
-	 kidWdhhIu+Xnj/Nx/1e5oeVv0ZgmMkeOHAW7h6S2Ek2CE0ZFpJR6fhDw6u8AAPFEo4
-	 kA8uhr/n5yulg==
-Date: Fri, 15 Aug 2025 10:54:01 +0200
+	b=r1REpBiWgG5VdeqpNssMMVddtGbUpE/J9q2bwmIf62sJrU/040C4ElbC4kzVGv9AM
+	 u6XoLHEkgyQyp10zBo1tGxSI06xDy/ihEeoiF4/pfw9xTcQ7vaybHGGut2YPtbB0pI
+	 Qm5FOz2CcMVU9KkxPD29Yxo4zjUScjHUwXgW2LxnFZY/6sG4u5XfOW47fUBUPJFkBl
+	 J5He+KrXV55zzrBl9NgSBlb0Bt4LgTlH6hDA7IFLzG3QAAWiV6yFhop7qjF1/Ad/re
+	 dMQSkPWAIEx4cygELyWQf5lGvocEjlVVl/AHXwHM43J9j7RBcwpFBID6sdcYI8SS6u
+	 mh6Q4vxYOyClw==
+Date: Fri, 15 Aug 2025 10:56:34 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kyrie Wu <kyrie.wu@mediatek.com>
-Cc: Tiffany Lin <tiffany.lin@mediatek.com>, 
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, Nathan Hebert <nhebert@chromium.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>, 
-	George Sun <george.sun@mediatek.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>
-Subject: Re: [PATCH v3 5/6] dt-bindings: media: Add MT8196
- mediatek,vcodec-encoder
-Message-ID: <20250815-meek-porcelain-oarfish-1411e3@kuoka>
-References: <20250814085642.17343-1-kyrie.wu@mediatek.com>
- <20250814085642.17343-6-kyrie.wu@mediatek.com>
+	Liam Beguin <liambeguin@gmail.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] iio: adc: ltc2497: add temperature sensor support
+Message-ID: <20250815-agile-crafty-labradoodle-227dfb@kuoka>
+References: <20250814-ltc2495-v3-0-c2a6cecd6b99@gmail.com>
+ <20250814-ltc2495-v3-3-c2a6cecd6b99@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,72 +63,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250814085642.17343-6-kyrie.wu@mediatek.com>
+In-Reply-To: <20250814-ltc2495-v3-3-c2a6cecd6b99@gmail.com>
 
-On Thu, Aug 14, 2025 at 04:56:41PM +0800, Kyrie Wu wrote:
-> From: Irui Wang <irui.wang@mediatek.com>
+On Thu, Aug 14, 2025 at 01:00:19PM +0200, Yusuf Alper Bilgin wrote:
+> Support for reading the internal temperature sensor on LTC2495 and
+> LTC2499 via a standard IIO temperature channel.
 > 
-> Add MT8196 encoder compatible string, which will reference VCP device.
-
-You ignored comments from v2.
-
-> 
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-
-Incorrect SoB chain.
-
+> Signed-off-by: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
 > ---
->  .../bindings/media/mediatek,vcodec-encoder.yaml | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> index ebc615584f92..bb4dbf23ccc5 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> @@ -24,6 +24,7 @@ properties:
->                - mediatek,mt8188-vcodec-enc
->                - mediatek,mt8192-vcodec-enc
->                - mediatek,mt8195-vcodec-enc
-> +              - mediatek,mt8196-vcodec-enc
->        - items:
->            - const: mediatek,mt8186-vcodec-enc
->            - const: mediatek,mt8183-vcodec-enc
-> @@ -58,6 +59,11 @@ properties:
->      description:
->        Describes point to scp.
->  
-> +  mediatek,vcp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Describes point to vcp.
+>  drivers/iio/adc/ltc2497-core.c | 141 ++++++++++++++++++++++++++++++-----------
+>  drivers/iio/adc/ltc2497.c      |  28 +++++++-
+>  drivers/iio/adc/ltc2497.h      |  15 +++++
 
-For what? You just repeated the property name. You must say here
-something useful instead: why this is needed, what is its purpose.
-
-
-> +
->    power-domains:
->      maxItems: 1
->  
-> @@ -76,6 +82,17 @@ required:
->    - iommus
->  
->  allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8196-vcodec-enc
-> +
-> +    then:
-> +      required:
-> +        - mediatek,vcp
-
-else
-
-mediatek,vcp: false
-
+Thus should be squashed with previous patch, otherwise previous patch is
+just incomplete and broken. Unless... your binding is incorrect (I will
+comment there).
 
 Best regards,
 Krzysztof
