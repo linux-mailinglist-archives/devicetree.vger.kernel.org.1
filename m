@@ -1,221 +1,486 @@
-Return-Path: <devicetree+bounces-205076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48027B27D50
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:41:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9D4B27D56
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:41:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0043A68172E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:37:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BA141C86004
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A522D2F83A6;
-	Fri, 15 Aug 2025 09:37:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="BzMOSqjw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B45F2F746B;
+	Fri, 15 Aug 2025 09:37:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013009.outbound.protection.outlook.com [52.101.83.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E732F746B;
-	Fri, 15 Aug 2025 09:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.9
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755250668; cv=fail; b=Z6gUbWaIFqgmwlVeMvw/YUC/ff1ttUIOkjv8BFRhNFfy6sbkt95g4DwOjb+0J+adYXxe2Ia3bA9jpngnYIR0JLg9HmgAVQMUdI65n+YdWFM2EcgoFAvcsmsFAiWuSnpPit5j7ThUKHTAJLEdLKULe+LLRX4mG4JyZc3M61D1NUo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755250668; c=relaxed/simple;
-	bh=fItxamcJZcGuIeOf/1RUtWftuqDtQ717F8gL0YFNbv8=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=eNf0ICSNaqltr9ybiuAsTw+rKCAVvfAHH3BgFT23j4lWN5MbkIvsUS6O5wcC76UYdQ54rPSgSd1zuV02L/7WTrrFx87VdXSnaWdXbAE1ZzljXaQektHaR74qu3il+GDp5agGpEiwklBNQEoHP4V4QnnzJYyvJhFtNSf5rinpWT4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=BzMOSqjw; arc=fail smtp.client-ip=52.101.83.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DZO+PQKoTN8zGPA8ebSmx2f+X4AgzC3nSFOuLOz2fJY0++VVk4gtT3O96s7XnuOVo0+f0JpHZvIH9D1e6dgEh/xy1/5kih0khfZwfjrDNja4837BbE+gtEAHVR3LMwOJsDwxuVDSufDNUcpBaALNlWUa9Y8mwgZ5zb0+PD8CVAaalWsEunrO7xjfMKQh9ywbbDJwfYD7DGPCJ+rH4w8eBjweu5tXnaKR4n1CFIxzUb3gbNWGu0uoHBFeeyI+5e1sL1FHajQ+ANQBJeTo6teBZGhUClB1N+5fgfxyTwTDyrPOKIFb8UoX7EP9rh+/BC26ieC4kRNNivvM/LO+Jr9piw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZE0Y6jamwmoD7fUIichW/2pSicJrid2hdTHCdGVgy4E=;
- b=oKm1e0fHHL7bFT1ciaMQ7Iglk53jmffEPceqCPeLzSc4Yg4P+bmTg2HQb27JoIa5oUX9uwOzQTGQ6jQcZ52wncUZgS4Z1hTUbyR2FTporb3F9yDAD1qUBJ/uSW8mbJQU9iV6vMTf61f9Yrt5rpC7vq+7scJRxEF7w1BTjMM3+mDfMlpnmxXGsKXBT+9/V1Gj1IOaTTgY2MxqJYW7yzV/jlA+c2YHWct9WQ6f3WKReKjrqCp3AZJiWI37iOvZQZS3GLJZz8Oqr7joJMdluw/xoQH9geVhCLhuljS9LKihQVbxWZqPWSSKN/K4u4KttMJkDzCBT+8OZJvdTGjVrOLZAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZE0Y6jamwmoD7fUIichW/2pSicJrid2hdTHCdGVgy4E=;
- b=BzMOSqjwfQj+yddu1syGdTju1VqdEqueMJMKkqaEoxJ855piaOW+qcYDBnMrwz3JPukwVCFz+VsD5pVDNOUGVYtOzFr1fxa4fS2S/XL6nSbhRd/SCYDg8tpvb4TkzAKA3z8bJIYlphoilncHIrwLHnLR5SenopYzNx2se+8pWc11nRCgsbvCIEHeitBneBsbmkvgLbczUKJpowQrlfmO71S7M3jSjnTqRXT2hB+cLzNt/7ADSDm0ZtOc1Q+WmE1IZeRs8HayNyn2j2lJFXU9ofcBjH1YuN91xC5QEFMM0sPwr+uSZ1H9KuqzIzkAPMgM0vg4Wv4iGuM6bChf5vhcHQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by AS8PR04MB7991.eurprd04.prod.outlook.com (2603:10a6:20b:289::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.16; Fri, 15 Aug
- 2025 09:37:44 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%4]) with mapi id 15.20.9031.014; Fri, 15 Aug 2025
- 09:37:44 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-Date: Fri, 15 Aug 2025 17:36:31 +0800
-Subject: [PATCH 5/5] arm64: dts: imx94: add DDR Perf Monitor node
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250815-imx94-ddr-pmu-v1-5-edb22be0b997@nxp.com>
-References: <20250815-imx94-ddr-pmu-v1-0-edb22be0b997@nxp.com>
-In-Reply-To: <20250815-imx94-ddr-pmu-v1-0-edb22be0b997@nxp.com>
-To: Frank Li <Frank.li@nxp.com>, Will Deacon <will@kernel.org>, 
- Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, John Garry <john.g.garry@oracle.com>, 
- James Clark <james.clark@linaro.org>, Mike Leach <mike.leach@linaro.org>, 
- Leo Yan <leo.yan@linux.dev>, Peter Zijlstra <peterz@infradead.org>, 
- Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>, 
- Namhyung Kim <namhyung@kernel.org>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, 
- Adrian Hunter <adrian.hunter@intel.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org, 
- devicetree@vger.kernel.org, imx@lists.linux.dev, 
- Xu Yang <xu.yang_2@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755250614; l=769;
- i=xu.yang_2@nxp.com; s=20250815; h=from:subject:message-id;
- bh=fItxamcJZcGuIeOf/1RUtWftuqDtQ717F8gL0YFNbv8=;
- b=Qg9eO3/JN5Z53uSslCrm08idG/eJxbabS0yR19OEoRdq1bJPW6Tzwv8NKPk/vC9yzBYZZfG5w
- 2Fy/WB7HStsCAW0P7yUt1hfCX3Ku4tUfDP6DjrmaG+nKz8fMhvGVGu2
-X-Developer-Key: i=xu.yang_2@nxp.com; a=ed25519;
- pk=5c2HwftfKxFlMJboUe40+xawMtfnp5F8iEiv5CiKS+4=
-X-ClientProxiedBy: SGBP274CA0016.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::28)
- To DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A946C276020;
+	Fri, 15 Aug 2025 09:37:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755250642; cv=none; b=sNXoGVvBedrJa1TjbL/zpB0F2ocMEtRMtNaG30DIXGC7835cMOyKh51lZOjbeUaXuOyiPgev2Ay4iisXvG9iavU+qGr2A8WpGeDPNVGMK+qva63QGdNS0YEZBVQy8pjOAMQUsuwYBIDhCBDyxV+zy6YJigVPlcwRtSPAEMANpb8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755250642; c=relaxed/simple;
+	bh=XZbQCbKYkMC7JzH6tgiRed/icHDnScHY/sybNuMH0MM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=BcRMudA7+Dc108HC+t8Q+iFfJNFNHU22/5yv77rNSBHx6aUPKJKnx8YuZbuaRGM/t2ml+2VdomQ2A7YHW8uLolHm+6J7BW7IFi4Hq0BB3LWkGixnuXsJmrHKz0WW1MaLtH92hjEDvqgKWclpKsV5rAaN7dGTpPohF49vIPYn5gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app1 (Coremail) with SMTP id TAJkCgAXOxG5_55o1Ay_AA--.2269S2;
+	Fri, 15 Aug 2025 17:36:59 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	linux-riscv@lists.infradead.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v4 1/3] clock: eswin: Documentation for eic7700 SoC
+Date: Fri, 15 Aug 2025 17:36:53 +0800
+Message-Id: <20250815093653.1033-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
+In-Reply-To: <20250815093539.975-1-dongxuyang@eswincomputing.com>
+References: <20250815093539.975-1-dongxuyang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|AS8PR04MB7991:EE_
-X-MS-Office365-Filtering-Correlation-Id: 332ac762-d946-4581-b1f6-08dddbdf6286
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|366016|19092799006|52116014|7416014|1800799024|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TjAyZEpGWlRFVk9kS1BoSkJXM2Q3VUsxU01ad2p5RjhPeExQMmswUUQ3eElL?=
- =?utf-8?B?alFLL1hiZUhuTE1abENQYlorNnQ1MTk1ZUF1Ynp0d3JpSXBCa1FnUEpHbUM5?=
- =?utf-8?B?R0RsQklRUjdtc3huQXlRTzdqQ1dMVnhrVTR0TTh1SHhINFlKcHp2WHd3UElV?=
- =?utf-8?B?SVFUSVFiZDNpWTZQN3R2SXBlTXIzS0hRa2p3blZIRWY4eHFhWWhzZnpjMStL?=
- =?utf-8?B?MG13VXZxQkZzMXF4SG53RXRGWmNMb3hPaFRqZWNOS2xybkxmT2FwU1NFcVND?=
- =?utf-8?B?SFhpY0t6d3VTY08yTXY5Q3NDRHdvNFZjZTRjVnJZSHNUbVdFNVFmdFpUQjF6?=
- =?utf-8?B?NkxwTUdET3NWY3Z2czdYRHBOOUdLWnJqNmlFOUdveFZTc21xVW42cTZzYzR4?=
- =?utf-8?B?dE4yTDZ5b282RFFsQlRPUEkvQUJaRmR0QVlReFQ3cjJsaldYQTFGTWJvVjZw?=
- =?utf-8?B?emFxV1pxM3pNS2dKRHpKaGpuV2lqbEhoTnI1RDdDZDdEVWYycU5QK1VyMDV3?=
- =?utf-8?B?YkwwSXJHcTRQcEdOdjNQTEVqMEpza2ptMFh1T01ieThGZjRqMDNucVdhNUsz?=
- =?utf-8?B?YmluQzI3MUFEeTEyQVgyem40bm0wUnFKZjRuWVdvUG05d1pTK05YektEbVh5?=
- =?utf-8?B?cFZ2cytjbG9SaDNZZmFIbU1wR3ppVS9MbkgxdWtzZ2doM1lPUFQrMkprNzNU?=
- =?utf-8?B?MDVtSGJmdWRGczRPQkNQeFkwWTVWdGRkbjlyOCttUjI4OE44dVVJb00weTcx?=
- =?utf-8?B?eU4wNnJNM3F3Z1piSEhqR3A2RGs1RFI1WE03eTZqcXR3dUpiQ2JZNTJ5L2hn?=
- =?utf-8?B?dG9Rb29jVWFQbEpXUEJHdHlPcE1laFE2S2lVL3IyakVPZzBnMWhFbnBRcEd0?=
- =?utf-8?B?ODUyQmhQY0lzdCtZUWJ0b09BKzN4cmp3MHBESjdybWdId01KRW1lZFhHejdW?=
- =?utf-8?B?ZmN5MEZnUEY2UEJBYm1PbS9kU3VGeFdyQnF4MFhrRzNhYkYrNW9ySzcvbVc4?=
- =?utf-8?B?czFwdERsMGFyelJvaHNVQlpSWGNxNnc4ellHdjYxY1ZOMzhvaUt4Z3Z1c1Z4?=
- =?utf-8?B?eE9TOUZDbjJTYlhCSUtlWE5kWms5ZVdBdGRnTmhXbHNLWTJ4c0hHNmc3QURC?=
- =?utf-8?B?M0NoRjZocmdzR2JQQzhYUkVJVXg2dkV3dkZ1UlRDWUtaTFZ0SVY1SlJWOHpa?=
- =?utf-8?B?bytaa1pBd2VCd2NFWklJUElmQUZ0dDJDRHZCNUhTelhtZ0RjWS9oWmtQeVpN?=
- =?utf-8?B?YTdlVk1VdGVqZVZ1RjkzY1hvNXJOc2xUTGRlWkpFdkpENXVZRnJPVTgvby9t?=
- =?utf-8?B?c1V4VE0rZ0RzRkhieFJaMjlXWk1Kb1dPcjZuZW1RT0hRNW5HdzJvSmlNMlVm?=
- =?utf-8?B?WEtLSW1TTk9sSFpSWlZWVTA2REh4LzYxdDBlcGxuUEFlS3pGR3kyTWhRSHNB?=
- =?utf-8?B?SS9EZjkrWUd2cDlTNlJyWUVOOU9ISDNJeUVTUThUK25pMTI2SWdlVW5malFt?=
- =?utf-8?B?OTBudFd1ZnpJWERyVlhUbllLbmgvOW42RlJOOFNkU3NBbDJCbytLZ2pnMVJV?=
- =?utf-8?B?YUJTY1RSTU82T2lEU3ZxdW5YQkVaM2ZjU3BCTERlZk1wc3VWbkdScTk1ME5l?=
- =?utf-8?B?dzdRaWJEdFhlY1AwNXN5ejlha1UwV2dvUGxDSnJtbE5CS1N2UElwZjN4dmhj?=
- =?utf-8?B?c2UydElxRHBnTjRVa05Nd1g3WVdaQzNJNGJSNUxOeTZyaHd2S2k1dDgrb2tw?=
- =?utf-8?B?ZHJ0Z3FNVjV3SFVBMlhMRG1ubmRTOVhtakxLZkNKLzE1RGhhMFBFaGFUeGJC?=
- =?utf-8?B?NnJsWHhlc1pBTm9odHA5MGxaWmZsNWMyWUJqOG1qVk9aaE5ZdnY1T1NnOC8z?=
- =?utf-8?B?cjhzR3hhWmExZHUzSFBSc1gvbmlxS0RsRFJraHNzSWxJQ1Nsbk96ZXk0LzJT?=
- =?utf-8?B?MXlaUUUzQjJ0NWJNV1BRcWgzYVUyODVqdE44N1U4bzVUd1lmYWUzdjNHekRY?=
- =?utf-8?Q?WrbwwKJiEhzm3M/mR2cfARM6X2aFH4=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(19092799006)(52116014)(7416014)(1800799024)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZUYwenpPV29DaXJ2M0ZxcHl3MEErdzVRUm9BVlFEVDBWTm0wUzB6bElYeFBO?=
- =?utf-8?B?TktjVGdmWThseTg2UkQvWnZBeFpZeml2NUUraE9aWnExQUVHcUwwbGZnMXpE?=
- =?utf-8?B?U011USt3dk90N3M4ck5vYXEzSmtrcTJCS1hTWnVHVWg0b2hiZEFzUFJOVzVI?=
- =?utf-8?B?R0pOT21XZHZIQ3RPQzR6RzFrbTB5SjlxcnI4bGE2bXVzd0JqZlhIV0h6N0tF?=
- =?utf-8?B?dmlHb0psQU9XK0FjS3VZLzA2eGdDMVFvbUhMbFZmSzBid21HOHhTWG43MnR0?=
- =?utf-8?B?SG0yZllvNDBEVWdNUXUzZWJsMHhab0ZGeG0xdlJwSWF6WlEzZWEvaFI4Vnl6?=
- =?utf-8?B?UzM1MndDaVRuVzV5S1RUQ0JTNEJZck0xekVXZWxFQml6NnVmNlhJUVFZWFZq?=
- =?utf-8?B?ZVFiUi9tQ25vRmhOSVNvWWsvRjc4SG9XeTZLVlIwaEY5RGhTSFBNeHI3YWs3?=
- =?utf-8?B?YW5sRG9yTWVQdXRQYnFjTHE2QW8zVnNiZWZCVlVQaUhaREhyUjcxaUsyZUdt?=
- =?utf-8?B?U2NUeC9YSnJ6QVdGOVZoSGxLWklCTTZaV21xZGpzYWNmU09WRFdmWDJmNlNa?=
- =?utf-8?B?MjNzWEJmRDAyRU9GT2ozS2hwN0hLNnJaRFBzNFd3TzJzc0ozdzY0bXN3enVI?=
- =?utf-8?B?L21XaEkxcHgyb0F2OUxrdXhxcFREazdHNjdqMTFSUUxjR3JsU2VuYjVkM2Q2?=
- =?utf-8?B?ejl2M0s4QjBsTzJMYWRMUDdBMjlBeVRXZE9vNjAwVDR3eDhCVEc4RTRtZnJ6?=
- =?utf-8?B?UW0yeEVDVnJKZk51b0xsT3dyVWxuVGQ1b3lGbUgwT0RvRWI3OWlLK2VGdmRX?=
- =?utf-8?B?Ym1lNStQTElmb2JVVHBDQlAzYmcySGtSWUhua0tYMnlEREVtMjZTOE9scXlR?=
- =?utf-8?B?SGVVcUdJaWUrdEtaTmQyUTBKNzJVLzBZOXdlWVN5YkxHTVZwWUErVjducWdq?=
- =?utf-8?B?emVlbWV4S25jT25ibzBHZUp5NkdyZEpLSjh5K3MzZGlyV0dNQUJWcDg0b3Zo?=
- =?utf-8?B?eFlCUjBUMko2eGlMZUtIaVFUcnNZZEZQd2NCbGFIMW1wMkRjNzJIWWYxeXo0?=
- =?utf-8?B?NG0vK3Z6N0cySUVoTUFpZXVPVjZNbFNXenRWdU1SUU1MTGNpRjFjOStJaCty?=
- =?utf-8?B?TWZMSGRVN2h0YW5MWDcycEczZmtWZlJiSlhwaHhWaXhOQTV2cVNoNnUxY005?=
- =?utf-8?B?VzJJLzlYMGdVZjA4M0M4T1ZQN1NaeXVEY0RudHd4M0RZeHRQNTZNSzdKNEJG?=
- =?utf-8?B?dEJZYWpudEwySXlPUS9iWmduK1RWNXZ4YU1FVlRTNnRXbkN5d1ZHTFZjNDNQ?=
- =?utf-8?B?dGRYTjY0NmFIQjBKcUNSNGdjZE83c2lQb3k3SWJVeEdzMlJnbTBnbWJWdmlz?=
- =?utf-8?B?NUJ6ZStHTk9WQ3NOZzFCSEV2K0MvZnhHS1FxSnJ0NW1ZcjkxcThMTEdMUjBS?=
- =?utf-8?B?dS9iWDJDTE1saHNwS2dOSVNqcXlXaWtZMk53aHVnbEUycFowNktKc05sazFP?=
- =?utf-8?B?UlNnN1d5WUFmOUVtcUptbmYwb1FhaUpVNUpJTVVkQitEcTVqeDZ3aG1jcTJZ?=
- =?utf-8?B?MHZQNXFFckttRm81K2RyR205VGlXVERuVFNEZkxaZnJKY3h3NXNvQ1JGNWd4?=
- =?utf-8?B?YXNBVUFXSitaSTJwTEtLU2ZkdjJ1NzFScFJuRHRNbnEybkU0eEwzUEJEM01v?=
- =?utf-8?B?MTlTbWJMZFJDZ1pacyt0MnhMM29qaUp2dC9YSEN3cExmS2tvQXZkN0o1aFZk?=
- =?utf-8?B?cGhFVmJzazJiOGtwQVpGWG1lL0cxbFQ5SkEyVGtYaFJyUk5WaEx1MlpyZlpi?=
- =?utf-8?B?TnhzN1ZYa3g2ODFCQ1NaSnRzQVczT3B3d0RxTUd6VnNZNTJ2MHcydFFHWU9T?=
- =?utf-8?B?clJad0Q4NHA2Z3RXVFV0VVdMNlU5MkpDemdVS1VCM0pKMTE0dENDNmo0MEJN?=
- =?utf-8?B?Sk9YRkZ3dXRpcmN6WEJ0SW0zV2lwSXBQSUlJRU4wQnNHQXNMOVhwUGlVc0VY?=
- =?utf-8?B?NGZ4QUc5TzlHWTN4cU9DL3FmaHdpMXVEMS96Y0Y2UnVnbFJCcnRCZlVaR05Z?=
- =?utf-8?B?VCtXeE5TVEJWblNHNkxqWksva3kwQnFXc0ZMYVVScDFZc28veGRkUkl1STFz?=
- =?utf-8?Q?XtkD+rFP/NgL+OXa+bdNuKQgg?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 332ac762-d946-4581-b1f6-08dddbdf6286
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2025 09:37:43.7455
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BAmVarG8XKbJGvN3LMR9yXYIp3BqzlIGfVQhGnmYhwL1+2JcOGK7R/94vwme0492Xp5tb0jlnuTJeqCq1Q5T8w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7991
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgAXOxG5_55o1Ay_AA--.2269S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Jw45Kry3ur17tF18Xw1fZwb_yoWfJF4kp3
+	ZxCw1DJry8ZF1I9w45ta18WFn3GaykAr4jkr17Xa45KFy5WFWjqF4akF98Za47Cwn7Z3Zr
+	Xay7Z3y7A3WIvrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRmZXOUUUUU=
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
 
-Add DDR Perf Monitor for i.MX95.
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+Add device tree binding documentation for the ESWIN eic7700
+clock controller module.
+
+Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
+Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
 ---
- arch/arm64/boot/dts/freescale/imx94.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../bindings/clock/eswin,eic7700-clock.yaml   | 381 ++++++++++++++++++
+ 1 file changed, 381 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
 
-diff --git a/arch/arm64/boot/dts/freescale/imx94.dtsi b/arch/arm64/boot/dts/freescale/imx94.dtsi
-index 44dee2cbd42d4bc765c33a9ce663ceda095b6c66..6a2d86d67200facec76a7880b4a2268b4191452c 100644
---- a/arch/arm64/boot/dts/freescale/imx94.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx94.dtsi
-@@ -1188,5 +1188,11 @@ wdog3: watchdog@49220000 {
- 				status = "disabled";
- 			};
- 		};
+diff --git a/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+new file mode 100644
+index 000000000000..45e70ebc08e6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+@@ -0,0 +1,381 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/eswin,eic7700-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		ddr-pmu@4e090dc0 {
-+			compatible = "fsl,imx94-ddr-pmu", "fsl,imx93-ddr-pmu";
-+			reg = <0x0 0x4e090dc0 0x0 0x200>;
-+			interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
-+		};
- 	};
- };
-
--- 
-2.34.1
++title: Eswin EIC7700 SoC clock controller
++
++maintainers:
++  - Yifeng Huang <huangyifeng@eswincomputing.com>
++  - Xuyang Dong <dongxuyang@eswincomputing.com>
++
++description:
++  The clock controller generates and supplies clock to all the modules
++  for eic7700 SoC.
++
++properties:
++  compatible:
++    const: eswin,eic7700-clock
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 0
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++  - '#address-cells'
++  - '#size-cells'
++
++patternProperties:
++  "^fixed-rate.*":
++    type: object
++    $ref: /schemas/clock/fixed-clock.yaml#
++
++  ".*pll@[a-f0-9]+$":
++    type: object
++
++    properties:
++      compatible:
++        const: eswin,pll-clock
++
++      reg:
++        items:
++          - description: PLL's config 0 register
++          - description: PLL's config 1 register
++          - description: PLL's config 2 register
++          - description: PLL's status register
++
++      '#clock-cells':
++        const: 0
++
++      clock-output-names:
++        maxItems: 1
++
++      enable-shift:
++        description: Bit shift of the enable register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      enable-width:
++        description: Width of the enable register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      refdiv-shift:
++        description: Bit shift of the reference divider register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      refdiv-width:
++        description: Width of the reference divider register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      fbdiv-shift:
++        description: Bit shift of the feedback divider register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      fbdiv-width:
++        description: Width of the feedback divider register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      frac-shift:
++        description: Bit shift of the fractional divider register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      frac-width:
++        description: Width of the fractional divider register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      postdiv1-shift:
++        description: Bit shift of the post divider 1 register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      postdiv1-width:
++        description: Width of the post divider 1 register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      postdiv2-shift:
++        description: Bit shift of the post divider 2 register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      postdiv2-width:
++        description: Width of the post divider 2 register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        maximum: 31
++
++      lock-shift:
++        description: Bit shift of the lock register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      lock-width:
++        description: Width of the lock register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++    required:
++      - compatible
++      - reg
++      - '#clock-cells'
++      - clock-output-names
++      - enable-shift
++      - enable-width
++      - refdiv-shift
++      - refdiv-width
++      - fbdiv-shift
++      - fbdiv-width
++      - frac-shift
++      - frac-width
++      - postdiv1-shift
++      - postdiv1-width
++      - postdiv2-shift
++      - postdiv2-width
++      - lock-shift
++      - lock-width
++
++    additionalProperties: false
++
++  ".*mux@[a-f0-9]+$":
++    type: object
++
++    properties:
++      compatible:
++        const: eswin,mux-clock
++
++      reg:
++        maxItems: 1
++
++      clocks:
++        minItems: 2
++        maxItems: 3
++
++      '#clock-cells':
++        const: 0
++
++      clock-output-names:
++        maxItems: 1
++
++      shift:
++        description: Bit shift of the select register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      width:
++        description: Width of the select register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++
++    required:
++      - compatible
++      - reg
++      - clocks
++      - '#clock-cells'
++      - clock-output-names
++      - shift
++      - width
++
++    additionalProperties: false
++
++  "^fixed-factor.*":
++    type: object
++    $ref: /schemas/clock/fixed-factor-clock.yaml#
++
++  ".*div@[a-f0-9]+$":
++    type: object
++
++    properties:
++      compatible:
++        const: eswin,divider-clock
++
++      reg:
++        maxItems: 1
++
++      clocks:
++        maxItems: 1
++
++      '#clock-cells':
++        const: 0
++
++      clock-output-names:
++        maxItems: 1
++
++      shift:
++        description: Bit shift of the divider register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      width:
++        description: Width of the divider register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++      div-flags:
++        description: Flags of the divider register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++    required:
++      - compatible
++      - reg
++      - clocks
++      - '#clock-cells'
++      - clock-output-names
++      - shift
++      - width
++      - div-flags
++
++    additionalProperties: false
++
++  ".*gate@[a-f0-9]+$":
++    type: object
++
++    properties:
++      compatible:
++        const: eswin,gate-clock
++
++      reg:
++        maxItems: 1
++
++      clocks:
++        maxItems: 1
++
++      '#clock-cells':
++        const: 0
++
++      clock-output-names:
++        maxItems: 1
++
++      bit-index:
++        description: Bit shift of the gate enable register.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 31
++
++    required:
++      - compatible
++      - reg
++      - clocks
++      - '#clock-cells'
++      - clock-output-names
++      - bit-index
++
++    additionalProperties: false
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@51828000 {
++        compatible = "eswin,eic7700-clock";
++        reg = <0x51828000 0x80000>;
++        #clock-cells = <0>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        fixed_rate_clk_xtal_24m: fixed-rate-clk-xtal-24m {
++          compatible = "fixed-clock";
++          #clock-cells = <0>;
++          clock-frequency = <24000000>;
++          clock-output-names = "fixed_rate_clk_xtal_24m";
++        };
++
++        clk_pll_cpu: clk-cpu-pll@64 {
++          compatible = "eswin,pll-clock";
++          reg = <0x64>, <0x68>, <0x6c>, <0xa4>;
++          #clock-cells = <0>;
++          enable-shift = <0>;
++          enable-width = <1>;
++          refdiv-shift = <12>;
++          refdiv-width = <6>;
++          fbdiv-shift = <20>;
++          fbdiv-width = <12>;
++          frac-shift = <4>;
++          frac-width = <24>;
++          postdiv1-shift = <1>;
++          postdiv1-width = <3>;
++          postdiv2-shift = <16>;
++          postdiv2-width = <3>;
++          lock-shift = <5>;
++          lock-width = <1>;
++          clock-output-names = "clk_pll_cpu";
++        };
++
++        mux_cpu_root_3mux1: cpu-root-3mux1-mux@208 {
++          compatible = "eswin,mux-clock";
++          reg = <0x208>;
++          #clock-cells = <0>;
++          clocks = <&clk_pll_cpu>,
++                   <&fixed_factor_u84_core_lp_div2>,
++                   <&fixed_rate_clk_xtal_24m>;
++          shift = <0>;
++          width = <2>;
++          clock-output-names = "mux_cpu_root_3mux1";
++        };
++
++        fixed_factor_cpu_div2: fixed-factor-cpu-div2 {
++          compatible = "fixed-factor-clock";
++          #clock-cells = <0>;
++          clocks = <&mux_cpu_root_3mux1>;
++          clock-div = <2>;
++          clock-mult = <1>;
++          clock-output-names = "fixed_factor_cpu_div2";
++        };
++
++        divider_u84_rtc_toggle: u84-rtc-toggle-div@1ec {
++          compatible = "eswin,divider-clock";
++          reg = <0x1ec>;
++          #clock-cells = <0>;
++          clocks = <&fixed_rate_clk_xtal_24m>;
++          shift = <16>;
++          width = <5>;
++          div-flags = <0x5>;
++          clock-output-names = "divider_u84_rtc_toggle";
++        };
++
++        gate_vi_phy_cfg: vi-phy-cfg-gate@1ac {
++          compatible = "eswin,gate-clock";
++          reg = <0x1ac>;
++          #clock-cells = <0>;
++          clocks = <&fixed_rate_clk_xtal_24m>;
++          bit-index = <1>;
++          clock-output-names = "gate_vi_phy_cfg";
++        };
++    };
+--
+2.17.1
 
 
