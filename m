@@ -1,169 +1,145 @@
-Return-Path: <devicetree+bounces-205171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B486B28339
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 17:48:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED212B2833D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 17:49:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC6DF176F5A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 15:48:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB8001CC8384
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 15:49:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B314D308F10;
-	Fri, 15 Aug 2025 15:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E48F3090E7;
+	Fri, 15 Aug 2025 15:48:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gpfYK/3t"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tIAhpLjd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C100C305E1A;
-	Fri, 15 Aug 2025 15:48:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0109A30749E;
+	Fri, 15 Aug 2025 15:48:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755272924; cv=none; b=fpUidlg51PZfPabWUsUsKsrpW07BjMj5u9MdFQHQD96JfGhycrubWKGoIwTDSVulLSEYCfs4ZvYhRClZ1hO+x+MQkL4oCXXN/PLGNBsnRY9Y68Usq6svcKuxvUwsmg/KVxo+KuKrF3sPJodA2zLCOKYZSJEh2EZlXB4kbJ8GuJM=
+	t=1755272929; cv=none; b=oYMp7hf9JfwJcJQ9SNwuh1C0qHrXEysFWpqw0+RDSdKMusyzw2YV/c99K32Q1LX02bXbzoJFHgQ974o2YJ/qSoFbThUCa81dAHXul6KNvkeg7ganNwxRPHG9q5jm5f9CPASmvEEP7t0ompyzmv3e/SEkozJmNduKtn2/8x8z8T0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755272924; c=relaxed/simple;
-	bh=W19Q0xBTJj2Y3o+tujlMVXEuQd9/STAMjjntI9ShhOY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MDOf1B85cVExaTLijIsaoBnfU/3yJo+G+goibjOkIP102k+OPmjhxnp1smNHtBA2GtXMMjk06RmHGOzMSUM0T9bfjTEESTFUELfmys7Ekbxr70JLJyyNXyTw5krHJesvnPAPBqWdYajen1wnj0SOuKxmdniSHnUtZZG6GJhYi+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gpfYK/3t; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57FFmaN02635242;
-	Fri, 15 Aug 2025 10:48:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755272916;
-	bh=g3R0ShOKrYC/TrDizkBvGx4oi8w9wLjh05UMIqlG41U=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=gpfYK/3tjHiVHDN+66MlpfI4wqkkq64ZmhqiYZHgk0E63n2OQFPM63xDEPgIAcZ/x
-	 ElEFBrA9zQcsjJOTPTZPzRZ52Tg8v6vApFm0i3uQ9OHDzhh2HMHejwDV/rpsPa8N29
-	 OaKWIkbKRyz2mZ0UGO8UrEpj8FiQ7xQpj0vymN0o=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57FFmaNM1999922
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 15 Aug 2025 10:48:36 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 15
- Aug 2025 10:48:36 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 15 Aug 2025 10:48:36 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57FFmZpr1197117;
-	Fri, 15 Aug 2025 10:48:35 -0500
-Message-ID: <9a3f4271-ada2-48aa-b99d-023619ec5e12@ti.com>
-Date: Fri, 15 Aug 2025 10:48:35 -0500
+	s=arc-20240116; t=1755272929; c=relaxed/simple;
+	bh=dXeZ3KZjlb7yNV7W1EJTeFuhkJItJWW4QMeQLARxE0M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iESnrFWubdmuqKcmaman3cZ/oSmCVvHG5Q7e6fhCKxK87fiyjxYhOXeNrtepk8DbCRQzU0r7yCXYENzdWzblR0MO7Zkd4pHbseiXCYd3kSrijW/PRa3zwCZkuXKYvRe2IvQ5Gfqe9WSl6EQ8OCaXUMkZatRer9qnU4XK2ia38po=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tIAhpLjd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 679EAC4CEEB;
+	Fri, 15 Aug 2025 15:48:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755272928;
+	bh=dXeZ3KZjlb7yNV7W1EJTeFuhkJItJWW4QMeQLARxE0M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tIAhpLjdnjd7KwcPxHe/fKOEaOJM9IILyUDtcEh08BwHDL/Qr4xpEEEWpXMvKI9Mk
+	 W8cOtYXpZjP09ZQzBX+sykHJb+XQtPylWBCAIJ6L3chyorZcJODU4BbED4STxDDQGo
+	 4/R3x6OX7WTaZRAU92XFukTzVCgTkwf2WzPK7s6cGjKFePaA0Wdq1N+RWwrBIVKNJY
+	 LbbJPUM2a8jNTXCey9UQN2eWqqW0qKEKEOWwrRf8I9RXKXvRc1inLGqB9qmrjZpcRM
+	 Vy4ALkuM6htnQyqEf8KT5Mi+IYIIbCJAssLhzENhYNKdR5Zr0BYNV6MJgUa2oRFYfV
+	 YAymPSJAQG6TQ==
+Date: Fri, 15 Aug 2025 16:48:42 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: y@spud.smtp.subspace.kernel.org, tsbogend@alpha.franken.de,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mips: lantiq: Document lantiq dcdc
+ binding
+Message-ID: <20250815-kangaroo-isolating-7e1a366be8d4@spud>
+References: <20250814082705.3183231-1-olek2@wp.pl>
+ <20250814-vocation-viscous-b54bc343e8c6@spud>
+ <e327b6ce-11ad-4909-9c6f-cd833b44e15f@wp.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 33/33] arm64: dts: ti: k3-j7*-ti-ipc-firmware: Switch MCU
- R5F cluster to Split-mode
-To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250814223839.3256046-1-b-padhi@ti.com>
- <20250814223839.3256046-34-b-padhi@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250814223839.3256046-34-b-padhi@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Gk3TvpZT3rBa5qnL"
+Content-Disposition: inline
+In-Reply-To: <e327b6ce-11ad-4909-9c6f-cd833b44e15f@wp.pl>
 
-On 8/14/25 5:38 PM, Beleswar Padhi wrote:
-> Several TI K3 SoCs like J7200, J721E, J721S2, J784S4 and J742S2 have a
-> R5F cluster in the MCU domain which is configured for LockStep mode at
-> the moment. The necessary support to use MCU R5F cluster in split mode
-> was added in the bootloader. And the TI IPC firmware for the split
-> processors is already available public.
-> 
-> Therefore, Switch this R5F cluster to Split mode by default in all the
-> boards using TI IPC Firmware config (k3-j7*-ti-ipc-firmware). This
-> gives out an extra general purpose R5F core free to run any applications
-> as required. Lockstep mode remains default in the SoC level dtsi, so
-> downstream board dts which do not use TI IPC Firmware config should not
-> be impacted by this switch.
-> 
-> Users who prefer to use the fault-tolerant lockstep mode with TI IPC
-> firmware config, can do that by setting `ti,cluster-mode` property to 1.
 
-What a user prefers and other configuration like that does not belong
-in devicetree, which should only describe the hardware.
+--Gk3TvpZT3rBa5qnL
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Configuration should be done using the normal methods, like kernel
-cmdline, module params, ioctls, etc.. Maybe we can even set the mode
-based on some signal in the firmware itself, like in the resource table.
+On Fri, Aug 15, 2025 at 12:13:41PM +0200, Aleksander Jan Bajkowski wrote:
+> Hi Conor,
+>=20
+> On 8/14/25 22:48, Conor Dooley wrote:
+> > On Thu, Aug 14, 2025 at 10:26:56AM +0200, Aleksander Jan Bajkowski wrot=
+e:
+> > > Lantiq DCDC is a voltage converter with a voltage sensor.
+> > >=20
+> > > Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> > > ---
+> > >   .../mips/lantiq/lantiq,dcdc-xrx200.yaml       | 32 ++++++++++++++++=
++++
+> > >   1 file changed, 32 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/mips/lantiq/la=
+ntiq,dcdc-xrx200.yaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcd=
+c-xrx200.yaml b/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-x=
+rx200.yaml
+> > > new file mode 100644
+> > > index 000000000000..5648b9676b3c
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mips/lantiq/lantiq,dcdc-xrx20=
+0.yaml
+> > > @@ -0,0 +1,32 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/mips/lantiq/lantiq,dcdc-xrx200.ya=
+ml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Lantiq DCDC (DC-DC converter with voltage sensor)
+> > > +
+> > > +maintainers:
+> > > +  - Aleksander Jan Bajkowski <olek2@wp.pl>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - enum:
+> > > +          - lantiq,dcdc-xrx200
+> > What is "xrx2000" in this context?
+>=20
+>=20
+> =E2=80=9Cxrx200=E2=80=9D is one of the generations of Lantiq SoCs. It inc=
+ludes four part
+> numbers
+> with the same memory map. The other generations are amazon-se, danube,
+> ARX100,
+> GRX100, xRX200, xRX300, xRX330. These correspond to the internal code nam=
+es:
+> ase,
+> danube, ar9, gr9, vr9, ar10, grx390.
 
-Andrew
+And the dc-dc converter is part of the SoC?
+Either way, you've got this file in the wrong location probably, dc-dc
+converters are usually under the regulator directory.
 
-> 
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi             | 1 +
->   arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi             | 1 +
->   arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi            | 1 +
->   .../boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi     | 1 +
->   4 files changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
-> index 8eff7bd2e771..ddf3cd899d0e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
-> @@ -94,6 +94,7 @@ &main_timer2 {
->   
->   &mcu_r5fss0 {
->   	status = "okay";
-> +	ti,cluster-mode = <0>;
->   };
->   
->   &mcu_r5fss0_core0 {
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi
-> index 5b3fa95aed76..57890a3b38a2 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi
-> @@ -211,6 +211,7 @@ &main_timer15 {
->   };
->   
->   &mcu_r5fss0 {
-> +	ti,cluster-mode = <0>;
->   	status = "okay";
->   };
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
-> index 40c9f2b64e7e..7ee8a8615246 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
-> @@ -179,6 +179,7 @@ &main_timer5 {
->   };
->   
->   &mcu_r5fss0 {
-> +	ti,cluster-mode = <0>;
->   	status = "okay";
->   };
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi
-> index b5a4496a05bf..e12fa55a4df0 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi
-> @@ -254,6 +254,7 @@ &main_timer9 {
->   };
->   
->   &mcu_r5fss0 {
-> +	ti,cluster-mode = <0>;
->   	status = "okay";
->   };
->   
+--Gk3TvpZT3rBa5qnL
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJ9W2gAKCRB4tDGHoIJi
+0gU0AQDWGnQAlsfUsnHcf5CuOvGvb6BnMJxzi+zek/8IRJDzsAD9FsLU7/k+cBL/
+CEsR9Y5lV2b6M6GJ7M0xSzGlxVEvIQg=
+=4KYv
+-----END PGP SIGNATURE-----
+
+--Gk3TvpZT3rBa5qnL--
 
