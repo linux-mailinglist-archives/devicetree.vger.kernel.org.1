@@ -1,74 +1,56 @@
-Return-Path: <devicetree+bounces-205093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1851EB27DC1
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 12:02:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20AE8B27DDA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 12:05:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9472A1C24C2D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 10:00:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12390AE3A95
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 10:02:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67582FF66E;
-	Fri, 15 Aug 2025 09:59:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cab.de header.i=@cab.de header.b="Jy0V77Vr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50DB32FE06E;
+	Fri, 15 Aug 2025 10:01:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-007fc201.pphosted.com (mx08-007fc201.pphosted.com [91.207.212.40])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EBBD2FCBF0;
-	Fri, 15 Aug 2025 09:59:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.40
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33E912FCBE2;
+	Fri, 15 Aug 2025 10:01:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755251957; cv=none; b=JVd0mHBpy+BfDgPD+NlIi9cHx3cCtw7FYNX/HLyVfOwVa0fQtaRZK928kYMfKy3te/An0KFFXUgs8+Ng74N6PrKBtaciyB+BB3s22nyCRFZjUsdtP2c2XdiGRB7dSx0qyH5rLWA7NSrPkuBh5k7KNTdZwmUW63bl7eMvvNlAaOk=
+	t=1755252089; cv=none; b=GsW8uZwwYtcylLkBZQPIUhsQj3FjzkcUIH2mE4ZYnOjrsrC0GTGy2ChSPnHAr2yuafV0SddblgjxJRlCsRUsyfGLGkexcqKhiwioHvdXaRC3sSr60MLaNv25t0AQRhP9wMIt60gV4pDpipQcl/fMdz51NWQXAh18/4WJjGFahkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755251957; c=relaxed/simple;
-	bh=bFtem6bal3ozKFQIhj24cxDStk8G+Bf8rrvgaQg9RkU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aqbXRuXkCrsyDD2X6CuXpYD3A5Vn72a9Fzg8whs5WSRWvZQ8g5KrXc8AJ9lfRmoR5tFN1y2T4lf0a0xpl2xeBiN/dqHnrWRyRCGzu1Vz89oxCMwDrpRL8Hy7kbisMbkG79PayUNJWmQO16NsbfK9+BeAVbdjiyuGa0dkFrmEbnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cab.de; spf=pass smtp.mailfrom=cab.de; dkim=pass (2048-bit key) header.d=cab.de header.i=@cab.de header.b=Jy0V77Vr; arc=none smtp.client-ip=91.207.212.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cab.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cab.de
-Received: from pps.filterd (m0456229.ppops.net [127.0.0.1])
-	by mx08-007fc201.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 57F9wt87265753;
-	Fri, 15 Aug 2025 11:58:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cab.de; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp-2025; bh=Ys
-	PmJmggYIdtvpY+JvdYm/4kgr5qIWEnATsmjZlXaWA=; b=Jy0V77VrkuETI8CNR/
-	TOgyuRF1jXtQw76yaJ1unQxncP2e/v2P+RwQBpWS4qCE7Y2qzxoXHwgM+0fzMoCe
-	kbkU135io0iQW5Do4h29XDxThlWtsaZmDRqfOx/1KT6hKt6EJw5nFskj93uFuwis
-	byUUZ3dNabJSnOAadGXU/oB3vDLMFlDY+0rBnLYYFfjV5Tbv9PDHES/eG+fsOomi
-	TQ2jho/ZXoSTUI5zMLsXr+1zjDqd9aR/XJVY8u+n4WtOeJ1RUaTdZcSD2YHZCeFP
-	DZe2kLWSYhhxxufsx/k8rgbEqnV2xgwYYYj0jM7zgmjlgQAxNhK2Ck32ChQS/AZS
-	6VNg==
-Received: from adranos.cab.de (adranos.cab.de [46.232.229.107])
-	by mx08-007fc201.pphosted.com (PPS) with ESMTPS id 48fqcpsbfb-4
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Aug 2025 11:58:56 +0200 (MEST)
-Received: from KAN23-025.cab.de (10.10.3.180) by Adranos.cab.de (10.10.1.54)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.36; Fri, 15 Aug
- 2025 11:59:12 +0200
-From: Markus Heidelberg <m.heidelberg@cab.de>
-To: Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        <devicetree@vger.kernel.org>
-CC: Markus Heidelberg <m.heidelberg@cab.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Christian Eggers <ceggers@arri.de>,
-        Alexander Sverdlin
-	<alexander.sverdlin@gmail.com>,
-        Jiri Prchal <jiri.prchal@aksignal.cz>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 3/3] eeprom: at25: make FRAM device ID error message more precise
-Date: Fri, 15 Aug 2025 11:58:38 +0200
-Message-ID: <20250815095839.4219-4-m.heidelberg@cab.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250815095839.4219-1-m.heidelberg@cab.de>
-References: <20250815095839.4219-1-m.heidelberg@cab.de>
+	s=arc-20240116; t=1755252089; c=relaxed/simple;
+	bh=hJ0omirrcdCvBfSAvT36DFAi2zbKGO64uxdw3nQO9sU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=lp5jphcs7yzuYvneGKEluPn2MZMgOxzRTH/k0RAVMrOxl1XeOUzf8xGm9PB/rMBqKepKl4PVV6z6Gk6wQPCxtvHxHqqeMa5NwjBWp7Mmsxl0sMJbIo3q2s/pHbGfIAJm8fbDmM16/UbcXFOpFeiNTLTo4msOBKOs0fyq0YZkq2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.212.9])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1f81529f9;
+	Fri, 15 Aug 2025 18:01:15 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: naoki@radxa.com
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org,
+	ziyao@disroot.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E24C
+Date: Fri, 15 Aug 2025 18:01:10 +0800
+Message-Id: <20250815100110.1302357-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <058E04574291144B+66620590-b680-44b9-92c5-7dc4c43080e7@radxa.com>
+References: <058E04574291144B+66620590-b680-44b9-92c5-7dc4c43080e7@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,43 +58,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Adranos.cab.de (10.10.1.54) To Adranos.cab.de (10.10.1.54)
-X-Proofpoint-ORIG-GUID: FOP4TzmLZxLnHahOUlaOhnkgUB9CJtuu
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE1MDA4MCBTYWx0ZWRfX2vxfAdB/6vLZ
- I5TCKJDPQ4SMKBypCyIQuKK9obAMoKu11pWaqZKHEX7L5mqAvQa+OSE/r/8sJCd4tbKrzG4WE14
- KdhDdclwiXB8HuhR9+j6qsz1vnYPHRhUQaiAjNyac6RgGgE+QG+PpJj8lFZiXJHffHSnHv66ov8
- q+ov8oOvLP43U9USjLhvM8L5kBonnWLnXYfkAFZFRycJ4p3TJRbbMn1rRHabtwo9zTG+f9zLKKG
- CV1jB3USGuHKL5Z7Gh5cnWXfY18gCNmrPBn3cvJcqCAXgE+3dkyHN7uH55LyhHQiChgf615nTTP
- NCLJAdmE5zsdg3HLC74IePy3ikbYtUSNvjEjrcxyFXJmhwrR8V335D2gw9uWX4=
-X-Authority-Analysis: v=2.4 cv=bctrUPPB c=1 sm=1 tr=0 ts=689f04e0 cx=c_pps
- a=LmW7qmVeM6tFdl5svFU9Cg==:117 a=LmW7qmVeM6tFdl5svFU9Cg==:17
- a=kldc_9v1VKEA:10 a=2OwXVqhp2XgA:10 a=pGLkceISAAAA:8 a=VCfmM45KO3mYAKdcRPcA:9
-X-Proofpoint-GUID: FOP4TzmLZxLnHahOUlaOhnkgUB9CJtuu
+X-HM-Tid: 0a98ad2d2bef03a2kunmff7e9ce61e6136
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaSh5NVkxKH01MSE1OGkgZSVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVCWVdZFhoPEhUdFFlBWU9LSFVKS0lCTUtKVUpLS1VLWQ
+	Y+
 
-The error description would be wrong in case the "size" Devicetree
-property is missing for an FRAM without device ID.
+Hi,
 
-Signed-off-by: Markus Heidelberg <m.heidelberg@cab.de>
-Reviewed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
----
- drivers/misc/eeprom/at25.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> "label" is deprecated. "color" and "function" should be enough to 
+> explain what they are.
+>
+> (Personally, I prefer LED_FUNCTION_STATUS to LED_FUNCTION_HEARTBEAT)
 
-diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
-index c90150f72836..e2868f7bdb03 100644
---- a/drivers/misc/eeprom/at25.c
-+++ b/drivers/misc/eeprom/at25.c
-@@ -399,7 +399,7 @@ static int at25_fram_to_chip(struct device *dev, struct spi_eeprom *chip)
- 				id[j] = tmp;
- 			}
- 		if (id[6] != 0xc2) {
--			dev_err(dev, "Error: no Cypress FRAM (id %02x)\n", id[6]);
-+			dev_err(dev, "Error: no Cypress FRAM with device ID (manufacturer ID bank 7: %02x)\n", id[6]);
- 			return -ENODEV;
- 		}
- 
--- 
-2.43.0
+BTW, will there be versions of Radxa E24C and Radxa E54C with
+onboard eMMC? It seems that they are all onboard SPI instead
+of eMMC. If there is no onboard eMMC version, we can remove
+the sdhci node in dts.
+
+Thanks,
+Chukun
+
+--
+2.25.1
+
 
 
