@@ -1,127 +1,151 @@
-Return-Path: <devicetree+bounces-205062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15495B27C9E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:18:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B95F0B27CCC
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:19:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 510F3622C58
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:12:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DBC11D02CE8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:13:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CA442E612A;
-	Fri, 15 Aug 2025 09:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB162E9EAD;
+	Fri, 15 Aug 2025 09:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fuCuXZe+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PefHprBF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842C52DE6F3
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 09:09:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE20625A333;
+	Fri, 15 Aug 2025 09:09:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755248984; cv=none; b=LiYppI3X3q4Haj+dDYZARKrsawZJ4ftGVIkzRxCmVKDBdUIYpfIcv0zJZphbw7G/b5XMH/adw+DBtojpfWx42z22DTUymDO2UX1NNqCvoduT8A5H3co8hWcq55QcVchJtSNcQhwhaSj4ombtWvz2C1iBn3k2qD16wWls3miwm5w=
+	t=1755248987; cv=none; b=l9Vprzumfr2zeFgjQ5WG7qApaCAfhOlKhgo24Hn+OhHXOcc4NyEWxGBJYWaNx+vkqHLpfQzO53Uz6cPm3gQCEumtVv3h6OGJBQCtgLiHvo5WW3wx+la2oG6mTezEUCb9JFHtRRoFMHQLyupfAtpWy1PWZcMciu2PqJzcQbwpR7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755248984; c=relaxed/simple;
-	bh=OIJNRqjRIKZy3S/hGDiq9C3wvFkIdWxYwaBQ3lO/5U0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=b/zhrDLDeLJTIyokCzQs0azU8pIgP6fd1mrLVLB8di9kvSB29v/Ws2llQhk4TtwhB4Qe0wwyyPj7UPaKhyUF/qzp5lrThSjveST+VBHxpOGcCR7uYFw3nkkOWJwIYVAiy1mhY3PIOK1cmNiyzj4mvhCANaADwdw1d7WO/rskCo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fuCuXZe+; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-333f917a67aso12058301fa.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 02:09:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755248972; x=1755853772; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RGJhJQc6FwYGEhY0RLSGVMOBhQEywfsf5GcAeMtkOBc=;
-        b=fuCuXZe+IuKggbWMZdNT7h7nq5/yN2raP59qR/YMj8j88LHWXnxjiJmzXORdAGWoXV
-         2uDIZn2EnA0pE0LfRpM262MCmXlCHXVY0aFMFxmhNVaVCLaKYUHpUqo5+CbLNopP9bpZ
-         bq2nLw8YEbHgYx9cgtXLk3xLuK8KaTXevhjFB8Z7vD6OWZ1LZTbGMZK1rF9rvowy3N4C
-         Lt+A97o5yRtqchlpWyV/4UwPBIOx+qEJFwQhvtCcJ4sbmfycejylvTSI+9awxX0Xoc31
-         yxXrnkAwSPsfnb39sdPnW+hkEFIZ1U+oy3ptPAem4SA/S7VaLSMdZygXG/8snpKzd+Tf
-         /tLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755248972; x=1755853772;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RGJhJQc6FwYGEhY0RLSGVMOBhQEywfsf5GcAeMtkOBc=;
-        b=mOfutayVWpOWKUYCdNw/wEbD5Ed6hvisR1W7DFI7hkvFkjke2lQu3CuFxsHBqy90/e
-         yhzDEZcyQJ9UUTIi/nekENx1sQKGyTck0cfwOb17xDTJ3XvT/YCDvIFRyrkQwLkChp7e
-         zzGGCwLyimE2848GGBnh6XRAmSAKgbufwGuXIYuuApABmLrBHIeMpnAelj06rWsvEo1F
-         pd87pWcxMMVV6DA4z3E3eNRftpeoVX61LjeQCUTLXwgq4WpFov+0Zp0R6DQgMZd7VOs0
-         Qf0kAu6625+r78tTaxLiCk+n8iKAYZImi2xPSzVxpnxIh//j53SO+o8SKs94F/R1AYJf
-         6pPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVZW8KSIs9fVdseiQ64ZY5sF/S/hDf6oHOa53zwLLQx3iPZ/35AXxFn4Jbya1Njy+FTHJjMvuQ80bFk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9VCy2fpzJb2T4C3ANrkgY0OYsVLgzwNop52bXoO6OIDbrE7yL
-	ZDiMVhjD8WjfmZSuCH3qcvv9ouf3I/qXVA53KfciLzJ3b6dacfAFJo+e3BE5QvIbvwlud7iuoCf
-	2XuguSMcw41hj0JHzLhZNbfQxoIu7Ih5F+fysuB1wJ+8EyYF4Q5mz
-X-Gm-Gg: ASbGnculGS6AkyNaV5yfwv6CFgBmgPvfcYP1Va9ZCGgpFBDwvXGgOe3J+GLM8W+w0Tg
-	y0BZS7N8FfMLYofO7D92FWIBt9PGESYftzsg/fMhX5lDp5RsqaagVXnPbgdry7TvSb642sxeMQ8
-	mrUF6iKljl0VJeKZvpdaEBfqqc8YHwjXI3hYTSDZXSrapeadOTf1zAEWs7SCdZP7HYgqo/NKR8Q
-	uhKWImI+gJW
-X-Google-Smtp-Source: AGHT+IH+k14bfZQAC1KVgtSKkgagSBtIxwMlEW1GNm9qBzYXcs+SImACCXvKbAOcHL0E6nXXVuPokyIcUWjwXHTd+18=
-X-Received: by 2002:a2e:bc05:0:b0:332:197e:f746 with SMTP id
- 38308e7fff4ca-334097dc5ecmr3598311fa.6.1755248971706; Fri, 15 Aug 2025
- 02:09:31 -0700 (PDT)
+	s=arc-20240116; t=1755248987; c=relaxed/simple;
+	bh=cs1eB9q9n7z5pJm7sf26ksHEkVUYVk8U3ynmbf5XQQ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NSJHaeiRKPY7xmJ1odNNz89m+nPXccK4hbw5aRycILKYKi1aWlRmP28gAmG2wiYkcZs1bOZ7ufL4R7G1ZKQ9oByxpnBmcJyNebZkoJ9Y0Ipzf/GQHtfHGOFhUe6HkAIkfXfJM3zZfPuHPJzNz749Yc2knnXg8MWJ9I7yVDrccks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PefHprBF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10951C4AF14;
+	Fri, 15 Aug 2025 09:09:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755248985;
+	bh=cs1eB9q9n7z5pJm7sf26ksHEkVUYVk8U3ynmbf5XQQ8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PefHprBFcDqggPpyS1RNP/VgFh3gRbFp4YMGEsxGBSK87bUluLVHkIRBZUkWUKcM4
+	 azY0E7FqyB4tYD+f4LqokxyC5LcSP0RC1m338f7SlizlPZAiFOTQHN02JgYAoPI6m+
+	 DXhdpw5Q5J9tFRE9h1oMwMT44whwjoPzEN1GRo9PvURgKotD+vJ6XByo9/Mg0P6leO
+	 dbWkNIUG+XkstW37LnaIuNlwPQslaO+7ruFNOP+nWyktzNnw3y0CeKPCvlf1k6T0Yl
+	 vyBAl3DgS3k2ig9lWGhI2Lq90jEVCsFa1CR7OGU1kwa5R7OG///UXHYJabijx7tbIk
+	 dYRrWPkvFbElg==
+Message-ID: <5af90b60-d65b-4e80-9a27-44938bbd450b@kernel.org>
+Date: Fri, 15 Aug 2025 11:09:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250814-ixp4xx-mi424wr-dts-v1-0-b7c10f3c4193@linaro.org>
- <20250814-ixp4xx-mi424wr-dts-v1-3-b7c10f3c4193@linaro.org> <f8529fab-d455-470e-b05b-9b5069091dc2@broadcom.com>
-In-Reply-To: <f8529fab-d455-470e-b05b-9b5069091dc2@broadcom.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 15 Aug 2025 11:09:20 +0200
-X-Gm-Features: Ac12FXy0B2p02EnH59JnC8rlf6TrQUcwEMck9pCiYQKxMABEtNQZh6UTI0EhI1w
-Message-ID: <CACRpkdbmEz7_0_XTJh_Zf2=Fi4Bx3AWY5Vm8-uAAd8pPi-ARDQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: Add ixp4xx Actiontec MI424WR device trees
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/8] dt-bindings: display: add versilicon,dc
+To: Rob Herring <robh@kernel.org>, Icenowy Zheng <uwu@icenowy.me>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao
+ <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20250814164048.2336043-1-uwu@icenowy.me>
+ <20250814164048.2336043-3-uwu@icenowy.me>
+ <20250814220444.GA3988176-robh@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250814220444.GA3988176-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 14, 2025 at 11:13=E2=80=AFPM Florian Fainelli
-<florian.fainelli@broadcom.com> wrote:
-> On 8/14/25 09:40, Linus Walleij wrote:
-> > The Actiontex MI424WR is a pretty widespread home router, made
-> > in many different revisions.
-> >
-> > Revisions A, C and D are based on IXP42x. We add a device tree
-> > for the A/C variant and one for the D variant as these differ in
-> > the location of the WAN PHY on the MDIO bus, and the ethernet
-> > interfaces for the WAN PHY and the DSA switch are switched around.
-> >
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> > ---
->
-> [snip]
->
-> > +                     gpio1: gpio@1,0 {
-> > +                             /* MMIO GPIO at CS1 */
-> > +                             compatible =3D "brcm,bcm6345-gpio";
->
-> Is that really the compatible string we want to use here?
+On 15/08/2025 00:04, Rob Herring wrote:
+>> +
+>> +maintainers:
+>> +  - Icenowy Zheng <uwu@icenowy.me>
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^display@[0-9a-f]+$"
+>> +
+>> +  compatible:
+>> +    const: verisilicon,dc
+> 
+> If the clocks or resets varies by platform, then you need an SoC 
+> specific compatible still. If these clocks/resets are straight from the 
+> RTL and any other number of clocks/resets is wrong, then we can stick 
+> with just this compatible.
 
-Yes as a matter of fact ... I got slapped for not just using compatible str=
-ings
-that are ... compatible and piling up new ones :/
+Shouldn't we have here always SoC compatible? Can it be ever used alone,
+outside of given SoC?
 
-Maybe I should try adding a new one, I suppose just "basic-mmio"
-would not be an acceptable cover-all compatible string?
+I could imagine now:
 
-I guess you're right, I should poke the DT binding people as to what
-to do about this.
+items:
+  - {}
+  - const: verisilicon,dc
 
-Yours,
-Linus Walleij
+
+Best regards,
+Krzysztof
 
