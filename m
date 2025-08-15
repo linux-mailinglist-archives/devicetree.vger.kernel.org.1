@@ -1,396 +1,629 @@
-Return-Path: <devicetree+bounces-204975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3064AB278A3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 07:49:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8894B278B8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 08:00:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16A5A567B31
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:49:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2324B1C87655
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 06:00:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7709A1C5499;
-	Fri, 15 Aug 2025 05:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AAC6230D1E;
+	Fri, 15 Aug 2025 06:00:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="r3gmctpb"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="FbgDLL6V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2117.outbound.protection.outlook.com [40.107.20.117])
+Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 347D610E3;
-	Fri, 15 Aug 2025 05:49:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.117
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755236973; cv=fail; b=rVja3gQCgXtZXh8Kk1lOxh3R8jFnVBJ+8B3KMnmEVG/fpjuROQeWypvgwKclyjLoQBIVJaIyHHiazE9rUTh9MIenIfYsyruhy4iVHWABkfQIHmf/6OwlzV1/Vsc2EewFWtmw+Ec0ejiwzl4tpSNSs21L00HffrnPX6OGaL9DQ08=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755236973; c=relaxed/simple;
-	bh=FBhfaHpZxPeGqc+9ja3dzMEEnHP5yQGe+UsI8RGpBjU=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=WoaLWLg5RmCYfuh87oJ/syHHTzsUToFxS30jJXCTYjfPXtNdY4s35rG7eQKh5294d7qo8VnEusOiy3wLVRXam4a45u/sRYSt9gzCFQQBiHh6wv1+A40isvRktTvnzarc9r4kVSeVxaWiCoPySLapyRdgcJV8Ilts+KIt4XoByZY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=r3gmctpb; arc=fail smtp.client-ip=40.107.20.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ysgIVjx/C9m3Ri3CSvhG7ExFRJ679xEhwMvMcj2LEDtqYKnv6MDMooP1Y5f49AFtG0XQk4LEAaMPHvqOA1E1IOgN5c0fLyt57aS8DByYuG3b9DuscM5HvxUD/Q+o3k9NUugFDJHZMkCqc7A2KnpS8um/jwdlI0dOHbccS2PrBH6OZ2tO2OchWNT3luu03A9mes4frS/FQFmN4RT4LLbJZd2PiNbvHniWbN4vTzpz+batT/vWYhMWfX8a6ViYXXU4M+lTzD7FxZCkSSk3+3Op19c5m/hH9LM6c7U1wPPyehiPPcc2jRpcyTb9eacrCECHyOmvXw2FH3JDf2BP3HmZLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0jIej+QMl5EbjTNXnHWQt2yxmvHSfAtjdS6NkM/5CDk=;
- b=TT3ZpXctAdIEyq06Qdl3swoldeiDOGOaIawy8fD9tkrFachvPEuk7oORgJjlhXF0G0UAm48gs+4uL9UCU6lc5MIQl9EfGJtP0dqAEQ4wBeb1EQwYkYxg/f14eEM0g1WNIqReELwG8QTYvxFbnIhnxoKxtoWYbZeOlFCIQ9186mjHKey52AwKSjMJ2TW6F4DznCe+ksteERfnuxodavHdfBClMybwVe7LdCKG3LP4tJfCyvX8ufI+iv0j7+zKGPvKmlRFQ550tHl8VWZyd4V3ZmkZLXakwgfHmy2CpD4jUDs82SKGVCifPufHj2ZB+dLHOunqYKFY2QdNk07IjbR69w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.de; dmarc=pass action=none header.from=phytec.de;
- dkim=pass header.d=phytec.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0jIej+QMl5EbjTNXnHWQt2yxmvHSfAtjdS6NkM/5CDk=;
- b=r3gmctpbf0/2IFuRS7zHk0EGqe+hjv3AlyNutTSLtPAMn36aKFGoDhd6UCArGQRcoWtVmZ1MCeNbyeyEpUTAJGhtyVnf2nTjih+3iF5jZaPlOAoPYRtXyj6SMgh+QH6ZIEPE2MRF7Y4VaRqyjhAQoLT20wQniRvyaxEYndwhuyg9LL824Zvyzdg5AcfngiRTsfedpRQs9WLliYimeh9E1+LmEv7/B2Mvxg0cjbSRuOjmcTQoFwTPydOXehR0DuGIFUwllVLHZDKN8RDobFeFud181RIKnUp3CFs0nuZK2e8RMBvqKlKu0WQYTOpZjtd0aklkQUE2sH6y7zkUAflcaQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.de;
-Received: from AS4P195MB1456.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:4b3::21)
- by AS4P195MB1477.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:4b2::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.16; Fri, 15 Aug
- 2025 05:49:26 +0000
-Received: from AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
- ([fe80::369c:a760:5bf9:8d4a]) by AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
- ([fe80::369c:a760:5bf9:8d4a%7]) with mapi id 15.20.9031.014; Fri, 15 Aug 2025
- 05:49:26 +0000
-Message-ID: <2c3d31f0-e690-4e67-acfa-931fca47dfeb@phytec.de>
-Date: Fri, 15 Aug 2025 08:49:22 +0300
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/33] Refactor TI IPC DT configs into dtsi
-To: Beleswar Padhi <b-padhi@ti.com>, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: afd@ti.com, u-kumar1@ti.com, hnagalla@ti.com, jm@ti.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Robert Nelson
- <robertcnelson@gmail.com>, Jo_o Paulo Gon_alves
- <joao.goncalves@toradex.com>, Parth Pancholi <parth.pancholi@toradex.com>,
- Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
- Francesco Dolcini <francesco.dolcini@toradex.com>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Logan Bristol <logan.bristol@utexas.edu>, Josua Mayer <josua@solid-run.com>,
- John Ma <jma@phytec.com>, Nathan Morrisson <nmorrisson@phytec.com>,
- Garrett Giordano <ggiordano@phytec.com>, Matt McKee <mmckee@phytec.com>,
- Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
- Max Krummenacher <max.krummenacher@toradex.com>,
- Stefan Eichenberger <stefan.eichenberger@toradex.com>,
- Hiago De Franco <hiago.franco@toradex.com>
-References: <20250814223839.3256046-1-b-padhi@ti.com>
-From: Wadim Egorov <w.egorov@phytec.de>
-Content-Language: en-US
-In-Reply-To: <20250814223839.3256046-1-b-padhi@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR04CA0109.eurprd04.prod.outlook.com
- (2603:10a6:803:64::44) To AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:4b3::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7327C242D66;
+	Fri, 15 Aug 2025 06:00:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755237616; cv=none; b=N3TIDIrIW1b2zK7pFQiSxFBoopB4vW4s0byBgMC9jJH38l1YLpqMEZsW63KvPerK2IVrJtrpRXMCTP5fpYbjVXwdao/athAPxNcL+I68Ca1p2Qyaij48yqBKS0gS3Zbzjg8jmNSfEXx+cKj2FUG0+YK4NaNhJDnUb/mbpaTYK0Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755237616; c=relaxed/simple;
+	bh=G8squQE4swotoJPecg40Ur/YtX3jc9BPQAchd4jC/oA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R1tx+p/aK79drzDmFRtdeWVnlYZbwTktcJ8nGQLAsGGXVjOkSN8lDGh8pxv3TzhtEaprguYzEtirf86THKxN8rMV97o/ES+azVNlc0x0yx8e5z5KmA3iuQpsUcR+hj4nmjj/sH/RZitT7CExeu0UwHuwVcKmfNs4ljtdexQtbNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=FbgDLL6V; arc=none smtp.client-ip=54.254.200.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1755237601;
+	bh=ITnux6DuIIYtcp5PLQQy3V36BweK5EJzjIyat0SaF4M=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=FbgDLL6V4H9PLXlTcJnJO5T+YCL+r8yslTGqnYgrYeWmZaCyzAxsYHLum2Q9mVcel
+	 JUUgLyhkBn3mdlwPioiVHU3DGA4Zlln9FrzJjYFaId5BS9K/o+DMRMDR6C1Zi8Jdzf
+	 zieL7RZPubotyBSUpUUFbev92gi0ucgWgzSv3zbM=
+X-QQ-mid: esmtpsz21t1755237596t14c6b4bd
+X-QQ-Originating-IP: BPA7NwK9LH7aHXBAu98ffYABk0xwPYmxqz55hiogzAY=
+Received: from = ( [61.145.255.150])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 15 Aug 2025 13:59:54 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 3892408793516818657
+EX-QQ-RecipientCnt: 16
+Date: Fri, 15 Aug 2025 13:59:54 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Jinmei Wei <weijinmei@linux.spacemit.com>
+Subject: Re: [PATCH 2/2] ASoC: spacemit: i2s: add support for K1 SoC
+Message-ID: <B01CBB94E8C4190E+aJ7M2v5yGGJw6S9T@LT-Guozexi>
+References: <20250814-k1-i2s-v1-0-c31149b29041@linux.spacemit.com>
+ <20250814-k1-i2s-v1-2-c31149b29041@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4P195MB1456:EE_|AS4P195MB1477:EE_
-X-MS-Office365-Filtering-Correlation-Id: b65535f6-42ab-43e8-4e69-08dddbbf7e25
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZEJIZmJzMkc2U1FyaGtNbVpNYmRxam40SFR2SW56S1RCd29kdGNzU0FvMGxl?=
- =?utf-8?B?VHV5bmFPRTgzODZSdG1TVnZMZmhzWVZkWXNMVUI3eGJmczZTOERFOGJhTFpp?=
- =?utf-8?B?S3NJMkp6dnJFMVhpemlrYVo5dWNnM0dQMnQ0MFBNWHBNMjlZK1NFT1RxMmJ5?=
- =?utf-8?B?TEhLMk0xaDAxbXlxeWQ5bkpVeDdUZ1gxNmZNQit1dVJjQzNoN1krOW81Z2Jw?=
- =?utf-8?B?TTJXdEU1ODZZRjFSbmdZSitDVHk1bTBsc3pQUGt5T3RPdWxEZWc4MjFhanZ6?=
- =?utf-8?B?UDErRitoNjBqdVVHM0x3azdKakhDTUEvWGx2RkdhRUtqdGs2bFRkMEQwQnBx?=
- =?utf-8?B?UVpCYWx6YW40R0JIR0ZYWDcvVkVHSnA3Z1Z1VCtReDBzVEQ5K3E4NFV0R01S?=
- =?utf-8?B?YWFhWXdpZ3RYUVdNallFR1dTWXZNWHI3SVVSR0xIQTBOVlQ1REVNVVdndVRR?=
- =?utf-8?B?THRaeHR2SlhVTm1KajVnb3BKVTZYODN1OXRWbGFQQkh3TkNkR1YxdXcwSEF1?=
- =?utf-8?B?L3ptNkNRK04ydUt0OXdPV1VVcDhNNG12LzFqdUhEYlhhMDBTd25Bc3o4Rm56?=
- =?utf-8?B?ci9kWVROdE40cmlGOXZsZ0RzeVZvV3BSSjJJR0dYN2ZNWXpwSGVpTThxakFn?=
- =?utf-8?B?NEp4ZzVaUXZmdSt1Rk16R3YrNmRhVnA0VEpLWHJuV0ZrYWR0WXpnZi9Sdkkr?=
- =?utf-8?B?dWdSSmE1MUp4RmhGS1hmdlJBZkZwdjFGRWN4ZkZhMnVNZC9iMWZZaXlPYUFT?=
- =?utf-8?B?LzRYeTBaZGJSQThJNk5kTE5YUHlESXgvWmgrM281TnZXOW5uaDZmSFduQXpD?=
- =?utf-8?B?MGc4Y2ZXSDA2NHJpT0lzelVFMEVISzUxMURKaVgwL09WaXp5eVNoTmFYMERs?=
- =?utf-8?B?WlQ3ZHFSWWdBYStVVU1QZG1zbWJqRVdUVWEyd0o2OWxVNEdKR0lWdE8vT1Fh?=
- =?utf-8?B?aXM3bkFyWUd4aEJGWG9rdCsxcHBNViswSFpvdnpUbEJKWlNlaDhlT251R0VR?=
- =?utf-8?B?M1pROXZPUXpBK3NsbUZET2VzaWEyaE1aV1NpMTdCQ2MybUticjBwUWQrRlRN?=
- =?utf-8?B?c3A4Y2RnWEtZMnRiY3FHaGU2MHg5RURNRmNXM3RrNkZ4Q3lvVC9JNVdlS1do?=
- =?utf-8?B?KzZmVlJIY3FTVVg5UDE1dXlyZTlrd0piTHhyVWtMRS9YNWxYM2hNRmV5dzEy?=
- =?utf-8?B?SXlQV1ZjMGVYR3BwWGM3UGtmOGFENWZaZlczcTVEb1pHTENOMFROMi9aNjJ3?=
- =?utf-8?B?aHVkVkMrSFBsWTIzYVlhcUJoTlZEYS8wTmFTemFNQmx1dXNIeFNMVFBrRXd5?=
- =?utf-8?B?Vk0xT1RhZ3dXSkFnQ3FUSFZUNVVKWHJQVnUwMVlNR1pRVXRhOU5pY09ZdDBv?=
- =?utf-8?B?d2huTkVybFpZWXBwRzBna1BwaG9IWUtNQklDa3YvWDhlRGdPNU5saDgycm5v?=
- =?utf-8?B?TFZ6blloaVlMSmkrUEJLTVZlVWNEeElBelJsR3gyNGJJVWF1RFgwUDNHMVV4?=
- =?utf-8?B?OHlCclBRbEVQd1JvdWRCb1UrMmpvTmlRTWJjaWNmc0RqM05wNkxCRk55QjNm?=
- =?utf-8?B?K2orSjhRUlpZY01OblF5L0cySWJtN2RFWGxYQkErUVRpcVRLMmg2WVZLZWhq?=
- =?utf-8?B?K1lDa3Vza1grSHZCY0NRdk1QZEx0bFZTeEVZOEN0UU1sRzk3L05xZnUwdmJw?=
- =?utf-8?B?YUZVd3BueFRXUHNudHVJYVJpMUFkNjgrR0VTb1d1RFFUdm9WS29oOXNzdlVr?=
- =?utf-8?B?aWdDa0IreGQzMDlOQ21TVnBiVGNqVHQxWlQ4ZFE5YzVsZnN3aTBDQTFlT2Vu?=
- =?utf-8?B?QkNQUW1tME5TOVBGUkpneUw3ejAwcGtMZTdFTktCQlovemVoVmlQZjcyL25p?=
- =?utf-8?B?ZHE3R05zbWNLSDhSQzE2UmkxL1hhUTJPdTVYalhQeERzZHc9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4P195MB1456.EURP195.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MjFqSFQ0bE4zaitLYWVLRkFaT052dUlTRnF6ZkhsZklobXRLYnZkVjdFWkx0?=
- =?utf-8?B?RThlNDlUSHp6dlM4WjMvd2NZUk1BRFJwazRrRUpFSDdvcUlsS2JjeThiSmxY?=
- =?utf-8?B?dE90K1g1VjA1dkVLT0xCbVhVYjM2MC8yTmdlQTV1N1VqbnBZbGg0NFhxa0RP?=
- =?utf-8?B?NGRrQldpMjlDcXNVNGJ4bm11RVYxaFl5d3cvRXVObFpsREcxQXZNaUR4Rloz?=
- =?utf-8?B?MnNKeWx6VHlDNWMxSEtMdWFUVEFCVDlSTEttMWxHZlJYakxZQ09DOC9uNUl5?=
- =?utf-8?B?bTJuQmtmSHF1NzNtZDhOb2xqcmhnSW1TbWphQWp3ZmticS9DazFuRUFHM0Yz?=
- =?utf-8?B?bTN3MUQzUFFwVnQ4ODFNak5EQWxJekJvaHJCdjh4QXJDV1BkNmV0ZkVXejlu?=
- =?utf-8?B?bVlqMzJpUFJsRXFyUnhWOWkxc2l4S1dIYXZBT0lSY0FkamtwZVVGd09IRW1T?=
- =?utf-8?B?dVJpUEhlaExlNEQ4UEc5ZzdxYnVMY25SUkVWdXJZMUNzbXpOWk81ZG5UditT?=
- =?utf-8?B?Vmc4dGdiM2RIdnJmOGo4bG9zYjlUekRNNXc0enpiTHBNWUhNQ0ppVFdFdGFU?=
- =?utf-8?B?cGtwV2hjaVA5NVJFSGxReUZnb2tWeEM2b3BsZU05L0t1VWdzVFhGSVNOZGEr?=
- =?utf-8?B?MWtrRnVOd0tlbGM1VFZ1L293cU9GQlkzMjBnUXdobk5HZnJEa0xLaFlBNDBU?=
- =?utf-8?B?dTBleVFNV1dXcFk3UXRWMG4yaWVWdklKbUdJb3lhbm10cEE0YjNGbTkwSXp6?=
- =?utf-8?B?b0Z1M1lXalNTU1lUN3EySi9kWkcyTDJ5NTRxMTE3Vk5EQmRFOWlqbm52L2kw?=
- =?utf-8?B?WHBYS1lsNVZLc2VYWDhvLy8rYWY2UVhyUUhSRVppK3pyWlcyOGFua3p1VHVq?=
- =?utf-8?B?RG12bHk3aXF1ZUVTSWQvcGxTNnFwSmdhdXA5cFZjQ25rOTBGWDI4Yk1nQW9n?=
- =?utf-8?B?V3lEZkpreUwydy9lK3JGSHhSZ05MRy84M3lIT3VtMThoU3p4SHVaeGFZbzhj?=
- =?utf-8?B?M05Ycm0zVEpoTVVtNDVzdENxTjVhQjE0UFV2ZG5wNmZtSXdnNHh3Q0NxaG9U?=
- =?utf-8?B?K0dOeVpiUk9EOVlOM1UrREYvb2VRemJPYm43YklHWldDalU5VXU3UzQyVVgx?=
- =?utf-8?B?QjFSU3Nvc0J2SXRzQTZ0UzMwcnhuaFdJaU1OMDhObTVFS0piMXhST0h6S3lL?=
- =?utf-8?B?cm1rTFZHN25VQXlqaDFKdzlBeGRuRWZhVEYybHg1ZnVGL2FkRmd1NHUyc01u?=
- =?utf-8?B?bURSY1JyVVR5eUJ1ZkNJZUJMVjVyUXB4NzZiM21WYWU1R2Z3akw4c1VNdHFl?=
- =?utf-8?B?T2JXSURiSHNHM2dpZWlHSThHNG9uWDNOd202NTB5aVlnZnhVYXE5UFo0UWVB?=
- =?utf-8?B?SmwyN2RldEI1UFBOMWxyYmlHeXpyK1NxVXljY3U4Q2tpSUs2Z2t6UWUrUk8y?=
- =?utf-8?B?RXZCWFU5c2pFZnZOME5kZ0Q0M2Rqd1hXTCt4d05XUW41MDFsSlJQQ0toQ1pG?=
- =?utf-8?B?OTh1cUt6QWNCY1B4RUtPMHp1TFRvVUliYTlEanUwMVhrNmRPNldPaVhGQXY2?=
- =?utf-8?B?WDJvQVRwa2ZvVEhaZG9DODI2NlFUTGRHQ0hJcFJEUmovbG10QVZwaVhSaHQv?=
- =?utf-8?B?RmRESlBxcVR1WjhTcWU4LzNFWE52NWFVVHdlZmdsNHpvV0VZWUYvUlpEMXBs?=
- =?utf-8?B?ZjJ1a3c3bDhnL2pDNThuTUw5UURlc0lRU3VhV2JHYXhrOUtUWHlkOU84VWRJ?=
- =?utf-8?B?UEduY2ZVaFdmb2xnd2ZxME5VUGpkc2dGY25GbWJjcTBEY1FYN0ZiUU9xNVln?=
- =?utf-8?B?SFY5NnJidnp2bmxaVWttMUI4Q0hpdWlpQlhYbVd0VFJxK1BNVkN1S1hVeXo3?=
- =?utf-8?B?Tm9wK1U3V2RiZWQxSVRHdDMvLzFVNW5BNHk1THZTd2xhcG8xRElaRXBKL1Zh?=
- =?utf-8?B?R2pQUlZoR215VktLei9DSTVVYlhZVDlyUEZ1SENmRHhMSVg4M1VoL1Zmdmxp?=
- =?utf-8?B?LzFIVDZnSjhqS1djMzJHOEpBLzRib24rdms5K1BzZGlCNnByTlI4ZjVmbDR0?=
- =?utf-8?B?R0xqTnN4Ymt6c0p4Y3JTQ2tVR2dIUVAxci8ybU5WUk0zTHl4V2NrblhRbHNz?=
- =?utf-8?Q?1OWoJB6ZfOUu9LLPbg0WpxI7C?=
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: b65535f6-42ab-43e8-4e69-08dddbbf7e25
-X-MS-Exchange-CrossTenant-AuthSource: AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2025 05:49:25.9934
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FcK3POoerSkinXpBGfkAf8rG2sS88w/GkFOGgyUbSdDKIVbfNuVG54fVDGeV+K7gI3KaIlZqzowSKSVr+Q5nwA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4P195MB1477
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250814-k1-i2s-v1-2-c31149b29041@linux.spacemit.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MWLCkAjnYYm5yN+sScWhWtkStxdJo9Coz8YCYuaXlpWjgQW3dpLKwjsk
+	0ONcclxcv9eTR4R/INHHTyUF7xAqqzmlgATIckqwnWk2PKFOF1JpU3FJ4c7QGMMolYoY1GR
+	B7oh5oVZBptWcxtmWpP3t5OU1C+vd/Ixx8XCN+YyjqLW84co20LOiLD6T6BS5+7LZz/iwgr
+	uvAYfcg0nQWCZZSgCJaCwFKVlZr4LkuyBZwveFaEGWLt6nxtqtANCW8WEj/It0RyaPrIK+3
+	zNh1wDOVlOAx5ap4QIq3gd3oWQh3PsGoSHtedUTYFi8QLMOusUMRMq6dspHiJoEMKQAD6is
+	fxI9s1Jpiy/iQPFWap57T3kHyyBZOB2VEUYFA/hKlikyqoWSb/oZhMiTv+K7BdmOnIfI2ql
+	zXqv5JWgJHy0/AMk6Brlfwdk51jusJlztJBViCQ/DUE3xGJitx3KdOKDDOXx7ygbhDZZmKm
+	e8M1PDbJDOIARQO7u4e8FsV792ImUe6yIBzMQN8mt9ekrw+21SXSyBY8mXj/PHvx3sKttdP
+	PCzRxcQxnKQjWCLHn/ofj+x/jJmcbjlZqqskbcdl+pQUFExeKDVXAJ+XJBRSc3UzlJtcyG+
+	0+Vjc5FIM09NrKNFDe+bj2uusunAhhDyS7o2xGb0z66unFtEror7v8BN/pXZx0b0zhBPKhw
+	bgUWb/zfxAzzvVZziGPOrYjrwD/rXrklYSFYtcPfg/01CSKTSGU5zc0T+uvS99sOlDEZn8f
+	enYBunEMDqda20e3snCuZXPY0PVUqFnpO085YwVTx9x4HaW2h46ZpZEvjkg0lLuZW7HzMUh
+	24ew//sU90yh754iQOJ8ZD0n/fc6kOGMYbHCJHY0fABxL5KOVNMSmhjW9BKxEwnI/NvBVqS
+	JK8WF+bBxUiNcR/FngAVq+rtBOwUtpbwDVod/Pwa7JLVMhBc8wS88FY88aR1T6b6Qhnhezp
+	uhdK54szLtHOLLcLhLYSh92c3SWYcPco5Hs2ybHr8MocMDyrU0jA/NNnyhR7Yp0vTdt2Npj
+	MH9ejg7uCj3J8fxiHezIdDORQknf1ms07JnCJ7+e2jBgiIruM1
+X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
+X-QQ-RECHKSPAM: 0
 
-Hi Beleswar,
-
-On 8/15/25 1:38 AM, Beleswar Padhi wrote:
-> The TI K3 SoCs have multiple programmable remote processors like
-> R5F, M4F, C6x/C7x etc. The TI SDKs for these SoCs offer sample firmware
-> which could be run on these cores to demonstrate an "echo" IPC test.
-> Those firmware require certain memory carveouts to be reserved from
-> system memory, timers to be reserved, and certain mailbox
-> configurations for interrupt based messaging. These configurations
-> could be different for a different firmware.
+On Thu, Aug 14, 2025 at 04:54:20PM +0800, Troy Mitchell wrote:
+> Add ASoC platform driver for the SpacemiT K1 SoC full-duplex I2S
+> controller.
 > 
-> Refactor these firmware dependent configurations from board level DTS
-> into a dtsi for now. This dtsi for TI IPC firmware is board-independent
-> and can be applied to all boards from the same SoC Family. This gets
-> rid of code duplication (>50%) and allows more freedom for users
-> developing custom firmware (or no firmware) to utilize system resources
-> better; easily by swapping out this dtsi. To maintain backward
-> compatibility, the dtsi is included in all existing boards.
-
-I remember I asked myself the same question on how to represent the 
-relation between used FW and memory carveouts+others when adding our 
-first K3 board.
-
-This change comes quite late so I am wondering if there is any other 
-motivation besides code reduction / more freedom for custom FW behind it?
-
-
+> Co-developer: Jinmei Wei <weijinmei@linux.spacemit.com>
+> Signed-off-by: Jinmei Wei <weijinmei@linux.spacemit.com>
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> ---
+>  sound/soc/Kconfig           |   1 +
+>  sound/soc/Makefile          |   1 +
+>  sound/soc/spacemit/Kconfig  |  14 ++
+>  sound/soc/spacemit/Makefile |   5 +
+>  sound/soc/spacemit/k1_i2s.c | 444 ++++++++++++++++++++++++++++++++++++++++++++
+>  5 files changed, 465 insertions(+)
 > 
-> DTSI vs Overlay:
-> 1. I chose DTSI over overlay as both the ways required including the
-> refactored file in existing board-level files to maintain backward
-> compatibility, so didn't see the advantage of using overlays here.
-> 2. If we do down the overlay path, existing board-level file names have
-> to be changed to indicate they are without the IPC support; so that
-> they can be combined with the overlay to generate the same-named DTBs.
-> For example:
-> k3-am69-sk.dtb := k3-am69-sk-sans-ipc.dtb k3-j784s4-ti-ipc-firmware.dtbo
-> 			     ~~~~~~~~
+> diff --git a/sound/soc/Kconfig b/sound/soc/Kconfig
+> index bf362bfca4564f0a7760850be8088ac7cc402b89..63d5c7a3ff4e1988cacfac01c58fd2bd36bd5903 100644
+> --- a/sound/soc/Kconfig
+> +++ b/sound/soc/Kconfig
+> @@ -128,6 +128,7 @@ source "sound/soc/renesas/Kconfig"
+>  source "sound/soc/rockchip/Kconfig"
+>  source "sound/soc/samsung/Kconfig"
+>  source "sound/soc/sdca/Kconfig"
+> +source "sound/soc/spacemit/Kconfig"
+>  source "sound/soc/spear/Kconfig"
+>  source "sound/soc/sprd/Kconfig"
+>  source "sound/soc/starfive/Kconfig"
+> diff --git a/sound/soc/Makefile b/sound/soc/Makefile
+> index 462322c38aa42d4c394736239de0317d5918d5a7..8c0480e6484e75eb0b6db306630ba77d259ba8e3 100644
+> --- a/sound/soc/Makefile
+> +++ b/sound/soc/Makefile
+> @@ -70,6 +70,7 @@ obj-$(CONFIG_SND_SOC)	+= rockchip/
+>  obj-$(CONFIG_SND_SOC)	+= samsung/
+>  obj-$(CONFIG_SND_SOC)	+= sdca/
+>  obj-$(CONFIG_SND_SOC)	+= sof/
+> +obj-$(CONFIG_SND_SOC)	+= spacemit/
+>  obj-$(CONFIG_SND_SOC)	+= spear/
+>  obj-$(CONFIG_SND_SOC)	+= sprd/
+>  obj-$(CONFIG_SND_SOC)	+= starfive/
+> diff --git a/sound/soc/spacemit/Kconfig b/sound/soc/spacemit/Kconfig
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..d0cb7400f9fb62c1178aac7049c59baaa5a2d4e4
+> --- /dev/null
+> +++ b/sound/soc/spacemit/Kconfig
+> @@ -0,0 +1,14 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +menu "SpacemiT"
+> +	depends on COMPILE_TEST || ARCH_SPACEMIT
+> +	depends on HAVE_CLK
+> +
+> +config SND_SOC_K1_I2S
+> +	tristate "K1 I2S Device Driver"
+> +	select SND_SOC_GENERIC_DMAENGINE_PCM
+I think I need select CMA and DMA_CMA here.
+Otherwise I got this error:
+```
+[    1.302864] ALSA pcmC0D0p,0:: cannot preallocate for size 32768
+[    1.308704] ALSA pcmC0D0c,0:d4026000.i2s0-ES8326 HiFi ES8326 HiFi-0: cannot preallocate for size 32768
+```
+                - Troy
 
-While it's a good idea to keep backward compatibility for older devices, 
-have you considered using overlays for new/upcoming devices?
-
-Regards,
-Wadim
-
+> +	help
+> +	  Say Y or M if you want to add support for I2S driver for
+> +	  K1 I2S controller. The device supports up to maximum of
+> +	  2 channels each for play and record.
+> +
+> +endmenu
+> diff --git a/sound/soc/spacemit/Makefile b/sound/soc/spacemit/Makefile
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..9069de8ef89c84db8cc7d3a4d3b154fff9bd7aff
+> --- /dev/null
+> +++ b/sound/soc/spacemit/Makefile
+> @@ -0,0 +1,5 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +# K1 Platform Support
+> +snd-soc-k1-i2s-y := k1_i2s.o
+> +
+> +obj-$(CONFIG_SND_SOC_K1_I2S) += snd-soc-k1-i2s.o
+> diff --git a/sound/soc/spacemit/k1_i2s.c b/sound/soc/spacemit/k1_i2s.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..9e41525afbf3f08ab9a26b562772861d86f39cd7
+> --- /dev/null
+> +++ b/sound/soc/spacemit/k1_i2s.c
+> @@ -0,0 +1,444 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright (c) 2025 Troy Mitchell <troy.mitchell@linux.spacemit.com> */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/reset.h>
+> +#include <sound/dmaengine_pcm.h>
+> +#include <sound/pcm.h>
+> +#include <sound/pcm_params.h>
+> +
+> +#define SSCR			0x00	/* SPI/I2S top control register */
+> +#define SSFCR			0x04	/* SPI/I2S FIFO control register */
+> +#define SSINTEN			0x08	/* SPI/I2S interrupt enable register */
+> +#define SSDATR			0x10	/* SPI/I2S data register */
+> +#define SSPSP			0x18	/* SPI/I2S programmable serial protocol control register */
+> +#define SSRWT			0x24	/* SPI/I2S root control register */
+> +
+> +/* SPI/I2S Work data size, register bits value 0~31 indicated data size 1~32 bits */
+> +#define SSCR_FIELD_DSS		GENMASK(9, 5)
+> +#define SSCR_DW_8BYTE		FIELD_PREP(SSCR_FIELD_DSS, 0x7)
+> +#define SSCR_DW_16BYTE		FIELD_PREP(SSCR_FIELD_DSS, 0xf)
+> +#define SSCR_DW_18BYTE		FIELD_PREP(SSCR_FIELD_DSS, 0x11)
+> +#define SSCR_DW_32BYTE		FIELD_PREP(SSCR_FIELD_DSS, 0x1f)
+> +
+> +#define SSCR_SSE		BIT(0)		/* SPI/I2S Enable */
+> +#define SSCR_FRF_PSP		GENMASK(2, 1)	/* Frame Format*/
+> +#define SSCR_TRAIL		BIT(13)		/* Trailing Byte */
+> +
+> +#define SSFCR_FIELD_TFT		GENMASK(3, 0)   /* TXFIFO Trigger Threshold */
+> +#define SSFCR_FIELD_RFT		GENMASK(8, 5)   /* RXFIFO Trigger Threshold */
+> +#define SSFCR_TSRE		BIT(10)		/* Transmit Service Request Enable */
+> +#define SSFCR_RSRE		BIT(11)		/* Receive Service Request Enable */
+> +
+> +#define SSPSP_FSRT		BIT(3)		/* Frame Sync Relative Timing Bit */
+> +#define SSPSP_SFRMP		BIT(4)		/* Serial Frame Polarity */
+> +#define SSPSP_FIELD_SFRMWDTH	GENMASK(17, 12)	/* Serial Frame Width field  */
+> +
+> +#define SSRWT_RWOT		BIT(0)		/* Receive Without Transmit */
+> +
+> +#define SPACEMIT_PCM_RATES	SNDRV_PCM_RATE_8000_192000
+> +#define SPACEMIT_PCM_FORMATS	(SNDRV_PCM_FMTBIT_S8 | \
+> +				 SNDRV_PCM_FMTBIT_S16_LE | \
+> +				 SNDRV_PCM_FMTBIT_S24_LE | \
+> +				 SNDRV_PCM_FMTBIT_S32_LE)
+> +
+> +#define SPACEMIT_I2S_PERIOD_SIZE 1024
+> +
+> +struct spacemit_i2s_dev {
+> +	struct device *dev;
+> +
+> +	void __iomem *base;
+> +
+> +	struct reset_control *reset;
+> +
+> +	struct clk *sysclk;
+> +	struct clk *bclk;
+> +	struct clk *sspa_clk;
+> +
+> +	struct snd_dmaengine_dai_dma_data capture_dma_data;
+> +	struct snd_dmaengine_dai_dma_data playback_dma_data;
+> +
+> +	bool has_capture;
+> +	bool has_playback;
+> +
+> +	int dai_fmt;
+> +
+> +	int started_count;
+> +};
+> +
+> +static const struct snd_pcm_hardware spacemit_pcm_hardware = {
+> +	.info		  = SNDRV_PCM_INFO_INTERLEAVED |
+> +			    SNDRV_PCM_INFO_BATCH,
+> +	.formats          = SPACEMIT_PCM_FORMATS,
+> +	.rates		  = SPACEMIT_PCM_RATES,
+> +	.rate_min         = SNDRV_PCM_RATE_8000,
+> +	.rate_max         = SNDRV_PCM_RATE_192000,
+> +	.channels_min     = 1,
+> +	.channels_max     = 2,
+> +	.buffer_bytes_max = SPACEMIT_I2S_PERIOD_SIZE * 4 * 4,
+> +	.period_bytes_min = SPACEMIT_I2S_PERIOD_SIZE * 2,
+> +	.period_bytes_max = SPACEMIT_I2S_PERIOD_SIZE * 4,
+> +	.periods_min	  = 2,
+> +	.periods_max	  = 4,
+> +};
+> +
+> +static const struct snd_dmaengine_pcm_config spacemit_dmaengine_pcm_config = {
+> +	.pcm_hardware = &spacemit_pcm_hardware,
+> +	.prepare_slave_config = snd_dmaengine_pcm_prepare_slave_config,
+> +	.chan_names = {"tx", "rx"},
+> +	.prealloc_buffer_size = 32 * 1024,
+> +};
+> +
+> +static void spacemit_i2s_init(struct spacemit_i2s_dev *i2s)
+> +{
+> +	u32 sscr_val, sspsp_val, ssfcr_val, ssrwt_val;
+> +
+> +	sscr_val = SSCR_TRAIL | SSCR_FRF_PSP;
+> +	ssfcr_val = FIELD_PREP(SSFCR_FIELD_TFT, 5) |
+> +		    FIELD_PREP(SSFCR_FIELD_RFT, 5) |
+> +		    SSFCR_RSRE | SSFCR_TSRE;
+> +	ssrwt_val = SSRWT_RWOT;
+> +
+> +	/* SSPSP register was set by set_fmt */
+> +	sspsp_val = readl(i2s->base + SSPSP);
+> +	sspsp_val |= SSPSP_SFRMP;
+> +
+> +	writel(sscr_val, i2s->base + SSCR);
+> +	writel(ssfcr_val, i2s->base + SSFCR);
+> +	writel(sspsp_val, i2s->base + SSPSP);
+> +	writel(ssrwt_val, i2s->base + SSRWT);
+> +	writel(0, i2s->base + SSINTEN);
+> +}
+> +
+> +static int spacemit_i2s_hw_params(struct snd_pcm_substream *substream,
+> +				  struct snd_pcm_hw_params *params,
+> +				  struct snd_soc_dai *dai)
+> +{
+> +	struct spacemit_i2s_dev *i2s = snd_soc_dai_get_drvdata(dai);
+> +	struct snd_dmaengine_dai_dma_data *dma_data;
+> +	u32 data_width, data_bits;
+> +	unsigned long bclk_rate;
+> +	u32 val;
+> +	int ret;
+> +
+> +	val = readl(i2s->base + SSCR);
+> +	if (val & SSCR_SSE)
+> +		return 0;
+> +
+> +	dma_data = &i2s->playback_dma_data;
+> +
+> +	if (substream->stream == SNDRV_PCM_STREAM_CAPTURE)
+> +		dma_data = &i2s->capture_dma_data;
+> +
+> +	switch (params_format(params)) {
+> +	case SNDRV_PCM_FORMAT_S8:
+> +		data_bits = 8;
+> +		data_width = SSCR_DW_8BYTE;
+> +		dma_data->maxburst = 8;
+> +		dma_data->addr_width = DMA_SLAVE_BUSWIDTH_1_BYTE;
+> +		break;
+> +	case SNDRV_PCM_FORMAT_S16_LE:
+> +		data_bits = 16;
+> +		data_width = SSCR_DW_16BYTE;
+> +		dma_data->maxburst = 16;
+> +		dma_data->addr_width = DMA_SLAVE_BUSWIDTH_2_BYTES;
+> +		if ((i2s->dai_fmt & SND_SOC_DAIFMT_FORMAT_MASK) == SND_SOC_DAIFMT_I2S) {
+> +			data_width = SSCR_DW_32BYTE;
+> +			dma_data->maxburst = 32;
+> +			dma_data->addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
+> +		}
+> +		break;
+> +	case SNDRV_PCM_FORMAT_S32_LE:
+> +		data_bits = 32;
+> +		data_width = SSCR_DW_32BYTE;
+> +		dma_data->maxburst = 32;
+> +		dma_data->addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
+> +		break;
+> +	default:
+> +		dev_dbg(i2s->dev, "unexpected data width type");
+> +		return -EINVAL;
+> +	}
+> +
+> +	val = readl(i2s->base + SSCR);
+> +	val &= ~SSCR_DW_32BYTE;
+> +	val |= data_width;
+> +	writel(val, i2s->base + SSCR);
+> +
+> +	bclk_rate = params_channels(params) *
+> +		    params_rate(params) *
+> +		    data_bits;
+> +
+> +	ret = clk_set_rate(i2s->bclk, bclk_rate);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return clk_set_rate(i2s->sspa_clk, bclk_rate);
+> +}
+> +
+> +static int spacemit_i2s_set_sysclk(struct snd_soc_dai *cpu_dai, int clk_id,
+> +				   unsigned int freq, int dir)
+> +{
+> +	struct spacemit_i2s_dev *i2s = dev_get_drvdata(cpu_dai->dev);
+> +
+> +	if (freq == 0)
+> +		return 0;
+> +
+> +	return clk_set_rate(i2s->sysclk, freq);
+> +}
+> +
+> +static int spacemit_i2s_set_fmt(struct snd_soc_dai *cpu_dai,
+> +				unsigned int fmt)
+> +{
+> +	struct spacemit_i2s_dev *i2s = dev_get_drvdata(cpu_dai->dev);
+> +	u32 sspsp_val;
+> +
+> +	sspsp_val = readl(i2s->base + SSPSP);
+> +	sspsp_val &= ~SSPSP_FIELD_SFRMWDTH;
+> +
+> +	i2s->dai_fmt = fmt;
+> +
+> +	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
+> +	case SND_SOC_DAIFMT_I2S:
+> +		cpu_dai->driver->playback.formats = SNDRV_PCM_FMTBIT_S16_LE;
+> +		cpu_dai->driver->capture.formats = SNDRV_PCM_FMTBIT_S16_LE;
+> +		sspsp_val |= FIELD_PREP(SSPSP_FIELD_SFRMWDTH, 0x10) |
+> +			     SSPSP_FSRT;
+> +		break;
+> +	case SND_SOC_DAIFMT_DSP_A:
+> +	case SND_SOC_DAIFMT_DSP_B:
+> +		cpu_dai->driver->playback.channels_min = 1;
+> +		cpu_dai->driver->playback.channels_max = 1;
+> +		cpu_dai->driver->capture.channels_min = 1;
+> +		cpu_dai->driver->capture.channels_max = 1;
+> +		cpu_dai->driver->playback.formats = SNDRV_PCM_FMTBIT_S32_LE;
+> +		cpu_dai->driver->capture.formats = SNDRV_PCM_FMTBIT_S32_LE;
+> +		sspsp_val |= FIELD_PREP(SSPSP_FIELD_SFRMWDTH, 0x1);
+> +		break;
+> +	default:
+> +		dev_dbg(i2s->dev, "unexpected format type");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if ((fmt & SND_SOC_DAIFMT_FORMAT_MASK) == SND_SOC_DAIFMT_DSP_A)
+> +		sspsp_val |= SSPSP_FSRT;
+> +
+> +	writel(sspsp_val, i2s->base + SSPSP);
+> +
+> +	return 0;
+> +}
+> +
+> +static int spacemit_i2s_trigger(struct snd_pcm_substream *substream,
+> +				int cmd, struct snd_soc_dai *dai)
+> +{
+> +	struct spacemit_i2s_dev *i2s = snd_soc_dai_get_drvdata(dai);
+> +	u32 val;
+> +
+> +	switch (cmd) {
+> +	case SNDRV_PCM_TRIGGER_START:
+> +	case SNDRV_PCM_TRIGGER_RESUME:
+> +	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+> +		if (!i2s->started_count) {
+> +			val = readl(i2s->base + SSCR);
+> +			val |= SSCR_SSE;
+> +			writel(val, i2s->base + SSCR);
+> +		}
+> +		i2s->started_count++;
+> +		break;
+> +	case SNDRV_PCM_TRIGGER_STOP:
+> +	case SNDRV_PCM_TRIGGER_SUSPEND:
+> +	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
+> +		if (i2s->started_count)
+> +			i2s->started_count--;
+> +
+> +		if (!i2s->started_count) {
+> +			val = readl(i2s->base + SSCR);
+> +			val &= ~SSCR_SSE;
+> +			writel(val, i2s->base + SSCR);
+> +		}
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int spacemit_i2s_dai_probe(struct snd_soc_dai *dai)
+> +{
+> +	struct spacemit_i2s_dev *i2s = snd_soc_dai_get_drvdata(dai);
+> +
+> +	snd_soc_dai_init_dma_data(dai,
+> +				  i2s->has_playback ? &i2s->playback_dma_data : NULL,
+> +				  i2s->has_capture ? &i2s->capture_dma_data : NULL);
+> +
+> +	reset_control_deassert(i2s->reset);
+> +
+> +	spacemit_i2s_init(i2s);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct snd_soc_dai_ops spacemit_i2s_dai_ops = {
+> +	.probe = spacemit_i2s_dai_probe,
+> +	.hw_params = spacemit_i2s_hw_params,
+> +	.set_sysclk = spacemit_i2s_set_sysclk,
+> +	.set_fmt = spacemit_i2s_set_fmt,
+> +	.trigger = spacemit_i2s_trigger,
+> +};
+> +
+> +static struct snd_soc_dai_driver spacemit_i2s_dai = {
+> +	.ops = &spacemit_i2s_dai_ops,
+> +	.playback = {
+> +		.channels_min = 1,
+> +		.channels_max = 2,
+> +		.rates = SPACEMIT_PCM_RATES,
+> +		.rate_min = SNDRV_PCM_RATE_8000,
+> +		.rate_max = SNDRV_PCM_RATE_192000,
+> +		.formats = SPACEMIT_PCM_FORMATS,
+> +	},
+> +	.capture = {
+> +		.channels_min = 1,
+> +		.channels_max = 2,
+> +		.rates = SPACEMIT_PCM_RATES,
+> +		.rate_min = SNDRV_PCM_RATE_8000,
+> +		.rate_max = SNDRV_PCM_RATE_192000,
+> +		.formats = SPACEMIT_PCM_FORMATS,
+> +	},
+> +	.symmetric_rate = 1,
+> +};
+> +
+> +static int spacemit_i2s_init_dai(struct spacemit_i2s_dev *i2s,
+> +				 struct snd_soc_dai_driver **dp,
+> +				 dma_addr_t addr)
+> +{
+> +	struct device_node *node = i2s->dev->of_node;
+> +	struct snd_soc_dai_driver *dai;
+> +	struct property *dma_names;
+> +	const char *dma_name;
+> +
+> +	of_property_for_each_string(node, "dma-names", dma_names, dma_name) {
+> +		if (!strcmp(dma_name, "tx"))
+> +			i2s->has_playback = true;
+> +		if (!strcmp(dma_name, "rx"))
+> +			i2s->has_capture = true;
+> +	}
+> +
+> +	dai = devm_kmemdup(i2s->dev, &spacemit_i2s_dai,
+> +			   sizeof(*dai), GFP_KERNEL);
+> +	if (!dai)
+> +		return -ENOMEM;
+> +
+> +	if (i2s->has_playback) {
+> +		dai->playback.stream_name = "Playback";
+> +		dai->playback.channels_min = 1;
+> +		dai->playback.channels_max = 2;
+> +		dai->playback.rates = SPACEMIT_PCM_RATES;
+> +		dai->playback.formats = SPACEMIT_PCM_FORMATS;
+> +
+> +		i2s->playback_dma_data.addr_width = DMA_SLAVE_BUSWIDTH_2_BYTES;
+> +		i2s->playback_dma_data.maxburst = 32;
+> +		i2s->playback_dma_data.addr = addr;
+> +	}
+> +
+> +	if (i2s->has_capture) {
+> +		dai->capture.stream_name = "Capture";
+> +		dai->capture.channels_min = 1;
+> +		dai->capture.channels_max = 2;
+> +		dai->capture.rates = SPACEMIT_PCM_RATES;
+> +		dai->capture.formats = SPACEMIT_PCM_FORMATS;
+> +
+> +		i2s->capture_dma_data.addr_width = DMA_SLAVE_BUSWIDTH_2_BYTES;
+> +		i2s->capture_dma_data.maxburst = 32;
+> +		i2s->capture_dma_data.addr = addr;
+> +	}
+> +
+> +	if (dp)
+> +		*dp = dai;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct snd_soc_component_driver spacemit_i2s_component = {
+> +	.name = "i2s-k1",
+> +	.legacy_dai_naming = 1,
+> +};
+> +
+> +static int spacemit_i2s_probe(struct platform_device *pdev)
+> +{
+> +	struct snd_soc_dai_driver *dai;
+> +	struct spacemit_i2s_dev *i2s;
+> +	struct resource *res;
+> +	struct clk *clk;
+> +	int ret;
+> +
+> +	i2s = devm_kzalloc(&pdev->dev, sizeof(*i2s), GFP_KERNEL);
+> +	if (!i2s)
+> +		return -ENOMEM;
+> +
+> +	i2s->dev = &pdev->dev;
+> +
+> +	i2s->sysclk = devm_clk_get_enabled(i2s->dev, "sysclk");
+> +	if (IS_ERR(i2s->sysclk))
+> +		return dev_err_probe(i2s->dev, PTR_ERR(i2s->sysclk),
+> +				     "failed to enable sysbase clock\n");
+> +
+> +	i2s->bclk = devm_clk_get_enabled(i2s->dev, "bclk");
+> +	if (IS_ERR(i2s->bclk))
+> +		return dev_err_probe(i2s->dev, PTR_ERR(i2s->bclk), "failed to enable bit clock\n");
+> +
+> +	clk = devm_clk_get_enabled(i2s->dev, "sspa_bus");
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(i2s->dev, PTR_ERR(clk), "failed to enable sspa_bus clock\n");
+> +
+> +	i2s->sspa_clk = devm_clk_get_enabled(i2s->dev, "sspa");
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(i2s->dev, PTR_ERR(clk), "failed to enable sspa clock\n");
+> +
+> +	i2s->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> +	if (IS_ERR(i2s->base))
+> +		return dev_err_probe(i2s->dev, PTR_ERR(i2s->base), "failed to map registers\n");
+> +
+> +	i2s->reset =  devm_reset_control_get(&pdev->dev, NULL);
+> +	if (IS_ERR(i2s->reset))
+> +		return dev_err_probe(i2s->dev, PTR_ERR(i2s->reset),
+> +				     "failed to get reset control");
+> +
+> +	dev_set_drvdata(i2s->dev, i2s);
+> +
+> +	spacemit_i2s_init_dai(i2s, &dai, res->start + SSDATR);
+> +
+> +	ret = devm_snd_soc_register_component(i2s->dev,
+> +					      &spacemit_i2s_component,
+> +					      dai, 1);
+> +	if (ret)
+> +		return dev_err_probe(i2s->dev, ret, "failed to register component");
+> +
+> +	return devm_snd_dmaengine_pcm_register(&pdev->dev, &spacemit_dmaengine_pcm_config, 0);
+> +}
+> +
+> +static void spacemit_i2s_remove(struct platform_device *pdev)
+> +{
+> +	struct spacemit_i2s_dev *i2s = dev_get_drvdata(&pdev->dev);
+> +
+> +	reset_control_assert(i2s->reset);
+> +}
+> +
+> +static const struct of_device_id spacemit_i2s_of_match[] = {
+> +	{ .compatible = "spacemit,k1-i2s", },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, spacemit_i2s_of_match);
+> +
+> +static struct platform_driver spacemit_i2s_driver = {
+> +	.probe = spacemit_i2s_probe,
+> +	.remove = spacemit_i2s_remove,
+> +	.driver = {
+> +		.name = "i2s-k1",
+> +		.of_match_table = spacemit_i2s_of_match,
+> +	},
+> +};
+> +module_platform_driver(spacemit_i2s_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("I2S bus driver for SpacemiT K1 SoC");
 > 
-> I am not sure if this renaming of files is ideal?
+> -- 
+> 2.50.1
 > 
-> Testing Done:
-> 1. Tested Boot across all TI K3 EVM/SK boards.
-> 2. Tested IPC on all TI K3 J7* EVM/SK boards (& AM62x SK).
-> 3. Tested that each patch in the series generates no new warnings/errors.
-> 4. HELP needed: Boot/IPC test on vendor boards utilizing TI K3 SoCs.
-> 
-> Note for vendors:
-> 1. This series streamlines all boards(external vendors included) to use the
-> TI IPC DTSI config. In the process, several new nodes related to remote
-> processors have been added/enabled in the final DTS. Need vendors help in
-> performing a sanity boot & IPC functionality test with the changes included
-> (More info in indivdual patch)
-> 2. If you wish to not include all of the TI IPC DTSI configs and leave the
-> board files as it is currently, just let me know so and I will drop those
-> patches in the next revision.
-> Cc: Robert Nelson <robertcnelson@gmail.com>
-> Cc: Jo_o Paulo Gon_alves <joao.goncalves@toradex.com>
-> Cc: Parth Pancholi <parth.pancholi@toradex.com>
-> Cc: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> Cc: Francesco Dolcini <francesco.dolcini@toradex.com>
-> Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> Cc: Logan Bristol <logan.bristol@utexas.edu>
-> Cc: Josua Mayer <josua@solid-run.com>
-> Cc: John Ma <jma@phytec.com>
-> Cc: Nathan Morrisson <nmorrisson@phytec.com>
-> Cc: Garrett Giordano <ggiordano@phytec.com>
-> Cc: Matt McKee <mmckee@phytec.com>
-> Cc: Wadim Egorov <w.egorov@phytec.de>
-> Cc: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-> Cc: Max Krummenacher <max.krummenacher@toradex.com>
-> Cc: Stefan Eichenberger <stefan.eichenberger@toradex.com>
-> Cc: Hiago De Franco <hiago.franco@toradex.com>
-> 
-> Thanks,
-> Beleswar
-> 
-> Beleswar Padhi (33):
->    arm64: dts: ti: k3-j7200: Enable remote processors at board level
->    arm64: dts: ti: k3-j7200-ti-ipc-firmware: Refactor IPC cfg into new
->      dtsi
->    Revert "arm64: dts: ti: k3-j721e-sk: Fix reversed C6x carveout
->      locations"
->    Revert "arm64: dts: ti: k3-j721e-beagleboneai64: Fix reversed C6x
->      carveout locations"
->    arm64: dts: ti: k3-j721e: Enable remote processors at board level
->    arm64: dts: ti: k3-j721e-beagleboneai64: Add missing cfg for TI IPC FW
->    arm64: dts: ti: k3-j721e-ti-ipc-firmware: Refactor IPC cfg into new
->      dtsi
->    arm64: dts: ti: k3-j721s2: Enable remote processors at board level
->    arm64: dts: ti: k3-j721s2-ti-ipc-firmware: Refactor IPC cfg into new
->      dtsi
->    arm64: dts: ti: k3-j784s4-j742s2: Enable remote processors at board
->      level
->    arm64: dts: ti: k3-j784s4-j742s2-ti-ipc-firmware-common: Refactor IPC
->      cfg into new dtsi
->    arm64: dts: ti: k3-j784s4-ti-ipc-firmware: Refactor IPC cfg into new
->      dtsi
->    arm64: dts: ti: k3-am62p-j722s: Enable remote processors at board
->      level
->    arm64: dts: ti: k3-j722s-ti-ipc-firmware: Refactor IPC cfg into new
->      dtsi
->    arm64: dts: ti: k3-am6*-boards: Add label to reserved-memory node
->    arm64: dts: ti: k3-am62p-verdin: Add missing cfg for TI IPC Firmware
->    arm64: dts: ti: k3-am62p-ti-ipc-firmware: Refactor IPC cfg into new
->      dtsi
->    arm64: dts: ti: k3-am62-verdin: Add missing cfg for TI IPC Firmware
->    arm64: dts: ti: k3-am62-pocketbeagle2: Add missing cfg for TI IPC
->      Firmware
->    arm64: dts: ti: k3-am62: Enable Mailbox nodes at the board level
->    arm64: dts: ti: k3-am62: Enable remote processors at board level
->    arm64: dts: ti: k3-am62-ti-ipc-firmware: Refactor IPC cfg into new
->      dtsi
->    arm64: dts: ti: k3-am62a: Enable Mailbox nodes at the board level
->    arm64: dts: ti: k3-am62a: Enable remote processors at board level
->    arm64: dts: ti: k3-am62a-ti-ipc-firmware: Refactor IPC cfg into new
->      dtsi
->    arm64: dts: ti: k3-am64: Enable remote processors at board level
->    arm64: dts: ti: k3-am642-sr-som: Add missing cfg for TI IPC Firmware
->    arm64: dts: ti: k3-am64-phycore-som: Add missing cfg for TI IPC
->      Firmware
->    arm64: dts: ti: k3-am642-tqma64xxl: Add missing cfg for TI IPC
->      Firmware
->    arm64: dts: ti: k3-am64-ti-ipc-firmware: Refactor IPC cfg into new
->      dtsi
->    arm64: dts: ti: k3-am65: Enable remote processors at board level
->    arm64: dts: ti: k3-am65-ti-ipc-firmware: Refactor IPC cfg into new
->      dtsi
->    arm64: dts: ti: k3-j7*-ti-ipc-firmware: Switch MCU R5F cluster to
->      Split-mode
-> 
->   arch/arm64/boot/dts/ti/k3-am62-main.dtsi      |   1 +
->   .../boot/dts/ti/k3-am62-phycore-som.dtsi      |  43 +--
->   .../boot/dts/ti/k3-am62-pocketbeagle2.dts     |  36 +-
->   .../boot/dts/ti/k3-am62-ti-ipc-firmware.dtsi  |  52 +++
->   arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi    |  31 +-
->   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi    |   1 +
->   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     |   4 +
->   arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi      |   1 +
->   .../boot/dts/ti/k3-am62a-phycore-som.dtsi     |  90 +----
->   .../boot/dts/ti/k3-am62a-ti-ipc-firmware.dtsi |  98 +++++
->   arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   |   1 +
->   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       |  92 +----
->   arch/arm64/boot/dts/ti/k3-am62d2-evm.dts      |  77 +---
->   .../dts/ti/k3-am62p-j722s-common-mcu.dtsi     |   1 +
->   .../dts/ti/k3-am62p-j722s-common-wakeup.dtsi  |   1 +
->   .../boot/dts/ti/k3-am62p-ti-ipc-firmware.dtsi |  60 +++
->   arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi   |  42 ++-
->   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  54 +--
->   .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  47 +--
->   arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |   6 +
->   .../boot/dts/ti/k3-am64-phycore-som.dtsi      | 124 +------
->   .../boot/dts/ti/k3-am64-ti-ipc-firmware.dtsi  | 162 ++++++++
->   arch/arm64/boot/dts/ti/k3-am642-evm.dts       | 146 +-------
->   arch/arm64/boot/dts/ti/k3-am642-sk.dts        | 146 +-------
->   arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi   |  92 +----
->   .../arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi | 107 +-----
->   .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |  58 +--
->   arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |   3 +
->   .../boot/dts/ti/k3-am65-ti-ipc-firmware.dtsi  |  64 ++++
->   .../arm64/boot/dts/ti/k3-am654-base-board.dts |  54 +--
->   .../arm64/boot/dts/ti/k3-am67a-beagley-ai.dts | 152 +-------
->   .../boot/dts/ti/k3-am68-phycore-som.dtsi      | 235 +-----------
->   arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi    | 229 +-----------
->   arch/arm64/boot/dts/ti/k3-am69-sk.dts         | 348 +----------------
->   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     |   3 +
->   .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |   3 +
->   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 115 +-----
->   .../boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi | 131 +++++++
->   .../boot/dts/ti/k3-j721e-beagleboneai64.dts   | 229 +-----------
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |   6 +
->   .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |   3 +
->   arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 266 +------------
->   arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   | 266 +------------
->   .../boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi | 289 ++++++++++++++
->   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    |   6 +
->   .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |   3 +
->   arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 231 +-----------
->   .../dts/ti/k3-j721s2-ti-ipc-firmware.dtsi     | 250 +++++++++++++
->   arch/arm64/boot/dts/ti/k3-j722s-evm.dts       | 154 +-------
->   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi     |   1 +
->   .../boot/dts/ti/k3-j722s-ti-ipc-firmware.dtsi | 163 ++++++++
->   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      |  26 +-
->   .../dts/ti/k3-j784s4-j742s2-evm-common.dtsi   | 337 +----------------
->   .../dts/ti/k3-j784s4-j742s2-main-common.dtsi  |   9 +
->   .../k3-j784s4-j742s2-mcu-wakeup-common.dtsi   |   3 +
->   ...-j784s4-j742s2-ti-ipc-firmware-common.dtsi | 351 ++++++++++++++++++
->   .../dts/ti/k3-j784s4-ti-ipc-firmware.dtsi     |  34 ++
->   57 files changed, 1820 insertions(+), 3717 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am62-ti-ipc-firmware.dtsi
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am62a-ti-ipc-firmware.dtsi
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am62p-ti-ipc-firmware.dtsi
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am64-ti-ipc-firmware.dtsi
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am65-ti-ipc-firmware.dtsi
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-ti-ipc-firmware.dtsi
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-ti-ipc-firmware.dtsi
-> 
-
 
