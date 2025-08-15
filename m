@@ -1,135 +1,173 @@
-Return-Path: <devicetree+bounces-204972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B830CB27846
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 07:19:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14C2AB27862
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 07:23:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCEC21C2801C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:19:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 529CA1CC26C5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:23:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FFC42BE636;
-	Fri, 15 Aug 2025 05:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E619283153;
+	Fri, 15 Aug 2025 05:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="AMcKf4Va"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hdBtJLVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A3023BF9B
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 05:18:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7492A38FB9;
+	Fri, 15 Aug 2025 05:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755235113; cv=none; b=jC8VLtm/3xrOAaWV1y8SbpWcLotM9VkOcSqYuvvq7ty+3DrJ43ypAn1vO81MRySaE7Jx02UqwTmXUtgbCiLO1XK61FlwYxgtMPJr5sw6a4jVVoSSWyRzG9oHFEJnCk/ixm9o5UxIbo2Gv+GdD/fH3++bUyPKeI6+C9PaFDzoQJ0=
+	t=1755235403; cv=none; b=JQ5l8yOZLGIBci6mpjg282S3OmYgDR9MpkBalJMLCeopa0Zyc8Q/51uHtJSrliYeorkyUsSwEIk4SZpBf0xcEuESNwJHkBI8SopQ40s+fo3FpLFBwq1DLRigZmWahVWyg+JECjeNzb2GsL25uHKMYStQvXNEOL2UsVhQP8zJM8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755235113; c=relaxed/simple;
-	bh=GE9SRjuuSCv8a21ZTqK+ILZ4fs5VYlehz02IXPUa02c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=E5ADw8iLuTv8dTiZyjXwYaddTBtw3Xl/P0/nSyRSQaqG/HhYL33JYTIG0jboifFkRdyPT+k8ffCcL6NgqUmF8pP6Mre6j3nixiyLcdItoem9PEwziS6JMqW/db2kNppJtdLBfXTMvv5zJMZYd+2Gp+GWdD7UphkSbHYdJ4toMJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=AMcKf4Va; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-24456ce0b96so19348985ad.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 22:18:30 -0700 (PDT)
+	s=arc-20240116; t=1755235403; c=relaxed/simple;
+	bh=MTFecpPPCPbUkZL8jf5i93249tFE3tGa3UD3woMkHI8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fX6kjvPpteS9wxhtk3bPmQI7WnIe70toniuPiP7wXeT05IbOfDbesliRbxIpSpAdrVI3a8PDQ3qcVdgruEzhu4i9O/3pn9/BIME26RwsyShiKuiG2gQ9ExTJSw8V7FYkJHpTdOHFgUxqyEPU1wmfy3bTa3zsEPI2ti7AD4ecfwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hdBtJLVI; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-333f92a69d4so12849061fa.2;
+        Thu, 14 Aug 2025 22:23:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755235110; x=1755839910; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gc4I4GnyT4tSPzGGnUSG7Sj2q1K77d2MqUPufhFRRW0=;
-        b=AMcKf4VasHexc8B/jr4YdlKYUh+mAWofj58kYoRsXlUokFuYawfhhxzYh3rJr7b5nY
-         3RhlAfjS+YPQE2tuJp1jaoBpb86FNqXb+udDmv/7ne1C1nxol3fcWCDdHaMMTFzMBFUC
-         SDbcecJwXmqflcs6nUsvzNhxNG+TQfU9VsYnutsSeNkiIaYjBZundHbHer1zz3zP37L2
-         nG12PVeSv3ggWjxjrAlhVO72qakIJLTO4tHY5vImaZoNhMdJQeKZzz7v1dI7HoPU+T6j
-         iPAFdJ8SJO82mGN/JneFvPP2NBFXYtKnh+Fyp+kG9GVBkqbgTRICZUydP2XX8rbzJo5c
-         EnRg==
+        d=gmail.com; s=20230601; t=1755235399; x=1755840199; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7Vj1KPFsbq/RlaOOlkDBH66m6Sda7aTjtiK8NBu/QXw=;
+        b=hdBtJLVIojxn4KRnxp0+0ZPMeoTywDv2e2QjQ7CRgbEFgU4BRgRiGEMSYPLIPhG6t/
+         TiuLsGBmhl+tzyXZEHh9yofvXrDUOBtI3NWg/0odV6R8mErZMXwol/taFCcnE/9YHscN
+         RQ8zB3hgmRu7VEG+afmzzBABUra5kdqu1tOG0dyncOy5jcsFYmejKx8b0jvq5ey5LeJn
+         mRSCxsKp1ltqK3Wk44gBJcoLI9ICOJm03TBqCF5/WXfGNY/lQrOddv2ZacvTDvlC/3M2
+         uE851IbA+K45d3LIHt0TdxpwCtTdu+10gQgEUNJ+XI+4M+Ei3kLkqIlXP2u5UPAC7AJN
+         m1Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755235110; x=1755839910;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gc4I4GnyT4tSPzGGnUSG7Sj2q1K77d2MqUPufhFRRW0=;
-        b=PIvUgkU/uNIlAmofP5SjPPISGly3o4wu8rwBOPBQXA0XRLmtrNFcySeit9q4Y0WMw/
-         UHJ0TNATWEBsk2CxnaLrxBCiu42cqLbVibwz5T3O1Msg0NZWt+zfO55dtoB2KXXapQZa
-         vI/iUqg9LpxSdGnDC0vVBvChMfIadggS+RkS6FstAQhi8/vnN5d5hM+hIoqIHRuKFn6x
-         QI/tldBGD9MWZ/hwrOZNqxtg5M11Os8FvqURxxn0ssVyZplhr9Fl6rNL1D9yNsV4qW1f
-         HRkrHOevay2XdUOWpTAPg8pD2GZWM7FRgI8UABMNDMGnU6cWKrqoq9bprZCQLBkSrtsf
-         9yFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW7AiZp1lhjbLpN/LIsmStpL2YgYMGEQQxzXVrs/hYzIRIew4uaSM3sz5NLrgOta5ix6y0d42yA0BmP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMejCe1NlDYHtqhR5fvl7jpTRlQ+rVdjLpiHQqMs5ERUzLV27i
-	LQ30rbgJZ3HSWV/bOi1PM7YJQ4QrFj/qCXU81SPCfJ9n/MSs3rbnzHx06o4smWP0EfM=
-X-Gm-Gg: ASbGncsPlFeb5tjEeF5V7Ua/WXsRzRZN73nMnYvOTiXFARzjHjDC94wNF21NHjZ8+Ue
-	xff6RmR11VGcH2nC0VugGRdJvxJSMSPjxLC5qdJHdtp/DfTOL62omur8d4wUSdYH6MNqcklRwCv
-	v1L/TWgiWrrfNtqucDxs/2rdnHjla7Lmi+Ueqjemodq7cab8UzSgvflujvE2a4sARCMgQMck4UA
-	2EL53mw8mPWEzV7hcRhoZ5A+Kny4zqNPM8vOoYLnr35IDhPRVGOUmgJxMD5AUHYPbt+gb5OWTEF
-	E3IReACqI2XHp/mdGOT+eU/TCoLXncdw6w+nAGMjg3kpoZ74dpXnVE+qvItESQXcCryiXw+CZ40
-	2Bs7VseeI55/+iEoFi7q19w==
-X-Google-Smtp-Source: AGHT+IGivtfLCH94EwiqNLknns+DxOUwFc2vsl21qa22pKrZqAF+FtlV7AV9pspZ7Xlow2+nX+AUYw==
-X-Received: by 2002:a17:903:245:b0:240:3dfd:99a2 with SMTP id d9443c01a7336-244594e0c77mr83625715ad.10.1755235110149;
-        Thu, 14 Aug 2025 22:18:30 -0700 (PDT)
-Received: from [127.0.1.1] ([103.88.46.155])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-323439978a4sm373212a91.10.2025.08.14.22.18.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Aug 2025 22:18:29 -0700 (PDT)
-From: Guodong Xu <guodong@riscstar.com>
-Date: Fri, 15 Aug 2025 13:16:30 +0800
-Subject: [PATCH v4 8/8] riscv: defconfig: Enable MMP_PDMA support for
- SpacemiT K1 SoC
+        d=1e100.net; s=20230601; t=1755235399; x=1755840199;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7Vj1KPFsbq/RlaOOlkDBH66m6Sda7aTjtiK8NBu/QXw=;
+        b=GUVm2TMohh7JH7NSYmOTKV11KPEUsrfZKYgkcz+40KNbukmy6xku2nwZB3lVbU9/To
+         pp5cuiSJMCiFvo5t3VJM+OaTJLk34a2I4O9lpVoLsve9ak+cwMdVV0KJQsKezn6Hy9nc
+         Vxg5AdvQYVLESwgPhRW5H9tyG8I4WmA6Ek0swYBQSp0iOY4L4F4BorYqa1O5c9oQCK1F
+         f64NXeA0u2Vt2fSYqY+g+cXlQB28PK4PVOxG1fB7N8tsrVQ/1a4Aqr/4tvLnMf377BB/
+         aB+eIEges5MloipSRyVsMhrDyIyhLffyFaBrqUnKl0IiZMTtybP1t1gcQrzRTgNiTrvH
+         OJQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVXFd54HPL/WUFsJBstraI2aH6w4zzVa+oe9X+ft7+Wt7JA/uUIS1fxzbHqmKtRuPr2mSbxL3sHYWi+@vger.kernel.org, AJvYcCVcx57/OatmDWNaVC7tSJNdmMseiMaHXLK9PfaGTMW1zkXQFgKppxPfs5qhJlbtf6BFtC8EcVuKVL4cFqia@vger.kernel.org, AJvYcCXi6XFpPP56M87yoxLv8A1Zmwlp562DA2fy3EtgleZg4blTk62iomBnVmqM6sclXpZ+HNqkd6ZzBp9B@vger.kernel.org
+X-Gm-Message-State: AOJu0YzP2v6CoiERk6Nid4TQ2dxSfEECnGvN/epfVpR7u6gkpinH+VN6
+	79Eshbz1CwQfVjnYaRPF0aHCb1m/GxChNI1Acn62c2jnn9hz/xRo/WWW
+X-Gm-Gg: ASbGnctTi+VNABt07LorZlKbJiUcr9g2JNxA/aozk1F5+FdJnARky8UxtaS6/mlvWfr
+	IuVGraYgO+SrvZhAc8Y4OvHA0IfCopcWCfwxClEVh8FnlioedCYa2+BC0AqbnOrXChr2AfbzLRu
+	bHECTCQS+zCuDV4t4K0/vB8+6pRd6INmy3v7zlvtQ1amKTaFOdN5dXdy+KJiXtjJ2QWL8bUN3DP
+	z58k0uHDREOdkHZ33J0EdkwueVBmau7HqM3oDcXOWiOp8mVs9MVgtNcoZO0o7G/MnnVlXXAqBjv
+	Sx1f5V8miDcHaEwMAvvbiW0Nmh4V66B8cpM2yXHgr51UDY8xO+BMQEKn9qjyjIA1+/iK/ywmVEJ
+	5mVW55H2X2GuKVm2znAdAeEmUOnXWgZRBhodSem8Bcz6+qtC+7VswO9cuA4beKhp2vc1XhnpB4N
+	cCxW8=
+X-Google-Smtp-Source: AGHT+IH9+pyxeVQJuWJ7xU8GiuE3ts6G80OQ7UFSgxSDjeJeDwup2vWcuq9x3CeqT9yzy8Qmtkn1Mw==
+X-Received: by 2002:a05:651c:4112:20b0:331:eb47:69fc with SMTP id 38308e7fff4ca-3340997aa36mr1417371fa.29.1755235399127;
+        Thu, 14 Aug 2025 22:23:19 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3340a43b7b2sm1353031fa.22.2025.08.14.22.23.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Aug 2025 22:23:17 -0700 (PDT)
+Message-ID: <3024c64b-48e4-4a28-bbab-b80cdaec4a9a@gmail.com>
+Date: Fri, 15 Aug 2025 08:23:16 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] iio: adc: adc128s052: Support ROHM BD7910[0,1,2,3]
+To: David Lechner <dlechner@baylibre.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Sukrut Bellary <sbellary@baylibre.com>,
+ Lothar Rubusch <l.rubusch@gmail.com>
+References: <cover.1755159847.git.mazziesaccount@gmail.com>
+ <e43c184fc6aa5c768045fc772b64d812fdb06254.1755159847.git.mazziesaccount@gmail.com>
+ <014487e4-f8c7-42e6-a68a-9e984002fd46@baylibre.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <014487e4-f8c7-42e6-a68a-9e984002fd46@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250815-working_dma_0701_v2-v4-8-62145ab6ea30@riscstar.com>
-References: <20250815-working_dma_0701_v2-v4-0-62145ab6ea30@riscstar.com>
-In-Reply-To: <20250815-working_dma_0701_v2-v4-0-62145ab6ea30@riscstar.com>
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, duje@dujemihanovic.xyz
-Cc: Alex Elder <elder@riscstar.com>, Vivian Wang <wangruikang@iscas.ac.cn>, 
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, Guodong Xu <guodong@riscstar.com>, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.14.2
 
-Enable CONFIG_MMP_PDMA in the riscv defconfig for SpacemiT K1 SoC boards.
+On 14/08/2025 18:01, David Lechner wrote:
+> On 8/14/25 3:35 AM, Matti Vaittinen wrote:
+>> The ROHM BD79100, BD79101, BD79102, BD79103 are very similar ADCs as the
+>> ROHM BD79104. The BD79100 has only 1 channel. BD79101 has 2 channels and
+>> the BD79102 has 4 channels. Both BD79103 and BD79104 have 4 channels,
+>> and, based on the data sheets, they seem identical from the software
+>> point-of-view.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>
+>> ---
+> 
+> One small suggestion. With that:
+> 
+> Reviewed-by: David Lechner <dlechner@baylibre.com>
+> 
+>> ---
+>>   drivers/iio/adc/ti-adc128s052.c | 36 +++++++++++++++++++++++++++++++++
+>>   1 file changed, 36 insertions(+)
+>>
+>> diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
+>> index 81153253529e..2f2ed438cf4e 100644
+>> --- a/drivers/iio/adc/ti-adc128s052.c
+>> +++ b/drivers/iio/adc/ti-adc128s052.c
+>> @@ -122,6 +122,10 @@ static const struct iio_chan_spec adc124s021_channels[] = {
+>>   	ADC128_VOLTAGE_CHANNEL(3),
+>>   };
+>>   
+>> +static const struct iio_chan_spec bd79100_channels[] = {
+> 
+> Even though the driver doesn't support it yet, there is a
+> adc121s021 [1] so would be nice to use that instead of bd79100
+> to keep the naming consistent.
 
-Signed-off-by: Guodong Xu <guodong@riscstar.com>
----
-v4: No change.
-v3: No change.
-v2: Rebased. Part of the modification in v1 is now in this patch:
-     - "riscv: defconfig: run savedefconfig to reorder it"
-        , which has been merged into riscv/linux.git (for-next)
-     - Link: https://git.kernel.org/riscv/c/d958097bdf88
----
- arch/riscv/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+I have to disagree on this one. For people who don't use the TI ADCs, 
+the TI numbering does not bring any clarity. Furthermore, I don't like 
+preparing for the support added somewhere in the future - because future 
+is uncertain. It could be this TI's variant never gets added here. If 
+this series gets merged now, then there is only one IC using this 
+channel spec - the bd79100. Naming it after unsupported TI's IC would be 
+plain confusing.
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index f25394d088d0d3cbee41fa9fb553c71e495036fd..b9ef2da15fb22f08bdb5ee5d1bba9f6eed49ff97 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -241,6 +241,7 @@ CONFIG_RTC_DRV_SUN6I=y
- CONFIG_DMADEVICES=y
- CONFIG_DMA_SUN6I=m
- CONFIG_DW_AXI_DMAC=y
-+CONFIG_MMP_PDMA=m
- CONFIG_VIRTIO_PCI=y
- CONFIG_VIRTIO_BALLOON=y
- CONFIG_VIRTIO_INPUT=y
+In my opinion, structs should get either named based on the IC model 
+which is using them first - or based on the functionality. And actually, 
+when the design of the IC is not too obscure, I would prefer naming 
+based on the functionality, which should help others to re-use the 
+driver. Hence, I wouldn't object someone re-naming all these channel 
+structs based on functionality though - for example something like:
 
--- 
-2.43.0
+static const struct iio_chan_spec simple_adc_channels1 {}
+static const struct iio_chan_spec simple_adc_channels2 {}
+static const struct iio_chan_spec simple_adc_channels4 {}
+static const struct iio_chan_spec simple_adc_channels8 {}
+
+This which should be clear(ish) for developer no matter which of the 
+supported IC(s) were used. But if we stick with the IC based naming, 
+then we should use naming by supported IC.
+
+> 
+> [1]: https://www.ti.com/product/ADC121C021
+> 
+>> +	ADC128_VOLTAGE_CHANNEL(0),
+>> +};
+>> +
+
+Yours,
+	-- Matti
 
 
