@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-205135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD15FB2816D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 16:16:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68502B28176
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 16:17:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 533973BCBE4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 14:16:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE17B1CE1321
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 14:17:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6486B1514DC;
-	Fri, 15 Aug 2025 14:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580FE21C9ED;
+	Fri, 15 Aug 2025 14:17:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="L4Em8DIT"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="1t/HCDyr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 388AF21C177
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 14:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B99D521ADDB
+	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 14:17:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755267391; cv=none; b=GR3FoX6dadWn3cLZVJzxKwJQ+uCh0I5AZ5T62P/gQ+5NGuc/IK7ADkpEgdB249ob+tMH5kMYvDvCAqJrc3ECKWTFMR1wVZA4C4hvJ4FMYC/+sWYMnbhNX6WTkC0k8F1ZAjEZxM3o7CTGzy+M1CzGhGmUhQZilNZgubovkNEx3lg=
+	t=1755267454; cv=none; b=EfK8XNJfXipV9CTphaIzUEXRyLljK6PPn8Xu+eTTtjqlk8ASwPqZZ8/bxP98ObapfiqjiHeA66Kdf7PodWYqgFD50QtmJzQQwmrgZ/k1HiB30kFrJXQnCd7qOr9JdMXpV/P4EV0WRJKLwdS8iXSPVwcgJAagFDxJSB7003P9LVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755267391; c=relaxed/simple;
-	bh=KOhlSg0qcYg9ob3Mm7f2krs+0oUtcXnKHGyVvRFd7qA=;
+	s=arc-20240116; t=1755267454; c=relaxed/simple;
+	bh=6UqgWiBtru3qNF4cKm5B90nNnc9QwBe82+mGbA/cY9Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LJ44BNVxDM1RtE228Xbc3+EtgWAwz/NdQIYXMw3kZdOlArc/T1OYJY8sPKb0oO7EX9v9Zki0jNqQchUe16MOqJq88A0cE6b4RXb1FtFowYKsf4JPfTJ+c2XPox/fSuIS2UUa4zfOg+uVuZA763D5P5zhxwE+Uhcoa3ZQ6sGWPZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=L4Em8DIT; arc=none smtp.client-ip=209.85.210.46
+	 In-Reply-To:Content-Type; b=r9Htb0MGQE3x3cOQonevgfoJMu8EOJ3sb4qOqPhgg+QxDmVEicM73lXlJRPm91gSgReWslkh2rwNRkbXqnOLxokMlDmP0/W4SK5HNy5NjMKljyS19TE+pQ0NqLMoiiQrM/oFoNlDSHvElalsUsjN5W9X/a8QBVnxAo0lgXOONx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=1t/HCDyr; arc=none smtp.client-ip=209.85.160.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-74381e207a0so1165400a34.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 07:16:28 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-30cceaaecd8so778188fac.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 07:17:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1755267387; x=1755872187; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1755267452; x=1755872252; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l+dzZAqMWMrU9JQ+HnPQcZbDejbmWGfSuQd14G8BjoE=;
-        b=L4Em8DITgSwkQaL2gneAQwGvbYpPWWUKhAmzj8MnnTVT/ewnqtdk/KVoLzoCjaLsuo
-         Z1iVBXVHARtmuCP7RsKOYODxBWenZwwdMKJ+WbTnI4cUg4T067WJiVfMNGDdjtu7HrpH
-         unVuTuImmmuod3GEXDdCLL7+nuWxdHaiSO84rs8i8sGiWRJSajnR8W8ORMe8K4BaYIqX
-         3ilgJxEwREfO5MRFdXVkQAVOA25o5IW+uM8Fwui4JETnB1nVecPOExzpwlfu+E2xwZ4A
-         vVfiuKY2K0F3VWl6islCSTJENFECRhZ6pHYnK8HC71AwiRHnnr8wzGWGBXjM5A6et6b7
-         ktCw==
+        bh=WbhrCfk9RYJnvvsbCToqdaCZcrcBbxt81Ogo6J2bM9c=;
+        b=1t/HCDyrSenuVSwVqJ99IIM+83ZU2Mr1tC3lbMlBA8sZtQpzjyS2cct46AI7rGc62d
+         htmBjVDDz+eTHlwtW+njCnNka6316YsNzwpG1+xhGH/tDlOc20E/3cntcnM7l4Ve3hCt
+         Wsc4AFn7+04u0qVUfwTOBlSPvgZrrj2AaEWzhmKgAWvDaas/22qMSNPeYflmQjC0eMTb
+         qGNDQ0pJXz/bShNCYOHG88HlPxVJy+Zij3uG+0RAtmDnzGVo2MFzliOSbJN+CH2Xeho7
+         Iq8Td9V3RkslsYrKzh8wDHy87C5J58+PKDcrom9irRF01FczCnzZgbFQUMC9WFhZdvvy
+         K3aQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755267387; x=1755872187;
+        d=1e100.net; s=20230601; t=1755267452; x=1755872252;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l+dzZAqMWMrU9JQ+HnPQcZbDejbmWGfSuQd14G8BjoE=;
-        b=Jg35Vnh5rmQA2+cS2x/gcxD51tLsRZbFNT/y0b9/s1Gu7SVx2FwQM4E60aJV796Se1
-         h9OqBxa0CKApGxzFB/cxTdWlZyNfsLdcmnoy/7dpm4IqH9jOt8JpatZ0e8BXp2jYo4DI
-         7yqEyp4DQU00GzRkQuFhSuD6AtY1mw0C2ue6FitEz8YuX+qEPUXBXCmmvCus/52SE9us
-         aAVYaZbNwYRmT1JOzzFdd99mfmsFCn+OuEnVfKOrfyPZzNa2avElDe/xZOORixkYEImb
-         c3Bi0Qcs5qbO8afpRnaMK54k7CVVUiyXjNDojSlT7TmS+px/aRY+ifLPfvvlv6zfgBgQ
-         rHyg==
-X-Forwarded-Encrypted: i=1; AJvYcCW13USL8n0TaztoqRiQHdx0UlKsraoIXN/wyW3QLHFiRlgm0n8Ks5TTEY3Tyw5KsAdxn4+wNNw/Tb/j@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6dj3BTUZ4nmd5TiRgT1CwvfpA/4kN9zmCpBNlesse50OKGi0E
-	70s2VRxQuTUC+6bT/EegFVk/0MwfREIi6B/ShUV9F4CSjtsIvNdRjxoqwb8yK5amjVk=
-X-Gm-Gg: ASbGncuqPaiR/vRELs6lvfVOHJ6R6YhIzW9QxsH4nNKB4wiUkO/Y/R0U+mh6nSNu4z/
-	rPBq8y92inwzE1LUKCoQGxiQF8ZBDr8jQKYJq99kEvTfPHdZsZFbY65mpNbCS6rN3joeogsmvZc
-	WtrTADc4Hwgg5kWTLnv9ZomDmzSfo89OVtRjwDh2GalpmSoUS/Nt/UQNqYXVjRerg/i0Jy5izmP
-	1nwfBfBPZIYCzUnYapgv0eW/TkifzNTytxGYehYx+dUDgs4BDVf8y9lPwx+cgCO3Mrn8vPImP7i
-	t3nr6yIMwZJcQw2FsQBfGeWuvfEtfc7RVs9iBBz0JnqQT9udEu6Su3zr0NYlmEuL3oye+/ZvFgS
-	NgFLZ+A4hCti71/vyajHUni2imFwjlTkY1D4Qe7XGZOzvtDrHFs1/lOwBaRNwFZr1n9Mf/5pz
-X-Google-Smtp-Source: AGHT+IHUesJ2V4GKpXl067F97odMOMFwnwY0zqEdIAx4kIEiR13a/+37EIRwtokkyj02SDIkZXFr9Q==
-X-Received: by 2002:a05:6830:6585:b0:741:9b10:5f80 with SMTP id 46e09a7af769-743923abd24mr1135235a34.7.1755267387266;
-        Fri, 15 Aug 2025 07:16:27 -0700 (PDT)
+        bh=WbhrCfk9RYJnvvsbCToqdaCZcrcBbxt81Ogo6J2bM9c=;
+        b=RUlew588DrutP5a9LlNiFy/uuZlzSE712e4Kc4RPf3D/bOafTvw6Z1YQExCxAq+1KK
+         6Hc2FpTT+eIxRSNpDNYGuqgQujdH+zEamlx8nqpr7WS39dxl6NxVW1Fa5dR4ZjaklVNF
+         uHd6UXxtdyCtndbtr4JCQP34ilwjJ7hqZ67q9c38xmYT64dkQmFpGiMV+PQHVNHwEa8y
+         mjy5Um+ZqbeTXIJ8SsvQKRcvAhMq6sNfVjSxGsS96LuqDRRa4zg+27n9CaHGdc0GbdqT
+         6lbyzvhpLfoA94spIB5o4otXOR1PQwfNKANKbSnEB/WhZCDDkrY9femAbx/oXjOpoloq
+         kAnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX+bXG9OmhYmn/8UmAeIAWmlmw9H4DqubdC6peBmDa7oNVyd0yB28CmX+HwIHHsdks0cTE0STwWPvC2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCHMGeQ/JggWgQSKnR+WnYUA3t8XapQUvUo50gII8HMX+N2Ffe
+	7eNCNK/Y/ZUPSjOeLcYOT6kI0d6HXffqbMulM89wIDu8vhk594oau0vpdjRQjZK44UA=
+X-Gm-Gg: ASbGncs4MXgr+GVlEM6Rz+tNrXa0kqVhWLAahSUFR4RAA2JzlmUKEzQw9CmY0DgpSX0
+	z6hFP7tHn3L8fDnINWRwpH3o45uthbpTizT3eKVLr92DWNkkSxCNkxsgJmqNBFAyxgjEC4ycq0c
+	mWuB5yXLo0NZwKqqfgHeWAV0qFyrSKlGRk9TdsuenqAtl7OzdaWa3vA/lcFOg625LuguNradSXM
+	GgroK9TprOXSnhdEsDW+eU3tgPPjlolJfJmC6ayPcfgjrIycsKjqlm93exfu+U8805RIttHBm11
+	VLgwY/SpYJkFAU3C7xpsa+lM/eVvTLBazlEhoU2XBqW0B+WmMPbwlP4bIX2ARO+3ankuue4+bgx
+	r+9smHk4DxWmA4J5LJSMZXB7xjqK23HYF+CvdeoFrL8QmHQJ72oumSRlixlmYlWgSqLam0KaG
+X-Google-Smtp-Source: AGHT+IGjqpkyyKZlM08oY9DimEhkn8JHkSQ1hja/G82yMfhvgu4bjl6P3uoYQK3prUQOBvs9hxEJIQ==
+X-Received: by 2002:a05:6870:1c9:b0:300:de55:8fa7 with SMTP id 586e51a60fabf-310aaf82636mr1088519fac.37.1755267451454;
+        Fri, 15 Aug 2025 07:17:31 -0700 (PDT)
 Received: from ?IPV6:2600:8803:e7e4:1d00:677:c1a1:65b9:2b0c? ([2600:8803:e7e4:1d00:677:c1a1:65b9:2b0c])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7439204d28dsm318773a34.35.2025.08.15.07.16.24
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-310abb34f14sm419442fac.20.2025.08.15.07.17.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Aug 2025 07:16:26 -0700 (PDT)
-Message-ID: <384f56af-efb3-412b-9874-4d422fe2ac8c@baylibre.com>
-Date: Fri, 15 Aug 2025 09:16:24 -0500
+        Fri, 15 Aug 2025 07:17:30 -0700 (PDT)
+Message-ID: <ae976e31-78db-44f7-a3d7-b6178692401e@baylibre.com>
+Date: Fri, 15 Aug 2025 09:17:29 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,7 +100,7 @@ Content-Language: en-US
 From: David Lechner <dlechner@baylibre.com>
 In-Reply-To: <3024c64b-48e4-4a28-bbab-b80cdaec4a9a@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 On 8/15/25 12:23 AM, Matti Vaittinen wrote:
 > On 14/08/2025 18:01, David Lechner wrote:
@@ -113,34 +113,16 @@ On 8/15/25 12:23 AM, Matti Vaittinen wrote:
 >>>
 >>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 >>>
->>> ---
->>
->> One small suggestion. With that:
->>
->> Reviewed-by: David Lechner <dlechner@baylibre.com>
->>
->>> ---
->>>   drivers/iio/adc/ti-adc128s052.c | 36 +++++++++++++++++++++++++++++++++
->>>   1 file changed, 36 insertions(+)
->>>
->>> diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
->>> index 81153253529e..2f2ed438cf4e 100644
->>> --- a/drivers/iio/adc/ti-adc128s052.c
->>> +++ b/drivers/iio/adc/ti-adc128s052.c
->>> @@ -122,6 +122,10 @@ static const struct iio_chan_spec adc124s021_channels[] = {
->>>       ADC128_VOLTAGE_CHANNEL(3),
->>>   };
->>>   +static const struct iio_chan_spec bd79100_channels[] = {
->>
->> Even though the driver doesn't support it yet, there is a
->> adc121s021 [1] so would be nice to use that instead of bd79100
->> to keep the naming consistent.
+
+...
+
+> static const struct iio_chan_spec simple_adc_channels1 {}
+> static const struct iio_chan_spec simple_adc_channels2 {}
+> static const struct iio_chan_spec simple_adc_channels4 {}
+> static const struct iio_chan_spec simple_adc_channels8 {}
 > 
-> I have to disagree on this one. For people who don't use the TI ADCs, the TI numbering does not bring any clarity. 
-
-
-I think it does in this case because the part number includes the bits
-and number of channels. And the pattern is pretty easy to spot without
-looking at the datasheets. This is why I suggested it. Otherwise, I would
-agree with your points in general.
+> This which should be clear(ish) for developer no matter which of the supported IC(s) were used. But if we stick with the IC based naming, then we should use naming by supported IC.
+> 
+>>
+Even better.
 
