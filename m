@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B95F0B27CCC
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83CBAB27CE6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:23:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DBC11D02CE8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:13:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB2D91D07C8F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB162E9EAD;
-	Fri, 15 Aug 2025 09:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26A4726B75B;
+	Fri, 15 Aug 2025 09:13:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PefHprBF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XzlMVrYw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE20625A333;
-	Fri, 15 Aug 2025 09:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFC76261585;
+	Fri, 15 Aug 2025 09:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755248987; cv=none; b=l9Vprzumfr2zeFgjQ5WG7qApaCAfhOlKhgo24Hn+OhHXOcc4NyEWxGBJYWaNx+vkqHLpfQzO53Uz6cPm3gQCEumtVv3h6OGJBQCtgLiHvo5WW3wx+la2oG6mTezEUCb9JFHtRRoFMHQLyupfAtpWy1PWZcMciu2PqJzcQbwpR7A=
+	t=1755249208; cv=none; b=EydplGMf+oKzU65ThQQcdUGdRHkA6GcGhCYKSSYbXKZStkqUXOsOq89zitdlH/9cdsHBc0homWXy8nX5RmhB53K/rmOymzLjGINHx10IZWGhKuS04E5mdw9Cxgc4PSbCQmZdVyFB51+c0u2DQI75LjjP08v7+NCoRTkTHUzsSAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755248987; c=relaxed/simple;
-	bh=cs1eB9q9n7z5pJm7sf26ksHEkVUYVk8U3ynmbf5XQQ8=;
+	s=arc-20240116; t=1755249208; c=relaxed/simple;
+	bh=S8qA3fl3Cxkc3NZ0OudMAVXX0WAD0TcLIfkJ534gwIw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NSJHaeiRKPY7xmJ1odNNz89m+nPXccK4hbw5aRycILKYKi1aWlRmP28gAmG2wiYkcZs1bOZ7ufL4R7G1ZKQ9oByxpnBmcJyNebZkoJ9Y0Ipzf/GQHtfHGOFhUe6HkAIkfXfJM3zZfPuHPJzNz749Yc2knnXg8MWJ9I7yVDrccks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PefHprBF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10951C4AF14;
-	Fri, 15 Aug 2025 09:09:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CsQ8wyHEe6uR91XhnSENF/SgdX5mi975ye62izib/QVDLqKtbj1d/lc+4yxTQzQ4gXagYnhxDL/dgdeLkCyH5gcLz5UrcUSTdgbpOmX+71ArKctNluKgu/g/YyghgumQ/hri21js+gvkHFuOZCFBsnSFCiVWi43u58qi9fDTPF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XzlMVrYw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54044C4CEF4;
+	Fri, 15 Aug 2025 09:13:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755248985;
-	bh=cs1eB9q9n7z5pJm7sf26ksHEkVUYVk8U3ynmbf5XQQ8=;
+	s=k20201202; t=1755249207;
+	bh=S8qA3fl3Cxkc3NZ0OudMAVXX0WAD0TcLIfkJ534gwIw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PefHprBFcDqggPpyS1RNP/VgFh3gRbFp4YMGEsxGBSK87bUluLVHkIRBZUkWUKcM4
-	 azY0E7FqyB4tYD+f4LqokxyC5LcSP0RC1m338f7SlizlPZAiFOTQHN02JgYAoPI6m+
-	 DXhdpw5Q5J9tFRE9h1oMwMT44whwjoPzEN1GRo9PvURgKotD+vJ6XByo9/Mg0P6leO
-	 dbWkNIUG+XkstW37LnaIuNlwPQslaO+7ruFNOP+nWyktzNnw3y0CeKPCvlf1k6T0Yl
-	 vyBAl3DgS3k2ig9lWGhI2Lq90jEVCsFa1CR7OGU1kwa5R7OG///UXHYJabijx7tbIk
-	 dYRrWPkvFbElg==
-Message-ID: <5af90b60-d65b-4e80-9a27-44938bbd450b@kernel.org>
-Date: Fri, 15 Aug 2025 11:09:36 +0200
+	b=XzlMVrYwqzQzBD/1f9aiqp1SnGznlk6hlCxFo0uI1oR3J55JpU82QwDBDGYiiFgPz
+	 oVswftBNdTas6ysIOTj4E/Z6rYxyzLBOxo9EQaFK2NTo9uhz7nATuC8KRnp+v4F9jt
+	 f1zVizs7pExYYtRz1jTF/Thl6w5N5jJWV3SYWC+AxJVMTOr7pWvFcjJvQ0SIYhjf2S
+	 dc1oNrPkMDYkk0UmEuQFThSDE9p3KJZDN3EOEWFeLEGHtHcqs356aPgZcPUYFAwaj2
+	 go9DyOdM+0foj8OppcCMFv28K2kzwo4lYAOykKAXZSfhnyW1tlF900JHbl1NZGp/G+
+	 cMu9LnghN8SHw==
+Message-ID: <31f1db6c-5005-4f7f-a6f0-eaf5918b1895@kernel.org>
+Date: Fri, 15 Aug 2025 11:13:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/8] dt-bindings: display: add versilicon,dc
-To: Rob Herring <robh@kernel.org>, Icenowy Zheng <uwu@icenowy.me>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+Subject: Re: [RFC PATCH 4/8] dt-bindings: display/bridge: add binding for
+ TH1520 HDMI controller
+To: Icenowy Zheng <uwu@icenowy.me>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
  Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
  Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
  Andrzej Hajda <andrzej.hajda@intel.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao
- <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
  dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 References: <20250814164048.2336043-1-uwu@icenowy.me>
- <20250814164048.2336043-3-uwu@icenowy.me>
- <20250814220444.GA3988176-robh@kernel.org>
+ <20250814164048.2336043-5-uwu@icenowy.me>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,35 +115,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250814220444.GA3988176-robh@kernel.org>
+In-Reply-To: <20250814164048.2336043-5-uwu@icenowy.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/08/2025 00:04, Rob Herring wrote:
->> +
->> +maintainers:
->> +  - Icenowy Zheng <uwu@icenowy.me>
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^display@[0-9a-f]+$"
->> +
->> +  compatible:
->> +    const: verisilicon,dc
-> 
-> If the clocks or resets varies by platform, then you need an SoC 
-> specific compatible still. If these clocks/resets are straight from the 
-> RTL and any other number of clocks/resets is wrong, then we can stick 
-> with just this compatible.
+On 14/08/2025 18:40, Icenowy Zheng wrote:
 
-Shouldn't we have here always SoC compatible? Can it be ever used alone,
-outside of given SoC?
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/thead,th1520-clk-ap.h>
+> +    #include <dt-bindings/reset/thead,th1520-reset.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      hdmi@ffef540000 {
+> +        compatible = "thead,th1520-dw-hdmi";
+> +        reg = <0xff 0xef540000 0x0 0x40000>;
+> +        reg-io-width = <4>;
+> +        interrupts = <111 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clk_vo CLK_HDMI_PCLK>,
+> +          <&clk_vo CLK_HDMI_SFR>,
 
-I could imagine now:
 
-items:
-  - {}
-  - const: verisilicon,dc
+Please align this with earlier <
+
+Rest looks good so:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
