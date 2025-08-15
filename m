@@ -1,143 +1,92 @@
-Return-Path: <devicetree+bounces-205113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3CA2B27FB4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 14:07:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2FF0B27FE9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 14:20:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 961781C8560D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 12:07:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82A41AA1627
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 12:18:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F1B41A9FB0;
-	Fri, 15 Aug 2025 12:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D92B304977;
+	Fri, 15 Aug 2025 12:16:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="obpPn8MQ"
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="TFIfiBUf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
+Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8734025DCF0
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 12:07:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7556E3009C2
+	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 12:16:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755259637; cv=none; b=XYOg9BGMwAenLc5zxFb3SeZ4W25EPnxkIT3erfztQf15ac59C4QQzv10n6Gn7XOCoVT+Ni8+cDeKzKatmAKSHuDBkqmZy/aMmHb0PSCIbAn0SUnay5jEUrBXdo1kk8yyp9lEAwTI6OfYwzzcjVJK05XHyNE0InE/+XEuZxSDDp4=
+	t=1755260206; cv=none; b=C/qRvaXNUJMM14cAgXl6av7bjyJbfTRbBmpy4rGx0XcoAy/H6bXjuK3iJyljXhnhSWx+hAC7d5k/aR8QCi52tJQTwrRVCFvtvPe0nBReuX1bd4w0Yfx8u/RxHE5EimATyGw0ZRnXYmtIviX3uuixqrDYy57qKPL5CeaB2RjCL0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755259637; c=relaxed/simple;
-	bh=d7mLkx2zmfajtsD8tZE+IyUM91Hth/Nqpv1oIfjVVHE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=rma+igpHlXY4dQcacWIpLsieMXPUgjNrtdq0obXJcIKxWb4cyypcR/ZQYV3dUXGYrUtZs5zwnHmRybzzGUXI9OAjzqQOADMYqOwnYd35r9kWuJou7ItpTjvVV1gxB2Osqnf9X4wh1nS4Eu52nWvIVk4CHlI3ampjhnE+XRSa/KQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=obpPn8MQ; arc=none smtp.client-ip=95.215.58.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1755260206; c=relaxed/simple;
+	bh=jfCSf6p9tA9bj+JTPbqnBT/qYxj3EM1PzKEg4HLZ9Ds=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=T8ZbLSF3SWyWdyL9xfDBXeyAtsOtP7zST9rmAMwVk1FmX77Tjensijic2lTnPRp1mwcjQGixnRSzCEyWRxlcrwm52rqwrbiQnEGe4vrNMocHBGXZqWmwKWWKX6ubxZ8G7wCrBS3xmNnQ/NVZtBFr0aoOi+O1ObTHv3/L9g7lvEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=TFIfiBUf; arc=none smtp.client-ip=212.77.101.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 30380 invoked from network); 15 Aug 2025 14:16:36 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1755260197; bh=XxsT9u/bn2Cw8UI50kEntS3WVMhKzCrN+NMcu5/psSw=;
+          h=From:To:Subject;
+          b=TFIfiBUf+I9LUmajccLU982GiMY1xuXEdH4tcZHTLSaMPFljPPMQUewWfLVTtGr/I
+           UpPD3ylI7q6CIiXEROh7h395G3zgjicA5VBeOCJfFiY0Ui0nHoO755PxBwutdP4wc8
+           jex2qQmcJvciPiTlFM5cNMQlUYB3S1dI+wDIhUNOwIt4BMDAiW2zFCv5Iy6AhK7+mD
+           zjn/TTtU/zNv/ItgJ4hU8fz2GNbaga9CqKtmbRM82YaibQIgYWNYSAi8Oz1eDJa0vo
+           kSY+7RwRS1iS6NVeHCNdBCG/0ixOk6L4nc+iiUuWd+hfIiZ7aGI5h4KcByLU3mFbm+
+           aFVemOBlHYQsQ==
+Received: from 83.24.134.210.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.134.210])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <john@phrozen.org>; 15 Aug 2025 14:16:36 +0200
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+To: john@phrozen.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tsbogend@alpha.franken.de,
+	olek2@wp.pl,
+	devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] mips: lantiq: danube: rename stp node on EASY50712 reference board
+Date: Fri, 15 Aug 2025 14:12:22 +0200
+Message-ID: <20250815121635.3397802-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1755259632;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=S1snjcKnr5T+gZaU0t/7csMoaxio2O5nUXuj8A3C7QA=;
-	b=obpPn8MQaE6sEdep1Ia26ok2jP1igFkswh5NXhZgsIanDEcTwThXpGlEMMPSaTT+CGYP/t
-	/M+yOmjHMlDJbTfcTKnZKuntmX8kH707C+2MHeoi/kkI2KECDn7E/bJaXxQ9Ivbv2w5Eyr
-	JnDtDhjtP7iu5QIpL5TxkJ3cjuR/ZiY6wqtRwKtza77rNlliSC4PErDNS1IjBLPdmcu+e0
-	8wNP7N3rWxVHBPRR1J+PuFQe9tuO2NcDq7SFRYCVs0NaC2X1In0rLqbOyfN4XDWq3Ar/CP
-	ZRTBl6G3hY8XCXXzoiHvnIhk7T7DMIU7eFRLvRNs2fYjEiWBZVJUke/+tPvDGQ==
-Content-Type: multipart/signed;
- boundary=8624ee546faf8c26b2a96c7cf02ab2c1b94682b15dc888f8a0edb7954318;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Fri, 15 Aug 2025 14:06:49 +0200
-Message-Id: <DC2ZLORG11W0.1CS78L6F2OV4Q@cknow.org>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "Pavel Machek" <pavel@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>
-Cc: "Jacek Anaszewski" <jacek.anaszewski@gmail.com>,
- <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: leds: Clearly mark label property as
- deprecated
-References: <20250815104805.405009-1-didi.debian@cknow.org>
- <b30905fa-6bd1-47dd-8371-f609d418387b@kernel.org>
-In-Reply-To: <b30905fa-6bd1-47dd-8371-f609d418387b@kernel.org>
-X-Migadu-Flow: FLOW_OUT
-
---8624ee546faf8c26b2a96c7cf02ab2c1b94682b15dc888f8a0edb7954318
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-WP-MailID: cd1bfe4adf4b0c912587650974b9f7e1
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 0000000 [IUOE]                               
 
-On Fri Aug 15, 2025 at 1:00 PM CEST, Krzysztof Kozlowski wrote:
-> On 15/08/2025 12:47, Diederik de Haas wrote:
->> The text description already mentioned the label property was
->> deprecated, but using the 'deprecated' property makes is clearer and
->> more explicit.
->>=20
->> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
->> ---
->>  Documentation/devicetree/bindings/leds/common.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>=20
->
-> Please first read previous discussions:
+  This fixes the following warning:
+arch/mips/boot/dts/lantiq/danube_easy50712.dtb: stp@e100bb0 (lantiq,gpio-stp-xway): $nodename:0: 'stp@e100bb0' does not match '^gpio@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-stp-xway.yaml#
 
-[I reversed the order of the links so the oldest is first]
+---
+Changes in v2:
+- added sysctrl patch
+---
+Aleksander Jan Bajkowski (2):
+  mips: lantiq: xway: sysctrl: rename stp clock
+  mips: lantiq: danube: rename stp node on EASY50712 reference board
 
-> https://lore.kernel.org/all/20221122111124.6828-1-cniedermaier@dh-electro=
-nics.com/
+ arch/mips/boot/dts/lantiq/danube_easy50712.dts | 2 +-
+ arch/mips/lantiq/xway/sysctrl.c                | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Rob: "They ['function' and 'label'] serve 2 different purposes."
+-- 
+2.47.2
 
-> https://lore.kernel.org/all/20240509110545.49889-1-linux@fw-web.de/
-
-Krzysztof: "I don't think there was conclusion to make it deprecated on
-last attempt"
-
-I agree.
-What I don't understand: Why wasn't the text updated to correct the
-incorrect statement about deprecation (that's how I interpret it now)?
-Or some other conclusion being made and that that will be reflected in
-the text and/or a deprecated property.
-
-Otherwise the confusion remains and then it's just a matter of time
-before a 4th person comes along proposing the same patch.
-And possibly even more harmful: people use it incorrectly.
-
-There's also this line:
-"function-enumerator has no effect when this property is present."
-
-if that is true, and I would assume so as that's what the binding says,
-then I messed up even bigger then I already think I did in commit
-1631cbdb8089 ("arm64: dts: rockchip: Improve LED config for NanoPi R5S")
-resulting in commit
-912b1f2a796e ("arm64: dts: rockchip: Drop netdev led-triggers on NanoPi R5S=
-")
-
-... but I'd have expected that to be pointed out in the review.
-
-I can understand that function-enumerator is used in an automatically
-generated label when a label doesn't exist, but I'm inclined to think
-the same "They serve 2 different purposes" applies here too.
-
-Cheers,
-  Diederik
-
---8624ee546faf8c26b2a96c7cf02ab2c1b94682b15dc888f8a0edb7954318
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaJ8i5gAKCRDXblvOeH7b
-blHPAP47IybHAz/ehXhdDv8uUzgLK6trTHIF4sa580pxeE3YkQD+IT7PvgXPS4r7
-s6gjTNa7I7J78T4OjK79J1SWdXcrgQg=
-=JWsI
------END PGP SIGNATURE-----
-
---8624ee546faf8c26b2a96c7cf02ab2c1b94682b15dc888f8a0edb7954318--
 
