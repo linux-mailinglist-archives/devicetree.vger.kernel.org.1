@@ -1,78 +1,70 @@
-Return-Path: <devicetree+bounces-205087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FDD4B27D9E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 11:58:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97F42B27DB3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 12:01:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9975A1D006AA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:58:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E35B589304
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 10:00:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0835F2FE077;
-	Fri, 15 Aug 2025 09:57:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41362FD1CD;
+	Fri, 15 Aug 2025 09:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="ofQgVmnB"
+	dkim=pass (2048-bit key) header.d=cab.de header.i=@cab.de header.b="mDlz89XJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx08-007fc201.pphosted.com (mx08-007fc201.pphosted.com [91.207.212.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C692FDC32;
-	Fri, 15 Aug 2025 09:57:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD092FCC16;
+	Fri, 15 Aug 2025 09:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755251870; cv=none; b=MLfbiqe9fDojs7AJNDZSpDN9YSRc3jpzpQvdnd12NtXZW3NvMW5Yj/o5Aa5HqILDltN6yi146r0gAhb6FacR1Djt8Y6J4TVi8aKUKpWq34BMXV1AgSy+bqhmmQDl6qMmGnf5Cd9njMZD9yUH/vxUD0gDijmrh4x6c1vn63oqMxo=
+	t=1755251956; cv=none; b=KWu0tx2+TeO0Lh4h5XbS6343K/sE/EIV6yPZrnR8KRQP9XNnRLuJH40d5HqkhZxQmR8fZEo+jLrfln/mkucqL4yHQsocCcxtmgsue+lofflLv5apLR0Us4nwp5u3ubqyRlJlQjeXNynQDlW4WBNoqyVEfGNSR1SuPjiWozFNFDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755251870; c=relaxed/simple;
-	bh=Q1UBPkWMlzZipcMrvvaZw+zth4fxYWAALQUS+9HbCKc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=c05wMCQtZEi6IITMdHMKxeUikF36ugOFlYzqFudln39IcmgJ7AUJsdtwMVlVmitvxPRLqjLm7Qrm7xiS/UxFYX4atC/jmbDYm/1otlIk6x1Aa5wFVqNbydQ2bt9QPS29EXw+Y693a8kbtkzDKpL06HaNkRGinR4O95J0GRM+5Ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=ofQgVmnB; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57F8oJFK006855;
-	Fri, 15 Aug 2025 05:57:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=zJxsD
-	CATAb2E2uCWzu1Gcil7LGV3F+sWNQe5nju9lw0=; b=ofQgVmnB0ivfetHuwzYYv
-	ZoJlXcg1MNk/lgr9pO11rTyxMX23TjKFzjHjw3Vo4syFABCAQGC/PD6bMyJ77m//
-	MmOhaWwJDP39rhYOtXxS1pUCKUWu+Q1J8xHc8hZEUGaE5vOJC/InXIExuXJKa0rf
-	n4D3thV4SIt4wTwutzT37mtKwHtXBqBbJno0Vx8b9OoVtpOtrmVswmMFOe1bO+hu
-	8MLkAoLbJF5E7GOVaH6sYAl/QKlrT7NDv2vUK/mMn4Q0XsMwIwwVnFks3ADIjZXU
-	qX7YUdAU6yAIfVzaQYgY7W94jiz2gYMOf8HFQWhIwsiR0LB8Y9dntQteWGkoZU+i
-	A==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 48h58mgfgg-1
+	s=arc-20240116; t=1755251956; c=relaxed/simple;
+	bh=C/eAsnQim+cPhpZ60TLsY5VOyKIxJMLsf0ERiOi78C8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XcRkHHET6RHTdn+nlWFXr5N5+/OASiejgsVaG+a1re0KPe2IVxgAKmDUDhD72EuozTbdVQPBqkJ/0jpQlVLGZRsJQp9oF4LjbRLvvM6sBq+YVyAfhUmb+wBuMJ/uSajYU/9uoy3jnnG5hJctbUyYZJaTa425zCt5v6a+1+pg01w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cab.de; spf=pass smtp.mailfrom=cab.de; dkim=pass (2048-bit key) header.d=cab.de header.i=@cab.de header.b=mDlz89XJ; arc=none smtp.client-ip=91.207.212.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cab.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cab.de
+Received: from pps.filterd (m0456229.ppops.net [127.0.0.1])
+	by mx08-007fc201.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 57F9wt84265753;
+	Fri, 15 Aug 2025 11:58:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cab.de; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pp-2025; bh=DfTq9JGGqIeWegpF934nhDAD
+	EXEqp1Xkj9iyZqb8LFs=; b=mDlz89XJCssAuIh+2AsRH9WCozuoq+9Jt+UkcNP3
+	PZPxDrpqCu0AjnuP9NGdhcahP4QG9uraFESbyfcGpA2Sv9HvotyEp3VhePQx0G5d
+	DHLHRwhwxq6IABoYgpGffZ82cL9rFT4+YQzo8lflTz8nd96+LguMUbjKJiCHEZzv
+	/i8fuuKjcYV8x9MOxTxjrGHIX+BDzHRvtsEbz2GoSMo6b7drC0P4WbaYCgOsMTy7
+	b4dzkLQOlPZIcYdYXw49vVbrJotEIxbhxftUvC4pnbvBM8b0vVFCHR2DdFmp8BSL
+	H3FEnrZaeuCVFuBCdfgMWL+V/DgzVDpU009z8qI79Z8FnA==
+Received: from adranos.cab.de (adranos.cab.de [46.232.229.107])
+	by mx08-007fc201.pphosted.com (PPS) with ESMTPS id 48fqcpsbfb-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Aug 2025 05:57:35 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 57F9vYLB034257
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 15 Aug 2025 05:57:34 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 15 Aug
- 2025 05:57:34 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Fri, 15 Aug 2025 05:57:34 -0400
-Received: from Ubuntu.ad.analog.com (AMICLAUS-L01.ad.analog.com [10.48.65.226])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 57F9vJix027486;
-	Fri, 15 Aug 2025 05:57:30 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	Fri, 15 Aug 2025 11:58:55 +0200 (MEST)
+Received: from KAN23-025.cab.de (10.10.3.180) by Adranos.cab.de (10.10.1.54)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.36; Fri, 15 Aug
+ 2025 11:59:11 +0200
+From: Markus Heidelberg <m.heidelberg@cab.de>
+To: Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
         <devicetree@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v4 5/5] Documentation: ABI: iio: add sinc4+lp
-Date: Fri, 15 Aug 2025 09:56:38 +0000
-Message-ID: <20250815095713.9830-6-antoniu.miclaus@analog.com>
+CC: Markus Heidelberg <m.heidelberg@cab.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Christian Eggers <ceggers@arri.de>,
+        Alexander Sverdlin
+	<alexander.sverdlin@gmail.com>,
+        Jiri Prchal <jiri.prchal@aksignal.cz>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/3] eeprom: at25: support Cypress FRAMs without device ID
+Date: Fri, 15 Aug 2025 11:58:35 +0200
+Message-ID: <20250815095839.4219-1-m.heidelberg@cab.de>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250815095713.9830-1-antoniu.miclaus@analog.com>
-References: <20250815095713.9830-1-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,50 +73,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE0MDAwMSBTYWx0ZWRfX8vALX7gwalnF
- H7QCAT55FepCGsjCi36cXKCsN9BYWzcE0Yguvl7e1gvagCSpw7H0z33EfCwsrRaRrlkAz1LMWgQ
- 6cu0zLtxEpk55bu5EAaTaVWF8VFvdynydYBxsD/3abVhB0Ce1U7f/MVzXGijpZCJ9jop09rVcoQ
- xCFpqhweVuLzm/XcekngoE7QdRJhIfehTchrOxoDDa5caF3/bwaoCNllhwy1rVM0GLys5ZHe2sm
- Bw1APdTUFY2p3wKtG5qszdmAcAUISOvED8M8c98b+HQpbGikHb1dNiVJQzACcGldfRN6DnEv7PB
- zgVDRjccbnVi7QCDLeAdxBluovnvP9sUXmStbriO0YU+BLIoiBla0s5SelOBfZ5zCgJIUtW53+z
- 7e2G2s+n
-X-Authority-Analysis: v=2.4 cv=BsGdwZX5 c=1 sm=1 tr=0 ts=689f048f cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=2OwXVqhp2XgA:10 a=gAnH3GRIAAAA:8 a=rzIQo91_iFM3IlyHPcMA:9
-X-Proofpoint-ORIG-GUID: 0t2LfOpmXPTOBwU4lbj271mT4zjXaHtm
-X-Proofpoint-GUID: 0t2LfOpmXPTOBwU4lbj271mT4zjXaHtm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-15_03,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 spamscore=0 priorityscore=1501 adultscore=0 bulkscore=0
- impostorscore=0 malwarescore=0 suspectscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508140001
+X-ClientProxiedBy: Adranos.cab.de (10.10.1.54) To Adranos.cab.de (10.10.1.54)
+X-Proofpoint-ORIG-GUID: uWCy04TrlsMY4Ar1CXUfoqjIlZW3iZn4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE1MDA4MCBTYWx0ZWRfX9UN+TUCUB4LO
+ F2ihFxUjZ4V+DivIpm47Tbpp1qQjt9IC9/pDyjsxkHNhvCLPibq4Eep+f3QZtrxGkdP2fjxTvil
+ 6EHSTh/FvVedzF2UWDyxw0thRpx94aeSa/+QkHyJIaY/aFX5meZId5w9Tt7Krf6BqXZszEIt3rq
+ AS/PlhEjSvN4Qsiq/6dm2UGebq6FLatLxEOkFi25/EjSaBYsxnop2Ce9rMgs50vhcO/Uy6S4nfl
+ qvpSOtFVPu0+i99r2h6N9t84Mmty0EtXCxiR7g3wLWh2JoaIL1M+GJfcdZOfsZx9YVJC6NTeH24
+ 2jrMN9hrd5W82qud9k6q61SDlXG0+Sqlc9/7YGf3n+E3TcCTYK7OES55EQWflg=
+X-Authority-Analysis: v=2.4 cv=bctrUPPB c=1 sm=1 tr=0 ts=689f04df cx=c_pps
+ a=LmW7qmVeM6tFdl5svFU9Cg==:117 a=LmW7qmVeM6tFdl5svFU9Cg==:17
+ a=kldc_9v1VKEA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=OwM_m4cHvPE-cwAFzhwA:9
+X-Proofpoint-GUID: uWCy04TrlsMY4Ar1CXUfoqjIlZW3iZn4
 
-Add new filter type to the sysfs-bus-iio ABI documentation:
-- "sinc4+lp" for Sinc4 + Low Pass Filter
+Hello,
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-changes in v4:
- - reorder placement of sinc4+lp
- Documentation/ABI/testing/sysfs-bus-iio | 1 +
- 1 file changed, 1 insertion(+)
+patch changelog:
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-index 9d283b23d3c0..53289c085e0a 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio
-+++ b/Documentation/ABI/testing/sysfs-bus-iio
-@@ -2317,6 +2317,7 @@ Description:
- 		  time.
- 		* "sinc4" - Sinc 4. Excellent noise performance. Long
- 		  1st conversion time.
-+		* "sinc4+lp" - Sinc4 + Low Pass Filter.
- 		* "sinc4+sinc1" - Sinc4 + averaging by 8. Low 1st conversion
- 		  time.
- 		* "sinc5" - The digital sinc5 filter. Excellent noise
+v2:
+  - Commit message extended to explain the reason of the change in the
+    binding (patch 1)
+  - Example added to the binding (patch 1)
+  - Reviewed-by added to commit message (patches 2+3)
+
+=======
+
+Currently supported FRAMs use compatible="cypress,fm25","atmel,at25" in
+Devicetree, the memory size is read from its device ID.
+For FRAMs without device ID this is not possible, so with these patches
+the "size" property can be set manually as it is done for EEPROMs. In
+that case the device ID is not read anymore.
+
+This patch series is basically the same as the one marked as RFC four
+months ago:
+
+  https://lore.kernel.org/all/20250401133148.38330-1-m.heidelberg@cab.de/
+
+Based on v6.17-rc1 now and extended by a comment to the at25 binding.
+
+Markus Heidelberg (3):
+  dt-bindings: eeprom: at25: use "size" for FRAMs without device ID
+  eeprom: at25: support Cypress FRAMs without device ID
+  eeprom: at25: make FRAM device ID error message more precise
+
+ .../devicetree/bindings/eeprom/at25.yaml      |  8 +++
+ drivers/misc/eeprom/at25.c                    | 67 ++++++++++---------
+ 2 files changed, 44 insertions(+), 31 deletions(-)
+
+
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
 -- 
 2.43.0
 
