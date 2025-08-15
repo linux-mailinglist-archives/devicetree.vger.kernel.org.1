@@ -1,268 +1,139 @@
-Return-Path: <devicetree+bounces-205257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E4C1B288A2
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 01:10:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92C51B288B1
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 01:21:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 435BCA24ED1
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 23:09:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D0475C6692
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 23:21:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230002D0611;
-	Fri, 15 Aug 2025 23:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD072D23B2;
+	Fri, 15 Aug 2025 23:21:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mc8zaiJd"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="pZRyxAUf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E936C79F2;
-	Fri, 15 Aug 2025 23:08:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291AB2D23B6;
+	Fri, 15 Aug 2025 23:21:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755299340; cv=none; b=pHiZKsqRN6vK7OxWv4uQStpJkoI0ZgPquOHTFjzQuNNO7bE4JBc/nzLM5Q9pAdPfDDke9e7UiZ5w8Wqyj8497hI3WPIznpImfy7XwXvBuaFQeF/uN0GMEE8sSl7iEtX7OYT1b3XYT/hgMlROoHVe7P5lrSnt1PLfMjqiIzBYh8c=
+	t=1755300093; cv=none; b=tJC6xhCvX8uSJwKecnSzI+kBMqFTXAyu6KeAp0r9+WjH7aTqPivOz0jIH1pWcmHd/MwzHG27XWazw/l+NndRLdtFGyo1lGZJjUGLqi1VqV4zaUOlIFW+J7GWCZoqp8EyNtgi0cgHH9HTdUPLetwkuKnHB8m/tRYOHJrpS6QwKlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755299340; c=relaxed/simple;
-	bh=2GRJzTk+BtY2YrnH++wopzOmkdTjrCsNi98W9z6N620=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QYG3nRUZqheQ/WkTFeLveQsaSW4HJSgudYtxBbuhOls3IFVFjsV2uXS2Y0EXG0blhgmO6coalMqX6zgdJ4GTuZjO2mvJTbojwGRBOJmbaNk89XltJacH8spNt9i9Sf+TkKfeNFQIohT9TIL+yT8wXenkTxQCUgeLPuFdPC/eDt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mc8zaiJd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E631C4CEEB;
-	Fri, 15 Aug 2025 23:08:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755299338;
-	bh=2GRJzTk+BtY2YrnH++wopzOmkdTjrCsNi98W9z6N620=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Mc8zaiJdlfbcfAlsWKhmAZAKFanuVxseD1OxvsAfJtKF7081GIZmX+rbRA7HOZ0at
-	 4aBO7StfsaIXLTw7l7sFhi3gdMg8qqrZ3Rn3h+Xm0crT/GalDBjITPv5knK18QSHEs
-	 NL4wqvH7d3FEhs6o/cXm+QqjY4eV1N6DASn8B6aJSoi9xOrX3xX0DNt/C9nZPeWF9X
-	 ihvvW/H7NFXJWPaVyKXqjDysZhkgQy1q1Q87/ahn/0QOmZG8m+hKS10HibR0+Kn2aI
-	 9SV6KOU1i44Od3IXVIwHVMHVU4sjzSBQlFKAHiA5IDE1wJIPTZdBtctncTx93eJiTR
-	 /g3fu1jJJP71A==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1755300093; c=relaxed/simple;
+	bh=WlC4a5oslz2GOhgCe2D2ulxeXoaX9MH8oYE1raTsaWI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IHlf0ZeA1sF8iUVg7yJbNOTAXBE+qhs/uSU8E+wArTzHPV0Fphqwc/NsZA3Mru1LqT4btM3bDw9qgjCyiK0aLxIp/bQQCFsaVepN/te2Kcxh/hErszu5NAGjudwNJHyL3Jj7x/lHG0wqX6ZjPKhjXM2DXqslw1A9eDu3unTtsuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=pZRyxAUf; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=xCezYSDSsCuqM8sg8Tr/57n1gkR3xbFoqEKjIBgBpHA=; b=pZRyxAUf88P+iOjYysq/FeqY4t
+	8xwB6jCaFpBXeFyV15umOHZv2iU6UKak/upLK1Kb7JADKkKJqY/WilMwDz+e/RWmEGTFjy9NuT04P
+	q7Dr9nz3qCYGj+CuhLJOKIvo63260dTl5tAHS27ZhtHnPOfh4OwE2ZjFlrGZpuNOOqxA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1un3jZ-004s4q-1e; Sat, 16 Aug 2025 01:21:17 +0200
+Date: Sat, 16 Aug 2025 01:21:17 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, mschmidt@redhat.com, poros@redhat.com,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] ARM: dts: aspeed: Fix/add I2C device vendor prefixes
-Date: Fri, 15 Aug 2025 18:08:39 -0500
-Message-ID: <20250815230841.3487764-1-robh@kernel.org>
-X-Mailer: git-send-email 2.50.1
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
+ reference property
+Message-ID: <366b1990-78b2-483f-bda5-2958274939e4@lunn.ch>
+References: <20250815144736.1438060-1-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250815144736.1438060-1-ivecera@redhat.com>
 
-The ASpeed DTS files have various I2C devices with missing or incorrect
-vendor prefixes in their compatible strings. This hasn't really mattered
-and doesn't impact ABI compatibility as I2C devices get matched with their
-vendor prefix stripped.
+On Fri, Aug 15, 2025 at 04:47:35PM +0200, Ivan Vecera wrote:
+> In case of SyncE scenario a DPLL channels generates a clean frequency
+> synchronous Ethernet clock (SyncE) and feeds it into the NIC transmit
+> path. The DPLL channel can be locked either to the recovered clock
+> from the NIC's PHY (Loop timing scenario) or to some external signal
+> source (e.g. GNSS) (Externally timed scenario).
+> 
+> The example shows both situations. NIC1 recovers the input SyncE signal
+> that is used as an input reference for DPLL channel 1. The channel locks
+> to this signal, filters jitter/wander and provides holdover. On output
+> the channel feeds a stable, phase-aligned clock back into the NIC1.
+> In the 2nd case the DPLL channel 2 locks to a master clock from GNSS and
+> feeds a clean SyncE signal into the NIC2.
+> 
+> 		   +-----------+
+> 		+--|   NIC 1   |<-+
+> 		|  +-----------+  |
+> 		|                 |
+> 		| RxCLK     TxCLK |
+> 		|                 |
+> 		|  +-----------+  |
+> 		+->| channel 1 |--+
+> +------+	   |-- DPLL ---|
+> | GNSS |---------->| channel 2 |--+
+> +------+  RefCLK   +-----------+  |
+> 				  |
+> 			    TxCLK |
+> 				  |
+> 		   +-----------+  |
+> 		   |   NIC 2   |<-+
+> 		   +-----------+
+> 
+> In the situations above the DPLL channels should be registered into
+> the DPLL sub-system with the same Clock Identity as PHCs present
+> in the NICs (for the example above DPLL channel 1 uses the same
+> Clock ID as NIC1's PHC and the channel 2 as NIC2's PHC).
+> 
+> Because a NIC PHC's Clock ID is derived from the NIC's MAC address,
+> add a per-channel property 'ethernet-handle' that specifies a reference
+> to a node representing an Ethernet device that uses this channel
+> to synchronize its hardware clock. Additionally convert existing
+> 'dpll-types' list property to 'dpll-type' per-channel property.
 
-With this, the "maxim,max31790" nodes now validate and have some
-warnings. Remove the spurious "#address-cells" and "#size-cells"
-properties to fix the warnings.
+It would be normal to include an implementation of the binding as
+patch 2/2. Looking at the implementation sometimes makes
+errors/omission in the binding obvious.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../aspeed-bmc-arm-stardragon4800-rep2.dts    |  2 +-
- .../dts/aspeed/aspeed-bmc-facebook-harma.dts  |  8 ++-----
- .../aspeed/aspeed-bmc-facebook-minerva.dts    | 24 +++++--------------
- .../aspeed/aspeed-bmc-facebook-tiogapass.dts  |  2 +-
- .../dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dts |  2 +-
- .../dts/aspeed/aspeed-bmc-opp-palmetto.dts    |  2 +-
- .../boot/dts/aspeed/aspeed-bmc-quanta-s6q.dts |  4 ++--
- 7 files changed, 14 insertions(+), 30 deletions(-)
+> +        channels {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          channel@0 {
+> +            reg = <0>;
+> +            dpll-type = "pps";
+> +          };
+> +
+> +          channel@1 {
+> +            reg = <1>;
+> +            dpll-type = "eec";
+> +            ethernet-handle = <&ethernet0>;
+> +          };
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-arm-stardragon4800-rep2.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-arm-stardragon4800-rep2.dts
-index 9605ccade155..b550a48f48f0 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-arm-stardragon4800-rep2.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-arm-stardragon4800-rep2.dts
-@@ -171,7 +171,7 @@ eeprom@50 {
- 				reg = <0x50>;
- 			};
- 			dps650ab@58 {
--				compatible = "dps650ab";
-+				compatible = "delta,dps650ab";
- 				reg = <0x58>;
- 			};
- 		};
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-index b9a93f23bd0a..1aae3645cc8c 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-@@ -184,10 +184,8 @@ &i2c0 {
- 	status = "okay";
- 
- 	pwm@5e{
--		compatible = "max31790";
-+		compatible = "maxim,max31790";
- 		reg = <0x5e>;
--		#address-cells = <1>;
--		#size-cells = <0>;
- 	};
- 
- 	power-sensor@40 {
-@@ -258,10 +256,8 @@ &i2c2 {
- 	status = "okay";
- 
- 	pwm@5e{
--		compatible = "max31790";
-+		compatible = "maxim,max31790";
- 		reg = <0x5e>;
--		#address-cells = <1>;
--		#size-cells = <0>;
- 	};
- 
- 	power-sensor@40 {
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-index ef96b17becb2..4584d3b536b4 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-@@ -313,10 +313,8 @@ eeprom@50 {
- 			};
- 
- 			pwm@5e{
--				compatible = "max31790";
-+				compatible = "maxim,max31790";
- 				reg = <0x5e>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 			};
- 
- 			power-sensor@40 {
-@@ -436,10 +434,8 @@ eeprom@50 {
- 			};
- 
- 			pwm@5e{
--				compatible = "max31790";
-+				compatible = "maxim,max31790";
- 				reg = <0x5e>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 			};
- 
- 			power-sensor@40 {
-@@ -559,10 +555,8 @@ eeprom@50 {
- 			};
- 
- 			pwm@5e{
--				compatible = "max31790";
-+				compatible = "maxim,max31790";
- 				reg = <0x5e>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 			};
- 
- 			power-sensor@40 {
-@@ -682,10 +676,8 @@ eeprom@50 {
- 			};
- 
- 			pwm@5e{
--				compatible = "max31790";
-+				compatible = "maxim,max31790";
- 				reg = <0x5e>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 			};
- 
- 			power-sensor@40 {
-@@ -805,10 +797,8 @@ eeprom@50 {
- 			};
- 
- 			pwm@5e{
--				compatible = "max31790";
-+				compatible = "maxim,max31790";
- 				reg = <0x5e>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 			};
- 
- 			power-sensor@40 {
-@@ -927,10 +917,8 @@ eeprom@50 {
- 			};
- 
- 			pwm@5e{
--				compatible = "max31790";
-+				compatible = "maxim,max31790";
- 				reg = <0x5e>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 			};
- 
- 			power-sensor@40 {
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-tiogapass.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-tiogapass.dts
-index 704ee684e0fb..5d4c7d979f1e 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-tiogapass.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-tiogapass.dts
-@@ -508,7 +508,7 @@ &i2c7 {
- 	status = "okay";
- 	//HSC, AirMax Conn A
- 	adm1278@45 {
--		compatible = "adm1275";
-+		compatible = "adi,adm1275";
- 		reg = <0x45>;
- 		shunt-resistor-micro-ohms = <250>;
- 	};
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dts
-index de61eac54585..adc598cca50c 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dts
-@@ -211,7 +211,7 @@ &i2c1 {
- 	status = "okay";
- 	bus-frequency = <90000>;
- 	HotSwap@10 {
--		compatible = "adm1272";
-+		compatible = "adi,adm1272";
- 		reg = <0x10>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-palmetto.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-palmetto.dts
-index 123da82c04d5..e6f33d7cfc45 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-palmetto.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-palmetto.dts
-@@ -151,7 +151,7 @@ eeprom@50 {
- 	};
- 
- 	rtc@68 {
--		compatible = "dallas,ds3231";
-+		compatible = "maxim,ds3231";
- 		reg = <0x68>;
- 	};
- };
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-quanta-s6q.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-quanta-s6q.dts
-index fd361cf073c2..86451227847b 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-quanta-s6q.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-quanta-s6q.dts
-@@ -509,7 +509,7 @@ U197_PCA9546_CH1: i2c@1 {
- 			reg = <1>;
- 
- 			cpu0_pvccin@60 {
--				compatible = "isil,raa229004";
-+				compatible = "renesas,raa229004";
- 				reg = <0x60>;
- 			};
- 
-@@ -530,7 +530,7 @@ U197_PCA9546_CH2: i2c@2 {
- 			reg = <2>;
- 
- 			cpu1_pvccin@72 {
--				compatible = "isil,raa229004";
-+				compatible = "renesas,raa229004";
- 				reg = <0x72>;
- 			};
- 
--- 
-2.50.1
+If i'm reading this correctly, eec requires a ethernet-handle. pps
+does not. You should describe that in the binding using constraints.
 
+Otherwise, this looks reasonable to me.
+
+	   Andrew
 
