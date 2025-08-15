@@ -1,380 +1,89 @@
-Return-Path: <devicetree+bounces-205000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7977CB279F6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:19:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE4D7B27A51
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 09:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4848DB64B99
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 07:15:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DB9AAC6682
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 07:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7EE277C86;
-	Fri, 15 Aug 2025 07:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="aOwJHaWm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C10B21DE894;
+	Fri, 15 Aug 2025 07:46:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from freeshell.de (freeshell.de [116.202.128.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900E523A9B1
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 07:16:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 045051DD0EF;
+	Fri, 15 Aug 2025 07:46:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755242215; cv=none; b=D9x7TDPfNfRrIxxUDj9vkpNS6Xeylb29t6YBwefLJDeUMQUaNjFaMkWmrdYSbxf1WBmsrrZ5r/HwxaF9CBGq4j9SQXFM4SWV/UlkJbxG1EvjaffP/6tNNx+788l1yiwsyM9apBVGFVsf7yPpoHyV+Nxz9NDeK50/m+gf7nkSbRY=
+	t=1755243995; cv=none; b=n6PUo/YfO0y9eWdLlC7QokJJ3mNwKYm3LVLlh9bcZOMF6CuIoCvyrvP5BtVU4/vCND35IrXEwNO+FSsZy64QDd1d4eqt5dQGsttYbEII/HVfVcboyUH7uWl8+QTUJFqZg2KCEOAw9AuZCz2yoqf2BSF6fvJhE4MW7tZ5IjpSoiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755242215; c=relaxed/simple;
-	bh=d0Z4kPDlFE49tS9eVzrIyOIpOWXCtYQIcohER1w2hcI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uInQsckK1IBd5xmW08xTA6i54wNCrVQBKnUcNL0HbETmVWATTvUOO/ffYDlwVZ0KTyEKVMdh3/UI+pwI3nZc63gL0anp0mzgD8g2j9Nh6drbC095X/e/Cc2L91JxxTdsikhN2cPsbD/LI/lJLg6WMEHOf6Ol8o5IynXc6LIqb4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=aOwJHaWm; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-333f917a67aso11658111fa.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 00:16:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1755242212; x=1755847012; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3K1kJm5inMNkv14D9ydpjinJSulNs5zENgGzWevk8EE=;
-        b=aOwJHaWmc15rYrWoZmDzXVU3f8l8ja18JHDLYNFrxfC3xDumIZaabX0eiryAtKCGSx
-         7ntxEdojGWUyUz8FpibElYA0MkdtzJXYBttoJ/mY379wZRaFmEm8PnmcvN7g0xXMWSNk
-         dQV9LbzwCS3E1mtSVqxgL7AFv4d/BWlIvflug=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755242212; x=1755847012;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3K1kJm5inMNkv14D9ydpjinJSulNs5zENgGzWevk8EE=;
-        b=wdEFQ5dEv2GhK1dNTm7Ai+jaOCWoReD9NTfr+1bpQUvMeAhMP7tipdLANGdpxtvkdu
-         uSYmMrA8AnOUsMILUoJrN8xNLN01xNCJwyQLgEOTRVwX4dE7VKFUbvIFnmEP5Xle6ale
-         u9kINjwm2A2HoaywmwDgZcEQNeqKTaLYWZ33+R0idIz3sbgWk7kaYonklCBhaQEtPWVK
-         PM91j/vj9LXwdt131shXyk+08FwsKR3v8ouCpp9Vv5/GA0YaL1Vojgf3dsAo10nNPA9k
-         M3IH3PaHatH8RGSMhEt9LvqdMpnHsY8ofjhD1+wOXDn+h0EWLlNgXMJKDxsP1AMiB86t
-         uz8w==
-X-Forwarded-Encrypted: i=1; AJvYcCXrJbiD6wuT5/tKLzK0en7Bx4sOwfmDVl3+i6yug7pBoC1EfNTkk0hmQlubYSR4hVsGyVt5m6ChVgYp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwM0q7w9n4R2HCAhPZiNbv3VUAJFg0DfIwkpGTUh4t07VmAusf2
-	lWfYNGJ7o6Xf8EXwZlBYO1k/YP6eweac3FPp+L6dCjwBmnFBRjD2jpJGVG+5eEY4SMnZApDwjfA
-	KKKi8BbDIq3+dwX5qhk+r+y44Pao7EAGEqOs2dXE3
-X-Gm-Gg: ASbGncsGf7+f7aou65WGNzEPJNeDLXkH6bh1e4y3mNx7K/eaBf7UGFN1JXhjV/3EJpW
-	l/ixIFs300+wpQC7fvziY1Y6nbiGOiCX/AxLU5/8V/aKdXYlFxr1VaFf3oeEQAjZhK9A4zH12AK
-	kWd3mTenrgGWk0bHiEAjudWDavjabEBayUpwdBrQwgaZLL09NbRvkG0DoMH/Jaycn9Z1xqrnT8b
-	3Wf22qjBIBvlfDvxWe8aywTLgjV5C1xKQ8VtQ==
-X-Google-Smtp-Source: AGHT+IF53/A6ashxxLkiCCwGt0538IVz8i1pzg2+4/NBPJGi3Nkq4VQOaxq8OGtmtqORzmg2+6YsEKNq1xAp37Z68HI=
-X-Received: by 2002:a05:651c:548:b0:332:4238:4f46 with SMTP id
- 38308e7fff4ca-334097dc344mr3187951fa.3.1755242211580; Fri, 15 Aug 2025
- 00:16:51 -0700 (PDT)
+	s=arc-20240116; t=1755243995; c=relaxed/simple;
+	bh=M5wxVbseO6auJIkzODJGZ86Vw9gaeEM4NLpeJyR9ozs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GcPPY5NVyr25SkSLTzWd7gbUsp8wnZLqqUVqTFCsVaXbfb3nzHQA6a1Wj+L2GhM/eBbXMiAr/7KqVmkQKKyB4RQmp0oLBq0ZtIbwj8zd61+wFGe1jgdKSr7WYX91+n15m1vsNdMeaKlh0vztegKtWzvPrtgbK6jox8+l3ZVrJDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from hay.lan (unknown [IPv6:2605:59c0:2078:cf00:6ecf:39ff:fe00:8375])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 700BEB4E004D;
+	Fri, 15 Aug 2025 09:39:56 +0200 (CEST)
+From: E Shattow <e@freeshell.de>
+To: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	E Shattow <e@freeshell.de>,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v2 0/3] riscv: dts: starfive: jh7110: More U-Boot downstream changes for JH7110
+Date: Fri, 15 Aug 2025 00:37:20 -0700
+Message-ID: <20250815073739.79241-1-e@freeshell.de>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250805135447.149231-1-laura.nao@collabora.com> <20250805135447.149231-20-laura.nao@collabora.com>
-In-Reply-To: <20250805135447.149231-20-laura.nao@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 15 Aug 2025 16:16:39 +0900
-X-Gm-Features: Ac12FXyZceMhsyBRYri8Vjpxp2RX9iE3-1LDqI4GAcFP9a1wCKbnWeSWQ_6z6o8
-Message-ID: <CAGXv+5FzZuas0n_qL1AzGYXyFxOwCsoH=SOzU7r4miDszh-uVw@mail.gmail.com>
-Subject: Re: [PATCH v4 19/27] clk: mediatek: Add MT8196 mdpsys clock support
-To: Laura Nao <laura.nao@collabora.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
-	richardcochran@gmail.com, guangjie.song@mediatek.com, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
-	kernel@collabora.com, =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Aug 5, 2025 at 10:56=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
- wrote:
->
-> Add support for the MT8196 mdpsys clock controller, which provides clock
-> gate control for MDP.
->
-> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> Signed-off-by: Laura Nao <laura.nao@collabora.com>
-> ---
->  drivers/clk/mediatek/Kconfig             |   7 +
->  drivers/clk/mediatek/Makefile            |   1 +
->  drivers/clk/mediatek/clk-mt8196-mdpsys.c | 187 +++++++++++++++++++++++
->  3 files changed, 195 insertions(+)
->  create mode 100644 drivers/clk/mediatek/clk-mt8196-mdpsys.c
->
-> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-> index 8e5cdae80748..08fa18be525e 100644
-> --- a/drivers/clk/mediatek/Kconfig
-> +++ b/drivers/clk/mediatek/Kconfig
-> @@ -1024,6 +1024,13 @@ config COMMON_CLK_MT8196_MCUSYS
->         help
->           This driver supports MediaTek MT8196 mcusys clocks.
->
-> +config COMMON_CLK_MT8196_MDPSYS
-> +       tristate "Clock driver for MediaTek MT8196 mdpsys"
-> +       depends on COMMON_CLK_MT8196
-> +       default m
+Bring in additional downstream U-Boot boot loader changes for StarFive
+VisionFive2 board target (and related JH7110 common boards). Create a
+basic dt-binding (and not any Linux driver) in support of the
+memory-controller dts node used in mainline U-Boot. Also add
+bootph-pre-ram hinting to jh7110.dtsi needed at SPL boot phase.
 
-Please use "default COMMON_CLK_MT8196" for consistency with other
-patches and other platforms.
+Changes since v1:
 
-> +       help
-> +         This driver supports MediaTek MT8196 mdpsys clocks.
-> +
->  config COMMON_CLK_MT8196_PEXTPSYS
->         tristate "Clock driver for MediaTek MT8196 pextpsys"
->         depends on COMMON_CLK_MT8196
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefil=
-e
-> index 46358623c3e5..d2d8bc43e45b 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -155,6 +155,7 @@ obj-$(CONFIG_COMMON_CLK_MT8196) +=3D clk-mt8196-apmix=
-edsys.o clk-mt8196-topckgen.o
->                                    clk-mt8196-peri_ao.o
->  obj-$(CONFIG_COMMON_CLK_MT8196_IMP_IIC_WRAP) +=3D clk-mt8196-imp_iic_wra=
-p.o
->  obj-$(CONFIG_COMMON_CLK_MT8196_MCUSYS) +=3D clk-mt8196-mcu.o
-> +obj-$(CONFIG_COMMON_CLK_MT8196_MDPSYS) +=3D clk-mt8196-mdpsys.o
->  obj-$(CONFIG_COMMON_CLK_MT8196_PEXTPSYS) +=3D clk-mt8196-pextp.o
->  obj-$(CONFIG_COMMON_CLK_MT8196_UFSSYS) +=3D clk-mt8196-ufs_ao.o
->  obj-$(CONFIG_COMMON_CLK_MT8365) +=3D clk-mt8365-apmixedsys.o clk-mt8365.=
-o
-> diff --git a/drivers/clk/mediatek/clk-mt8196-mdpsys.c b/drivers/clk/media=
-tek/clk-mt8196-mdpsys.c
-> new file mode 100644
-> index 000000000000..87ac3b52fcbc
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt8196-mdpsys.c
-> @@ -0,0 +1,187 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2025 MediaTek Inc.
-> + *                    Guangjie Song <guangjie.song@mediatek.com>
-> + * Copyright (c) 2025 Collabora Ltd.
-> + *                    Laura Nao <laura.nao@collabora.com>
-> + */
-> +
-> +#include "clk-gate.h"
-> +#include "clk-mtk.h"
-> +
-> +#include <dt-bindings/clock/mediatek,mt8196-clock.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +
-> +static const struct mtk_gate_regs mdp0_cg_regs =3D {
-> +       .set_ofs =3D 0x104,
-> +       .clr_ofs =3D 0x108,
-> +       .sta_ofs =3D 0x100,
-> +};
-> +
-> +static const struct mtk_gate_regs mdp1_cg_regs =3D {
-> +       .set_ofs =3D 0x114,
-> +       .clr_ofs =3D 0x118,
-> +       .sta_ofs =3D 0x110,
-> +};
-> +
-> +static const struct mtk_gate_regs mdp2_cg_regs =3D {
-> +       .set_ofs =3D 0x124,
-> +       .clr_ofs =3D 0x128,
-> +       .sta_ofs =3D 0x120,
-> +};
-> +
-> +#define GATE_MDP0(_id, _name, _parent, _shift) {       \
-> +               .id =3D _id,                              \
-> +               .name =3D _name,                          \
-> +               .parent_name =3D _parent,                 \
-> +               .regs =3D &mdp0_cg_regs,                  \
-> +               .shift =3D _shift,                        \
-> +               .flags =3D CLK_OPS_PARENT_ENABLE,         \
-> +               .ops =3D &mtk_clk_gate_ops_setclr,        \
-> +       }
-> +
-> +#define GATE_MDP1(_id, _name, _parent, _shift) {       \
-> +               .id =3D _id,                              \
-> +               .name =3D _name,                          \
-> +               .parent_name =3D _parent,                 \
-> +               .regs =3D &mdp1_cg_regs,                  \
-> +               .shift =3D _shift,                        \
-> +               .flags =3D CLK_OPS_PARENT_ENABLE,         \
-> +               .ops =3D &mtk_clk_gate_ops_setclr,        \
-> +       }
-> +
-> +#define GATE_MDP2(_id, _name, _parent, _shift) {       \
-> +               .id =3D _id,                              \
-> +               .name =3D _name,                          \
-> +               .parent_name =3D _parent,                 \
-> +               .regs =3D &mdp2_cg_regs,                  \
-> +               .shift =3D _shift,                        \
-> +               .flags =3D CLK_OPS_PARENT_ENABLE,         \
-> +               .ops =3D &mtk_clk_gate_ops_setclr,        \
-> +       }
-> +
-> +static const struct mtk_gate mdp1_clks[] =3D {
-> +       /* MDP1-0 */
-> +       GATE_MDP0(CLK_MDP1_MDP_MUTEX0, "mdp1_mdp_mutex0", "mdp", 0),
-> +       GATE_MDP0(CLK_MDP1_SMI0, "mdp1_smi0", "mdp", 1),
-> +       GATE_MDP0(CLK_MDP1_APB_BUS, "mdp1_apb_bus", "mdp", 2),
-> +       GATE_MDP0(CLK_MDP1_MDP_RDMA0, "mdp1_mdp_rdma0", "mdp", 3),
-> +       GATE_MDP0(CLK_MDP1_MDP_RDMA1, "mdp1_mdp_rdma1", "mdp", 4),
-> +       GATE_MDP0(CLK_MDP1_MDP_RDMA2, "mdp1_mdp_rdma2", "mdp", 5),
-> +       GATE_MDP0(CLK_MDP1_MDP_BIRSZ0, "mdp1_mdp_birsz0", "mdp", 6),
-> +       GATE_MDP0(CLK_MDP1_MDP_HDR0, "mdp1_mdp_hdr0", "mdp", 7),
-> +       GATE_MDP0(CLK_MDP1_MDP_AAL0, "mdp1_mdp_aal0", "mdp", 8),
-> +       GATE_MDP0(CLK_MDP1_MDP_RSZ0, "mdp1_mdp_rsz0", "mdp", 9),
-> +       GATE_MDP0(CLK_MDP1_MDP_RSZ2, "mdp1_mdp_rsz2", "mdp", 10),
-> +       GATE_MDP0(CLK_MDP1_MDP_TDSHP0, "mdp1_mdp_tdshp0", "mdp", 11),
-> +       GATE_MDP0(CLK_MDP1_MDP_COLOR0, "mdp1_mdp_color0", "mdp", 12),
-> +       GATE_MDP0(CLK_MDP1_MDP_WROT0, "mdp1_mdp_wrot0", "mdp", 13),
-> +       GATE_MDP0(CLK_MDP1_MDP_WROT1, "mdp1_mdp_wrot1", "mdp", 14),
-> +       GATE_MDP0(CLK_MDP1_MDP_WROT2, "mdp1_mdp_wrot2", "mdp", 15),
-> +       GATE_MDP0(CLK_MDP1_MDP_FAKE_ENG0, "mdp1_mdp_fake_eng0", "mdp", 16=
-),
-> +       GATE_MDP0(CLK_MDP1_APB_DB, "mdp1_apb_db", "mdp", 17),
-> +       GATE_MDP0(CLK_MDP1_MDP_DLI_ASYNC0, "mdp1_mdp_dli_async0", "mdp", =
-18),
-> +       GATE_MDP0(CLK_MDP1_MDP_DLI_ASYNC1, "mdp1_mdp_dli_async1", "mdp", =
-19),
-> +       GATE_MDP0(CLK_MDP1_MDP_DLO_ASYNC0, "mdp1_mdp_dlo_async0", "mdp", =
-20),
-> +       GATE_MDP0(CLK_MDP1_MDP_DLO_ASYNC1, "mdp1_mdp_dlo_async1", "mdp", =
-21),
-> +       GATE_MDP0(CLK_MDP1_MDP_DLI_ASYNC2, "mdp1_mdp_dli_async2", "mdp", =
-22),
-> +       GATE_MDP0(CLK_MDP1_MDP_DLO_ASYNC2, "mdp1_mdp_dlo_async2", "mdp", =
-23),
-> +       GATE_MDP0(CLK_MDP1_MDP_DLO_ASYNC3, "mdp1_mdp_dlo_async3", "mdp", =
-24),
-> +       GATE_MDP0(CLK_MDP1_IMG_DL_ASYNC0, "mdp1_img_dl_async0", "mdp", 25=
-),
-> +       GATE_MDP0(CLK_MDP1_MDP_RROT0, "mdp1_mdp_rrot0", "mdp", 26),
-> +       GATE_MDP0(CLK_MDP1_MDP_MERGE0, "mdp1_mdp_merge0", "mdp", 27),
-> +       GATE_MDP0(CLK_MDP1_MDP_C3D0, "mdp1_mdp_c3d0", "mdp", 28),
-> +       GATE_MDP0(CLK_MDP1_MDP_FG0, "mdp1_mdp_fg0", "mdp", 29),
-> +       GATE_MDP0(CLK_MDP1_MDP_CLA2, "mdp1_mdp_cla2", "mdp", 30),
-> +       GATE_MDP0(CLK_MDP1_MDP_DLO_ASYNC4, "mdp1_mdp_dlo_async4", "mdp", =
-31),
-> +       /* MDP1-1 */
-> +       GATE_MDP1(CLK_MDP1_VPP_RSZ0, "mdp1_vpp_rsz0", "mdp", 0),
-> +       GATE_MDP1(CLK_MDP1_VPP_RSZ1, "mdp1_vpp_rsz1", "mdp", 1),
-> +       GATE_MDP1(CLK_MDP1_MDP_DLO_ASYNC5, "mdp1_mdp_dlo_async5", "mdp", =
-2),
-> +       GATE_MDP1(CLK_MDP1_IMG0, "mdp1_img0", "mdp", 3),
-> +       GATE_MDP1(CLK_MDP1_F26M, "mdp1_f26m", "clk26m", 27),
+- patch 1/3 "add StarFive JH7110 SoC DMC": Rephrase commit message and
+  description, drop min/max items and list with description instead, drop
+  legacy clock-frequency property.
 
-Assuming CLK_OPS_PARENT_ENABLE is intended, this gate will fail to be
-toggled if the "mdp" clock is not already enabled.
+- patch 2/3 "add memory controller node": Rephrase commit message and
+  drop clock-frequency property.
 
-> +       /* MDP1-2 */
-> +       GATE_MDP2(CLK_MDP1_IMG_DL_RELAY0, "mdp1_img_dl_relay0", "mdp", 0)=
-,
-> +       GATE_MDP2(CLK_MDP1_IMG_DL_RELAY1, "mdp1_img_dl_relay1", "mdp", 8)=
-,
-> +};
-> +
-> +static const struct mtk_clk_desc mdp1_mcd =3D {
-> +       .clks =3D mdp1_clks,
-> +       .num_clks =3D ARRAY_SIZE(mdp1_clks),
-> +       .need_runtime_pm =3D true,
-> +};
-> +
-> +
-> +static const struct mtk_gate mdp_clks[] =3D {
-> +       /* MDP0 */
-> +       GATE_MDP0(CLK_MDP_MDP_MUTEX0, "mdp_mdp_mutex0", "mdp", 0),
-> +       GATE_MDP0(CLK_MDP_SMI0, "mdp_smi0", "mdp", 1),
-> +       GATE_MDP0(CLK_MDP_APB_BUS, "mdp_apb_bus", "mdp", 2),
-> +       GATE_MDP0(CLK_MDP_MDP_RDMA0, "mdp_mdp_rdma0", "mdp", 3),
-> +       GATE_MDP0(CLK_MDP_MDP_RDMA1, "mdp_mdp_rdma1", "mdp", 4),
-> +       GATE_MDP0(CLK_MDP_MDP_RDMA2, "mdp_mdp_rdma2", "mdp", 5),
-> +       GATE_MDP0(CLK_MDP_MDP_BIRSZ0, "mdp_mdp_birsz0", "mdp", 6),
-> +       GATE_MDP0(CLK_MDP_MDP_HDR0, "mdp_mdp_hdr0", "mdp", 7),
-> +       GATE_MDP0(CLK_MDP_MDP_AAL0, "mdp_mdp_aal0", "mdp", 8),
-> +       GATE_MDP0(CLK_MDP_MDP_RSZ0, "mdp_mdp_rsz0", "mdp", 9),
-> +       GATE_MDP0(CLK_MDP_MDP_RSZ2, "mdp_mdp_rsz2", "mdp", 10),
-> +       GATE_MDP0(CLK_MDP_MDP_TDSHP0, "mdp_mdp_tdshp0", "mdp", 11),
-> +       GATE_MDP0(CLK_MDP_MDP_COLOR0, "mdp_mdp_color0", "mdp", 12),
-> +       GATE_MDP0(CLK_MDP_MDP_WROT0, "mdp_mdp_wrot0", "mdp", 13),
-> +       GATE_MDP0(CLK_MDP_MDP_WROT1, "mdp_mdp_wrot1", "mdp", 14),
-> +       GATE_MDP0(CLK_MDP_MDP_WROT2, "mdp_mdp_wrot2", "mdp", 15),
-> +       GATE_MDP0(CLK_MDP_MDP_FAKE_ENG0, "mdp_mdp_fake_eng0", "mdp", 16),
-> +       GATE_MDP0(CLK_MDP_APB_DB, "mdp_apb_db", "mdp", 17),
-> +       GATE_MDP0(CLK_MDP_MDP_DLI_ASYNC0, "mdp_mdp_dli_async0", "mdp", 18=
-),
-> +       GATE_MDP0(CLK_MDP_MDP_DLI_ASYNC1, "mdp_mdp_dli_async1", "mdp", 19=
-),
-> +       GATE_MDP0(CLK_MDP_MDP_DLO_ASYNC0, "mdp_mdp_dlo_async0", "mdp", 20=
-),
-> +       GATE_MDP0(CLK_MDP_MDP_DLO_ASYNC1, "mdp_mdp_dlo_async1", "mdp", 21=
-),
-> +       GATE_MDP0(CLK_MDP_MDP_DLI_ASYNC2, "mdp_mdp_dli_async2", "mdp", 22=
-),
-> +       GATE_MDP0(CLK_MDP_MDP_DLO_ASYNC2, "mdp_mdp_dlo_async2", "mdp", 23=
-),
-> +       GATE_MDP0(CLK_MDP_MDP_DLO_ASYNC3, "mdp_mdp_dlo_async3", "mdp", 24=
-),
-> +       GATE_MDP0(CLK_MDP_IMG_DL_ASYNC0, "mdp_img_dl_async0", "mdp", 25),
-> +       GATE_MDP0(CLK_MDP_MDP_RROT0, "mdp_mdp_rrot0", "mdp", 26),
-> +       GATE_MDP0(CLK_MDP_MDP_MERGE0, "mdp_mdp_merge0", "mdp", 27),
-> +       GATE_MDP0(CLK_MDP_MDP_C3D0, "mdp_mdp_c3d0", "mdp", 28),
-> +       GATE_MDP0(CLK_MDP_MDP_FG0, "mdp_mdp_fg0", "mdp", 29),
-> +       GATE_MDP0(CLK_MDP_MDP_CLA2, "mdp_mdp_cla2", "mdp", 30),
-> +       GATE_MDP0(CLK_MDP_MDP_DLO_ASYNC4, "mdp_mdp_dlo_async4", "mdp", 31=
-),
-> +       /* MDP1 */
-> +       GATE_MDP1(CLK_MDP_VPP_RSZ0, "mdp_vpp_rsz0", "mdp", 0),
-> +       GATE_MDP1(CLK_MDP_VPP_RSZ1, "mdp_vpp_rsz1", "mdp", 1),
-> +       GATE_MDP1(CLK_MDP_MDP_DLO_ASYNC5, "mdp_mdp_dlo_async5", "mdp", 2)=
-,
-> +       GATE_MDP1(CLK_MDP_IMG0, "mdp_img0", "mdp", 3),
-> +       GATE_MDP1(CLK_MDP_F26M, "mdp_f26m", "clk26m", 27),
+E Shattow (3):
+  dt-bindings: memory-controllers: add StarFive JH7110 SoC DMC
+  riscv: dts: starfive: jh7110: add DMC memory controller
+  riscv: dts: starfive: jh7110: bootph-pre-ram hinting needed by boot
+    loader
 
-Same for this one.
+ .../starfive,jh7110-dmc.yaml                  | 73 +++++++++++++++++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 21 ++++++
+ 2 files changed, 94 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/starfive,jh7110-dmc.yaml
 
-ChenYu
 
-> +       /* MDP2 */
-> +       GATE_MDP2(CLK_MDP_IMG_DL_RELAY0, "mdp_img_dl_relay0", "mdp", 0),
-> +       GATE_MDP2(CLK_MDP_IMG_DL_RELAY1, "mdp_img_dl_relay1", "mdp", 8),
-> +};
-> +
-> +static const struct mtk_clk_desc mdp_mcd =3D {
-> +       .clks =3D mdp_clks,
-> +       .num_clks =3D ARRAY_SIZE(mdp_clks),
-> +       .need_runtime_pm =3D true,
-> +};
-> +
-> +static const struct of_device_id of_match_clk_mt8196_mdpsys[] =3D {
-> +       { .compatible =3D "mediatek,mt8196-mdpsys1", .data =3D &mdp1_mcd =
-},
-> +       { .compatible =3D "mediatek,mt8196-mdpsys0", .data =3D &mdp_mcd }=
-,
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, of_match_clk_mt8196_mdpsys);
-> +
-> +static struct platform_driver clk_mt8196_mdpsys_drv =3D {
-> +       .probe =3D mtk_clk_simple_probe,
-> +       .remove =3D mtk_clk_simple_remove,
-> +       .driver =3D {
-> +               .name =3D "clk-mt8196-mdpsys",
-> +               .of_match_table =3D of_match_clk_mt8196_mdpsys,
-> +       },
-> +};
-> +module_platform_driver(clk_mt8196_mdpsys_drv);
-> +
-> +MODULE_DESCRIPTION("MediaTek MT8196 Multimedia Data Path clocks driver")=
-;
-> +MODULE_LICENSE("GPL");
-> --
-> 2.39.5
->
+base-commit: cb69daf085b5974fef2df9789f8c1b35e78e7913
+-- 
+2.50.0
+
 
