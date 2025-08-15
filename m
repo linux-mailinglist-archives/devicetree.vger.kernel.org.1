@@ -1,318 +1,211 @@
-Return-Path: <devicetree+bounces-204955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77584B2773D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:54:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC89BB27758
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 05:56:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B64777B6CE8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:52:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5118758509D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 03:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DA3123B60A;
-	Fri, 15 Aug 2025 03:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF72A244692;
+	Fri, 15 Aug 2025 03:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="eHK0lJ8p"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="DOG4qGbp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19010015.outbound.protection.outlook.com [52.103.68.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FBC1514F7
-	for <devicetree@vger.kernel.org>; Fri, 15 Aug 2025 03:54:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755230053; cv=none; b=ti02afd7Xp0sOPlzHWY+rhrPqVsLGKRLJIEV9Yc5VhI3SB9zQi9/96z4Dys+yNohkoVYaHUpgeKUWxkQxVP77YIH6R/nrbXL67Kk2rfe+8SnTwzuKU45NuZaWV+M9XM+dbMRXzqbXbony7gjJFodDY81cjwaTbQVCPsQwhExuz0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755230053; c=relaxed/simple;
-	bh=8Act1oil8WYFYYnl4O3qWoBEGR2tOlRIBru/5My4hgE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tlBRJLDN166Snc3Z0FRxlcf5KvFNVKyvdrMtwwHbc1IGlYKlQeImT0+ukNsm3aBSd7RYBcHZgIVU/qDlU19NCdHOMAuQtY1A7Zb1DDlEndPD7MKChpFklQplcmM6ASH1pQIDeBP5eSk3wgHMVu7VaUsDDnjgrw2AxZLyBmjP7p4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=eHK0lJ8p; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-55ce526627dso1664020e87.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 20:54:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1755230050; x=1755834850; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NS1sCk2jaj6fQ+JKQ824bLbj5DJYUpkN66EHpy4E2b4=;
-        b=eHK0lJ8pesEIU9CpeVO8edrITLoXiVZ66lMiMWe/FlgWbXDI4u7XvAyxE/395QBbCp
-         OSjOKvfSlKEJnGn2N14yGhUQA4TnOIXYMVbrlnaLtw8QC/3fXPqaHPHPbnv7y7lcH2+Q
-         tcP8IMWRlDKwjuezBLVaPcCDlWsIViY+dxKbk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755230050; x=1755834850;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NS1sCk2jaj6fQ+JKQ824bLbj5DJYUpkN66EHpy4E2b4=;
-        b=rSHfQZ1hNuiPUfSsa7PeIL6ZGRJavk8gz9seJahnF6zK/C2jgbCq7EqIOSzEaVi/Nt
-         8x7tzQnfQfkpPRCkNd2ki9T1qFzDfSA2GRXdKJ1XsnqhOa/HNHX5DdG367BxACGioHl5
-         y5tk950a0uyhR2f7QMJGIs6H4yv/q1XPhUsvv6ZCgX/u+NrSUk2638jWDvBJPsN5ECFf
-         xH2if6f0bXJ7FKCgk5tCxj7E7PEvRGo4bRrMEJ/shQN269sxGxtVMLABM+shdjTvlAm/
-         QuyFVsDVnqFQE+SNLnpFD/diXaFPL5dkI56zsiX6TQuv/BMiO41Qh1pGkrlN0wYzILOO
-         JvVw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1BVgDl860u2QDiOvNh+wZ9ipov6XzMLLco09wo8UEgqTxTQ3Z+94gKBfxil16nLNf7GGtZcUWW/KI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWZnABJUPM4BrKwBUo1VBtMkUilO5dwhXfpj5YSmVxDYmi9bzx
-	nMGW0X2JpnWknE50CCXhuFWi5QYT9o/maXJTffHP3eh9rbAJJnfHQsvjlzUXs/s/VMHLZrqtNxQ
-	SA0Oqj/C9x5bKS3ftG7akDqtWBIHX57C1fvxK9o7B
-X-Gm-Gg: ASbGncsPhLzGmJTiXRO+8Qs3KmzB9F4lhydW4UAKmBZrJQQSjyPO0SU2Z8UkEPlZzTg
-	GrkMkKzFreHkFtogMtiP5PZuTBnAmLwUTriiAVRwpapjp3fMMk4+KDHdFHpS4ke0b1K24ieohXW
-	nBw7kvu6FtgEu0ziJVNoNOeVGVU6gMGkW2SLbxnhvnPxSzlACjlYOr1GKzijDHi/OQ/4sIW0I3a
-	mc+XEkE7xsS2zkpE7+wY3ZWnxmUGjUEPnfVsg==
-X-Google-Smtp-Source: AGHT+IGIV7mvkFPQZuFUz43yWCcXkxtysXLVWZnhXnNTP1ZgJAEPVlAYJWIr84Go4WLQoos1hIvAKUr4yPJ/fc7kwL0=
-X-Received: by 2002:a05:6512:2256:b0:55a:2f6e:99bf with SMTP id
- 2adb3069b0e04-55ceeb0da8amr172578e87.37.1755230049594; Thu, 14 Aug 2025
- 20:54:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFC1A1A9F8D;
+	Fri, 15 Aug 2025 03:56:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755230195; cv=fail; b=qBen3XjwDahNUmPFGTdvyS6xsiBJoKztnaGXd3otLLigVJE8kK3OYoBoLvJOkj2RefDu9OYpSGYmpSHMpfDkbaeOkjBu8/dbrfioGVQrOx/VLqiW0Ioss6skKhEZGdGUFtpVq/Nn/KH+A/a/SO8SPsmGd8/qMz2ETyxxoJNc784=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755230195; c=relaxed/simple;
+	bh=vdUs4U5EUPWfMz3GZtw3UZrRC+VexJgI/Pjnl7D6I/0=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Mo9I5d4tEK2T02xL8mWTdOT1KlEocJhR65bPDuQOYtjsUht2FKUgtKgbXakz53jFXHLBQD+dHXYW+Dm0qDJquYJyXN0OXhLFjZhq2534vfM5JXFvxr9B0rCx9jJ3gUlFgOVDo+nEMHfTgN7eLa1czNwbEnKNSxi5jM1oottwja8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=DOG4qGbp; arc=fail smtp.client-ip=52.103.68.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=G/asgog9RutJ71WLisDsDtljy/r2ubafh6u9GCo0QpJwVnfcd8QZnkvtuPv9ruuXdMcYKF5RsAHO4gmNaMXkoOrkFqv0WBpmfVvjukYYI+TMIqtVYFhUrowGNMFay1ZqEFdtwnS4ma9apB7kiOvarU0pcMFJQ03rn7fN+NYA4fBPQlGhs/i45B/pAe67WamRQmYaATlKUJQO3JLl8Qmc6SGcBdafDIiGKv1ERtmlwrZJpO6bD/uFobIVVljTttDSY/xbROPrLDX23ZqwjRHopuwoSEI5juquaUjL3BLFiVEx0mnohBpOxPncZcYJGjKEEFLF3+531d+ZyexsUWQlrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TraJO3CMRHBAbq5bzAZ9rCfXx0rAiCPEMahexg44eS8=;
+ b=QWvviUINpUWPAxTwxJJTd/y7pv/CfMLnm+phTM4MFIRd4fzDTcf+obJzsIMIoX9qra3gf0IlFtUXaFwQtepEdOW2ya4/f3gDbtSBsnnnDqnX6TAgdgPyBisbqxaHE0OhUaJCW7664hmvNY704VMjJTN++gHl/Wr8Uiogkj6iyCWQng4FjkhYLFqVt+w73WHPwC6UCZOMagiwcLD0SkCrnSw3zcp0LwJFVYo89rw6yvubNQPpzZw5lRnw4VfcYRdRCdsA0guCclgwq+/0v44FjDVfGrK1C1ZZiPupAClKcwL9wJE7eFOsurLtnx8104vKiMXuvXUAVDHQ7X9gYYfzrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TraJO3CMRHBAbq5bzAZ9rCfXx0rAiCPEMahexg44eS8=;
+ b=DOG4qGbpUHR9e2A0cJkfwXC0Sw9w5P1LaAhBVp+DRazrh7cRWpsSRXKIpZlAzagW6/yoLcdDsb4BXvIxOz2oHMNeA03RNEtmPb0S0m7y/5yX+Vsx8U/DMfi/VNbazpEf7asvDH3TD8e2+wP4vTKKiRsyHoEdRhAYq7sHXYjCnF0aFHQJ6tTBcmf/UN1rryoyM4uKTZdcrbpAEceDGtrfhmzeylagr65emicWnmQ+t84iopF1AbeqghtXS7E87pB4Qctd5fE6W3tNA8om5C/MDpmNaWFHt1sMCciYJA90mb+X4xmvScqBKzTbrF0rkOwGW4SH6alApXpSqKkjCHhdyw==
+Received: from MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:16f::16) by MAZPR01MB7182.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:50::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.18; Fri, 15 Aug
+ 2025 03:56:27 +0000
+Received: from MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::5dff:3ee7:86ee:6e4b]) by MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::5dff:3ee7:86ee:6e4b%4]) with mapi id 15.20.9031.014; Fri, 15 Aug 2025
+ 03:56:27 +0000
+Message-ID:
+ <MAUPR01MB11072CB6BD1EC94B752AA1F8BFE34A@MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM>
+Date: Fri, 15 Aug 2025 11:56:22 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] riscv: dts: sophgo: Enable SPI NOR node for
+ SG2042_EVB_V2
+To: Zixian Zeng <sycamoremoon376@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: devicetree@vger.kernel.org, sophgo@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Han Gao <rabenda.cn@gmail.com>
+References: <20250813-sfg-spidts-v1-0-99b7e2be89d9@gmail.com>
+ <20250813-sfg-spidts-v1-4-99b7e2be89d9@gmail.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20250813-sfg-spidts-v1-4-99b7e2be89d9@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR01CA0027.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::7) To MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:16f::16)
+X-Microsoft-Original-Message-ID:
+ <68bd5d2c-a0fc-4c6f-aa10-e96d465a91fa@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250805135447.149231-1-laura.nao@collabora.com> <20250805135447.149231-17-laura.nao@collabora.com>
-In-Reply-To: <20250805135447.149231-17-laura.nao@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 15 Aug 2025 12:53:58 +0900
-X-Gm-Features: Ac12FXzPhchsvkR2KgC75ucJdBbVv2BRvVoAd0vv5jb3C5Va-SRZ59TCxVHQ5SA
-Message-ID: <CAGXv+5Gs+1deOMpVrqVmeiPywyAkUM_TD-6Q8sT7Oc014vBE1Q@mail.gmail.com>
-Subject: Re: [PATCH v4 16/27] clk: mediatek: Add MT8196 pextpsys clock support
-To: Laura Nao <laura.nao@collabora.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
-	richardcochran@gmail.com, guangjie.song@mediatek.com, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
-	kernel@collabora.com, =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MAUPR01MB11072:EE_|MAZPR01MB7182:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25009a19-f415-4920-00ef-08dddbafb582
+X-MS-Exchange-SLBlob-MailProps:
+	YfhX3sd/0TVWrg+fxRScxfg9v9HXnUFlR7U3F9NJo7cHUaxpJx1q9TL8Jgh37IFkCDZ76t4Mco/iL5UULLoOowvQP4+7q/ePKQ40BsuU2i7zflXMkGIjAv40Q8/JPJXJh3hjWlMgJwXYPyjSb8hI+cUr9BbkLuVF74QKP/bXimNsXjiqhcR+l4Qxj5wjF0vYEV4hOgYV6x4ZXMXOUjtoaR3Wgb0ifUj3oJxsqE3upairO/leinzPmCpVW9Pul+tloCno9QYX+84jRaTF3Kmre3iUYR96SFbB0gQEoXRxo4DuHOFAtb7D68hUGQMRGmicmV/xHXfGEqTQZ0oYXoWfl0JylezMpiwZn/ISi4E5vtdR+VFO5fRur5zKRYFUKYMZF6FZUfe+aHJ6+lF1iGNfeYjPhpmUPV/DCCxZ82ZuqYvL3omZJFj2ioVkwGn+SVDJUB5FjKh+LDesHYkBZPADE3GZtdQpLbfhmfrRdpbQFAjksgKi9b3CAJwZch7LFC6kUqUjUJ8ugWwUxG4fxm1CNFodT+gv6fb4DnsmKMRWa4tJVUtPj422JhzjVBRMgpwuh4YmGA8lEwsoV+gTt8BU6tQFOIXfcoirXAFouEaCmgEqy6x5bkvNXFB1VP5O/EYGdDr9nLncHQthqeQLPjSp+n9bQEriDKK51e73NW2b6FfOA01Ms6QrMfKJPsNIfWerRZSsesZ8ETDPf33vC6lKS3orixu/a4uRMqP/Wwf6enmg5ENc4xYhsIk9emrR0gXGuwVMA29YkyyEp3WG3QETTcQ+S3HsVWE9f7UMAroDB6w=
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|23021999003|15080799012|19110799012|6090799003|8060799015|5072599009|461199028|3412199025|39105399003|40105399003|41105399003|440099028;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?S0p0Nlo1WDVwTUw4czd3MWhHTTBTSy9kd2s0REZGYytnR241cng5Z3dqUmpz?=
+ =?utf-8?B?N0xNREJSVXRIL0FZUzRHRjMwYmNmMElnU0VKVTR6RE5ndlN4K0wyRDhoY2sy?=
+ =?utf-8?B?cTlhZHlxY2R1ZW9RSjZrTTZuYXFVOUJOaXpONUdXRWZLcjNRT3h3ZnhQaFNP?=
+ =?utf-8?B?UStXZXlOeVFZSCtnSllKRjlKSHViNE9PK2ZPMXBlMVoybDRIV21jZy9YcHYr?=
+ =?utf-8?B?Zjk3S1c4L05sN2JTbzlaRUYxd3VtVFNKMVdLbzR6bk8ySTlRVHMvNTFSSVVP?=
+ =?utf-8?B?MVM0b1ByWVlOYzRrSFN5QzQ4Q3ZjK2Y2T25XYlFNcklYQVpXaHVsRk52WTJr?=
+ =?utf-8?B?dTN6dGZ3bFVpazNUUjMwVm01OXZoOWJxRWtnSTVLOWMvU2R2N3pqL2pFK1gw?=
+ =?utf-8?B?U3dwVy82Z0cvWkpESFVPKzF1R2oyWDRPcTRtSVkxNitHTzhVWGYzMDFuaFZY?=
+ =?utf-8?B?ZnVzUno2Sk9OOGNvNVM4TmNSZHd4QnZ3dXJZU3lxclAzUm40NkpRTGNHbFRB?=
+ =?utf-8?B?bnh1ZWRHVFdoUGZKS280MTQyNUlFak9iU1pHOXdzWWl5dzBiNFpyUDViVW96?=
+ =?utf-8?B?NlhoUWZoVGhBU1lSQzlTTXpZR3JET3FvOFFRQmxsTXpqSDVtZWgreUxFalI0?=
+ =?utf-8?B?azJmd2szTmw1bVJlZzg4MWRNQUl3M1NDSUhXTW5sU1Fwc2lZU2NlTVQzYVB2?=
+ =?utf-8?B?WXhCOUw4NUNUV3VNcXR1QkhvN1BFZG95Y092VjBOYnA5eDdSSDRSK1dqQkY3?=
+ =?utf-8?B?cGtidmFmVG9TeDBlbkRXRXpSOHp2eG9UckM0Wm0vd0VkclJBWWRGMnM0MTEx?=
+ =?utf-8?B?Lzg3d1lNUXorajhBYnhlYTVlZDlhVlE2T0pEazBlZ0paelE2cEcxU0YrY3cz?=
+ =?utf-8?B?cjFXdEdjaGdYY0ZEdHlUUzdEbVVmNzI0eW9VVGJDR1pVZ2Q3QVpSSUtNVEtN?=
+ =?utf-8?B?cnZINEZ4RDNVL2p6dGhhaVJEMXRCc3BFUXYxTHNMaUdVSHVWMzNTa0p6UEpF?=
+ =?utf-8?B?NGdXcWJIWjV0NGx5OGJBazJzamFLSXNzQkpZVzRRR1p3YmM2SU1hYWsyTy92?=
+ =?utf-8?B?QTVCT2ZpcEVuL0pLa0FSQTNUZUVScU52QWszUGJTQ1ZGaFBVbE10SjFDWWgw?=
+ =?utf-8?B?MUJJZk85bXY0K0hrd2Juc2ltQUNWVWxnZHZuMWIvN09sQlgyTkdiZVJpWUli?=
+ =?utf-8?B?VFhYdzFwc0hCdkhpeE1BMDhGTmloT3gzQmI2UFEvaWFFVUZJMGl0aThKeExF?=
+ =?utf-8?B?ckNNK05tWndFSk1pOXVKM3NWWU5JLzRMdU5JUjhwclNPRGJQM0xHd0hyZDBR?=
+ =?utf-8?B?Mnh4S3JkWC9nckxVMTlvTU1qL2FPWEV6MUREbmJmUmZuNG5rU1dNT0Q0Y1du?=
+ =?utf-8?B?WFd2NjZxS1d3dGdITnFiekdQS1VCK2l4SFVWSW14K3FUaVRKRlI2SHRETUc4?=
+ =?utf-8?B?d1R6eDVDNitMRDBwTEhhVTIxL1FDNU5hN0FDRlRUWmpVUitlQStrWit1RFNx?=
+ =?utf-8?B?bmJEMjZoMmVZdGZ3eGhhVW1VMjZiUi81cU9sRGFIeTNMZG9TU0VwTkVhdlMx?=
+ =?utf-8?B?anRLNyt6d0hBOS9jTXllemkvcUUvcTg2TjFIcnBqbG5qQUFvQlgxc1FYQnpv?=
+ =?utf-8?Q?LWlm3BZSxrHIse3DkrgBED9rx57vPAl50ULUGn77s5NY=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?a3FQOElxY09YMFlqN09IbGh1bHB6dy9NQ1VOYm9KWkpBWnRMTVlKU2IwR3VG?=
+ =?utf-8?B?QlA1STkwNTlyUmFYVWRDRVFOYjVzSDZDMWE2STJBbllRU1dNMFlJeUdFOFMz?=
+ =?utf-8?B?MkxUbUV2d0Z4T3dDNDdrUW5nQ3h5N3ZIa0Y1ZjdNZXlQN0lPQndPZ2VMNGZI?=
+ =?utf-8?B?M2hZUDNrSGVrQnJobW45bXhTSzZDQ2IrSTMxSTBPR3dtQU5kdElsL0VWMkpp?=
+ =?utf-8?B?RnZrSWtneEVqMC9tVlNUS2wvRys1MmovQnY5d3FWMWtzTkpHZzRkTlRnZXV5?=
+ =?utf-8?B?WDVlUS9nc0lCQ09QRTlyUHZ2Z1g3cVlmMk5tdzlyTThQQWdabGkyZkNXdENW?=
+ =?utf-8?B?T1UxMktEbm8wMTIya3J2TExJR1pSUmJLaFp6Z2JPeFBEb1N1aXRuOEhSY1pU?=
+ =?utf-8?B?Y2c4TjhHTXI2WWhMeUl2V2p1S25sbGVkajlhbzBGTTl4T25jUlZoL1NocDFL?=
+ =?utf-8?B?cit5ZURqNXZmVjZtK211NUFqSlptNmJzc1hoT3lDYm1HNmhjSWFVNk5INSta?=
+ =?utf-8?B?M1VjcERtQ09xc0VoQnZnNnNZT3REVXJzcktLWUhNK3hjOG1jZ2lzRzMyVzRP?=
+ =?utf-8?B?NFkzdXlBZnBMdllkSGliQTBMd2M3Y1RFeTN6MXZlSFhmQnUwUFkzNkpTVFNi?=
+ =?utf-8?B?R245Z3pqalVFdmdRVGVNbmlMWnN4bzRPeEZ1QTErdWh5U2Z3NnNkT2c1UzZU?=
+ =?utf-8?B?YzVoTW9RM1JpOXF3djM5Mmw5S3cwZzVyd25oaXh0VGliNU96TndxNnRzSzRT?=
+ =?utf-8?B?VDhFQ2tPVHFXRW56TlNpNzYxRjFCSVRUa2RuekxzSm42Z2NnMDhVaTVzRCsv?=
+ =?utf-8?B?ZHB4QVM4TUxwVDdjT0lSNVMrckJKVWd5dDU2RWk5RzUrbGloSWxoOG1qdElH?=
+ =?utf-8?B?eXN1MzRZbjZXSmJIVEprTnNlL0RBbmNBeHpWbVplRFRRRmJhbzVlT3UzVEdv?=
+ =?utf-8?B?TXl5OTN6b2tlYmo0QXF0L09PY04rOTJ3VncvNzd1Sk1XbGlZbzVPM0NjblBz?=
+ =?utf-8?B?bFpxMWw5TG9MdkdCVGdkczNaU3NSbi82ZTNEMXpKSUowUGYvRUVoMjVEdG41?=
+ =?utf-8?B?L1pjNjc4cEprR0lsMkdkWFV4QVJQQmhrellVc2RjeTZvQzBBdlRiV3d2SUtp?=
+ =?utf-8?B?RENRMWZRYWZIRnFMMVpyYlZoS2gzeUs0S3JiWVBJUHlQQzhOd2JkVGVoWGhp?=
+ =?utf-8?B?WnRndUFCanRpejc1aVMrejBKK2FSWS95OFpaUmh1NGxBMTVNdjBsNlYxayt1?=
+ =?utf-8?B?YXF2LzVqV3ZlcjNZUmFTOWx2NHU1dC85K29VMUlrZEVyREs4NjdvbkZMeWRB?=
+ =?utf-8?B?UnQrNTI5ZnFzSWxaQVMvaXdVVXozWi80NWJEa3dEVFhtSHR5SFFNQ2RuTVZj?=
+ =?utf-8?B?OCsvcGs0eWNKRzREQk8xMGRuTlY4MTgvVjdQQis0YkcxTnJBSVNzT0twT2xu?=
+ =?utf-8?B?YzFUNnBhazdVQ1NhbUdneUtGc01aaElHU010RGhxSGJORWl6ckV4bnB4eFNR?=
+ =?utf-8?B?S1ZLdkF2ZjRmbkMyUFQ3L0lwdmZlbTBOcWFEYmFPUE1LL0p1cDdTRXNQSzhK?=
+ =?utf-8?B?N1Y3YWVZZXJ4b0JySU92cWorRFZkRUtaRWVsY09pUmlJNjErVEU5bEVkOHMw?=
+ =?utf-8?B?VzVtNWVGbnhjM3lPUkNKY1lCMmFKbzVaSUJldlVKaGRyRVpDU3NUNTFnRkFQ?=
+ =?utf-8?B?VmdvRjFxdkVoSEJETnFmcWtLNDBGMmVrUmVDalFtU3pOaW9Fb0hLbkl3aWd2?=
+ =?utf-8?Q?phcxUjYx0Os7tfFFeqcWr55bEwjPWYDJWKae15/?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25009a19-f415-4920-00ef-08dddbafb582
+X-MS-Exchange-CrossTenant-AuthSource: MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2025 03:56:27.1614
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAZPR01MB7182
 
-On Tue, Aug 5, 2025 at 10:55=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
- wrote:
+
+On 8/13/2025 4:33 PM, Zixian Zeng wrote:
+> Enable SPI NOR node for SG2042_EVB_V2 device tree
 >
-> Add support for the MT8196 pextpsys clock controller, which provides
-> clock gate control for PCIe.
->
-> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> Co-developed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
-llabora.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+> Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+> Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
 > ---
->  drivers/clk/mediatek/Kconfig            |   7 ++
->  drivers/clk/mediatek/Makefile           |   1 +
->  drivers/clk/mediatek/clk-mt8196-pextp.c | 131 ++++++++++++++++++++++++
->  3 files changed, 139 insertions(+)
->  create mode 100644 drivers/clk/mediatek/clk-mt8196-pextp.c
+>   arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
 >
-> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-> index d99c39a7f10e..c977719046a4 100644
-> --- a/drivers/clk/mediatek/Kconfig
-> +++ b/drivers/clk/mediatek/Kconfig
-> @@ -1010,6 +1010,13 @@ config COMMON_CLK_MT8196
->         help
->           This driver supports MediaTek MT8196 basic clocks.
->
-> +config COMMON_CLK_MT8196_PEXTPSYS
-> +       tristate "Clock driver for MediaTek MT8196 pextpsys"
-> +       depends on COMMON_CLK_MT8196
-> +       default COMMON_CLK_MT8196
-> +       help
-> +         This driver supports MediaTek MT8196 pextpsys clocks.
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts b/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
+> index 46980e41b886ce17dacce791fa5f2cef14cfa214..7001d8ffdc3e04c5a5cd5da85a4fb1c0351eb9a5 100644
+> --- a/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
+> +++ b/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
+> @@ -226,6 +226,18 @@ &sd {
+>   	status = "okay";
+>   };
+>   
+> +&spifmc1 {
+> +	status = "okay";
 > +
->  config COMMON_CLK_MT8196_UFSSYS
->         tristate "Clock driver for MediaTek MT8196 ufssys"
->         depends on COMMON_CLK_MT8196
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefil=
-e
-> index 1a497de00846..88f7d8a229c2 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -153,6 +153,7 @@ obj-$(CONFIG_COMMON_CLK_MT8195_WPESYS) +=3D clk-mt819=
-5-wpe.o
->  obj-$(CONFIG_COMMON_CLK_MT8196) +=3D clk-mt8196-apmixedsys.o clk-mt8196-=
-topckgen.o \
->                                    clk-mt8196-topckgen2.o clk-mt8196-vlpc=
-kgen.o \
->                                    clk-mt8196-peri_ao.o
-> +obj-$(CONFIG_COMMON_CLK_MT8196_PEXTPSYS) +=3D clk-mt8196-pextp.o
->  obj-$(CONFIG_COMMON_CLK_MT8196_UFSSYS) +=3D clk-mt8196-ufs_ao.o
->  obj-$(CONFIG_COMMON_CLK_MT8365) +=3D clk-mt8365-apmixedsys.o clk-mt8365.=
-o
->  obj-$(CONFIG_COMMON_CLK_MT8365_APU) +=3D clk-mt8365-apu.o
-> diff --git a/drivers/clk/mediatek/clk-mt8196-pextp.c b/drivers/clk/mediat=
-ek/clk-mt8196-pextp.c
-> new file mode 100644
-> index 000000000000..9a7623bf2b1c
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt8196-pextp.c
-> @@ -0,0 +1,131 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2025 MediaTek Inc.
-> + *                    Guangjie Song <guangjie.song@mediatek.com>
-> + * Copyright (c) 2025 Collabora Ltd.
-> + *                    Laura Nao <laura.nao@collabora.com>
-> + */
-> +#include <dt-bindings/clock/mediatek,mt8196-clock.h>
-> +#include <dt-bindings/reset/mediatek,mt8196-resets.h>
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <100000000>;
+> +		spi-tx-bus-width = <4>;
+> +		spi-rx-bus-width = <4>;
+> +	};
+> +};
+> +
 
-Nit: empty line here for separation.
+Only spifmc1 on EVB_V2? What about spifmc0?
 
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "clk-gate.h"
-> +#include "clk-mtk.h"
-> +#include "reset.h"
-> +
-> +#define MT8196_PEXTP_RST0_SET_OFFSET   0x8
-> +
-> +static const struct mtk_gate_regs pext_cg_regs =3D {
-> +       .set_ofs =3D 0x18,
-> +       .clr_ofs =3D 0x1c,
-> +       .sta_ofs =3D 0x14,
-> +};
-> +
-> +#define GATE_PEXT(_id, _name, _parent, _shift) {\
-> +               .id =3D _id,                      \
-> +               .name =3D _name,                  \
-> +               .parent_name =3D _parent,         \
-> +               .regs =3D &pext_cg_regs,          \
-> +               .shift =3D _shift,                \
-> +               .flags =3D CLK_OPS_PARENT_ENABLE, \
+Otherwise:
 
-Same issue as the previous patch. If one of the parents shown below
-needs to be enabled for register access, this is going to fail badly.
-If it's not needed, then this flag makes no sense here.
+Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
 
-ChenYu
-
-> +               .ops =3D &mtk_clk_gate_ops_setclr,\
-> +       }
-> +
-> +static const struct mtk_gate pext_clks[] =3D {
-> +       GATE_PEXT(CLK_PEXT_PEXTP_MAC_P0_TL, "pext_pm0_tl", "tl", 0),
-> +       GATE_PEXT(CLK_PEXT_PEXTP_MAC_P0_REF, "pext_pm0_ref", "clk26m", 1)=
-,
-> +       GATE_PEXT(CLK_PEXT_PEXTP_PHY_P0_MCU_BUS, "pext_pp0_mcu_bus", "clk=
-26m", 6),
-> +       GATE_PEXT(CLK_PEXT_PEXTP_PHY_P0_PEXTP_REF, "pext_pp0_pextp_ref", =
-"clk26m", 7),
-> +       GATE_PEXT(CLK_PEXT_PEXTP_MAC_P0_AXI_250, "pext_pm0_axi_250", "ufs=
-_pexpt0_mem_sub", 12),
-> +       GATE_PEXT(CLK_PEXT_PEXTP_MAC_P0_AHB_APB, "pext_pm0_ahb_apb", "ufs=
-_pextp0_axi", 13),
-> +       GATE_PEXT(CLK_PEXT_PEXTP_MAC_P0_PL_P, "pext_pm0_pl_p", "clk26m", =
-14),
-> +       GATE_PEXT(CLK_PEXT_PEXTP_VLP_AO_P0_LP, "pext_pextp_vlp_ao_p0_lp",=
- "clk26m", 19),
-> +};
-> +
-> +static u16 pext_rst_ofs[] =3D { MT8196_PEXTP_RST0_SET_OFFSET };
-> +
-> +static u16 pext_rst_idx_map[] =3D {
-> +       [MT8196_PEXTP0_RST0_PCIE0_MAC] =3D 0,
-> +       [MT8196_PEXTP0_RST0_PCIE0_PHY] =3D 1,
-> +};
-> +
-> +static const struct mtk_clk_rst_desc pext_rst_desc =3D {
-> +       .version =3D MTK_RST_SET_CLR,
-> +       .rst_bank_ofs =3D pext_rst_ofs,
-> +       .rst_bank_nr =3D ARRAY_SIZE(pext_rst_ofs),
-> +       .rst_idx_map =3D pext_rst_idx_map,
-> +       .rst_idx_map_nr =3D ARRAY_SIZE(pext_rst_idx_map),
-> +};
-> +
-> +static const struct mtk_clk_desc pext_mcd =3D {
-> +       .clks =3D pext_clks,
-> +       .num_clks =3D ARRAY_SIZE(pext_clks),
-> +       .rst_desc =3D &pext_rst_desc,
-> +};
-> +
-> +static const struct mtk_gate pext1_clks[] =3D {
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_MAC_P1_TL, "pext1_pm1_tl", "tl_p1", 0),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_MAC_P1_REF, "pext1_pm1_ref", "clk26m", =
-1),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_MAC_P2_TL, "pext1_pm2_tl", "tl_p2", 2),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_MAC_P2_REF, "pext1_pm2_ref", "clk26m", =
-3),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_PHY_P1_MCU_BUS, "pext1_pp1_mcu_bus", "c=
-lk26m", 8),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_PHY_P1_PEXTP_REF, "pext1_pp1_pextp_ref"=
-, "clk26m", 9),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_PHY_P2_MCU_BUS, "pext1_pp2_mcu_bus", "c=
-lk26m", 10),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_PHY_P2_PEXTP_REF, "pext1_pp2_pextp_ref"=
-, "clk26m", 11),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_MAC_P1_AXI_250, "pext1_pm1_axi_250",
-> +                  "pextp1_usb_axi", 16),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_MAC_P1_AHB_APB, "pext1_pm1_ahb_apb",
-> +                  "pextp1_usb_mem_sub", 17),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_MAC_P1_PL_P, "pext1_pm1_pl_p", "clk26m"=
-, 18),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_MAC_P2_AXI_250, "pext1_pm2_axi_250",
-> +                  "pextp1_usb_axi", 19),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_MAC_P2_AHB_APB, "pext1_pm2_ahb_apb",
-> +                  "pextp1_usb_mem_sub", 20),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_MAC_P2_PL_P, "pext1_pm2_pl_p", "clk26m"=
-, 21),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_VLP_AO_P1_LP, "pext1_pextp_vlp_ao_p1_lp=
-", "clk26m", 26),
-> +       GATE_PEXT(CLK_PEXT1_PEXTP_VLP_AO_P2_LP, "pext1_pextp_vlp_ao_p2_lp=
-", "clk26m", 27),
-> +};
-> +
-> +static u16 pext1_rst_idx_map[] =3D {
-> +       [MT8196_PEXTP1_RST0_PCIE1_MAC] =3D 0,
-> +       [MT8196_PEXTP1_RST0_PCIE1_PHY] =3D 1,
-> +       [MT8196_PEXTP1_RST0_PCIE2_MAC] =3D 8,
-> +       [MT8196_PEXTP1_RST0_PCIE2_PHY] =3D 9,
-> +};
-> +
-> +static const struct mtk_clk_rst_desc pext1_rst_desc =3D {
-> +       .version =3D MTK_RST_SET_CLR,
-> +       .rst_bank_ofs =3D pext_rst_ofs,
-> +       .rst_bank_nr =3D ARRAY_SIZE(pext_rst_ofs),
-> +       .rst_idx_map =3D pext1_rst_idx_map,
-> +       .rst_idx_map_nr =3D ARRAY_SIZE(pext1_rst_idx_map),
-> +};
-> +
-> +static const struct mtk_clk_desc pext1_mcd =3D {
-> +       .clks =3D pext1_clks,
-> +       .num_clks =3D ARRAY_SIZE(pext1_clks),
-> +       .rst_desc =3D &pext1_rst_desc,
-> +};
-> +
-> +static const struct of_device_id of_match_clk_mt8196_pextp[] =3D {
-> +       { .compatible =3D "mediatek,mt8196-pextp0cfg-ao", .data =3D &pext=
-_mcd },
-> +       { .compatible =3D "mediatek,mt8196-pextp1cfg-ao", .data =3D &pext=
-1_mcd },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, of_match_clk_mt8196_pextp);
-> +
-> +static struct platform_driver clk_mt8196_pextp_drv =3D {
-> +       .probe =3D mtk_clk_simple_probe,
-> +       .remove =3D mtk_clk_simple_remove,
-> +       .driver =3D {
-> +               .name =3D "clk-mt8196-pextp",
-> +               .of_match_table =3D of_match_clk_mt8196_pextp,
-> +       },
-> +};
-> +
-> +module_platform_driver(clk_mt8196_pextp_drv);
-> +MODULE_DESCRIPTION("MediaTek MT8196 PCIe transmit phy clocks driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.39.5
+>   &uart0 {
+>   	pinctrl-0 = <&uart0_cfg>;
+>   	pinctrl-names = "default";
 >
 
