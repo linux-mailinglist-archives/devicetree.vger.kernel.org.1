@@ -1,65 +1,57 @@
-Return-Path: <devicetree+bounces-205233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110A9B28702
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 22:17:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6211B28764
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 22:50:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFFEE3AEE16
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 20:17:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B43635E1E91
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 20:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F72D1D7984;
-	Fri, 15 Aug 2025 20:17:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1225021FF2D;
+	Fri, 15 Aug 2025 20:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="hJtqStVZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oE/u80At"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C96D3211F;
-	Fri, 15 Aug 2025 20:17:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D797C26AF3;
+	Fri, 15 Aug 2025 20:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755289037; cv=none; b=FH3Os3PHYw/BFmHclGUG5EiGllWI51YUqVABSRRsWcfCklvK06Q9QzCRWMqL2p5S/PSS+wGd1MbOY0pMtPDAOqZZ/hLr0hrPPKnjiJqh0D6Rj7SfmYhkwUvDx4cSlBU6m6CieugbNby7VID3a2u1MDxhrjYiJm157uCPkr+MjQQ=
+	t=1755291028; cv=none; b=WIY9K44QostXrGF7Ckm+dhmNhh6XTWk/rZ+xweMjr0cZLaoq4CMz6LxWEXtkBq+Ua41Da64PviIHL80rN2Q/3rgcfX0Mttzw/NfnwMcsYpNcrqq5iJjqQa0v3YyrAgvQOarXAsw8xLTK+JU1XF6e288nYat8PC/8vhGyDpRLoFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755289037; c=relaxed/simple;
-	bh=G/rob/GTNjt2wJX5/hzqmhL8r9vsWkTx19AIdgrVZcY=;
+	s=arc-20240116; t=1755291028; c=relaxed/simple;
+	bh=kQ/MNknMyEBxL80+GJlpjiBLs8Klx1adKhEFRMdC8Rw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IhnygOCjNo0FL3Ptmcg1yi+BDEm0uza1Ai4GFNH14gzuNIfDzpI3j5BPaQuPk+XQsvKUA4JrbUhasJhqRXB7m/4YwaPA5dfMSnrUFX1ggS5/7HN1piDZfMyoitfRbuRTpg0JhbHkzKp/3c+mlPynLMOvJ1XYAk8GDes5Xz8xBYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=hJtqStVZ; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=RJtfD6O0v/vMVZV7rRp8xoe0rZWx5CKBjCuyZCCOCy8=; b=hJtqStVZeBdOLtswZKQ2O/4m9e
-	28vUCh998ojDuVJN+3nhGYeb4fRcqmdLuQUaTtmI04WgvgQ7QtPClv8kb2WqfmbFlFY/I9kIc6q1W
-	lgLulhbgO62eqDvneIZXmrguOHcsNvxNeHRmzZTGaZ+LLw8loMn7BG11EhdPuZ9E4c9w=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1un0r8-004rL2-Om; Fri, 15 Aug 2025 22:16:54 +0200
-Date: Fri, 15 Aug 2025 22:16:54 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Artur Rojek <contact@artur-rojek.eu>
-Cc: Rob Landley <rob@landley.net>, Jeff Dionne <jeff@coresemi.io>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] net: j2: Introduce J-Core EMAC
-Message-ID: <973c6f96-6020-43e0-a7cf-9c129611da13@lunn.ch>
-References: <20250815194806.1202589-1-contact@artur-rojek.eu>
- <20250815194806.1202589-4-contact@artur-rojek.eu>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DqhtkydiLOQ47uWFgolpmlidLcq3STRWhEMVBnKu3D1CxPGpkQC8PEokhTwWIHRIPVRM7tz7ALvtfEj0Y1uKlApy3ln8l4xQS//yAmYOwMO2ba0KGjOv02+aXNsOm5geHSkwmHqlpKFaYCK0igU+3UhbYs9d6p8UsNNjmC8xi1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oE/u80At; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A492BC4CEEB;
+	Fri, 15 Aug 2025 20:50:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755291027;
+	bh=kQ/MNknMyEBxL80+GJlpjiBLs8Klx1adKhEFRMdC8Rw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oE/u80AtTrhTCD7mnU29Ik01JB0iw13f7xTae6zJgqcGnfM85mzeT6x60Crk91738
+	 ioy1kcvnTNw01Ukd9AEhN+RcnWY/7gEUn00ZSKZ3LU/c1TA4tAKD0ZI2/2B80PWo3E
+	 oEoQFvRRbIHI6NyAzVcilRHGbIPqJDtcC6tdLCANcLw1u+udKbmjRz+RKhN76mjX0v
+	 7RjR1zc0jYgwNbwJJrYeYUaBzgOvXW5zrOTm27EasQi4pO+WRtCteHdVC+aF0kI+zI
+	 Cwm00O1i2c7Mc58dr+O21JfF9TmxB4E+h3lQ8WbDgJexZXtKBpRa9O0b1p+HhE3+Ms
+	 ZWjmcqEsnzpFw==
+Date: Fri, 15 Aug 2025 15:50:24 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Gaurav Kohli <quic_gkohli@quicinc.com>, daniel.lezcano@linaro.org
+Cc: amitk@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com, 
+	robh@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	quic_manafm@quicinc.com
+Subject: Re: [PATCH v6 1/2] dt-bindings: thermal: tsens: Add QCS615 compatible
+Message-ID: <ozyej4oryyylk7a7jvx2x2jtfz3i7bq6cvcoev2ub2ni6jf2gl@rwldpauze5fw>
+References: <20250702082311.4123461-1-quic_gkohli@quicinc.com>
+ <20250702082311.4123461-2-quic_gkohli@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,35 +60,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250815194806.1202589-4-contact@artur-rojek.eu>
+In-Reply-To: <20250702082311.4123461-2-quic_gkohli@quicinc.com>
 
-> +static irqreturn_t jcore_emac_irq(int irq, void *data)
-> +{
-> +	struct jcore_emac *priv = data;
-> +	struct net_device *ndev = priv->ndev;
-> +	struct sk_buff *skb;
-> +	struct {
-> +		int packets;
-> +		int bytes;
-> +		int dropped;
-> +		int crc_errors;
-> +	} stats = {};
-> +	unsigned int status, pkt_len, i;
+On Wed, Jul 02, 2025 at 01:53:10PM +0530, Gaurav Kohli wrote:
+> Add compatibility string for the thermal sensors on QCS615 platform.
+> 
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
 
-netdev uses 'reverse christmas tree' for local variables. They should
-be sorted longest to shortest. This sometimes means you need to move
-assignments into the body of the function, in this case, ndev.
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-> +	jcore_emac_read_hw_addr(priv, mac);
-> +	if (is_zero_ether_addr(mac)) {
+@Daniel, can you please pick this binding?
 
-It would be more normal to use !is_valid_ether_addr()
+Regards,
+Bjorn
 
-What support is there for MDIO? Normally the MAC driver would not be
-setting the carrier status, phylink or phylib would do that.
-
-    Andrew
-
----
-pw-bot: cr
+> ---
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index 0e653bbe9884..c8cc67b65f73 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -53,6 +53,7 @@ properties:
+>                - qcom,msm8996-tsens
+>                - qcom,msm8998-tsens
+>                - qcom,qcm2290-tsens
+> +              - qcom,qcs615-tsens
+>                - qcom,sa8255p-tsens
+>                - qcom,sa8775p-tsens
+>                - qcom,sar2130p-tsens
+> -- 
+> 2.34.1
+> 
 
