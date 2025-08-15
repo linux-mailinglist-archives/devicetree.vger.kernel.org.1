@@ -1,177 +1,102 @@
-Return-Path: <devicetree+bounces-205119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8459B2805B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 15:08:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B208B2806C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 15:12:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EB191B60C84
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 13:09:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03DE13A11B2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 13:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD5583019AD;
-	Fri, 15 Aug 2025 13:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F40E3019C5;
+	Fri, 15 Aug 2025 13:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e72r1Zka"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DsJ6eKPR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE4F83002DC;
-	Fri, 15 Aug 2025 13:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1ACF29A9CD;
+	Fri, 15 Aug 2025 13:12:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755263317; cv=none; b=L6gAoMKoqh9pUhL541WlraipCkFMVlQyVbrixKVaHFzcR/xYpoJWPMtoFfwZ7UjYUFuANjUC5M9yC2YIA1FWykKAPJD4X9ZoZicXuXwmHD+qsuaHLF2Z08GIIJy4Amv2WVoHXYvINf4xLP3nM8WY/cGr6r4SAJhjHKrpyo14434=
+	t=1755263521; cv=none; b=KO9sbbJDj2ea5v3/PY6p77U2eBN1kiSk0gIvyLOcVnDBSTazvs1fF0OKTMNV3E6qLf+jgdVUua8UilkpZrYXQNUoN+atKyUfL5b624NzV51KWTbj1SsYLaG6JiPd2yXv+z0839DtkCwIbEQ8uext+XArsi0Zhv0FUAxug8pO2I0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755263317; c=relaxed/simple;
-	bh=yEAbtItrMUSwsbmLsQ1h3fvOKuTppfxoHtOpTlKH+bI=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=AqKHlXVldrCiA2j77VRx679wOE8k++25ZmUCohM/jf+kddUXqDn/kXPMTefTSFiDX8FutngPDIpY1ZZ4t9tTk9gmJLqrt2InMmXscLcskD35qAm2jsoD/j1wt8zmc2ELvMQRutInTadis4gkXDl/TS1Cv8gfS5u8Ech0aTzdSfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e72r1Zka; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EFA0C4CEEB;
-	Fri, 15 Aug 2025 13:08:36 +0000 (UTC)
+	s=arc-20240116; t=1755263521; c=relaxed/simple;
+	bh=3PT0FaEFFRXzl7krjYoQ/az6uVdLOVRiq9kGOp1m92E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kxxxzXV8FayjBI9fAfPGd5qMm6Rk3Isgpv3LAGaUXwKlTLHOQWpwIY2Vpb7zB9zXUPDAsYHzL98EEQKz6ZFsh70rngtRK8zdVHRMRoG214VWLkv1H9pgRb4WEgk/aRSEhp6zHI5h9RtCJdbKtQ9gHSpwFbk2CvPXcSJlxBA01p8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DsJ6eKPR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0095C4CEF5;
+	Fri, 15 Aug 2025 13:11:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755263317;
-	bh=yEAbtItrMUSwsbmLsQ1h3fvOKuTppfxoHtOpTlKH+bI=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=e72r1ZkayaRwLfQ+nLTuFAxrdiNLa1aZYngD9qJdth7uJwXI2YL3T0HQHERtnjNwf
-	 DkibBkwfKU3X64RWniNTd3NOLSRuJW62YxTC9WMTBvXyAi60wj+Htnca+SoZoVTNLX
-	 o8HtH+IhGZ+BzXRX4g2FSTwpZ/5QNV/Wfb6QDr6DRuW1//Wr9VLWbS3PsOh7s8N4Rb
-	 +znL6gijlnoUW95qJyYHmmW+37WBUjC4oaAUZU/v1pV+TGzzral8EUK9ZauTtaV/ZA
-	 xzoxYPjJh9iPbRrciypX3GYWERE9FJbwZxLAzwZ9jPXTw5JZAYAh4BUNk+/0t+i4Pw
-	 ChyYHH4H0+kKQ==
-Date: Fri, 15 Aug 2025 08:08:36 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1755263520;
+	bh=3PT0FaEFFRXzl7krjYoQ/az6uVdLOVRiq9kGOp1m92E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DsJ6eKPR7nuHTmi3gMb5Z+KofX4IrISgDCgSDQHJVxI3cEnqCbNDx9tmHfBMVb42h
+	 G2UHMBnI8vdQ2ss1sUySb3hWZJ2wWGx4+h2taoK167t4w5MZmEk4fVpvu0X0ja7rPg
+	 GukXhK+LQ1w24KcNy1lCD4S7z61QP/qTjj8X6rB1yeG1K4+is9cV/sFSdy4uVVxhQq
+	 8digHqa1H4Bh6EEuZynoPiJGjuwxvp3Kufd7/HG2DQT1D7pig8L5lC848Gbx43gtdt
+	 iXp7heSna3cc8KmLIHdnUr0QNjKM3Dzc+atxkSrsI0Lsdse9yqS0ayjsqgiPGA2j9Z
+	 GsI2F1CyT2ROw==
+Message-ID: <04e09739-2462-4a4d-8378-6c6514dca752@kernel.org>
+Date: Fri, 15 Aug 2025 16:11:53 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
- Alex Elder <elder@riscstar.com>, Stephen Boyd <sboyd@kernel.org>, 
- Stanislav Jakubek <stano.jakubek@gmail.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Alex Elder <elder@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
- Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Ray Jui <rjui@broadcom.com>, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
-To: Artur Weber <aweber.kernel@gmail.com>
-In-Reply-To: <20250813-kona-bus-clock-v6-0-f5a63d4920a4@gmail.com>
-References: <20250813-kona-bus-clock-v6-0-f5a63d4920a4@gmail.com>
-Message-Id: <175526317070.1748815.1341247491221597696.robh@kernel.org>
-Subject: Re: [PATCH v6 0/9] clk: bcm: kona: Add bus clock support, bus
- clocks for BCM21664/BCM281xx
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sa8775p: Add clocks for QoS
+ configuration
+To: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Mike Tipton <mike.tipton@oss.qualcomm.com>
+References: <20250808140300.14784-1-odelu.kukatla@oss.qualcomm.com>
+ <20250808140300.14784-4-odelu.kukatla@oss.qualcomm.com>
+ <857f56a9-0fe7-4c10-a55d-b00740a8be02@oss.qualcomm.com>
+ <7c96f881-23ae-484c-82b8-d388a5c637ca@oss.qualcomm.com>
+Content-Language: en-US
+From: Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <7c96f881-23ae-484c-82b8-d388a5c637ca@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Wed, 13 Aug 2025 13:00:06 +0200, Artur Weber wrote:
-> This patchset does the following:
-> 
-> - Introduce support for bus clocks. These are fairly similar to
->   peripheral clocks, but only implement policy, gate and hyst.
-> 
-> - Add matching bus clocks for BCM21664 and BCM281xx peripheral clocks
->   and update device tree bindings to match.
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> Changes in v6:
-> - Rebase on v6.16
-> - Make kona_bus_clk_ops const, add a new commit to make kona_peri_clk_ops const as well
-> - Link to v5: https://lore.kernel.org/r/20250430-kona-bus-clock-v5-0-46766b28b93a@gmail.com/
-> 
-> Changes in v5:
-> - Pick up Reviewed-by trailer from Krzysztof on patch 3
-> - Rebase on v6.14
-> - No code changes since v4
-> - Link to v4: https://lore.kernel.org/r/20250318-kona-bus-clock-v4-0-f54416e8328f@gmail.com
-> 
-> Changes in v4:
-> - Rename moved CLOCK_COUNT defines to CLK_COUNT to avoid redefinition
-> - Squash BCM21664/BCM281xx bus clock DT bindings commits together
-> - Link to v3: https://lore.kernel.org/r/20250308-kona-bus-clock-v3-0-d6fb5bfc3b67@gmail.com
-> 
-> Changes in v3:
-> - Fix DT schema example in BCM281xx bus clock bindings
-> - Move CLOCK_COUNT defines from dt-bindings header to the driver
-> - Fix BCM21664 UARTBx_APB IDs being out of order compared to clock
->   driver
-> - Link to v2: https://lore.kernel.org/r/20250303-kona-bus-clock-v2-0-a363c6a6b798@gmail.com
-> 
-> Changes in v2:
-> - Drop prerequisite clock patch
-> - Move clock/bcm21664.h dt-bindings header change to dt-bindings patch
-> - Add BCM281xx bus clocks
-> - Link to v1: https://lore.kernel.org/r/20250216-kona-bus-clock-v1-0-e8779d77a6f2@gmail.com
-> 
-> ---
-> Artur Weber (9):
->       clk: bcm: kona: Move CLOCK_COUNT defines into the driver
->       dt-bindings: clock: brcm,kona-ccu: Drop CLOCK_COUNT defines from DT headers
->       dt-bindings: clock: brcm,kona-ccu: Add BCM21664 and BCM281xx bus clocks
->       clk: bcm: kona: Make kona_peri_clk_ops const
->       clk: bcm: kona: Add support for bus clocks
->       clk: bcm21664: Add corresponding bus clocks for peripheral clocks
->       clk: bcm281xx: Add corresponding bus clocks for peripheral clocks
->       ARM: dts: bcm2166x-common: Add matching bus clocks for peripheral clocks
->       ARM: dts: bcm11351: Add corresponding bus clocks for peripheral clocks
-> 
->  .../devicetree/bindings/clock/brcm,kona-ccu.yaml   |  49 ++++++-
->  arch/arm/boot/dts/broadcom/bcm11351.dtsi           |  33 +++--
->  arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi    |  28 ++--
->  drivers/clk/bcm/clk-bcm21664.c                     |  99 ++++++++++++++-
->  drivers/clk/bcm/clk-bcm281xx.c                     | 141 ++++++++++++++++++++-
->  drivers/clk/bcm/clk-kona-setup.c                   | 116 +++++++++++++++++
->  drivers/clk/bcm/clk-kona.c                         |  64 +++++++++-
->  drivers/clk/bcm/clk-kona.h                         |  14 +-
->  include/dt-bindings/clock/bcm21664.h               |  17 ++-
->  include/dt-bindings/clock/bcm281xx.h               |  24 +++-
->  10 files changed, 540 insertions(+), 45 deletions(-)
-> ---
-> base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
-> change-id: 20250212-kona-bus-clock-4297eefae940
-> 
-> Best regards,
-> --
-> Artur Weber <aweber.kernel@gmail.com>
+On 8/13/25 8:45 AM, Odelu Kukatla wrote:
 > 
 > 
-> 
+> On 8/12/2025 3:21 PM, Konrad Dybcio wrote:
+>> On 8/8/25 4:03 PM, Odelu Kukatla wrote:
+>>> Add register addresses and clocks which need to be enabled for
+>>> configuring QoS on sa8775p SoC.
+>>>
+>>> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+>>> ---
+>>
+>> [...]
+>>
+>>> +		system_noc: interconnect@01680000 {
+>>
+>> stray leading zero
+>>
+> Thanks for the review, i will address this in next revision.> I also see there's a camera noc.. are these controlled internally
+>> by Titan nowadays?
+>>
+> Yes, camera NoC is controlled internally.
+By internally, do you mean that it's controlled by some camera driver? Why the camnoc is not using 
+the interconnect framework?
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: using specified base-commit 038d61fd642278bab63ee8ef722c50d10ab01e8f
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/broadcom/' for 20250813-kona-bus-clock-v6-0-f5a63d4920a4@gmail.com:
-
-arch/arm/boot/dts/broadcom/bcm94709.dtb: /axi@18000000: failed to match any schema with compatible: ['brcm,bus-axi']
-
-
-
-
-
+Thanks,
+Georgi
 
