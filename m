@@ -1,82 +1,110 @@
-Return-Path: <devicetree+bounces-205248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ACD1B287E0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 23:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 936EDB287E8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 23:42:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D2085C206B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 21:40:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0999166A59
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 21:41:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30BCF27F18F;
-	Fri, 15 Aug 2025 21:39:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0572620D2;
+	Fri, 15 Aug 2025 21:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LcWMctY5"
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="bYzmAyX0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0312225A2C4;
-	Fri, 15 Aug 2025 21:39:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA1925DB0D;
+	Fri, 15 Aug 2025 21:40:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755293986; cv=none; b=YSgLvJMyhRNbDU1MwsFutPkOw/wmvGt+nw+YlUk2OPGrnGkm0TOWI3rg76jiCDx+TbiUvQlB8mxjojZCjnH65piBhrXOGD1mHcm2D5p4tlfNQNoc4VuQnaXtGB/L4QobZ7UJd/PxmkA6jLGmy/55wpHNQb+CYB1Gt2IBu/VScCk=
+	t=1755294028; cv=none; b=RdWP0PDXMxxYFx5eXNdNY9XownX5gmx3PPa9wHk59D5wCKDppnnW2CcBZcUW8CZqgZIqHvTvUb7Pqld7kvgQ5fmQV2WO1ZgTeNAh/VxMB87dAn4qon9sCpjfAf12ot+8sCDR9xbNarAnOAN7zTW45MEN/VXN6pgSkLmZguTFs6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755293986; c=relaxed/simple;
-	bh=RHSgGU/H2Md4KfOMvY3PmLoZ4WtUGhjnNbXf3Vo1KWk=;
+	s=arc-20240116; t=1755294028; c=relaxed/simple;
+	bh=Kz5awZAkv2YD8wFJHXT86Ks9LAGny5DKjG0LKo2prwU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YECuW2NCMFdy/pHFLPTvEM5BwxeqVIjqmQJGzwbk2er5G51jCDIn5Q108omMJTHwVoZnKEKpTNpGdQosf2d/n8AE523zvxDDOomC+pJr3EENyYpYCt7j44vkeYjEHrmAG1hPV6N2YkYSpokVf4H/4t3voSlST7NLV9uR+foyclE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LcWMctY5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 766E1C4CEEB;
-	Fri, 15 Aug 2025 21:39:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755293985;
-	bh=RHSgGU/H2Md4KfOMvY3PmLoZ4WtUGhjnNbXf3Vo1KWk=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=s4Ck+GZHCCpz1zCWoilrG1CYUaMs3M9Uihr47UXT9ey6umufYWxdF6IMz04hi9i/Ve8c8OfAgL7JTJzRsJWGJS4GqPjsevKUNfnpolYdcU/cWV7HBtz3z5VBy5PgFgcbwFJ3eSDZiGevLn4LpI3mfe2UuJpue2S9ZceG72/jtgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=bYzmAyX0; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 0737D40E00DA;
+	Fri, 15 Aug 2025 21:40:23 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id PdTgR2bIKi-Z; Fri, 15 Aug 2025 21:40:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1755294018; bh=sYVcs6nOzvmVwfS8iCLy10NycA/vpvuTnA3nbJODvsc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LcWMctY5bFdFnyiObAHh3RpTUuciXUOWOTB2M/Xo6pbxF65Gg9q0lwJspO/Frdcc/
-	 DCnL8KtVE3tWNaFP5lasyMPGASNluN/ufhhjJewGZfKYyp0MvHO06EX7Zje5PuAjJ7
-	 nt08RGfoz9uzuNG9ZBQkWq1RbpS8U1SauSSw6m3tG6sjls/jQIRaCbp04Uk9B3SG2h
-	 4xRtg66Qz6KoNt967pUjLWXs+sa8u5vZDEhJ5HcFGzrpA11vCsmOM6DRciIuDuqgio
-	 qbs/QaJcaclaqtL/5l1JFCi12PCvtX2tpAQgBajmqOZqoRXYOmOkGbnWR+8GO4NufF
-	 H8k78ZjkWTiuw==
-Date: Fri, 15 Aug 2025 16:39:44 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Khuong Dinh <khuong@os.amperecomputing.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-perf-users@vger.kernel.org, Tai Nguyen <ttnguyen@apm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: perf: Convert apm,xgene-pmu to DT schema
-Message-ID: <175529362733.3232575.8797760861967373560.robh@kernel.org>
-References: <20250812181422.68286-1-robh@kernel.org>
+	b=bYzmAyX0c8k3r7yfMt/N01mnJMH4JK58PhVedhvq0+rNIxdfwZ3GT6xNym90w0bnX
+	 KxrQ6JRer7nSDyJm2pclAQWh3x8d1D/VEgK4jrRbReFOrQDZmFTDbuiA4MCarN52yR
+	 oGiZ/RMyDq0vl9eAOAcAuMEaPYQ51jc59GrGGi7h3ayuhYtjyF8qxGj2bUq+0tTZW/
+	 wPntndPfId7i+OQ6FEXqwBDowowqZSHuod5o17JuCU8Q1AfIYQVl85m5VrE7kzvTX6
+	 1ZjN+w00E0vsm3A8WvaNR7JyHSqh9/TxOyxBRpsz4Unt3znnrW/h5zoRyKAOU4Urvg
+	 ABqTt2/EXXjoPF0Q+7DYpNiZDQsh1peIBa1GxTvtZi2lmizGA4qD/0fmUGUCXMH7s3
+	 cjzMIcUPgdDF/3Wzx7T1W/JUvzY6JLrVbQbse7HDbMWX2V/QH9WA9aEnVQMM5yjYrS
+	 SFUSqSqmtyYdY+Pl4/6kRLxjqnFI7UiCJYH9IehD3R83yNHwwHWqoSC8JnBAh2aEv1
+	 2fmnikZ3kuNCFn55vnks8MosKvMmEUu7+CROW2n5HzqO0K6XlZQBlV7rlZJNA1T1uS
+	 8uF96nzlOAPVZSjb/kaHL9lSz6vyuZNKxy+JW5q7X6zrIr/qTcvrnCxTyvSpP1MYFc
+	 OkGCo8F9QGvRjxkBwXM6qdsw=
+Received: from zn.tnic (pd953092e.dip0.t-ipconnect.de [217.83.9.46])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 7485340E0176;
+	Fri, 15 Aug 2025 21:40:03 +0000 (UTC)
+Date: Fri, 15 Aug 2025 23:39:57 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Vijay Balakrishna <vijayb@linux.microsoft.com>
+Cc: Tony Luck <tony.luck@intel.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	James Morse <james.morse@arm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Robert Richter <rric@kernel.org>, linux-edac@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Tyler Hicks <code@tyhicks.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [v12 PATCH 0/2] Add L1 and L2 error detection for A72
+Message-ID: <20250815213957.GEaJ-pLa_GupE3DUfj@fat_crate.local>
+References: <1752714390-27389-1-git-send-email-vijayb@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250812181422.68286-1-robh@kernel.org>
+In-Reply-To: <1752714390-27389-1-git-send-email-vijayb@linux.microsoft.com>
 
-
-On Tue, 12 Aug 2025 13:14:20 -0500, Rob Herring (Arm) wrote:
-> Convert the Applied Micro X-Gene PMU binding to DT schema format. It is
-> a straightforward conversion.
+On Wed, Jul 16, 2025 at 06:06:28PM -0700, Vijay Balakrishna wrote:
+> Sascha Hauer (2):
+>   EDAC: Add EDAC driver for ARM Cortex A72 cores
+>   dt-bindings: arm: cpus: Add edac-enabled property
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../bindings/perf/apm,xgene-pmu.yaml          | 142 ++++++++++++++++++
->  .../bindings/perf/apm-xgene-pmu.txt           | 112 --------------
->  2 files changed, 142 insertions(+), 112 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/perf/apm,xgene-pmu.yaml
->  delete mode 100644 Documentation/devicetree/bindings/perf/apm-xgene-pmu.txt
-> 
+>  .../devicetree/bindings/arm/cpus.yaml         |  17 ++
+>  MAINTAINERS                                   |   7 +
+>  drivers/edac/Kconfig                          |   8 +
+>  drivers/edac/Makefile                         |   1 +
+>  drivers/edac/a72_edac.c                       | 230 ++++++++++++++++++
+>  5 files changed, 263 insertions(+)
+>  create mode 100644 drivers/edac/a72_edac.c
 
-Also updated MAINTAINERS and applied, thanks!
+Applied, thanks.
 
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 
