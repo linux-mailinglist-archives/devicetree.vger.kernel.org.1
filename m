@@ -1,166 +1,124 @@
-Return-Path: <devicetree+bounces-205402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6288B28E6D
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 16:19:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53BA6B28E7D
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 16:37:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73BD5AE7607
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:19:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1AB01C83CA0
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E1B72E2844;
-	Sat, 16 Aug 2025 14:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E8C92ECEBD;
+	Sat, 16 Aug 2025 14:37:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XIZHRSS3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mD6Pjsqm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50DB413FD86;
-	Sat, 16 Aug 2025 14:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B162DEA7D;
+	Sat, 16 Aug 2025 14:37:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755353951; cv=none; b=XOtKO0SChAkWVwHoRrKc/EIjhThcEdcufh8bkyUNxV8AJCihM2GxxMUOQPaakXo4ZcTbP40rNB14NfXuo18lusb4iDX9E38fuqNLzQU8Jazeta2SHL1lhj7zDDwhU8Teu3mVDO4eBvqsu0KPv8/gU2w8OC4j+5HKVv3/gTMBLdY=
+	t=1755355025; cv=none; b=gH7w7OcwHjf7TIzNcI1vyxw2Bs0G0xQh2otqXYdHfYhVIEshr5tA5Y6zrq2zO32f3RrIJLETHPu5FTH0GbbQa8NJ8K1pV1w5XTo3MHDOflWu6LPBW1rNfTRWJuZu0Rad3zoamtcaQJF29pIdmIF9CXTamJ/C9Xwv6k/q2Z/hYAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755353951; c=relaxed/simple;
-	bh=YcFIevqPRmnHsCDkXNhTN5eFLd3vOH8VP/okgY0uJXY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KaSv21ix7qyKgGHTrFlPBq69gyz4Z6hJNLI52iLTsu6VyFihX6wQTDSLgc7P5lmqWRztngO4rkSSieofG51optMyprSld3rzsmgprBu3JwS2kgC10aZuF82uHIiAi4RW5viYZcD57YWS9lrCGeebviRPBPwUJ+TBb+x3yvhXjfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XIZHRSS3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C19F9C4CEF5;
-	Sat, 16 Aug 2025 14:19:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755353950;
-	bh=YcFIevqPRmnHsCDkXNhTN5eFLd3vOH8VP/okgY0uJXY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=XIZHRSS3T/81UV43SIi6itPdlSWPZRBCHS0Zs/JjSZrtw7ic3MIPMfzc+CKQ0VJlr
-	 qHVI7fiSXDUFRaFwsgPRPoXCw923tDI5NAuL+QCY0DU3LnUrIHxuuQFvfO+SDqJzWH
-	 yXWgoNsSNPL57xIqD/cHcKBM8RBVirUWvVTQwa1K3KpcWF9s7ggApBK78dYd675/zF
-	 uDNvTsC4WWHdrZ1BkT7CY6v28HGklNsy4zOPyysmCCpox+MBqi0SxVnvrEkjX20EQG
-	 QD2aKIqbxrcn0wRPH+iqY5cIZWkwr3Z2ioMP+bLTPZ8jc7gInq2mz89KAMprcDQ1e9
-	 hbEfb6Zbo5VRw==
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6188b70abdfso3990011a12.2;
-        Sat, 16 Aug 2025 07:19:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVF/amdUQRwguQV0lQTLA2e382n0kxZ9XFfJUGN49cXOF+baHr6F2oT+3aKPxKXUCG1AqGVQJl6E/Gs9XQ6@vger.kernel.org, AJvYcCX5zS0b0rmQR28tuBM3VDAZMQyhABxBFT6pQ7WysIkXAnLsIaYAclK/PpF8osBfEheyAxPlZnDYPRSHlw==@vger.kernel.org, AJvYcCXzA2/w4hwGEC5nlcgHuPTTmecrgROIADXIgdKLD6NO/soaS5HJd8gKJNsBfu/7U1DzE9qLm+8jVwzo@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGAtkDnWAZ4692waSaYMIscl8behXil8SYwhXrX3S51VsaWJbz
-	OUJxgVrebjT/nxdTCf0aJf1lyQSbCZ3ex5frqKaiYO+Mbvavugo3aRBxpM0PLH1Ag6/GQy8u2he
-	2T+e8LB6kEBCkP5L3OzWky66hFK5jMQM=
-X-Google-Smtp-Source: AGHT+IEUkDFwlk9UhU8t342L0FCVGyMnVyPMWk30oqfsuvVTNwMtk4q2cTnYOAkS6eUbn+3TgBvlePgr0B/LX2tiyFU=
-X-Received: by 2002:a05:6402:2708:b0:618:adff:66e5 with SMTP id
- 4fb4d7f45d1cf-618b054dbd5mr4317218a12.17.1755353949346; Sat, 16 Aug 2025
- 07:19:09 -0700 (PDT)
+	s=arc-20240116; t=1755355025; c=relaxed/simple;
+	bh=RjN4QVjquicEAYrAUjr8pIPXz+RTQcjkbloqRD42w70=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I3BJOIukFVa0nAXq4SKU2jvvf2SHDfqqiF68ClbeiGeYvdto0sqOhzYhOmWdN47wtCOrBRjeJe2z/Pdx2iFtFzw/uhmEX83hugDzjj+0ak4lSE5rOc5nvRtE5tPwfbdOCABCufDwQCzXy0TkDjiMm9l87o+yzYLtIs9yAJmLr88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mD6Pjsqm; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-333f92a69d4so21207991fa.2;
+        Sat, 16 Aug 2025 07:37:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755355022; x=1755959822; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rcnY7bKyH0HRgtUBQ1xnHjEnIRmtANVbkGy9/T4atBM=;
+        b=mD6Pjsqme+qxEL2tVPk/cayr0e0nN33yDSEEHqfNHVmJB0PODEhEeMb2+l9Uz2Ysif
+         K4TFEyDYFe0p7VOc0pX/C9U9+xUcBVdTBR7LLLjl24x7IE5kTDs9LdJcDegvza9OBCdx
+         38lpT3hMtU+XrZsKbq8t8LA+wXNSI2JsXGwJdNAROjQjw6cT/T7As67CdOub7yK79gZ8
+         EjsQpPHw41vcQF/Tv7wqla7xGfEkxJxKoDIMhPCVmNGbB20pfr3lAIwobLsHXzRs9FTi
+         uDM4UolzJKYgt0lbf4ql7jtdM3z2NNuWnb7IkBuroi9b2GyeaUlPRCQotqic1PClsqLC
+         9ZQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755355022; x=1755959822;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rcnY7bKyH0HRgtUBQ1xnHjEnIRmtANVbkGy9/T4atBM=;
+        b=IDPlRryzpNF/w/s+FYCQpx0enXloQ19Ftz9wY2VAvTuratFpBayfHPiw99K2/zw5gU
+         nHhDZdrITgbd/ErRp+5xqvPuxa4NzsfbkR2muwiuDAIgxP+6S3ixFMpSKZo3I2sGOg7d
+         DOivXrbW2oHXtWDgnfgNQB8Gd1e6hGAyZTMcrEq1S5dwf1BkvGoSwPi0/Qs1e79Mp1Co
+         p7ZXPNG/Kc0NX+1ZMEHmEWkQZfTHHfnCDS0bKQdHeiZomR+yT7pArMdCZ5xPHNA3uTl8
+         tVU4SJuax9FRZYqFOGA8cjYbS4k+TS59HqdXirHmcaNlUk+Yj8KL8VaIjcTRR4JpThoo
+         3C3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU4kk8YhsoMolrhtExHVIkIEXtIfMhSwRhniUCWPFVJDByTUZoY1/RU5xwETQ1wcB/YNBNrvrZoD3qXib2P@vger.kernel.org, AJvYcCUGxT3JXdb2Kwv+xAAEC8NS6R1J1wJHr8aHFiohZz7vExC2yksyxRgwpqE5Jwe51rCwS8GufqLmI4Dv@vger.kernel.org, AJvYcCUIlY5z7jd7BUaUrLiw9fiB1v5oPKt0Ru/FPFVwReB7b9vta7j2ublwdWLC6WBNjQOIcZn8bee12PSk7MM=@vger.kernel.org, AJvYcCUm7z/G9bvoN0zcTc70SowfeARi+ppBBsegwLwevGMAAcNg1jHXIAzUTvq9lvnkpmt7dT/Du2oMiZfZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxzz/KTuY0zcxenzDMs4L79wQ5huLUpPtjsI97zBvGe2tG/x9HP
+	c1DRogvZkqT9ZdPG10OUCetc0bzPv/eCnVBwR+vyQox+O6k6LuUpTa7T
+X-Gm-Gg: ASbGncsb+tfukcLTNyar4s5XEkU92xDYiUXKSC1ZcbOniCHuRkSO60Q4ksdG2Msb3a0
+	OFQaYIirQ22Am84tZVGFcNlxPAAXwetlbIAUCyGL3LbR+aC2DR1zoQgz1/1uuexHW2YGtyaXOyc
+	wFsbxpMGe3mgUIKn9kBNP9c6cHfa6KiOvjW/EdwVb81hCV8+8fMwciC31qwtC9879op36i9Fesu
+	A6twFbI/2PDPJsyPrWoS47CApD/IF+U3nIVcUqnuIjS08tgdNF6xTNK0qqmBIP3Hzu1HGgrcy5f
+	eBV/kgFnqwX+oFf0NPQTeNH3XuzexZjg+LcC07zNKv5uA2y5mNVGV7kG7RoAzrM/MVALKQxwb/P
+	8oFaKrtL8bT1Bz/e4eYK9jmEP0aEwab2vqTPAlLrr14UgcoKFipUKNEGqdQKAYw==
+X-Google-Smtp-Source: AGHT+IE4k/iMe+Rm9RA0iN191EI9xn/ofj5LgLs+Sdk7/lrkrwQ3CSU1gIuS9Ybyz5OPre4cVGIQ4Q==
+X-Received: by 2002:a2e:a588:0:b0:332:51ee:237d with SMTP id 38308e7fff4ca-33409841f80mr13479911fa.12.1755355021589;
+        Sat, 16 Aug 2025 07:37:01 -0700 (PDT)
+Received: from [192.168.2.19] (109-252-159-193.dynamic.spd-mgts.ru. [109.252.159.193])
+        by smtp.googlemail.com with ESMTPSA id 38308e7fff4ca-3340a604c1dsm10279661fa.43.2025.08.16.07.36.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 16 Aug 2025 07:37:01 -0700 (PDT)
+Message-ID: <83755868-09b3-4bd1-8b40-0a4b9f497d2f@gmail.com>
+Date: Sat, 16 Aug 2025 17:36:58 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250816035027.11727-2-ziyao@disroot.org> <20250816035027.11727-3-ziyao@disroot.org>
-In-Reply-To: <20250816035027.11727-3-ziyao@disroot.org>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Sat, 16 Aug 2025 22:18:57 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H5ZQQpHS_b9UL8UNgX9MH8-i4DV8bid00vEDzg76rgebw@mail.gmail.com>
-X-Gm-Features: Ac12FXwCN0XtFPhP6PgPuh0T8gncotsiBAGxXqlAdAXBDWQBMIikImgkiykBIWA
-Message-ID: <CAAhV-H5ZQQpHS_b9UL8UNgX9MH8-i4DV8bid00vEDzg76rgebw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: gpio: loongson: Document GPIO controller
- of 2K0300 SoC
-To: Yao Zi <ziyao@disroot.org>
-Cc: Yinbo Zhu <zhuyinbo@loongson.cn>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	WANG Xuerui <kernel@xen0n.name>, Philipp Zabel <p.zabel@pengutronix.de>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>, 
-	Kexy Biscuit <kexybiscuit@aosc.io>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/5] gpu/drm: host1x: mipi: add Tegra20/Tegra30 MIPI
+ calibration logic
+To: Svyatoslav Ryhel <clamor95@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Peter De Schrijver <pdeschrijver@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250717142139.57621-1-clamor95@gmail.com>
+ <20250717142139.57621-4-clamor95@gmail.com>
+Content-Language: en-US
+From: Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20250717142139.57621-4-clamor95@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sat, Aug 16, 2025 at 11:51=E2=80=AFAM Yao Zi <ziyao@disroot.org> wrote:
->
-> Loongson 2K0300 ships a GPIO controller whose input/output control logic
-> is similar to previous generation of SoCs. Additionally, it acts as an
-> interrupt-controller supporting both level and edge interrupts and has a
-> distinct reset signal.
->
-> Describe its compatible in devicetree. We enlarge the maximum value of
-> ngpios to 128, since the controller technically supports at most 128
-> pins, although only 106 are routed out of the package. Properties for
-> interrupt-controllers and resets are introduced and limited as 2K0300
-> only.
->
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> ---
->  .../bindings/gpio/loongson,ls-gpio.yaml       | 28 ++++++++++++++++++-
->  1 file changed, 27 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml=
- b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-> index b68159600e2b..69852444df23 100644
-> --- a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-> @@ -14,6 +14,7 @@ properties:
->      oneOf:
->        - enum:
->            - loongson,ls2k-gpio
-> +          - loongson,ls2k0300-gpio
->            - loongson,ls2k0500-gpio0
->            - loongson,ls2k0500-gpio1
->            - loongson,ls2k2000-gpio0
-> @@ -36,7 +37,7 @@ properties:
->
->    ngpios:
->      minimum: 1
-> -    maximum: 64
-> +    maximum: 128
->
->    "#gpio-cells":
->      const: 2
-> @@ -49,6 +50,14 @@ properties:
->      minItems: 1
->      maxItems: 64
->
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  interrupt-controller: true
-ls2k300 supports interrupt-controller while others don't?
+17.07.2025 17:21, Svyatoslav Ryhel пишет:
+> @@ -525,6 +599,14 @@ static int tegra_mipi_probe(struct platform_device *pdev)
+>  		return PTR_ERR(mipi->clk);
+>  	}
+>  
+> +	if (mipi->soc->dsi_v0) {
+> +		mipi->csi_clk = devm_clk_get_prepared(&pdev->dev, "csi");
+> +		if (IS_ERR(mipi->csi_clk)) {
 
-Huacai
+Doesn't look like the clock needs to be prepared. Normally, you would
+need to have clock prepared if clock is enabled/disabled from a context
+that can't sleep, like under spinlock or in IRQ handler. AFAICT, this
+not the case here.
 
-> +
-> +  resets:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> @@ -58,6 +67,23 @@ required:
->    - gpio-ranges
->    - interrupts
->
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: loongson,ls2k0300-gpio
-> +    then:
-> +      required:
-> +        - "#interrupt-cells"
-> +        - interrupt-controller
-> +        - resets
-> +    else:
-> +      properties:
-> +        "#interrupts-cells": false
-> +        interrupt-controller: false
-> +        resets: false
-> +
->  additionalProperties: false
->
->  examples:
-> --
-> 2.50.1
->
 
