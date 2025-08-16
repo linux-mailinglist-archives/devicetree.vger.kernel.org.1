@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98AD9B28BB0
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:04:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F09CB28BC2
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 995C04E17A2
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 08:04:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 552097AE889
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 08:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C160230D2B;
-	Sat, 16 Aug 2025 08:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE7B9237180;
+	Sat, 16 Aug 2025 08:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NTJ/OkNh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HtgHZh5S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3042222C7;
-	Sat, 16 Aug 2025 08:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4B2A2367D5;
+	Sat, 16 Aug 2025 08:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755331487; cv=none; b=P7bF81qTboIf65s4XFBw7S1RO/R+YdBU8rId3S/3r8RaEY/63F00iLBbo/qoFm5SY6bCO2mLijbeXcPCi/4kIvlkIv2oeDcit8+es3R+yaaIn3BU/w6ElzbCpQShGi2g/fgTNOiZFH+ivR6Dg5HCeEj2sE944QbIJyuMGwaex+c=
+	t=1755332111; cv=none; b=d2liRhjacGwNpWvE7vCkb/naAVYbSQ1GQqo0KMqyF6P5eNIwhiAR1Pq/+TKjry4fjXGWYUftIw0ZzS3Du+h1SiFkegQ4joyn+jQEExavinrsq/lc7y8C5F4peo9juC8u/XdRUkv8/njpxwCo9eA43sdp0GsZ0M/NRhvtNkWkLhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755331487; c=relaxed/simple;
-	bh=FgOI9nx4upQaQKMm7YmMfL7xb2BnIp+ISDny86PrSLo=;
+	s=arc-20240116; t=1755332111; c=relaxed/simple;
+	bh=ZFhBY7xvjThXbN1xgDjZz544ykM0RfOlwLp1iy2FJOQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B8IjreBGqf0BXYT/TmWGqxog6uDT/g1dBi/2WtYVvZ5UXh4bsAOdPgU1XHVYDh5yuJKVHL5m8WdzOKoosRmDJs1GzkBWa7wd0Dmow6EjXhdTLrw8ToITvQ5Yq6ls0bMgg1yRHBl6zkyCrQMffOztW4oauQHjV+sR1IhBUFQPGuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NTJ/OkNh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5857DC4CEEF;
-	Sat, 16 Aug 2025 08:04:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dfne9azYTxS1hvL0wFjMzOEV6MiVlzGFy/+CAKoPdgFN4VHs5yA6RKngg1DaVzQLl/xz565QYG/o5Cvd56i8Cqobr8joEjVjUF77X1OSjFdry5Nnt7qIuHiK3tDJqllc2N7BHpeOr6GN48J3vJRwg7y/DecPecQ+jI5px4fb97o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HtgHZh5S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD583C4CEEF;
+	Sat, 16 Aug 2025 08:15:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755331486;
-	bh=FgOI9nx4upQaQKMm7YmMfL7xb2BnIp+ISDny86PrSLo=;
+	s=k20201202; t=1755332111;
+	bh=ZFhBY7xvjThXbN1xgDjZz544ykM0RfOlwLp1iy2FJOQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NTJ/OkNhGwjmHgRTRy9asw9qWi2CUuH1rjyJYTKXtesUGWn37g3djWZ6eNbZ8U9A2
-	 6bJxjl8QIr04PUvRfadL2F4IXbJMxAfJN6xsf2idSuNPcy1RsbV31o1SF8X1wyJsi8
-	 SmjEjtT2IFLx2zgxx+1LEb5C3EeHrXG4wsHddvNcbAwjhSDWEB78pJsehB9fWHLqzF
-	 pvBDs3Xj2bDN7wf2hXqSBfmuTEGmrc8uh5ALwZPfXfEtRxt1FbcK/mx4+wcdfoBu71
-	 dqT4U92nmG2GlODABIo5qHe9LHNFkBhJ/APJ6BfaEYqE2iPAWEoAlruDMayw9ws2n7
-	 pfgjRTrxNK6Ig==
-Message-ID: <1d6691c0-d195-436f-810d-d657bd0936d1@kernel.org>
-Date: Sat, 16 Aug 2025 10:04:42 +0200
+	b=HtgHZh5Scobix5jmRtucG3zsTvKYG8Irs0fiN0Dr1meO1Y5qqctzV8Fb7Ec21eQMf
+	 HsBr5ua0IvHq03x9BA+yAmHqz8dgd7JWu+EaKFYMkXdUWmCwXnUB+ynaK2wZCnukUt
+	 T+gNOTpBFeAy5if95dtQxR6kqeCVqd4kESEjghDLwBp7tNSlXzgBIsemy6WnRr2pMh
+	 ZZubk3Gnl3ixFr8w382R6yxGM2KDTyFG9qKtFoUsXdEgLFhf0ZjRjjE2MrefwwpGyw
+	 lriT1rr3MlZOMAfgyGs0t0/jDToo9My30s/ddR26etZRlCpweurcSK1Q5CSEKL0uQN
+	 508h5ZDumR+EQ==
+Message-ID: <271d4a9e-5ccd-42dd-9828-5d34fb2c0a11@kernel.org>
+Date: Sat, 16 Aug 2025 10:15:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: Add Sony IMX585 CMOS image
- sensor
-To: Will Whang <will@willwhang.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/3] dt-bindings: arm: aspeed: Add Nvidia's mgx4u BMC
+To: Marc Olberding <molberding@nvidia.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250816055432.131912-1-will@willwhang.com>
- <20250816055432.131912-2-will@willwhang.com>
-Content-Language: en-US
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20250815-mgx4u_devicetree-v1-0-66db6fa5a7e4@nvidia.com>
+ <20250815-mgx4u_devicetree-v1-1-66db6fa5a7e4@nvidia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -105,22 +104,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250816055432.131912-2-will@willwhang.com>
+In-Reply-To: <20250815-mgx4u_devicetree-v1-1-66db6fa5a7e4@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/08/2025 07:54, Will Whang wrote:
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        imx585@1a {
+On 15/08/2025 21:45, Marc Olberding wrote:
+> Adds a compatible string for Nvidia's mgx4u BMC board.
+> 
+> Signed-off-by: Marc Olberding <molberding@nvidia.com>
+> ---
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-You keep ignoring v1 review, then v2 review and sending the same.
-
-Respond to entire feedback you received instead of ignoring it.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
