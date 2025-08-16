@@ -1,115 +1,112 @@
-Return-Path: <devicetree+bounces-205358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97511B28CD2
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:25:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0820BB28CF2
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:35:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A483C189D974
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:25:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7F39B611A5
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:33:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A743F290BD5;
-	Sat, 16 Aug 2025 10:25:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dxCrGH+f"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AABAA28D83C;
+	Sat, 16 Aug 2025 10:35:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7634C28D8CD;
-	Sat, 16 Aug 2025 10:25:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E16021C16E;
+	Sat, 16 Aug 2025 10:35:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755339902; cv=none; b=Ut5IhnK8aFNTW3vuW/a2WT+yFEvHbxVcTy27/VOrWRpNcLtRyqDEo7Vrb0YbAP7dQiHoPp+0IrQEIggQgwhZePHqlzPx9RIkNsb9sLJatLOJpt1CN2P/PaypgQC3jh3hkOM/zQ2tqyF4JgxxBd1AOFjpCiOBh1FYCP2fLGy1LxI=
+	t=1755340504; cv=none; b=foX5nayeNeKGEzm/zCR7SDoFcM4IqdlZpGcSBrVOcHnghahZjXOdq4UtXdgPMnr7YqTBWH55r+WEAx50ZbceEHdOH0Wli6VcIewqggp+t8DHzJPryp/aJEzjQYk27bHCI6FO/u11qYHa7ZL0d0XUpp9BqzEgtX68ZG23GxqWCgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755339902; c=relaxed/simple;
-	bh=BropNB1sERJWBUWA58+0wXXW4EeF8t30O+jhk0LIUFU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=a8Ci+ifGbaUuIYhG+D2AIY+wd/nNGlLQ1+lnL6LhWznrB0HPByZbsbQkP79eD+3yGxG10x/HtLHN1xBLP9vWE18POM/LqZQwcdx/wM4pxDaFtywYrV8D1h8jCaZI9esIkpvIilMMyXHNLMf8A00hWm8KExXczeBIUVDGiAGVV7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dxCrGH+f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07109C4CEEF;
-	Sat, 16 Aug 2025 10:24:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755339902;
-	bh=BropNB1sERJWBUWA58+0wXXW4EeF8t30O+jhk0LIUFU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=dxCrGH+fIyfK5BHNSlciUFVAy4CTH1nkbKKFdYGE/BB7VQ7OCw4Z3Gho6eZrgizrZ
-	 PkBowUWQ6qXXTCVrdGZC4SVAICsm9UmIfYuIVoorvMwngq4G/8o8ney8OAAlCHWUho
-	 7r6BlG9Si3exYULfn+XIuIfuLSy/zusRavmQARGipUfZXeKAKdFZQZ7UygpbHu5hZp
-	 p8PnenO4euDP9daPDhtu6GZKabp0jRn2TzyFpXv72K1Xr+iV3ivY5ctlko5a6bnCHh
-	 z2fXGor2+xP1F1lPkTS97JPVFcPr7asXhCkgV9iMp/jdsnohMdgsmo6ZTn2AlhULr9
-	 EX3L976wMsFxQ==
-Date: Sat, 16 Aug 2025 11:24:54 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc: ltc2497: add lltc,ltc2495
- bindings
-Message-ID: <20250816112454.37376453@jic23-huawei>
-In-Reply-To: <20250815-ltc2495-v4-1-2d04e6005468@gmail.com>
-References: <20250815-ltc2495-v4-0-2d04e6005468@gmail.com>
-	<20250815-ltc2495-v4-1-2d04e6005468@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1755340504; c=relaxed/simple;
+	bh=OmY6f0GIf80Xge8EjX6EkI9/4YhDXdqsz9WqOsI9brI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Gw+2NYI4FLS3rU2p+xD5AmzHoGCxkfvWEiHCncbgyYVI99HbjZX2xo118vLA9H3ZgjikrDz3vTpAV3JE6lIaxlmsT5L4ayLJQeTOwN3mCjo6GRqTWZ9qphCS5de8Q+QSvXhZdMV/TYjbeAHzqcimdkP6Kc6jS7o/bqu1Rgj5KTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu; spf=pass smtp.mailfrom=artur-rojek.eu; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=artur-rojek.eu
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 72EFD43212;
+	Sat, 16 Aug 2025 10:34:51 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Date: Sat, 16 Aug 2025 12:34:51 +0200
+From: Artur Rojek <contact@artur-rojek.eu>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Rob Landley
+ <rob@landley.net>, Jeff Dionne <jeff@coresemi.io>, John Paul Adrian Glaubitz
+ <glaubitz@physik.fu-berlin.de>, Andrew Lunn <andrew+netdev@lunn.ch>, "David
+ S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Document J-Core
+In-Reply-To: <f9903242-beec-4506-af20-2f8fc94d53cc@kernel.org>
+References: <20250815194806.1202589-1-contact@artur-rojek.eu>
+ <20250815194806.1202589-2-contact@artur-rojek.eu>
+ <68a6d0a7-b245-456d-9c7e-60fbf08c4b32@kernel.org>
+ <CAMuHMdVj8r_voaXqVdt07fRT5mdJJ4B2NFiK9=XhtYDCuRgz1g@mail.gmail.com>
+ <f9903242-beec-4506-af20-2f8fc94d53cc@kernel.org>
+Message-ID: <35bba6dd1d6faf1b977f7d5eb74be7c4@artur-rojek.eu>
+X-Sender: contact@artur-rojek.eu
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddugeeiieefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhfkgigtgfesthejjhdttddtvdenucfhrhhomheptehrthhurhcutfhojhgvkhcuoegtohhnthgrtghtsegrrhhtuhhrqdhrohhjvghkrdgvuheqnecuggftrfgrthhtvghrnhepfffhkeeuvdegvdeuhfefffeiiedvtdeiffegieffkeetfedvtefgiefgueffueetnecuffhomhgrihhnpehjqdgtohhrvgdrohhrghenucfkphepuddtrddvtddtrddvtddurdduleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedutddrvddttddrvddtuddrudelpdhhvghlohepfigvsghmrghilhdrghgrnhguihdrnhgvthdpmhgrihhlfhhrohhmpegtohhnthgrtghtsegrrhhtuhhrqdhrohhjvghkrdgvuhdpnhgspghrtghpthhtohepudeipdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmieekkhdrohhrghdprhgtphhtthhopehrohgssehlrghnughlvgihrdhnvghtpdhrtghpthhtohepjhgvfhhfsegtohhrvghsvghmihdrihhopdhrtghpthhtohepghhlrghusghithiisehphhihshhikhdrfhhuqdgsvghrlhhin
+ hdruggvpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomh
+X-GND-Sasl: contact@artur-rojek.eu
 
-On Fri, 15 Aug 2025 12:02:02 +0200
-Yusuf Alper Bilgin <y.alperbilgin@gmail.com> wrote:
+On 2025-08-16 11:40, Krzysztof Kozlowski wrote:
+> On 16/08/2025 10:22, Geert Uytterhoeven wrote:
+>> Hi Krzysztof,
 
-> Update the binding documentation for LTC2497 to include LTC2495 to
-> enable support for its internal temperature sensor, which requires a
-> different I2C command format and a new IIO channel.
+Hi Krzysztof,
+thanks for the review!
+
+>> 
+>> On Sat, 16 Aug 2025 at 10:18, Krzysztof Kozlowski <krzk@kernel.org> 
+>> wrote:
+>>> On 15/08/2025 21:48, Artur Rojek wrote:
+>>>> J-Core is a clean-room open source processor and SoC design using 
+>>>> the
+>>>> SuperH instruction set.
+>>>> 
+>>>> The 'jcore' prefix is in use by IP cores originating from this 
+>>>> design.
+>>>> 
+>>>> Link: https://j-core.org
+>>>> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+>>> 
+>>> How is it possible if this is v1? If this is not v1, where is 
+>>> changelog
+>>> and why isn't it marked as vx?
+>> 
+>> The patch series had several iterations (v0, v-1, v-2 ;-), with a 
+>> limited
+>> audience.
 > 
-> Signed-off-by: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
-See reply to v1.  
+> Thanks, would be nice to see it reflected somewhere.
 
-At least at first look it appears this should have a fallback compatible
-as Krzysztof called out.
+I mentioned it in the cover letter.
 
-> ---
->  Documentation/devicetree/bindings/iio/adc/lltc,ltc2497.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+For the record:
+v1: capitalize Open Processor
+v0: new patch
+
+Cheers,
+Artur
+
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2497.yaml b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2497.yaml
-> index 5cc6a96840778473895f436b7e2627d6240b254b..2a3e3dcc6ca7a48a0fccb88d8d42fee34efcff73 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2497.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2497.yaml
-> @@ -17,11 +17,13 @@ description: |
->  
->      https://www.analog.com/media/en/technical-documentation/data-sheets/2309fd.pdf
->  
-> +  LTC2495:
->    LTC2497:
->    LTC2499:
->      16bit ADC supporting up to 16 single ended or 8 differential inputs.
->      I2C interface.
->  
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/2495fe.pdf
->      https://www.analog.com/media/en/technical-documentation/data-sheets/2497fb.pdf
->      https://www.analog.com/media/en/technical-documentation/data-sheets/2499fe.pdf
->  
-> @@ -29,6 +31,7 @@ properties:
->    compatible:
->      enum:
->        - lltc,ltc2309
-> +      - lltc,ltc2495
->        - lltc,ltc2497
->        - lltc,ltc2499
->  
-> 
-
+> Best regards,
+> Krzysztof
 
