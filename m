@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D50AB28BE5
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:33:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9908B28BEA
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:36:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A288CA26493
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 08:33:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6907EA266B1
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 08:36:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1B4721FF48;
-	Sat, 16 Aug 2025 08:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4010C235C1E;
+	Sat, 16 Aug 2025 08:36:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EduzWTlT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t+PPrqZV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912BC171C9;
-	Sat, 16 Aug 2025 08:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 118E3202F70;
+	Sat, 16 Aug 2025 08:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755333219; cv=none; b=TSAba25zsKer1MqQaYxmE5mbypP5MvbLNtpKsdrYRMX2C3VWWFN6jiS0pbv0zhnPUTr4XTFxZWgL8feoAdU0sfAlx0L5ROT0sRPs+1HTI2ulZU0hoizLY1DngCN6DkmAJbAC561YF/Y/1ih7vE+1QBxpGEiHQzvyGjVeWkAsLqc=
+	t=1755333385; cv=none; b=DJqka7AlezhGNgmkmfJpHc17y5loXk9o/DGdHnioTozXN4sXaV94SuG6FPzEwBN+hhwn7oyXSZMWxF5uiNkaZ9iGOK45ybtjae9oyywM9Wy4ltd2Kpr3DxEN7umfXODcgbT3JbKOfimjBMqZsxzNsK+D7+nAPLWj44potghtYD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755333219; c=relaxed/simple;
-	bh=NoF/gia3BzIk7K9+zQybrkg4qnMCSC4IHUB+TORz8TQ=;
+	s=arc-20240116; t=1755333385; c=relaxed/simple;
+	bh=HwAVPDB3s7+9OZbP+S7sMk/gyh+uyTjZPlQtagelDNc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SNeGFD52HTNU7pPBbOB26FV1MYkEQC4nNVjkgWfo+/qRAVRBYvQm1EyMJtBBXoJGLQMbEM5+YBjXryIcqbHao4DZjU8fvu0VzQeN1Vuxnq1rgryMfsord2UTDkM8gZaHK9RGvTvKBbYdF5Cgt/mnqXFHxkSjIWJHWe2QdqV6veQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EduzWTlT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 102EFC4CEEF;
-	Sat, 16 Aug 2025 08:33:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=o6h5setdJTbC0CrbSkx20Y/gqPlGIsfVdfKbL47+T6Alk9bnxVj79i0DGDep7HIFSccAw9jB5Q9JQ4dQLQByDcoin461Opu9fCMu1dtHIAAjDp+nSDznd0nClXanRK6FXtxzAP4ASb/sog7vDx8K2zJFcrMoBr1Q7LZPY3oB9Uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t+PPrqZV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25208C4CEF6;
+	Sat, 16 Aug 2025 08:36:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755333219;
-	bh=NoF/gia3BzIk7K9+zQybrkg4qnMCSC4IHUB+TORz8TQ=;
+	s=k20201202; t=1755333384;
+	bh=HwAVPDB3s7+9OZbP+S7sMk/gyh+uyTjZPlQtagelDNc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EduzWTlTyrKzPY6aHEtGQISHbS/b+1yjJdU3OsXnjqnYQXCm599FXAPNI9VYyEz0z
-	 FYgc6ov3Uegdq9x5dWmsRlKoCdk8eX39OuLVM0sNTvt6pAG+V4FW1zGfYEafLfeagY
-	 wIbG9pXc7p1auGgoSq2dzEAK3E5W+PLQerPqOZxVcoP77qGLLWp524Y+X0ea9xF7rg
-	 wB4slB8i3HnVHhRuRr6tQc1KcyLU0Eg1hIoybRAM7HaMEgZB/ZL559hYMwMa0KSpas
-	 Tk2MT0rTZgnzifvtnGbkQW80gVL/rMARzv5sOzLQkloWUjzA7TPEPcG3U7XTl1/MLh
-	 wxEqOOh8GRd2Q==
-Message-ID: <e82ca132-f312-45b5-bec0-9d83cd3771d4@kernel.org>
-Date: Sat, 16 Aug 2025 10:33:34 +0200
+	b=t+PPrqZVOMouHB9CDo0rDFkdEMOy7LDDpErKbqpIyZ9XjDHhCL1v/krwGrNBc4UXd
+	 j+TyH/AbY2xZJ6iV/ZbISckz/JaicjBjQMLYVS8p24l4IfxrVOz2dEIhZ9gxTV6e2I
+	 x5adnPoLBVu2wxDMm8cO5noj48jhcXNo92GtFzPNrXuaqzlGJaqYrePo8lKBC6nfer
+	 WAXEaB7QBzvn6RNl9O0916Ond9zCakQLzFahKWm8iPbGzTqyF80oUmoqGtCZaabbKQ
+	 g3xdznG/b71OTqxUg/3Im8kATQ6eZxdJtBVHMSHAoisk+99OFR+LwANEcGfamuVCxX
+	 mdMp4PDjXnm9Q==
+Message-ID: <e389fcf9-5c77-4a3e-a5e4-9076c0aa930f@kernel.org>
+Date: Sat, 16 Aug 2025 10:36:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom: Add Coresight Interconnect
- TNOC
-To: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+Subject: Re: [net-next v3 1/3] dt-bindings: net: dsa: yt921x: Add Motorcomm
+ YT921x switch support
+To: David Yang <mmyangfl@gmail.com>, netdev@vger.kernel.org
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250815-itnoc-v1-0-62c8e4f7ad32@oss.qualcomm.com>
- <20250815-itnoc-v1-1-62c8e4f7ad32@oss.qualcomm.com>
+ Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250816052323.360788-1-mmyangfl@gmail.com>
+ <20250816052323.360788-2-mmyangfl@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,138 +107,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250815-itnoc-v1-1-62c8e4f7ad32@oss.qualcomm.com>
+In-Reply-To: <20250816052323.360788-2-mmyangfl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/08/2025 15:18, Yuanfang Zhang wrote:
-> Add device tree binding for Qualcomm Coresight Interconnect Trace
-> Netwrok On Chip (ITNOC). This TNOC acts as a CoreSight
-> graph link that forwards trace data from a subsystem to the
-> Aggregator TNOC, without aggregation or ATID functionality.
+On 16/08/2025 07:23, David Yang wrote:
+> The Motorcomm YT921x series is a family of Ethernet switches with up to
+> 8 internal GbE PHYs and up to 2 GMACs.
 > 
-> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+> Signed-off-by: David Yang <mmyangfl@gmail.com>
 > ---
->  .../bindings/arm/qcom,coresight-itnoc.yaml         | 108 +++++++++++++++++++++
->  1 file changed, 108 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..fd224e07ce68918b453210763aacda585d5a5ca2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml
-> @@ -0,0 +1,108 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/qcom,coresight-itnoc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Interconnect Trace Network On Chip - ITNOC
-> +
-> +maintainers:
-> +  - Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-> +
-> +description: |
+>  .../bindings/net/dsa/motorcomm,yt921x.yaml    | 166 ++++++++++++++++++
 
-Do not need '|' unless you need to preserve formatting.
+Previous version was not tested. This is not tested, either.
 
-> +  The Interconnect TNOC is a CoreSight graph link that forwards trace data
-> +  from a subsystem to the Aggregator TNOC. Compared to Aggregator TNOC, it
-> +  does not have aggregation and ATID functionality.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - qcom,coresight-itnoc
-> +  required:
-> +    - compatible
-
-Why all this? Drop
-
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^tnoc(@[0-9a-f]+)?$"
-
-Why are you requiring a non-generic name?
-
-> +
-> +  compatible:
-> +    items:
-
-No need for items
-
-> +      - const: qcom,coresight-itnoc
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: Base address and size of the ITNOC registers.
-
-Drop, redundant
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb
-
-Drop clock-names, obvious. Also, odd order - names are never before
-actual property.
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  in-ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +      '#size-cells':
-> +        const: 0
-> +
-> +    patternProperties:
-> +      '^port(@[0-9a-f]{1,2})?$':
-
-Why do you have here 255 ports?
-
-> +        description: Input connections from CoreSight Trace Bus
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +    additionalProperties: false
-
-This goes after $ref
-
-> +
-> +  out-ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port:
-> +        description: out connections to aggregator TNOC
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +    additionalProperties: false
-
-This goes after ref
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-
-And here different order... Be consistent. See also DTS coding style.
-
-> +  - in-ports
-> +  - out-ports
-> +
-> +additionalProperties: false
-> +
-
-
+You must test your code BEFORE you send it, not after.
 
 Best regards,
 Krzysztof
