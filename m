@@ -1,54 +1,51 @@
-Return-Path: <devicetree+bounces-205312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10FCDB28B7C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 09:37:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AACB28BA3
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:00:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B59F9AA3704
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 07:37:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BF2518918A0
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 08:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A7522A4EA;
-	Sat, 16 Aug 2025 07:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E850D21D585;
+	Sat, 16 Aug 2025 08:00:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A9E22A7F2;
-	Sat, 16 Aug 2025 07:37:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5011E0DFE;
+	Sat, 16 Aug 2025 08:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755329860; cv=none; b=ejSlhobaFkCwgYx8eVTQoWYy5+ZuMPpKn0RtgDD7W0cDx8IZ12+Uz38cWv159JwZC9MNv8+DQf6QiePT2wV76JFLOevcxjDSZxwGqqBLEY0Hggf6vM9Qg7pVv2dxdYvRgBs2xuqwEbRpbv0zT+Gbv1/6Iz+m40dh75lK0SbumSY=
+	t=1755331248; cv=none; b=NPA/JUYCN29XF1s693/70Q5oFsZ9hzXtQsm1PHlN8PNCTSU6oCMQ6Fsk87lOuCbTDHL9JsH8/VCtZN++CS2S0beDTawTrvm4NSOEH8hMUyheqxVahv5jFPuaY7BVQQh3YGkRVSpUDVQmCKJfOc46DriLfj0+9YFzX1pNFQhFbkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755329860; c=relaxed/simple;
-	bh=/dVTk1qYplh5wGby56mcDhozRU+6sHqe0LKLvQKFnso=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jLpmLL2l9QzPCCPhiDdPjpdg6slSA455RI9zRYjTlYCb5b77xRI1bu95d/IOJryNESDUmwMRwhUVINyyIvYVgvPz2tTAoXt71YxuH0+XoP1mjFdJq3eOJ9e+WMamKtll1q69V1VRBwrQj1DgSeWq3eaEkvR/LFMpr38n/ISJsww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.19.88.194])
-	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4c3rQ52gM0zqVTs;
-	Sat, 16 Aug 2025 15:36:29 +0800 (CST)
-Received: from kwepemo100001.china.huawei.com (unknown [7.202.195.173])
-	by mail.maildlp.com (Postfix) with ESMTPS id 09FDD140123;
-	Sat, 16 Aug 2025 15:37:29 +0800 (CST)
-Received: from huawei.com (10.175.101.6) by kwepemo100001.china.huawei.com
- (7.202.195.173) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Sat, 16 Aug
- 2025 15:37:28 +0800
-From: Yin Tirui <yintirui@huawei.com>
-To: <robh@kernel.org>, <saravanak@google.com>, <dan.j.williams@intel.com>,
-	<akpm@linux-foundation.org>, <david@redhat.com>, <rppt@kernel.org>,
-	<Jonathan.Cameron@huawei.com>, <devicetree@vger.kernel.org>,
-	<linux-mm@kvack.org>, <linux-kernel@vger.kernel.org>
-CC: <wangkefeng.wang@huawei.com>, <chenjun102@huawei.com>,
-	<yintirui@huawei.com>
-Subject: [PATCH v2] of_numa: fix uninitialized memory nodes causing kernel panic
-Date: Sat, 16 Aug 2025 15:31:31 +0800
-Message-ID: <20250816073131.2674809-1-yintirui@huawei.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1755331248; c=relaxed/simple;
+	bh=rDhXEhM6sO/wVkn3ko/kOWXUw+XTgXSS6AoFjXOUZTo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kL4gQ142YpiZPZdHHkyyvqEQUlJl99BUegK73SMloEcv4nC9MsytMPgRiqOXJyj7b38HCBocOMv/iydxEDz269NPlxUEyM6IYRecgip3mydCjwmhj5hmJgPYlA8nGtEFRht6y6WAfc7pNGpSdeWL4GdMenZfnFBeEOg1IjSzOxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.212.9])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1f93a30c3;
+	Sat, 16 Aug 2025 16:00:38 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Chukun Pan <amadeus@jmu.edu.cn>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/3] arm64: dts: rockchip: update Radxa E52C support
+Date: Sat, 16 Aug 2025 16:00:27 +0800
+Message-Id: <20250816080030.183931-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,60 +53,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems200002.china.huawei.com (7.221.188.68) To
- kwepemo100001.china.huawei.com (7.202.195.173)
+X-HM-Tid: 0a98b1e51b5303a2kunm56d2169525b6f6
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDSkhCVklCHRofGEpITUMaGFYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVCWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
+	tLWQY+
 
-When the number of CPUs is fewer than the number of memory nodes,
-some memory nodes may not be properly initialized because they are
-not added to numa_nodes_parsed during memory parsing.
+Changed from v2:
+  Remove merged patches
+  Remove VCC_3V3_PMU for Radxa E52C (new)
+  Update pinctrl names for Radxa E52C (new)
+  Update commit message for disabling display subsystem
 
-In of_numa_parse_memory_nodes(), after successfully adding a memory
-block via numa_add_memblk(), the corresponding node ID should be
-marked as parsed. However, the current implementation in numa_add_memblk()
-only adds the memory block to numa_meminfo but fails to update
-numa_nodes_parsed, leaving some nodes uninitialized.
+Chukun Pan (3):
+  arm64: dts: rockchip: disable display subsystem for Radxa E52C
+  arm64: dts: rockchip: remove vcc_3v3_pmu regulator for Radxa E52C
+  arm64: dts: rockchip: update pinctrl names for Radxa E52C
 
-During boot in a QEMU-emulated ARM64 NUMA environment, the kernel
-panics when free_area_init() attempts to access NODE_DATA() for
-memory nodes that were uninitialized.
+ .../boot/dts/rockchip/rk3582-radxa-e52c.dts   | 30 ++++++++-----------
+ 1 file changed, 12 insertions(+), 18 deletions(-)
 
-[    0.000000] Call trace:
-[    0.000000]  free_area_init+0x620/0x106c (P)
-[    0.000000]  bootmem_init+0x110/0x1dc
-[    0.000000]  setup_arch+0x278/0x60c
-[    0.000000]  start_kernel+0x70/0x748
-[    0.000000]  __primary_switched+0x88/0x90
-
-Cc: stable@vger.kernel.org
-Fixes: 767507654c22 ("arch_numa: switch over to numa_memblks")
-Signed-off-by: Yin Tirui <yintirui@huawei.com>
-
----
-
-v2: Move the changes to the of_numa related. Correct the fixes tag.
----
- drivers/of/of_numa.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
-index 230d5f628c1b..cd2dc8e825c9 100644
---- a/drivers/of/of_numa.c
-+++ b/drivers/of/of_numa.c
-@@ -59,8 +59,11 @@ static int __init of_numa_parse_memory_nodes(void)
- 			r = -EINVAL;
- 		}
- 
--		for (i = 0; !r && !of_address_to_resource(np, i, &rsrc); i++)
-+		for (i = 0; !r && !of_address_to_resource(np, i, &rsrc); i++) {
- 			r = numa_add_memblk(nid, rsrc.start, rsrc.end + 1);
-+			if (!r)
-+				node_set(nid, numa_nodes_parsed);
-+		}
- 
- 		if (!i || r) {
- 			of_node_put(np);
 -- 
-2.43.0
+2.25.1
 
 
