@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80337B28C8D
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 11:41:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A854DB28C91
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 11:48:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C526B01E0C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 09:41:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E578A1C84FF4
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 09:49:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9678A26CE1E;
-	Sat, 16 Aug 2025 09:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C757F28A1CC;
+	Sat, 16 Aug 2025 09:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AQ58s/P5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GvIN6SgP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A616257831;
-	Sat, 16 Aug 2025 09:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 995E6238179;
+	Sat, 16 Aug 2025 09:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755337253; cv=none; b=QqPUvCPM2urU/GriJewtF0pdRl/m3iEERGnQQ6AS41pXGi6F88czg9BTkaEH6xYlrW0LXIKNyNayrjU4rd0UmQ/AoKT1t3PMul6DwOQqGBUh2SNpYNQsN+5BhlUgCnbgB/ZEGUrGb5XXfmiFfmH7mDOM7pQ3SdDqyP5r9qTX9Cs=
+	t=1755337731; cv=none; b=PYUQlJoOkHNdiKqYEe753dXxmOvjE+0s6ziAkWxxFOGywwwWt2z+Q1imBX742WL1h9d4XjVRS7oKQXhyCefPw8/NOYJXwhTABSunRbiGDG1aUsQi6zEm/yrHIkVQ5/Aa0pa9tJzOXcOHEXomA7gPYb8jMTyKqlV41Ym7reDC38E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755337253; c=relaxed/simple;
-	bh=l/oDk0oKxxbQRqAvrMfls1DCnuSFlvkTrGTMP3IQcus=;
+	s=arc-20240116; t=1755337731; c=relaxed/simple;
+	bh=tuDGi921oJen9tqn7mJsQZiu7Fywen9D9j9aCB+BOKQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UHQpm5NhCoxr3Z6jDAeRQhmdqknIogllAawD9Ce7Y4t8QLuOQDPXeTzEatWz07dKYCMNh+30D9HheozWJn3icVvSwb28KM/3JlF81urSQ6nkI0EJKC439lAd9Ui0MxArgcMWHzW13w7wfjlu4r0C89/GZqb1WVXp8g3kkKjekDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AQ58s/P5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B621C4CEF5;
-	Sat, 16 Aug 2025 09:40:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZQlJOffWB51v+VYGMrDIjOO3wprDuMnSfM/Is7z3YyrVuBTRilPzIEPyQaRkfeiVC+w4Wl462BrADY+ArIomgzSDhVO6yfdG+zQNIkdYxlLC8hRLT/78xjDP1BEgMrZARwU82a64itQS2F0TYDOIz1xYOhpAgsD1lvWD3X2cPzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GvIN6SgP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A3A6C4CEEF;
+	Sat, 16 Aug 2025 09:48:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755337252;
-	bh=l/oDk0oKxxbQRqAvrMfls1DCnuSFlvkTrGTMP3IQcus=;
+	s=k20201202; t=1755337731;
+	bh=tuDGi921oJen9tqn7mJsQZiu7Fywen9D9j9aCB+BOKQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AQ58s/P5DY7ez8Y0MciSCXEp8MHktUbGwkxlacUJ+5UkvMe4H+rGW+CsMW2xa+Q+d
-	 KbSKNZvaHBo74KUNjlA7C1AWt2wMSahEHGWeKDTInYHtMJu6b5MA6WftAUpNKb0L2e
-	 9AOkXSZIKslUhMD7oqF9ScLd17vD60rPPDfXulLsR0kmiNhmoLMJXPhCSgwxD+LGvg
-	 XhlyzLKbJHkDLjRD6xHCaau+bCltc2uyInOAAqrVvzh+MwQpvB+CjsainjnGcgUZzW
-	 xM8M+QR4lbxZMkARxGo/0EKIe91xFi44FzH0k4D/tNiXRvK95vhVozbg/YxDWSvaOb
-	 CJ5sw/V/S5ziA==
-Message-ID: <54521b53-4106-4328-973a-78d7bb30bbb8@kernel.org>
-Date: Sat, 16 Aug 2025 11:40:47 +0200
+	b=GvIN6SgPwMYzAyxMRox94LN7RuY32e/OtmGssFuhvgCxXiL5/nDkB+kj3A9UULc80
+	 PNpHAaOM/ULRjLCVNSenr8TSTJ0aud3iZaOVXQng4C4NcJf+1831ZSwENdAAYRqmYz
+	 K5zM9YPpuKz9hvKiu+4hB1BCp6Z2MNA0KERSMv6Ku8EsO/GoWHiu9KvFahu0eLC219
+	 IUHXto9phrlKq1L0VmRx2kmE7mgNDUw8iGq0FkQhH9jPQRS/dDqApTinqlDlrDSxGT
+	 oJPAUX7FPmAoHc+vReh3kNQjkh07oE5meAS8/C2BU/KqAKn+c07DyRa40A+YvOTKeD
+	 /I//eBF+bj2/g==
+Message-ID: <d5134909-58a4-48c2-a227-2fb3ce200c2f@kernel.org>
+Date: Sat, 16 Aug 2025 11:48:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Document J-Core
-To: Artur Rojek <contact@artur-rojek.eu>, Rob Landley <rob@landley.net>,
- Jeff Dionne <jeff@coresemi.io>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Document reset controller of
+ Loongson 2K0300 SoC
+To: Yao Zi <ziyao@disroot.org>, Philipp Zabel <p.zabel@pengutronix.de>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert@linux-m68k.org>
-References: <20250815194806.1202589-1-contact@artur-rojek.eu>
- <20250815194806.1202589-2-contact@artur-rojek.eu>
+ Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+ WANG Xuerui <kernel@xen0n.name>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>,
+ Kexy Biscuit <kexybiscuit@aosc.io>
+References: <20250816033327.11359-2-ziyao@disroot.org>
+ <20250816033327.11359-3-ziyao@disroot.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,21 +106,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250815194806.1202589-2-contact@artur-rojek.eu>
+In-Reply-To: <20250816033327.11359-3-ziyao@disroot.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/08/2025 21:48, Artur Rojek wrote:
-> J-Core is a clean-room open source processor and SoC design using the
-> SuperH instruction set.
-> 
-> The 'jcore' prefix is in use by IP cores originating from this design.
-> 
-> Link: https://j-core.org
-> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
+On 16/08/2025 05:33, Yao Zi wrote:
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    rst: reset-controller@1600011c {
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop unused label
+
+
+> +        compatible = "loongson,ls2k0300-reset";
+> +        reg = <0x1600011c 0x8>;
+> +        #reset-cells = <1>;
+> +    };
+> diff --git a/include/dt-bindings/reset/loongson,ls2k0300-reset.h b/include/dt-bindings/reset/loongson,ls2k0300-reset.h
+> new file mode 100644
+> index 000000000000..d425411e6d19
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/loongson,ls2k0300-reset.h
+> @@ -0,0 +1,70 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+
+Why not using same license as the binding?
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
