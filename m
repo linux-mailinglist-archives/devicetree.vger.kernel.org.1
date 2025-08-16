@@ -1,137 +1,166 @@
-Return-Path: <devicetree+bounces-205401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9FE0B28E63
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 16:13:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6288B28E6D
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 16:19:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CF511BC5407
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:13:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73BD5AE7607
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55A42EAB9C;
-	Sat, 16 Aug 2025 14:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E1B72E2844;
+	Sat, 16 Aug 2025 14:19:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XIZHRSS3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE812EA17C;
-	Sat, 16 Aug 2025 14:13:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50DB413FD86;
+	Sat, 16 Aug 2025 14:19:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755353593; cv=none; b=jSvY9EiJwtD8YYre/sXiQxY44ZVPIJX+ma1K3jBbgoFU5fkQsSLwop+nUc0he/yFX72bhwVrsyeuAVd3Tbnu474Xd33aoWwTi65UDgysKL2l594ZUFObTQhmymCshRZ0Cq6V+zHU5I2aUwybF63xf1PmptcJU2QqnbSc7uPQ4MU=
+	t=1755353951; cv=none; b=XOtKO0SChAkWVwHoRrKc/EIjhThcEdcufh8bkyUNxV8AJCihM2GxxMUOQPaakXo4ZcTbP40rNB14NfXuo18lusb4iDX9E38fuqNLzQU8Jazeta2SHL1lhj7zDDwhU8Teu3mVDO4eBvqsu0KPv8/gU2w8OC4j+5HKVv3/gTMBLdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755353593; c=relaxed/simple;
-	bh=MCwup8/VMzm2vt/sg3v0hqhdOZGr4LtLR5MBWmocvfU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dlkenrVEtZf+ok8GTJ4jrr/rZpRK2trkRnpYwOK3ypBEKHsaVU9UMQVaF1TalI6RU9SeqORtMZ++9NLfGexdTwZUxWEExy82VV6tcf2NP2GMQLkLu2cqxJrn81gc5enk9JraHJ+QLd5GGkB9gCWeBFdLx9UFfD9U0VYlxWfh4Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2C1AA1595;
-	Sat, 16 Aug 2025 07:13:02 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BA4543F738;
-	Sat, 16 Aug 2025 07:13:07 -0700 (PDT)
-Date: Sat, 16 Aug 2025 15:10:15 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: iuncuim <iuncuim@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 6/7] arm64: dts: allwinner: a523: add DWC3 USB3.0 node
-Message-ID: <20250816151015.621f8da4@minigeek.lan>
-In-Reply-To: <20250816084700.569524-7-iuncuim@gmail.com>
-References: <20250816084700.569524-1-iuncuim@gmail.com>
-	<20250816084700.569524-7-iuncuim@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1755353951; c=relaxed/simple;
+	bh=YcFIevqPRmnHsCDkXNhTN5eFLd3vOH8VP/okgY0uJXY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KaSv21ix7qyKgGHTrFlPBq69gyz4Z6hJNLI52iLTsu6VyFihX6wQTDSLgc7P5lmqWRztngO4rkSSieofG51optMyprSld3rzsmgprBu3JwS2kgC10aZuF82uHIiAi4RW5viYZcD57YWS9lrCGeebviRPBPwUJ+TBb+x3yvhXjfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XIZHRSS3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C19F9C4CEF5;
+	Sat, 16 Aug 2025 14:19:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755353950;
+	bh=YcFIevqPRmnHsCDkXNhTN5eFLd3vOH8VP/okgY0uJXY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=XIZHRSS3T/81UV43SIi6itPdlSWPZRBCHS0Zs/JjSZrtw7ic3MIPMfzc+CKQ0VJlr
+	 qHVI7fiSXDUFRaFwsgPRPoXCw923tDI5NAuL+QCY0DU3LnUrIHxuuQFvfO+SDqJzWH
+	 yXWgoNsSNPL57xIqD/cHcKBM8RBVirUWvVTQwa1K3KpcWF9s7ggApBK78dYd675/zF
+	 uDNvTsC4WWHdrZ1BkT7CY6v28HGklNsy4zOPyysmCCpox+MBqi0SxVnvrEkjX20EQG
+	 QD2aKIqbxrcn0wRPH+iqY5cIZWkwr3Z2ioMP+bLTPZ8jc7gInq2mz89KAMprcDQ1e9
+	 hbEfb6Zbo5VRw==
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6188b70abdfso3990011a12.2;
+        Sat, 16 Aug 2025 07:19:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVF/amdUQRwguQV0lQTLA2e382n0kxZ9XFfJUGN49cXOF+baHr6F2oT+3aKPxKXUCG1AqGVQJl6E/Gs9XQ6@vger.kernel.org, AJvYcCX5zS0b0rmQR28tuBM3VDAZMQyhABxBFT6pQ7WysIkXAnLsIaYAclK/PpF8osBfEheyAxPlZnDYPRSHlw==@vger.kernel.org, AJvYcCXzA2/w4hwGEC5nlcgHuPTTmecrgROIADXIgdKLD6NO/soaS5HJd8gKJNsBfu/7U1DzE9qLm+8jVwzo@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGAtkDnWAZ4692waSaYMIscl8behXil8SYwhXrX3S51VsaWJbz
+	OUJxgVrebjT/nxdTCf0aJf1lyQSbCZ3ex5frqKaiYO+Mbvavugo3aRBxpM0PLH1Ag6/GQy8u2he
+	2T+e8LB6kEBCkP5L3OzWky66hFK5jMQM=
+X-Google-Smtp-Source: AGHT+IEUkDFwlk9UhU8t342L0FCVGyMnVyPMWk30oqfsuvVTNwMtk4q2cTnYOAkS6eUbn+3TgBvlePgr0B/LX2tiyFU=
+X-Received: by 2002:a05:6402:2708:b0:618:adff:66e5 with SMTP id
+ 4fb4d7f45d1cf-618b054dbd5mr4317218a12.17.1755353949346; Sat, 16 Aug 2025
+ 07:19:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20250816035027.11727-2-ziyao@disroot.org> <20250816035027.11727-3-ziyao@disroot.org>
+In-Reply-To: <20250816035027.11727-3-ziyao@disroot.org>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Sat, 16 Aug 2025 22:18:57 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H5ZQQpHS_b9UL8UNgX9MH8-i4DV8bid00vEDzg76rgebw@mail.gmail.com>
+X-Gm-Features: Ac12FXwCN0XtFPhP6PgPuh0T8gncotsiBAGxXqlAdAXBDWQBMIikImgkiykBIWA
+Message-ID: <CAAhV-H5ZQQpHS_b9UL8UNgX9MH8-i4DV8bid00vEDzg76rgebw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: gpio: loongson: Document GPIO controller
+ of 2K0300 SoC
+To: Yao Zi <ziyao@disroot.org>
+Cc: Yinbo Zhu <zhuyinbo@loongson.cn>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	WANG Xuerui <kernel@xen0n.name>, Philipp Zabel <p.zabel@pengutronix.de>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>, 
+	Kexy Biscuit <kexybiscuit@aosc.io>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, 16 Aug 2025 16:46:59 +0800
-iuncuim <iuncuim@gmail.com> wrote:
-
-Hi,
-
-> From: Mikhail Kalashnikov <iuncuim@gmail.com>
-> 
-> After adding the phy bindings, we can also add dwc3 node, which uses the
-> previously added usbphy2 and part of usb3 from combophy.
-> All settings declared in dwc3 node are obtained from the x96qproplus' dtb.
-> BSP contains an additional glue driver for dwc3, but it seems that it is
-> not needed.
-> 
-> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
+On Sat, Aug 16, 2025 at 11:51=E2=80=AFAM Yao Zi <ziyao@disroot.org> wrote:
+>
+> Loongson 2K0300 ships a GPIO controller whose input/output control logic
+> is similar to previous generation of SoCs. Additionally, it acts as an
+> interrupt-controller supporting both level and edge interrupts and has a
+> distinct reset signal.
+>
+> Describe its compatible in devicetree. We enlarge the maximum value of
+> ngpios to 128, since the controller technically supports at most 128
+> pins, although only 106 are routed out of the package. Properties for
+> interrupt-controllers and resets are introduced and limited as 2K0300
+> only.
+>
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
 > ---
->  .../arm64/boot/dts/allwinner/sun55i-a523.dtsi | 21 +++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> index 233365496..ec170888a 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> @@ -606,6 +606,27 @@ mdio0: mdio {
->  			};
->  		};
->  
-> +		dwc3: usb@4d00000 {
-> +			compatible = "snps,dwc3";
-
-Wouldn't we need an A523 specific compatible string first?
-
-> +			reg = <0x04d00000 0x100000>;
-> +			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-> +			dr_mode = "host";
-> +			clocks = <&ccu CLK_MBUS_USB3>, <&ccu CLK_USB3>,
-> +				 <&ccu CLK_USB2>, <&ccu CLK_USB3_SUSPEND>;
-> +			clock-names = "bus_clk", "ref_clk3", "ref_clk2", "suspend";
-
-How does this work, exactly? I see "bus_clk" (deprecated, should be
-"bus_early") and "suspend" in the bindings and the Linux driver, but
-where do ref_clk3 and ref_clk2 come from, and more importantly who is
-going to use them? IIUC, the binding hints that certain implementations
-could need more clocks, but then it's their responsibility to parse and
-enable them, in platform specific glue code, I think.
-
-
-
-> +			maximum-speed = "super-speed";
-> +			phy_type = "utmi";
-> +			snps,dis_enblslpm_quirk;
-> +			snps,dis-u1-entry-quirk;
-> +			snps,dis-u2-entry-quirk;
-> +			snps,dis_u3_susphy_quirk;
-> +			snps,dis_u2_susphy_quirk;
-> +			snps,dis_rxdet_inp3_quirk;
-> +			phys = <&usbphy 2>, <&combophy>;
-
-Related to my comment on the other DT patch, this should be
-"<&combophy 0>" (with "#phy-cells = <1>;" in the PHY node, to be forward
-compatible.
-
-Cheers,
-Andre
-
-
-> +			phy-names = "usb2-phy", "usb3-phy";
-> +			status = "disabled";
-> +		};
+>  .../bindings/gpio/loongson,ls-gpio.yaml       | 28 ++++++++++++++++++-
+>  1 file changed, 27 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml=
+ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+> index b68159600e2b..69852444df23 100644
+> --- a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+> @@ -14,6 +14,7 @@ properties:
+>      oneOf:
+>        - enum:
+>            - loongson,ls2k-gpio
+> +          - loongson,ls2k0300-gpio
+>            - loongson,ls2k0500-gpio0
+>            - loongson,ls2k0500-gpio1
+>            - loongson,ls2k2000-gpio0
+> @@ -36,7 +37,7 @@ properties:
+>
+>    ngpios:
+>      minimum: 1
+> -    maximum: 64
+> +    maximum: 128
+>
+>    "#gpio-cells":
+>      const: 2
+> @@ -49,6 +50,14 @@ properties:
+>      minItems: 1
+>      maxItems: 64
+>
+> +  "#interrupt-cells":
+> +    const: 2
 > +
->  		combophy: phy@4f00000 {
->  			compatible = "allwinner,sun55i-a523-usb3-pcie-phy";
->  			reg = <0x04f00000 0x100000>;
+> +  interrupt-controller: true
+ls2k300 supports interrupt-controller while others don't?
 
+Huacai
+
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -58,6 +67,23 @@ required:
+>    - gpio-ranges
+>    - interrupts
+>
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: loongson,ls2k0300-gpio
+> +    then:
+> +      required:
+> +        - "#interrupt-cells"
+> +        - interrupt-controller
+> +        - resets
+> +    else:
+> +      properties:
+> +        "#interrupts-cells": false
+> +        interrupt-controller: false
+> +        resets: false
+> +
+>  additionalProperties: false
+>
+>  examples:
+> --
+> 2.50.1
+>
 
