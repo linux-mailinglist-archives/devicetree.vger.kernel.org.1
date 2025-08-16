@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-205387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81AA6B28E0C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 15:16:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D805B28E1F
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 15:24:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD02D5C5FAF
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 13:16:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 799E35C6995
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 13:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F64E2D8760;
-	Sat, 16 Aug 2025 13:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B07742E4265;
+	Sat, 16 Aug 2025 13:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DHCV/+0/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QhRwEavN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20426BE46;
-	Sat, 16 Aug 2025 13:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81BA9BE46;
+	Sat, 16 Aug 2025 13:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755350211; cv=none; b=AQlsslzXQv/lYGt3dkavQfC41ypq/nb15JSAKSDq/x5L2xJZ8xXbFJWfkmuuAs19YvUJMsN3oqPlo9BFq1d32RV+5WG1qFUfKkhQWD4ozmzXwdUJzDIHjmrp20eqc98wd31kK88VfFD7sn28VQr+O760D7xpM2jAJyltIagohJ4=
+	t=1755350665; cv=none; b=osRoxPNSKgQ3jax24QUe1Sd4717gW9k/ax6C8WskpqNtwOZt6mxTXx9gmd8/XSEskTTCC/aeM+OGBOTwc3pZuyczliBm7bCTDR1eGpQ2QLbsN0fXZ8i37/ja4+lRk0xNBURabgIAzmslVOf1tyWyzyOTO2SocFffvqNmGFwhbyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755350211; c=relaxed/simple;
-	bh=xg5WwaXC31zocxGYhM43TBO5weENvX9hgjSvsSRgut8=;
+	s=arc-20240116; t=1755350665; c=relaxed/simple;
+	bh=oHEiGnFxFtU/G+50iP8aQgUkZU9yifzTqwhFxxZyrSA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DvSQ9skyYs7QZzeN8R3U95d3VufaVozz5i891XxQ6wTH40aMyKF3r5efYQ3cyoAgFHQxfwBlqp3P26khJdz5iZXzBeCT6gEL+lwsH+ZyBsJNllQauNWp6cCGKicieTnEzduzDP/ujUSCYcEPOlTSqHbu6RJv+bpW7gb3stwNfs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DHCV/+0/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEC30C4CEEF;
-	Sat, 16 Aug 2025 13:16:45 +0000 (UTC)
+	 MIME-Version:Content-Type; b=cqIffD75uVnxbtvLiXi9nnzopU2qy3S5J8xEfY7igZjoW5XBC3ygK8y8oRJ1I+ybBcBO7c4gDVdnOc0+Nh90O0TTCJNb9pOemedn3HvmIxQgfamUVD93HpNc06gL7VRjmo88BN3gyfI7zhl4bPmhxWIYnV7DT0kKlKIR5JSQ0kE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QhRwEavN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8E0CC4CEEF;
+	Sat, 16 Aug 2025 13:24:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755350210;
-	bh=xg5WwaXC31zocxGYhM43TBO5weENvX9hgjSvsSRgut8=;
+	s=k20201202; t=1755350664;
+	bh=oHEiGnFxFtU/G+50iP8aQgUkZU9yifzTqwhFxxZyrSA=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DHCV/+0/eYi0UmiBwxBy22tY+RpoiqHVFqF/PC+75eLeALQ0sTdt63hRe0AFUp80z
-	 mckas/JjNiZ6nzv96CoxQVJkxW1OYr1kaxfowq61YZNqZvQASb8jw7SP8veDjeTZuC
-	 /k4qBoxS/F+uA/gJfQO718eUx2z7oFh7Dq1QfkXxNyv5phYZ3cY24vbcGf5G2pmqn2
-	 MLytbaLgZxoLqmEeb0Lq1OJk+BfaC7s58MtNPQ3x2wAnh2zomxXEkNWUz4ANZnow8u
-	 u+TXg4x33nYSAdIdssBcKN6g6LgT8mRzwk+GTU/6KfJg/mYVdNZP1SbCZF7UIIEnyZ
-	 GXbKJZQRjP8Vw==
-Date: Sat, 16 Aug 2025 14:16:40 +0100
+	b=QhRwEavN1HGnqLOKneP0njEW6qD4myASz+2qyQNnU0brtQLMtxKqCS4j9UfHYJrLF
+	 tqQlu9j24mqiaSsHi7wH6tefcD2+wlRCXkPDxBgSXFDL7X/B7oIu2jryOIEJlhgAyh
+	 79/lAge9btXnUUohpZxx9ruj3+osTF5jmTmpbghOf3IQHuL26jWpW7y5DGCYKU+tPS
+	 pioOrdkNZKGbGGXJFGXsW3f10iDLABwIM5byOUGkH+6utddSXKDdYa54YtoGce4yS8
+	 If20SKPxzqYPn5n0WmnZScza9csXrkHpceijk70PBzarffuiLFRgbpAebAr72lzRPd
+	 cdVU+A1b052Ng==
+Date: Sat, 16 Aug 2025 14:24:15 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <Michael.Hennerich@analog.com>,
- <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <jonath4nns@gmail.com>
-Subject: Re: [PATCH 2/4] iio: adc: ad7768-1: introduce chip info for future
- multidevice support
-Message-ID: <20250816141640.4059d337@jic23-huawei>
-In-Reply-To: <22ea35425827176a842ea0e523040acd20e27bcc.1754617360.git.Jonathan.Santos@analog.com>
-References: <cover.1754617360.git.Jonathan.Santos@analog.com>
-	<22ea35425827176a842ea0e523040acd20e27bcc.1754617360.git.Jonathan.Santos@analog.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: iio: Replace bouncing Analog emails
+Message-ID: <20250816142415.01e29012@jic23-huawei>
+In-Reply-To: <20250812132445.75398-2-krzysztof.kozlowski@linaro.org>
+References: <20250812132445.75398-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -62,52 +62,150 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 12 Aug 2025 23:48:57 -0300
-Jonathan Santos <Jonathan.Santos@analog.com> wrote:
+On Tue, 12 Aug 2025 15:24:46 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> Add Chip info struct in SPI device to store channel information for
-> each supported part.
-> 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-Some minor comments
+> Emails to stefan.popa@analog.com and alexandru.tachici@analog.com bounce
+> permanently:
+>=20
+>   Remote Server returned '550 5.1.10 RESOLVER.ADR.RecipientNotFound; Reci=
+pient not found by SMTP address lookup'
+>=20
+> so replace them with Marcelo Schmitt and Nuno S=C3=A1 (listed alphabetica=
+lly
+> by first name) from Analog where appropriate.
+>=20
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks for the patch and to Marcelo and Nuno for covering these.
+
+Applied.
 
 > ---
->  drivers/iio/adc/ad7768-1.c | 76 ++++++++++++++++++++++++++------------
->  1 file changed, 53 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-> index a2e061f0cb08..36ba208fc119 100644
-> --- a/drivers/iio/adc/ad7768-1.c
-> +++ b/drivers/iio/adc/ad7768-1.c
-> @@ -106,6 +106,7 @@
->  #define AD7768_GPIO_READ_MSK		GENMASK(3, 0)
->  
->  #define AD7768_VCM_OFF			0x07
-> +#define AD7768_CHAN_INFO_NONE		0
+>=20
+> Changes in v2:
+> 1. Add Nuno, based on discussions on the list.
+> 2. Add Rob's Ack.
+>=20
+> This change got agreement on the list, but still would be nice if you
+> folks Ack it formally.
+> ---
+>  Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml | 3 ++-
+>  Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml   | 3 ++-
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml      | 3 ++-
+>  Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml    | 1 -
+>  Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml     | 3 ++-
+>  Documentation/devicetree/bindings/iio/frequency/adf4371.yaml   | 3 ++-
+>  Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml   | 3 ++-
+>  7 files changed, 12 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.ya=
+ml b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
+> index 3dc973b98f81..a92e153705f3 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: ADIS16240 Programmable Impact Sensor and Recorder driver
+> =20
+>  maintainers:
+> -  - Alexandru Tachici <alexandru.tachici@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno S=C3=A1 <nuno.sa@analog.com>
+> =20
+>  description: |
+>    ADIS16240 Programmable Impact Sensor and Recorder driver that supports
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml=
+ b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+> index 88aa67bf2280..0ba0df46c3a9 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer
+> =20
+>  maintainers:
+> -  - Stefan Popa <stefan.popa@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno S=C3=A1 <nuno.sa@analog.com>
+> =20
+>  description: |
+>    Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer that su=
+pports
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> index 7146a654ae38..4dd5395730c1 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> @@ -8,7 +8,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices AD7124 ADC device driver
+> =20
+>  maintainers:
+> -  - Stefan Popa <stefan.popa@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno S=C3=A1 <nuno.sa@analog.com>
+> =20
+>  description: |
+>    Bindings for the Analog Devices AD7124 ADC device. Datasheet can be
+> diff --git a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml =
+b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+> index 5207c919abe0..eac48166fe72 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+> @@ -9,7 +9,6 @@ title: Linear Technology / Analog Devices LTC2496 ADC
+>  maintainers:
+>    - Lars-Peter Clausen <lars@metafoo.de>
+>    - Michael Hennerich <Michael.Hennerich@analog.com>
+> -  - Stefan Popa <stefan.popa@analog.com>
+> =20
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml b=
+/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
+> index 82b0eed6a7b7..091cc93f1f90 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
+> @@ -8,7 +8,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices AD5770R DAC device driver
+> =20
+>  maintainers:
+> -  - Alexandru Tachici <alexandru.tachici@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno S=C3=A1 <nuno.sa@analog.com>
+> =20
+>  description: |
+>    Bindings for the Analog Devices AD5770R current DAC device. Datasheet =
+can be
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml=
+ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> index 53d607441612..2e1ff77fd1de 100644
+> --- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices ADF4371/ADF4372 Wideband Synthesizers
+> =20
+>  maintainers:
+> -  - Popa Stefan <stefan.popa@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno S=C3=A1 <nuno.sa@analog.com>
+> =20
+>  description: |
+>    Analog Devices ADF4371/ADF4372 SPI Wideband Synthesizers
+> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml=
+ b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
+> index 7a1a74fec281..43ecf46e9c20 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices ADIS16480 and similar IMUs
+> =20
+>  maintainers:
+> -  - Alexandru Tachici <alexandru.tachici@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno S=C3=A1 <nuno.sa@analog.com>
+> =20
+>  properties:
+>    compatible:
 
-I'm not convinced this is worthwhile vs 0 which is fairly obviously
-a 'nothing to see here' value.
-
->  
->  #define AD7768_TRIGGER_SOURCE_SYNC_IDX 0
->  
-> @@ -213,6 +214,13 @@ static const struct iio_scan_type ad7768_scan_type[] = {
->  	},
->  };
->  
-> +struct ad7768_chip_info {
-> +	const char *name;
-> +	const struct iio_chan_spec *channel_spec;
-> +	const unsigned long *available_masks;
-> +	int num_channels;
-
-I guess hole concerns pushed num_channels after the pointers.
-That's fine but if you move available_masks up one line, then
-we can still have channel_spec and the thing that says
-how bit it is next to each other.
-
-> +};
 
