@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9431B28C7F
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 11:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39071B28C8A
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 11:40:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB753B03331
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 09:33:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE9CDB01C1D
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 09:40:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F77D24A06B;
-	Sat, 16 Aug 2025 09:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9015C26CE03;
+	Sat, 16 Aug 2025 09:40:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LWylBKzm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J7YkPL+e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110AD24A043;
-	Sat, 16 Aug 2025 09:33:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 646D3257831;
+	Sat, 16 Aug 2025 09:40:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755336794; cv=none; b=brdMc4mGbKdRzTK3no4xmFklOs9LAypu2i6o1suPs36qLz+npPJJnKuc+nLLUYYq8Q39FslL/9ENkc2j4KSIrRXxQfxLt0AMnUJVawQdxYbPj7yEcej5nrrybpqLwj6J0UOHVyvA0bNoYODAQKidYbqYgveKBXcZSUoxhCQiIqo=
+	t=1755337244; cv=none; b=U8Fbq5o7QMe129XTk3w+YDe1uFLDS0PlYq5kbf3VNtw/m75wNvLsw9kIWRZxaNV6545+c7ZhfqvCVqb6XYSvkB+kYxEM/ppSd3vmd2mEmRueh2LumtGSqLNBuMVT9Y2ckWOrCtRaiehYZROJxHzF3143rH0ExOrCXVKVV5c6aCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755336794; c=relaxed/simple;
-	bh=CGm9yLJptkx/owDsJQBhgom8+2ST8ifFCJpbZhGlWus=;
+	s=arc-20240116; t=1755337244; c=relaxed/simple;
+	bh=D3g4jWwGtvZ7o19bjhqBPgm4csrgDjOoUZM9+vHRBjI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OumtKLtWjVgad+DeCbLrNK3+woiPX63Qb1MLfq/YL2HXHoK/MFz+OaPdBWksUhQjt1/bPYMCj/Q5c4K2L6cDO6KxQhKlBH2YSwAkD2DZRw9/taTBkNUx5/vJBtgOmaY+FX2Im2SFl9ufC8BhLFrVYDgHLKZq7UVoY7MGILg7nW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LWylBKzm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2AFAC4CEEF;
-	Sat, 16 Aug 2025 09:33:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RUDaarMIEuhSzbTKvzl72SA3JarTbF9WqIh1qgR1I+R3CqYko8jnklFgmPn03PwCjHrR2ReEFCWJw6ydwqdev5CT5Nh6c0FwS2CQLYa6N2ydD7UnTK8CuG/fVlSLRQDWWbZ3Us58soYZBivFBbI/xl9uqdqu+TN1EISpjn50HOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J7YkPL+e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49CF3C4CEEF;
+	Sat, 16 Aug 2025 09:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755336793;
-	bh=CGm9yLJptkx/owDsJQBhgom8+2ST8ifFCJpbZhGlWus=;
+	s=k20201202; t=1755337244;
+	bh=D3g4jWwGtvZ7o19bjhqBPgm4csrgDjOoUZM9+vHRBjI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LWylBKzmboh6g8QmqLgQs7AM6K5L8Ww3TEfU0JKccbD8j58oEDnl4gEKayAhdfpZX
-	 r6zVnfVUCKMPN8BuOTY8mnF4r5G2Tzu21HFIQeU0kJ+0QX+v4PH/7CuRpUAPNWskel
-	 fb1pLoAWdJAqchrxf38Z6rnzaWcq99jMrqZiXG+Nrcm38nek4IZ9+3o1x4aBT5e9pK
-	 i4wA4r1F+z6jvEASMqrWEv0IjaHPQtYDi9tHRRnYQcF8enh9sqptmILGMUg9rP7pbH
-	 iHMKhNcmlNzE9cJFcB8cWSA42xM8L8p0G+DwEwYFDaSC+wD2aD05H/GdbYcKeKa78g
-	 ofyMhmRA4sUNg==
-Message-ID: <484e4ff2-c7b2-4087-8850-5a972e7c82b4@kernel.org>
-Date: Sat, 16 Aug 2025 11:33:07 +0200
+	b=J7YkPL+egRSh6WKtKAp4CEB5wFwl8iatm/4g03HskfXqOF3nDF2hzp1UAbyUeGeH7
+	 rHxF0/ACVzL6NW9YAIDAeWUngzB09bneVsbJu+Tqz89Fg5JQj8bpk3odpN3csHGWtF
+	 CvUGJTLNrG7VVLvlcK1UEQVKxlLeI8gDulf89D7faXLuZbSd1ze15Mv6IiHjCB16KL
+	 6n47tl2fo5wx/5OuxMiTvDsa/iQ1v0DrkUj0ARmwlMa87IkeVoEA66RdZTRlJIIOrN
+	 /ZJCMUr67TL5pxSps0WFnozKcEIKDEz0sZi3qGL9LEePeyGnosVAR3yuIcQMLXgoIt
+	 k9yIK2F+Vs+qg==
+Message-ID: <f9903242-beec-4506-af20-2f8fc94d53cc@kernel.org>
+Date: Sat, 16 Aug 2025 11:40:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] phy: allwinner: a523: add USB3/PCIe PHY driver
-To: iuncuim <iuncuim@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Andre Przywara
- <andre.przywara@arm.com>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-sunxi@lists.linux.dev
-References: <20250816084700.569524-1-iuncuim@gmail.com>
- <20250816084700.569524-5-iuncuim@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Document J-Core
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Artur Rojek <contact@artur-rojek.eu>, Rob Landley <rob@landley.net>,
+ Jeff Dionne <jeff@coresemi.io>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250815194806.1202589-1-contact@artur-rojek.eu>
+ <20250815194806.1202589-2-contact@artur-rojek.eu>
+ <68a6d0a7-b245-456d-9c7e-60fbf08c4b32@kernel.org>
+ <CAMuHMdVj8r_voaXqVdt07fRT5mdJJ4B2NFiK9=XhtYDCuRgz1g@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,76 +110,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250816084700.569524-5-iuncuim@gmail.com>
+In-Reply-To: <CAMuHMdVj8r_voaXqVdt07fRT5mdJJ4B2NFiK9=XhtYDCuRgz1g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/08/2025 10:46, iuncuim wrote:
-> +
-> +	phy->reset = devm_reset_control_get(dev, NULL);
-> +	if (IS_ERR(phy->reset)) {
-> +		dev_err(dev, "failed to get reset control\n");
-> +		return PTR_ERR(phy->reset);
+On 16/08/2025 10:22, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
+> 
+> On Sat, 16 Aug 2025 at 10:18, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> On 15/08/2025 21:48, Artur Rojek wrote:
+>>> J-Core is a clean-room open source processor and SoC design using the
+>>> SuperH instruction set.
+>>>
+>>> The 'jcore' prefix is in use by IP cores originating from this design.
+>>>
+>>> Link: https://j-core.org
+>>> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+>>
+>> How is it possible if this is v1? If this is not v1, where is changelog
+>> and why isn't it marked as vx?
+> 
+> The patch series had several iterations (v0, v-1, v-2 ;-), with a limited
+> audience.
 
-Syntax is return dev_err_probe.
-
-> +	}
-> +
-> +	phy->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(phy->regs))
-> +		return PTR_ERR(phy->regs);
-> +
-> +	phy->regs_clk = phy->regs + PHY_CLK_OFFSET;
-> +	if (IS_ERR(phy->regs_clk))
-> +		return PTR_ERR(phy->regs_clk);
-> +
-> +	phy->phy = devm_phy_create(dev, NULL, &sun55i_usb3_pcie_phy_ops);
-> +	if (IS_ERR(phy->phy)) {
-> +		dev_err(dev, "failed to create PHY\n");
-> +		return PTR_ERR(phy->phy);
-> +	}
-> +
-> +	phy_set_drvdata(phy->phy, phy);
-> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +
-> +	ret = sun55i_usb3_pcie_clk_init(phy);
-> +	if (ret)
-> +		return ret;
-> +	dev_info(phy->dev, "phy version is: 0x%x\n", readl(phy->regs));
-
-
-This should be rather dev_dbg. See coding style.
-
-> +
-> +	return PTR_ERR_OR_ZERO(phy_provider);
-> +}
-> +
-> +static const struct of_device_id sun55i_usb3_pcie_phy_of_match[] = {
-> +	{ .compatible = "allwinner,sun55i-a523-usb3-pcie-phy" },
-
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
-
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, sun55i_usb3_pcie_phy_of_match);
-> +
-> +static struct platform_driver sun55i_usb3_pcie_phy_driver = {
-> +	.probe	= sun55i_usb3_pcie_phy_probe,
-> +	.driver = {
-> +		.of_match_table	= sun55i_usb3_pcie_phy_of_match,
-> +		.name  = "sun55i-usb3-pcie-phy",
-> +	}
-> +};
-> +module_platform_driver(sun55i_usb3_pcie_phy_driver);
-> +
-> +MODULE_DESCRIPTION("Allwinner A523 USB3/PCIe phy driver");
-> +MODULE_AUTHOR("Mikhail Kalashnikov <iuncuim@gmail.com>");
-> +MODULE_LICENSE("GPL");
-
+Thanks, would be nice to see it reflected somewhere.
 
 Best regards,
 Krzysztof
