@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-205376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 057C7B28D9E
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:22:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6125B28DA6
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:28:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74A1B1BC897E
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:23:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46C271C8317E
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E3AB2C0F9D;
-	Sat, 16 Aug 2025 12:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C8692D028F;
+	Sat, 16 Aug 2025 12:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iMk0RpmS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hyyn2Yko"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3036F2C0F81;
-	Sat, 16 Aug 2025 12:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51031202963;
+	Sat, 16 Aug 2025 12:28:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755346959; cv=none; b=ktxM2UDhi3I+Vi2kTKUgl6WTPkZZdEuqTy9VJo28JvDQGChKmfH5n93Tf7OEKonj0WTKeV5lti7d+h2URckd2rqs0x6OJe/tNmhT2UeQBb1kHO1B2ZcWTlfbAYcBSTm6rgwoznH/7Od5pX3pTOEJNohG191Xsa1Hg8uipyQBX9M=
+	t=1755347313; cv=none; b=atE6wv+tlcYzBWMdpG6wbOSeJq87uiAnAzM2gU9RNODtXlvT2yAdWydbHrA1/3FuDllLkFTzBCljXBWQDkrsEp7QxM6gGW0uISQ+w6w5Aw8xVZQrdRg/xH14NrKjvg/4IWCfoTKbNHglrdI0rVwxK1MzaGBMDXST+/oOZCbcTks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755346959; c=relaxed/simple;
-	bh=vAtVNWIGht3Uq/xI95E4p6Nn6cD8BdQvgNswdlPeAeM=;
+	s=arc-20240116; t=1755347313; c=relaxed/simple;
+	bh=LJeFZtZTd/y7pEigZxfXECcr2D/HhqEwT40BN7OnCwE=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=E5heZls0xxTUnjTz+7dYsdDBMl7Fjeph2VUihrVjBZ/RxACOag22F0aTpzUuFDrpvsXLksgbx/cEXZ6LmIU1Rqd+unM7SrQGdfnXc6WufaMqkFKQHHkvi9fw6M/MPid77Ztmf2HRVKrUfExP43OdZFwD91hGNMdSPlFErb4jyZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iMk0RpmS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A9CDC4CEEF;
-	Sat, 16 Aug 2025 12:22:30 +0000 (UTC)
+	 MIME-Version:Content-Type; b=t7jR5JfV+NZqkxP+7u/+4264evfgEwj5vYMZirOB14cCKof/U3G02fvfHyf0as1tmvI8j/Zhmd8h0i/NPHRbP+KtwokS455vaRDeKWZ5S5AXrDxuq5HBSPdUBVA+bC46y8y9X4t5FuJsTLbk0Ig6quiyKshvGefHh5+NwBUhe4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hyyn2Yko; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CAB9C4CEEF;
+	Sat, 16 Aug 2025 12:28:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755346956;
-	bh=vAtVNWIGht3Uq/xI95E4p6Nn6cD8BdQvgNswdlPeAeM=;
+	s=k20201202; t=1755347311;
+	bh=LJeFZtZTd/y7pEigZxfXECcr2D/HhqEwT40BN7OnCwE=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=iMk0RpmSvXelHX3acnouIxrjJs6QVRmSOD6KvE31Bkv8f+cW4xvq6klHL8Dma8ge1
-	 wCnvfVzjB7mUTZBWFJsAL17HtIaufvsUFtrnEi/A+greRqOOH/EvMVZLPzr6KZYwLP
-	 J/Fd2YbX8Pahz8iqBFu2ivuiYVWTGwl+ceBNboFjAkMQlfsHVp7PXo2UwyndzGih0k
-	 EOXYyaA8yWoz8yIBDYAG264WnXZCXfckXJX0E3G+LIHHsteXCxor0eceQvKKrEsdRQ
-	 XrMGxO4P4GhX3nmEytdr9oukZjr8lpO8PTPA0YEjayHzDGyatVueED5BhtZB5BDHON
-	 SHXwrawxhpVhg==
-Date: Sat, 16 Aug 2025 13:22:26 +0100
+	b=Hyyn2Yko7QeeCmR0DNlCNH3cd4y8EfJ6ln/6wWQJnuXhAAlZ3gAiJZIuxpcWVPP4z
+	 F0cznSiLVlmWuG2gudGIZZglWw+mZR1HUTX3t3emy8nRT5Jo4na49PtomzDuhtQZ1E
+	 DNgW6m+ceGjNliKFeB+Q3pwShmHDX+TiCL0C+yno9nthZ3WUBw73vykUTx3+rnO8W4
+	 cv0UgID+MCDuBWrsQ3iYjqgefVPgW4fNea/nGscBWNewLRCtKkXIYUhWy+JhzF5sWK
+	 mT7jk3LMU4HvwY+6DzbPsIua7iwilfxxj+aco4AIzzUAAQ2mH05rrj5k0i0wIYDjVj
+	 d49EsVy55WRwA==
+Date: Sat, 16 Aug 2025 13:28:23 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, David
- Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+To: David Lechner <dlechner@baylibre.com>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Nuno =?UTF-8?B?U8Oh?=
  <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
  <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 00/11] Support ROHM BD79105 ADC
-Message-ID: <20250816132226.08e70314@jic23-huawei>
-In-Reply-To: <cover.1754901948.git.mazziesaccount@gmail.com>
-References: <cover.1754901948.git.mazziesaccount@gmail.com>
+ <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Sukrut Bellary <sbellary@baylibre.com>,
+ Lothar Rubusch <l.rubusch@gmail.com>
+Subject: Re: [PATCH 2/3] iio: adc: adc128s052: Simplify matching chip_data
+Message-ID: <20250816132823.0d987b20@jic23-huawei>
+In-Reply-To: <d817f2c9-063f-4506-888f-f3c6faef53c4@baylibre.com>
+References: <cover.1755159847.git.mazziesaccount@gmail.com>
+	<b91ca4c576aac225525bbd7cd904bf684e796987.1755159847.git.mazziesaccount@gmail.com>
+	<d817f2c9-063f-4506-888f-f3c6faef53c4@baylibre.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,73 +68,37 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 11 Aug 2025 11:50:00 +0300
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Thu, 14 Aug 2025 09:53:21 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-> Add support for the ROHM BD79105 ADC
-> (and do some minor simplifications to the ad7476 driver while at it).
+> On 8/14/25 3:35 AM, Matti Vaittinen wrote:
+> > The adc128s052 driver supports a few different ICs. IC specific
+> > configuration data is stored in an array. IC data, residing in a
+> > specific point of the array, is pointed from the SPI device match data.
+> > 
+> > There is no need to have the chip config data structures in an array
+> > and splitting them out of an array has at least following benefits:
+> > 
+> > - Chip-specific structures can be named after the chips they support.
+> >   This makes referring them a tad cleaner, compared to using a generic
+> >   array name with a numerical index.
+> > 
+> > - Avoid all potential 'out of bounds' errors which can result if the
+> >   array is changed.
+> > 
+> > Split the chip configuration data array to individual structures.
+> > 
+> > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > 
+> > ---  
+> Reviewed-by: David Lechner <dlechner@baylibre.com>
 > 
-> The first 2 patches were originally sent as an RFC:
-> https://lore.kernel.org/all/cover.1754041258.git.mazziesaccount@gmail.com/
+Any racing series get to rebase on top of this.
 
-Hi Matti
+Applied this patch as it is good in it's own right.
 
-Applied to the togreg branch of iio.git. I'll initially push out as testing
-though to get some build coverage before there is any chance of making
-a mess of linux nex.t
-
-Thanks
+Thanks,
 
 Jonathan
-
-> 
-> Revision history:
->   v3 => v4:
->    - Add patch:
->      8/11 "dt-bindings: iio: adc: ad7476: Drop redundant prop: true"
->    - Drop redundant true -branches also from the bd79105 binding
->    - Other patches unchanged.
-> 
->   v2 => v3:
->    - Drop 5/10 "Limit the scope of the chip_info"
->    - Add 5/10 "use *_cansleep GPIO APIs"
->    - Multiple fixes as suggested during v2 review. More accurate
->      changelog included in individual patches
-> 
->   v1 => v2:
->    - Two new patches:
->      5/10 "Limit the scope of the chip_info" and
->      6/10 "Drop convstart chan_spec"
->      Please, let me know if you think some of the changes should be
->      squashed.
->    - Multiple fixes as suggested during v1 review. More accurate
->      changelog included in individual patches
-> 
->   Simplification RFC => ROHM BD79105 support series v1:
->    - Use spi_get_device_match_data()
->    - Fix uV to mV conversion
->    - Rewording of commit message
->    - Added patches 3 to 8.
-> 
-> Matti Vaittinen (11):
->   iio: adc: ad7476: Simplify chip type detection
->   iio: adc: ad7476: Simplify scale handling
->   iio: adc: ad7476: Use mV for internal reference
->   iio: adc: ad7476: Use correct channel for bit info
->   iio: adc: ad7476: use *_cansleep GPIO APIs
->   iio: adc: ad7476: Drop convstart chan_spec
->   iio: adc: ad7476: Conditionally call convstart
->   dt-bindings: iio: adc: ad7476: Drop redundant prop: true
->   dt-bindings: iio: adc: ad7476: Add ROHM bd79105
->   iio: adc: ad7476: Support ROHM BD79105
->   MAINTAINERS: A driver for simple 1-channel SPI ADCs
-> 
->  .../bindings/iio/adc/adi,ad7476.yaml          | 100 +++-
->  MAINTAINERS                                   |   5 +
->  drivers/iio/adc/ad7476.c                      | 461 +++++++++---------
->  3 files changed, 311 insertions(+), 255 deletions(-)
-> 
-> 
-> base-commit: 93ef68672bb353838cdf8314be8765c05768916b
 
 
