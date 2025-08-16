@@ -1,110 +1,114 @@
-Return-Path: <devicetree+bounces-205380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B8B6B28DB9
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:33:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BEB8B28DE1
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:44:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DBE4563D9B
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:32:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 971CE5E5A80
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9788B298CCF;
-	Sat, 16 Aug 2025 12:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA4A12E1C4C;
+	Sat, 16 Aug 2025 12:42:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ec/hCk1f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H+7isR9q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69CDC2288D5;
-	Sat, 16 Aug 2025 12:32:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 481ED23ABA8;
+	Sat, 16 Aug 2025 12:42:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755347541; cv=none; b=UJgh6GG8XFQf2odjpA7V4wZ6nOe84HuiBcHL0mHEBOJV1d0gQXySVoCAieTAkHDmjqFiJEgHAIOWIpCzpkuQamS14x8F3SD7yUDoe3VhZkjFWNhQ7kTotpYxemXrlwjGvSqATBEDRmPtL4X0+gS30jsEvU8reQA7+1+6ePvWquM=
+	t=1755348169; cv=none; b=fYXJQ8t6DHuOrNg66Avs4P8h40xX6PFK08XagpPyr9vjPyzstLEdWOMjJiqJqf40Ld4+2LJd5I/9XPcPJrZFqrlzmMLTLxGC2N8G/OpXOX3au5JDeO08dovck4lvcyfHX3+LC49a+XG3I7RgDuCm3CbsQq93baHcspMKyhwqW1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755347541; c=relaxed/simple;
-	bh=jHJgHjhXE4hy8ohd07eRQXE4pbWJuR7KFLNDqnturro=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FdzhUPpAKzSqxT3CpKjFx0c2ZsGVn3sXUu1xnesLrALNUvVFQBjtBbs4ZRH2qPMq3vlJUkd6aTmXBJ0VgVTdLIbnR2vLBysaEhVkGVjuY50YTV8oy3uBGGrUemz+rfGIfdncXdYdEhb+AfHuWK2vLPG00lz/fyzNCYlC1dqQGos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ec/hCk1f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01404C4CEEF;
-	Sat, 16 Aug 2025 12:32:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755347541;
-	bh=jHJgHjhXE4hy8ohd07eRQXE4pbWJuR7KFLNDqnturro=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ec/hCk1fLjVNcG0EI2rMoiyPS3op8K6IKK2gRKDj6++zRYYi1GmX8nfNH0bzEv8Le
-	 bYgKpcCx3U5c8/KtnbUPkbGt1hWXCodz+KzQx8VypnBE4yKeqj0eVW4lj4pazeXRuI
-	 o3yMZeJ6aXM0Px3pCHMXWG14J/26DUJfxZOwqjdXDcHUl59iL6qDISWG3NHrAe4LRN
-	 0u3Ciyc/utCaxb9sossCXJeOISyDRXJFyEkOrPwK0EusVr3nnxoQSH/oBt8DwR1NzM
-	 Nzqqc766I1QAfG8pmO5y4FlvkPKwNF1qCdzxPopFNIaHoRsY23NUylrCdabcC5WHiC
-	 nP3empU1zAOng==
-Date: Sat, 16 Aug 2025 13:32:11 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Sukrut Bellary <sbellary@baylibre.com>,
- Lothar Rubusch <l.rubusch@gmail.com>
-Subject: Re: [PATCH 2/3] iio: adc: adc128s052: Simplify matching chip_data
-Message-ID: <20250816133211.39a9a0ac@jic23-huawei>
-In-Reply-To: <20250816132823.0d987b20@jic23-huawei>
-References: <cover.1755159847.git.mazziesaccount@gmail.com>
-	<b91ca4c576aac225525bbd7cd904bf684e796987.1755159847.git.mazziesaccount@gmail.com>
-	<d817f2c9-063f-4506-888f-f3c6faef53c4@baylibre.com>
-	<20250816132823.0d987b20@jic23-huawei>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1755348169; c=relaxed/simple;
+	bh=r/5SKdB+89UiON2D9Ym7suFSZvCdbGblSLmzLXDSiKE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lQHG2AcCMwfhkSAs5YrRMgDsaZ0LnUKct5qah3je7+B09Th6JaEccjzUE3rGikxzw3iACXNiskmdvu1AHY+rJg8vLw/57OmlsA6WBTEv7YxSMs0JGy93JyuHa2A/NlHVXnWTh67AmH5vN/M/JnMms0M7XYDrt4vxblP9vQmmuRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H+7isR9q; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b47175fc02fso212477a12.3;
+        Sat, 16 Aug 2025 05:42:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755348167; x=1755952967; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r/5SKdB+89UiON2D9Ym7suFSZvCdbGblSLmzLXDSiKE=;
+        b=H+7isR9qELMfWWMrn7L/LmsLWZ/DGt2beqdtc8z9KHKxJwEq/L14IMx12i01e2Ft1K
+         RuC33SHwsIP1YSxhGKmnQdpyDS1qx+jAYKx04jT4xrsEj3kH84Kbx6bAZJjsYfCRCt+i
+         KD/26asRF84kpvTbvbK3Iov9AWfVYzisbhPYvf67mT63f+8ub/ty+9PTJkGY7WpGVXJK
+         02xB6V/Lr2HU8wuyUJTkGtB5YvThMEjiMWwNoOjcxTrQMXpwrd+1fkP5loyYWavV8QDH
+         UhuQ/gg98EM3hwvS/HLcrV/K9Re9rGnHOzTrT5KMhof+CB2arV4hOsDOn2zPrlyUr2Ih
+         1IkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755348167; x=1755952967;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=r/5SKdB+89UiON2D9Ym7suFSZvCdbGblSLmzLXDSiKE=;
+        b=BPWbfnTPKlAlYwfJMC0PUpk3rRGbElUp/nfx4btB/0dUWoz6rwRSLcz1FToDo6XxLq
+         rxpiTSVZtbLkiuJh7wu3zlqmgCfJqax5PIOdCt9xLzAMeW1zaMQEfdNz2vs5tYqDLaF4
+         jC9RyQ8GzrTg58ezEz1Ma7yhcI4x5T0XT5cChpqIAcbM/iY0LLzh5hMZMhdgC7tY5t8o
+         xsvVe4eNppxHcjFQbCcXaCd/4kqTiNQL0dvJe63JtduDj8lcgx5dxvEAT50iZ2859slZ
+         dxQ2A8WM67LM1Jk+p/YAvXlQdPbUwnaTEjJ8/ocplwcyP9t69/W9HpgfNqkxwpkH0G0h
+         RT/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVG6CueqKUaCI+8VgidbUtA9ZYM4EJxwk7BvqYMI5lp/x8DTnNZwgHrnulN0NFCLQujroewAN+4drvm@vger.kernel.org, AJvYcCXqsKBFoVbU778prBwRcCWaVKhEgaZtlD6IWjLaKZJGFdl4AnauC17L5YTLHkRi00yxf8RqfNsqIhcEz4/fvH0=@vger.kernel.org, AJvYcCXuJThnsOLIqFji5nlnw0tLlUf5eEVuXSxvmx7NLBdEQPYsedGD0lNa/hhl/BHv0fzwZ/J+3c3hq4levtfG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuPuPaO1/P5vK3P0idoVnQYX0aNpYp+3ddXmZ2HTUCVN+E4bSR
+	AhbAB7QGmxbTBGw4oTNRu4/mrXQAmKrMu2acsT+YPAejPZDJMqeZaNdBDucWxviRC4R5gw45K3Y
+	EjmZ0wBtTVR1wkXpcic2YVGqIojZ+vSI=
+X-Gm-Gg: ASbGnctRf7GaVYnC3a18W48Q2cqGldmM2PARbQVKgFkotXrjxf1qOZuBCGrx9YUQxH5
+	r3KfRAxidIaQf41kQk1rwjVGvr/9SXdOk66v9UAQwzq2atMor8PJ+MgRG+tXi3s0ulPWQuBEZXY
+	phf0z/7nSbHhb7H+V5gDiVhF1LsKKsjCLc5ByoGGPGoGPAjJc4PYojVBYri3WNNGrHjTb/EVkJ1
+	06JPMrTIj8eynAz3LQHmxfJ5YxO
+X-Google-Smtp-Source: AGHT+IGovhTP2U7ztW1bWLFAefQYPDOSzbOpM9VBaVzcXcCvzG66sqPV6GyRR7iQuZ/F4UNNjLvMyeBHyPJ87ccq31A=
+X-Received: by 2002:a17:903:11c8:b0:240:33c7:fbf9 with SMTP id
+ d9443c01a7336-2446da155e8mr37204245ad.11.1755348167400; Sat, 16 Aug 2025
+ 05:42:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20250816-rust-overlay-abs-v2-0-48a2c8921df2@beagleboard.org>
+In-Reply-To: <20250816-rust-overlay-abs-v2-0-48a2c8921df2@beagleboard.org>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Sat, 16 Aug 2025 14:42:35 +0200
+X-Gm-Features: Ac12FXz-EXdaXGsWL4T6sgibxvJlg5WSIxqJtbGeuAIXYn9GKBFHeAa0oBFwp9o
+Message-ID: <CANiq72=fQbr0jO_83zsaf13nPvfm8z2HxjxcKPft5MLos+3G2A@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] rust: Add abstractions for applying devicetree overlays
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Jason Kridner <jkridner@beagleboard.org>, Deepak Khatri <lorforlinux@beagleboard.org>, 
+	Robert Nelson <robertcnelson@beagleboard.org>, Miguel Ojeda <ojeda@kernel.org>, 
+	Dhruva Gole <d-gole@ti.com>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Benno Lossin <lossin@kernel.org>, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, 16 Aug 2025 13:28:23 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+On Sat, Aug 16, 2025 at 7:58=E2=80=AFAM Ayush Singh <ayush@beagleboard.org>=
+ wrote:
+>
+> The kernel header currently seems to provide blank implementations of
+> these methods when `CONFIG_OF_OVERLAY` is not enabled. But I am not sure
+> what is rust-for-linux policy here.
 
-> On Thu, 14 Aug 2025 09:53:21 -0500
-> David Lechner <dlechner@baylibre.com> wrote:
-> 
-> > On 8/14/25 3:35 AM, Matti Vaittinen wrote:  
-> > > The adc128s052 driver supports a few different ICs. IC specific
-> > > configuration data is stored in an array. IC data, residing in a
-> > > specific point of the array, is pointed from the SPI device match data.
-> > > 
-> > > There is no need to have the chip config data structures in an array
-> > > and splitting them out of an array has at least following benefits:
-> > > 
-> > > - Chip-specific structures can be named after the chips they support.
-> > >   This makes referring them a tad cleaner, compared to using a generic
-> > >   array name with a numerical index.
-> > > 
-> > > - Avoid all potential 'out of bounds' errors which can result if the
-> > >   array is changed.
-> > > 
-> > > Split the chip configuration data array to individual structures.
-> > > 
-> > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> > > 
-> > > ---    
-> > Reviewed-by: David Lechner <dlechner@baylibre.com>
-> >   
-> Any racing series get to rebase on top of this.
-> 
-> Applied this patch as it is good in it's own right.
-Dropped again given rename discussion on patch 3.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
+In general, if a kernel feature/API has stubs that do nothing when not
+configured, i.e. the API is always present (typically to simplify
+callers), then it is likely the Rust side should also be available
+unconditionally for similar reasons. We had a similar discussion
+around debugfs recently.
 
+Cheers,
+Miguel
 
