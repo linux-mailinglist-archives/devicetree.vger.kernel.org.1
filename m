@@ -1,77 +1,102 @@
-Return-Path: <devicetree+bounces-205409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6AFBB28F27
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 17:29:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE72B28F4F
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 18:05:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 697C6AE69D2
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 15:29:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 640B65C4FB3
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 16:05:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543BA2F60D5;
-	Sat, 16 Aug 2025 15:29:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6921D7E31;
+	Sat, 16 Aug 2025 16:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yoluvoiw"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="HAleAEvw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB28B2ECEBD;
-	Sat, 16 Aug 2025 15:29:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F19D170A37;
+	Sat, 16 Aug 2025 16:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755358161; cv=none; b=fRQ9ZppKSApO4GU1r5vD1fHtvLpOmaqNsVO8kdRqIb1ex73ALuCulkMGXO5UTR2ZjsNXE6gXlCO4A7gRrI8abY9E0ra3tKB/JLPTN+g21mlACENZzZLF5AlhDoSU83dwA6Mhh+fm7xfszbsCCBJge/X7Xd/4OTwhu0C73W7FnSE=
+	t=1755360348; cv=none; b=kCICAIJm18no27lp7qMiqK7k5BEWCW/lSOYklD3vQNUqEd/tWgohE0C2YN/PFo9IK+6ob9VfJ7jZFEa1n0fYqv/lGbVxIC9HxAuUMaEmNvpYeJk+f9bVpqVGjw3Dszjp3fUpBQ2sqmBH4w/Hm5sR6vLlHWiTN8fF8MYmfrQ79h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755358161; c=relaxed/simple;
-	bh=AN3ech0LTfGbrCPbaUNpgbJ2BzWQEov4mSdREN5/rkU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fBgrhImxUECWtftcmkXogZ3PplXAXwa+Z5NZwEmjIT0B+Zr5gXebPcbH/HrJg0lKWH2e/x18jkmTdHkt3A/xKeakp/fha5T9OjaW8FDnxZeTuq/Gbm9dAn5xnlQ/lNTi5WLcaehYByahkJy3mbrJMIB+v9Yhcgi3O4JjW2b3SVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yoluvoiw; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=i5t69DMowoXeK1OBYzzEg7YkLA6qxp/aS77f2fkx2KQ=; b=yoluvoiwmakFg4E9fgAOkcCD+r
-	/l0zeMb89WmbiNZ1XC3sveiTVQhKsuH9gwBXpYVsxbwgKxH6aDLGzJIQC6VNBR+LkbC2wIXDBq1my
-	T1WKmdThP9pfeyTDYqcj9zIASWDR74bOJ0XEhbg/qbQgCP0ONK0EIAlEGUxAsyFmL3Mg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1unIqD-004uct-7Z; Sat, 16 Aug 2025 17:29:09 +0200
-Date: Sat, 16 Aug 2025 17:29:09 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: David Yang <mmyangfl@gmail.com>
-Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [net-next v3 3/3] net: dsa: yt921x: Add support for Motorcomm
- YT921x
-Message-ID: <f4b9a113-51f8-4c5f-9aef-05abf33c4dd9@lunn.ch>
-References: <20250816052323.360788-1-mmyangfl@gmail.com>
- <20250816052323.360788-4-mmyangfl@gmail.com>
+	s=arc-20240116; t=1755360348; c=relaxed/simple;
+	bh=UvLeR1cYc057w10eRLP8ciPQMZDMUaBMqNmqYiFGrZU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i2fLaJPm54fBO3vgqAsDlsbp8iysVUk4QIEZEpNXMn1BMGhMI785csTkYwGH8MmTALywL5AuN7fyVyr1Touhpm1bD5pVrDozIkHLtLzv+H8HdnBBzioPdJUyMQFzxVgjAbGB1MY12RPXTjOkTzwc2oHI/0ZfmceBkP3PHHvg4pQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=HAleAEvw; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=XDYawLrhkzFBHKzvw5+ydZUpT3fCgm/tuXskrC+yzB4=;
+	b=HAleAEvwYL4g8I5qxYQVKEBYmAzOPfGPIg+9mxzOJ/kjnISF0FA3/AVhN1cpI8
+	bTprfPbli/3ytNCfw1/FfKgjiG5twkPesA5N42FRZfqtmdsgDUw7yjp9av12ECoh
+	vAX5VPBEx3s31/LSupph5kJA3aBsCc2viufjqRth4A2vI=
+Received: from [IPV6:240e:b8f:919b:3100:3980:6173:5059:2d2a] (unknown [])
+	by gzsmtp5 (Coremail) with SMTP id QCgvCgAnQJ09rKBoZ+W+AQ--.1722S2;
+	Sun, 17 Aug 2025 00:05:17 +0800 (CST)
+Message-ID: <953620e7-8873-481d-b235-8cbefcb08172@163.com>
+Date: Sun, 17 Aug 2025 00:05:17 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250816052323.360788-4-mmyangfl@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] PCI: of: Relax max-link-speed check to support
+ PCIe Gen5/Gen6
+To: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+ krzk+dt@kernel.org, manivannan.sadhasivam@linaro.org, conor+dt@kernel.org
+Cc: robh@kernel.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250529021026.475861-1-18255117159@163.com>
+ <20250529021026.475861-4-18255117159@163.com>
+Content-Language: en-US
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <20250529021026.475861-4-18255117159@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:QCgvCgAnQJ09rKBoZ+W+AQ--.1722S2
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZr43XF47XF1fuw17Kry8Zrb_yoWDWrgE9F
+	17XrZ3Gr4FkFyYkr1ayrWavrn0v3yrWw4UXryFyw1xAa4rCa4DZFn3uFy5Aa93Aa13JF18
+	JF98Gr1jkrnFkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUUaFAJUUUUU==
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiQw6ro2igp4JksAAAs8
 
-> +#define u64_from_u32(hi, lo) (((u64)(hi) << 32) | (lo))
+Dear Bjorn,
 
-https://lore.kernel.org/lkml/CAHk-=wjLCqUUWd8DzG+xsOn-yVL0Q=O35U9D6j6=2DUWX52ghQ@mail.gmail.com/
+Gentle ping.
 
-	Andrew
+Best regards,
+Hans
+
+On 2025/5/29 10:10, Hans Zhang wrote:
+> The existing code restricted `max-link-speed` to values 1~4 (Gen1~Gen4),
+> but current SOCs using Synopsys/Cadence IP may require Gen5/Gen6 support.
+> This patch updates the validation in `of_pci_get_max_link_speed` to allow
+> values up to 6, ensuring compatibility with newer PCIe generations.
+> 
+> Signed-off-by: Hans Zhang <18255117159@163.com>
+> ---
+>   drivers/pci/of.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index ab7a8252bf41..379d90913937 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -890,7 +890,7 @@ int of_pci_get_max_link_speed(struct device_node *node)
+>   	u32 max_link_speed;
+>   
+>   	if (of_property_read_u32(node, "max-link-speed", &max_link_speed) ||
+> -	    max_link_speed == 0 || max_link_speed > 4)
+> +	    max_link_speed == 0 || max_link_speed > 6)
+>   		return -EINVAL;
+>   
+>   	return max_link_speed;
+
 
