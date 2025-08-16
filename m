@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-205437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D48F6B290F5
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 01:27:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B05EB290FB
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 01:40:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0C13567E72
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 23:27:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4BEAAA7904
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 23:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E1A24468B;
-	Sat, 16 Aug 2025 23:27:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26FD92451F0;
+	Sat, 16 Aug 2025 23:40:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OQDseDI+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GmQ/pG7+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB701EDA2C;
-	Sat, 16 Aug 2025 23:27:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C9827453;
+	Sat, 16 Aug 2025 23:40:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755386872; cv=none; b=kqgPW+qsan4WSkEB9ahu29tEfu5ZwUoZGb9ds12HamJWvlLqsnOy6AA3anHkoiMNzVzeRMgBStMUsPGRCsSMCqx9hauLo531HTF6TxwjURJrMwVSt4UnG3SEuo/IQtLS0D92rYce3zQpWwQaAGkpHiMXxocEorKj5omNK+dQZ38=
+	t=1755387642; cv=none; b=d9LrUNkeAuUpgnSoU9uNyb+/5tHzK0B6BawjzjbAjcr8c5Iyf1t+tSXEG4ZAjfGzS0X4uI8QssTPvTYpgC94l5yJkduYtq4VVaXVvb62Uc3Hoc9iG+vcXdb/kWAcVUuykso8gNcq+2xKNVKe1QPRst/7u6VyDYkAdsKmALq8l4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755386872; c=relaxed/simple;
-	bh=MH+pLrfbqWRbgWT2IxanHwfX7q2c5M1yYZ9GbKJV9eU=;
+	s=arc-20240116; t=1755387642; c=relaxed/simple;
+	bh=ckJymq/i3D1MkEmQ6AWtMEkQD94nmnHooah8eYxorOo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ib9lQMpQKArl0hzXJTZIGibeX4dMKNA6Js1cafKZArx3xByWiopNpLcGjrGjEnjn6oX31YqfUjgh6kk36KyM4xzFU/XoOtr/z1qtMGLkU3ioOZpEfaP8G5GzPGuRh8epf9E20UrKN8V+vR5ZTLWEHA5gCUERHah2NmrhX7jBQxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OQDseDI+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7BB7C4CEEF;
-	Sat, 16 Aug 2025 23:27:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YTPunJS5PubwRrM5OaZh/J5hA3Bd99zecMbOhsyVSmmbM4xKW6d7TkdT5n2MwzDxHBGu80HTsWi5p42bi+ROSqj654ml0v2h1PwLGQn0Ibi9JVXxxQNlsp6DaXg3wzJomOpESt45jQmWolOzdt1VzdkwEGjNxMaDVVz8slA8fyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GmQ/pG7+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DBE0C4CEEF;
+	Sat, 16 Aug 2025 23:40:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755386872;
-	bh=MH+pLrfbqWRbgWT2IxanHwfX7q2c5M1yYZ9GbKJV9eU=;
+	s=k20201202; t=1755387641;
+	bh=ckJymq/i3D1MkEmQ6AWtMEkQD94nmnHooah8eYxorOo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OQDseDI+FFcvvdiy01zIsv/Uf0VWNABprBq5D2c7VYRYlj2++c8UJXCvMqvIk+pYl
-	 5/Twb+qgl2XMD84h+C4e+My2OQfYEz4UBWY9WqV/XcmKCZsrF8I5zTN8wQcigef0s9
-	 /S8Lkgfs3DXkNG94GNK71oeC7PiyCUfbx2zjGEbBCZut1Hjlwu4WING7S02RdiXxf1
-	 wbKqcqBE2zZsdLjKn1fgwzcH22omt8GIoCedunvJTVenSsxcYraXeo/gfHRmBqX7or
-	 qn7ke9AaP0rJ8ald/m/LKEYZCkIN0IL258E98xa1PrXt99ElR35J5Mw6XSrNzTiiAW
-	 o6bY4nXkuBhhw==
-Date: Sat, 16 Aug 2025 16:27:50 -0700
+	b=GmQ/pG7+7LZIToInyHvBssDG18YQizWD5E/PtLWtCnTesyY1d7b0sciHOQQ+j0HJP
+	 hm1y8VU79OZ9kQGzVLW9vE/ZZzPghl5Go5Vlj034273Rsi0y1ClwqRg12fHDEuZAVy
+	 x+eekyH5Wvox9Z2t0XC+Gte53ulwVatFwFfIuodIC1ofVPjLgPGTrEGoE7lBVansfW
+	 KUM8Pvwvj6rmmb0gTpt0Q8NduKR1hC5KUv3kY8rs1CWwtsX62rIF4S/USd9R1Ax6/c
+	 GELmSwFTb702jIdUJPEKd1/UP1Iw4tFWbX2vsNbFGDRIx/SUnoZkyr2OSKGRApMFFB
+	 EpR13QJmMYPoA==
+Date: Sat, 16 Aug 2025 16:40:39 -0700
 From: Drew Fustini <fustini@kernel.org>
 To: Icenowy Zheng <uwu@icenowy.me>
 Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
@@ -50,11 +50,9 @@ Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
 	Conor Dooley <conor+dt@kernel.org>, Han Gao <rabenda.cn@gmail.com>,
 	Yao Zi <ziyao@disroot.org>, linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] riscv: dts: thead: th1520: add soft PWM fan for
- Lichee Pi 4A
-Message-ID: <aKET9i0/+INnOMoX@x1>
+Subject: Re: [PATCH 0/3] Initial thermal management for Lichee Pi 4A board
+Message-ID: <aKEW99MyMU58GCwb@x1>
 References: <20250816093209.2600355-1-uwu@icenowy.me>
- <20250816093209.2600355-4-uwu@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,36 +61,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250816093209.2600355-4-uwu@icenowy.me>
+In-Reply-To: <20250816093209.2600355-1-uwu@icenowy.me>
 
-On Sat, Aug 16, 2025 at 05:32:09PM +0800, Icenowy Zheng wrote:
-> Because of the SoM+Dock design of Lichee Pi 4A, heat dissipation does
-> not work well; fortunately it comes with a fan port with PWM driving
-> capability.
+On Sat, Aug 16, 2025 at 05:32:06PM +0800, Icenowy Zheng wrote:
+> The SoM+Dock design of Lichee Pi 4A is quite bad at dissipating heat, so
+> active cooling is quite important for it.
 > 
-> As the hardware PWM controller of Lichee Pi 4A isn't ready yet, drive it
-> with pwm-gpio driver (software PWM) now.
+> This patchset tries to do some initial active cooling for it, by
+> utilizing software PWM to drive the fan.
 > 
-> A long PWM period is used, because not only software PWM is used, but
-> also the fan port is a 2-pin one and fast PWM might confuse the BLDC
-> driver on fans.
+> Ths 1st patch adds PVT temperature coefficients, as seen in the SoC
+> manual and BSP 6.6 kernel device trees.
 > 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> ---
+> The 2nd patch adds thermal zone information for the 2 thermal sensors in
+> the PVT block.
+> 
+> The 3rd patch adds soft PWM + PWM fan, and makes the fan an active
+> cooling device of the CPU thermal zone. 
+> 
+> Icenowy Zheng (3):
+>   riscv: dts: thead: th1520: add coefficients to the PVT node
+>   riscv: dts: thead: th1520: add initial thermal zones
+>   riscv: dts: thead: th1520: add soft PWM fan for Lichee Pi 4A
+> 
 >  .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 53 +++++++++++++++++++
->  arch/riscv/boot/dts/thead/th1520.dtsi         |  2 +-
->  2 files changed, 54 insertions(+), 1 deletion(-)
+>  arch/riscv/boot/dts/thead/th1520.dtsi         | 29 ++++++++++
+>  2 files changed, 82 insertions(+)
+> 
+> -- 
+> 2.50.1
+> 
 
-Is it possible to reconcile the work that Michal is doing with the
-hardware PWM controller series [1] and this series?
+I just tested this on top of:
+[PATCH v3 0/4] clk: thead: Changes to TH1520 clock driver for disp
+[PATCH v2 0/2] clk: thead: th1520-ap: allow gate cascade and fix padctrl0
 
-The PWM controller does need Rust which works okay for me when using
-llvm but that might not be the case for everyone. Maybe there is some
-way to use the pwm controller if available and then failback to gpio if
-not.
+The fan is spinning when system boots at expected. That is nice that
+GPIO can be used until the PWM controller driver is ready. hwmon0 shows
+both temp inputs holding steady at 43.3 C and 44.4 C.
 
 Thanks,
-Drew 
+Drew
 
-[1] https://lore.kernel.org/linux-riscv/20250806-rust-next-pwm-working-fan-for-sending-v13-7-690b669295b6@samsung.com/
 
