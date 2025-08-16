@@ -1,106 +1,149 @@
-Return-Path: <devicetree+bounces-205329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10234B28BFB
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:44:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 675DFB28C05
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABD8CAA2E7A
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 08:44:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D93C1CE496F
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 08:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E35BE233704;
-	Sat, 16 Aug 2025 08:44:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F6C9239E6C;
+	Sat, 16 Aug 2025 08:47:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="RHOnVL4J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A2+xw3jm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC204C6E;
-	Sat, 16 Aug 2025 08:44:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.181.231.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D735113AD26;
+	Sat, 16 Aug 2025 08:47:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755333880; cv=none; b=bi7SsCkJ1G0BQt33dZYtiOBFLheSf38BcfM5CNut5c8/cTxqzS6J4L142N9fdWW0kXv6s1ePyc3ovAbkMnJBMJNKBlvNDDdE2TfiP/SGHjwxxmfe6c4iooTfSXf5Atfx3VU4CU8FNIf/PdFBh50RBboi9y+i+lidLxiMr1O3B88=
+	t=1755334046; cv=none; b=o4k7N5CCkqKwOP8qw5kjnX1vvSIEgnZH7zGFzJN1sJSdG9rmTRy3m8iYctK+/S6uXwOhkkN5b5S6iax+ZiFmLD77I7w9WuWamlS3iq9vw/QtOdv5unaqccOGtaTR/KsQ83lNnU6KsKZdPZa0Q8pF5HwsOnO0GHHkX7SFcn9Zu9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755333880; c=relaxed/simple;
-	bh=verRMrbZXFe+VsIlxfUpPw5b7wNn0cESVc2gQSnLPHw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NskSbjT3KMVm9YaoUC4juwqBiwlbDCcoxb5kxZkBeYeNHIM44JMv4pcdhhP200HjjpXA5eLzeagZfo/rn1fPlq4iPoJugJtPKuFY8LUSUoLPshIdCx5/9Gbsihv8fLnWhwczFhxxzIw5KIGOENp9VWl7tJxk9YGqBbPAE0TwmUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=RHOnVL4J; arc=none smtp.client-ip=180.181.231.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=rS4K4LFSyVV9u4Lr5r/NAbwVGZRzaf4IaAWZSM7k8qo=; b=RHOnVL4JYMIXTpVtQkAMAvSWPA
-	/1GkQwFnqDMKPBJUGIII/FDJ+lIPiDS3V1q+rDXt+20F+IPg6aI0d1lfpV+jKYrnz2HPdi2B18Yt3
-	obCj+AMW2OEAj7fiS+szusEdZZk/BqDBzlJqImMrFZnoNTSIZelDoKsNR/bxvgXMxCGBKy2sKUzUm
-	5mp0ZwyfGPaHpgNzptZWsIg36nuoAQyP5qdteMN4NTC3Av0Cm/KXj4Nk/c/UiWLPJGnTdWfj39sMT
-	iOFUaFPz1PPE7V7Snzv5dE//ZGl4ebAFkkcGj2KbIarX64VGZKQkw3iD3MzMTgPSrTWgki2/stOyo
-	lvGdgsBg==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1unCHF-00ElwB-1y;
-	Sat, 16 Aug 2025 16:44:35 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sat, 16 Aug 2025 16:44:33 +0800
-Date: Sat, 16 Aug 2025 16:44:33 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Harsh Jain <h.jain@amd.com>
-Cc: davem@davemloft.net, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, mounika.botcha@amd.com,
-	sarat.chand.savitala@amd.com, mohan.dhanawade@amd.com,
-	michal.simek@amd.com, smueller@chronox.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v4 3/3] crypto: drbg: Export CTR DRBG DF functions
-Message-ID: <aKBE8Rc_hlhLUwfK@gondor.apana.org.au>
-References: <20250723182110.249547-1-h.jain@amd.com>
- <20250723182110.249547-4-h.jain@amd.com>
+	s=arc-20240116; t=1755334046; c=relaxed/simple;
+	bh=8PCZnzyRTidqnHyCuNwmg93j5EhJWu3LK3bWlpzsKUE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dznkfeg+yRg4uXxjXP3ylFxzZPB1SNER2AHmoYQcXQqnfz7rJqbCLUI894QTMG6pBkB+f2U6PdZcj41FsdGSCjV7ub7XOhkzW8mzf+aqxzNNDZ5T86hXPuJtDlbAySNrjXhvRoyiPDyJz8EavsVg5poiiHqTyzQqyXNpmR/oIxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A2+xw3jm; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-24458298aedso23742185ad.3;
+        Sat, 16 Aug 2025 01:47:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755334044; x=1755938844; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=n00OWL+w8sWdTdOAmEeus4NBoquiXkV9tCtbNCC3Db4=;
+        b=A2+xw3jmVDSuaJYZknaB7XKeWx/jHAbh12qsYxj8tKWiiBU+BFannyrTeUOjuqg8Tf
+         sMt+ZaLH0MY3u6Y17nFsURD0b2nxVPBWDkxFq3/CJyBnpFwBtDVE0duLo0F4juu/sBP2
+         bvXwlj3oOuTt9UC3raySV10u+Kf5bS/2gMXFwrhvEnwYxCwrLfLDyjY2VrJrZ37OAiZh
+         eQ4cfgrVYoe2pC5YkN0TA0+rj9u4NaUAkyoNfgLB7jTkvVxCulY4ipebJ8DQBuU1cliC
+         wXwcGGooMIn0Jk7wPJ2nljUJA1TJXSLYJaK/3KScKNJbxjAz4WRTa5RqYLL8Mql7J4dH
+         u0jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755334044; x=1755938844;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n00OWL+w8sWdTdOAmEeus4NBoquiXkV9tCtbNCC3Db4=;
+        b=PNGub+DIyvbQV+7hm7g1k03KcfmGonfA001AUklr3q5GIbhAo0ZSaIPhOE+0OY+LQU
+         FZIpJOqbknIy6n2psu+GHP33M6hjDT3Gq0QBmUzW8mIORqz3fDofvn3hjaQ8sOi+snNy
+         7YNCS9vl4n8Z0zCShfRauaHlWXLxGvpUhpcy3hjM/yU457bTTifhBxM+KfhUmCfUYp3S
+         jKlsNul20UAy6DDiqeWf4N9myjlxWxM9szRRB3LlIO9QcFsGRPiNuA8P2/5wlVdkS7wY
+         G47sHt20q91upu5ctxxEJL6JMTzjblh6KAONM2s1lqPf+CoVWw9A1Cyc6pBDB2y3p3AZ
+         LX5A==
+X-Forwarded-Encrypted: i=1; AJvYcCWF89AUQoPLGDwafeLueeaA35dserEigqF5B3Ay5yeb2qCnem6LOHuSF2FHc1LSrT+9pgM6Qv6Ooo8=@vger.kernel.org, AJvYcCXP5MAMIC/T8TJJMbIx5fCk5h93HfVhLl5usR8bp4EypAHmctdm+vXWjjAmTyQZb9gOuO9ij6sseBEix4KX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8YG0ZvjCtSPDzqlKkN8uSumhWfQK6C4ucTTgw8AbTXA0sxUD2
+	pZjw4YWlkDEUBhv3MVO9a39I4+m4ej85QU+zlZ2k+LBaTQg14oj7mayq
+X-Gm-Gg: ASbGnctwCcsZXn9NIyJYft80cjfodVbRu4SCtPJA9aJGCHhf4yvi7utPUI+i8oDWuPk
+	8RRc68zXQoDQKVhQuqtXDb39atCAAwconnhk77CBDHjjQBPlFGEi7D/iLDuABGL2APq6E3H0GPW
+	CH1vYg4OqcngJT4Tw0UHA8gfGm8I5WJl1Lk++ILEtyHl39QXjji/RREUPFUssbcfJj5ki0zRXlX
+	hgFKNF6RX/PdnksNN8qvjtvFVmLcZfUuYwzhDiOkk2YuP1WjdfhiRaMNBw5US8J9HqhkDtL1f3O
+	7hchAmb5TjxW5OxL6sEHICI2B3KzOBb4MH8PHMqqTpNRPfmZCAl7RelVHmLSjbAIPGBmNCnGYWf
+	dr90ZHjgtZYQ=
+X-Google-Smtp-Source: AGHT+IHRLGNB8SYXmPKw81D1VOKbz4q3gvNOhwVUuxSt8mOuivVjupipoQ1fbt8d5uqOtt3TGwriuA==
+X-Received: by 2002:a17:903:22c6:b0:242:9bc4:f1c7 with SMTP id d9443c01a7336-2447909bfd5mr31610805ad.54.1755334044121;
+        Sat, 16 Aug 2025 01:47:24 -0700 (PDT)
+Received: from junAIR ([212.192.12.80])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2446d57f12esm31048215ad.157.2025.08.16.01.47.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Aug 2025 01:47:23 -0700 (PDT)
+From: iuncuim <iuncuim@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-sunxi@lists.linux.dev
+Subject: [PATCH 0/7] arm64: allwinner: a523: add USB3.0 support
+Date: Sat, 16 Aug 2025 16:46:53 +0800
+Message-ID: <20250816084700.569524-1-iuncuim@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250723182110.249547-4-h.jain@amd.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jul 23, 2025 at 11:51:10PM +0530, Harsh Jain wrote:
->
-> diff --git a/crypto/df_sp80090a.c b/crypto/df_sp80090a.c
-> new file mode 100644
-> index 000000000000..bde5139ba163
-> --- /dev/null
-> +++ b/crypto/df_sp80090a.c
-> @@ -0,0 +1,243 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +/*
-> + * NIST SP800-90A DRBG derivation function
-> + *
-> + * Copyright (C) 2014, Stephan Mueller <smueller@chronox.de>
-> + */
-> +
-> +#include <crypto/df_sp80090a.h>
-> +#include <crypto/drbg.h>
+From: Mikhail Kalashnikov <iuncuim@gmail.com>
 
-Please include header files directly rather than relying on indirect
-inclusions that can disappear at any time.  You should add these ones
-at least:
+This series is a draft and does not include patches for dt-bindings.
+The first series is necessary for testing on other devices and
+initiating discussion.
 
-#include <linux/errno.h>
-#include <linux/kernel.h>
-#include <linux/module.h>
-#include <linux/string.h>
+This series of patches adds USB 3.0 functionality for the
+A523/A527/H728/T527 processor.Most of the code is derived from the BSP,
+ as the datasheet does not fully describe this feature.
 
-Thanks,
+I have verified functionality on two of my boards, walnutpi 2b (t527)
+and x96qproplus (h728). When testing usb3.0 on x96qproplus, I get
+reconnections of my nvme, it looks like the port does not provide enough
+ current to work. I have encountered similar complaints from users of the
+  device on Android. In the case of walnutpi, there is no such problem.
+
+Based on 6.17-rc1
+
+Mikhail Kalashnikov (7):
+  clk: sunxi-ng: a523: add missing usb related clocks
+  arm64: dts: allwinner: a523: add third usb2 phy
+  phy: sun4i-usb: a523: add support for the USB2 PHY
+  phy: allwinner: a523: add USB3/PCIe PHY driver
+  arm64: dts: allwinner: a523: add USB3.0 phy node
+  arm64: dts: allwinner: a523: add DWC3 USB3.0 node
+  arm64: dts: allwinner: a523: activate USB3 for all boards
+
+ .../arm64/boot/dts/allwinner/sun55i-a523.dtsi |  52 +++-
+ .../dts/allwinner/sun55i-a527-cubie-a5e.dts   |   8 +
+ .../dts/allwinner/sun55i-h728-x96qpro+.dts    |   8 +
+ .../dts/allwinner/sun55i-t527-avaota-a1.dts   |   8 +
+ drivers/clk/sunxi-ng/ccu-sun55i-a523.c        |  32 +++
+ drivers/clk/sunxi-ng/ccu-sun55i-a523.h        |   2 +-
+ drivers/phy/allwinner/Kconfig                 |   9 +
+ drivers/phy/allwinner/Makefile                |   1 +
+ drivers/phy/allwinner/phy-sun4i-usb.c         |  10 +
+ drivers/phy/allwinner/phy-sun55i-usb3-pcie.c  | 267 ++++++++++++++++++
+ include/dt-bindings/clock/sun55i-a523-ccu.h   |   4 +
+ 11 files changed, 392 insertions(+), 9 deletions(-)
+ create mode 100644 drivers/phy/allwinner/phy-sun55i-usb3-pcie.c
+
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.50.1
+
 
