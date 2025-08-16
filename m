@@ -1,108 +1,171 @@
-Return-Path: <devicetree+bounces-205384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50E10B28DEB
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:46:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E803B28DF9
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 15:05:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C115F1CE0B66
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:46:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A65F564F2D
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 13:05:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD81528D84F;
-	Sat, 16 Aug 2025 12:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204A0288C3B;
+	Sat, 16 Aug 2025 13:04:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QxnvmtVa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z8qDeBM1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE1A29B0;
-	Sat, 16 Aug 2025 12:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E602A757EA;
+	Sat, 16 Aug 2025 13:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755348381; cv=none; b=t2qKugxL6YHANfAWLgG4HcFuEcdU3fwFNPD1MGtWicNZVaikFcatVQ0plTY/TeyULD+AqqTQ/8Dwg0jgCFmrYPK9G06dBg0/VnAOCA+ZCZp2tirN0M3DkyC4X+Osrdn8hqcle4rwt11GuN6TFMqO2wm3o3U/yEK4Dckl60LharA=
+	t=1755349498; cv=none; b=l/Y+bmE+2zGqHL2+9z8R9dNu2mtcJFzsVUYZ1fnR3thF7BGdFPvbZc2akp9//cTRhy5DRppCkZ3pFETPDszMkoeHFd+CjpL4re7pv7SUSY56xBgND6mc6tbrvIEDwrpidV0jQl3s325FwHzntmOEvxDa6hVPKRszTWo1aLwD4cg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755348381; c=relaxed/simple;
-	bh=YIGRcpBKVSSbM4vhzjYUZ4rzj2zEpXTZdKsxWCTrydc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tJO3Ktb1fCMictZmsYoJulgO+J6AIxJw1LV4F7r0/X3i7jnKUGvFMSgFhwpEIqEVp+/cjT+9N83FRVlmPaoUffxzRAk4xmFFpdomAXWuqFCPXr910cozyxNOPXK4vupxHO0JKKhhtvjqhydNshdr0fKj2d67lkzjhRd/G5BdkWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QxnvmtVa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEE38C4CEEF;
-	Sat, 16 Aug 2025 12:46:17 +0000 (UTC)
+	s=arc-20240116; t=1755349498; c=relaxed/simple;
+	bh=59qVG3031RGj7Nf3vD9KdAOLIqffhw5uU7dX/oDmNrs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=meg0bdKzQHK3IPjRhFI78AQtHhF344yTiU2fYIy/8F3bAyUubExeTaUJmHwYQ/5Dk8EHbTBNtJE1ZSjCn5WIrB+EUrDPC6gpCSILb0xa0V+cLViVvrmEhMak/3Lq1z/gvxuYdc+6ckw6+gHMYdfbTKE6MvVHpj8aZ6tCh1OT84I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z8qDeBM1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63D10C4CEEF;
+	Sat, 16 Aug 2025 13:04:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755348380;
-	bh=YIGRcpBKVSSbM4vhzjYUZ4rzj2zEpXTZdKsxWCTrydc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QxnvmtVaUoGix95WDvdsuYeNUJl3WU2vXIC4UUkmEeSa39NseZlB70eHFx9XjhDcl
-	 8wQdHjS5JGap/bWMaBu/Fe4ANhKQ0F71KMHia/5ROCjFbS2XOT95s+QSIJVMh1R1H5
-	 0j6mgAmQ/giXKY2jSaOyaWMgEHdgfVIeG3jwKM7qOCOTLxWp6Dqq0LB2wUyvI+OzFp
-	 KZgEEVBSLnETkxjQB229uVD7NAcLxMV8hFNlQdx1Tn3+qLZqLSEYtklDlqRvBlhtgS
-	 LKVBYAonxROCiEP2CaQ2RymY4XUZHz27rcFS64n7v9rhYeKqKc5DnKdxOSGftlts1I
-	 5Wttb4V69sZhQ==
-Message-ID: <620292ee-46c7-4b9c-9047-86f8c771384a@kernel.org>
-Date: Sat, 16 Aug 2025 14:46:15 +0200
+	s=k20201202; t=1755349497;
+	bh=59qVG3031RGj7Nf3vD9KdAOLIqffhw5uU7dX/oDmNrs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Z8qDeBM17W2sAhIx8RgMUnNEMWZpyv3pOqluRec1paR+9pb3G+xnBMYA6fRu+bUDt
+	 qQLoLZ1vGtjysHSGuc8uCJlx2Gsa098/CyK9qf3FT+kgt7frgMgniw08WsS78DRP17
+	 TrKmQ6yQt6X0O7KH/9nfqJA+Xw9KgpNvK6t7FKfgsI7Pi72TnCFJ/8ksTC0o8N9LUM
+	 UsvV5qrgx37jejaPctnCI38A72jha3dRURXcL1BN2vDHf9YnWPc/b1jtpZQ9bH3Xgk
+	 J//SyFL+6KDIr3x8NCQYugAeQZ22Ynv2WJtW+63DH0cKTedpKfhQpOlb/OZ5M8OZ0w
+	 u3OsKX6RRyu4Q==
+Date: Sat, 16 Aug 2025 14:04:48 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
+ TLV493D 3D Magentic sensor
+Message-ID: <20250816140448.37f38d0f@jic23-huawei>
+In-Reply-To: <20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
+References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
+	<20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: rtc: Add Apple SMC RTC
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
- asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org
-References: <20250812-wip-smc-rtc-v1-0-66a8e96dad60@kernel.org>
- <20250812-wip-smc-rtc-v1-1-66a8e96dad60@kernel.org>
- <074fcd4c-0da8-42c4-a567-64fa7e173894@kernel.org>
- <20250814211928.GA3922106-robh@kernel.org>
-Content-Language: en-US
-From: Sven Peter <sven@kernel.org>
-In-Reply-To: <20250814211928.GA3922106-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 14.08.25 23:19, Rob Herring wrote:
-> On Wed, Aug 13, 2025 at 08:14:51AM +0200, Krzysztof Kozlowski wrote:
->> On 12/08/2025 20:25, Sven Peter wrote:
->>> +maintainers:
->>> +  - Sven Peter <sven@kernel.org>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: apple,smc-rtc
->>> +
->>
->> No resources except nvmem? This should be folded into the parent. Don't
->> create device node to instantiate drivers.
+On Thu, 14 Aug 2025 08:23:43 +0530
+Dixit Parmar <dixitparmar19@gmail.com> wrote:
+
+> The Infineon TLV493D is a Low-Power 3D Magnetic Sensor. The Sensor
+> applications includes joysticks, control elements (white goods,
+> multifunction knops), or electric meters (anti tampering) and any
+> other application that requires accurate angular measurements at
+> low power consumptions.
 > 
-> Well, the reboot node has nvmem entries too, so probably better to keep
-> this as child node.
+> The Sensor is configured over I2C, and as part of Sensor measurement
+> data it provides 3-Axis magnetic fields and temperature core measurement.
 > 
-> Is there more functionality planned/needed here (for the mfd)? If so,
-> please send it all at once. One child node at a time makes DT
-> maintainers grumpy.
+> The driver supports raw value read and buffered input via external trigger
+> to allow streaming values with the same sensing timestamp.
+> 
+> While the sensor has an interrupt pin multiplexed with an I2C SCL pin.
+> But for bus configurations interrupt(INT) is not recommended, unless timing
+> constraints between I2C data transfers and interrupt pulses are monitored
+> and aligned.
+> 
+> The Sensor's I2C register map and mode information is described in product
+> User Manual [1].
+> 
+> Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
+> Link: https://www.mouser.com/pdfDocs/Infineon-TLV493D-A1B6_3DMagnetic-UserManual-v01_03-EN.pdf [1]
+> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
 
-I'd very much like to avoid that!
+Hi Dixit,
 
-There's one more driver (hwmon) that needs another child node and two 
-more sub-devices that don't need any or expose any resources (hid for 
-the power button and power/supply for batteries). I've talked to James
-(who wrote hwmon) and he's going to submit the hwmon series together 
-with at least rtc (and hid) so that you can see all additional bindings 
-at once.
+A couple of really minor things inline. Given Andy has been doing most of the review
+work on this one I'll leave it for a few days to give him chance for a final look.
 
+The stuff below is small so if nothing else comes up I can tweak it whilst applying
 
 Thanks,
 
+Jonathan
 
-Sven
+> diff --git a/drivers/iio/magnetometer/tlv493d.c b/drivers/iio/magnetometer/tlv493d.c
+> new file mode 100644
+> index 000000000000..ee72211576a6
+> --- /dev/null
+> +++ b/drivers/iio/magnetometer/tlv493d.c
+> @@ -0,0 +1,530 @@
 
+> +	TLV493D_AXIS_X,
+> +	TLV493D_AXIS_Y,
+> +	TLV493D_AXIS_Z,
+> +	TLV493D_TEMPERATURE
+As below.
+
+> +};
+> +
+> +enum tlv493d_op_mode {
+> +	TLV493D_OP_MODE_POWERDOWN,
+> +	TLV493D_OP_MODE_FAST,
+> +	TLV493D_OP_MODE_LOWPOWER,
+> +	TLV493D_OP_MODE_ULTRA_LOWPOWER,
+> +	TLV493D_OP_MODE_MASTERCONTROLLED
+This is not a terminating entry, so would typically have a trailing comma.
+> +};
+
+> +
+> +static int tlv493d_init(struct tlv493d_data *data)
+
+I think this is only called from probe, so it would be appropriate
+to use return dev_err_probe() in all the error paths.
+
+If nothing else comes up I might tweak that whilst applying.
+
+> +{
+> +	int ret;
+> +	u8 buff[TLV493D_RD_REG_MAX];
+> +	struct device *dev = &data->client->dev;
+> +
+> +	/*
+> +	 * The sensor initialization requires below steps to be followed,
+> +	 * 1. Power-up sensor.
+> +	 * 2. Read and store read-registers map (0x0-0x9).
+> +	 * 3. Copy values from read reserved registers to write reserved fields (0x0-0x3).
+> +	 * 4. Set operating mode.
+> +	 * 5. Write to all registers.
+> +	 */
+> +	ret = i2c_master_recv(data->client, buff, ARRAY_SIZE(buff));
+> +	if (ret < 0) {
+> +		dev_err(dev, "i2c read failed, error %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Write register 0x0 is reserved. Does not require to be updated.*/
+> +	data->wr_regs[0] = 0;
+> +	data->wr_regs[1] = buff[TLV493D_RD_REG_RES1] & TLV493D_RD_REG_RES1_WR_MASK;
+> +	data->wr_regs[2] = buff[TLV493D_RD_REG_RES2] & TLV493D_RD_REG_RES2_WR_MASK;
+> +	data->wr_regs[3] = buff[TLV493D_RD_REG_RES3] & TLV493D_RD_REG_RES3_WR_MASK;
+> +
+> +	ret = tlv493d_set_operating_mode(data, data->mode);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to set operating mode\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
 
