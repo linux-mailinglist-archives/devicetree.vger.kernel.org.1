@@ -1,62 +1,65 @@
-Return-Path: <devicetree+bounces-205365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36652B28D29
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:56:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43422B28D56
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 13:17:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E73FDB0663E
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:56:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15F8E1CC0560
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 11:17:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E99129ACFC;
-	Sat, 16 Aug 2025 10:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84DC22C08C3;
+	Sat, 16 Aug 2025 11:17:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q+Oo5RmA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WxnA0JpT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E275029ACDE;
-	Sat, 16 Aug 2025 10:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5576023D281;
+	Sat, 16 Aug 2025 11:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755341637; cv=none; b=YEFwtJAL9rRbloZ1Ang8cCHqzaQmaikf/vJhjBG8Wla1kfvCGpePK+5MfgrctF+Z6zneT2flhEK8vS++jOQ3E4w8b1dNfxfZCYj1nTlPzGXoqi9FhV3d3viLMFLCeGhNifv77qYBr9zsM7PlT7XMTL1pa8U6RorTun6jMfLOS5E=
+	t=1755343044; cv=none; b=romDy3oE+vqpx+Z7wD4MlwG+HsZPOX3azUYAgYYm+DwGausdHY1Jgr6Px+VHnyj56YlOBajkXPqwVEL/zPiBN6APu9GGbuPaIwMgrfvdhjkKMdX1XIDx1VmJBdnSpOfRLdmetTSzb3JvsikhK+OXuOVoT+7FdhVl/2TU1e8GWLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755341637; c=relaxed/simple;
-	bh=NrCkOT32NSplq8+x8pz9ZQFGUGbs5XTCGwcFwWKjxtc=;
+	s=arc-20240116; t=1755343044; c=relaxed/simple;
+	bh=3ERxZaRS4qcwh/mtcVTYLz86jmNS0EKbfeCWGsT0/LA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C/HWiyQvsVqYSfx9+KSsWwRdBK4Gz2zFEL1f/Kadzt1PSX0FOfPey0Bsks8WOQbRL1BnQlvAlLN68/zxXCzBGFswUUIf6yjc5l8xXVoLUrKdtpMdKVdeCDSUuxXUYmDUKFCevuF1W3ToxNRRPl1IGCbdThPPli4zdTobP8qj18g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q+Oo5RmA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B77B0C4CEEF;
-	Sat, 16 Aug 2025 10:53:51 +0000 (UTC)
+	 MIME-Version:Content-Type; b=pp+HlpukjsZ3+tJ8A8CQwKNVe1J8hohgpUjAGkhbbicNQlFy4BWGnHz4TUiLtgoyVmqygfn6XaOUkETzNYxtLgE+lkzVi/MExI4ffk286KtjoBuI2LK2FP3ZD/1W18ezjvmM82QBvxsF7bcHVTI5wL4oAzS/ZXgEc9pnKBwFiv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WxnA0JpT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90E93C4CEEF;
+	Sat, 16 Aug 2025 11:17:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755341636;
-	bh=NrCkOT32NSplq8+x8pz9ZQFGUGbs5XTCGwcFwWKjxtc=;
+	s=k20201202; t=1755343043;
+	bh=3ERxZaRS4qcwh/mtcVTYLz86jmNS0EKbfeCWGsT0/LA=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Q+Oo5RmAl/yPzstmUq1BFZH4pf4a3pucCoqHTD3vf5eimfltsVG4N+eflpz1V6nGS
-	 j0nrO/EMJMPLFJnJyA7aiZOSi6RPEwXUZcJvz4id6feHsOlINdyqIMxwoYqt78S60v
-	 PfKrmTH/vWBzR/CllclA/R2Ui//xq1dWFbJtBwlEQs/DMiP3qZGGJDS1/pdHUWd4Oz
-	 ay7L+2FJ8TVaahduSvV5/0ahy8DkhwsT3F7D9adPr+PpbwuBDH8AYOksl0P0dvXB4E
-	 BJS5FvVtv1kw6Z+kB/IpIExkfFhn9l/vKBUv35W12p+q2HxnmLfHP/s82R2dqhb5AZ
-	 AC/rvgpuQNUWA==
-Date: Sat, 16 Aug 2025 11:53:48 +0100
+	b=WxnA0JpTQqtIDZt0Bf6hj3C37sfWBpU0RIjETATjD816dw/9cRyttfTuVDN84mviu
+	 OG9aKvSLMlDzzS0BkSk5zzSKHNhsN+BQYVzIlCSOVt3KgVmAlAxlQtDQkmc2WaJXuA
+	 J1GESMK+miOW9N6HDJR2ZZ8NEGGH7stIjqxPTZjV14DXTxEENAbD+AdCoOa275tUOg
+	 Ve8t5tCGWLw9366AAijhB/NGMkxzllWACwktVaGwG2LpFDjCUiD9Dc6NL+T53VV1Cw
+	 eonFHCmFw4MrWWQ6LSa1z+lXIbnHoV2sjZBRUuDRvZlNif9sUCbnjC4FpwHs9evMI3
+	 cjLs96QzUyqhg==
+Date: Sat, 16 Aug 2025 12:17:13 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>, Lars-Peter Clausen
- <lars@metafoo.de>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
- Beguin <liambeguin@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] iio: adc: ltc2497: reorder struct members to fix
- memory holes
-Message-ID: <20250816115348.1fba0a7b@jic23-huawei>
-In-Reply-To: <20250815-ltc2495-v4-3-2d04e6005468@gmail.com>
-References: <20250815-ltc2495-v4-0-2d04e6005468@gmail.com>
-	<20250815-ltc2495-v4-3-2d04e6005468@gmail.com>
+To: Remi Buisson <Remi.Buisson@tdk.com>
+Cc: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>,
+ David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 3/8] iio: imu: inv_icm45600: add buffer support in
+ iio devices
+Message-ID: <20250816121713.48c01e62@jic23-huawei>
+In-Reply-To: <FR2PPF4571F02BCAEF9767DFCEAC0031CB08C28A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+References: <20250710-add_newport_driver-v2-0-bf76d8142ef2@tdk.com>
+	<20250710-add_newport_driver-v2-3-bf76d8142ef2@tdk.com>
+	<20250717153340.33eb92b4@jic23-huawei>
+	<FR2PPF4571F02BCAEF9767DFCEAC0031CB08C28A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -64,79 +67,131 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 15 Aug 2025 12:02:04 +0200
-Yusuf Alper Bilgin <y.alperbilgin@gmail.com> wrote:
+On Mon, 11 Aug 2025 14:13:54 +0000
+Remi Buisson <Remi.Buisson@tdk.com> wrote:
 
-> Reorder members in the `ltc2497_chip_info` and `ltc2497core_driverdata`
-> structs to eliminate memory holes identified by the `pahole` tool.
-> 
-> Confirm via the `bloat-o-meter` that this change has no significant
-> impact on the final code size:
-> 
-> | Object File     | Total Size Change |
-> |-----------------|-------------------|
-> | ltc2497-core.o  | 0 (0.00%)         |
-> | ltc2497.o       | +2 (+0.10%)       |
-> | ltc2496.o       | 0 (0.00%)         |
-> 
-> Signed-off-by: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
+> >
+> >
+> >From: Jonathan Cameron <jic23@kernel.org>=20
+> >Sent: Thursday, July 17, 2025 4:34 PM
+> >To: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>
+> >Cc: Remi Buisson <Remi.Buisson@tdk.com>; David Lechner <dlechner@baylibr=
+e.com>; Nuno S=C3=A1 <nuno.sa@analog.com>; Andy Shevchenko <andy@kernel.org=
+>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;=
+ Conor Dooley <conor+dt@kernel.org>; linux-kernel@vger.kernel.org; linux-ii=
+o@vger.kernel.org; devicetree@vger.kernel.org
+> >Subject: Re: [PATCH v2 3/8] iio: imu: inv_icm45600: add buffer support i=
+n iio devices
+> >On Thu, 10 Jul 2025 08:57:58 +0000
+> >Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org> wrot=
+e:
+> > =20
+> >> From: Remi Buisson <remi.buisson@tdk.com>
+> >>=20
+> >> Add FIFO control functions.
+> >> Support hwfifo watermark by multiplexing gyro and accel settings.
+> >> Support hwfifo flush.
+> >>=20
+> >> Signed-off-by: Remi Buisson <remi.buisson@tdk.com> =20
+> >Hi Remi,
+> >
+> >Sorry for delay - hectic week.
+> >
+> >Jonathan =20
+> No problem, thanks for the review ! (and sorry for my late reply)
+> > =20
+> >> ---
+> >>  drivers/iio/imu/inv_icm45600/Makefile              |   1 +
+> >>  drivers/iio/imu/inv_icm45600/inv_icm45600.h        |   4 +
+> >>  drivers/iio/imu/inv_icm45600/inv_icm45600_buffer.c | 514 ++++++++++++=
++++++++++
+> >>  drivers/iio/imu/inv_icm45600/inv_icm45600_buffer.h |  99 ++++
+> >>  drivers/iio/imu/inv_icm45600/inv_icm45600_core.c   | 137 +++++- =20
+> >We used to do the buffer / core split a lot but it often ends up more tr=
+ouble
+> >that it is worth and we no longer make buffer support a build time optio=
+n (which was
+> >what motivated the separate files)  Consider how much simplification you=
+'d get by squashing them into
+> >one file.   =20
+> I understand the point.
+> However merging files will allow to remove 5 lines at most,
+> while the length of the core file will increase a lot.
+> I'm not sure of the benefit in the end, but=20
+> please let me know if you really want me to proceed with the merge.
 
-whilst I know Andy is a fan of this stuff, I'm not convinced it is worth
-the churn in this particular case. 
+It's only a combined 1.5k. That would be fine even if the savings are fairl=
+y small.
 
-The driverdata is allocated via iio_priv() so has a bunch of additional
-alignment rules applied and is on the end of another larger allocation.
-I suspect that completely hides the advantages in closing the holes up.
+It's not something I care that much about though.
 
-The chip_info one is a bit more convincing as that's static const stuff and
-maybe it ends up packing a little better.
 
-Anyhow, let us see what Andy thinks.
 
-Thanks,
 
-Jonathan
 
-> ---
->  drivers/iio/adc/ltc2497.h | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ltc2497.h b/drivers/iio/adc/ltc2497.h
-> index dfe2d5c30017adeb3f17e57fc5bf1e0e792ff30f..48e9f74870ab489b5df6e69a39446610c6a72b93 100644
-> --- a/drivers/iio/adc/ltc2497.h
-> +++ b/drivers/iio/adc/ltc2497.h
-> @@ -5,8 +5,8 @@
->  #define LTC2497_CONVERSION_TIME_MS	150ULL
->  
->  struct ltc2497_chip_info {
-> -	u32 resolution;
->  	const char *name;
-> +	u32 resolution;
->  	/*
->  	 * Represents the datasheet constant from the temperature formula:
->  	 * T_Kelvin = (DATAOUT * Vref) / temp_scale, where Vref is in Volts.
-> @@ -20,15 +20,15 @@ struct ltc2497_chip_info {
->  };
->  
->  struct ltc2497core_driverdata {
-> -	struct regulator *ref;
-> -	ktime_t	time_prev;
->  	/* lock to protect against multiple access to the device */
->  	struct mutex lock;
-> +	struct regulator *ref;
-> +	ktime_t	time_prev;
->  	const struct ltc2497_chip_info	*chip_info;
-> -	u8 addr_prev;
->  	int (*result_and_measure)(struct ltc2497core_driverdata *ddata,
->  				  u8 address, int *val);
->  	enum iio_chan_type chan_type_prev;
-> +	u8 addr_prev;
->  };
->  
->  int ltc2497core_probe(struct device *dev, struct iio_dev *indio_dev);
-> 
+> >> +const struct iio_buffer_setup_ops inv_icm45600_buffer_ops =3D {
+> >> +	.preenable =3D inv_icm45600_buffer_preenable,
+> >> +	.postenable =3D inv_icm45600_buffer_postenable,
+> >> +	.predisable =3D inv_icm45600_buffer_predisable,
+> >> +	.postdisable =3D inv_icm45600_buffer_postdisable,
+> >> +};
+> >> +
+> >> +int inv_icm45600_buffer_fifo_read(struct inv_icm45600_state *st,
+> >> +				  unsigned int max) =20
+> >What is max here?  Seems to be passed 0 in the only caller. =20
+> Function call with max > 0 is implemented later in the same patch
+> (in 4/8, from inv_icm45600_buffer_hwfifo_flush).
 
+Maybe push the parameter being introduced to ther.
+
+> >> +{
+> >> +	const ssize_t packet_size =3D INV_ICM45600_FIFO_2SENSORS_PACKET_SIZE;
+> >> +	__le16 *raw_fifo_count;
+> >> +	size_t fifo_nb, i;
+> >> +	ssize_t size;
+> >> +	const struct inv_icm45600_fifo_sensor_data *accel, *gyro;
+> >> +	const __le16 *timestamp;
+> >> +	const s8 *temp;
+> >> +	unsigned int odr;
+> >> +	int ret;
+> >> +
+> >> +	/* Reset all samples counters. */
+> >> +	st->fifo.count =3D 0;
+> >> +	st->fifo.nb.gyro =3D 0;
+> >> +	st->fifo.nb.accel =3D 0;
+> >> +	st->fifo.nb.total =3D 0;
+> >> +
+> >> +	/* Read FIFO count value. */
+> >> +	raw_fifo_count =3D &st->buffer.u16;
+> >> +	ret =3D regmap_bulk_read(st->map, INV_ICM45600_REG_FIFO_COUNT,
+> >> +			       raw_fifo_count, sizeof(*raw_fifo_count)); =20
+> >
+> >For IIO drivers at least we still operated under some guidance the regma=
+p maintainer
+> >gave years ago to never assume regmap (for busses that otherwise require=
+ DMA safe
+> >buffers) will always bounce the data.  So bulk reads with SPI buffers ne=
+ed
+> >DMA safe buffers. Easiest is usually an __aligned(IIO_DMA_MINALIGN) buff=
+er
+> >(or set of buffers) at the end of st.
+> >
+> >In practice last time I checked regmap doesn't bother with the zero copy
+> >optimization that would need this safety so you won't actually hit this
+> >issue. =20
+> From my understanding, alignment of &st->buffer.u16 is correct because th=
+e union is aligned,
+>=20
+> 	union {
+> 		u8 buff[2];
+> 		__le16 u16;
+> 	} buffer __aligned(IIO_DMA_MINALIGN);
+>=20
+> Please let me know if my answer is not correct.
+Ah. I probably just missed that.  can't remember!
+
+> > =20
 
