@@ -1,94 +1,101 @@
-Return-Path: <devicetree+bounces-205406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EA08B28ED1
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 17:14:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D16EB28F1C
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 17:25:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 15B594E1D77
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 15:14:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4A7CAE2696
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 15:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857182F2919;
-	Sat, 16 Aug 2025 15:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10C152F39C5;
+	Sat, 16 Aug 2025 15:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="TXqIFPiu"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="auYojMp6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43BE22D7A5;
-	Sat, 16 Aug 2025 15:13:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C7B81DE3A7;
+	Sat, 16 Aug 2025 15:20:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755357289; cv=none; b=uTqgPwP8uur6mmnDjNn1eG7Ag6gb3/4DrDG35izSJ7kz4pbZFdX2BwNTrrmG10aSV/QN/f1mGi1StLlPJk/8wmr95/dAXo3YnfLngOId2VhnHnxOBRvE+pEtC6SpIjDFnx0ACxsO9bMu0sHujIdbTykpmH0/JaLkq5BkGE3Pkm0=
+	t=1755357658; cv=none; b=GGr3nOdxjm+zNriuxzJiEokfFun5tSxtmvWX+7Snfy1AsgxqRwvmpdcPQwZ0/J1Xx8FRuB/ZREmbquxi5ybS//hCGx2Anq90cWB4Ptj/LWHwbFwTqybHbHH/jlG2oHZkERjSFo+TgORqZk5ijHOJW89j+7T1DWptG/krEo4E2Xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755357289; c=relaxed/simple;
-	bh=OSQDEVYojpqUsVcDydeFyzVEZCVIa8DW4oEeyDGqo8E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=myBsYPMH/4jFu07OogdKvXDNXiH68sY1D/VqlBhAEEhkCu9zGfGMbD7XqpFjIgY8+QAmmuZzs0UQNHVu/2wdMJNzNE1k1oR1fdW6qdYACt0EvqfaTGAA44ICDLdo8mzu0/+2+rg14jiSajKFlR3PEnJg+Kec1hll0h4wKRXPiws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=TXqIFPiu; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=OSQDEVYojpqUsVcDydeFyzVEZCVIa8DW4oEeyDGqo8E=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1755357181; v=1; x=1755789181;
- b=TXqIFPiu6ruM8+TZCP7ahhsw6qYop9K/l1fCNrrqliT1uZk7vu1AzGR1/A19LlPkTANLZoEu
- aOhte95klePHknLPz9jeiQ1J8m8KWcUc1qD3YANM04M4R+5VWBwv408nNHpSfhvZqD3o1IudYE/
- 5oy/nQtqAeBqojkzXAH6V2Uzy5kvJVOMRVPBenkGd6eL1JY6MgHZftTadmQ3EnqrCFIgt44XpiP
- WI2rJgMDlEz3yd8Nyje075Ns+6LtDmlpKQeXihPAM2dZ/vuzDXp5BH70FaW+orF8e0etwUYrkk4
- Zk4pf5s0w+ttb0XY7QjBJfHZK+MBrwqHddhw9+/QhPdvg==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id 12f6888e; Sat, 16 Aug 2025 17:13:01 +0200
-From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje@dujemihanovic.xyz>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, David Wronek <david@mainlining.org>,
- Karel Balej <balejk@matfyz.cz>, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH RFC 2/5] dt-bindings: power: Add Marvell PXA1908 domains
-Date: Sat, 16 Aug 2025 17:13:00 +0200
-Message-ID: <6196438.lOV4Wx5bFT@radijator>
-In-Reply-To: <5e79b123-b29a-4edb-8e70-3b7fa6cd3674@kernel.org>
-References:
- <20250806-pxa1908-genpd-v1-0-16409309fc72@dujemihanovic.xyz>
- <1950265.tdWV9SEqCh@radijator>
- <5e79b123-b29a-4edb-8e70-3b7fa6cd3674@kernel.org>
+	s=arc-20240116; t=1755357658; c=relaxed/simple;
+	bh=RBIyDtnznFHzqlQIF1q+gcJw4wQW/dS5qTzOPwt1XYI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aFP1qday64ohXzQy6w37jT0MJKOMvPuaCn/TNeDmBcbmrknv6FC6wTdeYMWDa+m0k9LDmdywvb2oOLW3iKj0UMMG2RTQQHiYKnpwI0hKD/zomWRwvSuzxO+BxfSyfhvQNdnDXDVaUrgDjs23Dei4CUqRq7pqqAW2KOmgkIdEGcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=auYojMp6; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=shQDX71uKhVljkmiU89xwZumPoU80TwEyr56tSmwUfU=; b=auYojMp6+dMcsrLevaeyCizdDk
+	LONQLs50qaqdKV1kqcFcSEI8r271ye35AfBxJbl2ZqX01I0SI9BgrHwDtmBliNRSaVmzlhnqLxR45
+	Q5U5E0MnKlAxC+43FyIVsAgn96ECQk6ximiPQiQ0BHzk8MAjSPDKRhGEET39l+Kq8WfQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1unIi5-004uZe-6l; Sat, 16 Aug 2025 17:20:45 +0200
+Date: Sat, 16 Aug 2025 17:20:45 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: David Yang <mmyangfl@gmail.com>
+Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [net-next v3 0/3] net: dsa: yt921x: Add support for Motorcomm
+ YT921x
+Message-ID: <1ceb8a8f-140a-4b54-be2a-df9ac2c219b6@lunn.ch>
+References: <20250816052323.360788-1-mmyangfl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250816052323.360788-1-mmyangfl@gmail.com>
 
-On Friday, 15 August 2025 08:08:24 Central European Summer Time Krzysztof K=
-ozlowski wrote:
-> On 15/08/2025 00:08, Duje Mihanovi=C4=87 wrote:
-> > > I am asking to see complete binding with complete DTS in example and
-> > > submitted to SoC maintainer.
-> >=20
-> > Hm, so if in the example (and the actual DTS) each domain is assigned a
-> > clock, can I then keep the domain and domain controller nodes like Medi=
-atek
-> > and Rockchip have?
->=20
-> You would need to point me to specific files or show some code.
+On Sat, Aug 16, 2025 at 01:23:18PM +0800, David Yang wrote:
+> Motorcomm YT921x is a series of ethernet switches developed by Shanghai
+> Motorcomm Electronic Technology, including:
+> 
+>   - YT9215S / YT9215RB / YT9215SC: 5 GbE phys
+>   - YT9213NB / YT9214NB: 2 GbE phys
+>   - YT9218N / YT9218MB: 8 GbE phys
+> 
+> and up to 2 serdes interfaces.
+> 
+> This patch adds basic support for a working DSA switch.
+> 
+> v2: https://lore.kernel.org/r/20250814065032.3766988-1-mmyangfl@gmail.com
+>   - fix words in dt binding
+>   - add support for lag and mst
 
-Sure, mediatek,power-controller.yaml and rockchip,power-controller.yaml
-in Documentation/devicetree/bindings/power.
+Please don't add new features between revisions. Reviewers spend time
+reviewing the code. They assume just the issues raised will be
+address, and the rest of the code remains unchanged. It then means
+they just need to check the issues raised have been addressed. By
+adding new features, they back to the beginning, having to review all
+the code again, because you potentially added new issues.
 
-Regards,
-=2D-
-Duje
+LAG and MST should of been implemented as patches on top of the basic
+driver. They can then be reviewed as small increments.
 
+Please put yourself in our position. How would you review this code?
+That would make it easy for you to review it?
 
-
+	Andrew
 
