@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-205354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BA29B28CAD
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E09CB28CC6
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:19:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E3471C87226
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:09:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A1C21CC7C7B
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8925028CF67;
-	Sat, 16 Aug 2025 10:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E03F230270;
+	Sat, 16 Aug 2025 10:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rlb05og6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kg/DGjvS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C57728C039;
-	Sat, 16 Aug 2025 10:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038B01BC3F;
+	Sat, 16 Aug 2025 10:19:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755338969; cv=none; b=GiFglRHB/lQ5lLHn0/CjGQYxG0DOjsChIW6TYHE2NHq7OCg665iSaiUQ5l226DHCKBqaZ6KX/Z5eMJZ1ql/xI1HTkIV6FbI/YKFRdCQkF2/4msKhIQV5mURq5IY96nca+A1t2EjWbChRM2hZAW1a4nNptr8CaD3jDFE3e8Y75v0=
+	t=1755339544; cv=none; b=HKWsTpNkEulkGz7TZqpUA+ZtsrWxFFRuMtYj3Iyutm4zNNRt+CqsfWSAtk0Zn4rpmH3befdXyOGzBLnPKq2pJx/pEXoIldScn4Amng5Eav6Yi3o3YCULNEw+pdAawWtykcU6eeJUHcGFJzBWgeMSr/b93KJjq7hU+uGxLCrAHXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755338969; c=relaxed/simple;
-	bh=jaTxjgtJrNRkh/dbTd55p8FruDlWhMwNR666ZZJv3OU=;
+	s=arc-20240116; t=1755339544; c=relaxed/simple;
+	bh=5NWhecVS2/AkV4nKyydh9LzhF8tYLJWu8T8ZtYaFAiA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DN/tLUMl21V+oqn6D30ogeo3v+8ltB7zh3vFGAptm9qLlpuNdovoTY5+mHkiF5Qg/yji/ZLs4gBZ85zMCQjHCMVvebBgpBaAOENwspLe2NW/+46WOPYgtE180Fq62qj2EgwxtVl2gE7siyqUlIwWIn+vXCVIm8noyrtRtFlT1q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rlb05og6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51335C4CEEF;
-	Sat, 16 Aug 2025 10:09:24 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Cje8/BoV/HjtOqsIePsp4G/lnkAqriH1Tv0l5aVIGd0uM7nEPQZ1fWPlF7lan/LQDRNwlN8X6r+rG9otQmGiGWbIzgZ/bHOpYn4JFrzAI6EddspEkJkq4vDgbd93LgAh6DPqwiuphhrFX8MPmMDD6kE9b/nyfzoTr83vjTo9YNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kg/DGjvS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8E2AC4CEEF;
+	Sat, 16 Aug 2025 10:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755338968;
-	bh=jaTxjgtJrNRkh/dbTd55p8FruDlWhMwNR666ZZJv3OU=;
+	s=k20201202; t=1755339543;
+	bh=5NWhecVS2/AkV4nKyydh9LzhF8tYLJWu8T8ZtYaFAiA=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Rlb05og6ZnSD8IZnNAHaeH/mIIvjVOmqALFStsQW0523dhUMabwOLIwRp4Jp143z2
-	 WnClgwkn2pGCM9vqHKRzKW52bbrJrSoNB1DHxrQavVQ9tWKrDZbpsdtTQ5dlX8tRaA
-	 f7Qjl5Gvsc0gDrBwft/4BNIXInmKD3+zkjendCh1bTr2HyldNp75jLm+UhuI8yBnMf
-	 V6NdL6fh6SmZ5Id8u1bjjkaQVANciUe9kkpIBq7Kt1WYjTFWI/prn8ZMGamkrOU7va
-	 V6UsnjY7+apjxbVz2bIiHv4egmYumdojR44XG4eJlhYAzFSENfL2WTJlibTVFGmQtC
-	 Xi04Ii8W/XJKg==
-Date: Sat, 16 Aug 2025 11:09:18 +0100
+	b=Kg/DGjvSRSjvpuL0i6KsABAKxqcwW4z/YYtBF3zbY75FotPoVzg8EwTSc8wG7/79P
+	 jLMW4wKnfjbpuslmQe5nDGlDhy6uF1fAOJqiuR4XN9mAq0afZmc8bWkxduIm9wXrw1
+	 NLKs8wKDFS1VKMW3wWT9tCOgHhfPkucD+5BkhdPjMTfImgnCfI7t/APrkrFAt8BBR3
+	 Ej9iNb6TMpCNwAFrI4y6jR+7RVhFvGv/SfSZ+BgbrdVtoyAEOJjgBB49qlSIy9sCA/
+	 0aqG7AbFogRNahMEL4J2Ka0tq0lffLWVo/EGnixaSw0VDam3/Milt9x4JASefUss3w
+	 cGn2IxGo7a9hQ==
+Date: Sat, 16 Aug 2025 11:18:55 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Ben Collins <bcollins@watter.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ben Collins <bcollins@kernel.org>, David
- Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew
- Hepp <andrew.hepp@ahepp.dev>
-Subject: Re: [PATCH v3 0/5] iio: mcp9600: Features and improvements
-Message-ID: <20250816110918.76858b07@jic23-huawei>
-In-Reply-To: <20250815170304.22606-1-bcollins@watter.com>
-References: <20250815170304.22606-1-bcollins@watter.com>
+To: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/3] Add LTC2495 support
+Message-ID: <20250816111855.7e934f4d@jic23-huawei>
+In-Reply-To: <20250815-ltc2495-v4-0-2d04e6005468@gmail.com>
+References: <20250815-ltc2495-v4-0-2d04e6005468@gmail.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -64,57 +65,99 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 15 Aug 2025 17:03:00 +0000
-Ben Collins <bcollins@watter.com> wrote:
+On Fri, 15 Aug 2025 12:02:01 +0200
+Yusuf Alper Bilgin <y.alperbilgin@gmail.com> wrote:
 
-> From: Ben Collins <bcollins@kernel.org>
-Ah.   Given this didn't get threaded with the previous posting, it can end
-up in a very different place in peoples in boxes.  If you miss a version
-number or something like that just reply to the cover letter to say so.
+> Hi All,
+> 
+> This is the v4 of the patch series to add support for the LTC2495 ADC
+> and to enable the internal temperature channel for the LTC2495 and
+> LTC2499.
+> 
+> Thanks to Andy Shevchenko for his helpful reviews on earlier versions,
+> and to David Lechner and Krzysztof Kozlowski for their feedbacks on
+> v3. This version addresses all feedback from v3.
+> 
+> Best Regards,
+> 
+> Alper
 
-Either way patchwork etc aren't going to figure out which version this
-applies to.
+Hi Alper,
+
+A small process thing.  Wait a little longer between versions
+as it tends to save time for both the submitter and reviewers.
+
+At least a few days is appropriate typically and for first versions
+I'd generally advise a week. Many reviewers only get to the list
+once a week or so (some less than that!)
+
+Thanks,
+
+Jonathan
+
 > 
-> ChangeLog:
-> v2 -> v3:
->   - Improve changelogs in each patch
->   - Based on feedback from Andy Shevchenko <andy.shevchenko@gmail.com>
->     * Set register offsets to fixed width
->     * Fix typos
->     * Future-proof Kconfig changes
->     * Convert to using chip_info paradigm
->     * Verbiage: dt -> firmware description
->     * Use proper specifiers and drop castings
->     * Fix register offset to be fixed-width
->     * u8 for cfg var
->     * Fix % type for u32 to be %u
->     * Make blank lines consistent between case statements
->     * FIELD_PREP -> FIELD_MODIFY
->     * Remove explicit setting of 0 value in filter_level
->   - Based on feedback from David Lechner <dlechner@baylibre.com>
->     * Rework IIR values exposed to sysfs. Using the ratios, there was no
->       way to represent "disabled" (i.e. infinity). Based on the bmp280
->       driver I went with using the power coefficients (e.g. 1, 2, 4, 8,
->       ...) where 1 is disabled (n=0).
+> Signed-off-by: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
+> ---
+> Changes in v4:
+>   - Removed the verbose formula derivation comment from `read_raw`.
+>   - Reworked the temperature channel definition to omit the redundant
+>     `.address` and `.channel` fields.
+>   - Moved I2C-specific bit definitions from the shared header into
+>     `ltc2497.c` and removed the pre-combined command macro.
+>   - Simplified I2C logic to check the channel type instead of a
+>     non-standard address.
+>   - Combined the basic device support (#2) and temperature sensor feature (#3)
+>     patches into a single patch (#2).
+>   - Link to v3: https://lore.kernel.org/r/20250814-ltc2495-v3-0-c2a6cecd6b99@gmail.com
 > 
-> v1 -> v2:
->   - Break into individual patches
+> Changes in v3:
+>   - Used the standard `kelvin_to_celsius()` helper instead of a custom
+>     define.
+>   - Corrected macro definition style.
+>   - Renamed `LTC2497_CHANNELS` and `LTC_T_CHAN` for clarity.
+>   - Combined all struct layout optimizations into a single patch.
+>   - Link to v2: https://lore.kernel.org/r/20250813-ltc2495-v2-0-bbaf20f6ba07@gmail.com
 > 
-> v1:
->   - Initial patch to enable IIR and thermocouple-type
->   - Recognize mcp9601
+> Changes in v2:
+>   - Rewrote all commit messages to use the imperative mood.
+>   - Added a justification for the new compatible string to the device
+>     tree binding commit message.
+>   - Removed all unrelated whitespace and formatting changes.
+>   - Removed redundant explicit `false` initializers from structs.
+>   - Replaced the magic number for Kelvin conversion with a define.
+>   - Improved comments for defines and temperature scaling constants.
+>   - Renamed confusing macros and struct fields to be more descriptive.
+>   - Replaced dynamic channel allocation with a static array approach
+>     using a shared macro to improve readability.
+>   - Optimized data structure layouts based on pahole output to remove
+>     memory holes.
+>   - Link to v1: https://lore.kernel.org/r/20250812-ltc2495-v1-0-7bf4c6feec2e@gmail.com
+> ---
+> Implementation Notes
+>  - checkpatch warning: The new static array approach uses a shared macro
+>    for the common channels (`LTC2497_CHANNELS`), which triggers a
+>    checkpatch.pl warning: "Macros with complex values should be enclosed
+>    in parentheses". However, this will cause a compilitaion error, as an
+>    initializer list cannot be parenthesized.
+>  - uV to mV conversion: I could not find a standard macro, so a manual
+>    division is used for now. This could be a point of future
+>    improvement.
 > 
-> Ben Collins (5):
->   dt-bindings: iio: mcp9600: Add compatible for microchip,mcp9601
->   iio: mcp9600: White space cleanup for tab alignment
->   iio: mcp9600: Recognize chip id for mcp9601
->   iio: mcp9600: Add support for thermocouple-type
->   iio: mcp9600: Add support for IIR filter
+> ---
+> Yusuf Alper Bilgin (3):
+>       dt-bindings: iio: adc: ltc2497: add lltc,ltc2495 bindings
+>       iio: adc: ltc2497: add support for LTC2495
+>       iio: adc: ltc2497: reorder struct members to fix memory holes
 > 
->  .../iio/temperature/microchip,mcp9600.yaml    |   6 +-
->  drivers/iio/temperature/Kconfig               |   8 +-
->  drivers/iio/temperature/mcp9600.c             | 209 ++++++++++++++++--
->  3 files changed, 201 insertions(+), 22 deletions(-)
+>  .../devicetree/bindings/iio/adc/lltc,ltc2497.yaml  |   3 +
+>  drivers/iio/adc/ltc2497-core.c                     | 132 ++++++++++++++-------
+>  drivers/iio/adc/ltc2497.c                          |  39 +++++-
+>  drivers/iio/adc/ltc2497.h                          |  19 ++-
+>  4 files changed, 147 insertions(+), 46 deletions(-)
+> ---
+> base-commit: acbbb5a20971089064ca6b271dd251e629be8d4d
+> change-id: 20250811-ltc2495-572817c13fd3
 > 
+> Best regards,
 
 
