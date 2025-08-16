@@ -1,103 +1,167 @@
-Return-Path: <devicetree+bounces-205371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87CBFB28D88
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:04:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB75FB28D8E
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:06:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CB2BAA039B
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:04:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23C245C6E2D
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:06:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2831248F4E;
-	Sat, 16 Aug 2025 12:04:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="wdm6kXYE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3AA24111D;
+	Sat, 16 Aug 2025 12:06:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0510C192D97
-	for <devicetree@vger.kernel.org>; Sat, 16 Aug 2025 12:04:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31C8222083;
+	Sat, 16 Aug 2025 12:06:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755345860; cv=none; b=PBLUV5N0lUysU8E2aSx5xmQPZWJ6I5XxXA9gaB50rx6CLha4ZIf77cI0MHLuXMZUhMk8+RJDatWw8QPLdmgmWtuD89cnxoqfPOawWZe3olxpxm0b4a31hLvQDRNB42Cp6oseHpjaIMAOi1dNIeWiNjFhdikhYe/TjfV21ut44BI=
+	t=1755346000; cv=none; b=puihdnTHhupvp9HOb+LUnb/qhjGgamGwdTirBEm57yP7+iYUo6ctXAJJOEBmNywkha/v12vMze91IO4cJyZEpaEaEX1OTQUqKOWsJnAdCEVeobSIkLFjj7HP+FsFi39BCoagNBq25e1soglYSXHdXArhx3EzoJG+dth5ADjHMJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755345860; c=relaxed/simple;
-	bh=t63xP7wbz/CsoRt+s5ClY7ekzXig2IH8x/MbkPBlbvc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NZWcxwbQfVxqI4j9zJw2EkhxLXKO3woU8z4lpJd2tdQD2wY+cynnS3ypp7PBikkNls02H88XoJlbkrg2POUZN+Q3gQDB89W8/3vrMGetou4cOcol7BhA296JkX+opnrG/eM944WihoAxu/10A4TO92CIc1gEuTlrKYrOIjdBFtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=wdm6kXYE; arc=none smtp.client-ip=212.77.101.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 20827 invoked from network); 16 Aug 2025 14:04:09 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1755345849; bh=J8YEjh/pQ9i8Wl0STZLqAHRZnuedkvdfjwXqtEq3kkw=;
-          h=Subject:To:Cc:From;
-          b=wdm6kXYE/zrr3wa02A83E2fuu5y2rXWgR8BQIX9BXEFYmr3rbmBooQlCsxRVUUmsR
-           2Bk9io3SM89+6BUOY5slRNY9NKy2F6UrA6UuLQgpqemuVcXpYvOAZRdZ4F1kqC213a
-           RLdlgW7sK37n/SXTzA/SU+Iw5KqOZgC6srGK2i1S73eKasofeIpPz3HxST4yQ1vKdc
-           h/IYcJbaLYLFimS23BDtuMRC6DyvmE8/wXhH/6jAZe/A2WKCRg/QwLPMieNt5bd4Gv
-           K2X0mm9RH8YBCpeHkO+qNezx5p96lEVrWrYUoIe+ptt4tmR9to8vq5WkMMuUGPaL3E
-           tz1U0or1ze8kQ==
-Received: from 83.24.134.210.ipv4.supernova.orange.pl (HELO [192.168.3.229]) (olek2@wp.pl@[83.24.134.210])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <conor@kernel.org>; 16 Aug 2025 14:04:09 +0200
-Message-ID: <0dc6c3b2-cf93-4cdf-b0bb-1b0d420f1060@wp.pl>
-Date: Sat, 16 Aug 2025 14:04:09 +0200
+	s=arc-20240116; t=1755346000; c=relaxed/simple;
+	bh=pxKL/i5KZ3St1r+nCO3dem3IEbdpNgPCz0cfdIjoFtE=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=pkbrB3ScMYXHK+mKhIPeqI3n4rBNpc8bkuCSJJsMQRLEgf4twJkVe894s8bGrosQ6zPECvA2wLzBWGtF8UITsoEWwTTbT6ew2dP4yscZjxbSNv7DrzslCoX5JJryh8+6fMhGhdRoQWs42MYqagG24wA2L2ctvxMk2fCozp3W5Yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu; spf=pass smtp.mailfrom=artur-rojek.eu; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=artur-rojek.eu
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 42CE343203;
+	Sat, 16 Aug 2025 12:06:34 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mips: lantiq: Document Lantiq Xway GPTU
-To: Conor Dooley <conor@kernel.org>
-Cc: tsbogend@alpha.franken.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+Date: Sat, 16 Aug 2025 14:06:34 +0200
+From: Artur Rojek <contact@artur-rojek.eu>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Landley <rob@landley.net>, Jeff Dionne <jeff@coresemi.io>, John Paul
+ Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S .
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20250814093704.3197030-1-olek2@wp.pl>
- <20250814-settling-hamstring-d6a6e957f6c6@spud>
-Content-Language: en-US
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-In-Reply-To: <20250814-settling-hamstring-d6a6e957f6c6@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 2/3] dt-bindings: net: Add support for J-Core EMAC
+In-Reply-To: <aa6bdc05-81b0-49a2-9d0d-8302fa66bf35@kernel.org>
+References: <20250815194806.1202589-1-contact@artur-rojek.eu>
+ <20250815194806.1202589-3-contact@artur-rojek.eu>
+ <aa6bdc05-81b0-49a2-9d0d-8302fa66bf35@kernel.org>
+Message-ID: <cab483ef08e15d999f83e0fbabdc4fdf@artur-rojek.eu>
+X-Sender: contact@artur-rojek.eu
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-WP-MailID: 9cbe2bc5c69b60e7ad18a5b9179db56a
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000000 [ETOR]                               
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddugeeikeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhfkgigtgfesthejjhdttddtvdenucfhrhhomheptehrthhurhcutfhojhgvkhcuoegtohhnthgrtghtsegrrhhtuhhrqdhrohhjvghkrdgvuheqnecuggftrfgrthhtvghrnheptdeugfelveeuvedtfffhledttddthefhuedufffguedtveehieeukeejgfejgefhnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghdpghhithhhuhgsuhhsvghrtghonhhtvghnthdrtghomhenucfkphepuddtrddvtddtrddvtddurdduleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedutddrvddttddrvddtuddrudelpdhhvghlohepfigvsghmrghilhdrghgrnhguihdrnhgvthdpmhgrihhlfhhrohhmpegtohhnthgrtghtsegrrhhtuhhrqdhrohhjvghkrdgvuhdpnhgspghrtghpthhtohepudeipdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgssehlrghnughlvgihrdhnvghtpdhrtghpthhtohepjhgvfhhfsegtohhrvghsvghmihdrihhopdhrtghpthhtohepghhlrghusghithiisehphhihshhikhdrfhhuqdgsvghrlhhinhdru
+ ggvpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhm
+X-GND-Sasl: contact@artur-rojek.eu
 
-
-On 8/14/25 22:50, Conor Dooley wrote:
-> On Thu, Aug 14, 2025 at 11:36:59AM +0200, Aleksander Jan Bajkowski wrote:
->> The Lantiq SoC has six built-in 16-bit general purpose timers (GPTU).
->>
->> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+On 2025-08-16 10:19, Krzysztof Kozlowski wrote:
+> On 15/08/2025 21:48, Artur Rojek wrote:
+>> Add a documentation file to describe the Device Tree bindings for the
+>> Ethernet Media Access Controller found in the J-Core family of SoCs.
+>> 
+>> Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
 >> ---
->>   .../mips/lantiq/lantiq,gptu-xway.yaml         | 39 +++++++++++++++++++
->>   1 file changed, 39 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml b/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml
+>>  .../devicetree/bindings/net/jcore,emac.yaml   | 42 
+>> +++++++++++++++++++
+>>  1 file changed, 42 insertions(+)
+>>  create mode 100644 
+>> Documentation/devicetree/bindings/net/jcore,emac.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/net/jcore,emac.yaml 
+>> b/Documentation/devicetree/bindings/net/jcore,emac.yaml
 >> new file mode 100644
->> index 000000000000..fcfc634dd391
+>> index 000000000000..a4384f7ed83d
 >> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml
->> @@ -0,0 +1,39 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +++ b/Documentation/devicetree/bindings/net/jcore,emac.yaml
+>> @@ -0,0 +1,42 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 >> +%YAML 1.2
 >> +---
->> +$id: http://devicetree.org/schemas/mips/lantiq/lantiq,gptu-xway.yaml#
+>> +$id: http://devicetree.org/schemas/net/jcore,emac.yaml#
 >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +title: Lantiq Xway SoC series General Purpose Timer Unit (GPTU)
-> "SoC series" implies that you're using the same compatible for multiple
-> devices. Why are you not using device-specific compatibles?
+>> +title: J-Core Ethernet Media Access Controller
+>> +
+>> +description: |
+>> +  This node provides properties for configuring the Ethernet MAC 
+>> found
+>> +  in the J-Core family of SoCs.
+>> +
+>> +maintainers:
+>> +  - Artur Rojek <contact@artur-rojek.eu>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: jcore,emac
+> 
+> You need SoC-based compatibles. And then also rename the file to match 
+> it.
 
-This IP Core didn't change in subsequent generations of SoCs, so it had
-one compatible string. In the next iteration, I will add device-specific
-compatibles.
+Given how the top-most compatible of the bindings [1] of the board I am
+using has "jcore,j2-soc", this driver should probably go with
+"jcore,j2-emac".
+
+But as this is an FPGA design, I don't know how widespread the use is
+across other jcore derived SoCs (if any?).
+I will wait for Jeff (who's design this is) to clarify on that.
+
+PS. Too bad we already have other IP cores following the old pattern:
+
+> $ grep -r "compatible = \"jcore," bindings/ | grep -v "emac"
+> bindings/timer/jcore,pit.yaml:        compatible = "jcore,pit";
+> bindings/spi/jcore,spi.txt:	compatible = "jcore,spi2";
+> bindings/interrupt-controller/jcore,aic.yaml:        compatible = 
+> "jcore,aic2";
+
+Cheers,
+Artur
+
+[1] 
+https://raw.githubusercontent.com/j-core/jcore-soc/refs/heads/master/targets/boards/turtle_1v1/board.dts
+
+> 
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +
+>> +allOf:
+>> +  - $ref: ethernet-controller.yaml#
+>> +
+>> +additionalProperties: false
+> 
+> unevaluatedProperties instead
+> 
+>> +
+>> +examples:
+>> +  - |
+>> +    ethernet@10000 {
+>> +      compatible = "jcore,emac";
+>> +      reg = <0x10000 0x2000>;
+>> +      interrupts = <0x11>;
+> 
+> That's not hex...
+> 
+>> +    };
+> 
+> 
+> Best regards,
+> Krzysztof
 
