@@ -1,167 +1,142 @@
-Return-Path: <devicetree+bounces-205372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB75FB28D8E
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:06:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 675E1B28D91
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:08:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23C245C6E2D
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:06:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE93BAA2629
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3AA24111D;
-	Sat, 16 Aug 2025 12:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E203528D829;
+	Sat, 16 Aug 2025 12:08:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B12Xdd39"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31C8222083;
-	Sat, 16 Aug 2025 12:06:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4347248F4E;
+	Sat, 16 Aug 2025 12:08:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755346000; cv=none; b=puihdnTHhupvp9HOb+LUnb/qhjGgamGwdTirBEm57yP7+iYUo6ctXAJJOEBmNywkha/v12vMze91IO4cJyZEpaEaEX1OTQUqKOWsJnAdCEVeobSIkLFjj7HP+FsFi39BCoagNBq25e1soglYSXHdXArhx3EzoJG+dth5ADjHMJg=
+	t=1755346113; cv=none; b=EH0wv0ZQYv5o9huIOM95JXS2O8lNtlR93VaTWO+Bsg0s/hzsG0qr+o3PomTkSYQqRDxkQxNcwB5Bi8a3a510Zzrrd1rAX27vBjp6FbovFZNa33XxM6yNLF07H1Lgye+WWnANhaPxvwXfleIKIJf1G/On7F/lm9g0pLZaEKxZciU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755346000; c=relaxed/simple;
-	bh=pxKL/i5KZ3St1r+nCO3dem3IEbdpNgPCz0cfdIjoFtE=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=pkbrB3ScMYXHK+mKhIPeqI3n4rBNpc8bkuCSJJsMQRLEgf4twJkVe894s8bGrosQ6zPECvA2wLzBWGtF8UITsoEWwTTbT6ew2dP4yscZjxbSNv7DrzslCoX5JJryh8+6fMhGhdRoQWs42MYqagG24wA2L2ctvxMk2fCozp3W5Yk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu; spf=pass smtp.mailfrom=artur-rojek.eu; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=artur-rojek.eu
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 42CE343203;
-	Sat, 16 Aug 2025 12:06:34 +0000 (UTC)
+	s=arc-20240116; t=1755346113; c=relaxed/simple;
+	bh=qlB4X8NEdQ6H1pEuGtG2U39RBECS7RzEFldDRG+JH8Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rGWCA2IyE85It7gGz5VRfUijc2VgrN8LKOEaCpIgVWo2LRiycC6ruBQN6fFslpSZeOm2+P5eW+CJx4Jnc8+9jWRn0HhVHtMgm4WwrWykOZoso3oEF5oFI1vWVm/J9d5L/4D2SFxu6sOINGc5/aWtpJJib4VXC3n1Ysuy6WxLXfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B12Xdd39; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C522C4CEF1;
+	Sat, 16 Aug 2025 12:08:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755346113;
+	bh=qlB4X8NEdQ6H1pEuGtG2U39RBECS7RzEFldDRG+JH8Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=B12Xdd39E5EgFqfC1+nwjbiIqR6E/+ZVUD+juS9DMrxLGKGmhrDEFhdNtDz6eIRHa
+	 jyEkBFMTgcDpXQw02gCjBS2hoEIgpJfwEk/2sfIyrmb2w5Ohb4kUYshAT1C/CzWuWd
+	 k0q7caCSyXrZK6WqZb22Rj+MGZsZVhaOsUxUj/GmOEtmwssCFNSOWsFHSJ42zN2zJA
+	 MoMpxAFEfe4uBLOAa3FWxFohMwht4ZQ3VbNM9In33Y8KxCs1B3069Ze4gl6go6JJ54
+	 k7pucOViUeMUyrW1dehZz4/UoFW67ozOwS0WW55GFp6vjPwQBHrvpnGSd34Lu7T0ed
+	 uuRSNjf1O5K2g==
+Date: Sat, 16 Aug 2025 13:08:23 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>
+Cc: remi.buisson@tdk.com, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 4/9] iio: imu: inv_icm45600: add IMU IIO gyroscope
+ device
+Message-ID: <20250816130823.3cb14980@jic23-huawei>
+In-Reply-To: <20250814-add_newport_driver-v4-4-4464b6600972@tdk.com>
+References: <20250814-add_newport_driver-v4-0-4464b6600972@tdk.com>
+	<20250814-add_newport_driver-v4-4-4464b6600972@tdk.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 16 Aug 2025 14:06:34 +0200
-From: Artur Rojek <contact@artur-rojek.eu>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Landley <rob@landley.net>, Jeff Dionne <jeff@coresemi.io>, John Paul
- Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S .
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: net: Add support for J-Core EMAC
-In-Reply-To: <aa6bdc05-81b0-49a2-9d0d-8302fa66bf35@kernel.org>
-References: <20250815194806.1202589-1-contact@artur-rojek.eu>
- <20250815194806.1202589-3-contact@artur-rojek.eu>
- <aa6bdc05-81b0-49a2-9d0d-8302fa66bf35@kernel.org>
-Message-ID: <cab483ef08e15d999f83e0fbabdc4fdf@artur-rojek.eu>
-X-Sender: contact@artur-rojek.eu
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddugeeikeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhfkgigtgfesthejjhdttddtvdenucfhrhhomheptehrthhurhcutfhojhgvkhcuoegtohhnthgrtghtsegrrhhtuhhrqdhrohhjvghkrdgvuheqnecuggftrfgrthhtvghrnheptdeugfelveeuvedtfffhledttddthefhuedufffguedtveehieeukeejgfejgefhnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghdpghhithhhuhgsuhhsvghrtghonhhtvghnthdrtghomhenucfkphepuddtrddvtddtrddvtddurdduleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedutddrvddttddrvddtuddrudelpdhhvghlohepfigvsghmrghilhdrghgrnhguihdrnhgvthdpmhgrihhlfhhrohhmpegtohhnthgrtghtsegrrhhtuhhrqdhrohhjvghkrdgvuhdpnhgspghrtghpthhtohepudeipdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgssehlrghnughlvgihrdhnvghtpdhrtghpthhtohepjhgvfhhfsegtohhrvghsvghmihdrihhopdhrtghpthhtohepghhlrghusghithiisehphhihshhikhdrfhhuqdgsvghrlhhinhdru
- ggvpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhm
-X-GND-Sasl: contact@artur-rojek.eu
 
-On 2025-08-16 10:19, Krzysztof Kozlowski wrote:
-> On 15/08/2025 21:48, Artur Rojek wrote:
->> Add a documentation file to describe the Device Tree bindings for the
->> Ethernet Media Access Controller found in the J-Core family of SoCs.
->> 
->> Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
->> ---
->>  .../devicetree/bindings/net/jcore,emac.yaml   | 42 
->> +++++++++++++++++++
->>  1 file changed, 42 insertions(+)
->>  create mode 100644 
->> Documentation/devicetree/bindings/net/jcore,emac.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/net/jcore,emac.yaml 
->> b/Documentation/devicetree/bindings/net/jcore,emac.yaml
->> new file mode 100644
->> index 000000000000..a4384f7ed83d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/jcore,emac.yaml
->> @@ -0,0 +1,42 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/jcore,emac.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: J-Core Ethernet Media Access Controller
->> +
->> +description: |
->> +  This node provides properties for configuring the Ethernet MAC 
->> found
->> +  in the J-Core family of SoCs.
->> +
->> +maintainers:
->> +  - Artur Rojek <contact@artur-rojek.eu>
->> +
->> +properties:
->> +  compatible:
->> +    const: jcore,emac
-> 
-> You need SoC-based compatibles. And then also rename the file to match 
-> it.
+On Thu, 14 Aug 2025 08:57:18 +0000
+Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org> wrote:
 
-Given how the top-most compatible of the bindings [1] of the board I am
-using has "jcore,j2-soc", this driver should probably go with
-"jcore,j2-emac".
+> From: Remi Buisson <remi.buisson@tdk.com>
+> 
+> Add IIO device for gyroscope sensor
+> with data polling interface and FIFO parsing.
+> Attributes: raw, scale, sampling_frequency, calibbias.
+> Temperature is available as a processed channel.
+> 
+> Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
+A few minor comments.
 
-But as this is an FPGA design, I don't know how widespread the use is
-across other jcore derived SoCs (if any?).
-I will wait for Jeff (who's design this is) to clarify on that.
+> diff --git a/drivers/iio/imu/inv_icm45600/inv_icm45600_gyro.c b/drivers/iio/imu/inv_icm45600/inv_icm45600_gyro.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..7a5a2ce77f3e176bdcb5657c0b8d547024d04930
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm45600/inv_icm45600_gyro.c
 
-PS. Too bad we already have other IP cores following the old pattern:
+> +int inv_icm45600_gyro_parse_fifo(struct iio_dev *indio_dev)
 
-> $ grep -r "compatible = \"jcore," bindings/ | grep -v "emac"
-> bindings/timer/jcore,pit.yaml:        compatible = "jcore,pit";
-> bindings/spi/jcore,spi.txt:	compatible = "jcore,spi2";
-> bindings/interrupt-controller/jcore,aic.yaml:        compatible = 
-> "jcore,aic2";
+Ah. This is where this comes in.  Add header definition in this
+patch as well.
 
-Cheers,
-Artur
+> +{
+> +	struct inv_icm45600_state *st = iio_device_get_drvdata(indio_dev);
+> +	struct inv_icm45600_sensor_state *gyro_st = iio_priv(indio_dev);
+> +	struct inv_sensors_timestamp *ts = &gyro_st->ts;
+> +	ssize_t i, size;
+> +	unsigned int no;
+> +
+> +	/* parse all fifo packets */
+> +	for (i = 0, no = 0; i < st->fifo.count; i += size, ++no) {
+> +		struct inv_icm45600_gyro_buffer buffer = { };
+> +		const struct inv_icm45600_fifo_sensor_data *accel, *gyro;
+> +		const __le16 *timestamp;
+> +		const s8 *temp;
+> +		unsigned int odr;
+> +		s64 ts_val;
+> +
+> +		size = inv_icm45600_fifo_decode_packet(&st->fifo.data[i],
 
-[1] 
-https://raw.githubusercontent.com/j-core/jcore-soc/refs/heads/master/targets/boards/turtle_1v1/board.dts
+can drag size into this scope as well.
 
+> +				&accel, &gyro, &temp, &timestamp, &odr);
+> +		/* quit if error or FIFO is empty */
+> +		if (size <= 0)
+> +			return size;
+> +
+> +		/* skip packet if no gyro data or data is invalid */
+> +		if (gyro == NULL || !inv_icm45600_fifo_is_data_valid(gyro))
+> +			continue;
+> +
+> +		/* update odr */
+> +		if (odr & INV_ICM45600_SENSOR_GYRO)
+> +			inv_sensors_timestamp_apply_odr(ts, st->fifo.period,
+> +							st->fifo.nb.total, no);
+> +
+> +		memcpy(&buffer.gyro, gyro, sizeof(buffer.gyro));
+> +		/* convert 8 bits FIFO temperature in high resolution format */
+> +		buffer.temp = temp ? (*temp * 64) : 0;
+> +		ts_val = inv_sensors_timestamp_pop(ts);
+> +		iio_push_to_buffers_with_timestamp(indio_dev, &buffer, ts_val);
+
+Please switch to new iio_push_to_buffers_with_ts().
+I want to get rid of the with_timestamp() version eventually as we might as well
+always provide the buffer size.
+
+> +	}
+> +
+> +	return 0;
+> +}
 > 
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +
->> +allOf:
->> +  - $ref: ethernet-controller.yaml#
->> +
->> +additionalProperties: false
-> 
-> unevaluatedProperties instead
-> 
->> +
->> +examples:
->> +  - |
->> +    ethernet@10000 {
->> +      compatible = "jcore,emac";
->> +      reg = <0x10000 0x2000>;
->> +      interrupts = <0x11>;
-> 
-> That's not hex...
-> 
->> +    };
-> 
-> 
-> Best regards,
-> Krzysztof
+
 
