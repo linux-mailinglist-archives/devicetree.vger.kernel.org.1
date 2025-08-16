@@ -1,124 +1,116 @@
-Return-Path: <devicetree+bounces-205403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53BA6B28E7D
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 16:37:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFE99B28EBC
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 17:04:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1AB01C83CA0
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 14:37:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 556C3AC426F
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 15:04:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E8C92ECEBD;
-	Sat, 16 Aug 2025 14:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9DE2EBDDB;
+	Sat, 16 Aug 2025 15:04:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mD6Pjsqm"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bBX+Rk2K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B162DEA7D;
-	Sat, 16 Aug 2025 14:37:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B7CD634;
+	Sat, 16 Aug 2025 15:04:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755355025; cv=none; b=gH7w7OcwHjf7TIzNcI1vyxw2Bs0G0xQh2otqXYdHfYhVIEshr5tA5Y6zrq2zO32f3RrIJLETHPu5FTH0GbbQa8NJ8K1pV1w5XTo3MHDOflWu6LPBW1rNfTRWJuZu0Rad3zoamtcaQJF29pIdmIF9CXTamJ/C9Xwv6k/q2Z/hYAU=
+	t=1755356667; cv=none; b=CWY7KyYZ0C8x4cu8k6sM5a7ylEcuwyUCTk5Kwi5FK6s+Hkg7rVVn2Nx0XrOmlH4Oqbo4LZo3Q7XgUR/wLU/5OF6mi2oureE5WmdjNCLVnaHYXpxOOuyAFKyJhxsMH74XJ8db17yk9QuoACpWv3oHS+6fCo7WGkl3lhD4hHIDXDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755355025; c=relaxed/simple;
-	bh=RjN4QVjquicEAYrAUjr8pIPXz+RTQcjkbloqRD42w70=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I3BJOIukFVa0nAXq4SKU2jvvf2SHDfqqiF68ClbeiGeYvdto0sqOhzYhOmWdN47wtCOrBRjeJe2z/Pdx2iFtFzw/uhmEX83hugDzjj+0ak4lSE5rOc5nvRtE5tPwfbdOCABCufDwQCzXy0TkDjiMm9l87o+yzYLtIs9yAJmLr88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mD6Pjsqm; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-333f92a69d4so21207991fa.2;
-        Sat, 16 Aug 2025 07:37:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755355022; x=1755959822; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rcnY7bKyH0HRgtUBQ1xnHjEnIRmtANVbkGy9/T4atBM=;
-        b=mD6Pjsqme+qxEL2tVPk/cayr0e0nN33yDSEEHqfNHVmJB0PODEhEeMb2+l9Uz2Ysif
-         K4TFEyDYFe0p7VOc0pX/C9U9+xUcBVdTBR7LLLjl24x7IE5kTDs9LdJcDegvza9OBCdx
-         38lpT3hMtU+XrZsKbq8t8LA+wXNSI2JsXGwJdNAROjQjw6cT/T7As67CdOub7yK79gZ8
-         EjsQpPHw41vcQF/Tv7wqla7xGfEkxJxKoDIMhPCVmNGbB20pfr3lAIwobLsHXzRs9FTi
-         uDM4UolzJKYgt0lbf4ql7jtdM3z2NNuWnb7IkBuroi9b2GyeaUlPRCQotqic1PClsqLC
-         9ZQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755355022; x=1755959822;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rcnY7bKyH0HRgtUBQ1xnHjEnIRmtANVbkGy9/T4atBM=;
-        b=IDPlRryzpNF/w/s+FYCQpx0enXloQ19Ftz9wY2VAvTuratFpBayfHPiw99K2/zw5gU
-         nHhDZdrITgbd/ErRp+5xqvPuxa4NzsfbkR2muwiuDAIgxP+6S3ixFMpSKZo3I2sGOg7d
-         DOivXrbW2oHXtWDgnfgNQB8Gd1e6hGAyZTMcrEq1S5dwf1BkvGoSwPi0/Qs1e79Mp1Co
-         p7ZXPNG/Kc0NX+1ZMEHmEWkQZfTHHfnCDS0bKQdHeiZomR+yT7pArMdCZ5xPHNA3uTl8
-         tVU4SJuax9FRZYqFOGA8cjYbS4k+TS59HqdXirHmcaNlUk+Yj8KL8VaIjcTRR4JpThoo
-         3C3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU4kk8YhsoMolrhtExHVIkIEXtIfMhSwRhniUCWPFVJDByTUZoY1/RU5xwETQ1wcB/YNBNrvrZoD3qXib2P@vger.kernel.org, AJvYcCUGxT3JXdb2Kwv+xAAEC8NS6R1J1wJHr8aHFiohZz7vExC2yksyxRgwpqE5Jwe51rCwS8GufqLmI4Dv@vger.kernel.org, AJvYcCUIlY5z7jd7BUaUrLiw9fiB1v5oPKt0Ru/FPFVwReB7b9vta7j2ublwdWLC6WBNjQOIcZn8bee12PSk7MM=@vger.kernel.org, AJvYcCUm7z/G9bvoN0zcTc70SowfeARi+ppBBsegwLwevGMAAcNg1jHXIAzUTvq9lvnkpmt7dT/Du2oMiZfZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxzz/KTuY0zcxenzDMs4L79wQ5huLUpPtjsI97zBvGe2tG/x9HP
-	c1DRogvZkqT9ZdPG10OUCetc0bzPv/eCnVBwR+vyQox+O6k6LuUpTa7T
-X-Gm-Gg: ASbGncsb+tfukcLTNyar4s5XEkU92xDYiUXKSC1ZcbOniCHuRkSO60Q4ksdG2Msb3a0
-	OFQaYIirQ22Am84tZVGFcNlxPAAXwetlbIAUCyGL3LbR+aC2DR1zoQgz1/1uuexHW2YGtyaXOyc
-	wFsbxpMGe3mgUIKn9kBNP9c6cHfa6KiOvjW/EdwVb81hCV8+8fMwciC31qwtC9879op36i9Fesu
-	A6twFbI/2PDPJsyPrWoS47CApD/IF+U3nIVcUqnuIjS08tgdNF6xTNK0qqmBIP3Hzu1HGgrcy5f
-	eBV/kgFnqwX+oFf0NPQTeNH3XuzexZjg+LcC07zNKv5uA2y5mNVGV7kG7RoAzrM/MVALKQxwb/P
-	8oFaKrtL8bT1Bz/e4eYK9jmEP0aEwab2vqTPAlLrr14UgcoKFipUKNEGqdQKAYw==
-X-Google-Smtp-Source: AGHT+IE4k/iMe+Rm9RA0iN191EI9xn/ofj5LgLs+Sdk7/lrkrwQ3CSU1gIuS9Ybyz5OPre4cVGIQ4Q==
-X-Received: by 2002:a2e:a588:0:b0:332:51ee:237d with SMTP id 38308e7fff4ca-33409841f80mr13479911fa.12.1755355021589;
-        Sat, 16 Aug 2025 07:37:01 -0700 (PDT)
-Received: from [192.168.2.19] (109-252-159-193.dynamic.spd-mgts.ru. [109.252.159.193])
-        by smtp.googlemail.com with ESMTPSA id 38308e7fff4ca-3340a604c1dsm10279661fa.43.2025.08.16.07.36.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 16 Aug 2025 07:37:01 -0700 (PDT)
-Message-ID: <83755868-09b3-4bd1-8b40-0a4b9f497d2f@gmail.com>
-Date: Sat, 16 Aug 2025 17:36:58 +0300
+	s=arc-20240116; t=1755356667; c=relaxed/simple;
+	bh=CZQ0MZgs7iA+U1IXKA1q9qrE+MeahDvGd+LUUNxs4q4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F7EM0hnRnQOtqY8EyybTAjwupDluq1Eq1ddnTBOnAZ8HhEhjlE6Mcu8gKt9+IDklrfeIhDvk5I5tMjEbmnoakycftlaTfCu/EjsrxlAPp660HCFvzSaj6IWRPKd2Ocs395fuzq9joqP9hmc+Zk62q8ZOvmI00MLTyzIlOTtbhNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=bBX+Rk2K; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=n2sgIlUcAzPscDcOi8N90Jqt3pazwypfbRrISEI8r9E=; b=bBX+Rk2K5H6cfyBFafMLdc9yTR
+	4riParkZoEBO+4KNUo3LSdK2MdYVjmsH3JNWhOBFnRMMdtvnbzSxg3pWmRv8bwSRkL2PPEoaRIA8h
+	V4Ie2VdU7nvYgkdeYWxDdIja45xk6isEGIQPnhzsef5ejbO8i9JUbP7iXDVowFFl5u8s=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1unIS4-004uW2-AF; Sat, 16 Aug 2025 17:04:12 +0200
+Date: Sat, 16 Aug 2025 17:04:12 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Artur Rojek <contact@artur-rojek.eu>
+Cc: Rob Landley <rob@landley.net>, Jeff Dionne <jeff@coresemi.io>,
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] net: j2: Introduce J-Core EMAC
+Message-ID: <52aef275-0907-4510-b95c-b2b01738ce0b@lunn.ch>
+References: <20250815194806.1202589-1-contact@artur-rojek.eu>
+ <20250815194806.1202589-4-contact@artur-rojek.eu>
+ <973c6f96-6020-43e0-a7cf-9c129611da13@lunn.ch>
+ <b1a9b50471d80d51691dfbe1c0dbe6fb@artur-rojek.eu>
+ <02ce17e8f00955bab53194a366b9a542@artur-rojek.eu>
+ <fc6ed96e-2bab-4f2f-9479-32a895b9b1b2@lunn.ch>
+ <7a4154eef1cd243e30953d3423e97ab1@artur-rojek.eu>
+ <ee607928-1845-47aa-90a1-6511decda49d@lunn.ch>
+ <9eab7a4ff3a72117a1a832b87425130f@artur-rojek.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/5] gpu/drm: host1x: mipi: add Tegra20/Tegra30 MIPI
- calibration logic
-To: Svyatoslav Ryhel <clamor95@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Peter De Schrijver <pdeschrijver@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20250717142139.57621-1-clamor95@gmail.com>
- <20250717142139.57621-4-clamor95@gmail.com>
-Content-Language: en-US
-From: Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20250717142139.57621-4-clamor95@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9eab7a4ff3a72117a1a832b87425130f@artur-rojek.eu>
 
-17.07.2025 17:21, Svyatoslav Ryhel пишет:
-> @@ -525,6 +599,14 @@ static int tegra_mipi_probe(struct platform_device *pdev)
->  		return PTR_ERR(mipi->clk);
->  	}
->  
-> +	if (mipi->soc->dsi_v0) {
-> +		mipi->csi_clk = devm_clk_get_prepared(&pdev->dev, "csi");
-> +		if (IS_ERR(mipi->csi_clk)) {
+On Sat, Aug 16, 2025 at 03:40:57PM +0200, Artur Rojek wrote:
+> On 2025-08-16 02:18, Andrew Lunn wrote:
+> > > Yes, it's an IC+ IP101ALF 10/100 Ethernet PHY [1]. It does have both
+> > > MDC
+> > > and MDIO pins connected, however I suspect that nothing really
+> > > configures it, and it simply runs on default register values (which
+> > > allow for valid operation in 100Mb/s mode, it seems). I doubt there is
+> > > another IP core to handle MDIO, as this SoC design is optimized for
+> > > minimal utilization of FPGA blocks. Does it make sense to you that a
+> > > MAC
+> > > could run without any access to an MDIO bus?
+> > 
+> > It can work like that. You will likely have problems if the link ever
+> > negotiates 10Mbps or 100Mbps half duplex. You generally need to change
+> > something in the MAC to support different speeds and duplex. Without
+> > being able to talk to the PHY over MDIO you have no idea what it has
+> > negotiated with the link peer.
+> 
+> Thanks for the explanation. I just confirmed that there is no activity
+> on the MDIO bus from board power on, up to the jcore_emac driver start
+> (and past it), so most likely this SoC design does not provide any
+> management interface between MAC and PHY. I guess once/if MDIO is
+> implemented, we can distinguish between IP core revision compatibles,
+> and properly switch between netif_carrier_*()/phylink logic.
 
-Doesn't look like the clock needs to be prepared. Normally, you would
-need to have clock prepared if clock is enabled/disabled from a context
-that can't sleep, like under spinlock or in IRQ handler. AFAICT, this
-not the case here.
+How cut down of a SoC design is it? Is there pinmux and each pin can
+also be used for GPIO? Linux has software bit-banging MDIO, if you can
+make the two pins be standard Linux GPIOs, and can configure them
+correctly, i _think_ open drain on MDIO. It will be slow, but it
+works, and it is pretty much for free.
 
+MDIO itself is simple, just a big shift register:
+
+https://opencores.org/websvn/filedetails?repname=ethmac10g&path=%2Fethmac10g%2Ftrunk%2Frtl%2Fverilog%2Fmgmt%2Fmdio.v
+
+	Andrew
 
