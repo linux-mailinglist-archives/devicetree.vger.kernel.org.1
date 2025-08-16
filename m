@@ -1,150 +1,292 @@
-Return-Path: <devicetree+bounces-205363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37AA7B28D0A
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:50:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99092B28D04
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 12:49:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F755A21215
-	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:47:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88D2A5C3836
+	for <lists+devicetree@lfdr.de>; Sat, 16 Aug 2025 10:49:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF81F29992B;
-	Sat, 16 Aug 2025 10:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FC372253AE;
+	Sat, 16 Aug 2025 10:49:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kfgstkYi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WadRKRCX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39D2129AAFE
-	for <devicetree@vger.kernel.org>; Sat, 16 Aug 2025 10:47:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0246B156C79;
+	Sat, 16 Aug 2025 10:49:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755341239; cv=none; b=rqqkfTBxPfF9gEt1r0ReXxRZypoSS6nFLEX7Km4hWdk52ofvKg5y8kYmynH9Kgqw14slCEeJMDUjbxnmFjWKp7NeEpcMgTvoDb1pEFeCeO+U3kIKAHnkdrLoqpg7tYIsFZzbi8ZlKllUNHIquZ8OwcYqAv47ZOILpnM51azLGgI=
+	t=1755341375; cv=none; b=oh2sz8crVOieBXkSt9jjGOL2V76ZJDFPL+ERf43Oo8XyYvxiJjMoCyQWu2Kz79Ua6UW2dLpr5x5u22Yoa+VeGAW27U98dhRQmtjsHLgepvLnggv+iIwXHPDwN9mB5ft8Isqexxsms4OzLUQzEgT7Okqpg65pyI8G5u2io8d8klg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755341239; c=relaxed/simple;
-	bh=fyrnp2G3Ydck/VjXXAZySzmhvFr0osu+dU28HaR/Aig=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sZBISoGDBh3KDxlr8WZH+hqhxo3PsupG9GbSD6ooR4WM+Stsq5rYZJiBkg+IIU1DnzHP8gBYZcjVrLMdNrx+BKVyqIpX64kGF06HBu02BFwEedSuAhY3IVz7SUvqfpOMvwcFHvLnSjVEKs9eAVWhUbYXiAJeL/NFkap7pokIf3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kfgstkYi; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-45a1b00f23eso14355685e9.0
-        for <devicetree@vger.kernel.org>; Sat, 16 Aug 2025 03:47:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755341236; x=1755946036; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8KLQMXDCWuJhcgQgQnyLb1KMnCRmFUpDqVZgzOKpGBQ=;
-        b=kfgstkYiv66DuC8qirldPIiycCgf68F9ctuG03i14CB/hOq606L4/GHzBwEfRFI1RI
-         hLNfHBRbQz3y9AJVRuiOzTH1Yr0M1WXwXOmGl3iAvsNkTEiFdYq3C+YOHYR77HDyhJAJ
-         1WabpTKDWf5IQcLC/earoH4K/NLqFHAqvpW9sH13LvhppsZ+C9TPTmqL/BLpmDMMfO60
-         nak/uEPFv3s+Xb+9cXm8428AWjGBUGcxQIPuwq9dB++BFG0GlXwfilmHX6nwB4pmL9hl
-         HSMMU2qii7PXtqstBQEe1T4CQMfTU/Fa5so2rBP6m+V1PC6duGaF1YGpmSENoeYLvigU
-         Z0eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755341236; x=1755946036;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8KLQMXDCWuJhcgQgQnyLb1KMnCRmFUpDqVZgzOKpGBQ=;
-        b=NekPA093S8m+q9GEr4MW2b+B17rwtTB5X3lFB9yI/g64TaNSjtoFJcZ9SF7CuVdwr7
-         cuu9Gd7CpqcalNyNyb9BGsThjyeB/2F0LM8UtfvYYBxnqrrsMzxCEcEr+HDDt6OsIgeG
-         ytR7S8ScsuF5Ht93A4q9co2gQg2SeuuMQZRT7NZuIlUNVQxYHk2BlB1zmjndC3UeDQF8
-         8ZcblfNQr0KbEXO2TDIy9dcnnj3jojKJFtlb+hZae3GeCp5yCgQ87f64BTpv6dQrnOuB
-         iLweRnWLDC/xz6JZie2Eed1jbXifXFj4GY1Rwur/Hu3W5A31heA/we6HIG/ANpT/s/jl
-         AQlw==
-X-Forwarded-Encrypted: i=1; AJvYcCV2YZdmGfZMAtn8s6blYWyOtxafaWmRZFqYbs3rp5RLa3SVojBnANRKuaeZyniMzx6lgWq/zRtfcuVK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yym+f+UBH9I6AM4VNMgJBkVBlpnOG6l6IhIDthNSt9zjRfckj6D
-	XuEhhOa5t/RREM12uP/9elG39Y/F4WDvLet2qtIFiIYJ5oMRRTrjd/gwQV/XKLcBCJc=
-X-Gm-Gg: ASbGnct4/2VS48DmIRav1M5U2OOSySTHTURnd+Godm93SQ/mAx8SCCkkhz9eKwCTkFR
-	GS4ft5zTyHt3eA4iYjN2byT/Iu4vhoNXdj3VQnQvaaoD4EWA6EhGSylDgTM5s9QfN3cCq4uzL82
-	pKh75m4Dx+EDB3YQ6NpHSmMxQjOtJdCIKmOIz/eLEYEGCYpHUN+jBK0SzIAcdV6HvEx/8FoezvP
-	dzd5qx5cwzm9j7f5AcboCKoeYeEUXIcwmX4axuxUjTAJ8/O1b9/6G/MtZWKraePqHgOxppdXEZ3
-	wLS8UsiFBNoxO3WqcpTk1SA5PP6UIIkw2YXOwVZHVXzwAo4LS3PgB2sQZNGKmmd8LYj1grgdVOS
-	p0CEzEXm314bmlEV4u2cVrxaO+zhKjPnZ/uNnVAwaeJA=
-X-Google-Smtp-Source: AGHT+IGkyNX6lrch8bdW1/jFFLJz/On6HV5NRlOeDX6BHkVK6NSeDO7JwUZmN0V0NpAm5N6hxBYQhg==
-X-Received: by 2002:a05:600c:4451:b0:456:1824:4808 with SMTP id 5b1f17b1804b1-45a21867837mr39821515e9.32.1755341236605;
-        Sat, 16 Aug 2025 03:47:16 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45a1c6be10esm96169425e9.3.2025.08.16.03.47.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Aug 2025 03:47:16 -0700 (PDT)
-Date: Sat, 16 Aug 2025 13:47:13 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Chester Lin <chester62515@gmail.com>
-Cc: Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linaro-s32@linaro.org, Srinivas Kandagatla <srini@kernel.org>
-Subject: [PATCH 3/3] arm64: dts: s32g: Add device tree information for the
- OCOTP driver
-Message-ID: <9b3874c6aedf87f78cc6438fe840433162b06445.1755341000.git.dan.carpenter@linaro.org>
-References: <cover.1755341000.git.dan.carpenter@linaro.org>
+	s=arc-20240116; t=1755341375; c=relaxed/simple;
+	bh=QjzhGSjZPNRLCzH5ie+MpMUmCnZul+cxysrq0tU5Ufs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JxYLzeP7YUDZCC+feKW8dbbz47QIIjcb9mPHsLtP7hReLjtXRm/qgCPNLVZ0wx9Weq+j7dU4A2FGju8Vykx9IdoI/Ix9yuyp+uoH6wFlw7CZaO1jJT+rhcu+H8zbWoyvGtD1xLzXzzdco+sVrZCTLgmhKcNttZ3/CqB5SKlC2g4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WadRKRCX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DCA9C4CEEF;
+	Sat, 16 Aug 2025 10:49:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755341374;
+	bh=QjzhGSjZPNRLCzH5ie+MpMUmCnZul+cxysrq0tU5Ufs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WadRKRCXZiHD4L0a8kIf/DwD3BbBN4P7V0SqLNWldpK7EYhJy6beRhlnN1mXe+6wu
+	 rzIuUF7k49FkkcUMNejMspu17HvuhE7YjvaC417qQ+/SnOWkC4jZzzTcU1fYH7dgRd
+	 qyql3dKEirH2IEXNF54hQCwyaTdbZ7I6nfQLkNtMGFypLqkOmMipTghHZCstJ3jv5S
+	 1sHRkoHANln74EgEB8GsOUwx69M9wQR92Zeo1Cl0rgs2jQmGbYTY+PwkvilXOLcVgR
+	 KN3kXNCLThCT0uKuHB6K54v+97F6RYlLhKRNQ4s1C1bXotvx/sZEHor5sZrLSHaPIm
+	 uoBZ+Ssu50zmA==
+Date: Sat, 16 Aug 2025 11:49:24 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] iio: adc: ltc2497: add support for LTC2495
+Message-ID: <20250816114924.7335948c@jic23-huawei>
+In-Reply-To: <20250815-ltc2495-v4-2-2d04e6005468@gmail.com>
+References: <20250815-ltc2495-v4-0-2d04e6005468@gmail.com>
+	<20250815-ltc2495-v4-2-2d04e6005468@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1755341000.git.dan.carpenter@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Add the device tree information for the S32G On Chip One-Time
-Programmable Controller (OCOTP) chip.
+On Fri, 15 Aug 2025 12:02:03 +0200
+Yusuf Alper Bilgin <y.alperbilgin@gmail.com> wrote:
 
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- arch/arm64/boot/dts/freescale/s32g2.dtsi | 7 +++++++
- arch/arm64/boot/dts/freescale/s32g3.dtsi | 7 +++++++
- 2 files changed, 14 insertions(+)
+> Update the LTC2497 driver to also support the LTC2495.
+> 
+> Support for reading the internal temperature sensor on LTC2495 and
+> LTC2499 via a standard IIO temperature channel.
+> 
+> Signed-off-by: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-index 09d2fbbe1d8c..e58ea0d3b083 100644
---- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-@@ -612,5 +612,12 @@ gic: interrupt-controller@50800000 {
- 			interrupt-controller;
- 			#interrupt-cells = <3>;
- 		};
-+
-+		ocotp: ocotp@400a4000 {
-+			compatible = "nxp,s32g2-ocotp";
-+			reg = <0x400a4000 0x400>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-index 39effbe8217c..184a29dea184 100644
---- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-@@ -681,6 +681,13 @@ gic: interrupt-controller@50800000 {
- 			      <0x50420000 0x2000>;
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-+
-+		ocotp: ocotp@400a4000 {
-+			compatible = "nxp,s32g3-ocotp", "nxp,s32g2-ocotp";
-+			reg = <0x400a4000 0x400>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
- 	};
+Hi Alper,
+
+Various comments inline.
+
+Thanks,
+
+Jonathan
+
+> ---
+>  drivers/iio/adc/ltc2497-core.c | 132 ++++++++++++++++++++++++++++-------------
+>  drivers/iio/adc/ltc2497.c      |  39 +++++++++++-
+>  drivers/iio/adc/ltc2497.h      |  11 ++++
+>  3 files changed, 140 insertions(+), 42 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ltc2497-core.c b/drivers/iio/adc/ltc2497-core.c
+> index 2dc5c704426949a4ec62c42591d6c2c40ffb79cc..9f3509c5974dd7a0489145c591630e1ff9dc333e 100644
+> --- a/drivers/iio/adc/ltc2497-core.c
+> +++ b/drivers/iio/adc/ltc2497-core.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/units.h>
+I'm not seeing this used in this patch.  If it is used in driver already and the include
+was missing, add it as a separate patch.
+
+> @@ -95,10 +99,37 @@ static int ltc2497core_read_raw(struct iio_dev *indio_dev,
+>  		if (ret < 0)
+>  			return ret;
+>  
+> -		*val = ret / 1000;
+> -		*val2 = ddata->chip_info->resolution + 1;
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			*val = ret / 1000;
+> +			*val2 = ddata->chip_info->resolution + 1;
+>  
+> -		return IIO_VAL_FRACTIONAL_LOG2;
+> +			return IIO_VAL_FRACTIONAL_LOG2;
+> +
+> +		case IIO_TEMP:
+> +			if (!ddata->chip_info->has_temp_channel)
+> +				return -EINVAL;
+> +
+> +			*val = ret;
+> +			*val2 = ddata->chip_info->temp_scale_mV;
+
+Uou are outputting via _RAW but doing part of the scaling in here.
+Why not figure out the full scale with the vref part and output
+that as _scale? It's linear so that should be easy to do.
+
+> +
+> +			return IIO_VAL_FRACTIONAL;
+> +
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		if (chan->type != IIO_TEMP)
+> +			return -EINVAL;
+> +
+> +		ret = regulator_get_voltage(ddata->ref);
+
+Reference regulators very rarely change in practice (once enabled) so it's
+common option to just read them in probe as then can use the devm_ calls that
+exist to turn them on and read the voltage and only keep a visible copy of
+the voltage.
+
+It might be worth a precursor patch to do that for existing scaling measurement.
  
- 	timer {
--- 
-2.47.2
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		*val = kelvin_to_celsius(0) * ddata->chip_info->temp_scale_mV;
+> +		*val2 = ret / 1000;
+> +
+> +		return IIO_VAL_FRACTIONAL;
+>  
+>  	default:
+>  		return -EINVAL;
+> @@ -126,39 +157,54 @@ static int ltc2497core_read_raw(struct iio_dev *indio_dev,
+>  	.differential = 1, \
+>  }
 
+>  static const struct iio_info ltc2497core_info = {
+> @@ -182,8 +228,14 @@ int ltc2497core_probe(struct device *dev, struct iio_dev *indio_dev)
+>  
+>  	indio_dev->info = &ltc2497core_info;
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
+> -	indio_dev->channels = ltc2497core_channel;
+> -	indio_dev->num_channels = ARRAY_SIZE(ltc2497core_channel);
+> +
+> +	if (ddata->chip_info->has_temp_channel) {
+> +		indio_dev->channels = ltc2497core_channel_with_temperature;
+> +		indio_dev->num_channels = ARRAY_SIZE(ltc2497core_channel_with_temperature);
+> +	} else {
+> +		indio_dev->channels = ltc2497core_channel;
+> +		indio_dev->num_channels = ARRAY_SIZE(ltc2497core_channel);
+> +	}
+>  
+>  	ret = ddata->result_and_measure(ddata, LTC2497_CONFIG_DEFAULT, NULL);
+>  	if (ret < 0)
+> diff --git a/drivers/iio/adc/ltc2497.c b/drivers/iio/adc/ltc2497.c
+> index eb9d521e86e54def0493ea0e81f63b37900c56a5..cd3d00a8ffcb44107c9ad948913c97db9412b5f5 100644
+> --- a/drivers/iio/adc/ltc2497.c
+> +++ b/drivers/iio/adc/ltc2497.c
+> @@ -18,7 +18,12 @@
+>  
+>  #include "ltc2497.h"
+>  
+> +/* Optional second byte fields for LTC2495 and LTC2499 */
+> +#define LTC2497_EN2	BIT(7)
+If they only exist on parts other than LTC2497, name the define
+
+after one of those rather than the general driver prefix.
+LTC2499_EN2 probably
+
+> +#define LTC2497_IM	BIT(6)
+> +
+>  enum ltc2497_chip_type {
+> +	TYPE_LTC2495,
+>  	TYPE_LTC2497,
+>  	TYPE_LTC2499,
+>  };
+> @@ -85,8 +90,28 @@ static int ltc2497_result_and_measure(struct ltc2497core_driverdata *ddata,
+>  			return 0;
+>  	}
+>  
+> -	ret = i2c_smbus_write_byte(st->client,
+> -				   LTC2497_ENABLE | address);
+> +	/*
+> +	 * Chips with temperature sensor support (e.g., LTC2495/LTC2499)
+Given one of these parts was supported prior to this patch I would suggest some reorganization.
+
+Patch 1.  Add this temperature channel support for the LTC2499
+Patch 2.  Binding for the LTC2495
+Patch 3.  Device support for the LTC2945 (which should just be a few lines).
+
+Alternative would be
+
+Patch 1. Binding with fallback compatible so it 'works'.
+Patch 2. Basic matching support for new part.
+Patch 3. Temperature support for 9 and 5 parts.
+
+but to me that is a little less elegant.
+
+
+> +	 * require a two-byte command format to select any channel.
+> +	 *
+> +	 * To read the internal temperature, LTC2497_EN2 and LTC2497_IM
+> +	 * are sent as the second byte. To read a voltage channel, LTC2497_EN2
+> +	 * is sent, which sets the default configuration: simultaneous 50/60Hz
+> +	 * rejection, 1x speed, and gain=1.
+> +	 *
+> +	 * Chips without this feature use a standard single-byte command.
+> +	 */
+> +	if (ddata->chip_info->has_temp_channel) {
+
+Given your description there is other stuff in byte 2.
+Maybe better to gate this on something called has_byte_2
+
+If there are devices with byte 2 and no temp sensor, then two flags probably needed.
+
+> +		if (ddata->chan_type_prev == IIO_TEMP)
+> +			ret = i2c_smbus_write_byte_data(st->client, LTC2497_ENABLE,
+> +							LTC2497_EN2 | LTC2497_IM);
+> +		else
+> +			ret = i2c_smbus_write_byte_data(st->client, LTC2497_ENABLE | address,
+> +							LTC2497_EN2);
+> +	} else {
+> +		ret = i2c_smbus_write_byte(st->client, LTC2497_ENABLE | address);
+> +	}
+> +
+>  	if (ret)
+>  		dev_err(&st->client->dev, "i2c transfer failed: %pe\n",
+>  			ERR_PTR(ret));
+
+> diff --git a/drivers/iio/adc/ltc2497.h b/drivers/iio/adc/ltc2497.h
+> index 64e81c95a3dd05911b6717c09ac0560c9f47f304..dfe2d5c30017adeb3f17e57fc5bf1e0e792ff30f 100644
+> --- a/drivers/iio/adc/ltc2497.h
+> +++ b/drivers/iio/adc/ltc2497.h
+> @@ -7,6 +7,16 @@
+>  struct ltc2497_chip_info {
+>  	u32 resolution;
+>  	const char *name;
+> +	/*
+> +	 * Represents the datasheet constant from the temperature formula:
+> +	 * T_Kelvin = (DATAOUT * Vref) / temp_scale, where Vref is in Volts.
+> +	 *
+> +	 * To allow the driver to use Vref in millivolts for the calculation
+> +	 * and also to avoid floating points, this stored value represents the
+> +	 * datasheet constant scaled by 1000.
+> +	 */
+> +	u32 temp_scale_mV;
+You've lost me on the untis here. If this temp_scale in the formula then a
+bit of dimensional analysis says it's units must be derived as
+
+	kevlin = (1 * volts) / temp_scale.
+	
+	tempscale = volts/ kelvin.
+
+So I think it is probably mV_per_kelvin
+
+I might have the logic wrong there but it's definitely not in mV.
+
+Jonathan
+
+
+
+
+
+> +	bool has_temp_channel;
+>  };
 
