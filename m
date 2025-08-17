@@ -1,136 +1,138 @@
-Return-Path: <devicetree+bounces-205448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AAC7B291D0
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 08:14:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C12ABB291D7
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 08:27:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89861203E41
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 06:14:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BE5C3AD7A3
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 06:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B73D02116E0;
-	Sun, 17 Aug 2025 06:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4973223DE5;
+	Sun, 17 Aug 2025 06:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dqjcg51b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C4XdW7xb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8429E1C75E2;
-	Sun, 17 Aug 2025 06:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9DF2236F2;
+	Sun, 17 Aug 2025 06:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755411289; cv=none; b=gqAEwUSW5rUnFNZNqDynH/ChwrsSjkVhtHiAivxZ6XZhl2WlTv3zBtM8yZdU6BnCPydmGNDdCCV3RYYC6RT33ravYXOk+czUBKivPVjEMMtfPnBnXtATQenNMUEBq/jJLzuprlR+501r1YXWE5YpBJ1vEnCiVV2mhyv9NcY5V3g=
+	t=1755412061; cv=none; b=FqsUaTLqYhnp1NhdLq8rEWT6nagi3v/n+Nk+TQe0mF5zgylpxzUd/MjLgJPe89vNL4P8qmhrCAYuBM9fh+WPEj9gDOYszwO/M6ZgxC4JTl2nbsteNrJuwl4bjskZ5SAEhlHER42wbwYV1kDn0k+0V8OsutSQPGqldzPGVkfv/IE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755411289; c=relaxed/simple;
-	bh=FjnyjISls+IwhhvqV3CdP32QGr0K26AOzU5vLlgcAsE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mdaOB3DaIShm9LSEXqxk1dymixOU7T7ZbZG/iIfQAR8O/aldf8lW2wEq+V1T/RzmOPddOhzTkxxzKCS6BqpOlLg+khZMSlcUcf+7HFQnqRD7jXfRR+w4hzfyFKB9nlQ+d6RlH+v2fdp8aqd4suCAx+afLbfPYpE4poy4KxdIss4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dqjcg51b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6E41C4CEEB;
-	Sun, 17 Aug 2025 06:14:45 +0000 (UTC)
+	s=arc-20240116; t=1755412061; c=relaxed/simple;
+	bh=TpmqSwdZ371xVQIviS8OQTjs+jZME4B/LsCHX3bDftw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c/qe1AnrfSHNiWDYX5iOtUtWm4sv9KFuMjZmBJbDJ1DQh/ZiYRE4zTQ+Bq/iYdfGiRs7vfX5reUVqs5yU6yFQm060CAvcYUPr0/Fr6vRHqV0ArV6EDhnV463qbahsJJa80EDa42oNVmT+NZoACuvBsj215a8mKXsJF+bSFI/yEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C4XdW7xb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A0C1C4CEEB;
+	Sun, 17 Aug 2025 06:27:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755411289;
-	bh=FjnyjISls+IwhhvqV3CdP32QGr0K26AOzU5vLlgcAsE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dqjcg51bwM8xslcGuw5W8w163m6q+bpK9eHvBLTK/sBTx5s5j/E0UcRGz2j6uRh15
-	 B09ChBfZE4kB6QnA9NmnU+4jA0CXefpx1bOQ2HMSlU5oP8gFjclxljQuV2GcLskZ1p
-	 AqvMSLeyyfxb+hgc4O60d/2HE3bCwQFOay4qmlqXzTOdvSNkEaKF0U1U9IwUoNfZQ3
-	 M1FFk+V47LYnAIrqBKjeQF+YwrhqOMYAG9jwwWs8NLqKTCbEg79TxAEUcNUa4JVLYC
-	 UKegg4k7CCSfRPNsopgrKFi64rgL6jkLfKtxa/Xr8DbUYd52fCSwkK0lCka84rSDVM
-	 Z8dgxsP9kUO1A==
-Message-ID: <49858742-8850-44bf-a844-9e26210515c5@kernel.org>
-Date: Sun, 17 Aug 2025 08:14:44 +0200
+	s=k20201202; t=1755412061;
+	bh=TpmqSwdZ371xVQIviS8OQTjs+jZME4B/LsCHX3bDftw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=C4XdW7xbTBpqFEORPxC1v3F8aSWpsZ+Ea/95jk9ry8PCZOXJVI+ZamyYFNTPxhbEQ
+	 6INhZjVaNkUoxlfLOTIBvpRSlhgB4QOPTStKhXz4gtG4AoiHUW/hMgNK3LW3DI4oX/
+	 ksMbj7ImH7mHfYimQfwqymhHw1c7TCzEpOrEflQbr/ABlhHGWv5dKkU+P6OXz4Bj1u
+	 LgDQ8T/aDiYzq2nDIC3lR+KqKxwtjg2TFon0nNaRaR7/GcFMEGdVce8R4hFxyFt+Ha
+	 QT+1F+o1GJapakOZSMqtE06huxFIx7w6OS7Mro9hVMlGQm5OcciEYHM6jN7jtJmxMP
+	 yEgE2yPtudFlA==
+Date: Sun, 17 Aug 2025 09:27:33 +0300
+From: Mike Rapoport <rppt@kernel.org>
+To: Yin Tirui <yintirui@huawei.com>
+Cc: robh@kernel.org, saravanak@google.com, dan.j.williams@intel.com,
+	akpm@linux-foundation.org, david@redhat.com,
+	Jonathan.Cameron@huawei.com, devicetree@vger.kernel.org,
+	linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+	wangkefeng.wang@huawei.com, chenjun102@huawei.com
+Subject: Re: [PATCH v2] of_numa: fix uninitialized memory nodes causing
+ kernel panic
+Message-ID: <aKF2VZ1y8OuEChmw@kernel.org>
+References: <20250816073131.2674809-1-yintirui@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 2/5] dt-bindings: power: Add Marvell PXA1908 domains
-To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20250806-pxa1908-genpd-v1-0-16409309fc72@dujemihanovic.xyz>
- <1950265.tdWV9SEqCh@radijator>
- <5e79b123-b29a-4edb-8e70-3b7fa6cd3674@kernel.org>
- <6196438.lOV4Wx5bFT@radijator>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <6196438.lOV4Wx5bFT@radijator>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250816073131.2674809-1-yintirui@huawei.com>
 
-On 16/08/2025 17:13, Duje Mihanović wrote:
-> On Friday, 15 August 2025 08:08:24 Central European Summer Time Krzysztof Kozlowski wrote:
->> On 15/08/2025 00:08, Duje Mihanović wrote:
->>>> I am asking to see complete binding with complete DTS in example and
->>>> submitted to SoC maintainer.
->>>
->>> Hm, so if in the example (and the actual DTS) each domain is assigned a
->>> clock, can I then keep the domain and domain controller nodes like Mediatek
->>> and Rockchip have?
->>
->> You would need to point me to specific files or show some code.
+Hi,
+
+On Sat, Aug 16, 2025 at 03:31:31PM +0800, Yin Tirui wrote:
+> When the number of CPUs is fewer than the number of memory nodes,
+> some memory nodes may not be properly initialized because they are
+> not added to numa_nodes_parsed during memory parsing.
+
+Why the issue happens when there are less CPUs than nodes?
+Does anything updates numa_nodes_parsed when there are more CPUs than
+nodes?
+ 
+> In of_numa_parse_memory_nodes(), after successfully adding a memory
+> block via numa_add_memblk(), the corresponding node ID should be
+> marked as parsed. However, the current implementation in numa_add_memblk()
+
+... current implementation of of_numa_parse_memory_nodes()?
+
+> only adds the memory block to numa_meminfo but fails to update
+
+maybe "... but skips updating"
+
+> numa_nodes_parsed, leaving some nodes uninitialized.
 > 
-> Sure, mediatek,power-controller.yaml and rockchip,power-controller.yaml
-> in Documentation/devicetree/bindings/power.
+> During boot in a QEMU-emulated ARM64 NUMA environment, the kernel
+> panics when free_area_init() attempts to access NODE_DATA() for
+> memory nodes that were uninitialized.
+> 
+> [    0.000000] Call trace:
+> [    0.000000]  free_area_init+0x620/0x106c (P)
+> [    0.000000]  bootmem_init+0x110/0x1dc
+> [    0.000000]  setup_arch+0x278/0x60c
+> [    0.000000]  start_kernel+0x70/0x748
+> [    0.000000]  __primary_switched+0x88/0x90
 
-I see, but your DTS is nothing like that.
+Would have be nice to have the full crash trace here and more details how
+qemu was run.
 
-Best regards,
-Krzysztof
+> Cc: stable@vger.kernel.org
+> Fixes: 767507654c22 ("arch_numa: switch over to numa_memblks")
+> Signed-off-by: Yin Tirui <yintirui@huawei.com>
+> 
+> ---
+> 
+> v2: Move the changes to the of_numa related. Correct the fixes tag.
+> ---
+>  drivers/of/of_numa.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
+> index 230d5f628c1b..cd2dc8e825c9 100644
+> --- a/drivers/of/of_numa.c
+> +++ b/drivers/of/of_numa.c
+> @@ -59,8 +59,11 @@ static int __init of_numa_parse_memory_nodes(void)
+>  			r = -EINVAL;
+>  		}
+>  
+> -		for (i = 0; !r && !of_address_to_resource(np, i, &rsrc); i++)
+> +		for (i = 0; !r && !of_address_to_resource(np, i, &rsrc); i++) {
+>  			r = numa_add_memblk(nid, rsrc.start, rsrc.end + 1);
+> +			if (!r)
+> +				node_set(nid, numa_nodes_parsed);
+> +		}
+>  
+>  		if (!i || r) {
+>  			of_node_put(np);
+> -- 
+> 2.43.0
+> 
+
+-- 
+Sincerely yours,
+Mike.
 
