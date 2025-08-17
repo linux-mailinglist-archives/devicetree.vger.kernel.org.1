@@ -1,56 +1,81 @@
-Return-Path: <devicetree+bounces-205516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD9ECB29440
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 18:47:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A52DBB29448
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 18:51:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 72ED24E0284
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 16:47:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 585061B23B97
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 16:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711132FFDF8;
-	Sun, 17 Aug 2025 16:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CDEF2FF160;
+	Sun, 17 Aug 2025 16:51:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="Sayp2sr7"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="EPiyHYJA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DEB21A316E
-	for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 16:46:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36ED529D272
+	for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 16:51:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755449212; cv=none; b=Tpa5YHbI239hjTJ2HR8nnkmb2+a2yr2fb6n8bUp25srvy6qEQuA6OmqeJ0ekGDsfOcRBIVuevHzIdgnksvU3zMkyq2h8Uh3OVOKHfliFhtIOpUTYS5BI0nZRrfGhdMdkkyHfRQ9S+rjmF05Vk+lzibweCNp6bTkHdtEKIxqPOsM=
+	t=1755449488; cv=none; b=KHUSXvLxY4pfa5FhKJijt4kCD8WKQME8w7j6TjMujnlqlrOKYJ7D2/dTIyL+LLdU1JWT/usx8XGZuqF3x2UT0YaHhpfhk0PPwPter5eVcGsKv9LMaBwK9dYdpQguGYNSYKFkeQ8gJ0+wVszLd+aR32oGsoyyMlcIhQs1mTqBWnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755449212; c=relaxed/simple;
-	bh=wemZUqS+A99/VxPlNDzmg1mhu/qnaB75Q4d073x9468=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O0HLWpFoTtoV8HW8aakQqm8nrZ4f56OpjQrYptvrbxW2w4qRlKnyxwk4832f2aFcaaq+4xq/sZBaIL14KDQ5/mW+qASRZe+63uoMIOnQSQGnZpTA8jWU55FwwO0fl56duwn8H3l6xCTp3N1cGmwRKt6BBGQIuewANGyTH3rl9pI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=Sayp2sr7; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1755449208;
- bh=V0JgX9niK/jrh4YSavrLzHuTfEZE1FFWTu/eobrzLTk=;
- b=Sayp2sr7ACsvw8CnhuK71MfnNoHK2w+HgeroUX5Ju0r3GJOeJuvTaMXKKwlmAVn8KpZGj7UW3
- 16Z5OlXdI8IwdGtKIAGa55m5KdzT5e0rQ7oZa4FXOHzHG2/6NE5poOKka7cI7QBoneXwgwp2pZs
- 9JENLeiqsYBJMGw9DLrUT7dnEwlBvk8sl4MfhwwDiz6tb1bOsUQAxW0whXjHidN2PikmTtD4IY/
- sMSmZLKaWmtYBSWOizv7RGyiioHfqeb8C0qG+A6mEgOi1c4ROslVwzaJXRbcU70fO0Qko8ocyde
- HP0LvHPth28vIbZdCOk6FnWD2bBytuRM39Aqvenf+LaQ==
-X-Forward-Email-ID: 68a207649a82a81f459cfa06
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 1.2.4
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <c0573db5-17df-4c8a-abfb-af7163f6b1b3@kwiboo.se>
-Date: Sun, 17 Aug 2025 18:46:24 +0200
+	s=arc-20240116; t=1755449488; c=relaxed/simple;
+	bh=mg9G1GrczvFU5RkdMi7X+2IDftbj0oeSDe+aPw5yECo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=rOkE3TD389f3zmqQrGmRljlArZFQshaU4qBj+tGHyWFgzjtpiTTZGIQxWOodxUB7Gfkijt/5c5ifB25VHTNJY7jvctbMZCWBKHHj5DKuiy1aRahDU4+Qf94GjRggMRGURwJ3vXH5TQ/6FW1au1xZFmZGGxCrgtWMo1m7GeYtsQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=EPiyHYJA; arc=none smtp.client-ip=209.85.161.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-61bd4e14054so1626718eaf.2
+        for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 09:51:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1755449485; x=1756054285; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=XOShuqoDRF3qNIrD82l+4By1/XWbaXr8sdy7PQ1Fw2E=;
+        b=EPiyHYJAdc4q4zs5Cpr/ujY7QAwZqeojGZk721sUIZRT/SKmGLDKXyZNRBoDF1Tf0/
+         n10TL/9En11MhQnUT9lUHojjMcJQKRS4ie/4qnyZhHXyJUA4v2ckP5KkpXGdsKfjf8U0
+         Vw0G4Pb/DHH/Q8jBKhXXGyUZ/5Dg042O0snwsORrzCh+m2BlBk0t9pkKYvCgsK3nw81h
+         DsKPBYblwEUgySmEIQedZ7avCZZ4SLxBQDCtEL3A9JGjlUwZWMvzZaP261WdMOV03Aij
+         ukt/XjUvBhFdhP+woJNej6gKM6FPwSyHqC5zKeU8iRcxFDv/rZHCjt9/TPxinz41MdLw
+         QGsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755449485; x=1756054285;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XOShuqoDRF3qNIrD82l+4By1/XWbaXr8sdy7PQ1Fw2E=;
+        b=H5NPnDZRJant9xijs/spfsiHRfmkaj0ce7WnP/KpmsAEEKqWttyqARzmQb0nYjD7OA
+         FDJ2QjmmdNRJmfO1HhwOtzzVWVN8xmCQoRwjVRkk2gH/Y3yqXZknx9bKIBmt30KXirDA
+         4CQLu95UUj1c0f7MjKOjAIV4SG4yfumkuQPJOOF0nNwr8LVwuO/RrhgTxMtcRkOIlChE
+         gHc1r/QhuicNgeAny49uavEqMh0QsIBOOsbfuCL5PTqqCXLvRNy9o1rSnDdtBw9ND0Xg
+         0iJyjReA1D6LlnsLaXeVdcopSkrs4K5whL07qCSlyMuO+N20EpK0Dzj8ZUeFsplOLAu/
+         BHaw==
+X-Forwarded-Encrypted: i=1; AJvYcCWqYz1ANaVJH3rl8e9Oizx0hsIrNGvx3F0y0Y6e1xKJJ34lNvgySJ7DpCVQ4TAMT2fKXvjmzOoPkqUp@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXULCRNaZv8Gh1EPmoAqo7aUGPGnSirY4piz97bTJbq5WR6at6
+	SJ+mtuyHIc2GQo81JgdOwk6n8yVPtl90+Kwe7yEvC5V086S0mpkhHpBwxI5IUaqknbo=
+X-Gm-Gg: ASbGncvu9nFclP5J9IDakv9JD8oJyA4flTm/Rx4ydW2lfJR6T3SGrulrB/gwm4mRD7O
+	/GXwgKfn29Kpu66n8SuvHHfgVYLw4QQ2VDQe57Bvld5IZJ3DhyZJKdY+y3E/XV/SCkpFwagPfOJ
+	E8M5IFg78xiN/7V7z9hrS4pG4mH1VY8eFxpWLRUzdjSDh1fUmKq1Y2cm4EzMqWoaHJgNWnDzwmv
+	KCsWkfAjtRu+n6Dwn63DIao3gLf7OGAU6D0W9odf9fSTsUcuNGPncwOOHktoh5+D2881f2OnyRa
+	iTN+gq5/eyIYBtIA/OTplzElJ4CrTAAjRD/L2LPwtF1NF8i5ekwwTbAioAXlX5NoX2f0ahMln9+
+	Y5Nlxgq9ZVNxjM/N7ZtSRUqHDnXPPb8K4meGETNTLAU+VM72rykgP6dMIbAxnV4nGIoRHLR8Z5o
+	0=
+X-Google-Smtp-Source: AGHT+IHEHGCIqwCnGfFIsenBNXcfcUHPcRSF4zc4J/GNqwgo1/8d2p7odCKgdZCjhOtzdbOmvx212g==
+X-Received: by 2002:a05:6820:5106:b0:61b:fa44:2318 with SMTP id 006d021491bc7-61bfa443307mr1755652eaf.0.1755449485031;
+        Sun, 17 Aug 2025 09:51:25 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:7648:43db:38fd:de4a? ([2600:8803:e7e4:1d00:7648:43db:38fd:de4a])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61bebf8d16dsm671683eaf.1.2025.08.17.09.51.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 17 Aug 2025 09:51:24 -0700 (PDT)
+Message-ID: <8e228d2d-d22f-4092-8c6d-94ce989b4a84@baylibre.com>
+Date: Sun, 17 Aug 2025 11:51:22 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,107 +83,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] media: rkvdec: Add HEVC backend
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+Subject: Re: [PATCH 1/5] dt-bindings: iio: mcp9600: Add compatible for
+ microchip,mcp9601
+To: Jonathan Cameron <jic23@kernel.org>, Ben Collins <bcollins@watter.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andrew Hepp <andrew.hepp@ahepp.dev>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20250810212454.3237486-1-jonas@kwiboo.se>
- <20250810212454.3237486-2-jonas@kwiboo.se> <22971824.EfDdHjke4D@earth>
+References: <20250815164627.22002-1-bcollins@watter.com>
+ <20250815164627.22002-2-bcollins@watter.com>
+ <20250816105825.35e69652@jic23-huawei>
+ <66063382-78c6-4d93-be25-46e972e390f4@baylibre.com>
+ <2025081711-coral-aardwark-9f061b@boujee-and-buff>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <22971824.EfDdHjke4D@earth>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <2025081711-coral-aardwark-9f061b@boujee-and-buff>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi Detlev,
-
-On 8/12/2025 10:10 PM, Detlev Casanova wrote:
-> Hi Jonas,
-> 
-> On Sunday, 10 August 2025 17:24:31 EDT Jonas Karlman wrote:
->> The Rockchip VDEC supports the HEVC codec with the Main and Main10
->> Profile up to Level 5.1 High tier: 4096x2304@60 fps.
+On 8/17/25 11:37 AM, Ben Collins wrote:
+> On Sat, Aug 16, 2025 at 01:55:31PM -0500, David Lechner wrote:
+>> On 8/16/25 4:58 AM, Jonathan Cameron wrote:
+>>> On Fri, 15 Aug 2025 16:46:03 +0000
+>>> Ben Collins <bcollins@watter.com> wrote:
+>>>
+>>>> The mcp9600 driver supports the mcp9601 chip, but complains about not
+>>>> recognizing the device id on probe. A separate patch...
+>>>>
+>>>> 	iio: mcp9600: Recognize chip id for mcp9601
+>>>>
+>>>> ...addresses this. This patch updates the dt-bindings for this chip to
+>>>> reflect the change to allow explicitly setting microchip,mcp9601 as
+>>>> the expected chip type.
+>>>>
+>>>> The mcp9601 also supports features not found on the mcp9600, so this
+>>>> will also allow the driver to differentiate the support of these
+>>>> features.
+>>>
+>>> If it's additional features only then you can still use a fallback
+>>> compatible.  Intent being that a new DT vs old kernel still 'works'.
+>>>
+>>> Then for the driver on new kernels we match on the new compatible and
+>>> support those new features.  Old kernel users get to keep the ID
+>>> mismatch warning - they can upgrade if they want that to go away ;)
+>>>
+>>> Krzysztof raised the same point on v2 but I'm not seeing it addressed
+>>> in that discussion.
 >>
->> Add the backend for HEVC format to the decoder.
->>
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
->> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->> ---
->> Changes in v2:
->> - Use new_value in transpose_and_flatten_matrices()
->> - Add NULL check for ctrl->new_elems in rkvdec_hevc_run_preamble()
->> - Set RKVDEC_WR_DDR_ALIGN_EN for RK3328
->> ---
->>  .../media/platform/rockchip/rkvdec/Makefile   |    2 +-
->>  .../rockchip/rkvdec/rkvdec-hevc-data.c        | 1848 +++++++++++++++++
->>  .../platform/rockchip/rkvdec/rkvdec-hevc.c    |  817 ++++++++
->>  .../platform/rockchip/rkvdec/rkvdec-regs.h    |    2 +
->>  .../media/platform/rockchip/rkvdec/rkvdec.c   |   76 +
->>  .../media/platform/rockchip/rkvdec/rkvdec.h   |    1 +
->>  6 files changed, 2745 insertions(+), 1 deletion(-)
->>  create mode 100644
->> drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-data.c create mode
->> 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->>
+>> One could make the argument that these are not entirely fallback
+>> compatible since bit 4 of the STATUS register has a different
+>> meaning depending on if the chip is MCP9601/L01/RL01 or not.
 > 
-> [snip]
+> There are some nuances to this register between the two, but it can be
+> used generically as "not in range" for both.
 > 
->> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c new file mode 100644
->> index 000000000000..1994ea24f0be
->> --- /dev/null
->> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
+> My understanding from the docs is if VSENSE is connected on mcp9601,
+> then it is explicitly open-circuit detection vs. short-circuit, which
+> is bit 5.
 > 
-> [snip]
+>> Interestingly, the existing bindings include interrupts for
+>> open circuit and short circuit alert pins. But these pins
+>> also only exist on MCP9601/L01/RL01. If we decide these aren't
+>> fallback compatible, then those properties should have the
+>> proper constraints added as well.
 > 
->> +
->> +static enum rkvdec_image_fmt rkvdec_hevc_get_image_fmt(struct rkvdec_ctx
->> *ctx, +						       struct 
-> v4l2_ctrl *ctrl)
->> +{
->> +	const struct v4l2_ctrl_hevc_sps *sps = ctrl->p_new.p_hevc_sps;
->> +
->> +	if (ctrl->id != V4L2_CID_STATELESS_HEVC_SPS)
->> +		return RKVDEC_IMG_FMT_ANY;
->> +
->> +	if (sps->bit_depth_luma_minus8 == 0) {
->> +		if (sps->chroma_format_idc == 2)
->> +			return RKVDEC_IMG_FMT_422_8BIT;
-> 
-> Is 4:2:2 really supported ? It is not on rk3588 and likely neither on rk3576.
-> You also mention later that Only 4:0:0 and 4:2:0 are supported.
+> In my v4 patch, I'm going to remove the short/open circuit interrupts
+> since they are not implemented, yet.
 
-On the older rkvdec it is not, and I was unsure about the newer SoCs at
-the time of initial re-work of this. Regardless this is more correct
-when only looking at this function, it does not include 4:4:4 but is
-correct for all currently known RKVDEC_IMG_FMT. Also to keep this
-function in sync with the h264 variant for more easy compare and less
-confusion about the two down the line.
+Don't remove them from the devicetree bindings. Even if the Linux driver
+doesn't use it, the bindings should be as complete as possible.
 
-Regards,
-Jonas
+https://docs.kernel.org/devicetree/bindings/writing-bindings.html
 
 > 
->> +		else
->> +			return RKVDEC_IMG_FMT_420_8BIT;
->> +	} else if (sps->bit_depth_luma_minus8 == 2) {
->> +		if (sps->chroma_format_idc == 2)
->> +			return RKVDEC_IMG_FMT_422_10BIT;
-> 
-> Same here.
-> 
-> --
-> Detlev.
-> 
-> 
+> I have VSENSE wired on my board so I can work on those interrupts and
+> register support in a later patch series.
 > 
 
 
