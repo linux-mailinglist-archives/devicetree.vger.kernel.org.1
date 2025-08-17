@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 963ECB29238
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 10:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59456B2923C
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 10:28:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0D4C19655F8
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 08:22:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A80221B23A03
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 08:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60DBE215F7D;
-	Sun, 17 Aug 2025 08:22:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E784121884A;
+	Sun, 17 Aug 2025 08:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="smIb5+Ya"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hXkredwL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3384A194A65;
-	Sun, 17 Aug 2025 08:22:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B997B3176F5;
+	Sun, 17 Aug 2025 08:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755418928; cv=none; b=JeUJLdWKV7g+XD5cM+zf3lDwOmHXjt7QqYasrCKqQ236CiZd+TDNAIF036pvasT5PoC0ql7RJLbHjd++n8JxNhJv5o1EJk1VGu2pTSf4qYAlmGs4AFHQ9bxa0c5OZjrTxMBsc5XSJ0hkJiU88/MD5UvD25QHkFvm0kWAmfPR8dA=
+	t=1755419299; cv=none; b=IrybDmqx/JYYxax7wjF3lb5zsSIeV0bsOSg1ndmlzWRzACEhkrzNGIZqez5ncX7xLHdvA5lx8x/zOeFvs1SK/1aQQhdCwCyGYUHLHSkjUrFqw3WZv9M7RQKJnMN9snDiUNwePTLCt2mAgTwShB9r8XTIdPFDkjIyTr659xNlpdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755418928; c=relaxed/simple;
-	bh=4wpmVnp4uKwWHmK6FyPtVybsP9QYWLffp5pWwK/J3tA=;
+	s=arc-20240116; t=1755419299; c=relaxed/simple;
+	bh=Zefgybi/8uhiiRyM5T1/XbLvYo6nNToH9kozBvIgikU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yn+CtSAEYkFZ2tE83JIDp/Sq0IaoZ5kevLudawoTKhTFajjc0EJw1V/7Ig078JcEPT2WigkkiCfQnk8dFGW7hW3CZc0GXtd0lpWQtwtoQq70CBkilhR0uyFCN3CF4yo1JUI5pfbe20FTQKiOd49/fcBPz5q6pfce8Cn5IOQCJd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=smIb5+Ya; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2069BC4CEEB;
-	Sun, 17 Aug 2025 08:22:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MJMMsk0WajE0P9T6Z8dDCCTotSSPnHuhnJvPb5ah6RBf9Y2Jm34nK7iZKFmUrWqmFuOsmVUaG8zc3zrxl2yNqZG+i92Zhhpn/52j2r5V5X5SxVquBYApFQfOj5g1iwZYnKnQoa1AihyjMqwF21AxsG3PnDncTUyoHA8bDI9DK/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hXkredwL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCD7BC4CEEB;
+	Sun, 17 Aug 2025 08:28:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755418927;
-	bh=4wpmVnp4uKwWHmK6FyPtVybsP9QYWLffp5pWwK/J3tA=;
+	s=k20201202; t=1755419298;
+	bh=Zefgybi/8uhiiRyM5T1/XbLvYo6nNToH9kozBvIgikU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=smIb5+YaCl6OR16Ryq70RMEh4B2klJK5+XIH+rGIa2YZBRcDBLGIHq6VqQ9W5y8/3
-	 nza2lPE0E3n6RpPenGCh8UxRXQ7JAlEmmFnwrBiiv3SkydOIMwAxwBnPV+PtAsAgz6
-	 SphYzLuDMUXjUZy7/xx3O1QMsO58pTv1nRw4pwUMXUmGmIP4zD1uEQ8aJf/4nXAhm3
-	 +P/DTs6g5yqvCTvymtdVX2iEbh90IfvD4GaOOWRoHBgp3h8sxdXBBJesXuRb2y6R3k
-	 qXXHO4RFN5fpZr754lmGSBowjIUpOIVtklo81NkJPlgYWWA0z2K2AJU4qOxyes4JW0
-	 fWDGFO7Ulma+w==
-Message-ID: <f3184805-3617-4b46-be23-70cebcf27207@kernel.org>
-Date: Sun, 17 Aug 2025 10:22:02 +0200
+	b=hXkredwL5Y6o5sZHYXxnAh9+RzAKKW4LeBltbkL0HYmUnJTvWl3Jbj3DV3wcirC5i
+	 LRnHfW7ok9G6K0v185orfJUwxgf6M3c67wboO2g4cZYIEguyREiXseMCJLNU2z+bpc
+	 CNO/TssXgLagcZt66DisMIesfQjL/lN2PImCJaXE7Jy/8nXswkVYgf2cyj3ymq5z6g
+	 cSKt6Zg4WGMoTglcJFDmuczCjEBlBWzd82Msqf4vU+1zeQPzmi7CxyweBeDnIlMg3r
+	 OLrhWcIfXpsbbFCXMfB54XEwIz2y7fKQDecpVAyoOYDkbISAdw5gWQl9BXWURkbrQk
+	 hKFWCxoSSMe1w==
+Message-ID: <b9c8d571-e0ce-4703-8748-96f7ca4a59bf@kernel.org>
+Date: Sun, 17 Aug 2025 10:28:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: Add support for export-symbols node
-To: Ayush Singh <ayush@beagleboard.org>,
- Herve Codina <herve.codina@bootlin.com>,
- David Gibson <david@gibson.dropbear.id.au>, Rob Herring <robh@kernel.org>
-Cc: Andrew Davis <afd@ti.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
- devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20250430125154.195498-1-herve.codina@bootlin.com>
- <20250430125154.195498-2-herve.codina@bootlin.com>
- <0770a47e-fd2f-4b6f-9a9a-b0d539ace30c@kernel.org>
- <20250528185740.4bf91bef@bootlin.com>
- <49e1e1fc-412d-4334-8337-16e352a34788@kernel.org>
- <20250618113232.6d237208@bootlin.com>
- <ed6beb97-12f1-4d71-b4dc-b34d4d611b81@beagleboard.org>
- <3ff4b3f9-cc8d-4044-b2eb-33010d8951c0@kernel.org>
- <3889e19e-7f1e-4306-9e11-77a61432b402@beagleboard.org>
+Subject: Re: [PATCH v3 2/2] media: i2c: imx585: Add Sony IMX585 image-sensor
+ driver
+To: Will Whang <will@willwhang.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250816055432.131912-1-will@willwhang.com>
+ <20250816055432.131912-3-will@willwhang.com>
+ <7e27b69b-40df-4ac4-aebf-dbd00044b71b@kernel.org>
+ <CAFoNnrxbzcF+YranTL8Von3BkROhq8X=RX5sa90M6PYgS_vjkQ@mail.gmail.com>
+ <daa45e3e-84a6-4c39-854a-1429fb68d415@kernel.org>
+ <CAFoNnrw4yRKGL_m0=g14C583o13ptC6e84TN---ABdyeg8jMhg@mail.gmail.com>
+ <04fd00bb-beb4-4f35-88fb-bf1cc7691505@kernel.org>
+ <CAFoNnrxd_2=9aJqo9yQ8bcDsyW9pVRCfmUU6tOHoeX5wEB2AhA@mail.gmail.com>
+ <11e35902-a19a-44b2-b816-15a495048d41@kernel.org>
+ <CAFoNnrxT83nz0qxf8HTapqOXuEQ0Vh+RbxyqRGQy_sJp9nzpAg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,60 +113,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <3889e19e-7f1e-4306-9e11-77a61432b402@beagleboard.org>
+In-Reply-To: <CAFoNnrxT83nz0qxf8HTapqOXuEQ0Vh+RbxyqRGQy_sJp9nzpAg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 17/08/2025 10:18, Ayush Singh wrote:
->>>>
->>>> Hardware:
->>>>     i2c0 from SoC --------- connector 1, I2C A signals
->>>>     i2c1 from SoC --------- connector 1, I2C B signals
->>>>
->>>>     connector1 {
->>>>         export-symbols {
->>>> 	  i2c_a = <&i2c0>;
->>>> 	  i2c_b = <&i2c1>;
->>>>         };
->>>>     };
->>>>
->>>> In order to avoid the coding style issue, this could be replace
->>>> with:
->>>>    connector1 {
->>>>         export-symbols {
->>>> 	  symbol-names = "i2c_a", "i2c_b";
->>>> 	  symbols = <&i2c0>, <&i2c1>;
->>>>         };
->>>>     };
->>>>
->>>> Krzysztof, Rob, do you think this could be accepted ?
->>>>
->>>> Ayush, David, do you thing this could be easily implemented in fdtoverlay ?
->>>>
->>>> Best regards,
->>>> Hervé
->>>>
->>> Well, it is possible.
+On 17/08/2025 09:53, Will Whang wrote:
 >>>
->>> However, on connectors like pb2 header, there will be 50-100 export
->>> symbols. So it will start becoming difficult to maintain.
+>>> And in all the examples I provided to you, this is the only IMX415
+>>> that has the logic inverted.
 >>
->> And the first syntax solves this how? I don't see the practical difference.
+>> And? All other drivers, camera sensors, hwmon, iio, codecs and whatnot?
+>>
+> Are those Sony image sensors?
+>>
+>>> I can apply the same logic and say this is buggy and wrong.
+>>
+>> We are not going to talk imaginary things.
+>>
+> So you can imagine this code is buggy even though I tell you this is correct?
+> Of course I tested it already.
 > 
-> 
-> Well, I was more worried about matching which phandle belongs to which 
-> symbol easily. Let us assume that 2 symbols will be in each line (after 
-> accounting for the indention and 80 char limit) and we have 70 symbols, 
-> so 35 lines. To check which phandle belongs to the 2nd symbol on line 
-> 25th line of  symbol-names, well, you would at the best case need to 
-> have something like relative line numbers in your editor. Then you know 
-> that the 35th line from the current one is where you need to look.
-> 
-> In the current syntax, the symbol name and phandle are on the same line. 
-> So well, easy to see which symbols refers to which phandle.
+>>> Do you understand this is writing the GPIO directly and has nothing to
+>>
+>> It is not. Again, you are mixing logical level with line level. You
+>> never responded to that part, you never used actual arguments except
+>> some vague statements like above.
+>>
+>> You do not write GPIO directly.
+>>
+>> Each driver is supposed to use logical level.
+>>
+> hmm? Code in the tree disagree with you? Are you going to arguing that
+> all the 90% of Sony image sensor drivers are old and buggy?
 
-OK, that's valid point. Any ideas how to solve it without introducing
-underscores for properties?
+
+I checked now and both driver and all users of imx219 are wrong. Don't
+ever use that as an example.
+
+And you doing THE SAME as imx219 is also proof that your code is wrong.
+
 
 Best regards,
 Krzysztof
