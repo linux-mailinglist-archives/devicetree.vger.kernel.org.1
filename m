@@ -1,56 +1,80 @@
-Return-Path: <devicetree+bounces-205509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31623B29428
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 18:33:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2559B2942D
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 18:37:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2488D17FFA2
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 16:33:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C63557AC919
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 16:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6DC52FC881;
-	Sun, 17 Aug 2025 16:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D11F2FE057;
+	Sun, 17 Aug 2025 16:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="nF1ghyJW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="StYakNUJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B6A21767D
-	for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 16:33:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C729C2FC86B;
+	Sun, 17 Aug 2025 16:37:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755448421; cv=none; b=kkM3k+lH1allz1fvFLJEGNnCTnqMahqOaTpzPa7/a5/5GymEPyeA79rpl7N5C1JGDwFaEVDKQRDOPARQAApuHRPFFxT0vcWsHgno3JpplmbMEy01jETrNNjLl+cAkj/kesLZxzarwQCORmuJh1i3l0u0VEk/e2IZ687ifMBSn9s=
+	t=1755448626; cv=none; b=Hj3+LhDJf8DQFTRuB8/jgdDVIYwarF6qNCIVhcUkG28Bws92X3+yguS89j7ztxD21abPOqqDFQZoku3a6xbBRmHYZOTx4dbRUtr5C8FkWQGgSoe+3zytcP8mE8z/vAQ4t+iMQ809itJ2CvP0roPx5cLLLyCAmSqLMY+Z/3oqcEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755448421; c=relaxed/simple;
-	bh=16KfWKmXnvMG8XienSHousVwtT9tO5Q9/eKeHJpXN9U=;
+	s=arc-20240116; t=1755448626; c=relaxed/simple;
+	bh=+/Vmnj42oQV6Fm+uetYEn6odxvV0wTKF17MONO6nAQY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PNAI8BlEaZ5IUXlDK3tvvNlt+LRU+mxaO4hSx7MsZ5asKmTzFomzH1CtfOFI7wNbhTZ9Uco2NuiZ8UP9oqrxYWptbEXQlA5QORsiMjR7m74fuLrAcQVvtXWyzRc8PbQxNXi6qpCpRejdjElaBgeZZxN7iAqoqM58hb5LN5SYaqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=nF1ghyJW; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1755448413;
- bh=05X/I2SqxVTRC5UNwPe0jX77RC5+lAMs+Sp0TwX0JKY=;
- b=nF1ghyJWLYUnyuiC1NjdzCjqp4ZPbfZV1lUUTMFgSrE9o+NHBLsJ1qI4zsz90m6Ax6JGr3BHT
- v6JbmMb4UOkAHbPifSLsC3mrfz217EprI3vnGYnvAjNSJTOfvFzy0n0HjpL8vlnbikRdmPJytjo
- 3j+sFSgqgLaZ/7EjBHMOkTqpx5QOmLbGTY/N5Mmk1fdjb+6wPOISrFa2Xl/1Qy0m5DdOdqyakWn
- 4THY8s+C9uWyvtqBK4IfHGcBiXRRPicJVu+OL3/IsPQp/9CMqOzFacuCpFR6OoHzfo5xkPV5pgn
- KsnICWQKDCPIXfnhX01otuaV392XdVZuqIvcUZiXrgIA==
-X-Forward-Email-ID: 68a204589a82a81f459cf7d1
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.2.4
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <f55f6c64-f720-437b-ac88-80b6930a9c2c@kwiboo.se>
-Date: Sun, 17 Aug 2025 18:33:24 +0200
+	 In-Reply-To:Content-Type; b=hDEEKyXukha8WhrChcU9V80qgTiw53q6sjz3MeQat10Ot+hUeZ1PGeccahiR9E6S7jVEB6XIglLACVXmCXeFBeIanXVmXgpfPMzln4o2Cy13av4jl+XbSZmQgjQJCyryWa9XQAcOvSWOb0lMk7AFy0FW+G7jJbmVvenM0dhCXpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=StYakNUJ; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b471737b347so2320226a12.1;
+        Sun, 17 Aug 2025 09:37:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755448624; x=1756053424; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vu8NtR3SA6w/CY24HT9I4ClMud60N/2LWQULRPh/3no=;
+        b=StYakNUJl4FwKR2SegLZmh8jrIf2UsHZPJ2nFbhS1ym5WU/OrXhv+pv4lCUj8HpeFL
+         R8eLxh8NKmkRXGzvLlFfhOvvc6bYppG02e+emek/wFzkIng0EJAJNHlU5aNqUw+vpENR
+         mvE136XDTQC5AEJ5pCdhCVvVDh9709njNHWO5eobzpS/ov0RDF8jEZsDIElxnlZzrPbx
+         X16YkEOcpO387F+vK2sEDfo2nwxtonAFFepriUOAv0YN0TZbMvPwGDUg/9G+er8smUri
+         RyG9xuW/mngBVWtT+maYhZqVREnItiGjQ8bBGbHgs4k5DlTpYl2FlE+QoT4SNziFqrzb
+         EVVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755448624; x=1756053424;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vu8NtR3SA6w/CY24HT9I4ClMud60N/2LWQULRPh/3no=;
+        b=tu7qNnjTJVQT7ZnfYxCBWaio9mkRc/FHkB/bCv7jBFRwDeGL1/AUTKfW5QkHRdYUCH
+         tOVVQ0j07vm+JBsq4x6NDtX+DzBadpvZBiwhhrEs49Ikx1vPKQYU0r1RPPzPNoppqmxN
+         vR83I1tMpDZ26WYaUTs9SQ9mfI0RC+4SLPU+4cqtb9aMheheoAGL1ZbrDpcZhusHQN40
+         60sFcHgzCaioBibydwzafMocGFtB5KltUePg2JWpbV8tUpIznhBJuI5uOgh1VO8JVaTn
+         EsG15ri/U3f3KNYhk+OXZRp9BsXU9+jPNBqBRxE6VVDCI1bxfqdfKXduEElYkeAmx4aq
+         ZOdA==
+X-Forwarded-Encrypted: i=1; AJvYcCX15owxn+PIeZSvdKRb4tA4CdtZe8D49GClzI152VO0mt9CA1HRBDc0QifruS3FoYsIWc+PyqhiqDPFcshn@vger.kernel.org, AJvYcCXZQarB8q0nxiC97GFCNvYIuHLNJjC32/tvRywfJyB2LulqBUoR2p9aRxfuNCORvXah2CgbwWtPdGHY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPsVIqldhIed9lemVLtfoDxNs5TJYEMr8NG1ZMKPmoCdtsAHly
+	EyxkxjyVd2gcH7dkm491ZDpT+hYGG3rOTiD3x3G6gsc329cIusInKFzq
+X-Gm-Gg: ASbGncufNmxNkzVTvLvh+K9wL/o6ChXKRmD6WYE254Y62SX0xA7fh4sGD7tBgzLCHrC
+	ItWbEIYS9GvTpFhkq1mzWHpL+u/KbeRhbnXJKnrBxNd2z82n98ml9Ui6PfpFgD6ntHypDz+ZOjw
+	o9tvRZx/vnvYy+/4FvYX9IV614E8Bnfb9lR0/V9/pWeeG8q7bjY9jIPLpI4GahUyZQu3invMwnx
+	+nQ1EktV6HclHetemQqqb8kP5nggLriW8yjl5PhlEAOVVQyWs6SvXk4f2V8qfZJHZ/2WOFCjHNy
+	zxe75/lrbNi2riIRYZHRHmHy0kv0X3LxC2qwGwtV+cxAjMLrObUBmSg0Bwl6gocsZhsAeQ74H/N
+	N7t9bF/pmliwMT6/EbqvBIw5VfocWJ/aJidz/lAZZwLh23TjGDh2k
+X-Google-Smtp-Source: AGHT+IFolnCZsYxa8DXtlqeL7svE1Vm9qN7zDI4nNsqND3PhWkhOt0P90tLwWgS8I5+brb7rz1uJHw==
+X-Received: by 2002:a17:902:fc4e:b0:23f:f074:415e with SMTP id d9443c01a7336-24478e3f823mr71496235ad.14.1755448623914;
+        Sun, 17 Aug 2025 09:37:03 -0700 (PDT)
+Received: from [192.168.0.124] (061092221177.ctinets.com. [61.92.221.177])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-323632812b3sm1612946a91.13.2025.08.17.09.36.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 17 Aug 2025 09:37:03 -0700 (PDT)
+Message-ID: <e67860f1-bec4-4a55-91e8-61ade069f0a5@gmail.com>
+Date: Mon, 18 Aug 2025 00:36:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,115 +82,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] media: rkvdec: Add HEVC backend
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Alex Bee <knaerzche@gmail.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250810212454.3237486-1-jonas@kwiboo.se>
- <50162371fd54fc976a84fcf57c9b69112a892c46.camel@collabora.com>
- <1dd29158-0660-4254-ac00-1316768d9b82@kwiboo.se>
- <91864a1c047d2bdfce202b070716a694ede47d5e.camel@collabora.com>
- <a66feb89fa02f05b187e5603ffc3b1501ef3cbd5.camel@collabora.com>
- <efdf8c99-d166-4b78-afc5-d4a6eb5ac046@kwiboo.se>
- <25ce30446e8e8d038273fcdfb398c90995c242db.camel@collabora.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <25ce30446e8e8d038273fcdfb398c90995c242db.camel@collabora.com>
+Subject: Re: [PATCH 7/9] nvme: apple: Add Apple A11 support
+To: Sven Peter <sven@kernel.org>
+Cc: asahi@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Neal Gompa <neal@gompa.dev>, Janne Grunau <j@jannau.net>,
+ Christoph Hellwig <hch@lst.de>, Keith Busch <kbusch@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Will Deacon <will@kernel.org>,
+ Joerg Roedel <joro@8bytes.org>, Sagi Grimberg <sagi@grimberg.me>,
+ Hector Martin <marcan@marcan.st>, Jens Axboe <axboe@kernel.dk>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ iommu@lists.linux.dev, linux-nvme@lists.infradead.org,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>
+References: <20250811-t8015-nvme-v1-0-ef9c200e74a7@gmail.com>
+ <20250811-t8015-nvme-v1-7-ef9c200e74a7@gmail.com>
+ <56be1cd1-73cc-4733-b364-31b74f588e9b@kernel.org>
+Content-Language: en-MW
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <56be1cd1-73cc-4733-b364-31b74f588e9b@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Hi Nicolas,
 
-On 8/12/2025 8:26 PM, Nicolas Dufresne wrote:
-> Hi Jonas,
+
+On 17/8/2025 18:47, Sven Peter wrote:
+> On 11.08.25 15:50, Nick Chan wrote:
+>> Add support for ANS2 NVMe on Apple A11 SoC.
+>>
+>> This version of ANS2 is less quirky than the one in M1, and does not have
+>> NVMMU or Linear SQ. However, it still requires a non-standard 128-byte
+>> SQE.
+>>
+>> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+>> ---
+>>   drivers/nvme/host/apple.c | 228 +++++++++++++++++++++++++++++++---------------
 > 
-> Le mardi 12 août 2025 à 19:31 +0200, Jonas Karlman a écrit :
->> On 8/12/2025 2:44 PM, Nicolas Dufresne wrote:
->>> I forgot, 
->>>
->>> Le mardi 12 août 2025 à 08:38 -0400, Nicolas Dufresne a écrit :
->>>>> JCT-VC-HEVC_V1 on GStreamer-H.265-V4L2SL-Gst1.0:
->>>>>
->>>>> - DBLK_D_VIXS_2 (fail)
->>>>> - DSLICE_A_HHI_5 (fail)
->>>>> - EXT_A_ericsson_4 (fail)
->>>>> - PICSIZE_A_Bossen_1 (error)
->>>>> - PICSIZE_B_Bossen_1 (error)
->>>>> - PICSIZE_C_Bossen_1 (error)
->>>>> - PICSIZE_D_Bossen_1 (error)
->>>>> - SAODBLK_A_MainConcept_4 (fail)
->>>>> - SAODBLK_B_MainConcept_4 (fail)
->>>>> - TSUNEQBD_A_MAIN10_Technicolor_2 (error)
->>>
->>> I'me getting the same result if I force a single job in fluster. The test I
->>> posted was with 2 jobs. Detlev found that the iommu reset is required in
->>> more
->>> cases on RK3588/3576, perhaps the HEVC decoder in older hardware needs the
->>> same,
->>> I will try and report.
->>
->> Vendor kernel [1] check following bits from RKVDEC_REG_INTERRUPT reg to
->> decide if a full HW reset should be done.
->>
->>   err_mask = RKVDEC_BUF_EMPTY_STA
->>   	   | RKVDEC_BUS_STA
->>   	   | RKVDEC_COLMV_REF_ERR_STA
->>   	   | RKVDEC_ERR_STA
->>   	   | RKVDEC_TIMEOUT_STA;
->>
->> Adding proper reset support can be rather involved and main reason why
->> this series does not handle it, better suited for a separate future
->> series.
->>
->> Proper HW reset will require e.g. dt-bindings, DT updates, pmu idle
->> request integration and for rk3328 vendor even moved VPU reset to TF-A.
->>
->> Doing the iommu detach/attach dance not only on RKVDEC_SOFTRESET_RDY
->> could possible improve some cases, until full reset can be implemented.
+> [...]
 > 
-> Rockchip is following VSI design of "self reset" on error. But since the iommu
-> is part of the device, it also gets reset, which imply having to reprogram it.
-> This showed to be very reliable logic, despite RK doing a hard reset.
+>>   }
+>>   
+>>   static void apple_nvme_rtkit_crashed(void *cookie, const void *crashlog, size_t crashlog_size)
+>> @@ -284,21 +294,8 @@ static void apple_nvme_submit_cmd(struct apple_nvme_queue *q,
+>>   				  struct nvme_command *cmd)
+>>   {
 > 
-> Since self reset is documented for RKVDEC_BUS_STA, RKVDEC_ERR_STA,
-> RKVDEC_TIMEOUT_STA, it would seem that RKVDEC_BUF_EMPTY_STA is redundant, unless
-> its asynchronous operation that need to be polled. Possibly something to
-> investigate. RKVDEC_BUF_EMPTY_STA and RKVDEC_COLMV_REF_ERR_STA are not
-> documented a such, so its not quite logical to reprogram the iommu.
-> 
-> I don't immediately trust reference software for these type of things, we should
-> find what works best and have a rationale for. The hard reset is every
-> expensive, and hard to upstream.
-
-I fully agree, and I tried a few things like issue iommu reset for more
-errors, skip use of iommu completely, disable use of performance cache,
-write 0 all regs before writing correct values and nothing seem to
-resolve this issue.
-
-So more investigation will be needed to fully understand what we need to
-do to get a more reliable result.
-
-Will do a visual inspection of the decoded frames on the tests that is
-flaky to see if that can give any clue on the extend of the issue.
-
-Regards,
-Jonas
+> Please just create a separate submit function here.
+> There's just not much code that's shared between the two variants.
+Will do in v2.
 
 > 
-> Nicolas
+> [...]
 > 
->>
->> [1]
->> https://github.com/Kwiboo/linux-rockchip/blob/linux-6.1-stan-rkr6.1/drivers/video/rockchip/mpp/mpp_rkvdec.c#L924-L931
->>
->> Regards,
->> Jonas
->>
->>>
->>> Nicolas
+>>   }
+>>   
+>> @@ -587,10 +618,17 @@ static inline void apple_nvme_handle_cqe(struct apple_nvme_queue *q,
+>>   {
+>>   	struct apple_nvme *anv = queue_to_apple_nvme(q);
+>>   	struct nvme_completion *cqe = &q->cqes[idx];
+>> -	__u16 command_id = READ_ONCE(cqe->command_id);
+>>   	struct request *req;
+>>   
+>> -	apple_nvmmu_inval(q, command_id);
+>> +	if (!anv->hw->has_lsq_nvmmu)
+>> +		cqe->command_id--;
+>> +
+>> +	__u16 command_id = READ_ONCE(cqe->command_id);
+>> +
+>> +	if (anv->hw->has_lsq_nvmmu)
+>> +		apple_nvmmu_inval(q, command_id);
+>> +	else
+>> +		command_id++;
+> 
+> This entire block here looks weird. First you decrease the command_id
+> directly inside the shared memory structure, then you read it with
+> READ_ONCE to a local variable only to increase it again. Why?
+Thanks for spotting! Looks like this is merely an artifact of how the code
+is hacked to work that slipped under my radar, so I will remove the useless
+codes in v2.
+
+> 
+> 
+> 
+> Sven
+
+Nick Chan
 
 
