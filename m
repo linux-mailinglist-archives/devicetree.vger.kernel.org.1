@@ -1,131 +1,130 @@
-Return-Path: <devicetree+bounces-205488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78392B292D8
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 13:40:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B67DB292DF
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 13:51:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D9ED7A7953
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 11:39:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F40E1189DEDF
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 11:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11B09224B05;
-	Sun, 17 Aug 2025 11:40:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="dD6/3GLx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 883991E2307;
+	Sun, 17 Aug 2025 11:50:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EBB13176FD;
-	Sun, 17 Aug 2025 11:40:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.181.231.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57CDE137E;
+	Sun, 17 Aug 2025 11:50:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755430834; cv=none; b=BO7cs2CUDRGFiS8XsQEF4khmw83M+vLaw5quPkFM87JP5zREslvJwqkI5rtNq75s9oNc/AyIfLsSKVr7SMb2whT7AsbwvNmmC4kkIQ675IDrlK4X4kwGY+jTBuBvq9KEjwopcz5TQgZgppF7g2y71Rw+Vqc/H50dIBhShPlASlI=
+	t=1755431429; cv=none; b=kWQtY1BQAkw9wRxFoiPmFtvVX0+LxmR2knUl07y9GXekTyXsdy0qkqOFN/IVyZ8p0P3PSs/DPlpyCkVWjLZvBGTKwcu20+tmhbflqM9+z7HaenoQW2/wJhzwihVjPcn3uoh7eF5gUlGhcmv6enm4Azp+xO7RWopawreAtetDhAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755430834; c=relaxed/simple;
-	bh=wSKGngVMiU6SpjdKxTXG1q+SE13GTgAOMD26yhQZlwg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KrclhnlHDYp56a7zxtfI/xwPVyTzGwMIxy5Ht1su1onIyXF0KZNt7b//LeaxlacbeWvyLlgX25zhWwx5z4CvtTdylSz/f4sNv8TtBCr5U5R207p/eT4FkaESPB5z4+YAZ61EI0apM1+b6eHMS7IU/FBSolf8XPFi9u4BDV9/ukw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=dD6/3GLx; arc=none smtp.client-ip=180.181.231.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=QCcwWZtPpfCOfSJRlJ3ifzODTcu4UNcUTX/FCaRv9j8=; b=dD6/3GLxEuz7hps+mxNbboTcfQ
-	99BTaVnuzdyt0bibflc+Er827RADVFDVPt3x2BKssRxYoCst6Y/tKnbWvjiBr6kcUaZX1klPcYwPF
-	fScrbJOy0h7Vy8B9AMQM/n4Zf00dDGJXxSFAdCDwf/S2OjtpQZkprt0UI4hI9uTNlkRPk0MyBYhNk
-	LRUq0Alqhws14w5sYBcCBrieou6z3Ub+G2bfct/mAB6YGIKsexnGGNVZCDdz+IcyfnFYypSpM/w9N
-	sp5/eCPa3LtGUFrSHnjxODYB5iE6LKMeJrwYZ116oaLizTGZhXrKRrvHzVHKIZUSAe0SxT1rqEesM
-	Lqd29hkA==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1unbUy-00Ez5Z-0I;
-	Sun, 17 Aug 2025 19:40:25 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sun, 17 Aug 2025 19:40:24 +0800
-Date: Sun, 17 Aug 2025 19:40:24 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Harsh Jain <h.jain@amd.com>
-Cc: davem@davemloft.net, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, mounika.botcha@amd.com,
-	sarat.chand.savitala@amd.com, mohan.dhanawade@amd.com,
-	michal.simek@amd.com, smueller@chronox.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH V5 3/3] crypto: drbg: Export CTR DRBG DF functions
-Message-ID: <aKG_qHTkmvQynXQ8@gondor.apana.org.au>
-References: <20250817105349.1113807-1-h.jain@amd.com>
- <20250817105349.1113807-4-h.jain@amd.com>
+	s=arc-20240116; t=1755431429; c=relaxed/simple;
+	bh=hccIm5eCUK43zVJAwZT+w4a7yLLZQ4mUmhPY/6ewFmg=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=OdDKBHi25W8SHjQEDlfnL/tKyWoQtWnsB5ccYmjBQVy7CP7uZMmocK574O/5HxCUpSsxTvBxA7/9+/gOIHTQzzFwdh42JGQ4bqqOPiHpmBXgPlmFpS7JfINgIZhAgIXlOK0sp/tcsMwOXa8JATAnLN/FwT3V9mS5+oRnAj2nNhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu; spf=pass smtp.mailfrom=artur-rojek.eu; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=artur-rojek.eu
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E007F431EB;
+	Sun, 17 Aug 2025 11:50:15 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250817105349.1113807-4-h.jain@amd.com>
+Date: Sun, 17 Aug 2025 13:50:15 +0200
+From: Artur Rojek <contact@artur-rojek.eu>
+To: "D. Jeff Dionne" <jeff@coresemi.io>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Landley <rob@landley.net>, John Paul
+ Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S .
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] net: j2: Introduce J-Core EMAC
+In-Reply-To: <DC855B2C-37F3-4565-8B6F-B122F7E16E25@coresemi.io>
+References: <20250815194806.1202589-1-contact@artur-rojek.eu>
+ <20250815194806.1202589-4-contact@artur-rojek.eu>
+ <973c6f96-6020-43e0-a7cf-9c129611da13@lunn.ch>
+ <b1a9b50471d80d51691dfbe1c0dbe6fb@artur-rojek.eu>
+ <02ce17e8f00955bab53194a366b9a542@artur-rojek.eu>
+ <fc6ed96e-2bab-4f2f-9479-32a895b9b1b2@lunn.ch>
+ <7a4154eef1cd243e30953d3423e97ab1@artur-rojek.eu>
+ <ee607928-1845-47aa-90a1-6511decda49d@lunn.ch>
+ <9eab7a4ff3a72117a1a832b87425130f@artur-rojek.eu>
+ <DC855B2C-37F3-4565-8B6F-B122F7E16E25@coresemi.io>
+Message-ID: <93f21de744ea0c4d2b6ddb435e21f6aa@artur-rojek.eu>
+X-Sender: contact@artur-rojek.eu
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddugeelieehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhfkgigtgfesthekjhdttddtjeenucfhrhhomheptehrthhurhcutfhojhgvkhcuoegtohhnthgrtghtsegrrhhtuhhrqdhrohhjvghkrdgvuheqnecuggftrfgrthhtvghrnhephffhkeekteejteevgfevtddttefhlefggfehjeehtdeugeetueevtdefgfevkeefnecukfhppedutddrvddttddrvddtuddrudelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddtrddvtddtrddvtddurdduledphhgvlhhopeifvggsmhgrihhlrdhgrghnughirdhnvghtpdhmrghilhhfrhhomheptghonhhtrggtthesrghrthhurhdqrhhojhgvkhdrvghupdhnsggprhgtphhtthhopeduiedprhgtphhtthhopehjvghffhestghorhgvshgvmhhirdhiohdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehrohgssehlrghnughlvgihrdhnvghtpdhrtghpthhtohepghhlrghusghithiisehphhihshhikhdrfhhuqdgsvghrlhhinhdruggvpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopegrnhgurhgvf
+ idonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhm
+X-GND-Sasl: contact@artur-rojek.eu
 
-On Sun, Aug 17, 2025 at 04:23:49PM +0530, Harsh Jain wrote:
->
-> diff --git a/crypto/df_sp80090a.c b/crypto/df_sp80090a.c
-> new file mode 100644
-> index 000000000000..bde5139ba163
-> --- /dev/null
-> +++ b/crypto/df_sp80090a.c
-> @@ -0,0 +1,243 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +/*
-> + * NIST SP800-90A DRBG derivation function
-> + *
-> + * Copyright (C) 2014, Stephan Mueller <smueller@chronox.de>
-> + */
-> +
-> +#include <crypto/df_sp80090a.h>
-> +#include <crypto/drbg.h>
+On 2025-08-17 06:29, D. Jeff Dionne wrote:
+> On Aug 16, 2025, at 22:40, Artur Rojek <contact@artur-rojek.eu> wrote:
+> 
+> The MDIO isn’t implemented yet.  There is a pin driver for it, but it 
+> relies on
+> pin strapping the Phy.  Probably because all the designs that SoC base 
+> is in
+> (IIRC 10 or so customer and prototype designs, plus Turtle and a few
+> derivatives), the SoC was designed in conjunction with board.  A bit 
+> lazy.
+> 
+> But they all have the MDIO connected, so we should add it (it’s very 
+> simple).
 
-The header files are still missing.
+Hi Jeff,
+thanks for the elaboration. It sounds to me then that I should wait with
+the driver upstream until the MDIO interface is implemented.
 
-> diff --git a/include/crypto/drbg.h b/include/crypto/drbg.h
-> index af5ad51d3eef..4234f15d74be 100644
-> --- a/include/crypto/drbg.h
-> +++ b/include/crypto/drbg.h
-> @@ -144,6 +144,24 @@ struct drbg_state {
->  	struct drbg_string test_data;
->  };
->  
-> +/*
-> + * Convert an integer into a byte representation of this integer.
-> + * The byte representation is big-endian
-> + *
-> + * @val value to be converted
-> + * @buf buffer holding the converted integer -- caller must ensure that
-> + *      buffer size is at least 32 bit
-> + */
-> +static inline void drbg_cpu_to_be32(__u32 val, unsigned char *buf)
-> +{
-> +        struct s {
-> +                __be32 conv;
-> +        };
-> +        struct s *conversion = (struct s *) buf;
-> +
-> +        conversion->conv = cpu_to_be32(val);
-> +}
-> +
+At least I gave you guys a little bit of a nudge :-)
 
-Part of the problem is that this header file includes an insane
-amount of stuff that it doesn't even need.  How about moving this
-function into a new header file crypto/internal/drbg.h that includes
-just the bare minimum?
+Cheers,
+Artur
 
-Thanks,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+> 
+> Cheers,
+> J.
+> 
+>> On 2025-08-16 02:18, Andrew Lunn wrote:
+>>>> Yes, it's an IC+ IP101ALF 10/100 Ethernet PHY [1]. It does have both 
+>>>> MDC
+>>>> and MDIO pins connected, however I suspect that nothing really
+>>>> configures it, and it simply runs on default register values (which
+>>>> allow for valid operation in 100Mb/s mode, it seems). I doubt there 
+>>>> is
+>>>> another IP core to handle MDIO, as this SoC design is optimized for
+>>>> minimal utilization of FPGA blocks. Does it make sense to you that a 
+>>>> MAC
+>>>> could run without any access to an MDIO bus?
+>>> It can work like that. You will likely have problems if the link ever
+>>> negotiates 10Mbps or 100Mbps half duplex. You generally need to 
+>>> change
+>>> something in the MAC to support different speeds and duplex. Without
+>>> being able to talk to the PHY over MDIO you have no idea what it has
+>>> negotiated with the link peer.
+>> 
+>> Thanks for the explanation. I just confirmed that there is no activity
+>> on the MDIO bus from board power on, up to the jcore_emac driver start
+>> (and past it), so most likely this SoC design does not provide any
+>> management interface between MAC and PHY. I guess once/if MDIO is
+>> implemented, we can distinguish between IP core revision compatibles,
+>> and properly switch between netif_carrier_*()/phylink logic.
+>> 
+>> Cheers,
+>> Artur
+>> 
+>>> Andrew
 
