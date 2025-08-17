@@ -1,222 +1,86 @@
-Return-Path: <devicetree+bounces-205469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE2DAB2925B
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 10:53:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCCB2B29298
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 12:23:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D9E93B68E7
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 08:52:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C62827B46AE
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 10:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE80215175;
-	Sun, 17 Aug 2025 08:52:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LxmOTR2h"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27116233707;
+	Sun, 17 Aug 2025 10:23:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vs81.iboxed.net (vs10.datenmanufaktur-hosting.net [213.160.73.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CA25221FC4;
-	Sun, 17 Aug 2025 08:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613CA14B06C;
+	Sun, 17 Aug 2025 10:22:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.73.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755420730; cv=none; b=I6nUlq/guluxy+s5fQdp94bgF3eML3axoSI/SBICnCLWkKgVKyDg/GG+RiZv/yoMMIfF5FuYtrlSRz5yLbe1yUdKCpMBCyqzw5+daTstjKuLr39xaYN75SJBHm48AQcYSKopDynALwmLlru4dxck6ZuGrei/CmYyNAT7GPeR0cc=
+	t=1755426181; cv=none; b=fUnDxQZ3GeQY1ref0BoxjiRb6N+O5ef8oppdWOHqiB6Ppflgx8Kvm9u4ekYTFIRC+ZUn+ceczZuhwDbQG/nVmks8hQXxa2A1CsoKp8cItEUUER8T2o9koZ3ioW3hvDVeBA0nJeIoWRmg9mhd4WBx53yU59GOJh6+I69hl7N6MnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755420730; c=relaxed/simple;
-	bh=mOZmGCDS+ifmqcLYmfbp8BPcpAmCwzlvZIOuiRx0LQc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pPkpYD3OEBHEZTKsv0o1TaJ3gXpcuQhqFYGrZFazvTSG9jjoNPEAyuwFz8106cax9K+UyA8WHeE3HZtpSORvWLNx/bIAi9MUunoNrpEQ9cSaNYEEyuQQIS0trgwkwspM4E8y9MAXXSvHN6p+YP/ESrszG1vU5Udyw969c0Y5bI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LxmOTR2h; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45a1b00e4a1so20299175e9.0;
-        Sun, 17 Aug 2025 01:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755420727; x=1756025527; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nczVdXOwZnKrAnrfSpvljupjNcdPfY9nuejpS2UQfbs=;
-        b=LxmOTR2hxxQ15wfbcEa28kXUuPJSve8hTXq6W1yzoW1FWaMkm4B4T1ZH4nl3ynQ1Yt
-         RQwFIG4PvZBU6ITq0QIiDCpAg1l8NYGrXLlWyLd8O43qa40AjzhmtnZ1HOWuOllj7cps
-         MRAK8bz7cYb8tMKGeO/ZTgb4DFeWZLR/nA2FedFBxuQhtE+2wBSEu1OE7lyCzJ0bUHEt
-         vpLAD/oDeJ/QbdOzRiF0zdtbccDYq1tTzki6ZNGRxmWfv6SFOhFjT5cb+BSbNL45SifM
-         9NFlYvE3hJghnPBK8F5a/H2LMn73crpB410rxEeS3cuLXULEocod1CB9SGUuEcjwW5p+
-         pnFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755420727; x=1756025527;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nczVdXOwZnKrAnrfSpvljupjNcdPfY9nuejpS2UQfbs=;
-        b=lh5JtqeIL29TYSsr17ymifQTFUxtwU+fyysp/x5lNxXf/b4V10HAOW7xkI8Zusr68M
-         ijGocMETYBvRewSqj6XG1t2bt6MsQZhpxiqa31P5Ci9mmVK74ruXGprg/TWcVJtjAN59
-         CerSimD+PshC5iBaDTwemHhSo4NFp7rNBLdtCO/wJlsCorjIQpkq5fLF0nIXL9ZsIwpk
-         WQGN3qc9zE7QuhXD0+WGyFyOYnZ19DW+b55Yk27zH5W8t6JGoqyr/cSMkqXTiz8LjgTG
-         UXu/9lqj7f6yNila/kjwxRhsmkgfUTK1mnuBlCUFntB0la5B/UHI7B/QYfgdT9Q0R58R
-         TH/g==
-X-Forwarded-Encrypted: i=1; AJvYcCWo0rJOTsifpXA4orVM0r2JxmHfoui5mFtOohGt//fVpndSBkvOketciHnQCdYSZy5jPWZZea5ra1Av@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx76So4f2BCHdKy66MKZdbk32p18kQctuZxGtWkY4rqme4Mf6YR
-	4zQytDW7tGZgsj8WsAejf5dslkSmLGQVo0tVubGyA+KzQJzaKgVmVDag
-X-Gm-Gg: ASbGncu3f9vYmcD2Wd0pfyZEPtIJRW60QLEA1WkCuuZZ8Ii7o5/++500M93J1adIrfx
-	L4cb1Z1pfXz5MywFNxFeI9QNEwpQNmQyyDQvMPF8MQtrDGwS87+3enPFtEpxrx2MgLUKVQLFba5
-	1cUyAZxhII0x4rXXzkEI3HgUQTgcWkgETezJ9YsndWeowjbkMz4O4waWZ+A+9CRcrehWM+BFNmr
-	W0JDFIcS8jLvVEawl8cmIOyt0HBq4E0dv7zAyKcjatdUmZnJd5/U14qkiPtDxWgt9Y44bjRcTiQ
-	P5AsTrFqIJ3ZnyyS5AcMrfjJGZrXKIBGxprGugGPNvzHNd25MVzI52jc2J2YniWenaB/KEpcEu4
-	uDrApRiFwwjQO/Sdf952p8uVn5WI2R+VkaZ10XQ==
-X-Google-Smtp-Source: AGHT+IHpkqsbnW5dI7T7TVGSboSIG78i5UQ9PGrjFIX6sk/xbZSOWeEOND1ulVndvLOVG5mNNs3k7g==
-X-Received: by 2002:a05:600c:b8d:b0:459:dfde:3324 with SMTP id 5b1f17b1804b1-45a21857f09mr61790745e9.29.1755420726498;
-        Sun, 17 Aug 2025 01:52:06 -0700 (PDT)
-Received: from tablet.my.domain ([2a00:f41:b0c2:8202:4205:bdef:2b7a:307d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1c61a66esm122908205e9.0.2025.08.17.01.52.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Aug 2025 01:52:06 -0700 (PDT)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Sun, 17 Aug 2025 10:52:04 +0200
-Subject: [PATCH] dt-bindings: extcon: rt8973a: Convert DT bindings to YAML
+	s=arc-20240116; t=1755426181; c=relaxed/simple;
+	bh=lJC10/440A/pwP+F4k2P/0FHtlqf6NxLunA99P4CC7U=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=WIqj70MjcZhYx5VtaNpsnRkkQFeSCgRVTnZc6lqW3To4SSRW+3rdpmo5gsDdvrgOpzPX1O59JRbPg2Ek/FGmH52O+oj4RsOyZ4wFIExBPuvyhWzbvyW/QI9hV0PdQQ9PYy90YnKcxQgKOkkLk5qVRGXIJBKpM+V7HqTcdqgtNDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=blala.de; spf=pass smtp.mailfrom=blala.de; arc=none smtp.client-ip=213.160.73.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=blala.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blala.de
+Received: from blala.de (localhost [127.0.0.1])
+	by vs81.iboxed.net (8.15.2/8.15.2/Debian-14~deb10u1) with ESMTP id 57HARprR029752;
+	Sun, 17 Aug 2025 10:27:51 GMT
+Received: (from akurz@localhost)
+	by blala.de (8.15.2/8.15.2/Submit) id 57HARpKr029751;
+	Sun, 17 Aug 2025 10:27:51 GMT
+From: Alexander Kurz <akurz@blala.de>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Dzmitry Sankouski <dsankouski@gmail.com>,
+        "Dr. David Alan Gilbert" <linux@treblig.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, Alexander Kurz <akurz@blala.de>
+Subject: [PATCH 0/6] Fix, extend and upport OF to mc13xxx pwrbutton
+Date: Sun, 17 Aug 2025 10:27:44 +0000
+Message-Id: <20250817102751.29709-1-akurz@blala.de>
+X-Mailer: git-send-email 2.20.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250817-rt8973a-dt-bindings-yaml-v1-1-150eb4599dc9@gmail.com>
-X-B4-Tracking: v=1; b=H4sIADOYoWgC/x3MTQqAIBBA4avErBtQ++8q0cJ0qoGy0IgiunvS8
- lu890AgzxSgTR7wdHLgzUXINAEzazcRso0GJVQhalmhP+qmyjTaAwd2lt0U8NbrgnlpVDkamWs
- jIOa7p5Gvf9317/sBFCRutGoAAAA=
-X-Change-ID: 20250817-rt8973a-dt-bindings-yaml-46c26fc14ac0
-To: MyungJoo Ham <myungjoo.ham@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3614;
- i=aweber.kernel@gmail.com; h=from:subject:message-id;
- bh=mOZmGCDS+ifmqcLYmfbp8BPcpAmCwzlvZIOuiRx0LQc=;
- b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBooZg09NEWXrXJwt4SiDAZDQjE9ZS2KCbbMIEey
- 5KvZAGVD+OJAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCaKGYNAAKCRCzu/ihE6BR
- aPx8D/9RwWq/MUMbV2XLphySJXfdeMUzrpjAjItYc+UdsQ2HbpLfdzFn1aw3kAHiEGgY2jYJA1y
- pt0gPAaDPxp7hy/LH6ILKc3Y6tM0LNVUHO0UrCq0VKQUxJvdkf6WlnLlhdoDoeJn7gVavqgVkGw
- vQH32aTAT0t+Zrw+w2ZBhuhUhMiRfQa57b6GpujAbmGrUaGsIqpQEvaPUi+c5xYLpAF1Vt0tdjm
- AX8TmYWcsnHUgUnwLArxK4XTQJKrAl/AgS5eFEQtlrHVedEMBYDtHNcVoP5QnkHv8YppaubNQdn
- XLwlkPQj+wRFApuREojmvBqjuX01dMjjWcKsFcCVSAWuqPtuy21nR9ELqHOG3nIXkIQ6b4NACoT
- yTPEIKm7bqJMhmwE0WvjSGE0eaeFz/sdg38CDJV0b1CJTgoO+5JWxUJDoQW9egfYTDEMKA9uSZE
- sFFbnQYi3SUw/OHJ1DKLn7mnb9Al5E+UD1DBhgbu8O42oU6Hq+7OYTLHTpM826R47Zfb4ih9eFH
- q3/2APguRQpmX9+Sc83aPYWUif0+2apl2ao6KE/4yeHmO9flBxvjcncc+5hMmjmlW3h1q4plOtb
- su/GrPr47uZePmN+sYOJ9Zf/E/u8r5cnPbQfzEbLUrXOcnmZPKGDUe4Ljnbn+QVoyVyIPDC4CW2
- 7kRbZz74pWdUZnw==
-X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
- fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
+Content-Transfer-Encoding: 8bit
 
-Convert the device tree bindings for Richtek RT8973A MUIC to the YAML
-format. No functional changes.
+Goal of this patch series is to make the mc13892 PWRON1 button usable,
+found e.g. on amazon kindle D01100/D01200 readers.
+A ten-year-old IRQ issue needed a fix, mc13783-pwrbutton had to be
+extended to the other to mc13xxx PMIC as well (keeping the mc13892
+PWRON3 key unsupported for simplicity) and adding OF support.
+The implementation has been tested on amazon kindle D01100 and D01200
+readers using PWRON1 of a mc13892.
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
-I've added Chanwoo Choi as the binding maintainer as he is listed
-as the author of the driver for this device; I can change this if
-needed.
----
- .../devicetree/bindings/extcon/extcon-rt8973a.txt  | 23 ----------
- .../bindings/extcon/richtek,rt8973a-muic.yaml      | 49 ++++++++++++++++++++++
- 2 files changed, 49 insertions(+), 23 deletions(-)
+Alexander Kurz (6):
+  Input: mc13783-pwrbutton: fix irq mixup
+  Input: mc13783-pwrbutton: use managed resources
+  Input: mc13783-pwrbutton: enable other mc13xxx PMIC
+  Input: mc13783-pwrbutton: convert members to array
+  dt-bindings: mfd: mc13xxx: add pwrbutton dt support
+  Input: mc13783-pwrbutton: add OF support
 
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-rt8973a.txt b/Documentation/devicetree/bindings/extcon/extcon-rt8973a.txt
-deleted file mode 100644
-index cfcf455ad4deffc1e4819934e6dc6fb3f95a54a5..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/extcon/extcon-rt8973a.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--
--* Richtek RT8973A - Micro USB Switch device
--
--The Richtek RT8973A is Micro USB Switch with OVP and I2C interface. The RT8973A
--is a USB port accessory detector and switch that is optimized to protect low
--voltage system from abnormal high input voltage (up to 28V) and supports high
--speed USB operation. Also, RT8973A support 'auto-configuration' mode.
--If auto-configuration mode is enabled, RT8973A would control internal h/w patch
--for USB D-/D+ switching.
--
--Required properties:
--- compatible: Should be "richtek,rt8973a-muic"
--- reg: Specifies the I2C slave address of the MUIC block. It should be 0x14
--- interrupts: Interrupt specifiers for detection interrupt sources.
--
--Example:
--
--	rt8973a@14 {
--		compatible = "richtek,rt8973a-muic";
--		interrupt-parent = <&gpx1>;
--		interrupts = <5 0>;
--		reg = <0x14>;
--	};
-diff --git a/Documentation/devicetree/bindings/extcon/richtek,rt8973a-muic.yaml b/Documentation/devicetree/bindings/extcon/richtek,rt8973a-muic.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..f9e0d816c025957e8b96b15bdf478e589e653e90
---- /dev/null
-+++ b/Documentation/devicetree/bindings/extcon/richtek,rt8973a-muic.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/extcon/richtek,rt8973a-muic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Richtek RT8973A MUIC
-+
-+maintainers:
-+  - Chanwoo Choi <cw00.choi@samsung.com>
-+
-+description:
-+  The Richtek RT8973A is Micro USB Switch with OVP and I2C interface. The RT8973A
-+  is a USB port accessory detector and switch that is optimized to protect low
-+  voltage system from abnormal high input voltage (up to 28V) and supports high
-+  speed USB operation. Also, RT8973A support 'auto-configuration' mode.
-+  If auto-configuration mode is enabled, RT8973A would control internal h/w patch
-+  for USB D-/D+ switching.
-+
-+properties:
-+  compatible:
-+    const: richtek,rt8973a-muic
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        usb-switch@14 {
-+          compatible = "richtek,rt8973a-muic";
-+          reg = <0x14>;
-+          interrupt-parent = <&gpio>;
-+          interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-+        };
-+    };
+ .../devicetree/bindings/mfd/mc13xxx.txt       |  35 +++
+ drivers/input/misc/Kconfig                    |   4 +-
+ drivers/input/misc/mc13783-pwrbutton.c        | 202 +++++++++++++-----
+ include/linux/mfd/mc13783.h                   |   4 +-
+ include/linux/mfd/mc13xxx.h                   |  17 +-
+ 5 files changed, 196 insertions(+), 66 deletions(-)
 
----
-base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
-change-id: 20250817-rt8973a-dt-bindings-yaml-46c26fc14ac0
-
-Best regards,
 -- 
-Artur Weber <aweber.kernel@gmail.com>
+2.39.5
 
 
