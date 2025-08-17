@@ -1,147 +1,133 @@
-Return-Path: <devicetree+bounces-205498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1911B29334
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 15:11:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A0CB29323
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 15:06:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0756E48643D
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 13:11:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EE1316DAF7
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 13:06:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD0F2882B9;
-	Sun, 17 Aug 2025 13:10:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9ED7242D84;
+	Sun, 17 Aug 2025 13:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="MAYL03pp"
+	dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b="mfUsreZ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4AB243367
-	for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 13:10:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F0423B61B
+	for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 13:06:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755436242; cv=none; b=AHP8o9Yq84qSzClDttwpxsbz74yVwcpJ/L5jOFT0gmoPqKkCDMTgvuvxngQozVnC+sJgbt8AeMbElGRBRBgWalsrpz3ZF0LgAjUtLoSmV5q4JIiIMv+zdcQnTpQETGgio7FHtTpWmAMNKcqczpf1i0MrA0x8jm9hn+Fm/O0zqqw=
+	t=1755435965; cv=none; b=fZTWDhAcm7h+U2tR9d9Kf48Huo3YShdp3xDfgRrPeYAHXIqYjAvkLRhAmMNDm+np06ZsWZ1ifTUkT8GtotS/3RYZ8TqVS1DhJIKHEax/KQGFYmZgjZp3tTuhcBsAkcZHhhlcJ3KXqFC4Ae18c91ap300byy/KYHcDZPr2k/EQPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755436242; c=relaxed/simple;
-	bh=tSKPjQWgI9Bxh3qDSdhjw6eM8Xm/Cb5smcXqma73rxc=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jgmToiSrwXe74jxdYDU3sJ4L/jWybIfkKa0268SFVpomleHiIK67Sk5RnB8pDm4pqmo1kS7Wca/2CZvogbw0JQvLG8cBWUNlqmWGvI2riJ2IVjrXgi+Iwc4vXmyy9gUQk/Xzsao5PoV4J8oHc45bKWAH0IurmrFGfPyaDOtuXHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=MAYL03pp; arc=none smtp.client-ip=212.77.101.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 45811 invoked from network); 17 Aug 2025 15:10:33 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1755436233; bh=f3mcEVhqA0qykeTow8LOueZzOYhw8zULyrWKE0mZ8DU=;
-          h=From:To:Subject;
-          b=MAYL03ppFP9vO2XGU6WffTlNFY+KT7ToacUudGaWy5MXUAoibyCduYWl+n2BSrId7
-           RoRkhMDSncM4NpfIqXrKsw1t02zfxjwuKk65EZXmegh/2BpLHLvRsLW/EBGnne4dQH
-           CLNXvyIK7hEG5CF1kvbpXrEzOw8ztH5AZof9pRSvKJO/m66zfwFkFkdSA/OwbljxvZ
-           fVdRlOFAiHJ9CZJWBMCzM8xHjmMWhWiwdo3fhyRgyECxieZvet41aYLM/PARLF2oeh
-           69rUUwSiSFQIzV1fLVAKAE68dB8WpCD6QT8LZBKvd5DjnFEVgomeGIT59SKzpQMNYe
-           7kYfhu/fXV/qg==
-Received: from 83.24.134.210.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.134.210])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <robh@kernel.org>; 17 Aug 2025 15:10:33 +0200
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: robh@kernel.org,
+	s=arc-20240116; t=1755435965; c=relaxed/simple;
+	bh=3PVQz1Npck8Dwovy/OX7P/UR/4Jfxuhm/zBlVDMlZZw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NFpWFgAO7FbNPtfYGxjJVYtinHi5/AVWPD1WnTmU7sgh4dwn1hua5COOP7vvS8tiLwqZT5gZJaPjmsLkhuyKz2lwVMVowBSzxEYoJdMfvZj7sObIk757cBNcmDARIgaL1dGB1NNpoQBiwm+GGPXkTOvFuSWckXFXi2ovzKx45N0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk; spf=pass smtp.mailfrom=pinefeat.co.uk; dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b=mfUsreZ8; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pinefeat.co.uk
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3b9d41c1963so1584665f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 06:06:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pinefeat.co.uk; s=google; t=1755435962; x=1756040762; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+00MvInGtT/2ob9Rq8Xm3oOT1gPpF55RwkoNwuBCzSg=;
+        b=mfUsreZ8VrW7YFhDwKFrIaVQdi++g2JN4tAf7o3zqt6SOm/CmMxhuc+PlPCXDWjQP8
+         RiSP05NKSZTKkfVdLf2Sc8DpxVGNhMuOCBhxMARo/dN4EJDga9oMQale8LYZZtWdH4kV
+         Tv+4Ni3UZ+Zt8wm1WaF2TI2WBvGwVkgTGQXztGJEEWbcn6pkRqtgT0lBgC+gMitaGWSN
+         cstWN6WLZifJrYLYUflw+Wdq8IyoyesAhdiCRUx5UhakpqWZ/zCqbJ2h05Stolx83Aqg
+         p2z5k1j2Gab8I9ZG9gGbKffMfq8Fxe1/ZdrYkXbXIIVtDUCd22vCE/at1FqbL1ruTfEw
+         Zc6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755435962; x=1756040762;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+00MvInGtT/2ob9Rq8Xm3oOT1gPpF55RwkoNwuBCzSg=;
+        b=UF99RiVGTbzkuaJ09+4Sd04lByl5f79ZEx4LNU86j5PI3nHNdNVmwQqfbp1qItm5OH
+         bucu7YXfAZo62ZJiOn+R6SRNoaoHRCvNvUG6znXeHdQ1zzbTOz6gfFrcZD3d06J7mc2G
+         nmIYBolpdSGCTfR/GKFVQnBRa63k5t5BaBTxBAjZ71RPNDAi+OpCSHez1lNwdFXtZTsn
+         Bf/OqPEohsNdUlLYtL4Q6og0VUI6O770pPZ5uFkUiM5010ciBlIdnRprOKcTibnjQ38q
+         fP83hcwPhUYxm72mOzJwyW5U7nv8zldEZK8yEircxbMmOgm7GaMNQ6PstWukQkhZAsDT
+         tGfg==
+X-Gm-Message-State: AOJu0YwPGWpfSYPpo1WIazGp0FQE5cLKpFfsN1MZxRpNt+4dnoyn1be3
+	QA08l0zoYkfX59jSgUIkythf50oeuNGg0iAWE8ZOkXxc/ov1nZ6cBAPRp8H0/1pFOiM=
+X-Gm-Gg: ASbGncs9M933tA1h0WYHhHzmOx/CzVgRMOaT7fKKnPS0198NvbeugvvI+80C7t4DdnC
+	y6XOHTstjpMD7z7JO2dLdGUrVu/XVyBO/mPRgCRPJhj2/jVO6lmtXPIv780JJkgvER7NWGDknsq
+	4oPhwq3nF/Kw704ooUCGJcXYsC4WW8ExdER7cHGEgKYjVKMKt1xovgG0FFh7rW16cNMFRAUCcVJ
+	9emxavCdTCKmw2/fD7wOrLWfwBP+L3NpPh56CD0wPt/wkR5MPztTN4A1cO6uBryHLy4a962TlXp
+	3XKUGdyQjZbLZoj9ZhdTZqYFLVEl32EFXr0olC3gZuyV0uVEJ/ULcyOL9Yv//pryIXOQe+5vI/+
+	mifY/T/OIVkLWivYQUwOdLkalpylrzfeQ9K1I
+X-Google-Smtp-Source: AGHT+IEBquoYzqH1BGvf/UZy7kHktiJyWv/AzngI7aknei31lWrO45ZcaBJaFyvTvIKsx0U0NI0g2A==
+X-Received: by 2002:a05:6000:4287:b0:3b9:16e5:bd1c with SMTP id ffacd0b85a97d-3bc6a55e8bfmr4038608f8f.31.1755435961484;
+        Sun, 17 Aug 2025 06:06:01 -0700 (PDT)
+Received: from asmirnov-G751JM.Home ([2a02:c7c:b28c:1f00:b4c0:f0fd:db4c:31dd])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3bb93862fe7sm9235729f8f.64.2025.08.17.06.06.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Aug 2025 06:06:01 -0700 (PDT)
+From: Aliaksandr Smirnou <support@pinefeat.co.uk>
+To: mchehab@kernel.org,
+	robh@kernel.org,
 	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tsbogend@alpha.franken.de,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	john@phrozen.org,
-	olek2@wp.pl,
-	devicetree@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH net v2 2/2] mips: lantiq: xway: sysctrl: rename the etop node
-Date: Sun, 17 Aug 2025 14:49:07 +0200
-Message-ID: <20250817131022.3796476-3-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250817131022.3796476-1-olek2@wp.pl>
-References: <20250817131022.3796476-1-olek2@wp.pl>
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Aliaksandr Smirnou <support@pinefeat.co.uk>
+Subject: [PATCH v3 0/2] Pinefeat cef168 lens control board driver
+Date: Sun, 17 Aug 2025 14:05:47 +0100
+Message-Id: <20250817130549.7766-1-support@pinefeat.co.uk>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-WP-MailID: 5fda69cfe5c5c6b9c1b3de6c156be420
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000000 [MeMx]                               
 
-Bindig requires a node name matching ‘^ethernet@[0-9a-f]+$’. This patch
-changes the clock name from “etop” to “ethernet”.
+This patch series adds support for the Pinefeat adapter, which interfaces
+Canon EF and EF-S lenses to non-Canon camera bodies. The cef168 circuit
+control board provides an I2C interface for electronic focus and aperture
+control. The driver integrates with the V4L2 sub-device API.
 
-This fixes the following warning:
-arch/mips/boot/dts/lantiq/danube_easy50712.dtb: etop@e180000 (lantiq,etop-xway): $nodename:0: 'etop@e180000' does not match '^ethernet@[0-9a-f]+$'
-	from schema $id: http://devicetree.org/schemas/net/lantiq,etop-xway.yaml#
+For more information about the product, see:
+https://github.com/pinefeat/cef168
 
-Fixes: dac0bad93741 ("dt-bindings: net: lantiq,etop-xway: Document Lantiq Xway ETOP bindings")
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- arch/mips/boot/dts/lantiq/danube_easy50712.dts |  2 +-
- arch/mips/lantiq/xway/sysctrl.c                | 10 +++++-----
- 2 files changed, 6 insertions(+), 6 deletions(-)
+Changes in v3:
+ - removed vcc-supply property and example
+ - fixed incorrect type in assignment
+ - fixed cast to restricted
+ - removed unreachable code
+ - changed comparison to NULL
+ - fixed indent in commit message
 
-diff --git a/arch/mips/boot/dts/lantiq/danube_easy50712.dts b/arch/mips/boot/dts/lantiq/danube_easy50712.dts
-index d8b3cd69eda3..c4d7aa5753b0 100644
---- a/arch/mips/boot/dts/lantiq/danube_easy50712.dts
-+++ b/arch/mips/boot/dts/lantiq/danube_easy50712.dts
-@@ -82,7 +82,7 @@ conf_out {
- 			};
- 		};
- 
--		etop@e180000 {
-+		ethernet@e180000 {
- 			compatible = "lantiq,etop-xway";
- 			reg = <0xe180000 0x40000>;
- 			interrupt-parent = <&icu0>;
-diff --git a/arch/mips/lantiq/xway/sysctrl.c b/arch/mips/lantiq/xway/sysctrl.c
-index 5a75283d17f1..6031a0272d87 100644
---- a/arch/mips/lantiq/xway/sysctrl.c
-+++ b/arch/mips/lantiq/xway/sysctrl.c
-@@ -497,7 +497,7 @@ void __init ltq_soc_init(void)
- 		ifccr = CGU_IFCCR_VR9;
- 		pcicr = CGU_PCICR_VR9;
- 	} else {
--		clkdev_add_pmu("1e180000.etop", NULL, 1, 0, PMU_PPE);
-+		clkdev_add_pmu("1e180000.ethernet", NULL, 1, 0, PMU_PPE);
- 	}
- 
- 	if (!of_machine_is_compatible("lantiq,ase"))
-@@ -531,9 +531,9 @@ void __init ltq_soc_init(void)
- 						CLOCK_133M, CLOCK_133M);
- 		clkdev_add_pmu("1e101000.usb", "otg", 1, 0, PMU_USB0);
- 		clkdev_add_pmu("1f203018.usb2-phy", "phy", 1, 0, PMU_USB0_P);
--		clkdev_add_pmu("1e180000.etop", "ppe", 1, 0, PMU_PPE);
--		clkdev_add_cgu("1e180000.etop", "ephycgu", CGU_EPHY);
--		clkdev_add_pmu("1e180000.etop", "ephy", 1, 0, PMU_EPHY);
-+		clkdev_add_pmu("1e180000.ethernet", "ppe", 1, 0, PMU_PPE);
-+		clkdev_add_cgu("1e180000.ethernet", "ephycgu", CGU_EPHY);
-+		clkdev_add_pmu("1e180000.ethernet", "ephy", 1, 0, PMU_EPHY);
- 		clkdev_add_pmu("1e103000.sdio", NULL, 1, 0, PMU_ASE_SDIO);
- 		clkdev_add_pmu("1e116000.mei", "dfe", 1, 0, PMU_DFE);
- 	} else if (of_machine_is_compatible("lantiq,grx390")) {
-@@ -592,7 +592,7 @@ void __init ltq_soc_init(void)
- 		clkdev_add_pmu("1e101000.usb", "otg", 1, 0, PMU_USB0 | PMU_AHBM);
- 		clkdev_add_pmu("1f203034.usb2-phy", "phy", 1, 0, PMU_USB1_P);
- 		clkdev_add_pmu("1e106000.usb", "otg", 1, 0, PMU_USB1 | PMU_AHBM);
--		clkdev_add_pmu("1e180000.etop", "switch", 1, 0, PMU_SWITCH);
-+		clkdev_add_pmu("1e180000.ethernet", "switch", 1, 0, PMU_SWITCH);
- 		clkdev_add_pmu("1e103000.sdio", NULL, 1, 0, PMU_SDIO);
- 		clkdev_add_pmu("1e103100.deu", NULL, 1, 0, PMU_DEU);
- 		clkdev_add_pmu("1e116000.mei", "dfe", 1, 0, PMU_DFE);
+Link to v2: https://lore.kernel.org/all/20250811213102.15703-1-aliaksandr.smirnou@gmail.com/
+
+Patches:
+  dt-bindings: Pinefeat cef168 lens control board
+  media: i2c: Pinefeat cef168 lens control board driver
+
+ .../bindings/media/i2c/pinefeat,cef168.yaml   |  48 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ drivers/media/i2c/Kconfig                     |   8 +
+ drivers/media/i2c/Makefile                    |   1 +
+ drivers/media/i2c/cef168.c                    | 335 ++++++++++++++++++
+ drivers/media/i2c/cef168.h                    |  51 +++
+ 7 files changed, 453 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
+ create mode 100644 drivers/media/i2c/cef168.c
+ create mode 100644 drivers/media/i2c/cef168.h
+
+
+base-commit: 2b38afce25c4e1b8f943ff4f0a2b51d6c40f2ed2
 -- 
-2.47.2
+2.34.1
 
 
