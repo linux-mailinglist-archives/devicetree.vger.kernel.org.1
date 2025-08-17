@@ -1,164 +1,204 @@
-Return-Path: <devicetree+bounces-205439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2080FB29188
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 06:30:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9799AB291AD
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 07:48:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8288E7A910B
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 04:28:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E98091B2634C
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 05:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21EE1E25EB;
-	Sun, 17 Aug 2025 04:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A701C84BC;
+	Sun, 17 Aug 2025 05:48:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=coresemi-io.20230601.gappssmtp.com header.i=@coresemi-io.20230601.gappssmtp.com header.b="bu+CI9fu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c8pViEDf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6674D1D514E
-	for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 04:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D8A139579;
+	Sun, 17 Aug 2025 05:48:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755404999; cv=none; b=iBsDOFW469fpZd/FeogZK4C7k1ESPz13w/xFojv09xGcGNrfAXF2WlXhHKGAx7Z5A0FuGo40B9XX2WvTP1h2LOYtwKkN98H/X4qa7NZHcWfdZUgr2Mck2apW59kAGxSHq2Xo+Vp4eu8Vh98FOxl2vZZtvjBZHMSL+qb8AzCSqvE=
+	t=1755409719; cv=none; b=HeAMa7A+rhP7MND9Va3RDNc6nAjlJ3VqVw3DfQNfEzSDbfAvid0mo++LPSC45uznsYQ6kGRiMSU39Q5XPcbDHH/4lyYhV2oUy/UaW2XI94IDNjqiLjQAXz2GBB9OrOj+D8IMd4L62J8ilWZ7EVZ48BrY+yUCGpxMrtgqZoPKnkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755404999; c=relaxed/simple;
-	bh=dJsoDn9ejss6xZxq1+PO6yZOjAfrmBEGOzoE1pFfCOY=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=mkVsuseiJeVQLVirtOsmRWHfZh8xr59EBRBApHuHbF+cZCBrUmd7AJtiXH1eJHK58DZwULH/fTY05EC3OsyLFIhKYs5tiyx4Yoh4LfQNzwARtie/sMIlue8sGqx6Sg8s7znbLykwq6KjSXGHQHe12gUkwxLUUb2QlX6hcQ7Pa/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=coresemi.io; spf=none smtp.mailfrom=coresemi.io; dkim=pass (2048-bit key) header.d=coresemi-io.20230601.gappssmtp.com header.i=@coresemi-io.20230601.gappssmtp.com header.b=bu+CI9fu; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=coresemi.io
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=coresemi.io
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-76e39ec6f30so2229164b3a.2
-        for <devicetree@vger.kernel.org>; Sat, 16 Aug 2025 21:29:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=coresemi-io.20230601.gappssmtp.com; s=20230601; t=1755404998; x=1756009798; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D7tOnFcQoia7OLIfjY0GXgnbZUBsSDQdwxwR729Y/e8=;
-        b=bu+CI9fuicYGql7eXCSSIHIhAnefx+/szl65SWoI3A/eRgLojNwzGAZnNuNp4KfYeb
-         5nsFX2jTA79wYBcpGrBDT9J4z1pVvTPc8V6RBUNFd4U6DDlQq/jPWfosMEcQqx/6UNd/
-         uO+O9RP6NIRdJRgHEQas79AvX4WjG0Z8wLxoz9joWS+k7x/RFwRkRWvsj5GaD50rrIcS
-         b9+tRO688Ch3A1WZlazCSTxWdJvysUbusuZfNfWGkK1PL4hZKqPInIUY6rTn4IxKcEdq
-         5U0nr0Gl3lOvb36HYFw7wqdyX5oLf73jVvDWMvlu2rKpUxZq44IpmOJVA9K/oS9NpLgV
-         /HlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755404998; x=1756009798;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D7tOnFcQoia7OLIfjY0GXgnbZUBsSDQdwxwR729Y/e8=;
-        b=Fd3YKktrSIBWxNj5pR1m7XGzuRNHKkyQuzS9MHfVJE/J61f0R8E2B+ERJADgMduXvb
-         PdaztSFryh4LF/izfDtvlGMrxKyThhFnW2uKGjntKMd0lFBX7e6UEtWOjaDdPdtf/Hvs
-         JPA65h+t4Ky3P603V1Rc45KdqARpH+2D3mbkZ0/w0Ydzs+ZUsV4IHD4wQ1XtyjdxyVUF
-         f+GC1WVm32euoizwosq618vxT1OLY9Ipj2qu4z5KRiYDqWpHO15z2cnWhMCjjOyI/7re
-         wcqfd/JdQKW9hgWMb5fHQ3hnMFr6YR5dcvvlx1jKPu6R6EXasdX8e2jOUkRn3h6J4Xb7
-         Ozng==
-X-Forwarded-Encrypted: i=1; AJvYcCUUp0kZssgI//+cjyv2eDkeFSzsxt1waQfiJ5vZV63MXAmHwQT72UC6BAGnn+gIUt4jCgHSRYnEXhOU@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywj+80meb454buIp6VO2JgemqzIKBI0fqZzLZQCF2eiwhiPGkgx
-	En74b+Qk7Jle11h0G0TJezkK87B4e3EpgYTBJDLIIzAEi9AHKXA0mlIyDenZpRes+d4=
-X-Gm-Gg: ASbGncux6FarP2iurl8Q0W4otaY+X/i29ZIn4eNlX9i/c7OL4yA07VFy58isD41C50+
-	GFa3OjxKt3CLkjJN8CmNv13AN++sPfu+IxFnPlSwTO0cwk3ncQkVETVrj3gAPAk+OaDehPwoHXf
-	EMDy+epq9BA93Y72McIZBsPKkJiM+bR+4iwH/tLNAaLdLEeaMeCusp+Zf6QgzISvM3HyvpDtPRW
-	XYKdDoGnfuQ/n+hejwlTkX6cYM4KlUJyVmRN/gRBna2DV1/GglXQbKUe3hi2hFJzlVMVkVtnqjI
-	CZ0US6PozuIpT2iUEs528fJFcGDQyZbhi+0Bx5cUtKo0GLYfh7wNmTCiUtXD1cVsuH8qyeEgJX1
-	sMfRhh9hsPy6PvqU3hGv7suVWBbfxnlnETC5y8+CDHayLba87fN8t3GjAGJ85YSXs5A==
-X-Google-Smtp-Source: AGHT+IGTkulwbSKlMNKTgkK2+N/a2tNWqVdcaDc/+0IBx3cEbIkK7JZwpjqo8gKvMk5mXlc40TvNCw==
-X-Received: by 2002:a05:6a20:9143:b0:23f:f7ae:6e24 with SMTP id adf61e73a8af0-240e6311cc0mr6485220637.29.1755404997708;
-        Sat, 16 Aug 2025 21:29:57 -0700 (PDT)
-Received: from smtpclient.apple (p121132.f.east.v6connect.net. [221.113.121.132])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b472d73a0a7sm5134883a12.28.2025.08.16.21.29.53
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 16 Aug 2025 21:29:57 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1755409719; c=relaxed/simple;
+	bh=qpbneWZrxAdsiLzyRlwnN1hSf6DqHv/5wCYe4g7IcAg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Rzp6Ksubu1AhtWvIBmxCS/v+MncI5UtH/YaKWmZ4BRx5P4zX5J6BZiwhpQYd4YMrVULzeAnlQ+yhntUy1YXSbu6axQYAkuTXel/82ZYzy+Fm3PI2Ynx0j0WyqWXqs1aVlRIsMzwkj7o99lTFPLjuxosm/ZuOPnNfFl/ZwbKsJfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c8pViEDf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAB4FC4CEEB;
+	Sun, 17 Aug 2025 05:48:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755409719;
+	bh=qpbneWZrxAdsiLzyRlwnN1hSf6DqHv/5wCYe4g7IcAg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=c8pViEDfhPT80CuDtkfa5S89q4IfusDObfkci/RR218QdWLH6uzNO7mH/mYx+v2D2
+	 c52wtCTq4WtKRJ4wDt5Ki2uMXfcmtvoq0x65BcGuFCecCvZ3g789C9jJLBTAH/AmDa
+	 c7jmC5OVbFKzJwamxByCebMvd1VINFR4Q5i3ujRUidw9cqA9RLs8C/apOraj8JxaFH
+	 89lzb81hyBEC/Xpe7nnLzaRVOGQs95/kKXbMb/AoxRQNXONeDr1jX4eYlpkd0SS7h5
+	 JZl4LZUMlU5B6CjiDWdbfq9+E1o1c7RVjcR4ab4ahKAsfIHznIrRrFnbDWPW01apcw
+	 bKzkP8flEpezg==
+Message-ID: <90091f9a-9fb0-4e5b-9574-0dc12bb7fe27@kernel.org>
+Date: Sun, 17 Aug 2025 07:48:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
-Subject: Re: [PATCH 3/3] net: j2: Introduce J-Core EMAC
-From: "D. Jeff Dionne" <jeff@coresemi.io>
-In-Reply-To: <9eab7a4ff3a72117a1a832b87425130f@artur-rojek.eu>
-Date: Sun, 17 Aug 2025 13:29:42 +0900
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Rob Landley <rob@landley.net>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: nvmem: Add the nxp,s32g-ocotp yaml file
+To: Ciprian Costea <dan.carpenter@linaro.org>,
+ Srinivas Kandagatla <srini@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
- netdev@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- "D. Jeff Dionne" <jeff@coresemi.io>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <DC855B2C-37F3-4565-8B6F-B122F7E16E25@coresemi.io>
-References: <20250815194806.1202589-1-contact@artur-rojek.eu>
- <20250815194806.1202589-4-contact@artur-rojek.eu>
- <973c6f96-6020-43e0-a7cf-9c129611da13@lunn.ch>
- <b1a9b50471d80d51691dfbe1c0dbe6fb@artur-rojek.eu>
- <02ce17e8f00955bab53194a366b9a542@artur-rojek.eu>
- <fc6ed96e-2bab-4f2f-9479-32a895b9b1b2@lunn.ch>
- <7a4154eef1cd243e30953d3423e97ab1@artur-rojek.eu>
- <ee607928-1845-47aa-90a1-6511decda49d@lunn.ch>
- <9eab7a4ff3a72117a1a832b87425130f@artur-rojek.eu>
-To: Artur Rojek <contact@artur-rojek.eu>
-X-Mailer: Apple Mail (2.3826.700.81)
+ Ciprian Costea <ciprianmarian.costea@nxp.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linaro-s32@linaro.org,
+ NXP S32 Linux Team <s32@nxp.com>
+References: <cover.1755341000.git.dan.carpenter@linaro.org>
+ <7d0e025ed3fdc9e545f1d0b84f6a1cbb9dfb4e91.1755341000.git.dan.carpenter@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <7d0e025ed3fdc9e545f1d0b84f6a1cbb9dfb4e91.1755341000.git.dan.carpenter@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Aug 16, 2025, at 22:40, Artur Rojek <contact@artur-rojek.eu> wrote:
+On 16/08/2025 12:47, Ciprian Costea wrote:
+> Add bindings to expose the On Chip One-Time Programmable Controller
+> (OCOTP) for the NXP s32g chipset.  There are three versions of this
+> chip but they're compatible so we can fall back to the nxp,s32g2-ocotp
+> compatible.
+> 
+> Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
+> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+> ---
+>  .../bindings/nvmem/nxp,s32g-ocotp-nvmem.yaml  | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/nxp,s32g-ocotp-nvmem.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/nxp,s32g-ocotp-nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nxp,s32g-ocotp-nvmem.yaml
+> new file mode 100644
+> index 000000000000..19f3bb6b7eb0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/nxp,s32g-ocotp-nvmem.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/nxp,s32g-ocotp-nvmem.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP S32G OCOTP NVMEM driver
+> +
+> +maintainers:
+> +  - Ciprian Costea <ciprianmarian.costea@nxp.com>
+> +
+> +description: |
+> +  The drivers provides an interface to access One Time
+> +  Programmable memory pages, such as TMU fuse values.
+> +
+> +allOf:
+> +  - $ref: nvmem.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - nxp,s32g3-ocotp
+> +              - nxp,s32r45-ocotp
+> +          - const: nxp,s32g2-ocotp
+> +
+> +  reg:
+> +    description:
+> +      Address and Size of the fuse bank to be read.
 
-The MDIO isn=E2=80=99t implemented yet.  There is a pin driver for it, =
-but it relies on
-pin strapping the Phy.  Probably because all the designs that SoC base =
-is in
-(IIRC 10 or so customer and prototype designs, plus Turtle and a few=20
-derivatives), the SoC was designed in conjunction with board.  A bit =
-lazy.
+Drop description, redundant.
 
-But they all have the MDIO connected, so we should add it (it=E2=80=99s =
-very simple).
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 1
 
-Cheers,
-J.
+Drop these cells, already in nvmem.yaml.
 
-> On 2025-08-16 02:18, Andrew Lunn wrote:
->>> Yes, it's an IC+ IP101ALF 10/100 Ethernet PHY [1]. It does have both =
-MDC
->>> and MDIO pins connected, however I suspect that nothing really
->>> configures it, and it simply runs on default register values (which
->>> allow for valid operation in 100Mb/s mode, it seems). I doubt there =
-is
->>> another IP core to handle MDIO, as this SoC design is optimized for
->>> minimal utilization of FPGA blocks. Does it make sense to you that a =
-MAC
->>> could run without any access to an MDIO bus?
->> It can work like that. You will likely have problems if the link ever
->> negotiates 10Mbps or 100Mbps half duplex. You generally need to =
-change
->> something in the MAC to support different speeds and duplex. Without
->> being able to talk to the PHY over MDIO you have no idea what it has
->> negotiated with the link peer.
->=20
-> Thanks for the explanation. I just confirmed that there is no activity
-> on the MDIO bus from board power on, up to the jcore_emac driver start
-> (and past it), so most likely this SoC design does not provide any
-> management interface between MAC and PHY. I guess once/if MDIO is
-> implemented, we can distinguish between IP core revision compatibles,
-> and properly switch between netif_carrier_*()/phylink logic.
->=20
-> Cheers,
-> Artur
->=20
->> Andrew
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/nvmem/s32g-ocotp-nvmem.h>
 
+There is no such file.
+
+> +
+> +    ocotp: ocotp@400a4000 {
+> +      compatible = "nxp,s32g2-ocotp";
+> +      reg = <0x400a4000 0x400>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      status = "okay";
+
+Please drop status
+
+> +    };
+
+
+Best regards,
+Krzysztof
 
