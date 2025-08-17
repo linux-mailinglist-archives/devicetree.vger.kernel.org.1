@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-205528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49268B294CA
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 20:42:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E4F9B294E1
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 21:39:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98A371891864
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 18:40:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B61819682AF
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 19:40:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369041F4703;
-	Sun, 17 Aug 2025 18:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB031FF7C8;
+	Sun, 17 Aug 2025 19:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z5MV2LqV"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="WpvtdpdD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BA1428399;
-	Sun, 17 Aug 2025 18:39:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 061DA12B73;
+	Sun, 17 Aug 2025 19:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755455995; cv=none; b=qm9JVJ6tzIUKOMLJ8OD9xuIKQxJToVdfQinBXu8K9ZqegEZ52xo6kZwHxoBX47el30JYnYV9Ge2IG5QdCuL3qz1f/hCqd+BbLrHYS31eZHGdaStDiPcLhbsj5UFvPk+KEd6CJWE62n0QRrBVglWdAfevDjhInPq3XK4WQHSTOds=
+	t=1755459592; cv=none; b=clIKjUa0gNhF8UNoWXiuWnoxCsICMFC7liUAHEEEDPuqEFzvsnKs1ZdAI+x2eKQ9Okw04nPibGY+BLYYZq80XMLzDlU+Y0bdHE1ZLg+aKDHawx8cHxscVYPA/8OQrXahS+6e/HIv5G+ZWur+sj75haQsEi3dJ4By+1JOXGRTFX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755455995; c=relaxed/simple;
-	bh=m3PNNERXxwpCzkdnS/g84M24HexPmr502VnjyAPJFJI=;
+	s=arc-20240116; t=1755459592; c=relaxed/simple;
+	bh=fm9MC9w71x2V6wUYh0NhquPACQ+eHjamPHK0Jmda5po=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c3ThFv+mP1+AvNgGTHw61XRIsPRG5NXYjn9S0Zo1PvAYf0Q3uxdVN2drGtlRIgNLUYZ8qjMWKM+431rw+aSHluUPK1/QpD9Z5fT1rS/DrWpSngB1vQo5WNqSObs9JAXP/ejoKht/JBVS34pdrQvzQZ4fvMhHLYUjx0wdtnGyQQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z5MV2LqV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EB7BC4CEF4;
-	Sun, 17 Aug 2025 18:39:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755455994;
-	bh=m3PNNERXxwpCzkdnS/g84M24HexPmr502VnjyAPJFJI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z5MV2LqV5LaNSHO32gXSptkeeQvdwAMfWW7X7n7y7rTWYI09NaoJG3Z9C3hepxBhr
-	 dPGoUfZBzXnlxVUldR0sBdlw+z9HusCvmtzP9tIt/tG8YvzxKRZ2BYh8mkwxcB2vNE
-	 WFXso5bMN0O9faE67bNcjStO7OtzvS8Ep3hAz2v7vNt7+Qvo9GpRheMJkvYVb/K/OA
-	 iwgfeyTh7JYatQAJzzLJS9Qq+bboyEn8C6LCx9kadkPhgrNPXydEMvyKDF5nCzoEgU
-	 CtU28F8rTR/etylIJzaHpDW5v2v+psolCfE8tzrpzkVBQbkXz7+7j5G9GNW8Dj9e5E
-	 IOsSimuN2k63A==
-Date: Sun, 17 Aug 2025 11:39:52 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=qPVzbwEakLu2/fhAShGm+vDQiNn4vk78ozlZq/pmqkocnoamtwwFRlB1pVGeTqbOpmpKpSvn/RlHjO/9y7u61U7v9KZzfCD/iW5+w7HZSiGSbTaorDk/8fBN45th8JeggyAMDu9La7UNNuramrgWNl1lNRzQFa05lOihRN0IRIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=WpvtdpdD; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=QO7IaYTt/6d2MUg1fvfXtUP6TpN6Oc9uIKuq9biZ7vo=; b=WpvtdpdDNDKoBlSSHEkaJM8Dlr
+	YGhuW3iHT5E92MLMSSfcqS518WRFZvYdLHUl5HgGcxiA2A0njMq7fdgBEh4MCfCiIsvruIdk+uM3+
+	DhvtMOTL9VxvAXs5XJI7lmh+Qxl/bfVPKl/xd+Wm7d/IfomQYJiKnRvccLK1ADgAPrvA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1unjE8-004z45-E5; Sun, 17 Aug 2025 21:39:36 +0200
+Date: Sun, 17 Aug 2025 21:39:36 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Rob Landley <rob@landley.net>
+Cc: Artur Rojek <contact@artur-rojek.eu>, Jeff Dionne <jeff@coresemi.io>,
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [RFC PATCH 3/8] drm: verisilicon: add a driver for Verisilicon
- display controllers
-Message-ID: <aKIh+MLEO2aM/vO7@x1>
-References: <20250814164048.2336043-1-uwu@icenowy.me>
- <20250814164048.2336043-4-uwu@icenowy.me>
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] net: j2: Introduce J-Core EMAC
+Message-ID: <bc31f53a-ba85-4580-add3-a287dca06661@lunn.ch>
+References: <20250815194806.1202589-4-contact@artur-rojek.eu>
+ <973c6f96-6020-43e0-a7cf-9c129611da13@lunn.ch>
+ <b1a9b50471d80d51691dfbe1c0dbe6fb@artur-rojek.eu>
+ <02ce17e8f00955bab53194a366b9a542@artur-rojek.eu>
+ <fc6ed96e-2bab-4f2f-9479-32a895b9b1b2@lunn.ch>
+ <7a4154eef1cd243e30953d3423e97ab1@artur-rojek.eu>
+ <ee607928-1845-47aa-90a1-6511decda49d@lunn.ch>
+ <9eab7a4ff3a72117a1a832b87425130f@artur-rojek.eu>
+ <52aef275-0907-4510-b95c-b2b01738ce0b@lunn.ch>
+ <d4f291e3-9d4f-4724-91de-742f9ace5b86@landley.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,59 +76,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250814164048.2336043-4-uwu@icenowy.me>
+In-Reply-To: <d4f291e3-9d4f-4724-91de-742f9ace5b86@landley.net>
 
-On Fri, Aug 15, 2025 at 12:40:43AM +0800, Icenowy Zheng wrote:
-> This is a from-scratch driver targeting Verisilicon DC-series display
-> controllers, which feature self-identification functionality like their
-> GC-series GPUs.
-> 
-> Only DC8200 is being supported now, and only the main framebuffer is set
-> up (as the DRM primary plane). Support for more DC models and more
-> features is my further targets.
-> 
-> As the display controller is delivered to SoC vendors as a whole part,
-> this driver does not use component framework and extra bridges inside a
-> SoC is expected to be implemented as dedicated bridges (this driver
-> properly supports bridge chaining).
-> 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> My vague recollection is this SOC only implemented full duplex 100baseT
+> because they didn't have any hardware lying around that _couldn't_ talk to
+> that.
 
-Thanks for working on this!
+It is pretty unusual to find hardware, now a days, which only does
+10Mbp. So it is a somewhat theoretical use case. And as you say,
+100Mbps is plenty fast for lots of applications.
 
-[snip]
-> diff --git a/drivers/gpu/drm/verisilicon/vs_primary_plane.c b/drivers/gpu/drm/verisilicon/vs_primary_plane.c
-> new file mode 100644
-> index 0000000000000..25d6e01cc8b71
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_primary_plane.c
-[snip]
-> +static void vs_primary_plane_atomic_update(struct drm_plane *plane,
-> +					   struct drm_atomic_state *atomic_state)
-> +{
-> +	struct drm_plane_state *state = drm_atomic_get_new_plane_state(atomic_state,
-> +								       plane);
-> +	struct drm_framebuffer *fb = state->fb;
-> +	struct drm_crtc *crtc = state->crtc;
-> +	struct drm_gem_dma_object *gem;
-> +	struct vs_dc *dc;
-> +	struct vs_crtc *vcrtc;
-> +	struct vs_format fmt;
-> +	unsigned int output, bpp;
-> +	dma_addr_t dma_addr;
-> +
-> +	if (!crtc)
-> +		return;
-> +
-> +	DRM_DEBUG_DRIVER("Updating output %d primary plane\n", output);
+What we need to think about is the path forwards, how MDIO and PHY
+support can be added later, without breaking DT backwards
+compatibility.
 
-clang flagged this when building. I think this needs to be after the
-line below that assigns vcrtc->id to output.
+What you would normally do if there is no access to the PHY is use
+fixed-link. It emulates a PHY, one that is always up and at a fixed
+speed. See fixed-link in
+Documentation/devicetree/bindings/net/ethernet-controller.yaml
 
-> +
-> +	vcrtc = drm_crtc_to_vs_crtc(crtc);
-> +	output = vcrtc->id;
+That allows the MAC driver to use the phylib API. The MAC does not
+hard coded the carrier up, phylib tells the MAC link is up, and phylib
+manages the carrier.
 
-Thanks,
-Drew
+What this means is, if sometime in the future MDIO is added, and
+phylib gets access to the PHY, there are no MAC driver changes. Old DT
+blobs, using fixed-link still work, and new DT blobs with MDIO, a PHY
+node, and a phy-handle have working PHY.
+
+If you don't do this now, adding support later will be messy, if you
+don't want to break backwards compatibility with old DT blobs.
+
+	Andrew
+
+
+
 
