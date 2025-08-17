@@ -1,216 +1,356 @@
-Return-Path: <devicetree+bounces-205533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B9E4B2951E
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 23:10:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A550B2952E
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 23:40:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 078AF4E6228
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 21:10:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B45E1898F32
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 21:40:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4462367B8;
-	Sun, 17 Aug 2025 21:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A46A289E0B;
+	Sun, 17 Aug 2025 21:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="JxJDJW6B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aQVrV9tg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F972220F3E
-	for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 21:10:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE2A21B9FD;
+	Sun, 17 Aug 2025 21:40:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755465032; cv=none; b=Ct+V1ZZ/zMS4csbWuI1H7o+tihDVAt+YCOzTRfWtjL3XcEEi7dAAJ4vVQOF5opxl+jyIZTplDsU2XFF1dSjcLPpJFb3cyaJwN+db/VAqw9sNQcJ23o8JgzoST7foGPY6oQVICil70ZAFd0tlT1uD2KhUjmNTHQtVwYzR4cihO3w=
+	t=1755466803; cv=none; b=kS3EXedg85r758Ush943ruGvddraFBdILltsfxNIRFmfujV+h8sUN6mmC4DM/zNIe7wYq60zgCVXz9L3IXhKLunsoqXq8IwQcZ/4a2LdQFgWD8m6AaetQqEBH2473hMyt+1mSvEwB8flG1C/Jmu4yjK/tQJ2EUANbSwDCpWT7yU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755465032; c=relaxed/simple;
-	bh=AdlvrWJIkpT2eJcV3yXTIIpUaWLC5qt/oDvlpUtfE/k=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KrptVn7b4xkU/u5m4jqpf6fQ1iakiAG0T6MptPgc8hXlpKwNCiD6rEGPZSxxrB3x1pGHaC2xAAvVFJBh+8V7muiyhYJ8XRerbzd8+TjuP5wmk1gvXDgl7gaVHsJ5Rksh2FEcfMFBeJV+Xd8hEw+3P60mvE9GKxp0gtrj8zKA7Os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=JxJDJW6B; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Sun, 17 Aug 2025 17:10:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1755465028;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ve4jm5CXwDlv7GAWeNnaLmnHuVR8zr5FtPatq3KSzEE=;
-	b=JxJDJW6BNaH2Au2RB6dTIZv/qs/WKUiP4NXbW6J2DirjUcjrpsl3i2YUys1LZytMCHbeNw
-	kpLoupWcBukvzHPjJE8lQtWHaBZKwdfnDBgg7gHEah8w7AsHz/GEDr8Kz2uTcqc4qmqwNQ
-	tzV23UdJpA47XaVsTeGJiHcOYk1LOVs=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Ben Collins <ben.collins@linux.dev>
-To: David Lechner <dlechner@baylibre.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Ben Collins <bcollins@watter.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Hepp <andrew.hepp@ahepp.dev>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: iio: mcp9600: Add compatible for
- microchip,mcp9601
-Message-ID: <2025081717-fabulous-chameleon-5ad9bb@boujee-and-buff>
-Mail-Followup-To: David Lechner <dlechner@baylibre.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Ben Collins <bcollins@watter.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Hepp <andrew.hepp@ahepp.dev>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-References: <20250815164627.22002-1-bcollins@watter.com>
- <20250815164627.22002-2-bcollins@watter.com>
- <20250816105825.35e69652@jic23-huawei>
- <66063382-78c6-4d93-be25-46e972e390f4@baylibre.com>
- <2025081711-coral-aardwark-9f061b@boujee-and-buff>
- <8e228d2d-d22f-4092-8c6d-94ce989b4a84@baylibre.com>
- <2025081713-wooden-clam-aee35a@boujee-and-buff>
- <65ca6431-56e1-4798-9ecc-6e6adf664f96@baylibre.com>
- <2025081716-tan-pillbug-ff2cb5@boujee-and-buff>
+	s=arc-20240116; t=1755466803; c=relaxed/simple;
+	bh=hcg956TPIVdk5bcqGXoSuHPPurJL2czejHJxdt01Pwg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cjgTzw4i8HCvgy4Od520YmizB7p8B7n/4SzzYdOGipLyG+KgUyAQo6cMdwSfJwmpl47B3f10wVK1LWJkgkEPTpeUlBHg1M/GUvuvAmvjFjSm2VD/lX8eP/ataSDZ5Mo6atIIWeREm0ctoJEcUIWbuhf9IBgKSjpIbJ1a5zZmMfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aQVrV9tg; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45a1b00797dso21466195e9.0;
+        Sun, 17 Aug 2025 14:40:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755466799; x=1756071599; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vmglsrYNRpTXNRkzmUdRZibvhrsSGSBGGVp3ZAPgflc=;
+        b=aQVrV9tgV/EvPhlvXP/RSFFLtN+l49MRc9NEdyZY1zrh3rrEpxOWbh05l5m4bnfA8k
+         kapSdVWz6eBARKJg1qXZqrF5bWDf62GstzvGWPt7+ROjWSP6G50rhlh1uVqbVJS53DOH
+         xe66+yFgZUXrVGI8xEOp5Fr0b55qHAVpTFppPHevOCevcDL9VtMZOH7XAI+sErfKyVCW
+         iGMCAsQMzPF/BU2THHwz1plasYB03KuLIzMQ1B7FVttR9h4Y/MigIkap20VD7mMLojo3
+         AETrcoZVnm/8dz+7/8A7r/goJOXRbA+tRtSm0JTu05qosnmzIUziPH3yJ7xtDA9IjU8E
+         hQMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755466799; x=1756071599;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vmglsrYNRpTXNRkzmUdRZibvhrsSGSBGGVp3ZAPgflc=;
+        b=aAl5X2d2v0SlQpI1C1nEZUj69i8florCEH8TFwHTzfSkeEUkoScMY+MLgC93pGvwvA
+         vL8EcWj0JMEg2obxfVdHxk/9ZEqVe74gKwOupPrZOKDtMKOSkaixOFXI78zJLI9n1f6l
+         QPzgOxTvXvTTUECpm8qiAJS8N1xbnEIGtDCYE0AwXDR1UHlVyIKE6+diCOTuknVCPEr8
+         sjSInWbruvXhboCYTNBO18muTHqylHC3QyTEupLMoRIAoUdM5KGJU995g6I92OhPM1mU
+         r00s6WGWCP5DClxt/5FSYRZ2fqMNypbnYpFLdA9OUgIdlDhFMc0K48SZvnUY8lEJbi3/
+         DMRw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3nmtJyAJROvhkRR/ZIGZ7Nbqm7zowLKKM9qu8BuAE5ndFe4WRawoimgZyQiYonSJqeiFMEWpfumGS@vger.kernel.org, AJvYcCWMHZ7vuYN+oonSt45bUGqC9jF663N22rhG6nKHJjtnM6hsHhGJZzG0hvpSfB/bJ9S4tX189SPRqd2my/B8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxj+hetC4TSqdS2KYTUz6w/1VfcZcJqiSg7TV3QRTff1uo245Rp
+	ihGyq49/zNAhQeREAk408PKgML7D9zIT7QuawXuNFT7C3NBdMxEN0Yg=
+X-Gm-Gg: ASbGncsnbWyUgfg/4fUNRR39NMkq3kYUNvUd5BGvccYn/KWug8L08FVG72HRsDYDzwf
+	PgjgrCdDfUilJNLHGPBLJBzVj95xmfgikFz/xdQl+EpyqAFyYZSnMWJfgtUCMXE6jmx8dVMDNP5
+	xJegJKUkZjBj94paIZYuqglZmYBXYETk/2ZvW2x1dT2TSF6sg+RRp/Sr85zuNhUvTw591oXuTD+
+	oUexDyEVgCc4PT+ICvgmvb5tdI4Z7xXkhzxlLE25vbT1e/mflgKYW8LjUuGu1KIYqC6OhVqRjSE
+	7yJQe5SisypvUR7o4Le4dynVjhrZlOG9abXU4qXSPCJvLglu0N5DLDjyWCEMOA/ThhD/anlTY0m
+	t4UacsdkxxlKo0KNKJwJ1uU7OSXrGUobjIF2rEEn+/+Ec
+X-Google-Smtp-Source: AGHT+IHlffkfXYmFgZ99Ms0EE74mCwJYNuWa5D88JjRViMcV6nhqvFjX/Ra5mSu4fcXcys4EePGJ0A==
+X-Received: by 2002:a05:6000:248a:b0:3a4:fb7e:5fa6 with SMTP id ffacd0b85a97d-3bb66564b33mr7036010f8f.1.1755466799298;
+        Sun, 17 Aug 2025 14:39:59 -0700 (PDT)
+Received: from localhost.localdomain ([2a0d:e487:55e:d28f:a860:8af:5c69:4d9d])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3bb6816ee9fsm11005008f8f.59.2025.08.17.14.39.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Aug 2025 14:39:58 -0700 (PDT)
+From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+To: robh@kernel.org,
+	lee@kernel.org
+Cc: peter.ujfalusi@gmail.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	shuah@kernel.org,
+	jihed.chaibi.dev@gmail.com
+Subject: [PATCH v4] mfd: dt-bindings: ti,twl6040: convert to DT schema
+Date: Sun, 17 Aug 2025 23:38:43 +0200
+Message-Id: <20250817213843.46397-1-jihed.chaibi.dev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ysnvmq3eichik2xz"
-Content-Disposition: inline
-In-Reply-To: <2025081716-tan-pillbug-ff2cb5@boujee-and-buff>
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
 
+Convert the legacy TXT binding for the TWL6040 MFD to the modern YAML
+DT schema format. This adds formal validation and improves documentation
+for the TWL6040/TWL6041 audio codec, which provides audio, vibra, and GPO
+functionality on OMAP4+ platforms.
 
---ysnvmq3eichik2xz
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/5] dt-bindings: iio: mcp9600: Add compatible for
- microchip,mcp9601
-MIME-Version: 1.0
+Key changes:
 
-On Sun, Aug 17, 2025 at 05:02:49PM -0500, Ben Collins wrote:
-> On Sun, Aug 17, 2025 at 12:59:48PM -0500, David Lechner wrote:
-> > On 8/17/25 12:34 PM, Ben Collins wrote:
-> > > On Sun, Aug 17, 2025 at 11:51:22AM -0500, David Lechner wrote:
-> > >> On 8/17/25 11:37 AM, Ben Collins wrote:
-> > >>> On Sat, Aug 16, 2025 at 01:55:31PM -0500, David Lechner wrote:
-> > >>>> On 8/16/25 4:58 AM, Jonathan Cameron wrote:
-> > >>>>> On Fri, 15 Aug 2025 16:46:03 +0000
-> > >>>>> Ben Collins <bcollins@watter.com> wrote:
-> > >>>>>
-> > >>>>>> The mcp9600 driver supports the mcp9601 chip, but complains abou=
-t not
-> > >>>>>> recognizing the device id on probe. A separate patch...
-> > >>>>>>
-> > >>>>>> 	iio: mcp9600: Recognize chip id for mcp9601
-> > >>>>>>
-> > >>>>>> ...addresses this. This patch updates the dt-bindings for this c=
-hip to
-> > >>>>>> reflect the change to allow explicitly setting microchip,mcp9601=
- as
-> > >>>>>> the expected chip type.
-> > >>>>>>
-> > >>>>>> The mcp9601 also supports features not found on the mcp9600, so =
-this
-> > >>>>>> will also allow the driver to differentiate the support of these
-> > >>>>>> features.
-> > >>>>>
-> > >>>>> If it's additional features only then you can still use a fallback
-> > >>>>> compatible.  Intent being that a new DT vs old kernel still 'work=
-s'.
-> > >>>>>
-> > >>>>> Then for the driver on new kernels we match on the new compatible=
- and
-> > >>>>> support those new features.  Old kernel users get to keep the ID
-> > >>>>> mismatch warning - they can upgrade if they want that to go away =
-;)
-> > >>>>>
-> > >>>>> Krzysztof raised the same point on v2 but I'm not seeing it addre=
-ssed
-> > >>>>> in that discussion.
-> > >>>>
-> > >>>> One could make the argument that these are not entirely fallback
-> > >>>> compatible since bit 4 of the STATUS register has a different
-> > >>>> meaning depending on if the chip is MCP9601/L01/RL01 or not.
-> > >>>
-> > >>> There are some nuances to this register between the two, but it can=
- be
-> > >>> used generically as "not in range" for both.
-> > >>>
-> > >>> My understanding from the docs is if VSENSE is connected on mcp9601,
-> > >>> then it is explicitly open-circuit detection vs. short-circuit, whi=
-ch
-> > >>> is bit 5.
-> > >>>
-> > >>>> Interestingly, the existing bindings include interrupts for
-> > >>>> open circuit and short circuit alert pins. But these pins
-> > >>>> also only exist on MCP9601/L01/RL01. If we decide these aren't
-> > >>>> fallback compatible, then those properties should have the
-> > >>>> proper constraints added as well.
-> > >>>
-> > >>> In my v4 patch, I'm going to remove the short/open circuit interrup=
-ts
-> > >>> since they are not implemented, yet.
-> > >>
-> > >> Don't remove them from the devicetree bindings. Even if the Linux dr=
-iver
-> > >> doesn't use it, the bindings should be as complete as possible.
-> > >>
-> > >> https://docs.kernel.org/devicetree/bindings/writing-bindings.html
-> > >>
-> > >=20
-> > > I couldn't find anything that would easily describe this type of layo=
-ut:
-=2E..
-> > We usually do this the other way around. The base binding lists
-> > all of the possibilities then an -if: constraint limits them
-> > if needed.
-> >=20
-> >=20
-> > So don't change what is there already and then add:
-> >=20
-=2E..
-> This might be a little more complicated. I want to add a boolean for
-> microchip,vsense so the SC/OC aren't even available without that flag
-> being true (default false).
->=20
-> I could just assume that having the interrupts means this flag is true,
-> but that doesn't cover the case where the interrupts might not be used
-> or even wired up, but the SC/OC detection in the status register can be
-> used.
->=20
-> I was going with this:
->=20
+ - Dropped usage of the 'twl6040,audpwron-gpio' property from the schema
+   as it is not used by the driver.
+ - Retained 'clocks' and 'clock-names' as flexible (1-2 items) to match
+   the original binding's "and/or" phrasing, which allows clk32k, mclk,
+   or both.
+ - Updated node name to 'audio-codec@4b' to follow generic naming
+   conventions per the Device Tree specification.
+ - Replaced raw interrupt values with standard defines for clarity.
 
-Nevermind, I figured this out. I'll send v4 soon.
+Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+---
+ .../devicetree/bindings/mfd/ti,twl6040.yaml   | 154 ++++++++++++++++++
+ .../devicetree/bindings/mfd/twl6040.txt       |  67 --------
+ 2 files changed, 154 insertions(+), 67 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,twl6040.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/twl6040.txt
 
+diff --git a/Documentation/devicetree/bindings/mfd/ti,twl6040.yaml b/Documentation/devicetree/bindings/mfd/ti,twl6040.yaml
+new file mode 100644
+index 000000000..20865575f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/ti,twl6040.yaml
+@@ -0,0 +1,154 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/ti,twl6040.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TWL6040/TWL6041 Audio Codec
++
++maintainers:
++  - Peter Ujfalusi <peter.ujfalusi@gmail.com>
++
++description:
++  The TWL6040s are 8-channel high quality low-power audio codecs providing
++  audio, vibra and GPO functionality on OMAP4+ platforms.
++  They are connected to the host processor via i2c for commands, McPDM for
++  audio data and commands.
++
++properties:
++  compatible:
++    enum:
++      - ti,twl6040
++      - ti,twl6041
++
++  reg:
++    const: 0x4b
++
++  interrupts:
++    maxItems: 1
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 1
++
++  '#clock-cells':
++    description: TWL6040 is a provider of PDMCLK which is used by McPDM.
++    const: 0
++
++  vio-supply:
++    description: Regulator for the VIO supply.
++
++  v2v1-supply:
++    description: Regulator for the V2V1 supply.
++
++  enable-active-high:
++    type: boolean
++    description: If present, powers on the device during boot.
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++    description: Phandle to the clk32k and/or mclk clock providers.
++
++  clock-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      enum: [clk32k, mclk]
++
++  # Vibra functionality :
++
++  vddvibl-supply:
++    description: Regulator for the left vibra motor supply.
++
++  vddvibr-supply:
++    description: Regulator for the right vibra motor supply.
++
++  vibra:
++    type: object
++    description: Node for vibra motor configuration parameters.
++    properties:
++      ti,vibldrv-res:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Resistance parameter for the left driver.
++
++      ti,vibrdrv-res:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Resistance parameter for the right driver.
++
++      ti,viblmotor-res:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Resistance parameter for the left motor.
++
++      ti,vibrmotor-res:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Resistance parameter for the right motor.
++
++      vddvibl_uV:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Optional override for the VDDVIBL default voltage (in uV).
++
++      vddvibr_uV:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Optional override for the VDDVIBR default voltage (in uV).
++    required:
++      - ti,vibldrv-res
++      - ti,vibrdrv-res
++      - ti,viblmotor-res
++      - ti,vibrmotor-res
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - gpio-controller
++  - '#gpio-cells'
++  - '#clock-cells'
++  - vio-supply
++  - v2v1-supply
++  - vddvibl-supply
++  - vddvibr-supply
++  - vibra
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      audio-codec@4b {
++        compatible = "ti,twl6040";
++        reg = <0x4b>;
++
++        interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-parent = <&gic>;
++
++        gpio-controller;
++        #gpio-cells = <1>;
++        #clock-cells = <0>;
++
++        vio-supply = <&v1v8>;
++        v2v1-supply = <&v2v1>;
++        enable-active-high;
++
++        clocks = <&clk32k>;
++        clock-names = "clk32k";
++
++        /* regulators for vibra motor */
++        vddvibl-supply = <&vbat>;
++        vddvibr-supply = <&vbat>;
++
++        vibra {
++          /* Vibra driver, motor resistance parameters */
++          ti,vibldrv-res = <8>;
++          ti,vibrdrv-res = <3>;
++          ti,viblmotor-res = <10>;
++          ti,vibrmotor-res = <10>;
++        };
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/mfd/twl6040.txt b/Documentation/devicetree/bindings/mfd/twl6040.txt
+deleted file mode 100644
+index dfd8683ed..000000000
+--- a/Documentation/devicetree/bindings/mfd/twl6040.txt
++++ /dev/null
+@@ -1,67 +0,0 @@
+-Texas Instruments TWL6040 family
+-
+-The TWL6040s are 8-channel high quality low-power audio codecs providing audio,
+-vibra and GPO functionality on OMAP4+ platforms.
+-They are connected to the host processor via i2c for commands, McPDM for audio
+-data and commands.
+-
+-Required properties:
+-- compatible : "ti,twl6040" for twl6040, "ti,twl6041" for twl6041
+-- reg: must be 0x4b for i2c address
+-- interrupts: twl6040 has one interrupt line connecteded to the main SoC
+-- gpio-controller:
+-- #gpio-cells = <1>: twl6040 provides GPO lines.
+-- #clock-cells = <0>; twl6040 is a provider of pdmclk which is used by McPDM
+-- twl6040,audpwron-gpio: Power on GPIO line for the twl6040
+-
+-- vio-supply: Regulator for the twl6040 VIO supply
+-- v2v1-supply: Regulator for the twl6040 V2V1 supply
+-
+-Optional properties, nodes:
+-- enable-active-high: To power on the twl6040 during boot.
+-- clocks: phandle to the clk32k and/or to mclk clock provider
+-- clock-names: Must be "clk32k" for the 32K clock and "mclk" for the MCLK.
+-
+-Vibra functionality
+-Required properties:
+-- vddvibl-supply: Regulator for the left vibra motor
+-- vddvibr-supply: Regulator for the right vibra motor
+-- vibra { }: Configuration section for vibra parameters containing the following
+-	     properties:
+-- ti,vibldrv-res: Resistance parameter for left driver
+-- ti,vibrdrv-res: Resistance parameter for right driver
+-- ti,viblmotor-res: Resistance parameter for left motor
+-- ti,viblmotor-res: Resistance parameter for right motor
+-
+-Optional properties within vibra { } section:
+-- vddvibl_uV: If the vddvibl default voltage need to be changed
+-- vddvibr_uV: If the vddvibr default voltage need to be changed
+-
+-Example:
+-&i2c1 {
+-	twl6040: twl@4b {
+-		compatible = "ti,twl6040";
+-
+-		interrupts = <0 119 4>;
+-		interrupt-parent = <&gic>;
+-		twl6040,audpwron-gpio = <&gpio4 31 0>;
+-
+-		vio-supply = <&v1v8>;
+-		v2v1-supply = <&v2v1>;
+-		enable-active-high;
+-
+-		/* regulators for vibra motor */
+-		vddvibl-supply = <&vbat>;
+-		vddvibr-supply = <&vbat>;
+-
+-		vibra {
+-			/* Vibra driver, motor resistance parameters */
+-			ti,vibldrv-res = <8>;
+-			ti,vibrdrv-res = <3>;
+-			ti,viblmotor-res = <10>;
+-			ti,vibrmotor-res = <10>;
+-		};
+-	};
+-};
+-
+-/include/ "twl6040.dtsi"
+-- 
+2.39.5
 
---=20
- Ben Collins
- https://libjwt.io
- https://github.com/benmcollins
- --
- 3EC9 7598 1672 961A 1139  173A 5D5A 57C7 242B 22CF
-
---ysnvmq3eichik2xz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEPsl1mBZylhoRORc6XVpXxyQrIs8FAmiiRT8ACgkQXVpXxyQr
-Is/XWg//Y5A7k72av+JmqcRqWTIGA4LVvAJJMiE3nufI/loV/Z5w7z3h9j9FXOVy
-19nscIWi6D8hh3mBVvwxlWnFoCfhzPA3f8BQTSgv+4V/bpge3ANbodDjAv0+Q8pB
-HZA4jrDBIup0g09GqNZw2p1MVGC7lotXHrPY1FZdBuL1za9fsWAhcm07sfW2jtTc
-d/AqVC1cw+8QlZ+bZsqJYfwB5ebBpb0p2kOVgwtCovrdPzAXGN0qfS/UDAX4uJhg
-e35TUJeEqwFZYyOx2i2etv0/1PPxAxtYRBeXtlr5u4PR2/ypRv4N9n0zjETUp4b/
-U84w+dcL9EqrRr3dYN/j44lNwr3YTgIE0Dx18hC2mYnb2Hu8JVfo+jxagbyRrG1c
-eQI0j6RZaxFPW+ggc9BZ6siIQrtoPAdFPOeLaYRi+7BCcBRDJ4kStBWVngma4UXF
-iTwdeQD6Q7bS1Q72o/g8j7zEgX371WlSwA4aDWuwkpxk0NuOw8S4FteAx52wtQHJ
-sOX3dcKOvxy7duCDxetIMgmS754se1fyRpM221hxxDANXGdCUNVldxxddUfUgi+a
-3B4Z2M8I2JP9ev7L830GdblzfIvyN+/xWGqUaSnGvohSpjJ0sLYZnCECNiRzaw6D
-MGDNd3/y61QfaCqS04WYK65eAUmthEYA5rY8h/u6aUxDksXuiOA=
-=s+Og
------END PGP SIGNATURE-----
-
---ysnvmq3eichik2xz--
 
