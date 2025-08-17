@@ -1,153 +1,204 @@
-Return-Path: <devicetree+bounces-205525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDFDBB29464
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 19:10:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28582B29496
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 19:34:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F11932A37C9
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 17:10:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8397E1967E7E
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 17:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F2A302CAC;
-	Sun, 17 Aug 2025 17:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A34223DE8;
+	Sun, 17 Aug 2025 17:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DmU5lAC7"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="iaZrUUWw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com [95.215.58.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37EDF3019B6;
-	Sun, 17 Aug 2025 17:09:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB97827453
+	for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 17:34:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755450585; cv=none; b=JOVYkD72g3erurr5LQ039/JV3DeUsoOn3U+Yv2lySlU25kXKnnVSfa7sgPW7uqOurOXYmOmujsHlWVlop5ZtqKloilrbpiUg3BT1avGZAsvJclEzvbi5DR3odhB9pFPQH/wMxdCCPGfOKEbdv8Uskt41bYVHzJG1ln2T38XmhY0=
+	t=1755452070; cv=none; b=mVn8LywZ3NARfyo3Y1qWe/feGHlWt2X6WgvYilhEffqOQGzYaZeLGsPxXqQakUp3IG1+R3Jx/mLWy3XJOe6dJC1S58vNypGxhEN/gDvaPupvlZsGHKfiN70+y3AoJJJXGKG4nubzLMbLI/wHTiip2IspvRulHI2YI6cLbdkWK/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755450585; c=relaxed/simple;
-	bh=oPsbg1tP3AApN1JK/GZ+8hwHkKQr260jQSdxD+x2O9k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=g+PFVYpgvo7cxaORdBcWJAseOsj8a948n1KuA+qLtiJhfPyOMzDULdDvim9KE6Iyf+P0emQwQr02ghypDnDlYIzEdrYrbEbMruXU2okxJLKmHhK1wufnHF/e1yZc49EPlbrXCax3+SMlUt6QFGQ98DxCTHKU8YKtVgjAsksQ38Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DmU5lAC7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8700AC2BCB8;
-	Sun, 17 Aug 2025 17:09:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755450584;
-	bh=oPsbg1tP3AApN1JK/GZ+8hwHkKQr260jQSdxD+x2O9k=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=DmU5lAC77VNl0gTntGzmMwNejE4HBN4OwwvN0RHxvPvj2mboq15U8s4CQPEQwU82z
-	 2daJ47sUuoHhpaGh8k5yIXuK8vJ+EIrRT/Y5dkFeawgK3qIedYCXDZpQOeYwK1Jsmk
-	 tVfxR94JJQcN2h0IWmBs7Q6ommrHcXsy79nin/HcCXU9MkqTx5RDH8WWEeMbUkU3qf
-	 pWj0SvWkqMiYqwHDCFvaP2cYIyB4zs9y0dxSLm0oCDgIv8p/Sd3yWZ8dp49xnuweDI
-	 4ZvqDJkK4dz1a0DcMTaHPQae8T2paZ0YHmASJncmr/NSlSJ5Qk+jwdsk5P7WVqocdE
-	 DGGJw5vSauMWw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AAEDCA0EDC;
-	Sun, 17 Aug 2025 17:09:44 +0000 (UTC)
-From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
-Date: Sun, 17 Aug 2025 19:09:26 +0200
-Subject: [PATCH 7/7] media: i2c: dw9719: Fix power on/off sequence
+	s=arc-20240116; t=1755452070; c=relaxed/simple;
+	bh=RwB/DDIb6opM2ULvBt72StCBbsngJupBmwL6J25OWAI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ToxonNoZPWy9a62ve6usb7ZLdcHb/3319wxVLd60aziWnuzayxkupU3kjgvk1EBVPvuD0LaH9fu1o+DCmcq4/QP/R6NVzFWRkrbdaGdjy3v+/DTKonuMhdPKppbxSIozya90mD5jq2lomXdEhJrFEfO27uFpFO7S2nRFjHIm0T4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=iaZrUUWw; arc=none smtp.client-ip=95.215.58.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Sun, 17 Aug 2025 13:34:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1755452060;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BNsVrdnvFypp0sG1vA9s+V9fNjo1Zu+/ID90N7aE+Ks=;
+	b=iaZrUUWwNJLkEGUQu153ibC9G6D72GYDKNDCNfdUYHkXkfR0hCZ0+k/EaLUHAGxUFFTvRv
+	L1V60wM1VGmkwxa3cXb5wylPVUiZPC0DFh/mxJaULcZ5Z5nw5ENffq1QAZmYgeOmCmfTYm
+	miEbENWUnhRTJQsSZm3Ik65P3ESIRjk=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ben Collins <ben.collins@linux.dev>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Ben Collins <bcollins@watter.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andrew Hepp <andrew.hepp@ahepp.dev>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: iio: mcp9600: Add compatible for
+ microchip,mcp9601
+Message-ID: <2025081713-wooden-clam-aee35a@boujee-and-buff>
+Mail-Followup-To: David Lechner <dlechner@baylibre.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Ben Collins <bcollins@watter.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andrew Hepp <andrew.hepp@ahepp.dev>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+References: <20250815164627.22002-1-bcollins@watter.com>
+ <20250815164627.22002-2-bcollins@watter.com>
+ <20250816105825.35e69652@jic23-huawei>
+ <66063382-78c6-4d93-be25-46e972e390f4@baylibre.com>
+ <2025081711-coral-aardwark-9f061b@boujee-and-buff>
+ <8e228d2d-d22f-4092-8c6d-94ce989b4a84@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250817-dw9719-v1-7-426f46c69a5a@apitzsch.eu>
-References: <20250817-dw9719-v1-0-426f46c69a5a@apitzsch.eu>
-In-Reply-To: <20250817-dw9719-v1-0-426f46c69a5a@apitzsch.eu>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Daniel Scally <djrscally@gmail.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Val Packett <val@packett.cool>, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755450582; l=2482;
- i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
- bh=WHp/XEAFOtAOYg6kNIcSWN2unJmOfneuc2Td8tZ6uiA=;
- b=NJpVHJJszElHrcLxB/I+5PDwFas8+W1oFx/BrnqHoTG0l2JCXVt9E+ZVwigf9wxE3C+BFnwvZ
- Zfmn26gH1EMDwjWpYBJ1sP5M72RPg2CtSw2YF8yWb+DQu8GSP9bEYEl
-X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
- pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
-X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
- auth_id=142
-X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Reply-To: git@apitzsch.eu
-
-From: Val Packett <val@packett.cool>
-
-The "jiggle" code was not actually expecting failure, which it should
-because that's what actually happens when the device wasn't already woken
-up by the regulator power-on (i.e. in the case of a shared regulator).
-
-Also, do actually enter the internal suspend mode on shutdown, to save
-power in the case of a shared regulator.
-
-Also, wait a bit longer (2x tOPR) on waking up, 1x is not enough at least
-on the DW9718S as found on the motorola-nora smartphone.
-
-Signed-off-by: Val Packett <val@packett.cool>
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- drivers/media/i2c/dw9719.c | 23 ++++++++++++++++-------
- 1 file changed, 16 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/media/i2c/dw9719.c b/drivers/media/i2c/dw9719.c
-index 63c7fd4ab70a0e02518252b23b89c45df4ba273d..dd28a0223d6ac980084b1f661bd029ea6b0be503 100644
---- a/drivers/media/i2c/dw9719.c
-+++ b/drivers/media/i2c/dw9719.c
-@@ -95,12 +95,19 @@ struct dw9719_device {
- 
- static int dw9719_power_down(struct dw9719_device *dw9719)
- {
-+	u32 reg_pwr = (dw9719->model == DW9718S) ? DW9718S_PD : DW9719_CONTROL;
-+
-+	/*
-+	 * Worth engaging the internal SHUTDOWN mode especially due to the
-+	 * regulator being potentially shared with other devices.
-+	 */
-+	cci_write(dw9719->regmap, reg_pwr, DW9719_SHUTDOWN, NULL);
- 	return regulator_disable(dw9719->regulator);
- }
- 
- static int dw9719_power_up(struct dw9719_device *dw9719, bool detect)
- {
--	u32 reg_pwr;
-+	u32 reg_pwr = (dw9719->model == DW9718S) ? DW9718S_PD : DW9719_CONTROL;
- 	u64 val;
- 	int ret;
- 	int err;
-@@ -109,13 +116,15 @@ static int dw9719_power_up(struct dw9719_device *dw9719, bool detect)
- 	if (ret)
- 		return ret;
- 
--	/* Jiggle SCL pin to wake up device */
--	reg_pwr = (dw9719->model == DW9718S) ? DW9718S_PD : DW9719_CONTROL;
--	cci_write(dw9719->regmap, reg_pwr, DW9719_SHUTDOWN, &ret);
--	fsleep(100);
-+	/*
-+	 * Need 100us to transition from SHUTDOWN to STANDBY.
-+	 * Jiggle the SCL pin to wake up the device (even when the regulator
-+	 * is shared) and wait double the time to be sure, then retry the write.
-+	 */
-+	cci_write(dw9719->regmap, reg_pwr, DW9719_STANDBY, &ret);
-+	ret = 0; /* the jiggle is expected to fail, don't even log that as error */
-+	fsleep(200);
- 	cci_write(dw9719->regmap, reg_pwr, DW9719_STANDBY, &ret);
--	/* Need 100us to transit from SHUTDOWN to STANDBY */
--	fsleep(100);
- 
- 	if (detect) {
- 		/* This model does not have an INFO register */
-
--- 
-2.50.1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bk5mkohm5lcfkkd3"
+Content-Disposition: inline
+In-Reply-To: <8e228d2d-d22f-4092-8c6d-94ce989b4a84@baylibre.com>
+X-Migadu-Flow: FLOW_OUT
 
 
+--bk5mkohm5lcfkkd3
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/5] dt-bindings: iio: mcp9600: Add compatible for
+ microchip,mcp9601
+MIME-Version: 1.0
+
+On Sun, Aug 17, 2025 at 11:51:22AM -0500, David Lechner wrote:
+> On 8/17/25 11:37 AM, Ben Collins wrote:
+> > On Sat, Aug 16, 2025 at 01:55:31PM -0500, David Lechner wrote:
+> >> On 8/16/25 4:58 AM, Jonathan Cameron wrote:
+> >>> On Fri, 15 Aug 2025 16:46:03 +0000
+> >>> Ben Collins <bcollins@watter.com> wrote:
+> >>>
+> >>>> The mcp9600 driver supports the mcp9601 chip, but complains about not
+> >>>> recognizing the device id on probe. A separate patch...
+> >>>>
+> >>>> 	iio: mcp9600: Recognize chip id for mcp9601
+> >>>>
+> >>>> ...addresses this. This patch updates the dt-bindings for this chip =
+to
+> >>>> reflect the change to allow explicitly setting microchip,mcp9601 as
+> >>>> the expected chip type.
+> >>>>
+> >>>> The mcp9601 also supports features not found on the mcp9600, so this
+> >>>> will also allow the driver to differentiate the support of these
+> >>>> features.
+> >>>
+> >>> If it's additional features only then you can still use a fallback
+> >>> compatible.  Intent being that a new DT vs old kernel still 'works'.
+> >>>
+> >>> Then for the driver on new kernels we match on the new compatible and
+> >>> support those new features.  Old kernel users get to keep the ID
+> >>> mismatch warning - they can upgrade if they want that to go away ;)
+> >>>
+> >>> Krzysztof raised the same point on v2 but I'm not seeing it addressed
+> >>> in that discussion.
+> >>
+> >> One could make the argument that these are not entirely fallback
+> >> compatible since bit 4 of the STATUS register has a different
+> >> meaning depending on if the chip is MCP9601/L01/RL01 or not.
+> >=20
+> > There are some nuances to this register between the two, but it can be
+> > used generically as "not in range" for both.
+> >=20
+> > My understanding from the docs is if VSENSE is connected on mcp9601,
+> > then it is explicitly open-circuit detection vs. short-circuit, which
+> > is bit 5.
+> >=20
+> >> Interestingly, the existing bindings include interrupts for
+> >> open circuit and short circuit alert pins. But these pins
+> >> also only exist on MCP9601/L01/RL01. If we decide these aren't
+> >> fallback compatible, then those properties should have the
+> >> proper constraints added as well.
+> >=20
+> > In my v4 patch, I'm going to remove the short/open circuit interrupts
+> > since they are not implemented, yet.
+>=20
+> Don't remove them from the devicetree bindings. Even if the Linux driver
+> doesn't use it, the bindings should be as complete as possible.
+>=20
+> https://docs.kernel.org/devicetree/bindings/writing-bindings.html
+>=20
+
+I couldn't find anything that would easily describe this type of layout:
+
+properties:
+=2E..
+  interrupts:
+    minItems: 1
+    maxItems: 4
+  interrupt-names:
+    minItems: 1
+    items:
+      - const: alert1
+      - const: alert2
+      - const: alert3
+      - const: alert4
+
+allOf:
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: microchip,mcp9601
+    then:
+      # Override maxItems
+      interrupts:
+        maxItems: 6
+      # XXX Add items to existing list???
+      interrupt-names:
+        items:
+          - const: open-circuit
+          - const: short-circuit
+
+--=20
+ Ben Collins
+ https://libjwt.io
+ https://github.com/benmcollins
+ --
+ 3EC9 7598 1672 961A 1139  173A 5D5A 57C7 242B 22CF
+
+--bk5mkohm5lcfkkd3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEPsl1mBZylhoRORc6XVpXxyQrIs8FAmiiEpYACgkQXVpXxyQr
+Is9rgg/9Ga4RVc8YsHjrR1im0rq3doFqDT+AzIVNSv88SuN81oUko0jF3nC/lhDI
+VPyGjGcdsVl8Ikk+lDteQhRCU9Ca3IC+/u+q/pYuz9OMTdIMbONU8h+XQOV4okM9
+ZvmSPxZ7RxPajjlXGggIoAAeaVDNeoP1cc4Ylpwt0VarOXME5Sp0DNdpITwi8BDB
+I2O+DIsTikcQwDxwKvFK2iHiAM6zUF4GgwqQi7vjaYNGdIzKvs1fHrzKrMtbb9yB
+7BPkHvRLifyoIQhuQStDyX2MN3RL345IlW6VJjcUhjLM8jLOSMagoYzxLsPrZAVE
+7CYlaMHMcoMadvwLB5Zj9zkRXOcDr61La1DYH0q8WaYdR3FF3evpDoYSOusMEMz0
+uQPlqox/cAIc0BMGGMBoYzXv9HcH5rimaSZctUGNq3l7lX+t0cI9daBLTcC8C1NV
+1SLbQwsrrVu4PETrJZ/CuWB1dX3XxdJVO41/KYW+rXuLi9vdt7hQuyQlX/L9m/gJ
+hLbOkaQ6p1m1yxmxiS1FIldsJS27IPun3C8/xrzJk9oCazk+595nXrRIIGpnJTfn
++YbHOL5+aSMfW6ICR4P9q8K/zZbuE4+WDLO0r5M0P3ZZicioTBD8iVkxL79ziulo
+PViq6L7hK/7UDbgGrxeRx4vq69D38DTP4zzuHG2ijCTqalTq7HI=
+=MSp4
+-----END PGP SIGNATURE-----
+
+--bk5mkohm5lcfkkd3--
 
