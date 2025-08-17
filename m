@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07AC5B291B3
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 07:53:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AEA0B291BB
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 08:01:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8F2F7A2029
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 05:51:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B4C019642CF
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 06:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B10013B58A;
-	Sun, 17 Aug 2025 05:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA6F1F09A8;
+	Sun, 17 Aug 2025 06:01:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFTXjdD+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qq+Qa1Q1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0C051EEF9;
-	Sun, 17 Aug 2025 05:53:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1363E1A23AC;
+	Sun, 17 Aug 2025 06:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755410006; cv=none; b=FaOyI8rYOZcT6BEtVNUQ3DIuO8ImtJq2fHb00qUBI8t2E8FqpePJck6qJv5QPwHbM9WLAvTAypoKLJkzPXJWR/KwxrCAxwlI8fkbvXnTCb0D/nl2wV8WNbJUECXt+8Fpigpeo2g02dYowK6Pk+HN4M2i1ZWVjKopfzhEG+xzYxc=
+	t=1755410491; cv=none; b=jhTCwN5QvPZCgLmCzFsNn2bUAon4zExB5l7prEwqzvtuXCICU3AIJu/nO64LG0yXs4z2oVYHrmV/f17V6D9LSIUfSoXJHSN+xCYyn0HysX16kCaXyS9Gp0aFk2eelRA0/fbEWwj+g2FM5OJr6b6EU6cEFpJ0KwacpKHXw/d9lQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755410006; c=relaxed/simple;
-	bh=CHAyhki5L7Mzq3s56yJYrOkTQB3/awW/UGDQmcXfgNY=;
+	s=arc-20240116; t=1755410491; c=relaxed/simple;
+	bh=mHZUPtn5UficimsWMroxIB90kO/gt16LWXvu1TDftiI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HLy2XIGI4i5yAv4zw8ClGyDA/IY15lzlCUve7Sd+YIJaravcl60aRRfmAwaZJF3r+BQvF0JbEhW72Ou23r72RIBSwKfXGZDZBl2z3/B0uGZKM3e/fQKYim0zq7zKDemG4gFoTnsOQpfWE34EuVQcTGdvH7/DYIs7VlQOGcagkEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFTXjdD+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DE48C4CEEB;
-	Sun, 17 Aug 2025 05:53:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NIpiDi6S+Lcs/fLAZSeA5mwnHQd1r9ZzD/wIDQ+XGvqbKBX3ckgAJxNL54ucO8qH2duoBoA0nuaIS8BBVDh/4J+wt6+fwroQqn51mLuBaWJro5zgn9KOzECAphE8uKY2VnE+K2iZxh1U2gAyM/ItEmoNG/3ObgW/fnFwyXSy2vY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qq+Qa1Q1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB26BC4CEEB;
+	Sun, 17 Aug 2025 06:01:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755410005;
-	bh=CHAyhki5L7Mzq3s56yJYrOkTQB3/awW/UGDQmcXfgNY=;
+	s=k20201202; t=1755410490;
+	bh=mHZUPtn5UficimsWMroxIB90kO/gt16LWXvu1TDftiI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JFTXjdD+JUdRe+wCLt5Qu4bjXfzfmPLaKH50KqEKxX6hJybmm8GEWVrNyOiudNR5L
-	 ljx1jwYSoAcDifQcuZ0wnm5CeA8/tFzcHRkvl9JLPDwhFChgpELdFTLpJFXwjyEVNu
-	 4JrnVfiwB8FkkVjRjUa6QjODixBQyliyQPIk0s2pvMwJGKxEZcIGS/TL4d8Vqa/W7/
-	 bW5d6Vw4WI87K0m+4pLWlOzlurJFTpdZVZtg4GMEWc7fohvtMxZXXl/HZ1zmFcWl4v
-	 GNt9FmRTPv8WeuvZ4apq2o4n8VUWjDrdSk2kI/ZVFMMy3cBXQy2eZdI0xITS32mOmM
-	 yXoiyi9FjYXVQ==
-Message-ID: <38b4d3fe-a716-4cc2-8c05-1891606f4c85@kernel.org>
-Date: Sun, 17 Aug 2025 07:53:19 +0200
+	b=Qq+Qa1Q1NID6yT4ELg0thEZhShaOpzvUCqLG2VgKDcJPdQTrwBHc6P6O+jm/u/PgU
+	 hWw+v+rZiWQLviUAgQwprPMRVcH3qBMPThs/Fb0XjwYaS9zPgj5lyH7ILdQBCDKM1i
+	 KXQY+ZkXyHGkTDi0GYE21MYhDTf07kdCgcef4q2l1DE8iwuTMIVj1y3CeYsEwq643E
+	 C0fQQzhP36sKEYjgPiuB1/DZJS6xGDXNwB/VlCZhuYhARWn8KLACfIP0gTmSDP4R6d
+	 I4y6dYS5aIDM/0IBBtunQ9rBVZezmuX7qTC6k82hVpAvbQPmyvN7GCHZ5hT7NiY/uF
+	 FSFJiZJPB7ZWg==
+Message-ID: <58e3e3ef-1871-45b1-ba2b-be6981d7d3d1@kernel.org>
+Date: Sun, 17 Aug 2025 08:01:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: s32g: Add device tree information for the
- OCOTP driver
-To: Dan Carpenter <dan.carpenter@linaro.org>,
- Chester Lin <chester62515@gmail.com>
-Cc: Matthias Brugger <mbrugger@suse.com>,
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- imx@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linaro-s32@linaro.org,
- Srinivas Kandagatla <srini@kernel.org>
-References: <cover.1755341000.git.dan.carpenter@linaro.org>
- <9b3874c6aedf87f78cc6438fe840433162b06445.1755341000.git.dan.carpenter@linaro.org>
+Subject: Re: [PATCH v4 1/3] clock: eswin: Documentation for eic7700 SoC
+To: dongxuyang@eswincomputing.com, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, linux-riscv@lists.infradead.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+References: <20250815093539.975-1-dongxuyang@eswincomputing.com>
+ <20250815093653.1033-1-dongxuyang@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,52 +105,214 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <9b3874c6aedf87f78cc6438fe840433162b06445.1755341000.git.dan.carpenter@linaro.org>
+In-Reply-To: <20250815093653.1033-1-dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/08/2025 12:47, Dan Carpenter wrote:
-> Add the device tree information for the S32G On Chip One-Time
-> Programmable Controller (OCOTP) chip.
+On 15/08/2025 11:36, dongxuyang@eswincomputing.com wrote:
+> From: Xuyang Dong <dongxuyang@eswincomputing.com>
 > 
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+> Add device tree binding documentation for the ESWIN eic7700
+> clock controller module.
+> 
+> Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
+> Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
 > ---
->  arch/arm64/boot/dts/freescale/s32g2.dtsi | 7 +++++++
->  arch/arm64/boot/dts/freescale/s32g3.dtsi | 7 +++++++
->  2 files changed, 14 insertions(+)
+>  .../bindings/clock/eswin,eic7700-clock.yaml   | 381 ++++++++++++++++++
+>  1 file changed, 381 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> index 09d2fbbe1d8c..e58ea0d3b083 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> @@ -612,5 +612,12 @@ gic: interrupt-controller@50800000 {
->  			interrupt-controller;
->  			#interrupt-cells = <3>;
->  		};
+> diff --git a/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+> new file mode 100644
+> index 000000000000..45e70ebc08e6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+> @@ -0,0 +1,381 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/eswin,eic7700-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +		ocotp: ocotp@400a4000 {
-
-Nodename: efuse@ or nvmem@
-
-> +			compatible = "nxp,s32g2-ocotp";
-> +			reg = <0x400a4000 0x400>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +		};
->  	};
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> index 39effbe8217c..184a29dea184 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> @@ -681,6 +681,13 @@ gic: interrupt-controller@50800000 {
->  			      <0x50420000 0x2000>;
->  			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->  		};
+> +title: Eswin EIC7700 SoC clock controller
 > +
-> +		ocotp: ocotp@400a4000 {
+> +maintainers:
+> +  - Yifeng Huang <huangyifeng@eswincomputing.com>
+> +  - Xuyang Dong <dongxuyang@eswincomputing.com>
+> +
+> +description:
+> +  The clock controller generates and supplies clock to all the modules
+> +  for eic7700 SoC.
+> +
+> +properties:
+> +  compatible:
+> +    const: eswin,eic7700-clock
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 0
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +required:
 
-Same here
+Incorrectly placed. required is after all properties.
+
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +patternProperties:
+> +  "^fixed-rate.*":
+> +    type: object
+> +    $ref: /schemas/clock/fixed-clock.yaml#
+
+No, you do not get node per clock.
+
+> +
+> +  ".*pll@[a-f0-9]+$":
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        const: eswin,pll-clock
+
+
+Nothing explains in the changelog why this appeared. Drop all these
+nodes and fake or redundant compatibles.
+
+
+> +
+> +      reg:
+> +        items:
+> +          - description: PLL's config 0 register
+> +          - description: PLL's config 1 register
+> +          - description: PLL's config 2 register
+> +          - description: PLL's status register
+> +
+> +      '#clock-cells':
+> +        const: 0
+> +
+> +      clock-output-names:
+> +        maxItems: 1
+> +
+> +      enable-shift:
+> +        description: Bit shift of the enable register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      enable-width:
+> +        description: Width of the enable register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      refdiv-shift:
+> +        description: Bit shift of the reference divider register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      refdiv-width:
+> +        description: Width of the reference divider register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      fbdiv-shift:
+> +        description: Bit shift of the feedback divider register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      fbdiv-width:
+> +        description: Width of the feedback divider register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      frac-shift:
+> +        description: Bit shift of the fractional divider register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      frac-width:
+> +        description: Width of the fractional divider register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      postdiv1-shift:
+> +        description: Bit shift of the post divider 1 register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      postdiv1-width:
+> +        description: Width of the post divider 1 register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      postdiv2-shift:
+> +        description: Bit shift of the post divider 2 register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      postdiv2-width:
+> +        description: Width of the post divider 2 register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        maximum: 31
+> +
+> +      lock-shift:
+> +        description: Bit shift of the lock register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +      lock-width:
+> +        description: Width of the lock register.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 31
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - '#clock-cells'
+> +      - clock-output-names
+> +      - enable-shift
+> +      - enable-width
+> +      - refdiv-shift
+> +      - refdiv-width
+> +      - fbdiv-shift
+> +      - fbdiv-width
+> +      - frac-shift
+> +      - frac-width
+> +      - postdiv1-shift
+> +      - postdiv1-width
+> +      - postdiv2-shift
+> +      - postdiv2-width
+> +      - lock-shift
+> +      - lock-width
+> +
+> +    additionalProperties: false
+> +
+> +  ".*mux@[a-f0-9]+$":
+> +    type: object
+
+NAK, but anyway explain in the changelog WHY you did this...
 
 
 Best regards,
