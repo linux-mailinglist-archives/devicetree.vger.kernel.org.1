@@ -1,16 +1,16 @@
-Return-Path: <devicetree+bounces-205515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694F9B2943D
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 18:46:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84139B2943C
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 18:46:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 013161963931
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 16:47:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB292196391B
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 16:47:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58264145329;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F52A2F7445;
 	Sun, 17 Aug 2025 16:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
 	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="Sayp2sr7"
@@ -18,7 +18,7 @@ X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429F81DF24F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E0271DE2B4
 	for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 16:46:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
