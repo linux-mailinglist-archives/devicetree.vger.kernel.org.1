@@ -1,114 +1,200 @@
-Return-Path: <devicetree+bounces-205530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4F9B294E1
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 21:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CA45B29512
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 22:29:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B61819682AF
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 19:40:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C24B1881194
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 20:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB031FF7C8;
-	Sun, 17 Aug 2025 19:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8FA32417F0;
+	Sun, 17 Aug 2025 20:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="WpvtdpdD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mYKRLUAG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 061DA12B73;
-	Sun, 17 Aug 2025 19:39:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7E8F15A85A;
+	Sun, 17 Aug 2025 20:29:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755459592; cv=none; b=clIKjUa0gNhF8UNoWXiuWnoxCsICMFC7liUAHEEEDPuqEFzvsnKs1ZdAI+x2eKQ9Okw04nPibGY+BLYYZq80XMLzDlU+Y0bdHE1ZLg+aKDHawx8cHxscVYPA/8OQrXahS+6e/HIv5G+ZWur+sj75haQsEi3dJ4By+1JOXGRTFX8=
+	t=1755462575; cv=none; b=Mr+azAlYwJ+PbnIZFbte6rhYeJQaM/7jB4Ar/bmyp7rTmdHWCL+4w8ZhZj2/1e3mT7EhLyGgWoSF815Umo5lHsChLMuWpvvYfjT2PGsz8jlVxFxpjIilRWsrMdkxBoqraVhOCPqw1mchS2ol19UBgrEr8VM9zYEE1WdguYSvXI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755459592; c=relaxed/simple;
-	bh=fm9MC9w71x2V6wUYh0NhquPACQ+eHjamPHK0Jmda5po=;
+	s=arc-20240116; t=1755462575; c=relaxed/simple;
+	bh=ppWZMewiso+fXL0z37LmHVHmRMB25oWTq/xd6pZnMmM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qPVzbwEakLu2/fhAShGm+vDQiNn4vk78ozlZq/pmqkocnoamtwwFRlB1pVGeTqbOpmpKpSvn/RlHjO/9y7u61U7v9KZzfCD/iW5+w7HZSiGSbTaorDk/8fBN45th8JeggyAMDu9La7UNNuramrgWNl1lNRzQFa05lOihRN0IRIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=WpvtdpdD; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=QO7IaYTt/6d2MUg1fvfXtUP6TpN6Oc9uIKuq9biZ7vo=; b=WpvtdpdDNDKoBlSSHEkaJM8Dlr
-	YGhuW3iHT5E92MLMSSfcqS518WRFZvYdLHUl5HgGcxiA2A0njMq7fdgBEh4MCfCiIsvruIdk+uM3+
-	DhvtMOTL9VxvAXs5XJI7lmh+Qxl/bfVPKl/xd+Wm7d/IfomQYJiKnRvccLK1ADgAPrvA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1unjE8-004z45-E5; Sun, 17 Aug 2025 21:39:36 +0200
-Date: Sun, 17 Aug 2025 21:39:36 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Rob Landley <rob@landley.net>
-Cc: Artur Rojek <contact@artur-rojek.eu>, Jeff Dionne <jeff@coresemi.io>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jt5heyp42/Y/j/ecY+c0MPt0klgYcjDIIQsA4EjDgngn2mrELjGZcMoK1EptXxaxzKyttTzBnvwx8vHrm85FGz2m8A4MznNNCVBQl+zqDcZOHl0qw/V3R7IWI+V44gyzQ9fVoYoSresHCGWat6J+ytARjmZODUeKaGJElNpstuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mYKRLUAG; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755462574; x=1786998574;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=ppWZMewiso+fXL0z37LmHVHmRMB25oWTq/xd6pZnMmM=;
+  b=mYKRLUAGRop7kM17ss7nCm0jGtRjHmiqD0A6NwwGRddXLman7sTPBSE4
+   qj4IvInut9kI87L0StkwI/zk9yDwMOsBkyvS4xgM7DwhBfM/k+XmKCfqz
+   UB0PUwy4r7k32xvDLPXa46jp6bLX+NJZEb0kYcvOf7BmybZf4JBZqTpay
+   AOlRYxpopfTdeCnrLu8yA49UA9TrRDuRW3RSekDG5KvamAx8WlsFdXHcK
+   tkSucsQE8/6ozJ7dw+A/7wGAUcle6JmfPIP1WLKVhT+kyPy9FteHqOgzt
+   MHjE08diTlaILSR1Ja5alTZG8F2r++W23I4IcEzhibUyA8nbp57SbWAvf
+   g==;
+X-CSE-ConnectionGUID: 5BZsBsRYSIyH2F6MO1aIVg==
+X-CSE-MsgGUID: 5VjZAqmUSqG2J7xwxTFD2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="57620823"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; 
+   d="scan'208";a="57620823"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Aug 2025 13:29:33 -0700
+X-CSE-ConnectionGUID: cAhd+sPWTESoXWboyK1riA==
+X-CSE-MsgGUID: Dycyod70SVmv5SFUT1hY+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; 
+   d="scan'208";a="167336299"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by fmviesa006.fm.intel.com with ESMTP; 17 Aug 2025 13:29:30 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1unk0A-000Di7-22;
+	Sun, 17 Aug 2025 20:29:25 +0000
+Date: Mon, 18 Aug 2025 04:28:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Apitzsch via B4 Relay <devnull+git.apitzsch.eu@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] net: j2: Introduce J-Core EMAC
-Message-ID: <bc31f53a-ba85-4580-add3-a287dca06661@lunn.ch>
-References: <20250815194806.1202589-4-contact@artur-rojek.eu>
- <973c6f96-6020-43e0-a7cf-9c129611da13@lunn.ch>
- <b1a9b50471d80d51691dfbe1c0dbe6fb@artur-rojek.eu>
- <02ce17e8f00955bab53194a366b9a542@artur-rojek.eu>
- <fc6ed96e-2bab-4f2f-9479-32a895b9b1b2@lunn.ch>
- <7a4154eef1cd243e30953d3423e97ab1@artur-rojek.eu>
- <ee607928-1845-47aa-90a1-6511decda49d@lunn.ch>
- <9eab7a4ff3a72117a1a832b87425130f@artur-rojek.eu>
- <52aef275-0907-4510-b95c-b2b01738ce0b@lunn.ch>
- <d4f291e3-9d4f-4724-91de-742f9ace5b86@landley.net>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-media@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Val Packett <val@packett.cool>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+Subject: Re: [PATCH 3/7] media: i2c: dw9719: Add driver_data matching
+Message-ID: <202508180429.GKdrjNK9-lkp@intel.com>
+References: <20250817-dw9719-v1-3-426f46c69a5a@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <d4f291e3-9d4f-4724-91de-742f9ace5b86@landley.net>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250817-dw9719-v1-3-426f46c69a5a@apitzsch.eu>
 
-> My vague recollection is this SOC only implemented full duplex 100baseT
-> because they didn't have any hardware lying around that _couldn't_ talk to
-> that.
+Hi André,
 
-It is pretty unusual to find hardware, now a days, which only does
-10Mbp. So it is a somewhat theoretical use case. And as you say,
-100Mbps is plenty fast for lots of applications.
+kernel test robot noticed the following build warnings:
 
-What we need to think about is the path forwards, how MDIO and PHY
-support can be added later, without breaking DT backwards
-compatibility.
+[auto build test WARNING on 1357b2649c026b51353c84ddd32bc963e8999603]
 
-What you would normally do if there is no access to the PHY is use
-fixed-link. It emulates a PHY, one that is always up and at a fixed
-speed. See fixed-link in
-Documentation/devicetree/bindings/net/ethernet-controller.yaml
+url:    https://github.com/intel-lab-lkp/linux/commits/Andr-Apitzsch-via-B4-Relay/dt-bindings-media-i2c-Add-DW9718S-DW9719-and-DW9761-VCM/20250818-011316
+base:   1357b2649c026b51353c84ddd32bc963e8999603
+patch link:    https://lore.kernel.org/r/20250817-dw9719-v1-3-426f46c69a5a%40apitzsch.eu
+patch subject: [PATCH 3/7] media: i2c: dw9719: Add driver_data matching
+config: riscv-randconfig-002-20250818 (https://download.01.org/0day-ci/archive/20250818/202508180429.GKdrjNK9-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 93d24b6b7b148c47a2fa228a4ef31524fa1d9f3f)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250818/202508180429.GKdrjNK9-lkp@intel.com/reproduce)
 
-That allows the MAC driver to use the phylib API. The MAC does not
-hard coded the carrier up, phylib tells the MAC link is up, and phylib
-manages the carrier.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508180429.GKdrjNK9-lkp@intel.com/
 
-What this means is, if sometime in the future MDIO is added, and
-phylib gets access to the PHY, there are no MAC driver changes. Old DT
-blobs, using fixed-link still work, and new DT blobs with MDIO, a PHY
-node, and a phy-handle have working PHY.
+All warnings (new ones prefixed by >>):
 
-If you don't do this now, adding support later will be messy, if you
-don't want to break backwards compatibility with old DT blobs.
-
-	Andrew
+>> drivers/media/i2c/dw9719.c:285:18: warning: cast to smaller integer type 'enum dw9719_model' from 'const void *' [-Wvoid-pointer-to-enum-cast]
+     285 |         dw9719->model = (enum dw9719_model)i2c_get_match_data(client);
+         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
 
 
+vim +285 drivers/media/i2c/dw9719.c
 
+   275	
+   276	static int dw9719_probe(struct i2c_client *client)
+   277	{
+   278		struct dw9719_device *dw9719;
+   279		int ret;
+   280	
+   281		dw9719 = devm_kzalloc(&client->dev, sizeof(*dw9719), GFP_KERNEL);
+   282		if (!dw9719)
+   283			return -ENOMEM;
+   284	
+ > 285		dw9719->model = (enum dw9719_model)i2c_get_match_data(client);
+   286	
+   287		dw9719->regmap = devm_cci_regmap_init_i2c(client, 8);
+   288		if (IS_ERR(dw9719->regmap))
+   289			return PTR_ERR(dw9719->regmap);
+   290	
+   291		dw9719->dev = &client->dev;
+   292	
+   293		dw9719->regulator = devm_regulator_get(&client->dev, "vdd");
+   294		if (IS_ERR(dw9719->regulator))
+   295			return dev_err_probe(&client->dev, PTR_ERR(dw9719->regulator),
+   296					     "getting regulator\n");
+   297	
+   298		v4l2_i2c_subdev_init(&dw9719->sd, client, &dw9719_ops);
+   299		dw9719->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+   300		dw9719->sd.internal_ops = &dw9719_internal_ops;
+   301	
+   302		ret = dw9719_init_controls(dw9719);
+   303		if (ret)
+   304			return ret;
+   305	
+   306		ret = media_entity_pads_init(&dw9719->sd.entity, 0, NULL);
+   307		if (ret < 0)
+   308			goto err_free_ctrl_handler;
+   309	
+   310		dw9719->sd.entity.function = MEDIA_ENT_F_LENS;
+   311	
+   312		/*
+   313		 * We need the driver to work in the event that pm runtime is disable in
+   314		 * the kernel, so power up and verify the chip now. In the event that
+   315		 * runtime pm is disabled this will leave the chip on, so that the lens
+   316		 * will work.
+   317		 */
+   318	
+   319		ret = dw9719_power_up(dw9719, true);
+   320		if (ret)
+   321			goto err_cleanup_media;
+   322	
+   323		pm_runtime_set_active(&client->dev);
+   324		pm_runtime_get_noresume(&client->dev);
+   325		pm_runtime_enable(&client->dev);
+   326	
+   327		ret = v4l2_async_register_subdev(&dw9719->sd);
+   328		if (ret < 0)
+   329			goto err_pm_runtime;
+   330	
+   331		pm_runtime_set_autosuspend_delay(&client->dev, 1000);
+   332		pm_runtime_use_autosuspend(&client->dev);
+   333		pm_runtime_put_autosuspend(&client->dev);
+   334	
+   335		return ret;
+   336	
+   337	err_pm_runtime:
+   338		pm_runtime_disable(&client->dev);
+   339		pm_runtime_put_noidle(&client->dev);
+   340		dw9719_power_down(dw9719);
+   341	err_cleanup_media:
+   342		media_entity_cleanup(&dw9719->sd.entity);
+   343	err_free_ctrl_handler:
+   344		v4l2_ctrl_handler_free(&dw9719->ctrls.handler);
+   345	
+   346		return ret;
+   347	}
+   348	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
