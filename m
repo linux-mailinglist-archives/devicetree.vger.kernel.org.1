@@ -1,182 +1,222 @@
-Return-Path: <devicetree+bounces-205468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AFC3B2924E
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 10:42:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE2DAB2925B
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 10:53:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CB953BE209
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 08:42:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D9E93B68E7
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 08:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE6D422068B;
-	Sun, 17 Aug 2025 08:42:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE80215175;
+	Sun, 17 Aug 2025 08:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="SiZIK5pL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LxmOTR2h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D3B7215191
-	for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 08:42:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CA25221FC4;
+	Sun, 17 Aug 2025 08:52:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755420156; cv=none; b=ZQHFACNYjqvY9YGfTprjvQAY7L9jlurpPWQW225bLVQCwdNul57sIs91L3iukZ3+qO21mwrwPywz3KpLnJqY09W33ZM3/61zxuFqGKwaUqwHmC77cKoX8z8hF/wR85JqbQxoSxTE/rM3HBn6yvO+D2O7EDPizn9BNviW6m2CLLM=
+	t=1755420730; cv=none; b=I6nUlq/guluxy+s5fQdp94bgF3eML3axoSI/SBICnCLWkKgVKyDg/GG+RiZv/yoMMIfF5FuYtrlSRz5yLbe1yUdKCpMBCyqzw5+daTstjKuLr39xaYN75SJBHm48AQcYSKopDynALwmLlru4dxck6ZuGrei/CmYyNAT7GPeR0cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755420156; c=relaxed/simple;
-	bh=fBnf8WeAF0dOSwSjhG5XgLZ6fmTgeSi3O4YkmGSc76c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X0+/CVWOOH4cGIwtHWM5tzYNT+PTSMR6BQD64IQEnr9ehlAa3VuAdlnFfWdCctVgEKWYtWXO3e649EG6ZHxcAbWVGtfboBB7J2N7d59yCRdPlUQiJ23fWxvm44p4D8SJGIPSjdQ/jllgZScLLY5AG1/o1uQkaBDYEE+qq1HWSFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=SiZIK5pL; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-76e34c4ce54so2244531b3a.0
-        for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 01:42:35 -0700 (PDT)
+	s=arc-20240116; t=1755420730; c=relaxed/simple;
+	bh=mOZmGCDS+ifmqcLYmfbp8BPcpAmCwzlvZIOuiRx0LQc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pPkpYD3OEBHEZTKsv0o1TaJ3gXpcuQhqFYGrZFazvTSG9jjoNPEAyuwFz8106cax9K+UyA8WHeE3HZtpSORvWLNx/bIAi9MUunoNrpEQ9cSaNYEEyuQQIS0trgwkwspM4E8y9MAXXSvHN6p+YP/ESrszG1vU5Udyw969c0Y5bI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LxmOTR2h; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45a1b00e4a1so20299175e9.0;
+        Sun, 17 Aug 2025 01:52:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1755420154; x=1756024954; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sfkmu36UsEhyXB4ryL2gMWCuVzsfK6S+k6i65pf0ysE=;
-        b=SiZIK5pL890Y0nAYrpzUl/LXSjurKr0TjYOLlteczYFelQn8uxwsof+riCnTJP2fVK
-         zxNUIt5gypSoslh/btFHlHq7oA2HJuV1uXZpzI/0jTGRFXG+pBvaxccRHtLHrXtNj+pp
-         uB/byKpPHRNJ7sX51Ygx+bDcmLBxtUnn5bTZbPZWV2r4PmpL4m+J9gzKhaM4G5Vh2Dqj
-         Wulc62RM/VBCjDFpwgc420ZtHFGjLMikNCPgNyXGl46PY/csQE2G8FmTSEHr5TkFlg+1
-         5GONkl5ESo6cF//QAvSUnFNNvoW7TbB2VkhCz2Do+DPHWy3kAWaaUCmk0FTRHgIQrqr+
-         PG/Q==
+        d=gmail.com; s=20230601; t=1755420727; x=1756025527; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nczVdXOwZnKrAnrfSpvljupjNcdPfY9nuejpS2UQfbs=;
+        b=LxmOTR2hxxQ15wfbcEa28kXUuPJSve8hTXq6W1yzoW1FWaMkm4B4T1ZH4nl3ynQ1Yt
+         RQwFIG4PvZBU6ITq0QIiDCpAg1l8NYGrXLlWyLd8O43qa40AjzhmtnZ1HOWuOllj7cps
+         MRAK8bz7cYb8tMKGeO/ZTgb4DFeWZLR/nA2FedFBxuQhtE+2wBSEu1OE7lyCzJ0bUHEt
+         vpLAD/oDeJ/QbdOzRiF0zdtbccDYq1tTzki6ZNGRxmWfv6SFOhFjT5cb+BSbNL45SifM
+         9NFlYvE3hJghnPBK8F5a/H2LMn73crpB410rxEeS3cuLXULEocod1CB9SGUuEcjwW5p+
+         pnFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755420154; x=1756024954;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sfkmu36UsEhyXB4ryL2gMWCuVzsfK6S+k6i65pf0ysE=;
-        b=wNUXC60Dd1dwiozBgOIVo22tm3wDYmlEypR6pG2rNJJbePH9+PMyR0HjIFTtQw44gb
-         vymvxMpG4tpuqDgTmS4PYFb1XqjMv+Vz52Zeq80Z4C/HRjB63CaqaPPW3wMUoCdxGp6J
-         HaM+9W2Qz3C96nJOyk9u80jRthwqxNjjLfe/IYpxPp9tzV67BCLmDEZN+bgofpEmxUuX
-         CWEENocAo4WR3Pgb793bUJ5AGECSYMAoS6EglLhkQaow29QYHSTTO2Fg5BTbRQAsDnyB
-         8MumvvQZSN2Vjx3DbmHGGzn9jodR2LYBdKbQi/BzOo37G0hlIaLSPLItdoMBjQhe9HXW
-         a5aQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWUJeVnT9BGWSuJiPiPH27t1lYAzdi3z3Bkj9vyB/5Un8mj3kXIUWraRSgywubu27H2QNbY7olI7wxY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkiUQw8yZdGeEVgdlow0U59KH7Gw7pY8GhjnIOAI76Pe+x1Mo4
-	SL3uD37Whn0IYP66yMCcRPHLL9w+mVINRDGMeTEPuFMnrWLC1IPkttGGdz4rfckd+rpZYpl/iWZ
-	FYF0=
-X-Gm-Gg: ASbGncsUDFmroxlKcEfwU/3rstQ+TDj4UgPEZeYmVZPxvye5FR2v1vpFJHeUK2OV0yl
-	pt4oLK24735n+dYuqtwY1Hjlo4zl3PsRkSLqUsTBZiSLXYuMcNzkFgX+Z/mTnpP3DCgzubC9Up3
-	5TtYQYGsE4ZtMdUCyPcXjXrZV4iY5171SEVn7t3jiikX0MQdQDix9fzDVn2ROmZrR+BRdZf5I8S
-	0zfNCuo82N9x6CA/A5YZTHizDsAkbfDXkkGE5xxlTiv6BGvGrnG4IoMLqqkXumUOB8QFvddhnIM
-	XFt2ns7WcRJHfZvBFli7j6aptYqDyEz8Jr417BaTs+cXbpe0vKkxYrM8MIPShk1VncrFaxC1BDm
-	EVSpdaZyu3fT29ZjKs/oJAOthmYGEEApuaWlK2CEw1i+0Bz2zxR+bejylwQmCf9Mo1fPr9In5Nr
-	w=
-X-Google-Smtp-Source: AGHT+IEj5yKW7F8ws4E5YLdOfdAEX6KIo50dsAXx+hxN+8hXkqsDFHeQl00YGG+6keeJrWj42pTIZQ==
-X-Received: by 2002:a05:6a00:4a0b:b0:76b:fdac:d884 with SMTP id d2e1a72fcca58-76e321f6064mr12072837b3a.3.1755420154608;
-        Sun, 17 Aug 2025 01:42:34 -0700 (PDT)
-Received: from ?IPV6:2401:4900:8898:f586:e00d:52f9:31de:96d4? ([2401:4900:8898:f586:e00d:52f9:31de:96d4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e45566937sm4719641b3a.70.2025.08.17.01.42.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Aug 2025 01:42:34 -0700 (PDT)
-Message-ID: <1884651f-5192-4fd4-9d94-ed755ea89570@beagleboard.org>
-Date: Sun, 17 Aug 2025 14:12:28 +0530
+        d=1e100.net; s=20230601; t=1755420727; x=1756025527;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nczVdXOwZnKrAnrfSpvljupjNcdPfY9nuejpS2UQfbs=;
+        b=lh5JtqeIL29TYSsr17ymifQTFUxtwU+fyysp/x5lNxXf/b4V10HAOW7xkI8Zusr68M
+         ijGocMETYBvRewSqj6XG1t2bt6MsQZhpxiqa31P5Ci9mmVK74ruXGprg/TWcVJtjAN59
+         CerSimD+PshC5iBaDTwemHhSo4NFp7rNBLdtCO/wJlsCorjIQpkq5fLF0nIXL9ZsIwpk
+         WQGN3qc9zE7QuhXD0+WGyFyOYnZ19DW+b55Yk27zH5W8t6JGoqyr/cSMkqXTiz8LjgTG
+         UXu/9lqj7f6yNila/kjwxRhsmkgfUTK1mnuBlCUFntB0la5B/UHI7B/QYfgdT9Q0R58R
+         TH/g==
+X-Forwarded-Encrypted: i=1; AJvYcCWo0rJOTsifpXA4orVM0r2JxmHfoui5mFtOohGt//fVpndSBkvOketciHnQCdYSZy5jPWZZea5ra1Av@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx76So4f2BCHdKy66MKZdbk32p18kQctuZxGtWkY4rqme4Mf6YR
+	4zQytDW7tGZgsj8WsAejf5dslkSmLGQVo0tVubGyA+KzQJzaKgVmVDag
+X-Gm-Gg: ASbGncu3f9vYmcD2Wd0pfyZEPtIJRW60QLEA1WkCuuZZ8Ii7o5/++500M93J1adIrfx
+	L4cb1Z1pfXz5MywFNxFeI9QNEwpQNmQyyDQvMPF8MQtrDGwS87+3enPFtEpxrx2MgLUKVQLFba5
+	1cUyAZxhII0x4rXXzkEI3HgUQTgcWkgETezJ9YsndWeowjbkMz4O4waWZ+A+9CRcrehWM+BFNmr
+	W0JDFIcS8jLvVEawl8cmIOyt0HBq4E0dv7zAyKcjatdUmZnJd5/U14qkiPtDxWgt9Y44bjRcTiQ
+	P5AsTrFqIJ3ZnyyS5AcMrfjJGZrXKIBGxprGugGPNvzHNd25MVzI52jc2J2YniWenaB/KEpcEu4
+	uDrApRiFwwjQO/Sdf952p8uVn5WI2R+VkaZ10XQ==
+X-Google-Smtp-Source: AGHT+IHpkqsbnW5dI7T7TVGSboSIG78i5UQ9PGrjFIX6sk/xbZSOWeEOND1ulVndvLOVG5mNNs3k7g==
+X-Received: by 2002:a05:600c:b8d:b0:459:dfde:3324 with SMTP id 5b1f17b1804b1-45a21857f09mr61790745e9.29.1755420726498;
+        Sun, 17 Aug 2025 01:52:06 -0700 (PDT)
+Received: from tablet.my.domain ([2a00:f41:b0c2:8202:4205:bdef:2b7a:307d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1c61a66esm122908205e9.0.2025.08.17.01.52.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Aug 2025 01:52:06 -0700 (PDT)
+From: Artur Weber <aweber.kernel@gmail.com>
+Date: Sun, 17 Aug 2025 10:52:04 +0200
+Subject: [PATCH] dt-bindings: extcon: rt8973a: Convert DT bindings to YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: Add support for export-symbols node
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Herve Codina <herve.codina@bootlin.com>,
- David Gibson <david@gibson.dropbear.id.au>, Rob Herring <robh@kernel.org>
-Cc: Andrew Davis <afd@ti.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
- devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20250430125154.195498-1-herve.codina@bootlin.com>
- <20250430125154.195498-2-herve.codina@bootlin.com>
- <0770a47e-fd2f-4b6f-9a9a-b0d539ace30c@kernel.org>
- <20250528185740.4bf91bef@bootlin.com>
- <49e1e1fc-412d-4334-8337-16e352a34788@kernel.org>
- <20250618113232.6d237208@bootlin.com>
- <ed6beb97-12f1-4d71-b4dc-b34d4d611b81@beagleboard.org>
- <3ff4b3f9-cc8d-4044-b2eb-33010d8951c0@kernel.org>
- <3889e19e-7f1e-4306-9e11-77a61432b402@beagleboard.org>
- <f3184805-3617-4b46-be23-70cebcf27207@kernel.org>
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <f3184805-3617-4b46-be23-70cebcf27207@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250817-rt8973a-dt-bindings-yaml-v1-1-150eb4599dc9@gmail.com>
+X-B4-Tracking: v=1; b=H4sIADOYoWgC/x3MTQqAIBBA4avErBtQ++8q0cJ0qoGy0IgiunvS8
+ lu890AgzxSgTR7wdHLgzUXINAEzazcRso0GJVQhalmhP+qmyjTaAwd2lt0U8NbrgnlpVDkamWs
+ jIOa7p5Gvf9317/sBFCRutGoAAAA=
+X-Change-ID: 20250817-rt8973a-dt-bindings-yaml-46c26fc14ac0
+To: MyungJoo Ham <myungjoo.ham@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Artur Weber <aweber.kernel@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3614;
+ i=aweber.kernel@gmail.com; h=from:subject:message-id;
+ bh=mOZmGCDS+ifmqcLYmfbp8BPcpAmCwzlvZIOuiRx0LQc=;
+ b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBooZg09NEWXrXJwt4SiDAZDQjE9ZS2KCbbMIEey
+ 5KvZAGVD+OJAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCaKGYNAAKCRCzu/ihE6BR
+ aPx8D/9RwWq/MUMbV2XLphySJXfdeMUzrpjAjItYc+UdsQ2HbpLfdzFn1aw3kAHiEGgY2jYJA1y
+ pt0gPAaDPxp7hy/LH6ILKc3Y6tM0LNVUHO0UrCq0VKQUxJvdkf6WlnLlhdoDoeJn7gVavqgVkGw
+ vQH32aTAT0t+Zrw+w2ZBhuhUhMiRfQa57b6GpujAbmGrUaGsIqpQEvaPUi+c5xYLpAF1Vt0tdjm
+ AX8TmYWcsnHUgUnwLArxK4XTQJKrAl/AgS5eFEQtlrHVedEMBYDtHNcVoP5QnkHv8YppaubNQdn
+ XLwlkPQj+wRFApuREojmvBqjuX01dMjjWcKsFcCVSAWuqPtuy21nR9ELqHOG3nIXkIQ6b4NACoT
+ yTPEIKm7bqJMhmwE0WvjSGE0eaeFz/sdg38CDJV0b1CJTgoO+5JWxUJDoQW9egfYTDEMKA9uSZE
+ sFFbnQYi3SUw/OHJ1DKLn7mnb9Al5E+UD1DBhgbu8O42oU6Hq+7OYTLHTpM826R47Zfb4ih9eFH
+ q3/2APguRQpmX9+Sc83aPYWUif0+2apl2ao6KE/4yeHmO9flBxvjcncc+5hMmjmlW3h1q4plOtb
+ su/GrPr47uZePmN+sYOJ9Zf/E/u8r5cnPbQfzEbLUrXOcnmZPKGDUe4Ljnbn+QVoyVyIPDC4CW2
+ 7kRbZz74pWdUZnw==
+X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
+ fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
 
-On 8/17/25 13:52, Krzysztof Kozlowski wrote:
+Convert the device tree bindings for Richtek RT8973A MUIC to the YAML
+format. No functional changes.
 
-> On 17/08/2025 10:18, Ayush Singh wrote:
->>>>> Hardware:
->>>>>      i2c0 from SoC --------- connector 1, I2C A signals
->>>>>      i2c1 from SoC --------- connector 1, I2C B signals
->>>>>
->>>>>      connector1 {
->>>>>          export-symbols {
->>>>> 	  i2c_a = <&i2c0>;
->>>>> 	  i2c_b = <&i2c1>;
->>>>>          };
->>>>>      };
->>>>>
->>>>> In order to avoid the coding style issue, this could be replace
->>>>> with:
->>>>>     connector1 {
->>>>>          export-symbols {
->>>>> 	  symbol-names = "i2c_a", "i2c_b";
->>>>> 	  symbols = <&i2c0>, <&i2c1>;
->>>>>          };
->>>>>      };
->>>>>
->>>>> Krzysztof, Rob, do you think this could be accepted ?
->>>>>
->>>>> Ayush, David, do you thing this could be easily implemented in fdtoverlay ?
->>>>>
->>>>> Best regards,
->>>>> Hervé
->>>>>
->>>> Well, it is possible.
->>>>
->>>> However, on connectors like pb2 header, there will be 50-100 export
->>>> symbols. So it will start becoming difficult to maintain.
->>> And the first syntax solves this how? I don't see the practical difference.
->>
->> Well, I was more worried about matching which phandle belongs to which
->> symbol easily. Let us assume that 2 symbols will be in each line (after
->> accounting for the indention and 80 char limit) and we have 70 symbols,
->> so 35 lines. To check which phandle belongs to the 2nd symbol on line
->> 25th line of  symbol-names, well, you would at the best case need to
->> have something like relative line numbers in your editor. Then you know
->> that the 35th line from the current one is where you need to look.
->>
->> In the current syntax, the symbol name and phandle are on the same line.
->> So well, easy to see which symbols refers to which phandle.
-> OK, that's valid point. Any ideas how to solve it without introducing
-> underscores for properties?
->
-> Best regards,
-> Krzysztof
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+I've added Chanwoo Choi as the binding maintainer as he is listed
+as the author of the driver for this device; I can change this if
+needed.
+---
+ .../devicetree/bindings/extcon/extcon-rt8973a.txt  | 23 ----------
+ .../bindings/extcon/richtek,rt8973a-muic.yaml      | 49 ++++++++++++++++++++++
+ 2 files changed, 49 insertions(+), 23 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/extcon/extcon-rt8973a.txt b/Documentation/devicetree/bindings/extcon/extcon-rt8973a.txt
+deleted file mode 100644
+index cfcf455ad4deffc1e4819934e6dc6fb3f95a54a5..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/extcon/extcon-rt8973a.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-
+-* Richtek RT8973A - Micro USB Switch device
+-
+-The Richtek RT8973A is Micro USB Switch with OVP and I2C interface. The RT8973A
+-is a USB port accessory detector and switch that is optimized to protect low
+-voltage system from abnormal high input voltage (up to 28V) and supports high
+-speed USB operation. Also, RT8973A support 'auto-configuration' mode.
+-If auto-configuration mode is enabled, RT8973A would control internal h/w patch
+-for USB D-/D+ switching.
+-
+-Required properties:
+-- compatible: Should be "richtek,rt8973a-muic"
+-- reg: Specifies the I2C slave address of the MUIC block. It should be 0x14
+-- interrupts: Interrupt specifiers for detection interrupt sources.
+-
+-Example:
+-
+-	rt8973a@14 {
+-		compatible = "richtek,rt8973a-muic";
+-		interrupt-parent = <&gpx1>;
+-		interrupts = <5 0>;
+-		reg = <0x14>;
+-	};
+diff --git a/Documentation/devicetree/bindings/extcon/richtek,rt8973a-muic.yaml b/Documentation/devicetree/bindings/extcon/richtek,rt8973a-muic.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..f9e0d816c025957e8b96b15bdf478e589e653e90
+--- /dev/null
++++ b/Documentation/devicetree/bindings/extcon/richtek,rt8973a-muic.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/extcon/richtek,rt8973a-muic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Richtek RT8973A MUIC
++
++maintainers:
++  - Chanwoo Choi <cw00.choi@samsung.com>
++
++description:
++  The Richtek RT8973A is Micro USB Switch with OVP and I2C interface. The RT8973A
++  is a USB port accessory detector and switch that is optimized to protect low
++  voltage system from abnormal high input voltage (up to 28V) and supports high
++  speed USB operation. Also, RT8973A support 'auto-configuration' mode.
++  If auto-configuration mode is enabled, RT8973A would control internal h/w patch
++  for USB D-/D+ switching.
++
++properties:
++  compatible:
++    const: richtek,rt8973a-muic
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        usb-switch@14 {
++          compatible = "richtek,rt8973a-muic";
++          reg = <0x14>;
++          interrupt-parent = <&gpio>;
++          interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
++        };
++    };
 
-Well, we can modify `get_phandle_from_symbols_node` to allow matching 
-`*_*` to `*-*`. And we can do the same in devicetree easily enough. Not 
-sure if implicit loose matching like that are the best idea.
+---
+base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
+change-id: 20250817-rt8973a-dt-bindings-yaml-46c26fc14ac0
 
-Zephyr does something similar for compatible strings. It pretty much 
-replaces the all non alphanumeric characters with `_` in compatible 
-string match. Although that is more to do with the limitation they are 
-working with, i.e. the devicetree being converted to static headers 
-instead of being runtime thing.
-
-Best Regards,
-
-Ayush Singh
+Best regards,
+-- 
+Artur Weber <aweber.kernel@gmail.com>
 
 
