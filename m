@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B698B291C7
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 08:13:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AAC7B291D0
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 08:14:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3A5442F40
-	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 06:13:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89861203E41
+	for <lists+devicetree@lfdr.de>; Sun, 17 Aug 2025 06:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F6920458A;
-	Sun, 17 Aug 2025 06:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B73D02116E0;
+	Sun, 17 Aug 2025 06:14:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sDpNyKzE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dqjcg51b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3EA613C8E8;
-	Sun, 17 Aug 2025 06:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8429E1C75E2;
+	Sun, 17 Aug 2025 06:14:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755411188; cv=none; b=lPD+pDq9+NYajrgAugx3Fm3T/bG/AuUKpPWhYi9/AsdWd11HW25lIIv9wA+mvLYxVjh9r/FeIwor2UEzidERDeExF3enIPUqtjVgLLKyQfYM/BCsqPPcLHBG8oaq6alAh02o2w7G992lGRf8b8nHIr0dL1wWumv6sXsfnTk+Hdk=
+	t=1755411289; cv=none; b=gqAEwUSW5rUnFNZNqDynH/ChwrsSjkVhtHiAivxZ6XZhl2WlTv3zBtM8yZdU6BnCPydmGNDdCCV3RYYC6RT33ravYXOk+czUBKivPVjEMMtfPnBnXtATQenNMUEBq/jJLzuprlR+501r1YXWE5YpBJ1vEnCiVV2mhyv9NcY5V3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755411188; c=relaxed/simple;
-	bh=lid+S2UZG+OF8iqGwXoZfpqZqgui8N3K+4MjmmWh4kY=;
+	s=arc-20240116; t=1755411289; c=relaxed/simple;
+	bh=FjnyjISls+IwhhvqV3CdP32QGr0K26AOzU5vLlgcAsE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PH6D3c1nG7GOeqMDM0/FLHBGpq3UOa56cBpM+5+stb3zM6jYBzoxWyXEwqAoXRSGH8P7KPj7NNK6ZDOT6PcHhwHlYIdLNxXL0LBsB8SO2cvu/bjnBA0VwH8ht/GySCrHiWotEUI7WIIAKtC5P3s7KgXI8UC6/65y4PrJ81I8J90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sDpNyKzE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DB13C4CEEB;
-	Sun, 17 Aug 2025 06:13:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mdaOB3DaIShm9LSEXqxk1dymixOU7T7ZbZG/iIfQAR8O/aldf8lW2wEq+V1T/RzmOPddOhzTkxxzKCS6BqpOlLg+khZMSlcUcf+7HFQnqRD7jXfRR+w4hzfyFKB9nlQ+d6RlH+v2fdp8aqd4suCAx+afLbfPYpE4poy4KxdIss4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dqjcg51b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6E41C4CEEB;
+	Sun, 17 Aug 2025 06:14:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755411187;
-	bh=lid+S2UZG+OF8iqGwXoZfpqZqgui8N3K+4MjmmWh4kY=;
+	s=k20201202; t=1755411289;
+	bh=FjnyjISls+IwhhvqV3CdP32QGr0K26AOzU5vLlgcAsE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sDpNyKzEK9ha0jQPpNT72h11TCoWyZIgCoPuQauMS8Y4J7khtPMTBmBwqhdmyWGeO
-	 DMuKBrro75dmZAlZTMOzJXvzsxDpHBZCv4sg8jSqho9EKsiyTvAYy5p3beW33u72Zd
-	 E9MLBSQ2uH3UAtKhrrxmbyuxC+xi/Mq2UOPCwTTLXRDcOTlYkE4EVeCrZrsSC73tcA
-	 9eEtVDnNdQZYAo8A4l0tawmVx0JDTwU7a4dgHTylH8ufxfIZEttsVoU929G35D/rD1
-	 CnVz2f5S5ABGRmFWIwgpacXcUn/Vk4FCtN/ZZKSF2o5/tXzSeq44Y7sWnqtzH4v8wJ
-	 dI2Fs1qMUkPDg==
-Message-ID: <adfb8732-3ac7-4496-9671-1fa2aa71139c@kernel.org>
-Date: Sun, 17 Aug 2025 08:13:01 +0200
+	b=dqjcg51bwM8xslcGuw5W8w163m6q+bpK9eHvBLTK/sBTx5s5j/E0UcRGz2j6uRh15
+	 B09ChBfZE4kB6QnA9NmnU+4jA0CXefpx1bOQ2HMSlU5oP8gFjclxljQuV2GcLskZ1p
+	 AqvMSLeyyfxb+hgc4O60d/2HE3bCwQFOay4qmlqXzTOdvSNkEaKF0U1U9IwUoNfZQ3
+	 M1FFk+V47LYnAIrqBKjeQF+YwrhqOMYAG9jwwWs8NLqKTCbEg79TxAEUcNUa4JVLYC
+	 UKegg4k7CCSfRPNsopgrKFi64rgL6jkLfKtxa/Xr8DbUYd52fCSwkK0lCka84rSDVM
+	 Z8dgxsP9kUO1A==
+Message-ID: <49858742-8850-44bf-a844-9e26210515c5@kernel.org>
+Date: Sun, 17 Aug 2025 08:14:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] media: i2c: imx585: Add Sony IMX585 image-sensor
- driver
-To: Will Whang <will@willwhang.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+Subject: Re: [PATCH RFC 2/5] dt-bindings: power: Add Marvell PXA1908 domains
+To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20250810220921.14307-1-will@willwhang.com>
- <20250810220921.14307-4-will@willwhang.com>
- <20250811-cinnamon-tapir-of-music-0bda96@kuoka>
- <CAFoNnryfrJvoEHNgQDpSZBbGiGjPr-bwnhhg4cgpNK_hW=0EbQ@mail.gmail.com>
+ linux-pm@vger.kernel.org
+References: <20250806-pxa1908-genpd-v1-0-16409309fc72@dujemihanovic.xyz>
+ <1950265.tdWV9SEqCh@radijator>
+ <5e79b123-b29a-4edb-8e70-3b7fa6cd3674@kernel.org>
+ <6196438.lOV4Wx5bFT@radijator>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,139 +110,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAFoNnryfrJvoEHNgQDpSZBbGiGjPr-bwnhhg4cgpNK_hW=0EbQ@mail.gmail.com>
+In-Reply-To: <6196438.lOV4Wx5bFT@radijator>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 16/08/2025 21:44, Will Whang wrote:
-> On Mon, Aug 11, 2025 at 1:06 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 16/08/2025 17:13, Duje Mihanović wrote:
+> On Friday, 15 August 2025 08:08:24 Central European Summer Time Krzysztof Kozlowski wrote:
+>> On 15/08/2025 00:08, Duje Mihanović wrote:
+>>>> I am asking to see complete binding with complete DTS in example and
+>>>> submitted to SoC maintainer.
+>>>
+>>> Hm, so if in the example (and the actual DTS) each domain is assigned a
+>>> clock, can I then keep the domain and domain controller nodes like Mediatek
+>>> and Rockchip have?
 >>
->> On Sun, Aug 10, 2025 at 11:09:20PM +0100, Will Whang wrote:
->>> +
->>> +/* --------------------------------------------------------------------------
->>> + * Power / runtime PM
->>> + * --------------------------------------------------------------------------
->>> + */
->>> +
->>> +static int imx585_power_on(struct device *dev)
->>> +{
->>> +     struct v4l2_subdev *sd = dev_get_drvdata(dev);
->>> +     struct imx585 *imx585 = to_imx585(sd);
->>> +     int ret;
->>> +
->>> +     dev_dbg(imx585->clientdev, "power_on\n");
->>> +
->>> +     ret = regulator_bulk_enable(IMX585_NUM_SUPPLIES, imx585->supplies);
->>> +     if (ret) {
->>> +             dev_err(imx585->clientdev, "Failed to enable regulators\n");
->>> +             return ret;
->>> +     }
->>> +
->>> +     ret = clk_prepare_enable(imx585->xclk);
->>> +     if (ret) {
->>> +             dev_err(imx585->clientdev, "Failed to enable clock\n");
->>> +             goto reg_off;
->>> +     }
->>> +
->>> +     gpiod_set_value_cansleep(imx585->reset_gpio, 1);
->>
->> You asserted reset gpio causing it to enter reset and you call this
->> "power on"?
->>
->>> +     usleep_range(IMX585_XCLR_MIN_DELAY_US,
->>> +                  IMX585_XCLR_MIN_DELAY_US + IMX585_XCLR_DELAY_RANGE_US);
->>> +     return 0;
->>> +
->>> +reg_off:
->>> +     regulator_bulk_disable(IMX585_NUM_SUPPLIES, imx585->supplies);
->>> +     return ret;
->>> +}
->>> +
->>> +static int imx585_power_off(struct device *dev)
->>> +{
->>> +     struct v4l2_subdev *sd = dev_get_drvdata(dev);
->>> +     struct imx585 *imx585 = to_imx585(sd);
->>> +
->>> +     dev_dbg(imx585->clientdev, "power_off\n");
->>> +
->>> +     gpiod_set_value_cansleep(imx585->reset_gpio, 0);
->>
->> And here device comes up, but you call it power off? Your functions or
->> reset gpio code are completely reversed/wrong.
+>> You would need to point me to specific files or show some code.
 > 
-> Reset pin High -> Run normally
-> Reset pin Low -> Reset state
+> Sure, mediatek,power-controller.yaml and rockchip,power-controller.yaml
+> in Documentation/devicetree/bindings/power.
 
-This is not how resets work. Logical reset value high means it is
-asserted and device does not work.
-
-Read carefully your datasheet. Because if you claim above this is not a
-reset line, but some other.
-
-> 
-> See drivers/media/i2c/imx219.c with the same logic:
-
-Great, so 10 year old buggy code is the example, but all other - 90% of
-correct drivers - are not?
-
-> 
-> static int imx219_power_on(struct device *dev)
-> {
-> struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> struct imx219 *imx219 = to_imx219(sd);
-> int ret;
-> 
-> ret = regulator_bulk_enable(IMX219_NUM_SUPPLIES,
->    imx219->supplies);
-> if (ret) {
-> dev_err(dev, "%s: failed to enable regulators\n",
-> __func__);
-> return ret;
-> }
-> 
-> ret = clk_prepare_enable(imx219->xclk);
-> if (ret) {
-> dev_err(dev, "%s: failed to enable clock\n",
-> __func__);
-> goto reg_off;
-> }
-> 
-> gpiod_set_value_cansleep(imx219->reset_gpio, 1);
-> usleep_range(IMX219_XCLR_MIN_DELAY_US,
->     IMX219_XCLR_MIN_DELAY_US + IMX219_XCLR_DELAY_RANGE_US);
-> 
-> return 0;
-> 
-> reg_off:
-> regulator_bulk_disable(IMX219_NUM_SUPPLIES, imx219->supplies);
-> 
-> return ret;
-> }
-> 
-> static int imx219_power_off(struct device *dev)
-> {
-> struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> struct imx219 *imx219 = to_imx219(sd);
-> 
-> gpiod_set_value_cansleep(imx219->reset_gpio, 0);
-> regulator_bulk_disable(IMX219_NUM_SUPPLIES, imx219->supplies);
-> clk_disable_unprepare(imx219->xclk);
-> 
-> return 0;
-> }
-> 
-> I really don't understand why this is a problem, it is up to the chip
-> designer to decide
-> what to do with reset behavior and not the reviewers.
-
-I explained to you. You are mixing logical level with line level. This
-is the problem, because (again I said it):
-
-It does not work.
-
-Your code or your DTS is incorrect.
-
-
+I see, but your DTS is nothing like that.
 
 Best regards,
 Krzysztof
