@@ -1,139 +1,354 @@
-Return-Path: <devicetree+bounces-205642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CC78B29AF2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:39:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8D0B2B8A8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 07:30:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8592C20081D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:39:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4529E3BAF72
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 05:29:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02A2527B4EE;
-	Mon, 18 Aug 2025 07:38:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54BE13101A5;
+	Tue, 19 Aug 2025 05:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="S+8X/nEY"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="d67urHkA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1865427A914;
-	Mon, 18 Aug 2025 07:38:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE2C30FF2F
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 05:29:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755502738; cv=none; b=bxWyfjZtPuDOVJKJxPy5QqOq83JTfcJ6m3lPNqBSgwjMxoFQ1xRGovrhr+yKJiD4Wd89Zoaq93Av+Z5BuqxShh6powTNFafnTeUz0cyDEtJz7I8/mQjGYo1pn63weZ8HPJ186+hlBARQwYnnDNpOAiuy91J75CKi60AJVjTZ6bw=
+	t=1755581372; cv=none; b=R/1COiA2BsPX+VlI/xgfu19j91fLQQoaXaXzXO+QIh338o5eeKXZAZpjqP3bIM4Mdtl6ScCRRuZsfiXUs2LA5dA4sYdj2QpGV2K2H733OPjv+kTvrAeAL+lw63JKzQ5R1Bagcqq9HhoR7D9fGcGu47Ajp/ga4Z18IGzCqGatEAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755502738; c=relaxed/simple;
-	bh=XbvqUWoAr2QiGQSEbIQRQFzPuuiG5jhKpVOMj5hzuLc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bTxgl/NmsHLCEjad397uVHzUMq27Df4VOdUm696zJQv8EEHUT5ZfmFTTpM8V3B4dSvJQVp2PK8K/JMJC0ysCwKVeytd5Sph9o5UgRxHqt0hHJJFEu7d6iic/5l1/cgaCNhjquunzrZHJf55S658Cs03HvlMVcENPlL8zVrcGYJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=S+8X/nEY; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755502737; x=1787038737;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=XbvqUWoAr2QiGQSEbIQRQFzPuuiG5jhKpVOMj5hzuLc=;
-  b=S+8X/nEYg4M8G6Gzp/8FosEB38klmjC5cZOK8hDjsW4ncpdRGV7ZxLO9
-   O4L4bZR0+I7MXw96ehctbVoDPFr8YcTFf0d+Rp83fArZ11E7DbL9LJ1Rz
-   4mvHfc0nCf/C0uhVnGYgPqEIPy7XnIaLQBOcxhdzq527/CCrZZv+SOM4N
-   MCq2Hge4V3BmmXy2+/k7he8ZgZoshz1gbi4dE9g0U1ddU20UnXdoz9cC+
-   V1liMXIw+f4qpDFNqjwHoND0MYUUGO7z7VGQzGM6U8pe7jhYZhiXDM6Op
-   Jyf2zzGy9znb8ecJrKbD3vy7rxpFU0dIdo6OvvEllEaOhM5/Yz53xwh9P
-   A==;
-X-CSE-ConnectionGUID: 8/mCGti6ROKOAu4fAqZU3Q==
-X-CSE-MsgGUID: KriLX0fPT+GDAGBUWF3rGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="56748249"
-X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; 
-   d="scan'208";a="56748249"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 00:38:56 -0700
-X-CSE-ConnectionGUID: A9bs3weXTJWfbitgYqUBmQ==
-X-CSE-MsgGUID: wlmyt3iJQzutoEhVwwMfgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; 
-   d="scan'208";a="171750576"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.152])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 00:38:54 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id CF2FB1212C6;
-	Mon, 18 Aug 2025 10:38:50 +0300 (EEST)
-Date: Mon, 18 Aug 2025 07:38:50 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: git@apitzsch.eu
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Daniel Scally <djrscally@gmail.com>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Val Packett <val@packett.cool>
-Subject: Re: [PATCH 3/7] media: i2c: dw9719: Add driver_data matching
-Message-ID: <aKLYis79QnAAWUoe@kekkonen.localdomain>
-References: <20250817-dw9719-v1-0-426f46c69a5a@apitzsch.eu>
- <20250817-dw9719-v1-3-426f46c69a5a@apitzsch.eu>
+	s=arc-20240116; t=1755581372; c=relaxed/simple;
+	bh=oQBxwgAjB1Sit//E1gyu6jsGAnXwnwVCiu7w5uK1veg=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=YAKF7KDXl+Y5X02fANDh/kiNLnK3KKrRs0t779Ai+M5OADc7T5Jt8AfWKXOgwLNVnHYmCk+LVqlg3hcwcykBE7InJINh5Jhdy6caqR+mOQabxNP8yT3tCVW2PGj+czDK7YPlAZh/YB/l1Jo5vI7eQWU4AUQ4Fy/9py97WvFEClo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=d67urHkA; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250819052923epoutp022011a80d8989c6e699e5523485467504~dE-LHw0Ld2996429964epoutp02f
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 05:29:23 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250819052923epoutp022011a80d8989c6e699e5523485467504~dE-LHw0Ld2996429964epoutp02f
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1755581363;
+	bh=6MG+/Jai4e9wBAwA5aA5ZNa5PbIOBcMt7Lw3JvyLk6w=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=d67urHkAZCwPT6xGIAQeP+7Mr4oeVqK3CMHCwe+Bzw0iZh+ZIDas4vM5tHIW2Zxkt
+	 /hVeIH8bg/z8qSzULkWnA5nFNdOT3OBEiR9gOnM88/KKVeTs/DvoPVDJXwvdXii+57
+	 d0FPOs0kA0iOIskNZ8lhuis/+MErNgNln37WUtj4=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250819052922epcas5p48d6c5c5c355795ed5a957f8effe6dbd3~dE-KYwSKb1102711027epcas5p4U;
+	Tue, 19 Aug 2025 05:29:22 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.86]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4c5dS03lX4z3hhT7; Tue, 19 Aug
+	2025 05:29:20 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250818074152epcas5p38e555d935cb93f38ed0a590003a53da1~czJkANOlH1134711347epcas5p3L;
+	Mon, 18 Aug 2025 07:41:52 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250818074149epsmtip265c95d1fd9e613f0c41ca6c3c05681fa~czJhJl2tB1399313993epsmtip2R;
+	Mon, 18 Aug 2025 07:41:49 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Vinod Koul'" <vkoul@kernel.org>
+Cc: <kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<igor.belwon@mentallysanemainliners.org>, <m.szyprowski@samsung.com>,
+	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <aJtN7uVUV3YhfY5-@vaman>
+Subject: RE: [PATCH v5 6/6] phy: exynos5-usbdrd: support SS combo phy for
+ ExynosAutov920
+Date: Mon, 18 Aug 2025 13:11:48 +0530
+Message-ID: <038a01dc1013$900a2800$b01e7800$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250817-dw9719-v1-3-426f46c69a5a@apitzsch.eu>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJ+ZgWj3OwstM5ZbwFL0KmcSzrOlQGuc5yxAsdJ9S8B+nVVqLLv1zHQ
+Content-Language: en-in
+X-CMS-MailID: 20250818074152epcas5p38e555d935cb93f38ed0a590003a53da1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250805114323epcas5p39bf73c5e0a9382ff54b1832724804cc9
+References: <20250805115216.3798121-1-pritam.sutar@samsung.com>
+	<CGME20250805114323epcas5p39bf73c5e0a9382ff54b1832724804cc9@epcas5p3.samsung.com>
+	<20250805115216.3798121-7-pritam.sutar@samsung.com> <aJtN7uVUV3YhfY5-@vaman>
 
-Hi André, Val,
+Hi Vinod, 
 
-On Sun, Aug 17, 2025 at 07:09:22PM +0200, André Apitzsch via B4 Relay wrote:
-> From: Val Packett <val@packett.cool>
+> -----Original Message-----
+> From: Vinod Koul <vkoul@kernel.org>
+> Sent: 12 August 2025 07:52 PM
+> To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+> Cc: kishon@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
+> conor+dt@kernel.org; alim.akhtar@samsung.com; andre.draszik@linaro.org;
+> peter.griffin@linaro.org; kauschluss@disroot.org;
+> ivo.ivanov.ivanov1@gmail.com; igor.belwon@mentallysanemainliners.org;
+> m.szyprowski@samsung.com; s.nawrocki@samsung.com; linux-
+> phy@lists.infradead.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> samsung-soc@vger.kernel.org; rosa.pila@samsung.com;
+> dev.tailor@samsung.com; faraz.ata@samsung.com;
+> muhammed.ali@samsung.com; selvarasu.g@samsung.com
+> Subject: Re: [PATCH v5 6/6] phy: exynos5-usbdrd: support SS combo phy for
+> ExynosAutov920
 > 
-> In preparation for adding models with different register sets, start
-> assigning the model based on the i2c match data.
+> On 05-08-25, 17:22, Pritam Manohar Sutar wrote:
+> > Add required change in phy driver to support combo SS phy for this SoC.
+> >
+> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+> > ---
+> >  drivers/phy/samsung/phy-exynos5-usbdrd.c    | 327
+> +++++++++++++++++++-
+> >  include/linux/soc/samsung/exynos-regs-pmu.h |   1 +
+> >  2 files changed, 324 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > index c22f4de7d094..1108f0c07755 100644
+> > --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > @@ -273,6 +273,36 @@
+> >  #define EXYNOSAUTOV920_DRD_HSPPLLTUNE		0x110
+> >  #define HSPPLLTUNE_FSEL				GENMASK(18, 16)
+> >
+> > +/* ExynosAutov920 phy usb31drd port reg */
+> > +#define EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL	0x000
+> > +#define PHY_RST_CTRL_PIPE_LANE0_RESET_N_OVRD_EN	BIT(5)
+> > +#define PHY_RST_CTRL_PIPE_LANE0_RESET_N		BIT(4)
+> > +#define PHY_RST_CTRL_PHY_RESET_OVRD_EN		BIT(1)
+> > +#define PHY_RST_CTRL_PHY_RESET			BIT(0)
+> > +
+> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0
+> 	0x0004
+> > +#define PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR
+> 	GENMASK(31, 16)
+> > +#define PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK		BIT(8)
+> > +#define PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK		BIT(4)
+> > +#define PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL		BIT(0)
+> > +
+> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON1
+> 	0x0008
+> > +
+> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2
+> 	0x000c
+> > +#define PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_EN		BIT(0)
+> > +#define PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA
+> 	GENMASK(31, 16)
+> > +
+> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG0	0x100
+> > +#define PHY_CONFIG0_PHY0_PMA_PWR_STABLE		BIT(14)
+> > +#define PHY_CONFIG0_PHY0_PCS_PWR_STABLE		BIT(13)
+> > +#define PHY_CONFIG0_PHY0_ANA_PWR_EN		BIT(1)
+> > +
+> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7	0x11c
+> > +#define PHY_CONFIG7_PHY_TEST_POWERDOWN		BIT(24)
+> > +
+> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG4	0x110
+> > +#define PHY_CONFIG4_PIPE_RX0_SRIS_MODE_EN	BIT(2)
+> > +
+> >  /* Exynos9 - GS101 */
+> >  #define EXYNOS850_DRD_SECPMACTL			0x48
+> >  #define SECPMACTL_PMA_ROPLL_REF_CLK_SEL
+> 	GENMASK(13, 12)
+> > @@ -2077,6 +2107,253 @@ static const struct
+> exynos5_usbdrd_phy_drvdata exynos990_usbdrd_phy = {
+> >  	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
+> >  };
+> >
+> > +static void
+> > +exynosautov920_usb31drd_cr_clk(struct exynos5_usbdrd_phy *phy_drd,
+> > +bool high) {
+> > +	void __iomem *reg_phy = phy_drd->reg_phy;
+> > +	u32 reg = 0;
 > 
-> Signed-off-by: Val Packett <val@packett.cool>
-> Signed-off-by: André Apitzsch <git@apitzsch.eu>
-> ---
->  drivers/media/i2c/dw9719.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+> again..
 > 
-> diff --git a/drivers/media/i2c/dw9719.c b/drivers/media/i2c/dw9719.c
-> index 5ed0042fce18acd9e6ce9f6cf6c6982e36fed275..7ce66eaede5a2a1ba9c4c30c0efc5fafcca339a0 100644
-> --- a/drivers/media/i2c/dw9719.c
-> +++ b/drivers/media/i2c/dw9719.c
-> @@ -282,6 +282,8 @@ static int dw9719_probe(struct i2c_client *client)
->  	if (!dw9719)
->  		return -ENOMEM;
->  
-> +	dw9719->model = (enum dw9719_model)i2c_get_match_data(client);
-> +
->  	dw9719->regmap = devm_cci_regmap_init_i2c(client, 8);
->  	if (IS_ERR(dw9719->regmap))
->  		return PTR_ERR(dw9719->regmap);
-> @@ -361,8 +363,8 @@ static void dw9719_remove(struct i2c_client *client)
->  }
->  
->  static const struct i2c_device_id dw9719_id_table[] = {
-> -	{ "dw9719" },
-> -	{ "dw9761" },
-> +	{ "dw9719", .driver_data = DW9719 },
-> +	{ "dw9761", .driver_data = DW9761 },
-
-Does something still depend on the I²C device ID table? Couldn't we just
-remove it?
-
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(i2c, dw9719_id_table);
+> > +
+> > +	reg = readl(reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+> > +	if (high)
+> > +		reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
+> > +	else
+> > +		reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
+> > +
+> > +	writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+> > +	fsleep(1);
+> > +}
+> > +
+> > +static void
+> > +exynosautov920_usb31drd_port_phy_ready(struct exynos5_usbdrd_phy
+> > +*phy_drd) {
+> > +	struct device *dev = phy_drd->dev;
+> > +	void __iomem *reg_phy = phy_drd->reg_phy;
+> > +	static const unsigned int timeout_us = 20000;
+> > +	static const unsigned int sleep_us = 40;
+> > +	u32 reg = 0;
 > 
+> here too
+> 
+> > +	int err;
+> > +
+> > +	/* Clear cr_para_con */
+> > +	reg &= ~(PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
+> > +			PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR);
+> > +	reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
+> > +	writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+> > +	writel(0x0, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON1);
+> > +	writel(0x0, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
+> > +
+> > +	exynosautov920_usb31drd_cr_clk(phy_drd, true);
+> > +	exynosautov920_usb31drd_cr_clk(phy_drd, false);
+> > +
+> > +	/*
+> > +	 * The maximum time from phy reset de-assertion to de-assertion of
+> > +	 * tx/rx_ack can be as high as 5ms in fast simulation mode.
+> > +	 * Time to phy ready is < 20ms
+> > +	 */
+> > +	err = readl_poll_timeout(reg_phy +
+> > +
+> 	EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0,
+> > +			reg, !(reg &
+> PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK),
+> > +			sleep_us, timeout_us);
+> > +	if (err)
+> > +		dev_err(dev, "timed out waiting for rx/tx_ack: %#.8x\n",
+> reg);
+> > +
+> > +	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
+> > +	writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+> > +}
+> > +
+> > +static void
+> > +exynosautov920_usb31drd_cr_write(struct exynos5_usbdrd_phy
+> *phy_drd,
+> > +				 u16 addr, u16 data)
+> > +{
+> > +	struct device *dev = phy_drd->dev;
+> > +	void __iomem *reg_phy = phy_drd->reg_phy;
+> > +	u32 cnt = 0;
+> > +	u32 reg = 0;
+> 
+> this one, former is okay
+> 
+> > +
+> > +	/* Pre Clocking */
+> > +	reg = readl(reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+> > +	reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
+> > +	writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+> > +
+> > +	/*
+> > +	 * tx clks must be available prior to assertion of tx req.
+> > +	 * tx pstate p2 to p0 transition directly is not permitted.
+> > +	 * tx clk ready must be asserted synchronously on tx clk prior
+> > +	 * to internal transmit clk alignment sequence in the phy
+> > +	 * when entering from p2 to p1 to p0.
+> > +	 */
+> > +	do {
+> > +		exynosautov920_usb31drd_cr_clk(phy_drd, true);
+> > +		exynosautov920_usb31drd_cr_clk(phy_drd, false);
+> > +		cnt++;
+> > +	} while (cnt < 15);
+> > +
+> > +	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
+> > +	writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+> > +
+> > +	/*
+> > +	 * tx data path is active when tx lane is in p0 state
+> > +	 * and tx data en asserted. enable cr_para_wr_en.
+> > +	 */
+> > +	reg = readl(reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
+> > +	reg &= ~PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA;
+> > +	reg |=
+> FIELD_PREP(PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA, data) |
+> > +		PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_EN;
+> > +	writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
+> > +
+> > +	/* write addr */
+> > +	reg = readl(reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+> > +	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR;
+> > +	reg |= FIELD_PREP(PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR,
+> addr) |
+> > +		PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
+> > +		PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
+> > +	writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+> > +
+> > +	/* check cr_para_ack*/
+> > +	cnt = 0;
+> > +	do {
+> > +		/*
+> > +		 * data symbols are captured by phy on rising edge of the
+> > +		 * tx_clk when tx data enabled.
+> > +		 * completion of the write cycle is acknowledged by
+assertion
+> > +		 * of the cr_para_ack.
+> > +		 */
+> > +		exynosautov920_usb31drd_cr_clk(phy_drd, true);
+> > +		reg = readl(reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+> > +		if ((reg & PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK))
+> > +			break;
+> > +
+> > +		exynosautov920_usb31drd_cr_clk(phy_drd, false);
+> > +
+> > +		/*
+> > +		 * wait for minimum of 10 cr_para_clk cycles after phy reset
+> > +		 * is negated, before accessing control regs to allow for
+> > +		 * internal resets.
+> > +		 */
+> > +		cnt++;
+> > +	} while (cnt < 10);
+> > +
+> > +	if (cnt == 10)
+> > +		dev_dbg(dev, "CR write failed to 0x%04x\n", addr);
+> 
+> Not error?
 
--- 
-Kind regards,
+This is only for debugging purpose. It is not considered as error. 
 
-Sakari Ailus
+> --
+> ~Vinod
+
+
+Will address other comments in next version of the patch-set (v6).
+
+Thank you.
+
+Regards,
+Pritam
+
 
