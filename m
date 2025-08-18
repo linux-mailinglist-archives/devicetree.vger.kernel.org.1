@@ -1,107 +1,132 @@
-Return-Path: <devicetree+bounces-205781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D30BDB2A198
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:31:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C106EB2A20D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:48:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B5BC44E2CD4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:31:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A64B65E2DCE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207843218AC;
-	Mon, 18 Aug 2025 12:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09AC426F29D;
+	Mon, 18 Aug 2025 12:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="apkXGnNX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n18g+dpo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39BC33218A1
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 12:28:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFD233218D7;
+	Mon, 18 Aug 2025 12:48:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755520139; cv=none; b=C3tkS3lUOiXj61FIHpGCLalhZQIzVO9w6Q4eoz4dDWYpuDvMoeK3JMw3AqLJqMCvNrK/IyZw0yYIDqSfXpjYdpqDJaV30HdWksfTNOzwEZqLwnj+VKorFhaoOA5LQZObRNsHCm6SeKlx9G6cYVxqv1Gj10yAh0VgC7YfqVNGOdc=
+	t=1755521288; cv=none; b=gix3NoYo060eLL2WkoUn/AjXW6+wiO9Ohwef9TxKkNXLpyXBpanIfLIFI7mV9HumN6Orn4Qd7YLCzt4y2byAz5GXi3uU4oMJO+ygUTxUFbXigGwmwyI+2XgWc2W/sfCbaqeZrchgjqK7UPPEm9tWWmCJT0beKNROdntQGze1N4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755520139; c=relaxed/simple;
-	bh=NQlTT8wrBf6/5TXR7NEJIm2qofkpWCiqbqPMT/ijYsM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aXlnUDsSzpmVY4LKUd13MpSGORQKN4PKzS6e46u82bU1CLFa08MzrOjeWx0bkd1Baxq2xB0LJiOVjfuHXBNyDVt/+XdMfxgDelsAX+zm9RwjVcdi36c/tNPp4Qekyqqptq8GQWPpL+j+bTGJ/jdGhWN5gRNG5KDuV+/oRj/Dwg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=apkXGnNX; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e934724e512so1236531276.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 05:28:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755520136; x=1756124936; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NQlTT8wrBf6/5TXR7NEJIm2qofkpWCiqbqPMT/ijYsM=;
-        b=apkXGnNXgGl7aZxSKibTdp0qeTPDTjWudLdbIDXHjAoMM9924TTUZQFW9AuxSMVXtt
-         rl9Amti5ULwkeK4fcGv5CTV/3fIpDQzZZyCIHX6B7kZ9s681OyGUkigJIHkDj0RkBB1J
-         nj3+vaku01NR1/y8Q5j/ZFTJT6QLouWVAYJp5Kc0xo2PDbwbV72r4EKhQI9XUaTYa1/C
-         6vSEloZOCMUFA5C7yfXG1EzwMgPeD6dZ0pO8bx6FfVHPF45Xj5PCQkVEGjTgcPYjAU7c
-         PSrNrqMWG+KjN8fZneGUn4hZMKjtw6TT+CsyCYg6HVYuCuvMtqXLahRPOTkzHdP420bf
-         s+Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755520136; x=1756124936;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NQlTT8wrBf6/5TXR7NEJIm2qofkpWCiqbqPMT/ijYsM=;
-        b=Auby0JLOzzUM4tuguzFVcCnEkJQFJ9YiikuTVAulriXrXw/udQRnG0fTRtcWRfLPEr
-         dc60D6we+o6tDIl5+zl/kCZVeha+WDblZfMvKNQHT3DBGD6cJ8x0h1QIo1CnDVFplOlD
-         y5ZdZmLPbN5iVb/h2sEA5qagA88TIuCUWyZSrIBqbRqqRXu6nGS55Ucu3CKBcjWaXIbC
-         OBcgOY/MyhwinPS0EyKqsaAfENhFrK51ipFrW97rCw/krjf8rlWcYgl2UsH5ZLcMDND9
-         K6E5J/CjxD7+WPfVro0sB7m4yGeZsQvhTs5DjxcItaHCuQb/zmBRmKHHTMa854R1ByOU
-         xayg==
-X-Forwarded-Encrypted: i=1; AJvYcCUc0Jkih+yz1uQIZKGTX1ex50ZCfKGMLAsSnDvkY7C4CM0ettjMF1B84UDuRhcWmwkKTX9J0lFRp+Q6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtLgUAWWwSyRZpt5xSTOYJ/IxOTQXqvz2+GmD2pPAvbleb3wxI
-	KNwYHmPXGXghhNgc0XqU0aVt6F/yNwo5ZHH5MksvOkVZSzHwwSznekWLhtBafudgChiJw9nNWSr
-	9Q8KY+UTj4tOJoozt+Opk1JfWSS76Yd0artqgopHOew==
-X-Gm-Gg: ASbGnctVnLD3dC+6G8w3ueAq3yfcVIug0DN0kbzXjwiGMn9T7L6J+x8bL6lbCkhhfk8
-	yx0s0x3YbjSRmyeshJM7z6fNseDYXnVGJ5FzsFJRRvgcD+cya8ms2onL4ELgjj7Z69eclqiCK2u
-	nvrnLGS/LO3oG3zxAP/lAkGn2IaUBxjAUoblHmcBIFO2OhBmzmrlRujmLgVVeZ2GdQjjMspd09B
-	QVUBg==
-X-Google-Smtp-Source: AGHT+IFx20xElPVqlagxACjExJ+Sc5Ef/knSr80J9ZkH6gy2bssr57qeuBMFLMu09POyk3VR+IV54ktaJ+qDsdY+z6Q=
-X-Received: by 2002:a05:6902:72c:b0:e93:4496:a2b9 with SMTP id
- 3f1490d57ef6-e934496a74bmr9054970276.13.1755520135996; Mon, 18 Aug 2025
- 05:28:55 -0700 (PDT)
+	s=arc-20240116; t=1755521288; c=relaxed/simple;
+	bh=RfJbadEG1WXqCbA+L6puR7/SdieeHuzNWBQVsVWP4Us=;
+	h=Content-Type:Date:Message-Id:To:Subject:Cc:From:References:
+	 In-Reply-To; b=YdV901cukZvcKgiv948icCFt2MnwQu3VZSJfRY3QaFH7mcsY4lX4+/mbbfgT3sRaqM8S7WsTN6Vm68itGPzWDeIjoujZPSNAdGP3LD8M+MDrRiErlYzo+8C8pX3VMX4U7sOs+1XyZhYx9gOaYRHBOxYi+3IBInqCqxoXtUF4xkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n18g+dpo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6107C113D0;
+	Mon, 18 Aug 2025 12:48:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755521288;
+	bh=RfJbadEG1WXqCbA+L6puR7/SdieeHuzNWBQVsVWP4Us=;
+	h=Date:To:Subject:Cc:From:References:In-Reply-To:From;
+	b=n18g+dpoNlQYiFSwWCCD/5j0vkRu2KWMp7n30uC9KZm2gl1yoABRwoZu4SWAo1Pnc
+	 lEOQfrO1cf1h8/JCrZDhODe5if+suJh1egobeJQOCo5F42HylkYGAElk0clbJoJSQt
+	 JQzWsQP6m54kk6GTaZU0YQW1NzQJacSGW+ZG4rKdlUttOixB335EGnZnyqP/JBsOyJ
+	 a4SFHZV2vJ8NbR4xJiHSMuYrOCOJ/FWa1EgUZmtjXGSuZPH5z4OaBL9a4Fs2QhpKTP
+	 Svn6rnvF+/gqVNVcWoE1i/n+G3w/B52a5MD20eEFlZ4pdZwbZBM/Ymz5f8VkHPvqKD
+	 sPi//gt4b4ftg==
+Content-Type: multipart/signed;
+ boundary=c7999e395d5ad658028f60c4d5da8e05c74a2c659f013cb8ab28620f2f20;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Mon, 18 Aug 2025 14:47:55 +0200
+Message-Id: <DC5KCSEUZQUJ.3KPENNUQBUFM8@kernel.org>
+To: "Stephan Gerhold" <stephan.gerhold@linaro.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ "Danilo Krummrich" <dakr@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>,
+ "Michael Turquette" <mturquette@baylibre.com>, "Dmitry Baryshkov"
+ <lumag@kernel.org>
+Subject: Re: [PATCH 0/2] driver core: platform: / drm/msm: dp: Delay
+ applying clock defaults
+Cc: "Rob Clark" <robin.clark@oss.qualcomm.com>, "Abhinav Kumar"
+ <abhinav.kumar@linux.dev>, "Jessica Zhang"
+ <jessica.zhang@oss.qualcomm.com>, "Sean Paul" <sean@poorly.run>, "Marijn
+ Suijten" <marijn.suijten@somainline.org>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
+ <robh@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Abel Vesa"
+ <abel.vesa@linaro.org>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad
+ Dybcio" <konradybcio@kernel.org>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Nishanth Menon" <nm@ti.com>
+From: "Michael Walle" <mwalle@kernel.org>
+X-Mailer: aerc 0.16.0
+References: <20250814-platform-delay-clk-defaults-v1-0-4aae5b33512f@linaro.org>
+In-Reply-To: <20250814-platform-delay-clk-defaults-v1-0-4aae5b33512f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250815-working_dma_0701_v2-v4-0-62145ab6ea30@riscstar.com>
- <20250815-working_dma_0701_v2-v4-6-62145ab6ea30@riscstar.com> <34485B93B03EAD10+aJ7NVbe8aqjWBFd-@LT-Guozexi>
-In-Reply-To: <34485B93B03EAD10+aJ7NVbe8aqjWBFd-@LT-Guozexi>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Mon, 18 Aug 2025 20:28:45 +0800
-X-Gm-Features: Ac12FXzcLxiREAyDvYqUpnp8Sh2Su74nBhalceLEh9KttzUfLjprws3CtQrXJOY
-Message-ID: <CAH1PCMahKsCsgmZixartnu6Tq8Oo28bMVNfoAWjnFA2McOOU3Q@mail.gmail.com>
-Subject: Re: [PATCH v4 6/8] riscv: dts: spacemit: Add PDMA node for K1 SoC
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, duje@dujemihanovic.xyz, Alex Elder <elder@riscstar.com>, 
-	Vivian Wang <wangruikang@iscas.ac.cn>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+
+--c7999e395d5ad658028f60c4d5da8e05c74a2c659f013cb8ab28620f2f20
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On Fri, Aug 15, 2025 at 2:04=E2=80=AFPM Troy Mitchell
-<troy.mitchell@linux.spacemit.com> wrote:
->
-> Thanks.
->
-> Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
->
+Hi,
 
-Thanks Troy.
+On Thu Aug 14, 2025 at 11:18 AM CEST, Stephan Gerhold wrote:
+> Michael had a somewhat related problem in the PVR driver recently [1],
+> where of_clk_set_defaults() needs to be called a second time from the PVR
+> driver (after the GPU has been powered on) to make the assigned-clock-rat=
+es
+> work correctly.
+
+I've come back to this and just noticed that the
+assigned-clock-rates do actually work. What doesn't work is the
+caching of the clock rate. That bug was then masked by calling
+of_clk_set_defaults() again in the driver.
+
+Here is what the driver is doing:
+ (1) driver gets handle to the clock with clk_get().
+ (2) driver enables clock with clk_enable()
+ (3) driver does a clk_get_rate() which returns 0, although there is
+     already a hardware default in my case. That got me curious
+     again..
+
+Now on the k3 platforms the clocking is handled by a firmware and it
+appears that the firmware is reporting a clock rate of 0 unless the
+clock is actually enabled. After the clock is enabled it will report
+the correct rate. (FWIW, I can modify the hardware/firmware default
+rate with the assigned-clock-rates DT property).
+
+I've hacked the clock driver to register all clocks with
+CLK_GET_RATE_NO_CACHE and then everything is working as expected.
+
+I'm no expert for the clocking framework, but it seems that
+clk_get() will ask the HW for the clk rate and caches it early on.
+
+-michael
+
+--c7999e395d5ad658028f60c4d5da8e05c74a2c659f013cb8ab28620f2f20
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaKMg/RIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/iUoAF+J3OaVC3IxUeIFloGDoJ8dv5T/iTrFSoA
++swW8sUuXrerXJYNsOz5CEpkMw5MWCHhAYD/qVKeufcrPpXb/T8mC9Q7mY7menjZ
+YTiG9V2kBLg2wK8UiF2WoE+54Vcry3zejqc=
+=y5fA
+-----END PGP SIGNATURE-----
+
+--c7999e395d5ad658028f60c4d5da8e05c74a2c659f013cb8ab28620f2f20--
 
