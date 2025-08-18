@@ -1,199 +1,133 @@
-Return-Path: <devicetree+bounces-205740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39A54B29E5A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ABAFB29E83
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:55:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD0C23AC722
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:49:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A7DF3B1FA4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038CB30F530;
-	Mon, 18 Aug 2025 09:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F8330FF1E;
+	Mon, 18 Aug 2025 09:55:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="ehE1dNDf";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="0jyHjazn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KkIFS709"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796CE21CA0C;
-	Mon, 18 Aug 2025 09:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1310F278146;
+	Mon, 18 Aug 2025 09:55:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755510561; cv=none; b=hk5m3cbbZZCjeSv5/0QqbqAwlg9na12qRmDSbQ8RhZ/MHlZF7nXYnHtHmOBIoWSHVpa+xGEjACCLdBEvDjWEPJ75owGcmsGJ4WPEcATdUZ+1h8tkEW95wWUAtAmH61ZE74erVVWE2sli1fJmz6+mjmnoO8qAGoZ9+8keexoQ9qQ=
+	t=1755510941; cv=none; b=cpOmBBgZN+Uzb9fdh7qwcKjcVsdw6G89V90EwaOnqk8dZK8W80FTdQjjdQn1T2xXPuULbJmW0Hjl9ISAR0r6yE8OSZAXvcJuT7epTKnEaDhbdoUp0UeRU7u20ey5vMuvJlqCpRveNL8NURUtLpwllXeeatIWezgNiJ2m9Wy7EU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755510561; c=relaxed/simple;
-	bh=G/TSilIIny419+wjwN/t2gGm9Hi+eIHM7DbXOJEDR/Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aveHUAh8i6kVDRpFBw0oe5YhK1FSg2XAUcl1pNjrt2E1+zwzSoN9DSTRHf2HvDgKhj+P6qtlTgciBttK4wDuxKvfVY6AhatT8+TrnfZYYdM4K1AGlPG68waBrbTQh8dc1qYizOgv5+9BmokAQfa6ta+mifWa3xciE0gb4okLYoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=ehE1dNDf; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=0jyHjazn; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from localhost (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 8FF6F12FB9DF;
-	Mon, 18 Aug 2025 02:49:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1755510557; bh=G/TSilIIny419+wjwN/t2gGm9Hi+eIHM7DbXOJEDR/Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ehE1dNDflSHrSI1XDw3/kMTk6XunMr7pZkesptPP9ZcgZ9eQHS21I5gFj65Bspvic
-	 9SOilobYM2UxwooLW6ojkDUVnatWPEaYq9/DNS00ab3LmAjE840weuQeaUrUI02TTw
-	 MzotrWhuc+v1vP6OOwdFNdl/AV259boFpcbE/OaMA9Ayl33hr3e04kNxtZKUq2Gi7M
-	 hllbooq0QeV7EddmJZIMKnD7hL+s/fpgOfkawrCfaON1YupZUB91zVDq09y92q0/MI
-	 3y8HeddVCRQi4rp92E/HKQYy2pf2m7poCJH8PIvKVJoYrJyEzx7TC0+j/gow9fESJB
-	 w69GhLgWYqxwA==
-X-Virus-Scanned: amavis at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by localhost (bayard.4d2.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id VRxjUVBxbqYv; Mon, 18 Aug 2025 02:49:16 -0700 (PDT)
-Received: from ketchup (unknown [117.171.67.207])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 58EE012FB42D;
-	Mon, 18 Aug 2025 02:49:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1755510556; bh=G/TSilIIny419+wjwN/t2gGm9Hi+eIHM7DbXOJEDR/Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=0jyHjaznbZLTd5hBz72tL6eH29OiPyRhhDBoTFL3eIAEJ3iQWDz+kx7mlDgQV1CK0
-	 fIKTsi2ba5WbwjqD2gSVID+zmaJPLOvl8kN0JPeZjXlO9LAFeWOdDnIi0zzoRBG3/5
-	 1SrbHlFceI7LpiroCT+jH1hLANLpY5ikQSWZooUN8PMmHChGOYKKRx3Vqv+CUyZ7St
-	 wY3f+TlRA5n7yf1EQcn7d0mNllzO4GwrdMF0Z9PT+JEk3uNDM/mtvvLGZlE9wcC4uO
-	 bPmcoKppUWojRn4/jnajtjgm+Ke1aVGMUrDTMdT6Kbikk1E9ixtpc7VKPtjoS7X8gc
-	 TyOe8sQjx1VFA==
-Date: Mon, 18 Aug 2025 09:49:10 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Alex Elder <elder@riscstar.com>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Jinmei Wei <weijinmei@linux.spacemit.com>
-Subject: Re: [PATCH v3 2/3] clk: spacemit: introduce pre-div for ddn clock
-Message-ID: <aKL3FghKPUaQcagM@ketchup>
-References: <20250818-k1-clk-i2s-generation-v3-0-8139b22ae709@linux.spacemit.com>
- <20250818-k1-clk-i2s-generation-v3-2-8139b22ae709@linux.spacemit.com>
+	s=arc-20240116; t=1755510941; c=relaxed/simple;
+	bh=IV4bPZmBEtnxV/SEjS2Qeu5Z6YHK0JsLisi/u8YBojg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P1Grrw0FnZEYH4ehRZRQ+7GxdnpLgbFvFOg2gPvuzXuFbwHfZjzqeBlixPQFlttWlA4Z922xaOPOIvQ9C/eEa8Hac8V3maa080RTVZXUNVpU1G9rqGlhsKX2x7zgJhgvH0mjbLvYKMvNtZ27JNVJGep7N10xliIbSqjUAw8NJuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KkIFS709; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB81DC4CEEB;
+	Mon, 18 Aug 2025 09:55:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755510940;
+	bh=IV4bPZmBEtnxV/SEjS2Qeu5Z6YHK0JsLisi/u8YBojg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KkIFS709x8lYmWmrSuAbEvmL/Ukks/PyE+IyhowtIXWJrX5YjkOTSG9gRsr7W4vxS
+	 M6eiX76ZSu+glstH3DBNvo2wiEz7yYkfyBxoxgBMoPphqglSg57NVDTthieDza87o8
+	 VGH8jj6T8PrfUwWXw9iBUr0/x3CgZygMqW9E3bGNJqwAqKhMjKTyFugT0Prjmq8yqU
+	 zl4FJnAO7swFVZuSNmUGiSGjjIh4etFjS5AApSUv1VhlorTA9anh0VNX2PUWqHAyDi
+	 hnN5uBLlV2KWcSP+Mln3CEDROh8JyylqW9+j9da7wcqVdO38EzRyQ8gBkNtxueTunJ
+	 2Glc2kfQqq4CA==
+Message-ID: <9dfd2eb2-fda7-4f29-881b-e1c4a2b3f6fc@kernel.org>
+Date: Mon, 18 Aug 2025 11:55:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250818-k1-clk-i2s-generation-v3-2-8139b22ae709@linux.spacemit.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 1/2] dt-bindings: interconnect: Add OSM L3 compatible
+ for QCS615 SoC
+To: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Sibi Sankar
+ <quic_sibis@quicinc.com>, Odelu Kukatla <quic_okukatla@quicinc.com>,
+ Mike Tipton <mike.tipton@oss.qualcomm.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250804061536.110-1-raviteja.laggyshetty@oss.qualcomm.com>
+ <20250804061536.110-2-raviteja.laggyshetty@oss.qualcomm.com>
+ <3b79dc0c-0bcd-47d0-ab10-ba1514466d65@kernel.org>
+ <14d0e02e-350c-42bc-93b5-c81e11b3bd5d@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <14d0e02e-350c-42bc-93b5-c81e11b3bd5d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 18, 2025 at 05:28:21PM +0800, Troy Mitchell wrote:
-> The original DDN operations applied an implicit divide-by-2, which should
-> not be a default behavior.
-> 
-> This patch removes that assumption, letting each clock define its
-> actual behavior explicitly.
-> 
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> ---
->  drivers/clk/spacemit/ccu-k1.c  |  4 ++--
->  drivers/clk/spacemit/ccu_ddn.c | 12 ++++++------
->  drivers/clk/spacemit/ccu_ddn.h |  6 ++++--
->  3 files changed, 12 insertions(+), 10 deletions(-)
+On 18/08/2025 11:12, Raviteja Laggyshetty wrote:
+>>>  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml        | 5 +++++
+>>>  1 file changed, 5 insertions(+)
+>> No, slow down, this conflicts with other patch and makes your entry
+>> duplicated. Just squash both commits.
+>>
+> The conflicting patch 
+> https://lore.kernel.org/all/20250711102540.143-2-raviteja.laggyshetty@oss.qualcomm.com/
+> got picked into v6.17-rc1.
 
-Reviewed-by: Haylen Chu <heylenay@4d2.org>
+Then why you could not rebase on next if you sent it afterwards? You are
+not making the process easier for us.
 
-> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
-> index 65e6de030717afa60eefab7bda88f9a13b857650..7155824673fb450971439873b6b6163faf48c7e5 100644
-> --- a/drivers/clk/spacemit/ccu-k1.c
-> +++ b/drivers/clk/spacemit/ccu-k1.c
-> @@ -136,8 +136,8 @@ CCU_GATE_DEFINE(pll1_d3_819p2, CCU_PARENT_HW(pll1_d3), MPMU_ACGR, BIT(14), 0);
->  CCU_GATE_DEFINE(pll1_d2_1228p8, CCU_PARENT_HW(pll1_d2), MPMU_ACGR, BIT(16), 0);
->  
->  CCU_GATE_DEFINE(slow_uart, CCU_PARENT_NAME(osc), MPMU_ACGR, BIT(1), CLK_IGNORE_UNUSED);
-> -CCU_DDN_DEFINE(slow_uart1_14p74, pll1_d16_153p6, MPMU_SUCCR, 16, 13, 0, 13, 0);
-> -CCU_DDN_DEFINE(slow_uart2_48, pll1_d4_614p4, MPMU_SUCCR_1, 16, 13, 0, 13, 0);
-> +CCU_DDN_DEFINE(slow_uart1_14p74, pll1_d16_153p6, MPMU_SUCCR, 16, 13, 0, 13, 2, 0);
-> +CCU_DDN_DEFINE(slow_uart2_48, pll1_d4_614p4, MPMU_SUCCR_1, 16, 13, 0, 13, 2, 0);
->  
->  CCU_GATE_DEFINE(wdt_clk, CCU_PARENT_HW(pll1_d96_25p6), MPMU_WDTPCR, BIT(1), 0);
->  
-> diff --git a/drivers/clk/spacemit/ccu_ddn.c b/drivers/clk/spacemit/ccu_ddn.c
-> index be311b045698e95a688a35858a8ac1bcfbffd2c7..06d86748182bd1959cdab5c18d0a882ee25dcade 100644
-> --- a/drivers/clk/spacemit/ccu_ddn.c
-> +++ b/drivers/clk/spacemit/ccu_ddn.c
-> @@ -22,21 +22,21 @@
->  
->  #include "ccu_ddn.h"
->  
-> -static unsigned long ccu_ddn_calc_rate(unsigned long prate,
-> -				       unsigned long num, unsigned long den)
-> +static unsigned long ccu_ddn_calc_rate(unsigned long prate, unsigned long num,
-> +				       unsigned long den, unsigned int pre_div)
->  {
-> -	return prate * den / 2 / num;
-> +	return prate * den / pre_div / num;
->  }
->  
->  static unsigned long ccu_ddn_calc_best_rate(struct ccu_ddn *ddn,
->  					    unsigned long rate, unsigned long prate,
->  					    unsigned long *num, unsigned long *den)
->  {
-> -	rational_best_approximation(rate, prate / 2,
-> +	rational_best_approximation(rate, prate / ddn->pre_div,
->  				    ddn->den_mask >> ddn->den_shift,
->  				    ddn->num_mask >> ddn->num_shift,
->  				    den, num);
-> -	return ccu_ddn_calc_rate(prate, *num, *den);
-> +	return ccu_ddn_calc_rate(prate, *num, *den, ddn->pre_div);
->  }
->  
->  static long ccu_ddn_round_rate(struct clk_hw *hw, unsigned long rate,
-> @@ -58,7 +58,7 @@ static unsigned long ccu_ddn_recalc_rate(struct clk_hw *hw, unsigned long prate)
->  	num = (val & ddn->num_mask) >> ddn->num_shift;
->  	den = (val & ddn->den_mask) >> ddn->den_shift;
->  
-> -	return ccu_ddn_calc_rate(prate, num, den);
-> +	return ccu_ddn_calc_rate(prate, num, den, ddn->pre_div);
->  }
->  
->  static int ccu_ddn_set_rate(struct clk_hw *hw, unsigned long rate,
-> diff --git a/drivers/clk/spacemit/ccu_ddn.h b/drivers/clk/spacemit/ccu_ddn.h
-> index a52fabe77d62eba16426867a9c13481e72f025c0..4838414a8e8dc04af49d3b8d39280efedbd75616 100644
-> --- a/drivers/clk/spacemit/ccu_ddn.h
-> +++ b/drivers/clk/spacemit/ccu_ddn.h
-> @@ -18,13 +18,14 @@ struct ccu_ddn {
->  	unsigned int num_shift;
->  	unsigned int den_mask;
->  	unsigned int den_shift;
-> +	unsigned int pre_div;
->  };
->  
->  #define CCU_DDN_INIT(_name, _parent, _flags) \
->  	CLK_HW_INIT_HW(#_name, &_parent.common.hw, &spacemit_ccu_ddn_ops, _flags)
->  
->  #define CCU_DDN_DEFINE(_name, _parent, _reg_ctrl, _num_shift, _num_width,	\
-> -		       _den_shift, _den_width, _flags)				\
-> +		       _den_shift, _den_width, _pre_div, _flags)		\
->  static struct ccu_ddn _name = {							\
->  	.common = {								\
->  		.reg_ctrl	= _reg_ctrl,					\
-> @@ -33,7 +34,8 @@ static struct ccu_ddn _name = {							\
->  	.num_mask	= GENMASK(_num_shift + _num_width - 1, _num_shift),	\
->  	.num_shift	= _num_shift,						\
->  	.den_mask	= GENMASK(_den_shift + _den_width - 1, _den_shift),	\
-> -	.den_shift	= _den_shift,					\
-> +	.den_shift	= _den_shift,						\
-> +	.pre_div	= _pre_div,						\
->  }
->  
->  static inline struct ccu_ddn *hw_to_ccu_ddn(struct clk_hw *hw)
-> 
-> -- 
-> 2.50.1
-> 
+Best regards,
+Krzysztof
 
