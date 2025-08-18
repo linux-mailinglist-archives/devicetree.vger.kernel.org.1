@@ -1,152 +1,182 @@
-Return-Path: <devicetree+bounces-205788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37FB4B2A335
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A7C6B2A390
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:11:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E1A13AC7D0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:01:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5449B4E5BF3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6089531CA57;
-	Mon, 18 Aug 2025 13:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C895318126;
+	Mon, 18 Aug 2025 13:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="txS1dG3I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D3031A063
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 13:01:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85C1E3218C9
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 13:05:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755522093; cv=none; b=mRrHxPvG4icyeTpV2RL6oDYayDVpYNh9+bh1yjiT4ZQcpZlNdwXMQVuXDTC7lJNrqwuAJ96REpu5ZtN95FXsttZiZz8siHQ24OFDWUO4+Ur7CfRzyhJboGgwHk5PmF8IykRNJW0xs5IyUe9CN4T8OJeaBxtZ8oEVtFOKSJZrsWA=
+	t=1755522322; cv=none; b=u931T020mTl3ElCNvNDykEWMTXIyYUHviwAQdKUqx1K2V2CTg8Lr4DDSatoNFBvV1GmQu77qIeH7ge4kL5+B4anWbVoXei6Df01rFzqajCqtPJSsRcFupHsKlRd/wNYiO6SI37wCOdbvCZqmXaAAec/QD9e39WxlJ0VzVgnYKIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755522093; c=relaxed/simple;
-	bh=lYZ4xblenSXqTgBcJ1Ts2ig91XG8BZggQjJLEkjVl44=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DXlcXbvjiJqIzjhu2FUwzhx8iTd89dvYXYvneNJpDw4e89l+50GebRYpzFWni4rfzxfw3zYjnt9yBoh7i9o6/IABTIkAiGmSi5s0rFUV9rSxL3Fo4HHukE3Rn7nesuTgMHHO9HyT4g7tRFdVz4X8oytqd7qOzUA3ntTSeACWV3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <s.kerkmann@pengutronix.de>)
-	id 1unzUD-0003t9-OS; Mon, 18 Aug 2025 15:01:17 +0200
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <s.kerkmann@pengutronix.de>)
-	id 1unzUD-000uE4-0K;
-	Mon, 18 Aug 2025 15:01:17 +0200
-Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
-	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
-	(envelope-from <s.kerkmann@pengutronix.de>)
-	id 1unzUD-005swT-06;
-	Mon, 18 Aug 2025 15:01:17 +0200
-From: Stefan Kerkmann <s.kerkmann@pengutronix.de>
-Date: Mon, 18 Aug 2025 15:01:08 +0200
-Subject: [PATCH 2/2] ASoC: dt-bindings: ti,pcm1754: add binding
- documentation
+	s=arc-20240116; t=1755522322; c=relaxed/simple;
+	bh=RpAhxP2uLqbqjInuTE70JRXrQca1fdqD+vDq2S1ckfg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iM5w+ZLFa9i9drgT+OXuBlfAC2hnHd7sxMMXzvHFLODKLU2SD1sXEzHnLNXms/1Obki3tCjsOzx76j3FaejlVwSTZTgUBfPe+WUSQFj19nu3bqXTQounu5oeJ/XrdQaXPFbUypkm6vsGxHft78qytnIi24cekNgSSYC4ETWjS9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=txS1dG3I; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b9dc5c8ee7so2631641f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 06:05:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755522319; x=1756127119; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=86BJmrJXeETeW2kp8meE7Uq7AvyYwzMOqYpCJJXyfLs=;
+        b=txS1dG3IyrSDBriMFeWWgHeQgrwquh8uAPpEcdMV0g79noALWuVRWDccj7GLJ7S74Y
+         xkcSjVV0TP3EUphTRiqj2wd00Nv2vZtKKlt1+cDQk7vHlDVDZWqNg6CFHB5jtR2pYed4
+         KYa/OM2BVxixE02a5tGd5K80r8nMYfogIWCMXiAMVqBbLFZxIJP4MTmZ/M/xq0ln6npN
+         bJFKbOMdXwvy5iqAHXiX3HMH8XHxU0VRsE89AMD/mE/GT0+6VlT+0LoB7/CsNA3TtOoN
+         0FmczBnNwrvZHas8ZQEyissCYVIzhwnGkBJyR0OlpcvH/LtbFw05tsOL04Z7JnJuRv7X
+         6fZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755522319; x=1756127119;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=86BJmrJXeETeW2kp8meE7Uq7AvyYwzMOqYpCJJXyfLs=;
+        b=maCa1wIyu4aqqji8E3nmiQgIakIsI+2vzKBLXyKHrvdAXZPYExklg0PZLQbT07vRAf
+         UZRIWgI5Om/mCUnib/6PQYnzHam2U/IARmwQtoPZtB4zE8GLcZey/qtF+gBC3UALQ1us
+         piDeqHmmSHGklh4w4rcrjV+0EMV65fIMXoa7H0s/6rMSoy0zv3csBhjPVBc+0JA9gaf6
+         FJXC211fhSVQDfbRzczaDadS2eZrvn08CW0r6b4OqKv41whNlNnjfHKKR78isDaWy2AV
+         LAcmTwycB/nJLR2USvTdebJmULpErEgKnCgcM30CMuqpOPuN1LkR2PupOEsKmOcAxdKw
+         xhZg==
+X-Forwarded-Encrypted: i=1; AJvYcCU/MhL/o8RTn79G5pF/lINz+zVFdaLcMwuWSInqfjw1Em09HOfwb7AD/rmgg10OB7F7qjjmokxv99Oj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5q9oP48dT8qswk6exLFi24FIsktQBoCpX2aEmWTT8i9sBsnvO
+	jDJmgB/3+np4tH7q2chGWVMiWyDBCYbjF6NRoZaQsyeZuAt92ZddTC6JIX17ZAsKM4Q=
+X-Gm-Gg: ASbGncv9RNb+nlsnUmK0wdmQ78GGLkIx3lSkpckRgCiESi7xHQ7J53t2Y98feAlDr4E
+	vxM03xwEmLZZ5eUbE4T18pz2hL3NTao9AON+oBFzmUvodyMq8Hv7WokEjphs9MpJO4PwmKrqz2q
+	7ueKDQU4bzLcrWm5ZONoUsjUlmvuTdvlRQ+S8wEpTlUWp9HWoQ/GFl33FIlG0v65/NrKh6axy8P
+	H5sioZGx1v+fP4iZg/2aSEV62Oa5UCcRnF+fM7AHNHET3WFo6q6KnC2f9IOD3GFiyy64prluhRb
+	Yrlnnf807ku4Nqv3ut+8rmTI2QmrrbxkxdQ3Ko3B6oYp8HHTAG5pMNmCvVImxx49ulsp/w5kOQ7
+	J+VRjBZtSA6RMlQMmxVZvW25utfipaPRVLT9gmw==
+X-Google-Smtp-Source: AGHT+IHcwykrBK8tXrdhApeeaxgZhKOjTfFirzDPuKeFi7nfZYLL6OLNQGBRz5fJTm0ZvXzAmYWt9A==
+X-Received: by 2002:a05:6000:1788:b0:3b8:d493:31ed with SMTP id ffacd0b85a97d-3bb690d3800mr10683315f8f.47.1755522318746;
+        Mon, 18 Aug 2025 06:05:18 -0700 (PDT)
+Received: from [192.168.1.3] ([185.48.76.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3bb64758d1csm13236548f8f.8.2025.08.18.06.05.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Aug 2025 06:05:17 -0700 (PDT)
+Message-ID: <90d40899-c9b8-4628-a0b5-06ee0aa497be@linaro.org>
+Date: Mon, 18 Aug 2025 14:05:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/13] spi: spi-fsl-lpspi: Set correct chip-select
+ polarity bit
+To: Frank Li <Frank.li@nxp.com>
+Cc: Mark Brown <broonie@kernel.org>, Clark Wang <xiaoning.wang@nxp.com>,
+ Fugang Duan <B38611@freescale.com>, Gao Pan <pandy.gao@nxp.com>,
+ Fugang Duan <fugang.duan@nxp.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Larisa Grigore <larisa.grigore@oss.nxp.com>,
+ Larisa Grigore <larisa.grigore@nxp.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+ Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
+ linux-spi@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
+ <20250814-james-nxp-lpspi-v1-2-9586d7815d14@linaro.org>
+ <aJ4TkKdkIPiJhhF4@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <aJ4TkKdkIPiJhhF4@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250818-v6-12-topic-pcm1754-v1-2-e1dd189ea99a@pengutronix.de>
-References: <20250818-v6-12-topic-pcm1754-v1-0-e1dd189ea99a@pengutronix.de>
-In-Reply-To: <20250818-v6-12-topic-pcm1754-v1-0-e1dd189ea99a@pengutronix.de>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, 
- =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kernel@pengutronix.de, 
- Stefan Kerkmann <s.kerkmann@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: s.kerkmann@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The Texas Instruments PCM1754 is a simple stereo DAC without any digital
-management interface but soft mute, PCM input format and 44.1 kHz
-digital de-emphasis can be configured via strapping pins. Only soft mute
-and PCM input format selection is currently exposed via optional GPIOs
-in the driver.
 
-Signed-off-by: Stefan Kerkmann <s.kerkmann@pengutronix.de>
----
- .../devicetree/bindings/sound/ti,pcm1754.yaml      | 54 ++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1754.yaml b/Documentation/devicetree/bindings/sound/ti,pcm1754.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..924386092a60e6637a1134f174511e7e61b16839
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm1754.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm1754.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments PCM1754 Stereo DAC
-+
-+description: |
-+  The PCM1754 is a simple stereo DAC that is controlled via hardware gpios.
-+
-+maintainers:
-+  - Stefan Kerkmann <s.kerkmann@pengutronix.de>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,pcm1754
-+
-+  VCC-supply: true
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  format-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO used to select the PCM format
-+
-+  mute-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO used to mute all outputs
-+
-+required:
-+  - "#sound-dai-cells"
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    codec {
-+      compatible = "ti,pcm1754";
-+      #sound-dai-cells = <0>;
-+
-+      VCC-supply = <&vcc_reg>;
-+      mute-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
-+      format-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
-+    };
+On 14/08/2025 5:49 pm, Frank Li wrote:
+> On Thu, Aug 14, 2025 at 05:06:42PM +0100, James Clark wrote:
+>> From: Larisa Grigore <larisa.grigore@nxp.com>
+>>
+>> The driver currently supports multiple chip-selects, but only sets the
+>> polarity for the first one (CS 0). Fix it by setting the PCSPOL bit for
+>> the desired chip-select.
+>>
+>> Fixes: 5314987de5e5 ("spi: imx: add lpspi bus driver")
+>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+>> Signed-off-by: James Clark <james.clark@linaro.org>
+>> ---
+>>   drivers/spi/spi-fsl-lpspi.c | 6 ++++--
+>>   1 file changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/spi/spi-fsl-lpspi.c b/drivers/spi/spi-fsl-lpspi.c
+>> index d44a23f7d6c1..c65eb6d31ee7 100644
+>> --- a/drivers/spi/spi-fsl-lpspi.c
+>> +++ b/drivers/spi/spi-fsl-lpspi.c
+>> @@ -70,7 +70,7 @@
+>>   #define DER_TDDE	BIT(0)
+>>   #define CFGR1_PCSCFG	BIT(27)
+>>   #define CFGR1_PINCFG	(BIT(24)|BIT(25))
+>> -#define CFGR1_PCSPOL	BIT(8)
+>> +#define CFGR1_PCSPOL_MASK	GENMASK(11, 8)
+>>   #define CFGR1_NOSTALL	BIT(3)
+>>   #define CFGR1_HOST	BIT(0)
+>>   #define FSR_TXCOUNT	(0xFF)
+>> @@ -425,7 +425,9 @@ static int fsl_lpspi_config(struct fsl_lpspi_data *fsl_lpspi)
+>>   	else
+>>   		temp = CFGR1_PINCFG;
+>>   	if (fsl_lpspi->config.mode & SPI_CS_HIGH)
+>> -		temp |= CFGR1_PCSPOL;
+>> +		temp |= FIELD_PREP(CFGR1_PCSPOL_MASK,
+>> +				   BIT(fsl_lpspi->config.chip_select));
+>> +
+> 
+> Feel like FILED_PREP(..., BIT()) is stranged.
+> 
+> I suggest #define CFGR1_PCSPOL(x) BIT((x) + 8)
+> 
+> Frank
 
--- 
-2.39.5
+It's using an existing macro that everyone knows though and I found 65 
+instances of exactly this. It can be read as "set bit X and put it into 
+the PCSPOL field without any further investigation.
+
+If we make a new macro, first the reader will have to jump to it, then 
+it still doesn't immediately explain what the "+ 8" part is. Using 
+FIELD_PREP() also has the potential to use autogenerated field masks 
+from a machine readable version of the reference manual. You can't 
+statically check your macro to see if + 8 is correct or not, and it also 
+doesn't catch overflow errors like FIELD_PREP() does.
+
+There might be an argument to add a new global macro like 
+FIELD_BIT(mask, bit). But it's not very flexible (can't set multiple 
+bits) and you can already accomplish the same thing by adding BIT() to 
+the existing one.
+
+Thanks
+James
+
+> 
+>>   	writel(temp, fsl_lpspi->base + IMX7ULP_CFGR1);
+>>
+>>   	temp = readl(fsl_lpspi->base + IMX7ULP_CR);
+>>
+>> --
+>> 2.34.1
+>>
 
 
