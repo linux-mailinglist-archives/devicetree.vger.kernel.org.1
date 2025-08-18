@@ -1,184 +1,93 @@
-Return-Path: <devicetree+bounces-205985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E337FB2B0FA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 20:58:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2312B2B0EE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 20:57:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06AE717534B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 18:57:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A6E01893C3D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 18:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D8222727ED;
-	Mon, 18 Aug 2025 18:56:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03A1273D96;
+	Mon, 18 Aug 2025 18:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IdJwzWuo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ayVDIn+8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C070D257854;
-	Mon, 18 Aug 2025 18:56:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC3E5272E6B;
+	Mon, 18 Aug 2025 18:57:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755543418; cv=none; b=ulzlwc0Y5L9gDHAcGmlwfZiI/9zCzojco1QLdSVX1XjuKGEZBxBfvdhjQq7HKI6HeVf7ioW104+pKgmxcYsjdJuUfgOJSx1K0ESkuwjP0p9S8Cc30gv5QNUwFcriNeWh2hr54rhjXumE4+tlOLCwq7Wpw4nE/AL76AjjI0fV1mU=
+	t=1755543427; cv=none; b=dpHWs/e3j3C1H2Z9Jgp690aO1TPgQpBWyhtv1TNE6Fe7nUKwMjvb0yT1OAS5ZcyZwrOfp0XrJTdRwz+g4BZ5ZmgLIeR0JgglecujsMqKWIQAhvaR8o4JEhy6z4AYDxFK1/db2ahwJrkMc+DaJwnyOMd49MswfztVt87nApT/cXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755543418; c=relaxed/simple;
-	bh=cW6Zw4X6l/8LtzSm0XuIo7DagtVAErRt/WZ2KMJ9BoA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=C853F+zRZKR8O3tSXA9zo4BqVlnoYIDqm/emND90Oq/TgVWvAN9sfZLZU/Re2cuNeuOxf3nSN9Gcr63hj5MWtNe70BDyuLjP/RhfMAtiqelQHolmFcGBm+IDyVHSMcW5VCrKDsMY608cVwuVbTMYh69YYRCn7FvxF2uNU6Ykp6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IdJwzWuo; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-333e7517adcso49462301fa.1;
-        Mon, 18 Aug 2025 11:56:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755543415; x=1756148215; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HDBB8ZTTu16kBJ12UfAqyQDqCQPi74zEgHxFOpa7z7s=;
-        b=IdJwzWuobAhli6LIjE8P7WwKYJ3KCLOiwbFRAM71xkzRMGDkLfB+L2VfjgHEaeN9yZ
-         eSg1xM2cEHDUZtF/jI+PWA+JC92ch+bT8NDi4iQNs7GGojZS/2sJA6J28eJrfk1T46kh
-         t3yxocXavLAnJgGMnB1TpKXPyLoqkVsqqbWYnsVmotHzBP8Z2ARKqag0tA/hVPtGJPXA
-         C6pbr+ePo09XzsPeIw7h+QpZQZe4Gvcb9Qz9wcWxkhlfsHnFxlctD0rzg9V3inJ8IWzJ
-         DOYsKIJM1lGhac1wvAlA418v4d6J603oSwjTV8+4og14RMAPdZWRbU6VAZrsZ7lz8qE2
-         VD7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755543415; x=1756148215;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HDBB8ZTTu16kBJ12UfAqyQDqCQPi74zEgHxFOpa7z7s=;
-        b=whj0U9bD0KaxeQYTVkHFeOd/T08nEOtYNfaUCmv3w16r35LdCV0XBN9EHiGr3Rfk4x
-         7TPBD6fDpjfMZnP3ajxR9uAPKdd1zjI+19qMyhdsaJZYnIGyxpZ9BDFG/RMbamdJzNWn
-         7QwKXmAYKlyBw86hvkWFwjkLsEhQ0GrPaPHrrSYXgjQpVyCG+1mKj6Ew+m+r+9xgB4RS
-         U7zMFDPbQ2nGJICzx6sNVgC2vIoGXuq55I97bv0+s8klVwMKkrZsMAHSSSpfYHwFkwm4
-         L9GVwaXi8U2xrs3beOTDKsf+uNXVGt+mOJkti7gHvPOpK64ra1ey8PUAaaWNgNJtwK0X
-         ywDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU5zHDZPFC7/1g23KEZW7qcK3GonAjqiDjBv8ASZAnzXP4FDMlhmeYjcf6Sbv4ee6Nizz0Q7ODEymzdddBb@vger.kernel.org, AJvYcCUZbYG4HNTE5GWOoUGdPx8ORzVrrfEtKQJQYzCFt3kqQq/EJMzHtCgTLtpEkHdzwwE6oFp4yq92FbWANr8=@vger.kernel.org, AJvYcCWMRvSyQapwK2rLXwbixTFvV3sYpnOVIcN75iQV2vXpYufI2D4KjNxXE05ty4tK3s3u8cHBDdL1j2Ti@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoRjfdE+F12OtRj1MWqKA4tlqWa/XfJ9qSFC/wMNi76WRTu3k4
-	sKvHSV70U4jHXsjahTrMgnQM83SuRbCx26o5jCc0lawpNot1cKEpq+5jwJVsyXcLys9oR0ls9CY
-	/w4tTP0FL0L23Ko3K67RRAqQk8U1pqjEfgZnu
-X-Gm-Gg: ASbGncv1al/rBJuTb+UFwYLR+m0/c75PWEh26kD+U7TiTDG0cC9VRJ2VUpR51LAyW1q
-	ryK8CA48WFyJOrHN6QaT5lWJMyLIFKGkBeRFKRITWoRNnoRvJOO78H1D9jX426KofoZ2xswe+Br
-	ZqgMupTV5y4QGrM/dWTyzyNcBO1ks46lzLXo8QKoVOLm0IlgUtepmSDPOfuUoQlQPPnGQ0DNYxZ
-	SQg5rdPRDbtdGJMCw==
-X-Google-Smtp-Source: AGHT+IGLpwruHH1jFqPtCTgTST4GSi1QWs0KmUfeU010gjKHdHCYYcHRxDOhtE/4BKTUsTrlBPwKO5g7s6nZcyt64Xg=
-X-Received: by 2002:a2e:be21:0:b0:32b:a9a4:cd58 with SMTP id
- 38308e7fff4ca-3352ddd4b5dmr1697761fa.15.1755543414532; Mon, 18 Aug 2025
- 11:56:54 -0700 (PDT)
+	s=arc-20240116; t=1755543427; c=relaxed/simple;
+	bh=LLrbrlWI1+1Wrpjrc3PeIRE7Z93HYyEAJTPMZ/3akPw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IHN2pe6xhZurUy1C8w7/pa5GDtFh3XIiIjzUQghLmDlb5mW3sJeVi8y1v0Z+Ri9C6WRgpG6Q185PLixPLaaXxAi1V5UqR8fUlR9318RgYThdcR58wIYcWWnV447FCo4BGEEDoyfkzoITQCQwRLssoGMmgNhqBG4HxCVJC7gUJ/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ayVDIn+8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CB86C4CEEB;
+	Mon, 18 Aug 2025 18:57:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755543427;
+	bh=LLrbrlWI1+1Wrpjrc3PeIRE7Z93HYyEAJTPMZ/3akPw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ayVDIn+8U8Wx4EDu34txQp0k4cUvEI7PP0j0IId9lGTOOiHRy6gfy0+DzeATALLY8
+	 jTSbQbPNF2xefOSoqneA1b0kFBHRCVNapPVfsbVQEzdlrvh7zVFlMA3GvX4CyPwANC
+	 klwjkKeEzA+boXeqgbEyzx2Tt3TM3uOUX/DPs5/P0XDlvo4pUMPgdghgDSofFnAKgz
+	 UUdxX76YVQgDB2rGVCLIUQFQ4TJ0SUyq+3wiAg1Osm7lcoByulhsoNb7ZnbbwDUfPT
+	 BJZ1ueDbYSGUwQZ3nK6YFm3QY/yE9B/0Ir3H7Q2ZmRc16A5/XDoUGAvBWLcVK/S+eO
+	 ozRWNrUGUdxEQ==
+Date: Mon, 18 Aug 2025 11:57:05 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Stanimir Varbanov <svarbanov@suse.de>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andrea della Porta <andrea.porta@suse.com>, Nicolas
+ Ferre <nicolas.ferre@microchip.com>, Claudiu Beznea
+ <claudiu.beznea@tuxon.dev>, Phil Elwell <phil@raspberrypi.com>, Jonathan
+ Bell <jonathan@raspberrypi.com>, Dave Stevenson
+ <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH 0/5] Add ethernet support for RPi5
+Message-ID: <20250818115705.72533d08@kernel.org>
+In-Reply-To: <68c3db9d-daf5-40ed-91a7-1d08b9c8cb52@broadcom.com>
+References: <20250815135911.1383385-1-svarbanov@suse.de>
+	<4c454b3c-f62c-4086-a665-282aa2f4a0e1@broadcom.com>
+	<20250818115041.71041ad6@kernel.org>
+	<68c3db9d-daf5-40ed-91a7-1d08b9c8cb52@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250513-tx2nx-role-switch-v1-1-d92ea1870ea5@gmail.com>
- <CALHNRZ8H66g98ThQKZJAT2UohVNtt6OS=rKd5wtcT1YwBLURqA@mail.gmail.com>
- <CALHNRZ84+KGwioU=7ZOL=O39cR_VSRJBaV42MsA4fymXNJC6+g@mail.gmail.com>
- <CALHNRZ9zfjV-ZttJd_ydgEaWk7XB+3YPfKGuYXLBL9qA8Exv0g@mail.gmail.com>
- <CALHNRZ-HTFz38xZFsbpG6C3r_xDQTLNOZWPX21TzNPaLyxf6Xw@mail.gmail.com> <xmirimw2guubgrf6umt4qiknpyjaepkrx4oggcmaffoyd5sli2@kzewnjv3bkjf>
-In-Reply-To: <xmirimw2guubgrf6umt4qiknpyjaepkrx4oggcmaffoyd5sli2@kzewnjv3bkjf>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 18 Aug 2025 13:56:42 -0500
-X-Gm-Features: Ac12FXzctcgTCF1B-HAlLK99s32lr_bBmhmmmU7bUtTEBs9HP1D4InDwm7lzs-I
-Message-ID: <CALHNRZ9uJ9g6BGhUmBaaMM3DhQDh7mTtqKKr0A98X-5V4ompEg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: tegra: Remove otg id gpio from Jetson TX2 NX
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Aug 1, 2025 at 4:43=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
-.com> wrote:
->
-> On Thu, Jul 31, 2025 at 04:36:17PM -0500, Aaron Kling wrote:
-> > On Mon, Jul 14, 2025 at 12:35=E2=80=AFAM Aaron Kling <webgeek1234@gmail=
-.com> wrote:
-> > >
-> > > On Mon, Jun 30, 2025 at 2:27=E2=80=AFPM Aaron Kling <webgeek1234@gmai=
-l.com> wrote:
-> > > >
-> > > > On Wed, May 28, 2025 at 12:42=E2=80=AFPM Aaron Kling <webgeek1234@g=
-mail.com> wrote:
-> > > > >
-> > > > > On Tue, May 13, 2025 at 4:10=E2=80=AFPM Aaron Kling via B4 Relay
-> > > > > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
-> > > > > >
-> > > > > > From: Aaron Kling <webgeek1234@gmail.com>
-> > > > > >
-> > > > > > The p3509 carrier board does not connect the id gpio. Prior to =
-this, the
-> > > > > > gpio role switch driver could not detect the mode of the otg po=
-rt.
-> > > > > >
-> > > > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > > > > > ---
-> > > > > >  arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts =
-| 1 -
-> > > > > >  1 file changed, 1 deletion(-)
-> > > > > >
-> > > > > > diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p36=
-36-0001.dts b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
-> > > > > > index 26f71651933d1d8ef32bbd1645cac1820bd2e104..81f204e456409df=
-355bbcb691ef99b0d0c9d504e 100644
-> > > > > > --- a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001=
-.dts
-> > > > > > +++ b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001=
-.dts
-> > > > > > @@ -669,7 +669,6 @@ connector {
-> > > > > >                                         vbus-gpios =3D <&gpio
-> > > > > >                                                       TEGRA186_=
-MAIN_GPIO(L, 4)
-> > > > > >                                                       GPIO_ACTI=
-VE_LOW>;
-> > > > > > -                                       id-gpios =3D <&pmic 0 G=
-PIO_ACTIVE_HIGH>;
-> > > > > >                                 };
-> > > > > >                         };
-> > > > > >
-> > > > > >
-> > > > > > ---
-> > > > > > base-commit: 405e6c37c89ef0df2bfc7a988820a3df22dacb1b
-> > > > > > change-id: 20250513-tx2nx-role-switch-37ec55d25189
-> > > > > >
-> > > > > > Best regards,
-> > > > > > --
-> > > > > > Aaron Kling <webgeek1234@gmail.com>
-> > > > > >
-> > > > > >
-> > > > >
-> > > > > Friendly reminder about this patch.
-> > > >
-> > > > Re-reminder about this patch.
-> > >
-> > > Yet another reminder about this patch. It's been over two months
-> > > without a response and many other patches have been pulled in the
-> > > meantime.
-> >
-> > Reminder yet again about this patch. It's now been two and a half
-> > months without even an acknowledgement from the maintainers.
-> >
-> > This one is getting annoying. What does it take to get a response from
-> > the tegra subsystem maintainers? Does time have to be pre-allocated by
-> > the company to look at patches that aren't from @nvidia.com's? Are
-> > there certain times during a development cycle? When responses happen,
-> > it seems like there's a lot of activity. But then everything goes
-> > silent again for months. I've not seen any pattern to it so far and
-> > it's becoming extremely frustrating.
->
-> Just people being busy. Nothing more, nothing less. I'll pick this up
-> once the merge window closes.
+On Mon, 18 Aug 2025 11:52:28 -0700 Florian Fainelli wrote:
+> On 8/18/25 11:50, Jakub Kicinski wrote:
+> > On Mon, 18 Aug 2025 11:02:15 -0700 Florian Fainelli wrote:  
+> >> netdev maintainers, do you mind if I take patches 2, 4 and 5 via the
+> >> Broadcom ARM SoC tree to avoid generating conflicts down the road? You
+> >> can take patches 1 and 3. Thanks  
+> > 
+> > 4, 5 make perfect sense, why patch 2? We usually take bindings.  
+> 
+> Because that way when CI runs against the ARM SoC tree, we don't get 
+> errors that the bindings are undocumented.
 
-If I understand correctly, the merge window closed on August 10th. And
-I still haven't seen any movement on open patches. If everything
-unrelated is on hold until after Tegra264 launch or something like
-that, it would be nice to at least set that expectation instead of
-everything being held arbitrarily in suspense.
-
-Aaron
+Hm, my understanding is that validation should use bindings from
+linux-next.. tho I'm not 100% sure. Perhaps DT maintainers can
+clarify. This problem exists for all DT changes, unless there's
+something exceptional about the patches I'd rather follow the default
+process.
 
