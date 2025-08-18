@@ -1,168 +1,136 @@
-Return-Path: <devicetree+bounces-205819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825A8B2A5A5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:36:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42AE6B2A6A8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:46:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3DCFD4E36A3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:36:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60122686D73
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4C3322542;
-	Mon, 18 Aug 2025 13:31:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t0ybjQFT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF53322A07;
+	Mon, 18 Aug 2025 13:34:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C044321F59
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 13:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F6C220696;
+	Mon, 18 Aug 2025 13:34:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755523915; cv=none; b=bu8wKVJ986LKdfYC89tLUArkn1lQ2bo0LjHiTAjSucHWl874h8q9h43jydpASfc8UuuQLgfWlJgALDs4ylySBS0kokgehfp+P5Sb4w11EyE9r2om+v1yDuHLuqb62w+4V6NaCKURlc1K/6ip+VL4lx3AmhN/bZbHSoS1XJjV10g=
+	t=1755524047; cv=none; b=YhZfJtzoxOt0WatL9zUwUV8jF3sHCcFl0W5m+tysEoyGBEwcbGxd7tOmE9YO8rnfuLf/RMjSgFaemn146+gxj4MW6HMttxZtLei613qDkGyyHbaCdooyX3+21CL2AAYX0M9JCPAabL+NvcKEdiP594i/s5tTa51eA7r2acnenA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755523915; c=relaxed/simple;
-	bh=psGGo+q29tQwkhb2p9+G6aCr6y6wqU+zBZ3myvRYS2Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pFJYrir3xjj1m3ps511VsSjpjhuFlyLY0RT+kPU4IpRIgCvg9oV7CAj5bTAdD2Vmb8P5/fxy0A4u99mcN3gyf3C7Ny5fSz/4ESt1tO5hqsXYiI9YVf12odFl6PM/UWHh1J9cHPtjgid8uzlgBpaUNCpdGVcoleNSYw4f8eWJlJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t0ybjQFT; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3b9d41cd38dso3326818f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 06:31:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755523912; x=1756128712; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kxqOAdTahBCTy7k9I2OysnH6iHbDX78DGOE9Ul6vuMg=;
-        b=t0ybjQFTBLH5xKuROBZPWOEP2X/uUDHLGWcC19rf28A8LYFuVYHp+t3CUhdvLRFk1a
-         7D8dVoUf7rZDBOeLy4iJxGd27JmtDmeGPIFTCaElS7aL5FjfuNUp6FFP11pbwbfg0kKt
-         RktKRoPoG5Y0ELetAXrc0zOXc8oHW46fTqZx1hz/BkHBB4uuvW0AkLIh8vWyWEyVPKyP
-         OAEMEaQ2xC4/FjGwaikDkCqxIBxLa4N/s9//qY1uGOWPkKlQAQltvR4C4zxGQ8bLVjZp
-         WWp5Jfn+xZkQc8JQOZWlmSNnkOd9QDhjNGCPcyUezgANf/G5l5xO2EA9ukR6Uz86vX6V
-         DlKA==
+	s=arc-20240116; t=1755524047; c=relaxed/simple;
+	bh=1pw3jI7BBV2KzsRXPuwqddCmk1U5bGLWdpUliQrhCAk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EIP3CMEFHsEI7dyUDmWqeNx9vNu4j2c14wWkXnGnodlRZAyIoXzF8tg/rTzMdlThfo5IwCw/pbgfKN8JyQeyzSBwtqvf+XthQ/wFXTOvlEZvwaY6N//Vlc2iQWcDzFsAmy0+1Batr/GTeWi5nD/dh/plEajhveukxZvxSVENAfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-53b174ca9bdso3172118e0c.2;
+        Mon, 18 Aug 2025 06:34:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755523912; x=1756128712;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kxqOAdTahBCTy7k9I2OysnH6iHbDX78DGOE9Ul6vuMg=;
-        b=EZfwsb973F98RDHrcTldtqS6SQICsXtEoDQf8VIrn3Dm8yUiBezQ8oxknJbW8GdS47
-         phl/yD9/CTtNWZuVWTkH69OYGP+XDc3Xlp/coP/qz1WQG2f2sa6yTgh5P7IFPM877+6r
-         xL7Uzj3GzSizqrpwZIOpnt7Rx25pN4yiouTqeD+m0JQ64dE9sjzUiZOceDwMHa1rsvGr
-         LkbZ3VJ/bzxfYkiCAR6jk27SDgo0RTQ8YWKqWYg5KqIF2TJ41cSpLq+Y6tZkvovTtQwJ
-         itoMqNfBIczeys/V3ANLX81zGp9u6jVfrccnxppZLXw8qxRQ57YyON2THj1U04Y1pRjF
-         g/BQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXare0N7JuUo3X7x/Gw4JES3oMdqjZbeHSqxp0hOK1IXV+/ijGp+8/HutXaZ4HVZyvviEPDi3wD/yZK@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAjGWn4x0KZZNzYedK2Yoi8+pBP6MslkGtmfG26EPzz7CIol/A
-	a6fGEYzMLxZrOrswGWVkzKMCliLDRz2EgqvwiS+INXImceSPZOqhziI/1HtmX9TRAds=
-X-Gm-Gg: ASbGncsQxcA/q34gj8VeSiPak2KFf/ZW5apEnjiL6sORyt3EMzBKMmWPyuGJ2VrKpzT
-	5Cdz66bWtdUwsSaMv3A4zwWCTYXMFLrTrV2057Xcn/rOt5ZENM/GZjC2mZJv3zgg6MU9CeF8SWV
-	oNSmWWO3U0Vm40V+CkB4mFbLjmIeu/2n0PMGx7WizuiHiOSkuiWeipH4Mb0UOklbCEwj3Owogc3
-	OdBqTAtMMgLmfikemX1ObLy5/xP8szl+xUorLnZ9Gu3gKqgbbOUundTnvqTMI18L0/yDwySeWiR
-	OBRWHGcrSl+NewffhYMRaX/hWUnqNKmoN+dIxYk1NjKw5P3PTOUPbV7YkJ/xSQlOjB1d8udnSmN
-	Tu0zj2GydAJCQdciC1NE1xncJqbE=
-X-Google-Smtp-Source: AGHT+IEHaxfhHyN2OlOCJM1LCuzQK+0ngY10UoeZqNZoqkFY+N+fhTjcOBUMDDIKBauOY81Na0BJmA==
-X-Received: by 2002:a05:6000:18aa:b0:3b7:9af4:9c75 with SMTP id ffacd0b85a97d-3bb68545c71mr8765815f8f.30.1755523912274;
-        Mon, 18 Aug 2025 06:31:52 -0700 (PDT)
-Received: from [192.168.1.3] ([185.48.76.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3bb676c96dasm12687711f8f.43.2025.08.18.06.31.50
+        d=1e100.net; s=20230601; t=1755524044; x=1756128844;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QgSit3yr4YOi0EHhRCuskcW3KZWGO3LCsBYUVodTm00=;
+        b=BKibIjQhol/5gtHk0EsF2b8+JtBVvlMOEa/ITifiK6tKmc5qZwpu4AIIOTqAwPDjpl
+         TGIaXTyu/PV+GegqvGtKYd2HwxN6oCk1zCEFn2+mE1mpHfz89Fw+kJuakOaMbR97fyiv
+         jjY98nsyWCzLSHonj27RCCRBEFMx2g+y0k2f+/ao9vPIborD1HpXLbjhpJ83u3cLDuSS
+         HRLPcShknLuRkzlenOwO2tmpFNEueNTvBW9oedzd6HjUDsnBwpldZ8f9VXC2WgsLcIu3
+         hzxm0wAm/0tZY3eX49HrSZKMeng1z99F7zjz9sidOc7D5nyacZEfIoND7xU4AQvaMeI7
+         yM4g==
+X-Forwarded-Encrypted: i=1; AJvYcCUYWn1b7EZIGp9hPD5p3ofZqKGmEXXNUfu+IN75RRfsIsAsTbDk31E6UBR8Mq3avY/+LT4LXa2up/z1KgVEh9srqaI=@vger.kernel.org, AJvYcCV2cktIO3ndXNTXQMi72NSvIuG3PmAt3bMG4M34Yk9J7XNwBtUa/6WEchW5BaK9buqwvEuZdGYvYWZcCxgU@vger.kernel.org, AJvYcCXkJneKfnL2lx8voPtbOjGFMOAgdrgjFZkfZc4+AHZyAiS+DUHvIJUXwW9AU1RSFIAvZXJWcinigQy1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+1B1/Oh11VnHw7kAxgQoz3RVh3AmUaSgQUxRvS3+hbZjJ1cIN
+	wf8VTeTcLeG/L9G52rPcTn/dcc2QjNjv6RPNAoyVmql6SgaIbD6JHk6UwGVOE/AI
+X-Gm-Gg: ASbGncszr6eiDVWE4jDCofkSF7gG/kA4jIPJI65At8VZMse1FX4aJw8fueqHYknLuTQ
+	VdpjrVw6hK8rDUTJctytdHYkwLgilniJAamVjJ8wozn1oImrQvjS4iBUJ1l+RHS+32093jRIj8F
+	320TGL7Y2Rr2MbQzaKXnf2s8v1xs3caf1fdBMHNjxwENKYkeHt0bsFHnhbvmdGq6smKkOZp7OVc
+	/jjt8OIJ4VFwqOBdqztKLOEA9hqWW27FilmJSsqpWMx/AfkbM5tOTpaDcK3s7NOvMup/bZ+M+/F
+	APb2NTfwCm6x98VrTXsHNdGFH+b86yWvw4CKyppYTmioTJC7KUHeEkcOGXKhseMHlkCkzJJ24ik
+	IsWyYpFus5roCIpNdT0Th5XDsI0D7pfY6Cn3cf14bDBoYo8AttReEiFRU99rK
+X-Google-Smtp-Source: AGHT+IFY/0cfE4Ke9QE/QqwL7fCTa2dQInoYvb5Vyit6HT01a0rri0l50/XZp35P+S2dtEd0deXc7A==
+X-Received: by 2002:a05:6122:3129:b0:538:dbc9:17a6 with SMTP id 71dfb90a1353d-53b2b81e77dmr4525471e0c.4.1755524043891;
+        Mon, 18 Aug 2025 06:34:03 -0700 (PDT)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53b2bed9fe1sm1965369e0c.16.2025.08.18.06.34.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 06:31:51 -0700 (PDT)
-Message-ID: <3f401e84-7236-457f-a2ce-ee45898f1ab9@linaro.org>
-Date: Mon, 18 Aug 2025 14:31:50 +0100
+        Mon, 18 Aug 2025 06:34:03 -0700 (PDT)
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-50f88ed81c8so2739539137.1;
+        Mon, 18 Aug 2025 06:34:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUo1EJYH8YugCY2vnMNK9SY/zkQsyAy8PSpf9hHwrSTjWysZzLBzQvXhDx6hgYZs943GZIyypRQmkLH@vger.kernel.org, AJvYcCUq9c999X062YLuH3zH2lW1oBWO2OWgD0EH47K6lZS8V6Q5LTCVqnl2HwInIKaFDKACdGA92gO8Qub7dSunlhlNC7Y=@vger.kernel.org, AJvYcCVlZqSw2l2+5heuunZmbBX+GrWpa83xkahrhC33RCVWyyj0p7cemW2F4HiHRhxK2u0DmcqBmHFvH5Sy/I7d@vger.kernel.org
+X-Received: by 2002:a05:6102:a4f:b0:4e6:ddd0:96ea with SMTP id
+ ada2fe7eead31-5126af22ce8mr4578600137.10.1755524043532; Mon, 18 Aug 2025
+ 06:34:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/13] dt-bindings: lpspi: Update maximum num-cs value
-To: Frank Li <Frank.li@nxp.com>
-Cc: Mark Brown <broonie@kernel.org>, Clark Wang <xiaoning.wang@nxp.com>,
- Fugang Duan <B38611@freescale.com>, Gao Pan <pandy.gao@nxp.com>,
- Fugang Duan <fugang.duan@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Larisa Grigore <larisa.grigore@oss.nxp.com>,
- Larisa Grigore <larisa.grigore@nxp.com>,
- Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
- Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
- linux-spi@vger.kernel.org, imx@lists.linux.dev,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
- <20250814-james-nxp-lpspi-v1-11-9586d7815d14@linaro.org>
- <aJ4qw5eF10oJMIIA@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <aJ4qw5eF10oJMIIA@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250812200344.3253781-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250812200344.3253781-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250812200344.3253781-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 18 Aug 2025 15:33:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX=8rdWHyTpUmreOy5Nf-kiAoQMVakU051AyC2BoVP8vA@mail.gmail.com>
+X-Gm-Features: Ac12FXz7U2bymUEbDTug3-Nx7SFQ-o7CnKN2bmCFrxf4VUWmLJsbplYrboKH96U
+Message-ID: <CAMuHMdX=8rdWHyTpUmreOy5Nf-kiAoQMVakU051AyC2BoVP8vA@mail.gmail.com>
+Subject: Re: [PATCH 04/13] arm64: dts: renesas: r9a09g087: Add pinctrl node
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Prabhakar,
+
+On Tue, 12 Aug 2025 at 22:03, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add pinctrl node to RZ/N2H ("R9A09G087") SoC DTSI.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
+> @@ -5,6 +5,17 @@
+>   * Copyright (C) 2025 Renesas Electronics Corp.
+>   */
+>
+> +#define RZN2H_PINS_PER_PORT    8
+> +
+> +/*
+> + * Create the pin index from its bank and position numbers and store in
+> + * the upper 16 bits the alternate function identifier
+> + */
+> +#define RZN2H_PORT_PINMUX(b, p, f)     ((b) * RZN2H_PINS_PER_PORT + (p) | ((f) << 16))
+> +
+> +/* Convert a port and pin label to its global pin index */
+> +#define RZN2H_GPIO(port, pin)  ((port) * RZN2H_PINS_PER_PORT + (pin))
+
+Shouldn't this be in a header file under include/dt-bindings/pinctrl/?
+Else you have to duplicate these definitions in DT overlays.
+
+The rest LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-On 14/08/2025 7:28 pm, Frank Li wrote:
-> On Thu, Aug 14, 2025 at 05:06:51PM +0100, James Clark wrote:
->> As mentioned in commit f46b06e62c86 ("spi: spi-fsl-lpspi: Read
->> chip-select amount from hardware for i.MX93"), some devices support up
->> to 3 chip selects so update the max value.
->>
->> This isn't a fix or functional change because the devices with 3 chip
->> selects support reading the number of chip selects from hardware, so the
->> value wouldn't have needed to be set here. However the commit states
->> that the DT could be used to overwrite any HW value, so the full range
->> should be supported. This also avoids confusion for any readers about
->> how many chip selects there are.
->>
->> Signed-off-by: James Clark <james.clark@linaro.org>
->> ---
->>   Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
->> index a65a42ccaafe..ce7bd44ee17e 100644
->> --- a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
->> +++ b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
->> @@ -64,7 +64,7 @@ properties:
->>       description:
->>         number of chip selects.
->>       minimum: 1
->> -    maximum: 2
->> +    maximum: 3
-> 
-> You need keep the same restriction for other compatible string, or need
-
-Not sure I follow here. Don't the binding docs only cover the maximum 
-range of valid inputs for all covered platforms? They don't go into 
-details about which ranges are valid for every individual sub-platform.
-
-For example if a platform didn't support DMA we wouldn't say it's not 
-valid to label DMA channels in the binding doc. If someone puts 3 
-instead of 2 then that's just a mistake, but documenting valid ranges 
-can't really fix a mistake like that. And changing 2 to 3 doesn't break 
-existing DTs, only making it smaller would.
-
-> reason for other platform which also support up to 3.
-
-The reason is that some platforms support 3, so I thought it made most 
-sense to set the max to 3. I replied more on the thread with Rob, but we 
-can just drop this one.
-
-> 
-> Frank
-> 
->>       default: 1
->>
->>     power-domains:
->>
->> --
->> 2.34.1
->>
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
