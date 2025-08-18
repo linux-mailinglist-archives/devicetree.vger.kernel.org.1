@@ -1,354 +1,211 @@
-Return-Path: <devicetree+bounces-206101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8D0B2B8A8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 07:30:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A1DB29AFE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:43:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4529E3BAF72
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 05:29:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32BF32031B7
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:43:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54BE13101A5;
-	Tue, 19 Aug 2025 05:29:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCFB27E7DA;
+	Mon, 18 Aug 2025 07:43:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="d67urHkA"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MoRclEqH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE2C30FF2F
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 05:29:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB2A27E07E
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 07:43:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755581372; cv=none; b=R/1COiA2BsPX+VlI/xgfu19j91fLQQoaXaXzXO+QIh338o5eeKXZAZpjqP3bIM4Mdtl6ScCRRuZsfiXUs2LA5dA4sYdj2QpGV2K2H733OPjv+kTvrAeAL+lw63JKzQ5R1Bagcqq9HhoR7D9fGcGu47Ajp/ga4Z18IGzCqGatEAE=
+	t=1755502991; cv=none; b=KJJ6mdk1Q0dDvoB0XOPmj8jsY4des66YDXEg76ZCfjfgo2R/Ya8LNM9s7M7Tim5l9Aj/+274hBU8yfRiWKD+Ei94te9LY1A5zv1Shm+1OEjz2Px3cV7RPFd/lASPXIo2S1BFR1YabFoIhfF7+fDaWu9gw5OXZu+tPptsj8Hi6Zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755581372; c=relaxed/simple;
-	bh=oQBxwgAjB1Sit//E1gyu6jsGAnXwnwVCiu7w5uK1veg=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=YAKF7KDXl+Y5X02fANDh/kiNLnK3KKrRs0t779Ai+M5OADc7T5Jt8AfWKXOgwLNVnHYmCk+LVqlg3hcwcykBE7InJINh5Jhdy6caqR+mOQabxNP8yT3tCVW2PGj+czDK7YPlAZh/YB/l1Jo5vI7eQWU4AUQ4Fy/9py97WvFEClo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=d67urHkA; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250819052923epoutp022011a80d8989c6e699e5523485467504~dE-LHw0Ld2996429964epoutp02f
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 05:29:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250819052923epoutp022011a80d8989c6e699e5523485467504~dE-LHw0Ld2996429964epoutp02f
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1755581363;
-	bh=6MG+/Jai4e9wBAwA5aA5ZNa5PbIOBcMt7Lw3JvyLk6w=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=d67urHkAZCwPT6xGIAQeP+7Mr4oeVqK3CMHCwe+Bzw0iZh+ZIDas4vM5tHIW2Zxkt
-	 /hVeIH8bg/z8qSzULkWnA5nFNdOT3OBEiR9gOnM88/KKVeTs/DvoPVDJXwvdXii+57
-	 d0FPOs0kA0iOIskNZ8lhuis/+MErNgNln37WUtj4=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
-	20250819052922epcas5p48d6c5c5c355795ed5a957f8effe6dbd3~dE-KYwSKb1102711027epcas5p4U;
-	Tue, 19 Aug 2025 05:29:22 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.86]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4c5dS03lX4z3hhT7; Tue, 19 Aug
-	2025 05:29:20 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250818074152epcas5p38e555d935cb93f38ed0a590003a53da1~czJkANOlH1134711347epcas5p3L;
-	Mon, 18 Aug 2025 07:41:52 +0000 (GMT)
-Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250818074149epsmtip265c95d1fd9e613f0c41ca6c3c05681fa~czJhJl2tB1399313993epsmtip2R;
-	Mon, 18 Aug 2025 07:41:49 +0000 (GMT)
-From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
-To: "'Vinod Koul'" <vkoul@kernel.org>
-Cc: <kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
-	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
-	<igor.belwon@mentallysanemainliners.org>, <m.szyprowski@samsung.com>,
-	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <aJtN7uVUV3YhfY5-@vaman>
-Subject: RE: [PATCH v5 6/6] phy: exynos5-usbdrd: support SS combo phy for
- ExynosAutov920
-Date: Mon, 18 Aug 2025 13:11:48 +0530
-Message-ID: <038a01dc1013$900a2800$b01e7800$@samsung.com>
+	s=arc-20240116; t=1755502991; c=relaxed/simple;
+	bh=WCl0AaGlA+XtROGE2++6JjAtk2OJ2sH1wzVqlPRaXnc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XKtBMgYJeCHe6TLQrFZJcpgvgtnl0+QBD4XXhmc0HZ1nNACsBa0l/XIMozqF51QOQqfn3qg6PewsePjaKMVSankOzGVe2L2KhFT9TbmArLilTcm+PhQOHwYBppcBAmfNQIswpM6VXeoaJw4JlQhATuvHWc+Wihp9I56UM2GGhpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=MoRclEqH; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1755502989;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=7Q9dfL5NkBeTOjHsVTZ5sPYGGBR76TYaJ3knIQdKHmo=;
+	b=MoRclEqHsVa/6lYVzQX5ePjIPXJtHRFxkW87O1YTKaTI9N/GdoQDyG+sP+9zvYe671Pu15
+	pudQPJOlZp0RooWiJNq2LoAHuSt+psrCC1XV9udb8lhUo1LjC5D1+h5H9ka+c40bf2DqA8
+	f8ftdl4fSxfZGOOU4UvvPVlmNXkmIGo=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-402-4e0zDli5NB-JYfnm-kUaGw-1; Mon, 18 Aug 2025 03:43:07 -0400
+X-MC-Unique: 4e0zDli5NB-JYfnm-kUaGw-1
+X-Mimecast-MFC-AGG-ID: 4e0zDli5NB-JYfnm-kUaGw_1755502986
+Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-45a1b0cfbafso23140915e9.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 00:43:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755502986; x=1756107786;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7Q9dfL5NkBeTOjHsVTZ5sPYGGBR76TYaJ3knIQdKHmo=;
+        b=soXPW5KraVsNelm6eUStW+rkbyaEpdULa9sYseB2iT4B4FeyCqVnfiooeHhboWNyTc
+         UE/ZjDoDQ8wyiAFBEFCMQ8hq5YKkTg4Lif4Y4ziDTry7YGinrbH41sGDMroOaBeQkisg
+         9O2wTxfDMSk1LmdWZQUr9OkStHY+OSZ/A9VZ6bKZodAXYL8cVC4H2dt/iQRhhbhropkZ
+         eBGqzarslV+4y3bkkQUT73mZkoRt+n/NBX+pcgcwJHOIZGPAN2JNNle0ba8eGtX4yXzO
+         EFMggRkgMi3NCgTDuoj2mt5m4iTBX/sDX+FNF7Cnucg/kentmHlXst42AHpXK+OV3Vn9
+         YPHg==
+X-Forwarded-Encrypted: i=1; AJvYcCV1u95XCVa8EGPBpZKIkQNXs3zP9M1b96/TH92vGjW7j3kO+++4Z0g2+mhNlH0GabqheCbeNWc2cPDX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwM0gqS+UVG2SuLScZnGMLGxLmseWAJI6ys+mH8kZ9wFoqCtRjV
+	Ncogx0HfwRRmGSWRKNEjrSyrKTFlePu4xBahzjN/bX8VD4S+L4UqwCowVUUx0e3jjBL5IjP8jm1
+	rrIAuQQyKWSv3PAwAiH+0w/uuDAr1dGHNuAEKmOmfYIcxCTYaAdsdsNTSULnVRXY=
+X-Gm-Gg: ASbGnctoIK+luvGtqU1vpTYBYbqYDpCtnRNcZpH+YUsaxLtKc2zCS1wbEa7q6moGwju
+	uJPXTPnuHV5k7sToTHhTrZRORlNXa2B7UcYt4l97OGdahFzF6973hO7zPknQb9hPNnYZoi35qs8
+	zIQOqvAP4cgh2eQoBNiI7aO+0y2byCHQ6LLNnQqEUQDlUbLEwsS8+W6bAq4IkdqNpeJ6jMBYlIm
+	PfeaH4ytJpRPTyZ92RCyK2YUcspXi492bCmdRq4kybiB9Mi8Q/FRlsSX31a5qOSBfKAmMU/6fEw
+	ml39kIEFP+3ubd8vkBkPx/RPD2KCoNR8AMnxDVXPgJN9Wft7Gbpj0waVKjLDcckNb8rsTYqGZpL
+	LBYEmukvrIWpyp/b5HPB+PryPD1b7TfF3rkeoOv4P6ENHGWW1xwNMcBUs+s4m6nDK
+X-Received: by 2002:a05:600c:3b27:b0:459:f90e:4f5a with SMTP id 5b1f17b1804b1-45a2180628dmr95908585e9.15.1755502986172;
+        Mon, 18 Aug 2025 00:43:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHbUO6Z15wcjLXZ1p7h5ZxBFKKm7y8rLmD0275SppxqeMk9vb+XVHeYCjL8BnaHtfWRGyYaMw==
+X-Received: by 2002:a05:600c:3b27:b0:459:f90e:4f5a with SMTP id 5b1f17b1804b1-45a2180628dmr95908285e9.15.1755502985704;
+        Mon, 18 Aug 2025 00:43:05 -0700 (PDT)
+Received: from ?IPV6:2003:d8:2f22:600:53c7:df43:7dc3:ae39? (p200300d82f22060053c7df437dc3ae39.dip0.t-ipconnect.de. [2003:d8:2f22:600:53c7:df43:7dc3:ae39])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a22329b12sm121196175e9.24.2025.08.18.00.43.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Aug 2025 00:43:05 -0700 (PDT)
+Message-ID: <e05aaefc-1732-4dcd-81d2-413d74aab664@redhat.com>
+Date: Mon, 18 Aug 2025 09:43:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] of_numa: fix uninitialized memory nodes causing kernel
+ panic
+To: Yin Tirui <yintirui@huawei.com>, robh@kernel.org, saravanak@google.com,
+ dan.j.williams@intel.com, akpm@linux-foundation.org, rppt@kernel.org,
+ Jonathan.Cameron@huawei.com, devicetree@vger.kernel.org, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org
+Cc: wangkefeng.wang@huawei.com, chenjun102@huawei.com
+References: <20250816073131.2674809-1-yintirui@huawei.com>
+From: David Hildenbrand <david@redhat.com>
+Content-Language: en-US
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <20250816073131.2674809-1-yintirui@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJ+ZgWj3OwstM5ZbwFL0KmcSzrOlQGuc5yxAsdJ9S8B+nVVqLLv1zHQ
-Content-Language: en-in
-X-CMS-MailID: 20250818074152epcas5p38e555d935cb93f38ed0a590003a53da1
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250805114323epcas5p39bf73c5e0a9382ff54b1832724804cc9
-References: <20250805115216.3798121-1-pritam.sutar@samsung.com>
-	<CGME20250805114323epcas5p39bf73c5e0a9382ff54b1832724804cc9@epcas5p3.samsung.com>
-	<20250805115216.3798121-7-pritam.sutar@samsung.com> <aJtN7uVUV3YhfY5-@vaman>
 
-Hi Vinod, 
+On 16.08.25 09:31, Yin Tirui wrote:
+> When the number of CPUs is fewer than the number of memory nodes,
+> some memory nodes may not be properly initialized because they are
+> not added to numa_nodes_parsed during memory parsing.
+> 
+> In of_numa_parse_memory_nodes(), after successfully adding a memory
+> block via numa_add_memblk(), the corresponding node ID should be
+> marked as parsed. However, the current implementation in numa_add_memblk()
+> only adds the memory block to numa_meminfo but fails to update
+> numa_nodes_parsed, leaving some nodes uninitialized.
+> 
+> During boot in a QEMU-emulated ARM64 NUMA environment, the kernel
+> panics when free_area_init() attempts to access NODE_DATA() for
+> memory nodes that were uninitialized.
+> 
+> [    0.000000] Call trace:
+> [    0.000000]  free_area_init+0x620/0x106c (P)
+> [    0.000000]  bootmem_init+0x110/0x1dc
+> [    0.000000]  setup_arch+0x278/0x60c
+> [    0.000000]  start_kernel+0x70/0x748
+> [    0.000000]  __primary_switched+0x88/0x90
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 767507654c22 ("arch_numa: switch over to numa_memblks")
+> Signed-off-by: Yin Tirui <yintirui@huawei.com>
+> 
+> ---
+> 
+> v2: Move the changes to the of_numa related. Correct the fixes tag.
+> ---
+>   drivers/of/of_numa.c | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
+> index 230d5f628c1b..cd2dc8e825c9 100644
+> --- a/drivers/of/of_numa.c
+> +++ b/drivers/of/of_numa.c
+> @@ -59,8 +59,11 @@ static int __init of_numa_parse_memory_nodes(void)
+>   			r = -EINVAL;
+>   		}
+>   
+> -		for (i = 0; !r && !of_address_to_resource(np, i, &rsrc); i++)
+> +		for (i = 0; !r && !of_address_to_resource(np, i, &rsrc); i++) {
+>   			r = numa_add_memblk(nid, rsrc.start, rsrc.end + 1);
+> +			if (!r)
+> +				node_set(nid, numa_nodes_parsed);
+> +		}
+>   
+>   		if (!i || r) {
+>   			of_node_put(np);
 
-> -----Original Message-----
-> From: Vinod Koul <vkoul@kernel.org>
-> Sent: 12 August 2025 07:52 PM
-> To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-> Cc: kishon@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
-> conor+dt@kernel.org; alim.akhtar@samsung.com; andre.draszik@linaro.org;
-> peter.griffin@linaro.org; kauschluss@disroot.org;
-> ivo.ivanov.ivanov1@gmail.com; igor.belwon@mentallysanemainliners.org;
-> m.szyprowski@samsung.com; s.nawrocki@samsung.com; linux-
-> phy@lists.infradead.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> samsung-soc@vger.kernel.org; rosa.pila@samsung.com;
-> dev.tailor@samsung.com; faraz.ata@samsung.com;
-> muhammed.ali@samsung.com; selvarasu.g@samsung.com
-> Subject: Re: [PATCH v5 6/6] phy: exynos5-usbdrd: support SS combo phy for
-> ExynosAutov920
-> 
-> On 05-08-25, 17:22, Pritam Manohar Sutar wrote:
-> > Add required change in phy driver to support combo SS phy for this SoC.
-> >
-> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-> > ---
-> >  drivers/phy/samsung/phy-exynos5-usbdrd.c    | 327
-> +++++++++++++++++++-
-> >  include/linux/soc/samsung/exynos-regs-pmu.h |   1 +
-> >  2 files changed, 324 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> > b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> > index c22f4de7d094..1108f0c07755 100644
-> > --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> > +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> > @@ -273,6 +273,36 @@
-> >  #define EXYNOSAUTOV920_DRD_HSPPLLTUNE		0x110
-> >  #define HSPPLLTUNE_FSEL				GENMASK(18, 16)
-> >
-> > +/* ExynosAutov920 phy usb31drd port reg */
-> > +#define EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL	0x000
-> > +#define PHY_RST_CTRL_PIPE_LANE0_RESET_N_OVRD_EN	BIT(5)
-> > +#define PHY_RST_CTRL_PIPE_LANE0_RESET_N		BIT(4)
-> > +#define PHY_RST_CTRL_PHY_RESET_OVRD_EN		BIT(1)
-> > +#define PHY_RST_CTRL_PHY_RESET			BIT(0)
-> > +
-> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0
-> 	0x0004
-> > +#define PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR
-> 	GENMASK(31, 16)
-> > +#define PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK		BIT(8)
-> > +#define PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK		BIT(4)
-> > +#define PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL		BIT(0)
-> > +
-> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON1
-> 	0x0008
-> > +
-> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2
-> 	0x000c
-> > +#define PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_EN		BIT(0)
-> > +#define PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA
-> 	GENMASK(31, 16)
-> > +
-> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG0	0x100
-> > +#define PHY_CONFIG0_PHY0_PMA_PWR_STABLE		BIT(14)
-> > +#define PHY_CONFIG0_PHY0_PCS_PWR_STABLE		BIT(13)
-> > +#define PHY_CONFIG0_PHY0_ANA_PWR_EN		BIT(1)
-> > +
-> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7	0x11c
-> > +#define PHY_CONFIG7_PHY_TEST_POWERDOWN		BIT(24)
-> > +
-> > +#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG4	0x110
-> > +#define PHY_CONFIG4_PIPE_RX0_SRIS_MODE_EN	BIT(2)
-> > +
-> >  /* Exynos9 - GS101 */
-> >  #define EXYNOS850_DRD_SECPMACTL			0x48
-> >  #define SECPMACTL_PMA_ROPLL_REF_CLK_SEL
-> 	GENMASK(13, 12)
-> > @@ -2077,6 +2107,253 @@ static const struct
-> exynos5_usbdrd_phy_drvdata exynos990_usbdrd_phy = {
-> >  	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
-> >  };
-> >
-> > +static void
-> > +exynosautov920_usb31drd_cr_clk(struct exynos5_usbdrd_phy *phy_drd,
-> > +bool high) {
-> > +	void __iomem *reg_phy = phy_drd->reg_phy;
-> > +	u32 reg = 0;
-> 
-> again..
-> 
-> > +
-> > +	reg = readl(reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-> > +	if (high)
-> > +		reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
-> > +	else
-> > +		reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
-> > +
-> > +	writel(reg, reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-> > +	fsleep(1);
-> > +}
-> > +
-> > +static void
-> > +exynosautov920_usb31drd_port_phy_ready(struct exynos5_usbdrd_phy
-> > +*phy_drd) {
-> > +	struct device *dev = phy_drd->dev;
-> > +	void __iomem *reg_phy = phy_drd->reg_phy;
-> > +	static const unsigned int timeout_us = 20000;
-> > +	static const unsigned int sleep_us = 40;
-> > +	u32 reg = 0;
-> 
-> here too
-> 
-> > +	int err;
-> > +
-> > +	/* Clear cr_para_con */
-> > +	reg &= ~(PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
-> > +			PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR);
-> > +	reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-> > +	writel(reg, reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-> > +	writel(0x0, reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON1);
-> > +	writel(0x0, reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
-> > +
-> > +	exynosautov920_usb31drd_cr_clk(phy_drd, true);
-> > +	exynosautov920_usb31drd_cr_clk(phy_drd, false);
-> > +
-> > +	/*
-> > +	 * The maximum time from phy reset de-assertion to de-assertion of
-> > +	 * tx/rx_ack can be as high as 5ms in fast simulation mode.
-> > +	 * Time to phy ready is < 20ms
-> > +	 */
-> > +	err = readl_poll_timeout(reg_phy +
-> > +
-> 	EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0,
-> > +			reg, !(reg &
-> PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK),
-> > +			sleep_us, timeout_us);
-> > +	if (err)
-> > +		dev_err(dev, "timed out waiting for rx/tx_ack: %#.8x\n",
-> reg);
-> > +
-> > +	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
-> > +	writel(reg, reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-> > +}
-> > +
-> > +static void
-> > +exynosautov920_usb31drd_cr_write(struct exynos5_usbdrd_phy
-> *phy_drd,
-> > +				 u16 addr, u16 data)
-> > +{
-> > +	struct device *dev = phy_drd->dev;
-> > +	void __iomem *reg_phy = phy_drd->reg_phy;
-> > +	u32 cnt = 0;
-> > +	u32 reg = 0;
-> 
-> this one, former is okay
-> 
-> > +
-> > +	/* Pre Clocking */
-> > +	reg = readl(reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-> > +	reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-> > +	writel(reg, reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-> > +
-> > +	/*
-> > +	 * tx clks must be available prior to assertion of tx req.
-> > +	 * tx pstate p2 to p0 transition directly is not permitted.
-> > +	 * tx clk ready must be asserted synchronously on tx clk prior
-> > +	 * to internal transmit clk alignment sequence in the phy
-> > +	 * when entering from p2 to p1 to p0.
-> > +	 */
-> > +	do {
-> > +		exynosautov920_usb31drd_cr_clk(phy_drd, true);
-> > +		exynosautov920_usb31drd_cr_clk(phy_drd, false);
-> > +		cnt++;
-> > +	} while (cnt < 15);
-> > +
-> > +	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-> > +	writel(reg, reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-> > +
-> > +	/*
-> > +	 * tx data path is active when tx lane is in p0 state
-> > +	 * and tx data en asserted. enable cr_para_wr_en.
-> > +	 */
-> > +	reg = readl(reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
-> > +	reg &= ~PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA;
-> > +	reg |=
-> FIELD_PREP(PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA, data) |
-> > +		PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_EN;
-> > +	writel(reg, reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
-> > +
-> > +	/* write addr */
-> > +	reg = readl(reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-> > +	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR;
-> > +	reg |= FIELD_PREP(PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR,
-> addr) |
-> > +		PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
-> > +		PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-> > +	writel(reg, reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-> > +
-> > +	/* check cr_para_ack*/
-> > +	cnt = 0;
-> > +	do {
-> > +		/*
-> > +		 * data symbols are captured by phy on rising edge of the
-> > +		 * tx_clk when tx data enabled.
-> > +		 * completion of the write cycle is acknowledged by
-assertion
-> > +		 * of the cr_para_ack.
-> > +		 */
-> > +		exynosautov920_usb31drd_cr_clk(phy_drd, true);
-> > +		reg = readl(reg_phy +
-> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-> > +		if ((reg & PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK))
-> > +			break;
-> > +
-> > +		exynosautov920_usb31drd_cr_clk(phy_drd, false);
-> > +
-> > +		/*
-> > +		 * wait for minimum of 10 cr_para_clk cycles after phy reset
-> > +		 * is negated, before accessing control regs to allow for
-> > +		 * internal resets.
-> > +		 */
-> > +		cnt++;
-> > +	} while (cnt < 10);
-> > +
-> > +	if (cnt == 10)
-> > +		dev_dbg(dev, "CR write failed to 0x%04x\n", addr);
-> 
-> Not error?
+With the changes Mike requested and a more detailed explanation you gave
 
-This is only for debugging purpose. It is not considered as error. 
+Acked-by: David Hildenbrand <david@redhat.com>
 
-> --
-> ~Vinod
+-- 
+Cheers
 
-
-Will address other comments in next version of the patch-set (v6).
-
-Thank you.
-
-Regards,
-Pritam
+David / dhildenb
 
 
