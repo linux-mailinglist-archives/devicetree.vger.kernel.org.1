@@ -1,148 +1,122 @@
-Return-Path: <devicetree+bounces-205689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E05B29CBB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:51:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DAB3B2AF28
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:18:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F41143B0886
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:50:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EF062A3EBE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:18:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE0D30148D;
-	Mon, 18 Aug 2025 08:50:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2129219A81;
+	Mon, 18 Aug 2025 17:18:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="nsrFQtSg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A3B0304962;
-	Mon, 18 Aug 2025 08:50:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3ECE1E885A
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 17:18:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755507042; cv=none; b=PGoRkcGbV0gUTFJ5DZavqAiZGFJD4J6RSw5BRpJ8WCKg2fp4hoWkOHI4qZfjn8k1MQfwNuTCkEyLoesIUaGdXEbVBeZfEGpABDtXFicWl0kcCBp4FPgsKiMJTV5DBf/v+J3Zq+QADeCm7qS21dXcwvVVot1+DUEI89Px2e5Tyr0=
+	t=1755537510; cv=none; b=Rdc023EDoJl0f2127s7xgkv4bhEPSR4CEZcF7Ln932eklGympjmE3pcUiRV++yCMworOXSb9iyVyAxa7bUg5+ahdKWh2Q+bF1EWA/E1DXJo09uX8JV7tvT8vX+MqpY2gV/i3bVMChQh4c+b/rv7KDvli/CSoItGb70CEpc74WN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755507042; c=relaxed/simple;
-	bh=i4pkSh+CLs8Uue0AHp7O0b9DSesGmkbEmw+FmH4nsh0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j3V1Xfn0D4WYuMD1VRqD+09qTI1Q831VSVM9m1efuNkT05p7LsON9kzur4LzYyz9f6Q5kt1SEWgv8K+n2aqYLnB6BrnnPqAg0d1CSQlRydUGZZVBWiEauCu1G6NLRVdCWNRuXcprGso5O07NWQ1KuBLJwGW8Wkyo6cJFN7KaATU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
-Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
-	by localhost (Postfix) with ESMTP id 4c55kL3mnlz9sWd;
-	Mon, 18 Aug 2025 10:39:54 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id b0_Y38SyLNAT; Mon, 18 Aug 2025 10:39:54 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase2.c-s.fr (Postfix) with ESMTP id 4c55kL2Zsnz9sWc;
-	Mon, 18 Aug 2025 10:39:54 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 2AE7D8B764;
-	Mon, 18 Aug 2025 10:39:54 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id 0VXbaU8cA_eG; Mon, 18 Aug 2025 10:39:54 +0200 (CEST)
-Received: from [10.25.207.160] (unknown [10.25.207.160])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id E12538B763;
-	Mon, 18 Aug 2025 10:39:53 +0200 (CEST)
-Message-ID: <88b259e8-433f-49f1-a25b-f65a40c8da65@csgroup.eu>
-Date: Mon, 18 Aug 2025 10:39:53 +0200
+	s=arc-20240116; t=1755537510; c=relaxed/simple;
+	bh=hu75ymby8evG1hDlfMFXLnU+OuYSG3B3jdgOnJy9zEI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=NQ/kSHcTmUkkC4oB6fcn5C/LyRnlmj63F2NT306uCjCMp1opNtH00tWV43wqIhfk55magTvf8GHDNL1nHdvkT8QjSWn0gozpQqNesUj2snQbkCtzYUWhP+DZ6aXl6qqNBOrrWT8JhfzZGXI5R0DRvRHrwnU/L9+e+ki/4S2wrXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=nsrFQtSg; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250818171825epoutp04809e42ad6dabebcdc6fb5d82a39823af~c7A9qNHxS0905109051epoutp042
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 17:18:25 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250818171825epoutp04809e42ad6dabebcdc6fb5d82a39823af~c7A9qNHxS0905109051epoutp042
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1755537505;
+	bh=3TKLORAFWjyKSjKXEDenOkvdTWQqYqNMRKTqumATFPI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=nsrFQtSgxkMloRzQrb0Fqf74lhUW4JnFr5o/SrFP7NqI4XnQgXNmFNF2SgiJqZNgw
+	 BGbbU8R4rb7Pmt86WSrde1oSJwPRs26gOhSWPsmMbUaefHuI2H6ozm2ctk5Nl+UnFT
+	 Lfydxqj7WSd58mlNrNUUBdv3f1Fsaz2pJ23ecnUs=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250818171824epcas5p22c7cd57b1ceefb7f6ba85f95bb83e1fb~c7A8ntsF32416824168epcas5p2n;
+	Mon, 18 Aug 2025 17:18:24 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.88]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4c5KDb4RJ0z3hhT7; Mon, 18 Aug
+	2025 17:18:23 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250818084108epcas5p2cf03efaffd338376a8d1f4dac8972d94~cz9T6GJJc2176121761epcas5p29;
+	Mon, 18 Aug 2025 08:41:08 +0000 (GMT)
+Received: from FDSFTE462 (unknown [107.122.81.248]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250818084105epsmtip1696e665c75c145cb5e2e7b5854be6a06~cz9RM6cWW2722027220epsmtip19;
+	Mon, 18 Aug 2025 08:41:05 +0000 (GMT)
+From: "Shradha Todi" <shradha.t@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <linux-pci@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-phy@lists.infradead.org>
+Cc: <mani@kernel.org>, <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
+	<robh@kernel.org>, <bhelgaas@google.com>, <jingoohan1@gmail.com>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<vkoul@kernel.org>, <kishon@kernel.org>, <arnd@arndb.de>,
+	<m.szyprowski@samsung.com>, <jh80.chung@samsung.com>,
+	<pankaj.dubey@samsung.com>
+In-Reply-To: <4a47b758-5c20-4e30-bc61-206acd48bdd0@kernel.org>
+Subject: RE: [PATCH v3 06/12] dt-bindings: PCI: Split exynos host into two
+ files
+Date: Mon, 18 Aug 2025 14:11:04 +0530
+Message-ID: <000801dc101b$d7b22510$87166f30$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] dt-bindings: soc: fsl: qe: Add an interrupt
- controller for QUICC Engine Ports
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Qiang Zhao <qiang.zhao@nxp.com>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1754996033.git.christophe.leroy@csgroup.eu>
- <0b56ef403a7c8d0f8305e847d68959a1037d365e.1754996033.git.christophe.leroy@csgroup.eu>
- <0fd6fefc-9fad-4ea6-a619-e9f480747ac0@kernel.org>
- <CAL_Jsq+1Aw5AyBeW+BhTuyWZ8BN8BJUq047oJCDKVQPZWxWYCA@mail.gmail.com>
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-Content-Language: fr-FR
-In-Reply-To: <CAL_Jsq+1Aw5AyBeW+BhTuyWZ8BN8BJUq047oJCDKVQPZWxWYCA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHWPHKmIG2WTsjb/5pkHKJ2GfeRPwKMZRF7AtQYMuoCMTwzCLQ3MAYw
+Content-Language: en-in
+X-CMS-MailID: 20250818084108epcas5p2cf03efaffd338376a8d1f4dac8972d94
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250811154721epcas5p26c9e2880ca55a470f595d914b4030745
+References: <20250811154638.95732-1-shradha.t@samsung.com>
+	<CGME20250811154721epcas5p26c9e2880ca55a470f595d914b4030745@epcas5p2.samsung.com>
+	<20250811154638.95732-7-shradha.t@samsung.com>
+	<4a47b758-5c20-4e30-bc61-206acd48bdd0@kernel.org>
 
-
-
-Le 12/08/2025 à 19:16, Rob Herring a écrit :
-> On Tue, Aug 12, 2025 at 10:23 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 12/08/2025 13:02, Christophe Leroy wrote:
->>> The QUICC Engine provides interrupts for a few I/O ports. This is
->>> handled via a separate interrupt ID and managed via a triplet of
->>> dedicated registers hosted by the SoC.
->>>
->>> Implement an interrupt driver for it for that those IRQs can then
->>> be linked to the related GPIOs.
->>>
->>> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
->>> ---
->>>   .../soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml       | 63 +++++++++++++++++++
->>>   1 file changed, 63 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
->>> new file mode 100644
->>> index 0000000000000..7c98706d03dd1
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
->>> @@ -0,0 +1,63 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +
->>> +title: Freescale QUICC Engine I/O Ports Interrupt Controller
->>> +
->>> +maintainers:
->>> +  - name: Christophe Leroy
->>> +    email: christophe.leroy@csgroup.eu
->>
->> Oh no...
->>
->>> +
->>> +description: |
->>> +  Interrupt controller for the QUICC Engine I/O ports found on some
->>> +  Freescale/NXP PowerQUICC and QorIQ SoCs.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - fsl,mpc8323-qe-ports-ic
->>> +      - fsl,mpc8360-qe-ports-ic
->>> +      - fsl,mpc8568-qe-ports-ic
->>> +
->>> +  reg:
->>> +    description: Base address and size of the QE I/O Ports Interrupt Controller registers.
->>> +    minItems: 1
->>> +    maxItems: 1
->>
->> This was never tested but more important this and everything further
->> looks like generated by AI. Please don't do that or at least mark it
->> clearly, so I will prioritize accordingly (hint: AI generates poor code
->> and burden to decipher AI slop should not be on open source reviewers
->> but on users of AI, but as one of maintainers probably you already know
->> that, so sorry for lecturing).
+> >
+> > @@ -19,9 +19,6 @@ allOf:
+> >    - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> >
+> >  properties:
+> > -  compatible:
+> > -    const: samsung,exynos5433-pcie
+> > -
+> >    reg:
+> >      items:
+> >        - description: Data Bus Interface (DBI) registers.
 > 
-> If anyone needs some AI (chatgpt) converted bindings, my "dt-convert"
-> branch has ~800 of them. Feeding the warnings back to AI to fix was
-> somewhat effective. The result is not the worst I've seen submitted.
-> It saves some of the boilerplate, but can't fix things that are just
-> wrong or unclear in .txt bindings. Despite my 'prompt engineering'
-> attempts, it still tends to get the same things wrong over and over.
+> 
+> So the only common part left here is reg and phy? I don't think such
+> common file brings any value.
+> 
+> 
 
-By the way, the new binding was not generated from text binding. I fed 
-the AI with the driver C source file.
+Okay, will keep two separate files. 
 
-Christophe
+> Best regards,
+> Krzysztof
+
 
