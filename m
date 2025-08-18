@@ -1,69 +1,64 @@
-Return-Path: <devicetree+bounces-205986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2312B2B0EE
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 20:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0778B2B166
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 21:17:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A6E01893C3D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 18:57:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 499BB1B21E51
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:14:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03A1273D96;
-	Mon, 18 Aug 2025 18:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFE3925DB12;
+	Mon, 18 Aug 2025 19:13:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ayVDIn+8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iV7m6Icp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC3E5272E6B;
-	Mon, 18 Aug 2025 18:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E853451B0;
+	Mon, 18 Aug 2025 19:13:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755543427; cv=none; b=dpHWs/e3j3C1H2Z9Jgp690aO1TPgQpBWyhtv1TNE6Fe7nUKwMjvb0yT1OAS5ZcyZwrOfp0XrJTdRwz+g4BZ5ZmgLIeR0JgglecujsMqKWIQAhvaR8o4JEhy6z4AYDxFK1/db2ahwJrkMc+DaJwnyOMd49MswfztVt87nApT/cXE=
+	t=1755544386; cv=none; b=tCWr07WLMgjMeu2BkyBwkQDs56knoYYHlcSPfF0OqZ8bGWC2lkP+Czgo46Zl0fkueveJp5YmI31NRCxSVQn70wU6IEN9HtXHFa3PmQNNKGaABn8RB1sZIyN7fZ9fVnoALMZLpeJr/EqQdLTdoL+L7vYTkQStHpU7/m+fjpjW5bE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755543427; c=relaxed/simple;
-	bh=LLrbrlWI1+1Wrpjrc3PeIRE7Z93HYyEAJTPMZ/3akPw=;
+	s=arc-20240116; t=1755544386; c=relaxed/simple;
+	bh=0gxTbG8IDFeahIwRXLJ5Ki2M1jR8ORnhUe5Uokg/sgk=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IHN2pe6xhZurUy1C8w7/pa5GDtFh3XIiIjzUQghLmDlb5mW3sJeVi8y1v0Z+Ri9C6WRgpG6Q185PLixPLaaXxAi1V5UqR8fUlR9318RgYThdcR58wIYcWWnV447FCo4BGEEDoyfkzoITQCQwRLssoGMmgNhqBG4HxCVJC7gUJ/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ayVDIn+8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CB86C4CEEB;
-	Mon, 18 Aug 2025 18:57:06 +0000 (UTC)
+	 MIME-Version:Content-Type; b=T1BkvGinp/MhI4HFnCeGDgKyHR93aKdgyZYnrnEKaupyd0N1GEibwuVOhFe9ukvtOTtxMWo0mayc/90fQB/bXBU2AJYo9+UDFQgK4Lm7UCzhI/0/KO1Xuzqg3zXxQvgpRfuZLVjwESBNqXrlffWxp1W99V0o5T69Pgvj+T++CNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iV7m6Icp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1915CC4CEEB;
+	Mon, 18 Aug 2025 19:13:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755543427;
-	bh=LLrbrlWI1+1Wrpjrc3PeIRE7Z93HYyEAJTPMZ/3akPw=;
+	s=k20201202; t=1755544386;
+	bh=0gxTbG8IDFeahIwRXLJ5Ki2M1jR8ORnhUe5Uokg/sgk=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ayVDIn+8U8Wx4EDu34txQp0k4cUvEI7PP0j0IId9lGTOOiHRy6gfy0+DzeATALLY8
-	 jTSbQbPNF2xefOSoqneA1b0kFBHRCVNapPVfsbVQEzdlrvh7zVFlMA3GvX4CyPwANC
-	 klwjkKeEzA+boXeqgbEyzx2Tt3TM3uOUX/DPs5/P0XDlvo4pUMPgdghgDSofFnAKgz
-	 UUdxX76YVQgDB2rGVCLIUQFQ4TJ0SUyq+3wiAg1Osm7lcoByulhsoNb7ZnbbwDUfPT
-	 BJZ1ueDbYSGUwQZ3nK6YFm3QY/yE9B/0Ir3H7Q2ZmRc16A5/XDoUGAvBWLcVK/S+eO
-	 ozRWNrUGUdxEQ==
-Date: Mon, 18 Aug 2025 11:57:05 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Stanimir Varbanov <svarbanov@suse.de>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	b=iV7m6Icp2O22MoxrsVPFFFQ4+ETwUbRxC1Puf/06Oh1yAY3Ns0j0qg1uZmcqdoLDT
+	 YBXBwzb5FKGulte3+5se6gMfnvn2aUAvXGDkSP4p7isobwlW7hhT4Am3H3JcwfD8Xv
+	 BBFVY8n/LbVNgk4FhY5nwFoDKi6jYiZ6Kz0Dx3rVMnIxHzZANgwt5ako5aUD/gPaJF
+	 nCtvW/5vQEbTN5I/3UmazUUj61awRYPolpYz23iygOAYm0SVQutrpP5p5UuWYc6Xdg
+	 3F8KXcH5vDJN6+enwOj4gQH7tSVphtpT3nq3jvWdY1jUU+xX5sx5KQbDqYdoAoBq0q
+	 RMnoawDhkvYVg==
+Date: Mon, 18 Aug 2025 20:12:56 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
  <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andrea della Porta <andrea.porta@suse.com>, Nicolas
- Ferre <nicolas.ferre@microchip.com>, Claudiu Beznea
- <claudiu.beznea@tuxon.dev>, Phil Elwell <phil@raspberrypi.com>, Jonathan
- Bell <jonathan@raspberrypi.com>, Dave Stevenson
- <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH 0/5] Add ethernet support for RPi5
-Message-ID: <20250818115705.72533d08@kernel.org>
-In-Reply-To: <68c3db9d-daf5-40ed-91a7-1d08b9c8cb52@broadcom.com>
-References: <20250815135911.1383385-1-svarbanov@suse.de>
-	<4c454b3c-f62c-4086-a665-282aa2f4a0e1@broadcom.com>
-	<20250818115041.71041ad6@kernel.org>
-	<68c3db9d-daf5-40ed-91a7-1d08b9c8cb52@broadcom.com>
+ <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Sukrut Bellary <sbellary@baylibre.com>,
+ Lothar Rubusch <l.rubusch@gmail.com>
+Subject: Re: [PATCH v2 0/4] Support ROHM BD7910[0,1,2,3]
+Message-ID: <20250818201256.7be1092c@jic23-huawei>
+In-Reply-To: <8127b81f-d2a1-4dfc-b8c6-45615ba9e431@baylibre.com>
+References: <cover.1755504346.git.mazziesaccount@gmail.com>
+	<20250818191932.42c22df3@jic23-huawei>
+	<8127b81f-d2a1-4dfc-b8c6-45615ba9e431@baylibre.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,21 +68,34 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 18 Aug 2025 11:52:28 -0700 Florian Fainelli wrote:
-> On 8/18/25 11:50, Jakub Kicinski wrote:
-> > On Mon, 18 Aug 2025 11:02:15 -0700 Florian Fainelli wrote:  
-> >> netdev maintainers, do you mind if I take patches 2, 4 and 5 via the
-> >> Broadcom ARM SoC tree to avoid generating conflicts down the road? You
-> >> can take patches 1 and 3. Thanks  
-> > 
-> > 4, 5 make perfect sense, why patch 2? We usually take bindings.  
-> 
-> Because that way when CI runs against the ARM SoC tree, we don't get 
-> errors that the bindings are undocumented.
+On Mon, 18 Aug 2025 13:46:12 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-Hm, my understanding is that validation should use bindings from
-linux-next.. tho I'm not 100% sure. Perhaps DT maintainers can
-clarify. This problem exists for all DT changes, unless there's
-something exceptional about the patches I'd rather follow the default
-process.
+> On 8/18/25 1:19 PM, Jonathan Cameron wrote:
+> > On Mon, 18 Aug 2025 11:11:56 +0300
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >   
+> >> Add support for ROHM BD7910[0,1,2,3] ADCs.
+> >>
+> >> The ROHM BD79100, BD79101, BD79102 and BD79103 are ADCs derived from the
+> >> BD79104. According to the data-sheets, the BD79103 is compatible with the
+> >> BD79104. Rest of the ICs have different number of analog input channels.
+> >>
+> >> This series adds support for these ICs using the ti-adc128s052.c.
+> >>
+> >> NOTE: There has been work on couple of other patch series [1][2] touching
+> >> this same driver. I haven't considered those changes because, AFAICS,
+> >> there has been no new revisions of these series since mid June.
+> >>
+> >> [1]: https://lore.kernel.org/all/20250614091504.575685-1-sbellary@baylibre.com/
+> >> [2]: https://lore.kernel.org/all/20250625170218.545654-2-l.rubusch@gmail.com/  
+> > 
+> > Pretty simple replies to the changes requested in v1 reviews and nice and clean
+> > so I'll gamble (a tiny bit) that everyone is happy with this and at least
+> > queue it up for build testing.
+> >   
+> Reviewed-by: David Lechner <dlechner@baylibre.com>
+> 
+
+Thanks. Added to the 3 you hadn't tagged already.
 
