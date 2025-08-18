@@ -1,229 +1,225 @@
-Return-Path: <devicetree+bounces-205854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A15B2AB7E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:49:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00CA3B2AB99
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:52:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76A4D5C03EC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:41:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5A195A1029
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFFF239E97;
-	Mon, 18 Aug 2025 14:37:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF9935A28E;
+	Mon, 18 Aug 2025 14:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xyCO9Fpy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IohbkpI8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E9A235BEE
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 14:37:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9856935A280;
+	Mon, 18 Aug 2025 14:39:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755527859; cv=none; b=JtjrnAZSqf9MYfqCGRuF/cjSnVPzeSNgwbzqmJxYXWC8UOstbQS6sCDptPacej9dF+D1Sjxa8uu9OGKf3r8/V/lZk5z6DGkd7l0gnRpPJEyp9rcnCx2XaIv24ApJHdoLo5c37HwLD80uCYw2r0nev9miiFXNEkBA8854jtEnFAk=
+	t=1755527967; cv=none; b=ODmqKJxShQxs18J5yAsOC/OpMvy9V4usXC72k4d3lMm1BAmpGFJ8L/HtZmZdH557eu3OT2RfbdUW6UIE9cfNkwOQPlMZzXkBL42tF4strDKiFZ9HRBFsU4SERIBigGc1gcmVaPdobG8uVetf11zA8Xje6vIxbAllRQ42Q6sAnX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755527859; c=relaxed/simple;
-	bh=yyS1Kqa6YjNQyzYaGdt68e52WccpJuLwtYCRzw/J6gI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s+E6L59GjuBOT7NgH9dIz57ysf/q/GDaFUPxzfMOxpSt4HXY9RRWJhL5U4YQRWcYTjdn4oXK7JGxgIHq7oyPfyaFRJ+f+0/+rXa54q6LMBdiMGL6pO4BgwWgdkgHRE+zrgV7x5DSOoHeyvkdwt/3kFrhubuPDVE2k3jhFTviKqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xyCO9Fpy; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-afcb7a41b78so55507666b.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 07:37:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755527854; x=1756132654; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YMsmT8h0+DT9fjYWadJv14KoJwGukly6TmVYhBOPfZo=;
-        b=xyCO9FpyVdR7aCSQQsC7/SCb7bdItBH5KNo0INYxGIyfeMlEbg/K1giIURJb6a5BfP
-         ySZuwfMUbjVFquvkoB/FhJQOkJOx6tyuNxJo6THPN5lF5JBliORQDEhIwM6WsbXl9DC5
-         46+R2XpFf9fqG33k7zUpfjovDVq+itGPf/aRdTYxw7efhv7zQrxUl/CmXwQqAqP1bmxW
-         kKFLD8unkQHKLDGOA8PCaXBxVTFmCxt2NULmUuf6r/cn9IOdw9KvjUerD2rYkEwjGdiN
-         ZHIxQ2C9nXmi+iq2uI00ujzBJVlFobyphLijog8DX2EOz54mbN2hXYi0aUHlvCzOVf2R
-         657A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755527854; x=1756132654;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YMsmT8h0+DT9fjYWadJv14KoJwGukly6TmVYhBOPfZo=;
-        b=jDGm3LSbsUMB3YUjbXJ4O3/dY2v4B+HkmM6LGX44wsqsbz7eaiYHIMgNy79I/ei69r
-         Xull7TKTJ5Im5Zx6mHuzcfiAdSX4WP6GpDJ7cCk+39Bjh4WEya7rQY57yMT89rC1js+t
-         Pb0udPbu030y6hXyilQkaXCyGw6P6/4/pgKcY3+/HmkmeEXkAAOCm8HqzQ8g7yf/wfkK
-         +MoqSsIUNYMyct3RtNlpaojo4Zc2ZRXZXuVEFtrT5IT1kM4YV2eey2+kxPeWFrlrlzTh
-         bkEF65bUfc5FQnjq3sy2zjkSDopN3QhuxWRAbf5PB8+QVhNHItbeRegvqWe4ktNdstFh
-         1J0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUnekVup0Crcrhu1spjwUpftwothTPXCTA/Ue0sqy/E/Uil9gYGQ9Mdg7ouRe8R3TStbrH7mjbpdsou@vger.kernel.org
-X-Gm-Message-State: AOJu0YwavNrfDhdhodkkLvFFhr3ICDKYDR2YFTO5PlbKep0KV+QV0kZS
-	tsQC1rHIIHzY72v0G5EeUcZzla1BSONVHjqQC+E+L9SKgH5gfJR+sV/S0Dh+mYDyYXk=
-X-Gm-Gg: ASbGncuQH/5Zp0/Nt6RKSXExeSxoYe1R5jrTAod9MobK4DIiRAhoJpT49vGI+bNoPPt
-	BfYqHObGwRno7Bp9QAsvwsExf8WiKrD9uV2CNfR6PvVqPCDx7k7UXjh+FwqbpL3/LQ4w9+znyCw
-	kNjG5wL+7+HgjVsdcE8lQdbJW17Wa10vsbEcHlZlJt18lQ+SZONLJE58GuL/dBTNR2bogOyI6xf
-	HpOMHm+fMwUvZyK0LPLnGAJsfU9SUo3qA8MzCcBqEF1/BKGanjq3oB3RgaPILYX/NRhEilRkIHI
-	pxFLr1X9YzvBngAxTff885vP3jGEBjH31ZJt/RPPoVqPp4InEzJ3XNLC8GFNtIxxKp1J0+NOwS0
-	MlvF5qkW9THF+hGypcWfDsu7Nqs9QSnVSlg==
-X-Google-Smtp-Source: AGHT+IGEt3nsu4aHRovyycnvzxGKQTMOhKdYlCUCXv7/JvtZLGn3dwu1jc2cK5FnprCTehHbYLnZyQ==
-X-Received: by 2002:a17:906:40cc:b0:afc:ebfd:c285 with SMTP id a640c23a62f3a-afcebfdc45cmr327163366b.1.1755527853856;
-        Mon, 18 Aug 2025 07:37:33 -0700 (PDT)
-Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afcdce53f37sm816752166b.21.2025.08.18.07.37.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Aug 2025 07:37:33 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1755527967; c=relaxed/simple;
+	bh=NNGx1BhKiXpo8fP1NrAIVQqjVfRV0yTMXi9fh1F4zrg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=do/NLePdXWW4RVjmkXxmoEEosd/JaKKs/BnZZjtQ1+iZ3DhgzW5nL4PA0yQb/M2ZxA9MVM8uJCEPVyqn9PLp6Ljm6wMUbfO/ijGYmeF8c4II6p5dE2WMomr/DcTm4hoMuT2HZRLsMxxtnNhBZW+J6JuoyJv1DtUz1CcgvkiImf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IohbkpI8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8C3CC4CEEB;
+	Mon, 18 Aug 2025 14:39:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755527967;
+	bh=NNGx1BhKiXpo8fP1NrAIVQqjVfRV0yTMXi9fh1F4zrg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IohbkpI8Oqjzlt/YDjYYRVYKn0OTs7UpZ3CYOJTtRM0KKfLEG1mXf7DnloIT8p/of
+	 9U1LnNJ7jRGeYBndKXNgPCjeF69GvqZgWjAqN+9NvvpuGcKr8WaXJqW4aqKRulGOzW
+	 sevKtR2n4c8VtLo/4jDooMKRi9n8SJtSduy/gbGw5ewRPEgrNX3zWsKXcYQkAca5LO
+	 8BuUy5rdvuU99dw3mwlKHIP7zlWPI2eQP/QHENnpk+mkF247WOX6v32+l0Om8XZFmU
+	 G33Nre2FH6SHIJw0k6l8TehFUFvf4uaz0WnBw4OZm26HEvRbw+F7V/CUyVUDwjRth3
+	 n5Il0Pkuozg5Q==
+Date: Mon, 18 Aug 2025 09:39:26 -0500
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rui Miguel Silva <rmfrfs@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Marek Vasut <marex@denx.de>,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kernel@dh-electronics.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm: dts: stm32: Drop redundant status=okay
-Date: Mon, 18 Aug 2025 16:37:31 +0200
-Message-ID: <20250818143730.244379-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.48.1
+	Eugen Hristev <eugen.hristev@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	Alice Yuan <alice.yuan@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Steve Longerbeam <slongerbeam@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+	linux-staging@lists.linux.dev, Luis Oliveira <lolivei@synopsys.com>
+Subject: Re: [PATCH v2 01/32] dt-bindings: media: add DW MIPI CSI-2 Host
+ support
+Message-ID: <20250818143926.GA1025181-robh@kernel.org>
+References: <20250808-95_cam-v2-0-4b29fa6919a7@nxp.com>
+ <20250808-95_cam-v2-1-4b29fa6919a7@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3879; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=yyS1Kqa6YjNQyzYaGdt68e52WccpJuLwtYCRzw/J6gI=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoozqqlSZHPCX1JVOLnWGeDyGAz2oBjWeBgmsSm
- mPxRUw6D7+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKM6qgAKCRDBN2bmhouD
- 15tTD/4mYTyNavHV0cMsp4HUZQUgzwJDBkUxjibEQCPqdYAlZ3NfPN78IOtHpB+1ICSA7AiHwEH
- XvD146rmBVwaVVI5I6RXrgFaAkImu6dSgjJJWxV/BZThEmkTRymxGhKHyIV2HFnfIV41pFnoh+s
- PA8Upx+IRiWcVcu+qS+sM8S7wrIUCsqNUCvPkkeDottSR2MHnF+ZbvjVFJ3H2NJ0MbDPrHtyZph
- Xc3+G3uZ/SZy5jAcHnsv4K7yenlUZdmNZbgFoyMcMttEnl9X743L7lgSNRe0x2Pj1KhzAaL/0vG
- iLLK2TjN7HUP6sw5ZmGkaM+05WXJuIGilYbNgt893aVnr1/4He9FZbch1b4IRFdeUI9ypSKMl+V
- zfDNDUXI+0OQ5CPRVxTP0g8Ny7YGIWPd3nNN9Ocu8Gr/dprYPv8xUj4kDTb4JZcttvFq/O41ZB7
- ffc/qQ33grySJOHKqJ+nez6upL5iPbi6VnELUc3Std1p/a2IkiEyDQpd4MQ+VNnY9Hz4kHyTz8V
- obVltkt0ZtSDFhwfL+/DIIcF5fJVptbNeOrNqFneWzSXSAlHw00SHLa8mKwXTcvNzHU7Ml18qEb
- +/U7ijgJ90xxbKJD+UJnnXqqr284UWIaqf5j3gBpqLXLyqcEUqrMkh1D7E0nAaoIrFxZ9VSKCPv zKQDgBrudjsJvCw==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250808-95_cam-v2-1-4b29fa6919a7@nxp.com>
 
-Device nodes are enabled by default, so remove confusing or duplicated
-enabling of few nodes.  No practical impact, verified with dtx_diff.
+On Fri, Aug 08, 2025 at 06:39:04PM -0400, Frank Li wrote:
+> From: Eugen Hristev <eugen.hristev@linaro.org>
+> 
+> Add bindings for Synopsys DesignWare MIPI CSI-2 host, which used at i.MX93
+> and i.MX95 platform.
+> 
+> Signed-off-by: Luis Oliveira <lolivei@synopsys.com>
+> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change in v2
+> - remove Eugen Hristev <eugen.hristev@microchip.com> from mantainer.
+> - update ugen Hristev's s-o-b tag to align original author's email address
+> - remove single snps,dw-mipi-csi2-v150 compatible string
+> - move additionalProperties after required
+> ---
+>  .../bindings/media/snps,dw-mipi-csi2-v150.yaml     | 158 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 159 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/snps,dw-mipi-csi2-v150.yaml b/Documentation/devicetree/bindings/media/snps,dw-mipi-csi2-v150.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..fc1b167d6d3b142a01e2ea7f04230934260a05e6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/snps,dw-mipi-csi2-v150.yaml
+> @@ -0,0 +1,158 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/snps,dw-mipi-csi2-v150.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys DesignWare CSI-2 Host controller (csi2host)
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description:
+> +  CSI2HOST is used to receive image coming from an MIPI CSI-2 compatible
+> +  camera. It will convert the incoming CSI-2 stream into a dedicated
+> +  interface called the Synopsys IDI (Image Data Interface).
+> +  This interface is a 32-bit SoC internal only, and can be assimilated
+> +  with a CSI-2 interface.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,imx93-mipi-csi2
+> +      - const: snps,dw-mipi-csi2-v150
+> +
+> +  reg:
+> +    items:
+> +      - description: MIPI CSI-2 core register
+> +
+> +  reg-names:
+> +    items:
+> +      - const: core
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: per
+> +      - const: pixel
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: MIPI D-PHY
+> +
+> +  phy-names:
+> +    items:
+> +      - const: rx
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port node, single endpoint describing the input port.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +            description: Endpoint connected to input device
+> +
+> +            properties:
+> +              bus-type:
+> +                const: 4
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +                items:
+> +                  maximum: 4
+> +
+> +              clock-lanes:
+> +                maxItems: 1
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/st/stm32mp157c-dk2.dts          | 2 --
- arch/arm/boot/dts/st/stm32mp157f-dk2.dts          | 2 --
- arch/arm/boot/dts/st/stm32mp15xx-dhcom-drc02.dtsi | 1 -
- arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi  | 3 ---
- arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi   | 2 --
- 5 files changed, 10 deletions(-)
+Drop. clock-lanes is always 1 entry.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp157c-dk2.dts b/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-index 1b34fbe10b4f..78165c7865e1 100644
---- a/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-+++ b/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-@@ -45,7 +45,6 @@ panel@0 {
- 		reg = <0>;
- 		reset-gpios = <&gpioe 4 GPIO_ACTIVE_LOW>;
- 		power-supply = <&v3v3>;
--		status = "okay";
- 
- 		port {
- 			panel_in: endpoint {
-@@ -71,7 +70,6 @@ touchscreen@38 {
- 		interrupt-parent = <&gpiof>;
- 		touchscreen-size-x = <480>;
- 		touchscreen-size-y = <800>;
--		status = "okay";
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/st/stm32mp157f-dk2.dts b/arch/arm/boot/dts/st/stm32mp157f-dk2.dts
-index 43375c4d62a3..8fa61e54d026 100644
---- a/arch/arm/boot/dts/st/stm32mp157f-dk2.dts
-+++ b/arch/arm/boot/dts/st/stm32mp157f-dk2.dts
-@@ -51,7 +51,6 @@ panel@0 {
- 		reg = <0>;
- 		reset-gpios = <&gpioe 4 GPIO_ACTIVE_LOW>;
- 		power-supply = <&scmi_v3v3>;
--		status = "okay";
- 
- 		port {
- 			panel_in: endpoint {
-@@ -77,7 +76,6 @@ touchscreen@38 {
- 		interrupt-parent = <&gpiof>;
- 		touchscreen-size-x = <480>;
- 		touchscreen-size-y = <800>;
--		status = "okay";
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-drc02.dtsi b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-drc02.dtsi
-index abe2dfe70636..52c4e69597a4 100644
---- a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-drc02.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-drc02.dtsi
-@@ -62,7 +62,6 @@ &i2c2 {
- 	pinctrl-0 = <&i2c2_pins_a>;
- 	i2c-scl-rising-time-ns = <185>;
- 	i2c-scl-falling-time-ns = <20>;
--	status = "okay";
- 	/* spare dmas for other usage */
- 	/delete-property/dmas;
- 	/delete-property/dma-names;
-diff --git a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi
-index 0fb4e55843b9..5c77202ee196 100644
---- a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi
-@@ -20,7 +20,6 @@ display_bl: display-bl {
- 		default-brightness-level = <8>;
- 		enable-gpios = <&gpioi 0 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&reg_panel_bl>;
--		status = "okay";
- 	};
- 
- 	gpio-keys-polled {
-@@ -135,7 +134,6 @@ sound {
- 			  "MIC_IN", "Microphone Jack",
- 			  "Microphone Jack", "Mic Bias";
- 		dais = <&sai2a_port &sai2b_port>;
--		status = "okay";
- 	};
- };
- 
-@@ -150,7 +148,6 @@ &i2c2 {	/* Header X22 */
- 	pinctrl-0 = <&i2c2_pins_a>;
- 	i2c-scl-rising-time-ns = <185>;
- 	i2c-scl-falling-time-ns = <20>;
--	status = "okay";
- 	/* spare dmas for other usage */
- 	/delete-property/dmas;
- 	/delete-property/dma-names;
-diff --git a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi
-index 142d4a8731f8..4cc633683c6b 100644
---- a/arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi
-@@ -269,7 +269,6 @@ pmic: stpmic@33 {
- 		interrupts-extended = <&gpioa 0 IRQ_TYPE_EDGE_FALLING>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
--		status = "okay";
- 
- 		regulators {
- 			compatible = "st,stpmic1-regulators";
-@@ -388,7 +387,6 @@ onkey {
- 			interrupts = <IT_PONKEY_F 0>, <IT_PONKEY_R 0>;
- 			interrupt-names = "onkey-falling", "onkey-rising";
- 			power-off-time-sec = <10>;
--			status = "okay";
- 		};
- 
- 		watchdog {
--- 
-2.48.1
+> +
+> +              remote-endpoint: true
 
+Drop.
+
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Output port node, single endpoint describing the output port.
+> +
+> +        properties:
+> +          endpoint:
+> +            unevaluatedProperties: false
+> +            $ref: video-interfaces.yaml#
+> +            description: Endpoint connected to output device
+> +
+> +            properties:
+> +              bus-type:
+> +                const: 4
+> +
+> +              remote-endpoint: true
+
+Drop.
+
+Rob
 
