@@ -1,112 +1,112 @@
-Return-Path: <devicetree+bounces-205844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8DF0B2AAF8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:39:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92ABFB2AB23
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:42:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 590945A70C5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:25:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5650B585A06
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:27:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE3C27F727;
-	Mon, 18 Aug 2025 14:17:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N4WTyqbc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB485322756;
+	Mon, 18 Aug 2025 14:19:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01BF327B358;
-	Mon, 18 Aug 2025 14:17:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19DD2183CC3;
+	Mon, 18 Aug 2025 14:19:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755526658; cv=none; b=j1i+/RyJAitLNqzjzrG/dAOj0Aupx4x5vkagn0DIaDgv4fqpD8tTmV/8hxJl0GrBKcmsInndKZI+0MNwKgfGTj/q25rzlLRwg5WpYbREVo1HZDgwMDdelrttAkw2xzlI0o/lOTPh+hdCUImBuK+THyk+uF+IAeGiK88lZovKWls=
+	t=1755526778; cv=none; b=WSgO2jBbUYKQJXiD2RP9DKoHCJyvYTG/5hN5tiD2drEo7i92do+WsRIdT4e4tB0o/en4jMheuztFQorTDJitpFI1b9PWYJ5u5jyjFKexEM52DBxagXuLEKr1uIz+5MSsmB54QG56uXcZlpAiE7d2wOaAwZb5UOomAd7BWT4LFhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755526658; c=relaxed/simple;
-	bh=H6weieZqmH6RhYEBwQ2kz0Yl41c2kBx3NqTgBGzgAEg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HwAivqXk4DyaRET5ZUnCNGOQYBqcu323hRiu6jbo5fKtysKnQ9bYbSei9JipTIO09dQUdkGn2z5Z+Myu8jikfbugv9EucqlzO1CXWP9wnsDrChre2jOUaFQDYvQrcy2gkGlyKexFun8ibPm0ZgtggPd1mUVdlVWa4Lat8GZHkXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N4WTyqbc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43C0AC4CEEB;
-	Mon, 18 Aug 2025 14:17:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755526654;
-	bh=H6weieZqmH6RhYEBwQ2kz0Yl41c2kBx3NqTgBGzgAEg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N4WTyqbcvhmD96XQRNiJuW9foMCV9pLvyEsvtaODYtZXab1KxDzIYcU68yy8VqcD1
-	 HcD5ddhgVUvlWS4MTJVL0kvq3golVj0OrU3/EWdftCAkp/XgTdGUZJJFtDYD4ch1Cz
-	 7AxtQ04UqcQPEzvc6I5bNtGKlBhbhC9HBHCJgkJiM/Q41W774a4gu224bWs8hHP2tF
-	 UBykcbQuwz6dMJiTbzE8FZOmgxEKpp4/wv8f0yjjVe5egn2NCf3JzkeZ72LLK5vbOL
-	 eQkwseWiNKjYV2c5wKIZaqYFsMMjqYskM/Uo3IM5J9OIqr55xTPoOXOd7+4ulMEXME
-	 KhJk0TTYSILlA==
-Date: Mon, 18 Aug 2025 09:17:33 -0500
-From: Rob Herring <robh@kernel.org>
-To: Ben Dooks <ben.dooks@codethink.co.uk>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC/PATCH] drivers/of: add debug for early dump of the dtb
- strcutrue
-Message-ID: <20250818141733.GA979958-robh@kernel.org>
-References: <20250808142515.142058-1-ben.dooks@codethink.co.uk>
- <CAL_JsqJntD-o6zMo-vaCQ+f=QDuyEmUgBJqjztoriq4QF7=zEg@mail.gmail.com>
- <CAGETcx99RE6=knBq75sMGUPKcuTKLXqJSo5NKyaZWRfXWEa7tA@mail.gmail.com>
- <cd6ed5b1-619c-4ca9-8fe0-6b47c7d641a7@codethink.co.uk>
+	s=arc-20240116; t=1755526778; c=relaxed/simple;
+	bh=ESrBPqxtSvV3SYSH5nYTlamKrrdru6Kbea3SG+txnjw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JD6qe5yvK7+xeUTF89/6LGDZ56wcGveLhM4AVz2Xux8sVGZlEKpYSmlyACh4RO97Ps9Uz1BudBDZ+YLquiXbRTyhhoyaO0rY56MCBRUgJT0gCAHxEqzFhRDp2QdKeptvlWx6kNFDs/dQijgS/ulCs1KJZbGj3uGihnPiR+fEN2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-89018fa6f6dso1233710241.1;
+        Mon, 18 Aug 2025 07:19:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755526776; x=1756131576;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TSSjmqhZWaZj/G7djCVPw3nP+4ngxEQSa1i85bdz9R8=;
+        b=Vpq5kZSmJM8aCo2NmUl6ohQC+6kgRm7QC3IdjU1TKJWBoj91n27xNriwf5hkFBwp0J
+         QHeBTv+wu67q8kVF28UZXzXOallBs2EC87MFojIQbGUhQIA5U4oOhZ2ZcyCeWVGwlwlE
+         SeKJGDKhckz6EhjrA734caHkXZysSmZ1XZXswDg0E683fRTUSyRNHPOE3xbNXNlumMnl
+         k2gJpHch4VOx4e1bOENGqCOyWk6dSqOvzuP//EQlEVDmCfvBeT1UskzLp4GY1Qbtn5ug
+         4MS4ykAzvlxWskoA3GWdEYGk0QiouT6PPrgAZyEzJB3iVaLlefH+i3Wp6xbQIp/G3PNH
+         udoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUl0yrEIYsizcS5AlaKTdo9zp2Gi7mdtDCY2YYAmtuKtbFHP5W6B35J076r+xSsZ2GTv8vtcF3mfmhxbuetY11bWzg=@vger.kernel.org, AJvYcCW9v9kvos19dQvyGzSIc0Oi+IVGDXaVvz0zsnDLp74a5S0sqzpupKtrv5WocOPVkLeTBBnIrdlGuVOpp6to@vger.kernel.org, AJvYcCX4EUUuX2WTo6nxIdTxwcLzfX4vpltGgWY+28+yiT8p6FLCSM/PlkE5GE+OZX7lX6NEhY//n4RbzwVc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjtNe5DCRgdfFTSDHfVsJ3nfzILAjOXV8si3uj4O95oCAa9Jog
+	HZRL6ELkUWoJs9CPuiCYX9KJ5Kw6l2qcXSN0Rc3kc1qSWF83uxbvsPgxVEPmOn0m
+X-Gm-Gg: ASbGncsyuagYhZqDZbg/OEve42hvuJPeXJIlsV9gFOSpWdbPcBoWVTTQ3XKGxzkK8d9
+	IB6cgLVlwcnitxehAZyQfUUtPOiSqP4iYaaWVbWwPjqXFg7Ku/KRxoGiWhW/pPA9KfrSdAcJLX2
+	mUVR3EZY53bc/jVzbmlJoDyk0SOw+ryWXN67yRxNZp7jtbRzVh2/JZks9CxIdiTV1Wk3FgOOK+s
+	OwkG7B4DiJBPjfO5l2p8x7VK/rnZaIBeAV9AIj5sbIWhwmDV2a00PRdgyvh1FgnhEvDr2eTAJxU
+	he09GaPrQYaRVjx3G0qbMCHXNjs2L+y8dOvAjRdVt2A8GchSHs0BHQNpCFVauWEJtMLJ61ts6UQ
+	inXuDbeM2fG7N4JDyh7SyFDIfEuYUSZ+IPE41wrZBXZdt/mI8AloIMmIU8wNO
+X-Google-Smtp-Source: AGHT+IE9BHl2rKS2Qzff3xIjEtPATZDLKZY6sdzJzwOn9G59UnJVFLP0/bEwIVgcYONPbMfOijpBEw==
+X-Received: by 2002:a05:6102:2596:10b0:4e9:91b2:c74c with SMTP id ada2fe7eead31-5126cd3ab6amr2686465137.14.1755526775906;
+        Mon, 18 Aug 2025 07:19:35 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5127cff4717sm2148124137.1.2025.08.18.07.19.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Aug 2025 07:19:35 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-50f88cd722bso1199700137.1;
+        Mon, 18 Aug 2025 07:19:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVO0YU/96XFv16/R/iJX8xoQLRSXGYKdK2yMWkAQoPAKqlwzvekC5++VdMED/WBlDCczYpEUMiR5YJD+I8N@vger.kernel.org, AJvYcCVPbqDOs/NqaEgmiTwmata1HpvogYnJHRSpv/Vq9M0/CbTlw8QCOVMTBKgIN7YiXZsgbACBDXsIsKGA87emBN7V0e0=@vger.kernel.org, AJvYcCX41s8+OcsvAELP9Rn0OaPpLYu/CFFIg0Mi+xFjMP59JARYneYJqxRq8WuTw/a5FiqaUd5eYVbKWIN/@vger.kernel.org
+X-Received: by 2002:a05:6102:9d6:b0:4f7:d553:3cfa with SMTP id
+ ada2fe7eead31-5126b30079amr4376506137.12.1755526775104; Mon, 18 Aug 2025
+ 07:19:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cd6ed5b1-619c-4ca9-8fe0-6b47c7d641a7@codethink.co.uk>
+References: <20250812200344.3253781-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250812200344.3253781-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250812200344.3253781-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 18 Aug 2025 16:19:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUqG5-NJG8+8ZjftFxV8axSL=TYnJFE=tS+66XomF7dXQ@mail.gmail.com>
+X-Gm-Features: Ac12FXyQnAlM1L7t2_q4FrDfxXQvHY6ysD0DN55y2OOE673c9acoHzcOZNEQsmU
+Message-ID: <CAMuHMdUqG5-NJG8+8ZjftFxV8axSL=TYnJFE=tS+66XomF7dXQ@mail.gmail.com>
+Subject: Re: [PATCH 10/13] arm64: dts: renesas: rzt2h-evk-common: Enable
+ EEPROM on I2C0
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Aug 11, 2025 at 09:02:34AM +0100, Ben Dooks wrote:
-> On 08/08/2025 22:10, Saravana Kannan wrote:
-> > On Fri, Aug 8, 2025 at 9:25 AM Rob Herring <robh@kernel.org> wrote:
-> > > 
-> > > On Fri, Aug 8, 2025 at 9:26 AM Ben Dooks <ben.dooks@codethink.co.uk> wrote:
-> > > > 
-> > > > When testing for boot issues, it was helpful to dump the
-> > > > list of nodes and properties in the device-tree passed into
-> > > > the kernel.
-> > > 
-> > > Shouldn't the bootloader be able to dump that?
-> > > 
-> > > > Add CONFIG_OF_EARLY_DUMP option to dump the list of nodes
-> > > > and properties to the standard console output early in the
-> > > > boot sequence. Note, you may need to have some sort of
-> > > 
-> > > s/may/will/
-> > > 
-> > > > early or debug console output if there are issues stopping
-> > > > the kernel starting properly.
-> > > 
-> > > Seems to me this is giving the user the haystack to find the needle...
-> > 
-> > Completely agree with Rob.
-> > 
-> > Ben, can you give more context on what kind of issues this has helped
-> > you (or anticipate it will) solve? Maybe there are better ways of
-> > getting what you need.
-> 
-> We where having issues with u-boot on big-endian riscv.
-> 
-> turns out the string functions had issues with endian-ness and
-> where corrupting the dtb when doing the final changes when booting
-> into the kernel.
-> 
-> the kernel wouldn;t boot as sometimes depending on data alignment
-> the #size-cells and #address-cells where having their names corrupted
-> and thus the kernel would bail very early.
+On Tue, 12 Aug 2025 at 22:03, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Enable support for the R1EX24016 EEPROM connected to I2C0 on the
+> Renesas RZ/T2H and RZ/N2H Evaluation Kits.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Whether the DT is un-corrupted enough to boot enough to print a message 
-is completely by chance there. If the bootloader modifications need 
-testing/checking, then that's the bootloader's problem to provide a 
-mechanism to do so.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Rob
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
