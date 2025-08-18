@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-205958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B4EB2AF92
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:38:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C51F4B2AF99
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:40:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C19172A0615
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:38:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68E6618A0C8E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:40:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B369E271453;
-	Mon, 18 Aug 2025 17:38:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E77522586EA;
+	Mon, 18 Aug 2025 17:39:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RKOZ+3WE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W6yxmlbd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856392773C7;
-	Mon, 18 Aug 2025 17:38:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE4FD2773E7;
+	Mon, 18 Aug 2025 17:39:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755538708; cv=none; b=JRtahMtj0stTWGGYzWw6r+RwS2Bm9CzKYmyGMRFvVEObnpHGuqrGKR30KLF/IUrB5Xtj9fkOk4Yc0htCo9tq/yTR0WmwAUjUYfeIY0l13DW6SosnQACaRq/ouj5NdAnrjwtjMrJKs0F36rgcAwzQblnczYr52EFNOlbQYkQZg4c=
+	t=1755538793; cv=none; b=Z5oPGPAHUzozKMB8lLVBXbpTLILXWtJK0o1xN6DfQiML/0SiYRw4ntOx6c95TtSJ1Jt/7lapXJ7JUA3U66u9kdyuYkl0bJtj4bFgOvqwSZCDAqJS9+LS0g5TYPTQG2nXU4HRsuWYRRcRS4RagjihLW89yX1Ori0nqzZcxTrYMak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755538708; c=relaxed/simple;
-	bh=1pBVuLjyy7ynbhC5YoUXbCCJe9KcE2Wm/0qpYZGX5+A=;
+	s=arc-20240116; t=1755538793; c=relaxed/simple;
+	bh=8QD47a7++31VLJAfDRpwGB9If1CqGaTD17f/6FYz41Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UdusAAeqOWZKhV629nqhvgjg1O3ZlfNVPLPymmLHHhmtqd1S4YGztdi5vGXMcQnf5lxJUcAW6tIS2D9ISZzL0Cqm5VuV8/kmSxfwsCWT7tlmxDBqA88l3MINqB/yyt18+e/FcasflFxdxxnx0QI7LUbNuN53nqF6NGb/RpNZrgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RKOZ+3WE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B2A6C113D0;
-	Mon, 18 Aug 2025 17:38:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OrzF5FxyAzE7njG1rcBY6E7uZF+R/O6sddjq6TdRSotZnAUVj2ts7jKTl2kAbk/+0ajHovN6Q9cz4zxlrkstcZt7o+Bv5Yl4L7e+NR9W5gGPv9cj3AZcK0m6z38x8S6tXU+sTnzSbElp2UwkQKpuaoIkvOstsW57HUVh9Ww6bus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W6yxmlbd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D9F8C4CEEB;
+	Mon, 18 Aug 2025 17:39:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755538708;
-	bh=1pBVuLjyy7ynbhC5YoUXbCCJe9KcE2Wm/0qpYZGX5+A=;
+	s=k20201202; t=1755538793;
+	bh=8QD47a7++31VLJAfDRpwGB9If1CqGaTD17f/6FYz41Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RKOZ+3WEAfIwm8vZRyItZ0bKDrEOSkTjPnSawARV2Ch4yRsx7qx3dLREHwuOIuGIl
-	 RnAOg69tqW5xIEk+Qn3lwg/hKDkmRcRnKfDml0AwY+liMsNSNv6LIiVJr7UyrzPJLu
-	 xFo5U6NqIaCUCZ9dSDcfLPreLdyjTJIBKVYlCb4F0/PapcR2eES59TBfotmMb06qG2
-	 PItJEy/qELjCHmiZqx6RfnnbEYen2EIBE4k8LpNqmHF/SYgTMVahUpq/z4NSqGs6gV
-	 CTIt/KK4OarZEkuM+fTVm0G7b3XSmT8cYIEBgp5vwQKo4iDoupHrYOFsGGgrtooUVp
-	 6ZC7lVjB/gsiA==
-Date: Mon, 18 Aug 2025 18:38:24 +0100
+	b=W6yxmlbdC2RlSs2jljtekiKsQM5jIWqZJ+Ku7aZvynEbE/xmQPM6pzL4AHVbkmtX6
+	 WpuaP5/BWQ5lVKSNyon1Z6LudDlLO2Pt4aaFeE95plzAB3vR1jQH8uEVMpmcKC3Y0n
+	 UP4W3DM14xC0UUFmMefhjWckaXTyiIw5jGReRuuzTEvvyaqFt7ZeW/KZ/HKfd5QtRD
+	 wb92NzcXPg4NtebYqv4MAwso+RaPedkvBm6TMWw9vkF/87c8uGK8KdBjfKS833je9o
+	 OwiN1xQ+OkS1huVmYCYis4+uS/t8am83zztULl5bJr3hrn6mKmWIDZPPMGBIxd0Nv2
+	 y45pD4a22zJhQ==
+Date: Mon, 18 Aug 2025 18:39:48 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	tsbogend@alpha.franken.de, john@phrozen.org,
-	devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: mips: lantiq: Document Lantiq Xway
- GPTU
-Message-ID: <20250818-departure-gloss-b99cacb9401e@spud>
-References: <20250816132002.3632343-1-olek2@wp.pl>
- <20250816132002.3632343-2-olek2@wp.pl>
+To: Mateusz Koza <mateusz.koza@grinn-global.com>
+Cc: angelogioacchino.delregno@collabora.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	marcin.czarnecki@grinn-global.com, b.bilas@grinn-global.com
+Subject: Re: [PATCH 0/4] Add support for Grinn GenioSBC-510/700 boards
+Message-ID: <20250818-paddle-grief-9f74d59d1b89@spud>
+References: <20250815160837.371592-1-mateusz.koza@grinn-global.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,80 +59,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="XaMo6EeDYOS6GU0j"
+	protocol="application/pgp-signature"; boundary="QNL9t9AvLv0U/IlF"
 Content-Disposition: inline
-In-Reply-To: <20250816132002.3632343-2-olek2@wp.pl>
+In-Reply-To: <20250815160837.371592-1-mateusz.koza@grinn-global.com>
 
 
---XaMo6EeDYOS6GU0j
+--QNL9t9AvLv0U/IlF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sat, Aug 16, 2025 at 03:16:22PM +0200, Aleksander Jan Bajkowski wrote:
-> The Lantiq SoC has six built-in 16-bit general purpose timers (GPTU).
->=20
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
-> ---
->  .../mips/lantiq/lantiq,gptu-xway.yaml         | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mips/lantiq/lantiq,=
-gptu-xway.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xw=
-ay.yaml b/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.ya=
-ml
-> new file mode 100644
-> index 000000000000..fcbcd98def46
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mips/lantiq/lantiq,gptu-xway.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lantiq Xway SoC series General Purpose Timer Unit (GPTU)
-> +
-> +maintainers:
-> +  - Aleksander Jan Bajkowski <olek2@wp.pl>
-> +
-> +description:
-> +  The Lantiq SoC has six built-in 16-bit general purpose timers. The voi=
-ce
-> +  firmware needs these timers as a reference.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^gptu@[0-9a-f]+$"
+On Fri, Aug 15, 2025 at 06:08:33PM +0200, Mateusz Koza wrote:
+>   arch: dts: mediatek: mt8390: add Grinn GenioSBC-700
 
-This is a timer, why are you not using "timer" as the prefix?
-Otherwise, this looks okay to me other than...
+s/arch/arm64/ in this patch.
 
-> +
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - lantiq,ase-gptu
-> +          - lantiq,danube-gptu
-> +          - lantiq,xrx100-gptu
-> +          - lantiq,xrx200-gptu
-> +      - const: lantiq,gptu-xway
+>   dt-bindings: arm: mediatek: Add grinn,genio-700-sbc as a valid
+>     platform
+>   dt-bindings: arm: mediatek: Add grinn,genio-510-sbc as a valid
+>     platform
 
-=2E.the fact that my OCD hates how the fallback inverts the position of
-gptu in the compatible!
+These two are
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---XaMo6EeDYOS6GU0j
+--QNL9t9AvLv0U/IlF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKNlDwAKCRB4tDGHoIJi
-0mWFAQCoUZtgipeEdjT6o7JXNTlW2+/t0DPCM943r9ic3VXaZwEA9Q43aQUQpRQO
-dO5R+ha9bSsFhQuo45sTCAZMz6+BeQM=
-=kzRL
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKNlZAAKCRB4tDGHoIJi
+0rFUAQCieJA2LUW0GoG6nElADTuacveifnWDgRu5M1KHYSHLzAEA13WqioahHbk6
+zMMp9bCk4IrCTNMBEKF69re78v7WsAM=
+=UkIe
 -----END PGP SIGNATURE-----
 
---XaMo6EeDYOS6GU0j--
+--QNL9t9AvLv0U/IlF--
 
