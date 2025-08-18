@@ -1,124 +1,98 @@
-Return-Path: <devicetree+bounces-205778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D19E6B2A1B5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:37:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2062DB2A182
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:27:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DB3716F41B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:26:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DCD93BEF5E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A214A32038E;
-	Mon, 18 Aug 2025 12:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A8D3203BE;
+	Mon, 18 Aug 2025 12:26:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A33F320387;
-	Mon, 18 Aug 2025 12:24:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE604320386;
+	Mon, 18 Aug 2025 12:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755519888; cv=none; b=jJGq+hCeprhj2bKcCzA0udz2uQFHtao2Cg08V54aaPRJu9gCCQKhOzeNuipSHNR6T1GvWKfgE69aICBgKGMJj7MgIPnmdExALTaw1ww5tRxAaIh/EzeDw0ItElaXLdKEjJDPf7ut+NKol4iu0e/2VdUG7mIp3/pVIjkAxgzLlFg=
+	t=1755519963; cv=none; b=GtmwADnVZ9LQBwMRIy72bwwjuUAecFZnrVhqDKNOe8Re63GA/Um1Az2Xs04mWMsXuAkA0rRLpLdedR18iDOSa3pCDY09p5L73BC7H+2AO0ZLdWrOazRy4zQdbFdbITtdW8+bfOPfrzsc8nv24krRpeCP9Z1F3ctDElU0HAQqnGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755519888; c=relaxed/simple;
-	bh=jD+9ao0yR5Brq3o8Ck660aPVrU0peS4is3diwCooOI8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AL/vbtfh/Xupltzkh/ZaY2BeXdVxWcacNzDWpbmfNW5aACBgUCCe0kRlFiM4zrgHLOhl18JDcGBIAAu+ydQ8hrDgXwIs/OhI5Bb1xiJUQ6u3tN0JQuQTeEtQJ0rweFtox+pyeF2Jex9TRgYKeyAqZMcs+VV9RSp+P/+8if5KTZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-50f8b94c6adso929411137.3;
-        Mon, 18 Aug 2025 05:24:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755519886; x=1756124686;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AaJa7kce63JBMbdEnE+cWazL6nCQ8LgeQ2Dg4AesiNg=;
-        b=bqBazImwRUm7wdH6Hof9uaTUvaGb2ac9p+ftUxsgGHseMW+675bHJevqdsKY+plDmd
-         Pa/YjstK/uOh787b+oVRfchWYWtKEJBbwjSqT14VbW/Ac9AZPpp0ZJasSqAh1wth2oZK
-         NeOdV4EiqpzD0QilSiiNSIRSBp9CwEND4ByH9qohWRe116qmYmotQZWXD0GwNS7WpZIK
-         DdpT4xR53TmediUbasd4y/tzR2B3gXgXuz42Hkax1fVphiPo3u+y4lTzraTiYZX5deLH
-         1kjvtsV+Zj7mBdqGU2wnVLKaZzo2r8albsX+fszFO1J63QMLj8k3EEtsDkoAFtW/x5FI
-         Wx7g==
-X-Forwarded-Encrypted: i=1; AJvYcCXD+hCFU8x+tsBC4D/MFOKvVXXVDtPQQIu8M1yckIhR8Rh8pWQSmPbxr7YZvAS9Hz40Weosp8LZwou2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLAgJAOl7QumE+JgdVLf7WrhjSsCZY+bUIiFZkKEJA/qp8u+zp
-	j4imXzxz05r6jTYTcB/WsZVnnKQgJ1xQuOuPFKL1Z6nVKH4sDTABL1Il3w+TlGAO
-X-Gm-Gg: ASbGnct+5wgNI3CixfkBRM2s53FhpFJbXfmjHAEmYgEip6WUo9sMmzbsfUXNT3Y8c/B
-	7uWA1I/HEU8fGTA6ducQCXjFCJhAzIIbRYOybF/SnFlfSy5eZ1r9RWJJbBVx5rwTEpbVZkrebq2
-	VaVhLDAgmrISZPOWD1FEXuJBATdZ9wLlgqm2n5IIF31k4SzKBmEaY8XxN5n+ZMgOyVYNT4YhE7g
-	ZFl/ab5jVL8QXWyvM0a63AvMfJUTXgQS7K2QjP6fwoibSwmoDvbBv+nPceRx7dQfMdreHV0veSf
-	iQ2nbQPlOJRDjfUWawbzzhV91Op1F8QiC27X6S1IWuiztvWViHFWv4FuoxAwfJTsXDlUGSo/LfN
-	60NRzFI8td/fES9Fqs756bsB5KtFlrmnehM4dKTGQwlYUhy7eKVA0wrieLRs9
-X-Google-Smtp-Source: AGHT+IErfKwJlQMJYshveyZSE9fFhOVSOW5bmp0p7Day5WmxECjdpkv+pLp9Qr/5dvcmWvE5uRzr/w==
-X-Received: by 2002:a05:6102:f11:b0:518:9c6a:2c04 with SMTP id ada2fe7eead31-5189c6a369dmr18071137.31.1755519885713;
-        Mon, 18 Aug 2025 05:24:45 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5127f2269e4sm1954703137.10.2025.08.18.05.24.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 05:24:45 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-50f88cd722bso1161030137.1;
-        Mon, 18 Aug 2025 05:24:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVWazysdx4K3i2pU0A8yIXwr2HOluwZOKJirWVrWxzjnzEqXrfwv1rD9+xzbnCTFJYh7HrXH+5tCx7S@vger.kernel.org
-X-Received: by 2002:a05:6102:a49:b0:4fd:35ca:6df5 with SMTP id
- ada2fe7eead31-5126b2fcf15mr3545585137.7.1755519884929; Mon, 18 Aug 2025
- 05:24:44 -0700 (PDT)
+	s=arc-20240116; t=1755519963; c=relaxed/simple;
+	bh=3D7XiQsF2LRwxTsIiluc2rRY4xp6KZq2KqBz61kwKhc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=p0nPG/DacHVaZQV7Ptxbw1QMS+wUYjH7Nf2a2i/31SIk16GYI0VWCA5vKtSXjpN8BvIIyDe2vSEhjth27zVT14ausFPV4Y0mULPb1VC7PA5/1ONAmW3ePq7sJkpxZWF/C2lG3C/sipJJedsEuGmz9+7Eh8pFkfK94p64Mx2CxFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from ofsar (unknown [180.158.240.122])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 84414340DB0;
+	Mon, 18 Aug 2025 12:25:54 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	paul.walmsley@sifive.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	palmer@dabbelt.com,
+	Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+Cc: Yixun Lan <dlan@gentoo.org>,
+	skhan@linuxfoundation.org,
+	linux-kernel-mentees@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] riscv: dts: spacemit: Add initial support for OrangePi RV2
+Date: Mon, 18 Aug 2025 20:25:36 +0800
+Message-ID: <175551987874.16484.811796950493073575.b4-ty@gentoo.org>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250813092240.180333-1-hendrik.hamerlinck@hammernet.be>
+References: <20250813092240.180333-1-hendrik.hamerlinck@hammernet.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250807151434.5241-6-wsa+renesas@sang-engineering.com> <20250807151434.5241-8-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20250807151434.5241-8-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 Aug 2025 14:24:32 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUyTPRrU=BDdtETj3i9hRct-R1HKpsrt5nFAJrdo1ZswQ@mail.gmail.com>
-X-Gm-Features: Ac12FXypn69uphTYSUvkFCV9fJ3KT7NUTPKt5HMer-mcztbNA6d2HVd6VRfoXr8
-Message-ID: <CAMuHMdUyTPRrU=BDdtETj3i9hRct-R1HKpsrt5nFAJrdo1ZswQ@mail.gmail.com>
-Subject: Re: [PATCH 2/4] arm64: dts: renesas: r9a09g047: Add I3C node
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, 
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, 7 Aug 2025 at 17:14, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
->
-> Add the I3C node to RZ/G3E SoC DTSI.
->
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Thanks for your patch!
+On Wed, 13 Aug 2025 11:22:38 +0200, Hendrik Hamerlinck wrote:
+> This patchset adds initial device tree support for the OrangePi RV2 board.
+> 
+> The OrangePi RV2 [1] is described as using the Ky X1 SoC. Based on research
+> and testing, it appears to be identical or very closely related to the
+> SpacemiT K1 SoC [2], as suggested by the following:
+> 
+> - Similar integration in the Banana Pi kernel tree [3], which uses the
+>   OrangePi RV2 and identifies it as the SpacemiT K1.
+> - Comparison of the device tree code showing a match to the OrangePi RV2
+>   Linux tree [4].
+> - Locally tested the OrangePi RV2 with the SpacemiT K1 device tree,
+>   confirming it boots and operates correctly.
+> 
+> [...]
 
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> @@ -601,6 +601,41 @@ i2c8: i2c@11c01000 {
->                         status = "disabled";
->                 };
->
-> +               i3c0: i3c@12400000 {
+Applied, thanks!
 
-i3c
-Please preserve sort order (by unit address).
+[1/2] dt-bindings: riscv: spacemit: Add OrangePi RV2 board
+      https://github.com/spacemit-com/linux/commit/f10512e2c44e6ee3242314d43102acab7340e2d3
+[2/2] riscv: dts: spacemit: Add OrangePi RV2 board device tree
+      https://github.com/spacemit-com/linux/commit/bab8dea259100a99e047fd11a48940b229d30031
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.18, with the above fixed.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Yixun Lan
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
