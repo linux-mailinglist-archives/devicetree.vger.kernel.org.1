@@ -1,125 +1,95 @@
-Return-Path: <devicetree+bounces-205904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 393C9B2AD7E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:56:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 942C7B2AD87
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:58:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55AE4189E928
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:56:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BEA8561E0E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:57:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8454321F4F;
-	Mon, 18 Aug 2025 15:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27942322762;
+	Mon, 18 Aug 2025 15:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ftLynG5m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPEsLYFv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D230335A28A;
-	Mon, 18 Aug 2025 15:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B0432253E;
+	Mon, 18 Aug 2025 15:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755532575; cv=none; b=XLm/hf/QuYJl408Av7JfBKh+yiajG8g9nq93Ypwkd5KR+dBkNp4WkccE8QFdLh8tHQS5xvVbL4cV5TeeWpSluxATmcscZhg4wiMg7GMmpwspOJBvlvB8vSgYg/zcBOhPN9SIwmlXyR7GJMqor1mtWsPswhPdvGwumlP6QtLbxf4=
+	t=1755532619; cv=none; b=ZYNiwEcIWMVkxMpXhzYAiEUdDy6Yepy3i+kEucfAufDFZ3jADq5IW7wk/2klIht5GaL8FQQNpxTuG5Gr8CZK2N3yD6GR+VxK0U0pXtbKKhZRkpb0PVDMCe3QerPq860jvO0FFkaLitQ/OEDKw0zm+K2M+OQpMv+dfkPefLf0yZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755532575; c=relaxed/simple;
-	bh=SxiNEnTOiIMgcErCvz6/vPTFNfqv77e2dsq9j1+gqLk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=i+N+z7MoAyBQAmimca8kRhGub+WkKp65Y6paiORUeflz0aEWutL2hWUvD1GPP3xmNLuR8U4BA5x+Mbn4gAaccTw9NQOy6jFwlLEZ5ICH1GjVX+tM5TPA9seVhDX2EtMdQ2UH0Eow50RSwnHluW5EEQp0wXi4F14PyVpFNzjYGcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ftLynG5m; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57IFu7li3198155;
-	Mon, 18 Aug 2025 10:56:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755532567;
-	bh=SxiNEnTOiIMgcErCvz6/vPTFNfqv77e2dsq9j1+gqLk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ftLynG5mp+hJLRR0WimFRxLw2JCDTNq32taIkyAemhEhTHy+91IcNOwogrU84x4qY
-	 PGY3Rm1fy+a6sjmBMqU1+/YbqHwhRJRDKQyEz3GjQDZcRt6gCfe6D2OdCKrYR2t1aX
-	 PFZhzafVSE2FobIGI9BQw9BScMzCUOuEsbHpsZB4=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57IFu7oL622936
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 18 Aug 2025 10:56:07 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 18
- Aug 2025 10:56:06 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 18 Aug 2025 10:56:06 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57IFu2Qm1274444;
-	Mon, 18 Aug 2025 10:56:02 -0500
-Message-ID: <146ffb9c-e0f8-479b-b6fe-322786be0e20@ti.com>
-Date: Mon, 18 Aug 2025 21:26:01 +0530
+	s=arc-20240116; t=1755532619; c=relaxed/simple;
+	bh=8d4JxUtDdmnFSWMSh4kLNhDj+8WZAbO078i8EJPbAOs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U2ndvnZrLOmGjSfenQDcEcERe1fkQXOsLqIkyKwGM4A+yWsNDX5Zswo5uGRFXsBGXbl6kAIY05EBBDdatoC14rdFkFTsLXFAmpA9yY15k5p8b/9zC90M+6fVP4nRumdy3exft0VIFiCxEivM3ZdIvDqRb4+DX3WvFXYmoctyqkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPEsLYFv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 463EAC4CEEB;
+	Mon, 18 Aug 2025 15:56:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755532618;
+	bh=8d4JxUtDdmnFSWMSh4kLNhDj+8WZAbO078i8EJPbAOs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CPEsLYFvKxO45JN/BaXfFUFR2Bye+1F8P7XrRUe/tNgDzsnVUYNujcDZAxN4FtQNE
+	 iqj3UBvVfZfxULxNnnqdnF9FvtzbmJnMkRX0TE2olkdl7qg9HDR+euP3DA7n1E92Rq
+	 VNDR3AHZI/z2AAfg6vGLMEVtlSBCrJa4brw5SYWBmgzBacdjbe28MvlX4UVRdF1Vzx
+	 C0o269GyOj5wJ5cU/PlrLvF28hJgTAS2oLXSMG7lYv3IhUa2Kft6QkoCeB/Po2QJUB
+	 WdlU81wDen413BusE1tw1DsZ8tzybTBOcxOWx7a+af9hPEXZiYgcn5Yx3zXaFiYtS+
+	 IRbQI7rzyc/eg==
+Date: Mon, 18 Aug 2025 10:56:57 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Lakshay Piplani <lakshay.piplani@nxp.com>
+Cc: shashank.rebbapragada@nxp.com, linux-rtc@vger.kernel.org,
+	priyanka.jain@nxp.com, linux-kernel@vger.kernel.org,
+	conor+dt@kernel.org, alexandre.belloni@bootlin.com,
+	vikash.bansal@nxp.com, devicetree@vger.kernel.org,
+	krzk+dt@kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: nxp,pcf85363: add timestamp
+ mode config
+Message-ID: <175553261709.1300451.5942152829890999372.robh@kernel.org>
+References: <20250811082123.1099880-1-lakshay.piplani@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 33/33] arm64: dts: ti: k3-j7*-ti-ipc-firmware: Switch MCU
- R5F cluster to Split-mode
-To: Andrew Davis <afd@ti.com>, Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <hnagalla@ti.com>, <jm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        "Udit
- Kumar" <kumar1@ti.com>
-References: <20250814223839.3256046-1-b-padhi@ti.com>
- <20250814223839.3256046-34-b-padhi@ti.com>
- <9a3f4271-ada2-48aa-b99d-023619ec5e12@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <9a3f4271-ada2-48aa-b99d-023619ec5e12@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-
-Hello Andrew,
-
-On 8/15/2025 9:18 PM, Andrew Davis wrote:
-> On 8/14/25 5:38 PM, Beleswar Padhi wrote:
->> Several TI K3 SoCs like J7200, J721E, J721S2, J784S4 and J742S2 have a
->> R5F cluster in the MCU domain which is configured for LockStep mode at
->> the moment. The necessary support to use MCU R5F cluster in split mode
->> was added in the bootloader. And the TI IPC firmware for the split
->> processors is already available public.
->>
->> Therefore, Switch this R5F cluster to Split mode by default in all the
->> boards using TI IPC Firmware config (k3-j7*-ti-ipc-firmware). This
->> gives out an extra general purpose R5F core free to run any applications
->> as required. Lockstep mode remains default in the SoC level dtsi, so
->> downstream board dts which do not use TI IPC Firmware config should not
->> be impacted by this switch.
->>
->> Users who prefer to use the fault-tolerant lockstep mode with TI IPC
->> firmware config, can do that by setting `ti,cluster-mode` property to 1.
->
-> What a user prefers and other configuration like that does not belong
-> in devicetree, which should only describe the hardware.
->
-> Configuration should be done using the normal methods, like kernel
-> cmdline, module params, ioctls, etc.. Maybe we can even set the mode
-> based on some signal in the firmware itself, like in the resource table.
->
-Agreed configuration part ,
-
-but as default, what this CPU should be lock-step or cluster-mode
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250811082123.1099880-1-lakshay.piplani@nxp.com>
 
 
-> Andrew
->
->>
->> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
->> ---
->> [..]
+On Mon, 11 Aug 2025 13:51:22 +0530, Lakshay Piplani wrote:
+> NXP PCF85263/PCF85363 provides three timestamp registers (TSR1-TSR3)
+> which latch the current time when a selected event occurs. Add a
+> vendor specific property, nxp,timestamp-mode, to select the event
+> source for each register.
+> 
+> Also introduce a new header 'pcf85363-tsr.h' to expose
+> macros for timestamp mode fields, improving readability
+> of device tree file.
+> 
+> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+> ---
+> Changes in v2:
+> - Addressed review comments from Rob Herring:
+>   * use $ref: /schemas/types.yaml#/definitions/uint32-array
+>   * tuple form with exactly 3 items (TSR1/TSR2/TSR3), per items decimal enums
+>   * define 'nxp,timestamp-mode' clearly
+>   * drop watchdog related vendor properties
+>   * remove watchdog related vendor properties from i2c example
+> 
+>  .../devicetree/bindings/rtc/nxp,pcf85363.yaml | 23 ++++++++++++++-
+>  include/dt-bindings/rtc/pcf85363-tsr.h        | 28 +++++++++++++++++++
+>  2 files changed, 50 insertions(+), 1 deletion(-)
+>  create mode 100644 include/dt-bindings/rtc/pcf85363-tsr.h
+> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
