@@ -1,148 +1,147 @@
-Return-Path: <devicetree+bounces-205629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5C24B29A37
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:54:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A4AAB29A69
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:01:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 346F65E3F50
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:53:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD9CD7B3070
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726AA277CBD;
-	Mon, 18 Aug 2025 06:53:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771D6279354;
+	Mon, 18 Aug 2025 06:58:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
+Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87ECE221DAD
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 06:53:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DCA7278772;
+	Mon, 18 Aug 2025 06:58:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755499989; cv=none; b=KZo+Rm69O8xZ/d3nK+i1nrdXEPV3U6V5brhzAiL0UfzC8bACLQO9A0xI6tBVEin3TkWLEDiiX9+7UUbPKqwYaWSarv2ikDpnh7O5dsF8jIzTYj0hlhCeHMGxuLi3NLQO1pZ1Y+GPHFkyRw6dRsdF/5+G5z4Y0RYQlsJIbEuyDJU=
+	t=1755500322; cv=none; b=W7ZF422jMcC3ht44sKVTXXsRAEEio8zd6LF6fGHPzTNxlktwAi8we4rnXBThz/zk+oEhzy2fsP6/Z4RMF8BQ5q04Enzr12y39V0lGTDzOMMnp1Ek5FZDy+a8hJtMjfpJ/V1rq4+z8f9gcNtbYQ2i/qmMto4knkUHCRaWMLG9WXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755499989; c=relaxed/simple;
-	bh=u9pSuqLG11ff8tf01lL8pPWzMjaXryve9DurJw0P8ps=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n1gIb9mdbUYA/L/+spC1/3WoU5UEPzJWul4GtXIR7T+iLKxnvdWH/rZEUjuBETliiogfdSgL50ll2he+d62sNtDuOsBDJLxLOX36IQh95l7YUz78Oap6891uEwtv9oN+DTHoTRKP7sYGSTsTlETlrLeXuFVApDZgvNf2jnTdqdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=95.215.58.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Mon, 18 Aug 2025 02:52:59 -0400
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Ben Collins <bcollins@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Hepp <andrew.hepp@ahepp.dev>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/5] dt-bindings: iio: mcp9600: Add microchip,mcp9601
- and add constraints
-Message-ID: <2025081802-courageous-chital-ec8896@boujee-and-buff>
-Mail-Followup-To: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Hepp <andrew.hepp@ahepp.dev>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-References: <20250818035953.35216-1-bcollins@kernel.org>
- <20250818035953.35216-2-bcollins@kernel.org>
- <062512ca-7069-4fc5-bcbf-a076203399f0@kernel.org>
+	s=arc-20240116; t=1755500322; c=relaxed/simple;
+	bh=ubUFzesfUYXlPF17yj2IvT/HDmVZpKMUPllKQ1ADwfo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h5DSUwMnRXQWQ1ipJ3fbYE5adnV+pGPUkAbgxCoI3/2rHpSG/yH/3gHvfyWTBpUpyw7Ztji5En8mpH08zcdUKTpaErUsNemP2nqXn/K12mYMPYdjcUUqgTBU6ZhdZ8tMueb1HtdCtRsNANL6KQVe6Tyae55DweQL3dOJUj46t/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.243.244.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip4t1755500244t6fc68c41
+X-QQ-Originating-IP: sLmbQl3vBpNZ30bWX5N0sBTYr4LYaC7/m/aS7e2wyqY=
+Received: from [IPV6:240f:10b:7440:1:e696:3c18 ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 18 Aug 2025 14:57:21 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 1927108559509469176
+Message-ID: <BCD8E43E564BC334+1e45d36f-edc7-4c3c-90c9-7b0f2a52360f@radxa.com>
+Date: Mon, 18 Aug 2025 15:57:21 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="uy6n32mymkh4twkm"
-Content-Disposition: inline
-In-Reply-To: <062512ca-7069-4fc5-bcbf-a076203399f0@kernel.org>
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: remove vcc_3v3_pmu regulator
+ for Radxa E52C
+To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250816080030.183931-1-amadeus@jmu.edu.cn>
+ <20250816080030.183931-3-amadeus@jmu.edu.cn>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <20250816080030.183931-3-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: OBUGnm9pFasAcNPGHYEMAopgoh5OwK6sDVK9bpqjd4LE8UhdUNPQ9bKd
+	Eft9UalMA+yEWVadv5T6zu8vxV885J/dFccTojhVAHOFPp4bMUXBCPSVwxd/LFYHuOK47Dk
+	4Pf3qcgL8BXEGSElSYv/4M8iBjpN221bvXwzxf8nlQimUGPyLQFOc72o8jk3WWvQhwvyVJk
+	N++pAcPjMhGi6EZwh8mYFVZg8yybg6OL6jAIN7DcfscMlSpCA8Qm9BAnPvA/XkZcLkrF01P
+	cU83tt+n0jxG39QLqnam+jEniLdShLddKJpN7FbQ2IQRhhuJ2Ae7yC3JcwKiCT1KRbm4L1o
+	55uisvFusSs0snQ/pBidg1zdinBWowBbUbTp7c8FAiQ3SQBuQYY+nIhOCmHoVoOoDd/6qgj
+	UodG2CUSlHj/UxAcVPHDdRkZdBlyz6sAK4fqG9pvdQyfmyqzrqx3oUcWNhkOMSa17XUl/Hl
+	tw5v+HFbDJHUDLX7y4vkfJ8KD7h3qGV82mlWgSmYDhnD+Bx433C4H/vuMDSSlCygbJcAXYS
+	GnUuBjWqcKWV3RO4rzkM7+PZ/y31YoyU4/OE+PQjp36PmdLMnnYOx7ej8A6Rqy4uVBjZVju
+	mm1vqI8w1mdjpQ0tpi4GE+V7+7eotK1libg4gEWWS6MPlRetQn+mA3zAeuvXFrUy+u86pYG
+	g1Z8L0iK+doHUhhyvrAAPkOpsbObkDjS39ZocN/zY5mCTx9X/ryvHW6198iVAC+/Up8vsy9
+	+fVElV2mut9qi7JF001tr4iGW13YAvuTWAYMrXmCX24wgwq7UfcPTNaLwbjtdyveMt+4m1X
+	+TNSjx6dHnY53Sl57Uexu6tfzD9aYWezAGfdJukbeaqFefyzxG0b0yJvDyuT6aBdqJ7tFYx
+	dA8bU2U7pDMLx3DkNj7CWf2L6B0DHJ3aqhVAhfZeiGRmuJPZ8iLjsey9UFpnQUc42aadKSJ
+	H6FS267F7p60Ccr3jSDqVod3S4fvQq+gpNU3Ro0JRGPZmOyoQ/dCAxDiNy1xoW7jBvN4=
+X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
+X-QQ-RECHKSPAM: 0
 
+Hi Chukun,
 
---uy6n32mymkh4twkm
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 1/5] dt-bindings: iio: mcp9600: Add microchip,mcp9601
- and add constraints
-MIME-Version: 1.0
+On 8/16/25 17:00, Chukun Pan wrote:
+> According to Radxa E52C Schematic V1.2 [1] page 5, vcc_3v3_pmu
+> is directly connected to vcc_3v3_s3 via a 0 ohm resistor.
+> The vcc_3v3_pmu is not a new regulator, so remove it.
+> 
+> [1] https://dl.radxa.com/e/e52c/hw/radxa_e52c_v1.2_schematic.pdf
+> 
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts | 12 +-----------
+>   1 file changed, 1 insertion(+), 11 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
+> index 1883bd183396..4a3ae95f122f 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
+> @@ -98,16 +98,6 @@ vcc_1v1_nldo_s3: regulator-1v1 {
+>   		vin-supply = <&vcc_sysin>;
+>   	};
+>   
+> -	vcc_3v3_pmu: regulator-3v3-0 {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "vcc_3v3_pmu";
+> -		regulator-always-on;
+> -		regulator-boot-on;
+> -		regulator-min-microvolt = <3300000>;
+> -		regulator-max-microvolt = <3300000>;
+> -		vin-supply = <&vcc_3v3_s3>;
+> -	};
+> -
+>   	vcc_3v3_s0: regulator-3v3-1 {
+>   		compatible = "regulator-fixed";
+>   		regulator-name = "vcc_3v3_s0";
+> @@ -255,7 +245,7 @@ eeprom@50 {
+>   		reg = <0x50>;
+>   		pagesize = <16>;
+>   		read-only;
+> -		vcc-supply = <&vcc_3v3_pmu>;
+> +		vcc-supply = <&vcc_3v3_s3>;
 
-On Mon, Aug 18, 2025 at 08:40:26AM -0500, Krzysztof Kozlowski wrote:
-> On 18/08/2025 05:59, Ben Collins wrote:
-> > From: Ben Collins <bcollins@watter.com>
-> >=20
-> > The mcp9600 driver supports the mcp9601 chip, but complains about not
-> > recognizing the device id on probe. A separate patch...
-> >=20
-> > 	iio: mcp9600: Recognize chip id for mcp9601
-> >=20
-> > ...addresses this. This patch updates the dt-bindings for this chip to
-> > reflect the change to allow explicitly setting microchip,mcp9601 as
-> > the expected chip type.
-> >=20
-> > The mcp9601 also supports features not found on the mcp9600, so this
-> > will also allow the driver to differentiate the support of these
-> > features.
-> >=20
-> > In addition, the thermocouple-type needs a default of 3 (k-type). The
-> > driver doesn't support this, yet. A later patch in this series adds it:
-> >=20
-> > 	iio: mcp9600: Add support for thermocouple-type
-> >=20
-> > Lastly, the open/short circuit functionality is dependent on mcp9601
-> > chipsset. Add constraints for this and a new property, microchip,vsense,
-> > enables this feature since it depends on the chip being wired
-> > properly.
-> >=20
-> > Passed dt_binding_check.
->=20
-> Yeah...
->=20
-> ...
->=20
->=20
-> > -            interrupts =3D <25 IRQ_TYPE_EDGE_RISING>;
-> > -            interrupt-names =3D "open-circuit";
-> > +            interrupts =3D <25 IRQ_TYPE_EDGE_RISIN>;
->=20
-> Except that it wasn't it. You need to test your final code, after you
-> commit. Mentioning that you tested it and then actually do not test and
-> send something which does not build, heh...
+How about the following instead?
 
-I actually did, and fixed it, but it didn't make it into the commit when
-I emailed.
+@@ -538,7 +538,7 @@ regulator-state-mem {
+  				};
+  			};
 
---=20
- Ben Collins
- https://libjwt.io
- https://github.com/benmcollins
- --
- 3EC9 7598 1672 961A 1139  173A 5D5A 57C7 242B 22CF
+-			vcc_3v3_s3: dcdc-reg8 {
++			vcc_3v3_pmu: vcc_3v3_s3: dcdc-reg8 {
+  				regulator-name = "vcc_3v3_s3";
+  				regulator-always-on;
+  				regulator-boot-on;
 
---uy6n32mymkh4twkm
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
 
------BEGIN PGP SIGNATURE-----
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
 
-iQIzBAABCgAdFiEEPsl1mBZylhoRORc6XVpXxyQrIs8FAmiizcsACgkQXVpXxyQr
-Is+aUg/+Pnmh/68PO36tHheJkkhHTczGBJku8jji55EIo3CVfLntYiHlM6ZvKy6I
-Oepb96oF0TovJZ7uhkHVmk4h+YjEt/qr2nlNcC3UIms+0ak7kB/xZ8iQs+oPGjnh
-CXqvnDR1uGVEV+kLcvpqfyxu8ZNyVnWsvUiF1HCEw7AqZz7hmgKaq5foOcCdjrQv
-1sMejsC+1dkzGsLNyB3kgGtKUpuoi7eAktP8pN4hTx2CjbVqBbNGfYcKeFH9aAGI
-b88Ct5m64fRQbb7uxQLEkN7T/uc6u7hgWUSrCIokJKI+bMeih5FICwUsGRFqAYmr
-/OsDQE/wAE7jjut4SNJdE8aeZrzMvUY2xmwUo8N81SCQvn5TkROe3+hiRYuBD83L
-X1+iZ+BEvF7xJg9+dZo3EWjvX/g2FOTh0bK1/HXPEn1xBlVSD/qa5LVZC/BlsOYN
-qkWmCJIieBO8bB8xRk+Rsrhm6MR2klKQ4gp/5x0EpInLpMM7mghpL1Qv3HQFA/3R
-djz7vdNFGAEwZNzFL6bA+kljSjmTLWh4pUZsihjH6tXi6P64I+93aUXAmkaewIlI
-NU/XerzP5620+aUXx+To6ZiJjhYCZjasygVis2JVmDBw5+WG0Zxj/3qOKz5w2PDZ
-H2KDaeM35IpBWSeb8QdS7C1fNS05pGSOipDVrwYeVuZLSXfun+Q=
-=DBi5
------END PGP SIGNATURE-----
+>   	};
+>   };
+>   
 
---uy6n32mymkh4twkm--
 
