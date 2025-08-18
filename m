@@ -1,100 +1,127 @@
-Return-Path: <devicetree+bounces-205975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC101B2B043
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 20:26:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8171AB2B080
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 20:33:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98FF16837B9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 18:26:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7B417AF7AA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 18:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34ED73314AF;
-	Mon, 18 Aug 2025 18:26:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VU+zvF3C"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C74311948;
+	Mon, 18 Aug 2025 18:32:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com [95.215.58.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 093783314A2;
-	Mon, 18 Aug 2025 18:26:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C4327815B
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 18:32:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755541614; cv=none; b=BRmoLQOVDcwd3adG+BCkRI+3K594r5erCXbK+LFv0PBixWMi5WytMo1hf6cXtwWP19VD6jbnAKNkvAnD/wLEWPUAoRqsIwwerz5uQrHUgFtEvtpzcdGTL8LhiOvhbWBTjNhemVQej8U6EdlpOLcw7Ek2oYA3tHn7AzsVMWbL0Gw=
+	t=1755541961; cv=none; b=FF1DIZEqh9j3824AIDY4BCE4uLSLrwoWVJLtgTrs/3NZiUOiIZrKbSj4ec0FWsQJj136g1Vl3xJNIrAb7s2OBalUZwhkVD9uSseqMoXh1GzZzG6q0F0YPIWpVGL6R+EBduFwl4ldNjaSNKENFBO7YwATYNPqne2qHflZoAPhPiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755541614; c=relaxed/simple;
-	bh=cJtUW+vi9Bpqx+2oOXE9Ny2QyDh2KiaJnBmjqvxVePw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i5kc9gA8jQydOBDE9SsAuO/bR+MUd7EPE5zmvED21kXbB++7kvgB/06PQYJbBenRVevHBWyr/L/p4Sxo2WRcULEqp0J7s62xt5CoBDP90MHcgIonmSENuP5WA780q12DWtQlG5sEzLYsbSRI4+rIVqNsh8xwhuX4PEo8jqDvLE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VU+zvF3C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 763A9C4CEEB;
-	Mon, 18 Aug 2025 18:26:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755541613;
-	bh=cJtUW+vi9Bpqx+2oOXE9Ny2QyDh2KiaJnBmjqvxVePw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=VU+zvF3CVjS8P3Ser0xAJh/8tN9iIuRBdsYurn7nbLgTscoJcby5dBZuPwxWS7zWz
-	 TJzZCuVkgkn+I9uxz9mKTPl9DRnMWPk1ZAxTYeFuru5OsvXz0NlMMdMsUTCzOPSZl2
-	 b2SCWZfbjnZyMV2/QGokXUc8oBYPLK6Wm5RVYwrEWnJuDfvl/8XoZKTmBHE3Qnmr43
-	 2NKdT7dyFDN4IlcuY6j4wWaMJ92eXzhnml+XqOrcsED4gGFBi6HPCAPvKOs1Xzax3Q
-	 xLSwktgrjPbhzS5tjD7Q69X88hG/0CGIWsG6dPHTlZDXagkkSkaNCs1GqfPs0Imboj
-	 8/MmwzRbmNj2w==
-Date: Mon, 18 Aug 2025 19:26:41 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Ioana Risteiu <Ioana.Risteiu@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ramona Nechita
- <ramona.nechita@analog.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/4] iio: adc: adi-axi-adc: add axi_adc_num_lanes_set
-Message-ID: <20250818192641.61f9af06@jic23-huawei>
-In-Reply-To: <20250818131253.8854-2-Ioana.Risteiu@analog.com>
-References: <20250818131253.8854-1-Ioana.Risteiu@analog.com>
-	<20250818131253.8854-2-Ioana.Risteiu@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1755541961; c=relaxed/simple;
+	bh=WGnehDgNegV77GT+UcGpwcKqV0rviFBYs8IzWylswcI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LB1dlbfWnHESa1izvX5FtiX+LH2/j2HP7zFuMu7o7hrlbS3MBMcXDnSFOGvdVqnwOdjRXFmMpG12t6kTv1rjQYYeb7uZy0Cwjargq0Ks3v7LG5/QTvcofDHOkZPZ4ISjo7kTcGw3mTRM6lqfM0S1oisCsVW8PCj/4TvP/8fabcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=95.215.58.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ben Collins <bcollins@kernel.org>
+To: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Ben Collins <bcollins@watter.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Hepp <andrew.hepp@ahepp.dev>
+Subject: [PATCH v5 0/5] iio: mcp9600: Features and improvements
+Date: Mon, 18 Aug 2025 14:32:08 -0400
+Message-Id: <20250818183214.380847-1-bcollins@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-On Mon, 18 Aug 2025 16:12:47 +0300
-Ioana Risteiu <Ioana.Risteiu@analog.com> wrote:
+From: Ben Collins <bcollins@watter.com>
 
-> Add axi_adc_num_lanes_set in the adi_axi_adc_ops structure to support
-> setting number of lanes used by AXI ADC.
-> 
-> Signed-off-by: Ioana Risteiu <Ioana.Risteiu@analog.com>
+ChangeLog:
+v5 -> v6:
+  - Fix accidental typo added in dt-bindings: IRQ_TYPE_EDGE_RISIN
+  - Correct some constraints in dt-bindings
+  - Reverse if/then for mcp9601 vs mcp9600 constraints in dt-bindings
+  - Updates to changelog for patch 2/6 (dt-bindings mcp9600)
+  - Cleanup tabs that were converted to spaces
+  - Split thermocouple-type default to separate patch
 
-So far we only have this set for a specific compatible.  Why does it
-now make sense to set it for the 'generic' case? Please add something
-to the patch description.
+v4 -> v5:
+  - Missed a one line fix to IIR patch (5/5)
 
-Jonathan
+v3 -> v4:
+  - Based on feedback from David Lechner <dlechner@baylibre.com>
+    * Allow fallback compatible in dt-bindings for mcp9601.
+  - Based on feedback from Jonathan Cameron <jic23@kernel.org>
+    * Be explicit in patch description for fixed width changes.
+    * Check chip_info for NULL to quiet warnings from kernel-test-robot
+    * Remove "and similar" for long description of MCP9600.
+  - Based on lots of feedback, use frequency values for IIR, and use
+    filter_type[none, ema] to enable or disable.
+  - Set default 3 for thermocouple in dt-binding
+  - Rework open/short circuit in dt-bindings
 
-> ---
->  drivers/iio/adc/adi-axi-adc.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
-> index 2d86bb0e08a7..20bb59c24acf 100644
-> --- a/drivers/iio/adc/adi-axi-adc.c
-> +++ b/drivers/iio/adc/adi-axi-adc.c
-> @@ -617,6 +617,7 @@ static const struct iio_backend_ops adi_axi_adc_ops = {
->  	.chan_status = axi_adc_chan_status,
->  	.interface_type_get = axi_adc_interface_type_get,
->  	.oversampling_ratio_set = axi_adc_oversampling_ratio_set,
-> +	.num_lanes_set = axi_adc_num_lanes_set,
->  	.debugfs_reg_access = iio_backend_debugfs_ptr(axi_adc_reg_access),
->  	.debugfs_print_chan_status = iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),
->  };
+v2 -> v3:
+  - Improve changelogs in each patch
+  - Based on feedback from Andy Shevchenko <andy.shevchenko@gmail.com>
+    * Set register offsets to fixed width
+    * Fix typos
+    * Future-proof Kconfig changes
+    * Convert to using chip_info paradigm
+    * Verbiage: dt -> firmware description
+    * Use proper specifiers and drop castings
+    * Fix register offset to be fixed-width
+    * u8 for cfg var
+    * Fix % type for u32 to be %u
+    * Make blank lines consistent between case statements
+    * FIELD_PREP -> FIELD_MODIFY
+    * Remove explicit setting of 0 value in filter_level
+  - Based on feedback from David Lechner <dlechner@baylibre.com>
+    * Rework IIR values exposed to sysfs. Using the ratios, there was no
+      way to represent "disabled" (i.e. infinity). Based on the bmp280
+      driver I went with using the power coefficients (e.g. 1, 2, 4, 8,
+      ...) where 1 is disabled (n=0).
+
+v1 -> v2:
+  - Break into individual patches
+
+v1:
+  - Initial patch to enable IIR and thermocouple-type
+  - Recognize mcp9601
+
+Ben Collins (6):
+  dt-bindings: iio: mcp9600: Set default 3 for thermocouple-type
+  dt-bindings: iio: mcp9600: Add microchip,mcp9601 and add constraints
+  iio: mcp9600: White space and fixed width cleanup
+  iio: mcp9600: Recognize chip id for mcp9601
+  iio: mcp9600: Add support for thermocouple-type
+  iio: mcp9600: Add support for IIR filter
+
+ .../iio/temperature/microchip,mcp9600.yaml    |  61 +++-
+ drivers/iio/temperature/Kconfig               |   8 +-
+ drivers/iio/temperature/mcp9600.c             | 295 +++++++++++++++++-
+ 3 files changed, 341 insertions(+), 23 deletions(-)
+
+-- 
+2.39.5
 
 
