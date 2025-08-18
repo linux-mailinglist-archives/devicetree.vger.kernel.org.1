@@ -1,96 +1,113 @@
-Return-Path: <devicetree+bounces-205959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C51F4B2AF99
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:40:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 451BEB2AFBA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:47:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68E6618A0C8E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:40:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D497518A7AD6
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E77522586EA;
-	Mon, 18 Aug 2025 17:39:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ACCA2D248D;
+	Mon, 18 Aug 2025 17:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W6yxmlbd"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="LLSlxI3G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE4FD2773E7;
-	Mon, 18 Aug 2025 17:39:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D29F2D2482;
+	Mon, 18 Aug 2025 17:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755538793; cv=none; b=Z5oPGPAHUzozKMB8lLVBXbpTLILXWtJK0o1xN6DfQiML/0SiYRw4ntOx6c95TtSJ1Jt/7lapXJ7JUA3U66u9kdyuYkl0bJtj4bFgOvqwSZCDAqJS9+LS0g5TYPTQG2nXU4HRsuWYRRcRS4RagjihLW89yX1Ori0nqzZcxTrYMak=
+	t=1755539149; cv=none; b=cvwpw7dHfxOHcNlM0gjbtcKkS3t6AUxAC15e8VVC0667srhGRfc0958urDT7z82L5MBIXdNdYyTFJvR6v5QR4+vbx2amC7BG4va+NmyjaPl3AmoQgiFwDsztMiEReL2SwmH2dSYTRM4Shv3R+5pnAqGcALzh0ys0CzdwewywRSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755538793; c=relaxed/simple;
-	bh=8QD47a7++31VLJAfDRpwGB9If1CqGaTD17f/6FYz41Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OrzF5FxyAzE7njG1rcBY6E7uZF+R/O6sddjq6TdRSotZnAUVj2ts7jKTl2kAbk/+0ajHovN6Q9cz4zxlrkstcZt7o+Bv5Yl4L7e+NR9W5gGPv9cj3AZcK0m6z38x8S6tXU+sTnzSbElp2UwkQKpuaoIkvOstsW57HUVh9Ww6bus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W6yxmlbd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D9F8C4CEEB;
-	Mon, 18 Aug 2025 17:39:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755538793;
-	bh=8QD47a7++31VLJAfDRpwGB9If1CqGaTD17f/6FYz41Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W6yxmlbdC2RlSs2jljtekiKsQM5jIWqZJ+Ku7aZvynEbE/xmQPM6pzL4AHVbkmtX6
-	 WpuaP5/BWQ5lVKSNyon1Z6LudDlLO2Pt4aaFeE95plzAB3vR1jQH8uEVMpmcKC3Y0n
-	 UP4W3DM14xC0UUFmMefhjWckaXTyiIw5jGReRuuzTEvvyaqFt7ZeW/KZ/HKfd5QtRD
-	 wb92NzcXPg4NtebYqv4MAwso+RaPedkvBm6TMWw9vkF/87c8uGK8KdBjfKS833je9o
-	 OwiN1xQ+OkS1huVmYCYis4+uS/t8am83zztULl5bJr3hrn6mKmWIDZPPMGBIxd0Nv2
-	 y45pD4a22zJhQ==
-Date: Mon, 18 Aug 2025 18:39:48 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Mateusz Koza <mateusz.koza@grinn-global.com>
-Cc: angelogioacchino.delregno@collabora.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	marcin.czarnecki@grinn-global.com, b.bilas@grinn-global.com
-Subject: Re: [PATCH 0/4] Add support for Grinn GenioSBC-510/700 boards
-Message-ID: <20250818-paddle-grief-9f74d59d1b89@spud>
-References: <20250815160837.371592-1-mateusz.koza@grinn-global.com>
+	s=arc-20240116; t=1755539149; c=relaxed/simple;
+	bh=UeHG12bkDTb36K5LCQP3Rab21bv/2vYsLcsdVU9WADw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j+4ggpAko761BMxQ5LgzE3BsP0iRNcHiuKJfmbVojlQCF00/41W5HXOyBZ6cpyoqu6zmSsCPlLS42CGJV8mXoW6od4oHKh0a3zOewuIYg+NYqxWRK4I+kP09Fwn9FwKhaMxfhoTl5pqyt8XVeF+ed/e3tlIdG8MT0dcPpUgLc9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=LLSlxI3G; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1755539140; bh=UeHG12bkDTb36K5LCQP3Rab21bv/2vYsLcsdVU9WADw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=LLSlxI3GxYZYMIOqP3fbxGXMGGCoLocLKEJEHpBoTXUfD6ITDH59zeT5tDC+1ecj/
+	 ZD9W87I85MvtvlKi8ZJ4N09p++h2qildeDpUknt+DkcNp+DC1eykZE3CEx79w21xA/
+	 Z+VdzaY8AQYL5XF3KA+W9EI4jwW7CmgkQtDAhtZ4=
+Message-ID: <d6159eb6-7777-478a-8bb0-298bfa607c06@lucaweiss.eu>
+Date: Mon, 18 Aug 2025 19:45:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QNL9t9AvLv0U/IlF"
-Content-Disposition: inline
-In-Reply-To: <20250815160837.371592-1-mateusz.koza@grinn-global.com>
+Subject: Re: [PATCH 3/7] dt-bindings: eeprom: at24: Add compatible for Belling
+ BL24S64
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+ Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250810-msm8953-cci-v1-0-e83f104cabfc@lucaweiss.eu>
+ <20250810-msm8953-cci-v1-3-e83f104cabfc@lucaweiss.eu>
+ <20250818155103.GA1272375-robh@kernel.org>
+From: Luca Weiss <luca@lucaweiss.eu>
+In-Reply-To: <20250818155103.GA1272375-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi Rob,
 
---QNL9t9AvLv0U/IlF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 18-08-2025 5:51 p.m., Rob Herring wrote:
+> On Sun, Aug 10, 2025 at 05:37:54PM +0200, Luca Weiss wrote:
+>> Add the compatible for an 64Kb EEPROM from Belling.
+> 
+> It is generally not required to add a compatible here assuming
+> "atmel,24c64" is enough to identify the specific device (i.e. read the
+> device's ID registers). If it is not sufficient, then some details here
+> about why would be useful.
 
-On Fri, Aug 15, 2025 at 06:08:33PM +0200, Mateusz Koza wrote:
->   arch: dts: mediatek: mt8390: add Grinn GenioSBC-700
+I thought DT was meant to describe the hardware, and this specific 
+EEPROM on the device is a Belling BL24S64, and it's software-compatible 
+to this generic atmel compatible.
+That's why we have compatible = "belling,bl24s64", "atmel,24c64";
 
-s/arch/arm64/ in this patch.
+Am I missing something, or misunderstanding how DT is meant to be written?
 
->   dt-bindings: arm: mediatek: Add grinn,genio-700-sbc as a valid
->     platform
->   dt-bindings: arm: mediatek: Add grinn,genio-510-sbc as a valid
->     platform
+Regards
+Luca
 
-These two are
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+>>
+>> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+>> ---
+>>   Documentation/devicetree/bindings/eeprom/at24.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
+>> index 0ac68646c077790c67c424d0f9157d6ec9b9e331..1e88861674ac8525335edec1b214675c8efa3ffe 100644
+>> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
+>> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+>> @@ -131,6 +131,7 @@ properties:
+>>             - const: atmel,24c32
+>>         - items:
+>>             - enum:
+>> +              - belling,bl24s64
+>>                 - onnn,n24s64b
+>>                 - puya,p24c64f
+>>             - const: atmel,24c64
+>>
+>> -- 
+>> 2.50.1
+>>
 
---QNL9t9AvLv0U/IlF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKNlZAAKCRB4tDGHoIJi
-0rFUAQCieJA2LUW0GoG6nElADTuacveifnWDgRu5M1KHYSHLzAEA13WqioahHbk6
-zMMp9bCk4IrCTNMBEKF69re78v7WsAM=
-=UkIe
------END PGP SIGNATURE-----
-
---QNL9t9AvLv0U/IlF--
 
