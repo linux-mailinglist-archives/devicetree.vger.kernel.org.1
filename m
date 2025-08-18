@@ -1,150 +1,144 @@
-Return-Path: <devicetree+bounces-205558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1847B296FF
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 04:25:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A7BB296B6
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 04:07:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 159A71892E8A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 02:25:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9C731962E4A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 02:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D155253957;
-	Mon, 18 Aug 2025 02:24:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C93221FBD;
+	Mon, 18 Aug 2025 02:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="ZoO947AB";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="NgVT2PLT"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="Pac7SOlr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB8525393E;
-	Mon, 18 Aug 2025 02:24:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CFD720ED;
+	Mon, 18 Aug 2025 02:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755483879; cv=none; b=CzfgtJpNcv71Vrrv0bUnPanJHG1zN6aO1vik9e42+Y0jO5NASXaAydxDb32hGvIa+7ytfxeXt7bjq3Uw6Mji7uybnfdK8ahDzvapPo127euZy6BuXVY7z5k8dcUSHpBWSxBWFC6YJhxp0HTHvpoOSpz2mOvp4PD1xv98s+cP6ao=
+	t=1755482848; cv=none; b=N1Zau3eObZzEGRtzKfn6pDgGTfybOhohyKVrkN2u3WmpLfnVKehZZxA89PkKRzcT5ZXUd0ZctZsCbDC8Kpe3pw/QcAOKv45U8hhTn2ile7y5Ux2vzjGLDPiyoNmNotz1WzLhIIKxYfKrYvuCJxbbOEy5qklSeiFAI26dwmF1P4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755483879; c=relaxed/simple;
-	bh=vmgf6Iy8E5Y06hvRZJiCIQpCML8yq75/Wn8/BgaN/5s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j+jxF0XhvSRdhVY3VPsMIvIcSFw4WsJ4oXlaAXlLoxMp8Sdx9+VsyvpaKYzIaUWK4Ur8cz0eiCAh3FiSBCciy4lf9B5PL5CLu92exrwePsWNqvCgAbC37hPdb7ZqdIsQcDBOVw9oO9/o4YR9FF7U/zXsegfUTFwnfa8KOrhjdEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=ZoO947AB; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=NgVT2PLT; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from localhost (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 6FF9A12FB458;
-	Sun, 17 Aug 2025 19:04:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1755482689; bh=vmgf6Iy8E5Y06hvRZJiCIQpCML8yq75/Wn8/BgaN/5s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZoO947ABqI1/DEJPMNYnCSQHsTMbnmfI1Dw3WxPN60lOd+AfnT95cNlkpGN+hWtpa
-	 9FK8YEcEHT/Cu6ofmanL7cwc7FjzGyIAMcAz0+p5uOLAG5kn4KKSofCeSph9hzh52l
-	 1qMPUi6k+WeW/DIxRPaF1cYMLvW+32NXSSYflvoFMtsmUPiU2+s9X4GB5xR2vGHBmd
-	 CbsPTQiorEseJrrqF5cOBEc7N3D1ahjiG3d/PtBOPn9FQvjTfgQHUA5BZzDetVnSan
-	 dMmZdWWCE9PrKwBX4vIR/hwa1K8BGunLCQR+f1ctE+vzMulPIOqtvFP1Aoew3LzTQA
-	 xFYiQUUZaVy3g==
-X-Virus-Scanned: amavis at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by localhost (bayard.4d2.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 4LgxnyKFoWQD; Sun, 17 Aug 2025 19:04:47 -0700 (PDT)
-Received: from ketchup (unknown [117.171.67.207])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 4DB0F12FB42D;
-	Sun, 17 Aug 2025 19:04:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1755482687; bh=vmgf6Iy8E5Y06hvRZJiCIQpCML8yq75/Wn8/BgaN/5s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NgVT2PLTL4OMlp9rouNeBHxswTSWdep5o/b02lF0rD+/ILW7rlhHbHW/SogckXhdO
-	 D+l4QKgmzWKYVNiMw7q8fAAhjEWMMNyq5RUJKy7NEBk4hh7A0tOD4Hz3j0VBt83NNh
-	 wyy24ZW1W13qmwRg8kptJ5+n2+KLnK5P46JCCk1nvz8BoQCYMkjLLyU0VJYLKresRe
-	 t2jur8XtTJ2Gee5ziFU5CVtHXX3pBRcqbRWXD7nY6ygMhRawzrbdO0h3aRVj+q+tPI
-	 VHvaJmRjtz+yCnB7MC/mVbefU6ZkqFOwMkPk0JzhQpvT7IyXCWp6JhBcruTCyJpNv8
-	 C5RI6TTj8dGiA==
-Date: Mon, 18 Aug 2025 02:04:39 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Alex Elder <elder@riscstar.com>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Jinmei Wei <weijinmei@linux.spacemit.com>
-Subject: Re: [PATCH v2 2/4] clk: spacemit: introduce pre-div for ddn clock
-Message-ID: <aKKKNynq-w89YeAx@ketchup>
-References: <20250811-k1-clk-i2s-generation-v2-0-e4d3ec268b7a@linux.spacemit.com>
- <20250811-k1-clk-i2s-generation-v2-2-e4d3ec268b7a@linux.spacemit.com>
+	s=arc-20240116; t=1755482848; c=relaxed/simple;
+	bh=tbK2yh3A3OA8ArQ2ixl3TH5f2ZmJfi3EpsQVKWcU3kE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oRbb1tRy6oyjRhQ//cKeILEnIPEX/H/uh/kjAXtS8CScT6syJO4y0LKv3HuBIFNKKtSx/qJWBsT4F9XoFgvmNOTFqLjSAUc7/tVuMPXETlNHFtS0/viACNG0GUJSTEw9SJF0G7BCmXYzoNwXRzN6C3grUpL8ihNG1volWW9UjEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=Pac7SOlr; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=2yAFngKlaIbQ81FU5PwiV6FqFqMHMTpSSXBS/3aKEEg=; b=Pac7SOlrI2fWJyImdOoCJ+H+X3
+	87M4L0WiOPPqpNiD57ritTvlD8zN2zXjCpEUAsSj8Xd6N2MG5kfhGtodbSeEfLKwQNUj5agHqosdy
+	riZCVn5tWUA6UpJUj+eDTb83clI50Y0muGDedJsX1K2h9N5Tbg6f6a8lFSLTfqpSLXiOylBbZABKt
+	pd6jYwif/tpL+seDfWYauZpxbXBrALEdAuOxVQLDg3vN6A80fQGHJAIczJJWq6zu1iiu7PvmkBJYh
+	ZZA8Gl9xz6WKBYz6ePBg2p56FDde0BcHpzEwzt+0JkrpPdkyuSBcSzPJj8r1KDVxOrBQOs2BPHYp2
+	pKqPCuAA==;
+Received: from [50.53.25.54] (helo=[192.168.254.17])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1unpHN-00000006J4q-2m3U;
+	Mon, 18 Aug 2025 02:07:21 +0000
+Message-ID: <1075a908-23d0-4a9e-97d2-cb68d1d6b675@infradead.org>
+Date: Sun, 17 Aug 2025 19:07:21 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250811-k1-clk-i2s-generation-v2-2-e4d3ec268b7a@linux.spacemit.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 RESEND 3/4] docs: ABI: Document LP5812 LED sysfs
+ interfaces
+To: Nam Tran <trannamatk@gmail.com>, lee@kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: pavel@kernel.org, christophe.jaillet@wanadoo.fr, krzk+dt@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+ linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20250818012654.143058-1-trannamatk@gmail.com>
+ <20250818012654.143058-4-trannamatk@gmail.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20250818012654.143058-4-trannamatk@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 11, 2025 at 10:04:28PM +0800, Troy Mitchell wrote:
-> The original DDN operations applied an implicit divide-by-2, which should
-> not be a default behavior.
+Hi--
+
+On 8/17/25 6:26 PM, Nam Tran wrote:
+> The LP5812 is a 4x3 matrix RGB LED driver with autonomous animation
+> engine control.
 > 
-> This patch removes that assumption, letting each clock define its
-> actual behavior explicitly.
+> This patch documents the basic sysfs interfaces provided by the driver,
+> including LED activation, current control, fault status, and simple
+> chip-level operations such as software reset and fault clearing.
 > 
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> Signed-off-by: Nam Tran <trannamatk@gmail.com>
 > ---
->  drivers/clk/spacemit/ccu_ddn.c | 12 ++++++------
->  drivers/clk/spacemit/ccu_ddn.h |  6 ++++--
->  2 files changed, 10 insertions(+), 8 deletions(-)
-
-The code change looks good to me, but
-
-> diff --git a/drivers/clk/spacemit/ccu_ddn.h b/drivers/clk/spacemit/ccu_ddn.h
-> index a52fabe77d62eba16426867a9c13481e72f025c0..4838414a8e8dc04af49d3b8d39280efedbd75616 100644
-> --- a/drivers/clk/spacemit/ccu_ddn.h
-> +++ b/drivers/clk/spacemit/ccu_ddn.h
-> @@ -18,13 +18,14 @@ struct ccu_ddn {
->  	unsigned int num_shift;
->  	unsigned int den_mask;
->  	unsigned int den_shift;
-> +	unsigned int pre_div;
->  };
->  
->  #define CCU_DDN_INIT(_name, _parent, _flags) \
->  	CLK_HW_INIT_HW(#_name, &_parent.common.hw, &spacemit_ccu_ddn_ops, _flags)
->  
->  #define CCU_DDN_DEFINE(_name, _parent, _reg_ctrl, _num_shift, _num_width,	\
-> -		       _den_shift, _den_width, _flags)				\
-> +		       _den_shift, _den_width, _pre_div, _flags)		\
-
-You changed the definition of CCU_DDN_DEFINE without adjusting consumers
-of this macro. If I'm correct, this creates a build failure.
-
->  static struct ccu_ddn _name = {							\
->  	.common = {								\
->  		.reg_ctrl	= _reg_ctrl,					\
-> @@ -33,7 +34,8 @@ static struct ccu_ddn _name = {							\
->  	.num_mask	= GENMASK(_num_shift + _num_width - 1, _num_shift),	\
->  	.num_shift	= _num_shift,						\
->  	.den_mask	= GENMASK(_den_shift + _den_width - 1, _den_shift),	\
-> -	.den_shift	= _den_shift,					\
-> +	.den_shift	= _den_shift,						\
-> +	.pre_div	= _pre_div,						\
->  }
->  
->  static inline struct ccu_ddn *hw_to_ccu_ddn(struct clk_hw *hw)
-> 
-> -- 
-> 2.50.1
+>  .../ABI/testing/sysfs-bus-i2c-devices-lp5812  | 32 +++++++++++++++++++
+>  .../ABI/testing/sysfs-class-led-lp5812        | 32 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 ++
+>  3 files changed, 66 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-lp5812
+>  create mode 100644 Documentation/ABI/testing/sysfs-class-led-lp5812
 > 
 
-Best regards,
-Haylen Chu
+
+> diff --git a/Documentation/ABI/testing/sysfs-class-led-lp5812 b/Documentation/ABI/testing/sysfs-class-led-lp5812
+> new file mode 100644
+> index 000000000000..93eeecc60864
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-class-led-lp5812
+> @@ -0,0 +1,32 @@
+> +What:		/sys/class/leds/led_<id>/activate
+> +Date:		July 2025
+> +KernelVersion:	6.17
+> +Contact:	Nam Tran <trannamatk@gmail.com>
+> +Description:
+> +		Activate or deactivate the specified LED channel. (WO)
+> +		1 - Activate
+> +		0 - Deactivate
+> +
+> +What:		/sys/class/leds/led_<id>/led_current
+> +Date:		July 2025
+> +KernelVersion:	6.17
+> +Contact:	Nam Tran <trannamatk@gmail.com>
+> +Description:
+> +		DC current level. (WO)
+> +		Valid values: 0 - 255
+> +
+> +What:		/sys/class/leds/led_<id>/max_current
+> +Date:		July 2025
+> +KernelVersion:	6.17
+> +Contact:	Nam Tran <trannamatk@gmail.com>
+> +Description:
+> +		Shows maximum DC current bit setting. (RO)
+> +		0 (default) means the LED maximum current is set to 25.5 mA.
+> +		1 means the LED maximum current is set to 51 mA.
+> +
+> +What:		/sys/class/leds/led_<id>/lod_lsd
+> +Date:		July 2025
+> +KernelVersion:	6.17
+> +Contact:	Nam Tran <trannamatk@gmail.com>
+> +Description:
+> +		0 0 mean no lod and lsd fault detected, 1 1 mean lod and lsd fault detected (RO)
+
+At first the "0 0" and "1 1" confused me (thought it was a typo),
+but I think what you are showing here is a sysfs file with 2 values, right?
+That used to be discouraged (or even nacked), although I don't know the
+current policy on that.
+
+@Greg, any comment?
+
+
+-- 
+~Randy
+
 
