@@ -1,211 +1,182 @@
-Return-Path: <devicetree+bounces-205643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97A1DB29AFE
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:43:15 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6364FB29B04
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:45:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32BF32031B7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:43:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F0A514E1485
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCFB27E7DA;
-	Mon, 18 Aug 2025 07:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 828D4280A2F;
+	Mon, 18 Aug 2025 07:44:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MoRclEqH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Thtj8RMQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB2A27E07E
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 07:43:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E79CF280035;
+	Mon, 18 Aug 2025 07:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755502991; cv=none; b=KJJ6mdk1Q0dDvoB0XOPmj8jsY4des66YDXEg76ZCfjfgo2R/Ya8LNM9s7M7Tim5l9Aj/+274hBU8yfRiWKD+Ei94te9LY1A5zv1Shm+1OEjz2Px3cV7RPFd/lASPXIo2S1BFR1YabFoIhfF7+fDaWu9gw5OXZu+tPptsj8Hi6Zc=
+	t=1755503079; cv=none; b=BS3tvKq/ecL0s0v4kqylLettQaNZXaEf0YKvU/M8tFExb+9dZSmbgpdnO5+9vbyCU8Zs83pGBuT71CxUTENlHasjTmZRWCo7oyV1q61c9gZMGVAx+pNz7zTElgBOqYhHMeAlqdQuhGcuW9xf74LHJiSQm8vGUar2ANQOqdFZ9oA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755502991; c=relaxed/simple;
-	bh=WCl0AaGlA+XtROGE2++6JjAtk2OJ2sH1wzVqlPRaXnc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XKtBMgYJeCHe6TLQrFZJcpgvgtnl0+QBD4XXhmc0HZ1nNACsBa0l/XIMozqF51QOQqfn3qg6PewsePjaKMVSankOzGVe2L2KhFT9TbmArLilTcm+PhQOHwYBppcBAmfNQIswpM6VXeoaJw4JlQhATuvHWc+Wihp9I56UM2GGhpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=MoRclEqH; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1755502989;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=7Q9dfL5NkBeTOjHsVTZ5sPYGGBR76TYaJ3knIQdKHmo=;
-	b=MoRclEqHsVa/6lYVzQX5ePjIPXJtHRFxkW87O1YTKaTI9N/GdoQDyG+sP+9zvYe671Pu15
-	pudQPJOlZp0RooWiJNq2LoAHuSt+psrCC1XV9udb8lhUo1LjC5D1+h5H9ka+c40bf2DqA8
-	f8ftdl4fSxfZGOOU4UvvPVlmNXkmIGo=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-402-4e0zDli5NB-JYfnm-kUaGw-1; Mon, 18 Aug 2025 03:43:07 -0400
-X-MC-Unique: 4e0zDli5NB-JYfnm-kUaGw-1
-X-Mimecast-MFC-AGG-ID: 4e0zDli5NB-JYfnm-kUaGw_1755502986
-Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-45a1b0cfbafso23140915e9.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 00:43:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755502986; x=1756107786;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7Q9dfL5NkBeTOjHsVTZ5sPYGGBR76TYaJ3knIQdKHmo=;
-        b=soXPW5KraVsNelm6eUStW+rkbyaEpdULa9sYseB2iT4B4FeyCqVnfiooeHhboWNyTc
-         UE/ZjDoDQ8wyiAFBEFCMQ8hq5YKkTg4Lif4Y4ziDTry7YGinrbH41sGDMroOaBeQkisg
-         9O2wTxfDMSk1LmdWZQUr9OkStHY+OSZ/A9VZ6bKZodAXYL8cVC4H2dt/iQRhhbhropkZ
-         eBGqzarslV+4y3bkkQUT73mZkoRt+n/NBX+pcgcwJHOIZGPAN2JNNle0ba8eGtX4yXzO
-         EFMggRkgMi3NCgTDuoj2mt5m4iTBX/sDX+FNF7Cnucg/kentmHlXst42AHpXK+OV3Vn9
-         YPHg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1u95XCVa8EGPBpZKIkQNXs3zP9M1b96/TH92vGjW7j3kO+++4Z0g2+mhNlH0GabqheCbeNWc2cPDX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwM0gqS+UVG2SuLScZnGMLGxLmseWAJI6ys+mH8kZ9wFoqCtRjV
-	Ncogx0HfwRRmGSWRKNEjrSyrKTFlePu4xBahzjN/bX8VD4S+L4UqwCowVUUx0e3jjBL5IjP8jm1
-	rrIAuQQyKWSv3PAwAiH+0w/uuDAr1dGHNuAEKmOmfYIcxCTYaAdsdsNTSULnVRXY=
-X-Gm-Gg: ASbGnctoIK+luvGtqU1vpTYBYbqYDpCtnRNcZpH+YUsaxLtKc2zCS1wbEa7q6moGwju
-	uJPXTPnuHV5k7sToTHhTrZRORlNXa2B7UcYt4l97OGdahFzF6973hO7zPknQb9hPNnYZoi35qs8
-	zIQOqvAP4cgh2eQoBNiI7aO+0y2byCHQ6LLNnQqEUQDlUbLEwsS8+W6bAq4IkdqNpeJ6jMBYlIm
-	PfeaH4ytJpRPTyZ92RCyK2YUcspXi492bCmdRq4kybiB9Mi8Q/FRlsSX31a5qOSBfKAmMU/6fEw
-	ml39kIEFP+3ubd8vkBkPx/RPD2KCoNR8AMnxDVXPgJN9Wft7Gbpj0waVKjLDcckNb8rsTYqGZpL
-	LBYEmukvrIWpyp/b5HPB+PryPD1b7TfF3rkeoOv4P6ENHGWW1xwNMcBUs+s4m6nDK
-X-Received: by 2002:a05:600c:3b27:b0:459:f90e:4f5a with SMTP id 5b1f17b1804b1-45a2180628dmr95908585e9.15.1755502986172;
-        Mon, 18 Aug 2025 00:43:06 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHbUO6Z15wcjLXZ1p7h5ZxBFKKm7y8rLmD0275SppxqeMk9vb+XVHeYCjL8BnaHtfWRGyYaMw==
-X-Received: by 2002:a05:600c:3b27:b0:459:f90e:4f5a with SMTP id 5b1f17b1804b1-45a2180628dmr95908285e9.15.1755502985704;
-        Mon, 18 Aug 2025 00:43:05 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f22:600:53c7:df43:7dc3:ae39? (p200300d82f22060053c7df437dc3ae39.dip0.t-ipconnect.de. [2003:d8:2f22:600:53c7:df43:7dc3:ae39])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a22329b12sm121196175e9.24.2025.08.18.00.43.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 00:43:05 -0700 (PDT)
-Message-ID: <e05aaefc-1732-4dcd-81d2-413d74aab664@redhat.com>
-Date: Mon, 18 Aug 2025 09:43:04 +0200
+	s=arc-20240116; t=1755503079; c=relaxed/simple;
+	bh=IKEc1I2OJR13oC2ScvzhXBsU1/PrtRAkuEoIy4Zrdis=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pQ+dNYQclGj2m/Ke+48P3/5KgZ/4Emxa9SE4CVTew87P+BQ/p8WVOky5F4O1KKEqhInRGIe3AEz5GXPOU79GbU9pGhBZ2q9sVtojxGYkP0FtTvo0nYn7r8UxKrljPjOJCfekd8xS8F+1Xb3Xo7w4fY7f5ask8pvyPJR5e2EPqZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Thtj8RMQ; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755503078; x=1787039078;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=IKEc1I2OJR13oC2ScvzhXBsU1/PrtRAkuEoIy4Zrdis=;
+  b=Thtj8RMQjkRni1o9M7w49Yk0xENJz4ziYoz6nI88LycYcN6uMSygyJi7
+   xUfykDfiHYrjpmQ5sXfD11n1yajx7hnDkfmYolP4wLqll+t2t4s7NbYhR
+   iymE3z9fJDz5F9j1UBBUliTaI3f0yQO9wQxGsO8xlxHFdS1DWgVtmxDdN
+   WOI9l1rr/2ttb14w3KsFly0s9Kva/nlz8ijEhzGMg2YnTEvQX16u3l+jW
+   mR5+bNpVO8VMSnDt88Bnvl1FZ1QrM5cJDnK0t/E09zDB1lOZ4Mm+7+NOD
+   sSUQ6E6yzAXKJzSNPpZ9Bc+cg9l/E/LwKowmY4YPFU7Wggd+ZhQ+vIMIf
+   w==;
+X-CSE-ConnectionGUID: 3POw+fskSzi6Tln5GN8F+g==
+X-CSE-MsgGUID: a7ww4TX0RnqisCaPl4+Kng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="61556165"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; 
+   d="scan'208";a="61556165"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 00:44:37 -0700
+X-CSE-ConnectionGUID: zECi+cTeSkK5bfgNY2VcPQ==
+X-CSE-MsgGUID: 7UKN+WePTdCrQSRSOwb8Qg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; 
+   d="scan'208";a="198522267"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.152])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 00:44:34 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id A159012031D;
+	Mon, 18 Aug 2025 10:44:31 +0300 (EEST)
+Date: Mon, 18 Aug 2025 07:44:31 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: git@apitzsch.eu
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Daniel Scally <djrscally@gmail.com>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Val Packett <val@packett.cool>
+Subject: Re: [PATCH 7/7] media: i2c: dw9719: Fix power on/off sequence
+Message-ID: <aKLZ39IzI_azrDIu@kekkonen.localdomain>
+References: <20250817-dw9719-v1-0-426f46c69a5a@apitzsch.eu>
+ <20250817-dw9719-v1-7-426f46c69a5a@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] of_numa: fix uninitialized memory nodes causing kernel
- panic
-To: Yin Tirui <yintirui@huawei.com>, robh@kernel.org, saravanak@google.com,
- dan.j.williams@intel.com, akpm@linux-foundation.org, rppt@kernel.org,
- Jonathan.Cameron@huawei.com, devicetree@vger.kernel.org, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org
-Cc: wangkefeng.wang@huawei.com, chenjun102@huawei.com
-References: <20250816073131.2674809-1-yintirui@huawei.com>
-From: David Hildenbrand <david@redhat.com>
-Content-Language: en-US
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <20250816073131.2674809-1-yintirui@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250817-dw9719-v1-7-426f46c69a5a@apitzsch.eu>
 
-On 16.08.25 09:31, Yin Tirui wrote:
-> When the number of CPUs is fewer than the number of memory nodes,
-> some memory nodes may not be properly initialized because they are
-> not added to numa_nodes_parsed during memory parsing.
+Hi André,
+
+On Sun, Aug 17, 2025 at 07:09:26PM +0200, André Apitzsch via B4 Relay wrote:
+> From: Val Packett <val@packett.cool>
 > 
-> In of_numa_parse_memory_nodes(), after successfully adding a memory
-> block via numa_add_memblk(), the corresponding node ID should be
-> marked as parsed. However, the current implementation in numa_add_memblk()
-> only adds the memory block to numa_meminfo but fails to update
-> numa_nodes_parsed, leaving some nodes uninitialized.
+> The "jiggle" code was not actually expecting failure, which it should
+> because that's what actually happens when the device wasn't already woken
+> up by the regulator power-on (i.e. in the case of a shared regulator).
 > 
-> During boot in a QEMU-emulated ARM64 NUMA environment, the kernel
-> panics when free_area_init() attempts to access NODE_DATA() for
-> memory nodes that were uninitialized.
+> Also, do actually enter the internal suspend mode on shutdown, to save
+> power in the case of a shared regulator.
 > 
-> [    0.000000] Call trace:
-> [    0.000000]  free_area_init+0x620/0x106c (P)
-> [    0.000000]  bootmem_init+0x110/0x1dc
-> [    0.000000]  setup_arch+0x278/0x60c
-> [    0.000000]  start_kernel+0x70/0x748
-> [    0.000000]  __primary_switched+0x88/0x90
+> Also, wait a bit longer (2x tOPR) on waking up, 1x is not enough at least
+> on the DW9718S as found on the motorola-nora smartphone.
 > 
-> Cc: stable@vger.kernel.org
-> Fixes: 767507654c22 ("arch_numa: switch over to numa_memblks")
-> Signed-off-by: Yin Tirui <yintirui@huawei.com>
-> 
+> Signed-off-by: Val Packett <val@packett.cool>
+> Signed-off-by: André Apitzsch <git@apitzsch.eu>
 > ---
+>  drivers/media/i2c/dw9719.c | 23 ++++++++++++++++-------
+>  1 file changed, 16 insertions(+), 7 deletions(-)
 > 
-> v2: Move the changes to the of_numa related. Correct the fixes tag.
-> ---
->   drivers/of/of_numa.c | 5 ++++-
->   1 file changed, 4 insertions(+), 1 deletion(-)
+> diff --git a/drivers/media/i2c/dw9719.c b/drivers/media/i2c/dw9719.c
+> index 63c7fd4ab70a0e02518252b23b89c45df4ba273d..dd28a0223d6ac980084b1f661bd029ea6b0be503 100644
+> --- a/drivers/media/i2c/dw9719.c
+> +++ b/drivers/media/i2c/dw9719.c
+> @@ -95,12 +95,19 @@ struct dw9719_device {
+>  
+>  static int dw9719_power_down(struct dw9719_device *dw9719)
+>  {
+> +	u32 reg_pwr = (dw9719->model == DW9718S) ? DW9718S_PD : DW9719_CONTROL;
+
+Extra parentheses.
+
+> +
+> +	/*
+> +	 * Worth engaging the internal SHUTDOWN mode especially due to the
+> +	 * regulator being potentially shared with other devices.
+> +	 */
+> +	cci_write(dw9719->regmap, reg_pwr, DW9719_SHUTDOWN, NULL);
+
+I'd still complain if this fails as we don't return the error.
+
+>  	return regulator_disable(dw9719->regulator);
+>  }
+>  
+>  static int dw9719_power_up(struct dw9719_device *dw9719, bool detect)
+>  {
+> -	u32 reg_pwr;
+> +	u32 reg_pwr = (dw9719->model == DW9718S) ? DW9718S_PD : DW9719_CONTROL;
+
+Extra parentheses.
+
+>  	u64 val;
+>  	int ret;
+>  	int err;
+> @@ -109,13 +116,15 @@ static int dw9719_power_up(struct dw9719_device *dw9719, bool detect)
+>  	if (ret)
+>  		return ret;
+>  
+> -	/* Jiggle SCL pin to wake up device */
+> -	reg_pwr = (dw9719->model == DW9718S) ? DW9718S_PD : DW9719_CONTROL;
+> -	cci_write(dw9719->regmap, reg_pwr, DW9719_SHUTDOWN, &ret);
+> -	fsleep(100);
+> +	/*
+> +	 * Need 100us to transition from SHUTDOWN to STANDBY.
+> +	 * Jiggle the SCL pin to wake up the device (even when the regulator
+> +	 * is shared) and wait double the time to be sure, then retry the write.
+
+Why double? Isn't the datasheet correct when it comes to the power-on
+sequence?
+
+> +	 */
+> +	cci_write(dw9719->regmap, reg_pwr, DW9719_STANDBY, &ret);
+> +	ret = 0; /* the jiggle is expected to fail, don't even log that as error */
+> +	fsleep(200);
+>  	cci_write(dw9719->regmap, reg_pwr, DW9719_STANDBY, &ret);
+
+Just pass NULL instead of ret as we don't check the value and the ret
+assignment above becomes redundant. Please spare the comment though.
+
+> -	/* Need 100us to transit from SHUTDOWN to STANDBY */
+> -	fsleep(100);
+>  
+>  	if (detect) {
+>  		/* This model does not have an INFO register */
 > 
-> diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
-> index 230d5f628c1b..cd2dc8e825c9 100644
-> --- a/drivers/of/of_numa.c
-> +++ b/drivers/of/of_numa.c
-> @@ -59,8 +59,11 @@ static int __init of_numa_parse_memory_nodes(void)
->   			r = -EINVAL;
->   		}
->   
-> -		for (i = 0; !r && !of_address_to_resource(np, i, &rsrc); i++)
-> +		for (i = 0; !r && !of_address_to_resource(np, i, &rsrc); i++) {
->   			r = numa_add_memblk(nid, rsrc.start, rsrc.end + 1);
-> +			if (!r)
-> +				node_set(nid, numa_nodes_parsed);
-> +		}
->   
->   		if (!i || r) {
->   			of_node_put(np);
-
-With the changes Mike requested and a more detailed explanation you gave
-
-Acked-by: David Hildenbrand <david@redhat.com>
 
 -- 
-Cheers
+Regards,
 
-David / dhildenb
-
+Sakari Ailus
 
