@@ -1,98 +1,221 @@
-Return-Path: <devicetree+bounces-205779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2062DB2A182
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:27:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6099FB2A1C9
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:39:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DCD93BEF5E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:26:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 720ED56374A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:27:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A8D3203BE;
-	Mon, 18 Aug 2025 12:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18CB53203A6;
+	Mon, 18 Aug 2025 12:27:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="0pSsM1WS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE604320386;
-	Mon, 18 Aug 2025 12:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF90320399
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 12:27:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755519963; cv=none; b=GtmwADnVZ9LQBwMRIy72bwwjuUAecFZnrVhqDKNOe8Re63GA/Um1Az2Xs04mWMsXuAkA0rRLpLdedR18iDOSa3pCDY09p5L73BC7H+2AO0ZLdWrOazRy4zQdbFdbITtdW8+bfOPfrzsc8nv24krRpeCP9Z1F3ctDElU0HAQqnGY=
+	t=1755520056; cv=none; b=nBWRBn8Z0jul2VzcVmO6HseNDy2cVUN81oY2oxNJ7DYGzIeA14nW8sgutqX0ENrNMYRdnAQt38f1XHM7RKsZLVpL7V5cj27/V42FDD1dwFOPEpY+xXyy8Qew8V8EhHvl2YTGQSOOlDBhv9hUMpNwczJ2t8gqwt00J2g7Plpcojk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755519963; c=relaxed/simple;
-	bh=3D7XiQsF2LRwxTsIiluc2rRY4xp6KZq2KqBz61kwKhc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p0nPG/DacHVaZQV7Ptxbw1QMS+wUYjH7Nf2a2i/31SIk16GYI0VWCA5vKtSXjpN8BvIIyDe2vSEhjth27zVT14ausFPV4Y0mULPb1VC7PA5/1ONAmW3ePq7sJkpxZWF/C2lG3C/sipJJedsEuGmz9+7Eh8pFkfK94p64Mx2CxFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from ofsar (unknown [180.158.240.122])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 84414340DB0;
-	Mon, 18 Aug 2025 12:25:54 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	palmer@dabbelt.com,
-	Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-Cc: Yixun Lan <dlan@gentoo.org>,
-	skhan@linuxfoundation.org,
-	linux-kernel-mentees@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] riscv: dts: spacemit: Add initial support for OrangePi RV2
-Date: Mon, 18 Aug 2025 20:25:36 +0800
-Message-ID: <175551987874.16484.811796950493073575.b4-ty@gentoo.org>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250813092240.180333-1-hendrik.hamerlinck@hammernet.be>
-References: <20250813092240.180333-1-hendrik.hamerlinck@hammernet.be>
+	s=arc-20240116; t=1755520056; c=relaxed/simple;
+	bh=m7SIqKydxnTIbpy9FFDLAnaR3/ZeDTiM3ujLW7g9YTA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sdUBoRypCbiabYH9mU+fUBzDDP/tpXIn8fF/vC+kuvY6x7dImoiqEumenPAbrzVl2dXMtFcY44XQxxLc9rFpIt0Bg/fnyrZuLg5f4Z8T28faTteHbG1BggW8cVZMT/WBYRY1TjcX7nZZ/RYuJo4ZFRqvWDHXVehR3gh8H8GEQOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=0pSsM1WS; arc=none smtp.client-ip=209.85.219.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-e934724e512so1235131276.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 05:27:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755520053; x=1756124853; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jgCsV8AiRnmTJZZ3lbAOsw5kSBDJj5OV7xzAVtn6XEE=;
+        b=0pSsM1WS9/uwDHw7a0MxslJJwY0m73pF2NA6LnfgUrUAG5nMuPWMdLBEfTaD/F93UL
+         1e72JdvVg4Pv0XsFWHSwQxtrhKeOJPxGignj+pLoh2IUCqu4TrkbcKQLg5QVDTwSt78s
+         MEm3fXEbjlBcOF41Ihwz0rkzjluSKmpW+FvXiIpbMnznyIJDD5NYyqEGECdLg72acE9K
+         derpzbQXnEgYCqWl+Lv06I5EPrcLjQxUrfkV0EgaqwtJrb6BbQCY0WfIJT1jSwDE+e/b
+         DqkEkz/eDZFQTy4D49lghrnoEbFvwMwWVD1jQNoO1A1U0WEebjWD6q76mEMI+L+Ee9yT
+         5UmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755520053; x=1756124853;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jgCsV8AiRnmTJZZ3lbAOsw5kSBDJj5OV7xzAVtn6XEE=;
+        b=YrD0THTIcH4xzqcSUgaHLl+f1GkR5FBUf6WlhBMI5GHhpohd1lCUzZpXaz7JAw6jJ7
+         2PACrqs3k3nQs5rE+bUZMk5tD4UAFlEJ6V+Pi6I1gr+OBm2yeigyEprxfMc3y9FcKS18
+         aEK+OQIzQzvzzEgGFfGDZ+hW46xvKdovZpoBapMo1lPD5NRMmNjdaIQVbz+1DKsDYLaw
+         jh1WkdxNrwXrPUJ031UnreSjChG92e+iJMxvTSfiZOpHDjNgTr4m8uxbzXScJ4Eu8n4l
+         cIrmweZYHZGjYqwn/v4FghQtu3BMEb+TQX6ek9XIWgckY4veIRjXCKADOKo7ohtkAZhX
+         Hc/A==
+X-Forwarded-Encrypted: i=1; AJvYcCWUi1GZCqOGsAyGn61P3H6dDGYg4+COcTgOFnzuNq/LIpIp5ZhB9pKTILUWSsFZMSjanGTlM9V4KswN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrPngGsDcOtFVy/e3sRNeLvvPmcVAnMcQPA6ZDMJKniLJF6EYd
+	0/9bYqCFM5qetCp/YPwyO01ARkPNtEnnDJeBy0lM/Rhxc5nmyiMHHlILTMixISPKlfM9JYJjBt+
+	MslJVcAK/RCP8RJtlIVLSlEDioXqXtob1LaUyLqqE/g==
+X-Gm-Gg: ASbGncsbHb5JillIfWqvFhxsgFudKXVSAO+D30FO/n9H8vLFPQHXOWgwGyGqvG17VF2
+	2+0ku2DAGYKzVl/PuJ3xf1XSuJNcUn5MvngEdsHOuc835TTRUpdo6BEdLX8nh/YwtHrfmnuu2L9
+	mrGgnCBz5uG0BzOn/MCQY7iAX8wX46DNlZXrbXqHyzToxcm0K78RiZMVhtsxMGNOcGKv9D8hdeh
+	5dzskB8JP4Exnjt
+X-Google-Smtp-Source: AGHT+IGCtbq8dlv5BhifYFkVWdTwGtpLB8eowifqW63WzaF5/IhaKxhO1X64809zHqLAyXxFQFUUSP32SfpMEfRRzUc=
+X-Received: by 2002:a05:6902:1504:b0:e93:47d9:1c53 with SMTP id
+ 3f1490d57ef6-e9347d91fb8mr7212638276.6.1755520052617; Mon, 18 Aug 2025
+ 05:27:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20250815-working_dma_0701_v2-v4-4-62145ab6ea30@riscstar.com> <202508181040.az8RxLrG-lkp@intel.com>
+In-Reply-To: <202508181040.az8RxLrG-lkp@intel.com>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Mon, 18 Aug 2025 20:27:21 +0800
+X-Gm-Features: Ac12FXyzzS7pnhFgkGl7FiEJKtmHr8DR-5NfS3QvImTcTotkj7TrVuAH6gqFsEk
+Message-ID: <CAH1PCMZL-AGJE6PXrpyShYEMFkvoi-Ajzd_Az0ma75QWZFaROQ@mail.gmail.com>
+Subject: Re: [PATCH v4 4/8] dmaengine: mmp_pdma: Add operations structure for
+ controller abstraction
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: oe-kbuild@lists.linux.dev, Vinod Koul <vkoul@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Yixun Lan <dlan@gentoo.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, duje@dujemihanovic.xyz, 
+	lkp@intel.com, oe-kbuild-all@lists.linux.dev, Alex Elder <elder@riscstar.com>, 
+	Vivian Wang <wangruikang@iscas.ac.cn>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi, Dan
 
-On Wed, 13 Aug 2025 11:22:38 +0200, Hendrik Hamerlinck wrote:
-> This patchset adds initial device tree support for the OrangePi RV2 board.
-> 
-> The OrangePi RV2 [1] is described as using the Ky X1 SoC. Based on research
-> and testing, it appears to be identical or very closely related to the
-> SpacemiT K1 SoC [2], as suggested by the following:
-> 
-> - Similar integration in the Banana Pi kernel tree [3], which uses the
->   OrangePi RV2 and identifies it as the SpacemiT K1.
-> - Comparison of the device tree code showing a match to the OrangePi RV2
->   Linux tree [4].
-> - Locally tested the OrangePi RV2 with the SpacemiT K1 device tree,
->   confirming it boots and operates correctly.
-> 
-> [...]
+On Mon, Aug 18, 2025 at 3:17=E2=80=AFPM Dan Carpenter <dan.carpenter@linaro=
+.org> wrote:
+>
+> Hi Guodong,
+>
+> kernel test robot noticed the following build warnings:
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Guodong-Xu/dt-bind=
+ings-dma-Add-SpacemiT-K1-PDMA-controller/20250815-132049
+> base:   062b3e4a1f880f104a8d4b90b767788786aa7b78
+> patch link:    https://lore.kernel.org/r/20250815-working_dma_0701_v2-v4-=
+4-62145ab6ea30%40riscstar.com
+> patch subject: [PATCH v4 4/8] dmaengine: mmp_pdma: Add operations structu=
+re for controller abstraction
+> config: parisc-randconfig-r072-20250818 (https://download.01.org/0day-ci/=
+archive/20250818/202508181040.az8RxLrG-lkp@intel.com/config)
+> compiler: hppa-linux-gcc (GCC) 8.5.0
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+> | Closes: https://lore.kernel.org/r/202508181040.az8RxLrG-lkp@intel.com/
+>
+> smatch warnings:
+> drivers/dma/mmp_pdma.c:546 mmp_pdma_prep_memcpy() warn: variable derefere=
+nced before check 'dchan' (see line 542)
+> drivers/dma/mmp_pdma.c:712 mmp_pdma_prep_dma_cyclic() warn: variable dere=
+ferenced before check 'dchan' (see line 708)
+>
+> vim +/dchan +546 drivers/dma/mmp_pdma.c
+>
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  536  static struct dma_async_=
+tx_descriptor *
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  537  mmp_pdma_prep_memcpy(str=
+uct dma_chan *dchan,
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  538                      dma_=
+addr_t dma_dst, dma_addr_t dma_src,
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  539                      size=
+_t len, unsigned long flags)
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  540  {
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  541         struct mmp_pdma_c=
+han *chan;
+> 918da7ee50b22b Guodong Xu       2025-08-15 @542         struct mmp_pdma_d=
+evice *pdev =3D to_mmp_pdma_dev(dchan->device);
+>                                                                          =
+                              ^^^^^^^^^^^^^
+> The patch adds a new dereference
+>
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  543         struct mmp_pdma_d=
+esc_sw *first =3D NULL, *prev =3D NULL, *new;
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  544         size_t copy =3D 0=
+;
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  545
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03 @546         if (!dchan)
+>                                                             ^^^^^^
+> But the old existing code assumed dchan could be NULL
+>
 
-Applied, thanks!
+Thank you for the report and findings.
+This and the next one, they are bugs, and I will
+fix them in the next version.
 
-[1/2] dt-bindings: riscv: spacemit: Add OrangePi RV2 board
-      https://github.com/spacemit-com/linux/commit/f10512e2c44e6ee3242314d43102acab7340e2d3
-[2/2] riscv: dts: spacemit: Add OrangePi RV2 board device tree
-      https://github.com/spacemit-com/linux/commit/bab8dea259100a99e047fd11a48940b229d30031
+BR,
+Guodong
 
-Best regards,
--- 
-Yixun Lan
-
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  547                 return NU=
+LL;
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  548
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  549         if (!len)
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  550                 return NU=
+LL;
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  551
+> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  552         chan =3D to_mmp_p=
+dma_chan(dchan);
+>
+> [ snip ]
+>
+> 2b7f65b11d87f9 Joe Perches      2013-11-17  701  static struct dma_async_=
+tx_descriptor *
+> 2b7f65b11d87f9 Joe Perches      2013-11-17  702  mmp_pdma_prep_dma_cyclic=
+(struct dma_chan *dchan,
+> 2b7f65b11d87f9 Joe Perches      2013-11-17  703                          =
+dma_addr_t buf_addr, size_t len, size_t period_len,
+> 2b7f65b11d87f9 Joe Perches      2013-11-17  704                          =
+enum dma_transfer_direction direction,
+> 31c1e5a1350ae8 Laurent Pinchart 2014-08-01  705                          =
+unsigned long flags)
+> 50440d74aae318 Daniel Mack      2013-08-21  706  {
+> 50440d74aae318 Daniel Mack      2013-08-21  707         struct mmp_pdma_c=
+han *chan;
+> 918da7ee50b22b Guodong Xu       2025-08-15 @708         struct mmp_pdma_d=
+evice *pdev =3D to_mmp_pdma_dev(dchan->device);
+>                                                                          =
+                              ^^^^^^^^^^^^^
+>
+>
+> 50440d74aae318 Daniel Mack      2013-08-21  709         struct mmp_pdma_d=
+esc_sw *first =3D NULL, *prev =3D NULL, *new;
+> 50440d74aae318 Daniel Mack      2013-08-21  710         dma_addr_t dma_sr=
+c, dma_dst;
+> 50440d74aae318 Daniel Mack      2013-08-21  711
+> 50440d74aae318 Daniel Mack      2013-08-21 @712         if (!dchan || !le=
+n || !period_len)
+>                                                             ^^^^^^
+> Same.
+>
+>
+> 50440d74aae318 Daniel Mack      2013-08-21  713                 return NU=
+LL;
+> 50440d74aae318 Daniel Mack      2013-08-21  714
+> 50440d74aae318 Daniel Mack      2013-08-21  715         /* the buffer len=
+gth must be a multiple of period_len */
+>
+> --
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests/wiki
+>
 
