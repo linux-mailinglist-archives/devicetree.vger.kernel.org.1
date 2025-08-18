@@ -1,143 +1,119 @@
-Return-Path: <devicetree+bounces-205624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81F3EB299F8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:45:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4509B29A01
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:46:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A916F3A5AAA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:43:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6ADE83A3AED
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E05DB275B1B;
-	Mon, 18 Aug 2025 06:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFC1027602F;
+	Mon, 18 Aug 2025 06:46:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEEF275AFB;
-	Mon, 18 Aug 2025 06:43:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D28E1DF982;
+	Mon, 18 Aug 2025 06:46:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755499420; cv=none; b=P3veZT77bmox4rQxpqZDtN97GH9d0hQfFT/GRDjCvS/4qtLkoe287mkiFOU1qbn3VxBTNgHVmuya4kP70FgXh/FPOC0R6u0LEBd37RZRNzdCESPpfZc/vmSySFGzvrvnpTSnv7H6xhJDZXYk6YYgaDcLdQ+vj8MRp65WOA51dGk=
+	t=1755499583; cv=none; b=onOe+Iw9uU3LqUKsm77N/Del2MKpzpndBH4XlVcH/IQURzXS8u/If57H7uqzn9DijeBbGm0zFYFpz3D7T8MnbtHaU5lCLqGVBI5Uec30aM9VSVdhtoH0O35EQlLKCazp9JbuZ2H9WzDwZIIgZ3/ZyBt6RB21biWLBB3fTu7WRNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755499420; c=relaxed/simple;
-	bh=4y4pH6gN4GxRFalEamSO6SCS1LBe5XYo+LoD6hpfYaM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iDTcPvH7V5N3nesS9UzYjAC0CRooM7ZXPgOFwMtAULpLlSrdxXfqqpilxm89z4+GFd82AvjYMRab7yqm2v4kDaAyOWaDWhbGHLs52ah3Y34hUBvDBvHiNtqgItonMnM/wrrV47r+uBYZ52zRsetWeP/KKwD5MI4QOFudskX1MPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-50f8ad279f8so2742714137.2;
-        Sun, 17 Aug 2025 23:43:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755499416; x=1756104216;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hsLPgPjctI1RmC5h18ctG1S8IZm9ltAPjDvM4QJ/h4Q=;
-        b=KVqrl+7XjfaOiz9LQ7caKxH5CDsjeZKgi4HJ3rvoRebz29U9ZWqEYVO+lkdc8hIcrx
-         FSzUWYX0mB1pWki+brDt9Hjfmlo7yGk357CjRgrfq7qsXoVMV1hiV91pjaQ/p5nJKBMc
-         zDZ8vFzoWjeW37f6s1ABDg4igNXgOgUlKvTeB/0MviMWEqknUgtmz3RuXLhdiDZW3ijQ
-         Ap2JFIVmr4kz/iNvE8CHbmupfM/Ud1iAC858tzFAw0UggE9jCBFEJGpQe6do7oIaoUOr
-         pYc4HwMTMcfJDmw1sqcj/eB6h/gYOmvCcPhv1/OhLyuPwmynKKckAQBu/aoSnRQyQjIf
-         W1Yg==
-X-Forwarded-Encrypted: i=1; AJvYcCUl7xiRBprczB9zAfAUr3+KlBesTmZCjpZOqY3Q7Qr9eWtvmO9nmwqCu6RppzFz0Dc3/K7TJh5VNQwp@vger.kernel.org, AJvYcCW/mS8iiQIip/YC0lRtpBgRBVAb5yDKD9EM3mjM6O8Cii3mLTWsMrJ/dL4hl2hWK3A3Ou/0eyn6@vger.kernel.org, AJvYcCWzRj87OT1BKi5NEt5a4i/iCUaUAdv/WUZtOtmyvDLSyBtU+pSxAH4WoUggvKC2vR6wmR3VXick6BlYNobI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxX/0aab9NLKMJ/zhT0FWtAh4IiuOH8AVetKz7pYA+VbtL8Jo1v
-	f0Jv42KwCgpxHQJb6gL8jUnnFVg8wV9kmL2GSH4jfcoXWasCmZEks5eMQ7F/uV7u
-X-Gm-Gg: ASbGnctJpdqgxm/Y2tjwBuOTJimRvgKOx9VqYn1lKoILErgbE3C74by9z0/PV1kVilG
-	KU5Mb4fxQzyWnCWHg93D4ALkpcdFacba1eIztraf2tJyajbqaEFGxaySrWU+6wWQYL2yC/RjcG5
-	FnTQ3OdcCWLCTwwgz9+qzZ2zPLNRA6sApGHv1aA1z0SX8cjEe8QE5HbIxm3ggxCGx6JBED5MEiK
-	Tg92t3WwQMlu+fOSUNMS4l228o5ioaxS2g1Z1LTlGWUOEpAyK9MdGRpz0fGzcpfRJqDP8DHtoCV
-	XnURV3LK9ZlJnhwUqqrC/k1z0pGp7wqs2o+n9f7g3GFjR1JhQEvzzwwok1iCKSHyEAg+N+M6AFk
-	sZsAbsrxHe0wB9kTI2QRFZfQmpzhtIdqMBRNwfiuCXVn2Pbv2MxaoXf9UWzRv
-X-Google-Smtp-Source: AGHT+IF3pZhOuJGl9BVwfxR24MRdWP5DOFuetTKxXP561t5voHwu5lYeWzH9tzF5lHdc/3ekX1Ur+w==
-X-Received: by 2002:a05:6102:6cc:b0:4e9:b793:1977 with SMTP id ada2fe7eead31-51267dc1b45mr4089407137.0.1755499415792;
-        Sun, 17 Aug 2025 23:43:35 -0700 (PDT)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5127d4e3036sm1870363137.8.2025.08.17.23.43.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Aug 2025 23:43:35 -0700 (PDT)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-89018fc2a2fso2430647241.1;
-        Sun, 17 Aug 2025 23:43:35 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUSpKyg+gLwGI0Xe7mtrB6s+5pDu5Daj4E31EJWVr5NFMnTY19NeV0XsEPfwPmDev662sBmGJ53hI8x@vger.kernel.org, AJvYcCW7v7tcQ+uZAzoFf7M8+/06zdKgsZ7BZ7tgtiT6cteGtnZ+6m4K5Le6kAFYDV/D4V6TQIJu9MuQq/ypFBSq@vger.kernel.org, AJvYcCWPCenHjZv9NxJG45AgW9/N+ppO2zgcjBkYwtMA5944enwmlcSJntihifkCCK2oD9L14+Orcu1S@vger.kernel.org
-X-Received: by 2002:a05:6102:5129:b0:4fc:2b88:d26d with SMTP id
- ada2fe7eead31-5126cc420aemr4108789137.16.1755499415163; Sun, 17 Aug 2025
- 23:43:35 -0700 (PDT)
+	s=arc-20240116; t=1755499583; c=relaxed/simple;
+	bh=h/6c7Gz4xEzFlrmMg0LHnC6xxRCSwZVPe0AbEFhJ2y8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mQqZSe3Csd423g5OUV24gp5DiyJeRG3mfJA9z48CnoBKS8TQ0UDMtEopqhubXSjzWX5S1VmkaLOfilX6LwNxIEVmbyV4rBsATvexAmEu45p1GxiohTA6sNtC4N6sFilOeSCqjTNm6sjqE0RXjc5LQ4Zay0yQPokiLBi8lgxtbo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=95.215.58.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Mon, 18 Aug 2025 02:46:05 -0400
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ben Collins <bcollins@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Andrew Hepp <andrew.hepp@ahepp.dev>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Conor Dooley <conor+dt@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>
+Subject: Re: [PATCH v5 1/5] dt-bindings: iio: mcp9600: Add microchip,mcp9601
+ and add constraints
+Message-ID: <2025081802-busy-chital-df0ef6@boujee-and-buff>
+Mail-Followup-To: "Rob Herring (Arm)" <robh@kernel.org>, 
+	Andrew Hepp <andrew.hepp@ahepp.dev>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>
+References: <20250818035953.35216-1-bcollins@kernel.org>
+ <20250818035953.35216-2-bcollins@kernel.org>
+ <175549878302.4073296.5081888197780869494.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250815194806.1202589-1-contact@artur-rojek.eu>
- <20250815194806.1202589-3-contact@artur-rojek.eu> <aa6bdc05-81b0-49a2-9d0d-8302fa66bf35@kernel.org>
- <cab483ef08e15d999f83e0fbabdc4fdf@artur-rojek.eu>
-In-Reply-To: <cab483ef08e15d999f83e0fbabdc4fdf@artur-rojek.eu>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 Aug 2025 08:43:23 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVGv4UHoD0vbe3xrx8Q9thwrtEaKd6X+WaJgJHF_HXSaQ@mail.gmail.com>
-X-Gm-Features: Ac12FXyQUUDD_v0XZWp4qvaGvKu_U_VjElg-BZC_JMJQPGN3TDaGQppTU27YJys
-Message-ID: <CAMuHMdVGv4UHoD0vbe3xrx8Q9thwrtEaKd6X+WaJgJHF_HXSaQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: net: Add support for J-Core EMAC
-To: Artur Rojek <contact@artur-rojek.eu>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Landley <rob@landley.net>, Jeff Dionne <jeff@coresemi.io>, 
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="p6cczt6sxnnsh3tz"
+Content-Disposition: inline
+In-Reply-To: <175549878302.4073296.5081888197780869494.robh@kernel.org>
+X-Migadu-Flow: FLOW_OUT
 
-Hi Artur,
 
-On Sat, 16 Aug 2025 at 14:06, Artur Rojek <contact@artur-rojek.eu> wrote:
-> On 2025-08-16 10:19, Krzysztof Kozlowski wrote:
-> > On 15/08/2025 21:48, Artur Rojek wrote:
-> >> Add a documentation file to describe the Device Tree bindings for the
-> >> Ethernet Media Access Controller found in the J-Core family of SoCs.
-> >>
-> >> Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
+--p6cczt6sxnnsh3tz
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 1/5] dt-bindings: iio: mcp9600: Add microchip,mcp9601
+ and add constraints
+MIME-Version: 1.0
 
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/net/jcore,emac.yaml
+On Mon, Aug 18, 2025 at 01:33:03AM -0500, Rob Herring (Arm) wrote:
+>=20
+> On Sun, 17 Aug 2025 23:59:49 -0400, Ben Collins wrote:
+> > From: Ben Collins <bcollins@watter.com>
+> >=20
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/iio/temperature/microchip,mcp960=
+0.example.dts:34.34-35 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/binding=
+s/iio/temperature/microchip,mcp9600.example.dtb] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1527: dt_bin=
+ding_check] Error 2
+> make: *** [Makefile:248: __sub-make] Error 2
 
-> >> +properties:
-> >> +  compatible:
-> >> +    const: jcore,emac
-> >
-> > You need SoC-based compatibles. And then also rename the file to match
-> > it.
->
-> Given how the top-most compatible of the bindings [1] of the board I am
-> using has "jcore,j2-soc", this driver should probably go with
-> "jcore,j2-emac".
->
-> But as this is an FPGA design, I don't know how widespread the use is
-> across other jcore derived SoCs (if any?).
-> I will wait for Jeff (who's design this is) to clarify on that.
->
-> PS. Too bad we already have other IP cores following the old pattern:
->
-> > $ grep -r "compatible = \"jcore," bindings/ | grep -v "emac"
-> > bindings/timer/jcore,pit.yaml:        compatible = "jcore,pit";
-> > bindings/spi/jcore,spi.txt:   compatible = "jcore,spi2";
-> > bindings/interrupt-controller/jcore,aic.yaml:        compatible =
-> > "jcore,aic2";
+Thanks. Found this already and fix will be in v6.
 
-I would go with "jcore,emac", as it is already in use.
-If an incompatible version comes up, it should use a different
-(versioned?) compatible value.
+--=20
+ Ben Collins
+ https://libjwt.io
+ https://github.com/benmcollins
+ --
+ 3EC9 7598 1672 961A 1139  173A 5D5A 57C7 242B 22CF
 
-Gr{oetje,eeting}s,
+--p6cczt6sxnnsh3tz
+Content-Type: application/pgp-signature; name="signature.asc"
 
-                        Geert
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+iQIzBAABCgAdFiEEPsl1mBZylhoRORc6XVpXxyQrIs8FAmiizC0ACgkQXVpXxyQr
+Is+HFA//a1oHbWeGRhfcz5KGFd+Fp3ZqKHDbt1UFszFghFAn+3/df/UD38dhskF2
+SeWrvIbNNWSz/hmOyjOZPsx+nmQGi3o3rgeLf/S/p9aVkCBYFKdxibAUdL+P93wZ
+2Xcyf/ro/cI5AiCBZqDYrJciSzsJv8Nj1WbHiYud1Q7MJMNVtfcAtt6BSE+9pLVM
+mYMw/M1/1VGa+XZ04YNOyvC4G4ydbSA5Hkwjeb0u9k9FOE8wI1Rz6+S/OpCL0Ibl
+b1cQYwfGbkvtYZOj1TB2IE7qchi72hZ/DQLDH21ZdQ7uDjRzYJRYe6pNI0oOlQbP
+vXK1y9G84oAeCLVxWzFG3wsmXVxM7SrvbiNVHSwqcOM7Cv09QT2qokzJlSLrEUcO
+pR7NNHDux0xwco+3Ahvp63jjNAgbQhTa3py95nnXU2Xr3H1E3dKmfz7ClGReHIkq
+tyTT/GE7T3EoFW2fAy1qoNqUWlmGn/nJ3XIxmc4nDfcQG/bqUDA4TjgASbOHYPRa
+otZtrqhbqOXkMkksGLEcjGU1vTpMxpXmCc/z1jxhMjAA6NAVy1XF1jRIj/LIKwXU
+uQqnWy+6edVunI64RIQVuRVosZlhVDo7dyFg/cxZmu8Kx4p8AnmIDO19s+G9T04d
+MoOtVxC/mqAJIHMuvJeWVeHgCdq7OQOq7ypsMst+X2qA8nowXbk=
+=YbUe
+-----END PGP SIGNATURE-----
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--p6cczt6sxnnsh3tz--
 
