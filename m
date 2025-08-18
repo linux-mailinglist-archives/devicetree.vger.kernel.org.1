@@ -1,220 +1,273 @@
-Return-Path: <devicetree+bounces-205926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EBF9B2AE65
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 18:41:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78AF2B2AE74
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 18:45:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 113B25810D5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:40:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 719A53AD575
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD15343D8C;
-	Mon, 18 Aug 2025 16:39:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA3633EB19;
+	Mon, 18 Aug 2025 16:43:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="LCKJduB5"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="dDeBbDA6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2078.outbound.protection.outlook.com [40.107.236.78])
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2036.outbound.protection.outlook.com [40.92.46.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B9A25CC5E;
-	Mon, 18 Aug 2025 16:39:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238B1258ED7;
+	Mon, 18 Aug 2025 16:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.46.36
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755535186; cv=fail; b=OM821Fi2gZGDT759TlwXW1I6StaQFAh5WKdTkLfhMaNXJ2w2rj7vguGN4vn5SF5HSe+9dhxhJdQJL4zlh2F2FLEEeDsRqK8OBCIP4jCotAwxeNwirskdI7wB/0I1JBhPICyQz7FwNX5kx5gzcwbKpu/oYjQJL4Vq4UMy0r9dRYk=
+	t=1755535395; cv=fail; b=XqFNEHamgBkrccPeRF0758Vb6coPdTItKUio7/0sxdfekCSFZsia/7o0QXEim6/3DQvvphSy/sdf+I0hBfVinXd4B9K/Fmq79IaJybTxp9KXaROD6QO+nydsyUY18OH1X52DSSx1ZWyAlf21F9kfpUCw6RCW6mhsFovMX3dOLlw=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755535186; c=relaxed/simple;
-	bh=TbrRFdlm8CpD/ziX2ZvYDQdJ4hVtpVMG23Lm8zwWwW4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=lATE1qJ39qc4p3VMKS7+fX86KD2ezHEZDuT46mBaXkvMzv7KmYg7DcNJVIXcCO2cFImXgAoqiX/eTz/XjfAFVUWUpfwAKFiyBOc9dx/8RRkTZpPegSCjp53RisUQVvJRtX1a7RH++2alrmA7Az5mlZ3B1O6w2M9JyncFM7vJ2kQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=LCKJduB5; arc=fail smtp.client-ip=40.107.236.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+	s=arc-20240116; t=1755535395; c=relaxed/simple;
+	bh=zJIPZtYxJKGSMe78PEuQBmWe2yhgGZgwHmIU2FesFMg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=VC1KR0xmcZYsdVil2B7YOwkpCs2WUW+jcqJRWAqIgV/ISMAxA6Qa46At1j4/owL7UkrgFHta3gewCRJuNyqXhLzE/61e0Qv8gYeENbiegMnOl0IFYGGFRtqqb5+NuM8Db36eXHRYp80QQoLYCB8MNvtGYkCaVXF1m298vwOUak4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=dDeBbDA6; arc=fail smtp.client-ip=40.92.46.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZBofDDaiCjYO1UBc63icenOLqUX/kTACV8gOdiEe9KzSU6BDJIbOWJi6ugoJzkyNKME149UC/ZdVcJKU3gEQFK/XsR8s+np7L2jqmRFyIN8GJQg0gY1HdSJoxOUZf9qg7q59pVwylxAhty/m7yobTRjQrWjhkhMnO2Dp4uMxZTRVaSkGnp/hH+YPVokvsoabmKZ9lB2lbU1gyuxPYMCawrfkLz1DFoeRJ+JjUADHT3uS4gL6aeKEk0sJDiceg4pzOTo4BIydxVgFt4I2u02HjQYviOnfICJatC0mj1wpG6aYpWKK8SarikdAr0QvVYE771CreP478Tydsr5jMAeqkQ==
+ b=UOcjqUiWhdzP+oyBLmJ0gAi68IOvM+F0lEs/MoONrxwrwfVRup4bvZ9g+c9GV/GG/JP4CLp/klbp3x055A/a659gBAx7T1SfEEs1179oYEd+sprNHD4GcKsKWhko+fTYQo0to8cufRI3RUjU8JdAZ4hdFtzg1bfvtop9cw65GrEOfz3E0yABrr9bf9YXorPQzIpJFuQAw6YCMl6JZvY/GsXqRTQAfyY3RKbhdCZoa/hlwT+ZfS+PGJ2yHCvXw96mQqIJ8ubMdW78e1kUNEpyDdReKNh4GZN8pDnjk+qppkPwQSCUPWKVzayG03kptmQL/HrxAYhOAKMlyRId01uy+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qP5j50NrlRd36fxntbtMIiyH1vdSpeul6ChXiT9g4Io=;
- b=I+2NhRs/ozZyoRo2FkFUxbTyYGSm6G6+yE5M7l1lgm4cBTeWPNkv5B86bw2DPa3LiUtpxp2uHsdCC6du3KsGMpr8xZgDoWyxJbSW8ByaX/8ejowSamvH8rMYwRL5OjQ8G2ZD/0QKwto0tO8kjYd1NT74j+cABfmIyYjjzE+owosZEfuKOCCg0aZMbwVjOd7DfQGkIGhno78wQqrFcz1ZbBYoJkjO1irJLNz+QAtJ3u0gpHo5I2zFbStAwi3blbgzc7LIF/ldGVPKS4aarDBes2zzEHq7fXHTiVBo01BDkKjfvIKciQXvVWpPNlTMK8NpgKg9nR+eJ2uFGMbA3L9Xew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
- dkim=pass header.d=altera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
- s=selector2;
+ bh=v/uJPo7TXCAycPYaRNOytX3CUsKzzYD4MQS3KKZiHlM=;
+ b=ZG9B4/ffwY6AFOs8HyNMsqgcVd87B5czpxuxyrZ7L8qpZOcjJT4HGnkwFTKYyniv8qgNG20b5dm96YFmbnhBM97qG3y0KZhvO7TmdBj8bJoIgu0uYT4Zkri/aIi86uZM8K9IondeLccQRPHA4ZYdbhKTUUpSEqMrcEmjHH70AuPVKZcgrHdzWxRokdSpWoOEQmMTRTkJ/L3tqSPC5t/SgIATbSC05UcXEgBRFLhDijZG5PQRr88Sdme0VhdWQDr+QxP3S1RAeg95ZR2qcUaJAWtGoE3fkyHyaohXVDnQgfT40vbQpUAxrnFPCqOh1fyqdH/JLxNv/DONYrMSRY6XeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qP5j50NrlRd36fxntbtMIiyH1vdSpeul6ChXiT9g4Io=;
- b=LCKJduB5sAPGDqZAGaOXDFmzmn4FbptjkaRfWTjQE8WZS3Jk4fB3W5Vw9WHXn4/zcQeXdfzTSBU+hYNZXnKVI8b2jpRHN+wvIBL/scPBOrHwmXeFm5IYkqziUAs3PzafnedhB+Lz/owkElfhrCSZG0TDKnYRHdT2vXuT35c0nQZ+OHP3OeMYRoiFNPHvn4wAQ+jdTJPtyCcbcNH5QDKhr8lL3HqIgxClV3JY8JDwPJP8LfR+hov+aX66GhatSpnaonK6winFputKQObj+Sa9KFYA1BX86R3Idj2EKiG5TJVm4gzF8bXQV0u00o4UyCuHavE+WFYEYVa3l1AsZc4wvQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=altera.com;
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com (2603:10b6:a02:b4::23)
- by DM4PR03MB6158.namprd03.prod.outlook.com (2603:10b6:5:399::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.12; Mon, 18 Aug
- 2025 16:39:40 +0000
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c]) by BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c%6]) with mapi id 15.20.9052.011; Mon, 18 Aug 2025
- 16:39:39 +0000
-From: Matthew Gerlach <matthew.gerlach@altera.com>
-To: dinguyen@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	richardcochran@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Matthew Gerlach <matthew.gerlach@altera.com>
-Subject: [PATCH v3 2/2] arm64: dts: socfpga: agilex5: enable gmac2 on the Agilex5 dev kit
-Date: Mon, 18 Aug 2025 09:39:33 -0700
-Message-ID: <20250818163933.62086-3-matthew.gerlach@altera.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250818163933.62086-1-matthew.gerlach@altera.com>
-References: <20250818163933.62086-1-matthew.gerlach@altera.com>
+ bh=v/uJPo7TXCAycPYaRNOytX3CUsKzzYD4MQS3KKZiHlM=;
+ b=dDeBbDA64k62tP+zM6x3OJhEWoh0/FIN6qaRsb/S9bWDMxOBhvDcJLncrjfbSve2ZLo7Amrcyq53X9NhQkRmExYftP+YzX3ISrAV3kLOsJhMcCBX+jXaXCmC8nBuBpySepminZJurgocnI+6u1jreGQgIGKwHTzy38qr9hNO94qCUTTMa9sSkez3JMple/1hox39ofDCeJoTIhF1LaSkgE/pXBn2e6ze5oHAIhmsQS5yTOYOFvJ7eVJkzP6MDUU72qVJv7t1hzQ7HI5gXVYYmrGEX2ZfflTPfJSrfIXYr76eg1+RamTK7A+rYKIfn5TO3szWV5y1kxvrj+08OSGjnw==
+Received: from DM5PR19MB4646.namprd19.prod.outlook.com (2603:10b6:4:a9::21) by
+ SJ0PR19MB6813.namprd19.prod.outlook.com (2603:10b6:a03:448::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9031.23; Mon, 18 Aug 2025 16:43:09 +0000
+Received: from DM5PR19MB4646.namprd19.prod.outlook.com
+ ([fe80::11db:b5b:1230:2947]) by DM5PR19MB4646.namprd19.prod.outlook.com
+ ([fe80::11db:b5b:1230:2947%4]) with mapi id 15.20.9031.012; Mon, 18 Aug 2025
+ 16:43:08 +0000
+Date: Mon, 18 Aug 2025 11:43:00 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: oe-kbuild@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>,
+	linux-rockchip@lists.infradead.org, lkp@intel.com,
+	oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, broonie@kernel.org, lee@kernel.org,
+	lgirdwood@gmail.com, sre@kernel.org, heiko@sntech.de,
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: Re: [PATCH V6 3/5] power: supply: bq257xx: Add support for BQ257XX
+ charger
+Message-ID:
+ <DM5PR19MB4646929CD183E2B110B6AD5AA531A@DM5PR19MB4646.namprd19.prod.outlook.com>
+References: <20250812214300.123129-4-macroalpha82@gmail.com>
+ <202508181503.GrRD2T4C-lkp@intel.com>
+ <aKNGCg2rWT7GLNnt@wintermute.localhost.fail>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR06CA0068.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::45) To BYAPR03MB3461.namprd03.prod.outlook.com
- (2603:10b6:a02:b4::23)
+In-Reply-To: <aKNGCg2rWT7GLNnt@wintermute.localhost.fail>
+X-ClientProxiedBy: DS7PR03CA0072.namprd03.prod.outlook.com
+ (2603:10b6:5:3bb::17) To DM5PR19MB4646.namprd19.prod.outlook.com
+ (2603:10b6:4:a9::21)
+X-Microsoft-Original-Message-ID: <aKNYFH905R_dhubG@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR03MB3461:EE_|DM4PR03MB6158:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f442880-4b44-4495-03c8-08ddde75d387
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-MS-TrafficTypeDiagnostic: DM5PR19MB4646:EE_|SJ0PR19MB6813:EE_
+X-MS-Office365-Filtering-Correlation-Id: 572e74aa-f249-463e-690e-08ddde764f8a
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|19110799012|8060799015|461199028|5072599009|6090799003|41001999006|23021999003|15080799012|4302099013|3412199025|40105399003|440099028|51005399003|10035399007|1602099012;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?F0hYGad/VNQT4Sz71KjkoNi6kFF5d7ZyImhpFNVI4HtJ4cNNcjdzpounyfh9?=
- =?us-ascii?Q?Xt2lKazadz8/q7+4D1Y411upth7Of9UTxPvrlv6lrRpHetGbwfRvPHoP0k3s?=
- =?us-ascii?Q?mjZ/waJ1FfSMFC385Z8n1y53Zxyut81KE1fnKBhuYvSIVcqnkSRtTKUaJjkJ?=
- =?us-ascii?Q?514AbVmVnw5v90VZmz37kFbqZ/GejKfut9PwZpreIsaow8fZCfB9CZsZUdNS?=
- =?us-ascii?Q?RmtLM+UfpMu5qvIQzWfShC41GvIeo9BePCgxemvOtT7Ic0g1MT/aRtD1nbYO?=
- =?us-ascii?Q?vXmFD7XyligPWUSc7Sz5P/cREwZ5nPAYG9LsbMhPNUKkVd2BL3wm30FM2XTE?=
- =?us-ascii?Q?aKYMppCREpkQPMe9HobckLlRTozLEthUEOrFILTyul3UpphVdjgt+Y11Wx/m?=
- =?us-ascii?Q?KBLtJeoh80dGb+6zvU89FB1sFDZ2sS0ZJWXRf2dxuQWi0LYnJ46cDWS7SDjz?=
- =?us-ascii?Q?P1ERlom/fghQrLELzJkQxGycFt2fyN/2q7xrzZ6Z8uatkGTPt5W9TL4o3p0/?=
- =?us-ascii?Q?m8FOI8Wu6B2Nrds+GwR1Qjv6WKwJFqGd6b3HFXssm/fnoBYK8OeIqLZbKHX+?=
- =?us-ascii?Q?oITiarYYe6F0pzVpheJwViw6gbIM54Ioc4ZYxWwCvzY9KlIrQ3Ja2+p5MsYR?=
- =?us-ascii?Q?A2iXjU1UUGIEZiY/NMG4Lf83cUBpgaQoA2tw68YKALnIjCgT6IjUGgJakReL?=
- =?us-ascii?Q?AJkPq2Z8iQXMj8aRigE+a4+bzeFvwB62SQ1YESaESfjku43RL2KaowKTryQS?=
- =?us-ascii?Q?07kZ6OA6Oj4oJxn8t7UVneAN4cw6lNmSrE3dCPwaTOPDx6AtRm3CKSATO3Xd?=
- =?us-ascii?Q?ZqRE8TFnFWmHHpaH34+mhfy52K9b7KlzoRckXn52QVmUQgZDsSr0agaWgU5B?=
- =?us-ascii?Q?L0ebbzOx3W0IaNBWm/++YGOrJZ7nBHj+A0sBu8tX6m8KqAnWM+i4z4AweCwc?=
- =?us-ascii?Q?J0kMSjZvDzzotMBE7Gr4nTuOWlYcuYM8tcrs75OoZioPfQnoY871ngoOuRW7?=
- =?us-ascii?Q?XYvCiHsiChLYlh41FKrlBfi6vJZovwdAOSIb6xSbipvvJzNOyyxZqx2CXDcu?=
- =?us-ascii?Q?hh94G2wlxyJvsJ55XmhZAcVeM7CEMcROUJ4h1rPQ+Ngp7QJzgGW3o2x1QvwG?=
- =?us-ascii?Q?f9ZBHLe61EagmlcTRq9vRSj76yRdb3OOEoW4AKmm3xeZFWyw35C8YZJ3Udbl?=
- =?us-ascii?Q?3DoISN6c0PpPKyqNemtf3mkXraeVlKQsBrY2ShDBnX4RD9uAUXhh+mtTPRy9?=
- =?us-ascii?Q?xKHugZ0iWXNltXQJxH7VmCDoxU66TLGjMn1rH9ydwiqy9GpgXcGBmpAChGUu?=
- =?us-ascii?Q?QfIzMFAgxKbf4EXwLoCDXrYLuAhfnxEG3oUkDBy4faZGkLwKTytysdbEB3Uu?=
- =?us-ascii?Q?pfK/tHVw3cG/tvVJ5rL1QeKZ/Nod7cqRepAAmKSs5D8b3hhkI0Mr1LAM8i1b?=
- =?us-ascii?Q?RE4vEG6toFM=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB3461.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014);DIR:OUT;SFP:1101;
+	=?utf-8?B?SWUzS1RNQVAwY0RBYW1YSGRVU0dEWjFsalFRNkhkRmFIZnJkYklhSXNsWXI0?=
+ =?utf-8?B?TldRTjU2T3gwMit3eXpzREEra2J5ajB0aGd3NVdLS2djZkJyNGgxb0lTSGdP?=
+ =?utf-8?B?M0ZtN1p4OEpyOXJYV01jTGV2bkxqbGNhTjd2WmtqbjdKTThWTFlJcnlYd01O?=
+ =?utf-8?B?TFdSSFBIZVQveHJaOVpoa0NaNkRJQ2JjZ2hVUHUwWWU4b0ZwSkdQKzZ3VjlF?=
+ =?utf-8?B?YUpoRW8vdGdORkF4TWZodURqQTZ3aTNPaWxhdkpldWpkWWRCQ3dmM3pqcDhx?=
+ =?utf-8?B?MTVEazBYdjdlN3lWZ0QxdGhzTlZrTTNFaENYREtQditWc3lKVXBVcHFHSWlv?=
+ =?utf-8?B?RzNKd0lUUHpqYklKZHl0SnlERlNUQVpXbGhiVVZxRmRKanlhajVGUENFVHN3?=
+ =?utf-8?B?QWhkd09tZXhPdDBvRFFabjBWQlRFRU9vS0ZDekRLRlJJS3RrZ21MVUN0Sysr?=
+ =?utf-8?B?VmFvSXI1ZkhRZ0pjc3FHVVljd0dNOEpwRlZQZGlLVVlFclZyckV5VVIxS091?=
+ =?utf-8?B?Rk1pdnFTZExkemVCK3Z6M00wV1NGRzNXZGRZVE9BZSt1L2pDTnE4WXlwNy8y?=
+ =?utf-8?B?cXF5SThZR2ZXdmEwMlBMeEFpS1c5TEVQcE1UaVJDM3BGN2U2YXlyQkVzVlFy?=
+ =?utf-8?B?RjQ1WVM0YzZXUThZWEhQNWpnMS9oUHZOZW9tbk5tV1MzeGhONVI3d09idkZI?=
+ =?utf-8?B?VHBPU2xiZjhFQlg2amxabms0YVZEMEFVYXJIelV4M0tHMzdla3JOWDRieWhl?=
+ =?utf-8?B?ZjhPZ014VFRRTnEyVzFzUjl2YzlEWE1Fc0VQMHo0T2pzUzQzSUUveFlBTGUr?=
+ =?utf-8?B?WVJTR0dzc1M3ZTk3TDRvZVcvUS9xYkF4MlkrYmhVYjdhdHpUWjQzdStIS28w?=
+ =?utf-8?B?OFArZFVZU01sSkdmOFRJL2VLczBqUDM1V3V1bmhocmZFYzB4NkhpdkNWVFpv?=
+ =?utf-8?B?WkJkRlNvaVpsM0pmaWFDeFRteW5QempLNk8xM3Z0bUgzSnlqaUs0NGN1YUF0?=
+ =?utf-8?B?NmhZR2l2YWh2aDBaY2V2S1FLcndYYXlueEcwSUhBTVdrVkV2b0FiWndFZ2Uy?=
+ =?utf-8?B?TzFPbVIxUnovbTlncnNPZisrREh0UENFcmxJUEhPeGh5dTVLZVR5MERaSmFE?=
+ =?utf-8?B?cGZscGNlcnErT1haclMrU3BnL3Q0QUQxVGpudHNoNk8xcWRXampqUVZONHJJ?=
+ =?utf-8?B?S3RCckk1NkRZcEtlOHE4cXJNN3JRVFNjalRIN2E0c0V2NmxISHhTQ2hVWlRC?=
+ =?utf-8?B?SVRyeUdQOVRQc1ZXcmpraTZjU0tjMTFzRG4yS2R0WkZ4czZRQ2FmOWREWUFE?=
+ =?utf-8?B?czlqK2ZDaWROQ3M1TXFvZkdMS2hJYktVaTVsZ3VHVXFtUTRsdWgxVHZsTXVz?=
+ =?utf-8?B?SU9NVmh4dCt4VXV1RUd3MzYvc0FINTFjdit0T1UyL2lSL2NNMjd2ZTg4TU15?=
+ =?utf-8?B?YnQzeDRVMTVzcXB1U2hzamZyeE93QkRYNVppcDl2VmtCNXNHdHVsUUw5UlRG?=
+ =?utf-8?B?cXU1dU9UQkphN2x2cWEwdVZST3M3ZHBsQ1hZdm1IeEpleGI4ckUzS3N2eDlL?=
+ =?utf-8?B?V0dEb1BuYkFzZUpkMFV3OWJZSWhCZE9JTzAwNlI2OXV4S1RmbVF0T2R1dWVp?=
+ =?utf-8?B?SXhsT05YK3BoK2g0WDdqVTlpa0xjNjA3RDRId1MwTGwwdEo0bFJ5c25KMHVS?=
+ =?utf-8?B?RkVmNmljc0NJSFphcThTdW1CZVdCR2hmYWxEdVhsQlBqTC9rVmppTmd3bHlp?=
+ =?utf-8?Q?AYUwrt7Lx3hWczsarAQR6ned69RygwF7g5bcnj9?=
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?sf4YFuc7oIGbQlH7x6QLFCgOdWUClLZncy0zseBcKuG7u7WJy2i42dNS9wKN?=
- =?us-ascii?Q?fcbJf8acFtBgz1LtikZ0i6fEK79+bqtTYVfEoPj1AM3ELb+LReT+nZQ/Enf3?=
- =?us-ascii?Q?yfw7xWT+Rtd7W8Ow5KPz2tWQ5GyrmFJQTBdwJRtZljhbkbOuwhWtw58jvg68?=
- =?us-ascii?Q?6Mqj0+Ou1Jm034DqVjGx3rJVxZcMkmP4m7ZhbMNU7Gu4tcVAuXKIDpCUNhea?=
- =?us-ascii?Q?ubR2f5FAXizDvXJ/4i+i6NmKRCGcad/walu8oUpHUa2D4RTEzrMdpYWwe9Yg?=
- =?us-ascii?Q?2VB9dB0oE2h47QzaxPw02KO93uV/2zilsZi3hnBPGfS/gLCqYdtMLY5tYLnW?=
- =?us-ascii?Q?pcM7bT0To3x7ozkVwpkuOLQdieMqZfvAwwJBqeBFIttWZgdjiowzHZM4p1M0?=
- =?us-ascii?Q?/goo/BUIHZEI5Ys6SSL3Yibqs3aFZDFRhJ99CAhLOrBq1XP2xJ6VaYZDmkr+?=
- =?us-ascii?Q?5Hzx6w1d+4n/FQ9W23Rg+yJnBORWtCHKihfHoE0uNIEPGGZ3fDNvDroFWbCm?=
- =?us-ascii?Q?xL8LSc8zJB+O7IDFL88tRtcQcwSXj8Zwh0lqZDHwl4PNkC1njtRI/8ZaMeB/?=
- =?us-ascii?Q?5EfVd4UoFHuuRACBP4QMcWBarJgFsQEVGGht4DmIG/pd5CucF2ojMd+pjGCk?=
- =?us-ascii?Q?UB5Cko4TiXoUYVIbzBJEjM6FrL+kApzbd/D+fDia/iDOJ07QtnC7m8ixHxs6?=
- =?us-ascii?Q?aZk2GhbPTUtGWnQHJkdcBhqjzN3NLi/UcNL5ZPZ/ETC5uSnU8OBKqPmucNMd?=
- =?us-ascii?Q?6CFHo9UM7jcFxxwH8/YWDlCW6/FaRaLpMNFTDizuXgOD/fAivbzLOCp4T7pi?=
- =?us-ascii?Q?PZCgm4VdcdmOwcyEHYJmJdPMkCDLkS9CJjRZlv2TaPUpF0CBqZa7unxsIgKB?=
- =?us-ascii?Q?yCnd6NxtkpXaTCbMtSKRxH57A6pY/QmdqW8o4ULcP098oFSU0N9ojvdrfRFV?=
- =?us-ascii?Q?WOwf74RCNPnYQj0t6FlM76/2cmZ/OXsJfIOZozNQB6Vg6pLsuo9jTxCioUyV?=
- =?us-ascii?Q?SrNtrEN8tOmWg1MgQmuAc0RjSJF2uma6DMVDza9TnTgqV8+HWCPQjl4wGcBX?=
- =?us-ascii?Q?kZKhig11k1Nzo4+32qAPC7hNk41msV6NXevMEDw0+fUAPQgyNc3p0AMjju35?=
- =?us-ascii?Q?eMXO8+u/w1FvuyNFTkuXyciCwwtw8ndBPOWJJmob6e+W2YQN4rAc5whUBI6f?=
- =?us-ascii?Q?TrbydqBBqCp7i9ewdws6QkcSd6NcS+5zM8c3wMLMyZvhbyIToDOWyRXqrDen?=
- =?us-ascii?Q?e6eCmTRLcV+IzJEn42QFgEqnwhuxYk3eZmBJaGNLUPiNqt1BJjZQIkh09Rrv?=
- =?us-ascii?Q?0TWmWRBqAutCZFPgjw0u2eHKOdipPtm/2FYT1lkdDhxSp7yzMGFa9pdV6Bci?=
- =?us-ascii?Q?6lBfdGZyGU2x8hbjUSQ6eTgDQ4cS4VLIFGtpDiWxWm9bj4ihPYvnkXQnJeOQ?=
- =?us-ascii?Q?LHAVPp5rkIES5EueDH1T9Evk/Y5VJzU3S584uGpcuEC0nVpLsOtyRzPasut1?=
- =?us-ascii?Q?3JQAXEEZ48H1Kqzgi+8PixIEyy2pctXsYugFSA+jN8caIL4ncAdGFH45oowQ?=
- =?us-ascii?Q?RsEp+h/RKGl3e2vPwLabt0Sl+5eajExLuBXxOfcVRMj2Lo1Exc7w9UH5r1Sv?=
- =?us-ascii?Q?XQ=3D=3D?=
-X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f442880-4b44-4495-03c8-08ddde75d387
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB3461.namprd03.prod.outlook.com
+	=?utf-8?B?bXNOSVJtRGg1Y0NidHI3bko3TnB1RWVScnU0WjRjN3UvcTM0dzJVZC9rVi82?=
+ =?utf-8?B?K2k1dkdVdXR4Q0RlNmY4SFVENS9BSFBNYjZaUGpld1B1U2NJUnlzaU9pNFkr?=
+ =?utf-8?B?TllVbGUxTGtHQXVmTHFZck9OSiszMjkxZDVYVWN4TU53bTlYYXg2VjRGVmJJ?=
+ =?utf-8?B?NzFlVWI3UnpIbzRLNnE1Sm9TODlzeWZ3NUdRRGszS1pid1hETW1RWEZMOE5K?=
+ =?utf-8?B?emxqcWkxOWp6N00yTmw2c2tCUVhJa08ralFmZ1dmRmZrL2d6enBwdjJYYUVB?=
+ =?utf-8?B?UGU5NjZsdk95YVlCU2xMMUFPd2hkb0VBeUYwSWhYZW1YNUtVaEg3VENBREo3?=
+ =?utf-8?B?ck1vU3M1Q2h1WTRNUm9pcC9yc3pHbks0REJnVHJBcW5YeEw2MTlzcm5mdytB?=
+ =?utf-8?B?enRiWWhkamFONWZ1N1AvZmVwY2FpQmh0UWZDUzlOMFd3Rm1jU0d5K2JsZStt?=
+ =?utf-8?B?S2Jaa0pYUVM4V0E4SUlVckw5M29TOXRPZGJnSUEvSGVzYUJ3bVF2dFFpSFli?=
+ =?utf-8?B?d2hUUWJlMFQzOEI2S001K0VJakJCaFkrUHdlNmRGVUN0eEpZeWJZZmFvRjRt?=
+ =?utf-8?B?L01TdDU3SUd6KzNtTUdka0xQQWJsTlZ6QXZLcnpiWDhlUXZhL3laUm5ndzZa?=
+ =?utf-8?B?dXpIaUxlTHk2TU02cW1KM2ZGdTRyR0E2MGZsMHZQZW1vRXZLWFVXMm4wU3dj?=
+ =?utf-8?B?OEhHcXo1V3hKOUl2Ry9BQU01K3cvQkEyNWhGZlN4R0w5MnowOW8rL3pWam5L?=
+ =?utf-8?B?aEtvU2l6NDBUUVFGZWlUVU9QbEtSREtjVkxqVFZybnpMWHlvL0VBQ1V1UGcw?=
+ =?utf-8?B?ZkJ2dEhYUjkzYXpjSy9KSjRtc1JKc25SZFpWam03QVBocTQ1STFmUU95R25n?=
+ =?utf-8?B?cC9rYTR3ZENiakFZZUVrMktkc3N1ZGtaY0tOUTJuQmNKdnd6Q01uczlvU1Qy?=
+ =?utf-8?B?bVM1MFhOYUthVGxDNTBUTi9ZRHYzVWRCaTErckdEVmIySHVWZXhFemZ0MUo1?=
+ =?utf-8?B?bFRsMlA5Tlg3VS9TRXhvL3RWWFF0UEpsMW5iV3Q3RUhlRFRKOGdFaEFQRmls?=
+ =?utf-8?B?VmhnWGphaWFmcVBIQVk5Wk9xWVRQYk83M2FocklUM2NMOHZKTlh5S0xZWUl3?=
+ =?utf-8?B?Z3BHZmdlOCtBc0lmRTVKblRKNjhxN3lESWZDRnRjRitMZVZwSkJ2a1NSMmdZ?=
+ =?utf-8?B?NU9zUCtYaCtUWWdiVm9YMDd2ME9kWDdCM25EeWx5NklHNkx5enFGS1ZMazdD?=
+ =?utf-8?B?R2QzNDMwRFpwVk56eC94a2lzbnRnSWxBbU1Cdm9BMU9hdFp1bTZLZGR6U2wy?=
+ =?utf-8?B?SG1jMUoyZVFOMWg0MllQWGoyK2RzNlFGQUNJTVI1MVRxYnNMSUJRTG5EWHJ0?=
+ =?utf-8?B?bUVNcHpPWUFUcVRObUdZanVyZi83K1NPOW9KOUFuMWRpV2F1M040bldrNDh4?=
+ =?utf-8?B?SUhCTlVoTWpvQmUyL3g2RmlmckhRbDNJSFgzTXBVN2RON0MvL0hDN2dxVE02?=
+ =?utf-8?B?VENOYjBQTXNJRHdhVFVNVjhNMFl2Vm1rMFJxMUR1UkVRN3JjZ0FPdmZVRXg5?=
+ =?utf-8?B?R29Ca3VkR2cxWkNVZmRxS3hIZVpCdG43TSt3OEJqNDgvVGxMYlRET3IrMFVT?=
+ =?utf-8?B?aTJNVWw0VXcwTVM3SlNSaGE1OVk4SHJ4OWdnRnlkdDk3V2Ywd2M1S1BWQWVS?=
+ =?utf-8?B?OG5sZ1FIaUJXdW5wem1GMndQNUg0WWNRV0lSd2lMenRFVkZqNGVBR0o4Tnpl?=
+ =?utf-8?Q?yERIxx4nfzapzmHZpWEB6+Ww9Gn+VFtE+KrUGaG?=
+X-OriginatorOrg: sct-15-20-8534-20-msonline-outlook-2c339.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 572e74aa-f249-463e-690e-08ddde764f8a
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR19MB4646.namprd19.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2025 16:39:39.9014
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2025 16:43:08.6980
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LDOW8TxNy57JBfEgESs+Lwj0KNRAEmjI3NqTq6Cz5/ug+P/jk9/h+9ptvwS+qi0Qr4MU2+VZUT+9YvtRmnZgBT+OCVVvIFDc5a7kL8MzrVE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR03MB6158
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR19MB6813
 
-Enable gmac2 on the Agilex5 SOCFGPA Development Kit. The MAC is connected
-to a RGMII PHY on a daughter card. There are no RGMII clock delays
-implemented the on PCB.
+On Mon, Aug 18, 2025 at 10:26:06AM -0500, Chris Morgan wrote:
+> On Mon, Aug 18, 2025 at 11:22:35AM +0300, Dan Carpenter wrote:
+> > Hi Chris,
+> > 
+> > kernel test robot noticed the following build warnings:
+> > 
+> > https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > 
+> > url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Morgan/dt-bindings-mfd-ti-bq25703a-Add-TI-BQ25703A-Charger/20250813-054704
+> > base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+> > patch link:    https://lore.kernel.org/r/20250812214300.123129-4-macroalpha82%40gmail.com
+> > patch subject: [PATCH V6 3/5] power: supply: bq257xx: Add support for BQ257XX charger
+> > config: parisc-randconfig-r072-20250818 (https://download.01.org/0day-ci/archive/20250818/202508181503.GrRD2T4C-lkp@intel.com/config)
+> > compiler: hppa-linux-gcc (GCC) 8.5.0
+> > 
+> > If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> > the same patch/commit), kindly add following tags
+> > | Reported-by: kernel test robot <lkp@intel.com>
+> > | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+> > | Closes: https://lore.kernel.org/r/202508181503.GrRD2T4C-lkp@intel.com/
+> > 
+> > smatch warnings:
+> > drivers/power/supply/bq257xx_charger.c:392 bq25703_hw_init() warn: potential ! vs ~ typo
+> > 
+> > vim +392 drivers/power/supply/bq257xx_charger.c
+> > 
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  365  static int bq25703_hw_init(struct bq257xx_chg *pdata)
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  366  {
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  367  	struct regmap *regmap = pdata->bq->regmap;
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  368  	int ret = 0;
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  369  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  370  	regmap_update_bits(regmap, BQ25703_CHARGE_OPTION_0,
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  371  			   BQ25703_WDTMR_ADJ_MASK,
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  372  			   FIELD_PREP(BQ25703_WDTMR_ADJ_MASK,
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  373  			   BQ25703_WDTMR_DISABLE));
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  374  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  375  	ret = pdata->chip->bq257xx_set_ichg(pdata, pdata->ichg_max);
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  376  	if (ret)
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  377  		return ret;
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  378  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  379  	ret = pdata->chip->bq257xx_set_vbatreg(pdata, pdata->vbat_max);
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  380  	if (ret)
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  381  		return ret;
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  382  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  383  	ret = bq25703_set_min_vsys(pdata, pdata->vsys_min);
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  384  	if (ret)
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  385  		return ret;
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  386  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  387  	ret = pdata->chip->bq257xx_set_iindpm(pdata, pdata->iindpm_max);
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  388  	if (ret)
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  389  		return ret;
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  390  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  391  	regmap_update_bits(regmap, BQ25703_CHARGE_OPTION_0,
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12 @392  			   BQ25703_EN_LWPWR, !BQ25703_EN_LWPWR);
+> > 
+> > Yeah.  This really looks like it should be bitwise negate ~ instead of
+> > logical negate !.
+> 
+> Since BQ25703_EN_LWPWR is defined as 1 and I want to write 0 here (to
+> disable low power mode) I was under the assumption either should work.
+> That said, I'll happily switch to the bitwise negate (~) and resubmit.
 
-Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
----
-v3:
- - No change from v2.
+Sorry, hadn't drank my morning coffee yet before I sent the last
+message and should have attempted it first before replying. When I
+make the requested change I get a compile time error of "conversion
+from ‘long unsigned int’ to ‘unsigned int’ changes value from
+‘18446744073709518847’ to ‘4294934527’". What I'm really trying to
+accomplish here is to simply write a 0 to turn off low power mode, and
+do so in a manner that's easy to understand. I think since a bitwise
+negate gives a compile error and a logical negate throws a smatch
+warning, the most sensible thing to do is simply express this as a 0
+instead of a defined value and write a comment why I'm doing that.
 
-v2:
- - change phy-mode to "rgmii-id"
- - add newline before inner device tree nodes
----
- .../boot/dts/intel/socfpga_agilex5_socdk.dts  | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+> 
+> > 
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  393  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  394  	regmap_update_bits(regmap, BQ25703_ADC_OPTION,
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  395  			   BQ25703_ADC_CONV_EN, BQ25703_ADC_CONV_EN);
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  396  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  397  	regmap_update_bits(regmap, BQ25703_ADC_OPTION,
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  398  			   BQ25703_ADC_START, BQ25703_ADC_START);
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  399  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  400  	regmap_update_bits(regmap, BQ25703_ADC_OPTION,
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  401  			   BQ25703_ADC_FULL_SCALE, BQ25703_ADC_FULL_SCALE);
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  402  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  403  	regmap_update_bits(regmap, BQ25703_ADC_OPTION,
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  404  			   BQ25703_ADC_CH_MASK,
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  405  			   (BQ25703_ADC_CMPIN_EN | BQ25703_ADC_VBUS_EN |
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  406  			   BQ25703_ADC_PSYS_EN | BQ25703_ADC_IIN_EN |
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  407  			   BQ25703_ADC_IDCHG_EN | BQ25703_ADC_ICHG_EN |
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  408  			   BQ25703_ADC_VSYS_EN | BQ25703_ADC_VBAT_EN));
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  409  
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  410  	return ret;
+> > 7f3b6f1e51a925 Chris Morgan 2025-08-12  411  }
+> > 
+> > -- 
+> > 0-DAY CI Kernel Test Service
+> > https://github.com/intel/lkp-tests/wiki
+> > 
+> 
+> Thank you,
+> Chris
 
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-index d3b913b7902c..e9776e1cdc9a 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-@@ -10,6 +10,9 @@ / {
- 
- 	aliases {
- 		serial0 = &uart0;
-+		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
-+		ethernet2 = &gmac2;
- 	};
- 
- 	chosen {
-@@ -37,6 +40,23 @@ &gpio0 {
- 	status = "okay";
- };
- 
-+&gmac2 {
-+	status = "okay";
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&emac2_phy0>;
-+	max-frame-size = <9000>;
-+
-+	mdio0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+
-+		emac2_phy0: ethernet-phy@0 {
-+			reg = <0>;
-+		};
-+	};
-+};
-+
- &gpio1 {
- 	status = "okay";
- };
--- 
-2.35.3
-
+Thank you,
+Chris
 
