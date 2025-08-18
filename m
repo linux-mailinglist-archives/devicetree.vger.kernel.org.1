@@ -1,146 +1,133 @@
-Return-Path: <devicetree+bounces-205619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DC3FB299BD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:32:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0E4FB299C8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:35:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 076EB164A6E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:32:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F423E3BDDEB
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3C6274FF9;
-	Mon, 18 Aug 2025 06:32:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF3F274FF9;
+	Mon, 18 Aug 2025 06:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g9tQjYkx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TGvBJyay"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33D0273D84;
-	Mon, 18 Aug 2025 06:32:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8240024635E;
+	Mon, 18 Aug 2025 06:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755498753; cv=none; b=Lt1MYIWzofTYd856GNtajFYX/H4bZaDTXeDDCGdgO5U5rAQYeEdrGGMefha4dmqkqMTvRI3R+Wfhpwfjo8Nauhx+DvM/Ybx4eK2UQSprdNNQyO/CoZUsYsVwnzdG4ZtFkN/8a1d1TBEJ5vj3UC7YqiSf4aewlXbMe27I47bl50k=
+	t=1755498784; cv=none; b=fWOSa44NimtUyRJkgXK1ocPMDXtW/18wNFkzlZPMC9tu8UCNwR51p8HkzgIHJel0gs998nGCondWi45gHQgxec9C5Ei7+i6GDV0XDsOwfM8sXM3BpWeIzKCATbUHaYhK8E4ritBAFTye4I98YfRJwFfSdkFfpCwVfRqwSf4hijI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755498753; c=relaxed/simple;
-	bh=IqeYeauks1YJwsXt8Zs3h943HI/7m7G8G1Ab7AZ2Vp8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LwnIMsO9EbvRS2zF4NZgxJFDUKE5pHVhubLEgw6F75+GWCIxoPsGrXo25EiaGutRA99ymwsI+zBJBSsT6cjDO+3tY0jc9o3POQ8EGTDO+i2G1WRd0pO+0/sya0hTeNVSufQVHjPlkAN4GbKs6yEzTsbSCFluC/Z+NSqOrYwdewA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g9tQjYkx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D2D5C4CEEB;
-	Mon, 18 Aug 2025 06:32:30 +0000 (UTC)
+	s=arc-20240116; t=1755498784; c=relaxed/simple;
+	bh=oVqPB105dPgeJNsyt7OogjJUI5zWm9tJwOKP48ly5z0=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=rtsJbP0jCDGyie+n/GmeOPNugkpIsGNpXnbclxE2kEFDHBiHH4PLCNuIBycbDRjbK4AEbAyEisN7r3zSrthOndjDO1fhStN55pn8JD+s1gIM705RkwsHFTRbROMxHwZY3JaKNwpOZoJv9z/ZatI2rgZkb7+ECBEvI//bdIOjwwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TGvBJyay; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C767EC4CEEB;
+	Mon, 18 Aug 2025 06:33:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755498753;
-	bh=IqeYeauks1YJwsXt8Zs3h943HI/7m7G8G1Ab7AZ2Vp8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=g9tQjYkxKSJYXuflHqpOhLHcjHwrYSD+4pdI8GtEUOYZ+y2T66B3B0D0j5+u0F9FZ
-	 4w9XRCzBpgdr2pSi4ZXIYNNPYKjYGkqKdHskDzneDAG4jCQJU28/JgHo9yEGUppoWo
-	 KzkyiPl0xD8HatrkvOGt3fIHUXIsrFnx/Fm8zdq21eUI7Lm4FmqlrjVq8Txo1y0Znc
-	 YLyUUn8TinGeoudyWOAFrjFHuzdIAFPdGF7mSzm6O0aY7z0ad2X+QGOI67oogQ0/24
-	 kQMsAr7KL+tp2Wro27lhBntIgSqEOnqdgYnEKG5bc/+SkNMSbOpWWYd66AwXSA9YLd
-	 HkTCGcI2Us86w==
-Message-ID: <2bfa6c0b-1f23-4d57-b618-688ed8dc7fae@kernel.org>
-Date: Mon, 18 Aug 2025 08:32:29 +0200
+	s=k20201202; t=1755498784;
+	bh=oVqPB105dPgeJNsyt7OogjJUI5zWm9tJwOKP48ly5z0=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=TGvBJyay/SLO5sF1wvYqbmSPJFxQU1yWuMRjj/uV7m2USicmYoQ/i3DXIUnnEOqOp
+	 57PgpDMQKa2OcSlVwReVkg/9qWFGOqmgwdaWCL5IAQuzeJzEi6d4yqAh6vmnO3op1E
+	 8f2LadiX8Nve1vjGj99EepjfuZ9o3WAXmk0n7XQc9W1/f3JaTt7Yrml03eOns4RVND
+	 jJ/fbH8D/8blCXj614n7X6gDUmQPVhyPfmzd8z3bk7R4IsNm49chp/gZECVmOdHaI0
+	 vHbirMALRa732CYkzn4chwPRvIT/SsdAUtzt2mD7IjxpwH55BXKf0bYl/8OKkSH5wi
+	 7e7izWMS/ZcSQ==
+Date: Mon, 18 Aug 2025 01:33:03 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/6] Support for Exynos7870's display stack (DECON,
- MIPIPHY, DSIM, etc.)
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250627-exynos7870-drm-dts-v2-0-d4a59207390d@disroot.org>
- <3f4f28cf-417b-4f12-8a3d-c1f70f6871c4@kernel.org>
- <45fc52d9988d1bf17eca392364c63193@disroot.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <45fc52d9988d1bf17eca392364c63193@disroot.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Andrew Hepp <andrew.hepp@ahepp.dev>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Ben Collins <bcollins@watter.com>, 
+ devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>
+To: Ben Collins <bcollins@kernel.org>
+In-Reply-To: <20250818035953.35216-2-bcollins@kernel.org>
+References: <20250818035953.35216-1-bcollins@kernel.org>
+ <20250818035953.35216-2-bcollins@kernel.org>
+Message-Id: <175549878302.4073296.5081888197780869494.robh@kernel.org>
+Subject: Re: [PATCH v5 1/5] dt-bindings: iio: mcp9600: Add
+ microchip,mcp9601 and add constraints
 
-On 17/08/2025 16:49, Kaustabh Chakraborty wrote:
-> On 2025-08-13 07:58, Krzysztof Kozlowski wrote:
->> On 26/06/2025 22:13, Kaustabh Chakraborty wrote:
->>> This series implements changes in the SoC subsystem, which includes
->>> devicetree additions. It depends on all sub-series listed below:
->>> (Legend: [R]eviewed, [A]ccepted)
->>>
->>> exynosdrm-decon            - 
->>> https://lore.kernel.org/r/20250627-exynosdrm-decon-v3-0-5b456f88cfea@disroot.org
->>> exynos7870-mipi-phy        A 
->>> https://lore.kernel.org/r/20250612-exynos7870-mipi-phy-v1-0-3fff0b62d9d3@disroot.org
->>> exynos7870-mipi-phy-fix    - 
->>> https://lore.kernel.org/r/20250627-exynos7870-mipi-phy-fix-v1-0-2eefab8b50df@disroot.org
->>> exynos7870-dsim            - 
->>> https://lore.kernel.org/r/20250627-exynos7870-dsim-v2-0-1433b67378d3@disroot.org
->>> panel-samsung-s6e8aa5x01   - 
->>> https://lore.kernel.org/r/20250625-panel-samsung-s6e8aa5x01-v3-0-9a1494fe6c50@disroot.org
->>> panel-synaptics-tddi       - 
->>> https://lore.kernel.org/r/20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org
->>>
->>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->>
->> What is the status of the bindings from dependencies? I think they were
->> not accepted.
+
+On Sun, 17 Aug 2025 23:59:49 -0400, Ben Collins wrote:
+> From: Ben Collins <bcollins@watter.com>
 > 
-> Except panel-synaptics-tddi, all have been accepted. A lot of them
-> haven't hit next though. I'm waiting for that to send the next revision.
+> The mcp9600 driver supports the mcp9601 chip, but complains about not
+> recognizing the device id on probe. A separate patch...
+> 
+> 	iio: mcp9600: Recognize chip id for mcp9601
+> 
+> ...addresses this. This patch updates the dt-bindings for this chip to
+> reflect the change to allow explicitly setting microchip,mcp9601 as
+> the expected chip type.
+> 
+> The mcp9601 also supports features not found on the mcp9600, so this
+> will also allow the driver to differentiate the support of these
+> features.
+> 
+> In addition, the thermocouple-type needs a default of 3 (k-type). The
+> driver doesn't support this, yet. A later patch in this series adds it:
+> 
+> 	iio: mcp9600: Add support for thermocouple-type
+> 
+> Lastly, the open/short circuit functionality is dependent on mcp9601
+> chipsset. Add constraints for this and a new property, microchip,vsense,
+> enables this feature since it depends on the chip being wired
+> properly.
+> 
+> Passed dt_binding_check.
+> 
+> Signed-off-by: Ben Collins <bcollins@watter.com>
+> ---
+>  .../iio/temperature/microchip,mcp9600.yaml    | 69 +++++++++++++++----
+>  1 file changed, 56 insertions(+), 13 deletions(-)
+> 
 
-What does it mean - accepted but not hit next? If it is accepted, it
-must be visible in next. Which maintainer's tree are not in the next?
+My bot found errors running 'make dt_binding_check' on your patch:
 
+yamllint warnings/errors:
 
-Best regards,
-Krzysztof
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.example.dts:34.34-35 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1527: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250818035953.35216-2-bcollins@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
