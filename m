@@ -1,239 +1,159 @@
-Return-Path: <devicetree+bounces-205805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D10D6B2A458
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:19:41 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83854B2A4B4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:24:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CCC57A2305
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:17:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 67C334E319D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E6363375C8;
-	Mon, 18 Aug 2025 13:15:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E59932A3C0;
+	Mon, 18 Aug 2025 13:18:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tlJjuuPx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920A93375AE;
-	Mon, 18 Aug 2025 13:15:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F677326D43
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 13:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755522943; cv=none; b=hcY1VoLUSap1f9qBHNDHZEDRaCwepgnUq0kxAn18KTuopqJGmEsd6nzs5b4ZOSiELTLDa0UzY5BKRUM+ctJ5N2kMT6xN081HD91zfvxCP1Wcc73uBJwaymcffO3z3CiW2V+hlsuYnuL5oYZ/+CyIj53pn5qPenbsbEp3qDh7HPg=
+	t=1755523081; cv=none; b=olJFmWwrYiiClgnxHsUQoPGhgHb+ttOBrfA/LaY5k5fNSf9YzzcwzZYHuS2V+2ZvZKfNMCO6jEc1Ff8n7cOpJ6iHvK8TslHRJRhgKttxahLS8nO7QK7C5XAyv0Gdu+sj0uAl/n8EDPvU02PF7uLRqAZCzCik4UtWA0EM+f8fzqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755522943; c=relaxed/simple;
-	bh=eZGvUeGw+fPtc8+ouIsGvEN/exUL+cRr1q5bKRNvYOQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rRyXl7fOSfU+sZ7XeH8gz0s61w+qFYe/J1ClmU1DDvGqZs0uikVCl5PITrJgZhzGdeR5miZFYmzqTZGqq5Usf8AqGsgRiLJpbVEZDZzXCd02XOtfm4UqebWfyAvuDVqbmNTvqDPKIq7dlf06PXXm58XyLIUgB4dFGO5I0pVqPm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-50f88cd722bso1178721137.1;
-        Mon, 18 Aug 2025 06:15:41 -0700 (PDT)
+	s=arc-20240116; t=1755523081; c=relaxed/simple;
+	bh=cN2Dr1U3N+epcvzyenIo+98wH45Absd+P6IxmKwk8T0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HUgvD9Wse+8ccEJvbzGw+5VPn+EEpSnmp2pskYpkU9tO6VsTb0gO9pzzRH+xXy7Hkmev7bdD90WD7zjy0cEMZ9kHkSZWkWV7RYUBAIPQIIr4GZGtTPzuzEcm5mGM0WFCSEMI+7W+htinBfC29kYUATtbYpvUog6oF2pcD3Bba3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tlJjuuPx; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b9d41cd38dso3313999f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 06:17:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755523078; x=1756127878; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WD8JY7wGfENB2vQCzVFhM+JL0GSgqtbytlovzqiUGn8=;
+        b=tlJjuuPxNwepZfdmjXoNY4VnN/v1dTsY5AM8fn47PXalgMEcIAE7hhRxeBRe2ir7u2
+         i/IZzVPRRG5GKgGpuvvYIWn6PK5iHT+u0p67MU5uZDXjYMntz4+pavUZ+x38iS1mFmv/
+         aj0Ra0HlF+9HliokS3z2g+roDkocQ4CkW+fEQYWjNuw8ka3OQUBGWMn88BPYrIbHDsR5
+         7iwk1ADbrcK/FCEZnsflDyO4rIITBf/ULudCgaXrN4cpCdJypT/P1rXNm1tUI1XhRI1i
+         VMrk7qvNqFIoS5JCrnNlz48hsZW4NEd4SHt2T6JXqaWiZ3/AQgMqVV7lEsDUfliy5KKz
+         /kBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755522940; x=1756127740;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k5pJEjXNDPDJzPITNSF2Cy+agebN0/imHucjVPw+eAg=;
-        b=BY/x+Rn12+a1dzjvYeklyW0VyleNK5roGK8gU5QB+rLvWB1AMNS90V/N12HCGzyyMG
-         YWkIV8fQ0mpGRlifZFFrqwLaiy9+aor/pxv20HB8RY3eXCEO1OErrB4wMexDvaLUVYYZ
-         esYi3b9igvTF49VN0z64Iio7QULEDrgm0EtPPIo0YcFhasTyyt59IgIIuoDtfm9y9dWC
-         OpudjC3A0KgcQpvvGtsk+4sHjdWTKRNVWQEy5k/8PcA5qKCdXiPyVWJZ+uuz8YyFDZd8
-         xTHgwgo4rLgD7n7MDpz6frS/MI9mVKbd7kHkaxMbO4TrmF+IJlWNAP42d2AijshyYivF
-         72zw==
-X-Forwarded-Encrypted: i=1; AJvYcCUaExJbtIFeNpvVU6ivbg4QNKbpem1BH0EmkllvdTC60ldha6g5+1TDemuAE9fHf48QZLp6l9AJJzmG@vger.kernel.org, AJvYcCXe7tS1sRxjJQqT/4kxKWpvVwleL7xs5Tr82i0ad0K0d+uOc3Rf0q+6N8E6x1L+1qOSOs8YUhoVKcrScZCq@vger.kernel.org, AJvYcCXtLAYGwM/tV94sOsBhR/tUqqSJXaqtEHu6WDEWC+wDUnIXPQK9Z3C8cGh3IpGAOIVdnpJNChaMnvY0XgtCM8aUitA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaalGR9JhZwR1aZ9fCCSvqmYgkT8he4DHxtWv98P3WKcSA4US1
-	tcfvf4Rl+BC6Y/heepvOhAUVP99VFGlQcZc9WjUuXgnEBCXY3wDv1c3eZcls0s3+
-X-Gm-Gg: ASbGncuNQiBuum78fUbT2zkolbpzFSCqTmx7kb1iR8bIN6+0j7mivsKcOJXeM2vt/iF
-	8sM5U+0rfzCnwjaJE8KFkzkU4jQVti8bUmyEgFKfadjRNLmKrGVI3e4Ly4BEDGI7uhR1TY+d2qc
-	ELIsfa94L16ZU2qoc5wzmyblzZKfeiMJ8Jv1eXj6Sx94dTW4SNhxEyzoB+2TIAZVjuCA0oa11Zv
-	CCG1CHVepVVMC94M7xecmNG5xTYQj9ZHI2l5tsLA4m0YLbV3r2fg3aYAxhe1D7eE0Lt5ZJ1Cmeb
-	R4kJF8pomaFPiUHePpOSriGzrYOTMNewhhJzHjnBeEWlVsowX6Bo0SjUwaOPTkzuYdWaTM7NACB
-	n4PyoqFHRs8ncPsG0KzYVUYMh41R43vJv3xbEnld33kq1jM6b4JMQg8VvB5u2
-X-Google-Smtp-Source: AGHT+IEL/I13AxSgETqSfXM8k+ZAf1L6zU8Qw4hF4wk5UA+zAhxTyB+K6nDu48cEjZ2lboh7yrybVg==
-X-Received: by 2002:a05:6102:dce:b0:518:9c6a:2c01 with SMTP id ada2fe7eead31-5189c6a33afmr136483137.28.1755522939811;
-        Mon, 18 Aug 2025 06:15:39 -0700 (PDT)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-890277e2c70sm1751311241.6.2025.08.18.06.15.39
+        d=1e100.net; s=20230601; t=1755523078; x=1756127878;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WD8JY7wGfENB2vQCzVFhM+JL0GSgqtbytlovzqiUGn8=;
+        b=vQdaHqNAPVmzg4AHxIH84Ddwka+nQzVrrM0eNuSbPaqFnnidwYHBsHydPtzt07V+YZ
+         wL2BTzFvz3B+1Nwe+bypxhYg6ee5kddDuvOW5QT5niJ+tNb1YZI8KOyXs/H8GKe8Rmvv
+         zu7ZzAN0ncFpAAJvCsYECSz5dzfIqyKvhc2wcpkzSkT4OL0xgpnKApxraxbMqjdDp4rU
+         eGfhSgDiPu7twxOjnngi/HMB+IK7pLfTM6EWBhB4IM9bANXrYkKkqQ1s+BXIBOEsgaOv
+         1HwzJHm5SR6rJBVeS3I/Zejv6M0VBmPwebfohlTBjoW/r3rHgX/g0oqcYxLzlHS7XAmg
+         bPOg==
+X-Forwarded-Encrypted: i=1; AJvYcCXvtFycLKueogWCPFdUb1U/n2hgnL6LQcKJNg9NaU3HxGptpEgTmyjEF7tHZK4lC262v/ZR+U+xhmn7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxF0JuWTEG2B+9nETXKHFF0FNsvQm3/w1+JCQheIxk+t3qM8roF
+	vmGWYZnaXv8rM9dfvWtaKBCiBYhceQBd8AilXd7R5V4iqvwgToTs++q3CMpazu0WzZw=
+X-Gm-Gg: ASbGncuLtpvprOVsA1Tcl1nlsa4zm21AOryhuMdWRaimUKwgOws4lety6FhHXt23t10
+	x2momJtPncogO8NOz3cya/p5bvIKu9aFLOWFRP8vg3jqvE5feDGTn8u8VvT4ZZCXFCHWdcmg1+D
+	wgpKLPxgs4OAHPi9xL2mpWipH2pQXgLaba0NM8Yq+2K4Cih1mNCsLbnkV5U2HtlChiSjr8dUK5X
+	P9YazTHQRD8otXPF6evRUWXChs6nBvNba8mzj9g2TCuDNe3yZF9H2VIC59X1zRtf2/ATRzcf1hu
+	JlV9b3mshd0L4kp94TAaB1myc7y2iNfH1pDuOGQpkbYytL60GT+qop93+rcZZZOHlqW2y9bwyhl
+	z6kcIau7zRZvGMD7rfkml+WLNDjw=
+X-Google-Smtp-Source: AGHT+IFJio5fCS2fBNF+0hXuSZxnS4K+PQVhd5zP27O8GnG2aQ92KmNgjsK/8qAhqnk6lalVTMRMDQ==
+X-Received: by 2002:a05:6000:1a89:b0:3b9:717:4bcd with SMTP id ffacd0b85a97d-3bb68b0d589mr9121216f8f.40.1755523077542;
+        Mon, 18 Aug 2025 06:17:57 -0700 (PDT)
+Received: from [192.168.1.3] ([185.48.76.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a22321985sm131021375e9.17.2025.08.18.06.17.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 06:15:39 -0700 (PDT)
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-89018fa6f6dso1204634241.1;
-        Mon, 18 Aug 2025 06:15:39 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVwQx+47AJPElmZ91UbXuiRJ/WM3rQd6nW9mlutGANHt+4Powy0FRyb5CrIZcdqFOHrEBnV1DYgbEaP@vger.kernel.org, AJvYcCWunSkNYNIQMo9FbVEp2j8emZ6yHZedgac1s+cKthlXmt1KnyntO+A0pUsAnNFqo4MskNsHSrjuNmqZ9+tt@vger.kernel.org, AJvYcCX9PWEoAyHvt7tJIU4w2gsnJrmfFVhXBo4n/qr2ERZDw5HkDPblRxu9u5dGQi955LmUBIsqYyYCgswmSkuAgNr8AZY=@vger.kernel.org
-X-Received: by 2002:a05:6102:1627:b0:4e6:ddd0:96f7 with SMTP id
- ada2fe7eead31-5126cd388e8mr4319794137.13.1755522939084; Mon, 18 Aug 2025
- 06:15:39 -0700 (PDT)
+        Mon, 18 Aug 2025 06:17:57 -0700 (PDT)
+Message-ID: <7bd5e0aa-c7fc-4c3f-9e5c-998a1d4f5703@linaro.org>
+Date: Mon, 18 Aug 2025 14:17:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250812200344.3253781-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250812200344.3253781-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250812200344.3253781-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 Aug 2025 15:15:28 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVi26AXwQJDtxSp8hSsmZ1Lx4_GYFsbtmq_gxJyddkqTg@mail.gmail.com>
-X-Gm-Features: Ac12FXyX3G3j02_gxxBGNzChIx62VgPdJgiJgMtXXMqM8tO2f3w3kfm4CppbZcU
-Message-ID: <CAMuHMdVi26AXwQJDtxSp8hSsmZ1Lx4_GYFsbtmq_gxJyddkqTg@mail.gmail.com>
-Subject: Re: [PATCH 05/13] arm64: dts: renesas: r9a09g077m44-rzt2h-evk: Add
- user LEDs
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/13] spi: spi-fsl-lpspi: Reset FIFO and disable module
+ on transfer abort
+To: Frank Li <Frank.li@nxp.com>
+Cc: Mark Brown <broonie@kernel.org>, Clark Wang <xiaoning.wang@nxp.com>,
+ Fugang Duan <B38611@freescale.com>, Gao Pan <pandy.gao@nxp.com>,
+ Fugang Duan <fugang.duan@nxp.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Larisa Grigore <larisa.grigore@oss.nxp.com>,
+ Larisa Grigore <larisa.grigore@nxp.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+ Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
+ linux-spi@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
+ <20250814-james-nxp-lpspi-v1-3-9586d7815d14@linaro.org>
+ <aJ4UH8fSWGODwnmO@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <aJ4UH8fSWGODwnmO@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Prabhakar,
 
-Thanks for your patch!
 
-On Tue, 12 Aug 2025 at 22:03, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add USER LED0-LED8, which are available on RZ/T2H EVK.
+On 14/08/2025 5:51 pm, Frank Li wrote:
+> On Thu, Aug 14, 2025 at 05:06:43PM +0100, James Clark wrote:
+>> From: Larisa Grigore <larisa.grigore@nxp.com>
+>>
+>> In DMA mode fsl_lpspi_reset() is always called at the end, even when the
+>> transfer is aborted. When not using DMA, aborts skip the reset leaving
+> 
+> Nit: s/"When not using DMA"/In PIO mode
 
-According to the schematics, only the first four are user LEDs?
+Ack
 
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> 
+>> the FIFO filled and the module enabled.
+>>
+>> Fix it by always calling fsl_lpspi_reset().
+>>
+>> Fixes: a15dc3d657fa ("spi: lpspi: Fix CLK pin becomes low before one transfer")
+>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+>> Signed-off-by: James Clark <james.clark@linaro.org>
+>> ---
+>>   drivers/spi/spi-fsl-lpspi.c | 4 +---
+>>   1 file changed, 1 insertion(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/spi/spi-fsl-lpspi.c b/drivers/spi/spi-fsl-lpspi.c
+>> index c65eb6d31ee7..aab92ee7eb94 100644
+>> --- a/drivers/spi/spi-fsl-lpspi.c
+>> +++ b/drivers/spi/spi-fsl-lpspi.c
+>> @@ -734,12 +734,10 @@ static int fsl_lpspi_pio_transfer(struct spi_controller *controller,
+>>   	fsl_lpspi_write_tx_fifo(fsl_lpspi);
+>>
+>>   	ret = fsl_lpspi_wait_for_completion(controller);
+>> -	if (ret)
+>> -		return ret;
+>>
+>>   	fsl_lpspi_reset(fsl_lpspi);
+>>
+>> -	return 0;
+>> +	return ret;
+>>   }
+>>
+>>   static int fsl_lpspi_transfer_one(struct spi_controller *controller,
+>>
+>> --
+>> 2.34.1
+>>
 
-> --- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-> @@ -7,10 +7,61 @@
->
->  /dts-v1/;
->
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/pinctrl/renesas,r9a09g077-pinctrl.h>
-> +
->  #include "r9a09g077m44.dtsi"
->  #include "rzt2h-n2h-evk-common.dtsi"
->
->  / {
->         model = "Renesas RZ/T2H EVK Board based on r9a09g077m44";
->         compatible = "renesas,rzt2h-evk", "renesas,r9a09g077m44", "renesas,r9a09g077";
-> +
-> +       leds {
-> +               compatible = "gpio-leds";
-> +
-> +               led0 {
-
-led-0
-
-Cfr. Documentation/devicetree/bindings/leds/leds-gpio.yaml:
-
-    # The first form is preferred, but fall back to just 'led' anywhere in the
-    # node name to at least catch some child nodes.
-    "(^led-[0-9a-f]$|led)":
-
-> +                       /* SW8-9: ON, SW8-10: OFF */
-> +                       gpios = <&pinctrl RZT2H_GPIO(23, 1) GPIO_ACTIVE_LOW>;
-
-color = <LED_COLOR_ID_GREEN>;
-function = LED_FUNCTION_DEBUG;
-function-enumerator = <0>;
-
-> +               };
-> +
-> +               led1 {
-> +                       /* SW5-1: OFF, SW5-2: ON */
-> +                       gpios = <&pinctrl RZT2H_GPIO(32, 2) GPIO_ACTIVE_LOW>;
-
-color = <LED_COLOR_ID_GREEN>;
-function = LED_FUNCTION_DEBUG;
-function-enumerator = <1>;
-
-> +               };
-> +
-> +               led2 {
-> +                       gpios = <&pinctrl RZT2H_GPIO(6, 7) GPIO_ACTIVE_LOW>;
-
-color = <LED_COLOR_ID_YELLOW>;
-function = LED_FUNCTION_DEBUG;
-function-enumerator = <2>;
-
-> +               };
-> +
-> +               led3 {
-> +                       /* SW2-3: OFF */
-> +                       gpios = <&pinctrl RZT2H_GPIO(8, 5) GPIO_ACTIVE_LOW>;
-
-color = <LED_COLOR_ID_RED>;
-function = LED_FUNCTION_DEBUG;
-function-enumerator = <3>;
-
-> +               };
-> +
-> +               led4 {
-> +                       /* SW8-3: ON, SW8-4: OFF */
-> +                       gpios = <&pinctrl RZT2H_GPIO(18, 0) GPIO_ACTIVE_LOW>;
-
-Schematics say "run", so perhaps LED_FUNCTION_ACTIVITY?
-
-    color = <LED_COLOR_ID_GREEN>;
-    function = LED_FUNCTION_ACTIVITY;
-
-> +               };
-> +
-> +               led5 {
-> +                       /* SW8-1: ON, SW8-2: OFF */
-> +                       gpios = <&pinctrl RZT2H_GPIO(18, 1) GPIO_ACTIVE_LOW>;
-
-Schematics say "error", so
-
-    color = <LED_COLOR_ID_RED>;
-    function = LED_FUNCTION_FAULT;
-
-> +               };
-> +
-> +               led6 {
-> +                       /* SW5-9: OFF, SW5-10: ON */
-> +                       gpios = <&pinctrl RZT2H_GPIO(22, 7) GPIO_ACTIVE_LOW>;
-
-Schematics says Ether-Cat link-activity, so LED_FUNCTION_LAN?
-
-    color = <LED_COLOR_ID_GREEN>;
-    function = LED_FUNCTION_LAN;
-    function-enumerator = <0>;
-
-> +               };
-> +
-> +               led7 {
-> +                       /* SW5-7: OFF, SW5-8: ON */
-> +                       gpios = <&pinctrl RZT2H_GPIO(23, 0) GPIO_ACTIVE_LOW>;
-
-color = <LED_COLOR_ID_GREEN>;
-function = LED_FUNCTION_LAN;
-function-enumerator = <1>;
-
-> +               };
-> +
-> +               led8 {
-> +                       /* SW7-5: OFF, SW7-6: ON */
-> +                       gpios = <&pinctrl RZT2H_GPIO(23, 5) GPIO_ACTIVE_LOW>;
-
-color = <LED_COLOR_ID_GREEN>;
-function = LED_FUNCTION_LAN;
-function-enumerator = <2>;
-
-> +               };
-> +       };
->  };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
