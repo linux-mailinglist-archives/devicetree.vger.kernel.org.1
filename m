@@ -1,110 +1,186 @@
-Return-Path: <devicetree+bounces-205817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C72CB2A62E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:41:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFFD2B2A64E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:42:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C022C17DC1C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:33:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB7BD565481
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B7E5334734;
-	Mon, 18 Aug 2025 13:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1464A31E115;
+	Mon, 18 Aug 2025 13:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UzKL51+l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kj+nNV7m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5D8927B334;
-	Mon, 18 Aug 2025 13:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B5DC31AF15;
+	Mon, 18 Aug 2025 13:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755523733; cv=none; b=gbWdhQIXDzdKYrHjyUn10Ew/mnokHIgHGPTUXJyXLGVKXtrv86HtHHonRiIq7bF0XLVchFo7ghNUiOnGHZ9hkmneQnJcfaFm7VjauDRtZwdgOx3LsAixd09A/OoJnF0t0GXRMejdjt9CQZHn0pQssLO4LoyFBnJyt1pQ08eiJ0w=
+	t=1755523882; cv=none; b=GGVb032ZwUK989msXMAHoJ8VNp8p5a2euv6nl/Fxzee0pdYXursG3yiW8I6Iz+mXEsOVVlGhc1nb14iTeO2N2Titp/gX/e449eqF+1WJZ9An2HZ8ZCCPaNwQit/2aM1TGgWQ6hC0sWGW82cHNh7sQxSTJP1nbVXr73bgXFcIsGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755523733; c=relaxed/simple;
-	bh=RBe2h9lREBKMOmk9gFLPEM/Gqn8YS4oH4RhZ7ngYXOQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AstJAK+v0aBJjG+GCzL+imEaG1l/CK53OCwAwXJ0EOe8q8VjZst4naxtbeIdWYdlQ/J7zKilzRZmlKNKrt2T0j8GtO+qfC3XGop7noRK6Irpapf/hVqTcnTz0ZfsogQ0d+D7zSEJJixaaKFTYvd2/4qCMNRz/UwMEK6gHazhDLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UzKL51+l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83F16C4CEEB;
-	Mon, 18 Aug 2025 13:28:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755523733;
-	bh=RBe2h9lREBKMOmk9gFLPEM/Gqn8YS4oH4RhZ7ngYXOQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UzKL51+l7SeFj7U7Tu6qmnCM0DnKHgZbXB2R5bG+feymwxfsZPoEhbY3NNAOrd+j5
-	 rYTnggDp0uvf+rEIvs5bDyBqFi5zSlBUX6Ul41V6VH5v3anL8D29xazLs7nnVS7yWx
-	 XnuU3+glg5x90JJsU3smQvLEmWLhfGj/RFpcZ+HaDw0zf58CjP/aey0OETt4jPGXpD
-	 GIuxyxGJeWcbnjFzi4N5NmjKzUaDG6Vud2R6Kbiwqd9CWHMUmymLc0B6pevLjVLc1v
-	 fPqGLWBLn6NkdHFX1/GM7PL+Rkd75t+AT9GqYGqjHABQYavWpIIlvgPlcgCTior7FU
-	 M+i6djJxKbmgA==
-Date: Mon, 18 Aug 2025 08:28:52 -0500
-From: Rob Herring <robh@kernel.org>
-To: Marc Olberding <molberding@nvidia.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 0/3] Adding device tree and binding for Nvidia mgx cx8
- switchboard
-Message-ID: <20250818132852.GA882651-robh@kernel.org>
-References: <20250815-mgx4u_devicetree-v1-0-66db6fa5a7e4@nvidia.com>
- <175530106151.3523036.5305359646677111575.robh@kernel.org>
+	s=arc-20240116; t=1755523882; c=relaxed/simple;
+	bh=GXIKmHfNeJgLdupYy7oBHA4mmU8qKo5cPTOi9EPu/Tc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ExK95RcEe1SHZx2QlTiN3go5HjaVhX8IpcrTzxmtwuotgEy/qA9VHpHXZGmQzHHfRY8NcZHV6sO6UtM9ACzejPSwTa5EGZoJUe5o5jqV+u863FeDDy6wLQGNJGR00dvnuRARuTBFUrWa425IEY9XBbK0gmNRL6ijjkah2gppcLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kj+nNV7m; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3b9e414252dso1960387f8f.3;
+        Mon, 18 Aug 2025 06:31:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755523878; x=1756128678; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ON9o8DC/r8O1HoJIVtc/mFrDX+9Ao0HbkG/SK7DWW6o=;
+        b=Kj+nNV7mOyq4eLfqtRoEiSj5FwjIAIobVuazqLbwoNqm/4GFiA5T2eZMtP7PWRUsbg
+         Z+37Ep9mByu9j735BNKqDxksnu+nlznIyZCepyWs06Ams70jwHcR4Og+WfRSxyxWt8d7
+         NcNSDYRsX/w1gOIwZ947q3w/KXtc9XL/0HG/3BWnbe/mEJKqD1G2hUDolXqs2HKWzB93
+         3qKl2BdTD7SFrH0GqZW7PsPJcH4swhDX6cmvjWv7A9jx1Hus9KN4f4iC2/TrUplxxfbD
+         zTC+/m/rTMCB0xv+A/Qpgsm4GpxDScp3B3MiCPNJ93ot+rYP+qjlosiMIRjUJCfSv5DY
+         QgGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755523878; x=1756128678;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ON9o8DC/r8O1HoJIVtc/mFrDX+9Ao0HbkG/SK7DWW6o=;
+        b=S5iFdNI+Qtwgrp0gopfbHpRiLDCjlu7W5cTUM1GhBk3CyHwS5dJC64EeYOw+zEIWSM
+         7NMd4K25xmja7HZTE9Q8lV5sfMvotmh4oKA6kl/SGdDNmcuKSFfacFynZjTV7ZTfc8C4
+         gg59xK0WhLnB9wdz3+q00pNnfg9se1wIHtQ/Pm/Lrl8ZZey0BJUKLIvJuB94zFKngrr6
+         ZOCwZg+k2WnBLnanZifXsQ58KVmruIddgtEhuSjpd/hNmTnl4Wg/nSyb+zWXamwDsNeh
+         RlfaJZCeszXAIMtjPZ8MyuvMRfM0oyXjG3P2B4QHDqkt7XGLiufsxh3p1zRib0khmH6R
+         OdOA==
+X-Forwarded-Encrypted: i=1; AJvYcCU2nJIQ6J+o8rJDKOva9Ga1rrUHAXB2HGijFNqmXO2oWSQA56lj1HcdMs6JiNvgp8JBtd2rdg+P+/+7YVAigY8=@vger.kernel.org, AJvYcCUJjen3Bi7IfSEJLUPwVZh0Jo333HjXbxTOPN+WSCThYOrCmO2rOlOKtcgCsBGAP2qZ5toSLTSj+jVJ6RPl@vger.kernel.org, AJvYcCV8mU0wL6Dm9cNiMEZJyhB2xnVgTxNH/I/sPoGY/WBqbg/sWuyIP6zJHbAsI0+qFqiCdrD1/9YtZseC@vger.kernel.org, AJvYcCX35FdthuFEPVeRfSzMhJ/UF0rlvHSK7CkEOX+2O+y32UI5EJzVMZelmq0oVpVcvckLLh6ayC6yB4yvf/zkdY6yzKo=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxcgeo8goAl4AIING2Ci0Jbji0zJufiiY+Kbi6oT8H5SLcZ8Evr
+	EGMUO3ZPIPGn72ioJBTY6a2Qo+p4yKCnydYr0sD6Kkhz7UUMfLfVZa30xCDWX4JSDvnKC/0ZZOv
+	3XPGGFtSJgWrbgAQU9qXKXI7GH6raA4U=
+X-Gm-Gg: ASbGncueF4Ldx1NY3YspUOqQSMhkNGgTf0tmkPCOUGlJfry0rEGGZ75/deuLxIJ2mZy
+	nR68Fnn+1NnTUY4RTiGFiV8WdWJR+ncthR+1mE+XIC8xFqHPvK8VGNWs7Sidb8Vh8Oev6wyyFD8
+	hOFEZiPlm028e29PmNij1sDdDfUoiVn7l+KwQmNYnLZ9WkeCjNi9G0l21J7pBn2Ett+FUAWDhG7
+	EUiYk92
+X-Google-Smtp-Source: AGHT+IHyIe2aZodzz7Da137QbUuwfG00VdpY2MHscAOGpwolYywyp/u7sLO8kiP9MMSyGPBcB+2rCNv7mvV7/saSBos=
+X-Received: by 2002:a05:6000:1447:b0:3b7:7749:aa92 with SMTP id
+ ffacd0b85a97d-3bb69a82f9emr9258509f8f.58.1755523877567; Mon, 18 Aug 2025
+ 06:31:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <175530106151.3523036.5305359646677111575.robh@kernel.org>
+References: <20250804195723.3963524-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250804195723.3963524-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUtG6Sb1WCAGBzyzxrS7rNBvyMa1NZdRiJuysUsYJMKfg@mail.gmail.com>
+In-Reply-To: <CAMuHMdUtG6Sb1WCAGBzyzxrS7rNBvyMa1NZdRiJuysUsYJMKfg@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 18 Aug 2025 14:30:50 +0100
+X-Gm-Features: Ac12FXw1JKgerlmhNA-3eXk1VvdnlvIq9C7AJKYBeDhFL_z3Eic56nvX2_0Q5C0
+Message-ID: <CA+V-a8sop9mwGCr4RkB_kG5gkLi3QxqhyFzP8Uy9oKfKMa4B4g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: watchdog: renesas,wdt: Add support
+ for RZ/T2H and RZ/N2H
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 15, 2025 at 06:38:54PM -0500, Rob Herring (Arm) wrote:
-> 
-> On Fri, 15 Aug 2025 12:45:54 -0700, Marc Olberding wrote:
-> > Patch 1 Adds the binding for the Nvidia mgx cx8 switchboard
-> > Patch 2 Adds dtsi's for the mgx cx8 switchboard itself
-> > Patch 3 Adds the dts for the mgx cx8 switchboard motherboard reference implementation.
-> > 
-> > This is an Aspeed AST2600 based reference implementation for a BMC
-> > managing an Nvidia mgx cx8 switchboard. Dtsi files are broken out for
-> > managing the mgx cx8 switchboard over i2c, so that others may reuse these
-> > if they choose to implement their own board. There are two dtsi files
-> > since the i2c topology is not symmetric between busses going to the mgx cx8
-> > switchboard.
-> > 
-> > Reference to Ast2600 SoC [1].
-> > 
-> > Link: https://www.aspeedtech.com/server_ast2600/ [1]
-> > 
-> > 
-> > Signed-off-by: Marc Olberding <molberding@nvidia.com>
-> > ---
-> > Marc Olberding (3):
-> >       dt-bindings: arm: aspeed: Add Nvidia's mgx4u BMC
-> >       ARM: dts: aspeed: Add device tree includes for the cx8 switchboard
-> >       ARM: dts: aspeed: Add device tree for mgx4u BMC
-> > 
-> >  .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
-> >  arch/arm/boot/dts/aspeed/Makefile                  |    1 +
-> >  .../boot/dts/aspeed/aspeed-bmc-nvidia-mgx4u.dts    | 1078 ++++++++++++++++++++
-> >  .../dts/aspeed/nvidia-mgx-cx8-switch-north.dtsi    |   80 ++
-> >  .../dts/aspeed/nvidia-mgx-cx8-switch-south.dtsi    |   80 ++
-> >  5 files changed, 1240 insertions(+)
-> > ---
-> > base-commit: 7bac2c97af4078d7a627500c9bcdd5b033f97718
+Hi Geert,
 
-next-20250521!? Why are you using linux-next from 3 months ago?
+Thank you for the review.
 
-Base your patches on the latest rc1 unless you have some dependency on 
-post rc1 changes. Usually that means you need to base your tree on the 
-maintainer's tree the series applies to (ASpeed in this case). 
-The *current* linux-next is a shortcut for that.
+On Mon, Aug 18, 2025 at 11:01=E2=80=AFAM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Mon, 4 Aug 2025 at 21:57, Prabhakar <prabhakar.csengg@gmail.com> wrote=
+:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Extend the Renesas WDT device tree bindings to support the watchdog tim=
+er
+> > found on the RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs.
+> >
+> > The RZ/T2H WDT is mostly compatible with the one found on the RZ/V2H(P)=
+,
+> > but includes an additional register and differs in the clock division
+> > ratio settings for the WDTCR[CKS] field. To reflect these differences,
+> > introduce a new compatible string, "renesas,r9a09g077-wdt".
+> >
+> > The binding schema is updated accordingly. On RZ/T2H, the WDT does not
+> > require the "resets" property. It also requires two register regions an=
+d
+> > the presence of a "power-domains" property. The "clock-names" property =
+is
+> > limited to a single entry, "pclk", for this SoC.
+> >
+> > The RZ/N2H SoC uses the same WDT IP as the RZ/T2H. It is supported by
+> > using "renesas,r9a09g087-wdt" as the primary compatible string, with
+> > "renesas,r9a09g077-wdt" listed as a fallback to describe the shared
+> > hardware features.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>
+> Thanks for your patch!
+>
+> > --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> > +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> > @@ -81,10 +81,17 @@ properties:
+> >                - renesas,r9a09g056-wdt # RZ/V2N
+> >            - const: renesas,r9a09g057-wdt # RZ/V2H(P)
+> >
+> > -      - const: renesas,r9a09g057-wdt       # RZ/V2H(P)
+> > +      - enum:
+> > +          - renesas,r9a09g057-wdt    # RZ/V2H(P)
+> > +          - renesas,r9a09g077-wdt    # RZ/T2H
+> > +
+> > +      - items:
+> > +          - const: renesas,r9a09g087-wdt # RZ/N2H
+> > +          - const: renesas,r9a09g077-wdt # RZ/T2H
+> >
+> >    reg:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 2
+>
+> The second register block is just a single register, right?
+Yes, the second register block is just a single register.
 
-Rob
+> Showing an (early) example of the device node would make such
+> details easier to notice...
+>
+Ok, I'll update the commit message to include an example node for clarity.
+
+Cheers,
+Prabhakar
+
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
