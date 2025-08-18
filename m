@@ -1,221 +1,107 @@
-Return-Path: <devicetree+bounces-205780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6099FB2A1C9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:39:49 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D30BDB2A198
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:31:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 720ED56374A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:27:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B5BC44E2CD4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:31:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18CB53203A6;
-	Mon, 18 Aug 2025 12:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207843218AC;
+	Mon, 18 Aug 2025 12:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="0pSsM1WS"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="apkXGnNX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF90320399
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 12:27:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39BC33218A1
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 12:28:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755520056; cv=none; b=nBWRBn8Z0jul2VzcVmO6HseNDy2cVUN81oY2oxNJ7DYGzIeA14nW8sgutqX0ENrNMYRdnAQt38f1XHM7RKsZLVpL7V5cj27/V42FDD1dwFOPEpY+xXyy8Qew8V8EhHvl2YTGQSOOlDBhv9hUMpNwczJ2t8gqwt00J2g7Plpcojk=
+	t=1755520139; cv=none; b=C3tkS3lUOiXj61FIHpGCLalhZQIzVO9w6Q4eoz4dDWYpuDvMoeK3JMw3AqLJqMCvNrK/IyZw0yYIDqSfXpjYdpqDJaV30HdWksfTNOzwEZqLwnj+VKorFhaoOA5LQZObRNsHCm6SeKlx9G6cYVxqv1Gj10yAh0VgC7YfqVNGOdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755520056; c=relaxed/simple;
-	bh=m7SIqKydxnTIbpy9FFDLAnaR3/ZeDTiM3ujLW7g9YTA=;
+	s=arc-20240116; t=1755520139; c=relaxed/simple;
+	bh=NQlTT8wrBf6/5TXR7NEJIm2qofkpWCiqbqPMT/ijYsM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sdUBoRypCbiabYH9mU+fUBzDDP/tpXIn8fF/vC+kuvY6x7dImoiqEumenPAbrzVl2dXMtFcY44XQxxLc9rFpIt0Bg/fnyrZuLg5f4Z8T28faTteHbG1BggW8cVZMT/WBYRY1TjcX7nZZ/RYuJo4ZFRqvWDHXVehR3gh8H8GEQOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=0pSsM1WS; arc=none smtp.client-ip=209.85.219.182
+	 To:Cc:Content-Type; b=aXlnUDsSzpmVY4LKUd13MpSGORQKN4PKzS6e46u82bU1CLFa08MzrOjeWx0bkd1Baxq2xB0LJiOVjfuHXBNyDVt/+XdMfxgDelsAX+zm9RwjVcdi36c/tNPp4Qekyqqptq8GQWPpL+j+bTGJ/jdGhWN5gRNG5KDuV+/oRj/Dwg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=apkXGnNX; arc=none smtp.client-ip=209.85.219.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-e934724e512so1235131276.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 05:27:33 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e934724e512so1236531276.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 05:28:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755520053; x=1756124853; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755520136; x=1756124936; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jgCsV8AiRnmTJZZ3lbAOsw5kSBDJj5OV7xzAVtn6XEE=;
-        b=0pSsM1WS9/uwDHw7a0MxslJJwY0m73pF2NA6LnfgUrUAG5nMuPWMdLBEfTaD/F93UL
-         1e72JdvVg4Pv0XsFWHSwQxtrhKeOJPxGignj+pLoh2IUCqu4TrkbcKQLg5QVDTwSt78s
-         MEm3fXEbjlBcOF41Ihwz0rkzjluSKmpW+FvXiIpbMnznyIJDD5NYyqEGECdLg72acE9K
-         derpzbQXnEgYCqWl+Lv06I5EPrcLjQxUrfkV0EgaqwtJrb6BbQCY0WfIJT1jSwDE+e/b
-         DqkEkz/eDZFQTy4D49lghrnoEbFvwMwWVD1jQNoO1A1U0WEebjWD6q76mEMI+L+Ee9yT
-         5UmA==
+        bh=NQlTT8wrBf6/5TXR7NEJIm2qofkpWCiqbqPMT/ijYsM=;
+        b=apkXGnNXgGl7aZxSKibTdp0qeTPDTjWudLdbIDXHjAoMM9924TTUZQFW9AuxSMVXtt
+         rl9Amti5ULwkeK4fcGv5CTV/3fIpDQzZZyCIHX6B7kZ9s681OyGUkigJIHkDj0RkBB1J
+         nj3+vaku01NR1/y8Q5j/ZFTJT6QLouWVAYJp5Kc0xo2PDbwbV72r4EKhQI9XUaTYa1/C
+         6vSEloZOCMUFA5C7yfXG1EzwMgPeD6dZ0pO8bx6FfVHPF45Xj5PCQkVEGjTgcPYjAU7c
+         PSrNrqMWG+KjN8fZneGUn4hZMKjtw6TT+CsyCYg6HVYuCuvMtqXLahRPOTkzHdP420bf
+         s+Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755520053; x=1756124853;
+        d=1e100.net; s=20230601; t=1755520136; x=1756124936;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jgCsV8AiRnmTJZZ3lbAOsw5kSBDJj5OV7xzAVtn6XEE=;
-        b=YrD0THTIcH4xzqcSUgaHLl+f1GkR5FBUf6WlhBMI5GHhpohd1lCUzZpXaz7JAw6jJ7
-         2PACrqs3k3nQs5rE+bUZMk5tD4UAFlEJ6V+Pi6I1gr+OBm2yeigyEprxfMc3y9FcKS18
-         aEK+OQIzQzvzzEgGFfGDZ+hW46xvKdovZpoBapMo1lPD5NRMmNjdaIQVbz+1DKsDYLaw
-         jh1WkdxNrwXrPUJ031UnreSjChG92e+iJMxvTSfiZOpHDjNgTr4m8uxbzXScJ4Eu8n4l
-         cIrmweZYHZGjYqwn/v4FghQtu3BMEb+TQX6ek9XIWgckY4veIRjXCKADOKo7ohtkAZhX
-         Hc/A==
-X-Forwarded-Encrypted: i=1; AJvYcCWUi1GZCqOGsAyGn61P3H6dDGYg4+COcTgOFnzuNq/LIpIp5ZhB9pKTILUWSsFZMSjanGTlM9V4KswN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrPngGsDcOtFVy/e3sRNeLvvPmcVAnMcQPA6ZDMJKniLJF6EYd
-	0/9bYqCFM5qetCp/YPwyO01ARkPNtEnnDJeBy0lM/Rhxc5nmyiMHHlILTMixISPKlfM9JYJjBt+
-	MslJVcAK/RCP8RJtlIVLSlEDioXqXtob1LaUyLqqE/g==
-X-Gm-Gg: ASbGncsbHb5JillIfWqvFhxsgFudKXVSAO+D30FO/n9H8vLFPQHXOWgwGyGqvG17VF2
-	2+0ku2DAGYKzVl/PuJ3xf1XSuJNcUn5MvngEdsHOuc835TTRUpdo6BEdLX8nh/YwtHrfmnuu2L9
-	mrGgnCBz5uG0BzOn/MCQY7iAX8wX46DNlZXrbXqHyzToxcm0K78RiZMVhtsxMGNOcGKv9D8hdeh
-	5dzskB8JP4Exnjt
-X-Google-Smtp-Source: AGHT+IGCtbq8dlv5BhifYFkVWdTwGtpLB8eowifqW63WzaF5/IhaKxhO1X64809zHqLAyXxFQFUUSP32SfpMEfRRzUc=
-X-Received: by 2002:a05:6902:1504:b0:e93:47d9:1c53 with SMTP id
- 3f1490d57ef6-e9347d91fb8mr7212638276.6.1755520052617; Mon, 18 Aug 2025
- 05:27:32 -0700 (PDT)
+        bh=NQlTT8wrBf6/5TXR7NEJIm2qofkpWCiqbqPMT/ijYsM=;
+        b=Auby0JLOzzUM4tuguzFVcCnEkJQFJ9YiikuTVAulriXrXw/udQRnG0fTRtcWRfLPEr
+         dc60D6we+o6tDIl5+zl/kCZVeha+WDblZfMvKNQHT3DBGD6cJ8x0h1QIo1CnDVFplOlD
+         y5ZdZmLPbN5iVb/h2sEA5qagA88TIuCUWyZSrIBqbRqqRXu6nGS55Ucu3CKBcjWaXIbC
+         OBcgOY/MyhwinPS0EyKqsaAfENhFrK51ipFrW97rCw/krjf8rlWcYgl2UsH5ZLcMDND9
+         K6E5J/CjxD7+WPfVro0sB7m4yGeZsQvhTs5DjxcItaHCuQb/zmBRmKHHTMa854R1ByOU
+         xayg==
+X-Forwarded-Encrypted: i=1; AJvYcCUc0Jkih+yz1uQIZKGTX1ex50ZCfKGMLAsSnDvkY7C4CM0ettjMF1B84UDuRhcWmwkKTX9J0lFRp+Q6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtLgUAWWwSyRZpt5xSTOYJ/IxOTQXqvz2+GmD2pPAvbleb3wxI
+	KNwYHmPXGXghhNgc0XqU0aVt6F/yNwo5ZHH5MksvOkVZSzHwwSznekWLhtBafudgChiJw9nNWSr
+	9Q8KY+UTj4tOJoozt+Opk1JfWSS76Yd0artqgopHOew==
+X-Gm-Gg: ASbGnctVnLD3dC+6G8w3ueAq3yfcVIug0DN0kbzXjwiGMn9T7L6J+x8bL6lbCkhhfk8
+	yx0s0x3YbjSRmyeshJM7z6fNseDYXnVGJ5FzsFJRRvgcD+cya8ms2onL4ELgjj7Z69eclqiCK2u
+	nvrnLGS/LO3oG3zxAP/lAkGn2IaUBxjAUoblHmcBIFO2OhBmzmrlRujmLgVVeZ2GdQjjMspd09B
+	QVUBg==
+X-Google-Smtp-Source: AGHT+IFx20xElPVqlagxACjExJ+Sc5Ef/knSr80J9ZkH6gy2bssr57qeuBMFLMu09POyk3VR+IV54ktaJ+qDsdY+z6Q=
+X-Received: by 2002:a05:6902:72c:b0:e93:4496:a2b9 with SMTP id
+ 3f1490d57ef6-e934496a74bmr9054970276.13.1755520135996; Mon, 18 Aug 2025
+ 05:28:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250815-working_dma_0701_v2-v4-4-62145ab6ea30@riscstar.com> <202508181040.az8RxLrG-lkp@intel.com>
-In-Reply-To: <202508181040.az8RxLrG-lkp@intel.com>
+References: <20250815-working_dma_0701_v2-v4-0-62145ab6ea30@riscstar.com>
+ <20250815-working_dma_0701_v2-v4-6-62145ab6ea30@riscstar.com> <34485B93B03EAD10+aJ7NVbe8aqjWBFd-@LT-Guozexi>
+In-Reply-To: <34485B93B03EAD10+aJ7NVbe8aqjWBFd-@LT-Guozexi>
 From: Guodong Xu <guodong@riscstar.com>
-Date: Mon, 18 Aug 2025 20:27:21 +0800
-X-Gm-Features: Ac12FXyzzS7pnhFgkGl7FiEJKtmHr8DR-5NfS3QvImTcTotkj7TrVuAH6gqFsEk
-Message-ID: <CAH1PCMZL-AGJE6PXrpyShYEMFkvoi-Ajzd_Az0ma75QWZFaROQ@mail.gmail.com>
-Subject: Re: [PATCH v4 4/8] dmaengine: mmp_pdma: Add operations structure for
- controller abstraction
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: oe-kbuild@lists.linux.dev, Vinod Koul <vkoul@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yixun Lan <dlan@gentoo.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, duje@dujemihanovic.xyz, 
-	lkp@intel.com, oe-kbuild-all@lists.linux.dev, Alex Elder <elder@riscstar.com>, 
+Date: Mon, 18 Aug 2025 20:28:45 +0800
+X-Gm-Features: Ac12FXzcLxiREAyDvYqUpnp8Sh2Su74nBhalceLEh9KttzUfLjprws3CtQrXJOY
+Message-ID: <CAH1PCMahKsCsgmZixartnu6Tq8Oo28bMVNfoAWjnFA2McOOU3Q@mail.gmail.com>
+Subject: Re: [PATCH v4 6/8] riscv: dts: spacemit: Add PDMA node for K1 SoC
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, duje@dujemihanovic.xyz, Alex Elder <elder@riscstar.com>, 
 	Vivian Wang <wangruikang@iscas.ac.cn>, dmaengine@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi, Dan
-
-On Mon, Aug 18, 2025 at 3:17=E2=80=AFPM Dan Carpenter <dan.carpenter@linaro=
-.org> wrote:
+On Fri, Aug 15, 2025 at 2:04=E2=80=AFPM Troy Mitchell
+<troy.mitchell@linux.spacemit.com> wrote:
 >
-> Hi Guodong,
+> Thanks.
 >
-> kernel test robot noticed the following build warnings:
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/Guodong-Xu/dt-bind=
-ings-dma-Add-SpacemiT-K1-PDMA-controller/20250815-132049
-> base:   062b3e4a1f880f104a8d4b90b767788786aa7b78
-> patch link:    https://lore.kernel.org/r/20250815-working_dma_0701_v2-v4-=
-4-62145ab6ea30%40riscstar.com
-> patch subject: [PATCH v4 4/8] dmaengine: mmp_pdma: Add operations structu=
-re for controller abstraction
-> config: parisc-randconfig-r072-20250818 (https://download.01.org/0day-ci/=
-archive/20250818/202508181040.az8RxLrG-lkp@intel.com/config)
-> compiler: hppa-linux-gcc (GCC) 8.5.0
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
-ion of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-> | Closes: https://lore.kernel.org/r/202508181040.az8RxLrG-lkp@intel.com/
->
-> smatch warnings:
-> drivers/dma/mmp_pdma.c:546 mmp_pdma_prep_memcpy() warn: variable derefere=
-nced before check 'dchan' (see line 542)
-> drivers/dma/mmp_pdma.c:712 mmp_pdma_prep_dma_cyclic() warn: variable dere=
-ferenced before check 'dchan' (see line 708)
->
-> vim +/dchan +546 drivers/dma/mmp_pdma.c
->
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  536  static struct dma_async_=
-tx_descriptor *
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  537  mmp_pdma_prep_memcpy(str=
-uct dma_chan *dchan,
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  538                      dma_=
-addr_t dma_dst, dma_addr_t dma_src,
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  539                      size=
-_t len, unsigned long flags)
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  540  {
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  541         struct mmp_pdma_c=
-han *chan;
-> 918da7ee50b22b Guodong Xu       2025-08-15 @542         struct mmp_pdma_d=
-evice *pdev =3D to_mmp_pdma_dev(dchan->device);
->                                                                          =
-                              ^^^^^^^^^^^^^
-> The patch adds a new dereference
->
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  543         struct mmp_pdma_d=
-esc_sw *first =3D NULL, *prev =3D NULL, *new;
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  544         size_t copy =3D 0=
-;
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  545
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03 @546         if (!dchan)
->                                                             ^^^^^^
-> But the old existing code assumed dchan could be NULL
+> Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 >
 
-Thank you for the report and findings.
-This and the next one, they are bugs, and I will
-fix them in the next version.
-
-BR,
-Guodong
-
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  547                 return NU=
-LL;
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  548
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  549         if (!len)
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  550                 return NU=
-LL;
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  551
-> c8acd6aa6bed3c Zhangfei Gao     2012-09-03  552         chan =3D to_mmp_p=
-dma_chan(dchan);
->
-> [ snip ]
->
-> 2b7f65b11d87f9 Joe Perches      2013-11-17  701  static struct dma_async_=
-tx_descriptor *
-> 2b7f65b11d87f9 Joe Perches      2013-11-17  702  mmp_pdma_prep_dma_cyclic=
-(struct dma_chan *dchan,
-> 2b7f65b11d87f9 Joe Perches      2013-11-17  703                          =
-dma_addr_t buf_addr, size_t len, size_t period_len,
-> 2b7f65b11d87f9 Joe Perches      2013-11-17  704                          =
-enum dma_transfer_direction direction,
-> 31c1e5a1350ae8 Laurent Pinchart 2014-08-01  705                          =
-unsigned long flags)
-> 50440d74aae318 Daniel Mack      2013-08-21  706  {
-> 50440d74aae318 Daniel Mack      2013-08-21  707         struct mmp_pdma_c=
-han *chan;
-> 918da7ee50b22b Guodong Xu       2025-08-15 @708         struct mmp_pdma_d=
-evice *pdev =3D to_mmp_pdma_dev(dchan->device);
->                                                                          =
-                              ^^^^^^^^^^^^^
->
->
-> 50440d74aae318 Daniel Mack      2013-08-21  709         struct mmp_pdma_d=
-esc_sw *first =3D NULL, *prev =3D NULL, *new;
-> 50440d74aae318 Daniel Mack      2013-08-21  710         dma_addr_t dma_sr=
-c, dma_dst;
-> 50440d74aae318 Daniel Mack      2013-08-21  711
-> 50440d74aae318 Daniel Mack      2013-08-21 @712         if (!dchan || !le=
-n || !period_len)
->                                                             ^^^^^^
-> Same.
->
->
-> 50440d74aae318 Daniel Mack      2013-08-21  713                 return NU=
-LL;
-> 50440d74aae318 Daniel Mack      2013-08-21  714
-> 50440d74aae318 Daniel Mack      2013-08-21  715         /* the buffer len=
-gth must be a multiple of period_len */
->
-> --
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
->
+Thanks Troy.
 
