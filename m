@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-205831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D79B2A816
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:59:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F917B2A7F3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:58:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 500871B6331E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:47:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73E4D6E1CDE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9C3321F3C;
-	Mon, 18 Aug 2025 13:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3A71E48A;
+	Mon, 18 Aug 2025 13:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BVuujlT3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HPNJqgXd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2098F2C2340
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 13:45:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E01C1335BBE
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 13:48:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755524736; cv=none; b=K8cyGyhko8kTT59gxcH65z9TmCQBzkE2hJ9AEaLp03bVMjXpH3lUe+4ogGcve06NzJjZ9+sy02ic6v6RNFe94M0gg1tQcKCz7CXfWKv3ZxwcmbYgdqj6FfJLPcRvP+AnQ/J2PHq91RY9XeTP3bPkS32+Umz97fapqUlBuYKEXqI=
+	t=1755524940; cv=none; b=l8tK6JIgxIVfwa5kXPdfRisrJuwpHMSl0KwQM0Pf2NMA266TebPYyY9OKMdYiAzSjuYf8cT3O+dOpoLc5q5Ph6MhsJfd7Hq63QIx1Cr5r8ftgjgoJP67uSIFw7AJHZUBP1L4/8weW/PQ2+KsmtV1BB32jVozeo/NbOy608djdP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755524736; c=relaxed/simple;
-	bh=STUgQqWAjMIDSo5i9CNXFPPNs8IXyZkPpT1rTamUjss=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=BlxNOhOahTD1iNqV+/S6Czkq7to4jf+jQWg7rokGj6DKZzgt/iHhggG1QK8SeL5Ty6anGGzZUKiCd+6N2nhp9mp3LpSVk3NX7BDRFo/+LqdsIxS3COy7tywdavG2VlUUvPp19abV5gdDWV3osR2vD4NSTOmgTcwmpthUOPiCcrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BVuujlT3; arc=none smtp.client-ip=209.85.160.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-30cce892b7dso1809020fac.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 06:45:33 -0700 (PDT)
+	s=arc-20240116; t=1755524940; c=relaxed/simple;
+	bh=Iq41YliHm0d8n8rWWR3bza0G/ceeGQ4+coO+hydkSXs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rmautl1e5uzDRf1Mi2JQYhN2MT1zjWSkl3z8v1w3hCKX4TeN3R4Gn5oiYbNRyzEEvVRU0HRMBtdDgEN29WCLLQRSBBH8UBNuCi9k4k6CwuMg/tBUcSgfregr7yF0uLDf8QRBV+j6+eM4FhTAr5pDhn94Bq79lE3gAsEedE/RC6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HPNJqgXd; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3b9df0bffc3so2886736f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 06:48:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1755524733; x=1756129533; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755524937; x=1756129737; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=10gZZQnBGMVk+f8qeUN3o4WqLNCEED7akiLQmYC5IOc=;
-        b=BVuujlT3Q63n/8JHdVtF2SjZ2L+RzHDNF6eZkZFWpqET/PmOeG/IzZX8QsL6loycTJ
-         71sXQ5lvHqx2sxYv2jg+Ge3lDRW13u1XEAEdEjSrln4t+ZKyXayShFeUW944Ke6l0KEZ
-         VfnplEN62blktyihRxTgGOBl2Yj6B0CBIrSZOo2cW1APcqrVoZ2J2sCONp1OfOhlNjBc
-         5IKLsvKe3KRIxW28GgpYGXo2DNQrKsvHnOmGW0NFgHcWQeYpSsBb2yCqXsSghU/kssyh
-         5oqC+SBhBaYxBRwEHon5kznX665yTcx1HhAkCAtfsXcEHS745J02o+q9rHJMYd+IK6RU
-         wsSQ==
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Sh+bHoKKtm/hsPtjkx/NyjNhDEo2COTVB4L7LsR7sJ4=;
+        b=HPNJqgXdAJU7G6N3CBwRg5bE1IrspC8AyG4V1Xd04ZTS0q+WVCV2Uqdj3cePJGvh2M
+         jKQ+UaEJUR1vhSpNtcdAJ5kzeu4IcqXysa+/v5SinH/FAJRH9khJxVXas0B2N8eYXFri
+         FFMmz9STTViKkJCL0bG4AKLkdSYi552lAw0bmELSt8qzjKWNKDrk0tjCG0KZ9Ie428h7
+         E247CYTUWBV2afJtmLR9+ni0nyLLw+TaJyIkHbzo55VeI+0CQuuuShvlibqwYrhxM+4E
+         l54JcQsDSCY/gBPro51+QVxeAQx+6DdauLljn8UCznKvDq5oRzFcyvdwDohlhp4vVvCk
+         pIgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755524733; x=1756129533;
+        d=1e100.net; s=20230601; t=1755524937; x=1756129737;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=10gZZQnBGMVk+f8qeUN3o4WqLNCEED7akiLQmYC5IOc=;
-        b=ePhbIE2zVyWSdEx1yZzE8ltaDUUZoKcruexWJsfvQp37AukJmudNX+Cwj8ujTcE1A4
-         VcOzAnVHEmoI6kcaWvgVydBIxlx+FJidtq3rLcLe/GIml5YsTyDrF+mZsH3Rs8n++GbV
-         phSnybs0xkCh+qnR2CX55hbABiYyzxQ377lmonRtTQBZRcPR8Ke1rjKVk3Fqfrmm+Q/O
-         o3NUT4IQt8m7tjlInkP2qTtiadv2x1Fj6SOLKgaKTf5f81ZOE5ugOfWBgFORsEDAfR54
-         7aHFt3E7jxV/qS56OEHGLub7Af0yiH9XgRuHeK8zJgGCDQEtyxMENR+0YHgRToUCQNOz
-         iIKg==
-X-Forwarded-Encrypted: i=1; AJvYcCWQ+rtjwfOVQ2zQM6EATkjSOENZHMykHHLQ8Yrm8Bd6uCBmnZoYoELdvnofj8Ju2jWPPO1yyzqsuGt1@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUTDANrUL081lzfDLTcdOKmn6wxB7fTYIK7C21zv/N0ePcZN3l
-	WSx9sxodi+ANCau/OoE0FzYVGI1SypYucV8go1Fh3SDFTltfF+lNFFtgvFQn+v3LLCE=
-X-Gm-Gg: ASbGnctWrY0DJGrbxxpmBPHtDMTjbO+zdgfA0uYE++lTO4VNNPT2ZQidf4QALF2pTDN
-	K3R5ujwIOruUB/BlBNqMQ+inFba/R49ARQQKBY2WsvowRiqoUgVe9x/xTeFVqaZypZMmnal+F8Q
-	C9JGdulFnC2CHreaiY2rhwg65RnBTn100s2qA+OBbFXH6CtsHPeZDGp0eDjK7HVUfiTv/tv6JqC
-	49GdUnzbOZlaJZyn0vXVJM29wiT5Uk/RMqdTTPvDG2VKzaPmd6fjjqzisYko82vSA84bZeSuw94
-	HRSeVs5e4dfGxyVEIQN9/mKKwKsbwZe3TtM0dO45Dm3x5UGfdz+5zYk1fi45N1iLtYSOx2a750J
-	V/fQSVEAYjSdeFQZBMy6Z0YdtBDjPv8VyO07dseifTqBHc03O3O3voegT/ibX6E2ZoBr0EkZqXk
-	w=
-X-Google-Smtp-Source: AGHT+IHkEIqXEKYW0YNfPwdn51TV3aOxjzPemzFAD5aoQACwyHFGGzbO2hendQDxiUtyNr97EYzhxA==
-X-Received: by 2002:a05:6871:7283:b0:30b:af6d:f92 with SMTP id 586e51a60fabf-310aaf6f1ecmr7757906fac.34.1755524733102;
-        Mon, 18 Aug 2025 06:45:33 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:ee1a:f057:94fa:9a73? ([2600:8803:e7e4:1d00:ee1a:f057:94fa:9a73])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7439204e5easm1851721a34.38.2025.08.18.06.45.32
+        bh=Sh+bHoKKtm/hsPtjkx/NyjNhDEo2COTVB4L7LsR7sJ4=;
+        b=gHGcte9newIboBCeygxi36U9gdhQ8HzT8s9VzX7ADn1FDaO/nQig+4LcSs8rATuJbr
+         MAzUXJKGQ8mD3TaHjKq5bWH8Vi+svqfM1KclCW9cYKzCds2HgzFxvQ82PjILFL+CAUpC
+         Ely2fiZDBlZtuzkzNZLhjrsKMXNhxjMbuSthRvvdSG7hUlJYyaAQQPFG+7j0u9ueBqz3
+         7seEKPvh8CpmG+3/rmhSEKBjeBpJpYNBiHlYXmFWYa6eQbqMTHyyAt5zcuiG3x9eKdJS
+         kJbtmaLI5eMv1Ycl5mY/DKQte8rLQal2t15dyGZlTmpYv6V3cPwqc692v8AC4fEQOren
+         2i/g==
+X-Forwarded-Encrypted: i=1; AJvYcCX6rD/8UpB3dAT1awywjBhXRcHnk0wDzl0GX0FT9WifyONKM3mXNwiNMSmy25zM2NZa7Z7xWaQsQwP3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlX9JfsM5WmV+iR3UldZ4q4R2pjhuk9MfJI0chEkEtPuL9aotZ
+	I0vPW0PVX2HwauKaXkBJ/5hX/IEPtXuPgWycmiYs8JvhxQnPwGSaga1Nr/nUlNUF7nI=
+X-Gm-Gg: ASbGncuCoU5+55CpOcR/BYIbWVdO4q28hgoWVC1Oc9gdWqvg6BzkrO2y3b3kNsDexXa
+	edK8DjF7wlVtCVR7pFBtVO0VSiEBlEjq4PGY5/rvMJ3DSHLswNsr3Od/0upbJUT7twoPOA40n/u
+	Wps5ZdVTAbQvWHi/9ixzrKn2H870CqfAHp74+d6FsFlhBFmugsEKXZlKuhz4Azr6XNkaXmBACMF
+	5whoGnrFmxjH8QYAUuvjwOCy5RcxeCqeGmoXC1iYaExqeQ7c1RGcGMW2XKunxtE7moa8HcC07BZ
+	VFKGrAiqEVb9ya17AdK73Jc/ew2Sm8B1WHVpSL5ge1rFiwHDHhuo0wESpVOWD76Ef0edZoXH72L
+	lWQGPPBhuLnbU4N6ivUybl7Gshq8=
+X-Google-Smtp-Source: AGHT+IEKz79YyPVBfJQGlFogDcQJMYXgYE5WI5cAwBE2CTscdIWf8BDHmqXB1zUVqxIISepL6GSx+Q==
+X-Received: by 2002:a05:6000:430c:b0:3b7:8984:5134 with SMTP id ffacd0b85a97d-3bb66a3b2ddmr9157492f8f.16.1755524936995;
+        Mon, 18 Aug 2025 06:48:56 -0700 (PDT)
+Received: from [192.168.1.3] ([185.48.76.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3bc5e232534sm10573878f8f.24.2025.08.18.06.48.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 06:45:32 -0700 (PDT)
-Message-ID: <6c323896-10b9-455a-ae8a-bbe1e2a80e5d@baylibre.com>
-Date: Mon, 18 Aug 2025 08:45:31 -0500
+        Mon, 18 Aug 2025 06:48:56 -0700 (PDT)
+Message-ID: <84498b4b-9023-4a39-bc75-d2b7a495821f@linaro.org>
+Date: Mon, 18 Aug 2025 14:48:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,57 +82,105 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: iio: adc: add IIO backend support
-To: Ioana Risteiu <Ioana.Risteiu@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+Subject: Re: [PATCH 05/13] spi: spi-fsl-lpspi: Enumerate all pin configuration
+ definitions
+To: Frank Li <Frank.li@nxp.com>
+Cc: Mark Brown <broonie@kernel.org>, Clark Wang <xiaoning.wang@nxp.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Ramona Nechita <ramona.nechita@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250818131253.8854-1-Ioana.Risteiu@analog.com>
- <20250818131253.8854-3-Ioana.Risteiu@analog.com>
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Larisa Grigore <larisa.grigore@oss.nxp.com>,
+ Larisa Grigore <larisa.grigore@nxp.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+ Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
+ linux-spi@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
+ <20250814-james-nxp-lpspi-v1-5-9586d7815d14@linaro.org>
+ <aJ4mfDUcbrP7OSOH@lizhi-Precision-Tower-5810>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250818131253.8854-3-Ioana.Risteiu@analog.com>
-Content-Type: text/plain; charset=UTF-8
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <aJ4mfDUcbrP7OSOH@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 8/18/25 8:12 AM, Ioana Risteiu wrote:
-> Add the generic io-backends property to the AD7779 binding to enable
-> support for the IIO backend framework.
-> 
-> Also add the adi,num-lanes property to set the number of lanes used by
-> AD7779.
-> 
-> Signed-off-by: Ioana Risteiu <Ioana.Risteiu@analog.com>
-> ---
->  .../bindings/iio/adc/adi,ad7779.yaml          | 35 ++++++++++++++++++-
->  1 file changed, 34 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
-> index 044f92f39cfa..4a212c8bc9d3 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
-> @@ -80,11 +80,27 @@ properties:
->    reset-gpios:
->      maxItems: 1
->  
-> +  io-backends:
-> +    maxItems: 1
-> +
-> +  adi,num-lanes:
-> +    description:
-> +      Number of lanes on which the data is sent on the output when the data
-> +      output interface is used.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4]
-> +    default: 4
 
-Isn't 0 lanes wired up an option? I.e. it is possible to use the
-chip in SPI-only mode. So it seems like 0 should be the default.
 
+On 14/08/2025 7:10 pm, Frank Li wrote:
+> On Thu, Aug 14, 2025 at 05:06:45PM +0100, James Clark wrote:
+>> Add all the possible options, use names more similar to the reference
+> 
+> Add all the possible pincfg options,
+> 
+>> manual and convert _OFFSET to _MASK so we can use FIELD_PREP() and
+>> FIELD_FITS() macros etc.
+>>
+>> This will make it slightly easier to add a DT property for this in the
+>> next commit.
+> 
+> Make it slightly easier to add a DT property ...
+> 
+> No funtionality change.
+> 
+
+Ack
+
+>>
+>> Signed-off-by: James Clark <james.clark@linaro.org>
+>> ---
+>>   drivers/spi/spi-fsl-lpspi.c | 21 +++++++++++++++------
+>>   1 file changed, 15 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/spi/spi-fsl-lpspi.c b/drivers/spi/spi-fsl-lpspi.c
+>> index 79b170426bee..816e48bbc810 100644
+>> --- a/drivers/spi/spi-fsl-lpspi.c
+>> +++ b/drivers/spi/spi-fsl-lpspi.c
+>> @@ -69,7 +69,11 @@
+>>   #define DER_RDDE	BIT(1)
+>>   #define DER_TDDE	BIT(0)
+>>   #define CFGR1_PCSCFG	BIT(27)
+>> -#define CFGR1_PINCFG	(BIT(24)|BIT(25))
+>> +#define CFGR1_PINCFG_MASK		GENMASK(25, 24)
+>> +#define CFGR1_PINCFG_SIN_IN_SOUT_OUT	0
+>> +#define CFGR1_PINCFG_SIN_ONLY		1
+>> +#define CFGR1_PINCFG_SOUT_ONLY		2
+>> +#define CFGR1_PINCFG_SOUT_IN_SIN_OUT	3
+>>   #define CFGR1_PCSPOL_MASK	GENMASK(11, 8)
+>>   #define CFGR1_NOSTALL	BIT(3)
+>>   #define CFGR1_HOST	BIT(0)
+>> @@ -411,8 +415,9 @@ static int fsl_lpspi_dma_configure(struct spi_controller *controller)
+>>
+>>   static int fsl_lpspi_config(struct fsl_lpspi_data *fsl_lpspi)
+>>   {
+>> -	u32 temp;
+>> +	u32 temp = 0;
+>>   	int ret;
+>> +	u8 pincfg;
+>>
+>>   	if (!fsl_lpspi->is_target) {
+>>   		ret = fsl_lpspi_set_bitrate(fsl_lpspi);
+>> @@ -422,10 +427,14 @@ static int fsl_lpspi_config(struct fsl_lpspi_data *fsl_lpspi)
+>>
+>>   	fsl_lpspi_set_watermark(fsl_lpspi);
+>>
+>> -	if (!fsl_lpspi->is_target)
+>> -		temp = CFGR1_HOST;
+>> -	else
+>> -		temp = CFGR1_PINCFG;
+>> +	if (!fsl_lpspi->is_target) {
+>> +		temp |= CFGR1_HOST;
+>> +		pincfg = CFGR1_PINCFG_SIN_IN_SOUT_OUT;
+>> +	} else {
+>> +		pincfg = CFGR1_PINCFG_SOUT_IN_SIN_OUT;
+>> +	}
+>> +	temp |= FIELD_PREP(CFGR1_PINCFG_MASK, pincfg);
+>> +
+>>   	if (fsl_lpspi->config.mode & SPI_CS_HIGH)
+>>   		temp |= FIELD_PREP(CFGR1_PCSPOL_MASK,
+>>   				   BIT(fsl_lpspi->config.chip_select));
+>>
+>> --
+>> 2.34.1
+>>
 
 
