@@ -1,139 +1,198 @@
-Return-Path: <devicetree+bounces-205840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A82B2A9E0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:25:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12261B2AAE3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:38:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C29B05A20B9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:14:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96B4E5C0F16
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63CCC343D91;
-	Mon, 18 Aug 2025 14:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="qAQivGCf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2467D34573D;
+	Mon, 18 Aug 2025 14:15:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94439322C61;
-	Mon, 18 Aug 2025 14:04:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C1C238C33;
+	Mon, 18 Aug 2025 14:15:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755525864; cv=none; b=NT1IDo0PHxzAt6ykcEMvceOjYqZzJ+AfMYZFID1fJcko8+fDZbKLORzB9M76DWZSuAbMBn7hUAjeSDnYlsE4gkcuYPufN7GrcH+DSltNIWbhwL2wE2nJMaYIWP4TQPTuexX96cCpTOsRbZk5+YngSGPp05veqkUMiPfwHKlVmRU=
+	t=1755526513; cv=none; b=Q64iBa3NVKmMzxSlo+VUKGvck7oSpMWfMDiCiElUl0nCExsc0lzrcoscPUWhcKwsyVYpvXGyEREr+yCAK4Eowg6PYs6CME/Bd1X+QMxbdwoOGVP5emt019x6Wt7gAsaJsxuUvhTguPQa63ZryDd/pbutlJfTxskXyjXUdPsU89Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755525864; c=relaxed/simple;
-	bh=9kWtwgbV9wvF6Cog7nBVD/R9LmiCzFI7JgT7tjGWHgI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=axVNR0quarvB2h3zaFQY/CX6kEHlQNrEKVo2Q0U/JrtVyCoxJF7YV5ubC4nGw8f6YPDKD11X73iLwlIbJkgUQNHZSv49dXTAV0uHL1AxiHREyL8u6Y4Ctnempsvlo0s8oDmbRpbl4NYOIxBbPp/xR2+SHfoFHbyuMuP3+naypOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=qAQivGCf; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57IDFlne021385;
-	Mon, 18 Aug 2025 16:04:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	AAck9Emf81sVRE5nj2gy4fdVLzPWbRvHowUZM2d4qh8=; b=qAQivGCfs+YIegmc
-	vwKsUSpLAfc8MDhwwG8yN39iyE5sNALBW52MNHaNPhR+Ph9h73iLE1xc6oR7QG86
-	ajcM+xltusUsf47Knmr64s59rv1at2WmnAjD40hsajRm2uETmVyzYkorx5qVlflH
-	fTR543oVIh8AGN7rzn43qmINyLrCmaAJVB5o4KVTULYBuRxs8Ocw7q7jjOxVNWYo
-	c58lNaS4X0rwiHPT3ASKLQ4MgredTdL81QRAFH6CicxkTe151uRU51ofdaN2BhkV
-	erP2hbSJVO4vUa5rBtrOZ8QvP3pXUOn1PGcKdjtyBXJwBYIMcJPnAOqyPZmbIa7a
-	dWR2pQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48k4xmmeg8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Aug 2025 16:04:13 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7000B40049;
-	Mon, 18 Aug 2025 16:03:36 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EBFE0726262;
-	Mon, 18 Aug 2025 16:03:11 +0200 (CEST)
-Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 18 Aug
- 2025 16:03:11 +0200
-Message-ID: <ce3edd3b-4d42-4a2c-b163-a9aac59466ae@foss.st.com>
-Date: Mon, 18 Aug 2025 16:03:10 +0200
+	s=arc-20240116; t=1755526513; c=relaxed/simple;
+	bh=T2+bGxtt0/QliYXnLpsMn3ujLdIlP2ETiKcb2c+R1tI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PJrtCzVEYzo4DUMbBAHfnxIp139E9CV87FRY7ZYy/k3uFiePkzeCNvZzABHR37OvT0GO6fUJ5IBNt4bkrzsA9hDYIxWSToJlQUqttCkpOfKGdNHHyfOYV1jutJVGKvCzybfN5/z7VS0XNzQ5m1lrcCWtphHxbXkqSEXwByldcLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-53b1757a920so1202520e0c.3;
+        Mon, 18 Aug 2025 07:15:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755526510; x=1756131310;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D94Qsa+myjFdE/M9+7sXm7iHa3BtVTv2Ph09TlGFvqw=;
+        b=Vf6m0hRi2bpNNTv2GgtRL5DTDq8ebSKw6ehmaHqfcZ94VwqaGEZNOI0xHLPIHKlMXa
+         p6Ikt1+8+PFJFXYayFUHbM1o8U0UT/yyw5k7yGemZnPwfuIoyxROxC0sigvnsS429O4/
+         SnRqxXIICoBSu6vnV1t6//FjJ500CEEj+Q7ql1o8nJzDb9OLgjqUg0MzAH9+TN4D6y2P
+         7yfZmU3Lowpx3Fe8MD+ndE/ebyjGWC0o3VmyfZuMKqnqjyarUM+p1a7L8FBQl5YItW1p
+         X4u2VoR0IExeixE/vPF6zCDPd8In3e0zZQbMZGg5wQ5PJsQc1ZiaHwarbeif6+N0JQcv
+         eu0g==
+X-Forwarded-Encrypted: i=1; AJvYcCUyu+S+FXAuuZya2nIL4aDP23WZPWTtq9gGjxtTYGtuq7taaHxEBvpLXLc9Dv+siiSxUdNCb4NfND4abZjdVYFRNKY=@vger.kernel.org, AJvYcCW4Sfcv499IIMluJ223Qa514XPv6Yz0Dgh9sKnUrJ+rl5VcZ47upkg26KxmjbjF2gwe/hTpUW53REuz@vger.kernel.org, AJvYcCWCb2+kx4hDBIDjPvY6uQN+UUFLdthVSqNWbSJzRmxkW/RjzdHRL2+3ymbE+tUSgGTkaA0Wv4iRWVdphuKI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnpY/3dRlMxLHuYsulRsPVEHbprgPsOxDK0x6+BkpWO+L5M3XA
+	2j5cPg8ipOlfmUeJSpYAF8Y7IUAkuONiSArocLf/2tdwC4zFbvoEo0G0QmSmFtk7
+X-Gm-Gg: ASbGncv4v0MvSSbChZ6z2ryeOIonbxTF0Hojd1RiVW5ujg1oo6lsNpGwvEG4RhHBOoT
+	aefRCC6TODfDtmdz+YhU//DgIMgMOhhwqfIluHkrxNMjXS4BWpx85ea6Xa6lOgG9Ui3H7fK3AkV
+	fEmoy1tgybdw9V7ycKlVnzZmoPltj8Ut6kNcyudBK799X3cRnZKrI8soRWhjcupvaI4FnSiTA50
+	Uf7sfJXh0eylcic63gGtIsDkqiKhuw2jp82m+ICeD2SU5Qkbws3adxbgNcbLjjh4XqViEtUZMGG
+	FUG5DpPGRst9huF+cxAU8mIi+qM/6+dRYZojUKtIEfYGQXl7NAyATidQGP8OxVFGt88QCGk9C7g
+	4oyqZA+0rwFKSfPMDM9kFEruXHajlGyeqTN6dfu0VoXLVnllk5JwHHfdGKYMj
+X-Google-Smtp-Source: AGHT+IG2DAP1Jnoj12b0DVjxAibz+5ILx9AtdBp/1sldx/hZu64xXEGS7/pIE6hFZSBdWNi4+YOddQ==
+X-Received: by 2002:a05:6122:a08:b0:538:d49b:719 with SMTP id 71dfb90a1353d-53b2b755d45mr3951132e0c.1.1755526509751;
+        Mon, 18 Aug 2025 07:15:09 -0700 (PDT)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53b2bed8eb8sm1865332e0c.21.2025.08.18.07.15.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Aug 2025 07:15:09 -0700 (PDT)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-50f861bab18so636188137.0;
+        Mon, 18 Aug 2025 07:15:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX7uUe8jxGGQuz+iAa7zMcxB5eUa3uBmK6W4eVaArAHQVAORZABm0rcYCq12IXTybHXB7whvcFwEXbHtMP0@vger.kernel.org, AJvYcCXFtDzqz6quB23upXH44SlT7nM5nFl8ryL1FBDRK1cykwyjfNLG6bQQgHJfFRNHDxJxzy5Lf5kSwQYsaLCokAQ1jRQ=@vger.kernel.org, AJvYcCXnqh81KyEYS3kx75dATEe5kPo2d+H1cMSngiRdoJk4rqHaowKxdifkS97kn+6laKDl6uiuUPCxVqZ/@vger.kernel.org
+X-Received: by 2002:a05:6102:3713:b0:4e9:92d3:d20 with SMTP id
+ ada2fe7eead31-5126ab29791mr3600838137.4.1755526509280; Mon, 18 Aug 2025
+ 07:15:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: sti: rename SATA phy-names
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-To: Raphael Gallais-Pou <rgallaispou@gmail.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250713142424.41236-1-rgallaispou@gmail.com>
- <09384c23-cffe-471c-95b4-82b3d34de4e7@foss.st.com>
-Content-Language: en-US
-In-Reply-To: <09384c23-cffe-471c-95b4-82b3d34de4e7@foss.st.com>
+References: <20250812200344.3253781-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250812200344.3253781-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250812200344.3253781-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 18 Aug 2025 16:14:58 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXsQ7pne45+56f_nO0VA8LeUpZhxXFKPMqOKR4GSsdG4Q@mail.gmail.com>
+X-Gm-Features: Ac12FXyjgHtrFj3K1ZNoypZLsLLtqdfXcJSrMvIWvs3l24dXDsMcOTIrjrOGHMU
+Message-ID: <CAMuHMdXsQ7pne45+56f_nO0VA8LeUpZhxXFKPMqOKR4GSsdG4Q@mail.gmail.com>
+Subject: Re: [PATCH 06/13] arm64: dts: renesas: r9a09g087m44-rzn2h-evk: Add
+ user LEDs
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-18_05,2025-08-14_01,2025-03-28_01
 
+Hi Prabhakar,
 
+On Tue, 12 Aug 2025 at 22:03, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add USER LED0-LED8, which are available on RZ/N2H EVK.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On 7/28/25 11:18, Patrice CHOTARD wrote:
-> 
-> 
-> On 7/13/25 16:24, Raphael Gallais-Pou wrote:
->> Stick to the documentation and rename both SATA phy-names properties to
->> what is expected.
->>
->> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
->> ---
->>  arch/arm/boot/dts/st/stih407-family.dtsi | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/st/stih407-family.dtsi b/arch/arm/boot/dts/st/stih407-family.dtsi
->> index 35a55aef7f4b..3e6a0542e3ae 100644
->> --- a/arch/arm/boot/dts/st/stih407-family.dtsi
->> +++ b/arch/arm/boot/dts/st/stih407-family.dtsi
->> @@ -669,7 +669,7 @@ sata0: sata@9b20000 {
->>  			interrupt-names = "hostc";
->>  
->>  			phys = <&phy_port0 PHY_TYPE_SATA>;
->> -			phy-names = "ahci_phy";
->> +			phy-names = "sata-phy";
->>  
->>  			resets = <&powerdown STIH407_SATA0_POWERDOWN>,
->>  				 <&softreset STIH407_SATA0_SOFTRESET>,
->> @@ -692,7 +692,7 @@ sata1: sata@9b28000 {
->>  			interrupt-names = "hostc";
->>  
->>  			phys = <&phy_port1 PHY_TYPE_SATA>;
->> -			phy-names = "ahci_phy";
->> +			phy-names = "sata-phy";
->>  
->>  			resets = <&powerdown STIH407_SATA1_POWERDOWN>,
->>  				 <&softreset STIH407_SATA1_SOFTRESET>,
-> 
-> 
-> Hi Raphael
-> 
-> Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> 
-> Thanks
-Applied to sti-next
+Thanks for your patch!
 
-Thanks
-Patrice
+> --- a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> @@ -7,10 +7,64 @@
+>
+>  /dts-v1/;
+>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+>  #include "r9a09g087m44.dtsi"
+>  #include "rzt2h-n2h-evk-common.dtsi"
+>
+>  / {
+>         model = "Renesas RZ/N2H EVK Board based on r9a09g087m44";
+>         compatible = "renesas,rzn2h-evk", "renesas,r9a09g087m44", "renesas,r9a09g087";
+> +
+> +       leds {
+> +               compatible = "gpio-leds";
+> +
+> +               led3 {
+> +                       /* DSW18-7: ON, DSW18-8: OFF */
+> +                       gpios = <&pinctrl RZN2H_GPIO(31, 6) GPIO_ACTIVE_LOW>;
+
+Similar comments like for the RZ/T2H EVB, e.g.
+
+    led-3 {
+            /* DSW18-7: ON, DSW18-8: OFF */
+            gpios = <&pinctrl RZN2H_GPIO(31, 6) GPIO_ACTIVE_LOW>;
+            color = <LED_COLOR_ID_GREEN>;
+            function = LED_FUNCTION_DEBUG;
+            function-enumerator = <4>;
+    };
+
+> +               };
+> +
+> +               led4 {
+> +                       /* DSW18-9: ON, DSW18-10: OFF */
+> +                       gpios = <&pinctrl RZN2H_GPIO(18, 1) GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               led5 {
+> +                       /* DSW18-1: ON, DSW18-2: OFF */
+> +                       gpios = <&pinctrl RZN2H_GPIO(22, 7) GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               led6 {
+> +                       /* DSW18-3: ON, DSW18-4: OFF */
+> +                       gpios = <&pinctrl RZN2H_GPIO(23, 0) GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               led7 {
+> +                       /*
+> +                        * DSW18-5: ON, DSW18-6: OFF
+> +                        * DSW19-3: ON, DSW19-4: OFF
+
+Shouldn't that be "DSW19-3: OFF, DSW19-4: ON"?
+
+> +                        */
+> +                       gpios = <&pinctrl RZN2H_GPIO(14, 3) GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               led8 {
+> +                       /* DSW15-8: OFF, DSW15-9: OFF, DSW15-10: ON */
+> +                       gpios = <&pinctrl RZN2H_GPIO(14, 6) GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               led9 {
+> +                       /* DSW15-5: OFF, DSW16-6: ON */
+
+s/DSW16/DSW15/
+
+> +                       gpios = <&pinctrl RZN2H_GPIO(14, 7) GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               led10 {
+> +                       /* DSW17-3: OFF, DSW17-4: ON */
+> +                       gpios = <&pinctrl RZN2H_GPIO(2, 7) GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               led11 {
+> +                       /* DSW17-1: OFF, DSW17-2: ON */
+> +                       gpios = <&pinctrl RZN2H_GPIO(3, 0) GPIO_ACTIVE_LOW>;
+> +               };
+> +       };
+>  };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
