@@ -1,155 +1,147 @@
-Return-Path: <devicetree+bounces-206049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26DEBB2B4DE
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 01:40:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1021BB2B50D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 01:48:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 041AE5210F3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 23:40:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12C7D3AC693
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 23:48:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0502A28137D;
-	Mon, 18 Aug 2025 23:39:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9BC727146F;
+	Mon, 18 Aug 2025 23:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XK1pX03r"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E2/pq3f2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB353280309;
-	Mon, 18 Aug 2025 23:39:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3218D1F63CD;
+	Mon, 18 Aug 2025 23:48:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755560388; cv=none; b=qO3I5LjwiXf/W+SJNrankOVlDmm4z4owxR16DrXaEV4W0x/nAlIUs2vOmLnNse6RKBj2cWcrpquWpZN+YNag1jBVKChh+c1EdoW3JjvkpkilxXonikjF4j1e6LnEKZ6IsQCY0rQ25lLw0NjCs/alR5G7n3IIuD9MREH8MT8c9pw=
+	t=1755560897; cv=none; b=KHlEopaTxtM+zshyBNDr5W2jugPwuC3OuV8fX5WQoihAi7fzJ29EsegX64KhnM0UutDIwmQohgwETluQL9ypPX2QehydsctpI5ghEMo5Zb5ph298tKNgcTrS/dlIhzm4La7D0C/pP3Y6bpsKn6A0jfx7hdCXjFy5WG/+KiMTbpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755560388; c=relaxed/simple;
-	bh=rZujrf8cJQS+I89btYoSUMkKofWIINtOzhrn5MbArYQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pH5nR5y3z/I1RK6yUW5aBQRY6s5t7JfjDQfy2hfbO9uKqoRyvSrSEFTyNTQ35mWUEwc1+lbPaoJl883BvNZH0hMd0MssVqm5nv41UXys9ESWMXUlKtXrQugjK4O1lT53VSA2yQLu3fY7P0xSGplZSrH4EqKR9PQ4tn2sm+TND9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XK1pX03r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1A823C4DDF5;
-	Mon, 18 Aug 2025 23:39:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755560388;
-	bh=rZujrf8cJQS+I89btYoSUMkKofWIINtOzhrn5MbArYQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=XK1pX03rLRYcRMpxhukRupNStyDu2FwYmK7K3b3JIyUWGYK1jOS3EuAMdOfcNfOJ6
-	 7WU5gHU6Ku9okGZQSG/gD+uNC0DZWhO1I3mf/CwEgQHAtblyauNc6I1rXVi7oDsyB9
-	 h38nWc+WQREdFGHzhwpMtYyc223mntq9gA51ykoHQ4tsUtMgiIms7o4JmJujRq7CR9
-	 rKrqLSQB/XAdU5JjdqzhKDdO/lXFVv9clKeVmpVRNXYX5Sfp+n1IPhGHaRPQ+a1ES2
-	 i9RoiRf3xho/JeCBNJlBLYF79EfWu38uY6kbtbfYH2rE3bHvvkLa/3lRmhp+38FCBg
-	 tHpZDUiJuy9uA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 108E0CA0EF5;
-	Mon, 18 Aug 2025 23:39:48 +0000 (UTC)
-From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Date: Tue, 19 Aug 2025 01:26:05 +0200
-Subject: [PATCH v10 13/13] arm64: dts: rockchip: enable vicap dvp on
- wolfvision pf5 io expander
+	s=arc-20240116; t=1755560897; c=relaxed/simple;
+	bh=5QJHXbNfM4211hVWMn02LsMiHN+HyA2tvURmDFJHMnk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SNNIhuqWaHFAeJ+9JwODa7Xe7hZlRDoUqNXUyLBw+MB93uDE8HeSbExAtbRqQ2yvg05Jjk9tw0s97nqODMBknqv63BQ+B5UV+Rv32oGJvoqsgfa9abwOYExKUpxD6k42ZaK9RHyjX1as0foSnnIaNlxQSBm7bab8qxvdn+mNFyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E2/pq3f2; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755560896; x=1787096896;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5QJHXbNfM4211hVWMn02LsMiHN+HyA2tvURmDFJHMnk=;
+  b=E2/pq3f20kz/lBgGfReCVZgHxDk3C2kgSQ0cdlo5rQSmlzztrDjJ+1T+
+   bdX7XHT6zswXHuhGU1ZwnHIyU/cRVRb/lhPJQ2tyCxK6De9M/0sJhEi61
+   dCnX1ygAq/HW5ZmOIKkGu2Nj3T+NQBOQLZ4Weu+evybOXZK57ctQvQ0ju
+   i2CQ93KyxiK3o1CnKJcorJcTPj4L+CRLOXUUU0JORekCdFuoB4EfrfrIn
+   CDwDbeRwLw2n+BZQz2jUZrKE8PWUuwyrHKSXm43YSLbjrcr2S2Z725iuq
+   dME8ngNIkRc+DFPhGVw28uXWc2rd3vOHWyYg3FleCianN2qfumqZ9fNH+
+   g==;
+X-CSE-ConnectionGUID: c5P2Rh7IT5CZ//ceuDb6rA==
+X-CSE-MsgGUID: aeGqJKDsS6C/bGDPAgRxWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="57753016"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; 
+   d="scan'208";a="57753016"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 16:48:14 -0700
+X-CSE-ConnectionGUID: +pHZXG2DQViaQfHtzdVKMQ==
+X-CSE-MsgGUID: E+2tP5IsQ6esRMDfksxtvA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; 
+   d="scan'208";a="198715296"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa002.jf.intel.com with ESMTP; 18 Aug 2025 16:48:10 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uo9Zd-000GJ9-2N;
+	Mon, 18 Aug 2025 23:47:48 +0000
+Date: Tue, 19 Aug 2025 07:46:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/3] PM/OPP: Support to match OPP based on both
+ frequency and level.
+Message-ID: <202508190712.5L4VOrmr-lkp@intel.com>
+References: <20250818-opp_pcie-v2-1-071524d98967@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240220-rk3568-vicap-v10-13-62d8a7b209b4@collabora.com>
-References: <20240220-rk3568-vicap-v10-0-62d8a7b209b4@collabora.com>
-In-Reply-To: <20240220-rk3568-vicap-v10-0-62d8a7b209b4@collabora.com>
-To: Mehdi Djait <mehdi.djait@linux.intel.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Gerald Loacker <gerald.loacker@wolfvision.net>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Markus Elfring <Markus.Elfring@web.de>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Collabora Kernel Team <kernel@collabora.com>, 
- Paul Kocialkowski <paulk@sys-base.io>, 
- Alexander Shiyan <eagle.alexander923@gmail.com>, 
- Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, 
- Michael Riesch <michael.riesch@collabora.com>, 
- Michael Riesch <michael.riesch@collabora.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755559554; l=1661;
- i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=tkvGHWW1RXCremqXv1+qTo26zNWU0UHQFUaztf+p/DI=;
- b=j7qJwJlBp3s4+kXK3PuFrOiM+R/iCDEB6TlcYawUBljlPPawlDA1Zopg2v3jYZx4rFr2cv++X
- Mz+eZ2QuKJLAzjERg5Jahspc5+jStsww1EGia6J/crJ/+cYIUdiHDUo
-X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
- pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
-X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
- with auth_id=371
-X-Original-From: Michael Riesch <michael.riesch@collabora.com>
-Reply-To: michael.riesch@collabora.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250818-opp_pcie-v2-1-071524d98967@oss.qualcomm.com>
 
-From: Michael Riesch <michael.riesch@collabora.com>
+Hi Krishna,
 
-The Digital Video Port (DVP, the 16-bit variant) of the RK3568 VICAP
-is broken out to the PF5 mainboard expansion header.
-Enable it in the device tree overlay for the WolfVision PF5 IO
-Expander board.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-Reviewed-by: Gerald Loacker <gerald.loacker@wolfvision.net>
-Tested-by: Gerald Loacker <gerald.loacker@wolfvision.net>
-Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
----
- .../rockchip/rk3568-wolfvision-pf5-io-expander.dtso  | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+[auto build test ERROR on c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9]
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
-index 048933de2943..8cfce71dd318 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
-@@ -11,6 +11,7 @@
- #include <dt-bindings/clock/rk3568-cru.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/media/video-interfaces.h>
- #include <dt-bindings/pinctrl/rockchip.h>
- 
- &{/} {
-@@ -134,3 +135,22 @@ &usb2phy0_host {
- 	phy-supply = <&usb_host_vbus>;
- 	status = "okay";
- };
-+
-+&vicap {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cif_clk &cif_dvp_clk &cif_dvp_bus16>;
-+	status = "okay";
-+};
-+
-+&vicap_dvp {
-+	vicap_dvp_input: endpoint {
-+		bus-type = <MEDIA_BUS_TYPE_BT656>;
-+		bus-width = <16>;
-+		pclk-sample = <MEDIA_PCLK_SAMPLE_DUAL_EDGE>;
-+		rockchip,dvp-clk-delay = <10>;
-+	};
-+};
-+
-+&vicap_mmu {
-+	status = "okay";
-+};
+url:    https://github.com/intel-lab-lkp/linux/commits/Krishna-Chaitanya-Chundru/PM-OPP-Support-to-match-OPP-based-on-both-frequency-and-level/20250818-162759
+base:   c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
+patch link:    https://lore.kernel.org/r/20250818-opp_pcie-v2-1-071524d98967%40oss.qualcomm.com
+patch subject: [PATCH v2 1/3] PM/OPP: Support to match OPP based on both frequency and level.
+config: parisc-allnoconfig (https://download.01.org/0day-ci/archive/20250819/202508190712.5L4VOrmr-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250819/202508190712.5L4VOrmr-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508190712.5L4VOrmr-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from include/linux/cpufreq.h:18,
+                    from include/trace/events/power.h:8,
+                    from kernel/cpu.c:42:
+>> include/linux/pm_opp.h:297:20: warning: no previous prototype for 'dev_pm_opp_find_freq_level_exact' [-Wmissing-prototypes]
+     297 | struct dev_pm_opp *dev_pm_opp_find_freq_level_exact(struct device *dev,
+         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--
+   hppa-linux-ld: kernel/sched/core.o: in function `dev_pm_opp_find_freq_level_exact':
+>> (.text+0xba4): multiple definition of `dev_pm_opp_find_freq_level_exact'; kernel/cpu.o:(.text+0x6a0): first defined here
+   hppa-linux-ld: kernel/sched/fair.o: in function `dev_pm_opp_find_freq_level_exact':
+   (.text+0x50ac): multiple definition of `dev_pm_opp_find_freq_level_exact'; kernel/cpu.o:(.text+0x6a0): first defined here
+   hppa-linux-ld: kernel/sched/build_policy.o: in function `dev_pm_opp_find_freq_level_exact':
+   (.text+0x4d44): multiple definition of `dev_pm_opp_find_freq_level_exact'; kernel/cpu.o:(.text+0x6a0): first defined here
+   hppa-linux-ld: kernel/sched/build_utility.o: in function `dev_pm_opp_find_freq_level_exact':
+   (.text+0x2b44): multiple definition of `dev_pm_opp_find_freq_level_exact'; kernel/cpu.o:(.text+0x6a0): first defined here
+   hppa-linux-ld: kernel/power/qos.o: in function `dev_pm_opp_find_freq_level_exact':
+   (.text+0x188): multiple definition of `dev_pm_opp_find_freq_level_exact'; kernel/cpu.o:(.text+0x6a0): first defined here
+   hppa-linux-ld: kernel/time/tick-common.o: in function `dev_pm_opp_find_freq_level_exact':
+   (.text+0x164): multiple definition of `dev_pm_opp_find_freq_level_exact'; kernel/cpu.o:(.text+0x6a0): first defined here
+   hppa-linux-ld: fs/proc/cpuinfo.o: in function `dev_pm_opp_find_freq_level_exact':
+   (.text+0x24): multiple definition of `dev_pm_opp_find_freq_level_exact'; kernel/cpu.o:(.text+0x6a0): first defined here
+   hppa-linux-ld: drivers/base/core.o: in function `dev_pm_opp_find_freq_level_exact':
+   (.text+0x5348): multiple definition of `dev_pm_opp_find_freq_level_exact'; kernel/cpu.o:(.text+0x6a0): first defined here
+   hppa-linux-ld: drivers/base/syscore.o: in function `dev_pm_opp_find_freq_level_exact':
+   (.text+0xb8): multiple definition of `dev_pm_opp_find_freq_level_exact'; kernel/cpu.o:(.text+0x6a0): first defined here
 
 -- 
-2.39.5
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
