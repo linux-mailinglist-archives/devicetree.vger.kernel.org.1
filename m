@@ -1,125 +1,115 @@
-Return-Path: <devicetree+bounces-205999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B279EB2B210
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 22:09:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3FA9B2B250
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 22:25:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F242527530
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 20:08:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A24C83B6E0F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 20:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3525921171D;
-	Mon, 18 Aug 2025 20:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0290B225A29;
+	Mon, 18 Aug 2025 20:25:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="x+S4B8p0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ic8tObN8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9091F187346;
-	Mon, 18 Aug 2025 20:08:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9BBD1FDD;
+	Mon, 18 Aug 2025 20:25:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755547687; cv=none; b=iRCUMXIBmHLgFkPWC4Ba1PMztSx7OuGsUTxkg8BIL36U3WEWZQ36zybiCNet6YORrPQA4bVkwQXw/OJkiJ6pwpvtaIxLnzR6nlEHJh9N2K69d+7mP5lBB90B9yk3yE2nzO+uQoz4XFqkKWnmZSKVg6Upi18FifiUdKbkJlBVUNc=
+	t=1755548700; cv=none; b=MOTUi+21+0b4NkCoL1UjlLE4uzOwDj5d4/k7QOC1z5qD+RsucCnsdKPQHlTXb1t+IRSut8UWSNOyUmUhniB6AZXIoxeEVg+VWhCo51ZJtSmfIPTb3519L7uasg1GJqWeQ8eEyzty08+XtmYAWbomDyp4Bt/1H9FpTR/u27938lk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755547687; c=relaxed/simple;
-	bh=6LhwwRpqhnFscA7YIs1rmS9HKYYXxQmhOatXl4FvTrE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hZPRkWJX7h/+xGytvsNpdWY877F5Rc6lD6qsMwiandcS8n0UZIFmWnkRRvcW6gdmeXa6WVTLxj5WL0dZIabIVx2vE9ycqh08v+/PBxJqcdVlRLC7+XRLfHvNySsXXLGihqq+aagAKMhLPe9fUhXYiMENOuoPKwYGhciR81Kpd8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=x+S4B8p0; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4c5P0K5XHfz9spd;
-	Mon, 18 Aug 2025 22:08:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1755547681;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Tc6P835DxKr69oSCM6M41RgZOB2wSNxZZcT4gcuaAas=;
-	b=x+S4B8p0LG32NBGQ+FGXtCHXcljeFFH6tgPOXMCvIkcdvR0aBjE8TAm3UAsZ6kcMyNECCz
-	9p2oaimFPxc+agYEVznV7t+x3HhcSf8Bne6KAud8aRiZLrBGqInZHHXXM/+L4wixkwHaAS
-	8LTecY1terpjtmdF9De250uV3rC445Dw4PT8Fnpkk3+Xg094X4JIMU5g6ptTvF3UXL3QJ+
-	USuiM6vFGp/1txMxwz4G8s3aExhRJA/OGskeSbzvVR8Pnj6iJ2qXtzSS2IV3CXZrhZ9JNP
-	DINS76kq5B6cPgpefpY/iMwSyX1kS2TUaEbXKvtkyKKPdmHspj8de9yU31o9hQ==
-Date: Mon, 18 Aug 2025 22:07:54 +0200
-From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
- <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
- <andrew@lunn.ch>
-Subject: Re: [net-next v18 2/7] net: mtip: The L2 switch driver for imx287
-Message-ID: <20250818220754.585dac78@wsk>
-In-Reply-To: <20250815182930.196973bb@kernel.org>
-References: <20250813070755.1523898-1-lukasz.majewski@mailbox.org>
-	<20250813070755.1523898-3-lukasz.majewski@mailbox.org>
-	<20250815182930.196973bb@kernel.org>
-Organization: mailbox.org
+	s=arc-20240116; t=1755548700; c=relaxed/simple;
+	bh=DWORNPSoaH+MkjUCn75Qd2KiRx9On7Gotf+b7ngssYs=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Ckv2+BL9phOnnU1u5HC94Z/fe9A4sC/AyimIJwV9pBtC/DgC5/zquReY2khMNOiZ+lMcUv9sYcUa5l+ChELULVfHJcOqyZCIVrvA4xCrIoEewSziC8vTX6OZx+WbozFYX00Q/dfmutfnUK940ECG3ZhbKccbazakLt+4Xpxr/6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ic8tObN8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8369DC4CEEB;
+	Mon, 18 Aug 2025 20:25:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755548700;
+	bh=DWORNPSoaH+MkjUCn75Qd2KiRx9On7Gotf+b7ngssYs=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ic8tObN8DjU6IWxKiOeUkHXlkzm6Ho162M8Ov3UaeqzH7pN/YMUQuwGmAuFx47ius
+	 MdA34L14QpFsZUs0iM3927gfqeD5/OwbmXbmADzTqvPTVUhqeniEQdqJkfBxHM+0yg
+	 5e/+nxMtA8SxUGZ9YQwSyOk/r7QlfQTMtlQwRtxIXDCImfQ/GQq1LXZ/w/4ShPCFKQ
+	 APvr+K1EZSLsflkmA4kop8gVAnr0ol6ed1pbWwh1JdxLppWSA6UZ/6fYBoKvBEYFOG
+	 UJuwBDZqBqgBAwFk3VLgWTX+vIn8FA+oOmyNXxzmA6bca0NeuEWNjfTIi06cPAIwJP
+	 qcpCS8jBN+WXA==
+Date: Mon, 18 Aug 2025 15:24:59 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-MBO-RS-META: 35qi5izozcp45u58cd3qppdasc3mhqxe
-X-MBO-RS-ID: d00d9afc35992f2ef92
-
-Hi Jakub,
-
-> On Wed, 13 Aug 2025 09:07:50 +0200 Lukasz Majewski wrote:
-> > +	pkts =3D mtip_switch_rx(napi->dev, budget, &port);
-> > +	if (pkts =3D=3D -ENOMEM) {
-> > +		napi_complete(napi);
-> > +		return 0; =20
->=20
-> And what happens next? looks like you're not unmasking the interrupt
-> in this case so we'll never get an IRQ until timeout kicks in?
-
-Good point - I shall set the "default" set of interrupts before return
-0;
-
->=20
-> > +	}
-> > +
-> > +	if ((port =3D=3D 1 || port =3D=3D 2) && fep->ndev[port - 1])
-> > +		mtip_switch_tx(fep->ndev[port - 1]);
-> > +	else
-> > +		mtip_switch_tx(napi->dev);
-> > +
-> > +	if (pkts < budget) {
-> > +		napi_complete_done(napi, pkts); =20
->=20
-> Please take napi_complete_done()'s return value into account
-
-Ok.
-
->=20
-> > +		/* Set default interrupt mask for L2 switch */
-> > +		writel(MCF_ESW_IMR_RXF | MCF_ESW_IMR_TXF,
-> > +		       fep->hwp + ESW_IMR);
-> > +	} =20
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: imx@lists.linux.dev, Conor Dooley <conor+dt@kernel.org>, 
+ linuxppc-dev@lists.ozlabs.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+To: Frank Li <Frank.Li@nxp.com>
+In-Reply-To: <20250818183427.3601986-1-Frank.Li@nxp.com>
+References: <20250818183427.3601986-1-Frank.Li@nxp.com>
+Message-Id: <175554869942.1999698.5388783109628696157.robh@kernel.org>
+Subject: Re: [RESEND v2 1/1] dt-bindings: soc: add vf610 reboot syscon
+ controller
 
 
+On Mon, 18 Aug 2025 14:34:26 -0400, Frank Li wrote:
+> Add vf610 reboot controller, which used to reboot whole system. Fix below
+> CHECK_DTB warnings:
+> 
+> arch/arm/boot/dts/nxp/vf/vf610-bk4.dtb: /soc/bus@40000000/src@4006e000:
+>     failed to match any schema with compatible: ['fsl,vf610-src', 'syscon']
+> 
+> IC reference manual call it as system reset controller(SRC), but it is not
+> module as linux reset controller, which used to reset individual device.
+> SRC work as reboot controller, which reboot whole system. It provides a
+> syscon interface to syscon-reboot.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change in v2
+> - change description to avoid confuse about reset controller.
+> - it is legacy device, more than 10 year. So try keep existed dts as it.
+> ---
+>  .../bindings/soc/fsl/fsl,vf610-src.yaml       | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml
+> 
 
---=20
-Best regards,
+My bot found errors running 'make dt_binding_check' on your patch:
 
-=C5=81ukasz Majewski
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml: $id: 'http://devicetree.org/schemas//soc/fsl/fsl,vf610-src.yaml#' does not match 'http://devicetree.org/schemas(/[^/ ]+)+\\.yaml#'
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250818183427.3601986-1-Frank.Li@nxp.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
