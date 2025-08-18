@@ -1,191 +1,124 @@
-Return-Path: <devicetree+bounces-205953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0439FB2AF63
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:27:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BDD7B29CA9
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:49:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BB147A9B1D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:26:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6C393B4DE2
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:47:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93276345758;
-	Mon, 18 Aug 2025 17:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745CD302761;
+	Mon, 18 Aug 2025 08:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ZO+tUVGW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JwUdK/5n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12D5345742
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 17:27:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E9202BE7B0
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 08:47:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755538060; cv=none; b=AF/JDzmCkCA1tLpavm4WYccqTIuUnQrqnouSEWAnDttKhtkhsQrhmvOpL+C8fj0BvkeLDPDuSHZMw8DQyEUUKHbp/1+KANyq9ZR2Bk+kx2v/zjExOzzlavc7PsPFUL734F0z214nnfkFqw099dBIo3hHRddEb4bQN4js5MQoNEI=
+	t=1755506855; cv=none; b=UtlhWq80+SJkHYec6FfGqIRLjdbjkckhkUdHWaEG4IFAr9cgUQGcdSFETnYR5RZh0xZJ+XFiljak04YGBxa+wlzCg5VvAtQrz1uaGvGcbG0n0lKvrhM97nhQ3sQid6sZeLTn66JUvz093T2X2hP0BIPHY2QpIXTnfIiYyW07Apg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755538060; c=relaxed/simple;
-	bh=9JMXztg+Q8fI+L1JfmE621uB0vrUu2BhnBt+O8mpx+U=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=o1878oZjQn8tYdNOTpP3fEJAOHv3mNAU+2LtdcoeNZkUvN8b8UWwZj4hu2b8USXsjeuhS1BO/zZWV7a3FQ6nnY4le1PfpkyujwGE+zucFqw+aka9PVbv6RfW4VSkH/y4aYAXQaedyKonVBpKyds/c7tNgGVEiNVPhavEW+DqwHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ZO+tUVGW; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250818171833epoutp024ec03c58a18c811c66db4de78faddf16~c7BE0JiHG3205732057epoutp02g
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 17:18:33 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250818171833epoutp024ec03c58a18c811c66db4de78faddf16~c7BE0JiHG3205732057epoutp02g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1755537513;
-	bh=JmSGRyHuxg4sFJyN1+ZDBr/4xtXj34dMzItnfLdMcyY=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=ZO+tUVGW9j76Gf6QNoG7EvuYBG0IN+U8H9BPj0zJnedSfLSj3GdVWqiZvli1wXQLw
-	 ZtQrILgZa8nIdVn5n70Qo/fmF6dRM/1FHqtrtz8e7N0GGRNkciMmIdRwJW5C7M5OdE
-	 axSFLqrFF8eZN9gdkQRDQel8pmBiLh/xdcjjWOf4=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250818171832epcas5p1538558efb743b5c6f4ca5021cfafef2c~c7BDlpN2R1081410814epcas5p1g;
-	Mon, 18 Aug 2025 17:18:32 +0000 (GMT)
-Received: from epcas5p2.samsung.com (unknown [182.195.38.92]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4c5KDl11mXz3hhT3; Mon, 18 Aug
-	2025 17:18:31 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250818084620epcas5p3ddf1f9039fde76922af543c84d2a37c8~c0B2MjXJr3103431034epcas5p3u;
-	Mon, 18 Aug 2025 08:46:20 +0000 (GMT)
-Received: from FDSFTE462 (unknown [107.122.81.248]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250818084617epsmtip1877f5f85d903a96326fc66b5943907e0~c0BzfnJte3004130041epsmtip1g;
-	Mon, 18 Aug 2025 08:46:17 +0000 (GMT)
-From: "Shradha Todi" <shradha.t@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <linux-pci@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-phy@lists.infradead.org>
-Cc: <mani@kernel.org>, <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
-	<robh@kernel.org>, <bhelgaas@google.com>, <jingoohan1@gmail.com>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<vkoul@kernel.org>, <kishon@kernel.org>, <arnd@arndb.de>,
-	<m.szyprowski@samsung.com>, <jh80.chung@samsung.com>,
-	<pankaj.dubey@samsung.com>
-In-Reply-To: <9e065582-9349-4f39-88b5-048d333ab8d7@kernel.org>
-Subject: RE: [PATCH v3 07/12] dt-bindings: PCI: Add support for Tesla FSD
- SoC
-Date: Mon, 18 Aug 2025 14:16:16 +0530
-Message-ID: <000901dc101c$917bf160$b473d420$@samsung.com>
+	s=arc-20240116; t=1755506855; c=relaxed/simple;
+	bh=BFqb772XKvnkGz/X/GiHYC9tY0Kc1FlOx29S2g2BP6k=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=n1pBQBoYdQxKR+KN5vbLC0aJZlk8quOozeltTRv3ESaciSVxlc42sr8RnRbbmSs/+VufMugZWArZkQyvyTQP6CEd+NTgpZWnx1x5ACf4W1R9ZStbpQmOxqKrJbCjL6f3VIrSaJ26BK06I25ySLzbSc0iSluKBfBHLPIJ5rM53FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JwUdK/5n; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6188b67a951so647914a12.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 01:47:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755506851; x=1756111651; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BeuayamteocopIdawkFz8GBgWsuO6jcTjJdO7tqQ9I0=;
+        b=JwUdK/5nUdkGf0zbwUKOLs+S0/DASbi0UqaDUkEU3nwHR+Ki8Z8Jfsv7aJy0kJ0ABx
+         5xaFtRBJpyIdqZthpPCUnb+I5wVK+kQR8UgrdDAt756aGl5ruv44ArgHOKGcjHyhZ74w
+         IvkSP2pKgTk3a2OofaEF3+HKt0zyjgCZSKW9FIpQTXEVFTZv3bPE2VerVme+5wX5hEJ8
+         3wjbr2HascFvi2Fau6qL+OZiOiSCRVegWe+cWc60BNs5CPSXA5vAwFDPYOyBiW2lRwHp
+         NHxR5cvdwiKAgfn8rZ4SZ7CfEy8DC4NKuYDDEWRi2Ke/742SVuw696yP0Fbw40/M8jFq
+         XH6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755506851; x=1756111651;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BeuayamteocopIdawkFz8GBgWsuO6jcTjJdO7tqQ9I0=;
+        b=at+Y1BDr5Q73W6Z90w2qsZLgswuZjdEKq0QtRUFqtWk+ZKrm1GwnQyjOEq4RrIT3Of
+         jMVyt1VSw04O7wpSzbir9qPi2P11A5T7t0UP4f37lN0T+rLFzdugAbeWQ6uLVmsmOeMV
+         VV8/7IsasuDN1fpS/TvgdAiZ6VlOUm9uGuhulX87QdgXyORSqCHlQ+1BxmTe2Af65rN7
+         cgJl1PtTkdxm9akmsRjLjIvlWsO2rI6/gQqFVxlKHsPKQQOee1e5QfSaxBIMOEquwo3K
+         A/RFCCxZ33ZkpqO0DjMwSd0W6rhvfUDCVj1Ga6wLdZJk//XLrDB5gEIDIFM4YwNsSy2v
+         CChQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUJMM/s7u/jo9qQdLFp5FYkuVouFD+CTfbwMLFrhs05qNSCRkhEYpfL/5cSCT/oKVYCVu/nwAfZOHfD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzkr6v/UJOM9SjG89K4/e5D2/7M/tqDcC00umrHx9bts7Z3tXUN
+	wAYIzuBT8HH5kblYGIgJdYbsUASuJgPb7CQB4nH1g7okGfQaXEiiZgpLFQTI+c4oBcM=
+X-Gm-Gg: ASbGnctORk86ODLc9HxAPteAArSwfDrOtNfe9R1upXHlgcMr1xm37TrqZ6zdYKREVW0
+	tANJnuS1Pjn8NZHgCAco2alJfPsRIyEkTLdHEl6GO9LpMDz3IYbyHFINk7jUtz1bsJWfFEOY36C
+	wDhwEizEG98ZtxMGQGeeaBr94V7sO/eMVAD5zBNvuXuJPkYy+045Ej2o43EpmHbb5C2JT0cWCaU
+	oweRsMUtEU2iK0FWzsOugqKyZsHZtAgVM0UNDfVUlAHc3fA3RUWvgvoQ61fQM0GKfDF+A+5lU5w
+	Osqvd4jT2sc+xD+IKECYbHdGATxMNf1p25eLBbKqWdeweLg+CiCZJqj2WtLc1LEsxHbVpO8pCmt
+	AOr2ssh/hza93dEJDzOfqoCUkZvrocLVoUw9mdK634hYtuV4+Zg==
+X-Google-Smtp-Source: AGHT+IHnFT/QiiX+/jyxr6JrjJHBnX2ZgiTGkz6V56Qs5+zyrhsCVsoAqUSeVCMOf8wng75ASWqViQ==
+X-Received: by 2002:a05:6402:440a:b0:617:be23:1111 with SMTP id 4fb4d7f45d1cf-618b0865203mr4787283a12.7.1755506851453;
+        Mon, 18 Aug 2025 01:47:31 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-618af9da68fsm6627647a12.22.2025.08.18.01.47.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Aug 2025 01:47:30 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, krzk@kernel.org, 
+ s.nawrocki@samsung.com, s.hauer@pengutronix.de, shawnguo@kernel.org, 
+ cw00.choi@samsung.com, rmfrfs@gmail.com, laurent.pinchart@ideasonboard.com, 
+ martink@posteo.de, mchehab@kernel.org, linux-fsd@tesla.com, will@kernel.org, 
+ catalin.marinas@arm.com, pankaj.dubey@samsung.com, shradha.t@samsung.com, 
+ ravi.patel@samsung.com, Inbaraj E <inbaraj.e@samsung.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, alim.akhtar@samsung.com, 
+ linux-samsung-soc@vger.kernel.org, kernel@puri.sm, kernel@pengutronix.de, 
+ festevam@gmail.com, linux-media@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20250814140943.22531-2-inbaraj.e@samsung.com>
+References: <20250814140943.22531-1-inbaraj.e@samsung.com>
+ <CGME20250814141003epcas5p167e0a3d0ecc52fd8af17151cdddd031a@epcas5p1.samsung.com>
+ <20250814140943.22531-2-inbaraj.e@samsung.com>
+Subject: Re: (subset) [PATCH v2 01/12] dt-bindings: clock: Add CAM_CSI
+ clock macro for FSD
+Message-Id: <175550684881.11777.14718777449068060989.b4-ty@linaro.org>
+Date: Mon, 18 Aug 2025 10:47:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQHWPHKmIG2WTsjb/5pkHKJ2GfeRPwFcVLShAs+fyqkBgLjEDbRGWWvg
-Content-Language: en-in
-X-CMS-MailID: 20250818084620epcas5p3ddf1f9039fde76922af543c84d2a37c8
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250811154725epcas5p428fa3370a32bc2b664a4fd8260078097
-References: <20250811154638.95732-1-shradha.t@samsung.com>
-	<CGME20250811154725epcas5p428fa3370a32bc2b664a4fd8260078097@epcas5p4.samsung.com>
-	<20250811154638.95732-8-shradha.t@samsung.com>
-	<9e065582-9349-4f39-88b5-048d333ab8d7@kernel.org>
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-> > +
-> > +  phys:
-> > +    maxItems: 1
-> > +
-> > +  samsung,syscon-pcie:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: phandle for system control registers, used to
-> > +                 control signals at system level
+
+On Thu, 14 Aug 2025 19:39:32 +0530, Inbaraj E wrote:
+> CAM_CSI block has ACLK, PCLK and PLL clocks. PCLK id is already
+> assigned. To use PCLK and PLL clock in driver add id macro for CAM_CSI_PLL
+> and CAM_CSI_PCLK.
 > 
-> What is "system level"? and what are these "signals" being controlled?
 > 
 
-I will add a more detailed description for why the syscon is being used
+Applied, thanks!
 
-> 
-> > +title: Tesla FSD SoC series PCIe Host Controller
-> > +
-> > +maintainers:
-> > +  - Shradha Todi <shradha.t@samsung.com>
-> > +
-> > +description:
-> > +  Tesla FSD SoCs PCIe host controller inherits all the common
-> > +  properties defined in samsung,exynos-pcie.yaml
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/pci/samsung,exynos-pcie.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: tesla,fsd-pcie
-> > +
-> > +  clocks:
-> > +    maxItems: 4
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: aux
-> > +      - const: dbi
-> > +      - const: mstr
-> > +      - const: slv
-> > +
-> > +  num-lanes:
-> > +    maximum: 4
-> > +
-> > +  samsung,syscon-pcie:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: phandle for system control registers, used to
-> > +                 control signals at system level
-> > +
-> > +required:
-> > +  - samsung,syscon-pcie
-> 
-> clocks are required, compatible as well.
-> 
+[01/12] dt-bindings: clock: Add CAM_CSI clock macro for FSD
+        https://git.kernel.org/krzk/linux/c/5576d8098052952a6c95af86ad3dcb341554ac75
 
-Since this was inheriting the common exynos yaml file and that had these properties
-under required, I did not mention again. Will take care in next version.
-
-> Missing supplies, both as properties and required. PCI devices do not
-> work without power.
-> 
-
-According to the HW design of FSD SoC, the control to manage PCIe power is given to
-a separate CPU where custom firmware runs. Therefore, the Linux side does not control
-the PCIe power supplies directly and are hence not included in the device tree.
-
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/fsd-clk.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    soc {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        pcierc1: pcie@16b00000 {
-> > +            compatible = "tesla,fsd-pcie";
-> > +            reg = <0x0 0x16b00000 0x0 0x2000>,
-> > +                  <0x0 0x168c0000 0x0 0x1000>,
-> > +                  <0x0 0x18000000 0x0 0x1000>;
-> > +            reg-names = "dbi", "elbi", "config";
-> > +            ranges =  <0x82000000 0x0 0x18001000 0x0 0x18001000 0x0 0xffefff>;
-> 
-> Misaligned. Follow closely DTS coding style.
-> 
-
-Will take care.
-
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
