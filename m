@@ -1,225 +1,259 @@
-Return-Path: <devicetree+bounces-205726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9FB9B29DEC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:31:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0F32B29DFF
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:35:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 777A216616A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:30:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 939991897CBD
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978D830EF96;
-	Mon, 18 Aug 2025 09:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A756D30EF64;
+	Mon, 18 Aug 2025 09:29:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="NHMquLN8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CbdLXIEl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.65.219])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31EAF30EF6C;
-	Mon, 18 Aug 2025 09:29:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.132.65.219
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACBB30E0D7
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 09:29:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755509354; cv=none; b=e2PylMaz1rNf7G0SHXBpXhj6Ni34l4PJxRDbKCbJ95xbV2rZM0MgFzO06yyWhpxWUa9ap46DhuF//BLjzWoM1g48/HrTKI0X3yffLWnr39adYEEWk4uRRzU9QvYrxHO2vUXRKJqMSFPwrLVXtB9BRCRYzn0xqeCQDzWEQ1U81n4=
+	t=1755509396; cv=none; b=JGKx2kEhDwXqrbXmqSYe7hoaKAtPOcMQsK9lqMIvVefaBXM3knY5YK55MKiB8ggfrPU2pWoyeoYjC14sotUrkHGAFWbrzkaTM31J0/Y03+pNUEQCpdYCRucPaP1yaAd0jI/6cn/fjGVpCU3EDv/ypaOskD4ppxlLD5HEQYJZkQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755509354; c=relaxed/simple;
-	bh=EbxNhhULS7njhbvu3e7GjERZF4MmhlDW5guLkzvyZP4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=X0zikphuFVgGYxGRyEXAg6Bp9REYDV6m6Sl10NFS+wR6WK97LOQWgvlSpisxpERE+Mg9/f46qQBy34fxLPTLq8gt8l4/X2CezBMIqLNK5CoXihwu3SsFEYL9+63hCB3bqvDTuvxbLK2WFJsx/9UBOuJ2FR156/KC92xGhHiTyAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=NHMquLN8; arc=none smtp.client-ip=114.132.65.219
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1755509323;
-	bh=gcsRKHyAKuMtB+ZuHSQSM7MM8/icoYyw0uVo9I/iac4=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=NHMquLN8mmrPgmGH08tPxZWxhwgF8yJ9HZkbQ7yUVEmqI+A8mz++tvJx0j5hi9QD5
-	 FleXMP/K+qHXAQ6Tn37D1pTRyW/XXOQUwr9xI6Sme5DkF5++P7AG/Eh80HoFXqKjEd
-	 hkHbZ+9s2/tYR3ZAmJCNDtBM6SgN02eOb5UM+ezQ=
-X-QQ-mid: esmtpsz21t1755509322t40396246
-X-QQ-Originating-IP: B3DkngCQnn0bbz9w7FXWq/lfnZGvWROgMlt3PBsCQy8=
-Received: from = ( [14.123.254.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 18 Aug 2025 17:28:39 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 16519149024286198019
-EX-QQ-RecipientCnt: 16
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Mon, 18 Aug 2025 17:28:22 +0800
-Subject: [PATCH v3 3/3] clk: spacemit: fix i2s clock
+	s=arc-20240116; t=1755509396; c=relaxed/simple;
+	bh=D/2r8fC7ff+pn5PrN0aya7skDH+ku9d60BqVMX2wSx0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZNGq0nt+GkozL41uTcsHxS9qSYtSvWTQfR0eVUvpIZebH/bQSrXF9XPPGrHxJPIucjwt/gkdwJOXZmmnD+kV+Rtsz51EwpyqIlBjFcMQ0gv9+4inxT1tNHOB6eYYwCXTvZt3U8a00ZtfOd5XQKmum2N6MMuMkEnE+YZJw/cDSyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CbdLXIEl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57I80LRO030728
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 09:29:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DW0VxXLSXGTdFzZpRwKPAVDn88uevWk8bVT728uIol4=; b=CbdLXIElTrpNP7ZY
+	rlcKdSqJOnt3J1ZI9BT13rOp14wOvLJgu97zW9A/kZSz0Ahae8arvwVERDPfUqyL
+	hW/yyfbOIjCSUyBjv7S1huMk+lOlYIUWi0nuU+ArHs3vkPs/jpcSCaUduiGbRBMc
+	eC/h9/A0oW7H7sV4FsCBsRpHue7flZYk4YSQYgb8PCG5HNmkAQv693TekmazwMJy
+	C66sRgvG2sDb7j0PQBCK1BN/aXSzWCnC+DYZaoAwkImb9cH6Ba5+bJPl+o8x1cbc
+	xzP2oWNHMGfyV/TJnaBJyEIUaK/im7Anl3oSTmFh36rbs8eU7m8jOdbbm9TY74IB
+	vK/Q1g==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48jj2uc4gh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 09:29:53 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-24457f44a29so46456805ad.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 02:29:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755509392; x=1756114192;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DW0VxXLSXGTdFzZpRwKPAVDn88uevWk8bVT728uIol4=;
+        b=BjU7ap8QMlZpW3ZEesJCxVMrJGVG0pOkd3T9MwlHzjrndV6JMwMqwRwJGwPI0UmzfS
+         BXl+yC+2SzXA7qIVcnV6BdsYgMFH8a86ur4Ck+q26Wqd302QwNJFmvahao3YI07yU79X
+         UsEPHPY+nuKSnazagZ4PrgFTwdngt/hQje2EQmvTj2Fb8wICNB40sgC/S6Kmp35z7v7U
+         k7/QuK7O/bNHKQrQIFjDzBADI416h29JBxnE8r8KuHLVurlmqib7F6+t3jVwj9Rj93Ik
+         Ybl1uPjSQhEAl9yU6HyYe9KaLJ9YaU1k2LN8v8RbrCFMY4FTOsf6oGwIfCysBgkB3beQ
+         A0qw==
+X-Forwarded-Encrypted: i=1; AJvYcCW7Fsoc0/7CTA+TJdApKiTPdgTseEMF86WDmmiyCoKudIu4LCMufbcoOXGyWRwUqfNvTBaveWZOJobj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyfv0A01YX1BevDFu+/+SRNxntQsc3vu2E8U84fzr/eMIQM9JMA
+	SeIJjKpbtwWJIhbduNXk0komW3qSNUXvdqWRmo3bXTkac//fFBrU2KLbkKWyxmgR4ddrT/j/FDW
+	JLnnLOCObfPFNCcm4f8lCJusnwh8JCg42OO2LXAujQZTX0FSqU4xwd1L1CewmtCbh
+X-Gm-Gg: ASbGncv+JPAVDPCz5qosktvSDpRE0o4vly7S5/3q4/Mm16zmzIIecT3BDRrBXsO+Dae
+	m4ggWlUKFTVTvoUBdecuu4lJb/n1kUBjsFtrVHHB7C0NeW/sDM1EsVEYKexBSwOIDMYUR5v/tCr
+	ryaandTuIJ91Wa8V+EUCxt4Rs9muqfjJGJv4AMRS2iDgrpeH2pDMY47iq5jQDYRDP1435F4s/RO
+	vCuglZg/B8bqbHZSeerm5/HJKPsTvkGtNRAyr7qTofpSlEtvkK29onVNbRT9r3PT97E41E9au5q
+	UY72LBKz1xBGR3lge/Ll/OHhNRo7eJc7BfcKiBWiXhsdAdyzcw5sEuawBo2CLiCjtbAmmbJEaOI
+	ggVwnTOVY4J4SNWVDMEv2dpU/1RIe9YyK
+X-Received: by 2002:a17:903:41c5:b0:240:72bb:db0b with SMTP id d9443c01a7336-24478f539b4mr99029165ad.21.1755509392195;
+        Mon, 18 Aug 2025 02:29:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHdvgHuSgGPApqix8dgwheTWJ6eX5H3fi4YFMhUp3VuMy+VubG2cky38Pb7ZLmRxY6ZQMfL3g==
+X-Received: by 2002:a17:903:41c5:b0:240:72bb:db0b with SMTP id d9443c01a7336-24478f539b4mr99028775ad.21.1755509391723;
+        Mon, 18 Aug 2025 02:29:51 -0700 (PDT)
+Received: from [10.133.33.73] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2446d50f71bsm74496835ad.80.2025.08.18.02.29.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Aug 2025 02:29:51 -0700 (PDT)
+Message-ID: <932326f8-8650-44c6-b747-a12664e9e953@oss.qualcomm.com>
+Date: Mon, 18 Aug 2025 17:29:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom: Add Coresight Interconnect
+ TNOC
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+ <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250815-itnoc-v1-0-62c8e4f7ad32@oss.qualcomm.com>
+ <20250815-itnoc-v1-1-62c8e4f7ad32@oss.qualcomm.com>
+ <e82ca132-f312-45b5-bec0-9d83cd3771d4@kernel.org>
+Content-Language: en-US
+From: yuanfang zhang <yuanfang.zhang@oss.qualcomm.com>
+In-Reply-To: <e82ca132-f312-45b5-bec0-9d83cd3771d4@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250818-k1-clk-i2s-generation-v3-3-8139b22ae709@linux.spacemit.com>
-References: <20250818-k1-clk-i2s-generation-v3-0-8139b22ae709@linux.spacemit.com>
-In-Reply-To: <20250818-k1-clk-i2s-generation-v3-0-8139b22ae709@linux.spacemit.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>, 
- Inochi Amaoto <inochiama@outlook.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Jinmei Wei <weijinmei@linux.spacemit.com>, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755509307; l=4733;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=EbxNhhULS7njhbvu3e7GjERZF4MmhlDW5guLkzvyZP4=;
- b=c0A8Dxfc6KBKkPbV9tt0qoy/mYxWLZhU7nqpIZSp7tr0i5kxJIeA12u+q5lGGBGPFh+y1JtJk
- c+jkw2SU6PyAXlo+xKUN9avrR2Awz55sq+It+J+QpXjwn7tILizpJtR
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: M+Qa/yP3m2vGCAhUJiJg8RjSxFqRv6mp0DHJa6FCcIqJ7WEhdSs5ucr+
-	7jkTgHZ2xYhsCa7nJzpVKGKQNsyVJ+OqdujsBSLWU/HBwiRPBDJtFkyMfqHf2UKvNWiLc+8
-	ZwwJRCLGbeDFYomj94mCTDC33ClXps2BFcFCQe3M+OQNBw2WzjJWyVhU+Y72W5oVb9VvFCl
-	jU4dXh4FNdXjdAo8QQq9Vs3mp6xjSepnLLWja/ixN74Y/PoBxiE/DhSVpRaiq/oBh2EBRie
-	l2ZrgBzhEcBc+XwSCaTGMMQjF+2TA5i1yKVBR+bgQxyqtqCxFtxTp6lPtK7Glt+2YaPqOdR
-	Y90fihELssYbn9RPtegE0BhlJZEmwZGsR0Db7gLNXLa+M4ePEJew7QXdRfdce5XJJwGa4ar
-	/Yli//5kwRsPucVm5rivsSGsmpz5sGwB9IsQLg6Kra3qCDrSArGjL3oOwhejPL54b8q0JCl
-	k5mAVX1MR6+Qm6Ae6Ad/HkutCCEZXCk+D7+vHunJi5I96i76jB9kcoyNcWfmNkunDQkbd/z
-	N5ZoXlLLToPAKvcaHb+m7Y43ZDxTOTh7XXX4E8ktMQEHNnfHfDYWEpCC0k7nMbgMsFkNi0J
-	z8oG0JUfiKY6HMQ28kAKr3WzY/ve3zRdVvjjPe0PDtmIlV51uYW6TQGC9hDmNe90imT0NXB
-	ZfYKSPqpmjuLjBfk2Mu+C6WdDDTRzpUe1yQGEy3L54TCtDoNeCSTBucpeCb5udaVlNVupHc
-	/ftsbVGVxGd5vAmbuUvqdL2J4buHu7tCKOZGLYcIsfzukaIAds/izyj+oLG5EmVw+NATRsZ
-	520GnbCmpADk7zDE/zdVi2j8eThPuhMSv8bEPSPN9HEauKaQ3RhUw6EpZLDy2DZgrGsAQCe
-	rHWRutUgqiK1Ucw9SE86ZZVPFc4wginY1zPFFUogJ6i15s1PuYwOqDCpetsgDsRHYob36ld
-	yWgOYSriC+aKi2iImckfMH2k1o9wrPj7EEoAYWQ9BlBCTctiKkAr4C7cldMrWBZutOnEBo+
-	cDBCMiNpfGrYtAwmnlAC6IXqB/jW3xBWJv32LHsS/JIaQ7oHVMV6yswOf97TsXiOuun4LJx
-	EX9pZTJgmZ7t7Nc8URR7TUgt5Zo57guiaH1UQFecPpEWmaoXdKaxhXcYvYC+f/m2MqH8As1
-	u19F2tlZIS17gLc=
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-X-QQ-RECHKSPAM: 0
+X-Authority-Analysis: v=2.4 cv=MJ9gmNZl c=1 sm=1 tr=0 ts=68a2f291 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=agCq8VLWhxUVNrkTfPUA:9 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+ a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-ORIG-GUID: q_DNiF2S4rhTZnwLr-5AvcnFsy8cxBdL
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE2MDAzMSBTYWx0ZWRfX8nvakhz3AdmD
+ TpVL9ee0iFyQjIGQNjg70f7+5kGTMz+lOHcGctgANnPpLcKlUlKKjAOV5bYDZ+8QxyZLyBatnie
+ NgH3pZ8CW1pHFm2yX72kzt1D9Yzg+SXeB4vLHRyHwvHABTdlTDlzuZpZsI7gksMvTkfKtvgi8nf
+ 0GeEw4KZntwaQF/41AumBxWFt86f7q18vhLLunJblsnpuJYe/NM7ufnSznTcEJyEiRjponwlkgI
+ p+RPCNnE+H72dil99J00q7sOc8WPsGwJrcULI1ASv3yek037PL9kqAEWF5bTZlnhvBNjYk1Mk6j
+ E8mgOUDsWeAAXZQcufDZJFp4zzq+8FfXbXg/7GYPrxLBFLJG7pCSUs58VXYOrOV467htzhDu6Dk
+ /42fpzVc
+X-Proofpoint-GUID: q_DNiF2S4rhTZnwLr-5AvcnFsy8cxBdL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-18_04,2025-08-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 impostorscore=0 phishscore=0 bulkscore=0 malwarescore=0
+ spamscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508160031
 
-Defining i2s_bclk and i2s_sysclk as fixed-rate clocks is insufficient
-for real I2S use cases.
 
-Moreover, the current I2S clock configuration does not work as expected
-due to missing parent clocks.
-
-This patch adds the missing parent clocks, defines i2s_sysclk as
-a DDN clock, and i2s_bclk as a DIV clock.
-
-A special note for i2s_bclk:
-
-From the definition of register, The i2s_bclk is a non-linear,
-discrete divider clock.
-
-The following table shows the correspondence between index
-and frequency division coefficients:
-
-| index |  div  |
-|-------|-------|
-|   0   |   2   |
-|   1   |   4   |
-|   2   |   6   |
-|   2   |   8   |
-
-From a software perspective, introducing i2s_bclk_factor as the
-parent of i2s_bclk is sufficient to address the issue.
-
-The I2S-related clock registers can be found here [1].
-
-Link:
-https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
-[1]
-
-Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
-Co-developer: Jinmei Wei <weijinmei@linux.spacemit.com>
-Suggested-by: Haylen Chu <heylenay@4d2.org>
-Signed-off-by: Jinmei Wei <weijinmei@linux.spacemit.com>
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
----
- drivers/clk/spacemit/ccu-k1.c    | 29 +++++++++++++++++++++++++++--
- drivers/clk/spacemit/ccu_mix.h   |  2 +-
- include/soc/spacemit/k1-syscon.h |  1 +
- 3 files changed, 29 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
-index 7155824673fb450971439873b6b6163faf48c7e5..b2c426b629a37a9901bbced26fc55c5f1b34eba5 100644
---- a/drivers/clk/spacemit/ccu-k1.c
-+++ b/drivers/clk/spacemit/ccu-k1.c
-@@ -141,8 +141,29 @@ CCU_DDN_DEFINE(slow_uart2_48, pll1_d4_614p4, MPMU_SUCCR_1, 16, 13, 0, 13, 2, 0);
- 
- CCU_GATE_DEFINE(wdt_clk, CCU_PARENT_HW(pll1_d96_25p6), MPMU_WDTPCR, BIT(1), 0);
- 
--CCU_FACTOR_GATE_DEFINE(i2s_sysclk, CCU_PARENT_HW(pll1_d16_153p6), MPMU_ISCCR, BIT(31), 50, 1);
--CCU_FACTOR_GATE_DEFINE(i2s_bclk, CCU_PARENT_HW(i2s_sysclk), MPMU_ISCCR, BIT(29), 1, 1);
-+CCU_FACTOR_DEFINE(i2s_153p6, CCU_PARENT_HW(pll1_d8_307p2), 2, 1);
-+
-+static const struct clk_parent_data i2s_153p6_base_parents[] = {
-+	CCU_PARENT_HW(i2s_153p6),
-+	CCU_PARENT_HW(pll1_d8_307p2),
-+};
-+CCU_MUX_DEFINE(i2s_153p6_base, i2s_153p6_base_parents, MPMU_FCCR, 29, 1, 0);
-+
-+static const struct clk_parent_data i2s_sysclk_src_parents[] = {
-+	CCU_PARENT_HW(pll1_d96_25p6),
-+	CCU_PARENT_HW(i2s_153p6_base)
-+};
-+CCU_MUX_GATE_DEFINE(i2s_sysclk_src, i2s_sysclk_src_parents, MPMU_ISCCR, 30, 1, BIT(31), 0);
-+
-+CCU_DDN_DEFINE(i2s_sysclk, i2s_sysclk_src, MPMU_ISCCR, 0, 15, 15, 12, 1, 0);
-+
-+CCU_FACTOR_DEFINE(i2s_bclk_factor, CCU_PARENT_HW(i2s_sysclk), 2, 1);
-+/*
-+ * i2s_bclk is a non-linear discrete divider clock.
-+ * Using i2s_bclk_factor as its parent simplifies software handling
-+ * and avoids dealing with the non-linear division directly.
-+ */
-+CCU_DIV_GATE_DEFINE(i2s_bclk, CCU_PARENT_HW(i2s_bclk_factor), MPMU_ISCCR, 27, 2, BIT(29), 0);
- 
- static const struct clk_parent_data apb_parents[] = {
- 	CCU_PARENT_HW(pll1_d96_25p6),
-@@ -756,6 +777,10 @@ static struct clk_hw *k1_ccu_mpmu_hws[] = {
- 	[CLK_I2S_BCLK]		= &i2s_bclk.common.hw,
- 	[CLK_APB]		= &apb_clk.common.hw,
- 	[CLK_WDT_BUS]		= &wdt_bus_clk.common.hw,
-+	[CLK_I2S_153P6]		= &i2s_153p6.common.hw,
-+	[CLK_I2S_153P6_BASE]	= &i2s_153p6_base.common.hw,
-+	[CLK_I2S_SYSCLK_SRC]	= &i2s_sysclk_src.common.hw,
-+	[CLK_I2S_BCLK_FACTOR]	= &i2s_bclk_factor.common.hw,
- };
- 
- static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
-diff --git a/drivers/clk/spacemit/ccu_mix.h b/drivers/clk/spacemit/ccu_mix.h
-index 54d40cd39b2752260f57d2a96eb8d3eed8116ecd..5b5c3bb958167a68736587e9097a1ca6f94d22fa 100644
---- a/drivers/clk/spacemit/ccu_mix.h
-+++ b/drivers/clk/spacemit/ccu_mix.h
-@@ -130,7 +130,7 @@ static struct ccu_mix _name = {							\
- }
- 
- #define CCU_DIV_GATE_DEFINE(_name, _parent, _reg_ctrl, _shift, _width,		\
--			    _mask_gate,	_flags)					\
-+			    _mask_gate, _flags)			\
- static struct ccu_mix _name = {							\
- 	.gate	= CCU_GATE_INIT(_mask_gate),					\
- 	.div	= CCU_DIV_INIT(_shift, _width),					\
-diff --git a/include/soc/spacemit/k1-syscon.h b/include/soc/spacemit/k1-syscon.h
-index c59bd7a38e5b4219121341b9c0d9ffda13a9c3e2..354751562c55523ef8a22be931ddd8aca9651084 100644
---- a/include/soc/spacemit/k1-syscon.h
-+++ b/include/soc/spacemit/k1-syscon.h
-@@ -30,6 +30,7 @@ to_spacemit_ccu_adev(struct auxiliary_device *adev)
- 
- /* MPMU register offset */
- #define MPMU_POSR			0x0010
-+#define MPMU_FCCR			0x0008
- #define  POSR_PLL1_LOCK			BIT(27)
- #define  POSR_PLL2_LOCK			BIT(28)
- #define  POSR_PLL3_LOCK			BIT(29)
-
--- 
-2.50.1
-
+On 8/16/2025 4:33 PM, Krzysztof Kozlowski wrote:
+> On 15/08/2025 15:18, Yuanfang Zhang wrote:
+>> Add device tree binding for Qualcomm Coresight Interconnect Trace
+>> Netwrok On Chip (ITNOC). This TNOC acts as a CoreSight
+>> graph link that forwards trace data from a subsystem to the
+>> Aggregator TNOC, without aggregation or ATID functionality.
+>>
+>> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+>> ---
+>>  .../bindings/arm/qcom,coresight-itnoc.yaml         | 108 +++++++++++++++++++++
+>>  1 file changed, 108 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..fd224e07ce68918b453210763aacda585d5a5ca2
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml
+>> @@ -0,0 +1,108 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/arm/qcom,coresight-itnoc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Interconnect Trace Network On Chip - ITNOC
+>> +
+>> +maintainers:
+>> +  - Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+>> +
+>> +description: |
+> Do not need '|' unless you need to preserve formatting.
+sure, will remove it.
+>> +  The Interconnect TNOC is a CoreSight graph link that forwards trace data
+>> +  from a subsystem to the Aggregator TNOC. Compared to Aggregator TNOC, it
+>> +  does not have aggregation and ATID functionality.
+>> +
+>> +select:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        enum:
+>> +          - qcom,coresight-itnoc
+>> +  required:
+>> +    - compatible
+> Why all this? Drop
+sure.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^tnoc(@[0-9a-f]+)?$"
+> Why are you requiring a non-generic name?
+will update the name.
+>> +
+>> +  compatible:
+>> +    items:
+> No need for items
+sure, will remove it.
+>> +      - const: qcom,coresight-itnoc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: Base address and size of the ITNOC registers.
+> Drop, redundant
+sure, will remove it.
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: apb
+> Drop clock-names, obvious. Also, odd order - names are never before
+> actual property.
+sure, will update the order.
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  in-ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      '#address-cells':
+>> +        const: 1
+>> +      '#size-cells':
+>> +        const: 0
+>> +
+>> +    patternProperties:
+>> +      '^port(@[0-9a-f]{1,2})?$':
+> Why do you have here 255 ports?
+It supports a maximum of 256 input ports, so it is limited to 0-255.
+>> +        description: Input connections from CoreSight Trace Bus
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +    additionalProperties: false
+> This goes after $ref
+sure, will update.
+>> +
+>> +  out-ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port:
+>> +        description: out connections to aggregator TNOC
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +    additionalProperties: false
+> This goes after ref
+sure, will update.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+> And here different order... Be consistent. See also DTS coding style.
+sure, will update the order.
+>> +  - in-ports
+>> +  - out-ports
+>> +
+>> +additionalProperties: false
+>> +
+>
+>
+> Best regards,
+> Krzysztof
 
