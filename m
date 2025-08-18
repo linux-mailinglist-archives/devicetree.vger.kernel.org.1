@@ -1,182 +1,340 @@
-Return-Path: <devicetree+bounces-205635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86261B29AAA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:17:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A94DB29AC1
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:26:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43CB35E3F0A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:17:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B00D5E2015
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8152727990A;
-	Mon, 18 Aug 2025 07:17:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D97AF279DB2;
+	Mon, 18 Aug 2025 07:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="teFAK1vl"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iZSh9vyO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A964276059
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 07:17:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755501460; cv=none; b=ow6oWZebUmZXf0MsNK+oUGAfy9L1F0Ay1BWVlzgAfp9y+DTjYyImTSb1/2yCJKC9J+gSzNPuTPV++8kYYUclOoqSV2J8VRQz95KMaOWCuHYuETU9WaU1dxVopQxzZnInVbdBp/R+S+DfNxk+wp0yay0P39emFMsFdCF8gkMrt1U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755501460; c=relaxed/simple;
-	bh=GRtOJJ4TU25SLYLaBruGe/0cKnzINtKI69UBlywJ0HU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=G/m1+RuXn3j3c5maQPDTey3YocDl+3AXLA1q+4PUUFjcU4M5xuBvAXOjUZQvKakRhSQ1C0wVA0Fo35Do6rOe6P1TeKpGxQFlgxfQV3KpaVhvtcSFa+1tt9fBZ5jcvLg22wNvAqm80dr+NsoRrC4O3Aksea4Axvx69RW4cWQKRgM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=teFAK1vl; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3b9dc5cd4cbso2590584f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 00:17:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755501455; x=1756106255; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=00HmFiTKWlOUviqLOmDiviucp/G1KSLyabeRXjoLhH4=;
-        b=teFAK1vlqjAnOufj1cK0esDy07iK6gIPAZO+Kj1pmsTWtYWHEi5Damcdt8kobHlO0n
-         +EfMwuo5qdITFKs+ESDzB91C+xpDuInUEVpmKHoQ3aVz7VNki8YCwvssIVO4QWNL1p4f
-         5o5KIrpybG816yrbD0w7hgF9hWhREA22eGasZUsmpmyPUwtOYkM9yrIbBKXIPmAqQLiD
-         qgb4EJcRMokq4Iht9/A24DqEmIYFH5h92RR99dWD5xuwzF6KjFttfFa+dqDVkqOu5P/m
-         wNnzcOdX9QvIngar97NEu59zd/7fue9bPHitIyhUfSeaGvLnsjhWKdSjDy7dSM7m7k09
-         N5/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755501455; x=1756106255;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=00HmFiTKWlOUviqLOmDiviucp/G1KSLyabeRXjoLhH4=;
-        b=a/DbMxUyYYpoAILbWE1W1Uf/ijaNphfMUUKxE3HRiQ3Mp1xByiN92rWqqLiMrsaCFo
-         rD2YZ8RI5GaT6LXDiz0XmVXUBLlny1Fhej60RI956F7AuUi46jtkfGt6QRo7MUObsr3y
-         Y2qtsGVhEhTXdoYqbyWNhnnWEwc/MYWNy9+WHJUOzHVtW9wiNEMskYazeGB7vtjbc57i
-         wfLiQZfku9ZuKOCydpFQ/uVC2hAvPa9D8E+uGDMnQZeqCRim2OVSBpRfONA4R9+XCl2K
-         TOv0WOaKP9u/FnBe6usHBfdTKVwHKQS7fAJBN7LEsCJtzzdL+ETYlkZtfVXCwMgvh+Bj
-         3ydA==
-X-Forwarded-Encrypted: i=1; AJvYcCVA+o1ZYgOjgHfFt/QWOG4GoR4NcVnGV299uMw/OIJKG3xlcrAkfhSLCkv4lmpG96Sf8c4X34+HNTUH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/IdB/Yt0op5PxThCO7vowpUkoFNXoiauph49K5KERCiWHzoSZ
-	6m2gZ1NCfJFHGCZ99lcl7vaUlaaWT52ZkOKPsM0m/L4DiU7yafhk0Yr1e0BXUMdEWeU=
-X-Gm-Gg: ASbGncvsfnDGnGviMFXnh8WSVyAoeTk4s3/KuRq0M0cQcv9b86KKcUHcGGzC+YQWxW5
-	HYzX7+lxt88qSd7GQYGNCClPGzIzk8YVzE4PQoPKzMwb/r85KUhEOiClZofVbDf32+oym+3iEEv
-	ch0rD+UjvjuQ6u/UDBusPRVcob9IA2n/abv8qw0Vz1O9ypQmxqHAd2sOW/ojQ/T0HYWmoNeMdHv
-	p5Gm5mP0FHV22dpsssU/RxscmoilW7+2Hzf4UzhitfpPpeiIIHv8Be2c2/kpjxOmK3PxU0d2shJ
-	5bBnxUmZ8NgJH2++AJfUD45PXUrC+u4yt2OJ+u0yLJddbJcSe9V7+QqN3apSD1I7se5HlXeizq3
-	8xdZfCag305ybpbQZjD0woqAFejcYnGfEf+Kfua0PYfk=
-X-Google-Smtp-Source: AGHT+IHyrx5So2JkHy8B3V9n10eIVkllRTMcnOfbIYL9Fak+QjG/0EyC3RMUePQ7ZAM0RE6YfPigZA==
-X-Received: by 2002:a05:6000:250c:b0:3b7:8473:31c3 with SMTP id ffacd0b85a97d-3bb6646e10amr7831271f8f.9.1755501455230;
-        Mon, 18 Aug 2025 00:17:35 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3bb67c902dbsm11683675f8f.47.2025.08.18.00.17.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Aug 2025 00:17:34 -0700 (PDT)
-Date: Mon, 18 Aug 2025 10:17:31 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Guodong Xu <guodong@riscstar.com>,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	duje@dujemihanovic.xyz
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	Alex Elder <elder@riscstar.com>,
-	Vivian Wang <wangruikang@iscas.ac.cn>, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	Guodong Xu <guodong@riscstar.com>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Subject: Re: [PATCH v4 4/8] dmaengine: mmp_pdma: Add operations structure for
- controller abstraction
-Message-ID: <202508181040.az8RxLrG-lkp@intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3214B5FDA7;
+	Mon, 18 Aug 2025 07:26:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.16
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755501969; cv=fail; b=Te+OYX3YcPlXA7IPsEI8pI+zFAqsfPfh/F+jcpmzPLzA+wtCLa4vj6phyVniL2bxnzg5eGBk0XrOGdXflc9q6ouL84ujxNYGO/62JRQJ9f9ZflbM+9t4g8nQLSTLNsKb9E/DXZ4mJ0Cfo0Qbh2Ony4f6RYzOa8m7nsYOuJ1Sjvc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755501969; c=relaxed/simple;
+	bh=/GK8T69fSK2wb5NU2UpolVebdu50hb8Zc4i6Anl+/yI=;
+	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=liZ50H3kilCsnllpX8WdIspdSHD9256iFXD9194P8mFhzYsaR03Xv095rkCqd7r++8Yh15voMXoxAFJNJGlRCOXaISR/nLpLfEJbLEeqGvIqm0HY5sdcKBcXBBhtTSEN3VS7S7YKodpe2fAt9VIZVQE38S5RSBr4f4CMMRBlSF4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iZSh9vyO; arc=fail smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755501969; x=1787037969;
+  h=message-id:date:subject:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=/GK8T69fSK2wb5NU2UpolVebdu50hb8Zc4i6Anl+/yI=;
+  b=iZSh9vyO7MEn6/suyjIeVPPOajjwHQkB1FescFdyBN3i8vnyYtgl/yVT
+   enIAfTjtUk/qCApMRl6bgXWFlJqVRI5y2HEmodMz2UXtyuBDP0CcFhqMF
+   OMxvIsBb2PHrNo7ly24SOiYEAO0rBMr5WsEwnPFmFnxmsQLwuUvhYPonn
+   DDRjmue5d8e0I8BUkq8ChTHGT/yNUyoLtICRUQe6zsxSbj/1bt2Fpzc7z
+   MMu9UOyP6aq7TYH3hNsvABlBGWY/ZfPqjdcvJCRZQhAu325Ny71xNXe8+
+   D7XapRd4ZW9bRr2pj9SYxlIrdU0LuIuMjklAQj0ipJnIOqiVwHI6a8zlw
+   Q==;
+X-CSE-ConnectionGUID: 8GMeqCFvTu6B0/1XBafsLw==
+X-CSE-MsgGUID: wk71EH/1S9W3ggA6Ei7FhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="57865292"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; 
+   d="scan'208";a="57865292"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 00:26:05 -0700
+X-CSE-ConnectionGUID: WhXZZ8MNQ+iOrIwZNPJ4eQ==
+X-CSE-MsgGUID: P1AzUshRRJuk6zNNspIWAg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; 
+   d="scan'208";a="167856837"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 00:26:04 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 18 Aug 2025 00:26:03 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Mon, 18 Aug 2025 00:26:03 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.44) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 18 Aug 2025 00:26:03 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zGjJceH75fZ8Z8IdkfvYHWokmtcD5KrIwrsUqpA2geE/o3rVTlkckDhdN79eKyDNevv4vB1F1qQ07E4g7SC2x2Ul82kN67qTCXURYYxqpwvH7OovqtO76AiS8WvmLXxPmFV0/IrpSrhnYBQEuyjiKDO4zKJ4/XiqaoMv7kpIJn2RMBYw0qG/PJfpM1b4Ab4SiTY39h+m704fxlcnoW95bzsFH4qP/zTOldn5Z1K/1AnTkvNdemGzy84WKiMPtG+rLFEAize4FW0lLInkQpzmU+m9jGcGkQOUbo6dyZpzl6+75E/Pgrgt5fHpp/YimciueEeobFcchZYhZlqNmgyZtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RbpNj2zBzOTQXKrgfFVAWp6YssvxQSDkJEBdiQn093U=;
+ b=cVyc8iz3Gv4VvF6Oahp9jNbCSuIJi8wJshpN33qUpFbJe7ATiXssoyHyaEQVT3XUPLK70I099pq7Gb36EtWlFo2V09L36NrZ0H5gcybhRgHaq+qfaG0vWLB9hpcTUtBFsQeSUa3mlTzc0t3ejTZ3DiEF2Sct0wilE1wckL3AVJBObxEABOMKUbcZdrDZkNevz42xAIigqEykSgDcMdM8a/z1/YpP+H8rGs/jd9fXZWEuiHxYbKXqx90h8bvgTD9vh1z0mI0Utx5ZSRCWJUKG7wFQhZH1wN7kSTBasQAwm4SghBjKlGHaWrLXfjUnnISrJEJ+vL/tURbNP9/8qtXRdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA1PR11MB7198.namprd11.prod.outlook.com (2603:10b6:208:419::15)
+ by PH3PPFFA27DACA6.namprd11.prod.outlook.com (2603:10b6:518:1::d63) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.15; Mon, 18 Aug
+ 2025 07:26:01 +0000
+Received: from IA1PR11MB7198.namprd11.prod.outlook.com
+ ([fe80::eeac:69b0:1990:4905]) by IA1PR11MB7198.namprd11.prod.outlook.com
+ ([fe80::eeac:69b0:1990:4905%5]) with mapi id 15.20.9031.021; Mon, 18 Aug 2025
+ 07:26:01 +0000
+Message-ID: <7bddc691-df7a-430a-b7e7-01ad85c27cbe@intel.com>
+Date: Mon, 18 Aug 2025 10:25:56 +0300
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] mmc: sdhci-pxav3: add state_uhs pinctrl setting
+To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>, Ulf Hansson
+	<ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>,
+	<linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <phone-devel@vger.kernel.org>,
+	<~postmarketos/upstreaming@lists.sr.ht>
+References: <20250806-pxav3-uhs-v3-0-2f03fee380b0@dujemihanovic.xyz>
+ <20250806-pxav3-uhs-v3-2-2f03fee380b0@dujemihanovic.xyz>
+Content-Language: en-US
+From: Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: c/o Alberga Business Park,
+ 6 krs, Bertel Jungin Aukio 5, 02600 Espoo, Business Identity Code: 0357606 -
+ 4, Domiciled in Helsinki
+In-Reply-To: <20250806-pxav3-uhs-v3-2-2f03fee380b0@dujemihanovic.xyz>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DB7PR05CA0051.eurprd05.prod.outlook.com
+ (2603:10a6:10:2e::28) To IA1PR11MB7198.namprd11.prod.outlook.com
+ (2603:10b6:208:419::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250815-working_dma_0701_v2-v4-4-62145ab6ea30@riscstar.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR11MB7198:EE_|PH3PPFFA27DACA6:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6fff7b8f-80d0-43b8-096e-08ddde287b93
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7416014|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UnNSNXp0UDl0VURTcGhjMUNXMEpSa3gyM1hOUko1Q1hJNmxDVWI4Yk9RYlN4?=
+ =?utf-8?B?NHBXZDZVbU9iamhXbVVGc08vNHdyenU1Q0dJd05HT01OaTJ4ZXBLQmNSOUsx?=
+ =?utf-8?B?S2oyNnZ6WHRMckttb1ZpNEFhMk5QTmFsRlg4aklJSkJiUldBd25Tdzh2VmNQ?=
+ =?utf-8?B?WEt2WXU3a2MyMXJSZjI1dlhQbnFiUTYvRmpqb0NVVjFCaDBVeGN3NlZ3eVFX?=
+ =?utf-8?B?UTZ6NENZOENsRW5aUzdLQ2ZXRTF2Z25IVXZ5cEpVc1BuK3g0RjBRblR4b3A3?=
+ =?utf-8?B?LzZIaGZLNG9SQlBYbkk5R2M3b3ZHdUVCb3IvbWxqV0JQelRMNXZ3ZzFtcCtr?=
+ =?utf-8?B?MlhOaFhGZ2k5aGpKRUpTNlN0WFMzMlVJeUYzQ0RTY2xyTnZqTW5qaWxkcEt6?=
+ =?utf-8?B?NjRPQ3NYTFdMQTNvSVBRWWRkdjR4THdnRFUwZ0pvWW9LL3Jxb3NGTkRFZFA5?=
+ =?utf-8?B?NHc3V1ZiUkh6b05JYUFTQ1JlREU2aTZlV3F2UHVnYWZMRjR1dHhQWVpBem5B?=
+ =?utf-8?B?cFRTbXdtZjZZUjhwem0zR0FuSkJJZVg0d1dQakwrbkhSVE9wbWFQY0dBNXNw?=
+ =?utf-8?B?aFJVeXVRSW5nbWN3bzA3eWo5NzNSUDZ4MVNxNTRIUlJpQkZxcnFVMDFYaDRz?=
+ =?utf-8?B?eUVaVXhsYzhUK1h3REt3RDd6R3NjUmkrK0oxTVl1YUdHRngvOG1aelBHaG5U?=
+ =?utf-8?B?VUFIOHdYN2tOa0tNaTRaZmdRT21GS051SjdIbWIvZ0RIeUppWXA3Qm9uOXIw?=
+ =?utf-8?B?YjJGMHpvZzlpdXFwS1F6TGpmM1BkOHV6VzhYdWJDN0JDMEh0bnZKd3l3Y3M0?=
+ =?utf-8?B?N0VPZ1NQR3c5S1pNUDUza2xidGNUUU1Uc0lRdHl2UmZCZi9KQkoyamo4ZXU4?=
+ =?utf-8?B?QkovaWxHT3kyRjViaHBybGZzL1EyTEI4UFBYdCs0dU1iZktxWm56bmw3WFpO?=
+ =?utf-8?B?SlVnL3UyaTdSeVpRTTlVQXB3aUhCcDZMdGgrZUZCTFJDMzVtNkkyOGw1QVhN?=
+ =?utf-8?B?Rzd4SFlhQ2lTNEdWRDJYYWRsZHUwakFtd0JzbTMyWkhtV0dTa0R1Y3psblpW?=
+ =?utf-8?B?cWVxZU1GMEdoN2NHL0hDUmMzNUQ1RzdCUDdMaDFveGwzemJiMUIwQ1oxMVd4?=
+ =?utf-8?B?akt2OGh5VGtyWHd5NEFDN1FaTW4xQmRZRFZiVmsxeThMRVprakFKMERRQnJL?=
+ =?utf-8?B?dFU0VVRyQWplN3NvaVYvbEowbUJZdmlScVVMSjVYeDd1b2F1YWNKYmczRUNW?=
+ =?utf-8?B?b2lYNVRsdjlQb1lMOCs0Z1RMSkNSbWVQKy9ONTFWeGMrVnI2VW84d0x1Mk1O?=
+ =?utf-8?B?dHJER1U2Z0g5OCtwNUFzQVF1NW5IdENRSWlMYW9XeUtqSjJzNkU2Y1g1N3py?=
+ =?utf-8?B?eE1tWU11bVFVRnEyTjBUZ3Zna1A4eC81cXVxWTBpRE9jcEhyNlYvM0RVdFJx?=
+ =?utf-8?B?Qlp6WUMwZ2JsNWFIb09EQThlajMvZGxLc2xKRExlK3lhOWsxM3Q2QnNDZGRT?=
+ =?utf-8?B?VHRrYjNxcjEwZ09RVkt6RUlReDFFY2ZGempkQmpZeEZjaVhUQ09HVUhNM2tC?=
+ =?utf-8?B?enp1ZkNYaVd4TUdjbjJlMnptY1k2c0dFc0VUSlMzbkFLcTFLM2tUYTFQM2JF?=
+ =?utf-8?B?RU9zc2N1cHZhUzJIQThSanZnYkxoZFB2dnFWYVNKdzVKdHJCZjh6RnV0K3Nq?=
+ =?utf-8?B?eFV1SzBJV0YxNVN5VFpGeW1OVTE2MWpZSDFodi9uVXJHem54cDFqN3ZYTVQ4?=
+ =?utf-8?B?ZzlIcm56aE1nN1ppZkR1SEwrL2piMVNqSWtqUDJrb1FuOVBWSHI1K3JkcEVB?=
+ =?utf-8?B?S2dtZnJ3Wm56NkFQSkdYUUpiVnF6TFJZUTM0SEtXWkcyTzV2dExKdlA3YW5L?=
+ =?utf-8?B?VktLR3lQOGJlcTkwZ3B3RWN6Ti84aUpFTTNkTnROYTFHaFkwUE80NWw0VDRm?=
+ =?utf-8?Q?Rd4A/WEhWWQ=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB7198.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(7416014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MzBrUjlKZEdYa2l4SGNiL1BUb0pNaEkyY0ZUNkVjVitYZkIycFVhMDd0MVV6?=
+ =?utf-8?B?aHpuck1xNFFJQU1aWkJ6WklpVVlyTFNxZWJWbWZQRm1MYkZtbFc0WDdPVlRr?=
+ =?utf-8?B?OW9La201RXJEd3lPNFVSMUI4bmU4Z1BmejhZdDhRVGpDbWNVTmpGTUQ2a2J3?=
+ =?utf-8?B?dWIxQ09lMTBLVmpneDU0TG50N2sxYjB2bG5kUklKM1dvL2FLM2lBaUJWeUI2?=
+ =?utf-8?B?RDdoZDBqcFBvR1BndkZka0ltVmJZRkNKTzFMVzVjODIyTTJKZXB1dFJuR3VH?=
+ =?utf-8?B?cC9zSzcrMWN1WEs0Zll4bkRXUnJPMEIrRGxKbE9BT2NBVnRqNWxycnNldFlX?=
+ =?utf-8?B?ZkJZUDRJNUxiRHE0SFBiakQyR3ExMnhMaVdFVHJCWkZ4ck8vUkxoYTZQNFd1?=
+ =?utf-8?B?THJsaWJOMnViMnhka0lHdE9IRnpKTGV0ODg5ak91MmxoQjd1NzBOcVNsY0Vj?=
+ =?utf-8?B?TWhEWHZVam1xekVrSjIxZjVsY1dkQmZ2SmNVc1dZRzhNTGZMMGpxeWFXZEx2?=
+ =?utf-8?B?Q1YzK0FzR2JUalJPK2pCNGV6bCtwSnV1dlBmM2krcklvaWRjMmlVeUgzeWJw?=
+ =?utf-8?B?QWJxU1g0T2Nvb2pjL3pBOGRzV05kSXNkejVvQ2NuUEx3RmRaZ2c3eFoxL1lU?=
+ =?utf-8?B?czdIV3Vtd1I2bU16WVcrYi9Ea0p3bUpkV3ZLTGdoclpxWnN5akJCUW9TNXNB?=
+ =?utf-8?B?N2x2N1Z4bTJBSUlReVprc3M1Nml4QWQ1V1FKZTdmaythSHBmcU5RNVlxWDdJ?=
+ =?utf-8?B?MlAvdjFZTjR3RnNzM0RLbmZmSTdYdlppTFNTMS9tc2FlR3lQQmZjVWR4NUFo?=
+ =?utf-8?B?TTJnUlY0a21DMWtaK2oyaWhYck9YRWlTOVZDSEhGMDR3Z0JvUVJ3REY2Rkt4?=
+ =?utf-8?B?aDhIc3VZM0ZrTHkxZEJsWTE2QXpSWHY5MkpjN2ZhTzkrWU9zVnNOeE5LRTdh?=
+ =?utf-8?B?VVoyNmo5SXVYM2h0NHdhRkVCTG1nZmFYcDd5TUduYXByZmtEUFduVHRFNWNB?=
+ =?utf-8?B?bU9lWjRnTzE0U0FyWjB1SjB6RmNOa0ZMMTdjekFyTnp1RXpFWHdjZmtLY2Jr?=
+ =?utf-8?B?STBBTGI5bHNSUzVxcTdjV1Q2UkNiR2t3VkttZ2FUd0Iwa25XeS85QUhJditS?=
+ =?utf-8?B?TWcyeXB6S1htVUJFR0NMek9CUGZsaFk1cWZpM0prbUpWSVdZNWtRSk5TOVpV?=
+ =?utf-8?B?bXo1ZEw5SVNBSDAraVd3UGtzRzdJTVdIRmVOa0MxZE8vTkY2d1BXOXMvZnhS?=
+ =?utf-8?B?R1VvdjVYd29naHpzSjh6bmgxNUQ2QTVoS0FPVmJBb3gxb3NQTzQ0K3NaYkNy?=
+ =?utf-8?B?K1ROd1VlZWhoUTVFejd6NytJZERYZ3ZQSnJUQjh5ZjZUa2d6K2ZraFZsSjlB?=
+ =?utf-8?B?YWh5cnBnb21WSk9hWUhFbW9HbWxkMVVBQVZZQ1QyUW1CUUdtekhXNFQySzg1?=
+ =?utf-8?B?MVV0OGF5dmNDQTgveUNwTkxVS2c2QnpsV3N1eFF3SDlXc2lMQWlGWk9nbVJw?=
+ =?utf-8?B?Z3N3T3k5eXN1L1RpcytvWW5HbFIxc04vM2RHZ0VjMkR4ZGJnZEU4Qk5VdndW?=
+ =?utf-8?B?OHFVZG5VbzdoRGp1aTVveHA2cFh6YVlna1BvMXF1ZDByUW5WNkVRb1dMVEk3?=
+ =?utf-8?B?ZUpFZlhGbnJ5K2I4KzFXRkNRbkozV1owaTdrSHl2TlVyRGRRNFhGdkEwTXNo?=
+ =?utf-8?B?cTVPODU1VHRQQ2JaYVVJQ0ZsY29iUGx5aXlqV0N5YlRLQlZlOFJpVHZCL2Vi?=
+ =?utf-8?B?aUZibnVIS1FlZDJjTjQzdytEYi9PYTV2QVI0cStpRWlvYm5qL2ZTcjFVRWJE?=
+ =?utf-8?B?TW5xTWFrMlhqTUh5OVVYM0VXanhsNnpqSWx0MDA2N3RpeFJ2b0YwWkdoUURI?=
+ =?utf-8?B?NmJPdHZQeEpuSC8wODUrRURPbDJXcm01MkR1M3BFbU8rYTNyWUJqYm8wM1pC?=
+ =?utf-8?B?TWhxSmhLdWNmUUR2R2xTN213blczd3dLU1o1VEJqc3BHWFYyR0FIWXR5NGJ0?=
+ =?utf-8?B?cXRzYWdlVzJ3cWVQT3crWEhtSnJIRzRDQ2tnMC9jZjQzVi96d2NjUmx1c0xB?=
+ =?utf-8?B?eGlkQ21RbGdGYU1TQUllOEFWN0FyM0VpY3hGalNmaDc0cE42UVBMRU1jS0VU?=
+ =?utf-8?B?QXdCSEpNSWgreTUyWWhCTURsWEdkMDZ2UUZ3K2l2ZGZCQTZVRjJWZzkzRG5W?=
+ =?utf-8?B?TEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6fff7b8f-80d0-43b8-096e-08ddde287b93
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7198.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2025 07:26:01.2495
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HqIsHCDf5rG3LwPa+fI4/QULLc3JcXRNps9Mzskz1EnJLmC+mLTn/qUc+IE9AEx3M45s+qC5JMJrExKZFmncsg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPFFA27DACA6
+X-OriginatorOrg: intel.com
 
-Hi Guodong,
+On 06/08/2025 12:43, Duje Mihanović wrote:
+> Different bus clocks require different pinctrl states to remain stable.
+> Add support for selecting between a default and UHS state according to
+> the bus clock.
+> 
+> Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
 
-kernel test robot noticed the following build warnings:
+One minor cosmetic issue below.  Address that and add:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Guodong-Xu/dt-bindings-dma-Add-SpacemiT-K1-PDMA-controller/20250815-132049
-base:   062b3e4a1f880f104a8d4b90b767788786aa7b78
-patch link:    https://lore.kernel.org/r/20250815-working_dma_0701_v2-v4-4-62145ab6ea30%40riscstar.com
-patch subject: [PATCH v4 4/8] dmaengine: mmp_pdma: Add operations structure for controller abstraction
-config: parisc-randconfig-r072-20250818 (https://download.01.org/0day-ci/archive/20250818/202508181040.az8RxLrG-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 8.5.0
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202508181040.az8RxLrG-lkp@intel.com/
+> ---
+> Changes in v3:
+> - Move pinctrl stuff out of platdata
+> - Add helper for pinstate lookup
+> - Thanks to Adrian for the suggestions
+> 
+> Changes in v2:
+> - Don't attempt to lookup pinstates if getting pinctrl fails
+> - Only select pinstates if both of them are valid
+> - dev_warn() -> dev_dbg()
+> ---
+>  drivers/mmc/host/sdhci-pxav3.c | 40 +++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 39 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mmc/host/sdhci-pxav3.c b/drivers/mmc/host/sdhci-pxav3.c
+> index 3fb56face3d81259b693c8569682d05c95be2880..ceb06f1c18146eac296c6d20483a9f006567a978 100644
+> --- a/drivers/mmc/host/sdhci-pxav3.c
+> +++ b/drivers/mmc/host/sdhci-pxav3.c
+> @@ -20,9 +20,11 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+> +#include <linux/pinctrl/consumer.h>
+>  #include <linux/pm.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/mbus.h>
+> +#include <linux/units.h>
+>  
+>  #include "sdhci.h"
+>  #include "sdhci-pltfm.h"
+> @@ -51,6 +53,9 @@ struct sdhci_pxa {
+>  	struct clk *clk_io;
+>  	u8	power_mode;
+>  	void __iomem *sdio3_conf_reg;
+> +	struct pinctrl *pinctrl;
+> +	struct pinctrl_state *pins_default;
+> +	struct pinctrl_state *pins_uhs;
+>  };
+>  
+>  /*
+> @@ -313,8 +318,20 @@ static void pxav3_set_power(struct sdhci_host *host, unsigned char mode,
+>  		mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, vdd);
+>  }
+>  
+> +static void pxav3_set_clock(struct sdhci_host *host, unsigned int clock)
+> +{
+> +	struct sdhci_pltfm_host *phost = sdhci_priv(host);
+> +	struct sdhci_pxa *pxa = sdhci_pltfm_priv(phost);
+> +	struct pinctrl_state *pins = clock < 100 * HZ_PER_MHZ ? pxa->pins_default : pxa->pins_uhs;
+> +
+> +	if (pins)
+> +		pinctrl_select_state(pxa->pinctrl, pins);
+> +
+> +	sdhci_set_clock(host, clock);
+> +}
+> +
+>  static const struct sdhci_ops pxav3_sdhci_ops = {
+> -	.set_clock = sdhci_set_clock,
+> +	.set_clock = pxav3_set_clock,
+>  	.set_power = pxav3_set_power,
+>  	.platform_send_init_74_clocks = pxav3_gen_init_74_clocks,
+>  	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
+> @@ -366,6 +383,19 @@ static inline struct sdhci_pxa_platdata *pxav3_get_mmc_pdata(struct device *dev)
+>  }
+>  #endif
+>  
+> +static struct pinctrl_state *pxav3_lookup_pinstate(struct device *dev, struct pinctrl *pinctrl,
+> +						   const char *name)
+> +{
+> +	struct pinctrl_state *pins = pinctrl_lookup_state(pinctrl, name);
+> +
+> +	if (IS_ERR(pins)) {
+> +		dev_dbg(dev, "could not get pinstate '%s': %ld\n", name, PTR_ERR(pins));
+> +		return NULL;
+> +	}
+> +
+> +	return pins;
+> +}
+> +
+>  static int sdhci_pxav3_probe(struct platform_device *pdev)
+>  {
+>  	struct sdhci_pltfm_host *pltfm_host;
+> @@ -441,6 +471,14 @@ static int sdhci_pxav3_probe(struct platform_device *pdev)
+>  			host->mmc->pm_caps |= pdata->pm_caps;
+>  	}
+>  
+> +	pxa->pinctrl = devm_pinctrl_get(dev);
+> +	if (!IS_ERR(pxa->pinctrl)) {
+> +		pxa->pins_default = pxav3_lookup_pinstate(dev, pxa->pinctrl, "default");
+> +		if (pxa->pins_default)
+> +			pxa->pins_uhs = pxav3_lookup_pinstate(dev, pxa->pinctrl, "state_uhs");
+> +	} else
+> +		dev_dbg(dev, "could not get pinctrl handle: %ld\n", PTR_ERR(pxa->pinctrl));
 
-smatch warnings:
-drivers/dma/mmp_pdma.c:546 mmp_pdma_prep_memcpy() warn: variable dereferenced before check 'dchan' (see line 542)
-drivers/dma/mmp_pdma.c:712 mmp_pdma_prep_dma_cyclic() warn: variable dereferenced before check 'dchan' (see line 708)
+Kernel style is to have braces here.  ./scripts/checkpatch.pl --strict
+can tell about that kind of thing:
 
-vim +/dchan +546 drivers/dma/mmp_pdma.c
+CHECK: braces {} should be used on all arms of this statement
+#92: FILE: drivers/mmc/host/sdhci-pxav3.c:474:
++       if (!IS_ERR(pxa->pinctrl)) {
+[...]
++       } else
+[...]
 
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  536  static struct dma_async_tx_descriptor *
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  537  mmp_pdma_prep_memcpy(struct dma_chan *dchan,
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  538  		     dma_addr_t dma_dst, dma_addr_t dma_src,
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  539  		     size_t len, unsigned long flags)
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  540  {
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  541  	struct mmp_pdma_chan *chan;
-918da7ee50b22b Guodong Xu       2025-08-15 @542  	struct mmp_pdma_device *pdev = to_mmp_pdma_dev(dchan->device);
-                                                                                                       ^^^^^^^^^^^^^
-The patch adds a new dereference
-
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  543  	struct mmp_pdma_desc_sw *first = NULL, *prev = NULL, *new;
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  544  	size_t copy = 0;
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  545  
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03 @546  	if (!dchan)
-                                                            ^^^^^^
-But the old existing code assumed dchan could be NULL
-
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  547  		return NULL;
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  548  
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  549  	if (!len)
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  550  		return NULL;
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  551  
-c8acd6aa6bed3c Zhangfei Gao     2012-09-03  552  	chan = to_mmp_pdma_chan(dchan);
-
-[ snip ]
-
-2b7f65b11d87f9 Joe Perches      2013-11-17  701  static struct dma_async_tx_descriptor *
-2b7f65b11d87f9 Joe Perches      2013-11-17  702  mmp_pdma_prep_dma_cyclic(struct dma_chan *dchan,
-2b7f65b11d87f9 Joe Perches      2013-11-17  703  			 dma_addr_t buf_addr, size_t len, size_t period_len,
-2b7f65b11d87f9 Joe Perches      2013-11-17  704  			 enum dma_transfer_direction direction,
-31c1e5a1350ae8 Laurent Pinchart 2014-08-01  705  			 unsigned long flags)
-50440d74aae318 Daniel Mack      2013-08-21  706  {
-50440d74aae318 Daniel Mack      2013-08-21  707  	struct mmp_pdma_chan *chan;
-918da7ee50b22b Guodong Xu       2025-08-15 @708  	struct mmp_pdma_device *pdev = to_mmp_pdma_dev(dchan->device);
-                                                                                                       ^^^^^^^^^^^^^
+CHECK: Unbalanced braces around else statement
+#96: FILE: drivers/mmc/host/sdhci-pxav3.c:478:
++       } else
 
 
-50440d74aae318 Daniel Mack      2013-08-21  709  	struct mmp_pdma_desc_sw *first = NULL, *prev = NULL, *new;
-50440d74aae318 Daniel Mack      2013-08-21  710  	dma_addr_t dma_src, dma_dst;
-50440d74aae318 Daniel Mack      2013-08-21  711  
-50440d74aae318 Daniel Mack      2013-08-21 @712  	if (!dchan || !len || !period_len)
-                                                            ^^^^^^
-Same.
-
-
-50440d74aae318 Daniel Mack      2013-08-21  713  		return NULL;
-50440d74aae318 Daniel Mack      2013-08-21  714  
-50440d74aae318 Daniel Mack      2013-08-21  715  	/* the buffer length must be a multiple of period_len */
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +
+>  	pm_runtime_get_noresume(&pdev->dev);
+>  	pm_runtime_set_active(&pdev->dev);
+>  	pm_runtime_set_autosuspend_delay(&pdev->dev, PXAV3_RPM_DELAY_MS);
+> 
 
 
