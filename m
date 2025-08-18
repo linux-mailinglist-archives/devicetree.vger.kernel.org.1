@@ -1,184 +1,108 @@
-Return-Path: <devicetree+bounces-205988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F8ACB2B174
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 21:21:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D51EB2B18F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 21:27:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F31816DE8E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:19:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE31B1967C3E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12393271A71;
-	Mon, 18 Aug 2025 19:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34D3273D6C;
+	Mon, 18 Aug 2025 19:26:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AoNoxgNH"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="AxC/k8En"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16EBF25B301
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 19:19:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3187D273809;
+	Mon, 18 Aug 2025 19:26:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755544770; cv=none; b=Qsi2ZwK5VTpJhZdMm4T4Jkub7/6cUNnboyCBd8uHP64gJcWkMskCVxhs4pFVPbu6P6Jocv0j3geB50pegZd0mAcNePZQ31O2dRTQ5j9cmxIZ/2DTTUpqdda/Zb2qkMRBizDBSG/4kc0UlswE3Qf6pA6EjTDRNl67KCYXawPzRY4=
+	t=1755545203; cv=none; b=gvKnHEYgrZGZwdjATCAHYox55ZaZGTY3huT/rDoVtiQQNKSIIce0JgHt/2gy7Tukt+k++PCJs8DdijBwZIH1tTNS1Mg8RN1voQzscKBSlcnr5aCgR1JbPJ8h6m2kjNdHpiKoSwqkIIZCW6S6n5YWZ+5ACULu0s+yk9t/stZjcr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755544770; c=relaxed/simple;
-	bh=tY6vFDPT5J+UHKClld2vk3D4cPFzFWtftUIMkfzOQt4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LA3MTgcAa81x36/m1xaovCVvcPNeluhPOmv9CRV10EInNdcdhPnNdScZGNrnVO+UVscv+5Rh9Nq9pG579rtSxwyVCCGAsQTJN/cfsYUizAb8dfPDWpKPHMFf0dWobH62ROO75yYdEGBJ66xiTEQMQCDLSjNclIlDEaJwMmyeNJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AoNoxgNH; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3b9d41baedeso2385941f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 12:19:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755544766; x=1756149566; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9hweCp+yuiy4UnE8tu0U5cdLSxNtzeXo3c5udQqFt3s=;
-        b=AoNoxgNHi72NnEmu8AtuTOG5t96GTgzmOl5r82x2cDAOFKxahocoSEHu7V4C2stvRC
-         cl8SMdHxKCOSuIpxIYtSckDTg0tVoP1SyV3AUe/Vui46xvl66CJIFnkIwhbOjM0HDCNB
-         A1GPe8wQDX66TX+3jvxmQqnwsP2aDarkOAq7trlX++oeJhVlqRxkT2eop//8Mk49+U/H
-         cy3oU169kUAfgwJIIb2d/Tm2SHBvys2hZGNqyRc7R07FhtKRocMcBoFtHx+1q+KOahJA
-         /ETMm+RFoVQZDKSrT0Xjm0wLmcb3fkmw9pPw6A7RDngQYikNCS8z+x2isCcRZIs5o4Kr
-         iL6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755544766; x=1756149566;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9hweCp+yuiy4UnE8tu0U5cdLSxNtzeXo3c5udQqFt3s=;
-        b=voB89iK2fawYXFdaUhVnjf143lFE+jLZqcDwOJZX7MfG2Pti5DqwCW394Xmc7r8NM4
-         P+rl2JNNmHP//nyzJ9o0gm2dp45H+BFrCD6sHdxMFCK+k+Qnjcw7nVyX60UCF+T7PDgG
-         DqSYm9RTOqP03BcK+QuDfSDduqdDYk9sFT2t4r8uLbwcFizh/merxc2R8RWn24qJloKE
-         N0YYnMtzBQ8/jQGEe8CtcDIqEG3VCguL56sWZFTaibnfu4qW5iWnvQUpFy6Zh/AgNTSa
-         ZL2c+ImCkLWpZ98FKmK5ZzvqqXuOq1yBr+5fRl17Boq402lUVrm6CyIRRBr7Z3Fs2YOz
-         AM9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUI+yK5bpLglJtdG4sUv5OWImlFIk/8tn9v11nGTwdAR8sOof042JMBQYRp/A/oZNsA9X2gkf3YNexy@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLtPRNGJnz4cybCME49om0YIFDVbqDWAaAjLfLjMdyxTqegCXx
-	MBNQtBOcr24ZoZwmCl9w3Qts1gaeOB6Xemveaya4iUNyDDaUcTWJKoDAF6ThR3XGoiE=
-X-Gm-Gg: ASbGncvpb0Ztkn9zBtM4U25IPbmRwqZbZ0ocwKTsZ/YNNySUWl7qmZjmcnUScpIVwBH
-	zSb6u8Ff3wX6a1ZPA7mdHQc2BI3kAeKThzKD+Av44LPpmAgCzRtZKe8tUGgWOQjMNma+8XXj96k
-	PAihEzRvfTheY1933/sQwQ9WVAMJcnRDJK1XVtTbf0VTU12fGN5bSduO8nfFkutGxiXlzEgwFOO
-	4W6Tomwo/WKO/ty9IgQwDhaFWVf0Z5g4fBA4Ez00lwsmME5YuMoVHSnIwNY7oHN+cja/CVAZ+rF
-	JNxs7E/BX12+X/4cfl+jrtkbDGBYdGei7wY9Te7zJHgfmROubvApE3XmF7I9YZmO8lRJxgYC6dE
-	44AMQzAA7MHRKErlrTcOX2mfRpWy+xhX2Xc2ubN+HfYE=
-X-Google-Smtp-Source: AGHT+IEQrkh28DTI0SiPzPg5aApeFJHSZV4MplQJwQE3tUQojVdNtlatmnBQ7z7o9bG5dBtMzxbKUQ==
-X-Received: by 2002:a05:6000:2903:b0:3b6:1630:9204 with SMTP id ffacd0b85a97d-3bb66e167femr11091052f8f.19.1755544766221;
-        Mon, 18 Aug 2025 12:19:26 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45a1c6cfed5sm178233615e9.7.2025.08.18.12.19.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Aug 2025 12:19:25 -0700 (PDT)
-Date: Mon, 18 Aug 2025 22:19:22 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Chris Morgan <macromorgan@hotmail.com>
-Cc: oe-kbuild@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>,
-	linux-rockchip@lists.infradead.org, lkp@intel.com,
-	oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, broonie@kernel.org, lee@kernel.org,
-	lgirdwood@gmail.com, sre@kernel.org, heiko@sntech.de,
-	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH V6 3/5] power: supply: bq257xx: Add support for BQ257XX
- charger
-Message-ID: <aKN8uvsN-uiJgjFp@stanley.mountain>
-References: <20250812214300.123129-4-macroalpha82@gmail.com>
- <202508181503.GrRD2T4C-lkp@intel.com>
- <aKNGCg2rWT7GLNnt@wintermute.localhost.fail>
- <DM5PR19MB4646929CD183E2B110B6AD5AA531A@DM5PR19MB4646.namprd19.prod.outlook.com>
+	s=arc-20240116; t=1755545203; c=relaxed/simple;
+	bh=ROtEZIiiHDU/BMVhYCsKLpgRLFFf6ZgX4SN6yEURSOM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gn8MfXBsn9bktroInB/mPhf9vMez1+HZI3m2NkDETmfHKTBQqBECcijUW/yGuUJ9ly2t7UTVfkckDWC3w6JtuqQw3kXhrfAoXj90PNLwL4L3j3KcGV09d3/5UKpCyaIhY+XbZe9QDaTG0eafw+Xw5OA2vJprOcnOUaBbAdjq6X0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=AxC/k8En; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57IJQXg62726732;
+	Mon, 18 Aug 2025 14:26:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755545193;
+	bh=12kQz3A/BbG6iESz2wksdkCzEHrQ+r7GsI58CIwRvvU=;
+	h=From:To:CC:Subject:Date;
+	b=AxC/k8EnDW38UPgNRBxMexkzSRy4FoqluD99EWO9qYKn70eTni64xHlnjhxwLJzCN
+	 iCuLhFwbuq4GbV447F+HWbgWILh66zISTGFSEduGK/k8kIMTIGMDNj36Nzpe9eqNsc
+	 vS45SGEcPerFb4HFvJsQPszNy80ERG3zjlBeKpew=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57IJQXnt039958
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 18 Aug 2025 14:26:33 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 18
+ Aug 2025 14:26:32 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 18 Aug 2025 14:26:32 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57IJQWxV1525949;
+	Mon, 18 Aug 2025 14:26:32 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        "Rafael J
+ . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>, Bryan
+ Brattlof <bb@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: [PATCH 0/3] OPP: Support more speed grades and silicon revisions
+Date: Mon, 18 Aug 2025 14:26:29 -0500
+Message-ID: <20250818192632.2982223-1-jm@ti.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM5PR19MB4646929CD183E2B110B6AD5AA531A@DM5PR19MB4646.namprd19.prod.outlook.com>
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Aug 18, 2025 at 11:43:00AM -0500, Chris Morgan wrote:
-> On Mon, Aug 18, 2025 at 10:26:06AM -0500, Chris Morgan wrote:
-> > On Mon, Aug 18, 2025 at 11:22:35AM +0300, Dan Carpenter wrote:
-> > > Hi Chris,
-> > > 
-> > > kernel test robot noticed the following build warnings:
-> > > 
-> > > https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> > > 
-> > > url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Morgan/dt-bindings-mfd-ti-bq25703a-Add-TI-BQ25703A-Charger/20250813-054704
-> > > base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-> > > patch link:    https://lore.kernel.org/r/20250812214300.123129-4-macroalpha82%40gmail.com
-> > > patch subject: [PATCH V6 3/5] power: supply: bq257xx: Add support for BQ257XX charger
-> > > config: parisc-randconfig-r072-20250818 (https://download.01.org/0day-ci/archive/20250818/202508181503.GrRD2T4C-lkp@intel.com/config)
-> > > compiler: hppa-linux-gcc (GCC) 8.5.0
-> > > 
-> > > If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> > > the same patch/commit), kindly add following tags
-> > > | Reported-by: kernel test robot <lkp@intel.com>
-> > > | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-> > > | Closes: https://lore.kernel.org/r/202508181503.GrRD2T4C-lkp@intel.com/
-> > > 
-> > > smatch warnings:
-> > > drivers/power/supply/bq257xx_charger.c:392 bq25703_hw_init() warn: potential ! vs ~ typo
-> > > 
-> > > vim +392 drivers/power/supply/bq257xx_charger.c
-> > > 
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  365  static int bq25703_hw_init(struct bq257xx_chg *pdata)
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  366  {
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  367  	struct regmap *regmap = pdata->bq->regmap;
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  368  	int ret = 0;
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  369  
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  370  	regmap_update_bits(regmap, BQ25703_CHARGE_OPTION_0,
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  371  			   BQ25703_WDTMR_ADJ_MASK,
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  372  			   FIELD_PREP(BQ25703_WDTMR_ADJ_MASK,
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  373  			   BQ25703_WDTMR_DISABLE));
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  374  
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  375  	ret = pdata->chip->bq257xx_set_ichg(pdata, pdata->ichg_max);
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  376  	if (ret)
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  377  		return ret;
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  378  
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  379  	ret = pdata->chip->bq257xx_set_vbatreg(pdata, pdata->vbat_max);
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  380  	if (ret)
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  381  		return ret;
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  382  
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  383  	ret = bq25703_set_min_vsys(pdata, pdata->vsys_min);
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  384  	if (ret)
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  385  		return ret;
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  386  
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  387  	ret = pdata->chip->bq257xx_set_iindpm(pdata, pdata->iindpm_max);
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  388  	if (ret)
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  389  		return ret;
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  390  
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12  391  	regmap_update_bits(regmap, BQ25703_CHARGE_OPTION_0,
-> > > 7f3b6f1e51a925 Chris Morgan 2025-08-12 @392  			   BQ25703_EN_LWPWR, !BQ25703_EN_LWPWR);
-> > > 
-> > > Yeah.  This really looks like it should be bitwise negate ~ instead of
-> > > logical negate !.
-> > 
-> > Since BQ25703_EN_LWPWR is defined as 1 and I want to write 0 here (to
-> > disable low power mode) I was under the assumption either should work.
-> > That said, I'll happily switch to the bitwise negate (~) and resubmit.
-> 
-> Sorry, hadn't drank my morning coffee yet before I sent the last
-> message and should have attempted it first before replying. When I
-> make the requested change I get a compile time error of "conversion
-> from ‘long unsigned int’ to ‘unsigned int’ changes value from
-> ‘18446744073709518847’ to ‘4294934527’". What I'm really trying to
-> accomplish here is to simply write a 0 to turn off low power mode, and
-> do so in a manner that's easy to understand. I think since a bitwise
-> negate gives a compile error and a logical negate throws a smatch
-> warning, the most sensible thing to do is simply express this as a 0
-> instead of a defined value and write a comment why I'm doing that.
-> 
+As the AM62x, AM62ax, and AM62px SoC families mature, more speed
+grades are established and more silicon revisions are released. This
+patch series adds support for more speed grades on AM62Px SoCs in
+ti-cpufreq. Also allow all silicon revisions across AM62x, AM62Px,
+and AM62Ax SoCs to use the already established OPPs and instead determine
+approprate OPP application with speed grade efuse parsing.
 
-Yeah...  Or you could do "#define BQ25703_DISABLE_LWPWR 0".
+Also fix 1GHz OPP which according to device datasheet [0], also supports
+speed grade "O".
 
-regards,
-dan carpenter
+[0] https://www.ti.com/lit/gpn/am62p
+
+Judith Mendez (3):
+  cpufreq: ti: Support more speed grades on AM62Px SoC
+  cpufreq: ti: Allow all silicon revisions to support OPPs
+  arm64: dts: ti: k3-am62p: Fix supported hardware for 1GHz OPP
+
+ arch/arm64/boot/dts/ti/k3-am62p5.dtsi |  2 +-
+ drivers/cpufreq/ti-cpufreq.c          | 10 +++++++---
+ 2 files changed, 8 insertions(+), 4 deletions(-)
+
+-- 
+2.49.0
 
 
