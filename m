@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ABAFB29E83
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:55:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78716B29E96
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:58:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A7DF3B1FA4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:55:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C6AF1631F3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:58:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F8330FF1E;
-	Mon, 18 Aug 2025 09:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD3F30FF29;
+	Mon, 18 Aug 2025 09:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KkIFS709"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RbYFcOhj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1310F278146;
-	Mon, 18 Aug 2025 09:55:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5CC31E008B;
+	Mon, 18 Aug 2025 09:58:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755510941; cv=none; b=cpOmBBgZN+Uzb9fdh7qwcKjcVsdw6G89V90EwaOnqk8dZK8W80FTdQjjdQn1T2xXPuULbJmW0Hjl9ISAR0r6yE8OSZAXvcJuT7epTKnEaDhbdoUp0UeRU7u20ey5vMuvJlqCpRveNL8NURUtLpwllXeeatIWezgNiJ2m9Wy7EU8=
+	t=1755511093; cv=none; b=cXkA/MCbC4r0xBFfqOKieHDYz/sEYcwaRyJX7yq63ghyxQ1Tc+5Gqm3XyAltx0qg8llXqyiW2+qaHyNEQC5GPq2Bt7FMnDm/cc5nqZ4qhz6DdxWt1dC1/rlgff9yAsX/HoUxVj0yfi4PLG5Ku2JECqvovERJ2blCqK05tXmGzzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755510941; c=relaxed/simple;
-	bh=IV4bPZmBEtnxV/SEjS2Qeu5Z6YHK0JsLisi/u8YBojg=;
+	s=arc-20240116; t=1755511093; c=relaxed/simple;
+	bh=mQ63q3SrLsiGYe3hS2uVLaCBUISPOc7zkn8OeC14lGc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P1Grrw0FnZEYH4ehRZRQ+7GxdnpLgbFvFOg2gPvuzXuFbwHfZjzqeBlixPQFlttWlA4Z922xaOPOIvQ9C/eEa8Hac8V3maa080RTVZXUNVpU1G9rqGlhsKX2x7zgJhgvH0mjbLvYKMvNtZ27JNVJGep7N10xliIbSqjUAw8NJuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KkIFS709; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB81DC4CEEB;
-	Mon, 18 Aug 2025 09:55:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gs/Z2U9Qx3MtJVwOHl2AXliVwY15ssAKUiblMkynmp0w76cXvumNY2AnTbcBJfd1YFXCfpP1XV8nkatQZHi1qwfIi+c90uhnRGRM/san9Ugp54Ds/4zcXlCs9p12NMwkFJ9i85gPyw4B6NJJ7BJdLh3BmNsRScIc5AhLms+FFH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RbYFcOhj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB269C4CEED;
+	Mon, 18 Aug 2025 09:58:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755510940;
-	bh=IV4bPZmBEtnxV/SEjS2Qeu5Z6YHK0JsLisi/u8YBojg=;
+	s=k20201202; t=1755511092;
+	bh=mQ63q3SrLsiGYe3hS2uVLaCBUISPOc7zkn8OeC14lGc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KkIFS709x8lYmWmrSuAbEvmL/Ukks/PyE+IyhowtIXWJrX5YjkOTSG9gRsr7W4vxS
-	 M6eiX76ZSu+glstH3DBNvo2wiEz7yYkfyBxoxgBMoPphqglSg57NVDTthieDza87o8
-	 VGH8jj6T8PrfUwWXw9iBUr0/x3CgZygMqW9E3bGNJqwAqKhMjKTyFugT0Prjmq8yqU
-	 zl4FJnAO7swFVZuSNmUGiSGjjIh4etFjS5AApSUv1VhlorTA9anh0VNX2PUWqHAyDi
-	 hnN5uBLlV2KWcSP+Mln3CEDROh8JyylqW9+j9da7wcqVdO38EzRyQ8gBkNtxueTunJ
-	 2Glc2kfQqq4CA==
-Message-ID: <9dfd2eb2-fda7-4f29-881b-e1c4a2b3f6fc@kernel.org>
-Date: Mon, 18 Aug 2025 11:55:33 +0200
+	b=RbYFcOhj84BoYqiCplFH3y2QUNnrUU2IDGUlhlWHQZK0FBWFNKIr68JJyb1Gzbul5
+	 8UDO/DLLHEkI+Fhz+TkzP2eNowzXpwSNCebR3zp9PLKDm322O9NOEU2SqvwR/0wNWh
+	 mlnk0IGoOWgcsWWp+CP88G/PkL9Vt/NpHxul9S5pC1hO/hPACmjTiGQ/AJCr1wz23u
+	 2QOP4SCpp8fXz+6wiJktUHqrGcSv8jrWA/oe66puxOHEuklyMJOP64xudNPEYWhE3k
+	 adci0Qz3WmycdRWg3SrWZLhW/ORNZ/5Sx4rE169dk/TvHL/BMfyDDGShPXZvMUcaA4
+	 AaUbua4taDljA==
+Message-ID: <bc96aab8-fbb4-4869-a40a-d655e01bb5c7@kernel.org>
+Date: Mon, 18 Aug 2025 11:58:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: interconnect: Add OSM L3 compatible
- for QCS615 SoC
-To: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
- Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Sibi Sankar
- <quic_sibis@quicinc.com>, Odelu Kukatla <quic_okukatla@quicinc.com>,
- Mike Tipton <mike.tipton@oss.qualcomm.com>,
- Imran Shaik <quic_imrashai@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+Subject: Re: [PATCH 2/3] dt-bindings: net: Add support for J-Core EMAC
+To: "D. Jeff Dionne" <jeff@coresemi.io>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Artur Rojek <contact@artur-rojek.eu>, Rob Landley <rob@landley.net>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250804061536.110-1-raviteja.laggyshetty@oss.qualcomm.com>
- <20250804061536.110-2-raviteja.laggyshetty@oss.qualcomm.com>
- <3b79dc0c-0bcd-47d0-ab10-ba1514466d65@kernel.org>
- <14d0e02e-350c-42bc-93b5-c81e11b3bd5d@oss.qualcomm.com>
+References: <20250815194806.1202589-1-contact@artur-rojek.eu>
+ <20250815194806.1202589-3-contact@artur-rojek.eu>
+ <aa6bdc05-81b0-49a2-9d0d-8302fa66bf35@kernel.org>
+ <cab483ef08e15d999f83e0fbabdc4fdf@artur-rojek.eu>
+ <CAMuHMdVGv4UHoD0vbe3xrx8Q9thwrtEaKd6X+WaJgJHF_HXSaQ@mail.gmail.com>
+ <26699eb1-26e8-4676-a7bc-623a1f770149@kernel.org>
+ <295AB115-C189-430E-B361-4A892D7528C9@coresemi.io>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,22 +113,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <14d0e02e-350c-42bc-93b5-c81e11b3bd5d@oss.qualcomm.com>
+In-Reply-To: <295AB115-C189-430E-B361-4A892D7528C9@coresemi.io>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 18/08/2025 11:12, Raviteja Laggyshetty wrote:
->>>  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml        | 5 +++++
->>>  1 file changed, 5 insertions(+)
->> No, slow down, this conflicts with other patch and makes your entry
->> duplicated. Just squash both commits.
+On 18/08/2025 10:21, D. Jeff Dionne wrote:
+> On Aug 18, 2025, at 17:07, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> git grep jcore,emac
 >>
-> The conflicting patch 
-> https://lore.kernel.org/all/20250711102540.143-2-raviteja.laggyshetty@oss.qualcomm.com/
-> got picked into v6.17-rc1.
+>> Gives me zero?
+> 
+> Um, right.  It’s not upstream yet.  Thanks for your work to get that done, Artur.
+> 
+>>> If an incompatible version comes up, it should use a different
+>>> (versioned?) compatible value.
+>>
+>> Versions are allowed if they follow some documented and known vendor SoC versioning scheme. Is this the case here?
+>>
+>> This is some sort of SoC, right? So it should have actual SoC name?
+> 
+> No.  It’s a generic IP core for multiple SoCs, which do have names.
 
-Then why you could not rebase on next if you sent it afterwards? You are
-not making the process easier for us.
+Then you need other SoCs compatibles, because we do not allow generic
+items. See writing bindings.
+
+> 
+> This is the correct naming scheme.  All compatible devices and SoCs match properly.
+
+No, it is not a correct naming scheme. Please read writing bindings.
+
 
 Best regards,
 Krzysztof
