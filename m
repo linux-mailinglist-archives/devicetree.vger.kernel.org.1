@@ -1,157 +1,164 @@
-Return-Path: <devicetree+bounces-205653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E009B29BAD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:08:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96CE7B29BBA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:12:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42CD67B47BB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:06:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D52A8169A36
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:12:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EFB9278173;
-	Mon, 18 Aug 2025 08:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0133D29B8E8;
+	Mon, 18 Aug 2025 08:12:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ra5/KOGO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CiqvaUAv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FEB43176F1;
-	Mon, 18 Aug 2025 08:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AE8F28641B;
+	Mon, 18 Aug 2025 08:12:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755504476; cv=none; b=fnvvFAxjSBOfIjOEidJA84d9ue/dJmnJu+09SlkFUd7TNiVZFx2mgxH//hiNZtIIAKifZKIbwJOOkhB4I72Qu2RJtWCa2C3fDHEvC9brimEQ3RI+1UZJfKZUdNdgIrhuI+zCaR27LpEUNcI/QPDWHZ37m7nkfcie7MJ1pFgylYs=
+	t=1755504729; cv=none; b=UGcm+dTWcV2tHg8uKub/JOWV91lIdgnt1fu+fl0Odkq/yhG0GCp+PchvMxZXM/35yIgt/PcjnFwBuk7yjykDygRQpAZ1opU1zjnbO3B84Via0SfxqoyeuLewWVzrJMAb8kjOIywYzhWvVoWK5viidhwhK+ygA6rTz29F3XQyiWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755504476; c=relaxed/simple;
-	bh=J5ecVKl7lelu4J1Zw3o4ZwR3smNkVCUfd8BZ36EVEoA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lxaksXUwO89sVlKvcmApheur7TNbNe+iFmN5hKHEoTf2N2HdXY7peddfo7QwfLdGDMdDbs7V5NOYDnhmHU3IyMxny2fL9XMNmwz9+kByPpk5SMzDLavpEJFZqqMFAy43N4TixV3C/9VzF1mfEpLwgwG+jQ1B6Ho3sJ9xtIPbj0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ra5/KOGO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 201D9C4CEEB;
-	Mon, 18 Aug 2025 08:07:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755504474;
-	bh=J5ecVKl7lelu4J1Zw3o4ZwR3smNkVCUfd8BZ36EVEoA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ra5/KOGOjthpABT3csgRNEJ0dClwU4qqgEdYgDL8ZO6gPiOrD4XuEL2/M9/xqdF6I
-	 vFv3r81zn3aOuRoEJoE7v4qAX+GJZ/+/z9LMrUvVM06B9VQ8bGRQ6BFlczfbfZAh/4
-	 laqTnptB2LKschkwsAgFIzAnSnevT8HLGTAa2FJeZmaq8zDvX4LUwZNun+TTRBwfhf
-	 RDKFCe8lN3PJQ/rSsvtNLHteXRGmvj1tgWyrTvcniwwTvqBDcGkoOyWtuhIbV7vjqG
-	 4IhSuAbKATV8TvajpTNNM2J+L0BNnLSxXeguLrA8oMeMVBGA6QK6D4ASPYhGoA6UJi
-	 Gp5zTyQs6XPxg==
-Message-ID: <26699eb1-26e8-4676-a7bc-623a1f770149@kernel.org>
-Date: Mon, 18 Aug 2025 10:07:49 +0200
+	s=arc-20240116; t=1755504729; c=relaxed/simple;
+	bh=rx7j6R/mUmhskfRDsVZVvvBWBYKRFfFVTFbXVj9Acbw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=ARMqWuU4vU9bgiVsg+I0p6vZQ57jfQcmL+LCW2cn+iogm61tkL/SI1/uUa3Czn/J2wB3fUtDSZPqMlNS1fAjccJlp1CT5/Ap13b8coDUepnsrxWV00exIQdhlk/8WEGZP3+qG5bcV8lBnVi6zGdZtiVdfzfqkhmzXFB9ck0RFNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CiqvaUAv; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-55ce509127bso2919964e87.0;
+        Mon, 18 Aug 2025 01:12:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755504726; x=1756109526; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dRQX1fprXSUAl9NEBskzM9Agwa8+JxDSTA+pVEm7VOM=;
+        b=CiqvaUAv+orSRGteKqn0VDIiKF0G9KUNsWIvLJmaNvWI3T/D8RkOXFmeSCqzN7CY28
+         yZhfNilXnCDsFgvY4JvHEjDIvkGUF+4mAmV0MWNeov1Duvi+celu07lDH9MtcR8rSPEr
+         KRdcULYVYutoVvhVlzFHUEKuKIJkocST7YkpZEOlaOBIy2qJqMV3MfQ2wB+6zFxMXWtp
+         3EpVAXAyVYh0e1uKLao6JhUd+2HCpgcr058ZeD3N0qCUmNT93IGwmUuey8tJwolhLrDR
+         XEAqqsvz77y4chh9KK7M6ygCWUhrZYMWlfZmZQb3aJLivU9pIo7d/sPaNIJrpISRvkgB
+         fS/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755504726; x=1756109526;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dRQX1fprXSUAl9NEBskzM9Agwa8+JxDSTA+pVEm7VOM=;
+        b=ws0DuZNsfGJaoBbwrQ0FTdaNPrf5U7koB50Odng38qabHcud2jISWFHc+H8xndq1aG
+         OmDtGysWOJaM+0PLnCi6y+uuMdKcyOpl6c3ENJHYD2ESeNlpXjJP6q5gjUiCOZW3m0mS
+         syVg9ThRVSBYZ/5vMSYbVl8ghk5nzDrCqACmrWJspLXNoDcaJJF1lSSjyRl069A5XELL
+         likLkylmBsaidk0cBlDTTJzOhoQb6RMyizbqDv0M4iMNgOWtOd1yz2ymcr3E1Fld1mmy
+         2Dx38bXj0FvV2ZntLW8xsa/afL/8kHf1wSDu/RoPhiHu7UdgQIH5YS8hBRUYpVIXZJWY
+         57WQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUcFQ5s56ystduUshCDvA0rqG6HeWgdWc9igBul7p1qAvcINCvGUAYROrkk8Mvth6du2oYK3OzuzOM+@vger.kernel.org, AJvYcCVOVjHgGmnl8RTZHcCF9RFwcsjTjPmBRCaLK4gd5v4DFdES6wixWgGUClK/Q/ShqiKeSpudVofFWpiCHkKc@vger.kernel.org, AJvYcCVqjuTifD6lI2lCn0y1imgI94jSkD9oZCHtRgmny1vgL8m1W/WfulZ+R6NPj1U3uH9Hu/nbIj56YuM8@vger.kernel.org
+X-Gm-Message-State: AOJu0YytjrDmngBMo+P62VL891AVeQx5kD41M1jZOmkqSLltenKyFY5m
+	xgmoSXfuApjb0I/b3LwR12UATqVuBgVCwh4XSxSWuWGtwl7MvoGORERjl/d2LQ==
+X-Gm-Gg: ASbGncvuNl5zEWXUhf7Q/I+ySAe/w5FLrWvDXWdVxglXIPgg0jRxGR1Up7+ncV5gijG
+	PD4N2WP19I8sV/I+l8LPMXag7ZIFTjrcSmAUthRGsrO/LGSKzhNTEvGuTr5/s2SkXErq6BvaOHW
+	B3H+0GUvZPHdKj3mw9mqtRVuwX8rUxST8Gze2beV3LZNtU8fKYK2LO1N2/YSJZdFOqiK7vbovyA
+	LFWZFK1O5lgmWNuHXHpMXpKDN8Vj4Si1WE6cdCtb34C1YOA9pwUmCk81urzoXAhl54k77a9cbet
+	/C1AqDdXF1wbJ14PZmfUZgEVlfLDn2kBe/ggK9ricTD5Xa7U7I5fdQFYDLcqhISEdDtNMeyVFzI
+	/ERoCKWZ8gP5xc1SMoiyED1CYY4Qwctnh3zwIu+Y=
+X-Google-Smtp-Source: AGHT+IGTO49yDhMnwkXyPxsZ9jxEbh6k9E/a8w64/GLWr+EmEpEo/qoppIFA5hfB2Q9QjBxK0vytgg==
+X-Received: by 2002:a05:6512:3086:b0:553:a469:3fed with SMTP id 2adb3069b0e04-55ceeaaa76cmr2938588e87.11.1755504725903;
+        Mon, 18 Aug 2025 01:12:05 -0700 (PDT)
+Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef351806sm1532487e87.13.2025.08.18.01.12.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Aug 2025 01:12:04 -0700 (PDT)
+Date: Mon, 18 Aug 2025 11:11:56 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Sukrut Bellary <sbellary@baylibre.com>,
+	Lothar Rubusch <l.rubusch@gmail.com>
+Subject: [PATCH v2 0/4] Support ROHM BD7910[0,1,2,3]
+Message-ID: <cover.1755504346.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: net: Add support for J-Core EMAC
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Artur Rojek <contact@artur-rojek.eu>
-Cc: Rob Landley <rob@landley.net>, Jeff Dionne <jeff@coresemi.io>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250815194806.1202589-1-contact@artur-rojek.eu>
- <20250815194806.1202589-3-contact@artur-rojek.eu>
- <aa6bdc05-81b0-49a2-9d0d-8302fa66bf35@kernel.org>
- <cab483ef08e15d999f83e0fbabdc4fdf@artur-rojek.eu>
- <CAMuHMdVGv4UHoD0vbe3xrx8Q9thwrtEaKd6X+WaJgJHF_HXSaQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAMuHMdVGv4UHoD0vbe3xrx8Q9thwrtEaKd6X+WaJgJHF_HXSaQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 18/08/2025 08:43, Geert Uytterhoeven wrote:
->>>
->>> You need SoC-based compatibles. And then also rename the file to match
->>> it.
->>
->> Given how the top-most compatible of the bindings [1] of the board I am
->> using has "jcore,j2-soc", this driver should probably go with
->> "jcore,j2-emac".
->>
->> But as this is an FPGA design, I don't know how widespread the use is
->> across other jcore derived SoCs (if any?).
->> I will wait for Jeff (who's design this is) to clarify on that.
->>
->> PS. Too bad we already have other IP cores following the old pattern:
->>
->>> $ grep -r "compatible = \"jcore," bindings/ | grep -v "emac"
->>> bindings/timer/jcore,pit.yaml:        compatible = "jcore,pit";
->>> bindings/spi/jcore,spi.txt:   compatible = "jcore,spi2";
->>> bindings/interrupt-controller/jcore,aic.yaml:        compatible =
->>> "jcore,aic2";
-> 
-> I would go with "jcore,emac", as it is already in use.
-
-git grep jcore,emac
-
-Gives me zero?
-
-> If an incompatible version comes up, it should use a different
-> (versioned?) compatible value.
-
-Versions are allowed if they follow some documented and known vendor SoC
-versioning scheme. Is this the case here?
-
-This is some sort of SoC, right? So it should have actual SoC name?
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2HZVFUzRKeRqsuso"
+Content-Disposition: inline
 
 
+--2HZVFUzRKeRqsuso
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+Add support for ROHM BD7910[0,1,2,3] ADCs.
+
+The ROHM BD79100, BD79101, BD79102 and BD79103 are ADCs derived from the
+BD79104. According to the data-sheets, the BD79103 is compatible with the
+BD79104. Rest of the ICs have different number of analog input channels.
+
+This series adds support for these ICs using the ti-adc128s052.c.
+
+NOTE: There has been work on couple of other patch series [1][2] touching
+this same driver. I haven't considered those changes because, AFAICS,
+there has been no new revisions of these series since mid June.
+
+[1]: https://lore.kernel.org/all/20250614091504.575685-1-sbellary@baylibre.=
+com/
+[2]: https://lore.kernel.org/all/20250625170218.545654-2-l.rubusch@gmail.co=
+m/
+
+Revision history:
+  v1 =3D> v2:
+    dt-bindings:
+    - Fix the fallback compatible for BD79103.
+    - Drop the excess 'items'
+    other:
+    - Rename the channel structs as discussed during v1 review.
+
+Matti Vaittinen (4):
+  dt-bindings: iio: adc: Add BD7910[0,1,2,3]
+  iio: adc: adc128s052: Simplify matching chip_data
+  iio: adc: adc128s052: Rename channel structs
+  iio: adc: adc128s052: Support ROHM BD7910[0,1,2,3]
+
+ .../bindings/iio/adc/rohm,bd79104.yaml        |  10 +-
+ drivers/iio/adc/ti-adc128s052.c               | 132 ++++++++++++------
+ 2 files changed, 95 insertions(+), 47 deletions(-)
+
+
+base-commit: 856d7be7f3c459a6d646b1f8432c6f616ade0d10
+--=20
+2.50.1
+
+
+--2HZVFUzRKeRqsuso
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmii4EcACgkQeFA3/03a
+ocUSsgf9GQN0Seuwmrz/CsjteZj5vKT5LG0sYJ+n2GvSb/IVmBd6zP/j0IRr/X5q
+lMq8NPKXAt2s3QZ88UxFmnjw8oifTEDf8HYhGeVpdWLwub6SOtwRmg6uX5V8AZZ2
+91XA+RSk+Gl9dL8D8o9VT687iThh+QAtQIHeGxVoxrR3rmdviAabqGti+IkQvgP/
+wJAd757VVp6dOTJFZyzkx6TvUPsBJ82caRxgPlmZ5mFZ4wLEQu1Yd8FJaJTYdDB2
+24EaXEalwCnLny6eY3xaq6gt5oauGWn1ArKWYUVFiA+WInczIWzIe4ct8f27rDPr
+S/kXm2vbIbky/YLZ9FBpQ3erm+buQA==
+=Gega
+-----END PGP SIGNATURE-----
+
+--2HZVFUzRKeRqsuso--
 
