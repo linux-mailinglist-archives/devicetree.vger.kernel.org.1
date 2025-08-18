@@ -1,341 +1,145 @@
-Return-Path: <devicetree+bounces-205713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C41BEB29DB1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:25:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EABAB29DD3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:29:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C48016A362
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:24:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABEC01962B6F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BE1730DD37;
-	Mon, 18 Aug 2025 09:24:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E42530E0FB;
+	Mon, 18 Aug 2025 09:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="RD3kqroW"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="DfTXIdLD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5E27277CB1
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 09:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649B230DEC8
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 09:27:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755509066; cv=none; b=XG9yB/0vHyvjdtKUnKs0R1A8jg4AnsDRb8O2vDDvWyv1TSlECphkReazy65wjgYq3UCEYBBmUBmI/jzmHkOm0VZxibUjyl/lEHfG4BiXHsvuVe4T5meEqXoUg3+5EQFpnP3jdMnsnABofsn2ZHM9HFSA59nBUSNyby04cOfd8II=
+	t=1755509277; cv=none; b=K5Gzb7kIJPaEjj28i+BQuNsr1kj4g0tc2u2vMUMmbgATToSTJURq4jM6FOHAiPq9swVdL+quFuETKs2F2UgsnYghH52INMPxpdBBLzghKZjabzWHzIarZNrna8mzluh6LGB09rS7C32wIUgh/wQestt5xrOc5VmemHYQ/4l24ZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755509066; c=relaxed/simple;
-	bh=YvxsY+Z2rR/tDtWVq4Fk/DYGDpQGYqfsXXFJ55KZoEM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=kZyDCKm4270EK6sPyPgB8rucXOt3ULO/nWYsXcmqIDpUQIrAnqdg2q53m0IP6W1c9wjAEail3+zFggRosvX2/5FJWfkmcDOUR6Yyg3m+Dp1L20Qxc4s5EaqHk8lE4aG4EZkLkOKoClpcUEBYWi48xQXdoffxEYi36kV8PsYm9hc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=RD3kqroW; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250818092416euoutp022a88b534d0b8838c0d962c99c36b7f17~c0i_OsjA31057910579euoutp02v
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 09:24:16 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250818092416euoutp022a88b534d0b8838c0d962c99c36b7f17~c0i_OsjA31057910579euoutp02v
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1755509056;
-	bh=CUVkvEB7qcjjjbdgamK6No4EyCD3JCY4GZz02bbbnTo=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=RD3kqroWYZX0J65gYIqEJmQsXpdUQJMx/2zVLjR0x449B/S+prxLZH5gwypimZvif
-	 Mm6SZnWQxnCFNa/Hg6uLfp08i02eQBBMIcKK0UVkHRDQ2S8F52PfixFVPXxBzC797X
-	 Okx+oYBdltM4ld1CDn41XvJcwS/YgIckArYdU/tU=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250818092415eucas1p1792b85d0bc1292cda35b299e7d9a5d6f~c0i9aNFe00262702627eucas1p1_;
-	Mon, 18 Aug 2025 09:24:15 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250818092414eusmtip2b4be89dde162d82f95410bbc0fd6e51a~c0i8PvlWy1768217682eusmtip2_;
-	Mon, 18 Aug 2025 09:24:14 +0000 (GMT)
-Message-ID: <93f695c1-af9a-47cf-854f-bcfeb159c0c7@samsung.com>
-Date: Mon, 18 Aug 2025 11:24:14 +0200
+	s=arc-20240116; t=1755509277; c=relaxed/simple;
+	bh=ENtF9dMmAFLBKN2RSrXhoJle/KDo1PSoRLO/+5jvepw=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=se7OvssCM6YBfy0QRMA/gF8C8zHrgMpPGRPZxwrMR/OcVLMLcTWU4ljI2y+uCCfqh+W0974jZkVgfxZQI8Yhd5lDlKZgeCtSY0kTLn1S0J/B8u7IzazN2D3+xl1d0cBSyVAoyJHKrZWESOwhsKFbe2ayeSn19q4R45m89oGwfkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=DfTXIdLD; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1755509246; x=1756114046;
+	i=markus.stockhausen@gmx.de;
+	bh=ENtF9dMmAFLBKN2RSrXhoJle/KDo1PSoRLO/+5jvepw=;
+	h=X-UI-Sender-Class:From:To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=DfTXIdLDXrZBX7161x1GjDS0vudkmrm8U2iXUKHXxF6/vlE/CINl7A3UE259eU+2
+	 kbcgpDUcv7I8xNPLv9ZH7ptvdpas5ZlSQB2cJGZx50FX4G5jrGmk+biRJaQ+BwX4n
+	 HSjm8+XwIcIsVJXvk1/rsOM7tG84kGr9m7bcg2lNljYtx+hv6ze1egSQngqTNNUx6
+	 GYvyNC/vWI77JOLXOjCduvSzK/Lgg6n9GnBlFatYMwqHUpZMEYAi9UiBjrYIKN5iw
+	 MeIivV/WsGLQRoGtjV8hYAfHl1M2ryb+/ztEdELxFCopkCpGIsilMLAk2J01xf2vw
+	 KUGkNzGt+v2eKJTcJw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from openwrt ([94.31.70.55]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MO9z7-1vCKcJ2Fk9-00UdjQ; Mon, 18
+ Aug 2025 11:27:26 +0200
+From: Markus Stockhausen <markus.stockhausen@gmx.de>
+To: miquel.raynal@bootlin.com,
+	richard@nod.at,
+	vigneshr@ti.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Realtek ECC engine
+Date: Mon, 18 Aug 2025 05:27:23 -0400
+Message-ID: <20250818092725.1977105-1-markus.stockhausen@gmx.de>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 0/7] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
-	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
-	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
-	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
-	Drew Fustini <fustini@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, Daniel Almeida <daniel.almeida@collabora.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20250806-rust-next-pwm-working-fan-for-sending-v13-0-690b669295b6@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20250818092415eucas1p1792b85d0bc1292cda35b299e7d9a5d6f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250806074252eucas1p1ce94c3149ad49acf50d96fba9ca6b67c
-X-EPHeader: CA
-X-CMS-RootMailID: 20250806074252eucas1p1ce94c3149ad49acf50d96fba9ca6b67c
-References: <CGME20250806074252eucas1p1ce94c3149ad49acf50d96fba9ca6b67c@eucas1p1.samsung.com>
-	<20250806-rust-next-pwm-working-fan-for-sending-v13-0-690b669295b6@samsung.com>
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:mceeLN1aac/JoXUH4+uQSlXHbKTZQkx3mjtVw1YXXWujzN0Yq+K
+ kBUg72YRbTYmHv61hudCqwwO3fonsFqw8O2olfgavts9H15+XB2qWluXP3dmwGfRZCgODE6
+ zRduqT0kpM4S37FEziVlXlNiV/o9g+m8b0+RR03q1BDcDKmnOQYAhxGHG8IjHwBmLUhTPWx
+ GIhJ4qIvjYjLtWobz1FHQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:/AV2CQt64Gg=;9mr8AF7FRRdDNAB8w2yPv3FU715
+ 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
+ 1qcg==
+
+This series adds support for the ECC engine on Realtek RTL93xx switch SoCs.
 
 
-
-On 8/6/25 09:42, Michal Wilczynski wrote:
-> This patch series introduces Rust support for the T-HEAD TH1520 PWM
-> controller and demonstrates its use for fan control on the Sipeed Lichee
-> Pi 4A board.
-> 
-> The primary goal of this patch series is to introduce a basic set of
-> Rust abstractions for the Linux PWM subsystem. As a first user and
-> practical demonstration of these abstractions, the series also provides
-> a functional PWM driver for the T-HEAD TH1520 SoC. This allows control
-> of its PWM channels and ultimately enables temperature controlled fan
-> support for the Lichee Pi 4A board. This work aims to explore the use of
-> Rust for PWM drivers and lay a foundation for potential future Rust
-> based PWM drivers.
-> 
-> The core of this series is a new rust/kernel/pwm.rs module that provides
-> abstractions for writing PWM chip provider drivers in Rust. This has
-> been significantly reworked from v1 based on extensive feedback. The key
-> features of the new abstraction layer include:
-> 
->  - Ownership and Lifetime Management: The pwm::Chip wrapper is managed
->    by ARef, correctly tying its lifetime to its embedded struct device
->    reference counter. Chip registration is handled by a pwm::Registration
->    RAII guard, which guarantees that pwmchip_add is always paired with
->    pwmchip_remove, preventing resource leaks.
-> 
->  - Modern and Safe API: The PwmOps trait is now based on the modern
->    waveform API (round_waveform_tohw, write_waveform, etc.) as recommended
->    by the subsystem maintainer. It is generic over a driver's
->    hardware specific data structure, moving all unsafe serialization logic
->    into the abstraction layer and allowing drivers to be written in 100%
->    safe Rust.
-> 
->  - Ergonomics: The API provides safe, idiomatic wrappers for other PWM
->    types (State, Args, Device, etc.) and uses standard kernel error
->    handling patterns.
-> 
-> The series is structured as follows:
->  - Expose static function pwmchip_release.
->  - Rust PWM Abstractions: The new safe abstraction layer.
->  - TH1520 PWM Driver: A new Rust driver for the TH1520 SoC, built on
->    top of the new abstractions.
->  - Device Tree Bindings & Nodes: The remaining patches add the necessary
->    DT bindings and nodes for the TH1520 PWM controller, and the PWM fan
->    configuration for the Lichee Pi 4A board.
-> 
-> Testing:
-> Tested on the TH1520 SoC. The fan works correctly. The duty/period
-> calculations are correct. Fan starts slow when the chip is not hot and
-> gradually increases the speed when PVT reports higher temperatures.
-> 
-> The patches doesn't contain any dependencies that are not currently in
-> the mainline kernel anymore.
-> 
-> ---
-> Changes in v13:
-> - Re-add the T-HEAD TH1520 PWM driver and its device tree bindings, as
->   Iomem series got merged into mainline kernel.
-> - Fix Args struct to be consistent with State - no Opaque needed for
->   copies.
-> - Replace tuple retur type in the PwmOps trait with dedicated struct
->   for improved clarity.
-> - Use build_assert for WfHw size, as it doesn't have to be runtime
->   check.
-> - Various cosmetic changes.
-> - Link to v12: https://lore.kernel.org/r/20250717-rust-next-pwm-working-fan-for-sending-v12-0-40f73defae0c@samsung.com
-> 
-> Changes in v12:
->  - Reworked the PWM abstractions to use the subclassing pattern as
->    suggested by reviewers.
->  - pwm::Chip and its driver data are now allocated in a single, contiguous
->    memory block via pwmchip_alloc() sizeof_priv argument.
->  - Chip::new() now uses the pin init API to construct the driver data
->    in place, removing the need for a separate allocation.
->  - The  PwmOps trait is now implemented directly by the driver data struct
->    itself, removing the DrvData associated type and the ForeignOwnable
->    trait.
->  - The custom release handler has been updated to call drop_in_place on the driver
->    data, ensuring destructors are run correctly before the underlying
->    memory is freed.
->  - Moved the pwmchip_release prototype in the C header to a separate
->    section to clarify it is for FFI use only, as requested.
->  - Added a Prerequisite-patch-id trailer to the cover letter to declare
->    the dependency on the PWM_WFHWSIZE patch.
-> 
-> - Link to v11: https://lore.kernel.org/r/20250710-rust-next-pwm-working-fan-for-sending-v11-0-93824a16f9ec@samsung.com
-> 
-> Changes in v11:
-> - Dropped driver and DT commits, as they don't compile based on publicly
->   known commit.
-> - Re-based on top of pwm/for-next.
-> - Reverted back to devres::Devres::new_foreign_owned, as pwm/for-next
->   doesn't contain 'register' re-factor, which is present in linux-next,
->   queued for the next merge window. The conflict is trivial, simply
->   change 'new_foreign_owned' -> 'register'.
-> - Added list to MAINTAINERS entry as requested.
-> - Link to v10: https://lore.kernel.org/r/20250707-rust-next-pwm-working-fan-for-sending-v10-0-d0c5cf342004@samsung.com
-> 
-> Changes in v10:
->  - Exported the C pwmchip_release function and called it from the custom
->    Rust release_callback to fix a memory leak of the pwm_chip struct.
->  - Removed the PwmOps::free callback, as it is not needed for idiomatic
->    Rust resource management.
->  - Removed the redundant is_null check for drvdata in the release handler,
->    as the Rust API guarantees a valid pointer is always provided.
-> 
-> - Link to v9: https://lore.kernel.org/r/20250706-rust-next-pwm-working-fan-for-sending-v9-0-42b5ac2101c7@samsung.com
-> 
-> Changes in v9:
->  - Encapsulated vtable setup in Chip::new(): The Chip::new() function is
->    now generic over the PwmOps implementation. This allows it to create and
->    assign the vtable internally, which simplifies the public API by
->    removing the ops_vtable parameter from Registration::register().
->  - Fixed memory leak with a release handler: A custom release_callback is
->    now assigned to the embedded struct device's release hook. This
->    guarantees that driver specific data is always freed when the chip is
->    destroyed, even if registration fails.
->  - The PwmOpsVTable is now defined as a const associated item to ensure
->    it has a 'static lifetime.
->  - Combined introductory commits: The Device, Chip, and PwmOps abstractions
->    are now introduced in a single commit. This was necessary to resolve the
->    circular dependencies between them and present a clean, compilable unit
->    for review.
-> 
-> - Link to v8: https://lore.kernel.org/r/20250704-rust-next-pwm-working-fan-for-sending-v8-0-951e5482c9fd@samsung.com
-> 
-> Changes in v8:
->  - Dropped already accepted commit, re-based on top of linux-next
->  - Reworked the Chip and PwmOps APIs to address the drvdata() type-safety
->    comment. Chip is now generic, and PwmOps uses an associated type
->    to provide compile-time guarantees.
->  - Added a parent device sanity check to Registration::register().
->  - Updated drvdata() to return the idiomatic T::Borrowed<'_>.
->  - added temporary unsafe blocks in the driver, as the current
->    abstraction for Clk is neiter Safe nor Sync. I think eventually
->    proper abstraction for Clk will be added as in a current state it's
->    not very useful.
-> 
-> - Link to v7: https://lore.kernel.org/r/20250702-rust-next-pwm-working-fan-for-sending-v7-0-67ef39ff1d29@samsung.com
-> 
-> Changes in v7:
-> - Made parent_device function private and moved casts to Device<Bound>
->   there as well.
-> - Link to v6: https://lore.kernel.org/r/20250701-rust-next-pwm-working-fan-for-sending-v6-0-2710932f6f6b@samsung.com
-> 
-> Changes in v6:
->  - Re-based on top of linux-next, dropped two already accepted commits.
->  - After re-basing the IoMem dependent patchset stopped working,
->    reworked it to use similar API like the PCI subsystem (I think it
->    will end up the same). Re-worked the driver for it as well.
->  - Remove the apply and get_state callbacks, and most of the State as
->    well, as the old way of implementing drivers should not be possible
->    in Rust. Left only enabled(), since it's useful for my driver.
->  - Removed the public set_drvdata() method from pwm::Chip
->  - Moved WFHWSIZE to the public include/linux/pwm.h header and renamed it
->    to PWM_WFHWSIZE, allowing bindgen to create safe FFI bindings.
->  - Corrected the ns_to_cycles integer calculation in the TH1520 driver to
->    handle overflow correctly.
->  - Updated the Kconfig entry for the TH1520 driver to select the Rust
->    abstractions for a better user experience.
-> 
-> - Link to v5: https://lore.kernel.org/r/20250623-rust-next-pwm-working-fan-for-sending-v5-0-0ca23747c23e@samsung.com
-> 
-> Changes in v5:
-> - Reworked `pwm::Chip` creation to take driver data directly, which
->   allowed making the `chip.drvdata()` accessor infallible
-> - added missing `pwm.c` file lost during the commit split (sorry !)
-> - Link to v4: https://lore.kernel.org/r/20250618-rust-next-pwm-working-fan-for-sending-v4-0-a6a28f2b6d8a@samsung.com
-> 
-> Changes in v4:
->  - Reworked the pwm::Registration API to use the devres framework,
->    addressing lifetime issue.
->  - Corrected the PwmOps trait and its callbacks to use immutable references
->    (&Chip, &Device) for improved safety.
->  - Applied various code style and naming cleanups based on feedback
-> 
-> - Link to v3: https://lore.kernel.org/r/20250617-rust-next-pwm-working-fan-for-sending-v3-0-1cca847c6f9f@samsung.com
-> 
-> Changes in v3:
->  - Addressed feedback from Uwe by making multiple changes to the TH1520
->    driver and the abstraction layer.
->  - Split the core PWM abstractions into three focused commits to ease
->    review per Benno request.
->  - Confirmed the driver now works correctly with CONFIG_PWM_DEBUG enabled
->    by implementing the full waveform API, which correctly reads the
->    hardware state.
->  - Refactored the Rust code to build cleanly with
->    CONFIG_RUST_BUILD_ASSERT_ALLOW=n, primarily by using the try_* family of
->    functions for IoMem access.
->  - Included several cosmetic changes and cleanups to the abstractions
->    per Miguel review.
-> 
-> - Link to v2: https://lore.kernel.org/r/20250610-rust-next-pwm-working-fan-for-sending-v2-0-753e2955f110@samsung.com
-> 
-> Changes in v2:
->  - Reworked the PWM abstraction layer based on extensive feedback.
->  - Replaced initial devm allocation with a proper ARef<Chip> lifetime model
->    using AlwaysRefCounted.
->  - Implemented a Registration RAII guard to ensure safe chip add/remove.
->  - Migrated the PwmOps trait from the legacy .apply callback to the modern
->    waveform API.
->  - Refactored the TH1520 driver to use the new, safer abstractions.
->  - Added a patch to mark essential bus clocks as CLK_IGNORE_UNUSED to fix
->    boot hangs when the PWM and thermal sensors are enabled.
-> - Link to v1: https://lore.kernel.org/r/20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com
-> 
-> ---
-> Michal Wilczynski (7):
->       pwm: Export `pwmchip_release` for external use
->       rust: pwm: Add Kconfig and basic data structures
->       rust: pwm: Add complete abstraction layer
->       pwm: Add Rust driver for T-HEAD TH1520 SoC
->       dt-bindings: pwm: thead: Add T-HEAD TH1520 PWM controller
->       riscv: dts: thead: Add PWM controller node
->       riscv: dts: thead: Add PWM fan and thermal control
-> 
->  .../devicetree/bindings/pwm/thead,th1520-pwm.yaml  |  48 ++
->  MAINTAINERS                                        |  10 +
->  arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts  |  67 ++
->  arch/riscv/boot/dts/thead/th1520.dtsi              |   7 +
->  drivers/pwm/Kconfig                                |  24 +
->  drivers/pwm/Makefile                               |   1 +
->  drivers/pwm/core.c                                 |   3 +-
->  drivers/pwm/pwm_th1520.rs                          | 355 +++++++++
->  include/linux/pwm.h                                |   6 +
->  rust/bindings/bindings_helper.h                    |   1 +
->  rust/helpers/helpers.c                             |   1 +
->  rust/helpers/pwm.c                                 |  20 +
->  rust/kernel/lib.rs                                 |   2 +
->  rust/kernel/pwm.rs                                 | 790 +++++++++++++++++++++
->  14 files changed, 1334 insertions(+), 1 deletion(-)
-> ---
-> base-commit: eacf91b0c78a7113844830ed65ebf543eb9052c5
-> change-id: 20250524-rust-next-pwm-working-fan-for-sending-552ad2d1b193
-> 
-> Best regards,
-
-Hi all,
-
-Since this series was sent during the merge window, I just wanted to
-check in. I can rebase everything on v6.17-rc1 and send a v14 if that
-would be helpful for review.
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
 
