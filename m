@@ -1,50 +1,53 @@
-Return-Path: <devicetree+bounces-205978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8171AB2B080
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 20:33:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECE4B2B074
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 20:32:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7B417AF7AA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 18:31:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD4AF1B61C18
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 18:33:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C74311948;
-	Mon, 18 Aug 2025 18:32:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85DDC270569;
+	Mon, 18 Aug 2025 18:32:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com [95.215.58.171])
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C4327815B
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 18:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 903CA78F34
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 18:32:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755541961; cv=none; b=FF1DIZEqh9j3824AIDY4BCE4uLSLrwoWVJLtgTrs/3NZiUOiIZrKbSj4ec0FWsQJj136g1Vl3xJNIrAb7s2OBalUZwhkVD9uSseqMoXh1GzZzG6q0F0YPIWpVGL6R+EBduFwl4ldNjaSNKENFBO7YwATYNPqne2qHflZoAPhPiA=
+	t=1755541952; cv=none; b=Bj9Oe1SbCCLyWO25nJ2eUEhIkXgaHzH9ieyTu31my7wikm7fNddfIAABeqntXEs/4i2pMveWMk3CAjPIhuTjFg8omDxb4B47r/hkYEHi6m/UluD5JFR1HEmeb5lDDYvMKelIksCLRdJGgpfniCKr0pStWOtgsC/qPYCMV0kVLwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755541961; c=relaxed/simple;
-	bh=WGnehDgNegV77GT+UcGpwcKqV0rviFBYs8IzWylswcI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LB1dlbfWnHESa1izvX5FtiX+LH2/j2HP7zFuMu7o7hrlbS3MBMcXDnSFOGvdVqnwOdjRXFmMpG12t6kTv1rjQYYeb7uZy0Cwjargq0Ks3v7LG5/QTvcofDHOkZPZ4ISjo7kTcGw3mTRM6lqfM0S1oisCsVW8PCj/4TvP/8fabcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=95.215.58.171
+	s=arc-20240116; t=1755541952; c=relaxed/simple;
+	bh=wFAQBvDPC15RotmXu1BO07WKmXxW+BAHy5N+pqi2mQM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=kX2wI3E8M5JLlZ2pXt8SVeOkX7cYJmUlfj4FSNJ/Ryu0VtnyOM5ukT490H/o7Ekt0iZxvGxMgy1mHgOS9LnhwDDZnpPq96266r2+GLX7WIpTGmmzvtjTr6DR0xcF9cq2+K2lHpkuoxVknUTcQ+1cNd+60suK/U/LwBF7s+vKNlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=95.215.58.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: Ben Collins <bcollins@kernel.org>
-To: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Ben Collins <bcollins@watter.com>,
-	Jonathan Cameron <jic23@kernel.org>,
+To: Jonathan Cameron <jic23@kernel.org>,
 	David Lechner <dlechner@baylibre.com>,
-	Nuno Sa <nuno.sa@analog.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
 	Andy Shevchenko <andy@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Andrew Hepp <andrew.hepp@ahepp.dev>
-Subject: [PATCH v5 0/5] iio: mcp9600: Features and improvements
-Date: Mon, 18 Aug 2025 14:32:08 -0400
-Message-Id: <20250818183214.380847-1-bcollins@kernel.org>
+Cc: Ben Collins <bcollins@watter.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/6] dt-bindings: iio: mcp9600: Set default 3 for thermocouple-type
+Date: Mon, 18 Aug 2025 14:32:09 -0400
+Message-Id: <20250818183214.380847-2-bcollins@kernel.org>
+In-Reply-To: <20250818183214.380847-1-bcollins@kernel.org>
+References: <20250818183214.380847-1-bcollins@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,71 +59,26 @@ X-Migadu-Flow: FLOW_OUT
 
 From: Ben Collins <bcollins@watter.com>
 
-ChangeLog:
-v5 -> v6:
-  - Fix accidental typo added in dt-bindings: IRQ_TYPE_EDGE_RISIN
-  - Correct some constraints in dt-bindings
-  - Reverse if/then for mcp9601 vs mcp9600 constraints in dt-bindings
-  - Updates to changelog for patch 2/6 (dt-bindings mcp9600)
-  - Cleanup tabs that were converted to spaces
-  - Split thermocouple-type default to separate patch
+As is already documented in this file, Type-K is the default, so make
+that explicit in the dt-bindings.
 
-v4 -> v5:
-  - Missed a one line fix to IIR patch (5/5)
+Signed-off-by: Ben Collins <bcollins@watter.com>
+---
+ .../devicetree/bindings/iio/temperature/microchip,mcp9600.yaml   | 1 +
+ 1 file changed, 1 insertion(+)
 
-v3 -> v4:
-  - Based on feedback from David Lechner <dlechner@baylibre.com>
-    * Allow fallback compatible in dt-bindings for mcp9601.
-  - Based on feedback from Jonathan Cameron <jic23@kernel.org>
-    * Be explicit in patch description for fixed width changes.
-    * Check chip_info for NULL to quiet warnings from kernel-test-robot
-    * Remove "and similar" for long description of MCP9600.
-  - Based on lots of feedback, use frequency values for IIR, and use
-    filter_type[none, ema] to enable or disable.
-  - Set default 3 for thermocouple in dt-binding
-  - Rework open/short circuit in dt-bindings
-
-v2 -> v3:
-  - Improve changelogs in each patch
-  - Based on feedback from Andy Shevchenko <andy.shevchenko@gmail.com>
-    * Set register offsets to fixed width
-    * Fix typos
-    * Future-proof Kconfig changes
-    * Convert to using chip_info paradigm
-    * Verbiage: dt -> firmware description
-    * Use proper specifiers and drop castings
-    * Fix register offset to be fixed-width
-    * u8 for cfg var
-    * Fix % type for u32 to be %u
-    * Make blank lines consistent between case statements
-    * FIELD_PREP -> FIELD_MODIFY
-    * Remove explicit setting of 0 value in filter_level
-  - Based on feedback from David Lechner <dlechner@baylibre.com>
-    * Rework IIR values exposed to sysfs. Using the ratios, there was no
-      way to represent "disabled" (i.e. infinity). Based on the bmp280
-      driver I went with using the power coefficients (e.g. 1, 2, 4, 8,
-      ...) where 1 is disabled (n=0).
-
-v1 -> v2:
-  - Break into individual patches
-
-v1:
-  - Initial patch to enable IIR and thermocouple-type
-  - Recognize mcp9601
-
-Ben Collins (6):
-  dt-bindings: iio: mcp9600: Set default 3 for thermocouple-type
-  dt-bindings: iio: mcp9600: Add microchip,mcp9601 and add constraints
-  iio: mcp9600: White space and fixed width cleanup
-  iio: mcp9600: Recognize chip id for mcp9601
-  iio: mcp9600: Add support for thermocouple-type
-  iio: mcp9600: Add support for IIR filter
-
- .../iio/temperature/microchip,mcp9600.yaml    |  61 +++-
- drivers/iio/temperature/Kconfig               |   8 +-
- drivers/iio/temperature/mcp9600.c             | 295 +++++++++++++++++-
- 3 files changed, 341 insertions(+), 23 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+index d2cafa38a544..57b387a1accc 100644
+--- a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
++++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+@@ -37,6 +37,7 @@ properties:
+ 
+   thermocouple-type:
+     $ref: /schemas/types.yaml#/definitions/uint32
++    default: 3
+     description:
+       Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
+       Use defines in dt-bindings/iio/temperature/thermocouple.h.
 -- 
 2.39.5
 
