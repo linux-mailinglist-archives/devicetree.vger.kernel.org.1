@@ -1,283 +1,205 @@
-Return-Path: <devicetree+bounces-205648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA4EB29B60
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DB53B29B8D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:03:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 087217AEDB7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:54:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9885E7B0DD4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374F12BEC59;
-	Mon, 18 Aug 2025 07:55:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF482E5D17;
+	Mon, 18 Aug 2025 08:03:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="gg1Uggjv"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="JNjPZjST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011050.outbound.protection.outlook.com [40.107.130.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1161298CBC;
-	Mon, 18 Aug 2025 07:55:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755503753; cv=none; b=CVs9GnCt20Z8kXD5g31TK+YV4BOjg7ZPorRdIDr/mxj+CtpUEgKxeEDjY8eTfCpi9neAiM4CLXnLHukqzdE9lcpOL7MEnlnkj9fVo9xUKOvifaudUjv1aDBLYuXQDdes52jTTLbqsM6ZTWguhJF2h+aY1GrUZhmBqTPMHDeN7sM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755503753; c=relaxed/simple;
-	bh=UAwd3z5zLQbxIssyTRv6RPq2/tnFXT2CmIJCJoDte7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C8g03ekyd5HxPukwk293CZCgG2un6/fR/NMLW7EaBeGkW2Xp4oKsw8+ph8v6+qrIvLR+tUc9wRjLiNhs65SqcEOvqohlcWntFMSAGhY8zXOxwgSojbe5DtWyUXEfzBkULGgzeA3+PARR60ieccaSTRKg6GB1MpG+mUxGKhl4Cdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=gg1Uggjv; arc=none smtp.client-ip=54.207.19.206
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1755503661;
-	bh=M7FG8rcP3ahTEEVM6NGqGjxSRQwruFZ03rYRJPa/Wxk=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=gg1Uggjv+rScTKYJEhC0aZqoipSbtYZDQpOPdmkzZw8c284UDUjVzAHf79ReQyGN1
-	 mxczeH2WTAa9ih2qOMeucPAYEQInxWU7xvGd0BkA9zFjt2/bTKjLifa8J2rROXSni6
-	 frn7drJfCaeaIZh8kNOCgZiuyxHJwar5+UUdaR5o=
-X-QQ-mid: esmtpgz14t1755503659t78ac8189
-X-QQ-Originating-IP: ZO7sqOcVCqag9e3u+tTDpLwUHxzVsU3LE4vNP/SahMk=
-Received: from = ( [61.145.255.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 18 Aug 2025 15:54:17 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 8049969608128099302
-EX-QQ-RecipientCnt: 29
-Date: Mon, 18 Aug 2025 15:54:17 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Icenowy Zheng <uwu@icenowy.me>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [RFC PATCH 5/8] drm/bridge: add a driver for T-Head TH1520 HDMI
- controller
-Message-ID: <A3089DC4F031A2C0+aKLcKYtWzpLdB0lH@LT-Guozexi>
-References: <20250814164048.2336043-1-uwu@icenowy.me>
- <20250814164048.2336043-6-uwu@icenowy.me>
- <sp2pdifimqych5zn3mt7pnba3vl25qflgiys76s7dwmyt3jd72@bmwkc7s6p6c4>
- <63b2ac72fe1d15d214e880f223bb3035e177a07b.camel@icenowy.me>
- <F2C43938B17FA1E1+aKLaKQfN1Ax8Blcx@LT-Guozexi>
- <7ad9a700dce9342d720740525626340237eb8d9f.camel@icenowy.me>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A957287274;
+	Mon, 18 Aug 2025 08:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755504182; cv=fail; b=JW6Ya1+DiBbdWQM/A/O6nqullwvDFgP9eDSrKEdRCjsi7uQdVqmoFHdgOo9xvY68rIDnIjjwDFt6GHOgNMFNURkbtuVlP7GWekbVrEAS9iD0eV02qkgPiMccC0JilQW1UahLMPnB8WP3MQTzIeczTfAIcwoAe1gg+9VjYnONnEY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755504182; c=relaxed/simple;
+	bh=CpVYl5LjdFU2DiadixbzYHLpaIFByMUTqmhK2V7NvJs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=QmsP34qk/h5ZHvOCKrH6Tz45vzgLYWuFLMeAkLVeYZ6z7EyJveqrdDAWrW+IaDN+xeEZu/DJHFP4Q380GM45BNMKofImvmrklrbFcFJ88D100sLwYewqkIpNN8SrQTSwBI5y+iC4l6Ax6H1fi0oIM7y77rlBPQft3xzKLHeybo0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=JNjPZjST; arc=fail smtp.client-ip=40.107.130.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cQGTpzMtiebVcXVzfpTv8j1BIvDbslMwZhTevtADU3GAw9FXT7ItYCCg1ufK7JE76Z5O0oSB9tFflcuM07/IMC0y9Qww1ekxEysMtj1CawGm1Oy0EjC4jD2FmPgbRHZhycUB4PF4cWnUWoa5jmbMKxdK/NZGnB5Vo9fPO5q2cOKwCMrlRXgtoRwsLj3iOTNpF/DO9wsxVxoUAaOtS3kqkk/OFLgGCKXVmZcG0JX64cWXorrf/xi/qjKvps3TEJgivoYfGu/vq788gb257kpMsFuajW4nFj0UXqGWjgYK2LkKZ9svEKv5iRl2NVD3hwud7TTq6lqVfIVQ8BgKq8eBiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XsMt9sa0c4p4Y46QXkwY0bF6a/DFw93tMYR3OKT5m3M=;
+ b=C01OxRE0WC83wDZNtvWoKKcxCcE3ioIfbJDauHk4sKrywuzaciORtLoV400d3gc7gEAk36YMGaIkvcp3TdzJ92ANDBTSiYH04R0PF/hQm/Ec4cFvK7HQ0UmVNmqFehnINxgcDyoSI1SlvtmCACmchryOhiGQ2PXE0RC3LpMa0JcS8iwOEj6XEWdRDhaew3bmQYZFNr4X5FKweI59GtFyR6e7yfcVqTzVLooTEgMUzUqx1meLdS9wEB9KtKpPqf5nuWUhiifoJ16pFl+bPK/h8obhKe9BJkM6p/8mqFptxhUPwHWsf90+pupdHjtke94TwL5xj5tILebTe53yUn1v/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XsMt9sa0c4p4Y46QXkwY0bF6a/DFw93tMYR3OKT5m3M=;
+ b=JNjPZjSTFbUmnmMa7woUBd7LAls4ivfepkDOaBgw9ybxunO/zUDwQFlgC80M58SKhFkdV0dsplsNGXRBnQeWYzC4lKOms2cMHRe9ttc3HNivPASMjD1clcvXiPtpdUY9INpotAvILrrQ/p59IF/THQCKy07dTBlp92X5CRNXCDNf7zEBkT1ar9+gGgVa5b6eRLw9Gt6YdsTXjPJ5hFOTOSvP0RN6ndZad1/Yq44/suAatoCbR8kiArwrefNuyrbq+3XE5lyq7P525hrn0HRP5ISHytIKsbCvxZz2sFqfT/zcbLaySvLCmERrulayuVyTYQ6nGFZUu45gjqu2h35+MQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+ by AS1PR04MB9312.eurprd04.prod.outlook.com (2603:10a6:20b:4dc::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.12; Mon, 18 Aug
+ 2025 08:02:56 +0000
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7%4]) with mapi id 15.20.9052.011; Mon, 18 Aug 2025
+ 08:02:56 +0000
+Date: Mon, 18 Aug 2025 15:57:11 +0800
+From: Xu Yang <xu.yang_2@nxp.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, John Garry <john.g.garry@oracle.com>, 
+	James Clark <james.clark@linaro.org>, Mike Leach <mike.leach@linaro.org>, Leo Yan <leo.yan@linux.dev>, 
+	Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+	Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, 
+	Adrian Hunter <adrian.hunter@intel.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev
+Subject: Re: [PATCH 5/5] arm64: dts: imx94: add DDR Perf Monitor node
+Message-ID: <ximwiyobrfsybt5tfcygcyqadlq3sogqkskayx2ggzibal2g2n@yl45ddfy5bvu>
+References: <20250815-imx94-ddr-pmu-v1-0-edb22be0b997@nxp.com>
+ <20250815-imx94-ddr-pmu-v1-5-edb22be0b997@nxp.com>
+ <aJ9gimecxBtDLhJB@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aJ9gimecxBtDLhJB@lizhi-Precision-Tower-5810>
+X-ClientProxiedBy: AS4P189CA0047.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:659::19) To DU2PR04MB8822.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7ad9a700dce9342d720740525626340237eb8d9f.camel@icenowy.me>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: N8/bw4T4KgrY8E2VabFdwkTvdJpURSV7nDa1ndj/F+oPkwtMYzQUF8hC
-	G1msqSQ+reszEkKdpfpG0vsBIjFkbcKiDJkBdkqUaef0OURmKA0faIT5vkOMQiV3dFKAjeL
-	qpyY9TBzUY5Mfv2ohqMbMYQrGgxTcjCY1qwvOHM/aiUyArI5NKFP410fSoUmCnsGZ/okVJy
-	kgPM78zENrx7h75GTeYjWkEloBt9pBEwAPnGZoILHK8DsAojx1CWjbDfz6iRPusxHKaYZjM
-	v78GrsS4ZJmgPg1yT2YMdsxUKOq60VhUEcBVOUku68YN+9Dw8/kCDPYS1gweLymPr6vRotJ
-	6BaWPu7CbCOhGHWbF5QhxmEJY9d7brZ4IR0CVlI2HOLtCpIzEFLKwBJKHP5Mju72cwZ4a2y
-	VRDYV+abFne92ZlPV5IplMJ+0qgrhxpVVs857C5/pDZC1gxLijqLN8vO22sNiIih7uOHPRc
-	WPL0fZYKe5xAq898bnOgzJfBaM8wT4q0LSo/CoXNLE7BfWyEbX/7eLcoGR8hhaQ1Xqx7+Bs
-	1tt1TkA9woN+zvjcOioZ9WyaJ0kTNJnuVRYK267Qk4vzP1w5VapOptBPHrL64z+FoEuKar4
-	WJkQshHKAvlywWMMd5uj65nX/p64PRsrQJIsZNz/UKh9rnfzk2Edp46+0uP0Cw0kjAsgT+V
-	jX599PlBid2ZuLqbUWHECGPExQvuXnapQa0g/7ee9pnVdw3Pd08YqAsPBDF7f9m3DVxvPwD
-	P2GyJKcT3Xgl0NfxB6RkJF1cEnqnRgijO1VsGaAFkiWZJ744m4GSbn6aq6olJXo2sWeGtWR
-	FWeq3rSZ2cZo7ptYeWXTOE6F/2k02rPsHTMjGq3ZpcDOKUU7W6xaGgxmwvXyK+a51wrcl/X
-	Ovh+aGeQXZDOtOr751lM0f1vUHZUj5AGCcDJeRn57dh2EQqARIZTrSKslg/8mc54NgdUqn0
-	GOuPmsi9sjg7uGPiGF9VoS6c4BV1gcZ5kt5QxLTQK10jIqMBXtrkds0fAmFMIPYvKe5mlBp
-	rc9PWAE5yqjZnpWMxIrSdPaikhF0EBQNEUn7HpJ5akPECDLVKZcfkFr45n16IhbHnciZvqn
-	uSwfsktk8OzFbevttzE323qPsVG+Vb7fQ==
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-X-QQ-RECHKSPAM: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|AS1PR04MB9312:EE_
+X-MS-Office365-Filtering-Correlation-Id: af056dc1-234d-4ae7-71da-08ddde2da3fc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|19092799006|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?F1dmvViC8CtK5pZ6qXp7m6lFrOX7crA7mldWCXTBS9cX7rJXRivp9Sc3WShk?=
+ =?us-ascii?Q?qtKOui8XkmM/sZkt8OEImr3hrQWvKq5ohUevyU8sbH8IJBavDHJoslEntZw4?=
+ =?us-ascii?Q?uYtI/OBEmMnGFG3eaU+waHUh4vEIslJG9JSXTi7zveSpCR1bVOl25Ibt0Apm?=
+ =?us-ascii?Q?e8ME1XOahZRQC6ckNr7wsFzYb0Ntbe906mVEj7+sizvzOODx50IrMisW7b/O?=
+ =?us-ascii?Q?8ssNJmpCXiWz0u1o3TnM2R7lUDJSS8/vWDGWiKf2vv6Z+8H9oMQJJ9+OOYpL?=
+ =?us-ascii?Q?vnolwg/3i9C7x5XD1ynbfxapXbAktqQZ8UmDhvEPOtri5Kdl/lixt7UU15qA?=
+ =?us-ascii?Q?wOEE97ZYriH5WqsGq/nruCbC5apFwFwjXpRDEh0f4i2kFeP/U2tRIv7aGjlF?=
+ =?us-ascii?Q?9AIx5uKsE0C2dYn95OAZeArp895mz2/+VBOkRkuCZR3Rnaxaz3A/agCmmMGr?=
+ =?us-ascii?Q?LddEjYIUwSIW5ecCbYjYRTr/Z/kRH6MsChZIpn84XHGrKvRCg6MQYSoi6y22?=
+ =?us-ascii?Q?5NhesbwRN/0Xd3XqPXwDi1/IqLOsy1w7VM2J8pdAOs2aveg+RCt+17WcAw0T?=
+ =?us-ascii?Q?jVOZjcZKEdxLrtlc+LMSD4i/qxFBeYpdc1/ZdkeFet9e9zt2ZIALybDLcMmm?=
+ =?us-ascii?Q?gl5xB8CGXkPxg/264Q9v/kmXIMpBVKWMllH48sQAvV6Wyk/zA3LhtXSMBDbH?=
+ =?us-ascii?Q?gNT5h72LhaZyv6rAFGSxsnP9i31C5aqXy9pRbTjT6BVUZcoZTxaOFrNjte+A?=
+ =?us-ascii?Q?Hf7aOLxjduv6dUGQ/EPyZPz7K92b0zytF18m3j6Jz5+XwXfx5UH/XiO9W1Bt?=
+ =?us-ascii?Q?F7NAKiGsGdq2AbV/ac4BHACkrhgAczfjvztk8yqFx9g4D1gmq02rnUyr8zZT?=
+ =?us-ascii?Q?egNwafSrJcUCV+kM2a5TaorcinK5cfQdG48gkfAoxLxcjHjRKUIR2FTgyA9B?=
+ =?us-ascii?Q?YRYcSDXhXBT6Oh9jVyerBQ7FyF/wfPE7By8jY0IuHcVhLfIXazb0hU1GdHHE?=
+ =?us-ascii?Q?zdmDRkuH/MVJcvYyVSPIezaEKSoeazTQ9/PtHCBASglGRVD03oNp9IPQ8Oy2?=
+ =?us-ascii?Q?Ffj+onIySP0OdJlZJeVkKVOMdVWjykQghZLB/Oxxgq+BATk1l7eHSi4/qrDV?=
+ =?us-ascii?Q?QtfkzPWGcCf5cntHigirNhmVR937MB0JzFF9iUYFEtE5YQmlvKHv9/mfUPzY?=
+ =?us-ascii?Q?kPQ4aSx7TLRcWaWzAUhxBwwJ1L9TP/YpSSNkOZ7dOM13Z3MjQWEyS63hS4o6?=
+ =?us-ascii?Q?SJgizOZ3ydWRTWKD0cB1atE9FTy0hyQhj2Y1kJAQdGvuZ9V2NqLa03pxwYxH?=
+ =?us-ascii?Q?T8UmPKMpwmNLKBvYPXmC4KokySt8HmTMBK8mPQnwZAwjZZ+8WOkkc33Jso3x?=
+ =?us-ascii?Q?1/ZZlwEFuE6m8L0GHkIZ8Bo3+khOUlaHflXByAckQPraFyrRSOGBmDnUaEu/?=
+ =?us-ascii?Q?1QSJXkX4ej9bJmlu4Vxd/BjEdeqqdajf3gzQBV4uww/IJBjzZU1l1Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(19092799006)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Kn+QmDxNtA/W5a3NxvoiYGociMQk+wTx72uvLyLNndEiMHQDXIPZ+8C7MDR/?=
+ =?us-ascii?Q?EFqXLp8JKhRtkCmzWKAfeoOsTsahYd+T/hrByKLsEvKBx9gYc3EzvjJ7XZzi?=
+ =?us-ascii?Q?BzWC9gnq8h2j24c0A9Taap1v46z6wa2Bp7SB4KdGf45AF9NBG1xbUVZsTkNP?=
+ =?us-ascii?Q?9htV54CEJCK4/b2YAsXyiwEHdFfh6UdMUNQT2h619fkHgHobrVNtpQGNddyO?=
+ =?us-ascii?Q?nw3sWUy+afrhfIJLXavNWyeL2cjhQQ+KcvdPyMXqwTvIys3Z+Y7qCWvYyrHJ?=
+ =?us-ascii?Q?xGIYI3rLsIEs3OqcV+zKK+SVYE/4SlwIdHf1tI127dHUsgKPjxpIs/lYCcKr?=
+ =?us-ascii?Q?LTHS72xZK5ngseVACgKwsY4QgThDciVzIdhiXxXDUIO2UaWNa4Ir7MBOYzRI?=
+ =?us-ascii?Q?KWaU8W9IsOCq0M9TZytWz2T78hYxTjpeFL6EMNwveG4CXajKg/oNDDKZ7pl1?=
+ =?us-ascii?Q?qGHML7tbcYDl+EXL9wwpYXFppmTD1vsq2oeJyASm+RS/ZUarg2v2Gi6eVFlI?=
+ =?us-ascii?Q?vOP7LGdwGbJ7TTmBxFDZGwmaGGWP6K5f81Elg+FSqEr2iaBegUBPS6c4Coh7?=
+ =?us-ascii?Q?kS0BJs/cxOi1jC2EHRuwwGytKi1FBzfwZUe5jbXevQfwJuB8QV4NIUnl7JKQ?=
+ =?us-ascii?Q?4Jp6HNIKpgxnXD1OKEJc5M55Yv1u13Z4AZnWorCN/vwBPJEUN8kA8b4adQQg?=
+ =?us-ascii?Q?vrESSOfMOijwpltv8uUPI/MlZo6+BY8o2My5XPzgydUFW+QIm9Ed4MlKg6u1?=
+ =?us-ascii?Q?vSNGsdppJ2OVw4AOyh5VECl3WuDiyQd+Lz1n7r2jI/fC/jE7bpiUAo8cXRZJ?=
+ =?us-ascii?Q?RVjl7jDKJJxth4bfF3ygY8EHwKbSp8xxGxNSeTvoxSL+GwK1bSrz9+ILamRH?=
+ =?us-ascii?Q?W1AZLZc7ndNxRP1TQ81buIk1oS3OJxSRh7tMpKoHEmp2mxqLAOTOMm8qJZ5S?=
+ =?us-ascii?Q?UWcwrEN9l030iML/51j5ZnkfPw0Lt7GNsKI2tJLNSs2tiaLgiu02ii57Fm0N?=
+ =?us-ascii?Q?yZD8SnlCGGYxeeyELXm16aIzum5NTcQ1H4ez9rB4RDrjFv+AWaBIllUQWQzk?=
+ =?us-ascii?Q?AK0nvSKmtNwtZgqARMHkzK1UoEcCZurQTMrryAnmkHfxUFqHI9mW2IPGrfND?=
+ =?us-ascii?Q?b+RIUmUPohvTTimeW8mn4zdvqDlxlug9PJHMpgReDCAUEpkoEgTtgh+fAPkN?=
+ =?us-ascii?Q?RbYkiBdwynq2YH5cPxkhjUMnD9fiqcvMqSu7Rp6rwn5PRCac/j0gMkS5FTyy?=
+ =?us-ascii?Q?gY/Hsgr+HRqGFYJtiWuyrfRhcUiyhcvV6rMfo1uQxKYDtyqkBZBS84oRP8LI?=
+ =?us-ascii?Q?XJIEricsoy6LO2fEqgpvNOfQo/VesduEWOlvfNaSH5BOEKP7s+OgW97r5MJK?=
+ =?us-ascii?Q?t4tXFvmAlvHqUVCq7OBWbJ+YehuL0LkrRcQNJNP+Ca5f9zdrsaCiWOk6SPSj?=
+ =?us-ascii?Q?3yBNmrmeI6LIH1RUvmFRmX6cMklWCF3S3heT4c4cQ1RM0ooyhV9JuJD9/LCR?=
+ =?us-ascii?Q?O129ZKGdczTZYhjVdV8pyDG4o5MIEI8pEB5rg5+NUUIjxaPK68Yh1lGdnv/l?=
+ =?us-ascii?Q?cgoEjTvnYe1er1lrUGs0oKmpk/cB9y0dfcrrn6lF?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: af056dc1-234d-4ae7-71da-08ddde2da3fc
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2025 08:02:56.4074
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LTLh9nwPPi49Da1pXtOlPiQw4UVUP59bq99pBTafobIRGjlDI0y7ymR6rCYq1D/yNwve6djQNXrqX0JH2zgS5A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9312
 
-On Mon, Aug 18, 2025 at 03:47:28PM +0800, Icenowy Zheng wrote:
-> 在 2025-08-18星期一的 15:45 +0800，Troy Mitchell写道：
-> > On Sun, Aug 17, 2025 at 01:10:44AM +0800, Icenowy Zheng wrote:
-> > > 在 2025-08-16星期六的 19:24 +0300，Dmitry Baryshkov写道：
-> > > > On Fri, Aug 15, 2025 at 12:40:45AM +0800, Icenowy Zheng wrote:
-> > > > > T-Head TH1520 SoC contains a Synopsys DesignWare HDMI
-> > > > > controller
-> > > > > (paired
-> > > > > with DesignWare HDMI TX PHY Gen2) that takes the "DP" output
-> > > > > from
-> > > > > the
-> > > > > display controller.
-> > > > > 
-> > > > > Add a driver for this controller utilizing the common
-> > > > > DesignWare
-> > > > > HDMI
-> > > > > code in the kernel.
-> > > > > 
-> > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > > > > ---
-[...]
-> > > > > +static int th1520_hdmi_phy_configure(struct dw_hdmi *hdmi,
-> > > > > void
-> > > > > *data,
-> > > > > +                                    unsigned long mpixelclock)
-> > > > > +{
-> > > > > +       const struct th1520_hdmi_phy_params *params =
-> > > > > th1520_hdmi_phy_params;
-> > > > > +
-> > > > > +       for (; params->mpixelclock != ~0UL; ++params) {
-> > > > > +               if (mpixelclock <= params->mpixelclock)
-> > > > > +                       break;
-> > > > 
-> > > > for (...) {
-> > > >         if (mpixelclock <= params->mpixelclock)
-> > > >                 return th1520_program_phy();
-> > > 
-> > > There's no such a function here, and this check isn't used for
-> > > another
-> > > time, so having the matching code and programming code extracted
-> > > out
-> > > can help nothing.
-> > I think Dmitry meant that the following code should be moved into
-> > a new function, th1520_program_phy().  
-> > 
-> > This makes the code cleaner and also avoids one extra if check.
+On Fri, Aug 15, 2025 at 12:30:02PM -0400, Frank Li wrote:
+> On Fri, Aug 15, 2025 at 05:36:31PM +0800, Xu Yang wrote:
+> > Add DDR Perf Monitor for i.MX95.
 > 
-> As there's no code reuse, it does not make code cleaner.
-I respect your opinion, but let's also see what Dmitry has to say.
+> typo, should be i.MX94
 
-                - Troy
+Thanks, I will correct it later.
+
+Thanks,
+Xu Yang
+
 > 
-> > 
-> >                 - Troy
-> > > 
-> > > > }
-> > > > 
-> > > > return -EINVAL;
-> > > > 
-> > > > > +       }
-> > > > > +
-> > > > > +       if (params->mpixelclock == ~0UL)
-> > > > > +               return -EINVAL;
-> > > > > +
-> > > > > +       dw_hdmi_phy_i2c_write(hdmi, params->opmode_pllcfg,
-> > > > > +                             TH1520_HDMI_PHY_OPMODE_PLLCFG);
-> > > > > +       dw_hdmi_phy_i2c_write(hdmi, params->pllcurrgmpctrl,
-> > > > > +                             TH1520_HDMI_PHY_PLLCURRGMPCTRL);
-> > > > > +       dw_hdmi_phy_i2c_write(hdmi, params->plldivctrl,
-> > > > > +                             TH1520_HDMI_PHY_PLLDIVCTRL);
-> > > > > +       dw_hdmi_phy_i2c_write(hdmi, params->vlevctrl,
-> > > > > +                             TH1520_HDMI_PHY_VLEVCTRL);
-> > > > > +       dw_hdmi_phy_i2c_write(hdmi, params->cksymtxctrl,
-> > > > > +                             TH1520_HDMI_PHY_CKSYMTXCTRL);
-> > > > > +       dw_hdmi_phy_i2c_write(hdmi, params->txterm,
-> > > > > +                             TH1520_HDMI_PHY_TXTERM);
-> > > > > +
-> > > > > +       return 0;
-> > > > > +}
-> > > > > +
-> > > > > +static int th1520_dw_hdmi_probe(struct platform_device *pdev)
-> > > > > +{
-> > > > > +       struct th1520_hdmi *hdmi;
-> > > > > +       struct dw_hdmi_plat_data *plat_data;
-> > > > > +       struct device *dev = &pdev->dev;
-> > > > > +
-> > > > > +       hdmi = devm_kzalloc(dev, sizeof(*hdmi), GFP_KERNEL);
-> > > > > +       if (!hdmi)
-> > > > > +               return -ENOMEM;
-> > > > > +
-> > > > > +       plat_data = &hdmi->plat_data;
-> > > > > +
-> > > > > +       hdmi->pixclk = devm_clk_get_enabled(dev, "pix");
-> > > > > +       if (IS_ERR(hdmi->pixclk))
-> > > > > +               return dev_err_probe(dev, PTR_ERR(hdmi-
-> > > > > >pixclk),
-> > > > > +                                    "Unable to get pixel
-> > > > > clock\n");
-> > > > > +
-> > > > > +       hdmi->mainrst =
-> > > > > devm_reset_control_get_exclusive_deasserted(dev, "main");
-> > > > > +       if (IS_ERR(hdmi->mainrst))
-> > > > > +               return dev_err_probe(dev, PTR_ERR(hdmi-
-> > > > > >mainrst),
-> > > > > +                                    "Unable to get main
-> > > > > reset\n");
-> > > > > +
-> > > > > +       hdmi->prst =
-> > > > > devm_reset_control_get_exclusive_deasserted(dev, "apb");
-> > > > > +       if (IS_ERR(hdmi->prst))
-> > > > > +               return dev_err_probe(dev, PTR_ERR(hdmi->prst),
-> > > > > +                                    "Unable to get apb
-> > > > > reset\n");
-> > > > > +
-> > > > > +       plat_data->output_port = 1;
-> > > > > +       plat_data->mode_valid = th1520_hdmi_mode_valid;
-> > > > > +       plat_data->configure_phy = th1520_hdmi_phy_configure;
-> > > > > +       plat_data->priv_data = hdmi;
-> > > > > +
-> > > > > +       hdmi->dw_hdmi = dw_hdmi_probe(pdev, plat_data);
-> > > > > +       if (IS_ERR(hdmi))
-> > > > > +               return PTR_ERR(hdmi);
-> > > > > +
-> > > > > +       platform_set_drvdata(pdev, hdmi);
-> > > > > +
-> > > > > +       return 0;
-> > > > > +}
-> > > > > +
-> > > > > +static void th1520_dw_hdmi_remove(struct platform_device
-> > > > > *pdev)
-> > > > > +{
-> > > > > +       struct dw_hdmi *hdmi = platform_get_drvdata(pdev);
-> > > > > +
-> > > > > +       dw_hdmi_remove(hdmi);
-> > > > > +}
-> > > > > +
-> > > > > +static const struct of_device_id th1520_dw_hdmi_of_table[] = {
-> > > > > +       { .compatible = "thead,th1520-dw-hdmi" },
-> > > > > +       { /* Sentinel */ },
-> > > > > +};
-> > > > > +MODULE_DEVICE_TABLE(of, th1520_dw_hdmi_of_table);
-> > > > > +
-> > > > > +static struct platform_driver th1520_dw_hdmi_platform_driver =
-> > > > > {
-> > > > > +       .probe          = th1520_dw_hdmi_probe,
-> > > > > +       .remove         = th1520_dw_hdmi_remove,
-> > > > > +       .driver         = {
-> > > > > +               .name   = "th1520-dw-hdmi",
-> > > > > +               .of_match_table = th1520_dw_hdmi_of_table,
-> > > > > +       },
-> > > > > +};
-> > > > > +
-> > > > > +module_platform_driver(th1520_dw_hdmi_platform_driver);
-> > > > > +
-> > > > > +MODULE_AUTHOR("Icenowy Zheng <uwu@icenowy.me>");
-> > > > > +MODULE_DESCRIPTION("T-Head TH1520 HDMI Encoder Driver");
-> > > > > +MODULE_LICENSE("GPL");
-> > > > > -- 
-> > > > > 2.50.1
-> > > > > 
-> > > > 
-> > > 
-> > > _______________________________________________
-> > > linux-riscv mailing list
-> > > linux-riscv@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> 
+> Frank
+> >
+> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx94.dtsi | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx94.dtsi b/arch/arm64/boot/dts/freescale/imx94.dtsi
+> > index 44dee2cbd42d4bc765c33a9ce663ceda095b6c66..6a2d86d67200facec76a7880b4a2268b4191452c 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx94.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx94.dtsi
+> > @@ -1188,5 +1188,11 @@ wdog3: watchdog@49220000 {
+> >  				status = "disabled";
+> >  			};
+> >  		};
+> > +
+> > +		ddr-pmu@4e090dc0 {
+> > +			compatible = "fsl,imx94-ddr-pmu", "fsl,imx93-ddr-pmu";
+> > +			reg = <0x0 0x4e090dc0 0x0 0x200>;
+> > +			interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
+> > +		};
+> >  	};
+> >  };
+> >
+> > --
+> > 2.34.1
+> >
 
