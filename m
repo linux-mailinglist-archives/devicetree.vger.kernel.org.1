@@ -1,188 +1,134 @@
-Return-Path: <devicetree+bounces-205734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF92B29DF7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:34:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E99CBB29E02
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:35:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 145E87A4962
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:32:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0CDC7ABFDB
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:33:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119E830E0F7;
-	Mon, 18 Aug 2025 09:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9266C30E833;
+	Mon, 18 Aug 2025 09:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="qFpZvREc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EUSdn8u/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C49D221FDC;
-	Mon, 18 Aug 2025 09:34:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6335E212575;
+	Mon, 18 Aug 2025 09:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755509657; cv=none; b=M+oFhntEkBI7Z2NsA2KW2KP7XztsLbZacZey8r4zcTq5kf3L2zDJLmbgTueN5b7Y59V0SndJQI0WM5TahDJYno4JE5UlT6c2xrKir4IqzENCmZgLaaidUc7SoNE8V1UMapDOqHvC3PWC7nS/gYcY40Rga13scEoEZQQHkWQwc4M=
+	t=1755509710; cv=none; b=E8lLtfkuAw2N2JfCDt+ivJ7QXga+9H7U6mcGi4vRcs2HeT9HY3yPYTYomOIrEzu1SMC2qBcI4xg94Iv+V+stUon/DHaSp732N6FAxctKGRZlNOiFyEKmrhOEzD8EwjIglPtwjtU7qxxa7RGqcdSm8xCxT5gOgL9z3V/9lNkRI0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755509657; c=relaxed/simple;
-	bh=aXdSfAR4983BNp7JPSaitHLvzBXoEwpGjFaYcoiR100=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ph4VNcjmnntRuQIO6tdx9tnIzoHqm1FQGqMQpa5ldYtLTbADiCvdirm9VIP+dtCJOEfCzd06tpQHf3kHrGjswtqfmMJ0M42hUdtklgsneAvBat27gKfRAqU+IkgrAaaNvINMQEq8SGz8Exj+ndSU2uJ7K6TLXHATPJqlq3TBQ4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=qFpZvREc; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 820F12416;
-	Mon, 18 Aug 2025 11:33:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1755509594;
-	bh=aXdSfAR4983BNp7JPSaitHLvzBXoEwpGjFaYcoiR100=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qFpZvREcnMuHPIGb3EM8skBbhb2ObaIU7jEuzNsB+cq8A5yVEnZH6ML/uK7/znBNF
-	 ao4NfQQ/eQUGGOmHDSeL/+4mOxSY7VyVPD7WBv/oRu4Oc2z/c4FjolrY3X0WDKejMC
-	 rbi9ExxsgMNJUcWGOMLNZrlaACJKMT0TQ3I4dz1s=
-Date: Mon, 18 Aug 2025 12:33:49 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Inbaraj E <inbaraj.e@samsung.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, krzk@kernel.org,
-	s.nawrocki@samsung.com, s.hauer@pengutronix.de, shawnguo@kernel.org,
-	cw00.choi@samsung.com, rmfrfs@gmail.com, martink@posteo.de,
-	mchehab@kernel.org, linux-fsd@tesla.com, will@kernel.org,
-	catalin.marinas@arm.com, pankaj.dubey@samsung.com,
-	shradha.t@samsung.com, ravi.patel@samsung.com,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, alim.akhtar@samsung.com,
-	linux-samsung-soc@vger.kernel.org, kernel@puri.sm,
-	kernel@pengutronix.de, festevam@gmail.com,
-	linux-media@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 07/12] media: imx-mipi-csis: Add support to configure
- specific vc
-Message-ID: <20250818093349.GC5862@pendragon.ideasonboard.com>
-References: <20250814140943.22531-1-inbaraj.e@samsung.com>
- <CGME20250814141036epcas5p1fc02cea3f97534303673eb8453b6a18f@epcas5p1.samsung.com>
- <20250814140943.22531-8-inbaraj.e@samsung.com>
+	s=arc-20240116; t=1755509710; c=relaxed/simple;
+	bh=rNwl2lgK/CJRrcZxa4Dc+9tNcynpL7lokinB7iQZH/k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fdAUO4t4C5QlrBcNbuC20IE+pM25odpgwWAIVBmieSqybMtFHxvp4eGbTKDQNHgSF6US6E1PT3zNSFNe4teEcnU7cvp/3KrjefRMc/S0BHWUijSX8c2B66dPd8malFuya2+K4rEqdWqy0iyfPtY2OTFnepYr1fS5L6QFtKHXe3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EUSdn8u/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18C72C4CEED;
+	Mon, 18 Aug 2025 09:35:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755509708;
+	bh=rNwl2lgK/CJRrcZxa4Dc+9tNcynpL7lokinB7iQZH/k=;
+	h=From:To:Cc:Subject:Date:From;
+	b=EUSdn8u/CKDv5sEvNbKKfsSPPyNCNZXgK1/tMS4lVGj3TNP2Hyf5wH6wMb1fNzqZU
+	 Mr50wKLqNY+GFITkdAcv28XOZ/+Jd+a8GbFo2uZjmOoTfEww6aWT0OLC9ehdu8Izig
+	 uZUslazQneIgjD4PYlarMWMzyyWdwQkmGmaz6ksLA+Pn6rR2wiL8eZUEDukKliDBcE
+	 +aWKBf+O5UwatQ7uAAP/djOWL8AwssmSFwRhjqB1R+YtrlEr/QNP86VCR3FxkP2q2X
+	 Wy+J/sMmltb0+pPNFibvQfeaaiROGbvWWQw49IInO4rb7Cw2/K1VLjcl2fWCUbRbMK
+	 kg5iratASL3Hw==
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: linux-kernel@vger.kernel.org
+Cc: linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Rob Herring <robh@kernel.org>,
+	Lizhi Hou <lizhi.hou@amd.com>
+Subject: [PATCH] PCI: of: Update parent unit address generation in of_pci_prop_intr_map()
+Date: Mon, 18 Aug 2025 11:35:04 +0200
+Message-ID: <20250818093504.80651-1-lpieralisi@kernel.org>
+X-Mailer: git-send-email 2.48.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250814140943.22531-8-inbaraj.e@samsung.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Inbaraj,
+Some interrupt controllers require an #address-cells property in their
+bindings without requiring a "reg" property to be present.
 
-On Thu, Aug 14, 2025 at 07:39:38PM +0530, Inbaraj E wrote:
-> MIPI_CSIS_V3_3 and MIPI_CSIS_V3_6_3 support streaming only on VC0.
+The current logic used to craft an interrupt-map property in
+of_pci_prop_intr_map() is based on reading the #address-cells
+property in the interrupt-parent and, if != 0, read the interrupt
+parent "reg" property to determine the parent unit address to be
+used to create the parent unit interrupt specifier.
 
-That doesn't appear to be true, at least for MIPI_CSIS_V3_6_3. I have a
-patch series that adds VC support for v3.6.3 in the i.MX8MP, and it has
-been susccessfully tested.
+First of all, it is not correct to read the "reg" property of
+the interrupt-parent with an #address-cells value taken from the
+interrupt-parent node, because the #address-cells value define the
+number of address cells required by child nodes.
 
-> The
-> MIPI_CSIS_V4_3 present in the FSD SoC supports streaming on any one VC
-> out of four VCs. To extend support for the FSD SoC, add the ability to
-> configure a specific VC. The FSD CSI Rx can configure any one VC and
-> start streaming.
-> 
-> Signed-off-by: Inbaraj E <inbaraj.e@samsung.com>
-> ---
->  drivers/media/platform/nxp/imx-mipi-csis.c | 17 +++++++++++------
->  1 file changed, 11 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/media/platform/nxp/imx-mipi-csis.c b/drivers/media/platform/nxp/imx-mipi-csis.c
-> index a3e2c8ae332f..4f6c417fdf58 100644
-> --- a/drivers/media/platform/nxp/imx-mipi-csis.c
-> +++ b/drivers/media/platform/nxp/imx-mipi-csis.c
-> @@ -54,7 +54,7 @@
->  
->  /* CSIS common control */
->  #define MIPI_CSIS_CMN_CTRL			0x04
-> -#define MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW	BIT(16)
-> +#define MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW(n)	BIT(((n) + 16))
->  #define MIPI_CSIS_CMN_CTRL_INTER_MODE		BIT(10)
->  #define MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW_CTRL	BIT(2)
->  #define MIPI_CSIS_CMN_CTRL_RESET		BIT(1)
-> @@ -319,6 +319,7 @@ struct mipi_csis_device {
->  		u32 hs_settle;
->  		u32 clk_settle;
->  	} debug;
-> +	unsigned int vc;
->  };
->  
->  /* -----------------------------------------------------------------------------
-> @@ -544,9 +545,10 @@ static void __mipi_csis_set_format(struct mipi_csis_device *csis,
->  				   const struct csis_pix_format *csis_fmt)
->  {
->  	u32 val;
-> +	unsigned int vc = csis->vc;
->  
->  	/* Color format */
-> -	val = mipi_csis_read(csis, MIPI_CSIS_ISP_CONFIG_CH(0));
-> +	val = mipi_csis_read(csis, MIPI_CSIS_ISP_CONFIG_CH(vc));
->  	val &= ~(MIPI_CSIS_ISPCFG_ALIGN_32BIT | MIPI_CSIS_ISPCFG_FMT_MASK
->  		| MIPI_CSIS_ISPCFG_PIXEL_MASK);
->  
-> @@ -567,11 +569,11 @@ static void __mipi_csis_set_format(struct mipi_csis_device *csis,
->  		val |= MIPI_CSIS_ISPCFG_PIXEL_MODE_DUAL;
->  
->  	val |= MIPI_CSIS_ISPCFG_FMT(csis_fmt->data_type);
-> -	mipi_csis_write(csis, MIPI_CSIS_ISP_CONFIG_CH(0), val);
-> +	mipi_csis_write(csis, MIPI_CSIS_ISP_CONFIG_CH(vc), val);
->  
->  	/* Pixel resolution */
->  	val = format->width | (format->height << 16);
-> -	mipi_csis_write(csis, MIPI_CSIS_ISP_RESOL_CH(0), val);
-> +	mipi_csis_write(csis, MIPI_CSIS_ISP_RESOL_CH(vc), val);
->  }
->  
->  static int mipi_csis_calculate_params(struct mipi_csis_device *csis,
-> @@ -631,6 +633,7 @@ static void mipi_csis_set_params(struct mipi_csis_device *csis,
->  {
->  	int lanes = csis->bus.num_data_lanes;
->  	u32 val;
-> +	unsigned int vc = csis->vc;
->  
->  	val = mipi_csis_read(csis, MIPI_CSIS_CMN_CTRL);
->  	val &= ~MIPI_CSIS_CMN_CTRL_LANE_NR_MASK;
-> @@ -648,7 +651,7 @@ static void mipi_csis_set_params(struct mipi_csis_device *csis,
->  	val = (0 << MIPI_CSIS_ISP_SYNC_HSYNC_LINTV_OFFSET)
->  	    | (0 << MIPI_CSIS_ISP_SYNC_VSYNC_SINTV_OFFSET)
->  	    | (0 << MIPI_CSIS_ISP_SYNC_VSYNC_EINTV_OFFSET);
-> -	mipi_csis_write(csis, MIPI_CSIS_ISP_SYNC_CH(0), val);
-> +	mipi_csis_write(csis, MIPI_CSIS_ISP_SYNC_CH(vc), val);
->  
->  	val = mipi_csis_read(csis, MIPI_CSIS_CLK_CTRL);
->  	val |= MIPI_CSIS_CLK_CTRL_WCLK_SRC;
-> @@ -669,7 +672,7 @@ static void mipi_csis_set_params(struct mipi_csis_device *csis,
->  	/* Update the shadow register. */
->  	val = mipi_csis_read(csis, MIPI_CSIS_CMN_CTRL);
->  	mipi_csis_write(csis, MIPI_CSIS_CMN_CTRL,
-> -			val | MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW |
-> +			val | MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW(vc) |
->  			MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW_CTRL);
->  }
->  
-> @@ -945,6 +948,8 @@ static int mipi_csis_s_stream(struct v4l2_subdev *sd, int enable)
->  	struct v4l2_subdev_state *state;
->  	int ret;
->  
-> +	csis->vc = 0;
-> +
+More importantly, for all modern interrupt controllers, the parent
+unit address is irrelevant in HW in relation to the
+device<->interrupt-controller connection and the kernel actually
+ignores the parent unit address value when hierarchically parsing
+the interrupt-map property (ie of_irq_parse_raw()).
 
-Dynamic VC selection belongs to this patch, not patch 09/12. 09/12 does
-too many different things, it has to be split into one patch per
-feature.
+For the reasons above, remove the code parsing the interrupt
+parent "reg" property in of_pci_prop_intr_map() - it is not
+needed and as it is it is detrimental in that it prevents
+interrupt-map property generation on systems with an
+interrupt-controller that has no "reg" property in its
+interrupt-controller node - and leave the parent unit address
+always initialized to 0 since it is simply ignored by the kernel.
 
->  	if (!enable) {
->  		v4l2_subdev_disable_streams(csis->source.sd,
->  					    csis->source.pad->index, BIT(0));
+Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Lizhi Hou <lizhi.hou@amd.com>
+Link: https://lore.kernel.org/lkml/aJms+YT8TnpzpCY8@lpieralisi/
+---
+ drivers/pci/of_property.c | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
+index 506fcd507113..09b7bc335ec5 100644
+--- a/drivers/pci/of_property.c
++++ b/drivers/pci/of_property.c
+@@ -279,13 +279,20 @@ static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
+ 			mapp++;
+ 			*mapp = out_irq[i].np->phandle;
+ 			mapp++;
+-			if (addr_sz[i]) {
+-				ret = of_property_read_u32_array(out_irq[i].np,
+-								 "reg", mapp,
+-								 addr_sz[i]);
+-				if (ret)
+-					goto failed;
+-			}
++
++			/*
++			 * A device address does not affect the
++			 * device<->interrupt-controller HW connection for all
++			 * modern interrupt controllers; moreover, the kernel
++			 * (ie of_irq_parse_raw()) ignores the values in the
++			 * parent unit address cells while parsing the interrupt-map
++			 * property because they are irrelevant for interrupts mapping
++			 * in modern system.
++			 *
++			 * Leave the parent unit address initialized to 0 - just
++			 * take into account the #address-cells size to build
++			 * the property properly.
++			 */
+ 			mapp += addr_sz[i];
+ 			memcpy(mapp, out_irq[i].args,
+ 			       out_irq[i].args_count * sizeof(u32));
 -- 
-Regards,
+2.48.0
 
-Laurent Pinchart
 
