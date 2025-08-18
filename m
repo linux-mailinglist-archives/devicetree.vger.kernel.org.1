@@ -1,193 +1,107 @@
-Return-Path: <devicetree+bounces-205557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901EAB296E5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 04:20:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F353B2970E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 04:31:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 354393A838D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 02:20:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0DB4201ABE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 02:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26A102472B6;
-	Mon, 18 Aug 2025 02:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0934246BC6;
+	Mon, 18 Aug 2025 02:31:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="jKd7RZRO";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="1So0BoUQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FvhcQeBh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3625E242D9D;
-	Mon, 18 Aug 2025 02:20:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A51111A8;
+	Mon, 18 Aug 2025 02:31:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755483615; cv=none; b=n/gPzg0zSphdDl7XyAnJ3ozHczTHY2cRoDNpYROF0hUSJmKN7OMBRoSo3NFfOMDEgUiCKz5YnYE/IvIZy1bs8iD9yzgN548aYfLOd5vmu7BS8KOypiVZpov6ZqdqTUZVCkZwSTByk8Yfsh/o/09q2ZbK5LR28E5ah+5T0OkrIN0=
+	t=1755484308; cv=none; b=pAiCg7WqcRXOFirufHYl4zu6OSfCH+7jQKSG7VKLwdGxxYglZhBTn/M8j/3WXj64dY96fWFCumJQKqS2ef1aNzXhGgioyZtT3v3pF4uz6u9vcD1gCwnJZATMyTUK6VU2Pyh0cjTxf40Pcdl+94tY5hZSoF2uMehC6Y3yQjF3JoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755483615; c=relaxed/simple;
-	bh=CosjTx8va6pZLipoVSMb7IfvL5LyoiBbXc+YFlVKM3M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DBupm3hiHs4/fu/YfXeHYSAm0OoI6F7QK5irsQ/Ftw28DGAwP6EDWm+xQ+cagLuJanYlyxvgsLCtdVQwiKK59NmGKLYohouNGcWFTXaCwPO8IkDwxmLbsOVPz85qDfyKLA0QoR2yO4TP6CQ4CTNdMOEFqdQmHkG1WkiCQ7DHYWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=jKd7RZRO; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=1So0BoUQ; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from localhost (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 601D212FB9DF;
-	Sun, 17 Aug 2025 19:20:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1755483611; bh=CosjTx8va6pZLipoVSMb7IfvL5LyoiBbXc+YFlVKM3M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jKd7RZROZzJo+OndANBCZgUnVOskBkHpvNFl2tjW6XtsX/3nFvkp+mgtnGy/rNYpL
-	 YwdW5LavHind787x7HHooeG3JpRPh3c7DMTHI0QFLxG3z80IcduQqZOABVrjVRiLJ+
-	 aN1Jn6cy/8qUUfraB293lKCpj5C/cTZTqfG11cphRYLXuh5ZBPYuRNtmU3GK8/Soh6
-	 R8rofEidDDM0WbnYD88xSfR7hiirO6+xjSCZKkGYObtN6ND92/Ra3NcLkuDGos+C2q
-	 WGCJDBn0g+DVPv9bKK1FES9OoWWrtIPgjYXJ8/ncZt9i7i9HqWmOCpR+0dlrf9w3Pj
-	 Ep7NKXPxD1hRg==
-X-Virus-Scanned: amavis at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by localhost (bayard.4d2.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id B96bH3ge1wco; Sun, 17 Aug 2025 19:20:09 -0700 (PDT)
-Received: from ketchup (unknown [117.171.67.207])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 1347812FB42D;
-	Sun, 17 Aug 2025 19:20:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1755483609; bh=CosjTx8va6pZLipoVSMb7IfvL5LyoiBbXc+YFlVKM3M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=1So0BoUQ6dU7KkwneIlzTB4pXnuu2j4nsFqptUv6c3xjIB3hz34lVn4WNAxUjqPOb
-	 oK4XoIteGigE85GdgWeRIT8vCWIxcOJtDzQfPB+lyVcEBnyIj65OPCTd/W7mpfItKn
-	 msze26BBfucHXBRvbiIpo1c09u5o4POp9jZzHLFsuq3+Yx5ubo1Sn+fBHiEsgdfoRy
-	 QBFfjjzUtOI6UGZuWgMeYAfH4DGyqYUmalhh6/Sm6bYx4f46Z3AvTWxuCYnsvycs0p
-	 WpLd6cKbXtZkPpu4ZfHHt4lYr5J/raj/5uQsRO2KceMEPCDuRe0QMXQ3hc3fYjjXsr
-	 OC6n5P9nsJZwQ==
-Date: Mon, 18 Aug 2025 02:20:03 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Alex Elder <elder@riscstar.com>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Jinmei Wei <weijinmei@linux.spacemit.com>
-Subject: Re: [PATCH v2 3/4] clk: spacemit: introduce factor for div clock
-Message-ID: <aKKN05w88uKP_HY7@ketchup>
-References: <20250811-k1-clk-i2s-generation-v2-0-e4d3ec268b7a@linux.spacemit.com>
- <20250811-k1-clk-i2s-generation-v2-3-e4d3ec268b7a@linux.spacemit.com>
+	s=arc-20240116; t=1755484308; c=relaxed/simple;
+	bh=+4qNgvQy+1/DLXb5T9gVXI3Pk7l/GEhUmzDE8+k73io=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=mIWTyGdRE2Oi6xRJ8gGEuglR3PIfdtqV7wUaFZYVxaQP87JlJDK/UBcbD1UbENFak5G9uZDqtNKD4x/kHHubAQOGI7mltN4rVODN9i1xhqFqo2tiZH844zAGczn3UJbY3V5zMLhsyjwEX6h38adzRIylv5TJs7dLrUpVpVGF+k0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FvhcQeBh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 444D3C4CEEB;
+	Mon, 18 Aug 2025 02:31:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755484308;
+	bh=+4qNgvQy+1/DLXb5T9gVXI3Pk7l/GEhUmzDE8+k73io=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=FvhcQeBhjPfGwyTq8WFWxQUK2NfwdnlgZlEwiUIyhorqrJYjszn5bZ95MvUQq6jv9
+	 6FXfDMGRXYXq+dUZ2zvu4bXlYoPDTQMF05e3tHCqX34ERBlbWc7zrqPnEEqjtsxtgN
+	 oK0iuWPFZwaRhRsMmWajOAOeQE8ZcMA1f5kS5qjHpmHKrAFLK9Ml4IBfb1AL9A29/8
+	 nC26G72IUWXFFQSu61NCKXHBjX9HVy5a6xnJfOutnGrJ6uToteAKyNAmM1A23W3lvc
+	 tf7NsvzJSpmqS+M+6b6pa6O3bgamHYIpEgPE89UQ6oNMFFOW4V69Bsym1rSBg04rVj
+	 3e3vOdYHuCZeQ==
+Date: Sun, 17 Aug 2025 21:31:47 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250811-k1-clk-i2s-generation-v2-3-e4d3ec268b7a@linux.spacemit.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: lee@kernel.org, linux-leds@vger.kernel.org, corbet@lwn.net, 
+ christophe.jaillet@wanadoo.fr, devicetree@vger.kernel.org, 
+ krzk+dt@kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ rdunlap@infradead.org, pavel@kernel.org, conor+dt@kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Nam Tran <trannamatk@gmail.com>
+In-Reply-To: <20250818012654.143058-2-trannamatk@gmail.com>
+References: <20250818012654.143058-1-trannamatk@gmail.com>
+ <20250818012654.143058-2-trannamatk@gmail.com>
+Message-Id: <175548430728.3642063.6873272310272616172.robh@kernel.org>
+Subject: Re: [PATCH v13 RESEND 1/4] dt-bindings: leds: add TI/National
+ Semiconductor LP5812 LED Driver
 
-On Mon, Aug 11, 2025 at 10:04:29PM +0800, Troy Mitchell wrote:
-> From the definition of register, The i2s_bclk is a non-linear,
-> discrete divider clock.
-> 
-> The following table shows the correspondence between index
-> and frequency division coefficients:
-> 
-> | index |  div  |
-> |-------|-------|
-> |   0   |   2   |
-> |   1   |   4   |
-> |   2   |   6   |
-> |   3   |   8   |
-> 
-> But from a software perspective and this table, dividing the
-> actual div value by 2 is sufficient to obtain a continuous
-> divider clock.
-> 
-> Rather than introducing a new clock type to handle this case,
-> a factor parameter has been added to CCU_DIV_GATE_DEFINE.
 
-Actually, I expected you to represent the factor simply with
-CCU_FACTOR_DEFINE, introducing no new clock-calculation code...
-
-> Suggested-by: Haylen Chu <heylenay@4d2.org>
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+On Mon, 18 Aug 2025 08:26:51 +0700, Nam Tran wrote:
+> The LP5812 is a 4x3 RGB LED driver with an autonomous animation
+> engine and time-cross-multiplexing (TCM) support for up to 12 LEDs
+> or 4 RGB LEDs. It supports both analog (256 levels) and PWM (8-bit)
+> dimming, including exponential PWM for smooth brightness control.
+> 
+> Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  drivers/clk/spacemit/ccu_mix.c | 7 ++++++-
->  drivers/clk/spacemit/ccu_mix.h | 4 +++-
->  2 files changed, 9 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/clk/spacemit/ccu_mix.c b/drivers/clk/spacemit/ccu_mix.c
-> index 9b852aa61f78aed5256bfe6fc3b01932d6db6256..dbd2cf234bf81d8e110b19868ff9af7373e2ab55 100644
-> --- a/drivers/clk/spacemit/ccu_mix.c
-> +++ b/drivers/clk/spacemit/ccu_mix.c
-> @@ -56,7 +56,10 @@ static unsigned long ccu_div_recalc_rate(struct clk_hw *hw,
->  	val = ccu_read(&mix->common, ctrl) >> div->shift;
->  	val &= (1 << div->width) - 1;
->  
-> -	return divider_recalc_rate(hw, parent_rate, val, NULL, 0, div->width);
-> +	if (!div->factor)
-> +		return divider_recalc_rate(hw, parent_rate, val, NULL, 0, div->width);
-
-Please adapt all div-related macros to make them assign one to the
-factor, which helps you get rid of this if and the one in
-ccu_mix_calc_best_rate().
-
-> +	return divider_recalc_rate(hw, parent_rate, val, NULL, 0, div->width) / div->factor;
->  }
->  
->  /*
-> @@ -115,6 +118,8 @@ ccu_mix_calc_best_rate(struct clk_hw *hw, unsigned long rate,
->  
->  		for (int j = 1; j <= div_max; j++) {
->  			unsigned long tmp = DIV_ROUND_CLOSEST_ULL(parent_rate, j);
-> +			if (mix->div.factor)
-			---- this if ------
-
-> +				tmp /= mix->div.factor;
->  
->  			if (abs(tmp - rate) < abs(best_rate - rate)) {
->  				best_rate = tmp;
-> diff --git a/drivers/clk/spacemit/ccu_mix.h b/drivers/clk/spacemit/ccu_mix.h
-> index 54d40cd39b2752260f57d2a96eb8d3eed8116ecd..7dd00d24ec4b1dab70663b9cb7b9ebb02abeaecb 100644
-> --- a/drivers/clk/spacemit/ccu_mix.h
-> +++ b/drivers/clk/spacemit/ccu_mix.h
-> @@ -34,6 +34,7 @@ struct ccu_mux_config {
->  struct ccu_div_config {
->  	u8 shift;
->  	u8 width;
-> +	unsigned int factor;
->  };
->  
->  struct ccu_mix {
-> @@ -130,10 +131,11 @@ static struct ccu_mix _name = {							\
->  }
->  
->  #define CCU_DIV_GATE_DEFINE(_name, _parent, _reg_ctrl, _shift, _width,		\
-> -			    _mask_gate,	_flags)					\
-> +			    _mask_gate,	_factor, _flags)			\
-
-This isn't that consistent: why could only divider-gate come with a
-factor? This is another reason why I think representing the factor
-separately with the CCU_FACTOR_DEFINE() macro is better.
-
->  static struct ccu_mix _name = {							\
->  	.gate	= CCU_GATE_INIT(_mask_gate),					\
->  	.div	= CCU_DIV_INIT(_shift, _width),					\
-> +	.div.factor = _factor,						\
->  	.common = {								\
->  		.reg_ctrl	= _reg_ctrl,					\
->  		CCU_MIX_INITHW(_name, _parent, spacemit_ccu_div_gate_ops,	\
-> 
-> -- 
-> 2.50.1
+>  .../devicetree/bindings/leds/ti,lp5812.yaml   | 229 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 235 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/ti,lp5812.yaml
 > 
 
-Best regards,
-Haylen Chu
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250818012654.143058-2-trannamatk@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
