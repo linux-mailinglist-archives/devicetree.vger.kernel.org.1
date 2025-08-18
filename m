@@ -1,135 +1,138 @@
-Return-Path: <devicetree+bounces-205940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078A5B2AF12
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:12:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E74A1B2AF16
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:12:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D37731BA2A91
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:09:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92ECF188D1CC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:13:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8A632C315;
-	Mon, 18 Aug 2025 17:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3FA32C321;
+	Mon, 18 Aug 2025 17:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ukN+n/GX"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kvOsrAjx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C0832C300;
-	Mon, 18 Aug 2025 17:09:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25CA132C302;
+	Mon, 18 Aug 2025 17:12:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755536945; cv=none; b=u57wTXl7lE6IRRTQnNgXcGtjGL1Kd14gJIsME7mb0s146L4O6qUnUgPD9mFCHWwc4ZG4e+XtXIhboSsRkRGoTyK1cQ+FeKgVxhbADeqqSDsOlX3D1uvZh/z3HsWCpMN7a8sYPa1DlwEa0wbCR2vAdxEPYAEAtuKFZGPBowsg1g0=
+	t=1755537161; cv=none; b=K5rBRUIACbunhCuUXLeiqNCdnhjJmZU1aM7YA7QOMLTHkykMYnYIgCOkgARlozoiMCi2G4CdoW1ihmMrXiAoxKnsDFHV2CK865ggRByaOvxj15ObA47a87aOVsfZIQDuXZBV5wGyIVgY3bK9FEPfVm7AKG1dmYoDiJCFNfQXju8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755536945; c=relaxed/simple;
-	bh=Hyw53ZDx364pKmLbo4gCQTxyQwdoGy/IOG7eSwG74Yw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rtzXkP03CGe0tdy1ZM8kYNuu4SLMaf2Ry1NViCc/BpuGUK0E+JsUQr2rSOzwD1scF/ajTY3SeayXXOJTOIZDlgmXOB8uMH7keLxHWXmEUv+cTesAjWcnah3b73Wts45EvSdGldOmkYk2wwFtYg2P08Wx63D9ZFTE9dCQtcRW77U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ukN+n/GX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C177BC4CEEB;
-	Mon, 18 Aug 2025 17:09:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755536944;
-	bh=Hyw53ZDx364pKmLbo4gCQTxyQwdoGy/IOG7eSwG74Yw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ukN+n/GXzklqVJkTZne+d5giZDpSaa18ONEWXelzNI9h/TiFDmr5VPh5xVQUWmkc/
-	 KWmA/NbSPEVHpIPxy4tkwEIqirz4obvDRTc3+KaHTnBradG09dGa2p31WeDMO8vXhg
-	 sEMXVQFaXI0r1IReF0FXjCRgd+svrakkcEZvjXdGZkd6812sS9BX3VTRHHXDUTsdOx
-	 4NDJj9x7fckyP0glb57uRmro3ix6/33rTryeMLE4hdd3oWtsoYHIUubIBl03WYmh7w
-	 FC2OyDlHhwSj2tpvmlhmr4pd+jAmxV5hvKSNUXDipLL4EZwYh+piiufJaqUFF6wtx3
-	 dUDhOVNgevt6A==
-Date: Mon, 18 Aug 2025 12:09:04 -0500
-From: Rob Herring <robh@kernel.org>
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, krzk+dt@kernel.org,
-	conor+dt@kernel.org, hauke@hauke-m.de,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: watchdog: lantiq,wdt: convert bindings to
- dtschema
-Message-ID: <20250818170904.GA1477625-robh@kernel.org>
-References: <20250811131104.837210-1-olek2@wp.pl>
+	s=arc-20240116; t=1755537161; c=relaxed/simple;
+	bh=SAYLvt+TdvOMWkry0P3jnEHv9OeBgLFTEiK5Js0VPL0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ldO+NKKOhF7ud61i6BOnoFwWNHc8+lsNBAjVrOAfPe59WbewvjeNhSME8bTtKxgt504+QTOjjirG1rZnTbvwTMD7o8hWIMiK6I7YY08nIIRsL4kJmGXu0qK1VdfNNi+084bYLLv3VApIu022wROa/8mQnjwgLSAcZ7+RkpMowWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kvOsrAjx; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1755537154;
+	bh=SAYLvt+TdvOMWkry0P3jnEHv9OeBgLFTEiK5Js0VPL0=;
+	h=From:Date:Subject:To:Cc:From;
+	b=kvOsrAjxoBCrN6ZAjhHp+z6Fuy0Lo20VFIjJfaDaDPOCCe7o0JbPjwjYS76J3ubGS
+	 qWyd/zPiFeiVp7gohcE4Apj156HY4FeK0naTjIE4aMNyogQNoHW5f1ulEKp8N3x7o3
+	 clRVSYPBLI8GmMjwN1qULWlx2p8gWwti1duFk7LY1BqOh0eeskM7g33w8sn8+vPopz
+	 Ho2RU+lzNU2m+iwEitCoL5/vmWbtKsKVegkaJo3WlCjCZXUbT5gRYhwtZgs094fqld
+	 2986+acmaY0ilq+Mdwvvgp+X3L6+2PNnk9TYqKhwgSJP8S/Qd37H7z1fmDXfNn/YYk
+	 KbRBagbd5lMGQ==
+Received: from jupiter.universe (dyndsl-091-248-210-167.ewe-ip-backbone.de [91.248.210.167])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3B4B817E0DE3;
+	Mon, 18 Aug 2025 19:12:34 +0200 (CEST)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id EF42B480044; Mon, 18 Aug 2025 19:12:33 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Date: Mon, 18 Aug 2025 19:12:23 +0200
+Subject: [PATCH] arm64: dts: rockchip: correct network description on Sige5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250811131104.837210-1-olek2@wp.pl>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250818-sige5-network-phy-clock-v1-1-87a9122d41c2@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAPZeo2gC/x3MTQqAIBBA4avErBtQSZCuEi3KRhsKDY1+iO6et
+ PwW7z2QKTFlaKsHEh2cOYYCWVdg5yF4Qp6KQQmlhZEGM3vSGGg/Y1pwm2+0a7QLSiuF040ZtVJ
+ Q6i2R4+s/d/37fiaJqhRpAAAA
+X-Change-ID: 20250818-sige5-network-phy-clock-1c10f548b522
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ kernel@collabora.com, Sebastian Reichel <sebastian.reichel@collabora.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1535; i=sre@kernel.org;
+ h=from:subject:message-id; bh=SAYLvt+TdvOMWkry0P3jnEHv9OeBgLFTEiK5Js0VPL0=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGijXwGfiXygZXsYaSAVonahjYg5JoVKFCg4Q
+ 9VsgfeiOl0lzIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJoo18BAAoJENju1/PI
+ O/qaZIAQAIivfyWW5RnxUMO+tth3rMGHps2imw6cUeNR4+0t9cuxpBEADAt80yezHZSyh+zsWxa
+ InHZXkOFhskpyVidwH20dSEH0nOLqfCppPrkMSBZWUtw9C7b7BEnsldbEhAzCL0FieWbcazhjmq
+ JtBVRaLQAvfyQvX4NuWJlkTgOlfSztBRMVEnsbDJVqmAEuUk/GRCyH+WMNV7L9YpoE8JZkLkcy3
+ KV6JGwY4R50uakSP0mGjCErSo03xyKFM9CKMD6P3NVfN6H6Gy5gWb1HFb4ZozKJQblkr9n5nxH3
+ seEihsfl+BPFnJXEr+pNWEgRZ66GGEllIte9hGnndUWLwKRlC8yw6Q1d8gYFHaQHqQ+If+IEUDo
+ vFmy9Fh7M8/afwO7GF5KLF4icJWbGo0iNNJK6jnHofAe54ZHsA+/zMSxyf/HrbCID+ClStZHDdL
+ iSgrMNzj299F/KmnOR2JJKdFUIHYdWLBq75vljDWrBwhLS0M0X/cJ0vi9vE0SSmFoYC/z0LDijE
+ a+5oAgxw4wkRqJ9Dvpsl7Yl9w8egD+C6+GSxTM9G1iOqsmGda9V5fKh3WG+CStHKHe8jekieNSu
+ +0bD8nubWi9aBe13EoFJV1bJc5JpyUHjJftLMwii8LZVNYtd4ZD5MgJaML4bou4fopZC80ayXc4
+ SsZ+jPlbGL6q2WEuwKbIgFQ==
+X-Developer-Key: i=sre@kernel.org; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 
-On Mon, Aug 11, 2025 at 03:10:54PM +0200, Aleksander Jan Bajkowski wrote:
-> Convert the Lantiq WDT Watchdog bindings to yaml format.
-> 
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
-> ---
->  .../bindings/watchdog/lantiq,wdt.yaml         | 50 +++++++++++++++++++
->  .../bindings/watchdog/lantiq-wdt.txt          | 24 ---------
->  2 files changed, 50 insertions(+), 24 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/lantiq-wdt.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml b/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
-> new file mode 100644
-> index 000000000000..f1102fff2d92
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/lantiq,wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lantiq WTD watchdog
-> +
-> +maintainers:
-> +  - Hauke Mehrtens <hauke@hauke-m.de>
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - lantiq,falcon-wdt
-> +          - lantiq,wdt
-> +          - lantiq,xrx100-wdt
-> +      - items:
-> +          - enum:
-> +              - lantiq,xrx200-wdt
-> +              - lantiq,xrx300-wdt
-> +          - const: lantiq,xrx100-wdt
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  lantiq,rcu:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the RCU syscon node (required for
-> +      "lantiq,falcon-wdt" and "lantiq,xrx100-wdt")
+Both network PHYs have dedicated crystals for the 25 MHz clock
+and do not source it from the RK3576.
 
-Express the 'required' as a schema, not freeform text.
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    watchdog@803f0 {
-> +        compatible = "lantiq,xrx200-wdt", "lantiq,xrx100-wdt";
-> +        reg = <0x803f0 0x10>;
-> +
-> +        lantiq,rcu = <&rcu0>;
-> +    };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+index 101e2ee9766d7bf5dc09eb29b66f5afd89985b76..3386084f63183efe62beea86bc6fe310cc4ed565 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+@@ -302,8 +302,7 @@ &gmac1 {
+ 		     &eth1m0_tx_bus2
+ 		     &eth1m0_rx_bus2
+ 		     &eth1m0_rgmii_clk
+-		     &eth1m0_rgmii_bus
+-		     &ethm0_clk1_25m_out>;
++		     &eth1m0_rgmii_bus>;
+ 	status = "okay";
+ };
+ 
+@@ -784,7 +783,6 @@ &mdio0 {
+ 	rgmii_phy0: phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <0x1>;
+-		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gmac0_rst>;
+ 		reset-assert-us = <20000>;
+@@ -797,7 +795,6 @@ &mdio1 {
+ 	rgmii_phy1: phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <0x1>;
+-		clocks = <&cru REFCLKO25M_GMAC1_OUT>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gmac1_rst>;
+ 		reset-assert-us = <20000>;
+
+---
+base-commit: e05818ef75bee755fc56811cb54febf4174d7cf2
+change-id: 20250818-sige5-network-phy-clock-1c10f548b522
+
+Best regards,
+-- 
+Sebastian Reichel <sre@kernel.org>
+
 
