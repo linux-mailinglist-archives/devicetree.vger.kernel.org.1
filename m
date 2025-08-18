@@ -1,166 +1,239 @@
-Return-Path: <devicetree+bounces-205813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFA4DB2A525
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:30:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D10D6B2A458
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:19:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93D2B1BA24A0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:22:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CCC57A2305
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:17:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0882322DB9;
-	Mon, 18 Aug 2025 13:16:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TZ/7ahQ/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E6363375C8;
+	Mon, 18 Aug 2025 13:15:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58A8F27B337;
-	Mon, 18 Aug 2025 13:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920A93375AE;
+	Mon, 18 Aug 2025 13:15:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755522978; cv=none; b=m3T2dRu3L1rOjhqlu0ceQi2HcXucHvpKIJBWB/cOiHTy8P9olCXBzLtuV3Vmw6lCnuOcfwXhJBNgW00nZrAFltUuL0SIDjzLz+E6+nirJtNnX0ykqNDJ4QeCf0o1a1GhZae+M8xpX34oDzQrV41TBJdPF6o0MKcDDTrQBRz1Pvc=
+	t=1755522943; cv=none; b=hcY1VoLUSap1f9qBHNDHZEDRaCwepgnUq0kxAn18KTuopqJGmEsd6nzs5b4ZOSiELTLDa0UzY5BKRUM+ctJ5N2kMT6xN081HD91zfvxCP1Wcc73uBJwaymcffO3z3CiW2V+hlsuYnuL5oYZ/+CyIj53pn5qPenbsbEp3qDh7HPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755522978; c=relaxed/simple;
-	bh=KiDPy1cxOdeELjnRkJDjki4GEmLdwlakrZkevLJOoHI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=nqyvIjkkPN1BDezfzp5L36ytqcxtSX58iSyQqHCUhjNbCvBIMRUyWY7NXsvy/InxdvOTVEismyZVoBxFCSM7aynMOKPhw0/tCJmO9ZDdNw96qV38ONaXAvuFZX8G7dzdv6Z70nPZoN3Rnh7rlawwKIEBFB85S6N3CvZ+mb6Uj/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TZ/7ahQ/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57I8tIoF023680;
-	Mon, 18 Aug 2025 13:16:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	o2zBJ1kF8rqlydRWoZr48MXsVk6ZGhBtWvLOFfPakRs=; b=TZ/7ahQ/6C6EQeNs
-	2Dp4YcV760dkOWlhuPlxCx1883IIsdu2FOikw4hEoHT/sIPEcNeWcFvGUOJAxc19
-	nyuwRAy02zi0cq1/E7+rh+ewwU8SiZvqSXlVSxS2SkrVF4jDUQP2qZtfYD6P9F/Z
-	l9oJBE/mo+IOK7IAtDrlL5WiSW2qKKGJhdC1OSpPAWFtwAjOqBsm8ylSu7jS2PHx
-	eEz1Dt1EzGslx6VKDDJVCDw4MUl4W6/O6C4Kot+CLcSjYkzxhC2jCne1uR+BTtmI
-	0MFYc9lBxhsKJ9i9UrJvMg73GVecP7T/6XgelYn22NziOWEOSGKWxICsmTivqrwA
-	nQRIpQ==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48jk99mp6m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Aug 2025 13:16:06 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57IDG6aL002890
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Aug 2025 13:16:06 GMT
-Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 18 Aug 2025 06:16:01 -0700
-From: Luo Jie <quic_luoj@quicinc.com>
-Date: Mon, 18 Aug 2025 21:14:38 +0800
-Subject: [PATCH net-next v8 14/14] MAINTAINERS: Add maintainer for Qualcomm
- PPE driver
+	s=arc-20240116; t=1755522943; c=relaxed/simple;
+	bh=eZGvUeGw+fPtc8+ouIsGvEN/exUL+cRr1q5bKRNvYOQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rRyXl7fOSfU+sZ7XeH8gz0s61w+qFYe/J1ClmU1DDvGqZs0uikVCl5PITrJgZhzGdeR5miZFYmzqTZGqq5Usf8AqGsgRiLJpbVEZDZzXCd02XOtfm4UqebWfyAvuDVqbmNTvqDPKIq7dlf06PXXm58XyLIUgB4dFGO5I0pVqPm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-50f88cd722bso1178721137.1;
+        Mon, 18 Aug 2025 06:15:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755522940; x=1756127740;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k5pJEjXNDPDJzPITNSF2Cy+agebN0/imHucjVPw+eAg=;
+        b=BY/x+Rn12+a1dzjvYeklyW0VyleNK5roGK8gU5QB+rLvWB1AMNS90V/N12HCGzyyMG
+         YWkIV8fQ0mpGRlifZFFrqwLaiy9+aor/pxv20HB8RY3eXCEO1OErrB4wMexDvaLUVYYZ
+         esYi3b9igvTF49VN0z64Iio7QULEDrgm0EtPPIo0YcFhasTyyt59IgIIuoDtfm9y9dWC
+         OpudjC3A0KgcQpvvGtsk+4sHjdWTKRNVWQEy5k/8PcA5qKCdXiPyVWJZ+uuz8YyFDZd8
+         xTHgwgo4rLgD7n7MDpz6frS/MI9mVKbd7kHkaxMbO4TrmF+IJlWNAP42d2AijshyYivF
+         72zw==
+X-Forwarded-Encrypted: i=1; AJvYcCUaExJbtIFeNpvVU6ivbg4QNKbpem1BH0EmkllvdTC60ldha6g5+1TDemuAE9fHf48QZLp6l9AJJzmG@vger.kernel.org, AJvYcCXe7tS1sRxjJQqT/4kxKWpvVwleL7xs5Tr82i0ad0K0d+uOc3Rf0q+6N8E6x1L+1qOSOs8YUhoVKcrScZCq@vger.kernel.org, AJvYcCXtLAYGwM/tV94sOsBhR/tUqqSJXaqtEHu6WDEWC+wDUnIXPQK9Z3C8cGh3IpGAOIVdnpJNChaMnvY0XgtCM8aUitA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaalGR9JhZwR1aZ9fCCSvqmYgkT8he4DHxtWv98P3WKcSA4US1
+	tcfvf4Rl+BC6Y/heepvOhAUVP99VFGlQcZc9WjUuXgnEBCXY3wDv1c3eZcls0s3+
+X-Gm-Gg: ASbGncuNQiBuum78fUbT2zkolbpzFSCqTmx7kb1iR8bIN6+0j7mivsKcOJXeM2vt/iF
+	8sM5U+0rfzCnwjaJE8KFkzkU4jQVti8bUmyEgFKfadjRNLmKrGVI3e4Ly4BEDGI7uhR1TY+d2qc
+	ELIsfa94L16ZU2qoc5wzmyblzZKfeiMJ8Jv1eXj6Sx94dTW4SNhxEyzoB+2TIAZVjuCA0oa11Zv
+	CCG1CHVepVVMC94M7xecmNG5xTYQj9ZHI2l5tsLA4m0YLbV3r2fg3aYAxhe1D7eE0Lt5ZJ1Cmeb
+	R4kJF8pomaFPiUHePpOSriGzrYOTMNewhhJzHjnBeEWlVsowX6Bo0SjUwaOPTkzuYdWaTM7NACB
+	n4PyoqFHRs8ncPsG0KzYVUYMh41R43vJv3xbEnld33kq1jM6b4JMQg8VvB5u2
+X-Google-Smtp-Source: AGHT+IEL/I13AxSgETqSfXM8k+ZAf1L6zU8Qw4hF4wk5UA+zAhxTyB+K6nDu48cEjZ2lboh7yrybVg==
+X-Received: by 2002:a05:6102:dce:b0:518:9c6a:2c01 with SMTP id ada2fe7eead31-5189c6a33afmr136483137.28.1755522939811;
+        Mon, 18 Aug 2025 06:15:39 -0700 (PDT)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-890277e2c70sm1751311241.6.2025.08.18.06.15.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Aug 2025 06:15:39 -0700 (PDT)
+Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-89018fa6f6dso1204634241.1;
+        Mon, 18 Aug 2025 06:15:39 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVwQx+47AJPElmZ91UbXuiRJ/WM3rQd6nW9mlutGANHt+4Powy0FRyb5CrIZcdqFOHrEBnV1DYgbEaP@vger.kernel.org, AJvYcCWunSkNYNIQMo9FbVEp2j8emZ6yHZedgac1s+cKthlXmt1KnyntO+A0pUsAnNFqo4MskNsHSrjuNmqZ9+tt@vger.kernel.org, AJvYcCX9PWEoAyHvt7tJIU4w2gsnJrmfFVhXBo4n/qr2ERZDw5HkDPblRxu9u5dGQi955LmUBIsqYyYCgswmSkuAgNr8AZY=@vger.kernel.org
+X-Received: by 2002:a05:6102:1627:b0:4e6:ddd0:96f7 with SMTP id
+ ada2fe7eead31-5126cd388e8mr4319794137.13.1755522939084; Mon, 18 Aug 2025
+ 06:15:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250818-qcom_ipq_ppe-v8-14-1d4ff641fce9@quicinc.com>
-References: <20250818-qcom_ipq_ppe-v8-0-1d4ff641fce9@quicinc.com>
-In-Reply-To: <20250818-qcom_ipq_ppe-v8-0-1d4ff641fce9@quicinc.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
-        Suruchi Agarwal
-	<quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>,
-        "Simon
- Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Kees Cook
-	<kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        Luo Jie
-	<quic_luoj@quicinc.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755522889; l=898;
- i=quic_luoj@quicinc.com; s=20250209; h=from:subject:message-id;
- bh=KiDPy1cxOdeELjnRkJDjki4GEmLdwlakrZkevLJOoHI=;
- b=o/jAb7n5ltBInNmpH4KYTMHYeLmqQnsrkz5K5Oqr72c6AaNLVzal5YbgrlpLgWweagOcHBfKT
- NvpxV/nbz1/BFr+L0Qo2sOAponmU9jM3XlTEijv3DBEfNi/Q9tJfdIN
-X-Developer-Key: i=quic_luoj@quicinc.com; a=ed25519;
- pk=pzwy8bU5tJZ5UKGTv28n+QOuktaWuriznGmriA9Qkfc=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4wWyHXU2LbcfTCbT92riSnDsgkgBZ0Zk
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE2MDA0NSBTYWx0ZWRfX7H8oWu8zgt2+
- tB4Ngx9NwTlnweEq3/oJzlzVBAamSGuyfzc/tDFtWGj6+Z6ps7oeJbd/HHSLZsmxU+6h88DBPcp
- pMPqrsJXrmbn3iGimr2GmGDsxZgH9WxwjsgaFkGy3JzUM3+9W0sN87JldDBg52QbgLY2Qrkwy/B
- D14VeYAk0kUXLX5sOhztC5UHnheP9aLe+F2DHqx38jJ7fgLFWkf8ixswVg3zKOraZxMUieJKrj3
- urv7KAXZpskQi4sjiTpnnw4GcMcZt/vlno8DdddLSLf+7+JE+HxHGEFPUITCiRzO2zJzlW5Zb/l
- BplmwenUEt6AvKk4CdAloE9iLiHeyhiUhqvXslMS4uVH9TWdO21h2B4AW3QColb3C+NX1SYjR9G
- nIZzyH/b
-X-Authority-Analysis: v=2.4 cv=IIMCChvG c=1 sm=1 tr=0 ts=68a32796 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
- a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=-_PooAnB-Ua2z9syxaEA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 4wWyHXU2LbcfTCbT92riSnDsgkgBZ0Zk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-18_05,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 clxscore=1015 impostorscore=0 phishscore=0
- adultscore=0 malwarescore=0 bulkscore=0 suspectscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508160045
+References: <20250812200344.3253781-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250812200344.3253781-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250812200344.3253781-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 18 Aug 2025 15:15:28 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVi26AXwQJDtxSp8hSsmZ1Lx4_GYFsbtmq_gxJyddkqTg@mail.gmail.com>
+X-Gm-Features: Ac12FXyX3G3j02_gxxBGNzChIx62VgPdJgiJgMtXXMqM8tO2f3w3kfm4CppbZcU
+Message-ID: <CAMuHMdVi26AXwQJDtxSp8hSsmZ1Lx4_GYFsbtmq_gxJyddkqTg@mail.gmail.com>
+Subject: Re: [PATCH 05/13] arm64: dts: renesas: r9a09g077m44-rzt2h-evk: Add
+ user LEDs
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Add maintainer entry for PPE (Packet Process Engine) driver supported
-for Qualcomm IPQ SoCs.
+Hi Prabhakar,
 
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Thanks for your patch!
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4dcce7a5894b..aaa306b6b582 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20836,6 +20836,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
- F:	drivers/power/supply/qcom_smbx.c
- 
-+QUALCOMM PPE DRIVER
-+M:	Luo Jie <quic_luoj@quicinc.com>
-+L:	netdev@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/net/qcom,ipq9574-ppe.yaml
-+F:	Documentation/networking/device_drivers/ethernet/qualcomm/ppe/ppe.rst
-+F:	drivers/net/ethernet/qualcomm/ppe/
-+
- QUALCOMM QSEECOM DRIVER
- M:	Maximilian Luz <luzmaximilian@gmail.com>
- L:	linux-arm-msm@vger.kernel.org
+On Tue, 12 Aug 2025 at 22:03, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add USER LED0-LED8, which are available on RZ/T2H EVK.
+
+According to the schematics, only the first four are user LEDs?
+
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+> --- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> @@ -7,10 +7,61 @@
+>
+>  /dts-v1/;
+>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/renesas,r9a09g077-pinctrl.h>
+> +
+>  #include "r9a09g077m44.dtsi"
+>  #include "rzt2h-n2h-evk-common.dtsi"
+>
+>  / {
+>         model = "Renesas RZ/T2H EVK Board based on r9a09g077m44";
+>         compatible = "renesas,rzt2h-evk", "renesas,r9a09g077m44", "renesas,r9a09g077";
+> +
+> +       leds {
+> +               compatible = "gpio-leds";
+> +
+> +               led0 {
+
+led-0
+
+Cfr. Documentation/devicetree/bindings/leds/leds-gpio.yaml:
+
+    # The first form is preferred, but fall back to just 'led' anywhere in the
+    # node name to at least catch some child nodes.
+    "(^led-[0-9a-f]$|led)":
+
+> +                       /* SW8-9: ON, SW8-10: OFF */
+> +                       gpios = <&pinctrl RZT2H_GPIO(23, 1) GPIO_ACTIVE_LOW>;
+
+color = <LED_COLOR_ID_GREEN>;
+function = LED_FUNCTION_DEBUG;
+function-enumerator = <0>;
+
+> +               };
+> +
+> +               led1 {
+> +                       /* SW5-1: OFF, SW5-2: ON */
+> +                       gpios = <&pinctrl RZT2H_GPIO(32, 2) GPIO_ACTIVE_LOW>;
+
+color = <LED_COLOR_ID_GREEN>;
+function = LED_FUNCTION_DEBUG;
+function-enumerator = <1>;
+
+> +               };
+> +
+> +               led2 {
+> +                       gpios = <&pinctrl RZT2H_GPIO(6, 7) GPIO_ACTIVE_LOW>;
+
+color = <LED_COLOR_ID_YELLOW>;
+function = LED_FUNCTION_DEBUG;
+function-enumerator = <2>;
+
+> +               };
+> +
+> +               led3 {
+> +                       /* SW2-3: OFF */
+> +                       gpios = <&pinctrl RZT2H_GPIO(8, 5) GPIO_ACTIVE_LOW>;
+
+color = <LED_COLOR_ID_RED>;
+function = LED_FUNCTION_DEBUG;
+function-enumerator = <3>;
+
+> +               };
+> +
+> +               led4 {
+> +                       /* SW8-3: ON, SW8-4: OFF */
+> +                       gpios = <&pinctrl RZT2H_GPIO(18, 0) GPIO_ACTIVE_LOW>;
+
+Schematics say "run", so perhaps LED_FUNCTION_ACTIVITY?
+
+    color = <LED_COLOR_ID_GREEN>;
+    function = LED_FUNCTION_ACTIVITY;
+
+> +               };
+> +
+> +               led5 {
+> +                       /* SW8-1: ON, SW8-2: OFF */
+> +                       gpios = <&pinctrl RZT2H_GPIO(18, 1) GPIO_ACTIVE_LOW>;
+
+Schematics say "error", so
+
+    color = <LED_COLOR_ID_RED>;
+    function = LED_FUNCTION_FAULT;
+
+> +               };
+> +
+> +               led6 {
+> +                       /* SW5-9: OFF, SW5-10: ON */
+> +                       gpios = <&pinctrl RZT2H_GPIO(22, 7) GPIO_ACTIVE_LOW>;
+
+Schematics says Ether-Cat link-activity, so LED_FUNCTION_LAN?
+
+    color = <LED_COLOR_ID_GREEN>;
+    function = LED_FUNCTION_LAN;
+    function-enumerator = <0>;
+
+> +               };
+> +
+> +               led7 {
+> +                       /* SW5-7: OFF, SW5-8: ON */
+> +                       gpios = <&pinctrl RZT2H_GPIO(23, 0) GPIO_ACTIVE_LOW>;
+
+color = <LED_COLOR_ID_GREEN>;
+function = LED_FUNCTION_LAN;
+function-enumerator = <1>;
+
+> +               };
+> +
+> +               led8 {
+> +                       /* SW7-5: OFF, SW7-6: ON */
+> +                       gpios = <&pinctrl RZT2H_GPIO(23, 5) GPIO_ACTIVE_LOW>;
+
+color = <LED_COLOR_ID_GREEN>;
+function = LED_FUNCTION_LAN;
+function-enumerator = <2>;
+
+> +               };
+> +       };
+>  };
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-2.34.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
