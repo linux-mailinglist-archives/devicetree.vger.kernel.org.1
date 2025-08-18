@@ -1,86 +1,154 @@
-Return-Path: <devicetree+bounces-205866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B6A7B2ABFD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:01:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A282B2AC00
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BED276E1467
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:54:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02C3D18A261F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 831AA235072;
-	Mon, 18 Aug 2025 14:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94F3235063;
+	Mon, 18 Aug 2025 14:56:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GNlWJ/O/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jGs8i5MQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4937F23505E;
-	Mon, 18 Aug 2025 14:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC6911E8836;
+	Mon, 18 Aug 2025 14:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755528891; cv=none; b=ppJdnZW7wmkg2G3l3BvHrZQA6Sb7oHyROu+kd1nvkdhzolU2q9m4s8/nptg/N4SVpbQfeFjLx6P644tv6PqpcCri3QC43E5Q8uqqMXXOYr6fO/982nJEkej11B1udiTcvX6INx8D2E7tVGCVOGRrdiA3g5VT+5zHSuoyJClOC/4=
+	t=1755528979; cv=none; b=QQ8OzUkeyqkyg/ZkZfI3nmcSJyRzEBCDLL9wllw4PiOl2PHckLKjcWhaQZoia8KjN8TE7oZnW7RVctPJqgQZvaZ3rLp6fYqidW6egBAUcV8+fQx0cdYxW6mrJfRwRr9vXH6FwA9NPxUlWynVqtsAzbJsnzY5FgLejwbrhuvStRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755528891; c=relaxed/simple;
-	bh=cuZ1pa9bmDYPYfV+jIPPjvIT7gQMFovHPkrwyoJxtVs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BQM/7rVIZWavOZTf5gaKukf+6+5F7VMma0Zm7ejPaCvVC6QZNbPDKfGMXug9LfO9m4rTdATHXQdZDfazejmsA41+r/wy4m668Zftjbi3vhONXvt/94+HOtDmv3UffkXzLozWDcBH6Mqokc1TcCmiLIclKO7EanUPt2c6D2WT4/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GNlWJ/O/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED5DEC4CEEB;
-	Mon, 18 Aug 2025 14:54:50 +0000 (UTC)
+	s=arc-20240116; t=1755528979; c=relaxed/simple;
+	bh=j79Kr2vIgsfUz//Ws0Wkm4E2WFNQVHp73NmbHApah+I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=FVg4X9/bMMuQbhiMRIrnoGjq1ne8LGBu5W4I/12lF9aeLuEvcxI1gN4tU/tqhNCN3BtznwsuDfB1mBX+cly6Kyl8zAY4EZ+mkV2yDswdlkctQb467uqSHTsnSn/VdbwvA6ZPmUOs1ZzLPVzwLFruElPn3kD/inLW3dj3BolNmY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jGs8i5MQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05313C4CEEB;
+	Mon, 18 Aug 2025 14:56:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755528891;
-	bh=cuZ1pa9bmDYPYfV+jIPPjvIT7gQMFovHPkrwyoJxtVs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GNlWJ/O/Q9mNZZxVdOxN36kc2Wb8xQlyD8sQdQMc9boQzjkddfNyqDREgvi82T4WE
-	 Y/NXGhdUdvQ2L+f2gKz9zYAyTtR2F66evnQ1o3DmM7dn63trsb+5DrEfiek+CJTwmG
-	 WtKT039P9KdoARyi/NrvQywbZcpbRcLmuQVUnqsGPhGRkH8wjdRsHDQ5puS2DPqaY8
-	 4p9MgLtMn/8HJhXZIw2W/d2iuziRosoQYwkayfF/QwmuVODvoJXZ7dptIyeifcAWzj
-	 Zlf4YKlr6kBP5Fp9xmqmh8SbHmFOoPpaXXLM/R760Si+3dU8wKDdt+9tDGhl0KwFDS
-	 n2Mm2ZpfseCRg==
-Date: Mon, 18 Aug 2025 09:54:50 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>, devicetree@vger.kernel.org,
-	quic_vbadigan@quicinc.com, linux-kernel@vger.kernel.org,
-	quic_mrana@quicinc.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: PCI: qcom,pcie-sm8550: Add SM8750
- compatible
-Message-ID: <175552888940.1212051.15924500632335799397.robh@kernel.org>
-References: <20250809-pakala-v1-0-abf1c416dbaa@oss.qualcomm.com>
- <20250809-pakala-v1-3-abf1c416dbaa@oss.qualcomm.com>
+	s=k20201202; t=1755528975;
+	bh=j79Kr2vIgsfUz//Ws0Wkm4E2WFNQVHp73NmbHApah+I=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=jGs8i5MQKoGkpsQWYGbDwSysvs8MdXQKkMylj+u+bNGtCLE6Se+fDOVma99zDVhav
+	 JAMtuBWLaMsZ8OESF4zaD9f/ZB3LBSDOFPhzWKQ0FHoDfQ4wS9N1+akhXWLAgoUAEh
+	 t/AmkDmxYE0SAz1K/PyZyKS130wA3HD1DpqvJ1JmZMgtNqn1Ar+ZzLVLy0lfCKrdCr
+	 YMPDb0SWJteThcsoFdGG6SrIEKBJwqAGCBOjLc2PevaqC7bKhSdM5HZI8sD9rDhVwI
+	 ou3xG9sBROxT/u5taSr390zi5qplu1TbTnglF5+dSsutwDtzu2w2y6ymE6bzbzWjV6
+	 mSHnRCVmTmlew==
+Message-ID: <651df530-797a-45e1-b199-917deda33222@kernel.org>
+Date: Mon, 18 Aug 2025 16:56:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250809-pakala-v1-3-abf1c416dbaa@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm: dts: stm32: Drop redundant status=okay
+To: Marek Vasut <marek.vasut@mailbox.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+ Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ kernel@dh-electronics.com
+References: <20250818143730.244379-2-krzysztof.kozlowski@linaro.org>
+ <388e6f81-383b-4b39-9b75-8d2cdbf95d37@mailbox.org>
+ <259e72c0-b69a-42d4-aec5-ad8a6e03d416@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <259e72c0-b69a-42d4-aec5-ad8a6e03d416@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Sat, 09 Aug 2025 15:29:18 +0530, Krishna Chaitanya Chundru wrote:
-> On the Qualcomm SM8750 platform the PCIe host is compatible with the
-> DWC controller present on the SM8550 platorm.
+On 18/08/2025 16:51, Krzysztof Kozlowski wrote:
+> On 18/08/2025 16:45, Marek Vasut wrote:
+>> On 8/18/25 4:37 PM, Krzysztof Kozlowski wrote:
+>>> Device nodes are enabled by default, so remove confusing or duplicated
+>>> enabling of few nodes.  No practical impact, verified with dtx_diff.
+>> I assume the "no practical impact" means DTs are identical before/after 
+>> this patch ? If yes,
 > 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/pci/qcom,pcie-sm8550.yaml | 1 +
->  1 file changed, 1 insertion(+)
 > 
+> No, DTS cannot be identical in this case because one had status, new one
+> does not have. Practical impact means... visible impact in practice. How
+> to say it more clearly?
+To illustrate: this is "no practical impact":
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
+--- dts-old/st/stm32mp157c-dhcom-picoitx.dtb
++++ dts-new/st/stm32mp157c-dhcom-picoitx.dtb
+@@ -691,14 +691,12 @@
+ 					interrupt-controller;
+ 					interrupts-extended = <0x49 0x00
+ 					reg = <0x33>;
+-					status = "okay";
+
+
+But this would be a practical impact:
+
+
+@@ -1124,7 +1121,7 @@
+ 					dmas = <0x26 0x59 0x400 0x01>;
+ 					phandle = <0x39>;
+ 					reg = <0x04 0x20>;
+-					status = "okay";
++					status = "disabled";
+
+
+Best regards,
+Krzysztof
 
