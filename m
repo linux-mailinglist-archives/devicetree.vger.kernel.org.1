@@ -1,221 +1,206 @@
-Return-Path: <devicetree+bounces-205632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21EE2B29A7E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D263B29A7F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0527189AACA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:05:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E14E189AB1A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C9DB212B3D;
-	Mon, 18 Aug 2025 07:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF9F222568;
+	Mon, 18 Aug 2025 07:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="btpIc6ar"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="KiTJ3M95"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazolkn19011030.outbound.protection.outlook.com [52.103.33.30])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A48AC1AAE17
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 07:05:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755500726; cv=none; b=tIbCkhvLL09D9bOK2ptiRwSELj4J6nUSH19bFSePFIHaAVbxWGctkbdCxRzAOR5vllvSVMvQPlMlXyN2daaQhkW0ICipMA+v6lv/4HOQ6GMV1apNRo5sWrjEKelE85OQK2CujYM0YG3T0nlAET5INQflT3g4VB/PKz4sMa27mfg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755500726; c=relaxed/simple;
-	bh=KPGdVAyfVGjLpPGHiZEXgt+sLnzTu05fyS8QQmmQ2i4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UB0Alvm7+b2K9qz4LVSsXP/44coVcmpFAgvCm43YqpYqO1uWT6pRBhCgtBegfolCDHIrOuyWQZT42cAVpSEN1WLxCj3nYZzFhqqhrsjF8g0ZZRIw+z5E2C3MMUK/5/T6Yg/noFjhi8x4tmHVNemjGDdiIAUEAoyGXlMQMxLLiU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=btpIc6ar; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-333f91526bcso27424921fa.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 00:05:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755500723; x=1756105523; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GHsUL+h4LuU3pP71Ed95ISAuUKi9IsSaBNdtMsfJmNY=;
-        b=btpIc6ar9CL/eQY9QpUMRGSrOoqPJDy623dQFuQvouua3TPM6e9eyYZ9hWdyL4NNK9
-         FovhR7UywfKKi7g0nxFZQoMgv6foaNhhj+gOf1ROnXG8sGX1M1sNB54JWUW33uB58odr
-         6mKkquEu5rbTPCagzcmEFnUPD/widlqBsPw0vsGmohFwgzcZkpLbfLe8k6ZniRYMDaDM
-         JPX1xpR+m4XPNV6vBsM2TmWOGb6aj5QxGVEi8qXgHeesS7xDOWLPw6fGxsDaih7C1CB4
-         zZ0ajX8NyVq4QLVLzJHOb7iUYXA54d/wofKli3mgueT0T9jfRjbCMyDR/+774NLltEO6
-         QeCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755500723; x=1756105523;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GHsUL+h4LuU3pP71Ed95ISAuUKi9IsSaBNdtMsfJmNY=;
-        b=gekm/4gyBmgs+sy4PT33YDn54Q8cioRrOySMzRUNWldZGAALVLmPrKoZVGiqBlMHOX
-         rpCuG2HqYoDLIUzB+s4/n5EyAkAl7qZ25yOs8/sWlDdQMLTW1UR4ahnzXY5689+KaeGS
-         r4uZp4Vtpa7aZBNleu4OoJ+1/z3C5b+XfHVMoqgJKcu5vqSFF+bz7iGkbvjf0MYT5g5U
-         UY8LBw5niFgb6OuwiGWgRLVj2zT+Ffd0hBKRODV874wMmUEP4wKK9tpIGbx8+uAMbyn5
-         XYFnAlgtlet869CEnHA6wS/fkW2ky1MhytjCW4Xl1NutRgEiyrNKDwlj5lBImkCjRZTR
-         pjUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUII7lsHQLxmcsUurwSR7KxgjNT1quV+qunDmZjEfC/3d3z+qyKVD3muKapZwW0m4AB498u3n1j9erS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4B7c7fdptdHuotVcHfwSYqtiOL4CHeUf6HSE3Uqa2kEvhQznA
-	LrhG1Lq6ACkBg48dviShK8Ixiy+YHKAV/hEebA77jaq58SjN+Oedh8EQ7JMZPnRRUgz8DIkhp66
-	ZvJdZxG5J/0IkPWzGsvWS/ImwLIukKkw=
-X-Gm-Gg: ASbGncuJtf6B8g3uMBzVKbrNO2SSc7N6jnBmgKGIaPlfvdi+Ye0OMDAQ/NTcdN/MCBn
-	rCnFWHuLDBQWZ6zF1JNU53u0d1XWdMMBw/9I67K/5sx1DxIwjapaktbSykywp5Cl28QbAri8s4U
-	1WOZ4X5lks1z/5qddLpFCiXPL2mOBj3/ZcmcqkNfa91Kowm/DdoxFiDyvVlP+RTXjfUX+v5Lih/
-	EXiZ2v6+PbN8aYShxw=
-X-Google-Smtp-Source: AGHT+IFDuj56cYERGjPW+9wF7giB825tHomm1ZeTAk7dFt2+UOIIfPhfXqYy7W0LA7hF9aJ4nHmDoU+yiw145vgY7yo=
-X-Received: by 2002:a05:651c:20cc:20b0:332:612b:6f49 with SMTP id
- 38308e7fff4ca-33412c91ef0mr13268441fa.29.1755500722327; Mon, 18 Aug 2025
- 00:05:22 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C5D1AAE17;
+	Mon, 18 Aug 2025 07:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.33.30
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755500748; cv=fail; b=Lzw/teYVp9Q/8P3iZRUUFX6VRWkxiFEyZU1n9EhchJI5bFQBZ9/GUjNFc1knfXiaKXrU44PgybXl39/T9CNxut/gEHJtJJUiqlAzqK6cRpIHK2x4gftG8b90Uv9lb+ysMiYCZNXeY2fTSfe7TBm+PlwV6vlGplbY2j/XZ6/Nx00=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755500748; c=relaxed/simple;
+	bh=Lhc2aVw1ZIDgibd4PK/MFEx1DrrqK+zjM5iNLJ6CIUE=;
+	h=Message-ID:Date:To:Cc:References:Subject:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Y1PYZs2p4NgfJUuPTMieYoOSkEkcclFh1X+tdGk01ia3k7QNJZijmTPD0adeccShDn+nRTElUgcNVOKzyaSUwC58l3CBKXs6XXQ0+ztne0aOtXlvhmdyrzIB2uwEukgB71d2iXNCoqzEn6jpdpRK7DLENVjRn8mNYLBcfxuyaL8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=KiTJ3M95; arc=fail smtp.client-ip=52.103.33.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dIbD5XFttXn62oO2WTMN4S72CHcPIkYWl/K7pyARhSQbzjHqVPsUNbNzcODMMh8r4cugc/734px8vnFsiEeUmf7NCgt8mGGTzEFWLlFFYz4HZashguLiD4UC5ER5iI9d2w0cTCY/qWt74BU58vMUqPQFl76SElThM5cTrrtj18DVQzOQlVnXBcdFvVyC1lPr0gi6TJTy1LlNvMA7Gzs3i56nAbLNH6Cq8LDe52uQxGMs3eh7kRfgcvLHHo4Ff90bUp+GLWDafsZJvEVqYzh+33nDAC9XGaIXvw7J5HXjMbzPm6AO5gxxYVYnyXFppS7I/qkcshDJ1jD1sCsCwk2zFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kMrEArI//DesKHwuXxFhr5yzbczXQNO+/VlJQ34kV6s=;
+ b=XhUwpJYdBEUxrv4esXMIHw20g3QF9taEaKmJf7f6gQe296qyQLTetOSi0ADpnLmObOmUFTa1naG+nstoyYK5dn+zlZEIChxZjg7aKaH/YNq8fq0Hb7Ev01MiuL83ORKDZ9rpZGO9bf7HlWb4YNPNamKVuU3NRDJQs6lc0aGszAFbWK30CA1okhkNG+4PlGQ2xSCG+J/S0wu93Ffrb79L4ZLTO/SHGlM8uRN/8SgDjwClNK6LC9OV9jnv/N7Qb9EW6QzBJ5V/8bUAO3TdRtWPtRAU8m6fPXU3ksS+zTl3kmRn7WVJJLrt7ancHXXnE1LfkNX4jmBhp3QTrAaJPyM5AA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kMrEArI//DesKHwuXxFhr5yzbczXQNO+/VlJQ34kV6s=;
+ b=KiTJ3M95m3r3s6i8KhgZb1DZ66mBJnKGHXE2U6KWuS6NfhsJIUpwBrtBGfX7RIuMamdnAQuTVFPBi4Tt2odA5C5Qh/AxlXbhwWVzfA3lzf9oiAVe6SYRrXTGp4IjtINcYmgrJoYl9sv3xCVxcp4DX9+hV5CRBpeJp9HdjfTsyv8aD1NNxLr9dBYJuPfp0odC82DN9GDiML4NFdSNGBRc38wdtosHtwzE4g3UhTOaSjJ0UuW2rL1PFWWUbWdepNKoePiBo/pgtRaFl/zUgxP1F/USI/IKM9vC6Owd93Afry0Somg5BQejleDPk1Z9LAVYqQByYG1Sjj+ohMMomSTLtQ==
+Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:175::17)
+ by VI1P189MB2563.EURP189.PROD.OUTLOOK.COM (2603:10a6:800:1c8::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.23; Mon, 18 Aug
+ 2025 07:05:43 +0000
+Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+ ([fe80::5756:694d:1641:3b13]) by AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+ ([fe80::5756:694d:1641:3b13%4]) with mapi id 15.20.9009.018; Mon, 18 Aug 2025
+ 07:05:42 +0000
+Message-ID:
+ <AM7P189MB100938514F7432BC936B7F11E331A@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+Date: Mon, 18 Aug 2025 09:05:41 +0200
+User-Agent: Mozilla Thunderbird
+To: peng.fan@nxp.com
+Cc: Frank.Li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
+ shawnguo@kernel.org
+References: <20250815-imx9-dts-v1-10-e609eb4e3105@nxp.com>
+Subject: Re: [PATCH 10/13] arm64: dts: imx95-19x19-evk: Add pca9632 node
+Content-Language: en-US
+From: Maud Spierings <maud_spierings@hotmail.com>
+In-Reply-To: <20250815-imx9-dts-v1-10-e609eb4e3105@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AM8P190CA0008.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:219::13) To AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:175::17)
+X-Microsoft-Original-Message-ID:
+ <04e3aa44-aeab-4940-b773-25e7564f4017@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754890670.git.zhoubinbin@loongson.cn> <47545b7ed4943a088b27021a0fdbeaf56947e833.1754890670.git.zhoubinbin@loongson.cn>
- <CAAhV-H4h5qZ8gCjoKMKd8wBYG+secmTrHdo+AY1A60rmhKrCoQ@mail.gmail.com> <CAMpQs4JgvCCxgNhmQ7XPHZ9HHohFW69vO7D6mpbBb3Q16u78ag@mail.gmail.com>
-In-Reply-To: <CAMpQs4JgvCCxgNhmQ7XPHZ9HHohFW69vO7D6mpbBb3Q16u78ag@mail.gmail.com>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Mon, 18 Aug 2025 15:04:44 +0800
-X-Gm-Features: Ac12FXy8IgHpqnLhbDZ9zWhgCTvDjrg_nDf6Gd34HT-rNlcS5yYHJjBmchXh0JY
-Message-ID: <CAJhJPsU+dVmnBnHgnNDL0Zro_KYN12c7+pw=720ju-w7veegMQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/8] mtd: rawnand: loongson: Rename loongson1 to loongson
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Huacai Chen <chenhuacai@kernel.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-mtd@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7P189MB1009:EE_|VI1P189MB2563:EE_
+X-MS-Office365-Filtering-Correlation-Id: b80dc0bb-5bb4-4b5e-88a9-08ddde25a4ce
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|6090799003|23021999003|15080799012|461199028|41001999006|5072599009|8060799015|19110799012|40105399003|440099028|3412199025|53005399003;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?MHNWRjcrS1N1cnd0d3MzRXAxazRsVGFtTUM5K3JVdUl1NDE1Um11L2tZK28y?=
+ =?utf-8?B?UWRnR1I4WVBya2tOWURQaStRdkZuUmdOaHhyT3ZVT0RQTXdTcE1LZXozVlI3?=
+ =?utf-8?B?b0ZDbE54TEpjYmtCbjBDRFVMOWZkYjRLbk5RT0hELzMwS2VWOHBZYnU5VFFl?=
+ =?utf-8?B?VXBSeEJGaG92WVpUaml0ZGhuVE5jdjZoa0p6N3Q4NGhEbkdRNHhScFZhUzhk?=
+ =?utf-8?B?MHI5NWVaQ2grV0lyazU4a0NrYVYzZE9PZ2o1NVIxN1BrVERnZHhXck05SkhV?=
+ =?utf-8?B?aE1ycHplTU5IU1hlU3YrWWtPdjNiM25rc0I5aWpjSG96dERjdDljaHlVd0ZR?=
+ =?utf-8?B?S05ZdXNEZ3RObGdMemxoOHFLSC9tWGF4dUdpZ0hSaFhNZ2xscStyTnFFMkhz?=
+ =?utf-8?B?dThUL3RlcUQ5U1Z0VjB0MnByWDg2bUJkYzBXdTUyeEQ1N25YOTBPQmxraVNM?=
+ =?utf-8?B?azIxdVdEQTVZRXlHOSt2TmZyQUtscERQREN3S25lOVE0VXVqT3dNUXdTbXNv?=
+ =?utf-8?B?dHNVUUJmUGxRc09KNmRhakdYTlF3Q0crTGo5Mm5HMmt4R05JOTlVL3h6Qklj?=
+ =?utf-8?B?ZDFid291ZU1oQnZPQW5NRlhoNnV4QktFeG5VSlBSMFRTalhBY1RTTndIL1d0?=
+ =?utf-8?B?eThlQW1QNXBYRHE5anorWFh1RnB3YnJJVmsxQU51Yk1jZ1NERG1KVkJEWEpO?=
+ =?utf-8?B?aDdlcHozSWJFUlRqQkw2dTRwQ3YweUhyRVpnYVBTcWpDVzYza0xPUVRPV0k0?=
+ =?utf-8?B?MVlXcTRuSWZWTmkyeFpTU21KM3U5ZHp1bjJoQVNpMHdSdjdsRlk3MzlKdlgr?=
+ =?utf-8?B?NTVYcXlXV2gyLzd1SUdrSVUvd0ZBeUYrbElycVBOZ1hOSnl4bzNFVlZ6cE1h?=
+ =?utf-8?B?N1JVQXhMUFFpeWtibnByNlZoRkdESmZvbjN0YVJuTHpaWkNsZ3VBS28yRm4y?=
+ =?utf-8?B?a1ZQMmlXcEpJZjlMbnhDMXpmdVFFMEtxNEZiLzRVZGQ2M2RDMWpxNitvTDc2?=
+ =?utf-8?B?dmRrRW8vbk9JWDBzME1zZGZRWGxRRHdzdU1Ya0QwQktOSGgzQU9Tbmh6aWZC?=
+ =?utf-8?B?YzlUM2VTYzlRSUs5ZkVHMXpkWDMwMlpQaDR2cmxrYjQ3NDJMbjhFRWx0RnBS?=
+ =?utf-8?B?R0hGbVBCNDJPL2I1NjdaMkowMGsxZkVXcElJc3JkZ3hiQWpXYk92TzhsVk1P?=
+ =?utf-8?B?WG5NUkFsMEdVUDZTWWtISFlSSmZKbnkvdCtBdHhBVVVRRkxJSk5VLzBxWWdn?=
+ =?utf-8?B?anJMMWtpSVBZZzZ1VG5mYi9DWUxvendYSGpQdExOTDdnR0Z3aElyOXZNalR0?=
+ =?utf-8?B?czZRL3lON1pJbWdiRzliN0Z3K3lwRTJqWTJMRkh4cFpzSGlnUGdiNFQ4djBl?=
+ =?utf-8?B?Y1MzM0JnS0dMeTJmU1BNVWRaMzcrQnVsSkMxSFRmclJXYkZlRG9oYXMrcVhP?=
+ =?utf-8?B?ZHNpc0diWWpyS3BpZzQ4L1JXaHN6VWpEN20vZFR3NTJieEFuNG9Hc1E0UFJJ?=
+ =?utf-8?B?eHNMVnRuWTZiMG5QK3pHLzFaZUg4c2R5KzY2WW54bHNkUUlFWjQ5a0pFWWZz?=
+ =?utf-8?B?Um5qOUlQRjVFQmtjTU1NUDlzNlA2V1ExTml4SkFrYWFVZFVGalM1bEJFVHhB?=
+ =?utf-8?Q?vpJXMtrsZ8u3TIPejW9xL9jMajyaaO4vtd0yJOd5EYY4=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SVBleER0QmQyNEljREZLdVhvd2ExNUxUYzFqTlBVak1XcUZaMXA0N0ZGa0Vs?=
+ =?utf-8?B?TGNiVkZJZUhwRWZRZ3dRTEVkekNCcUUwbHF6ei9PSTY2My9iak95cFNhZHVz?=
+ =?utf-8?B?ODZoRjkrTzl3Mjdqb3MyVS9BRXEwcTlmdVIvRGVIT3VQaW9OZnVYcmhVYkoz?=
+ =?utf-8?B?REpFRzBhRWdzbVVCcFBHUVpVWWhvSVk3TTJxQjJRVGRmaEZJZWY1aFNUTnNm?=
+ =?utf-8?B?NFpQQkg5eXVoMWl3RnRkaWdKb2FsYm9ERzRiM2gwY0NabjFnWlRJaEo4RDZk?=
+ =?utf-8?B?RXR3WFllK1h2S1o2M2JvS3B5Z1l4ZmVFMjhFTno5VndMQkdHT0NTb0VpNzNh?=
+ =?utf-8?B?K0puRTJDRm9UditQUkdtRVJxNWFqTE93NUsyRjdrYXBrYy9pU0FUSC9JbnN5?=
+ =?utf-8?B?aTBaTXpnVjJoVjRXNm8vQnI0ZWd2OWJpcDUrY1NhMDRON0kya0loL3F0Tk9Y?=
+ =?utf-8?B?ZURDbm9MaDlTbmdVbG14UjNyd3B2SEtId0hyL1I4T21KSFFJRGczUTI2bGJM?=
+ =?utf-8?B?ZTZKTGpib0pHZnc1NDZFVlk1dk5sSXpoeS9NbU9zZFhhUXdTQUdiZVh4cjNW?=
+ =?utf-8?B?L3E4UXhWeE9xZjdabGVkRmM2NDYvZVAwaEFsK1lkaUhLQTBPbnBYeG9Rdmtq?=
+ =?utf-8?B?OEIyT0xrSVVYVGFTNXdRckRrbE9oTTJNck5PR0VzamRxYW15aGFjNEF2S2hu?=
+ =?utf-8?B?a1Y2dlNpTzVCWW5CWVVIMUM2R04xc2VhZFpxV2R0OWdlZzB5anNsRHhQUWFs?=
+ =?utf-8?B?WTdJSms5OSt6NzIrQ29jVnlBdzlCb1FscUgrSFZYYS9EMWtQQTFNSDF3REE5?=
+ =?utf-8?B?UDBvSTVYT1czaEk0SlNjdjZKTlJuR3NkeWNnMldqWlR3TTBWaEdDS1JKZlBY?=
+ =?utf-8?B?RTEvaHpQUjMzSmN4alZqTk52dXVtemw3Syt5NDA3TnRtWDRudG5vTzF0cERw?=
+ =?utf-8?B?TWlUa0dTV05YZktoak00Mk9WcWJla0p0QkVFT1hEK3prNHMxNGJnZ1g4dGNS?=
+ =?utf-8?B?djdIeEFEbDBOQmlyR0IxUHlsZjBWTFZIM3FVamdsUHNFSGJLVGh5WDFtcEJY?=
+ =?utf-8?B?eWFYTDllamtpMGdCQ1FmYlBhdmRIMWpITnB0WGQvcXRwcU5sY2pkcEtSNVVw?=
+ =?utf-8?B?OHFjeXBHVjJ6TC9mWTV2TnZZQWFPVjlUYW9aWEMxRUNMbVppMlFtMlpDdUJm?=
+ =?utf-8?B?MmQ0Y1F6V3hTZ1Z5NGRMeVQzZzNZdEkrV2Q4S2dGSlNCQ29ueEQ1ejZuT0hU?=
+ =?utf-8?B?ckRnMGtqOEE4VzE0MVBCaVI0cmVJajREN2w1RVVkU1FLempRZEV4TVE1eWgr?=
+ =?utf-8?B?bTB6UWUwVWRVMFVRWHJZWEp5VEV4eFdtQmlBTC9IWG03dXpjZkxvM2IyY1BV?=
+ =?utf-8?B?OVhSeE5KQWNCdnEveThIeS9qZi9yWENqUzJwNmJMckpoVFZsRTA1emdDQVU1?=
+ =?utf-8?B?eGJTN2FEeTIxYlFTS2FDc0lPNEp1YmkvcE9janNocjcrOHNtRlpvZGplUGF4?=
+ =?utf-8?B?Q2RmQ0N6a1h0UjlYWFV3MG1nbUNleVFERFcrYjhDSlNOeHNUTzg0ekNtQlBm?=
+ =?utf-8?B?Z0pOcWs5UXRBRTFNOVNRdVlGcUEvVHMveTdsblF2MVR3NVQzVVowRHM2YWhn?=
+ =?utf-8?B?SjhzUXV3Y0ZMSWI2NlI2N2pWRjBKWEFsUWE3MndISzZYVjV0My9TQkRaTFJD?=
+ =?utf-8?B?ZnFJK2FTQzNyODU5ODkvcTVtbVlTYXpUQXJjb1FjZzFPTmMwa25CSm9PYmsw?=
+ =?utf-8?Q?6gbaZxIlaDe9Zv6SJHGzMyTSPgxFwd5TlxiUHID?=
+X-OriginatorOrg: sct-15-20-8534-20-msonline-outlook-2ef4d.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: b80dc0bb-5bb4-4b5e-88a9-08ddde25a4ce
+X-MS-Exchange-CrossTenant-AuthSource: AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2025 07:05:42.8034
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P189MB2563
 
-On Mon, Aug 11, 2025 at 5:42=E2=80=AFPM Binbin Zhou <zhoubb.aaron@gmail.com=
-> wrote:
->
-> Hi Huacai:
->
-> Thanks for your reply.
->
-> On Mon, Aug 11, 2025 at 2:36=E2=80=AFPM Huacai Chen <chenhuacai@kernel.or=
-g> wrote:
-> >
-> > Hi, Binbin,
-> >
-> > On Mon, Aug 11, 2025 at 2:02=E2=80=AFPM Binbin Zhou <zhoubinbin@loongso=
-n.cn> wrote:
-> > >
-> > > The second step in preparing to add Loongson-2K support is to change =
-the
-> > > names of the driver files and Kconfig options from Loongson1-specific=
- to
-> > > Loongson-generic.
-> > Is it possible to merge the first two patches? If not, it is better to
-> > use loongson1 rather than loongson in the subject line of this patch.
->
-> At first, I thought that separating the renaming of file prefixes from
-> the renaming of file names would make the changes clearer. Another
-> point is whether renaming Kconfig items would be considered API
-> breaking, even though no one is currently referencing them?
->
-> Of course, if anyone thinks that separating them is unnecessary, I
-> will merge them in the next version.
+> Add an I²C-bus controlled 4-bit LED driver PCA9632 under lpi2c3.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+> index 82e183dc581012a7c5be3d2bf749463d0a8a360d..c35a5083c837379804e07f98163c0a5d4301abd7 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+> @@ -329,6 +329,19 @@ i2c3_gpio_expander_20: gpio@20 {
+>  		reg = <0x20>;
+>  		vcc-supply = <&reg_3p3v>;
+>  	};
+> +
+> +	pca9632: pca9632@62 {
+> +		compatible = "nxp,pca9632";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x62>;
+> +
+> +		led_baclklight: led@0 {
 
-It=E2=80=99s reasonable to merge the first two patches.
-I agree.
+typo: led_backlight
 
-> >
-> > Huacai
-> >
-> > >
-> > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > > ---
-> > >  MAINTAINERS                                                 | 2 +-
-> > >  drivers/mtd/nand/raw/Kconfig                                | 6 +++-=
---
-> > >  drivers/mtd/nand/raw/Makefile                               | 2 +-
-> > >  ...ongson1-nand-controller.c =3D> loongson-nand-controller.c} | 0
-> > >  4 files changed, 5 insertions(+), 5 deletions(-)
-> > >  rename drivers/mtd/nand/raw/{loongson1-nand-controller.c =3D> loongs=
-on-nand-controller.c} (100%)
-> > >
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index 4bac4ea21b64..cc502582c9f1 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -16722,7 +16722,7 @@ F:      Documentation/devicetree/bindings/*/l=
-oongson,ls1*.yaml
-> > >  F:     arch/mips/include/asm/mach-loongson32/
-> > >  F:     arch/mips/loongson32/
-> > >  F:     drivers/*/*loongson1*
-> > > -F:     drivers/mtd/nand/raw/loongson1-nand-controller.c
-> > > +F:     drivers/mtd/nand/raw/loongson-nand-controller.c
-> > >  F:     drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-> > >  F:     sound/soc/loongson/loongson1_ac97.c
-> > >
-> > > diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kcon=
-fig
-> > > index 4b99d9c422c3..d9e3f13666ac 100644
-> > > --- a/drivers/mtd/nand/raw/Kconfig
-> > > +++ b/drivers/mtd/nand/raw/Kconfig
-> > > @@ -462,12 +462,12 @@ config MTD_NAND_NUVOTON_MA35
-> > >           Enables support for the NAND controller found on
-> > >           the Nuvoton MA35 series SoCs.
-> > >
-> > > -config MTD_NAND_LOONGSON1
-> > > -       tristate "Loongson1 NAND controller"
-> > > +config MTD_NAND_LOONGSON
-> > > +       tristate "Loongson NAND controller"
-> > >         depends on LOONGSON1_APB_DMA || COMPILE_TEST
-> > >         select REGMAP_MMIO
-> > >         help
-> > > -         Enables support for NAND controller on Loongson1 SoCs.
-> > > +         Enables support for NAND controller on Loongson family chip=
-s.
-> > >
-> > >  comment "Misc"
-> > >
-> > > diff --git a/drivers/mtd/nand/raw/Makefile b/drivers/mtd/nand/raw/Mak=
-efile
-> > > index 711d043ad4f8..c182b9703a9e 100644
-> > > --- a/drivers/mtd/nand/raw/Makefile
-> > > +++ b/drivers/mtd/nand/raw/Makefile
-> > > @@ -59,7 +59,7 @@ obj-$(CONFIG_MTD_NAND_ROCKCHIP)               +=3D =
-rockchip-nand-controller.o
-> > >  obj-$(CONFIG_MTD_NAND_PL35X)           +=3D pl35x-nand-controller.o
-> > >  obj-$(CONFIG_MTD_NAND_RENESAS)         +=3D renesas-nand-controller.=
-o
-> > >  obj-$(CONFIG_MTD_NAND_NUVOTON_MA35)    +=3D nuvoton-ma35d1-nand-cont=
-roller.o
-> > > -obj-$(CONFIG_MTD_NAND_LOONGSON1)       +=3D loongson1-nand-controlle=
-r.o
-> > > +obj-$(CONFIG_MTD_NAND_LOONGSON)                +=3D loongson-nand-co=
-ntroller.o
-> > >
-> > >  nand-objs :=3D nand_base.o nand_legacy.o nand_bbt.o nand_timings.o n=
-and_ids.o
-> > >  nand-objs +=3D nand_onfi.o
-> > > diff --git a/drivers/mtd/nand/raw/loongson1-nand-controller.c b/drive=
-rs/mtd/nand/raw/loongson-nand-controller.c
-> > > similarity index 100%
-> > > rename from drivers/mtd/nand/raw/loongson1-nand-controller.c
-> > > rename to drivers/mtd/nand/raw/loongson-nand-controller.c
-> > > --
-> > > 2.47.3
-> > >
-> > >
->
-> --
-> Thanks.
-> Binbin
+> +			label = "backlight";
+> +			reg = <0>;
+> +			linux,default-trigger = "none";
+> +		};
+> +	};
+>  };
+>  
+>  &lpi2c4 {
+> 
+> -- 
+> 2.37.1
+> 
 
-
-
---
-Best regards,
-
-Keguang Zhang
+---
+kind regards,
+Maud
 
