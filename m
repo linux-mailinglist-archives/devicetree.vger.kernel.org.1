@@ -1,159 +1,183 @@
-Return-Path: <devicetree+bounces-205748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7708B29EBA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A28CB29EC6
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:04:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ADD71962D51
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:02:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C39A718A108C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB2831077D;
-	Mon, 18 Aug 2025 10:01:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8982B3101A7;
+	Mon, 18 Aug 2025 10:04:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="bUTJerPi";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="wr2h2Ieo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C689B310775;
-	Mon, 18 Aug 2025 10:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A031A83F7;
+	Mon, 18 Aug 2025 10:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755511276; cv=none; b=NiSevBLfOt0zy4vIk4LH/ibXUcXm8FGkrnhVf82khFNipxp4Mr2KZPsIDUzTcV+CytXmZo8hrSpJ6BuXApIemfcaH8N0a/uO7cyjbOj4GX6T0VfSZskDjhuhpMO8OIfTfqve2pY/MoEtPeoxD2XMlRCI+H5tqqhKpBaRHiVv6u4=
+	t=1755511470; cv=none; b=WJBkGTX5/PpIIDE72VKCtWvT//XlE7KIB4WJ4MYjYrYnebRSZH9mtNrZbjFempsyDK2ckNdSwjiQ+HKFFKSJpPFgpHvgzz9Nf4v2bT0gK+WpkDCXu3lQz7qJyw+UZLnHNAM0IgIGKqGAMUiAezWXnWmYkky7oJBCOfEMCXxDCbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755511276; c=relaxed/simple;
-	bh=fOJf2bOIilayjpDytPMrDIar+EryOHtOhrMI5yLZNW4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gy5b2C22K/jTPuBI0lmyMvzs5cKy63fOYJHAQqdqO4mhwtjGwVsGaiTA9e/kaseKeEFsqz12plMUvsJZVe7RFL47KGtcz8COvO07PZNG8KEl9bYjC2Vpmv7gzaXgcIjSAYa6o71LpL+5Yoj+snD5Z8b5lupbkIK1v3WtEf6j4eQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-53b1719b717so3418206e0c.0;
-        Mon, 18 Aug 2025 03:01:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755511271; x=1756116071;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dvQvdw3uTYy/ciL49LpZilhYd3aWULCwK/kQDMwzYTQ=;
-        b=Bc5rNI3wo/34tsN8MC7xidJjqSmrDd8YJ13QBzekeeeW6QsPudN2gCfdu5SMjIn8OZ
-         HIujgEfSebLiqcxo6cIcxKsdnlU1oBqfCOmMt91N0JPb9sa2bYB5sDPSHzvSOLrbgwsO
-         GCg4HHyu2z2Q3A7a6Yl3YMlnUDC8kS5oSuKlcE2nAFk171hKG7YjcXEwlzjnOTPhMii7
-         Upyp6CkOgKn8b36xU9DoS2llyb9tWfgnmVvvcY2gluCjhPstKcDpEmX9txQZDOGa5oV8
-         rtd+eMbffcGW4hz7QMs/zXtbxzxXYLmQYO2O5uGP0PJxdjLwPkomEYR9K5bMfk3hP2uW
-         SThA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2znL0ojDLNKewitN3ImOSJcYEwO1yOmIUJk/w0KSl5WTcolVZm45AEjdZUGR0b+c7UHZbML6XOOjqqbuRxXstUNI=@vger.kernel.org, AJvYcCWwqUP7s6/VJo2VNScpd46CX/lkaFI81Bkg4VkdQdttR9gzpy6ndSgYJHB7cz+Yf9b9KqsPzN2CTo0C@vger.kernel.org, AJvYcCXqsOsxlQKb/Ry8XdP9B8+X+htAG2yXl9athfJtjflk9FkDLwx3UVhXPwdGQjCmT7cEkqm6cau8Lgd2YUIa@vger.kernel.org, AJvYcCXw/kiGOpooLFVU/ffwYN/mApPi3eegOF5gEM3DhNYxCtN/OWUYz0beMhdIEnrZxoxPzQoBfiQFH4CBicmpmXY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHAYdcL/L85bZYEoUABP3MB1Hz1Fs3twKIT0j/fJj1sgg+oKUZ
-	gDg90eN2dDuACC+ffdmdKEtfK94s19O5nxxskEQp8rUtZwwBV/BvVod5pxg1aeKV
-X-Gm-Gg: ASbGnctDanCxA33Qv64lLHVqPxCsD9MKWhZ0plOtD3DY7ba4l9Z7H3Hz04sz8XPRoxq
-	Lu++HksyeopwR7Q7f0tGH8qnuNsiOx9cNILnQM0Vd979UKHKHafk4JI0cJ/cwYe1W68nUcrfb0n
-	n0peToUcknhQlV/VjDx1qJNs4geFM9ApxJhPahYbGrnZm1TyRCG5fsAkeUBdD5jnfiee2GiL0++
-	IwaIwJHS6RqNfl0kUEEFz76iwQKCtwrvDM21uhlDYfmuUtSvFDslkCKIFvE+mNE+pagVhrGYOM+
-	jN3HT5rS11wSV8dbOmszqGx2+bcVsBY2af5e9BlKkDXqgSXyr9qXo/EjEorKsAEgLhcgZXyvUpo
-	KPV+3Vjpn8e/Q17MnB9DKf9d5NI3s8m/cysiYSz8FlV9j5r3iooleOogLhbELf91k6YSARjI=
-X-Google-Smtp-Source: AGHT+IG9V9NEAWX/V2VuaMCHR3NOGzzBoOe2JCJWBlv0PcUli/Q8ip7KBYjmEAyR05KqT9NwypcdjA==
-X-Received: by 2002:a67:e710:0:b0:4eb:efc6:740 with SMTP id ada2fe7eead31-5126cb4dca2mr4303008137.18.1755511271279;
-        Mon, 18 Aug 2025 03:01:11 -0700 (PDT)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5127f80546fsm2016420137.14.2025.08.18.03.01.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 03:01:10 -0700 (PDT)
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-89018e9f902so2674919241.0;
-        Mon, 18 Aug 2025 03:01:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVLDKsAklDonwlbQUzlzURT8FjxY9wByDqE3+wfaVsG1oAe9oQF0nyaZwgr/UUGe/E+fxEaYXlO2ZFBkRUwwP4fEoM=@vger.kernel.org, AJvYcCViBlJS83o98d9V2L1mRNaz2AMgUm8p7ur/udmufeEhnKVBmyFoC1oq2NPf6vN5tY9uP10yGqVXBqLr/vs7@vger.kernel.org, AJvYcCVo0WP1yc4Y4gksTO2p5kc9tU3tCGwY169JNUGrxSaeN2KW8ropHCMXs+e8bw+OFqcP+UPCHw0XzZ6B@vger.kernel.org, AJvYcCW+6b0pN3dr20wpUeOad8wTHk5Cl6AZZJ06mF1dRuPDk68JnORCJX14wZk/RDZPoTD8aHOzvc1Fhm3ll0OcVhA=@vger.kernel.org
-X-Received: by 2002:a05:6102:5086:b0:4e9:9281:85ba with SMTP id
- ada2fe7eead31-5126cc42049mr5010118137.13.1755511270019; Mon, 18 Aug 2025
- 03:01:10 -0700 (PDT)
+	s=arc-20240116; t=1755511470; c=relaxed/simple;
+	bh=UWt7N+4RQyhLxa/8B24DwDg6beeMRBqY7R8dGE6WUXs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TDbxX3j82KRrEaPgVqSo3Byew7eR2U+eelHV0/CaEJ5ER7FI16U+6fAExXrC9wgOFxRMvnIsrHJb0j2WGvUTabab4Kb96nuHsst0EabU6rHeVWKDezuogI15g8/5hORvzvYsHqlUiwJb7MyRL9vE+PkCcdG/+Xy2c8EbCnsWjZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=bUTJerPi; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=wr2h2Ieo; arc=none smtp.client-ip=155.254.16.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from localhost (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id 9FA0C12FB458;
+	Mon, 18 Aug 2025 03:04:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1755511467; bh=UWt7N+4RQyhLxa/8B24DwDg6beeMRBqY7R8dGE6WUXs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bUTJerPioqaY8k+zBGOi2XjjY4kTawdPV5Bv/XgJa+nWn6mffS5FoqUW61pE+PsOo
+	 f5ns+ddo9qlJORHSWUgEywbDF4OlpcNj616oGObQP3bCtUM5YXnbWzR8gLwLxVucS1
+	 Ccn38RVVYpV4BAJ014Fs973eFm/xMx/M/GlRCMtHDgY4nQIB+cKsT0fWEwAzQZ0oVh
+	 xxdqkswi+RO4Yz4w9/07BWO05Bs/2cCPnCyNZ4rZA1wuJqZbezZ/iuexuFPBBs+pG8
+	 4TXoCC0KNM9sosZqgB9lfLh31cGkIoY6z5EPG92TAst1dzlUlhXnePadW3j7SO3Z6V
+	 2DikY37PAMIHg==
+X-Virus-Scanned: amavis at 4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by localhost (bayard.4d2.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id JJRSaq7kXkgL; Mon, 18 Aug 2025 03:04:24 -0700 (PDT)
+Received: from ketchup (unknown [117.171.67.207])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id 6A54512FB42D;
+	Mon, 18 Aug 2025 03:04:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1755511464; bh=UWt7N+4RQyhLxa/8B24DwDg6beeMRBqY7R8dGE6WUXs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=wr2h2IeoUDA798Uf9bZU+Gg3cx2Bm4QG0bT76RLbm4eOlL65g48kcYKssKY99S+NJ
+	 /DwILeS4fCJXt5CbbH1hUrHKGrE+LI/TJ4FtBWZNaZpQB60+VB6wopQge7CuLK+Wqj
+	 h8FKi/csxSXf0cLoBceC56t6Muo0QzUJaQ76jB3WRa7gprf30GfB73q2+qlceYdy9N
+	 ZMnBqGqidE5dHnaqGv7bY5oL4Nv6aGZh4xapAqk1v30/PXd7qxXArFrBfKLge2SRCh
+	 ylCd5ZgTTCA7zCYFrv1L641Qg4VaTea/0YokiTG2NG69y9HXwogsSxDFJi5AIufGyk
+	 6Defpki1+nmjw==
+Date: Mon, 18 Aug 2025 10:04:18 +0000
+From: Haylen Chu <heylenay@4d2.org>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Alex Elder <elder@riscstar.com>,
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Jinmei Wei <weijinmei@linux.spacemit.com>
+Subject: Re: [PATCH v3 3/3] clk: spacemit: fix i2s clock
+Message-ID: <aKL6ormE1N72fwVG@ketchup>
+References: <20250818-k1-clk-i2s-generation-v3-0-8139b22ae709@linux.spacemit.com>
+ <20250818-k1-clk-i2s-generation-v3-3-8139b22ae709@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250804195723.3963524-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250804195723.3963524-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250804195723.3963524-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 Aug 2025 12:00:58 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUtG6Sb1WCAGBzyzxrS7rNBvyMa1NZdRiJuysUsYJMKfg@mail.gmail.com>
-X-Gm-Features: Ac12FXzuBoEIZeUE5wSrCNZjz8blJ3-ac2uBvs_iRsPgErX3dhF1q9q8CePNpJQ
-Message-ID: <CAMuHMdUtG6Sb1WCAGBzyzxrS7rNBvyMa1NZdRiJuysUsYJMKfg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: watchdog: renesas,wdt: Add support
- for RZ/T2H and RZ/N2H
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250818-k1-clk-i2s-generation-v3-3-8139b22ae709@linux.spacemit.com>
 
-Hi Prabhakar,
+On Mon, Aug 18, 2025 at 05:28:22PM +0800, Troy Mitchell wrote:
+> Defining i2s_bclk and i2s_sysclk as fixed-rate clocks is insufficient
+> for real I2S use cases.
+> 
+> Moreover, the current I2S clock configuration does not work as expected
+> due to missing parent clocks.
+> 
+> This patch adds the missing parent clocks, defines i2s_sysclk as
+> a DDN clock, and i2s_bclk as a DIV clock.
+> 
+> A special note for i2s_bclk:
+> 
+> From the definition of register, The i2s_bclk is a non-linear,
+> discrete divider clock.
 
-On Mon, 4 Aug 2025 at 21:57, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Extend the Renesas WDT device tree bindings to support the watchdog timer
-> found on the RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs.
->
-> The RZ/T2H WDT is mostly compatible with the one found on the RZ/V2H(P),
-> but includes an additional register and differs in the clock division
-> ratio settings for the WDTCR[CKS] field. To reflect these differences,
-> introduce a new compatible string, "renesas,r9a09g077-wdt".
->
-> The binding schema is updated accordingly. On RZ/T2H, the WDT does not
-> require the "resets" property. It also requires two register regions and
-> the presence of a "power-domains" property. The "clock-names" property is
-> limited to a single entry, "pclk", for this SoC.
->
-> The RZ/N2H SoC uses the same WDT IP as the RZ/T2H. It is supported by
-> using "renesas,r9a09g087-wdt" as the primary compatible string, with
-> "renesas,r9a09g077-wdt" listed as a fallback to describe the shared
-> hardware features.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+No, it IS linear. It just comes with a 1/2 factor according to your code
+(I'm assuming there's a typo in the table below).
 
-Thanks for your patch!
+> In calculus and related areas, a linear function is a function whose
+> graph is a straight line, that is, a polynomial function of degree
+> zero or one. (From Wikipedia)
 
-> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> @@ -81,10 +81,17 @@ properties:
->                - renesas,r9a09g056-wdt # RZ/V2N
->            - const: renesas,r9a09g057-wdt # RZ/V2H(P)
->
-> -      - const: renesas,r9a09g057-wdt       # RZ/V2H(P)
-> +      - enum:
-> +          - renesas,r9a09g057-wdt    # RZ/V2H(P)
-> +          - renesas,r9a09g077-wdt    # RZ/T2H
-> +
-> +      - items:
-> +          - const: renesas,r9a09g087-wdt # RZ/N2H
-> +          - const: renesas,r9a09g077-wdt # RZ/T2H
->
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
+> The following table shows the correspondence between index
+> and frequency division coefficients:
+> 
+> | index |  div  |
+> |-------|-------|
+> |   0   |   2   |
+> |   1   |   4   |
+> |   2   |   6   |
+> |   2   |   8   |
 
-The second register block is just a single register, right?
-Showing an (early) example of the device node would make such
-details easier to notice...
+Index = 2 appears twice in the table. Is this a typo?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> From a software perspective, introducing i2s_bclk_factor as the
+> parent of i2s_bclk is sufficient to address the issue.
+> 
+> The I2S-related clock registers can be found here [1].
+> 
+> Link:
+> https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
+> [1]
+> 
+> Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
+> Co-developer: Jinmei Wei <weijinmei@linux.spacemit.com>
+> Suggested-by: Haylen Chu <heylenay@4d2.org>
+> Signed-off-by: Jinmei Wei <weijinmei@linux.spacemit.com>
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> ---
+>  drivers/clk/spacemit/ccu-k1.c    | 29 +++++++++++++++++++++++++++--
+>  drivers/clk/spacemit/ccu_mix.h   |  2 +-
+>  include/soc/spacemit/k1-syscon.h |  1 +
+>  3 files changed, 29 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
+> index 7155824673fb450971439873b6b6163faf48c7e5..b2c426b629a37a9901bbced26fc55c5f1b34eba5 100644
+> --- a/drivers/clk/spacemit/ccu-k1.c
+> +++ b/drivers/clk/spacemit/ccu-k1.c
 
-Gr{oetje,eeting}s,
+...
 
-                        Geert
+> + * i2s_bclk is a non-linear discrete divider clock.
+> + * Using i2s_bclk_factor as its parent simplifies software handling
+> + * and avoids dealing with the non-linear division directly.
+> + */
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+And thus this comment is wrong and misleading. Suggest something like,
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+	Divider of i2s_bclk always implies a 1/2 factor, which is
+	described by i2s_bclk_factor.
+
+> +CCU_DIV_GATE_DEFINE(i2s_bclk, CCU_PARENT_HW(i2s_bclk_factor), MPMU_ISCCR, 27, 2, BIT(29), 0);
+
+>  static const struct clk_parent_data apb_parents[] = {
+>  	CCU_PARENT_HW(pll1_d96_25p6),
+> @@ -756,6 +777,10 @@ static struct clk_hw *k1_ccu_mpmu_hws[] = {
+>  	[CLK_I2S_BCLK]		= &i2s_bclk.common.hw,
+>  	[CLK_APB]		= &apb_clk.common.hw,
+>  	[CLK_WDT_BUS]		= &wdt_bus_clk.common.hw,
+> +	[CLK_I2S_153P6]		= &i2s_153p6.common.hw,
+> +	[CLK_I2S_153P6_BASE]	= &i2s_153p6_base.common.hw,
+> +	[CLK_I2S_SYSCLK_SRC]	= &i2s_sysclk_src.common.hw,
+> +	[CLK_I2S_BCLK_FACTOR]	= &i2s_bclk_factor.common.hw,
+>  };
+>  
+>  static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
+
+Best regards,
+Haylen Chu
 
