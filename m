@@ -1,113 +1,98 @@
-Return-Path: <devicetree+bounces-205786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7C61B2A2C9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:02:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C9FB2A34B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:08:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38CC8564F30
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:55:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78BEE19655BC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B97B3203AE;
-	Mon, 18 Aug 2025 12:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBCB031CA53;
+	Mon, 18 Aug 2025 13:01:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AC031E119;
-	Mon, 18 Aug 2025 12:54:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53DBF31AF15
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 13:01:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755521665; cv=none; b=kGvWJy+lbxYMnv06CayooUWto7ccCBRrZr0nYB9nJ0LKTT+RLpoVAakMcom3vb9FhyDxNVlcWfNMZGsRJwouY24DsMmo5GLRwzLbD2izBWwLeNfSmJN5R2e1Spt512B15BzG/ywI9j5HVHdImSlQ1+7/rhigKPGz1yJswq70Zr4=
+	t=1755522092; cv=none; b=LT6JrE1gPFwgkV2N28wacbUQgoX7O0WfCauUiTg+jq4myv3flHmXTkyRnnHQPIKO/OvQDzLSixFN+4H6uym3Ho7/ELhDzpboms35FgQRwRUTv0IhlsiWH5NCwmjQUHsPf8/5/RYlYMQsprEnCGoBtkhwPW1LBAjhFTGFnFktrpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755521665; c=relaxed/simple;
-	bh=npZbQsrRejT2E0lczZ99NX4TSPxi/r04BwGuTmn1x+s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=N3rFmybWz4sdDwiw0wjHfSt4tetukEFG1sxMkUbpIeq0heBIW6K42x1STOry1PbvIxKFDXBB2O524XWQrMs6J0N7bThtCql7afXbjvGDHfVL9zuwdj7ItH7biJewg+hCEpwom3hqC3blAoLyWuuKxlRFEGWZkltsplzONG+DQ0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-890190c7912so935964241.2;
-        Mon, 18 Aug 2025 05:54:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755521663; x=1756126463;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=u/WeosVhzFRNpU6iFVwmh4j6UHgwDj0GnHLcrjZNofk=;
-        b=QcEWhKvkhMFv9a+paxuILRa7qQ6QP40+lcVDR18AG39p7gx3nndMbk7gh5hDq8zXTf
-         l4u1qbz8/Q0Q5/pNUgz0N+jQ+fuva3uXbag8gbWg81MV1rfPNOHHKGD4JRH5w980qAcU
-         uuTjBBjUGI4EuTRGxNj3L7qdbtvDkJv/hBywI2bUnIj2AMV4yKioiysogGZVV3eSXICo
-         GavREJY0MgYjgGW+njUyrZhpqgVxftn0iOzGhNzE8l7s6Evz00FS3x0CdbuUTSVYjceo
-         dOIdiiic6QBhfcN224Rcjclcu8xBdiLy8ZMqeGlVjI3/T3CrRNEJx9PnKgOF9Qg6HNGm
-         xEUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXPTpALc+CD/1ffNFzk1diafCLuHVCJRFGEJBsa2Y5TrH4xWXA3ySR/gqGrwvf36un2gC4S0mj2B95WtBhk@vger.kernel.org, AJvYcCXfk1yN1q8TU1gXqLCwCu2yyXi1aKovD1zXnlgQv86M7pd+78414IEcjPG90dZU1hViyCqcPWEWYXobbHujmkNJJ/M=@vger.kernel.org, AJvYcCXqj+94tUw5mrjqe1ruaOdL+C2UeU6gWEaReOpW3ClmmWewFts0c44uS/Cc83gCXKp46XwjuM0nXDkT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDOo7radCLGHAhTJab5xVv5Jls/SUphHHYxvhPn1e5jEM/aNAI
-	pFbZpSU8ppG2+0GhfSFA66fZgZr/7frVjt4qEEZX6PJq9fnKJHEHOBoloFekKXCj
-X-Gm-Gg: ASbGnctdDh2RB0AsUGya7jiS5iaCQ5ka61m+SFu38RXvgmQkxG1DGkSRChJP8lo0RvL
-	WtBrLxeroSycQfl5OS9KrXT6FEpEMujAqgOVy9PaPEpT2t/RoYPlTiG0HtyBy+LLT3/RV7SA2lQ
-	20FWYcGJRU9Q2Qle7WM4kCWtQilC/ng+BdmoA2rvAMzBd3YjPoHe9tzbSHzXuTp1DVElv6FvBqY
-	mUnlHoh6F6xi5vtu0Zx8KlOE1PsZLpksahXnHUjkweUCQhwcsMsWuMUsoWKzTXP17/E8KAQphaz
-	3MM5cevFp/nk9suXhkfOHYv6l6R2I8sCQWWYpa+vvy0ZgcoTegLnAbbdwIJEq6yYOT+L6W6tW9J
-	PqaR3dHBwbRD5Rb/PW86GaPottr49bfs2J5oOcOwbmXToxbXGkEyqIZ9JTiY6
-X-Google-Smtp-Source: AGHT+IH7VUUJJ+NCxXWZf8iVVpxa6Lr54y90VQHM3QkhjdF9GxDEAVi2CXUK2BNtFGYCHzIUTtr3fg==
-X-Received: by 2002:a05:6102:951:b0:4fb:372d:6d70 with SMTP id ada2fe7eead31-5126d8e0ba3mr4235597137.26.1755521663309;
-        Mon, 18 Aug 2025 05:54:23 -0700 (PDT)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-890277e5388sm1744556241.9.2025.08.18.05.54.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 05:54:23 -0700 (PDT)
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-89018ea73d1so1175910241.0;
-        Mon, 18 Aug 2025 05:54:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW0txiSkApDRJxFE/7lN4kkC9Dj7Kz/7tFlGTMVss0dnBSWmgJnLXw5AM2GD5+A0NSo7XgL8iy9mUOHfbOY@vger.kernel.org, AJvYcCWBCiJyLUj6bO5x++KfoWGPlWb5fGQkRBSrjPkytCsEcv5HIWULEclBpSAzXtkdJVj3iXgoPLHboHGtuWJdY8USQNg=@vger.kernel.org, AJvYcCXbNLrHBn48vRfNvS5NbPwkRKt46pazESdgklA5uc8X3cSg7OBIHayADp8T9csHJZrsFGcMUZRzfhLl@vger.kernel.org
-X-Received: by 2002:a05:6102:5805:b0:4fc:670:fbf with SMTP id
- ada2fe7eead31-5126cd385f2mr3751347137.18.1755521662718; Mon, 18 Aug 2025
- 05:54:22 -0700 (PDT)
+	s=arc-20240116; t=1755522092; c=relaxed/simple;
+	bh=6rQ6pnAUwzRAUX1Dhsh33y23lqaMyZglDlokiaRV8+c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VoUNk8ouVW1Whp3qwf5cz6m+TmFotPG2HLhAKR+DCKK4aC33zU5AHmSFHeCiFfaWOePnmqsQ1S0cTwLqp43O3YQ4RkynEyrpYgNL7d8rqFavRmuT5OON2OROXy3+dQ0/h1BSCQJmXGf4cKOtM/ykMGnuFwtTwKb5SsSqbfLsaUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <s.kerkmann@pengutronix.de>)
+	id 1unzUD-0003t7-OR; Mon, 18 Aug 2025 15:01:17 +0200
+Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <s.kerkmann@pengutronix.de>)
+	id 1unzUD-000uE2-0I;
+	Mon, 18 Aug 2025 15:01:17 +0200
+Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
+	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <s.kerkmann@pengutronix.de>)
+	id 1unzUD-005swT-04;
+	Mon, 18 Aug 2025 15:01:17 +0200
+From: Stefan Kerkmann <s.kerkmann@pengutronix.de>
+Subject: [PATCH 0/2] ASoC: codecs: pcm1754: add pcm1754 dac driver
+Date: Mon, 18 Aug 2025 15:01:06 +0200
+Message-Id: <20250818-v6-12-topic-pcm1754-v1-0-e1dd189ea99a@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250812200344.3253781-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250812200344.3253781-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250812200344.3253781-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 Aug 2025 14:54:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWDn2vXDDTUA=5XNw5K45op1ZK8a=scTEzXyqcQLgdDsg@mail.gmail.com>
-X-Gm-Features: Ac12FXzcPC9_P8me4LcEIIggtjp5QxKRbObGClkBUS8mU7fsIhzRX3T9OpYRJxQ
-Message-ID: <CAMuHMdWDn2vXDDTUA=5XNw5K45op1ZK8a=scTEzXyqcQLgdDsg@mail.gmail.com>
-Subject: Re: [PATCH 03/13] arm64: dts: renesas: r9a09g077: Add pinctrl node
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABMko2gC/x3MQQqAIBBA0avErBtQybKuEi1inGoWlWhIEN09a
+ fkW/z+QOAonGKoHImdJch4Fuq6AtvlYGcUXg1HGKqcd5ha1wesMQhho151t0NllNtR7S15BKUP
+ kRe7/Ok7v+wE+sECvZQAAAA==
+X-Change-ID: 20250818-v6-12-topic-pcm1754-85fa2c9d5cd0
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, kernel@pengutronix.de, 
+ Stefan Kerkmann <s.kerkmann@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: s.kerkmann@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, 12 Aug 2025 at 22:03, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
->
-> Add pinctrl node to RZ/T2H ("R9A09G077") SoC DTSI.
->
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Stefan Kerkmann <s.kerkmann@pengutronix.de>
+---
+Alvin Šipraga (1):
+      ASoC: codecs: pcm1754: add pcm1754 dac driver
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.18.
+Stefan Kerkmann (1):
+      ASoC: dt-bindings: ti,pcm1754: add binding documentation
 
-Gr{oetje,eeting}s,
+ .../devicetree/bindings/sound/ti,pcm1754.yaml      |  54 ++++++
+ sound/soc/codecs/Kconfig                           |   5 +
+ sound/soc/codecs/Makefile                          |   2 +
+ sound/soc/codecs/pcm1754.c                         | 185 +++++++++++++++++++++
+ 4 files changed, 246 insertions(+)
+---
+base-commit: adc218676eef25575469234709c2d87185ca223a
+change-id: 20250818-v6-12-topic-pcm1754-85fa2c9d5cd0
 
-                        Geert
+Best regards,
+-- 
+Stefan Kerkmann <s.kerkmann@pengutronix.de>
 
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
