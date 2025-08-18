@@ -1,238 +1,140 @@
-Return-Path: <devicetree+bounces-206026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3F8DB2B3C1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 23:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEDCEB2B47B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 01:14:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C87A5560648
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 21:53:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A07AD16FE5F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 23:14:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3110721A420;
-	Mon, 18 Aug 2025 21:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B0D27603C;
+	Mon, 18 Aug 2025 23:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="he4z3Zza"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SX6CB5T5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CA8B5BAF0;
-	Mon, 18 Aug 2025 21:53:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFE7258ED8;
+	Mon, 18 Aug 2025 23:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755553991; cv=none; b=X5lXcS9wFnVUfnLAcBqGIbqAszlm+ZThrgltz0ZfVYLw3ZMl3cJRB1p8zo110yajepCJXGFhjK0zDdLmkKG0itlwNe4txkHtL7HzGAFLuWFvDRVqMTnp1T3o9s7MbBaFWVObu9vgGtb/ukU1oi0z5riVGpkv2ltbiNiQkcUN9bo=
+	t=1755558873; cv=none; b=g8CvMpSqN0bWpqcNKS3W6gve4JjS0KwZchvaNQ2JeASrjFGLdiDpNpR0n471A2yUimaCRDnt84DXk5+9U/F12bhqjHkVU/I36au+h+OfzeFgfT8YcGrBino+Y2GX7eI8/U/aYFRuUGMYIsYtpYQK1/NwLgAg0+MPtn/e0XQyqjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755553991; c=relaxed/simple;
-	bh=WpVkZ962vo3YxUb0pfsS3lL0+QvmmNGnTY+hjEa6j10=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y5djh3CxYUl3PlkxeygV86ZtwkIfEQ2dnJU6QzWG+j4sfdNnaHnMAiRHLy/EjbIWy0VLmsmCCTaR2W7tk04by0Qx2xYhaNVNJEN8E5NXJOAd90UVH19kt+PrNTf0Ft4PXaxmy8dTUzQ6ENyU/aEklvDhtiCut3I2TbzvvGw9zyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=he4z3Zza; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45a1fc6996aso3623405e9.0;
-        Mon, 18 Aug 2025 14:53:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755553988; x=1756158788; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:reply-to:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CBGNms563wZgaaDJj4dOhSYcsPJCfcviioGsJ6pZrx4=;
-        b=he4z3Zzai/IVvuped3KttgU7WY256F9iSXXj6g8bTTgIMI2QnJCJiJ1m8bk87rFnqM
-         PqsEgTSVEhuXWSA6vWClodGHI73v25RJWj2kbavGnSpztNDH8escZpBbwTO0w2oABL5O
-         2d4LqEZZpNlXW88cp6K8RT9/8egqq9dCHK4DKrp0r4isO1zwbSRip7PEnA9aUinvhwoV
-         84kYc0FBW9JwUoBtniinfG1dNS6jAsNZBZoev3ZRgcEG/nRCIj64/oGNNIL4wWyC0uO6
-         8VN6EXGnfOvW5kcTaBBORN0O0w/Mi2ia0HCRrrf258J2NhfNVrxFAd3TX86L0CQwHoz0
-         mlxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755553988; x=1756158788;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:reply-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CBGNms563wZgaaDJj4dOhSYcsPJCfcviioGsJ6pZrx4=;
-        b=BZDrIZbf0MclK/zJaY/HXu+4yKBHjWC/uNW240yiyq3MA/q5Qxo+wdhOcQuC1OieAl
-         NpVnpddP7cA+gSQMPsCnmUtW53yHthykD/5WkJW8XeSPUcsBJrTqyVz02TtaXodIRr9C
-         NJe+Ej9/3UgvZVN56DXfZxRj90NPhirClZXR62n9YIJsxBeOW+fr5aPc2MLNTFelmaJW
-         CdAQAJOUpF4MRQm5TXxFSQK44PchvB+PmpWvzNr86G7U8jXRcCsfWVOe//CcxU7wGdQh
-         KWD/Lx8yqaqqiZj+FSXftaMUzy87eyCh3jXuVBjAdbZMRlT3LdRHkoGTuhGy0yTphHG3
-         3jKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWbRytSd5vG527JWbddTpomoTOrk7BpDJVNKzqSp0FDD1t6rhOheOV4NiyTgMB4mT1UdUGStJUWIZJ3@vger.kernel.org, AJvYcCWjxK2eBjhM6GbjIXytZ1e+8jm9Mwlh6IsTMUHglVgUfI5jh2vFJuAxPbmYwRtwnTU7qOiKzaNAc4bz@vger.kernel.org, AJvYcCX+rQe5IuqVr/ODsbd/zyDgK33KrXZ6/ZPfeFhKGey2A7al/5oC/FCT3ARKTBYHxzxRil8UAxoErW03rvNl@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyH+uzXhIZTrfaSYA5eKjQbyYxZjw9xOEJEjMuiT+h9Eg//Dpo
-	crxlBsEzcNCmAkE2yVwGMr3rSeH+2w5q/jz2DcobY0ldhI4G5/LB3Q7g
-X-Gm-Gg: ASbGncuYuK3rHDgNLys3XdVF76c+adtFaVjWxWoHfd0FK9U2aRsNTu9SpQw6koAQ9Af
-	m5iv3Xh8tFKhnvGvzoYK1QBCtm5NmhnGzpydIzVTVJCjZdnXFUhH+HxplEUga2oti8n7/C7btc6
-	UR8B8+RF9XzyTT2MLmCYF1kZnR1GCoOfrJRfaeWFIwCvOkKpBWbkOoZNC2GcpkdxshO5t+0Z1vr
-	FPT5VDgWr3wmyDP9D3fLgVo2O2CpRbzuvIXOB/xvp5zsAU3Sza1Wee77MqBxhUeThB8Gm4MlGLa
-	pn6gtwzR4SplTSPvZgcZJisGhosp44VU3uDwiX7tsgN0XYZdt1g2jvr3gHSYURfb37O5sJu9Iul
-	nEN+eWo9rgAuRxJThp78eeA93PanAkwsudEUVmpvk
-X-Google-Smtp-Source: AGHT+IEkYKcv7TAT9SSyXMO7PdTbTBzp1hSjXgNAUXQnGzWIfIepF1ZKLGT9IaaBsZ0kjI58lMjitg==
-X-Received: by 2002:a05:600c:6596:b0:459:dd09:856c with SMTP id 5b1f17b1804b1-45b43e12c3cmr397585e9.6.1755553987523;
-        Mon, 18 Aug 2025 14:53:07 -0700 (PDT)
-Received: from JSANTO12-L01.ad.analog.com ([189.79.20.14])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c0771c166bsm988404f8f.33.2025.08.18.14.53.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Aug 2025 14:53:07 -0700 (PDT)
-Date: Mon, 18 Aug 2025 18:53:01 -0300
-From: Jonathan Santos <jonath4nns@gmail.com>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Michael.Hennerich@analog.com, jic23@kernel.org,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH 4/4] iio: adc: ad7768-1: add support for ADAQ776x-1 ADC
- Family
-Message-ID: <aKOgvSHgiYQsuADy@JSANTO12-L01.ad.analog.com>
-Reply-To: f7aeff222bf0f09dc32784640c81a870c9145320.camel@gmail.com
-References: <cover.1754617360.git.Jonathan.Santos@analog.com>
- <f0c1cbc9c2994a90113788cad57df1f32f9db45e.1754617360.git.Jonathan.Santos@analog.com>
- <f7aeff222bf0f09dc32784640c81a870c9145320.camel@gmail.com>
+	s=arc-20240116; t=1755558873; c=relaxed/simple;
+	bh=1a1Pkt0EvyEZQWW/s13OKuuiFcIkA40/CYxanM3w+9k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=h3xHh85M5DpcBewscElRbgKGdbIFZpHMBe1eCpT2rsW/k7lPvjmRmp4uVfb0lKQflQxuw9iIdQOyv4yFmXmJIfo6TKREMfIfr9Sx5aoRIQxSuaq+g85XSs57IrDywRy/u0x0ew3e2A8+uudfl1LvLZqOzunfIdg0CH4kVBSP07E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SX6CB5T5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 55D78C4CEEB;
+	Mon, 18 Aug 2025 23:14:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755558873;
+	bh=1a1Pkt0EvyEZQWW/s13OKuuiFcIkA40/CYxanM3w+9k=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=SX6CB5T5IQuFDl6QNBZasScEdnsovVSJ+iwEP+Q36FfYmng+oIzVVzUYaIGbQwc+u
+	 4269NHtijTkQRh22vaDb5oEK9QHRoxqgioyVHlsm2g51x32C9Tt35V1KS13whMjh5U
+	 otU3OnSguBtN37aLjdm0HSlwWPsJF1Xn7emGBqcfgP5tFCv1AJtX6iorTktQ1Ueyma
+	 d1hzYnJxNm9Kt4VZygo3PYobBG9/V8xnf4hShABy8LvCAqFTzWd6/CDfTZc1fuflM1
+	 444VvIIwOIWvsEDjGIaAiflFTF6gDHFTySnCrpemMARkfLu+xrvfmiHWTr/vseQOA/
+	 R6pIeKhg1S1uw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 443DFCA0EC0;
+	Mon, 18 Aug 2025 23:14:33 +0000 (UTC)
+From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
+Subject: [PATCH v2 0/7] phy: rockchip: phy-rockchip-inno-csidphy: add
+ support for rk3588 variant
+Date: Tue, 19 Aug 2025 01:00:34 +0200
+Message-Id: <20250616-rk3588-csi-dphy-v2-0-7a94f079b712@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f7aeff222bf0f09dc32784640c81a870c9145320.camel@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJKwo2gC/3WNQQ6CMBBFr0Jm7RgoUMGV9zAsynSQiUhJaxoJ4
+ e5W9i7fS/77GwT2wgGu2QaeowRxcwJ1yoBGMz8YxSYGlas614VG/yzrpkEKgnYZV6SWrTK2Its
+ OkFaL50E+R/HeJR4lvJ1fj4NY/Oz/Viwwx6bivuyVuZSabuSmyfTOmzO5F3T7vn8BzFVvw7IAA
+ AA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Diederik de Haas <didi.debian@cknow.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Heiko Stuebner <heiko@sntech.de>, 
+ Collabora Kernel Team <kernel@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, 
+ Michael Riesch <michael.riesch@collabora.com>, stable@kernel.org
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755558041; l=2041;
+ i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
+ bh=1a1Pkt0EvyEZQWW/s13OKuuiFcIkA40/CYxanM3w+9k=;
+ b=nPWx2kQxGMIhjPK6/OMn3h27OpqKKGQap4h9iXwezh+pNZgwJI5wgHNJGT5ugJKzXmJGwuA3x
+ H238ii8w0vMAthBf7d7rZZBqQpiXMsaK3VME5mQU+9AzI+SfK2iQaYb
+X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
+ pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
+X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
+ with auth_id=371
+X-Original-From: Michael Riesch <michael.riesch@collabora.com>
+Reply-To: michael.riesch@collabora.com
 
-On 08/14, Nuno Sá wrote:
-> On Tue, 2025-08-12 at 23:49 -0300, Jonathan Santos wrote:
-> > Add support for ADAQ7767/68/69-1 series, which includes PGIA and
-> > Anti-aliasing filter (AAF) gains.
-> > 
-> > The PGA gain is configured in run-time through the scale attribute,
-> > if supported by the device. The scale options are updated according
-> > to the output data width.
-> > 
-> > The AAF gain is configured in the devicetree and it should correspond to
-> > the AAF channel selected in hardware.
-> > 
-> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> > ---
-> 
-> Hi Jonathan,
-> 
-> Some comments from me...
-> 
+Habidere,
 
-...
+The Rockchip RK3588 features two MIPI CSI-2 DPHYs (not to be confused with
+the two combo MIPI DSI/CSI CPHY/DPHY blocks). The CSI-2 DPHYs can be
+supported using the existing phy-rockchip-inno-csidphy driver, the notable
+differences being
+ - the control bits in the GRF
+ - the additional reset line
+This patch series adds support for this variant.
 
-> > +static int ad7768_set_pga_gain(struct ad7768_state *st,
-> > +			       int gain_mode)
-> > +{
-> > +	int pgia_pins_value = abs(gain_mode - st->chip->pgia_mode2pin_offset);
-> > +	int check_val;
-> > +	int ret;
-> > +
-> > +	/* Check GPIO control register */
-> > +	ret = regmap_read(st->regmap, AD7768_REG_GPIO_CONTROL, &check_val);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	if ((check_val & AD7768_GPIO_PGIA_EN) != AD7768_GPIO_PGIA_EN) {
-> > +		/* Enable PGIA GPIOs and set them as output */
-> > +		ret = regmap_write(st->regmap, AD7768_REG_GPIO_CONTROL,
-> > AD7768_GPIO_PGIA_EN);
-> > +		if (ret < 0)
-> > +			return ret;
-> > +	}
-> > +
-> > +	/* Write the respective gain values to GPIOs 0, 1, 2 */
-> > +	ret = regmap_write(st->regmap, AD7768_REG_GPIO_WRITE,
-> > +			   AD7768_GPIO_WRITE(pgia_pins_value));
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	st->pga_gain_mode = gain_mode;
-> > +
-> 
-> It looks the above function could use some locking.
-> 
-> > +	return 0;
-> > +}
-> > +
-> >  static int ad7768_gpio_direction_input(struct gpio_chip *chip, unsigned int
-> > offset)
-> >  {
-> >  	struct iio_dev *indio_dev = gpiochip_get_data(chip);
-> > @@ -782,13 +937,17 @@ static const struct iio_chan_spec ad7768_channels[] = {
-> >  	AD7768_CHAN(0, AD7768_CHAN_INFO_NONE),
-> >  };
-> >  
-> > +static const struct iio_chan_spec adaq776x_channels[] = {
-> > +	AD7768_CHAN(0, BIT(IIO_CHAN_INFO_SCALE)),
-> > +};
-> > +
-> >  static int ad7768_read_raw(struct iio_dev *indio_dev,
-> >  			   struct iio_chan_spec const *chan,
-> >  			   int *val, int *val2, long info)
-> >  {
-> >  	struct ad7768_state *st = iio_priv(indio_dev);
-> >  	const struct iio_scan_type *scan_type;
-> > -	int scale_uv, ret, temp;
-> > +	int ret, temp;
-> >  
-> >  	scan_type = iio_get_current_scan_type(indio_dev, chan);
-> >  	if (IS_ERR(scan_type))
-> > @@ -809,12 +968,19 @@ static int ad7768_read_raw(struct iio_dev *indio_dev,
-> >  		return IIO_VAL_INT;
-> >  
-> >  	case IIO_CHAN_INFO_SCALE:
-> > -		scale_uv = st->vref_uv;
-> > -		if (scale_uv < 0)
-> > -			return scale_uv;
-> > -
-> > -		*val = (scale_uv * 2) / 1000;
-> > -		*val2 = scan_type->realbits;
-> > +		if (st->chip->has_pga) {
-> > +			*val = st->scale_tbl[st->pga_gain_mode][0];
-> > +			*val2 = st->scale_tbl[st->pga_gain_mode][1];
-> > +			return IIO_VAL_INT_PLUS_NANO;
-> > +		}
-> > +		*val = st->vref_uv / 1000;
-> > +		if (st->chip->has_variable_aaf)
-> > +			*val = (*val * MILLI) / ad7768_aaf_gains[st->aaf_gain];
-> > +		/*
-> > +		 * ADC output code is two's complement so only (realbits - 1)
-> > +		 * bits express voltage magnitude.
-> > +		 */
-> > +		*val2 = scan_type->realbits - 1;
-> >  
-> 
-> I'm a bit confused. Is there something wrong with the original code that needs to be
-> fixed? The above change seems to effectively change behavior of the code with had
-> before.
-> 
-> - Nuno Sá
+As you may have guessed, this is part of the efforts to bring the support
+for the RK3588 Video Capture (VICAP) unit mainline.
 
-I think it is more of a semantic clarification than a behavioral change
-per se. Previously, the calculation gave the impression of a bipolar 
-unsigned input, since it was using the full scale. With the update, 
-we’re explicitly considering the sign bit, which makes it clear 
-that the input is a two’s complement signal.
+Looking forward to your comments!
 
-Altough pehaps this should not be mixed into the patch.
+Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+---
+Changes in v2:
+- rebased onto v6.17-rc1
+- added patch that makes 'power-domains' non-required (Diederik)
+- added patch that allows for different sets of resets (Neil)
+- introduced name for additional reset line (Neil)
+- fixed example in bindings (Rob, Diederik)
+- Link to v1: https://lore.kernel.org/r/20250616-rk3588-csi-dphy-v1-0-84eb3b2a736c@collabora.com
 
-> >  		return IIO_VAL_FRACTIONAL_LOG2;
-> >  
-> > @@ -869,18 +1035,42 @@ static int ad7768_read_avail(struct iio_dev *indio_dev,
-> >  		*length = st->samp_freq_avail_len;
-> >  		*type = IIO_VAL_INT;
-> >  		return IIO_AVAIL_LIST;
-> > +	case IIO_CHAN_INFO_SCALE:
-> > +		*vals = (int *)st->scale_tbl;
-> > +		*length = st->chip->num_pga_modes * 2;
-> > +		*type = IIO_VAL_INT_PLUS_NANO;
-> > +		return IIO_AVAIL_LIST;
-> >  	default:
-> >  		return -EINVAL;
-> >  	}
-> >  }
-...
+---
+Michael Riesch (7):
+      dt-bindings: soc: rockchip: add rk3588 csidphy grf syscon
+      dt-bindings: phy: rockchip-inno-csi-dphy: make power-domains non-required
+      dt-bindings: phy: rockchip-inno-csi-dphy: add rk3588 variant
+      phy: rockchip: phy-rockchip-inno-csidphy: allow writes to grf register 0
+      phy: rockchip: phy-rockchip-inno-csidphy: allow for different reset lines
+      phy: rockchip: phy-rockchip-inno-csidphy: add support for rk3588 variant
+      arm64: dts: rockchip: add mipi csi-2 dphy nodes to rk3588
 
-- Jonathan Santos
+ .../bindings/phy/rockchip-inno-csi-dphy.yaml       | 61 ++++++++++++++++++--
+ .../devicetree/bindings/soc/rockchip/grf.yaml      |  1 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      | 33 +++++++++++
+ drivers/phy/rockchip/phy-rockchip-inno-csidphy.c   | 67 ++++++++++++++++++++--
+ 4 files changed, 151 insertions(+), 11 deletions(-)
+---
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+change-id: 20250616-rk3588-csi-dphy-c9ed2ad4cd9f
+
+Best regards,
+-- 
+Michael Riesch <michael.riesch@collabora.com>
+
+
 
