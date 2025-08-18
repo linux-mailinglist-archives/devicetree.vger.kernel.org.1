@@ -1,130 +1,167 @@
-Return-Path: <devicetree+bounces-205849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F03AB2AB7F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:49:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38109B2AB7B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:48:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA6315A7956
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:36:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13B827239C3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B7121F30A9;
-	Mon, 18 Aug 2025 14:30:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B20A4241674;
+	Mon, 18 Aug 2025 14:31:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O6vEGUxU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 519651624C5;
-	Mon, 18 Aug 2025 14:30:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31C5E239E97
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 14:31:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755527419; cv=none; b=tWlarf8Aja8EgFwUmzPbG8WDFnLa4+Flf+T5Wsl7JrffpbqEuWpY4s5f5+Naw/+ZkXj6cEVMuxSSWt4WU5Gxs15pBU5XK9c7nI0+2hJjzanEXffZljuLEzevVRs1l+0pzOe+A67bCAAk2Vp6ueoD/+1b5GFComOrcQOpqrx3z3M=
+	t=1755527474; cv=none; b=fh5QicUyubH4gldewj/l/JO8CuVcvqupQ8XO6DXp/+zv8KdPkL4dBF7FuhapYQUQvUjn2B9t0Mv1rr1sGRdJR9I9zzMm8qQ3ifkE5CRsi8vHOLDEwjsOLO39Wv7p81EWW3xI0p+KGev32jUPUCtpPUYXNyNvn9tadkYGkSgs1ZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755527419; c=relaxed/simple;
-	bh=k+W6ZWMIkn25jUyNMFtX6rNmrziEa+B3M/eWxufJOlI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QZbjgxLrO2CtXjupGVQn/XSw5QwUtdw8kHNsMc/gQiXARY0Ko/C2qYRpOwP9+pyAz3obnPu8KRISARloAeiWCQ89GmIhU3L6SajNRhxVEnV2rYtBujkqhwfL7GaZzm7nuXQKc/tTY+4n4YpnfXF/BHC0VlKbicjhyCDosY31hHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6C0571596;
-	Mon, 18 Aug 2025 07:30:05 -0700 (PDT)
-Received: from localhost (e132581.arm.com [10.1.196.87])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 37D7D3F63F;
-	Mon, 18 Aug 2025 07:30:13 -0700 (PDT)
-Date: Mon, 18 Aug 2025 15:30:11 +0100
-From: Leo Yan <leo.yan@arm.com>
-To: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	kernel@oss.qualcomm.com, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] coresight-tnoc: Add runtime PM support for
- Interconnect TNOC
-Message-ID: <20250818143011.GB8071@e132581.arm.com>
-References: <20250815-itnoc-v1-0-62c8e4f7ad32@oss.qualcomm.com>
- <20250815-itnoc-v1-3-62c8e4f7ad32@oss.qualcomm.com>
+	s=arc-20240116; t=1755527474; c=relaxed/simple;
+	bh=fG35iN1kFRAXE21etI8+TbfhHtzWP96Txn+0kfsGruE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q7FOjVaizvwvTveSPMa00DulBpBRFGqZaJUAAYVKEPuizW9XpQLnTbQgK0m7K1E90e5l02B7S9EC6R0+9gacFqL3zwk+oNESKbTYDp1eMucRLo7w+XdlPaBEUdyl0Gw4Se6G4IRjr1WuZikYkxs9kV9PIvwnUiPeH7lKs6Sq4d8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O6vEGUxU; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3b9dc5c8ee7so2687798f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 07:31:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755527470; x=1756132270; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YqUCIFuyjgf9dWStxbEJTvtbXAyyq5gx6EE3yh2DLD8=;
+        b=O6vEGUxUOI40VfR8RNyn8YC7qhMxeyjuuZnQ7c/OlRa6SwedjZ6xK9bTj+fU8lVlqP
+         I0zcq5HRli7+a5AwESDnk2krCDF3LjoefYLUpAenLpy2HovMM6t1OABV780Rv2WSTRWr
+         6MdA+UyJEEmr6eWQh5gHZxaYihqPbwji3zU+Ux73x7/8JB98LrNLW5cCHUXoA9qlqY+W
+         PQmi2BRK4rw9LKhM2LVhV8lzOGA4fA/2rZjBKE7JJ+cLk7NkaloMpoScNptMJkHKgBIO
+         JKBlKh4ane7z87lBlLEepVe5mK4pee2hAG63a1MqYIRppvLuFb0orQyzSwJIu9DZfJ33
+         Fz2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755527470; x=1756132270;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YqUCIFuyjgf9dWStxbEJTvtbXAyyq5gx6EE3yh2DLD8=;
+        b=FL8XeN3eYojl0ray0bMalN/tyFVs85zuYHJuwycXazvRRn4lf5y02XtTNAjgr9Xudb
+         EEwlLRCHMnJAOqF//z1iWyHlqvpKP8swFxDZbpM+lb/EblzdQAbc8XbW443szpaqTBpE
+         ckTQYhA3++g5jj4dwcMAoLHsrqX7y/J+Umir6bSnAaOaQTBBCJbC70uoeQdtKl0AW4AE
+         yYShYOLupQwjtT5JnvTixR+nsnn6OxnYR887wUztxfeopcEVZ6NhRwmMw/xKGIbsIPMt
+         UyrVc7ZR9fDZJgQg6hOpYAckQo3ZHBjzpJ6jKv51UPbnX66ad1BhK6Tot0GDJlVQsBcz
+         Zudg==
+X-Forwarded-Encrypted: i=1; AJvYcCVYMqo1Qd0vTZ1Yiw3bpJn+gV3RCrf+Ls4k+bTRPsruL8sI491kNX+Xm/tIhoaCa/34hWYvYCTqofHe@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAzCpTCA2JPxShlICczfJZyNKCB9zyIrgvdcQB8OKgbfABxqbv
+	dZw5jBEd8njXrSiUtl+im4qTIuICAaFzL7enM/zeVRv5hagfToMYUjZtjDMcdF1dS4Y=
+X-Gm-Gg: ASbGncsOHO8484uHlie+hgEXehLZLG/x3Nhsyy75dmFN2e8aYG1HmGlXrKSbTZ+ioOS
+	3iDMPeWew8bczxzsP6wgdg/slNCmiLkknopXj/8YMv/42vOPRNHSIIh3XF7OAMyEJhzGnTXUUcF
+	+Il+4DxRrey+4ehQi9R8gDz1Sw8A2x8JabzVnMu/LvLtQZrUpYeI8pFatyrbS3dAolZORERWVD8
+	qigzE7PXFMstEbJEH7Jm4plYoVTE4GNjZnPurWvvtxU/YlQaYv2uKWysx8KI69oDdB8lvHl7vWG
+	oodswA5dq+uYmXczXozJ1uG4HveMoAjoLicwScp4h5HraI5GzKi6hhz2hV3ZhV6OJ5oje9BdJUs
+	IMv0paeSeQDMn4+Hz5RSalKq5gZI=
+X-Google-Smtp-Source: AGHT+IEIVkPMjBrXWVFI0F4OEOVQGx0ZBgi9PzSgWdLSOcLjkm3Z6slxreu6ZYNW317l5cxTvC2cUA==
+X-Received: by 2002:a05:6000:2289:b0:3b8:d14b:8f86 with SMTP id ffacd0b85a97d-3bb690d1f0amr9352479f8f.45.1755527470412;
+        Mon, 18 Aug 2025 07:31:10 -0700 (PDT)
+Received: from [192.168.1.3] ([185.48.76.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3bb64d2a405sm13313387f8f.20.2025.08.18.07.31.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Aug 2025 07:31:10 -0700 (PDT)
+Message-ID: <1f3b68d4-e0cc-4952-a695-322ed9756b95@linaro.org>
+Date: Mon, 18 Aug 2025 15:31:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250815-itnoc-v1-3-62c8e4f7ad32@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 10/13] spi: spi-fsl-lpspi: Add compatible for S32G
+To: Frank Li <Frank.li@nxp.com>
+Cc: Mark Brown <broonie@kernel.org>, Clark Wang <xiaoning.wang@nxp.com>,
+ Fugang Duan <B38611@freescale.com>, Gao Pan <pandy.gao@nxp.com>,
+ Fugang Duan <fugang.duan@nxp.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Larisa Grigore <larisa.grigore@oss.nxp.com>,
+ Larisa Grigore <larisa.grigore@nxp.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+ Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
+ linux-spi@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
+ <20250814-james-nxp-lpspi-v1-10-9586d7815d14@linaro.org>
+ <aJ4qNVIp788gc2ZU@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <aJ4qNVIp788gc2ZU@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Aug 15, 2025 at 06:18:14AM -0700, Yuanfang Zhang wrote:
-> This patch adds runtime power management support for platform-based
-> CoreSight Interconnect TNOC (ITNOC) devices. It introduces suspend and
-> resume callbacks to manage the APB clock (`pclk`) during device runtime
-> transitions.
-> 
-> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-> ---
->  drivers/hwtracing/coresight/coresight-tnoc.c | 26 ++++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-tnoc.c b/drivers/hwtracing/coresight/coresight-tnoc.c
-> index aa6f48d838c00d71eff22c18e34e00b93755fd82..f12a1698824bc678545319a3f482fd27e67a7352 100644
-> --- a/drivers/hwtracing/coresight/coresight-tnoc.c
-> +++ b/drivers/hwtracing/coresight/coresight-tnoc.c
-> @@ -270,6 +270,31 @@ static void itnoc_remove(struct platform_device *pdev)
->  	pm_runtime_disable(&pdev->dev);
->  }
->  
-> +#ifdef CONFIG_PM
-> +static int itnoc_runtime_suspend(struct device *dev)
-> +{
-> +	struct trace_noc_drvdata *drvdata = dev_get_drvdata(dev);
-> +
-> +	clk_disable_unprepare(drvdata->pclk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int itnoc_runtime_resume(struct device *dev)
-> +{
-> +	struct trace_noc_drvdata *drvdata = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(drvdata->pclk);
-> +
-> +	return ret;
 
-Here can be simplified:
 
-    return clk_prepare_enable(drvdata->pclk);
+On 14/08/2025 7:25 pm, Frank Li wrote:
+> On Thu, Aug 14, 2025 at 05:06:50PM +0100, James Clark wrote:
+>> From: Larisa Grigore <larisa.grigore@nxp.com>
+>>
+>> S32G doesn't have the max prescale erratum and it can query the max
+>> number of CS from hardware, so add those settings.
+> 
+> binding doc should first patch. Create new patch serial for add S32G
+> support only.
+> 
+> Frank
 
-> +}
-> +#endif
-> +
-> +static const struct dev_pm_ops itnoc_dev_pm_ops = {
-> +	SET_RUNTIME_PM_OPS(itnoc_runtime_suspend, itnoc_runtime_resume, NULL)
-> +};
-> +
->  static const struct of_device_id itnoc_of_match[] = {
->  	{ .compatible = "qcom,coresight-itnoc" },
->  	{}
-> @@ -282,6 +307,7 @@ static struct platform_driver itnoc_driver = {
->  	.driver = {
->  		.name = "coresight-itnoc",
->  		.of_match_table = itnoc_of_match,
-> +		.pm = &itnoc_dev_pm_ops,
->  	},
->  };
->  
-> 
-> -- 
-> 2.34.1
-> 
-> _______________________________________________
-> CoreSight mailing list -- coresight@lists.linaro.org
-> To unsubscribe send an email to coresight-leave@lists.linaro.org
+I'm not sure putting the binding doc commit first would be right? That 
+would imply it was a valid binding before it really was because the code 
+change hasn't been made yet. Practically both are required so it doesn't 
+really matter which way around they are.
+
+As for splitting the set into two, Mark mentioned that he was ok with a 
+single one, so I assume that's fine? The devtype_data changes would 
+conflict unless they were applied in the correct order anyway, implying 
+the need for a single ordered patchset.
+
+James
+
+>>
+>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+>> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+>> Signed-off-by: James Clark <james.clark@linaro.org>
+>> ---
+>>   drivers/spi/spi-fsl-lpspi.c | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/drivers/spi/spi-fsl-lpspi.c b/drivers/spi/spi-fsl-lpspi.c
+>> index 6d0138b27785..a4727ca37d90 100644
+>> --- a/drivers/spi/spi-fsl-lpspi.c
+>> +++ b/drivers/spi/spi-fsl-lpspi.c
+>> @@ -159,9 +159,15 @@ static const struct fsl_lpspi_devtype_data imx7ulp_lpspi_devtype_data = {
+>>   	.query_hw_for_num_cs = false,
+>>   };
+>>
+>> +static struct fsl_lpspi_devtype_data s32g_lpspi_devtype_data = {
+>> +	.prescale_err = false,
+>> +	.query_hw_for_num_cs = true,
+>> +};
+>> +
+>>   static const struct of_device_id fsl_lpspi_dt_ids[] = {
+>>   	{ .compatible = "fsl,imx7ulp-spi", .data = &imx7ulp_lpspi_devtype_data,},
+>>   	{ .compatible = "fsl,imx93-spi", .data = &imx93_lpspi_devtype_data,},
+>> +	{ .compatible = "nxp,s32g2-lpspi", .data = &s32g_lpspi_devtype_data,},
+>>   	{ /* sentinel */ }
+>>   };
+>>   MODULE_DEVICE_TABLE(of, fsl_lpspi_dt_ids);
+>>
+>> --
+>> 2.34.1
+>>
+
 
