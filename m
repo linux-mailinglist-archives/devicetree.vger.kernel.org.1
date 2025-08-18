@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0FD6B299A2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:28:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A7CAB299B3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:31:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B8871B203D7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:29:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD35B7A585A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FFEC274B2E;
-	Mon, 18 Aug 2025 06:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D61B274FC4;
+	Mon, 18 Aug 2025 06:31:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kXX7rlwG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDXjJtv8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4338C274B2A;
-	Mon, 18 Aug 2025 06:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C119223DE8;
+	Mon, 18 Aug 2025 06:31:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755498518; cv=none; b=oq61LStyKgbgtsYqGXIN9BTnoeFHAIvXlp6Yfv8TH4XdMzzg0rOctKxLq4OqGwC/PIH5NY/yGb+AKr+brPVJs+KBrtoQjxt1sL51gtv1/NeTNpXJVuGi8W7ol4CiaT1P31Db9CoIFAHCWEkMChJgkH8RDnJqko5w6N0nDhqEX3k=
+	t=1755498668; cv=none; b=pAkBIOYtSz8jcS3VvULy9dJ4Rig0UP2jQFP5ZLxbG6l1/4TlWhna7ijzqVD8hTfJVOab0tCNAJiTQ2jiI75s88D7uauUacZdWdtCow6y3CiH841P4Dpz6D74eoPxa1EbT1MACQTp90zN0A8A2pypO8aV1iCdGZaACZa1yL6w0Cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755498518; c=relaxed/simple;
-	bh=FbnbRZKMKBATM5dvzv+W2sjK0yQmb8OPQUc1DWS/VfU=;
+	s=arc-20240116; t=1755498668; c=relaxed/simple;
+	bh=eAB0iQM8ECb1EUyPVWktZLwwrkSHRpvjpaj/cofnVnw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ha1axgJZgpi04EL59rmez6HyTu/kxBsPVfGsXZ/IqeSDd5kgyu1I29x9ylrPrkGHa4iApbkEdxi7wRe+QGf3zgBgzvxg9rBa9bgD3x613YzoJpe9+DInnw/QsCrg4JXDFLbmsZZh4KdFnHpbHI1tNuq2Zc9LEaC87Vhp/+JlnAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kXX7rlwG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFB3AC4CEEB;
-	Mon, 18 Aug 2025 06:28:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=XvCfjgfXSVYvc0b5pnYlieyBRt+Mc/ZUOsqLIM4WsIY2HdzsQ3f6Mi47JVn8GxvwbCIP3lTRYck8kMJbeIsws0tcwLHyMZyZJHxI+H5N0ITjNprj5jKMHtpa65GL9SEKgm7HEwrTiYP+YSWQghwvQY41aSMeVyJk1/LyIZQyTW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDXjJtv8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32190C4CEEB;
+	Mon, 18 Aug 2025 06:31:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755498515;
-	bh=FbnbRZKMKBATM5dvzv+W2sjK0yQmb8OPQUc1DWS/VfU=;
+	s=k20201202; t=1755498668;
+	bh=eAB0iQM8ECb1EUyPVWktZLwwrkSHRpvjpaj/cofnVnw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kXX7rlwGNPiBoG60NaZqwQwFlkxv2WTgjnhU0z3rnUKWeWKd+WH99dCuO8TNHoONj
-	 GpQYTdFJ6OocGe2SySu2aTee/TTQC7hffh0FxWumPoE5nQmVmlGV09rlhzSHUA2jWb
-	 FzzGMZ6zKs4roT5mlJVcbMYBT+JUXDEJKi3tPPgH22AIBpLiZM8x7P1Tq+P540PkZ/
-	 cUz1KLDb5OIbBkfkujvM+5hSjS8rQmO4W6WIDBA+rpJeEu+HU2bh5b2uY0rBB8X0LI
-	 2eWr5OLbm2PuusaLsLVJWtY8YMmCQtVgh8NOHpYowl/XKVDyA/yxXh7HVWJ92hSa5i
-	 yYgHXQtKaWqnw==
-Message-ID: <cb826943-69d8-4fc9-8597-fbb2439f04f2@kernel.org>
-Date: Mon, 18 Aug 2025 08:28:30 +0200
+	b=aDXjJtv8cLaM97vdKMKLBX5/eDHrjUrHBjFcTeDJ0Vdiwkenbnpl7H/1M4lENygVG
+	 Z2oJAz/aD3by4o/qKfUDETPe65UkwQ3KFhNmVttyrcRPVLs9S7bLDWI7SVFlCjutO+
+	 MGuNmhKYa8m/QmgbXFl3M8u0wcHpSyk0VcKgrq6BSjLv50zydqNTQriGvjtFZSZhSz
+	 K7J0Y/vm4vkPmycGRqcijygrIcz8kwzWufibtzurNAwTVzur6P2Sq4kdRlAAPQjFKQ
+	 eXkIPtbZm6QHZW1CeZuTUo+4+bpKbHt+oLYJLlIJ5e1RFGRgBHmg4BnddxeDHD/Lci
+	 U5mUxj/TIgkgQ==
+Message-ID: <d009e0b2-2906-4436-b6a6-c24fecce9298@kernel.org>
+Date: Mon, 18 Aug 2025 08:31:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] dt-bindings: iio: mcp9600: Add microchip,mcp9601
- and add constraints
-To: Ben Collins <bcollins@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Hepp <andrew.hepp@ahepp.dev>
-Cc: Ben Collins <bcollins@watter.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250818035953.35216-1-bcollins@kernel.org>
- <20250818035953.35216-2-bcollins@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: clock: tegra124-dfll: Add property to
+ limit frequency
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Joseph Lo <josephl@nvidia.com>,
+ Peter De Schrijver <pdeschrijver@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thierry Reding <treding@nvidia.com>
+References: <20250816-tegra210-speedo-v1-0-a981360adc27@gmail.com>
+ <20250816-tegra210-speedo-v1-1-a981360adc27@gmail.com>
+ <cc3e798e-bb66-4e91-8fda-d1c8fcecf301@kernel.org>
+ <CALHNRZ9kLabyFv5PiMb7jrZgPyjOKe5sWEq7EJPb5LO6E6FUMg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,186 +111,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250818035953.35216-2-bcollins@kernel.org>
+In-Reply-To: <CALHNRZ9kLabyFv5PiMb7jrZgPyjOKe5sWEq7EJPb5LO6E6FUMg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/08/2025 05:59, Ben Collins wrote:
-> From: Ben Collins <bcollins@watter.com>
+On 18/08/2025 05:23, Aaron Kling wrote:
+>>>
+>>> +Optional properties for limiting frequency:
+>>> +- nvidia,dfll-max-freq: Maximum scaling frequency.
+>>
+>>
+>> 1. Frequency is in units.
+> Ack, will fix in whatever form a new revision takes.
 > 
-> The mcp9600 driver supports the mcp9601 chip, but complains about not
-> recognizing the device id on probe. A separate patch...
-> 
-> 	iio: mcp9600: Recognize chip id for mcp9601
-> 
-> ...addresses this. This patch updates the dt-bindings for this chip to
-> reflect the change to allow explicitly setting microchip,mcp9601 as
-> the expected chip type.
-> 
-> The mcp9601 also supports features not found on the mcp9600, so this
-> will also allow the driver to differentiate the support of these
-> features.
-> 
-> In addition, the thermocouple-type needs a default of 3 (k-type). The
-> driver doesn't support this, yet. A later patch in this series adds it:
-> 
+>> 2. OPP defines it already, doesn't it?
+> The dfll driver generates the cpu opp table based on soc sku's, it
+> doesn't use dt opp tables. This property is intended to modify the
+> generation of said table. That said, if there's a generic dt opp
+> paradigm for this that I missed which works without dt opp tables, I'd
+> be happy to use that instead.
 
-None of this driver argument here and earlier is relevant. Please
-describe the hardware and reasons behind this patch.
+Usually list of frequencies is via OPP, if it is not applicable here, it
+should be explained briefly.
 
-> 	iio: mcp9600: Add support for thermocouple-type
-> 
-> Lastly, the open/short circuit functionality is dependent on mcp9601
-> chipsset. Add constraints for this and a new property, microchip,vsense,
-> enables this feature since it depends on the chip being wired
-> properly.
-> 
-> Passed dt_binding_check.
-
-Drop, not relevant. You do not have to say that you built your code. You
-must build your code.
-
-> 
-> Signed-off-by: Ben Collins <bcollins@watter.com>
-> ---
->  .../iio/temperature/microchip,mcp9600.yaml    | 69 +++++++++++++++----
->  1 file changed, 56 insertions(+), 13 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> index d2cafa38a5442..1caeb6526fd20 100644
-> --- a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Microchip MCP9600 thermocouple EMF converter
-> +title: Microchip MCP9600 and similar thermocouple EMF converters
->  
->  maintainers:
->    - Andrew Hepp <andrew.hepp@ahepp.dev>
-> @@ -14,29 +14,30 @@ description:
->  
->  properties:
->    compatible:
-> -    const: microchip,mcp9600
-> +    oneOf:
-> +      - const: microchip,mcp9600
-> +      - items:
-> +          - const: microchip,mcp9600
-> +          - const: microchip,mcp9601
->  
->    reg:
->      maxItems: 1
->  
->    interrupts:
->      minItems: 1
-> -    maxItems: 6
-> +    maxItems: 4
-
-Why?
-I did not find explanation of this in commit msg.
-
->  
->    interrupt-names:
->      minItems: 1
-> -    maxItems: 6
->      items:
-> -      enum:
-> -        - open-circuit
-> -        - short-circuit
-> -        - alert1
-> -        - alert2
-> -        - alert3
-> -        - alert4
-> +      - const: alert1
-> +      - const: alert2
-> +      - const: alert3
-> +      - const: alert4
-
-Neither this and it is ABI break. ABI breaking needs clear reasoning why
-and some evaluation of impact on users.
-
-
->  
->    thermocouple-type:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 3
->      description:
->        Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
->        Use defines in dt-bindings/iio/temperature/thermocouple.h.
-> @@ -44,6 +45,33 @@ properties:
->  
->    vdd-supply: true
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: microchip,mcp9601
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 1
-> +          maxItems: 6
-> +        interrupt-names:
-> +          items:
-> +            - const: alert1
-> +            - const: alert2
-> +            - const: alert3
-> +            - const: alert4
-> +            - const: open-circuit
-> +            - const: short-circuit
-> +        microchip,vsense:
-> +          default: false
-
-There is no default for bool.
-
-> +          description:
-> +            This flag indicates that the chip has been wired with VSENSE to
-> +            enable open and short circuit detect. By default, this is false,
-> +            since there's no way to detect that the chip is wired correctly.
-
-Properties should be defined in top level. Here you only disallow them
-(see example schema).
-
-> +          type: boolean
-> +
->  required:
->    - compatible
->    - reg
-> @@ -62,9 +90,24 @@ examples:
->              compatible = "microchip,mcp9600";
->              reg = <0x60>;
->              interrupt-parent = <&gpio>;
-> -            interrupts = <25 IRQ_TYPE_EDGE_RISING>;
-> -            interrupt-names = "open-circuit";
-> +            interrupts = <25 IRQ_TYPE_EDGE_RISIN>;
-> +            interrupt-names = "alert1";
->              thermocouple-type = <THERMOCOUPLE_TYPE_K>;
->              vdd-supply = <&vdd>;
->          };
->      };
-> +  - |
-> +    #include <dt-bindings/iio/temperature/thermocouple.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        temperature-sensor@60 {
-> +            compatible = "microchip,mcp9601", "microchip,mcp9600";
-> +            microchip,vsense;
-> +            reg = <0x62>;
-> +            interrupt-parent = <&gpio>;
-
-Incomplete interrupts.
-
-> +            vdd-supply = <&vdd>;
-> +        };
-> +    };
-
+Just like - why same devices have different values should be explained
+(commit msg is not precise here).
 
 Best regards,
 Krzysztof
