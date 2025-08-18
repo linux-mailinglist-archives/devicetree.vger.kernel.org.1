@@ -1,114 +1,156 @@
-Return-Path: <devicetree+bounces-205614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0FA4B29990
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:18:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C72D0B299A5
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:28:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CDF63B7C4E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:18:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4F4317BA92
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:28:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 219A32741B3;
-	Mon, 18 Aug 2025 06:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785D7274B31;
+	Mon, 18 Aug 2025 06:28:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=walle.cc header.i=@walle.cc header.b="p+rKxhwG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 823AF273D9E;
-	Mon, 18 Aug 2025 06:18:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9465A274B3B;
+	Mon, 18 Aug 2025 06:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755497925; cv=none; b=jzbFxo8si/9GI865m/TYg9aRfg/FjwDEIfnfJoINE/nfaVXa2AG+9Mbb6TafCff0qbWiE3q0VRym6SaqNGuOHxrqpyC2fURC39k2c8kZO67xzfH5HuYCoCm64FyN5K8t8r+EVzizOtzpTuPhcIEsqpNPuL84dU8Ru3cFiwCVzXk=
+	t=1755498528; cv=none; b=IFFMI0yCv9VC38GHF5zYELS14SWsZieFefEA3r103rl3b74ZB1Y1gqsVp4CDjmdt44lA4wloOhkrTUArQrrRCaPwMpgJtL7Bpd7RcY0fwgeFGS/5aSGx9vOFXFEaO8htd4l0GmSRMWwjTIHX5tyM4q13W9FPcBRMik/SGWN2TXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755497925; c=relaxed/simple;
-	bh=YelkCI2wFXS4RLpRQN289W2HuXEBeTZw5aUaGzTs6a8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mmM11EyYOpv+yQLD3mERFPJ62Rh4ezXPCo4Eohjxy01PU44hNga+Zx+Wco1zdzJs3xshhC1QRjLK1JwCMA5a6j2A+UnzpfJ3NCFv9D1ThEhG/8LhsxVCl7Uy33Sd85v7sKy8JQ3vTFradKnsltApaVaz0y5k8uS/BaFbNU0U3mE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.19.206
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip2t1755497838t1fd5a6b6
-X-QQ-Originating-IP: K5v4RAVWugn23UNjkoicspSCFboAu0bRGFTZhubq0CM=
-Received: from [IPV6:240f:10b:7440:1:e696:3c18 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 18 Aug 2025 14:17:08 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 3725019992298414931
-Message-ID: <F46196958466A8A7+60461f17-bd3a-4e17-be6e-b4f22dddcde5@radxa.com>
-Date: Mon, 18 Aug 2025 15:17:07 +0900
+	s=arc-20240116; t=1755498528; c=relaxed/simple;
+	bh=s1t8KesLnR6mEX6Kpzb8LmcMJ5yEJW41JxTvV7m3akk=;
+	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
+	 In-Reply-To; b=ICpsoCoybIihG3UUxQuWdOsarDr5X1dbayMweb+V1rbjPTjbHGCgW+3z3Wgu+NmWrAXcyA0KSLzVCbv6AjPyusp+I+MC3hA3+lIAevnyfTPdMUXjkpO8/q1Umg2XOoQWf8cMsHOREQaIXiqRKP2dk+MV2a7bqc70ZdNMC2W/Zqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=walle.cc; spf=pass smtp.mailfrom=walle.cc; dkim=pass (2048-bit key) header.d=walle.cc header.i=@walle.cc header.b=p+rKxhwG; arc=none smtp.client-ip=159.69.201.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=walle.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
+Received: from localhost (unknown [213.135.10.150])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.3ffe.de (Postfix) with ESMTPSA id 1E0CD6BE;
+	Mon, 18 Aug 2025 08:22:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+	t=1755498140;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:content-type:content-type:in-reply-to:in-reply-to:
+	 references:references; bh=JCjWLxeGh14tYNyqo6lDpE4x/0mQUZVTmte1urJQThE=;
+	b=p+rKxhwGZJYlLmW4DZ7GiEN4L5JFE7h4OR3Tqrd17Jt3xKodm/U6YwzA/k56I68MrG6eMO
+	llul/6DKQtE+nrFFMfgiqe1mIQnulPRYyMWqDrQSuM0ug6CEzMtHCTfEidO5LvI/5dWQTi
+	HlLbCix3FcL67bQG1bJwjZi0JIUbG3+MA0XlGISt4tGUJ0ePOnoCRjgLtCo0+syP7wqpCV
+	MIGgYswBCiVy0JnEFduUF+2+0wBF3z2STZdc56ym9Toc+lxV43jWOxs3bz8p81haW8rUaF
+	FOjx/gYE3GNsgURe+Np6hAgir7g/gEXNmwLpvjGXM1OgkliOQPNftgTA+XliQg==
+Content-Type: multipart/signed;
+ boundary=5020df314e58c7e913c14c73516544fda37893398f5f3a17a4119856c99b;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Mon, 18 Aug 2025 08:22:18 +0200
+Message-Id: <DC5C5JA237HD.1ACBQVG1LYQ7Z@walle.cc>
+Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j784s4-j742s2: enable the
+ bxs-4-64
+Cc: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <d-gole@ti.com>, <afd@ti.com>,
+ <bb@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <detheridge@ti.com>, <matt.coster@imgtec.com>
+From: "Michael Walle" <michael@walle.cc>
+To: "Nishanth Menon" <nm@ti.com>, "Randolph Sapp" <rs@ti.com>
+X-Mailer: aerc 0.16.0
+References: <20250808232522.1296240-1-rs@ti.com>
+ <20250808232522.1296240-3-rs@ti.com>
+ <20250813151819.5rthljjrpryfwezz@skinning>
+ <DC1HU458W3QA.YLONSMYKK0C4@ti.com>
+ <20250813181300.xfpsu23arx7xy4fy@anointer>
+In-Reply-To: <20250813181300.xfpsu23arx7xy4fy@anointer>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E24C
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
- jonas@kwiboo.se, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- robh@kernel.org, ziyao@disroot.org
-References: <058E04574291144B+66620590-b680-44b9-92c5-7dc4c43080e7@radxa.com>
- <20250815100110.1302357-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20250815100110.1302357-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: MhFAoh6gmjppIABUC5Nr7UHdRf/PRmw0CsLmh7kyn1LFXlDeJUL+F7tx
-	zcvPEfG3jVlTRSFOYE9ETlGYW41Ak57STppNhCURMf4ZvYd3uzOGCNPEb535vSJ985qlQW7
-	E6TQqdNMlgQ6C7lWWqXq5+Hs0YgOz3OTrj6jxQyVD805kJhZSdOOJRZFSoqBQHYWQsv6BAU
-	HkGP2/dp7yzi9Yyg7eLZcC3kB4idAgxuZN+/pEv965vSgejW+6/ecdgoxdAgC1LAhsN5qoj
-	0ctBbn8zm7LkEauVLVRPnRrCspdMP2iuIC/M+Xz0ue1Ow3GzITVy1n9TXL3Wa6Vr36xn0ws
-	6CPeHR6Ma+Rx2ukHvxjh1Zu/hKMUeed2iJGKUzi+ZFibA3aYbTmSEEQdKNQlnDq01blJjf4
-	RkRxdjrFoa9rWNo0FfT45yB5zShYUF/OpOq34ZaPoKyLMkjPCZrw59V46ddS1VtF9YC4Ecq
-	khoIlMnfLNP8eXy8pAT1vYSA6vfjYMHZxNQkAtztXGAKr5GrbXCeX+/fUd7yzbubcbp14X0
-	nvJTuEkFSTPMq5ltKmLMTtoA+JPdh3EDKOvP/LDBgkv6vlDgBRCb1GF9wZLr3oZdRCrnXdp
-	5KwTXyLz0rtSA7bgb+81xOqJCutXJGsH136p90NZJEhxIBE3bWpndnE4yg8lWSiXoaw/BkV
-	bys+Su5ou3bfRCirxmwfG2VFRecRhf/YaVh6mAtVViAOuVUom5He7zsiRnqoZrVcZCklvfs
-	OTNF3xjw+2OBT7WXnrFiZ/Dr0EcWk/u8ur1zyy1RL5j3Sgel3A4EjOXTwW1hasavhoHR5XZ
-	m/O6cVo3cg4cGeL+0SHTJyAG71dmCh3RhGC6No7vXGkXaN4zQNm3lGsDLKu97RzmwAp/YIM
-	BHLu5vXDMJ8ZKay4HtD9mO6IGZ47/ftWE0GfdB0e4i/NfW58tXsThUDYONoMGIJtz+02TPV
-	wFg128RFydSKMTd9gzAaSrFU4
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-X-QQ-RECHKSPAM: 0
 
-Hi Chukun,
+--5020df314e58c7e913c14c73516544fda37893398f5f3a17a4119856c99b
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On 8/15/25 19:01, Chukun Pan wrote:
-> Hi,
-> 
->> "label" is deprecated. "color" and "function" should be enough to
->> explain what they are.
->>
->> (Personally, I prefer LED_FUNCTION_STATUS to LED_FUNCTION_HEARTBEAT)
-> 
-> BTW, will there be versions of Radxa E24C and Radxa E54C with
-> onboard eMMC? It seems that they are all onboard SPI instead
-> of eMMC. If there is no onboard eMMC version, we can remove
-> the sdhci node in dts.
+Hi,
 
-Although optional, there are also E24C/E54C versions with eMMC.
+On Wed Aug 13, 2025 at 8:13 PM CEST, Nishanth Menon wrote:
+> On 12:58-20250813, Randolph Sapp wrote:
+> > On Wed Aug 13, 2025 at 10:18 AM CDT, Nishanth Menon wrote:
+> > > On 18:25-20250808, rs@ti.com wrote:
+> > >> From: Randolph Sapp <rs@ti.com>
+> > >>=20
+> > >> Add the relevant device tree node for Imagination's BXS-4-64 GPU.
+> > >>=20
+> > >> These devices uses a similar MSMC configuration to the J721S2. As su=
+ch,
+> > >> they also require the use of the dma-coherent attribute.
+> > >>=20
+> > >> Signed-off-by: Randolph Sapp <rs@ti.com>
+> > >> ---
+> > >>  .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 14 +++++++++++=
++++
+> > >>  1 file changed, 14 insertions(+)
+> > >>=20
+> > >> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dts=
+i b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> > >> index 7c5b0c69897d..a44ca34dda62 100644
+> > >> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> > >> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> > >> @@ -2691,4 +2691,18 @@ bist_main14: bist@33c0000 {
+> > >>  		bootph-pre-ram;
+> > >>  		ti,sci-dev-id =3D <234>;
+> > >>  	};
+> > >> +
+> > >> +	gpu: gpu@4e20000000 {
+> > >> +		compatible =3D "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogu=
+e";
+> > >
+> > > Following  https://lore.kernel.org/linux-arm-kernel/DBE4UO2RGAYX.17V1=
+DAF8MQYJM@kernel.org/
+> > > Is it worth having ti,j784s4-gpu here? Are there any SoC specific qui=
+rks
+> > > that driver will need to handle?
+> >=20
+> > No SoC specific quirks, aside from those already being tracked through =
+the
+> > dma-coherent attribute. If we actually want to register SoC specific
+> > compatibility entries as advised by the kernel docs, just let me know. =
+I've seen
+> > this opinion toggle a few times.
+> >=20
+>
+> Please provide bootlogs on linux-next with just this series applied.
+> IMHO, based on what I see at the moment on GPU, it might be a good idea
+> to have SoC specific compatibility entries.
 
-Best regards,
+IMHO, that's *always* a good idea, even if the IP is the very same
+as the integration might be different.
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+Apart from that, we now have two series which partly overlap.
+Should I repost mine, as that's more than just the DT entry? (Which
+doesn't work as is, I'd guess.)
 
-> Thanks,
-> Chukun
-> 
-> --
-> 2.25.1
-> 
-> 
-> 
+-michael
 
+--5020df314e58c7e913c14c73516544fda37893398f5f3a17a4119856c99b
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKcEABMJAC8WIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaKLGmhEcbWljaGFlbEB3
+YWxsZS5jYwAKCRASJzzuPgIf+CG0AYDttjNUvi7U4uugJWozE7wr/9v404fRPKae
+MHBLFgHa9SuLDPG1DHz98nE+zofqZKMBf0rHJGLROCsCEODHOqtV1n+1QTQ4lnEK
+bMC8pQbKbtPYITEh7sb88sgeL3ZvU0pG7A==
+=D13I
+-----END PGP SIGNATURE-----
+
+--5020df314e58c7e913c14c73516544fda37893398f5f3a17a4119856c99b--
 
