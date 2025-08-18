@@ -1,111 +1,110 @@
-Return-Path: <devicetree+bounces-205961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78DD3B2AFBC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:47:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA842B2AFC3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:49:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 155E618A71E3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:46:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FADE162D84
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:49:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3822D248A;
-	Mon, 18 Aug 2025 17:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B962D2492;
+	Mon, 18 Aug 2025 17:49:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="IO2bRX6G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j0/PUpVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2565D2D2480;
-	Mon, 18 Aug 2025 17:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4997F2D2482;
+	Mon, 18 Aug 2025 17:49:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755539174; cv=none; b=BwbqwJ/EleyXxfrpsAndWbIEn+gUJT9oZZpNIJBCrVbAzU2kf8veSpnheYfejfkp7HM+b4Ie41g7lyzoDrv0LoeKuSoiUTT40RCAYj9FGn0HRwHHpwKbikRnTaSFvMpRWkt4k5kuUpxq2ljf7q7gvU2WM4BBbbw+O1BmmMxa4aw=
+	t=1755539341; cv=none; b=QlL+ubeCR65WJQ4Jp1iMBNscNcNS/Rw/gHrgxfBh6/OHqC2yfvdmkTnGTKw9taescsO4vgR3q8brQj/Lm+qV/D+EM7d812ol+bSpEzLZElXzbsKsr29juR95XTvCwbCsyZQH0TahmXSxSM4DWjr5dU99wr8lvDRTbtXY1eCIKtk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755539174; c=relaxed/simple;
-	bh=4bxZ4Jl7O78W+0PJuWP4ajd/ns+O0vBjcv/bjjJOu3U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tyZ3Wlx/TMAOdcegmH8TJFd29xKhz3pexmRds6pxDGlm2dTpmM4sbW4RY9knvzb5oLa4b2sKZtADMkLcAbScpbBc/Q9pJVVpxEEtRH4NRxWx/Ha8Ou/4t9tRTFji6I+CqkSs94g+6Y3RwWH96il/evkOI8SSs1U/ehiPF3xmMz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=IO2bRX6G; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1755539171; bh=4bxZ4Jl7O78W+0PJuWP4ajd/ns+O0vBjcv/bjjJOu3U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=IO2bRX6GTcrwhB+mdKIXRgVhyXyTy8DKgU6nVBLHfELF/5n4pd5VUiyAoAbNn84+w
-	 4bULf2V7VrpIZR6IIf/zxCTxquTWaStLyMchYz4uTWD2F7ngoJ7Md4J9TbacZHO4VT
-	 bBKDdO5w+hd76if1xBK6Ps/nIVeMCJmOWPSJvaCM=
-Message-ID: <84a48cf1-2220-4b04-91c1-5b3a556f4a1c@lucaweiss.eu>
-Date: Mon, 18 Aug 2025 19:46:11 +0200
+	s=arc-20240116; t=1755539341; c=relaxed/simple;
+	bh=yzg89wI4WRGyBpC4fKo2pvNxEu1GN0EWvVjsQRCbtcs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lHvMjikUyw65FtViIF5vwCJQ/iUmIe5xjNM0Cqk57iQXDQc5JdOXftglsMHJ/Al3ag4PwtSgKMAyBQFZm1XN7mrhEqiiqH918nNU2Y0bsBkXCabHrqUqWhNjUBCBvpdSBsJRDsc7c4yGCLbRoc2J0k5D4zIYiF3ZeifFsVHEadw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j0/PUpVI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF82CC4CEEB;
+	Mon, 18 Aug 2025 17:48:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755539340;
+	bh=yzg89wI4WRGyBpC4fKo2pvNxEu1GN0EWvVjsQRCbtcs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j0/PUpVIsr0FxfF03cj7AiRvp2SZa1QBYuWG6Vd6oxCrqWOMGAutg91pLETYR3zzO
+	 HRoKTY3lkhWGy9O/m9h1LvohwkN216kD9hhXdZWGdDi+ayC7thnLVWt+1bqH5S4s4D
+	 Qf5LVxIb4FLTmE3OfSBp+QfEM9BbjwaICINlttAVBBYBYOtvjchqhe8HX+ctp04O5n
+	 dHjVpw2vHUt4KFgNUkqTGbJTE0ucmPhFj30GcX6h8FjssBaMBcQD7gM94mq+J3bi4n
+	 bzi9l5ehsUCItwSw4584+vtAvInOZubUl9ktrOqXYqnnKRp9bwZ46LjWxB+0JQOQWd
+	 qhdD/RcR5gaJg==
+Date: Mon, 18 Aug 2025 18:48:54 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH 2/5] dt-bindings: net: cdns,macb: Add compatible for
+ Raspberry Pi RP1
+Message-ID: <20250818-quack-lid-59e71737f242@spud>
+References: <20250815135911.1383385-1-svarbanov@suse.de>
+ <20250815135911.1383385-3-svarbanov@suse.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/7] dt-bindings: i2c: qcom-cci: Document msm8953
- compatible
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
- Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250810-msm8953-cci-v1-0-e83f104cabfc@lucaweiss.eu>
- <20250810-msm8953-cci-v1-1-e83f104cabfc@lucaweiss.eu>
- <20250818153706.GA1238481-robh@kernel.org>
-From: Luca Weiss <luca@lucaweiss.eu>
-In-Reply-To: <20250818153706.GA1238481-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wajkoaFh9Mksd++G"
+Content-Disposition: inline
+In-Reply-To: <20250815135911.1383385-3-svarbanov@suse.de>
 
-On 18-08-2025 5:37 p.m., Rob Herring wrote:
-> On Sun, Aug 10, 2025 at 05:37:52PM +0200, Luca Weiss wrote:
->> Add the msm8953 CCI device string compatible.
->>
->> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
->> ---
->>   Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
->> index 73144473b9b24e574bfc6bd7d8908f2f3895e087..be6cebc4ee054d3100e5c4c676f1a0c4fd8d2e1e 100644
->> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
->> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
->> @@ -15,6 +15,7 @@ properties:
->>       oneOf:
->>         - enum:
->>             - qcom,msm8226-cci
->> +          - qcom,msm8953-cci
->>             - qcom,msm8974-cci
->>             - qcom,msm8996-cci
->>   
->> @@ -128,6 +129,7 @@ allOf:
->>                   enum:
->>                     - qcom,msm8916-cci
->>   
->> +            - const: qcom,msm8953-cci
-> 
-> This should be added to the enum above.
 
-Thanks, will update in v2.
+--wajkoaFh9Mksd++G
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Regards
-Luca
+On Fri, Aug 15, 2025 at 04:59:08PM +0300, Stanimir Varbanov wrote:
+> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+>=20
+> The Raspberry Pi RP1 chip has the Cadence GEM ethernet
+> controller, so add a compatible string for it.
+>=20
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
 
-> 
->>               - const: qcom,msm8996-cci
->>       then:
->>         properties:
->>
->> -- 
->> 2.50.1
->>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+--wajkoaFh9Mksd++G
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKNnhgAKCRB4tDGHoIJi
+0mjsAP97kK0IfQ7Ov50V5elnbXgZcegx4hBcq+cQedRkxNgC6AEAth4I1+sps9OD
+bT0La5XO5WyCakSYJpYh7050t8S+0gY=
+=9lyu
+-----END PGP SIGNATURE-----
+
+--wajkoaFh9Mksd++G--
 
