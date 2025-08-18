@@ -1,147 +1,221 @@
-Return-Path: <devicetree+bounces-205631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A4AAB29A69
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:01:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21EE2B29A7E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:05:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD9CD7B3070
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:59:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0527189AACA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:05:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771D6279354;
-	Mon, 18 Aug 2025 06:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C9DB212B3D;
+	Mon, 18 Aug 2025 07:05:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="btpIc6ar"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DCA7278772;
-	Mon, 18 Aug 2025 06:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A48AC1AAE17
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 07:05:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755500322; cv=none; b=W7ZF422jMcC3ht44sKVTXXsRAEEio8zd6LF6fGHPzTNxlktwAi8we4rnXBThz/zk+oEhzy2fsP6/Z4RMF8BQ5q04Enzr12y39V0lGTDzOMMnp1Ek5FZDy+a8hJtMjfpJ/V1rq4+z8f9gcNtbYQ2i/qmMto4knkUHCRaWMLG9WXg=
+	t=1755500726; cv=none; b=tIbCkhvLL09D9bOK2ptiRwSELj4J6nUSH19bFSePFIHaAVbxWGctkbdCxRzAOR5vllvSVMvQPlMlXyN2daaQhkW0ICipMA+v6lv/4HOQ6GMV1apNRo5sWrjEKelE85OQK2CujYM0YG3T0nlAET5INQflT3g4VB/PKz4sMa27mfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755500322; c=relaxed/simple;
-	bh=ubUFzesfUYXlPF17yj2IvT/HDmVZpKMUPllKQ1ADwfo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h5DSUwMnRXQWQ1ipJ3fbYE5adnV+pGPUkAbgxCoI3/2rHpSG/yH/3gHvfyWTBpUpyw7Ztji5En8mpH08zcdUKTpaErUsNemP2nqXn/K12mYMPYdjcUUqgTBU6ZhdZ8tMueb1HtdCtRsNANL6KQVe6Tyae55DweQL3dOJUj46t/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.243.244.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1755500244t6fc68c41
-X-QQ-Originating-IP: sLmbQl3vBpNZ30bWX5N0sBTYr4LYaC7/m/aS7e2wyqY=
-Received: from [IPV6:240f:10b:7440:1:e696:3c18 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 18 Aug 2025 14:57:21 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 1927108559509469176
-Message-ID: <BCD8E43E564BC334+1e45d36f-edc7-4c3c-90c9-7b0f2a52360f@radxa.com>
-Date: Mon, 18 Aug 2025 15:57:21 +0900
+	s=arc-20240116; t=1755500726; c=relaxed/simple;
+	bh=KPGdVAyfVGjLpPGHiZEXgt+sLnzTu05fyS8QQmmQ2i4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UB0Alvm7+b2K9qz4LVSsXP/44coVcmpFAgvCm43YqpYqO1uWT6pRBhCgtBegfolCDHIrOuyWQZT42cAVpSEN1WLxCj3nYZzFhqqhrsjF8g0ZZRIw+z5E2C3MMUK/5/T6Yg/noFjhi8x4tmHVNemjGDdiIAUEAoyGXlMQMxLLiU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=btpIc6ar; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-333f91526bcso27424921fa.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 00:05:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755500723; x=1756105523; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GHsUL+h4LuU3pP71Ed95ISAuUKi9IsSaBNdtMsfJmNY=;
+        b=btpIc6ar9CL/eQY9QpUMRGSrOoqPJDy623dQFuQvouua3TPM6e9eyYZ9hWdyL4NNK9
+         FovhR7UywfKKi7g0nxFZQoMgv6foaNhhj+gOf1ROnXG8sGX1M1sNB54JWUW33uB58odr
+         6mKkquEu5rbTPCagzcmEFnUPD/widlqBsPw0vsGmohFwgzcZkpLbfLe8k6ZniRYMDaDM
+         JPX1xpR+m4XPNV6vBsM2TmWOGb6aj5QxGVEi8qXgHeesS7xDOWLPw6fGxsDaih7C1CB4
+         zZ0ajX8NyVq4QLVLzJHOb7iUYXA54d/wofKli3mgueT0T9jfRjbCMyDR/+774NLltEO6
+         QeCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755500723; x=1756105523;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GHsUL+h4LuU3pP71Ed95ISAuUKi9IsSaBNdtMsfJmNY=;
+        b=gekm/4gyBmgs+sy4PT33YDn54Q8cioRrOySMzRUNWldZGAALVLmPrKoZVGiqBlMHOX
+         rpCuG2HqYoDLIUzB+s4/n5EyAkAl7qZ25yOs8/sWlDdQMLTW1UR4ahnzXY5689+KaeGS
+         r4uZp4Vtpa7aZBNleu4OoJ+1/z3C5b+XfHVMoqgJKcu5vqSFF+bz7iGkbvjf0MYT5g5U
+         UY8LBw5niFgb6OuwiGWgRLVj2zT+Ffd0hBKRODV874wMmUEP4wKK9tpIGbx8+uAMbyn5
+         XYFnAlgtlet869CEnHA6wS/fkW2ky1MhytjCW4Xl1NutRgEiyrNKDwlj5lBImkCjRZTR
+         pjUg==
+X-Forwarded-Encrypted: i=1; AJvYcCUII7lsHQLxmcsUurwSR7KxgjNT1quV+qunDmZjEfC/3d3z+qyKVD3muKapZwW0m4AB498u3n1j9erS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4B7c7fdptdHuotVcHfwSYqtiOL4CHeUf6HSE3Uqa2kEvhQznA
+	LrhG1Lq6ACkBg48dviShK8Ixiy+YHKAV/hEebA77jaq58SjN+Oedh8EQ7JMZPnRRUgz8DIkhp66
+	ZvJdZxG5J/0IkPWzGsvWS/ImwLIukKkw=
+X-Gm-Gg: ASbGncuJtf6B8g3uMBzVKbrNO2SSc7N6jnBmgKGIaPlfvdi+Ye0OMDAQ/NTcdN/MCBn
+	rCnFWHuLDBQWZ6zF1JNU53u0d1XWdMMBw/9I67K/5sx1DxIwjapaktbSykywp5Cl28QbAri8s4U
+	1WOZ4X5lks1z/5qddLpFCiXPL2mOBj3/ZcmcqkNfa91Kowm/DdoxFiDyvVlP+RTXjfUX+v5Lih/
+	EXiZ2v6+PbN8aYShxw=
+X-Google-Smtp-Source: AGHT+IFDuj56cYERGjPW+9wF7giB825tHomm1ZeTAk7dFt2+UOIIfPhfXqYy7W0LA7hF9aJ4nHmDoU+yiw145vgY7yo=
+X-Received: by 2002:a05:651c:20cc:20b0:332:612b:6f49 with SMTP id
+ 38308e7fff4ca-33412c91ef0mr13268441fa.29.1755500722327; Mon, 18 Aug 2025
+ 00:05:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: remove vcc_3v3_pmu regulator
- for Radxa E52C
-To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250816080030.183931-1-amadeus@jmu.edu.cn>
- <20250816080030.183931-3-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20250816080030.183931-3-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: OBUGnm9pFasAcNPGHYEMAopgoh5OwK6sDVK9bpqjd4LE8UhdUNPQ9bKd
-	Eft9UalMA+yEWVadv5T6zu8vxV885J/dFccTojhVAHOFPp4bMUXBCPSVwxd/LFYHuOK47Dk
-	4Pf3qcgL8BXEGSElSYv/4M8iBjpN221bvXwzxf8nlQimUGPyLQFOc72o8jk3WWvQhwvyVJk
-	N++pAcPjMhGi6EZwh8mYFVZg8yybg6OL6jAIN7DcfscMlSpCA8Qm9BAnPvA/XkZcLkrF01P
-	cU83tt+n0jxG39QLqnam+jEniLdShLddKJpN7FbQ2IQRhhuJ2Ae7yC3JcwKiCT1KRbm4L1o
-	55uisvFusSs0snQ/pBidg1zdinBWowBbUbTp7c8FAiQ3SQBuQYY+nIhOCmHoVoOoDd/6qgj
-	UodG2CUSlHj/UxAcVPHDdRkZdBlyz6sAK4fqG9pvdQyfmyqzrqx3oUcWNhkOMSa17XUl/Hl
-	tw5v+HFbDJHUDLX7y4vkfJ8KD7h3qGV82mlWgSmYDhnD+Bx433C4H/vuMDSSlCygbJcAXYS
-	GnUuBjWqcKWV3RO4rzkM7+PZ/y31YoyU4/OE+PQjp36PmdLMnnYOx7ej8A6Rqy4uVBjZVju
-	mm1vqI8w1mdjpQ0tpi4GE+V7+7eotK1libg4gEWWS6MPlRetQn+mA3zAeuvXFrUy+u86pYG
-	g1Z8L0iK+doHUhhyvrAAPkOpsbObkDjS39ZocN/zY5mCTx9X/ryvHW6198iVAC+/Up8vsy9
-	+fVElV2mut9qi7JF001tr4iGW13YAvuTWAYMrXmCX24wgwq7UfcPTNaLwbjtdyveMt+4m1X
-	+TNSjx6dHnY53Sl57Uexu6tfzD9aYWezAGfdJukbeaqFefyzxG0b0yJvDyuT6aBdqJ7tFYx
-	dA8bU2U7pDMLx3DkNj7CWf2L6B0DHJ3aqhVAhfZeiGRmuJPZ8iLjsey9UFpnQUc42aadKSJ
-	H6FS267F7p60Ccr3jSDqVod3S4fvQq+gpNU3Ro0JRGPZmOyoQ/dCAxDiNy1xoW7jBvN4=
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-X-QQ-RECHKSPAM: 0
+References: <cover.1754890670.git.zhoubinbin@loongson.cn> <47545b7ed4943a088b27021a0fdbeaf56947e833.1754890670.git.zhoubinbin@loongson.cn>
+ <CAAhV-H4h5qZ8gCjoKMKd8wBYG+secmTrHdo+AY1A60rmhKrCoQ@mail.gmail.com> <CAMpQs4JgvCCxgNhmQ7XPHZ9HHohFW69vO7D6mpbBb3Q16u78ag@mail.gmail.com>
+In-Reply-To: <CAMpQs4JgvCCxgNhmQ7XPHZ9HHohFW69vO7D6mpbBb3Q16u78ag@mail.gmail.com>
+From: Keguang Zhang <keguang.zhang@gmail.com>
+Date: Mon, 18 Aug 2025 15:04:44 +0800
+X-Gm-Features: Ac12FXy8IgHpqnLhbDZ9zWhgCTvDjrg_nDf6Gd34HT-rNlcS5yYHJjBmchXh0JY
+Message-ID: <CAJhJPsU+dVmnBnHgnNDL0Zro_KYN12c7+pw=720ju-w7veegMQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/8] mtd: rawnand: loongson: Rename loongson1 to loongson
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Huacai Chen <chenhuacai@kernel.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-mtd@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Chukun,
+On Mon, Aug 11, 2025 at 5:42=E2=80=AFPM Binbin Zhou <zhoubb.aaron@gmail.com=
+> wrote:
+>
+> Hi Huacai:
+>
+> Thanks for your reply.
+>
+> On Mon, Aug 11, 2025 at 2:36=E2=80=AFPM Huacai Chen <chenhuacai@kernel.or=
+g> wrote:
+> >
+> > Hi, Binbin,
+> >
+> > On Mon, Aug 11, 2025 at 2:02=E2=80=AFPM Binbin Zhou <zhoubinbin@loongso=
+n.cn> wrote:
+> > >
+> > > The second step in preparing to add Loongson-2K support is to change =
+the
+> > > names of the driver files and Kconfig options from Loongson1-specific=
+ to
+> > > Loongson-generic.
+> > Is it possible to merge the first two patches? If not, it is better to
+> > use loongson1 rather than loongson in the subject line of this patch.
+>
+> At first, I thought that separating the renaming of file prefixes from
+> the renaming of file names would make the changes clearer. Another
+> point is whether renaming Kconfig items would be considered API
+> breaking, even though no one is currently referencing them?
+>
+> Of course, if anyone thinks that separating them is unnecessary, I
+> will merge them in the next version.
 
-On 8/16/25 17:00, Chukun Pan wrote:
-> According to Radxa E52C Schematic V1.2 [1] page 5, vcc_3v3_pmu
-> is directly connected to vcc_3v3_s3 via a 0 ohm resistor.
-> The vcc_3v3_pmu is not a new regulator, so remove it.
-> 
-> [1] https://dl.radxa.com/e/e52c/hw/radxa_e52c_v1.2_schematic.pdf
-> 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->   arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts | 12 +-----------
->   1 file changed, 1 insertion(+), 11 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-> index 1883bd183396..4a3ae95f122f 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-> @@ -98,16 +98,6 @@ vcc_1v1_nldo_s3: regulator-1v1 {
->   		vin-supply = <&vcc_sysin>;
->   	};
->   
-> -	vcc_3v3_pmu: regulator-3v3-0 {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "vcc_3v3_pmu";
-> -		regulator-always-on;
-> -		regulator-boot-on;
-> -		regulator-min-microvolt = <3300000>;
-> -		regulator-max-microvolt = <3300000>;
-> -		vin-supply = <&vcc_3v3_s3>;
-> -	};
-> -
->   	vcc_3v3_s0: regulator-3v3-1 {
->   		compatible = "regulator-fixed";
->   		regulator-name = "vcc_3v3_s0";
-> @@ -255,7 +245,7 @@ eeprom@50 {
->   		reg = <0x50>;
->   		pagesize = <16>;
->   		read-only;
-> -		vcc-supply = <&vcc_3v3_pmu>;
-> +		vcc-supply = <&vcc_3v3_s3>;
+It=E2=80=99s reasonable to merge the first two patches.
+I agree.
 
-How about the following instead?
+> >
+> > Huacai
+> >
+> > >
+> > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > > ---
+> > >  MAINTAINERS                                                 | 2 +-
+> > >  drivers/mtd/nand/raw/Kconfig                                | 6 +++-=
+--
+> > >  drivers/mtd/nand/raw/Makefile                               | 2 +-
+> > >  ...ongson1-nand-controller.c =3D> loongson-nand-controller.c} | 0
+> > >  4 files changed, 5 insertions(+), 5 deletions(-)
+> > >  rename drivers/mtd/nand/raw/{loongson1-nand-controller.c =3D> loongs=
+on-nand-controller.c} (100%)
+> > >
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 4bac4ea21b64..cc502582c9f1 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -16722,7 +16722,7 @@ F:      Documentation/devicetree/bindings/*/l=
+oongson,ls1*.yaml
+> > >  F:     arch/mips/include/asm/mach-loongson32/
+> > >  F:     arch/mips/loongson32/
+> > >  F:     drivers/*/*loongson1*
+> > > -F:     drivers/mtd/nand/raw/loongson1-nand-controller.c
+> > > +F:     drivers/mtd/nand/raw/loongson-nand-controller.c
+> > >  F:     drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
+> > >  F:     sound/soc/loongson/loongson1_ac97.c
+> > >
+> > > diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kcon=
+fig
+> > > index 4b99d9c422c3..d9e3f13666ac 100644
+> > > --- a/drivers/mtd/nand/raw/Kconfig
+> > > +++ b/drivers/mtd/nand/raw/Kconfig
+> > > @@ -462,12 +462,12 @@ config MTD_NAND_NUVOTON_MA35
+> > >           Enables support for the NAND controller found on
+> > >           the Nuvoton MA35 series SoCs.
+> > >
+> > > -config MTD_NAND_LOONGSON1
+> > > -       tristate "Loongson1 NAND controller"
+> > > +config MTD_NAND_LOONGSON
+> > > +       tristate "Loongson NAND controller"
+> > >         depends on LOONGSON1_APB_DMA || COMPILE_TEST
+> > >         select REGMAP_MMIO
+> > >         help
+> > > -         Enables support for NAND controller on Loongson1 SoCs.
+> > > +         Enables support for NAND controller on Loongson family chip=
+s.
+> > >
+> > >  comment "Misc"
+> > >
+> > > diff --git a/drivers/mtd/nand/raw/Makefile b/drivers/mtd/nand/raw/Mak=
+efile
+> > > index 711d043ad4f8..c182b9703a9e 100644
+> > > --- a/drivers/mtd/nand/raw/Makefile
+> > > +++ b/drivers/mtd/nand/raw/Makefile
+> > > @@ -59,7 +59,7 @@ obj-$(CONFIG_MTD_NAND_ROCKCHIP)               +=3D =
+rockchip-nand-controller.o
+> > >  obj-$(CONFIG_MTD_NAND_PL35X)           +=3D pl35x-nand-controller.o
+> > >  obj-$(CONFIG_MTD_NAND_RENESAS)         +=3D renesas-nand-controller.=
+o
+> > >  obj-$(CONFIG_MTD_NAND_NUVOTON_MA35)    +=3D nuvoton-ma35d1-nand-cont=
+roller.o
+> > > -obj-$(CONFIG_MTD_NAND_LOONGSON1)       +=3D loongson1-nand-controlle=
+r.o
+> > > +obj-$(CONFIG_MTD_NAND_LOONGSON)                +=3D loongson-nand-co=
+ntroller.o
+> > >
+> > >  nand-objs :=3D nand_base.o nand_legacy.o nand_bbt.o nand_timings.o n=
+and_ids.o
+> > >  nand-objs +=3D nand_onfi.o
+> > > diff --git a/drivers/mtd/nand/raw/loongson1-nand-controller.c b/drive=
+rs/mtd/nand/raw/loongson-nand-controller.c
+> > > similarity index 100%
+> > > rename from drivers/mtd/nand/raw/loongson1-nand-controller.c
+> > > rename to drivers/mtd/nand/raw/loongson-nand-controller.c
+> > > --
+> > > 2.47.3
+> > >
+> > >
+>
+> --
+> Thanks.
+> Binbin
 
-@@ -538,7 +538,7 @@ regulator-state-mem {
-  				};
-  			};
 
--			vcc_3v3_s3: dcdc-reg8 {
-+			vcc_3v3_pmu: vcc_3v3_s3: dcdc-reg8 {
-  				regulator-name = "vcc_3v3_s3";
-  				regulator-always-on;
-  				regulator-boot-on;
-
-Best regards,
 
 --
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+Best regards,
 
->   	};
->   };
->   
-
+Keguang Zhang
 
