@@ -1,182 +1,199 @@
-Return-Path: <devicetree+bounces-205790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A7C6B2A390
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:11:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA4DAB2A3EF
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 15:15:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5449B4E5BF3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:05:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3F0F189C8D8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:09:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C895318126;
-	Mon, 18 Aug 2025 13:05:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BC13320CB3;
+	Mon, 18 Aug 2025 13:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="txS1dG3I"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="KTF0ZmbZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85C1E3218C9
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 13:05:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8A83218C2;
+	Mon, 18 Aug 2025 13:08:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755522322; cv=none; b=u931T020mTl3ElCNvNDykEWMTXIyYUHviwAQdKUqx1K2V2CTg8Lr4DDSatoNFBvV1GmQu77qIeH7ge4kL5+B4anWbVoXei6Df01rFzqajCqtPJSsRcFupHsKlRd/wNYiO6SI37wCOdbvCZqmXaAAec/QD9e39WxlJ0VzVgnYKIk=
+	t=1755522509; cv=none; b=QKM3ZF0vd3NVrNA+dwlHj4HMb/FlWbuLwEvdpIxtipkGo9O3y1PtKc3s3eZZ6t/j5DZgo4+wj0cDIV9nq1dsQKz5d3/NUfSzntNq1gV9kfmY/XJdZpGs6upgPDSFf/eCzm1WJZ2RXcpBJ06sRjcFywkivG3ZNYzISgIt4qSZb8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755522322; c=relaxed/simple;
-	bh=RpAhxP2uLqbqjInuTE70JRXrQca1fdqD+vDq2S1ckfg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iM5w+ZLFa9i9drgT+OXuBlfAC2hnHd7sxMMXzvHFLODKLU2SD1sXEzHnLNXms/1Obki3tCjsOzx76j3FaejlVwSTZTgUBfPe+WUSQFj19nu3bqXTQounu5oeJ/XrdQaXPFbUypkm6vsGxHft78qytnIi24cekNgSSYC4ETWjS9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=txS1dG3I; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b9dc5c8ee7so2631641f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 06:05:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755522319; x=1756127119; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=86BJmrJXeETeW2kp8meE7Uq7AvyYwzMOqYpCJJXyfLs=;
-        b=txS1dG3IyrSDBriMFeWWgHeQgrwquh8uAPpEcdMV0g79noALWuVRWDccj7GLJ7S74Y
-         xkcSjVV0TP3EUphTRiqj2wd00Nv2vZtKKlt1+cDQk7vHlDVDZWqNg6CFHB5jtR2pYed4
-         KYa/OM2BVxixE02a5tGd5K80r8nMYfogIWCMXiAMVqBbLFZxIJP4MTmZ/M/xq0ln6npN
-         bJFKbOMdXwvy5iqAHXiX3HMH8XHxU0VRsE89AMD/mE/GT0+6VlT+0LoB7/CsNA3TtOoN
-         0FmczBnNwrvZHas8ZQEyissCYVIzhwnGkBJyR0OlpcvH/LtbFw05tsOL04Z7JnJuRv7X
-         6fZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755522319; x=1756127119;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=86BJmrJXeETeW2kp8meE7Uq7AvyYwzMOqYpCJJXyfLs=;
-        b=maCa1wIyu4aqqji8E3nmiQgIakIsI+2vzKBLXyKHrvdAXZPYExklg0PZLQbT07vRAf
-         UZRIWgI5Om/mCUnib/6PQYnzHam2U/IARmwQtoPZtB4zE8GLcZey/qtF+gBC3UALQ1us
-         piDeqHmmSHGklh4w4rcrjV+0EMV65fIMXoa7H0s/6rMSoy0zv3csBhjPVBc+0JA9gaf6
-         FJXC211fhSVQDfbRzczaDadS2eZrvn08CW0r6b4OqKv41whNlNnjfHKKR78isDaWy2AV
-         LAcmTwycB/nJLR2USvTdebJmULpErEgKnCgcM30CMuqpOPuN1LkR2PupOEsKmOcAxdKw
-         xhZg==
-X-Forwarded-Encrypted: i=1; AJvYcCU/MhL/o8RTn79G5pF/lINz+zVFdaLcMwuWSInqfjw1Em09HOfwb7AD/rmgg10OB7F7qjjmokxv99Oj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5q9oP48dT8qswk6exLFi24FIsktQBoCpX2aEmWTT8i9sBsnvO
-	jDJmgB/3+np4tH7q2chGWVMiWyDBCYbjF6NRoZaQsyeZuAt92ZddTC6JIX17ZAsKM4Q=
-X-Gm-Gg: ASbGncv9RNb+nlsnUmK0wdmQ78GGLkIx3lSkpckRgCiESi7xHQ7J53t2Y98feAlDr4E
-	vxM03xwEmLZZ5eUbE4T18pz2hL3NTao9AON+oBFzmUvodyMq8Hv7WokEjphs9MpJO4PwmKrqz2q
-	7ueKDQU4bzLcrWm5ZONoUsjUlmvuTdvlRQ+S8wEpTlUWp9HWoQ/GFl33FIlG0v65/NrKh6axy8P
-	H5sioZGx1v+fP4iZg/2aSEV62Oa5UCcRnF+fM7AHNHET3WFo6q6KnC2f9IOD3GFiyy64prluhRb
-	Yrlnnf807ku4Nqv3ut+8rmTI2QmrrbxkxdQ3Ko3B6oYp8HHTAG5pMNmCvVImxx49ulsp/w5kOQ7
-	J+VRjBZtSA6RMlQMmxVZvW25utfipaPRVLT9gmw==
-X-Google-Smtp-Source: AGHT+IHcwykrBK8tXrdhApeeaxgZhKOjTfFirzDPuKeFi7nfZYLL6OLNQGBRz5fJTm0ZvXzAmYWt9A==
-X-Received: by 2002:a05:6000:1788:b0:3b8:d493:31ed with SMTP id ffacd0b85a97d-3bb690d3800mr10683315f8f.47.1755522318746;
-        Mon, 18 Aug 2025 06:05:18 -0700 (PDT)
-Received: from [192.168.1.3] ([185.48.76.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3bb64758d1csm13236548f8f.8.2025.08.18.06.05.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 06:05:17 -0700 (PDT)
-Message-ID: <90d40899-c9b8-4628-a0b5-06ee0aa497be@linaro.org>
-Date: Mon, 18 Aug 2025 14:05:16 +0100
+	s=arc-20240116; t=1755522509; c=relaxed/simple;
+	bh=ZWlzv9zQPgG3T4Qdt+COdLbnVTsm7kZtfnXMkGnLfdg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C3wAdmyBSBI1yozOdflXdFP7HtyykPr+Ih+VKIW9KrqXaFpU0/zLhbiCxBmY5D7X+ogZEV55Xpvy3qhHU0n3fgpheze5eVqi41+hF+8kLRKWcnEm5PzNBbRpwNnbMRB9zj+XhGUyXb7d3n6urNthJtcjjIFHb4o8WpRy5iAnWjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=KTF0ZmbZ; arc=none smtp.client-ip=52.59.177.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1755522486;
+	bh=s8YclNR8beo4nWkkZUjnovn1goim6RIxNT6d2tnjL/s=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=KTF0ZmbZZcLnmrdiokOxKonJKRDPuK3ldJN39AXjBl05dQGjorzbBYxT+Z7AUjeiu
+	 CDdXKglwU0ci+Qz02k2fkW+u8nVBCITCqICJFT91NNNQuc/YFuqLUY9jMfmpT00yYE
+	 NYQVrCfiuHCbPgHK6LEeL4z7ts+9I92lCXKM/x3c=
+X-QQ-mid: zesmtpip2t1755522484tf2d46652
+X-QQ-Originating-IP: /v1dWevNYr4qGYbGv6tjmtqkcrChCHifqsQeMmx0+5s=
+Received: from = ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 18 Aug 2025 21:08:01 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 14735046647836716306
+EX-QQ-RecipientCnt: 16
+Date: Mon, 18 Aug 2025 21:08:00 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Haylen Chu <heylenay@4d2.org>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Alex Elder <elder@riscstar.com>,
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Jinmei Wei <weijinmei@linux.spacemit.com>
+Subject: Re: [PATCH v3 3/3] clk: spacemit: fix i2s clock
+Message-ID: <2CB30FE47E82A003+aKMlsDlLnLqh2fC0@troy-wujie14pro-arch>
+References: <20250818-k1-clk-i2s-generation-v3-0-8139b22ae709@linux.spacemit.com>
+ <20250818-k1-clk-i2s-generation-v3-3-8139b22ae709@linux.spacemit.com>
+ <aKL6ormE1N72fwVG@ketchup>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/13] spi: spi-fsl-lpspi: Set correct chip-select
- polarity bit
-To: Frank Li <Frank.li@nxp.com>
-Cc: Mark Brown <broonie@kernel.org>, Clark Wang <xiaoning.wang@nxp.com>,
- Fugang Duan <B38611@freescale.com>, Gao Pan <pandy.gao@nxp.com>,
- Fugang Duan <fugang.duan@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Larisa Grigore <larisa.grigore@oss.nxp.com>,
- Larisa Grigore <larisa.grigore@nxp.com>,
- Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
- Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
- linux-spi@vger.kernel.org, imx@lists.linux.dev,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
- <20250814-james-nxp-lpspi-v1-2-9586d7815d14@linaro.org>
- <aJ4TkKdkIPiJhhF4@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <aJ4TkKdkIPiJhhF4@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aKL6ormE1N72fwVG@ketchup>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: NOIkHYnr7VzdD4Fm5+xrXjUyOJ2uYLQ5NIHyQuWjIvpTe0DyqX9G9Ol6
+	NlBOtiIEWaTvscUw2trtl7LWYFQJQ1HnrK1t1TbF7HpnyiAAVyL+eAuq9zdBJv9ZTXxO8eg
+	E4uNIGceLO/bf9Q0QracnXOOFi9BBuob3ULgL61TDixeE2mfE+WlUSMFaZL9c6LgGa8JOfq
+	5oyOhQOOoqkd80KIOqBz3QR6afAvFGzksbHSz6sgUs0z9kcODbf53Zez84W+t/F6kl3vcOP
+	tef9SQT7rb+8WBIDV1YcVo8rP1CVJnRki8dAygglQCaCnEA4XgR9/7g+5CjCWbOimEuKBLX
+	eJTPyeI96C1P2rLF5moEHlncljf7IwKGwH7TwEPE6WGmO21K3PLHTr4BkF9Atvakl/6hE82
+	w1FkLAo14PDx5mtCSQ/IMIMRY/X3I7LfgB3a9MbSuOB55u01WkrTLZNjcNXbL+6/8RLUikn
+	ZP0LKmzEspEpOf/X4ZS37PQUNn/qm1nVgvp/zF6iN7/2QN5PunQb4nbkYhlotBkWexeTLjm
+	ThYnrffup6hHdKcAypkgnm6+4WiIDbAHw+xm6GPH8afMVUBSy/SkUGwLIyD9MOcK5C3liwA
+	1/X1jBWHE0NMaz0dMLrgnquskM8KKXtHpAIsnLT4aYYDVeEqvfJngZQJDbfuIyVQWaA3ZuD
+	baBByEw+7XgFmL6MxjtL9d6XWM9WclmksSSI0NLHG2Mwf9ZY4/ZXx0hRsroBm+28DYGVVgK
+	n42cExCDgSPHtNvHCL+YAEHha/pb1gFSrptigeWVv6OiyRCeulim08mPd2tH++nHhqQjhbs
+	V8SyzPZM1y409Nzy3Vhk7kqOiobDAkLlhXDJeOgyDw/lnHO51jb0IjD1IqheoBSda4A/cCw
+	RpD22m/nL6UTgiMg9teiZetAPwT2Rm4NLbEbkEQsqHj+D5K/q/W+j3EwXNpFndyKdwKOG1i
+	/W61JbTI4zvJSEjRqugncOiVx7ydL1ceHBF8YZ1uPYKfDMWub6dKcYxfKuJNrlFKJOgyHyg
+	pCJhTXa5nf8jp2/t8zW07cXlk/Yox9pv9bpgoG7b2/5vUk4aN3a7fjqNYHzDZzuKE4P+4ZV
+	vSiFeNZQuFH
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+X-QQ-RECHKSPAM: 0
 
+Hi Haylen,
 
+I accept all ur suggestions and I'll send v4 ASAP.
 
-On 14/08/2025 5:49 pm, Frank Li wrote:
-> On Thu, Aug 14, 2025 at 05:06:42PM +0100, James Clark wrote:
->> From: Larisa Grigore <larisa.grigore@nxp.com>
->>
->> The driver currently supports multiple chip-selects, but only sets the
->> polarity for the first one (CS 0). Fix it by setting the PCSPOL bit for
->> the desired chip-select.
->>
->> Fixes: 5314987de5e5 ("spi: imx: add lpspi bus driver")
->> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
->> Signed-off-by: James Clark <james.clark@linaro.org>
->> ---
->>   drivers/spi/spi-fsl-lpspi.c | 6 ++++--
->>   1 file changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/spi/spi-fsl-lpspi.c b/drivers/spi/spi-fsl-lpspi.c
->> index d44a23f7d6c1..c65eb6d31ee7 100644
->> --- a/drivers/spi/spi-fsl-lpspi.c
->> +++ b/drivers/spi/spi-fsl-lpspi.c
->> @@ -70,7 +70,7 @@
->>   #define DER_TDDE	BIT(0)
->>   #define CFGR1_PCSCFG	BIT(27)
->>   #define CFGR1_PINCFG	(BIT(24)|BIT(25))
->> -#define CFGR1_PCSPOL	BIT(8)
->> +#define CFGR1_PCSPOL_MASK	GENMASK(11, 8)
->>   #define CFGR1_NOSTALL	BIT(3)
->>   #define CFGR1_HOST	BIT(0)
->>   #define FSR_TXCOUNT	(0xFF)
->> @@ -425,7 +425,9 @@ static int fsl_lpspi_config(struct fsl_lpspi_data *fsl_lpspi)
->>   	else
->>   		temp = CFGR1_PINCFG;
->>   	if (fsl_lpspi->config.mode & SPI_CS_HIGH)
->> -		temp |= CFGR1_PCSPOL;
->> +		temp |= FIELD_PREP(CFGR1_PCSPOL_MASK,
->> +				   BIT(fsl_lpspi->config.chip_select));
->> +
+Thanks for ur review!
+
+                - Troy
+
+On Mon, Aug 18, 2025 at 10:04:18AM +0000, Haylen Chu wrote:
+> On Mon, Aug 18, 2025 at 05:28:22PM +0800, Troy Mitchell wrote:
+> > Defining i2s_bclk and i2s_sysclk as fixed-rate clocks is insufficient
+> > for real I2S use cases.
+> > 
+> > Moreover, the current I2S clock configuration does not work as expected
+> > due to missing parent clocks.
+> > 
+> > This patch adds the missing parent clocks, defines i2s_sysclk as
+> > a DDN clock, and i2s_bclk as a DIV clock.
+> > 
+> > A special note for i2s_bclk:
+> > 
+> > From the definition of register, The i2s_bclk is a non-linear,
+> > discrete divider clock.
 > 
-> Feel like FILED_PREP(..., BIT()) is stranged.
+> No, it IS linear. It just comes with a 1/2 factor according to your code
+> (I'm assuming there's a typo in the table below).
 > 
-> I suggest #define CFGR1_PCSPOL(x) BIT((x) + 8)
+> > In calculus and related areas, a linear function is a function whose
+> > graph is a straight line, that is, a polynomial function of degree
+> > zero or one. (From Wikipedia)
 > 
-> Frank
-
-It's using an existing macro that everyone knows though and I found 65 
-instances of exactly this. It can be read as "set bit X and put it into 
-the PCSPOL field without any further investigation.
-
-If we make a new macro, first the reader will have to jump to it, then 
-it still doesn't immediately explain what the "+ 8" part is. Using 
-FIELD_PREP() also has the potential to use autogenerated field masks 
-from a machine readable version of the reference manual. You can't 
-statically check your macro to see if + 8 is correct or not, and it also 
-doesn't catch overflow errors like FIELD_PREP() does.
-
-There might be an argument to add a new global macro like 
-FIELD_BIT(mask, bit). But it's not very flexible (can't set multiple 
-bits) and you can already accomplish the same thing by adding BIT() to 
-the existing one.
-
-Thanks
-James
-
+> > The following table shows the correspondence between index
+> > and frequency division coefficients:
+> > 
+> > | index |  div  |
+> > |-------|-------|
+> > |   0   |   2   |
+> > |   1   |   4   |
+> > |   2   |   6   |
+> > |   2   |   8   |
 > 
->>   	writel(temp, fsl_lpspi->base + IMX7ULP_CFGR1);
->>
->>   	temp = readl(fsl_lpspi->base + IMX7ULP_CR);
->>
->> --
->> 2.34.1
->>
-
+> Index = 2 appears twice in the table. Is this a typo?
+> 
+> > From a software perspective, introducing i2s_bclk_factor as the
+> > parent of i2s_bclk is sufficient to address the issue.
+> > 
+> > The I2S-related clock registers can be found here [1].
+> > 
+> > Link:
+> > https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
+> > [1]
+> > 
+> > Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
+> > Co-developer: Jinmei Wei <weijinmei@linux.spacemit.com>
+> > Suggested-by: Haylen Chu <heylenay@4d2.org>
+> > Signed-off-by: Jinmei Wei <weijinmei@linux.spacemit.com>
+> > Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> > ---
+> >  drivers/clk/spacemit/ccu-k1.c    | 29 +++++++++++++++++++++++++++--
+> >  drivers/clk/spacemit/ccu_mix.h   |  2 +-
+> >  include/soc/spacemit/k1-syscon.h |  1 +
+> >  3 files changed, 29 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
+> > index 7155824673fb450971439873b6b6163faf48c7e5..b2c426b629a37a9901bbced26fc55c5f1b34eba5 100644
+> > --- a/drivers/clk/spacemit/ccu-k1.c
+> > +++ b/drivers/clk/spacemit/ccu-k1.c
+> 
+> ...
+> 
+> > + * i2s_bclk is a non-linear discrete divider clock.
+> > + * Using i2s_bclk_factor as its parent simplifies software handling
+> > + * and avoids dealing with the non-linear division directly.
+> > + */
+> 
+> And thus this comment is wrong and misleading. Suggest something like,
+> 
+> 	Divider of i2s_bclk always implies a 1/2 factor, which is
+> 	described by i2s_bclk_factor.
+> 
+> > +CCU_DIV_GATE_DEFINE(i2s_bclk, CCU_PARENT_HW(i2s_bclk_factor), MPMU_ISCCR, 27, 2, BIT(29), 0);
+> 
+> >  static const struct clk_parent_data apb_parents[] = {
+> >  	CCU_PARENT_HW(pll1_d96_25p6),
+> > @@ -756,6 +777,10 @@ static struct clk_hw *k1_ccu_mpmu_hws[] = {
+> >  	[CLK_I2S_BCLK]		= &i2s_bclk.common.hw,
+> >  	[CLK_APB]		= &apb_clk.common.hw,
+> >  	[CLK_WDT_BUS]		= &wdt_bus_clk.common.hw,
+> > +	[CLK_I2S_153P6]		= &i2s_153p6.common.hw,
+> > +	[CLK_I2S_153P6_BASE]	= &i2s_153p6_base.common.hw,
+> > +	[CLK_I2S_SYSCLK_SRC]	= &i2s_sysclk_src.common.hw,
+> > +	[CLK_I2S_BCLK_FACTOR]	= &i2s_bclk_factor.common.hw,
+> >  };
+> >  
+> >  static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
+> 
+> Best regards,
+> Haylen Chu
+> 
 
