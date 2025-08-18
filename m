@@ -1,205 +1,239 @@
-Return-Path: <devicetree+bounces-205594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2B8B29834
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:34:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA928B29886
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:42:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E19534E6BA1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 04:34:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E35C61967624
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 04:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D09BB25D1F5;
-	Mon, 18 Aug 2025 04:34:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 941F9263C91;
+	Mon, 18 Aug 2025 04:39:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="fVhNP1gG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Hjeiw8dq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2046.outbound.protection.outlook.com [40.107.100.46])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387831990C7;
-	Mon, 18 Aug 2025 04:34:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.100.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755491690; cv=fail; b=LZp94lhm5J90IV08+Ns/PP9PO2rzBHNhZkVZfGp/20pAI6PWAcPC4usesuDYvyPd9FOZbUCJtLO2EcyrQymuFMrM+I/UXMZtdtbVQtugJcZ2b52xS9FDmaGL9eUYXNexL8sA6aWgtT7CxY5zgkKowgHK/UBYJQ2oXUyaFz5Uejo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755491690; c=relaxed/simple;
-	bh=u5bKl/NuSbEbA1e9VG6yOmnBlIEiefMBlv35YwTeTUM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Tu2pLwECdUs9zn/h32j95lI0ftMI/ukTB7N17rPgthgRikhUqiaiJ8TAq2OHvGR/aRM2wSaEShb+aiB8qzmzMPbEA7Iir0ewMmGFcmPRjkp0G2QhmOZHjzSm7lPCwtmf70AapOTWwPsIpmm487DMNCkqWf6ZHJf04NlFter8N9M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=fVhNP1gG; arc=fail smtp.client-ip=40.107.100.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QoWcMhXY7uc4NqteXY6XUl1z/u1uj5mUy217gA3fGjTISdngnAqjKA5KDqF3Qa2YMHzIKqgJHuBbHc9MNDm0BfxbOn/Bo+OPUysiSU+/bJ5GGlWEDKfA8KuMxZTIEUboZn+n895lgcW+byi/DdjRj9GjOxfftz2mdviE9f0CupmL3S+MsJ4P0fsjwKFrvzZFe2mlxne9/EUEmAdnehxBdx0pBynMsA7uLC24A+fM4rzh38yJ64UR7mcGM1eS6TWe1vprUslU59oZ3sg5bJBIYhYSl5AC+8cVyaqKjn8Ux9Y9MBD2f2by3AnZ+vQKe+eXb2Hj31WPApp7wfeDC9qWqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BLdpwbc4qXU6fhwdsprmb5qYscljC1kFomI/QJQ0Lm0=;
- b=rpn+oJWWQbEYc7BWoWe1gGXZaPsAjp7e04m4/wgO3c6F+XbAkK3pRptRAeopb0KlamhpF3yMKKkiVxRESZqkwIcoVvqDZyrtvEkNWCDYuNWxPysProt5y9l825zjf7kWOx8Ts28fJetM6Bp44pcDsJ2Udlr5ONHM0Te6u91n4lxkmiOruKo+1veahbuB6G09VPDfJYQk7yZZGSa0h64mYeaAu+XwX61/HqcVOzFq+z1gW+K5tMaDEbmU3pjABiYjCk1o9erBdccDtfooQORfc6MLRtjgWWe2G2KSleejL+Lso6k6FtBRPH9vS8d1Pn4/7U05fF+upDJKN1LLZIm25A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BLdpwbc4qXU6fhwdsprmb5qYscljC1kFomI/QJQ0Lm0=;
- b=fVhNP1gGeBlp7bMhZDYtq2bNQ+0Zgqdc/z+99w/i5XNOr98bFt3KhdtopgO6chExQj0MsXCUmodpeT2AENZHuAJQI9pJ+JH5/mN+rjhZr3JumkFrw1Mq17AdXoFULL7f4xHfTgLNvOXBo0ycxgDU7r63pAnPqOQtgCxuLhaBP1EnBpyvnGctTVMXKad6qnVQ4UuwcuzPK/b9xpwqXk1+9IvsWI+6R7z2kLa3cjIUVfK4WiS+6WjGA+sJlUCgCAbkvDpAzWAYSzaEKs+VAPizJYOUQUGeIGxHr4kA9O2Anq1hFxVJbgBLV1BERAC5Vb5vuraXt2xpQTLzXAnjBy9IvQ==
-Received: from BN9PR03CA0033.namprd03.prod.outlook.com (2603:10b6:408:fb::8)
- by MW4PR12MB7357.namprd12.prod.outlook.com (2603:10b6:303:219::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Mon, 18 Aug
- 2025 04:34:44 +0000
-Received: from BN2PEPF000044AC.namprd04.prod.outlook.com
- (2603:10b6:408:fb:cafe::ad) by BN9PR03CA0033.outlook.office365.com
- (2603:10b6:408:fb::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9031.20 via Frontend Transport; Mon,
- 18 Aug 2025 04:34:43 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BN2PEPF000044AC.mail.protection.outlook.com (10.167.243.107) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9052.8 via Frontend Transport; Mon, 18 Aug 2025 04:34:42 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Sun, 17 Aug
- 2025 21:34:28 -0700
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Sun, 17 Aug
- 2025 21:34:28 -0700
-Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.129.68.7) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
- Transport; Sun, 17 Aug 2025 21:34:24 -0700
-From: Akhil R <akhilrajeev@nvidia.com>
-To: <andi.shyti@kernel.org>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <digetx@gmail.com>, <jonathanh@nvidia.com>,
-	<krzk+dt@kernel.org>, <linux-i2c@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>
-CC: <akhilrajeev@nvidia.com>, <ldewangan@nvidia.com>, <robh@kernel.org>,
-	<thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>
-Subject: [PATCH RESEND 2/2] i2c: tegra: Add Tegra256 support
-Date: Mon, 18 Aug 2025 10:03:45 +0530
-Message-ID: <20250818043345.65899-3-akhilrajeev@nvidia.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250818043345.65899-1-akhilrajeev@nvidia.com>
-References: <20250818043345.65899-1-akhilrajeev@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C8D262FD7
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 04:39:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755491997; cv=none; b=O5Bb6qjEIy3Ja6aqye2dRKpBFq+U6edsTaM344Bi4SpvtNwwievTwYQWnBGGnnX3HlXgCcRXb1oPYKADamZqNZHqlhkbQWFG4Ec5AMjw5BQm49DW0c9vevR7q1XNLzrT33mqcT9RnzbZ43l4B902Cp0FGtrSC9rFqK0iZjG6LXA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755491997; c=relaxed/simple;
+	bh=KSLLj8Cg35yeXiOQ2rIw/G+j6qXlbNUMDJjZ9jdWyOE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZTf4qVr1fQtuYRSSYC+kX826XY9bNEollLCbz4kWVB4H0/zfmXJaP3jVDAPjmyEQy1zghYKLVZyVsf0slwvTnrWNMYcvBuHJkdBSpgFaXcwRZsliOfWSw5/XcDENA/Ks1WcTsFyuImjW5gRUmfoodo7PZTcd74b8/jX+DtLHMN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Hjeiw8dq; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57HLklo1027691
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 04:39:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=1NR64GHFeask4qb8/xUkJ8
+	EbUFcX0eF5pSEmHVElsFQ=; b=Hjeiw8dqZa0FvZQwmaaC35g2sbhv9opVUhjI2e
+	xQ0vV+u1gv/C74OOIrA8HwnIC60kZpoCWFooXA++w+gH4/CHxqUD6kbSTYz6Tz7h
+	LLq43uDDsCaroWUYJeMMaiu7XtObzSVjdoeAza5L5XVPWG/+j5iL1Y0ICSmsHl2b
+	JdThMstTYZ+IZPTQ28hJITIMmBKs4vQRefDp7jRm5jpaWBMfBBdNRaB4LauSj3sc
+	tdyhNoB29iCB5t+deHnojp+xIxwmXmK4J/5IjRyb63/E0EDukYVm7VH+DdAwZg7c
+	uToOaUup/OC2RgsM5JSgsq5KWqbpMTKB8l1k6s9twRMkX0Kw==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48jk5mb5k4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 04:39:54 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2445820337cso37964755ad.3
+        for <devicetree@vger.kernel.org>; Sun, 17 Aug 2025 21:39:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755491993; x=1756096793;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1NR64GHFeask4qb8/xUkJ8EbUFcX0eF5pSEmHVElsFQ=;
+        b=BnFMTjNQKliq4WLfa3oTIFxGKlH8375H2rE0anSinA2OuY2Dg5V09CLRt31Y9+7d9E
+         o4pUW6cFn0gyl0TXllDAAQrqtpvATzaJtmI5jfPmH8aV720NIsV3ZDlr949nPKz3TiIu
+         g4soESGzaZ01GU2JKtPbD/+gxs8t/jNmrQuuxSSwLjTmhdRbbiRosQYXPUKPd+6d+eFZ
+         X4yqADg129T0+4rCAtw20UZ/jOpnErL9Awis8Z4nptTK1oVkkAmwBIBNx7qjPyJBU9xR
+         6KzovfAXlyav36oCb8eOZAMkO2pQF1b0uAiZKy6tfX2xDF4E9D2G4pxSJcdBX98EsK5n
+         nnEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXBjlXIz6LslRJFdr0558tKYwx8Uzqdj95YWWjyl0i3U8SGh0SHqwo1cRq3o/ONByatFuZjDru/GqPW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyb191f2B+gu0CEAuM+5qhLStCyRmq0LfPTEOdowsYxOpUqd3w9
+	j6CF127xMKkCFPnIjYeoTaNd3U6KB5HV1iQ3KalZ+v1aTqtCj3DsJWyFYzjSEmLp+0dOlNqAffZ
+	reMAU+nooQhNlySz9TkHiyBvDKvszHxTt39uwavcTLDBYDuQQVAhuNZFoZ3QEYe5u
+X-Gm-Gg: ASbGnctGoP0QDSyA5vpoVEG2PihgW8iLg0vcgnSz8ZYf5mn0NR4XRfVthgaWxkoG9sl
+	wZB8sFtOVBUJZnLctlXfkddzUNlMX328U/KXED/wvbqh8XTE1+ME7Ny+BQQTepWwBPk5J3YzoVw
+	dSqGdCe49D1qGAfd2iMFyRJ4ED3ofA+CWewbVzWNieZcgA84U4/Qu+iUKAIxeJLcAoQczhMLkal
+	9oBOBfIQVNB7KCCoyJgWSjlOqMnXvsToLIyPqjTMX8jFZ0H5hZXDGrzZCvx6eVWzCBBumXbOeRp
+	hPHmEk5ljA8iMH9QmJvAesQ8cZzAOzwjc+TUSD4WXjVZwanRWlhNx6DrDOnxrtt0Q60uqGK3JL4
+	57DDlLCbkJmvCuYP604o2NyZTMPtVRN6ptCLthVsuuyXCGU1TTvuw6p/r
+X-Received: by 2002:a17:903:41d2:b0:240:4d19:8797 with SMTP id d9443c01a7336-2446d75becdmr173584975ad.22.1755491993001;
+        Sun, 17 Aug 2025 21:39:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF6rIbGtm3cTNiMPouKeyhqMRXZb1S/1TN9Ws1mkPz3xtO2PINyibUiytPLz3RdpGICT6Go9g==
+X-Received: by 2002:a17:903:41d2:b0:240:4d19:8797 with SMTP id d9443c01a7336-2446d75becdmr173584665ad.22.1755491992595;
+        Sun, 17 Aug 2025 21:39:52 -0700 (PDT)
+Received: from sziotdisp01-gv.qualcomm.com.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2446ca9cffdsm67505765ad.5.2025.08.17.21.39.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Aug 2025 21:39:52 -0700 (PDT)
+From: Fange Zhang <fange.zhang@oss.qualcomm.com>
+Subject: [PATCH v6 0/2] Add display support for QCS615 platform
+Date: Mon, 18 Aug 2025 12:39:19 +0800
+Message-Id: <20250818-add-display-support-for-qcs615-platform-v6-0-62aad5138a78@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000044AC:EE_|MW4PR12MB7357:EE_
-X-MS-Office365-Filtering-Correlation-Id: d0305726-e67b-4f4c-e4fb-08ddde108d88
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|7416014|376014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?oZ3m/v6h/lxyQeQysP5H7p1K/NAXsjV+I+c+3yERx6E07ZmtX7pJ7VF8RAAW?=
- =?us-ascii?Q?JXMt0/Vi5/rz+mbG6R5wEVlNT7hc3BwpLISHUPj4lZXY15yL0RDjbmLx3l8i?=
- =?us-ascii?Q?mKqddWU+SI1ag2cAOygetM67dL6epSLk2vekDtMyYfB0d7hixTc+6QpEG00J?=
- =?us-ascii?Q?74aKi71t75gFl83k3PtKLj76pG3Z3pL5K8w9xBsBhMn7+zvEC2pes+E6jFE5?=
- =?us-ascii?Q?9FMmLREDU1yhWIFxHNZslMprIjwRY9u9Wp+JRS+ZKDwKgS+AGx4D2aUGTwKk?=
- =?us-ascii?Q?fKMM3iARM32FzMi4M0mnrK+MJY/W1iGNn6s1m+bBwySfJPXoZh4u4ouNb03/?=
- =?us-ascii?Q?XymLOMYIzsV9teZWgkboamAntSshIWJih15aGJFeS6oeyvLMBekPZzgfF8HH?=
- =?us-ascii?Q?geo8eim/jQr6iZv+T9CfirMODT5+Zu5znlZesnsS+9J4yQljYTpwGx64stf4?=
- =?us-ascii?Q?1kmuKS35LT4I6McMCtYwt/UZAR3YmEp50oD+MZQqAQG+vFYJDDz3nIGJJTg+?=
- =?us-ascii?Q?VQZjhBIoijEjJDQwQkeRmvsklLLBkP48lZdECCx5nTgVYiWskzWKTbHBbu1K?=
- =?us-ascii?Q?nazsRLoeqAk6OOqVAZNVdUFxmjOaU2sWnoB465SQ6p8lEv8DyF/eXimdrAxi?=
- =?us-ascii?Q?TcDMIuj+XudQ9Gutvbv1m68XapZLVbNlo8pXHBOTau/Pv8/LHn3D4uXOCMVs?=
- =?us-ascii?Q?hxfXxuxxKGmYASupYQf/WgaGywou1th8WPz46dLHZCbeJWBPmlsa8kv/aWD9?=
- =?us-ascii?Q?DOp/kfL/tKXUBHgtO5A6UXjuaC4LO+uBZpPoT9hICK0nIQ11quMx7u7B20Mq?=
- =?us-ascii?Q?Bx90TLIFE5hKINWnMoGrK92kBk6lxyvRHUwHT3ZNgSeNYzTZgnmEHkU4Pm6v?=
- =?us-ascii?Q?827rIOQMDSK2bbF651Fe5eOGsAXUH7dnNbn0AjueBua+fxyNCkAZrWSMWltL?=
- =?us-ascii?Q?ExkLxW1f8CzD6pB/sx+Yx6e8zex9mYOauJO1dGN40vPhBZGDB6qPuEYGNgRz?=
- =?us-ascii?Q?R2RMvGCWAiQ7mzW+mbf0Wkw+ibzGKtRtFkJK4hZPZ94ihd8+z0PTIeB8p6PE?=
- =?us-ascii?Q?iwluwEfOM++7v//z911mIRo+RiHhTdxfTF07Y2693mZKTwtC1jk3YVbgFsbm?=
- =?us-ascii?Q?SdjjMzCPgsORby5eJDmIY8Hb0YzNuAgla+kBW0Z86nqPCPA069mHT5peXm4k?=
- =?us-ascii?Q?W1LAnUEz76zoQnG4GJqyoRRMvH0saH/vIpHbA6S58DmTEnSMxOg5pw+4ZE3+?=
- =?us-ascii?Q?RYSdzGihE74fz+CtiP7l2Kdue9rduiSMALtkjgOIPY7I9PR8Ki5SzWLn/9q/?=
- =?us-ascii?Q?UpiyB3YIEKuDTCk5Kv1HqYkjZvY6sV5Frv3dGLMl4JCPGqXZnNcAaCq/Nndr?=
- =?us-ascii?Q?QOKRRg+l+Sa/BqWzUU2ufHnZUSdQjtGQVelIKxgmdsbYDbYerhXg4hCdBL7n?=
- =?us-ascii?Q?4L8Ae6XR9muJvs0vYNXPxpkU9sEQPNLktPudXRROwK9dAks0VwvxSNxlGMA+?=
- =?us-ascii?Q?aySdq8Ugv2HAoiwvuw99he8PjMgoOQljCE/6?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(7416014)(376014)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2025 04:34:42.9661
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0305726-e67b-4f4c-e4fb-08ddde108d88
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN2PEPF000044AC.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7357
+X-B4-Tracking: v=1; b=H4sIAHiuomgC/5XRwW7DIAyA4VepOA8JGwx0rzJVEQlkRdqaFDK0q
+ sq7jzSZumN2tA/fb8Gd5ZBiyOz1cGcplJjjcKmDfjmw7uwu74FHX2eGAklYsNx5z33M44e78fw
+ 1jkOaeD8kfu2yBuJ1P9Xxk1Mr0CnsiMixqo0p9PH7UXo71fkc8zSk2yNcYNkuDQUC1NJotkazN
+ ZqKNlujABdchd7BEXzrvWILWPCJAMjdhxasGlojQ6v71urjqsk/GuJ+TVZNEhIG6Qj6sGrqqSG
+ I/ZpabvPWkNNGC/SrRr8aCfOPLylUNUvmaKwN9fGIneZ5/gHiCq+DAwIAAA==
+X-Change-ID: 20250818-add-display-support-for-qcs615-platform-5b02a42c555a
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Li Liu <quic_lliu6@quicinc.com>,
+        Fange Zhang <fange.zhang@oss.qualcomm.com>,
+        dmitry.baryshkov@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        xiangxu.yin@oss.qualcomm.com, Dmitry Baryshkov <lumag@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755491988; l=4970;
+ i=fange.zhang@oss.qualcomm.com; s=20250714; h=from:subject:message-id;
+ bh=KSLLj8Cg35yeXiOQ2rIw/G+j6qXlbNUMDJjZ9jdWyOE=;
+ b=apX3K8Hq30/LjAiJzwF4nwd40nWbeRYJeeyIp+MlYZuxEcpwhq8xxf9nfOJINyRiXSBAvtxLp
+ aUVO5f7z0BuDBbIcnedKRLcOxe+USvW43thtIuuw4uhykjV+gGAQUVq
+X-Developer-Key: i=fange.zhang@oss.qualcomm.com; a=ed25519;
+ pk=tn190A7bjF3/EyH7AYy/eNzPoS9lwXGznYamlMv6TE0=
+X-Authority-Analysis: v=2.4 cv=Sdn3duRu c=1 sm=1 tr=0 ts=68a2ae9a cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=nxEaKfvGoP9ROcwm2F4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: 1vCuncvM1VDjZY47Nc7ItDICQdGlE8F7
+X-Proofpoint-GUID: 1vCuncvM1VDjZY47Nc7ItDICQdGlE8F7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE2MDA0MiBTYWx0ZWRfX8bPS1FKjQhHo
+ ikpVYTklMak1vRWEpmR6hT81FmTyWfnruhqLKwFYIUx4fWPKmJrnPwANWBHZBcWcfWkaQCZCqvd
+ OJ53agN5OFMGlBjbbuOMrYOjWxHkRqLenJLzRhdAun8rSUZbuRl34vq9M4YYsj7xNkZrGDbL1+c
+ x07bbTaGEa38JPAEAkyXneZv0zpAMe7F2n8CmDzzrMcfeeKo8MvWB8HQiNplxM4x060WHzHsHG2
+ aKOOk35rk2IPlRucQJ52MHM5M15YZ9M9WKv6DVy4PYcmAh9tJHlmk1ASvId5/8I0F9E1hZ+g73b
+ i1nBFYxMRstxpdwc4Njj/yTRy98HMEbl2Xu9aE3MzGtHdUPnFHx6Wd9duQJU+z49Kg06Ync9p66
+ GpS3502/
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-18_02,2025-08-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 spamscore=0
+ adultscore=0 malwarescore=0 bulkscore=0 phishscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508160042
 
-Add compatible and the hardware struct for Tegra256. Tegra256 controllers
-use a different parent clock. Hence the timing parameters are different
-from the previous generations to meet the expected frequencies.
+1.Add MDSS & DPU support for QCS615
+2.Add DSI support for QCS615
 
-Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-Acked-by: Thierry Reding <treding@nvidia.com>
+QCS615 platform supports DisplayPort, and this feature will be added in a future patch
+Dropped patches 1–7, which have already been merged upstream
+
+The dependency has already been reviewed
+- dispcc dts
+https://lore.kernel.org/all/20250814-qcs615-mm-cpu-dt-v6-v6-0-a06f69928ab5@oss.qualcomm.com/
+
+Signed-off-by: Li Liu <quic_lliu6@quicinc.com>
+Signed-off-by: Fange Zhang <fange.zhang@oss.qualcomm.com>
+---
+Changes in v6:
+- Add qcom,dsi-phy-28nm.h header and update dispcc DSI clocks [Konrad]
+- Change mdss_dsi0_phy reg size from 0x188 to 0x124 [Konrad]
+- Remove assigned-clocks and assigned-clocks-rates from display-controller [Konrad]
+- Remove gpio header [Krzysztof]
+- Replace legacy `interrupt-parent` + `interrupts` with `interrupts-extended` for display-controller [Konrad]
+- Update mdp_opp_table clk [Konrad]
+- Link to v5: https://lore.kernel.org/r/20250718-add-display-support-for-qcs615-platform-v5-0-8579788ea195@oss.qualcomm.com
+
+Changes in v5:
+- Drop patches 1–7, which have already been merged upstream
+- Rename dp-connector to dp-dsi0-connector
+- Rename dp_connector_out to dp_dsi0_connector_in
+- Rename label from DP to DSI0 for dp-dsi0-connector
+- Rename anx_7625 to bridge
+- Rename anx_7625_in to dsi2dp_bridge_in
+- Rename anx_7625_out to dsi2dp_bridge_out
+- Rename ioexp to io_expander
+- Replace legacy `interrupt-parent` + `interrupts` with `interrupts-extended` for bridge [Dmitry]
+- Replace legacy `interrupt-parent` + `interrupts` with `interrupts-extended` for io_expander [Dmitry]
+- Update interrupt type for bridge [Dmitry]
+- Update interrupt type for io_expander [Dmitry]
+- Link to v4: https://lore.kernel.org/all/20241210-add-display-support-for-qcs615-platform-v4-0-2d875a67602d@quicinc.com
+
+Changes in v4:
+- Add dp-connector node for anx_7625_out [Dmitry]
+- Add missing qcom,sm6150-dsi-ctrl for dsi-controller-main.yaml [Krzysztof]
+- Change VIG_SDM845_MASK to VIG_SDM845_MASK_SDMA for sm6150_sspp [Abhinav]
+- Change DMA_SDM845_MASK to DMA_SDM845_MASK_SDMA for sm6150_sspp [Abhinav]
+- Remove redundant annotation from sdm845_dsi_cfg [Dmitry]
+- Remove redundant blocks from sm6150_intf [Dmitry]
+- Update mdp_opp_table opp clk to correct value
+- Link to v3: https://lore.kernel.org/r/20241122-add-display-support-for-qcs615-platform-v3-0-35252e3a51fe@quicinc.com
+
+Changes in v3:
+- Add reg_bus_bw for sm6150_data [Dmitry]
+- Remove patch for SX150X defconfig [Dmitry]
+- Remove dsi0_hpd_cfg_pins from ioexp [Dmitry]
+- Remove dsi0_cdet_cfg_pins from ioexpa [Dmitry]
+- Remove tlmm node for ioexp_intr_active and ioAexp_reset_active [Dmitry]
+- Remove qcs615_dsi_regulators and reuse sdm845_dsi_cfg [Dmitry, Konrad]
+- Rename qcs615/QCS615 to sm6150/SM6150 for whole patch [Dmitry]
+- Rename qcom,dsi-phy-14nm-615 to qcom,sm6150-dsi-phy-14nm [Dmitry]
+- Rename qcom,qcs615-dsi-ctrl to qcom,sm6150-dsi-ctrl [Dmitry]
+- Rename qcom,qcs615-dpu to qcom,sm6150-dpu [Dmitry]
+- Rename qcom,qcs615-mdss to qcom,sm6150-mdss [Dmitry]
+- Split drm dsi patch to dsi and dsi phy [Dmitry]
+- Update yaml clocks node with ephemeral nodes and remove unsed include [Dmitry, Rob]
+- Link to v2: https://lore.kernel.org/r/20241113-add-display-support-for-qcs615-platform-v2-0-2873eb6fb869@quicinc.com
+
+Changes in v2:
+- Add QCS615 DP controller comment in commit message [Dmitry]
+- Add comments for dsi_dp_hpd_cfg_pins and dsi_dp_cdet_cfg_pins [Dmitry]
+- Add missing port@1 for connector for anx7625 [Dmitry]
+- Change 0 to QCOM_ICC_TAG_ALWAYS for mdss interconnects [Dmitry]
+- Change 0 to GPIO_ACTIVE_HIGH for GPIO flags [Dmitry]
+- Move anx_7625 to same node [Dmitry]
+- Move status to last in mdss_dsi0 [Dmitry]
+- Rename dsi0_hpd_cfg_pins to dsi_dp_hpd_cfg_pins in ioexp [Dmitry]
+- Rename dsi0_cdet_cfg_pins to dsi_dp_cdet_cfg_pins in ioexp [Dmitry]
+- Rename anx_7625_1 to dsi_anx_7625 in ioexp [Dmitry]
+- Remove absent block in qcs615_lm [Dmitry]
+- Remove merge_3d value in qcs615_pp [Dmitry]
+- Remove redundant annotation in qcs615_sspp [Dmitry]
+- Remove unsupported dsi clk from dsi0_opp_table [Dmitry]
+- Remove dp_hpd_cfg_pins node from ioexp [Dmitry]
+- Splite drm driver patches to mdss, dpu and dsi [Dmitry]
+- Link to v1: https://lore.kernel.org/r/20241014-add_display_support_for_qcs615-v1-0-4efa191dbdd4@quicinc.com
+Signed-off-by: Fange Zhang <fange.zhang@oss.qualcomm.com>
 
 ---
- drivers/i2c/busses/i2c-tegra.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Li Liu (2):
+      arm64: dts: qcom: Add display support for QCS615
+      arm64: dts: qcom: Add display support for QCS615 RIDE board
 
-diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
-index 4eb31b913c1a..e533460bccc3 100644
---- a/drivers/i2c/busses/i2c-tegra.c
-+++ b/drivers/i2c/busses/i2c-tegra.c
-@@ -1649,7 +1649,33 @@ static const struct tegra_i2c_hw_feature tegra194_i2c_hw = {
- 	.has_interface_timing_reg = true,
- };
- 
-+static const struct tegra_i2c_hw_feature tegra256_i2c_hw = {
-+	.has_continue_xfer_support = true,
-+	.has_per_pkt_xfer_complete_irq = true,
-+	.clk_divisor_hs_mode = 7,
-+	.clk_divisor_std_mode = 0x7a,
-+	.clk_divisor_fast_mode = 0x40,
-+	.clk_divisor_fast_plus_mode = 0x19,
-+	.has_config_load_reg = true,
-+	.has_multi_master_mode = true,
-+	.has_slcg_override_reg = true,
-+	.has_mst_fifo = true,
-+	.has_mst_reset = true,
-+	.quirks = &tegra194_i2c_quirks,
-+	.supports_bus_clear = true,
-+	.has_apb_dma = false,
-+	.tlow_std_mode = 0x8,
-+	.thigh_std_mode = 0x7,
-+	.tlow_fast_fastplus_mode = 0x3,
-+	.thigh_fast_fastplus_mode = 0x3,
-+	.setup_hold_time_std_mode = 0x08080808,
-+	.setup_hold_time_fast_fast_plus_mode = 0x02020202,
-+	.setup_hold_time_hs_mode = 0x090909,
-+	.has_interface_timing_reg = true,
-+};
-+
- static const struct of_device_id tegra_i2c_of_match[] = {
-+	{ .compatible = "nvidia,tegra256-i2c", .data = &tegra256_i2c_hw, },
- 	{ .compatible = "nvidia,tegra194-i2c", .data = &tegra194_i2c_hw, },
- 	{ .compatible = "nvidia,tegra186-i2c", .data = &tegra186_i2c_hw, },
- #if IS_ENABLED(CONFIG_ARCH_TEGRA_210_SOC)
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts |  90 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sm6150.dtsi     | 182 ++++++++++++++++++++++++++++++-
+ 2 files changed, 270 insertions(+), 2 deletions(-)
+---
+base-commit: 7ef84751db83e45a12d69cba309f2af0ac9150c3
+change-id: 20250818-add-display-support-for-qcs615-platform-5b02a42c555a
+
+Best regards,
 -- 
-2.50.1
+Fange Zhang <fange.zhang@oss.qualcomm.com>
 
 
