@@ -1,208 +1,455 @@
-Return-Path: <devicetree+bounces-205753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D417DB29F4D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:43:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81582B29F78
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:49:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51D1818A778C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:43:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F48A16C70D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A632765DE;
-	Mon, 18 Aug 2025 10:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37432765F8;
+	Mon, 18 Aug 2025 10:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gFptGhZS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PlK95fxE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D4B02765DA
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 10:43:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E8A2765EE
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 10:49:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755513790; cv=none; b=PsiYIcBrqhWVK0UGB8ESNS3SYd8NBuIGy1t0Q/dYCdAm2I3aT2Gai6NNKWFV682/9YOALEi/hCjXq8rg3wVJAHLNS1pbBqmW+EemBQvlU//pJ5iIpW6ypLqGUzC04qO56Ivdz/dwTuwXuVNy/Sd7q5TVrbBgD3gCV7kIIgpLUtk=
+	t=1755514158; cv=none; b=roRkHHBbZr/NuDAFLs2g1QlFPjEEX8gsbWSE3ozaZW0lezy+5XRN/G9d4FEE3eU7jHK+6k31vFvuJA3m52jlhWaGk/pop0wSLPgyP6rFnkwIzyW+cIZigwq/gRpdbKriW+MZxAp028C+w8BbJ3Gqk+5jgVs1qTNCYpOmXtUJ3gs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755513790; c=relaxed/simple;
-	bh=S9VSDM5jqebQn6ppMPvCLrzPPe0FY2feGfVJn2+LPCU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LFlx1Pk1JYJF/l1yDN/ttBirpTZpaIXd22Fe8s4MOhoZA8u5ruNPAhcubEH8M6k0bOLXLAkVKJ9W586K2lWkQASVX7+eAwtT5JOWUBMxy8/t203tXJJu3KBflhUyZahpYmoNYPRyrQ3rw1r7glmw/6ZZLASDK+ygPIfj2CFvLZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gFptGhZS; arc=none smtp.client-ip=209.85.221.52
+	s=arc-20240116; t=1755514158; c=relaxed/simple;
+	bh=IAEOM6wFG+JjnMSUmO9V1dy6UtYDEU6ikDrtJGuCMNA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Un86jQ/ZNUpjMJU2zSAFujnMoccpi7WRTYgYS1E36ZDcbUPd/49zXMsveJv0LGEvZWJt3iwifHdNNxkNAWQycw1dIFdAsITmDHze7j6D4M7F2FTzwc0VLatRSY/chLmq3PsJCqniSV7yWc7/R75sf4oivEBLw478MGNBtmu86cM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PlK95fxE; arc=none smtp.client-ip=209.85.128.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b9e41101d4so2107769f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 03:43:07 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-71d6083cc69so32395467b3.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 03:49:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755513786; x=1756118586; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XbGznGOQfvJHcocvwS/Z24rOYOuhwreRmG7kAQ0v1cw=;
-        b=gFptGhZSfz2Khb15Zp9GFlzuwUx1O/UDEOSp/i90Xzn+pLtn+ypY08PIul39Z0kXyS
-         8CHtkyN25t+p0VKez/0jXyBlVEUnznZnwvSeQLAu9k4xT9EOiOzr7kwzWH3nwtCF2Ris
-         NmgUsCCtUQ+A74OKyqENc5J0ukolZCnj6hmpSXiO0Igypb3gQKy88UJNSboLRbLDgF/V
-         nMpR3RtotgFalL87k/SpD55Lb/bWoTv0FZpC26nsBYSWoyrWIx06B22ePTQAsObxJvWd
-         WPnKPfbdvGgbCUDzHRmT3R/ec6Gl+23MHSQ0y2vm8GvUG7iIpa1uS9f97ZBGkA2dsOJU
-         u+zg==
+        d=linaro.org; s=google; t=1755514155; x=1756118955; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=rsgBw0jCb6w00Tew/2kEPPc7DZ1CJpSeSzBPZVy1z1c=;
+        b=PlK95fxETqkp33bhTge1JdB87ya1w8EQlG68M0z/ofGQWERb6nnonjwk1XPrV5JrbA
+         Fq3ba3t+zS8Xb1JayjMWcVgUC6uBPeT1thXJzDqYnmxmJOcVAAybUjOBZQ5IW54BhuEk
+         4sZ9/dNX9fs5a321v1q2qwdkc7P6+kPwthF+9p/uOY9YICqbBGV0UoThQg3BmL6Nsaka
+         5mxPoRg90Ur+njmeXuVvxqSvEB11VV6cuQiWkJ3xSh2q4BjqchurgQ2GvcCWnW+8eHq7
+         6RDT4f7ncR/RGDNKW5GiLtHvcVoX8l3F8r5T16D/CFIZTDltxF/DP66NZXYhooM1/bNo
+         hF4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755513786; x=1756118586;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XbGznGOQfvJHcocvwS/Z24rOYOuhwreRmG7kAQ0v1cw=;
-        b=CJR2Fa2RKGcZJlLn+EqjZkpZpaCJLP1nQ+g58OoTnPNXx4F8Oq3Rx4B4iXJSsYLv0H
-         ZRU++yQwIxyt7BQmBx7eQh/aykMhUGIIwppYDp/iJAnNsVWenjX/cXcruXgArawrhFNC
-         VFyPc9JCTlGHbonAWd5CN+1UHGTYLNUYKyDBpQwDttzI1YB0jrFO8HaaVPw5d/fK0ClY
-         W1JwSbHQ1emrRDdiALsUbgBiB58/rMVkg+EuJibcXv4wklVeZev4WtIn6NgsnwgF9QQi
-         YmiNHPypdAWvzQdVBYqTm/WAOWrAS6vrNvRRIRuUCy73L95ZdGBzv+3olPvq2xn6UsLC
-         cwRw==
-X-Forwarded-Encrypted: i=1; AJvYcCXMmY4QvXBu4M8ARCu5r7yQEN+emEhtr0UFyew8KZnV3R6fEB8IMl9mQz9hun3IvV4WChURdu5c2diN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrO3GhXuUYrY+n+OHzTqtTEFIqhX/KEnmDNzx+PYujDM2UaBmi
-	2Wy/btDIrJ8CWqKFCtJ5hh6t5c6ZL5qUid+yMleErIRDFVUEXCIwVFFswVf0Yp4GtOk=
-X-Gm-Gg: ASbGncsA1Uvx9/IICENeMjHIG4puzZ2tI896ix6tswMNbtm5LaFMxtaQ4o8TwYGpkRg
-	41j58YBXdBPiOaXyzSwQQkbv+OfNXNeVy7GTXdtPKGUvWPZP+5l9L56p7jLGBWCHKf5jhJaVKyd
-	HdiTwA5Ix0Q3v6uFs+ZUxZry2LkQ9s9iez2ezc146mnyWibuvQldijLqRL6mvVy/TIMl1GBbH4y
-	v6J3Mo9xgvAsCaQNDrwBF8WuPgbW2fFmqxBUw0MmdCE0dzEGfAjw2mr6BZqEblSY9akS/N/YOyw
-	6AMNY6xQtIhZNhcO8SU/h+HrhVDXthDLgBABgIcdDiQiKKcmdqDJVi/qZW7A1VyOYj5uQPTBLO0
-	0jteFX3yl+JxqlESNfGHrN2SG9X1hvjNB
-X-Google-Smtp-Source: AGHT+IGmrz+NJ9uq/Yd2P6zntY6aFk7dhU1duwti6hABUkh3I9hT+tCDAjtvE0e5UxtkaTD6+xVHWw==
-X-Received: by 2002:a05:6000:2503:b0:3b7:974d:5359 with SMTP id ffacd0b85a97d-3bb68a170a2mr8136679f8f.32.1755513786303;
-        Mon, 18 Aug 2025 03:43:06 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:d6e:23fa:76e1:25d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3bb652f93d7sm12782350f8f.27.2025.08.18.03.43.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Aug 2025 03:43:05 -0700 (PDT)
-Date: Mon, 18 Aug 2025 12:43:01 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-	Abel Vesa <abel.vesa@linaro.org>, Xilin Wu <wuxilin123@gmail.com>,
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
-	Christopher Obbard <christopher.obbard@linaro.org>
-Subject: Re: [PATCH 1/9] arm64: dts: qcom: x1-asus-zenbook-a14: Add missing
- pinctrl for eDP HPD
-Message-ID: <aKMDtRu0cZk0kaBP@linaro.org>
-References: <20250814-x1e80100-add-edp-hpd-v1-0-a52804db53f6@linaro.org>
- <20250814-x1e80100-add-edp-hpd-v1-1-a52804db53f6@linaro.org>
- <pmhy2ogyorelllgandehtzlen64tzegp5pc6fkg7al7xzjcb2h@lq4lpaaavr6j>
- <aKLZ5M12Q-qTuB4n@linaro.org>
- <ubagrwewqqyvdgjmibhqp57x7ttqukqtv6ziftwsayuomlght6@j2k7i63rldsd>
- <aKMCfJW-Qv4Z-gnz@linaro.org>
- <CAO9ioeXhBH_=+KMMBzxZXsQu_y57tdMQW5dwHV_dhwG3gUxytA@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1755514155; x=1756118955;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rsgBw0jCb6w00Tew/2kEPPc7DZ1CJpSeSzBPZVy1z1c=;
+        b=bDkbfo9uDGM5YpRPagfc1j2EgI1x9CFSc2jegKU5wR3IpawZswAmScgO5dofPqZbED
+         5ly3f1qV+Tk9JUewG73CPu51IrykqNHVzB2dNIlo/KSqyZG+1ZRCASAWrhl9Tlghv9f7
+         1WZdXwoOWms4iggLsWam1vTZAWceFNN4I0vfzwXf9FCQlLGLMzJCLEvRqU1DVh29yVFo
+         qnADuytW7D7oAM1MY53iAokACvl0JTuoFeTOJ69yEsd4A5qQg7fBHQinP8tZHKwFaTr+
+         P16f/VCYdsgV1gjwsAcLdn1frE/RLkDD9H9NzZyP1cIOB7IiNfo8066cnKKKHdHcSggt
+         /i/w==
+X-Forwarded-Encrypted: i=1; AJvYcCVO7k4yMJHFqcgndGm9ZNRX7ENL5+4gn2lw4z6XbYQMrZD0ABTyaz/wKm95xxU0CbXWrlsWUyV7bRhz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVzwliCxO8hxsFcm0JgAJ1AjqY6YO1+AGn2ZPuZFd0dPx6M7h2
+	mXl/vqZ+5sRsXNjMiIYx+vcwwxBtcvh2mDy/0zhd4E4k7RFpB1cBh6S48cyVFshNZDwryEn7Xxh
+	MUoOT/iBCIuArJXDndFNP3kVN5CMlzFwDv/npoLAQPQ==
+X-Gm-Gg: ASbGncuH3lBNamjl/h7PBOQVnxB4Jznpb3zlRrYh42UYsK3YwyLAJhGsOKqTMHZ59ut
+	2G7whYECCcau5Y778iImdZ2VtU0S0vJkANSRDC4lMNlfjgdVfwzM7Qh8I89FGiEwk2MyIbB5m9T
+	Eg3/2y1LRlIAmc0N2Y8myXYxkkq6llX9JuKX420GsTzl6cH7XRznME+pQnvPEUzQNymK6PHtZCT
+	/EyDBUW
+X-Google-Smtp-Source: AGHT+IEQ5PAJ4E2MJ+RFp/vP7SFnTECMSFB5weGhPlm12BRaWfgE5t1lY9Zr2miit8j/tOc4AIdQ75NrG+fq+kHyFjI=
+X-Received: by 2002:a05:690c:f82:b0:71c:1754:269b with SMTP id
+ 00721157ae682-71e6ddeae92mr122547007b3.27.1755514155297; Mon, 18 Aug 2025
+ 03:49:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAO9ioeXhBH_=+KMMBzxZXsQu_y57tdMQW5dwHV_dhwG3gUxytA@mail.gmail.com>
+References: <20250812123110.2090460-1-yangzh0906@thundersoft.com> <20250812123110.2090460-6-yangzh0906@thundersoft.com>
+In-Reply-To: <20250812123110.2090460-6-yangzh0906@thundersoft.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 18 Aug 2025 12:48:39 +0200
+X-Gm-Features: Ac12FXxjKi3b8yfDU1lEnhhcDgUF2rL-OaQszzKJu25a5rk-Ae9QC1wQeMPNpMc
+Message-ID: <CAPDyKFon7Q2UHOJbbVtPTHvqxYeOJr8HK5BOk6TAJaph8FcwvQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/8] mmc: sdhci: add Black Sesame Technologies BST
+ C1200 controller driver
+To: Albert Yang <yangzh0906@thundersoft.com>
+Cc: krzk@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
+	adrian.hunter@intel.com, robin.murphy@arm.com, ding.wang@bst.ai, 
+	gordon.ge@bst.ai, bst-upstream@bstai.top, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, soc@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Aug 18, 2025 at 01:39:26PM +0300, Dmitry Baryshkov wrote:
-> On Mon, 18 Aug 2025 at 13:37, Stephan Gerhold
-> <stephan.gerhold@linaro.org> wrote:
-> > On Mon, Aug 18, 2025 at 01:33:43PM +0300, Dmitry Baryshkov wrote:
-> > > On Mon, Aug 18, 2025 at 09:44:36AM +0200, Stephan Gerhold wrote:
-> > > > On Sat, Aug 16, 2025 at 01:06:50AM +0300, Dmitry Baryshkov wrote:
-> > > > > On Thu, Aug 14, 2025 at 03:30:28PM +0200, Stephan Gerhold wrote:
-> > > > > > At the moment, we indirectly rely on the boot firmware to set up the
-> > > > > > pinctrl for the eDP HPD line coming from the internal display. If the boot
-> > > > > > firmware does not configure the display (e.g. because a different display
-> > > > > > is selected for output in the UEFI settings), then the display fails to
-> > > > > > come up and there are several errors in the kernel log:
-> > > > > >
-> > > > > >  [drm:dpu_encoder_phys_vid_wait_for_commit_done:544] [dpu error]vblank timeout: 80020041
-> > > > > >  [drm:dpu_kms_wait_for_commit_done:524] [dpu error]wait for commit done returned -110
-> > > > > >  [drm:dpu_encoder_frame_done_timeout:2715] [dpu error]enc40 frame done timeout
-> > > > > >  ...
-> > > > > >
-> > > > > > Fix this by adding the missing pinctrl for gpio119 (func1/edp0_hot and
-> > > > > > bias-disable according to the ACPI DSDT).
-> > > > > >
-> > > > > > Fixes: 6516961352a1 ("arm64: dts: qcom: Add support for X1-based Asus Zenbook A14")
-> > > > > > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> > > > > > ---
-> > > > > >  arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi | 9 +++++++++
-> > > > > >  1 file changed, 9 insertions(+)
-> > > > > >
-> > > > > > diff --git a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-> > > > > > index 16d045cf64c08c02c420787e000f4f45cfc2c6ff..613c675aac296f931293a1ba3d8506c6663bad21 100644
-> > > > > > --- a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-> > > > > > +++ b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-> > > > > > @@ -1001,6 +1001,9 @@ &mdss_dp1_out {
-> > > > > >  &mdss_dp3 {
-> > > > > >         /delete-property/ #sound-dai-cells;
-> > > > > >
-> > > > > > +       pinctrl-0 = <&edp_hpd_default>;
-> > > > > > +       pinctrl-names = "default";
-> > > > > > +
-> > > > > >         status = "okay";
-> > > > > >
-> > > > > >         aux-bus {
-> > > > > > @@ -1236,6 +1239,12 @@ cam_indicator_en: cam-indicator-en-state {
-> > > > > >                 bias-disable;
-> > > > > >         };
-> > > > > >
-> > > > > > +       edp_hpd_default: edp-hpd-default-state {
-> > > > > > +               pins = "gpio119";
-> > > > > > +               function = "edp0_hot";
-> > > > > > +               bias-disable;
-> > > > > > +       };
-> > > > >
-> > > > > I think this is common enough. Let's maybe push this into the SoC dtsi
-> > > > > instead of copying it to all devices?
-> > > > >
-> > > >
-> > > > I had it there before, but Johan commented on the patch set from Chris
-> > > > that he would prefer to keep the potentially board-specific pinctrl out
-> > > > of the SoC dtsi [1]. So I can either address his feedback or yours. :-)
-> > > >
-> > > > There isn't really a convention for X1E either - we have a wild mix
-> > > > where some pinctrl is defined in the SoC dtsi (UART, I2C, SDHCI, ...)
-> > > > and others is copied for each board (e.g. PCIe).
-> > >
-> > > PCIe pinctrl is a part of SoC DTSI for SM8[4567]0.
-> > >
-> >
-> > For some reason it's not on X1E.
-> >
-> > > > The reason I chose this approach is that I didn't feel it is guaranteed
-> > > > that the HPD pin has external pull down. It seems to be the case on most
-> > > > devices, but in theory a device could maybe rely on the internal pull
-> > > > down. Might be better to have it explicitly defined, the 5 additional
-> > > > lines are not that much at the end.
-> > >
-> > > I don't think anybody will use internal pull-down for this, it would be
-> > > too risky in case the eDP cable is bad. I have checked several laptops,
-> > > they use external pull-down or two MOSFETs.
-> > >
-> >
-> > So are you suggesting to put just the "template" (the
-> > edp-hpd-default-state node) into the SoC dtsi and keep the
-> > pinctrl-0/pinctrl-names reference in the board DT,
-> 
-> Yes.
-> 
-> > or to put everything
-> > into the SoC dtsi? I'm not sure if there is a use case where there
-> > wouldn't be any HPD connected to GPIO119.
-> 
-> Still it's a board configuration (pretty much like PCIe config is).
-> 
+On Tue, 12 Aug 2025 at 14:31, Albert Yang <yangzh0906@thundersoft.com> wrote:
+>
+> Add SDHCI controller driver for Black Sesame Technologies C1200 SoC.
+>
+> This driver supports the DWCMSHC SDHCI controller with BST-specific
+> enhancements including:
+> - Custom clock management and tuning
+> - Power management support
+> - BST-specific register configurations
+> - Support for eMMC and SD card interfaces
+> - Hardware limitation workaround for 32-bit DMA addressing
+>
+> The driver addresses specific hardware constraints where:
+> - System memory uses 64-bit bus, eMMC controller uses 32-bit bus
+> - eMMC controller cannot access memory through SMMU due to hardware bug
+> - All system DRAM is configured outside 4GB boundary (ZONE_DMA32)
+> - Uses SRAM-based bounce buffer within 32-bit address space
+>
+> Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
+> Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
 
-Ok, thanks. I'm fine with either approach really (putting it entirely in
-board DT or the template in SoC dtsi and reference in board DT). I'll
-wait a couple more days for more opinions, otherwise I'll send a v2 with
-the template moved to the SoC dtsi.
 
-Thanks,
-Stephan
+
+> ---
+> Change for v3:
+> Code improvements based on review feedback:
+> - Simplified dwcmshc_priv structure by removing unused fields
+> - Improved helper functions with better encapsulation
+> - Used devm_platform_ioremap_resource() for resource management
+> - Updated Kconfig description and alphabetical ordering
+> - clarify documentation on hardware limitations and bounce buffer
+> approach
+> - remove duplicate sdhci_writew SDHCI_CLOCK_CONTROL
+>
+> Changes for v2:
+> 1.  Dependency Simplification :
+>    - Removed COMMON_CLK dependency from Kconfig (MMC_SDHCI_BST)
+>    - Add ARCH_BST || COMPILE_TEST dependency from Kconfig (MMC_SDHCI_BST)
+>
+> 2.  Resource Management Improvements :
+>    - Replaced temporary ioremap with persistent mapping
+>      * Mapped CRM registers once during probe instead of per-access
+>      * Added proper cleanup in remove callback
+>    - Refactored bounce buffer allocation:
+>      * Simplified error handling and memory management
+>      * Removed unnecessary DMA configuration layers
+>
+> 3.  Code Cleanup & Optimization :
+>    - Pruned unused headers and legacy vendor debug code
+>    - Removed deprecated sdhci_bst_print_vendor() export
+>    - Converted internal functions to static scope
+>    - Standardized naming conventions:
+>      * Renamed DRIVER_NAME to match kernel standards
+>      * Changed default_max_freq to DEFAULT_MAX_FREQ
+>    - Optimized clock configuration routines
+>
+> 4.  Hardware Integration Fixes :
+>    - Fixed register access macros for EMMC_CTRL
+>      * Added proper offset calculation via SDHCI_VENDOR_PTR_R
+>    - Corrected device tree compatibility string to:
+>      "bst,c1200-dwcmshc-sdhci"
+>
+> 5.  Error Handling Enhancements :
+>    - Added robust ioremap error checking
+>    - Improved bounce buffer allocation failure handling
+>    - Streamlined probe/remove flow
+>
+> 6.  Maintainability :
+>    - Updated MODULE_DESCRIPTION and AUTHOR fields
+>    - Added explanatory comments for hardware limitations
+>    - Removed redundant multi-host setup infrastructure
+>
+> 7. fix build warnings from lkp
+>   | Reported-by: kernel test robot <lkp@intel.com>
+>   | Closes:
+>   https://lore.kernel.org/oe-kbuild-all/202505290615.GZzN5rNL-lkp@intel.com/
+> ---
+>  drivers/mmc/host/Kconfig              |  14 +
+>  drivers/mmc/host/Makefile             |   1 +
+>  drivers/mmc/host/sdhci-of-bst-c1200.c | 510 ++++++++++++++++++++++++++
+>  3 files changed, 525 insertions(+)
+>  create mode 100644 drivers/mmc/host/sdhci-of-bst-c1200.c
+>
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index c3f0f41a426d..fb057c46949b 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -429,6 +429,20 @@ config MMC_SDHCI_BCM_KONA
+>
+>           If you have a controller with this interface, say Y or M here.
+>
+> +config MMC_SDHCI_BST
+> +       tristate "SDHCI support for Black Sesame Technologies BST C1200 controller"
+> +       depends on ARCH_BST || COMPILE_TEST
+> +       depends on MMC_SDHCI_PLTFM
+> +       depends on OF
+> +       help
+> +         This selects the Secure Digital Host Controller Interface (SDHCI)
+> +         for Black Sesame Technologies BST C1200 SoC. The controller is
+> +         based on Synopsys DesignWare Cores Mobile Storage Controller but
+> +         requires platform-specific workarounds for hardware limitations.
+> +
+> +         If you have a controller with this interface, say Y or M here.
+> +         If unsure, say N.
+> +
+>  config MMC_SDHCI_F_SDH30
+>         tristate "SDHCI support for Fujitsu Semiconductor F_SDH30"
+>         depends on MMC_SDHCI_PLTFM
+> diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
+> index 75bafc7b162b..bb5df05c3174 100644
+> --- a/drivers/mmc/host/Makefile
+> +++ b/drivers/mmc/host/Makefile
+> @@ -13,6 +13,7 @@ obj-$(CONFIG_MMC_MXS)         += mxs-mmc.o
+>  obj-$(CONFIG_MMC_SDHCI)                += sdhci.o
+>  obj-$(CONFIG_MMC_SDHCI_UHS2)   += sdhci-uhs2.o
+>  obj-$(CONFIG_MMC_SDHCI_PCI)    += sdhci-pci.o
+> +obj-$(CONFIG_MMC_SDHCI_BST)            += sdhci-of-bst-c1200.o
+>  sdhci-pci-y                    += sdhci-pci-core.o sdhci-pci-o2micro.o sdhci-pci-arasan.o \
+>                                    sdhci-pci-dwc-mshc.o sdhci-pci-gli.o
+>  obj-$(CONFIG_MMC_SDHCI_ACPI)   += sdhci-acpi.o
+> diff --git a/drivers/mmc/host/sdhci-of-bst-c1200.c b/drivers/mmc/host/sdhci-of-bst-c1200.c
+> new file mode 100644
+> index 000000000000..6d2ba4232306
+> --- /dev/null
+> +++ b/drivers/mmc/host/sdhci-of-bst-c1200.c
+
+[...]
+
+> +/**
+> + * sdhci_bst_timeout - Set timeout value for commands
+> + * @host: SDHCI host controller
+> + * @cmd: MMC command
+> + *
+> + * Sets the timeout control register to maximum value (0xE).
+> + */
+> +static void sdhci_bst_timeout(struct sdhci_host *host, struct mmc_command *cmd)
+> +{
+> +       sdhci_writeb(host, 0xE, SDHCI_TIMEOUT_CONTROL);
+> +}
+> +
+> +/**
+> + * sdhci_bst_set_power - Set power mode and voltage
+> + * @host: SDHCI host controller
+> + * @mode: Power mode to set
+> + * @vdd: Voltage to set
+> + *
+> + * Sets power mode and voltage, also configures MBIU control register.
+> + */
+> +static void sdhci_bst_set_power(struct sdhci_host *host, unsigned char mode,
+> +                               unsigned short vdd)
+> +{
+> +       sdhci_set_power(host, mode, vdd);
+> +       sdhci_writeb(host, 0xF, SDHCI_POWER_CONTROL);
+> +       sdhci_writew(host,
+> +                    (sdhci_readw(host, MBIU_CTRL) & (~0xf)) | BURST_EN,
+> +                    MBIU_CTRL);
+> +}
+> +
+> +/**
+> + * bst_sdhci_execute_tuning - Execute tuning procedure
+> + * @host: SDHCI host controller
+> + * @opcode: Opcode to use for tuning
+> + *
+> + * Performs tuning procedure by trying different values and selecting the best one.
+> + *
+> + * Return: 0 on success, negative errno on failure
+> + */
+> +static int bst_sdhci_execute_tuning(struct sdhci_host *host, u32 opcode)
+> +{
+> +       struct sdhci_pltfm_host *pltfm_host;
+> +       unsigned int clk = 0, timeout;
+> +       int ret = 0, error;
+> +       int start0 = -1, end0 = -1, best = 0;
+> +       int start1 = -1, end1 = -1, flag = 0;
+> +       int i;
+> +
+> +       pltfm_host = sdhci_priv(host);
+> +
+> +       for (i = 0; i < SDHCI_TUNING_COUNT; i++) {
+> +               /* Protected write */
+> +               bst_crm_write(pltfm_host, REG_WR_PROTECT, REG_WR_PROTECT_KEY);
+> +               /* Write tuning value */
+> +               bst_crm_write(pltfm_host, DELAY_CHAIN_SEL, (1ul << i) - 1);
+> +
+> +               timeout = 20;
+> +               while (!((clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL)) &
+> +                       SDHCI_CLOCK_INT_STABLE)) {
+> +                       if (timeout == 0) {
+> +                               dev_err(mmc_dev(host->mmc), "Internal clock never stabilised\n");
+> +                               return -EBUSY;
+> +                       }
+> +                       timeout--;
+> +                       usleep_range(1000, 1100);
+> +               }
+
+Please convert into using some of the readx_poll_timeout functions
+instead of the loop above. Moreover, please add defines to specify the
+period/timeout.
+
+> +
+> +               ret = mmc_send_tuning(host->mmc, opcode, &error);
+> +               if (ret != 0) {
+> +                       flag = 1;
+> +               } else {
+> +                       if (flag == 0) {
+> +                               if (start0 == -1)
+> +                                       start0 = i;
+> +                               end0 = i;
+> +                       } else {
+> +                               if (start1 == -1)
+> +                                       start1 = i;
+> +                               end1 = i;
+> +                       }
+> +               }
+> +       }
+> +
+> +       /* Calculate best tuning value */
+> +       if (end0 - start0 >= end1 - start1)
+> +               best = ((end0 - start0) >> 1) + start0;
+> +       else
+> +               best = ((end1 - start1) >> 1) + start1;
+> +
+> +       if (best < 0)
+> +               best = 0;
+> +
+> +       bst_crm_write(pltfm_host, DELAY_CHAIN_SEL, (1ul << best) - 1);
+> +       timeout = 20;
+> +
+> +       while (!((clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL)) &
+> +               SDHCI_CLOCK_INT_STABLE)) {
+> +               if (timeout == 0) {
+> +                       dev_err(mmc_dev(host->mmc), "Internal clock never stabilised\n");
+> +                       return -EBUSY;
+> +               }
+> +               timeout--;
+> +               usleep_range(1000, 1100);
+> +       }
+
+Ditto.
+
+> +
+> +       return 0;
+> +}
+> +
+
+[...]
+
+> +
+> +static int bst_sdhci_reallocate_bounce_buffer(struct sdhci_host *host)
+> +{
+> +       struct mmc_host *mmc = host->mmc;
+> +       unsigned int max_blocks;
+> +       unsigned int bounce_size;
+> +       int ret;
+> +
+> +       /*
+> +        * Cap the bounce buffer at 32KB. Using a bigger bounce buffer
+> +        * has diminishing returns, this is probably because SD/MMC
+> +        * cards are usually optimized to handle this size of requests.
+> +        */
+> +       bounce_size = SZ_32K;
+> +       /*
+> +        * Adjust downwards to maximum request size if this is less
+> +        * than our segment size, else hammer down the maximum
+> +        * request size to the maximum buffer size.
+> +        */
+> +       if (mmc->max_req_size < bounce_size)
+> +               bounce_size = mmc->max_req_size;
+> +       max_blocks = bounce_size / 512;
+> +
+> +       ret = of_reserved_mem_device_init_by_idx(mmc_dev(mmc), mmc_dev(mmc)->of_node, 0);
+> +       if (ret) {
+> +               dev_err(mmc_dev(mmc), "Failed to initialize reserved memory\n");
+> +               return ret;
+> +       }
+> +
+> +       host->bounce_buffer = dma_alloc_coherent(mmc_dev(mmc), bounce_size,
+> +                                                &host->bounce_addr, GFP_KERNEL);
+> +       if (!host->bounce_buffer)
+> +               return -ENOMEM;
+> +
+> +       host->bounce_buffer_size = bounce_size;
+> +
+> +       /* Lie about this since we're bouncing */
+> +       mmc->max_segs = max_blocks;
+> +       mmc->max_seg_size = bounce_size;
+> +       mmc->max_req_size = bounce_size;
+> +
+> +       return 0;
+> +}
+> +
+> +static int dwcmshc_probe(struct platform_device *pdev)
+> +{
+> +       struct sdhci_pltfm_host *pltfm_host;
+> +       struct sdhci_host *host;
+> +       struct dwcmshc_priv *priv;
+> +       int err;
+> +
+> +       host = sdhci_pltfm_init(pdev, &sdhci_dwcmshc_pdata,
+> +                               sizeof(struct dwcmshc_priv));
+> +       if (IS_ERR(host))
+> +               return PTR_ERR(host);
+> +
+> +       pltfm_host = sdhci_priv(host);
+> +       priv = sdhci_pltfm_priv(pltfm_host);
+> +
+> +       err = mmc_of_parse(host->mmc);
+> +       if (err)
+> +               goto err;
+> +
+> +       sdhci_get_of_property(pdev);
+> +
+> +       /* Get CRM registers from the second reg entry */
+> +       priv->crm_reg_base = devm_platform_ioremap_resource(pdev, 1);
+> +       if (IS_ERR(priv->crm_reg_base)) {
+> +               err = PTR_ERR(priv->crm_reg_base);
+> +               goto err;
+> +       }
+> +
+> +       err = sdhci_add_host(host);
+> +       if (err)
+> +               goto err;
+> +
+> +       /*
+> +        * Silicon constraints for BST C1200:
+> +        * - System RAM base is 0x800000000 (above 32-bit addressable range)
+> +        * - The eMMC controller DMA engine is limited to 32-bit addressing
+> +        * - SMMU cannot be used on this path due to hardware design flaws
+> +        * - These are fixed in silicon and cannot be changed in software
+> +        *
+> +        * Bus/controller mapping:
+> +        * - No registers are available to reprogram the address mapping
+> +        * - The 32-bit DMA limit is a hard constraint of the controller IP
+> +        *
+> +        * Given these constraints, an SRAM-based bounce buffer in the 32-bit
+> +        * address space is required to enable eMMC DMA on this platform.
+> +        */
+> +       err = bst_sdhci_reallocate_bounce_buffer(host);
+> +       if (err) {
+> +               dev_err(&pdev->dev, "Failed to allocate bounce buffer: %d\n", err);
+> +               goto err_remove_host;
+> +       }
+
+FYI, I will be awaiting a confirmation from Arnd to be with the above
+hack, before I queue this up.
+
+> +
+> +       return 0;
+> +
+> +err_remove_host:
+> +       sdhci_remove_host(host, 1);
+> +err:
+> +       sdhci_pltfm_free(pdev);
+> +       return err;
+> +}
+> +
+
+[...]
+
+Kind regards
+Uffe
 
