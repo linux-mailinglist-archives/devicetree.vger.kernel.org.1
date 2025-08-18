@@ -1,671 +1,162 @@
-Return-Path: <devicetree+bounces-205722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1439B29DD7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:29:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C11B4B29DE3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:30:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4887D18A7BA7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:28:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C7BC18A7626
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A44A30E85E;
-	Mon, 18 Aug 2025 09:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7DE30E0D3;
+	Mon, 18 Aug 2025 09:28:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="oy2+rIQG"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="qyOGGBP/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7892330E83C
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 09:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0425F30DD32;
+	Mon, 18 Aug 2025 09:28:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755509281; cv=none; b=fG9Ky1hnR2rZGi7jKA9ykT3XaD8rebmymb6kG7LLJc15snWJWIRj4abC4upkAiha6WOx2kXgLJx+5T50IEPIwtPhTz7w7QsVG7kFMa6VdpD6f8GqbABta+tA3S7pb9X/3Y9ZykAQeJFK6v8m299C7pSs70llI+C2luT6j+WaMRc=
+	t=1755509337; cv=none; b=iVrWc/x3cskGWHbA2o2jg5hrQ4ax3PCg1mgqcXXIzwF7B95EZvc3f9GF2fQAvc+EgrTG5xe9GRBZKliwFph9Ws/m4nNvm5WYom8p+COcTlFKNZcq/m96OlaOgqmZtILvaNMw2/UNpN1vBqe00wvuopR54zi4xMgF1u5GhmbC4c0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755509281; c=relaxed/simple;
-	bh=tOfnnhCGckLrVpRbkTV/WM+NviO1RzCi6bu3lStHAjc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ll7BO4+VvbUlvmKAhm8zLbzUR5SiIzNC6k1AmquJUB+moDh9ipoiHyng8VCz/Cn008umluokrk6homce75nCTZYE22hM7uG5JvJq9ur8oZDRI/EUh/fJXer7mzUAN14RLQ/kro8cD5TLAmvydKvuuSIvFlguFiWz2cdoastCFDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=oy2+rIQG; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1755509261; x=1756114061;
-	i=markus.stockhausen@gmx.de;
-	bh=bF9C0uBEO49JUz5Q6eDZ9ooMt0b3Fkl0KanfDw2n+PA=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
-	 References:MIME-Version:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=oy2+rIQGFaS6Goq74zwETcvdDzrs5nUcKW2JPCTUyFVBUh9HfR7r1U4pU96p5Y7p
-	 fSDw/0YEihm/UKlhdYPH31aomRq6JEz0KlSw+H0MIlomr1viKaskaqb8B2cEpYKlw
-	 Tu9HhtgeHhYmRGzP2hRfBMzpdCLnGzJ3RyD+Gk/4Q9CA8Lpxxg5YQNkgqHh2gqg+y
-	 f0cNHTy1jpg07H2pVsYAfPJjWsLqHOqT9wFsTCgUCL9jP9aeLzm5ncdBAUvtBna1j
-	 4lYc5d6qPJ3aeMotDPoPZaiVznNMJoRflDWFVHFWti/O0L3nvluRe9EA6e76Ch5A1
-	 saCAPqszZ0Oypihu/A==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from openwrt ([94.31.70.55]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N63VY-1uTtEz0qfw-00urfB; Mon, 18
- Aug 2025 11:27:41 +0200
-From: Markus Stockhausen <markus.stockhausen@gmx.de>
-To: miquel.raynal@bootlin.com,
-	richard@nod.at,
-	vigneshr@ti.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: Markus Stockhausen <markus.stockhausen@gmx.de>
-Subject: [PATCH 2/2] mtd: nand: realtek-ecc: Add Realtek external ECC engine support
-Date: Mon, 18 Aug 2025 05:27:25 -0400
-Message-ID: <20250818092725.1977105-3-markus.stockhausen@gmx.de>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250818092725.1977105-1-markus.stockhausen@gmx.de>
-References: <20250818092725.1977105-1-markus.stockhausen@gmx.de>
+	s=arc-20240116; t=1755509337; c=relaxed/simple;
+	bh=Ix8rQX7j+Djeow/6d/c6nvq5oESHFJilL/KybCgSlgw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OzgF2Ydgc4lDnLCiCbBj2Tj/jvLQVqqi39Oa9Mi2VMBAmA60vaYOV5EGVTPL0spE76hNoJvFnfoe0yFGmnqfXbkR3pf+BIZSUEn/UzHYY39nN7TIOrqB/NM7MdhuB+mmwm67b/wsyc3g72bzPZYB1UuLVq+dL3sTBKfuOHjp4Sk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=qyOGGBP/; arc=none smtp.client-ip=54.254.200.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1755509316;
+	bh=9FmrJjqg/fw+am1I+fhbZiD9RUE7Ro4CHVIAUBMnukY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:To;
+	b=qyOGGBP/hn5Wk5FtT/1ScBM0oIM4LhRh9JCdpJGFECU+a5xiLhns/pItogFMKKDMC
+	 rjg8T2fGKchIC/5XUmJgT27KeaCQABg8C8UEJXh2v58y5jNWMwZV7S2PIO6c+s+mAd
+	 e0dVw07wrwwFEf6OkNSJDd6Xft9RLEYvOZozQjAA=
+X-QQ-mid: zesmtpsz9t1755509309t6c580f51
+X-QQ-Originating-IP: cKEs5s2CY18in1J6kPHzPGnr423fzsum8U+lBY0rnm4=
+Received: from = ( [14.123.254.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 18 Aug 2025 17:28:27 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 12055654906655040144
+EX-QQ-RecipientCnt: 17
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: [PATCH v3 0/3] clk: spacemit: fix i2s clock
+Date: Mon, 18 Aug 2025 17:28:19 +0800
+Message-Id: <20250818-k1-clk-i2s-generation-v3-0-8139b22ae709@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:GAvqQq8MLcgoO8GIwJ6euFjlqzppaPFpOL2EEmlQe3hjSNYA0sX
- sdakgkFnCay+064ioVRM8xWGXtF8LzyGD4qCjAZymfd2HuR+VmFP8QBSrmIcqgl2fjI1+s/
- hWjxJPlSwhbCzMdTv4ouWP70TRFfQaD3CFfyBM2RuTYJk89pVsiF0ZR5h5zHFg29sUvZ4tr
- bJuezjes+BXyo9H7dnEZg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:0ELPZPxYmXI=;BQJqMyQP6CyQtXhIRtQkoSeckX5
- 5jgEfoFschl0TEtEu72njV4zGE4Sk3IMF4ymUOERPs4lTEA0UN7oCTDHVpgFt0nDVXcCY4nIm
- ZaKhNs6JQ+GOymZlyp6tSJiUGClFb9+f4IWavyK5u2Mj/y6a6b3UDTI3JioDdEOQooKuamOtj
- W/M1u3VBhcpwE17yn4J0ihR+SfS2hss6VbNRDyn0Us4+wAK/kldSELdLQd0vNhm3VTzxlr/Ut
- o8ciL35Yr80Z/7tPWXltdj+frZKSDeWNMJQm8HDPCj+Bb19nZfIvBhCMl0lvOA2ZmF6ijVbnu
- n+snrmIKePmNHejXIGFdpuJnJfcd0Tjv5xEaNYLNJqjxjqqvCI/WgFjC2vaDo5fXubXzcl/qZ
- WjUITmEak5vS2qbf4AGaxo4idkAODbVgCk+/SGzKBP7WIY+i6KLJEEc62MIwaZNzmZZ8HzZuO
- J5N9SQjsmHLPsgS6J/W9Qjkh0QZioKMU5kiVktqjVMV7wnFXtmesbugORqn9w9sIzJ1j+VVY1
- j7Cia7vrxiu1gX/FiJ9xVme170cdB+pVmKw0nay/UYZn2ovyOiF07w4GfDuV3z1HPh2RZrbjm
- bEVShmGaX4YnytnfGY/nwEmJR0sueFj/SNHlBy5wpOdeQAODIAm5K2ee3jAKOVJUhQanoHd5B
- HyTTORwk7LRMsjJiabNauSzj52qanuWtEBZBTCZlXbIlAIsgmqJ1oZJE0Fu7XE9mWk1wUbptT
- Qki+qHwpZ2MmeO1/16eTP5z5xfktFDCYeDYB8iJqtcMoxwsYXr5BbEEqMVd+E/KB1RMywu7L5
- BeKXDX6ZSWpokHThlnZJw6/FHq3i6p2xjzvBNWPJ6gQTeIBNu81gd5/Wt1blplVGgV3UAcJxN
- S1emNPiD46tc5qmOS1g4TN7DJvPdK7Ne5vcsW28Y2Z78bj9h4zPvcE3hCwKSybF2UH2DMwrdS
- xE6+UI+ZvjWiw7TqhCId5pcrZGYlp1tYkFPcKUdSlK3tTx62WwJztpRAO3UYKJW2ph0/p7prt
- yu/MT4QOS6zXAhd3pJCLH9HtoQ1mwT4H4dJwZSkyiLM5wnQ4C2MZfcc0+EUFcA9IasuAAPGaZ
- lOEBi4Vvy/cxBnmpP4amhuxMlNQIIhLeDddntXIdSLsfHTJ8AUCZqX31DWxGrff10xklwClMf
- Hin0xfWByw5kI4EavER6IE0MXZ/AQFDejg90rBd/CXUtSfKoNtSEMoeNdpbRCLLYpszLDKmN2
- FtInOM7VqhwHVMtVwlhatzAmHdke9RSknY1+/K+/RHG5bWjo/cgpe5GCc96sX62UZ3efLanyV
- hja6Qt1LygZsU6iDIHWR3GlvhbLV7/f20jS/OFxpnM0iL262UX3lEkk9v+fOohQ836wra5kkx
- gDq0bnDkxcCVdICBf7wuQF4UXYQsQGtIkGlr/VBX7L43c64hCTrFUA6CeP1UsLJe1SHXlh3mS
- d0NN7L+04jZPCVQAyzc9fFFto8TONOzUeoj2owYYTP3nEqHilI2/CInaojv9a1r+EvaRX0ccC
- QPSLNwUWdzd6CXzs55ObkMXkY6+B3OzAotQDIIZmKTq4154HRJ5GXP/a/UwVIwOnyr+b+xAua
- VJsp3ZGLU9nIgXtNkNKvlPerB/VttfDB0wKQobzNqH3e4Hkq644UYftz0pdehW5lTL25YeYcJ
- sVqfDcfpmLNkId/vIA5rAMiS6A5iuT9l1VvfgnKBX+FRXbG6PzCfZjskNUj+JKjPDeHCL9bVM
- hOtqCTAuluZYj87EKAINjBvEj5NnuChA5Cx5whzFSgmkJrXB7BhCTpg7K0TsZiIGtIbwjxuXy
- WypXtiLnzqMhYyj4OetNIF7GIdmVRt9x/1q8ZPejhJ3WbrWgGghDxFF7y4WczZurfF8dTCC52
- eBGjhVwITlr6boLWaUDS9qZvIm9FTPRLFENn/h9JitZfXtvkAxT66xHgoIADbye6CnS9KXPRn
- HWfQWS2AXUPVhGYr8dt28MNBSbCct5V081jc7IeDuZiXIgtCmq7ieMLRwzFBrq4Yljimwgl4v
- i15xoGEe1dad7LkP/FF7I+K9Xn/SdJrTNDt1//g7h+AdNmumYKJ+gxMDBYTkYPhujP7MNqAIy
- hTmi343b0VYxzdrnxDJ5NF3Tc13AkpmUCdxqqxM/Vtn3SemMWy95mFx+mWEUEbj9x96n49Tao
- AHzCUQK2004RIYGwvUvR0mkzB47/EwyH3PFdiAr164PYeCaywnXcOjXofvSqmZeU40A5mFjuc
- lDSKkl5l3h+dsC/zYGB94gPok26SGaVJOmGBwhyXnkqeGVZyN3rlwLcsMO2++wapG+b4xYqog
- VJ7GbiCa8RWBSZ81WK7jP9X1ALiqlBXwjEZCAkEXJEdBIZFm8kXuT5fmOmwVc2JXiATF2b6tX
- DNlRNKhQF1vagPvL86FsTHP0atCqAMIBFJbxaV3M/AuO3ERfXPXqY/MKFdP1iItsrNfB6eut9
- 8DGET/L/QUydhVbRSzq0MLooQEteG3gNQ3wvLphkM5QfMyLLirlWYWR/oi0qH5K1WOT6AMJkC
- YetHTJc/dd+Hal7quVj5rWyFCJfbWXLBlQDm2C/JOdIK5e0ZfNarQ6h3keDDknfsbDQvy4+j5
- 4U+ov3tgMM/xMH0L2oFRZCjYfEQyE1+J823zQhgU0tlE4l189XFzUUl8s7QjDUnbkEvcoYIF8
- t78FPadJRExomL30d0jSzxOte9gK+203Uuf9rCSt5vsNBdWb4zRji5sjJ1R5ZNytD3vD1cFGI
- hSAW0/fj1yz/GoJP65+0OUssoFgUiWaRvWQTDarjWDLfmDSszm+KITtLdwj6eIPXL3NqR7rKU
- 5LmFrKB74KkHk3oSBmKVjXq9rUFiY0Cmiul8CYDMvITkN5juO8c+RJgvR87jFLznfgiZWPzUl
- 2gjYyx5jFhhnsqZ7hA34PFc3koBh/sr5NWLZ8pFn8Dx+/EeOrQG4XEwzfxQRVArrClxNdl8JN
- soVc5o2I5AwD6ZXg86A0OSmi3PsOqQyQMzWauY80EAcmWErIIBOacn3luf/eEuzXxsa+9mcPU
- mQ4wHrRxjb34wvXsdo/aIu/sQdXkxx31ZAnkKnwlfJdHlIKohjBr14fmJ2lWg7JDliWGgXegT
- /LAdvx2RHQdUa/REOQB0N7JXgMsOVt47nYkyFyAFQ56NsUKGft13RLwRwra476HoeZkK/R8XG
- sDnyQNGqZbQE9YiwHjIeLJpOnbEzqsJkjy6QoNiuohCl6OYp3Ymgw3/JQIScEezlpmBsptYsQ
- yQn+fYlux56LWg4oHZk0eupOEPk9bjqDFDThnyfAWY110Qf9/KMT3j96j5e8lU+9OLXM3dkeF
- dfjxw2pmscX2M98aIcYn5HYGAx5rUm8jtzAlrME0oieGrZHckkjpkULuJrIetpvmB0JaHKWWE
- Bdx2ogvqdIWAwMIJekcWEglIM9jmCHtPzkIgpCwDnIqoXoPENqXyywJfX0bjLeFLeCQJa9qbp
- wSeGLIsi9fD2u2D9L8VzRk9FW6/Pj8j0CVqqZQRWVKFCupWlj2zMHkspRnKI4v+1nSmF8bYcd
- Moq+Hzv9KCIEYDvMjHuY0LLp0e5w1ZvWUsY5vYrVaU1nHhdCh1210R2vyTTQA/JXkF9Kn5Au7
- En/CFBOtyd2cWiOzTh4XVp8CGh87tEd8SEYM3rt0KrWt/w3yb8bBo1kJmoUpqoEmUcdRIgauZ
- BAEJ25PuUTBxWeI5dHcR/t3IAjRHuShSSo7IMd6hTd4VzQMFhvuc6G4rdJhDjJJ63pmBzB83z
- 0Vpx6jNugvl/gECuX6I0R3/ehm5wKdJhbGkTBsPceEisk1Pvxa4K8vI1/GEGUTp+KqGsl2M8V
- oWw08ewp02O48RCDHJRHKIBj8dHdhJEEmkC8Qw7EHcAcCIpEJfBe31frKntsnDBnH3k18H8bH
- jFV9nL7sTGMATtvEHAEY4QD+j7Zi2Xu9OtkWEq9sdYwSdvH2pj1oUx0UzMPuNRDdp4DmYhpMo
- ZwvSJ5yCqnixqOhZQ3TKTyAtFMwZo4KugMKjr5Onluo1UdgED2sJ5w+CJMgTBdi/a7qYXuQ38
- w/7NWs6nbMwJmZkW+qqladObZKdHqiDKl4zN7K9t/vooT0/tOwy0RZss5oQ5SMJID1FyMKy6O
- BXT3vsKH/DODZC4O93btM4juyHQKhItdr/KbmOgOn5hy2ETxGZ1yp+ugAq1G7rRCokmNse9sL
- Z1wZtmqTbqddx+5MEcw0R1Uyq8Mpm5vKtgb1rauHQg/x5Vr/JRyeasrjOFKckS73jO+VeYjMM
- JWo6IxIDr32c7qI8A50xbCKOdIPgNdgSEU2b4BxIk9B33H6jC2pLzG3Qk7F8F5kRsUpeui28X
- NtBECvGnzU2tZdSDCy7xLB2GZEepFoz4C8yQTOdEu6gMX1G3TwPpQS1/RDCP9NtKTAYJE7IdD
- mYEC2K3R/IpZb8yW70kstTrzSZ2Vo7UaJf8aKGCSuocg/X/0gs0fNSbNfpCBq1AD8nNDF+PHT
- v4TGFYc6UKR2eD1/lTbjreBjBsMaw37M7KLvadnsw6SYcJ51YD15YkZx/gbP5TxtuYbrjut/D
- 0y72SLwP2m9ycc2ltvgLwRahgTjfHEdOJgN02KrHJ2loT5/x1morwzEOlz2dakIGXEsq+eLiR
- 6yXc5BYpebUvDfJbFEGHv5VEbwthGjtaeWwn7i4pzBNakeffYLdYT/CS5O1g42HYTCG9DYWgT
- u+1h9MY=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADPyomgC/3WNQQ6CMBBFr0Jm7ZC2lFRdeQ/DopYRJkAhLRIM4
+ e5WEpcu30/e+xtECkwRrtkGgRaOPPoExSkD11rfEHKdGJRQpTgLjZ1E13fIKmJDnoKdk4FEZIS
+ +EEljIblToCevR/deJW45zmN4HzeL/K6/ovlTXCQKNLVTJT006bq49exfax4n62jgOXfjANW+7
+ x/sbrXMwwAAAA==
+X-Change-ID: 20250804-k1-clk-i2s-generation-eee7049ee17a
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>, 
+ Inochi Amaoto <inochiama@outlook.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Jinmei Wei <weijinmei@linux.spacemit.com>, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755509307; l=2086;
+ i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
+ bh=Ix8rQX7j+Djeow/6d/c6nvq5oESHFJilL/KybCgSlgw=;
+ b=aVYL6kUleE+B4XSTi5WfXl0yVT2LMvgB+NBhSsLqFhYKv/I7ewX5NwYNxGO+PiNQIR32slhyb
+ LfpvAk33XQNDefyF9v2KUvgkSO5wVWUP0ih9HZ9ym8owffx6k/a6sC/
+X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
+ pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: N10XyoOyIIl0qJlBfOUj9zmUJS2acQKdoWHkIeHB89D6L77TxqFP9PQI
+	GVVAa/vuyScHRIo7MQZfWaafsm1FUImiRzByDLoWufRA+kGFqVMogbpgMWA389Cmub+jrmx
+	da5Uzddv1FHN8d+7WDH0HZ4qxgHvfHN4cxDB2jGUHLlSx+JrKbfr99uQpJEPshtSlMhu3ez
+	cw+WHmcoUS4yQxHQhiUYpRGW6X+Nh1kQvATA3Y2u3pHIl7f9veyZdFDMOtsUQnFzRM3vhiL
+	UwE8MUWHA7/54f8q7OkmF/YU/pn0pxi3JZsYJC0/vaKZGrXfaGHWmU4L4u0vqQAvv/aeOi/
+	TDpYn2nPWSvbpPJcDLZpI9+4WOO6ZyJ15gs+3wXio3STmN+a7BeplBh9Cnb5HTPaxuUV73X
+	aW2x6lLz53SCNxaaXSSse5ENaE26vaR7lr5NxB5bJcyqvDhJuyJqiKmEh5c86+A6dvc/2ub
+	Nj1+IXr/rYYzQa1FJ61Wl3PJfR6w9Y+CeqRZKoJKDELuoDDp8PNUSDfLkIv3iXZCoxraXen
+	tGfyjT0UWWS+Vh9LeVd+jzgni6GvExYjGemCOqarARS0fnjgTpO824hfv4ZKHFB3j3GmwWC
+	xNXSg1W52wvmvpueeR+ruM66yt5mmdV/jrDxUIRcXOFfm17Vaj4R6Wt8YMKAIgze6fQLgUj
+	m649Knag/3vTuNTJbpUKAVJaaMZfN6+1bcIjOkiR31p6eIZcID1Y0bNMlPHJyvSsppUdUmN
+	1pxTdoe9z7IxMTmfwZWKEg/F8VkdSyuIZZYjRkygmmTjYQyJmMycMJvdIFx/0rA0xIWFAcI
+	nWCWhGnjzBfMnPZfAnsB6MZiMW4dAySf1cgR9LnkJxDiUyOFQbMwKRJlCCPMhSPB5IFdIIP
+	6VDHQz7ZsLTqghc8tUtywkwgNyVC9lfrTzWNfYD44mmazZBGpEZpdXrZ4wH8F7X5pAZLCq8
+	cgx3gtbAI3dr0HTbmyerumMsBrMU2tPh0hNc7iSGKrjX1pjj42man2wVkxLd7cHQmOZzxno
+	eN2alJqpcmBbNdRuj9p+FPx2ewSmWQrIsDurtTYlCkQvqifG8dAi+anQ05QGoWEfXdNrCM0
+	1j0FzcEyXgd6HmGAFal/RM3j9m07fKayxJxtAuJDBHrM7BnVyux5ZNUJGEmSfcAFQ==
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
+X-QQ-RECHKSPAM: 0
 
-The Realtek RTl93xx switch SoC series has a built in ECC controller
-that can provide BCH6 or BCH12 over 512 data and 6 tag bytes. It
-generates 10 (BCH6) or 20 (BCH12) bytes of parity.
+Previously, the driver defined two clocks for the I2S controller:
+i2s_bclk and its parent i2s_sysclk.
 
-This engine will most likely work in conjunction with the Realtek
-spi-mem based NAND controller but can work on its own. Therefore
-the initial implementation will be of type external.
+Both i2s_bclk and i2s_sysclk were treated as fixed-rate clocks,
+which clearly does not reflect the practical requirements for I2S operation.
 
-Remark! The engine can support any data blocks that are multiples
-of 512 bytes. For now limit it to data+oob layouts that have been
-analyzed from existing devices. This way it keeps compatibility
-and pre-existing vendor data can be read.
+Additionally, the original driver overlooked some upstream clock sources.
 
-Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
-=2D--
- drivers/mtd/nand/Kconfig       |   8 +
- drivers/mtd/nand/Makefile      |   1 +
- drivers/mtd/nand/ecc-realtek.c | 433 +++++++++++++++++++++++++++++++++
- 3 files changed, 442 insertions(+)
- create mode 100644 drivers/mtd/nand/ecc-realtek.c
+To fix the I2S clock, this series also introduces several new clock definition macros.
 
-diff --git a/drivers/mtd/nand/Kconfig b/drivers/mtd/nand/Kconfig
-index 5b0c2c95f10c..4a17271076bc 100644
-=2D-- a/drivers/mtd/nand/Kconfig
-+++ b/drivers/mtd/nand/Kconfig
-@@ -61,6 +61,14 @@ config MTD_NAND_ECC_MEDIATEK
- 	help
- 	  This enables support for the hardware ECC engine from Mediatek.
-=20
-+config MTD_NAND_ECC_REALTEK
-+        tristate "Realtek RTL93xx hardware ECC engine"
-+        depends on HAS_IOMEM
-+        depends on MACH_REALTEK_RTL || COMPILE_TEST
-+        select MTD_NAND_ECC
-+        help
-+          This enables support for the hardware ECC engine from Realtek.
-+
- endmenu
-=20
- endmenu
-diff --git a/drivers/mtd/nand/Makefile b/drivers/mtd/nand/Makefile
-index 44913ff1bf12..2e0e56267718 100644
-=2D-- a/drivers/mtd/nand/Makefile
-+++ b/drivers/mtd/nand/Makefile
-@@ -3,6 +3,7 @@
- nandcore-objs :=3D core.o bbt.o
- obj-$(CONFIG_MTD_NAND_CORE) +=3D nandcore.o
- obj-$(CONFIG_MTD_NAND_ECC_MEDIATEK) +=3D ecc-mtk.o
-+obj-$(CONFIG_MTD_NAND_ECC_REALTEK) +=3D ecc-realtek.o
- obj-$(CONFIG_SPI_QPIC_SNAND) +=3D qpic_common.o
- obj-$(CONFIG_MTD_NAND_QCOM) +=3D qpic_common.o
- obj-y	+=3D onenand/
-diff --git a/drivers/mtd/nand/ecc-realtek.c b/drivers/mtd/nand/ecc-realtek=
-.c
-new file mode 100644
-index 000000000000..a9c2a3a23b78
-=2D-- /dev/null
-+++ b/drivers/mtd/nand/ecc-realtek.c
-@@ -0,0 +1,433 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Support for Realtek hardware ECC engine in RTL93xx SoCs
-+ */
-+
-+#include <linux/dma-mapping.h>
-+#include <linux/mtd/nand.h>
-+#include <linux/mutex.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+/*
-+ * The Realtek ECC engine has two operation modes.
-+ *
-+ * - BCH6 : Generate 10 ECC bytes from 512 data bytes plus 6 tag bytes
-+ * - BCH12: Generate 20 ECC bytes from 512 data bytes plus 6 tag bytes
-+ *
-+ * It can run for arbitrary NAND flash chips with different block and OOB=
- sizes. Currently there
-+ * are only two known devices in the wild that have NAND flash and make u=
-se of this ECC engine
-+ * (Linksys LGS328C & LGS352C). To keep compatibility with vendor firmwar=
-e, new modes can only
-+ * be added when new data layouts have been analyzed. For now allow BCH6 =
-on flash with 2048 byte
-+ * blocks and 64 bytes oob.
-+ */
-+
-+#define RTL_ECC_ALLOWED_PAGE_SIZE 	2048
-+#define RTL_ECC_ALLOWED_OOB_SIZE	64
-+#define RTL_ECC_ALLOWED_STRENGTH	6
-+
-+#define RTL_ECC_BLOCK_SIZE 		512
-+#define RTL_ECC_TAG_SIZE 		6
-+#define RTL_ECC_PARITY_SIZE_BCH6	10
-+#define RTL_ECC_PARITY_SIZE_BCH12	20
-+
-+/*
-+ * The engine is fed with two DMA regions. One for data (always 512 bytes=
-) and one for tag and
-+ * parity (either 16 bytes for BCH6 or 26 bytes for BCH12). Start and len=
-gth of each must be
-+ * aligned to a multiple of 4.
-+ */
-+
-+#define RTL_ECC_DMA_TAG_PARITY_SIZE	ALIGN(RTL_ECC_TAG_SIZE + RTL_ECC_PARI=
-TY_SIZE_BCH12, 4)
-+#define RTL_ECC_DMA_SIZE		(RTL_ECC_BLOCK_SIZE + RTL_ECC_DMA_TAG_PARITY_SI=
-ZE)
-+
-+#define RTL_ECC_CFG			0x00
-+#define   RTL_ECC_BCH6			0
-+#define   RTL_ECC_BCH12			BIT(28)
-+#define   RTL_ECC_DMA_PRECISE		BIT(12)
-+#define   RTL_ECC_BURST_128		GENMASK(1, 0)
-+#define RTL_ECC_DMA_TRIGGER 		0x08
-+#define   RTL_ECC_OP_DECODE		0
-+#define   RTL_ECC_OP_ENCODE		BIT(0)
-+#define RTL_ECC_DMA_START		0x0c
-+#define RTL_ECC_DMA_TAG			0x10
-+#define RTL_ECC_STATUS			0x14
-+#define   RTL_ECC_CORR_COUNT		GENMASK(19, 12)
-+#define   RTL_ECC_RESULT		BIT(8)
-+#define   RTL_ECC_ALL_ONE		BIT(4)
-+#define   RTL_ECC_OP_STATUS		BIT(0)
-+
-+struct rtl_ecc_engine {
-+	struct device *dev;
-+	struct nand_ecc_engine engine;
-+	struct mutex lock;
-+	char *buf;
-+	dma_addr_t buf_dma;
-+	struct regmap *regmap;
-+};
-+
-+struct rtl_ecc_ctx {
-+	struct rtl_ecc_engine * rtlc;
-+	struct nand_ecc_req_tweak_ctx req_ctx;
-+	int steps;
-+	int bch_mode;
-+	int parity_size;
-+	int rc_bitflips;
-+	int rc_status;
-+};
-+
-+static const struct regmap_config rtl_ecc_regmap_config =3D {
-+	.reg_bits	=3D 32,
-+	.val_bits	=3D 32,
-+	.reg_stride	=3D 4,
-+};
-+
-+static inline void *nand_to_ctx(struct nand_device *nand)
-+{
-+	return nand->ecc.ctx.priv;
-+}
-+
-+static inline struct rtl_ecc_engine *nand_to_rtlc(struct nand_device *nan=
-d)
-+{
-+	struct nand_ecc_engine *eng =3D nand->ecc.engine;
-+
-+	return container_of(eng, struct rtl_ecc_engine, engine);
-+}
-+
-+static int rtl_ecc_ooblayout_ecc(struct mtd_info *mtd, int section,
-+				 struct mtd_oob_region *oobregion)
-+{
-+	struct nand_device *nand =3D mtd_to_nanddev(mtd);
-+	struct rtl_ecc_ctx *ctx =3D nand_to_ctx(nand);
-+
-+	if (section < 0 || section >=3D ctx->steps)
-+		return -ERANGE;
-+
-+	oobregion->offset =3D ctx->steps * RTL_ECC_TAG_SIZE + section * ctx->par=
-ity_size;
-+	oobregion->length =3D ctx->parity_size;
-+
-+	return 0;
-+}
-+
-+static int rtl_ecc_ooblayout_free(struct mtd_info *mtd, int section,
-+				struct mtd_oob_region *oobregion)
-+{
-+	struct nand_device *nand =3D mtd_to_nanddev(mtd);
-+	struct rtl_ecc_ctx *ctx =3D nand_to_ctx(nand);
-+
-+	if (section < 0 || section >=3D ctx->steps)
-+		return -ERANGE;
-+
-+	/* Tags can hold arbitrary values, so they are free for user data */
-+	oobregion->offset =3D section * RTL_ECC_TAG_SIZE;
-+	oobregion->length =3D RTL_ECC_TAG_SIZE;
-+
-+	return 0;
-+}
-+
-+static const struct mtd_ooblayout_ops rtl_ecc_ooblayout_ops =3D {
-+	.ecc =3D rtl_ecc_ooblayout_ecc,
-+	.free =3D rtl_ecc_ooblayout_free,
-+};
-+
-+static void rtl_ecc_kick_engine(struct rtl_ecc_ctx *ctx, int operation)
-+{
-+	struct rtl_ecc_engine *rtlc =3D ctx->rtlc;
-+
-+	regmap_write(rtlc->regmap, RTL_ECC_CFG,
-+		     ctx->bch_mode | RTL_ECC_BURST_128 | RTL_ECC_DMA_PRECISE);
-+
-+	regmap_write(rtlc->regmap, RTL_ECC_DMA_START, rtlc->buf_dma);
-+	regmap_write(rtlc->regmap, RTL_ECC_DMA_TAG, rtlc->buf_dma + RTL_ECC_BLOC=
-K_SIZE);
-+	regmap_write(rtlc->regmap, RTL_ECC_DMA_TRIGGER, operation);
-+}
-+
-+static void rtl_ecc_wait_for_engine(struct rtl_ecc_ctx *ctx)
-+{
-+	struct rtl_ecc_engine *rtlc =3D ctx->rtlc;
-+	int ret, status;
-+	bool all_one;
-+
-+	/*
-+	 * The ECC engine needs 6-8 us to encode/decode a BCH6 syndrome for 512 =
-bytes of data
-+	 * and 6 tag bytes. In case the NAND area has been erased and all data a=
-nd oob is
-+	 * set to 0xff, decoding takes 30us (reason unknown). Although the engin=
-e can trigger
-+	 * interrupts when finished, use active polling for now. 12 us maximum w=
-ait time has
-+	 * proven to be a good tradeoff between performance and overhead.
-+	 */
-+
-+	ret =3D regmap_read_poll_timeout(rtlc->regmap, RTL_ECC_STATUS, status,
-+				       !(status & RTL_ECC_OP_STATUS), 12, 600);
-+	if (ret) {
-+		ctx->rc_status =3D ret;
-+		return;
-+	}
-+
-+	all_one =3D FIELD_GET(RTL_ECC_ALL_ONE, status);
-+	ctx->rc_status =3D FIELD_GET(RTL_ECC_RESULT, status);
-+	ctx->rc_bitflips =3D FIELD_GET(RTL_ECC_CORR_COUNT, status);
-+
-+	/* For erased blocks (all bits one) error status can be ignored */
-+	if (ctx->rc_status && all_one)
-+		ctx->rc_status =3D 0;
-+}
-+
-+static void rtl_ecc_run_engine(struct rtl_ecc_ctx *ctx, char *data, char =
-*tag,
-+			       char *parity, int operation)
-+{
-+	struct rtl_ecc_engine *rtlc =3D ctx->rtlc;
-+	char *buf_parity =3D rtlc->buf + RTL_ECC_BLOCK_SIZE + RTL_ECC_TAG_SIZE;
-+	char *buf_tag =3D rtlc->buf + RTL_ECC_BLOCK_SIZE;
-+	char *buf_data =3D rtlc->buf;
-+
-+	mutex_lock(&rtlc->lock);
-+
-+	memcpy(buf_data, data, RTL_ECC_BLOCK_SIZE);
-+	memcpy(buf_tag, tag, RTL_ECC_TAG_SIZE);
-+	memcpy(buf_parity, parity, ctx->parity_size);
-+
-+	dma_sync_single_for_device(rtlc->dev, rtlc->buf_dma, RTL_ECC_DMA_SIZE, D=
-MA_TO_DEVICE);
-+	rtl_ecc_kick_engine(ctx, operation);
-+	rtl_ecc_wait_for_engine(ctx);
-+	dma_sync_single_for_cpu(rtlc->dev, rtlc->buf_dma, RTL_ECC_DMA_SIZE, DMA_=
-FROM_DEVICE);
-+
-+	if (!ctx->rc_status) {
-+		memcpy(data, buf_data, RTL_ECC_BLOCK_SIZE);
-+		memcpy(tag, buf_tag, RTL_ECC_TAG_SIZE);
-+		memcpy(parity, buf_parity, ctx->parity_size);
-+	}
-+
-+	mutex_unlock(&rtlc->lock);
-+}
-+
-+static int rtl_ecc_prepare_io_req(struct nand_device *nand, struct nand_p=
-age_io_req *req)
-+{
-+	struct rtl_ecc_engine *rtlc =3D nand_to_rtlc(nand);
-+	struct rtl_ecc_ctx *ctx =3D nand_to_ctx(nand);
-+	char *data, *tag, *parity;
-+	int failure =3D 0;
-+
-+	if (req->mode =3D=3D MTD_OPS_RAW)
-+		return 0;
-+
-+	nand_ecc_tweak_req(&ctx->req_ctx, req);
-+
-+	if (req->type =3D=3D NAND_PAGE_READ)
-+		return 0;
-+
-+	tag =3D req->oobbuf.in;
-+	data =3D req->databuf.in;
-+	parity =3D req->oobbuf.in + ctx->steps * RTL_ECC_TAG_SIZE;
-+
-+	for (int i =3D 0; i < ctx->steps; i++) {
-+		rtl_ecc_run_engine(ctx, data, tag, parity, RTL_ECC_OP_ENCODE);
-+		failure |=3D ctx->rc_status;
-+
-+		tag +=3D RTL_ECC_TAG_SIZE;
-+		data +=3D RTL_ECC_BLOCK_SIZE;
-+		parity +=3D ctx->parity_size;
-+	}
-+
-+	if (unlikely(failure))
-+		dev_err(rtlc->dev, "ECC calculation failed\n");
-+
-+	return failure ? -EBADMSG : 0;
-+}
-+
-+static int rtl_ecc_finish_io_req(struct nand_device *nand, struct nand_pa=
-ge_io_req *req)
-+{
-+	struct rtl_ecc_engine *rtlc =3D nand_to_rtlc(nand);
-+	struct rtl_ecc_ctx *ctx =3D nand_to_ctx(nand);
-+	struct mtd_info *mtd =3D nanddev_to_mtd(nand);
-+	char *data, *tag, *parity;
-+	unsigned int bitflips =3D 0;
-+	int failure =3D 0;
-+
-+	if (req->mode =3D=3D MTD_OPS_RAW)
-+		return 0;
-+
-+	if (req->type =3D=3D NAND_PAGE_WRITE) {
-+		nand_ecc_restore_req(&ctx->req_ctx, req);
-+		return 0;
-+	}
-+
-+	tag =3D req->oobbuf.in;
-+	data =3D req->databuf.in;
-+	parity =3D req->oobbuf.in + ctx->steps * RTL_ECC_TAG_SIZE;
-+
-+	for (int i =3D 0 ; i < ctx->steps; i++) {
-+		rtl_ecc_run_engine(ctx, data, tag, parity, RTL_ECC_OP_DECODE);
-+		failure |=3D ctx->rc_status;
-+		mtd->ecc_stats.failed +=3D !!ctx->rc_status;
-+		bitflips =3D max_t(unsigned int, ctx->rc_bitflips, bitflips);
-+
-+		tag +=3D RTL_ECC_TAG_SIZE;
-+		data +=3D RTL_ECC_BLOCK_SIZE;
-+		parity +=3D ctx->parity_size;
-+	}
-+
-+	nand_ecc_restore_req(&ctx->req_ctx, req);
-+
-+	if (unlikely(failure))
-+		dev_err(rtlc->dev, "ECC correction failed\n");
-+	else if (unlikely(bitflips > 2))
-+		dev_warn(rtlc->dev, "%d bitflips detected\n", ctx->rc_bitflips);
-+
-+	return failure ? -EBADMSG : bitflips;
-+}
-+
-+static int rtl_ecc_check_support(struct nand_device *nand)
-+{
-+	struct mtd_info *mtd =3D nanddev_to_mtd(nand);
-+	struct device *dev =3D nand->ecc.engine->dev;
-+
-+	if (mtd->oobsize !=3D RTL_ECC_ALLOWED_OOB_SIZE ||
-+	    mtd->writesize !=3D RTL_ECC_ALLOWED_PAGE_SIZE) {
-+		dev_err(dev, "only flash geometry data=3D%d, oob=3D%d supported\n",
-+			RTL_ECC_ALLOWED_PAGE_SIZE, RTL_ECC_ALLOWED_OOB_SIZE);
-+		return -EINVAL;
-+	}
-+
-+	if (nand->ecc.user_conf.algo !=3D NAND_ECC_ALGO_BCH ||
-+	    nand->ecc.user_conf.strength !=3D RTL_ECC_ALLOWED_STRENGTH ||
-+	    nand->ecc.user_conf.placement !=3D NAND_ECC_PLACEMENT_OOB ||
-+	    nand->ecc.user_conf.step_size !=3D RTL_ECC_BLOCK_SIZE) {
-+		dev_err(dev, "only algo=3Dbch, strength=3D%d, placement=3Doob, step=3D%=
-d supported\n",
-+			RTL_ECC_ALLOWED_STRENGTH, RTL_ECC_BLOCK_SIZE);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rtl_ecc_init_ctx(struct nand_device *nand)
-+{
-+	struct nand_ecc_props *conf =3D &nand->ecc.ctx.conf;
-+	struct rtl_ecc_engine *rtlc =3D nand_to_rtlc(nand);
-+	struct mtd_info *mtd =3D nanddev_to_mtd(nand);
-+	int strength =3D nand->ecc.user_conf.strength;
-+	struct device *dev =3D nand->ecc.engine->dev;
-+	struct rtl_ecc_ctx *ctx;
-+	int ret;
-+
-+	ret =3D rtl_ecc_check_support(nand);
-+	if (ret)
-+		return ret;
-+
-+	ctx =3D devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	nand->ecc.ctx.priv =3D ctx;
-+	mtd_set_ooblayout(mtd, &rtl_ecc_ooblayout_ops);
-+
-+	conf->algo =3D NAND_ECC_ALGO_BCH;
-+	conf->strength =3D strength;
-+	conf->step_size =3D RTL_ECC_BLOCK_SIZE;
-+	conf->engine_type =3D NAND_ECC_ENGINE_TYPE_ON_HOST;
-+
-+	ctx->rtlc =3D rtlc;
-+	ctx->steps =3D mtd->writesize / RTL_ECC_BLOCK_SIZE;
-+	ctx->bch_mode =3D strength =3D=3D 6 ? RTL_ECC_BCH6 : RTL_ECC_BCH12;
-+	ctx->parity_size =3D strength =3D=3D 6 ? RTL_ECC_PARITY_SIZE_BCH6 : RTL_=
-ECC_PARITY_SIZE_BCH12;
-+
-+	ret =3D nand_ecc_init_req_tweaking(&ctx->req_ctx, nand);
-+	if (ret)
-+		return ret;
-+
-+	dev_info(dev, "using bch%d with geometry data=3D%dx%d, tag=3D%dx6, parit=
-y=3D%dx%d",
-+		 conf->strength, ctx->steps, conf->step_size,
-+		 ctx->steps, ctx->steps, ctx->parity_size);
-+
-+	return 0;
-+}
-+
-+static void rtl_ecc_cleanup_ctx(struct nand_device *nand)
-+{
-+	struct rtl_ecc_ctx *ctx =3D nand_to_ctx(nand);
-+
-+	if (ctx)
-+		nand_ecc_cleanup_req_tweaking(&ctx->req_ctx);
-+}
-+
-+static struct nand_ecc_engine_ops rtl_ecc_engine_ops =3D {
-+	.init_ctx =3D rtl_ecc_init_ctx,
-+	.cleanup_ctx =3D rtl_ecc_cleanup_ctx,
-+	.prepare_io_req =3D rtl_ecc_prepare_io_req,
-+	.finish_io_req =3D rtl_ecc_finish_io_req,
-+};
-+
-+static int rtl_ecc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev =3D &pdev->dev;
-+	struct rtl_ecc_engine *rtlc;
-+	void __iomem *base;
-+	int ret;
-+
-+	rtlc =3D devm_kzalloc(dev, sizeof(*rtlc), GFP_KERNEL);
-+	if (!rtlc)
-+		return -ENOMEM;
-+
-+	base =3D devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	ret =3D devm_mutex_init(dev, &rtlc->lock);
-+	if (ret)
-+		return ret;
-+
-+	rtlc->regmap =3D devm_regmap_init_mmio(dev, base, &rtl_ecc_regmap_config=
-);
-+	if (IS_ERR(rtlc->regmap))
-+		return PTR_ERR(rtlc->regmap);
-+
-+	/*
-+	 * Focus on simplicity and use a preallocated DMA buffer for data exchan=
-ge with the
-+	 * engine. Make it a noncoherent memory model as invalidating/flushing c=
-aches is
-+	 * faster than reading/writing uncached memory.
-+	 */
-+
-+	rtlc->buf =3D dma_alloc_noncoherent(dev, RTL_ECC_DMA_SIZE, &rtlc->buf_dm=
-a,
-+					  DMA_BIDIRECTIONAL, GFP_KERNEL);
-+	if (IS_ERR(rtlc->buf))
-+		return PTR_ERR(rtlc->buf);
-+
-+	rtlc->dev =3D dev;
-+	rtlc->engine.dev =3D dev;
-+	rtlc->engine.ops =3D &rtl_ecc_engine_ops;
-+	rtlc->engine.integration =3D NAND_ECC_ENGINE_INTEGRATION_EXTERNAL;
-+
-+	nand_ecc_register_on_host_hw_engine(&rtlc->engine);
-+
-+	platform_set_drvdata(pdev, rtlc);
-+
-+	return 0;
-+}
-+
-+static void rtl_ecc_remove(struct platform_device *pdev)
-+{
-+	struct rtl_ecc_engine *rtlc =3D platform_get_drvdata(pdev);
-+
-+	nand_ecc_unregister_on_host_hw_engine(&rtlc->engine);
-+	dma_free_noncoherent(rtlc->dev, RTL_ECC_DMA_SIZE, rtlc->buf, rtlc->buf_d=
-ma,
-+			     DMA_BIDIRECTIONAL);
-+}
-+
-+static const struct of_device_id rtl_ecc_of_ids[] =3D {
-+	{
-+		.compatible =3D "realtek,rtl9301-ecc",
-+	},
-+	{ /* sentinel */ },
-+};
-+
-+static struct platform_driver rtl_ecc_driver =3D {
-+	.driver	=3D {
-+		.name =3D "rtl-nand-ecc-engine",
-+		.of_match_table =3D rtl_ecc_of_ids,
-+	},
-+	.probe =3D rtl_ecc_probe,
-+	.remove =3D rtl_ecc_remove,
-+};
-+module_platform_driver(rtl_ecc_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Markus Stockhausen <markus.stockhausen@gmx.de>");
-+MODULE_DESCRIPTION("Realtek NAND hardware ECC controller");
-=2D-=20
-2.47.0
+The I2S clock hierarchy can be found here [1].
+
+Link:
+https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
+[1]
+
+Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+---
+Changes in v3:
+- remove factor for CCU_DIV_GATE_DEFINE
+- introduce I2S_BCLK_FACTOR as I2S_BCLK parent clock
+- adjust consumers in patch2/3
+- Link to v2: https://lore.kernel.org/all/20250811-k1-clk-i2s-generation-v2-0-e4d3ec268b7a@linux.spacemit.com/
+
+Changes in v2:
+- remove CCU_DDN_GATE_DEFINE
+- remove CCU_DIV_TABLE_GATE_DEFINE
+- move gate of i2s_sysclk from DDN to MUX
+- introduce factor for CCU_DIV_GATE_DEFINE
+- modify commit message
+- split patch2/2 into separate patches
+- remove reformatting in k1-syscon.h
+- Link to v1: https://lore.kernel.org/r/20250807-k1-clk-i2s-generation-v1-0-7dc25eb4e4d3@linux.spacemit.com
+
+---
+Troy Mitchell (3):
+      dt-bindings: clock: spacemit: introduce i2s pre-clock to fix i2s clock
+      clk: spacemit: introduce pre-div for ddn clock
+      clk: spacemit: fix i2s clock
+
+ drivers/clk/spacemit/ccu-k1.c                  | 33 ++++++++++++++++++++++----
+ drivers/clk/spacemit/ccu_ddn.c                 | 12 +++++-----
+ drivers/clk/spacemit/ccu_ddn.h                 |  6 +++--
+ drivers/clk/spacemit/ccu_mix.h                 |  2 +-
+ include/dt-bindings/clock/spacemit,k1-syscon.h |  4 ++++
+ include/soc/spacemit/k1-syscon.h               |  1 +
+ 6 files changed, 45 insertions(+), 13 deletions(-)
+---
+base-commit: e3324912fe5a05a3ea439df476625e7c8efc2b9a
+change-id: 20250804-k1-clk-i2s-generation-eee7049ee17a
+
+Best regards,
+-- 
+Troy Mitchell <troy.mitchell@linux.spacemit.com>
 
 
