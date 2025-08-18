@@ -1,124 +1,179 @@
-Return-Path: <devicetree+bounces-205776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20811B2A139
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:14:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF505B2A176
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 14:25:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 168B15E75D3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:11:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 347C916363A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:17:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A543231AF24;
-	Mon, 18 Aug 2025 12:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD88731AF14;
+	Mon, 18 Aug 2025 12:17:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UY9MJR43"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF2F27B327;
-	Mon, 18 Aug 2025 12:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC0831A059;
+	Mon, 18 Aug 2025 12:17:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755519061; cv=none; b=AaUwTPkndzCTAi9Hg4pcPckJMTMGjdNhOWeWd+uSmjfMokoXsCyg4fA3z/a6TW6qK88xldx8LXmeT2Sm6PHYXQjhv4xC4TPEvy7Xn+Ul0GT5DuVojXNU3tFpGMB8fkjXexmqqlml4tZDCwKhVC5aY6rSslENOKihHWQHIVqOVu0=
+	t=1755519453; cv=none; b=R6Lsgg6sL5PWxU0wgbgq9JiYw073hg2t74tsO2cjPJO7cpuRJ1FzRwFwKt9/dqXMAt/5aTMqfp4Z74IeYa6kqftLd2dYpX5GiYEgzdla954ScYCxLmEXvhZoolnVrkdcg723urEsrZgwuN4CZ570ZJB7ou0AAtUNcbalXsF2W+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755519061; c=relaxed/simple;
-	bh=tIcAXyCej7FNIQEmTQrOHnKVp1xVdmprX9L9FmJp05Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FoyET82ikN3xkzNIzId09FYG/0pqONZWzNCr9ovdkdaFsfiO0cNudMa84KsFykDEoHB6tgS4M4GMKFavjPEEKOxblRrZb8c2Y8FZqVtqtMRjGsZDFhUbQ6aBimeq9pi65NWgkjENTRBS+OHiHGweKYL9KTU3wv+6lyIHdRK8ymc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-53b174de200so2816745e0c.2;
-        Mon, 18 Aug 2025 05:10:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755519057; x=1756123857;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=y/Lcb/V3C/4LDU2ngsHPwowVNXxiN5XTtmO4aTBnndU=;
-        b=JSphkhdpv85Zt6k4WRaBXZ8JRN3TXgvMCSeJYwWIfcoFMqxF2rL3xEA/q3MYaFQxwU
-         nBVh1PdF2Un0Av9IuZCHsKIhVL+acrhdc8jbCZMrmSmdYsDaQX+8/JUn5E1NO8yOeY7X
-         l4RKYVQu75P8iIIYXC0F3PG3YPGhsevw6y8LQBz2kARYU+NhzLTWrwQ+e3lSt/05MVIm
-         mRpBr6H861lgg3leLTY+q1Yl3hnBVEleLi5OlIBq9UWMcm5xTd0uInTNG6RQ4LPQXy39
-         r+MdUIhTWhJRh4YOGgTnWoYlcOxiXcN2hvLv7mJ3wThYjmxoKiiuxl7lXem0jaiQH1I9
-         EcgA==
-X-Forwarded-Encrypted: i=1; AJvYcCVmRXIgAk/4YXOwoCTNy2QoOJ0T3dp3f4nxv5XolI+g5xmXWY6dXBD5EWwrrHvBRdscvViI/35mVx0Y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxxncf220k8T/qEWToWiH70+HBTw5HA7JDLbIiiLw3+Y5z8BuzN
-	mTcWLK7UZpRFZQTJtdYilh4+MplooD49F9rm9LxsMYuq5oy6fEQXx83rgQpQm+0I
-X-Gm-Gg: ASbGncshjUBZ8Pp5QhJYXSTVL6ce3JrzzFurXx/idQ8bAoo5ifyxjlQqAxa2eV9wKMT
-	sbTL0svLaD80V48jn3Ju378+XbA4O64gBIWeYKUPi4hqlnhOyugG4MZ2uVjXjYDHLapVvFnG7eq
-	rgaYm2dJSycjs2EzulcFHFLoVJw9oYGkjtG2oXXLxPbCilJd3NE8MXeWO9t1ppc5+BukzOn65P5
-	AATLyUP0FphcYZJBO6LIPlhSI0enP1FfM7liY7tnOOMv6tYR+m8On0lTzzcStG68eF4oP9xEzzu
-	2pW24SJArBK9THUdjSpm12fOmKXEQUpwrERMedA21puq8RxE/S+hVo1qtHs6Q1k9DPT4wou9nmx
-	1F2ulFKVbM2MENwyoWm/BBRqMDDDgbUFa7h/es5j0Y4mrkCbuFTzppjIqy18h
-X-Google-Smtp-Source: AGHT+IFWoJmLAlDb8Iwk0udKSHaOqCR0swgs0Tm354TpDNwDugBqXz8h2Ce6mCxlUH4eDOdMm8PSxA==
-X-Received: by 2002:a05:6122:a21:b0:539:345c:f229 with SMTP id 71dfb90a1353d-53b351ec8a2mr3555593e0c.6.1755519057377;
-        Mon, 18 Aug 2025 05:10:57 -0700 (PDT)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53b2bd51a3bsm1802820e0c.1.2025.08.18.05.10.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 05:10:57 -0700 (PDT)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-89019119eeeso2544361241.3;
-        Mon, 18 Aug 2025 05:10:57 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV/a4hW8dqeOcvjL9uR++GLWMzQCvyx2bOdBsc5iIDLnqVQ6vUTzD1XmLO7CjaIF9+YVh2VcRrlIeDR@vger.kernel.org
-X-Received: by 2002:a05:6102:32cf:b0:4f3:36bc:554e with SMTP id
- ada2fe7eead31-514ca6c7f90mr3337891137.16.1755519056835; Mon, 18 Aug 2025
- 05:10:56 -0700 (PDT)
+	s=arc-20240116; t=1755519453; c=relaxed/simple;
+	bh=pN2ktZgnpU5sK96YS6Tu1DHHMe1tgA4d0/aTsg8hRIQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RWnKc93zeiyKf2m+v4qt83w8QGaW0Y6SsLros6BbD+mkfF5CoeIgCXrp9PR8cUCmNaj5p2EOpYRgH6FuRB3OwRrH9V+BnXyqNCmahp2JUxsgUL7H9/xHFAO0LoV7F9zb4UvrfsVQD9veCO2g2r/PJgyAKoruPzfmXg1daBCt4Pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UY9MJR43; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD5FBC113D0;
+	Mon, 18 Aug 2025 12:17:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755519453;
+	bh=pN2ktZgnpU5sK96YS6Tu1DHHMe1tgA4d0/aTsg8hRIQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UY9MJR43L0uR+Ikd9ylXHu1aOmrBA/7g3/+yN2tAuxDOj3YyjJx0UZKXzFmsx3ke1
+	 UDQe2i9fdHOCDsbeGjoNKn2sG071EmlrEC6xIX32MB/iQZI6amgVRHR3NuSbI6EjwV
+	 VRm9qdF7us/uUn+esSPNRA8ubckZ8gd7fuOh7dAVmSB7gYg+jBlXwSrUo2bgXxuyaB
+	 R0OCt5oEXS8VMDsKFUn3mQhFdf0ANPxX6saS0vAU4Gb7MqtS4cC7+R5GaIlCvnZJYm
+	 3lxoWXkBBwTTFKSh+FK9Drb/T6bxGdaGnXyyusPD/qPGIuvUAh/VLqvzJWUVrdTHn0
+	 jbBrDJEUMw+gw==
+Message-ID: <401876fa-0786-44b4-aadc-da85ee829880@kernel.org>
+Date: Mon, 18 Aug 2025 14:17:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250807151434.5241-6-wsa+renesas@sang-engineering.com> <20250807151434.5241-7-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20250807151434.5241-7-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 Aug 2025 14:10:45 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUkPA+4v0yYtEh790Kz=Myida6tXam-LbhrdNNkVSDwzA@mail.gmail.com>
-X-Gm-Features: Ac12FXxaRT08uPJofTxmAtBw_BgTjxqRDWnUbJB3S_EeNHG9Ifnz5qOk2p7yscA
-Message-ID: <CAMuHMdUkPA+4v0yYtEh790Kz=Myida6tXam-LbhrdNNkVSDwzA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: renesas: r9a08g045: Add I3C node
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, 
-	Quynh Nguyen <quynh.nguyen.xb@renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mmc: Add compatible for MT8189 SoC
+To: Mengqi Zhang <mengqi.zhang@mediatek.com>,
+ Chaotian Jing <chaotian.jing@mediatek.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Wenbin Mei <wenbin.mei@mediatek.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20250818114855.8637-1-mengqi.zhang@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250818114855.8637-1-mengqi.zhang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 7 Aug 2025 at 17:14, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> From: Quynh Nguyen <quynh.nguyen.xb@renesas.com>
->
-> Add the I3C node to RZ/G3S SoC DTSI.
->
-> Signed-off-by: Quynh Nguyen <quynh.nguyen.xb@renesas.com>
-> [wsa: adapted to upstream driver, moved bus frequencies to board file]
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On 18/08/2025 13:47, Mengqi Zhang wrote:
+> Add a compatible string for the MT8189 SoC's mtk-sd mmc controllers.
 
-> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> @@ -272,6 +272,41 @@ channel@8 {
->                         };
->                 };
->
-> +               i3c: i3c@1005b000 {
+Where is any user of that?
 
-> +                       interrupt-names = "ierr", "terr", "abort", "resp", "cmd",
-> +                                         "ibi", "rx", "tx", "rcv","st", "sp",
-> +                                         "tend", "nack", "al", "tmo", "wu", "exit";
+> 
+> Signed-off-by: Mengqi Zhang <mengqi.zhang@mediatek.com>
+> ---
+>  .../devicetree/bindings/mmc/mtk-sd.yaml       | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> index 6dd26ad31491..1285dddeaec9 100644
+> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> @@ -25,6 +25,7 @@ properties:
+>            - mediatek,mt8135-mmc
+>            - mediatek,mt8173-mmc
+>            - mediatek,mt8183-mmc
+> +          - mediatek,mt8189-mmc
+>            - mediatek,mt8196-mmc
+>            - mediatek,mt8516-mmc
+>        - items:
+> @@ -192,6 +193,7 @@ allOf:
+>              - mediatek,mt8183-mmc
+>              - mediatek,mt8186-mmc
+>              - mediatek,mt8188-mmc
+> +            - mediatek,mt8189-mmc
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.18 with the spacing fixed.
+huh? This sets the clocks
 
-Gr{oetje,eeting}s,
+>              - mediatek,mt8195-mmc
+>              - mediatek,mt8196-mmc
+>              - mediatek,mt8516-mmc
+> @@ -240,6 +242,7 @@ allOf:
+>                - mediatek,mt7986-mmc
+>                - mediatek,mt7988-mmc
+>                - mediatek,mt8183-mmc
+> +              - mediatek,mt8189-mmc
+>                - mediatek,mt8196-mmc
+>      then:
+>        properties:
+> @@ -319,6 +322,32 @@ allOf:
+>              - const: source_cg
+>              - const: crypto
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mediatek,mt8189-mmc
+> +    then:
+> +      properties:
+> +        clocks:
+> +         items:
 
-                        Geert
+As this as well..
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+And obviously never tested.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Please don't send untested (and buggy) code :(. Why do you think
+reviewers should spend time on it instead of tools?
+
+Best regards,
+Krzysztof
 
