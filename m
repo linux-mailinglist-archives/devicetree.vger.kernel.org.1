@@ -1,138 +1,161 @@
-Return-Path: <devicetree+bounces-205941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74A1B2AF16
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:12:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369BFB2AF20
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:16:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92ECF188D1CC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:13:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0555D4E60DE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3FA32C321;
-	Mon, 18 Aug 2025 17:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F390A1E25EB;
+	Mon, 18 Aug 2025 17:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kvOsrAjx"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="6GycV2YI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25CA132C302;
-	Mon, 18 Aug 2025 17:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC1C32C315;
+	Mon, 18 Aug 2025 17:16:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755537161; cv=none; b=K5rBRUIACbunhCuUXLeiqNCdnhjJmZU1aM7YA7QOMLTHkykMYnYIgCOkgARlozoiMCi2G4CdoW1ihmMrXiAoxKnsDFHV2CK865ggRByaOvxj15ObA47a87aOVsfZIQDuXZBV5wGyIVgY3bK9FEPfVm7AKG1dmYoDiJCFNfQXju8=
+	t=1755537376; cv=none; b=g9ac7KH8aIgPd5QaDcc03PTzbadL5E+LL3ZmTlkq+8G1nIX+c/bGXEVhKYa1wwbcLgPxP1GiFBqm+a/jK5pdNxClQ/amWNpQZTBZl1fd8JaJB/6K4JB+n06/r8XvFTtj3F+VeX6weA2XuWqgBoOxkuUyn2PN9U3Bnmj2m+6pTt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755537161; c=relaxed/simple;
-	bh=SAYLvt+TdvOMWkry0P3jnEHv9OeBgLFTEiK5Js0VPL0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ldO+NKKOhF7ud61i6BOnoFwWNHc8+lsNBAjVrOAfPe59WbewvjeNhSME8bTtKxgt504+QTOjjirG1rZnTbvwTMD7o8hWIMiK6I7YY08nIIRsL4kJmGXu0qK1VdfNNi+084bYLLv3VApIu022wROa/8mQnjwgLSAcZ7+RkpMowWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kvOsrAjx; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1755537154;
-	bh=SAYLvt+TdvOMWkry0P3jnEHv9OeBgLFTEiK5Js0VPL0=;
-	h=From:Date:Subject:To:Cc:From;
-	b=kvOsrAjxoBCrN6ZAjhHp+z6Fuy0Lo20VFIjJfaDaDPOCCe7o0JbPjwjYS76J3ubGS
-	 qWyd/zPiFeiVp7gohcE4Apj156HY4FeK0naTjIE4aMNyogQNoHW5f1ulEKp8N3x7o3
-	 clRVSYPBLI8GmMjwN1qULWlx2p8gWwti1duFk7LY1BqOh0eeskM7g33w8sn8+vPopz
-	 Ho2RU+lzNU2m+iwEitCoL5/vmWbtKsKVegkaJo3WlCjCZXUbT5gRYhwtZgs094fqld
-	 2986+acmaY0ilq+Mdwvvgp+X3L6+2PNnk9TYqKhwgSJP8S/Qd37H7z1fmDXfNn/YYk
-	 KbRBagbd5lMGQ==
-Received: from jupiter.universe (dyndsl-091-248-210-167.ewe-ip-backbone.de [91.248.210.167])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3B4B817E0DE3;
-	Mon, 18 Aug 2025 19:12:34 +0200 (CEST)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id EF42B480044; Mon, 18 Aug 2025 19:12:33 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Mon, 18 Aug 2025 19:12:23 +0200
-Subject: [PATCH] arm64: dts: rockchip: correct network description on Sige5
+	s=arc-20240116; t=1755537376; c=relaxed/simple;
+	bh=yP4Yuj7Z+g7MYpEm26hzQQjwcI9DiuGCs0Bsz/vi958=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ibVDr0z4RztfdBkKaMUeeGePqZwZTHgyJiS7Xo+N/vT2/6AYVPlPXcFzHbr8zuA99JFizEuXQuegKEuYAcdAdu9vQ0T+rdtV01LAXQFv69Q0/6U0EP2dN4KZg/1RpnBCy9AHIsag6CGz5UONz4fTz56aFVu8dSsBxvBZ6pxlxtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=6GycV2YI; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=LJN+kb/6ymN/RUd8A8NIlH7TTJTdlak3jUaitUEk39k=; b=6G
+	ycV2YIRV/Y1dZK5aflMoVTMOvSfW1VAlq52pDeWNK+4ScyLSUhec6EAtHGs3GTSCEB7sZZi6zSfkn
+	Ur0JFa9qTMa9ZR5gwd3LfqeZDpIF/dahmi07fLpEhApcVgGQWQC04j0KQRpB56nBhCOWjnT/BFUXk
+	c90qrJvao1mIIE4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uo3So-0055IU-J2; Mon, 18 Aug 2025 19:16:06 +0200
+Date: Mon, 18 Aug 2025 19:16:06 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Yangfl <mmyangfl@gmail.com>
+Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [net-next v4 1/3] dt-bindings: net: dsa: yt921x: Add Motorcomm
+ YT921x switch support
+Message-ID: <a1474d9a-f12c-48cb-881d-bce5fe7c646f@lunn.ch>
+References: <20250818162445.1317670-1-mmyangfl@gmail.com>
+ <20250818162445.1317670-2-mmyangfl@gmail.com>
+ <7c4bc4cc-61d5-40ce-b0d5-c47072ee2f16@lunn.ch>
+ <CAAXyoMP9aoSbDkSJhSDJ68-F6qubeVmV08YgvQS1cTKJYS-spw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250818-sige5-network-phy-clock-v1-1-87a9122d41c2@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAPZeo2gC/x3MTQqAIBBA4avErBtQSZCuEi3KRhsKDY1+iO6et
- PwW7z2QKTFlaKsHEh2cOYYCWVdg5yF4Qp6KQQmlhZEGM3vSGGg/Y1pwm2+0a7QLSiuF040ZtVJ
- Q6i2R4+s/d/37fiaJqhRpAAAA
-X-Change-ID: 20250818-sige5-network-phy-clock-1c10f548b522
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- kernel@collabora.com, Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1535; i=sre@kernel.org;
- h=from:subject:message-id; bh=SAYLvt+TdvOMWkry0P3jnEHv9OeBgLFTEiK5Js0VPL0=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGijXwGfiXygZXsYaSAVonahjYg5JoVKFCg4Q
- 9VsgfeiOl0lzIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJoo18BAAoJENju1/PI
- O/qaZIAQAIivfyWW5RnxUMO+tth3rMGHps2imw6cUeNR4+0t9cuxpBEADAt80yezHZSyh+zsWxa
- InHZXkOFhskpyVidwH20dSEH0nOLqfCppPrkMSBZWUtw9C7b7BEnsldbEhAzCL0FieWbcazhjmq
- JtBVRaLQAvfyQvX4NuWJlkTgOlfSztBRMVEnsbDJVqmAEuUk/GRCyH+WMNV7L9YpoE8JZkLkcy3
- KV6JGwY4R50uakSP0mGjCErSo03xyKFM9CKMD6P3NVfN6H6Gy5gWb1HFb4ZozKJQblkr9n5nxH3
- seEihsfl+BPFnJXEr+pNWEgRZ66GGEllIte9hGnndUWLwKRlC8yw6Q1d8gYFHaQHqQ+If+IEUDo
- vFmy9Fh7M8/afwO7GF5KLF4icJWbGo0iNNJK6jnHofAe54ZHsA+/zMSxyf/HrbCID+ClStZHDdL
- iSgrMNzj299F/KmnOR2JJKdFUIHYdWLBq75vljDWrBwhLS0M0X/cJ0vi9vE0SSmFoYC/z0LDijE
- a+5oAgxw4wkRqJ9Dvpsl7Yl9w8egD+C6+GSxTM9G1iOqsmGda9V5fKh3WG+CStHKHe8jekieNSu
- +0bD8nubWi9aBe13EoFJV1bJc5JpyUHjJftLMwii8LZVNYtd4ZD5MgJaML4bou4fopZC80ayXc4
- SsZ+jPlbGL6q2WEuwKbIgFQ==
-X-Developer-Key: i=sre@kernel.org; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAXyoMP9aoSbDkSJhSDJ68-F6qubeVmV08YgvQS1cTKJYS-spw@mail.gmail.com>
 
-Both network PHYs have dedicated crystals for the 25 MHz clock
-and do not source it from the RK3576.
+On Tue, Aug 19, 2025 at 01:06:00AM +0800, Yangfl wrote:
+> On Tue, Aug 19, 2025 at 12:55 AM Andrew Lunn <andrew@lunn.ch> wrote:
+> >
+> > > +  motorcomm,switch-id:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: |
+> > > +      Value selected by Pin SWITCH_ID_1 / SWITCH_ID_0.
+> > > +
+> > > +      Up to 4 chips can share the same MII port ('reg' in DT) by giving
+> > > +      different SWITCH_ID values. The default value should work if only one chip
+> > > +      is present.
+> > > +    enum: [0, 1, 2, 3]
+> > > +    default: 0
+> >
+> > It is like getting blood from a stone.
+> >
+> > So what you are saying is that you have:
+> >
+> >     mdio {
+> >         #address-cells = <1>;
+> >         #size-cells = <0>;
+> >
+> >         switch@1d {
+> >             compatible = "motorcomm,yt9215";
+> >             /* default 0x1d, alternate 0x0 */
+> >             reg = <0x1d>;
+> >             motorcomm,switch-id = <0>;
+> >             reset-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
+> > ...
+> >         }
+> >
+> >         switch@1d {
+> >             compatible = "motorcomm,yt9215";
+> >             reg = <0x1d>;
+> >             motorcomm,switch-id = <1>;
+> >             reset-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
+> > ...
+> >         }
+> >
+> >         switch@1d {
+> >             compatible = "motorcomm,yt9215";
+> >             reg = <0x1d>;
+> >             motorcomm,switch-id = <2>;
+> >             reset-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
+> > ...
+> >         }
+> >     }
+> >
+> > Have you tested this? My _guess_ is, it does not work.
+> >
+> > I'm not even sure DT allows you to have the same reg multiple times on
+> > one bus.
+> >
+> > I'm pretty sure the MDIO core does not allow multiple devices on one
+> > MDIO address. Each device is represented by a struct
+> > mdio_device. struct mii_bus has an array of 32 of these, one per
+> > address on the bus. You cannot have 4 of them for one address.
+> >
+> >     Andrew
+> >
+> > ---
+> > pw-bot: cr
+> 
+> Of course I cannot test this, since I only have a stock device, as
+> mentioned in patch 3.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+You could create such a DT and see if it compiles and passes the
+binding tests. You could boot such a DT. You should get -ENODEV for
+the other two devices. But if it crashes, that tells you
+something... Looking at the stack trace might confirm this is never
+going to work with the current MDIO core code.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-index 101e2ee9766d7bf5dc09eb29b66f5afd89985b76..3386084f63183efe62beea86bc6fe310cc4ed565 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-@@ -302,8 +302,7 @@ &gmac1 {
- 		     &eth1m0_tx_bus2
- 		     &eth1m0_rx_bus2
- 		     &eth1m0_rgmii_clk
--		     &eth1m0_rgmii_bus
--		     &ethm0_clk1_25m_out>;
-+		     &eth1m0_rgmii_bus>;
- 	status = "okay";
- };
- 
-@@ -784,7 +783,6 @@ &mdio0 {
- 	rgmii_phy0: phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
- 		reg = <0x1>;
--		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&gmac0_rst>;
- 		reset-assert-us = <20000>;
-@@ -797,7 +795,6 @@ &mdio1 {
- 	rgmii_phy1: phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
- 		reg = <0x1>;
--		clocks = <&cru REFCLKO25M_GMAC1_OUT>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&gmac1_rst>;
- 		reset-assert-us = <20000>;
+> If this is not acceptable anyway, I might as well remove switch-id
+> completely since I doubt if anyone would concat more than one switch
+> together in real world.
 
----
-base-commit: e05818ef75bee755fc56811cb54febf4174d7cf2
-change-id: 20250818-sige5-network-phy-clock-1c10f548b522
+I have a board with 4 Marvell switches. It does happen, especially in
+industrial systems. But they have individual addresses on the MDIO
+bus. I also have a SOHO black box switch, using two qualcomm switches
+in order to support 16 ports.
 
-Best regards,
--- 
-Sebastian Reichel <sre@kernel.org>
+But i do agree you are unlikely to see a WiFi AP, or a cable modem use
+two switches.
 
+	Andrew
 
