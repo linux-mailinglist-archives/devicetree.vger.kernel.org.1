@@ -1,391 +1,192 @@
-Return-Path: <devicetree+bounces-205649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D74C2B29B7F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:01:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15720B29B89
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:02:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6AF8622483
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 07:58:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 315CA1899C8E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6773A29E0F5;
-	Mon, 18 Aug 2025 07:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B0EB227B83;
+	Mon, 18 Aug 2025 08:01:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="SEImoTW8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sBn9Ek+Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D7A29B214;
-	Mon, 18 Aug 2025 07:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AAD02264B3
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 08:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755503922; cv=none; b=BS5HQHaA81so2L85KkhocV08rhJ8SKymVqaG232IeMA4+AUn8JLieBdPkOj/xQLhA7Xe1G7iG9Nq5R59lOHbNf0rKSd/6KccTn6nvJAsp5P/XiEkC9cqyQGVR2JoBrpkKhz0V7LbZt6v2vcvHtTvaSz7uy+5FfL4MYXYaFI8sbE=
+	t=1755504082; cv=none; b=TJC4asOWQJ8WY/EWrH++lM+9ZQBEroLiUwUDKwpToBVLDmW8WNuve8SYQ48EN+cG7gaCeXG6Q1dHukQ+TmZp1JhRclSxrCWUfJJtFXmq4RXCch0xZuBErvF1ct6ZMAvrF/7QKmFRBYXf12+s3RMJ5DavdAU2edLRPtsoqqKCYLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755503922; c=relaxed/simple;
-	bh=OW9f5Gz4q3W8mGYClWjgappBtP1YWzKFBndKdsW/UPM=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=ROXdN/7flezsyn5G3+D6CD/agec4Xllb+WAlLbSZPTkS+9Qtd2m12pFFgkHo0WMa7vL0CAGL9KJWTFHE+wCb9vnX+5bVPiw+/4AF+Yy3582c0wmZ9OdkH272EFV4PA3nXFBkvhmI0L3rh+ijwA/mn0rmy4T0OExumqajMNapDSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=SEImoTW8; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F2B9717D1;
-	Mon, 18 Aug 2025 09:57:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1755503856;
-	bh=OW9f5Gz4q3W8mGYClWjgappBtP1YWzKFBndKdsW/UPM=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=SEImoTW8ayDBecy2mEM1DV0ANnq74VI+K8tQF04QYawS1JqegbnJsuGd/OK0IweXa
-	 CZJVL2loPHBU2jl2OtPYzQheafup6jMKobDYoiRpoB6/5plFPLr5axFeLu7OXtllfM
-	 pMZjU765pmUgAv7A5yrtas6+3Y/TOku90HJGojBs=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1755504082; c=relaxed/simple;
+	bh=18mtWKEFsdav4OvyZA1tG7X3awLgBHkMmVqwbQ0u4us=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=tlXfNz5oARUis+5vHpf3hf6NLsDD0bpaVFAE+a1tFJpMKM9RbGT77MQ+7EJVrogwMrmBTlPWJQQwW6ujYn4jBe+2exrCuudtNwdzgCWnbJBLcHDJggpzyR+SJJv65Fz3AZaL3eOrQEUT0ahhiJWtaX64MvGx6AmVMDgwuCal+l8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sBn9Ek+Y; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45a1b00a65fso18449675e9.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 01:01:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755504078; x=1756108878; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8mHPM8YQkeb5dzUYP/jWeZGNM27XcN6UAt7s92fAKeg=;
+        b=sBn9Ek+YnP4KWZF+OpZKVJ5WXBsACLfvNK/tnjcDMvh7Dw3oQFmzzQjzlgszq/ij06
+         u80LPLd36ptBhpjthmI0y/41hK+f1LH3BXkxmxqHSGMOq9Du86S0WnQ9CYb3wguptuR/
+         w7UXYtg9zUzJTk7vhGL/fSzQNWDhgDRlKuoDVuuXn3nOn7NQ8E+SdbSQERqbCQPtS76R
+         igOZzlGsr5alaIoYdvO9b+xLZbj20aXKOvwNewyywPjILOsdzVOU4CAn1uI7oErBEZ49
+         Ckm0B2WQHvygXaeDBfrtEypMM6DW4qczvaOGLy/6IhosVbPLltSk+Sa0ILYmTlTwGNKG
+         kjSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755504078; x=1756108878;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8mHPM8YQkeb5dzUYP/jWeZGNM27XcN6UAt7s92fAKeg=;
+        b=qee8470uICP+7A51BpdIjdXi9FCQfN/rEoWQ/iniGDIORLWttjHc+QW7D0eovUolTv
+         JHdV5N/vPSHdg0zumVYlAlTbTZXP30oVMzVxOF+44al9gPn0wVClKWTudKT+dONKDMpM
+         dF1QubqR+FLJU6ecvCfZKpqrBMwvpSi5xDiw9WW0AOzNHYsBoYmrHfJ8+j8aw16jfGSS
+         7XVN20iTr1oEO0QcHgBY3DG+V3Eh6gKRTs56MQ6Ry2bUgD2xdpAtiIS2DvpjqfjMisXW
+         Nm/Os+aHUvpc1+ZD5ro3JwwwAeP0hGFqZH0N27/45I8C6ObUftgCKMZnrnfL/9vVydY+
+         +jHQ==
+X-Gm-Message-State: AOJu0YykGAO65R0Vv/IBbZgUNFw+dHMVEQ6QiYijDmimg3aGzgKCbQFx
+	nqsE7IokNCqmc/JUtoQ0EbVDgWpYegUH9EcwGpZOz8i9IJ2mk6lC9Yf8zYVjTj+c/ZU=
+X-Gm-Gg: ASbGncvN6HUEOBannwlHAtSOoNx+rLJo7bJjI7LAD5FSAaLYQJIJTTePlCyqGtp1FkY
+	liBsEuvSwtC+qGH/XfYt0PNNZMogDhAZ2RqN/NVzXeE6BfGaw17PZ3UkX7WLO+0ehjPcu5YrFRL
+	fefrWFFlLDv8ogWPF2wsh9ZLLsAXcndnETsAsHq7rYRQ/vnIerSYU8wuDfAkSDekJjb7JbyBcly
+	ON2rJNST2TMUHBhD9nnL2lenf1y6wL0Mu8jFRDYsrcRq1sKVUfHfoxL3zoTRtZWaYeM85QNqFhQ
+	kQ/g66N8zYwfb9cufzH92m9vQq6kSqnorAbIDsTbBVj7oSFtF4kg0fYgnfvOwl/vr4uqy3rJpCH
+	heEBRQZEWPmsbx+A5nzLPVeBxCrcFHXeaPHS8i/rQ4tGmSmYzIc2S6XIoJIpMLEtTB/4e53dH
+X-Google-Smtp-Source: AGHT+IHtNmeWv71R/NzuJ6rCmd2YleYZrdpfO+N7HxQ/sX3ETEDLXy8M/w4CZrrEkHpyLEzRMlluuA==
+X-Received: by 2002:a05:600c:c059:10b0:458:bc58:850c with SMTP id 5b1f17b1804b1-45a218013abmr48669965e9.1.1755504078483;
+        Mon, 18 Aug 2025 01:01:18 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:70d:8646:e014:cc6e? ([2a01:e0a:3d9:2080:70d:8646:e014:cc6e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a209c25a1sm132617325e9.22.2025.08.18.01.01.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Aug 2025 01:01:17 -0700 (PDT)
+Message-ID: <8e64245a-d7ce-40b7-b884-84a7234c4a3e@linaro.org>
+Date: Mon, 18 Aug 2025 10:01:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250816055432.131912-3-will@willwhang.com>
-References: <20250816055432.131912-1-will@willwhang.com> <20250816055432.131912-3-will@willwhang.com>
-Subject: Re: [PATCH v3 2/2] media: i2c: imx585: Add Sony IMX585 image-sensor driver
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Will Whang <will@willwhang.com>
-Date: Mon, 18 Aug 2025 08:58:29 +0100
-Message-ID: <175550390975.1721288.3121861926484209664@ping.linuxembedded.co.uk>
-User-Agent: alot/0.9.1
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 00/13] soc: amlogic: clk-measure: Add more SoCs to support
+ clk-measure
+To: chuan.liu@amlogic.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250815-add-more-socs-to-support-clk_measure-v1-0-59f04ba67457@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250815-add-more-socs-to-support-clk_measure-v1-0-59f04ba67457@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Will,
+Hi,
 
-Thanks for working on getting this upstream! I'm always happy to see
-more cameras supported for all platforms!
+On 15/08/2025 10:37, Chuan Liu via B4 Relay wrote:
+> As support for clk-measure expands across more SoCs, the current
+> approach of defining all SoC-specific clk-measure table data in the
+> driver .c file results in progressively larger compiled images,
+> resulting in memory wastage.
+> 
+> Move SoC-specific clk-measure tables to DTS definitions and extend
+> support for additional SoCs (A4, A5, S7, S7D and S6).
 
-Please post the IMX585 camera sensor helpers to libcamera too - they're
-eligible for merge when a driver is posted publicly to the kernel
-mailing list.
+This breaks ABI and most importantly the clk measure feature on new kernel
+and old DTs. So instead keep it as-is for current platforms and try to
+add this for new platforms.
 
-I'm only tackling the black level in this review at the moment as I
-noticied it so trimming out other parts for the review:
+But the fact you need clkmsr-reg-v2 means you at least need to add a generic
+compatible for v2 register map and drop this property.
 
+Overall, I'm not a great fan of this, it moves data to DT and duplicates
+the strings in _all_ board DTs, which is worse in fine.
 
-Quoting Will Whang (2025-08-16 06:54:32)
-> Implements support for:
->   * 4-lane / 2-lane CSI-2
->   * 12-bit linear, 4K/FHD mode.
->   * Monochrome variant.
->   * Tested on Raspberry Pi 4/5 with 24 MHz clock.
->=20
-> Signed-off-by: Will Whang <will@willwhang.com>
+Neil
+
+> 
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 > ---
+> Chuan Liu (13):
+>        dt-bindings: soc: amlogic: Add clk-measure related properties
+>        soc: amlogic: clk-measure: Remove the msr_data from clk-measure
+>        ARM: dts: amlogic: add clk-measure IDs and names for meson SoC family
+>        arm64: dts: amlogic: add clk-measure IDs and names for Amlogic SoCs
+>        dt-bindings: soc: amlogic: Unify the compatible property for clk-measure
+>        soc: amlogic: clk-measure: Unify the compatible property
+>        ARM: dts: amlogic: Unify the compatible property for clk-measure
+>        arm64: dts: amlogic: Unify the compatible property for clk-measure
+>        arm64: dts: amlogic: A4: Add clk-measure controller node
+>        arm64: dts: amlogic: A5: Add clk-measure controller node
+>        arm64: dts: amlogic: S7: Add clk-measure controller node
+>        arm64: dts: amlogic: S7D: Add clk-measure controller node
+>        arm64: dts: amlogic: S6: Add clk-measure controller node
+> 
+>   .../soc/amlogic/amlogic,meson-gx-clk-measure.yaml  |  66 +-
+>   arch/arm/boot/dts/amlogic/meson8.dtsi              |  94 ++-
+>   arch/arm/boot/dts/amlogic/meson8b.dtsi             |  94 ++-
+>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 212 +++++
+>   arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 202 +++++
+>   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        | 275 +++++-
+>   arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        | 312 +++++++
+>   arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        | 253 ++++++
+>   arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       | 243 ++++++
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi         | 144 +++-
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |   2 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12a.dtsi        | 229 +++++
+>   arch/arm64/boot/dts/amlogic/meson-gx.dtsi          | 136 ++-
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 301 ++++++-
+>   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         | 255 +++++-
+>   drivers/soc/amlogic/meson-clk-measure.c            | 930 ++-------------------
+>   16 files changed, 2877 insertions(+), 871 deletions(-)
+> ---
+> base-commit: e5624eb63c452efa753759e74eb27fe132eb577c
+> change-id: 20250731-add-more-socs-to-support-clk_measure-b2a43590d5aa
+> 
+> Best regards,
 
-<snip>
-
-> +
-> +/* Black level control */
-> +#define IMX585_REG_BLKLEVEL             CCI_REG16_LE(0x30dc)
-> +#define IMX585_BLKLEVEL_DEFAULT         50
-
-50 ... seems surprisingly low to me ... Is that a 10 bit value or a 12
-bit value ? You only have 12 bit modes ...
-
-Oh - fortunately I can see a datasheet on this one.
-
-"""
-When the output data length is 10-bit output, increasing the register
-setting value by 1h increases the black level by 1 LSB. When the output
-data length is 12-bit output, increasing the register setting value by
-1h increases the black level by 4 LSB.
-
-Use with values shown below is recommended.
-10-bit output: 032h (50d in LSB units)
-12-bit output: 032h (200d in LSB units)
-"""
-
-
-Ok - so the value written is always a 10 bit number regardless of the
-mode, which gives 3200 as a 16 bit value which is more in the range I
-would have expected, so now it makes sense.
-
-> +
-> +/* Digital Clamp */
-> +#define IMX585_REG_DIGITAL_CLAMP        CCI_REG8(0x3458)
-> +
-
-<snip>
-
-> +/* ---------------------------------------------------------------------=
------
-> + * Controls
-> + * ---------------------------------------------------------------------=
------
-> + */
-> +
-> +static int imx585_set_ctrl(struct v4l2_ctrl *ctrl)
-> +{
-> +       struct imx585 *imx585 =3D container_of(ctrl->handler, struct imx5=
-85, ctrl_handler);
-> +       const struct imx585_mode *mode, *mode_list;
-> +       struct v4l2_subdev_state *state;
-> +       struct v4l2_mbus_framefmt *fmt;
-> +       unsigned int num_modes;
-> +       int ret =3D 0;
-> +
-> +       state =3D v4l2_subdev_get_locked_active_state(&imx585->sd);
-> +       fmt =3D v4l2_subdev_state_get_format(state, 0);
-> +
-> +       get_mode_table(imx585, fmt->code, &mode_list, &num_modes);
-> +       mode =3D v4l2_find_nearest_size(mode_list, num_modes, width, heig=
-ht,
-> +                                     fmt->width, fmt->height);
-> +
-> +       /* Apply control only when powered (runtime active). */
-> +       if (!pm_runtime_get_if_active(imx585->clientdev))
-> +               return 0;
-> +
-> +       switch (ctrl->id) {
-> +       case V4L2_CID_EXPOSURE: {
-> +               u32 shr =3D (imx585->vmax - ctrl->val) & ~1U; /* SHR alwa=
-ys a multiple of 2 */
-> +
-> +               dev_dbg(imx585->clientdev, "EXPOSURE=3D%u -> SHR=3D%u (VM=
-AX=3D%u HMAX=3D%u)\n",
-> +                       ctrl->val, shr, imx585->vmax, imx585->hmax);
-> +
-> +               ret =3D cci_write(imx585->regmap, IMX585_REG_SHR, shr, NU=
-LL);
-> +               if (ret)
-> +                       dev_err_ratelimited(imx585->clientdev, "SHR write=
- failed (%d)\n", ret);
-> +               break;
-> +       }
-> +       case V4L2_CID_ANALOGUE_GAIN:
-> +               dev_dbg(imx585->clientdev, "ANALOG_GAIN=3D%u\n", ctrl->va=
-l);
-> +               ret =3D cci_write(imx585->regmap, IMX585_REG_ANALOG_GAIN,=
- ctrl->val, NULL);
-> +               if (ret)
-> +                       dev_err_ratelimited(imx585->clientdev, "Gain writ=
-e failed (%d)\n", ret);
-> +               break;
-> +       case V4L2_CID_VBLANK: {
-> +               u32 current_exposure =3D imx585->exposure->cur.val;
-> +
-> +               imx585->vmax =3D (mode->height + ctrl->val) & ~1U;
-> +
-> +               current_exposure =3D clamp_t(u32, current_exposure,
-> +                                          IMX585_EXPOSURE_MIN, imx585->v=
-max - IMX585_SHR_MIN);
-> +               __v4l2_ctrl_modify_range(imx585->exposure,
-> +                                        IMX585_EXPOSURE_MIN, imx585->vma=
-x - IMX585_SHR_MIN, 1,
-> +                                        current_exposure);
-> +
-> +               dev_dbg(imx585->clientdev, "VBLANK=3D%u -> VMAX=3D%u\n", =
-ctrl->val, imx585->vmax);
-> +
-> +               ret =3D cci_write(imx585->regmap, IMX585_REG_VMAX, imx585=
-->vmax, NULL);
-> +               if (ret)
-> +                       dev_err_ratelimited(imx585->clientdev, "VMAX writ=
-e failed (%d)\n", ret);
-> +               break;
-> +       }
-> +       case V4L2_CID_HBLANK: {
-> +               u64 pixel_rate =3D (u64)mode->width * IMX585_PIXEL_RATE;
-> +               u64 hmax;
-> +
-> +               do_div(pixel_rate, mode->min_hmax);
-> +               hmax =3D (u64)(mode->width + ctrl->val) * IMX585_PIXEL_RA=
-TE;
-> +               do_div(hmax, pixel_rate);
-> +               imx585->hmax =3D (u32)hmax;
-> +
-> +               dev_dbg(imx585->clientdev, "HBLANK=3D%u -> HMAX=3D%u\n", =
-ctrl->val, imx585->hmax);
-> +
-> +               ret =3D cci_write(imx585->regmap, IMX585_REG_HMAX, imx585=
-->hmax, NULL);
-> +               if (ret)
-> +                       dev_err_ratelimited(imx585->clientdev, "HMAX writ=
-e failed (%d)\n", ret);
-> +               break;
-> +       }
-> +       case V4L2_CID_HFLIP:
-> +               ret =3D cci_write(imx585->regmap, IMX585_FLIP_WINMODEH, c=
-trl->val, NULL);
-> +               if (ret)
-> +                       dev_err_ratelimited(imx585->clientdev, "HFLIP wri=
-te failed (%d)\n", ret);
-> +               break;
-> +       case V4L2_CID_VFLIP:
-> +               ret =3D cci_write(imx585->regmap, IMX585_FLIP_WINMODEV, c=
-trl->val, NULL);
-> +               if (ret)
-> +                       dev_err_ratelimited(imx585->clientdev, "VFLIP wri=
-te failed (%d)\n", ret);
-> +               break;
-> +       case V4L2_CID_BRIGHTNESS: {
-
-This is the wrong control to set blacklevel.
-
-Please use V4L2_CID_BLACK_LEVEL
-
-
-> +               u16 blacklevel =3D min_t(u32, ctrl->val, 4095);
-
-do you know if the value is specific to which mode the sensor is in ?
-
-I assume this is a 10 bit value if the sensor is in a 10 bit mode and a
-12 bit mode if the sensor is in 12 bit mode for example.
-
-
-Edit: Nope - now I've found a datasheet - this is /always/ a 10 bit
-value. Can you document that with a comment please? Especially as this
-driver only currently outputs 12 bit modes but uses a 10 bit black level
-that could be confusing otherwise.
-
-If we want to make that adjustable from libcamera we'll have to be
-careful to always use the correct units.
-
-
-
-> +
-> +               ret =3D cci_write(imx585->regmap, IMX585_REG_BLKLEVEL, bl=
-acklevel, NULL);
-> +               if (ret)
-> +                       dev_err_ratelimited(imx585->clientdev, "BLKLEVEL =
-write failed (%d)\n", ret);
-> +               break;
-> +       }
-> +       default:
-> +               dev_dbg(imx585->clientdev, "Unhandled ctrl %s: id=3D0x%x,=
- val=3D0x%x\n",
-> +                       ctrl->name, ctrl->id, ctrl->val);
-> +               break;
-> +       }
-> +
-> +       pm_runtime_put(imx585->clientdev);
-> +       return ret;
-> +}
-> +
-> +static const struct v4l2_ctrl_ops imx585_ctrl_ops =3D {
-> +       .s_ctrl =3D imx585_set_ctrl,
-> +};
-> +
-> +static int imx585_init_controls(struct imx585 *imx585)
-> +{
-> +       struct v4l2_ctrl_handler *hdl =3D &imx585->ctrl_handler;
-> +       struct v4l2_fwnode_device_properties props;
-> +       int ret;
-> +
-> +       ret =3D v4l2_ctrl_handler_init(hdl, 16);
-> +
-> +       /* Read-only, updated per mode */
-> +       imx585->pixel_rate =3D v4l2_ctrl_new_std(hdl, &imx585_ctrl_ops,
-> +                                              V4L2_CID_PIXEL_RATE,
-> +                                              1, UINT_MAX, 1, 1);
-> +
-> +       imx585->link_freq =3D
-> +               v4l2_ctrl_new_int_menu(hdl, &imx585_ctrl_ops, V4L2_CID_LI=
-NK_FREQ,
-> +                                      0, 0, &link_freqs[imx585->link_fre=
-q_idx]);
-> +       if (imx585->link_freq)
-> +               imx585->link_freq->flags |=3D V4L2_CTRL_FLAG_READ_ONLY;
-> +
-> +       imx585->vblank =3D v4l2_ctrl_new_std(hdl, &imx585_ctrl_ops,
-> +                                          V4L2_CID_VBLANK, 0, 0xFFFFF, 1=
-, 0);
-> +       imx585->hblank =3D v4l2_ctrl_new_std(hdl, &imx585_ctrl_ops,
-> +                                          V4L2_CID_HBLANK, 0, 0xFFFF, 1,=
- 0);
-> +       imx585->blacklevel =3D v4l2_ctrl_new_std(hdl, &imx585_ctrl_ops,
-> +                                              V4L2_CID_BRIGHTNESS, 0, 0x=
-FFFF, 1,
-
-You're setting max to 0xFFFF but in the code you clamp it to 4095
-(0xFFF)?
-
-I'd use readable decimal values for the black level range rather than
-hex, as I think of black level in decimal values.
-
-If you set this to=20
-
-      imx585->blacklevel =3D v4l2_ctrl_new_std(hdl, &imx585_ctrl_ops,
-                                              V4L2_CID_BLACK_LEVEL, 0, 4095=
-, 1,
-					      IMX585_BLKLEVEL_DEFAULT);
-
-you can remove the clamp from the set controls call as v4l2 will
-restrict the values.
-
-Oh ... I just looked at the datasheet again:=20
-
-Setting value
-
-Initial value 032h
-Setting value 000h to 3FFh
-
-So the actual maximum is 1023. Maybe hex (0x3ff) or decimal is fine
-either way depending on if you want to closely match the datasheet.
-
-
-
-
-> +                                              IMX585_BLKLEVEL_DEFAULT);
-> +
-> +       imx585->exposure =3D v4l2_ctrl_new_std(hdl, &imx585_ctrl_ops,
-> +                                            V4L2_CID_EXPOSURE,
-> +                                            IMX585_EXPOSURE_MIN, IMX585_=
-EXPOSURE_MAX,
-> +                                            IMX585_EXPOSURE_STEP, IMX585=
-_EXPOSURE_DEFAULT);
-> +
-> +       imx585->gain =3D v4l2_ctrl_new_std(hdl, &imx585_ctrl_ops, V4L2_CI=
-D_ANALOGUE_GAIN,
-> +                                        IMX585_ANA_GAIN_MIN, IMX585_ANA_=
-GAIN_MAX,
-> +                                        IMX585_ANA_GAIN_STEP, IMX585_ANA=
-_GAIN_DEFAULT);
-> +
-> +       imx585->hflip =3D v4l2_ctrl_new_std(hdl, &imx585_ctrl_ops,
-> +                                         V4L2_CID_HFLIP, 0, 1, 1, 0);
-> +       imx585->vflip =3D v4l2_ctrl_new_std(hdl, &imx585_ctrl_ops,
-> +                                         V4L2_CID_VFLIP, 0, 1, 1, 0);
-> +
-> +       if (hdl->error) {
-> +               ret =3D hdl->error;
-> +               dev_err(imx585->clientdev, "control init failed (%d)\n", =
-ret);
-> +               goto err_free;
-> +       }
-> +
-> +       ret =3D v4l2_fwnode_device_parse(imx585->clientdev, &props);
-> +       if (ret)
-> +               goto err_free;
-> +
-> +       ret =3D v4l2_ctrl_new_fwnode_properties(hdl, &imx585_ctrl_ops, &p=
-rops);
-> +       if (ret)
-> +               goto err_free;
-> +
-> +       imx585->sd.ctrl_handler =3D hdl;
-> +       return 0;
-> +
-> +err_free:
-> +       v4l2_ctrl_handler_free(hdl);
-> +       return ret;
-> +}
-> +
-> +static void imx585_free_controls(struct imx585 *imx585)
-> +{
-> +       v4l2_ctrl_handler_free(imx585->sd.ctrl_handler);
-> +}
-> +};
-
-<snip>
 
