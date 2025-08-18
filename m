@@ -1,131 +1,136 @@
-Return-Path: <devicetree+bounces-205929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC001B2AE93
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 18:55:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAFF5B2AEC6
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:02:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD23E564F62
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 16:55:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D3B6566E7F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:00:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 437F0335BAD;
-	Mon, 18 Aug 2025 16:55:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 447B224887E;
+	Mon, 18 Aug 2025 17:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="BuaHtJtK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EWLuNN6m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0CB1581EE;
-	Mon, 18 Aug 2025 16:55:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BEE735A2B9;
+	Mon, 18 Aug 2025 17:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755536125; cv=none; b=Zi6W1k4c2Yo+/P83JaVSHJxgggkCoP5iKkJ5L4RULOJA/EGXSgrYYQy+W8Khef/vE8eEPTSwWxZ6ISFhpn9m+YsNtP2nFf9FUj8CxEcdZZyUOZmGoZ0CH6/QI3fX1RvNGHnatjv1yIRPlzAziurjP9hgB0w78wA4lrhkbWRNQHg=
+	t=1755536452; cv=none; b=SlYhPc6SBfuPe+nGRomNrMzzi+wyQlXytfQqA0Ifat6NBeUw2HsLiUeIbKe+Upyr62A4kmiJ1bqHWIFpLrAxKm28r5OmplgeuNbaskHfGHzycUn5ngwlChbvnBTKIH7QUAMibVtPV1694+aoKCQVL+tdJl+9Q+eb+uoDXOyfl6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755536125; c=relaxed/simple;
-	bh=g4CIE3yRi37sTgTwAwcHt2iySMTeRTXJa+ahuYCtcgI=;
+	s=arc-20240116; t=1755536452; c=relaxed/simple;
+	bh=FnEIBDDE8n0PsWTHyu7mM01/bgnMCKkNcQpwfrnPb1c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DwSN2VE7NQnxv3ynKq9DV2I8ZJjkWGXOu5x/RoH8ffhD9/Wz4/gacy1GhiNZL6Ud8Z1XgPXohbm084f7dcoB1gQXZN1P/P4OSIttErH6wu12qEZYHB6q7mAsMbe8HfPfl8SMFoxJA9+urXowui3vsa6sYPo/jWC7CnSlbwXcATQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=BuaHtJtK; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=QnKxa06RRJ+jhOD5mej1Uo0AmcaFzK3gAg2IgogA8nA=; b=BuaHtJtKwkpSVs+iLrjnAgeJ7O
-	5wC3MHN5ZiBeBMxakDs1ESkotR2+U8lLXVfeKonj2SlFKfZtQYjjQuS5AGiz5Z+6EjJ/aTVN4qxGT
-	Y5LHvARE5CfCzuYOIMSF25jDTL1olqtjRLgTUzkXdvcB8l0eswi2QsykuQS4sVW8ruqs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uo38d-0055Cu-Up; Mon, 18 Aug 2025 18:55:15 +0200
-Date: Mon, 18 Aug 2025 18:55:15 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: David Yang <mmyangfl@gmail.com>
-Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [net-next v4 1/3] dt-bindings: net: dsa: yt921x: Add Motorcomm
- YT921x switch support
-Message-ID: <7c4bc4cc-61d5-40ce-b0d5-c47072ee2f16@lunn.ch>
-References: <20250818162445.1317670-1-mmyangfl@gmail.com>
- <20250818162445.1317670-2-mmyangfl@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LjEZq978nv9EAVznTG86CPjalERDypLkQ+phVwHgjgwEqjBMjHLzfUTvJvU0NA/gwBAe0Jei7pMKLwNboGlK4W5hfdfOI6zkXuJjQmCkKG+7YdaHnR2ZXwVEzR2Aw6v0UwghW0G4k2LFi6Apszi6YZqrfsvdraBoU0CtfyMuZ/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EWLuNN6m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A46EC4CEEB;
+	Mon, 18 Aug 2025 17:00:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755536451;
+	bh=FnEIBDDE8n0PsWTHyu7mM01/bgnMCKkNcQpwfrnPb1c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EWLuNN6mPszrPCinR0csQZqdoCEnEH1zON0lv62oTm33yiHDoLTpVZu/iOj7bN3Ql
+	 JqFRdjcti4mi4KvFcNoL2LLKoNm+fvfdBMHPtAkeUisc9c1cKpCKqFgaIT0WCZhiL5
+	 rbh9JpOu+stEXvz6jZacF4+4dwi2iR3JGW6zonuMqZfxvwi2XQW7BuOG+mNBUinf9L
+	 mqPmzLTQ3/1dbZiIyKacSzrBFOSU4lp2+0nXKsyZYql+DT8hbIC9XPR9dFBK/R9yDT
+	 6fZhtDSBx8iDO0c5BNyAS5F3HyHFOm9iZqbNla7UlR/KvufjOJXcw9JwZ91u71se0p
+	 cUXShKn7kXPRw==
+Date: Mon, 18 Aug 2025 18:00:48 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jon Hunter <jonathanh@nvidia.com>, Sheetal <sheetal@nvidia.com>,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: power: Add power domain IDs for Tegra264
+Message-ID: <20250818-citizen-doornail-324327bc3942@spud>
+References: <20250818135241.3407180-1-thierry.reding@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="DLKZrvpokEs9J5w9"
+Content-Disposition: inline
+In-Reply-To: <20250818135241.3407180-1-thierry.reding@gmail.com>
+
+
+--DLKZrvpokEs9J5w9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250818162445.1317670-2-mmyangfl@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-> +  motorcomm,switch-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Value selected by Pin SWITCH_ID_1 / SWITCH_ID_0.
+On Mon, Aug 18, 2025 at 03:52:41PM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+>=20
+> Add the set of power domain IDs available on the Tegra264 SoC so that
+> they can be used in device tree files.
+>=20
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  .../power/nvidia,tegra264-powergate.h         | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+>  create mode 100644 include/dt-bindings/power/nvidia,tegra264-powergate.h
+>=20
+> diff --git a/include/dt-bindings/power/nvidia,tegra264-powergate.h b/incl=
+ude/dt-bindings/power/nvidia,tegra264-powergate.h
+> new file mode 100644
+> index 000000000000..344c669e4a52
+> --- /dev/null
+> +++ b/include/dt-bindings/power/nvidia,tegra264-powergate.h
+> @@ -0,0 +1,26 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)  */
+> +/* Copyright (c) 2022-2024, NVIDIA CORPORATION.  All rights reserved. */
 > +
-> +      Up to 4 chips can share the same MII port ('reg' in DT) by giving
-> +      different SWITCH_ID values. The default value should work if only one chip
-> +      is present.
-> +    enum: [0, 1, 2, 3]
-> +    default: 0
+> +#ifndef DT_BINDINGS_POWER_NVIDIA_TEGRA264_H
+> +#define DT_BINDINGS_POWER_NVIDIA_TEGRA264_H
+> +
+> +#define TEGRA264_POWER_DOMAIN_DISP	1
+> +#define TEGRA264_POWER_DOMAIN_AUD	2
+> +/* reserved 3:9 */
+> +#define TEGRA264_POWER_DOMAIN_XUSB_SS	10
+> +#define TEGRA264_POWER_DOMAIN_XUSB_DEV	11
+> +#define TEGRA264_POWER_DOMAIN_XUSB_HOST	12
+> +#define TEGRA264_POWER_DOMAIN_MGBE0	13
+> +#define TEGRA264_POWER_DOMAIN_MGBE1	14
+> +#define TEGRA264_POWER_DOMAIN_MGBE2	15
+> +#define TEGRA264_POWER_DOMAIN_MGBE3	16
+> +#define TEGRA264_POWER_DOMAIN_VI	17
+> +#define TEGRA264_POWER_DOMAIN_VIC	18
+> +#define TEGRA264_POWER_DOMAIN_ISP0	19
+> +#define TEGRA264_POWER_DOMAIN_ISP1	20
+> +#define TEGRA264_POWER_DOMAIN_PVA0	21
+> +#define TEGRA264_POWER_DOMAIN_GPU	22
+> +
 
-It is like getting blood from a stone.
+> +#define TEGRA264_POWER_DOMAIN_MAX	22
 
-So what you are saying is that you have:
+This shouldn't be here, if you need it put it in the driver.
 
-    mdio {
-        #address-cells = <1>;
-        #size-cells = <0>;
+> +
+> +#endif /* DT_BINDINGS_POWER_NVIDIA_TEGRA264_H */
+> --=20
+> 2.50.0
+>=20
 
-        switch@1d {
-            compatible = "motorcomm,yt9215";
-            /* default 0x1d, alternate 0x0 */
-            reg = <0x1d>;
-            motorcomm,switch-id = <0>;
-            reset-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
-...
-	}
+--DLKZrvpokEs9J5w9
+Content-Type: application/pgp-signature; name="signature.asc"
 
-        switch@1d {
-            compatible = "motorcomm,yt9215";
-            reg = <0x1d>;
-            motorcomm,switch-id = <1>;
-            reset-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
-...
-	}
+-----BEGIN PGP SIGNATURE-----
 
-        switch@1d {
-            compatible = "motorcomm,yt9215";
-            reg = <0x1d>;
-            motorcomm,switch-id = <2>;
-            reset-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
-...
-	}
-    }
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKNcPwAKCRB4tDGHoIJi
+0lpmAQC5KSH2O8yF/DfXzw4MFm9Zt9tTCv1qQb0isRxXv1CfugEA98+zHqY8Uvk6
+Q0lKLlNKSjtOReo4gqG3yUde16xWgAc=
+=kJ+7
+-----END PGP SIGNATURE-----
 
-Have you tested this? My _guess_ is, it does not work.
-
-I'm not even sure DT allows you to have the same reg multiple times on
-one bus.
-
-I'm pretty sure the MDIO core does not allow multiple devices on one
-MDIO address. Each device is represented by a struct
-mdio_device. struct mii_bus has an array of 32 of these, one per
-address on the bus. You cannot have 4 of them for one address.
-
-    Andrew
-
----
-pw-bot: cr
+--DLKZrvpokEs9J5w9--
 
