@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-205618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A7CAB299B3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:31:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC3FB299BD
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 08:32:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD35B7A585A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:29:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 076EB164A6E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 06:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D61B274FC4;
-	Mon, 18 Aug 2025 06:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3C6274FF9;
+	Mon, 18 Aug 2025 06:32:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDXjJtv8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g9tQjYkx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C119223DE8;
-	Mon, 18 Aug 2025 06:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33D0273D84;
+	Mon, 18 Aug 2025 06:32:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755498668; cv=none; b=pAkBIOYtSz8jcS3VvULy9dJ4Rig0UP2jQFP5ZLxbG6l1/4TlWhna7ijzqVD8hTfJVOab0tCNAJiTQ2jiI75s88D7uauUacZdWdtCow6y3CiH841P4Dpz6D74eoPxa1EbT1MACQTp90zN0A8A2pypO8aV1iCdGZaACZa1yL6w0Cc=
+	t=1755498753; cv=none; b=Lt1MYIWzofTYd856GNtajFYX/H4bZaDTXeDDCGdgO5U5rAQYeEdrGGMefha4dmqkqMTvRI3R+Wfhpwfjo8Nauhx+DvM/Ybx4eK2UQSprdNNQyO/CoZUsYsVwnzdG4ZtFkN/8a1d1TBEJ5vj3UC7YqiSf4aewlXbMe27I47bl50k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755498668; c=relaxed/simple;
-	bh=eAB0iQM8ECb1EUyPVWktZLwwrkSHRpvjpaj/cofnVnw=;
+	s=arc-20240116; t=1755498753; c=relaxed/simple;
+	bh=IqeYeauks1YJwsXt8Zs3h943HI/7m7G8G1Ab7AZ2Vp8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XvCfjgfXSVYvc0b5pnYlieyBRt+Mc/ZUOsqLIM4WsIY2HdzsQ3f6Mi47JVn8GxvwbCIP3lTRYck8kMJbeIsws0tcwLHyMZyZJHxI+H5N0ITjNprj5jKMHtpa65GL9SEKgm7HEwrTiYP+YSWQghwvQY41aSMeVyJk1/LyIZQyTW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDXjJtv8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32190C4CEEB;
-	Mon, 18 Aug 2025 06:31:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LwnIMsO9EbvRS2zF4NZgxJFDUKE5pHVhubLEgw6F75+GWCIxoPsGrXo25EiaGutRA99ymwsI+zBJBSsT6cjDO+3tY0jc9o3POQ8EGTDO+i2G1WRd0pO+0/sya0hTeNVSufQVHjPlkAN4GbKs6yEzTsbSCFluC/Z+NSqOrYwdewA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g9tQjYkx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D2D5C4CEEB;
+	Mon, 18 Aug 2025 06:32:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755498668;
-	bh=eAB0iQM8ECb1EUyPVWktZLwwrkSHRpvjpaj/cofnVnw=;
+	s=k20201202; t=1755498753;
+	bh=IqeYeauks1YJwsXt8Zs3h943HI/7m7G8G1Ab7AZ2Vp8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aDXjJtv8cLaM97vdKMKLBX5/eDHrjUrHBjFcTeDJ0Vdiwkenbnpl7H/1M4lENygVG
-	 Z2oJAz/aD3by4o/qKfUDETPe65UkwQ3KFhNmVttyrcRPVLs9S7bLDWI7SVFlCjutO+
-	 MGuNmhKYa8m/QmgbXFl3M8u0wcHpSyk0VcKgrq6BSjLv50zydqNTQriGvjtFZSZhSz
-	 K7J0Y/vm4vkPmycGRqcijygrIcz8kwzWufibtzurNAwTVzur6P2Sq4kdRlAAPQjFKQ
-	 eXkIPtbZm6QHZW1CeZuTUo+4+bpKbHt+oLYJLlIJ5e1RFGRgBHmg4BnddxeDHD/Lci
-	 U5mUxj/TIgkgQ==
-Message-ID: <d009e0b2-2906-4436-b6a6-c24fecce9298@kernel.org>
-Date: Mon, 18 Aug 2025 08:31:02 +0200
+	b=g9tQjYkxKSJYXuflHqpOhLHcjHwrYSD+4pdI8GtEUOYZ+y2T66B3B0D0j5+u0F9FZ
+	 4w9XRCzBpgdr2pSi4ZXIYNNPYKjYGkqKdHskDzneDAG4jCQJU28/JgHo9yEGUppoWo
+	 KzkyiPl0xD8HatrkvOGt3fIHUXIsrFnx/Fm8zdq21eUI7Lm4FmqlrjVq8Txo1y0Znc
+	 YLyUUn8TinGeoudyWOAFrjFHuzdIAFPdGF7mSzm6O0aY7z0ad2X+QGOI67oogQ0/24
+	 kQMsAr7KL+tp2Wro27lhBntIgSqEOnqdgYnEKG5bc/+SkNMSbOpWWYd66AwXSA9YLd
+	 HkTCGcI2Us86w==
+Message-ID: <2bfa6c0b-1f23-4d57-b618-688ed8dc7fae@kernel.org>
+Date: Mon, 18 Aug 2025 08:32:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: clock: tegra124-dfll: Add property to
- limit frequency
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Joseph Lo <josephl@nvidia.com>,
- Peter De Schrijver <pdeschrijver@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thierry Reding <treding@nvidia.com>
-References: <20250816-tegra210-speedo-v1-0-a981360adc27@gmail.com>
- <20250816-tegra210-speedo-v1-1-a981360adc27@gmail.com>
- <cc3e798e-bb66-4e91-8fda-d1c8fcecf301@kernel.org>
- <CALHNRZ9kLabyFv5PiMb7jrZgPyjOKe5sWEq7EJPb5LO6E6FUMg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/6] Support for Exynos7870's display stack (DECON,
+ MIPIPHY, DSIM, etc.)
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250627-exynos7870-drm-dts-v2-0-d4a59207390d@disroot.org>
+ <3f4f28cf-417b-4f12-8a3d-c1f70f6871c4@kernel.org>
+ <45fc52d9988d1bf17eca392364c63193@disroot.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,31 +105,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CALHNRZ9kLabyFv5PiMb7jrZgPyjOKe5sWEq7EJPb5LO6E6FUMg@mail.gmail.com>
+In-Reply-To: <45fc52d9988d1bf17eca392364c63193@disroot.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/08/2025 05:23, Aaron Kling wrote:
+On 17/08/2025 16:49, Kaustabh Chakraborty wrote:
+> On 2025-08-13 07:58, Krzysztof Kozlowski wrote:
+>> On 26/06/2025 22:13, Kaustabh Chakraborty wrote:
+>>> This series implements changes in the SoC subsystem, which includes
+>>> devicetree additions. It depends on all sub-series listed below:
+>>> (Legend: [R]eviewed, [A]ccepted)
 >>>
->>> +Optional properties for limiting frequency:
->>> +- nvidia,dfll-max-freq: Maximum scaling frequency.
+>>> exynosdrm-decon            - 
+>>> https://lore.kernel.org/r/20250627-exynosdrm-decon-v3-0-5b456f88cfea@disroot.org
+>>> exynos7870-mipi-phy        A 
+>>> https://lore.kernel.org/r/20250612-exynos7870-mipi-phy-v1-0-3fff0b62d9d3@disroot.org
+>>> exynos7870-mipi-phy-fix    - 
+>>> https://lore.kernel.org/r/20250627-exynos7870-mipi-phy-fix-v1-0-2eefab8b50df@disroot.org
+>>> exynos7870-dsim            - 
+>>> https://lore.kernel.org/r/20250627-exynos7870-dsim-v2-0-1433b67378d3@disroot.org
+>>> panel-samsung-s6e8aa5x01   - 
+>>> https://lore.kernel.org/r/20250625-panel-samsung-s6e8aa5x01-v3-0-9a1494fe6c50@disroot.org
+>>> panel-synaptics-tddi       - 
+>>> https://lore.kernel.org/r/20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org
+>>>
+>>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 >>
->>
->> 1. Frequency is in units.
-> Ack, will fix in whatever form a new revision takes.
+>> What is the status of the bindings from dependencies? I think they were
+>> not accepted.
 > 
->> 2. OPP defines it already, doesn't it?
-> The dfll driver generates the cpu opp table based on soc sku's, it
-> doesn't use dt opp tables. This property is intended to modify the
-> generation of said table. That said, if there's a generic dt opp
-> paradigm for this that I missed which works without dt opp tables, I'd
-> be happy to use that instead.
+> Except panel-synaptics-tddi, all have been accepted. A lot of them
+> haven't hit next though. I'm waiting for that to send the next revision.
 
-Usually list of frequencies is via OPP, if it is not applicable here, it
-should be explained briefly.
+What does it mean - accepted but not hit next? If it is accepted, it
+must be visible in next. Which maintainer's tree are not in the next?
 
-Just like - why same devices have different values should be explained
-(commit msg is not precise here).
 
 Best regards,
 Krzysztof
