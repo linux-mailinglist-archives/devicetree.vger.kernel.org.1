@@ -1,97 +1,50 @@
-Return-Path: <devicetree+bounces-205562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63EDAB29751
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 05:25:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C1DFB2976F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 05:51:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4EBB74E1F62
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 03:25:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A44F81964CF5
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 03:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970A225E834;
-	Mon, 18 Aug 2025 03:25:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KFJxbViO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD2C7245031;
+	Mon, 18 Aug 2025 03:51:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F6A51DDC08;
-	Mon, 18 Aug 2025 03:25:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101CD20322
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 03:51:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755487513; cv=none; b=Tvdgw/r3o5bzUqb9dRcR4g175HI+bz4EN6ZXTG/uwgAnn+LIwSA0KbhAaHpA+CK3hQQqqQ3bGbVOt/KubcOFwVPwy6Rzh0N8mBuMty6loA8kRhNhV0IE2OJaqiak6f7e9UtDlsQwnBKgY+mD60TZ/Tr1qaBzMaUTqkzpW0AhrqI=
+	t=1755489073; cv=none; b=nzWR0QpGcUtWvgOlrIRjPo+CazNEQtTQG0z6o/9t5FQeLT8IBm6FMeKf6ERvq4qwLa/D/DpKeBvrmSV96dtMk/IIF/GtLMBEy99+S40RGeOBY76Krr4c6EJwpYj/90UkUJ5+K+SxqY5xF58avW1jVy8Qclvc10/NNkxvvVzez/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755487513; c=relaxed/simple;
-	bh=E29G00bJo5W0ceSVlw85nDvCJoLFQhZsxrQRqwDK/6w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JBArsPV6kcHJsl98lYTZbESOSoreTvduySynuyorzM4vjGAWOTzjHvN/8nbbzG6dq+97gH66De1ayhnGzNInVP29etp/T1wZyBKQToFjPQkoA3i0wkJczmGnZGQl8hC95GdvQ4NBkQB5AVxktvtVRU7BerwAjRZ5Gd603GvO/rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KFJxbViO; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-24456f3f669so35191575ad.1;
-        Sun, 17 Aug 2025 20:25:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755487511; x=1756092311; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E29G00bJo5W0ceSVlw85nDvCJoLFQhZsxrQRqwDK/6w=;
-        b=KFJxbViOccUrPQAE7PXLldcuuSZIp8peuoTvOfRjd+ET40R0YOeu3DVrrZqpHq2sWc
-         NVsRfS93saPZnAXixLa/Y3HIyKhzQFmDbnUZGcI5vgA6XYEolmRzUE6tl5XRIS24O4Tv
-         TLecG/R2914qC3LLBfyoMUtHa+EcPJILzveFc/NFpeYOgcztzJaYjwKj9hyk6M5gj/wC
-         HSfSjUwYt7lzGrRLTB80reKDj6HarqCVhJ04z6qQMKrMPGbSlXRAAXsxycd18JEPmxTU
-         3ZB5kPookFavYOnt5WZJQL3DezdXaMyzdLJYdDOq8QelkQyDWTm/w6suJ9NURg4AEy72
-         xFwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755487511; x=1756092311;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E29G00bJo5W0ceSVlw85nDvCJoLFQhZsxrQRqwDK/6w=;
-        b=hVTXf0mETInV8elkCbTVVnytsBJJjK1Y77QyO4+SI1SubQJM/jZ5rbfz7UtSdV37Bn
-         xKfN/HlAfZGG+5UMfQ85T6hEQhs79VT0xPlmW3yP1O9gu5VH3205NUhQHpYzrl9X3qWs
-         xhs63Y1mUHZ/OOOwB4Q+lHPvJ0waLiZWgm0M0dCBClYAs+xq3LOc9mjOL/AQq6gdwo41
-         p4n1kxNj1D+7ELEVY6d9CY7DK7Zx4SGjuy/mIpI5RmOAaDNwUR0Z6HhFnIQKxsxdr3HI
-         ZXe+eS09mtxlhZNfDc6upO9o9XrViE5cIHTKlhdSuHbuHY2wY0WZP1sqSmiXhga3ZpHd
-         UWCw==
-X-Forwarded-Encrypted: i=1; AJvYcCVOqEa0hpemJRk5poLyV+UpnqZGDURDlO3wjqGBgKws0g9msGad0BGq+778ItO8e3EGgSFqXx5ZUelVz9k=@vger.kernel.org, AJvYcCWgDLe2DCXxbB1EuFO0Kk4BMvGwduuF0L22f4EQ9GHMiJkZQo24Gl58sb83+TnX6Ud2voYgYIiinLko@vger.kernel.org, AJvYcCWu+MgPapqRk08NKqYMt0M2zPow/iG9L8ABZ2HTkwxU4lLn6oMSTSfvhmODkqsp54pctM6fGAGZffFk@vger.kernel.org, AJvYcCX5wjyR0HhiUhB3C2twESmqkQ+QkH91D2mzhiBsmydCc9rtLzAcGW5c++G78SVAB4Bmn0HV6dC5CFdOLzrf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0qfEDhzxyG5g1jOe/U12Xqv3UTDQ1c56pvWGkdGyru/iGDJYw
-	JTPNSrGbYM7r5f7SFn721QU4rGTazCIYkd36sppHbm1/p8b7L8Nk/vbh3PEVUA==
-X-Gm-Gg: ASbGnctrZj1IVGJm518FJZemqSuMYVic2g764VcG3/ebfS6OQvn/sKoSQkIWrx2CxpA
-	aoA/JvKfmY7gKzBfE1BWacm43UndLkkEVlV64gC2TjHRKflNeyYjyJ8AP+Nup39DhdZh6MS0Q3X
-	+1pWK6OooKXnM+ztQA4C6yfmYNanupZLrqDXGv4VPmWX9aeUc4NZB7QcwUHcwDKWnpp9nzlZw5y
-	BcaxJ6eb+NpEBciV63jQcPuegzk0Ge2xJ+c0HYH37njTiLaeVxOQGym6N47HwJl50LlNucZk2qX
-	gE30GzpIP/pLXSI1Z2Z3TelFDCrOj2HMXzNC6W2XXfFpl4bezbRpVgtKS10b1vsc37bhjebVnmM
-	zR3fIt3o8x7bk8KVyiWkxGjiDjIdd1yGu4L+wE07/rqQHXdhzpjpKqeIhfu5llk0nOBuoOAONpH
-	yoiYJdJe+mpzyalv4=
-X-Google-Smtp-Source: AGHT+IGCPuIqztyx4RygtP4sPEfUvqj6mba4WZZZUCuucDqVjtfkJIZWVoAbT28i1nkr55HEWB8rVA==
-X-Received: by 2002:a17:902:d483:b0:234:1e11:95a3 with SMTP id d9443c01a7336-2445978c8ccmr221438235ad.13.1755487511284;
-        Sun, 17 Aug 2025 20:25:11 -0700 (PDT)
-Received: from CNTWS00427A.itotolink.net (111-242-93-174.dynamic-ip.hinet.net. [111.242.93.174])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2446d592448sm66070415ad.161.2025.08.17.20.25.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Aug 2025 20:25:10 -0700 (PDT)
-From: ChiShih Tsai <tomtsai764@gmail.com>
-To: linux@roeck-us.net
-Cc: conor+dt@kernel.org,
-	corbet@lwn.net,
+	s=arc-20240116; t=1755489073; c=relaxed/simple;
+	bh=b/4HlgHu7kJA908hjMIi4nMYwthx7jIhc/wvOPeU1JE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=moVswWYMbI8Odiswa6XLIXTiahhgbLNEs5ba/MGtVKPH/le0xe9+YyNMyfeIj1fbR7MvO1QVl5ZUWJaGl+mlXzDiOwvOPNe/036gjYnBaCnlRiKuEN4B2Oj0X65YNAM0zkNz3RhfSL5mBTwwe9Nj9pYWfTAIJoqz5r734ckSmxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=watter.com; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=watter.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ben Collins <bcollins@watter.com>
+To: linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	jdelvare@suse.com,
-	krzk+dt@kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	t630619@gmail.com
-Subject: Re: [PATCH v3 0/2] Add sq24905c support
-Date: Mon, 18 Aug 2025 11:25:07 +0800
-Message-ID: <20250818032507.1195-1-tomtsai764@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <0b7b396a-c53f-4456-ae17-1b5f3c1d6859@roeck-us.net>
-References: <0b7b396a-c53f-4456-ae17-1b5f3c1d6859@roeck-us.net>
+	linux-kernel@vger.kernel.org
+Cc: Ben Collins <bcollins@watter.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Hepp <andrew.hepp@ahepp.dev>
+Subject: [PATCH v4 0/5] iio: mcp9600: Features and improvements
+Date: Sun, 17 Aug 2025 23:50:48 -0400
+Message-Id: <20250818035053.32626-1-bcollins@watter.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,9 +52,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-I see, could you review these patches?
+ChangeLog:
+v3 -> v4:
+  - Based on feedback from David Lechner <dlechner@baylibre.com>
+    * Allow fallback compatible in dt-bindings for mcp9601.
+  - Based on feedback from Jonathan Cameron <jic23@kernel.org>
+    * Be explicit in patch description for fixed width changes.
+    * Check chip_info for NULL to quiet warnings from kernel-test-robot
+    * Remove "and similar" for long description of MCP9600.
+  - Based on lots of feedback, use frequency values for IIR, and use
+    filter_type[none, ema] to enable or disable.
+  - Set default 3 for thermocouple in dt-binding
+  - Rework open/short circuit in dt-bindings
 
-Thanks,
-ChiShih Tsai
+v2 -> v3:
+  - Improve changelogs in each patch
+  - Based on feedback from Andy Shevchenko <andy.shevchenko@gmail.com>
+    * Set register offsets to fixed width
+    * Fix typos
+    * Future-proof Kconfig changes
+    * Convert to using chip_info paradigm
+    * Verbiage: dt -> firmware description
+    * Use proper specifiers and drop castings
+    * Fix register offset to be fixed-width
+    * u8 for cfg var
+    * Fix % type for u32 to be %u
+    * Make blank lines consistent between case statements
+    * FIELD_PREP -> FIELD_MODIFY
+    * Remove explicit setting of 0 value in filter_level
+  - Based on feedback from David Lechner <dlechner@baylibre.com>
+    * Rework IIR values exposed to sysfs. Using the ratios, there was no
+      way to represent "disabled" (i.e. infinity). Based on the bmp280
+      driver I went with using the power coefficients (e.g. 1, 2, 4, 8,
+      ...) where 1 is disabled (n=0).
+
+v1 -> v2:
+  - Break into individual patches
+
+v1:
+  - Initial patch to enable IIR and thermocouple-type
+  - Recognize mcp9601
+
+Ben Collins (5):
+  dt-bindings: iio: mcp9600: Add compatible for microchip,mcp9601
+  iio: mcp9600: White space and fixed width cleanup
+  iio: mcp9600: Recognize chip id for mcp9601
+  iio: mcp9600: Add support for thermocouple-type
+  iio: mcp9600: Add support for IIR filter
+
+ .../iio/temperature/microchip,mcp9600.yaml    |  25 +-
+ drivers/iio/temperature/Kconfig               |   8 +-
+ drivers/iio/temperature/mcp9600.c             | 220 ++++++++++++++++--
+ 3 files changed, 231 insertions(+), 22 deletions(-)
+
+-- 
+2.39.5
 
