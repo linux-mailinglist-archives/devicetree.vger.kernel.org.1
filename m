@@ -1,132 +1,155 @@
-Return-Path: <devicetree+bounces-205939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB143B2AF10
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:11:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09A6DB2AF47
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 19:21:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84E491BA440F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:09:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D637D5646CF
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 17:20:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640AD32C334;
-	Mon, 18 Aug 2025 17:08:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Hi2iBBvu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BDDA2848A0;
+	Mon, 18 Aug 2025 17:20:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FD4E32C316;
-	Mon, 18 Aug 2025 17:08:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54B8726C398;
+	Mon, 18 Aug 2025 17:20:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755536909; cv=none; b=hjQvnoxLdn/GiLobT3wXmPOU2Hzxyki58gTjU7p2c5qxIDay6P/uj1MtWqEDjbCmmLmdAD5HkDsEko/CAGy5Ys7jxxoQeS0bDO1nhkdRgFFidAh6in/sBrl4RI7c6+qk0+mdtnVwMeXWMHfkmvH8ECyNENMp1upL357x7QI8CKc=
+	t=1755537638; cv=none; b=YV2QAs1gC/iVVUbui/TVyLdpGgZiaqSOQmP92ZNYGoGrvRN9EdQIUWn+8ugx9diY+Tz7scWVs49gQpjYJAhW2KGYBxQdi39byy4CIuOHpJY9mpoUe106jxsqfexvZaE6qUugWDOHxrQabA9c2MVLDYJPLfJKeh9Mk16jYnFTqM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755536909; c=relaxed/simple;
-	bh=rPMW5veYC6Pqzzt/IvNOl92DEwVRpPy8WEfW0ZS5F5I=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=itOrmSyYSSl1/jhQgeEyltuRZp4ZiwKwCVf5huzCREg3xxYoRdhoGf5GhgUcj5H3DFMP4tRbbEjbylM5qXbHK+PKPg8IYDhKvMCiQ978jwedDuQp/ng3xfOLKFFrUExxfSMhF8rmpR+IfVV746ARw/v8dB9Gfms3UEr8IYuZlSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Hi2iBBvu; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 8080C22F8E;
-	Mon, 18 Aug 2025 19:08:22 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id pMVZN71AsQAe; Mon, 18 Aug 2025 19:08:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1755536900; bh=rPMW5veYC6Pqzzt/IvNOl92DEwVRpPy8WEfW0ZS5F5I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=Hi2iBBvuuvtwAY05hT4157aaA2jyJ96dwAODLyT5zFIyFINe4HwlkjPicA27h7aLr
-	 b/xBfuwcShAv0mY46xn9qj46G1rQVVU5cIXJFiwcbGRInMrNAj0+t1UHSTLYPNcTDo
-	 o3VqZFGrdiUQClNIVMgxYzBYGv1FVJeRdl0PKItGIL73lnFYSr97RXquqQ8u1HdMVh
-	 RFIWDcMrX0mPWr7AX9XvP8xcytDOjs1OCSot0047gjM4/hm4Gv/8dxM0NCoM8CO8RX
-	 ++TSWDpuoJ0ciwrtxmSag0OkUDlfbiMODVDxob+QHzlh2mvoLb/zEQJYZA7cji8MWK
-	 UHs1kllj/r0CA==
+	s=arc-20240116; t=1755537638; c=relaxed/simple;
+	bh=antcrhCguodTcTOhvbLUOOfuYhTcaV/a1botVNHGusU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=H3r2vE8NJDqgAzdFbJAqUeeE5dRsFWuZPPSUY2qy/Lx8Hh+Sbfr6kfuny69mQNZGylt2q7KI/CF/jssdThQhDK8VhQ+c+8LLpAjiag31iq5oWsPAr35GvArrgaIRoY+a2qUDjni0ty04VYF1zMdXVIlGQiLj5za0T66/HY8NYss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
+Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
+	by localhost (Postfix) with ESMTP id 4c5K1X3wsYz9sSW;
+	Mon, 18 Aug 2025 19:08:48 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id MrZScAyopd0z; Mon, 18 Aug 2025 19:08:48 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4c5K1X2hLYz9sSV;
+	Mon, 18 Aug 2025 19:08:48 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 44EC58B764;
+	Mon, 18 Aug 2025 19:08:48 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+	with ESMTP id aw5_3grXJjSH; Mon, 18 Aug 2025 19:08:48 +0200 (CEST)
+Received: from [192.168.235.99] (unknown [192.168.235.99])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 9EC3B8B763;
+	Mon, 18 Aug 2025 19:08:47 +0200 (CEST)
+Message-ID: <732b5fb6-ec38-43d9-b544-b27802a844ab@csgroup.eu>
+Date: Mon, 18 Aug 2025 19:08:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 18 Aug 2025 17:08:20 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] Support for Exynos7870's display stack (DECON,
- MIPIPHY, DSIM, etc.)
-In-Reply-To: <2bfa6c0b-1f23-4d57-b618-688ed8dc7fae@kernel.org>
-References: <20250627-exynos7870-drm-dts-v2-0-d4a59207390d@disroot.org>
- <3f4f28cf-417b-4f12-8a3d-c1f70f6871c4@kernel.org>
- <45fc52d9988d1bf17eca392364c63193@disroot.org>
- <2bfa6c0b-1f23-4d57-b618-688ed8dc7fae@kernel.org>
-Message-ID: <afd9e6c8095df785fa7f39265111e357@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] soc: fsl: qe: Add support of IRQ in QE GPIO
+To: Conor Dooley <conor@kernel.org>
+Cc: Qiang Zhao <qiang.zhao@nxp.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1755506608.git.christophe.leroy@csgroup.eu>
+ <cddc5e900b84826614a63b8b29a048c09dd20853.1755506608.git.christophe.leroy@csgroup.eu>
+ <20250818-tyke-pungent-20d9ffd47ecc@spud>
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+Content-Language: fr-FR
+In-Reply-To: <20250818-tyke-pungent-20d9ffd47ecc@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 2025-08-18 06:32, Krzysztof Kozlowski wrote:
-> On 17/08/2025 16:49, Kaustabh Chakraborty wrote:
->> On 2025-08-13 07:58, Krzysztof Kozlowski wrote:
->>> On 26/06/2025 22:13, Kaustabh Chakraborty wrote:
->>>> This series implements changes in the SoC subsystem, which includes
->>>> devicetree additions. It depends on all sub-series listed below:
->>>> (Legend: [R]eviewed, [A]ccepted)
->>>> 
->>>> exynosdrm-decon            -
->>>> https://lore.kernel.org/r/20250627-exynosdrm-decon-v3-0-5b456f88cfea@disroot.org
->>>> exynos7870-mipi-phy        A
->>>> https://lore.kernel.org/r/20250612-exynos7870-mipi-phy-v1-0-3fff0b62d9d3@disroot.org
->>>> exynos7870-mipi-phy-fix    -
->>>> https://lore.kernel.org/r/20250627-exynos7870-mipi-phy-fix-v1-0-2eefab8b50df@disroot.org
->>>> exynos7870-dsim            -
->>>> https://lore.kernel.org/r/20250627-exynos7870-dsim-v2-0-1433b67378d3@disroot.org
->>>> panel-samsung-s6e8aa5x01   -
->>>> https://lore.kernel.org/r/20250625-panel-samsung-s6e8aa5x01-v3-0-9a1494fe6c50@disroot.org
->>>> panel-synaptics-tddi       -
->>>> https://lore.kernel.org/r/20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org
->>>> 
->>>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->>> 
->>> What is the status of the bindings from dependencies? I think they 
->>> were
->>> not accepted.
->> 
->> Except panel-synaptics-tddi, all have been accepted. A lot of them
->> haven't hit next though. I'm waiting for that to send the next 
->> revision.
+
+
+Le 18/08/2025 à 19:03, Conor Dooley a écrit :
+> On Mon, Aug 18, 2025 at 10:45:57AM +0200, Christophe Leroy wrote:
+>> In the QE, a few GPIOs are IRQ capable. Similarly to
+>> commit 726bd223105c ("powerpc/8xx: Adding support of IRQ in MPC8xx
+>> GPIO"), add IRQ support to QE GPIO.
+>>
+>> Add property 'fsl,qe-gpio-irq-mask' similar to
+>> 'fsl,cpm1-gpio-irq-mask' that define which of the GPIOs have IRQs.
+>>
+>> Here is an exemple for port B of mpc8323 which has IRQs for
+>> GPIOs PB7, PB9, PB25 and PB27.
+>>
+>> 	qe_pio_b: gpio-controller@1418 {
+>> 		#gpio-cells = <2>;
+>> 		compatible = "fsl,mpc8323-qe-pario-bank";
+>> 		reg = <0x1418 0x18>;
+>> 		interrupts = <4 5 6 7>;
+>> 		fsl,qe-gpio-irq-mask = <0x01400050>;
+>> 		interrupt-parent = <&qepic>;
+>> 		gpio-controller;
+>> 	};
+>>
+>> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+>> ---
+>> v2: Document fsl,qe-gpio-irq-mask
+>> ---
+>>   .../bindings/soc/fsl/cpm_qe/qe/par_io.txt     | 19 ++++++++++++++++++
+>>   drivers/soc/fsl/qe/gpio.c                     | 20 +++++++++++++++++++
+>>   2 files changed, 39 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/qe/par_io.txt b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/qe/par_io.txt
+>> index 09b1b05fa677..9cd6e5ac2a7b 100644
+>> --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/qe/par_io.txt
+>> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/qe/par_io.txt
+>> @@ -32,6 +32,15 @@ Required properties:
+>>     "fsl,mpc8323-qe-pario-bank".
+>>   - reg : offset to the register set and its length.
+>>   - gpio-controller : node to identify gpio controllers.
+>> +Optional properties:
+>> +- fsl,qe-gpio-irq-mask : For banks having interrupt capability this item tells
+>> +  which ports have an associated interrupt (ports are listed in the same order
+>> +  QE ports registers)
+>> +- interrupts : This property provides the list of interrupt for each GPIO having
+>> +  one as described by the fsl,cpm1-gpio-irq-mask property. There should be as
+>> +  many interrupts as number of ones in the mask property. The first interrupt in
+>> +  the list corresponds to the most significant bit of the mask.
+>> +- interrupt-parent : Parent for the above interrupt property.
+>>   
+>>   Example:
+>>   	qe_pio_a: gpio-controller@1400 {
+>> @@ -42,6 +51,16 @@ Example:
+>>   		gpio-controller;
+>>   	  };
+>>   
+>> +	qe_pio_b: gpio-controller@1418 {
+>> +		#gpio-cells = <2>;
+>> +		compatible = "fsl,mpc8323-qe-pario-bank";
+>> +		reg = <0x1418 0x18>;
+>> +		interrupts = <4 5 6 7>;
+>> +		fsl,qe-gpio-irq-mask = <0x01400050>;
+>> +		interrupt-parent = <&qepic>;
+>> +		gpio-controller;
+>> +	  };
+>> +
+>>   	qe_pio_e: gpio-controller@1460 {
+>>   		#gpio-cells = <2>;
+>>   		compatible = "fsl,mpc8360-qe-pario-bank",
 > 
-> What does it mean - accepted but not hit next? If it is accepted, it
-> must be visible in next. Which maintainer's tree are not in the next?
+> Why is there a binding change hiding in here alongside a driver one?
 
-drm-exynos [1] branches haven't been rebased to v6.17-rc1. This should
-include all some DECON and all DSIM patches.
+I did the same way as commit 726bd223105c ("powerpc/8xx: Adding support 
+of IRQ in MPC8xx GPIO")
 
-Although [2] has been accepted, I don't see the commit in [3] anymore.
-But, there's [4] which mentions my panel patches, but then I don't see
-them in next (there should be a panel-samsung-s6e8aa5x01-ams561ra01.c
-in [5]).
+Should it be done differently ?
 
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/daeinki/drm-exynos.git/
-[2] 
-https://lore.kernel.org/all/175432157792.3671011.1104200917154441096.b4-ty@linaro.org
-[3] 
-https://gitlab.freedesktop.org/drm/misc/kernel/-/commits/drm-misc-next?ref_type=heads
-[4] https://lore.kernel.org/all/20250814072454.GA18104@linux.fritz.box
-[5] 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/gpu/drm/panel?h=next-20250818
-
-> 
-> 
-> Best regards,
-> Krzysztof
+Thanks
+Christophe
 
