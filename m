@@ -1,120 +1,156 @@
-Return-Path: <devicetree+bounces-205762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B9C9B2A09D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:39:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 850FBB2A0D3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:56:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28B404E19DD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:34:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A6B91671EA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:49:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E2B26F2AA;
-	Mon, 18 Aug 2025 11:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9026E319863;
+	Mon, 18 Aug 2025 11:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PKBRtdr/"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Ts5uEDSh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEFC62E22A9;
-	Mon, 18 Aug 2025 11:33:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D9C319847;
+	Mon, 18 Aug 2025 11:49:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755516831; cv=none; b=VqLETc4T2um7UBDoagDhE5FaVjJLNoLCW45q/LUrwXoemwWqIFZm7XVzEyPjuUDYlgOw9BuQEdRd7nWhXOVdv1pxkbIOt4gS7MPPVGBilyaXc/sWLyd8qk0KNcIXV1rGmEZ7Ywn0BdnngdNfSAQvSACHhpyMZpGXRodCNPE5cls=
+	t=1755517748; cv=none; b=t0RTOjjYfEMSuzynThY6RaQ055rKJ+nzZ3+CvujNBr9GxZ2LM8vTAbr36AZbvj/7yggVfKdX2JYkeD6JFlyYsLkFQz1m8BLXYXMFDnJvxBd2hrWyDObnOh4V8gD2TS+5zCOPtU4s8Tiu0DTLM9yiDxj0/fi1zm5j35hkmh8srF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755516831; c=relaxed/simple;
-	bh=ZZKBTpL6UHyciqnKATbtrkmYynWeMCWrFd/2xcp++ww=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XU6nlgSFgahhOxRhNcFU7wdAqhbLs8Ra7XxTipYaqKQqtp7v39J0ju+HaZOu9YE8a+aN4qG3R/YMTtCxZWejrgk6wU7nT/KBLqhjd1G2f0bWq/4NipYk+S7xYZyfe2lpNpZ2SRUI/1h6BFPoUnMzTeeuH8VjX/qIM3oLVe2s968=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PKBRtdr/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 7CDF3C4CEED;
-	Mon, 18 Aug 2025 11:33:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755516831;
-	bh=ZZKBTpL6UHyciqnKATbtrkmYynWeMCWrFd/2xcp++ww=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=PKBRtdr/YTJTrl92zpHzzAovfqaynlZxJFZ667MTjd+V2zpPVbh/Qw2YkWFGl8Zeg
-	 JIv0gaRa7PdagA1GA06EbVEy4GO0sNTdf6FR9uMTB8QJLoShXHrFGEgBkV0GrW6GR2
-	 l8QjDRsmfKbIfV7udOOmrqR83UfsKpyVH4F39JlEvteIsWQni/6UESQxGlGkBryduS
-	 E2cVKO6sKNLJP6QVQf3TJeZsf5Xb+y/3xsqurGnhx7LD7r26jt0UaWQouihdlLn4lj
-	 AEw/X1Kg1G29aq65wiw0DT5mBXOiR0gDatBMXU/FSddyoCFlqbrMLijDrt/R6gGmcS
-	 tgOzuwrEZQhrA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E9D7CA0EE4;
-	Mon, 18 Aug 2025 11:33:51 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Mon, 18 Aug 2025 15:33:47 +0400
-Subject: [PATCH 2/2] arm64: dts: qcom: ipq5018: Remove tsens v1 fallback
- compatible
+	s=arc-20240116; t=1755517748; c=relaxed/simple;
+	bh=SAKxyLiHdmjapI/0v82ehEcOeJtGZPTqAaeUY42UAmE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=k/Pqsxz3eN6hwy5KnhEGT7/KE0P/AMhYKiJgGmUr+J6ktt56IM7aXr/t6+sc5hnCfbtqrETmEEp6t5Hlt72aYKGM78Ib0Mj7xuLTF4O8tRmIjJ6ic0H+VYLDfqw3XRLD6MjO5p/a8pU1sYPD/2jSIuLB6UDpTg6XIibjJfrjV4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Ts5uEDSh; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 543ec4de7c2911f08729452bf625a8b4-20250818
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=lyPRgtJIrl+DCxGXCftDbyg/RUx12+pyN49Ht/Rz3Ao=;
+	b=Ts5uEDShSHdxHPRZ2FhRS2c1TFPtaL1BpYBKo8Wrn4bpNQ+ZhzSC+t+sApbc+VkFz2j6co1AHYNqgHhx6Eziz6KSrfGC5YZ+0gpL6mAs/9jpDACIzXhqBSorRLQelj0j3sKB+bPshGr+Zqnkhf5SORTqJA0kwtobjubl24JOy3Y=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.3,REQID:93b5a144-6427-463a-969f-6aff181eb48e,IP:0,UR
+	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:-5
+X-CID-META: VersionHash:f1326cf,CLOUDID:6e869844-18c5-4075-a135-4c0afe29f9d6,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:-5,Content:0|15|50,EDM:-3,IP:
+	nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
+	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 543ec4de7c2911f08729452bf625a8b4-20250818
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
+	(envelope-from <mengqi.zhang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 217536809; Mon, 18 Aug 2025 19:48:59 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Mon, 18 Aug 2025 19:48:58 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Mon, 18 Aug 2025 19:48:57 +0800
+From: Mengqi Zhang <mengqi.zhang@mediatek.com>
+To: Chaotian Jing <chaotian.jing@mediatek.com>, Ulf Hansson
+	<ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Wenbin Mei
+	<wenbin.mei@mediatek.com>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Mengqi Zhang
+	<mengqi.zhang@mediatek.com>
+Subject: [PATCH] dt-bindings: mmc: Add compatible for MT8189 SoC
+Date: Mon, 18 Aug 2025 19:47:27 +0800
+Message-ID: <20250818114855.8637-1-mengqi.zhang@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250818-ipq5018-tsens-fix-v1-2-0f08cf09182d@outlook.com>
-References: <20250818-ipq5018-tsens-fix-v1-0-0f08cf09182d@outlook.com>
-In-Reply-To: <20250818-ipq5018-tsens-fix-v1-0-0f08cf09182d@outlook.com>
-To: Amit Kucheria <amitk@kernel.org>, 
- Thara Gopinath <thara.gopinath@gmail.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Sricharan Ramabadhran <quic_srichara@quicinc.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755516829; l=972;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=HJcOgtw7oiilIyh0aWOOzNZ2iln5P6lSb3GMC6Gave0=;
- b=uR1EVwZAX79JKZzxxM9N7TA/hO1CtlDORhZ/FGhSsA68dLhwH953wdmIPFDj4vfeWpsTsB3Bh
- 4W66WWUho9RBMALQ66he3JtRH90AzRDuzcypOj7GRnzE6ehzDO8Gl3R
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-From: George Moussalem <george.moussalem@outlook.com>
+Add a compatible string for the MT8189 SoC's mtk-sd mmc controllers.
 
-Remove qcom,tsens-v1 as fallback compatible since this IP has no RPM
-and, as such, must use its own init routine available in the driver.
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+Signed-off-by: Mengqi Zhang <mengqi.zhang@mediatek.com>
 ---
- arch/arm64/boot/dts/qcom/ipq5018.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/mmc/mtk-sd.yaml       | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-index 4ddb56d63f8f9a963cb49bc20e0a78b2d3490344..db7051a659221d45949cda93472e52c49815531f 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-@@ -340,7 +340,7 @@ prng: rng@e3000 {
- 		};
+diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+index 6dd26ad31491..1285dddeaec9 100644
+--- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
++++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+@@ -25,6 +25,7 @@ properties:
+           - mediatek,mt8135-mmc
+           - mediatek,mt8173-mmc
+           - mediatek,mt8183-mmc
++          - mediatek,mt8189-mmc
+           - mediatek,mt8196-mmc
+           - mediatek,mt8516-mmc
+       - items:
+@@ -192,6 +193,7 @@ allOf:
+             - mediatek,mt8183-mmc
+             - mediatek,mt8186-mmc
+             - mediatek,mt8188-mmc
++            - mediatek,mt8189-mmc
+             - mediatek,mt8195-mmc
+             - mediatek,mt8196-mmc
+             - mediatek,mt8516-mmc
+@@ -240,6 +242,7 @@ allOf:
+               - mediatek,mt7986-mmc
+               - mediatek,mt7988-mmc
+               - mediatek,mt8183-mmc
++              - mediatek,mt8189-mmc
+               - mediatek,mt8196-mmc
+     then:
+       properties:
+@@ -319,6 +322,32 @@ allOf:
+             - const: source_cg
+             - const: crypto
  
- 		tsens: thermal-sensor@4a9000 {
--			compatible = "qcom,ipq5018-tsens", "qcom,tsens-v1";
-+			compatible = "qcom,ipq5018-tsens";
- 			reg = <0x004a9000 0x1000>,
- 			      <0x004a8000 0x1000>;
- 
-
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt8189-mmc
++    then:
++      properties:
++        clocks:
++         items:
++            - description: source clock
++            - description: HCLK which used for host
++            - description: independent source clock gate
++            - description: bus clock used for internal register access
++            - description: peripheral bus clock gate
++            - description: AXI bus clock gate
++            - description: crypto clock used for data encrypt/decrypt (optional)
++        clock-names:
++          items:
++            - const: source
++            - const: hclk
++            - const: source_cg
++            - const: bus_clk
++            - const: pclk_cg
++            - const: axi_cg
++            - const: crypto
++
+   - if:
+       properties:
+         compatible:
 -- 
-2.50.1
-
+2.46.0
 
 
