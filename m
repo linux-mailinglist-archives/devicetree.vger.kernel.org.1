@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-205699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE300B29D14
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:05:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E4CEB29D28
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:07:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 976067AA53A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:03:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C87EF1886967
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2058F30DD0D;
-	Mon, 18 Aug 2025 09:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D554D30DD28;
+	Mon, 18 Aug 2025 09:04:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f9HnPENG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ciOEI2o9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F1D30C366
-	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 09:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 073D730DD0A
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 09:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755507894; cv=none; b=bS/DuGH2zpuKhfcLmoxDGfGO3RQRwgQUvT+Lmxgyu7VDu4VxUqYntFFl6vTUK1IB0ZosGF4HDM62eYfzOdWhpmoiltF2lk+KgZLWmiUKIsTs+SVYt0iucf3dz+pWVBUptOkv2z9rURje7Mef1/sEftfqtWyaGC1y9DKBSBAN2uU=
+	t=1755507895; cv=none; b=PT8xBb33bnyhMpy3DKLvspH9egLEzdj8dOKLvjNFznge9mFJnV9V6OUeV8q452rYtnjfeXAL5XdjTHN+kq5CI2pbN/dH/Q7aelgJPsQMzZ5djc8zqvvbAm/MemKA1aQllYqDheun1+dyibfGEvk6tlAdNoJMgBjqQd++dYUFeKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755507894; c=relaxed/simple;
-	bh=tum7sSZZcgm8+tBz1nemvGULPNRMPULQo3/wNINBH4o=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rfolEcoJiF1lMU/9PRD9H5ORFIuqdv+mn2/3Ehk0UBmcR6tTed3avOD5RLlQj6blH3K16If3DMqZ8fP4LzP6THPE1gCD7evhIhS+sJrbNWXi1s1WdlQubWAACRX3XnI+Gb2vT4ELv5gxuo25gxfE/tkhcB/1nzhIbN3xN0dv/VI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f9HnPENG; arc=none smtp.client-ip=209.85.208.41
+	s=arc-20240116; t=1755507895; c=relaxed/simple;
+	bh=pwru74nUBrj/6jwTNjLAYELApPWZA0ydTt/S7KryGzI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=pxDc4qhVgutbivR0M7T/NrYIlHZ2p9NQJedRNaKPMRMvCCdkWFhTiXbJRgJkMyTAQSAei5XoxqxUeu0yFkFAH8japf6FqI0u4FtvSnCBIq+aH/5QzophEKwnw4m1Ojmdpzb3non7rNw9Cw0pj8kyNxhFe/hBiRhHn9nYnBPbp1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ciOEI2o9; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6188b7895e9so570439a12.3
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 02:04:52 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-afcb7aecf92so49510666b.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 02:04:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755507891; x=1756112691; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kup10a0B4002ciw0MPHAfZ8hDEDF45tuWf47ra3TKFg=;
-        b=f9HnPENGxx0jI2PGhMTIeEdZ49i+NSQ5RkO3VZfTdInZ3r/J+FJWjSGr2zTm9qItT5
-         K4QVv7wjiZGhOHW/c2BmYi1ylQuBJB+UjxZHI1NYL4PINBq9UZnRoLVIO2dZIXC9+fWs
-         glHOT37rXMCbZHxeqIJDMb2lKjZsnhzctf+lqbRcWYyXwKTVeA7vwzbuaMzUyLS+j/tn
-         a3Q5CwIpsI0GhZ0raj5FodmejEfdXqZkCAGhjmzo6+MgFPQKcuAhye2eLHZhR+hBgf5m
-         KNvGaR+S+3FDqmLV9gPxF7b/7luZGRSNoi1Qymy9bfWSeo8E/TNGa2JtHxgBXAgIM0Di
-         5F1g==
+        d=linaro.org; s=google; t=1755507892; x=1756112692; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BDZrxtQNL1cjju+DxpVQbK6Cw/4VhJ9hB52KbgYlXK8=;
+        b=ciOEI2o9bGEor27UXeCTZk2VAIFlbTME0jgAjSgV+Zkrhm6lQalKrApvb+aecsPnlG
+         KbU5ZGp6lj7+xHldyHjcaHhEe4C+qlRqMYgToBYTCqktghT/uxxNUrWkjALhPB/hXL3+
+         T3wSRGZiK7T9j7Zbi/bNzYkSA1MrB6m8QAIjG9FpNAx33Jg+fJ6/2w8JF2tPZ35ZWQW6
+         rcRgddTk3IuixvkBqn9Joasgcf6bQJ8XVXTrkUy1f0VNOASO8peOsj3dj6fRN9wNyGD6
+         YjJRWJ6bcJL1uYWAWY+TavSBWXb9blshOEQgHcSWWO1SntbEvOmDuOrFp5PXkEh+nZv5
+         8LHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755507891; x=1756112691;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kup10a0B4002ciw0MPHAfZ8hDEDF45tuWf47ra3TKFg=;
-        b=IbODi/0Jfjlh8Cbj+CfnXGfx2czya8fMbW7NG/n5CwRuf7R8EWZb4ZdSbjpNB3EHyb
-         xwTcZLaQh+X/ndEZZuvH7VFtSAgIAOqIRrgatpTSKM5yoEltmJfIo5fLT9I3V8NSNgYK
-         aO+s1g8sFlyoKPd70MpTst/n/yYLz5RMYLj5/6yJd0a/sRFSzsWIGmUjb7G6J4GMJR5O
-         b/sRALImB30AO+a4V35hjw1nEbiLqS5AjkrrCjJysFLLC5UBLxAR9uCxq1Panr4LJuwr
-         a98DflbG9MTctJsZsMuirvGqu/kLBYYjU73rzr/xtK1zsKOcX55GNLCMlumcxJpd5zo4
-         Dq3g==
-X-Forwarded-Encrypted: i=1; AJvYcCXJE13ZC5nspmzLm1ywiU9rBT8yM6e6D7Y5aPzHqS3UlJzPfHk3gtgFEaBzTcuT5U7Qi4vggWZlDj49@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzls7wQdrQbzAS1juuM1JXDZcNi8gJ/tnYGkjsw8GauueRs4Hlm
-	xkDQAkpZWDXRSo928hfyHJy93AoypH9ogVDowbXDEgCZApDhDrFwJJJO8B7tZ4Ugo5s=
-X-Gm-Gg: ASbGncujem8Hwq+IwEec41T0kEywyMJaar58sHlYcfzbwLdtnBAVRHNbJYN0+kaUZEE
-	nAUyxi9p5PPQYNe4/uE7mLHXMfizDBMcFpjovjbXgNZX9y31o73msywt9EOqQKPvO+jYhD9XSSP
-	nteUUKFAMyPwgxNKXsMik+YeGMOvBoua8K+5CgUXxOdPGhs1PWyHK1ISMYDO63QprDrFY+AYGCy
-	C154U6QSp9kZR0O7J7/vNpLtIopAuX01Mf2TW/+pn1ng2WzMVaHAgDG1tKccRjoXFKoOz3OpBLI
-	5s+v2LPt3lwrhK2+gkQP1AbvZ6ibPyIjV43p6cChkWpBixk+1Ejp4o9YXeb1xXXnYSCH/C95SFs
-	Wn5USu/4M2QWDa23vtSKtdgs4qOWf4jnO5w==
-X-Google-Smtp-Source: AGHT+IFtlmbtqJ9P827bEqJH7oW+ZRuoRFw5s2Zc7tNfSX268H1TDEG69wyd3EdhU80P29JLLkcWgA==
-X-Received: by 2002:a17:907:3fa7:b0:af8:fc60:5008 with SMTP id a640c23a62f3a-afcdc19d2bfmr422932066b.4.1755507890447;
-        Mon, 18 Aug 2025 02:04:50 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755507892; x=1756112692;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BDZrxtQNL1cjju+DxpVQbK6Cw/4VhJ9hB52KbgYlXK8=;
+        b=n3T+NuzUpKYZ/yMg4diC/hDoOuIlPjZW3vzTjgoqVpFr0TGPwOT6LvAH+Rj7uIJBuA
+         /6US0CnMUcaSy/BKl79gDcDzgQKWjbTNzEz18ZQd1wtqhzoI+jlOkMGoEj/7QccfGc7D
+         lEsH2j1czConPCsgcIk0yYiJa/H5Pw+AwtZgc9RWcDjq/xrWKupQNT9xnxf4M3XSdlXP
+         w7jYeR3XBKmp339LLTcTD2fl+tox1gYB83fagCSXn503k6KLrB+i5tp3rnQGv12eZsSr
+         H/A06VJxemAmE9qt+nevc398TfBtRDRbZQn5CBqqHXqTtajGYc9y7L04R26uSRrFdRpK
+         0oDg==
+X-Forwarded-Encrypted: i=1; AJvYcCUH4nHyXgvF6y0se8XsDKYTliB4Qh2venUAsYZ9Q7HjtRyxQx4iYCNntIQt8FkP6sc40ToOmvoy3yqG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfsvOvLOYmn4iQJ6sFRxkUKTNzpsFqSEn0ryp+23uVadp7zull
+	IJjS1ryq6PvMSQo5nlTxsZbq8kA7CQ4/qYyxTlbwFwQilsuEtP/IX+NycDfiC54G6bI=
+X-Gm-Gg: ASbGncudAg8ffxWx02ePOqK2EKwdDm+k8dkPpPvL6/aDmF+Aqxe8PyXEhdES5HP7POy
+	xZSWwtyNZgqKe5oBsnldjboAaLB/tOG7Vvwq0mpPhhYo5eYQkhxR/5C3k3bAa2/4MremjXOqdxu
+	RkWmB39h5L8675Y6jau7XB2vOWOeiHCtOWIrDQI+YszPVT13PpekFjnv4+ysLH4S5p7oAgfiEWC
+	mCo5FhAvJZgk7XlaQBRhJU+R5mt7Tjj45/BmJ2F3lilcV55OX2u/CfA4pi8Nsm3+E2jJwHAHcFX
+	ry9lDYwlC6Sf8LIQl4DrRmP3xwJqJ9KKduFyndF3gaAjVTvUG+3/UdfSiwDo15UuqxdlPHS3H8h
+	G6cYVFg5pyizaGhBiaMj8yQ/5xoTAF+WWtw==
+X-Google-Smtp-Source: AGHT+IGq9lztDokuEp0O51njstSDbd3e4FseAM46gupWoCcNAfFZtIUknBul7pcS812ROxIqHMTIfg==
+X-Received: by 2002:a17:906:9f8e:b0:ae3:63fd:c3b4 with SMTP id a640c23a62f3a-afcdc1dbdcamr526558166b.5.1755507892088;
+        Mon, 18 Aug 2025 02:04:52 -0700 (PDT)
 Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afcdce72cbbsm767622966b.35.2025.08.18.02.04.48
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afcdce72cbbsm767622966b.35.2025.08.18.02.04.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Aug 2025 02:04:49 -0700 (PDT)
+        Mon, 18 Aug 2025 02:04:51 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -84,29 +86,31 @@ To: Rob Herring <robh@kernel.org>,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	stable+noautosel@kernel.org
-Subject: [PATCH 1/2] arm64: dts: rockchip: Fix wifi interrupts flag on Sakura Pi RK3308B
-Date: Mon, 18 Aug 2025 11:04:46 +0200
-Message-ID: <20250818090445.28112-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: rockchip: Fix Bluetooth interrupts flag on Neardi LBA3368
+Date: Mon, 18 Aug 2025 11:04:47 +0200
+Message-ID: <20250818090445.28112-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250818090445.28112-3-krzysztof.kozlowski@linaro.org>
+References: <20250818090445.28112-3-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1506; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=tum7sSZZcgm8+tBz1nemvGULPNRMPULQo3/wNINBH4o=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoouytECvArfR0uDxlZkn/yM+6/pk9krgoVi2Ex
- +KuIWr/tUqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKLsrQAKCRDBN2bmhouD
- 14K0D/wPUzRE0762GdIlKZqVCw7QIJwhm6QQ7maC1A1pWP1kbGctVkv2gdC4IrGQzhVdVAcb+0o
- IYw6rpxiobOFJiiE9S41uqR7We+z83ecxPJdkjmNkddMaZF2dpMysBcPOspzBpDV/ItDtRCVCLc
- oUdQ525yCD74OLtL/s5kWlPK1EfxbPdLFhzSOj6CJIh5ct4LJ26xzgacvu6CjBpy2tyErI0AGVA
- Rds7A1uNaiadSEcWxGCogOkANLHvBjW90M3IdrzYjk76faBpiGE8t9jirPcoxyCIu/94HT+PgJQ
- 5hGjSAYC1sO2yUNK0HjshaOD4bGx+JzpRF02+UEe/h0Xic6AsmX0tnTEpskZ55v8Hqf7jfTEqGZ
- 413KxCeLLXuEiX2OlGMqd4GMA40y77A7Me9UhbXuS2C0cx+7jYRQ6BpPGWSycQrtR5KTon2Y4Zb
- AS4P5LT4QOi+q8sNcIR2npSkeY5Go69g169EvxairWf5ePkspzoW+lAlC3RAI0zRDjdFDykVnNM
- MC6tch80y9G254Kf33rR8CMydlaltyp/fZCC4zIV47YfPkLkquhGRjprPUzDCKnuqN+skTL8hmP
- 7NuAZrbBvDCiBGcB4rgeqHsNOE22A8/IHlUCfS5XbHFrZd/LJRO8qt4IEyP6Ym0UsseZUx1jTSE 3P8zVqN+3rRaErQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1424; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=pwru74nUBrj/6jwTNjLAYELApPWZA0ydTt/S7KryGzI=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoouyuJwWXWjg5+9nddxSx+zw45kGmYNImxXL5p
+ J1ew0lu3MWJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKLsrgAKCRDBN2bmhouD
+ 10TnEACaEmyQoUlWyEpk/aLUCrVBW+9m7xj5cp+3+QItxmClOSA+H9SVkSbX8zLDVfFtPLcz73q
+ DwqHWhEwRIPtnnb9FFQhoUgv8U+Tw9VaBT6W9nDPTDoz/i25OpcPaTO7rC0l5V4d9aCvn8DJWdt
+ 3x4yTymHn7ecUhHsdyqqa7kcJXk33bSbimkLAyyju2371kQL7PazjayfKZ4D9Wm58wt4Nbt8Pj0
+ mYT3bM/Os6gEy8RIgcMKgj/AUeI62mimpDk63gdcTyZvntzmTlJVtDfC+G9Zy7TutOj+uVSHAAj
+ wWOfa6eRPxFTWtx/KRVNEceInusTlt8JwLXUCcdxXSQtXApEWc6lBGIG/EELojAODWH7o4c7mYL
+ YS7Wz4FhRXxvoEBjNNl4kCYPLsTlgNDaGjfnv+dUzel8/gDcNXXlu8E4jm1Dl8vCI4bZv9ZjCt4
+ hFbe3uwnykPX24ZoqRDKl+Do72SQ1Xqt8VKfbm1pcAIpZVp53CKp8gv2C1eX1MgXRoMnqxx+jlg
+ 4IPTPJc2kun5tDxZRK80u4CJmQ0HtMoA06ewxyMJ+FNTU1fLDEeBzVAeMe97mOap7DeGdbPn/rU
+ pQH5d29nYK2bQhpK/ui+nG6FoZL9q7nghi7lc7gRzBZFfi2xf/ELQ08ndvDzr8L+WTYLtHaVqB+ KZvYcCNg7/RJY/w==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
 
@@ -118,7 +122,7 @@ Correct the interrupt flags, assuming the author of the code wanted same
 logical behavior behind the name "ACTIVE_xxx", this is:
   ACTIVE_HIGH  => IRQ_TYPE_LEVEL_HIGH
 
-Fixes: 79f2a1702441 ("arm64: dts: rockchip: add DTs for Sakura Pi RK3308B")
+Fixes: 7b4a8097e58b ("arm64: dts: rockchip: Add Neardi LBA3368 board")
 Cc: <stable+noautosel@kernel.org> # Needs testing, because actual level is just a guess
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
@@ -127,22 +131,22 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Please kindly test... Not cc-ing stable on purpose, because this might
 have impact, so needs actual testing.
 ---
- arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3368-lba3368.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts b/arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts
-index f9f633aebb64..aee6643e33ab 100644
---- a/arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts
-@@ -199,7 +199,7 @@ brcmf: wifi@1 {
- 		compatible = "brcm,bcm43455-fmac", "brcm,bcm4329-fmac";
- 		reg = <1>;
- 		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wake";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&wifi_host_wake>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3368-lba3368.dts b/arch/arm64/boot/dts/rockchip/rk3368-lba3368.dts
+index b99bb0a5f900..b9801a691b48 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3368-lba3368.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3368-lba3368.dts
+@@ -609,7 +609,7 @@ &uart0 {
+ 
+ 	bluetooth {
+ 		compatible = "brcm,bcm4345c5";
+-		interrupts-extended = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
++		interrupts-extended = <&gpio3 RK_PA7 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "host-wakeup";
+ 		clocks = <&rk808 RK808_CLKOUT1>;
+ 		clock-names = "lpo";
 -- 
 2.48.1
 
