@@ -1,165 +1,189 @@
-Return-Path: <devicetree+bounces-205696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 106EFB29D02
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:02:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF0EFB29D08
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C1A5188203A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:00:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 127047A9558
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 09:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A666308F0F;
-	Mon, 18 Aug 2025 08:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1973308F35;
+	Mon, 18 Aug 2025 09:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NYmUCQIp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5FA308F16;
-	Mon, 18 Aug 2025 08:59:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 204A629D27A
+	for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 09:02:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755507587; cv=none; b=YcpdFtCGSkvcY73yZhJoBQAXv6jJVmQIbDAhk4Bv5S3j5II/IWylNFhkQ/HRMZrIUDGWrR3f5fgWp6dr2IrokcXzcuBLrx/bRfl6jW8t1btdeZpAtErPLg8UHCHMx11H4ONnPK2CqEwmphmNE3sU0XYl//R3S+PVdU/9VCYinvU=
+	t=1755507766; cv=none; b=sWHS/MtvI/yNbf14aE0FXlHmG0n8PAcFT/cyU6JnRQR/ITdgv1BKvaUAKaP9bHSlNZ+XA9+jTZyQNpzDZVI42vXAjV82Onokg8SGaAIe7DhdO2+c1jTtxwVmrWt5/YaPHvZ05om63+uwm+c4yr4I9YUXI4eXdU0tnnB49an4rCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755507587; c=relaxed/simple;
-	bh=/8M5gc583ps8VanNEYTOj7Uh5cuD5fcXII5KPf8sHIg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PfoDXQfbL4xIBzl12qd7FjdN2iLcmrT+MWQk+pR/0S/u/nmiiizECBeoPkeO69gw04KRyWum4xg2C8UHiwOhiv9ayLDqvAoOAbqLdjEC7jbfoRTpmRSI4f+xdcRZH7leDaUDy0c4cFelfLzBUBlQYcY0AL0afAY+9w+JMEvkgcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-53b174f7cf0so2789735e0c.2;
-        Mon, 18 Aug 2025 01:59:44 -0700 (PDT)
+	s=arc-20240116; t=1755507766; c=relaxed/simple;
+	bh=KHB43Z17LrATDP+I+UcK8mr27MT522jgBABjSbmHMfw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TPqew22EkZBts0dVIdYRcUZzINAcMm4oN37sfI7PCV+omfgA4lD9kTLqtFuEpcrU3hALSJhLSq6+ghL49RaQeRZSUriIPn+YxPO91npARA3E06uQ2FghnY21fEG2RxCVXfNxMytr4UhR+J6J8Hm/fg5ljv/IrEFQWM7hyS59KR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NYmUCQIp; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-24457f47000so31146365ad.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 02:02:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755507763; x=1756112563; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tw7dbgkD+zT5jAWthzRKn29Iz3U2WQf9p2WltyhBPN4=;
+        b=NYmUCQIpI1imdGHzDkPC0xQkhWmc31Ix6vyTpNj5GGjgyKNOKWTHw0OdQ8yoEsIwU8
+         bUnp0FFdKY7l6GYnQBdpOan/cFWgG14FPa4FxxyWgDxcknsg6czcPmJy+F0hiI5qxy5s
+         p7+lp0xk8ekGyObhMKPcZkiVpxk61j64M+r6UshcqVE7X9Tu2it71NK8WJ4/6Dre+zFG
+         O8wVcoIlRaY4eBRyfj2GClven61oBWxPQV+CS2iK/vp/57MPiEky574pRf6+oWucN/D8
+         pE0Tpl+/9hO5jotUa2cDQIYpOtwuJF+sp8e9n4Vqq6eiaBcnc3FpPcMi2U/hT6swDifK
+         vySA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755507584; x=1756112384;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GuhsFBr0hPDOjSQgDopWNJ7fxxqkAvU6UwE4E9csdXw=;
-        b=r6IAC91n/I2cS6w7pOzbauego4MZAdPPI9NRomIB+arOM2cyN/o4ENJEW8H0nvcJMX
-         Y1GIZcSgM0QoaVfC39ClnBzYM7t8UPckpg0hdHLzl/gS9u9+JlOrqyaJtVz/YhuBHtJE
-         HHDaT17S7c3496iTASj7sDmX0l253GmFT1e2BeRgrXpZxfWXJ1XHtEkg+PB3Vc5PFOJn
-         X+2s3fg01sSYEzHnhxy3V8aev8/3SI2khctG8TQNU8Mt5VKCp+FlqLBBPhvhVOWcyemw
-         EouJ9Nt8Go1ybal255xJRzbINpgbuKYMtcSzINdQ5EEaGtiUl8BUnk72UtdW8+dBCHFD
-         18pw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7W9N2+DM7nY5X0QNV0kbCcLkPRGpHvqfpFGOhwcHBFUgMOp0npLl8271UmAOSfjpnTdnyvqu3Wqj6isQsMi0zaNg=@vger.kernel.org, AJvYcCVPMotB+2pt5TonGHm55qi+dkDEDtmNR532/dE0Y9TeWgsb+rOjRfaR5ZBqKHvD3hp94ZsgVlxA9/o/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzC+Ci4bTIW0+k51q93bes0yJ/HtYUE8nGd2PzOws32atJZkJBb
-	Q60Lsv8KRgZHxOhPK3LxaPEnVNWESPv1XMHLAcLBZEbF/qEwzUp5iRbkQ1medFC6
-X-Gm-Gg: ASbGncuuHViMYqQ7cFarkIaJ0gb/9aowuvvdEn3Z+v7VgnvtmRdMQbPLxfe9diUSzIA
-	Ao8Uc7NqAjRIGptzcmoNu3EsERqbzGBpcZ6OyXDrGvx4Q8dJZlJVlTgncrbEVHBDjv4X43KoSs5
-	oYWsWcEx5p2NnZWt9TClrxn0db95tDmEsg3kasODXNEoTLvKlhbyUBVl27MWkscyRNZbAWJNfg0
-	iotWmYZ1o4BEjUwd/D16lgTs2Lw5vhvZBkHNsnP/jInsUK+ZYrR4xO9SQn1Lc2yKlMiYwf6a1H7
-	sJ2fB1xe4TXlnGOIOXRKLMwx5hrxCpVZsZRSZ/81JDbDC4uWJ8214cL8ULspWyZQQmfaSz56ito
-	GGVDWcVtuWCw7+WdKqWWhmriBWmDAFKxULH4SligYG3h4RFyPY8WwF6D+md9kwhRwGbYttOY=
-X-Google-Smtp-Source: AGHT+IEV+3tIsRgcu6/CFuFD1p7ka8g/J70DwKQqLMQr/NenlYNGkxHqnkGMY8EmJI5Mc2cA8Do+ZQ==
-X-Received: by 2002:a05:6122:328f:b0:539:320d:314a with SMTP id 71dfb90a1353d-53b2b8b42d4mr4132854e0c.12.1755507583886;
-        Mon, 18 Aug 2025 01:59:43 -0700 (PDT)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53b2ba75b1esm1851464e0c.0.2025.08.18.01.59.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 01:59:43 -0700 (PDT)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-890190d9f89so2100860241.2;
-        Mon, 18 Aug 2025 01:59:43 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV3L+rE1vGKqXT/6IxXvhWTqyjKZ9jTdiLpuiOn7I6q8Av70qs2XIBr3FEb6tc/5nuKobTiw/SCXPRS@vger.kernel.org, AJvYcCVnHkzIpZmT9VUcBNJ7ZKJjOTft4pawE09OuJ/iI3DmapHGTtgM24yF+O3cfG+MUJP+ohWtwDN/xWDwv8/5VTisMDI=@vger.kernel.org
-X-Received: by 2002:a05:6102:5e89:b0:4f1:37f4:8c32 with SMTP id
- ada2fe7eead31-5126b112645mr4150542137.11.1755507582868; Mon, 18 Aug 2025
- 01:59:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755507763; x=1756112563;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tw7dbgkD+zT5jAWthzRKn29Iz3U2WQf9p2WltyhBPN4=;
+        b=TOcDGID6YUGrQIJmDkeem5LYlGLKhvaNmdxwZswJz31yzXw/YzG8sOeLFuSGVq1oDJ
+         6mOsknhsJOpoo954D/rfj6rmVj5OSF1DH6gZum1u/oVai2cmjGKDGeIx299nGuvhLe60
+         nh8bGCASdkXNr2b5aoM5KTcXuDvWFqGyX0PgEn+w9qpsRQzcpPK2Dsu/3a99JtbwemRO
+         vMb6tplFcys9a+86IocKh7oKIDfMkwpTLhGObZKDXggNC+H0Psk71oxIFDBDNfQNldXG
+         V0FcQP1uQS5isOIBEEgZ8TAsbqi16yXADmxBOvMr2PPgGkFZQrJWiktHt9yAZ0xDnKUa
+         3EjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVn3ZqDBDmVUmmGV/8FYKbJTN3zh3iaU4/pBIxJFSKzS0q/1yBXixz1Rckbse4jjbXkphzcd+WHjWCT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcCk3aRrRaEwrCt79duNdn0w6Qs6tyfvW54IziLPiiDKH9N5P6
+	vNZJKHM7VQZChIg3rgCItE7UIDs1XPO10XcLVv7tMstX1qjHrOEhDN3izvqQQW4Ksns=
+X-Gm-Gg: ASbGncv573KrFr7zRjDnsmcQbjMrYNn7XIDL/CZvNJd4G83CNng48DB6sltPkdjEwiT
+	lHckgYEGDYT4QbxExzbnNOMtU45X4JKJo2i1EBliZ7c4Uf5hhiXUxnzufockzk7PzQvcdGZOuIq
+	yfikXJmyjjd1EAZF95YwcquaDpczrtQC6p8cYKskU1s6FdBDuFUtv2aBFXm+HYWT5kOXKOIq/w9
+	8ehTNEfiFW0p0lXy1eW/8SvQdCTQk+Y/qaewEzvP8Ot6K0T5IXWqvBEgu6xmSr7xEZ9J/YAMd2Y
+	khjH6mi55n5dNfU9RaxiwuvcPZQgf1smDbQZ8VT+/tFazFAolT2la6+ZJ33KxWIdgWjZ5Y4QVZ8
+	d7QBdk6hpR56cXXBiK3DNHc2I
+X-Google-Smtp-Source: AGHT+IE49BY+QEUKqeX/ukisuqIYp2KG3N61jubdd/2kSq1yDYk+d5vzKqRZTTbGf4J9qjawWGj9IA==
+X-Received: by 2002:a17:902:c942:b0:242:9bbc:3644 with SMTP id d9443c01a7336-2446d9db047mr150258105ad.54.1755507763265;
+        Mon, 18 Aug 2025 02:02:43 -0700 (PDT)
+Received: from localhost ([122.172.87.165])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2446d552798sm74284645ad.138.2025.08.18.02.02.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Aug 2025 02:02:42 -0700 (PDT)
+Date: Mon, 18 Aug 2025 14:32:40 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8450: Add opp-level to
+ indicate PCIe data rates
+Message-ID: <20250818090240.in7frzv4pudvnl6q@vireshk-i7>
+References: <20250818-opp_pcie-v2-0-071524d98967@oss.qualcomm.com>
+ <20250818-opp_pcie-v2-2-071524d98967@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250625100330.7629-1-marek.vasut+renesas@mailbox.org>
- <CAMuHMdV3=c24KxO_Sbt50FGsFnNVYNnHAUhk-yoa+nM1f+7+kA@mail.gmail.com>
- <e1d465f7-43d7-471b-b8a7-7d24428bac4c@mailbox.org> <CAMuHMdX6naFbq-5LyuC4n+JRPTXGSSohKDTf95=MS_SMyHqfng@mail.gmail.com>
- <154ea688-8e06-40c6-944c-084fb9d5ce26@mailbox.org>
-In-Reply-To: <154ea688-8e06-40c6-944c-084fb9d5ce26@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 Aug 2025 10:59:31 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXHhwWyzKN7LrVFhyiQQSOpCa_MjJMUH5tOqiDdEwM2fg@mail.gmail.com>
-X-Gm-Features: Ac12FXwusi8Q50H9ko56aKmi_551zQte_LhN-_Eru5-Jf3vH6_rggjPNmkPCoHw
-Message-ID: <CAMuHMdXHhwWyzKN7LrVFhyiQQSOpCa_MjJMUH5tOqiDdEwM2fg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a779g3: Update thermal trip points
- on V4H Sparrow Hawk
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250818-opp_pcie-v2-2-071524d98967@oss.qualcomm.com>
 
-Hi Marek,
+On 18-08-25, 13:52, Krishna Chaitanya Chundru wrote:
+> @@ -2210,45 +2213,67 @@ pcie1_opp_table: opp-table {
+>  				compatible = "operating-points-v2";
+>  
+>  				/* GEN 1 x1 */
+> -				opp-2500000 {
+> +				opp-2500000-1 {
 
-On Fri, 15 Aug 2025 at 01:36, Marek Vasut <marek.vasut@mailbox.org> wrote:
-> On 8/14/25 5:50 PM, Geert Uytterhoeven wrote:
-> > On Wed, 6 Aug 2025 at 17:23, Marek Vasut <marek.vasut@mailbox.org> wrote:
-> >> On 8/6/25 11:35 AM, Geert Uytterhoeven wrote:
-> >>>> +/* THS sensor in SoC near CA76 cores does more progressive cooling. */
-> >>>> +&sensor_thermal_ca76 {
-> >>>> +       critical-action = "shutdown";
-> >>>> +
-> >>>> +       cooling-maps {
-> >>>> +               /*
-> >>>> +                * The cooling-device minimum and maximum parameters inversely
-> >>>> +                * match opp-table-0 {} node entries in r8a779g0.dtsi, in other
-> >>>> +                * words, 0 refers to 1.8 GHz OPP and 4 refers to 500 MHz OPP.
-> >>>> +                * This is because they refer to cooling levels, where maximum
-> >>>> +                * cooling level happens at 500 MHz OPP, when the CPU core is
-> >>>> +                * running slowly and therefore generates least heat.
-> >>>
-> >>> That applies to cooling-device = <&a76_[0-3] ...>...
-> >>
-> >> Do you want me to add this line into the comment ?
-> >
-> > I don't think that is really needed (see below)
-> >
-> >>>> +                */
-> >>>> +               map0 {
-> >>>> +                       /* At 68C, inhibit 1.7 GHz and 1.8 GHz modes */
-> >>>> +                       trip = <&sensor3_passive_low>;
-> >>>> +                       cooling-device = <&a76_0 2 4>;
-> >>>> +                       contribution = <128>;
-> >>>> +               };
-> >>>> +
-> >>>> +               map1 {
-> >>>> +                       /* At 72C, inhibit 1.5 GHz mode */
-> >>>> +                       trip = <&sensor3_passive_mid>;
-> >>>> +                       cooling-device = <&a76_0 3 4>;
-> >>>> +                       contribution = <256>;
-> >>>> +               };
-> >>>> +
-> >>>> +               map2 {
-> >>>> +                       /* At 76C, start injecting idle states */
-> >>>> +                       trip = <&sensor3_passive_hi>;
-> >>>> +                       cooling-device = <&a76_0_thermal_idle 0 80>,
-> >>>> +                                        <&a76_1_thermal_idle 0 80>,
-> >>>> +                                        <&a76_2_thermal_idle 0 80>,
-> >>>> +                                        <&a76_3_thermal_idle 0 80>;
-> >>>
-> >>> ... but what do "0 80" refer to? I couldn't find in the thermal-idle
-> >>> bindings what exactly are the minimum and maximum cooling states here.
-> >>
-> >> The comments in drivers/thermal/cpuidle_cooling.c clarify that, it is
-> >> the idle injection rate in percent, in this case the cooling can inject
-> >> idle states up to 80% of time.
-> >
-> > OK, so I will add "(0-80%)" to the idle states comment, and sort
-> > the nodes while queuing in renesas-devel for v6.18.
-> I sent a V3 to make this more official. I hope that helps.
+Why mention -1 here when there is only one entry with this freq value
+?
 
-Thanks, I took v3 instead.
+>  					opp-hz = /bits/ 64 <2500000>;
+>  					required-opps = <&rpmhpd_opp_low_svs>;
+>  					opp-peak-kBps = <250000 1>;
+> +					opp-level = <1>;
+>  				};
+>  
+> -				/* GEN 1 x2 and GEN 2 x1 */
+> -				opp-5000000 {
+> +				/* GEN 1 x2 */
+> +				opp-5000000-1 {
+> +					opp-hz = /bits/ 64 <5000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <500000 1>;
+> +					opp-level = <1>;
+> +				};
+> +
+> +				/* GEN 2 x1 */
+> +				opp-5000000-2 {
+>  					opp-hz = /bits/ 64 <5000000>;
+>  					required-opps = <&rpmhpd_opp_low_svs>;
+>  					opp-peak-kBps = <500000 1>;
+> +					opp-level = <2>;
+>  				};
 
-Gr{oetje,eeting}s,
+This looks okay.
 
-                        Geert
+>  
+>  				/* GEN 2 x2 */
+> -				opp-10000000 {
+> +				opp-10000000-2 {
+
+Why -2 here ?
+
+>  					opp-hz = /bits/ 64 <10000000>;
+>  					required-opps = <&rpmhpd_opp_low_svs>;
+>  					opp-peak-kBps = <1000000 1>;
+> +					opp-level = <2>;
+>  				};
+>  
+>  				/* GEN 3 x1 */
+> -				opp-8000000 {
+> +				opp-8000000-3 {
+
+same.
+
+>  					opp-hz = /bits/ 64 <8000000>;
+>  					required-opps = <&rpmhpd_opp_nom>;
+>  					opp-peak-kBps = <984500 1>;
+> +					opp-level = <3>;
+> +				};
+> +
+> +				/* GEN 3 x2 */
+> +				opp-16000000-3 {
+
+Shouldn't this be opp-16000000-1 only ? This is the first occurrence
+16000000.
+
+> +					opp-hz = /bits/ 64 <16000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +					opp-peak-kBps = <1969000 1>;
+> +					opp-level = <3>;
+>  				};
+>  
+> -				/* GEN 3 x2 and GEN 4 x1 */
+> -				opp-16000000 {
+> +				/* GEN 4 x1 */
+> +				opp-16000000-4 {
+
+opp-16000000-2 ?
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+viresh
 
