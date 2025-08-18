@@ -1,149 +1,114 @@
-Return-Path: <devicetree+bounces-205758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-205759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B1B4B29FCC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 12:58:19 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6290DB2A020
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 13:14:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A76A67A23D0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 10:56:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 327F84E06AF
+	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 11:14:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83DAA261B71;
-	Mon, 18 Aug 2025 10:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3270F30FF1D;
+	Mon, 18 Aug 2025 11:14:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aamuVr2g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934B5261B65;
-	Mon, 18 Aug 2025 10:58:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5AE43009EF;
+	Mon, 18 Aug 2025 11:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755514692; cv=none; b=he1uVgO2D7Fx/yPcVysXyKLOwVm4yEUdNLomnYflTpeusLxSpLvxLAcJAR95Se4Kv0nPlf9JZUTJ/zjJ0ybUrtzjlffYM/XzjeNBPK4eO3hQT7Nkp4vooMJzdv4uSFa0oISiRp6RcSgYsJ62G9iB8yIQhGQvrAlaftt8USQMbRE=
+	t=1755515686; cv=none; b=JMb4jYUiYFGXFiLhCMwy41urNTe5kOXKGAKmmB+TlY5GQ/iQMotMLdOGRT8MLvOyzkM0+JAXHt6in35fuGwWjMOUJfG2LOL9/X20aWCPYKBdZT2spwMnluatILGmFAc0JbRAshpgA7bFsuLoRd1uV9GZW/3PtU/cU2aJo0E0tMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755514692; c=relaxed/simple;
-	bh=1OYMZNFgCtewx/LdH3kO7ZHFgEX+oJiXBsil7YTth9k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X27g9jE+BfzfPv0QsvBjxCbL2Wz2fn9z4FHHP8WgysjDCSXVI5xo5ZSP4NPZWTRQERa9IhdmKPePyKyz4lFzu+dxQbe9gdntPw2208N9IxTN5QvDUJdxb9ARCtfEAWotmr14SwdUa0iaq6wbaMJzxr4+UO+bVcMGi/8jrLgB5B0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-50f85ec0885so2805364137.0;
-        Mon, 18 Aug 2025 03:58:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755514689; x=1756119489;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MvZGag46yLy/ylpKI2G9AQ0htuztjd8d1AFLuXJK53I=;
-        b=ERElPTbHRDMijH8RP4RRjJAjzT6SlswR2IE+2cv0CxY0eICyNdH00K9w+c9yilVB1Z
-         MWicG/Pgv/3KVUxGDZH/mhk2PTXgA9olK9x53ALPeilye1QJzIeRZTx84xI8wwmhWf0v
-         m9ixzEMoNH7Hk9oN7fJ68YpI89qraQHQc2zxjl4Khcbq01QFs4mNRde4iKd1qGOBPSIN
-         iYJLmegdm9U0+N6i111xgShaQxbZwE1lpGhNNAUcpmDhn94gWV+qL1sT7ygFpjPtTEXA
-         6T8ii4qvUpiOz7qSoenAOcRnkMNT+jnlQ3JAMc+7qjlH2pR/PL5M0+7qXv2SGqcpLXCi
-         HCMg==
-X-Forwarded-Encrypted: i=1; AJvYcCUlZn+d97M7JVX6z2F+TQeUPpsO+llWvRWHw5ArYait2xoKZ0hr5dhdrOAgRHgQCxbhEBs5jKqtXF8X7hP5@vger.kernel.org, AJvYcCX0hSp7WPaZ5fhvU3ugA7Ys34Tttjt6bcGw74hcYTkg8h7BjjuY+UipjSKER/ACUgQlZ2IDJbCRrXb8@vger.kernel.org, AJvYcCXfV63Q77aG4JkgUjzH2xlUbKCtgMo7Vvx/Zh9vK0W1z9YLF0UJBcuBAqhofJB0CnI0cBzHaon4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNusP1t+nvJMYlIf4chWfRJ11DnZ7UBFjHA1SRoAhyjI3ETYWQ
-	FhOCuRaVIzSquMWkods7/IaSc2qypORYgB4N/8EL/ujE8kZVWIA6Yb3KNOzsAMx5
-X-Gm-Gg: ASbGncshB30GkWnRw5L+wWpkSBR5aN2MvF+AYItaNVENgjXLHx1ekQyAqloz27PIgp4
-	8ll+H16WmH8AkbgtWntFMzFf9Ukv9+wHVvROlfjYFXs3BN/1q6MUOqqqmrzSolgeiekKy2YnY8t
-	EUCqfKlI9jLDrfFOEO8GyfrZNjdvVJyDOfAqQLRFLq3hJsCxc4gEHdHqe3KQ+vrUVjvJ9bp6b51
-	SPJuq3GM4m79tP6QpTUccmRV67Xizj6otMlgbKAkgI/jMYF65fdK96CcO0tzekj9RsEZCUUFgLW
-	pVuTEZtVD1/C981cfNtALuK51YmmR7kk2X7O1+HQ1JZqC2BXBuQHjhtalZUS/ncCOSIr8tfQWGg
-	71g5LqW31iV6UHHQfk3eqSss5CAKmm1QX2an/Nise2jpY1cZUO602kdnxVJ6/fVBN
-X-Google-Smtp-Source: AGHT+IFCZiCwB1knN9/9a6I3MlWrbQ31oMbjAXU/1TSkzk97Gbr6eSgrdivV3Q+k1E/3JnGo+34X4A==
-X-Received: by 2002:a05:6102:6306:20b0:517:1303:630f with SMTP id ada2fe7eead31-51713036e6bmr763552137.5.1755514689228;
-        Mon, 18 Aug 2025 03:58:09 -0700 (PDT)
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com. [209.85.221.174])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53b2bdb84f5sm1747700e0c.13.2025.08.18.03.58.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 03:58:08 -0700 (PDT)
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-53b1738e8e3so3112959e0c.1;
-        Mon, 18 Aug 2025 03:58:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVpPoy2QXHzSIK2xI9CDbosaMmbav+jncjaClUIntwVPCnmbsCRlevugTjlUsnFwMqM2W/sz9GWsNvRdSQM@vger.kernel.org, AJvYcCVthG6vouNou/SuHbwTYv47u4mxJrbbxOt9WBA8zq2HwdxozkEDNKebyq1oI4bK4AmXSqKrunn9@vger.kernel.org, AJvYcCWBjSLhw99MH++kjgXJHodlVZPef+mzcVNXeCkK9iGEGj3c/wbliY94wHcJ/aCztxaxWY+CLih9P6h4@vger.kernel.org
-X-Received: by 2002:a05:6102:dc8:b0:4e6:f7e9:c4a5 with SMTP id
- ada2fe7eead31-5126d30d22emr4017732137.22.1755514688621; Mon, 18 Aug 2025
- 03:58:08 -0700 (PDT)
+	s=arc-20240116; t=1755515686; c=relaxed/simple;
+	bh=QGK+8BU43Z/BLfmsImDku8HtvcxMQmdcoWqcXyADLeM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i2/0/DybdJ8oP7NABAR3jLJhRuvn8tFlEf7o1eCKVoN53LGxZG68mXDJ8bH3VgjJ8OnwEdGWBfzSkLMHQdibbGovJy1h5HV6AKGjK9af2NyhQgi/gQ5Ln1898Bw0q+6DE9woP2BQMPJmjmVRO79l6ayrIJfROwIpMg8smNzcNkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aamuVr2g; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755515685; x=1787051685;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QGK+8BU43Z/BLfmsImDku8HtvcxMQmdcoWqcXyADLeM=;
+  b=aamuVr2gO+0Mg68e6s0JDue8jTUvoUaYteFsJEjbuxNayPJloBE4gyye
+   u1opSK47lm+0Oxml0sYK1sAZ2lGv/ET/uwW+k76PG6ILPulQ3zdmq7UYx
+   mALb++BDfD4xr56XZro2kYXP4nWcqPS8Pq8AsmaLommSVZCYKRAoDN/81
+   2gk+vs5UFU1Jr7ySku/L1Uf5GlQm6u0HqMKnmRFhonbJX9ESjvA7vi4qm
+   3cPtXcJzUOkxqTlXb+fyhZdlI/6FC4gWDvoNoiorUZ+ykcGinu7GlbbpQ
+   M2sxI7FKwse0iYQdDbHkYG/Dx0ffM/eyI18+0fTgsn1h6AQ4pf+QGzJO1
+   Q==;
+X-CSE-ConnectionGUID: atYJse1XQkqw7sGHax2e6A==
+X-CSE-MsgGUID: AbwLk5WzQ7Ksq/lqF/BOLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="57691299"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; 
+   d="scan'208";a="57691299"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 04:14:44 -0700
+X-CSE-ConnectionGUID: tjX8Qo3mSp6UVkCsC5F00w==
+X-CSE-MsgGUID: XhMFdXstTkyHp4iT5G9jqQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; 
+   d="scan'208";a="171789223"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.252])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 04:14:41 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id ECB35120230;
+	Mon, 18 Aug 2025 14:14:39 +0300 (EEST)
+Date: Mon, 18 Aug 2025 11:14:39 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Will Whang <will@willwhang.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] media: i2c: imx585: Add Sony IMX585 image-sensor
+ driver
+Message-ID: <aKMLH_S5J_8EENwa@kekkonen.localdomain>
+References: <20250816055432.131912-1-will@willwhang.com>
+ <20250816055432.131912-3-will@willwhang.com>
+ <7e27b69b-40df-4ac4-aebf-dbd00044b71b@kernel.org>
+ <CAFoNnrxbzcF+YranTL8Von3BkROhq8X=RX5sa90M6PYgS_vjkQ@mail.gmail.com>
+ <daa45e3e-84a6-4c39-854a-1429fb68d415@kernel.org>
+ <CAFoNnrw4yRKGL_m0=g14C583o13ptC6e84TN---ABdyeg8jMhg@mail.gmail.com>
+ <04fd00bb-beb4-4f35-88fb-bf1cc7691505@kernel.org>
+ <CAFoNnrxd_2=9aJqo9yQ8bcDsyW9pVRCfmUU6tOHoeX5wEB2AhA@mail.gmail.com>
+ <11e35902-a19a-44b2-b816-15a495048d41@kernel.org>
+ <CAFoNnrxT83nz0qxf8HTapqOXuEQ0Vh+RbxyqRGQy_sJp9nzpAg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250815194806.1202589-1-contact@artur-rojek.eu>
- <20250815194806.1202589-3-contact@artur-rojek.eu> <aa6bdc05-81b0-49a2-9d0d-8302fa66bf35@kernel.org>
- <cab483ef08e15d999f83e0fbabdc4fdf@artur-rojek.eu> <CAMuHMdVGv4UHoD0vbe3xrx8Q9thwrtEaKd6X+WaJgJHF_HXSaQ@mail.gmail.com>
- <26699eb1-26e8-4676-a7bc-623a1f770149@kernel.org> <295AB115-C189-430E-B361-4A892D7528C9@coresemi.io>
- <bc96aab8-fbb4-4869-a40a-d655e01bb5c7@kernel.org>
-In-Reply-To: <bc96aab8-fbb4-4869-a40a-d655e01bb5c7@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 Aug 2025 12:57:57 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW0NZHCX1V01N4oay-yKuOf+RR5YV3kjNFiM6X6aVAvdw@mail.gmail.com>
-X-Gm-Features: Ac12FXwgapf6Ilge_fJ2aLB6KswOb-DOfIP2gi-yDMzAml5eljyD22BBTTZoEkE
-Message-ID: <CAMuHMdW0NZHCX1V01N4oay-yKuOf+RR5YV3kjNFiM6X6aVAvdw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: net: Add support for J-Core EMAC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: "D. Jeff Dionne" <jeff@coresemi.io>, Artur Rojek <contact@artur-rojek.eu>, 
-	Rob Landley <rob@landley.net>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFoNnrxT83nz0qxf8HTapqOXuEQ0Vh+RbxyqRGQy_sJp9nzpAg@mail.gmail.com>
 
-Hi Krzysztof,
+Hi Will,
 
-On Mon, 18 Aug 2025 at 11:58, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> On 18/08/2025 10:21, D. Jeff Dionne wrote:
-> > On Aug 18, 2025, at 17:07, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >> git grep jcore,emac
-> >>
-> >> Gives me zero?
-> >
-> > Um, right.  It=E2=80=99s not upstream yet.  Thanks for your work to get=
- that done, Artur.
-> >
-> >>> If an incompatible version comes up, it should use a different
-> >>> (versioned?) compatible value.
-> >>
-> >> Versions are allowed if they follow some documented and known vendor S=
-oC versioning scheme. Is this the case here?
-> >>
-> >> This is some sort of SoC, right? So it should have actual SoC name?
-> >
-> > No.  It=E2=80=99s a generic IP core for multiple SoCs, which do have na=
-mes.
->
-> Then you need other SoCs compatibles, because we do not allow generic
-> items. See writing bindings.
->
-> > This is the correct naming scheme.  All compatible devices and SoCs mat=
-ch properly.
->
-> No, it is not a correct naming scheme. Please read writing bindings.
+On Sun, Aug 17, 2025 at 12:53:49AM -0700, Will Whang wrote:
+> You are asking me to code a bug in the driver and the arguments don't
+> make sense.
+> As much as I appreciate your feedback, I want a working driver
+> upstream and will have to point to the existing code base to prove
+> that it works.
 
-Can we please relax this for this specific compatible value?
-All other devices in this specific hardware implementation were
-accepted without SoC-specific compatible values ca. 9 years ago. AFAIK
-the Ethernet MAC was the sole missing piece, because its Linux driver
-was never attempted to be upstreamed before.
+Please do address Krysztof's comments, otherwise there won't be progress in
+upstreaming this driver. I can recommend reading section "The active low
+and open drain semantics" in Documentation/driver-api/gpio/consumer.rst .
 
-Thanks!
+-- 
+Regards,
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Sakari Ailus
 
