@@ -1,150 +1,115 @@
-Return-Path: <devicetree+bounces-206270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BE4BB2BE79
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:07:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9EDEB2BE75
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:07:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7120620FB7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:04:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DF3C1887138
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:05:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7CEA31CA5E;
-	Tue, 19 Aug 2025 10:02:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e/dJJhRz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F83F3451D2;
+	Tue, 19 Aug 2025 10:04:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2C8215798
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 10:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C4613D8B1;
+	Tue, 19 Aug 2025 10:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755597758; cv=none; b=WBSnP5nU9R5mnR6PbThVG5KgIcQpP+SAJcmD2TY7lDjBaffE/FstIFf4euVZBr+RaXQr1fxHBhz4LyUJ+Gz6v4D3Iq1I4XXDR8huC4/gf+8vL1dMB6yT10jkDwo5potax1ltrZuNnt3p/uidn1d0eZRt1dMy95ebeBXnunBo3iY=
+	t=1755597879; cv=none; b=koUPFS5+SOFzKYyhKJgAtJKRmS3YjxkcKepN8b4KPVveHJElbN6l+BxLL8aj61ZRnCTiHcdqvp1Lzi6MCUy/Zy2o6X7+Eauv/53trlw++xoBFamm1TFgPzl8L3H19yYaSIYPwEfoAFgqeQj2A61w1WZDYWgAJCYyxMgwkxiYGtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755597758; c=relaxed/simple;
-	bh=2oRJmy6jdudOx3Q3CK1t3Tr8AwssA1mqdMSyvD/J694=;
+	s=arc-20240116; t=1755597879; c=relaxed/simple;
+	bh=nhMJ3waYvDL0W5VCB0R54bNkmZTRzkLn66dCP2aOzzU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o9VAk+s52hj+AcdaGifTrZ+Kp6vUuDa6CPpYZHTJRi4qE4dSKLIUDzJ5evBTb89d697bsj33gJKPTmP4rnu1+EV1mG9zunGT3avjRg/GWjdqGsAYDDxqTriQBFYbFEVjS1Wrhy9BKXywY22qFzBa0UJW9zp8VFV7+hhCQWCLMQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e/dJJhRz; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-333f8f0965dso42860411fa.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 03:02:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755597755; x=1756202555; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jEIclbjfDHmWiMYwu7S7lb6mGq8E/UEDhqSMVO/QBNA=;
-        b=e/dJJhRzz1jnTLk8ddHqa2XmLp+jJ+Df0foCAEM2JCLb6a61ooak+5fPVLmFDtkRIi
-         RYsasorV+IcV78wOZzGj3rj6PnToK/HwvJSvd+/o2szeFD3Fe6Q88p6Q8H9T7Bsdyg+O
-         HGrz3GlCbYe/Ia1lyT7JCKhvtlXA6F+PFAjxvUqwOHn2Fqadko+VXj5Wk1Afl5gg4xE7
-         99QIenlG7q6w5Ic0uRJrsrLEiTDENkRmAJDYACMf48CSAIAiOMfEO98leX8maFjseN5P
-         vw22O2vG7iXNsqwqPxaSKXTgONu+QqqtmwqOFJfQ2JooH9GduM7om55eytr/ZAS7yQrk
-         +xkA==
+	 To:Cc:Content-Type; b=KMHppAv27zH/riFAGoQyNnF4CMcuK8lIAGY7vLav+kWrlFbm33lXfOKrYuX2oXlmkMFlF8lGd7dGn7sp8nQ/UyIF05wLNup0+gttAiF0AuOr6otd3PKjHzO4VdCWNveftzdProibkpNPkHsEdxtcoL3emV8L+z0poJ+tCIKHsu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-53b17193865so1499829e0c.0;
+        Tue, 19 Aug 2025 03:04:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755597755; x=1756202555;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jEIclbjfDHmWiMYwu7S7lb6mGq8E/UEDhqSMVO/QBNA=;
-        b=svYVx+EBLMzk3c8BhceFa0HWk5zELjE9bY0RBpEN1XrjSp3E6aNcE+BUcwWw83YvXM
-         q8Cl6IiZ0CBwtGFRDMu3ZkppD5yl6ygTVw8FWrodPK7vVqjoa5jVih6a0kjEb9kvHwuq
-         AS7LLG+bu7/nubLqey2OilxRBZkJqK5qEVs7WAarpKKiRoRebwDvnMBW4CiuGghUfdom
-         1YKwOPF1iMXLAwAGMOJkgX+Swm3sY4NwnPe57upOKQWavyquCmp1fzma4AMHyA/sL9+R
-         bEYmJolokyYSOFbTmn60+7ytiFIQb2aVEzGJtAfsmCQJLce9cCOVOGdhzp4oMyLGCHEa
-         SibA==
-X-Forwarded-Encrypted: i=1; AJvYcCUolbEahQNKmirjZLfZGTLHedHSUhy8cWCqCehv33fUohNktyu6U3jMvw22RCPwhmOfqLvjoPizR9pz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAHELfHUN6qEH4aiBvBn8fXhxbdeydgWiYQ2eB3snnv7ViOlcg
-	uK4uFAYlc7LwoRcnyGdGdLwLbqB1/jyIGOyWrsG5TZndF1y9oUkPWneIED5rLgDXH7736DyjnjA
-	dFoxAAMKaCSWV5gGAp26KxL+Xt9wC7od8Lkghb57RDA==
-X-Gm-Gg: ASbGncsXlb7mTV4IqorsTs9jgvXX8TwGWpYYSU2HIvMI88Cq8ELwgQp0vpR66G5edag
-	gBM8Yn5YpERJXX5Klt2iBpEYwADC4EHfv4eX2hYRde1+PxjJEqXK8omZcEgImL2Sd3iLQRajAU1
-	YegB/C9N1+czF+V4URekliwJYKpGFOFKdZrgo1iIGg0RA+JoUt+5X8yXz3McfIvinmgEzPb8Utn
-	pd+8ofISFDO
-X-Google-Smtp-Source: AGHT+IH/19oUBfRxFr8epug82uJ7/HieWJyUVlBhoMvAFaMluZmkd3UN9bc0BKENYULFNtqg/fXi8MkFaQZgBnal9yQ=
-X-Received: by 2002:a05:651c:4199:b0:333:ac42:8d6a with SMTP id
- 38308e7fff4ca-335304ee6damr4961591fa.3.1755597754935; Tue, 19 Aug 2025
- 03:02:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755597876; x=1756202676;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lJlWkFNwc4UI7xTpJnUAjxLWy6ein9QK+nD83rWRU2U=;
+        b=YqaF9osGW3iNiJkRxN3/qxyEf1R4IKFqM0xgrQcSjHHpJa0ALnekyo0APHnCpx0Dug
+         clGDEJM7YoltbZzf3y4ssXlpMDWdX0FfWaZizy12l8BVFxMTZNB4dct+R9Os5aZH7KCb
+         sp7LV3VlpKLn3WYf+9FajGU36EdIR79U7H1OnFbCrG4lZXpEubFpFNw9cCdmjyQL9DQn
+         XvTLyit/xt/92BGogzCw4ne//k70gX6i/4awmxKbCEw9gLGnH7/RpeDjxttNqf/B+DSJ
+         dtQEQdUjS6LPxa0WDqJNZKFkb5d2h5gwIt6AXV8aB0JMMznddW/WFglHHrmYHLNGKZtI
+         xBFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV5kE11fKeCK9sTvtLlhcuNQPXvWYgxZ/ftinxOkOO7VZwhZHyduGViIQ3OeN1XzqDfTAPG7f+EbqyEt/9gVTYUGF4=@vger.kernel.org, AJvYcCVnarQCFdaVXMcgcOYLznLPykqE8OkyjEwXmRKf1axRh7C0N2z6PXjHgG56Z0/xtnejFv0syJDupL8HeCap@vger.kernel.org, AJvYcCWTHWoSUWtoB1OaNNASTdRAogNzclsyx5iudTn9a/VNPSFdwYWJHVFRddXZ9QPRBu4aPkhga2sF9Vda@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMkdjphZawMf1I1yPd0IHYOsdCQ5mdkamKY7iCeqWbbzVpwxph
+	FDRpQ75T+fW1HXVbK/5J2w7mLgjwDGlZoZ8gA04SMl8QJ8fBBTTRPESt/ooK1kyE
+X-Gm-Gg: ASbGncujAqlFYBSruAmrDNzpQHvI1hkAVRlgLi3I4nMAhtMYFaUPExhhlySsQFR/S93
+	kEtTNvdFQeMBf+EiLe/ZcTKAUBd8Z2gRQHjKayuVy+lZQ2ld9x1orJw3eO0qjA+meY8FyXQxjDV
+	reO9V5Z0VGNQS16Kt5ph6znPwMWnJU/a8JUZc2wM1m3GoNgO94Bh+3cNGbTcepC4DdwD/2AetPB
+	x/3+rkJZu7mFIMcUBoBZSBwwW90f/WLVLc+3tU0xcze/sm3l9lqHZQ00SIMPzKUymx36FUkRyO7
+	zexIbEna8I7kDNGa3NjV57AADkh+6dTEvzolYu5CgENRkWC4Ufz7VTzJs+nfHIbLnzsq46jd//A
+	/mE9EZn8mtv0U0saaW5+dZBAc2OJdryKsKm/Twv85d/BfyLB7+V4PTsI4SmvX
+X-Google-Smtp-Source: AGHT+IHlSsALr/U+WvxQxhrBN9xWARlUTqCQquT6G67WYhUL4OSDCuXol06J4f6PMyNSYIsYBcyfBw==
+X-Received: by 2002:a05:6102:3706:b0:4fd:3b3:d4b0 with SMTP id ada2fe7eead31-51923d37e34mr535532137.20.1755597876013;
+        Tue, 19 Aug 2025 03:04:36 -0700 (PDT)
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8902780d0easm2354869241.11.2025.08.19.03.04.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Aug 2025 03:04:35 -0700 (PDT)
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-50f863d662eso1396476137.0;
+        Tue, 19 Aug 2025 03:04:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUobAYZVW0jV4hviHWwVI/R1hO3zxBs8Okla8Sp54/k75hgsOPF/nbVjlL8q1rwDNYNXA9kKW3Fensjra3NDbOzoY4=@vger.kernel.org, AJvYcCW5MrJngfJQlaVKj+eIXcxxRLYGokyWysaAckalx7/2/LY/qhlnrhCrcmwPAsrEFslKT9uuN2LgKcb2@vger.kernel.org, AJvYcCXvrSQv5AG0przTOwdpme07qxPRfAQMonz3uxzvs249mWW/VoWbFvsO9amtjB0/4NHADgY2QPcVPHDJ0EGJ@vger.kernel.org
+X-Received: by 2002:a05:6102:3e89:b0:4f9:d929:8558 with SMTP id
+ ada2fe7eead31-51921bf488dmr645140137.10.1755597875622; Tue, 19 Aug 2025
+ 03:04:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250811163749.47028-2-ziyao@disroot.org> <20250811163749.47028-4-ziyao@disroot.org>
-In-Reply-To: <20250811163749.47028-4-ziyao@disroot.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 19 Aug 2025 12:02:23 +0200
-X-Gm-Features: Ac12FXx1atQmH6QeSnrDLNRud94fhJMECrA9TaInUV_M5vUWxhGJhif4Q5spxjg
-Message-ID: <CACRpkdZp8FLrxgkeZ=xzSPgny51iDZ3KRCrxpoSdgF8_=df=KQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] pinctrl: ls2k0300: Support Loongson 2K0300 SoC
-To: Yao Zi <ziyao@disroot.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
-	WANG Xuerui <kernel@xen0n.name>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
-	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+References: <20250727235905.290427-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20250727235905.290427-1-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 19 Aug 2025 12:04:24 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVuMQ8gk7BfqS3_ckNvWuB2ofyWmSuW9xcscDFmKxGrhQ@mail.gmail.com>
+X-Gm-Features: Ac12FXzpimHfkylZhKiWWGzMW_6TYqgkeSKP6CpQ8wJpP5FhlHv8WCtrU9fD57U
+Message-ID: <CAMuHMdVuMQ8gk7BfqS3_ckNvWuB2ofyWmSuW9xcscDFmKxGrhQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r8a779g3: Invert microSD voltage
+ selector on Retronix R-Car V4H Sparrow Hawk EVTB1
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 11, 2025 at 6:39=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
-
-> Support pin multiplexing and drive-strength setting for Loongson 2K0300
-> SoC. Pin multiplexing could be done separately for each pin, while
-> drive-strength could be only configured on function basis. This differs
-> a lot from the driver for previous generation of Loongson SoC, where
-> pinmux setting is based on group.
+On Mon, 28 Jul 2025 at 01:59, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Invert the polarity of microSD voltage selector on Retronix R-Car V4H
+> Sparrow Hawk board. The voltage selector was not populated on prototype
+> EVTA1 boards, and is implemented slightly different on EVTB1 boards. As
+> the EVTA1 boards are from a limited run and generally not available,
+> update the DT to make it compatible with EVTB1 microSD voltage selector.
 >
-> Pins are represented with pinmux properties in devicetrees, and we use
-> the generic pinmux API for parsing. The common pinconf interface isn't
-> used for drive-strength setting, since it handles pinconf settings at a
-> unit of pin groups or smaller.
->
-> Instead, the driver configures drive-strength settings just after
-> parsing the devicetree. The devicetree's structure ensures no conflicts
-> could happen in drive-strength settings.
->
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> Fixes: a719915e76f2 ("arm64: dts: renesas: r8a779g3: Add Retronix R-Car V4H Sparrow Hawk board support")
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-Overall the driver looks very good, well done!
+LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.18.
 
-Look into Rob's comment on the bindings to use a single node
-for mux and config.
+Gr{oetje,eeting}s,
 
-I saw that you want to make the pin controller strict, if you also have
-some pins with "GPIO mode" that will serve as back-end for a
-GPIO driver (and I saw you posted a GPIO driver series as well)
-then have a look at Bartosz recent patches to add infrastructure
-for pinctrl to know about what a GPIO pin is:
-https://lore.kernel.org/linux-gpio/20250815-pinctrl-gpio-pinfuncs-v5-0-955d=
-e9fd91db@linaro.org/T/
+                        Geert
 
-The current driver does not seem to know about any of these
-pins being usable as GPIO and does not implement those:
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-        int (*gpio_request_enable) (struct pinctrl_dev *pctldev,
-                                    struct pinctrl_gpio_range *range,
-                                    unsigned int offset);
-        void (*gpio_disable_free) (struct pinctrl_dev *pctldev,
-                                   struct pinctrl_gpio_range *range,
-                                   unsigned int offset);
-        int (*gpio_set_direction) (struct pinctrl_dev *pctldev,
-                                   struct pinctrl_gpio_range *range,
-                                   unsigned int offset,
-                                   bool input);
-        bool strict;
-
-Which is fine if the pins actually cannot be used for GPIO, but if they
-can, and this is just implicit for unconfigured pins ... then add
-functions and groups for GPIO.
-
-The other driver using pinconf_generic_parse_dt_pinmux()
-drivers/pinctrl/meson/pinctrl-amlogic-a4.c has GPIO awareness.
-
-Yours,
-Linus Walleij
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
