@@ -1,191 +1,112 @@
-Return-Path: <devicetree+bounces-206589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C2DEB2CD3D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:47:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21FCEB2CD43
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:48:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E89F1C21634
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 19:46:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE8C61C402D6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 19:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA522848B0;
-	Tue, 19 Aug 2025 19:45:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E53AF340DAB;
+	Tue, 19 Aug 2025 19:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k7P4H0LA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bx6/fDim"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01E3626E70E;
-	Tue, 19 Aug 2025 19:45:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3F9425A34F;
+	Tue, 19 Aug 2025 19:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755632740; cv=none; b=Mfm0cBpUxeS0Le/FQCUxlb2htygW8bIx6URh6wpyI7KruWb4a8RlADf7c0LECefUrwT5PYtVdY8oOG7vkctIFKqOaVSXw8Zq4upqikGiW2owTQJDfD/p2kpnc8KRbu5O1E21QbAWBc/x3Z3K1X3xFK6hbAEtyAdmdGMBxv2fvTY=
+	t=1755632823; cv=none; b=ecVi+S1h12pMzXmME0Pt6gEIKciGV9bVqPQYf7piWzt2Y2cM1WAMW6ft40agD2R2PihVCyqYaouv4Ob7jceMjLg0nuHj/Bmd2I1Xc9dGkEVjx2zNLz6ujKpQ1aGK0Tz5V1q+1DRfH1WlWAR39wu/HiVYa5nO3sUbEG3HtM+GwJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755632740; c=relaxed/simple;
-	bh=5+kZM9FbVDV+s3RqTCNRp+ZjDOmphXSaFf1t6iPNim0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NWXcPLhQkjrcfb2ZydXX5eAe/s6IUDVntla9gIDNAAylSVGJn3YdfS/LYttSm2TntCQukPRHtwfmkvyem4Okcv0a7XC6HJJbm2viZo6i08GwvuMpivsLwsRyKZyJaqbezMWrk/Q/Qna6+JO8q/y3GeTriBjmO1ymd5U7sUrf1wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k7P4H0LA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DDACC4CEF1;
-	Tue, 19 Aug 2025 19:45:39 +0000 (UTC)
+	s=arc-20240116; t=1755632823; c=relaxed/simple;
+	bh=TywL28JiMgpNsfLpXar8mcRLMEOquL5t8uql2vHQ0y0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=YKTXAXMswSuqu8xi5wI1XGACtbdZI+vJYKf58T2l/ZHB4atzRXLFfVyJnhVrQdutp/gk+eLY8EO5v3m8bZRAVAKbDq0RWTUQFwiGezIniqmfdJh7S+CHMtzDWxsGxqs06ecA+DtDHK6sPAQ50tjm+CHSPo6TjGx3CjAWRPSYDxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bx6/fDim; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F09FEC116B1;
+	Tue, 19 Aug 2025 19:46:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755632739;
-	bh=5+kZM9FbVDV+s3RqTCNRp+ZjDOmphXSaFf1t6iPNim0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k7P4H0LAB1KdNUDFG3dgnmKr7y1WRKpgp16Pm9IkMckikQ66uTBEQNghp7y7vEh8o
-	 NvwQOmsVwM4Vm4O4ctHiKx6iYcApEG50DCeGLI87TiAjwYrbk1k+4m3n90y+y9jmh1
-	 EDnAJNdGbpt44euYOB3gQ47ATic1Iiz5CiWSdSKVlyKbVAUXiHV8MxE4fih5bkylgu
-	 aEa9a2nNXGL5Hy2q416+gBF4TmUGuMMEV+C8VajvzzQD9nhX2FzeQCAN/7EQfvVpGW
-	 J8vd1NnE4XMLCkICEzV9eMq+mzDTiPJnHRQqMwqGTb2ltDOpIGosEzAx9hAfnLB6vU
-	 pI4oN0GM/gkSA==
-Date: Tue, 19 Aug 2025 14:45:38 -0500
-From: Rob Herring <robh@kernel.org>
-To: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	kernel@oss.qualcomm.com, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: Add Coresight
- Interconnect TNOC
-Message-ID: <20250819194538.GA1214644-robh@kernel.org>
-References: <20250819-itnoc-v2-0-2d0e6be44e2f@oss.qualcomm.com>
- <20250819-itnoc-v2-1-2d0e6be44e2f@oss.qualcomm.com>
+	s=k20201202; t=1755632823;
+	bh=TywL28JiMgpNsfLpXar8mcRLMEOquL5t8uql2vHQ0y0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Bx6/fDimuY0XA68apldTZvnU1FmSbGVjaJ4J0vVh5Q7g31QQlP/duOlYusajHJiPC
+	 hJ1GbmpdWOJtEGZ/+5kDU45FQH73sTCslMMG8ZTve60E1eMCoSvdUUkMOxMTGdg1Oy
+	 xObie6v0GyFd9s5USrsT3CGY/+VOFsEpglm9TEohlANU/5/44MMI8T2TNevtR+hwsU
+	 hi5tYA2jN6olRHnnEY5cV1GqhhYWf6eqGm/1mU75lzXflon/2+fQ0W0BjRrLirPVLf
+	 gALPoEEB4/oCvwk7EEkeORvUAaArg9rxOZJuXP8nZgAmZnNp22MMv7h0Nb2tkCmjz0
+	 a2Gsan/FKDBYw==
+From: Mark Brown <broonie@kernel.org>
+To: Srinivas Kandagatla <srini@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, kernel@oss.qualcomm.com
+In-Reply-To: <20250815172353.2430981-1-mohammad.rafi.shaik@oss.qualcomm.com>
+References: <20250815172353.2430981-1-mohammad.rafi.shaik@oss.qualcomm.com>
+Subject: Re: [PATCH v5 0/2] Handle shared reset GPIO for WSA883x speakers
+Message-Id: <175563281972.270039.2781752507684682140.b4-ty@kernel.org>
+Date: Tue, 19 Aug 2025 20:46:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250819-itnoc-v2-1-2d0e6be44e2f@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-cff91
 
-On Tue, Aug 19, 2025 at 03:27:43AM -0700, Yuanfang Zhang wrote:
-> Add device tree binding for Qualcomm Coresight Interconnect Trace
-> Network On Chip (ITNOC). This TNOC acts as a CoreSight
-> graph link that forwards trace data from a subsystem to the
-> Aggregator TNOC, without aggregation or ATID functionality.
+On Fri, 15 Aug 2025 22:53:51 +0530, Mohammad Rafi Shaik wrote:
+> On some Qualcomm platforms such as QCS6490-RB3Gen2, the multiple
+> WSA8830/WSA8835 speakers share a common reset (shutdown) GPIO.
+> To handle such cases, use the reset controller framework along with the
+> "reset-gpio" driver.
 > 
-> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-> ---
->  .../bindings/arm/qcom,coresight-itnoc.yaml         | 96 ++++++++++++++++++++++
->  1 file changed, 96 insertions(+)
+> Tested on:
+> 	- QCS6490-RB3Gen2
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..a3b5f2b949f69617a014d0ae2831c9c767178f8c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/qcom,coresight-itnoc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Interconnect Trace Network On Chip - ITNOC
-> +
-> +maintainers:
-> +  - Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-> +
-> +description:
-> +  The Interconnect TNOC is a CoreSight graph link that forwards trace data
-> +  from a subsystem to the Aggregator TNOC. Compared to Aggregator TNOC, it
-> +  does not have aggregation and ATID functionality.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^itnoc(@[0-9a-f]+)?$"
-> +
-> +  compatible:
-> +    const: qcom,coresight-itnoc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb
-> +
-> +  in-ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
+> [...]
 
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +      '#size-cells':
-> +        const: 0
+Applied to
 
-Drop these. Already defined by the above ref.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> +
-> +    patternProperties:
-> +      '^port(@[0-9a-f]{1,2})?$':
-> +        description: Input connections from CoreSight Trace Bus
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +  out-ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      port:
-> +        description: out connections to aggregator TNOC
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - in-ports
-> +  - out-ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    itnoc@109ac000 {
-> +        compatible = "qcom,coresight-itnoc";
-> +        reg = <0x109ac000 0x1000>;
-> +
-> +        clocks = <&aoss_qmp>;
-> +        clock-names = "apb";
-> +
-> +        in-ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            port@0 {
-> +                reg = <0>;
-> +                tn_ic_in_tpdm_dcc: endpoint {
-> +                    remote-endpoint = <&tpdm_dcc_out_tn_ic>;
-> +                };
-> +            };
-> +        };
-> +
-> +        out-ports {
-> +            port {
-> +                tn_ic_out_tnoc_aggr: endpoint {
-> +                    /* to Aggregator TNOC input */
-> +                    remote-endpoint = <&tn_ag_in_tn_ic>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> 
-> -- 
-> 2.34.1
-> 
+Thanks!
+
+[1/2] ASoC: dt-bindings: qcom,wsa8830: Add reset-gpios for shared line
+      commit: 126750523eac0ea79df672d9771eb483f7497b16
+[2/2] ASoC: codecs: wsa883x: Handle shared reset GPIO for WSA883x speakers
+      commit: cf65182247761f7993737b710afe8c781699356b
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
