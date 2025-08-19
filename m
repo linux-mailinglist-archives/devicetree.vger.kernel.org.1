@@ -1,123 +1,142 @@
-Return-Path: <devicetree+bounces-206431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E01AB2C4BD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:10:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B710B2C509
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:16:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 015EF1C219E4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:07:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16FDEA21EB8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7901A341AC0;
-	Tue, 19 Aug 2025 13:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC9D8340D90;
+	Tue, 19 Aug 2025 13:08:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QYf2Og+m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791B532BF46;
-	Tue, 19 Aug 2025 13:06:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBD833A03A;
+	Tue, 19 Aug 2025 13:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755608771; cv=none; b=GRoMfolABe0C352KykQcjLfRJiYJ6aiw9pWapn3ZHNBpcBAko+W3Ql7X703jT6ruSHEmO0JB+sdaFU+Ly98NPo6Y8tDGP8EukqbL/brFY/8ayQusLY+nlWLSfzU2h1yEaL68MT3pXyVrb7Exx8XORJ77sYWebNiTNkKKu+sus04=
+	t=1755608915; cv=none; b=Ccy/Ptl0SleXoegakEaTn69pK62QyH58SUMNMdGkctDQmsu3TCwWQ+ruFFXF/Sn3cBRP6c/Vtl90CiBdGHyWvq8oQn+rY+tm9NAiyVKHJF8Hh4oFnda3cAP6XxQTtDp8C1ObJ2MM958VZJyPMgeXXlHIRjBVbcrOb9PRFQny7/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755608771; c=relaxed/simple;
-	bh=cRFojcPNllV40ehqCehsEpGuU/MxDG/dFERecHjiEUw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TP8n45xi/PmadwEUQtszw14y4gP6wgeK4WNA40lDmFJXIIHUIq8+En4mMFT3G7wKikIA10+XqbeNi5zEZ3Hux1VJSdVo26ZlYu+t3BtXm4myyfC1ydHgJ/dLr724rUEmwGclroQzcYkG8YeUavhBF6bylAyLceNVGx1D7Vsz3fU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-53b1740154dso3673537e0c.1;
-        Tue, 19 Aug 2025 06:06:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755608768; x=1756213568;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8XOdfZsHoyTBBC5eTa1c4VcrP/Xh4XLwdxd8CP9jAi0=;
-        b=K3cB106PQu1tYqJET32dmDR1ed1dzh99fQ5yEjUDsx5Eoc1xdmuRYpI7FYyt99+pSS
-         rHU6cObniE7bqgugP7OHBu3cvSHcGYq8dBRD83IRF1jJWN1ivSd/WbeLAqIbnqFtySus
-         Q9FIJFxIHl+Z7MHVM3UpWXFoEe1eJ6BOVgoibQ8IXPEjoo4lXIDk1o6fsBCD/R/nNnq9
-         6KDKqLgqOcw+cZ5hpeA5WUIgCHkwLw8nhdNdS24WR8yOqPhBvDP4v7h8bjyyOwJ8VWCc
-         zyYWVuoG4DgFli9+SfKL2xfSmc2x4WLxv3PLgnFFyFiLUi0igkLQ/r2ySZXPoRyUKB7+
-         o2UQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV5uombveublmyXy1mucq7SouQsu9NB5GhT1gro+7TVd3nhwqie6E4BYl18L8Xl950u5F/Ig5kAJuU+@vger.kernel.org, AJvYcCVftBj0o4wGyLaHVZ/JDaDlkMKqLaYds9fxa0Ru5G1ta8mc8QyJ42QlYxsXkd7gCkDMRRyi2vghbn66l3qggaZYNu4=@vger.kernel.org, AJvYcCW40lRZ/jaSCMqYwC75Ce6T6GCc9r5V0vnpbmaq95ntrH8WJwQGboyeHcH1kPyAhrNukEpxVAExXWs3@vger.kernel.org, AJvYcCWnHWjKSka4rIfG8S2E9qi6FBWJs1M9qBHqKsSYypK23mgBKZ20Tggl1gjgu7PtvDapzWl2Qn6ZgSIPADRu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlzHFWy2QxooLMyO1J14DfLjWSJkL4OC5/qHAozndKY+TaAQrm
-	N3w95RjKBhgQL9dA1okqCyfqrVHnOfgB4iLKQYVrAXNXcjOuUuTClRpIz4gHPmPH
-X-Gm-Gg: ASbGncuNNonHo1xlCnvBsskcqldZfipMtQSoLt1/7PBPBjjeXq0wK01UAE+lbg5b/kL
-	u6AriorjonvgQdBsYCXjbOE240Zqz3vM29uFUfQReQLudGFzfN93tnmk4WK6yBroVM9wVYGL5v/
-	4MJNhUd4lZP1k/dN0Bp067ZY02lcPfju7dOhzrRU55mQ7vbLxCdCS1blD4JESzi0FlLXcA8LueN
-	INfjO++pcwSjyq1KrVx1ARzIjzR2emMJBP7dUXWmATZ1NcCiJwNC3dz+U/FV2GYMrh/zovllZSB
-	DBo0X1g8zu91AYIDyC+cOdJfAXRC2Vm6H3InvLduUxZiMePibEoEGJzZcinvd4ryIY31M7i3u2z
-	KlilupF+RdGIbtrilNhI5n1M1Sqrdfs7vNnadqzZkYrQuOZ/Enq8sG2oUvlTNwOSpGi3Eacc=
-X-Google-Smtp-Source: AGHT+IH8JI5kcbwxb0nmuwhaK0Vfx4/7mxZOTMEcvqZanF3GYNy9KpIkQyd3iaYTg/8U3zjX8MbXdQ==
-X-Received: by 2002:a05:6122:921:b0:535:ed79:2aed with SMTP id 71dfb90a1353d-53b5e5955b7mr872314e0c.2.1755608767803;
-        Tue, 19 Aug 2025 06:06:07 -0700 (PDT)
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53b2bed931esm2528042e0c.20.2025.08.19.06.06.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Aug 2025 06:06:07 -0700 (PDT)
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-50f7e78cc12so3672173137.0;
-        Tue, 19 Aug 2025 06:06:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWPdJ4H7LjsfJNs3Xz+0911sApXx3mzWeu47ekRKs5SV/bLxCn+NXsDRPVnZJU02lE45cqH65Yp1ouo8emsQuI/Qk4=@vger.kernel.org, AJvYcCWvKegN/ef58vjWojEiVqjWSrh/M/5x7SRS9xuYuCtfuKJNrQRGYp0pmyAq5rMOfYfKnh1Gkz/wMFMq@vger.kernel.org, AJvYcCWxW+eACyb87ChQfU0J2GaabJ+DOAIaylvbNFzTGxbDC46awa0wsAkvL68Q3WrH873HvU5mUXFOiqzB8oCq@vger.kernel.org, AJvYcCXpWcbZ1Mm8RlRquAxL9DLPDJJiwighAF5DyjmIYkGjEGfjO85mLwbJ1nBus7kjHfHe5XuYBoO7xLnJ@vger.kernel.org
-X-Received: by 2002:a05:6102:4a97:b0:4e5:5c14:5937 with SMTP id
- ada2fe7eead31-51929a19afbmr863928137.1.1755608766525; Tue, 19 Aug 2025
- 06:06:06 -0700 (PDT)
+	s=arc-20240116; t=1755608915; c=relaxed/simple;
+	bh=TQVwtClWCA+8RO65CTYwYAjYCrYVmjvFMzpWRSn7zIE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KVWQQrzY6KyHTl0Xb2JS9zLfgszgOTIidbLvmpxpq6R/yEyOqGbzlvEWUoxdRec9Efk8oQzNwnMn8MqbYltcEXPk8ahlT/SKrelvttPYeNvMPDG1pVlAnNrjEY4KO3/fJSK/j4A5bwUDtQ6BZha7Vt+G6D1wTOLGF77EsIH5BVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QYf2Og+m; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57JD8BEQ014894;
+	Tue, 19 Aug 2025 08:08:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755608891;
+	bh=uRqHHzGDVQyZmbbWGYjj8UmUVEoB6TmINAhU6vBkxb8=;
+	h=From:To:CC:Subject:Date;
+	b=QYf2Og+m1yNZdiYix801ZQVniURWzUd3RTomw9xb20Rz2TvwjhNA76dshKNbhKjAd
+	 8jF5eE6azyEZiZkjDPsRYm4Nc+7t9DlfezQpNvav39iWBc45FkWK8gdHHg8dqH7xd+
+	 45ltD9VhQ0KW0k3QZE7zCqh6F1ISrLu5ONIHMdLc=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57JD8Bmd421278
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 19 Aug 2025 08:08:11 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 19
+ Aug 2025 08:08:10 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 19 Aug 2025 08:08:10 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57JD8AmA2747727;
+	Tue, 19 Aug 2025 08:08:10 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, David Airlie
+	<airlied@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Laurent Pinchart
+	<Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Jason Kridner <jkridner@beagleboard.org>, <afd@ti.com>,
+        <tomi.valkeinen@ideasonboard.com>, <devarsht@ti.com>,
+        <dmitry.baryshkov@oss.qualcomm.com>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH V4 0/5] drm/bridge: it66121: Add initial it66122 support
+Date: Tue, 19 Aug 2025 08:08:02 -0500
+Message-ID: <20250819130807.3322536-1-nm@ti.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250728201435.3505594-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250728201435.3505594-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250728201435.3505594-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 19 Aug 2025 15:05:54 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXTfz5mBNLNTwGjzuuVV5L726a2x_penD85524X5GsXjA@mail.gmail.com>
-X-Gm-Features: Ac12FXzFxo0dVvYfSvWWErtn55ptRVL7u8GTkaX8Cq25P7cD0mfdKfGkkT3ZV4I
-Message-ID: <CAMuHMdXTfz5mBNLNTwGjzuuVV5L726a2x_penD85524X5GsXjA@mail.gmail.com>
-Subject: Re: [PATCH v7 1/6] clk: renesas: rzv2h-cpg: Add instance field to
- struct pll
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, 28 Jul 2025 at 22:14, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add a two-bit "instance" member to struct pll and extend the PLL_PACK()
-> macro to accept an instance parameter.  Initialize all existing PLL
-> definitions with instance 0 to preserve legacy behavior. This change
-> enables support for SoCs with multiple PLL instances (for example,
-> RZ/G3E we have two PLL DSIs).
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Add initial support for IT66122, which seems to be compatible to it66121
+but probably has additional functionality.
 
-Gr{oetje,eeting}s,
+BeagleY-AI uses this it66122 as the old part is no longer in production
+as far as I understand.
 
-                        Geert
+Now, BeaglePlay uses it66121 at the moment, but at some point, it might
+end up flipping over to the new part. Additionally, it also looks like
+Revision D of BeagleBone Black switched over to it66122 as well.
+
+Changes in V4:
+* Added patch to sort the compatibles alpha-numerically
+* vid/pid lookup is done without using the match_data.
+* picked reviews
+
+Changes in V3:
+Based on Tomi's and Devarsh's reviews, and searching online (and failing
+to find) for a public data sheet, I have refactored the series to:
+a) Detect the ID by matching vid/pid
+b) Introduce it66122 basic support which seems to work based on
+   empirical testing evidence on BeagleY-AI. This allows incremental
+   patches in the future by someone who might have access to the data
+   sheet to add additional features for the chip.
+c) Irritated by checkpatch --strict warnings, added a patch to fix
+   existing warnings as part of this series, but it could probably go
+   in independent of everything else.
+d) Stopped claiming it66122 is drop in replacement of it66121 :)
+
+Changes in V2:
+* Picked up Krystoff's binding ack
+* Switched over to a vid/pid list
+
+V3: https://lore.kernel.org/all/20250815034105.1276548-1-nm@ti.com/
+V2: https://lore.kernel.org/all/20250813204106.580141-1-nm@ti.com/
+V1: https://lore.kernel.org/all/20250813190835.344563-1-nm@ti.com/
+
+Nishanth Menon (5):
+  dt-bindings: display: bridge: it66121: Add compatible string for
+    IT66122
+  drm/bridge: it66121: Drop ftrace like dev_dbg() prints
+  drm/bridge: it66121: Sort the compatibles
+  drm/bridge: it66121: Use vid/pid to detect the type of chip
+  drm/bridge: it66121: Add minimal it66122 support
+
+ .../bindings/display/bridge/ite,it66121.yaml  |  1 +
+ drivers/gpu/drm/bridge/ite-it66121.c          | 66 +++++++++----------
+ 2 files changed, 33 insertions(+), 34 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.47.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
