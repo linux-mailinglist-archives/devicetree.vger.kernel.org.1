@@ -1,123 +1,100 @@
-Return-Path: <devicetree+bounces-206566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CF9EB2CBB0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:13:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E5FB2CBE1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:25:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD00A1BC81F6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 18:14:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 255EA5A2F95
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 18:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C746230EF9B;
-	Tue, 19 Aug 2025 18:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC64930F808;
+	Tue, 19 Aug 2025 18:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bU/kEK1K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NROtux7W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F684EEDE;
-	Tue, 19 Aug 2025 18:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE90030F7F8;
+	Tue, 19 Aug 2025 18:25:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755627220; cv=none; b=QLBDpqq3RgfaI6eDxFS+htZhBPEJn+nKc6DQFn4pIME920DpBItD1Y9s1lhIasSpO+2SxPoiAv8rqtzq933ei/hI8i5q0a+fWNGmghjGqUNbl3k8FsVDLxs1LpY+/Ga/8YhmwMPrXQcEXsRJaSwalDUDtea5rgaIWzsfsogxOO4=
+	t=1755627907; cv=none; b=PEGS4geApbKF1Smq/EN8Zf1bzZOB/ByW1+Gi/36J/WTFZZVnAjDav1dctVln/Q9DiLmQ/fhLc1XbnCKIqUWcKOaQlUkDYvvNNZsleJbJMrkMrkaw7bMX04N1EV31L7fjmFL5e+8N4s2JZR/rpvuiyRK3JV9P13N4k6P1FxYTT8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755627220; c=relaxed/simple;
-	bh=KpvPL2aa1SINbF9+aQNQrZ61uMnyrWTf51xfQ5aKQRg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i8LPUACgtQBSf4gQ+t1QA7yEMIaQyLrKcrqAyVa0kSmx4EOzwN/9AMQxR3bakvYZ0HPQFHIfueHOeZqrjqqxkwAIdstE5fOX5qNeOGtbA6ybe6GA1Vkzb7g/yjiK3lFHmRKDczSb60VO1BqVEf1LHxSHDsZRYSeGksqU4R8I7tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bU/kEK1K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C64EC16AAE;
-	Tue, 19 Aug 2025 18:13:37 +0000 (UTC)
+	s=arc-20240116; t=1755627907; c=relaxed/simple;
+	bh=l1i778jGY3f3jtsd2Bn9nvdzC1JGOOdvOQwZjo6ScQM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dJFBGm0tmzxWQMYVgjIjpJ25C0vBlHQJs9Xrp6V3dbiH+CT+rOuoqHM5tmvIlm4j/JzIOvdLulTLQMGg7y6W+doY69fHXYAeqsRH3QclRj+nonLAAE8cZe8R239MC6Cp2BaexFfmuwVRcdehsiVtIrlbuo/j0tu4E21WsNO9LvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NROtux7W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3848FC4CEF1;
+	Tue, 19 Aug 2025 18:25:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755627220;
-	bh=KpvPL2aa1SINbF9+aQNQrZ61uMnyrWTf51xfQ5aKQRg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bU/kEK1KAuwIyAzv3AUR7Zqhso85eaRZLKIgaj2rVHGE6tFvTO/ViepXxzzQDnqOX
-	 jEPgFw3N2mtxEwVlFLGMv3HjfATY6f85xggSTgLuDslh8Jg+qmSAFnWosmxmp433Y3
-	 OkBa/aYHSBE3gtdDWSk0emTgJ2THXPc2WeQ5pyRBpj/m5JcsZzfFAjXK6b4gk1nRor
-	 Jj/7rUMrDYKmJL509RfvCKXbPrA+Ln/UNdzd6QKLEp3GaG4z88tdj8x2nLFwAOyGeX
-	 obsQ3ryuo79NPNLm01A1HwIw1uomZkJWfgDCXc3ZIqJMCgWH5a0uiFsWonkqeMnHT/
-	 j14dae9pUEQgA==
-Date: Tue, 19 Aug 2025 19:13:35 +0100
-From: Conor Dooley <conor@kernel.org>
-To: E Shattow <e@freeshell.de>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2] riscv: dts: starfive: jh7110-common: drop no-sdio
- property from mmc1
-Message-ID: <20250819-sushi-change-1254c2d2a08d@spud>
-References: <20250729141142.13907-1-e@freeshell.de>
+	s=k20201202; t=1755627906;
+	bh=l1i778jGY3f3jtsd2Bn9nvdzC1JGOOdvOQwZjo6ScQM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=NROtux7WttisI7F/LOyzvb1Knaov32l74MmD3roP6FClcDYwdXOa5uj+ia3L5u1ts
+	 RBJj8JJpK5qrCFGfEKRgw8iUdb2neC9ezMbWEC4Zg/8jWHO4jakmGKwBoW3XhoE8Z2
+	 D30zqFv+g5QmHg0Y75euHFKkXeIa6ZKjZF2ldGjD5ROnsWtDjA1uWNT5vvRLyH7YGQ
+	 TnIRg/mHVYRnpw13x/0cBNu5HFSdRlk5qDbu2BVn/VlF0wsP0XHKmQ7Z+Wfxlb2acg
+	 qp5OLpoozP1XkVPoHA6WvC/TDyMw/efvVCE44E+m4mdIrm6w+oGp2O7tAZY3niMQql
+	 gJ2wLRWjmcoSw==
+Date: Tue, 19 Aug 2025 19:24:55 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ben Collins <bcollins@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Ben Collins
+ <bcollins@watter.com>, David Lechner <dlechner@baylibre.com>, Nuno Sa
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andrew Hepp <andrew.hepp@ahepp.dev>
+Subject: Re: [PATCH v5 0/5] iio: mcp9600: Features and improvements
+Message-ID: <20250819192455.3d294562@jic23-huawei>
+In-Reply-To: <20250819-ambitious-lumpy-hornet-bc1600@kuoka>
+References: <20250818183214.380847-1-bcollins@kernel.org>
+	<20250819-ambitious-lumpy-hornet-bc1600@kuoka>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+sm/HGNSxtTF3UeQ"
-Content-Disposition: inline
-In-Reply-To: <20250729141142.13907-1-e@freeshell.de>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Tue, 19 Aug 2025 08:55:44 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
---+sm/HGNSxtTF3UeQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Mon, Aug 18, 2025 at 02:32:08PM -0400, Ben Collins wrote:
+> > From: Ben Collins <bcollins@watter.com>
+> > 
+> > ChangeLog:
+> > v5 -> v6:
+> >   - Fix accidental typo added in dt-bindings: IRQ_TYPE_EDGE_RISIN
+> >   - Correct some constraints in dt-bindings
+> >   - Reverse if/then for mcp9601 vs mcp9600 constraints in dt-bindings
+> >   - Updates to changelog for patch 2/6 (dt-bindings mcp9600)
+> >   - Cleanup tabs that were converted to spaces
+> >   - Split thermocouple-type default to separate patch  
+> 
+> Please start using b4, so you will get changelogs with lore links for
+> free and ALL your patches will be properly versioned. git can do that
+> as well - git format-patch -v5 --cover-letter, if you don't want to use
+> b4.
 
-On Tue, Jul 29, 2025 at 07:11:35AM -0700, E Shattow wrote:
-> Relax no-sdio restriction on mmc1 for jh7110 boards. Property was
-> introduced for StarFive VisionFive2 dts to configure mmc1 for SD Card
-> but this is not necessary, the restriction is only needed to block use of
-> commands that would cause a device to malfunction.
->=20
-> Signed-off-by: E Shattow <e@freeshell.de>
+Second that.  This is what it looks like in patchwork that I use
+for managing reviews / merges etc.
+https://patchwork.kernel.org/project/linux-iio/list/?series=992678
 
-I'm going to apply this one to for-next, to give it more of a chance to
-soak.
+version number not easy to find as it gets dropped from the series title
+and is only normally listed for the patches. 
 
-> ---
->  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv=
-/boot/dts/starfive/jh7110-common.dtsi
-> index 4baeb981d4df..b156f8703016 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> @@ -290,7 +290,6 @@ &mmc1 {
->  	assigned-clock-rates =3D <50000000>;
->  	bus-width =3D <4>;
->  	bootph-pre-ram;
-> -	no-sdio;
->  	no-mmc;
->  	cd-gpios =3D <&sysgpio 41 GPIO_ACTIVE_LOW>;
->  	disable-wp;
->=20
-> base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
-> --=20
-> 2.50.0
->=20
+> 
+> Best regards,
+> Krzysztof
+> 
 
---+sm/HGNSxtTF3UeQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKS+zgAKCRB4tDGHoIJi
-0h8zAPsEZlSydbDhSSY6HK5fbO8Q2t/BWSTx9sJrPaJSoqzKxwD/cZmCHPLsQpJ1
-LjxgMVRbqLLWQ0fpBuU/6TlManpKJQI=
-=orR2
------END PGP SIGNATURE-----
-
---+sm/HGNSxtTF3UeQ--
 
