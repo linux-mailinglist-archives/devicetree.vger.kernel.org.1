@@ -1,129 +1,167 @@
-Return-Path: <devicetree+bounces-206190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13422B2BB0C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:49:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5830CB2BB12
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:50:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F4331BA644F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 07:49:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39D9517305D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 07:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE172848A4;
-	Tue, 19 Aug 2025 07:48:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gj9vDIEC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F5A325B31B;
+	Tue, 19 Aug 2025 07:50:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27D76284891;
-	Tue, 19 Aug 2025 07:48:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B6C02264CA;
+	Tue, 19 Aug 2025 07:50:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755589737; cv=none; b=ZNZ1VgcVEEvHWzc+9d1wtzCs+eLCRpjG+S9hXHw/M8nrleJ7X+u+N/d5NXOMXsKOh0KZ5QYIzPBiNj0zoCVaTmF7ibE9VfDXGyrN+SI/Rd7CO/o4nzr0v9RNVXHJOtlXcHul7DEDyhMg3eYHo2Cy1Pg2yfmHF8ob6BWw9MPiSIA=
+	t=1755589812; cv=none; b=PzRfJfe1o5egAD7Gp6Z0yQfQXRJNl3vfWAdQN6grUZcdyZqn4NwUiSJcqzImaBMwciejn9UdF4FSAw5JimBEj3eu48p2cLffRIfxuu1cWfs+VA4WEqSrAyZNm28v824mG04yZSAA1JTQ+P/L9GH1msxCYBe2alRnVEUsqrDUp2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755589737; c=relaxed/simple;
-	bh=Qp0PoTzwfuUghzu0np/WZu53zNwZLmmTS9kXb8pX9b4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nJDpdIVcAh3UGRSXiXpaG5d9Z7Y0vTV366jj8tAy+B3j/0kNFnRa4Kd4Cq10CYD+xGyJPh41MtjwqI9C45wyz2ewU2W7BFoE6LA5q9SLTKYA5Ig+uteIaD36y9qnL9LHuyRHO+TVuel54Dv9u0MCCNSeDt6Y4v38ICkezsbAinc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gj9vDIEC; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1755589812; c=relaxed/simple;
+	bh=Ee2ObxfbUVPNh/3Zn9sXgxV5tzIeW55PDABLP8PSNvc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iZXjVF5kKAYja2K/dmUKRfy2hvUdKaoznEuyGDmMgU0pxIKK5+slBBDFNRC39qi6LP2xkcNO9v/zZbiwP5fxcOG9/ukn4HX9aKMS7hpSjtjC3uDFHs6ZiMYXr0J1ht+oyNbDV7EU0+v323xmeISqDo+aEwIqyFvvF/AHmoxA5R4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b47174beb13so3592675a12.2;
-        Tue, 19 Aug 2025 00:48:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755589735; x=1756194535; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+ht79aZIMlN7H9jxDjI1MTRwr0PcN1XBiR81e8sSRJw=;
-        b=gj9vDIEC8ZZTz4dI8DxCDQv6k3hLkpzG6ug5Qlhl+13sYQFxPBeI5H+PZxdGiRV0CH
-         sRQtqGCfb9Tv70w25ZVYpN/6xmuMjodLNoGCRAVMUycizi5v2nmpLt7LBMdev3PguqDa
-         SL80ng9yBM4oWKwRsZeE1OuYjq7W1yET2ed9WGiw/YuPDfCeHIFqM7zGDddTLGsHiMFE
-         Hzk1+uGt7wKYXeWTjFeZ4vXZjmZeHqcrM9peQ0hA6G89ct27b6c7S5NTf6raEiZnVl/L
-         WW1JyM/iRbf/8P3aaciF8//ccNiVdMn/uoKr720yggt+fjP2qMP33D78NRoPQEkHzLUM
-         /sZQ==
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-890190a3579so1158604241.2;
+        Tue, 19 Aug 2025 00:50:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755589735; x=1756194535;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+ht79aZIMlN7H9jxDjI1MTRwr0PcN1XBiR81e8sSRJw=;
-        b=XL8wA/EAh7bSlUE3dOf7REOIxx/TkEHdzPzl6TfIYicTWJvv1zKZTSCqbIQtTvsQc+
-         yJVKLhX6Ysy1CIo0k31i82QBrDkbDhRksa60FZTzkGAUJ6xCoNv5/prxW+aUqoRfwjZv
-         z1pd5LZ/FubHjsKMrH4JLztvOABvF12L1pr25tVV3rni8usZV/LIwxPEVkqxluVPB63H
-         c4AWVhy3ePh4aaACuaPL2MhPODua5/NJ75ImGfKik0iYkiT5Ue1ikLFP3saWxYDYNJTv
-         QJUD21X8XDYcxeVBkkYqWrsD3NIwuQ1KYywLXs0BFaFHiVc+oahr83MH1Vi3mR7VIKuW
-         W9SQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUaFHLfqwGaBKUw8y+UUm3iWk+75qH1veXViRBFL2M1bjazoGrMUQWTHqvxS6P7OWnuknqGftbdI/ko@vger.kernel.org, AJvYcCX2SAKSpIUkHwtgaJo/tFMhnQipZazj1UwRb61USnOMq2YTolpEwrioedlghmfS3tdtFniV6NqkV/L8ZFho@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjfZRo4x1MTjM4k5eXUIYyVTGfFIKWcjEpYkQt8ogGbQBAGolu
-	gG0Z0A5mM2KE4pQwXcz0xp2sLF1jTd5/AziZqpas1ztY7nS2zUlBnZaEgQbndB+a
-X-Gm-Gg: ASbGncuMtao+vX4RHrmow+lC0HY74ptcHh4vtovC0E7tfFCCMHW/H6XY4OHtdddzhtR
-	E41mBYcT1EOLR868qXs72nv8A3hMxAWVtNaicJ9/VmzKAYoRbyUkiwyBJshImkI7bf+3Za8Bw+e
-	V2qDl8VcaT9acTwaJEqNFFzuRwlN93axAzZdw6tXqomLEkjITflur9gF92uqGqnlpE4Bl64x/lD
-	QI3EyTqjf4I3hgldbEcomNN+BLKRN1JibYFtI3ZsZHnqiXuiD/AtZBKQOYRI7gx+4Cwo8FmERYU
-	fDRLhKAtesEaG0NjBRS6lqzntisGgzpAOrevNe+SSFdIrZNLH0e2n/rDZgt5SH7VFPJFyLkUgk8
-	xcyuu+XdoFaX2/5k=
-X-Google-Smtp-Source: AGHT+IFyS1pRC/nilFKVPJJNIWYZ8E/oqWs0FiyBi5MrOvkqeJATfICeqlfkAYPlPjxjgr2XEtay5g==
-X-Received: by 2002:a05:6a20:3d89:b0:23d:e568:e5ad with SMTP id adf61e73a8af0-2430d4753c4mr2069420637.28.1755589735214;
-        Tue, 19 Aug 2025 00:48:55 -0700 (PDT)
-Received: from anyang ([106.250.177.234])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e7d122ad7sm1684649b3a.36.2025.08.19.00.48.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 00:48:54 -0700 (PDT)
-Date: Tue, 19 Aug 2025 16:48:50 +0900
-From: Dongjin Kim <tobetter@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Change ethernet TXD timing delay
- value
-Message-ID: <aKQsYndrYStGTfoL@anyang>
-References: <20250819045018.2094282-1-tobetter@gmail.com>
- <380246b7-7e7a-4843-b82b-2e8d74e01ad5@linaro.org>
+        d=1e100.net; s=20230601; t=1755589808; x=1756194608;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cDMewuo9x/cu2BhGLPhUvUnCverX/+1L6wQ/8F1rHP8=;
+        b=csx9p4zbmKnbUWc3QLeqoeVJPiF6kAtAQGxYy6aAu6ZqF26RtUW0UtOpHxCld+vcB0
+         Iou1zdJ8XrSSVVZCm7vAmrDFlltTLelSaw4s4/RO0yyLvJ621fvssQk262yb2oJ+UGhk
+         Apixl1kwh+/4Y54Iuze74zviOX+1ww2+fGyCaTzvcTzBeAjeInxlcZ4xVBG9AoG9y61e
+         DJDapfx/8VhSk82JSBmDC3AJ6HOxNu43qAjSWNka/6fE/fRfF3v0jN5Dc5lY/AossOxB
+         K6b1R0752c+43/fOFsqY962AMa3jPR6bUtG+0vj+xmkKQOD9Mooq4Df7OarqkW+/yqnt
+         U3jQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVu4bic3StEZHlcEh1h+AUuHxgTABkzLTscsetLDcbythAWJScsGO7ugTYWXfN0I2z+64/f6dYFU8SX@vger.kernel.org, AJvYcCWE3fadI8JfVHZTAx7d3TjpL4sf3P3ZzmsBgpahQMNBz41WuNkQUegGG4Xwsio+HvnXl4ycnHF3GBZkAMh3m5liW6M=@vger.kernel.org, AJvYcCWTNX/TvMi2D0GOV2LtJDX/Ft6VuccWycBmC+xichw8RCJsBiJ3cdQbx0sdUn3umDc0/Q8nnFa3ZH4=@vger.kernel.org, AJvYcCWiCOfyxq+Bv5tzoCSsQduH/X1IlXS6nKXpUl6bOB5ajM4KH41godp2XSU7fADFu5nCItCeNwOAFS3k3/c3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyuiz3RR0yC6TRHVQct5AYchE1BHNKQKrnNkrhvGBGpkUFcy9Zt
+	0q65LmrrLkIB1DnkQJpx2I6yNdCBXdhfeXcr86+9gVT6V4kmwL2UWpJJ7r5E5miK
+X-Gm-Gg: ASbGncuivd45jOucdZVWx3lNlL7x5XgTPL3LgSk5Nr2z4r9u8m4upSEBrSlA6Gxvv08
+	dLboLo1Snm3ZyhnrpANiN8WUFwo1dNdlWn7tHJHTrlR79B8amoFOt+SppdYuw/U2TYMZX4ZEpM5
+	1VZ3PmjCewQ5n6HrVQrV3ksXfAQHBtMkeJipXoR3H9N2ZDW0mNeI2rLvXJMH/QBclAt6xYVl8P1
+	hPhIa1A28091zQUjqh9HPiqxPjg4BYBV/kGu8HuvARs9Q+/5aLdGqVQBIy0OK/JREA79BAckJ9S
+	xRQjONkiNXDjAUq0PXilvvq9i2AebzV8X/wfqifo5Hx2v5m7W4wc18oPYe4oDXNj9unBcI1vHcF
+	h81UXmbjJD80NeSnp9nTnAxZYote5uvbMJSLzWTu2sLO38EB85hUyXpQnZjgF
+X-Google-Smtp-Source: AGHT+IFKq4T0NeEevXORUaCDXBpcYjO5cKqFjxNCJVDpy+7CvkxOvJPTjkbFWl1QZhRAjhdwSmrguQ==
+X-Received: by 2002:a05:6102:3050:b0:4fc:1a18:aaa2 with SMTP id ada2fe7eead31-51922115df7mr394414137.5.1755589808538;
+        Tue, 19 Aug 2025 00:50:08 -0700 (PDT)
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53b2bf26276sm2717519e0c.32.2025.08.19.00.50.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Aug 2025 00:50:08 -0700 (PDT)
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-50f88eea7f0so1587239137.1;
+        Tue, 19 Aug 2025 00:50:07 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUC+k5OQVctYWGsQGRN3xO13cDy0qpja63+zUFg0Ga3eYyVWHJt8LkbtcoNtMpN+HjWUN/2GlYN4JI9kuBJQW49eU0=@vger.kernel.org, AJvYcCUypm2/ifwOi7qskursdGQxtqso2Oamfa6hwQsKZee77hcDd9M6aJiAgcQExiLTMy1r7p9d+BYSpB8K@vger.kernel.org, AJvYcCVYuDSMVHA1gZa5y5zFRXy+y/btEcVd48kuDcLZF4ZLooqO3jyI+7hSlyhCmkS+Ik60YMMvPy+rtxY=@vger.kernel.org, AJvYcCXq7Ky4etFGEz3zP0TLNaCk4sWZzvl3vaH4FJtuhUUS+1ZihuiaKDCEhxE3VSEWFGiEx6fIMdA69/001cHS@vger.kernel.org
+X-Received: by 2002:a05:6102:26d3:b0:4f9:a927:d9f8 with SMTP id
+ ada2fe7eead31-51922708edbmr391773137.8.1755589807543; Tue, 19 Aug 2025
+ 00:50:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <380246b7-7e7a-4843-b82b-2e8d74e01ad5@linaro.org>
+References: <20250818162859.9661-1-john.madieu.xa@bp.renesas.com> <20250818162859.9661-4-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250818162859.9661-4-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 19 Aug 2025 09:49:56 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUGmbn1H2JV17+9gTYBbnEOmoR9vUevWVx5BTX973MfoQ@mail.gmail.com>
+X-Gm-Features: Ac12FXxVEIoEldC7Y_cxbfmRxaBIBcU2E7FFzwjWz0bJ3Q0eWxEWXbpo_Rtft2U
+Message-ID: <CAMuHMdUGmbn1H2JV17+9gTYBbnEOmoR9vUevWVx5BTX973MfoQ@mail.gmail.com>
+Subject: Re: [PATCH v7 3/6] thermal: renesas: rzg3e: Add thermal driver for
+ the Renesas RZ/G3E SoC
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
+	rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
+	lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	p.zabel@pengutronix.de, catalin.marinas@arm.com, will@kernel.org, 
+	john.madieu@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, biju.das.jz@bp.renesas.com, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Aug 19, 2025 at 08:42:55AM +0200, Krzysztof Kozlowski wrote:
-> On 19/08/2025 06:50, Dongjin Kim wrote:
-> > Very poor network performance is observed on the ODROID-M1 Board
-> > (REV 1.0 20220613) when running iperf3 (under 200Mbits/sec), and
-> > this problem can be resolved after changing the value of TXD
-> > timing to 0x35 from 0x4f.
-> > 
-> > Signed-off-by: Dongjin Kim <tobetter@gmail.com>
-> > Change-Id: Idecd246e3fe93447b6e3e9b165d077d2050bbd75
-> 
-> 
-> Please run scripts/checkpatch.pl on the patches and fix reported
-> warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-> patches and (probably) fix more warnings. Some warnings can be ignored,
-> especially from --strict run, but the code here looks like it needs a
-> fix. Feel free to get in touch if the warning is not clear.
+Hi John,
 
-Thanks. I realized that I sent unmodified file that includes
-"Change-Id:".
+On Mon, 18 Aug 2025 at 18:29, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> The RZ/G3E SoC integrates a Temperature Sensor Unit (TSU) block designed
+> to monitor the chip's junction temperature. This sensor is connected to
+> channel 1 of the APB port clock/reset and provides temperature measurements.
+>
+> It also requires calibration values stored in the system controller registers
+> for accurate temperature measurement. Add a driver for the Renesas RZ/G3E TSU.
+>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 
-> 
-> You CC-ed an address, which suggests you do not work on mainline kernel
-> or you do not use get_maintainers.pl/b4/patman. Please rebase and always
-> work on mainline or start using mentioned tools, so correct addresses
-> will be used.
+> v7: Refactored driver structure:
+>   - removes splinlock usage
+>   - updates polling timeout as per the datasheet
+>   - uses average mode to be more accurate
+>   - uses polling (faster than irq mode) for get_temp() while keeping IRQ for hw
+>   trip-point cross detection.
+>   - adds both runtime and sleep PM support
 
-I've rebased to the master branch, so let me send the patch again.
+Thanks for the update!
 
-> 
-> Best regards,
-> Krzysztof
+I only looked at the code to obtain the trim register offsets.
+
+> --- /dev/null
+> +++ b/drivers/thermal/renesas/rzg3e_thermal.c
+
+> +static int rzg3e_thermal_parse_dt(struct rzg3e_thermal_priv *priv)
+> +{
+> +       struct device_node *np = priv->dev->of_node;
+> +       struct of_phandle_args args;
+> +       int ret;
+> +
+> +       ret = of_parse_phandle_with_args(np, "renesas,tsu-trim",
+> +                                        "#address-cells", 0, &args);
+
+of_parse_phandle_with_fixed_args(np, "renesas,tsu-trim", 1, 0, &args)
+
+> +       if (ret)
+> +               return dev_err_probe(priv->dev, ret,
+> +                                    "Failed to parse renesas,tsu-trim\n");
+> +
+> +       if (args.args_count < 1) {
+
+"!= 1", however, I think this test is no longer needed after moving
+to of_parse_phandle_with_fixed_args().
+
+> +               dev_err(priv->dev, "Invalid renesas,tsu-trim property\n");
+> +               of_node_put(args.np);
+> +               return -EINVAL;
+> +       }
+> +
+> +       priv->trim_offset = args.args[0];
+> +
+> +       priv->syscon = syscon_node_to_regmap(args.np);
+> +       of_node_put(args.np);
+> +
+> +       if (IS_ERR(priv->syscon))
+> +               return dev_err_probe(priv->dev, PTR_ERR(priv->syscon),
+> +                                    "Failed to get syscon regmap\n");
+> +
+> +       return 0;
+> +}
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
