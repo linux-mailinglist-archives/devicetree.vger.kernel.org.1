@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-206227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4039AB2BC39
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:52:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E800FB2BC57
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:00:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BC2A1888D6E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:52:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA9437B3F9D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E22C631195F;
-	Tue, 19 Aug 2025 08:52:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD1F31A05D;
+	Tue, 19 Aug 2025 08:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Owd2CS/t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YvvhuIFc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A852C1DC9B1;
-	Tue, 19 Aug 2025 08:52:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6D3731A057;
+	Tue, 19 Aug 2025 08:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755593540; cv=none; b=s6sYOdxruOd7AQlPIUyD3QR1up9caAzMPH9jXUg1NWaCJdIP7DRgm7SQxFJWq8ZtZAZIoqW+1s3ExPL8UBaDKAxLv/Wlsfd/OhEb5Ir3C9CwUhjWQpsFKI1NPFvLxOOb81TcxiDTgnsaAlXZxgJIW4uh0VeIZ+oW/ixrSFEE7Yc=
+	t=1755593964; cv=none; b=jOVvPn15MkDNMbQ0OzPo2Ja5zoa5rs3MkhtlxS04ZECr3ISPPY1Zey0rLJWewfYLoHv8KLTQpHh/YuzuBYwoz47qLguiOzzNDVi7fGiJdOYhsNzRy+Bpvgp/4NmhFrq9z0XI5KpphpvO3pVKZu3O4qIMDuMCGZKqSgf20BhnVXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755593540; c=relaxed/simple;
-	bh=yzUkQzaP8F8D4nlS0lE6qnZ/t2S0zQtHX8F4G8zhxvA=;
+	s=arc-20240116; t=1755593964; c=relaxed/simple;
+	bh=MfjojgOFDwiM1zX4EA/ds0PNRRDPb+ud6YetYr8ZTt4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jrc3JSwMMtGvb6oXX6om5I0v/NLX0UwlA1ULncjucg2m8YgyNjTVK9u20fhpD1mOhxFpHSAncrY9KMh9zn+JRf5vf1s0mA4DlKgMFtsb4v0uVIMh0idS8qUuKtnlWuenpjQayTrijdPS4zVP86O7FAMvx6aCI//Z+/UdOz6PgRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Owd2CS/t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CD24C4CEF1;
-	Tue, 19 Aug 2025 08:52:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=l59W/4HpsTh+nveg4nFXxkY09b+31ishSxnl2ImusWzxO8I6UYWjkPDT93ie1UnktVftY5grxkOO0lKbRbNd0+TLdmFbHn+Ti4mTCW8lOISdyu9NMNNVgr/m38yYqCY4B0jFxs/eV26Xkid/IK6BBK1kOc0/J8+0Pbz5UpMO0/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YvvhuIFc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5B5BC116B1;
+	Tue, 19 Aug 2025 08:59:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755593540;
-	bh=yzUkQzaP8F8D4nlS0lE6qnZ/t2S0zQtHX8F4G8zhxvA=;
+	s=k20201202; t=1755593964;
+	bh=MfjojgOFDwiM1zX4EA/ds0PNRRDPb+ud6YetYr8ZTt4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Owd2CS/tHxduX/DRfTXQQ6NLQfGPqcoWJ0ErrWILlOh6P2+vTaCCEvr9K4XA7Tl8R
-	 JS87cjbZFpr1Xk5rneTmVQ/jXCmFghpCuNzmBHKs4aXWBLKkhav2REL5xQ7Gv0knS2
-	 PWe6iZFPj/yUDzPLcBDVp0MR7IbpcVzq2uAV3WxgP1P3A56FQsTUAmeJdF/CNe/NEa
-	 dJdSoH2g2dN+p6eFqDgfpkunRVS7Vb5Wn8vT0i27mG7nNFaldi9J5Q9MT4lhQ0Hv7+
-	 ud8eJVzDjQi5yuFCcFwyI6oGy2J5unLCnZJEo4XDDWibZxNRBUgkxcnSC4XmxDJHn8
-	 ofODF2P7as1/g==
-Date: Tue, 19 Aug 2025 14:22:09 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: frank.li@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	bhelgaas@google.com, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, linux-pci@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] PCI: imx6: Enable the vaux regulator when fetch it
-Message-ID: <kvvluy56sdg6khv33cowseog4ujuebxzotlxm3hvm35slbenc5@rf3wttsd2niz>
-References: <20250819071630.1813134-1-hongxing.zhu@nxp.com>
- <20250819071630.1813134-3-hongxing.zhu@nxp.com>
+	b=YvvhuIFc7P2JeuLAigWCk4tgtjo8dK5A87aENxte6eGO/D21pbR1DRzJpq9YHAzrk
+	 hpMHX2okYSq+b6UCZMNRmkvtb1arVHEEpSA/HtiznF2adZNxq9zrVpI18ViSGE51pM
+	 vF0IZLYrxUT/FR/JTOlcHpq2Q77aoScCNTLn6C2t2tmtBlBpuX5yAsa4z/fWlQWBAq
+	 J1ZseB0WX+obRuM1lhFkRyN5Iks0dZ5OT0ua4Ju5Ga2jgjPICo93DHRe94LxY51YAG
+	 bfMvdiH1O1Q23oedVBj4PdhPjj5yrVJN+GxrhN0W4zc/OBZgj+EdvEfky7ZlOy8RWM
+	 u+3X38PiffDbw==
+Date: Tue, 19 Aug 2025 10:59:21 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: E Shattow <e@freeshell.de>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Hal Feng <hal.feng@starfivetech.com>, Minda Chen <minda.chen@starfivetech.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: memory-controllers: add StarFive
+ JH7110 SoC DMC
+Message-ID: <20250819-roaring-mutant-fox-a05caf@kuoka>
+References: <20250815073739.79241-1-e@freeshell.de>
+ <20250815073739.79241-2-e@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,55 +60,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250819071630.1813134-3-hongxing.zhu@nxp.com>
+In-Reply-To: <20250815073739.79241-2-e@freeshell.de>
 
-On Tue, Aug 19, 2025 at 03:16:30PM GMT, Richard Zhu wrote:
-> Enable the vaux regulator at probe time and keep it enabled for the
-> entire PCIe controller lifecycle. This ensures support for outbound
-> wake-up mechanism such as WAKE# signaling.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
->  drivers/pci/controller/dwc/pci-imx6.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 5a38cfaf989b1..1c1dce2d87e44 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -159,6 +159,7 @@ struct imx_pcie {
->  	u32			tx_deemph_gen2_6db;
->  	u32			tx_swing_full;
->  	u32			tx_swing_low;
-> +	struct regulator	*vaux;
->  	struct regulator	*vpcie;
->  	struct regulator	*vph;
->  	void __iomem		*phy_base;
-> @@ -1739,6 +1740,20 @@ static int imx_pcie_probe(struct platform_device *pdev)
->  	pci->max_link_speed = 1;
->  	of_property_read_u32(node, "fsl,max-link-speed", &pci->max_link_speed);
->  
-> +	/*
-> +	 * Refer to PCIe CEM r6.0, sec 2.3 WAKE# Signal, WAKE# signal is only
-> +	 * asserted by the Add-in Card when all its functions are in D3Cold
-> +	 * state and at least one of its functions is enabled for wakeup
-> +	 * generation. The 3.3V auxiliary power (+3.3Vaux) must be present and
-> +	 * used for wakeup process. Since the main power supply would be gated
-> +	 * off to let Add-in Card to be in D3Cold, get the vaux and keep it
-> +	 * enabled to power up WAKE# circuit for the entire PCIe controller
-> +	 * lifecycle when WAKE# is supported.
-> +	 */
+On Fri, Aug 15, 2025 at 12:37:21AM -0700, E Shattow wrote:
+> +
+> +title: StarFive JH7110 DMC
+> +
+> +maintainers:
+> +  - E Shattow <e@freeshell.de>
+> +
+> +description:
+> +  JH7110 DDR external memory interface LPDDR4/DDR4/DDR3/LPDDR3 32-bit at 2133Mbps (up to 2800Mbps).
 
-This comment implies that the presence of Vaux is dependent on WAKE#. But there
-is no such check present in the code. Maybe you are referring to the fact that
-the platform will only supply Vaux if it intends to support WAKE#?
+Please wrap at 80 (see Linux Coding style)
 
-But I guess you can just drop the comment altogether and move it to patch
-description.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: starfive,jh7110-dmc
+> +
+> +  reg:
+> +    items:
+> +      - description: controller registers
+> +      - description: phy registers
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pll1_out
 
-- Mani
+pll
 
--- 
-மணிவண்ணன் சதாசிவம்
+(this is name of input, not name of clock)
+
+Best regards,
+Krzysztof
+
 
