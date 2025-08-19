@@ -1,194 +1,178 @@
-Return-Path: <devicetree+bounces-206600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973D7B2CDD8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:30:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6836B2CE19
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:35:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36B88189E536
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:30:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92C565831B5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7FD26CE10;
-	Tue, 19 Aug 2025 20:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84A3A341ACD;
+	Tue, 19 Aug 2025 20:33:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="evk13QPM"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="2t0nH+rw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33AA520B80D;
-	Tue, 19 Aug 2025 20:30:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 832E233EB02;
+	Tue, 19 Aug 2025 20:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755635409; cv=none; b=aDKyMW6z9aCyuzVyzfcWP44kFClRLD8GjAAKjgEn+S6F6YNt8zmkz68p8px7InIMrwxUgC8WIQYhxVqkDKu1wA11mWbQD4gX3cjPnKSLmY/Bknf2SrOUHxI5c+bYNhVuAgX1zV7o2CiE/urE5W3Ki8fuF0xcLFjYF6CIOx/F1cs=
+	t=1755635617; cv=none; b=KmbvrB8oQCLQJ30Zx4mpDSj2aYILb/Sl17YIxb2OlOpn2ortmN0he8V3QWqFbkymAcTUw9M8vdUzBB15wGQvTpP9l2mCw+rqqEE9KXbz4yDFUriJvM6+khxfW8omcXhgTa0T6YRhyW5fCZw6IlPngCTWdYBel6FQMtYo6oOx1T4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755635409; c=relaxed/simple;
-	bh=ZR2C8Q08ABDZQ88UJtSosGwmMAl53VIxN5VzyU/juXw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qcYskOnYGtgcwXjvTw6THwVJdzYbbLQkJNrrjSB3iW8HO1vxqajVEpdF/YHIKQesOah5tiCw8wDYF6XFd7xlE4NRVHtJjCVdEM9NpRzSh6ZO596exuEgmJaZ6RltKKP8e9A3r5o96IqMgaQ9Ga/73bjr2lLiz7Jwr/o8zwLctG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=evk13QPM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E42CC4CEF1;
-	Tue, 19 Aug 2025 20:30:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755635408;
-	bh=ZR2C8Q08ABDZQ88UJtSosGwmMAl53VIxN5VzyU/juXw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=evk13QPMGD+oT9KokhawGFp/+Z/Fucf/SyvYEV+8YhumHAA2weEBBUVoDt5tAdcvM
-	 nVR88XBOqLRsTVhXJeEwhZf5F376YoLKPmmGxTY+XL2Yo1L2XZYgaOlIJVEkXJ42Qt
-	 3uNLB/DiIZgCXR+zTJY+R68PcSkExfyNNdZdV798hpROEhq3Q5l085149ns0eHc8Tj
-	 ambGWSAuR6X9ytxpfCBxxh8wDfwgIgb348eqoWqJ0CHjsnuxmmQjqOityJJVWfyVEk
-	 jqOYh6XPR1hxOVJAiAPHOM8mvB+cm/KO/KGtKxAWaTxEGK2GUmYm6KeD1iX8mUGzcH
-	 FaVJSYdn2jGsQ==
-Date: Tue, 19 Aug 2025 15:30:07 -0500
-From: Rob Herring <robh@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
-	Thierry Reding <treding@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Sowjanya Komatineni <skomatineni@nvidia.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter De Schrijver <pdeschrijver@nvidia.com>,
-	Prashant Gaikwad <pgaikwad@nvidia.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dmitry Osipenko <digetx@gmail.com>,
-	Charan Pedumuru <charan.pedumuru@gmail.com>,
-	linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-staging@lists.linux.dev
-Subject: Re: [PATCH v1 17/19] dt-bindings: display: tegra: document Tegra20
- and Tegra30 CSI
-Message-ID: <20250819203007.GA1266319-robh@kernel.org>
-References: <20250819121631.84280-1-clamor95@gmail.com>
- <20250819121631.84280-18-clamor95@gmail.com>
+	s=arc-20240116; t=1755635617; c=relaxed/simple;
+	bh=u0jHy+96xQQc8Rsq14s4xOxOiOUOUoyteYoE2V6u/cs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=keESg/ZanVvBfLjES84GrfeI+YIOghKKARACJ7eGrtK3czKpvIaYtPXujFJMTCXzOpwxpcbs4UTK1qLS0mQYf38aBjhur/pt+GuGv1rKIUp6fCX+HWuB55veivIBgWQb0EZb93Shxv6qsywn7SNCygIag0gKxs7/GV7p1iFXnLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=2t0nH+rw; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=1/eUspNCUXyY5YlWldBkBwRS3SFcnhUn4WjHQtP/9wc=; b=2t0nH+rw7E8V78kWenP4au6K+4
+	exEwfVKJi8b0tPVduqB/o8rbtRCeUrCKje/ykiFOZopI3RhEtqZdqmYdm7DBGNefeRThMQJBt195Y
+	ADh1TgtWB7gNOx0iXJr67Cd9r/Ru148qKSOr2Ur3tE2CNtKuPFpxtpeWEqTlzh5VC3bft21T59xs4
+	3W/lkEzBbkczajoZIHzdhxFvbTaNAMXk1aNkAmSOAzyml43d0lDOd5EeHWpkyPExCBw03X66X2jmo
+	qIcEJJZbRla6DLBwkNeNn7lmyaF6Spxrn3gymHy0JHTIWpmhFX7vDrM8+SQdSS+IwK0GWYxC6IZ1E
+	5V3lht2A==;
+Date: Tue, 19 Aug 2025 22:31:57 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jihed Chaibi <jihed.chaibi.dev@gmail.com>, linux-kernel@vger.kernel.org,
+ peter.ujfalusi@gmail.com, dmitry.torokhov@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, lgirdwood@gmail.com, tiwai@suse.com,
+ conor+dt@kernel.org, lee@kernel.org, ukleinek@kernel.org,
+ broonie@kernel.org, gregkh@linuxfoundation.org, linus.walleij@linaro.org,
+ brgl@bgdev.pl, aaro.koskinen@iki.fi, khilman@baylibre.com,
+ rogerq@kernel.org, tony@atomide.com, linux-gpio@vger.kernel.org,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-sound@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-omap@vger.kernel.org, shuah@kernel.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: mfd: twl: Add missing sub-nodes for
+ TWL4030 & TWL603x
+Message-ID: <20250819223157.0b271c74@akair>
+In-Reply-To: <20250819-humongous-muscular-curassow-5accd5@kuoka>
+References: <20250816021523.167049-1-jihed.chaibi.dev@gmail.com>
+	<20250816021523.167049-2-jihed.chaibi.dev@gmail.com>
+	<20250819-humongous-muscular-curassow-5accd5@kuoka>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250819121631.84280-18-clamor95@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 19, 2025 at 03:16:29PM +0300, Svyatoslav Ryhel wrote:
-> Document CSI hw block found in Tegra20 and Tegra30 SoC.
+Am Tue, 19 Aug 2025 10:13:39 +0200
+schrieb Krzysztof Kozlowski <krzk@kernel.org>:
+
+> On Sat, Aug 16, 2025 at 04:15:18AM +0200, Jihed Chaibi wrote:
+> > Update the TI TWL family Device Tree binding to include additional
+> > subnodes for TWL4030, TWL6030, and TWL6032 devices.
+> > 
+> > The simple power and PWM bindings (ti,twl4030-power, ti,twl-pwm, and
+> > ti,twl-pwmled) are now defined directly within this binding.
+> > 
+> > Other child node definitions (audio, gpio, keypad, usb, etc.) are also
+> > added to the schema. These additions fix 'unevaluated properties'
+> > errors found during dtbs_check for boards like the omap3-beagle
+> > and improve the binding's overall completeness.
+> > 
+> > Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+> > 
+> > ---
+> > Changes in v3:
+> >  - New patch to consolidate simple bindings (power, pwm) and add
+> >    definitions for all child nodes to fix dtbs_check validation
+> >    errors found in v2.
+> > ---
+> >  .../devicetree/bindings/mfd/ti,twl.yaml       | 191 ++++++++++++++++++
+> >  .../devicetree/bindings/mfd/twl4030-power.txt |  48 -----
+> >  .../devicetree/bindings/pwm/ti,twl-pwm.txt    |  17 --
+> >  .../devicetree/bindings/pwm/ti,twl-pwmled.txt |  17 --
+> >  4 files changed, 191 insertions(+), 82 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/mfd/twl4030-power.txt
+> >  delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt
+> >  delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwmled.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> > index f162ab60c..b0f1cb7b5 100644
+> > --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> > @@ -76,6 +76,98 @@ allOf:
+> >            properties:
+> >              compatible:
+> >                const: ti,twl4030-wdt
+> > +
+> > +        audio:
+> > +          type: object
+> > +          $ref: /schemas/sound/ti,twl4030-audio.yaml#
+> > +          unevaluatedProperties: false
+> > +
+> > +        keypad:
+> > +          type: object
+> > +          $ref: /schemas/input/ti,twl4030-keypad.yaml#
+> > +          unevaluatedProperties: false
+> > +
+> > +        pwm:
+> > +          type: object
+> > +          $ref: /schemas/pwm/pwm.yaml#
+> > +          unevaluatedProperties: false
+> > +          description: |
+> > +            TWL4030 series: PWMA and PWMB (connected to LEDA and LEDB terminals)
+> > +          properties:
+> > +            compatible:
+> > +              enum:
+> > +                - ti,twl4030-pwm
+> > +            '#pwm-cells':
+> > +              const: 2
+> > +          required:
+> > +            - compatible
+> > +            - '#pwm-cells'
+> > +
+> > +        pwmled:
+> > +          type: object
+> > +          $ref: /schemas/pwm/pwm.yaml#
+> > +          unevaluatedProperties: false
+> > +          description: |
+> > +            TWL4030 series: PWMA and PWMB (connected to LEDA and LEDB terminals)
+> > +          properties:
+> > +            compatible:
+> > +              enum:
+> > +                - ti,twl4030-pwmled
+> > +            '#pwm-cells':
+> > +              const: 2
+> > +          required:
+> > +            - compatible
+> > +            - '#pwm-cells'
+> > +
+> > +        'twl4030-usb':  
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  .../display/tegra/nvidia,tegra210-csi.yaml    | 78 +++++++++++++++----
->  1 file changed, 63 insertions(+), 15 deletions(-)
+> No need for quotes.
 > 
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra210-csi.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra210-csi.yaml
-> index fa07a40d1004..a5669447a33b 100644
-> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra210-csi.yaml
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra210-csi.yaml
-> @@ -16,30 +16,78 @@ properties:
->  
->    compatible:
->      enum:
-> +      - nvidia,tegra20-csi
-> +      - nvidia,tegra30-csi
->        - nvidia,tegra210-csi
->  
->    reg:
->      maxItems: 1
->  
-> -  clocks:
-> -    items:
-> -      - description: module clock
-> -      - description: A/B lanes clock
-> -      - description: C/D lanes clock
-> -      - description: E lane clock
-> -      - description: test pattern generator clock
-> -
-> -  clock-names:
-> -    items:
-> -      - const: csi
-> -      - const: cilab
-> -      - const: cilcd
-> -      - const: cile
-> -      - const: csi_tpg
-> +  clocks: true
-> +  clock-names: true
->  
->    power-domains:
->      maxItems: 1
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra20-csi
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: module clock
-> +
-> +        clock-names:
-> +          items:
-> +            - const: csi
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra30-csi
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: module clock
-> +            - description: PAD A clock
-> +            - description: PAD B clock
-> +
-> +        clock-names:
-> +          items:
-> +            - const: csi
-> +            - const: csia_pad
-> +            - const: csib_pad
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra210-csi
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: module clock
-> +            - description: A/B lanes clock
-> +            - description: C/D lanes clock
-> +            - description: E lane clock
-> +            - description: test pattern generator clock
-> +
-> +        clock-names:
-> +          items:
-> +            - const: csi
-> +            - const: cilab
-> +            - const: cilcd
-> +            - const: cile
-> +            - const: csi_tpg
-> +
+> > +          type: object
+> > +          $ref: /schemas/usb/ti,twlxxxx-usb.yaml#  
+> 
+> Are you sure your patchset is bsiectable? Apply this patch and test. You
+> will see errors and you must fix these. Even after fixing you have
+> strict dependencies so your cover letter must explain these (or merging
+> constraints)...
+> 
+what are the rules here regarding bisectability? non-existing files
+in $ref are probably bad. Are then unveiled errors in dts also a
+problem? I would not expect too much fixing effort needed here. I have
+not run dtbs_check yet.
 
-This is longer that what's the same. I think this should be a separate 
-schema doc.
+I have expected this would all go via Lee's usual immutable branches. 
 
-Rob
+Regards,
+Andreas
 
