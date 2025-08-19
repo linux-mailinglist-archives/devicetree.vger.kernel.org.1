@@ -1,113 +1,96 @@
-Return-Path: <devicetree+bounces-206604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA3BB2CE3F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:48:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DFB0B2CE5B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 23:07:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE6335A01D0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:48:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B337B189E1D5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEF53431F4;
-	Tue, 19 Aug 2025 20:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1452E30F7E1;
+	Tue, 19 Aug 2025 21:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="w8juffTo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jlq1Np7Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F73F30C36E;
-	Tue, 19 Aug 2025 20:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F232727FE;
+	Tue, 19 Aug 2025 21:06:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755636480; cv=none; b=dkAzWBhMFEwH06n/M2Jjn1/z/cwmJjkZgnZz+Af8GK9tO7DbzlXSlJnRUGQGRy5SWJhMPnygsX8Pv5Of+ucwyMzcaG8HKWm0o+X/bOEeHUSHEE9KPUsqJICQrs7Sz0ckIfAFFDs87l2kb7ArXc5Dx89vfKkBK4xDcISGSKsr/G4=
+	t=1755637569; cv=none; b=lwZwyYX+zkms09e9QFSgMXFK7lXo92GB3N3b/Wu7eUxgSvVtPsRPaVs6bam/qsjoVy31+jUEYYLxf3IaEWTMm/tKzVSLf0Je7duTjUerTMvucf+3Y4nme2eURjkuZCwhJvNj0OfZP+0awDbsVwqqx4A+drmeyzOk/ia9FcnFLIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755636480; c=relaxed/simple;
-	bh=rZKXiseSnpS0hEdhK0+cUyUK3qXOByXmJNN2AiTy/3Q=;
-	h=MIME-Version:Content-Type:Date:Message-ID:To:CC:Subject:From:
-	 References:In-Reply-To; b=ZLWZ6Nvry4zDIVXZypCsL6uQ7x7FThZ3Bup0DTu/Zv1fRgwRyGdT1W6fZngUlWETSJFhwgI+22f1//9b7I5nGPeIY084dEtYNZhQcI10Y7VuXMoU/usLjtGjIPyTSc/+CVibL5rkh00sWcsbMABCrLhm8phqN9NxvpcLhLwX7Z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=w8juffTo; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57JKlmZW3036127;
-	Tue, 19 Aug 2025 15:47:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755636468;
-	bh=rZKXiseSnpS0hEdhK0+cUyUK3qXOByXmJNN2AiTy/3Q=;
-	h=Date:To:CC:Subject:From:References:In-Reply-To;
-	b=w8juffTo+pGNMf1xoRk/8cjRqfejZO8YpqMmfdSWRByw9zHQBKqaxJlkKYwM+yocC
-	 p4BMKQzR+mpEILNmIvX3xnDrAa6ePA7ckitdHJEnYgQHEeUOFK/q+l+8cqZemx3BRT
-	 JW0KVvcgHqZ/ZSUmVxwDiKzokslMcRaUQgrcNX5Q=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57JKlmnk1534906
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 19 Aug 2025 15:47:48 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 19
- Aug 2025 15:47:47 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 19 Aug 2025 15:47:47 -0500
-Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57JKllt63304944;
-	Tue, 19 Aug 2025 15:47:47 -0500
+	s=arc-20240116; t=1755637569; c=relaxed/simple;
+	bh=JFybjif0PA4bThPHFS5Y8/tz+/sdsAZ8BMw48NI4TXg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TW4onSCyWFtJ1vspb8aQKQlAzP2xBTeuD6P6FHzfcNh4rciveHRyWJO9UxvhLZol6alm0MnWj8RyywmoHxeId2lVwRZDswWIR5/SzeS+q8EFswIvFqmpDtZ7a2nFSh9dFpW/6TYlVNXAfgEXZm7mr3o+tAcrQsuDsNUa5MDrasc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jlq1Np7Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EAF0C4CEF1;
+	Tue, 19 Aug 2025 21:06:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755637568;
+	bh=JFybjif0PA4bThPHFS5Y8/tz+/sdsAZ8BMw48NI4TXg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jlq1Np7Ye4pkVq+DvkC30NXf0evlSCoY07mDs0nXTxFZKxgu6ll6ry6C2tIS89ziF
+	 hGFXPz4yDKRzwO+rQz3NiKuhPMDqv7mwsXOIHst8SEqyAnIYhPw7M0wSBfpZOQEASV
+	 U6NXQbcbfXWUJL+pLy+QrC2pUeaLGWJaJA1rmMTu+gJm9tSNVETspHVxmkY4yRRA2n
+	 ICuq08mzgcUFeLzleLmusbO7kKv+eo7ryG+oKIuu/e+waow+7nLTG8LVrWEsgbKhY8
+	 sjx5apfhxFzP8e0K1+BX/mWOuFmYQMLV6gqbwsBcabW6DFBHAKqf83iukI+at43ICI
+	 jiVyp+B4fLPIg==
+Date: Tue, 19 Aug 2025 16:06:07 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/1] dt-bindings: soc: add vf610 reboot syscon
+ controller
+Message-ID: <175563756689.1312101.13704825031197649543.robh@kernel.org>
+References: <20250819165317.3739366-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Date: Tue, 19 Aug 2025 15:47:47 -0500
-Message-ID: <DC6P6R1L2ZED.2UR8XRHH5RPJ0@ti.com>
-To: Michael Walle <michael@walle.cc>
-CC: Nishanth Menon <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <d-gole@ti.com>, <afd@ti.com>, <bb@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <detheridge@ti.com>,
-        <matt.coster@imgtec.com>
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j784s4-j742s2: enable the
- bxs-4-64
-From: Randolph Sapp <rs@ti.com>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250808232522.1296240-1-rs@ti.com>
- <20250808232522.1296240-3-rs@ti.com>
- <20250813151819.5rthljjrpryfwezz@skinning>
- <DC1HU458W3QA.YLONSMYKK0C4@ti.com>
- <20250813181300.xfpsu23arx7xy4fy@anointer>
- <DC5C5JA237HD.1ACBQVG1LYQ7Z@walle.cc> <DC5T752T3P8B.1UC57G2GH35Z5@ti.com>
- <f0353dea24751f2f2ad6e7735232b933@walle.cc>
-In-Reply-To: <f0353dea24751f2f2ad6e7735232b933@walle.cc>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250819165317.3739366-1-Frank.Li@nxp.com>
 
-On Tue Aug 19, 2025 at 1:38 AM CDT, Michael Walle wrote:
-> Hi,
->
->>> Apart from that, we now have two series which partly overlap.
->>> Should I repost mine, as that's more than just the DT entry? (Which
->>> doesn't work as is, I'd guess.)
->>=20
->> Ah, I don't see that series on the linux-arm-kernel list. If you can=20
->> forward me
->> that I can work around whatever you've got.
->
-> That was the one Nishanth mentioned earlier:
-> https://lore.kernel.org/linux-arm-kernel/20250716134717.4085567-1-mwalle@=
-kernel.org/
->
-> Also this:
-> https://lore.kernel.org/all/DC5KCSEUZQUJ.3KPENNUQBUFM8@kernel.org/
->
-> -michael
 
-Ah, alright. I'll hold off on this series until the AM62P related sections =
-you
-were proposing are picked up.
+On Tue, 19 Aug 2025 12:53:16 -0400, Frank Li wrote:
+> Add vf610 reboot controller, which used to reboot whole system. Fix below
+> CHECK_DTB warnings:
+> 
+> arch/arm/boot/dts/nxp/vf/vf610-bk4.dtb: /soc/bus@40000000/src@4006e000:
+>     failed to match any schema with compatible: ['fsl,vf610-src', 'syscon']
+> 
+> IC reference manual calls it as system reset controller(SRC), but it is not
+> module as reset controller, which used to reset individual device. SRC
+> works as reboot controller, which reboots whole system. It provides a
+> syscon interface to syscon-reboot.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> change in v3
+> - add missed 's' at description
+> - remove duplicate / at path
+> 
+> Change in v2
+> - change description to avoid confuse about reset controller.
+> - it is legacy device, more than 10 year. So try keep existed dts as it.
+> ---
+>  .../bindings/soc/fsl/fsl,vf610-src.yaml       | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml
+> 
+
+Applied, thanks!
+
 
