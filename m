@@ -1,114 +1,133 @@
-Return-Path: <devicetree+bounces-206144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 555DAB2B9C9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:45:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13A9FB2B9CC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:45:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED1D85E73E4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:44:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 592C75E38E0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF49926C3A0;
-	Tue, 19 Aug 2025 06:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798CB26D4EF;
+	Tue, 19 Aug 2025 06:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ddbjIUdU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c4F2V3zK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C81EF26B09F;
-	Tue, 19 Aug 2025 06:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 546DF1EF092
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755585866; cv=none; b=TM2pycuV5/FjaqEyjm5SD87SER3ov/3gGF5fn/sk1ZhpSWimVdcgH6cpvh2Y8XvaQLVnOzyJSZ+h75qbPo8giYcGRHIk6HEWxj4PU9yENlWmfECWOWLu/EKY6fRAvg5vKttaFouBxVPQBVtB2mhP0rKJQ118eLaufCQNqo8maJ8=
+	t=1755585928; cv=none; b=I5zuOe5xLUpRhuCZEWXuGc8XihLAK2Rt3cavTVHziiD5qFvT2u9y4A/EE7mHH9sh1HUyCttT6d+sH+Wp+vMHztoL2ZIZN7xxKymEU2WXhw6h81LEtYFWot3kPn9FmcNz01CrrliClawl1wUpwKoJeAbBFph431hyNrkDMp5eG8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755585866; c=relaxed/simple;
-	bh=gx003cAub2W7yI9noj/k+7+A81Ogp/xX+qJqdRrcU2s=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Bhd/5Nv7NXXYUOqGFbnWmnoRKtEVnTNjgmdUcEcy971WqKgOycYeL/UUmS1/RI7g7q2p1OrsGTBuPY5IM6f/HSXdfgsAUOp2eVb9wX9LIEhedtKoHQLvFspNZ5opX9yUZ9YRCNLSeM5WEUFXSz9J+C5geNhkDneh5TLKsXTj7bA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ddbjIUdU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35178C4CEF4;
-	Tue, 19 Aug 2025 06:44:26 +0000 (UTC)
+	s=arc-20240116; t=1755585928; c=relaxed/simple;
+	bh=WWlJO0YGoyjRXT+i5OTeOeOVEpn70W9XxRHlWW2ZHIY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O8lXYiYJfG2tc8gEzs/pHECwoNO+GRJWyowmI+1GaxJb14uWAFSutrfAuclBY+5ij1p0HbI9atnbE59ShEUY+MH7RjSw4ho7w/AL68bI4IDIGNSti6CXueMYX+a9jrWXx63los/EGkfbw0SFKwdpaW8AYlwx5eQxjY4j7ityCgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c4F2V3zK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B6C8C4CEF4;
+	Tue, 19 Aug 2025 06:45:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755585866;
-	bh=gx003cAub2W7yI9noj/k+7+A81Ogp/xX+qJqdRrcU2s=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ddbjIUdU2RFNdE2+pTkxES41YUlBnBeUFYbOrCxL84AHOJ2aaYAMWHvPMXiDKNVUv
-	 jSOE/5ZyVxlO+oLZJ7WJaSlBHeq0pmTI8hz/RhwUry6FDC0S9IIiiIxzeSUgPJhPcR
-	 Vggsfb0GR2HK/ClAzdLFJgCTn0PSoRsHNlHuGCc7dHSRb8ybKD7oeMvnF+8pWoid0N
-	 21BrXg2F/PFV3bcOjW2xsxeXTeisnxuvZoQqdmLgsFY4rufe1cpW5lGvHHBeywHK7j
-	 z2kEomYfChxO+Ve4MW9h+fZbmbkKTn+31IwzFyQzk1dj6hcqW1JMJzEYxVF4COL+wz
-	 lpc+SJeu/5E/A==
-Date: Tue, 19 Aug 2025 01:44:25 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=k20201202; t=1755585928;
+	bh=WWlJO0YGoyjRXT+i5OTeOeOVEpn70W9XxRHlWW2ZHIY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=c4F2V3zKOqne2DzeyIuyej/liwX4h+h2fKy4nbcf/pj0udWMGzsEUPSRwCXmsMjcC
+	 fTKBTUkJ556VWuM+hjuFvjuMSpi9lyd+neXzhS7IZalpt7jqvunMBfJwVWxIagjzXS
+	 kXrM4gqsJYeKxKXK6RPu4MyZOxk0Ntt+MqGYeMEHlpY60hYGMimz1OO4pd5cnF00Si
+	 cXcVoiX6DZGyh23x0jiu/N6H0VNx1AZWwL+7bLzPWtThyQFJzYmj98v0j/Ou6iTGgC
+	 Ma2f8B6v3msuiPxN7eNMHA929t5NYliT4a3M3gTeHuUZNpkEcJClABszKZYq93DfOQ
+	 uHaHDUQ1khkGQ==
+Message-ID: <2ad47450-4a94-4d17-9ed3-0428bff64335@kernel.org>
+Date: Tue, 19 Aug 2025 08:45:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, dri-devel@lists.freedesktop.org, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Simona Vetter <simona@ffwll.ch>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>, 
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>, 
- devicetree@vger.kernel.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-In-Reply-To: <20250819053205.9976-2-mike.looijmans@topic.nl>
-References: <20250819053205.9976-1-mike.looijmans@topic.nl>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.f1878466-8551-4b5d-bf2e-1706e377d436@emailsignatures365.codetwo.com>
- <20250819053205.9976-2-mike.looijmans@topic.nl>
-Message-Id: <175558586542.3297343.1727329381357860993.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: ti-tmds181: Add TI
- TMDS181 and SN65DP159 bindings
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/3] devicetree: bindings: dsiplay: panel:
+ panel-simple.yaml: Add Raspberry pi dsi panel compatible
+To: Harikrishna Shenoy <h-shenoy@ti.com>, neil.armstrong@linaro.org,
+ jessica.zhang@oss.qualcomm.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com,
+ vigneshr@ti.com, kristo@kernel.org, thierry.reding@gmail.com,
+ sam@ravnborg.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: s-jain1@ti.com, devarsht@ti.com, u-kumar1@ti.com
+References: <20250818154746.1373656-1-h-shenoy@ti.com>
+ <20250818154746.1373656-2-h-shenoy@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250818154746.1373656-2-h-shenoy@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Tue, 19 Aug 2025 07:31:14 +0200, Mike Looijmans wrote:
-> Add DT binding document for TI TMDS181 and SN65DP159 HDMI retimers.
+On 18/08/2025 17:47, Harikrishna Shenoy wrote:
+> Add RPi DSI panel[0] as a valid compatible for simple-panel.
 > 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> [0]: https://www.raspberrypi.com/products/raspberry-pi-touch-display/
 > 
+> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
 > ---
-> 
-> Changes in v2:
-> Document driver specific bindings like slew-rate and threshold
-> 
->  .../bindings/display/bridge/ti,tmds181.yaml   | 143 ++++++++++++++++++
->  1 file changed, 143 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,tmds181.yaml
-> 
 
-My bot found errors running 'make dt_binding_check' on your patch:
 
-yamllint warnings/errors:
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/bridge/ti,tmds181.yaml: ti,slew-rate: missing type definition
+Plus typos...
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250819053205.9976-2-mike.looijmans@topic.nl
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Krzysztof
 
