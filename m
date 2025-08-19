@@ -1,139 +1,212 @@
-Return-Path: <devicetree+bounces-206088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 423AAB2B7F8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 05:49:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E869FB2B821
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 05:57:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36CF352514D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 03:49:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F8F51B608A4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 03:57:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B09B2FC883;
-	Tue, 19 Aug 2025 03:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06579287275;
+	Tue, 19 Aug 2025 03:57:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="SK0IFcNx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o+AlCtZE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DC362D877F
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 03:49:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB572561AA;
+	Tue, 19 Aug 2025 03:57:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755575351; cv=none; b=WILsXXHh7UU2HGAVGxQ1RyArRoOsoZAF6ZRdtZmM6S5vNPxd5O4twUK3FYrQx4wxOnCmovJatRIGwf6OVDgD48OqfDBHBRgklU8ZIXm056lqD8OXiV52q8+Ma8RG2TQ///HtvbkZHynZEpCvu32QNND8rC48u4rfAhZY1eHl1L8=
+	t=1755575847; cv=none; b=PGam90v95kfBjzuXZFzJOJ8/ibEghg2Q9ivqAtjIk6tQKqnq6LcOWfE8lmsDlmxgQLalgkaA4AjqFOZW9N9i8B1kkvq8FHWc7wt0ug3jj3tdErekDTr0C6ayY5jlOK9ClvXj47pwH5KX0j6N8tqv9WOPnLeiaKq/XPaMuN6jHME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755575351; c=relaxed/simple;
-	bh=BySrjUWeZWttEYxEcBYXCwbkflh2Zyv8/0xNGM+AD40=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=UWpZEqdvj9N/1KQ0pP5emivFMNDoKZDXcbc0mXDdWTy13lBkjIL3POTVyf2Ht9vaQ+CmEzrGyrFHlYJzDMwe00XgJcEIL4S/P53jYouvBBvD9bkGQYpXO5Ont3uzedOOzzULJz7n0BMiRpVtj1xDFzwQjx7VSLepWkF9ns7e5vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=SK0IFcNx; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-76e2e6038cfso5769991b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 20:49:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1755575347; x=1756180147; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RmdG5DlYugS6q7DtukrVNJuzOFU57fMjmsXm7FON0so=;
-        b=SK0IFcNxMzzcT4FTXPFR0yDq4TmtYk7haLJ50Pyx24jTYQbkjGhMuR4DugYSdDlYWg
-         osJwkj/mrR4gi+e+7hYm0ZIPuyGFH3cecSdKYHZTaqm75OJ7RQVfmEQaIauBsP2dBY38
-         8Ead2X0jqMDOLKr5QODOpflSaOYOdvShv6Z0MruyOLv59209iDWBsT5H7daSbL7zWlDt
-         4OrSo7ZBZvP0Cyuch1WPlK7d/fEq1FPdwzU5nOOcvlNWWqa3zomhCSDKo5j4IwnIKtVg
-         XIUdq5tpQZcOiZPpiu4LCpWyxYMGyqwZ3SFzIbhxYrcxlXgedvgEbI2AYr048s0tc0M2
-         6nTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755575347; x=1756180147;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RmdG5DlYugS6q7DtukrVNJuzOFU57fMjmsXm7FON0so=;
-        b=uZa68vEsDvHgS4STTmYdQdVddrySuFtVjhgYEk6mxoyWApJKy2/htg/Bt8fc0oK4Pb
-         5RRnZWTN7cYpQtNfA5RNq1JRkwuYOQnTmy5F3GHraf3aQQzhG+o++S3YJTwoD2Tw9J1m
-         mOxEeM0+pqqZ9PThePKlmUvUnf1wANhbH5vIS2sUEFftk12N/MzputRL2nn+b6FjkOot
-         Pru5t8gQ8C0U/lFAsRyP9PdAnhejyrRVyM9B+8LFqM8e8r2jEjfw2ksLIsCiMDcc8sq8
-         IM2X4NqdCyzFvQRf1fVc2RvcETmHByAswSuynGi5xY54qfDlSoH/b8IXoZdmjLqZpqzW
-         /mdA==
-X-Forwarded-Encrypted: i=1; AJvYcCXPHOe6Vxelfz9VWRKFrWQYBZvmD/1DjEGIfnBw5aH1QyMpqacUl0cKQEUi5/gigSZiVWdLCM0iZnoX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJCc+WM2cb4MJTX/r2JQ1LJLNNHDuudY46uPeEWmtP8kuReqo8
-	DXHKZAV6MlwyX0/RPqdb8MuoYJz2SrYz+1qzxCAB3zBsZh8CKbaImmPOAPEl0Ed0Erw=
-X-Gm-Gg: ASbGncuyj3fsE1sErZ86VyfPAn4bYYau7BBKXZuvsv72YJNC6EAqg3UHCztF6Ce3OnY
-	HEqyzeNJYXRbvaohnoYbpzerLP/gokcuXFFLtwWKYQGUJ24abr05RdV9Rs8CNgnwUe862xlSX/n
-	9Z8L4o0/+iX1wKSWGUjDBnbuRwxdUgloE1GvHqaya6UIFC5Ys00UPO4tbdmziayOKRqlyOv8vDb
-	Bhpv7Uan0/OmIB8fEzk2af87ITl45gxcXTWXYE3fT1WDF8p79ueyXfIpRUxsdhRuvXNSpvFi9LL
-	0QpAn9eoQ6iYc2f0edKvSTCn55MOPiyNEfU3IdT66iRjnnFHWj9qKEieugKXJyTlhc96VupRhoS
-	JFmxZVGTVGeln6V6ck/pXdWifNWiUhUBMMGxhY9Qq0aEa50VorlECT2Mv0TuO1oucK75pvA==
-X-Google-Smtp-Source: AGHT+IFM0Fshz5IEB6AwHhBOB3eiEz7iW0S9l+xXsbwkiYN0l8ttjfsQMj4TzpXSRFsdYflO2Gqf6Q==
-X-Received: by 2002:a05:6a00:14c1:b0:76b:d791:42e5 with SMTP id d2e1a72fcca58-76e8110b33cmr1159735b3a.17.1755575347339;
-        Mon, 18 Aug 2025 20:49:07 -0700 (PDT)
-Received: from dgp100339560-01.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e8538edb8sm28953b3a.67.2025.08.18.20.49.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Aug 2025 20:49:06 -0700 (PDT)
-From: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-To: dmitry.torokhov@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jikos@kernel.org,
-	bentiss@kernel.org,
-	dianders@chromium.org
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-Subject: [PATCH v1 2/2] HID: i2c-hid: elan: Add parade-tc3408 timing
-Date: Tue, 19 Aug 2025 11:48:52 +0800
-Message-Id: <20250819034852.1230264-3-yelangyan@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250819034852.1230264-1-yelangyan@huaqin.corp-partner.google.com>
-References: <20250819034852.1230264-1-yelangyan@huaqin.corp-partner.google.com>
+	s=arc-20240116; t=1755575847; c=relaxed/simple;
+	bh=At2jkJ8aylYF1xB9MMvdNHKYV11RS+nZpADpXo6y/dE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RyG60ztFiyyG4T67KVHWuA9MKbOTKIATPjbh3hBK0H1OLihpbc8mec/h9NMOQoNQmFIWt6joOjoQ6XxkUSUT7izjbEtfjiIIuZvztsu2mBaOwQXL/XQzVmSCLp2L/3dlPBpiUS24hpxFiQjuBAG3opS1aeXEgXlXExnTo1cTWVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=o+AlCtZE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57INmqqO007382;
+	Tue, 19 Aug 2025 03:57:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	StMDBVKortgOhhJKsIQ9RZeB6Vb16l5YgBhhvbiZ/wQ=; b=o+AlCtZEd5BTscSX
+	G65sB7a6O9YxJjPVnmJExwawBBEoIuGcu0ZXV8lfvBVBv66uxnkdixRT4DStowfb
+	R32qpCR3AfFBktoaYTPV8NIyI/wZnsmsPsD3Rc3iDRhM0QqImX6Lpg8i8DY7AhgU
+	wfJaxege8uuBpp1A4WjKX9Bzo/7EWjHOa3wKobklD6K/6tlXHsBKmh0igDGSdAIJ
+	uajmWaKrNTqiyyUiePg0DAgKblFtTdZBY+vxGXveh7+JsrwK7gSvJCTMhXbGJd6E
+	sKMBhjEPQPSg5hp1+oyLjYazxJWaBkiuPBcNBQLf08qlYS8iplA9Mb7mWwopqKz+
+	kPRPdw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48jhjyf3a6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Aug 2025 03:57:21 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57J3vKml007261
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Aug 2025 03:57:20 GMT
+Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 18 Aug
+ 2025 20:57:19 -0700
+Message-ID: <1aba663d-67d2-4672-805b-7ffc20d0e2ff@quicinc.com>
+Date: Tue, 19 Aug 2025 11:56:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] of/address: Add error logging for of_match_bus() in
+ address translation path
+To: Rob Herring <robh@kernel.org>
+CC: <saravanak@google.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250811095342.2383808-1-quic_zhenhuah@quicinc.com>
+ <20250818164907.GA1437284-robh@kernel.org>
+Content-Language: en-US
+From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+In-Reply-To: <20250818164907.GA1437284-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: fpj_S3QOfyFX3NNkQgva-P_rQgsIqzP7
+X-Authority-Analysis: v=2.4 cv=ZJHXmW7b c=1 sm=1 tr=0 ts=68a3f621 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
+ a=FjxdCwQbLTSeBlRUKooA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: fpj_S3QOfyFX3NNkQgva-P_rQgsIqzP7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE2MDAyOCBTYWx0ZWRfX2wCq+ARmxauj
+ X8ElKeB8qM5sfa18fhOZEu82RckkFzBiNrXHR1HqB+8m6QNnYTC/IzBG66cO0eXQpcTmwPAfWlH
+ GxSNTfiVdUY64Q0A83mdwDHaPabS/PNxxfyE2YJELe2QIv9D4rBXiO8yGMlR1e5HwkbxtkVpnN9
+ p85bCoojgDcv/vGLtnsu16dGJ8Db3B2/i+fG/QMn07uLZlJjgdvudIHCY6ybSib82Qxo5f5gEOs
+ vcgRqeaas9IEEEgAKtJKMVzYQxfCX9y3+wBugHjUwHDYEjFhfM2KKNwyGYrb5dXqqgDOb4ZqQts
+ bOWQsu8bdByG6DqUipauGRN54RmrIvfqBQM1iavD4NsiYmiCTClUTK+ljh/09Eg87StbdgjUX6M
+ RH5ZdB8B
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-19_01,2025-08-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 phishscore=0 suspectscore=0 clxscore=1015
+ bulkscore=0 spamscore=0 impostorscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508160028
 
-Parade-tc3408 requires reset to pull down time greater than 10ms,
-so the configuration post_power_delay_ms is 10, and the chipset
-initial time is required to be greater than 300ms,
-so the post_gpio_reset_on_delay_ms is set to 300.
+Hi Rob, Thanks for your review.
 
-Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
----
- drivers/hid/i2c-hid/i2c-hid-of-elan.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On 8/19/2025 12:49 AM, Rob Herring wrote:
+> On Mon, Aug 11, 2025 at 05:53:42PM +0800, Zhenhua Huang wrote:
+>> The change introduced in
+>> commit 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-cells handling")
+>> triggers a warning on the direct ancestor node when translating properties
+>> like "iommu-addresses"/"reg". However, it fails to issue a warning if the
+>> ancestor’s ancestor is missing the required cells.
+>> For instance, if node_c lacks the necessary properties, no warning will be
+>> generated. Potential issues will be trigger further.
+> 
+> The point of the WARN is to only to check the immediate ancestor.
 
-diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-index 3fcff6daa0d3..23826cb808b7 100644
---- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-+++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-@@ -179,11 +179,19 @@ static const struct elan_i2c_hid_chip_data ilitek_ili2901_chip_data = {
- 	.main_supply_name = "vcc33",
- };
- 
-+static const struct elan_i2c_hid_chip_data parade_tc3408_chip_data = {
-+       .post_power_delay_ms = 10,
-+       .post_gpio_reset_on_delay_ms = 100,
-+       .hid_descriptor_address = 0x0001,
-+       .main_supply_name = "vcc33",
-+};
-+
- static const struct of_device_id elan_i2c_hid_of_match[] = {
- 	{ .compatible = "elan,ekth6915", .data = &elan_ekth6915_chip_data },
- 	{ .compatible = "elan,ekth6a12nay", .data = &elan_ekth6a12nay_chip_data },
- 	{ .compatible = "ilitek,ili9882t", .data = &ilitek_ili9882t_chip_data },
- 	{ .compatible = "ilitek,ili2901", .data = &ilitek_ili2901_chip_data },
-+	{ .compatible = "parade,tc3408", .data = &parade_tc3408_chip_data },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, elan_i2c_hid_of_match);
--- 
-2.34.1
+Yes, that's exactly what I wanted to point out. In fact, during the 
+translation phase, a warning should as well be issued when checking the 
+node_c as described below, Otherwise, I noticed that the translation 
+failure tends to go unnoticed in practice... which is further leading to 
+other issues etc.
+
+> 
+>> node_c {
+>> 		//NO WARN
+>> 	node_b {
+>> 		//WARN on missing of "address-cells" and "size-cells"
+>> 		node_a {
+>> 			xxx = <memory_reion>  //contains "iommu-addresses"
+>> 		}
+>> 	}
+>> }
+> 
+> Whether a warning is appropriate here depends on whether there's
+> 'ranges' properties or not. If your schemas are complete, then they
+> should warn on missing 'ranges'. If ranges is present, then we should
+> get warnings if #address-cells or #size-cells is missing.
+> 
+>> Since of_match_bus() is now expected to succeed in traslation path,
+> 
+> now expected? Nothing changed in that aspect.
+My bad, The wording may have caused some confusion. What I intended to 
+convey is that for example the of_device_alloc() path, as described 
+below, of_match_bus() is not expected to always succeed.
+
+> 
+>> routine __of_translate_address. Print an error message would help in
+>> identifying cases where it fails, making such issues easier to diagnose.
+> 
+> For errors in the DT (as opposed to errors using the API), it would be
+> better if we can check this at build time rather than run-time. And
+> generally I think we should already, but there could be some corner case
+> that we don't.
+> 
+>>
+>> Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+>> ---
+>>   drivers/of/address.c | 8 ++++++--
+>>   1 file changed, 6 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/of/address.c b/drivers/of/address.c
+>> index f0f8f0dd191c..cd33ab64ccf3 100644
+>> --- a/drivers/of/address.c
+>> +++ b/drivers/of/address.c
+>> @@ -515,8 +515,10 @@ static u64 __of_translate_address(struct device_node *node,
+>>   	if (parent == NULL)
+>>   		return OF_BAD_ADDR;
+>>   	bus = of_match_bus(parent);
+>> -	if (!bus)
+>> +	if (!bus) {
+>> +		pr_err("of_match_bus failed for device node(%pOF)\n", parent);
+>>   		return OF_BAD_ADDR;
+>> +	}
+>>   
+>>   	/* Count address cells & copy address locally */
+>>   	bus->count_cells(dev, &na, &ns);
+>> @@ -560,8 +562,10 @@ static u64 __of_translate_address(struct device_node *node,
+>>   
+>>   		/* Get new parent bus and counts */
+>>   		pbus = of_match_bus(parent);
+>> -		if (!pbus)
+>> +		if (!pbus) {
+>> +			pr_err("of_match_bus failed for device node(%pOF)\n", parent);
+>>   			return OF_BAD_ADDR;
+> 
+> If there's no case we expect of_match_bus() failing is correct
+> operation, then the error msg should be in the of_match_bus() function
+> rather than duplicated here. I'm not sure if there is any such case.
+Yeah...
+That’s what I initially did. However, in a case where the node doesn’t 
+have a "reg" property (as with the "default" of_bus), the path below 
+will call of_match_bus() and fail. In such scenarios, its failure should 
+be considered expected ?
+of_device_alloc
+	of_address_count(np);
+	..
+		__of_get_address
+			of_match_bus()
+
+I moved the error checking into __of_translate_address then, limiting it 
+to cases where actual address translation is being performed. Because it 
+appears to be MUST successful in the scenario.
+
+> 
+> Rob
+
 
 
