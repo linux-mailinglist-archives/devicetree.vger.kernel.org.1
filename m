@@ -1,184 +1,126 @@
-Return-Path: <devicetree+bounces-206439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D039DB2C507
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:16:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB17B2C51D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:19:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BF621887E83
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:14:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C62986882A2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D78933A039;
-	Tue, 19 Aug 2025 13:14:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEF833A038;
+	Tue, 19 Aug 2025 13:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ql2lFUFC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF830322A2A;
-	Tue, 19 Aug 2025 13:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABDC033CE99
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 13:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755609264; cv=none; b=tTpC6kMfqcTdsUxQDpKc75iukvvGarjwCPaS+qwJS/wiuvASkkkat0TgNi6b+l5LVStnJ+eb8qXpjjAeBVYJtwyjp7WibIlwyabvYFdWD+OLet5UPm9LU+vsV9zxCx9OFFv2cW4KdjB4R0xKjIJ0/zZIgCwguwsj1wuLl5CjutU=
+	t=1755609275; cv=none; b=KBRAlIwHyWsCVofjfrxAgVqJovNM+uFBgJ771jB7duW0xQk3haC/awAEeV5xl1BCVvuoXhQE3lbr3Y4js+LD7OXFBRNOQKUozfa6FGEyKYJvGDU2lmnwaY/WFVt3JPiMqeecvYRDVBf0pY0S9hnEc3BbReqxGYBxncjlwYuJOgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755609264; c=relaxed/simple;
-	bh=8SUfbaZGZo0VZTbvgk/ko9LnIBhsuX0tjyIVlqzRAUg=;
+	s=arc-20240116; t=1755609275; c=relaxed/simple;
+	bh=5EKUsNMeL4sVaotgLb4xczdh+DrSAKVb0Z7W/ijGj9A=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D9yCYa9+Es99/9QbxVYSzIzAuc1ysySICmN7H1bGc0v5UO8pS3CWFhP3I474DOQ++7JXO6JO3ZrfuFk+jEPSybmkwOn7RLCNkdZv2DS7A/kykuAMV4AYKxInWgxOtyuHAH/XNxw8mLiIHyr++okDPnH18uUPWJ3jaMTBQA8KpvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-53b171ca696so2117282e0c.0;
-        Tue, 19 Aug 2025 06:14:22 -0700 (PDT)
+	 To:Cc:Content-Type; b=g3NTkeNgnYfoRfDp6/LUsY3BtYtvScB8RZRWl7V5xpYMzeDV9QKoRJstm/ZqFFqtnDKuceygxRdU+Wc5fDSeYh7RJIksBQzbP4K/mxvhOBcEXjUT9cORowa3bUvDZYMorJdNjPa3TDGYeZURKfiLVpUnQWGXwKk4hUDxvyRYRRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ql2lFUFC; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-55ce5253a57so5483379e87.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:14:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755609272; x=1756214072; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Vpgl7WyLFrS0C/ZYYfn6MwQ/pZnCOwnJWShlT5q+tJ8=;
+        b=Ql2lFUFCRELAhg4gqNXOod/h4IvAVuFCq0ihEqjCatYdqLOKoYwJQlbnanwLTDt1ZE
+         tizc5bLD5eFuFrAyaCp1/Ek9mASRPF9X9uag2fxJBTi8o0huzOKNjDK7IMUPJ3mm/yVM
+         4JYbDvfSOAnMFsn05BNjq4evIsFrRV7TN8be6uLtFrgW2Ybhhnw/Q0UDq37iSaCvTQLB
+         TA5pDdue/TskRDKEIA6Yq++miugiAXLTBHIVeuHRUe9M/nI31AZEFFb4DRmb7zla8zzG
+         sjIMv6vuOb6OOKaEKkTcb7VPwWG5rBI+kHkKmvjOFqkIE5vFUFZdMx0WRDD7ox23EwoE
+         uM0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755609261; x=1756214061;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cClO6zHEQrfoJMz2Ox6tdZxUhk3Ecays5stT+RWYVyI=;
-        b=YFIofIALjP6t/oGgltVmnjj1A3r5Z/equM3LitAe/KqR7PMn74UqRzuw6e0V5h87u2
-         r5g2dXpkHF74ovcdkeVHqj+S1tjO+I9RioeAelGgwmGRdj7mGI612zUPlmbfJxOA5Twm
-         tcbgFHCV/tfovbpa/aPapTVn3SaGl/TzNYaRBYOLaDcR5Ax60SfyjJGUPRcsDq+tXTX9
-         UewkA8yTrYy+S96/zhcDqQgRemZU8tOZu6PVFLtV26X/jXQZQfAzPBWpzMaA0bI9HsEl
-         Tv7Kbf61FtYakQTgx3V8+mMza52zvr7N7f6kBFJYySINhGQHDRJFybHrPR2PbrNaUN25
-         0Ulg==
-X-Forwarded-Encrypted: i=1; AJvYcCUEF2q0ygmracL+DgyvgLb1LrXTqIPPgLjon6ku5qq7skl06x7r6bLXHx+cjXHfQMjWqHRul7FNOQkQ@vger.kernel.org, AJvYcCVjgQ0yCVoQqmoB6wOENDaAhrrNIcv0VU+vFFUYu/K5jmEJtW6pozf5jRVrzhzIjCwMV6lZ1qEiK8fCWsvp@vger.kernel.org, AJvYcCWar2KAZ1Yi5khFXQBDQjei6to/sto5Bf3b5XPpCWClA8zvwYZvAS8Z/w4PVvKf0v/gFsWljbCzyePB@vger.kernel.org, AJvYcCXRlfk6qw66YLOGWPBiPXFwAdB8zHJBxDEitq32V/9dl4FMUWIFJ8+YqnbRc3r/YYdw44NbnPnKz/SrGzQq+r2XrcA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGypdj/OGHLEojXouUQLLPXdW1EOhi6PJcqHnfJwC7KumzocQb
-	5T4ZSoCXIvATm2s7WQ4NePTbfnEMX5qKte8enBCZmakse/Hh9gEXh4yriGOZvFBg
-X-Gm-Gg: ASbGncuW0doYqxjm/QDt/FfDok7kaFv3fZvC9YIRqKeSktkkXIQ5bgN98CjbpNLUTIv
-	B0uarRtzHn+uvjC/Mc904u4Prd6pAGXfzHaJz8b+kYJ4nMm/ONIhTlnDkhb3l7vUkxJncOZRLAu
-	Eyu5K6g1LltgDcoY48ZhPU/XnqUKlSUvSJ3RHWlUTgRQ38AKQMw9Epye+km318PzNGCVO//+c08
-	ta6OHzULsuMgGPy7PqU7ETsMCjVpz9ftdEB/HdaczFfqJ8AJW425k/PW/j9iyLzxZCFiNmIFIVr
-	/Q2lmQ849lulRBEc0zMfFhHPbSmN+l5KoMwIzzm686LiDxLo3PWkk3Aj5WEtV58ZacnetGg5yHg
-	zY17ffGLQzRxq36pOjmY9sA8is+Sm/7OKu4TTfsMMvhWTjo3eMwleTppFNcdd
-X-Google-Smtp-Source: AGHT+IEq+NsTL5hSJtM2YHeVDcUSY7EZoHKrEnf4RhHbglFBMhXTzH6J04tchItb1usbPAZekXlq7w==
-X-Received: by 2002:a05:6122:2528:b0:531:19f4:ec19 with SMTP id 71dfb90a1353d-53b5d2b22cdmr911157e0c.9.1755609261395;
-        Tue, 19 Aug 2025 06:14:21 -0700 (PDT)
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53b2bf216ccsm2558658e0c.30.2025.08.19.06.14.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Aug 2025 06:14:20 -0700 (PDT)
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-50f8af33918so1736924137.2;
-        Tue, 19 Aug 2025 06:14:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWww0xuMT0KJv+o3moRQkIzp78DCMsecberYgQQ/oqcubU6ZCxHdYfanVAq1kl6pY3+QHwko69lid0O@vger.kernel.org, AJvYcCXDaPTX18bj9qXY8yuaS79iKgPxQe1SwJ3m3pkF1ZP0etca4A3DtvyYRWkANVz2aiiJMXgyBZir+RaDQ1Hb@vger.kernel.org, AJvYcCXUOGbP2C5Ud7AvzgaBkaxl1k6rPsj9moV0a5fYLfOKawcTiRfZZ3342zodPoaJHVY5STm/r6Hy8vVItEwOi0LYT0Y=@vger.kernel.org, AJvYcCXaisjK3oWV93Uy4kHsH3A8kw2zEVxwIYH1vee924dcoiwHbPL1tZJGPGUYcT6KQHtPdcqpu2tQ5mfj@vger.kernel.org
-X-Received: by 2002:a05:6102:e0d:b0:4e7:b728:e34b with SMTP id
- ada2fe7eead31-51921c1313emr736920137.3.1755609258938; Tue, 19 Aug 2025
- 06:14:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755609272; x=1756214072;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Vpgl7WyLFrS0C/ZYYfn6MwQ/pZnCOwnJWShlT5q+tJ8=;
+        b=qyssOTo8VQRt5uojOR088UY98f5PdiZy0QFa1EfVqO6NtDMVK1vVvUaxcHco5faxU2
+         /nmiFmGYXwHu1kdQ2jvE2HzSMuZNWtZ4U97FCD2VgQuKHxpF32/pBIo9BnB8I9uzB7Sh
+         oO8aM05VkYKgYb6vGCGUzxSGTt3N/RRr4IQ8LPWKjoXT/y9sD3cLo7R0pI0bS1ST0h2p
+         8DeorqKbGQNJ2nl1AMuG+7bYT5hoO4YI7iCRIq3f5Rvq5wQuD2qqrvdsJB8Lac3Ey7dg
+         T/09DxIHxe1cHvjmAMK6x74EoP33xd2vzrY4yQxiaS0LvvjDS8EfiXXV/dhBj1KY60fJ
+         49yQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWNmQNrmSLakuujJ9T0kSPwbwvEcg2icgBEtv5bfKchHngjTaCz2oAoAiFLa3aMOBb7ryU+cHYQj5Ye@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4cygZZJyIj5sC0T5pnbR16doMrJSDtwT9eGeqGB3vlgX8GgOe
+	a49Qumzk4ZaCnZ3FTwWG6+mGpAssRHZBiDQhix6jgH3ArjEJJPzOSqcyYtLRUZXgw5B8kpFy0tD
+	X66HBCnI+yu2XaC7/fdChNcKDEpN3dPf5pj6APpQgcA==
+X-Gm-Gg: ASbGncufSq9BTr+JNE+mvQ9C4y5NrGDsmrMKo6KWFlm0kHoxSzgoGAibwfSdP/NdpBr
+	00JOzVycaECpDPsWFHrDj188DHXMzvTOltuvEYq70LYwzIhugGatB+7yATw4Two5YpinciKAk3O
+	79HxFLUqny59pvVyezsq8YZPY6tD9Gwu2jFNZArvezJXrg1XVn8dlPAz3TIbOtT1ZSRLiGPqyvH
+	yziRcUtyfcR
+X-Google-Smtp-Source: AGHT+IGCM1KzCADYv+7d911GPZZod1EPaNXRqTGrmgy/nj7uWJIDPQDYu8S6SC2inkRC3koGoFDH6NusO/qUGRi2QCs=
+X-Received: by 2002:a05:6512:3b89:b0:55b:7bbd:672d with SMTP id
+ 2adb3069b0e04-55e0086f09emr1019476e87.51.1755609271646; Tue, 19 Aug 2025
+ 06:14:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250728201435.3505594-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250728201435.3505594-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250728201435.3505594-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 19 Aug 2025 15:14:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWj=W17j9WHhTR1gH9MZ_fcxve_dOi6eMiL62xphXG+GQ@mail.gmail.com>
-X-Gm-Features: Ac12FXzirwmbUHbtZJubjNclxZ4jN6c4IoIckX8DRoXm22ZLrDzBZdlraaPItcA
-Message-ID: <CAMuHMdWj=W17j9WHhTR1gH9MZ_fcxve_dOi6eMiL62xphXG+GQ@mail.gmail.com>
-Subject: Re: [PATCH v7 2/6] clk: renesas: rzv2h-cpg: Add support for DSI clocks
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20250814-ixp4xx-mi424wr-dts-v1-0-b7c10f3c4193@linaro.org> <175529260025.3212383.1843651240268969923.robh@kernel.org>
+In-Reply-To: <175529260025.3212383.1843651240268969923.robh@kernel.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 19 Aug 2025 15:14:20 +0200
+X-Gm-Features: Ac12FXzzR-dQTCGYXpk2upb89TzIiA9ngfM-ksyz3QF34dZzwFe2pZdcL3v_yBw
+Message-ID: <CACRpkdbB=uyNhvr1VMuartWif0PuQ3uH2AOEGgvdReESO8EMzw@mail.gmail.com>
+Subject: Re: [PATCH 0/3] ARM: dts: ixp4xx: Add device trees for MI424WR
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
+On Fri, Aug 15, 2025 at 11:19=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org=
+> wrote:
 
-On Mon, 28 Jul 2025 at 22:14, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> New warnings running 'make CHECK_DTBS=3Dy for arch/arm/boot/dts/intel/' f=
+or 20250814-ixp4xx-mi424wr-dts-v1-0-b7c10f3c4193@linaro.org:
 >
-> Add support for PLLDSI and PLLDSI divider clocks.
->
-> Introduce the `renesas-rzv2h-cpg-pll.h` header to centralize and share
-> PLLDSI related data structures, limits, and algorithms between the
-> RZ/V2H(P) CPG and DSI drivers.
->
-> The DSI PLL is functionally similar to the CPG's PLLDSI, but has slightly
-> different parameter limits and omits the programmable divider present in
-> CPG. To ensure precise frequency calculations, especially for milliHz-level
-> accuracy needed by the DSI driver, the shared algorithm allows both drivers
-> to compute PLL parameters consistently using the same logic and input
-> clock.
->
-> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v6->v7:
-> - Made struct rzv2h_pll_limits more modular also added Ffout limits
-> - Made the alogirithm modular and also added apis based on the
->   needs for lvds and dpi
+> arch/arm/boot/dts/intel/ixp/intel-ixp42x-actiontec-mi424wr-ac.dtb: gpio@1=
+,0 (brcm,bcm6345-gpio): 'bank-width', 'intel,ixp4xx-eb-write-enable', 'pci-=
+reset-hog', 'pstn-relay-hog-1', 'pstn-relay-hog-2' do not match any of the =
+regexes: '^pinctrl-[0-9]+$'
+>         from schema $id: http://devicetree.org/schemas/gpio/gpio-mmio.yam=
+l#
 
-Thanks for the update!
+This is an error since forever: the node is on an external bus and the
+external bus while
+defined in:
+Documentation/devicetree/bindings/memory-controllers/intel,ixp4xx-expansion=
+-bus-controller.yaml
 
-> --- a/drivers/clk/renesas/rzv2h-cpg.c
-> +++ b/drivers/clk/renesas/rzv2h-cpg.c
+Adds properties to any child, which can be any MMIO device.
 
-> +static struct rzv2h_pll_dsi_info *rzv2h_get_pll_dsi_info(struct clk_hw *pll_dsi,
-> +                                                        struct rzv2h_cpg_priv *priv)
-> +{
-> +       struct pll_clk *pll_clk = to_pll(pll_dsi);
-> +
-> +       return &priv->pll_dsi_info[pll_clk->pll.instance];
-> +}
+I don't know what is the proper way to solve this.
 
-This (very simple helper) is used twice, while there are two (almost
-three) other locations where it is open-coded.  Perhaps just open-code
-it everywhere?
+A separate include .yaml for the children and then pull that into
+every possible device on that bus?
 
-> @@ -246,7 +526,8 @@ static const struct clk_ops rzv2h_cpg_pll_ops = {
->  static struct clk * __init
->  rzv2h_cpg_pll_clk_register(const struct cpg_core_clk *core,
->                            struct rzv2h_cpg_priv *priv,
-> -                          const struct clk_ops *ops)
-> +                          const struct clk_ops *ops,
-> +                          bool is_plldsi)
+> arch/arm/boot/dts/intel/ixp/intel-ixp42x-actiontec-mi424wr-ac.dtb: /soc/u=
+sb@c800b000: failed to match any schema with compatible: ['intel,ixp4xx-udc=
+']
 
-No need for this parameter...
+OK I should write that yaml file.
 
->  {
->         struct device *dev = priv->dev;
->         struct clk_init_data init;
-> @@ -263,6 +544,10 @@ rzv2h_cpg_pll_clk_register(const struct cpg_core_clk *core,
->         if (!pll_clk)
->                 return ERR_PTR(-ENOMEM);
->
-> +       if (is_plldsi)
-
-... as you can just test "core->type == CLK_TYPE_PLLDSI" here.
-
-> +               priv->pll_dsi_info[core->cfg.pll.instance].pll_dsi_limits =
-> +                       core->cfg.pll.limits;
-> +
->         parent_name = __clk_get_name(parent);
->         init.name = core->name;
->         init.ops = ops;
-
-The rest LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yours,
+Linus Walleij
 
