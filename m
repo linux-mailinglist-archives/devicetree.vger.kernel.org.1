@@ -1,90 +1,89 @@
-Return-Path: <devicetree+bounces-206448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CD6CB2C53F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70AE6B2C541
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:22:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E43B7241A56
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:17:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C49D2420E5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:17:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA8A933EAFB;
-	Tue, 19 Aug 2025 13:16:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1A425E814;
+	Tue, 19 Aug 2025 13:16:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TjSnhilO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Czx+qDBG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266DA33CE88
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 13:16:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B86233EB09
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 13:16:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755609401; cv=none; b=fVKy5VZyXDs5Lft8s23cqFez9I8+3p+F3Cyk5Luu48GU7wEFN8p2KojQEqDn1D3nMM4lJ7Yd31lSe/0Pylq1DJ+MDjzpLEWdenevJZFonpM+sreXrAj9+XkyhVA37EnLN7V0g3LajKSELvYaJPYfwyh+JLtG47mEViRHEQRmu7A=
+	t=1755609407; cv=none; b=AITKiWIWT/ozGSwOQT3DHmRdDl49ofOOWxGTLyE9D2CAnQsF6vpzfbsKl39PPXyJi3/7sjblfbZ5DZAWk9WECSX7w37t0f4iQycdgDbExcZ9q6I4bZrWnmqnhrVO/RXmZL3dRjdHquPGLjJgdWsIq36HmLze0l83kyJky9rwiI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755609401; c=relaxed/simple;
-	bh=25w9nGp+VOPFwF4xTLHunMmNW2bcpRsbxGsrD/LXVBg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ms9okC1IpQKSPW2SYpHrostaIeI5koBtw9QbTCT6SDELHyng77hyh53wddxDWM7xusniqpqDQ5dJCKdt+fmTvwsslRtPNUtjwh2FwvU56w5CK1RfvPmASWTtM/xncEDhm9SldPPJy6xWvdUcPen+BbCY60nwbaa/uO45cNUkohw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TjSnhilO; arc=none smtp.client-ip=209.85.218.51
+	s=arc-20240116; t=1755609407; c=relaxed/simple;
+	bh=GuIpDTrIKMYk3WhNZGOiGrIbDEbFiSVL0yY6nh1sxyo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Q+id27SxoQ1rlkMIZZwVQVUHRWGSrKUWCZfDn3pdjDocXMqoydaoTxEn8kN4HoSxc83Wn/LjLERC0AQBGiEtE7y1W9L7AURzAhGyFCYlJ27ia5F0NjORce+AGyKnGA8fpnSLrKyRK+d9lLWFdkYJJQ0YV6O0SPCdO2w0NN4eqY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Czx+qDBG; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-afcb7aecf92so72477266b.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:16:39 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-afcb78d1695so69637966b.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:16:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755609398; x=1756214198; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755609404; x=1756214204; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NFTccCtP1uRd9Wzn26xkl65ZZWOAVPiCAiod9SnwQ6w=;
-        b=TjSnhilOQoSAohWBrFhcqun/R3tE6lI68y50mYYg1JgSsoGdZNwQWXKzzwGqUrHcqR
-         rklHpTIDP+mbAW9VtjEUfWiyDC28JJDFhMedxqveXeOSW3ENcCqyFtBIeVC3Am+NXUKH
-         OnSPBqiV3cDYHpcljo7jtk9XCoBX5CJMqD6PR1l6UgcR77Ki379qgDCeD7YLO/zYEMaO
-         YWrIghhxl91mQKnHSyDPJxJ+bKiJm6+kzA+wM4zpkIDzsyD3TT9ytXqfqzk6r4in2cQh
-         IQaeNEMsK7wZ6HU5EI1xlCummyIl5sYYsl1I4NDA1HXgtNobucYLkC4kWrVh9blQno2+
-         09KA==
+        bh=eNcHUwUSUoXG/NU5XWsU2yLUiTQdEs7s2EmvbkhBOOs=;
+        b=Czx+qDBGMPvMpENM09UvM9TjNF5h+m1IxyPOZpTF0lQzYQGmAPMnlqMF2LjF/KbT6x
+         gcOT3qOTFK36WCkxkBl1t6/1NI9tvZIl6yUivkdDMZL2mz4qhgwwK7+8pEMfwYxNadge
+         S5NhRliBUmLiMPXBojaiQBVYwtbfZlAKycDpbvTmOrJ2kqe1gNulHq2Esjv2h2+GWrpT
+         +lp+RGTPakY86fYniHuT3hb/f/kZJeUv9eCM3yTQ+0UPxLHOL7qP4In6Kj6tI/f+OpBq
+         q+PGHZfO/MT69g3vMtZ6/RupwxLSr/h9aZZuuwju3kpIWM8UqmSkLtnW1jNPZqdKZVic
+         mgUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755609398; x=1756214198;
+        d=1e100.net; s=20230601; t=1755609404; x=1756214204;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NFTccCtP1uRd9Wzn26xkl65ZZWOAVPiCAiod9SnwQ6w=;
-        b=DHOXa4LL8uAQZALMBQkyubdiT/+Ku5D9D7pcak5xRKD0YnwCK3WqF6jA26pzSlHZUe
-         2e/c/VfgsIDG4a/DY5HyGX1q50e01h4Yhgx9zLva/r9sBMdpV5TwJiQm9fhlosnROeq3
-         2dFeE2EYRdHNTqjLvzOXmGSkps+NUkO84O1zV3us503uY3Va5qbdVRaH/h/+Nnb5oUIJ
-         bhof2HbM7CpNLw89IN/1PB8NIxXQlggYOv8owo5MhXaTdlQMy7uuqAsi9ecCEzlZB9f8
-         APnqKEkZEX9exI0mYfDLQsgK3fker2Cf2Qw2LaeLRQxNqp1s313L3ffUGxw+Tng/9Hmx
-         w1XQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWCI4UA0zOUn0WzvzpNwULr+8Ic8TJAFoo/ke0v9UMzL/N8sRwSv0su+2PuHCK5/xh+eYCtbdpZdMiq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPgJZS/skokj8VY5cJ/HwuNQ+AKsMNRV+Bh3BdAOZ1eYaQiDHd
-	FlolJ6PbB+mUdu6VN4i/kwSWL4fXf7Uy1d570HY/4JAucGKXpCciW8k886FrPBOLgnE=
-X-Gm-Gg: ASbGncta7Q6c/eous4kbbmGJtlgFvWsZ1whKmBpZqi4ivy0ailRCorHiVDg5U9e4t4k
-	49b3W3ODUIZRO37MxHUfIFLUQtQmcfJqsr48MseqKBiKJFYfPGMemRTna8SSHJYuxn7W0CD5brV
-	fqnAJvI0eESSNwfsu6dzaBSfDieJtD056azBVN3d5bJDMynCCQKCPMVE8mn55RC+P6YDZZbcxPp
-	r1p579SbwU6grLvNwoikjHSByMm20LdrJ+2PSuFpm7Yv21w9zfNW3g5GAcP6zWAU0W4LjkeNnkd
-	6bfBZpgThWTMKl6uUdzte3r2+AT6MehX0Xj3PZY1tNkrlT94YopqHCOQ0nnDvwX5vhaa7O7mH3g
-	oP01o09Isw7b8MDhOephTAGTW2brvAcJqXw==
-X-Google-Smtp-Source: AGHT+IFfradJwu63FUvwOcWbWyp08fd8Whf4HqNHMGG30wEYvsKB2XGXhYm0YYCzs8cM3Nd6qzySVw==
-X-Received: by 2002:a17:907:d90:b0:aec:4f0a:f9ac with SMTP id a640c23a62f3a-afddd1e433dmr90382066b.6.1755609398378;
-        Tue, 19 Aug 2025 06:16:38 -0700 (PDT)
+        bh=eNcHUwUSUoXG/NU5XWsU2yLUiTQdEs7s2EmvbkhBOOs=;
+        b=Ao2xh531oMX+nuuhcrfA7Rr2HG+by+U6b/It+CFmSip5c5yM8SiEXYEoQNnIV+RCik
+         IICxDhD9kwLxQrkrVS17Fk4pOz24L+65brSSJlGHm5eKrUW5JY0Rj/O1eDfi8pTG4QwU
+         kEgOErwKh/VihddM32B3TJ8Flf3hsXQuHY2pMd/DzSPRWQ+imi9TOdxaPVuCgyq4RSO8
+         8wdiIlZBz5SBisjeHTbH7O+81ZGqEi4tCY6YFPk5FUqwvoStffenaKYZ39yvkyd3gO1h
+         XLJqQKUW+a7uWOv45cKT28zQ80KKd0qsD+QowzC5b/tF4hFjem/gdikAGDk9dltcLht3
+         UmSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVh46r+ntGF9ibeHBxtJW1agCKgM/XwTzvHqIvpi90xfEGuVUssV0yPkBIaApnxvwO/25OqMGXeLL7Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YyC30r6sSfNgBKnQmO66i0eE/xTkaaPyS92ozF5teehOCOYKx3d
+	AjwIffZE95YQSKv8JgF81CGSK2U1hfAJc2Xkz03J5ujtpPo+H2NWnx3kOnMXgmjnzd4=
+X-Gm-Gg: ASbGncsjDK3G2eVTWTNpnMZSZB+nOSbh6DjjQn4vnX+/rym7MsOnW6GV7WlTbsu/5rE
+	+QlFKCh4FE3hCNCxCQY+ulFGNPpEnuiRjzGf138qzJvZb+IjeJkfsYPTQ8HFkugggRVmV+/PdUL
+	q1XKRqzpUm9tp493Q6WZc/SKl8WNS8pvNndCWc2fY7bFhlrjI70IdSrgYxrtl63ir71qM1pTgVK
+	YkAcg3QI75/DbnHYh5OWoQj+abtZSXCXKYTSFbtGb6fLwJT/nZEW77BlhIAbRLB6j+/D+HLZ04+
+	5NWm6mvb4RUQ+c4xnlnIxgF0wtqSo/rWf0c/I+jEZL7PZF4CtVAI84DEr/ZzHsY7JHiD5RfugMD
+	XpKMCUJkLCL5GzuoLVeY5vptyPAWmR6XJEg==
+X-Google-Smtp-Source: AGHT+IHr5vEYmlpLTI1y4MLxEE80BWKAd2JViKb4VuSRUFyaMN9Jgc15AWVrSJjvQAIQU/3UzhdxPw==
+X-Received: by 2002:a05:6402:42c6:b0:615:7ba6:4876 with SMTP id 4fb4d7f45d1cf-61a7e7840ccmr1220925a12.8.1755609404319;
+        Tue, 19 Aug 2025 06:16:44 -0700 (PDT)
 Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afcdce73e22sm1014924066b.41.2025.08.19.06.16.37
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61a75774623sm1703971a12.32.2025.08.19.06.16.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 06:16:37 -0700 (PDT)
+        Tue, 19 Aug 2025 06:16:43 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
+	Alim Akhtar <alim.akhtar@samsung.com>,
 	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: marvell: Minor whitespace cleanup
-Date: Tue, 19 Aug 2025 15:16:34 +0200
-Message-ID: <20250819131633.86478-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: exynos8895: Minor whitespace cleanup
+Date: Tue, 19 Aug 2025 15:16:42 +0200
+Message-ID: <20250819131641.86520-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -92,19 +91,19 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2105; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=25w9nGp+VOPFwF4xTLHunMmNW2bcpRsbxGsrD/LXVBg=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopHkxJCXGErwlGNb4uJVx8zh/NpiVZLUoMdgV6
- s1NAOw/hOKJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKR5MQAKCRDBN2bmhouD
- 11/vD/9KkTiJjpBqGx1OFTTWGwcAynI2RwbCno697sZX6nOadE1UXEXPVYt/raAiGjguhjov+zP
- 4NewcszElKfspMkCFlX2RDpILBiNfGCdf+1Uazl3Zi+Ltmfo8YzB+RjrD2NIyzeK1IS8tvaq7OK
- rTcYVk17JbVGHeqh4L/ofJl1cpvm3rUq7F+RQiwEvCx6Ai9Kgb24R48y49+DR1XMOD30r7m+veJ
- a0qyaHz8opg1LJI1ktI9A2GeQUdAeelDe7PcgNNOHRkUc95qNvdZDdq/JX1gLFeo0WkZLw63wMd
- Zn/CsHu+Odo9L3p/YxLAyWN3p7byj7gKg1WSUSKTleIEca5/StBNqdTuuX+vdEn7OmevGhLj68D
- RFMFbsK2yBk7SWNQORW+nM2OUCywV/sBZnDd6Xcfach6gnAYWDJGGCdcDnga4VxTaEYNWkwNQoG
- WEgJd6OqacPsntBQG7cr8QrFBo9MLW1wvUSKquT90WkJQjuNk171q8RNmP566mrWiMlH6q6qF4T
- CKtx6yQOLseAJR/O+Jsl4nIWm/qaK5M31RoDcv7PWqy5TpSn3dybtAodNajbYmmkPhvKDfj2Bvo
- crn4Ax0STKTpxaYa+kIermy1ul++6DSrNCkLXPHIl6Gy7hvZ060ZE3zvaw4P27mnJ6+Nc7FigAR FaelHWw9cWGq7mw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=836; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=GuIpDTrIKMYk3WhNZGOiGrIbDEbFiSVL0yY6nh1sxyo=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopHk5GI3dFwiPjFb3vzq4sGFQJINn7QVqknaof
+ HKsp/nfVamJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKR5OQAKCRDBN2bmhouD
+ 1yh9EACVAlFJ4VV2G2Szbi+YZvBSwEYs61YuY/gO1MbCCw5YImO/uPqlyWu5egLzhRHgR0fMqK3
+ BKHYIqmiOQUVJzEl8BqP4otG8zdAklN6VJie3yszDwqjl4QqpgkUsjC2j9ylY16v4AWpQJ91DdS
+ 2Z0ikvnkKE5VMzqY+E/FhcgEyGZhSpjBEUxXPUHDCX4H5lKXuqLgDmxjBYw9wuTaY8tup8fxam8
+ oIHIUbwYWWh+FRPbSzt7xfjxAO0dVyBcJtWa2r26PxUd6k77AnPVr4QUyI5gv8fohLgSfbojkP4
+ gpGcHS+dQx28fTpy5MD+/Br8cNUosTBljYooPZielv3n48xoSgJudgA15MhN/Wwndu3AEzQMhAC
+ qif8Uj2OOMOq3ZF/4I3TTw0KpMXhqPqueQk2Mc8HM6CzI6QlvkIW2I30/qOZNtXC7aF/SbOupE5
+ Bg+gG7nt0TpqzdCHzvoSe/OOCpspHNsjy25lTwzG2+SJf/p/bq+XgrGBPzOmUhUVU8KSaOMTiC2
+ cGCAot35vTYkWjMU12ouZMA98jPoiI+yYeKKmKPmCt0n2jme5+zu8qIHZgTizRz9J3h5nPXj2IN
+ RzNTTVS87Twn0Tqycbha3ynfoQ74XdCAG21f7vZcnwRJnrcPhYL/sQiNOwG4x4O8pFkj9DQ4EZe 39VgAC5NVW3cjPg==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
 
@@ -113,59 +112,22 @@ character.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi   | 2 +-
- arch/arm64/boot/dts/marvell/cn9132-clearfog.dts | 4 ++--
- arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-index 605f5be1538c..4878773883c9 100644
---- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-+++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-@@ -322,7 +322,7 @@ spi1: spi@805a8000 {
+diff --git a/arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
+index 51e9c9c4b166..16903ce63a32 100644
+--- a/arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
+@@ -202,7 +202,7 @@ bt_btwake: bt-btwake-pins {
+ 	};
  
- 		nand: nand-controller@805b0000 {
- 			compatible = "marvell,ac5-nand-controller";
--			reg =  <0x0 0x805b0000 0x0 0x00000054>;
-+			reg = <0x0 0x805b0000 0x0 0x00000054>;
- 			#address-cells = <0x1>;
- 			#size-cells = <0x0>;
- 			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts b/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
-index 0f53745a6fa0..c872c8eca518 100644
---- a/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
-+++ b/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
-@@ -559,7 +559,7 @@ led@2 {
- };
- 
- &cp2_ethernet {
--	status =  "okay";
-+	status = "okay";
- };
- 
- /* SRDS #2 - 5GE */
-@@ -572,7 +572,7 @@ &cp2_eth0 {
- };
- 
- &cp2_gpio1 {
--	pinctrl-names= "default";
-+	pinctrl-names = "default";
- 	pinctrl-0 = <&cp2_rsvd9_pins>;
- 
- 	/* J21 */
-diff --git a/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi b/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi
-index afc041c1c448..1c9996d8cb24 100644
---- a/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi
-+++ b/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi
-@@ -442,7 +442,7 @@ tpm@0 {
- 		reg = <0>;
- 		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
- 		spi-max-frequency = <10000000>;
--		pinctrl-names  = "default";
-+		pinctrl-names = "default";
- 		pinctrl-0 = <&cp1_tpm_irq_pins>;
- 		interrupt-parent = <&cp1_gpio1>;
- 		interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
+ 	bt_en: bt-en-pins {
+-		samsung,pins ="gpj1-7";
++		samsung,pins = "gpj1-7";
+ 		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
+ 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
+ 		samsung,pin-con-pdn = <EXYNOS_PIN_PDN_PREV>;
 -- 
 2.48.1
 
