@@ -1,100 +1,113 @@
-Return-Path: <devicetree+bounces-206603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E240B2CE3D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:45:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA3BB2CE3F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:48:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6C3E5E47BA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:44:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE6335A01D0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797403431E8;
-	Tue, 19 Aug 2025 20:44:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEF53431F4;
+	Tue, 19 Aug 2025 20:48:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="w8juffTo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-189.mta1.migadu.com (out-189.mta1.migadu.com [95.215.58.189])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA69A342CAE
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 20:44:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.189
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F73F30C36E;
+	Tue, 19 Aug 2025 20:47:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755636262; cv=none; b=As14cRhr7+QsmKvG7SpNg+8X77JGu71+gos6ropWo9AIVdx0j5KhDzpCRzdNkpAsa2VWLUyGUVhQHRHvgubS2q10YGXTQkkrDzQA57JDxmUq5d8Nnkmgv+TxNCyVMhhr5k5V2emOdct2HraxpIDPC+wbbfr4acPK3UM6rEmVdMY=
+	t=1755636480; cv=none; b=dkAzWBhMFEwH06n/M2Jjn1/z/cwmJjkZgnZz+Af8GK9tO7DbzlXSlJnRUGQGRy5SWJhMPnygsX8Pv5Of+ucwyMzcaG8HKWm0o+X/bOEeHUSHEE9KPUsqJICQrs7Sz0ckIfAFFDs87l2kb7ArXc5Dx89vfKkBK4xDcISGSKsr/G4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755636262; c=relaxed/simple;
-	bh=lWUnz3BHi7zNP53K6wbf7UIXaSjzdBqdXvbVy9/OqeE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KvRFOUTqsupyjAvtOUmdn0LYIz+YpevVVQKY1TJtD/Vmx58Xnis2rMPrKYRtSDaK3Ul7uzNhZNLHuZZW7XmIfH2P0fXqRX2RB5m4Cz/eyqZiflc4n0YNY1xD5ORf/+yvccSnR6Oyjdur+y/I6Idry0WL4CJ1MAEFOe95pOv+dRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=95.215.58.189
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Tue, 19 Aug 2025 16:44:02 -0400
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Ben Collins <bcollins@kernel.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Andrew Hepp <andrew.hepp@ahepp.dev>
-Subject: Re: [PATCH v5 0/5] iio: mcp9600: Features and improvements
-Message-ID: <2025081916-screeching-tench-c9cefd@boujee-and-buff>
-Mail-Followup-To: Jonathan Cameron <jic23@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
-	Nuno Sa <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Hepp <andrew.hepp@ahepp.dev>
-References: <20250818183214.380847-1-bcollins@kernel.org>
- <20250819-ambitious-lumpy-hornet-bc1600@kuoka>
- <20250819192455.3d294562@jic23-huawei>
+	s=arc-20240116; t=1755636480; c=relaxed/simple;
+	bh=rZKXiseSnpS0hEdhK0+cUyUK3qXOByXmJNN2AiTy/3Q=;
+	h=MIME-Version:Content-Type:Date:Message-ID:To:CC:Subject:From:
+	 References:In-Reply-To; b=ZLWZ6Nvry4zDIVXZypCsL6uQ7x7FThZ3Bup0DTu/Zv1fRgwRyGdT1W6fZngUlWETSJFhwgI+22f1//9b7I5nGPeIY084dEtYNZhQcI10Y7VuXMoU/usLjtGjIPyTSc/+CVibL5rkh00sWcsbMABCrLhm8phqN9NxvpcLhLwX7Z8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=w8juffTo; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57JKlmZW3036127;
+	Tue, 19 Aug 2025 15:47:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755636468;
+	bh=rZKXiseSnpS0hEdhK0+cUyUK3qXOByXmJNN2AiTy/3Q=;
+	h=Date:To:CC:Subject:From:References:In-Reply-To;
+	b=w8juffTo+pGNMf1xoRk/8cjRqfejZO8YpqMmfdSWRByw9zHQBKqaxJlkKYwM+yocC
+	 p4BMKQzR+mpEILNmIvX3xnDrAa6ePA7ckitdHJEnYgQHEeUOFK/q+l+8cqZemx3BRT
+	 JW0KVvcgHqZ/ZSUmVxwDiKzokslMcRaUQgrcNX5Q=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57JKlmnk1534906
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 19 Aug 2025 15:47:48 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 19
+ Aug 2025 15:47:47 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 19 Aug 2025 15:47:47 -0500
+Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57JKllt63304944;
+	Tue, 19 Aug 2025 15:47:47 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250819192455.3d294562@jic23-huawei>
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Date: Tue, 19 Aug 2025 15:47:47 -0500
+Message-ID: <DC6P6R1L2ZED.2UR8XRHH5RPJ0@ti.com>
+To: Michael Walle <michael@walle.cc>
+CC: Nishanth Menon <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <d-gole@ti.com>, <afd@ti.com>, <bb@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <detheridge@ti.com>,
+        <matt.coster@imgtec.com>
+Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j784s4-j742s2: enable the
+ bxs-4-64
+From: Randolph Sapp <rs@ti.com>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250808232522.1296240-1-rs@ti.com>
+ <20250808232522.1296240-3-rs@ti.com>
+ <20250813151819.5rthljjrpryfwezz@skinning>
+ <DC1HU458W3QA.YLONSMYKK0C4@ti.com>
+ <20250813181300.xfpsu23arx7xy4fy@anointer>
+ <DC5C5JA237HD.1ACBQVG1LYQ7Z@walle.cc> <DC5T752T3P8B.1UC57G2GH35Z5@ti.com>
+ <f0353dea24751f2f2ad6e7735232b933@walle.cc>
+In-Reply-To: <f0353dea24751f2f2ad6e7735232b933@walle.cc>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Aug 19, 2025 at 07:24:55PM -0500, Jonathan Cameron wrote:
-> On Tue, 19 Aug 2025 08:55:44 +0200
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
-> > On Mon, Aug 18, 2025 at 02:32:08PM -0400, Ben Collins wrote:
-> > > From: Ben Collins <bcollins@watter.com>
-> > > 
-> > > ChangeLog:
-> > > v5 -> v6:
-> > >   - Fix accidental typo added in dt-bindings: IRQ_TYPE_EDGE_RISIN
-> > >   - Correct some constraints in dt-bindings
-> > >   - Reverse if/then for mcp9601 vs mcp9600 constraints in dt-bindings
-> > >   - Updates to changelog for patch 2/6 (dt-bindings mcp9600)
-> > >   - Cleanup tabs that were converted to spaces
-> > >   - Split thermocouple-type default to separate patch  
-> > 
-> > Please start using b4, so you will get changelogs with lore links for
-> > free and ALL your patches will be properly versioned. git can do that
-> > as well - git format-patch -v5 --cover-letter, if you don't want to use
-> > b4.
-> 
-> Second that.  This is what it looks like in patchwork that I use
-> for managing reviews / merges etc.
-> https://patchwork.kernel.org/project/linux-iio/list/?series=992678
-> 
-> version number not easy to find as it gets dropped from the series title
-> and is only normally listed for the patches. 
+On Tue Aug 19, 2025 at 1:38 AM CDT, Michael Walle wrote:
+> Hi,
+>
+>>> Apart from that, we now have two series which partly overlap.
+>>> Should I repost mine, as that's more than just the DT entry? (Which
+>>> doesn't work as is, I'd guess.)
+>>=20
+>> Ah, I don't see that series on the linux-arm-kernel list. If you can=20
+>> forward me
+>> that I can work around whatever you've got.
+>
+> That was the one Nishanth mentioned earlier:
+> https://lore.kernel.org/linux-arm-kernel/20250716134717.4085567-1-mwalle@=
+kernel.org/
+>
+> Also this:
+> https://lore.kernel.org/all/DC5KCSEUZQUJ.3KPENNUQBUFM8@kernel.org/
+>
+> -michael
 
-I appreciate both of you suggesting this. I've switched to b4 now and
-now I don't know how anyone could not use it.
-
--- 
- Ben Collins
- https://libjwt.io
- https://github.com/benmcollins
- --
- 3EC9 7598 1672 961A 1139  173A 5D5A 57C7 242B 22CF
+Ah, alright. I'll hold off on this series until the AM62P related sections =
+you
+were proposing are picked up.
 
