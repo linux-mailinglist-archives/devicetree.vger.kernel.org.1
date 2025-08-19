@@ -1,177 +1,179 @@
-Return-Path: <devicetree+bounces-206606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14CF3B2CE62
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 23:10:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09970B2CE8F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 23:32:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3C9372195D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:10:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F70F1BA7860
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:33:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A8F343D6A;
-	Tue, 19 Aug 2025 21:10:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AB94284884;
+	Tue, 19 Aug 2025 21:32:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kV6AT49z"
+	dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b="eGXwtxI8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 715483101AA;
-	Tue, 19 Aug 2025 21:10:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C73E2609C5
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 21:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755637810; cv=none; b=c6wdSXdcLfZloqk58jQX/JWkz1NYkVfSMOgazQ20qjNr2yg1kq3+LRd08gzSDUzKKS423ysi1ijORrYwLBq2ho45ilVulq95kkrv1a0ngiteGB3jy8SOGo8Ewh57L0G1kdRqn5f/gv4jOu9JHo4xRanlHCRKSne8msVMBTMI++g=
+	t=1755639160; cv=none; b=pie+aL7cXwmZuoMtbeyGqdgzYDmwAG8he9x1zcd876kbZe3mo2HFg6eBJSEiWKEDoqvfTpBC4O9wWuUg2ypAJvSqNShaEaBbceTsPP7N6P2JS3sXgTPTc5Od2vCoC8XUDbgqGb1klHnGm2mArYuEv4KzbCTAjF5blYCBIg5EycY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755637810; c=relaxed/simple;
-	bh=lAs7kHreBtRFM5BmhN+uVj7cvYVrE9W4cw3bVA+6RCw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HbjDhQjlYikbh3kCyr4YgRbw2mvU7HudbXkk616tBLLgN1+mLWFle8YHSupe4lIk937fH9D1Mjb7TrgMFy9jfN3fheR+paFzRWNpJIMDEtjbYHTMUNnufprD7c7E8nZkwYcChtycbLmAhcPMo26uiEJolMjen6+JksLMdVBT5l0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kV6AT49z; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755637809; x=1787173809;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lAs7kHreBtRFM5BmhN+uVj7cvYVrE9W4cw3bVA+6RCw=;
-  b=kV6AT49zh8Ga4td68vmfVc6MLXTSojIvyD1YeCthtqCze69n0Tl/5w74
-   vIqMV/H2Yg36Et/7dTglt5WxXmKPqicWvEFOFvRzfHw9A5lTNJpWESyMX
-   qLsLzMN8GRbFTfS9uQY5dnDrY3jAh69S4B63Z8U1qqmVGGT/zP6CDzpQK
-   yFaUSbLrO2bkrqw2SXAo6Aj9hyuCSIcYEJ9nVixTWcVv0o+O6f/8DGD4X
-   nP44Q79GWGHYFCBs9I+ogs1fUiHQST4nRMEshPlF9+MwasaERFFanwlX5
-   E18kHexkliWPg489v4NJgYzvsZA2/1ghCWsVC82EZn5wo4adhKtvRY/PL
-   A==;
-X-CSE-ConnectionGUID: bUXcFjrWSuGFPqwD9rzM+Q==
-X-CSE-MsgGUID: sDQHuh75THGSNfn+ASX2Tg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="61728038"
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
-   d="scan'208";a="61728038"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Aug 2025 14:10:08 -0700
-X-CSE-ConnectionGUID: OjuMbXC3RGq+9bUgCgDQ/g==
-X-CSE-MsgGUID: q7vuU89HTWytl+PGKm8Z7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
-   d="scan'208";a="173315511"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by orviesa005.jf.intel.com with ESMTP; 19 Aug 2025 14:10:04 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uoTai-000HVT-2v;
-	Tue, 19 Aug 2025 21:10:00 +0000
-Date: Wed, 20 Aug 2025 05:09:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Artur Rojek <contact@artur-rojek.eu>, Rob Landley <rob@landley.net>,
-	Jeff Dionne <jeff@coresemi.io>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Artur Rojek <contact@artur-rojek.eu>
-Subject: Re: [PATCH 3/3] net: j2: Introduce J-Core EMAC
-Message-ID: <202508200456.GIhKD5qv-lkp@intel.com>
-References: <20250815194806.1202589-4-contact@artur-rojek.eu>
+	s=arc-20240116; t=1755639160; c=relaxed/simple;
+	bh=jc3BvvZPYp6Ws/XW8HSSgCQw3zydyc5fLCTQ3ZrChS0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Ylu8BJwABP+V6Gp5w25unP1aQ2M+HtIO+Z3yPbeXviU0wxAze7rJlR8c9j30QdeeumdBCks3zDDv7fnrLMQaqRUK+voyfYxLYd3KLmP/4ZaCS9xo+gLxamcn9xdvSnxn+tcSN05+U5sq9gXHbNL35JyRJO3Qo5R7mbBuC5jOfQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk; spf=pass smtp.mailfrom=pinefeat.co.uk; dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b=eGXwtxI8; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pinefeat.co.uk
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45a1b0d231eso32326385e9.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 14:32:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pinefeat.co.uk; s=google; t=1755639155; x=1756243955; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6BYh4GCaj3UOu780opvLnkEvnPL7yLCaLlvBDFyBcyI=;
+        b=eGXwtxI8ii6Sw2dzensPh1P+zTTk+1PpIHrNiyyu5RX9lyyGZ1n76v6U5rwPwfGdOT
+         0iIifOyvc752DSQikM8GDb16XELBuXScws/cYfipEVe4gh/ow6e9Zig6V9JKgsbRwuBo
+         0c8+Pcjx3nJDqMolBjussNoNpnLWPX8HOHBcIiQhtVdwBHkx6TlQqfm5moxTSt0ISpgZ
+         LhaqayK6nxzqp/KeOi13uXrdHM58NCNkZy5faiZhGS1q8m+R/7LlDDrSMoUk5WVaWQHv
+         9X0+wLuDda1pcKsJDij9cUBwMOfEIFUb6CTwHGkvqtDHOZkNHxNkBdMwaLeQnHtPJpGJ
+         qVgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755639155; x=1756243955;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6BYh4GCaj3UOu780opvLnkEvnPL7yLCaLlvBDFyBcyI=;
+        b=VH1PcpdarTI+hTWEOixGpEl9UTsCqFlFruBQEwUOXTL/lDnWDDK5SrWDD8eTjvmTUK
+         2jarwnNeKL7UbJfqi1NN2WBDMl8bWSasVyqQHpGMTOcCZpFEI8sa/QeH3as0KGlNzLJI
+         ROoBBl1p+kd6RmpSG+Jil9ktkjCkiItVzCKT5Wv7BH44p+AEyjjC0hkF0XVC7+P80ZrT
+         rz9h2wsiep4rSLGrpDDPFOFcqUdc27D23b7MiLA78y+rWMPOFbH4XIgWITvlfAL+wiJ3
+         k5lLztk8J5HePp9ykG5ZPHHlGAJ4jYRqjlgPYtSFh9BUGbTHOsULj+bVcHY6GVJcBOJN
+         KXmg==
+X-Forwarded-Encrypted: i=1; AJvYcCXYJ9ZL2EBzMsy47Pf8wtD8Y9S2Pye8/GmhCz3IsI+eRgaLllI+51+6Kxz5oIE7Wt2c4DKvo2A3TKLM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIC+0XUD4F/bsijlYDMfQmzXkCBJZyzXFkdZU8mW61Xf6JzLlb
+	J6u3buS9QLB2ydqi1qYP9QLt4S7+7rbNQ2P50os5zp2/F6Zuu2DL3FbzGijNVwphDi4=
+X-Gm-Gg: ASbGncsxydit86D77GU1qydLCqEGCJj7ncC2vt93UO7CoXVZQycbl2yxThaGJ69KUWs
+	Bdkg3ZAzIBsQjXgbldYwQKCoWKonvNvsWzkD0M6AXaRpaltN4DbDxmOMj9uqAh7gUkFtK7hLyV4
+	yqjiZ/aqrb1Ls8+MN+tLe3VqTs+SOB6vxHUyEYLe9x2zVz/br5KsJyyyRzPkffPq/2dSwAeMwEJ
+	hpRLWLCEFPNYmXUqNharqYw4K5iuwULaSvvGRIlDYkc7NLcAZoO8YmWRsGx4v07JzDgN0e7xK9t
+	cSXqRpWAnkRYJNgo9EY38zCLmqF8j2wEvGyDgk7y+4rO+YNOrTZmIp3Fia/jbWEu7KeRFnmQtxu
+	vKTx2btPVWf5v3dWy5xgwRS9ognlmVgnXWvuhEgrC
+X-Google-Smtp-Source: AGHT+IEcyNrxp3SHEyt2CBRL9VUsDkFP7P0pHC4zqMyxndYLah7gl2FLCMywmLM6ECrvuDEPDmirIA==
+X-Received: by 2002:a05:600c:1988:b0:459:d645:bff7 with SMTP id 5b1f17b1804b1-45b479b57a0mr3202945e9.12.1755639155215;
+        Tue, 19 Aug 2025 14:32:35 -0700 (PDT)
+Received: from asmirnov-G751JM.Home ([2a02:c7c:b28c:1f00:f371:d547:373f:e542])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c077c56454sm5090606f8f.58.2025.08.19.14.32.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Aug 2025 14:32:34 -0700 (PDT)
+From: Aliaksandr Smirnou <support@pinefeat.co.uk>
+To: jacopo.mondi@ideasonboard.com
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	support@pinefeat.co.uk
+Subject: Re: [PATCH v3 2/2] media: i2c: Pinefeat cef168 lens control board driver
+Date: Tue, 19 Aug 2025 22:32:34 +0100
+Message-Id: <20250819213234.18378-1-support@pinefeat.co.uk>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <4qxxvvzxbbdukjn5ykjxhgj6kp2yqd4bidpl74ozbrwtt2jgjj@ipleqjgnnpys>
+References: <4qxxvvzxbbdukjn5ykjxhgj6kp2yqd4bidpl74ozbrwtt2jgjj@ipleqjgnnpys>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250815194806.1202589-4-contact@artur-rojek.eu>
+Content-Transfer-Encoding: 8bit
 
-Hi Artur,
+Hi Jacopo,
 
-kernel test robot noticed the following build errors:
+Thank you for the review. Your remarks are very helpful. While I'll apply
+most of them, could you clarify the one regarding pm_runtime_ for me?
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.17-rc2 next-20250819]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Tue, 19 Aug 2025 15:47:54 +0200, Jacopo Mondi wrote:
+> > +#include <linux/crc8.h>
+>
+> Do you need to "select CRC8" in Kconfig then ?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Artur-Rojek/dt-bindings-vendor-prefixes-Document-J-Core/20250816-042354
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250815194806.1202589-4-contact%40artur-rojek.eu
-patch subject: [PATCH 3/3] net: j2: Introduce J-Core EMAC
-config: m68k-randconfig-r113-20250819 (https://download.01.org/0day-ci/archive/20250820/202508200456.GIhKD5qv-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 8.5.0
-reproduce: (https://download.01.org/0day-ci/archive/20250820/202508200456.GIhKD5qv-lkp@intel.com/reproduce)
+Yes, I'll include it.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508200456.GIhKD5qv-lkp@intel.com/
+> > +#include "cef168.h"
+>
+> Why an header file ?
 
-All errors (new ones prefixed by >>):
+Ok, I'll remove the header moving everying in the .c file.
 
-   drivers/net/ethernet/jcore_emac.c: In function 'jcore_emac_set_rx_mode':
->> drivers/net/ethernet/jcore_emac.c:230:1: error: label at end of compound statement
-    next_ha:
-    ^~~~~~~
+> > +	for (retry = 0; retry < 3; retry++) {
+>
+> This seems a bit random, why do you need to retry three times ?
 
+The driver retries writes to work around an issue in the Raspberry
+Pi's I2C hardware, where the BCM2835 mishandles clock stretching.
+When the slave stretches the clock, the Pi can misread the SCL line
+or sample data too early, making it think the write failed. To
+improve reliability, the kernel driver automatically retries the
+write, effectively compensating for the hardware's timing bug.
 
-vim +230 drivers/net/ethernet/jcore_emac.c
+> > +	    ctrl->id != CEF168_V4L2_CID_CUSTOM(data) &&
+> > +	    ctrl->id != CEF168_V4L2_CID_CUSTOM(focus_range) &&
+> > +	    ctrl->id != CEF168_V4L2_CID_CUSTOM(lens_id))
+> > +		return -EINVAL;
+>
+> If you mark them WRITE_ONLY wouldn't the core take care of this ?
 
-   192	
-   193	static void jcore_emac_set_rx_mode(struct net_device *ndev)
-   194	{
-   195		struct jcore_emac *priv = netdev_priv(ndev);
-   196		struct netdev_hw_addr *ha;
-   197		unsigned int reg, i, idx = 0, set_mask = 0, clear_mask = 0, addr = 0;
-   198	
-   199		if (ndev->flags & IFF_PROMISC)
-   200			set_mask |= JCORE_EMAC_PROMISC;
-   201		else
-   202			clear_mask |= JCORE_EMAC_PROMISC;
-   203	
-   204		if (ndev->flags & IFF_ALLMULTI)
-   205			set_mask |= JCORE_EMAC_MCAST;
-   206		else
-   207			clear_mask |= JCORE_EMAC_MCAST;
-   208	
-   209		regmap_update_bits(priv->map, JCORE_EMAC_CONTROL, set_mask | clear_mask,
-   210				   set_mask);
-   211	
-   212		if (!(ndev->flags & IFF_MULTICAST))
-   213			return;
-   214	
-   215		netdev_for_each_mc_addr(ha, ndev) {
-   216			/* Only the first 3 octets are used in a hardware mcast mask. */
-   217			memcpy(&addr, ha->addr, 3);
-   218	
-   219			for (i = 0; i < idx; i++) {
-   220				regmap_read(priv->map, JCORE_EMAC_MCAST_MASK(i), &reg);
-   221				if (reg == addr)
-   222					goto next_ha;
-   223			}
-   224	
-   225			regmap_write(priv->map, JCORE_EMAC_MCAST_MASK(idx), addr);
-   226			if (++idx >= JCORE_EMAC_MCAST_ADDRS) {
-   227				netdev_warn(ndev, "Multicast list limit reached\n");
-   228				break;
-   229			}
- > 230	next_ha:
-   231		}
-   232	
-   233		/* Clear the remaining mask entries. */
-   234		for (i = idx; i < JCORE_EMAC_MCAST_ADDRS; i++)
-   235			regmap_write(priv->map, JCORE_EMAC_MCAST_MASK(i), 0);
-   236	}
-   237	
+These controls are read-only. The data they return depens on the lens.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> > +	struct cef168_data data;
+>
+> I thought the compiler would complain for variables declared not at
+> the beginning of the function
+
+Ok, I'll move the variable at the beginning.
+
+> > +	pm_runtime_set_active(&client->dev);
+> 
+> Is the device powered up at this point ?
+> If you depend on the pm_runtime_resume_and_get() call in open() to
+> power the device up, then you need to depend on PM in KConfig ?
+
+Yes, the device powers from 3v3 rail of a SBC, which makes it powered
+up as soon as the SBC is up. Given that, should I remove all code
+around Power Management Runtime (pm_runtime_*) as redundant?
+
+> > +#define CEF168_V4L2_CID_CUSTOM(ctrl) \
+> > +	((V4L2_CID_USER_BASE | 168) + custom_##ctrl)
+> 
+> I think you need to reserve space for your controls in
+> include/uapi/linux/v4l2-controls.h
+>
+> otherwise this will never be visible to applications ?
+
+I found there is no need for that. Custom control become available
+automatically by name via the v4l2-ctl utility. For example, the focus
+range can be read directly in the terminal as follows:
+
+v4l2-ctl -d $DEV_LENS -C focus_range
+
+> > +/**
+> > + * cef168 data structure
+>
+> No need to kerneldoc unless you properly document all fields and
+> include the file in some of the Documentation/
+
+OK, I'll remove the comment above the structure.
+
+Kind regards,
+  Aliaksandr
 
