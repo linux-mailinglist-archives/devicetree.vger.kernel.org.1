@@ -1,107 +1,106 @@
-Return-Path: <devicetree+bounces-206391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C2A8B2C3D5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:38:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F5FB2C3DE
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:39:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03CED6262B4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:33:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B467C1887AF1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:35:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC9C334728;
-	Tue, 19 Aug 2025 12:32:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B9B3043AD;
+	Tue, 19 Aug 2025 12:35:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KUV1pM+P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RPxFOX/I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D4A832C300;
-	Tue, 19 Aug 2025 12:32:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B19B202C3A;
+	Tue, 19 Aug 2025 12:35:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755606750; cv=none; b=nwWYzairyDEpzpQ0G/GJbR2IhBfkHM0dO8Ua6kUE+hW+L1edmh8i1mNnyztCGyL74Uq2+fHcqO+sPNg+h0fARjrCfTuwEI9sk4bZ0kuND60/tHwUAMcDMZdfx+S7m5dyogbNh7UsIsE4ziatEKlMYQXl1TGy4RZW2lWe7TclSOI=
+	t=1755606912; cv=none; b=haIL59rYdtE/Wz301M7nX6ULV1CRstQcceiv8DvVCvzJ8OkKkTOOsRPh5YMrlVQ5j5rX8Pu3Itz2H40zZCiP8y2Yd4IVyuf8jtWJ9Mf9a/R6R9BnDrWXPPUgEOuvi6ITVTPAXGWOwtN+a/IY4jrSo4tzG+/XoJf5Zfsy1XgkNiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755606750; c=relaxed/simple;
-	bh=wjs09Gdigf2R0IE1uLQxql5R4PimNeWNLQzbngasLiU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=SWn33NghYdyS1llPyrEkO94Jo3R3HBVdbzm24cwJH0EYM56vhe8B1SPWli7H40a8hvmeF1BVP4zUeDSaxLaJwoqzNMLmiNVUKvHWQHS0ZV1BDI4YYl9OmesYzy5dUTD3l/nr2mfcYpw/B+GbpXVwH8G/0eRNicapCgjz2ihx2rQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KUV1pM+P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9002C116C6;
-	Tue, 19 Aug 2025 12:32:29 +0000 (UTC)
+	s=arc-20240116; t=1755606912; c=relaxed/simple;
+	bh=/B14jPtqrr9C4Z5zVJbaqvRmr2grzAZ6lWE1PNr5tW4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iQBQsQqQodIgveApZkkcIsF4qnhgVAbIAudFxgEhQPXa/Z06uAtWWv3SlL2ssk2bkmO3d5GvWoyiT1fYzSgidonyN4b+E4zKcWmAKrW4k0/OXgZ8QXxWJ/wVYcGY48y9dsuSeaUbcnpeTI1VN18yXiIDHxeSFzW6KPZWZbIYLk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RPxFOX/I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70EA0C4CEF1;
+	Tue, 19 Aug 2025 12:35:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755606750;
-	bh=wjs09Gdigf2R0IE1uLQxql5R4PimNeWNLQzbngasLiU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=KUV1pM+PSUrbgiuC2qfRrjBmoh/K7SwKUZPEG9Sx43lERH2mIAhJXE43x+YxV+SGd
-	 BdtNUMqKKJlINMh6dccC0ScwziqT9emXyV3D+9wnX46JUt0c61L45wM8zOfFf0CUsy
-	 97atbCKu7MfQ/4A3q50GqnxaNp6SbtNu00FjCioMQHjnpu///w0Wgu48LG7iKegR3U
-	 RtPibAw8lDKnpEhhsGpLfj9WdTX0+K7FHZIU0mYidnxYnEIqCUDkH/n/cMTfLHPWT7
-	 IhwS1l80k7T0xpDkP4EHbmRjQGlOAcqofRTPzapIJnpKAwBV6uY2JPtc91+jz2rP06
-	 rz76yHEIf9sUQ==
-Date: Tue, 19 Aug 2025 07:32:29 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1755606912;
+	bh=/B14jPtqrr9C4Z5zVJbaqvRmr2grzAZ6lWE1PNr5tW4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RPxFOX/IPeSTRYa+D1kZKCAX/YP/a3nREN8GQ9IaGWTLyIpbZ/0Lhyz0eODa8yyO0
+	 wV0tW89wkj5Q/tiwnWG4QVi4oQvn4knYjlS/q8GbVniQNPPp3IkpETlqZIwtI0EEL1
+	 ItmA5O62hhF/33/JIv1Aifyv2BKwXW6C00R8Lify4Wg245jWJBR4OBbK+r1uHx84bZ
+	 bm4H7sbYTuuTaGcI7mF86/4XQuxoYVFzD8mWFa0TQ2mW36JOZuh67BICnlIYrYaTwV
+	 jZMvbYOeU9ghElSeviDg9iDv5pZkMPaoZ5BVISJ4NhMK7dGmhldxIAU8xftjj5z7DV
+	 f6Xli9h23PT8g==
+Date: Tue, 19 Aug 2025 13:35:05 +0100
+From: Lee Jones <lee@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
+	Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 5/8] input: macsmc-hid: New driver to handle the Apple
+ Mac SMC buttons/lid
+Message-ID: <20250819123505.GC7508@google.com>
+References: <20250819-macsmc-subdevs-v1-0-57df6c3e5f19@gmail.com>
+ <20250819-macsmc-subdevs-v1-5-57df6c3e5f19@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org, 
- Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, 
- Shawn Guo <shawnguo@kernel.org>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Daniel Thompson <danielt@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, linux-arm-kernel@lists.infradead.org, 
- linux-leds@vger.kernel.org, Helge Deller <deller@gmx.de>
-To: Maud Spierings <maudspierings@gocontroll.com>
-In-Reply-To: <20250819-max25014-v2-1-5fd7aeb141ea@gocontroll.com>
-References: <20250819-max25014-v2-0-5fd7aeb141ea@gocontroll.com>
- <20250819-max25014-v2-1-5fd7aeb141ea@gocontroll.com>
-Message-Id: <175560674579.26233.12902824583404207699.robh@kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: backlight: Add max25014 bindings
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250819-macsmc-subdevs-v1-5-57df6c3e5f19@gmail.com>
 
+On Tue, 19 Aug 2025, James Calligeros wrote:
 
-On Tue, 19 Aug 2025 12:58:59 +0200, Maud Spierings wrote:
-> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
-> with intgrated boost controller.
+> From: Hector Martin <marcan@marcan.st>
 > 
-> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+> This driver implements power button and lid switch support for Apple Mac
+> devices using SMC controllers driven by the macsmc driver.
+> 
+> In addition to basic input support, this also responds to the final
+> shutdown warning (when the power button is held down long enough) by
+> doing an emergency kernel poweroff. This allows the NVMe controller to
+> be cleanly shut down, which prevents data loss for in-cache data.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Co-developed-by: Sven Peter <sven@kernel.org>
+> Signed-off-by: Sven Peter <sven@kernel.org>
+> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
 > ---
->  .../bindings/leds/backlight/maxim,max25014.yaml    | 79 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 ++
->  2 files changed, 84 insertions(+)
-> 
+>  MAINTAINERS                     |   1 +
+>  drivers/input/misc/Kconfig      |  11 ++
+>  drivers/input/misc/Makefile     |   1 +
+>  drivers/input/misc/macsmc-hid.c | 210 +++++++++++++++++++++++++
 
-My bot found errors running 'make dt_binding_check' on your patch:
+>  drivers/mfd/macsmc.c            |   1 +
 
-yamllint warnings/errors:
+Separate patch please.
 
-dtschema/dtc warnings/errors:
+>  5 files changed, 224 insertions(+)
 
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250819-max25014-v2-1-5fd7aeb141ea@gocontroll.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+Lee Jones [李琼斯]
 
