@@ -1,61 +1,50 @@
-Return-Path: <devicetree+bounces-206057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96EDB2B571
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 02:40:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 337D4B2B54E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 02:30:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57EF27B2F28
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 00:38:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAD087AB9D3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 00:28:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C1B1CDFD5;
-	Tue, 19 Aug 2025 00:39:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8EE15442C;
+	Tue, 19 Aug 2025 00:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fvwqBwGu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZT7Qe8mH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AA071C2DB2;
-	Tue, 19 Aug 2025 00:39:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6823C52F99;
+	Tue, 19 Aug 2025 00:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755563978; cv=none; b=KSuVHmngycuzXlRA2ODwWhUhhn815lQ+tLjjq6th7JkNRCBZe0AB6Cc07E4s8F2pqzlVAU2feHrE2PuW1/GOWVYpueYfQ/pXMinqCBsAd1fUs8U4h+I6hxvZXFP1dcLHLuCe383C5hu9nPGa/HLdFF36fGdLNSJUDcFWjy6U/0k=
+	t=1755563402; cv=none; b=NgiqZmyLfyNQCimYGqXqBkS3C4q1bVLkyef5YxRJ86bgpuLeZSNanh9lB+Za1/tnzsHIGP1K3XsnWYTaEyIY7w09i6UcowOTrbj9Jzjcef/2t/jqHhdiWymNWKu/fFvLFYdrhcUIcVX4Bbye5ilP5DTE7W9b7Jt+43VXtNF50UM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755563978; c=relaxed/simple;
-	bh=MT2vNdM2lpeUGjwMVRdXAlWokrm3B+QB4lJckciXBxU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ifQbW4TfhV7TjMMAq4cDDHwjtktNBx6WVkCd+Z70WrQHSRj42CrNsv3J0kyUzvgPlFP4XY7C7T1wXNaPFmF96wE6K/+Y8Tb/DIpOnmSj1Gpl26Fnr5piW7reHc56xL3xd3AkxJeUtspYXo2sqn9Wc2KRJfVqJoBqhOTayk4p14Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fvwqBwGu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC980C4CEF1;
-	Tue, 19 Aug 2025 00:39:35 +0000 (UTC)
+	s=arc-20240116; t=1755563402; c=relaxed/simple;
+	bh=RFt1dn+PPWlqIFCRc+D9+wR0+VBCkqQgtVq4RbxXDeg=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=lAPKozUdwy1QCKAtvTS7RzjU+AJ88TVwrtZBIk1UQ0CCejlNPYdZ36lGX1vYIq38W/fd9+OriQU+ewHrkOWMi8egY4fb2YpTqGhswkv/DVFfQ9G+yubpOmmyGJX+lnt6i46lt9cGGKs+qGz6dd+jfWwl3ZHowXRS33erK2pdbm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZT7Qe8mH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 164BBC4CEEB;
+	Tue, 19 Aug 2025 00:30:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755563977;
-	bh=MT2vNdM2lpeUGjwMVRdXAlWokrm3B+QB4lJckciXBxU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=fvwqBwGuz7ZAQ7sMMwxbDl+X91vBdhIqmYmS9kh4D3aTA/9OXlRkeTkeHq48gASPC
-	 80Z6dHdHtU2CDbJvZiGuzV8fMBwF1973YZYyaxzQGm/A/1rkh2G0nWY3DTR5ggBR1V
-	 8tpYQOWTHxYBH9FkB5+toOSoT2UXB75Wfu6j4+djkfHKb++gE9NZeFSog/N6X69fO2
-	 CwudJMhKKB2vbrzUGOAdc6tJzrCzDzFt6ZfTuscDj5xlJk8l/BjWVDjsCL+JXxnLaM
-	 HU63egFgL60f+rYeisR6iJAFCbDwOy7rQ4Hr+UbGa2lbDIq0cqIYF2mHEeJ9EfwfeF
-	 l35rIzcxNN5aw==
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Richard Leitner <richard.leitner@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] usb: usb251xb: support usage case without I2C control
-Date: Tue, 19 Aug 2025 08:22:17 +0800
-Message-ID: <20250819002217.30249-4-jszhang@kernel.org>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250819002217.30249-1-jszhang@kernel.org>
-References: <20250819002217.30249-1-jszhang@kernel.org>
+	s=k20201202; t=1755563401;
+	bh=RFt1dn+PPWlqIFCRc+D9+wR0+VBCkqQgtVq4RbxXDeg=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=ZT7Qe8mHTaIsuuIRe1LorU83gdwWzIxbx9TvZE4nzjz8Z+qRj7CZewohEZ5+4OuA7
+	 f0EYl5hKsq2/lpwCdqUOjGVnRMAR0IEAq3kcwqq6LdbI5trU4ApV59E47R2ZnM8MxA
+	 TyaLpPhnygO1qD8iSvaGJseJ9GTWixevnGCvdVxjnpuxihRL2beIIVLBf41jhsw3i5
+	 +eeCCy38SFjMiP0qkBYWT8TkZdjMecKdCSL95GUZUHpA1i7eW6z8C0d9Sak2/Y1TLP
+	 7TR2TX4bNnJw1yNxbKEikMZjR7S16jvKsH/ip6eND5ViJiPYAbHFWFiHUJC2l6FiCJ
+	 v1WrTRtJYIqlA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33C12383BF4E;
+	Tue, 19 Aug 2025 00:30:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,204 +52,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] dt-bindings: net: realtek,rtl82xx: document
+ wakeup-source property
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <175556341073.2959470.10863501687650482434.git-patchwork-notify@kernel.org>
+Date: Tue, 19 Aug 2025 00:30:10 +0000
+References: <E1um9Xj-008kBx-72@rmk-PC.armlinux.org.uk>
+In-Reply-To: <E1um9Xj-008kBx-72@rmk-PC.armlinux.org.uk>
+To: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Cc: andrew@lunn.ch, hkallweit1@gmail.com, andrew+netdev@lunn.ch,
+ conor+dt@kernel.org, davem@davemloft.net, devicetree@vger.kernel.org,
+ edumazet@google.com, f.fainelli@gmail.com, kuba@kernel.org,
+ jonathanh@nvidia.com, krzk+dt@kernel.org, netdev@vger.kernel.org,
+ pabeni@redhat.com, robh@kernel.org, treding@nvidia.com
 
-Refactor so that register writes for configuration are only performed if
-the device has a i2c_client provided and also register as a platform
-driver. This allows the driver to be used to manage GPIO based control
-of the device.
+Hello:
 
-Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
----
- drivers/usb/misc/usb251xb.c | 108 +++++++++++++++++++++++++++++++-----
- 1 file changed, 94 insertions(+), 14 deletions(-)
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-diff --git a/drivers/usb/misc/usb251xb.c b/drivers/usb/misc/usb251xb.c
-index cb2f946de42c..c900df69dd8d 100644
---- a/drivers/usb/misc/usb251xb.c
-+++ b/drivers/usb/misc/usb251xb.c
-@@ -17,6 +17,7 @@
- #include <linux/module.h>
- #include <linux/nls.h>
- #include <linux/of.h>
-+#include <linux/platform_device.h>
- #include <linux/regulator/consumer.h>
- #include <linux/slab.h>
- 
-@@ -242,15 +243,19 @@ static int usb251xb_check_dev_children(struct device *dev, void *child)
- static int usb251x_check_gpio_chip(struct usb251xb *hub)
- {
- 	struct gpio_chip *gc = gpiod_to_chip(hub->gpio_reset);
--	struct i2c_adapter *adap = hub->i2c->adapter;
-+	struct i2c_adapter *adap;
- 	int ret;
- 
-+	if (!hub->i2c)
-+		return 0;
-+
- 	if (!hub->gpio_reset)
- 		return 0;
- 
- 	if (!gc)
- 		return -EINVAL;
- 
-+	adap = hub->i2c->adapter;
- 	ret = usb251xb_check_dev_children(&adap->dev, gc->parent);
- 	if (ret) {
- 		dev_err(hub->dev, "Reset GPIO chip is at the same i2c-bus\n");
-@@ -271,7 +276,8 @@ static void usb251xb_reset(struct usb251xb *hub)
- 	if (!hub->gpio_reset)
- 		return;
- 
--	i2c_lock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
-+	if (hub->i2c)
-+		i2c_lock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
- 
- 	gpiod_set_value_cansleep(hub->gpio_reset, 1);
- 	usleep_range(1, 10);	/* >=1us RESET_N asserted */
-@@ -280,7 +286,8 @@ static void usb251xb_reset(struct usb251xb *hub)
- 	/* wait for hub recovery/stabilization */
- 	usleep_range(500, 750);	/* >=500us after RESET_N deasserted */
- 
--	i2c_unlock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
-+	if (hub->i2c)
-+		i2c_unlock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
- }
- 
- static int usb251xb_connect(struct usb251xb *hub)
-@@ -289,7 +296,11 @@ static int usb251xb_connect(struct usb251xb *hub)
- 	int err, i;
- 	char i2c_wb[USB251XB_I2C_REG_SZ];
- 
--	memset(i2c_wb, 0, USB251XB_I2C_REG_SZ);
-+	if (!hub->i2c) {
-+		usb251xb_reset(hub);
-+		dev_info(dev, "hub is put in default configuration.\n");
-+		return 0;
-+	}
- 
- 	if (hub->skip_config) {
- 		dev_info(dev, "Skip hub configuration, only attach.\n");
-@@ -698,18 +709,13 @@ static int usb251xb_i2c_probe(struct i2c_client *i2c)
- 	return usb251xb_probe(hub);
- }
- 
--static int usb251xb_suspend(struct device *dev)
-+static int usb251xb_suspend(struct usb251xb *hub)
- {
--	struct i2c_client *client = to_i2c_client(dev);
--	struct usb251xb *hub = i2c_get_clientdata(client);
--
- 	return regulator_disable(hub->vdd);
- }
- 
--static int usb251xb_resume(struct device *dev)
-+static int usb251xb_resume(struct usb251xb *hub)
- {
--	struct i2c_client *client = to_i2c_client(dev);
--	struct usb251xb *hub = i2c_get_clientdata(client);
- 	int err;
- 
- 	err = regulator_enable(hub->vdd);
-@@ -719,7 +725,23 @@ static int usb251xb_resume(struct device *dev)
- 	return usb251xb_connect(hub);
- }
- 
--static DEFINE_SIMPLE_DEV_PM_OPS(usb251xb_pm_ops, usb251xb_suspend, usb251xb_resume);
-+static int usb251xb_i2c_suspend(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct usb251xb *hub = i2c_get_clientdata(client);
-+
-+	return usb251xb_suspend(hub);
-+}
-+
-+static int usb251xb_i2c_resume(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct usb251xb *hub = i2c_get_clientdata(client);
-+
-+	return usb251xb_resume(hub);
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(usb251xb_i2c_pm_ops, usb251xb_i2c_suspend, usb251xb_i2c_resume);
- 
- static const struct i2c_device_id usb251xb_id[] = {
- 	{ "usb2422" },
-@@ -739,13 +761,71 @@ static struct i2c_driver usb251xb_i2c_driver = {
- 	.driver = {
- 		.name = DRIVER_NAME,
- 		.of_match_table = usb251xb_of_match,
--		.pm = pm_sleep_ptr(&usb251xb_pm_ops),
-+		.pm = pm_sleep_ptr(&usb251xb_i2c_pm_ops),
- 	},
- 	.probe = usb251xb_i2c_probe,
- 	.id_table = usb251xb_id,
- };
- 
--module_i2c_driver(usb251xb_i2c_driver);
-+static int usb251xb_plat_probe(struct platform_device *pdev)
-+{
-+	struct usb251xb *hub;
-+
-+	hub = devm_kzalloc(&pdev->dev, sizeof(*hub), GFP_KERNEL);
-+	if (!hub)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, hub);
-+	hub->dev = &pdev->dev;
-+
-+	return usb251xb_probe(hub);
-+}
-+
-+static int usb251xb_plat_suspend(struct device *dev)
-+{
-+	return usb251xb_suspend(dev_get_drvdata(dev));
-+}
-+
-+static int usb251xb_plat_resume(struct device *dev)
-+{
-+	return usb251xb_resume(dev_get_drvdata(dev));
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(usb251xb_plat_pm_ops, usb251xb_plat_suspend, usb251xb_plat_resume);
-+
-+static struct platform_driver usb251xb_plat_driver = {
-+	.driver = {
-+		.name = DRIVER_NAME,
-+		.of_match_table = of_match_ptr(usb251xb_of_match),
-+		.pm = pm_sleep_ptr(&usb251xb_plat_pm_ops),
-+	},
-+	.probe		= usb251xb_plat_probe,
-+};
-+
-+static int __init usb251xb_init(void)
-+{
-+	int err;
-+
-+	err = i2c_add_driver(&usb251xb_i2c_driver);
-+	if (err)
-+		return err;
-+
-+	err = platform_driver_register(&usb251xb_plat_driver);
-+	if (err) {
-+		i2c_del_driver(&usb251xb_i2c_driver);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+module_init(usb251xb_init);
-+
-+static void __exit usb251xb_exit(void)
-+{
-+	platform_driver_unregister(&usb251xb_plat_driver);
-+	i2c_del_driver(&usb251xb_i2c_driver);
-+}
-+module_exit(usb251xb_exit);
- 
- MODULE_AUTHOR("Richard Leitner <richard.leitner@skidata.com>");
- MODULE_DESCRIPTION("USB251x/xBi USB 2.0 Hub Controller Driver");
+On Wed, 13 Aug 2025 12:21:19 +0100 you wrote:
+> The RTL8211F PHY has two modes for a single INTB/PMEB pin:
+> 
+> 1. INTB mode, where it signals interrupts to the CPU, which can
+>    include wake-on-LAN events.
+> 2. PMEB mode, where it only signals a wake-on-LAN event, which
+>    may either be a latched logic low until software manually
+>    clears the WoL state, or pulsed mode.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next] dt-bindings: net: realtek,rtl82xx: document wakeup-source property
+    https://git.kernel.org/netdev/net-next/c/a510980e740c
+
+You are awesome, thank you!
 -- 
-2.50.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
