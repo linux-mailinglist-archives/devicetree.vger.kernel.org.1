@@ -1,140 +1,150 @@
-Return-Path: <devicetree+bounces-206269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17C64B2BE63
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:05:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE4BB2BE79
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:07:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59882164388
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:02:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7120620FB7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F81230FF2F;
-	Tue, 19 Aug 2025 10:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7CEA31CA5E;
+	Tue, 19 Aug 2025 10:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PSrIBn5u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e/dJJhRz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1E023BD17;
-	Tue, 19 Aug 2025 10:02:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2C8215798
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 10:02:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755597723; cv=none; b=LfQ9AYTTWoJl4orMbdd708QgYkz+C7mpbii//RszCAdWzWG0kpn1wkr77RBQaFxVhKvFflhMx5BsnBuYywdBlA4y6FnFYw121PKAOEq0IFG/vbLlJPTRoIHMXg8gv+Rv5jEhhUI76eB1mvuD/HL0DoJL+EGMncsvlbO86epacy0=
+	t=1755597758; cv=none; b=WBSnP5nU9R5mnR6PbThVG5KgIcQpP+SAJcmD2TY7lDjBaffE/FstIFf4euVZBr+RaXQr1fxHBhz4LyUJ+Gz6v4D3Iq1I4XXDR8huC4/gf+8vL1dMB6yT10jkDwo5potax1ltrZuNnt3p/uidn1d0eZRt1dMy95ebeBXnunBo3iY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755597723; c=relaxed/simple;
-	bh=pw2fnfhmflhIZ1bq9JJ2pTYcVzb7LXTiDoC60DsC640=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CWxvYqE5EstFD1ckP1Qh6Qfbm0S1IXKX/Ncir79yuHFnabChrE0+dNWpbKlJC/MfJU0gpU+2KgyR19FOC1lzZ0aHDlnFnKgG3LVifgl7y4uzOu8zs+PD1dMJ+u6hjiDClInH5fMzAlTsn8qX3oLVFf84DIawYAXucZTI5L9IIkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PSrIBn5u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC44AC4CEF1;
-	Tue, 19 Aug 2025 10:01:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755597722;
-	bh=pw2fnfhmflhIZ1bq9JJ2pTYcVzb7LXTiDoC60DsC640=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PSrIBn5uEJo54gUUN0UoLpYD3c1+PxV/rMhboUSl03RK7VARtjkynNxTz1k+Jr9ee
-	 mZpssBb475d5oZxbWZINXl3wS2z4JWXLpQKzlrIc729FGIlhg2jlrbK2IGRt5s1MKC
-	 3kt2SygUnQrp0D+Ate39vermY65xaeBwJakkdHHBjkTJF7aUFk+BxspRplvBcGlPTU
-	 Smx4jIR5LXurX6sjK1vV06M7gQbIH4mnucf8tPUnxNe+hWYJyAHP+puWDqMbXbYnWl
-	 gQEvkNoapYYK9DGdXdm46nQbwhs1mxIYQ6sJsxSy1hiSE+GPtPn3GUKXXYR0Zqu/wV
-	 4B89QRfZt5XSw==
-Message-ID: <8ac418ae-7ff0-4d5c-9f11-c24e36618ac1@kernel.org>
-Date: Tue, 19 Aug 2025 12:01:55 +0200
+	s=arc-20240116; t=1755597758; c=relaxed/simple;
+	bh=2oRJmy6jdudOx3Q3CK1t3Tr8AwssA1mqdMSyvD/J694=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=o9VAk+s52hj+AcdaGifTrZ+Kp6vUuDa6CPpYZHTJRi4qE4dSKLIUDzJ5evBTb89d697bsj33gJKPTmP4rnu1+EV1mG9zunGT3avjRg/GWjdqGsAYDDxqTriQBFYbFEVjS1Wrhy9BKXywY22qFzBa0UJW9zp8VFV7+hhCQWCLMQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e/dJJhRz; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-333f8f0965dso42860411fa.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 03:02:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755597755; x=1756202555; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jEIclbjfDHmWiMYwu7S7lb6mGq8E/UEDhqSMVO/QBNA=;
+        b=e/dJJhRzz1jnTLk8ddHqa2XmLp+jJ+Df0foCAEM2JCLb6a61ooak+5fPVLmFDtkRIi
+         RYsasorV+IcV78wOZzGj3rj6PnToK/HwvJSvd+/o2szeFD3Fe6Q88p6Q8H9T7Bsdyg+O
+         HGrz3GlCbYe/Ia1lyT7JCKhvtlXA6F+PFAjxvUqwOHn2Fqadko+VXj5Wk1Afl5gg4xE7
+         99QIenlG7q6w5Ic0uRJrsrLEiTDENkRmAJDYACMf48CSAIAiOMfEO98leX8maFjseN5P
+         vw22O2vG7iXNsqwqPxaSKXTgONu+QqqtmwqOFJfQ2JooH9GduM7om55eytr/ZAS7yQrk
+         +xkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755597755; x=1756202555;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jEIclbjfDHmWiMYwu7S7lb6mGq8E/UEDhqSMVO/QBNA=;
+        b=svYVx+EBLMzk3c8BhceFa0HWk5zELjE9bY0RBpEN1XrjSp3E6aNcE+BUcwWw83YvXM
+         q8Cl6IiZ0CBwtGFRDMu3ZkppD5yl6ygTVw8FWrodPK7vVqjoa5jVih6a0kjEb9kvHwuq
+         AS7LLG+bu7/nubLqey2OilxRBZkJqK5qEVs7WAarpKKiRoRebwDvnMBW4CiuGghUfdom
+         1YKwOPF1iMXLAwAGMOJkgX+Swm3sY4NwnPe57upOKQWavyquCmp1fzma4AMHyA/sL9+R
+         bEYmJolokyYSOFbTmn60+7ytiFIQb2aVEzGJtAfsmCQJLce9cCOVOGdhzp4oMyLGCHEa
+         SibA==
+X-Forwarded-Encrypted: i=1; AJvYcCUolbEahQNKmirjZLfZGTLHedHSUhy8cWCqCehv33fUohNktyu6U3jMvw22RCPwhmOfqLvjoPizR9pz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAHELfHUN6qEH4aiBvBn8fXhxbdeydgWiYQ2eB3snnv7ViOlcg
+	uK4uFAYlc7LwoRcnyGdGdLwLbqB1/jyIGOyWrsG5TZndF1y9oUkPWneIED5rLgDXH7736DyjnjA
+	dFoxAAMKaCSWV5gGAp26KxL+Xt9wC7od8Lkghb57RDA==
+X-Gm-Gg: ASbGncsXlb7mTV4IqorsTs9jgvXX8TwGWpYYSU2HIvMI88Cq8ELwgQp0vpR66G5edag
+	gBM8Yn5YpERJXX5Klt2iBpEYwADC4EHfv4eX2hYRde1+PxjJEqXK8omZcEgImL2Sd3iLQRajAU1
+	YegB/C9N1+czF+V4URekliwJYKpGFOFKdZrgo1iIGg0RA+JoUt+5X8yXz3McfIvinmgEzPb8Utn
+	pd+8ofISFDO
+X-Google-Smtp-Source: AGHT+IH/19oUBfRxFr8epug82uJ7/HieWJyUVlBhoMvAFaMluZmkd3UN9bc0BKENYULFNtqg/fXi8MkFaQZgBnal9yQ=
+X-Received: by 2002:a05:651c:4199:b0:333:ac42:8d6a with SMTP id
+ 38308e7fff4ca-335304ee6damr4961591fa.3.1755597754935; Tue, 19 Aug 2025
+ 03:02:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/9] dt-bindings: nvme: apple,nvme-ans: Add Apple A11
-To: Krzysztof Kozlowski <krzk@kernel.org>, Nick Chan <towinchenmi@gmail.com>
-Cc: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Neal Gompa <neal@gompa.dev>, Jassi Brar <jassisinghbrar@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Keith Busch <kbusch@kernel.org>,
- Jens Axboe <axboe@kernel.dk>, Christoph Hellwig <hch@lst.de>,
- Sagi Grimberg <sagi@grimberg.me>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, iommu@lists.linux.dev,
- linux-nvme@lists.infradead.org
-References: <20250818-t8015-nvme-v2-0-65648cd189e0@gmail.com>
- <20250818-t8015-nvme-v2-6-65648cd189e0@gmail.com>
- <20250819-polite-papaya-catfish-1a9d1a@kuoka>
-Content-Language: en-US
-From: Sven Peter <sven@kernel.org>
-In-Reply-To: <20250819-polite-papaya-catfish-1a9d1a@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250811163749.47028-2-ziyao@disroot.org> <20250811163749.47028-4-ziyao@disroot.org>
+In-Reply-To: <20250811163749.47028-4-ziyao@disroot.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 19 Aug 2025 12:02:23 +0200
+X-Gm-Features: Ac12FXx1atQmH6QeSnrDLNRud94fhJMECrA9TaInUV_M5vUWxhGJhif4Q5spxjg
+Message-ID: <CACRpkdZp8FLrxgkeZ=xzSPgny51iDZ3KRCrxpoSdgF8_=df=KQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] pinctrl: ls2k0300: Support Loongson 2K0300 SoC
+To: Yao Zi <ziyao@disroot.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
+	WANG Xuerui <kernel@xen0n.name>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
+	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 19.08.25 11:18, Krzysztof Kozlowski wrote:
-> On Mon, Aug 18, 2025 at 04:42:59PM +0800, Nick Chan wrote:
->> Add ANS2 NVMe bindings for Apple A11 SoC.
->>
->> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
->> ---
->>   .../devicetree/bindings/nvme/apple,nvme-ans.yaml          | 15 +++++++++------
->>   1 file changed, 9 insertions(+), 6 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml b/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
->> index fc6555724e1858e8a16f6750302ff0ad9c4e5b88..4127d7b0a0f066fd0e144b32d1b676e3406b9d5a 100644
->> --- a/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
->> +++ b/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
->> @@ -11,12 +11,14 @@ maintainers:
->>   
->>   properties:
->>     compatible:
->> -    items:
->> -      - enum:
->> -          - apple,t8103-nvme-ans2
->> -          - apple,t8112-nvme-ans2
->> -          - apple,t6000-nvme-ans2
->> -      - const: apple,nvme-ans2
->> +    oneOf:
->> +      - const: apple,t8015-nvme-ans2
->> +      - items:
->> +          - enum:
->> +              - apple,t8103-nvme-ans2
->> +              - apple,t8112-nvme-ans2
->> +              - apple,t6000-nvme-ans2
->> +          - const: apple,nvme-ans2
-> 
-> When some months ago this pattern of generic fallback appeared, I
-> believe I commented it is bad idea. So now months later we have a proof
-> - generic fallback is useless and you should have been using SoC
-> specific compatibles from the start.
-> 
-> Now it is just confusing and this broken pattern will be spreading more
-> and more, because you folks put generic compatibles everywhere.
+On Mon, Aug 11, 2025 at 6:39=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
 
-I haven't commented on the dt-bindings yet because I suspect this patch 
-is wrong but haven't had time to test this yet.
+> Support pin multiplexing and drive-strength setting for Loongson 2K0300
+> SoC. Pin multiplexing could be done separately for each pin, while
+> drive-strength could be only configured on function basis. This differs
+> a lot from the driver for previous generation of Loongson SoC, where
+> pinmux setting is based on group.
+>
+> Pins are represented with pinmux properties in devicetrees, and we use
+> the generic pinmux API for parsing. The common pinconf interface isn't
+> used for drive-strength setting, since it handles pinconf settings at a
+> unit of pin groups or smaller.
+>
+> Instead, the driver configures drive-strength settings just after
+> parsing the devicetree. The devicetree's structure ensures no conflicts
+> could happen in drive-strength settings.
+>
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
 
-I believe we want "apple,t8015-nvme-ans2", "apple,nvme-ans2" here and
-then use the code Nick added for "apple,nvme-ans2" by default and only
-enable additional features (NVMMU, linear submission queue) when we see
-the SoC-specific compatibles for t8103, t8112, and t6000. IIRC these
-newer SoCs still support the old way of submitting commands just fine
-and the new way was added at some point to add support for this weird
-integrated IOMMU.
+Overall the driver looks very good, well done!
 
-I've already seen some strings about ANS3 somewhere which I suspect
-will be the controller in some future SoC (or maybe M3/M4 which we 
-haven't reverse engineered yet) that actually breaks compatibility.
+Look into Rob's comment on the bindings to use a single node
+for mux and config.
 
-It's too late to drop them here but if you're strongly opposed to these
-generic fallbacks we can just switch to only use tXXXX-nvme-ans3 at that
-point without making anything confusing. Same for any other new hardware
-blocks we reverse engineer and upstream.
+I saw that you want to make the pin controller strict, if you also have
+some pins with "GPIO mode" that will serve as back-end for a
+GPIO driver (and I saw you posted a GPIO driver series as well)
+then have a look at Bartosz recent patches to add infrastructure
+for pinctrl to know about what a GPIO pin is:
+https://lore.kernel.org/linux-gpio/20250815-pinctrl-gpio-pinfuncs-v5-0-955d=
+e9fd91db@linaro.org/T/
 
+The current driver does not seem to know about any of these
+pins being usable as GPIO and does not implement those:
 
+        int (*gpio_request_enable) (struct pinctrl_dev *pctldev,
+                                    struct pinctrl_gpio_range *range,
+                                    unsigned int offset);
+        void (*gpio_disable_free) (struct pinctrl_dev *pctldev,
+                                   struct pinctrl_gpio_range *range,
+                                   unsigned int offset);
+        int (*gpio_set_direction) (struct pinctrl_dev *pctldev,
+                                   struct pinctrl_gpio_range *range,
+                                   unsigned int offset,
+                                   bool input);
+        bool strict;
 
-Sven
+Which is fine if the pins actually cannot be used for GPIO, but if they
+can, and this is just implicit for unconfigured pins ... then add
+functions and groups for GPIO.
 
+The other driver using pinconf_generic_parse_dt_pinmux()
+drivers/pinctrl/meson/pinctrl-amlogic-a4.c has GPIO awareness.
 
+Yours,
+Linus Walleij
 
