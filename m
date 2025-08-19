@@ -1,105 +1,146 @@
-Return-Path: <devicetree+bounces-206550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BCFBB2CA3E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 19:05:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6014DB2CA81
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 19:24:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3C4A1C22CF7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 17:05:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B0997251EF
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 17:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23852D249F;
-	Tue, 19 Aug 2025 17:05:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEDE330148F;
+	Tue, 19 Aug 2025 17:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="D2sOdoiv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EJmwzm8J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E29E233707;
-	Tue, 19 Aug 2025 17:05:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79FE3009ED;
+	Tue, 19 Aug 2025 17:22:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755623124; cv=none; b=QMpj0YJ+EZmxkzP9zhJG8FEkL2Y9fYGuQ4YA6DKxOWiwmvaTXMcpWlvUAiX/y/Slr2OqKzPyzlIeEEyXxFnUt+jK8AI2qrQoJ8b/969wquhJFettBMbgTc2DshL7pHn6QWBJpUmMiqaMnqGyCLxwH/ZuwWcPpjFxuS53eil91XM=
+	t=1755624160; cv=none; b=uRjThf4yO5k1n7fUWq371sXTTlQdyEiBh5YCLQQuTX2Rs4yDfAs9O17YieIw8ZRB9em06aCvIzTDC9QktoD1vZZj8QDeEJoD3YzymRerb5+DFFZlnQAWsyBrff22l1FBIVr14SelctEA/Rp5AlucP3eRH4bO0849YlG+xfYZjes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755623124; c=relaxed/simple;
-	bh=MbRsZVZvuB6Ng5AOSMJdgGzWCRYi3h/Z+BwdF3senV8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PLn+IHq24W2aPnsNkWRTm/y612Qx87wXbOrCfh3JbpVP7YdM1B15eErS6JbA/w+mSdazfeNkf+AQsEcXf4/qdXk0PVrXBZHRGXSqvV5H/jH1kem0awo6vK9LHdwayTT1U3iUy6BIU3qMYcme8/x0CBfqf8fYwQSDW26VEUY6PYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=D2sOdoiv; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1755623124; x=1787159124;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=MbRsZVZvuB6Ng5AOSMJdgGzWCRYi3h/Z+BwdF3senV8=;
-  b=D2sOdoivuSKcPEiFm8MD+Caspq1tS3TKfKIFw/wZPDJebk6VnFxj7PsY
-   lGuX4zRV/tgdgSaD/48ku7N7HoQSFNlBIQdQ/6fA43+Q/SrGZatPoVh0M
-   KNbHVZaSB9x+bn4jPylS/rVySfKdP6qoST6v2+DwcDgAuZZkbQnLCOT+6
-   daDdoHNwK61Dxbw0HzxBQA1qR9PWf0vKHanj2GJHwEqzlTMYfLEw9I7Xm
-   37hqyFqXRpoMEI8qIv7TEo2uI4LtmEsmT5fWtIKHcuJnzfraVtgQrZiV4
-   /m8SG7pDnEeS05JxFfdQDiT7rCg2AFXRP8pUEp5atQa1xegvXIA6fvh8a
-   Q==;
-X-CSE-ConnectionGUID: LwN0KEJUSkiT7DO7RE6tdg==
-X-CSE-MsgGUID: XMhFjc69RPqdj9hnILCL6Q==
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
-   d="scan'208";a="45384092"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Aug 2025 10:05:23 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 19 Aug 2025 10:04:41 -0700
-Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.44 via Frontend Transport; Tue, 19 Aug 2025 10:04:41 -0700
-From: <Ryan.Wanner@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Ryan Wanner <Ryan.Wanner@microchip.com>
-Subject: [PATCH] ARM: dts: microchip: sama7d65: Force SDMMC Legacy mode
-Date: Tue, 19 Aug 2025 10:05:24 -0700
-Message-ID: <20250819170528.126010-1-Ryan.Wanner@microchip.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1755624160; c=relaxed/simple;
+	bh=Hqw9eNwEyOyjAddQiU40tZUpBUM4UVro4mYONtNAhdU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c83aHYS+qL+rzU4b3r0gegFa7LXl9XMkjUTRBPgTsm76H9J2BO2jwoWcrlk55vpkvm/3KmvOgU9U1P0MZKJl/P8Xpk++fjZB2HiQHlb2Ltwlg3ewyzhZMASZ311x3utcoZVhhcS2baNUpFjsQ9qrnDTC+ks9ZJBEiA2OmEwkn1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EJmwzm8J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 194B5C4CEF1;
+	Tue, 19 Aug 2025 17:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755624160;
+	bh=Hqw9eNwEyOyjAddQiU40tZUpBUM4UVro4mYONtNAhdU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EJmwzm8JVvkGwG9V+/odTUt0NyAxYoUrIXbQNniA3nwUn548XT34GYo23hN0RP86F
+	 ltQXVE/9Sl8T0Z7GnwDxTiMTdLU5NhX4dIzgiuGAQLZs2uG115vn9li+4xgY1ORdtd
+	 cAqo83b1PiMbpr/N6IjhyFE/CLL+6ZeDXjzWuP2LOvNDlPwCHEBWxVirr8w1MuyZ/i
+	 DQjF5/36k6DShHkW7JLCLcq22uz/M+8OX05N896ZsfrO5ZzQ11AW2W+2MGl4EyZeO5
+	 MhZqRpPQo3A3jPTCOvmVflCws3MFnYPDtWQx5uYNWsOX+TvEcJrjrs7RukCneYbyzI
+	 I0jR45Bz9LJRQ==
+Date: Tue, 19 Aug 2025 18:22:34 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, dri-devel@lists.freedesktop.org,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>, Robert Foss <rfoss@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-tmds181: Add TI TMDS181
+ and SN65DP159 bindings
+Message-ID: <20250819-impeach-prognosis-247bec1a809b@spud>
+References: <20250812145256.135645-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3b7d4319-e208-470d-9ada-585343a64822@emailsignatures365.codetwo.com>
+ <20250812145256.135645-2-mike.looijmans@topic.nl>
+ <20250812-designing-tyke-db85527b373d@spud>
+ <f4ec7690-322e-493a-b346-7b9560ac0616@topic.nl>
+ <9fba4917-a24f-4fee-8f1a-7509a0bc542e@kernel.org>
+ <2d694c9c-704e-4353-8b57-de83eb5a7f96@topic.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="66JlIddYdkNBaUXn"
+Content-Disposition: inline
+In-Reply-To: <2d694c9c-704e-4353-8b57-de83eb5a7f96@topic.nl>
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-The SDMMC in this IP currently only supports legacy mode
-due to a hardware quirk, setting the flags to reflect the limitation.
+--66JlIddYdkNBaUXn
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
----
- arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts | 2 ++
- 1 file changed, 2 insertions(+)
+On Tue, Aug 19, 2025 at 10:26:15AM +0200, Mike Looijmans wrote:
+> On 19-08-2025 09:51, Krzysztof Kozlowski wrote:
+> > On 19/08/2025 09:46, Mike Looijmans wrote:
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      - ti,tmds181
+> > > > > +      - ti,sn65dp159
+> > > > The driver contains:
+> > > > +	{ .compatible =3D "ti,tmds181", },
+> > > > +	{ .compatible =3D "ti,sn65dp159", },
+> > > > +	{}
+> > > > so why is a fallback compatible not suitable here?
+> > > I don't understand the question. The two are slightly different chips,
+> > Your driver says they are compatible. No one said the same, but compati=
+ble.
+> >=20
+> > > so it makes sense to describe that in the DT.
+> > Compatible devices should use fallback. There is plenty of examples (90%
+> > of all binding files?) including example-schema describing this.
+>=20
+> Please help me out here, I'm happy to oblige, but I don't understand what
+> you're asking.
+>=20
+> To the best of my knowledge "fallback" compatible is when you write
+> something like this in the device-tree:
+> =A0=A0 compatible =3D "st,m25p80", "jedec,spi-nor";
+> Which means that we can use the "jedec,spi-nor" driver if there's no
+> specific match for "st,m25p80", correct?
+>=20
+> I don't understand how that relates to your request, this is the first ti=
+me
+> I ever got this particular feedback. Looking at say the ti,sn65dsi83 driv=
+er,
+> it does the same thing (supports the ti,sn65dsi83 and ti,sn65dsi84).
+>=20
+> Please explain or point me somewhere where I can find this?
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-index 7eaf6ca233ec..d086437f5e6f 100644
---- a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-@@ -387,6 +387,8 @@ &rtt {
- 
- &sdmmc1 {
- 	bus-width = <4>;
-+	no-1-8-v;
-+	sdhci-caps-mask = <0x0 0x00200000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sdmmc1_default>;
- 	status = "okay";
--- 
-2.43.0
+Devices that are supersets of, or functionally identical to, others should
+use fallback compatibles. The driver treats these devices as functionally
+identical to one another when it comes to match data (as there is none)
+so you need to either use a fallback compatible or explain in your
+commit message why one is not suitable here.
 
+--66JlIddYdkNBaUXn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKSy2gAKCRB4tDGHoIJi
+0jMkAP9NUxCGEjZ63zCEHXPLBh1Zxa6yjFr146a0y81NFbwSjAD/YzkXycwf8ncA
+kcfhNlkqACOs8kQMNQf0M5TaGq44NAc=
+=o59W
+-----END PGP SIGNATURE-----
+
+--66JlIddYdkNBaUXn--
 
