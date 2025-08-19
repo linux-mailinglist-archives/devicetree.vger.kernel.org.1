@@ -1,89 +1,90 @@
-Return-Path: <devicetree+bounces-206446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6CBEB2C533
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:20:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53983B2C53D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:21:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 446D2624354
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:17:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F16D24123F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:17:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF153341AD6;
-	Tue, 19 Aug 2025 13:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B91341AA0;
+	Tue, 19 Aug 2025 13:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F9LfaG0w"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h6f2F5TJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02185340D9A
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 13:16:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44B8341AA4
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 13:16:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755609387; cv=none; b=aJhV7V+UG9H0PxTXyM1uPuTMhj/TCu9vF2quOpTSIzZu1Sv/3PJWfGnLPUw/rS7tXnv/+aIs7zMdsxa917JYK8Zv3plmUr7ik/5dZ/QbuhcPy6W630ldw5b4sVdijXQX6V+/W4TXQkQeK18yXatbq4HP4cPfRc+9rClM7loWtos=
+	t=1755609394; cv=none; b=pKXy2DjtpES4r8t/JRdsJJbr/mqE5HvD8Bl2XyrVLV5BZ3pUn9r6T+RQCuXe4/ph7iWck/aRNsh8oS3qNJHlBFpR7XS3wB3z+KCjJG0Vvt8owngdoJKNG44RqY+eIvvxpWKwWGLyV8csc3UW8XLfb2O36dMuZU6ef+vXgUI6/WU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755609387; c=relaxed/simple;
-	bh=FlJ31Q4r8DtWEP1JWYKS9HEZuRwP5fOwwXXSziAxGiw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LKai5VkzUw4cOyAm9fN6jI5kZJi8MkESv+73GUYoMJh5et1bYDw/mKMfGIuOXGkCpkEmU3hvUVoF3+cQRMZQEhY1Q+/tjITNlW8coGRbPdUHW0Z6UPitbkCtM0aj+4F4On/6vcd0iasa+bV7hreOaeYEspYzNf35xr2lSS2fLNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F9LfaG0w; arc=none smtp.client-ip=209.85.218.50
+	s=arc-20240116; t=1755609394; c=relaxed/simple;
+	bh=y7xStFE0NPIkxi9Pu680sxAPkxq15o/aAJd/KvC53fU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GfZynqQwZ0Mf82Rkyf6o9AyMjNBEgh4u5Ubeaoc1VTCuYeM7Gizpo1k846WE54xluECohLYXipey3Ti4+92JHlXLELAMadYcK2Rou0zKHM6wqUg0wr3s+ttzbz6sSozp3xf6jKW2VVh6KNyoZkXWlA+d0p8S15GnFwzcJwD/ArI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h6f2F5TJ; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afcb731ca55so71893466b.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:16:24 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-afcb78d1695so69634766b.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:16:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755609383; x=1756214183; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755609391; x=1756214191; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WAyUsYNwkYrgmyUPFJBgMUOEuaiMdUtsvQFJPoQdWaM=;
-        b=F9LfaG0w0vsm2D//Wfq3ELbR4tEE+9O+wEY4cdy0e3nKsMdBIpB5uztGYSue7yTkgQ
-         VmFxGWwGf6sQcRd4Pp/r/zXared4QSaDyoEYnBc4IJFZTbsnhezudFJyULA2iewctR5L
-         WChtNjeQrMecHIArOx1ds81Uzz133D1qDvElVdFw9+Xozw+lC7cFN7wtuH3a9mpb1xyO
-         HNgdVapuUUjYm+wq4iMeF3J2Ndb+OjExTQzWTB8nuhv0Bz7KXbtMHUtgGTtVX5Li8pAf
-         zI1J8RA1URyAjvOjQB7sIKY7vr/7md5NOri3Z+Ae7brxkn6/dFXa4qNRQhLKdWiO++ZK
-         xt5w==
+        bh=oZZIdP+oBFimapfXAqXLnsiUg0mGHxd7q9JW+Ig3Zqk=;
+        b=h6f2F5TJEplu0aCwBM+ylXH3Lxg4CeCQXlbT7mKmHsjHjN97sdtVFqmVVzwWvRnRhf
+         RzXW0XB0fW9v6niFhTLvChEHTfu2688cwC0Vvk7FpsKxBgELz7c8Sq6o7ReOch+wYY4y
+         yOsHOnK5wx/oEugDe+njkxC7lcGu7Twf8Bd5i/HcmOxZFed/qx+EIQcIUvASdSOrfvVx
+         frEsUc0bcqbmRkbXv5mSDjnX52k6o9nApWitjXVDrs3NLZMy4qnI6ssHPdKmBACxn9k4
+         ChDhkLwM686Jjk9vHivyaAICu027sknSEWH1P8z+Nq2XBeaU80VeHh0Bl3phqgMnxI9M
+         08jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755609383; x=1756214183;
+        d=1e100.net; s=20230601; t=1755609391; x=1756214191;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WAyUsYNwkYrgmyUPFJBgMUOEuaiMdUtsvQFJPoQdWaM=;
-        b=bYmepyoErJPbHwNRlUuyPb8z2x5JliAWfbSnPwejNDnCeFblJHvNsS7daM4d8LMFRw
-         MsRkEw3hUeu05U//RLo2q19KBuJxSzhaYzUfn/aJJJcLN7W5nw7wLodOn1Cen8vkCBrb
-         yjzSs8OLuSKfZRqoxmG/yZ3KyHO8kEZp8hHVaGsujrkGAARl+yuwSVlTLzUIRBx/1Gtp
-         hqhhLPgO5Nr7VcJZQxDzXoAuiYWBNRlYLQNZgGLGbV1xin3nPKzT6FvajgQq76FgJiBz
-         8FAhD8/NMhZodhBm5ZaZL4z9zggUl+SsZrFwAbJUZKFtVw5VGZPNmueOqXqFYFeeGYT/
-         /NcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+lVcqhSWnyAfiRabAJ7Knz54u9P4PVnSOr5kiBuDDapr0+N4wjIGld0KwhW3jz+wYnWF4lfNKIY3C@vger.kernel.org
-X-Gm-Message-State: AOJu0YyX07yYdaZYv0OvQ/HZhb2RW4WC2X4QLwt2fOiGR2flzqxb44L8
-	sXeXLnbxhsyALo+IXurHeUeXNwg49u0pD5gfvxHju4C56UlK2jyagSyoMWEl1vWk7uE=
-X-Gm-Gg: ASbGncsjU/qVJM7MLEvhPL1uMzLZXmacVutVqUzgbLOGGM03vkXBQRXy2nG8tRTTIoj
-	LUfsxfj/gj0Xa0cU3SMYUWzZLNIWsL5D1dkU9zRTdmJ753em3gRL8YIziTfw34STgaPu80ouQuY
-	hXvdUKxX1xMlY5VMk3VO5nYpdRt2GFsbTEUPXoAJ3F93kxELjbF4nThML/JZ7U9D8c+3acBXTKe
-	efo8b/fP5w+4qn8HR7WdHRdMtZ+DehxLN+CbhLTlKY/Nu1/968kGnAdWM3O+Uq9CsVyYU4yFSSk
-	xG+9NUs7zMci3nxGcNNJ92/Yny/Pu8ojtsc0GPMyFvTd8QZNnKP/LLGAtfKkwpZE7oMKgK4oXD9
-	vjTgrlT0mgYDwOLK5/5SMGRqHwmA+u0uFaw==
-X-Google-Smtp-Source: AGHT+IGicKFJYlSBqndrUCzc72c9FauFKrC2A7g5lsSNLNB3PYbxEyMtEg/eIuHm3Z90cDguU2Hd0A==
-X-Received: by 2002:a05:6402:5215:b0:617:be23:1111 with SMTP id 4fb4d7f45d1cf-61a7e782ac9mr1067731a12.7.1755609383348;
-        Tue, 19 Aug 2025 06:16:23 -0700 (PDT)
+        bh=oZZIdP+oBFimapfXAqXLnsiUg0mGHxd7q9JW+Ig3Zqk=;
+        b=ThFBfHGffrkm8+37AfnlkB2+RTLephVmUKR31dWy00bR8gKd8Gf/8GE05vi5NSdHFn
+         bbxq0K+7kZCu7t7tHKSlzvVbtusJso5a+OSF16QmPv/4WvO3ZBdfep2RjmlK8pkVeTQ1
+         MWlAgsl0GdpNHcZDRnqPyuFFFIeHhRM2x6/74abtv77/iqXTrHb30Yo0/+NQAQDM6Q9/
+         f7hsO0mK2tRUikD3PA9CmvKKez8fwoHCDinNU+VlztIaeCFmg/sJU85DrD2/onfjydgX
+         ry1DFftmCmpGGV1zAsx7XRBOgpvEzDKAZWzb8kYySzHcajf5UzOeNcC55kBSG8geO8NX
+         ByrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVoNkL4aTB2h+P4F+idlOjaQLcB3VtR4hWjlDV+rClmMuzZUMBpimKON9l0yItv5C13HR7/b3mu+B5Z@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLJ7KQOHZIEJxddNTP5F7FP/yd7zkSMR7x674qxKcNgeGnQy63
+	yHFoI0PFV5Y9NAGmSlBB3KoJDLADvolkp1he7QaHIzjVOgbMeIXX2FNMzJ87ZciKgZE=
+X-Gm-Gg: ASbGncvwlKsle+3zZmBFOTyZ67wtYJRd0Qmjug8PQyRmqczUpoANwDAObzW+k0F1CdL
+	RTGVrWxZGD6mAraNgot85boBkVxrhKC+E7XVui4j4141czM5WQLBAsW3DKeBOu2VSh0XhfO/0Td
+	bYCjBd36Leu+Fo9NOO72+JQAKMIGYBFzNc/1z30jLendW6OojsibtWsmxNRGltNM8OfOfKKTS1G
+	1JaV+dCGY5PpnDoWYigIJ76T/33gC5JpbbH+oos62oBb5cT/SM8PxtIjoipLe/tCPGsFOcQNVla
+	B1/4U/yBzQ1Dusz0Jzr+xaZNCb5ItbeDtvvC1Tp+GrI7yCXI0NmH7abDcxiqs0mkT9NdN/7fZ1s
+	Apk/pnskfvYzpVluwdPXO1tfRawCUN36xpw==
+X-Google-Smtp-Source: AGHT+IEpObl3AXqG5YLwGioik5GupCpWPb0I5hX7zakwD7RPUsahBj7xHDVrUgh2Vb0G+dzv1Jp3Uw==
+X-Received: by 2002:a17:907:86a4:b0:ad8:9207:b436 with SMTP id a640c23a62f3a-afddd0c7d0bmr118076766b.5.1755609391064;
+        Tue, 19 Aug 2025 06:16:31 -0700 (PDT)
 Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61a755ff4f1sm1779671a12.19.2025.08.19.06.16.22
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afcdd010d4csm988721666b.85.2025.08.19.06.16.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 06:16:22 -0700 (PDT)
+        Tue, 19 Aug 2025 06:16:30 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: renesas: Minor whitespace cleanup
-Date: Tue, 19 Aug 2025 15:16:20 +0200
-Message-ID: <20250819131619.86396-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: mediatek: Minor whitespace cleanup
+Date: Tue, 19 Aug 2025 15:16:27 +0200
+Message-ID: <20250819131626.86437-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -91,19 +92,19 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5392; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=FlJ31Q4r8DtWEP1JWYKS9HEZuRwP5fOwwXXSziAxGiw=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopHkjDm3kaqBkQYubub/eePmSOb+rw2NpsfmNb
- Iltt+bgNYyJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKR5IwAKCRDBN2bmhouD
- 159fD/9oOreHQKUT23cIrD6stunETQgDTwYGUX+YY/clIG0HB4WEcjo+SvL/HYWJ0h21wPGx9jA
- LnOb+zyKYNw2t5B9vMAijjBmrTa74n6hBKdRiE+jpdQiwRIiRAto4tI8/U4wB+ZW+l7PYWN8RPD
- 0TbwPuGnVu+gHGzUEMfQxo6E0NIvDysGnYS5L5F+zENATNM9TFCR+O0NC8MHlbu8mkoCCdGfkoM
- kBWxIU+uIeq1FoklPf1wxBddVrHCalam1bFUUOvoGtUJGOx50ZWHhOyE9WJs0HDKQLeR6STlxlx
- deQS0g8grQk3Fo1DE3Hp8bJXlcDNPhUmMYr/eZe7nbQrLxOPmi/wRel2B7yMsRWoGtIv/kmmTWt
- 3CoCmSEDq9C7s+8BAyekU2vjbcCIz2O0bN7B7qTA5+ijyv9S0GfP1DMIWVaorXItGlT6fuT58j6
- CJa+XSaPT22dotHPo5N5DfrEPy1z2NFoQGCluRf0du6i5PEvAWSTQtg3HOjJZ8Oow8AHf0U0o67
- R2CUR7aj5wBrlQAkS8KG1pOD1JooQmkM9sJqxzFWieB9d9BGnRTv03Nm68cDmETwQhvwY9BM1s8
- P2riWvMzD8HjDLh9TyzZz7GnGFe0Jc7PRnAueI/NwZEtO+H/nP71aa+MIm94LSDqQu9Z8CcUpXb SiX+miFwMl7IEbQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4619; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=y7xStFE0NPIkxi9Pu680sxAPkxq15o/aAJd/KvC53fU=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopHkqIAFaQMi6BKsdOrJ8UDRbfn4vqnrFDGbrN
+ xSLPx67B5aJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKR5KgAKCRDBN2bmhouD
+ 18ZuD/0cgDdl1OlZpiiI58Xe1O/d1MRcs7ODqESE1H53OSKkPjVj+Nvo3yifk8r2Cwr83p0DLHu
+ SwlQLCZE/TyxzbWtWec1WsG2peVHMfYpDOJY5HzZmLHOXuB+u8oqWfpg+JBdbymqF98iZDbM7AU
+ N3UQTzl81ZmerRBZSsBTv7tb7PIKtu1oSjpl/DB01EfmjdoV/dlb1Kw/P8Rzg69AxooAn2//vLW
+ zvQ5+Q91CoYD8D9NU9L0rAuXnzhqLw1z1vL3El1L3T4i4lYvo+gL55yoZTQ11BklEzPmL9MK/or
+ Q4f+QbDVhQRrBJJsbv0tw3CniZd3d2FMksMH3Ogxxrd/JBKhYpXNp1YY1U6kFvy6HoPtJTwFOhX
+ b5x84gZ0b3HqsY12RyvG0PTzinl4ZtwaQiIhYsiAJ3jH8Upm10jj3MzBm1VH7O0ChZn4EkLGHCu
+ lz3+a5YIcbLSHgDCYn9jpMjc5n5lwF5BTG3jZqMLRQKmO4ifFTPf/qJNYLl9C2cQYcU8p760Upa
+ iq1Tg9Gh19osc/k8MnQm/F47iuDl8KpUytL9QcK7LG61T4h9ZoFyp5F0QA+ieryGdwOPW+k09Xa
+ ARtd+Zx+NOXEKTZlNIUgtOa4Iz5uWYNZGloOeVU/DuFhpuLWP6xt2vEUBXP/TsjP86FCRwEU9Ec smZe34u2DJppFLw==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
 
@@ -112,120 +113,114 @@ character.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/renesas/r9a09g056.dtsi       | 16 ++++++++--------
- .../boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts  |  2 +-
- arch/arm64/boot/dts/renesas/r9a09g057.dtsi       | 16 ++++++++--------
- .../boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts  |  2 +-
- .../boot/dts/renesas/r9a09g057h48-kakip.dts      |  2 +-
- 5 files changed, 19 insertions(+), 19 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt7988a.dtsi                 | 2 +-
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi                  | 8 ++++----
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi                  | 2 +-
+ arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi     | 4 ++--
+ arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts    | 2 +-
+ .../boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts    | 2 +-
+ 6 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g056.dtsi b/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
-index 10d3b9727ea5..50a3d42d192c 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
-@@ -735,10 +735,10 @@ eth0: ethernet@15c30000 {
- 					  "rx-queue-0", "rx-queue-1", "rx-queue-2",
- 					  "rx-queue-3", "tx-queue-0", "tx-queue-1",
- 					  "tx-queue-2", "tx-queue-3";
--			clocks =  <&cpg CPG_MOD 0xbd>, <&cpg CPG_MOD 0xbc>,
--				  <&cpg CPG_CORE R9A09G056_GBETH_0_CLK_PTP_REF_I>,
--				  <&cpg CPG_MOD 0xb8>, <&cpg CPG_MOD 0xb9>,
--				  <&cpg CPG_MOD 0xba>, <&cpg CPG_MOD 0xbb>;
-+			clocks = <&cpg CPG_MOD 0xbd>, <&cpg CPG_MOD 0xbc>,
-+				 <&cpg CPG_CORE R9A09G056_GBETH_0_CLK_PTP_REF_I>,
-+				 <&cpg CPG_MOD 0xb8>, <&cpg CPG_MOD 0xb9>,
-+				 <&cpg CPG_MOD 0xba>, <&cpg CPG_MOD 0xbb>;
- 			clock-names = "stmmaceth", "pclk", "ptp_ref",
- 				      "tx", "rx", "tx-180", "rx-180";
- 			resets = <&cpg 0xb0>;
-@@ -836,10 +836,10 @@ eth1: ethernet@15c40000 {
- 					  "rx-queue-0", "rx-queue-1", "rx-queue-2",
- 					  "rx-queue-3", "tx-queue-0", "tx-queue-1",
- 					  "tx-queue-2", "tx-queue-3";
--			clocks =  <&cpg CPG_MOD 0xc3>, <&cpg CPG_MOD 0xc2>,
--				  <&cpg CPG_CORE R9A09G056_GBETH_1_CLK_PTP_REF_I>,
--				  <&cpg CPG_MOD 0xbe>, <&cpg CPG_MOD 0xbf>,
--				  <&cpg CPG_MOD 0xc0>, <&cpg CPG_MOD 0xc1>;
-+			clocks = <&cpg CPG_MOD 0xc3>, <&cpg CPG_MOD 0xc2>,
-+				 <&cpg CPG_CORE R9A09G056_GBETH_1_CLK_PTP_REF_I>,
-+				 <&cpg CPG_MOD 0xbe>, <&cpg CPG_MOD 0xbf>,
-+				 <&cpg CPG_MOD 0xc0>, <&cpg CPG_MOD 0xc1>;
- 			clock-names = "stmmaceth", "pclk", "ptp_ref",
- 				      "tx", "rx", "tx-180", "rx-180";
- 			resets = <&cpg 0xb1>;
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-index 03aeea781186..066e66b5d51a 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-@@ -334,7 +334,7 @@ sd1-dat-cmd {
+diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+index 560ec86dbec0..2e108aad8aec 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+@@ -253,7 +253,7 @@ mux {
+ 			uart0_pins: uart0-pins {
+ 				mux {
+ 					function = "uart";
+-					groups =  "uart0";
++					groups = "uart0";
+ 				};
+ 			};
+ 		};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+index 202478407727..ef18117dc5d6 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+@@ -1152,9 +1152,9 @@ power-domain@MT8188_POWER_DOMAIN_CAM_MAIN {
+ 									 <&camsys CLK_CAM_MAIN_CAM2MM0_GALS>,
+ 									 <&camsys CLK_CAM_MAIN_CAM2MM1_GALS>,
+ 									 <&camsys CLK_CAM_MAIN_CAM2SYS_GALS>;
+-								clock-names= "ss-cam-l13", "ss-cam-l14",
+-									     "ss-cam-mm0", "ss-cam-mm1",
+-									     "ss-camsys";
++								clock-names = "ss-cam-l13", "ss-cam-l14",
++									      "ss-cam-mm0", "ss-cam-mm1",
++									      "ss-camsys";
+ 								mediatek,infracfg = <&infracfg_ao>;
+ 								#address-cells = <1>;
+ 								#size-cells = <0>;
+@@ -1172,7 +1172,7 @@ power-domain@MT8188_POWER_DOMAIN_CAM_SUBB {
+ 								};
  
- 	usb20_pins: usb20 {
- 		ovc {
--			pinmux =  <RZV2N_PORT_PINMUX(9, 6, 14)>; /* OVC */
-+			pinmux = <RZV2N_PORT_PINMUX(9, 6, 14)>; /* OVC */
+ 								power-domain@MT8188_POWER_DOMAIN_CAM_SUBA {
+-									reg =<MT8188_POWER_DOMAIN_CAM_SUBA>;
++									reg = <MT8188_POWER_DOMAIN_CAM_SUBA>;
+ 									clocks = <&camsys CLK_CAM_MAIN_CAM_SUBA>,
+ 										 <&camsys_rawa CLK_CAM_RAWA_LARBX>,
+ 										 <&camsys_yuva CLK_CAM_YUVA_LARBX>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+index e6d2b3221a3b..9d6b5ce8c421 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+@@ -780,7 +780,7 @@ mmsys_ext: endpoint@1 {
  		};
  
- 		vbus {
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-index 6d0c6449b9ff..e66f5654f2ab 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-@@ -1083,10 +1083,10 @@ eth0: ethernet@15c30000 {
- 					  "rx-queue-0", "rx-queue-1", "rx-queue-2",
- 					  "rx-queue-3", "tx-queue-0", "tx-queue-1",
- 					  "tx-queue-2", "tx-queue-3";
--			clocks =  <&cpg CPG_MOD 0xbd>, <&cpg CPG_MOD 0xbc>,
--				  <&cpg CPG_CORE R9A09G057_GBETH_0_CLK_PTP_REF_I>,
--				  <&cpg CPG_MOD 0xb8>, <&cpg CPG_MOD 0xb9>,
--				  <&cpg CPG_MOD 0xba>, <&cpg CPG_MOD 0xbb>;
-+			clocks = <&cpg CPG_MOD 0xbd>, <&cpg CPG_MOD 0xbc>,
-+				 <&cpg CPG_CORE R9A09G057_GBETH_0_CLK_PTP_REF_I>,
-+				 <&cpg CPG_MOD 0xb8>, <&cpg CPG_MOD 0xb9>,
-+				 <&cpg CPG_MOD 0xba>, <&cpg CPG_MOD 0xbb>;
- 			clock-names = "stmmaceth", "pclk", "ptp_ref",
- 				      "tx", "rx", "tx-180", "rx-180";
- 			resets = <&cpg 0xb0>;
-@@ -1184,10 +1184,10 @@ eth1: ethernet@15c40000 {
- 					  "rx-queue-0", "rx-queue-1", "rx-queue-2",
- 					  "rx-queue-3", "tx-queue-0", "tx-queue-1",
- 					  "tx-queue-2", "tx-queue-3";
--			clocks =  <&cpg CPG_MOD 0xc3>, <&cpg CPG_MOD 0xc2>,
--				  <&cpg CPG_CORE R9A09G057_GBETH_1_CLK_PTP_REF_I>,
--				  <&cpg CPG_MOD 0xbe>, <&cpg CPG_MOD 0xbf>,
--				  <&cpg CPG_MOD 0xc0>, <&cpg CPG_MOD 0xc1>;
-+			clocks = <&cpg CPG_MOD 0xc3>, <&cpg CPG_MOD 0xc2>,
-+				 <&cpg CPG_CORE R9A09G057_GBETH_1_CLK_PTP_REF_I>,
-+				 <&cpg CPG_MOD 0xbe>, <&cpg CPG_MOD 0xbf>,
-+				 <&cpg CPG_MOD 0xc0>, <&cpg CPG_MOD 0xc1>;
- 			clock-names = "stmmaceth", "pclk", "ptp_ref",
- 				      "tx", "rx", "tx-180", "rx-180";
- 			resets = <&cpg 0xb1>;
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-index 5c3f4e471e3d..5c06bce3d5b4 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-@@ -353,7 +353,7 @@ sd1_cd {
+ 		mutex: mutex@14001000 {
+-			compatible =  "mediatek,mt8365-disp-mutex";
++			compatible = "mediatek,mt8365-disp-mutex";
+ 			reg = <0 0x14001000 0 0x1000>;
+ 			interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_LOW>;
+ 			power-domains = <&spm MT8365_POWER_DOMAIN_MM>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+index a2cdecd2b903..18b2771e7705 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+@@ -414,7 +414,7 @@ connector {
+ 			data-role = "dual";
+ 			op-sink-microwatt = <10000000>;
+ 			power-role = "dual";
+-			try-power-role  = "sink";
++			try-power-role = "sink";
+ 			pd-revision = /bits/ 8 <0x03 0x00 0x01 0x08>;
  
- 	usb20_pins: usb20 {
- 		ovc {
--			pinmux =  <RZV2H_PORT_PINMUX(9, 6, 14)>; /* OVC */
-+			pinmux = <RZV2H_PORT_PINMUX(9, 6, 14)>; /* OVC */
- 		};
+ 			sink-pdos = <PDO_FIXED(5000, 2000,
+@@ -1130,7 +1130,7 @@ pins-wifi-enable {
+ };
  
- 		vbus {
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-index f6f2cb7d2d25..adf3ab8aef2b 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-@@ -84,7 +84,7 @@ &ostm7 {
+ &eth {
+-	phy-mode ="rgmii-id";
++	phy-mode = "rgmii-id";
+ 	phy-handle = <&ethernet_phy0>;
+ 	pinctrl-names = "default", "sleep";
+ 	pinctrl-0 = <&eth_default_pins>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+index cf8cd37f5708..58ce34e7fde8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+@@ -263,7 +263,7 @@ dsi0_out: endpoint {
+ };
  
- &pinctrl {
- 	scif_pins: scif {
--		pins =  "SCIF_RXD", "SCIF_TXD";
-+		pins = "SCIF_RXD", "SCIF_TXD";
- 	};
+ &eth {
+-	phy-mode ="rgmii-rxid";
++	phy-mode = "rgmii-rxid";
+ 	phy-handle = <&eth_phy0>;
+ 	snps,reset-gpio = <&pio 93 GPIO_ACTIVE_HIGH>;
+ 	snps,reset-delays-us = <0 10000 10000>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts b/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
+index 4985b65925a9..1a89de14ac3a 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
+@@ -266,7 +266,7 @@ &auxadc {
+ };
  
- 	sd0-pwr-en-hog {
+ &eth {
+-	phy-mode ="rgmii-id";
++	phy-mode = "rgmii-id";
+ 	phy-handle = <&ethernet_phy0>;
+ 	pinctrl-names = "default", "sleep";
+ 	pinctrl-0 = <&eth_default_pins>;
 -- 
 2.48.1
 
