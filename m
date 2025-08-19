@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-206627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52DE1B2D055
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 01:46:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C246FB2D050
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 01:45:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F2021C444C5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 23:45:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20C7F3BABD9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 23:45:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C039275AE6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A7D27511A;
 	Tue, 19 Aug 2025 23:45:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
+Received: from out-189.mta1.migadu.com (out-189.mta1.migadu.com [95.215.58.189])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB622288A2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BA6925C6FF
 	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 23:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.189
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755647113; cv=none; b=cgHrkN9iFv0cLwVJpRJ1w7rd14BgnhxvxJr4ZCXRNf7dWvYFTZKy4W7v3W3DTraCprorkjr5nllIU59P4jk4jcxGJrj5vCOSQjx9Y7ATCK9uuc3TYWBF1+ZoJDuPQ1yuZ2iqXWvS0pQ6hsaEzQfmoyImrzX3s0hk3O7c3yUFMvM=
+	t=1755647112; cv=none; b=kwizhGXJHRJx+slfAIdJtiO8OddDZO7upt1PWDQoNAjUjumojpU2wVyUaGEZ7nlCgTopPROYtC4+wbX1wRsWDCssXjErtKFcx0QPrRV8lrOJL3H99sADSjmYHOgZaNzykRxkh/iraiUZvEoidCnHeounq7b/YqjStcNg4LRpX0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755647113; c=relaxed/simple;
-	bh=/5Qtbn84a3q2G22OYT50NIOuv5L248mFrhlqJeRA2dk=;
+	s=arc-20240116; t=1755647112; c=relaxed/simple;
+	bh=v9mlK2izNZVJnjELzkwjrvq91qRZmOG413Q6HNcCJf4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XlhHrpT6GF6y8V0RCsA2CHFQBhCc4cfV1SpEmyaRuJxzpK70GTZxH1Woo1dqheuAIa3jL6Qo6HHE8kGFDJ1A4mAzZbfEfjEzs6vIBcJZuIQvB9mb78fByoRZu5nBr/PHTdB8DarnzYOtRWKYgqztOyTkUBjC6g8twhBkC2q9g68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=watter.com; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=95.215.58.181
+	 In-Reply-To:To:Cc; b=VjjLvIZ7MyciXPJc8S8BjqgB5RBDITY/I0V+N84HtL8Z0im1DeurPj3FHcuVE2b5TUQD5ZqMIBwozykNJ5F8IbkuyfAQgunzsKC+uXkf/XqJBmRdxXkrNidjmt0RHIRsDVsygRFCcUUJ8pNMUrRsmZbN4uZuxX8ihlovZcasZyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=watter.com; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=95.215.58.189
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=watter.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: Ben Collins <bcollins@watter.com>
-Date: Tue, 19 Aug 2025 19:44:42 -0400
-Subject: [PATCH v7 1/5] dt-bindings: iio: mcp9600: Set default 3 for
- thermocouple-type
+Date: Tue, 19 Aug 2025 19:44:43 -0400
+Subject: [PATCH v7 2/5] dt-bindings: iio: mcp9600: Add microchip,mcp9601
+ and add constraints
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,7 +42,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250819-upstream-changes-v7-1-88a33aa78f6a@watter.com>
+Message-Id: <20250819-upstream-changes-v7-2-88a33aa78f6a@watter.com>
 References: <20250819-upstream-changes-v7-0-88a33aa78f6a@watter.com>
 In-Reply-To: <20250819-upstream-changes-v7-0-88a33aa78f6a@watter.com>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -52,31 +52,123 @@ To: Jonathan Cameron <jic23@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Andrew Hepp <andrew.hepp@ahepp.dev>
 Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Ben Collins <bcollins@watter.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ linux-kernel@vger.kernel.org, Ben Collins <bcollins@watter.com>
 X-Migadu-Flow: FLOW_OUT
 
-As is already documented in this file, Type-K is the default, so make
-that explicit in the dt-bindings.
+Add microchip,mcp9601 compatible in addition to the original
+microchip,mcp9600 to designate support between these two chips.
+
+The current dt-binding has open-circuit and short-circuit as interrupt
+names, but these are only supported in mcp9601.
+
+The OC and SC detection requires that mcp9601 VSENSE be wired up, which
+not only enables the OC SC interrupts, but also the OC and SC status
+register bits.
+
+Add a microchip,vsense boolean to show the chip is wired for this
+support.
+
+Add constraints so this feature only applies if the mcp9601 compatible
+is selected.
 
 Signed-off-by: Ben Collins <bcollins@watter.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../iio/temperature/microchip,mcp9600.yaml         | 58 ++++++++++++++++++++--
+ 1 file changed, 55 insertions(+), 3 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-index d2cafa38a544..57b387a1accc 100644
+index 57b387a1accc..6506ae429d16 100644
 --- a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
 +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-@@ -37,6 +37,7 @@ properties:
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-   thermocouple-type:
-     $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 3
-     description:
-       Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
+-title: Microchip MCP9600 thermocouple EMF converter
++title: Microchip MCP9600 and similar thermocouple EMF converters
+ 
+ maintainers:
+   - Andrew Hepp <andrew.hepp@ahepp.dev>
+@@ -14,7 +14,11 @@ description:
+ 
+ properties:
+   compatible:
+-    const: microchip,mcp9600
++    oneOf:
++      - const: microchip,mcp9600
++      - items:
++          - const: microchip,mcp9601
++          - const: microchip,mcp9600
+ 
+   reg:
+     maxItems: 1
+@@ -43,8 +47,37 @@ properties:
        Use defines in dt-bindings/iio/temperature/thermocouple.h.
+       Supported types are B, E, J, K, N, R, S, T.
+ 
++  microchip,vsense:
++    type: boolean
++    description:
++      This flag indicates that the chip has been wired with VSENSE to
++      enable open and short circuit detect.
++
+   vdd-supply: true
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              const: microchip,mcp9601
++    then:
++      properties:
++        interrupts:
++          minItems: 1
++          maxItems: 4
++        interrupt-names:
++          minItems: 1
++          maxItems: 4
++          items:
++            enum:
++              - alert1
++              - alert2
++              - alert3
++              - alert4
++        microchip,vsense: false
++
+ required:
+   - compatible
+   - reg
+@@ -64,8 +97,27 @@ examples:
+             reg = <0x60>;
+             interrupt-parent = <&gpio>;
+             interrupts = <25 IRQ_TYPE_EDGE_RISING>;
+-            interrupt-names = "open-circuit";
++            interrupt-names = "alert1";
+             thermocouple-type = <THERMOCOUPLE_TYPE_K>;
+             vdd-supply = <&vdd>;
+         };
+     };
++  - |
++    #include <dt-bindings/iio/temperature/thermocouple.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        temperature-sensor@62 {
++            compatible = "microchip,mcp9601",
++                         "microchip,mcp9600";
++            microchip,vsense;
++            reg = <0x62>;
++            interrupt-parent = <&gpio>;
++            interrupts = <22 IRQ_TYPE_EDGE_RISING
++                          23 IRQ_TYPE_EDGE_RISING>;
++            interrupt-names = "open-circuit", "short-circuit";
++            vdd-supply = <&vdd>;
++        };
++    };
 
 -- 
 2.39.5
