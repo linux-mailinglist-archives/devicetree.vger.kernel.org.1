@@ -1,100 +1,109 @@
-Return-Path: <devicetree+bounces-206470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 022E3B2C5C9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:39:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38DD4B2C5D2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:40:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21A7D521103
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:32:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92957188EFE1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7658340D8D;
-	Tue, 19 Aug 2025 13:32:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nK/g15QG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631D732A3CA;
+	Tue, 19 Aug 2025 13:35:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8359E33EB0D;
-	Tue, 19 Aug 2025 13:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC1C1DE89B;
+	Tue, 19 Aug 2025 13:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755610327; cv=none; b=afA8TFs6WbYnJepXeI2xOGZYyn0tknrQaH4FIQaYV3bTv9D2oAvZaGHN6/IuU2MZMxOPEtoibjgsAu/CI3n3ZZOBqjy4mpR1vbUSBhjxtaQUsDhh8HAHqJr7F+GyZ+3V6bpP5mifsIQWxjaBRO7w64XgfEQcWsvO0jE3roLRyTs=
+	t=1755610533; cv=none; b=Y/ms27VDMfK6RKrXm0k2Uyk6dcfqwdoR5KBoEwOKOCrpSrCcoMuWQ/p6ORTw6fSanDNxQ+LaKd61DosatCG+l8dgjYaDzMDDFOVKgrKCNpeaHgHHaVbEpEbDzYiYvsmclG/qfMF/dUz87hbk4XYzNCxyTlxzBp2TRRwUYrGhjfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755610327; c=relaxed/simple;
-	bh=RePw/qN/r8iFmlUKhdNcuusjorcaH7BDzwljb0R672g=;
+	s=arc-20240116; t=1755610533; c=relaxed/simple;
+	bh=Tyi+9xAvn7s603CkCspL7WeonMXBBF4+oUpFz03xEFY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PGV5kYdNlK06Ap2RR2HwiQPCkzVRKPSlspEU35km66m/9jVg9GhnDgoBcVcWzrwrVLtmO8NYlix5fGFy54E3ZQR7YYmrC2vJ6ABpPn7l9hPA/uDEUDiU/uJ8e79SRJAU4p+SUn72z5YQEb4WugCli7of5DJNGnP8BvRTdeRN+jA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nK/g15QG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15FA8C113D0;
-	Tue, 19 Aug 2025 13:32:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755610326;
-	bh=RePw/qN/r8iFmlUKhdNcuusjorcaH7BDzwljb0R672g=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=nK/g15QGjqargMMW7pQ66890hApkyy9hXyKHZ9Cg52oUi04dvT7KAW8rJgFXJd9BG
-	 g7VfXVoJLowIrw9KXnB93vr/XByweloc3thrvk7hERlNII8l1j15ZDdD5qBxHlCAnS
-	 vpPA5Vhcvv7IWFeND02BBcagEHa0u1dzosBIknBE7fLMvJJj6e8h39hKOFJVnzYwTX
-	 8ZDwMGguCQx97dLYSQGIIi+9ZKpH175hDsPIbk7uSixbT2CRWZfs87MvWE95PusWKJ
-	 tvo0Vr7xO3U37pIXTfYbbp9tTwyG2HwtvqwQI+0Mmw8lIaEH4DoEqSIi/gUWK8P+Ub
-	 hcBlb6oFPgNbg==
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-afca41c7d7fso1071405966b.1;
-        Tue, 19 Aug 2025 06:32:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUWRfXpFKPnWrqpAyTxW6X0AzRkE7slNq3EYjWQ8epHxqxbD1qwZHTVUls8HBa5X40+hmHHFFj+JkR+C7tm@vger.kernel.org, AJvYcCUtCL9m73SuoQ8eK6i627akdRhYEjKUCsTXRFxQhMf0c2+wuNdA75JKqdHuM81+XBckSR2mP2iaV+ab@vger.kernel.org, AJvYcCWXyDHptwJWFhOmBGfrmlKeg3hyblecmaYv5CYKVk0E09M+wy7+9BaOWYJh1uK9X03sMrQqCSLKWwQ=@vger.kernel.org, AJvYcCWjJuQJsdYpTgLFetRou+CpPTHg0bxEBzINLoYIocO8WW5gd1tOp5kg2RkJ3N9AcMIzHXh9qRFeqdZgAPaiNw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzd78ljIn8SfvzWGaKQacDWKE5lOqsTN2wQy+pZV4wU96wnlJUd
-	pb7/bbaNzJSh10wTyYYz+0gLCyy+pSxOx2/UXlSVcmPmJ8PWNhn9C8U77lQD+7hXe0bdlbMZ6FT
-	fDzAJ+RaBjx3kvlI/UMA47JNpJVczhA==
-X-Google-Smtp-Source: AGHT+IH7Xlxz6mfCkPT5meOPBk+lpt++QuBnzbYmHx95kt43nBgRPDjtSqtV4+eqSIu0C0Vj32Von41lElLYRUtx6d8=
-X-Received: by 2002:a17:907:86a0:b0:af7:fd29:c5e4 with SMTP id
- a640c23a62f3a-afddebca776mr278602866b.2.1755610324732; Tue, 19 Aug 2025
- 06:32:04 -0700 (PDT)
+	 To:Cc:Content-Type; b=bxqfJ7ktglPe4E3VfMEtbK16zDf4weAE64mOga2Vjb/D4/i2cybaVzruT+GpZqpWQhWTkh2DuYLR8ivQS0Vwgk/4+E502g3/u5AbjY9w6nAITvDy1HguijPsoGs7JALZDJVWLj6+eWvNXIQD4cnrOWiKN/upw9iHkJpiUXtQhW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-53b1737b9c8so1872137e0c.1;
+        Tue, 19 Aug 2025 06:35:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755610530; x=1756215330;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D1ytin5hrxcri6pw5X6iglo9ZKpWYXx35SDdHDKMJW4=;
+        b=UDcFMOML/nkvusHy0InbVlQAw9Q+ytTiIT/eAMtXancxSC97NxW7QnLSRd2xhTK8zv
+         KpCaBOJKwwqbTnbaONF7Y6+o1FDiZUwSIm01zN8tvaYGdfJGyQi7xQDaGoNOZk3/kIwC
+         4JUVZlGFKJ3pQUXFlv57fhtckdLndFzMwBzSZ82fQIeq9PqD0WAh/rxNkCiDYbYOb4KF
+         xV9i8beDZcpn9F64sJUVXh2rCcka9RsYQkWkXbq20NB1mEd4Yl2F1XkW37o/aEA2C1f5
+         HBeDj8P5beHNY+WUFHvyyf4+zwsDVkmibSZhSEWFR2JXfH3N6U6ht0cW0WFnAp2Qp3ld
+         LVAg==
+X-Forwarded-Encrypted: i=1; AJvYcCVAWq4x5FFcdM8xgNM7tSIXFDK/mBXwL5MX7TJhssqRjGqc+zjLRJ+KePB51PB+huPIKRlZvKlJ8Q3/@vger.kernel.org, AJvYcCVstBluuM4RRz57LolJNIwQPOCNUMfAmbWijjuRZbwSk5C9ObXuxZvgYnD47ghqGE2C2o8MGNODXwuODFz1wFvDLDc=@vger.kernel.org, AJvYcCXyMTjLEVViYMLCBUt2TZk8ju/QxgCpkPY3V3Qw4XHNLqlho9Pv/Spd+b3ZWuO3qU+T9vdgKS4Fk0EMWby0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz63zyENIMpT90vvgbidE6WaLj9JWG2wEVpkDqnyxFRVyXDD7aC
+	/YN4joIi/FhMp2ML0lCdSSe7xFu0Rjz/4PtSUDV0KDkd7gA88KxUDkFvaSY97JG5
+X-Gm-Gg: ASbGnctSxqRzyM5+C2BC7AU6U2IigDi/iPzqemo0ZOoFjAyTHIY28WkDBbye4pT1cJ0
+	vqsz9ZnSoWW/hVqKrObnfe8Pi3XQ/9oPHOnoD8LSp9nTnLa0MVTj+FNzkIfNn/4ZRzEfN1z/tRx
+	C3nJHbt1r4NZSc12aJDIBTGk4UvZMi2ncPkNJJh37XP3ECfxEQIudX59bARDnru+q1PVy2Ddqw8
+	F3v802BDOZm+J5unz4+ebXsPER61p6d4qAlBrRB8J0owIDzSd6+7Nn7UGwYnWOy/wRw0FU9opOX
+	DI+6EZVt+lH7cNopPisBFDX+S1l1hXaW2QJo7NADDIsY1kB6ou1/PYnlBy70pnoF2jQQ0mp1yN+
+	go2UIkh2LbzJL0zuP0GGRcJ9yUFl6Z+2EQ2EebrKqJdARANBHNVT/FgP8ecAeMb2di+2unCk=
+X-Google-Smtp-Source: AGHT+IGWyfDwQ+96wKxTQr9utqVdQCN2iJmx1eYyW3YRbf5uvslyHGw9mu0DlKyDe4q1YfryX8LCNw==
+X-Received: by 2002:a05:6122:90f:b0:531:3af8:b177 with SMTP id 71dfb90a1353d-53b5d48183cmr998129e0c.11.1755610530362;
+        Tue, 19 Aug 2025 06:35:30 -0700 (PDT)
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53b2bd5514csm2558205e0c.6.2025.08.19.06.35.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Aug 2025 06:35:29 -0700 (PDT)
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-890190c6165so1634883241.2;
+        Tue, 19 Aug 2025 06:35:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUD2Uw05Icnkc7StcQuffuYw4a+Wqccx34yquxcdaLrxc2u3M8e/EuzYAOI/QdeKSxd6xUBpp2Nn2po05qUavipdJA=@vger.kernel.org, AJvYcCVReUkRZFNndwXRcNSIX8REDiPBDk0pv9ZSrodgdcrSnkgv45rQFiC27ZYMUpTbJnG2r9gFwLiqxD26JNKB@vger.kernel.org, AJvYcCWHo7kJ03EizdMKNuNLCf918wg1+c1gkadOQ6eSVnu3b0NSjdjE07dQ4A9CuXmiitjjSL2SVZEeF5CC@vger.kernel.org
+X-Received: by 2002:a05:6102:1449:10b0:51a:44a:95c4 with SMTP id
+ ada2fe7eead31-51a045a26admr93014137.21.1755610529255; Tue, 19 Aug 2025
+ 06:35:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250814-glymur-icc-v2-0-596cca6b6015@oss.qualcomm.com> <20250814-glymur-icc-v2-1-596cca6b6015@oss.qualcomm.com>
-In-Reply-To: <20250814-glymur-icc-v2-1-596cca6b6015@oss.qualcomm.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 19 Aug 2025 08:31:53 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL+C1VueQjrKra8fNTd-2k=gkoy-jA9uuQOhuyRMbQroQ@mail.gmail.com>
-X-Gm-Features: Ac12FXwcbhYarWG96-RFlBPTciYD1YIKgoRxrJwgNxPiK-pCah48gmfFg2yv4u4
-Message-ID: <CAL_JsqL+C1VueQjrKra8fNTd-2k=gkoy-jA9uuQOhuyRMbQroQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: document the RPMh
- Network-On-Chip interconnect in Glymur SoC
-To: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>, 
-	Georgi Djakov <djakov@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mike Tipton <mike.tipton@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+References: <20250819131619.86396-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250819131619.86396-2-krzysztof.kozlowski@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 19 Aug 2025 15:35:17 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXNig2sVKQ5SdLMDjtog-PxUh+tscMqOF_K-iNSgoWgOg@mail.gmail.com>
+X-Gm-Features: Ac12FXx9MbvFi1UoawwCV3F-hJ1gP4_2ncCWbFcegaVoU6xZisrREmDwKB6IPGo
+Message-ID: <CAMuHMdXNig2sVKQ5SdLMDjtog-PxUh+tscMqOF_K-iNSgoWgOg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Minor whitespace cleanup
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 14, 2025 at 9:54=E2=80=AFAM Raviteja Laggyshetty
-<raviteja.laggyshetty@oss.qualcomm.com> wrote:
+On Tue, 19 Aug 2025 at 15:16, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> The DTS code coding style expects exactly one space around '='
+> character.
 >
-> Document the RPMh Network-On-Chip Interconnect in Glymur platform.
->
-> Co-developed-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.co=
-m>
-> ---
->  .../bindings/interconnect/qcom,glymur-rpmh.yaml    | 172 +++++++++++++++=
-++
->  .../dt-bindings/interconnect/qcom,glymur-rpmh.h    | 205 +++++++++++++++=
-++++++
->  2 files changed, 377 insertions(+)
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-This is breaking linux-next "make dt_binding_check". Looks like the
-clock header dependency in the example is not applied. Please drop
-this until the dependency is there.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.18.
 
-Rob
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
