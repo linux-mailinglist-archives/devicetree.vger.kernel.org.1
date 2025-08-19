@@ -1,149 +1,185 @@
-Return-Path: <devicetree+bounces-206195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E43C3B2BB36
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:57:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0BFAB2BB50
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:01:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39F63189176E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 07:55:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 279D017938D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF1FF3101A0;
-	Tue, 19 Aug 2025 07:54:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 411242D052;
+	Tue, 19 Aug 2025 08:01:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from szxga04-in.huawei.com (szxga04-in.huawei.com [45.249.212.190])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FAF23451DB;
-	Tue, 19 Aug 2025 07:54:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7BC03451CD;
+	Tue, 19 Aug 2025 08:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.190
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755590097; cv=none; b=EHrOClk+TAuGgVebTJitpAcArx3t8LS/BLV+m3DBoDmW8QGtggkQUZdw2Yib1QvHDiG6RLXsiop24Fceq0G3/QY07Ah0F3Q7Ew2VOPxLxsVdMYPWfFvZGv2OIsOekz47+YsHkA1U05isQDTY4OvNHr2EEEh73xIB/R32QcWE7V0=
+	t=1755590481; cv=none; b=iQNoliuS4xJXAp/ICVuDjmQduUvg8cOomJyIR01nxAFs/6xVdONgiP5F8/Hs2UDGjjwdFz1Yb9Z7TwKC+OzYF1pMf1Yba/irSgFrr+ozx6TZ2xJMg4vxc/zrQPMW0929lOOs36PbNZ5odWehRWRZS/AKwgfGznDSKJ62Oyxfqb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755590097; c=relaxed/simple;
-	bh=6GyLlS9SQW6qIDLFLwSXoVZibFLEpz06wk2RxTft+hA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a9cUSOALAwQw7qL4SB1ETTqzwXvX/U7reo8h2PIu6zh/sP2dBDduS5p9o5KW0jpvqHqCyrem6jniIjoYMfB1RRu1qqMGho4HJ33M2PeXoe10/9O+xO52ggBdZCzTHjWaD0lhUCrXx92JxMLQuHusXWzB8T7sReODFVlO0k0TyFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-50f88cd722bso1470835137.1;
-        Tue, 19 Aug 2025 00:54:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755590094; x=1756194894;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U4yI0xKDh/Dea2okbvkBvUlDWnDM+bOQUmQtln3xRsI=;
-        b=qK7rCo6PLNR0wogdNc7CVj4hSPEmfa/HgDM3Or4kTwyLfv6Ku4UOD8Htza6sCRWGGL
-         rXqc5dquZWTXfaEtH9BZcAIGcEpYpiRvD1BrV+i4NKuXa7bsCKWbRvNMaDGcOaBOW2XN
-         ojlMN8dDaXz08a5hSuDs7ovJm6GyEAv/bdKGjxSRiQa9b1Hw1FiLCHBLnHJ9CECSvo0K
-         ZSGDUmv9kvNIHHQMQGwdPVxjcyZNekzkKgkzuEtb22z8IPcKasnd67eCIDZsEhHi1rhi
-         JM3ffXZ/P+cfjlfWghEssxl52ObmcQNH1/5nZ0k2ghUq3T8LdM8Tho+HpuwcJJM55NRP
-         XHBw==
-X-Forwarded-Encrypted: i=1; AJvYcCU8wLeHjVxmzBWZDpAa8cIzTD5GxXNP3XTxJjFdoqIEw9G6Thhq0W6YLDFSekqsug0c6n22EP+eX5FyuZlJWk3HXKU=@vger.kernel.org, AJvYcCVE9YBhd1btY/WJ7g2Ekun7BGt2dQ+XdP/yQLcTYSNZTp3pfDpOwevrNlEFM2A1fjYSkxhM3XnQB4QNhOaq@vger.kernel.org, AJvYcCX+iqgwphYsFIxm7zMACGtRaR0nHmxtwNElciRPkUSefkGAxjrq8hqAR02Ss6FWwT7su1jxMNMablEw@vger.kernel.org, AJvYcCXLBWHVrsNqeWRneW3OUA63IC9op/wfrOwrX1m6DXxwlzy40tpUTNkw81DjkT6BcaZI0z2A6DYogXo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmdeemoYtOtyhjY5eO8eJCYIXk3/mP4Vxl4m4Zb9Ch+DCBWRw4
-	YjP4dvlNBTSSKG65NABTzfDlhP+X+wsi3JWe5eGd6ZNR9fFsYTRwQ2LjIpSrvoWx
-X-Gm-Gg: ASbGncvyj2rJRDbqwP6V7c4goEhuzQPYj5CA//K0oqf7lp2wimcMw8qgxxzYF9IeOfB
-	j3MItnpg3RBFupNmvJy1GNRIhxqDpgzv41Pw/11sxmGMKvaN1hAAMqEYmnECR+l94gYeaB2Pntg
-	qU325NYcrKcYYVZ0RD3H6uyvETOZmQlEYO9ia0onxGqSstp7lUPnxPWWIwkju15Tz8UPOVi6rkd
-	ZOHXfUA5iWFoTlPLHPH4ya4ox3B7UYKOL5vOy+xnZww72qb3Z9ugIVcN8sxdZ0GOc7ryjoIL8in
-	rohPfcuvb2KUQpu6im4bK0otyWnQHnSzM9xSAylDVVwG7Rn6JgnVWSG2fiFuHHc7s910maMg7Zs
-	ZCxxS2/aJLKZm3zsdeGVlGSeX+8P8VsUZIh0NElCyuZpfUBt2mPd9T71wB2kd
-X-Google-Smtp-Source: AGHT+IF3rdbhj5R/4LclBAwBIKP1kl9+HPSvZarUwhukinFr9ZHtc0tO4ZYdwc/B2u52MYOw/KklSQ==
-X-Received: by 2002:a05:6102:358d:b0:4e7:bf31:2f68 with SMTP id ada2fe7eead31-51924535fc1mr400580137.25.1755590093912;
-        Tue, 19 Aug 2025 00:54:53 -0700 (PDT)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-890277bea3esm2239247241.3.2025.08.19.00.54.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Aug 2025 00:54:53 -0700 (PDT)
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-890190da557so981800241.3;
-        Tue, 19 Aug 2025 00:54:52 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWVHzpL7gfF+VgJlPgS/iYBFz8G7DQErejO+QvG79u+KC+zXSQ03XuXYoBE9DFQO4LCuTHjjYa9sLwU@vger.kernel.org, AJvYcCWmGN3jvwfZq1Es9SDsWfcyQ+hbchXFqS/OKTMwqSPk3APxLKf/pA906WHdo8Z4MoqkWt6nfPD49Ro=@vger.kernel.org, AJvYcCXM9Ac0SSrgqRfnCmOQY156j5Op/DpC/jQVaTk8xdIMDoUIPubdZtZ/FfC07eMY8HuVPKN4YjF/+i+e/tbGFbojmQ4=@vger.kernel.org, AJvYcCXQl2lG5U7MFRCsyHTVqmXuxTNYU11t6s7PWc0LOij5ybF+5Sy5QhXLOkmde39UP4/vI3med7z/fn38mXdy@vger.kernel.org
-X-Received: by 2002:a05:6102:8014:b0:4eb:f8aa:9c36 with SMTP id
- ada2fe7eead31-51921c12678mr511890137.4.1755590092715; Tue, 19 Aug 2025
- 00:54:52 -0700 (PDT)
+	s=arc-20240116; t=1755590481; c=relaxed/simple;
+	bh=vi7JEW6IQP8xMndZaUwgoHEwD1jehDWD/KM0YIvthFc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bradrwy+LOzcyBrlC7GWnQB8Qy2MwwABkAp+B6etmdKMZQrv8gTwqxWFBVhCBr3kCrk91kTw31WOwjwIRdpOnEPyds30Qr0FNvNrR+lE1cGdwoHKTnv8EvXjeYpwfMIcOMIm0g3nxVuLIZi49578XL7wPPRQGVUsv/jBjPk3x70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.190
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.19.163.44])
+	by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4c5hk73CTwz2CgJd;
+	Tue, 19 Aug 2025 15:56:47 +0800 (CST)
+Received: from kwepemo100001.china.huawei.com (unknown [7.202.195.173])
+	by mail.maildlp.com (Postfix) with ESMTPS id B15DB1400D4;
+	Tue, 19 Aug 2025 16:01:09 +0800 (CST)
+Received: from huawei.com (10.175.101.6) by kwepemo100001.china.huawei.com
+ (7.202.195.173) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 19 Aug
+ 2025 16:01:08 +0800
+From: Yin Tirui <yintirui@huawei.com>
+To: <robh@kernel.org>, <saravanak@google.com>, <dan.j.williams@intel.com>,
+	<akpm@linux-foundation.org>, <david@redhat.com>, <rppt@kernel.org>,
+	<Jonathan.Cameron@huawei.com>, <devicetree@vger.kernel.org>,
+	<linux-mm@kvack.org>, <linux-kernel@vger.kernel.org>
+CC: <wangkefeng.wang@huawei.com>, <chenjun102@huawei.com>,
+	<yintirui@huawei.com>
+Subject: [PATCH v3] of_numa: fix uninitialized memory nodes causing kernel panic
+Date: Tue, 19 Aug 2025 15:55:10 +0800
+Message-ID: <20250819075510.2079961-1-yintirui@huawei.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250818162859.9661-1-john.madieu.xa@bp.renesas.com> <20250818162859.9661-2-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20250818162859.9661-2-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 19 Aug 2025 09:54:39 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUcTXy3fSjviMEFFx_4EuVmVHSCZng5rntS=GGi6Yw+kA@mail.gmail.com>
-X-Gm-Features: Ac12FXzL6P-kwtOHmhi_mrIjxX55aKCrGaAQmVprtvtxZM21ON6QFS3Pzxbvqus
-Message-ID: <CAMuHMdUcTXy3fSjviMEFFx_4EuVmVHSCZng5rntS=GGi6Yw+kA@mail.gmail.com>
-Subject: Re: [PATCH v7 1/6] soc: renesas: rz-sysc: Add syscon/regmap support
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
-	lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, catalin.marinas@arm.com, will@kernel.org, 
-	john.madieu@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
+ kwepemo100001.china.huawei.com (7.202.195.173)
 
-Hi John,
+When there are memory-only nodes (nodes without CPUs), these nodes
+are not properly initialized, causing kernel panic during boot.
 
-On Mon, 18 Aug 2025 at 18:29, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> The RZ/G3E system controller has various registers that control or report
-> some properties specific to individual IPs. The regmap is registered as a
-> syscon device to allow these IP drivers to access the registers through the
-> regmap API.
->
-> As other RZ SoCs might have custom read/write callbacks or max-offsets,
-> register a custom regmap configuration.
->
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> [claudiu.beznea:
->  - do not check the match->data validity in rz_sysc_probe() as it is
->    always valid
->  - dinamically allocate regmap_cfg]
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+of_numa_init
+	of_numa_parse_cpu_nodes
+		node_set(nid, numa_nodes_parsed);
+	of_numa_parse_memory_nodes
 
-Thanks for the update!
+In of_numa_parse_cpu_nodes, numa_nodes_parsed gets updated only for
+nodes containing CPUs. Memory-only nodes should have been updated in
+of_numa_parse_memory_nodes, but they weren't.
 
-> v7: As this is a duplicate of [2], address comment received there, that is,
->     use kzalloc() + kfree() for regmap_cfg.
+Subsequently, when free_area_init() attempts to access NODE_DATA()
+for these uninitialized memory nodes, the kernel panics due to NULL
+pointer dereference.
 
-You use __free() instead of kfree()...
+This can be reproduced on ARM64 QEMU with 1 CPU and 2 memory nodes:
 
-> --- a/drivers/soc/renesas/rz-sysc.c
-> +++ b/drivers/soc/renesas/rz-sysc.c
-> @@ -6,8 +6,10 @@
->   */
->
+qemu-system-aarch64 \
+-cpu host -nographic \
+-m 4G -smp 1 \
+-machine virt,accel=kvm,gic-version=3,iommu=smmuv3 \
+-object memory-backend-ram,size=2G,id=mem0 \
+-object memory-backend-ram,size=2G,id=mem1 \
+-numa node,nodeid=0,memdev=mem0 \
+-numa node,nodeid=1,memdev=mem1 \
+-kernel $IMAGE \
+-hda $DISK \
+-append "console=ttyAMA0 root=/dev/vda rw earlycon"
 
-... so you need to include <linux/cleanup.h>
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x481fd010]
+[    0.000000] Linux version 6.17.0-rc1-00001-gabb4b3daf18c-dirty (yintirui@local) (gcc (GCC) 12.3.1, GNU ld (GNU Binutils) 2.41) #52 SMP PREEMPT Mon Aug 18 09:49:40 CST 2025
+[    0.000000] KASLR enabled
+[    0.000000] random: crng init done
+[    0.000000] Machine model: linux,dummy-virt
+[    0.000000] efi: UEFI not found.
+[    0.000000] earlycon: pl11 at MMIO 0x0000000009000000 (options '')
+[    0.000000] printk: legacy bootconsole [pl11] enabled
+[    0.000000] OF: reserved mem: Reserved memory: No reserved-memory node in the DT
+[    0.000000] NODE_DATA(0) allocated [mem 0xbfffd9c0-0xbfffffff]
+[    0.000000] node 1 must be removed before remove section 23
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000040000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   [mem 0x0000000100000000-0x000000013fffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000040000000-0x00000000bfffffff]
+[    0.000000]   node   1: [mem 0x00000000c0000000-0x000000013fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x00000000bfffffff]
+[    0.000000] Unable to handle kernel NULL pointer dereference at virtual address 00000000000000a0
+[    0.000000] Mem abort info:
+[    0.000000]   ESR = 0x0000000096000004
+[    0.000000]   EC = 0x25: DABT (current EL), IL = 32 bits
+[    0.000000]   SET = 0, FnV = 0
+[    0.000000]   EA = 0, S1PTW = 0
+[    0.000000]   FSC = 0x04: level 0 translation fault
+[    0.000000] Data abort info:
+[    0.000000]   ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
+[    0.000000]   CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+[    0.000000]   GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+[    0.000000] [00000000000000a0] user address but active_mm is swapper
+[    0.000000] Internal error: Oops: 0000000096000004 [#1]  SMP
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 UID: 0 PID: 0 Comm: swapper Not tainted 6.17.0-rc1-00001-g760c6dabf762-dirty #54 PREEMPT
+[    0.000000] Hardware name: linux,dummy-virt (DT)
+[    0.000000] pstate: 800000c5 (Nzcv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[    0.000000] pc : free_area_init+0x50c/0xf9c
+[    0.000000] lr : free_area_init+0x5c0/0xf9c
+[    0.000000] sp : ffffa02ca0f33c00
+[    0.000000] x29: ffffa02ca0f33cb0 x28: 0000000000000000 x27: 0000000000000000
+[    0.000000] x26: 4ec4ec4ec4ec4ec5 x25: 00000000000c0000 x24: 00000000000c0000
+[    0.000000] x23: 0000000000040000 x22: 0000000000000000 x21: ffffa02ca0f3b368
+[    0.000000] x20: ffffa02ca14c7b98 x19: 0000000000000000 x18: 0000000000000002
+[    0.000000] x17: 000000000000cacc x16: 0000000000000001 x15: 0000000000000001
+[    0.000000] x14: 0000000080000000 x13: 0000000000000018 x12: 0000000000000002
+[    0.000000] x11: ffffa02ca0fd4f00 x10: ffffa02ca14bab20 x9 : ffffa02ca14bab38
+[    0.000000] x8 : 00000000000c0000 x7 : 0000000000000001 x6 : 0000000000000002
+[    0.000000] x5 : 0000000140000000 x4 : ffffa02ca0f33c90 x3 : ffffa02ca0f33ca0
+[    0.000000] x2 : ffffa02ca0f33c98 x1 : 0000000080000000 x0 : 0000000000000001
+[    0.000000] Call trace:
+[    0.000000]  free_area_init+0x50c/0xf9c (P)
+[    0.000000]  bootmem_init+0x110/0x1dc
+[    0.000000]  setup_arch+0x278/0x60c
+[    0.000000]  start_kernel+0x70/0x748
+[    0.000000]  __primary_switched+0x88/0x90
+[    0.000000] Code: d503201f b98093e0 52800016 f8607a93 (f9405260)
+[    0.000000] ---[ end trace 0000000000000000 ]---
+[    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
+[    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the idle task! ]---
 
->  #include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> +#include <linux/regmap.h>
->  #include <linux/sys_soc.h>
->
->  #include "rz-sysc.h"
+v2: Move the changes to the of_numa related. Correct the fixes tag.
+v3: Only amend commit message with no code changes.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.18 with the above fixed.
+Cc: stable@vger.kernel.org
+Fixes: 767507654c22 ("arch_numa: switch over to numa_memblks")
+Signed-off-by: Yin Tirui <yintirui@huawei.com>
+Acked-by: David Hildenbrand <david@redhat.com>
+---
+ drivers/of/of_numa.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Gr{oetje,eeting}s,
+diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
+index 230d5f628c1b..cd2dc8e825c9 100644
+--- a/drivers/of/of_numa.c
++++ b/drivers/of/of_numa.c
+@@ -59,8 +59,11 @@ static int __init of_numa_parse_memory_nodes(void)
+ 			r = -EINVAL;
+ 		}
+ 
+-		for (i = 0; !r && !of_address_to_resource(np, i, &rsrc); i++)
++		for (i = 0; !r && !of_address_to_resource(np, i, &rsrc); i++) {
+ 			r = numa_add_memblk(nid, rsrc.start, rsrc.end + 1);
++			if (!r)
++				node_set(nid, numa_nodes_parsed);
++		}
+ 
+ 		if (!i || r) {
+ 			of_node_put(np);
+-- 
+2.43.0
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
