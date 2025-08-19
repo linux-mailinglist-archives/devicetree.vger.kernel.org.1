@@ -1,81 +1,83 @@
-Return-Path: <devicetree+bounces-206322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87805B2C0D7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:46:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 724C3B2C0EB
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:48:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1619816BB90
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:46:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F0A37262AA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D337632C32F;
-	Tue, 19 Aug 2025 11:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00033314A2;
+	Tue, 19 Aug 2025 11:45:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lv9lj/cX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mMnhn/jn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09AEC326D6A
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 11:45:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E7832C307
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 11:45:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755603956; cv=none; b=imL7GPefdeonafYa3OwPBk1p0iG3kuV2Kc0gWBvUI1fDTMQIixJlsH/rKb1GQ5PZhUR1ChF4JLe62c8iNfOBzVSaoSNDiZ49bjmsIJr5otK2bOeqbdefrJ2x+9DT9fekhV795bik/bUEc+ZpxgdbixEfnI5/C2Q0p0ZQNhL0uYg=
+	t=1755603957; cv=none; b=a4XzTESm4mJLq/NgkgTlaKhV3PBc1cTn2wNgT+kLD0NxqfEExWuG8UCnBCpyF/F/8+l6p5vDZzUXaQb1IspGlQi5zQ2c7BXHz91qyr1/V6nO4KKlBFw+SzMjGAAMGL/V4BI1trC48QijAEPzEbvlvWcaSY+2yW1De4yI/Kovy24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755603956; c=relaxed/simple;
-	bh=atHOVDZrHoC4KUAzLF3V2ExuFabINMR3JpSKKqoKhGM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=n/bdK2EPF2g/SsLkt3vS/5jJW+Pm6YKRHod+kUOlTm9BZBkSIvBidQboLtxDL1KNIJC+50Q5LFtJ3s3d0C2gKmKU7FvESNHhMmT/XIUXAdTjdUpzgIEkk7i6rT7j/io2FRyCU9VjqQFZ0txqwpHLP6xgSUIhTlLCLfKJ/HHgtDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lv9lj/cX; arc=none smtp.client-ip=209.85.128.42
+	s=arc-20240116; t=1755603957; c=relaxed/simple;
+	bh=RHgzxERFqXBJayCLtp1I/QWWv579hP721Hv537Vxp6E=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=twUO1UWTvmUhkXHkKacE7GDx4XM4XxcAGpYeWV1Jp3WzPeWIXn5gspEBtjHF8lt57om00CH4b1ylubmTP8KaqbMZG6bGC+DjOnYZ2wSA8NqhFo/1fdN+uKuWsPT+Mb4EG561TL2QHW3IRhHqrLXI023KEBi70W579LFcgjqduJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mMnhn/jn; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45a1b05ac1eso25859025e9.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 04:45:54 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45a20c51c40so28584905e9.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 04:45:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755603953; x=1756208753; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9mI1h+BmNbILdGpeniKvEeoyTFz8pMoc//wK6fMdn9Q=;
-        b=lv9lj/cX2UXwsb1R9a98hQn+oJ1MDC6y0tX8Ws3JMNdkTzaDJi3Hj8e8Lzk/KL5Jr1
-         LEZMITgWLiGdxcKqWWUMy6XgkmDFabymAggbcEuOlmgxR/IL8pSIHKrjRQZM51mJa0qX
-         bfWN77WiHAWVctXeQbBov1X6Q/9VkYTPxZt+Ldne96kVPSevhw1TXlmJU0wSb0eC+KGJ
-         KSzVKGitGeO9zfnp+67ee9OmaJSwHuxfjKR7wpCsnco3xNqOkDJEDW42igYYIScXQwgD
-         JeFW6ucAe2OI0POn+nvUVVJ/OClejf7g0cZ/OR/d0HBuRbQfkrkWh7vM61UcXQeFjzLq
-         15fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755603953; x=1756208753;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1755603954; x=1756208754; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9mI1h+BmNbILdGpeniKvEeoyTFz8pMoc//wK6fMdn9Q=;
-        b=LALhp3EqF2PSr5iaEzggVcugaZf5LeWbMUNmp/FptquF8t6tLRCuUW/6xUpDeW33kj
-         qsDF4drssIgzSPNNUS5zRZtcSDciU6LtC+NRQIZL5VD5Db3oLL2hiQAxJTjDO85trIn8
-         gTOB9B+bBQLojuJm5NY1DMA6WAZKQTRLdkgeWfxQZrCZAo3cHJPLc57XFCdAstYc04AH
-         LQpHoTK+kQvwqCLPuf7rcvyYwK0ZMNynwjGSf4f+sF+n/GLt3SlyRmrfWGvCmRFfmcL2
-         7WWR7gs9F67QS3CkNaX/J1ZHnfblPnY0cuMq9QvaI9je9P266iTugo8JmR9t0WbrxUHo
-         Xhrw==
-X-Forwarded-Encrypted: i=1; AJvYcCWLckkUpyPkgxJDO9hTlRvbcbxnD+AscREFHkn7siQl1MYySzHzBNnho27ALuxRJjTM8P0BiL19+t1y@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuOiecAHiHiW7sTQ3fkCCD4DpEFWyrZLPne2Rfzp927Q5AEen2
-	NElyw3uz6JHZGOJkTqalhcPPWgzMCnbxbe14KdQr+S2zhJ4z0dlH3smt8ehvs4WP4gA=
-X-Gm-Gg: ASbGnctynZPr4YdK4pHBRF7w87Ea3hLd8QJWEFUjDPE18MVj6UFICrdBkvWjLJTccFa
-	useNMAD6UIVvnXMwPhnauAK5RkN65PAUp/opSewrcGO62rnqvwRIeidVGnirml5v4oXuKDGAKpZ
-	SnHwASbgn9Hb3gaUirkEMrZP7JvNv5kjnwGh8Ety8v1bsSvOiaPlUfl1t9NidWQHa1tF372qGRY
-	/p7FsdVWqK9qcYH4UDySaHOAWS5t7K/ZeWNcXcS5fGoA7Bh9jbpWddKd15umWVhcsReA1d+60PG
-	TIUxPQk7V6Bm9EaJxHPH13wjxY2QMxjDo8bRXZfiEGpjYO84XEqS7X5aPkwRwsO/5W4Iu1m77OW
-	p0dKWHhn3GD9qusYm44re6DHFyiLQi2BmBajgFqCVbUwxscbRVhKEK9SGQKZ7Gv52qL20We/tNm
-	qVOQ==
-X-Google-Smtp-Source: AGHT+IEnwmvW6IIY3fHtQYIYoD1wKmz1nhv91N571YRo5fDdb1O2yoXT6VRpNYHi8x8OdTISvstKRw==
-X-Received: by 2002:a05:600c:3ba5:b0:456:2698:d4d9 with SMTP id 5b1f17b1804b1-45b45374caamr14002615e9.3.1755603953268;
-        Tue, 19 Aug 2025 04:45:53 -0700 (PDT)
+        bh=AQC/lHj8toc5TCrfcLhMJT3E3jz1/e+YpE7xJHN8Uxc=;
+        b=mMnhn/jnB0TOfLsAGsa0OIw/Krg4lwJOUyMntBVx6SrwwTzFp3Ow1CdFNCC6/XPiUG
+         n1aI3UVolCTCYie36baKz1GA7n3NjG8SyjYlq6WUWVCPFftHOi3XrEMB+GuSZC2Sy0B3
+         J1jjx49YgjMBf3dvtstTZlkx3ddd2tl3Dcb5b/87RioSrwQQGBQ3Hv60za/ANQeM9A1t
+         Nh9uz3MpDDPDrc/pHZyDug1X4aoMPndgmO5KEHAiITIJkKIa3Ekuw+/eSy2nK58/UqU/
+         o962eY1/U6TZNMpAhhNGRpTjo90GVUp/lv2C423oa8s+lXy5hYEcoS1f2sIBD2NeQxbX
+         H7Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755603954; x=1756208754;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AQC/lHj8toc5TCrfcLhMJT3E3jz1/e+YpE7xJHN8Uxc=;
+        b=IffKQg8tnt5kJnshDh+fcigWGJHqwTGrGd/c0g/P0YP9vJZsVvAyp+4ODDgyY64u6V
+         AXYljkin1elVw9iUKr/2WvxyvNsJpL8Ud4ZPDwZLcTUgz9OMVMYi36sOxEwbNEpUWqM8
+         eNOSlgS6HaP14L0pbTP9Ka9+tC6nWd9Sr455i2ENrwm2QD9ySkunT0Vheswvc1S1Ztn0
+         UqEcB+Wr75uUXnOqvpv+wU8b+V7dZOm1CNTG7K8V4gLOM4BGdYJU7KonM0+EVqFC+X7x
+         JY+k3h15/EHXJ4V8m8FYIO0aIWobD4EU36L7cLcb2numXTFqWSgMzmTi+tyy6HKQx7aA
+         /ZpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVGC3eQHx2HXiOEK6pmDbVezuJUSRDmLIpEEnCRSManNDZDOfEn9Gb0j1dl/pWG3Mv8sBivFzlOGvK9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBG9J7enst77OoVBQUM6lTfTVqxsRPbAw6ZcSUV1PiOcapOf7Z
+	KQqJTa1NUgc8cdCSySyP26LSMbMfzJYpqdCzeGvJnxUAIpYZaZUHvHK25OsiHDZrcMQ=
+X-Gm-Gg: ASbGncuxycEVJcOAgOluYVVyF6PErcY3TJOkTABSNA44iWKptag6P/uMwEajBDfiff+
+	sl4ai3Q3nZSH9B0CHsx6aw4pV21GZIfxgLNtecXDKs1GIbhgf5m5YxubVlmHsK75r6xXx5usA5s
+	8PafJhc0jcPtxDYqY7UDdDVvZva7SXfvgukKlvXIIHeyHIbr5IVZlRpkmsft6tc5/izaeE/RYe2
+	TQ2JV32sTMMtZZPMNk5iTL4nNtXV5/IdPOhQCoITo2Vx1WvtQ9RGET06NreOVniY94lXTm0flf9
+	GiJyzUfuk/k4jOCA2YOYOypCxUptQoVg9xGifjFdVtYBtoYa6qPM0kaICJZSvCc0tUdZZiGZl1L
+	rNENkUoQotIYSHuKPev2tJltIou6vheIsjb5FD1CDT35xXkAf8A4eea/OZBAYg6xg4GGltTl4KN
+	mECg==
+X-Google-Smtp-Source: AGHT+IF3fExSedP+rhMqtDX0FAinw193ciSJFQj94UbY/WOxq/Wu+sbuY/lPivyxNBf7lI4vygbdfg==
+X-Received: by 2002:a05:600c:1d2a:b0:458:b01c:8f with SMTP id 5b1f17b1804b1-45b43dc68a8mr15298175e9.8.1755603954043;
+        Tue, 19 Aug 2025 04:45:54 -0700 (PDT)
 Received: from ta2.c.googlers.com (245.92.187.35.bc.googleusercontent.com. [35.187.92.245])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c077788df7sm3430817f8f.48.2025.08.19.04.45.52
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c077788df7sm3430817f8f.48.2025.08.19.04.45.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 04:45:52 -0700 (PDT)
+        Tue, 19 Aug 2025 04:45:53 -0700 (PDT)
 From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Subject: [PATCH 0/3] exynos-acpm: add DVFS protocol and clock driver
-Date: Tue, 19 Aug 2025 11:45:35 +0000
-Message-Id: <20250819-acpm-clk-v1-0-6bbd97474671@linaro.org>
+Date: Tue, 19 Aug 2025 11:45:36 +0000
+Subject: [PATCH 1/3] dt-bindings: firmware: google,gs101-acpm-ipc: add
+ clocks node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,10 +86,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAN9jpGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDC0NL3cTkglzd5JxsXSOLFKNEc4tUA2MDcyWg8oKi1LTMCrBR0bG1tQD
- TV39kWgAAAA==
-X-Change-ID: 20250819-acpm-clk-28d2a78e0307
+Message-Id: <20250819-acpm-clk-v1-1-6bbd97474671@linaro.org>
+References: <20250819-acpm-clk-v1-0-6bbd97474671@linaro.org>
+In-Reply-To: <20250819-acpm-clk-v1-0-6bbd97474671@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Peter Griffin <peter.griffin@linaro.org>, 
@@ -102,52 +103,95 @@ Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
  linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com, 
  Tudor Ambarus <tudor.ambarus@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755603952; l=1667;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755603952; l=2971;
  i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=atHOVDZrHoC4KUAzLF3V2ExuFabINMR3JpSKKqoKhGM=;
- b=h6Bb36OJtt4jZDYOdwe5maGI2bcHWggh27JZXK/hNIDehiPXcAddUEhsj/76QM7GPPUeu3kqb
- jydYZwKtvyDBk4+2SmWwopkALIvvL42OrRHIifDVPAm8txJvXd+GSM0
+ bh=RHgzxERFqXBJayCLtp1I/QWWv579hP721Hv537Vxp6E=;
+ b=0VhemtYEBOAIemXpjyQfMxDu+WLHs0AJDariMAZ3V8vjYybaLCcOrMVRTwR064RJ8oH8Qlkro
+ INmqzkQoG67CliO24U9NMFfvexZ3ErbbkxnpAIzvSJXbHEqDgAb42pu
 X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
  pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-The APM firmware exposes clocks that are variable and index based.
-These clocks don't provide an entire range of values between the limits
-but only discrete points within the range. The firmware also manages
-the voltage scaling appropriately with the clock scaling.
-
-Add support for the ACPM DVFS protocol. It translates clock frequency
-requests to messages that can be interpreted by the APM firmware.
-Add an ACPM clock driver to model the clocks exposed by the APM firmware.
-
-All patches can go through the samsung tree.
-
-Thanks,
-ta
+The firmware exposes clocks that can be controlled via the ACPM
+interface. Describe the clocks exposed by the APM firmware.
 
 Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 ---
-Tudor Ambarus (3):
-      dt-bindings: firmware: google,gs101-acpm-ipc: add clocks node
-      firmware: exynos-acpm: add DVFS protocol
-      clk: samsung: add Exynos ACPM clock driver
+ .../bindings/firmware/google,gs101-acpm-ipc.yaml   | 28 ++++++++++++++++++++++
+ include/dt-bindings/clock/google,gs101.h           | 15 ++++++++++++
+ 2 files changed, 43 insertions(+)
 
- .../bindings/firmware/google,gs101-acpm-ipc.yaml   |  28 +++
- drivers/clk/samsung/Kconfig                        |  10 ++
- drivers/clk/samsung/Makefile                       |   1 +
- drivers/clk/samsung/clk-acpm.c                     | 192 +++++++++++++++++++++
- drivers/firmware/samsung/Makefile                  |   4 +-
- drivers/firmware/samsung/exynos-acpm-dvfs.c        |  85 +++++++++
- drivers/firmware/samsung/exynos-acpm-dvfs.h        |  21 +++
- drivers/firmware/samsung/exynos-acpm.c             |   5 +
- include/dt-bindings/clock/google,gs101.h           |  15 ++
- .../linux/firmware/samsung/exynos-acpm-protocol.h  |  10 ++
- 10 files changed, 370 insertions(+), 1 deletion(-)
----
-base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
-change-id: 20250819-acpm-clk-28d2a78e0307
+diff --git a/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
+index 9785aac3b5f34955bbfe2718eec48581d050954f..27cdf9c881ca680e78e77a0e14ffcffeba970871 100644
+--- a/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
++++ b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
+@@ -27,6 +27,29 @@ properties:
+   mboxes:
+     maxItems: 1
+ 
++  clocks:
++    description:
++      Clocks that are variable and index based. These clocks don't provide
++      an entire range of values between the limits but only discrete points
++      within the range. The firmware also manages the voltage scaling
++      appropriately with the clock scaling.
++    type: object
++    additionalProperties: false
++
++    properties:
++      compatible:
++        const: google,gs101-acpm-dvfs-clocks
++
++      "#clock-cells":
++        const: 1
++        description:
++          The argument is the ID of the clock contained by the firmware
++          messages.
++
++    required:
++      - compatible
++      - "#clock-cells"
++
+   pmic:
+     description: Child node describing the main PMIC.
+     type: object
+@@ -59,6 +82,11 @@ examples:
+         mboxes = <&ap2apm_mailbox>;
+         shmem = <&apm_sram>;
+ 
++        clocks {
++            compatible = "google,gs101-acpm-dvfs-clocks";
++            #clock-cells = <1>;
++        };
++
+         pmic {
+             compatible = "samsung,s2mpg10-pmic";
+             interrupts-extended = <&gpa0 6 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/include/dt-bindings/clock/google,gs101.h b/include/dt-bindings/clock/google,gs101.h
+index 442f9e9037dc33198a1cee20af62fc70bbd96605..f1d0df412fdd49b300db4ba88bc0b1674cf0cdf8 100644
+--- a/include/dt-bindings/clock/google,gs101.h
++++ b/include/dt-bindings/clock/google,gs101.h
+@@ -634,4 +634,19 @@
+ #define CLK_GOUT_PERIC1_CLK_PERIC1_USI9_USI_CLK		45
+ #define CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK		46
+ 
++#define CLK_ACPM_DVFS_MIF				0
++#define CLK_ACPM_DVFS_INT				1
++#define CLK_ACPM_DVFS_CPUCL0				2
++#define CLK_ACPM_DVFS_CPUCL1				3
++#define CLK_ACPM_DVFS_CPUCL2				4
++#define CLK_ACPM_DVFS_G3D				5
++#define CLK_ACPM_DVFS_G3DL2				6
++#define CLK_ACPM_DVFS_TPU				7
++#define CLK_ACPM_DVFS_INTCAM				8
++#define CLK_ACPM_DVFS_TNR				9
++#define CLK_ACPM_DVFS_CAM				10
++#define CLK_ACPM_DVFS_MFC				11
++#define CLK_ACPM_DVFS_DISP				12
++#define CLK_ACPM_DVFS_BO				13
++
+ #endif /* _DT_BINDINGS_CLOCK_GOOGLE_GS101_H */
 
-Best regards,
 -- 
-Tudor Ambarus <tudor.ambarus@linaro.org>
+2.51.0.rc1.167.g924127e9c0-goog
 
 
