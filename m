@@ -1,93 +1,164 @@
-Return-Path: <devicetree+bounces-206130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99223B2B971
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC6F4B2B987
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:36:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C14B71BA4305
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:30:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 529131882424
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3921E25FA05;
-	Tue, 19 Aug 2025 06:30:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8A226C398;
+	Tue, 19 Aug 2025 06:34:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GczAaAHj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.205.26])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0081725CC5E;
-	Tue, 19 Aug 2025 06:30:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.205.26
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D26825FA1D;
+	Tue, 19 Aug 2025 06:34:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755585026; cv=none; b=TfGMnBpYoCZkaizQUiSA3ADn38OSbeEsNW/X5skxInDWlQlP1OgFEOuBTNfsoyAfGn7mpXMj0wlBU6QYHJKzTiW3b0j0wkbLduhwO3lPC9eSFJ3MzBUpj58JjZ1Pcqil0knNDenpcc5LLhreRMOQkwnIyfpuR8SLYhv3A5N+m/k=
+	t=1755585251; cv=none; b=YGmCRnLPLsJVMVjoSMFgbEfP9kpo+serHZLjktxx2JdahIxynt/yeHmz4+WT6AOGKpTdDn/44mjMP4ZUpr89+aDg3DUpQ2Qj8Pj17T3SxvS6z+r+desu8a+79N3kOWeOE7fukTfzlygS2w9iDf7qUIlcIoecAyNi+fASyiYO0Fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755585026; c=relaxed/simple;
-	bh=WLwMsf64ba8d/+q/tlokjJR6cjH3Psfoad9FLMDaRC4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=NoekwlPg/h7eX2wEPjQpNOzbMoVFqY+DsjO23qbtA/m2uXc8EB9EncAKxbcB9H7ePBIPWTkGv1MfyS2Ni9I5tBLX12RS7Z/nOp6MQh5DRu+PW0T5z/f3hOudkxCrUoC5uTZv03YwEWDhqrPd5ZItfwNnoeBwTbE7frocNRvjUrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.205.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
- ajax-webmail-app2 (Coremail) ; Tue, 19 Aug 2025 14:30:08 +0800 (GMT+08:00)
-Date: Tue, 19 Aug 2025 14:30:08 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: =?UTF-8?B?6JGj57uq5rSL?= <dongxuyang@eswincomputing.com>
-To: "Philipp Zabel" <p.zabel@pengutronix.de>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: Re: [PATCH v5 2/2] reset: eswin: Add eic7700 reset driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <1c6b0262f0043e65592501d88221ec2a69e9d641.camel@pengutronix.de>
-References: <20250725093249.669-1-dongxuyang@eswincomputing.com>
- <20250725093436.779-1-dongxuyang@eswincomputing.com>
- <1c6b0262f0043e65592501d88221ec2a69e9d641.camel@pengutronix.de>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1755585251; c=relaxed/simple;
+	bh=9tBtgRf5Ie1dj/J4hFT2ndZIaef60tq+Owe/LAehexU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GCEMTynGqEjthL3pwPXLjjGI/wmWIMr+oK4OwjAExjAfNixxPIlrcojGFiwGsylLx19h5btdx5tMoYJrpadX+w6meX6ZPJMtpTz9cRO+srE0JZgVaqHIHLVJZ3spDxMLJrPynrzefmhvFEsWkJwWcYx75Z+dZFs6r3pn9VO2xdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GczAaAHj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67D55C116B1;
+	Tue, 19 Aug 2025 06:34:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755585250;
+	bh=9tBtgRf5Ie1dj/J4hFT2ndZIaef60tq+Owe/LAehexU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GczAaAHjBVx6HLhTco4kfP0yl4ZiUi3jKTMyOyDiuvawN2LTAlAbSGcVtVl7lFIlS
+	 qXl1HrIaMJmGFjkbwWMhlXvchMOa+B0m/6H/ueQiGcIdRZsGUHyyqahoQqspEtV01Q
+	 tBBZlimZ9jaAMsQlvbLiMrqNEcl3noirrFrAoAxmB+W//mBbYGmb1Hrs1OSX+IR228
+	 fFC4wInW/v4NINrHOPwNkdZ1CcdGWb3rP0iez8tsLDsDebzpFzSUiY2OTaGpD1qDfC
+	 YkAvUEozp4FyTUIuR5Wrpil4CBCajqCwDOBRXfeJceLBFo6OgKPkK/FklJct/GR4So
+	 O50QrKtX6oQkQ==
+Message-ID: <29287880-9436-4acd-b3f9-b4d9eb726896@kernel.org>
+Date: Tue, 19 Aug 2025 08:34:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <764c4fa5.321.198c105554b.Coremail.dongxuyang@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgAXt5XwGaRofH7AAA--.22838W
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAgETAmijVc8aC
-	wAAsS
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 11/12] PCI: exynos: Add support for Tesla FSD SoC
+To: Bjorn Helgaas <helgaas@kernel.org>, Shradha Todi <shradha.t@samsung.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com,
+ krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
+ vkoul@kernel.org, kishon@kernel.org, arnd@arndb.de,
+ m.szyprowski@samsung.com, jh80.chung@samsung.com, pankaj.dubey@samsung.com
+References: <20250818182544.GA534647@bhelgaas>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20250818182544.GA534647@bhelgaas>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-SGkgUGhpbGlwcCwKCj4gPiAKPiA+IEFkZCBzdXBwb3J0IGZvciByZXNldCBjb250cm9sbGVyIGlu
-IGVpYzc3MDAgc2VyaWVzIGNoaXBzLgo+ID4gUHJvdmlkZSBmdW5jdGlvbmFsaXR5IGZvciBhc3Nl
-cnRpbmcgYW5kIGRlYXNzZXJ0aW5nIHJlc2V0cwo+ID4gb24gdGhlIGNoaXAuCj4gPiAKPiA+IFNp
-Z25lZC1vZmYtYnk6IFlpZmVuZyBIdWFuZyA8aHVhbmd5aWZlbmdAZXN3aW5jb21wdXRpbmcuY29t
-Pgo+ID4gU2lnbmVkLW9mZi1ieTogWHV5YW5nIERvbmcgPGRvbmd4dXlhbmdAZXN3aW5jb21wdXRp
-bmcuY29tPgo+ID4gLS0tCj4gPiAgZHJpdmVycy9yZXNldC9LY29uZmlnICAgICAgICAgfCAgMTAg
-Kwo+ID4gIGRyaXZlcnMvcmVzZXQvTWFrZWZpbGUgICAgICAgIHwgICAxICsKPiA+ICBkcml2ZXJz
-L3Jlc2V0L3Jlc2V0LWVpYzc3MDAuYyB8IDQzMiArKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrCj4gPiAgMyBmaWxlcyBjaGFuZ2VkLCA0NDMgaW5zZXJ0aW9ucygrKQo+ID4gIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3Jlc2V0L3Jlc2V0LWVpYzc3MDAuYwo+ID4gCj4gPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9yZXNldC9LY29uZmlnIGIvZHJpdmVycy9yZXNldC9LY29uZmlnCj4g
-PiBpbmRleCBkODViZTU4OTlkYTYuLjgyZjgyOWY0YzlmMCAxMDA2NDQKPiA+IC0tLSBhL2RyaXZl
-cnMvcmVzZXQvS2NvbmZpZwo+ID4gKysrIGIvZHJpdmVycy9yZXNldC9LY29uZmlnCj4gPiBAQCAt
-NjYsNiArNjYsMTYgQEAgY29uZmlnIFJFU0VUX0JSQ01TVEJfUkVTQ0FMCj4gPiAgCSAgVGhpcyBl
-bmFibGVzIHRoZSBSRVNDQUwgcmVzZXQgY29udHJvbGxlciBmb3IgU0FUQSwgUENJZTAsIG9yIFBD
-SWUxIG9uCj4gPiAgCSAgQkNNNzIxNi4KPiA+IAo+ID4gK2NvbmZpZyBSRVNFVF9FSUM3NzAwCj4g
-PiArCWJvb2wgIlJlc2V0IGNvbnRyb2xsZXIgZHJpdmVyIGZvciBFU1dJTiBTb0NzIgo+ID4gKwlk
-ZXBlbmRzIG9uIEFSQ0hfRVNXSU4gfHwgQ09NUElMRV9URVNUCj4gCj4gVW5kZWNsYXJlZCBkZXBl
-bmRlbmN5IG9uIFsxXS4KPiAKPiBbMV0gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjUw
-NjE2MTEyMzE2LjM4MzMzNDMtMy1waW5rZXNoLnZhZ2hlbGFAZWluZm9jaGlwcy5jb20vCj4gCj4g
-cmVnYXJkcwo+IFBoaWxpcHAKCldlIHdpbGwgYWRkIHRoZSBmb2xsb3dpbmcgZGVwZW5kZW5jaWVz
-IGluIHRoZSBjb3ZlciBsZXR0ZXIgb2Ygb3VyIG5leHQgcGF0Y2guCgpUaGlzIHNlcmllcyBkZXBl
-bmRzIG9uIHRoZSB2ZW5kb3IgcHJlZml4IHBhdGNoIFsxXSBhbmQgY29uZmlnIG9wdGlvbiBwYXRj
-aCBbMl0uCgpbMV0gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjUwNjE2MTEyMzE2LjM4
-MzMzNDMtNC1waW5rZXNoLnZhZ2hlbGFAZWluZm9jaGlwcy5jb20vClsyXSBodHRwczovL2xvcmUu
-a2VybmVsLm9yZy9hbGwvMjAyNTA2MTYxMTIzMTYuMzgzMzM0My0zLXBpbmtlc2gudmFnaGVsYUBl
-aW5mb2NoaXBzLmNvbS8KClJlZ2FyZHMsClh1eWFuZyBEb25nCg==
+On 18/08/2025 20:25, Bjorn Helgaas wrote:
+> [+to Krzysztof]
+> 
+> On Mon, Aug 18, 2025 at 03:00:00PM +0530, Shradha Todi wrote:
+>>> On Mon, Aug 11, 2025 at 09:16:37PM +0530, Shradha Todi wrote:
+>>>> Add host and endpoint controller driver support for FSD SoC.
+> 
+>>> It's kind of unfortunate that the driver uses "ep" everywhere for
+>>> struct exynos_pcie pointers.  It's going to be confusing because "ep"
+>>> is also commonly used for endpoint-related things, e.g., struct
+>>> dw_pcie_ep pointers.  Maybe it's not worth changing; I dunno.
+>>
+>> I did try to rename the structure and the pointers 
+>> (https://lore.kernel.org/all/20230214121333.1837-9-shradha.t@samsung.com/)
+>> But the intention was different back then and so the idea was rejected.
+>> I could add a patch to only rename the pointers to something less
+>> confusing like "exy_pci"
+> 
+> The patch you mention did several renames:
+> 
+>   s/to_exynos_pcie/to_samsung_pcie/
+>   s/struct exynos_pcie/struct samsung_pcie/
+>   s/struct exynos_pcie *ep/struct samsung_pcie *sp/
+> 
+> I'm only concerned about the confusion of "ep" being used both for
+> "struct exynos_pcie *" and for "struct dw_pcie_ep *".
+> 
+> It would still be sort of an annoying patch to do something like this:
+> 
+>   s/struct exynos_pcie *ep/struct exynos_pcie *pcie/
+> 
+> But 'git grep "struct .*_pcie \*.*=" drivers/pci/controller/' says
+> using "pcie" in this way is quite common, so maybe it would be worth
+> doing.
+> 
+> What do you think, Krzysztof?
+
+I think you want other Krzysztof, but nevertheless, the reasoning there
+"Changing it to samsung_pcie for making it
+generic."
+is wrong. The naming of these structures do not matter, they are not
+less generic. This is rather churn, which will affect backporting for
+ZERO readability increase. Why zero? Because calling all this "exynos"
+is the same as calling all this "samsung". It just does not matter.
+
+However s/ep/pcie/ in variable name makes sense if that's more common.
+
+
+Best regards,
+Krzysztof
 
