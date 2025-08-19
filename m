@@ -1,178 +1,105 @@
-Return-Path: <devicetree+bounces-206601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6836B2CE19
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:35:31 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDCE7B2CE31
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:43:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92C565831B5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:35:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A88124E1F74
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84A3A341ACD;
-	Tue, 19 Aug 2025 20:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72C02342CA9;
+	Tue, 19 Aug 2025 20:43:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="2t0nH+rw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dVYpq7zQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 832E233EB02;
-	Tue, 19 Aug 2025 20:33:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429F82BDC2A;
+	Tue, 19 Aug 2025 20:43:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755635617; cv=none; b=KmbvrB8oQCLQJ30Zx4mpDSj2aYILb/Sl17YIxb2OlOpn2ortmN0he8V3QWqFbkymAcTUw9M8vdUzBB15wGQvTpP9l2mCw+rqqEE9KXbz4yDFUriJvM6+khxfW8omcXhgTa0T6YRhyW5fCZw6IlPngCTWdYBel6FQMtYo6oOx1T4=
+	t=1755636234; cv=none; b=Yl2fVogfGJW506w2TR3HxFOgR54b4iLVEY6sjI4xG4fxO+jJxwH7ftH4WzqJ2g0hZBBRkV+bp2TQP69WMkFaNucAWziGKQ1UE/ImwmQTUtWF+WmAfn1u+keNQDy/O+Ak6QUlsPobq9dw5je6SrQMSp0AntkGSaorutzyHF8Z/hI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755635617; c=relaxed/simple;
-	bh=u0jHy+96xQQc8Rsq14s4xOxOiOUOUoyteYoE2V6u/cs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=keESg/ZanVvBfLjES84GrfeI+YIOghKKARACJ7eGrtK3czKpvIaYtPXujFJMTCXzOpwxpcbs4UTK1qLS0mQYf38aBjhur/pt+GuGv1rKIUp6fCX+HWuB55veivIBgWQb0EZb93Shxv6qsywn7SNCygIag0gKxs7/GV7p1iFXnLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=2t0nH+rw; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=1/eUspNCUXyY5YlWldBkBwRS3SFcnhUn4WjHQtP/9wc=; b=2t0nH+rw7E8V78kWenP4au6K+4
-	exEwfVKJi8b0tPVduqB/o8rbtRCeUrCKje/ykiFOZopI3RhEtqZdqmYdm7DBGNefeRThMQJBt195Y
-	ADh1TgtWB7gNOx0iXJr67Cd9r/Ru148qKSOr2Ur3tE2CNtKuPFpxtpeWEqTlzh5VC3bft21T59xs4
-	3W/lkEzBbkczajoZIHzdhxFvbTaNAMXk1aNkAmSOAzyml43d0lDOd5EeHWpkyPExCBw03X66X2jmo
-	qIcEJJZbRla6DLBwkNeNn7lmyaF6Spxrn3gymHy0JHTIWpmhFX7vDrM8+SQdSS+IwK0GWYxC6IZ1E
-	5V3lht2A==;
-Date: Tue, 19 Aug 2025 22:31:57 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jihed Chaibi <jihed.chaibi.dev@gmail.com>, linux-kernel@vger.kernel.org,
- peter.ujfalusi@gmail.com, dmitry.torokhov@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, lgirdwood@gmail.com, tiwai@suse.com,
- conor+dt@kernel.org, lee@kernel.org, ukleinek@kernel.org,
- broonie@kernel.org, gregkh@linuxfoundation.org, linus.walleij@linaro.org,
- brgl@bgdev.pl, aaro.koskinen@iki.fi, khilman@baylibre.com,
- rogerq@kernel.org, tony@atomide.com, linux-gpio@vger.kernel.org,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-omap@vger.kernel.org, shuah@kernel.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: mfd: twl: Add missing sub-nodes for
- TWL4030 & TWL603x
-Message-ID: <20250819223157.0b271c74@akair>
-In-Reply-To: <20250819-humongous-muscular-curassow-5accd5@kuoka>
-References: <20250816021523.167049-1-jihed.chaibi.dev@gmail.com>
-	<20250816021523.167049-2-jihed.chaibi.dev@gmail.com>
-	<20250819-humongous-muscular-curassow-5accd5@kuoka>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1755636234; c=relaxed/simple;
+	bh=fJayKz1iUIRUckBQ8dHMrsmPlqiqM0tYfP5QqS+HrQ4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mLwaut7OZ1KhtrJY3J4qzJsdDQCzEEsDKJTcz1mHCzF1MBmTOFyACBgJs73LCFjbAK4NikQC40WaBShfJtYplPjc2yVSSfRK/LsX0GCYgOV0Tc3L56AuI7hXJkT9b+a+DzDuZx5aQcNtXEQG8Z2XyCZ3vs+XW3k/mEzdGldLJu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dVYpq7zQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A34C6C4CEF1;
+	Tue, 19 Aug 2025 20:43:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755636233;
+	bh=fJayKz1iUIRUckBQ8dHMrsmPlqiqM0tYfP5QqS+HrQ4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dVYpq7zQCDzaP5Jey+pgSlIjoyYr1H3CePAcxHgYgeyBAKkcih6y269p9yC7oce1Q
+	 IliUTtK33jrdmwBihvAwLpo3Hr5MN2uTNKzMEwrV/k/L0AOZdONpA/5g6dqtK+S2Wv
+	 2Ur1c9LhbCmXJC6HUQ67Nzrn3lm0E1cxwsT++TBrvA3cM1ChGCCZtAzDgPxp+S8pYp
+	 v3aOkqhmAshLnLDxFsjqDPiN+IIA5W14SCbQyA0fHBaE1OfXiJ5g8s2DmGuG+4PyYC
+	 VgZNiAsEzSNlRY5jC9eVF01DyPT583rius/TToZxQ2sqmfGHk1/wNVCjwORHLVrrkl
+	 VXEiE61UQWYMw==
+Date: Tue, 19 Aug 2025 15:43:52 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: shawnguo@kernel.org, kernel@pengutronix.de, vadim.fedorenko@linux.dev,
+	linux-kernel@vger.kernel.org, richardcochran@gmail.com,
+	s.hauer@pengutronix.de, edumazet@google.com, conor+dt@kernel.org,
+	claudiu.manoil@nxp.com, vladimir.oltean@nxp.com,
+	davem@davemloft.net, pabeni@redhat.com, andrew+netdev@lunn.ch,
+	festevam@gmail.com, fushi.peng@nxp.com, xiaoning.wang@nxp.com,
+	imx@lists.linux.dev, krzk+dt@kernel.org, Frank.Li@nxp.com,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org, kuba@kernel.org
+Subject: Re: [PATCH v4 net-next 02/15] dt-bindings: net: move ptp-timer
+ property to ethernet-controller.yaml
+Message-ID: <175563623228.1286028.14650660035550911275.robh@kernel.org>
+References: <20250819123620.916637-1-wei.fang@nxp.com>
+ <20250819123620.916637-3-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250819123620.916637-3-wei.fang@nxp.com>
 
-Am Tue, 19 Aug 2025 10:13:39 +0200
-schrieb Krzysztof Kozlowski <krzk@kernel.org>:
 
-> On Sat, Aug 16, 2025 at 04:15:18AM +0200, Jihed Chaibi wrote:
-> > Update the TI TWL family Device Tree binding to include additional
-> > subnodes for TWL4030, TWL6030, and TWL6032 devices.
-> > 
-> > The simple power and PWM bindings (ti,twl4030-power, ti,twl-pwm, and
-> > ti,twl-pwmled) are now defined directly within this binding.
-> > 
-> > Other child node definitions (audio, gpio, keypad, usb, etc.) are also
-> > added to the schema. These additions fix 'unevaluated properties'
-> > errors found during dtbs_check for boards like the omap3-beagle
-> > and improve the binding's overall completeness.
-> > 
-> > Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-> > 
-> > ---
-> > Changes in v3:
-> >  - New patch to consolidate simple bindings (power, pwm) and add
-> >    definitions for all child nodes to fix dtbs_check validation
-> >    errors found in v2.
-> > ---
-> >  .../devicetree/bindings/mfd/ti,twl.yaml       | 191 ++++++++++++++++++
-> >  .../devicetree/bindings/mfd/twl4030-power.txt |  48 -----
-> >  .../devicetree/bindings/pwm/ti,twl-pwm.txt    |  17 --
-> >  .../devicetree/bindings/pwm/ti,twl-pwmled.txt |  17 --
-> >  4 files changed, 191 insertions(+), 82 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/mfd/twl4030-power.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwmled.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> > index f162ab60c..b0f1cb7b5 100644
-> > --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> > @@ -76,6 +76,98 @@ allOf:
-> >            properties:
-> >              compatible:
-> >                const: ti,twl4030-wdt
-> > +
-> > +        audio:
-> > +          type: object
-> > +          $ref: /schemas/sound/ti,twl4030-audio.yaml#
-> > +          unevaluatedProperties: false
-> > +
-> > +        keypad:
-> > +          type: object
-> > +          $ref: /schemas/input/ti,twl4030-keypad.yaml#
-> > +          unevaluatedProperties: false
-> > +
-> > +        pwm:
-> > +          type: object
-> > +          $ref: /schemas/pwm/pwm.yaml#
-> > +          unevaluatedProperties: false
-> > +          description: |
-> > +            TWL4030 series: PWMA and PWMB (connected to LEDA and LEDB terminals)
-> > +          properties:
-> > +            compatible:
-> > +              enum:
-> > +                - ti,twl4030-pwm
-> > +            '#pwm-cells':
-> > +              const: 2
-> > +          required:
-> > +            - compatible
-> > +            - '#pwm-cells'
-> > +
-> > +        pwmled:
-> > +          type: object
-> > +          $ref: /schemas/pwm/pwm.yaml#
-> > +          unevaluatedProperties: false
-> > +          description: |
-> > +            TWL4030 series: PWMA and PWMB (connected to LEDA and LEDB terminals)
-> > +          properties:
-> > +            compatible:
-> > +              enum:
-> > +                - ti,twl4030-pwmled
-> > +            '#pwm-cells':
-> > +              const: 2
-> > +          required:
-> > +            - compatible
-> > +            - '#pwm-cells'
-> > +
-> > +        'twl4030-usb':  
+On Tue, 19 Aug 2025 20:36:07 +0800, Wei Fang wrote:
+> For some Ethernet controllers, the PTP timer function is not integrated.
+> Instead, the PTP timer is a separate device and provides PTP Hardware
+> Clock (PHC) to the Ethernet controller to use, such as NXP FMan MAC,
+> ENETC, etc. Therefore, a property is needed to indicate this hardware
+> relationship between the Ethernet controller and the PTP timer.
 > 
-> No need for quotes.
+> Since this use case is also very common, it is better to add a generic
+> property to ethernet-controller.yaml. According to the existing binding
+> docs, there are two good candidates, one is the "ptp-timer" defined in
+> fsl,fman-dtsec.yaml, and the other is the "ptimer-handle" defined in
+> fsl,fman.yaml. From the perspective of the name, the former is more
+> straightforward, so move the "ptp-timer" from fsl,fman-dtsec.yaml to
+> ethernet-controller.yaml.
 > 
-> > +          type: object
-> > +          $ref: /schemas/usb/ti,twlxxxx-usb.yaml#  
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 > 
-> Are you sure your patchset is bsiectable? Apply this patch and test. You
-> will see errors and you must fix these. Even after fixing you have
-> strict dependencies so your cover letter must explain these (or merging
-> constraints)...
+> ---
+> v3 changes:
+> New patch, add a generic property instead of adding a property to
+> fsl,enetc.yaml
+> v4 changes:
+> 1. Change the title
+> 2. Remove "ptp-timer" from fsl,fman-dtsec.yaml
+> ---
+>  .../devicetree/bindings/net/ethernet-controller.yaml         | 5 +++++
+>  Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml    | 4 ----
+>  2 files changed, 5 insertions(+), 4 deletions(-)
 > 
-what are the rules here regarding bisectability? non-existing files
-in $ref are probably bad. Are then unveiled errors in dts also a
-problem? I would not expect too much fixing effort needed here. I have
-not run dtbs_check yet.
 
-I have expected this would all go via Lee's usual immutable branches. 
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Regards,
-Andreas
 
