@@ -1,137 +1,137 @@
-Return-Path: <devicetree+bounces-206442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B362CB2C522
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:19:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D30AB2C52E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:20:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89DD216D4E3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:15:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B74517E8C9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:16:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6335A1DBB13;
-	Tue, 19 Aug 2025 13:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B635340D85;
+	Tue, 19 Aug 2025 13:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="VvS4YukK";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="O0kPoH7D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EJ5OpBRH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from flow-b8-smtp.messagingengine.com (flow-b8-smtp.messagingengine.com [202.12.124.143])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B50C38F9C;
-	Tue, 19 Aug 2025 13:15:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.143
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371C9275AF7
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 13:15:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755609326; cv=none; b=cDl850o7z9K/LMgh9UfRyhPmDk1/9rQVDWLINygiJ+czy0Ey9uPSvhGjLsDiQRfDq0P6VedBAGs1WHSHPOPWyI6bpvzwan/SfUXUpqWsXYJr1kHw2OvwSUf0rLgj1T3t5JrbCbaKivLancSk7bpOfnuYj0Nd+rpCgnhCRAV65+w=
+	t=1755609359; cv=none; b=gVoU3BauKk5bMn4uaBp3U7GvJqr3fp1L194zzbqfwwG0jaTh89hjCRJ110xeX8VyJ7kx3mE7KtaRKktRvEj7R6oPaTurotDOcw9fWF4UPo2JDamFEFjzeiP+NH5XcqYe7/IexNLrpcHGtw9iiU87BmpMiQj5XMurf6w6KylRGYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755609326; c=relaxed/simple;
-	bh=pRUD+z3Dg/Y+TYQjbh09xIKPaVeXQ5sSKNu7b/ZFK+o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KBX4sV2RoigKFmM3/F7IcEOhMn9oHfECplcxdC1ASfCEvAJERABaRTfj3+1ad5K3S//MI/+vuvPEvOOzADApFESIL9WCCXZvNBtkpvQW+SOma4T6Bd/OIQ3zKrj8j9SOXexe98c7cutuA099fLmDyVIOHnHWf68X9rTwUHulGFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=VvS4YukK; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=O0kPoH7D; arc=none smtp.client-ip=202.12.124.143
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
-	by mailflow.stl.internal (Postfix) with ESMTP id 1E3741300BBE;
-	Tue, 19 Aug 2025 09:15:23 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-03.internal (MEProxy); Tue, 19 Aug 2025 09:15:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm2; t=1755609322; x=1755616522; bh=r4GlBd/XIg
-	WVfoO1w0sqiwXzx+ia4mrInLsy+TcTWQw=; b=VvS4YukKQYMH/apUX9we3gFDei
-	4s0vaH1zyjZ2gTgEX0aNLFZ5zAH/yJQdkRP9JqZf/C5/8yvkCgyXcewYqGvqVh1k
-	t8ghXmsmdm4nG9EKR23e6T5FKKlGgfv82q4dvAh4aSfx7kpB3d+2yYptSCM3Cirp
-	FZXdyzDSlxW7PF+3oqaOfOZL5osz+HKj5QTo9Dhe50mYJiJqDpeK7JSxZNLrDzHb
-	0D3UB2ErQEJmgS5D2UwVaiBHKTAH8OFirYDTauw6mANf8iElvinXZloF51YIKla6
-	6ylueSzpQC0AEt7S2hxe37JgH5TwcfqMdbLiG2kZ8fT+zzvcRwtn+n7DduPQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-	1755609322; x=1755616522; bh=r4GlBd/XIgWVfoO1w0sqiwXzx+ia4mrInLs
-	y+TcTWQw=; b=O0kPoH7DYLugERKZTUOaLyT5PkCatuc23MpbL/OGI6Ah8Slh6bk
-	+A7QVJ+A9m1BREMeLGrYLxx/V9uF9YqqtDN8LyxZRVHmDFUeakG3hhDhM0ddo7Ym
-	SPKbjH0KdAhCHswH4a1I2ILkbzva1UhjMWUXIMplFRtz6tdQY/FovLy89DHqAmru
-	3qSsPUv+ar9W0FUdz8Tk6W0ir+zEuutbLhQk4+0klO8vVZHX8oK2H7yT1yI9n4ZC
-	j1fTcSm04DGtc5Vt0i34kcpavMm6lhHREOUzMFcB8vGruYY+tNCFEYuCMeLzwlVz
-	BJRkQsXVV/oEMdC2eP8gDsga6T9sMOR0Wig==
-X-ME-Sender: <xms:6XikaCMDmqUs282iAXgUcaeJzI5pq11MHvZJkliABpkPBE0yKns7zg>
-    <xme:6XikaHQLZ_T34kYWzQtyUOzpszOvy_BWdj7udoJm4XrF_riRjP83d_2TAHLNZE3RN
-    -P4IiRzEkq0VxsOhL8>
-X-ME-Received: <xmr:6XikaF9vUuFjDX_zC1pPX6yyx36NYC-3e2UaJh1UC3qa2traPIGEpKD_DWQQReIlOlijQdDaK7byjO8Iw0lw3OPgYHFIFUKJ56s>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduheehheelucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepfffhvfevuffkfhggtggujgesthdtredttddtjeenucfhrhhomheplfgrnhhnvgcu
-    ifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqeenucggtffrrghtthgvrhhnpefgvd
-    ffveelgedujeeffeehheekheelheefgfejffeftedugeethfeuudefheefteenucevlhhu
-    shhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjsehjrghnnhgruh
-    drnhgvthdpnhgspghrtghpthhtohepvddupdhmohguvgepshhmthhpohhuthdprhgtphht
-    thhopehfnhhklhdrkhgvrhhnvghlsehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhgvvg
-    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhgtrghllhhighgvrhhoshelleesghhm
-    rghilhdrtghomhdprhgtphhtthhopehsvhgvnheskhgvrhhnvghlrdhorhhgpdhrtghpth
-    htoheprghlhihsshgrsehrohhsvghniiifvghighdrihhopdhrtghpthhtohepnhgvrghl
-    sehgohhmphgrrdguvghvpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprh
-    gtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhn
-    ohhrodgutheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:6XikaBU-dAXIl6uuV44Gyb6UVvUAq_L4Mr6v_8LbiK65G-sOpNkHSQ>
-    <xmx:6XikaDNUakmE8TkZ-wvqycdSV4I_NvnLyc9a41Hocc29bjf9LO89Uw>
-    <xmx:6XikaBeRsQm8kB79Qp-yCO6U_tpxxGsbdxJB_N0L35GG_FozvguRxg>
-    <xmx:6XikaKwXOyJ-sNXnGEV1Dmjuofdkh5YvIBRIFQYmok41ObktspQHQA>
-    <xmx:6nikaL39rxNFN4E9UD0BxjWzewn--tY-WSa4Ru3fH5zn6un6axbaLyMr>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 19 Aug 2025 09:15:21 -0400 (EDT)
-Date: Tue, 19 Aug 2025 15:15:19 +0200
-From: Janne Grunau <j@jannau.net>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, James Calligeros <jcalligeros99@gmail.com>,
-	Sven Peter <sven@kernel.org>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1755609359; c=relaxed/simple;
+	bh=hcciJ3JEjRJw2/6qsmBCQwKrAUZmXoESCyk80czkwi0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JNLtzLI0ilRzmogPqzsQvuHkHmG5XRMxl78vs6YnTw4CJeQ3CL503M0QDedSo5UUoeUhfNOcauNofeEJvI77t/lCC/LULDSlklt7kbfFrUaRcLIZsyGDwnBUxrlYQcjTCgcxDW2RRKvEvsZ3Ci67vZI4MVBeR63N8JYzhFhABl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EJ5OpBRH; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-afcb7ab87ffso83168566b.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:15:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755609356; x=1756214156; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OE5+Il4drYFb68+K9H3WTtaiI5C7tn33MG/1x7pFl90=;
+        b=EJ5OpBRHRd5vZZDH2kp0mP272oDRB3gNWwvoge+dSzudHc7sBONPTirAHTE40s4jx5
+         r/wbquSwBMwcn+bo7dw6KKupM0lcS8gxh6BkgX3yDJBERPBon6tHrhJno1ET48pPOKGt
+         GjYv47dvQnF+IFBRJ+XsBB8aWWyo2dH3mzyDrgHGjMjpna24guS1Z7Yjzv21SrqgxZZW
+         UA4hWT67Ysov1Gspgl4me/83jvjadT5S1SWxSqf0kHItEJDCzKZc+yTEtl/8R7oLI5Rd
+         0sCwPsdcb0cFj3Etn900swvFZj3wqBMjLgmlqWD0L3gl2A8H+c8t+eBE9eM+cuNifS6Y
+         ekmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755609356; x=1756214156;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OE5+Il4drYFb68+K9H3WTtaiI5C7tn33MG/1x7pFl90=;
+        b=ZI+0EMT0um3EWO8jGDohDBfe6f4GHRRVz0wk30vjpUBnGnUuX6hguq6mIS5HD+OKX3
+         bLefPsmBXxnHSFarDoq8ebw9mHRIW0rpaWded5Oxj/sxfjGEmR4rPlsv5xOC/nX/lbRj
+         HzSU0Grv5aurtlZNBdPNx7YVE+XpSfKjxmPG7PxELrxarBUtxuYccwUC9JUr4ClQzI+6
+         fi2vt8dSF5GVx6wGzDQH3Mj9Wh8E4CDcxKQ7emmjNHnai8OVmX9JGLgX/T6wsSoTeAvH
+         M2BjKK4gwGyEBHIn6itobxSTsCbwc4HLq9PK8TilQAKWBeDAwMco2EpVg228S97cxhV1
+         SqtA==
+X-Forwarded-Encrypted: i=1; AJvYcCUSi2Zr7LfppxO5V3iR8m4uBO5VsdAaA73e+JpM3V4dbQr3695YaSUHo4eEry9dzxxnO0/nK+lWTNif@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGBladnRM2H3uwagc7MpOqDGWycXV+oePygVP25b5Okm6yieDh
+	6AfX6hO9ZvsxVAwDFFePnxtEK1RDR4Ta6C0OXOVA+cDkueihrM2ooI1UtLIIK3UsVEw=
+X-Gm-Gg: ASbGncu0uK1mmXGFg65y6VsmaQO7LoNeSQOOZucVJ5ySNqLNRsdhxoiUe7HnbF68Dgn
+	zHPsIvbfuLYdmVVCYPHxZH1bwUcAtIzDCaPek5EvqTaenLWSrhwJt2nQJSOD2TgRr74CXqa9JPS
+	jrn9J3it1RcxvD3ZXKTwmlaEFGAUbhLiCActDsHnimkmWuICYkXCGnc7+KSMTg2In4SBPeM9gIS
+	aa56IMnL6pY4Ps68eKmbjZnbLl0gR+J/fheq2oKlTRjSQfGVWnBeUx2Eh7wpoy90YNljq4klpbW
+	O9Wuun1JJYibaYN4SXkBQsXEvw5QsXW9B2vyzHfQdTvVNgLyYJ7ySgOUVkho1idgJr/ijYj6zT7
+	eDB6krlmwmDULeQRXtIZPoDK1jdHdK/U09Q==
+X-Google-Smtp-Source: AGHT+IG4KTbZO8LcfQ30OvU9YlImtjjMx+/FQDo5HoX0RNFAy7RBraEUBzYhhrqCR+YvCl3Qva33qA==
+X-Received: by 2002:a17:906:d54f:b0:afc:d540:add4 with SMTP id a640c23a62f3a-afddd241018mr115990366b.8.1755609356407;
+        Tue, 19 Aug 2025 06:15:56 -0700 (PDT)
+Received: from kuoka.. ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61a755f8a61sm1771773a12.14.2025.08.19.06.15.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Aug 2025 06:15:55 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 5/8] input: macsmc-hid: New driver to handle the Apple
- Mac SMC buttons/lid
-Message-ID: <20250819131519.GB1270980@robin.jannau.net>
-References: <20250819-macsmc-subdevs-v1-0-57df6c3e5f19@gmail.com>
- <20250819-macsmc-subdevs-v1-5-57df6c3e5f19@gmail.com>
- <20250819123505.GC7508@google.com>
- <CAMT+MTQvMnv4Zj3A8hskU1JW3zys0diKxWUzK5ScerxeSmgPjw@mail.gmail.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] riscv: dts: microchip: Minor whitespace cleanup
+Date: Tue, 19 Aug 2025 15:15:50 +0200
+Message-ID: <20250819131549.86279-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMT+MTQvMnv4Zj3A8hskU1JW3zys0diKxWUzK5ScerxeSmgPjw@mail.gmail.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=951; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=hcciJ3JEjRJw2/6qsmBCQwKrAUZmXoESCyk80czkwi0=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopHkFB6KWZYNHKcB/PWHff8odXyHWo1X4hTKT+
+ 9yX28P0HP6JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKR5BQAKCRDBN2bmhouD
+ 1w0ZD/0ZhRotOVRHIIlha+Ddf7VVmjL9AqsBqtw35BBCtjM/J1lBtJbZov664WjaD89YEJAqIm7
+ 1nDJAcrW8zyKPuGFZPkhgk7fS1W+e1lQys7mCiUHbT9gZaoEhhZ8QlRQTPEzmAOqjIZyRMqJKZj
+ zJUKN69xKV5plTt0PSYoXZI5YXg6enLdYWu4WvAyMS4iCPw+zZQpbs47FE2iDS7i1GvfZVMb7iy
+ 1tFoY5YP76Z9gMnO6LnvES1ZXStyK3brSgpkaxwO/SxP2IrqHcV6yaOSh436BnnMAORn7YlRIMo
+ Ooqq5rbcO8usuNli+NgYBu3Zn3Fmz5GlqQUPUG2ejNWG54mqlP8/GVW8zTb29LKa3uZtXOf2xlt
+ 3EmbX+6XTCeZNL4zvsMM915xv1yhREHodM1i8ibl+l/t9LOi71YIUIZ2zIxwOrkc0ak/4r+kiJo
+ zQRRK03U9PBEGv/HGZeI+7AFB5A1DdLlU2MXm9EwJVvJ/JrtEdM/H+ngytiWEIDHe6/rP40QCzF
+ v3lv+9QXttsQQlvkorfdMiX0KU2E8rlVufMAnnogVPd3T8ejG6jeEg/dhVJ+f8dYwvyq7eAcjvI
+ 8cFyAivH7Il/3SZGHOjGoJcRUnx+ByqzqHPIe3PI83XPdO7jKLerwGME6rnkniKa0oeUL8inC6Z Jjnz9NU7AfP7VyA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Transfer-Encoding: 8bit
 
-On Tue, Aug 19, 2025 at 02:49:49PM +0200, Sasha Finkelstein wrote:
-> On Tue, 19 Aug 2025 at 14:39, Lee Jones <lee@kernel.org> wrote:
-> > Separate patch please.
-> >
-> 
-> Per the discussion in the thread linked from the cover letter, the dt
-> maintainers have requested the bindings for all subdevices to be added
-> together. Do you want a separate series with just the dt bindings and dts
-> changes and the actual drivers in separate series or how do you prefer it?
+The DTS code coding style expects exactly one space around '='
+character.
 
-I think it's asking for patches with the drivera and then separate
-single line patches to wire up the drivers in drivers/mfd/macsmc.c
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Janne
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+index 47cf693beb68..55e30f3636df 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+@@ -88,7 +88,7 @@ &gpio2 {
+ 		     <53>, <53>, <53>, <53>,
+ 		     <53>, <53>, <53>, <53>,
+ 		     <53>, <53>, <53>, <53>;
+-	ngpios=<32>;
++	ngpios = <32>;
+ 	gpio-line-names = "P8_PIN3_USER_LED_0", "P8_PIN4_USER_LED_1", "P8_PIN5_USER_LED_2",
+ 			  "P8_PIN6_USER_LED_3", "P8_PIN7_USER_LED_4", "P8_PIN8_USER_LED_5",
+ 			  "P8_PIN9_USER_LED_6", "P8_PIN10_USER_LED_7", "P8_PIN11_USER_LED_8",
+-- 
+2.48.1
+
 
