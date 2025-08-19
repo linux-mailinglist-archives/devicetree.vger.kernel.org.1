@@ -1,78 +1,79 @@
-Return-Path: <devicetree+bounces-206451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBCEDB2C53E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:21:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA9FB2C546
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:22:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B9203B6BFE
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:18:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA096242DEC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA7D343208;
-	Tue, 19 Aug 2025 13:17:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51669343215;
+	Tue, 19 Aug 2025 13:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OmwpHzI0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P1k3+kn0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB7D1340DA5
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 13:17:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F9E33EAE6
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 13:17:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755609425; cv=none; b=Kho5Our8w7IJ7wZ4ts1FK72d3JnHRj1pFhMzXl92eYU50m5xIWFFtNNDUq7Woi1MEL1uI+DmHs86Y/UxEDWnEIGqAgtY5kfL3C/hLFBF56E/3q50S3PfgQlOO8jaQdoq4pMQoHFsIXIzywiDFoiXV3Ht+y/QP0LR0RrdvUoUc1Y=
+	t=1755609426; cv=none; b=Y4/tel9EdkhtowGjWQKm6IYzZkotlXEealjn0+/ILbvSaL8jTVvUjE7B7s+WBLGmWxkHYP4dtYfdRy3xvM6Zm+EyCULfrOQ3H5/N3JhSdB7B8YA3mU28Sgc+9EffY5veSYwwvGMc+poYpGp6VMfhRRazHYFvW5BqmglgP+9pnHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755609425; c=relaxed/simple;
-	bh=DurH8t9HvSvsgH3oRg+Ms+SKw2PItKWRZVBe+tEhchQ=;
+	s=arc-20240116; t=1755609426; c=relaxed/simple;
+	bh=Bv5YvXCKD3sEHEy0whZr2Io0hZSRL3WFhERlKx2wLwU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BJ/9SLbf+KyJTjf7Up3Kj3rJZ1VIF2UcQlMvOjX3O9wucqZoH5ZK3Fxgde7ed6PO6/+5R0720MZ1vnyVgqqypvkQ81EI4a3AUHYKszvD1H3Fqrhg0vyqUoONGMF8pffcOOAiifHSxjHuTNrjsDUfLOCH4uhzBVzehG/hv4870MQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OmwpHzI0; arc=none smtp.client-ip=209.85.218.50
+	 MIME-Version; b=tzoBFu10Sf0vSIPARPOR9LtnBkhSPG/mn6pWWvzOi/B31DsYBuS1dI0HLtvSCwGMS0lkBwMPBEaqUhzIm09l3twxfTpVC5giE6US5JlSclTr1iPr/sQOMgOKIWzRjvz/C+zvWMU9xYOl/ryGx+d7UFvcCGUeECSzwYy6dqmLKTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P1k3+kn0; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afcb78d5e13so83978466b.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:17:02 -0700 (PDT)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-afcb74bef86so95619866b.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:17:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755609421; x=1756214221; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755609422; x=1756214222; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=afUEtVliVjZtOeNo/hdpDwYyKku5Vsn6emnpI81Aarg=;
-        b=OmwpHzI0iQfw/Q6NF320MEznRekpy9ohE7RN7S4PD+CXIb/rqGYsgoqkwHhrxb9rCd
-         bSWYf/WeRW5NdZHafVFSuzwdtr9XvoUUcWPs50NpzWvNHYiQZw87wIx0qZew3a+qpY/4
-         8pGGemugyV9l5EVF5gQO14H68i8NqYTID/bj7IeqWTn4r9a3KDPyG9tg/Fo+akEaI/aT
-         gdMX3ZluojGwo2kKUOQGGtkY/pqlq1E4G1ZjIFFgEJZLx0hl2qgYps+KkW7CHMeFsmjt
-         JeAGDEAoaoM9WC9fxjVYFwU+V/9c4Ytu8i9cx4HTzUqESa4Vifn5/lCx4gdKa1nlUkFc
-         X4RA==
+        bh=Q6oO7UcbifjANg6+xucVaaqaXrh56H+LhtGLaKseBvw=;
+        b=P1k3+kn0RBqtbZyKscH8ADyrGx5Q6C0aYF8ugFLjlV9HKjoYXDBOoYz1T6NA2qydOt
+         T+qBRA9W6zrWksQ56L3ittyn4suvV0eRebkVY+UmEPeRntx9MrG/A/0ZCEdA52eS/mxi
+         BovblY1CNVvpAmssEN0Skomvrg6fgUla+SPeDxIHc216tmT+p5Sk7HjB6jSKxIynFN5u
+         jPmdrqAXrAvKYuiItY+mKLXn+GZ4ERztBx+rGvo+kSvO4V1G0EmCPQ5jart/uffwM6OB
+         +2J4dHF4RWfnJ/nTyp5Tn7XhzjHtknPD31Eg5j+zht+Ec75xaK9uH/dqpHLTQIRuWVBa
+         HJPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755609421; x=1756214221;
+        d=1e100.net; s=20230601; t=1755609422; x=1756214222;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=afUEtVliVjZtOeNo/hdpDwYyKku5Vsn6emnpI81Aarg=;
-        b=N16S8qyZSt6lIYCw4mETpASPueX2jXuQxTBkureCaWxw7mba8lavnQZ07xPMxhaXtA
-         H5UV+2wKYxPTP3aAiPipvOgBAkenZhi/Z2xUTGk116O2QR/UGjneKyKHrJuoGIulgsDi
-         Z/XQY0B5lR3Z5w6imiymQ0XFfRbWv2fUquQXnhot4uLgTySzxuguytAljbvBg6fRzkJo
-         RKcxuGZPzJuCIp47KlVPcgxcRQmVeKnYi9rL3P/VrVNpj+1kSjS932ZCDE0sC9XLeedq
-         9Cxp+w6PgqZzKk2Kc8I9TfmwdkctHS4H76q9plqDzIH8QhXzPCL6UNQn+R5lxFZDLiTM
-         8AfA==
-X-Forwarded-Encrypted: i=1; AJvYcCVDZxlzfz+xYIm1QoPYwYdFcIain5FKgrSO15yR935awHHIo4oFjgs3DvfUBp0mSJPq5HHR0zJaKPEi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yztz+ZiJhcQQuyl4Y7LVwYtcNobpyf8l/wAWEhd8wi1NOwMZUjb
-	aW2JYa1vZeoFf6G510B6eRZuW91Muwpa9OvkqVQ0Pj0NT0YJgDNb2IAAnx/vseWdkMY=
-X-Gm-Gg: ASbGncsWxqXyaAoUX6oFaiY7FdlrDzgmJWA42CGsoFb3gI6fP0L7oa7RUvGTE/8MJ+U
-	d5eERo7/lsoHFoesbyKJsGshkkdovzu60TI08oLvbszSZ3Ml7qz0arCORvy64Qmj/vt2y9GwIgP
-	/tWjtXFNiENPGY5KnSM9JnA8BKWFHFjly2gDKfR5JUGM+puIpyCN+CyTDCVfZ1dzodT050Jhsv+
-	ZVUzB65Izyx4AqR79ilBpov7I9Spl7pCrZpUC4sqkIwGzhMSpxRGEqh0p3FZ9VETjcpW/ERxM8Q
-	B2Dyi57jjuQuAvvtr5An7v7Xwi2OsJ67Nzfy5/t/YnJ2deuqfIWVpwGwjbHhKS7rV1ds71HumKh
-	LKtVqnsEbOiixdoyRKR1hJnIolc4pGsLYOg==
-X-Google-Smtp-Source: AGHT+IGtLL/rMQjhxzJkRlPZlnKvsoJ1pZE187tn2bkOK0e/dPzM5466KD0MC8NA4ckzjg0aedgAGw==
-X-Received: by 2002:a17:907:60c9:b0:af8:fd22:6e28 with SMTP id a640c23a62f3a-afddd1f804fmr139748566b.7.1755609421010;
-        Tue, 19 Aug 2025 06:17:01 -0700 (PDT)
+        bh=Q6oO7UcbifjANg6+xucVaaqaXrh56H+LhtGLaKseBvw=;
+        b=tVYbvOOunj9eYA+jKxmpFFXeJG4W/5TIDCnSjUXnj7e9bYusoxTq9HfIm+f+Bn/rhD
+         2N5JmnPr9rt66FO3MXnYeYtNTXwGNjgagJJYJz+ak8dg61Jwa6j94ZJWkGPhN4HWDIH4
+         1VQ+GNqaCqR8NqsBEW3hi5s5PJqtrd2Y87m4IFHhE4fHnlohpYHyYOoeSqltlZkN0sVj
+         KkZSRG8uJJxH7BRWwt13ds80uxguC9/af9XSSO6LrGgfGnB30b579OeJk1fcmRHO12QO
+         64gYa1ywYPTwXRXT/xCUffZbB12pBDfqeoMJIpIqiirx7eb6CzJsQ6CTdD4cbmC81/LI
+         k/xg==
+X-Forwarded-Encrypted: i=1; AJvYcCWyZ1MycFImOREyQo9Rv7h7N0jIOxjCsxSDuSKi4/eBVYSZ5Ng+OnpCPAbZBG+zLE1vUUnArqyVf3Pe@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaaME53WBqeYLIBCGWJ6I8Xzb5smZI27FEf+VPczgy+sKUqQS3
+	86gy1sWBUXeBoX2ZT4bsBGgLrVaGy+fJ7e16T8v48DE3lvt5sYAehSf/VaZ9KZYqKvcylMQtyQ8
+	wrI50
+X-Gm-Gg: ASbGnctho0iKRW14hO1rSE4L2bK0awNBZQjB9AYYYrqkvZDAJ2RPpYkBCH7ZbOooQNR
+	GdvxCvbK21ZXCqQImOLMpVgmTqzmoW86NHhBn6bY13eMGNel1x6nuICPzYFuLGCo7HGagCf7qaM
+	EOgVLf8bAQ2zFthX2PB+V/Mo8PqwLgK94G2OIKO1Sen3DHj+AH/3dGPKFdufhEB0xxDyfDWlDbM
+	S10sK8pijCMFrb9vBxSnyk3MpXAn1E8GaM8vU7SK+ae721X+PisjP34HV7Bp+wFV9iaLm/mtTV+
+	3+Q1IFLXpbtUbWZ/u64YYHc99RnT4m7R7NfwoaxGjBanysw96KoYNv6uAFXoxnuxiXaGCY0phhk
+	5a4UiPNrijtzJiY4XfXXUf7XmWcSvPb7fTQ==
+X-Google-Smtp-Source: AGHT+IGaketc/mPE71H8qiCvBINl3fociuyFe3ipXPvm1yAjoe0EVAgQ2XFvCAAR1jGETap8sm+eBw==
+X-Received: by 2002:a17:906:7950:b0:ae6:c555:8dbb with SMTP id a640c23a62f3a-afddd27def9mr115923766b.11.1755609422428;
+        Tue, 19 Aug 2025 06:17:02 -0700 (PDT)
 Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afcdcfccea7sm1005948066b.67.2025.08.19.06.16.59
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afcdcfccea7sm1005948066b.67.2025.08.19.06.17.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 06:17:00 -0700 (PDT)
+        Tue, 19 Aug 2025 06:17:01 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Tony Lindgren <tony@atomide.com>,
 	Rob Herring <robh@kernel.org>,
@@ -86,9 +87,9 @@ To: Tony Lindgren <tony@atomide.com>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/4] ARM: dts: omap: dm816x: Split 'reg' per entry
-Date: Tue, 19 Aug 2025 15:16:53 +0200
-Message-ID: <20250819131651.86569-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/4] ARM: dts: omap: Minor whitespace cleanup
+Date: Tue, 19 Aug 2025 15:16:54 +0200
+Message-ID: <20250819131651.86569-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250819131651.86569-5-krzysztof.kozlowski@linaro.org>
 References: <20250819131651.86569-5-krzysztof.kozlowski@linaro.org>
@@ -98,48 +99,227 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=980; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=DurH8t9HvSvsgH3oRg+Ms+SKw2PItKWRZVBe+tEhchQ=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopHlED2RNTR+gOn2Nk2+yeF1Ihk8AB0mmN+Q6A
- BV9PMIiEuKJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKR5RAAKCRDBN2bmhouD
- 1yCQEACXqTIa98/3bq3O1JqYDp3gG6RAC1NUdM2KPR8Em28++Xh3z8FISafVDmkIsiK9DZGl/DG
- eimvXk1Y8oHTqKOzA3SSL8lMcT+v/nn/l5BBZDTYv3jmrizFHdah18lX/Ay2MAcTD0Zd988g38P
- 1aN+Q7fUFiCofVUskLHo4UgNOWab9pNsqP9aCdD4Y1xp8V1QZp50ExH3c0qKxPCjsQgmXZ1+9o2
- jW/7FUo7ipHjHdmTNlH5X3ulXI4qRfcKU5NFleIH1BcBpTBEb7318kwlDSkuiaH6s9PuJ1bqFWW
- QvV4e3sj0Bc50dYmjB+CM103UFaVy2uRw7i0LC5tWVYFPgeZrPbKYVRS7MY7o65OhtiJGMp2IVA
- YPcBwDmDcphdcIm7ERMneVOe4GIBc377EuuhOcENPsu27Mcx492FNhIzXsY/2lpUvWm1ePqMbMW
- +Fzdk6VswXWJFynrlOHJuwi56zY7Sd6jty3/Pwe/dYZ3we4czC4QzUNbpLNPgViNA02XaorY+Ne
- yuZPBJFllB5Hf9ZbUc7/zhK2/DentWxlmgquwXCEVxxHQnbnxQEbRxktZKrebYFDyZUBwMN7ynq
- KBQ9MCU9F1ijlY1iouBVP1kt/fg5Ek2iVfBPou9csJYu8Ev58kkHbgqKGRvfiXkJRq/2RT1cdIN oyHSeQgK4x/Rv0A==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7662; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=Bv5YvXCKD3sEHEy0whZr2Io0hZSRL3WFhERlKx2wLwU=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopHlF76yqVlEVRvjTp0YREvGTF65iZZhqrfmTG
+ /V2v+Osfu+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKR5RQAKCRDBN2bmhouD
+ 18zkD/0b7To2OAux7kXNWZ0VpydPAqbeALF9fgzHu5S3KK3o/ZQaQHxG3PmYzpjFL6qQ307zjwm
+ R8f7LLrAqmAooYWAwoYgINpYiTUYYMh54xnEX/CT2Wc2nOnL/aSXTbxEyYjTwEN2Yl/VES+eWrw
+ T3Sd503fc+5F4R0VKeiaB/Uu07yRmzfq2w6FjUQyRTqZNMEsPYMGKFZXx2x08e+7ZM66iduIveP
+ 8GbePPzAhbvGY49Z0wKwk/TRlxHD2gKJ5Qpa9KrQuk2eed/ngZyNVnihl87Z69TJM/zrUmToFsb
+ 4ydwV95vDLSiWZkOfqQgLhZp2Dti9+NX6WmEKW9DPnzzGSGd2e7zqJSskf19W/zrmvEMVir6DmC
+ dn2i3I5jVQ83I2G5ZhGNw02fqE0t5RXlzN9I0VgW7ek1pESp4TwgnXKYU+BBxl5rtHZgW0MzjFG
+ XGlnUy6H02swqSkpxUHJE0dKMOTZMVzfXFcQFPWyvHa8dbWPMxKwnvYcYMV+4ZS5xh9g0mB4h95
+ pWpo7nqCAgauIXxzxoc10WMrsAsPv6mQAehS2KOD4j9O4DwOt/Wdp44Ht8fJjnv801xQ5bzraQB
+ 4u7oieQ7VL4S8XCVjsRzusJCbvOe0WISbUDG0U9p7CN30wRAS2wxxOu8sGSstUFHeRBAtwI+Pbs 9TkZ8loMeH+tnqg==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
 
-Multiple entries in 'reg' should be encoded in separate <>.
+The DTS code coding style expects exactly one space around '='
+character.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/ti/omap/dm816x.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ .../arm/boot/dts/ti/omap/am335x-myirtech-myd.dts |  4 ++--
+ arch/arm/boot/dts/ti/omap/am335x-sl50.dts        |  2 +-
+ arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi         |  8 ++++----
+ arch/arm/boot/dts/ti/omap/am33xx.dtsi            |  8 ++++----
+ .../dts/ti/omap/am57xx-beagle-x15-common.dtsi    |  2 +-
+ arch/arm/boot/dts/ti/omap/dra7-l4.dtsi           | 14 +++++++-------
+ arch/arm/boot/dts/ti/omap/dra71-evm.dts          | 16 ++++++++--------
+ .../dts/ti/omap/omap3-devkit8000-common.dtsi     |  4 ++--
+ arch/arm/boot/dts/ti/omap/omap3-sbc-t3517.dts    |  4 ++--
+ 9 files changed, 31 insertions(+), 31 deletions(-)
 
-diff --git a/arch/arm/boot/dts/ti/omap/dm816x.dtsi b/arch/arm/boot/dts/ti/omap/dm816x.dtsi
-index b68686f0643b..407d7bc5b13a 100644
---- a/arch/arm/boot/dts/ti/omap/dm816x.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/dm816x.dtsi
-@@ -643,10 +643,10 @@ &cppi41dma 26 1 &cppi41dma 27 1
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts b/arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts
+index fd91a3c01a63..06a352f98b22 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts
++++ b/arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts
+@@ -143,7 +143,7 @@ &i2c1 {
  
- 			cppi41dma: dma-controller@47402000 {
+ 	sgtl5000: sgtl5000@a {
+ 		compatible = "fsl,sgtl5000";
+-		reg =<0xa>;
++		reg = <0xa>;
+ 		clocks = <&clk12m>;
+ 		micbias-resistor-k-ohms = <4>;
+ 		micbias-voltage-m-volts = <2250>;
+@@ -155,7 +155,7 @@ sgtl5000: sgtl5000@a {
+ 
+ 	tda9988: tda9988@70 {
+ 		compatible = "nxp,tda998x";
+-		reg =<0x70>;
++		reg = <0x70>;
+ 		audio-ports = <TDA998x_I2S 1>;
+ 
+ 		#sound-dai-cells = <0>;
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-sl50.dts b/arch/arm/boot/dts/ti/omap/am335x-sl50.dts
+index 757ebd96b3f0..f3524e5ee43e 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-sl50.dts
++++ b/arch/arm/boot/dts/ti/omap/am335x-sl50.dts
+@@ -109,7 +109,7 @@ clocks {
+ 		audio_mclk_fixed: oscillator@0 {
+ 			compatible = "fixed-clock";
+ 			#clock-cells = <0>;
+-			clock-frequency  = <24576000>;	/* 24.576MHz */
++			clock-frequency = <24576000>;	/* 24.576MHz */
+ 		};
+ 
+ 		audio_mclk: audio_mclk_gate@0 {
+diff --git a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
+index d6a143abae5f..f502216ecf38 100644
+--- a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
++++ b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
+@@ -1457,10 +1457,10 @@ SYSC_OMAP2_SOFTRESET |
+ 
+ 			gpio1: gpio@0 {
+ 				compatible = "ti,omap4-gpio";
+-				gpio-ranges =   <&am33xx_pinmux  0  0  8>,
+-						<&am33xx_pinmux  8 90  4>,
+-						<&am33xx_pinmux 12 12 16>,
+-						<&am33xx_pinmux 28 30  4>;
++				gpio-ranges = <&am33xx_pinmux  0  0  8>,
++					      <&am33xx_pinmux  8 90  4>,
++					      <&am33xx_pinmux 12 12 16>,
++					      <&am33xx_pinmux 28 30  4>;
+ 				gpio-controller;
+ 				#gpio-cells = <2>;
+ 				interrupt-controller;
+diff --git a/arch/arm/boot/dts/ti/omap/am33xx.dtsi b/arch/arm/boot/dts/ti/omap/am33xx.dtsi
+index 0614ffdc1578..43ec2a95f4bb 100644
+--- a/arch/arm/boot/dts/ti/omap/am33xx.dtsi
++++ b/arch/arm/boot/dts/ti/omap/am33xx.dtsi
+@@ -461,10 +461,10 @@ &cppi41dma 26 1 &cppi41dma 27 1
+ 
+ 			cppi41dma: dma-controller@2000 {
  				compatible = "ti,am3359-cppi41";
--				reg =  <0x47400000 0x1000
--					0x47402000 0x1000
--					0x47403000 0x1000
--					0x47404000 0x4000>;
-+				reg = <0x47400000 0x1000>,
-+				      <0x47402000 0x1000>,
-+				      <0x47403000 0x1000>,
-+				      <0x47404000 0x4000>;
+-				reg =  <0x0000 0x1000>,
+-				       <0x2000 0x1000>,
+-				       <0x3000 0x1000>,
+-				       <0x4000 0x4000>;
++				reg = <0x0000 0x1000>,
++				      <0x2000 0x1000>,
++				      <0x3000 0x1000>,
++				      <0x4000 0x4000>;
  				reg-names = "glue", "controller", "scheduler", "queuemgr";
  				interrupts = <17>;
  				interrupt-names = "glue";
+diff --git a/arch/arm/boot/dts/ti/omap/am57xx-beagle-x15-common.dtsi b/arch/arm/boot/dts/ti/omap/am57xx-beagle-x15-common.dtsi
+index 994e69ab38d7..87b61a98d5e9 100644
+--- a/arch/arm/boot/dts/ti/omap/am57xx-beagle-x15-common.dtsi
++++ b/arch/arm/boot/dts/ti/omap/am57xx-beagle-x15-common.dtsi
+@@ -149,7 +149,7 @@ led3 {
+ 	gpio_fan: gpio_fan {
+ 		/* Based on 5v 500mA AFB02505HHB */
+ 		compatible = "gpio-fan";
+-		gpios =  <&tps659038_gpio 2 GPIO_ACTIVE_HIGH>;
++		gpios = <&tps659038_gpio 2 GPIO_ACTIVE_HIGH>;
+ 		gpio-fan,speed-map = <0     0>,
+ 				     <13000 1>;
+ 		#cooling-cells = <2>;
+diff --git a/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi b/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi
+index ba7fdaae9c6e..c9282f57ffa5 100644
+--- a/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi
++++ b/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi
+@@ -267,8 +267,8 @@ usb2_phy1: phy@4000 {
+ 					syscon-phy-power = <&scm_conf 0x300>;
+ 					clocks = <&usb_phy1_always_on_clk32k>,
+ 						 <&l3init_clkctrl DRA7_L3INIT_USB_OTG_SS1_CLKCTRL 8>;
+-					clock-names =	"wkupclk",
+-							"refclk";
++					clock-names = "wkupclk",
++						      "refclk";
+ 					#phy-cells = <0>;
+ 				};
+ 
+@@ -279,8 +279,8 @@ usb2_phy2: phy@5000 {
+ 					syscon-phy-power = <&scm_conf 0xe74>;
+ 					clocks = <&usb_phy2_always_on_clk32k>,
+ 						 <&l3init_clkctrl DRA7_L3INIT_USB_OTG_SS2_CLKCTRL 8>;
+-					clock-names =	"wkupclk",
+-							"refclk";
++					clock-names = "wkupclk",
++						      "refclk";
+ 					#phy-cells = <0>;
+ 				};
+ 
+@@ -294,9 +294,9 @@ usb3_phy1: phy@4400 {
+ 					clocks = <&usb_phy3_always_on_clk32k>,
+ 						 <&sys_clkin1>,
+ 						 <&l3init_clkctrl DRA7_L3INIT_USB_OTG_SS1_CLKCTRL 8>;
+-					clock-names =	"wkupclk",
+-							"sysclk",
+-							"refclk";
++					clock-names = "wkupclk",
++						      "sysclk",
++						      "refclk";
+ 					#phy-cells = <0>;
+ 				};
+ 			};
+diff --git a/arch/arm/boot/dts/ti/omap/dra71-evm.dts b/arch/arm/boot/dts/ti/omap/dra71-evm.dts
+index f747ac56eb92..1d2df8128cfe 100644
+--- a/arch/arm/boot/dts/ti/omap/dra71-evm.dts
++++ b/arch/arm/boot/dts/ti/omap/dra71-evm.dts
+@@ -83,10 +83,10 @@ lp8733: lp8733@60 {
+ 		compatible = "ti,lp8733";
+ 		reg = <0x60>;
+ 
+-		buck0-in-supply =<&vsys_3v3>;
+-		buck1-in-supply =<&vsys_3v3>;
+-		ldo0-in-supply =<&evm_5v0>;
+-		ldo1-in-supply =<&evm_5v0>;
++		buck0-in-supply = <&vsys_3v3>;
++		buck1-in-supply = <&vsys_3v3>;
++		ldo0-in-supply = <&evm_5v0>;
++		ldo1-in-supply = <&evm_5v0>;
+ 
+ 		lp8733_regulators: regulators {
+ 			lp8733_buck0_reg: buck0 {
+@@ -131,10 +131,10 @@ lp8732: lp8732@61 {
+ 		compatible = "ti,lp8732";
+ 		reg = <0x61>;
+ 
+-		buck0-in-supply =<&vsys_3v3>;
+-		buck1-in-supply =<&vsys_3v3>;
+-		ldo0-in-supply =<&vsys_3v3>;
+-		ldo1-in-supply =<&vsys_3v3>;
++		buck0-in-supply = <&vsys_3v3>;
++		buck1-in-supply = <&vsys_3v3>;
++		ldo0-in-supply = <&vsys_3v3>;
++		ldo1-in-supply = <&vsys_3v3>;
+ 
+ 		lp8732_regulators: regulators {
+ 			lp8732_buck0_reg: buck0 {
+diff --git a/arch/arm/boot/dts/ti/omap/omap3-devkit8000-common.dtsi b/arch/arm/boot/dts/ti/omap/omap3-devkit8000-common.dtsi
+index 07d5894ebb74..910e3b54f530 100644
+--- a/arch/arm/boot/dts/ti/omap/omap3-devkit8000-common.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap3-devkit8000-common.dtsi
+@@ -275,8 +275,8 @@ filesystem@680000 {
+ 
+ 	ethernet@6,0 {
+ 		compatible = "davicom,dm9000";
+-		reg =  <6 0x000 2>,
+-		       <6 0x400 2>; /* CS6, offset 0 and 0x400, IO size 2 */
++		reg = <6 0x000 2>,
++		      <6 0x400 2>; /* CS6, offset 0 and 0x400, IO size 2 */
+ 		bank-width = <2>;
+ 		interrupt-parent = <&gpio1>;
+ 		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/arch/arm/boot/dts/ti/omap/omap3-sbc-t3517.dts b/arch/arm/boot/dts/ti/omap/omap3-sbc-t3517.dts
+index 07bec48dc441..959fdeeb769e 100644
+--- a/arch/arm/boot/dts/ti/omap/omap3-sbc-t3517.dts
++++ b/arch/arm/boot/dts/ti/omap/omap3-sbc-t3517.dts
+@@ -57,8 +57,8 @@ &mmc1_pins
+ 		&mmc1_aux_pins
+ 	>;
+ 
+-	wp-gpios =  <&gpio2 27 GPIO_ACTIVE_HIGH>; /* gpio_59  */
+-	cd-gpios =  <&gpio5 16 GPIO_ACTIVE_HIGH>; /* gpio_144 */
++	wp-gpios = <&gpio2 27 GPIO_ACTIVE_HIGH>; /* gpio_59  */
++	cd-gpios = <&gpio5 16 GPIO_ACTIVE_HIGH>; /* gpio_144 */
+ };
+ 
+ &dss {
 -- 
 2.48.1
 
