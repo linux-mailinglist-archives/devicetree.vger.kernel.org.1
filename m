@@ -1,210 +1,152 @@
-Return-Path: <devicetree+bounces-206283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70247B2BF17
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:37:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD3E1B2BF4B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:48:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 978241B674B5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:37:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 110ED5A1603
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:47:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC00322A30;
-	Tue, 19 Aug 2025 10:36:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TezlJBbT";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="/jwHUwE/";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TezlJBbT";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="/jwHUwE/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF261326D56;
+	Tue, 19 Aug 2025 10:46:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A62142E718F
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 10:36:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0EFA322DD9;
+	Tue, 19 Aug 2025 10:46:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755599795; cv=none; b=qM4eVlfHLwRqShQ3Vrwa5W7GhgLnGFlEjjgvsDEEnhjDRLCfMlLvGB9Ak4E38nUKijuC8W+36FI0eLkZZe8gRl2/KstUMKCTfePtfpFx4u3s/dIP08KCWufydj+9vHskLwjL9p/pTTfT2r7pqcl3sm1ZkV8RIiKdsuW7peDTCd8=
+	t=1755600413; cv=none; b=L3S79EUbE1dyP6hfOzw1tl0S3LJEmJ+dgzcKtkYxedf+AYrlANSsx8QkbJOuiKaPrOJ3JtQVfMdZQ7jPw4d0P6bWiTEeSu02ZBvqJ4lz06KUz93tvOZWdyj9oKonlbBPhZxMPm6roP9g8ZgzYGuGRbKz8GsaqGfok4tVHyd0LC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755599795; c=relaxed/simple;
-	bh=37aey4AK3mJUZeNmjMHYQZ6v9A4NtdxD2XjaKTFYXno=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K3F0gemuEw8/QCiGrF+p2WSv/6SFK5PZfSX3FDWd0vXyjcw1NLB/kTicjiTWgGRixkaIyzGD9gmkAuXjsS73K6lvV6Gxjw4/oVKjq58FfwzZGowNEQ7YIwhMZAjgsG6yD8LqEEw2frJPtzbr2qIwWHToRmrV2g9Omb6m+QEfSXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=TezlJBbT; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=/jwHUwE/; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=TezlJBbT; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=/jwHUwE/; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id C0BB31F785;
-	Tue, 19 Aug 2025 10:36:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1755599791; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wCP2sXh2gwfCkPbU6Wb/CWK6RQlUL1v1Xohq8MIEbiY=;
-	b=TezlJBbTjtioKcepFdP4s5z7tTYZPn/Bt16uIdS+IRohLyiD0pdEFo44EnYqhEkY4Kl45p
-	+MV5ArsmtY3a8cMD0JsUKBcHduBJXeE/cTuVXDR1d8FOlbcJ3zNUEG9tnB4Jgut4IG76JY
-	TZFidaoiG5mtq+uH5e48WIz8d7XnhqM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1755599791;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wCP2sXh2gwfCkPbU6Wb/CWK6RQlUL1v1Xohq8MIEbiY=;
-	b=/jwHUwE/R4yDKWdeW7jVCqMk9g+olXYtz4c0NA9J4bRs5ABxBInaUESpbCJAJ1ECVdZw5O
-	DPfFpH32Tp19lVAg==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1755599791; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wCP2sXh2gwfCkPbU6Wb/CWK6RQlUL1v1Xohq8MIEbiY=;
-	b=TezlJBbTjtioKcepFdP4s5z7tTYZPn/Bt16uIdS+IRohLyiD0pdEFo44EnYqhEkY4Kl45p
-	+MV5ArsmtY3a8cMD0JsUKBcHduBJXeE/cTuVXDR1d8FOlbcJ3zNUEG9tnB4Jgut4IG76JY
-	TZFidaoiG5mtq+uH5e48WIz8d7XnhqM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1755599791;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wCP2sXh2gwfCkPbU6Wb/CWK6RQlUL1v1Xohq8MIEbiY=;
-	b=/jwHUwE/R4yDKWdeW7jVCqMk9g+olXYtz4c0NA9J4bRs5ABxBInaUESpbCJAJ1ECVdZw5O
-	DPfFpH32Tp19lVAg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id CBFCD139B3;
-	Tue, 19 Aug 2025 10:36:30 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id vVAZL65TpGjVWgAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Tue, 19 Aug 2025 10:36:30 +0000
-Message-ID: <437a8d6d-8d59-4ae3-beda-d9eab1300109@suse.de>
-Date: Tue, 19 Aug 2025 13:36:25 +0300
+	s=arc-20240116; t=1755600413; c=relaxed/simple;
+	bh=uopoiV8HyAqxU9op6og8ChAkirSUUQctyoGCBvLV9t8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C7+MeaCSzvtyBOUtC65gPQDtLoB66ESllWp5BM2gO0QAnTk6QMkeuwSBnyxn/0OhTULUMhpqKUIsFAU8mnNkZfTekQO7rlxeaoR0Jl306MMmDXDD/M0fLKRmOEQM4HXJL+sQziWtDA+njNos6WovQEti/TaUn/MZKL95rkHFft4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-74381f3a3daso2397566a34.1;
+        Tue, 19 Aug 2025 03:46:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755600410; x=1756205210;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=doFbpw5H93w6OCFZvWHsPgEA4fiQmo1QkgmSlnIHgck=;
+        b=mVLrRhMMsSW+PZy6qVLNMJe2Od4nqEbsD4YpMJBIkzbVga6n8nzFsxOeyBB57Mz10o
+         3uk7GUqeygKq0YZ8jlTPgZkewdxL8BNpS1OSNm+baU/wD7nrvMM8ezYqcDsnfx+A0E1S
+         +xBJUGdS4uTnqxv9FcaWyCkQAyWjNz+c6etwpcXWb8NlVl9V0vNdc2mJZbLkh3HznWDm
+         sCRH9u2J983ykGD+oyegtHt8rzf7Xx4V/VDRErLAgyGk+ZXIeZezjY2dRP5n6yShawaw
+         5Iqrt2MlWcZ6GUlh7N7WuFU5W1ZiDUVRVJYdHnFm5YMrnMz9w7cQBTRsUHdvRcvIM6u/
+         7njQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUMGxfcDY5CNX9rQGtj71N58b7KAYWS5NwtgS0hykKj9WbiyHh4AzyUDARW18abtBNCuPGBrVPnieoz@vger.kernel.org, AJvYcCUWZW4GyhtoiPFnfK2guFiZ6QEC9OS4HXZN87LyIagFUrQdH8Xk7FYC2/QnDXOka/doISnDpsk5Gv8GPza9DhsJrjU=@vger.kernel.org, AJvYcCVf8747iLKSagUAKdAmIwR/WFcm8BPmReLxyB/hDCeu14on0KKA0Sm25EW4UuME+faw51EkTu+xlkX1@vger.kernel.org, AJvYcCWp6WvWaS343yYosG31pYyvt7+HU1Cx0hHjczPc79x4zq7mvViCCmA1Cx3Lj/E2JK2NFBLkAyT4B9oDUhUx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLLu0K5ancwucAd34yhzmlJmQIEFdkOBgdB5XTm/Ytc3Q9fleL
+	qXUT86chifOFOmbCbr00a0PmZqO8TY9tuDIcSHgE60JTGixk9CP/KCdpb89bW6Zp
+X-Gm-Gg: ASbGncuj7Nmp91giq929bO8sunnh4xyBNi2TXvXtnFFa6T4XYzbbBBmtHS1qH9L6FEz
+	SIY6HUQ/cTvolu83wH27vvikeZy0aNduVBy1gTTgN6gfd/PpI+UyNPQ/V8KOtLwv7/Nm/mnRW3u
+	ZhisnajlLuz9huvLsz8WoKC2vuGe4t6bK+wSQ+6q6ufybVT6ul5y/0JP1F+79uAOJHtNZsesrdo
+	1dAq5YaDBRrf+OhgogmUrEmheufA3mTcJfEdwrILirNYodhFXL1e0gBTbMzFSnYpZRh+DQHC7Xb
+	eWrfxWjB02Y7OdaIXCIgOxFvch2Kp4zbiC4BehQnhk7P5uLpoHjDYRgM58QqmQHu8KdTgcC+zaG
+	9M6w40K5S/lygf89LIXM+1Uoj7tDjxHbIeRprOG8Ea5noftSL6sRUnX5Uap+yxedfysbob7M=
+X-Google-Smtp-Source: AGHT+IEu5IukSeD8mPykXzn+hztoe/vfT0lWboNhEX/LD0NwIRwj6GFYm3rYRDtEkMj+OFi4432iwA==
+X-Received: by 2002:a05:6830:2b21:b0:742:f90c:ec75 with SMTP id 46e09a7af769-744e0afb22fmr1342088a34.25.1755600410421;
+        Tue, 19 Aug 2025 03:46:50 -0700 (PDT)
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com. [209.85.160.50])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-310abb343d4sm3355355fac.17.2025.08.19.03.46.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Aug 2025 03:46:50 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-30cce8ec298so4336225fac.1;
+        Tue, 19 Aug 2025 03:46:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUJnimBvoMtASqwSwBRm5OG04SEALKBOlecrUf/2fzu8EMK9w9//AfGAl19znHKhzdKe1RebxGn8HEy@vger.kernel.org, AJvYcCW+PS4F7MOYi8kNx7VdpbYwytUtfgdRtHEtOVhM2OeOTtEM0nWXTw+wl8M4VgqGxQ68VnH40o80/9I18dL5DpjPqaM=@vger.kernel.org, AJvYcCWoW0YJ1yR/hQJ3/kINDpLMJT3820vtdljB10bEtcc+VT4szscA8p5K3EJ8/988ejvWvYPZj9nH9HYM4dft@vger.kernel.org, AJvYcCXpX+WBXqyCqtA3qoN8Zk0cuLZZIAh+0v+lK1S3SH9LBym3rTCGeOIxPIpDpX6pvuY0Y9jnjX/XKbnu@vger.kernel.org
+X-Received: by 2002:a05:6102:548a:b0:4e6:f7e9:c4a5 with SMTP id
+ ada2fe7eead31-51924b3b1c1mr573466137.22.1755600045268; Tue, 19 Aug 2025
+ 03:40:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] net: cadence: macb: Set upper 32bits of DMA ring
- buffer
-To: Nicolas Ferre <nicolas.ferre@microchip.com>,
- Stanimir Varbanov <svarbanov@suse.de>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Andrea della Porta <andrea.porta@suse.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Phil Elwell
- <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-References: <20250815135911.1383385-1-svarbanov@suse.de>
- <20250815135911.1383385-2-svarbanov@suse.de>
- <37427c1a-68af-4c50-ac6d-da5ee135c260@microchip.com>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <37427c1a-68af-4c50-ac6d-da5ee135c260@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-6.80 / 50.00];
-	REPLY(-4.00)[];
-	BAYES_HAM(-3.00)[99.99%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-0.999];
-	MIME_GOOD(-0.10)[text/plain];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	TAGGED_RCPT(0.00)[dt,netdev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	URIBL_BLOCKED(0.00)[suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo];
-	RCVD_COUNT_TWO(0.00)[2];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email]
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Spam-Score: -6.80
+References: <20250728201435.3505594-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250728201435.3505594-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CA+V-a8ujMaFFOv8Jd-5=fKHUEfVji1Xt5y_h4uwtR96TBz4VNA@mail.gmail.com>
+In-Reply-To: <CA+V-a8ujMaFFOv8Jd-5=fKHUEfVji1Xt5y_h4uwtR96TBz4VNA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 19 Aug 2025 12:40:34 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVFxaCrBu0fAJX3wmY9wdgHn1O8-cVOS6OKN6HGX9v55g@mail.gmail.com>
+X-Gm-Features: Ac12FXz7ywVTeSgdEqc13iyHS6v2zZGzk_1Dft3Db5rZ3MNDTn1vQslXfUK25bs
+Message-ID: <CAMuHMdVFxaCrBu0fAJX3wmY9wdgHn1O8-cVOS6OKN6HGX9v55g@mail.gmail.com>
+Subject: Re: [PATCH v7 4/6] dt-bindings: display: bridge: renesas,dsi:
+ Document RZ/V2H(P) and RZ/V2N
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Nicolas,
+On Mon, 28 Jul 2025 at 22:28, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
+rote:
+> On Mon, Jul 28, 2025 at 9:14=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
+.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add the compatible string "renesas,r9a09g057-mipi-dsi" for the Renesas
+> > RZ/V2H(P) (R9A09G057) SoC. While the MIPI DSI LINK registers are shared
+> > with the RZ/G2L SoC, the D-PHY register layout differs. Additionally, t=
+he
+> > RZ/V2H(P) uses only two resets compared to three on RZ/G2L, and require=
+s
+> > five clocks instead of six.
+> >
+> > To reflect these hardware differences, update the binding schema to
+> > support the reduced clock and reset requirements for RZ/V2H(P).
+> >
+> > Since the RZ/V2N (R9A09G056) SoC integrates an identical DSI IP to
+> > RZ/V2H(P), the same "renesas,r9a09g057-mipi-dsi" compatible string is
+> > reused for RZ/V2N.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > v6->v7:
+> > - Renamed pllclk to pllrefclk
+> > - Preserved the reviewed by tag from Geert and Krzysztof
+> >
+> - Included support for RZ/V2N in the same patch
+> - Updated commit description.
+>
+> I missed mentioning the above.
 
-Thank you for the review!
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-On 8/19/25 11:29 AM, Nicolas Ferre wrote:
-> On 15/08/2025 at 15:59, Stanimir Varbanov wrote:
->> In case of rx queue reset and 64bit capable hardware, set the upper
->> 32bits of DMA ring buffer address.
-> 
-> Very nice finding! Thanks.
+Gr{oetje,eeting}s,
 
-Hmm, that reminds me that I have to update the patch body because the
-credits should go to Jonathan Bell and Phil Elwell if I decipher
-properly the description in raspberrypi downstream kernel :)
+                        Geert
 
-> 
->> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> 
-> A "Fixes" tag might be interesting here.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Sure, I'll do that.
-
-> 
->> ---
->>   drivers/net/ethernet/cadence/macb_main.c | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/
->> ethernet/cadence/macb_main.c
->> index ce95fad8cedd..41c0cbb5262e 100644
->> --- a/drivers/net/ethernet/cadence/macb_main.c
->> +++ b/drivers/net/ethernet/cadence/macb_main.c
->> @@ -1635,6 +1635,11 @@ static int macb_rx(struct macb_queue *queue,
->> struct napi_struct *napi,
->>
->>                  macb_init_rx_ring(queue);
->>                  queue_writel(queue, RBQP, queue->rx_ring_dma);
-> 
-> For the sake of consistency, I would add lower_32_bits() to this call,
-> as I see it for each use of RBQP or TBQP.
-
-Ack.
-
-> 
->> +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
->> +               if (bp->hw_dma_cap & HW_DMA_CAP_64B)
->> +                       macb_writel(bp, RBQPH,
->> +                                   upper_32_bits(queue->rx_ring_dma));
->> +#endif
->>
->>                  macb_writel(bp, NCR, ctrl | MACB_BIT(RE));
-> 
-> Best regards,
->   Nicolas
-> 
-
-regards,
-~Stan
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
