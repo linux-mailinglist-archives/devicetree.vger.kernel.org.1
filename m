@@ -1,377 +1,224 @@
-Return-Path: <devicetree+bounces-206613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C36A4B2CF3D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 00:20:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6E40B2CF5A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 00:29:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 053F37A272F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:18:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EEBE723406
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28968311584;
-	Tue, 19 Aug 2025 22:20:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D999131DD87;
+	Tue, 19 Aug 2025 22:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VSc4phNj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AqtGIAX8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C27308F16;
-	Tue, 19 Aug 2025 22:20:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0376C30DD09;
+	Tue, 19 Aug 2025 22:28:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755642002; cv=none; b=CQH99JIxaaB5OC9nRMUt4A40bkOMeKuuocCvnRb83+894iqke9Y7wI8nu5AM8IIeWo6CV/fujRO2ZKjXEN4wAandw0jtLcS9Vs2LQCmxW5JO2weJJpeZUSxxdUo4j/crzl8Fk1kl9+wY0c9EGMVDhitjb/+24ldwkRNauMRIA3I=
+	t=1755642533; cv=none; b=InomGPfB7E/Z+cMzB3IkSPuC2d06YkCw8VYjPR2X/CgLxogyP8Mxc6EBfKd0ncWQ+oJtpIjEzAMWU1ArhT2zOfCJLrggMXlP0P6TtDfPuoaI4TMXEVD6xeT0+cp+BnE9GyBJL0T7qgaxC1za7zvKPPvDqG+j3/3BlA/H6JlWnig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755642002; c=relaxed/simple;
-	bh=ZHpCZLLloELdfWyk93sVzvPFDvmYjvaWkaNyDBvPBx0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Fx5PvP3sA/rhYF1zBXlhof+dQO9ofrdag74LnBCRwQ4mJ0kE3q7g0LwwBxIBsU8IZ6q3zct3u4LeF9D6v+kPUda9oWiET3JmfbDAHyK6Qdz6IVYyekgCKsEDgUNvxUt5lSNMBcZs3cSgjUdrNAxHtfqAf9+o7M3wLNS8sDfi+20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VSc4phNj; arc=none smtp.client-ip=209.85.210.175
+	s=arc-20240116; t=1755642533; c=relaxed/simple;
+	bh=0+8XVoBAD/tPExRqsH1rlyeLVpU7k7+Wq25d9Q2DBX0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VHfljjUsENPUIBJkjxiWM7UI9aJg9++N6E4TF7arW7MC6nhWxeNnWVyXSWv8DxDg/jQ95gkb4NTkEJTl/pSyg09viN6RJu3acLUP8Jw9xZdKkgx3KRAvL2lAR+H6p7G/tWNqm4H+s1ZHVsyr1QyK9WJRvZkQ4IrCzVXJuYgFJ44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AqtGIAX8; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-76e2ea887f6so4361121b3a.2;
-        Tue, 19 Aug 2025 15:20:00 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45a1b066b5eso30537085e9.1;
+        Tue, 19 Aug 2025 15:28:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755641999; x=1756246799; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X2sqM5qISDUrCJ87oJ5BewI5k9ypqMW8PZrOOLAvQzM=;
-        b=VSc4phNjUztN49yXCUZ8WX/6SewhO/zYI5oLzcg300d1MiAYwJ3krpas44GpWDDns4
-         jcCwqGPl9xAmsZPXD5OHL5wWu8AnsufyOg5pZxT662W4w9psAZX0dA33/SziKs54nmCY
-         zxSC5vkxUweW5cKJaaPe6/Wyj6zA0UpKh7DOk2Oiieh6K8chApmDWw6ZcJXvz8JIM9kb
-         Xyk/nKKD9wRqeqH2GtYWaWiI0SxnzZpNOGZpG+WpwfldM/MAUX/I+kTBmrTWV7cYXajl
-         AIadvvSFvzoyQgwHtD9PZ1ZQ05ee1paHJtbK2t79hjjk1zfZOl9sokUUWGXD5FXXxagR
-         ntcA==
+        d=gmail.com; s=20230601; t=1755642530; x=1756247330; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nxRrcohdrp6hc8dJuUXjhJQdfVF4Q8UIJXDooLC5mqs=;
+        b=AqtGIAX8JnVng8Y4yvZxVhuM6ZWijpWoPDpZRtp3VfUCvjv/VL8zNj2wVcP0LGNHcX
+         iwwazT63j8jtwCYs4BkLi59LEAEwt5ZRlpNxPnCV8oXl4vS568sdTXbiWQ5WXBpa67gS
+         2HjkJMCLfKLLzelu8uJb4Prl1yfCh+Yh2kTWzUWseCvdlq3Ou4df7cv06kBAD7+4mm//
+         j8/WRaQd5KI9hr5y5Wr0E2VbUwAP2oHMbTFGS/f+hvgjwTQPrLi4pzQpMu8SnARFZ8ZX
+         JKiBj1bC6hPHvP/5ETw3Sv1xFaCJyBKMh/bCT+X1IaoDz0Xh+weN65vGQ8JMhsIvduxQ
+         /MYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755641999; x=1756246799;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X2sqM5qISDUrCJ87oJ5BewI5k9ypqMW8PZrOOLAvQzM=;
-        b=mW8w8zm2P5JBGD6JlFRjC6KbZSemfMVh0iS7raP+yv//tg3WPElEoks5R0RUkjLCD4
-         +1q8wPSKeCY5R1e9HV1vZIqFhhwN5Aj+mp/3Ic/BeLuE39s4GQtOUf1UPR2Vj4DTEq9Y
-         o3uT2Mld4qoVtWwDxhvj9WtxUaKhILYeu7GAK4Ro035j31Bi43GuuTKBR5zqwf6KhKkS
-         k7SdaSIta3z/bLUvCWpbzyoHpAfat6py8ZpOyZ84RlpkMBh+jO8UV8LLZlI4UqCt86M9
-         qUeDLrPebaezYEciAMdHgsS+T1XlbPCxArgKTrzW7BfITxhOp2i1UujVRTk4g6cJBbgE
-         0LEw==
-X-Forwarded-Encrypted: i=1; AJvYcCU+Z1lisVfumk3zrTYyzULhcHPR8NiJctx9tzvUGC3BtNCAzqRjmD5LwSC7/FFGBp8lEF1pLwXZgP0x@vger.kernel.org, AJvYcCVoSFei+vvCDPyE/054LETCq/njubhAk/mWQJqUqO6VgO42BkwVf2XElvKk96TSjLuRWj2esO+WBMts@vger.kernel.org, AJvYcCWsyXbcn274cei+y0Xt38lFs7ZQLFeGCehh/hhMtyZVpj1uKrTKadqZnTV76QgRLCnKDZ8EZHWhgRMelkhg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYafnCJXwQKc1+fc4aOCCbtmWqGPd63a9VLJBQlc5CoxOxmQmw
-	Pl71sykmWDyBhc0olQCAuCn8itXJ5t/lJrUe3kupiHT9yhI/tQ1v3Vis
-X-Gm-Gg: ASbGnctg1goYYKrJisA7/kfWChik5YyECFu/FJt/sEKoDtr8pztsRB9BHJuWmgPzJMJ
-	3O/DU0SX5t0DDpXIQLnDodo3M+K1R8BCso2UfZzE1YKhUxYaHZfGyb/vXw7cPdHVC46zhCM6Erv
-	6Ji0t49SIYYtft6zIm9N8axxIsliUkqGRvKNjhep3J02WtJq3WtifQNVnGJ1j2dTLb/juh7JQbp
-	OCc92635a4px/0ci9TJ688Dx7eMCtzHecIROOAPfhbMiWaGkn9VkddRbb28hCgsyBoCAg9XCwAo
-	L6pJ0i/DsV9tASV/CeL89BwUnmwjz3uDLiAmki0J+OXiLrqtb0SJEfSPEzgJNjr20zxx0Mx1scm
-	h8LyE87lg6DVLUBlwQBopN0pJ3Rkyb0WhuuqEUVd06LL7h4k=
-X-Google-Smtp-Source: AGHT+IF5cKofX/a4TKLKcqwA7GwNEHWRW3fiSyXecSSHgYlyGJdmqyXEIDSQdYRwFK3qE+nYx90I/w==
-X-Received: by 2002:a05:6a00:189b:b0:76b:8b13:e06a with SMTP id d2e1a72fcca58-76e8dbc2741mr1035270b3a.14.1755641999417;
-        Tue, 19 Aug 2025 15:19:59 -0700 (PDT)
-Received: from [127.0.0.1] (aulavirtual.utp.edu.pe. [190.12.77.24])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e7d4f76b5sm3431545b3a.59.2025.08.19.15.19.55
+        d=1e100.net; s=20230601; t=1755642530; x=1756247330;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nxRrcohdrp6hc8dJuUXjhJQdfVF4Q8UIJXDooLC5mqs=;
+        b=amO0fD8cgLuuPhOvLGudor4pTMiV/uWNH/wV/ZurOigZRUKXrOiw6VCJy575mrytLQ
+         hqba+Rtj1GEoFzE7oDPwdUmj8MpnEd1WzW8sYSTPTSIKOlK8mqSGebwJ/YK8j4JQZKFi
+         60i40JYJiA+3lv2y4Dl5TlNDVWImOuYq/5Lud7koKciwlGqeeTxqXLvJxYRuBjWXGjOv
+         QvV7it1f2hE6WU/O5bzRLUUEWvvRrgbSQjFKa7KKrNp9kBSNLvf2QVLxOFDSl95Bh+rg
+         lNOO4Yt1nKMYfFCLA2Q3g9Mi9Sg3mKgkNY7BoueApU5bv9U5c7WI/DGOkTDYGUOFAa7X
+         h0aw==
+X-Forwarded-Encrypted: i=1; AJvYcCUXo3KD21KIrHalx7ufl19e3ZpiKpkp7SRe/A+XP8NPrHIaMKDBPcmK6+9I4VU6rz0jWrwcEBue6bXO@vger.kernel.org, AJvYcCVgTBG/7pTvspkAH2MNFltO6Kev9VvYR5bVVh4bqkLrnFip7xrqlg++QRypZR0rcx6DA23HvhEUB3ZZIxfe@vger.kernel.org, AJvYcCXujx3hlaWBptMmDEdxlKW2aNp77yhJ2WmSUsS5LjlRl589EOSoTVDx0ISwVIiZfdvizRnmJR95t01xhCM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzV2xY9QiFXhxbc7c5J+0iQPPWdSgT6F3Ey3pJgx1zaxOrF3W3V
+	KjgsHBSBnc7+F0V/gL0IyWwNA2cuqS1p1WKsLq2ef0oQ8Wmf92G3BjQ=
+X-Gm-Gg: ASbGncsMgDep/7rLsbJbFGhxK1SjZ2Wglh4r0qNe1DZrABsDgQjFTuZhLdFl5SDXPzp
+	cJzGopYsbhgGOOimLckpCtDqkf//1zwwSYqeoisKB13WLrGdCVwReBytZJDZ2hnQoJyOnYWGaTd
+	lQH8WnRwWQWENs6nTd0Kvpso5yyVrmEih9CR8EG/NRTZRaGHoNw1y8hWF14bGHcRNjkQt/78gFL
+	WrYGrluQN+++EPm/jwp1LLn4xsC9CFfxXhPNzu5x5N1NSX+eR40DQJ0mBrFp7dh0A4DkZB0Fjya
+	DZZbtzjooLn9cFUUtsbrcioFoXUPP4vwpOxG9oBBtj4HjEU/5XsP8jYPgUmzGf5gUIcqPitLTNi
+	SgBlNcX6Ni3/kFFYW+O2q7dCl+xB8smD76DhVPjOfNqFxoOg=
+X-Google-Smtp-Source: AGHT+IG54zislyWvKb2CD8selDQMJvVHtYy8eN/d91/ywTICdUU8HuG4oNZmw4oxm8cQlV0WtiWfjw==
+X-Received: by 2002:a05:600c:524e:b0:45b:43cc:e557 with SMTP id 5b1f17b1804b1-45b47a1a101mr3752005e9.34.1755642530044;
+        Tue, 19 Aug 2025 15:28:50 -0700 (PDT)
+Received: from localhost.localdomain ([2a0d:e487:216f:2f7a:74c6:177a:3b99:868c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b47c30dc1sm4394875e9.6.2025.08.19.15.28.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 15:19:59 -0700 (PDT)
-From: Denzeel Oliva <wachiturroxd150@gmail.com>
-Date: Tue, 19 Aug 2025 17:19:38 -0500
-Subject: [PATCH 3/3] clk: samsung: exynos990: Fix PLL mux regs, add
- DPU/CMUREF
+        Tue, 19 Aug 2025 15:28:48 -0700 (PDT)
+From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+To: dmitry.torokhov@gmail.com
+Cc: krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	peter.ujfalusi@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	shuah@kernel.org,
+	jihed.chaibi.dev@gmail.com
+Subject: [PATCH v4] input: dt-bindings: ti,twl4030-keypad: convert to DT schema
+Date: Wed, 20 Aug 2025 00:28:23 +0200
+Message-Id: <20250819222823.157943-1-jihed.chaibi.dev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250819-2-v1-3-e84b47b859ce@gmail.com>
-References: <20250819-2-v1-0-e84b47b859ce@gmail.com>
-In-Reply-To: <20250819-2-v1-0-e84b47b859ce@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Denzeel Oliva <wachiturroxd150@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755641982; l=12553;
- i=wachiturroxd150@gmail.com; s=20250819; h=from:subject:message-id;
- bh=ZHpCZLLloELdfWyk93sVzvPFDvmYjvaWkaNyDBvPBx0=;
- b=hcBeDrv4Ou5W+xbTosZ4msVpcxGFrglMADfSDfyFjjwG+DdBOzylkuZGTv32HfJ5+JRLPIOfi
- 8HBKTESGwspApRwGypVSD2t2UQwzH+sai/TLnb+U6HT5aSn2I5bm/li
-X-Developer-Key: i=wachiturroxd150@gmail.com; a=ed25519;
- pk=qNvcL0Ehm3chrW9jFA2JaPVgubN5mHH//uriMxR/DlI=
+Content-Transfer-Encoding: 8bit
 
-Switch PLL muxes to PLL_CON0 to correct parent selection and
-clock rates. Add DPU_BUS and CMUREF mux/div and their register
-hooks and parents.
+Convert the legacy TXT binding for the TWL4030 keypad module
+to the modern YAML DT schema format. This adds formal validation
+and improves documentation by inheriting from the matrix-keymap schema.
 
-Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
+Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+
 ---
- drivers/clk/samsung/clk-exynos990.c | 121 ++++++++++++++++++++++++++++++++++++++++++++++----------------------------
- 1 file changed, 75 insertions(+), 46 deletions(-)
+Changes in v4:
+ - No changes.
+ - This patch is split from larger series per maintainer feedback.
+ - v3 link:
+    https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
 
-diff --git a/drivers/clk/samsung/clk-exynos990.c b/drivers/clk/samsung/clk-exynos990.c
-index 57e26c4d1f39cef838f3201956762a0c242f726a..c5f1dbaf45b6a718994c1dfa9f204cfccd74cb16 100644
---- a/drivers/clk/samsung/clk-exynos990.c
-+++ b/drivers/clk/samsung/clk-exynos990.c
-@@ -45,6 +45,7 @@
- #define PLL_CON3_PLL_SHARED3				0x024c
- #define PLL_CON0_PLL_SHARED4				0x0280
- #define PLL_CON3_PLL_SHARED4				0x028c
-+#define CLK_CON_MUX_CLKCMU_DPU_BUS			0x1000
- #define CLK_CON_MUX_MUX_CLKCMU_APM_BUS			0x1004
- #define CLK_CON_MUX_MUX_CLKCMU_AUD_CPU			0x1008
- #define CLK_CON_MUX_MUX_CLKCMU_BUS0_BUS			0x100c
-@@ -103,6 +104,8 @@
- #define CLK_CON_MUX_MUX_CLKCMU_SSP_BUS			0x10e0
- #define CLK_CON_MUX_MUX_CLKCMU_TNR_BUS			0x10e4
- #define CLK_CON_MUX_MUX_CLKCMU_VRA_BUS			0x10e8
-+#define CLK_CON_MUX_MUX_CLK_CMU_CMUREF			0x10f0
-+#define CLK_CON_MUX_MUX_CMU_CMUREF			0x10f4
- #define CLK_CON_DIV_CLKCMU_APM_BUS			0x1800
- #define CLK_CON_DIV_CLKCMU_AUD_CPU			0x1804
- #define CLK_CON_DIV_CLKCMU_BUS0_BUS			0x1808
-@@ -162,6 +165,7 @@
- #define CLK_CON_DIV_CLKCMU_VRA_BUS			0x18e0
- #define CLK_CON_DIV_DIV_CLKCMU_DPU			0x18e8
- #define CLK_CON_DIV_DIV_CLKCMU_DPU_ALT			0x18ec
-+#define CLK_CON_DIV_DIV_CLK_CMU_CMUREF			0x18f0
- #define CLK_CON_DIV_PLL_SHARED0_DIV2			0x18f4
- #define CLK_CON_DIV_PLL_SHARED0_DIV3			0x18f8
- #define CLK_CON_DIV_PLL_SHARED0_DIV4			0x18fc
-@@ -239,13 +243,21 @@ static const unsigned long top_clk_regs[] __initconst = {
- 	PLL_LOCKTIME_PLL_SHARED2,
- 	PLL_LOCKTIME_PLL_SHARED3,
- 	PLL_LOCKTIME_PLL_SHARED4,
-+	PLL_CON0_PLL_G3D,
- 	PLL_CON3_PLL_G3D,
-+	PLL_CON0_PLL_MMC,
- 	PLL_CON3_PLL_MMC,
-+	PLL_CON0_PLL_SHARED0,
- 	PLL_CON3_PLL_SHARED0,
-+	PLL_CON0_PLL_SHARED1,
- 	PLL_CON3_PLL_SHARED1,
-+	PLL_CON0_PLL_SHARED2,
- 	PLL_CON3_PLL_SHARED2,
-+	PLL_CON0_PLL_SHARED3,
- 	PLL_CON3_PLL_SHARED3,
-+	PLL_CON0_PLL_SHARED4,
- 	PLL_CON3_PLL_SHARED4,
-+	CLK_CON_MUX_CLKCMU_DPU_BUS,
- 	CLK_CON_MUX_MUX_CLKCMU_APM_BUS,
- 	CLK_CON_MUX_MUX_CLKCMU_AUD_CPU,
- 	CLK_CON_MUX_MUX_CLKCMU_BUS0_BUS,
-@@ -304,6 +316,8 @@ static const unsigned long top_clk_regs[] __initconst = {
- 	CLK_CON_MUX_MUX_CLKCMU_SSP_BUS,
- 	CLK_CON_MUX_MUX_CLKCMU_TNR_BUS,
- 	CLK_CON_MUX_MUX_CLKCMU_VRA_BUS,
-+	CLK_CON_MUX_MUX_CLK_CMU_CMUREF,
-+	CLK_CON_MUX_MUX_CMU_CMUREF,
- 	CLK_CON_DIV_CLKCMU_APM_BUS,
- 	CLK_CON_DIV_CLKCMU_AUD_CPU,
- 	CLK_CON_DIV_CLKCMU_BUS0_BUS,
-@@ -363,6 +377,7 @@ static const unsigned long top_clk_regs[] __initconst = {
- 	CLK_CON_DIV_CLKCMU_VRA_BUS,
- 	CLK_CON_DIV_DIV_CLKCMU_DPU,
- 	CLK_CON_DIV_DIV_CLKCMU_DPU_ALT,
-+	CLK_CON_DIV_DIV_CLK_CMU_CMUREF,
- 	CLK_CON_DIV_PLL_SHARED0_DIV2,
- 	CLK_CON_DIV_PLL_SHARED0_DIV3,
- 	CLK_CON_DIV_PLL_SHARED0_DIV4,
-@@ -434,6 +449,10 @@ static const unsigned long top_clk_regs[] __initconst = {
- };
- 
- static const struct samsung_pll_clock top_pll_clks[] __initconst = {
-+	PLL(pll_0718x, CLK_FOUT_G3D_PLL, "fout_g3d_pll", "oscclk",
-+	    PLL_LOCKTIME_PLL_G3D, PLL_CON3_PLL_G3D, NULL),
-+	PLL(pll_0732x, CLK_FOUT_MMC_PLL, "fout_mmc_pll", "oscclk",
-+	    PLL_LOCKTIME_PLL_MMC, PLL_CON3_PLL_MMC, NULL),
- 	PLL(pll_0717x, CLK_FOUT_SHARED0_PLL, "fout_shared0_pll", "oscclk",
- 	    PLL_LOCKTIME_PLL_SHARED0, PLL_CON3_PLL_SHARED0, NULL),
- 	PLL(pll_0717x, CLK_FOUT_SHARED1_PLL, "fout_shared1_pll", "oscclk",
-@@ -444,20 +463,18 @@ static const struct samsung_pll_clock top_pll_clks[] __initconst = {
- 	    PLL_LOCKTIME_PLL_SHARED3, PLL_CON3_PLL_SHARED3, NULL),
- 	PLL(pll_0717x, CLK_FOUT_SHARED4_PLL, "fout_shared4_pll", "oscclk",
- 	    PLL_LOCKTIME_PLL_SHARED4, PLL_CON3_PLL_SHARED4, NULL),
--	PLL(pll_0732x, CLK_FOUT_MMC_PLL, "fout_mmc_pll", "oscclk",
--	    PLL_LOCKTIME_PLL_MMC, PLL_CON3_PLL_MMC, NULL),
--	PLL(pll_0718x, CLK_FOUT_G3D_PLL, "fout_g3d_pll", "oscclk",
--	    PLL_LOCKTIME_PLL_G3D, PLL_CON3_PLL_G3D, NULL),
- };
- 
- /* Parent clock list for CMU_TOP muxes */
-+PNAME(mout_pll_g3d_p)			= { "oscclk", "fout_g3d_pll" };
-+PNAME(mout_pll_mmc_p)			= { "oscclk", "fout_mmc_pll" };
- PNAME(mout_pll_shared0_p)		= { "oscclk", "fout_shared0_pll" };
- PNAME(mout_pll_shared1_p)		= { "oscclk", "fout_shared1_pll" };
- PNAME(mout_pll_shared2_p)		= { "oscclk", "fout_shared2_pll" };
- PNAME(mout_pll_shared3_p)		= { "oscclk", "fout_shared3_pll" };
- PNAME(mout_pll_shared4_p)		= { "oscclk", "fout_shared4_pll" };
--PNAME(mout_pll_mmc_p)			= { "oscclk", "fout_mmc_pll" };
--PNAME(mout_pll_g3d_p)			= { "oscclk", "fout_g3d_pll" };
-+PNAME(mout_cmu_dpu_bus_p)		= { "dout_cmu_dpu",
-+					    "dout_cmu_dpu_alt" };
- PNAME(mout_cmu_apm_bus_p)		= { "dout_cmu_shared0_div2",
- 					    "dout_cmu_shared2_div2" };
- PNAME(mout_cmu_aud_cpu_p)		= { "dout_cmu_shared0_div2",
-@@ -507,7 +524,7 @@ PNAME(mout_cmu_cpucl0_switch_p)		= { "fout_shared4_pll",
- 					    "dout_cmu_shared0_div2",
- 					    "fout_shared2_pll",
- 					    "dout_cmu_shared0_div4" };
--PNAME(mout_cmu_cpucl1_switch_p)	= { "fout_shared4_pll",
-+PNAME(mout_cmu_cpucl1_switch_p)		= { "fout_shared4_pll",
- 					    "dout_cmu_shared0_div2",
- 					    "fout_shared2_pll",
- 					    "dout_cmu_shared0_div4" };
-@@ -577,7 +594,7 @@ PNAME(mout_cmu_hsi1_bus_p)		= { "dout_cmu_shared0_div3",
- 					    "dout_cmu_shared4_div3",
- 					    "dout_cmu_shared2_div2",
- 					    "fout_mmc_pll", "oscclk", "oscclk" };
--PNAME(mout_cmu_hsi1_mmc_card_p)	= { "oscclk", "fout_shared2_pll",
-+PNAME(mout_cmu_hsi1_mmc_card_p)		= { "oscclk", "fout_shared2_pll",
- 					    "fout_mmc_pll",
- 					    "dout_cmu_shared0_div4" };
- PNAME(mout_cmu_hsi1_pcie_p)		= { "oscclk", "fout_shared2_pll" };
-@@ -672,6 +689,12 @@ PNAME(mout_cmu_vra_bus_p)		= { "dout_cmu_shared0_div3",
- 					    "dout_cmu_shared4_div2",
- 					    "dout_cmu_shared0_div4",
- 					    "dout_cmu_shared4_div3" };
-+PNAME(mout_cmu_cmuref_p)		= { "oscclk",
-+					    "dout_cmu_clk_cmuref" };
-+PNAME(mout_cmu_clk_cmuref_p)		= { "dout_cmu_shared0_div4",
-+					    "dout_cmu_shared1_div4",
-+					    "dout_cmu_shared2_div2",
-+					    "oscclk" };
- 
- /*
-  * Register name to clock name mangling strategy used in this file
-@@ -688,20 +711,22 @@ PNAME(mout_cmu_vra_bus_p)		= { "dout_cmu_shared0_div3",
-  */
- 
- static const struct samsung_mux_clock top_mux_clks[] __initconst = {
-+	MUX(CLK_MOUT_PLL_MMC, "mout_pll_mmc", mout_pll_mmc_p,
-+	    PLL_CON0_PLL_MMC, 4, 1),
-+	MUX(CLK_MOUT_PLL_G3D, "mout_pll_g3d", mout_pll_g3d_p,
-+	    PLL_CON0_PLL_G3D, 4, 1),
- 	MUX(CLK_MOUT_PLL_SHARED0, "mout_pll_shared0", mout_pll_shared0_p,
--	    PLL_CON3_PLL_SHARED0, 4, 1),
-+	    PLL_CON0_PLL_SHARED0, 4, 1),
- 	MUX(CLK_MOUT_PLL_SHARED1, "mout_pll_shared1", mout_pll_shared1_p,
--	    PLL_CON3_PLL_SHARED1, 4, 1),
-+	    PLL_CON0_PLL_SHARED1, 4, 1),
- 	MUX(CLK_MOUT_PLL_SHARED2, "mout_pll_shared2", mout_pll_shared2_p,
--	    PLL_CON3_PLL_SHARED2, 4, 1),
-+	    PLL_CON0_PLL_SHARED2, 4, 1),
- 	MUX(CLK_MOUT_PLL_SHARED3, "mout_pll_shared3", mout_pll_shared3_p,
--	    PLL_CON3_PLL_SHARED3, 4, 1),
-+	    PLL_CON0_PLL_SHARED3, 4, 1),
- 	MUX(CLK_MOUT_PLL_SHARED4, "mout_pll_shared4", mout_pll_shared4_p,
- 	    PLL_CON0_PLL_SHARED4, 4, 1),
--	MUX(CLK_MOUT_PLL_MMC, "mout_pll_mmc", mout_pll_mmc_p,
--	    PLL_CON0_PLL_MMC, 4, 1),
--	MUX(CLK_MOUT_PLL_G3D, "mout_pll_g3d", mout_pll_g3d_p,
--	    PLL_CON0_PLL_G3D, 4, 1),
-+	MUX(CLK_MOUT_CMU_DPU_BUS, "mout_cmu_dpu_bus",
-+	    mout_cmu_dpu_bus_p, CLK_CON_MUX_CLKCMU_DPU_BUS, 0, 1),
- 	MUX(CLK_MOUT_CMU_APM_BUS, "mout_cmu_apm_bus",
- 	    mout_cmu_apm_bus_p, CLK_CON_MUX_MUX_CLKCMU_APM_BUS, 0, 1),
- 	MUX(CLK_MOUT_CMU_AUD_CPU, "mout_cmu_aud_cpu",
-@@ -830,37 +855,13 @@ static const struct samsung_mux_clock top_mux_clks[] __initconst = {
- 	    mout_cmu_tnr_bus_p, CLK_CON_MUX_MUX_CLKCMU_TNR_BUS, 0, 3),
- 	MUX(CLK_MOUT_CMU_VRA_BUS, "mout_cmu_vra_bus",
- 	    mout_cmu_vra_bus_p, CLK_CON_MUX_MUX_CLKCMU_VRA_BUS, 0, 2),
-+	MUX(CLK_MOUT_CMU_CMUREF, "mout_cmu_cmuref",
-+	    mout_cmu_cmuref_p, CLK_CON_MUX_MUX_CMU_CMUREF, 0, 1),
-+	MUX(CLK_MOUT_CMU_CLK_CMUREF, "mout_cmu_clk_cmuref",
-+	    mout_cmu_clk_cmuref_p, CLK_CON_MUX_MUX_CLK_CMU_CMUREF, 0, 2),
- };
- 
- static const struct samsung_div_clock top_div_clks[] __initconst = {
--	/* SHARED0 region*/
--	DIV(CLK_DOUT_CMU_SHARED0_DIV2, "dout_cmu_shared0_div2", "mout_pll_shared0",
--	    CLK_CON_DIV_PLL_SHARED0_DIV2, 0, 1),
--	DIV(CLK_DOUT_CMU_SHARED0_DIV3, "dout_cmu_shared0_div3", "mout_pll_shared0",
--	    CLK_CON_DIV_PLL_SHARED0_DIV3, 0, 1),
--	DIV(CLK_DOUT_CMU_SHARED0_DIV4, "dout_cmu_shared0_div4", "dout_cmu_shared0_div2",
--	    CLK_CON_DIV_PLL_SHARED0_DIV4, 0, 1),
--
--	/* SHARED1 region*/
--	DIV(CLK_DOUT_CMU_SHARED1_DIV2, "dout_cmu_shared1_div2", "mout_pll_shared1",
--	    CLK_CON_DIV_PLL_SHARED1_DIV2, 0, 1),
--	DIV(CLK_DOUT_CMU_SHARED1_DIV3, "dout_cmu_shared1_div3", "mout_pll_shared1",
--	    CLK_CON_DIV_PLL_SHARED1_DIV3, 0, 2),
--	DIV(CLK_DOUT_CMU_SHARED1_DIV4, "dout_cmu_shared1_div4", "dout_cmu_shared1_div2",
--	    CLK_CON_DIV_PLL_SHARED1_DIV4, 0, 1),
--
--	/* SHARED2 region */
--	DIV(CLK_DOUT_CMU_SHARED2_DIV2, "dout_cmu_shared2_div2", "mout_pll_shared2",
--	    CLK_CON_DIV_PLL_SHARED2_DIV2, 0, 1),
--
--	/* SHARED4 region*/
--	DIV(CLK_DOUT_CMU_SHARED4_DIV2, "dout_cmu_shared4_div2", "mout_pll_shared4",
--	    CLK_CON_DIV_PLL_SHARED4_DIV2, 0, 1),
--	DIV(CLK_DOUT_CMU_SHARED4_DIV3, "dout_cmu_shared4_div3", "mout_pll_shared4",
--	    CLK_CON_DIV_PLL_SHARED4_DIV3, 0, 2),
--	DIV(CLK_DOUT_CMU_SHARED4_DIV4, "dout_cmu_shared4_div4", "mout_pll_shared4",
--	    CLK_CON_DIV_PLL_SHARED4_DIV4, 0, 1),
--
- 	DIV(CLK_DOUT_CMU_APM_BUS, "dout_cmu_apm_bus", "gout_cmu_apm_bus",
- 	    CLK_CON_DIV_CLKCMU_APM_BUS, 0, 2),
- 	DIV(CLK_DOUT_CMU_AUD_CPU, "dout_cmu_aud_cpu", "gout_cmu_aud_cpu",
-@@ -887,7 +888,7 @@ static const struct samsung_div_clock top_div_clks[] __initconst = {
- 	    CLK_CON_DIV_CLKCMU_CMU_BOOST, 0, 2),
- 	DIV(CLK_DOUT_CMU_CORE_BUS, "dout_cmu_core_bus", "gout_cmu_core_bus",
- 	    CLK_CON_DIV_CLKCMU_CORE_BUS, 0, 4),
--	DIV(CLK_DOUT_CMU_CPUCL0_DBG_BUS, "dout_cmu_cpucl0_debug",
-+	DIV(CLK_DOUT_CMU_CPUCL0_DBG_BUS, "dout_cmu_cpucl0_dbg_bus",
- 	    "gout_cmu_cpucl0_dbg_bus", CLK_CON_DIV_CLKCMU_CPUCL0_DBG_BUS,
- 	    0, 4),
- 	DIV(CLK_DOUT_CMU_CPUCL0_SWITCH, "dout_cmu_cpucl0_switch",
-@@ -972,8 +973,36 @@ static const struct samsung_div_clock top_div_clks[] __initconst = {
- 	    CLK_CON_DIV_CLKCMU_TNR_BUS, 0, 4),
- 	DIV(CLK_DOUT_CMU_VRA_BUS, "dout_cmu_vra_bus", "gout_cmu_vra_bus",
- 	    CLK_CON_DIV_CLKCMU_VRA_BUS, 0, 4),
--	DIV(CLK_DOUT_CMU_DPU, "dout_cmu_clkcmu_dpu", "gout_cmu_dpu",
-+	DIV(CLK_DOUT_CMU_DPU, "dout_cmu_dpu", "gout_cmu_dpu",
- 	    CLK_CON_DIV_DIV_CLKCMU_DPU, 0, 3),
-+	DIV(CLK_DOUT_CMU_DPU_ALT, "dout_cmu_dpu_alt", "gout_cmu_dpu_bus",
-+	    CLK_CON_DIV_DIV_CLKCMU_DPU_ALT, 0, 4),
-+	DIV(CLK_DOUT_CMU_CLK_CMUREF, "dout_cmu_clk_cmuref", "mout_cmu_clk_cmuref",
-+	    CLK_CON_DIV_DIV_CLK_CMU_CMUREF, 0, 2),
-+	/* SHARED0 region*/
-+	DIV(CLK_DOUT_CMU_SHARED0_DIV2, "dout_cmu_shared0_div2", "mout_pll_shared0",
-+	    CLK_CON_DIV_PLL_SHARED0_DIV2, 0, 1),
-+	DIV(CLK_DOUT_CMU_SHARED0_DIV3, "dout_cmu_shared0_div3", "mout_pll_shared0",
-+	    CLK_CON_DIV_PLL_SHARED0_DIV3, 0, 2),
-+	DIV(CLK_DOUT_CMU_SHARED0_DIV4, "dout_cmu_shared0_div4", "dout_cmu_shared0_div2",
-+	    CLK_CON_DIV_PLL_SHARED0_DIV4, 0, 1),
-+	/* SHARED1 region*/
-+	DIV(CLK_DOUT_CMU_SHARED1_DIV2, "dout_cmu_shared1_div2", "mout_pll_shared1",
-+	    CLK_CON_DIV_PLL_SHARED1_DIV2, 0, 1),
-+	DIV(CLK_DOUT_CMU_SHARED1_DIV3, "dout_cmu_shared1_div3", "mout_pll_shared1",
-+	    CLK_CON_DIV_PLL_SHARED1_DIV3, 0, 2),
-+	DIV(CLK_DOUT_CMU_SHARED1_DIV4, "dout_cmu_shared1_div4", "dout_cmu_shared1_div2",
-+	    CLK_CON_DIV_PLL_SHARED1_DIV4, 0, 1),
-+	/* SHARED2 region */
-+	DIV(CLK_DOUT_CMU_SHARED2_DIV2, "dout_cmu_shared2_div2", "mout_pll_shared2",
-+	    CLK_CON_DIV_PLL_SHARED2_DIV2, 0, 1),
-+	/* SHARED4 region*/
-+	DIV(CLK_DOUT_CMU_SHARED4_DIV2, "dout_cmu_shared4_div2", "mout_pll_shared4",
-+	    CLK_CON_DIV_PLL_SHARED4_DIV2, 0, 1),
-+	DIV(CLK_DOUT_CMU_SHARED4_DIV3, "dout_cmu_shared4_div3", "mout_pll_shared4",
-+	    CLK_CON_DIV_PLL_SHARED4_DIV3, 0, 2),
-+	DIV(CLK_DOUT_CMU_SHARED4_DIV4, "dout_cmu_shared4_div4", "dout_cmu_shared4_div2",
-+	    CLK_CON_DIV_PLL_SHARED4_DIV4, 0, 1),
- };
- 
- static const struct samsung_fixed_factor_clock cmu_top_ffactor[] __initconst = {
+Changes in v3:
+ - Made 'linux,keymap' a required property as suggested by the reviewer.
 
+Changes in v2:
+ - Simplified the description field by removing redundant '|'
+ as it does not affect formatting in this context.
+---
+ .../bindings/input/ti,twl4030-keypad.yaml     | 59 +++++++++++++++++++
+ .../bindings/input/twl4030-keypad.txt         | 27 ---------
+ 2 files changed, 59 insertions(+), 27 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/ti,twl4030-keypad.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/twl4030-keypad.txt
+
+diff --git a/Documentation/devicetree/bindings/input/ti,twl4030-keypad.yaml b/Documentation/devicetree/bindings/input/ti,twl4030-keypad.yaml
+new file mode 100644
+index 000000000..c69aa7f5c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/ti,twl4030-keypad.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/ti,twl4030-keypad.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TWL4030-family Keypad Controller
++
++maintainers:
++  - Peter Ujfalusi <peter.ujfalusi@gmail.com>
++
++description:
++  TWL4030's Keypad controller is used to interface a SoC with a matrix-type
++  keypad device. The keypad controller supports multiple row and column lines.
++  A key can be placed at each intersection of a unique row and a unique column.
++  The keypad controller can sense a key-press and key-release and report the
++  event using a interrupt to the cpu.
++
++allOf:
++  - $ref: matrix-keymap.yaml#
++
++properties:
++  compatible:
++    const: ti,twl4030-keypad
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - interrupts
++  - keypad,num-rows
++  - keypad,num-columns
++  - linux,keymap
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/input/input.h>
++
++    keypad {
++        compatible = "ti,twl4030-keypad";
++        interrupts = <1>;
++        keypad,num-rows = <8>;
++        keypad,num-columns = <8>;
++        linux,keymap = <
++            /* row 0 */
++            MATRIX_KEY(0, 0, KEY_1)
++            MATRIX_KEY(0, 1, KEY_2)
++            MATRIX_KEY(0, 2, KEY_3)
++
++            /* ...and so on for a full 8x8 matrix... */
++
++            /* row 7 */
++            MATRIX_KEY(7, 6, KEY_Y)
++            MATRIX_KEY(7, 7, KEY_Z)
++        >;
++    };
+diff --git a/Documentation/devicetree/bindings/input/twl4030-keypad.txt b/Documentation/devicetree/bindings/input/twl4030-keypad.txt
+deleted file mode 100644
+index e4be2f76a..000000000
+--- a/Documentation/devicetree/bindings/input/twl4030-keypad.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-* TWL4030's Keypad Controller device tree bindings
+-
+-TWL4030's Keypad controller is used to interface a SoC with a matrix-type
+-keypad device. The keypad controller supports multiple row and column lines.
+-A key can be placed at each intersection of a unique row and a unique column.
+-The keypad controller can sense a key-press and key-release and report the
+-event using a interrupt to the cpu.
+-
+-This binding is based on the matrix-keymap binding with the following
+-changes:
+-
+- * keypad,num-rows and keypad,num-columns are required.
+-
+-Required SoC Specific Properties:
+-- compatible: should be one of the following
+-   - "ti,twl4030-keypad": For controllers compatible with twl4030 keypad
+-      controller.
+-- interrupt: should be one of the following
+-   - <1>: For controllers compatible with twl4030 keypad controller.
+-
+-Example:
+-	twl_keypad: keypad {
+-		compatible = "ti,twl4030-keypad";
+-		interrupts = <1>;
+-		keypad,num-rows = <8>;
+-		keypad,num-columns = <8>;
+-	};
 -- 
-2.49.0
+2.39.5
 
 
