@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-206578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA4DB2CCD6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:17:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507F2B2CCDF
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:19:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5F89580F7E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 19:17:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F511625687
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 19:19:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A787428C01E;
-	Tue, 19 Aug 2025 19:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0E031CA7B;
+	Tue, 19 Aug 2025 19:19:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eoQt/q9N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ah547901"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A91B202983;
-	Tue, 19 Aug 2025 19:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21F427A465;
+	Tue, 19 Aug 2025 19:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755631043; cv=none; b=tz/0DOy+cOxeDjjIo4Eb4KrA5m1TtBQAoaTE7HvRu+/ZvUFty/DO1GhiregEeUcYp5Rnv8oSIykJn20qOLn4uklqAtpFdIQJ1fKIjtfHwcixmjsjKwR1HuaphSwWPrDJ4lQZAOYvq+1IonU7deSOEIjk7VG6IO8DDbk0X9yFYJE=
+	t=1755631172; cv=none; b=sYJgQFv2ltKHSOtBLRBd+qBy3csFhD41ppu/4D8h5L4pOXX62i5Kyu8IXwxfkgahiLAmSAzGcChSNY2lGmgJXTGrZwgiDyVSbgzIyLH7v065IhZC3NGiDUfyYa/UV5Dv5hmk/OadRKr/1yNaCQ5PTCNgAEbJhsaLnRN4wi2dsUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755631043; c=relaxed/simple;
-	bh=K5tZo5Uxv653pU6F84v0Qxr0KwCPFMu2NSvrwbpDGB0=;
+	s=arc-20240116; t=1755631172; c=relaxed/simple;
+	bh=ndTxCyypGJKClpEp7ZJTrLlhe/hSIjdIo1HrZ0VemP0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bZxEBVBLyVp2Z7v0z7xErVsrfEfqVHcwaPw30zfM85bJHC+r79Y6t06vqj9SeHrFltxODCLcsblUY/7AezNs+Zda0zvVwsG9H6q14gLTnPJGzi2TPrLQwwMJI2Q+Iq4Sn3FQHJ2Y++nLBklJ9HPW665CecqO3V8olWgNMf8O1o4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eoQt/q9N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 596F9C4CEF1;
-	Tue, 19 Aug 2025 19:17:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=R2odihT6eK2r3VN3sdZw+8bDftqn4LEbUy9fhkJ5EVbpQVIkepyndT3dOTYID70MnP65wAy0f4lnbxXbEe9MYsLFJDh0M8055FNxY5O2OCjthv+FgAyDlYPX55KXOjsWJ8/fC0f9wlzaJwzQPNbtuPo1P0q+JHmw79RUl/DY6hA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ah547901; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 753B3C4CEF1;
+	Tue, 19 Aug 2025 19:19:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755631043;
-	bh=K5tZo5Uxv653pU6F84v0Qxr0KwCPFMu2NSvrwbpDGB0=;
+	s=k20201202; t=1755631171;
+	bh=ndTxCyypGJKClpEp7ZJTrLlhe/hSIjdIo1HrZ0VemP0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eoQt/q9NIabXYYUB5DQP0Jpl8pA0XA4SDSZtwhofpj/13CEBcGEFgLa/3YDYPiTqP
-	 l12GjwyMP/4RDl2h1nm9CzDtx1s6QCOzOH2zGn6dNJkk/R5eUEFASS6uw9VqJ/0F5N
-	 Hs3D4QmFZjR6FfpOq6KNh5VTv+kE65hkiQyhm+bT7RoiOeYmJoN3KKRNzPgyl+HRR9
-	 KMTS7VEoGEb/E518Aq8OmPm4X/jrzzs5Eqq2oj8CqR2p5y+RP+bOpbGxh3TCBa4Ng0
-	 sut+Bo+3N1lv+L2pCdlJppqOSzdvz5f1ucKnJEWnaG1YZn1oz7flD6EhqYM8PssV0k
-	 Bjf7jQx9KKdlg==
-Message-ID: <33d2ef0e-d5c3-4e42-a3c7-e285331f07ef@kernel.org>
-Date: Tue, 19 Aug 2025 21:17:17 +0200
+	b=ah5479010gxXiip8uQOM9p7qwYs2H17v9sFIrQyqh1KtS7KkCbAhePTP5HQhpnphN
+	 CDUBCEu6HUxR/RNAepL1C1euZ8xJxc+zwxB4my0ErVOw5gGiXCW8xqJlfBYgTzBGv3
+	 7Kt8qKlYxMA1jl1ky2U3j3AQLA14Ka5eZBtfSUV0TgMte80dp/cvseBRV8/kLA+vhQ
+	 ZYd8jMxYZQakaLyVR8W2+FVQGvQENvTsXp3dE7AvJHBUMH1JS/E0b55ioQDFIpFuim
+	 LHJDaDghh26k9Lak0uBVJZbA+OrM2+nfmjZzGJhp/cTLFMb/ddOIFI8DL+EnSagelK
+	 Z4o5pOGD/qhNg==
+Message-ID: <89b7bbe5-604f-4990-8055-9ea8ba4cb934@kernel.org>
+Date: Tue, 19 Aug 2025 21:19:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: document the RPMh
- Network-On-Chip interconnect in Glymur SoC
-To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
- Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mike Tipton <mike.tipton@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-References: <20250814-glymur-icc-v2-0-596cca6b6015@oss.qualcomm.com>
- <20250814-glymur-icc-v2-1-596cca6b6015@oss.qualcomm.com>
- <CAL_JsqL+C1VueQjrKra8fNTd-2k=gkoy-jA9uuQOhuyRMbQroQ@mail.gmail.com>
- <363db534-92a2-4108-8a41-8e07ec22513d@kernel.org>
- <09247b50-05c4-40ff-9d9e-51e36846996d@kernel.org>
- <36974682-c8f1-4bcd-91f3-255c6332c0fe@kernel.org>
+Subject: Re: [PATCH 2/3] ARM: dts: aspeed: Add device tree includes for the
+ cx8 switchboard
+To: Marc Olberding <molberding@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20250815-mgx4u_devicetree-v1-0-66db6fa5a7e4@nvidia.com>
+ <20250815-mgx4u_devicetree-v1-2-66db6fa5a7e4@nvidia.com>
+ <f1f7d028-0c8c-44b3-9f3b-0830e5571890@kernel.org>
+ <aKTMA/006Nl/tOPT@molberding.nvidia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,30 +107,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <36974682-c8f1-4bcd-91f3-255c6332c0fe@kernel.org>
+In-Reply-To: <aKTMA/006Nl/tOPT@molberding.nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/08/2025 20:02, Georgi Djakov wrote:
->>>> this until the dependency is there.
->>>
->>> Thanks! And now i see why my script didn't catch this... now fixed and
->>> patch dropped.
+On 19/08/2025 21:09, Marc Olberding wrote:
+> On Sat, Aug 16, 2025 at 10:16:06AM +0200, Krzysztof Kozlowski wrote:
 >>
->> What are you using to apply patches? Because b4 would pull all
->> dependencies, which would brake your branch as well, but at least you
->> would see something odd happening here.
+>>
+>>> +// SPDX-License-Identifier: GPL-2.0-or-later
+>>
+>> Odd license. Since when GPL-3.0 is okay?
+>>
+> Ack, missed this. Will fix. 
+>>> +
+>>> +eeprom@56 {
+>>> +     compatible = "atmel,24c128";
+>>> +     reg = <0x56>;
+>>> +};
+>>> +
+>>
+>> This is some completely misplaced DTSI style. Don't do this...
 > 
-> I am using b4, but in cherry-pick mode, so i just pipe the current email to
+> Thanks for the feedback. I'm not sure which piece of this is wrong.
+> Is the issue with having the contents of an i2c bus in a dtsi file?
+> If so, would you prefer that we abandon the dtsi all together and
 
-Ah, that's the answer. Cherry-pick does not pick up dependencies, so you
-would not see weird commits tagging along :)
-
-> it. And i also noticed the prerequisite-change-id lines and the dependency
-> on gcc, but my local scripts (that do all kinds of checks) passed, because
-> of a bug that didn't properly log the dt_binding_check error, so i thought
-> the dependency is there. I recently modified it to run with not just the
-
+I think this should be just included in each bus needing it. It's really
+odd to see a DTSI with top-level I2C devices.
 
 Best regards,
 Krzysztof
