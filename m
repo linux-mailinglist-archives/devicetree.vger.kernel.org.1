@@ -1,202 +1,141 @@
-Return-Path: <devicetree+bounces-206437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FD50B2C500
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:16:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C84D3B2C4FC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:15:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E188E2416C4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:09:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E90BA2322A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE1D73431EF;
-	Tue, 19 Aug 2025 13:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FE9C33EAFA;
+	Tue, 19 Aug 2025 13:10:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Ux1FMWYZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HULyFZFo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27E0341ABD;
-	Tue, 19 Aug 2025 13:08:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 531D433EAED;
+	Tue, 19 Aug 2025 13:10:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755608918; cv=none; b=QfzFFRzUNre04sF65PwvziyWKI/ykzLjxU/05G5ardiHJmODtYFoj97eX7y+YAtq/5E96TGKvbD6mRT0V7ATfXs8j3mOKMzZ5buEhFye87uquk2pSBOQUAvWO+0mftL+38zRb2aFgD8iUo0J8WwRdKocOPqhKcCr5KbxLql3inM=
+	t=1755609000; cv=none; b=Dk3kU9zrz865r02mL7y+sV+sA3KpV9UwWG2yPmVI+MAu5Sg6yhrPwSzTolwwok/Rqc2DsrmGLs1c96DoJoa5a4hYliKE4ZI93ue6RBgQNg6NXLVphFSbDmv4eKnlE4k3BOrXpDBsk+NS9CAJVzX9LDhIflAAtK9MbPs8iKzH5RE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755608918; c=relaxed/simple;
-	bh=KCWnjMiB9XFoVGMpf6BPVRD0gmoXcgXGP7kPth7WYwA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Li2JAc5dZuT2aT+1i5/78UBi1Mbe4/chs2/RzeXTf5okPacBlJjoU1lN3KuoSGX/d9TR1mNEcVuZT/UYw1YXEVbZHD4OX9RXy2AbOgpO0vT2UTtvdPBKyVeNw95jj/X3+q85GgwDnrCc8v/hS5xpBmElxFNdQt9PRJo2BOEqVfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Ux1FMWYZ; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57JD8Box015729;
-	Tue, 19 Aug 2025 08:08:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755608891;
-	bh=xtTTfFfNriT5ktHRzxyQ7zHdkREPkpN1b5TtXHfK0sc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Ux1FMWYZ2cMzW1QEKitGOj7dqtY7Fq7VRpNnr3AVIm5+envElShArvPDpM5iEQbI/
-	 5xzKH5K3Q9ghRK9tIHrM56MDHWbd30DV4LwrVYQM4Hd9f+IOwZdzKRlSC79IF6Ux3z
-	 lysTf4+IYT1llzi9nqsiBje/akG/g203vXxhbJo4=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57JD8B7X421272
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 19 Aug 2025 08:08:11 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 19
- Aug 2025 08:08:11 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 19 Aug 2025 08:08:11 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57JD8BSh2747739;
-	Tue, 19 Aug 2025 08:08:11 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, David Airlie
-	<airlied@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Jason Kridner <jkridner@beagleboard.org>, <afd@ti.com>,
-        <tomi.valkeinen@ideasonboard.com>, <devarsht@ti.com>,
-        <dmitry.baryshkov@oss.qualcomm.com>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH V4 5/5] drm/bridge: it66121: Add minimal it66122 support
-Date: Tue, 19 Aug 2025 08:08:07 -0500
-Message-ID: <20250819130807.3322536-6-nm@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250819130807.3322536-1-nm@ti.com>
-References: <20250819130807.3322536-1-nm@ti.com>
+	s=arc-20240116; t=1755609000; c=relaxed/simple;
+	bh=hD9tklixCimPO7j0d38+GrqpKU9DTflGHV5ucMi/2rs=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=SmFm6Lr76Yg3Xd6VzjEeSAjg81F9LQ/DgOLvT7PCvRMbYe5oSVGO95mKYMXkFmaBH8kXtP1dHqqcZ+LQTqPpCO0AQWD08NE75cvtiItvbnvdlsPP3apE+nHf2N/g72SrG35PLJZbQYViasBB9+R2TEIFrW0hwJuop3ApynOLja8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HULyFZFo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9997FC4CEF1;
+	Tue, 19 Aug 2025 13:09:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755609000;
+	bh=hD9tklixCimPO7j0d38+GrqpKU9DTflGHV5ucMi/2rs=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=HULyFZFoPK2W5GWcnJ3grCjr5a/JJDnhvW76IKKsUMfq47E10kHpXoz9KbxUnWmL/
+	 Iik8wL0rd7DJ5N4TSoObFEIwTn/MvKYzfnna6ztqZjdGkM5o1VBSlimIWUAL71MkDL
+	 Dz3hEG7lRJVm5UL1tLGGJbq6DrLifVZvHcXDStQg+JHDahpxZ1+JwLvYrUpVc84WSc
+	 JQnChPr6TefUtfPcFMHgv3gGdodpnWZOfxylw9cmOtW8PifF3PnZcoVxQ/jSmav26t
+	 TnvB8bjdtO+PddVCeFJH4EQLCP+SyQp4Qa6Ae0psxjZV5LI5CAjEzuDSymH4ZydlwW
+	 rZnx+ugfwI7ng==
+Date: Tue, 19 Aug 2025 08:09:58 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ devicetree@vger.kernel.org, kernel@collabora.com, 
+ Heiko Stuebner <heiko@sntech.de>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+In-Reply-To: <20250818-rock5bp-for-upstream-v3-1-d13f3cdec86c@kernel.org>
+References: <20250818-rock5bp-for-upstream-v3-1-d13f3cdec86c@kernel.org>
+Message-Id: <175560761722.43635.9593798407318901845.robh@kernel.org>
+Subject: Re: [PATCH v3] arm64: dts: rockchip: add USB-C support for ROCK
+ 5B/5B+/5T
 
-The IT66122 is a pin compatible replacement for the IT66122. Based on
-empirical testing, the new device looks to be compatible with IT66121.
-However due to a lack of public data sheet at this time beyond overall
-feature list[1] (which seems to add additional features vs ITT66121),
-it is hard to determine that additional register operations required
-to enable additional features.
 
-So, introduce the device as a new compatible that we will detect based
-on vid/pid match, with explicit id that can be used to extend the
-driver capability as information becomes available later on.
+On Mon, 18 Aug 2025 20:13:44 +0200, Sebastian Reichel wrote:
+> Add hardware description for the USB-C port in the Radxa ROCK 5 Model B
+> family. This describes the OHCI, EHCI and XHCI USB parts. The DisplayPort
+> AltMode is only partially described, as bindings for the necessary
+> DisplayPort controller are still being reviewed.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+> This series adds USB-C support for the ROCK 5B, ROCK 5B+ and ROCK 5T.
+> 
+> Now that [0] has been merged, this should finally work reasonably
+> stable. Note, that there is a regression in 6.17-rc1, which breaks
+> stable operation again. I've send a revert of that in [1]. I think
+> it's time to enable the USB-C interface, so that we can claim further
+> breaks as proper regressions :)
+> 
+> [0] https://lore.kernel.org/all/20250704-fusb302-race-condition-fix-v1-1-239012c0e27a@kernel.org/
+> [1] https://lore.kernel.org/linux-usb/20250818-fusb302-unthreaded-irq-v1-1-3a9a11a9f56f@kernel.org/
+> 
+> Changes in PATCHv3:
+>  - Link to v2: https://lore.kernel.org/r/20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org
+>  - Rebased to latest for-next branch from Heiko
+>    - Dropped merged patches for initial ROCK 5B+ support
+>  - Renamed series, since it just adds USB-C support now
+>  - Fix pinctrl for Rock 5B SBU DC pins
+>  - Also handle ROCK 5T
+> 
+> Changes in PATCHv2:
+>  - Link to v1: https://lore.kernel.org/r/20250324-rock5bp-for-upstream-v1-0-6217edf15b19@kernel.org
+>  - Replaced DT binding patch with the version from NAOKI
+>  - Dropped unused pinctrl for vcc5v0_host_en from the shared DT
+>  - Moved USB-C SBU DC pins to board specific files, since they differ
+>    between Rock 5B and Rock 5B+
+>  - Added pinmux for SBU DC pins
+>  - Rebased to latest version of Heiko's for-next branch
+>  - Disable USB-C on Rock 5B for now
+> ---
+>  .../boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi   | 136 +++++++++++++++++++++
+>  .../boot/dts/rockchip/rk3588-rock-5b-plus.dts      |  12 ++
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts    |  12 ++
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts    |  12 ++
+>  4 files changed, 172 insertions(+)
+> 
 
-[1] https://www.ite.com.tw/en/product/cate1/IT66122
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Reviewed-by: Andrew Davis <afd@ti.com>
----
-Changes in V4:
-* just rebase
-* Picked Andrew's review
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-V3: https://lore.kernel.org/all/20250815034105.1276548-5-nm@ti.com/
-V2: https://lore.kernel.org/all/20250813204106.580141-4-nm@ti.com/
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
- drivers/gpu/drm/bridge/ite-it66121.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-index a1b0f8a8f3e8..fd71609a804e 100644
---- a/drivers/gpu/drm/bridge/ite-it66121.c
-+++ b/drivers/gpu/drm/bridge/ite-it66121.c
-@@ -287,6 +287,7 @@
- enum chip_id {
- 	ID_IT6610,
- 	ID_IT66121,
-+	ID_IT66122,
- };
- 
- struct it66121_chip_info {
-@@ -402,7 +403,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
- 		if (ret)
- 			return ret;
- 
--		if (ctx->id == ID_IT66121) {
-+		if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
- 						IT66121_AFE_IP_EC1, 0);
- 			if (ret)
-@@ -428,7 +429,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
- 		if (ret)
- 			return ret;
- 
--		if (ctx->id == ID_IT66121) {
-+		if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
- 						IT66121_AFE_IP_EC1,
- 						IT66121_AFE_IP_EC1);
-@@ -599,7 +600,7 @@ static int it66121_bridge_attach(struct drm_bridge *bridge,
- 	if (ret)
- 		return ret;
- 
--	if (ctx->id == ID_IT66121) {
-+	if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 		ret = regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 					IT66121_CLK_BANK_PWROFF_RCLK, 0);
- 		if (ret)
-@@ -802,7 +803,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
- 	if (regmap_write(ctx->regmap, IT66121_HDMI_MODE_REG, IT66121_HDMI_MODE_HDMI))
- 		goto unlock;
- 
--	if (ctx->id == ID_IT66121 &&
-+	if ((ctx->id == ID_IT66121 || ctx->id == ID_IT66122) &&
- 	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK)) {
-@@ -815,7 +816,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
- 	if (it66121_configure_afe(ctx, adjusted_mode))
- 		goto unlock;
- 
--	if (ctx->id == ID_IT66121 &&
-+	if ((ctx->id == ID_IT66121 || ctx->id == ID_IT66122) &&
- 	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK, 0)) {
- 		goto unlock;
-@@ -1501,6 +1502,7 @@ static const char * const it66121_supplies[] = {
- static const struct it66121_chip_info it66xx_chip_info[] = {
- 	{.id = ID_IT6610, .vid = 0xca00, .pid = 0x0611 },
- 	{.id = ID_IT66121, .vid = 0x4954, .pid = 0x0612 },
-+	{.id = ID_IT66122, .vid = 0x4954, .pid = 0x0622 },
- 	{ }
- };
- 
-@@ -1621,6 +1623,7 @@ static void it66121_remove(struct i2c_client *client)
- static const struct of_device_id it66121_dt_match[] = {
- 	{ .compatible = "ite,it6610" },
- 	{ .compatible = "ite,it66121" },
-+	{ .compatible = "ite,it66122" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, it66121_dt_match);
-@@ -1628,6 +1631,7 @@ MODULE_DEVICE_TABLE(of, it66121_dt_match);
- static const struct i2c_device_id it66121_id[] = {
- 	{ .name = "it6610" },
- 	{ .name = "it66121" },
-+	{ .name = "it66122" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, it66121_id);
--- 
-2.47.0
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: using specified base-commit 7f0817eee7ba40b48e956955d6fd8ba14750168c
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250818-rock5bp-for-upstream-v3-1-d13f3cdec86c@kernel.org:
+
+arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dtb: pinctrl (rockchip,rk3588-pinctrl): usbc-sbu-dc:rockchip,pins: [[0, 20, 0, 268], [0, 21, 0, 268]] is not of type 'object'
+	from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,pinctrl.yaml#
+
+
+
+
 
 
