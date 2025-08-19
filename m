@@ -1,336 +1,140 @@
-Return-Path: <devicetree+bounces-206577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0940B2CCCC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:14:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA4DB2CCD6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:17:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C908B561C53
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 19:14:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5F89580F7E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 19:17:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CCC22BD586;
-	Tue, 19 Aug 2025 19:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A787428C01E;
+	Tue, 19 Aug 2025 19:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V2DvkIXI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eoQt/q9N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD62B267B92;
-	Tue, 19 Aug 2025 19:14:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A91B202983;
+	Tue, 19 Aug 2025 19:17:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755630846; cv=none; b=UShRKBg1wmVEq3afUME8RZ3YibKQ7PUY/gEhRGRHJkuNGzGicNQJ5rNBSknfszfuZDzRznieGBAKKvYftrxRDCq46Mf40WHK9OOZba0ZpLh7qiesrfzhkAKuqIAP6/GGkUwC2jFh5607GCwMONu8yMlAK5YpDTJxogqiLYCIfN4=
+	t=1755631043; cv=none; b=tz/0DOy+cOxeDjjIo4Eb4KrA5m1TtBQAoaTE7HvRu+/ZvUFty/DO1GhiregEeUcYp5Rnv8oSIykJn20qOLn4uklqAtpFdIQJ1fKIjtfHwcixmjsjKwR1HuaphSwWPrDJ4lQZAOYvq+1IonU7deSOEIjk7VG6IO8DDbk0X9yFYJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755630846; c=relaxed/simple;
-	bh=QBZBFA8qX0CEUGaG7Ekodl0NUlye9JPmtd+b5ybqcNs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OLuDxsKLOg99bKPI4HqBmepF6fHeIysi9cQ8GaBjfjFjvoK/RzSfat9eX31FnwnRYsJyDGavcYjvvY3Bkgn3bzez2lMvy14RMkeJ+skN/bZzLLq1DUR3Cd5nXI/3BnddUN/mk4Rp6UOPJUSX+h+zb4iffNtVwSwsd0uNmht4hfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V2DvkIXI; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-76e6cbb991aso2046594b3a.1;
-        Tue, 19 Aug 2025 12:14:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755630844; x=1756235644; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uSoFs1dPwZPLyXDgW16htuCQo6gneHJl/XJEcVM4CC0=;
-        b=V2DvkIXIIBQP0mX+tkigIdZFJZ226e9ilS7tOPv26dzBEY+WH4GlQ19bXy/qfvgdLT
-         MFZe2SoQtJPgcjICHIKfwe3tbF+Bq55+cGVym4WQB5uKZHBir0JtJvT1dCUE+o/RJDwi
-         oHIDB+JtZDvj5j6PMlUm/DuYwzL1VJZljX4PqDWp7hFmiWUG5xJ9N/DR+KYVHn8i9b/b
-         g6zkZkmULe/is8JFAXulYtYeQf8wCQCQ9ixQvukDWcYzggJK9WuPzTlf1KKfYE7WL/0w
-         GQzhneGhkHNhqn5RjL/l4tCkMKM54spf9WecTLGIFQH42Dp4ZFRaY3Lp6DFT4aClJ+jU
-         /iCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755630844; x=1756235644;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uSoFs1dPwZPLyXDgW16htuCQo6gneHJl/XJEcVM4CC0=;
-        b=Yl1GOCWuxKgVbxll4gFc2AWgGm1Mjc59qt/hJuMPNalDzV7snyhQXUXGHAHFYUh5te
-         HmZ35KeOUWSnt74S50fAAZljvWnBJP8I/qsTZdi00YoKoaY/183OKSEaMUTZlAywv/7e
-         FYQ7C3siWsJ3kZWZuVvHwRY0uzGqe4yla5onvVqhWxeCIeSc8gpsYL1yelMa6eFjqhRx
-         Vyk18vp96qTPMmhTr0aWwaX1OumWm7P72fbNPy66A2egpPRRSNaks+hFnWnVlau4njUm
-         aEakg8pYd1oqizY+rCdNUP+l3cjHQLkAoH4/GHda0Tvey/Eo0HkSEi1XPT+fnrUpEdQ+
-         PQrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVcQJyLWHnltc6vASxgbevUpK49/RPJBwq8j2PrQ67ItkQdM93TuMNXp4Nle2mbd5pXjVFBN08heAM9@vger.kernel.org, AJvYcCXQx+dUNEcCYF2KTTmo8M87ZsNkpKNnyd9cpvVc2MzJi9CL5mMSqTr+B4ZI+8ZsPBsoKAb/48ziqk9jnduW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxqw2Wwj98sT6P+q1rv0a9GyRHOfCoXBmRedwUwHUIAJjAWLGNu
-	kaSo1vHzLWePZc46JzJNNtg4CWuVD/YE7JFfijwRRwJfb9Ac1eASmNO7
-X-Gm-Gg: ASbGncuN8fWpoMUntYjZPe5TDsk9+hmdpVJtyTFVI+zjEfx7QxOMD3l+tGGlETyETWU
-	FdAPCPip0U/kh4Bp1+HcVcUFXm+Lh/dzT+kFOfpsmgCIc72Z5SjfpNfz9EUyAMdZPmmtiX/x5lH
-	2XyVRvzSmE0+kuGwKJ3Ut/R1TWIhqJXe7HVv9KFf0SRvM7yxc7qg5mRus+CAxRSNUEkAbD2uRCE
-	YS3KEka7YzI9q/F8FKPMfRoKmtPDe6drU1WP/jP0eQTw8qu2SK5znsfCkldopnVU3mOinLIgf0O
-	+uYeb8BqPiE01MSATTI70d565k+LQ1sGDvvbcvc9zDMPXzQxCVc2C1nav/jLD8oFuaNbIBGWgOF
-	2x2lafczvp2Tk6QupAfVDBCba33Vj4mMkHJBW0xqorw==
-X-Google-Smtp-Source: AGHT+IEfPjCc/ljnWC4zpCiipCHTl8WeltuyKwOT/Jqk648q/rc8KulyEUXYKf/xSJhnTCuf1lFDmA==
-X-Received: by 2002:a05:6a00:190e:b0:76b:d363:4a3f with SMTP id d2e1a72fcca58-76e8db9bedamr369223b3a.3.1755630844184;
-        Tue, 19 Aug 2025 12:14:04 -0700 (PDT)
-Received: from localhost ([2804:30c:2767:3c00:70b9:40f2:fa7f:19cd])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-76e7d5246e2sm3223800b3a.82.2025.08.19.12.14.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 12:14:03 -0700 (PDT)
-Date: Tue, 19 Aug 2025 16:14:24 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Michael.Hennerich@analog.com,
-	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jonath4nns@gmail.com
-Subject: Re: [PATCH 4/4] iio: adc: ad7768-1: add support for ADAQ776x-1 ADC
- Family
-Message-ID: <aKTNEP7pNY9ZbrPe@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1754617360.git.Jonathan.Santos@analog.com>
- <f0c1cbc9c2994a90113788cad57df1f32f9db45e.1754617360.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1755631043; c=relaxed/simple;
+	bh=K5tZo5Uxv653pU6F84v0Qxr0KwCPFMu2NSvrwbpDGB0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bZxEBVBLyVp2Z7v0z7xErVsrfEfqVHcwaPw30zfM85bJHC+r79Y6t06vqj9SeHrFltxODCLcsblUY/7AezNs+Zda0zvVwsG9H6q14gLTnPJGzi2TPrLQwwMJI2Q+Iq4Sn3FQHJ2Y++nLBklJ9HPW665CecqO3V8olWgNMf8O1o4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eoQt/q9N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 596F9C4CEF1;
+	Tue, 19 Aug 2025 19:17:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755631043;
+	bh=K5tZo5Uxv653pU6F84v0Qxr0KwCPFMu2NSvrwbpDGB0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eoQt/q9NIabXYYUB5DQP0Jpl8pA0XA4SDSZtwhofpj/13CEBcGEFgLa/3YDYPiTqP
+	 l12GjwyMP/4RDl2h1nm9CzDtx1s6QCOzOH2zGn6dNJkk/R5eUEFASS6uw9VqJ/0F5N
+	 Hs3D4QmFZjR6FfpOq6KNh5VTv+kE65hkiQyhm+bT7RoiOeYmJoN3KKRNzPgyl+HRR9
+	 KMTS7VEoGEb/E518Aq8OmPm4X/jrzzs5Eqq2oj8CqR2p5y+RP+bOpbGxh3TCBa4Ng0
+	 sut+Bo+3N1lv+L2pCdlJppqOSzdvz5f1ucKnJEWnaG1YZn1oz7flD6EhqYM8PssV0k
+	 Bjf7jQx9KKdlg==
+Message-ID: <33d2ef0e-d5c3-4e42-a3c7-e285331f07ef@kernel.org>
+Date: Tue, 19 Aug 2025 21:17:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f0c1cbc9c2994a90113788cad57df1f32f9db45e.1754617360.git.Jonathan.Santos@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: document the RPMh
+ Network-On-Chip interconnect in Glymur SoC
+To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Mike Tipton <mike.tipton@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+References: <20250814-glymur-icc-v2-0-596cca6b6015@oss.qualcomm.com>
+ <20250814-glymur-icc-v2-1-596cca6b6015@oss.qualcomm.com>
+ <CAL_JsqL+C1VueQjrKra8fNTd-2k=gkoy-jA9uuQOhuyRMbQroQ@mail.gmail.com>
+ <363db534-92a2-4108-8a41-8e07ec22513d@kernel.org>
+ <09247b50-05c4-40ff-9d9e-51e36846996d@kernel.org>
+ <36974682-c8f1-4bcd-91f3-255c6332c0fe@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <36974682-c8f1-4bcd-91f3-255c6332c0fe@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Jonathan,
-
-A few thoughts from me.
-
-On 08/12, Jonathan Santos wrote:
-> Add support for ADAQ7767/68/69-1 series, which includes PGIA and
-> Anti-aliasing filter (AAF) gains.
+On 19/08/2025 20:02, Georgi Djakov wrote:
+>>>> this until the dependency is there.
+>>>
+>>> Thanks! And now i see why my script didn't catch this... now fixed and
+>>> patch dropped.
+>>
+>> What are you using to apply patches? Because b4 would pull all
+>> dependencies, which would brake your branch as well, but at least you
+>> would see something odd happening here.
 > 
-> The PGA gain is configured in run-time through the scale attribute,
-> if supported by the device. The scale options are updated according
-> to the output data width.
-This could provide more information/context. How the PGA is controlled/configured?
+> I am using b4, but in cherry-pick mode, so i just pipe the current email to
 
-> 
-> The AAF gain is configured in the devicetree and it should correspond to
-> the AAF channel selected in hardware.
-Would this be more clear if stated the other way around? 
+Ah, that's the answer. Cherry-pick does not pick up dependencies, so you
+would not see weird commits tagging along :)
 
-The AAF gain is defined by hardware connections and thus is specified in device tree. ?
-
-> 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> ---
->  drivers/iio/adc/ad7768-1.c | 286 ++++++++++++++++++++++++++++++++++++-
->  1 file changed, 279 insertions(+), 7 deletions(-)
-> 
-...
->  
-> +static void ad7768_fill_scale_tbl(struct iio_dev *dev)
-> +{
-> +	struct ad7768_state *st = iio_priv(dev);
-> +	const struct iio_scan_type *scan_type;
-> +	int val, val2, tmp0, tmp1, i;
-> +	unsigned long denominator, numerator;
-> +	u64 tmp2;
-> +
-> +	scan_type = iio_get_current_scan_type(dev, &dev->channels[0]);
-> +	if (scan_type->sign == 's')
-> +		val2 = scan_type->realbits - 1;
-> +	else
-> +		val2 = scan_type->realbits;
-> +
-> +	for (i = 0; i < st->chip->num_pga_modes; i++) {
-> +		/* Convert gain to a fraction format */
-> +		numerator = st->chip->pga_gains[i];
-> +		denominator = MILLI;
-> +		if (st->chip->has_variable_aaf) {
-> +			numerator *= ad7768_aaf_gains[st->aaf_gain];
-> +			denominator *= MILLI;
-> +		}
-> +
-> +		rational_best_approximation(numerator, denominator, __INT_MAX__, __INT_MAX__,
-> +					    &numerator, &denominator);
-> +
-> +		val = st->vref_uv / 1000;
-What about keeping the reference in µV (not dividing by MILLI)?
-
-> +		/* Multiply by MILLI here to avoid losing precision */
-> +		val = mult_frac(val, denominator * MILLI, numerator);
-then this can be just 
-		val = mult_frac(val, denominator, numerator);
-
-> +		/* Would multiply by NANO here but we already multiplied by MILLI */
-> +		tmp2 = shift_right((u64)val * MICRO, val2);
-> +		tmp0 = (int)div_s64_rem(tmp2, NANO, &tmp1);
-val is never negative here so can use div_u64_rem() or maybe do_div().
-
-> +		st->scale_tbl[i][0] = tmp0; /* Integer part */
-> +		st->scale_tbl[i][1] = abs(tmp1); /* Fractional part */
-> +	}
-> +}
-> +
-...
->  
-> +static int ad7768_calc_pga_gain(struct ad7768_state *st, int gain_int,
-> +				int gain_fract, int precision)
-> +{
-> +	u64 gain_nano, tmp;
-> +	int gain_idx;
-> +
-> +	precision--;
-This is odd out of context.
-Also, it only applies to ADCs that provide output codes in two's complement
-format. See comment below.
-
-
-> +	gain_nano = gain_int * NANO + gain_fract;
-> +	if (gain_nano < 0 || gain_nano > ADAQ776X_GAIN_MAX_NANO)
-I've seen some build tools complain about comparisons like gain_nano < 0 with
-gain_nano being u64. Since that's unsigned, it can never be < 0. And in the
-context of gain/attenuation, we know gain_nano shall never be negative.
-Would just drop the gain_nano < 0 comparison. Or maybe clamp() the value?
-
-> +		return -EINVAL;
-> +
-> +	tmp = DIV_ROUND_CLOSEST_ULL(gain_nano << precision, NANO);
-> +	gain_nano = DIV_ROUND_CLOSEST_ULL(st->vref_uv, tmp);
-> +	if (st->chip->has_variable_aaf)
-> +		/* remove the AAF gain from the overall gain */
-> +		gain_nano = DIV_ROUND_CLOSEST_ULL(gain_nano *  MILLI,
-> +						  ad7768_aaf_gains[st->aaf_gain]);
-> +	tmp = st->chip->num_pga_modes;
-> +	gain_idx = find_closest(gain_nano, st->chip->pga_gains, tmp);
-> +
-> +	return gain_idx;
-> +}
-> +
-...
-> +
-> +	/* Write the respective gain values to GPIOs 0, 1, 2 */
-> +	ret = regmap_write(st->regmap, AD7768_REG_GPIO_WRITE,
-> +			   AD7768_GPIO_WRITE(pgia_pins_value));
-> +	if (ret < 0)
-I think regmap_write() doesn't return positive values so we can have 'if (ret)' here.
-
-> +		return ret;
-> +
-> +	st->pga_gain_mode = gain_mode;
-> +
-> +	return 0;
-> +}
-> +
-...
->  	case IIO_CHAN_INFO_SCALE:
-> -		scale_uv = st->vref_uv;
-> -		if (scale_uv < 0)
-> -			return scale_uv;
-> -
-> -		*val = (scale_uv * 2) / 1000;
-> -		*val2 = scan_type->realbits;
-> +		if (st->chip->has_pga) {
-> +			*val = st->scale_tbl[st->pga_gain_mode][0];
-> +			*val2 = st->scale_tbl[st->pga_gain_mode][1];
-> +			return IIO_VAL_INT_PLUS_NANO;
-> +		}
-> +		*val = st->vref_uv / 1000;
-> +		if (st->chip->has_variable_aaf)
-> +			*val = (*val * MILLI) / ad7768_aaf_gains[st->aaf_gain];
-Similar thing here. Would it make sense to use st->vref_uv without dividing it
-by MILLI?
-
-> +		/*
-> +		 * ADC output code is two's complement so only (realbits - 1)
-> +		 * bits express voltage magnitude.
-> +		 */
-> +		*val2 = scan_type->realbits - 1;
-I see the rationally for this. Instead of doing 'scale_uv * 2' to account for
-the range of negative values, this is now using one less precision bit which
-shall lead to the same result after going through IIO_VAL_FRACTIONAL_LOG2
-handling. I personally prefer the realbits - 1 logic, but others may prefer
-to avoid this change since it was already working with 'scale_uv * 2'.
-
->  
->  		return IIO_VAL_FRACTIONAL_LOG2;
->  
-> @@ -869,18 +1035,42 @@ static int ad7768_read_avail(struct iio_dev *indio_dev,
->  		*length = st->samp_freq_avail_len;
->  		*type = IIO_VAL_INT;
->  		return IIO_AVAIL_LIST;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*vals = (int *)st->scale_tbl;
-> +		*length = st->chip->num_pga_modes * 2;
-> +		*type = IIO_VAL_INT_PLUS_NANO;
-> +		return IIO_AVAIL_LIST;
->  	default:
->  		return -EINVAL;
->  	}
->  }
->  
-...
-> @@ -892,6 +1082,13 @@ static int __ad7768_write_raw(struct iio_dev *indio_dev,
->  
->  		/* Update sampling frequency */
->  		return ad7768_set_freq(st, st->samp_freq);
-> +	case IIO_CHAN_INFO_SCALE:
-> +		if (!st->chip->has_pga)
-> +			return -EOPNOTSUPP;
-> +
-> +		gain_mode = ad7768_calc_pga_gain(st, val, val2,
-> +						 scan_type->realbits);
-Check scan_type.sign and pass scan_type->realbits - 1 to ad7768_calc_pga_gain()
-if the ADC output codes are in two's complement format.
-
-> +		return ad7768_set_pga_gain(st, gain_mode);
->  	default:
->  		return -EINVAL;
->  	}
-...
-> +static const struct ad7768_chip_info adaq7767_chip_info = {
-> +	.name = "adaq7767-1",
-> +	.channel_spec = ad7768_channels,
-> +	.num_channels = ARRAY_SIZE(ad7768_channels),
-> +	.available_masks = ad7768_channel_masks,
-> +	.has_pga = false,
-I think these flag initialization can be omitted when they are false.
-
-> +	.has_variable_aaf = true
-> +};
-> +
-> +static const struct ad7768_chip_info adaq7768_chip_info = {
-> +	.name = "adaq7768-1",
-> +	.channel_spec = adaq776x_channels,
-> +	.num_channels = ARRAY_SIZE(adaq776x_channels),
-> +	.available_masks = ad7768_channel_masks,
-> +	.pga_gains = adaq7768_gains,
-> +	.default_pga_mode = AD7768_PGA_GAIN_2,
-> +	.num_pga_modes = ARRAY_SIZE(adaq7768_gains),
-> +	.pgia_mode2pin_offset = 6,
-> +	.has_pga = true,
-> +	.has_variable_aaf = false
-Same here.
-
-> +};
-> +
-...
-> @@ -1418,6 +1652,35 @@ static int ad7768_probe(struct spi_device *spi)
->  	if (ret)
->  		return ret;
->  
-> +	st->aaf_gain = AD7768_AAF_IN1;
-> +	ret = device_property_read_u32(&spi->dev, "adi,aaf-gain", &val);
-> +	if (ret) {
-> +		/* AAF gain required, but not specified */
-> +		if (st->chip->has_variable_aaf)
-> +			return dev_err_probe(&spi->dev, -EINVAL, "AAF gain not specified\n");
-> +
-> +	} else if (!st->chip->has_variable_aaf) {
-> +		/* AAF gain provided, but not supported */
-> +		return dev_err_probe(&spi->dev, -EINVAL, "AAF gain not supported for %s\n",
-> +				     st->chip->name);
-Not really sure what to do in these cases. Can't we just ignore or warn on
-properties for unsupported features?
+> it. And i also noticed the prerequisite-change-id lines and the dependency
+> on gcc, but my local scripts (that do all kinds of checks) passed, because
+> of a bug that didn't properly log the dt_binding_check error, so i thought
+> the dependency is there. I recently modified it to run with not just the
 
 
 Best regards,
-Marcelo
+Krzysztof
 
