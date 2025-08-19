@@ -1,95 +1,145 @@
-Return-Path: <devicetree+bounces-206478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC7F4B2C616
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:49:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF1B8B2C639
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:54:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64EA71C2081D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:47:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF6E81740CD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B59F6340DAB;
-	Tue, 19 Aug 2025 13:46:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G7bCTQ01"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B208310652;
+	Tue, 19 Aug 2025 13:47:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85AB519C540;
-	Tue, 19 Aug 2025 13:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [4.193.249.245])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D178A15442C;
+	Tue, 19 Aug 2025 13:47:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=4.193.249.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755611180; cv=none; b=h3IArJMdhIKXIG2kHTibij6NaEt4+HhybHN/3WQ4tevuAobewxXrRQI7OpzjSgD16idXOXyLUGXffSs/+eh4SNa0zzb9KRPsK6QDiKV0M8kD0EKpa4pgUi1r6N04S8o7HAPN77vIN5InKOMeya4DMa22g8scaQoDB35XWLnzm7w=
+	t=1755611274; cv=none; b=tYWUmsfIze9hnLccgH2Q20uW0D+dZfMzyeqvd2fXyvuAKsduw6+Lfcs56A0ETBopGN/YGKKc44dW7YqTcacW8wAROUMuN4gFCxUx75mvuyf0Gsx34SCXH9MRBuIxAgh1+v3mmPKNVkHRTjWurmeAMKeaaen3beVQ+DpRu5eHI/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755611180; c=relaxed/simple;
-	bh=SAIdtJM6LkCatVrWImthiJwziRX8HOwPKgj2HFdZhvE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nj1p/F/xWpo3aC1OoddmfrIJTOuI3QLCF0UHygGURT/GhQHOIwQidZ5SNrSfiHsJA1BX8mPyLHlddHp8aBWAfA0RiRENfZudImcrJCfjMiPyQd5ZZNifUlIGeR2CAZc4Zm8RH306FxZ00qra1PR8cIB3nNq+WSKqShFG9TptD1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G7bCTQ01; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9184AC4CEF1;
-	Tue, 19 Aug 2025 13:46:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755611179;
-	bh=SAIdtJM6LkCatVrWImthiJwziRX8HOwPKgj2HFdZhvE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G7bCTQ01ocGyuf7Ag+FCzBiLcGF6hKZ9fBvQ95He86f9Ej3Ldx/mgauUKUiISjqj2
-	 9EgrHA6nTshi3eIugwWGB0bg1SMI+fD7o63r71gVBBOs+meW9RQ72IxBnWqiqugCaE
-	 CdnV0ELf5EXNhTg+tVYAoNVuVSnjY9hMtKUXkjMXYd5U1NrWSRWawQQKpiUNyOAKyw
-	 w7q3VeRbiiuAnSHFVAbnq42Sb/nB+0lFs9oSlc92rj5hVTnJ34cmUBlPdmuM3O1yVh
-	 qQ7Kvn3TM+gInzVx4k7siRktKIjKpFehW+AfW2HvhQwKzxST7ojgeWKv9JX1OJOiUW
-	 gm340Ack5NBDQ==
-Message-ID: <363db534-92a2-4108-8a41-8e07ec22513d@kernel.org>
-Date: Tue, 19 Aug 2025 16:46:13 +0300
+	s=arc-20240116; t=1755611274; c=relaxed/simple;
+	bh=7OErGkHrL5Gjjdrfh0ZS4BJc3dz5o2tElYf6eNQynrI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Qyjd3uNDifanmxj7/yYyK3Mvvv8ysXZ+wEs/q2W88P7NWrJWb3cfu/o9mCFWv4myDEMEyCqKCk8JEWgxc56eICMJ+VcEtotwwmUSD/hsWWWRL8qFEJOZyyMLrgFCKiZTmba1/sDdOrZ9w6yd5BU7UpglW1EUDgk4Xpu6q5tMKvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=4.193.249.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0006800LT.eswin.cn (unknown [10.12.96.77])
+	by app1 (Coremail) with SMTP id TAJkCgDX+xFugKRoCa7AAA--.21178S2;
+	Tue, 19 Aug 2025 21:47:28 +0800 (CST)
+From: Yulin Lu <luyulin@eswincomputing.com>
+To: dlemoal@kernel.org,
+	cassel@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-ide@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	vkoul@kernel.org,
+	kishon@kernel.org,
+	linux-phy@lists.infradead.org
+Cc: ningyu@eswincomputing.com,
+	zhengyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	fenglin@eswincomputing.com,
+	lianghujun@eswincomputing.com,
+	luyulin <luyulin@eswincomputing.com>
+Subject: [PATCH v2 0/3] ESWIN EIC7700 sata phy driver and yaml,
+Date: Tue, 19 Aug 2025 21:47:22 +0800
+Message-Id: <20250819134722.220-1-luyulin@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: document the RPMh
- Network-On-Chip interconnect in Glymur SoC
-To: Rob Herring <robh@kernel.org>,
- Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mike Tipton <mike.tipton@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-References: <20250814-glymur-icc-v2-0-596cca6b6015@oss.qualcomm.com>
- <20250814-glymur-icc-v2-1-596cca6b6015@oss.qualcomm.com>
- <CAL_JsqL+C1VueQjrKra8fNTd-2k=gkoy-jA9uuQOhuyRMbQroQ@mail.gmail.com>
-Content-Language: en-US
-From: Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <CAL_JsqL+C1VueQjrKra8fNTd-2k=gkoy-jA9uuQOhuyRMbQroQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgDX+xFugKRoCa7AAA--.21178S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxCw1UWr4DCrWDCF43ZF4kXrb_yoW5XFyDpa
+	1kCF9IyrsYqryxX3Z7Ja10kFy3J3Z3GrWakrZrJw15Zw4Y934Fqw43t3Z0vFy2yw18XryY
+	qFn0ga4akFyUArJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9G14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
+	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
+	wI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
+	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v2
+	0xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxV
+	W8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRidbbtUUUUU==
+X-CM-SenderInfo: pox13z1lq6v25zlqu0xpsx3x1qjou0bp/
 
-On 8/19/25 4:31 PM, Rob Herring wrote:
-> On Thu, Aug 14, 2025 at 9:54 AM Raviteja Laggyshetty
-> <raviteja.laggyshetty@oss.qualcomm.com> wrote:
->>
->> Document the RPMh Network-On-Chip Interconnect in Glymur platform.
->>
->> Co-developed-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
->> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
->> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->> Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
->> ---
->>   .../bindings/interconnect/qcom,glymur-rpmh.yaml    | 172 +++++++++++++++++
->>   .../dt-bindings/interconnect/qcom,glymur-rpmh.h    | 205 +++++++++++++++++++++
->>   2 files changed, 377 insertions(+)
-> 
-> This is breaking linux-next "make dt_binding_check". Looks like the
-> clock header dependency in the example is not applied. Please drop
-> this until the dependency is there.
+From: luyulin <luyulin@eswincomputing.com>
 
-Thanks! And now i see why my script didn't catch this... now fixed and
-patch dropped.
+  Implements support for the Eswin EIC7700 SoC sata phy.
+  Implements the calling sequence to interface with dwc-ahci,
+  ensuring correct hardware execution order.
+  Integration with the Linux phy subsystem for consistency and
+  scalability.
+  Add documentation for ahci and sata phy on the ESWIN EIC7700
+  SoC platform.
 
-BR,
-Georgi
+  Supported chips:
+    Eswin EIC7700 SoC.
+
+  Test:
+    Tested this patch on the Sifive HiFive Premier P550 (which uses
+    the EIC7700 SoC). Based on this driver, the SATA device read/write
+    operations are functioning normally, supporting SATA 1.5 Gb/s,
+    3.0 Gb/s, and 6.0 Gb/s speeds, so this verifies that this sata
+    driver patch is working properly.
+
+  This series depends on the vendor prefix patch [1] and config option patch [2].
+  [1] https://lore.kernel.org/all/20250616112316.3833343-4-pinkesh.vaghela@einfochips.com/
+  [2] https://lore.kernel.org/all/20250616112316.3833343-3-pinkesh.vaghela@einfochips.com/
+
+Updates:
+
+  Changes since V1:
+    - Delete the original controller driver and use ahci_dwc.c instead.
+    - Add eswin,eic7700-ahci.yaml
+      - Correct the descriptions of reset, interrupt and other
+        hardware resources for the sata controller on EIC7700 SoC.
+      - The clocks for both sata controller and sata PHY are controlled
+        via a register bit in the HSP bus and are not registered in the
+        clock tree. Clock are managed within the PHY driver, therefore
+        it is not described in this document.
+      - Add $ref: snps,dwc-ahci-common.yaml#.
+    - Add eswin,eic7700-sata-phy.yaml
+      - Add this file to include the description of the PHY on EIC7700 SoC.
+    - Add an eswin directory under the PHY driver path, and include the SATA
+      PHY driver code for EIC7700 SoC.
+    - Link to v1: https://lore.kernel.org/all/20250515085114.1692-1-hehuan1@eswincomputing.com/
+
+luyulin (3):
+  dt-bindings: ata: eswin: Document for EIC7700 SoC ahci
+  dt-bindings: phy: eswin: Document for EIC7700 SoC SATA
+  phy: eswin: Create eswin directory and add EIC7700 SATA PHY driver
+
+ .../bindings/ata/eswin,eic7700-ahci.yaml      |  92 ++++++++
+ .../bindings/phy/eswin,eic7700-sata-phy.yaml  |  36 ++++
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/eswin/Kconfig                     |  14 ++
+ drivers/phy/eswin/Makefile                    |   2 +
+ drivers/phy/eswin/phy-eic7700-sata.c          | 197 ++++++++++++++++++
+ 7 files changed, 343 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/ata/eswin,eic7700-ahci.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/eswin,eic7700-sata-phy.yaml
+ create mode 100644 drivers/phy/eswin/Kconfig
+ create mode 100644 drivers/phy/eswin/Makefile
+ create mode 100644 drivers/phy/eswin/phy-eic7700-sata.c
+
+-- 
+2.25.1
+
 
