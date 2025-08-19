@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-206536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C713B2C908
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 18:05:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D53AB2C91A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 18:09:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39D6B17C3AC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 16:04:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68A537A7172
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 16:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 984D32BF3DF;
-	Tue, 19 Aug 2025 16:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FA09284883;
+	Tue, 19 Aug 2025 16:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="kGPqj6NC"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="d9QvesH0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B79632BE634;
-	Tue, 19 Aug 2025 16:04:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834961D5146;
+	Tue, 19 Aug 2025 16:08:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755619446; cv=none; b=JstfVktj3zNeVm2xzbWxwpg1jsTpBnao+FApG0claON6jPFYCuM+PTFPIzjHM5M8ShXcCfp/gPekVKmbJKNUUGbJWRNNT+B9M2c08RZfo3KVSZ5mHgilc6DT7RGsBFVG68A/+i+N087lQEg2D1gQyuJt5qtvTwn3iWRj4eIbmt8=
+	t=1755619735; cv=none; b=raZXfgB2htBZbxEUsTt2hvbvfl0cbF2VP1pBmgJseFBajxUxSyuIALI1paJX6ASe20HpR4p3n3/s6CjD8WuqZXwwrSfauz74pKDpSsHNkYi7IIXcCMSB4O7lDUPNn7dWmEcdrEy4rcnObJne0l5LjM8kWD/gpnTGUyHGEm1LArA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755619446; c=relaxed/simple;
-	bh=wLvfu74oK9PGxpv8iFgmi36eU1aC/XOa2NPyXzmd7YE=;
+	s=arc-20240116; t=1755619735; c=relaxed/simple;
+	bh=6GefT8zTh09YEJRTFqrnpDoOMWXbve1Bzht21kegV4o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sEsNpKPz0WCoueOllhINl9rmtH5uepzFNAFMtfEG0quSGPjwuQnQrMgitKGAT84vhp+Ekj1oZglZafi285+6B5+cOdj3QrlvvLHvLyQP8PmzWWxB8z2LOFWe5LfLyO1teoaBtShZrO9Ne4y3outgJJvA7S9Lrbolca2pXZbmp6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=kGPqj6NC; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=DFrX6u/eF3Mv7Xnbvm9J9+FSMqoysYTs0mJBBmvWyDsB8KeydthI1P4vzSseX9Xeqy9b/OSAIeB7UXa2KjcM2goPX+L7k+mfh45SOA4AfpHJlr6WDQ1ZRDxIxb5PCB9Qpcw8snP9+Uuh2yp3vGeYxQP6zYRwVp39mHFYB8Yr4gI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=d9QvesH0; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,24 +36,25 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=N+7flFK2RUnxDqXCVUqXaa0V2OFkhUFUQMezuL5yE6g=; b=kGPqj6NClAqPHS8M/uA71K3oTt
-	5MMCYBEUXDle2yjsuFbQEh7VjoHgYOYDaXwJePFOVYZZXqpTboYge93ACdlVVY491QRd5gB5rXo+M
-	z+BLiNLxqgQmBq81fCsuRTOKUnm3EgA0wJQidIcDFfGfc/zg5NzLewgbUfN28Dv94Dsg=;
+	bh=Ybc4a5zVNR2n4RONlCYCS49NxANnn9uP57Jdk+jOlDY=; b=d9QvesH04zlFpjUZ2zRbNsJtME
+	uSnMz3e3gbt8KUCCTclrt+0NDJ+xblcwIx5ke8tVTAxT/L9V2P6WkCsGxOCTYcfCzCmiEcUgscpfW
+	W7vfoHdSwrvw4NfoUKwSEhB2nb0Z4Q5ZB4s7UB4hhdDnAI6MWnugqDl6xBSZiQBfRRT8=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1uoOoN-005D7L-1y; Tue, 19 Aug 2025 18:03:47 +0200
-Date: Tue, 19 Aug 2025 18:03:47 +0200
+	id 1uoOtC-005D9T-Q0; Tue, 19 Aug 2025 18:08:46 +0200
+Date: Tue, 19 Aug 2025 18:08:46 +0200
 From: Andrew Lunn <andrew@lunn.ch>
-To: Dongjin Kim <tobetter@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Change ethernet TXD timing delay
- value
-Message-ID: <4d25c642-d457-4cb7-8bc1-587edd4f1d75@lunn.ch>
-References: <20250819045018.2094282-1-tobetter@gmail.com>
+To: Mateusz Koza <mateusz.koza@grinn-global.com>
+Cc: angelogioacchino.delregno@collabora.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	marcin.czarnecki@grinn-global.com, b.bilas@grinn-global.com
+Subject: Re: [PATCH v2 1/4] arm64: dts: mediatek: mt8390-genio-700-evk: Add
+ Grinn GenioSBC-700
+Message-ID: <350133ab-a116-4555-8d5e-90b718c7b0e1@lunn.ch>
+References: <20250819130231.181571-1-mateusz.koza@grinn-global.com>
+ <20250819130231.181571-2-mateusz.koza@grinn-global.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,37 +63,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250819045018.2094282-1-tobetter@gmail.com>
+In-Reply-To: <20250819130231.181571-2-mateusz.koza@grinn-global.com>
 
-On Tue, Aug 19, 2025 at 01:50:17PM +0900, Dongjin Kim wrote:
-> Very poor network performance is observed on the ODROID-M1 Board
-> (REV 1.0 20220613) when running iperf3 (under 200Mbits/sec), and
-> this problem can be resolved after changing the value of TXD
-> timing to 0x35 from 0x4f.
+> +&eth {
+> +	phy-mode = "rgmii-rxid";
 
-How did you decide on 0x35?
+Does the PCB have an extra long TX clock line?
 
-~/linux/arch/arm64$ grep -hr "tx_delay = " | sort | uniq -c
-      4 	tx_delay = <0x10>;
-      1 	tx_delay = <0x1a>;
-      1 	tx_delay = <0x21>;
-      2 	tx_delay = <0x22>;
-      4 	tx_delay = <0x24>;
-      2 	tx_delay = <0x26>;
-     14 	tx_delay = <0x28>;
-      1 	tx_delay = <0x2a>;
-      6 	tx_delay = <0x30>;
-      1 	tx_delay = <0x3a>;
-      3 	tx_delay = <0x3c>;
-      2 	tx_delay = <0x42>;
-      5 	tx_delay = <0x43>;
-      2 	tx_delay = <0x44>;
-      1 	tx_delay = <0x46>;
-      6 	tx_delay = <0x4f>;
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L287
 
-The numbers are all over the place, but it is clear that 0x28 is the
-most popular for some reason. But since this delay values are magic,
-i've no idea why.
+> +	phy-handle = <&ethernet_phy0>;
+> +	snps,reset-active-low;
+> +	snps,reset-delays-us = <0 11000 200000>;
+> +	mediatek,tx-delay-ps = <2030>;
 
-     Andrew
+Please try setting this to 30, and use 'rgmii-id'
+
+	Andrew
 
