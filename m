@@ -1,202 +1,162 @@
-Return-Path: <devicetree+bounces-206291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33767B2BF61
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:52:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A7B8B2BF83
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:58:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA3051895FAC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:52:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66D10685C18
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D5030E842;
-	Tue, 19 Aug 2025 10:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15FDA322A39;
+	Tue, 19 Aug 2025 10:57:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TfBeKcWh"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WTpBHEr9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2739F31AF01
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 10:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2DFC322C87;
+	Tue, 19 Aug 2025 10:57:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755600748; cv=none; b=ke7zXsKs4wq6wQNZU7tqDHCv/mgTQLEklkQhC0M8julCaJKliz913HBgXZM/SCPsAhHiOotEkq7cgi6jUT7HXrEt6oJ62Kg35SNPVbIgNKp2epiDPJqHkD8MDIBpmB+caBYWqHQvqEX5jnGdSQmXGe1oxC7T24YB2brc4LUwzYo=
+	t=1755601062; cv=none; b=WRnn8SDGHolGVO2taWpy6jtxXVXEI5ITqA533iRbOUFi4HaUKzY4RZk6WgBNbjSARaVMx/EeHVXPV8rC0g9ogsBN5QUu0USiNvhREKjhOIVgK4rhOeqtp+x1eHM7AJTe1Z9X6z5ww6HQTmWiv/nE4mDLh/LE5wI+Ne12tLbS++M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755600748; c=relaxed/simple;
-	bh=JHp6Cjl/6HkRQPs/3MG0GDjGm2xUk8pgEnaUJplYzSo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FN3dakHY3h9JMvBDuwYqOt5EWMtYeucChyuJIn8Mm5GOoe/rBNoK6SKY/hjtYDhdch+qdkFc6GySaKiWuCwlJ2sPWHJ17FEmpR6R5KuRqlmReiDDAUnuGFlgyHY45jLmfOXTicZoxgMFOsahjREuig5YHqJsL3W0c08y413pGQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TfBeKcWh; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57J90YY0026967
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 10:52:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=meTAWZ002tWP1iMId64JmPQL
-	fiMSJlabjueQPGjB4T4=; b=TfBeKcWhD2yRfIk38oz9ShgSEu1KkrMFo1TbZK8+
-	zgcGSxVDJTFS5BKffpapOoDeFHTUrQn3QeIuyPm4xd7LH3pxWwnE4c0DwmOcp3eO
-	vJV+FOL0/cgD1JOQ2PI4EkgCnx7B8aoOhn88Zo7h5TKF6aBgNCxsJNz2E0bEYODL
-	NjkwBpphEmNcmPx1idl4Mmhr81AlIjUsOXngpf0/Xm0fXX2s3kulQXrNqXIoWj3h
-	uIZQAJulvydpDFQP0AmfH0ufIvxZAFqsFDa0xIgEksTxsckAi0D4wgzWhaGkCHTG
-	78MITdhl/YcS5obifMi5za4UcYdXcC8Y0Ec4ToxUxDyO4g==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48jhjyg7nf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 10:52:25 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b109affec8so148057221cf.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 03:52:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755600745; x=1756205545;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=meTAWZ002tWP1iMId64JmPQLfiMSJlabjueQPGjB4T4=;
-        b=nrJjIVK4eAJa2OX2nDRU6wYV+uutz3nkBc5gi2yJYoKzIaF96Rb4cE31eNorhsSwmX
-         VsNxOtHH/iEzx1T1lT71gi6hftHfGudQQqbaXA9o7HVJua9PqdjJnFIYGPiU9hRmX7jT
-         2oSAgHQPj2MGrIKgHTPArjqLCO4esEABiHQYxJlROwWr9TKWgyl45Z92y8Ddz9/ffwW9
-         zV0tMwxujwogTPH5kQi6Ab7PCCkLymqGjFvE2ONBQi4pzSvHRAgv9ceTtp8YYNqqUh32
-         tKiG3NnbiIHDfHy4vP+9jUZ8LF9MeTw3bVWssQaafgUY+hBg0/Ht/pSY33Nng1VIW039
-         i1fA==
-X-Forwarded-Encrypted: i=1; AJvYcCUe6TekgYtfkr19OTyt5jOfn2Gni9WgvgMa31iVKWtuIuDe3D4QfeGTXi69ecOiTVbWFQbuCZavKxB9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhMw2Y5mrUWg+X9cE6ttuhOmzLHSWakFVrLrQ3HNcSUWKuslUt
-	IpEay6SYHMVhGIE6bIvQumd0hETH9AqTDIje5t905VALUHSFYel4XdAqWggFzihyHtHm+ZaZ/7E
-	LCqZvhU60Zmnd5PF7sQclKf2uxomGFD1jLUQBr06goumon7megS4HPz9zOAG1bZbS
-X-Gm-Gg: ASbGnctxxVIMY6pZWvnsoms5E4B3YaRZ69/Vubfiv5tHPq4xWMUtS9VPQJI/wV+xgxu
-	neU69AQ50yS6D4OG/IR3/U0TMQ+l4qUILystpL5WhYbJqew/CsMI/2nPNXFJypylhLCZyAlk9uB
-	6V+tSrqIhOtlGfUvH9YGredQDxeTnNgVoCFEaheYBvkODk+RZ7Jh6YdmgVcQQPnBE3Ywqn7kBIY
-	2ZG7vwi9GPIZmx+BNBbjIQgCGg49W0m4eWBQA8alYfhRPUI5l+rbsn7S3L9SZ/qwu/oF2e4AmhY
-	K2M95l6oqkHR4dlWWXT4vZnlExdjGicQrL6x7pYXsw/cxeBUa5Ha2EkT1OjwnT5TmbH3X2U2S3p
-	NDvHZpQcmtrWpU4TJr3bHkxMmfsFiIMS9OyfJBAmxKTZmOm9CT5fi
-X-Received: by 2002:a05:6214:2526:b0:707:a430:e01b with SMTP id 6a1803df08f44-70c2b6db728mr18561486d6.3.1755600744710;
-        Tue, 19 Aug 2025 03:52:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEWTcLFhjUM0I8L2qtkE5KEq6YT6QkQ/QixKqZj3wqbRnQCQfoRKDE05BN8SvkpHUbQsGPT0w==
-X-Received: by 2002:a05:6214:2526:b0:707:a430:e01b with SMTP id 6a1803df08f44-70c2b6db728mr18561056d6.3.1755600744021;
-        Tue, 19 Aug 2025 03:52:24 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef35fb15sm2032674e87.52.2025.08.19.03.52.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 03:52:23 -0700 (PDT)
-Date: Tue, 19 Aug 2025 13:52:21 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Danilo Krummrich <dakr@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>, Michael Walle <mwalle@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/2] driver core: platform: / drm/msm: dp: Delay applying
- clock defaults
-Message-ID: <veuco4na2bnisn7qoi7fhdf553alr6omdzdrtnz5p2x4ywtmzh@2smifabnvnbd>
-References: <20250814-platform-delay-clk-defaults-v1-0-4aae5b33512f@linaro.org>
- <flybqtcacqa3mtvav4ba7qcqtn6b7ocziweydeuo4v2iosqdqe@4oj7z4ps7d2c>
- <aJ3Y1XhvTPB7J6az@linaro.org>
- <ddp77rvwe6brwyvkzbkouguigd5tjg2qqfxomlhd2hb2x7w7uf@2uyl2q47bpei>
- <aKL1NPuZWWxsAavx@linaro.org>
- <2hzzc3fd52kb54s2pr6fxfnd4svi7x3zt7dyvenja3suhieidb@hrlggbqocqa7>
- <aKRUvCVpz8y47TPs@linaro.org>
+	s=arc-20240116; t=1755601062; c=relaxed/simple;
+	bh=dTec6aY8R6rLlN+6eoHwcknNrU7Yo8NGR8WXosKAFWs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kzr2r/EjIEmJlHskI+YBmlmglVsTGPctVcXpO9zYyxkyTvxLUOFOVD7T8rHHfquzaumLq0oivQKrDlHlQ96SR3IpV9qOfn4rohNP3PIC5Gf3frxrN1fZH3hYBn2vkjZtKLUjF9zcYysn/GUo9OO6RmOnOuyE48E07NVvQJ/A3gA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WTpBHEr9; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57JAvLYE2878915;
+	Tue, 19 Aug 2025 05:57:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755601041;
+	bh=Yih4aNA9IcSfNBRMPy+Nrn2sMcUt3v3mug6AEfsuEZY=;
+	h=From:To:CC:Subject:Date;
+	b=WTpBHEr9F3yj3/aE4iE2ZWZ8wOfEo/dIenQk0sQd4OM051LXnJv0wiiAcJQj46tWY
+	 bN+hFOiY17kPytVwhVlvX++zB/PEuGe2chnbtCnsj4X4OxCM8RbCJspCO2uXSXH79F
+	 hiVEXZT6Df0ay8LBdN3CcvsEX+9R3QYjgSJTlh4M=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57JAvLtW538323
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 19 Aug 2025 05:57:21 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 19
+ Aug 2025 05:57:21 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 19 Aug 2025 05:57:21 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.231.84])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57JAvHPC2599492;
+	Tue, 19 Aug 2025 05:57:18 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am69-sk: Switch to PCIe Multilink + USB configuration
+Date: Tue, 19 Aug 2025 16:27:00 +0530
+Message-ID: <20250819105717.372893-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aKRUvCVpz8y47TPs@linaro.org>
-X-Proofpoint-ORIG-GUID: 6cAXCHSUUXnBDt8cV0C4_iiSf4FAw_DC
-X-Authority-Analysis: v=2.4 cv=ZJHXmW7b c=1 sm=1 tr=0 ts=68a45769 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=aFVlKXMpKZbDbpKwxIQA:9 a=CjuIK1q_8ugA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-GUID: 6cAXCHSUUXnBDt8cV0C4_iiSf4FAw_DC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE2MDAyOCBTYWx0ZWRfX725yvRCW+v35
- AG/eNAnNFouH1J0pfgrvVYA7F2Ujk5BUTdg503aRBxSu3VTzsoE7X1e4aCw9ps14ZY34YxduVSg
- Puv8obd2XT1qTx0JilUpj9EgC5QvHTttsYJzsip3HRyTHqLxJE+o7m3uidm7EAJ3cJXiszBePKA
- 6KxWBL9siviVEgt9mTlsiVHAMKuFdgCvOYFZGtpaSmMM9NpuQbTi9HboJxu2aU2dhDv1NmKgA9Q
- 2dGsb+RF3n9Ao2FWad5MXsK4Ynl0ByhcGB6VxkX72AKFesY7EC+w4cE2dF/uvb4+OBYlgPaywdx
- /NyL3109vwZftOyLVFhC7DRizuKbSnWGDwbrP1gpquDPhvPfITe+7iyQAxI/q9I/BJbfGXeJKgg
- GdqH3n8Y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-19_01,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 phishscore=0 suspectscore=0 clxscore=1015
- bulkscore=0 spamscore=0 impostorscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508160028
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Aug 19, 2025 at 12:41:00PM +0200, Stephan Gerhold wrote:
-> On Tue, Aug 19, 2025 at 04:19:26AM +0300, Dmitry Baryshkov wrote:
-> > On Mon, Aug 18, 2025 at 11:41:16AM +0200, Stephan Gerhold wrote:
-> > > On Sat, Aug 16, 2025 at 04:55:00PM +0300, Dmitry Baryshkov wrote:
-> > > > On Thu, Aug 14, 2025 at 02:38:45PM +0200, Stephan Gerhold wrote:
-> > > > > On Thu, Aug 14, 2025 at 02:55:44PM +0300, Dmitry Baryshkov wrote:
-> > > > > > On Thu, Aug 14, 2025 at 11:18:05AM +0200, Stephan Gerhold wrote:
-> > > > > With my changes in this series the clock state is always consistent with
-> > > > > the state returned by the clk APIs. We just delay the call to
-> > > > > clk_set_parent() until we know that it can succeed.
-> > > > 
-> > > > I know. But what happens when we power down the PHY? The clock is
-> > > > assumed to have the PHY clock as a parent, but it's supposedly not
-> > > > clocking.
-> > > > 
-> > > 
-> > > I don't think this is a big problem in practice, given that these clocks
-> > > are only consumed by a single driver that manages both PHY and clocks
-> > > anyway. The clock should always get disabled before the PHY is powered
-> > > down.
-> > > 
-> > > > Another option would be to introduce a safe config for the PHYs and make
-> > > > sure that the PHY is brought up every time we need it to be up (e.g. via
-> > > > pm_runtime).
-> > > 
-> > > I considered that as well, but what exactly would I use as "safe"
-> > > configuration? There are lots of PHY configuration registers that are
-> > > set based on the rate or other parameters of the panel/display
-> > > connected.
-> > > 
-> > > Implementing something like clk_rcg2_shared_ops could presumably work,
-> > > with the limitation that it will only work if the clock is really off
-> > > during boot and not already running from XO. Otherwise, I think the
-> > > simple approach of delaying the clk_set_parent() implemented in this
-> > > series is still the most straightforward way to solve this issue.
-> > 
-> > I know that it works, but it feels a bit clumsy to me.
-> > 
-> 
-> I realize that adding a field to the platform_driver struct feels a bit
-> weird, but I think in general requiring more control about when exactly
-> assigned-clock-parents/rates are applied is a valid use case. The reason
-> we haven't seen more of these issues is likely mainly because people
-> just avoid using assigned-clock-parents/rates in these use cases, even
-> if it would be the right way to describe the hardware.
-> 
-> I'm happy to try implementing the workaround in the Qualcomm clock
-> drivers, but hearing more opinions about the more general approach of
-> this patch series would also be good.
+The SERDES0 instance of SERDES on the AM69 SoC is a Cadence Torrent SERDES
+and it has 4 lanes which are allocated in the following manner:
+Lane0 and Lane1 to PCIe1
+Lane2 to PCIe3
+Lane3 to USB0
 
-I completely agree here.
+Until [0], the Cadence Torrent SERDES driver only supported configuring
+the SERDES for a PCIe + USB configuration whereby all lanes of the
+SERDES configured for PCIe will operate at the same speed. As a result,
+PCIe1 and PCIe3 instances of PCIe will either fall down to a common
+speed based on the PCIe peers that they are each connected to, or, the
+PCIe link could fail to be setup.
 
+Since [0] enables support for PCIe Multilink + USB configuration, it is
+now possible for the SERDES lanes allocated to PCIe1 and PCIe3 to link up
+and operate at different speeds. USB continues to remain functional.
+
+Hence, update the 'serdes0' node as well as the 'pcie1_rc' and 'pcie3_rc'
+nodes to switch to the PCIe Multilink + USB configuration that is now
+supported by the Cadence Torrent SERDES driver.
+
+[0]: 351e07e6b2ec ("phy: cadence-torrent: Add PCIe multilink + USB with same SSC register config for 100 MHz refclk")
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
+
+Hello,
+
+This patch is based on linux-next tagged next-20250818.
+
+Regards,
+Siddharth.
+
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+index 612ac27643d2..f4f7b89bf0d2 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+@@ -1321,12 +1321,20 @@ &serdes_wiz0 {
+ &serdes0 {
+ 	status = "okay";
+ 
+-	serdes0_pcie_link: phy@0 {
++	serdes0_pcie1_link: phy@0 {
+ 		reg = <0>;
+-		cdns,num-lanes = <3>;
++		cdns,num-lanes = <2>;
+ 		#phy-cells = <0>;
+ 		cdns,phy-type = <PHY_TYPE_PCIE>;
+-		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>, <&serdes_wiz0 3>;
++		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>;
++	};
++
++	serdes0_pcie3_link: phy@2 {
++		reg = <2>;
++		cdns,num-lanes = <1>;
++		#phy-cells = <0>;
++		cdns,phy-type = <PHY_TYPE_PCIE>;
++		resets = <&serdes_wiz0 3>;
+ 	};
+ 
+ 	serdes0_usb_link: phy@3 {
+@@ -1364,7 +1372,7 @@ &pcie0_rc {
+ &pcie1_rc {
+ 	status = "okay";
+ 	reset-gpios = <&exp1 5 GPIO_ACTIVE_HIGH>;
+-	phys = <&serdes0_pcie_link>;
++	phys = <&serdes0_pcie1_link>;
+ 	phy-names = "pcie-phy";
+ 	num-lanes = <2>;
+ };
+@@ -1372,7 +1380,7 @@ &pcie1_rc {
+ &pcie3_rc {
+ 	status = "okay";
+ 	reset-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
+-	phys = <&serdes0_pcie_link>;
++	phys = <&serdes0_pcie3_link>;
+ 	phy-names = "pcie-phy";
+ 	num-lanes = <1>;
+ };
 -- 
-With best wishes
-Dmitry
+2.43.0
+
 
