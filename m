@@ -1,86 +1,75 @@
-Return-Path: <devicetree+bounces-206505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63826B2C795
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 16:53:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 675AFB2C7A5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 16:55:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5EF81BA818C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:51:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B02211664E7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3082E279351;
-	Tue, 19 Aug 2025 14:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C004527C866;
+	Tue, 19 Aug 2025 14:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AhmxpjrC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U8zW6+pZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0381125DCEC;
-	Tue, 19 Aug 2025 14:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FD1320DD52;
+	Tue, 19 Aug 2025 14:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755615072; cv=none; b=KPO7OMgxXywTysK5CJDL+xhYT6ns3TiBZ3XUlz217ZkjsSxB0UhIE5R/CWSbNFaW6JnucAIF5aYHCHzbIrWx6x88S2QVkE67+KRuveWtOBUL74EqgZwFAInh+bRynj/THvYZ8aS1oa4VSvQjVlAKhOhgolU/EQ+F8tplcITy9W0=
+	t=1755615226; cv=none; b=Po0DIV7YwsTosjA57HqcgKGhTvvE7hpQ2dN18d9EemJiA3eQVnjWqvZHu37AdeNiNKpIWU8+HhgsVcOOuI5USfNmYlQ7RNVnoAnUiKf06EFHgF3jnZz+OeV8FnPybmDoU1NgAuJfI79P074MbmKizNzwRZKbD3zRpNodD79gK2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755615072; c=relaxed/simple;
-	bh=Semh9vh6H26pGxI4SeIgYYwW2rQqCSzaKGfXow3uekg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=av+XnuTPWZR9UsnevD9lFFKTeaDeu6kxVsi4uR1MN0ADtx63iJHfM03oIhbU9y8eMHu8JCKoUmc8bYW8hKYdczzZVcY8gTekFM/LdL8Vek0jkd78uBQ0E8AcPlHOOW+fhLyf+J7dRYP3FPD5GRs/aOV9NfvG10ziqz2ri7qPG24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AhmxpjrC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65888C113D0;
-	Tue, 19 Aug 2025 14:51:07 +0000 (UTC)
+	s=arc-20240116; t=1755615226; c=relaxed/simple;
+	bh=MM80ZxaqQsiGXQatvpSXHvICnwnjA2SwzAXBSeWGhak=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XWDn6MFVMCYObMAyEmLwGvrZR7tNcl8ScMnAI4G3EGwyVDMXaNpiY30urelEfGRzZ14a+u1jx5oplXvw5G+cOeT5eGfAHUY3+hd8VzVv+KyktFtvQKt+fvdnaGe61MBGMLPYwO4FcvzHEHv2oGbKJGB/m+w86GJB3wL0qdYDOA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U8zW6+pZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 332ECC4CEF1;
+	Tue, 19 Aug 2025 14:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755615071;
-	bh=Semh9vh6H26pGxI4SeIgYYwW2rQqCSzaKGfXow3uekg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AhmxpjrCi5Uiw+pSebpXvR0j7wId/VxhsnbpudwSHuSzKTtEpDF2S0C+UkFs9IzV+
-	 lV16LMp8+jVpqfIORdL2Y+kwaBgqQCMK4silBvtsg6cew6vABb8k6/3j493js7v9MT
-	 09Ay7rJ77H9C2ZGPxTntJIT7WlwX7Tvj/E63cCk73Rq5vlYiItgmzi9FeUgdnp/7Lr
-	 RvM+kPPY7tmZrSZZpUg8dawKe+Ng82wq5ZS9W5aNfO4oKexiNBKCjErbQplrEpgnB2
-	 hi6a5fMA9xspM0fOEJH7Klmdd2g5Km+2iyZ1Sea2vV1rodJ3DPrrOGfaXorbDpfcq/
-	 XBsTCrfyqL7ew==
-Date: Tue, 19 Aug 2025 20:21:03 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Jim Quinlan <james.quinlan@broadcom.com>
-Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
-	Cyril Brulebois <kibi@debian.org>, bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 0/3] PCI: brcmstb: Add 74110a0 SoC configuration
-Message-ID: <wxrnpfu7ofpvrwxxiyj4am73xcruooc4kaii2zgziqs4qbwhgj@7t3txfwl24tu>
-References: <20250703215314.3971473-1-james.quinlan@broadcom.com>
+	s=k20201202; t=1755615226;
+	bh=MM80ZxaqQsiGXQatvpSXHvICnwnjA2SwzAXBSeWGhak=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=U8zW6+pZz/YYcNUOGcvQMif5sUSRe2Em1pFZbDCOg8aZZZul8tSIq58+co2hHiTk6
+	 sC1gYAdF3RnXZ+6jjXyMxwSjTRutswjuLaLJA/IH96c6d5q2G2yiokN4IenFDiMCdT
+	 c8dqua2XHR6Qif9wRpj+kYQ8+82lfYGHAQvjkBY30TYCBFr52dcr0JS1Mewf/e0WXn
+	 a2E/VuhBtg8hf0w1Wunh2/eHpRCubzSqPWSJcP5/I0urSTddVJ/1tlti0XCUQCpjui
+	 axo3Rxsf965I+qggK4lBnjKyYtePX8GtCmMbAduj2QyiLvaHPShS2KSEYBCTj5qZmK
+	 n835AIg6v+bXQ==
+Date: Tue, 19 Aug 2025 07:53:44 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Wei Fang <wei.fang@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, richardcochran@gmail.com, claudiu.manoil@nxp.com,
+ vladimir.oltean@nxp.com, xiaoning.wang@nxp.com, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+ vadim.fedorenko@linux.dev, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ festevam@gmail.com, fushi.peng@nxp.com, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ kernel@pengutronix.de
+Subject: Re: [PATCH v4 net-next 03/15] ptp: add helpers to get the phc_index
+ by of_node or dev
+Message-ID: <20250819075344.05600b36@kernel.org>
+In-Reply-To: <aKSOCbuKcwRkBe82@lizhi-Precision-Tower-5810>
+References: <20250819123620.916637-1-wei.fang@nxp.com>
+	<20250819123620.916637-4-wei.fang@nxp.com>
+	<aKSOCbuKcwRkBe82@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250703215314.3971473-1-james.quinlan@broadcom.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 03, 2025 at 05:53:10PM GMT, Jim Quinlan wrote:
-> This series enables a new SoC to run with the existing Brcm STB PCIe
-> driver.  Previous chips all required that an inbound window have a size
-> that is a power of two; this chip, and next generations chips like it, can
-> have windows of any reasonable size.
-> 
-> Note: This series must follow the commits of two previous and pending
->       series [1,2].
-> 
-> [1] https://lore.kernel.org/linux-pci/20250613220843.698227-1-james.quinlan@broadcom.com/
-> [2] https://lore.kernel.org/linux-pci/20250609221710.10315-1-james.quinlan@broadcom.com/
+On Tue, 19 Aug 2025 10:45:29 -0400 Frank Li wrote:
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Have you considered my comment on this series?
-https://lore.kernel.org/linux-pci/a2ebnh3hmcbd5zr545cwu7bcbv6xbhvv7qnsjzovqbkar5apak@kviufeyk5ssr/
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+reminder: please trim your replies
 
