@@ -1,162 +1,135 @@
-Return-Path: <devicetree+bounces-206292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A7B8B2BF83
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:58:27 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98376B2BF8A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:59:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66D10685C18
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:58:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 50B914E3FB9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15FDA322A39;
-	Tue, 19 Aug 2025 10:57:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924CA322DB6;
+	Tue, 19 Aug 2025 10:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WTpBHEr9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ds8mIUsC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2DFC322C87;
-	Tue, 19 Aug 2025 10:57:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E0A425A2A2;
+	Tue, 19 Aug 2025 10:59:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755601062; cv=none; b=WRnn8SDGHolGVO2taWpy6jtxXVXEI5ITqA533iRbOUFi4HaUKzY4RZk6WgBNbjSARaVMx/EeHVXPV8rC0g9ogsBN5QUu0USiNvhREKjhOIVgK4rhOeqtp+x1eHM7AJTe1Z9X6z5ww6HQTmWiv/nE4mDLh/LE5wI+Ne12tLbS++M=
+	t=1755601144; cv=none; b=L6OOSMOHmOWxTpvj5ntEa/7R5tYNUJlfkRtdpKk89cytoGvQVaH4NHRAYBYDIROgPev+tViQCq1PDejtfbMKOi+Hr15BTrF/oPyv+F5xwIgorhSapjVdwD5ysBOv/NScezSsc3aP6+Ry7jMZWai9anUICF0qYFbq1gYTQVE3j1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755601062; c=relaxed/simple;
-	bh=dTec6aY8R6rLlN+6eoHwcknNrU7Yo8NGR8WXosKAFWs=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kzr2r/EjIEmJlHskI+YBmlmglVsTGPctVcXpO9zYyxkyTvxLUOFOVD7T8rHHfquzaumLq0oivQKrDlHlQ96SR3IpV9qOfn4rohNP3PIC5Gf3frxrN1fZH3hYBn2vkjZtKLUjF9zcYysn/GUo9OO6RmOnOuyE48E07NVvQJ/A3gA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WTpBHEr9; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57JAvLYE2878915;
-	Tue, 19 Aug 2025 05:57:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755601041;
-	bh=Yih4aNA9IcSfNBRMPy+Nrn2sMcUt3v3mug6AEfsuEZY=;
-	h=From:To:CC:Subject:Date;
-	b=WTpBHEr9F3yj3/aE4iE2ZWZ8wOfEo/dIenQk0sQd4OM051LXnJv0wiiAcJQj46tWY
-	 bN+hFOiY17kPytVwhVlvX++zB/PEuGe2chnbtCnsj4X4OxCM8RbCJspCO2uXSXH79F
-	 hiVEXZT6Df0ay8LBdN3CcvsEX+9R3QYjgSJTlh4M=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57JAvLtW538323
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 19 Aug 2025 05:57:21 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 19
- Aug 2025 05:57:21 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 19 Aug 2025 05:57:21 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.231.84])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57JAvHPC2599492;
-	Tue, 19 Aug 2025 05:57:18 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am69-sk: Switch to PCIe Multilink + USB configuration
-Date: Tue, 19 Aug 2025 16:27:00 +0530
-Message-ID: <20250819105717.372893-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1755601144; c=relaxed/simple;
+	bh=dqQAaSK5TLp2OGYn22cxx8W1zu8wpnCnRgOi6eRYTh0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Pl1xcIjEMuno5AXWEtqPkM+YeBVFOgZL3to4gQIz3q5OqSHRQDJHRehF6+VCPsNLOGsyNP5R9duJ0bHJNeXLDSlN40nwre/8I2LVH+oNfWXAHIMQoZ0dX8u/PEtbqwyR6W/j2k5Bc5C5trjC2z3jJHFqLz/49wgIo7l7zHV/YEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ds8mIUsC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EEF08C4CEF1;
+	Tue, 19 Aug 2025 10:59:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755601144;
+	bh=dqQAaSK5TLp2OGYn22cxx8W1zu8wpnCnRgOi6eRYTh0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Ds8mIUsCQgGlE0xRvlVe6y6bgAdwSbA7Zno8tIxEpv50dUGNL5DE+V/7PsXPnCih3
+	 FnMJY8Q6bsZ7H/j5mNqMLtWgELkoslnXhQIvlZOyzJ9pWez8R6KG4h4TKQcazzsyXI
+	 EbDubeXebPPEca2HZk5D1pbQaCiUVU2xmK4AAeO8aNxO4xiDyfXNdEpw7g3PBqj711
+	 Q2dxfUIq70GD2oV2E3744NsWcJphF6/qC+y0xpp5Rloc7Lf7rEkjbBhSpw8YC1JHes
+	 3G4pPvazugxRY14+wOR6bbgR7Boa2Dxc0PPi8fKfcQ/4jUb0IaY0TVVIx0TR+qMwdR
+	 zE1oAOpo2lppw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DE59FCA0EE6;
+	Tue, 19 Aug 2025 10:59:03 +0000 (UTC)
+From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
+Subject: [PATCH v2 0/4] backlight: add new max25014 backlight driver
+Date: Tue, 19 Aug 2025 12:58:58 +0200
+Message-Id: <20250819-max25014-v2-0-5fd7aeb141ea@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPJYpGgC/0XMTQrDIBCG4auEWdeiQ8xPV71HyULsJBESp2iQl
+ ODda9NFd/MOH88BkYKjCLfqgEDJRce+BF4qsLPxEwn3LA0oUcsGG7GavVyqFjXKVveKlBk1lPk
+ r0Oj2k3oMpWcXNw7vU07q+/0hLeo/kpSQQlJnLfXF6+g+sWW/BV6Wq+UVhpzzB8licAOlAAAA
+X-Change-ID: 20250626-max25014-4207591e1af5
+To: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-fbdev@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, 
+ Maud Spierings <maudspierings@gocontroll.com>, 
+ "Maud Spierings maudspierings"@gocontroll.com
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755601142; l=1984;
+ i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
+ bh=dqQAaSK5TLp2OGYn22cxx8W1zu8wpnCnRgOi6eRYTh0=;
+ b=tg5vLaPXsGCQxjf7wI8AaH2Njrai8idSmUxnlS+4gXs03tlqp5zKmNQ244mZ5Q/rRknUynI+6
+ VBoeyS3B4V8BW7W09dDMRELXD/LJyG0isydsmFlzv4EHKl325Mc8Pl9
+X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
+ pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
+X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
+ with auth_id=341
+X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
+Reply-To: maudspierings@gocontroll.com
 
-The SERDES0 instance of SERDES on the AM69 SoC is a Cadence Torrent SERDES
-and it has 4 lanes which are allocated in the following manner:
-Lane0 and Lane1 to PCIe1
-Lane2 to PCIe3
-Lane3 to USB0
+The Maxim MAX25014 is an automotive grade backlight driver IC. Its
+datasheet can be found at [1].
 
-Until [0], the Cadence Torrent SERDES driver only supported configuring
-the SERDES for a PCIe + USB configuration whereby all lanes of the
-SERDES configured for PCIe will operate at the same speed. As a result,
-PCIe1 and PCIe3 instances of PCIe will either fall down to a common
-speed based on the PCIe peers that they are each connected to, or, the
-PCIe link could fail to be setup.
+With its integrated boost controller, it can power 4 channels (led
+strings) and has a number of different modes using pwm and or i2c.
+Currently implemented is only i2c control.
 
-Since [0] enables support for PCIe Multilink + USB configuration, it is
-now possible for the SERDES lanes allocated to PCIe1 and PCIe3 to link up
-and operate at different speeds. USB continues to remain functional.
+link: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX25014.pdf [1]
 
-Hence, update the 'serdes0' node as well as the 'pcie1_rc' and 'pcie3_rc'
-nodes to switch to the PCIe Multilink + USB configuration that is now
-supported by the Cadence Torrent SERDES driver.
-
-[0]: 351e07e6b2ec ("phy: cadence-torrent: Add PCIe multilink + USB with same SSC register config for 100 MHz refclk")
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
 ---
+Changes in v2:
+- Remove leftover unused property from the bindings example
+- Complete the bindings example with all properties
+- Remove some double info from the maxim,iset property
+- Remove platform_data header, fold its data into the max25014 struct
+- Don't force defines to be unsigned
+- Remove stray struct max25014 declaration
+- Remove chipname and device from the max25014 struct
+- Inline the max25014_backlight_register() and strings_mask() functions
+- Remove CONFIG_OF ifdef
+- Link to v1: https://lore.kernel.org/r/20250725-max25014-v1-0-0e8cce92078e@gocontroll.com
 
-Hello,
+---
+Maud Spierings (4):
+      dt-bindings: backlight: Add max25014 bindings
+      backlight: add max25014atg backlight
+      arm64: dts: freescale: moduline-display-av101hdt-a10: add backlight
+      arm64: dts: freescale: moduline-display-av123z7m-n17: add backlight
 
-This patch is based on linux-next tagged next-20250818.
+ .../bindings/leds/backlight/maxim,max25014.yaml    |  79 +++++
+ MAINTAINERS                                        |   6 +
+ ...x8p-ml81-moduline-display-106-av101hdt-a10.dtso |  21 ++
+ ...x8p-ml81-moduline-display-106-av123z7m-n17.dtso |  19 +-
+ drivers/video/backlight/Kconfig                    |   7 +
+ drivers/video/backlight/Makefile                   |   1 +
+ drivers/video/backlight/max25014.c                 | 395 +++++++++++++++++++++
+ 7 files changed, 527 insertions(+), 1 deletion(-)
+---
+base-commit: 886e5e7b0432360842303d587bb4a65d10741ae8
+change-id: 20250626-max25014-4207591e1af5
 
-Regards,
-Siddharth.
-
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index 612ac27643d2..f4f7b89bf0d2 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -1321,12 +1321,20 @@ &serdes_wiz0 {
- &serdes0 {
- 	status = "okay";
- 
--	serdes0_pcie_link: phy@0 {
-+	serdes0_pcie1_link: phy@0 {
- 		reg = <0>;
--		cdns,num-lanes = <3>;
-+		cdns,num-lanes = <2>;
- 		#phy-cells = <0>;
- 		cdns,phy-type = <PHY_TYPE_PCIE>;
--		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>, <&serdes_wiz0 3>;
-+		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>;
-+	};
-+
-+	serdes0_pcie3_link: phy@2 {
-+		reg = <2>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz0 3>;
- 	};
- 
- 	serdes0_usb_link: phy@3 {
-@@ -1364,7 +1372,7 @@ &pcie0_rc {
- &pcie1_rc {
- 	status = "okay";
- 	reset-gpios = <&exp1 5 GPIO_ACTIVE_HIGH>;
--	phys = <&serdes0_pcie_link>;
-+	phys = <&serdes0_pcie1_link>;
- 	phy-names = "pcie-phy";
- 	num-lanes = <2>;
- };
-@@ -1372,7 +1380,7 @@ &pcie1_rc {
- &pcie3_rc {
- 	status = "okay";
- 	reset-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
--	phys = <&serdes0_pcie_link>;
-+	phys = <&serdes0_pcie3_link>;
- 	phy-names = "pcie-phy";
- 	num-lanes = <1>;
- };
+Best regards,
 -- 
-2.43.0
+Maud Spierings <maudspierings@gocontroll.com>
+
 
 
