@@ -1,197 +1,144 @@
-Return-Path: <devicetree+bounces-206530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 723BDB2C891
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 17:37:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1D1B2C8B7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 17:49:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 038331C23E07
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:38:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 038DC5286EE
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E613244186;
-	Tue, 19 Aug 2025 15:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A784285CA6;
+	Tue, 19 Aug 2025 15:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="N764qdIC"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="KPCQK9EN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013007.outbound.protection.outlook.com [40.107.159.7])
+Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com [95.215.58.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA3AC24169A
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 15:37:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755617871; cv=fail; b=ks5DMhb/fp/GQikjjnenPafebrFt5HXM64i0iGbgpmrxjIcCqzBc3mz9mxeQb+/iEnWLytjM524jMdmlvjDdEgbkYdeemABC7ozK5LzjIpdOSIimD4NoaHDM1a7a5+XRCICFISBPxokRWFVgdanzQx/UEjUpRMrp9VtPmykbrA0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755617871; c=relaxed/simple;
-	bh=QMFh83JHBmMWwc5etj/yEbUylewr9T95XW650e6FfNg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=EQxM7y0KjGIf45JgRgrS9JnliheQYZN8ek2PVs/Y2YPwxOHfErnUkrdw7R5ZT8tyseLAH+HKZ9Nbf8KiHQ8J6JIQgseFbw1D0k1acKu6p5nOQ3Nd+8NkvrBGeR1C9RiWB7CIN3EoBZyCN3eZFCZuVGf/J8RIn5EfxZxdJhqPYzg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=N764qdIC; arc=fail smtp.client-ip=40.107.159.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DzPSWHDg5vroac10i34Y767W57k7t2HNB23EDuSK8aobsWBCy/I7TizGatOWcfboqKIObOoeLdtpdwGPw3wGWepK/TL/VQorj8PYuE9IQYhzMF8i4BUsacX5zW8GQCmnS3BLGWlKgc6VCvOyCNBg0OYvgnIkGnBkrcrXBPjZFOq8+sz5MDhm33l9ovQc8ALe2icQGp4A7HAtM1Z9Vz4ErI4PPO+mw42j/vMiM7+fpCmd+ntboGVN12oQSQrRU6jZz1nIi5dYtNr6DfkvEAzCc6pDVvOOcKkgH5HuH6Dp+4JpNz+CoLLLDK62n4JuHMpM084HkbdHZ98Z7Ti5hUkdSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n5+2OlBHTDLkCqHHXf5k5K/V9UncWL+it5fDO8S2MFQ=;
- b=zEwyepJjFhpSWEh63KiqR2egMFf0zBYzpeMQCV0tFWclybKFJaXpOjT/d9lqlDfaGAJhOQz6G5WPj5OnZ1frzKXl8TOi7pRpT86k9LJExrXBRdcFp8adT25hO/nHvHm9wewnKX0gMW6fZOhT/YQkImbkbr67k1KFHi58CGEm/9mgqknqfeDTyyLimhoV77fQeWDh/sGUMloKQNpBTtOkpvBzQMhqQrZNKWuF5uGT0UhBAG7OSboiSYikRzUszItSxkDgh6Ou201f8/OWzRcUNr2wvNJUK92NOBQKQ5x0Vb/dneY0D9RV2C9UD4tuDLQv1FVUkoYE4c8XRucEAUzcEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n5+2OlBHTDLkCqHHXf5k5K/V9UncWL+it5fDO8S2MFQ=;
- b=N764qdICr/bE+8m3VlxW9SlysD8m4I2a7PTnhMdyvJeu8vNivSmw7J0sLXiwXRDldPtxLR+FQjt8htXGc9ugSNtoVM2yNI5lWu8eswyK9PsKXmGQfI2n3rzgkGoMy2U+i7PWImLn+JUt9b94zOcs6JPs0PEg41TLqit35qXkaczFsQVjTTSiMc7q6leJdjikjHFHSfuxC+cyszEL8j6Ga0tTKUHTIU5wGjatcFaySaP9hSKWmPE7oQRrtyJtc/jEXjUGW9zQGc3tLat3AHWVjGg3jYYECm3sNUMscZOHhLr9SllxfqU2VYGCx/8Rf28E5aJ762/QLm7YbBH+Y0Yuww==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GV1PR04MB9069.eurprd04.prod.outlook.com (2603:10a6:150:20::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.12; Tue, 19 Aug
- 2025 15:37:44 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.9052.011; Tue, 19 Aug 2025
- 15:37:43 +0000
-Date: Tue, 19 Aug 2025 11:37:36 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: krzk@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: w1: imx: Add an entry for the interrupts
- property
-Message-ID: <aKSaQOx/USdn6FGm@lizhi-Precision-Tower-5810>
-References: <20250819121344.2765940-1-festevam@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250819121344.2765940-1-festevam@gmail.com>
-X-ClientProxiedBy: PH7P223CA0015.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:510:338::11) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA3A9245016
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 15:48:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755618539; cv=none; b=EItote4MPLgNVlAC+9HoGK8yGVwlBdzaS9FIOaLFL5EzQ89p/lOGSMpGE7A9+y4pOmM7/cED37DBBVu1nUGUXNYNS6IroFxiGQ+nvOuGtpqPyiW9MiipeI87NeyhRITGJr0Ym/79Errc8DQE4R/kfgKMrJJj0X0Xb4jOJ3GcFio=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755618539; c=relaxed/simple;
+	bh=j6wM/SgJMkvJoI+6V8/dUD1+fFpnKMaohYKn6PzgK6w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=erquXTU0TwZHBfPrsq3e5veOxCCygin6HNWbzDQDuHj6rEkA7AIxNCbem52sO/uKjkoJoSCKu5wHLcCu16OV96/e76cDvnJF2M6hrNZ5PMZzAmK/TTNYSdgoxFu9ftomxFhB7+In5sS4K2wb/FMXwww0Vs3V7B3Q5fLd8Rk6vOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=KPCQK9EN; arc=none smtp.client-ip=95.215.58.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <41651550-4e63-4699-b10f-ba2e8cfbc0a3@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1755618524;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fANgjc2IIsKedMP7E9vOPJjvlcpxmZDjKWRIxAOqvVk=;
+	b=KPCQK9ENPL9cG2flPirxiQNDaxft4AQQvBTzXcyr52IqlFf5aeoriOBG7IPgARAiSzbg/I
+	FmG2xUQ3IkiyPO8FgDM1WdrGvZ/T4lKn04ynKxRPcfiu+01kMKAoyYdIOwe3F9fm26YGw4
+	wcXO3l+JIK3BpMVK2RBc7Uc7NKQhGvg=
+Date: Tue, 19 Aug 2025 16:48:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB9069:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2373513a-b365-4c27-3747-08dddf365682
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|19092799006|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?5XLyG0MPwJsxmlK6zuJrSVZivA6Pzzv5d2lwvv7+JDaDQkdqYnpEyI8PAYL1?=
- =?us-ascii?Q?XNNzsmUju4/NrZePt+D1rqb+MGvq9cXmy1vb2FwGh7cTvlH94uvfqGmwagtj?=
- =?us-ascii?Q?EqclArfYHNX9d3BgKyCD+nLRfUK8b1FXR5t+oFLAMD0zqo3LcH/+V9q1W/lE?=
- =?us-ascii?Q?59kwRSpIxwn77Ugm/FwZdSwQ3hHEKdjGcMCPnHpBWlyJMFA8WCE1ucb1Qh1y?=
- =?us-ascii?Q?Ea9T1PA9XTNcbbETMWgGmhvmiGmbpOjSX6u9Lv9keOxkYYXuERiWPMqpBl13?=
- =?us-ascii?Q?BpuQmZlh2beHMh9VdEZnr5cNt4Xy3EC6sxMGHHEyA3YTYTD30cBPMMi/ub9q?=
- =?us-ascii?Q?Qfqta2elJbVQba7tduqCFwlTVv/ADzIbBH4Do63cwK35c/VWq/4UBTDkpg5K?=
- =?us-ascii?Q?0udXuKNIsKcUjOPFk1Zn+sPKvxYJvepzZRhSy1UOC8fxjHhdYKY1Fq3SsAlA?=
- =?us-ascii?Q?7oCfeBlbL9R3ZF7NekHxUxXfZJzTpqErXUFBpnzTSU2Hy/anx2BNTC7qas18?=
- =?us-ascii?Q?LMwyJ+h1+UQwUzfOawTWz/ibDZCqNB+9MYkMot+hJ0xGGTdxp2zSBkKjVsM1?=
- =?us-ascii?Q?vYc8uYsjPx3imA1m5z+8nRVn7Ub2hkUJ3iHUWEEbXGhnXapwQ6W9ylO4CHtb?=
- =?us-ascii?Q?nNmbTCT0BoljM9tH6PBNze68pvAIOojMY31ChaxWz4N8AsUnFURLI0OnL6ix?=
- =?us-ascii?Q?bNBogMYHdLroCsUhzVEmSXLBZrQQa6MrQ+2ixGCABt8VKEbbq5jmUs5gx5co?=
- =?us-ascii?Q?oJ+f6cnJkLRIQdEgukMHvBQD90IWAq1+oJdchV0GDf/2CW4SoQsQnNGVdrZ4?=
- =?us-ascii?Q?uPm1YmrNErciW5GQCY1cA5VnyAQMXqDqexWtz/b5HBn2etMwowB7VVePbMDm?=
- =?us-ascii?Q?BsJuqnrl5t3B5Uuq0osS/p5yYumkqVof8L4YZ8yM1Y+Flg+BxiV15bw5a1DV?=
- =?us-ascii?Q?7u1J2vUkHk881OImCA/2elamyQuURvKKLjwFD28aXbFsPaiMjNrazGa4Q5vd?=
- =?us-ascii?Q?JYwjz1HorTY31TG+GObSlitxAnjSsB/uJVvdxiV6l5KlN+9kIEcUcW/tCmpL?=
- =?us-ascii?Q?SeKAL2bCLxXwfUTg1+walNkU8AMi5Hk4FJw7qsKAwf/3AEj1yfbCijMkvQVK?=
- =?us-ascii?Q?30YmAq5jAxI1Hd87hs7LGfnd8NKUVlSAfaYY208DhDHmaxEhgWC6sF3mVByF?=
- =?us-ascii?Q?xvC0UGWxYyLOAOcP+CQbH5Sb3w/Qj54tnc7RBkjuoPl6GSvQDICpGmWu4ljT?=
- =?us-ascii?Q?oe9WVi4v4eBU85VUdWqkhYUhPgSc89HvkhoJPiD/Ts6PGnxPQ+5J46DvWjll?=
- =?us-ascii?Q?2lx1sBG3FwzMiHAEnrYxpxFS5E7Som0uZ6Y8tUtCJ6fVTocMDVqm41Ubvj3S?=
- =?us-ascii?Q?csbnRVzb/RGbe4AmMc9MlnMOZ1zEFzSXVwUkDBIyd/fk8YKw5/yvTg8nU674?=
- =?us-ascii?Q?jVn2c78F2e9Cg+4eiNKJds0WZtqvPTkSfp4w6nyGXHtsLv3iUvJVjA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(19092799006)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?eU8HWd6LcqU4mnJfF6BswOI9JLiw/VPWIeYTfS4iiy4SiBDIU51UdZN3oyFg?=
- =?us-ascii?Q?vtcp9Dyf/kRE2Tp2H6kw6UQqx0b8cprxWmdTlxAEkBq70ixPeDjzIbaoYsRG?=
- =?us-ascii?Q?FtwOb5lEn1YMM4oDyosw6Lt+O9LNzV2jeY+XBBp33QStrrgXT5RBw/yaN5qD?=
- =?us-ascii?Q?SRJS/HRgScDBxmXxtDqm+I1IwIwoAuzXijm/RTonv1Es4SK+kxLeUpcMaz4+?=
- =?us-ascii?Q?XI2vC/NruU1BgJlvflmhDK0Bl3DFJsxtOVsh2DGoJZd1ttecHbvEp7+CPUBk?=
- =?us-ascii?Q?Ar9HQ2l8Toy9MF2jbqN3pI71OKvXq+0uEop84TAUFqW9PdxHRBXa7h/gpNoc?=
- =?us-ascii?Q?QmFt7bUXR2pk2YVvfHDR5nymDW98cwM3G6vCMwL6tMJr+zfj39S+dfN7ALZb?=
- =?us-ascii?Q?EidkZ2YH8dr2UbWRaC9nGiymHwcz7f+lPZwFG0AzWYlhelfpAA1YqDQeqQAC?=
- =?us-ascii?Q?q9DE0gQFCBYIzNQ2/Xhl2kKUYtw1LKuggLLBsV2Th7Wq7AqKEEw3gxKxKtMw?=
- =?us-ascii?Q?j+1RF4guJoK0V+9wv6+mjOdH2wya/vp7M6nbf4Qn9m/zFiSKQZxTT3WmrxcU?=
- =?us-ascii?Q?M15/EGhETRBMtUDLQh7bRymQx61eLJaVtl9qNZPGXOCZmRsGsgfoHNkxO9Gl?=
- =?us-ascii?Q?X1BwDHyYuXzczsw+KWxjFQwpT51La/vbQFgb0Fmu1hMC7S9BwEBtuLDwttpO?=
- =?us-ascii?Q?Uh1CkcTdHDnIQWuoPYkbwTcglC6nQq5HWDQZk9o/oHLoYuiPF2A4NV5WdChJ?=
- =?us-ascii?Q?xCOU+lcp6/p7+XzMh04yZxWTJupM2BwKsvAaTxLMtPYOZ5WFLvFhnfZlDnQQ?=
- =?us-ascii?Q?wz69wrAtTh6Ce49jGKLyRDCeKB5dutVb0SGUNauGaoJuUmrMYPeL6t+C37au?=
- =?us-ascii?Q?pIIjeorduIpNj3v+MGe0nubssKXy2xOo7PAo4tT0Np6RHcm+YD+2LCo5zv4l?=
- =?us-ascii?Q?37nj3MDiEqS4zJs1o/FVFhR6wkS0itksGppANGtMN4I0r6EtK7v/3n/NLPGu?=
- =?us-ascii?Q?4ZwisEjefBkMLzG9CBLyizplgdF38LM6PUTGKaL+TG2ImYf0FU6Dp0Wu4JGh?=
- =?us-ascii?Q?Ky3z/RwZJMJMmpL3Xa+43To7iaN5HknNaTgciPsMGknvkOoUYHjErH11oyA/?=
- =?us-ascii?Q?xycaS15DQaYxUdmFB9o/wx0kG1btvuQ4ShEAZ9CrdxCVq4Gsym1EAmMzKZxj?=
- =?us-ascii?Q?5fTPa/RtlszjQZ6eJ3d3VmaZhmxhRWGRYdPhASCAPI19xkCS27+T06UCLmy/?=
- =?us-ascii?Q?/zlCkXojfYHvzfw/hwmvprDsApItUuv04u4HKS+TkhMXdmaKpw8tPSgj4gWH?=
- =?us-ascii?Q?E7phYandOZ1BaYFGh70dE/qA8Q/Z+ACiNHJkDxrmcCRDGrQ4EHYY/s/qnm6B?=
- =?us-ascii?Q?du6ZQxkPAculDuU63biLYynBBTvBdDeYRF/Bn5t9zKhsVyXNQxg0u51iROPp?=
- =?us-ascii?Q?gaIBaik7EoSmJEyzF+SPwkAQqykzQkqfkYja9BQc8V4g05z+7fIjRsyTlbni?=
- =?us-ascii?Q?qTo8kSOfdCAGbhn69uV2WS/MLKf62JPNtfvPfaUowIZny6yjXA/+rgBdyUVr?=
- =?us-ascii?Q?Sln4jV2LVP2IKgXpARd/2SAywRQxNqvk5wzrghCc?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2373513a-b365-4c27-3747-08dddf365682
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2025 15:37:43.0878
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Y2PSyqzTwHh7wL3EmrZ2VXe8CTegFETRvFzjIZAN90K8CmOt4Ye5pVMaV4PO1Bb4bJlbdJYyIiWslwtU2bpoqQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9069
+Subject: Re: [PATCH v4 net-next 04/15] ptp: netc: add NETC V4 Timer PTP driver
+ support
+To: Wei Fang <wei.fang@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, richardcochran@gmail.com, claudiu.manoil@nxp.com,
+ vladimir.oltean@nxp.com, xiaoning.wang@nxp.com, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, Frank.Li@nxp.com, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, festevam@gmail.com
+Cc: fushi.peng@nxp.com, devicetree@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, kernel@pengutronix.de
+References: <20250819123620.916637-1-wei.fang@nxp.com>
+ <20250819123620.916637-5-wei.fang@nxp.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <20250819123620.916637-5-wei.fang@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On Tue, Aug 19, 2025 at 09:13:44AM -0300, Fabio Estevam wrote:
-> There is an interrupt line connected to the one-wire block on
-> the i.MX51 and i.MX53.
->
-> Add an entry for the interrupt property to avoid the following dt-schema
-> warning:
->
-> 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
->
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+On 19/08/2025 13:36, Wei Fang wrote:
+> NETC V4 Timer provides current time with nanosecond resolution, precise
+> periodic pulse, pulse on timeout (alarm), and time capture on external
+> pulse support. And it supports time synchronization as required for
+> IEEE 1588 and IEEE 802.1AS-2020.
+> 
+> Inside NETC, ENETC can capture the timestamp of the sent/received packet
+> through the PHC provided by the Timer and record it on the Tx/Rx BD. And
+> through the relevant PHC interfaces provided by the driver, the enetc V4
+> driver can support PTP time synchronization.
+> 
+> In addition, NETC V4 Timer is similar to the QorIQ 1588 timer, but it is
+> not exactly the same. The current ptp-qoriq driver is not compatible with
+> NETC V4 Timer, most of the code cannot be reused, see below reasons.
+> 
+> 1. The architecture of ptp-qoriq driver makes the register offset fixed,
+> however, the offsets of all the high registers and low registers of V4
+> are swapped, and V4 also adds some new registers. so extending ptp-qoriq
+> to make it compatible with V4 Timer is tantamount to completely rewriting
+> ptp-qoriq driver.
+> 
+> 2. The usage of some functions is somewhat different from QorIQ timer,
+> such as the setting of TCLK_PERIOD and TMR_ADD, the logic of configuring
+> PPS, etc., so making the driver compatible with V4 Timer will undoubtedly
+> increase the complexity of the code and reduce readability.
+> 
+> 3. QorIQ is an expired brand. It is difficult for us to verify whether
+> it works stably on the QorIQ platforms if we refactor the driver, and
+> this will make maintenance difficult, so refactoring the driver obviously
+> does not bring any benefits.
+> 
+> Therefore, add this new driver for NETC V4 Timer. Note that the missing
+> features like PEROUT, PPS and EXTTS will be added in subsequent patches.
+> 
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> 
+[...]
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>   drivers/ptp/Kconfig             |  11 +
+>   drivers/ptp/Makefile            |   1 +
+>   drivers/ptp/ptp_netc.c          | 416 ++++++++++++++++++++++++++++++++
+>   include/linux/fsl/netc_global.h |   3 +-
+>   4 files changed, 430 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/ptp/ptp_netc.c
 
-> ---
->  Documentation/devicetree/bindings/w1/fsl-imx-owire.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/w1/fsl-imx-owire.yaml b/Documentation/devicetree/bindings/w1/fsl-imx-owire.yaml
-> index 55adea827c34..2c1bbc0eb05a 100644
-> --- a/Documentation/devicetree/bindings/w1/fsl-imx-owire.yaml
-> +++ b/Documentation/devicetree/bindings/w1/fsl-imx-owire.yaml
-> @@ -24,6 +24,9 @@ properties:
->    reg:
->      maxItems: 1
->
-> +  interrupts:
-> +    maxItems: 1
-> +
->    clocks:
->      maxItems: 1
->
-> @@ -40,5 +43,6 @@ examples:
->      owire@63fa4000 {
->          compatible = "fsl,imx53-owire", "fsl,imx21-owire";
->          reg = <0x63fa4000 0x4000>;
-> +        interrupts = <88>;
->          clocks = <&clks IMX5_CLK_OWIRE_GATE>;
->      };
-> --
-> 2.34.1
->
+[...]
+
+> diff --git a/include/linux/fsl/netc_global.h b/include/linux/fsl/netc_global.h
+> index fdecca8c90f0..763b38e05d7d 100644
+> --- a/include/linux/fsl/netc_global.h
+> +++ b/include/linux/fsl/netc_global.h
+> @@ -1,10 +1,11 @@
+>   /* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
+> -/* Copyright 2024 NXP
+> +/* Copyright 2024-2025 NXP
+>    */
+>   #ifndef __NETC_GLOBAL_H
+>   #define __NETC_GLOBAL_H
+>   
+>   #include <linux/io.h>
+> +#include <linux/pci.h>
+
+What is the reason to include it header file? You need PCI functions
+only in ptp_netc.c, but this header is also included in a couple of
+other files (netc_blk_ctrl.c, ntmp.c).
+
+>   
+>   static inline u32 netc_read(void __iomem *reg)
+>   {
+
+
+
 
