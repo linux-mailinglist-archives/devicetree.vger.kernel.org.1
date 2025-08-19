@@ -1,286 +1,350 @@
-Return-Path: <devicetree+bounces-206335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF41FB2C235
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:52:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F774B2C26D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:58:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 664C55A55AB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:50:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EBAC7261C8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5460E337699;
-	Tue, 19 Aug 2025 11:49:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bNWvq4Zv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89CDC3375CD;
+	Tue, 19 Aug 2025 11:55:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022120.outbound.protection.outlook.com [52.101.126.120])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D587334709;
-	Tue, 19 Aug 2025 11:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755604146; cv=none; b=qBv/DXwgR6Fpps6GmTRvSBk+ldMWi68Ws/LcmwoR9WmDnFDj/3BF9OYrkYs4SnNoE6+01QqPTS+nlMRAa+cK5EZv27PKHe2bCTQCWN1W9mJqSIDubeYcf6ATu5taNY7yRmafd2Te4HjEQMTQTg6bu8NQB6d5bNMKy63zqkfHch8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755604146; c=relaxed/simple;
-	bh=DeO8Ii5S4xPqjwogDhDaxek/3Uge8D2U0NrM4GwGiu0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=p9yECeAhHqbz4NT5o6U9UOYsoMWacrrS0nUikHU29VSZ1uzHAsxXSfExBdEZnm+PHRNYnFYXeo7pGg/r4rLZebJqZLZWkPHNKHbxP020ZUjTkm5DdzQYsfq3esCl8pAmCsnJ6+NfjzDA0aQndtdR6qlfPItDAwmoDlkrYCtvWD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bNWvq4Zv; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-76e2e613e90so3746576b3a.0;
-        Tue, 19 Aug 2025 04:49:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755604144; x=1756208944; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/OhP9WyP/wpWu6Mb4fbUxFs+8834wmIS++iJ9iNw9HQ=;
-        b=bNWvq4ZvPIFvucosDy0/hyuU9BnXVHUs1cf4Ob/HlHaBxPI8H/18rYlnHO2x0+qL7z
-         ox1qltAJbClsVx3brf/CLIXtcnE6TgnGtdIefxWfyjUlKbc0v0GOCOYSx2An4ra06WB7
-         EvRLW+Y+UWS/cqxrPoEoo9c0yispMk7D1jGbUzsbUNBlXXm//nuXHB174NjqrWAOuU+i
-         RJIsauwPM4GNdSbfYah7Ih7qvFevGu6fqxnPPd7/hvmzIL2iJhxfmP2cFCo+4/Ymd4eP
-         ahXDBJveYINu6GBoX22vpx+N9Yull9v5qoll3U1dp5Tgr/tZhPX001HnB4WMTar3t1pu
-         XZ5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755604144; x=1756208944;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/OhP9WyP/wpWu6Mb4fbUxFs+8834wmIS++iJ9iNw9HQ=;
-        b=jG0soxbSG7r7f4VSHixIxYAFHSw0841GWUNuyXdZH30mxGlaOKgPyljo7EvtSM++O9
-         GNtV+bGrNviEZTH+lGzI2KDddjcOCGlKmg7zMwvNRN0Ph8HQhqG0bFu21mYQBgxZq+Ed
-         j0rbiKfSIX2hhyLtrSJeMaWasdnj/CZNRRUz2cQ8jWS2oRlFS0b0ihItKdadgZKd0W2H
-         fMm3zQ8dyU4QR7AeB+G/MCAtU6YVS9dA3Y9iFtNgJLRQFpyv3TS4OFujrA+1d+pMfYuo
-         uTg7Fjc8X37AIs5hxgm5qfxr2Gqp2dHHMB9BiHIpiGIOG3E6eny47yxw2Dsav1+eKqsr
-         XhYA==
-X-Forwarded-Encrypted: i=1; AJvYcCVLSBSGj/XueodndEqMayWlMbaYYmsOrveSkJ7Y3RhOvzzNdjQ4eRBM1W/ucI8tc/srWl6QiYIB/chCoeQ=@vger.kernel.org, AJvYcCVlNq0LXIKisQPAKtQoC4I4LAQ/i9+rwmkr6K5nmH4HxVDkoZfC6MOR5JuA8cYw8+i0FFIi2bHZjzOY@vger.kernel.org, AJvYcCW3RmVgOkRZHI/F9MwGpG87YIBNjH6hTK9rHn1seR99ZeO5nobDZMaCvFHlVn63I9Gos5sTKxPAoRecaphH@vger.kernel.org, AJvYcCX69kITUvkNQOrHUq0Aqi2WvidmCrLJUD9NWUGk0RTw+lj4kqtpzifes4nkF7YQb0BwaT3U7zAcVNBx/c4=@vger.kernel.org, AJvYcCXR82PkPzZYtovUDwNUt0L6u6Y9OJcspa37UdGK5qG44PcygSoZUwdyn54yaUtxaf5jl4DzPLpEPcKR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5POCPZ07vg1a/3jZN5Ik7/TMe++xiG3XiBBgDDBDxhyEoWJlP
-	T96GKYJPn8EY+Oeo/iIhW8W+JcOGkPGOMeyq3lgwuKnOGNVhZV+h6mcK
-X-Gm-Gg: ASbGnctV6jWXejgjDDmajbcTsdlsFxSebGvuW3yCBIamxZSBoITiMy5EiTw+lu3GGJK
-	hcz35YvI9rpAbOA0blIZE0/2aJvJ6CC8xpXHwmgSbzYZVCzdTukOVdfxGaoIh8BBycPFt+kOUuc
-	DEmr6YSXIQpUeQOfxqu6ApUmlg1qVKUAiUvfApEvl8uo9rzdfJ7ILs+uBjtT05D49zf88coCa+Y
-	qwz5/FKILcLN7igroHjltIa2zXnxYqiB9rt3NcIiHQ5UblNkYUnkpxUuMM+HWQ8kwZdMMIOcbfj
-	2aYKpnDr8Tvbm0ugNYwVEPq3cGQ0pvtHfKF8fvpK/NZc3n9+blVqigkjK78qPNRe7xmMdfB98cZ
-	gmNznIt4N3V+3TOcunohQnOYhtrtRvf95M24vbPlWw3ernfAK35CkNeWXQWLG9+umeEkCQvjWPp
-	T0WSgWyzlL+AEzrqNKRL03tEysEg==
-X-Google-Smtp-Source: AGHT+IE0AX7GGv6lhJRvMXNEeWItmzt9jXuqrt/pCi46xXUUO89+xvPNiTEdfoooayxRjMHduL6Iig==
-X-Received: by 2002:a05:6a20:a10f:b0:243:78a:82bc with SMTP id adf61e73a8af0-2430d4d563dmr3224506637.54.1755604143798;
-        Tue, 19 Aug 2025 04:49:03 -0700 (PDT)
-Received: from [192.168.2.3] (2403-580a-80ed-0-4835-5a07-49e7-f115.ip6.aussiebb.net. [2403:580a:80ed:0:4835:5a07:49e7:f115])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b472d76a430sm10286316a12.43.2025.08.19.04.48.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 04:49:03 -0700 (PDT)
-From: James Calligeros <jcalligeros99@gmail.com>
-Date: Tue, 19 Aug 2025 21:48:00 +1000
-Subject: [PATCH 8/8] arm64: dts: apple: t8103, t600x, t8112: add common
- hwmon nodes to devices
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61AF3314A2;
+	Tue, 19 Aug 2025 11:55:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.120
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755604519; cv=fail; b=X+mpIMv2m8mnPfkeeXBh43yNYjrTfK4vUcuSkb1Zstt01veaGBVTsRtaJ7l+ofkj0c1m51L2NJdJIUtn45E2kzWj78rkWkHtfy8niaSLt3hXol1sGWH8fZPW7MMAFz1SMZo+wmKUOHTlG9TFUdKgHKPIxtQuZySS2lcikckn2rc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755604519; c=relaxed/simple;
+	bh=V1bWYpjHngtKYRZ+9wSNtinUJpMDG2Z6U+eizcWvJms=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FdepvJ8BO766Zl88xR6rwxPpSBGzelIY8psa49GyxdCff8S9LgYTn/S3Z7265Zu3S+tT0gNSAKK80lsw5icZ4SJGHX1rPNlP7ZHo2r47ZwWmxM+UYPv8LeiDYhIJQEzfMDBQzcYT8Ahb67cMlIo0aXPpZxMaw0cR9H3KB4aZO7o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.120
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sMt0cwGe2BDmNRYY/TCe1S/A+2Qt/f5FIMPVQXPE/VY7BHRg8dKCF3i5y4V3WP4mx2ZFqdeLFgwh854artLGklkIoOIdHzQMWZstZcxHvulxTZoA9MLda/aASuKSzKmGNJxLUOtOrTCb0Vh6VaGCXR7pA011xvvV431Wi8w+RR956yofZblqH48ZcDcb/VlRXpqORzRhaA8/a+yqWNJHbUeUCnJmVbiCIJ9Q/MkweuIPLEI8aq4AjbHes24CrKRFxDq39G4UvJ//p3Is063FRcM+Ps32A1F0DrhYgFGOCEFwhdaVxvpcaVpKztztj+ov24SyX20GZcqa9ycsMcC38g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Dqv+g8+RV+yHMaBArL0IwTyOFOm+CEZRxyjSbOl4gaU=;
+ b=vs7oRVF9cceo8q8oCxBr2G2XUQlTJJ+jAA7pvP8sPu2ZbylANeCMEhKPvIU2n2RATsmMXw7eG9+kSnqxFGq017xoeZ+M2sCVD7vpLDw2HLzGhJ1+lvRfXtLSB+AtukinOFV6sTVJd3lwGMo2B3wlHuN1V6w3jq+1YMReocnY5oG5ryU2lgYwsgRgFdveW5uHEWXHAsm2cNh3aGnJ/YramC08RRA9EFI7F/hj/AtawMOhISL+KjLtHP1p2wkieBJGNBuTZcqs12m/96jwab3RqpF0VNSEtuE0Ku79p/u4WKgKeZ/yjcFlAT4MPmzYvCLDurtV1jgHePP47wCnOgcieA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TYCP301CA0039.JPNP301.PROD.OUTLOOK.COM (2603:1096:400:380::16)
+ by PUZPR06MB6266.apcprd06.prod.outlook.com (2603:1096:301:11f::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Tue, 19 Aug
+ 2025 11:55:12 +0000
+Received: from OSA0EPF000000C9.apcprd02.prod.outlook.com
+ (2603:1096:400:380:cafe::3c) by TYCP301CA0039.outlook.office365.com
+ (2603:1096:400:380::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9031.22 via Frontend Transport; Tue,
+ 19 Aug 2025 11:55:11 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000C9.mail.protection.outlook.com (10.167.240.55) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9052.8 via Frontend Transport; Tue, 19 Aug 2025 11:55:10 +0000
+Received: from hans.. (unknown [172.16.64.208])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 63031400E6CC;
+	Tue, 19 Aug 2025 19:55:09 +0800 (CST)
+From: hans.zhang@cixtech.com
+To: bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kw@linux.com,
+	mani@kernel.org,
+	robh@kernel.org,
+	kwilczynski@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: mpillai@cadence.com,
+	fugang.duan@cixtech.com,
+	guoyin.chen@cixtech.com,
+	peter.chen@cixtech.com,
+	cix-kernel-upstream@cixtech.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Hans Zhang <hans.zhang@cixtech.com>
+Subject: [PATCH v8 00/15] Enhance the PCIe controller driver for next generation controllers
+Date: Tue, 19 Aug 2025 19:52:24 +0800
+Message-ID: <20250819115239.4170604-1-hans.zhang@cixtech.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250819-macsmc-subdevs-v1-8-57df6c3e5f19@gmail.com>
-References: <20250819-macsmc-subdevs-v1-0-57df6c3e5f19@gmail.com>
-In-Reply-To: <20250819-macsmc-subdevs-v1-0-57df6c3e5f19@gmail.com>
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-rtc@vger.kernel.org, linux-hwmon@vger.kernel.org, 
- linux-input@vger.kernel.org, James Calligeros <jcalligeros99@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6874;
- i=jcalligeros99@gmail.com; h=from:subject:message-id;
- bh=DeO8Ii5S4xPqjwogDhDaxek/3Uge8D2U0NrM4GwGiu0=;
- b=owGbwMvMwCV2xczoYuD3ygTG02pJDBlLUvIf35OWPVC7/Lswm+0246dyUbd1Zxr42pQtW/HvP
- ZfTf0+jjlIWBjEuBlkxRZYNTUIes43YbvaLVO6FmcPKBDKEgYtTACbS9prhf1JPpHPfrn0y02IT
- 93/43Xj18r2TSY5WVVNfBj4xU07m+MXIsN1CXZevaHnPd0sZgUNaERsKDvIsy0mLXdVtpNb5+tw
- uXgA=
-X-Developer-Key: i=jcalligeros99@gmail.com; a=openpgp;
- fpr=B08212489B3206D98F1479BDD43632D151F77960
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000C9:EE_|PUZPR06MB6266:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 83b6d5cf-f01c-4595-dc9f-08dddf173fff
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?B4030h3+tn2oHZGAtU/IwOdfxAPlN0/cjhLHhtFd+8uqLtgh//ZfWGVPV/GF?=
+ =?us-ascii?Q?f0n19JOE6Leb1TgNNWi1TzLxISASmZKA1o0NVw+9QmRsTfLLpvdAFPQ2DfYO?=
+ =?us-ascii?Q?lu1S2O73cgpWLbNkYc1lXzIEBHAyKINGV+a7Qc2HN//jjOizKBeFrh/5umyC?=
+ =?us-ascii?Q?Lh1Fu4SO/r8dyonhVZRhueEUY7HYL0P5eeVPbNcS/lbmja5mtFdIoLto7/K2?=
+ =?us-ascii?Q?2CQIvw4bz2YcNdpyCjT+QDi8SYYtpHlrKnTyHTzsxobfI6Mvxw36a0H8wTmg?=
+ =?us-ascii?Q?YOmrpDO+njZ7IaHqBcvJwg+w5cF17SJgCy4H1t/HGqgSTkzEiEkD+oenqKND?=
+ =?us-ascii?Q?80e3lypywPRDLBCTo86DbLNBm3mYo47vYExk/E0pLurZSxUecFaPXsB0Pgib?=
+ =?us-ascii?Q?//1Hg0OazvvCKt/kssWg+CzN0kQBpDuK16uYgRhl8HUsyll1Rxf7t9Uoi+HW?=
+ =?us-ascii?Q?5lE1/tPwL7K4rTHZVDVOnCPnLpSY2T6zoCD4w23D3yfiNOEjp/8MTER6u6Fe?=
+ =?us-ascii?Q?dEb4cJyho/3bW7nDiJXjGLSJezUajE+vxwpn4H7IFWGgsqENrvSlqIcYI2ln?=
+ =?us-ascii?Q?EdOBm26c+MpSMo+jfBxPvdD2qL5uUZ9lSAwkp5w41m25muVLxYwaNit5A6Nd?=
+ =?us-ascii?Q?YZfY7MEuwF58a6wTC9X3uuG7FGMfXnD8Hqmy/TO3VDswel/KbMHX/HUAOnjI?=
+ =?us-ascii?Q?nVrJG/p3vTSz60vBrlBUjziode83X0ChvVYfiremvuJV725cEaDMrR2vrDba?=
+ =?us-ascii?Q?wUErX6DQInN7vE3yaJgnNP/OTCm/5RTZyyYkAHiEX12So/fI/8DEX5Sm/8fA?=
+ =?us-ascii?Q?zrYFS19scpQYSUy3BJwf6U1R7QDn2P5syEFqdMF8kjs7aU7IEPA6bScpxd9Y?=
+ =?us-ascii?Q?oQAPtkkZI3fHXrOke+y6CTBgtVInEVK0x4sivYgYL5g7OboTfXLBDmJfrZOs?=
+ =?us-ascii?Q?jrDQGMZ+6c21peaVCgOZkzpJ8SXOBHpLHAsg4fLE9tvK7nYzkrX4NjiaJsQ2?=
+ =?us-ascii?Q?AXkqBeIZFg630d9m93FZVQ7YN7I4dEBN3a1arnv2hKHxWzhq05ju6qM+WTzT?=
+ =?us-ascii?Q?tjSObCyCmiu37uBnJujNO13iH8+NtgqXj/MaBSsJvNWXEF/jnPUt1ROXOnZL?=
+ =?us-ascii?Q?PllClvSenASWrcy0mcTVG1/778MD+jVcjIB6cpNijNF3N7Qxn9n8CBdR0pMx?=
+ =?us-ascii?Q?vufc/+91S/j9H+smmdcg42nFgOhDcb6bhTSHCfwAuW4pMqkMTMGkitRuFqge?=
+ =?us-ascii?Q?3i10SGg81owu0rp68deXybhyb9Xk+TiJBYvSCobTVvcyK1DWmJ0GWOxEnt1J?=
+ =?us-ascii?Q?77zwqdILgZOIuX5tDaL4/j0VygIzdBN4618OZ/NSJB5E2LyDJqSClfSaubM+?=
+ =?us-ascii?Q?L6D2TRuUH+XD8DWEc3SRRaWYh3Z1Iu5qg39sgP+2/gyqIx0224Achwf5JofU?=
+ =?us-ascii?Q?QFtNX+b/6G4V226Q097pHkIlaRxQn+2NAm3wwqegTcHUESZncil6QWzsJh0Z?=
+ =?us-ascii?Q?wMU4jkJYY/SfIH0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(7416014)(376014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2025 11:55:10.4368
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83b6d5cf-f01c-4595-dc9f-08dddf173fff
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000C9.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB6266
 
-Add the known, common hwmon-related SMC keys to the DTs for the devices
-they pertain to.
+From: Hans Zhang <hans.zhang@cixtech.com>
 
-Co-developed-by: Janne Grunau <j@jannau.net>
-Signed-off-by: Janne Grunau <j@jannau.net>
-Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
 ---
- .../arm64/boot/dts/apple/t6001-j375c.dts | 2 ++
- .../arm64/boot/dts/apple/t6002-j375d.dts | 2 ++
- .../boot/dts/apple/t600x-j314-j316.dtsi  | 4 ++++
- .../arm64/boot/dts/apple/t600x-j375.dtsi | 2 ++
- arch/arm64/boot/dts/apple/t8103-j274.dts | 2 ++
- arch/arm64/boot/dts/apple/t8103-j293.dts | 3 +++
- arch/arm64/boot/dts/apple/t8103-j313.dts | 2 ++
- arch/arm64/boot/dts/apple/t8103-j456.dts | 2 ++
- arch/arm64/boot/dts/apple/t8103-j457.dts | 2 ++
- .../arm64/boot/dts/apple/t8103-jxxx.dtsi | 2 ++
- arch/arm64/boot/dts/apple/t8112-j413.dts | 2 ++
- arch/arm64/boot/dts/apple/t8112-j473.dts | 2 ++
- arch/arm64/boot/dts/apple/t8112-j493.dts | 3 +++
- .../arm64/boot/dts/apple/t8112-jxxx.dtsi | 2 ++
- 14 files changed, 32 insertions(+)
+Dear Maintainers,
 
-diff --git a/arch/arm64/boot/dts/apple/t6001-j375c.dts b/arch/arm64/boot/dts/apple/t6001-j375c.dts
-index 62ea437b58b25ca649e20b1072b4d835bbc17d3a..9e8c4107e65d8dc47ad2ad99af2f436613c11d8f 100644
---- a/arch/arm64/boot/dts/apple/t6001-j375c.dts
-+++ b/arch/arm64/boot/dts/apple/t6001-j375c.dts
-@@ -16,3 +16,5 @@ / {
- 	compatible = "apple,j375c", "apple,t6001", "apple,arm-platform";
- 	model = "Apple Mac Studio (M1 Max, 2022)";
- };
-+
-+#include "hwmon-fan-dual.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t6002-j375d.dts b/arch/arm64/boot/dts/apple/t6002-j375d.dts
-index 3365429bdc8be90b63c8051822243d897854ab27..b62cf16d6b73e74c3d9116730b44596be2a89ea0 100644
---- a/arch/arm64/boot/dts/apple/t6002-j375d.dts
-+++ b/arch/arm64/boot/dts/apple/t6002-j375d.dts
-@@ -48,3 +48,5 @@ hpm5: usb-pd@3a {
- 
- /delete-node/ &ps_disp0_cpu0_die1;
- /delete-node/ &ps_disp0_fe_die1;
-+
-+#include "hwmon-fan-dual.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
-index 22ebc78e120bf8f0f71fd532e9dce4dcd117bbc6..2cb38861c3855e31c9b8ab66fe69b818c381c604 100644
---- a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
-@@ -121,3 +121,7 @@ &fpwm0 {
- };
- 
- #include "spi1-nvram.dtsi"
-+
-+#include "hwmon-common.dtsi"
-+#include "hwmon-laptop.dtsi"
-+#include "hwmon-fan-dual.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t600x-j375.dtsi b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
-index d5b985ad567936111ee5cccc9ca9fc23d01d9edf..7e551e8660c9c2b51f021b1188680c5cce9d2951 100644
---- a/arch/arm64/boot/dts/apple/t600x-j375.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
-@@ -128,3 +128,5 @@ &pcie0_dart_3 {
- };
- 
- #include "spi1-nvram.dtsi"
-+
-+#include "hwmon-common.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103-j274.dts b/arch/arm64/boot/dts/apple/t8103-j274.dts
-index 1c3e37f86d46d7b5d733717b47c4b57dc55e1201..f5b8cc087882d6bd2b0f4f2711844d2a0fa8b604 100644
---- a/arch/arm64/boot/dts/apple/t8103-j274.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j274.dts
-@@ -61,3 +61,5 @@ &pcie0_dart_2 {
- &i2c2 {
- 	status = "okay";
- };
-+
-+#include "hwmon-mac-mini.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
-index 5b3c42e9f0e6776241bf746d3458766e44e3639a..abb88391635fa048c196d0631d90405519ddd178 100644
---- a/arch/arm64/boot/dts/apple/t8103-j293.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
-@@ -119,3 +119,6 @@ dfr_panel_in: endpoint {
- &displaydfr_dart {
- 	status = "okay";
- };
-+
-+#include "hwmon-laptop.dtsi"
-+#include "hwmon-fan.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103-j313.dts b/arch/arm64/boot/dts/apple/t8103-j313.dts
-index 97a4344d8dca685708aff136af92a1b316f3c3dd..491ead016b2193f123f4ded9dadf85ebf37cdc7e 100644
---- a/arch/arm64/boot/dts/apple/t8103-j313.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j313.dts
-@@ -41,3 +41,5 @@ &wifi0 {
- &fpwm1 {
- 	status = "okay";
- };
-+
-+#include "hwmon-laptop.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103-j456.dts b/arch/arm64/boot/dts/apple/t8103-j456.dts
-index 58c8e43789b4861544e20c717124ede3327be010..c2ec6fbb633cc6aeec2322f295c054998fbf08cc 100644
---- a/arch/arm64/boot/dts/apple/t8103-j456.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j456.dts
-@@ -75,3 +75,5 @@ &pcie0_dart_1 {
- &pcie0_dart_2 {
- 	status = "okay";
- };
-+
-+#include "hwmon-fan-dual.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103-j457.dts b/arch/arm64/boot/dts/apple/t8103-j457.dts
-index 152f95fd49a2118093396838fbd8b6bd1b518f81..20e85612ae70c116cab788f2c03f5a7d76cb19be 100644
---- a/arch/arm64/boot/dts/apple/t8103-j457.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j457.dts
-@@ -48,3 +48,5 @@ ethernet0: ethernet@0,0 {
- &pcie0_dart_2 {
- 	status = "okay";
- };
-+
-+#include "hwmon-fan.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-index 0c8206156bfefda8a32c869787b2e0c8e67a9d17..f711af410a2edf7587ff091e195c5cf243dc8a34 100644
---- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-@@ -92,3 +92,5 @@ &nco_clkref {
- };
- 
- #include "spi1-nvram.dtsi"
-+
-+#include "hwmon-common.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8112-j413.dts b/arch/arm64/boot/dts/apple/t8112-j413.dts
-index 6f69658623bf89ce73e3486bce504f1f5f8003f3..500dcdf2d4b5da698ee0798f37f624ff70e7b9f0 100644
---- a/arch/arm64/boot/dts/apple/t8112-j413.dts
-+++ b/arch/arm64/boot/dts/apple/t8112-j413.dts
-@@ -78,3 +78,5 @@ &i2c4 {
- &fpwm1 {
- 	status = "okay";
- };
-+
-+#include "hwmon-laptop.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8112-j473.dts b/arch/arm64/boot/dts/apple/t8112-j473.dts
-index 06fe257f08be498ace6906b936012e01084da702..11db6a92493f367cfa64be5e844c80e99bdd325b 100644
---- a/arch/arm64/boot/dts/apple/t8112-j473.dts
-+++ b/arch/arm64/boot/dts/apple/t8112-j473.dts
-@@ -52,3 +52,5 @@ &pcie1_dart {
- &pcie2_dart {
- 	status = "okay";
- };
-+
-+#include "hwmon-mac-mini.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8112-j493.dts b/arch/arm64/boot/dts/apple/t8112-j493.dts
-index fb8ad7d4c65a8fe7966f5541f24f03a379143cfb..a0da02c00f157a0e667b26aebef9157636b14ecf 100644
---- a/arch/arm64/boot/dts/apple/t8112-j493.dts
-+++ b/arch/arm64/boot/dts/apple/t8112-j493.dts
-@@ -133,3 +133,6 @@ touchbar0: touchbar@0 {
- 		touchscreen-inverted-y;
- 	};
- };
-+
-+#include "hwmon-laptop.dtsi"
-+#include "hwmon-fan.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
-index 6da35496a4c88dbaba125ebbe8c5a4a428c647c3..6e54c1fb097e8f72cb4fb37e491893a7e3d7e6c2 100644
---- a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
-@@ -81,3 +81,5 @@ &nco_clkref {
- };
- 
- #include "spi1-nvram.dtsi"
-+
-+#include "hwmon-common.dtsi"
+This series is Cadence's HPA PCIe IP and the Root Port driver of our
+CIX sky1. Please help review. Thank you very much.
+---
 
+Enhances the exiting Cadence PCIe controller drivers to support
+HPA (High Performance Architecture) Cadence PCIe controllers.
+
+The patch set enhances the Cadence PCIe driver for HPA support.
+The header files are separated out for legacy and high performance
+register maps, register address and bit definitions. The driver
+read register and write register functions for HPA take the
+updated offset stored from the platform driver to access the registers.
+As part of refactoring of the code, few new files are added to the
+driver by splitting the existing files.
+This helps SoC vendor who change the address map within PCIe controller
+in their designs. Setting the menuconfig appropriately will allow
+selection between RP and/or EP PCIe controller support. The support
+will include Legacy and HPA for the selected configuration.
+
+The TI SoC continues to be supported with the changes incorporated.
+
+The changes address the review comments in the previous patches where
+the need to move away from "ops" pointers used in current implementation
+and separate out the Legacy and HPA driver implementation was stressed.
+
+The scripts/checkpatch.pl has been run on the patches with and without
+--strict. With the --strict option, 4 checks are generated on 3 patch,
+which can be ignored. There are no code fixes required for these checks.
+All other checks generated by ./scripts/checkpatch.pl --strict can be 
+ignored.
+
+---
+Changes for v8
+        - Fixed the error issue of DT binding. (Rob and Krzysztof)
+        - Optimization of CIX SKY1 Root Port driver. (Bjorn and Krzysztof)
+        - Review comments fixed. (Bjorn and Krzysztof)
+	      - All comments related fixes like single line comments, spaces
+              between HPA or LGA, periods in single line, changes proposed
+              in the description, etc are fixed. (Bjorn and Krzysztof)
+        - Patches have been split to separate out code moves from
+          update and fixes.
+        - "cdns_...send_irq.." renamed to "cdns_..raise_irq.."
+
+        The test log on the Orion O6 board is as follows:
+        root@cix-localhost:~# lspci
+        0000:c0:00.0 PCI bridge: Device 1f6c:0001
+        0000:c1:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
+        0001:90:00.0 PCI bridge: Device 1f6c:0001
+        0001:91:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO
+        0002:60:00.0 PCI bridge: Device 1f6c:0001
+        0002:61:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
+        0003:00:00.0 PCI bridge: Device 1f6c:0001
+        0003:01:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8852BE PCIe 802.11ax Wireless Network Controller
+        0004:30:00.0 PCI bridge: Device 1f6c:0001
+        0004:31:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
+        root@cix-localhost:~#
+        root@cix-localhost:~# uname -a
+        Linux cix-localhost 6.17.0-rc2-00043-gb2782ead460c #185 SMP PREEMPT Tue Aug 19 19:35:34 CST 2025 aarch64 GNU/Linux
+        root@cix-localhost:~# cat /etc/issue
+        Debian GNU/Linux 12 \n \l
+
+Changes for v7
+https://patchwork.kernel.org/project/linux-pci/cover/20250813042331.1258272-1-hans.zhang@cixtech.com/
+
+        - Rebase to v6.17-rc1.
+        - Fixed the error issue of cix,sky1-pcie-host.yaml make dt_binding_check.
+        - CIX SKY1 Root Port driver compilation error issue: Add header
+          file, Kconfig select PCI_ECAM.
+
+Changes for v6
+https://patchwork.kernel.org/project/linux-pci/cover/20250808072929.4090694-1-hans.zhang@cixtech.com/
+
+        - The IP level DTS changes for HPA have been removed as the SoC
+          level DTS is added
+        - Virtual FPGA platform is also removed as the CiX SoC support is
+          added
+        - Fix the issue of dt bindings
+        - Modify the order of PCIe node attributes in sky1-orion-o6.dts
+          and delete unnecessary attributes.
+        - Continue to simplify the RC driver.
+        - The patch of the Cix Sky1 platform has been accepted and merged into the linux master branch.
+        https://patchwork.kernel.org/project/linux-arm-kernel/cover/20250721144500.302202-1-peter.chen@cixtech.com/
+
+Changes for v5
+https://patchwork.kernel.org/project/linux-pci/cover/20250630041601.399921-1-hans.zhang@cixtech.com/
+
+        - Header and code files separated for library functions(common
+          functions used by both architectures) and Legacy and HPA.
+        - Few new files added as part of refactoring
+        - No checks for "is_hpa" as the functions have been separated
+          out
+        - Review comments from previous patches have been addressed
+        - Add region 0 for ECAM and region 1 for message.
+        - Add CIX sky1 PCIe drivers. Submissions based on the following v9 patches:
+        https://patchwork.kernel.org/project/linux-arm-kernel/cover/20250609031627.1605851-1-peter.chen@cixtech.com/
+
+        Cix Sky1 base dts review link to show its review status:
+        https://lore.kernel.org/all/20250609031627.1605851-9-peter.chen@cixtech.com/
+
+        The test log on the Orion O6 board is as follows:
+        root@cix-localhost:~# lspci
+        0000:c0:00.0 PCI bridge: Device 1f6c:0001
+        0000:c1:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
+        0001:90:00.0 PCI bridge: Device 1f6c:0001
+        0001:91:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO
+        0002:60:00.0 PCI bridge: Device 1f6c:0001
+        0002:61:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8852BE PCIe 802.11ax Wireless Network Controller
+        0003:00:00.0 PCI bridge: Device 1f6c:0001
+        0003:01:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
+        0004:30:00.0 PCI bridge: Device 1f6c:0001
+        0004:31:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
+        root@cix-localhost:~# uname -a
+        Linux cix-localhost 6.16.0-rc1-00023-gbaa962a95a28 #138 SMP PREEMPT Fri Jun 27 16:43:41 CST 2025 aarch64 GNU/Linux
+        root@cix-localhost:~# cat /etc/issue
+        Debian GNU/Linux 12 \n \l
+ 
+Changes for v4
+https://patchwork.kernel.org/project/linux-pci/cover/20250424010445.2260090-1-hans.zhang@cixtech.com/
+
+        - Add header file bitfield.h to pcie-cadence.h
+        - Addressed the following review comments
+                Merged the TI patch as it
+                Removed initialization of struct variables to '0'
+
+Changes for v3
+https://patchwork.kernel.org/project/linux-pci/patch/20250411103656.2740517-1-hans.zhang@cixtech.com/
+
+        - Patch version v3 added to the subject
+        - Use HPA tag for architecture descriptions
+        - Remove bug related changes to be submitted later as a separate
+          patch
+        - Two patches merged from the last series to ensure readability to
+          address the review comments
+        - Fix several description related issues, coding style issues and
+          some misleading comments
+        - Remove cpu_addr_fixup() functions
+---
+
+Hans Zhang (6):
+  dt-bindings: PCI: Add CIX Sky1 PCIe Root Complex bindings
+  PCI: Add Cix Technology Vendor and Device ID
+  PCI: sky1: Add PCIe host support for CIX Sky1
+  MAINTAINERS: add entry for CIX Sky1 PCIe driver
+  arm64: dts: cix: Add PCIe Root Complex on sky1
+  arm64: dts: cix: Enable PCIe on the Orion O6 board
+
+Manikandan K Pillai (9):
+  PCI: cadence: Add module support for platform controller driver
+  PCI: cadence: Split PCIe controller header file
+  PCI: cadence: Add register definitions for High Perf Architecture
+    (HPA)
+  PCI: cadence: Add helper functions for supporting High Perf
+    Architecture (HPA)
+  PCI: cadence: Move PCIe EP common functions to a separate file
+  PCI: cadence: Move PCIe RP common functions to a separate file
+  PCI: cadence: Move PCIe controller common functions as a separate file
+  PCI: cadence: Add support for High Perf Architecture (HPA) controller
+  PCI: cadence: Update PCIe platform to use register offsets passed
+
+ .../bindings/pci/cix,sky1-pcie-host.yaml      |  83 +++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/cix/sky1-orion-o6.dts     |  20 +
+ arch/arm64/boot/dts/cix/sky1.dtsi             | 126 ++++
+ drivers/pci/controller/cadence/Kconfig        |  21 +-
+ drivers/pci/controller/cadence/Makefile       |  11 +-
+ drivers/pci/controller/cadence/pci-sky1.c     | 232 +++++++
+ .../controller/cadence/pcie-cadence-common.c  | 141 +++++
+ .../cadence/pcie-cadence-ep-common.c          | 251 ++++++++
+ .../cadence/pcie-cadence-ep-common.h          |  36 ++
+ .../controller/cadence/pcie-cadence-ep-hpa.c  | 528 ++++++++++++++++
+ .../pci/controller/cadence/pcie-cadence-ep.c  | 233 +------
+ .../cadence/pcie-cadence-host-common.c        | 179 ++++++
+ .../cadence/pcie-cadence-host-common.h        |  24 +
+ .../cadence/pcie-cadence-host-hpa.c           | 585 ++++++++++++++++++
+ .../controller/cadence/pcie-cadence-host.c    | 156 +----
+ .../cadence/pcie-cadence-hpa-regs.h           | 182 ++++++
+ .../pci/controller/cadence/pcie-cadence-hpa.c | 204 ++++++
+ .../cadence/pcie-cadence-lga-regs.h           | 228 +++++++
+ .../controller/cadence/pcie-cadence-plat.c    |  20 +-
+ drivers/pci/controller/cadence/pcie-cadence.c | 139 +----
+ drivers/pci/controller/cadence/pcie-cadence.h | 412 ++++++------
+ include/linux/pci_ids.h                       |   3 +
+ 23 files changed, 3056 insertions(+), 765 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
+ create mode 100644 drivers/pci/controller/cadence/pci-sky1.c
+ create mode 100644 drivers/pci/controller/cadence/pcie-cadence-common.c
+ create mode 100644 drivers/pci/controller/cadence/pcie-cadence-ep-common.c
+ create mode 100644 drivers/pci/controller/cadence/pcie-cadence-ep-common.h
+ create mode 100644 drivers/pci/controller/cadence/pcie-cadence-ep-hpa.c
+ create mode 100644 drivers/pci/controller/cadence/pcie-cadence-host-common.c
+ create mode 100644 drivers/pci/controller/cadence/pcie-cadence-host-common.h
+ create mode 100644 drivers/pci/controller/cadence/pcie-cadence-host-hpa.c
+ create mode 100644 drivers/pci/controller/cadence/pcie-cadence-hpa-regs.h
+ create mode 100644 drivers/pci/controller/cadence/pcie-cadence-hpa.c
+ create mode 100644 drivers/pci/controller/cadence/pcie-cadence-lga-regs.h
+
+
+base-commit: be48bcf004f9d0c9207ff21d0edb3b42f253829e
 -- 
-2.50.1
+2.49.0
 
 
