@@ -1,97 +1,129 @@
-Return-Path: <devicetree+bounces-206312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0B6EB2C067
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:29:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E3C5B2C07B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:32:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C37916EE46
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:27:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F85C16D790
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6B44326D71;
-	Tue, 19 Aug 2025 11:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C581322DA1;
+	Tue, 19 Aug 2025 11:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c73CE4ru"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvSX9ylx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA385326D5A;
-	Tue, 19 Aug 2025 11:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F7A3451DC;
+	Tue, 19 Aug 2025 11:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755602827; cv=none; b=UWnTFdDwRccHgSW2d3iGXX7y4zgFteBn+EJsLEaCjIsRAWAMca6Adhf1tnEdx6od6e59teWCFnNNRTCcAkRBkWFF5/flOrHFiUhuycuQS+gk1J9jYc6chtyU0qnqLlHXlaIusFRaKa6Zekkdfav5JpYQbs1BGREebHiJ0dTUs50=
+	t=1755602991; cv=none; b=UmoXiIG3jh258zfsJ4xZ1JequYgpv15c3XckCbh53OTToBQ4W+GZm2IALjaGYkqlO7xlz0MO3up3g8vajfsnb+0+YVd6g2jqFgwD1cNgPBCm6vHL0a9OQvhUXB24l3qCWQdAZK/g10iA7yGxABBu9hlKqsemcdklRbABpyngE6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755602827; c=relaxed/simple;
-	bh=zV/P5YkZzkQ/o1SsOoS8wjR4Dvm021W0MjqQCKhdIrQ=;
-	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
-	 In-Reply-To; b=FKfPjRA12tj/ZcDKTnVpXw1KTixxiC2syOMojti1wGMKNX/qtQRQ6iml0ZVFwozdxVB0RZ3riKKAfnRHY8TqL4atLTYY+Nh/aXooxuWvYjC2aGkCVw7EaJdB+NXCZKFJzA5gBjSABwbTXeFILpjdiJiDsYwpOAOn/19mVMKilXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c73CE4ru; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E957AC4CEF1;
-	Tue, 19 Aug 2025 11:27:06 +0000 (UTC)
+	s=arc-20240116; t=1755602991; c=relaxed/simple;
+	bh=iOQAUUkWtpHeg6m1A9TasiAatQSSFNAcczoKJ1xLehU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GUuGuADhMMW+RWOIMCwcQRm6LNqbawH3P9130bXdGgE3Cc2aJrv9S0IMML/34LG7rR/LIHeAyZ7GfHkGky/3xq03Qvam5QmbTsr4mwGo3F3Y+cyP6omQ0QOTbGTZ1eO2eD9CXmbNjXCL01qRZmKlKTw/Ikuz6mdxkvhxI5mn6t4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvSX9ylx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDA25C4CEF1;
+	Tue, 19 Aug 2025 11:29:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755602827;
-	bh=zV/P5YkZzkQ/o1SsOoS8wjR4Dvm021W0MjqQCKhdIrQ=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=c73CE4ruaQyvjTE++vIlFX/0VW/OOMSKfawjdNzWUECFL8VZ5j+87hHXgaSLjfyvF
-	 V1Wr00ADn/M+oefuYjh5E53ewCGEinmixxeugzuVUzl7kjqcB0bcu83xZn/s1ydsKh
-	 q4VoEKd+n7Gzn6AMusn/fZiMIWa1ScCZWbmqicEWSkEgQVDp7m1ihyXrKRpS9+heQL
-	 vTZOGOKNuwJt0u4Cn5MWcheGDhgYzLzbQ5aG+JNvz1mRn7z6sgsJsHw8pXAkbRMNn8
-	 kZ4EKJ9TAAlvaeR5P7PsNuOBkjgWEiGoKVsiNzMz/Khw+/bkRUf26iKKzDxoQnqBJA
-	 lW8s4+zQhlVnQ==
-Content-Type: multipart/signed;
- boundary=c7d945508032eacf6f1d7cf7af0d4d6794903835429934688e6cf4292a34;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Tue, 19 Aug 2025 13:27:02 +0200
-Message-Id: <DC6D9ESWXGKO.1NS287IU5YJSZ@kernel.org>
-Subject: Re: [PATCH 0/3] Powerbutton driver and powerdown request for
- TPS65224 PMIC
-Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-input@vger.kernel.org>, <jcormier@criticallink.com>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Job Sava" <jsava@criticallink.com>, "Lee Jones" <lee@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Julien Panis" <jpanis@baylibre.com>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>
-X-Mailer: aerc 0.16.0
-References: <20250520-linux-stable-tps6594-pwrbutton-v1-0-0cc5c6e0415c@criticallink.com>
-In-Reply-To: <20250520-linux-stable-tps6594-pwrbutton-v1-0-0cc5c6e0415c@criticallink.com>
+	s=k20201202; t=1755602990;
+	bh=iOQAUUkWtpHeg6m1A9TasiAatQSSFNAcczoKJ1xLehU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XvSX9ylxFTwKV9+AUTISf07LpWEBXw3u6MefsEVU+bOXCfrywnbpuWhipqssIJq9q
+	 2B2KQk50UucttqCKL1uwHyJHlGGAoLD8sP5OumgShzWIlM1ZrkHHCa0TXlwT20V6U+
+	 yaDC+3xCLSylPlg0GJbmBqiVyO8xfyaPFlgfX30mDz3RI0jHWxyVxsIcGWvBHw5aOu
+	 dnur2EcQU2EJxpAoFOa+Xgjd1ZOI/E6cBBn5k20Ppci/lhrBLHFS+AEA9N0ep/o+YT
+	 y7TSJcQoL0fCJK3bp6ynqT8jGRg1lORgs317gyq4ptzeg/H4IGXUjIcH+Bi0SxY91o
+	 CxWwf/XFPyiYw==
+Message-ID: <620427ef-ade4-43c8-b041-34b0365fb4c1@kernel.org>
+Date: Tue, 19 Aug 2025 13:29:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-
---c7d945508032eacf6f1d7cf7af0d4d6794903835429934688e6cf4292a34
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add OSM L3 compatible
+ for QCS615 SoC
+To: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Mike Tipton <mike.tipton@oss.qualcomm.com>,
+ Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
+ Imran Shaik <imran.shaik@oss.qualcomm.com>
+References: <20250819-talos-l3-icc-v3-0-04529e85dac7@oss.qualcomm.com>
+ <20250819-talos-l3-icc-v3-1-04529e85dac7@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250819-talos-l3-icc-v3-1-04529e85dac7@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Job,
+On 19/08/2025 13:24, Raviteja Laggyshetty wrote:
+> Add Operation State Manager (OSM) L3 interconnect provider binding for
+> QCS615 SoC. As the OSM hardware in QCS615 and SM8150 are same,
+> added a family-level compatible for SM8150 SoC.
+> 
+> Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+> ---
 
-> The following patches were created to get the tps65224 PMIC
-> powerbutton driver and power off request working on the
-> MitySOM-AM62PX. The patches are as follows:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Are there any news on this series? Do you plan to post a new
-version soon, or do you want me to take over? I'd like to get
-support for this into the kernel :)
-
--michael
-
---c7d945508032eacf6f1d7cf7af0d4d6794903835429934688e6cf4292a34
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaKRfhxIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/jXCAF/b7T+J/dOk8F0+/32IHKqoZqJ45QGrxXC
-e4r+VlAHgdHgBop5Mxnd7gp8NtLip9rSAXwIhgufeV/AZCaGdhLPrTwyV6fuWQfU
-YAlSRzUqcH917Hk9tiqYN22i67mBtQbt8S0=
-=OPDU
------END PGP SIGNATURE-----
-
---c7d945508032eacf6f1d7cf7af0d4d6794903835429934688e6cf4292a34--
+Best regards,
+Krzysztof
 
