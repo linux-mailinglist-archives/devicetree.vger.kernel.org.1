@@ -1,142 +1,140 @@
-Return-Path: <devicetree+bounces-206609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD751B2CF1D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 00:12:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10E52B2CF32
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 00:19:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FC301BA7E0B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:12:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C663C683BF6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:19:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E4D353371;
-	Tue, 19 Aug 2025 22:11:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFF72773D0;
+	Tue, 19 Aug 2025 22:19:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IJ3KS+9h"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XrREl4mR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F24353346;
-	Tue, 19 Aug 2025 22:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDA0353345;
+	Tue, 19 Aug 2025 22:19:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755641517; cv=none; b=V6YdNoX+6EeSNXT8LfRWJBwnv2u9IL0pq7hJzFnGMhHpNmkAh9wjQr5U9awEOcEf6bN53ROtdMlpLc1rnP4CYUCwHTXHcd3pxOoUeNX5qztg5Udel9sAPdx0ovJe3s5EsJru0nx5rtCTTx5d3i1bGB54guyDONyHKFlD4h15K6Y=
+	t=1755641988; cv=none; b=gTrzVL+vAJQ6lO0HOVoLxmhB4z7uqEUrrcZFWSSj/9Aq1a/RRmdjCn1FlSY/XxOiJzqJQ8R1XbBHRMhhlCagLp240ZwegCiFlhVl1wgeDKaBh9BYc+k1IEhwjAB0WQvD9vfNbh7u4SxPzzy7h6OUqUJwpJLtIkMDJs7K/dI2iSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755641517; c=relaxed/simple;
-	bh=kYEvO72qwKAcgrTjw0m7kGc9zYNpF5QkLDN1F7vM59M=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JA8HzZ6z3mHyEaueOWqCSVrmHFN59LC8cOZn+460hjo0ER+8zUBN4rYD0KjddzNTphR05e9WKqdiQZKA4wIollRbJj7zZe/epMjL//2t3P5zYoAQ46NRv5gFMVLt6//sSwjhM03ZypV5/31ES92OgoTy5lNU/uhfn0E4Cq926G8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IJ3KS+9h; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1755641988; c=relaxed/simple;
+	bh=9xnTT004xILa2UhRGzJrZPOdnh0XmNdq4Be712m2VvE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NYYtwGJLeCUu4Ew53vizrV45DW+qLW2KKhuVwRb2+MIAA9akBqUFzutBaGk6PJp0saLY4zNHeh1Mhut+NWLWpB03RlLdDV9mP+JdldByYdmK8Hy0GLTB2JCNVat3wzNRbGrApcRDToviYuMjaFkxsTB3uWua2D2DrXL5y/FGpoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XrREl4mR; arc=none smtp.client-ip=209.85.210.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45a1b004954so42906045e9.0;
-        Tue, 19 Aug 2025 15:11:54 -0700 (PDT)
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-76e2ea94c7dso6428348b3a.2;
+        Tue, 19 Aug 2025 15:19:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755641513; x=1756246313; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=K35SvQhw00YjEa/o8MaVe7A+urCu90afaTwYqbkOP6I=;
-        b=IJ3KS+9hFhwNvqOubgLS4D7UZqb2DDQmMe0JB1esojn6tMqoCoSrpjVP+qZteca4UD
-         IQpx1Emuz8RYvse+DGU72Ofr1kiI5vvFs1jr8+i1CjDYIcrwP74yn19LoM0RKdIIN21P
-         tROuFmcdeZYhCc7pBRNMmPyxH4B8WVWyJA59hvIdzmrGOQXWOhSKJvFPw/4M6jdWRycL
-         uaceEtGFbBzvB/5KHBvSwBBeUUYDTkmLAEDlepcmTsVlGu2/Gly2VGBmqyrAJx8f14Yg
-         +dhwRpHUBWCFBT9f3NPMEwdxvlIJd+fkn6uFslbrHQ9bAFzrzTO7+IrgY3dAORp+M5w6
-         lohg==
+        d=gmail.com; s=20230601; t=1755641986; x=1756246786; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xa4yNFnEl2+GCJiVXv/vbsFbdWUzJ8PFt4Rgx/UrWQ8=;
+        b=XrREl4mRXT+eVO8KkYpe4Sz7Fv0WjOR7iXqsBH5UShw2mhnpAi8S0N9A8q5xzQsedS
+         XRO6ATqFq4g+mYiCHTNoJ0XlvpnTpS4elP0XRp/goqA3KV14lt4jgGh22bVuopsrCiVs
+         2+3faTga+yrkPclI0ZeeDTMeF8jcAI7yx8cJ6g/Swx3QmyBS4pIxNMZJEhwd2Ep/b1vX
+         aYYAZ3wYMbA5K231Q0c8X5QgPX9dlW3USBAkq5+0gn1yGiQjWeUgDY105u/3ZXM0MTih
+         Fk8bEhCRlLaJD9e1hLEL67iYUYgIaWOQ3DhkUUJtOpCIbW2rNY1B+bRFP0zbLbAzmEVe
+         rpGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755641513; x=1756246313;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1755641986; x=1756246786;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=K35SvQhw00YjEa/o8MaVe7A+urCu90afaTwYqbkOP6I=;
-        b=XXfwR6x3bMDzVVTXMQIeKjhjTUHDokRKncumvEg//nNCGhYpxd7df1eMttn8ZR505Y
-         95amEvc4JxZqkIeOwzVY6OTfYf+ns8PrO+faz9wHSjmBm+Bkw5YyPZbV+sUR9guHkVBh
-         3GcQmy0koTzDbO0tkNSee9R2Gc3PqA3prF/JOxWGCsdGw7SuXs2jvTnXEq7pJFqKE9yJ
-         3bymlR+of1jMr8D4W04YMo5Jw72Sp18UbixjeKXFaHjfSu+iXNss92nHQx69WC/N0WQO
-         tHYiTA23tVjG0l1kFUuAgolBjr9VaCbgM+6KlcSgdMT4EdC4jKUQv6m9WPtPEIFEpL/z
-         qR7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUBs6Q84zA7PH4UxgRUg+Y0/WJ1mdaYkxVbYCfz7ncNny9I8mmz923tbNK+3ai0jsl4mi55FCLxahwi5A==@vger.kernel.org, AJvYcCVLQ5AxMdsF4IpMZxM04IyU/ROldLmXuMq3jGRR4rR1QemXuFmelNYcmsFam6UazAZQf4l5co+00IgN@vger.kernel.org, AJvYcCXII4gC3JOi3YJYbEsZhmGMn9Lkalzq0gbTjx/0KghZiaRWtuTWkazxYSsYvq8dRGS1y6Kwp50MAg6K2lTS@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIKWtT5YJF/FD29M3JPxaZ7WUtvraO4PnWHbSJFHc35hamwmGP
-	gvmkFDdi2+9XEEUmMForfR6PYJU4bE9dqN4vZTEfWo2bRVv3aCQ+dFhVgxng
-X-Gm-Gg: ASbGncsmQlD8b8Tfwd0XGpRPKZiOKQj9PBVBQ1Qtxcl4at6a78oJPqWsIZfmIagQtPI
-	S73ttvw6KJeSKQLxi4oKixYTFB359f2U1REpl+OuPf2YYmdHhUOGoP1+DQbwTnXptpTES5X190X
-	0zL1pq8S7fL8Lw8CeFAhXTtLWS2Z+PHQSoYIJYn1SNK8Izu8XTpeojebgB5WZPJluje4SVEop4X
-	wHELS1vRVCsXx19u2/fwuj/ATgm+eXgyY2r59JmfprCy3cg1MLVUxfTHr5ncyog/1WxAeY1JFCI
-	1EAyL3pAPTySJ0KKt2NFPKhpkWSFNRrnsijG5+3Z3wCcCTeczm0M1waMTtfyZGjXr4Qz6jRxENu
-	BkUuAQUP3KWiNS8Xb91u1vNVbAm0MUkHDdUx62upXNEqbkC0=
-X-Google-Smtp-Source: AGHT+IFn0OLLqP/S61PjcsImiOsgF1HcBK9jbpGZOKFooDXzboGlVyWdLc7HcawB/Ew+vRFm/h1qIQ==
-X-Received: by 2002:a5d:5f53:0:b0:3b9:1635:c13 with SMTP id ffacd0b85a97d-3c32de52722mr310399f8f.16.1755641510343;
-        Tue, 19 Aug 2025 15:11:50 -0700 (PDT)
-Received: from localhost.localdomain ([2a0d:e487:216f:2f7a:74c6:177a:3b99:868c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b47c6b14csm3804085e9.25.2025.08.19.15.11.49
+        bh=xa4yNFnEl2+GCJiVXv/vbsFbdWUzJ8PFt4Rgx/UrWQ8=;
+        b=qM8WbcaqKqzvV6b92GXPvA48QY9zPkmTgieuJwbTt5rwDsHq7STSkT2UwLvqMXeNjM
+         ax40NWE3ylsl5MKdjDDhjSCdm3pT830bWd6rs+CmV9gOefgcQjp5NfPRpFzFUAJMjsM6
+         xHnIfj8L+v4PY8zGSPBowLeGCeFfA83KVCNN57nWt2Jd7V9y2ZURCnZ/U3LOtc/osTJ/
+         lyW/jjezzmp0T7nVrPvxpMMY4TmOtIVBmlssAAHi6MtnFA6qjwdR/iWn6ZEjstV3Xm7e
+         7O3QbRAgWrKy2/4apIdM40XA8H+OCnbjRZSgamVceix0xmPXlvFV8J18cta6nEpTuZXr
+         ZGKg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/gtT1KlRCH0EUpMZBywEK0ZLjn6udwi6kEixOD5leq9aI0Vrz6r4Xi0jbahzJ6u7a70Luja5QbZeS@vger.kernel.org, AJvYcCWj60MCGX9eg47wpoo1Jwj4yvnSNpw9hHhWeJn+DvWU1UAbeossIe7E6q51U+LXzQAdtBuXasEh2/qt@vger.kernel.org, AJvYcCX6KPgbx/Enra6QpUaqi4310fzRTdRg/NQ7YIwrKaRiIJZP93P27Bh4ddmQ8GBF+eGjCNrzeWI1DJndJZEx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3Bj1WChsWUI2dteF1vwV1qqI3iUEPuHp0SsmTv/fsKH64adMN
+	tG7l4wzMhla/W9vWhHnVZEmc08WLZ1oyhGAvHPjpjEIUhc12LGkeyyP2
+X-Gm-Gg: ASbGncsAw+1JMobhbchHWUXwBBrkVxYwXA86fwf4FL73A7Wic4KmjX1hxJc2oliigly
+	pY+gu3nCT4vOUROqxz66kXm3UHVeSnw7yFsD/g/sBXoyG320LZqVhMcjY3ky921JdqbNBegJhQg
+	Xi9SrN7zxxgYo0AI0qfDQHY1sPepFdIh5IUagFHekdkNk9PPLQF9fUSmodpDyxbuMAApAQmhMLt
+	0Ss2Wzi2j0/cZLyOqzy9jOAqT8OZo6FY2Miz4hWzRWxHj5MAXnGhZMsPGdLWy4HACeSLEUiOas/
+	jxBwx5J8T8IleKd+6APutmOnOsf/KOMc0F9k3zN8rvX8xDYN5uCgR/tMpw0YbhWt0zbjVqQG0wP
+	mxG0bMG0d8kLLhBuSiSGUev9ZNRBRnmoLbhikrfyqEz8lcm0=
+X-Google-Smtp-Source: AGHT+IGKAGY0PBPZKHCkHC28OiWYdaexqUW3c63hGO/z977zliS7OCS8eRNBxqJSK768+D+wCJy0DQ==
+X-Received: by 2002:a05:6a00:194e:b0:76b:ffd1:7737 with SMTP id d2e1a72fcca58-76e8ddd18c2mr905568b3a.22.1755641986361;
+        Tue, 19 Aug 2025 15:19:46 -0700 (PDT)
+Received: from [127.0.0.1] (aulavirtual.utp.edu.pe. [190.12.77.24])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e7d4f76b5sm3431545b3a.59.2025.08.19.15.19.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 15:11:49 -0700 (PDT)
-From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-To: linus.walleij@linaro.org,
-	brgl@bgdev.pl,
-	aaro.koskinen@iki.fi,
-	andreas@kemnade.info,
-	khilman@baylibre.com,
-	rogerq@kernel.org,
-	tony@atomide.com
-Cc: krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	peter.ujfalusi@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	shuah@kernel.org,
-	jihed.chaibi.dev@gmail.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4] dt-bindings: gpio: ti,twl4030: Correct the schema $id path
-Date: Wed, 20 Aug 2025 00:11:26 +0200
-Message-Id: <20250819221126.144968-1-jihed.chaibi.dev@gmail.com>
-X-Mailer: git-send-email 2.39.5
+        Tue, 19 Aug 2025 15:19:46 -0700 (PDT)
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
+Subject: [PATCH 0/3] clk: samsung: exynos990: CMU_TOP fixes (mux regs,
+ widths, factors)
+Date: Tue, 19 Aug 2025 17:19:35 -0500
+Message-Id: <20250819-2-v1-0-e84b47b859ce@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHj4pGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDC0NLXSPdxCSzZIuklDQD8xRzJaC6gqLUtMwKsBnRsbW1AGSoGL5TAAA
+ A
+X-Change-ID: 20250819-2-ab6c8bdf07d7
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Denzeel Oliva <wachiturroxd150@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755641982; l=1033;
+ i=wachiturroxd150@gmail.com; s=20250819; h=from:subject:message-id;
+ bh=9xnTT004xILa2UhRGzJrZPOdnh0XmNdq4Be712m2VvE=;
+ b=8MVLXZojb3zm1GhzaT8ctC5m5NWK4ZNxXo7JbD3tlEiHyK6JCcNfUZfaBEO7MR8Yg+qe0XTNt
+ m/0J203ote8DAIN8TGNjqFQrn8eYRIuCCsT6AqtRQsY+3ZKyZVLGCl+
+X-Developer-Key: i=wachiturroxd150@gmail.com; a=ed25519;
+ pk=qNvcL0Ehm3chrW9jFA2JaPVgubN5mHH//uriMxR/DlI=
 
-The $id for a binding should match its file path. The ti,twl4030-gpio
-binding is located in the gpio/ subdirectory but was missing this from
-its $id.
+Hi,
 
-Correct the path to follow the standard convention.
+Two small fixes for Exynos990 CMU_TOP:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Correct PLL mux register selection (use PLL_CON0), add DPU_BUS and
+CMUREF mux/div, and update clock IDs.
+Fix mux/div bit widths and replace a few bogus divs with fixed-factor
+clocks (HSI1/2 PCIe, USBDP debug); also fix OTP rate.
 
+Please review.
+
+Denzeel Oliva
+
+Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
 ---
- Changes in v4:
- - No changes.
- - This patch is split from larger series per maintainer feedback.
- - v3 link:
-    https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
+Denzeel Oliva (3):
+      clk: samsung: exynos990: Fix CMU TOP mux/div widths and add fixed-factors
+      dt-bindings: clock: exynos990: Reorder IDs clocks and extend
+      clk: samsung: exynos990: Fix PLL mux regs, add DPU/CMUREF
 
- Changes in v3:
- - This patch was added to the patch series in v3.
+ drivers/clk/samsung/clk-exynos990.c           | 154 +++++++++++++++----------
+ include/dt-bindings/clock/samsung,exynos990.h | 402 ++++++++++++++++++++++++++++++++--------------------------------
+ 2 files changed, 297 insertions(+), 259 deletions(-)
 ---
- Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+base-commit: 886e5e7b0432360842303d587bb4a65d10741ae8
+change-id: 20250819-2-ab6c8bdf07d7
 
-diff --git a/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml b/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
-index 5e3e199fd..96d50d14c 100644
---- a/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/ti,twl4030-gpio.yaml#
-+$id: http://devicetree.org/schemas/gpio/ti,twl4030-gpio.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: TI TWL4030 GPIO controller
+Best regards,
 -- 
-2.39.5
+Denzeel Oliva <wachiturroxd150@gmail.com>
 
 
