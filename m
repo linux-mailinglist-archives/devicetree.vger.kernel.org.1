@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-206234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F10D5B2BC98
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:09:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B77DB2BCB8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:14:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D4641884F32
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:09:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DBD7189B8CA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:11:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8671E31814C;
-	Tue, 19 Aug 2025 09:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6EAD31B11D;
+	Tue, 19 Aug 2025 09:10:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jYSK7RBl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dpWA2o8o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566D631770E;
-	Tue, 19 Aug 2025 09:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA45B31197F;
+	Tue, 19 Aug 2025 09:10:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755594540; cv=none; b=X31EWVfIREzNYfsv3xwtqMn7YCrXxOxqj1/qpmC1kIOpdPqvEAB7v0PfJJhub8TA5HJr64eV0erEAN2b330dkzr0sSCUWhlqjBnbWKKI3hMVFufodVGSCXWIqKHmQ1kmKzvvY7HwxaoXaeOMmButsgFHuBkp1bH9ZwWD3I8Sdfc=
+	t=1755594633; cv=none; b=rlGaZF4LUyzqhZaXvgPENTKj2MMbnIqV7kya9PdRtvgDjb0gWJfQlwH+dr6DZd30qi2deiVxCYi1hI0hmm4BMeK70ee47w7gGSX2IGj+uwajDM9/n3MUJmLVPcBbKj4XCN/BgEHsR9UfpPvBnT7V1SBsTmXN9bEiE7AB2EK8Afk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755594540; c=relaxed/simple;
-	bh=EMY00AKeSG4lPzs2Dv2TDnAL5HAJ7xT1yiGOfTbdrN4=;
+	s=arc-20240116; t=1755594633; c=relaxed/simple;
+	bh=1SSq/D6eu62T9bEwfEUnKWuT8GJ3sZYRtk3+0ypHiO8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U94Qd/MSvGitlA+7Nd12lvJXmra6tIMgp90D3LgmK4j+f1sFP+LKiJAqfwMQNa+4Ma5WjFoD5N206AShDftrHiYBsLoIitXC3eJFx0cMJC65VwcqCgRL6mgRYY7oKu3e2JT+3JqHSQjJXDOmz2+OQIGXp9TrUUQd0p6umB3ijRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jYSK7RBl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B16AC4CEF1;
-	Tue, 19 Aug 2025 09:08:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tP0WAF4dqIQk0D/Fp1aGGhBmDqc3TLN9CdwE9K9VkXi14YX7vvSSeFJ+jTDvRb/523HVlbZC044ZrPAApVfEZNyR/7GK+niZ3ysAU7j0ludWg0aJIIxo5Z5YdnAmpK9ZP7dLQpVMUNPJhq3Hhczqs2SOhOF2wJRgYEBtvltnI3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dpWA2o8o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1689C113D0;
+	Tue, 19 Aug 2025 09:10:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755594539;
-	bh=EMY00AKeSG4lPzs2Dv2TDnAL5HAJ7xT1yiGOfTbdrN4=;
+	s=k20201202; t=1755594633;
+	bh=1SSq/D6eu62T9bEwfEUnKWuT8GJ3sZYRtk3+0ypHiO8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jYSK7RBlGBX1xUYwptrM+9AOwN3G7zz4NrtuaGbrc5oGCVGc94qDFPVsjr9Z82OsD
-	 u7ysRBCaXab42nc8wU8xhKrd8/T97/Pmcts694PJw/vIIBQxsbu4Socu8A9GJ2iYCS
-	 UwbzsNU1BUzfGpq14Fru6LI3KDffxrbrsFZNCwUF/YxXmim6vfI/KeMFGwUQMAwwwu
-	 FWGZFmaltS2wYJeFcw38Cz1Sbd748gBkq99I4attnrz/9/v7mJsR6MMZ1Cjxwtyqv/
-	 wBkLtLHi7wAz6zhiE56JHrqcOARmsWOaPlv2hSITKVLe8xV+Wby9LnCcYNIiHJY4Va
-	 fjpqbzdc/zH7Q==
-Message-ID: <7c072b63-f4ff-4d7f-b71e-01f239f6b465@kernel.org>
-Date: Tue, 19 Aug 2025 11:08:52 +0200
+	b=dpWA2o8o62EMJn53RjU4ScLXk7JM7wTmqEeQjhWKianQBl/rqaFNZD3r0S3Xma184
+	 v6FVm34S8QvvQ7VhIIrYqjfS63GLvHOco/6UC1x/jDA+dG4yoYf0KOLzuqXrKKDDd6
+	 kVQbb24xFIRfoGcFU/ru9mVz54XGIQGfnf1V416goKXbz8+wnVOhWGLpSMYPMDD/sj
+	 CHFqdjiQMNuBbIOn+KSIMSenwomibyee/XqNcriqihBdnbUYC5JubKajKbMD8UrDdq
+	 i1aOios9lF94JuyheDaP5yrqSE66p34pLD75/MoDjCjCtn3DPCSgRI6s4byMfWo+Zt
+	 S3kHFp4yRA+aA==
+Message-ID: <bfa23779-9861-4ae4-9ced-9f347394f033@kernel.org>
+Date: Tue, 19 Aug 2025 11:10:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/6] arm64: dts: qcom: qcs615: add ethernet node
-To: Yijie Yang <yijie.yang@oss.qualcomm.com>, Vinod Koul <vkoul@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>
-Cc: netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, stable+noautosel@kernel.org,
- Yijie Yang <quic_yijiyang@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250819-qcs615_eth-v4-0-5050ed3402cb@oss.qualcomm.com>
- <20250819-qcs615_eth-v4-3-5050ed3402cb@oss.qualcomm.com>
- <c4cbd50e-82e3-410b-bec6-72b9db1bafca@kernel.org>
- <157c048d-0efd-458c-8a3f-dfc30d07edf8@oss.qualcomm.com>
- <0b53dc0b-a96f-49e1-a81e-3748fa908144@kernel.org>
- <1394aa43-3edc-4ed5-9662-43d98bf8d85f@oss.qualcomm.com>
+Subject: Re: [PATCH v4 3/3] riscv: dts: eswin: Add clock driver support
+To: =?UTF-8?B?6JGj57uq5rSL?= <dongxuyang@eswincomputing.com>,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, linux-riscv@lists.infradead.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+References: <20250815093539.975-1-dongxuyang@eswincomputing.com>
+ <20250815093754.1143-1-dongxuyang@eswincomputing.com>
+ <0ef61f03-0346-491d-ad2a-293e24cbc4a8@kernel.org>
+ <3fa3950e.371.198c1770125.Coremail.dongxuyang@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,57 +108,64 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <1394aa43-3edc-4ed5-9662-43d98bf8d85f@oss.qualcomm.com>
+In-Reply-To: <3fa3950e.371.198c1770125.Coremail.dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 19/08/2025 11:04, Yijie Yang wrote:
+On 19/08/2025 10:34, 董绪洋 wrote:
+> Hi Krzysztof,
 > 
+> Thank you very much for your constructive suggestions.
 > 
-> On 2025-08-19 15:15, Krzysztof Kozlowski wrote:
->> On 19/08/2025 08:51, Yijie Yang wrote:
 >>>
+>>> Add clock device tree support for eic7700 SoC.
 >>>
->>> On 2025-08-19 14:44, Krzysztof Kozlowski wrote:
->>>> On 19/08/2025 08:35, YijieYang wrote:
->>>>> From: Yijie Yang <quic_yijiyang@quicinc.com>
->>>>>
->>>>> Add an ethernet controller node for QCS615 SoC to enable ethernet
->>>>> functionality.
->>>>>
->>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>>>> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
->>>>> ---
->>>>
->>>>
->>>> Why do you mix up DTS and net-next patches? This only makes difficult to
->>>> apply it, for no benefits.
+>>> Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
+>>> Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
+>>> ---
+>>>  arch/riscv/boot/dts/eswin/eic7700-clocks.dtsi | 2283 +++++++++++++++++
+>>>  1 file changed, 2283 insertions(+)
+>>>  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-clocks.dtsi
 >>>
->>> The DTS changes and driver code modifications work together to achieve a
->>> single purpose, so I included them in one patch series. Should I
->>> consider splitting them into two separate series?
->> Of course yes. You are just making difficult to apply this. Patches are
->> completely independent and even your internal guideline asks to NOT
->> combine independent patches.
+>>> diff --git a/arch/riscv/boot/dts/eswin/eic7700-clocks.dtsi b/arch/riscv/boot/dts/eswin/eic7700-clocks.dtsi
+>>> new file mode 100644
+>>> index 000000000000..405d06f9190e
+>>> --- /dev/null
+>>> +++ b/arch/riscv/boot/dts/eswin/eic7700-clocks.dtsi
+>>> @@ -0,0 +1,2283 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>>> +/*
+>>> + * Copyright (c) 2025, Beijing ESWIN Computing Technology Co., Ltd.
+>>> + */
+>>> +
+>>> +/ {
+>>> +	clock-controller@51828000 {
+>>> +		compatible = "eswin,eic7700-clock";
+>>> +		reg = <0x000000 0x51828000 0x000000 0x80000>;
+>>> +		#clock-cells = <0>;
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <0>;
+>>> +
+>>> +		/* fixed clock */
+>>> +		fixed_rate_clk_apll_fout2: fixed-rate-apll-fout2 {
+>>
+>> Such pattern was years ago NAKed.
+>>
+>> No, don't ever bring nodes per clock.
+>>
+> We have defined a large number of clock devices. 
+> The comment of v3 is "Driver is also way too big for simple clock driver and I 
+> am surprised to see so many redundancies.". Therefore, we modified the clock 
+> driver code and moved the description of clock device from the driver to the DTS.
 > 
-> The challenge with splitting this series lies in the fact that it 
-> attempts to reverse the incorrect semantics of phy-mode in both the 
-> driver code and the device tree. Selecting only part of the series would 
-> break Ethernet functionality on both boards.
+> But, this comment is that don't ever bring nodes per clock. We’ve run into some
 
-And where did you explain that? Anyway, you did not achieve your goal,
-because you broke the boards still.
+And? What is unclear in that comment?
 
-Your patchset is not bisectable and does not follow standard submission
-guidelines. DTS is always independent, please read carefully the docs.
+> trouble and aren’t sure which approach aligns better with community guidelines. 
+> Could you share your advice or suggestions on the best way forward?
 
-> 
-> As you can see, I’ve CC’d noautosel to prevent this issue. Given the 
-> circumstances, I’m wondering if it would be acceptable to leave the 
-> series as-is?
-
-NAK. Sneaking DTS into net-next is not acceptable.
-
+Look at any other recent clock drivers.
 
 Best regards,
 Krzysztof
