@@ -1,88 +1,90 @@
-Return-Path: <devicetree+bounces-206263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 246FEB2BE1E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:54:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B06AB2BE23
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:55:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F00355A14E5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:53:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D2735A1B39
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A53331E11A;
-	Tue, 19 Aug 2025 09:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06B5132039E;
+	Tue, 19 Aug 2025 09:52:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AnVc0skG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="D3aZM1X4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D047231CA6A
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6712131E0F0
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755597168; cv=none; b=tvPEE5dITrsgjcFDdKbhdaJSu1MttfcDow4VH11i1lmgmQeR8sI7Eg4vmCD1Vd+Nj/Vht6hxihMo+2QjYWxbKMENfvxAjbdBLTZALSeqZUwn/lO8YjqWZkYbiggkiKgUwf7RYKNd2SC6e3JpK9ba2U/BTt3lfQI9Wl3S3Jct7qs=
+	t=1755597169; cv=none; b=BUWiDnH9ViOS9UJu+aDQJHV8E4d3/0C1LZ2BpEdFkbbwEJu8g9iUJLff90uS4BqcFJH2Apl89CzdZHWF8qr50yZYhPdvN0vSVrL6zF52qBQOFc1qI0qmXAyPVnA/6TBtSnFyk4c4w+SCbnrK64cbtKS1jAsAsbR0I/sRGrv/PnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755597168; c=relaxed/simple;
-	bh=38N9I0VKimRfRVnSSj6djIRevZawE7ZVJqiqrTU4J9c=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EqDPV3X3I3m9jJJTs2MgBgbjHV4nb6NcYRhGOpBp/MDj/uqIuHrKDLm9GtyMTM+xgjz/JgUdFBcsJOIN0B/sgEkCdYqzZ1rFfDN2slGnX5k6IiidDnQYSO1F+bC9sd6dXC6fgn0Xmv+7j0tSCKu6pfgbyu4KznoPijrsY7Iz9fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AnVc0skG; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1755597169; c=relaxed/simple;
+	bh=OYLGPSROlM94Y8YMfz+cAy5T78h70o72gHxUfKcZJ3k=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=WYVJGTrkRH2AH5LsZuhdHpGrHGK7FiIpJSgFs5SR4kX70ZQBLJPTUitTtKr6iP/r2UzxzR361V2jQcm/RMaqQtswTTBncnAHJHKw6qcF3/ARzW+cEeRNmhJa+1h4W98l89TX+jKQ1L0zDE8bm2b0udzX2sv2yy5O+FnPQcPEXQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=D3aZM1X4; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57J90auC030852
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:52:46 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57J90Z0M021776
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:52:47 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=yMSbPrOON3TNvIQidDDgr1
-	8fW3sn3LB1WNCcBukXkTE=; b=AnVc0skGkGbGeM6mkSFhPmkSGEuTKXM48DiEa/
-	6gsoXIzhfSHQKOoRiRWgP/l/GAqKitBBsvQKUalksHdShEZs63dYGdeKDVBDRzh8
-	AKDvMRCHYkg9MNkZWMVldaWofBvd5Bb7H4aqzctmkBkYE5+nbBvZ/q9+CmZfnd4I
-	XCWRsOiuU2MtOO9cqt5m9IjcQzcwEXSG8OB1AHQbqW24Z8ss8Ut+Q7QE/SpzlNbY
-	hpbeImAYmUzrk1mDP5mrbH1j0JLIukiXTwP+28l/0vGNVVjC+xIG03reg/TMWuO1
-	IB72dV/PKlNk/InFH7ciu46wfuiSnS2Aigu7Mzp+NLpC8ljg==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48jgxtg96t-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4HB2uUgg4ObiGLYTjYfuAXBTtDoOjkuI+b7+MZ1F1B4=; b=D3aZM1X4B+HF/L/z
+	KdsFIuNEcRM8a/tWk2IWn+TNS7sPwOBYXWwMMnIhoqF4frlheK3Vw8EFA5G3nBfP
+	/oTv+FierlwtsDUhX8inf+frGxFiVp0wscVHwuVwBCiI87YcV8mnVHw52R2erMcB
+	SgdzCOKpreAXtIDwIjm5QrUQhTYPbj+ynliQIkBOtgSxdVvXMZWAfSSqEp4b5W42
+	GBtHFkkPMN1RyHc0b3HrKRDn5cQq/tpf7lOjuTqQBpm1en3qBIDKF4mhm8WD5v05
+	6swlUG0cjB6DMOEbOmZfum8jidMEJd5T7ORy+QDDufAzito3Iz7NROtM/82EKs1C
+	c/YK4g==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48m71cjsnc-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:52:46 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-76e2eac5c63so4458884b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 02:52:45 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:52:47 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b47156acca5so4192523a12.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 02:52:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755597165; x=1756201965;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yMSbPrOON3TNvIQidDDgr18fW3sn3LB1WNCcBukXkTE=;
-        b=ILz0LsXCq3CgrNgjGLmlMylT84RuT2m3Nnp159mmjfMZA2ZhZH9/675hsNQ3gz2rZo
-         uJFXqxAkpxOFoQ74h9TwXT51lXmSvjiFezdX+AyitM9lZTCmWn/D/c3h/GcB0TxbzyMk
-         umuGsypey8cZuXPX4vmCBkdafSkSh7JU23h4B819C3x4iP3hYal+F+b3nrI9kFMmElKd
-         BZIeMU170/GiPXypT+oHebRMS3mzjvQfiaqZ84C76TKuXBIwwEWWbCqrPDssx/YmGZYI
-         lhL8mumhi0OnxDKPW+KGQyEnqZJ5ZpKZawNQbAp9uB1SPY7m7r75JY92EtjhahsAECor
-         CJEw==
-X-Forwarded-Encrypted: i=1; AJvYcCWgW8QTGAoLrIxKtY8SkeNA5EkRJCSlY4SHvJKkS41w81XFoLeZHkoWnK13jDS4j3miSkJKjBjFxZFl@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywn6Cn+1mMFqxElUYjYVAVCXPvwa5oa/M6/FpnSQVnxTsHMBPu6
-	FrwjKkIjs73dho32Yom03IkA2NmcVCGOAPpiWCR4a0mq7XKL9EOzll4lVxkwsa9kJY7IP7Izn4u
-	GoRpp6QXRPa9+x7oB+UGxt2V/Gc7uzZIR65Mx9qWdRIXKCqE1p4MNU1JHtJvu6DSM
-X-Gm-Gg: ASbGncuZtoCNF6ca1MywILXCxA9uQ33xnGdA64rWVOOUr+nODZ60QgKgbp+BYh3bxV2
-	rXQ3pByDL3NU1R3umFu63yFLtZQ6XNo7gnM4P5IodbNqav9ME/XHEah+PoHGdMZvQqTerrrOktc
-	5QahqGepNWX3o9u3U0gfAjeYrI+6OCxZ2BbnYXoNUWt8EUVX+c0ov2NM3maclHvaxbQwqJKn98i
-	NKaSgt7AsgIeMLVz/07P5WBouLreC/8rSXwb1l3m5AcYAJ/Eh5VsWPavLN3xdne6cpwVYPX7tzd
-	1cpc+qnmZeZfcXn1hrOT6+xHdANaeSosG/Zejz+OobdRrgVQ4S5Fuhpuaa/MJiHZsvaoi/VKNcZ
-	TgCzAeE5EZ4qKAak=
-X-Received: by 2002:a05:6a00:1406:b0:76b:d75c:8a76 with SMTP id d2e1a72fcca58-76e80e900f7mr2238854b3a.1.1755597165148;
-        Tue, 19 Aug 2025 02:52:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IERARc6TEVlJ3blrIMH87ei72Iq1vvtNGAWDumq2BbBlVBab5p3465uV3MClzQxCQhrzchKPA==
-X-Received: by 2002:a05:6a00:1406:b0:76b:d75c:8a76 with SMTP id d2e1a72fcca58-76e80e900f7mr2238809b3a.1.1755597164687;
-        Tue, 19 Aug 2025 02:52:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755597167; x=1756201967;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4HB2uUgg4ObiGLYTjYfuAXBTtDoOjkuI+b7+MZ1F1B4=;
+        b=hNcxVmS/Wm9Zgwu3M6OhSgssyHbVP4EgLeDgWb7eLSbmO6uJliECFy2CaD5P78PKM0
+         CrUkmYW8aEXk+T91u9PoLPXLCSue4HuByliHrQh/Cacjn/KiYGR9+owG0VIJx5I9io/y
+         mZkrS383Vfbm9WEk8rPjxf6Xm2YtBwDHmTiLHg/Rk2g46G0L7t69bXmJwk7fRXVFGKAH
+         TGkh+iMQdzFlFT1HwgGHJauI06BlDHDDuMsTDi1ECJTDgwJITcgGGxAuckXX8jfGDrQu
+         6iaIFS5PaItKFG5Q/8OFtCD59SXWxpGghEo+wPQcazrk3Gjsaz2o16lSYC7BXxwj/Ijo
+         T1qw==
+X-Forwarded-Encrypted: i=1; AJvYcCWYLMB+TfxiCx4LLfOylIMYG+34uZYSIE3lEwcGdI74wKRSLGPe2tnk2rYRtCm7cqpyyKkJXfSKWbyX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxm1qulio2fK9QrGUDDXZRd2U4E7iP2JoIg5crj0pIdmTeyjYMj
+	+qTNB859/VLVPMOoacF+uJjfSLJngUIJ7G6Pm791iHys8f5Jpxo4iLnIcDgUExg2RJDDcBgsZcB
+	Rh0VkLCkI6fwpqO3qqlv2HzxcQOnUCmegbMoXimMBC6kjwBMbGfsc4NFwfROs46Ac
+X-Gm-Gg: ASbGncuubG2N7YQ5JovEWP5icCEM0P97LJgeRE4YGZMIBUz74Z5LNKz5qd2nt8ML1U+
+	kwHejJjc7RXZ9O0NZeU4xr4ESQrPy72Z1nVpHrvEyasyS8tf5nC2J4daXhiVUOxLZvB9ZVka0d/
+	IDLb2n0T4n4XiNyLdPIve14fpt3z8oT04ZMsDN7reGTVBTFA7GllAc6uySHC3cA49sg/B0dyKGP
+	ftl4I3umGRCnqT5vt2DhdXezWnbqSZxjZEsjur+udUBqzLEZM2n5DHQzyMDa/l8BJdlo+9kKn+R
+	ASUaRbr76orxalit64Nz/AC47d6jiZ/yuLVnAayW6rUrg6mCIgL4vQP2hhUpmaNMc3qccaNHVCb
+	+Jb9MAdJZIEFSyKc=
+X-Received: by 2002:a05:6a20:9143:b0:23d:45b2:8e3c with SMTP id adf61e73a8af0-2430da566bemr2343302637.6.1755597166615;
+        Tue, 19 Aug 2025 02:52:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGK98AH04v86DoafQcwelaWJ3iL3gQkWuwwa/UBd5s9Smm42EVUfqRGbSC923jHrqHy28a7HQ==
+X-Received: by 2002:a05:6a20:9143:b0:23d:45b2:8e3c with SMTP id adf61e73a8af0-2430da566bemr2343266637.6.1755597166153;
+        Tue, 19 Aug 2025 02:52:46 -0700 (PDT)
 Received: from hu-wenbyao-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e7d4f7cf7sm1998291b3a.69.2025.08.19.02.52.43
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e7d4f7cf7sm1998291b3a.69.2025.08.19.02.52.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 02:52:44 -0700 (PDT)
+        Tue, 19 Aug 2025 02:52:45 -0700 (PDT)
 From: Wenbin Yao <wenbin.yao@oss.qualcomm.com>
-Subject: [PATCH 0/4] PCI: qcom: Add support for Glymur PCIe Gen5x4
-Date: Tue, 19 Aug 2025 02:52:04 -0700
-Message-Id: <20250819-glymur_pcie5-v1-0-2ea09f83cbb0@oss.qualcomm.com>
+Date: Tue, 19 Aug 2025 02:52:05 -0700
+Subject: [PATCH 1/4] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document
+ the Glymur QMP PCIe PHY
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,11 +93,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAERJpGgC/5WMywqDMBQFf0WybiQP46Or/keRYuKNBtTYpEpF/
- PdG6a7topsDc2BmRR6cAY/O0YoczMYbOwSgpwipthoawKYOjBhhguQ0x0239JO7jcqAwLVMQBP
- OgHGOgjI60OZ55K5l4Nb4h3XLUZ/p/v4IzRQTnBUSdMalSFVysd7H96nqlO37OMyef7vFF1dnu
- iKMUikz/a8rEg1pASAZkZ9uuW3bC53ppuknAQAA
-X-Change-ID: 20250818-glymur_pcie5-db4ef032e233
+Message-Id: <20250819-glymur_pcie5-v1-1-2ea09f83cbb0@oss.qualcomm.com>
+References: <20250819-glymur_pcie5-v1-0-2ea09f83cbb0@oss.qualcomm.com>
+In-Reply-To: <20250819-glymur_pcie5-v1-0-2ea09f83cbb0@oss.qualcomm.com>
 To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -111,66 +111,77 @@ Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         konrad.dybcio@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
         Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755597163; l=1518;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755597163; l=1596;
  i=wenbin.yao@oss.qualcomm.com; s=20250806; h=from:subject:message-id;
- bh=38N9I0VKimRfRVnSSj6djIRevZawE7ZVJqiqrTU4J9c=;
- b=02RxM9rKPE1R1Nls2PZIH1ASO0SdWMzgA94+HFc7dUqJpc1XOl66Objos0mlbgQbHDrb9KAmJ
- 6FRtmuG8KDeB9tPlMz02LBa2wEqxsntUipQ+k5undh32so5apmj6XXd
+ bh=5L5bgft0hY3UL+GD99tTktGev1AZdAzNOUPNY/hYCs0=;
+ b=iSxkRvwPR0upKVd4VfCSpydV5AIWuhTgF5bNTgzrmAQMKSGHkafm6fwJOSYukO+Z8sRfTNEnN
+ zVYCLHdo1m5CkxFG3qY7uMnOpRWEnekdHJPHAK5A2R3t7B4Hbw1jPjd
 X-Developer-Key: i=wenbin.yao@oss.qualcomm.com; a=ed25519;
  pk=nBPq+51QejLSupTaJoOMvgFbXSyRVCJexMZ+bUTG5KU=
-X-Proofpoint-ORIG-GUID: 5JjB17x5AsDr4ZjzKSLdiqf41pVWvHLB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE2MDAyMCBTYWx0ZWRfX9ea+kAuq7Xe4
- VgdcnuC5Bs0QkyxJ+d+7COzB/NV6IjHGhevgKbLh/NaceukMi+To85bmuEnabsBlnIcPgbpYr2Z
- E93gUQxipqdK+5SmDO1z/YS2gO1JQrhzUrzT1Uy4YFhtv2+gIiGiir7EPk55YUTQDG0m4avdosp
- rTGkx74tyvWIT0QydMyT1UV+SmUwbX6l+l/hfOrA5rrDk55Qm/D/aeZ7cuNVRfCIjNoqT31IcYh
- zBab8g8LepSC0rGUQI4xYRbXrlnQpDaP3BkSjMYUGtIzeIhV3bzJ8Ykdrv947YuWnj7z9qbfEhG
- zsigFsTNaW7FY0KLN2GPwqavJ6IsYKtS5UHCamR24AZ1l7gkX+eh3yVdyzD+eZiqgk4FP0M5WS+
- bHy0JdLG
-X-Proofpoint-GUID: 5JjB17x5AsDr4ZjzKSLdiqf41pVWvHLB
-X-Authority-Analysis: v=2.4 cv=V7B90fni c=1 sm=1 tr=0 ts=68a4496e cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=450xJL59MvcON_dSg4wA:9
- a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-ORIG-GUID: ZhnK-J33IXSR5glLd-wTTixS2zUmUwES
+X-Proofpoint-GUID: ZhnK-J33IXSR5glLd-wTTixS2zUmUwES
+X-Authority-Analysis: v=2.4 cv=IvQecK/g c=1 sm=1 tr=0 ts=68a4496f cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=prgL3jgsdPShhDvlN2UA:9 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE4MDE0NyBTYWx0ZWRfX6Trx2yrqXkmI
+ DjoHUlBPyAOi56IOUow91LW8e6X+P2Bt15mP91VYNLAwdL5l3bCTvrg4kSrpMeGgxVcjFYKpQLG
+ tRr6v3ggXHxaLFeS7aX/41fNgEVefNg/dCmrXGHtH18FI7CZTZEEx7YYgA45BpxftFD1YbPg2C7
+ cwqmjlk6JLCt+G33WahSQSdMqxkc89FcfNjVEfHe20mdq/1wXOuC8qTUbDoQGM9DitbtDbumGI1
+ vMu55zvNy0p+0ttejGvV0FSg5tc/6xUVXkAnf8qzXuG9R8AijkoxgFcuvp668+T2MIpw8/1Pycv
+ XTf5Rff/aadpsRc66pEMAkxNOL2TFUgGadzyLje6Ms0QX9q+3+rVHloKxnHi6Wgcigo6aux4YSr
+ RSvW3plV
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-19_01,2025-08-14_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 malwarescore=0 adultscore=0 clxscore=1011
- suspectscore=0 impostorscore=0 bulkscore=0 spamscore=0 classifier=typeunknown
+ impostorscore=0 adultscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
+ phishscore=0 bulkscore=0 spamscore=0 suspectscore=0 classifier=typeunknown
  authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508160020
+ engine=8.19.0-2507300000 definitions=main-2508180147
 
-Glymur is the next generation compute SoC of Qualcomm. This patch series
-aims to add support for the fifth PCIe instance on it. The fifth PCIe
-instance on Glymur has a Gen5 4-lane PHY. Patch [1/4] documents PHY as a
-separate compatible and Patch [2/4] documents controller as a separate
-compatible. Patch [3/4] describles the new PCS offsets in a dedicated
-header file. Patch [4/4] adds configuration and compatible for PHY.
+From: Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
 
-The device tree changes and whatever driver patches that are not part of
-this patch series will be posted separately after official announcement of
-the SOC.
+The fifth PCIe instance on Glymur has a Gen5 4-lane PHY. Document it as a
+separate compatible.
 
+Signed-off-by: Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
 Signed-off-by: Wenbin Yao <wenbin.yao@oss.qualcomm.com>
 ---
-Prudhvi Yarlagadda (4):
-      dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the Glymur QMP PCIe PHY
-      dt-bindings: PCI: qcom: Document the Glymur PCIe Controller
-      phy: qcom-qmp: pcs: Add v8.50 register offsets
-      phy: qcom: qmp-pcie: Add support for Glymur PCIe Gen5x4 PHY
+ Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
- .../bindings/pci/qcom,pcie-x1e80100.yaml           |  7 +++++-
- .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml   |  3 +++
- drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 29 ++++++++++++++++++++++
- drivers/phy/qualcomm/phy-qcom-qmp-pcs-v8_50.h      | 13 ++++++++++
- drivers/phy/qualcomm/phy-qcom-qmp.h                |  2 ++
- 5 files changed, 53 insertions(+), 1 deletion(-)
----
-base-commit: 886e5e7b0432360842303d587bb4a65d10741ae8
-change-id: 20250818-glymur_pcie5-db4ef032e233
+diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+index b6f140bf5b3b2f79b5c96e591ec0edb76cd45fa5..61e0e2f7ec7f9cb08447e4cd9503698c0a2d383a 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+@@ -16,6 +16,7 @@ description:
+ properties:
+   compatible:
+     enum:
++      - qcom,glymur-qmp-gen5x4-pcie-phy
+       - qcom,qcs615-qmp-gen3x1-pcie-phy
+       - qcom,qcs8300-qmp-gen4x2-pcie-phy
+       - qcom,sa8775p-qmp-gen4x2-pcie-phy
+@@ -176,6 +177,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - qcom,glymur-qmp-gen5x4-pcie-phy
+               - qcom,sa8775p-qmp-gen4x2-pcie-phy
+               - qcom,sa8775p-qmp-gen4x4-pcie-phy
+               - qcom,sc8280xp-qmp-gen3x1-pcie-phy
+@@ -211,6 +213,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - qcom,glymur-qmp-gen5x4-pcie-phy
+               - qcom,sm8550-qmp-gen4x2-pcie-phy
+               - qcom,sm8650-qmp-gen4x2-pcie-phy
+               - qcom,x1e80100-qmp-gen4x2-pcie-phy
 
-Best regards,
 -- 
-Wenbin Yao <wenbin.yao@oss.qualcomm.com>
+2.34.1
 
 
