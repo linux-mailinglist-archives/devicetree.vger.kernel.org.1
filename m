@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-206142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C57D3B2B9C1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:44:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05D39B2B9C8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EC9D189288B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:43:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 458241883E01
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:44:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4DE26AA88;
-	Tue, 19 Aug 2025 06:43:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C3326C398;
+	Tue, 19 Aug 2025 06:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GtKk9iCO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YRlLEoT3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F9F220F2A
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:42:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E1626B764;
+	Tue, 19 Aug 2025 06:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755585781; cv=none; b=inPfVJFWBCVIdS7qqirkndr3KZkcSurx0FmaMNYMp7PpRR1Xvg6Zuwlb1OwXN7qazgDRG1mYctd4PqVvwI6sm4i0J6FiP8Bie2Ugwu3d5i4Xhr16OVvLGCx5edADc7N6+phWcrqjLBSktRrZaI7EDoAWipdyUOMSc5KE0Op4h8g=
+	t=1755585860; cv=none; b=NmMogy3lScQPYiRUYicj1aywLztFM3wXDuK37A8LsacSpNOkkaE2hLf2V143zIZfNu9Km/GGAPTrIvogw8oZcNOIbxDjkP/pf2efYcg38ZCyKVwO+ZsfKoq9IZvM40DUX5nP2gFJKWihdNbGHDo9XKuAcuidb45cr7tvOL2SazU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755585781; c=relaxed/simple;
-	bh=8w9gGZQ0O7gYriJEHgqdD87y6ep2mTrcyZvC1cwp1n8=;
+	s=arc-20240116; t=1755585860; c=relaxed/simple;
+	bh=A13ju+SQPSKzvs65vieUN2MHL6rBeN0oSeyPsi52s28=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L78R70lJIAwdKvqpT2LHmWLWCX/4aSKZp+T2syC0Pgg5mdmRdlCp0tv5lkcVAISlSy1oQlStAArLyuNNm0EoxpQRJfTvoUt/gHhYngI/C7M6ry+4XruaVR7yUXf2VmB/EBJgRFeI3PqXU1LN45noir1CqNvWLm2oupUNPYAMlZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GtKk9iCO; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-6188b6f5f9aso784794a12.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 23:42:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755585778; x=1756190578; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=5NZfKG3udWMgsrYuCbWQzkndmXN80FmmveksBAwZ7vU=;
-        b=GtKk9iCOVgCsCUjq4sgNArTzy+A/p6MEcGFBKsAuUI8blAnlAJS5QyLdELGTewsZGc
-         LCNMWazpm49jIMc7zQGngE22sjeI0xcadxq/Q11MxPjQbyzx3vdnAA2wi/t6wbWznCu3
-         kuNgevgzBpUK7D7+LY00YzpV74ovkiNeET+GbW83wc21MT/MDbLLIpgezQibBsLrGOHI
-         MMHVuqk0XciHZ0emPLqH7Br13b66lEJoanCpFZ7km3YMJeNYz89b3fjFqVua4p8hywow
-         kEx0LOAXDXFvAKZumQrJynxlhXsbMWHAGcQIC7E48tPI/xZHAeMfYMcs7wevJiWJX/93
-         g5Ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755585778; x=1756190578;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5NZfKG3udWMgsrYuCbWQzkndmXN80FmmveksBAwZ7vU=;
-        b=Dx3DPqZNMUzjLU4djbhYjF6F0ZJDem+ju9MrmnPehceueum9hgDF625Dj6notndKXd
-         tbyZfYDgbaXa306hmU83sE5cjq7Q3Mwp39Xe3U27w4M06m9oaex5+HGN3Us6FBcSRqpP
-         y/+/1asYgKW1igBBA3O4D4eMTAEPytf4tEDPqzM6rjh4xDJNU8Nv2bQnP+nKhyA3ivyF
-         o/F1o4jD3k0I94nyHbBP4mt3MVQZg6T3RmGCdEUU73CFx/q6g7VCOnLoM4jm91ty/52K
-         zjzFUS0UixooJnV9rD0HwqDLcp0IQovXYaneeWWFBegRwKkIWjyXrK66wNjVlVzFSffp
-         CtFg==
-X-Gm-Message-State: AOJu0YysejruAqfGj5i9GB5LI4rV3DkiiZxojqlv9sdxW/JvDeFO6eVR
-	NvpK41UEDwddnCYISgO5H1zyAUdUc8git9nX9Fgb35N/N85zZ8fbs5UdBgEzuap2c64=
-X-Gm-Gg: ASbGncuCIKZTnXaH4HeAyK1wpgdagdc7H1eqBIjhUOWV7u/5n2qyBfG1PH67PuscsNg
-	6iYQlbWtFLVrQZgR/Pa2yHaZWlFh8FlNw0BkhKX/IZQc72hs5WiaTnshTCGp7E6Xy5WMHkRFWUn
-	+muPXfxU0lirrDb9MeEWMBNDB8SEWCbKJCGuw0cTAZFnDvMR9jN2iTxpDk1gbJc9K4gMpHIBTKZ
-	cE128ew3wpgt6SaN1ZRcNy1BLuSSwQaKfyHvOzOFi5FLfKhbP1K1xlK53yLGM4u/ERSyGsU3sUO
-	ZaWJ+cd2cg82wp/QVBinndq9gb3CTulXJtsjVXIuEFjlHiQE19WZTe4o7qV1RlApymzSa7+Zzm4
-	JO53Eh7nQLV9ImUjuCEY8S57TSctDxU4MHZUMfhAi0xxUNoCszBbDjQ==
-X-Google-Smtp-Source: AGHT+IGK+U1B0BTvP4z58K3V9N0HAGdkPpmK/TpDUyvBa2blzD5rILla7oi2qSDdcRptU4XVkMKZdQ==
-X-Received: by 2002:a05:6402:3482:b0:612:e262:929c with SMTP id 4fb4d7f45d1cf-61a7e485594mr585881a12.0.1755585777611;
-        Mon, 18 Aug 2025 23:42:57 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61a75778c5dsm1161708a12.31.2025.08.18.23.42.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 23:42:57 -0700 (PDT)
-Message-ID: <380246b7-7e7a-4843-b82b-2e8d74e01ad5@linaro.org>
-Date: Tue, 19 Aug 2025 08:42:55 +0200
+	 In-Reply-To:Content-Type; b=nEmsYyIkeanvHqV5Ilw3AzOJK4o8LseBjXlAcjOAdhVPcIkBvHc5ZCF5sIp9F5pFusZRvEi3y+ORanaq0+vRv1xgBPJCgYJ5bMgkmTUvLOUBI1yYT0Zlr7etPqqy7DVt6sW2sgz1sKqf6aBLNTRgh8mB7rhEE95EitJkCwsWefs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YRlLEoT3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37F12C4CEF4;
+	Tue, 19 Aug 2025 06:44:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755585859;
+	bh=A13ju+SQPSKzvs65vieUN2MHL6rBeN0oSeyPsi52s28=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YRlLEoT3Dx7O768aBcKUkf6iLGreBAG9DwtdZMWPmZtPERjRIWzvqkUOrWj9PKr7/
+	 6gU3z8NyG+CqJdZWF4d2FlUkYbAVFL200aXfW2jofSZyvrlNEW1kfxgwOklaLOsGEX
+	 Ba6rjF6mNw2EARCWJiyjdDaP9rhqvTiiZJ0zTGl5bST3X7SVCPb479AClyKUvI5bhR
+	 Db0tKmEftlyfw3iGAmcHq0ANSDFcFjKFnmqaa1XZNXf3QJVAjuB8y8LSq89loXOMHk
+	 f8pCIaoUIKSEk4ji6HfDHPolb5ym8IM50abSd2UR9dbHUmcFnSNtFJ70rOuMYe8Xy9
+	 ZWVpxciOCNBPg==
+Message-ID: <c4cbd50e-82e3-410b-bec6-72b9db1bafca@kernel.org>
+Date: Tue, 19 Aug 2025 08:44:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,17 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Change ethernet TXD timing delay
- value
-To: Dongjin Kim <tobetter@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250819045018.2094282-1-tobetter@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 3/6] arm64: dts: qcom: qcs615: add ethernet node
+To: YijieYang <yijie.yang@oss.qualcomm.com>, Vinod Koul <vkoul@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>
+Cc: netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, stable+noautosel@kernel.org,
+ Yijie Yang <quic_yijiyang@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250819-qcs615_eth-v4-0-5050ed3402cb@oss.qualcomm.com>
+ <20250819-qcs615_eth-v4-3-5050ed3402cb@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -102,64 +81,56 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  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
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20250819045018.2094282-1-tobetter@gmail.com>
+ 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 a/A=
+In-Reply-To: <20250819-qcs615_eth-v4-3-5050ed3402cb@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/08/2025 06:50, Dongjin Kim wrote:
-> Very poor network performance is observed on the ODROID-M1 Board
-> (REV 1.0 20220613) when running iperf3 (under 200Mbits/sec), and
-> this problem can be resolved after changing the value of TXD
-> timing to 0x35 from 0x4f.
+On 19/08/2025 08:35, YijieYang wrote:
+> From: Yijie Yang <quic_yijiyang@quicinc.com>
 > 
-> Signed-off-by: Dongjin Kim <tobetter@gmail.com>
-> Change-Id: Idecd246e3fe93447b6e3e9b165d077d2050bbd75
+> Add an ethernet controller node for QCS615 SoC to enable ethernet
+> functionality.
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+> ---
 
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
-
-You CC-ed an address, which suggests you do not work on mainline kernel
-or you do not use get_maintainers.pl/b4/patman. Please rebase and always
-work on mainline or start using mentioned tools, so correct addresses
-will be used.
+Why do you mix up DTS and net-next patches? This only makes difficult to
+apply it, for no benefits.
 
 Best regards,
 Krzysztof
