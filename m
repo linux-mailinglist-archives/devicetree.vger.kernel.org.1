@@ -1,155 +1,106 @@
-Return-Path: <devicetree+bounces-206400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E47CB2C403
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:44:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61783B2C440
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:54:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84C22175EDA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:41:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D04B67231B1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:50:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4B73043D6;
-	Tue, 19 Aug 2025 12:41:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58EB533CE90;
+	Tue, 19 Aug 2025 12:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="A4VcPE+Y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WBJsEIAD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116B12C11F9;
-	Tue, 19 Aug 2025 12:41:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D14C01F8733;
+	Tue, 19 Aug 2025 12:50:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755607269; cv=none; b=WjRIiLmR9YubfsrVt2EDV0hnl9SdNdJz8PCGJ0srBy7hgmb4GOeQ23K4aFBnw7PaX7Zkdhlv92YNtj9g82vsvhwO+9Xa9IlODhAIiHqC3YxJk3/9eYGJaacL+JxqesA5X8zZOcebD4wCYJlxZivX6fEuO/ZJ8+dS+GqjWvMCq9k=
+	t=1755607803; cv=none; b=UZMhko2hkOuDNc3iVlcZNgV+EBuqZhskrRiaFhe0w10DFLiHGzIs7uaHHbAtwK3dtVI2g3UeoGVzfdkT4XZOp0HNUtbE5079l1QkvW5NnzrbmZnFUybl5rQNBdSRBwevmy4O2woD6bmbjoPzVXd81uBoolpNdhZLe2xY+gCf4WQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755607269; c=relaxed/simple;
-	bh=hh0hq8bl+6A83FbnX3IgduD0wlBkscDYAAwjB9LkfIg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=At61NfF+uY6nK3w00MRKnsRMulQTDFkZzZuQ51531TqgzLXBrPilVId1ImwhKxszAvTKEXySzVpmAEnqzru9qiJ2Sw8JzQVpUCA9nZatmnmWI/B8PUmrJlU81r4AwmZslgszy9R9ItVZYwoXrMHSiOefgWGnuNsQ5iOH00A5OYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=A4VcPE+Y; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 283F7207A3;
-	Tue, 19 Aug 2025 14:41:04 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id GITvgjRrHzIi; Tue, 19 Aug 2025 14:41:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1755607263; bh=hh0hq8bl+6A83FbnX3IgduD0wlBkscDYAAwjB9LkfIg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=A4VcPE+YbdV/CT7PaNypqPsnuGdUcCBS7wgcpvtw336QmE2Ou2imom4xRufhUC0Os
-	 WqaGobxZ+5IN2cuyhbfC5eaEr1AWTiBFeoKB4gYM4U973psh0pDp25rT7ZUdhc4JpV
-	 MJT3wMKlJh0T/jWQUuwRls5mr0n34CLwQquUd9BzMULi+pCs4BHEBsUkflITJJCpOR
-	 CyaGZRanarTubzks3SDZWBM+o89VI35LXtvtwwLZkgGwdl1lOYocJlVoL2zs9ur1Sn
-	 Yq2eVrejKEuOFtAb7BRIqeOxIVAna95GYPOVN3fK9TZVSmzXcK0LapcoQssiP2YfK7
-	 GJw2uV+uKaDoQ==
-Date: Tue, 19 Aug 2025 12:40:54 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>,
-	Kexy Biscuit <kexybiscuit@aosc.io>
-Subject: Re: [PATCH 2/3] pinctrl: ls2k0300: Support Loongson 2K0300 SoC
-Message-ID: <aKRw1pEUUwd4cQoW@pie>
-References: <20250811163749.47028-2-ziyao@disroot.org>
- <20250811163749.47028-4-ziyao@disroot.org>
- <CACRpkdZp8FLrxgkeZ=xzSPgny51iDZ3KRCrxpoSdgF8_=df=KQ@mail.gmail.com>
+	s=arc-20240116; t=1755607803; c=relaxed/simple;
+	bh=q/m1LY6xfwm2u+s4duiA5oQcykTMbM962zM/dxGBy3Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ggdRQ/V3SjHD0CDxTzzoM1aYHOv9QQwo+gVIjy/hEz68LdbsznBhFqw+biiOXcmFt+bRlP0gVEZ20Ti96XiTSyYHqOq9zgqef7jAybTGJdSBIioNnDNH+Kr3W1LEhpc3uDS6lqSBd+wSkSpR13JC40Sz1RsX6BPApQyulgh6G7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WBJsEIAD; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e94e6c6150eso620416276.3;
+        Tue, 19 Aug 2025 05:50:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755607801; x=1756212601; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=q/m1LY6xfwm2u+s4duiA5oQcykTMbM962zM/dxGBy3Y=;
+        b=WBJsEIAD9yRodDszJlcdhM/59iiyH4LzOgFnYhuWdI1o0q1HLKL6cAXe/xM0301cHM
+         8TBTnHD1U0lIkYeK/jjVhMI/hWUZuKJabcWuYoPv5taQdV400ZEEjS1DnZIxed3yoqGX
+         CP+uD2y/Q3bzX7T1jOWDI7kK3eDwvO7VJEdNLD20wCgx4zUIqVNWYjYLzPNzERAneSQd
+         uEu9Cgm5jVZ3MBF0woGIoqtynhexLd7nSQ5kJGZ6LuT1HMwt2pdU/94OfdAZJSZAsyES
+         L/HypitYgnhUPvrJYo9prxd2cbPfSzrLzXorzsbYhmDlvZGbSGLPVUvr+PSv2xQzuZD8
+         Wpxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755607801; x=1756212601;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q/m1LY6xfwm2u+s4duiA5oQcykTMbM962zM/dxGBy3Y=;
+        b=b0Akjp4qI3kNUHSQO6MCN55S+5zW035PvoNBfynI9F4bCTULvM3zd6JW3zqE84jABe
+         mD11F8qZzvuFOfWRA1UWpm5tPvi9asbkdXqGzdRLlqvQuEQwWcwzyusxQFhvMrpc+Dno
+         z7ymRZUv7SKtiPqrclXfFIASOgzqZ6Bebki7W2NXLKtrs8vPhVMC/sfHJhH5n4wCrqmY
+         iLb/Bi3kTEU+3VH6gLRaC0PGYg0IYs4suxRh88npWyztzdX3MRy88GofPcrUdEj0vDV7
+         tJmZF6H15JNWQATnyus3WEUVWPh3JZf3fV1jBrK1wMo6ekAJtxFGjaVmfEluZO0JTpDf
+         Hzig==
+X-Forwarded-Encrypted: i=1; AJvYcCVoloKl/qlzeSJ0I3PcXpSQKHKaTPeCnAyCzuno0e0VMxOsn5FgZUHHa0qRbkd9cAO8K9EM6eqeqYMxczg=@vger.kernel.org, AJvYcCVt9mLu9pjP7w8lAuFmr58I9cZT/nqqumYo4jCcgvd1zbyRI2o4cdsgin9TXkZC8fc2FZfGl7Ums/aa@vger.kernel.org, AJvYcCWQAeroAhRh0OxccUQjB6GKJjcXqxJf0qddvAnVXDPNpyWq9wWYyvXa6EO5pJF8JTcJrlp0oANP9/K+@vger.kernel.org, AJvYcCWp1dlZYbLrLPYBZhLh43dAtpjanF/qZqYA8+uB54FnU2dgFnPxIvnx+YpeuT0iY788L3tZue25azivnbA=@vger.kernel.org, AJvYcCX45fHf9PnizP4OQk2g0rLd47tW6wmEuJWrPRKwvWhgHI/AU3Q1tdwSF0p1FQKS3i541z1hScr9aRmzDEN3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyicxONKiaGuWEI3pww3bNpLRXjXaMMzB+rjcdISOv0rZQI0YSi
+	MpH7YgGPCyPjlyfyGZYqvWI6OMwbKEYVeJgz7AzDW8dbn5jmoYAkxWF5w4plGzFEMlc5by7g4DR
+	EZnuAng+CS7WXN7daOrgJ/uj97kz8YR4=
+X-Gm-Gg: ASbGncsleuBEy044MOhlXXAWEsrr5Gj1uzZqEUFcMYoIhKXjMSeieUnxgknZyD85eSY
+	tB8plZCJUyS+CK6qfFgc6qH9Frt5VFz/x9yenL8cFTPz5NBjbYY/15IHP3GEhl0qk9p6YkDdEwY
+	LOwcK2ctAcA3g3DhrDUgIKuwlrmoHsPUb9N31FVsSO5qt897Pimq6PvZf0B8Lvq93jlf0qm+DcV
+	dSi96WJRhdInBSfcV2UOs3PyxmPOg==
+X-Google-Smtp-Source: AGHT+IH1h+BxKBN05pHvmSdWJ4xJ7m/5SogwxucTQGgwiqZY0kchIq341vqJ9PFqt91EW03TMyusPsdeBGu0IIfihnA=
+X-Received: by 2002:a05:6902:330e:b0:e93:2cea:b3f6 with SMTP id
+ 3f1490d57ef6-e94e630dad3mr2829156276.43.1755607800721; Tue, 19 Aug 2025
+ 05:50:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdZp8FLrxgkeZ=xzSPgny51iDZ3KRCrxpoSdgF8_=df=KQ@mail.gmail.com>
+References: <20250819-macsmc-subdevs-v1-0-57df6c3e5f19@gmail.com>
+ <20250819-macsmc-subdevs-v1-5-57df6c3e5f19@gmail.com> <20250819123505.GC7508@google.com>
+In-Reply-To: <20250819123505.GC7508@google.com>
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date: Tue, 19 Aug 2025 14:49:49 +0200
+X-Gm-Features: Ac12FXzpOXpP5YWbSOcVjUpbhP2SuxCAjsf5aVyKzjKV0kcqir3rI2XCSKPBx60
+Message-ID: <CAMT+MTQvMnv4Zj3A8hskU1JW3zys0diKxWUzK5ScerxeSmgPjw@mail.gmail.com>
+Subject: Re: [PATCH 5/8] input: macsmc-hid: New driver to handle the Apple Mac
+ SMC buttons/lid
+To: Lee Jones <lee@kernel.org>
+Cc: James Calligeros <jcalligeros99@gmail.com>, Sven Peter <sven@kernel.org>, 
+	Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Jean Delvare <jdelvare@suse.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org, 
+	Hector Martin <marcan@marcan.st>
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Aug 19, 2025 at 12:02:23PM +0200, Linus Walleij wrote:
-> On Mon, Aug 11, 2025 at 6:39 PM Yao Zi <ziyao@disroot.org> wrote:
-> 
-> > Support pin multiplexing and drive-strength setting for Loongson 2K0300
-> > SoC. Pin multiplexing could be done separately for each pin, while
-> > drive-strength could be only configured on function basis. This differs
-> > a lot from the driver for previous generation of Loongson SoC, where
-> > pinmux setting is based on group.
-> >
-> > Pins are represented with pinmux properties in devicetrees, and we use
-> > the generic pinmux API for parsing. The common pinconf interface isn't
-> > used for drive-strength setting, since it handles pinconf settings at a
-> > unit of pin groups or smaller.
-> >
-> > Instead, the driver configures drive-strength settings just after
-> > parsing the devicetree. The devicetree's structure ensures no conflicts
-> > could happen in drive-strength settings.
-> >
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> 
-> Overall the driver looks very good, well done!
-> 
-> Look into Rob's comment on the bindings to use a single node
-> for mux and config.
+On Tue, 19 Aug 2025 at 14:39, Lee Jones <lee@kernel.org> wrote:
+> Separate patch please.
+>
 
-I've raised several questions about the binding and will change the
-binding and code according to Rob's answer.
-
-> I saw that you want to make the pin controller strict, if you also have
-> some pins with "GPIO mode" that will serve as back-end for a
-> GPIO driver (and I saw you posted a GPIO driver series as well)
-> then have a look at Bartosz recent patches to add infrastructure
-> for pinctrl to know about what a GPIO pin is:
-> https://lore.kernel.org/linux-gpio/20250815-pinctrl-gpio-pinfuncs-v5-0-955de9fd91db@linaro.org/T/
-
-Thanks for the link! Actually according to the manual, all the 106 on
-2K0300 pins could be multiplexed as GPIO. But the pinctrl cannot set up
-any pin config for pins in GPIO mode.
-
-> The current driver does not seem to know about any of these
-> pins being usable as GPIO and does not implement those:
-> 
->         int (*gpio_request_enable) (struct pinctrl_dev *pctldev,
->                                     struct pinctrl_gpio_range *range,
->                                     unsigned int offset);
->         void (*gpio_disable_free) (struct pinctrl_dev *pctldev,
->                                    struct pinctrl_gpio_range *range,
->                                    unsigned int offset);
->         int (*gpio_set_direction) (struct pinctrl_dev *pctldev,
->                                    struct pinctrl_gpio_range *range,
->                                    unsigned int offset,
->                                    bool input);
->         bool strict;
-> 
-> Which is fine if the pins actually cannot be used for GPIO, but if they
-> can, and this is just implicit for unconfigured pins ... then add
-> functions and groups for GPIO.
-
-For 2K0300, we want these pins to be able to multiplexed as GPIOs, but
-since this pinctrl driver could configure nothing for GPIO mode pins, I
-think it's enough to implement only the gpio_request_enable() callback
-and do the multiplexing work here, is this correct?
-
-I originally thought it's okay to multiplex pins as GPIO with an usual
-pinctrl configuration, and didn't realize that it causes conflicts on
-strict controllers since the pin will be claimed by both pincontroller
-and GPIO controller. Thanks for the reminder.
-
-> The other driver using pinconf_generic_parse_dt_pinmux()
-> drivers/pinctrl/meson/pinctrl-amlogic-a4.c has GPIO awareness.
-> 
-> Yours,
-> Linus Walleij
-> 
-
-Much thanks for the detailed guidance!
-
-Best regards,
-Yao Zi
+Per the discussion in the thread linked from the cover letter, the dt
+maintainers have requested the bindings for all subdevices to be added
+together. Do you want a separate series with just the dt bindings and dts
+changes and the actual drivers in separate series or how do you prefer it?
 
