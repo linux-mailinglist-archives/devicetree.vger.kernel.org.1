@@ -1,63 +1,81 @@
-Return-Path: <devicetree+bounces-206094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C39CDB2B878
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 07:02:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBDFAB2B87A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 07:07:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 726887B69C4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 05:01:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE800561F9D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 05:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051431F8722;
-	Tue, 19 Aug 2025 05:02:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2151227B334;
+	Tue, 19 Aug 2025 05:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xxNHPMLD"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="SoXSkFxL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D8061A294
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 05:02:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43359254AF5
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 05:07:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755579769; cv=none; b=CbR1tyz3bFX3s2lX0b583s8w/Sp+Vpqa0Nz1ujTcuIMC2mJz9O/OA89MU3SKUZf328PhAjEOLZN/PEmfgc4eoaYEDODMIRGsozStE0MPUpxRc65BX4TjPF0tD7CM89KKNHoCzdqX0hZDqRNJTJjrtSaIrY29fpk00EzbSJYDgGs=
+	t=1755580043; cv=none; b=m83lKHLrWbyF46xXocjnH4wR/Xbud3N8hX1mmiOHGDEG8LXI63sDkuKTDJfzYLZumqnNGRHxek1TnbSMLJ7mOp30OzszWQPBu8YwXcKm4dm1r8YOecP4RrjwDxjC7gBNX4puB3TMI1b+2Gg/EzXv1LdI06oR/pYVzha+widTAps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755579769; c=relaxed/simple;
-	bh=6oA2P9UjCDJpleCBni+1CEns5qnOpJ+IytljpKMMdWY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WXpMQvTXdxxyissKGs7bTZ6gko+j0Utnco9h3i1ElfC5ZdXJVLREo7F8/xn0Aa/eWdYuGE4SJ8D7IfXaTC8vEyoPIlXiuxUVMEwrSxAqbsSjohuP3Xt1xiPoaCRXYeFGuVyHPjB6bRYgQNfQHw34IDtCdPI04MB0Cu4D9SA8L/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xxNHPMLD; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57J52PBK3322171;
-	Tue, 19 Aug 2025 00:02:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755579745;
-	bh=4wN2pzI1ikS5r+rVDU7HKCplVqluQG6zRxAmzPk80T4=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=xxNHPMLD21aJEZMol/9Gl0h+e6ywGSD47K9wWWqWYiOg/p2NHZQI3tgr/kdDfX0fc
-	 YYcpBDTh0znMgdfVIQeGwCE8tUwgBVwqMtIYluOh7LMjp2CrIddr3ImY3NlyOi0Dz2
-	 uNVfSV2tDE3x+VmdBjbmf+gCCOUCXdPNMSTyR1AY=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57J52P1B337947
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 19 Aug 2025 00:02:25 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 19
- Aug 2025 00:02:24 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 19 Aug 2025 00:02:24 -0500
-Received: from [172.24.20.139] (lt5cd2489kgj.dhcp.ti.com [172.24.20.139])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57J52I422442985;
-	Tue, 19 Aug 2025 00:02:19 -0500
-Message-ID: <2440e1e4-e594-4037-8856-1181acb47b6e@ti.com>
-Date: Tue, 19 Aug 2025 10:32:18 +0530
+	s=arc-20240116; t=1755580043; c=relaxed/simple;
+	bh=ltXNHRhOhUUl4xR8T4+Ojndq1rFeuYUH2BMxeu0RtmM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cZaZpD4H+BptctMe0o0CgeHm1t67f2jqp3Yg6NzzGLYmKA/kETl/u0UMpG8+qihE/n4srMbkIfo3dRiXi0RtSKa760ebp019C/Wi0/gA8bVos0Ue+thwLCVkOs31hHx1b2YTJFjYJmeWqvXJZ66zaaqbi2p8eggi+qGV1iqFIe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=SoXSkFxL; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3bb30c72433so1543089f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 22:07:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1755580039; x=1756184839; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fga+lbodUmPAZazOf43yy1bTgzdU2LByeFqojuOQ83w=;
+        b=SoXSkFxLAXwWKCM+ck4BQyG3Kz10Cs5HOEmcjcltNTbDIwHOC2NcX6ZR2ICOcmUNST
+         7xGqEImExFpdAq/UFWqdegH0yflXjYvP+BgczT6shJ+am5rgG2vEtDimk9T+y46sqCWA
+         tQwnxvxw63Mz37Pi2WtjyNSLe0Glwo6y1SsQtbA7Nns9qM9RfzYEy/Ghsca28B3oeTxi
+         /CCHU6aHXS6A11DwC1s47+bAYeQKTTJ3f4tffSwJnt0ADdABgAum5xOjTSqo9pLf0G8l
+         /DfrLBj/wSiVcgHPHfX2ZVnlwGdGeOp3mHl+cT4L28njTrhX95MSNL+G6N057lcG17yT
+         MOGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755580039; x=1756184839;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fga+lbodUmPAZazOf43yy1bTgzdU2LByeFqojuOQ83w=;
+        b=VCFYLf6qkvO9QbbtoB08NnUg6RrS0cfeaJyoIXfEKfrOUGrRUrGVYlxKniVUoQ+QdZ
+         /2YodzLhgdTLu9k+HokhhxKKDK0GAhljuUl/QUIp1KIfP+bBJqyQS44g3hcdFdHea/kU
+         EoOU+Tfokx4EPtclxMfi/gsXoybSDAEPXk9u8uBHg/00g7/OdwPz5qASIHaWqZY54Hbd
+         GejfNbJejHVRf+GScjXL487NwMNkdvl/PwvedJb241qOF5sjUvvPcRDGLPs/1iIUx/BH
+         diNP76ba7Be8HeWFMnjhFmF1FiI5SHkv0UhPKdghfi7xw5t9AY1vrk7rJnddXJ+ZdAoR
+         yGdg==
+X-Forwarded-Encrypted: i=1; AJvYcCVrwSFkmtxsfiFkM6euxWPWGzCHn3m3Si6IPVbSXvUgNKPi9m82ZOUlc5kPruyK/OtBDit0+oYM7mvK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSvShX4gNR86smbvhoYwLditKk11DJEHMNAqoGOibkie/w2DY0
+	aSeMTVDa4LtVjuSkJgBhdv7nZ362n+1dJudX4jSCBkpTL6Pxl+8mDzICj70Fh1J2XbI=
+X-Gm-Gg: ASbGncsSLFM0ARQySP1eQbeegCVxmOI2t3VJeL+a9DJ71/3l+Z9S5p5wqt7VarpBbUH
+	Hdk6O47EA3Ln4IQqJtjQYLc15LcgEQw1EEt0x0wBv+MPuS9RrTiCBOT7IVQXYaz5JFp+LKnN8FR
+	vdNe/xeYjw3e7q5tlyux9+7mxOuoAR0GKwelR1BBylMvPb2Qn01PmGEh6BMBAISeUNeXgY5wStW
+	fs68W4OoU24M2Oyi2HsCJjK21ZcMp9gPZYgI7Y2RO7gv6TzfMypvbxqoLQQcA8goghM4RXEsv6W
+	QeYpSDGSpnWm6ebo5PkL/kM6HT0FIJyQbwfmfTWsdN3Tgwq7gexB3RykMJxE7LyIiTinJVZk4cq
+	Td+QJJrTsna351g15X1FyaQZVmRz/692HmR0Yeocg7pjoWPhDk1EKGH4pl51jQYFQx8XnhDPBtN
+	ig8A==
+X-Google-Smtp-Source: AGHT+IEGAIFSV01YojFxZG6ti+gZSOdnTisUwlACnGc8HPzYTSLd/Yrx6ey+bzDVw52KF6DYn9VA+A==
+X-Received: by 2002:a05:6000:2485:b0:3aa:34f4:d437 with SMTP id ffacd0b85a97d-3c0ecc31e8fmr784959f8f.37.1755580039233;
+        Mon, 18 Aug 2025 22:07:19 -0700 (PDT)
+Received: from ?IPV6:2a02:2f04:620a:8b00:4343:2ee6:dba1:7917? ([2a02:2f04:620a:8b00:4343:2ee6:dba1:7917])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c074879fe5sm2018512f8f.2.2025.08.18.22.07.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Aug 2025 22:07:18 -0700 (PDT)
+Message-ID: <d00ce701-2ddd-485e-8bfd-12cddec62fef@tuxon.dev>
+Date: Tue, 19 Aug 2025 08:07:16 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,94 +83,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/3] arm64: dts: ti: k3-j721e-main: Add DSI and
- DPHY-TX
-To: Harikrishna Shenoy <h-shenoy@ti.com>, <neil.armstrong@linaro.org>,
-        <jessica.zhang@oss.qualcomm.com>, <airlied@gmail.com>,
-        <simona@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
-        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nm@ti.com>,
-        <vigneshr@ti.com>, <kristo@kernel.org>, <thierry.reding@gmail.com>,
-        <sam@ravnborg.org>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-CC: <s-jain1@ti.com>, <devarsht@ti.com>, <u-kumar1@ti.com>
-References: <20250818154746.1373656-1-h-shenoy@ti.com>
- <20250818154746.1373656-3-h-shenoy@ti.com>
+Subject: Re: [PATCH v7 1/6] soc: renesas: rz-sysc: Add syscon/regmap support
+To: John Madieu <john.madieu.xa@bp.renesas.com>, geert+renesas@glider.be,
+ magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
+ rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
+ lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, catalin.marinas@arm.com,
+ will@kernel.org
+Cc: john.madieu@gmail.com, linux-renesas-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, biju.das.jz@bp.renesas.com,
+ linux-arm-kernel@lists.infradead.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20250818162859.9661-1-john.madieu.xa@bp.renesas.com>
+ <20250818162859.9661-2-john.madieu.xa@bp.renesas.com>
 Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20250818154746.1373656-3-h-shenoy@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20250818162859.9661-2-john.madieu.xa@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
-On 8/18/2025 9:17 PM, Harikrishna Shenoy wrote:
-> From: Rahul T R <r-ravikumar@ti.com>
->
-> TI's J721E SoC supports a DPI to DSI video signal conversion bridge on
-> it's platform bus. The IP is from Cadence, and it has a custom TI
-> wrapper around it to facilitate integration.
->
-> This IP takes the DPI video signals from DSS and alongwith the DPHY IP,
-> it transmits DSI video signals out of the SoC.
->
-> Add support for DSI bridge and the DPHY-TX.
->
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 31 +++++++++++++++++++++++
->   1 file changed, 31 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index 5bd0d36bf33e..ce34d68a70f2 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -1881,6 +1881,37 @@ port@4 {
->   		};
->   	};
->   
-> +	dphy2: phy@4480000 {
-> +		compatible = "ti,j721e-dphy";
-> +		reg = <0x0 0x04480000 0x0 0x1000>;
 
-Please check format change to <0x00 0x04480000 0x00 0x1000> >
+On 8/18/25 19:28, John Madieu wrote:
+> The RZ/G3E system controller has various registers that control or report
+> some properties specific to individual IPs. The regmap is registered as a
+> syscon device to allow these IP drivers to access the registers through the
+> regmap API.
+> 
+> As other RZ SoCs might have custom read/write callbacks or max-offsets,
+> register a custom regmap configuration.
+> 
+> Signed-off-by: John Madieu<john.madieu.xa@bp.renesas.com>
+> [claudiu.beznea:
+>   - do not check the match->data validity in rz_sysc_probe() as it is
+>     always valid
+>   - dinamically allocate regmap_cfg]
+> Signed-off-by: Claudiu Beznea<claudiu.beznea.uj@bp.renesas.com>
 
+Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Tested-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com> # on RZ/G3S
 
-> +		clocks = <&k3_clks 296 1>, <&k3_clks 296 3>;
-> +		clock-names = "psm", "pll_ref";
-> +		#phy-cells = <0>;
-> +		power-domains = <&k3_pds 296 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 296 3>;
-> +		assigned-clock-parents = <&k3_clks 296 4>;
-> +		assigned-clock-rates = <19200000>;
-> +		status = "disabled";
-> +	};
-> +
-> +	dsi0: dsi@4800000 {
-> +		compatible = "ti,j721e-dsi";
-> +		reg = <0x0 0x04800000 0x0 0x100000>, <0x0 0x04710000 0x0 0x100>;
-> +		clocks = <&k3_clks 150 1>, <&k3_clks 150 5>;
-> +		clock-names = "dsi_p_clk", "dsi_sys_clk";
-> +		power-domains = <&k3_pds 150 TI_SCI_PD_EXCLUSIVE>;
-> +		interrupt-parent = <&gic500>;
-
-I think default parent is gic, may be you can avoid above line
-
-
-> +		interrupts = <GIC_SPI 600 IRQ_TYPE_LEVEL_HIGH>;
-> +		phys = <&dphy2>;
-> +		phy-names = "dphy";
-> +		status = "disabled";
-> +
-> +		dsi0_ports: ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +	};
-> +
->   	dss: dss@4a00000 {
->   		compatible = "ti,j721e-dss";
->   		reg =
 
