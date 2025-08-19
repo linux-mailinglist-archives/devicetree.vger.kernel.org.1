@@ -1,121 +1,119 @@
-Return-Path: <devicetree+bounces-206092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06090B2B875
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:50:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2B67B2B876
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:55:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADE0A7A8F2A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 04:48:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C28E19627F2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 04:55:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9FE27B32E;
-	Tue, 19 Aug 2025 04:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEADD2BD030;
+	Tue, 19 Aug 2025 04:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OLbIZgbE"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NI3MFEjN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0021B87EB;
-	Tue, 19 Aug 2025 04:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34DF724DD1F
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 04:55:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755579025; cv=none; b=Pg4E9o4RYx5/nQq0pFLO1cxCqcLHReBl6lBvJmsetEwP+7d1foxrqvDQyl+kw0ZYATdDKrdsq1zTgEkYxLgGmgs/0Jca0YvlLGwKscl6DP5Z0YZOMTPAX/KGRXrTX0Cb0Zn+UI228zzxjIlu9KZUm6Sk46pKh3nc6Wfn+8tjPIM=
+	t=1755579327; cv=none; b=GI5j8zujdQtVJCmbyaWxxVxtkTOj03xl4gL23k4KT4d9UIdl2ZerYnhj1sBZHM20yF2TIu+yKBk40WYXA2rjAstv5NKMupq5HOAlh1PybP0SEwnhqPWPJKcWBlKQU97zv6KmjCsw+dMRrpJlNATQNOSSA81T8m/SzkmeIoF2x8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755579025; c=relaxed/simple;
-	bh=PBvPxahHFjwZRwtL+CsSTpgiL3TNLm5oDpUNDInXAPs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XEjk3826870WTcaPasWQMI1G1aisSTOydWom8tm6K2UZDcw1rIicB5ubICUOplYk0f9VjU9BUZmQjkwIFrCepMGZutzzAzx1nrkWwUTIKfEM93ya/lwXRaH9YXQucV9xyUUDOW61tarholFnPGcLjcMhm0g18MPTtOdtE62RQ7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OLbIZgbE; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-24457fe9704so36698665ad.0;
-        Mon, 18 Aug 2025 21:50:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755579024; x=1756183824; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+vJmKQWtl6J7yVeYEb7WsF4szveHuDGwgxqszhsgVgg=;
-        b=OLbIZgbEQu+N5CrTPiLkAsIHJOpT5HwF0S0QTU8TSpNgzMyS+KT2UVzxo1IeqwEZ3/
-         NDd5YWiD8WIWjXEP6FVyENzd0iX5yWhe3oo1gYa8lQyYWmnvBOz7x8y9Mr12imerOlhJ
-         PpZSejfR+Gu47tXGy8PvXPUljXIexcQcFrJLAF3Tcaky2Vf+VCqfoaa7FxLqHkXQyWsa
-         lxKT3nr3HPgRlDdavoW64CTewmK5UfyXvPWGcWgrsZg44tfoarI3ju0kfvEwqPL8Xo2E
-         2TfwhOQzLLZx+OcKr3sKPdQLVtFZCojYBSq5jERIJFmC6ulgSh3UXlvS3YsS0pMgPCqX
-         lf+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755579024; x=1756183824;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+vJmKQWtl6J7yVeYEb7WsF4szveHuDGwgxqszhsgVgg=;
-        b=d78sPTl0XCgJIj4VgYsoQMz5kGFd0x9gq4GGOoRQ0yZr3yenu7lXTdQ0YqOaQCT8JS
-         ft4qCQ2RGSR9FSgHFv+BKMhI19awC2fEduVKyNvV6H5UVYGpu49IcHDtlsXiJxioZeSa
-         BaN5w9meidJ8o4whPCmfYJbd8s4gkZQucUNwehgTwyRUfYgfsKmV8L3pDj/1ZtTSlZGe
-         elkFuebOWwuOcW83ZAGFP3rjCu+u4/KjxjZtSLvTwvj39Fj1HkveSvsXcIN7UDF/ZAPu
-         guoQTdnJTk5YE/JuRVvfpnZB9BFXz1gI31apf43E5yHtkuvweT9Jdtd3e4TK707DX7nS
-         cu4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVyy90H2e5aLlCaor7N39i7EhCtlgzupbs1rPQocazWt6uNKZ3ugHR1SJSNHqpOfP7df6Ot1/Ax9CAZsk4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXwmSrazV9HHCC0vYF7oQHsdCtbr2VNkQ4gC3+Twbsyip7FhQ8
-	NA52UjBXZ789kNfNwos9YnYjomNiyrHQhtCkyGluiYRaayCPzV/AWMD0
-X-Gm-Gg: ASbGnct1I5HqPvd3+s7AqWFtLlx5+yJfL5nvQfRPE8ZSi/bL6ZpLvCfXZKa/MphNsG9
-	LfKwfpQ2n0/CjEMSbyzibpA2w1Sq0uZ8+99tSpnmSFQZ6ZbnfwqaZLCszdrR19cnMGDgfH4Hs+L
-	B+hudO/S/LdS2sORdaW7UFX/9KnFQ7Kaq68sVHfHH7ZCK+BIXmOCfSpoJ8WcEDwIALkP1QSLwcq
-	d0ThbPseqZablKBRB2njKE1U4UJqwR24xkza2a5CxfzBwfRrexFmP2EBcX2spCuQ1fliU+cOdIl
-	cf/Cwyvd9n3KmdLe1+acVioBidIMXC76LmMajoLYKS+qTW64kM4mA79cC8AY58qWc8qjFFYDcRw
-	TbtRWiyl+8AmqgcvRsw==
-X-Google-Smtp-Source: AGHT+IE+vvFkCAMYWcasDYcaMWmjMZUKz3Kfg4C6k3T20iFxSNENGqz3MfkDySluEL6Scuwb+o/WUQ==
-X-Received: by 2002:a17:902:e94e:b0:235:e942:cb9e with SMTP id d9443c01a7336-245e043538cmr13109365ad.9.1755579023656;
-        Mon, 18 Aug 2025 21:50:23 -0700 (PDT)
-Received: from anyang.. ([106.250.177.234])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2446ca9d02csm96119415ad.7.2025.08.18.21.50.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Aug 2025 21:50:23 -0700 (PDT)
-From: Dongjin Kim <tobetter@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Change ethernet TXD timing delay value
-Date: Tue, 19 Aug 2025 13:50:17 +0900
-Message-Id: <20250819045018.2094282-1-tobetter@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1755579327; c=relaxed/simple;
+	bh=nprV8fdhjDFokZkkJBwrVNrGcVdm5eZ5FF4cyTL7DgQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UCUBLLSLWSZqLClCxFVW9uAR5Vb11AgOsDtcBRjmx/mQSG3srV0yo+xZrW/5J+sRu7tG0l3C0GXQn8bmeE/p3btGYPJkGGqs07qVkYyzCbfe9n/qagFSqXCgWPxx3wf/AcFgBp/Pru9aqOvxd0x7I+B92k/MJcQ5Ii9oOpKisJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NI3MFEjN; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57J4snJb3233182;
+	Mon, 18 Aug 2025 23:54:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755579289;
+	bh=OA7Xl2y9m1pGQhcLJLJihjo9327iQyBxjRtMkAYl/Ds=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=NI3MFEjNMvGKVWrZLebUVp6djYQaBJ15aVESCGAARYSOtT4UF9jSmHoT2EuZ2RDCm
+	 Pnm0lk2Rii7Mqt2CbfVTleHQ6uE3WV5oTaa2zUGmXoNuqPth+7mYGV/zVOjuljt3ML
+	 SWEOh0eI8+fEpfp6qZMnc0TuabubpyMEibQmcJII=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57J4smI4332746
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 18 Aug 2025 23:54:48 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 18
+ Aug 2025 23:54:48 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 18 Aug 2025 23:54:48 -0500
+Received: from [172.24.20.139] (lt5cd2489kgj.dhcp.ti.com [172.24.20.139])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57J4sfiG2430521;
+	Mon, 18 Aug 2025 23:54:42 -0500
+Message-ID: <06a9fa20-e45a-458c-971a-a6f0f1d08004@ti.com>
+Date: Tue, 19 Aug 2025 10:24:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/3] devicetree: bindings: dsiplay: panel:
+ panel-simple.yaml: Add Raspberry pi dsi panel compatible
+To: Harikrishna Shenoy <h-shenoy@ti.com>, <neil.armstrong@linaro.org>,
+        <jessica.zhang@oss.qualcomm.com>, <airlied@gmail.com>,
+        <simona@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nm@ti.com>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <thierry.reding@gmail.com>,
+        <sam@ravnborg.org>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: <s-jain1@ti.com>, <devarsht@ti.com>, <u-kumar1@ti.com>
+References: <20250818154746.1373656-1-h-shenoy@ti.com>
+ <20250818154746.1373656-2-h-shenoy@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250818154746.1373656-2-h-shenoy@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Very poor network performance is observed on the ODROID-M1 Board
-(REV 1.0 20220613) when running iperf3 (under 200Mbits/sec), and
-this problem can be resolved after changing the value of TXD
-timing to 0x35 from 0x4f.
 
-Signed-off-by: Dongjin Kim <tobetter@gmail.com>
-Change-Id: Idecd246e3fe93447b6e3e9b165d077d2050bbd75
----
- arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 8/18/2025 9:17 PM, Harikrishna Shenoy wrote:
+> Add RPi DSI panel[0] as a valid compatible for simple-panel.
+>
+> [0]: https://www.raspberrypi.com/products/raspberry-pi-touch-display/
+>
+> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+> ---
+>   .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>   1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index 1ac1f0219079..65f486f2bc9d 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -268,6 +268,8 @@ properties:
+>         - rocktech,rk070er9427
+>           # Rocktech Display Ltd. RK043FN48H 4.3" 480x272 LCD-TFT panel
+>         - rocktech,rk043fn48h
+> +        # Raspberry, 7" dsi panel
+> +      - rpi,7inch-dsi
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-index 0f844806ec542..e1a550a04498e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-@@ -210,7 +210,7 @@ &gmac0_rgmii_clk
- 		     &gmac0_rgmii_bus>;
- 	status = "okay";
- 
--	tx_delay = <0x4f>;
-+	tx_delay = <0x35>;
- 	rx_delay = <0x2d>;
- };
- 
--- 
-2.34.1
+Hello Hari,
 
+Driver changes should come first to match new compatible before device 
+tree changes.
+
+
+>           # Samsung Electronics 10.1" WXGA (1280x800) TFT LCD panel
+>         - samsung,ltl101al01
+>           # Samsung Electronics 10.1" WSVGA TFT LCD panel
 
