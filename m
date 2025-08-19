@@ -1,245 +1,157 @@
-Return-Path: <devicetree+bounces-206319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF803B2C0B0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:40:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5A6B2C0B9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:42:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82678189C654
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:38:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D74E3A2845
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:39:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B917E32BF27;
-	Tue, 19 Aug 2025 11:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B6332BF30;
+	Tue, 19 Aug 2025 11:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="kyRP/RHM"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ZVvYutnR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABA231B137;
-	Tue, 19 Aug 2025 11:37:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE5832A3F6
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 11:39:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755603468; cv=none; b=Nr9YZJAFqd1AJdCerpRBkDW8w78RSkK65S+K4UA0G2a6+7DqvxUkYn7MHZ6RNbojqcf8HeJhqcgYuIOOSt5JpQ47qwlr/B9ugsSAgJ7QS/LZQ9LpRujSq2l13+Nv4RjZ5tiG3+vcflAIK8vzcdLWNDJPNUacWEf9vOZU/IEgBxQ=
+	t=1755603585; cv=none; b=fs3V+tzZDfsF5zjtZ2ZJX9cqdOR2SfcZx+SDeJYja4CcUXawuCwOeqlNzlS8P0YemQ03zGSQRN92Kh02X86/AJiiyuwcGJSUUiX2e1WEVZcVpn520TMNxzt0fFEJhO9FzXR38Rs5AZzNEHMS8DVXsFZcoYNubkUk+DgKlO358QM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755603468; c=relaxed/simple;
-	bh=BUIQ0o7+0DXfZZvDBmTqmNPqQg3jq/hl9aI0B7gOgcE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GKD9JTNwQNpc9TK8Qa5xk3vnEGbICXGRa+ic1kWb+c8N/Wk/BZf0LqcV7dOXliOscn9fhQIm6wApYa9Tfc/iztZjo80DElsaD9d2ZjBHMIs2kzKWp2UIJsuwJW+GdmSMVNNJ/HEowjefYprlh9uKZG+n4nT3dvceT7Z8mLoNcUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=kyRP/RHM; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 9A12225E9E;
-	Tue, 19 Aug 2025 13:37:38 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id AC7mISEh3rgQ; Tue, 19 Aug 2025 13:37:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1755603457; bh=BUIQ0o7+0DXfZZvDBmTqmNPqQg3jq/hl9aI0B7gOgcE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=kyRP/RHMHJ6j4vgYAdkttv3EFVvN9bOwZTWeuNddtiduLfbQZjIST/6dvi1di3e0G
-	 v8v3Pdx3XWhMfRUa7nHgihQdgFvpdraUelhrOcBQeK/rleFuWLLzv+ffcDyvmM8NMi
-	 5Dmdqy7oPS6IxlGW69UaOlIv/F2UsGQvHVCQi0pd0P7HajTJDM49eH0F6jgMKZzKoc
-	 jftoiK79ZlFv0gwBnJAhZCYq63qFNYy9XMFjkIgQcz5B2nJ9oQjkCIibG9S8yPB8uf
-	 alNwkMUwHBwCysF3YfRbukVHHWLaKuLTxqcE6le+7tWqQznbwj9VlupBRSPi5dakw7
-	 gm4ZAxZnIb61A==
-Date: Tue, 19 Aug 2025 11:37:20 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>,
-	Kexy Biscuit <kexybiscuit@aosc.io>
-Subject: Re: [PATCH 1/3] dt-binding: pinctrl: Document Loongson 2K0300 pin
- controller
-Message-ID: <aKRh8M0szWKfpPF9@pie>
-References: <20250811163749.47028-2-ziyao@disroot.org>
- <20250811163749.47028-3-ziyao@disroot.org>
- <20250818175827.GA1507697-robh@kernel.org>
+	s=arc-20240116; t=1755603585; c=relaxed/simple;
+	bh=SBFzXTu/TE3Y27yTuml5s/ls/Z8dlIb7BbI3Fl++GYo=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=dQpcUV1SodiJPl0YX/0kFShwA09O2EZVwhvQStI15jQIP3VdghKGWc3voe0icQbngoxaxrtdJKKl6qb5f9B8PwhMS28ox5dJupgzzQ1yGWJ+OSh9jZPUt2DprquDGAeKrWKH45+o/56EvzixQJw7XMMNaQQYN5YDjzCNzK4Eif8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ZVvYutnR; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250819113941epoutp0344029b638e0f98c420b582271c3bbd7f~dKCfpSd3-3049030490epoutp03X
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 11:39:41 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250819113941epoutp0344029b638e0f98c420b582271c3bbd7f~dKCfpSd3-3049030490epoutp03X
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1755603581;
+	bh=1P2Rps+nWLL6vuu8v5AZ6QLluRY8gS5KDMDYoN14d3E=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=ZVvYutnRrj1vsaoIzlGc1d/RjPE60V5uAz1QTRDCZxI81j7cue1sfgSA7oaKZO8YW
+	 2qVnzb45IaXeEFXrgbk+ARvR9GiIrmLx90CgXtFOidCb4d1xvFEEGV8mqz30CiOzoN
+	 ZcxgykS5DuOVlEM5wzk/ytKYpW7LZdaE9Lb5rgp8=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250819113940epcas5p44becd1ec50dff43ea959114a166fe0dd~dKCeeitQH2997129971epcas5p49;
+	Tue, 19 Aug 2025 11:39:40 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.87]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4c5ngH2cfwz3hhT3; Tue, 19 Aug
+	2025 11:39:39 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250819113938epcas5p3cac2467171b234b921448bf9b537cce2~dKCdAIEYh2225622256epcas5p3a;
+	Tue, 19 Aug 2025 11:39:38 +0000 (GMT)
+Received: from FDSFTE462 (unknown [107.122.81.248]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250819113935epsmtip16d1c515c409672f87d62e0dbcafa0d4d~dKCaJwZgR0293302933epsmtip1n;
+	Tue, 19 Aug 2025 11:39:35 +0000 (GMT)
+From: "Shradha Todi" <shradha.t@samsung.com>
+To: "'Bjorn Helgaas'" <helgaas@kernel.org>, "'Krzysztof Kozlowski'"
+	<krzysztof.kozlowski@linaro.org>
+Cc: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+	<mani@kernel.org>, <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
+	<robh@kernel.org>, <bhelgaas@google.com>, <jingoohan1@gmail.com>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<vkoul@kernel.org>, <kishon@kernel.org>, <arnd@arndb.de>,
+	<m.szyprowski@samsung.com>, <jh80.chung@samsung.com>,
+	<pankaj.dubey@samsung.com>
+In-Reply-To: <20250818182544.GA534647@bhelgaas>
+Subject: RE: [PATCH v3 11/12] PCI: exynos: Add support for Tesla FSD SoC
+Date: Tue, 19 Aug 2025 17:09:34 +0530
+Message-ID: <00b501dc10fd$f1fecc10$d5fc6430$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250818175827.GA1507697-robh@kernel.org>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFRpmM4OvQHoLmp1/7yOMMM/WjwMQMTDUGCtWYRPHA=
+Content-Language: en-in
+X-CMS-MailID: 20250819113938epcas5p3cac2467171b234b921448bf9b537cce2
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250818182551epcas5p33fbe099df79778031b489f0902cceed3
+References: <CGME20250818182551epcas5p33fbe099df79778031b489f0902cceed3@epcas5p3.samsung.com>
+	<20250818182544.GA534647@bhelgaas>
 
-On Mon, Aug 18, 2025 at 12:58:27PM -0500, Rob Herring wrote:
-> On Mon, Aug 11, 2025 at 04:37:48PM +0000, Yao Zi wrote:
-> > The pincontroller integarted in Loongson 2K0300 is able to configure
-> > function multiplexing for all the pins. It could also configure drive
-> > strength on basis of functions, which means all pins set to the same
-> > function share drive-strength setting. Drive-strength configuration
-> > isn't available for all functions, either.
-> > 
-> > This binding utilizes two levels of subnodes, where the outer represents
-> > function and the inner represents groups. Drive-strength is allowed in
-> > the outer since it's shared among all groups configured to the function.
-> > 
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > ---
-> >  .../pinctrl/loongson,ls2k0300-pinctrl.yaml    | 92 +++++++++++++++++++
-> >  MAINTAINERS                                   |  6 ++
-> >  2 files changed, 98 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/loongson,ls2k0300-pinctrl.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/loongson,ls2k0300-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k0300-pinctrl.yaml
-> > new file mode 100644
-> > index 000000000000..cbd74cb45342
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k0300-pinctrl.yaml
-> > @@ -0,0 +1,92 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pinctrl/loongson,ls2k0300-pinctrl.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Loongson-2K0300 SoC Pinctrl Controller
-> > +
-> > +maintainers:
-> > +  - Yao Zi <ziyao@disroot.org>
-> > +
-> > +allOf:
-> > +  - $ref: pinctrl.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: loongson,ls2k0300-pinctrl
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: Pin function-multiplexing configuration registers
-> > +      - description: Pin drive-strength configuration registers
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: mux
-> > +      - const: drive
-> > +
-> > +patternProperties:
-> > +  '^func-':
-> > +    type: object
-> > +
-> > +    $ref: pincfg-node.yaml#
-> > +
-> > +    properties:
-> > +      drive-strength:
-> > +        description:
-> > +          Maximum sink or source current as defined in pincfg-node.yaml. Note
-> > +          that drive strength could only be configured on function basis, i.e.,
-> > +          all pins multiplexed to the same function share the same
-> > +          configuration.
-> > +
-> > +          This could only be configured for several functions, including jtag,
-> > +          dvo, uart, gmac, sdio, spi, i2s, timer, usb and emmc.
-> > +        enum: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+> > > > +static irqreturn_t fsd_pcie_irq_handler(int irq, void *arg)
+> > > > +{
+> > > > +	u32 val;
+> > > > +	struct exynos_pcie *ep = arg;
+> > > > +	struct dw_pcie *pci = &ep->pci;
+> > > > +	struct dw_pcie_rp *pp = &pci->pp;
+> > > > +
+> > > > +	val = readl(ep->elbi_base + FSD_IRQ2_STS);
+> > > > +	if ((val & FSD_IRQ_MSI_ENABLE) == FSD_IRQ_MSI_ENABLE) {
+> > > > +		val &= FSD_IRQ_MSI_ENABLE;
+> > > > +		writel(val, ep->elbi_base + FSD_IRQ2_STS);
+> > >
+> > > This looks weird because FSD_IRQ_MSI_ENABLE sounds like an *enable*
+> > > bit, but here you're treating it as a *status* bit.
+> > >
+> > > As far as I can tell, you set FSD_IRQ_MSI_ENABLE once at probe-time in
+> > > fsd_pcie_msi_init(), then you clear it here in an IRQ handler, and it
+> > > will never be set again.  That seems wrong; am I missing something?
+> >
+> > Actually the status IRQ and enable IRQ registers are different offsets
+> > but the bit position for MSI remains same in both cases so I just reused
+> > the macro.
 > 
-> How do you know what pin this drive strength corresponds to without any 
-> other properties? Node names generally aren't important, so you 
-> shouldn't be using that. 
-
-Thanks for the hint... yes I'm matching the node name to identify
-functions in this revision of driver. Could I introduce a "function"
-property to the outer node for identification of the function?
-
-> > +
-> > +    additionalProperties: false
-> > +
-> > +    patternProperties:
-> > +      '-pins$':
-> > +        type: object
-> > +        $ref: pinmux-node.yaml#
+> Ah, that's what I missed, thanks!  At probe-time, fsd_pcie_msi_init()
+> enables it in FSD_IRQ2_EN.  Here you clear it in FSD_IRQ2_STS.
 > 
-> Generally the pin config and muxing are in 1 node if you can control 
-> both.
-
-On 2K0300, drive-strength could only be configured for each function,
-not each pin, i.e. all pins configured to the same function share the
-same drive-strength configuration.
-
-Putting the driver-strength property in the outer node describes the
-situation: a property in the outer node is function-specific and shared
-between all groups (represented by inner nodes) configured to this
-function.
-
-Do you think it's better to move pin config (the driver-strength
-property) to the inner node in this case? If so, should the new
-"function" property for identifying functions reliably be in the inner
-node or the outer node? Thanks for your explanation,
-
-Best regards,
-Yao Zi
-
-> > +
-> > +        properties:
-> > +          pinmux:
-> > +            description:
-> > +              Integer array, represents GPIO pin number and multiplexing
-> > +              setting. Configuration for each pin takes one cell. The pin
-> > +              number locates at the high 24 bits, and the setting locates at
-> > +              the low 8 bits.
-> > +
-> > +        additionalProperties: false
-> > +
-> > +        required:
-> > +          - pinmux
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    pinctrl@1fe00420 {
-> > +        compatible = "loongson,ls2k0300-pinctrl";
-> > +        reg = <0x16000490 0x20>, <0x16000110 0x4>;
-> > +        reg-names = "mux", "drive";
-> > +
-> > +        func-uart {
-> > +            drive-strength = <2>;
-> > +
-> > +            uart0-pins {
-> > +                pinmux = <((40 << 8) | 0x3)>, <((41 << 8) | 0x3)>;
-> > +            };
-> > +
-> > +            uart1_pins: uart1-pins {
-> > +                pinmux = <((42 << 8) | 0x3)>, <((43 << 8) | 0x3)>;
-> > +            };
-> > +        };
-> > +    };
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 7960e65d7dfc..dd50571b4072 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -14414,6 +14414,12 @@ S:	Maintained
-> >  F:	Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
-> >  F:	drivers/thermal/loongson2_thermal.c
-> >  
-> > +LOONGSON-2K0300 SOC PINCTRL DRIVER
-> > +M:	Yao Zi <ziyao@disroot.org>
-> > +L:	linux-gpio@vger.kernel.org
-> > +S:	Maintained
-> > +F:	Documentation/devicetree/bindings/pinctrl/loongson,ls2k0300-pinctrl.yaml
-> > +
-> >  LOONGSON EDAC DRIVER
-> >  M:	Zhao Qunqin <zhaoqunqin@loongson.cn>
-> >  L:	linux-edac@vger.kernel.org
-> > -- 
-> > 2.50.1
-> > 
+> > But I understand that it's confusing so I will add another
+> > macro for FSD_IRQ_MSI_STATUS or just rename the macro to
+> > FSD_IRQ_MSI to re-use.
 > 
+> Using the same name just because a similar bit happens to be at the
+> same position in two different registers is definitely confusing.  I
+> think it will be better to have two macros, one for FSD_IRQ2_STS and
+> another for FSD_IRQ2_EN, e.g.,
+> 
+>   #define FSD_IRQ2_STS                         0x008
+>   #define   FSD_IRQ2_STS_MSI                   BIT(17)
+>   #define FSD_IRQ2_EN                          0x018
+>   #define   FSD_IRQ2_EN_MSI                    BIT(17)
+> 
+> Another question about the test:
+> 
+>   if ((val & FSD_IRQ_MSI_ENABLE) == FSD_IRQ_MSI_ENABLE) {
+> 
+> This assumes there are no other bits in FSD_IRQ2_STS that could be
+> set.  I would have expected a test like this:
+> 
+>   if (val & FSD_IRQ_MSI_ENABLE) {
+> 
+
+Thanks for pointing this out. FSD_IRQ_MSI_ENABLE is a single-bit, so there
+is no functional difference in the two statements. I didn't have a specific
+reason for using "== FSD_IRQ_MSI_ENABLE".
+But I see that "val & FSD_IRQ_MSI_ENABLE" would have been the more
+standard way to write this. I will update this for clarity.
+
+> Is there a reason to restrict it to the case when *only*
+> FSD_IRQ_MSI_ENABLE is set?
+> 
+> Bjorn
+
 
