@@ -1,130 +1,170 @@
-Return-Path: <devicetree+bounces-206362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D5FAB2C2D3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:13:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32899B2C2F1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:16:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35A6B1BA3821
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:14:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 337A27A3168
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:15:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0553B33470D;
-	Tue, 19 Aug 2025 12:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ACC833A038;
+	Tue, 19 Aug 2025 12:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="flde9iHX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qjf0nomx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9170B20C000
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 12:13:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2CFB322A3D;
+	Tue, 19 Aug 2025 12:16:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755605632; cv=none; b=Z3OdPX8BdTXP/nstwixypyTLHGGnBN62H/0hKxLD8P2sKxXIkBMF9pkMOjaK5uuItVNwGvYXCmG2yhlunMxQ3rxGfJy1rpcDpwkMiJRk5L4PpdSlKGct14Aj9uoRY6moYcFh4CbrzC/rnI9+ukRn3zxoFDv/9EX9e+Triu38XQg=
+	t=1755605805; cv=none; b=dgmK4MhUfsmjxropUljxiHWJtEjamHkzWEHqjlGU3GqLp/8x/tOSKZEdLw1t0Jzh4GJj8SlOLCN3Am4wJtQn5CcUNeRWwUASFUhyTY9rl0AJNvzhrLOtqY//hXQFTSdE5MvHeB82eLq2h75OCHc0cgGbcEXnI2CyaO8ji5GKUn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755605632; c=relaxed/simple;
-	bh=96sKCN8W6iUHDL5PYlpPkLIhOff9a+rkHfCdGHmVmME=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Nt814kDM/ICXVGNnOzdcpUYo3kLu51TKTWSOfz/2zBi4WF/yawCw56MP8pA+5uwwTYFIODbygUIg9FGrhBPUWmmnlbyNELAttsYrfKEMjyBMg2aUQwoWaEX94Vx8dfW7i0ifLaCQVe92NyBmvNVU1JEOQ/8qyS0uyD1QxYwxaNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=flde9iHX; arc=none smtp.client-ip=209.85.210.176
+	s=arc-20240116; t=1755605805; c=relaxed/simple;
+	bh=SJJL1hsjRl5/WRv/ON5a7qMwezRcNYQJsaRc0g+WDXw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=b3P98A2twj0/tI4VMWmM9r0cBqrbVmrtMku4rDKREpN2y+zBWBcYa+oCDOL6vNmLVvX55XtJ+MjiGecc8NuzJ0kUvYNE/GFBRnFvBIX5BvmiR1pISYBSpav4ZRAR7WKCgcTA3PGpvP1vuIEvQnbAASDWLJdkaJudCBqsTj4wmYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qjf0nomx; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-76e2ea933b7so4311072b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 05:13:51 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-afcb72d5409so816249766b.0;
+        Tue, 19 Aug 2025 05:16:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755605631; x=1756210431; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1755605802; x=1756210602; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+2vHRKnZiVaVmCBqGixTtB2tdDEbO4XCSMQRrv7sNME=;
-        b=flde9iHXa6ogsXgZOD9LcyfU6/v/KV3nHkBdiiPYtWpUGV4sDCCtBlrSb5XgQ8ui2V
-         fv3/UXKL8PicuUwCEqke9JySnOV24Vt0w0P1g/4iNnM5CDLBR5dbV6p1wrSH1g8BoUI0
-         zGwP6CeGabfoF2JKUeKl09gFksyYcLXQeQzIeXqybB2lE9MN+veNcdZXcLqFQb+9mRDN
-         U6XDOkv50ezpWPU61hSkuIvqsOAIueJT0+qCSYtMHWMq5HW8ap3qX0C+dQzaatfiOHws
-         N1+Q16U7s29cpmOSFvW0jqJvbfOE6QxEQibRSNkeYeZR27CwqO9rkYDpZkQpa3wzXBMj
-         MgvA==
+        bh=OTZBF2cKOGdV37BgNxVIad8RxVSZEEHpIkQVHokH8Wo=;
+        b=Qjf0nomxNQw7e8EYKfZ4L9ypFjy7qyZuIpKfXr6Ld5Wu7di8xDMXqpq81TOmpZebY+
+         izUFJ8dZ7tHLezd6R+9exU/b5v4S0i65IzNrdxKEokIjlcs+yC+sg9cmKKrW+2w3U5rG
+         moHvbZLtF0gI8CdNoNG087Pn0jtEM1VeHzxpabONhWh3yxeBX7G4B5ZnjAChFWncwcdC
+         eEbYc49RamFxDJA2TXlczAvoq6flndVxQkegS3Y83UhT+I4pz7JHIPuUyyBDnpK2ix3L
+         TYZ9iz5llJYcJcrNBgbylFNMal9yonPeSgdAHRXyz05WRmeFfoQSMfCvl789lR9Vvzr4
+         aAug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755605631; x=1756210431;
+        d=1e100.net; s=20230601; t=1755605802; x=1756210602;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+2vHRKnZiVaVmCBqGixTtB2tdDEbO4XCSMQRrv7sNME=;
-        b=SK8wcOwRFxMswYE+tKK5iTE7wKb7jh2B35SzM50crTt1hhLpvo2zZi27azYgB4sGRK
-         fTlVyiLZy/djYaCL2rYSJMMUm9eGZsAGnY5Dp5S93dozDUk9t0Hmdzzw8oD6H7C43JIU
-         GhRnY37Mn0Pb2hbOts+bDO9wEb8F45N3OifcH6FdaymrFt15OWS+YoJx7POP5jwsQbho
-         fubqCQYE0QDKYCKbcbAjxpeZLBgdg6lKRjj7ZJMP0yEMnhQw3ZSoDvZajn+bUgogPp8m
-         FPll7hjrYhqxo4xukwJiVW2yRxfdrmQ/t2Om9lSAmAfnlP6WFBpX+2cWEyEi8VBY9FaW
-         2BkA==
-X-Forwarded-Encrypted: i=1; AJvYcCVpiQTU4mp4l9VJ6O95GferaHQZQG77SOw/gpAWVFdAbglWt7GTFXaUzABSaH+cjhh9N3K+1KMr/Jpa@vger.kernel.org
-X-Gm-Message-State: AOJu0YzY/2IktEyp3iRbUTaeYFP0O1uGNf7bJE8O+8N7Q4y+IIIZIEAU
-	q6BvBG92uc6q8AKOw6QWEDpKiXpYOlgPNY4ZTIAe3o/3CoTX+vaHb8Nm
-X-Gm-Gg: ASbGnctuL4Om9keL24Vx9vcmZTvKEin+tfDDIe1Lh7z257f573sUTpJ1VKuo/oIt2Eo
-	j1K3S1SU9w5invEXJdmMSgg8Tl0qqaBxOBheK0Ya+avocGlz9rBZsD+0HLe1w+0r2m2xhxn37vc
-	+N7rNafhZKxEzmYbjBlzB4WFiXnywIE4XkMU+ikfoZi2DPb1nX4SlMHiQAyOWclDiid/GwTm53l
-	zVhxZ9MeWLH1erDpBlizBSUnS0ZUo65Xzo9DpgO1aqF+yXZDQicf3X9/K++gVph+rCfz3k1MFq4
-	NCUd570BMi6TaTr5wDP4lRmOakHaF4l8Mf4M/TV4WXOau5YDpIgroJ5fEDKcbJNISaW7sGOKt9Z
-	03wdU2EP6sAC7SiWyv4TPbb7FChabKmXsW7wC
-X-Google-Smtp-Source: AGHT+IGZFSssZYv1wRJsBAbY0eJGGeYf5A8byIZ2FDIdrF+L6FkR/CXYK2tWDqXgLnMk3q0JBd4YNw==
-X-Received: by 2002:a05:6a20:a104:b0:243:78a:82cd with SMTP id adf61e73a8af0-2430db1ad7bmr2688715637.26.1755605630788;
-        Tue, 19 Aug 2025 05:13:50 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:3ce6:43aa:f6b8:33fd])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e7d0fbe95sm2352749b3a.25.2025.08.19.05.13.48
+        bh=OTZBF2cKOGdV37BgNxVIad8RxVSZEEHpIkQVHokH8Wo=;
+        b=j/maWSKhUvgVSTkd9mwjsM8W1glQnI16CO2uT1lpR5yb/0scCtjdxNk2Ke8tAvER/d
+         B1x4DfC8mqvOGaMDVsf1Vuvn/D4ghrr9InrAZ7MooVSruZ8YCvEAAnwRGMd9hxjxrzZY
+         uIxoMzR18ol2mCEwk9e4XaR9w5HLymDaB87ZR6zYlpLxnCm/c9kuDLy/rHsWdDLhX+oD
+         cqtjOxVNrcEQ/SUQFmi0phD0Z4JRcPj2kClQ/M/6gI2hSVvc7CZ/c7m5ooUU401TPf1u
+         tPhDntRASMJZwJtqszBa/t4P7DNdwLIQq04W+wkpN2Nf/z7/ibU4BEnVM1KX2n+/GMmE
+         ScPA==
+X-Forwarded-Encrypted: i=1; AJvYcCW0R9h2eGIUANHrXrxsFyXZl9XAMDrnqPxwq7bqXkkk/NotXNOxbG0HSaqRKW5Lnm/2eg/FyTpvq9Um@vger.kernel.org, AJvYcCWOQSIYznIgujUGoPoypccf1tkzd+Feqz6xDKQhDvODpla9tFHWyGKEjRVFoLruyL2V7NGew7tnre1M8G4=@vger.kernel.org, AJvYcCXDMD+fJ/BE8SwNdB/hHxvGrm9ApKZyWE39cKQ6VvKqZ/kOM7A5E4tNRPAorKvXShI4157DNoEvkbZrULX0@vger.kernel.org, AJvYcCXkzVQWR2mo216tbo6vYaFmj5OWyYiNnDLs74FOHeze/Tjayo7ZnOG8CvwQwDUrWjyecxSPFiwI5ABY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQDRE5DQiW2yTMTju0GpzLRZOgMcnQf298j/9et0jK6xEzbiSl
+	FacElcwXAPmh+PUF7kfNTHwz21TVXIc96tdAZhZ9DntlcswBacVg/bVF
+X-Gm-Gg: ASbGncu4TOFj1ZZTTsuFwXus1HwQGSf60WLglwaGmef7hAE1W2UO9RnbRwvENr7QH73
+	9NnkLOW/js7DzQcU05nFRLY4pTXFtJNie7pGZiVli149JPjApZUwUvnESeUrvaRCFD/jbCmDtLR
+	DSH+PM07oIYpPz6OmIeb1SzgL5b8cS3lTY1HBGsYp1go0EyvSNuYcJjuhWAh/YO/sKrvD8Fzn0j
+	Anht9pFwD58np7nMH+uWcoEIVaVJIxu8IIV3rpQ+U6fA4wZdXqfzIAtomWAd23y+1fOu9I3jL9g
+	3IwpIUcGOOFwCnbsluTlQj1dOHzx5H0ZH/qbeJlVOu74urmxmhAG5jUiaobk3W7yHBuQ7Q5ZGdu
+	ef1f0fUrWxqGSdw==
+X-Google-Smtp-Source: AGHT+IFOn/TJHFwwAXjt/aa4+DjS3IYy277UAXO/A/XxXv0w3obUkySSlcaEnmlY0FxNsalKHy8ajQ==
+X-Received: by 2002:a17:907:971d:b0:af9:44fe:dea1 with SMTP id a640c23a62f3a-afddccd40afmr224499366b.23.1755605801830;
+        Tue, 19 Aug 2025 05:16:41 -0700 (PDT)
+Received: from xeon.. ([188.163.112.76])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afcdce72cbbsm1012018666b.35.2025.08.19.05.16.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 05:13:49 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: krzk@kernel.org
-Cc: robh@kernel.org,
-	conor+dt@kernel.org,
-	imx@lists.linux.dev,
+        Tue, 19 Aug 2025 05:16:41 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+	Thierry Reding <treding@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Sowjanya Komatineni <skomatineni@nvidia.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter De Schrijver <pdeschrijver@nvidia.com>,
+	Prashant Gaikwad <pgaikwad@nvidia.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Dmitry Osipenko <digetx@gmail.com>,
+	Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: linux-media@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH] dt-bindings: w1: imx: Add an entry for the interrupts property
-Date: Tue, 19 Aug 2025 09:13:44 -0300
-Message-Id: <20250819121344.2765940-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-staging@lists.linux.dev
+Subject: [PATCH v1 00/19] tegra-video: add CSI support for Tegra20 and Tegra30
+Date: Tue, 19 Aug 2025 15:16:12 +0300
+Message-ID: <20250819121631.84280-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-There is an interrupt line connected to the one-wire block on
-the i.MX51 and i.MX53.
+Add support for MIPI CSI device found in Tegra20 and Tegra30 SoC along
+with a set of changes required for that.
 
-Add an entry for the interrupt property to avoid the following dt-schema
-warning:
+Svyatoslav Ryhel (19):
+  clk: tegra: init CSUS clock for Tegra20 and Tegra30
+  dt-bindings: clock: tegra20: Add IDs for CSI PAD clocks
+  clk: tegra30: add CSI PAD clock gates
+  dt-bindings: display: tegra: document Tegra30 VIP
+  staging: media: tegra-video: expand VI and VIP support to Tegra30
+  staging: media: tegra-video: csi: move CSI helpers to header
+  staging: media: tegra-video: csi: parametrize MIPI calibration device
+    presence
+  staging: media: tegra-video: vi: adjust get_selection op check
+  staging: media: tegra-video: vi: add flip controls only if no source
+    controls are provided
+  staging: media: tegra-video: tegra20: set correct maximum width and
+    height
+  staging: media: tegra-video: tegra20: add support for second output of
+    VI
+  staging: media: tegra-video: tegra20: simplify format align
+    calculations
+  staging: media: tegra-video: tegra20: set VI HW revision
+  staging: media: tegra-video: tegra20: increase maximum VI clock
+    frequency
+  staging: media: tegra-video: tegra20: expand format support with
+    RAW8/10 and YUV422 1X16
+  staging: media: tegra-video: tegra20: adjust luma buffer stride
+  dt-bindings: display: tegra: document Tegra20 and Tegra30 CSI
+  ARM: tegra: add CSI binding for Tegra20 and Tegra30
+  staging: media: tegra-video: add CSI support for Tegra20 and Tegra30
 
-'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
+ .../display/tegra/nvidia,tegra20-vip.yaml     |   1 +
+ .../display/tegra/nvidia,tegra210-csi.yaml    |  78 +-
+ arch/arm/boot/dts/nvidia/tegra20.dtsi         |  17 +-
+ arch/arm/boot/dts/nvidia/tegra30.dtsi         |  19 +-
+ drivers/clk/tegra/clk-tegra20.c               |   1 +
+ drivers/clk/tegra/clk-tegra30.c               |  16 +-
+ drivers/staging/media/tegra-video/Makefile    |   1 +
+ drivers/staging/media/tegra-video/csi.c       |  35 +-
+ drivers/staging/media/tegra-video/csi.h       |  11 +
+ drivers/staging/media/tegra-video/tegra20.c   | 771 +++++++++++++++---
+ drivers/staging/media/tegra-video/tegra210.c  |   1 +
+ drivers/staging/media/tegra-video/vi.c        |  20 +-
+ drivers/staging/media/tegra-video/vi.h        |   4 +-
+ drivers/staging/media/tegra-video/video.c     |   6 +
+ drivers/staging/media/tegra-video/vip.c       |   5 +-
+ include/dt-bindings/clock/tegra30-car.h       |   4 +-
+ 16 files changed, 842 insertions(+), 148 deletions(-)
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- Documentation/devicetree/bindings/w1/fsl-imx-owire.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/w1/fsl-imx-owire.yaml b/Documentation/devicetree/bindings/w1/fsl-imx-owire.yaml
-index 55adea827c34..2c1bbc0eb05a 100644
---- a/Documentation/devicetree/bindings/w1/fsl-imx-owire.yaml
-+++ b/Documentation/devicetree/bindings/w1/fsl-imx-owire.yaml
-@@ -24,6 +24,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  interrupts:
-+    maxItems: 1
-+
-   clocks:
-     maxItems: 1
- 
-@@ -40,5 +43,6 @@ examples:
-     owire@63fa4000 {
-         compatible = "fsl,imx53-owire", "fsl,imx21-owire";
-         reg = <0x63fa4000 0x4000>;
-+        interrupts = <88>;
-         clocks = <&clks IMX5_CLK_OWIRE_GATE>;
-     };
 -- 
-2.34.1
+2.48.1
 
 
