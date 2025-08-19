@@ -1,178 +1,153 @@
-Return-Path: <devicetree+bounces-206569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24003B2CC2B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:37:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 329D8B2CC39
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:39:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9F911C252F8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 18:36:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9132E1C24C3A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 18:39:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6FF130F54B;
-	Tue, 19 Aug 2025 18:36:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="b6VzpCZf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1D830E0E1;
+	Tue, 19 Aug 2025 18:39:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B091261581
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 18:36:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11B2123815D;
+	Tue, 19 Aug 2025 18:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755628564; cv=none; b=JBQwzVzhJnlPcd4lSAYPv+2uYC9d8u5HnulaTIcroL3eaDRzJEEhbTqXHSSe6z38xyWl+eZMUdDv3gMDZA8DGtlkW3SpaR5/P5fPDiOQc5zkZOPQYw8kK+Lg1/v5951DETsKYecymKHIhfCfj6tnf/v3sJGNLc6VF1Jv6s2F1jY=
+	t=1755628761; cv=none; b=dkhDpf3aQlNZqPpHPKGWgvtGIWfVLV1M5hBt26UxW/TE/Gs4cS5HQgcJwJt9jqc6PRD9JBUqxM0YXob9zCtHFjd1vBfSaDY+s3jf3VjPvuTkE09nha64qWHNrfpFo/eyn8Ke5Al5LUUIgD09E4RUOqtjRKaGQpVpHKLdxCsCjL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755628564; c=relaxed/simple;
-	bh=sTgf/CNCkxGhEaAwMV5unINPuICI+staVH3F5LIk2ig=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CbcU5SaZsbyd4eDhXrj15BT9XQCaSmjYxu0TNIagxJCwlzRgLjndSxONHZzSEwjZAaEr+S+NygPtOAiiJq74vC2uW/oucPYdoyLFIwykxxHK0uh7gtkQSiGnie/xsFArlMuyChA8k8ctjK40p5YPq6AOW0CocAH8DDzg0bWeAFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=b6VzpCZf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57JH7ZE6023690
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 18:36:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=o240rpXb1npe1ccsIe0LIiBv
-	/L8C+NSjEqGnuz2YrN8=; b=b6VzpCZf/0uYO01WP/f9h+p02aXCBYd+sRRaZtT3
-	C7YQEOhHbR0zykWWrlqAOKk0UZ4UbaP0XQIUDgxf1D5g8MCP7QK0qtrgxldGqMFc
-	VT5Ywg8FHXTLEvcsUh4+jUYU5+B1rETKver+48vO3KuLqZbEmcJDS5ftHSC4GgPZ
-	bKCIhEOGiIcoYt7E2iEJ58RUkMgrdNGaIDNQXkYTIJxoKQrOsKSelhz3dAvxLESm
-	gBW/3n2e5NfC+95lKeMb+yQ+Me+E3909Mb5cOMnPCttWMOOVizhYdmCCZF/B2dv/
-	4SQ4SJ/lvBrO1wSsfMj9Pz6tKssgpOPPIj2ejj63nnPk0Q==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48m62vmjkx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 18:36:00 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-70a88daeb18so124577496d6.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 11:36:00 -0700 (PDT)
+	s=arc-20240116; t=1755628761; c=relaxed/simple;
+	bh=PXzBRIfXwKHZi+PVe3ictws1msxyerhHK53wBLauIiw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A3bSmniT/CxV+pYRdo7lurj36XfBt4TXvOgfrdpN0HaWMdE8FJ/jXOXHEcZzGaaFZI3MKliN4tbfpG4F2MMxgJqnjWBuQjysrlHCNpzCnnzk3Zf5frNNqId3N9jgcoA/tlzwJt302rJI+xTWZBsTPdS29zsIvUxs4thKLx+Zgqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-61a8b640e34so1329094a12.1;
+        Tue, 19 Aug 2025 11:39:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755628559; x=1756233359;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o240rpXb1npe1ccsIe0LIiBv/L8C+NSjEqGnuz2YrN8=;
-        b=kSpxAGz0GNgUwlmWxjCkZOQ5eG5ff3fL7K0XA3f5xqy0QtRgkwtn6KHgYyOaUEjQH1
-         cNwSzGARGdtyDyBOh77kmxbNb8JMklZ2omrbLjFHVad35URxTOwQPjwYmzzxQjoAuqXP
-         wuwaCbpGySOB3Q4iyfCHtycipNfODSYpC7w9b0d1UqTMDets6FsLmROUbvr4SO90wAdg
-         WZcDOP0BD9ST/m3reJbWlJKARdx3REbxAL3E6ZM03yIkGEehJG7z8f6CHbCRLGl1jFIn
-         GErPIP6veM677lbx0mU9bXSZatjqTkGTNlEpKxL9qfx0p5Jb/r0Gi5mVPFBxJUhOUSO0
-         24Ng==
-X-Forwarded-Encrypted: i=1; AJvYcCVcJ3J4RKlW1X8nuxySpMbvq+dLQjpozxbgMZtTUawCNxsMt8c6UlLj1a8IRd3bxs/upyJOF/Aze5vR@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGhTvCvfnoh3ePGOD7VPWwoZLg3PvfPVq4WoQ6yCUUDhlxg9+E
-	Cs+oP3fmxBCao4/mq6M82oJEPrAM0fWfB3m7jMUPaNp2axoJ63+1K/lA3BVln1Y5EWoyPcdBq40
-	LRr/V20kxfMGdqepX9cHz9azbiuhUl+raAnR3xgNdrn4pTlFtk2wppVW2RkCB3yj7
-X-Gm-Gg: ASbGncsvBinSGECIiVAFZrkmTYqGkCGfpToJBV0CbT4L1CTKi5GG4hach5+UiqjC8l3
-	xIOHFinNhuSnfacnnw3zg4GhZnic3oVvG8msbtUdHUdoLtoJ/6xwa3RzzJJiK1aR416qYFfeRqt
-	OlXVn/oNIjI7SEpH1eAXGWq1+kE1uxotzFuQf3gDcGxFNmJTA9s9WD7/6WA8kXvqsfSzbUanQ92
-	UNBdPxExiZjDqAlpc9Vh8TA+LyYOlUFM77qDrCDlx+d5iKZs15ca0z6JkxGYok8QqqScNJgkyy3
-	NalcpFkzJyTyQasyCr7i5dR69q4Fy0TLmuPaWuIisr3mKx/YVYg5HTp0+15xyOg1IY6FVp05TTu
-	YIhkF7xmOmDfjSO8GZJmQ7Q5PpqkgQ7xLqoKvec0W2SXWJtKA87qB
-X-Received: by 2002:ad4:5cad:0:b0:709:e1d5:2470 with SMTP id 6a1803df08f44-70d76fd26bamr413976d6.20.1755628559311;
-        Tue, 19 Aug 2025 11:35:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHGmlAw5ivpCYe8dKVhVWxeKp6uuPutspQzTTRywH6aArEi8XXmLCe1KM8UMGq0ZEI0zbNZ8Q==
-X-Received: by 2002:ad4:5cad:0:b0:709:e1d5:2470 with SMTP id 6a1803df08f44-70d76fd26bamr413576d6.20.1755628558770;
-        Tue, 19 Aug 2025 11:35:58 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef3516bcsm2227934e87.24.2025.08.19.11.35.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 11:35:57 -0700 (PDT)
-Date: Tue, 19 Aug 2025 21:35:55 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mike Tipton <mike.tipton@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: document the RPMh
- Network-On-Chip interconnect in Glymur SoC
-Message-ID: <phbil4fflttlcp7s4nxyceyb2a277eablveozggloufowwzplu@c4a2mrtnfunf>
-References: <20250814-glymur-icc-v2-0-596cca6b6015@oss.qualcomm.com>
- <20250814-glymur-icc-v2-1-596cca6b6015@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1755628757; x=1756233557;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ik2CZRraiL4wjLDuUaIjOn1b1SNp0YAfTL1m5BkDZ58=;
+        b=kekCatojg+xcsGwyBUKBbo1soZYMJlA/bgmFcK7WoBxrmW9E/LdRNIASuaKT6m2N2W
+         zwNDi4Glzb3MmIgYF7eV7E4KPCH1HQTcDSv+i2xpUCYjyNpLhJ6kpG+lnez2hXG1rkw6
+         LBy/tRocb5ajajYotI/txFK9a77YWKMlhUPtFcIZoEeCc2M5DOPXkPKeDWUJKh2Aau4f
+         9COxRMwQ0yd8mubmdpxsn847tYEjnUKofDWwx4N+WlM2L0ARx2eypoEaoef2zIOKOJAT
+         +5yqJs1APwCeLurRmVv55TVu34JX8z6/0Fob16g0u9M7xYu4RcfKW4pteE5aAelXZxqL
+         s2Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCUR3Ed7hJCsPyAuH4TPk5q9xydaIEG1x/5xSwKXhiWroPKcyD73s/2ychD4rxTjbw0GbGoW9wLw+NqI@vger.kernel.org, AJvYcCVCTWZB1UQiVAnnNFW87yRr2dUDS43qRq7TJ0g93nqIjYXNJ2wYw+r9cEAuZUNxOb8Fdzlbx3sde55zqDMd@vger.kernel.org
+X-Gm-Message-State: AOJu0YyoVXuelbSlOfWs1b9R4j1aADrg1sUiNQoUMfreSM0XVsmvlsWK
+	Mk1K2f5cbOfhJ/iOgUYjauNnJoRSdog3EyVMOOdYzTs3wJXrhp0EcoBK0vDa469VUs8=
+X-Gm-Gg: ASbGncsqwMsIZpiQKPrQFRCUizMqAJimuOJUCqW7QDPFGwhAiv84YwVug+vHIJ8BTBp
+	eE+EFLGVrK967kdbHqPNO2Z7K14Oq3CoGD/JYxE+N8cqZ6nkK94xbhk13WvJDsTFkb4FU2dVGkc
+	R4Gnc4YQVk8thwmZgZyaYt20jA/SSQspcy+Sbx3bStqB1bHvfJq76rdGH5chGDY8noFBBonyhly
+	AK8900BbQNUAJD5yWFzz3DL647miwtXg785cTtyiSNIIWFn2vEcy7gso+685V82/JRrJd1CpnB/
+	1X/CmEKGGdl1f8KlCFDx74mr0e+3kJAWZTpBtMAN5VAVa9snK0T3nQd4flLzkl0DM5G3If7M5sW
+	EePFmxNvptCLx2yLzZL5xdx2PWZnmcWTzfuSuWU9zC015B/8kCNtINO3wKvgEMcM=
+X-Google-Smtp-Source: AGHT+IF7AFy6FSUPPsyHhy9n7/V01gRT7a23dcLZNXBOQiiyt098/G3dDt3bs6lWCTEsckZHEmzYlA==
+X-Received: by 2002:a05:6402:4407:b0:615:8bee:56b6 with SMTP id 4fb4d7f45d1cf-61a978522c0mr284057a12.34.1755628757067;
+        Tue, 19 Aug 2025 11:39:17 -0700 (PDT)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com. [209.85.208.42])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61a755d9cfasm2186284a12.9.2025.08.19.11.39.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Aug 2025 11:39:16 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6188b5b113eso7930826a12.0;
+        Tue, 19 Aug 2025 11:39:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWPAmP/1OB8cRjPe2bRIyZrN2Z79lxrXnOF3Tk7vT/SbvEimDnjPcpIy+5NoxQrj2AMXHQhHsUNRNrvaRX4@vger.kernel.org, AJvYcCWrPlnuTE0HDJ7DiqhSmTIhVn2298g2CM13NbrSUmX7cuVsYHJ50MbalqRM9Pugy+vChwEm+JYKKzN/@vger.kernel.org
+X-Received: by 2002:a05:6402:354a:b0:618:272a:6dc0 with SMTP id
+ 4fb4d7f45d1cf-61a97825978mr311982a12.27.1755628756633; Tue, 19 Aug 2025
+ 11:39:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250814-glymur-icc-v2-1-596cca6b6015@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE4MDEzOSBTYWx0ZWRfX32/xyresN2OY
- xLz5a6nKXWfl0I6Q94oW6deRmuzd+IRyUoq7F/jLKJa+jJnGd0TTtW6nlMPNazUGzBIMk3VI/Zk
- 6Yz3/a47u4ylaSj4JrB8MKbNeG3kAvJ/ZINyAeaPg3MDUv8h0UhaprehhfOgcBjeght4ovsLQDn
- Tjxl+RKMYq8LltKlzhj8AAxTFCMoIF2Xxjn7GpnE81ZJgxpdUT1oI1WYeOe7ZqCdlPIo4o5bQYP
- i/JgnCjJ8JSUkaaTARsmD3OOXpGbRO66mr8hqvxiyx2eS+7rfWJeojFy9PPxDSB+FODlcddRW/A
- GG5iYi2KT5DS1vefEovpH0MzZiaQJnJiacw7UGL8xyy8UrUBykp8fFRazM/Z47ph5iwydocDcpz
- S2mjNxUD
-X-Proofpoint-GUID: hNFk6eCg7MnlqTNcgfKRbrwyIVJnw_LV
-X-Authority-Analysis: v=2.4 cv=A4tsP7WG c=1 sm=1 tr=0 ts=68a4c410 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=pDoijQcVg5aKu1OD8A4A:9
- a=CjuIK1q_8ugA:10 a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-ORIG-GUID: hNFk6eCg7MnlqTNcgfKRbrwyIVJnw_LV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-19_02,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 adultscore=0 malwarescore=0 bulkscore=0
- spamscore=0 impostorscore=0 priorityscore=1501 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508180139
+References: <20250813-apple-dt-sync-6-17-v1-0-209f15d10aa0@jannau.net>
+In-Reply-To: <20250813-apple-dt-sync-6-17-v1-0-209f15d10aa0@jannau.net>
+From: Neal Gompa <neal@gompa.dev>
+Date: Tue, 19 Aug 2025 14:38:39 -0400
+X-Gmail-Original-Message-ID: <CAEg-Je-uMD4xPcmfcoxzdmo_wfHdiUvw=EByY+zG1c5UQ0=EfQ@mail.gmail.com>
+X-Gm-Features: Ac12FXwXcPnRZb3XHtBRKxe3pDOsXrkoCrBveLOoTcxv7QMCxYMri1d_dXh5Bt8
+Message-ID: <CAEg-Je-uMD4xPcmfcoxzdmo_wfHdiUvw=EByY+zG1c5UQ0=EfQ@mail.gmail.com>
+Subject: Re: [PATCH 0/5] Apple device tree sync from downstream kernel
+To: j@jannau.net
+Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mark Kettenis <kettenis@openbsd.org>, Hector Martin <marcan@marcan.st>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 14, 2025 at 02:54:19PM +0000, Raviteja Laggyshetty wrote:
-> Document the RPMh Network-On-Chip Interconnect in Glymur platform.
-> 
-> Co-developed-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+On Wed, Aug 13, 2025 at 5:53=E2=80=AFAM Janne Grunau via B4 Relay
+<devnull+j.jannau.net@kernel.org> wrote:
+>
+> This series pulls changes from the downstream device trees which are
+> supported in upstream kernel.
+> Most importantly it fixes the PCIe description for a specific iMac model
+> (iMac M1, 2 USB-C ports, 2021). This is worked around in the downstream
+> kernel by not disabling the port. In preparation for submitting M2
+> Pro/Max/Ultra devices trees I investigated the issue on the similarly
+> affected M2 Pro Mac mini and fixed it this way.
+> It completes the Wlan/BT device nodes for t600x based devices and adds
+> the missing 15-inch Macbook Air (M2, 2023).
+>
+> Checkpatch emits following warnings:
+>
+> WARNING: DT compatible string vendor "pci14e4" appears un-documented --
+> check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
+>
+> Which I chose to ignore. `vendor-prefixes.yaml` prefixes contains no
+> other mapping for PCI vendor code and the list of ignored prefixes
+> forbids extending it. Both options feel wrong though. "pci${vendor}" is
+> clearly a vendor prefix but duplicating the PCI vendor data base feels
+> wrong. `vendor-prefixes.yaml` currently does not contain and PCI vendor
+> aliases.
+>
+> Signed-off-by: Janne Grunau <j@jannau.net>
 > ---
->  .../bindings/interconnect/qcom,glymur-rpmh.yaml    | 172 +++++++++++++++++
->  .../dt-bindings/interconnect/qcom,glymur-rpmh.h    | 205 +++++++++++++++++++++
->  2 files changed, 377 insertions(+)
+> Hector Martin (2):
+>       arm64: dts: apple: t600x: Comple WiFi properties
+>       arm64: dts: apple: t600x: Add bluetooth device nodes
+>
+> Janne Grunau (3):
+>       arm64: dts: apple: t8103-j457: Fix PCIe ethernet iommu-map
+>       dt-bindings: arm: apple: Add t8112 j415 compatible
+>       arm64: dts: apple: Add devicetreee for t8112-j415
+>
+>  Documentation/devicetree/bindings/arm/apple.yaml |  2 +
+>  arch/arm64/boot/dts/apple/Makefile               |  1 +
+>  arch/arm64/boot/dts/apple/t6000-j314s.dts        |  8 +++
+>  arch/arm64/boot/dts/apple/t6000-j316s.dts        |  8 +++
+>  arch/arm64/boot/dts/apple/t6001-j314c.dts        |  8 +++
+>  arch/arm64/boot/dts/apple/t6001-j316c.dts        |  8 +++
+>  arch/arm64/boot/dts/apple/t6001-j375c.dts        |  8 +++
+>  arch/arm64/boot/dts/apple/t6002-j375d.dts        |  8 +++
+>  arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi   | 10 +++
+>  arch/arm64/boot/dts/apple/t600x-j375.dtsi        | 10 +++
+>  arch/arm64/boot/dts/apple/t8103-j457.dts         | 12 +++-
+>  arch/arm64/boot/dts/apple/t8112-j415.dts         | 80 ++++++++++++++++++=
+++++++
+>  12 files changed, 161 insertions(+), 2 deletions(-)
+> ---
+> base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+> change-id: 20250813-apple-dt-sync-6-17-d1fc1c89f7ca
+>
 
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,glymur-gcc.h>
+Series LGTM.
 
-Please drop this header and use ephemeral clocks in the devices below.
-We don't need to point out particular GCC clocks, using
-<&gcc_foo_bar_baz> is more than enough.
+Reviewed-by: Neal Gompa <neal@gompa.dev>
 
-> +    clk_virt: interconnect-0 {
-> +      compatible = "qcom,glymur-clk-virt";
-> +      #interconnect-cells = <2>;
-> +      qcom,bcm-voters = <&apps_bcm_voter>;
-> +    };
-> +
-> +    aggre1_noc: interconnect@16e0000 {
-> +      compatible = "qcom,glymur-aggre1-noc";
-> +      reg = <0x016e0000 0x14400>;
-> +      #interconnect-cells = <2>;
-> +      qcom,bcm-voters = <&apps_bcm_voter>;
-> +    };
-> +
-> +    aggre4_noc: interconnect@1740000 {
-> +      compatible = "qcom,glymur-aggre4-noc";
-> +      reg = <0x01740000 0x14400>;
-> +      #interconnect-cells = <2>;
-> +      qcom,bcm-voters = <&apps_bcm_voter>;
-> +      clocks = <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
-> +               <&gcc GCC_AGGRE_USB3_SEC_AXI_CLK>,
-> +               <&gcc GCC_AGGRE_USB4_0_AXI_CLK>,
-> +               <&gcc GCC_AGGRE_USB4_1_AXI_CLK>;
-> +    };
-
--- 
-With best wishes
-Dmitry
+--=20
+=E7=9C=9F=E5=AE=9F=E3=81=AF=E3=81=84=E3=81=A4=E3=82=82=E4=B8=80=E3=81=A4=EF=
+=BC=81/ Always, there's only one truth!
 
