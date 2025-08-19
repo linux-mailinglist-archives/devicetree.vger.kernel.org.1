@@ -1,202 +1,96 @@
-Return-Path: <devicetree+bounces-206211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF8A2B2BBAE
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:22:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4891B2BBA9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:22:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18471686B4E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:21:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DBF11887210
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:22:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DCD31159B;
-	Tue, 19 Aug 2025 08:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B978A25F984;
+	Tue, 19 Aug 2025 08:21:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fmDZTJF2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PyQqMMTy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87CC723F421
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 08:21:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EF081A3A80;
+	Tue, 19 Aug 2025 08:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755591675; cv=none; b=rJ3YMhnf8to2krgVkqVl1i4ftOd/EvH2yGVr8YhWvuVQQel3pgm4HLMZoeLmqVnKi/Mwy284Me7p8S4GuKHAg+2QcN0eOFDhKzVwyAoTOm3fhe5gYCE4Nutx4hRQlTwne+WPzcqn6UGrHejLaZR8Q2PZs9x2mIaXnFnLKpopBv4=
+	t=1755591705; cv=none; b=uD0F5+rFqJG5hj+LD8JHY+JAyl4Bfx+kRw+NPiZtYLY6OI8LHVLcrlWlFBrlvdtKf0djWjK48Kj0aLtcQzSFgv9/DY4QiWahV5dfh9fMmCqXcnC27Fy5LbsNhxCginRDCiU7tRhocXwunfcycVFLZNYgak8FuDPZiXHoNimE/uY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755591675; c=relaxed/simple;
-	bh=wUlUXNYlT2av8wbOvTTdJzvL3+bwtI0HGI8+TD3utoM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r3lwB0Xgl+cUrPd+O1WkoJbbOdi+qnyjyZgPzpfHkN9XVpgjIJcFmi0rjMllnK3Zm3bAlJtSwYnZLTLDH5Hx3HPOgOv+D2Blo95b01zZc/p7LMg6B9obCoFcQZXJJUp2BvnT253Ozos10SWZR0OMblJ+0mscgx4Dkg5nyWZkM5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fmDZTJF2; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3b9d41c1963so2473892f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 01:21:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755591671; x=1756196471; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KYn6biyygAUVxiflH2dTAhFnJ7gRMdUiaEcaWo4kcaM=;
-        b=fmDZTJF2mG69Ua/UVUnJ2SscbGShP8niY3cJvTDWgpIQKRnSEQ+XxoJPAMhnpxQjKS
-         2hSOQsNKf2IWePq1N6am0Maq+s+HNOP7FThaisiC4S7rk/s+RHUzKsJhyVcUpJDM32SK
-         zQCMa+lLILxx/V3oHJD+ZYU9IazkdqM5Runv2BjAPy2fpxA/sjNFuVRvCIgKuUGzszre
-         NkrRUK/gTv7VCUt4/4/EqKAhXh1HD6SKRoEEmm5ZVPjh8V37XGzb3HPxc4lazUCM/vbm
-         Ko72WSMvkt1tFUjsyeBshSyAjfBmu80PkfbJrARUzwXWcs38xxfdkNFZ7V+JWKNpym+l
-         /kTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755591671; x=1756196471;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KYn6biyygAUVxiflH2dTAhFnJ7gRMdUiaEcaWo4kcaM=;
-        b=FqRQXnOEkMhfeEK18dJyjDsf6M3RAN/etdLDmhqfYeAM3PoUQVtjmDk4KC9+0N2ROf
-         4RzyfNseRzn9z32D5jjTY1Cfid/E6h4Z1foAp5c/ui9wVhl0iRC582T4ciVtWpkYjtBD
-         mYDaqcTJzXRt+jDk5OW3yB3UZCqZa3Y9/TAYmFLt27hqcMU1hFZRPWTL0+f23g3UTtzy
-         wRUrAWdUUiObhOWVESGNQQgz6p//3h/vswQaMy16C7E7JLnE2gXbMPn5mNxaI+ZfXg3F
-         x39XROpQ9rVKrN5sogzwIIjhB06xc6rB5s3pW6WyWB5l7MnVuzk0w6XbzW/F6+/LGzAx
-         TDDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWH2FfICodudyppjAfDbDEj2GRgTsKA0q/eyH13SxBgCjwxcotDCMR6CTfZL1ps6FPPzyK6mjmOnClA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1EA9wIW4oXoWaxt/4zBa6bu88fl5jp+RtRLCveW4sbtxpBzYg
-	SDFG7z/Cf5BHuYsEAPdzoOjoz432w6zOHkAMjNpD3zbZBSOcDB2TWJOqsUxnXGPY61s=
-X-Gm-Gg: ASbGncv8E5HWKxqmDb3zRALL8InpEg4CItVZCLhBk0l5BDYjjhHQWE7iEEXI864Xl9X
-	w+U/lM6752JXiAwfa6mmkKXR2W5eekE+MwP1UsY5sDiOBY+9P2YJA4A3m2uxYDyRDN+3QC76xZg
-	8L2hiHOxI0CvJRPx38O7R8maDy2c5YEipJJAbDDh20K57OqHIKWtVUFQpYnmio9XSRVPiGwiinC
-	w1CoULo/Xa6mwSKCDZzOdqZ4OPrWwBCrd7Cfxs82d8jneaYFAdVebChKeAO/PjToMQOPolEz3Ne
-	toqjdQHTwmY1SHYO4FAWnLqm807R9p5TY0C8KR513w5diJW/wR1MV1URmnUaCDv+br0M/kOLmUb
-	+2BUd8lorXRClOkvKjVxMdlPlp84=
-X-Google-Smtp-Source: AGHT+IFMCXCK9wgxZ9X1waWYq1FWyGk6N/vUke9mVrMaFS0aIoajO/AFuehg2yaWUxtXmN5DBKI78w==
-X-Received: by 2002:a5d:5d0d:0:b0:3b8:f887:c870 with SMTP id ffacd0b85a97d-3c0e9f01259mr1308081f8f.19.1755591670842;
-        Tue, 19 Aug 2025 01:21:10 -0700 (PDT)
-Received: from [192.168.1.3] ([185.48.76.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c077c56454sm2659047f8f.58.2025.08.19.01.21.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Aug 2025 01:21:10 -0700 (PDT)
-Message-ID: <7a81e256-ec55-4baa-a054-04c4fba0b5c7@linaro.org>
-Date: Tue, 19 Aug 2025 09:21:08 +0100
+	s=arc-20240116; t=1755591705; c=relaxed/simple;
+	bh=1codZMjwy5xEE8CHY9/RMsQlYxX0V78vrbjwQEP5T3Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JtM+lOsvV2YoSyED9aMfeJiCQIDIJb8jZMHUOKHsKSkOCYUzMElSUrALHZoFTkiM+Vu8v/uAp10U4irw3KjgAE+00qh3OEGJtRjF5MjkTW3YeNj5V2ZJukpH29fZr9Z/hAeHbdNvbKiYx7MKcYiC3Stj0KwaSLenb4cULB5fpEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PyQqMMTy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D3BCC4CEF1;
+	Tue, 19 Aug 2025 08:21:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755591705;
+	bh=1codZMjwy5xEE8CHY9/RMsQlYxX0V78vrbjwQEP5T3Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PyQqMMTybgkseFEOXhaoT8120dHaCUYjo7O0AEle6hNoOMAOTd1UN36R/IGN/C6ft
+	 z8QecOOvu5hVzqSUalPjJPR6lJybGs3B4PrFuHpjVtjXdKa4NBUmwr8D/zKw46Kg97
+	 XKfAiBreyTirtxh/PeE811JFtSkJts/Cb03ELBJgUVcUWoZ+D+j3b8C3svENr06M3S
+	 MqkaL9q5SmFUYzp5tdAQg5748YJpLgqr7TtQH7Qu/237DDZnmmA5VeIM2GTPXYdnF1
+	 RULyucltPWYaQoLaPhHHjwWR8OCFncttIhZ8rppRPU6ZHqAmKYWM2LSszu9oJ/Y5A3
+	 PlM+aMn+L7yVQ==
+Date: Tue, 19 Aug 2025 10:21:42 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Aliaksandr Smirnou <support@pinefeat.co.uk>, mchehab@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: Pinefeat cef168 lens control board
+Message-ID: <20250819-lilac-harrier-of-saturation-323586@kuoka>
+References: <20250817130549.7766-1-support@pinefeat.co.uk>
+ <20250817130549.7766-2-support@pinefeat.co.uk>
+ <20250818-stark-unsocial-96d32a311cab@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/13] spi: spi-fsl-lpspi: Set correct chip-select
- polarity bit
-To: Frank Li <Frank.li@nxp.com>
-Cc: Mark Brown <broonie@kernel.org>, Clark Wang <xiaoning.wang@nxp.com>,
- Fugang Duan <B38611@freescale.com>, Gao Pan <pandy.gao@nxp.com>,
- Fugang Duan <fugang.duan@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Larisa Grigore <larisa.grigore@oss.nxp.com>,
- Larisa Grigore <larisa.grigore@nxp.com>,
- Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
- Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
- linux-spi@vger.kernel.org, imx@lists.linux.dev,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
- <20250814-james-nxp-lpspi-v1-2-9586d7815d14@linaro.org>
- <aJ4TkKdkIPiJhhF4@lizhi-Precision-Tower-5810>
- <90d40899-c9b8-4628-a0b5-06ee0aa497be@linaro.org>
- <aKNEfJrD+pp8+0dT@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <aKNEfJrD+pp8+0dT@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250818-stark-unsocial-96d32a311cab@spud>
 
-
-
-On 18/08/2025 4:19 pm, Frank Li wrote:
-> On Mon, Aug 18, 2025 at 02:05:16PM +0100, James Clark wrote:
->>
->>
->> On 14/08/2025 5:49 pm, Frank Li wrote:
->>> On Thu, Aug 14, 2025 at 05:06:42PM +0100, James Clark wrote:
->>>> From: Larisa Grigore <larisa.grigore@nxp.com>
->>>>
->>>> The driver currently supports multiple chip-selects, but only sets the
->>>> polarity for the first one (CS 0). Fix it by setting the PCSPOL bit for
->>>> the desired chip-select.
->>>>
->>>> Fixes: 5314987de5e5 ("spi: imx: add lpspi bus driver")
->>>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
->>>> Signed-off-by: James Clark <james.clark@linaro.org>
->>>> ---
->>>>    drivers/spi/spi-fsl-lpspi.c | 6 ++++--
->>>>    1 file changed, 4 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/spi/spi-fsl-lpspi.c b/drivers/spi/spi-fsl-lpspi.c
->>>> index d44a23f7d6c1..c65eb6d31ee7 100644
->>>> --- a/drivers/spi/spi-fsl-lpspi.c
->>>> +++ b/drivers/spi/spi-fsl-lpspi.c
->>>> @@ -70,7 +70,7 @@
->>>>    #define DER_TDDE	BIT(0)
->>>>    #define CFGR1_PCSCFG	BIT(27)
->>>>    #define CFGR1_PINCFG	(BIT(24)|BIT(25))
->>>> -#define CFGR1_PCSPOL	BIT(8)
->>>> +#define CFGR1_PCSPOL_MASK	GENMASK(11, 8)
->>>>    #define CFGR1_NOSTALL	BIT(3)
->>>>    #define CFGR1_HOST	BIT(0)
->>>>    #define FSR_TXCOUNT	(0xFF)
->>>> @@ -425,7 +425,9 @@ static int fsl_lpspi_config(struct fsl_lpspi_data *fsl_lpspi)
->>>>    	else
->>>>    		temp = CFGR1_PINCFG;
->>>>    	if (fsl_lpspi->config.mode & SPI_CS_HIGH)
->>>> -		temp |= CFGR1_PCSPOL;
->>>> +		temp |= FIELD_PREP(CFGR1_PCSPOL_MASK,
->>>> +				   BIT(fsl_lpspi->config.chip_select));
->>>> +
->>>
->>> Feel like FILED_PREP(..., BIT()) is stranged.
->>>
->>> I suggest #define CFGR1_PCSPOL(x) BIT((x) + 8)
->>>
->>> Frank
->>
->> It's using an existing macro that everyone knows though and I found 65
->> instances of exactly this. It can be read as "set bit X and put it into the
->> PCSPOL field without any further investigation.
+On Mon, Aug 18, 2025 at 06:36:50PM +0100, Conor Dooley wrote:
+> On Sun, Aug 17, 2025 at 02:05:48PM +0100, Aliaksandr Smirnou wrote:
+> > Add the Device Tree schema and examples for the Pinefeat cef168 lens
+> > control board. This board interfaces Canon EF & EF-S lenses with
+> > non-Canon camera bodies, enabling electronic control of focus and
+> > aperture via V4L2.
+> > 
 > 
-> Where have such pattern in kernel?
+> > Power supply is derived from fixed supplies via connector or GPIO
+> > header. Therefore, the driver does not manage any regulator, so
+> > representing any supply in the binding is redundant.
 > 
-> Frank
-> 
+> Wut? This doesn't make sense, you have supplies so they should be
+> documented. The fact that they're shared with a bunch of other things on
+> the SBC you're aiming the product at doesn't matter. What if someone
 
-Grep "FIELD_PREP\(.*,\n?.*BIT\("
+There is also some explanation at v2 discussion. I asked for that
+because there is no known design (neither RPi or other boards having
+compatible hat/connectors) which would have these supplies controllable.
+Adding them now would mean you should make them also required (because
+in fact they are), but since these are non-controllable there would be
+just regulator-fixed with voltage and that's it. It's just bloat.
 
-65 results, e.g:
+> doesn't use this sensor with an RPi and there is a dedicated regulator?
 
-   return FIELD_PREP(RTL8366RB_LED_0_X_CTRL_MASK, BIT(port));
+Unlikely but if ever such hardware appears, we can always add
+regulators.
 
-James
-
->
->> If we make a new macro, first the reader will have to jump to it, then it
->> still doesn't immediately explain what the "+ 8" part is. Using FIELD_PREP()
->> also has the potential to use autogenerated field masks from a machine
->> readable version of the reference manual. You can't statically check your
->> macro to see if + 8 is correct or not, and it also doesn't catch overflow
->> errors like FIELD_PREP() does.
->>
->> There might be an argument to add a new global macro like FIELD_BIT(mask,
->> bit). But it's not very flexible (can't set multiple bits) and you can
->> already accomplish the same thing by adding BIT() to the existing one.
->>
->> Thanks
->> James
->>
->>>
->>>>    	writel(temp, fsl_lpspi->base + IMX7ULP_CFGR1);
->>>>
->>>>    	temp = readl(fsl_lpspi->base + IMX7ULP_CR);
->>>>
->>>> --
->>>> 2.34.1
->>>>
->>
+Best regards,
+Krzysztof
 
 
