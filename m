@@ -1,200 +1,240 @@
-Return-Path: <devicetree+bounces-206548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3664B2C9F8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 18:48:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF884B2C9FC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 18:53:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57449521017
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 16:46:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 320601BC7620
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 16:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092CC28541A;
-	Tue, 19 Aug 2025 16:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF26A2BE7BE;
+	Tue, 19 Aug 2025 16:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eyCEA3rR"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hwJK7XQS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011026.outbound.protection.outlook.com [40.107.130.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67944283C87;
-	Tue, 19 Aug 2025 16:46:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755622005; cv=none; b=LLAlkNwO4K57bEhBKaqS3TqogPC4mHE99le/XdR1NlsN+gJazP7nwMRAGQzexHpblrWqdmhJVrBQSCBiiAA5kpy74FD0/k4wcZm+lXt1QS9106I1Gyc3bz+IlbEZ2gVdvm4s95A6nAIRJiYbdxx5ZA8hRNzDqOBhsFAlyTubIm4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755622005; c=relaxed/simple;
-	bh=gJlCbtML3/hYLPe1GeD4TuTAglGALBUIYnsjaTlV7b4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gMzt8ukFTna0pb+uTj5NYofBXHymQkJDdhqlB7mg4O9MrQcKnD+rajQdSJ1/PoP5u0arBm7/ET0upqFaNnVpy3jgun5eCDgYTlOAnPXPNsnK0jLw1/7ngqW8j4CLNKV9iMmrhK96X2tAf6ag2TBbul8X3UtWLE9x0oElmfouhDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eyCEA3rR; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755622004; x=1787158004;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gJlCbtML3/hYLPe1GeD4TuTAglGALBUIYnsjaTlV7b4=;
-  b=eyCEA3rROmmN2FsjLM69oXtYtuEa7rmGSieeFwpNawu1bCjWyE8bOqoT
-   ggEyDrLsqm5jt9HibkXFccAgeggype/5wusCgQCQnxcKHLf2SlkROgXC6
-   uf4fJiHaH/7doYL6PZclK8I8sfyqoYa9Xq30ze1AkIbEgtGkZ+zvkbGkd
-   zX07Al66wNDdm6P1L67WrMzZijVx8O65qT68voJkI4ksQsApBd6M/ScT+
-   IJbAvrhVEHjseFC3AmMCtzxklOOtcUgllo8zDZ1AE4sXEtOcSFUyzBCh6
-   qt6kuNkuCOzmx7otflbqLq/ofTpgmow0EI8Y8SN/991H5ATfAtnnNl/Ul
-   g==;
-X-CSE-ConnectionGUID: zBNFfusJT8KG3/muG3iBUQ==
-X-CSE-MsgGUID: GhhwPI3cSXqyI3gnH+qCqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="61706165"
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
-   d="scan'208";a="61706165"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Aug 2025 09:46:43 -0700
-X-CSE-ConnectionGUID: R+JSMxuVTImX1WWpIWSi/A==
-X-CSE-MsgGUID: hNi8ogtaSYuLdJCpLMDC7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
-   d="scan'208";a="205044336"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.244.222])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Aug 2025 09:46:37 -0700
-Date: Tue, 19 Aug 2025 18:46:29 +0200
-From: Mehdi Djait <mehdi.djait@linux.intel.com>
-To: michael.riesch@collabora.com
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Gerald Loacker <gerald.loacker@wolfvision.net>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Markus Elfring <Markus.Elfring@web.de>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Kever Yang <kever.yang@rock-chips.com>, 
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Collabora Kernel Team <kernel@collabora.com>, Paul Kocialkowski <paulk@sys-base.io>, 
-	Alexander Shiyan <eagle.alexander923@gmail.com>, Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v10 08/13] media: rockchip: rkcif: add support for mipi
- csi-2 capture
-Message-ID: <rpaa2jspgmw3do5y367kq4pvvtpboeu7gjd4chmh6pgztmj6ar@ckh7jxvfuhlg>
-References: <20240220-rk3568-vicap-v10-0-62d8a7b209b4@collabora.com>
- <20240220-rk3568-vicap-v10-8-62d8a7b209b4@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0E21798F;
+	Tue, 19 Aug 2025 16:53:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.26
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755622420; cv=fail; b=Cy/0irOub+Tm7oFVJxEZ/xTRZiX41bBQM9Qb3aXED1qWXIWRSRCngREgiabsZNvEhKnNx8nomTgtZ22b+KKtjRWc/PClE9G+AbCWuTSFuLo97whxi2P2QAtxk/SrqzNUcG0nETsaAa7EsrDJO371vuyrKbxQxcr18lG2YLe0iZE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755622420; c=relaxed/simple;
+	bh=Mc7Hw9H2c3cb5wFmlTjh9Xq4xo0brThRUaLtgxl8T+Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=gSq7BZHj3dyQHRHnZPMXPu97MU4O8qND3V0OuzqgGBtVCIcK8PADXwJAUyfMB2FPGRfYpx60SFp9tJjLs6GKWwzLSWTmuPyLHJsW67hZGMh/3EuwAzsXaaHrfgmoYYBcf/XG8Pqqp3ub7HblCicbAswpec0pPs3HWBGQRwABWyo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hwJK7XQS; arc=fail smtp.client-ip=40.107.130.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Zf3Wq5L/75qM1G7CncM0t9YKQw3KM73GPG5CH6dHov9NZA/s0RzRkfHsPhUs3/JZfWvaf5i95e3UeA2KLCqCK1fa2WA01DAsTtSfLKdAh1YsC0pnvEnZf963xkNh89XgzYwBisYoznfocJsJTQIE/dMGww/VxpL9XlBUAPbJzBSOX9CEJFKyrgulf3hZdSUBwZNuNqwTPqvnUop9LYva/4pnJ8Amx4jIoHex1M7HSd2GqKK6pBtRPATPXBrYefgkQBNOXAvbvEIa9/HsZrXF9BARGMBAyiUMhUi7yh66i0i4mFi8/g5Ku7eYDK0ojFaKrCtDq95hcJntl/XP8reT4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NOJtteO6D027XaqF2vc22X+2wSuzL2HR0jWjm+zrCRQ=;
+ b=s9w+hbIrCwVlUFwnofje+d7gdYNjd9db3D72w4PRsvlLI9of9ontBt6a6kq64ciF7P5WfMS//HHyuHJ4q2AY27MeTH+XikBPOy7XEIp5fGAmh8OkDoY2ZJ/+gqQi1fIrv/eXZB3408OS/v4VIue7Xr2lhATDip9RiO+1ABVrNbejeTkax4+9Vy3mHfoRWcVUFbyNVNHmP/xV/aM4QOzjQV/F1sEYL0hzzxEVPoOM7sKs6w5y65xNQ47e71acIlbgzFFzWB/4WZ3VyxstTzGNKHzWnAXcymZjNOTvmWVluwsAO884JG7ok3fgbRVo/hDveR/aiII4vlPvwIUiMH4GMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NOJtteO6D027XaqF2vc22X+2wSuzL2HR0jWjm+zrCRQ=;
+ b=hwJK7XQS7t/dBzt6Ny7DtIXk7RANStbY/h0etDX8KMPyu1sJJd0qtbbi8r62B3aOgpfXkfwUociZ0dAsRx1rvsoFtNnZ55HbhG6DEdJOhM5IcaP5EjO+EgR3wTbZqstlgapn+d2SAQzlVP7uH+u0wPeCesbCjCloyQRozlTpuwcbpoKr4E4e+CDi20z3mm3N+hNA92VGt0cfHqW+w/UUw8OgGX3NHsA0TMYqv/Ss7r7t1FUPyF0CiIBsSBwgDLeZiyJfJlOP2xdIsZZr6hIkzOZ/GKa4PDVg5w82GpumesCtxylKI4p2cSBr/Ldnpdcdwa6Az+BIbegQSydvdSXAmg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.12; Tue, 19 Aug
+ 2025 16:53:32 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.9052.011; Tue, 19 Aug 2025
+ 16:53:32 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linuxppc-dev@lists.ozlabs.org (open list:FREESCALE SOC DRIVERS),
+	linux-arm-kernel@lists.infradead.org (moderated list:FREESCALE SOC DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v3 1/1] dt-bindings: soc: add vf610 reboot syscon controller
+Date: Tue, 19 Aug 2025 12:53:16 -0400
+Message-Id: <20250819165317.3739366-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PH8P220CA0007.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:345::22) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240220-rk3568-vicap-v10-8-62d8a7b209b4@collabora.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBBPR04MB7930:EE_
+X-MS-Office365-Filtering-Correlation-Id: 42a276a2-ac0d-4ea8-dbf6-08dddf40ee05
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|19092799006|366016|52116014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?NgLJTNc6H6a+rjk7Crd66fmRZMiCxLS/tMnBFREu43tV4Vd5yBIX9tsaPQ//?=
+ =?us-ascii?Q?Ec05JDQA2aPPEXXjPi+b4JNhlVF8QqgHWmKFiYi6vaHGN8UjHDKAhzN6Pybr?=
+ =?us-ascii?Q?UXiZ9K7wb1GqGeASaqldjVcOYcpXvzkHyEgdUIv9kbp5sBCSQZB+ABCYI88Q?=
+ =?us-ascii?Q?HKYg3lgjit9bcFwLuYicl38iEPStGuPWzMozKx5obBaNiUMCu73EYwIaNYz7?=
+ =?us-ascii?Q?h3DfodYynxtEvskUcFcNcmbld5bCmjronKs5VOlTpoeedKNaZIu4s7j9qzOY?=
+ =?us-ascii?Q?til5YTdZaH0mtOrzJY5vp5zgUqEjl9N/7rmbj4xYngiRua/v/d+08LoNPHf+?=
+ =?us-ascii?Q?4d3oBEZO9Kuw7Iy2GpUzW+yE+CsY8TQHX+IQb24aSCumUd6IzvkLll+KxLS4?=
+ =?us-ascii?Q?6lACeuefqvjj1gUWI3mWdHJOsEE1euZNR89oRjurhr9592NE+Kz8WUQifYbG?=
+ =?us-ascii?Q?BAHvNBEtoqJnPAF8HXlIfXO5wG2+BskRXyWuEVEu6cnlSQ7SFE0ObyDWsRqT?=
+ =?us-ascii?Q?ZDWX6kyvgen+RTXxjJAhlqw2JOmPumz1L4RhLYFkqFkgDZXr9rV9yKbQHIaW?=
+ =?us-ascii?Q?D0C1hx/Z0cIMGp3XUBoiA6vkEcg5YRsAJe1avdQVt66hdy0nRz1o7nVslgR9?=
+ =?us-ascii?Q?NvYoS5iojJFc3kOSJ5meDy9SaLenFPMzKthgXoqOD/Bx/HZ/SK/3vl4NlW48?=
+ =?us-ascii?Q?493Pgqm8JGsxjg7aJ3DSQunwu3XJHnlNupkCLCQ1A1JjcE13eArjZAuOe9Mk?=
+ =?us-ascii?Q?+GVkndNXGNYo5Vi4HkmEC2rWzDBZ3yKoZkprWjMv9v5IZ+vW6mktiV8Ma/6k?=
+ =?us-ascii?Q?/ziSy167l7jTOA2FfRITJbez/8coNl1GxLQGtGoQIRfWDoc3wfcug+c1B6RU?=
+ =?us-ascii?Q?XsKukzPlHW3KWiEdIyDjAffB/cA29arvzxsGePmSX3FJNuBlraD31pNdtDMd?=
+ =?us-ascii?Q?IdgGBZrowEJ2Oe1xpcYZrb63zAfzdMVih2ODGnp/dQWsTVYnuYXbg468nGMK?=
+ =?us-ascii?Q?P3BK2u62o2UeeqLEENmREFnO9/VZ1jgZT/l0Scn0OtIGFRTRfL4zKrXgM+gD?=
+ =?us-ascii?Q?iwF8bE3fqMgU0HXxbMInJA2lavoWLjsna1eiP62/peqTRgglBNSWtGPRRHAi?=
+ =?us-ascii?Q?/EhnVcugsc305Wr6LfYoz+SPs7MaQf/aSszakYsKQFDJEUt89ktwwsYUox81?=
+ =?us-ascii?Q?HeNNFAueFku0MEnNxmP9Z+GNEmJcqCwNGQOIbUGLJRBts8XM98980ZN3Kp/2?=
+ =?us-ascii?Q?odNK/uWq+8/z5jpucbjeV5fIXi08MUhxYQZ9r++iw4cObrjh0wG1deKGPfxo?=
+ =?us-ascii?Q?BCsfHgQ12KGc4N+A/Aum6yRR2Ajdi8SrXiTToFL5QuUZSePka+74m+rcPVBC?=
+ =?us-ascii?Q?fmToCjyjYovUXPHAGXK1KtE8soc+o/I2Ajdyp6+gMB5aqBiZk+tc3qBVzekw?=
+ =?us-ascii?Q?vAJzXfhr+wnWV3r06v3Drp4famkS9D3t?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(366016)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?9Y7pFRr0zWoXeVB5oidZlXhSgRB/3ap82opJDfNc9HWM1m2x6xmTxx0Rg0eQ?=
+ =?us-ascii?Q?JMGqu5yiC0QJ4XElGhV0R8RJFJ99Kk7vOgV7n1uAeTezfB+wlE92nKMwxKaS?=
+ =?us-ascii?Q?UMqGGGD6RxreknQj6nS0B9jbcyu3pEmeivEmmQ5LwoNHoMgeulNOH/rEoQxL?=
+ =?us-ascii?Q?oiySz9vewuBpbtjN4KdX7JI2u93hfyrX9EVxnpsk4mbUSRSUQDj9CPiq/9i0?=
+ =?us-ascii?Q?UCEg7fUmrowNaS0wgfRSLj2hfV1EHBC+ssR/IpfpwMN2Wqz0v7owPHyZU5bw?=
+ =?us-ascii?Q?g+uEzGExhDB0lLPww6a9L47bEshqnNI+G8zIQy8BV0dNCa17EaY/K44vTLkJ?=
+ =?us-ascii?Q?V2RyUcEG8qc+3Hg5W8QpVzVj59NzYR9JNZLv/4AQxyZUqild+HBqJ+hjZNz/?=
+ =?us-ascii?Q?xbywrA/w+QbFdYjq1QYr73684tWcGth3lrCSo4Y6XQWVn1SX+PP+NzhtOsvR?=
+ =?us-ascii?Q?vzx60q0hHGGEIA5MQuM7NsdV4NpEKyULGmU8KP6ted6htfjf0hJAz1crBsEM?=
+ =?us-ascii?Q?s3zqlZQIG3jy9xDzUmDZiyntJgKx1FPkmA1/TP3kIp75TnqUS6ub5d0PbHD3?=
+ =?us-ascii?Q?CUe8+oXRrMprt3XIlh/hI5ftXV/kbuHydgtO5b15SjRBeiqUxsXi7sMWDbZ3?=
+ =?us-ascii?Q?4pcYdJG1dYQbYrgAGtYJ1IHMykwMYlBXyQPdz7PfOgmwwPNOL5rG/Yk8iicg?=
+ =?us-ascii?Q?olCd9ONkPuwg4+QwYC4g0V1i1u31ndssNqilqOFMpxOR5FaZRAZzlzCC1UPg?=
+ =?us-ascii?Q?5HmVhfuz4xGb81FxzVIbJSzSrRzJ6K3lmRODROOgugiu2XKSz91f0fsJC/KR?=
+ =?us-ascii?Q?Jvy0xOis5IDQQnAn3sJ/fMPJmdgDGn/RH4owQQ5v6WPYbOBB5fkk0o91eF4x?=
+ =?us-ascii?Q?cd0YK5bimzPKIRe+8M6/ohdXuhmyAgTQYOFZR6z2gIso3ccLySJAEDFSorjk?=
+ =?us-ascii?Q?n6BLogrx/wU8QvC54sfrlLUtYQAzKIgqwpSopNceULHeE5NafX1bENCqs2hn?=
+ =?us-ascii?Q?05gZFVlM97akfX6eMZs+27yFHqxzmQ2wu68Rn4W8EkAHDHDPOqVij+WfUn59?=
+ =?us-ascii?Q?qvZhA3TlFdNG0vj4rLKeNG0QMxEByfVskjYM3ZS6mPXHEgTT1TJ8vTtENwiv?=
+ =?us-ascii?Q?8QE3rMVfZA2PwQxMgu6r1qOLmokllySQHbHxfDhGsHryArTb3ZQAJGihMWGS?=
+ =?us-ascii?Q?nCOrhjO036psBTOHX0IkDrDGPNaZST5U4h+9+jhYCBNZEuuvi9jv3BWlZe8n?=
+ =?us-ascii?Q?UkuTYtLnL2ljoipcV2/euc6uJx5BSVBOn8sNvyxd++awWTh13uDRfARbtsDL?=
+ =?us-ascii?Q?Bgd5XNcCsUvNNTkm9czAkE6L7K3mQ/0afHoOqXtV0MiuVl1//Je7Tdx8Viq/?=
+ =?us-ascii?Q?FIkpbBpqFbPGl97aBUyKZHOr/o6QrsFTQpO2o6W/lbGu2Lse0DUlopUdNwMB?=
+ =?us-ascii?Q?OSGGKiZZgnp7SM/IiNzI+tPi09dCVjEiHmlNwzgwNh2btCoGs5UjQ8V5sLbR?=
+ =?us-ascii?Q?6bTtR7zidybGZ0/vhTbqQIbBRKLg7xSN7egruEZu4Pm2JQrgY4mzFJtygdZV?=
+ =?us-ascii?Q?s9B+ciJPlyN0Oza88ikhRYjgJvUshjCRaXnBRezr?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42a276a2-ac0d-4ea8-dbf6-08dddf40ee05
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2025 16:53:32.2507
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DzeF9n3VXPiImapHNMxzHHoESmXf5CDMZpn/1EXJ2sPIMjxyiScDKVvMZaJprJsDI0qulGs1hPFXFe/tfAW4KA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7930
 
-Hi Michael,
+Add vf610 reboot controller, which used to reboot whole system. Fix below
+CHECK_DTB warnings:
 
-I am seeing IOMMU page faults: See below.
+arch/arm/boot/dts/nxp/vf/vf610-bk4.dtb: /soc/bus@40000000/src@4006e000:
+    failed to match any schema with compatible: ['fsl,vf610-src', 'syscon']
 
-On Tue, Aug 19, 2025 at 01:26:00AM +0200, Michael Riesch via B4 Relay wrote:
-> From: Michael Riesch <michael.riesch@collabora.com>
-> 
-> The RK3568 Video Capture (VICAP) unit features a MIPI CSI-2 capture
-> interface that can receive video data and write it into system memory
-> using the ping-pong scheme. Add support for it.
-> 
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+IC reference manual calls it as system reset controller(SRC), but it is not
+module as reset controller, which used to reset individual device. SRC
+works as reboot controller, which reboots whole system. It provides a
+syscon interface to syscon-reboot.
 
-[..]
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+change in v3
+- add missed 's' at description
+- remove duplicate / at path
 
->  irqreturn_t rkcif_mipi_isr(int irq, void *ctx)
->  {
-> +	struct device *dev = ctx;
-> +	struct rkcif_device *rkcif = dev_get_drvdata(dev);
->  	irqreturn_t ret = IRQ_NONE;
-> +	u32 intstat;
-> +
-> +	for (unsigned int i = 0; i < rkcif->match_data->mipi->mipi_num; i++) {
-> +		enum rkcif_interface_index index = RKCIF_MIPI_BASE + i;
-> +		struct rkcif_interface *interface = &rkcif->interfaces[index];
-> +
-> +		intstat = rkcif_mipi_read(interface, RKCIF_MIPI_INTSTAT);
-> +		rkcif_mipi_write(interface, RKCIF_MIPI_INTSTAT, intstat);
-> +
-> +		for (unsigned int j = 0; j < interface->streams_num; j++) {
-> +			struct rkcif_stream *stream = &interface->streams[j];
+Change in v2
+- change description to avoid confuse about reset controller.
+- it is legacy device, more than 10 year. So try keep existed dts as it.
+---
+ .../bindings/soc/fsl/fsl,vf610-src.yaml       | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml
 
-In the TRM you can see in the MIPI_INTSTAT interrupts to detect
-overflows: why not activate them ?
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml
+new file mode 100644
+index 0000000000000..6fb93e8be9292
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/fsl/fsl,vf610-src.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale vf610 System Reset Controller (SRC)
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++description:
++  IC reference manual calls it as SRC, but it is not module as reset
++  controller, which used to reset individual device. SRC works as reboot
++  controller, which reboots whole system. It provides a syscon interface to
++  syscon-reboot.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - fsl,vf610-src
++      - const: syscon
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    syscon@4006e000 {
++        compatible = "fsl,vf610-src", "syscon";
++        reg = <0x4006e000 0x1000>;
++        interrupts = <96 IRQ_TYPE_LEVEL_HIGH>;
++    };
++
+-- 
+2.34.1
 
-something like this:
-
-#define RKCIF_MIPI_INT_Y_OVERFLOW(id)          BIT(16)
-#define RKCIF_MIPI_INT_UV_OVERFLOW(id)         BIT(17)
-#define RKCIF_MIPI_INT_FIFO_OVERFLOW(id)       BIT(18)
-#define RKCIF_MIPI_INT_CSI2RX_FIFO_OVERFLOW(id)        BIT(20)
-
-and then OR them with the int_mask in rkcif_mipi_start_streaming()
-
-and then you can log the err if something happened ?
-
-> +
-> +			if (intstat & RKCIF_MIPI_INT_FRAME0_END(stream->id) ||
-> +			    intstat & RKCIF_MIPI_INT_FRAME1_END(stream->id)) {
-> +				ret = IRQ_HANDLED;
-> +
-> +				if (stream->stopping) {
-> +					rkcif_mipi_stop_streaming(stream);
-> +					wake_up(&stream->wq_stopped);
-> +					continue;
-> +				}
-> +
-> +				rkcif_stream_pingpong(stream);
-> +			}
-> +		}
-> +	}
->  
->  	return ret;
->  }
-
-Now to the IOMMU page faults:
-
-Camera Sensor: IMX219
-Frame Size: 1920x1080
-Format: SRGGB10P
-
-Packed SRGGB10
---> Every four consecutive samples are packed into 5 bytes
---> Stride = 2400 bytes (1920 * 5/4)
-
-So the imagesize = 1080 * 2400 = 2 592 000
-
-in __vb2_buf_mem_alloc() the size of the buf will be PAGE_ALIGNED in:
-PAGE_ALIGN(vb->planes[plane].length);
-
-So we allocate a buffer with the size: 2 592 768 -> hex = 0x297000
-
-In rkcif_mipi_queue_buffer():
-We will queue a total of two buffers to the HW (2 because of pingpong)
-The first buffer will have the address: 0x00000000ffc00000
-
-We start to capture and then this happens:
-
-rk_iommu fdfe0800.iommu: Page fault at 0x00000000ffe79000 of type write
-rk_iommu fdfe0800.iommu: iova = 0x00000000ffe79000: dte_index: 0x3ff pte_index: 0x279 page_offset: 0x0
-rk_iommu fdfe0800.iommu: mmu_dte_addr: 0x0000000012cc8000 dte@0x0000000012cc8ffc: 0x11a0d001 valid: 1 pte@0x0000000011a0d9e4: 0x31b79006 valid: 0 page@0x0000000000000000 flags: 0x0
-
-With:
-0xffe79000 = 0xffc00000 (buffer address) + 0x297000 (buffersize)
-
---> So the VICAP is overflowing the buffer even though everything was
-correctly configured ?! (If I understood everything correctly ofc.)
-
-I also see the same problem with the SRGGB8 format. It also happens in
-the downstream Radxa/Rockchip Kernel.
-
-Do you see the same problem ?
-
---
-Kind Regards
-Mehdi Djait
 
