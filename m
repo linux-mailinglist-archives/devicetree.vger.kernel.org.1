@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-206233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02698B2BC90
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:05:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F10D5B2BC98
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:09:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74A947B6649
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:04:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D4641884F32
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:09:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A4B29B777;
-	Tue, 19 Aug 2025 09:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8671E31814C;
+	Tue, 19 Aug 2025 09:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oGmj8yx8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jYSK7RBl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2920223E34C;
-	Tue, 19 Aug 2025 09:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566D631770E;
+	Tue, 19 Aug 2025 09:08:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755594338; cv=none; b=d2ssh4ztd6oLTL4e+BVcB7vXrN8J0RP3fdcwGlJ83SO+eNXlN9JbRRMLzfVixWPuqSVwXx2yiBLvhT1UQBt72mmjTDO0IsEJ9KY3H8TAsJP9g+ZWnKKMR6D69C8QpiTeqi/a+K7ipmpZADF1srn6UZD+UWA/l/7yo5VDVQhf2Lg=
+	t=1755594540; cv=none; b=X31EWVfIREzNYfsv3xwtqMn7YCrXxOxqj1/qpmC1kIOpdPqvEAB7v0PfJJhub8TA5HJr64eV0erEAN2b330dkzr0sSCUWhlqjBnbWKKI3hMVFufodVGSCXWIqKHmQ1kmKzvvY7HwxaoXaeOMmButsgFHuBkp1bH9ZwWD3I8Sdfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755594338; c=relaxed/simple;
-	bh=pP3eZifOX9Dy1sY+bGhRqy5fEcOl+MhXTNZZ7gowFqA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=u5XyCrr9Grhs5cuj+oNhDsXkGYyrFVPOopo5T+0GdZ1oIVJfRe7qyS8nYd/EH1GZU5cbt7C1pliRBxZmQQA0by5aZFxYqj8smJAVecYCYmjk9NYLOyczadCE7ZCSpEjlTkzpviKEiEdYpR3EQWAdZYB68ZyVweaigNLPGFGuM7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oGmj8yx8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D362C4CEF1;
-	Tue, 19 Aug 2025 09:05:33 +0000 (UTC)
+	s=arc-20240116; t=1755594540; c=relaxed/simple;
+	bh=EMY00AKeSG4lPzs2Dv2TDnAL5HAJ7xT1yiGOfTbdrN4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U94Qd/MSvGitlA+7Nd12lvJXmra6tIMgp90D3LgmK4j+f1sFP+LKiJAqfwMQNa+4Ma5WjFoD5N206AShDftrHiYBsLoIitXC3eJFx0cMJC65VwcqCgRL6mgRYY7oKu3e2JT+3JqHSQjJXDOmz2+OQIGXp9TrUUQd0p6umB3ijRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jYSK7RBl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B16AC4CEF1;
+	Tue, 19 Aug 2025 09:08:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755594337;
-	bh=pP3eZifOX9Dy1sY+bGhRqy5fEcOl+MhXTNZZ7gowFqA=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=oGmj8yx8M/ZeZ1HSRSn4x6n5C+8tqlU5HrC+96h8MrbiGJxKrsCOdInNik43Gq/U0
-	 Xm16u0cDjQGpf0y8xk11AavN/XtbpZ4E/XcGCO/XkzM36yBA6CHVl6fq/1SSKL2dt2
-	 y9IrRRVBwij9bjLA3FIsZV+Wsgv46k7tjo+OobYoC0DhVL785MynE749ea0PEtrKuo
-	 joALcJzTGGQlXdx8KNcQ5tmizzrXPKbokXrKMqTbud+uQcBpSVWVVokr5z3wFNa8mj
-	 35x6GGYy7yWjE+3jLbapiRTMgN5a8B6JGtRMmuR0hWpP039q6Mv/bUEDyplIzU+cgS
-	 IFolBObuffIrQ==
-Message-ID: <b62ed000-e21f-4b19-8d26-c431dc3ea42b@kernel.org>
-Date: Tue, 19 Aug 2025 11:05:31 +0200
+	s=k20201202; t=1755594539;
+	bh=EMY00AKeSG4lPzs2Dv2TDnAL5HAJ7xT1yiGOfTbdrN4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jYSK7RBlGBX1xUYwptrM+9AOwN3G7zz4NrtuaGbrc5oGCVGc94qDFPVsjr9Z82OsD
+	 u7ysRBCaXab42nc8wU8xhKrd8/T97/Pmcts694PJw/vIIBQxsbu4Socu8A9GJ2iYCS
+	 UwbzsNU1BUzfGpq14Fru6LI3KDffxrbrsFZNCwUF/YxXmim6vfI/KeMFGwUQMAwwwu
+	 FWGZFmaltS2wYJeFcw38Cz1Sbd748gBkq99I4attnrz/9/v7mJsR6MMZ1Cjxwtyqv/
+	 wBkLtLHi7wAz6zhiE56JHrqcOARmsWOaPlv2hSITKVLe8xV+Wby9LnCcYNIiHJY4Va
+	 fjpqbzdc/zH7Q==
+Message-ID: <7c072b63-f4ff-4d7f-b71e-01f239f6b465@kernel.org>
+Date: Tue, 19 Aug 2025 11:08:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/14] dt-bindings: media: mediatek: vcodec: add
- decoder dt-bindings for mt8196
+Subject: Re: [PATCH v4 3/6] arm64: dts: qcom: qcs615: add ethernet node
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>, Vinod Koul <vkoul@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>
+Cc: netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, stable+noautosel@kernel.org,
+ Yijie Yang <quic_yijiyang@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250819-qcs615_eth-v4-0-5050ed3402cb@oss.qualcomm.com>
+ <20250819-qcs615_eth-v4-3-5050ed3402cb@oss.qualcomm.com>
+ <c4cbd50e-82e3-410b-bec6-72b9db1bafca@kernel.org>
+ <157c048d-0efd-458c-8a3f-dfc30d07edf8@oss.qualcomm.com>
+ <0b53dc0b-a96f-49e1-a81e-3748fa908144@kernel.org>
+ <1394aa43-3edc-4ed5-9662-43d98bf8d85f@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-Cc: =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
- <nfraprado@collabora.com>, Sebastian Fricke
- <sebastian.fricke@collabora.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Nathan Hebert <nhebert@chromium.org>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
- Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250815085232.30240-1-yunfei.dong@mediatek.com>
- <20250815085232.30240-2-yunfei.dong@mediatek.com>
- <20250819-expert-airborne-marten-caea84@kuoka>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -116,18 +118,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250819-expert-airborne-marten-caea84@kuoka>
+In-Reply-To: <1394aa43-3edc-4ed5-9662-43d98bf8d85f@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 19/08/2025 11:01, Krzysztof Kozlowski wrote:
-> On Fri, Aug 15, 2025 at 04:52:14PM +0800, Yunfei Dong wrote:
->> Add decoder document in dt-bindings yaml file for mt8196 platform.
+On 19/08/2025 11:04, Yijie Yang wrote:
 > 
-> Nothing improved.
-Although maybe I am mixing patchsets, but all other comments apply here
-as well. Anyway, you did not bother to cc maintainers, so I will
-actually ignore patchset as requested.
+> 
+> On 2025-08-19 15:15, Krzysztof Kozlowski wrote:
+>> On 19/08/2025 08:51, Yijie Yang wrote:
+>>>
+>>>
+>>> On 2025-08-19 14:44, Krzysztof Kozlowski wrote:
+>>>> On 19/08/2025 08:35, YijieYang wrote:
+>>>>> From: Yijie Yang <quic_yijiyang@quicinc.com>
+>>>>>
+>>>>> Add an ethernet controller node for QCS615 SoC to enable ethernet
+>>>>> functionality.
+>>>>>
+>>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>>>> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+>>>>> ---
+>>>>
+>>>>
+>>>> Why do you mix up DTS and net-next patches? This only makes difficult to
+>>>> apply it, for no benefits.
+>>>
+>>> The DTS changes and driver code modifications work together to achieve a
+>>> single purpose, so I included them in one patch series. Should I
+>>> consider splitting them into two separate series?
+>> Of course yes. You are just making difficult to apply this. Patches are
+>> completely independent and even your internal guideline asks to NOT
+>> combine independent patches.
+> 
+> The challenge with splitting this series lies in the fact that it 
+> attempts to reverse the incorrect semantics of phy-mode in both the 
+> driver code and the device tree. Selecting only part of the series would 
+> break Ethernet functionality on both boards.
+
+And where did you explain that? Anyway, you did not achieve your goal,
+because you broke the boards still.
+
+Your patchset is not bisectable and does not follow standard submission
+guidelines. DTS is always independent, please read carefully the docs.
+
+> 
+> As you can see, I’ve CC’d noautosel to prevent this issue. Given the 
+> circumstances, I’m wondering if it would be acceptable to leave the 
+> series as-is?
+
+NAK. Sneaking DTS into net-next is not acceptable.
+
 
 Best regards,
 Krzysztof
