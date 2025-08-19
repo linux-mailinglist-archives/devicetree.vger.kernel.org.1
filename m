@@ -1,80 +1,192 @@
-Return-Path: <devicetree+bounces-206231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB15B2BC73
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:03:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8660B2BC8C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:05:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AA0E3ACB9F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:02:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 087A668195A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750A9319863;
-	Tue, 19 Aug 2025 09:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C868931770E;
+	Tue, 19 Aug 2025 09:04:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ENHtZMCT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nb05A76Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4FE14EC73;
-	Tue, 19 Aug 2025 09:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86EB42848B2
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:04:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755594108; cv=none; b=DRA0QeD71e1pPV/DNefXI2GokvoxuERPxIsdSE33pXNR5rQZf9UldBxc0wzasOUWu3Dxpt2Igv/Rd/iJkMJ+SKLjRzRs+keC+omjH9IP5K5D/1SXGim51MuwEeKHpkDS3gz9GToxcUNAjAyV1bnzRXB2K/kv79578bUS+PHIlT4=
+	t=1755594260; cv=none; b=m36W8g8uJX3ksQ78RfILdlN4pCEeB2mZQXMPPe4Kuj7QUSUDp+0Qyh9JO02FO2Rll0xOpaLkoFzVYjrf8uJkZMH4L9WkQRW5iHQ0Mxg9OWEH45mWIvlWgWPn5dWSPaQVtwpy1Mx0mQaFCWPphaib7hkERu3K/ZYX2OGPVQ1Izzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755594108; c=relaxed/simple;
-	bh=ldliHNwmjVthPS25DXxnPDhZKu356HejM/lq5pb8N0M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IsCr/5YDDSU3VOM986jaE9+M9uJCYGUUYUP+SEDcgWLNFhaF73ZA7TexJlmRglNT+a1JI7No3wwY3D+I67wouPtKdvkIzKA9xGqBV8dY3h1wUHNqMXTUqe9f45sAWEM6BhQqQ4/s2Mw8BlrS1AGEjP19YgDIqbWgcCPXxG48Qc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ENHtZMCT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 445DEC4CEF1;
-	Tue, 19 Aug 2025 09:01:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755594106;
-	bh=ldliHNwmjVthPS25DXxnPDhZKu356HejM/lq5pb8N0M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ENHtZMCTGMtmC15HCNDd4P/K7Q1lX2HOzIXe4s3bSPcEF+QRVPp66UnAGTkZz1Z5e
-	 wkVUDPJALFDtsxu6FJfxdD1SbPV6KUVfvfQreL8r+g+ulHhodtnh9SynJFwnje0v4A
-	 eZfWOsPfNF04styNt/oqZdfkxWqQ+4CfZor6NILN1fmNmLbyGbDTAEKb8zGRS/hGts
-	 jcUoIydxaWDCpYxS5qolCgNtoU9JSMMErTVe5LFZsZPyCZ8tdMxE/oQRMl/B8YSIUO
-	 /02clzYtUp0BQhZNexJbHDiQrI+QlEn41MawZxCgG605Ocp2jGOcMnMKnejs6OoE/7
-	 J7a0K9q3+AQrA==
-Date: Tue, 19 Aug 2025 11:01:44 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	Nathan Hebert <nhebert@chromium.org>, Daniel Almeida <daniel.almeida@collabora.com>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>, 
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2 01/14] dt-bindings: media: mediatek: vcodec: add
- decoder dt-bindings for mt8196
-Message-ID: <20250819-expert-airborne-marten-caea84@kuoka>
-References: <20250815085232.30240-1-yunfei.dong@mediatek.com>
- <20250815085232.30240-2-yunfei.dong@mediatek.com>
+	s=arc-20240116; t=1755594260; c=relaxed/simple;
+	bh=Ur/EDwulXmk+KxS1Iyo/HiGIsV1LuoVRseDCDX7NNHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=H/nfKaY6OJ1iCkfW+PY/zxGYFSbH6bUxtuqxDUzev8ySw8hGE95LPM0xkXn3ARU4UCUZ9CnZy9I70/RFtsNaBYhxKNtHC8d6tLnyMMUA8yf0x8mrCRWZogixBKkSptuz/vW/jTUEYpXbTDZqmY02ljnnnUGjGYgyoIIXMOB0d44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nb05A76Y; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57J90XOm007219
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:04:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PtQwBBE7A/L6DYrB3suka029FN2KX9K7yxrcnIgCQII=; b=nb05A76YpPiOGSz2
+	vwKgyfBmE6HTLMxdi6KMSAwl+lCIrsM15BUf4wC5FcFazt++cmigwggE66ZVHZ+Z
+	LII/VhS37canuQuPj57BEoCVcQtDCQRHJZa1bDvjE7RmxNwQuI0qOdLDNEouVx1W
+	RXipSQsgCZ2tXrvtKmTPYVnzEQY10R31absN9NHWNQ4LNLFpHAHGlrwczdPAbeZK
+	8CvgKPFlbbnMT31my/tqNor12JVqpfefFg4bdNMJ7bIVA2gjNFoaNn6ovC/0KrYy
+	e3hZjWpl7xsh7UcxJcedHUcNRbJkRpLhqe2wYrcCxtTZakAiMefhOTSv3tC8E9Lk
+	zG1gJw==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48jj747x6y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:04:17 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2430c5d4d73so69192225ad.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 02:04:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755594257; x=1756199057;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PtQwBBE7A/L6DYrB3suka029FN2KX9K7yxrcnIgCQII=;
+        b=Bgo4QK4rIipQ0SCGuUE0LIig4cpvIhDWFJS0l1mBo9STr10wyko06uvEGuUhGjH314
+         cfXNt+2TRahgolLhLDMW4qvkKniQK2QDWccYb9BqNl5jlgW50fkclmm15XXX4QYv+zqX
+         ttOxfbZ10f1UoSO9BeVASmpuJjbS8aDgNUu2N6qJS1F0m1mh5Ula/p7wAejNkxHcprWI
+         CJXuEa1MHCZFjuvUoUd1JcqrTMEVMi/K+lV+ZebD6xkeqKW+7is5xkNHoe+VbzAK60yn
+         RSpIg8NOcPaPQj6ErFKMeyP3rkC1fVSkOeib46uIjBIKqaj7JpoeW6Z9hvFi7mYVf8cR
+         fWOw==
+X-Forwarded-Encrypted: i=1; AJvYcCVc6WBi8om3OeToCadCqpsR/b7psqh+bmclDNQWVCKqj6Q5GmWM5lKwEaS3O1PRETqtT35z+LqJ6PJW@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYdf6HpqH99MYhAdzeXLf2Sic6GevwwhFdnIDrEq6qBZRxu9Dd
+	s8UBDBEcSEswv2qBdrMqhFFJr8dzfFKVi7RfobvIKsblvZAwv5CFNIWHbqwNJIfpY9ztgpx/lNO
+	WKUTxRThOplrFl3Vd5qbMg/JhAmzouh9I/wb/Bfib/LkvZdcdvZXsLFYsxTaT5UYL
+X-Gm-Gg: ASbGncvtQ47E12BdC5K8mNLzllnzrlNeIMVIY81QFf1WMgN5zrfrQzMHr50pKgIN3ta
+	jbukLpyiuEEXcg0xwJBZ3xPDePi4HVXJPGmIR4P/yV0/7IAkZ5DGgJcsjHzv5RGuHll5u1reaM7
+	BmR2fKTJSQdJgf/MWB5fD2z44XkFpPcEicdDq4ShItzYod4+j0l9pbJn1JG4al079juNZZjtW0L
+	ZLhrSp6z5nGjR3NYprfvVynbYaJwVle9FcawcAmau2AKlWXt5sXPATowS0qvnVVAfmU8PBktAIR
+	bTm3BmOk6op7IrJsBsmR+uWwWTzpvFz2gRq5wDZu6hrZ+D8F0+UpOifYySYc75xjPRKBgfOwmKk
+	UD43ciboeBeaFMKYbTzfVhTxi2CVQNIdU
+X-Received: by 2002:a17:903:1205:b0:231:d0da:5e1f with SMTP id d9443c01a7336-245e0f2775amr16133835ad.21.1755594256726;
+        Tue, 19 Aug 2025 02:04:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFkh7QwrfpTpI4CY81hIJagXgTCB6D+xkbxXMTtgq4VmPlFbLxOxb5dFrnqC4gKaobuk82+qA==
+X-Received: by 2002:a17:903:1205:b0:231:d0da:5e1f with SMTP id d9443c01a7336-245e0f2775amr16133355ad.21.1755594256080;
+        Tue, 19 Aug 2025 02:04:16 -0700 (PDT)
+Received: from [10.133.33.88] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2446d50f8d0sm102888145ad.100.2025.08.19.02.04.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Aug 2025 02:04:15 -0700 (PDT)
+Message-ID: <1394aa43-3edc-4ed5-9662-43d98bf8d85f@oss.qualcomm.com>
+Date: Tue, 19 Aug 2025 17:04:07 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250815085232.30240-2-yunfei.dong@mediatek.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/6] arm64: dts: qcom: qcs615: add ethernet node
+To: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+ <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>
+Cc: netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, stable+noautosel@kernel.org,
+        Yijie Yang <quic_yijiyang@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250819-qcs615_eth-v4-0-5050ed3402cb@oss.qualcomm.com>
+ <20250819-qcs615_eth-v4-3-5050ed3402cb@oss.qualcomm.com>
+ <c4cbd50e-82e3-410b-bec6-72b9db1bafca@kernel.org>
+ <157c048d-0efd-458c-8a3f-dfc30d07edf8@oss.qualcomm.com>
+ <0b53dc0b-a96f-49e1-a81e-3748fa908144@kernel.org>
+Content-Language: en-US
+From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+In-Reply-To: <0b53dc0b-a96f-49e1-a81e-3748fa908144@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: TtWxDXzwO9DVdvtWQJpX8uu-WG_ZlDQW
+X-Proofpoint-ORIG-GUID: TtWxDXzwO9DVdvtWQJpX8uu-WG_ZlDQW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE2MDAzMyBTYWx0ZWRfXz7D8tts2/eAB
+ NXaz/Bz4nTGDRQXjMHdtJKVTB863OL5zYVM8G6KPOlInVrFk3A/idmP9DIiOXbbve1RwS1cQK0P
+ qTh8di2dNqItwjqxxbexuwdKiX590gGN3jqFbMrz7ahZCmIs1CJasdXjcWwK+FS7xSEpXzAZhtn
+ kr37nFFwqLRuNUdx+gH0GPyftZQ5jWsyemDTADkjRYAG6vEAlIJ8rklpE2nIZE2fFNMuwmDDJUl
+ M8dNal2109Gqd2oU3Hr86bMCYjJhvYpNPBdXpAvMsr8z5pkbfSHXf/bd7np+bUGwdtPYqxM5ZLp
+ ByQjLQtoxvDK81CVe3+N/tJeRRCjqjZwzCOeEQtaaWWnytkDKQLE+o5sWz7FRvPVqXnxT6Dx+QZ
+ rckrvNJc
+X-Authority-Analysis: v=2.4 cv=MJtgmNZl c=1 sm=1 tr=0 ts=68a43e11 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=WpKivvdH6quKUe0GCQ0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-19_01,2025-08-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 bulkscore=0 adultscore=0 suspectscore=0
+ phishscore=0 clxscore=1015 impostorscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508160033
 
-On Fri, Aug 15, 2025 at 04:52:14PM +0800, Yunfei Dong wrote:
-> Add decoder document in dt-bindings yaml file for mt8196 platform.
 
-Nothing improved.
 
-Best regards,
-Krzysztof
+On 2025-08-19 15:15, Krzysztof Kozlowski wrote:
+> On 19/08/2025 08:51, Yijie Yang wrote:
+>>
+>>
+>> On 2025-08-19 14:44, Krzysztof Kozlowski wrote:
+>>> On 19/08/2025 08:35, YijieYang wrote:
+>>>> From: Yijie Yang <quic_yijiyang@quicinc.com>
+>>>>
+>>>> Add an ethernet controller node for QCS615 SoC to enable ethernet
+>>>> functionality.
+>>>>
+>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>>> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+>>>> ---
+>>>
+>>>
+>>> Why do you mix up DTS and net-next patches? This only makes difficult to
+>>> apply it, for no benefits.
+>>
+>> The DTS changes and driver code modifications work together to achieve a
+>> single purpose, so I included them in one patch series. Should I
+>> consider splitting them into two separate series?
+> Of course yes. You are just making difficult to apply this. Patches are
+> completely independent and even your internal guideline asks to NOT
+> combine independent patches.
+
+The challenge with splitting this series lies in the fact that it 
+attempts to reverse the incorrect semantics of phy-mode in both the 
+driver code and the device tree. Selecting only part of the series would 
+break Ethernet functionality on both boards.
+
+As you can see, I’ve CC’d noautosel to prevent this issue. Given the 
+circumstances, I’m wondering if it would be acceptable to leave the 
+series as-is?
+
+> 
+> Best regards,
+> Krzysztof
+
+-- 
+Best Regards,
+Yijie
 
 
