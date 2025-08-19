@@ -1,145 +1,153 @@
-Return-Path: <devicetree+bounces-206592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B328DB2CD82
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:10:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56683B2CD97
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:14:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D0B916BFAD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:10:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62E505E4B78
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A86C2EB5DA;
-	Tue, 19 Aug 2025 20:10:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B2630F7EE;
+	Tue, 19 Aug 2025 20:13:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BITInTl3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CKcN2giu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA64B1C5F27;
-	Tue, 19 Aug 2025 20:10:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3066426A0AD;
+	Tue, 19 Aug 2025 20:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755634231; cv=none; b=T2pYZND4XmnTTkp1CYi1WlP5OuXTlfRzo4LyleJtepmjThin20Zk+WDZK5oZ5zs1SJhZmhcKvEVAUsG3f5EZD1hbA/BmAjfpWSXZcK09P4+k7tFnN1OXtr+gBtqJEMfs1m6HtQn+PYTN1idmCRw1Y2JXFx/im7DIAVGhLgJl+qE=
+	t=1755634401; cv=none; b=NC7CkppNs1LkOycNkwDlUITmc3sIS0kbUwHkefFHizvKeAyjWL3hWWX/iNtLy6A/157Pxav2nUCeTZd98Hov8HngNysk8/Gdz5iDy3l+zO/n0dsnJzwhH/z6yah/wBkzL4ds4PDzUjiRoiB3g1iRP3ljmKQGQbA9CaArz65kGT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755634231; c=relaxed/simple;
-	bh=VGta13z9vU1c49zM5LqnvxqNXWJuXzxy5grqLQ3xTVM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j7L68nFs6RymksN9Ca8FEN/V1N7Uvnhrboz1N82ZDzwjSssQ0ubVj3aIsycevyO/5VFukBZii/x0EWWryKiL3gzRZKTWIjMy3bK9Mmozuhj6IIgo4UZl3H/Mqs1C+2RwRsFu+M0LW5sZYTcCLaZ5VPRYhINI89n0JjWuAs+OwSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BITInTl3; arc=none smtp.client-ip=209.85.208.50
+	s=arc-20240116; t=1755634401; c=relaxed/simple;
+	bh=9X/2VGNApmcQ7rOcJ+VUgDeSKoF3XoYcobAsc+OKa3M=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=OfXISz5s/TGIAVXTOwGq/PLc+2J4HoUtcZaAUcu6i0AOwoenwyMUPwVLWMQy1FnUrCYPL925avR8k1HVtwO2fYaTXowbIIVg6mNSWEnQmJSdIyGI4T6+5fgE3M1mJRf8MlruG31dYh8bcmqch6qOZS3uZ1dhqGIsBa0Wybtj6WU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CKcN2giu; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-6188b5b7c72so7733681a12.0;
-        Tue, 19 Aug 2025 13:10:29 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3b9e41669d6so4366115f8f.2;
+        Tue, 19 Aug 2025 13:13:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755634228; x=1756239028; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S1GsDDi6vP6UuMb6/BeFHKVGi4oUcjZwWb6yFeF7428=;
-        b=BITInTl3hD955vTaa2a8pBSJZMFZqpb4IHzv2Bm6GVj3T5zyRYVcYUgF53fwrX6OjC
-         UEd23tkosYkfK2UWTLalseeOtzx0YZb2/0LL6hVU+dL6IWGv7KBDiqAr6nJfb23mObt/
-         l2VD0GRUtmGRGbuUivxMuIFOJSN1B9xsHXkUqTvY1uHJFZgnnKIQ700eHbtETcSq7OEY
-         d9cxhGdKwVxoyZ+9DSyT4+joukAiKxzpO6L5x1lt3MIZSFUxuoFEYPasTSV+WA4k4fwB
-         5xmaCvQyo/lUzz2iBmA3y1idRk/gjidfS4D52MqkxvGvNH3UcG07lkV2m+H4pVZLPG3P
-         l5HA==
+        d=gmail.com; s=20230601; t=1755634398; x=1756239198; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hv4875C2PzimpafByJlP6Vqr30Mci0sbeGJ0/jFTW9U=;
+        b=CKcN2giuhGRIKqi5TSNs4bD/UYxJQXZqTaQzK9MJdimrT2rY9prJa2ZnzNfmOZ/e+c
+         nKHiqPuaOntvcsVoYjfI78yNvsxMhwPSzmOaUDDZXQzrYXbsPnF8ivGBkMvRvBwSd5UW
+         0skZYv4vE+VKSDmk2mpJTp9pzdA6XzZbKi+OXgBV3Td9lkA3oPJfYXk+bpj/bBGENX0X
+         EXdkHBsaDTqlELS5DQrTglcLpDTT11FNJfmLMsXokzMq12+TZVKQA9d9TMlzIJDxU5bz
+         ufEIZ9mGK0mrAKxEqoeKZ1WQkOZ02TXeyPlnIz0+gtf05QuPy8BbTtQZ1isHZDgcZjEB
+         rI9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755634228; x=1756239028;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S1GsDDi6vP6UuMb6/BeFHKVGi4oUcjZwWb6yFeF7428=;
-        b=kwwXHdIrGCvo8p74WX+N30EwL8AncDDmfsQN8XRAhfhEf9QSPJuWk/JFWrvzux0rrF
-         /I7EucwD4Q/7LObiC6Kvuak4skr4XwqndMCq3t1+8OyTm+zSxBbFm5oNcowAqICzdJ8t
-         eAqRmbBQOylIlM/oBGILxU1f/EAV675K8nnh8jNjeSwQ2QyslxbxWykcljR/Z4A56yI1
-         yQQoY8nM81QBddCpAMAwyaFjYdfp+mi1f4ANQjL8gH6dFgjhfycG/+ff/QAIDgrjTer0
-         7f/mprx+e2zjRNqFTOFULX+R94lHWCM6jlYb3NRgewHRmgSRLjEoLrqeL4Bya5rMVRSz
-         B4kg==
-X-Forwarded-Encrypted: i=1; AJvYcCWh4/BQPDn06huKV/+hludCAsMOGaMs0lxxJ8WGpDgMxVpj4OQ5jhZEURyvk1aIevSGQN/TCM6T+PxPdfOc@vger.kernel.org, AJvYcCXK/ZJ7ikMtHdRGm3PXW6Mwq9SE0npeWpLz2s0naVVpDSBHfqLECg5sHD3pVsZpmpT2r4oHQsKQDsCd@vger.kernel.org, AJvYcCXu/KyXCgZ5zzXUDyWhqVmhtAFakZwpr2o03uahWbm8iEpg5Qorri3+zOBqgMf2jmYYX3BrhrLIVROz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2skJddFOF6BaIzcU2IsoTcj5bQ8vV9m57hsqO82/r/NQmFpR5
-	irM3L/C9np9ajOZF3ZVSegmCX30m3p8uneRDG0uAeiQd9VKsuaBuGQcaUEmCapsBfBqf3WlyT7T
-	YcAtbLf+BQ7+ZsKUNNON5C/aYn6A3PnQ=
-X-Gm-Gg: ASbGnctj3DHz4hvTjqQyVxqnlvUROVo+ZR9szAm5bxI/DabjradRygNLNZhWonMLiEi
-	Cj1MrLmSVJ66dvOoHgqsbiSCC5sTskaRaH7yXKTGsg75syCwXiSRB05odO2Q9KC950Xz6qtObEs
-	dHM48sFWCGkJe2pBGR024v2AwKAcr5LLfQ8ELsLEg4t9mGhVZymuu2cerXiG6VpdRWJMtUny0B0
-	lSJp/k=
-X-Google-Smtp-Source: AGHT+IGvvZwSDf+nqoMUriQUBWi5cXhB47oTQxbHjTCLnj4WG9s6ooc9sSWJQFJI03LwI/NhEfSLMWMtmDimj/avu8A=
-X-Received: by 2002:a17:907:96a2:b0:afd:d9e4:5a4a with SMTP id
- a640c23a62f3a-afdf0211301mr19233766b.62.1755634228039; Tue, 19 Aug 2025
- 13:10:28 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755634398; x=1756239198;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hv4875C2PzimpafByJlP6Vqr30Mci0sbeGJ0/jFTW9U=;
+        b=Mhep7upHIoMTmsbzudMe6sSvbYD+ht2oo0j+LbQy77t3MYaXHlcto+uh4wipO94/ww
+         3YSAF/l/XpJWa35qj2jVfU4O+r6BH/L+Hn2SgsNrfFi+w6oYQDinsor/CA8kA6oZskY7
+         y8hQcdTbJVC0iI3TvFFwjsjIRCxG4Gn0tyw2LsYF0nDeBhwOCJjua1/2o+6YUl5m4ifS
+         xMfVFtZ5yGjr/7UcQ0LKhzUXMMz3oKnZj8m2JwDPYvGtGjpakxXTkztnjiB0UNgWiYSt
+         rznIK8CDIdN+eDsqILh4IYBWUMpl5Wjml1jJZl9v+VpgfTsQD3DI0/CsHdRN7Ro9g45x
+         gBvw==
+X-Forwarded-Encrypted: i=1; AJvYcCW2yX9D8hRSAzF5ru57yWvaEmQwhflDhBvPo95bMxVipiX0OYoK/Z50oZjHDVgsX9CDRTCz7AjvieXo67x2@vger.kernel.org, AJvYcCWK64RrtYL3zap35TtXP7bU8bM52VO/xb7lsfBK3tENL/iGDF79C22c9gpEnObpmlZs0MluqVkYVbjr/lg=@vger.kernel.org, AJvYcCWZmlCHIC+0UeshINumPvgeGr7t7l1RIOXuPAVpUkSCPEgFN1Nd0ZpnedL+4X0k7/aQKQyc/KxPYibA@vger.kernel.org, AJvYcCWeYhDyOnET7yIB6MWhnibaLGVLa3N2VqGVoO6AGkWK+ktEiGsDeqGb/N+aQyNGOPJSXXf4Q2L/hKdL3w==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNNS5MkDor0ZxZZdVoto0TlZI0OHs3BziNpbAzapEHuHxJyLqo
+	ChqdHnbYO2Xgpfpeuq4yYwdktvzuaviyg8Fwfd3BoCb8jOo4ayyD+ZwQO4Ew
+X-Gm-Gg: ASbGnctottXRUWsS6AoWKa9wPjmbP0byIQAis6j79ubWz5557Zrrc5sO2e0IQw1Jz5X
+	Ks1HLJreRL5VmczOdaFaNjxTmtnbdB16+938tPlkfmyutaPySbEDuex8d0AgXgFHemYsGEp8seK
+	zH0IYEnIumImdSFp9ewh2P5ohnu6HXRmjnIrgacPBHYilytFSB5z5HKg1CuM0PQP1Uy1tf6qfIc
+	9uKLa8FPMhK/k4BN2vWXRCuqh0QGVN6DUJUH+TGVs+0MOCBNsa3/3cMAAeMa+sfYB8PgChnJ+KN
+	yg0Vua6sEA7smhbrjD5URctJRjN6TftY2Psfx+1DcZnjwqPgoCTG/iYry07+5vV+ZMyDM/XFL+X
+	9qt/iC+SEOLoq0hwIUPLbLlLmZqygeTMld6xTiQlSdCQ3aQY=
+X-Google-Smtp-Source: AGHT+IE39W/od8Q6Lv4eHcOg3CqK1TKtJR1QdKfM982lU9SVEinsuN6XuD5Bxq2jv1S2etdEW7jtjA==
+X-Received: by 2002:a5d:64ca:0:b0:3b9:2989:b859 with SMTP id ffacd0b85a97d-3c32dd5e02fmr196354f8f.14.1755634398149;
+        Tue, 19 Aug 2025 13:13:18 -0700 (PDT)
+Received: from localhost.localdomain ([2a0d:e487:216f:2f7a:74c6:177a:3b99:868c])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c077c57d32sm4939887f8f.64.2025.08.19.13.13.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Aug 2025 13:13:17 -0700 (PDT)
+From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+To: broonie@kernel.org,
+	lgirdwood@gmail.com,
+	robh@kernel.org
+Cc: peter.ujfalusi@gmail.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	shuah@kernel.org,
+	jihed.chaibi.dev@gmail.com
+Subject: [PATCH v4 0/2] ASoC: dt-bindings: Convert TI TWL4030 sound bindings to schema
+Date: Tue, 19 Aug 2025 22:13:00 +0200
+Message-Id: <20250819201302.80712-1-jihed.chaibi.dev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754617360.git.Jonathan.Santos@analog.com>
- <f0c1cbc9c2994a90113788cad57df1f32f9db45e.1754617360.git.Jonathan.Santos@analog.com>
- <aKTNEP7pNY9ZbrPe@debian-BULLSEYE-live-builder-AMD64>
-In-Reply-To: <aKTNEP7pNY9ZbrPe@debian-BULLSEYE-live-builder-AMD64>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 19 Aug 2025 23:09:51 +0300
-X-Gm-Features: Ac12FXwMoppmzt85kIowopKHGNV-HfCrAOZmMdJD6FEEPzVULS5II94QvPN0tl8
-Message-ID: <CAHp75VepJCCk9zJ6g9tO__FP5jq4EiCtf4mwYGuFf9BO3auJYg@mail.gmail.com>
-Subject: Re: [PATCH 4/4] iio: adc: ad7768-1: add support for ADAQ776x-1 ADC Family
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Michael.Hennerich@analog.com, jic23@kernel.org, dlechner@baylibre.com, 
-	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, jonath4nns@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Aug 19, 2025 at 10:14=E2=80=AFPM Marcelo Schmitt
-<marcelo.schmitt1@gmail.com> wrote:
-> On 08/12, Jonathan Santos wrote:
-> > Add support for ADAQ7767/68/69-1 series, which includes PGIA and
+Hello,
 
-...
+This series converts the legacy TXT bindings for the TI TWL4030
+sound-related modules to the modern YAML DT schema format.
 
-> > +static int ad7768_calc_pga_gain(struct ad7768_state *st, int gain_int,
-> > +                             int gain_fract, int precision)
-> > +{
-> > +     u64 gain_nano, tmp;
-> > +     int gain_idx;
-> > +
-> > +     precision--;
-> This is odd out of context.
-> Also, it only applies to ADCs that provide output codes in two's compleme=
-nt
-> format. See comment below.
->
->
-> > +     gain_nano =3D gain_int * NANO + gain_fract;
-> > +     if (gain_nano < 0 || gain_nano > ADAQ776X_GAIN_MAX_NANO)
-> I've seen some build tools complain about comparisons like gain_nano < 0 =
-with
-> gain_nano being u64. Since that's unsigned, it can never be < 0. And in t=
-he
-> context of gain/attenuation, we know gain_nano shall never be negative.
-> Would just drop the gain_nano < 0 comparison. Or maybe clamp() the value?
+This work was previously part of a larger series but is now being sent
+as a focused submission for the ASoC subsystem.
 
-in_range() can be used as well.
+Link to v3 discussion:
+https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
 
-> > +             return -EINVAL;
-> > +
-> > +     tmp =3D DIV_ROUND_CLOSEST_ULL(gain_nano << precision, NANO);
-> > +     gain_nano =3D DIV_ROUND_CLOSEST_ULL(st->vref_uv, tmp);
-> > +     if (st->chip->has_variable_aaf)
-> > +             /* remove the AAF gain from the overall gain */
-> > +             gain_nano =3D DIV_ROUND_CLOSEST_ULL(gain_nano *  MILLI,
-> > +                                               ad7768_aaf_gains[st->aa=
-f_gain]);
-> > +     tmp =3D st->chip->num_pga_modes;
-> > +     gain_idx =3D find_closest(gain_nano, st->chip->pga_gains, tmp);
-> > +
-> > +     return gain_idx;
-> > +}
+Thank you,
+Jihed
 
---=20
-With Best Regards,
-Andy Shevchenko
+---
+Changes in v4:
+
+  - Resending as a separate, focused series per maintainer feedback.
+    v3 link:
+      https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
+  - (1/2) ti,twl4030-audio: No change to binding content, only
+          updating commit message format.
+  - (2/2) ti,omap-twl4030.yaml: Deleted redundant pins list.
+
+Changes in v3:
+
+  - Updated commit message format for omap-twl4030.yaml (PATCH v2 7/9).
+
+Changes in v2:
+
+  - (1/9) ti,twl4030-audio: Moved binding to sound/, added enum for
+    ti,enable-vibra, and simplified the example.
+  - (7/9) omap-twl4030: Minor cosmetic fixes, retaining Acked-by Mark Brown.
+
+The following two patches are included in this series:
+
+Jihed Chaibi (2):
+  ASoC: dt-bindings: ti,twl4030-audio: convert to DT schema
+  ASoC: dt-bindings: omap-twl4030: convert to DT schema
+
+ .../devicetree/bindings/mfd/twl4030-audio.txt | 46 ---------
+ .../bindings/sound/omap-twl4030.txt           | 62 ------------
+ .../bindings/sound/ti,omap-twl4030.yaml       | 98 +++++++++++++++++++
+ .../bindings/sound/ti,twl4030-audio.yaml      | 90 +++++++++++++++++
+ 4 files changed, 188 insertions(+), 108 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/twl4030-audio.txt
+ delete mode 100644 Documentation/devicetree/bindings/sound/omap-twl4030.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,omap-twl4030.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,twl4030-audio.yaml
+
+-- 
+2.39.5
+
 
