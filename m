@@ -1,121 +1,137 @@
-Return-Path: <devicetree+bounces-206441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B42DB2C521
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:19:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B362CB2C522
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 15:19:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AED291882F37
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:15:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89DD216D4E3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 13:15:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E179D33CEB0;
-	Tue, 19 Aug 2025 13:14:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6335A1DBB13;
+	Tue, 19 Aug 2025 13:15:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="VvS4YukK";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="O0kPoH7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from flow-b8-smtp.messagingengine.com (flow-b8-smtp.messagingengine.com [202.12.124.143])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D5C311C19;
-	Tue, 19 Aug 2025 13:14:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B50C38F9C;
+	Tue, 19 Aug 2025 13:15:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.143
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755609284; cv=none; b=sAsNWPk+ZW9P/3kuNWlF8+x1z/e0ZY+BhxMErU1sGkfnXHqH0SFGq0wFdeAq6puUtKme5CQRjKsjaSRmZRsnJKrrFRw8ISkh36VDW0yMFHb2JGVbXV8ygyOjoQFnsf5ha8N/yGfrGC7jTCkGNaBhlxC5Rrf6R1o9NJpJe433gCs=
+	t=1755609326; cv=none; b=cDl850o7z9K/LMgh9UfRyhPmDk1/9rQVDWLINygiJ+czy0Ey9uPSvhGjLsDiQRfDq0P6VedBAGs1WHSHPOPWyI6bpvzwan/SfUXUpqWsXYJr1kHw2OvwSUf0rLgj1T3t5JrbCbaKivLancSk7bpOfnuYj0Nd+rpCgnhCRAV65+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755609284; c=relaxed/simple;
-	bh=1gKMdAUE2OshcUGdUlR3ZrdbtgbJEwjx0CgIUxXGcLM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bqPKt7/dAi7APHHj4ESqXci4nwGgOnxXwpitFuzGU/1KuaLrL6NPR1T5rKqaX12ca9gBQGy7RzthaBIugtlmQyPNyCs5ZTlEvZb1nxiMx6cWn714NI7DcPRFDf8culhmf2egzX2Kyq/YuYmYyaiF/2Kq0GviZygbeuOsWcnbfeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-50f88cd5ac7so3847923137.1;
-        Tue, 19 Aug 2025 06:14:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755609282; x=1756214082;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w8Kx5cGiGpdinLDvM81MdLwujJYEv4s4yCGfX3+iapQ=;
-        b=pGWM6D7Gp/E7ip/cfTM9Erh+yiYdAYibAugw0/cPBZ+rR/kLLElUK440aUCqxwSsHR
-         BASKrnzibYKZaJHqMWPTYIkMqLBlN9PYPbJjBD4tAgFgbEmVBmm1rv6YOz7KinzCXJmd
-         olOZyfbiQULJKTcDGvBMNd3DNWal6HlxXFCoaqLgYp2Zee6dPfbNKw/fQGm6QiC1TS2F
-         G0q4f4fcGc3E/u4g0qRLbh1FEemwmJUJldgZPFAWzNiE6BeCSejb6HKD0ssgK4ekeIgD
-         IHml9qW43m9ZHfWKaNHNB41onzNmGMwcxJFfKKF0Kb9s9vut6w7ccRdOkjWY20GX1wnY
-         DMXg==
-X-Forwarded-Encrypted: i=1; AJvYcCUdfhW1b7Y3Ca5k14vc+EEO0NUBLWM2K12DPSv11RA0EwE/n9dRP2aHwcewRlufa+iLMybbNQqGsn/n@vger.kernel.org, AJvYcCUuv9I/RUliQFK6BxpADowC5mdxQj+p9yRchrxqVttjTmTUCEo7hT/q0F8ij5rJo2YbIX+bL5v515c18aUo@vger.kernel.org, AJvYcCVu/8bA5K/PueXClJfOZgTiPu9Xm7zifDkxU1Wf/bZwTyZAUAHTKwjgM56l4PFPYF7XIlu6T7Y16o5y@vger.kernel.org, AJvYcCWEbLPphPR8ifNTZzi59cuN2I2vcb6xGjlkL0pd8aKNH62MIY0lP4YS4uw2XJPHYs39Vc5I2jZ+rBVgymj+5ovsABE=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxxt72M0v9m5wl00Y/gk6bxUcuzYOBs8QPywOWjVS0x2RG3SElY
-	6RNgu7m8JcQgyp2IeivmZ55NI+kG0nOWKNBdntdLphTXoIFfP4ge5VX1IGkHAA13
-X-Gm-Gg: ASbGncs5ImtGrTditJ+mO83cpNcfy9xwS/hflbkiyXGHi5nQv2OfGK259eEuH9ywCUm
-	pIhZ4njItCeeRnP49UM1Wxd/C2Rzz1xQZiZVl60yE2AjV2XyCql+xspBcfyu+zBUSXKMVNmAL9e
-	RpYin8Hl7owKcJlPzl0BQq9O8rAABvujDToeoGRg4RgPvjhjMGb/OJIXTCAT9qrHF5Svn1UpagI
-	FJnQD0dM6/Um534UXFBmXzD2namngIr7aZ2nxHAJCEiCAYSGuTVdh4SvYkGwulQPmBx28SeOMgm
-	YtkANwnkqQi2guh4CLOaiTCJocKjUbFd5tTRIVNS1WXUgOX1bjmQqbwpRBhJaxc68KP86FlIop5
-	r+qIZht2lHWb8AsBF8bhCgTTo8DnwXnD+yNlptrbyAWQpitWU7WaCo2HTBgo8
-X-Google-Smtp-Source: AGHT+IE6IUPud65EnXlvUr2B9H12xe04ANAAYjMR68KPziB56fb8AAsrOw1lRMa2NFGCZlUkWXsT0g==
-X-Received: by 2002:a05:6102:3048:b0:4f7:c5ed:209c with SMTP id ada2fe7eead31-5192201cbb1mr768695137.7.1755609281923;
-        Tue, 19 Aug 2025 06:14:41 -0700 (PDT)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5127f80546fsm2903858137.14.2025.08.19.06.14.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Aug 2025 06:14:41 -0700 (PDT)
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-50f8ad2176eso3146611137.2;
-        Tue, 19 Aug 2025 06:14:40 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVhC4ydS/klI+b0AXH+JyyGyYN+YNAiAKJOBPZ2KOCykd2TGNO5jMbwBalVZ3fpYbPvxp3vPFtm8hB5Al0B@vger.kernel.org, AJvYcCVqrSPuwJvwRV9iygKGMvMk0rOLutNZga/YXyZ81s2xIm9Ldau/ktcHcpqLR0+dPCmiOJA/abG6TOL1@vger.kernel.org, AJvYcCWBHUwvJCrrId2XiM9XRN9MlHUqCQx1FuiOHRolq+uWLSVrYo/b7ULgZuY3Z8xmf4In7eJryp0Heson3lz9loqRCpM=@vger.kernel.org, AJvYcCXiQiRM3ulC2Wv88qQb58ojH5ZQnuZI/pOLMz4OSwCyGuUDBkLuYzNbsXY7ILq3n4AGhwHTux5a8SIj@vger.kernel.org
-X-Received: by 2002:a05:6102:6cc:b0:4e4:5ed0:19b2 with SMTP id
- ada2fe7eead31-51922118868mr745706137.9.1755609280511; Tue, 19 Aug 2025
- 06:14:40 -0700 (PDT)
+	s=arc-20240116; t=1755609326; c=relaxed/simple;
+	bh=pRUD+z3Dg/Y+TYQjbh09xIKPaVeXQ5sSKNu7b/ZFK+o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KBX4sV2RoigKFmM3/F7IcEOhMn9oHfECplcxdC1ASfCEvAJERABaRTfj3+1ad5K3S//MI/+vuvPEvOOzADApFESIL9WCCXZvNBtkpvQW+SOma4T6Bd/OIQ3zKrj8j9SOXexe98c7cutuA099fLmDyVIOHnHWf68X9rTwUHulGFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=VvS4YukK; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=O0kPoH7D; arc=none smtp.client-ip=202.12.124.143
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
+	by mailflow.stl.internal (Postfix) with ESMTP id 1E3741300BBE;
+	Tue, 19 Aug 2025 09:15:23 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-03.internal (MEProxy); Tue, 19 Aug 2025 09:15:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm2; t=1755609322; x=1755616522; bh=r4GlBd/XIg
+	WVfoO1w0sqiwXzx+ia4mrInLsy+TcTWQw=; b=VvS4YukKQYMH/apUX9we3gFDei
+	4s0vaH1zyjZ2gTgEX0aNLFZ5zAH/yJQdkRP9JqZf/C5/8yvkCgyXcewYqGvqVh1k
+	t8ghXmsmdm4nG9EKR23e6T5FKKlGgfv82q4dvAh4aSfx7kpB3d+2yYptSCM3Cirp
+	FZXdyzDSlxW7PF+3oqaOfOZL5osz+HKj5QTo9Dhe50mYJiJqDpeK7JSxZNLrDzHb
+	0D3UB2ErQEJmgS5D2UwVaiBHKTAH8OFirYDTauw6mANf8iElvinXZloF51YIKla6
+	6ylueSzpQC0AEt7S2hxe37JgH5TwcfqMdbLiG2kZ8fT+zzvcRwtn+n7DduPQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1755609322; x=1755616522; bh=r4GlBd/XIgWVfoO1w0sqiwXzx+ia4mrInLs
+	y+TcTWQw=; b=O0kPoH7DYLugERKZTUOaLyT5PkCatuc23MpbL/OGI6Ah8Slh6bk
+	+A7QVJ+A9m1BREMeLGrYLxx/V9uF9YqqtDN8LyxZRVHmDFUeakG3hhDhM0ddo7Ym
+	SPKbjH0KdAhCHswH4a1I2ILkbzva1UhjMWUXIMplFRtz6tdQY/FovLy89DHqAmru
+	3qSsPUv+ar9W0FUdz8Tk6W0ir+zEuutbLhQk4+0klO8vVZHX8oK2H7yT1yI9n4ZC
+	j1fTcSm04DGtc5Vt0i34kcpavMm6lhHREOUzMFcB8vGruYY+tNCFEYuCMeLzwlVz
+	BJRkQsXVV/oEMdC2eP8gDsga6T9sMOR0Wig==
+X-ME-Sender: <xms:6XikaCMDmqUs282iAXgUcaeJzI5pq11MHvZJkliABpkPBE0yKns7zg>
+    <xme:6XikaHQLZ_T34kYWzQtyUOzpszOvy_BWdj7udoJm4XrF_riRjP83d_2TAHLNZE3RN
+    -P4IiRzEkq0VxsOhL8>
+X-ME-Received: <xmr:6XikaF9vUuFjDX_zC1pPX6yyx36NYC-3e2UaJh1UC3qa2traPIGEpKD_DWQQReIlOlijQdDaK7byjO8Iw0lw3OPgYHFIFUKJ56s>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduheehheelucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepfffhvfevuffkfhggtggujgesthdtredttddtjeenucfhrhhomheplfgrnhhnvgcu
+    ifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqeenucggtffrrghtthgvrhhnpefgvd
+    ffveelgedujeeffeehheekheelheefgfejffeftedugeethfeuudefheefteenucevlhhu
+    shhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjsehjrghnnhgruh
+    drnhgvthdpnhgspghrtghpthhtohepvddupdhmohguvgepshhmthhpohhuthdprhgtphht
+    thhopehfnhhklhdrkhgvrhhnvghlsehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhgvvg
+    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhgtrghllhhighgvrhhoshelleesghhm
+    rghilhdrtghomhdprhgtphhtthhopehsvhgvnheskhgvrhhnvghlrdhorhhgpdhrtghpth
+    htoheprghlhihsshgrsehrohhsvghniiifvghighdrihhopdhrtghpthhtohepnhgvrghl
+    sehgohhmphgrrdguvghvpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprh
+    gtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhn
+    ohhrodgutheskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:6XikaBU-dAXIl6uuV44Gyb6UVvUAq_L4Mr6v_8LbiK65G-sOpNkHSQ>
+    <xmx:6XikaDNUakmE8TkZ-wvqycdSV4I_NvnLyc9a41Hocc29bjf9LO89Uw>
+    <xmx:6XikaBeRsQm8kB79Qp-yCO6U_tpxxGsbdxJB_N0L35GG_FozvguRxg>
+    <xmx:6XikaKwXOyJ-sNXnGEV1Dmjuofdkh5YvIBRIFQYmok41ObktspQHQA>
+    <xmx:6nikaL39rxNFN4E9UD0BxjWzewn--tY-WSa4Ru3fH5zn6un6axbaLyMr>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 19 Aug 2025 09:15:21 -0400 (EDT)
+Date: Tue, 19 Aug 2025 15:15:19 +0200
+From: Janne Grunau <j@jannau.net>
+To: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, James Calligeros <jcalligeros99@gmail.com>,
+	Sven Peter <sven@kernel.org>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
+	Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 5/8] input: macsmc-hid: New driver to handle the Apple
+ Mac SMC buttons/lid
+Message-ID: <20250819131519.GB1270980@robin.jannau.net>
+References: <20250819-macsmc-subdevs-v1-0-57df6c3e5f19@gmail.com>
+ <20250819-macsmc-subdevs-v1-5-57df6c3e5f19@gmail.com>
+ <20250819123505.GC7508@google.com>
+ <CAMT+MTQvMnv4Zj3A8hskU1JW3zys0diKxWUzK5ScerxeSmgPjw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250728201435.3505594-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250728201435.3505594-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250728201435.3505594-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 19 Aug 2025 15:14:29 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV5Rk2ppHwKZLgjektLCVShkoh=ESoSt9PY6jcp-uEukQ@mail.gmail.com>
-X-Gm-Features: Ac12FXz6ckZqsKpNRXFU7y3mbLg1_W5_Ln9ZIyfl6OPClvcylW7dhk8Lvat-Pt0
-Message-ID: <CAMuHMdV5Rk2ppHwKZLgjektLCVShkoh=ESoSt9PY6jcp-uEukQ@mail.gmail.com>
-Subject: Re: [PATCH v7 3/6] clk: renesas: r9a09g057: Add clock and reset
- entries for DSI and LCDC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMT+MTQvMnv4Zj3A8hskU1JW3zys0diKxWUzK5ScerxeSmgPjw@mail.gmail.com>
 
-On Mon, 28 Jul 2025 at 22:14, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add clock and reset entries for the DSI and LCDC peripherals.
->
-> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue, Aug 19, 2025 at 02:49:49PM +0200, Sasha Finkelstein wrote:
+> On Tue, 19 Aug 2025 at 14:39, Lee Jones <lee@kernel.org> wrote:
+> > Separate patch please.
+> >
+> 
+> Per the discussion in the thread linked from the cover letter, the dt
+> maintainers have requested the bindings for all subdevices to be added
+> together. Do you want a separate series with just the dt bindings and dts
+> changes and the actual drivers in separate series or how do you prefer it?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I think it's asking for patches with the drivera and then separate
+single line patches to wire up the drivers in drivers/mfd/macsmc.c
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Janne
 
