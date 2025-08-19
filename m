@@ -1,65 +1,67 @@
-Return-Path: <devicetree+bounces-206399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 732DCB2C3FE
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:42:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E47CB2C403
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:44:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 078DF188EB83
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:39:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84C22175EDA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:41:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB3263043D0;
-	Tue, 19 Aug 2025 12:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4B73043D6;
+	Tue, 19 Aug 2025 12:41:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aJMmDXoz"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="A4VcPE+Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B04121527B4;
-	Tue, 19 Aug 2025 12:39:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116B12C11F9;
+	Tue, 19 Aug 2025 12:41:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755607149; cv=none; b=SfsX/f/bsY1h6w4U/wH7uQt7R24Cn/Dn/5fIWAVF3v8Bb95KTffrzTlth/y9+K6U53t6Feunsa3cHrdUQSxukdG8qRPKkJ5CKe9+ftI7yry9w8GoBP63pnAn0uImyVllmbfIFk2424UZDca39VZs+XE5JuZxl48XncwpO8Z+tqI=
+	t=1755607269; cv=none; b=WjRIiLmR9YubfsrVt2EDV0hnl9SdNdJz8PCGJ0srBy7hgmb4GOeQ23K4aFBnw7PaX7Zkdhlv92YNtj9g82vsvhwO+9Xa9IlODhAIiHqC3YxJk3/9eYGJaacL+JxqesA5X8zZOcebD4wCYJlxZivX6fEuO/ZJ8+dS+GqjWvMCq9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755607149; c=relaxed/simple;
-	bh=mq54Juz4cOxSc0yvV5IUeJzSpqLNjIkIZdlTuXERT+g=;
+	s=arc-20240116; t=1755607269; c=relaxed/simple;
+	bh=hh0hq8bl+6A83FbnX3IgduD0wlBkscDYAAwjB9LkfIg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nyVsiWhwKjRIz8GaPcJi6cFgYx+eAo2T+1z8d1H20LDVeIa2+wi71eEXu2I6li8l9iiAOUlLwFqthICoJPDBkPoKlC7Lmqi48CFZIUefScNsdeh8D7AxhVwH5B32Xqar4Hdjdoe+NetyOnagc9Dx8QJctY2gEN7Am04sCnvPTqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aJMmDXoz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B48B8C4CEF1;
-	Tue, 19 Aug 2025 12:39:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755607149;
-	bh=mq54Juz4cOxSc0yvV5IUeJzSpqLNjIkIZdlTuXERT+g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aJMmDXoz5HfrnFzyPCJzY0XeT7U2ONbdBoqwSnxcne9u7uFgDTvqtc8S4OA0xfa/6
-	 0iWitJUzbhV9M9Er/ro/w2s6jcBB6QbkSuMgqgn9REeEJ7D57PtaDPFm6V7kUMIpDB
-	 gRwT3YxPd/zn+R1eu7r0vur7p/KR3u0kB7fJt76tg54WYR/k073Ll0duZfnl3a2mMI
-	 FqMnBDD0LyzRbWgbajJzTS232DgrZLqixYLRf7kahu0h50O5eW+waAfxcRVtxuWabN
-	 JS1Y2rAxhRPNDsAgbSa/teiwfPZplac8Yp5iWC1XilyHUOLhLHzNSdCyaX8S3H9pDF
-	 SVJypEBp93Vfw==
-Date: Tue, 19 Aug 2025 13:39:02 +0100
-From: Lee Jones <lee@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=At61NfF+uY6nK3w00MRKnsRMulQTDFkZzZuQ51531TqgzLXBrPilVId1ImwhKxszAvTKEXySzVpmAEnqzru9qiJ2Sw8JzQVpUCA9nZatmnmWI/B8PUmrJlU81r4AwmZslgszy9R9ItVZYwoXrMHSiOefgWGnuNsQ5iOH00A5OYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=A4VcPE+Y; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 283F7207A3;
+	Tue, 19 Aug 2025 14:41:04 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id GITvgjRrHzIi; Tue, 19 Aug 2025 14:41:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1755607263; bh=hh0hq8bl+6A83FbnX3IgduD0wlBkscDYAAwjB9LkfIg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=A4VcPE+YbdV/CT7PaNypqPsnuGdUcCBS7wgcpvtw336QmE2Ou2imom4xRufhUC0Os
+	 WqaGobxZ+5IN2cuyhbfC5eaEr1AWTiBFeoKB4gYM4U973psh0pDp25rT7ZUdhc4JpV
+	 MJT3wMKlJh0T/jWQUuwRls5mr0n34CLwQquUd9BzMULi+pCs4BHEBsUkflITJJCpOR
+	 CyaGZRanarTubzks3SDZWBM+o89VI35LXtvtwwLZkgGwdl1lOYocJlVoL2zs9ur1Sn
+	 Yq2eVrejKEuOFtAb7BRIqeOxIVAna95GYPOVN3fK9TZVSmzXcK0LapcoQssiP2YfK7
+	 GJw2uV+uKaDoQ==
+Date: Tue, 19 Aug 2025 12:40:54 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH 4/8] hwmon: Add Apple Silicon SMC hwmon driver
-Message-ID: <20250819123902.GD7508@google.com>
-References: <20250819-macsmc-subdevs-v1-0-57df6c3e5f19@gmail.com>
- <20250819-macsmc-subdevs-v1-4-57df6c3e5f19@gmail.com>
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>,
+	Kexy Biscuit <kexybiscuit@aosc.io>
+Subject: Re: [PATCH 2/3] pinctrl: ls2k0300: Support Loongson 2K0300 SoC
+Message-ID: <aKRw1pEUUwd4cQoW@pie>
+References: <20250811163749.47028-2-ziyao@disroot.org>
+ <20250811163749.47028-4-ziyao@disroot.org>
+ <CACRpkdZp8FLrxgkeZ=xzSPgny51iDZ3KRCrxpoSdgF8_=df=KQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,40 +71,85 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250819-macsmc-subdevs-v1-4-57df6c3e5f19@gmail.com>
+In-Reply-To: <CACRpkdZp8FLrxgkeZ=xzSPgny51iDZ3KRCrxpoSdgF8_=df=KQ@mail.gmail.com>
 
-On Tue, 19 Aug 2025, James Calligeros wrote:
-
-> The System Management Controller on Apple Silicon devices is responsible
-> for integrating and exposing the data reported by the vast array of
-> hardware monitoring sensors present on these devices. It is also
-> responsible for fan control, and allows users to manually set fan
-> speeds if they so desire. Add a hwmon driver to expose current,
-> power, temperature, and voltage monitoring sensors, as well as
-> fan speed monitoring and control via the SMC on Apple Silicon devices.
+On Tue, Aug 19, 2025 at 12:02:23PM +0200, Linus Walleij wrote:
+> On Mon, Aug 11, 2025 at 6:39 PM Yao Zi <ziyao@disroot.org> wrote:
 > 
-> The SMC firmware has no consistency between devices, even when they
-> share an SoC. The FourCC keys used to access sensors are almost
-> random. An M1 Mac mini will have different FourCCs for its CPU core
-> temperature sensors to an M1 MacBook Pro, for example. For this
-> reason, the valid sensors for a given device are specified in a
-> child of the SMC Devicetree node. The driver uses this information
-> to determine which sensors to make available at runtime.
+> > Support pin multiplexing and drive-strength setting for Loongson 2K0300
+> > SoC. Pin multiplexing could be done separately for each pin, while
+> > drive-strength could be only configured on function basis. This differs
+> > a lot from the driver for previous generation of Loongson SoC, where
+> > pinmux setting is based on group.
+> >
+> > Pins are represented with pinmux properties in devicetrees, and we use
+> > the generic pinmux API for parsing. The common pinconf interface isn't
+> > used for drive-strength setting, since it handles pinconf settings at a
+> > unit of pin groups or smaller.
+> >
+> > Instead, the driver configures drive-strength settings just after
+> > parsing the devicetree. The devicetree's structure ensures no conflicts
+> > could happen in drive-strength settings.
+> >
+> > Signed-off-by: Yao Zi <ziyao@disroot.org>
 > 
-> Co-developed-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
-> ---
->  MAINTAINERS                  |   2 +
->  drivers/hwmon/Kconfig        |  12 +
->  drivers/hwmon/Makefile       |   1 +
->  drivers/hwmon/macsmc_hwmon.c | 858 +++++++++++++++++++++++++
->  drivers/mfd/macsmc.c         |   1 +
+> Overall the driver looks very good, well done!
+> 
+> Look into Rob's comment on the bindings to use a single node
+> for mux and config.
 
-And here.  And everywhere else.
+I've raised several questions about the binding and will change the
+binding and code according to Rob's answer.
 
->  5 files changed, 874 insertions(+)
+> I saw that you want to make the pin controller strict, if you also have
+> some pins with "GPIO mode" that will serve as back-end for a
+> GPIO driver (and I saw you posted a GPIO driver series as well)
+> then have a look at Bartosz recent patches to add infrastructure
+> for pinctrl to know about what a GPIO pin is:
+> https://lore.kernel.org/linux-gpio/20250815-pinctrl-gpio-pinfuncs-v5-0-955de9fd91db@linaro.org/T/
 
--- 
-Lee Jones [李琼斯]
+Thanks for the link! Actually according to the manual, all the 106 on
+2K0300 pins could be multiplexed as GPIO. But the pinctrl cannot set up
+any pin config for pins in GPIO mode.
+
+> The current driver does not seem to know about any of these
+> pins being usable as GPIO and does not implement those:
+> 
+>         int (*gpio_request_enable) (struct pinctrl_dev *pctldev,
+>                                     struct pinctrl_gpio_range *range,
+>                                     unsigned int offset);
+>         void (*gpio_disable_free) (struct pinctrl_dev *pctldev,
+>                                    struct pinctrl_gpio_range *range,
+>                                    unsigned int offset);
+>         int (*gpio_set_direction) (struct pinctrl_dev *pctldev,
+>                                    struct pinctrl_gpio_range *range,
+>                                    unsigned int offset,
+>                                    bool input);
+>         bool strict;
+> 
+> Which is fine if the pins actually cannot be used for GPIO, but if they
+> can, and this is just implicit for unconfigured pins ... then add
+> functions and groups for GPIO.
+
+For 2K0300, we want these pins to be able to multiplexed as GPIOs, but
+since this pinctrl driver could configure nothing for GPIO mode pins, I
+think it's enough to implement only the gpio_request_enable() callback
+and do the multiplexing work here, is this correct?
+
+I originally thought it's okay to multiplex pins as GPIO with an usual
+pinctrl configuration, and didn't realize that it causes conflicts on
+strict controllers since the pin will be claimed by both pincontroller
+and GPIO controller. Thanks for the reminder.
+
+> The other driver using pinconf_generic_parse_dt_pinmux()
+> drivers/pinctrl/meson/pinctrl-amlogic-a4.c has GPIO awareness.
+> 
+> Yours,
+> Linus Walleij
+> 
+
+Much thanks for the detailed guidance!
+
+Best regards,
+Yao Zi
 
