@@ -1,184 +1,126 @@
-Return-Path: <devicetree+bounces-206238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E51FB2BCCA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:15:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05A7BB2BCF7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:18:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67F5F18952A0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:13:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C59D61896292
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3627031A07C;
-	Tue, 19 Aug 2025 09:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D7D31AF2D;
+	Tue, 19 Aug 2025 09:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dmyJzvwd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eRaRBTnt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FDA31A059;
-	Tue, 19 Aug 2025 09:13:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F5C31A05D;
+	Tue, 19 Aug 2025 09:15:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755594784; cv=none; b=Jl4Br/8roRolIV3TMcRPoazRDnqkvI+qV2SwpqtzP1mOyX2j4aYjfkqaHSM8Hk68xratRUi36euxL0QB3gAnjg0ilDdy3fAxh9qRnUbyHCccInpJxJ4yilHBdntN7NDpk7XPTdtxd0NVGEevcY3WOXTRWk0QbfZj6PHoh4Nlkqg=
+	t=1755594941; cv=none; b=e+Bq/Z8wqId6PoI9pxia0MxpwIMnmF79dVxIL2GHEKSKNznKezjGC1Jr7QVwCpKNJA8NN++8ioNbNIe4+Jv1JJS4u1KjRHmYNh/rP72GDF6vQkR5DF05vq1cIIb+IjgEAO4TnL+qb3mAA19kV334Fn6L38hg/qPhnsstA02S1/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755594784; c=relaxed/simple;
-	bh=nLwgX0rt2w+Inkkf34i/Uun1hxhNuo283Du7mGcFnw0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZSi0SXwrQia02d7my7896EmyweuT69QttDbDux3dDcihaubLf8oXTqNTiQlJG0ZMHs6sd1yHD5PDVDXlDEgXaEBl06kBkq7hH2XTxc+pIIhmcbeSJm93dOMStLk7dq0EYLGxLW4lGXgrRJ+0ALwy112O+jfLpbJl/9vp1jjwRm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dmyJzvwd; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1755594779;
-	bh=nLwgX0rt2w+Inkkf34i/Uun1hxhNuo283Du7mGcFnw0=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=dmyJzvwdD2oD2FA+P7Jf0WYb7DiNDMsSsqqC+w3eByrplSvm5P6/JiN4Bnmc9RXZg
-	 ZBzFkqlUjidrS5O2k++VziehpoX4z+eoBg/tDFXcfbuaULb5mNpaCDbaHK4qc/OK6P
-	 KaKLwfcXifGQyx4e0J9Wnnoco2dFwUx4ZNr63+kEyHp2PFncQGwJNx885D7bLnYWUP
-	 wLNMiYKllEWYiYE0nZXQ4R+e2YdR0wmf8bR7VSNN8x7k68F3XpwLdN+VQje1uZISaE
-	 2OKFTumwkHm729xNyan5REMukD1yFfBl1w8P9ZmspuNCF/YKVRGPQCCt4RjVPY3HPY
-	 SVaDtz8wlAsxA==
-Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892F2d600c8f85cF092d4AF51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id DC5FA17E0154;
-	Tue, 19 Aug 2025 11:12:58 +0200 (CEST)
-Message-ID: <8be063910b553945da12263818bd05c4e90e27f6.camel@collabora.com>
-Subject: Re: [PATCH 8/9] arm64: dts: mediatek: mt8183-kukui: Fix
- pull-down/up-adv values
-From: Julien Massot <julien.massot@collabora.com>
-To: Chen-Yu Tsai <wenst@chromium.org>, Linus Walleij
- <linus.walleij@linaro.org>
-Cc: kernel@collabora.com, Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Ikjoon Jang <ikjn@chromium.org>,
-  Enric Balletbo i Serra	 <eballetbo@kernel.org>, Weiyi Lu
- <weiyi.lu@mediatek.com>, Eugen Hristev	 <eugen.hristev@linaro.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown	 <broonie@kernel.org>, Julien
- Massot <jmassot@collabora.com>, Sean Wang	 <sean.wang@kernel.org>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Date: Tue, 19 Aug 2025 11:12:58 +0200
-In-Reply-To: <CAGXv+5FXZ_byK8Ftb9LjfQMkgtLd7mTmWgz_Nsvcv8=jy53T=g@mail.gmail.com>
-References: <20250801-mtk-dtb-warnings-v1-0-6ba4e432427b@collabora.com>
-	 <20250801-mtk-dtb-warnings-v1-8-6ba4e432427b@collabora.com>
-	 <CAGXv+5EHk=f62+KiLo-aWMcd0-q+_59kno+uOW5rdYaq5q+5tQ@mail.gmail.com>
-	 <CACRpkdbWctNH0XJfcHfVJM9Etp0WCXpdyhhyaQemH-Xc0LDr0A@mail.gmail.com>
-	 <CAGXv+5ECsP7_wbdcaAkWuD=RyJiJpPe4r60bhD5U8xUvEBzmXw@mail.gmail.com>
-	 <CAGXv+5FXZ_byK8Ftb9LjfQMkgtLd7mTmWgz_Nsvcv8=jy53T=g@mail.gmail.com>
-Organization: Collabora Ltd.
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1755594941; c=relaxed/simple;
+	bh=TwoXi/9qfmrjexDxSolTWGtf8iw2WG+oeRmRoe1Ff60=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n8/w6EmzBmOTqVyoO695jtqGJIuLMEeNQi5jwH1yal3yVGILPvefg1wTSkj50yyxTb35myyReJhObgpeVFBhWZ1Q96h/zzHGorO4omRP8fYkxLo7yJ761DNa4A4T0iMdik8MkKQiM7geiBSWgJT2kPWyzjSX0M8wolFtQ3C94xI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eRaRBTnt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B5EEC4CEF1;
+	Tue, 19 Aug 2025 09:15:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755594940;
+	bh=TwoXi/9qfmrjexDxSolTWGtf8iw2WG+oeRmRoe1Ff60=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eRaRBTntEGOj7TgTYiQfZGZ1z6h5Ra2kbklmNhS9RcuQ+oN82aPnw9E0KvVdaPTEE
+	 g3xzUqcI1+Uz9DZr5X1Tk59QLCwmDXOJ2IdEbk0IRkkW9LiHIEUkln8Zy76Afwd2k8
+	 7PbSvqXPAUIN2MfPGvcrpVgitv7pDGfzscLlbX/RTtrQCKatkXriOod5Jb63PE9If7
+	 MtgXsZZvCNAS1xeYvQh26yr5PIru5ZQo0CG3dX8NOVS+lfFCy+menQ+47994BS7wFj
+	 d2gIqJytRUXkZQVbEC24+olsg8y5JYiaViOMnsYytdsGKvcNctEiKokTMONhQCuJTE
+	 OY+gqLw/aB15g==
+Date: Tue, 19 Aug 2025 11:15:37 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Aleksander Jan Bajkowski <olek2@wp.pl>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, tsbogend@alpha.franken.de, john@phrozen.org, 
+	devicetree@vger.kernel.org, linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: mips: lantiq: Document Lantiq Xway
+ GPTU
+Message-ID: <20250819-imported-tested-wren-cbcaff@kuoka>
+References: <20250816132002.3632343-1-olek2@wp.pl>
+ <20250816132002.3632343-2-olek2@wp.pl>
+ <20250818-departure-gloss-b99cacb9401e@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250818-departure-gloss-b99cacb9401e@spud>
 
-Hi,
-On Tue, 2025-08-19 at 13:29 +0800, Chen-Yu Tsai wrote:
-> On Tue, Aug 19, 2025 at 1:27=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org>=
- wrote:
-> >=20
-> > On Mon, Aug 18, 2025 at 11:22=E2=80=AFPM Linus Walleij <linus.walleij@l=
-inaro.org> wrote:
-> > >=20
-> > > On Wed, Aug 6, 2025 at 8:38=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.o=
-rg> wrote:
-> > > > On Fri, Aug 1, 2025 at 7:18=E2=80=AFPM Julien Massot wrote
-> > >=20
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 pins-clk {
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- pinmux =3D <PINMUX_GPIO124__FUNC_MSDC0_CLK>;
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- drive-strength =3D <MTK_DRIVE_14mA>;
-> > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media=
-tek,pull-down-adv =3D <10>;
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media=
-tek,pull-down-adv =3D <2>;
-> > > >=20
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bias-pull-down =3D <MTK_=
-PUPD_SET_R1R0_10>;
-> > > >=20
-> > > > and so on.
-> > > >=20
-> > > > ChenYu
-> > >=20
-> > > I agree with ChenYu, the more standardized properties are the better =
-it is.
-> > >=20
-> > > All the custom properties makes sense for an engineer working with ju=
-st
-> > > that one SoC (like the SoC vendor...) but for field engineers who hav=
-e
-> > > to use different SoCs every day this is just a big mess for the mind.
-> > >=20
-> > > The standard properties are clear, concise and tell you exactly what
-> > > they are about.
-> > >=20
-> > > The argument should be in Ohms though, according to the standard
-> > > bindings, but maybe the value of MTK_PUPD_SET_R1R0_10 is
-> > > something like that?
-> >=20
-> > For reasons I can't recall clearly these are just placeholder values
-> > that the driver then maps to the R1 and R0 settings. But at least they
-> > use the standard properties.
-> >=20
-> > The reason was either one of the following or both:
-> >=20
-> > =C2=A0 a. not every group of pins had the same resistance values for R1=
- & R0
-> > =C2=A0 b. there are no known precise values; the values depend on the p=
-rocess
-> > =C2=A0=C2=A0=C2=A0=C2=A0 and batch
->=20
-> I don't know for (b), but no there is a lot of different values for R1 & =
-R0
->=20
+On Mon, Aug 18, 2025 at 06:38:24PM +0100, Conor Dooley wrote:
+> On Sat, Aug 16, 2025 at 03:16:22PM +0200, Aleksander Jan Bajkowski wrote:
+> > The Lantiq SoC has six built-in 16-bit general purpose timers (GPTU).
+> > 
+> > Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> > ---
+> >  .../mips/lantiq/lantiq,gptu-xway.yaml         | 67 +++++++++++++++++++
+> >  1 file changed, 67 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml b/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml
+> > new file mode 100644
+> > index 000000000000..fcbcd98def46
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml
+> > @@ -0,0 +1,67 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mips/lantiq/lantiq,gptu-xway.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Lantiq Xway SoC series General Purpose Timer Unit (GPTU)
+> > +
+> > +maintainers:
+> > +  - Aleksander Jan Bajkowski <olek2@wp.pl>
+> > +
+> > +description:
+> > +  The Lantiq SoC has six built-in 16-bit general purpose timers. The voice
+> > +  firmware needs these timers as a reference.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^gptu@[0-9a-f]+$"
+> 
+> This is a timer, why are you not using "timer" as the prefix?
+> Otherwise, this looks okay to me other than...
+> 
+> > +
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - lantiq,ase-gptu
+> > +          - lantiq,danube-gptu
+> > +          - lantiq,xrx100-gptu
+> > +          - lantiq,xrx200-gptu
+> > +      - const: lantiq,gptu-xway
+> 
+> ..the fact that my OCD hates how the fallback inverts the position of
+> gptu in the compatible!
 
-From what I saw in the register table
-We can have for the pull up resistors
-75K / 200K
-2K  / 75K
-5K  / 20K
-50k / 10K=20
+Recommended naming is soc-subblock, so xway-gptu, but even more
+recommended (and documented...) is to use only soc compatibles.
 
-And for the pull down ones:
+If xway is the soc, where is separate entry for that (maybe missing in
+email context?).
 
-75k/2k
-75k/75k
-10k/50k
+Best regards,
+Krzysztof
 
-And we can have a combination of both resistors that will give odd values=
-=20
-(e.g 1948 Ohm for 2k/75K, 545454 Ohm for 75k/200k) to express in the device=
- tree=20
-
-
->=20
-> Also, their customers seemed more accustomed to dealing with toggling
-> R1 & R0 vs setting some actual value. I presume that comes with the
-> uncertainty of the actual hardware value, and they just try which
-> combination works better.
->=20
-> ChenYu
-
-Regards,
-Julien
 
