@@ -1,66 +1,68 @@
-Return-Path: <devicetree+bounces-206597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40C96B2CDAF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:18:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F6CB2CDBC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:25:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5E907221C2
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:17:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 778FA525A9D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5AF310635;
-	Tue, 19 Aug 2025 20:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22102319844;
+	Tue, 19 Aug 2025 20:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LRp7A+/w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p9mXTJyV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8725742065;
-	Tue, 19 Aug 2025 20:17:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC0286337;
+	Tue, 19 Aug 2025 20:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755634653; cv=none; b=gzUc39m8CI4KCOPWUKwIhVOz+16ycg1fBchE9acqn9GvNXLX1j77Gq18Ibk3KuIryZFDew3NYOLt6odxrY1NeETZOuwe+BTZSj298OmSbl3UcTpIkxANjrsjrgFrUUVkJG5QCsNQZWXAZGgWvXBGLpFIXLVPDgOmYn4lLS/gthM=
+	t=1755635144; cv=none; b=TsitFnJZAks8MSJNNBlHoQ8MGgz0DcikZ6rhhJ6UlWMX6568+vNvx1V8/383vddK8ozN0bbjwgccwd0BE+Q/EEKG16JApCbu3lTtsgM0MzvykFBpW4V4unXZMN6QLX2SrcnK8g0Qa9++UI1nUiGI7pPoGBdbaBmHkl22IwEC4so=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755634653; c=relaxed/simple;
-	bh=U3q6ToLedU70bZtEW12+5dJwu9UAwqYJ/UGCU6LWzSQ=;
+	s=arc-20240116; t=1755635144; c=relaxed/simple;
+	bh=LVUaZqCxEUn+s6SnkVv9nwjEjzbR7xwmGoy2kx670yA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ke0jy8abry7xMVaZh1JY8pKelD/21zoFBShJYMH7eRCujo0lJHex7qG7WWVmWwlAyB2n33NOvQaHwcugrxj3EBFaVY6MGajI+nqgF/jypI67LKsD8Qp9JrfTHJOsETxsmers6/NZJynCwQl9C2yG6VaXM/JcP+QSL+ZKof0pjjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LRp7A+/w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFE99C4CEF1;
-	Tue, 19 Aug 2025 20:17:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KYukk/sMWM+e3ZxI9tssVQXfgvmIAMXVSbqoJOUDcytEcXurOKwpfvXA53kkakjkWZaP6Bk2xIMUOQqox25oWv75YE8A4B9vXFOfJ+VABpmJLdL6+THWGrabQCqC5z6ebMv+sJkNUZKI96BkgzL2oB3TwPLCl7e4eN7wpShMMkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p9mXTJyV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41918C4CEF1;
+	Tue, 19 Aug 2025 20:25:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755634652;
-	bh=U3q6ToLedU70bZtEW12+5dJwu9UAwqYJ/UGCU6LWzSQ=;
+	s=k20201202; t=1755635143;
+	bh=LVUaZqCxEUn+s6SnkVv9nwjEjzbR7xwmGoy2kx670yA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LRp7A+/wRv7ggXzPyAsPMR83RBwwR2BGDqN+WXMkAITJvfTJ3lku62QcIAgoib+/N
-	 PeylRYfP1DU2pi5hCGbkzN4M101W6GHSVsNWX5MXUIySBw0Yjeeb9PpUE6Q7YRwaXb
-	 5/wgn6b9aBFaYNiqXrQCVqtyI7291RqbqEwKYPMffM0kBSHsvE2enA+VIrTHv5CbzX
-	 /sX5xEZHMM9znosbNs6s8uw/AJ0IH3syrY1v9xM2dmCUY3oDplXgtCNn8GOcXhX+gm
-	 e+XaOPjPLBiuzPwG84m8tt5beyZxjiN+tJV/j9ZaFXUSD85xIikBHV8iH0sVDLzBSx
-	 r5T2UwPckIltw==
-Date: Tue, 19 Aug 2025 15:17:31 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
-	Lee Jones <lee@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Kettenis <kettenis@openbsd.org>, Janne Grunau <j@jannau.net>,
-	linux-input@vger.kernel.org,
+	b=p9mXTJyVtAJW6EU2VyTFiBiQN6eyYhf23nYEiCWf35QpyZuCUlWB+EyeJHl3M1kb8
+	 seC4nUGGiHl+4JyD96/K9Uf4yWMU1cIomeRG3sH48VdN3uL24KdhOFcuDyf/Cnqx1R
+	 FPXutLIvX0ziKX22QMYXDLlMHHg6e9jZrtKonJpTcBDBkPfaOpIj3zBX6h+cNoK5l4
+	 UGP0gJ6q9cJpP6+mhbXDT6WNyxW02cmhfSRGjBgdDpztw7mkM12gvFamCoDrR14qqZ
+	 ET4HKev0mPOoe40QcunVUs0+D3Eus0JAiQosqFS+2IcTdtE7eO8IcP0D5BK7XxEJEs
+	 o5WCLjUEBjx0A==
+Date: Tue, 19 Aug 2025 15:25:42 -0500
+From: Rob Herring <robh@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sven Peter <sven@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, linux-rtc@vger.kernel.org,
-	Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org,
-	Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, Neal Gompa <neal@gompa.dev>
-Subject: Re: [PATCH 1/8] dt-bindings: rtc: Add Apple SMC RTC
-Message-ID: <175563462607.1254097.12905994195694572424.robh@kernel.org>
-References: <20250819-macsmc-subdevs-v1-0-57df6c3e5f19@gmail.com>
- <20250819-macsmc-subdevs-v1-1-57df6c3e5f19@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: media: i2c: document Sony IMX111
+ CMOS sensor
+Message-ID: <20250819202542.GA1254999-robh@kernel.org>
+References: <20250819120428.83437-1-clamor95@gmail.com>
+ <20250819120428.83437-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,28 +71,162 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250819-macsmc-subdevs-v1-1-57df6c3e5f19@gmail.com>
+In-Reply-To: <20250819120428.83437-2-clamor95@gmail.com>
 
-
-On Tue, 19 Aug 2025 21:47:53 +1000, James Calligeros wrote:
-> From: Sven Peter <sven@kernel.org>
+On Tue, Aug 19, 2025 at 03:04:26PM +0300, Svyatoslav Ryhel wrote:
+> Add bindings for Sony IMX111 CMOS Digital Image Sensor found in LG
+> Optimus 4X (P880) and Optimus Vu (P895) smartphones.
 > 
-> Apple Silicon Macs (M1, etc.) have an RTC that is part of the PMU IC,
-> but most of the PMU functionality is abstracted out by the SMC.
-> An additional RTC offset stored inside NVMEM is required to compute
-> the current date/time.
-> 
-> Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
-> Reviewed-by: Neal Gompa <neal@gompa.dev>
-> Signed-off-by: Sven Peter <sven@kernel.org>
-> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  .../bindings/mfd/apple,smc.yaml          |  9 +++++++
->  .../bindings/rtc/apple,smc-rtc.yaml      | 35 +++++++++++++++++++++++++
->  MAINTAINERS                              |  1 +
->  3 files changed, 45 insertions(+)
+>  .../bindings/media/i2c/sony,imx111.yaml       | 126 ++++++++++++++++++
+>  1 file changed, 126 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
+> new file mode 100644
+> index 000000000000..52d88f5d477e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
+> @@ -0,0 +1,126 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/sony,imx111.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sony IMX111 8MP CMOS Digital Image Sensor
+> +
+> +maintainers:
+> +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> +
+> +description:
+> +  IMX111 sensor is a Sony CMOS active pixel digital image sensor with an active
+> +  array size of 2464H x 3280V. It is programmable through I2C interface. Image
+> +  data is sent through MIPI CSI-2, through 1 or 2 lanes.
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: sony,imx111
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: EXTCLK with possible frequency from 6 to 54 MHz
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  iovdd-supply:
+> +    description: Digital IO power supply (1.8V)
+> +
+> +  dvdd-supply:
+> +    description: Digital power supply (1.2V)
+> +
+> +  avdd-supply:
+> +    description: Analog power supply (2.7V)
+> +
+> +  eeprom:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      A phandle to the node of the eeprom, that holds sensors configuration data.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+This assumes the eeprom is dedicated to the sensor. What if it is just a 
+subset of some eeprom or other storage. Perhaps this should use nvmem 
+binding.
 
+> +
+> +  flash-leds: true
+> +  lens-focus: true
+> +
+> +  orientation: true
+> +  rotation: true
+
+Use 'unevaluatedProperties' instead and drop these.
+
+> +
+> +  assigned-clocks: true
+> +  assigned-clock-rates: true
+> +  assigned-clock-parents: true
+
+Always allowed on nodes with 'clocks', so drop.
+
+> +
+> +  port:
+> +    additionalProperties: false
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes: true
+> +          bus-type: true
+> +          link-frequencies: true
+> +
+> +        required:
+> +          - data-lanes
+> +          - bus-type
+> +          - link-frequencies
+> +
+> +    required:
+> +      - endpoint
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        camera@10 {
+> +            compatible = "sony,imx111";
+> +            reg = <0x10>;
+> +
+> +            clocks = <&imx111_clk>;
+> +
+> +            iovdd-supply = <&camera_vddio_1v8>;
+> +            dvdd-supply = <&camera_vddd_1v2>;
+> +            avdd-supply = <&camera_vdda_2v7>;
+> +
+> +            orientation = <1>;
+> +            rotation = <90>;
+> +
+> +            eeprom = <&eeprom>;
+> +            flash-leds = <&led>;
+> +            lens-focus = <&vcm>;
+> +
+> +            reset-gpios = <&gpio 84 GPIO_ACTIVE_LOW>;
+> +
+> +            port {
+> +                imx111_output: endpoint {
+> +                    data-lanes = <1 2>;
+> +                    bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+> +                    link-frequencies = /bits/ 64 <271200000>;
+> +                    remote-endpoint = <&csi_input>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> -- 
+> 2.48.1
+> 
 
