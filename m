@@ -1,286 +1,251 @@
-Return-Path: <devicetree+bounces-206261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2BC9B2BD9C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:40:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 265EFB2BE0D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 11:52:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EBC618904A3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:38:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1426C16C276
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507DB31AF21;
-	Tue, 19 Aug 2025 09:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B822F31AF21;
+	Tue, 19 Aug 2025 09:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jYbJDkXM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DwNAeMsk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA79311958
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:38:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8933238C0F
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 09:51:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755596291; cv=none; b=L5iqATNzoqZ7pZFoXbmuLaV/So411525FElmyqt+7UUClT4w3xUEkWKv3v/lawt3zeypO3pIpMMsusLdByCaD2Xrqqajx5kDyf4wNO1J+Q8QLlpNJNDeM6b65jvkzJ2efSPz5IPGTeYMRDG5HVNJoubMxP/IojUtcPBiwPNh6LI=
+	t=1755597068; cv=none; b=aOmAVfo+wHv2cuqOolzhxnWxiR7z6xvbmY96abG1Yj1E+Cbd9v98bsYFgbRrvcqDhD0D6U3ZyEPn1B8JZ236WsmsYPVFSCzjPT3jcwvt0sNog/PQnv9XPuVceGM1i0+pKQyAhZ6aNu//B3nmQdmNonpgvbszhBOMxw8MaOKOQCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755596291; c=relaxed/simple;
-	bh=gfzxdIAe2xxtBHxvYGko8XA2pI4aPMA6vNi3f4lf2r8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jUHDo4vNC0yr/6GeY0WUWc/ygw7AdoF9B7H98+pyGGOljJlSCc6NKeBJNMLhYZKK8TdQ/ViiasfOxvPRz9rNaqrqVsXAUhgE7CTmvORl2k9tQwjkJYgY9ibLEwSYDRqpOsNDsmjv91bC1R7eAswMbno3F+jtazhZZWnDNjeDzJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jYbJDkXM; arc=none smtp.client-ip=209.85.167.41
+	s=arc-20240116; t=1755597068; c=relaxed/simple;
+	bh=UHFObRlIIZeDanFV92i7VHnr2QcfoemI+cerUuacbO0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HRrFZM/c1u4DxDTE0JpSCNAadQf9jrhMQtSNsiRkg2xwUK65zRGl1ztZ/Qz9SjfgzmmsehVxmXbvi0fpK3Ya4vTel4hfKhNLVEHt6tvWkQzSsGWfhH0NakrqASZNTIVyJoN5FJdM+KdlCwSKlQXQwggDH1PE39bSSlBnr5A8dR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DwNAeMsk; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-55ce509f80dso5007494e87.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 02:38:08 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3b9e418ba08so2808449f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 02:51:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755596287; x=1756201087; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=45Gyirnivv46PMdh1Lnt9ECnMjdDdutOYsw1cHCwkIY=;
-        b=jYbJDkXMgcu6l9dIFmeOeTaPXIg7798Wq4QNJCRNEk5TPokutSvsoSIE+TVaL1mpqQ
-         1ET7tc040Qi5Ap7z4ia7TdVqyJhxB1adjIn7S1qSSCwWxWIVhfnGim+oE1+lHxgHnI6i
-         AN2k3PdXs9S3SOEzJ3p34Y3kqzUQDJaOSwkisP+NAZiJkHDRnmMIjTQnpRCimt7+bd9G
-         jEcqTxPztgMcne4YOivTKf8C+MjVIGM3o+QUlhUiEMBYxdSOS597v2W5lpJyi7Ro9dpx
-         C7OTGV70URJgsJwPg3ysxmH9oh1JbkeIvUlGtwcyZg2zvQgmyZIDcZ8wE/pexUS25qns
-         MgIw==
+        d=linaro.org; s=google; t=1755597065; x=1756201865; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dEbA4I5qSZY6spIoEFlqu08c9+21gKrj1SN48109zCo=;
+        b=DwNAeMskkxMeEysXR8Iccf3MvoDutV+GHAeVS3Hod9O1MzONK3i36CEwKPbd1mcm+y
+         Pqa3TXukmDwnYUpuPr61tO+AGR8fAaDoIBPVlUj4Xe5os/Bj1C9AfleqWM/MoGA4Ar0B
+         /HyoXfL7DjUw9iPKHbKBJAY1cQCRXU9QMf0FC6fdovqRZ9IuEDpJjO46OE80DUEKO3W2
+         6adQ5pr5lvO9/lUB4KIeS7cKPkOUxiEe04bkNpBY/Ejxwavyh0rMbs6Uv30Tii98tLHJ
+         ypesFowlUKcAiPoGIUaMfWmHM9l6Mk91C7Ul7GTr66F3uQmr4qYg4sj8JVqMZGt44PVj
+         8yyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755596287; x=1756201087;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=45Gyirnivv46PMdh1Lnt9ECnMjdDdutOYsw1cHCwkIY=;
-        b=ssUj+IJQZGy+yfyyPuCTrj8VW/y9pqjhipaROX5rCJw0fKWn1JqTrEBqWQN9IOID8l
-         fNm7FmvhCmdbAYlLwP4e/OkdgPDFb9x6SeZv3mTqKd18yLCO3bHcMVXbcKP6VSOrJGmU
-         EZxrsw2RIHO75mpl4hjxTCIRjaW2zxrC1g96JnN+jUUJZT+VgTZLLFvFbeuhlatkFN0x
-         WpjsQfgTadIM3mYlzHRtIxdKnO27OPHhaQL2XjMvGTf/paLF/LZ4+w7fyc2rwdDLNijH
-         +Z4Z0UMS/4yEyPWO1wGWA1pFeE4PUmA+PuTlDqYQksC99nQKU6yYdC8TRkl9pl3jUIR5
-         uoqw==
-X-Forwarded-Encrypted: i=1; AJvYcCU3S8Ek59qNhJoaoNCw/wmt9oWmwfB2+BDNrdXEraCYRnO6LnoDNWmq6CIBqiY8EuQ51uSnjUQYHJHX@vger.kernel.org
-X-Gm-Message-State: AOJu0YztFrBIWC4c+crkScl4BAMHWP7aTj+vMcqHzhsv0nhEPKO/00zt
-	Ia6OicAM2X8g0XI57IydbqO+MhOujN1WwA8Te11FlaXm9Mt8KAadlMteOmqM5XoygO+owRygMR1
-	djMnOT4LtjDIyaYwcVfQ+GTebeSi1XdomxNMGUFFxGg==
-X-Gm-Gg: ASbGncvETFOUymOCPaEjz4QYdsEKR+su7UJMVAHUuRDIZeF0sX5eA/pSC5q2hSWkHg0
-	loT548bu0jokNk37KN4I+QstwwdiIjxh8tWIXljCTcNiggKqrhXcVhdq3Ftn+uHWtRTB7J0G0Ei
-	DG+gI/ylHUuQ15aOLt+Jv8YJuArko1R7M2cYSLdY95zt7/s6tK6rDb8+JBQxL6k0UCMa7OhBelP
-	Re5Nx8BKuc7
-X-Google-Smtp-Source: AGHT+IGXVlOojxEDcgD+SsNiM3vrgcb4bOifDf292PuQ3chLA4qwroPbPD5ZSWbbg/JQdXsFHTqAE1Hi5Seml5pOfAI=
-X-Received: by 2002:a05:6512:2c89:b0:55b:8f46:80f4 with SMTP id
- 2adb3069b0e04-55e00863d0bmr581512e87.48.1755596286911; Tue, 19 Aug 2025
- 02:38:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755597065; x=1756201865;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dEbA4I5qSZY6spIoEFlqu08c9+21gKrj1SN48109zCo=;
+        b=ohS3nRXgh8gjYjGI4irD05vQltlgH5EgwaKZzNWkOSDtcuOd++XfyiDr5XnBiUoV+W
+         Q0z81c+a0FxFY3VLRTxQx6dRDVlWUI3qRQ6y1/8WjPNsight5+f4ZM6d7EX7NU+xbL4y
+         Tf+fKQnxEVLAhKi7hgNnDjOf/STcI/9QtdnjKdMQzCmie+AxDXVbdnfLMn+9HnqpEpPQ
+         KhzWEg/udUHC8nFSS8oQqpj52EsRCNWg1TOok4yN3sBRLTEpUCPy047AXasJ8D+0BjXY
+         nGeP++f9QlEL2948UKYwaQ66ai6CMVe19kI/F+IKW6mEC2gPDpN41SYj7iBsTPFCmH3H
+         uMzA==
+X-Forwarded-Encrypted: i=1; AJvYcCUhNVPRo6FbDNqqw2DmajTBzC8HmMPZwsxa8SD6SFvC0GMR6ivbZNolMAPD85OyrQAYnI+0kcIJ0oud@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxn9arMIUo22MfSZnIy6mhFmAcX3eYrQ8FVIhag5gts9O/08kMh
+	uU1I60kvwP8B5sRMnhyjWPKNBTGcqrHzuhKo9iP3M5/de8nVEbNYA2t8coxaiKXcUHI=
+X-Gm-Gg: ASbGncsOTpp9I9bPfg2BlSP0El2zEgep1helFhovPXU8mvYa8Q4v7UultbmYqjYHnDq
+	vlBLqB7kXRk2RXjstRhPcBIzgW/J2dd5vDp2h0k4+/r/Wyl9eAgwLWNW3D3CGE+T6XblaARxCgB
+	JXe43lamd+v1DalPfv6OKPas9imAVhv1tDesNYt7exRbhbSCjGUj29kO2zUS6PGdMSJZsuU0f4r
+	pP0YXZjaHQ1CansafyOv/lmcfenVPRGdTxLlJg8lVAwY7g4Bh399BCRFpHOiBNMYrJl8JPkmoHO
+	C5cLJHdrlul9+JtYqsxlgOYepSMqRmD1ZXGHn/rQdOfxEDXfcYYReAGnmYkyqWAuMe4wIGtHbOs
+	BZiTAj0lxTMX+mbSSHCo0zv/F4nQ=
+X-Google-Smtp-Source: AGHT+IEhCbEtO72B94zboRfNoT34vBXWkQcIIE5hKfiRYQPXuGCMsQYLXo/jdD8ygHW2tXsu4oCNdQ==
+X-Received: by 2002:a05:6000:1a85:b0:3b9:148b:e78 with SMTP id ffacd0b85a97d-3c0ecc324b5mr1596498f8f.53.1755597065105;
+        Tue, 19 Aug 2025 02:51:05 -0700 (PDT)
+Received: from [192.168.1.3] ([185.48.76.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c07487a009sm3017107f8f.11.2025.08.19.02.51.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Aug 2025 02:51:04 -0700 (PDT)
+Message-ID: <91b3e06d-501a-48db-b626-5f056287a451@linaro.org>
+Date: Tue, 19 Aug 2025 10:51:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754922935.git.andrea.porta@suse.com> <bb746d2fd50ecbb9963438fae8601c2e4901a126.1754922935.git.andrea.porta@suse.com>
-In-Reply-To: <bb746d2fd50ecbb9963438fae8601c2e4901a126.1754922935.git.andrea.porta@suse.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 19 Aug 2025 11:37:55 +0200
-X-Gm-Features: Ac12FXzbOSTWApe1RnzVXH6U4DB1jaUnJzvcIC1jxBa1XB9XRDcN_qZMPH3lBoA
-Message-ID: <CACRpkdaH8sxQQFmx9-Gzc6ybJ_AFvLUCk=MiS=0KiB4VhZhXaw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] pinctrl: bcm: Add STB family pin controller driver
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	florian.fainelli@broadcom.com, wahrenst@gmx.net, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, iivanov@suse.de, 
-	svarbanov@suse.de, mbrugger@suse.com, 
-	Jonathan Bell <jonathan@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/13] dt-bindings: lpspi: Document nxp,lpspi-pincfg
+ property
+To: Frank Li <Frank.li@nxp.com>
+Cc: Larisa Grigore <larisa.grigore@nxp.com>, Mark Brown <broonie@kernel.org>,
+ Clark Wang <xiaoning.wang@nxp.com>, Fugang Duan <B38611@freescale.com>,
+ Gao Pan <pandy.gao@nxp.com>, Fugang Duan <fugang.duan@nxp.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Larisa Grigore <larisa.grigore@oss.nxp.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+ Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
+ linux-spi@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
+ <20250814-james-nxp-lpspi-v1-12-9586d7815d14@linaro.org>
+ <aJ4ox8+OLhIir2bU@lizhi-Precision-Tower-5810>
+ <bd59344b-9dc0-42bd-98c8-80ab9ca97123@linaro.org>
+ <aKNJFJDf1Clnkbex@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <aKNJFJDf1Clnkbex@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Andrea/Ivan,
 
-thanks for your patch!
 
-I'll make a bit of detailed review below, the big question I have
-is if it is possible to split the files a bit, like:
+On 18/08/2025 4:39 pm, Frank Li wrote:
+> On Mon, Aug 18, 2025 at 03:47:45PM +0100, James Clark wrote:
+>>
+>>
+>> On 14/08/2025 7:19 pm, Frank Li wrote:
+>>> On Thu, Aug 14, 2025 at 05:06:52PM +0100, James Clark wrote:
+>>>> Document the two valid pincfg values and the defaults.
+>>>>
+>>>> Although the hardware supports two more values for half-duplex modes,
+>>>> the driver doesn't support them so don't document them.
+>>>
+>>> binding doc should be first patch before drivers.
+>>>
+>>> binding descript hardware not driver, you should add all regardless if
+>>> driver support it.
+>>>
+>>
+>> Replied to same on "[PATCH 10/13] spi: spi-fsl-lpspi: Add compatible for
+>> S32G"
+>>
+>>>>
+>>>> Signed-off-by: James Clark <james.clark@linaro.org>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml | 14 ++++++++++++++
+>>>>    1 file changed, 14 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+>>>> index ce7bd44ee17e..3f8833911807 100644
+>>>> --- a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+>>>> +++ b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+>>>> @@ -70,6 +70,19 @@ properties:
+>>>>      power-domains:
+>>>>        maxItems: 1
+>>>>
+>>>> +  nxp,pincfg:
+>>>> +    description:
+>>>> +      'Pin configuration value for CFGR1.PINCFG.
+>>>> +        - "sin-in-sout-out": SIN is used for input data and SOUT is used for
+>>>> +                             output data
+>>>> +        - "sout-in-sin-out": SOUT is used for input data and SIN is used for
+>>>> +                             output data
+>>>> +      If no value is specified then the default is "sin-in-sout-out" for host
+>>>> +      mode and "sout-in-sin-out" for target mode.'
+>>>
+>>> why need this? are there varible at difference boards? look like default
+>>> is more make sense.
+>>>
+>>
+>> + Larissa. I think this might also be a question for the hardware designers
+>> about why the feature to swap the pins was deemed worth including.
+>>
+>> I'm assuming the flexibility is given for routing reasons. If you have
+>> another device with the pins in one order then you can route it without a
+>> via if they happen to be in the same order.
+> 
+> DT team need reason to judge if a new property is reasonable/neccesary. You
+> need  mention the reason why need this property. Here, some board design
+> swap sin/sout.
+> 
+>>
+>>> SPI signal name is MOSI and MISO
+>>>
+>>> Frank
+>>>
+>>
+>> As mentioned in the commit message of "[PATCH 05/13] spi: spi-fsl-lpspi:
+>> Enumerate all pin configuration definitions" the names were taken directly
+>> from the reference manual and this doc text was too. I think diverging from
+>> CFGR1_PINCFG could be potentially quite confusing. And MOSI isn't mentioned
+>> once in S32G3RM rev 4:
+>>
+>>    Configures which pins are used for input and output data during serial
+>>    transfers. When performing parallel transfers, the Pin Configuration
+>>    field is ignored.
+>>
+>>      00b - SIN is used for input data and SOUT is used for output data
+>>      01b - SIN is used for both input and output data, only half-duplex
+>>            serial transfers are supported
+>>      10b - SOUT is used for both input and output data, only half-duplex
+>>            serial transfers are supported
+>>      11b - SOUT is used for input data and SIN is used for output data
+> 
+> dt binding is ABI, design user easy understand property string.  like
+> 
+> enum:
+>    - normal
+>    - swap
+>    - half-duplex-on-sin
+>    - half-duplex-on-sout
+> 
+> Frank
+> 
 
-pinctrl-brcmstb.c  <- STB core
-pinctrl-brcmstb.h  <- STB API
-pinctrl-brcmstb-bcm2717.c <- All BCM2712 specifics
+If we're not directly using the names that get programmed into the 
+register then it's better to remove the implicit 5th mode that you get 
+for leaving it blank and to use that as "normal" instead. Then "swap" is 
+to swap whatever "normal" would have picked. Otherwise "normal" being a 
+fixed value doesn't match up to the current "normal" behavior which is 
+actually different value depending on host or target mode.
 
-This would make it easier to reuse the base file with other STB
-chips, right?
+So it would look like this with the "if no value is specified..." bit 
+reworded too:
 
-On Mon, Aug 11, 2025 at 4:45=E2=80=AFPM Andrea della Porta
-<andrea.porta@suse.com> wrote:
+    description:
+       'Pin configuration value for CFGR1.PINCFG.
+         - "normal": Hosts - SIN is used for input data and SOUT is used
+                       for output data.
+                     Targets - SOUT is used for input data and SIN is 
 
-> +#define FUNC(f) \
-> +       [func_##f] =3D #f
-> +
-> +#define PIN(i, f1, f2, f3, f4, f5, f6, f7, f8) \
-> +       [i] =3D { \
-> +               .funcs =3D { \
-> +                       func_##f1, \
-> +                       func_##f2, \
-> +                       func_##f3, \
-> +                       func_##f4, \
-> +                       func_##f5, \
-> +                       func_##f6, \
-> +                       func_##f7, \
-> +                       func_##f8, \
-> +               }, \
-> +       }
+                       used for output data.
+         - "swap": The inverse of "normal"
+         - "half-duplex-on-sin": SIN is used for both input and output
+                   data. Unsupported.
+         - "half-duplex-on-sout": SOUT is used for both input and output
+                   data. Unsupported.
+       If no value is specified then the default is "normal".
 
-These macros have a bit too generic names. Prefix with BRCMSTB_* or
-something please.
+>>
+>> James
+>>
+>>>> +    enum:
+>>>> +      - sin-in-sout-out
+>>>> +      - sout-in-sin-out
+>>>> +
+>>>>    required:
+>>>>      - compatible
+>>>>      - reg
+>>>> @@ -95,4 +108,5 @@ examples:
+>>>>            spi-slave;
+>>>>            fsl,spi-only-use-cs1-sel;
+>>>>            num-cs = <2>;
+>>>> +        nxp,pincfg = "sout-in-sin-out";
+>>>>        };
+>>>>
+>>>> --
+>>>> 2.34.1
+>>>>
+>>
 
-> +#define MUX_BIT_VALID          0x8000
-> +#define PAD_BIT_INVALID                0xffff
-> +
-> +#define BIT_TO_REG(b)          (((b) >> 5) << 2)
-> +#define BIT_TO_SHIFT(b)                ((b) & 0x1f)
-> +
-> +#define MUX_BIT(muxreg, muxshift) \
-> +       (MUX_BIT_VALID + ((muxreg) << 5) + ((muxshift) << 2))
-> +#define PAD_BIT(padreg, padshift) \
-> +       (((padreg) << 5) + ((padshift) << 1))
-> +
-> +#define GPIO_REGS(n, muxreg, muxshift, padreg, padshift) \
-> +       [n] =3D { MUX_BIT(muxreg, muxshift), PAD_BIT(padreg, padshift) }
-> +
-> +#define EMMC_REGS(n, padreg, padshift) \
-> +       [n] =3D { 0, PAD_BIT(padreg, padshift) }
-> +
-> +#define AGPIO_REGS(n, muxreg, muxshift, padreg, padshift) \
-> +       GPIO_REGS(n, muxreg, muxshift, padreg, padshift)
-> +
-> +#define SGPIO_REGS(n, muxreg, muxshift) \
-> +       [(n) + 32] =3D { MUX_BIT(muxreg, muxshift), PAD_BIT_INVALID }
-> +
-> +#define GPIO_PIN(n)            PINCTRL_PIN(n, "gpio" #n)
-> +#define AGPIO_PIN(n)           PINCTRL_PIN(n, "aon_gpio" #n)
-> +#define SGPIO_PIN(n)           PINCTRL_PIN((n) + 32, "aon_sgpio" #n)
-
-These are also pretty generically named, but this is OK because they
-don't intrude on the pinctrl namespace as much.
-
-> +static inline u32 brcmstb_reg_rd(struct brcmstb_pinctrl *pc, unsigned in=
-t reg)
-> +{
-> +       return readl(pc->base + reg);
-> +}
-> +
-> +static inline void brcmstb_reg_wr(struct brcmstb_pinctrl *pc, unsigned i=
-nt reg,
-> +                                 u32 val)
-> +{
-> +       writel(val, pc->base + reg);
-> +}
-
-This looks like unnecessary indirection. Can't you just use readl/writel?
-
-> +static int brcmstb_pinctrl_fsel_set(struct brcmstb_pinctrl *pc,
-> +                                   unsigned int pin, enum brcmstb_funcs =
-func)
-> +{
-> +       u32 bit =3D pc->pin_regs[pin].mux_bit, val;
-> +       const u8 *pin_funcs;
-> +       unsigned long flags;
-> +       int fsel;
-> +       int cur;
-> +       int i;
-> +
-> +       if (!bit || func >=3D func_count)
-> +               return -EINVAL;
-> +
-> +       bit &=3D ~MUX_BIT_VALID;
-> +
-> +       fsel =3D BRCMSTB_FSEL_COUNT;
-> +
-> +       if (func >=3D BRCMSTB_FSEL_COUNT) {
-> +               /* Convert to an fsel number */
-> +               pin_funcs =3D pc->pin_funcs[pin].funcs;
-> +               for (i =3D 1; i < BRCMSTB_FSEL_COUNT; i++) {
-> +                       if (pin_funcs[i - 1] =3D=3D func) {
-> +                               fsel =3D i;
-> +                               break;
-> +                       }
-> +               }
-> +       } else {
-> +               fsel =3D (enum brcmstb_funcs)func;
-> +       }
-> +
-> +       if (fsel >=3D BRCMSTB_FSEL_COUNT)
-> +               return -EINVAL;
-> +
-> +       spin_lock_irqsave(&pc->fsel_lock, flags);
-
-Please use lock guards instead, we do that in all new code:
-
-#include <linux/cleanup.h>
-
-guard(spinlock_irqsave)(&pc->fsel_lock);
-
-The framework handles the flags variable and the freeing,
-look at other drivers using guard() for guidance.
-
-> +static int brcmstb_pmx_gpio_request_enable(struct pinctrl_dev *pctldev,
-> +                                          struct pinctrl_gpio_range *ran=
-ge,
-> +                                          unsigned int pin)
-> +{
-> +       struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
-> +
-> +       return brcmstb_pinctrl_fsel_set(pc, pin, func_gpio);
-> +}
-> +
-> +static void brcmstb_pmx_gpio_disable_free(struct pinctrl_dev *pctldev,
-> +                                         struct pinctrl_gpio_range *rang=
-e,
-> +                                         unsigned int offset)
-> +{
-> +       struct brcmstb_pinctrl *pc =3D pinctrl_dev_get_drvdata(pctldev);
-> +
-> +       /* disable by setting to GPIO */
-> +       (void)brcmstb_pinctrl_fsel_set(pc, offset, func_gpio);
-> +}
-> +
-> +static const struct pinmux_ops brcmstb_pmx_ops =3D {
-> +       .free =3D brcmstb_pmx_free,
-> +       .get_functions_count =3D brcmstb_pmx_get_functions_count,
-> +       .get_function_name =3D brcmstb_pmx_get_function_name,
-> +       .get_function_groups =3D brcmstb_pmx_get_function_groups,
-> +       .set_mux =3D brcmstb_pmx_set,
-> +       .gpio_request_enable =3D brcmstb_pmx_gpio_request_enable,
-> +       .gpio_disable_free =3D brcmstb_pmx_gpio_disable_free,
-> +};
-
-With regards to the GPIO "shotcut" functions:
-please familiarize yourself with Bartosz recent patch set:
-https://lore.kernel.org/linux-gpio/20250815-pinctrl-gpio-pinfuncs-v5-0-955d=
-e9fd91db@linaro.org/T/#t
-
-This makes it possible for the pinctrl core to know about
-functions that are used for GPIO, so you can mark your
-pin controller as "strict". using the new .function_is_gpio()
-callback.
-
-I plan to merge Bartosz series soon and if your pin controller
-is aware about which functions are GPIO functions, this makes
-things better.
-
-> +static int brcmstb_pull_config_set(struct brcmstb_pinctrl *pc,
-> +                                  unsigned int pin, unsigned int arg)
-> +{
-> +       u32 bit =3D pc->pin_regs[pin].pad_bit, val;
-> +       unsigned long flags;
-> +
-> +       if (bit =3D=3D PAD_BIT_INVALID) {
-> +               dev_warn(pc->dev, "Can't set pulls for %s\n",
-> +                        pc->gpio_groups[pin]);
-> +               return -EINVAL;
-> +       }
-> +
-> +       spin_lock_irqsave(&pc->fsel_lock, flags);
-
-Use a guard()
-
-Yours,
-Linus Walleij
 
