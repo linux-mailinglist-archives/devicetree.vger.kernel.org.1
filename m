@@ -1,182 +1,212 @@
-Return-Path: <devicetree+bounces-206198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B54C4B2BB43
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 09:59:41 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F49CB2BB4C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:00:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92B9C168DAC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 07:59:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4B8174E371E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69CD53112AB;
-	Tue, 19 Aug 2025 07:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCAAB3101CE;
+	Tue, 19 Aug 2025 08:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AxHxocTu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GR76L6yq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA6253112AF
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 07:59:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0338825A2DA;
+	Tue, 19 Aug 2025 08:00:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755590378; cv=none; b=HQicQ1BZxgwqzg/QvUpaAZzM+uSs8efYw9KWSR17V+YOfT6odhhhoR1Sgq6Q5frq0tRxjAeSyK8GF8T7Ofvkft2gQWEsTHyedsnGU7U1wi0yEstet44s493KHA7ze0etVHVp7GV2gG01FyjkXcEftf5eHvkrcTwjBqhPm7lUJS8=
+	t=1755590419; cv=none; b=gt4EE7miUvDon0Fmi2jrHLYoB8YPXn4B8zyXLcDkVqo4RjIW8MRhCR8TUE6DyVBJkUN6uRc8Lfub/oRGQ2ylLcm2OeiqJmL80nLvVrQITLduCTNegu6sKzeZgrOaGJXousTF3aaMobabG8oJZcYXsku8YBLFvwJxN/0ODtdk8BU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755590378; c=relaxed/simple;
-	bh=TmIqGmZD3H9vgCSTYIgWGkAwUVmyYjcneDo8YIQjEzA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iVxnGgckx3cgbonPekFPbf1bQWmJplEw1D/CiMGaoURyNArvDazkkfAt6/S2x3RuqSgOo4K4nYuateOhdV1sDRQl8TVxU+tza0HFN/djACTuwyxEt96lL32yG6GpCghSOVv4D70Gj+w/P50kQb9VKyS7XZJIhwj0lqC4Bjps++o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AxHxocTu; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57ILiIVe026360
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 07:59:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=3vU6X6UmptKEeubZXKONa3UV
-	WPBKyO0rvUIh820/nkI=; b=AxHxocTuLdMKi6qPApw02H8p2uKc9/gCfFXp6JIk
-	Wxrg9EWZNdMQHKdQ/GGv2JYKe7qTS8dWUR+Rtq93OIlUSzsxpfRzW3p3XtVepfcX
-	JpVfAr7f4hw1dJaVE0fuIuL6Na32UrtXQ1xJPFyzQomZHGJ2ialZ88e659HAadkN
-	LPlO8t4dh/z0HIlDM/3GgStv0OZoihhuG0ZlG/jvLX0V4dDByjjU2F15jWqb5D7h
-	P/JPGcAxltYQo8Y1D+X47NJx3vaEa7Ij643UlrkqccUo0l/EoJ/d1n//w26XENCm
-	PF0mlMyRL+L94jXit2BEne4DdAtI+3tEKqM9ks2bk3fpAg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48kyunuxe5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 07:59:35 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-70a9f55eb56so116951596d6.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 00:59:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755590375; x=1756195175;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1755590419; c=relaxed/simple;
+	bh=Nx8qIbi9SAkXbLGaFH71R/tnLFDf4K94bN5+uJ2TPc8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dUUtz8YNQ31qRgztfZjlkKQWB3+7HQFKKoOyOQSs68BAwukWK38mBju4RIYRO/71qbvkppx3UodYDIx9B1IAUrbOKYjuHAcsdoMFpuuu4KjR6l2TwPYaCgmw1185s18PkRZgDgRonuTcKfCDNnaFoyfXpmBVetZO59Zzb5LFg8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GR76L6yq; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3b9e418ba08so2746979f8f.3;
+        Tue, 19 Aug 2025 01:00:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755590414; x=1756195214; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3vU6X6UmptKEeubZXKONa3UVWPBKyO0rvUIh820/nkI=;
-        b=gynjUAhe2WX8pVQIVlUcP24Ja7pMt/Hw/KouqlRQwDT2cB1sk0MO1duL+uzrji3/X2
-         gEtbgkVatfsf3RN8gKoBAhO9MdqKMI0oL447xKL1zIiAFY1/dkNd4DD7q7fx52V23E8f
-         BU7Dvd0YrH+sZrhkRerb0SmJmNW/6N9iObvSs4fAR1AxoGQuNXvHpR7IxOklQ2c/ExWO
-         XTW4W+6FxrfuLTzkMwqvLSc/4jAsfC8CkGawIKcbgfOViQHjQczJc8KfgxXvc50DCHP3
-         qrYn2KRuZ6GafNfDbFQ58iaS+qunzCw1vD6oYcWlynH0juttpM4EQD8z7aRFEWifT72M
-         G7Iw==
-X-Forwarded-Encrypted: i=1; AJvYcCUkmeHt0SS5gI/t+MCwp1Sn+OUCTsrFUiHGUhZb8KzXc5unhYhBBEV7okK08gbaRmM5wN02NZL3yDcI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/L/M18DWchwhadfTC6mI6K12bpPVGQIPC4Ljihkp8QJZjbZgr
-	xGgtznSbVW1pA4MIihlGHFHVf9NImFPU5F7HM7HfKWd6cCsVs5eVttUWMf5pPVCFSFDwfIpgU1m
-	4VVU6y1lg0NgaP85rzuwpF8F0XmrMVxMJMZxcy5SmDKWDeMOS1oBFwC8D+banBC4a
-X-Gm-Gg: ASbGncuTPOCC8sRO2hOog8sNkxbIzPlvxMR4AfV86jfq7vvBCZaj+0a7eIFT0vlzGZq
-	vzLsEZQCW+X8HHa/dHhwbLYcykd10vqezFG5Ez3rfHDgzUg+MQnQMRTerZqQgdXL5JgZKJ5FqqU
-	GhDxU5MIqu7jPHpSq8dt2s9I0B01wC/4KOgyMJjVew9s8BhGw0v+Ol3BDt03W2py8YonkmtqlIF
-	EHDKbFRpYi2RGncnQN4o7n7IvhBviWjiYx9CUgfhZbDV4rSc/tX6jUS4YUGs1I4edQsMGzYuXTR
-	t8yI7U5JFv5Z+gh3fkMmzO0P2oCjGHEKx3c2NZqwhH0rN+Gf0Xi/zF58NEvi1B5grqgl0Z+/LdC
-	hdvy9HtlWh1Ontm7ogoMZgIRUwCQIBuzf9RcISlWK4htzNe3ZbivH
-X-Received: by 2002:a05:6214:2249:b0:709:8742:e46e with SMTP id 6a1803df08f44-70c35c1f06amr21420536d6.45.1755590374880;
-        Tue, 19 Aug 2025 00:59:34 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHiMVGZQHvFNLcaq5/1TlbULCLv9YgylRXF8bOeajYtu4DRaeBUMTeUknrqEQR/YcjE19k0Pg==
-X-Received: by 2002:a05:6214:2249:b0:709:8742:e46e with SMTP id 6a1803df08f44-70c35c1f06amr21420206d6.45.1755590374394;
-        Tue, 19 Aug 2025 00:59:34 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef3f3932sm1968059e87.109.2025.08.19.00.59.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 00:59:33 -0700 (PDT)
-Date: Tue, 19 Aug 2025 10:59:31 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 6/6] drm/msm/dp: Add DisplayPort controller for QCS8300
-Message-ID: <brculyyu3dgc5nkj2cuzv3jkjzcouljy5o4jwr6mw33r6i7gt7@j6ur7yvwmky5>
-References: <20250819-qcs8300_mdss-v7-0-49775ef134f4@oss.qualcomm.com>
- <20250819-qcs8300_mdss-v7-6-49775ef134f4@oss.qualcomm.com>
+        bh=VRkdl0D7uOf0r2y3rQHAJ6SZi0yVeRGRkxwoZZVAQIA=;
+        b=GR76L6yquM7fMUXzA2GTN1axRfkR//6pJ9yHBx8aSyvGDwAFqLBjGjrQvdApSkL9Tn
+         byNR5RS0tfW8tLvYp14s01vP6/S0CGXmxKjqA7CynN5T/au+dASdcxD024Z6cAptYczx
+         pSNWndrSNSSvQ1Kt3N3yWq08CYdFB8nDoBNpA3sv+vUobJ3P6onffpcwjWJUuhd0aTdI
+         AhMaGgAYQme5xEjxGRVmckFyEtbRjywzfJIsiAih7EHIScUlaBgrS4khMI+NGoFhx1y8
+         QcjqYkfstXAEEwPL6F6QPwktZQJPqIxvQF74VFI1YU5nQgKQw0wGxbgbaOOyJ+9SdjZ3
+         2tdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755590414; x=1756195214;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VRkdl0D7uOf0r2y3rQHAJ6SZi0yVeRGRkxwoZZVAQIA=;
+        b=eVSsv/zYWy0igeFYWjP5YHy9jsy9i6ttpyxPrzr9l0isGO4VFGq9+teoTh7KMoyh7B
+         honHMomQ3W6yxGm6nrOJaVpqfOlUoNSZo+rWnoH6m7fiSajg2lFiWjJnBK9x8pB23c2P
+         lK40WyPbWwFl7ectWIH2B64BX6Rks2h0s2I3cvzrX+6c1pyqa2NUy7UbzLqzdbdq0t7i
+         YxcSpws39SFKOnL64RHWKgCcWTxbaUSJ4qBJSJGWYgmtJpMyLiJ2eGJ4MUwsiQWpJ9sn
+         CPbJHBnZu3O7jBgfgSV0VqAJaORtmWPcGhMCsSGB69RRh2idLXFiuRpMoE9ITI/l52cV
+         rxMA==
+X-Forwarded-Encrypted: i=1; AJvYcCUR6PyyklUmsh/qDvwFk8zqVvr/u3DvV8o1tUpkqE2syDqcJikitgR3Nfs9fKAFWkl/2M9TmKz/CfO7sF/aoOtsTu8=@vger.kernel.org, AJvYcCWbm7WEOW9heLeo9ix0rrJ7Y3NVntYpHJjPaUOeuBPf5N+m/K0xjQn2n48S+pp+CouCINDLiSZDU4YOsBLx@vger.kernel.org, AJvYcCXT3Rr57jSFS6UWDPI8NLxdl1jppRqvKOiYChMWIfnhu3sVTivcsjb55u8NQjKyYTsY4kUybGt0nTCy@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvKOqFBme8U3kaTH9Fp3K/B0zYxleMYvaTMRV2wTDTqXriEo6e
+	RJ0dRHodtVrKV3c3DhaAeGx00vHiR3S28DNTK1QkIVR7iuml3TF7KqeSa8Gp9TWODLi5uqEKemt
+	G2sZ6arFBI3m9dtUIlOS5dRuN2dbgtozYCc+p
+X-Gm-Gg: ASbGnctnZJzYXcLaTlu6LQQWVhOh6j2wHTQoJ+YzLjSji2fPBrDEdoqWXv28gK/kjE3
+	scmlghxUWQSj4ta3fu1i9O2BCZwNSZAA6qnQa2C+0x+BzQjMHVtuoMLep2hC5yDaCyJQ+u1jqzH
+	o/fisvT/6TJbfEL5gSrQwpK1jW/7eNJpy+yN31vLtuRJ8LvRdmVZROlEx/ioTKSaA1iCwhpOoeE
+	unlPd/HaejxLOMWPmg=
+X-Google-Smtp-Source: AGHT+IEflyYOgnjuJ8k5zdcmtQD7PXqL/yUuZjz4sozRotIwvgXG7UBVdB+gHtBDdUMTj4mP5zp3V0wCp/5sfgn2ktw=
+X-Received: by 2002:a05:6000:4387:b0:3b8:d15e:ed35 with SMTP id
+ ffacd0b85a97d-3c0e9f010d8mr1173323f8f.23.1755590413977; Tue, 19 Aug 2025
+ 01:00:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250819-qcs8300_mdss-v7-6-49775ef134f4@oss.qualcomm.com>
-X-Proofpoint-GUID: 1cjWYJAGFXbjhPhzD4An44lEs5HbJUok
-X-Authority-Analysis: v=2.4 cv=N6UpF39B c=1 sm=1 tr=0 ts=68a42ee7 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=Yr_zk0diUUozgDP3y_gA:9 a=CjuIK1q_8ugA:10
- a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE4MDA3MSBTYWx0ZWRfXy/1/LwSopf2k
- GljyAp4BrAKDzLptU8onmWTdEffNiGkiORbRHo8TR+Dnf3xijidhpU3Yc1sOkZoITb4tggf5TV2
- UvdWRUHuhCr4jUo/lJEumxBnzkMrAW6u+BAkTt86mg428/j5YOa9wIIu7nsva/uzsCV8oI5S1v5
- rEbibCCHXc0yhO3kJfks26Z7TT3tScRPorc5neQv1IizG0TMHcyXNMvDe2wYG66fC8TxhIWOBUa
- 9QC01ua6bGawObLUrDIm9K7igFVqIztEEkg5+iD5bFHadaC0+9fyj3IcJ8NGtpVVmNdTmCIpC+O
- Fnw3v+u75EGVty6vP7FdAbwXBYDYMp2OxlXWDF71saDIQaLarCinCGxop6gJD0MQpXgbUqCOTXf
- Ka4j6IQY
-X-Proofpoint-ORIG-GUID: 1cjWYJAGFXbjhPhzD4An44lEs5HbJUok
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-19_01,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 adultscore=0 clxscore=1015 malwarescore=0 impostorscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508180071
+References: <20250812200344.3253781-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250812200344.3253781-12-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUeLewbDu-pge0ee0+AKzicKuS7fzce7d0pNc20h6CoGQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdUeLewbDu-pge0ee0+AKzicKuS7fzce7d0pNc20h6CoGQ@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 19 Aug 2025 08:59:47 +0100
+X-Gm-Features: Ac12FXx3a_vfRR0cCVmfuQu70K6rUoEc6UqjsVGIG0wNRXq_W7RD2fJ5FCybwxI
+Message-ID: <CA+V-a8s5Z+X-ueGdNWGs1i3PDN4P4COxCR9p-k0X8v22BkfvUg@mail.gmail.com>
+Subject: Re: [PATCH 11/13] arm64: dts: renesas: rzt2h/rzn2h: Enable eMMC
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 19, 2025 at 11:33:33AM +0800, Yongxing Mou wrote:
-> The Qualcomm QCS8300 platform comes with one DisplayPort controller
-> with same base offset as SM8650. But it requires new compatible string
-> because QCS8300 controller supports 4 MST streams. 4 MST streams will
-> be enabled as part of MST feature support. Currently, using SM8650 as
-> fallback to enable SST on QCS8300.
+Hi Geert,
 
-Hmm, no, you are not using SM8650 as a fallback. You are using the data
-structure for SM8650 for QCS8300. That's a different thing. It would
-have been using SM8650 as fallback, if you had declared device with two
-compatibles, qcom,qcs8300-dp and qcom,sm8650-dp, and then relied on the
-second entry (only) to provide a match and data.
+Thank you for the review.
 
-Exactly the same comment applies to the UBWC patch.
+On Mon, Aug 18, 2025 at 5:02=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Tue, 12 Aug 2025 at 22:03, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Enable eMMC on RZ/T2H and RZ/N2H EVKs. As SDHI0 can be connected to
+> > either eMMC0/SD0 `SD0_EMMC` macro is added.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> > @@ -10,6 +10,15 @@
+> >  #include <dt-bindings/gpio/gpio.h>
+> >
+> >  #include "r9a09g087m44.dtsi"
+> > +
+> > +/*
+> > + * SD0 can be connected to either eMMC (U33) or SD card slot CN21
+> > + * Lets by default enable the eMMC, note we need the below SW settings
+> > + * for eMMC.
+> > + * DSW5[1] =3D ON; DSW5[2] =3D ON
+> > + */
+>
+> Both SD0 and eMMC also need DSW17[5] =3D OFF; DSW17[6] =3D ON.
+>
+Agreed.
 
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> ---
->  drivers/gpu/drm/msm/dp/dp_display.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> index d87d47cc7ec3eb757ac192c411000bc50b824c59..bb4660585849d1a67921a28e7e12422e0c327ab2 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_display.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> @@ -187,6 +187,7 @@ static const struct msm_dp_desc msm_dp_desc_x1e80100[] = {
->  };
->  
->  static const struct of_device_id msm_dp_dt_match[] = {
-> +	{ .compatible = "qcom,qcs8300-dp", .data = &msm_dp_desc_sm8650 },
->  	{ .compatible = "qcom,sa8775p-dp", .data = &msm_dp_desc_sa8775p },
->  	{ .compatible = "qcom,sc7180-dp", .data = &msm_dp_desc_sc7180 },
->  	{ .compatible = "qcom,sc7280-dp", .data = &msm_dp_desc_sc7280 },
-> 
-> -- 
-> 2.34.1
-> 
+> > +#define SD0_EMMC       1
+> > +
+> >  #include "rzt2h-n2h-evk-common.dtsi"
+> >
+> >  /*
+>
+> > --- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+>
+> > @@ -44,6 +63,34 @@ sci0_pins: sci0-pins {
+> >                 pinmux =3D <RZT2H_PORT_PINMUX(27, 4, 0x14)>,
+> >                          <RZT2H_PORT_PINMUX(27, 5, 0x14)>;
+> >         };
+> > +
+> > +#if SD0_EMMC
+> > +       sdhi0-emmc-iovs-hog {
+> > +               gpio-hog;
+> > +               gpios =3D <RZT2H_GPIO(2, 6) GPIO_ACTIVE_HIGH>;
+> > +               output-high;
+> > +               line-name =3D "SD0_IOVS";
+> > +       };
+> > +#endif
+> > +
+> > +       sdhi0_emmc_pins: sd0-emmc-group {
+> > +               sd0-emmc-data-pins {
+>
+> No need for repeated sd0-emmc-prefixes in the subnodes.
+>
+>
+Ok, I will get rid of them.
 
--- 
-With best wishes
-Dmitry
+Cheers,
+Prabhakar
+
+> > +                       pinmux =3D <RZT2H_PORT_PINMUX(12, 2, 0x29)>, /*=
+ SD0_DATA0 */
+> > +                                <RZT2H_PORT_PINMUX(12, 3, 0x29)>, /* S=
+D0_DATA1 */
+> > +                                <RZT2H_PORT_PINMUX(12, 4, 0x29)>, /* S=
+D0_DATA2 */
+> > +                                <RZT2H_PORT_PINMUX(12, 5, 0x29)>, /* S=
+D0_DATA3 */
+> > +                                <RZT2H_PORT_PINMUX(12, 6, 0x29)>, /* S=
+D0_DATA4 */
+> > +                                <RZT2H_PORT_PINMUX(12, 7, 0x29)>, /* S=
+D0_DATA5 */
+> > +                                <RZT2H_PORT_PINMUX(13, 0, 0x29)>, /* S=
+D0_DATA6 */
+> > +                                <RZT2H_PORT_PINMUX(13, 1, 0x29)>; /* S=
+D0_DATA7 */
+> > +               };
+> > +
+> > +               sd0-emmc-ctrl-pins {
+> > +                       pinmux =3D <RZT2H_PORT_PINMUX(12, 0, 0x29)>, /*=
+ SD0_CLK */
+> > +                                <RZT2H_PORT_PINMUX(12, 1, 0x29)>, /* S=
+D0_CMD */
+> > +                                <RZT2H_PORT_PINMUX(13, 2, 0x29)>; /* S=
+D0_RST# */
+> > +               };
+> > +       };
+> >  };
+>
+> The rest LGTM.
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
