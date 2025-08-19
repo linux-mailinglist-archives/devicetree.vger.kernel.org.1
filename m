@@ -1,289 +1,323 @@
-Return-Path: <devicetree+bounces-206502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE96AB2C768
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 16:47:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 052C5B2C762
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 16:45:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA2801B617F8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:45:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94DAE5E6C43
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D24C27B321;
-	Tue, 19 Aug 2025 14:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA60527A456;
+	Tue, 19 Aug 2025 14:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TxzJLZse"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="A0rCJxQq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013029.outbound.protection.outlook.com [40.107.159.29])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A28A2765C8;
-	Tue, 19 Aug 2025 14:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755614704; cv=none; b=jMW29P+rsHI4D3y2pSwUy7Sr7aSWwZZAvCR/40IZGEPm2m9NzvcgUONBpDUhfFQOGEEgaakcDdupZq30etfLezb+O57eJHdeLglzrNypZ7YsuTeoJ1ddoleUrAkhjXzKrn6goICgMyP+S58AJoGbzpU1EZ2oYEWz3ztplhITFDg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755614704; c=relaxed/simple;
-	bh=INO6DoHi+Uww+fyZYtWNEF0V2EKbFA5IcYbcbg5WTZg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=h5vvdsPVt9EGbcd7kBNz54l4IKORJt/89U8NXBROJA4uQJnHrilsbgULs6HcSYg0Kuzj+snwYidKOt/VcWTge8ZFm7TaNCT+P9NNHGLtl5pVdCtDKLkWvL8hO+eQvTMo6mjrZVl9BiBd+FmH/5zZow2zVoxAZBIqRj/AIEhg8wo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TxzJLZse; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57JEinw0031941;
-	Tue, 19 Aug 2025 09:44:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755614689;
-	bh=mWAwFAx+Qqy0EtM1N8+nAwrxyTgSGbmuIY+YP+TklH0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=TxzJLZseK4/x76vaANRNYC/Rvyuq9yA4qZFCF+A5gNhpnjnFwva4lFK8h+nRFyiXm
-	 sRMO7Lat2RyQCMwf6ggodnDygW+lqngw/zqLlHSJjpTV2IDlv3WlLQPej8vdD/LpfQ
-	 NbVuVHjy0cuu+C4TAg2rrGhCddgTY2hqgUi5vy1Y=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57JEinhg473414
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 19 Aug 2025 09:44:49 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 19
- Aug 2025 09:44:48 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 19 Aug 2025 09:44:48 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57JEimiA2874136;
-	Tue, 19 Aug 2025 09:44:48 -0500
-Message-ID: <b8ed887a-1ffd-4ed4-98b0-6e71f8213f6b@ti.com>
-Date: Tue, 19 Aug 2025 09:44:48 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04DC1FF7D7;
+	Tue, 19 Aug 2025 14:45:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.29
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755614744; cv=fail; b=R9CxzkXTY+mmq/nPzex6BBNEXl3kZoc+0a031tK8UAaasNgilBE6Pby1oB8beWMV+HjUf1mQFa0LMk3/xnyTRx7+gsFGFam9D+Yylt+8C+BbM+fafSyPGM8tz41HeTah7BYad4/FMf+UbokdRapj43r15opARoYnsCG0BDmbHk8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755614744; c=relaxed/simple;
+	bh=6hgBJQ1O/l9aH6iu4x+aMRx8uf2Pmx50IdHp2upALl0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=UsKZCLLS/ZSKf5UPdiUa+vJBjRp1qJKsEtS61yXhLsRYR+RpZoaqaInoi5jSW1mejvp0ghCAS1R65YHfjLf+fmF3ODzqkoUIvkR7D3UR48fl9rcPVOw9AC5qnUqgmgFJi4SRAsdNpmXKi7KOD2wrrfa6QmVfdh1rjsmAad52Ie4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=A0rCJxQq; arc=fail smtp.client-ip=40.107.159.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rHD5mV7rvE2nuaqs0hZoFaPvC4/1q/FiF1MGeix9ikb9DmC4RJ2iblVcQQOLhGbF8MHxdwQK8l283PDq55g84IlD5OUjbjVVunsyRD+cpPr6cHmLUdiE7hlp+AApvD+4xS88DbkwK++IRBlszhkdOJVWy67rUQCO6V9afRPXANYIVvfJ958LJnp8/J/9EaTfwq6qd5quMA58sGBOoamZ/P5L6JU+EFGj+4Ux3jaoNSGK91tNtNi37MImfy/V4K9OAou2CHddWut+VJ7DupPuVpV87EMLrJ/n1pqUkACVj0CqLjxOHydvkYDtVDObW7QWfBVoIGCaZ+ElRzE5C5r/3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ErG5qomNHRmXr0XCtdbWeCf7IhIbpSmClDtG8hSPH4Y=;
+ b=wWjQHCWMKy87ZV8YNrGE4j7lzzOV3WbO1/Y5pEXmD7xUMtsQt0GY4byAJhE+SKpgWoLXu0/hkw3TCPpQv+XekAwPyM8PJ5emorUCnhWALL30sHJH5jnvSNniqtxvDIz1IYIaeF4WsMAGP5LcRKRQwsehuF/JJTSKkchYdgdqgIYoozHbUpiKJ+qL4z0fSAYp+rGUjwRMd/9cgvz44nRLILSvwEirLaQcbhAkL1N2+o1mISKZ4rGu/E5N89O5L1TJdzuRIGYiW9uauy9fp3dMr3Z0XKVJyVeO0TR+ZyQlanw7C6qRtZjSpuBvQh4gWIJOybzQMa65CKDbgZbH9pebTQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ErG5qomNHRmXr0XCtdbWeCf7IhIbpSmClDtG8hSPH4Y=;
+ b=A0rCJxQqxUjTYaJziuO8lzxsrwpgKAn5uNDYigHuqd7OkMJ3r7KCXuAAi1BDE3nzU3zqQsMv8pFlERoZtNPl7qhl2/nx31/JYyrtTZr12MnoW3UdHsa04+9CRWNYNFGhiisH+Yhdp7mwp8v7YvFhaZvqt7w3aZIOEC846sgwHuG8yknmNu4SvnAPvju4WGwGEG4eEHXngXqXbxWm7tWdMPKWikZU7satuKPLURWPeZLZBTO8OY4JHOfdDw6qVD2WTZKtRpV/LtSIYdY73TUJaXhCkhaQitqLRDZO7OfTMC7wXM1BTeJfFBfbGmISeHUWpHODb1BUXlYLlrOcXPeINQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI1PR04MB6896.eurprd04.prod.outlook.com (2603:10a6:803:12e::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.12; Tue, 19 Aug
+ 2025 14:45:39 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.9052.011; Tue, 19 Aug 2025
+ 14:45:39 +0000
+Date: Tue, 19 Aug 2025 10:45:29 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	richardcochran@gmail.com, claudiu.manoil@nxp.com,
+	vladimir.oltean@nxp.com, xiaoning.wang@nxp.com,
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, vadim.fedorenko@linux.dev,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+	fushi.peng@nxp.com, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, kernel@pengutronix.de
+Subject: Re: [PATCH v4 net-next 03/15] ptp: add helpers to get the phc_index
+ by of_node or dev
+Message-ID: <aKSOCbuKcwRkBe82@lizhi-Precision-Tower-5810>
+References: <20250819123620.916637-1-wei.fang@nxp.com>
+ <20250819123620.916637-4-wei.fang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250819123620.916637-4-wei.fang@nxp.com>
+X-ClientProxiedBy: SJ0PR03CA0042.namprd03.prod.outlook.com
+ (2603:10b6:a03:33e::17) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 4/5] drm/bridge: it66121: Use vid/pid to detect the
- type of chip
-To: Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, David Airlie
-	<airlied@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        <tomi.valkeinen@ideasonboard.com>, <devarsht@ti.com>,
-        <dmitry.baryshkov@oss.qualcomm.com>
-References: <20250819130807.3322536-1-nm@ti.com>
- <20250819130807.3322536-5-nm@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250819130807.3322536-5-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI1PR04MB6896:EE_
+X-MS-Office365-Filtering-Correlation-Id: e8d9ee84-7264-4778-23cf-08dddf2f10de
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|7416014|52116014|376014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Uu9D1hwOIlGlE0FywX316JcUY6+rW9xEjOqaG1T8IQsq2cH6Wke6joxjbAp1?=
+ =?us-ascii?Q?1s6MQ94X7z+wabX89UDvKpciKOvdIWoKM0NNe8kRhrqaHNgxVJ6UfUqFjhOn?=
+ =?us-ascii?Q?j+gZ16OCRvD9f1IgUDie1pCgW/B1GXbQywI7dqe3xQGA5RNWq+29lcUae+Lr?=
+ =?us-ascii?Q?/9JNPNSnwBrAo1qY10K9T6s7JfZcUPkyihzRkv++PFH3MJPhxNFOYSCZGbDq?=
+ =?us-ascii?Q?b1XnaKoiRNTLOk2GG7ImFzhLTILepNte7k8OJFYgRH/h7it8wY05WeXEXjDn?=
+ =?us-ascii?Q?tUX9s0xBO/6bwjgl9mwdRo6jZD+owhyjBzEp7YyV5rk1f+WfvFUlXbkjO5h8?=
+ =?us-ascii?Q?gqSVjgTOY0zXra6rMTrBcQPIEfYdN7L2+F91z0QyuLY3+s7VHs3hXMqkWkxb?=
+ =?us-ascii?Q?ifeBvU3oUyAub9hYVn9leMmubG9RPHGGSkmJW2lztFfv9xAjqH3JKP7W++OG?=
+ =?us-ascii?Q?2ql/Is+lDfE8RdbJMe+j9ugJTHi0EdiURy7pmMKIKtuscNOVkDc0XPagCMsA?=
+ =?us-ascii?Q?rywI0b3hjqkJUMopudGst6zme+SNXMK+iX1K2ZH+B2xBLyrv8/hXukL30d7+?=
+ =?us-ascii?Q?5jLT3SB8phYMELX9ioEdyR0XJCRcyOGH5dgP02kQmg5muGGqoSmDiNQ5iKm9?=
+ =?us-ascii?Q?egM7Ivb1uU49Ool4RFjNbHDbkKrCSBM9Z/fxzO6JwnY21cthqc3N1foCZVR/?=
+ =?us-ascii?Q?DC1rpnZS1qGN7BH0ybj4TdaC8wymZFZfK9M9cA/v9+axoNncePNJacliQBeX?=
+ =?us-ascii?Q?Kpf4T/tIdLnUAzqMwFFz+jTUPuuVTY4pdAH4k5PvrL/lxstXv5hOAVR/igCx?=
+ =?us-ascii?Q?8sJJYJK9Z+Ifa7Jn1pLvpqJjhD7VtIqbwUOhBED9vNgUgu2/IJiESq5lTA9f?=
+ =?us-ascii?Q?Wlkk5uQ7G4yrBHNYkjxp+lz8x8ezzW9lQGr3/QovABNfgOIPWh7Ry3EUpcYR?=
+ =?us-ascii?Q?dmYMn0wzfK7bNIcRC4DpbV+S7QiPYxkDgHTSott5gfpa/GCv+CU2l4vEgMQ0?=
+ =?us-ascii?Q?K/TSw2ptCQJ3ztDClfDva2k8iE9ujYv1HCzephxcVswFo/z4V6HMTNP8RrjT?=
+ =?us-ascii?Q?G/efwU7+JGI2h6b4CoaJ+i/zd1dDx+uCLHOq+z6yQRM+SwkarR/qIkO9uoNJ?=
+ =?us-ascii?Q?powQtYKj5kKeFKoazD7YYykIzBJRRDPaipbwKpmhNcYBQowp45Ie+WhqpM24?=
+ =?us-ascii?Q?zzO7BPoK1hEZXlgcZ6ddPa/AQrOoBFbrATu+d+g+bnXqavbGtKArWxZVhl+Q?=
+ =?us-ascii?Q?KB6M1NZkA9uzR6/H7725fSph0kVlFbjfhSvztq2BsgD8SM7CrXM+5la+2idv?=
+ =?us-ascii?Q?H8M2+CUqh44B+qP+PXliD/34i2iCrlF5VCTa5dt1o9z5g1KuvsDfX0WYI+7W?=
+ =?us-ascii?Q?xJ2L1F0AB9EhhR52ANAfT1Ht/M5979l0tfkwTu67UmfY63E4Jgk52gcnaSl9?=
+ =?us-ascii?Q?4tuljK5vtPGUPR/ksmQ6/HkiB+VaGpRQHlWtotoJ/XDC4uXlK6yrRg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?7T5dpFE6QbCFoJVgUwfRXSP2QlkBBYIuRZGSpTxYadjm0xHwBar+4A7bKzbV?=
+ =?us-ascii?Q?qkXF9pfPA9fnsfM5gpToereCvNXfVsawgwTDvn0DvCvm1HTsjouASY7yjRXa?=
+ =?us-ascii?Q?5+IbWR7UuPIgUJN9T+n0cFyTE70weJDyB3xe+iP3PARiwUc7LLvtEJ4hm9lK?=
+ =?us-ascii?Q?xreQ63v4yz3toWwwY3T9EC9+f9U0t2vjwMxJ2drzeHGeqoMHhX7kdffmJLwU?=
+ =?us-ascii?Q?Ufav28PaymymcI9l4opJ5k3Ekk/eZRsd5aMY7Dh9mscGORTLMJ6+ZFr6bMKX?=
+ =?us-ascii?Q?tmYX293EU0uiIIXnRx7N9xvZnEL3ZrZNaZ3xDUPD4+KAL3mSRaFvCYBP0gHg?=
+ =?us-ascii?Q?BB3z8g1jdXrLzXy6Z+/8MKXQYjdRBR0KUDLFutE/a5l/5IPZ2O4XboQrMfRd?=
+ =?us-ascii?Q?EtXt2W8q2NcHAU0s7TGFTN+KCbSpb4k9ggXMS9/OucohWM4wyfXBaatSWbH6?=
+ =?us-ascii?Q?uuyiAXorTfvXfJVXmrAZtjVG6kxv9Rrti6kutXAMdO8erZvagOT8IRZwc4mF?=
+ =?us-ascii?Q?IBKJ/74RNL9ojqacODw65BHreR7ql4lTCsWXt0/7AxuFQ/+rEYMJzlNPQ5M5?=
+ =?us-ascii?Q?bWUwZwLFd0QVSFHE+54o3HSF0mr6QPF1RhBlP4f6FCCSk/WM+DseqC5u6ZX8?=
+ =?us-ascii?Q?51q/FCvXinaG6Gk5h46GWOeUlYzmsJgr/kwFMGb3LiCYhL1HJgh+N9q7cWy5?=
+ =?us-ascii?Q?0xHIxNK0WNyjju0QKBO0325cznpvA/aLkYCe8KF9I1NtCqKzPsSmCeq6dFkK?=
+ =?us-ascii?Q?yW6DPQJJ+YFvqrTrKxS+zDh5ceMbf9slkQRnARI1Z+k922uyzO9MS99WO77T?=
+ =?us-ascii?Q?AL2sTXkzdobgJmvV1uCjKIa2SM9AY5+MZs5KfQROrg1QfslXuOpJT+TDDX2h?=
+ =?us-ascii?Q?etXaalFK12Tqd64+Yjrek3XHJqnh0QZViFNPElwyY4N/EoSk/auQ2w4Lwn1R?=
+ =?us-ascii?Q?uMRkJzgY8STKiPlxExiqqjUzlQ59mfsrMZxXLOq2MmD+vpZxu7pNqeyQ2Jnv?=
+ =?us-ascii?Q?p4YZfE8n1ktSCSwqiwPyUW2+MuGmN0xkgHn1rp9OjmBur6eUtyW/A6I2eNq7?=
+ =?us-ascii?Q?gZopP/9KzE8diTVghDaTigW0glhrkvhP9/k20Z/PyBYH2bwxSoasGKFDd6pF?=
+ =?us-ascii?Q?j7CkwLBQ8sYripyRctmY0yniQuFAKcdVEnsylRuK5JE8yPoLOZUPdLBKrTv1?=
+ =?us-ascii?Q?3f9NbnSF1tXhCVAx7RIGdty+At7vnqiggZnnL1JGtIkztoKxi0pAYW1TLbSz?=
+ =?us-ascii?Q?jFRRwY5RpUpAMZL1UozHEJwUoHtFbw8IfBpCAaMPyISKdQKWYIhtI2GNao1u?=
+ =?us-ascii?Q?zG0Y28GedWfQ7IT1HeeigwFfSGuPMFPQ3R3XCVteeJyDHO9RkYwtWSfEszqI?=
+ =?us-ascii?Q?zsYgT2EM+gIZsQPSQVx3DMvXceyEv7jZt4ELbCg+sK+YjHadmNr8pq+toBPb?=
+ =?us-ascii?Q?wTa2I+1pfLRLC6bWEsptuX1lvTYx8y3sOMBkY8K1/iggx/n7+MLB1OUthhk3?=
+ =?us-ascii?Q?EFQ+2gySxhihD1opo1aIcMzlzQBalhEgMH09C1ub83lBUur34qGhsA3mrevo?=
+ =?us-ascii?Q?E1zppfrAdRZtJiArM1gBE2XYDPjMPCNCM44G9gbl?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8d9ee84-7264-4778-23cf-08dddf2f10de
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2025 14:45:39.7214
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SeKoURgesONv0LP5naynDczA3hWjYbkX0uSZYi7X+DJne6L6/eRAa5/8UhqKiY5H98OhaQyHXNayrJsWCWODuw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6896
 
-On 8/19/25 8:08 AM, Nishanth Menon wrote:
-> The driver knows exactly which version of the chip is present since
-> the vid/pid is used to enforce a compatibility. Given that some
-> devices like IT66121 has potentially been replaced with IT66122 mid
-> production for many platforms, it makes no sense to use the vid/pid
-> as an enforcement for compatibility. Instead, detect the ID of the
-> actual chip in use by matching the corresponding vid/pid and drop the
-> compatible specific lookup table.
-> 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+On Tue, Aug 19, 2025 at 08:36:08PM +0800, Wei Fang wrote:
+> Some Ethernet controllers do not have an integrated PTP timer function.
+> Instead, the PTP timer is a separated device and provides PTP hardware
+> clock to the Ethernet controller to use. Therefore, the Ethernet
+> controller driver needs to obtain the PTP clock's phc_index in its
+> ethtool_ops::get_ts_info(). Currently, most drivers implement this in
+> the following ways.
+>
+> 1. The PTP device driver adds a custom API and exports it to the Ethernet
+> controller driver.
+> 2. The PTP device driver adds private data to its device structure. So
+> the private data structure needs to be exposed to the Ethernet controller
+> driver.
+>
+> When registering the ptp clock, ptp_clock_register() always saves the
+> ptp_clock pointer to the private data of ptp_clock::dev. Therefore, as
+> long as ptp_clock::dev is obtained, the phc_index can be obtained. So
+> the following generic APIs can be added to the ptp driver to obtain the
+> phc_index.
+>
+> 1. ptp_clock_index_by_dev(): Obtain the phc_index by the device pointer
+> of the PTP device.
+> 2.ptp_clock_index_by_of_node(): Obtain the phc_index by the of_node
+> pointer of the PTP device.
+>
+> Also, we can add another API like ptp_clock_index_by_fwnode() to get the
+> phc_index by fwnode of PTP device. However, this API is not used in this
+> patch set, so it is better to add it when needed.
+
+Needn't this paragraph.
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+
+>
+> Suggested-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+>
 > ---
-> Changes in V4:
-> * Dropped the formatting change
-> * Dropped the data lookup from match.
-> * Have not picked Andrew's review since the patch was modified
-> 
-> V3: https://lore.kernel.org/all/20250815034105.1276548-4-nm@ti.com/
-> V2: https://lore.kernel.org/all/20250813204106.580141-3-nm@ti.com/
-> 
->   drivers/gpu/drm/bridge/ite-it66121.c | 56 ++++++++++++++--------------
->   1 file changed, 28 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-> index cd74f3966560..a1b0f8a8f3e8 100644
-> --- a/drivers/gpu/drm/bridge/ite-it66121.c
-> +++ b/drivers/gpu/drm/bridge/ite-it66121.c
-> @@ -312,7 +312,7 @@ struct it66121_ctx {
->   		u8 swl;
->   		bool auto_cts;
->   	} audio;
-> -	const struct it66121_chip_info *info;
-> +	enum chip_id id;
->   };
->   
->   static const struct regmap_range_cfg it66121_regmap_banks[] = {
-> @@ -402,7 +402,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
->   		if (ret)
->   			return ret;
->   
-> -		if (ctx->info->id == ID_IT66121) {
-> +		if (ctx->id == ID_IT66121) {
->   			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
->   						IT66121_AFE_IP_EC1, 0);
->   			if (ret)
-> @@ -428,7 +428,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
->   		if (ret)
->   			return ret;
->   
-> -		if (ctx->info->id == ID_IT66121) {
-> +		if (ctx->id == ID_IT66121) {
->   			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
->   						IT66121_AFE_IP_EC1,
->   						IT66121_AFE_IP_EC1);
-> @@ -449,7 +449,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
->   	if (ret)
->   		return ret;
->   
-> -	if (ctx->info->id == ID_IT6610) {
-> +	if (ctx->id == ID_IT6610) {
->   		ret = regmap_write_bits(ctx->regmap, IT66121_AFE_XP_REG,
->   					IT6610_AFE_XP_BYPASS,
->   					IT6610_AFE_XP_BYPASS);
-> @@ -599,7 +599,7 @@ static int it66121_bridge_attach(struct drm_bridge *bridge,
->   	if (ret)
->   		return ret;
->   
-> -	if (ctx->info->id == ID_IT66121) {
-> +	if (ctx->id == ID_IT66121) {
->   		ret = regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
->   					IT66121_CLK_BANK_PWROFF_RCLK, 0);
->   		if (ret)
-> @@ -748,7 +748,7 @@ static int it66121_bridge_check(struct drm_bridge *bridge,
->   {
->   	struct it66121_ctx *ctx = container_of(bridge, struct it66121_ctx, bridge);
->   
-> -	if (ctx->info->id == ID_IT6610) {
-> +	if (ctx->id == ID_IT6610) {
->   		/* The IT6610 only supports these settings */
->   		bridge_state->input_bus_cfg.flags |= DRM_BUS_FLAG_DE_HIGH |
->   			DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE;
-> @@ -802,7 +802,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
->   	if (regmap_write(ctx->regmap, IT66121_HDMI_MODE_REG, IT66121_HDMI_MODE_HDMI))
->   		goto unlock;
->   
-> -	if (ctx->info->id == ID_IT66121 &&
-> +	if (ctx->id == ID_IT66121 &&
->   	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
->   			      IT66121_CLK_BANK_PWROFF_TXCLK,
->   			      IT66121_CLK_BANK_PWROFF_TXCLK)) {
-> @@ -815,7 +815,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
->   	if (it66121_configure_afe(ctx, adjusted_mode))
->   		goto unlock;
->   
-> -	if (ctx->info->id == ID_IT66121 &&
-> +	if (ctx->id == ID_IT66121 &&
->   	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
->   			      IT66121_CLK_BANK_PWROFF_TXCLK, 0)) {
->   		goto unlock;
-> @@ -1498,6 +1498,12 @@ static const char * const it66121_supplies[] = {
->   	"vcn33", "vcn18", "vrf12"
->   };
->   
-> +static const struct it66121_chip_info it66xx_chip_info[] = {
-> +	{.id = ID_IT6610, .vid = 0xca00, .pid = 0x0611 },
-> +	{.id = ID_IT66121, .vid = 0x4954, .pid = 0x0612 },
-> +	{ }
-> +};
+> v4 changes:
+> New patch
+> ---
+>  drivers/ptp/ptp_clock.c          | 53 ++++++++++++++++++++++++++++++++
+>  include/linux/ptp_clock_kernel.h | 22 +++++++++++++
+>  2 files changed, 75 insertions(+)
+>
+> diff --git a/drivers/ptp/ptp_clock.c b/drivers/ptp/ptp_clock.c
+> index 1cc06b7cb17e..2b0fd62a17ef 100644
+> --- a/drivers/ptp/ptp_clock.c
+> +++ b/drivers/ptp/ptp_clock.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/module.h>
+>  #include <linux/posix-clock.h>
+>  #include <linux/pps_kernel.h>
+> +#include <linux/property.h>
+>  #include <linux/slab.h>
+>  #include <linux/syscalls.h>
+>  #include <linux/uaccess.h>
+> @@ -477,6 +478,58 @@ int ptp_clock_index(struct ptp_clock *ptp)
+>  }
+>  EXPORT_SYMBOL(ptp_clock_index);
+>
+> +static int ptp_clock_of_node_match(struct device *dev, const void *data)
+> +{
+> +	const struct device_node *parent_np = data;
 > +
->   static int it66121_probe(struct i2c_client *client)
->   {
->   	u32 revision_id, vendor_ids[2] = { 0 }, device_ids[2] = { 0 };
-> @@ -1505,6 +1511,7 @@ static int it66121_probe(struct i2c_client *client)
->   	int ret;
->   	struct it66121_ctx *ctx;
->   	struct device *dev = &client->dev;
-> +	const struct it66121_chip_info *chip_info;
->   
->   	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
->   		dev_err(dev, "I2C check functionality failed.\n");
-> @@ -1522,7 +1529,6 @@ static int it66121_probe(struct i2c_client *client)
->   
->   	ctx->dev = dev;
->   	ctx->client = client;
-> -	ctx->info = i2c_get_match_data(client);
->   
->   	of_property_read_u32(ep, "bus-width", &ctx->bus_width);
->   	of_node_put(ep);
-> @@ -1568,11 +1574,17 @@ static int it66121_probe(struct i2c_client *client)
->   	revision_id = FIELD_GET(IT66121_REVISION_MASK, device_ids[1]);
->   	device_ids[1] &= IT66121_DEVICE_ID1_MASK;
->   
-> -	if ((vendor_ids[1] << 8 | vendor_ids[0]) != ctx->info->vid ||
-> -	    (device_ids[1] << 8 | device_ids[0]) != ctx->info->pid) {
-> -		return -ENODEV;
-> +	for (chip_info = it66xx_chip_info; chip_info->vid; chip_info++) {
-
-Relying on a null entry bugs me, here you could just use
-the length of the table and remove the null entry:
-
-for (i = 0; i < ARRAY_SIZE(it66xx_chip_info); i++) {
-	chip_info = &it66xx_chip_info[i];
-	...
-
-Either way,
-
-Reviewed-by: Andrew Davis <afd@ti.com>
-
-> +		if ((vendor_ids[1] << 8 | vendor_ids[0]) == chip_info->vid &&
-> +		    (device_ids[1] << 8 | device_ids[0]) == chip_info->pid) {
-> +			ctx->id = chip_info->id;
-> +			break;
-> +		}
->   	}
->   
-> +	if (!chip_info->vid)
-> +		return -ENODEV;
+> +	return (dev->parent && dev_of_node(dev->parent) == parent_np);
+> +}
 > +
->   	ctx->bridge.of_node = dev->of_node;
->   	ctx->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
->   	ctx->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID;
-> @@ -1606,28 +1618,16 @@ static void it66121_remove(struct i2c_client *client)
->   	mutex_destroy(&ctx->lock);
->   }
->   
-> -static const struct it66121_chip_info it66121_chip_info = {
-> -	.id = ID_IT66121,
-> -	.vid = 0x4954,
-> -	.pid = 0x0612,
-> -};
-> -
-> -static const struct it66121_chip_info it6610_chip_info = {
-> -	.id = ID_IT6610,
-> -	.vid = 0xca00,
-> -	.pid = 0x0611,
-> -};
-> -
->   static const struct of_device_id it66121_dt_match[] = {
-> -	{ .compatible = "ite,it6610", &it6610_chip_info },
-> -	{ .compatible = "ite,it66121", &it66121_chip_info },
-> +	{ .compatible = "ite,it6610" },
-> +	{ .compatible = "ite,it66121" },
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, it66121_dt_match);
->   
->   static const struct i2c_device_id it66121_id[] = {
-> -	{ "it6610", (kernel_ulong_t)&it6610_chip_info },
-> -	{ "it66121", (kernel_ulong_t)&it66121_chip_info },
-> +	{ .name = "it6610" },
-> +	{ .name = "it66121" },
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(i2c, it66121_id);
-
+> +int ptp_clock_index_by_of_node(struct device_node *np)
+> +{
+> +	struct ptp_clock *ptp;
+> +	struct device *dev;
+> +	int phc_index;
+> +
+> +	dev = class_find_device(&ptp_class, NULL, np,
+> +				ptp_clock_of_node_match);
+> +	if (!dev)
+> +		return -1;
+> +
+> +	ptp = dev_get_drvdata(dev);
+> +	phc_index = ptp_clock_index(ptp);
+> +	put_device(dev);
+> +
+> +	return phc_index;
+> +}
+> +EXPORT_SYMBOL_GPL(ptp_clock_index_by_of_node);
+> +
+> +static int ptp_clock_dev_match(struct device *dev, const void *data)
+> +{
+> +	const struct device *parent = data;
+> +
+> +	return dev->parent == parent;
+> +}
+> +
+> +int ptp_clock_index_by_dev(struct device *parent)
+> +{
+> +	struct ptp_clock *ptp;
+> +	struct device *dev;
+> +	int phc_index;
+> +
+> +	dev = class_find_device(&ptp_class, NULL, parent,
+> +				ptp_clock_dev_match);
+> +	if (!dev)
+> +		return -1;
+> +
+> +	ptp = dev_get_drvdata(dev);
+> +	phc_index = ptp_clock_index(ptp);
+> +	put_device(dev);
+> +
+> +	return phc_index;
+> +}
+> +EXPORT_SYMBOL_GPL(ptp_clock_index_by_dev);
+> +
+>  int ptp_find_pin(struct ptp_clock *ptp,
+>  		 enum ptp_pin_function func, unsigned int chan)
+>  {
+> diff --git a/include/linux/ptp_clock_kernel.h b/include/linux/ptp_clock_kernel.h
+> index 3d089bd4d5e9..7dd7951b23d5 100644
+> --- a/include/linux/ptp_clock_kernel.h
+> +++ b/include/linux/ptp_clock_kernel.h
+> @@ -360,6 +360,24 @@ extern void ptp_clock_event(struct ptp_clock *ptp,
+>
+>  extern int ptp_clock_index(struct ptp_clock *ptp);
+>
+> +/**
+> + * ptp_clock_index_by_of_node() - obtain the device index of
+> + * a PTP clock based on the PTP device of_node
+> + *
+> + * @np:    The device of_node pointer of the PTP device.
+> + * Return: The PHC index on success or -1 on failure.
+> + */
+> +int ptp_clock_index_by_of_node(struct device_node *np);
+> +
+> +/**
+> + * ptp_clock_index_by_dev() - obtain the device index of
+> + * a PTP clock based on the PTP device.
+> + *
+> + * @parent:    The parent device (PTP device) pointer of the PTP clock.
+> + * Return: The PHC index on success or -1 on failure.
+> + */
+> +int ptp_clock_index_by_dev(struct device *parent);
+> +
+>  /**
+>   * ptp_find_pin() - obtain the pin index of a given auxiliary function
+>   *
+> @@ -425,6 +443,10 @@ static inline void ptp_clock_event(struct ptp_clock *ptp,
+>  { }
+>  static inline int ptp_clock_index(struct ptp_clock *ptp)
+>  { return -1; }
+> +static inline int ptp_clock_index_by_of_node(struct device_node *np)
+> +{ return -1; }
+> +static inline int ptp_clock_index_by_dev(struct device *parent)
+> +{ return -1; }
+>  static inline int ptp_find_pin(struct ptp_clock *ptp,
+>  			       enum ptp_pin_function func, unsigned int chan)
+>  { return -1; }
+> --
+> 2.34.1
+>
 
