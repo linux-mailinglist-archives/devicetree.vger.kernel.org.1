@@ -1,204 +1,196 @@
-Return-Path: <devicetree+bounces-206209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC97B2BBA3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:21:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE44B2BBAD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E59CB3B5D04
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:19:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A8CD686AA7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E1A531158A;
-	Tue, 19 Aug 2025 08:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 443E23112B6;
+	Tue, 19 Aug 2025 08:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="PRvo6MBh";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="gDsEzmyW";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="PRvo6MBh";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="gDsEzmyW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AnJzxOEm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C794310645
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 08:19:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7320B31064B;
+	Tue, 19 Aug 2025 08:21:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755591559; cv=none; b=q+2aj3WErBKXUYgIXf17+aZktRodj6Qv/UJTuFjWbhLnUhEdcpkBPhs/YdlL2wdnug5YA1g2bpB100SETSLFqwkm5rgFXl2gEK1i5wHXCzMBtjO+DXQSLjLQKa1dfzaYxxZoMxCYAccbE53L2ee1Z0WFGQyTcUzLecB1CwuYajo=
+	t=1755591675; cv=none; b=m4sNMCAQiFveUDQsYS451De7U3AXX930D5v5UZI/6f5zGfOg/OSzU0HMq+5VAqp2LIriszvxwnWgAnr3eltS6eR5HOx67kBXDO/+31/X3F5Oano3dkH46u8v1cZxKu2iraahLoRs2fw9+0Z6TeCOSUtmZL5r/3nG6NK2OH6TcX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755591559; c=relaxed/simple;
-	bh=1Z40yJofA3/E+76G3mBV6f9lB33I5PYoxMxw3VB1F8Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YFZ66fjz7LjkbdRCZCq5pT5uvHXXrTgLmVIgN6yyyJOqRv9wFvSrE9B3y2dUD7Lg/GC4P027RcLDuolGrCrvDux3Tb8ojhke0IsgeJ/A/+VnoeI+1QHyB99Wk1O8Oyi7Z6LfT7BQtF3Xy0C9d7726WLhswdlgaNDQVpuUjdohZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=PRvo6MBh; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=gDsEzmyW; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=PRvo6MBh; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=gDsEzmyW; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 681102125E;
-	Tue, 19 Aug 2025 08:19:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1755591555; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yPl+L2c17TgIniY4vYM1AwB/mzaniLIQARemsHNrxDg=;
-	b=PRvo6MBhGhadrTQy7iYxlvNSKC/DqFvsWvJNRyMqSwPYMQhkAgHqp08Kh+iw0BmQioqxTL
-	bwdiPqBPZgyeC+o3vf/h2hMVGVg+ULlOJdgC/WyabG8sneunKeKXki7L5FRNvR2zxMC+0E
-	uX6KDCH2ntCU2kFUEDN9ekPQciuqgkQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1755591555;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yPl+L2c17TgIniY4vYM1AwB/mzaniLIQARemsHNrxDg=;
-	b=gDsEzmyWD4hkDrugvp/dOHUvVEYEx4yL+d11RPxuFCWd4Q5V0kz5AQ8cynWqmFfIZnKssJ
-	uoC5wNknSSLyFTAw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1755591555; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yPl+L2c17TgIniY4vYM1AwB/mzaniLIQARemsHNrxDg=;
-	b=PRvo6MBhGhadrTQy7iYxlvNSKC/DqFvsWvJNRyMqSwPYMQhkAgHqp08Kh+iw0BmQioqxTL
-	bwdiPqBPZgyeC+o3vf/h2hMVGVg+ULlOJdgC/WyabG8sneunKeKXki7L5FRNvR2zxMC+0E
-	uX6KDCH2ntCU2kFUEDN9ekPQciuqgkQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1755591555;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yPl+L2c17TgIniY4vYM1AwB/mzaniLIQARemsHNrxDg=;
-	b=gDsEzmyWD4hkDrugvp/dOHUvVEYEx4yL+d11RPxuFCWd4Q5V0kz5AQ8cynWqmFfIZnKssJ
-	uoC5wNknSSLyFTAw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A2DAA139B3;
-	Tue, 19 Aug 2025 08:19:14 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id uX9hJYIzpGiIMAAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Tue, 19 Aug 2025 08:19:14 +0000
-Message-ID: <9af1eb5b-7eb1-4686-869d-eda597145819@suse.de>
-Date: Tue, 19 Aug 2025 11:19:14 +0300
+	s=arc-20240116; t=1755591675; c=relaxed/simple;
+	bh=eV9F9dJLIUD4HaJWu8ulAAZHbArtSMyU6Z/Slsa8pYo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bVsByCYNlizYwdmR2WX818W9DuByzYW3RJiXgshGnONKFw9XgEKyTHaIDSsQ0CAE5/IcLHTUpkIVtz6vBcn9zicizCR3YezGG2Vfk4JjI7c0v3eKrh4gWTp70oxo81x/uuUHVNrmoOQSJNjRa6IIztPtbBkTPK6Fp+jBPJ8xCsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AnJzxOEm; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3b9dc5c8ee7so3235396f8f.1;
+        Tue, 19 Aug 2025 01:21:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755591672; x=1756196472; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/vBZjRYGMKAjOHS7reRNLRBgLmK/5KiCydYZAsIzfDU=;
+        b=AnJzxOEmzeUFxoP81trHgPgTYo3tGzeBCTs7zQF9J+VdYTjFh+OXsmT42GQoohBlPe
+         DSwGI3WWsD4lu8gwNP+nAFQBMBHCHQ1HQSykqO38HRsTgLjvM3AdkaA5dQcQcmSzhXFw
+         Ub1ecyuW5lgje2SHmvrhJPb6Ib/O4fT10cRlIIpnVnAwgNNO8F9b/GzERPdJkFFfRBW/
+         K6asZr8iIeP2DPzG5PLMCQppScPip9Ug3MTngVnUp71oR5qq+e+21sasOq/bfq/MwbeD
+         5GTL0c5ckbE8tUxkAzW0JYwvCZYxF2mnL9i0r8BnHy8UL1th6cb/oJ3+jV49mQAhNOto
+         eHtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755591672; x=1756196472;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/vBZjRYGMKAjOHS7reRNLRBgLmK/5KiCydYZAsIzfDU=;
+        b=VTsJ7PQToT1W9vLtXwt8To3mq6h+xo0gT971cxr3rUmQt69nzK5l6cT98hvn/FUNx0
+         RZ2KeQEOl5XBdlmPgznPyQSBujiaHqhajYGHHR4PudJQxr+tbBoiXHmg+AqaEMCAqrpL
+         nzqPbYDxVbDPTEEhdoxSABvK6QzehpPDfZgQitH7zU/QB5pOidjSzi0NOxN8pP73yGEk
+         gw1PLoezuJzxgHQn67yQprp8p9DY9xX828MwaIdwQTcDgkOIjpt8BjMxb4aPfrbGd+vc
+         IbBo+H331+DLiVecUHNyXESwEvnD94jsVBr5IfagveQEhlnFjnImh8OW4O2gUzsrSjuB
+         xnyg==
+X-Forwarded-Encrypted: i=1; AJvYcCUaC9suqPAd+eIr3HNxrfkOTBWuhpxhDoBB7CBTWY/c0fF5aEkdd+eQBGmIMpQPpZyqf1dL+8Vybps8Uz/g@vger.kernel.org, AJvYcCVLuM4ZWDGlRHXbxL3HKvEwEEv4/SFQmya2PcHXX2uQZP+gZ9/6sD8ktVD6H6fSf8uBQ/k7HKkO1Zp3SAb3VLdx0ok=@vger.kernel.org, AJvYcCVY+YV64sqZYzJDfejEOSroi0GMtnRvbjQK8tdfybGqAtXY6CbvMMEer8Q03LihWk1LpRD0DYtX4MvL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwebNnY6VGMEF7P2L24tHu8ShsVdFge1QjTpDkqxkcXa/sDJ8/j
+	ZaIQtILWjZzDZuQFuMxrkNAQRVeCi71tiq67jHgsX+7UUv+vyf4lGcOyu6lFN7hRxE/XeaYSyrC
+	RLeX9vgVwr/Q/rvGfVG6yUXdQLEAoJvE=
+X-Gm-Gg: ASbGnctaKTtsBVNOH5jmK6IQxi4tcUHX1MrtQjq5S61IKQq5P0s6W2wVyXyYmsVjJde
+	v/MgJ/9OVzib2Ja4g7NabP5bBDtjNt/Z/+BPEH3xg1C60D6FnDfohQDwFddwYee8yRybmyq4IV6
+	M2rXWubcOVYlVczRhi9Ln9M3B815JgnIARgyPV/1ZrlajKnUh6W4ah51FpELNJhdQ4HOs3Zkh37
+	LzkCBgJ
+X-Google-Smtp-Source: AGHT+IFeNWxvYpcM3OIxaUKPq5mVT5RNbGZru6luRbj+TFOpuxOpfK4fUY/hhF92Ohrv/yuWAHjlUvfnCXF/t8IrCpc=
+X-Received: by 2002:a05:6000:26c1:b0:3a4:d6ed:8e2e with SMTP id
+ ffacd0b85a97d-3c0ec194b11mr1171469f8f.41.1755591671384; Tue, 19 Aug 2025
+ 01:21:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] pinctrl: bcm: Add STB family pin controller driver
-To: Andrea della Porta <andrea.porta@suse.com>,
- Stanimir Varbanov <svarbanov@suse.de>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, florian.fainelli@broadcom.com, wahrenst@gmx.net,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- iivanov@suse.de, mbrugger@suse.com, Jonathan Bell
- <jonathan@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>
-References: <cover.1754922935.git.andrea.porta@suse.com>
- <bb746d2fd50ecbb9963438fae8601c2e4901a126.1754922935.git.andrea.porta@suse.com>
- <f7892abc-1063-4b12-8d47-c80714aeb8fe@suse.de> <aKQyViTbXAsFEuT7@apocalypse>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <aKQyViTbXAsFEuT7@apocalypse>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	TAGGED_RCPT(0.00)[dt];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_ALL(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmx.net];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,broadcom.com,gmx.net,vger.kernel.org,lists.infradead.org,arm.com,suse.de,suse.com,raspberrypi.com];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	URIBL_BLOCKED(0.00)[suse.com:email,suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo,raspberrypi.com:email];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:email,suse.de:mid,suse.de:email]
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Spam-Score: -2.80
+References: <20250812200344.3253781-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250812200344.3253781-14-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVx2_D=B=UHWjwL3dk+jO-85HrYyoiA4SV15xiRQYRt6Q@mail.gmail.com>
+In-Reply-To: <CAMuHMdVx2_D=B=UHWjwL3dk+jO-85HrYyoiA4SV15xiRQYRt6Q@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 19 Aug 2025 09:20:45 +0100
+X-Gm-Features: Ac12FXxd0U8k8FaSfJGpOMo0pd4hkj9dhGrGqVsr80ROHPdY3rHab5c5hfH7rL0
+Message-ID: <CA+V-a8vbS2uH3BxXX_RrrCgQbLe9e+BL077GkopcKpMFZEJODg@mail.gmail.com>
+Subject: Re: [PATCH 13/13] arm64: dts: renesas: rzt2h/rzn2h: Enable SD card slot
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Geert,
 
+Thank you for the review.
 
-On 8/19/25 11:14 AM, Andrea della Porta wrote:
-> Hi Stanimir,
-> 
-> On 10:40 Tue 19 Aug     , Stanimir Varbanov wrote:
->> Hi Andrea,
->>
->> On 8/11/25 5:46 PM, Andrea della Porta wrote:
->>> From: "Ivan T. Ivanov" <iivanov@suse.de>
->>>
->>> This driver provide pin muxing and configuration functionality
->>> for BCM2712 SoC used by RPi5. According to [1] this chip is an
->>> instance of the one used in Broadcom STB  product line.
->>>
->>> [1] https://lore.kernel.org/lkml/f6601f73-cb22-4ba3-88c5-241be8421fc3@broadcom.com/
->>>
->>> Cc: Jonathan Bell <jonathan@raspberrypi.com>
->>> Cc: Phil Elwell <phil@raspberrypi.com>
->>> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
->>> Reviewed-by: Phil Elwell <phil@raspberrypi.com>
->>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
->>> ---
->>>  drivers/pinctrl/bcm/Kconfig           |   13 +
->>>  drivers/pinctrl/bcm/Makefile          |    1 +
->>>  drivers/pinctrl/bcm/pinctrl-brcmstb.c | 1197 +++++++++++++++++++++++++
->>>  3 files changed, 1211 insertions(+)
->>>  create mode 100644 drivers/pinctrl/bcm/pinctrl-brcmstb.c
->>>
->>
->> <snip>
->>
->>> +static int brcmstb_pinctrl_probe(struct platform_device *pdev)
->>> +{
->>> +	struct device *dev = &pdev->dev;
->>> +	struct device_node *np = dev->of_node;
->>> +	const struct brcmstb_pdata *pdata;
->>> +	const struct of_device_id *match;
->>> +	struct brcmstb_pinctrl *pc;
->>> +	const char **names;
->>> +	int num_pins, i;
->>> +
->>> +	match = of_match_node(brcmstb_pinctrl_match, np);
->>
->> The 'match' variable is needless, you can drop it.
-> 
-> you mean something like this?
-> 
-> pdata = of_match_node(brcmstb_pinctrl_match, np)->data;
-> 
+On Mon, Aug 18, 2025 at 5:03=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Tue, 12 Aug 2025 at 22:04, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Enable SD card slot which is connected to SDHI0 on the RZ/T2H and
+> > RZ/N2H EVKs.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+>
+> > @@ -104,6 +116,35 @@ sd0-emmc-ctrl-pins {
+> >                 };
+> >         };
+> >
+> > +#if SD0_SD
+> > +       sdhi0-pwen-hog {
+> > +               gpio-hog;
+> > +               gpios =3D <RZT2H_GPIO(2, 5) GPIO_ACTIVE_HIGH>;
+> > +               output-high;
+> > +               line-name =3D "SD0_PWEN";
+> > +       };
+> > +#endif
+> > +
+> > +       sdhi0_sd_pins: sd0-sd-group {
+> > +               sd0-sd-data-pins {
+>
+> No need for repeated sd0-sd-prefixes in the subnodes.
+>
+Ok, I will drop it.
 
-No, I meant:
+> > +                       pinmux =3D <RZT2H_PORT_PINMUX(12, 2, 0x29)>, /*=
+ SD0_DATA0 */
+> > +                                <RZT2H_PORT_PINMUX(12, 3, 0x29)>, /* S=
+D0_DATA1 */
+> > +                                <RZT2H_PORT_PINMUX(12, 4, 0x29)>, /* S=
+D0_DATA2 */
+> > +                                <RZT2H_PORT_PINMUX(12, 5, 0x29)>, /* S=
+D0_DATA3 */
+> > +                                <RZT2H_PORT_PINMUX(12, 6, 0x29)>, /* S=
+D0_DATA4 */
+> > +                                <RZT2H_PORT_PINMUX(12, 7, 0x29)>, /* S=
+D0_DATA5 */
+> > +                                <RZT2H_PORT_PINMUX(13, 0, 0x29)>, /* S=
+D0_DATA6 */
+> > +                                <RZT2H_PORT_PINMUX(13, 1, 0x29)>; /* S=
+D0_DATA7 */
+> > +               };
+>
+> SDcard uses only DATA0-3?
+>
+Agreed, I will drop the rest.
 
-pdata = of_device_get_match_data(dev)
+Cheers,
+Prabhakar
 
-Also as a bonus you could move brcmstb_pinctrl_match[] array after .probe.
-
-~Stan
+> > +
+> > +               sd0-sd-ctrl-pins {
+> > +                       pinmux =3D <RZT2H_PORT_PINMUX(12, 0, 0x29)>, /*=
+ SD0_CLK */
+> > +                                <RZT2H_PORT_PINMUX(12, 1, 0x29)>, /* S=
+D0_CMD */
+> > +                                <RZT2H_PORT_PINMUX(22, 5, 0x29)>, /* S=
+D0_CD */
+> > +                                <RZT2H_PORT_PINMUX(22, 6, 0x29)>; /* S=
+D0_WP */
+> > +               };
+> > +       };
+> > +
+> >  #if SD1_MICRO_SD
+> >         sdhi1-pwen-hog {
+> >                 gpio-hog;
+>
+> The rest LGTM.
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
