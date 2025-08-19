@@ -1,306 +1,246 @@
-Return-Path: <devicetree+bounces-206595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F87B2CD90
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:13:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8591CB2CDAB
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:18:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5EC21C23482
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:14:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9041D1C40C2B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 20:16:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16BE341ABD;
-	Tue, 19 Aug 2025 20:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD473101D2;
+	Tue, 19 Aug 2025 20:15:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g9vuPIhH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pwZFus6K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD53F340DAB;
-	Tue, 19 Aug 2025 20:13:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF66A2571DD;
+	Tue, 19 Aug 2025 20:15:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755634407; cv=none; b=u9o5dtrmCXGCQVCPYzOTcBghSyPKe8cDRv/IeC+t7Wg6UN4vmpk2OCdhjzkwH0IfSjCumCJD4+bCNr9UzsIaRa3oFewuMSFLKncvK2JVV6FvTfUxomLXuadHopzl/n0nvA7ajfZA+rv1ItpzgR9LmeEt9qMg5Cn31ByVNYcRm2M=
+	t=1755634539; cv=none; b=att0oy7QYWmti8sct7jyahrR9uLjpJeM0VNDDs6WyYfSmRgWptfCA8wO/WiFW28GLO7prwe1bm5OzHeQjLj4uUDkc0TWyXu+dMzTEd6lsdAL9JojVe0H6pBiJWU/A4dyN05lxHfXZ09XUKPdMdO453vReCG0hh/2qYtKDnMPl+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755634407; c=relaxed/simple;
-	bh=NRTK5/DdsThFsD4bQ4sKyg20FKM0kzOknPwv4hIjSq8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=PLOMZP0Ps0Uteca5uveb8sAtdqyF27FINI81egyfwcI9Pxvy4phnpPkZn9KkdDZ8m2pzVXfOJgdICMfwhGkrPbkKOkMqu7ius5V+e0gVTTgAf7N3DBzsFBPpaVP33+LijXs7jltUFmK0AVFkphHzf6GaPI38Ooeg9q35FQppGqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g9vuPIhH; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45a1b00a65fso30065315e9.0;
-        Tue, 19 Aug 2025 13:13:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755634404; x=1756239204; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2mvrZfLsypKMiACsSNAj4UlMwJzICbqho4HfD2MSUZ4=;
-        b=g9vuPIhH8d8oV8fz4ZKgYozQ+MWDamlS8Ge43DoYk4f+KDDVMap8LULOW/Ev+5bhTq
-         njXi6RDwAllLe0LKzcuOyUY/xbxyaPYORJ1dxfMQLSfPpy/GJto8D3zEhRVVWY94ZPPB
-         XJ5x2/csuZa674U0BjHTGWq4BP7kyb4TKUjHzvcRNuU4no43CMr/8RknPaLZ1gca+DXv
-         7hCQrbOOnh0c3Kj7bc5B8mCS9BwUkm33og4hdQkksirFs7pAfD3TNOgwu9eWwSeUxT/S
-         4zAJTKfiW5KrAZbKZAZbNEw24DJDlVv6lvB4kqLX/7uCcwz3ccuklTN/A4yQ5Z44AScx
-         Mw7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755634404; x=1756239204;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2mvrZfLsypKMiACsSNAj4UlMwJzICbqho4HfD2MSUZ4=;
-        b=Pqs6Ap26KYtgLLpvaLzvXypHM1kwCPPVgEUnCdEDyt69lz+Ez/oOugCTCiRW2uJtFH
-         /QNonIMHZvMkJUtofyPUCXQb6P418XNBbjzTn/8uDJ8NkeNGrAgIcYL1piQlCdmAU/JU
-         6VYvDZUGfGsBGXxLVMCHA6QWa2KQ1H4jDy9EP7GKWi8yf7YRBGlH7aRFeX4jRykBEKGs
-         uiqCeRBZhypTKWWRAmzGVg7nC9ZVrz0cfMkm0ey3lHrMyWXw+silUKUyfhmj82NkPAb0
-         fuaJlSPLpY/y2ck0pmFq1zY62Aaqk2tZnRH0z+QJN6N7ts3rwgVlga9Re3/indJCVmsi
-         CtPA==
-X-Forwarded-Encrypted: i=1; AJvYcCUxIJSPFSVh978H08H0TnLZG1DSvnTrfbHpDn0msjgqKQoPyDHT7Gp8yvrtJts6tKbApyyrRxiO1/zEw3ju@vger.kernel.org, AJvYcCV/LiOHTSdczjDFEs7jf6mVAgnBhG2n2Yxh4M+2u12zZB6c30026QSnd8vhFVjQl9T66AYDhKIVi8aTRZk=@vger.kernel.org, AJvYcCVnA+sPvBiECY26+1QArL/UxnAxo9sGSTbmVM1ndHKkBH+0nA+y7y5Y6FptDRSFqCHmzGSQgs6G6RGX@vger.kernel.org, AJvYcCXvKt9QXD8Hc44WscC+XFHdgB00A6yxoCo9OIk+fNXmSE9YnQlcDqJnpsb1o/NpSHcd5UTRfOwgoHQ1vQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2DusCO+mF/Co0tDXja8MfRP9fLdm/Oe9fp+iZ0CRNuzMlx9om
-	NzNhXOTfH6wGDDlBajt2k49gJj5apPIYmYdCyvsoOarvqidZFrHVJi9KVuQU
-X-Gm-Gg: ASbGncswN/rpVXRcTgfdBVj1id23shCAvYOBae7flVAtYaft626r2sOiheZRKA2IZY3
-	1oeDXzPYpND16Gv7KFVyo1EGLQLBNngp+tcaZtAZZgEnh+fi6X+QSpryzgRG5RSj3v4+fgy2oAM
-	GAZ1Sk0EbSA7l4bSwah8gcBgA9Fg0bjsWvUoi4IR5/VAc5TJVRgUgXZijjkp1oaWQpdXpenKCij
-	suWCRMw4vIN+uC2c/ypdDQwtPunsrmie+XJ4Q3MsUugVuQvVQCZoUc2RCTStRvvEb+o75pO9i4U
-	LnyG37dcttJDeMH18imz4zeUD+hzHFmQ3R8Lry6xoWCwyBG3uMt6LQD+i1rp1bd8SUclOyIWpAK
-	kqyI1umTBVXAJEiDxwRH9GmgPGfFCn7Wj4lzyF5Mco+znkTA=
-X-Google-Smtp-Source: AGHT+IE9G1eLKA6vQ6mXiMEYJDsNN7NkjG3lAgp3pl5kUZ4GhDYIow0VvLG4OUA1b4PHu+fmg6SB1Q==
-X-Received: by 2002:a05:600c:1c12:b0:456:3b21:ad1e with SMTP id 5b1f17b1804b1-45b479e949dmr1776775e9.17.1755634403743;
-        Tue, 19 Aug 2025 13:13:23 -0700 (PDT)
-Received: from localhost.localdomain ([2a0d:e487:216f:2f7a:74c6:177a:3b99:868c])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c077c57d32sm4939887f8f.64.2025.08.19.13.13.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 13:13:23 -0700 (PDT)
-From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-To: broonie@kernel.org,
-	lgirdwood@gmail.com,
-	robh@kernel.org
-Cc: peter.ujfalusi@gmail.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	shuah@kernel.org,
-	jihed.chaibi.dev@gmail.com
-Subject: [PATCH v4 2/2] ASoC: dt-bindings: omap-twl4030: convert to DT schema
-Date: Tue, 19 Aug 2025 22:13:02 +0200
-Message-Id: <20250819201302.80712-3-jihed.chaibi.dev@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250819201302.80712-1-jihed.chaibi.dev@gmail.com>
-References: <20250819201302.80712-1-jihed.chaibi.dev@gmail.com>
+	s=arc-20240116; t=1755634539; c=relaxed/simple;
+	bh=nna83j1mZxwOy8dBPS8X0Nj5HOE+xKBlJdVfF3sqAq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=syfyECTh42BTxTemeLB3MF20y18+E61iHXU8r/Y9pVeX5BFVt1jZnGboFmMs3YsQ5mIu7j5xbcOvk7+jz+7AKmqRcEKSND00ACoIXeS/pAxr8nqTi/0XsFHXpycplBEsEgcZmfAEzxoFckPyuVEucBQ1yZ6Zl3r3evjUmq27UKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pwZFus6K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C672DC4CEF1;
+	Tue, 19 Aug 2025 20:15:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755634537;
+	bh=nna83j1mZxwOy8dBPS8X0Nj5HOE+xKBlJdVfF3sqAq4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pwZFus6KTJbRfXuqSsC1c30b1t7uyfSYH6BAuk/1p2gIUKnpJkbBEljlZjFVOz7x9
+	 HKiT6+Ii/b98fBlAZblp/aZXI+ha8XicMKdAPlqmoYZWcGjYE9qawxbdil4aCtlYuF
+	 /Gd1/9Tlec8kQ9/GfOs+uSAvp5ECxeEoSyri4EMV3SkDsRo+PKEfpS50T243t0FCwu
+	 tOk3+jx9XLZoENG0srqXT35rMgeCmRF0U7cBMnaSoeChBF7ygnKU7aQHlIFWKXPv/R
+	 yHC6OgPBCrKQGc5kpwD4+pohBhLZlZHLz5/ucjSmeGTjEDMeQDHjZsb51McrNMr9XS
+	 VufWGvxv5yWhw==
+Date: Tue, 19 Aug 2025 15:15:37 -0500
+From: Rob Herring <robh@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH 2/8] dt-bindings: hwmon: add Apple System Management
+ Controller hwmon schema
+Message-ID: <20250819201537.GA1223169-robh@kernel.org>
+References: <20250819-macsmc-subdevs-v1-0-57df6c3e5f19@gmail.com>
+ <20250819-macsmc-subdevs-v1-2-57df6c3e5f19@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250819-macsmc-subdevs-v1-2-57df6c3e5f19@gmail.com>
 
-Convert the legacy TXT binding for the OMAP TWL4030 sound card
-to the modern YAML DT schema format. This adds formal validation
-and improves documentation.
+On Tue, Aug 19, 2025 at 09:47:54PM +1000, James Calligeros wrote:
+> Apple Silicon devices integrate a vast array of sensors, monitoring
+> current, power, temperature, and voltage across almost every part of
+> the system. The sensors themselves are all connected to the System
+> Management Controller (SMC). The SMC firmware exposes the data
+> reported by these sensors via its standard FourCC-based key-value
+> API. The SMC is also responsible for monitoring and controlling any
+> fans connected to the system, exposing them in the same way.
+> 
+> For reasons known only to Apple, each device exposes its sensors with
+> an almost totally unique set of keys. This is true even for devices
+> which share an SoC. An M1 Mac mini, for example, will report its core
+> temperatures on different keys to an M1 MacBook Pro. Worse still, the
+> SMC does not provide a way to enumerate the available keys at runtime,
+> nor do the keys follow any sort of reasonable or consistent naming
+> rules that could be used to deduce their purpose. We must therefore
+> know which keys are present on any given device, and which function
+> they serve, ahead of time.
 
-Acked-by: Mark Brown <broonie@kernel.org>
-Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+I'm confused because you say this, but then the .dtsi files are common.
 
----
-Changes in v4:
- - Deleted redundant pins list.
- - Split from larger series per maintainer feedback.
- - v3 link:
-   https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
+> 
+> Add a schema so that we can describe the available sensors for a given
+> Apple Silicon device in the Devicetree.
+> 
+> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
+> ---
+>  .../bindings/hwmon/apple,smc-hwmon.yaml  | 148 +++++++++++++++++++++++++
+>  .../bindings/mfd/apple,smc.yaml          |  45 ++++++++
+>  2 files changed, 193 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/apple,smc-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/apple,smc-hwmon.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..3ebc0463be4e1ce54005418feaa87ec7254dab6e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/apple,smc-hwmon.yaml
+> @@ -0,0 +1,148 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/apple,smc-hwmon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple SMC Hardware Monitoring
+> +
+> +description:
+> +  Apple's System Management Controller (SMC) exposes a vast array of
+> +  hardware monitoring sensors, including temperature probes, current and
+> +  voltage sense, power meters, and fan speeds. It also provides endpoints
+> +  to manually control the speed of each fan individually. Each Apple
+> +  Silicon device exposes a different set of endpoints via SMC keys. This
+> +  is true even when two machines share an SoC. The CPU core temperature
+> +  sensor keys on an M1 Mac mini are different to those on an M1 MacBook
+> +  Pro, for example.
+> +
+> +maintainers:
+> +  - James Calligeros <jcalligeros99@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: apple,smc-hwmon
+> +
+> +  current:
 
-Changes in v3:
- - No change to binding content, only updating commit message format.
+I don't see any need to group these and I would remove the intermediate 
+node. We have an iterator to iterate over a matching node name prefix if 
+that was the reasoning.
 
-Changes in v2:
- - Fixed comment formatting (added spaces for better alignment).
- - Updated commit subject to align with subsystem style.
- - Retained Acked-by from v1 as changes are cosmetic.
----
- .../bindings/sound/omap-twl4030.txt           | 62 ------------
- .../bindings/sound/ti,omap-twl4030.yaml       | 98 +++++++++++++++++++
- 2 files changed, 98 insertions(+), 62 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/omap-twl4030.txt
- create mode 100644 Documentation/devicetree/bindings/sound/ti,omap-twl4030.yaml
+> +    description: SMC current sense endpoints
+> +    type: object
+> +    additionalProperties: false
 
-diff --git a/Documentation/devicetree/bindings/sound/omap-twl4030.txt b/Documentation/devicetree/bindings/sound/omap-twl4030.txt
-deleted file mode 100644
-index f6a715e4e..000000000
---- a/Documentation/devicetree/bindings/sound/omap-twl4030.txt
-+++ /dev/null
-@@ -1,62 +0,0 @@
--* Texas Instruments SoC with twl4030 based audio setups
--
--Required properties:
--- compatible: "ti,omap-twl4030"
--- ti,model: Name of the sound card (for example "omap3beagle")
--- ti,mcbsp: phandle for the McBSP node
--
--Optional properties:
--- ti,codec: phandle for the twl4030 audio node
--- ti,mcbsp-voice: phandle for the McBSP node connected to the voice port of twl
--- ti, jack-det-gpio: Jack detect GPIO
--- ti,audio-routing: List of connections between audio components.
--  Each entry is a pair of strings, the first being the connection's sink,
--  the second being the connection's source.
--  If the routing is not provided all possible connection will be available
--
--Available audio endpoints for the audio-routing table:
--
--Board connectors:
-- * Headset Stereophone
-- * Earpiece Spk
-- * Handsfree Spk
-- * Ext Spk
-- * Main Mic
-- * Sub Mic
-- * Headset Mic
-- * Carkit Mic
-- * Digital0 Mic
-- * Digital1 Mic
-- * Line In
--
--twl4030 pins:
-- * HSOL
-- * HSOR
-- * EARPIECE
-- * HFL
-- * HFR
-- * PREDRIVEL
-- * PREDRIVER
-- * CARKITL
-- * CARKITR
-- * MAINMIC
-- * SUBMIC
-- * HSMIC
-- * DIGIMIC0
-- * DIGIMIC1
-- * CARKITMIC
-- * AUXL
-- * AUXR
--
-- * Headset Mic Bias
-- * Mic Bias 1 /* Used for Main Mic or Digimic0 */
-- * Mic Bias 2 /* Used for Sub Mic or Digimic1 */
--
--Example:
--
--sound {
--	compatible = "ti,omap-twl4030";
--	ti,model = "omap3beagle";
--
--	ti,mcbsp = <&mcbsp2>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/ti,omap-twl4030.yaml b/Documentation/devicetree/bindings/sound/ti,omap-twl4030.yaml
-new file mode 100644
-index 000000000..27c7019bd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,omap-twl4030.yaml
-@@ -0,0 +1,98 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,omap-twl4030.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments SoC with twl4030 based audio setups
-+
-+maintainers:
-+  - Peter Ujfalusi <peter.ujfalusi@gmail.com>
-+
-+description:
-+  Audio setups on TI OMAP SoCs using TWL4030-family
-+  audio codec connected via a McBSP port.
-+
-+properties:
-+  compatible:
-+    const: ti,omap-twl4030
-+
-+  ti,model:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Name of the sound card (for example "omap3beagle").
-+
-+  ti,mcbsp:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle for the McBSP node.
-+
-+  ti,codec:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle for the twl4030 audio node.
-+
-+  ti,mcbsp-voice:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle to the McBSP node connected to the voice port.
-+
-+  ti,jack-det-gpio:
-+    description: GPIO specifier for jack detection.
-+    maxItems: 1
-+
-+  ti,audio-routing:
-+    description: |
-+      A list of audio routing connections. Each entry is a pair of strings,
-+      with the first being the connection's sink and the second being the
-+      source. If not provided, all possible connections are available.
-+
-+    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-+    items:
-+      enum:
-+        # Board Connectors
-+        - Headset Stereophone
-+        - Earpiece Spk
-+        - Handsfree Spk
-+        - Ext Spk
-+        - Main Mic
-+        - Sub Mic
-+        - Headset Mic
-+        - Carkit Mic
-+        - Digital0 Mic
-+        - Digital1 Mic
-+        - Line In
-+
-+        # CODEC Pins
-+        - HSOL
-+        - HSOR
-+        - EARPIECE
-+        - HFL
-+        - HFR
-+        - PREDRIVEL
-+        - PREDRIVER
-+        - CARKITL
-+        - CARKITR
-+        - MAINMIC
-+        - SUBMIC
-+        - HSMIC
-+        - DIGIMIC0
-+        - DIGIMIC1
-+        - CARKITMIC
-+        - AUXL
-+        - AUXR
-+
-+        # Headset Mic Bias
-+        - Mic Bias 1   # Used for Main Mic or Digimic0
-+        - Mic Bias 2   # Used for Sub Mic or Digimic1
-+
-+required:
-+  - compatible
-+  - ti,model
-+  - ti,mcbsp
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    sound {
-+        compatible = "ti,omap-twl4030";
-+        ti,model = "omap3beagle";
-+        ti,mcbsp = <&mcbsp2>;
-+    };
--- 
-2.39.5
+blank line
 
+> +    patternProperties:
+> +      "^current-[A-Za-z0-9]{4}":
+
+Missing a '$' anchor on the end.
+
+> +        type: object
+> +        additionalProperties: false
+
+blank line.
+
+> +        required:
+> +          - apple,key-id
+
+'required' goes after 'properties'. blank lines in between.
+
+> +        properties:
+> +          apple,key-id:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            pattern: "^[A-Za-z0-9]{4}"
+> +            description: The SMC FourCC key of the desired current sensor.
+> +              Should match the node's suffix, but doesn't have to.
+
+blank line
+
+> +          label:
+> +            $ref: /schemas/types.yaml#/definitions/string
+
+Already has a type, don't need to re-define it.
+
+> +            description: Human-readable name for the sensor
+
+Instead of duplicating these properties, You can do it once under a 
+'$defs' key and then reference it here.
+
+> +
+> +  fan:
+> +    description: SMC fan control endpoints. A fan is made up of five
+> +      SMC keys - the fan's current speed, its minimum speed, its maximum
+> +      speed, a writeable target speed, and a writeable mode. The SMC will
+> +      automatically manage system fans unless a 1 is written to the fan's
+> +      mode key.
+> +    type: object
+> +    additionalProperties: false
+
+blank line. And so on...
+
+> +    patternProperties:
+> +      "^fan-[A-Za-z0-9]{4}":
+> +        type: object
+> +        additionalProperties: false
+> +        required:
+> +          - apple,key-id
+> +        properties:
+> +          apple,key-id:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            pattern: "^[A-Za-z0-9]{4}"
+> +            description: The SMC FourCC key of the desired fan. This is the
+> +              main key, which reports the fan's current speed. Sould match
+
+typo
+
+> +              the node's suffix, but doesn't have to.
+
+Why can't we require that they match? (Other than we can't express that 
+in schema?)
+
+> +          apple,fan-minimum:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            pattern: "^[A-Za-z0-9]{4}"
+> +            description: The minimum speed the current fan can run at
+
+This is not the speed, but the identifier key to retrieve the min speed, 
+right? That's not clear. It's a bit odd that everything is a key id, but 
+one property has that in the name and the others don't. I don't have any 
+better suggestion though...
+
+> +          apple,fan-maximum:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            pattern: "^[A-Za-z0-9]{4}"
+> +            description: The maximum speed the current fan can run at
+> +          apple,fan-target:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            pattern: "^[A-Za-z0-9]{4}"
+> +            description: Writeable endpoint for setting desired fan speed
+> +          apple,fan-mode:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            pattern: "^[A-Za-z0-9]{4}"
+> +            description: Writeable endpoint to enable/disable manual fan
+> +              control
+> +          label:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            description: Human-readable name for the sensor
+
+Surely more than apple,key-id is required? How would it be useful with 
+only that? You can know how many fans you have, but have no info or 
+control over them?
+
+Rob
 
