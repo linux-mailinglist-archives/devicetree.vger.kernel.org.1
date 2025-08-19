@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-206286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F0EB2BF39
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:45:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6345BB2BF42
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 12:46:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73C9917BD74
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:45:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05FB01BA219C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF909322DB5;
-	Tue, 19 Aug 2025 10:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 991AF326D6C;
+	Tue, 19 Aug 2025 10:45:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JBb5doAE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dYo+8Plh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14AA2C235A
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 10:45:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D82322DAA
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 10:45:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755600337; cv=none; b=Gdfwomxuw7YCnBe4IHzG2MXSS7UhSBCBfVvW+eO1eZmJtxC/ZRc6ZVkcVoreVqeFVG6WQSEEtkve0xXVKTsryuHQrUgY5cJe2xfqU5ijb4ColUCUCo0PJdMt05rcSgvPGExr3u+MwmBXUP4HXQVpIFYla53O5GEzDElNbY3tTRo=
+	t=1755600340; cv=none; b=bJPMLiDAY2KBBkQuhjdgs9/eKW13WaRCj9A1Pn3Dnq5abqqV0SPru+H8fpzAZf2e1E8DxvIEz3ae3LwNhM3xPy/s//tFmSTvQyB/vgmRT3PwqCP2SdBBl2qHBJPsBjKbnnI8gFyGLaJ8zKZgq/TcVZKjuoMsyBwTIhBoadx4gIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755600337; c=relaxed/simple;
-	bh=lBEHY3oqwrkzdEyLXUenBPe+fR0fQKUQuPgdsV+am1M=;
+	s=arc-20240116; t=1755600340; c=relaxed/simple;
+	bh=CoGnRVCEsryh+FbJQYTFV1jTmW3dnOmX3oR1hC3xB48=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=e4YefMFQImephwmM1Ala5ziyttW9c8dw9piXg+vNxbdDdlvk7ERYU7QQ9eKDUmBDd8MSQ9gJKTPPeebsHSLFWdd+VN5MbbL0iUHnqHZoYnHGqN8r0DU0LORUgNobzQIGmlyCU2wRBgSgt9r4zU7mCBOvq8mTRV66rNACsx2q0jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JBb5doAE; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:To:Cc; b=Y+mU2OtUtai5rGyzdyqSSTuCANxa7/KIr5S9vLutnPDt0h757KYK9OEQinjlZqryN7gpIkTTi0EsC78CmtofvqXYf8RFqhuzmX9rconLqSyVAIWJIgj6O81Qb47fRCoACVDwgBFpBQHZLvlrMLHM9MtU5mdRIUFw0U5tFT6vcp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dYo+8Plh; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-afcb732eee6so835994966b.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 03:45:34 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-61a893d5226so459798a12.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 03:45:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755600333; x=1756205133; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755600334; x=1756205134; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CzTgDVH+QZ7Kiq60lbhQJSp7V9UuP3VPtTcxTzVGwi8=;
-        b=JBb5doAEkc8hHBcww5E3GP60Zt1YvB27wKoqpYS1F8h/78WRqspD3qxbZXftCHdmZc
-         NwxAjzuS1eQqCbvuJEXjPfvUZe2WpC5rdvsStpr7N7j29P5faG4LM1A94vyoKP/5MFOP
-         svCpiMSw7AnmxiSj3l/5Z2jU+hAcDmdykHQewKvcN1GRr8XJgt7bf/wbfEXYUGA6rGD4
-         c4v45E1ftzV6qL1jVVsDFAC6H40ECnEQ4gkt85J0OIXj4qFGxwHT6O6AZx9lCBJ3XgWg
-         pOP0HU1+MaRIFHd7+FUOcJnF9bvigrsq4cNZHqJ3UHHPxieHdt1Sp70ANqwk1LUReMld
-         nA1A==
+        bh=NNWfg+jnR/IJfZkh2W9jbuKIKGtjrjEx/l7JEhyxTVQ=;
+        b=dYo+8Plh534a3EXzfPYL0+N/Czr2HKWjO4hiXtpOFMeJwMudwbhoWaVCeqEjhI4TTa
+         T10k0JAHQaj5HOFYoMj/rcwEKNetItXqSXU19yH4VgHJmslHKQrkVlzxq2P76VMxy4AX
+         7drq5i3EWDrEHkpVW8Pc1a8fRWQKhDNkgaVDUDHZrq+Bui3DWBnBVJzZDqZsT8k3N6v1
+         soMtYLj7ePTFjZGvb5BJm2OQs+DpYiWXEwo+mD/MK01aFJ6D+ypdSy8sBr2cNexF1DQY
+         Y0v7ZQi31r8nuzbW1IpCkLDz2D6ghuTEzPoYmjlqYP6j2jafwBsYlZX6aRNBMMvfil0d
+         831w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755600333; x=1756205133;
+        d=1e100.net; s=20230601; t=1755600334; x=1756205134;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CzTgDVH+QZ7Kiq60lbhQJSp7V9UuP3VPtTcxTzVGwi8=;
-        b=QlKjqds8KBPyVFSWKOkn+S4mCwbZKeEs5lDg38w2CnXS/6zzl8iAW3J5CcIh2SnyZb
-         pEnx8/XMABfePwpLiTjJoI0CtqqFRSkm7tlRa6XaobIlAw+z5tnyG+knO/mFI17SSY1j
-         uXE6c7DDXZr7YDUFISYAh6nxwNM+gWrudvicAJr4LJXl2k0qwEXO0deLsRG8LALtQFNL
-         w2Y6eTWTEyWNqFqMbUJCZQpQ9xhUpMAC2L05FNSqgfd0CpWn9nG6hRrCvEYX3xpK5TZ/
-         OAMyFZ/9FAQnqMh0ZuoVfBWD0ssPtpZC6DMUdJulFgu+XsZkzMuq/b/EBEVeqh8LnM0L
-         wZhg==
-X-Forwarded-Encrypted: i=1; AJvYcCWpxQ90ZWNwL6H+npVYDwrv75iWXFsosoS+6SM2ZowbcFnDBr003eRQGB1KeA+LafPxePfgcropChdB@vger.kernel.org
-X-Gm-Message-State: AOJu0YyH8vSI7mrFRzDvaIzFLxzAID6ADqk+iYSYKX9dd/3cej2EJ3jA
-	ahsw+bxDVTQKZnJO+BVKQM/o/Ij/JDk9tjLMa2sy4aomhfPxLBoumyrAmQVpyMkR1Qk=
-X-Gm-Gg: ASbGncvxYbDTTdgXdN4s7DSVqG/vSu5GUoUncaMib8lD0SEMxfyEfxm7Kh2JWKOgsOJ
-	ombUD2JEYw6BxU+SLS34dFgstL0i32rzmAUOi3i+hhCL/e/Y5wXr6QLGx75OGXq6mOfoyvQopee
-	tq2JGmH6O3JBCYGUG0t+Yz0lomzjZ3uqnCUeRy8zoyzAbXzGwGto5r5ky+ptwJbriW+TIIhhWrB
-	KhxG3bEY5KkUn/K43v5q1cYrLLSb4S+V+Z6Qr6HvR9XK1651W1VHGuPQfJu4qmGUu4wnY1KSz3s
-	wCw5RX0RoGTQTvp67ngU32iCl49D4JC3oF2saYj1q2amucMllIdGpo7zVgPJDkWKDqEMuy4CKDq
-	8tQsLTxwRiDhiptbzUsDqfEZ/LBG9dXp5e+eJxg==
-X-Google-Smtp-Source: AGHT+IE1IfNii4lYyAmhItgaQj/g69X1RMtfpryZPx9MbrEv2WxcHcjyfwhOTzesYRX/AF41sipqbg==
-X-Received: by 2002:a17:907:d7cb:b0:ae0:35fb:5c83 with SMTP id a640c23a62f3a-afddccf2aafmr183951366b.28.1755600333117;
-        Tue, 19 Aug 2025 03:45:33 -0700 (PDT)
+        bh=NNWfg+jnR/IJfZkh2W9jbuKIKGtjrjEx/l7JEhyxTVQ=;
+        b=hqwD7R37cn1GEGk0l/+/nW3xk2KIuxkw6J+GcMOdGcLDT/1cZ4euy8ymnBG2ugMP9/
+         ESSBOhGwrhet9Fag4BketcZMNYa0wZrbpY3eAIhiEVkhGk5W6w0bHt2gfpwLb7UzFexX
+         Ch8U36cejT9/k5raI3LPPcX6iQ04/c1+Y3TGrdTfPpkJmFMbqY/lZozU+MvWeRqo8Rna
+         pLeH/vifdyHBh75q5T9xVO4s1pCpl9ThUbidLJ4RHfCNoi1h4mkd6bJVdP3cCqVtXUBJ
+         SM2o3vV6Y8/nX9EYBzLFGihqHlfWqSisdOCNNnm/6cu/aJoIuQtyz4zfJnf1Npklbf/Z
+         57XQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV45+iJFbpcXmOBjqnpBKrnm8D/mDHNZdFO7CD4ZgjcAATARLq+Rifl2WaskDfRQg/BrnwKnRGc2Pbx@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpJDCpdJtQUpxmkRf2TKHjmK5kHMkrGAki6jp2EEuVqDoPJ2V1
+	0khxMOO2LgXlQhvBKRrI9i9XVdQL7torI/0l4ub6PoA7CsK2KLycufA4uzJ5GlPt1/I=
+X-Gm-Gg: ASbGncuqkYftgShls/JUDAXTg+tDxCfiLGtvzDTlbBxYkxz9RoaIOAJBXUTfMa5t9No
+	1vhMFEmxb8eXDIv5BgSa2UELmbEczv2o6D0ZhJSv53PwjX+Nq5zzjCiTVpm7FZSYnekyZibPdkK
+	B7I1k0Nsuy1aZHcIp97+wQjhZ2eCFwL8m/UoE/4n+l4nepcnSiFSUwntpXaKnDdAkV9lAJX7wRp
+	3tX/mT8Gu7RQtd60JHhVJOL0kNx7z8FgDwYkzC4iYxXnhCPpo0oBglAV1eQ6TvN7k6OZlEpeFut
+	uZRTWFml7SQ1vKXMCP6Qi7/J3TYlv9iqUZRIzIEBx1mNfliXBjkEj623EiYnfHVU8WbuHixnl4x
+	GtqFD6yMz6I5LagUWgPdYzye/YCwsBKJNnXgh8Q==
+X-Google-Smtp-Source: AGHT+IEE/a1cKOzDFjQ1Qc8gYfnMR8SKLgI15DshI4v7Whp0lmGCWNGsKtl8WSrbZmbUgtPlX0xdNA==
+X-Received: by 2002:a05:6402:5247:b0:618:6615:30df with SMTP id 4fb4d7f45d1cf-61a7e70bb70mr1435647a12.15.1755600334057;
+        Tue, 19 Aug 2025 03:45:34 -0700 (PDT)
 Received: from [127.0.0.2] ([2a02:2454:ff21:ef41:db5f:8096:4609:9b24])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61a757a48e2sm1469787a12.40.2025.08.19.03.45.32
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61a757a48e2sm1469787a12.40.2025.08.19.03.45.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 03:45:32 -0700 (PDT)
+        Tue, 19 Aug 2025 03:45:33 -0700 (PDT)
 From: Stephan Gerhold <stephan.gerhold@linaro.org>
-Date: Tue, 19 Aug 2025 12:45:20 +0200
-Subject: [PATCH 1/4] arm64: dts: qcom: x1e001de-devkit: Fix swapped USB MP
- repeaters
+Date: Tue, 19 Aug 2025 12:45:21 +0200
+Subject: [PATCH 2/4] arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s: Fix
+ swapped USB MP repeaters
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250819-x1e80100-fix-usb-mp-repeaters-v1-1-0f8c186458d3@linaro.org>
+Message-Id: <20250819-x1e80100-fix-usb-mp-repeaters-v1-2-0f8c186458d3@linaro.org>
 References: <20250819-x1e80100-fix-usb-mp-repeaters-v1-0-0f8c186458d3@linaro.org>
 In-Reply-To: <20250819-x1e80100-fix-usb-mp-repeaters-v1-0-0f8c186458d3@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -105,17 +105,17 @@ used: They only have the &eusb6_repeater and already specify it for the
 
 Swap them to set the correct repeater for each of the USB ports.
 
-Fixes: d12fbd11c5a3 ("arm64: dts: qcom: x1e001de-devkit: Enable support for both Type-A USB ports")
+Fixes: ffbf3a8be766 ("arm64: dts: qcom: x1e78100-t14s: Enable support for both Type-A USB ports")
 Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/x1e001de-devkit.dts | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-index 2d9627e6c7983daedba87619ba01074ee22b43c9..a3323d03f644e411c472305f5cf3482ecbdb787c 100644
---- a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-@@ -1474,7 +1474,7 @@ &usb_mp_hsphy0 {
+diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+index 4cf61c2a34e31233b1adc93332bcabef22de3f86..e04df29a8853797c0e36cb60ebc2fb3161a41d30 100644
+--- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+@@ -1543,7 +1543,7 @@ &usb_mp_hsphy0 {
  	vdd-supply = <&vreg_l2e_0p8>;
  	vdda12-supply = <&vreg_l3e_1p2>;
  
@@ -124,7 +124,7 @@ index 2d9627e6c7983daedba87619ba01074ee22b43c9..a3323d03f644e411c472305f5cf3482e
  
  	status = "okay";
  };
-@@ -1483,7 +1483,7 @@ &usb_mp_hsphy1 {
+@@ -1552,7 +1552,7 @@ &usb_mp_hsphy1 {
  	vdd-supply = <&vreg_l2e_0p8>;
  	vdda12-supply = <&vreg_l3e_1p2>;
  
