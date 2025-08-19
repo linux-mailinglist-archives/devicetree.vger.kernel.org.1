@@ -1,112 +1,209 @@
-Return-Path: <devicetree+bounces-206590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21FCEB2CD43
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:48:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 686B1B2CD4D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 21:50:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE8C61C402D6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 19:47:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 539B32A4A32
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 19:50:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E53AF340DAB;
-	Tue, 19 Aug 2025 19:47:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58192D24B0;
+	Tue, 19 Aug 2025 19:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bx6/fDim"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hbSR4YNA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3F9425A34F;
-	Tue, 19 Aug 2025 19:47:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3ECA26E17A;
+	Tue, 19 Aug 2025 19:50:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755632823; cv=none; b=ecVi+S1h12pMzXmME0Pt6gEIKciGV9bVqPQYf7piWzt2Y2cM1WAMW6ft40agD2R2PihVCyqYaouv4Ob7jceMjLg0nuHj/Bmd2I1Xc9dGkEVjx2zNLz6ujKpQ1aGK0Tz5V1q+1DRfH1WlWAR39wu/HiVYa5nO3sUbEG3HtM+GwJI=
+	t=1755633011; cv=none; b=a5DTlnRZdm7AS0SmvJwxk+vdTg6r29gG88JvO9G9ulD0346LjhOTCfLQYk8YaWLycKPledorrZ/eWPTlf0Fxm+tHQVaY86YPy7zWFJGmpiZ7wIRfbozEA8TzTqb1aF9R3rdJcUsKLSv6eb41jnkamh9kPfGEUbO9gjLd2fpag9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755632823; c=relaxed/simple;
-	bh=TywL28JiMgpNsfLpXar8mcRLMEOquL5t8uql2vHQ0y0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=YKTXAXMswSuqu8xi5wI1XGACtbdZI+vJYKf58T2l/ZHB4atzRXLFfVyJnhVrQdutp/gk+eLY8EO5v3m8bZRAVAKbDq0RWTUQFwiGezIniqmfdJh7S+CHMtzDWxsGxqs06ecA+DtDHK6sPAQ50tjm+CHSPo6TjGx3CjAWRPSYDxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bx6/fDim; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F09FEC116B1;
-	Tue, 19 Aug 2025 19:46:59 +0000 (UTC)
+	s=arc-20240116; t=1755633011; c=relaxed/simple;
+	bh=rXxbSd4NGFsxG7Du96tt0eWEUIA3BJVgGFwkWbEkdlI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KO1QRVUODhOBgEfSJ+RgAOXERHDEplTpVSjinBNhlsRkZeQN/tVrQb3794dfp6q+xburA5mKFKIH9mWeqsExSghzhIJS1oTWDEBplZwEJSSMshkZ7QU/H1BKd4Wb9/pcVNB2LGOga/QBPDoQlUyXw0iMzral1eczYHzu8OrVQco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hbSR4YNA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEF38C4CEF1;
+	Tue, 19 Aug 2025 19:50:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755632823;
-	bh=TywL28JiMgpNsfLpXar8mcRLMEOquL5t8uql2vHQ0y0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Bx6/fDimuY0XA68apldTZvnU1FmSbGVjaJ4J0vVh5Q7g31QQlP/duOlYusajHJiPC
-	 hJ1GbmpdWOJtEGZ/+5kDU45FQH73sTCslMMG8ZTve60E1eMCoSvdUUkMOxMTGdg1Oy
-	 xObie6v0GyFd9s5USrsT3CGY/+VOFsEpglm9TEohlANU/5/44MMI8T2TNevtR+hwsU
-	 hi5tYA2jN6olRHnnEY5cV1GqhhYWf6eqGm/1mU75lzXflon/2+fQ0W0BjRrLirPVLf
-	 gALPoEEB4/oCvwk7EEkeORvUAaArg9rxOZJuXP8nZgAmZnNp22MMv7h0Nb2tkCmjz0
-	 a2Gsan/FKDBYw==
-From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srini@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, kernel@oss.qualcomm.com
-In-Reply-To: <20250815172353.2430981-1-mohammad.rafi.shaik@oss.qualcomm.com>
-References: <20250815172353.2430981-1-mohammad.rafi.shaik@oss.qualcomm.com>
-Subject: Re: [PATCH v5 0/2] Handle shared reset GPIO for WSA883x speakers
-Message-Id: <175563281972.270039.2781752507684682140.b4-ty@kernel.org>
-Date: Tue, 19 Aug 2025 20:46:59 +0100
+	s=k20201202; t=1755633009;
+	bh=rXxbSd4NGFsxG7Du96tt0eWEUIA3BJVgGFwkWbEkdlI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hbSR4YNABzlsy9pJN7WzfYzMVwnfolauDV1rXZvGW1mI57p37MW6oOe/+01+xg9uF
+	 zOXCvwuNvXPxm6cWiQ+QwG4+aQ5CfXoZ0i5/CzsnUVt8SMTgpdKuzYChqbu9fZs7FM
+	 WQl10SuiBy8dl8BBGcq8xO+lE7sfEYW1Ll9/qOBU7AjSmHPDXQBC/eU36HnOrllsLg
+	 1tWHtEsc0si4gDYUsimTmzNppaCEJ2nBflrXkrQjRUTnlVAgSc5CY+2Sa6hb9i0Dsf
+	 GZyAXddObnGMRBLA4YPev/YmuJ+IsW4i9++EooA4pKs4GusYblwazFzCp2/tINsGiy
+	 atSDfqecI84Lw==
+Date: Tue, 19 Aug 2025 14:50:08 -0500
+From: Rob Herring <robh@kernel.org>
+To: Maud Spierings <maudspierings@gocontroll.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: backlight: Add max25014 bindings
+Message-ID: <20250819195008.GA1218175-robh@kernel.org>
+References: <20250819-max25014-v2-0-5fd7aeb141ea@gocontroll.com>
+ <20250819-max25014-v2-1-5fd7aeb141ea@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-cff91
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250819-max25014-v2-1-5fd7aeb141ea@gocontroll.com>
 
-On Fri, 15 Aug 2025 22:53:51 +0530, Mohammad Rafi Shaik wrote:
-> On some Qualcomm platforms such as QCS6490-RB3Gen2, the multiple
-> WSA8830/WSA8835 speakers share a common reset (shutdown) GPIO.
-> To handle such cases, use the reset controller framework along with the
-> "reset-gpio" driver.
+On Tue, Aug 19, 2025 at 12:58:59PM +0200, Maud Spierings wrote:
+> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
+> with intgrated boost controller.
 > 
-> Tested on:
-> 	- QCS6490-RB3Gen2
+> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+> ---
+>  .../bindings/leds/backlight/maxim,max25014.yaml    | 79 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 84 insertions(+)
 > 
-> [...]
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..30b591152fa31d5e43243cac44c72028b05b5f8a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/backlight/maxim,max25014.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim max25014 backlight controller
+> +
+> +maintainers:
+> +  - Maud Spierings <maudspierings@gocontroll.com>
+> +
+> +allOf:
+> +  - $ref: common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max25014
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-supply:
+> +    description: Regulator which controls the boost converter input rail.
+> +
+> +  pwms:
+> +    maxItems: 1
+> +
+> +  maxim,iset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Applied to
+       maximum: 15
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> +    default: 11
+> +    description:
+> +      Value of the ISET register field (0-15).
 
-Thanks!
+Perhaps a little on what this controls? 
 
-[1/2] ASoC: dt-bindings: qcom,wsa8830: Add reset-gpios for shared line
-      commit: 126750523eac0ea79df672d9771eb483f7497b16
-[2/2] ASoC: codecs: wsa883x: Handle shared reset GPIO for WSA883x speakers
-      commit: cf65182247761f7993737b710afe8c781699356b
+> +
+> +  maxim,strings:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      A 4-bit bitfield that describes which led strings to turn on.
+> +    minItems: 4
+> +    maxItems: 4
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+       items:
+         maximum: 1
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+But why not just an 8-bit value 0x0-0xF?
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - maxim,strings
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        backlight: backlight@6f {
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Drop unused labels.
 
-Thanks,
-Mark
+> +            reg = <0x6f>;
+> +            compatible = "maxim,max25014";
 
+compatible is always first.
+
+> +            default-brightness = <50>;
+> +            enable-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+> +            interrupt-parent = <&gpio1>;
+> +            interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&pinctrl_backlight>;
+
+Generally we don't put pinctrl properties in examples as they are always 
+allowed.
+
+> +            power-supply = <&reg_backlight>;
+> +            pwms = <&pwm1>;
+> +            maxim,iset = <7>;
+> +            maxim,strings = <1 1 1 1>;
+> +        };
+> +    };
+> +
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e81d5f9fbd16cc384356804390d65652bbb9e3f6..11c73d2e37fac22aea852152746236c1472f41b8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14972,6 +14972,11 @@ F:	Documentation/userspace-api/media/drivers/max2175.rst
+>  F:	drivers/media/i2c/max2175*
+>  F:	include/uapi/linux/max2175.h
+>  
+> +MAX25014 BACKLIGHT DRIVER
+> +M:	Maud Spierings <maudspierings@gocontroll.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> +
+>  MAX31335 RTC DRIVER
+>  M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+>  L:	linux-rtc@vger.kernel.org
+> 
+> -- 
+> 2.50.1
+> 
 
