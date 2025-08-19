@@ -1,209 +1,196 @@
-Return-Path: <devicetree+bounces-206123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175AAB2B90A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:01:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4D8AB2B918
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:08:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42DEF7A7F33
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:00:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62657188EA2D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7558F26059F;
-	Tue, 19 Aug 2025 06:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 203AE256C6D;
+	Tue, 19 Aug 2025 06:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="g3Aeuh64"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mIBKQB2U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC21D1531C8
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D84771863E;
+	Tue, 19 Aug 2025 06:08:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755583291; cv=none; b=N44ALR9oa6sk/LTUKtCdLlTfvMCAef2BNIv+WdWODP+QmCLzkRledpFLeqS8TZ/8B6EdphiBpua8+lSAOO7Wj0CPmznG1qaLjKnRVBRlW9pWW2SGtu14VVovnueIGYFAknjCnBsNcb1w5jnKgN1YlzJEw0jmLS8KNlYkuokYzMg=
+	t=1755583701; cv=none; b=euDrQtMO2rUlsrejdKf4Wsi88rDY9zxvPQYW7bF2I4EZ1fC38halDX5rpMt8wUY2WRTtZotj2KjDqd9T4qgVkhF8zVxLSPpmkEmraMfD+aQPeirrwYcWUCZp+vqX/bcEnMkhH6dNtTx7aF/aw4tIS2Zsc0CVYffMdmODh/eG0+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755583291; c=relaxed/simple;
-	bh=d90UlPnb7NvxVKC9yf2/H9lQTofd1mj/OUUr+YCoIPs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oP5/2ZbWbM1cvysQ2gLIPx6t3eMdPU4Tsm2pk03slFoFgM1EJu2IosVGhT508jcSLG1PLYPiXkirmjUJGrhh3PhcrBFmIe9m+6QpV4sIbh1Nm5qn4RLRJDKPq5RThJj9dme/eDCARiCDeuu8KXktzNoMeACrKOis32LHp+w/QOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=g3Aeuh64; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45a1b05a59fso37858815e9.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Aug 2025 23:01:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1755583287; x=1756188087; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jCrxZo4+iFbzWuafqcWchsTA3vFDSS7vqG8us0w6qHw=;
-        b=g3Aeuh64z51UVaLG/7lD81owbYC8+gqgmhJa4e4mJy087vjjf3o6MHkwO+vVv8pjVW
-         jfOsUaxgQIkDw5jHmGu7/fKPuqxoQEl+vq1qFpLP/KFiod5Yz9MTjfp2kMv/Tbbi4bC8
-         1/VZggdudZigJp6NJc/3TkaCsuoIoheD0dnTz89pRCkEBMN1g+ppIGASlW3V1XeuZ9ki
-         iol4XojmwaNu2BRYVEZIf76SyoAJ48/tH8MP/C9X3VNLm76vZGdl7ATssaX+MVGYYj2I
-         RlwJkaPMAR8JdP3+klDqwyvrGPTMMYQiiQyLaj2ie6Dabo2BG+udYt0kO0Idjh6jPoOZ
-         Gz8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755583287; x=1756188087;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jCrxZo4+iFbzWuafqcWchsTA3vFDSS7vqG8us0w6qHw=;
-        b=D3Nk7J/ONZWvD7dOQ2jcdKO0Fh8HXncwpvhmtSSHAm1kHdAwibXpOAMFljGR3F4U/f
-         UlZRS0VfbK7ilsUuvpBOD5bWgSXC+XuQ3kWEQMeUnUX61+P+imYizg3V3KQOpfjyuWca
-         I7urzxXpq/6cQs9aZNNPPODP5Miq2QZG8L1V57hPh0wdBlytb6SXFiLhRkGiyeCKSw11
-         5Pvc/ZcwSzseMmBpLavpfQQqx6l/+Ij49zVGwoEmcRZfazU0YRxhPYg43ASvwfwDKjbk
-         icyk8AR+1kwj3aCezaJDmyBeyy4NRZeid/jSHQEMQTY1IZNLSN3evNJ943VjFqao+UfC
-         oceA==
-X-Forwarded-Encrypted: i=1; AJvYcCUgBLXrDZYA+8LtqZugj8iX1GPedSRFStAwHtrnuaB6mKyp6ddbG6WH8G3kkGelaG3RyeI/oyInceUy@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywd309lYgAOxZN6/gbH9OzdJm/UTBNaMo3c+eY3QLLJ7qf5DS6v
-	QnJue8Xc633tXSs+AVeuSStoWTgxp8qHe4loBQKZcsoGLjB7AffLe8V/DB7iQ1F1QYY=
-X-Gm-Gg: ASbGncsihQxf8dxMr5NOO9PUt+39eIFpn1ikH0UDtMh/yHNTAgQ5atakXKsuaj5b3yx
-	vuUg+TKGJ2vHog34LiXWHowssdxb0rw81KgkDMnrMOJ0CoT5reLU62i2jhENFS4Vy/7kjmFx8sQ
-	6spqBUWLdO22rEr2RUguefTJH2CNAdjE75gAv6C+pmweVG/+c3cOeMAaD4072PUutVZp/5AlD0s
-	osXbOzrpflvPu8b82u4kpXEKU2dBZkIpTwrIWKzQ4oocpQ+lgN+7ZWI4kjelNndqUWqSKCuAm48
-	cK3aPZXBKuVqULVSH3N11H4vI7acT/c5dQTzxnuos67PwS68o/lu5CcAZd1KmMfmOYomOsUdYhv
-	uWwm7bO5Izq/Dbl8fltAK+WY38nT4SaGHnkzeTvcrxrSrkKXpTTWeZCMCCcEdIBh9k8RsBP8MHl
-	kiNw==
-X-Google-Smtp-Source: AGHT+IEBenKmHbomfqM7jRrj+OcZnm9VNNe9GX3JYk6fkmpM0P8zqRVhhyCR0kaRAw4wTbU/JEdLvw==
-X-Received: by 2002:a05:600c:4750:b0:450:cabd:b4a9 with SMTP id 5b1f17b1804b1-45b43e02bc0mr6688745e9.29.1755583287073;
-        Mon, 18 Aug 2025 23:01:27 -0700 (PDT)
-Received: from ?IPV6:2a02:2f04:620a:8b00:4343:2ee6:dba1:7917? ([2a02:2f04:620a:8b00:4343:2ee6:dba1:7917])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c077c5767fsm2102502f8f.62.2025.08.18.23.01.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Aug 2025 23:01:26 -0700 (PDT)
-Message-ID: <bc053bca-8dd9-4a50-a352-290b38a329b0@tuxon.dev>
-Date: Tue, 19 Aug 2025 09:01:20 +0300
+	s=arc-20240116; t=1755583701; c=relaxed/simple;
+	bh=JFOqiQZygYJZwxR9jUnXSWxc6RjvoDhgTgxK8uDWeLw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B+oyngVtVGnD9IKF9WjYhuFYZcKZKv6ACRFyJoz2Qfb/JGWJ3gicbortAwhYRBRlsX0dxyRPsebw1ryVNSijjtTJ+Q+B9YugT0w8rmQ61V0xMZ8nF3hf7PITJ0Zu6Z+53OERV+rE7o3fRvIKuXWJHXgI2wjEC7PsiRX4V4xe3/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mIBKQB2U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC394C4CEF4;
+	Tue, 19 Aug 2025 06:08:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755583700;
+	bh=JFOqiQZygYJZwxR9jUnXSWxc6RjvoDhgTgxK8uDWeLw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mIBKQB2Ug804maWvOPuUOfpcsNLZO1bdOfLqRy/haIy1HpbJEdniEvVrEjX5PGrkn
+	 Zd5u2y457HAPPZ8RqN9l1HIW1r7OVJ3BxFlrMeNwyNwtG5Wnt4gadHSrTP8r4C7F0K
+	 98OuY+3Az23afPP211w0a9J7MP4uvuIlsaXKZCrUDWFX/dtPUMNcjiJjxkXZuO7bi9
+	 LMLIUb51Dli9W6YN+iVU0eyQ0YEJlyXMUCuCQwX86yf5cz0p3UxRIV4GggyITumYiZ
+	 D1VsrhYN/uIL3KTNVTYTwWtYpx9P5V9N/HXa3s/Zu/0lsx42U78eU1axRYCNilOIV3
+	 DMaHPbYmlXnaA==
+Date: Tue, 19 Aug 2025 08:08:17 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: linux-kernel@vger.kernel.org, peter.ujfalusi@gmail.com, 
+	dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org, lgirdwood@gmail.com, 
+	tiwai@suse.com, conor+dt@kernel.org, lee@kernel.org, broonie@kernel.org, 
+	gregkh@linuxfoundation.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-sound@vger.kernel.org, linux-usb@vger.kernel.org, 
+	shuah@kernel.org
+Subject: Re: [PATCH 5/8] pwm: dt-bindings: ti,twl-pwm: convert to DT schema
+Message-ID: <xs5dgd57ycqaohpqevy67mrmngqei5pyg2a62mk6gjzawzvwfm@pzhw5jthxmyo>
+References: <20250811224739.53869-1-jihed.chaibi.dev@gmail.com>
+ <20250811224739.53869-6-jihed.chaibi.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/7] phy: renesas: rcar-gen3-usb2: Fix an error
- handling path in rcar_gen3_phy_usb2_probe()
-To: Biju Das <biju.das.jz@bp.renesas.com>, "vkoul@kernel.org"
- <vkoul@kernel.org>, "kishon@kernel.org" <kishon@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm" <magnus.damm@gmail.com>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-References: <20250819054212.486426-1-claudiu.beznea.uj@bp.renesas.com>
- <20250819054212.486426-3-claudiu.beznea.uj@bp.renesas.com>
- <TY3PR01MB1134647BC6436CA61E0A200F98630A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TY3PR01MB1134647BC6436CA61E0A200F98630A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="5yzp6gv7etjwnva5"
+Content-Disposition: inline
+In-Reply-To: <20250811224739.53869-6-jihed.chaibi.dev@gmail.com>
 
-Hi, Biju,
 
-On 8/19/25 08:49, Biju Das wrote:
-> Hi Claudiu, Christophe,
-> 
-> Thanks for the patch.
-> 
->> -----Original Message-----
->> From: Claudiu <claudiu.beznea@tuxon.dev>
->> Sent: 19 August 2025 06:42
->> Subject: [PATCH v5 2/7] phy: renesas: rcar-gen3-usb2: Fix an error handling path in
->> rcar_gen3_phy_usb2_probe()
->>
->> From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
->>
->> If an error occurs after the reset_control_deassert(),
->> reset_control_assert() must be called, as already done in the remove function.
->>
->> Use devm_add_action_or_reset() to add the missing call and simplify the
->> .remove() function accordingly.
->>
->> Fixes: 4eae16375357 ("phy: renesas: rcar-gen3-usb2: Add support to initialize the bus")
->> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
->> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
->> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->> [claudiu.beznea: removed "struct reset_control *rstc = data;" from  rcar_gen3_reset_assert()]
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
->> Changes in v5:
->> - none
->>
->> Changes in v4:
->> - none
->>
->> Changes in v3:
->> - collected tags
->>
->> Changes in v2:
->> - none; this patch is new; re-spinned the Christophe's work at
->>
->> https://lore.kernel.org/all/TYCPR01MB113329930BA5E2149C9BE2A1986672@TYCPR01MB11332.jpnprd01.prod.outloo
->> k.com/
->>
->>
->>   drivers/phy/renesas/phy-rcar-gen3-usb2.c | 11 ++++++++++-
->>   1 file changed, 10 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/phy/renesas/phy-rcar-gen3-usb2.c b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
->> index 47beb94cd424..d61c171d454f 100644
->> --- a/drivers/phy/renesas/phy-rcar-gen3-usb2.c
->> +++ b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
->> @@ -699,6 +699,11 @@ static enum usb_dr_mode rcar_gen3_get_dr_mode(struct device_node *np)
->>   	return candidate;
->>   }
->>
->> +static void rcar_gen3_reset_assert(void *data) {
->> +	reset_control_assert(data);
->> +}
->> +
->>   static int rcar_gen3_phy_usb2_init_bus(struct rcar_gen3_chan *channel)  {
->>   	struct device *dev = channel->dev;
->> @@ -717,6 +722,11 @@ static int rcar_gen3_phy_usb2_init_bus(struct rcar_gen3_chan *channel)
->>   	if (ret)
->>   		goto rpm_put;
->>
->> +	ret = devm_add_action_or_reset(dev, rcar_gen3_reset_assert,
->> +				       channel->rstc);
-> 
-> Now 'rstc' can be removed from struct rcar_gen3_chan and use the local rstc pointer
-> as context variable here.
+--5yzp6gv7etjwnva5
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 5/8] pwm: dt-bindings: ti,twl-pwm: convert to DT schema
+MIME-Version: 1.0
 
-I can drop it now but it will be added later (after this series) along with 
-suspend to RAM support. That is the reason I preferred to still keep it.
+On Tue, Aug 12, 2025 at 12:47:36AM +0200, Jihed Chaibi wrote:
+> Convert the legacy TXT binding for the TWL-family PWM controller
+> to the modern YAML DT schema format. This adds formal validation
+> and improves documentation by inheriting from the base pwm schema.
+>=20
+> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+> ---
+>  .../devicetree/bindings/pwm/ti,twl-pwm.txt    | 17 -------
+>  .../devicetree/bindings/pwm/ti,twl-pwm.yaml   | 46 +++++++++++++++++++
+>  2 files changed, 46 insertions(+), 17 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt
+>  create mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwm.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt b/Docum=
+entation/devicetree/bindings/pwm/ti,twl-pwm.txt
+> deleted file mode 100644
+> index d97ca1964..000000000
+> --- a/Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt
+> +++ /dev/null
+> @@ -1,17 +0,0 @@
+> -Texas Instruments TWL series PWM drivers
+> -
+> -Supported PWMs:
+> -On TWL4030 series: PWM1 and PWM2
+> -On TWL6030 series: PWM0 and PWM1
+> -
+> -Required properties:
+> -- compatible: "ti,twl4030-pwm" or "ti,twl6030-pwm"
+> -- #pwm-cells: should be 2. See pwm.yaml in this directory for a descript=
+ion of
+> -  the cells format.
+> -
+> -Example:
+> -
+> -twl_pwm: pwm {
+> -	compatible =3D "ti,twl6030-pwm";
+> -	#pwm-cells =3D <2>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/pwm/ti,twl-pwm.yaml b/Docu=
+mentation/devicetree/bindings/pwm/ti,twl-pwm.yaml
+> new file mode 100644
+> index 000000000..5bbbdc13a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/ti,twl-pwm.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/ti,twl-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments TWL4030/TWL6030 family PWM controller
+> +
+> +maintainers:
+> +  - Peter Ujfalusi <peter.ujfalusi@gmail.com>
+> +
+> +description: |
+> +  Bindings for the following PWM controllers :
+> +    TWL4030 series: PWMA and PWMB (connected to LEDA and LEDB terminals)
+> +    TWL6030 series: LED PWM (mainly used as charging indicator LED)
+> +
+> +allOf:
+> +  - $ref: /schemas/pwm/pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,twl4030-pwm
+> +      - ti,twl6030-pwm
+> +
+> +  '#pwm-cells':
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - '#pwm-cells'
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    pwm {
+> +        compatible =3D "ti,twl4030-pwm";
+> +        #pwm-cells =3D <2>;
+> +    };
+> +
+> +  - |
+> +    pwm {
+> +        compatible =3D "ti,twl6030-pwm";
+> +        #pwm-cells =3D <2>;
+> +    };
 
-Thank you,
-Claudiu
+Without having asked dt_binding_check it looks ok formally. I guess you
+added Peter Ujfalusi as maintainer from the driver file. I'd like to see
+a confirmation from him this is fine.
 
-> 
-> Cheers,
-> Biju
-> 
->> +	if (ret)
->> +		goto rpm_put;
->> +
->>   	val = readl(channel->base + USB2_AHB_BUS_CTR);
->>   	val &= ~USB2_AHB_BUS_CTR_MBL_MASK;
->>   	val |= USB2_AHB_BUS_CTR_MBL_INCR4;
->> @@ -860,7 +870,6 @@ static void rcar_gen3_phy_usb2_remove(struct platform_device *pdev)
->>   	if (channel->is_otg_channel)
->>   		device_remove_file(&pdev->dev, &dev_attr_role);
->>
->> -	reset_control_assert(channel->rstc);
->>   	pm_runtime_disable(&pdev->dev);
->>   };
->>
->> --
->> 2.43.0
-> 
+The 2nd example isn't very helpful. Unless I'm missing some detail that
+makes it have a value I suggest to drop it. (But no need to resend just
+for that, I don't feel that strong and can keep it or fixup when
+applying.)
 
+Best regards
+Uwe
+
+--5yzp6gv7etjwnva5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmikFM4ACgkQj4D7WH0S
+/k6TXQgAgOHpunUCvCKcPCdfYvw/x0GxIJld2NVPMHAvH/zoqHhuWyA80902Vml7
+oaOHd6EvK5AiYwfd6OFaODZy0zw4slH/wNW5v00NSJIkEj01gp/FLJGOmA1nEYSU
+oW6E4bjhEhaTM4LdDuIRBsi98yy1rmbwgRu0AgmoSv2Yof3jKwqbFW9UffjiJHus
+yjU8tTPF6Tcu7x9JaFNSEJqymp1K97cTTqs6e3njMt8OCCktpSNlKl/u4Wp2o6DY
+tXjPDChXLGYrcvwefTl2vb+qrc8/Q1xSx5GH/udU68l+c4RHdPivtxdwyUDOiWpB
+Ida7RVbLjhD3LQKIN8RWgaQxC6Pi8A==
+=hMLi
+-----END PGP SIGNATURE-----
+
+--5yzp6gv7etjwnva5--
 
