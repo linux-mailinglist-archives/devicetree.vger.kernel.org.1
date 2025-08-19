@@ -1,117 +1,135 @@
-Return-Path: <devicetree+bounces-206512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20ADB2C7AC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 16:56:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FFE1B2C7CB
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 17:00:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0BB452116E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:54:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB7481960341
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 14:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C917527C866;
-	Tue, 19 Aug 2025 14:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9E42283CAA;
+	Tue, 19 Aug 2025 14:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IpOPUuCe"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="PLfrC8/C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9FB727D780;
-	Tue, 19 Aug 2025 14:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CE09283C89;
+	Tue, 19 Aug 2025 14:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755615268; cv=none; b=G0zFYn9m6GpLXu5uscaB+MfAXtCMXwJBaguqHhe47gIFu76MxF8n6elFgEIFE0E4V/Nc/NgrXsKWaZjZxh7yJC8kHLJut0XApYRs/Ax+JjcvuAFXel4c8ACINxFpEQvx3+vAb+5P6W6+prNT2YEKvGp4ugXIge1EZ0vmNp8Gnv4=
+	t=1755615426; cv=none; b=FElmS58hhnW5H0OgO04iGij22RUS0oK8xNt+B1be3YdYrGhJwdBYlKJm+1SaBvy1ZfOvpTl/JEX5gGpoy2xVjHatjiY2mCMyUpbDCnRLKRethmPc29Bd+r4btz5mXA607JyIHAo2U9iVWTV9hmVZRNLpJXWnSWb1oUeAfOGmnCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755615268; c=relaxed/simple;
-	bh=bS73IBP0XgIpvrcjYBqF+tR9I5LvIwqpJWovbWz/tmA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bw+jNSwl0WDDEYoEYHQ1uAEytfeSmPoYH7dxftFkeieef+IZi1cL78b5odWgNIb0a7io/xvAOOX4fP+y5WP5IvbJEK9fJpVTKkXhsHV1Z6om7H3ztahbWa95Uj2hgrLL62RZxf6OkBu1UvG3I06YkC/FUhP2t3P4cCq2f383i9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IpOPUuCe; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id EC5EC2391;
-	Tue, 19 Aug 2025 16:53:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1755615206;
-	bh=bS73IBP0XgIpvrcjYBqF+tR9I5LvIwqpJWovbWz/tmA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IpOPUuCetwEVA81ICn/utvxBQhlUR2gVMI9g/f2wvAMD3w42pyVdWKFY6N8yNZyb0
-	 BJ4bXtW5O0j3L8KK41XKSllgBdJ1dvPohgGe6LHE/am2TNml44k1OfXlk6UXxmMl6Q
-	 GwYz6dqIKHnkU7duJfsMjH6a9vqfFUe3wQmhfTBU=
-Date: Tue, 19 Aug 2025 17:54:01 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Prabhakar <prabhakar.csengg@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v7 0/6] Add support for DU/DSI clocks and DSI driver
- support for the Renesas RZ/V2H(P) SoC
-Message-ID: <20250819145401.GW5862@pendragon.ideasonboard.com>
-References: <20250728201435.3505594-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdXSJO1MOoNS5M2M1Zs=iWmiBbmc8Xc9tMDsXd_kM6bj=Q@mail.gmail.com>
+	s=arc-20240116; t=1755615426; c=relaxed/simple;
+	bh=3Qbz8pqFfdOsOOoqVrdwNTsM+mi/gpOylrAwS7+boC4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DTnhBXqeA8kgDIFyuM1Bjh3FCvG3JTM5jdw8cFJGcvVzuFf7mC0ne9iuvvyxRwY00ngaCefKorMb08e6dbVt42UOhQpaDgwBerv4B5hG8IdVwNCc15ZfP4m2QJhHwxAdYI1E51PQTL8jakRVdx4nLPp9GQ/4CvQ3qJkRbkPjvlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=PLfrC8/C; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 39FE225D53;
+	Tue, 19 Aug 2025 16:57:02 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id mk32Vz6sFa6J; Tue, 19 Aug 2025 16:57:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1755615421; bh=3Qbz8pqFfdOsOOoqVrdwNTsM+mi/gpOylrAwS7+boC4=;
+	h=From:Subject:Date:To:Cc;
+	b=PLfrC8/C4ggYoNVTx1MUO2ukwPsNaRlclnZze4eG5oNL3GJrpZmFNMgv7dLnMDOyA
+	 iswh+GES2GgUswTvmQE/Kz9wBn1ja6cfNfL4ypJIa0eBUNWU4tRtBQ4SCVEZ3hTnph
+	 07Xvp8mkLdSwZDBYNf/awi/llMvf2ALjuFHnSZv/tEnyHOXWdASw28kE8xb4cwGchN
+	 wShxAvGkaEpw7Ar5az5I0cpgLNfScDdpfqNaVu7rm9KCbzHeEWE2kIc2CXNxM75Yaj
+	 Z/ghhKsHWSU8Tik5LSa0UI7UIP4gEyRChXTeVucMCDcCZ1KsACQ64IS1lIJxoM2LU6
+	 xhVyCdmHqyp+Q==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH v4 0/2] Support for Synaptics TDDI series panels
+Date: Tue, 19 Aug 2025 20:26:43 +0530
+Message-Id: <20250819-panel-synaptics-tddi-v4-0-448f466d16a6@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXSJO1MOoNS5M2M1Zs=iWmiBbmc8Xc9tMDsXd_kM6bj=Q@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKuQpGgC/3XNQQ7CIBCF4as0rMXAAKW68h7GBRRoJzGlgaaxM
+ b27qAs16vJ/yXxzJdkn9JnsqytJfsaMcSghNxVpezN0nqIrTYCBYgoEHc3gzzQvgxknbDOdnEP
+ KLLMiMB0aLkk5HZMPeHmwx1PpHvMU0/L4MvP7+gRrDr/BmVNGXbCNkaCCrtuDw5xinLYxdeROz
+ vDGgPrDQGG0qcFY7rho9TcjXowG9ocRhZHCqJ3SQVqQn8y6rje2+el5SAEAAA==
+X-Change-ID: 20250523-panel-synaptics-tddi-0b0b3f07f814
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755615411; l=2195;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=3Qbz8pqFfdOsOOoqVrdwNTsM+mi/gpOylrAwS7+boC4=;
+ b=mH8hor6y2lPboSWr3nqjiosJrnuuMMK1U5fXyMorEdgBh3P0ASbRX//Ki9+6R1KjkDBujdo06
+ RshDNEUSSoOAEUW0cmDiRqNjKs9P0os+3Wz6QvNGq5TudbXH5oyn+45
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-On Tue, Aug 19, 2025 at 03:48:08PM +0200, Geert Uytterhoeven wrote:
-> On Mon, 28 Jul 2025 at 22:14, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > This patch series adds DU/DSI clocks and provides support for the
-> > MIPI DSI interface on the RZ/V2H(P) SoC. It was originally part of
-> > series [0], but has now been split into 6 patches due to dependencies
-> > on the clock driver, making it easier to review and merge.
-> 
-> Thanks for your series!
-> 
-> > Lad Prabhakar (6):
-> >   clk: renesas: rzv2h-cpg: Add instance field to struct pll
-> >   clk: renesas: rzv2h-cpg: Add support for DSI clocks
-> >   clk: renesas: r9a09g057: Add clock and reset entries for DSI and LCDC
-> >   dt-bindings: display: bridge: renesas,dsi: Document RZ/V2H(P) and
-> >     RZ/V2N
-> >   drm: renesas: rz-du: mipi_dsi: Add support for LPCLK clock handling
-> >   drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
-> 
-> On the renesas-clk side, I am (almost) totally happy with this.
-> Any feedback from the renesas-drm side?
+Synaptics' Touch and Display Driver Integration (TDDI) technology [1]
+employs a single chip for both touchscreen and display capabilities.
+Such designs reportedly help reducing costs and power consumption.
 
-Tomi told me he added the patches on this review list.
+Although the touchscreens, which are powered by Synaptics'
+Register-Mapped Interface 4 (RMI4) touch protocol via I2C or SPI have
+driver support in the kernel, the MIPI DSI display panels don't.
 
-> The last patch depends on a header file introduced by the second patch,
-> so I will need to provide an immutable branch containing the first
-> two patches (probably/hopefully based on v8).
+This series introduces a rudimentary driver for controlling said display
+panels, which supports TD4101 and TD4300 panels.
 
+[1] https://www.synaptics.com/technology/display-integration
+
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Changes in v4:
+- utilized drm_connector_helper_get_modes_fixed() (dmitry.baryshkov)
+- constified backlight properties (dmitry.baryshkov)
+- Link to v3: https://lore.kernel.org/r/20250720-panel-synaptics-tddi-v3-0-43a5957f4b24@disroot.org
+
+Changes in v3:
+- fixed various dt_binding_check errors (robh's bot)
+- adjusted commit description of [v2 1/2] (robh)
+- utilized devm_drm_panel_alloc() and devm_regulator_bulk_get_const()
+- Link to v2: https://lore.kernel.org/r/20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org
+
+Changes in v2:
+- fixed various dt_binding_check errors (conor)
+- did s/tddi_update_brightness/tddi_update_status
+- added check for panel enable in tddi_update_status()
+- used backlight_get_brightness() in appropriate places
+- Link to v1: https://lore.kernel.org/r/20250612-panel-synaptics-tddi-v1-0-dfb8a425f76c@disroot.org
+
+---
+Kaustabh Chakraborty (2):
+      dt-bindings: display: panel: document Synaptics TDDI panel
+      drm: panel: add support for Synaptics TDDI series DSI panels
+
+ .../display/panel/synaptics,td4300-panel.yaml      |  89 +++++++
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-synaptics-tddi.c       | 276 +++++++++++++++++++++
+ 4 files changed, 377 insertions(+)
+---
+base-commit: 3ac864c2d9bb8608ee236e89bf561811613abfce
+change-id: 20250523-panel-synaptics-tddi-0b0b3f07f814
+
+Best regards,
 -- 
-Regards,
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
-Laurent Pinchart
 
