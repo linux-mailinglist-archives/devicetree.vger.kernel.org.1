@@ -1,184 +1,169 @@
-Return-Path: <devicetree+bounces-206160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ED66B2BA04
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:59:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D03DB2B966
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:29:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18FF33B826C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:59:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3020A1674A6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F0C2765C9;
-	Tue, 19 Aug 2025 06:59:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39485266560;
+	Tue, 19 Aug 2025 06:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tSeBSlC/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d2DnRS/g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E38B91990C7;
-	Tue, 19 Aug 2025 06:59:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9702652A4;
+	Tue, 19 Aug 2025 06:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755586771; cv=none; b=R3OhUCfLO3GLK8SBRTrDqZrPVPN9/6qt+5AMaDWxc4QtUAfReNjYg4S1MXPDv9tJAf6gxiqo2/rX7x0SXhYRs6Sa08h8SLwtYZqA/bFuqZYCYLjcgQTEibTtHCB4n54UdmsnhAAsYrDkQenEd+J70QEhWmsrWWuFPafgNeZufKU=
+	t=1755584834; cv=none; b=GGFGcCaLfiWGOa+hK+imMvuFtkE+VJNhgfTYUMNVDyGImFitlLdYVTB9lTW8Yi2v5b8sLWpaAGDrf0v/qL0y5egZagMICZQPJuXqqj87UWPCnLvSCBhYrlKi9d/0s2tFytetux8vP46YtfunS7JMGtRv/REN7a3nhGIiM/VqgCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755586771; c=relaxed/simple;
-	bh=AfsvnBJTR3hcQR6RFlIfxqkp1b4j/uQrr8x9twyT0S4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QxKzuP71hq8fevAg0ohhM4S4rUqYnP0v23b8J0tSjuAOuWHvjMkFWyreitmUqWqN5Ar917uUnZQqJxClDaFDkqiU4HyCjSWwiT2LIZ/PHCas6AjWte7Xij6E1LgE3O3BocG1BSn4CGgsuoxiED3O6tao2WZqOLsls5Qovr0qI7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tSeBSlC/; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57J6xL7S3254958;
-	Tue, 19 Aug 2025 01:59:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755586761;
-	bh=EF0yM92ZpWpm9tf7xKah94pD5yLEZNulHKSkYq+gOls=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=tSeBSlC/PB33q+b2YLwZaCgHRYFt3ZbM0xPHuPHoBRB/02GQzX4e1q2wMJZYLPTc5
-	 P3/ta0bipEmq2SetZRWpDR21E1PgQvvsnSGeBL4tY6YAzFlp6J5gsgz7fe5sOgnPlt
-	 ljgChW5VgBe45Oz4rsnX6GHM2vBwwEeHHW5l+SYA=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57J6xLlA210101
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 19 Aug 2025 01:59:21 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 19
- Aug 2025 01:59:21 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 19 Aug 2025 01:59:20 -0500
-Received: from pratham-Workstation-PC (pratham-workstation-pc.dhcp.ti.com [10.24.69.191])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57J6xJaN2303301;
-	Tue, 19 Aug 2025 01:59:20 -0500
-From: T Pratham <t-pratham@ti.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller"
-	<davem@davemloft.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: T Pratham <t-pratham@ti.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Kamlesh
- Gurudasani <kamlesh@ti.com>,
-        Manorit Chawdhry <m-chawdhry@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>, Vishal
- Mahaveer <vishalm@ti.com>,
-        Kavitha Malarvizhi <k-malarvizhi@ti.com>
-Subject: [PATCH v6 1/2] dt-bindings: crypto: Add binding for TI DTHE V2
-Date: Tue, 19 Aug 2025 11:42:44 +0530
-Message-ID: <20250819065844.3337101-2-t-pratham@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250819065844.3337101-1-t-pratham@ti.com>
-References: <20250819065844.3337101-1-t-pratham@ti.com>
+	s=arc-20240116; t=1755584834; c=relaxed/simple;
+	bh=d3dK6EscB52LS7V8xDRjKX4a4k7soWePrbItDSWszAo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PU5eqp7l04D/xpo0VZwbFyMB++2HfplWNqP0Bao5EBRWnUCBBCrJZqy8a5i3o4RsNj/GepcQedCciubUhUOiUs5GfWeIon7Hk+oyL5EzjwtqahO0/O8o7cKgH5LYIwrO8Z6HN/sQR8U57qllvhd8vW6a20DeCIrSf5RRvOlhQ4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d2DnRS/g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32E89C4CEF4;
+	Tue, 19 Aug 2025 06:27:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755584833;
+	bh=d3dK6EscB52LS7V8xDRjKX4a4k7soWePrbItDSWszAo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=d2DnRS/gW0BBK4MJWi5yuIVIxpjuBmVTMus9okE2GvQdM1ePDvQ7jb0tyueAEC5yd
+	 6kKpNFAo/076+l0TzPjH56963vZwG68Hp1Fgs6vWGCozNrYgO3bBSPxBsFgFQYjUL5
+	 yubE+Qb0zd86AcprMabyz2vb3g4COPEaS7Y/RW+grpi8FyPHp6hCu+1nl+YK3fDZ8x
+	 KIs3fTex/fzbXvDSoIIaQ92lcYvT9syHw90yxPYVTb3MsI7DwGIARNEQjn7ajCBZ7C
+	 Krql+eLy2YMdtfWAHVWjprcGT9knNupZIAemJzXzoE1prt41wY1RmQop5Sevo7xA2F
+	 ix55RtsrVQ53A==
+Message-ID: <a7fc4e8d-453b-49c2-8177-20568431bf81@kernel.org>
+Date: Tue, 19 Aug 2025 08:27:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next v4 1/3] dt-bindings: net: dsa: yt921x: Add Motorcomm
+ YT921x switch support
+To: Andrew Lunn <andrew@lunn.ch>, David Yang <mmyangfl@gmail.com>
+Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250818162445.1317670-1-mmyangfl@gmail.com>
+ <20250818162445.1317670-2-mmyangfl@gmail.com>
+ <7c4bc4cc-61d5-40ce-b0d5-c47072ee2f16@lunn.ch>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <7c4bc4cc-61d5-40ce-b0d5-c47072ee2f16@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add DT binding for Texas Instruments DTHE V2 cryptography engine.
+On 18/08/2025 18:55, Andrew Lunn wrote:
+>> +  motorcomm,switch-id:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description: |
+>> +      Value selected by Pin SWITCH_ID_1 / SWITCH_ID_0.
+>> +
+>> +      Up to 4 chips can share the same MII port ('reg' in DT) by giving
+>> +      different SWITCH_ID values. The default value should work if only one chip
+>> +      is present.
+>> +    enum: [0, 1, 2, 3]
+>> +    default: 0
+> 
+> It is like getting blood from a stone.
+> 
+> So what you are saying is that you have:
+> 
+>     mdio {
+>         #address-cells = <1>;
+>         #size-cells = <0>;
+> 
+>         switch@1d {
+>             compatible = "motorcomm,yt9215";
+>             /* default 0x1d, alternate 0x0 */
+>             reg = <0x1d>;
+>             motorcomm,switch-id = <0>;
+>             reset-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
+> ...
+> 	}
+> 
+>         switch@1d {
+>             compatible = "motorcomm,yt9215";
+>             reg = <0x1d>;
+>             motorcomm,switch-id = <1>;
+>             reset-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
+> ...
+> 	}
+> 
+>         switch@1d {
+>             compatible = "motorcomm,yt9215";
+>             reg = <0x1d>;
+>             motorcomm,switch-id = <2>;
+>             reset-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
+> ...
+> 	}
+>     }
+> 
+> Have you tested this? My _guess_ is, it does not work.
 
-DTHE V2 is introduced as a part of TI AM62L SoC and can currently be
-only found in it.
+Regardless if kernel actually works with this, but duplicating unit
+address is not supported, so this obviously would be wrong. I guess
+that's the answer for switch-id.
 
-Signed-off-by: T Pratham <t-pratham@ti.com>
-Reviewed-By: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/crypto/ti,am62l-dthev2.yaml      | 50 +++++++++++++++++++
- MAINTAINERS                                   |  6 +++
- 2 files changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
-
-diff --git a/Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml b/Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
-new file mode 100644
-index 000000000000..5486bfeb2fe8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/ti,am62l-dthev2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: K3 SoC DTHE V2 crypto module
-+
-+maintainers:
-+  - T Pratham <t-pratham@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,am62l-dthev2
-+
-+  reg:
-+    maxItems: 1
-+
-+  dmas:
-+    items:
-+      - description: AES Engine RX DMA Channel
-+      - description: AES Engine TX DMA Channel
-+      - description: SHA Engine TX DMA Channel
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx1
-+      - const: tx2
-+
-+required:
-+  - compatible
-+  - reg
-+  - dmas
-+  - dma-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    crypto@40800000 {
-+        compatible = "ti,am62l-dthev2";
-+        reg = <0x40800000 0x10000>;
-+
-+        dmas = <&main_bcdma 0 0 0x4700 0>,
-+               <&main_bcdma 0 0 0xc701 0>,
-+               <&main_bcdma 0 0 0xc700 0>;
-+        dma-names = "rx", "tx1", "tx2";
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fe168477caa4..0f5bb8ad7653 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25169,6 +25169,12 @@ S:	Odd Fixes
- F:	drivers/clk/ti/
- F:	include/linux/clk/ti.h
- 
-+TI DATA TRANSFORM AND HASHING ENGINE (DTHE) V2 CRYPTO DRIVER
-+M:	T Pratham <t-pratham@ti.com>
-+L:	linux-crypto@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
-+
- TI DAVINCI MACHINE SUPPORT
- M:	Bartosz Golaszewski <brgl@bgdev.pl>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
