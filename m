@@ -1,96 +1,131 @@
-Return-Path: <devicetree+bounces-206212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4891B2BBA9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:22:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0456B2BBB2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 10:23:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DBF11887210
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:22:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D0D1523847
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:23:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B978A25F984;
-	Tue, 19 Aug 2025 08:21:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D743310645;
+	Tue, 19 Aug 2025 08:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PyQqMMTy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MHXOGQD/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EF081A3A80;
-	Tue, 19 Aug 2025 08:21:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B051A3A80
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 08:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755591705; cv=none; b=uD0F5+rFqJG5hj+LD8JHY+JAyl4Bfx+kRw+NPiZtYLY6OI8LHVLcrlWlFBrlvdtKf0djWjK48Kj0aLtcQzSFgv9/DY4QiWahV5dfh9fMmCqXcnC27Fy5LbsNhxCginRDCiU7tRhocXwunfcycVFLZNYgak8FuDPZiXHoNimE/uY=
+	t=1755591790; cv=none; b=hYElyMt21tl81cfuVDnXQwVRAIaG4q2IGjURiaY2Sma8j3pL+VFTJiCPha6rZMtAm9WLuQtI9HteGZMeQHI4KhDv18qZiuxAmd0HecxpKDOEHr8n5qh9cpydxVqxFq2lOIvSzpOxOMQT+L2c7qiXMGarqBOMk0TcH01ungeQNrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755591705; c=relaxed/simple;
-	bh=1codZMjwy5xEE8CHY9/RMsQlYxX0V78vrbjwQEP5T3Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JtM+lOsvV2YoSyED9aMfeJiCQIDIJb8jZMHUOKHsKSkOCYUzMElSUrALHZoFTkiM+Vu8v/uAp10U4irw3KjgAE+00qh3OEGJtRjF5MjkTW3YeNj5V2ZJukpH29fZr9Z/hAeHbdNvbKiYx7MKcYiC3Stj0KwaSLenb4cULB5fpEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PyQqMMTy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D3BCC4CEF1;
-	Tue, 19 Aug 2025 08:21:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755591705;
-	bh=1codZMjwy5xEE8CHY9/RMsQlYxX0V78vrbjwQEP5T3Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PyQqMMTybgkseFEOXhaoT8120dHaCUYjo7O0AEle6hNoOMAOTd1UN36R/IGN/C6ft
-	 z8QecOOvu5hVzqSUalPjJPR6lJybGs3B4PrFuHpjVtjXdKa4NBUmwr8D/zKw46Kg97
-	 XKfAiBreyTirtxh/PeE811JFtSkJts/Cb03ELBJgUVcUWoZ+D+j3b8C3svENr06M3S
-	 MqkaL9q5SmFUYzp5tdAQg5748YJpLgqr7TtQH7Qu/237DDZnmmA5VeIM2GTPXYdnF1
-	 RULyucltPWYaQoLaPhHHjwWR8OCFncttIhZ8rppRPU6ZHqAmKYWM2LSszu9oJ/Y5A3
-	 PlM+aMn+L7yVQ==
-Date: Tue, 19 Aug 2025 10:21:42 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Aliaksandr Smirnou <support@pinefeat.co.uk>, mchehab@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: Pinefeat cef168 lens control board
-Message-ID: <20250819-lilac-harrier-of-saturation-323586@kuoka>
-References: <20250817130549.7766-1-support@pinefeat.co.uk>
- <20250817130549.7766-2-support@pinefeat.co.uk>
- <20250818-stark-unsocial-96d32a311cab@spud>
+	s=arc-20240116; t=1755591790; c=relaxed/simple;
+	bh=3GltQsZsTJB2ktXRLHZv7Us6GHmE2woUtqvFijXVQHA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pVrm46aGAwGzkprf2cOjmfeKvjFPKTiu6e5XZ1khrC85NYCU6wwD2rm54VizyUpOD4Sbpf/4IiLyrInSFYNWaI+cNC5bDL0G0CNAZIZU0B+3E0VlP4Mcfq1V0QJOqKXD9NKoj8WMbXEzb+t7zHRiNWlM/PSo1Qcd4dkVGre0l94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MHXOGQD/; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45a1b004a31so35085445e9.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 01:23:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755591787; x=1756196587; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gk3UUuT0kF+OIQoIGwD56lsNrHwvbK9Pa+dkiVqzMsY=;
+        b=MHXOGQD/XFQ+w6bG0xUTbtduZh22pYUKS9KR0dFe/zs2ax63ICbotJgsH0NS8MS61J
+         n3Pd09UQxOH78z6oE2kIxESXMgujRJkTV6ui4zgb6jCsOrKsq5u65U6UIifC0QrnlzWM
+         hj0fniwgb5gMm/f2ZaCaylvOy1rKJ8n1rl74SNOM82DJN+2YSs9Hiu2FhI0VshbvD6A+
+         IeHj8oAvN2wwmuj5OOuienSTivM30EL32KdB+UTwYi4grOEqJH+NVq+l4e8kOOCnEnnN
+         MZWqLlJAwruqa4zaJ/RX30etsbGM75y3GDsCGlQ14SxHB/FpZ6K5VJ1XtGJyyt4gb7sH
+         rhWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755591787; x=1756196587;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gk3UUuT0kF+OIQoIGwD56lsNrHwvbK9Pa+dkiVqzMsY=;
+        b=R6JBAU3MM/uq2hBZuRi5sNYfwAMoaJF4w8X2vmQacL1V/nr1gJbQOc/+cIszIlOImb
+         MuVnni/I15R9sN/oz+1W+q6eBZ6iM0+HKKJNCFYe27TxcSWg2aTki91cSTiHXsNx9H/L
+         hJEZdIQaR3EcumBF5+Zbe/aIkpPxwSH5Ft1UkbxkyL54pSIkQq8GlDLJvoc0RuLAu1Ny
+         DKLdWBll4mc/l3hCbb1XIAclPG0BGDJBDvldDm6SS+PP0lgIbiQJA2SKAOSF9AOpcHCk
+         FvRUbikmkFtkFzxwwhZ2uGc8q3hqZrZo0s5p7a0HrUKGQB/JTRDgShsf+0KKRQ2hTIEG
+         JYKw==
+X-Forwarded-Encrypted: i=1; AJvYcCULKuN1Pmvb//lSOPf4tNEAMSN6iO/ii3AIFO4Ug8rk2/VLZbISeeK4EHhSmM6u6xSdqnsttNWALFFq@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywwh9s8y2VC0tlb/PSUFGyXD1Qz4C59bAolEE9YRbgmNItYv9hz
+	oiLTdGSdRhI+NQYKZVfnAfEDALb3qrLHB9aorheHjjdfC1nRa7bEGX/ReBdwUS2RPJA=
+X-Gm-Gg: ASbGncsWcHQqBouMyk8/pJDZkcIrTJYyXkxuE3nD2ZIubomCqHxRCZC3xHCSfnmgzjh
+	1rsMODbt3dioynzL7ZddbxNWwNiU1swCxNs7JFMDFsNlSwG6nesA5w5UnkzzOb5uFPIFK/pC9jt
+	FJ6ZNtMPPrWPdE4/fRaenai1y8Lm69RDdtqdljuuGDGTVTdOmjgCaZ1iMvHZWYdTgswSQGCui6X
+	7DhjAGAwpr21J4wJMQ/LBW3DgPnIwFzTjh0ludVFTF12fm68RchamBHzZkaClZL5HlVsj7UqSXZ
+	sYQlCuhWXWGeJiUMtcMfOcmK9JCLImbG8xtfjH5NawmQcaTAPP16158A1OrYMGCHZbzqjP2eGs/
+	A5ZWfBVj2hkmAsACMJrupKrUBYseUb9CYoBkKbw==
+X-Google-Smtp-Source: AGHT+IFDBrqa6UO2Yq2aEToJiMTjs1+Jp6h8jHSwfsl8qYZjSrSubOzy3gKS/Bv9eTIZLkdGhNbxVA==
+X-Received: by 2002:a05:600c:4446:b0:459:e048:af42 with SMTP id 5b1f17b1804b1-45b43e0d613mr12404945e9.24.1755591787335;
+        Tue, 19 Aug 2025 01:23:07 -0700 (PDT)
+Received: from [192.168.1.3] ([185.48.76.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b42a8debbsm30166165e9.17.2025.08.19.01.23.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Aug 2025 01:23:06 -0700 (PDT)
+Message-ID: <5f3fa6be-3727-4536-b769-c0a3d1646c3d@linaro.org>
+Date: Tue, 19 Aug 2025 09:23:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250818-stark-unsocial-96d32a311cab@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 10/13] spi: spi-fsl-lpspi: Add compatible for S32G
+To: Mark Brown <broonie@kernel.org>
+Cc: Frank Li <Frank.li@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+ Fugang Duan <B38611@freescale.com>, Gao Pan <pandy.gao@nxp.com>,
+ Fugang Duan <fugang.duan@nxp.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Larisa Grigore <larisa.grigore@oss.nxp.com>,
+ Larisa Grigore <larisa.grigore@nxp.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+ Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
+ linux-spi@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
+ <20250814-james-nxp-lpspi-v1-10-9586d7815d14@linaro.org>
+ <aJ4qNVIp788gc2ZU@lizhi-Precision-Tower-5810>
+ <1f3b68d4-e0cc-4952-a695-322ed9756b95@linaro.org>
+ <35f6a3be-d924-403d-b60b-d4c78d833a60@sirena.org.uk>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <35f6a3be-d924-403d-b60b-d4c78d833a60@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 18, 2025 at 06:36:50PM +0100, Conor Dooley wrote:
-> On Sun, Aug 17, 2025 at 02:05:48PM +0100, Aliaksandr Smirnou wrote:
-> > Add the Device Tree schema and examples for the Pinefeat cef168 lens
-> > control board. This board interfaces Canon EF & EF-S lenses with
-> > non-Canon camera bodies, enabling electronic control of focus and
-> > aperture via V4L2.
-> > 
+
+
+On 18/08/2025 4:18 pm, Mark Brown wrote:
+> On Mon, Aug 18, 2025 at 03:31:08PM +0100, James Clark wrote:
+>> On 14/08/2025 7:25 pm, Frank Li wrote:
 > 
-> > Power supply is derived from fixed supplies via connector or GPIO
-> > header. Therefore, the driver does not manage any regulator, so
-> > representing any supply in the binding is redundant.
+>>> binding doc should first patch. Create new patch serial for add S32G
+>>> support only.
 > 
-> Wut? This doesn't make sense, you have supplies so they should be
-> documented. The fact that they're shared with a bunch of other things on
-> the SBC you're aiming the product at doesn't matter. What if someone
+>> I'm not sure putting the binding doc commit first would be right? That would
+>> imply it was a valid binding before it really was because the code change
+>> hasn't been made yet. Practically both are required so it doesn't really
+>> matter which way around they are.
+> 
+> It's the general practice everyone has adopted (though in this case the
+> bugfix bits might want to go before the bindings, possibly it's also a
+> bit unusual to do that).  An unused binding is more acceptable than an
+> undocumented one.
 
-There is also some explanation at v2 discussion. I asked for that
-because there is no known design (neither RPi or other boards having
-compatible hat/connectors) which would have these supplies controllable.
-Adding them now would mean you should make them also required (because
-in fact they are), but since these are non-controllable there would be
-just regulator-fixed with voltage and that's it. It's just bloat.
-
-> doesn't use this sensor with an RPi and there is a dedicated regulator?
-
-Unlikely but if ever such hardware appears, we can always add
-regulators.
-
-Best regards,
-Krzysztof
+Fair enough. I can flip them in the next version.
 
 
