@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-206151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5072DB2B9E3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:52:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C63B2B9E6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E09E27B5640
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:51:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBDBA521A39
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:53:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924FE2765C9;
-	Tue, 19 Aug 2025 06:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5818426E146;
+	Tue, 19 Aug 2025 06:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q3Oo4us9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sV1B4pQf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8F326D4CF;
-	Tue, 19 Aug 2025 06:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DDD322D9F7;
+	Tue, 19 Aug 2025 06:53:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755586363; cv=none; b=VtaZb7kpU/ZdPbTZXBpQ9uptTpd/Us0SMMODY/IYH7gR+keqRH6adnqapOxTZ8S8FcgVlt5fNziSoY/r0OvCOBFg5YdUJ14DF1bIhkEfbjTRzvmZX+ZfyImPgUMZB/1q1QDXZWZBb2MFbJjSFeYJgULGa5cfoyBCGslNYG1/9bo=
+	t=1755586389; cv=none; b=GD+vrKersfze9mtH/i+gDdNnOpX+Sg1JUDiNSIgOHSH3PuYfY9Hmk617jACFYQ/STcGXamFdTOkxb/hlDpkdZk48a8w7XUE+R43FPVxn+OQ2j9lZC02wNIxRmClzcgS1Xim8R6LZBkhoifZhJ0x8HnGkbk0AHgYYH5f3IcCDAWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755586363; c=relaxed/simple;
-	bh=qo6fv3qjiH+tLfWV2opDEl1dq0elK7W7rPG/KXRhcJQ=;
+	s=arc-20240116; t=1755586389; c=relaxed/simple;
+	bh=SZzeGsLdORko4EIkIilRSYDe+PIqR32blCLx0Ud5yaE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RUyze4cNCr6/SPLN4zPfGBXuqtCBqEG99NZAXt9dvQqKnhvn6OHxHzxrl1/vjo6UBQ9FC490xSOK8GSpeIiNz0p3KaJAUcjOu0cYgfUN5ywLRNd76zD+s1kB8f0KbIySVZ57xFImb7cPXQ9/4cwgKJaWCHw2KkmdKmNQKrFNmsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q3Oo4us9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC3FC4CEF1;
-	Tue, 19 Aug 2025 06:52:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qBF9kTqHmxz8w92rmCCGvVOZX/4lLhtx8eGMn/sBQyETYuAmRXnthwz+Wj2e2uFfCSyPpGDZ5BCr5wzp3zZpsHiLPJFvBwM+8FgHZiTj4NPBvoAUPKfQY4k62UXoby2Libpgn0WDWYNuKNMuuxXxioOq+RY/Vt4HhZ3Hn0wm3RU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sV1B4pQf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB460C4CEF4;
+	Tue, 19 Aug 2025 06:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755586362;
-	bh=qo6fv3qjiH+tLfWV2opDEl1dq0elK7W7rPG/KXRhcJQ=;
+	s=k20201202; t=1755586388;
+	bh=SZzeGsLdORko4EIkIilRSYDe+PIqR32blCLx0Ud5yaE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q3Oo4us9UkswI6jW55B//FMxHKB89RJi9IKt0c8jN34d0XB1i5Y9p7SYieqIs4Trf
-	 xUjFI3Zy84CC00Eu4ye7Li7Y5lXrFeS81f6dUBldtiHqZejYktNBXDprVsPPp0KHA9
-	 vhzJPegQVH8sxCUwqWHwMEA8RJXYm73fqvTexiBT7ipVknQVe6N5JhFlwGL42ILUfT
-	 odz/yPzx1cIcbHE106pP8e/WJpJr5vlWzt3XMTjmMRoXm8H6JLeidfARz3jLgJxk4L
-	 S7DcIUwa1zj7jQQQ8Lyrcc562tkAZhnnFRhMXhhw7YMsUGmQeeALnX+vgM0XRWAQRp
-	 OuU/J0zbEMelQ==
-Message-ID: <0b866807-010f-4f17-b0bd-cc44a0b530f5@kernel.org>
-Date: Tue, 19 Aug 2025 08:52:38 +0200
+	b=sV1B4pQfTdHsKrgjYmdcAjGS5qTFjAaVMyErTmz91qe24pOYF9nISv5/OGBgUtQTz
+	 85MxRyusnTSq3az2Ypf5AlA8qBr54RUFBcKiR9W5dLDp+f4YVIXeWzfXc50aRAZiOz
+	 xRkYHpJWZQOnutMu/J0eEx1BW/FGc1ucbR93am0IaRgL+XBznKyelfHnG7S6PODQ4H
+	 G+DytLTbaU7vJSBTTyFcG+/pMWv9j5iTZxx0B6BKEDdSAAKuR0J/yGtXZ32EkRGo0L
+	 6oh4Ks+VaqTsgSqj4MTnPfhXUwHa6e6SNRN82faDVvdK9Cihl442t+B1MpvNgSf6eH
+	 ekP4mX8eHdahA==
+Message-ID: <197e3cb9-d3bb-4f37-9832-b4b82c4ca77f@kernel.org>
+Date: Tue, 19 Aug 2025 08:53:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] arch: dts: mediatek: mt8390: add Grinn GenioSBC-700
+Subject: Re: [PATCH 2/4] dt-bindings: arm: mediatek: Add grinn,genio-700-sbc
+ as a valid platform
 To: Mateusz Koza <mateusz.koza@grinn-global.com>,
  angelogioacchino.delregno@collabora.com, robh@kernel.org
 Cc: krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
@@ -58,7 +59,7 @@ Cc: krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
  linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
  marcin.czarnecki@grinn-global.com, b.bilas@grinn-global.com
 References: <20250815160837.371592-1-mateusz.koza@grinn-global.com>
- <20250815160837.371592-2-mateusz.koza@grinn-global.com>
+ <20250815160837.371592-3-mateusz.koza@grinn-global.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,106 +105,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250815160837.371592-2-mateusz.koza@grinn-global.com>
+In-Reply-To: <20250815160837.371592-3-mateusz.koza@grinn-global.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 15/08/2025 18:08, Mateusz Koza wrote:
-> Add support for Grinn GenioSBC-700. The Grinn GenioSBC-700 is a
-> single-board computer based on the MediaTek Genio 700 SoC. Its device
-> tree is split into seperate SoM (.dtsi) and SBC (.dtsi) files, which are
-> combined in the SoC-specific .dts file.
+> Add device tree bindings support for the Grinn GenioSBC-700, a
+> single-board computer based on the MediaTek Genio 700 SoC.
 > 
-> This separation enables:
-> - Reuse of the SoM-level .dtsi for future evaluation boards.
-> - Easy creation of DTS files for pin-to-pin compatible SoCs (e.g., Genio 510)
+> The new compatible string "grinn,genio-700-sbc" identifies this baord in
+> the device tree bindings, enabling future board-specific adjustments if
+> required.
 > 
 > More details about the hardware:
 > - https://grinn-global.com/products/grinn-geniosom-700
 > - https://grinn-global.com/products/grinn-genioboard-edge-ai-sbc
 > 
 > Signed-off-by: Mateusz Koza <mateusz.koza@grinn-global.com>
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-It is never "arch".
-
 > ---
->  arch/arm64/boot/dts/mediatek/Makefile         |   1 +
->  .../mediatek/mt8390-grinn-genio-700-sbc.dts   |  19 +
->  .../dts/mediatek/mt8390-grinn-genio-sbc.dtsi  | 673 ++++++++++++++++++
->  .../dts/mediatek/mt8390-grinn-genio-som.dtsi  | 208 ++++++
->  4 files changed, 901 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-700-sbc.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-sbc.dtsi
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-som.dtsi
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 1dcea8b9aed9..7383d75d8041 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -104,6 +104,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk-hdmi.dtbo
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-genio-510-evk.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-genio-700-evk.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-grinn-genio-700-sbc.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-kontron-3-5-sbc-i1200.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-radxa-nio-12l.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-radxa-nio-12l-8-hd-panel.dtbo
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-700-sbc.dts b/arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-700-sbc.dts
-> new file mode 100644
-> index 000000000000..44bba1ff74ae
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-700-sbc.dts
-> @@ -0,0 +1,19 @@
-> +/*
-
-Missing SPDX.
-
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
-
-> + * Copyright (C) 2025 Grinn sp. z o.o.
-> + * Author: Mateusz Koza <mateusz.koza@grinn-global.com>
-> + */
-> +/dts-v1/;
-> +
-> +#include "mt8188.dtsi"
-> +#include "mt8390-grinn-genio-som.dtsi"
-> +#include "mt8390-grinn-genio-sbc.dtsi"
-> +
-> +/ {
-> +	model = "Grinn GenioSBC-700";
-> +	compatible = "grinn,genio-700-sbc", "mediatek,mt8390",
-> +		"mediatek,mt8188";
-
-1. Misaligned.
-
-2. Missing bindings.
-
-
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0 0x40000000 1 0x00000000>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-sbc.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-sbc.dtsi
-> new file mode 100644
-> index 000000000000..f6d19ee158d5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-sbc.dtsi
-> @@ -0,0 +1,673 @@
-> +/*
-
-We cannot take code on such license.
-
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index a7e0a72f6e4c..ad7fb85e3559 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -431,6 +431,7 @@ properties:
+>        - items:
+>            - enum:
+>                - mediatek,mt8390-evk
+> +              - grinn,genio-700-sbc
+Don't break the ordering.
 
 Best regards,
 Krzysztof
