@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-206146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E3EDB2B9D0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:46:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89A91B2B9D4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 08:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 553E61629D5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:45:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 342E01BA7910
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2042326D4CF;
-	Tue, 19 Aug 2025 06:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 761D826D4EF;
+	Tue, 19 Aug 2025 06:46:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VGwwQNQc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lU9IsXSI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE6C14F9D6
-	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50CAA269B1C
+	for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 06:46:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755585950; cv=none; b=P7Z9pNV3uZZAQHuoEHVEHazqO93RFuyCSfuSV92xhiSFi3iRR5BEwgziGBKCHB39mGqvtBrpUEvIFIoMXMiXzZZS19yuly/4ahIOk+IU+gM3tzQkUcc7IXdcQuHE6z+JdmjDgok0qVCZ3ULGHyekM3pTiEkZPsuz/Rk/Booz/6g=
+	t=1755585975; cv=none; b=IVUodLYT5jKwyITFH8nJTWFQsIP7hHGh/+Ts1y2BqB3Biryo8KVIcW01UqovAuzG6atXdwfF3YesZMfP19lgY9pMN4t+Jom0iEiziOzdRQednpsvRrdbdiGIdr6rodOG6Bkp+dP7vhBUvHIqfA5iB3e2O6y62pW5h68n1z+DL/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755585950; c=relaxed/simple;
-	bh=30dK5kUXOs6+u4uB68wroZS57yvJCcYw4PvxdbNBzvI=;
+	s=arc-20240116; t=1755585975; c=relaxed/simple;
+	bh=lGp25vvxN1bdJI7JJ6pQQ6sIoh1/R2PC0pGOpW+xqr0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=REOxCrR4QCXcCBckYDoNheKQjKJU+5P+gelqDKJqdVvtLJXApNwedN9ZBmGylbU/0ZucPNi2kG43xJR3OzC9lYfiJ+l6C6P2Cs9Pl0QhBZhs9sbBkm4fqhLJDC9+X7mmQkZd/Egeg+m1ilUACEbPpNc0Ys5MAAGcGlMbTrVo4mM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VGwwQNQc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDE20C4CEF4;
-	Tue, 19 Aug 2025 06:45:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=m5btxs2rTk/sdIcMInUq8mptcRg/ViXFJ2BjfItwrH2jmkNmqaP09R4k53fDy8LmZXm5/gibQupn0mtpEHlYJMF+FrQ+Ioxs/ZT+WXvoqBTvvJwn4iTTBu8me62Ul8xRgvXDBU1G3key6mVDCbSHPC1BTdkfDDtBiGiAx0MNPHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lU9IsXSI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A1DFC4CEF4;
+	Tue, 19 Aug 2025 06:46:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755585949;
-	bh=30dK5kUXOs6+u4uB68wroZS57yvJCcYw4PvxdbNBzvI=;
+	s=k20201202; t=1755585974;
+	bh=lGp25vvxN1bdJI7JJ6pQQ6sIoh1/R2PC0pGOpW+xqr0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VGwwQNQctWNpYmj4oDAMTdIUeNv5f32q2OZME6EIkAKcDcZh2dJhiUkJxXnAiqvcm
-	 r3VNpKgbr9ANiUJ94WfZOq8JJHtfCHVfvqvVCpTp30q+mM58+PXK35p1tFnzyZFph6
-	 WdDV705dLrineuKevtOWVZZRWDGfpNfPLPJlt2fH2i20d5oCaBtoalYrlicFgzet4s
-	 kXxvg/gkKy//PyqpuKsJDOtTjY83gGvPZeWTzegX3kT0Br0BuiOWRcaWzvYUavo9Ka
-	 yR62uqlfmSmvWeKCyH8SlyaBBPmaLfsof7xeNxZvJgcPtE1S1+vNBDZmRyAPvhGQ5t
-	 W34kSw37zzA7w==
-Message-ID: <b33cb5b7-7028-4942-8490-dbe693c4badb@kernel.org>
-Date: Tue, 19 Aug 2025 08:45:43 +0200
+	b=lU9IsXSIz6KqbHjKR6GTp1xNsC7kXUDM7tS5ICrYD/CuqUFk4hxOGCFY4pRN45G3E
+	 MFUtRuCTgUEZrGJKuJmuPGjk/0A/cRsXxaAetvEit5yZA41wQO49z4jU/QOd+DZUCn
+	 fd6eX+FhlTuMYPzJHNgpsh7VyOQc4J6mdj9ZYCvE+m61Gd1QV/zV8OFoh9zmV8ya1X
+	 HCgSxPkbDhgze6MmwreGnj92fCJdM/8JBjMf3NQ1X0/OD+LpjooE2KcpQddwyN72mb
+	 ExP7KXadouObp7RxZhLQjgcSLeipJl8lNQeTSZLob97c/gDYghJZ76NwFlNeC/doVp
+	 ygtFCcdygUbog==
+Message-ID: <dee67abf-39e3-43eb-9c04-9e6b04ee18e9@kernel.org>
+Date: Tue, 19 Aug 2025 08:46:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,18 +52,20 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [RFC PATCH 1/3] devicetree: bindings: dsiplay: panel:
  panel-simple.yaml: Add Raspberry pi dsi panel compatible
-To: "Kumar, Udit" <u-kumar1@ti.com>, Harikrishna Shenoy <h-shenoy@ti.com>,
+To: "Kumar, Udit" <u-kumar1@ti.com>, "Raghavendra, Vignesh"
+ <vigneshr@ti.com>, Harikrishna Shenoy <h-shenoy@ti.com>,
  neil.armstrong@linaro.org, jessica.zhang@oss.qualcomm.com,
  airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
  mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+ krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com, kristo@kernel.org,
+ thierry.reding@gmail.com, sam@ravnborg.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Cc: s-jain1@ti.com, devarsht@ti.com
 References: <20250818154746.1373656-1-h-shenoy@ti.com>
  <20250818154746.1373656-2-h-shenoy@ti.com>
  <06a9fa20-e45a-458c-971a-a6f0f1d08004@ti.com>
+ <f2fff09a-376a-44b9-a421-13202b1079fb@ti.com>
+ <0268561b-8a3b-4508-bd28-3b47f5a8b754@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,28 +111,15 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <06a9fa20-e45a-458c-971a-a6f0f1d08004@ti.com>
+In-Reply-To: <0268561b-8a3b-4508-bd28-3b47f5a8b754@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/08/2025 06:54, Kumar, Udit wrote:
->> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
->> index 1ac1f0219079..65f486f2bc9d 100644
->> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
->> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
->> @@ -268,6 +268,8 @@ properties:
->>         - rocktech,rk070er9427
->>           # Rocktech Display Ltd. RK043FN48H 4.3" 480x272 LCD-TFT panel
->>         - rocktech,rk043fn48h
->> +        # Raspberry, 7" dsi panel
->> +      - rpi,7inch-dsi
+On 19/08/2025 07:52, Kumar, Udit wrote:
 > 
-> Hello Hari,
-> 
-> Driver changes should come first to match new compatible before device 
-> tree changes.
+> I would expect driver changes as well, which should come before device tree.
 
-Read submitting patches before giving advices.
+Stop advising this nonsense.
 
 Best regards,
 Krzysztof
