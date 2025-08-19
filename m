@@ -1,212 +1,213 @@
-Return-Path: <devicetree+bounces-206089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E869FB2B821
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 05:57:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33911B2B863
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 06:38:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F8F51B608A4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 03:57:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D61B43BBBDB
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 04:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06579287275;
-	Tue, 19 Aug 2025 03:57:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C765B2E228B;
+	Tue, 19 Aug 2025 04:38:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o+AlCtZE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UxwsOZ1u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB572561AA;
-	Tue, 19 Aug 2025 03:57:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B8B2C2353;
+	Tue, 19 Aug 2025 04:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755575847; cv=none; b=PGam90v95kfBjzuXZFzJOJ8/ibEghg2Q9ivqAtjIk6tQKqnq6LcOWfE8lmsDlmxgQLalgkaA4AjqFOZW9N9i8B1kkvq8FHWc7wt0ug3jj3tdErekDTr0C6ayY5jlOK9ClvXj47pwH5KX0j6N8tqv9WOPnLeiaKq/XPaMuN6jHME=
+	t=1755578315; cv=none; b=n4vMZgXOe28JbME7AxxjvPWzZmqowwsCHgCqH5ySILXrILYt+03NFVY4ChvjWkS3UUcj0s52WRZ7P8dyKe6s3IVW3jdGVQO+GYGijl/MQYvYsTDemrtim8KRrF+wPnP/pXqJQTWV/1Nq/NDQqXTeBB9JXHiCXZSZtYBGE7GkB1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755575847; c=relaxed/simple;
-	bh=At2jkJ8aylYF1xB9MMvdNHKYV11RS+nZpADpXo6y/dE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RyG60ztFiyyG4T67KVHWuA9MKbOTKIATPjbh3hBK0H1OLihpbc8mec/h9NMOQoNQmFIWt6joOjoQ6XxkUSUT7izjbEtfjiIIuZvztsu2mBaOwQXL/XQzVmSCLp2L/3dlPBpiUS24hpxFiQjuBAG3opS1aeXEgXlXExnTo1cTWVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=o+AlCtZE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57INmqqO007382;
-	Tue, 19 Aug 2025 03:57:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	StMDBVKortgOhhJKsIQ9RZeB6Vb16l5YgBhhvbiZ/wQ=; b=o+AlCtZEd5BTscSX
-	G65sB7a6O9YxJjPVnmJExwawBBEoIuGcu0ZXV8lfvBVBv66uxnkdixRT4DStowfb
-	R32qpCR3AfFBktoaYTPV8NIyI/wZnsmsPsD3Rc3iDRhM0QqImX6Lpg8i8DY7AhgU
-	wfJaxege8uuBpp1A4WjKX9Bzo/7EWjHOa3wKobklD6K/6tlXHsBKmh0igDGSdAIJ
-	uajmWaKrNTqiyyUiePg0DAgKblFtTdZBY+vxGXveh7+JsrwK7gSvJCTMhXbGJd6E
-	sKMBhjEPQPSg5hp1+oyLjYazxJWaBkiuPBcNBQLf08qlYS8iplA9Mb7mWwopqKz+
-	kPRPdw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48jhjyf3a6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Aug 2025 03:57:21 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57J3vKml007261
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Aug 2025 03:57:20 GMT
-Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 18 Aug
- 2025 20:57:19 -0700
-Message-ID: <1aba663d-67d2-4672-805b-7ffc20d0e2ff@quicinc.com>
-Date: Tue, 19 Aug 2025 11:56:55 +0800
+	s=arc-20240116; t=1755578315; c=relaxed/simple;
+	bh=fX1fDtkJlgXe21ThnDLJ12QhRuLIMPpV4e+3sPurSW0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fBi6o/rARITolNbFJ30MmXINvaAYeo12oV0gkLA9C9qn3fvB7wL4twb++A4e8JdoHaThOTeHuHYJK4QwIdCr8ts3+mhEOqCwBoWHspQw0pzFoaa0URXdvSSKnCGnNW0XHeP3Uz2YW+B4avNJgDr57t1GvsPKf8V+IVMajpg8dNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UxwsOZ1u; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755578314; x=1787114314;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fX1fDtkJlgXe21ThnDLJ12QhRuLIMPpV4e+3sPurSW0=;
+  b=UxwsOZ1ulEZYVQIiVzewu33WAQcTwICFFB9AIRLG/YjXQDXUlLqRGFzC
+   Ie1ADYwBltMu2Nhr5WXpxhFSiUSG0/ph77cS8I524/5XK6VcnKKreHoDS
+   yvRtg0F9KxzQH1U3jlaD9GVZLy2DgS/mGcoWZ6vUdtAesYCxCtGKvna/d
+   DaUpiy86JDdcfsl2vEG0Xrsr6iwNG3V5fUPRNIMi01gIYrVlDTNoP06Q9
+   EdKL660xpWOgJhjyE97URmsqTVa/aiv/2+QvNvhXcqzD3d6Lcb60imyVv
+   QL+Yx3MLsU78U3XpMhTvpUXWYgIFYV3pwgXzTWzfLsjyeTOe7/WkOTHof
+   g==;
+X-CSE-ConnectionGUID: StzCEnImQ4aCfx9Sx1qRwQ==
+X-CSE-MsgGUID: k+zCROydT3iF6bKsW6qkVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="57882452"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; 
+   d="scan'208";a="57882452"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 21:38:33 -0700
+X-CSE-ConnectionGUID: xr1bnbrgSICKne4JN1ZibA==
+X-CSE-MsgGUID: Zwnm0lBgRl6z9KTr/9UVMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; 
+   d="scan'208";a="166981588"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 18 Aug 2025 21:38:29 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uoE78-000GVn-2D;
+	Tue, 19 Aug 2025 04:38:26 +0000
+Date: Tue, 19 Aug 2025 12:38:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jacky Bai <ping.bai@nxp.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Jacky Bai <ping.bai@nxp.com>
+Subject: Re: [PATCH v3 3/4] thermal: qoriq: workaround unexpected temperature
+ readings from tmu
+Message-ID: <202508191258.tYXB63eu-lkp@intel.com>
+References: <20250818-imx93_tmu-v3-3-35f79a86c072@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] of/address: Add error logging for of_match_bus() in
- address translation path
-To: Rob Herring <robh@kernel.org>
-CC: <saravanak@google.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250811095342.2383808-1-quic_zhenhuah@quicinc.com>
- <20250818164907.GA1437284-robh@kernel.org>
-Content-Language: en-US
-From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
-In-Reply-To: <20250818164907.GA1437284-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fpj_S3QOfyFX3NNkQgva-P_rQgsIqzP7
-X-Authority-Analysis: v=2.4 cv=ZJHXmW7b c=1 sm=1 tr=0 ts=68a3f621 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
- a=FjxdCwQbLTSeBlRUKooA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: fpj_S3QOfyFX3NNkQgva-P_rQgsIqzP7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE2MDAyOCBTYWx0ZWRfX2wCq+ARmxauj
- X8ElKeB8qM5sfa18fhOZEu82RckkFzBiNrXHR1HqB+8m6QNnYTC/IzBG66cO0eXQpcTmwPAfWlH
- GxSNTfiVdUY64Q0A83mdwDHaPabS/PNxxfyE2YJELe2QIv9D4rBXiO8yGMlR1e5HwkbxtkVpnN9
- p85bCoojgDcv/vGLtnsu16dGJ8Db3B2/i+fG/QMn07uLZlJjgdvudIHCY6ybSib82Qxo5f5gEOs
- vcgRqeaas9IEEEgAKtJKMVzYQxfCX9y3+wBugHjUwHDYEjFhfM2KKNwyGYrb5dXqqgDOb4ZqQts
- bOWQsu8bdByG6DqUipauGRN54RmrIvfqBQM1iavD4NsiYmiCTClUTK+ljh/09Eg87StbdgjUX6M
- RH5ZdB8B
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-19_01,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 phishscore=0 suspectscore=0 clxscore=1015
- bulkscore=0 spamscore=0 impostorscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508160028
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250818-imx93_tmu-v3-3-35f79a86c072@nxp.com>
 
-Hi Rob, Thanks for your review.
+Hi Jacky,
 
-On 8/19/2025 12:49 AM, Rob Herring wrote:
-> On Mon, Aug 11, 2025 at 05:53:42PM +0800, Zhenhua Huang wrote:
->> The change introduced in
->> commit 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-cells handling")
->> triggers a warning on the direct ancestor node when translating properties
->> like "iommu-addresses"/"reg". However, it fails to issue a warning if the
->> ancestor’s ancestor is missing the required cells.
->> For instance, if node_c lacks the necessary properties, no warning will be
->> generated. Potential issues will be trigger further.
-> 
-> The point of the WARN is to only to check the immediate ancestor.
+kernel test robot noticed the following build errors:
 
-Yes, that's exactly what I wanted to point out. In fact, during the 
-translation phase, a warning should as well be issued when checking the 
-node_c as described below, Otherwise, I noticed that the translation 
-failure tends to go unnoticed in practice... which is further leading to 
-other issues etc.
+[auto build test ERROR on b9ddaa95fd283bce7041550ddbbe7e764c477110]
 
-> 
->> node_c {
->> 		//NO WARN
->> 	node_b {
->> 		//WARN on missing of "address-cells" and "size-cells"
->> 		node_a {
->> 			xxx = <memory_reion>  //contains "iommu-addresses"
->> 		}
->> 	}
->> }
-> 
-> Whether a warning is appropriate here depends on whether there's
-> 'ranges' properties or not. If your schemas are complete, then they
-> should warn on missing 'ranges'. If ranges is present, then we should
-> get warnings if #address-cells or #size-cells is missing.
-> 
->> Since of_match_bus() is now expected to succeed in traslation path,
-> 
-> now expected? Nothing changed in that aspect.
-My bad, The wording may have caused some confusion. What I intended to 
-convey is that for example the of_device_alloc() path, as described 
-below, of_match_bus() is not expected to always succeed.
+url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Bai/dt-bindings-thermal-qoriq-Add-compatible-string-for-imx93/20250818-173822
+base:   b9ddaa95fd283bce7041550ddbbe7e764c477110
+patch link:    https://lore.kernel.org/r/20250818-imx93_tmu-v3-3-35f79a86c072%40nxp.com
+patch subject: [PATCH v3 3/4] thermal: qoriq: workaround unexpected temperature readings from tmu
+config: riscv-randconfig-001-20250819 (https://download.01.org/0day-ci/archive/20250819/202508191258.tYXB63eu-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 93d24b6b7b148c47a2fa228a4ef31524fa1d9f3f)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250819/202508191258.tYXB63eu-lkp@intel.com/reproduce)
 
-> 
->> routine __of_translate_address. Print an error message would help in
->> identifying cases where it fails, making such issues easier to diagnose.
-> 
-> For errors in the DT (as opposed to errors using the API), it would be
-> better if we can check this at build time rather than run-time. And
-> generally I think we should already, but there could be some corner case
-> that we don't.
-> 
->>
->> Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
->> ---
->>   drivers/of/address.c | 8 ++++++--
->>   1 file changed, 6 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/of/address.c b/drivers/of/address.c
->> index f0f8f0dd191c..cd33ab64ccf3 100644
->> --- a/drivers/of/address.c
->> +++ b/drivers/of/address.c
->> @@ -515,8 +515,10 @@ static u64 __of_translate_address(struct device_node *node,
->>   	if (parent == NULL)
->>   		return OF_BAD_ADDR;
->>   	bus = of_match_bus(parent);
->> -	if (!bus)
->> +	if (!bus) {
->> +		pr_err("of_match_bus failed for device node(%pOF)\n", parent);
->>   		return OF_BAD_ADDR;
->> +	}
->>   
->>   	/* Count address cells & copy address locally */
->>   	bus->count_cells(dev, &na, &ns);
->> @@ -560,8 +562,10 @@ static u64 __of_translate_address(struct device_node *node,
->>   
->>   		/* Get new parent bus and counts */
->>   		pbus = of_match_bus(parent);
->> -		if (!pbus)
->> +		if (!pbus) {
->> +			pr_err("of_match_bus failed for device node(%pOF)\n", parent);
->>   			return OF_BAD_ADDR;
-> 
-> If there's no case we expect of_match_bus() failing is correct
-> operation, then the error msg should be in the of_match_bus() function
-> rather than duplicated here. I'm not sure if there is any such case.
-Yeah...
-That’s what I initially did. However, in a case where the node doesn’t 
-have a "reg" property (as with the "default" of_bus), the path below 
-will call of_match_bus() and fail. In such scenarios, its failure should 
-be considered expected ?
-of_device_alloc
-	of_address_count(np);
-	..
-		__of_get_address
-			of_match_bus()
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508191258.tYXB63eu-lkp@intel.com/
 
-I moved the error checking into __of_translate_address then, limiting it 
-to cases where actual address translation is being performed. Because it 
-appears to be MUST successful in the scenario.
+All errors (new ones prefixed by >>):
 
-> 
-> Rob
+   In file included from drivers/thermal/qoriq_thermal.c:8:
+   In file included from include/linux/io.h:12:
+   In file included from arch/riscv/include/asm/io.h:136:
+   include/asm-generic/io.h:804:2: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     804 |         insb(addr, buffer, count);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~
+   arch/riscv/include/asm/io.h:104:53: note: expanded from macro 'insb'
+     104 | #define insb(addr, buffer, count) __insb(PCI_IOBASE + (addr), buffer, count)
+         |                                          ~~~~~~~~~~ ^
+   In file included from drivers/thermal/qoriq_thermal.c:8:
+   In file included from include/linux/io.h:12:
+   In file included from arch/riscv/include/asm/io.h:136:
+   include/asm-generic/io.h:812:2: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     812 |         insw(addr, buffer, count);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~
+   arch/riscv/include/asm/io.h:105:53: note: expanded from macro 'insw'
+     105 | #define insw(addr, buffer, count) __insw(PCI_IOBASE + (addr), buffer, count)
+         |                                          ~~~~~~~~~~ ^
+   In file included from drivers/thermal/qoriq_thermal.c:8:
+   In file included from include/linux/io.h:12:
+   In file included from arch/riscv/include/asm/io.h:136:
+   include/asm-generic/io.h:820:2: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     820 |         insl(addr, buffer, count);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~
+   arch/riscv/include/asm/io.h:106:53: note: expanded from macro 'insl'
+     106 | #define insl(addr, buffer, count) __insl(PCI_IOBASE + (addr), buffer, count)
+         |                                          ~~~~~~~~~~ ^
+   In file included from drivers/thermal/qoriq_thermal.c:8:
+   In file included from include/linux/io.h:12:
+   In file included from arch/riscv/include/asm/io.h:136:
+   include/asm-generic/io.h:829:2: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     829 |         outsb(addr, buffer, count);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   arch/riscv/include/asm/io.h:118:55: note: expanded from macro 'outsb'
+     118 | #define outsb(addr, buffer, count) __outsb(PCI_IOBASE + (addr), buffer, count)
+         |                                            ~~~~~~~~~~ ^
+   In file included from drivers/thermal/qoriq_thermal.c:8:
+   In file included from include/linux/io.h:12:
+   In file included from arch/riscv/include/asm/io.h:136:
+   include/asm-generic/io.h:838:2: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     838 |         outsw(addr, buffer, count);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   arch/riscv/include/asm/io.h:119:55: note: expanded from macro 'outsw'
+     119 | #define outsw(addr, buffer, count) __outsw(PCI_IOBASE + (addr), buffer, count)
+         |                                            ~~~~~~~~~~ ^
+   In file included from drivers/thermal/qoriq_thermal.c:8:
+   In file included from include/linux/io.h:12:
+   In file included from arch/riscv/include/asm/io.h:136:
+   include/asm-generic/io.h:847:2: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     847 |         outsl(addr, buffer, count);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   arch/riscv/include/asm/io.h:120:55: note: expanded from macro 'outsl'
+     120 | #define outsl(addr, buffer, count) __outsl(PCI_IOBASE + (addr), buffer, count)
+         |                                            ~~~~~~~~~~ ^
+   In file included from drivers/thermal/qoriq_thermal.c:8:
+   In file included from include/linux/io.h:12:
+   In file included from arch/riscv/include/asm/io.h:136:
+   include/asm-generic/io.h:1175:55: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+    1175 |         return (port > MMIO_UPPER_LIMIT) ? NULL : PCI_IOBASE + port;
+         |                                                   ~~~~~~~~~~ ^
+>> drivers/thermal/qoriq_thermal.c:281:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     281 |                              FIELD_PREP(TMRTRCTR_TEMP_MASK, 0x7));
+         |                              ^
+   7 warnings and 1 error generated.
 
 
+vim +/FIELD_PREP +281 drivers/thermal/qoriq_thermal.c
+
+   264	
+   265	static void qoriq_tmu_init_device(struct qoriq_tmu_data *data)
+   266	{
+   267		/* Disable interrupt, using polling instead */
+   268		regmap_write(data->regmap, REGS_TIER, TIER_DISABLE);
+   269	
+   270		/* Set update_interval */
+   271		if (data->ver == TMU_VER1) {
+   272			regmap_write(data->regmap, REGS_TMTMIR, TMTMIR_DEFAULT);
+   273		} else {
+   274			regmap_write(data->regmap, REGS_V2_TMTMIR, TMTMIR_DEFAULT);
+   275			regmap_write(data->regmap, REGS_V2_TEUMR(0), GET_TEUMR0(data->drvdata));
+   276		}
+   277	
+   278		/* ERR052243: Set the raising & falling edge monitor */
+   279		if (CHECK_ERRATA_FLAG(data->drvdata, TMU_ERR052243)) {
+   280			regmap_write(data->regmap, TMRTRCTR, TMRTRCTR_EN |
+ > 281				     FIELD_PREP(TMRTRCTR_TEMP_MASK, 0x7));
+   282			regmap_write(data->regmap, TMFTRCTR, TMFTRCTR_EN |
+   283				     FIELD_PREP(TMFTRCTR_TEMP_MASK, 0x7));
+   284	
+   285		}
+   286		/* Disable monitoring */
+   287		regmap_write(data->regmap, REGS_TMR, TMR_DISABLE);
+   288	}
+   289	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
