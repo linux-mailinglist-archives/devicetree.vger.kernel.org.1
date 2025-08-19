@@ -1,90 +1,97 @@
-Return-Path: <devicetree+bounces-206608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35937B2CF07
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 00:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD751B2CF1D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 00:12:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F061189D295
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:00:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FC301BA7E0B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 22:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6570631DDA9;
-	Tue, 19 Aug 2025 21:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E4D353371;
+	Tue, 19 Aug 2025 22:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VMId4YiN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IJ3KS+9h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 759FC3054D2;
-	Tue, 19 Aug 2025 21:55:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F24353346;
+	Tue, 19 Aug 2025 22:11:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755640547; cv=none; b=u/Ozzkt3KMOupZkTbF7zS4BJ6IT+Oh6xQobLikLaXFErZ+u7+TDFiBxBHDZnKQD+D0HaMJNCkOxOPmn3F22Z2XiTdhWvtLlQRfCrCr7mFp7SntnWcX7wfRQU2x/bJ+HGBy/Rt9Zpn3e9pHKuYE9R90AhWTJ0lRbNhpuaHvHHytU=
+	t=1755641517; cv=none; b=V6YdNoX+6EeSNXT8LfRWJBwnv2u9IL0pq7hJzFnGMhHpNmkAh9wjQr5U9awEOcEf6bN53ROtdMlpLc1rnP4CYUCwHTXHcd3pxOoUeNX5qztg5Udel9sAPdx0ovJe3s5EsJru0nx5rtCTTx5d3i1bGB54guyDONyHKFlD4h15K6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755640547; c=relaxed/simple;
-	bh=XfLBoYLZINNadqclenDFE+6bJGfKiiwxhQla6Y8q1H8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Hz7WcxZCcrJm1Sk2LG82KnyToKaNHIQ12cC6B8kL/b99X+NVuxE1xmPhQhnK/vFQBJzuTB9RlnIq/ZCGV7qTgnf18c+dKiw3KnXYqOyRLDaLO5pAjCm6YmZVplmLr2SgcXtKVP7hL9RygLSm38bjooUq8NMkHVfDePS6R2t0gRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VMId4YiN; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1755641517; c=relaxed/simple;
+	bh=kYEvO72qwKAcgrTjw0m7kGc9zYNpF5QkLDN1F7vM59M=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JA8HzZ6z3mHyEaueOWqCSVrmHFN59LC8cOZn+460hjo0ER+8zUBN4rYD0KjddzNTphR05e9WKqdiQZKA4wIollRbJj7zZe/epMjL//2t3P5zYoAQ46NRv5gFMVLt6//sSwjhM03ZypV5/31ES92OgoTy5lNU/uhfn0E4Cq926G8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IJ3KS+9h; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45a1b098f43so35918625e9.2;
-        Tue, 19 Aug 2025 14:55:45 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45a1b004954so42906045e9.0;
+        Tue, 19 Aug 2025 15:11:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755640544; x=1756245344; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1755641513; x=1756246313; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aamE0hQaQlwYcUu6VvHYWQcCmYgaP/R035eLxhIGLn0=;
-        b=VMId4YiNVAlNnRXgkuHL9e/F63zg1Fc5nky3LFJEV7LpMhDH3CRiV7RqRTyNEOmAjs
-         2c20yVE//TlEpws/sB81zA0kRdq/9hG+LEpSpEubQLhrc3cvASvGVntR7jVyyFRgce78
-         nbWiRI3n79KxzIrP78sSOEZTghHreBO/UfZ5aXBs5nWXcRv/cLYE0g+4VjhLwlqdGAz1
-         ++wNNswuecxF4b3p/I1KyofRY/5eLQB0f5qfmv10QZggFfIbr+9ahB8NLkNI6tvtsqS3
-         F10WeZsi6ILj+fSsz4ggECk5tDWH9PopFGMpJzhrfBnV+LERNA6Nsg5wC5BroMQJ4f/Y
-         wcHw==
+        bh=K35SvQhw00YjEa/o8MaVe7A+urCu90afaTwYqbkOP6I=;
+        b=IJ3KS+9hFhwNvqOubgLS4D7UZqb2DDQmMe0JB1esojn6tMqoCoSrpjVP+qZteca4UD
+         IQpx1Emuz8RYvse+DGU72Ofr1kiI5vvFs1jr8+i1CjDYIcrwP74yn19LoM0RKdIIN21P
+         tROuFmcdeZYhCc7pBRNMmPyxH4B8WVWyJA59hvIdzmrGOQXWOhSKJvFPw/4M6jdWRycL
+         uaceEtGFbBzvB/5KHBvSwBBeUUYDTkmLAEDlepcmTsVlGu2/Gly2VGBmqyrAJx8f14Yg
+         +dhwRpHUBWCFBT9f3NPMEwdxvlIJd+fkn6uFslbrHQ9bAFzrzTO7+IrgY3dAORp+M5w6
+         lohg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755640544; x=1756245344;
+        d=1e100.net; s=20230601; t=1755641513; x=1756246313;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=aamE0hQaQlwYcUu6VvHYWQcCmYgaP/R035eLxhIGLn0=;
-        b=pJLYZkpy3aYc0x16nXE6rjf1nsZ3O5f6utbOxB63jY+8GvPxa1I7tTgazEmLlll8sR
-         MT7+CenkdRr9/QgbND8PRUPlQj6lo0SniXxAkFQYHGLymtGHWDIypG2p4npx+w8BP7sm
-         dbcNRKgas8B0PysD50yl3W71SnP38zZp5FtiN8syg7lG4RcgItH4GXCfuJU93hAgFwXx
-         bLY8YkSSkO6L/AKULsVMATNox+TP+9CCdyLc3GHXgWXK77NStPKged5tqkqsUGgpKSgp
-         KUTYh2O6sDxz3EfyWqwFKZkLGyW2jUKmX0+q65GFEyI/85S+4/oNKApBWTxkjDq9279Q
-         2FzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUGxw8mcgj4qT/7VljQE2lxQZ2N2f60JQO+cV3R2VrefGxRpihHEjRRL+/PHejI6bG/9DS4+43mcHn5TkPE@vger.kernel.org, AJvYcCVTYtXFo4ukY+1QunKhmy2R7T+qUwdJeZp6+zjCmnzoag2y5qig3ph6uyZ0jgEfqWCD67vKzXSCjn29@vger.kernel.org, AJvYcCVmOf1KVUjg2nmhuc+KNf/kU64zoBmdWYn6rP65FoC/MTUZlazVfD9wMVurZ8+q64q6OBFz0Ok0h4Ul@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoPKJTlvyRYZoIChCdmFWzSBmlbzsq+5/OhAR/Bi+LTu8N3jmF
-	UnQroB/0sJRbrIa/wsX4uEvJUijcEvsGnBA7b5EdI/q2+caDk2ZmH1M=
-X-Gm-Gg: ASbGncv3XeKW8+ACalLkonMLgJahujczQfUHmyqUgnrukzecIEj6JOF5CQIFt5VPOtx
-	BMd1u/zi7ABgXCr+hFbq0A50FDza/Aiw3divfvgXB4mdPhuhP48pVFDafa7z2XLj5LIZqz1ErEZ
-	wL00KntVoni08q+pbn7oAI5pb3oCCsSY9VF3xEfz2EF8WGO7imtGbb6NMsX8s4hGjA1i64tCc8i
-	oF63wmkWh/TFsGZcEo4zHpltn1QV+DU1Rc9J7gCQ/AXA9onrhUTEuC6WgGeNPjswl32kZEg4yaf
-	M7ShHaaztoQwRSRUPTLPG6XXjgVXTQUoHnt4sQlZmjzpiJR+vik2r4PYKlAMcsCXEiW+IfX7m/L
-	ZVx8FGwEi6tN//VI8Jgat0zXh6m3rg1uKyZbelgtpmzVAXMc=
-X-Google-Smtp-Source: AGHT+IEVYY8dSLDdjaamcpglSPV1Zd5JwgwZVMHYg7lBAjyY+EnvivAk61bBZ6OqCrnKGW0qa54YSw==
-X-Received: by 2002:a05:600c:4f8b:b0:456:1c4a:82ca with SMTP id 5b1f17b1804b1-45b47a03261mr2455755e9.32.1755640543373;
-        Tue, 19 Aug 2025 14:55:43 -0700 (PDT)
+        bh=K35SvQhw00YjEa/o8MaVe7A+urCu90afaTwYqbkOP6I=;
+        b=XXfwR6x3bMDzVVTXMQIeKjhjTUHDokRKncumvEg//nNCGhYpxd7df1eMttn8ZR505Y
+         95amEvc4JxZqkIeOwzVY6OTfYf+ns8PrO+faz9wHSjmBm+Bkw5YyPZbV+sUR9guHkVBh
+         3GcQmy0koTzDbO0tkNSee9R2Gc3PqA3prF/JOxWGCsdGw7SuXs2jvTnXEq7pJFqKE9yJ
+         3bymlR+of1jMr8D4W04YMo5Jw72Sp18UbixjeKXFaHjfSu+iXNss92nHQx69WC/N0WQO
+         tHYiTA23tVjG0l1kFUuAgolBjr9VaCbgM+6KlcSgdMT4EdC4jKUQv6m9WPtPEIFEpL/z
+         qR7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUBs6Q84zA7PH4UxgRUg+Y0/WJ1mdaYkxVbYCfz7ncNny9I8mmz923tbNK+3ai0jsl4mi55FCLxahwi5A==@vger.kernel.org, AJvYcCVLQ5AxMdsF4IpMZxM04IyU/ROldLmXuMq3jGRR4rR1QemXuFmelNYcmsFam6UazAZQf4l5co+00IgN@vger.kernel.org, AJvYcCXII4gC3JOi3YJYbEsZhmGMn9Lkalzq0gbTjx/0KghZiaRWtuTWkazxYSsYvq8dRGS1y6Kwp50MAg6K2lTS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIKWtT5YJF/FD29M3JPxaZ7WUtvraO4PnWHbSJFHc35hamwmGP
+	gvmkFDdi2+9XEEUmMForfR6PYJU4bE9dqN4vZTEfWo2bRVv3aCQ+dFhVgxng
+X-Gm-Gg: ASbGncsmQlD8b8Tfwd0XGpRPKZiOKQj9PBVBQ1Qtxcl4at6a78oJPqWsIZfmIagQtPI
+	S73ttvw6KJeSKQLxi4oKixYTFB359f2U1REpl+OuPf2YYmdHhUOGoP1+DQbwTnXptpTES5X190X
+	0zL1pq8S7fL8Lw8CeFAhXTtLWS2Z+PHQSoYIJYn1SNK8Izu8XTpeojebgB5WZPJluje4SVEop4X
+	wHELS1vRVCsXx19u2/fwuj/ATgm+eXgyY2r59JmfprCy3cg1MLVUxfTHr5ncyog/1WxAeY1JFCI
+	1EAyL3pAPTySJ0KKt2NFPKhpkWSFNRrnsijG5+3Z3wCcCTeczm0M1waMTtfyZGjXr4Qz6jRxENu
+	BkUuAQUP3KWiNS8Xb91u1vNVbAm0MUkHDdUx62upXNEqbkC0=
+X-Google-Smtp-Source: AGHT+IFn0OLLqP/S61PjcsImiOsgF1HcBK9jbpGZOKFooDXzboGlVyWdLc7HcawB/Ew+vRFm/h1qIQ==
+X-Received: by 2002:a5d:5f53:0:b0:3b9:1635:c13 with SMTP id ffacd0b85a97d-3c32de52722mr310399f8f.16.1755641510343;
+        Tue, 19 Aug 2025 15:11:50 -0700 (PDT)
 Received: from localhost.localdomain ([2a0d:e487:216f:2f7a:74c6:177a:3b99:868c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b47c310efsm3679565e9.7.2025.08.19.14.55.42
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b47c6b14csm3804085e9.25.2025.08.19.15.11.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 14:55:42 -0700 (PDT)
+        Tue, 19 Aug 2025 15:11:49 -0700 (PDT)
 From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-To: robh@kernel.org
-Cc: gregkh@linuxfoundation.org,
-	krzk+dt@kernel.org,
+To: linus.walleij@linaro.org,
+	brgl@bgdev.pl,
+	aaro.koskinen@iki.fi,
+	andreas@kemnade.info,
+	khilman@baylibre.com,
+	rogerq@kernel.org,
+	tony@atomide.com
+Cc: krzk+dt@kernel.org,
+	robh@kernel.org,
 	conor+dt@kernel.org,
 	peter.ujfalusi@gmail.com,
 	devicetree@vger.kernel.org,
-	linux-usb@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	shuah@kernel.org,
-	jihed.chaibi.dev@gmail.com
-Subject: [PATCH v4] usb: dt-bindings: ti,twlxxxx-usb: convert to DT schema
-Date: Tue, 19 Aug 2025 23:55:25 +0200
-Message-Id: <20250819215525.137080-1-jihed.chaibi.dev@gmail.com>
+	jihed.chaibi.dev@gmail.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4] dt-bindings: gpio: ti,twl4030: Correct the schema $id path
+Date: Wed, 20 Aug 2025 00:11:26 +0200
+Message-Id: <20250819221126.144968-1-jihed.chaibi.dev@gmail.com>
 X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -94,206 +101,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the legacy TXT binding for the TWL4030/6030 USB module
-to the modern YAML DT schema format. This adds formal validation
-and improves documentation using a conditional schema.
+The $id for a binding should match its file path. The ti,twl4030-gpio
+binding is located in the gpio/ subdirectory but was missing this from
+its $id.
 
+Correct the path to follow the standard convention.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
 
 ---
-Changes in v4:
+ Changes in v4:
+ - No changes.
  - This patch is split from larger series per maintainer feedback.
  - v3 link:
     https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
- - Removed i2c node as it wasn't required by the old binding file.
- - Updated node names to 'usb' and 'usb-phy' in the examples to follow
-   generic naming conventions per the Device Tree specification.
- - Replaced raw interrupt values with standard defines for clarity.
- - Improved formatting in the examples for clarity and consistency.
 
-Changes in v3:
- - No changes.
-
-Changes in v2:
- - Added '#phy-cells' property to support PHY framework integration.
+ Changes in v3:
+ - This patch was added to the patch series in v3.
 ---
- .../bindings/usb/ti,twlxxxx-usb.yaml          | 116 ++++++++++++++++++
- .../devicetree/bindings/usb/twlxxxx-usb.txt   |  43 -------
- 2 files changed, 116 insertions(+), 43 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/usb/ti,twlxxxx-usb.yaml
- delete mode 100644 Documentation/devicetree/bindings/usb/twlxxxx-usb.txt
+ Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/ti,twlxxxx-usb.yaml b/Documentation/devicetree/bindings/usb/ti,twlxxxx-usb.yaml
-new file mode 100644
-index 000000000..48e10c5e6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/ti,twlxxxx-usb.yaml
-@@ -0,0 +1,116 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/ti,twlxxxx-usb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments TWL4030/6030 USB PHY and Comparator
-+
-+maintainers:
-+  - Peter Ujfalusi <peter.ujfalusi@gmail.com>
-+
-+description: |
-+  Bindings for the USB PHY and comparator module found within the
-+  TWL4030 and TWL6030 family of companion chips.
-+
-+  TWL6030: USB COMPARATOR
-+  TWL4030: USB COMPARATOR & PHY
-+
-+  If a sibling node is compatible with "ti,twl4030-bci", the driver for
-+  that node will query this device for USB power status.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,twl4030-usb
-+      - ti,twl6030-usb
-+
-+  interrupts:
-+    description: |
-+      Interrupts for ID and VBUS events.
-+      For "ti,twl6030-usb", two interrupts must be specified:
-+        - The first is the OTG interrupt for ID events (host mode).
-+        - The second is the USB interrupt for VBUS events (device mode).
-+      For "ti,twl4030-usb", one or two interrupts can be specified:
-+        - The first is the OTG interrupt for both ID and VBUS events.
-+        - The second is optional.
-+    minItems: 1
-+    maxItems: 2
-+
-+  usb-supply:
-+    description:
-+      Phandle to the VUSB regulator. For TWL6030, this should be the 'vusb'
-+      regulator. For TWL6032 subclass, it should be the 'ldousb' regulator.
-+
-+  usb1v5-supply:
-+    description: Phandle to the VUSB1V5 regulator (for TWL4030).
-+
-+  usb1v8-supply:
-+    description: Phandle to the VUSB1V8 regulator (for TWL4030).
-+
-+  usb3v1-supply:
-+    description: Phandle to the USB3V1 regulator (for TWL4030).
-+
-+  usb_mode:
-+    description: |
-+      The mode used by the PHY (TWL4030 ONLY) to connect to the controller:
-+        1: ULPI mode
-+        2: CEA2011_3PIN mode
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2]
-+
-+  '#phy-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - interrupts
-+
-+additionalProperties: false
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: ti,twl6030-usb
-+then:
-+  required:
-+    - usb-supply
-+  properties:
-+    interrupts:
-+      minItems: 2
-+else:
-+  required:
-+    - usb1v5-supply
-+    - usb1v8-supply
-+    - usb3v1-supply
-+    - usb_mode
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    usb-phy{
-+        compatible = "ti,twl4030-usb";
-+
-+        // 1 interrupt: OTG (ID & VBUS events)
-+        interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-parent = <&gic>;
-+
-+        usb1v5-supply = <&reg_vusb1v5>;
-+        usb1v8-supply = <&reg_vusb1v8>;
-+        usb3v1-supply  = <&reg_vusb3v1>;
-+        usb_mode = <1>;
-+
-+        #phy-cells = <0>;
-+    };
-+  - |
-+    usb{
-+        compatible = "ti,twl6030-usb";
-+
-+        // 2 interrupts: OTG & USB
-+        interrupts = <4 IRQ_TYPE_LEVEL_HIGH>, <10 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-parent = <&gic>;
-+
-+        usb-supply = <&reg_vusb>;
-+    };
-diff --git a/Documentation/devicetree/bindings/usb/twlxxxx-usb.txt b/Documentation/devicetree/bindings/usb/twlxxxx-usb.txt
-deleted file mode 100644
-index 17327a296..000000000
---- a/Documentation/devicetree/bindings/usb/twlxxxx-usb.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--USB COMPARATOR OF TWL CHIPS
--
--TWL6030 USB COMPARATOR
-- - compatible : Should be "ti,twl6030-usb"
-- - interrupts : Two interrupt numbers to the cpu should be specified. First
--   interrupt number is the otg interrupt number that raises ID interrupts when
--   the controller has to act as host and the second interrupt number is the
--   usb interrupt number that raises VBUS interrupts when the controller has to
--   act as device
-- - usb-supply : phandle to the regulator device tree node. It should be vusb
--   if it is twl6030 or ldousb if it is twl6032 subclass.
--
--twl6030-usb {
--	compatible = "ti,twl6030-usb";
--	interrupts = < 4 10 >;
--};
--
--Board specific device node entry
--&twl6030-usb {
--	usb-supply = <&vusb>;
--};
--
--TWL4030 USB PHY AND COMPARATOR
-- - compatible : Should be "ti,twl4030-usb"
-- - interrupts : The interrupt numbers to the cpu should be specified. First
--   interrupt number is the otg interrupt number that raises ID interrupts
--   and VBUS interrupts. The second interrupt number is optional.
-- - <supply-name>-supply : phandle to the regulator device tree node.
--   <supply-name> should be vusb1v5, vusb1v8 and vusb3v1
-- - usb_mode : The mode used by the phy to connect to the controller. "1"
--   specifies "ULPI" mode and "2" specifies "CEA2011_3PIN" mode.
--
--If a sibling node is compatible "ti,twl4030-bci", then it will find
--this device and query it for USB power status.
--
--twl4030-usb {
--	compatible = "ti,twl4030-usb";
--	interrupts = < 10 4 >;
--	usb1v5-supply = <&vusb1v5>;
--	usb1v8-supply = <&vusb1v8>;
--	usb3v1-supply = <&vusb3v1>;
--	usb_mode = <1>;
--};
+diff --git a/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml b/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
+index 5e3e199fd..96d50d14c 100644
+--- a/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/ti,twl4030-gpio.yaml#
++$id: http://devicetree.org/schemas/gpio/ti,twl4030-gpio.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: TI TWL4030 GPIO controller
 -- 
 2.39.5
 
