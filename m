@@ -1,131 +1,86 @@
-Return-Path: <devicetree+bounces-206052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20C14B2B51E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 01:58:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EA87B2B56C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 02:39:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B51481961A3F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Aug 2025 23:58:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 948B816EF35
+	for <lists+devicetree@lfdr.de>; Tue, 19 Aug 2025 00:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1800627A931;
-	Mon, 18 Aug 2025 23:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8570E18BBB9;
+	Tue, 19 Aug 2025 00:39:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j6OfeSxP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mHVo0vBP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC481EB5B;
-	Mon, 18 Aug 2025 23:58:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B48B13FEE;
+	Tue, 19 Aug 2025 00:39:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755561499; cv=none; b=UM1I1n4XXUCcG9CLZgV8+rhlbYWvA9v2Og8IuxSgAihEXpBm/IhR2dCUAT+VU65wA1P6bTtgTn/eyXd+W++CyXomynI5C2lA+rGwHaUdko/RDf3KJPrgpbXAU3DA0msgUxPf0fucGZ8QugnGCCM8di+3J37euw7cjfZvO+n413k=
+	t=1755563971; cv=none; b=SS+SmGj9EebrQfDSI1ayOGNlzCiWkFucoFIECt48SB2Ff1J87h978RqvurbJCgiwrjeRmZfPHzVgId+xPD1M3o8gGH8gQokVtEAFApnt7B0qpbSEAJDr/CcTE+put4kimBoT4WKVP4kepkNfEDyAYs2LSezILsULwvTsqGoow+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755561499; c=relaxed/simple;
-	bh=c76ffSU+z29EdjuvcwEaZdMVo1BGLglOk32LHUKT+8Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PWVNcC2A5OvwvM6ofALCH72OjvoaxNYUse704p+/0y4zagT1YIGSyg8cslLuBo+VQrmgpsK+sW4uxLxULm40uVnUj7M0krvHgVzvF7HgYlao5frcWGgLAj0O+wGNbhmA11UjY3eBCp7/393JuMZjynVaroLpL8eTyemDcC9fQ54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=j6OfeSxP; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755561497; x=1787097497;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=c76ffSU+z29EdjuvcwEaZdMVo1BGLglOk32LHUKT+8Q=;
-  b=j6OfeSxPJOHKQ5w/Ed+E50s85srBEwYXuVuS4+MJbntjg83wZmlVneF9
-   yfDzla13WUwc7rYvExHbK3SOZspgtgEIFDZbzvR0Dgu3iEMFJF1gAcqga
-   /qb8OBmoajE3kDRec3qce0BOaGU/jsDFI+KPjdnK1w9gawnrKByJNKmDF
-   Zvxxxy+uanqrICSOherroNxiZt7tM/b4TIn710GRk6qo1bs5tETnSm00c
-   FQNgwjkGo9DNkL8oqYcj+eteS9utNpwYMGhdXFOGQU4P/9VtcuRyNVMs7
-   PambGfFGkC9oRYW9KUOlah4jA214S3nHuFkmY4vzam/KvcHyX4kxeEZIK
-   g==;
-X-CSE-ConnectionGUID: F9dKRY8SRLmAY8rMGbhFxQ==
-X-CSE-MsgGUID: gSbLp10KRemeNMbB2o4Qow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="61609894"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; 
-   d="scan'208";a="61609894"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2025 16:58:16 -0700
-X-CSE-ConnectionGUID: 8bXpQ/8MRnerAdHif+U/Bw==
-X-CSE-MsgGUID: /qIoloXhS5W34Jon6neR7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; 
-   d="scan'208";a="167934762"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 18 Aug 2025 16:58:10 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uo9js-000GJr-0M;
-	Mon, 18 Aug 2025 23:58:08 +0000
-Date: Tue, 19 Aug 2025 07:57:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: "irving.ch.lin" <irving-ch.lin@mediatek.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Richard Cochran <richardcochran@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, Qiqi Wang <qiqi.wang@mediatek.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-	netdev@vger.kernel.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	sirius.wang@mediatek.com, vince-wl.liu@mediatek.com,
-	jh.hsu@mediatek.com, irving-ch.lin@mediatek.com
-Subject: Re: [PATCH 6/6] pmdomain: mediatek: Add power domain driver for
- MT8189 SoC
-Message-ID: <202508190709.36QIqpVt-lkp@intel.com>
-References: <20250818115754.1067154-7-irving-ch.lin@mediatek.com>
+	s=arc-20240116; t=1755563971; c=relaxed/simple;
+	bh=WDNszwltpLQj095+dvIPOHVClsf5ww3pSdE5uc4uTKQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nuhjd5jPDuN8DhQNxC/VpfMCh5Rijl3uA7mci4ETklFnjjlq+/5QqTQdcAJcLSxu+Kk1DFDfPmBRgi9DFIDPuI7XmvFjQ/i7m8X+TXp6bU7zbhqVlZNs0CizhEqgbi3NxrgB1K9qXJJQMt41G8qYvMHCQP94HXoKcbXrqW6X550=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mHVo0vBP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 270DCC4CEEB;
+	Tue, 19 Aug 2025 00:39:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755563971;
+	bh=WDNszwltpLQj095+dvIPOHVClsf5ww3pSdE5uc4uTKQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=mHVo0vBPeac61Oj5ZcjymRneKnu2z50JqdbsTpc8zQDETJG+ucMehJcnA+U3LQ1Aa
+	 R9e1GQWbPIMk+zZEa/Vzi03beUzjmDpMwujBxQJ4+Lfb4frnqYTVgJwDupK+SYZ1v8
+	 k+wAn/6R8fu/T/r4v9Cmeu5jb1bCRxICe/P8Ht+DuYLN0ONOyrp0xX3plWTAK0xC0J
+	 r9iG1Es4bscsopQt5nawV9ZSEAMqgJ7ZAiViyLt7qAYJvJIehhNqlSESm8tuo15dRD
+	 QK9EbKUMuQ7Pz5HFPBJlG7BIOEeUeCrfJ/AnYIDGpxucTwy9Sf0eeeVStuYOZnS3S9
+	 z1VYIxoO1ZYfQ==
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Richard Leitner <richard.leitner@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] usb: usb251xb: support usage case without I2C control
+Date: Tue, 19 Aug 2025 08:22:14 +0800
+Message-ID: <20250819002217.30249-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250818115754.1067154-7-irving-ch.lin@mediatek.com>
+Content-Transfer-Encoding: 8bit
 
-Hi irving.ch.lin,
+Refactor so that register writes for configuration are only performed if
+the device has a i2c_client provided and also register as a platform
+driver. This allows the driver to be used to manage GPIO based control
+of the device.
 
-kernel test robot noticed the following build warnings:
+Since v1:
+ - make the modern pm macros usage a separate patch
+ - use pm_sleep_ptr instead of pm_ptr for usb251xb_plat_pm_ops, because
+   this ops is for PM_SLEEP only.
 
-[auto build test WARNING on clk/clk-next]
-[also build test WARNING on robh/for-next linus/master v6.17-rc2 next-20250818]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Jisheng Zhang (3):
+  dt-bindings: usb: usb251xb: make reg optional for no I2C ctrl use case
+  usb: usb251xb: use modern PM macros
+  usb: usb251xb: support usage case without I2C control
 
-url:    https://github.com/intel-lab-lkp/linux/commits/irving-ch-lin/dt-bindings-clock-mediatek-Add-new-MT8189-clock/20250818-200449
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20250818115754.1067154-7-irving-ch.lin%40mediatek.com
-patch subject: [PATCH 6/6] pmdomain: mediatek: Add power domain driver for MT8189 SoC
-config: arm-randconfig-001-20250819 (https://download.01.org/0day-ci/archive/20250819/202508190709.36QIqpVt-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250819/202508190709.36QIqpVt-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508190709.36QIqpVt-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: drivers/pmdomain/mediatek/mtk-scpsys.c:219 struct member 'sram_slp_bits' not described in 'scp_domain_data'
->> Warning: drivers/pmdomain/mediatek/mtk-scpsys.c:219 struct member 'sram_slp_ack_bits' not described in 'scp_domain_data'
->> Warning: drivers/pmdomain/mediatek/mtk-scpsys.c:219 struct member 'subsys_clk_prefix' not described in 'scp_domain_data'
->> Warning: drivers/pmdomain/mediatek/mtk-scpsys.c:219 struct member 'bp_table' not described in 'scp_domain_data'
+ .../devicetree/bindings/usb/usb251xb.yaml     |   1 -
+ drivers/usb/misc/usb251xb.c                   | 108 +++++++++++++++---
+ 2 files changed, 94 insertions(+), 15 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.50.0
+
 
