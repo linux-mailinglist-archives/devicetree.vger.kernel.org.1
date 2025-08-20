@@ -1,117 +1,116 @@
-Return-Path: <devicetree+bounces-207014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E05C9B2E4BA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 20:12:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 077B7B2E4D2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 20:21:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6ACFA1891FEC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 18:11:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 664A71CC0B39
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 18:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C66F1272E43;
-	Wed, 20 Aug 2025 18:10:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DB35278E7C;
+	Wed, 20 Aug 2025 18:20:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A8gjU6a9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sy2n40jy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993CF36CE0C;
-	Wed, 20 Aug 2025 18:10:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34D672765CE;
+	Wed, 20 Aug 2025 18:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755713447; cv=none; b=VxL6PQDYlusfJ0BHBzU6e5vAIX4WTUvy8S3UE1NYowVopj5O815wTWG7bKWgQRRlRlGb5JZXJo6+bcoScIbSjeQJZ7ilQ6W3OE8Mm5JAzjTOeXkV86DGOjo6UDn1jrwVckxBeJTSbmeJLEkKM0bqZ4cZ/AAk3YnfEQTdceJoOaM=
+	t=1755714052; cv=none; b=X3f21a/n7Rvo0AR86v+rO+yvK21bospUYt0CzMn9Z78aM9cldu+7yRItXeoCS5K2RzAiavD7Ir/ixjuv/iliru5GZ+2lakr3By3UhArLRVZDU6L7kMFhPLQcte3I9hR1I6BzqKCPArF8CN9GTMXNPoTtQf68nqeZ1OoGy/IqWeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755713447; c=relaxed/simple;
-	bh=dhLdG+B/qqIKsNIOpmDMrekjcCjsTEeLUNAtyAFWLp0=;
+	s=arc-20240116; t=1755714052; c=relaxed/simple;
+	bh=RbplsefrmVx9yxbUrzJhLU2rhn7lzNQM/8FC1eNUedA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hxXbb/oWy8BTBzfvdm9fw7cwGKM/kIayxEdA/1bGYG1ovR0w4Cc0/3ftZUOI5Tk2ykfSKcMsSw+SK6W+swYG1Nb7iRSCTsKGBbm6iPYkSjXYehUa+mk9rw4mjciuhPHMHP5NTl8tfR2X1Va/FYa1YERLqjIJC4wjbfKEkg+sh5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A8gjU6a9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EA50C4CEE7;
-	Wed, 20 Aug 2025 18:10:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kPA1KXKAD/Bqt7ebBkSQG4G6bLa2VuxXumGdpbdKPJwKs4IVCkjPkqS+0fHtJD/Vt5P+xG3PsK3mDJXrljMKAD49Pv682RYFr5SRWA50g9Rjd7lcpN8Re2ZbLsvjcpCJnFJX9GmKgPkXBLfHzVUDcujXg+hBYB8Kx9o1c/rRi+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sy2n40jy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36407C4CEE7;
+	Wed, 20 Aug 2025 18:20:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755713447;
-	bh=dhLdG+B/qqIKsNIOpmDMrekjcCjsTEeLUNAtyAFWLp0=;
+	s=k20201202; t=1755714051;
+	bh=RbplsefrmVx9yxbUrzJhLU2rhn7lzNQM/8FC1eNUedA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A8gjU6a9is/YEO6ukBdCLUYoyhrtKoNGY4ZkAhgvlHdgCNrK08OADxsr3Y029eVut
-	 20aOGUHZ4/TAZsHRAETzFqxFGnFg5MAXBgBG8eOf1yPHXXWlEXn6+uk9+h+P4UAf7c
-	 kQv8kfC95wMtBVolXzn3t/+2V0tf9W/rwvYzYBZMxxur7YBFhJ3GkeyDqzx0zzt/9s
-	 J3IHjDroCTuVQiKypsAVwl/nVjk+DxQwgkkdXolO0GnR9gEDc7A2h7d+5sxmuxnWHZ
-	 Ra4kJfvkgOQvXtr5eYUMsXtpJ35dxcc2bwn81R9ASc1Um003fyX19EZiZZ1dnhAb0u
-	 VJObWf+atZN9Q==
-Date: Wed, 20 Aug 2025 23:40:32 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Jim Quinlan <james.quinlan@broadcom.com>
-Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
-	Cyril Brulebois <kibi@debian.org>, bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 0/3] PCI: brcmstb: Add 74110a0 SoC configuration
-Message-ID: <l6szj4z4u4vhhacnwqvb2j6s562kgns5m2fspoxjggda4v22wv@65n2y56ake2r>
-References: <20250703215314.3971473-1-james.quinlan@broadcom.com>
- <wxrnpfu7ofpvrwxxiyj4am73xcruooc4kaii2zgziqs4qbwhgj@7t3txfwl24tu>
- <CA+-6iNw6t36LogOroyQ8wNLOrSYPOJB0nxijbzcs2UWjwFkMXQ@mail.gmail.com>
+	b=Sy2n40jywwGVjo3BrwA4p9agmRVoRXDTjg44ZgGe4F8rj/UV9lGrjrs8KiPd0pLVJ
+	 YkW/dVr1f/bkW3+FMQrjTiiW/lNB9irIufkZzwZLcjTtZrnTYNRs5GQeeJa16nlQa1
+	 U/MNjsjeJOlbGaN55bx8cqT4lWUokFQcsxWFAJ3DL5nf991R3jPK6M3oAh/pAQ4oHI
+	 6IWP+YXgmPoMp2/JRL8MuQt0wbPGToGllbBQE1F3ZgYw6gbUGFTtH8G9UqP2i/EJI0
+	 edaX2vB2YewK/KETxgYmBVDbCOBTUn7Lt1JqJL7sD2H4xInKZI1oMrA9GBI1I1taNa
+	 nHS6X2TKGRp3w==
+Date: Wed, 20 Aug 2025 19:20:45 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, dri-devel@lists.freedesktop.org,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>, Robert Foss <rfoss@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-tmds181: Add TI TMDS181
+ and SN65DP159 bindings
+Message-ID: <20250820-agreeably-tinker-63ca6b0b652a@spud>
+References: <20250812145256.135645-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3b7d4319-e208-470d-9ada-585343a64822@emailsignatures365.codetwo.com>
+ <20250812145256.135645-2-mike.looijmans@topic.nl>
+ <20250812-designing-tyke-db85527b373d@spud>
+ <f4ec7690-322e-493a-b346-7b9560ac0616@topic.nl>
+ <9fba4917-a24f-4fee-8f1a-7509a0bc542e@kernel.org>
+ <2d694c9c-704e-4353-8b57-de83eb5a7f96@topic.nl>
+ <1b517073-cadb-41e4-b470-54a6ad93dd59@kernel.org>
+ <3a4448a5-a01f-4d4e-a890-56eb9357abd3@topic.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/ZOkBy57ISHRxPqm"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+-6iNw6t36LogOroyQ8wNLOrSYPOJB0nxijbzcs2UWjwFkMXQ@mail.gmail.com>
+In-Reply-To: <3a4448a5-a01f-4d4e-a890-56eb9357abd3@topic.nl>
 
-On Wed, Aug 20, 2025 at 01:08:41PM GMT, Jim Quinlan wrote:
-> On Tue, Aug 19, 2025 at 10:51 AM Manivannan Sadhasivam <mani@kernel.org> wrote:
-> >
-> > On Thu, Jul 03, 2025 at 05:53:10PM GMT, Jim Quinlan wrote:
-> > > This series enables a new SoC to run with the existing Brcm STB PCIe
-> > > driver.  Previous chips all required that an inbound window have a size
-> > > that is a power of two; this chip, and next generations chips like it, can
-> > > have windows of any reasonable size.
-> > >
-> > > Note: This series must follow the commits of two previous and pending
-> > >       series [1,2].
-> > >
-> > > [1] https://lore.kernel.org/linux-pci/20250613220843.698227-1-james.quinlan@broadcom.com/
-> > > [2] https://lore.kernel.org/linux-pci/20250609221710.10315-1-james.quinlan@broadcom.com/
-> >
-> > Have you considered my comment on this series?
-> > https://lore.kernel.org/linux-pci/a2ebnh3hmcbd5zr545cwu7bcbv6xbhvv7qnsjzovqbkar5apak@kviufeyk5ssr/
-> 
-> Hi Mani,
-> I'm sorry, I thought I replied to this but obviously I did not.
-> 
 
-No issues!
+--/ZOkBy57ISHRxPqm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Your points are valid.  Our PCIe HW block keeps on mutating, and each
-> time it does we add new code that is triggered off of the soc_base
-> config setting.  The end result is not easy on the eyes.
-> 
-> I  also have submitted the series "PCI: brcmstb: Include cable-modem
-> SoCs".  I don't think it has review comments yet, but I am guessing
-> that you will make the same points.
-> 
+On Wed, Aug 20, 2025 at 11:37:24AM +0200, Mike Looijmans wrote:
 
-Yes. I intentionally didn't give any comments or merge it since I have the same
-refactoring comments.
+> I actually planned (I have implemented it locally already for v3) for the
+> driver to check the chip type and complain if it doesn't match the
+> devicetree. If the wrong device is there, the most likely cause is that the
+> input and output buses got mixed up. That would also justify having separate
+> compatibles, right?
 
-> So it looks like what you are asking for is a refactoring of the
-> driver and, AFAICT, I need to first submit separate series that does
-> this before submitting the this and the cable modem submission.  Do
-> you agree with that?
-> 
+It's not the kernel's job to verify the devicetree, it should be assumed
+to be correct. You're ensuring that when another compatible device
+arrives later on that a new string in a binding will not be sufficient
+for the device to be supported and driver changes will be required to
+make it work.
 
-Yes, I agree. Refactoring will make life easier for both you and me :)
+--/ZOkBy57ISHRxPqm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-- Mani
+-----BEGIN PGP SIGNATURE-----
 
--- 
-மணிவண்ணன் சதாசிவம்
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKYR/QAKCRB4tDGHoIJi
+0o2sAP9EAzYIeuLIPvdoHl8WRMoGk7q1EJo0Ubj8CI5znYzYXwEAl2Co+1KKffuW
+r9QASGtzznRJwItPEkgRfk7EDrfnAAA=
+=EItT
+-----END PGP SIGNATURE-----
+
+--/ZOkBy57ISHRxPqm--
 
