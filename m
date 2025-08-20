@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-207108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9803EB2E843
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 00:46:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 143A5B2E845
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 00:47:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53D41A07D92
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 22:46:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE200A07F16
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 22:47:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32092D24A8;
-	Wed, 20 Aug 2025 22:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E12A2D9780;
+	Wed, 20 Aug 2025 22:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kxevNaGH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ofUA6xzD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E4E229B2A
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 22:46:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 392B32D0C8A
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 22:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755730012; cv=none; b=qtp92HN8jNtEd4LufEKZf8mWxbDyeBhCv2UH7hupcgIGTHhvF1Ak8P8UDSagGLVlKeU/PWjhbl46eJMuSi8bG3Cnull8Lm+cX8GiX65ZyO8XzRh1lSV8P/to7Mb+7fk5458WuqBC/RipAxO/Y5WNAQx6mkN1svX6r4Vssjmx9Ss=
+	t=1755730014; cv=none; b=lUmuL2sfKUOUkY/lhGxtShhs7dinDcqqW7vVd1qvf2jD0AAZD/WRxjFF3+D1hdfCkfrwVwxMsx8jzhGXt5JxkTWGJvc2H+l9k2tq/iX/uWSar/9Y4R8zEsZ5gWRJEXu+p+CmwqNV3t2Dq5ercy6J4zjCQ27DkEVX9fkgzcNcSVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755730012; c=relaxed/simple;
-	bh=KU3FTthwRowVMTVaTyLmf4pD6LnJDA7ySyBmSeT38Y0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fof3z0iM/zmwnO0rdIQK5coqdOdRgIMy82FJXlSg6c84XFIQf31ZAH+zL2eD8J0bce7/VGqitJ9xJ+nVxbWiLB8oBscHgERTmgXUJzogvWj9ovxXWZcyfrSRClwmhiw8GfQOqyVI4qUVPC0eWEmF11+RJp4kpDWXZ4fA/AXAX5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kxevNaGH; arc=none smtp.client-ip=209.85.208.172
+	s=arc-20240116; t=1755730014; c=relaxed/simple;
+	bh=zOgRx3Yn+m3MfNCZ7/Efr194CRiUaVpUkdYD9qKDHU8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=SWoCe5uGKnh4AzkY0p0tHiNMwwBh2hECz5yS1hiFSXy1+rS99zmXvKqCNMOnKHof6gS8MhA5WJvvDb28kqQJln7RcQkMaOf+24LrV1Kk50LnTZOdWRugkFa1CP8zCrkPT3XcCR5tPr5Yx6RZe1wD3i0eEeLfANbRY/t3utRHaDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ofUA6xzD; arc=none smtp.client-ip=209.85.208.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-333f8d25d33so623321fa.0
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-333f9044198so554591fa.2
         for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 15:46:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755730009; x=1756334809; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=JEosG5JItKWGRoBCSGIzX/Bvhweg8i99hxt52TxZk8k=;
-        b=kxevNaGH75PbvLtEkntRKNAaWZRzS4lcxyZbtcWUSJ/rChis/VcJSb0IVx9+vG3C5R
-         SQ+eW1dhvMd4qjJDE3YlqFYRwt6bVkEQBOhVQSrvKejfCGK9TgYazD1IIwJjqJENbAA5
-         gVqcphsa3w1SPCuR6YhtTm/Hl2IOQQeuwOmCg7gFjzoD4UcM0QenrsE4+az+oshMyc/M
-         QZ4V+3bRunjRl6u4kab8TBiHb+tjHDFxT4fLA4CflPgAuA9vUbtaylPxz9PTm9L9t9sS
-         9VczcZ2oCUk45PHNHYl6vPQMFsaGSKrMV8rW4YqBPqAZfK/HgWK0OHJ4WLA9TWTO+T0o
-         8ntg==
+        d=linaro.org; s=google; t=1755730010; x=1756334810; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GLcjM5uGCEzuVCUayytEkMUXVcJWRwPsKtnPCq0+CZU=;
+        b=ofUA6xzDiW+msqPrzzsIaG8249eLuMggfhO+Yk+n0jSAIxLbgw3ABHJ/iZjvwDX3HR
+         3tUtywWVlf+EG67mlB23CjmkwvdUC/OBS4tf8CyAtxWvYGUqJcofMAveW1b438tZ8ELB
+         UCp8Q63QyUKc7zs8Knx7ZLPX42C9JH259nLreGfUgW1xNWCgLCh9CdwyA8tzFz7iHGF4
+         kmQSOKAzFdQMvaqGJcYnhV2megU9OfPknRt8bMEo4lxe4PtNFRpT6ORN/TNYH95/owJ3
+         EjawH3MheYwPfMoKdwzHix3ZtAZnkaMdWnihznwoLELXSdEngIsrIAET9+xFXCWANkJF
+         MVOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755730009; x=1756334809;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JEosG5JItKWGRoBCSGIzX/Bvhweg8i99hxt52TxZk8k=;
-        b=nzHeGYcMrR+JN9H+9cQA2G6ka6u3do3U7Jvk5G3Mc/bJvnazbeDhKm/X+gEdf77fKR
-         r/odJ2+5fl4mpCVYzrJbu3gLiar0Ya7BTlrO3QW2YbmkUkUjUF6dPafU3AK3PXTqr967
-         DQTBde//Y167O3L30USSn7e4N9f5WWfZx0L2XVMNc4VPYG+oZ2eNQ/ufAGZcpUA2X7sa
-         R7D45J1kWgv38OmSKTGMkAR8jImEkLN1Y63uQ432nNAJdY0dSpKDpGxksoP94A3sv0jF
-         VJvOo7jgpkY/FjFpxiLnI0si9OngUFsRbJg7iL2H6QTqEqiHPfqpt/sBwnAukaIAgSxI
-         7s3g==
-X-Forwarded-Encrypted: i=1; AJvYcCWLZq9aMbQAKE6O5djA8BqJM+v2pDhujWbhOT//ugcri2OW8CY+HKmXzkzNtuL5m5pjmWQbv5B6/vQH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRnv3vAkkwUHIWc4T2tURS4mMRMQqwBfjtG+Y+XBVSSAeUzIBf
-	c74PBJiGp9tmOC0o41vrQc3cAx9SP9afodR50xt4WeGkN0oOJzlVz1K4A9ghoEMqQzs=
-X-Gm-Gg: ASbGncvO4M7CCEf70Fz0JffFpZMwoT+Xbu1DQPbV98mW/OXqE5SmJpTvL4eJ9olW0xG
-	TBc72UImeNCYMpmIJ5Kn5A2w1yhxUwZD0+VqowXfieJKPczC7giYjS5FwtDylmK3PeQ5RC/MiKU
-	uhXQyLJG03f2KAmcEY4XUqTdcGTRFFdIGeqhGxDtmRf/FdmV+dZ+EHDx77GE8SDfxHh6wmrjNFL
-	BLOQmSbnUcemaY6kLOe/fJyK3RXHwZO3SCtD4lnxRSeZ2TCmUi8TPArXYJYWVaASGdJO1tQ6Eys
-	/jpjDaB1aFZ7ZPPF0yYtvYxfxozm7Z9L8L8183eWin69/Q+WPlRe4Fm4aHOMB6C3Z813SPUiVoM
-	kUu8FQKAT7jkinAESx07noBflbS6IHjXmhIQhkTwsctfDHJimnBoxZVx4FDrMjyfNoJERb7M=
-X-Google-Smtp-Source: AGHT+IHXwVv5e7hzXq6+sGxxAKQk4+ePGsrd92r27XTXWqW9kMRIUHXYKHdxw00pG61HTVR8I7yJkQ==
-X-Received: by 2002:a05:6512:3d22:b0:55b:8260:3011 with SMTP id 2adb3069b0e04-55e0d5ae669mr84533e87.7.1755730009405;
-        Wed, 20 Aug 2025 15:46:49 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755730010; x=1756334810;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GLcjM5uGCEzuVCUayytEkMUXVcJWRwPsKtnPCq0+CZU=;
+        b=qvOVcmVhele5yHp/ezXNyh/QXO/8f8ENX0WpCjx5C/Rwy38GH3TgcYaFIgSsTcYp6K
+         QwwvSUX5PTtxbWq13C25wpsnyxm0CAsqgONB3jq/7b2svTSPEH6OjDZ8Sf0pfJA892Xb
+         UVBnG1zDQzOMmg51vI1dW3zmzZO6wHgP02VKRQD5pFnS/OIYMoV/WaembdVk9tC++ZtN
+         GttyBqVzOqiv2ezym6Qje/D5DLSfQqiTDyjcYDRs//4q2q5OQd7UIrZCrLyn0UknSiMi
+         bztwfn3BDyVNRZlwMKo5yUGh7G05azZ9W3OyiKdWzpGAvb8JAb41YynZlrdKCFx2jAcU
+         GMCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWf7FAs4EZtW/2eqvr39FkdxG5xq5cy4gJVb5KCnucST3iLumH98v/gPJNFciRx9ko0idjcAzG3zfRp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQuS8GhgDdpbT4P2JhT6JakttOXTy14zOOQHtFisb95BBGRxqu
+	poF/wdzXk5JBZtjoLQxNQV2VuQz74j2b/S0+Hf3qTiZqbn5GiBKevlNmQjBBU2m0mDs=
+X-Gm-Gg: ASbGncs4/WhSZ9FA1hS4zJSGGYqEQSgMFWClFRyqaz0FCjhehxwDea1V/mTaFUJFLif
+	QYuKfG0Iaa6wPmSzUfb90puvjaebj8xE25VE3DpidrRJ5eYGOv4IJiPpuiL1cRjZH7Km0f6jVmf
+	moGUi5r3Ak9p88Nuw6uTavfBPnEzWJfbEYVaUPzY2AEy+XzTNlWOMJl5ZU0Rxk6Ti/XFQCc/A0R
+	xSM4SV1fc2J2KP8KSwZMou+2L9vpqdaOcA67JgVWS9Ht6Qpej9AIcIpvViZ7N7pQueV4VH6RMuc
+	AUhvvQfdY6o6gwujAjlWATbQUC9Nkh6hNkPGvDBwGPsHfDjSIYgFTwZtxdEHTH33QBd9w/hxHg5
+	Fm4fVbIzMDmJpNLJTqfksHK9bAtmNrSCyFuOOilxi+9Hif8TiuHygfdDye13rfKSkHw9DNTg=
+X-Google-Smtp-Source: AGHT+IGlNgZqMzMUeyWdr3GjHyIK7XYOFyI6yiuXPQ3nSeXzvDl9tt2rHtDkm90kEgAC23venGfYAg==
+X-Received: by 2002:a05:6512:3c82:b0:55b:8038:ffb9 with SMTP id 2adb3069b0e04-55e0d502211mr83735e87.2.1755730010285;
+        Wed, 20 Aug 2025 15:46:50 -0700 (PDT)
 Received: from thyme.local (88-112-128-43.elisa-laajakaista.fi. [88.112.128.43])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef3ccdfesm2841413e87.91.2025.08.20.15.46.48
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef3ccdfesm2841413e87.91.2025.08.20.15.46.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 20 Aug 2025 15:46:49 -0700 (PDT)
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
@@ -81,10 +83,12 @@ To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 Cc: Conor Dooley <conor+dt@kernel.org>,
 	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 0/2] media: i2c: Add OmniVision OG0VE1B image sensor driver
-Date: Thu, 21 Aug 2025 01:46:44 +0300
-Message-ID: <20250820224646.130270-1-vladimir.zapolskiy@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: media: i2c: Add OmniVision OG0VE1B camera sensor
+Date: Thu, 21 Aug 2025 01:46:45 +0300
+Message-ID: <20250820224646.130270-2-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250820224646.130270-1-vladimir.zapolskiy@linaro.org>
+References: <20250820224646.130270-1-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,29 +97,118 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-OmniVision OG0VE1B is a monochrome image sensor, which produces frames
-in 8/10-bit raw output format and supports 640x480, 400x400, 200x200
-and 100x100 output image resolution modes.
+Add device tree bindings documentation for OmniVision OG0VE1B camera
+sensor.
 
-At the moment the only supported resolution in the device driver is
-640x480@120fps (Y8).
-
-The driver version is based on top of media/master, which contains a new
-devm_v4l2_sensor_clk_get() helper function.
-
-Vladimir Zapolskiy (2):
-  dt-bindings: media: i2c: Add OmniVision OG0VE1B camera sensor
-  media: i2c: Add OmniVision OG0VE1B camera sensor
-
- .../bindings/media/i2c/ovti,og0ve1b.yaml      |  97 ++
- MAINTAINERS                                   |   8 +
- drivers/media/i2c/Kconfig                     |  10 +
- drivers/media/i2c/Makefile                    |   1 +
- drivers/media/i2c/og0ve1b.c                   | 858 ++++++++++++++++++
- 5 files changed, 974 insertions(+)
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+---
+ .../bindings/media/i2c/ovti,og0ve1b.yaml      | 97 +++++++++++++++++++
+ 1 file changed, 97 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml
- create mode 100644 drivers/media/i2c/og0ve1b.c
 
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml
+new file mode 100644
+index 000000000000..692b06472ea4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml
+@@ -0,0 +1,97 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,og0ve1b.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OG0VE1B Image Sensor
++
++description:
++  OmniVision OG0VE1B image sensor is a low power consuming monochrome
++  image sensor. The sensor is controlled over a serial camera control
++  bus protocol (SCCB), the widest supported image size is 640x480 at
++  120 frames per second rate, data output format is 8/10-bit RAW
++  transferred over one-lane MIPI D-PHY at up to 800 Mbps.
++
++maintainers:
++  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++properties:
++  compatible:
++    const: ovti,og0ve1b
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: XVCLK supply clock, 6MHz to 27MHz frequency.
++    maxItems: 1
++
++  reset-gpios:
++    description: Active low GPIO connected to XSHUTDOWN pad of the sensor.
++    maxItems: 1
++
++  strobe-gpios:
++    description: Input GPIO connected to strobe pad of the sensor.
++    maxItems: 1
++
++  avdd-supply:
++    description: Analog voltage supply, 2.6 to 3.0 volts.
++
++  dovdd-supply:
++    description: Digital I/O voltage supply, 1.7 to 3.0 volts.
++
++  dvdd-supply:
++    description: Digital core voltage supply.
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        required:
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++      #include <dt-bindings/gpio/gpio.h>
++
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          camera@3e {
++              compatible = "ovti,og0ve1b";
++              reg = <0x3e>;
++              clocks = <&camera_clk 0>;
++              assigned-clocks = <&camera_clk 0>;
++              assigned-clock-rates = <24000000>;
++              reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
++              avdd-supply = <&vreg_2p8>;
++              dovdd-supply = <&vreg_1p8>;
++              dvdd-supply = <&vreg_1p2>;
++
++              port {
++                  endpoint {
++                      link-frequencies = /bits/ 64 <500000000>;
++                      remote-endpoint = <&mipi_csi2_ep>;
++                  };
++              };
++          };
++      };
++
++...
 -- 
 2.49.0
 
