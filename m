@@ -1,303 +1,123 @@
-Return-Path: <devicetree+bounces-206817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 440ADB2DA4F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 12:48:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72AA7B2DA6C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 12:59:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E558178F24
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 10:48:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9623F7A61B5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 10:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A162DCF58;
-	Wed, 20 Aug 2025 10:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E4B02E2DFC;
+	Wed, 20 Aug 2025 10:59:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="OSrK9gsK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BMc5CsDl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C81001C3F0C;
-	Wed, 20 Aug 2025 10:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E021C3F0C
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 10:59:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755686880; cv=none; b=a9Y2j4PVjLTTOzbxfE5K6Yx+hi3543VWh6+xZlsuBrnKF4cYrpHgx822Niqe6hbNIRdELwUG03tiLkUfdjMhl7O+O3WMbpeUSEKflN2UxaDurFUQG5Lhd4XwpZbz1ur+WCXMYP0mduvZh0R2VVZib1VfZ4+IQs2jf/q4sI4WRWA=
+	t=1755687589; cv=none; b=B2bR52P3mwIOWw9neP2tNCM0jKP+UwazmOl5QyuEk+RyEBRenjvQimuflPIgkyr2VN2hB2y9tZgDCTKEFjPL5kmNQnwmvwFeAAxS0BWnEynUUSwiVAn37yJLPLi3Kl6PuFHYJVN6J5NOR1shIMrXBE1fdSclm22KeLpKo+1VNhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755686880; c=relaxed/simple;
-	bh=oRmxz6sCrDBEVI9hEkCWNXBiflwkluoQLt2izmd/Pe8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RHc27Z+enjdzYaqXih2dsV4TSezfXOU2Jq4Up/b9eL8iUe4nfYnhB4nK/YMY6vMY5tF8pbfolO+XWT/IEsZEinMZzTyzXQn8bdaA8oLv5+gNhMyriSWsjcZI8/ZzHVQ7T77FSDGPhxfvlJKVQ280/IQXHIqPNLMNMHJhbEBvuY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=OSrK9gsK; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4491B666;
-	Wed, 20 Aug 2025 12:46:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1755686816;
-	bh=oRmxz6sCrDBEVI9hEkCWNXBiflwkluoQLt2izmd/Pe8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OSrK9gsKGfeMtFy9C7KBku9ZgD8imKvIawbMHSncqFmFRIXZwV65F+X9Dla+vK1r+
-	 r4ONrT205osLvuQBjjtFfISj4JnusJwYzvI9pDMr8BgvDk22CSH/3GkwC6wDohuFIn
-	 hR574FBtfNRiRpIR92OHOxa+7D4K2vdYncKOSn6c=
-Message-ID: <cf9bb518-58f9-42bf-bcb8-5727d2f9abef@ideasonboard.com>
-Date: Wed, 20 Aug 2025 11:47:51 +0100
+	s=arc-20240116; t=1755687589; c=relaxed/simple;
+	bh=TWZDGkbhMcuhXXzU+zf7/2XfecMUMguBI+bq+5KH974=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eQqz1NirLoP6+4nhNxVBGn1EEyFU03Ke14Mmlbz8pRrpSLA8ovV0GAUaDMy47UuDP5Hdod/zKADj0tKrsR4mhl2iPyD5HvbRdZQQjX6WYNQNSMJqClhP6dCCSVpPdsH29RWoI87v0Z4hhTwh8gF+D1bFSfRsGFfhQcFctR+msf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BMc5CsDl; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-55ce5287a47so5742408e87.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 03:59:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755687584; x=1756292384; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EUAfPvLFYAkc6CMJY147Fri1xsOKEAnRwMPgaXAsxZ4=;
+        b=BMc5CsDle/fuJYs5/B7d2p3fgr7aP6UPgsyyNEiVxqoTqAgHnA2WB+eLOWIiiU1AOh
+         sWHehA33bToaR8Vu4nMBKWL2sakKykixrqgjjLdw+VDOgren7ZaIiwrrQATKgBwAUnBS
+         XnIR9Qkxb9EFMkVmrT6mQqXk/KZv6w6rBZ83MykKlBEgGoZTYbIBtxooNPQw26oVrWgu
+         sYAE5V+tDmsXkgxxV/WxcSYLLJCP/ASKwWMGC5NzKWVEEq/aDZnXJTlvEwJhaW0iJIbK
+         ujltn9rItNpk06YQO7XdCDjTFP4Np1kiR2rd+cjwkpe7H+r8Cqjwliv0C1NkQ4pI+07a
+         wGfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755687584; x=1756292384;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EUAfPvLFYAkc6CMJY147Fri1xsOKEAnRwMPgaXAsxZ4=;
+        b=SMStrFjgw0dzTweeqmLTLmbUkoMSQ0X/svsCQ85lEBdt5J9Ltin1nHqsWb0hao1G3h
+         ekY3vuw/4/s+C98P++ii9caY3IJlCdyIWwLX/lcNP4R3MNeIt1Z36BMJqbiJUKriJvS0
+         jgakDjsWiw2JKUKmVBrdohNa2Hd8g7QOt0uOHibN33Yqq2dF+CPvqOlCilk0QJ81aTi6
+         W0pOj1LXUTGSMag6ccqAeac9f1bAOMF8hGDY8pcNn1qqtVRizeyA2liHrtLXZS5nOuSB
+         k1EGJxsFQZjsS3eeSY0KK63mdVlDxiGCb5G+paQI/bzYlRToYWaNG4LcKZB/ukxd8Cdq
+         tbVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU4lNU0fjREvHzc5i2Yee8UG2mLc73npwn8SE0lL2/ENwwCU0zcDjE0D/t2AETcEfdTAWjR/Q/bMHoS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnuwJHq3QBnh/qibIZ6BSXn6WawFumNMjucGMEhtj49/OxgFLx
+	3TETsPdJKKf4xH3zBEAk6wtfUDWaogjmZ061MbulM3JojM6eghhuHBnD084pLdyMGP1vEJlV6H4
+	e8LMhiS8=
+X-Gm-Gg: ASbGnctZEi7ryaZtIVTRoygjvvzlVZ/h4PgZu6oW+qpawXyS/iC47YBlgUnv8UeG+BW
+	u4xBcr5+/dg3lD7QZxJNHtwb3to41KENJK+20KXzFycdF+ND8de3bBTTboYtUa7zyF2y/ELxi08
+	CltLfbVF2EgNvjqYrlHiEE23YnLzRtpBQzsfXsi8mdzOUuAUK0nSG0fmfLmDx5OEYhvacuTWvfC
+	8KLomuN3JIVI+FcQTMpnx8e4hiB//hsIRxcnGzkxfJjJMrzL18A87HRJXKxE+NbM6UCZbB0MrXE
+	dSos7Zjaw4OwBRsISh/WKNYCiLKBUKrcHz3LTLrHdZydkB257dNEUWJenBbE+HY1RrKKPUCR9Iq
+	HWENPsPUHGXIBeDTOwEI9jELWrcYT/XQc
+X-Google-Smtp-Source: AGHT+IFYbR3WeFTK0ooUHD1L33Dezd/U7VscLXaIJmNH0mR/jZ+qUo9jkoyY+oTbkCllHQnE83p4Gg==
+X-Received: by 2002:a05:6512:15a2:b0:55c:df64:3780 with SMTP id 2adb3069b0e04-55e06bde67bmr772860e87.50.1755687584094;
+        Wed, 20 Aug 2025 03:59:44 -0700 (PDT)
+Received: from [192.168.1.140] ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef369843sm2518285e87.60.2025.08.20.03.59.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Aug 2025 03:59:43 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH 0/4] gpio: mmio: Support IXP4xx expansion bus MMIO GPIO
+Date: Wed, 20 Aug 2025 12:59:42 +0200
+Message-Id: <20250820-ixp4xx-eb-mmio-gpio-v1-0-0e167398c8ac@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 01/19] media: mc: entity: Add pipeline_started/stopped
- ops
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
- nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
- laurent.pinchart@ideasonboard.com,
- Sakari Ailus <sakari.ailus@linux.intel.com>
-References: <20250714-c55-v11-0-bc20e460e42a@ideasonboard.com>
- <20250714-c55-v11-1-bc20e460e42a@ideasonboard.com>
- <wgve5k52jxfiscon77trvg6iyyc3k7ud6agz7czydgefmbvpha@56jbro6w4yqa>
-Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-In-Reply-To: <wgve5k52jxfiscon77trvg6iyyc3k7ud6agz7czydgefmbvpha@56jbro6w4yqa>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ6qpWgC/x2MQQqAIBAAvxJ7bsHEUvpKdLDabA+lKIQg/j3pM
+ jCHmQKJIlOCuSsQ6eXE/mky9B3sl30cIR/NQQo5CiMFcg4qZ6QN75s9utBghDHqnLS1k4ZWhkg
+ n5/+6rLV+3taqVGUAAAA=
+X-Change-ID: 20250820-ixp4xx-eb-mmio-gpio-80884f67aa67
+To: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+ Imre Kaloz <kaloz@openwrt.org>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.14.2
 
-Hi Jacopo
+After Florian reminded me to do things properly, here are
+fixups and additions to the MMIO GPIO bindings and a
+tie-in to the IXP4xx expansion bus memory controller.
 
-On 05/08/2025 08:45, Jacopo Mondi wrote:
-> Hi Dan
-> 
-> On Mon, Jul 14, 2025 at 04:06:27PM +0100, Daniel Scally wrote:
->> Add two new members to struct media_entity_operations, along with new
->> functions in media-entity.c to traverse a media pipeline and call the
->> new operations. The new functions are intended to be used to signal
->> to a media pipeline that it has fully started, with the entity ops
->> allowing drivers to define some action to be taken when those
->> conditions are met.
->>
->> The combination of the new functions and operations allows drivers
->> which are part of a multi-driver pipeline to delay actually starting
->> streaming until all of the conditions for streaming succcessfully are
->> met across all drivers.
->>
->> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->> ---
->> Changes in v5:
->>
->> 	- Update kerneldoc comments with Optional statement in the
->> 	  right place
->>
->> Changes in v4:
->>
->> 	- Reverted to having the iter variable
->>
->> Changes in v3:
->>
->> 	- Dropped the iter variable now that the pipeline entity
->> 	  iterator functions don't need it.
->> 	- Updated documentation to specify Optional and return
->> 	  values
->>
->> Changes in v2:
->>
->> 	- Refactored media_pipeline_started() such that the cleanup
->> 	  function for media_pipeline_entity_iter is unconditionally
->> 	  called
->> 	- Avoided using media_entity_call() helper for operation that
->> 	  has return type void to avoid compiler warnings
->> ---
->>   drivers/media/mc/mc-entity.c | 46 ++++++++++++++++++++++++++++++++++++++++++++
->>   include/media/media-entity.h | 29 ++++++++++++++++++++++++++++
->>   2 files changed, 75 insertions(+)
->>
->> diff --git a/drivers/media/mc/mc-entity.c b/drivers/media/mc/mc-entity.c
->> index 045590905582054c46656e20463271b1f93fa6b4..d3443537d4304e12cb015630101efba22375c011 100644
->> --- a/drivers/media/mc/mc-entity.c
->> +++ b/drivers/media/mc/mc-entity.c
->> @@ -1053,6 +1053,52 @@ __media_pipeline_entity_iter_next(struct media_pipeline *pipe,
->>   }
->>   EXPORT_SYMBOL_GPL(__media_pipeline_entity_iter_next);
->>
->> +int media_pipeline_started(struct media_pipeline *pipe)
->> +{
->> +	struct media_pipeline_entity_iter iter;
->> +	struct media_entity *entity;
->> +	int ret;
->> +
->> +	ret = media_pipeline_entity_iter_init(pipe, &iter);
->> +	if (ret)
->> +		return ret;
->> +
->> +	media_pipeline_for_each_entity(pipe, &iter, entity) {
->> +		ret = media_entity_call(entity, pipeline_started);
->> +		if (ret && ret != -ENOIOCTLCMD)
->> +			break;
->> +	}
->> +
->> +	media_pipeline_entity_iter_cleanup(&iter);
->> +
->> +	ret = ret == -ENOIOCTLCMD ? 0 : ret;
->> +	if (ret)
->> +		media_pipeline_stopped(pipe);
->> +
->> +	return ret;
->> +}
->> +EXPORT_SYMBOL_GPL(media_pipeline_started);
->> +
->> +int media_pipeline_stopped(struct media_pipeline *pipe)
->> +{
->> +	struct media_pipeline_entity_iter iter;
->> +	struct media_entity *entity;
->> +	int ret;
->> +
->> +	ret = media_pipeline_entity_iter_init(pipe, &iter);
->> +	if (ret)
->> +		return ret;
->> +
->> +	media_pipeline_for_each_entity(pipe, &iter, entity)
->> +		if (entity->ops && entity->ops->pipeline_stopped)
->> +			entity->ops->pipeline_stopped(entity);
-> 
-> I was sure I asked this already, but I wasn't able to find any
-> reference to this in the review of the previous version, so I'll
-> re-ask (sorry if it's the second time):
-> 
-> why can't you use media_entity_call() here as well ?
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Linus Walleij (4):
+      dt-bindings: gpio-mmio: Support hogs
+      dt-bindings: Add bank width to Intel IXP4xx memory controller
+      dt-bindings: gpio-mmio: Add MMIO for IXP4xx expansion bus
+      gpio: mmio: Add compatible for the ixp4xx eb MMIO
 
-It causes compilation errors because media_entity_call() explicitly assumes that the callback will 
-return an integer, and .pipeline_stopped() returns void.
+ .../devicetree/bindings/gpio/gpio-mmio.yaml        | 37 +++++++++++++++++++++-
+ .../intel,ixp4xx-expansion-peripheral-props.yaml   |  5 +++
+ drivers/gpio/gpio-mmio.c                           |  1 +
+ 3 files changed, 42 insertions(+), 1 deletion(-)
+---
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+change-id: 20250820-ixp4xx-eb-mmio-gpio-80884f67aa67
 
-> 
->> +
->> +	media_pipeline_entity_iter_cleanup(&iter);
->> +
->> +	return 0;
->> +}
->> +EXPORT_SYMBOL_GPL(media_pipeline_stopped);
->> +
->>   /* -----------------------------------------------------------------------------
->>    * Links management
->>    */
->> diff --git a/include/media/media-entity.h b/include/media/media-entity.h
->> index 64cf590b11343f68a456c5870ca2f32917c122f9..1e1026f65f2050bb9aa39bde68794da8d2d0a669 100644
->> --- a/include/media/media-entity.h
->> +++ b/include/media/media-entity.h
->> @@ -269,6 +269,10 @@ struct media_pad {
->>    *			media_entity_has_pad_interdep().
->>    *			Optional: If the operation isn't implemented all pads
->>    *			will be considered as interdependent.
->> + * @pipeline_started:	Optional: Notify this entity that the pipeline it is a
->> + *			part of has been started.
->> + * @pipeline_stopped:	Optional: Notify this entity that the pipeline it is a
->> + *			part of has been stopped.
-> 
-> Why not use the same style as the other entries ?
-
-Poor reading comprehension - I thought I had! Thanks, I'll adopt your suggestion.
-
-> 
->   * @get_fwnode_pad:	Return the pad number based on a fwnode endpoint or
->   *			a negative value on error. This operation can be used
->   *			to map a fwnode to a media pad number. Optional.
-> 
->   Or
->   * @has_pad_interdep:	Return whether two pads of the entity are
->   *			interdependent. If two pads are interdependent they are
->   *			part of the same pipeline and enabling one of the pads
->   *			means that the other pad will become "locked" and
->   *			doesn't allow configuration changes. pad0 and pad1 are
->   *			guaranteed to not both be sinks or sources. Never call
->   *			the .has_pad_interdep() operation directly, always use
->   *			media_entity_has_pad_interdep().
->   *			Optional: If the operation isn't implemented all pads
->   *			will be considered as interdependent.
-> 
-> Also, the existing doc uses "the entity" and not "this entity"
-> 
-> 
-> These would then be
-> 
-> * @pipeline_started:	Notify the entity that the pipeline it is a
-> *			part of has been started. Optional.
-> * @pipeline_stopped:	Notify the entity that the pipeline it is a
-> *			part of has been stopped. Optional
-> 
-> Question from a non-native speaker: "it is a part of" or "it is part
-> of" ?
-
-I think either would be acceptable; I can switch if it's clearer to you?
-
-> 
->>    *
->>    * .. note::
->>    *
->> @@ -284,6 +288,8 @@ struct media_entity_operations {
->>   	int (*link_validate)(struct media_link *link);
->>   	bool (*has_pad_interdep)(struct media_entity *entity, unsigned int pad0,
->>   				 unsigned int pad1);
->> +	int (*pipeline_started)(struct media_entity *entity);
->> +	void (*pipeline_stopped)(struct media_entity *entity);
->>   };
->>
->>   /**
->> @@ -1261,6 +1267,29 @@ __media_pipeline_entity_iter_next(struct media_pipeline *pipe,
->>   	     entity != NULL;							\
->>   	     entity = __media_pipeline_entity_iter_next((pipe), iter, entity))
->>
->> +/**
->> + * media_pipeline_started - Inform entities in a pipeline that it has started
->> + * @pipe:	The pipeline
->> + *
->> + * Iterate on all entities in a media pipeline and call their pipeline_started
->> + * member of media_entity_operations.
->> + *
->> + * Return: zero on success, or a negative error code passed through from an
->> + * entity's .pipeline_started() operation.
-> 
-> If you don't have specific return codes to document you could consider
-> a simpler
-> 
->   * Returns zero on success or a negative error code otherwise.
-> 
-> Up to you on this one.
-> 
-> With the above documentation aligned to the existing one and a
-> clarification on the media_entity_call usage:
-> 
-> Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-
-Thanks!
-> 
-> Thanks
-> 
->> + */
->> +int media_pipeline_started(struct media_pipeline *pipe);
->> +
->> +/**
->> + * media_pipeline_stopped - Inform entities in a pipeline that it has stopped
->> + * @pipe:	The pipeline
->> + *
->> + * Iterate on all entities in a media pipeline and call their pipeline_stopped
->> + * member of media_entity_operations.
->> + *
->> + * Return: zero on success, or -ENOMEM if the iterator initialisation failed.
->> + */
->> +int media_pipeline_stopped(struct media_pipeline *pipe);
->> +
->>   /**
->>    * media_pipeline_alloc_start - Mark a pipeline as streaming
->>    * @pad: Starting pad
->>
->> --
->> 2.34.1
->>
->>
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
 
 
