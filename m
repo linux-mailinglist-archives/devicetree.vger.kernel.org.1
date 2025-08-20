@@ -1,119 +1,152 @@
-Return-Path: <devicetree+bounces-206951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 884FBB2E153
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 17:39:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E635EB2E13B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 17:34:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50075AA0EC4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 15:26:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B47A71CC1DEE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 15:28:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 389DC23816C;
-	Wed, 20 Aug 2025 15:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32F3220F35;
+	Wed, 20 Aug 2025 15:26:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lAR6BJ08"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="hT4tLLCo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BA76213E9C;
-	Wed, 20 Aug 2025 15:22:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B1936CE0A;
+	Wed, 20 Aug 2025 15:26:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755703341; cv=none; b=ZDnUlS44MMN1uVUysLoDekH2e+S/nNwtKuZ81mLpv4Z9Or7AbG7Pmg/F19qNwo6N+VOkuU4NrkOMPm6xwL5QQxR650aubdT2tlGXkSKESDmSHbl9MHGzQ9IZ9DP8dP5qnUGM8b18R98pyVNrTM7b/yanzWtb+vl2my1hZTFpe4Y=
+	t=1755703573; cv=none; b=ZaXt7LE9OCg65lHLSOr4sJBCZgrjDY/+l/sSROQ9W2B5IvXugW4Vn/P9igmIcTrmZOsAp2E7rZy4eWAo6DiEsNkadI4osn+n7WnY1KN4dkyiuRowIHCI4UwcjaofSyMsOZNVhZc1lJwJbIXV79cVn37x4Bj6YYnACM498YHBmPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755703341; c=relaxed/simple;
-	bh=WicMk5bXj+8CW5HOYykWjDmuIMEIuDhQq/0pN4w5DuY=;
+	s=arc-20240116; t=1755703573; c=relaxed/simple;
+	bh=UKsT/uOiNEwUjDVanX/gjmwf4DfudF9I6p37X5ia2ck=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T7ImfCFLFGSuh+auuEy+zjOUOLOEnNNUB6j9+s1/7uFftjl0SxSPTwNw1eodVW5BvKJAl/9xZYKmYMXsF5p027x8NtKqDbVH1YRxi4GXdZ8+rsjLqRxjT0kbsOo67Q1Lm6NKfdaSGy3yY5Sdrb5txn1Z4xaVvaqR05J0hclwDC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lAR6BJ08; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A16DC4CEEB;
-	Wed, 20 Aug 2025 15:22:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755703340;
-	bh=WicMk5bXj+8CW5HOYykWjDmuIMEIuDhQq/0pN4w5DuY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lAR6BJ08Zr0VfKheoNHRPcNGFxdMvD43/8ZbF0hdD0tq1psDcjK9qp01/oJBJ2YKM
-	 MSdcFY7VSFUVIAbkxzuRflPHJusr9vEXwKPUGmWBSY/HO0nW3GdTExdIy7WBWFsBZ1
-	 UnEmGnfRXbjb88jK+I7AsBPdN4+ekwso7eJq7RTpPVqIsjm7s+j9/NuSKJr5o7UNot
-	 7SdAA1E3TDElUXqFcf7PYZqBy/ojrK7mm1qPqBxUtqdj6G5rnkm3p3Nvom+GAiv7rn
-	 09iszIwgdl2g5u7itHrTvol8vNQ29NyeGfWS4/P40Uc7DBZ18ZN3UdTk7Jt/m6qEJ4
-	 oqRbH/1e5JBDQ==
-Date: Wed, 20 Aug 2025 17:22:18 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Charan Teja Kalla <quic_charante@quicinc.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
-	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
-	Jared Kangas <jkangas@redhat.com>, Mattijs Korpershoek <mkorpershoek@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v5 2/2] dma-buf: heaps: Introduce a new heap for reserved
- memory
-Message-ID: <20250820-gainful-cuttlefish-of-pleasure-b3ecc0@houat>
-References: <20250617-dma-buf-ecc-heap-v5-0-0abdc5863a4f@kernel.org>
- <20250617-dma-buf-ecc-heap-v5-2-0abdc5863a4f@kernel.org>
- <a5526631-15fc-479f-8ac8-015231357080@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=C3F5Nzn2hhOUkiRAXn9CcY7hJiC+MLkk2MC0t5izvhDVRslul2yCHtMfy2pSrRVeslYIvsozlfIiW4Y2pxKcQ0WmON1tqEzZHboMil6tQBadIdBvZULg0UK5OVoONfFJ28v6g4zigqY8HUrlIbc1AjDoPHjVHky8LjTgXdyAZlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=hT4tLLCo; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=D12hxmFmFM9loDOUzOMSaKyZa2Ga8k1rsHytR3xCixo=; b=hT4tLLCoi7gMkYSW7jpvz1IJbw
+	A9jPca9W97CkEqJCKT7KabsZW7vVFEzVo40lZCJ7NDrAwsVCVBh98vfK9dFFRpyPbVwsGo+ftW+YD
+	xBC/pi0FkrJDUq+hvyUFTFcvgtUCjCuJ8n9egfyBx8cFPbAPYAUjSCoZzMMfdOa/IcZFycs0pAbBj
+	HyGCFhCE10JRWZMlb2SfTpPOeQurFOxJikgHwYs3FeP02DBSGjjSomiYjMd8k5UgN2KPiz/xM3Kcn
+	bguurHeA58FCBciMSyzlDxk0cQgYOhRplTCNhZX5Kt+HEsQdABnzGT95yFWAcZCith89MOeQk8VZh
+	3OrVbkwg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:54360)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1uokhG-0004yn-0R;
+	Wed, 20 Aug 2025 16:25:55 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1uokhC-000000000Kq-0kCG;
+	Wed, 20 Aug 2025 16:25:50 +0100
+Date: Wed, 20 Aug 2025 16:25:50 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Harini Katakam <harini.katakam@xilinx.com>,
+	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Sean Anderson <sean.anderson@linux.dev>
+Subject: Re: [PATCH net v4 5/5] net: macb: avoid double endianness swap in
+ macb_set_hwaddr()
+Message-ID: <aKXo_jihNKyJmxVQ@shell.armlinux.org.uk>
+References: <20250820-macb-fixes-v4-0-23c399429164@bootlin.com>
+ <20250820-macb-fixes-v4-5-23c399429164@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="4hxaerdxh2nrqase"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <a5526631-15fc-479f-8ac8-015231357080@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250820-macb-fixes-v4-5-23c399429164@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+
+On Wed, Aug 20, 2025 at 04:55:09PM +0200, Théo Lebrun wrote:
+> writel() does a CPU->LE conversion. Drop manual cpu_to_le*() calls.
+> 
+> On little-endian system:
+>  - cpu_to_le32() is a no-op (LE->LE),
+>  - writel() is a no-op (LE->LE),
+>  - dev_addr will therefore not be swapped and written as-is.
+> 
+> On big-endian system:
+>  - cpu_to_le32() is a swap (BE->LE),
+>  - writel() is a swap (BE->LE),
+>  - dev_addr will therefore be swapped twice and written as a BE value.
+
+I'm not convinced by this, I think you're missing something.
+
+writel() on a BE or LE system will give you bits 7:0 of the CPU value
+written to LE bit 7:0 of the register. It has to be this way, otherwise
+we would need to do endian conversions everwhere where we write simple
+numbers to device registers.
+
+Why?
+
+Remember that on a LE system with a 32-bit bus, a hex value of
+0x76543210 at the CPU when written without conversion will appear
+as:
+	0 on bus bits 0:3
+	1 on bus bits 4:7
+	...
+	6 on bus bits 24:27
+	7 on bus bits 28:31
+
+whereas on a BE system, this is reversed:
+	6 on bus bits 0:3
+	7 on bus bits 4:7
+	...
+	0 on bus bits 24:27
+	1 on bus bits 28:31
+
+The specification is that writel() will write in LE format even on
+BE systems, so there is a need to do an endian conversion for BE
+systems.
+
+So, if a device expects bits 0:7 on the bus to be the first byte of
+the MAC address (high byte of the OUI) then this must be in CPU
+bits 0:7 as well.
 
 
---4hxaerdxh2nrqase
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 2/2] dma-buf: heaps: Introduce a new heap for reserved
- memory
-MIME-Version: 1.0
+Now, assuming that a MAC address of AA:BB:CC:DD:EE:FF gets read as
+0xDDCCBBAA by the first read on a LE machine, it will get read as
+0xAABBCCDD on a BE machine.
 
-Hi,
+We can now see that combining these two, getting rid of the
+cpu_to_le32() is likely wrong.
 
-On Fri, Aug 08, 2025 at 03:46:21PM +0530, Charan Teja Kalla wrote:
-> On 6/17/2025 5:55 PM, Maxime Ripard wrote:
-> > +static void carveout_heap_dma_buf_release(struct dma_buf *buf)
-> > +{
-> > +	struct carveout_heap_buffer_priv *buffer_priv =3D buf->priv;
-> > +	struct carveout_heap_priv *heap_priv =3D buffer_priv->heap;
-> > +	unsigned long len =3D buffer_priv->num_pages * PAGE_SIZE;
-> > +
-> > +	gen_pool_free(heap_priv->pool, buffer_priv->paddr, len);
->=20
-> Just checking If clearing of the memory is missed before releasing it to
-> the free pool. If not, isn't it a leak of data when the heap is being
-> used by the multiple apps.
->=20
-> BTW, thanks for these patches.
 
-Thanks for the review. Note that we've since moved to another approach
-here:
-https://lore.kernel.org/r/20250721-dma-buf-ecc-heap-v7-0-031836e1a942@kerne=
-l.org
+Therefore, I am not convinced this patch is actually correct.
 
-Maxime
-
---4hxaerdxh2nrqase
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaKXoKQAKCRAnX84Zoj2+
-dow2AYC3Ylr7sSSAO15OugjV/WG7eVzYYLltaBeuKPZRasmbb0lVu2m4UhfgAtLW
-tSOmswsBfRnsiVEOeHk1VckfBWFThgfDpJg1QkDZWytCn9JugXgGANgTiDRqLdjJ
-WGr85+dNFg==
-=pEPY
------END PGP SIGNATURE-----
-
---4hxaerdxh2nrqase--
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
