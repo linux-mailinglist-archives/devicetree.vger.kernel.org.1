@@ -1,120 +1,171 @@
-Return-Path: <devicetree+bounces-206926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7754B2DFEE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:50:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E548B2E011
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:58:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13081725A77
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:48:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E8DB5E2EBC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:56:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C81832038D;
-	Wed, 20 Aug 2025 14:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21FD83218D5;
+	Wed, 20 Aug 2025 14:55:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="KsCwDHuZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1TfWFFw2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5771231E119
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 14:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DD44320CCB
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 14:55:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755701291; cv=none; b=Be369srlgc1TnK+DsqUeQ13+/CNxLUi2es24xRsSHSoaYTDECS2pvl1ZkA0fLV+vSrfGmUT/+xB/Hf6TayEPXb4oB62tyEEhAnEnaMhxYD1YLFmxu2TghCWL/URi1Ajd2+JKNvUgamltch7+dj795INLUHCrmmNyqBZpu41EBdA=
+	t=1755701753; cv=none; b=gu7Sa7b2916sykUx/sRPqUwXs947FjE4yLT3CTAJ66ViLNMnUjfVXwX7WnVoJiMzddeIPPPxLPl92Fo5l3oGsn0ryRDMYuNgSMvOleWbC/0OVm9eHJIubV2bCVZOUlII/EsF2rm48dHy2N4t5wX8+DoyH/++ZZruhciR9Y8PWCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755701291; c=relaxed/simple;
-	bh=IUrGjrl/l1txCsSgOPZXbhPn6Tnj3VCBGH0kaDqFOLI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=slEtB25GVZy1Ucc0rF0ZmXWFMABqf66qZy4PM7axnVTGiITRhVd9waY9dZykw8qY2ToJd5px3t6WVRboYsGhcluzGJGmI386Rr1f7k3va3AYGCViqW1VM0rAZ8u1ICwa8iWqO/h82aOz9r/U3ezFwe/JGW/icILC/buij80i2eY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=KsCwDHuZ; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-afcb7a3a085so1010531566b.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:48:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1755701285; x=1756306085; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NhUBGcq9KiQJcxiCAotwdJ7eICoMjF6+FIweyxl7rFg=;
-        b=KsCwDHuZMHf74e5warBYTrtTQBTkhk5lZRT9ynRCjcvwtESc3Y4xuc38bA6c5GdFmE
-         2Vl1KUVPmrqHJczv+ROF+bl04yzDrUz+EDrNLV8fI2df/iOS5VA5DPyMPNTxiV0ebK1l
-         d0/VSeELdbFtsUv2shLTPnodFRmOVnyqau+fA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755701285; x=1756306085;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NhUBGcq9KiQJcxiCAotwdJ7eICoMjF6+FIweyxl7rFg=;
-        b=mSIi3cZPj2l0qZFX+Lfe1nMIEJb25UWsM69GSHmB5oTYmHGgYTCUYkLND4xUaOfS5g
-         r3LHLgpEd22i/UnM1bU9bbqqcivebcEsqkbnwKx5DkIgqQyOCVSPBSs5lnVFSjLjq1Q1
-         JEzn/+m/F4B9Y8eq1OJxdA+cM37qOlLcyvdyiOxGkEETUj+fl0RZgg5M8SXEOK/XeWju
-         sDCQrCMePm2ys1fojoSl6Se8MciuniviXlOvYb1auGavHHdjQ4vWwuVAh290/sLydYBB
-         XCmhDL1o1jazcO57TRiA9AoinJSDxeWU4BeTt7E4tYzL4+VVPDl9n8p0bV1Te0aaZhKw
-         pTAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU4LFQt8gpkFDsI0Gk/XmjW4yuCs2Q4x6F2CUyonPlCqjwnxHPXCmHZpx7T/RwNhieP1Mf7UWinIjA2@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGAkmScMBByh1Zn12zYKkx21QPdTdKQP/kM3w+Xss3BVwwV29c
-	Ye0uXQIJbEXt1t6GW/4GaKYhUNCPNV/RjtB8KWKSvNeoGRMwNtXz/DlNgpT2xkM+sp3509S1s8k
-	UVxqCdw==
-X-Gm-Gg: ASbGncsM/WyKNa1hvU69gPsTWmd9MFXjdlEZfoHUX/L7KGL/DjbxjZYcpq86puls1iM
-	f7Iv3Q2OKBWMeiMKRyZTNMb3elDdm6H1OIQfaQhLJG5+kBZbQEUqzP5ZZpiYPCVLSHVCG9xw3+l
-	GGD8HlsYghze57vC6W/sY/Iw5+1BvwFcB9Ic1jp3ndvEUn/vS09eb7I8K1mgvqNBhEUiCHjOtdb
-	+/QATDhIWJKPJkYyYEwA1BYVuC5c1dRUxxhVbJkGz94AlzOGcK7oNNtpifP84vxm6f/LhVN+l1M
-	t04vgDUPfOx/MRKgBO4uM9wMOwe9abfIF7noKXFELPqAOMi72oQU3yRiqTHLRITb+F46k3MpV4G
-	YmFjlFtWQCcTs5EWVpnZRvzh7kCNKlXUXSsvBvcyWlgPSKD4dTPamuAMFGVCmjw==
-X-Google-Smtp-Source: AGHT+IHzoSKdfWCHWfqa1wiM+SuXB2tcwOfhVcZV4utV8yuCeESiv+M7EBmFq1mQypQeXc+EPzoDjQ==
-X-Received: by 2002:a17:907:3ea8:b0:afa:1a67:e012 with SMTP id a640c23a62f3a-afdf003ae35mr244612966b.8.1755701284857;
-        Wed, 20 Aug 2025 07:48:04 -0700 (PDT)
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com. [209.85.218.47])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afded478d69sm190463566b.73.2025.08.20.07.48.03
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Aug 2025 07:48:03 -0700 (PDT)
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-afcb78f5df4so1089406766b.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:48:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVTLtHIg0PV3zJRa8QuLIQNqasie3hX1Usko6vK9xzC72DMl7Hz7gqeyHJBVxBe6hNJEnk2TxnBOvka@vger.kernel.org
-X-Received: by 2002:a17:907:1c27:b0:ade:44f8:569 with SMTP id
- a640c23a62f3a-afdf01a0f35mr268297266b.42.1755701282745; Wed, 20 Aug 2025
- 07:48:02 -0700 (PDT)
+	s=arc-20240116; t=1755701753; c=relaxed/simple;
+	bh=7+oHWTACPFSALznoe36mPSP2bCu7kRLIqa4uxK/H3IQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=t3T8pdAvovNwaG9LLDv3/uNZk2SL3UhXfq6Vz+nsnXDQ91/5Ftk2jOTC/rmFEs5pJ16bh8DIZhVPC1VXeDUS6gXphttBRjRr/6kp0vYZaVz1rzb80NZ2A6vHilwU9XmksHAWMNAsI9VVwWPvXOfTc88kvaOoIfwAQVb1KUENOS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1TfWFFw2; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id E58E24E40BD9;
+	Wed, 20 Aug 2025 14:55:46 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BA55E606A0;
+	Wed, 20 Aug 2025 14:55:46 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C61211C2286DB;
+	Wed, 20 Aug 2025 16:55:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1755701744; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=ih+mPY47VbrJ66aP5mMPRcqsVibkL6Zr8hZhh9qWJQ0=;
+	b=1TfWFFw2fnGqLe7NkoH1peKdi3+CPCeu3cbZhajrEfJ0pjJZJNbGb+/ICi9HUxkaL9nZT3
+	TVZuoxjWSx7cp7rRbvfMlotehEtTAy4hk0w8ql6CzX7i5zXeshVg+xJQuv2baU7t5hQd5f
+	b1wIi/emNh1J6YXcGOTFokFXEBbp1Q2cpzLwFiNLkz9Yc32sHBshwF/Y/vht6ivoe/piU6
+	WNOWVrZloO+Lwgl3u60E43KpASbpmM44bNTdMIXsCqf+cnqWAhu5SElhy2UjwPlWAzcXf7
+	ZDjfd5QUIJyR4EUBcCK5bwogWHyawMobIN87D5RO5tfNm73a5EjGrOad/oeJyA==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH net v4 0/5] net: macb: various fixes
+Date: Wed, 20 Aug 2025 16:55:04 +0200
+Message-Id: <20250820-macb-fixes-v4-0-23c399429164@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250820122520.3356738-1-yelangyan@huaqin.corp-partner.google.com>
- <20250820122520.3356738-3-yelangyan@huaqin.corp-partner.google.com>
-In-Reply-To: <20250820122520.3356738-3-yelangyan@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 20 Aug 2025 07:47:48 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=X=C1oycGMS2GvGQWxVMR8h-4kv3pXQrH0rXyfvqwv4PQ@mail.gmail.com>
-X-Gm-Features: Ac12FXyiFWnDzrYzsNCIRBTvsCzSDFE08U3w3EJvjmOQdowoUEgqgJLZWf1XMk0
-Message-ID: <CAD=FV=X=C1oycGMS2GvGQWxVMR8h-4kv3pXQrH0rXyfvqwv4PQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] HID: i2c-hid: elan: Add parade-tc3408 timing
-To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, jikos@kernel.org, bentiss@kernel.org, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAMnhpWgC/22NSw7CIBCGr9LMWgzQkqIr72G6KDjYSSwYIETTc
+ HcJa5ff/zwgYSRMcB0OiFgoUfANptMAdlv9Exk9GoPkUnHNNdtXa5ijDyaG0qmZoxByEtAK74j
+ daPk7eMywNHGjlEP89oMyduvfVhkZZ1w74axRYr64mwkhv8ifbdhhqbX+AH2hAw6rAAAA
+X-Change-ID: 20250808-macb-fixes-e2f570e11241
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Geert Uytterhoeven <geert@linux-m68k.org>, 
+ Harini Katakam <harini.katakam@xilinx.com>, 
+ Richard Cochran <richardcochran@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Sean Anderson <sean.anderson@linux.dev>
+X-Mailer: b4 0.14.2
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+Fix a few disparate topics in MACB:
 
-On Wed, Aug 20, 2025 at 5:25=E2=80=AFAM Langyan Ye
-<yelangyan@huaqin.corp-partner.google.com> wrote:
->
-> Parade-tc3408 requires reset to pull down time greater than 10ms,
-> so the configuration post_power_delay_ms is 10, and the chipset
-> initial time is required to be greater than 300ms,
-> so the post_gpio_reset_on_delay_ms is set to 300.
->
-> Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-> ---
->  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+[PATCH net v4 1/5] dt-bindings: net: cdns,macb: allow tsu_clk without tx_clk
+[PATCH net v4 2/5] net: macb: remove illusion about TBQPH/RBQPH being per-queue
+[PATCH net v4 3/5] net: macb: move ring size computation to functions
+[PATCH net v4 4/5] net: macb: single dma_alloc_coherent() for DMA descriptors
+[PATCH net v4 5/5] net: macb: avoid double endianness swap in macb_set_hwaddr()
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Patch 3/5 is a rework that simplifies patch 4/5.
+
+What will follow is (1) many cleanup patches and (2) patches for EyeQ5
+support. Those will be sent targeting net-next/main once this series
+lands there, aiming to minimise merge conflicts. Old version of those
+patches are visible in the V2 revision.
+
+Thanks,
+Have a nice day,
+Théo
+
+[0]: https://lore.kernel.org/lkml/20250627-macb-v2-0-ff8207d0bb77@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Changes in v4:
+- Drop 11 patches that are only cleanups. That includes the
+  RBOF/skb_reserve() patch that, after discussion with Sean [1], has
+  had its Fixes trailer dropped. "move ring size computation to
+  functions" is the only non-fix patch that is kept, as it is depended
+  upon by further patches. Dropped patches:
+    dt-bindings: net: cdns,macb: sort compatibles
+    net: macb: match skb_reserve(skb, NET_IP_ALIGN) with HW alignment
+    net: macb: use BIT() macro for capability definitions
+    net: macb: remove gap in MACB_CAPS_* flags
+    net: macb: Remove local variables clk_init and init in macb_probe()
+    net: macb: drop macb_config NULL checking
+    net: macb: simplify macb_dma_desc_get_size()
+    net: macb: simplify macb_adj_dma_desc_idx()
+    net: macb: move bp->hw_dma_cap flags to bp->caps
+    net: macb: introduce DMA descriptor helpers (is 64bit? is PTP?)
+    net: macb: sort #includes
+  [1]: https://lore.kernel.org/lkml/d4bead1c-697a-46d8-ba9c-64292fccb19f@linux.dev/
+- Link to v3: https://lore.kernel.org/r/20250808-macb-fixes-v3-0-08f1fcb5179f@bootlin.com
+
+Changes in v3:
+- Cover letter: drop addresses that reject emails:
+  cyrille.pitchen@atmel.com
+  hskinnemoen@atmel.com
+  jeff@garzik.org
+  rafalo@cadence.com
+- dt-bindings: Take 2x Reviewed-by Krzysztof.
+- dt-bindings: add Fixes trailer to "allow tsu_clk without tx_clk"
+  patch, to highlight we are not introducing new behavior.
+- Reorder commits; move fixes first followed by cleanup patches.
+- Drop all EyeQ5 related commits.
+- New commit: "remove gap in MACB_CAPS_* flags".
+- New commit: "move ring size computation to functions".
+- New commit: "move bp->hw_dma_cap flags to bp->caps".
+- Rename introduced helpers macb_dma_is_64b() to macb_dma64() and,
+  macb_dma_is_ptp() to macb_dma_ptp().
+- Rename MACB_CAPS_RSC_CAPABLE -> MACB_CAPS_RSC.
+- Fix commit message typos: "maxime" -> "maximise", etc.
+- Take 7x Reviewed-by: Sean Anderson.
+- Add details to some commit messages.
+- Link to v2: https://lore.kernel.org/r/20250627-macb-v2-0-ff8207d0bb77@bootlin.com
+
+---
+Théo Lebrun (5):
+      dt-bindings: net: cdns,macb: allow tsu_clk without tx_clk
+      net: macb: remove illusion about TBQPH/RBQPH being per-queue
+      net: macb: move ring size computation to functions
+      net: macb: single dma_alloc_coherent() for DMA descriptors
+      net: macb: avoid double endianness swap in macb_set_hwaddr()
+
+ .../devicetree/bindings/net/cdns,macb.yaml         |   2 +-
+ drivers/net/ethernet/cadence/macb.h                |   4 -
+ drivers/net/ethernet/cadence/macb_main.c           | 138 ++++++++++-----------
+ 3 files changed, 69 insertions(+), 75 deletions(-)
+---
+base-commit: 715c7a36d59f54162a26fac1d1ed8dc087a24cf1
+change-id: 20250808-macb-fixes-e2f570e11241
+
+Best regards,
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
+
 
