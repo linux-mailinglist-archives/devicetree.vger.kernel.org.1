@@ -1,108 +1,100 @@
-Return-Path: <devicetree+bounces-207037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4BFEB2E5DE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:52:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57C60B2E5F0
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:59:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C0AC5E3F65
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 19:52:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 311695C75B8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 19:59:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63E726E6F8;
-	Wed, 20 Aug 2025 19:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B3927FB3A;
+	Wed, 20 Aug 2025 19:59:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZuC0x3zE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iFLTaOeO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD942F4A;
-	Wed, 20 Aug 2025 19:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F071DDA18;
+	Wed, 20 Aug 2025 19:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755719523; cv=none; b=bie9t8yZkcv0aGWOgLDUaZvZnHCNZ8DveVLs1vnZVxpQzXphcqK+bGskCqqaBN81g1WQIg2u4IjKYJ0/YZrd0wIIDCjR/+xC5R0wjt+0M1EpAhasxV/icg33VXll6riO+n8w+lBrISLf7B8WMrMStcB2UUEY8zKQvLXx6o0fotY=
+	t=1755719987; cv=none; b=BQ1Lh0wKGU/wMs7a+j4zw/ek3OInnDqEPXBT+knOVegy1v+qoOIAW13UQm4RAVuLOpZO+f+nKlXbUCuO4zSUU7WkFYxQZbI3a0el56MN0UrNyiD6ffiptFxx1CP+ZFPq5Hs1B/ogXikfLtyu02aOv32B4LUIQu26yfYIgg6pY8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755719523; c=relaxed/simple;
-	bh=zGAyQrb62JlwMvikL117lzOzDR5dBsupAPSQ54LsUKQ=;
+	s=arc-20240116; t=1755719987; c=relaxed/simple;
+	bh=5YZTBg91StssS8CLY8edYTCDHeeCUPhH7a/Oy9Gtgxo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sU8l9zp+rvmE3IC3ijbcfyUaXtbxjEDjbFtVzd+52wX9LPf+xqzL8eNN9lAVUOljKbUlaFrdjWinV84KgiyuisYzGINdEF9C4U9Q7iRnHpYkbtuP3/P2Z/XgIMDJHB66feJOrca8ck6VDlQnPuR0/O0WtJKFLDOH9CHJiCsNwMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZuC0x3zE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32D04C4CEE7;
-	Wed, 20 Aug 2025 19:52:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qlA5OkIKaksCU7BNjwI/BgvZL4Gp0AMLEHPFItxaT+i8KayRf61QVvNgpeCa13Lp4401xLYYAwtx2c//9U0OJUIrsTUIKOpwXx6tMui/ZV7dzSD/Bl3BtqVMu/d9CrrV4xMZgMYRZzYNZFiwRyg7IC6ki8kW93TlhBdtEqN6WSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iFLTaOeO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6973AC4CEE7;
+	Wed, 20 Aug 2025 19:59:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755719523;
-	bh=zGAyQrb62JlwMvikL117lzOzDR5dBsupAPSQ54LsUKQ=;
+	s=k20201202; t=1755719985;
+	bh=5YZTBg91StssS8CLY8edYTCDHeeCUPhH7a/Oy9Gtgxo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZuC0x3zE4gY1tWkVNK9i4nhhTH4EbDDvBu2juzSEV7/jw15X+2uo84+nNGRFgUnnF
-	 92bkohYSJ+2OJVEnztRDZCWhZ51mKfSwI2s8iUjbzxConu7HiUFFqhXQS++N0dSX85
-	 iUPMYJ+YCKPFr9CUSoqnCiPyZQaTfZqIArdUwbZLAa8WKiJyunvYh5+Q4oxbc2ILd0
-	 JLJZOlM5hc2HMwDlUemYPpQYT8I65Y+d5OybGu/T8imPmPyY3dbWbcP8AxFOXxn/Yl
-	 /DuEyKtYmsppEGMdpRYF/B6C6CoMQTdpIjGwoLHu1OjgLTHAhp5NYH5jw/5bNCFCG1
-	 X7QCWZyUCg5Kw==
-Date: Wed, 20 Aug 2025 20:51:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: =?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-	Boris Gjenero <boris.gjenero@gmail.com>,
-	Christian Hewitt <christianshewitt@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Paolo Sabatino <paolo.sabatino@gmail.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v3 4/4] MAINTAINERS: Add entry for TM16xx driver
-Message-ID: <20250820-clock-easiness-850342f716f3@spud>
-References: <20250820163120.24997-1-jefflessard3@gmail.com>
- <20250820163120.24997-5-jefflessard3@gmail.com>
- <CAHp75VfyR0cjnC6C6Xy8x9nTREdAgbjo18RLYNRzoLc6KmXnTA@mail.gmail.com>
+	b=iFLTaOeOOX21B+JnSaJ8f1fz70JoPxM4xSUwV2CLXvdXaBxgN5Ph3w8Z+0R+qmwiZ
+	 xHJ4zbMyptHmxhbdDeaCziDELJCn+hKNP3l6LuY7VLXj71Y9w1G6sQ7bKuxUM8yKkk
+	 O9/Xi/6l5rHJL891xzHs0O6xTuUHpi4UKyfVHCrR59Cs8pHvUYDke75YwKRfH+Ukff
+	 Z87Hr52+3MOdLbOspdWplJHIlPOfJL3aA2F8sOH/iGMhyRrHVIg6DM3aeWvDaUv5RF
+	 KSUCBmwirvRKyxc71oIgx0cYUJuH2dImiVuzmyvlpMjK5mdzviZNSfExiD3qRicrGV
+	 WXr7a1oeVFraQ==
+Date: Wed, 20 Aug 2025 14:59:44 -0500
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Add vaux for
+ i.MX PCIe
+Message-ID: <20250820195944.GA596147-robh@kernel.org>
+References: <20250814085920.590101-1-hongxing.zhu@nxp.com>
+ <20250814085920.590101-2-hongxing.zhu@nxp.com>
+ <aJ4yuo6bULFy7uAv@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ED76KRMEHLfSRas1"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHp75VfyR0cjnC6C6Xy8x9nTREdAgbjo18RLYNRzoLc6KmXnTA@mail.gmail.com>
+In-Reply-To: <aJ4yuo6bULFy7uAv@lizhi-Precision-Tower-5810>
 
+On Thu, Aug 14, 2025 at 03:02:18PM -0400, Frank Li wrote:
+> On Thu, Aug 14, 2025 at 04:59:19PM +0800, Richard Zhu wrote:
+> > Refer to PCIe CEM r6.0, sec 2.3 WAKE# Signal, WAKE# signal is only
+> > asserted by the Add-in Card when all its functions are in D3Cold state
+> > and at least one of its functions is enabled for wakeup generation.
+> >
+> > The 3.3V auxiliary power (+3.3Vaux) must be present and used for wakeup
+> > process. Since the main power supply would be gated off to let Add-in
+> > Card to be in D3Cold, add the vaux and keep it enabled to power up WAKE#
+> > circuit for the entire PCIe controller lifecycle when WAKE# is supported.
+> 
+> if it is standard, it should move to snps,dw-pcie-common.yaml.
 
---ED76KRMEHLfSRas1
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It is standard because PCIe spec defines them. pci-bus-common.yaml 
+already defines these:
 
-On Wed, Aug 20, 2025 at 10:08:06PM +0300, Andy Shevchenko wrote:
-> On Wed, Aug 20, 2025 at 7:31=E2=80=AFPM Jean-Fran=C3=A7ois Lessard
-> <jefflessard3@gmail.com> wrote:
->=20
-> Besides the missing commit message, the main part of this patch should
-> be merged with the patch 2 where the YAML file is being added.
-> Otherwise it will be a dangling file. I dunno if DT tooling has its
-> own concept of a maintainer database, though.
+  vpcie12v-supply:
+    description: 12v regulator phandle for the slot
 
-get_maintainer.pl will pull the maintainer out of the file, so it won't be
-truly dangling without a way to associate Jean-Fran=C3=A7ois with this file=
-, if
-that;s what you mean.
+  vpcie3v3-supply:
+    description: 3.3v regulator phandle for the slot
 
---ED76KRMEHLfSRas1
-Content-Type: application/pgp-signature; name="signature.asc"
+  vpcie3v3aux-supply:
+    description: 3.3v AUX regulator phandle for the slot
 
------BEGIN PGP SIGNATURE-----
+Note that these should really be defined in the root port node rather 
+than the host bridge node. We've done the latter because the RP node is 
+often not defined.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKYnXgAKCRB4tDGHoIJi
-0iIgAQDiRFM5SkzAyXH55vfBZqtQCGaLrGiXAkLlcUyyxoL5CAD+JTcy5r2rjqNV
-J1FVxjeFIXCicwdRH1M/+3G3W13qTgY=
-=ACTV
------END PGP SIGNATURE-----
-
---ED76KRMEHLfSRas1--
+Rob
 
