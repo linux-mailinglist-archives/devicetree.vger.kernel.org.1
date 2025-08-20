@@ -1,88 +1,89 @@
-Return-Path: <devicetree+bounces-206676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2E92B2D3F9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 08:19:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39598B2D404
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 08:25:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D089622D47
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 06:17:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED872188DC83
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 06:25:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D5822156D;
-	Wed, 20 Aug 2025 06:17:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BCA8298CBB;
+	Wed, 20 Aug 2025 06:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pPBJM4Ik"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WTvN35Q6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1017433A0
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 06:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840CD2264B0
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 06:24:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755670676; cv=none; b=SJ23QBO+Xa6fk41a6h+mIx2/i8NLQQZ84+H4vVbwSa+eQIWCG8ZR/H9vqxDcfE+O7tgtH2p8tDB20f0YgPesBgeNMwThVj9pru3cxU7e8vltN3IDOhd45lxA90oBzpMzSj9GpBMsjWFdmn6hvdU+xmVWyba4JGZl/ATst8X6rgA=
+	t=1755671082; cv=none; b=ajxQBoJ1ZkkVKUjk0z/EcGbv6lukPAh/GSC8+PCQAl9nk7XkKwEfrELJL2i5obM/TsLNpOxMqk+jev6xI+gWDSD/Hj2nJqXR0jVBAZ328DV61LpiD+IiMB0dm7RSBLHVO0/w6UF3OL4mc7ChLZtXW5rYT8mQ2HGg402RzTn4neI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755670676; c=relaxed/simple;
-	bh=acxMMGd2x/HKWGU/E/B1l2IvWsTnQwauMXyl3r65/5k=;
+	s=arc-20240116; t=1755671082; c=relaxed/simple;
+	bh=LrH2WofXG6NubTOIL6SYNgxotAxylQjxzNFtKq5UgGw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u0wJDn2PFzntloKF4yqhnDA3O62se+0b6s6SGszMWnWysQU0TrYrZXq9/WiAje15gKKsa3W1FpwVGK78cQ93w/2ccXur187KdSrL+OYm8m7tUHj9dq8s1baTgtIp+IOThKjc9eudHLHqYzE7m5ixHS2cVup6vKd9fYyZOAe6WwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pPBJM4Ik; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=IcWsza5Jm+utfBWxLHWpI1YIr9ZfDgkvqbjxNd8xfhlr8nDc5N9SmVrBBnQSK0lO5bLECqhV/oGf7xqVInpegkJZB81vJ6U85/6/6mrGyD6GJVbO+rEsU7n5orrcNNsC3y8yhLIME8gQLyiC6T/ksN0J3ipEuKyANXZlJ/qMOtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WTvN35Q6; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57K1oVfn024114
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 06:17:54 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57K1occq024155
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 06:24:40 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/bkq+cHdJt1KbvcxQfB2RcSUjegt/SMBaHSxlr5BbPY=; b=pPBJM4IkUCc7AjW7
-	5WE+DTBsliH63oe2SkgY7IWE7ea6YBExexcpAEv4g2cxsh5z440YLP5GHikjCcRH
-	sP78jWNxVbTnLOJNOYQJhHFwuLhbrNmWlEN3o4P76SDKg60VgeEDWN+6hfzRN9+R
-	UDRivJivIbkejr8DpPcpRM4SK9Pg8fE+qJK7K5VCfy4wXVcBiKqZtni0wlqiGL2H
-	Vt8SFuYzPGFv/ikxQrF2ToxtUpmv+bwgfSmXUs7hP5efZA9JD/pJTu7BINgSdaTw
-	utACXgdJXiUw6cxSSPQZZ7pnZejbW65wLVwVY8c9qt2Di5ZzuokdOyuGxdn+lOQg
-	KyXKCw==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n5290m45-1
+	iKDfblzDNT46YZA30uGR6v1f2o7XXcul3XVrMddX/YY=; b=WTvN35Q6cki4NjFv
+	C5dybd5+82zGxiD4rcGhPQQ1avtwaO98mO6sOW4g2DKVdKj79cZ1fsyUW7j7xaLI
+	h/c1+tEUyDS7uhXswB2G7bJASsZ5Psoy8OQVE3ZnoHIcHtrNbLUffcNf5helDQam
+	602iIpsi0r6yM/Tctw6FZsq6jG8WnQr8NlKffGAjz8H7jADQu8xYN+Ojon8BnIvd
+	jszcof3gc6JGkTuOGskFg6VtkzL2x22p/umtw5L/ks1f26fSmu9cEGWKZIWV5WYV
+	sEngmni5ywi1I9QSwofXUHzgE0YqSTPEt5WYKPzaaIsqrewX2toB2hIZtgfxrOWl
+	MIGg1A==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n5290mqp-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 06:17:53 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-24457f440f0so68364065ad.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 23:17:53 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 06:24:40 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-76e2e614c60so5418376b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Aug 2025 23:24:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755670673; x=1756275473;
+        d=1e100.net; s=20230601; t=1755671079; x=1756275879;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/bkq+cHdJt1KbvcxQfB2RcSUjegt/SMBaHSxlr5BbPY=;
-        b=DlTobrw57yjFPMffHiu5Wc+dJDifnUXwoATWfWDpbjv+0uyXLQzIuyNV8i4YuSGKFt
-         +pra0Fd7Myt/vsY+1hnNXrjsAMeYFdxq+7o6tqjYlMgsJx9AvIcnyO6y+eGx/VPYC8oP
-         d3tdm7TDJwiOs5L8Bi5Lmg1Yb7DH09zz3LszUzDR84numdylhPQiP4asIvjVbtyLEE5a
-         4sECNd6lfTAOIS0HKaooT4N3ULlqNjRoWFBvvPtx8Anuw+GQ2RSE1yozRSikII/VgPKD
-         1hMJPbJpc3QBHVRqM/enhgk+exrwcR5anJSlK+oysq9iuirlc5yfQOcQ/VBcwNEeNgl3
-         nh8A==
-X-Forwarded-Encrypted: i=1; AJvYcCUL+8TB7OEFd7jCCOR4icUu1FMnX172UimSuG9rNr9XrelxvkmxmLI98YWqqbBSOoHhR/GQorwKaduF@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoIrz2q0dGEF6jX2v5m074NTb+yoIjKQ3hMS9pI1eewEqllmHz
-	ADBK28CjU+BGgGhK1hUtQuCN/SXniG0ljAdlksvC2jHT+v242Pcu0ydEF+IuUU+EdxoA1AqwgEL
-	eDPyXc9jWV3BwDih9mJW0fESqhYuexwWk2ecTkeNd7jtOxAb8XaCZWMDhvJ+puBe4
-X-Gm-Gg: ASbGncvAFQLh0VXJkcKquw9sWfG5xXmrtFMF+87jy2ZnNqgC9HaswR0qYuDLhQZIolu
-	eI/RpgOCM9r6L+kuVdif3Tlmi71JFQq8y17u0Q8gy965h4tsdCZa9Js1Z9pTTWPsClWFk7noSmH
-	oaYJwqubBvRZcaWs410MyaZyNeZIDLTz4XTfROcq5JEuNBWXJQIYtrURQ/ffBsqJwH5HLwwN0/V
-	FQWAHZjZGRFyhZ2dTVl6giTac+l5VXaTf7K/lGQ2Ah8sRzinQ1L41XOdRh2DADYUZWQp4XMEqiX
-	ahOWBQH+/YvF1mR0TShkUQxqOrII53x6A8YKTeCt03J0gHtfYJKn0f61YhyWrPsX0Xe4BBwB/Of
-	1vBuyyCs94bN/MF6RBIpwjOggqMwCWQ==
-X-Received: by 2002:a17:902:db11:b0:244:99aa:5484 with SMTP id d9443c01a7336-245ef22750bmr21232785ad.33.1755670672768;
-        Tue, 19 Aug 2025 23:17:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEsKwESvuXAmKPzOJGduohtMXI7XkJlUbHq5xijCZfUS3+Y+d26WTnyjnHki+tQuTQXR8vTwA==
-X-Received: by 2002:a17:902:db11:b0:244:99aa:5484 with SMTP id d9443c01a7336-245ef22750bmr21232595ad.33.1755670672285;
-        Tue, 19 Aug 2025 23:17:52 -0700 (PDT)
-Received: from [10.249.96.170] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e8ab7b2dfsm2046761b3a.38.2025.08.19.23.17.46
+        bh=iKDfblzDNT46YZA30uGR6v1f2o7XXcul3XVrMddX/YY=;
+        b=YKHE5SZTMt321jjzZZfLXqqVBchNfLyNLVjNPv2F3dUJ4/z3joATAUme6KNgcvGhUt
+         kmvVimy+Zph8nf8EJ8ikteed6kgzgvzDcBfhuMQf/GRv2TAXRhNcCYQHkkQuIMKUhusP
+         +JkKFtMTmgqnvstmAu3BZB2mjufYn+LHSYnpuu8R8IdaYUwvWPvUk0R3ve5wjDfxB2Kd
+         42GXzg/IYfozNFXtNTm7y8IJdgl+qCl/+b+y0j+09aLGi4zj+XnuxaUozkhVTxrnWKG5
+         wo9GmxVkcgF2PdANMNZGRyPTEAJgMZak4fYYAArdaKNZKgaGpaJQ/TsBFX7xjpDORrfv
+         ZEtg==
+X-Forwarded-Encrypted: i=1; AJvYcCXXqUOVPgDoGXo6leS5DMZNLPWp17M1nzofpPztMdPFOlX/VIjNYQ9y6prAKEGEGhoq10xA7AkashVH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHUMVtR9YvInmZmh8iB6FrkkggfeZEzWCW7xkjbVpD6svOkIgI
+	TcKZd4u8uK9gK74lu6UC4aOxOpTjbg9RTeNhSZErpMlGnVCrtPcXflPt/nYzs7rVbs2sQFg2wWh
+	gZF+aRmGN18JRNma29rkZVdwRVLHRsr6IKP7ZwCLOTZv0GUhAlpDKUQUcQlQkqSl3e3s+TaFiSa
+	4=
+X-Gm-Gg: ASbGnctlVcEqd1jQ0Zu/XHlGYDlQwKrUP4gk6Q/GnYOnioLTstWOe+0qYHpoz8p5N2x
+	bUNBvo1LsIJzM4GhQgY1KVDZQRnuym0SzRY2o6NANwiWon7RFjsctrCJJnuSsGgyy4FepriglAD
+	Z+nhju63jOs+lyBYSikzlnDBk88Pep46C1/2MguIlfz60WDNdvUu+92FVFuKbOh98ZDNnAs8vrg
+	ZpgbGmBwGzUJhZMaAvzgcziK3uEEwmyBCMfV7PFQSdVLAru0RJzsdhhbSs6o4Nnwo+ZdBzXy/vC
+	PGz7LkEaQxmMcYC2gDMoh+qZzIeaa4Tx8S5PzPMr2wXgUte6Ue0yZsOfcl3Bm+2Mau7cO+O8884
+	lfcwtVfotpLR2u7+IOIgHAMyIavm/O6mN
+X-Received: by 2002:a05:6a00:1486:b0:75f:8239:5c2b with SMTP id d2e1a72fcca58-76e8dd255ccmr2038337b3a.23.1755671079373;
+        Tue, 19 Aug 2025 23:24:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEfH/JRqULP7unNKt/bNqp2cJbEU4cxpppDZWazMbkq05YCUx/tWuR3V1ofH2rijz+Dk6oT6g==
+X-Received: by 2002:a05:6a00:1486:b0:75f:8239:5c2b with SMTP id d2e1a72fcca58-76e8dd255ccmr2038315b3a.23.1755671078900;
+        Tue, 19 Aug 2025 23:24:38 -0700 (PDT)
+Received: from [10.133.33.73] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e7d0d9438sm4271920b3a.21.2025.08.19.23.24.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Aug 2025 23:17:51 -0700 (PDT)
-Message-ID: <33468410-69e5-4144-88e0-cc34a736c0e4@oss.qualcomm.com>
-Date: Wed, 20 Aug 2025 14:17:44 +0800
+        Tue, 19 Aug 2025 23:24:38 -0700 (PDT)
+Message-ID: <60628e3d-0a59-453e-acb3-acfc6dfe62af@oss.qualcomm.com>
+Date: Wed, 20 Aug 2025 14:24:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,46 +91,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] phy: qcom: qmp-pcie: Add support for Glymur PCIe
- Gen5x4 PHY
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: Add Coresight Interconnect
+ TNOC
+To: Rob Herring <robh@kernel.org>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley
  <conor+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        konrad.dybcio@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
-        Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
-References: <20250819-glymur_pcie5-v1-0-2ea09f83cbb0@oss.qualcomm.com>
- <20250819-glymur_pcie5-v1-4-2ea09f83cbb0@oss.qualcomm.com>
- <6zlydkdgmowqg7cv5eeoaf7mrpnhzokyvhh5xasvznqaxnhdji@xol3jiz2lzld>
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        kernel@oss.qualcomm.com, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250819-itnoc-v2-0-2d0e6be44e2f@oss.qualcomm.com>
+ <20250819-itnoc-v2-1-2d0e6be44e2f@oss.qualcomm.com>
+ <20250819194538.GA1214644-robh@kernel.org>
 Content-Language: en-US
-From: "Wenbin Yao (Consultant)" <wenbin.yao@oss.qualcomm.com>
-In-Reply-To: <6zlydkdgmowqg7cv5eeoaf7mrpnhzokyvhh5xasvznqaxnhdji@xol3jiz2lzld>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=ZJKOWX7b c=1 sm=1 tr=0 ts=68a56891 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=sH0VmbEyIx9rPeTW6gYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: RLyIG7DT1YzjWI8cqDPVr3NFm1JBUw2o
-X-Proofpoint-GUID: RLyIG7DT1YzjWI8cqDPVr3NFm1JBUw2o
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfXwgaL30ysifMt
- 4mWthKN00nAzG2NjP9z1rTQepQ+jd7bOor9LQPg2XZd5dzVdi3mKF403goeuBnYTMyC4rILxtoq
- 4ijV3m3/iIRuCDp6fwmZhx6DPV+8B38VUQJ1BZVj4+thf5s+Wct7fCJcpMrVAYCDl18xSqd+Zrt
- ZPzezk71uOIgzmvnO7oHRWjkdjOP+m/HiTlNVHuCqdx4UeGQzJ4ggYUmN9ZPCdRZhjcVqbwQjAk
- EM77sv4ngffyiH3jvddYBvsgrqOXqPMRmj2WVPZjp+nSzyXrK+9iS36Rqlxs07PNJ2adtPa6yQ6
- v6Ih4VGOX8dNF01rt2TTboyshXDXxrb5IDKgGGXtDqUb2rCeG1qcyHHHsQq7tJXU9HtkHvAHbJ2
- RuBtl7umD8MSLKEHYEGlRZa8a8uUMw==
+From: yuanfang zhang <yuanfang.zhang@oss.qualcomm.com>
+In-Reply-To: <20250819194538.GA1214644-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=ZJKOWX7b c=1 sm=1 tr=0 ts=68a56a28 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=q2rpgh4P1k-zP0bRiPwA:9 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+ a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-ORIG-GUID: kDVcnsZeuzK6LfGho4j7egr-qBbouW7V
+X-Proofpoint-GUID: kDVcnsZeuzK6LfGho4j7egr-qBbouW7V
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX3mv5WYmuBpuT
+ 5N2Y8zMhX5Zk4PXPFn6BasXJKJwbCJ2zpekjSGP+8BT3JHl747KWXhP9M7ANV3qZFWODZo5V/y4
+ Xbh/hMVHIdhExOR/5rDaYtxXAQvi/pH1vNJJyCozsarfb+rtvls1OH/0EWMRkpSnzCmVB8Srjka
+ 5VHh5UQVUQBHWAGsIZM+DPKp8BT+tNtw04B0JHFCwjZWN/4xLOLpgIs7gOqePyl1Bu1IVqZQLKq
+ ZrSbeAYkIbJnZQibcBvS7h3krV9GDWYR80mvrce5vvpy7LGgezrcurSahFtKIAjsX85mX1rjIpT
+ 3ihqYfeGKPw8JdU0LdSfof461bXiFmrNhdPWejZSebEElREpyAPuUaetyFDTfN/7GPOHVyvlxcY
+ 1mNWtFyCnhZIMul2kMPsBBptsWDhQA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-20_02,2025-08-14_01,2025-03-28_01
@@ -139,93 +135,129 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
 
-On 8/20/2025 2:43 AM, Dmitry Baryshkov wrote:
-> On Tue, Aug 19, 2025 at 02:52:08AM -0700, Wenbin Yao wrote:
->> From: Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
+
+
+On 8/20/2025 3:45 AM, Rob Herring wrote:
+> On Tue, Aug 19, 2025 at 03:27:43AM -0700, Yuanfang Zhang wrote:
+>> Add device tree binding for Qualcomm Coresight Interconnect Trace
+>> Network On Chip (ITNOC). This TNOC acts as a CoreSight
+>> graph link that forwards trace data from a subsystem to the
+>> Aggregator TNOC, without aggregation or ATID functionality.
 >>
->> Add support for Gen5 x4 PCIe QMP PHY found on Glymur platform.
->>
->> Signed-off-by: Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
->> Signed-off-by: Wenbin Yao <wenbin.yao@oss.qualcomm.com>
+>> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
 >> ---
->>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 29 +++++++++++++++++++++++++++++
->>   1 file changed, 29 insertions(+)
+>>  .../bindings/arm/qcom,coresight-itnoc.yaml         | 96 ++++++++++++++++++++++
+>>  1 file changed, 96 insertions(+)
 >>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->> index 95830dcfdec9b1f68fd55d1cc3c102985cfafcc1..e422cf6932d261074ed3419ed8806e9ed212c26c 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->> @@ -93,6 +93,12 @@ static const unsigned int pciephy_v6_regs_layout[QPHY_LAYOUT_SIZE] = {
->>   	[QPHY_PCS_POWER_DOWN_CONTROL]	= QPHY_V6_PCS_POWER_DOWN_CONTROL,
->>   };
->>   
->> +static const unsigned int pciephy_v8_50_regs_layout[QPHY_LAYOUT_SIZE] = {
->> +	[QPHY_START_CTRL]		= QPHY_V8_50_PCS_START_CONTROL,
->> +	[QPHY_PCS_STATUS]		= QPHY_V8_50_PCS_STATUS1,
->> +	[QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V8_50_PCS_POWER_DOWN_CONTROL,
->> +};
+>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..a3b5f2b949f69617a014d0ae2831c9c767178f8c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-itnoc.yaml
+>> @@ -0,0 +1,96 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/arm/qcom,coresight-itnoc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->>   static const struct qmp_phy_init_tbl msm8998_pcie_serdes_tbl[] = {
->>   	QMP_PHY_INIT_CFG(QSERDES_V3_COM_BIAS_EN_CLKBUFLR_EN, 0x14),
->>   	QMP_PHY_INIT_CFG(QSERDES_V3_COM_CLK_SELECT, 0x30),
->> @@ -3229,6 +3235,10 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v6_30 = {
->>   	.ln_shrd	= 0x8000,
->>   };
->>   
->> +static const struct qmp_pcie_offsets qmp_pcie_offsets_v8_50 = {
->> +	.pcs        = 0x9000,
-> Even if the driver uses only PCS regs for 8.50 currently, I'd suggest
-> describing the whole picture here. Otherwise it might backfire later, if
-> we add offsets for other blocks later and they won't match the ones used
-> for Glymur.
-
-OK，will add them.
-
->
->> +};
+>> +title: Qualcomm Interconnect Trace Network On Chip - ITNOC
 >> +
->>   static const struct qmp_phy_cfg ipq8074_pciephy_cfg = {
->>   	.lanes			= 1,
->>   
->> @@ -4258,6 +4268,22 @@ static const struct qmp_phy_cfg qmp_v6_gen4x4_pciephy_cfg = {
->>   	.phy_status             = PHYSTATUS_4_20,
->>   };
->>   
->> +static const struct qmp_phy_cfg glymur_qmp_gen5x4_pciephy_cfg = {
->> +	.lanes = 4,
+>> +maintainers:
+>> +  - Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
 >> +
->> +	.offsets        = &qmp_pcie_offsets_v8_50,
+>> +description:
+>> +  The Interconnect TNOC is a CoreSight graph link that forwards trace data
+>> +  from a subsystem to the Aggregator TNOC. Compared to Aggregator TNOC, it
+>> +  does not have aggregation and ATID functionality.
 >> +
->> +	.reset_list     = sdm845_pciephy_reset_l,
->> +	.num_resets     = ARRAY_SIZE(sdm845_pciephy_reset_l),
->> +	.vreg_list      = sm8550_qmp_phy_vreg_l,
->> +	.num_vregs      = ARRAY_SIZE(sm8550_qmp_phy_vreg_l),
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^itnoc(@[0-9a-f]+)?$"
 >> +
->> +	.regs           = pciephy_v8_50_regs_layout,
+>> +  compatible:
+>> +    const: qcom,coresight-itnoc
 >> +
->> +	.pwrdn_ctrl     = SW_PWRDN | REFCLK_DRV_DSBL,
->> +	.phy_status     = PHYSTATUS_4_20,
->> +};
+>> +  reg:
+>> +    maxItems: 1
 >> +
->>   static void qmp_pcie_init_port_b(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tbls *tbls)
->>   {
->>   	const struct qmp_phy_cfg *cfg = qmp->cfg;
->> @@ -5114,6 +5140,9 @@ static const struct of_device_id qmp_pcie_of_match_table[] = {
->>   	}, {
->>   		.compatible = "qcom,x1p42100-qmp-gen4x4-pcie-phy",
->>   		.data = &qmp_v6_gen4x4_pciephy_cfg,
->> +	}, {
->> +		.compatible = "qcom,glymur-qmp-gen5x4-pcie-phy",
->> +		.data = &glymur_qmp_gen5x4_pciephy_cfg,
->>   	},
->>   	{ },
->>   };
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: apb
+>> +
+>> +  in-ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+> 
+>> +    properties:
+>> +      '#address-cells':
+>> +        const: 1
+>> +      '#size-cells':
+>> +        const: 0
+> 
+> Drop these. Already defined by the above ref.
+> 
+sure, will update.
+>> +
+>> +    patternProperties:
+>> +      '^port(@[0-9a-f]{1,2})?$':
+>> +        description: Input connections from CoreSight Trace Bus
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +
+>> +  out-ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +    additionalProperties: false
+>> +
+>> +    properties:
+>> +      port:
+>> +        description: out connections to aggregator TNOC
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - in-ports
+>> +  - out-ports
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    itnoc@109ac000 {
+>> +        compatible = "qcom,coresight-itnoc";
+>> +        reg = <0x109ac000 0x1000>;
+>> +
+>> +        clocks = <&aoss_qmp>;
+>> +        clock-names = "apb";
+>> +
+>> +        in-ports {
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +            port@0 {
+>> +                reg = <0>;
+>> +                tn_ic_in_tpdm_dcc: endpoint {
+>> +                    remote-endpoint = <&tpdm_dcc_out_tn_ic>;
+>> +                };
+>> +            };
+>> +        };
+>> +
+>> +        out-ports {
+>> +            port {
+>> +                tn_ic_out_tnoc_aggr: endpoint {
+>> +                    /* to Aggregator TNOC input */
+>> +                    remote-endpoint = <&tn_ag_in_tn_ic>;
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> +...
 >>
 >> -- 
 >> 2.34.1
 >>
--- 
-With best wishes
-Wenbin
 
 
