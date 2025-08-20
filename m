@@ -1,69 +1,64 @@
-Return-Path: <devicetree+bounces-207033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F99CB2E5BF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:44:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E929CB2E5C4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:46:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5C87A22A9C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 19:44:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C09545889EC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 19:46:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA872857CB;
-	Wed, 20 Aug 2025 19:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9366C216E23;
+	Wed, 20 Aug 2025 19:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HABbqDGw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FHXlXu7y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA461CCEE0;
-	Wed, 20 Aug 2025 19:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF5D8F49;
+	Wed, 20 Aug 2025 19:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755719048; cv=none; b=b+nAC5sLq84O4QuOF4Azya4fuKxjydi+O4p3UrS/1H7et0p0kJBbdgXDb6jLr7SxMMzW4V+o/jK4J8EXaWR0UGzCPn5p6Q4uNCt6JPdCdixhm8TxP+qsxWkVDdGatUUXr6qbfe6VsZu41Zhk742xWifRqqxNZCPDjT4NodmxYfs=
+	t=1755719190; cv=none; b=NJbcPVBf6De3ZT0Q6b76cApdy9d/fyzOO+IVZVKpuXZtvPKXPMkBBTid3bcQ4wWymMfdlC2HNXC7jt+goxb7GxvBvv0T2dGV7m8K719RTVwbidzmzgGp4RDUmdLVVxhmos+6Pc/n7ZiW0AQBgVlKxbGyogn5f1IOUKeVDnwZYnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755719048; c=relaxed/simple;
-	bh=wVbhnBpFX/Zq7DTszd7msln2BrK2tuah8OGziBFa8D0=;
+	s=arc-20240116; t=1755719190; c=relaxed/simple;
+	bh=P60wwoesTBMO6te6dk7a3L9wvODtWEgPKYSFfA3IV9A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L3hFWt/yO6YcPO11QJzzdQBCBGvRvNt1rjmu5RLTC0RJDW0TQ0BFKwzZ9sHOEYKYUpTC9DZep9AcW0fPjyXgiaNGlo3XmA/8gsKTkzW6oYSjz0mdzsRF9wyjJz4zeMzx9v49rOVHi6OPuifE0GGwGl6WSiSC83hjLQ7fn5AcqI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HABbqDGw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E335CC4CEE7;
-	Wed, 20 Aug 2025 19:44:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FoG/Bb9lPytQtU3Q3m+jk5aJvVQI1z0nnbP7LD2pC6WM273xw0HKj9rzLGnEcGy84wKrf8uBpsfb4IWjW4sr5CfxnpwwXi4KkWt5IsRzw7gpeeRRsYzFRwfKa84nFNEnaRGbplA4oeh/ZIfQR98yeasvKxwlVtL1uCPuiBEIrkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FHXlXu7y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D471C4CEE7;
+	Wed, 20 Aug 2025 19:46:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755719048;
-	bh=wVbhnBpFX/Zq7DTszd7msln2BrK2tuah8OGziBFa8D0=;
+	s=k20201202; t=1755719190;
+	bh=P60wwoesTBMO6te6dk7a3L9wvODtWEgPKYSFfA3IV9A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HABbqDGwDkSdAJsSfXinddrrkvWyvb0hWN2fdrq4tUI56ouUNEgvZya04aSIbQbFv
-	 q+f4QoTIKOCLxFDXxH7Z2t7eHQFBIyegvhSxOG5BEDAQAJL4bFQr4n+RyfUClN4Fwa
-	 Qno9HlO2ZbdaL6TJbkPuL/6kuKCfyRryZnaxgcZh2A7l27UTzpuni5/yn4t1e4AVSL
-	 l/JhZLrguBpPk9qJB2nKVnO61Gl8O7YY+sUm+YL/L5VklhjSFWBMBox1CMIsoG1/CT
-	 EhOCWGNJfNte7n9qrCl1JxazLRjw6GTscM16O3vC1+kuGz/O86pffD0iD9BH56JESM
-	 +Gs6UOSHxZDVQ==
-Date: Wed, 20 Aug 2025 20:44:02 +0100
+	b=FHXlXu7yMOieX9RRwAvjK0zfFwWqf17kpDMgHbH0XybZ2crRGcSTAeOMIuxBWj4Gz
+	 1/BiA7hDZLZnSFHpBqujjSIcc9D/HwpB8Dr28x21xtl7j4TGxxzajPo2trwoi1NvPc
+	 eXOj1MpsDHo5U4d5AXtjTs7iaQqn3t5xloxhTu5U7F8loGe6IpDp9rXxqNuBm/R8dP
+	 +8o6zFe5Cc//ulkbEihHLCzWn8jx+ST+ZqyYH08O+hK77tXC1yTf2NgcZoNEO6DyB4
+	 jQQg+SHXQpgczflvLXVoxF9R2+eWQvbZ7vLwvXNJTmBKB6v4dFXl/Ovfdt6k4diO5Z
+	 GPdwe7AEeq5zA==
+Date: Wed, 20 Aug 2025 20:46:24 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
+To: Xiandong Wang <xiandong.wang@mediatek.com>
+Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Thierry Reding <treding@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	"Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/6] dt-bindings: thermal: tegra: add Tegra114
- soctherm header
-Message-ID: <20250820-spinning-arrogance-31b71d969bb8@spud>
-References: <20250820114231.150441-1-clamor95@gmail.com>
- <20250820114231.150441-5-clamor95@gmail.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Yongqiang Niu <yongqiang.niu@mediatek.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, sirius.wang@mediatek.com,
+	vince-wl.liu@mediatek.com, jh.hsu@mediatek.com,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v4 1/4] dt-bindings: mailbox: add cmdq yaml for MT8189
+Message-ID: <20250820-conical-feline-ef984cf0a2b9@spud>
+References: <20250820093831.23437-1-xiandong.wang@mediatek.com>
+ <20250820093831.23437-2-xiandong.wang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,71 +66,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="i9diGKFZwHGtBgg2"
+	protocol="application/pgp-signature"; boundary="B6HxqTqUFzbAImUw"
 Content-Disposition: inline
-In-Reply-To: <20250820114231.150441-5-clamor95@gmail.com>
+In-Reply-To: <20250820093831.23437-2-xiandong.wang@mediatek.com>
 
 
---i9diGKFZwHGtBgg2
+--B6HxqTqUFzbAImUw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 20, 2025 at 02:42:29PM +0300, Svyatoslav Ryhel wrote:
-> This adds header for the Tegra114 SOCTHERM device tree node.
+On Wed, Aug 20, 2025 at 05:38:20PM +0800, Xiandong Wang wrote:
+> Add compatible string to support cmdq for MT8189.
 >=20
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Xiandong Wang <xiandong.wang@mediatek.com>
+
+Please look at https://lore.kernel.org/all/20250819-coliseum-unsheathe-0c12=
+a58e65e0@spud/
+and reply.
+
 > ---
->  .../dt-bindings/thermal/tegra114-soctherm.h   | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
->  create mode 100644 include/dt-bindings/thermal/tegra114-soctherm.h
+>  .../devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml        | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/include/dt-bindings/thermal/tegra114-soctherm.h b/include/dt=
--bindings/thermal/tegra114-soctherm.h
-> new file mode 100644
-> index 000000000000..b605e53284fe
-> --- /dev/null
-> +++ b/include/dt-bindings/thermal/tegra114-soctherm.h
-> @@ -0,0 +1,20 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * This header provides constants for binding nvidia,tegra114-soctherm.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_THERMAL_TEGRA114_SOCTHERM_H
-> +#define _DT_BINDINGS_THERMAL_TEGRA114_SOCTHERM_H
-> +
-> +#define TEGRA114_SOCTHERM_SENSOR_CPU 0
-> +#define TEGRA114_SOCTHERM_SENSOR_MEM 1
-> +#define TEGRA114_SOCTHERM_SENSOR_GPU 2
-> +#define TEGRA114_SOCTHERM_SENSOR_PLLX 3
-
-> +#define TEGRA114_SOCTHERM_SENSOR_NUM 4
-
-Why is this "NUM" sensor not in the driver?
-hint: if this is the number of sensors, remove it from the binding ;)
-
-> +
-> +#define TEGRA_SOCTHERM_THROT_LEVEL_NONE 0
-> +#define TEGRA_SOCTHERM_THROT_LEVEL_LOW  1
-> +#define TEGRA_SOCTHERM_THROT_LEVEL_MED  2
-> +#define TEGRA_SOCTHERM_THROT_LEVEL_HIGH 3
-> +
-> +#endif
+> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailb=
+ox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.ya=
+ml
+> index 73d6db34d64a..f9718b90d36a 100644
+> --- a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+> @@ -23,6 +23,7 @@ properties:
+>            - mediatek,mt8183-gce
+>            - mediatek,mt8186-gce
+>            - mediatek,mt8188-gce
+> +          - mediatek,mt8189-gce
+>            - mediatek,mt8192-gce
+>            - mediatek,mt8195-gce
+>            - mediatek,mt8196-gce
 > --=20
-> 2.48.1
+> 2.46.0
 >=20
 
---i9diGKFZwHGtBgg2
+--B6HxqTqUFzbAImUw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKYlggAKCRB4tDGHoIJi
-0rwHAQCrTuKbYeJomxSTYcBj4MJ14GO3+TBM2PC7h0zSsEvNGwEAuuUnNdesVDmX
-Lbx6jgEug+wxC0uVQey13cfvJK8cIAc=
-=y4RN
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKYmEAAKCRB4tDGHoIJi
+0oQqAQDPHNuIZcBcVmaKJJTkZVUc6ou8ys3OTfy1DSIdnBdmUgD/djQs/i9p1tUw
+TnEoLLHvaQIqQNTRbeNYv6atW+6DKQQ=
+=iFbz
 -----END PGP SIGNATURE-----
 
---i9diGKFZwHGtBgg2--
+--B6HxqTqUFzbAImUw--
 
