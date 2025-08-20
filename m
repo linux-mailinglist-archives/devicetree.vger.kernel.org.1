@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-206897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD044B2DED4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:13:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB5C6B2DEC9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:12:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E5ADA01054
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:10:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 012F87AB18D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41569264608;
-	Wed, 20 Aug 2025 14:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A79264608;
+	Wed, 20 Aug 2025 14:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GMM6XANz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oluJR3lY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FB9521D59C;
-	Wed, 20 Aug 2025 14:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9BB0263F28;
+	Wed, 20 Aug 2025 14:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755699002; cv=none; b=hpDHvdJacUQD1DX5l0PkOUSM4gp6GBS3hUif+bDNJlGtrKqgYWCPRvhfy+uTsVSTMhy7UCozC2Abt5JwwfBJI1mlDWEIACD/RIBlW0jKNdZf9i1tuaffqI1Zyv2TLm2YR6BWylNRxcDt0AQHkXDu9E0fho0NMVTb7JXXejxPlYU=
+	t=1755699148; cv=none; b=FBvslu+l+rRb57lGlqKbhiv98YJi55o5qEHzl9EvzzgExx7g99avar7XQkpH8z5U5Eek13okefq8LG5Vs3intN0prOl0ZfMnqLnVGu8ga4SsDRPx4fck5E+RLzA1cz9QdDV6g45/LGvZd9WVDCUB/LhwBVDZpXxrn73Ny/DsJ9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755699002; c=relaxed/simple;
-	bh=sqe9qbdA5TL2KgyWbfPjytwIiDXhTpLiFklKKC5M5OM=;
+	s=arc-20240116; t=1755699148; c=relaxed/simple;
+	bh=sOQr8yffbQ/+IOQl6NWTMrHW4wUlh8Jhbg3Cjrv2hcs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EKa3uqtymlHV15EI6cY86u/KAnu/dRYcec/FWsLUB5J9JdRZKNqKaj72rq+2pWKwPQeX9rOemcLqfLEzSiFOY3aaRe+4Nqn4h1cEiQhBXjl8lgVP5NfUmdkvRbHKi8pq9dvLtrOamTR/HSDFW1ezhjCSqAKoC8F0H4h50UP/5gI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GMM6XANz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7290FC4CEE7;
-	Wed, 20 Aug 2025 14:10:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uX3jt/+1suc8JuhYt+zI6CBZfe7hMkneDLQoqiypNzpAvPyPmP9grth+Bns8wCwoqaCNE5yS+UYMEqnSUwmZ45HWVGVxPTrmkmiUSM18QYXPsqzSiFrWhvjQGuRBv0EW6PNra8YiGFYXxuyitseOjpcTeEKRCGgvX1cCeYXqF+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oluJR3lY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D3D8C116B1;
+	Wed, 20 Aug 2025 14:12:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755699001;
-	bh=sqe9qbdA5TL2KgyWbfPjytwIiDXhTpLiFklKKC5M5OM=;
+	s=k20201202; t=1755699148;
+	bh=sOQr8yffbQ/+IOQl6NWTMrHW4wUlh8Jhbg3Cjrv2hcs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GMM6XANzM8Wfka/z8j65pbK5D086lEeXEVALZQD3sYoycjLS9K29uAzVFD44rlNJB
-	 MlG0IXvA5PNoMRfR8FrZuLAqNcz+LdQmO+rz6Ie3kG+KTvxzGBPsomDaCs7sVYVIdQ
-	 dus81eiQB6WhPWX1/vpEn0N4TvsrrcBGbm/BJq6lHzOYzbsXZXPExhTM/RflTzh6Uy
-	 cn0H7ZZzR0s6Ts27se9ZiuOkZWKoPt90tSQJWnwu1nAxk5Cj0g2ZAut2AIi5JV3IPJ
-	 ZHxWbJc2tsVYljICGkq656wx9Bc5I6duPM+r7W2YmjhFRH0SuYOpQbu886CVEyUyrQ
-	 DBh8zaOJVqK6A==
-Date: Wed, 20 Aug 2025 09:10:00 -0500
+	b=oluJR3lYHewJGVf/ZHSt7d9jYsvqkVGm3QAjzOYMqOdh/RTlO7tPxiIjHi7iriEUF
+	 xWDluKUH6gJiPdtukcB0GaEmfFu/2YC/KoHsjnpST4w5mXrAkbCWYeVfPq4Wu/NMxt
+	 zTLJAk4pOSI1zcwGL4VzJ6MPbwfH+o1lTobJuR0r5E+cUy6Vx1+h8K7rQH2WiCCqWi
+	 KOOJEJll2siPgiABDeN0+o63OqHL6aPx0SV1QriA9zFQyqADKWiIQsLbO2FWCHi5g7
+	 QphzfGldwZUOIkTsDuTdrqNMXuNjDfrFQTdcioOs772WmY6KnNeDBI5Av352KlS/DR
+	 09BS/onYFPAfw==
+Date: Wed, 20 Aug 2025 09:12:27 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: linux-omap@vger.kernel.org, peter.ujfalusi@gmail.com,
-	broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org, shuah@kernel.org, lgirdwood@gmail.com,
-	krzk+dt@kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] ASoC: dt-bindings: omap-twl4030: convert to DT
+Cc: shuah@kernel.org, peter.ujfalusi@gmail.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, conor+dt@kernel.org,
+	dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
+	krzk+dt@kernel.org
+Subject: Re: [PATCH v4] input: dt-bindings: ti,twl4030-keypad: convert to DT
  schema
-Message-ID: <175569900018.3357203.16722669550945555808.robh@kernel.org>
-References: <20250819201302.80712-1-jihed.chaibi.dev@gmail.com>
- <20250819201302.80712-3-jihed.chaibi.dev@gmail.com>
+Message-ID: <175569914663.3379918.5538718443722944593.robh@kernel.org>
+References: <20250819222823.157943-1-jihed.chaibi.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,37 +60,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250819201302.80712-3-jihed.chaibi.dev@gmail.com>
+In-Reply-To: <20250819222823.157943-1-jihed.chaibi.dev@gmail.com>
 
 
-On Tue, 19 Aug 2025 22:13:02 +0200, Jihed Chaibi wrote:
-> Convert the legacy TXT binding for the OMAP TWL4030 sound card
+On Wed, 20 Aug 2025 00:28:23 +0200, Jihed Chaibi wrote:
+> Convert the legacy TXT binding for the TWL4030 keypad module
 > to the modern YAML DT schema format. This adds formal validation
-> and improves documentation.
+> and improves documentation by inheriting from the matrix-keymap schema.
 > 
-> Acked-by: Mark Brown <broonie@kernel.org>
 > Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
 > 
 > ---
 > Changes in v4:
->  - Deleted redundant pins list.
->  - Split from larger series per maintainer feedback.
+>  - No changes.
+>  - This patch is split from larger series per maintainer feedback.
 >  - v3 link:
->    https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
+>     https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
 > 
 > Changes in v3:
->  - No change to binding content, only updating commit message format.
+>  - Made 'linux,keymap' a required property as suggested by the reviewer.
 > 
 > Changes in v2:
->  - Fixed comment formatting (added spaces for better alignment).
->  - Updated commit subject to align with subsystem style.
->  - Retained Acked-by from v1 as changes are cosmetic.
+>  - Simplified the description field by removing redundant '|'
+>  as it does not affect formatting in this context.
 > ---
->  .../bindings/sound/omap-twl4030.txt           | 62 ------------
->  .../bindings/sound/ti,omap-twl4030.yaml       | 98 +++++++++++++++++++
->  2 files changed, 98 insertions(+), 62 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/omap-twl4030.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/ti,omap-twl4030.yaml
+>  .../bindings/input/ti,twl4030-keypad.yaml     | 59 +++++++++++++++++++
+>  .../bindings/input/twl4030-keypad.txt         | 27 ---------
+>  2 files changed, 59 insertions(+), 27 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/ti,twl4030-keypad.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/twl4030-keypad.txt
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
