@@ -1,128 +1,73 @@
-Return-Path: <devicetree+bounces-206701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08F5B2D523
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:44:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 247E6B2D520
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:44:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F00258724E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:44:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DEE4587229
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C19B2D8771;
-	Wed, 20 Aug 2025 07:44:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Ra8vI+iF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30752D8395;
+	Wed, 20 Aug 2025 07:43:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B9EC2D838A;
-	Wed, 20 Aug 2025 07:44:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D147F2D838A;
+	Wed, 20 Aug 2025 07:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755675852; cv=none; b=KT297im4v2jdtDZGfzpIx3GHmcalmBjaQ/oJze68bjlmI7ACHneh437b68pCyoGMKnoeeQgxuxUm6CB/NfUX1i4IrsMK6dcVFMfUCfzIND4/BYfNvRE+4WsPD9q9WFLo2hPbTg9xA6NAJ9iyIfMpjMigSpMEhidwnAmWBugKWtE=
+	t=1755675822; cv=none; b=e9eGdvLAUVAnxa22rpG9a1QC9tn6wq0UHBEOL3r3NvZKRxao8G6IOJjo+Nyg+2FfbKOACRTygE0/ZF6e3YzN9RB5uhhp+R1RMDdi5RtnmcXGbZZkmgXbqSTQYBjCZllooFtzH3TCD+kcoHUiOOq8TgQqY7kYDld2K4oCOYMhlDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755675852; c=relaxed/simple;
-	bh=tGfL13W8ti4YSK/nAW99ULHcrHSz0Etv9XyPU1NgCnw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZeVZigr8CY3SRU6j08ooZR7l9XftWf5b6AleY/2JpZoRGN7+rEjl+FfPy3qg/6PpNztmwShpkY+JKUOwLu6LPQKLO+o4hbKTdurzD/uCu70zb6Q+vo7IZVMWT9bQUviU87NFJ5+3ejXzFmkRbD1vc5Ym0Pg08vmg1ApEVAAL4zY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Ra8vI+iF; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id D475925D1A;
-	Wed, 20 Aug 2025 09:44:09 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id Eg5zdjj6xz1G; Wed, 20 Aug 2025 09:44:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1755675849; bh=tGfL13W8ti4YSK/nAW99ULHcrHSz0Etv9XyPU1NgCnw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Ra8vI+iF6/xFxBmwuQMo1Tp25pzmLZs19io6wRgsYmtwhHkMoQI50B/4MA3p8jjxl
-	 Jk5bJsI6WU1J1Wxx6Z34I9uPrqvvnF0RXPMrIq5prPv1WHl2dKUph/Ua5q3Dd+1ys/
-	 3VjVEMUd3NSnkYal7EA62k34RHAi8M7BIcaSXeR+XWjrDEjLtqNgLrAOcnvvL1d/uj
-	 /bEhFxCY41MnhNQbL/Chs0rQO60nNtJA8Qr9bTCFLyFTQL4LicDpiP/glGFQ8K1Hk6
-	 UcR16pT2xtMeG3qV1PwWtJ8rRTnGMCqJKdmasT9jlKgUFsxY0I8OQjGsjh8YubUTWC
-	 o7VO49zI0d8Jg==
-From: Yao Zi <ziyao@disroot.org>
-To: Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Han Gao <rabenda.cn@gmail.com>,
-	Han Gao <gaohan@iscas.ac.cn>,
-	Yao Zi <ziyao@disroot.org>
-Subject: [PATCH v2 3/3] riscv: dts: thead: Scope the reset controller to VO for TH1520
-Date: Wed, 20 Aug 2025 07:42:45 +0000
-Message-ID: <20250820074245.16613-4-ziyao@disroot.org>
-In-Reply-To: <20250820074245.16613-1-ziyao@disroot.org>
-References: <20250820074245.16613-1-ziyao@disroot.org>
+	s=arc-20240116; t=1755675822; c=relaxed/simple;
+	bh=UjZfaipluX1s7VutU1TGz8040yUluQPNILqD6jFLiBE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wt+7BFknB75aBZ393fey+D0wXaqOzatUOQiY6JYyQYjRV/oWlkVMHR2C3GP2xsQfPzyt1L64YJTXIbDmVuTVdq6EqE0bJsTQCRWih+AHPu9QqG5XZ8VJPSC5Q9XLm8dtsOuwRrCQp0pSGpOJYH5nZSAyvsBHATezhPDT4tZLBMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D20ABC4CEEB;
+	Wed, 20 Aug 2025 07:43:41 +0000 (UTC)
+Date: Wed, 20 Aug 2025 09:43:39 +0200
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: T Pratham <t-pratham@ti.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S . Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Kamlesh Gurudasani <kamlesh@ti.com>, Manorit Chawdhry <m-chawdhry@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Praneeth Bajjuri <praneeth@ti.com>, 
+	Vishal Mahaveer <vishalm@ti.com>, Kavitha Malarvizhi <k-malarvizhi@ti.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: crypto: Add binding for TI DTHE V2
+Message-ID: <20250820-sexy-squirrel-of-luxury-e804de@kuoka>
+References: <20250819065844.3337101-1-t-pratham@ti.com>
+ <20250819065844.3337101-2-t-pratham@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250819065844.3337101-2-t-pratham@ti.com>
 
-The only reset-controller described in TH1520's SoC devicetree takes
-control of reset signals in VO subsystem, while using a generic
-"thead,th1520-reset" compatible that may imply control over the whole
-SoC.
+On Tue, Aug 19, 2025 at 11:42:44AM +0530, T Pratham wrote:
+> Add DT binding for Texas Instruments DTHE V2 cryptography engine.
+> 
+> DTHE V2 is introduced as a part of TI AM62L SoC and can currently be
+> only found in it.
+> 
+> Signed-off-by: T Pratham <t-pratham@ti.com>
+> Reviewed-By: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-To avoid such confusion, let's replace the compatible with the new
-introduced "thead,th1520-reset-vo" that explicitly describes the
-controller's scope. The controller's label is updated as well.
+Why are you changing the tags?!?
 
-Fixes: 1b136de08b5f ("riscv: dts: thead: Introduce reset controller node")
-Reported-by: Icenowy Zheng <uwu@icenowy.me>
-Co-developed-by: Michal Wilczynski <m.wilczynski@samsung.com>
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+This is not really acceptable. You must use the tag exactly as given to
+you. Not alter it anyhow!
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index 03f1d7319049..025402f6aa21 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -235,7 +235,7 @@ aon: aon {
- 		compatible = "thead,th1520-aon";
- 		mboxes = <&mbox_910t 1>;
- 		mbox-names = "aon";
--		resets = <&rst TH1520_RESET_ID_GPU_CLKGEN>;
-+		resets = <&rst_vo TH1520_RESET_ID_GPU_CLKGEN>;
- 		reset-names = "gpu-clkgen";
- 		#power-domain-cells = <1>;
- 	};
-@@ -502,8 +502,8 @@ clk: clock-controller@ffef010000 {
- 			#clock-cells = <1>;
- 		};
- 
--		rst: reset-controller@ffef528000 {
--			compatible = "thead,th1520-reset";
-+		rst_vo: reset-controller@ffef528000 {
-+			compatible = "thead,th1520-reset-vo";
- 			reg = <0xff 0xef528000 0x0 0x4f>;
- 			#reset-cells = <1>;
- 		};
--- 
-2.50.1
+Best regards,
+Krzysztof
 
 
