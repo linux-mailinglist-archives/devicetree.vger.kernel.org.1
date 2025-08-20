@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-206689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11887B2D46B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:03:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F551B2D46E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:03:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A65EA1C2376D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:03:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D04DB7AFFBE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:01:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E42B2D24A9;
-	Wed, 20 Aug 2025 07:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64BEF2D3755;
+	Wed, 20 Aug 2025 07:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AdvSAJ68"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XMZCfzHN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D732C235B
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:02:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A91C2D3217
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:02:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755673375; cv=none; b=fes0bALltqMUdobaw+uhE/v4Gqg3u8qhinLNL0/QaCAICtSvnTSFuynggxAtx+Vtoqchrxvtr/gHr2Nn5hsx5UgN0TrChy/pDDdRrMkE22mbLRH+dM2meR0gqffe1vi06Unb0HFEFTsp0spdeAeov6ITJszdcVtrYHs7p+fGBRU=
+	t=1755673378; cv=none; b=rVSrQF6gMCnvwDFHS/ktWZQKA6a+lwR26L1sjGE2DzdQwR417XonPnihnZxY96X5ragJ7UNMGsoetTINRB/CrGqUJWX3ECVCnRz5bMsJlrZiPWNwacmTLHuVMjbWQF5dQddFwYD0FDoLnMMdlpmZOa4wjnVXc96A9yLa2tw/iG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755673375; c=relaxed/simple;
-	bh=Pxy1ceX/K708ATMRkgiCl/qGBMScopnigW8cLcERjdY=;
+	s=arc-20240116; t=1755673378; c=relaxed/simple;
+	bh=AkV3VRQfJAkPuyGMV3zApyjndBmAsTYMa/X+l+hz0eY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ubmEARf8QAp0lY4nPNSGtig2mMLtXd5Pq6pxSL6OFua25AXUMCPVbZMNCA4HyHhp/+ENTogx+oqCtwhGsa/vNYnDcyoShRdgFtgjLf0YnzgXRuxfEXucZbiTjxtL1Xqhmr7pt2MTLH146IdG4ZekgfTjcdx+uG1sufNX3qBcrLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AdvSAJ68; arc=none smtp.client-ip=209.85.218.44
+	 In-Reply-To:To:Cc; b=HEzvGqHI9b/qAUYXUCpU4kjatBAZJO95E0sxL3jjiwkeyUEJxvtpKywTcI9oTAGM2CmOs+Lck3MGfI90IYVCNV3mdr4W3JX6eTF4aIo/65WKFiJ79B3amjBm9cV0NM1oske2F8OrTI/XorqkebIYLnKShIe124+C5wgzaPEXaHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XMZCfzHN; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-afcb7aecf92so81693566b.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 00:02:53 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-afcb736dc8cso79134666b.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 00:02:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755673372; x=1756278172; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755673375; x=1756278175; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DH177aI32fcw+0fi3Kr7cEylMFjtb1+kKdAUsXxCdWo=;
-        b=AdvSAJ68XSZnVb7UaPm7wodp7sbHA7ey0737d5oKC++nhOluF3g0ugaz8/bc5DgOTA
-         PjtGs1UgJMsNjxIDilzxQM9q/DkKL2hqhXkU0ri5pIIzeSxzg7bxOPYtN44jBYbrOh6G
-         gJO+kUVusosyVAWIl3IKOj0o12Tz9gMUIZ2IePuOi+Bt53gcaE03cOPeJX6qaASLurxs
-         EGsqtZp1az1xNVdN6ub/IwNmyBtx/vQ3YR4uLyVYkJfrohevgnfZUzjgmxkuqIMAGxoQ
-         1CLGKgXS2PeSZjW2aazOR3VwHW+09dYZAkuJ/KtJIf5sBxiV0UZKI0dg+vTgM9LC8pL3
-         MLJw==
+        bh=JYDyb1l+byMOiaJzKn+UnmmghGQhvpVn03tecEee7KM=;
+        b=XMZCfzHNskL/FbJUIb4n1JeVmbNorbHHxgb6PEFDRs+qrsS2gOijhEBJjfKbw3cirV
+         m9Ez5N0NbiVrjWEYNK7bS5W+9E4TwSH55zQaPpPLMQ8S3gREswQ9ViXV8i+HoIGwfX/F
+         IFbbxECUj83P1IGUEZkR0C7iLzHzo1DFc75HK/XCYUOYGS81FKayUDVwimWdT7Eylmbe
+         fumUApbwBW7Fs7nEZHX5kPe0Z5AsEm2Fk6bitPU5pdO3te0CeLCuMRwd3mu7h2wyxE0q
+         KnRo+uyI+gZQP3cHUBXrp9ZSg3xYraWqTaw9HQhRyPbcwJJPsEjjBs+FiPDhwVUYLgip
+         kXbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755673372; x=1756278172;
+        d=1e100.net; s=20230601; t=1755673375; x=1756278175;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DH177aI32fcw+0fi3Kr7cEylMFjtb1+kKdAUsXxCdWo=;
-        b=F+LOn7f8H0nQlaluvyR0YfKWWgzZgNkhT7mZV/iN7MS7UbVQYNFUvououKtqW7a+18
-         VxwiNXgMr8GvWC8eAK0O443B2AjtddSJU3Kiq0UihRANrSVXZcBRUwnJXT44f4n/gCXn
-         ylbUtIsvXvqlzVf5PkMCjOdQyTRZbuYEsA4ogmZsjAAA2YJ8DKkQ96iyaPZvmND1jvsE
-         VzsDIALa3VOPQNSqpaUI1pDjz9tbdvL4VjQHAcPx3HNWIml7cj2TP5R5GRv5cS5aeh6u
-         uwnaYNgw4IvPbb7K1nYtRYEpaybhPzSypiebCVakJcNLGAec01KiOpwAfRzNGI0et8yI
-         yqsA==
-X-Forwarded-Encrypted: i=1; AJvYcCXvu2MRkbymOYWGGRr3geN/m5Q9Pug3tEGcRgBespCmy4g7/kVtkGyvPjK4sTAWixsrxIz6BRw2AXT8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLm2Gch97rO7hQ54XAeFh3rRtBBkX/gCXgcTr3MxfFASGM3V4Z
-	nBkMR0dBzIvn0kAlYYqHfVi12QxRGyvlJAC0IEE4zMFldSVieWWdE4fc7ABeZBou2ZA=
-X-Gm-Gg: ASbGnctJ2dlWlBzlpbbyhgK/y52iLEqRs0ZEruiLkCi7enzLpJwBhkIOBcpedf7VhGc
-	nWjhVmMIPLlVLtuEhJKD734IkeV+K0sJZ1QoDq+2eEvyC8/6PcXrXdS4jN7d1rkORNRoeZ+ETvG
-	jTr8uUSaLedGYF4IPgWcY5EVfxcibMIf3H+Uomd5C+gCA8BRJNROmVXV8aID3JFh55Je6J72LSh
-	StsuSXF9x4FshoFHKf7zRMpQBqktKlPNatOpm4Cshc49iREF5qdsvpDhYjppTYTTzdThtBdcYrH
-	78D4DqWfmbJh+ATtgR6zsTKYI1tnsr7pWT40ASTlub1CYWQEOeZDjU8yHffgUguG5YRpIAYm7Ks
-	5uA8zUJ7XdC2ecE483OlyZVEQZnGqqPB2ZIt80zQ=
-X-Google-Smtp-Source: AGHT+IF9FNxgrgCt2MNISlOazft7efckRUUOCCyDUI6tMZE11GXZO0az7ewPiYnvvCxno2JpihA7NQ==
-X-Received: by 2002:a17:906:7316:b0:aec:4f0a:f9ac with SMTP id a640c23a62f3a-afdf02106f1mr69015866b.6.1755673372063;
-        Wed, 20 Aug 2025 00:02:52 -0700 (PDT)
+        bh=JYDyb1l+byMOiaJzKn+UnmmghGQhvpVn03tecEee7KM=;
+        b=Otfhg47t7rXP0tc3R/jzp7tGg/2ro13zuR8jaYXJHie1qK0mQnxw4uWJl+3/tJvZte
+         hJqg3CAZ14ePwG3ilu1aDKmxsfQ1WKabjWAJOJEKD2NGzrXD4W3F/rEQny4OVshDjken
+         J4Y17ExY3/0RY9aWVxEiXzu5oB3OUaF2O0HUhZUycOH8xoz//U+w510ZEOQSkJu5U+ym
+         H3ltMtKZeGVU63z2dlWjHR14J31gQZuTPMSpECGii2W1rwQE0Q9rreHKTNV0SgwohBbZ
+         mZS3Uz/D/84Knb57RWS8DuZnRRhYNjz//mDE4yTM+7DfJdspYq3nWu4/uqfIu3s9qFy2
+         Qt9w==
+X-Forwarded-Encrypted: i=1; AJvYcCW4DZhOif5W0frk/I6jrUbUMkqbJ+p56MqOA/EABRgCxB9MikJ7vZdbPjeNtNJOM9A7n+81t/b8Rqqh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0fmSOtyB4UGOpU8r34ViVqJpatltsLsUSLZzLAsJtwykZlpna
+	+JUOBRJhIw7blGekopLhW0I+zf3Oc6Jp8YZGnlyutYyqsWhS0/6YP7mG1BitwshvEYg=
+X-Gm-Gg: ASbGncvGnUu0g9zXrEw/ymbaEQaAsMYREksaND1b0A7H5vh3d3qUO/rvmYXEECGapLg
+	ULIW/sIFjjW2fRTjp26pfazt5gIfO0YGiXmvdEAcQ3UZ+kFab6Urqr97GmlhBN3MkFJjwzo75a8
+	JGasj0FaN3rnee/Mwq6zOhHz1tXvsSlA7Rxh00bQpMwC8ZDFMUig7OD38jbZ1cnHTvGwoK9AXDV
+	KvZ4NKLmBiJgRC1VJuxgjA2RLjV1Zx4jphcHo0vUi7RA0R5qpp4ZHIfUGCd/yUWYK/5Pj/CUGLw
+	6wGIhW9h/yiImmd7jQlRNuSJmCTQsdtqT1y936ZJL2W9y2IezVLe68TQwYmuLZ/PBQsd3x2Bh1t
+	EAnRLeELVdvbQYRwRGeLVdLMbsXPVio2jiberyGU=
+X-Google-Smtp-Source: AGHT+IHJRyotiUitRQlmcmuPpwvWkmkIG5BFx79tKET0/ZCpVsB1kmI1FDM/O1dsctY74CZHdQJyWg==
+X-Received: by 2002:a17:907:869e:b0:af9:8a71:e090 with SMTP id a640c23a62f3a-afdf0280436mr79978266b.9.1755673374003;
+        Wed, 20 Aug 2025 00:02:54 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afdf6ff14f8sm37756466b.67.2025.08.20.00.02.50
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afdf6ff14f8sm37756466b.67.2025.08.20.00.02.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Aug 2025 00:02:51 -0700 (PDT)
+        Wed, 20 Aug 2025 00:02:53 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Wed, 20 Aug 2025 09:02:40 +0200
-Subject: [PATCH 1/3] dt-bindings: display: ingenic,jz4780-hdmi: Add missing
- clock-names
+Date: Wed, 20 Aug 2025 09:02:41 +0200
+Subject: [PATCH 2/3] dt-bindings: display: ti,tdp158: Add missing reg
+ constraint
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250820-dt-bindings-display-v1-1-d5b2555df51f@linaro.org>
+Message-Id: <20250820-dt-bindings-display-v1-2-d5b2555df51f@linaro.org>
 References: <20250820-dt-bindings-display-v1-0-d5b2555df51f@linaro.org>
 In-Reply-To: <20250820-dt-bindings-display-v1-0-d5b2555df51f@linaro.org>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -107,47 +107,44 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-rockchip@lists.infradead.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=999;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=990;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=Pxy1ceX/K708ATMRkgiCl/qGBMScopnigW8cLcERjdY=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopXMVT/M8Kz0Rj97OPMv9sVNcaz0uJrb0hpTH8
- kC19UClVTGJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKVzFQAKCRDBN2bmhouD
- 18JrD/0Q2MVyZwW9e4PQUvRkQCrJj1FZOoyd6meUdkZZCtOx5WXnCz6j7oqqPHzA84QftUJIEsb
- J4c4cgQf6k6PZn+zX7ck4MK2YbM5Z/ptaV6cyi5Q3nB+sNqkWxX2ZTEt2GFPbSjFVhmYB9G28K4
- Ov8uyjdeLuFnCQxWj9RtBVw0joZGfx5pEs5xI9dHfCJbMd95Qou4cqJtAbFwUnE8dLMROGaJyp0
- sxJYXnKH91zEJl+MxF5orITmFGsZsdBUfeBrzOlkJHZWSEDQHaJ5u8e6qzq6z3tVXu8wUWdL5kw
- PaiwcT8AQrcAndkVNiUDkjMc14HH383AyaT0//MGYrdZPxZmd03GC8hGGBAf/duk2GfNHN7ZifZ
- dGPbiOqW6FdyG5Hztz3myV2M9Tozh5G0/H5NHGpehXf3dgFqQTgWKp9xBiGUcsuPBLrJft2S0U9
- OC4BNjPaJ+KtIYYmMETw84dGimY/hECbjUO9Oo+d8z0fMtuPrSp2j4130edqJNQ5SrEPEfuEgDj
- +vk/PCpEVNFcSGXMqqrTfeewDXEfp+mdbh2t6yLFC6pnfcu7X85/2W7+8Qbcohm+mmv1EcpG6EP
- IPbnKFuQQIHsU4CgtjCPd4w0QEevG7ssarieYUB4hEUsO005lHEsQP8BMgUTZCPPdDUPAp//BRy
- HNJzhF/eT5axvSQ==
+ bh=AkV3VRQfJAkPuyGMV3zApyjndBmAsTYMa/X+l+hz0eY=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopXMW9wkV4htcYjEWNJWdk1zKtmlcN5CE41MJX
+ 1lvlVHNyB2JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKVzFgAKCRDBN2bmhouD
+ 10A2D/9nQCtB+BeS3a1GcRicjBMuO4BkqDJ5fzrjdybep856QeJGH+n5b1OlnWduayCgJ6pf6Dl
+ LypCyElXEf/lACJADLNxNjsYmPhmf1xM6Pcn8rUiaRjTWzL5kuaKrt8ebYHsWZLGMPLPjWAInos
+ ehCcXGVg0K+9/wGg+Ktof4C42Apwde031SvjTDqRFovXzfZiMksOvKip8EqCLBP0Q7I2ATk/HMo
+ YNb5TZuVXvQei+SPOlGiDyjSE/lrv2u6zX/8Cgs4bgm8+lgw2vhnoLu6FCSssgBpspHM8XdK4mi
+ 7RVZ7+AejZe9/NrCUiby/iwRcz7r9GZBpbYj4AgyEMwchWysCpt/DeGaKJl8wFIUvCVHtQlInvQ
+ u/+ww52Wz5tbPFYypkn8DeAl8xTQvvBB+tdGFPq6HedhtRQpF5e3TI/f19j7CO7XbFvdc7L+Ij2
+ AaU9Z2GXgTdcvBI7CQn68hNqcoGYQm8dmxaObXAHIRncTbasCU41dBaRlDqGBxwIpW+8mzxHOZ+
+ mxP5i8qdMzLlDOb3upooTdHnHYdpxv+4rHyKsOa0BR3VtvCISQUHiIlfo44ZFT5KnxqQrJQPqXY
+ QmdKI43hwtGaOR0OnRZzVR/elstxfWt1N+1ovS6R0pbZnNLTFD73gtuL9gYcz84OOUd1K4qOkvk
+ Uj/DMPJ6az2a7Nw==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-The binding references synopsys,dw-hdmi.yaml schema which defines both
-'clocks' and 'clock-names' with variable length, therefore we need here
-also same constraint for 'clock-names' as for 'clocks'.
+Device can be used over I2C bus, so it documents 'reg' property, however
+it misses to constrain it to actual I2C address.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml        | 3 +++
- 1 file changed, 3 insertions(+)
+ Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-index 0b27df429bdce0b7e080ab291ee0c4c6b51f8e1f..84df3cf239d5bedf8a5806bb48507fea207c7167 100644
---- a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-@@ -26,6 +26,9 @@ properties:
-   clocks:
-     maxItems: 2
+diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+index 1c522f72c4bae3313930b5c76dd04dde1aef5151..721da44054e19ff04fe9d8c1dc31a9168e8f79f5 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+@@ -17,6 +17,7 @@ properties:
+ # The reg property is required if and only if the device is connected
+ # to an I2C bus. In pin strap mode, reg must not be specified.
+   reg:
++    maxItems: 1
+     description: I2C address of the device
  
-+  clock-names:
-+    maxItems: 2
-+
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
+ # Pin 36 = Operation Enable / Reset Pin
 
 -- 
 2.48.1
