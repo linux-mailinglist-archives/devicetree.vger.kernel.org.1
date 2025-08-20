@@ -1,274 +1,241 @@
-Return-Path: <devicetree+bounces-206921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54CDFB2DF75
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:35:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DFC9B2DF7F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:36:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A246C1883523
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:29:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01213188EEB8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85ADA275AE6;
-	Wed, 20 Aug 2025 14:28:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D763226FDB2;
+	Wed, 20 Aug 2025 14:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ce4PT4Cx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OV9bJd0M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05BB26FDB2
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 14:28:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD14635334E
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 14:35:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755700129; cv=none; b=hZ/BBgmt8D8UyVMs5mblPk7m69r52FOrcYkUjh+UnEBAFwACf8y6cOosAe69Tag/AoECeskrI2f9Ftqc0rnRu/zAEHNdnEP7WEzNhLkfXAz0q/Mi00MYZe/T0YO4RId6PqAKimwh2Tu4ANx/n8Bpb96GzBPt/mrPgfUKTnAky6k=
+	t=1755700521; cv=none; b=H8MIKK3rCNPIC3wf2rjEN5VEPF3MLW0474qBKQTo1+OCYvwixsC4kulg3Aytr9CRNM9l2oEcP4cKwXTHw4tbZIk+Z92yghvi8PnpvO+UloGFe5Oq1gOgKZXBs67TJbMef8EvCkeVe6SoNGtYwVtn6RP4nG78qfgD74PZYjcM/ag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755700129; c=relaxed/simple;
-	bh=neZ49KyTVZEtGa1LBEivdDxTGFlLG2vQYfbGidEXrKU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=G1HMd7hCHN7Dq0vQWrRiHRJq51siVXY6ue6cXXRL5Dow9/MU64eybyyd3YfRNC3pzES4y+znm7VX9GO/RncxmiNPbdfXM7H91mQHZslnRfblzBDICDc4vU+qxiLTOVECq+AF7p819ekN4LJTYH7sf6JcbioR1T+8nGAUAf/GBt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ce4PT4Cx; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57KA38Qf004230
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 14:28:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=sPyP5LFvODeWiNRqv7MyVr
-	8luCj0S9G/q4eynThmEkc=; b=Ce4PT4Cx2GuCNFZiAB3J96wj4oP7R1bingf/wl
-	wNlxiVroMfdewBX9TwQ8aFA9DZvroLPws7Syw7KgAaTmpnDXn+mYnz02+1RJhwJF
-	OSHebsffe/dCNUhnaDS94REGFNQQzbO8+2B4R5VHcEHbfgpoUdlnyHN/0RmcKJJC
-	pIFYm9cvqLUVK0ITVTLIZw7iCc2K4i4OzbOXjaVgA+DNk44J8KjRKzFKe6bXhWjW
-	UKz3eI95Zcu0ryLLU6Dswfu73rRNDm9K//4ZDJ2EmfilMF1/5PgMqj4QO1QpwyHS
-	YYQZPOWEvvaB1CdM/Tvqgkglto7oJ1f3y2Cn6+U3JnLXuOew==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52ahymf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 14:28:45 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b471757dec5so11444394a12.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:28:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755700124; x=1756304924;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+	s=arc-20240116; t=1755700521; c=relaxed/simple;
+	bh=1Qag84jSIYKKGB3GL4h9gMK0DcgCqCfg2JEuSG840xo=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=r2QPKl5cTBBp4uxkocmnABd14GP3SLybSAVcoJC761K7Gv8djA8sxfvI9hOEScq9HmLlCP9ebqdUTHnxWmpF18w6rfCCHKXNqSb8V7yWGku3y2jK7E7BWzifrdb1igZ6cMizs6Y5rC+uoKJA2HfkNS0MBJpfolZFSmesq44yBHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OV9bJd0M; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45a1b065d59so34440825e9.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:35:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755700518; x=1756305318; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sPyP5LFvODeWiNRqv7MyVr8luCj0S9G/q4eynThmEkc=;
-        b=REDu6zbLtzs0Qlk2bQ/uv6rDMMgLA3C3jdZlmDFiqeIVZQFptsBrQ9/pSbocBnqCgf
-         4ViGDgB4oK/qdkIBbVNVpPlYg7vZGvAKUjia7E0+N4um2G2KNwshVHqmCu+O765J7NgU
-         /TCG4ilJPbJZQ0Yka4umGEPaLfosChEnmoNIf3K9eUIvFSffdCTSMZ0BDTIEiaxf6Lfq
-         9fbVkAfsDicEPQfsIgLCsJOXnoKkT+MrJWOXH3475jA39uQe2ZOj35JJoruE9qJejvl3
-         GR6+tTu08JXb8n3p0iuIouCQcPcOSanUFsouI3pwYPHvu/A2A4MUd2hCvsVTk0svzKYH
-         GVlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUCHu5Y0Yn0zPR8FLbYyN7+WLEOMMjjWb4/jqRLsX2x1+bdd6XKcdWRiNeuiXml3j0dVH9CMwXAfcfa@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyXdT/mg8hbF7gnTnRaILt6Y+t45BYgTkDf7Sngp95lEtghvE0
-	Bh+Q2lKi17siE99DOyljhz+5iOC63ov/zbGgOCSS1uJvBXP59mxp8ZnAOpShQjC+6mXxda7i828
-	CCpuQ6tL9kNRZzYwAwGKFr+E+LwgkKYOxbQfObrv1kDwfEM1gmaS6nH5Qgfpm7Xwn
-X-Gm-Gg: ASbGncuvFYZv60SOBUABvCqy8AMauyn2y7hOVONN/9A4WRiHeyYSyR8ARVXb14l+K2M
-	ryHSFj9i/eFCwASOoyX3tPUujX6/UCVQMkVOiS+CjJhCZ8LNlkby8rfp5E+dYmzcwDUADAwG11v
-	rsHBMVwoumbbFbK8dgiSZ1IJi+DIyIRRmcnmf1dPanhYMzs3G1IZIFXiVM2TwQsZIf75L4XZ0DG
-	v8DIydJtN2MBFYLWnYQ+PRRjwADT7b001TyUJMk35hIOGGjtsOZuZSEiR6a52bjpFD3l+l1M15t
-	rQFsYOaRvfy0/5XQDP1eJL1S3O+Vo34XZN8qAsX3VRygF9R5q5J6gK22kDjIdTM2Q9IklCr5iij
-	j
-X-Received: by 2002:a17:903:41ca:b0:242:8a7:6a6c with SMTP id d9443c01a7336-245ef150ae5mr48360905ad.17.1755700124116;
-        Wed, 20 Aug 2025 07:28:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGcKKwNxAixqEvxQMv3bygAQ2ikirzD0wkL7Np597naqBY/v6S8MzZ47RtfUCn28knGEKgkxg==
-X-Received: by 2002:a17:903:41ca:b0:242:8a7:6a6c with SMTP id d9443c01a7336-245ef150ae5mr48360085ad.17.1755700123520;
-        Wed, 20 Aug 2025 07:28:43 -0700 (PDT)
-Received: from hu-vvalluru-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-245ed519787sm28551305ad.143.2025.08.20.07.28.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Aug 2025 07:28:43 -0700 (PDT)
-From: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
-Date: Wed, 20 Aug 2025 19:58:35 +0530
-Subject: [PATCH v2] arm64: dts: qcom: lemans-evk: Enable Display Port
+        bh=Lyug+3qlgRJRhXiV8Js+LFY/rJHmnY0zI7jbnl8sttM=;
+        b=OV9bJd0M6gswSiSqNYNoygHPHZr5pimR7L8+mHbQxUb/CaaCXtJsR1yLxNnTLnE++5
+         mGZMe3yjbuDRTI+vHEO4/VZWdaB3NzCDLUz0yBOIamZyfsCbhAKO5qxiNbaWwdiD8Ea1
+         2APsSX+wB5mlQIedN77Zw/zVEpnxYRzNyJlLlA5OLuVYFbGefV4hi4EXnLPyBhFF8FgL
+         szB7d2HpCKyIYEc+2dV2XoyjClH9NlTq1jwJ7eFSg9xFXilH95TmhQ28V1Dr2vDL1m11
+         ETW3TkhiCJUsMUb4VI7LiG6kHzdn0aGhi19PDJw6kRiuKYESHUUY2HiBWM85/rgc/JSa
+         Yn3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755700518; x=1756305318;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Lyug+3qlgRJRhXiV8Js+LFY/rJHmnY0zI7jbnl8sttM=;
+        b=pJbHsSQ73VmmBmt+KlfPfb6iLl84ggECO8VO9j0OzawXwr2kCzDmaMU1wwPvAjn7wU
+         xKc926VJmCRpuiTl4rgdf08dECivmx4zlVm30NtGqPVf5Sw92ia5Q8hRiuRrWxoyKczb
+         Z18yavpr8ApPGIUwNJCjWi4Z0NA0Z98hv9ZniN7Rv5OmQ7ONDbwrsUWNFh5A7I6CzKR1
+         bRjMWiFI7Xu2zN1f/lOfK7Z/PaWxwsWqSost2YALgcQOF79z8poQguN+3nO6GP4EJiNl
+         Y8/cJWYPf1oZHr8I29oQiSQU32ciryqp2hz7msnQ2vzER4w2vN0w9tuWFej++ChEhtK2
+         1GhA==
+X-Forwarded-Encrypted: i=1; AJvYcCValEX/bo+kRd7ZgFnx86E9vCGyHyJbjzawvhOPMGHGT0yQvhnUW1RngJ++38onmwwZc7qI6G9L3Brs@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPNNtQLwYLdX8ZwumZKyGTYD1WK8lvzlhoRtMoIkvPwCWW7F9h
+	8og8jSHxqfdNSjWeKO6J3P6wg+qjL9NL6eDKUryqBYv3xmBEh046NWoX9aXw+PO0N5E=
+X-Gm-Gg: ASbGncupCK3P+JKJJs3pw8sPfQEKNU3GHwcyrK4Srni3UNv945v3/IYuTnILW9jqDKe
+	bEBtC5TFO4qx/yIF5k58kcZI3RJJxpG/HY8iiFq94nk02rLxz+eYpCP5menm2Wy1N3WFc8xymnf
+	NXYISEj1IdEMnGTXTzR9lSOhUNgrHr/DuHvFviQLkzQtI1ce8yf/fOULh3GFlLdEtaeTPh961ka
+	LgHW3pS4FMogAB7m9hkU1l5Rjan6Lx3LrwdseQE406KBxWuo45sczstR4qw8RlBKYGlHWOPhy6z
+	SWB51VyOCsPI1XZ3OJpd7riNiX+omlAIbtZL6FYIT4NleFgQJF8YhI/MmDghvUwxPiv47D+4r7B
+	5mId3m8x0YIzdTg2ZiOoyGLBAQqUZbLYKqH3dU5GZ+hyiyOGEplDLErh1J6mtYZVkWA4ktLTC2d
+	el/4V4mb7EsQ==
+X-Google-Smtp-Source: AGHT+IF9B7tqIKdb0iENG78IKFvAW+b3aPLefvK3bcUp3eG0jsgNx9wqXhniQbUfVg6Xi43bgw/eBA==
+X-Received: by 2002:a05:600c:3144:b0:458:f70d:ebd7 with SMTP id 5b1f17b1804b1-45b479f7aa4mr22885645e9.20.1755700517998;
+        Wed, 20 Aug 2025 07:35:17 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:dc4b:4af3:f382:7aa7? ([2a01:e0a:3d9:2080:dc4b:4af3:f382:7aa7])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b47c29c9dsm37952745e9.4.2025.08.20.07.35.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Aug 2025 07:35:17 -0700 (PDT)
+Message-ID: <d1c0a646-8089-4d5c-ac5a-068c4910bb66@linaro.org>
+Date: Wed, 20 Aug 2025 16:35:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250820-enable-iq9-dp-v2-1-973c9ca22474@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAJLbpWgC/3WOywrCMBBFf6XM2kimaZvElf8hLvKYaED7SGpRp
- P9urGs3A+fCPXPfkClFynCo3pBoiTkOfYF6V4G7mv5CLPrCUPO65RKRUW/sraSTZn5kxnunnUT
- dOg2lMyYK8bn5TucfJ5oeRTv/QrAmE3PD/R7nQ4XGtNxroUip4IxHgXXTSeu5ttRwIW2gToUAX
- 9c15nlIr23qgpvsz6oFGbLOC4WEvG2kOA4576eHuX0f78uB87quH4k3/X/9AAAA
-X-Change-ID: 20250711-enable-iq9-dp-addc9c7195c9
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Shashank Maurya <quic_ssmaurya@quicinc.com>,
-        Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755700120; l=3004;
- i=venkata.valluru@oss.qualcomm.com; s=20250711; h=from:subject:message-id;
- bh=9yBiuRq/b37ygaYnKeX77bHnFkhApr+QDXwALNrB5Sw=;
- b=1bsu50TNA9TZbqwrGV6oUL1bym9pGMHIkLOj5tFGh0xK9kmRJaWhzeW0/0C6/9Bp1Z6MPKhBq
- kV+EFapaR7fDSjHrGGjjUgGD2MmNMqfNukkSdTZKRDOfzhaPYBmnvPW
-X-Developer-Key: i=venkata.valluru@oss.qualcomm.com; a=ed25519;
- pk=f/CAPG1ZGl5SP8S1GuC97WMhUEV87h0JheHkNMt1nhM=
-X-Proofpoint-GUID: D0YHE22VSUH4ucjOHQf2efc1zBvOgt0P
-X-Proofpoint-ORIG-GUID: D0YHE22VSUH4ucjOHQf2efc1zBvOgt0P
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX35io49S1T+BU
- N2K6e0vWWahBkyOCZ7Sgb45rtlZYpJJNijIHD6j/6tPUF2wxo04iwumSvdJn6O5Ok1MePKMbGE4
- aJgD1JYcPaTmQZLL77/LZJDQ6Ox3J4D2vLoj9HN97WEVZK79nf1ZyOBaQ4GBD8uNM0xxEe86Q2v
- 7qyj6rzbo1SadL90v/FA+k2VX/ARDLZ00TwKmiTTVdFbTWgONPssJ8LOr8emTh6VU82+IE96yWH
- kNB2e700lR0KAgoEVUGzhjxJ/HCiKHaLaPvdb09t6rX3g3kL7kCmbCplo9audNi46CB4S3Gj/uD
- e9U8rXEPPKgAq+J0nPdvaUmkryWj0XGivBScHPIA28dPkwLvV5IShf/GgPlTTJTPHDRVY1pBi8u
- rG99BcXkT+SQdhojYpSP1GWp7inhmw==
-X-Authority-Analysis: v=2.4 cv=XfbQDI55 c=1 sm=1 tr=0 ts=68a5db9d cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=ZQucwW7hKNWrINUWBWsA:9 a=QEXdDO2ut3YA:10
- a=_Vgx9l1VpLgwpw_dHYaR:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-20_04,2025-08-20_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 phishscore=0 clxscore=1015 priorityscore=1501
- impostorscore=0 spamscore=0 suspectscore=0 bulkscore=0 malwarescore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2508110000
- definitions=main-2508200013
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCHv1 4/5] arm64: dts: amlogic: Add cache information to the
+ Amlogic S922X SoC
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240205171930.968-1-linux.amoon@gmail.com>
+ <20240205171930.968-5-linux.amoon@gmail.com>
+ <cf47b82c-6307-475b-af3a-eab7f09715f0@linaro.org>
+ <CANAwSgTOpDmZGR33veBWrzr75=xEZ-28iu=GeCzqa0ZPXxDchw@mail.gmail.com>
+ <f87069a4-042c-467a-94fb-0b65bfa4758d@linaro.org>
+ <CANAwSgR1+Fb5Si6yBU6JXCfRiq-XU0xjr-ecVbnALMj7qmv0Sg@mail.gmail.com>
+ <CANAwSgQvYyE3rZqBHR2_Q0FzggznOh=fhtBQVJZ1DRn73P24pQ@mail.gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <CANAwSgQvYyE3rZqBHR2_Q0FzggznOh=fhtBQVJZ1DRn73P24pQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-From: Shashank Maurya <quic_ssmaurya@quicinc.com>
+On 20/08/2025 16:00, Anand Moon wrote:
+> Hi Neil,
+> 
+> On Tue, 27 Feb 2024 at 18:34, Anand Moon <linux.amoon@gmail.com> wrote:
+>>
+>> Hi Niel,
+>>
+>> On Tue, 6 Feb 2024 at 20:31, <neil.armstrong@linaro.org> wrote:
+>>>
+>>> On 06/02/2024 11:15, Anand Moon wrote:
+>>>> Hi Neil,
+>>>>
+>>>> On Tue, 6 Feb 2024 at 14:30, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>>>>
+>>>>> On 05/02/2024 18:19, Anand Moon wrote:
+>>>>>> As per S922X datasheet add missing cache information to the Amlogic
+>>>>>> S922X SoC.
+>>>>>>
+>>>>>> - Each Cortex-A53 core has 32 KB of instruction cache and
+>>>>>>         32 KB of L1 data cache available.
+>>>>>> - Each Cortex-A73 core has 64 KB of L1 instruction cache and
+>>>>>>         64 KB of L1 data cache available.
+>>>>>> - The little (A53) cluster has 512 KB of unified L2 cache available.
+>>>>>> - The big (A73) cluster has 1 MB of unified L2 cache available.
+>>>>>
+>>>>> Datasheet says:
+>>>>> The quad core Cortex™-A73 processor is paired with A53 processor in a big.Little configuration, with each
+>>>>> core has L1 instruction and data chaches, together with a single shared L2 unified cache with A53
+>>>>>
+>>>> Ok,
+>>>>
+>>>> Since all the Cortex™-A73 and Cortex™-A53 share some improvements in
+>>>> the architecture with some improvements in cache features
+>>>> hence I update the changes accordingly.
+>>>> Also, I checked this in the ARM documentation earlier on this.
+>>>
+>>> I don't understand, Amlogic states it's a shared L2 cache, but you trust
+>>> the ARM documentation instead ???
+>>
+>> Yes please find the Cortex™-A73 TRM
+>> L1 Cache
+>> https://developer.arm.com/documentation/100048/0002/level-1-memory-system/about-the-l1-memory-system?lang=en
+>> L2 Cache
+>> https://developer.arm.com/documentation/100048/0002/level-2-memory-system/about-the-l2-memory-system?lang=en
+>>>
+>>>>
+>>>>> And there's no indication of the L1 or L2 cache sizes.
+>>>>
+>>>> What I feel is in general all the Cortex™-A73 and Cortex™-A53 supports
+>>>> L1 and L2 cache size since it is part of the core features.
+>>>> but I opted for these size values from a Wikipedia article.
+>>>>
+>>>> On my Odroid N2+, I observe the following.
+>>>>
+>>>> I have also done some testing on the stress-ng to verify this.
+>>>
+>>>
+>>> Ok I don't feel confident adding numbers that comes out of thin air,
+>>> and even more since they are only shared to userspace.
+>>>
+>>> I think we should only add the numbers which are 100% sure
+>>
+>> Best way to let the Amlogic SoC members comment on the CPU  L1/ / L2 cache size.
+>> But with the lack of pref PMU events we cannot test this feature.
+>>
+>>>
+>>>
+>>> This looks pretty, but let's keep exporting verified data.
+>>>
+> I just wanted to revisit this patch series with some updates on
+> 
+> Here is where the Android TV provides the cache details.
+> [1] https://androidpctv.com/comparative-amlogic-s922x/
+> 
+> Amlogic S922X Hexa Core SoC has four ARM Cortex-A73 cores capable of
+> reaching 1.8Ghz
+> with 1MB L2 cache + 2 Cortex-A53 RAM processors with 256k L2 cache,
+> 
+> https://boardor.com/blog/understanding-the-architecture-of-arm-cortex-a53-cache
+> 
+> Also  Amlogic A311D processor utilizes a "big.LITTLE" architecture, combining:
+> 
+> Quad-core ARM Cortex-A73:
+> Each Cortex-A73 core has:
+>       64 KB L1 instruction cache 64 KB L1 data cache
+> The Cortex-A73 cluster shares a 1 MB unified L2 cache.
+> 
+> Dual-core ARM Cortex-A53:
+> Each Cortex-A53 core has:
+>    32 KB L1 instruction cache, 32 KB L1 data cache
+> 
+> The Cortex-A53 cluster shares a 512 KB unified L2 cache.
+> 
+>  From what I understand, CPU caches are a core feature of the CPU.
+> Do you think I should update these patches and resend ?
 
-Lemans EVK board has two mini-DP connectors, connected to EDP0
-and EDP1 phys. Other EDP phys are available on expansion
-connectors for the mezzanine boards.
-Enable EDP0 and EDP1 along with their corresponding PHYs.
+Yes sure,
 
-Signed-off-by: Shashank Maurya <quic_ssmaurya@quicinc.com>
-Signed-off-by: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
----
-Changes in v2:
-- added dp-connector nodes for edp0 and edp1.
-- Link to v1: https://lore.kernel.org/r/20250711-enable-iq9-dp-v1-1-6d381e105473@oss.qualcomm.com
----
- arch/arm64/boot/dts/qcom/lemans-evk.dts | 84 +++++++++++++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
+Neil
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-index 669ac52f4cf6aece72141416068268531fd9f79a..40becda317ef2546e16ecd44476f76a4cde98be4 100644
---- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-@@ -22,6 +22,30 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	edp0-connector {
-+		compatible = "dp-connector";
-+		label = "EDP0";
-+		type = "mini";
-+
-+		port {
-+			edp0_connector_in: endpoint {
-+				remote-endpoint = <&mdss0_dp0_out>;
-+			};
-+		};
-+	};
-+
-+	edp1-connector {
-+		compatible = "dp-connector";
-+		label = "EDP1";
-+		type = "mini";
-+
-+		port {
-+			edp1_connector_in: endpoint {
-+				remote-endpoint = <&mdss0_dp1_out>;
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -253,6 +277,52 @@ vreg_l8e: ldo8 {
- 	};
- };
- 
-+&mdss0 {
-+	status = "okay";
-+};
-+
-+&mdss0_dp0 {
-+	pinctrl-0 = <&dp0_hot_plug_det>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&mdss0_dp0_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+
-+	remote-endpoint = <&edp0_connector_in>;
-+};
-+
-+&mdss0_dp0_phy {
-+	vdda-phy-supply = <&vreg_l1c>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
-+&mdss0_dp1 {
-+	pinctrl-0 = <&dp1_hot_plug_det>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&mdss0_dp1_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+
-+	remote-endpoint = <&edp1_connector_in>;
-+};
-+
-+&mdss0_dp1_phy {
-+	vdda-phy-supply = <&vreg_l1c>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
- &qupv3_id_1 {
- 	status = "okay";
- };
-@@ -261,6 +331,20 @@ &sleep_clk {
- 	clock-frequency = <32768>;
- };
- 
-+&tlmm {
-+	dp0_hot_plug_det: dp0-hot-plug-det-state {
-+		pins = "gpio101";
-+		function = "edp0_hot";
-+		bias-disable;
-+	};
-+
-+	dp1_hot_plug_det: dp1-hot-plug-det-state {
-+		pins = "gpio102";
-+		function = "edp1_hot";
-+		bias-disable;
-+	};
-+};
-+
- &uart10 {
- 	compatible = "qcom,geni-debug-uart";
- 	pinctrl-0 = <&qup_uart10_default>;
-
----
-base-commit: 1aa50d938e88fcad1312467bd09be4037bfe68ff
-change-id: 20250711-enable-iq9-dp-addc9c7195c9
-
-Best regards,
--- 
-Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+> 
+> Thanks
+> -Anand
 
 
