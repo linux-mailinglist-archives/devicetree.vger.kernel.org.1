@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-206726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64732B2D5CE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 10:13:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2008BB2D5D6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 10:15:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CB83585836
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 08:13:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE4CA1894F39
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 08:14:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF6B2D8DC0;
-	Wed, 20 Aug 2025 08:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99EC2D8362;
+	Wed, 20 Aug 2025 08:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="irknLw6H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U39V5nHD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948D82D8DB5;
-	Wed, 20 Aug 2025 08:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A17072BE62D;
+	Wed, 20 Aug 2025 08:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755677510; cv=none; b=giBpr3Ff6PZ6ZCYoiBQDXlUkR9WKgMEsgrf2I0rv15KiE99X9in0cAcTKp0443fldrKENiHQgvKtf6QCyC1+maM15jDPvO5B3ez6GtNER/XaCot8xpmMC0hNqwjbxGEyslU0MfZaPDwbd+7dOdt+UD+2e+JXxFhlSkqWycdTcdY=
+	t=1755677582; cv=none; b=izU3auU3ItGFDNUwnGuejdnKv/zIxJ/GA6oXPQRY0r0j30s5el8brO+S7QOdle1rGthU92zZNERDpF2rom4INUAJ8yDAhDzSqHLgHENWXJrUT9ZY7uU2VmgDi/Sn24/WjoXNdiKRkIQFD5od7YfJ37n0xjo+fko3NsWdO36gVe8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755677510; c=relaxed/simple;
-	bh=7I4mVhsZ4PWXlRPOcS5Vrjm3MfJ24J5kXv7MZGrueVk=;
+	s=arc-20240116; t=1755677582; c=relaxed/simple;
+	bh=CH9L5v4OJHqNF11uvWGznbvo74AYetAeErsKQ/WIsgw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CpsdFw4/ya5oBeobiqG+wsMQZ3ad26eFnXK1binyl4F60PCbRn2AKZUn529m2rs9SH499RXQ7bJ9dEtbzcCijajMZ0wIipDJ7J7lQEAccypgP03BG6AM3llPNjhAev8bBFoBCrSapKpUs2zT/m9WEzRL9p4ULl9VQaJibRXyiRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=irknLw6H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AFF1C4CEEB;
-	Wed, 20 Aug 2025 08:11:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ql073ruEA7DXKDICevWQGy3Mu8ohAGYkUg8jYry2I3oEzAu8BgAxjlwM5jE8FZo61BXsiaPRX4oIj0YtZ/nXrWfIekhrKCuxhw7KJuBGUDzf5aD5XDkkcyosP+yffo7CGiHDe7QhSK02yPMYSqL79onyT7SKlIlkXm87p0uuhiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U39V5nHD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B97A8C4CEEB;
+	Wed, 20 Aug 2025 08:13:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755677510;
-	bh=7I4mVhsZ4PWXlRPOcS5Vrjm3MfJ24J5kXv7MZGrueVk=;
+	s=k20201202; t=1755677582;
+	bh=CH9L5v4OJHqNF11uvWGznbvo74AYetAeErsKQ/WIsgw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=irknLw6HuwAWuSpoOl4fh1JZJBvojr+SJx27gy2XXvH8vp2SQIp76Ei5+15Uy5T2D
-	 KcPgbPBIE8FZUoO7HKg3AvRJ3cxZxkCOI613d9KsFLgVtFHDJQHuJI0Lfbaxzp4NMf
-	 ZAi6JN0SXueuU1bc+rBwyxTCaA+n3OjaK4qYM8vh+7zUyX9CDxhd4FKa8d24rsZ9Rv
-	 hzLmnsGPqVl+wbDH1wOunRjDUkKFMc4yzsOEsqsoXa5UG4SKyzBBXlbM7/oyp8C6Y2
-	 56QCSbLzZWluN7V3mb0+MWTOC89SCsJkyR8JerWMjfkDJgeI62goisrSn6PNUbELzl
-	 oD8hK5UNiamWw==
-Date: Wed, 20 Aug 2025 10:11:47 +0200
+	b=U39V5nHDEseiJajLZVfudpRL/MtpIT+/avAlSeh2oaPpigXeGuFJlFtv9Pna+GkJC
+	 kNET9eK9bntCIZOV0NDew5F0GzNZFpLDKfHgrV2S/HvEx1rQjz0A0tQf0IZSpGM5/s
+	 pvnn1fcJKT4FcYPEf2olm8TjAC1e4yY6P2fZ8SluGuEOueXPI3lnSORQgxvhqfALwc
+	 XNsB4pu+l2wzfzeWI6gtUQsCoAC/aS75Ory43kIpRCskfkScxIZinzwVISdWerqWem
+	 yTbjFbdJmBoSKt6f4fies/UpbdtFvx2TnExtnPiIFUILzyiDLit7yzWqSklHvh3Nre
+	 iqAt5wZ4daSXg==
+Date: Wed, 20 Aug 2025 10:12:59 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
 	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 08/13] arm64: dts: amlogic: Unify the compatible property
- for clk-measure
-Message-ID: <20250820-sweet-herring-of-luck-9c3431@kuoka>
+Subject: Re: [PATCH 00/13] soc: amlogic: clk-measure: Add more SoCs to
+ support clk-measure
+Message-ID: <20250820-spectacular-passionate-oriole-eaacda@kuoka>
 References: <20250815-add-more-socs-to-support-clk_measure-v1-0-59f04ba67457@amlogic.com>
- <20250815-add-more-socs-to-support-clk_measure-v1-8-59f04ba67457@amlogic.com>
+ <8e64245a-d7ce-40b7-b884-84a7234c4a3e@linaro.org>
+ <673d8146-1cc6-430f-81fe-9e99896a56f5@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,37 +64,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250815-add-more-socs-to-support-clk_measure-v1-8-59f04ba67457@amlogic.com>
+In-Reply-To: <673d8146-1cc6-430f-81fe-9e99896a56f5@amlogic.com>
 
-On Fri, Aug 15, 2025 at 04:37:34PM +0800, Chuan Liu wrote:
-> The clk-measure IPs across Amlogic SoCs have minimal differences, so
-> they can be managed with a unified compatible property.
+On Tue, Aug 19, 2025 at 11:32:07AM +0800, Chuan Liu wrote:
+> > 
+> > But the fact you need clkmsr-reg-v2 means you at least need to add a
+> > generic
+> > compatible for v2 register map and drop this property.
+> > 
+> > Overall, I'm not a great fan of this, it moves data to DT and duplicates
+> > the strings in _all_ board DTs, which is worse in fine.
 > 
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi       | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi         | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi        | 1 -
->  6 files changed, 5 insertions(+), 6 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> index ab9ebabce171..570cac451d63 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -761,7 +761,7 @@ internal_ephy: ethernet_phy@8 {
->  			};
->  
->  			clk_msr: clock-measure@48000 {
-> -				compatible = "amlogic,c3-clk-measure";
-> +				compatible = "amlogic,clk-measure";
+> If you agree with this approach, I can refine it based on your feedback by:
+> 1. Adding a new compatible property: "amlogic,clk-measure-v2".
 
 NAK
 
-Don't ever send such broken code. You just affect all users without any
-valid reason. This patchset is horrible.
+See writing bindings document.
 
 Best regards,
 Krzysztof
