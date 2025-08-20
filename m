@@ -1,123 +1,108 @@
-Return-Path: <devicetree+bounces-207097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42320B2E7C8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 23:59:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDEBCB2E7FE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 00:18:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4125A5E03BF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:58:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 039547B163B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 22:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE260334394;
-	Wed, 20 Aug 2025 21:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217AE2D9488;
+	Wed, 20 Aug 2025 22:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IKdj3UTR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S5FB1aSb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8699E24677C;
-	Wed, 20 Aug 2025 21:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E331A2D3749;
+	Wed, 20 Aug 2025 22:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755727125; cv=none; b=uYqmhpaqNOAa9K9ys+QrkCmNX2fdOyAedZEcezLBcC+IRh2geLASGSW49l31MQ9hKMXsGd2nSUCDJh1uQQ5P+VsZt2wJ/oF/EDmUWYDKfasmYKmEyIh6wVocrR2kdhYl/CHfCWq8QRSKaPWkWEKx58b9a8Tl7SP66490yvrXrFA=
+	t=1755728264; cv=none; b=VCq15tOyN4CAs/M4xPOL6eVT6/XstBWpeLgHowYa6ASR4qOSPgNL0g4HX3lUdUyPB3WThHkGvS9j5aljj5y/w+qYJKm7ngPELwS1P+H0mbf/WB+mNcwVaHEi+vtyMSm9fL8k8w0nwMp+KJNgq8+cmvVLEIK3VrHl/90TwFt0a0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755727125; c=relaxed/simple;
-	bh=BWCN+arTsW28B+WK1cfvN4ijd4eox2d2e4EsnPw7MFU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iPiwY5f7dNlJMH1zOhi0pli3UHmk+hzdipEdYCU8t5Dv/0drraNNJNH2vB1dKpPXdIXfDUO2fWGFY4qZXMRUTFkHkHR1EQUf812rv6g3flozYRAMdjoOsuFnp5NaLEK1jZGP2UpZtXjZKVkvzMO/sQGOxy0ZPgLSywqoVjmQgbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IKdj3UTR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D591EC4CEE7;
-	Wed, 20 Aug 2025 21:58:44 +0000 (UTC)
+	s=arc-20240116; t=1755728264; c=relaxed/simple;
+	bh=NIGjmvVU8M1e+ixa0lF6Va3Ega4zYBMltJN60T9Tr+s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=PkgcC3cmJO40HthS0YUBNvsPA9qHCMbaSGgT/LptplQhzzeNkb15hlXrE8Q73MVKWog9ChCIoM8vNQvbfNa3/az/cY9Q7lQIIUS9HXpsIb7ox2gDZyISaHcphg9/SORUf87dYDbTfJSgiWP3sCdClhCVIAElL3qGQSWUI5B5YHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S5FB1aSb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CF35C116C6;
+	Wed, 20 Aug 2025 22:17:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755727125;
-	bh=BWCN+arTsW28B+WK1cfvN4ijd4eox2d2e4EsnPw7MFU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IKdj3UTR3m5FxxRMpGC18rmUS1Sq3wCQzCZxHXkZTa+EJaMA1gn1STH3YHR96QEju
-	 xX4+HD8ZJEj/LT4lR4CtLO0c324sgWpuLtRkb/poQwjqxiIoGD+7io5AW9E0nKmYfe
-	 VVyQM0xxcEgdH+5WAjEWPHbF3vlM+x6RLm5maXPvtgpjwK6vniXddJCu/QBKGZJ6Qq
-	 A5K6UT2uYcxGfBZEksWu45W4p1EOZGL6YnxgCh1NOwQIHe2YXW/woHFRjvMg92heW0
-	 3PjRcpd4yvF/I4vzqFRE1fvZkXgd1ZGrxc44BAqxqidzxg7h/ZFrBz+SFfg5nBmP7V
-	 VNsrrkYAYp8zg==
-Date: Wed, 20 Aug 2025 16:58:43 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, peter.ujfalusi@gmail.com, krzk+dt@kernel.org,
-	lee@kernel.org, shuah@kernel.org
-Subject: Re: [PATCH v5] mfd: dt-bindings: ti,twl6040: convert to DT schema
-Message-ID: <175572712295.1429558.12540417914156224115.robh@kernel.org>
-References: <20250817215234.50904-1-jihed.chaibi.dev@gmail.com>
+	s=k20201202; t=1755728263;
+	bh=NIGjmvVU8M1e+ixa0lF6Va3Ega4zYBMltJN60T9Tr+s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=S5FB1aSbCZQeLXevEo7lCKaC/6dC03HmYZWIwuPMMNp33qvb8Bf5Eiv6hEzOcdQSj
+	 bNX8FFHwxikg/eqrRxyVH4mRoIUI+XqRi3nCh+j1QAnsvlg6PXqJ0yXg6W7KkmlIty
+	 5SH13qWxCYu1c7Z5i0pu+PVRwv8FRQMrFBb7LwGY3FDxmvUvpkboUdpzuzsHx89wjZ
+	 qhtkSMQ3fy3p3v5xEwZWTFHk3vTmlK6M125u49z6X5vvAbsIc9hbJk/AKzXTFt1oWR
+	 iUcVFvpaWYxlRXCOHN3RVGCIoI8k4ORuREXLxhGszYvHe6wcOTCV4YQw51l7teuJ+Q
+	 0WuPVdGIawcbQ==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh@kernel.org, 
+ Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: peter.ujfalusi@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
+ linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org, shuah@kernel.org
+In-Reply-To: <20250819201302.80712-1-jihed.chaibi.dev@gmail.com>
+References: <20250819201302.80712-1-jihed.chaibi.dev@gmail.com>
+Subject: Re: [PATCH v4 0/2] ASoC: dt-bindings: Convert TI TWL4030 sound
+ bindings to schema
+Message-Id: <175572826140.300376.10438251274472224671.b4-ty@kernel.org>
+Date: Wed, 20 Aug 2025 23:17:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250817215234.50904-1-jihed.chaibi.dev@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-cff91
 
+On Tue, 19 Aug 2025 22:13:00 +0200, Jihed Chaibi wrote:
+> This series converts the legacy TXT bindings for the TI TWL4030
+> sound-related modules to the modern YAML DT schema format.
+> 
+> This work was previously part of a larger series but is now being sent
+> as a focused submission for the ASoC subsystem.
+> 
+> Link to v3 discussion:
+> https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
+> 
+> [...]
 
-On Sun, 17 Aug 2025 23:52:34 +0200, Jihed Chaibi wrote:
-> Convert the legacy TXT binding for the TWL6040 MFD to the modern YAML
-> DT schema format. This adds formal validation and improves documentation
-> for the TWL6040/TWL6041 audio codec, which provides audio, vibra, and GPO
-> functionality on OMAP4+ platforms.
-> 
-> Key changes:
-> 
->  - Dropped usage of the 'twl6040,audpwron-gpio' property from the schema
->    as it is not used by the driver.
->  - Retained 'clocks' and 'clock-names' as flexible (1-2 items) to match
->    the original binding's "and/or" phrasing, which allows clk32k, mclk,
->    or both.
->  - Updated node name to 'audio-codec@4b' to follow generic naming
->    conventions per the Device Tree specification.
->  - Replaced raw interrupt values with standard defines for clarity.
-> 
-> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-> 
-> ---
-> Changes in v5:
->  - Add missing changelogs
-> 
-> Changes in v4:
->  - Retained 'clocks' and 'clock-names' as flexible (1-2 items) to match
->    the original binding's "and/or" phrasing, which sould allow either
->    clk32k, mclk, or both.
->  - Updated node name to 'audio-codec@4b' to follow generic naming
->    conventions per the Device Tree specification.
->  - Replaced raw interrupt values with standard defines for clarity.
->  - Added clock properties to the example.
-> 
-> Changes in v3:
->  - Drop usage of The unused 'twl6040,audpwron-gpio' property from the
->    schema as it is not used by the driver.
->  - This patch was originally part of a larger series but has been
->    sent separately per maintainer feedback.
->    v2 (origial patch series) link:
->    https://lore.kernel.org/all/20250814132129.138943-3-jihed.chaibi.dev@gmail.com
-> 
-> Changes in v2:
->  - Renamed twl6040,audpwron-gpio to ti,audpwron-gpio for consistency
->    with TI naming, this fixes the dt_binding_check vendor name  error.
->  - Minor description clarifications for improved readability.
-> 
-> Changes in v1:
->  - Initial conversion of twl6040.txt to YAML format.
->  - v1 link :
->    https://lore.kernel.org/all/20250811224739.53869-3-jihed.chaibi.dev@gmail.com/
-> ---
->  .../devicetree/bindings/mfd/ti,twl6040.yaml   | 154 ++++++++++++++++++
->  .../devicetree/bindings/mfd/twl6040.txt       |  67 --------
->  2 files changed, 154 insertions(+), 67 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,twl6040.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mfd/twl6040.txt
-> 
+Applied to
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: ti,twl4030-audio: convert to DT schema
+      commit: 04113322406b4763677922f80ba5ab44a8dae7bb
+[2/2] ASoC: dt-bindings: omap-twl4030: convert to DT schema
+      commit: c232495d28ca092d0c39b10e35d3d613bd2414ab
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
