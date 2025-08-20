@@ -1,356 +1,174 @@
-Return-Path: <devicetree+bounces-207068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACC1FB2E6B1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 22:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DDEFB2E6C5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 22:43:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85B3A580251
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 20:35:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BBF65E0015
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 20:43:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 855F02D3A6A;
-	Wed, 20 Aug 2025 20:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D882D4819;
+	Wed, 20 Aug 2025 20:43:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=weathered-steel.dev header.i=@weathered-steel.dev header.b="dpcSH9U/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NjDm7D0J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-244106.protonmail.ch (mail-244106.protonmail.ch [109.224.244.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FC62D29D0;
-	Wed, 20 Aug 2025 20:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE79C275AF5;
+	Wed, 20 Aug 2025 20:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755722124; cv=none; b=tn8WV5kUSzrynzGtlS2p678JTCxtjaEFYuBaenqwj/IZse8xL4cJjUBiomFe8E6ONeKCeXev7GkNeeTjxTSG0IUeRU646NeCYVy+Sxe0Fex4rnPVUu2SK+JzHClDbIkj+MxoB+tkzcYqOmOh3N4FBxHk+grDO+ucjPeUaBXoDRk=
+	t=1755722590; cv=none; b=NihTPwo9vF+5cg6F07cyWHrvzN5AHuVEJoGgO+rwlm30TXQyRkX34gRYhLMdm9+ykxWr/iRpoQWosZxsJHWdK8yK9tT4Yd93C3LQ4F4I8Rgn3X/1pZ5Gn9jEc3h8BpuRG/p6uBuYELYoHkRywCg+oJLV2d4igvEl1pt7quTe8m0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755722124; c=relaxed/simple;
-	bh=zqKw/iK+mXcLGVcYoXTnWF6VdBOwD6+8CyXnwiNjxrc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=is2u32UbhCIELU28PpuWP1U99ky85VW9AySh9F4RckDoU27f9AVKtxDm3MopDt0tIka46tg33vQUFa9SEp2q4zHk7B76LAmMhrdwHWq49ItEdsppgB2w8fYtOVtg+ZtFZy+5pPk72KWw1P/50UshvQ7QdDanY1qcMnyWmyO/mQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weathered-steel.dev; spf=pass smtp.mailfrom=weathered-steel.dev; dkim=pass (2048-bit key) header.d=weathered-steel.dev header.i=@weathered-steel.dev header.b=dpcSH9U/; arc=none smtp.client-ip=109.224.244.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weathered-steel.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weathered-steel.dev
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=weathered-steel.dev;
-	s=protonmail3; t=1755722119; x=1755981319;
-	bh=Vf+Yl+PCEmKpTjghg2al6tvWDZrFdR8RNA+YgPHTR1I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:In-Reply-To:From:To:
-	 Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=dpcSH9U/AolnV0hmRVsipVK3U3Mp6W7GGhc43jsviJm53AvmjXzsY26cge3x6R7U1
-	 qXGjhEa8c8pedHLLR7Qukj52nhoA4U7J5x1buZsAdqgb55HoojI5A8WHNv8x4scbay
-	 Xasxy38a5ns4w4AXNMs14/H/Jauk1nM7S6TEtRyChl9PsDGHLKr0rxYVjHChp2v5t6
-	 kpkrTlvqdKet/reOwbFN5ieQQ3BcjKcoTUDvy1mTDnvOTxoIXygqyrDzecF5mrV0dG
-	 boiNu+m9RpA++IUkTI5bVD27wMpwIlmgMYJqiI9vNDni3PijqQ7w3vHCpmAwT/Nj5G
-	 GMUc1PZynzFmA==
-X-Pm-Submission-Id: 4c6dVs5Mw1z2ScP7
-Date: Wed, 20 Aug 2025 20:35:14 +0000
-From: Elle Rhumsaa <elle@weathered-steel.dev>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Drew Fustini <fustini@kernel.org>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v14 2/7] rust: pwm: Add Kconfig and basic data structures
-Message-ID: <aKYxgo0IGGguv5jn@archiso>
-References: <20250820-rust-next-pwm-working-fan-for-sending-v14-0-df2191621429@samsung.com>
- <CGME20250820083542eucas1p221dacb3b69524b0dd6f7abf870adbe04@eucas1p2.samsung.com>
- <20250820-rust-next-pwm-working-fan-for-sending-v14-2-df2191621429@samsung.com>
+	s=arc-20240116; t=1755722590; c=relaxed/simple;
+	bh=HmC7iZtXmBwrqIedl8hbQEuLwrSDg5aYlRTPEbBpYAs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ctWGSGqGiee+FtVUJDii3892R9JHgq80aBaWwlyOb5gOn3oBzH6f2kOhZRp+vIX+q21f1tnB9yKUy5kxuzNg6N8C7LealbWMwWur9DVEjZwObfrxC+ocnGbx29tiaJm+zHzjCc7+tyj0VQOTLF7EDhwaqudFReakLWqXt6e1HdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NjDm7D0J; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-55ce52807f8so210616e87.2;
+        Wed, 20 Aug 2025 13:43:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755722587; x=1756327387; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xcATB+y8OrHktrFZyrQXkmZknrCsI/ZhqWyGQPNeUWc=;
+        b=NjDm7D0J0+69MdUMYsqwti5b2g0vC9puz9gfGBnZQe+kJwqnUUWVh0j7GChjt5ODAU
+         9r47l7I2O3d3TpPt8rt0teYU4DFd/pMYapFZ9S2XJLww40bPWfUxlEPoeg8vU4LmIgfj
+         GzNIhwhLPyNJqsVUOt6FDTnN4xHynnSDl7fZs752Tk4hGpP/o8ZooMY1Ne+fH5FWw88c
+         yktAki4+6OIkbFtWKWMM2uw+IftBOpzMxsAZ2OIIScm0S880pi7bHVhXN/ALvax73NAV
+         CnTsSpx98cUHEbZRGeb1FL7toijbB5Ompgz7J3xpBFSHs1SPrE9itz95fnPzR17GsZIU
+         n3Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755722587; x=1756327387;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xcATB+y8OrHktrFZyrQXkmZknrCsI/ZhqWyGQPNeUWc=;
+        b=o80SfrFcWzz34ACSICOjRuiAqdJ1voqR/Z0rYWthYmf5N926L089+AokhghTdhdI1G
+         HarYlCO3GNmyqSRf5uDaK0D71W4QJJN/rWpRxXIGn0AIsgtWIErIogAAHygbwKjLJbTm
+         8kJDvbqYEmmlJjSaH/Xk5CfM9dc/88UAuY28bGxDtIVqIh7NAXxl6TZvkP1upQtUzI+R
+         w2HNHfZMuKdNMI4ePMV8lrBJzQhrRF3yZC3Q1yBe9lSKUc+IzCBsq18MhPgU8VLSb4Wk
+         SS4Z6EPOZ8NTihD3FL18cxQpjm2C55kaDPGrQWeDc3oIIcDS8YeqUSTob+QQ6OHacRGQ
+         NZdw==
+X-Forwarded-Encrypted: i=1; AJvYcCVX7v16JVqRD5RASF//74gTFubXm0mPlMTG7bN9ETlUH1c428sfKxo+saK1rHkaCYBAGWG/t074AvbRrgK2@vger.kernel.org, AJvYcCWQJ5wfM5zFlrK30f80eDn/5ecNYYWZglGePoInfMcrd8vml+KuqMH1xVbtO1lP0PQMqjtFFqax5GOF+w==@vger.kernel.org, AJvYcCWZkQEEHDlmnx5KxUlm1mWzZ19XellJIRqfkDT5Pl8BK0HJ7xksE8CfvttzG/u9OKdg+HYlTgL8Ovyn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEg/4AzIgGPb/xPJ+ddgL4e/m+BI8L5NEIg+s+4pIBSS4JZRbH
+	dnk/TIXKT4k/OfD3x59cK3Ik92jvxGMqoMJsASSL2Q4mGOpu0pO8hSWq5LidwA==
+X-Gm-Gg: ASbGncvV26+JmlD+djXnNipX12Sh1ilF1aWeE0tE7aN8BAJzbznoRd57TAJdYKwYbF5
+	Vf7V0SMLxGWyyX8OPyb8DjIKKZoGlF046ZSuRBi4n99GD1B67mSyMKzH36Qdj8tIjKrYGViz4Vz
+	6NChUWrG3JiPk5P/BSh6Yo4o9kf9jCN5e6C4CX/N/Fw572iA6/yIriIOSwnX6LCifsIU0lECpx/
+	9eTEorWk3bnEA5SaBFdV0QBhw/ONvcX5ao1rOVOvxlnI6syifW2ollyTmlPYfie9F5t2OXyNm0Q
+	vff23OPAc9ODN1e67YtoaZprGCvtf1akS9MuNMo9T5dF/FZaEE1Py1HXqkS6z7fK8UIU8ASlA8T
+	dtFrBq3nQ8NW5AKU1nGRgKCaU7u8YlhQK+6A=
+X-Google-Smtp-Source: AGHT+IHOXDcFl/hjdTmC5pJrtCdH/hYm2FY5hiub51nUKs/kNWa0uddJMWskQHnCrQ1eRvxo7fmqLA==
+X-Received: by 2002:a05:6512:acb:b0:554:fa07:c60 with SMTP id 2adb3069b0e04-55e0d539df5mr56593e87.34.1755722586698;
+        Wed, 20 Aug 2025 13:43:06 -0700 (PDT)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef369d83sm2800576e87.67.2025.08.20.13.43.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Aug 2025 13:43:05 -0700 (PDT)
+Message-ID: <42f5b747-63c2-4ffc-94ba-10ecb2e5efa9@gmail.com>
+Date: Wed, 20 Aug 2025 22:43:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250820-rust-next-pwm-working-fan-for-sending-v14-2-df2191621429@samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: leds: Clearly mark label property as
+ deprecated
+To: Diederik de Haas <didi.debian@cknow.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250815104805.405009-1-didi.debian@cknow.org>
+ <b30905fa-6bd1-47dd-8371-f609d418387b@kernel.org>
+ <DC2ZLORG11W0.1CS78L6F2OV4Q@cknow.org>
+ <20250820-hairy-economic-wildebeest-ba25a1@kuoka>
+ <DC76U4GVR0O2.1HXLEPCF8BG02@cknow.org>
+Content-Language: en-US
+From: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+In-Reply-To: <DC76U4GVR0O2.1HXLEPCF8BG02@cknow.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Aug 20, 2025 at 10:35:37AM +0200, Michal Wilczynski wrote:
-> Introduce the foundational support for PWM abstractions in Rust.
+On 8/20/25 12:37, Diederik de Haas wrote:
+> On Wed Aug 20, 2025 at 10:14 AM CEST, Krzysztof Kozlowski wrote:
+>> On Fri, Aug 15, 2025 at 02:06:49PM +0200, Diederik de Haas wrote:
+>>> On Fri Aug 15, 2025 at 1:00 PM CEST, Krzysztof Kozlowski wrote:
+>>>> On 15/08/2025 12:47, Diederik de Haas wrote:
+>>>>> The text description already mentioned the label property was
+>>>>> deprecated, but using the 'deprecated' property makes is clearer and
+>>>>> more explicit.
+>>>>>
+>>>>> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+>>>>> ---
+>>>>>   Documentation/devicetree/bindings/leds/common.yaml | 1 +
+>>>>>   1 file changed, 1 insertion(+)
+>>>>>
+>>>>
+>>>> Please first read previous discussions:
+>>>
+>>> [I reversed the order of the links so the oldest is first]
+>>>
+>>>> https://lore.kernel.org/all/20221122111124.6828-1-cniedermaier@dh-electronics.com/
+>>>
+>>> Rob: "They ['function' and 'label'] serve 2 different purposes."
+>>>
+>>>> https://lore.kernel.org/all/20240509110545.49889-1-linux@fw-web.de/
+>>>
+>>> Krzysztof: "I don't think there was conclusion to make it deprecated on
+>>> last attempt"
+>>>
+>>> I agree.
+>>> What I don't understand: Why wasn't the text updated to correct the
+>>> incorrect statement about deprecation (that's how I interpret it now)?
+>>> Or some other conclusion being made and that that will be reflected in
+>>> the text and/or a deprecated property.
+>>>
+>>> Otherwise the confusion remains and then it's just a matter of time
+>>> before a 4th person comes along proposing the same patch.
+>>> And possibly even more harmful: people use it incorrectly.
+>>
+>> Whatever change you want to do here, I expect to address one way or
+>> another these previous discussions. If the code is confusing, refine the
+>> description. But not in a way which ignored previous feedbacks.
 > 
-> This commit adds the `RUST_PWM_ABSTRACTIONS` Kconfig option to enable
-> the feature, along with the necessary build-system support and C
-> helpers.
+> I'm not going to make a change.
 > 
-> It also introduces the first set of safe wrappers for the PWM
-> subsystem, covering the basic data carrying C structs and enums:
-> - `Polarity`: A safe wrapper for `enum pwm_polarity`.
-> - `Waveform`: A wrapper for `struct pwm_waveform`.
-> - `Args`: A wrapper for `struct pwm_args`.
-> - `State`: A wrapper for `struct pwm_state`.
+> I thought I would be making (more) explicit what the binding says.
+> Apparently I read/interpreted it incorrectly. What I described above is
+> how I currently interpret the *confusion* text/discussion. Is that
+> correct? I have no idea. That I'm at least the 3rd person proposing this
+> change indicates I'm not the only one who is confused.
 > 
-> These types provide memory safe, idiomatic Rust representations of the
-> core PWM data structures and form the building blocks for the
-> abstractions that will follow.
+> IMO it's up to a/the maintainer to make a decision and that should then
+> be reflected in the binding, which should fix any confusion.
 > 
-> Tested-by: Drew Fustini <fustini@kernel.org>
-> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  MAINTAINERS                     |   8 +++
->  drivers/pwm/Kconfig             |  13 +++++
->  rust/bindings/bindings_helper.h |   1 +
->  rust/helpers/helpers.c          |   1 +
->  rust/helpers/pwm.c              |  20 +++++++
->  rust/kernel/lib.rs              |   2 +
->  rust/kernel/pwm.rs              | 123 ++++++++++++++++++++++++++++++++++++++++
->  7 files changed, 168 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fe168477caa45799dfe07de2f54de6d6a1ce0615..5d7c0676c1d00a02b3d7db2de88b039c08c99c6e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20387,6 +20387,14 @@ F:	include/linux/pwm.h
->  F:	include/linux/pwm_backlight.h
->  K:	pwm_(config|apply_might_sleep|apply_atomic|ops)
->  
-> +PWM SUBSYSTEM BINDINGS [RUST]
-> +M:	Michal Wilczynski <m.wilczynski@samsung.com>
-> +L:	linux-pwm@vger.kernel.org
-> +L:	rust-for-linux@vger.kernel.org
-> +S:	Maintained
-> +F:	rust/helpers/pwm.c
-> +F:	rust/kernel/pwm.rs
-> +
->  PXA GPIO DRIVER
->  M:	Robert Jarzmik <robert.jarzmik@free.fr>
->  L:	linux-gpio@vger.kernel.org
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index f00ce973dddf651287168b44228574f4d5c28dc0..2b608f4378138775ee3ba4d53f682952e1914118 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -800,4 +800,17 @@ config PWM_XILINX
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-xilinx.
->  
-> + config RUST_PWM_ABSTRACTIONS
-> +	bool "Rust PWM abstractions support"
-> +	depends on RUST
-> +	depends on PWM=y
-> +	help
-> +	  This option enables the safe Rust abstraction layer for the PWM
-> +	  subsystem. It provides idiomatic wrappers and traits necessary for
-> +	  writing PWM controller drivers in Rust.
-> +
-> +	  The abstractions handle resource management (like memory and reference
-> +	  counting) and provide safe interfaces to the underlying C core,
-> +	  allowing driver logic to be written in safe Rust.
-> +
->  endif
-> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
-> index 84d60635e8a9baef1f1a1b2752dc0fa044f8542f..7a06ee5781eadc9f21ccd456b574a9cb152cd58c 100644
-> --- a/rust/bindings/bindings_helper.h
-> +++ b/rust/bindings/bindings_helper.h
-> @@ -66,6 +66,7 @@
->  #include <linux/pm_opp.h>
->  #include <linux/poll.h>
->  #include <linux/property.h>
-> +#include <linux/pwm.h>
->  #include <linux/refcount.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/sched.h>
-> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-> index 7cf7fe95e41dd51717050648d6160bebebdf4b26..861052ffffaff60e9c2e8109e55f3b6158ff2281 100644
-> --- a/rust/helpers/helpers.c
-> +++ b/rust/helpers/helpers.c
-> @@ -35,6 +35,7 @@
->  #include "platform.c"
->  #include "poll.c"
->  #include "property.c"
-> +#include "pwm.c"
->  #include "rbtree.c"
->  #include "rcu.c"
->  #include "refcount.c"
-> diff --git a/rust/helpers/pwm.c b/rust/helpers/pwm.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..d75c588863685d3990b525bb1b84aa4bc35ac397
-> --- /dev/null
-> +++ b/rust/helpers/pwm.c
-> @@ -0,0 +1,20 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
-> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
-> +
-> +#include <linux/pwm.h>
-> +
-> +struct device *rust_helper_pwmchip_parent(const struct pwm_chip *chip)
-> +{
-> +	return pwmchip_parent(chip);
-> +}
-> +
-> +void *rust_helper_pwmchip_get_drvdata(struct pwm_chip *chip)
-> +{
-> +	return pwmchip_get_drvdata(chip);
-> +}
-> +
-> +void rust_helper_pwmchip_set_drvdata(struct pwm_chip *chip, void *data)
-> +{
-> +	pwmchip_set_drvdata(chip, data);
-> +}
-> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> index ed53169e795c0badf548025a57f946fa18bc73e3..e339b552f9650803b1efa1eb8ecc6fe9d2c56563 100644
-> --- a/rust/kernel/lib.rs
-> +++ b/rust/kernel/lib.rs
-> @@ -117,6 +117,8 @@
->  pub mod seq_file;
->  pub mod sizes;
->  mod static_assert;
-> +#[cfg(CONFIG_RUST_PWM_ABSTRACTIONS)]
-> +pub mod pwm;
->  #[doc(hidden)]
->  pub mod std_vendor;
->  pub mod str;
-> diff --git a/rust/kernel/pwm.rs b/rust/kernel/pwm.rs
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..57675a3dfca12033355670deb210ca66f8469334
-> --- /dev/null
-> +++ b/rust/kernel/pwm.rs
-> @@ -0,0 +1,123 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
-> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
-> +
-> +//! PWM subsystem abstractions.
-> +//!
-> +//! C header: [`include/linux/pwm.h`](srctree/include/linux/pwm.h).
-> +
-> +use crate::{
-> +    bindings,
-> +    prelude::*,
-> +    types::Opaque,
-> +};
-> +use core::convert::TryFrom;
-> +
-> +/// PWM polarity. Mirrors [`enum pwm_polarity`](srctree/include/linux/pwm.h).
-> +#[derive(Copy, Clone, Debug, PartialEq, Eq)]
-> +pub enum Polarity {
-> +    /// Normal polarity (duty cycle defines the high period of the signal).
-> +    Normal,
-> +
-> +    /// Inversed polarity (duty cycle defines the low period of the signal).
-> +    Inversed,
-> +}
-> +
-> +impl TryFrom<bindings::pwm_polarity> for Polarity {
-> +    type Error = Error;
-> +
-> +    fn try_from(polarity: bindings::pwm_polarity) -> Result<Self, Error> {
-> +        match polarity {
-> +            bindings::pwm_polarity_PWM_POLARITY_NORMAL => Ok(Polarity::Normal),
-> +            bindings::pwm_polarity_PWM_POLARITY_INVERSED => Ok(Polarity::Inversed),
-> +            _ => Err(EINVAL),
-> +        }
-> +    }
-> +}
-> +
-> +impl From<Polarity> for bindings::pwm_polarity {
-> +    fn from(polarity: Polarity) -> Self {
-> +        match polarity {
-> +            Polarity::Normal => bindings::pwm_polarity_PWM_POLARITY_NORMAL,
-> +            Polarity::Inversed => bindings::pwm_polarity_PWM_POLARITY_INVERSED,
-> +        }
-> +    }
-> +}
-> +
-> +/// Represents a PWM waveform configuration.
-> +/// Mirrors struct [`struct pwm_waveform`](srctree/include/linux/pwm.h).
-> +#[derive(Copy, Clone, Debug, Default, PartialEq, Eq)]
-> +pub struct Waveform {
-> +    /// Total duration of one complete PWM cycle, in nanoseconds.
-> +    pub period_length_ns: u64,
-> +
-> +    /// Duty-cycle active time, in nanoseconds.
-> +    ///
-> +    /// For a typical normal polarity configuration (active-high) this is the
-> +    /// high time of the signal.
-> +    pub duty_length_ns: u64,
-> +
-> +    /// Duty-cycle start offset, in nanoseconds.
-> +    ///
-> +    /// Delay from the beginning of the period to the first active edge.
-> +    /// In most simple PWM setups this is `0`, so the duty cycle starts
-> +    /// immediately at each period’s start.
-> +    pub duty_offset_ns: u64,
-> +}
-> +
-> +impl From<bindings::pwm_waveform> for Waveform {
-> +    fn from(wf: bindings::pwm_waveform) -> Self {
-> +        Waveform {
-> +            period_length_ns: wf.period_length_ns,
-> +            duty_length_ns: wf.duty_length_ns,
-> +            duty_offset_ns: wf.duty_offset_ns,
-> +        }
-> +    }
-> +}
-> +
-> +impl From<Waveform> for bindings::pwm_waveform {
-> +    fn from(wf: Waveform) -> Self {
-> +        bindings::pwm_waveform {
-> +            period_length_ns: wf.period_length_ns,
-> +            duty_length_ns: wf.duty_length_ns,
-> +            duty_offset_ns: wf.duty_offset_ns,
-> +        }
-> +    }
-> +}
-> +
-> +/// Wrapper for board-dependent PWM arguments [`struct pwm_args`](srctree/include/linux/pwm.h).
-> +#[repr(transparent)]
-> +pub struct Args(bindings::pwm_args);
-> +
-> +impl Args {
-> +    /// Creates a `Args` wrapper by taking ownership of a C `pwm_args` value.
-> +    pub(crate) fn from_c(c_args: bindings::pwm_args) -> Self {
-> +        Args(c_args)
-> +    }
-> +
-> +    /// Returns the period of the PWM signal in nanoseconds.
-> +    pub fn period(&self) -> u64 {
-> +        self.0.period
-> +    }
-> +
-> +    /// Returns the polarity of the PWM signal.
-> +    pub fn polarity(&self) -> Result<Polarity, Error> {
-> +        Polarity::try_from(self.0.polarity)
-> +    }
-> +}
-> +
-> +/// Wrapper for PWM state [`struct pwm_state`](srctree/include/linux/pwm.h).
-> +#[repr(transparent)]
-> +pub struct State(bindings::pwm_state);
-> +
-> +impl State {
-> +    /// Creates a `State` wrapper by taking ownership of a C `pwm_state` value.
-> +    pub(crate) fn from_c(c_state: bindings::pwm_state) -> Self {
-> +        State(c_state)
-> +    }
-> +
-> +    /// Returns `true` if the PWM signal is enabled.
-> +    pub fn enabled(&self) -> bool {
-> +        self.0.enabled
-> +    }
-> +}
-> 
-> -- 
-> 2.34.1
+> I hadn't looked at the code yet, but *I*IUC the code should follow the
+> binding, not the other way around. That's how I have interpreted
+> (mostly your) comments related to various binding patches ever since I
+> started actively following upstream(ing) work. Which (again) may be an
+> incorrect interpretation.
 
-Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
+I think that what we are lacking to move forward is Pavel's response
+to Marek's question [0] about elaboration on the subject.
+Unless there was a response and I can't find it.
+
+[0] 
+https://lore.kernel.org/all/cb3c3a1e-ec10-1e7b-1b21-3cb250f92ecf@denx.de/#t
+-- 
+Best regards,
+Jacek Anaszewski
+
 
