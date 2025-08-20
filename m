@@ -1,57 +1,81 @@
-Return-Path: <devicetree+bounces-206932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0F85B2E013
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:58:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9145EB2E04F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 17:10:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38B8F1C46DB7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:57:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15B88188C68F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 15:06:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10C6322C6E;
-	Wed, 20 Aug 2025 14:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C82C3431FD;
+	Wed, 20 Aug 2025 14:59:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="sEAKzLHg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WQTWWkYO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8EBC322A22;
-	Wed, 20 Aug 2025 14:56:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60F1341ADD;
+	Wed, 20 Aug 2025 14:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755701762; cv=none; b=s1t+B7+UidbWCrv00WFNpijgt6NEDJFgrtsbNS7dbmFrHlVCMWFhK1yq4/7CfTZ6kE9huM2FUKeCJZS3w4aupohnLBU7zo9BddMK60ELOOxBObTELwXc+q18cDIz9iraYMfTTjcivbmCTOEM9bYd2ar9n00aJzhA5jdOObgMEU4=
+	t=1755701955; cv=none; b=nnq/9p45eZ1b6eo44ynczkGtEoWfkKFlI2MqCq+3icCbpcP8DagKUpZA/EKPnBOuw+DIIWJm6MshUFqdl0xVaZvunrDehy4SV+piy8q/MopjaNLtoll7pO7+2ZsmmvYoQlcVNEn7pIJ412r54FfCto/23PC5TyRgo1vGHYo+5vA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755701762; c=relaxed/simple;
-	bh=FnC+p/sUSZ/8vypJY90CDETgjSq0rMg4Fj0Db5/cyk4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tJByTPB6bP2RU0Z7xmgDL4nxFF1CjZDfGkJJfIrqmYGQUXfPQtotLuuqgMJBOowq5mkmoTgkp/03p9B014goO84h+D1Ec8XW76WgEtmo0QAZubeZzhVqkC/ZmMjL1srP+7lTSvdd0aR1B9ZGX8XzU0B4u5doBt/sIDiYuvLbasc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=sEAKzLHg; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 904B21A0D5D;
-	Wed, 20 Aug 2025 14:55:59 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 68B75606A0;
-	Wed, 20 Aug 2025 14:55:59 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 30F841C22C74C;
-	Wed, 20 Aug 2025 16:55:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1755701758; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=I8FcTJYmvlUFZA4Oe3duQag7ifxxlbPmqhzgDbiK/Sw=;
-	b=sEAKzLHgMzI2aggcBjUCOnaVGFJs5Ula33FZzNZuDTacfbYeMncsSRgjkb+xX02xF6MDhB
-	Ad5DLw1nbLhezr8ONWHfZHOlQBCqoLQAb74r/2NGdtqELH72kCzVfd8WjtSflMC8aleOdy
-	S9+kqiSm+QyF2I1Il2WzoBybXLSZmidLqkI/MBnAH26BwzwxVrOMdRCAeVQNY7T91i/UhP
-	nOjATVBWSD6JFtDleLZ/k4LRofeReJ0yHA/OK9kDMMGHyd4GuhsqO2zjCqnFJjjIzucVo5
-	LPlkmtYgm0v/u04PoAt4h9Yv3/PZ26gsv97fUGwV32XHlhAcUjssh8wYJOMaTg==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Wed, 20 Aug 2025 16:55:09 +0200
-Subject: [PATCH net v4 5/5] net: macb: avoid double endianness swap in
- macb_set_hwaddr()
+	s=arc-20240116; t=1755701955; c=relaxed/simple;
+	bh=W68k0m74FKq6rT8PIZd3IxIAE0Dive0UITAv+zCe5+g=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SQKzFzLmE7WRqqiuBBwyE4eG3FkApjCaG7dkWMyo8JJoeaZIsQKK8VF4JKLWsFbd+bwyLWbVUteVI9Jytn2JIP81wigFkIK9naDug+5ltmip/lO2UbI8+eXcZCRhebUFOgRcNV9P0CS4Y94xD1xJplGYCsByIIJlXM7s505fsNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WQTWWkYO; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2445827be70so72560205ad.3;
+        Wed, 20 Aug 2025 07:59:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755701953; x=1756306753; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+gWtZEHKoGP7mw0rgmfais8XlelkoGry/mMQ7iZX7hc=;
+        b=WQTWWkYOVUnTee114zPtqVzhwVAD5H9HdPS9Ley5oNiTQkze0HjE/flNVBF8Gmx8yz
+         JX5s5JZS0xaBpFZDo2IvHJOy26pMMIxDvtNFH3QHpfuhvW83vo0opC8w7wk1s+dHgRKG
+         kX1tfB2W+u6trHaxxUx+qLis9IFaSyzaWTaMX+n4lxeTuM1mdk6nzb00vm6aGrT79rXc
+         EqxsERfiLwbqaLGuW1TYm8al/4vbI3jgTqTY6zjA3TCmdbyC0YmhpX/xbC/6dhJZKT5A
+         oHvf05+urdj5kzN6oJSpQZHchd2BhhbRcyAqc0FkaiS0WBDvrMMFJaCfZ21L7mHwmK2A
+         9TzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755701953; x=1756306753;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+gWtZEHKoGP7mw0rgmfais8XlelkoGry/mMQ7iZX7hc=;
+        b=AcEe63JTaahbO0zcxVtmCS8FZ1XSY9ryTgKJBASuW2hXUNk7ebXzVbhZOHOEH73O+i
+         BFtz1E3Caig2/9GqGaTh1VlihmvCBP2pR2xBZlSFDe8XeSUa3T57t5Sjc3K0ZLKna1yv
+         BcMyQdBipgoRV1AH9pS+pHx0tBCPwrRyUHKc6zBZUaa8Z68NMJtSBQTd4AYpg+j5/aVz
+         lMeZqnW50/9Xx1WCbKoXsJBqShzZXOyGmroPewMZt6jQlG/teltvtPYT4jcQ2YeVa4lS
+         BLGFfajQeXxQOpUw5sfsCHBtSvpobF0xWz6gsEnQJrTxnZFL3AhQn3BtL3oNHHENvGEP
+         eAQw==
+X-Forwarded-Encrypted: i=1; AJvYcCUp8Ue6XDxqgLtC+QBrNWAO7S4oLLTLsWC8m6cZQ2VRbWodhqA8xk4CHeeZsJ/ls8MsYTdgBjKuC5vP@vger.kernel.org, AJvYcCUsPw9rLGaY8lLDHMQ/8mpDa52aOWey3UhshmR+SHya01ziTbIq8fyHfw7N9e3RE71JM/Bevl4yT7mXToNA@vger.kernel.org, AJvYcCV/qGnTZZOuuiz4nDYmJ+3TbIb291Q9GHcVzLreWtxOjWgkhgGMis85BCJ80l1JNDckYaxuwWZZpEmT@vger.kernel.org
+X-Gm-Message-State: AOJu0YztJ5WrllGfT4ZOiP/rpIk3+9PUW+j8DwpmabhaKVY4weEK7kP3
+	CkDujzna4pT7As4U+u6/yZhmR/JuSQYvX2S9rVh9+BBnCB3A4kjtU6qF
+X-Gm-Gg: ASbGnctrpW2KLC0LGZx+B90rJTWjDAL/YlXm4+OEdPaQ62B/qf74z+7Yh6a6bb0/sMV
+	l7vjkiksWwkgQ/DShpv2kMKKwsAge8OndJ6OScJ17warNjC6qehS11H+BLY3+1qTXYxbqNnoDGT
+	LmwBySfrIo1+fgTdVZJLDBu23BiAnGBlJYmHMhooeQVEaTW1gyybd1RkQml09tS69apopkLesbk
+	TMJPtAnP6+3zdvqxz2vc14ld3V9tZdSuvJSbtAmL88Drl+NAQ54mONWBRpzlY154Z0NBrxemOLX
+	uwYSd+Mo9J5d/0+lMLfz9U0b01x9c8RxccsuAOSUVRUpIxfYAW33m8QOfOBZl5Wq0DtN34UI/pH
+	7aKRMSRwxIQ0xUkW34HwYXIkBQFWOiqBhh+vLKwSwFY7AXrQ=
+X-Google-Smtp-Source: AGHT+IFuZGLvyxMcilBbJyU+WX5ieFDHPZ5qcPgTlkAoOpIPQGjsZxxRLuTraJW+LFjnoMiyYGMkLw==
+X-Received: by 2002:a17:903:32c8:b0:234:d292:be95 with SMTP id d9443c01a7336-245ef237f3bmr39664895ad.42.1755701953108;
+        Wed, 20 Aug 2025 07:59:13 -0700 (PDT)
+Received: from [127.0.0.1] (aulavirtual.utp.edu.pe. [190.12.77.24])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-324e257809esm2606455a91.24.2025.08.20.07.59.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Aug 2025 07:59:12 -0700 (PDT)
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
+Subject: [PATCH v2 0/3] clk: samsung: exynos990: CMU_TOP fixes (mux regs,
+ widths, factors)
+Date: Wed, 20 Aug 2025 09:57:21 -0500
+Message-Id: <20250820-2-v2-0-bd45e196d4c4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,77 +83,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250820-macb-fixes-v4-5-23c399429164@bootlin.com>
-References: <20250820-macb-fixes-v4-0-23c399429164@bootlin.com>
-In-Reply-To: <20250820-macb-fixes-v4-0-23c399429164@bootlin.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Geert Uytterhoeven <geert@linux-m68k.org>, 
- Harini Katakam <harini.katakam@xilinx.com>, 
- Richard Cochran <richardcochran@gmail.com>, 
- Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Sean Anderson <sean.anderson@linux.dev>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFLipWgC/02Myw6DIBBFf8XMujRAtGBX/Y/GBY9RJ6nSQEM0h
+ n8vddXlubnnHJAwEia4NwdEzJQorBXkpQE3m3VCRr4ySC47rkXPJDP25rT1I1deQf29I460nY3
+ nUHmm9AlxP5NZ/NZ/OwvGGerWtsrqrnf4mBZDr6sLCwyllC83XA3XkgAAAA==
+X-Change-ID: 20250819-2-ab6c8bdf07d7
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Denzeel Oliva <wachiturroxd150@gmail.com>
 X-Mailer: b4 0.14.2
-X-Last-TLS-Session-Version: TLSv1.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755701948; l=1078;
+ i=wachiturroxd150@gmail.com; s=20250819; h=from:subject:message-id;
+ bh=W68k0m74FKq6rT8PIZd3IxIAE0Dive0UITAv+zCe5+g=;
+ b=u9TvdLut9T/l2pJ/hsZbjYfVLj1dhqtUVvMITE8G9SK/eUYZGzp7h0OtJjP51LUJjTi8syUTb
+ /JlJJyTwBsfCogQd8FAkonDyS60JQ0a7+mCVss5qZP2pgSvtW4nVz5E
+X-Developer-Key: i=wachiturroxd150@gmail.com; a=ed25519;
+ pk=qNvcL0Ehm3chrW9jFA2JaPVgubN5mHH//uriMxR/DlI=
 
-writel() does a CPU->LE conversion. Drop manual cpu_to_le*() calls.
+Hi,
 
-On little-endian system:
- - cpu_to_le32() is a no-op (LE->LE),
- - writel() is a no-op (LE->LE),
- - dev_addr will therefore not be swapped and written as-is.
+Two small fixes for Exynos990 CMU_TOP:
 
-On big-endian system:
- - cpu_to_le32() is a swap (BE->LE),
- - writel() is a swap (BE->LE),
- - dev_addr will therefore be swapped twice and written as a BE value.
+Correct PLL mux register selection (use PLL_CON0), add DPU_BUS and
+CMUREF mux/div, and update clock IDs.
+Fix mux/div bit widths and replace a few bogus divs with fixed-factor
+clocks (HSI1/2 PCIe, USBDP debug); also fix OTP rate.
 
-This was found using sparse:
-   ⟩ make C=2 drivers/net/ethernet/cadence/macb_main.o
-   warning: incorrect type in assignment (different base types)
-      expected unsigned int [usertype] bottom
-      got restricted __le32 [usertype]
-   warning: incorrect type in assignment (different base types)
-      expected unsigned short [usertype] top
-      got restricted __le16 [usertype]
-   ...
+Changes in v2:
 
-Fixes: 89e5785fc8a6 ("[PATCH] Atmel MACB ethernet driver")
-Reviewed-by: Sean Anderson <sean.anderson@linux.dev>
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+- In the first commit the divratio of 
+  PLL_SHARED0_DIV3 should not be changed.
+
+Please review.
+
+Denzeel Oliva
+
 ---
- drivers/net/ethernet/cadence/macb_main.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Denzeel Oliva (3):
+      clk: samsung: exynos990: Fix CMU TOP mux/div widths and add fixed-factors
+      dt-bindings: clock: exynos990: Reorder IDs clocks and extend
+      clk: samsung: exynos990: Fix PLL mux regs, add DPU/CMUREF
 
-diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-index 7f31f264a6d342ea01e2f61944b12c9b9a3fe66e..fe319d77f2a8f6b1f3b698e0d11781936345ea8f 100644
---- a/drivers/net/ethernet/cadence/macb_main.c
-+++ b/drivers/net/ethernet/cadence/macb_main.c
-@@ -274,9 +274,9 @@ static void macb_set_hwaddr(struct macb *bp)
- 	u32 bottom;
- 	u16 top;
- 
--	bottom = cpu_to_le32(*((u32 *)bp->dev->dev_addr));
-+	bottom = *((u32 *)bp->dev->dev_addr);
- 	macb_or_gem_writel(bp, SA1B, bottom);
--	top = cpu_to_le16(*((u16 *)(bp->dev->dev_addr + 4)));
-+	top = *((u16 *)(bp->dev->dev_addr + 4));
- 	macb_or_gem_writel(bp, SA1T, top);
- 
- 	if (gem_has_ptp(bp)) {
+ drivers/clk/samsung/clk-exynos990.c           | 154 +++++++++++++++----------
+ include/dt-bindings/clock/samsung,exynos990.h | 402 ++++++++++++++++++++++++++++++++--------------------------------
+ 2 files changed, 297 insertions(+), 259 deletions(-)
+---
+base-commit: 886e5e7b0432360842303d587bb4a65d10741ae8
+change-id: 20250819-2-ab6c8bdf07d7
 
+Best regards,
 -- 
-2.50.1
+Denzeel Oliva <wachiturroxd150@gmail.com>
 
 
