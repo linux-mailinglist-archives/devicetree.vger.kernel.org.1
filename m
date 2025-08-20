@@ -1,79 +1,171 @@
-Return-Path: <devicetree+bounces-207088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 587F5B2E748
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 23:15:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC28B2E754
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 23:17:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F653A22906
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:14:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8BF75E3B6E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:17:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E4E30BF6B;
-	Wed, 20 Aug 2025 21:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A7C25F7A4;
+	Wed, 20 Aug 2025 21:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tNVR02gm"
+	dkim=pass (2048-bit key) header.d=weathered-steel.dev header.i=@weathered-steel.dev header.b="kQMm3rIG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-106111.protonmail.ch (mail-106111.protonmail.ch [79.135.106.111])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74172D4812;
-	Wed, 20 Aug 2025 21:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A121D63F0
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 21:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.111
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755724496; cv=none; b=jt5VS20c4yA2wBR/EGXK5S4IoBLVDsDWcm1ogpbPRR1WjlR9SRzCEnzMyqm3T2p52m421B2HeT8BZP94WAWlN2VVbiVskqbsg4vk5IZdt/MUdATbaYfaBICuxM2OMIiDoxaSr3g90mlYJz6zLHTA2yGVV18zL7JN60yf8JKc2t0=
+	t=1755724593; cv=none; b=KVKp9jUkgAkPDdENW/fTTaVxZ3CcvBEDf8/ItPZ7YzlnKoz2B/T9S+5xGiQ/T/kV6sKSGWIBF+vVSvDi1mZIwmPg48cetAauXrPE79r8NpWROhxEZiYZcka3XbfyWhajzOkYYDI3wabxzMB/Sb1WqjxsbFTU4nIS4owXVjDQR1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755724496; c=relaxed/simple;
-	bh=StGvUfTdSYF28wFzDLpQyjMqzG15fyrbohiBaILm+5E=;
+	s=arc-20240116; t=1755724593; c=relaxed/simple;
+	bh=Rtbsy9mYZrYwav5fUL6Fsm0mVjEoIZY/OnkgLKr27Yc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W6dAIR6ZthblNIg3xLHNB5JmUp5L6e+AqNkTQs85a2SfXsvaY5zWOcWgfaB20fjOYJGWxG4+sbavT279JA85Si84E5gqwSBjPmrVfA8Op7HffsTbLgg/yMEybVFV/uqEqPfa8AONEAJIQIEFr5AMPaIVvMcuadSikfSKkU4bY2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tNVR02gm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1D36C4CEE7;
-	Wed, 20 Aug 2025 21:14:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755724496;
-	bh=StGvUfTdSYF28wFzDLpQyjMqzG15fyrbohiBaILm+5E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tNVR02gmhMStVHXeLJSmaMv2euRc1M21Bus7XPQQ4tKWksKhOEYwhOcutrMHvkFYs
-	 B45W9H6ATVEdaWA8EcCMxh4y0bY0cuvX3u1zVTRLxZxRVpUZPXBe1kEvUVE7zTnQ/o
-	 HiUJxCrskBzuWGFfEV5K4jwxenfIJZFUrE7OnEH8m9CFgKfVYQTVEuaQAXQ+Uplv9+
-	 CNIzbbYDDGxeeCPWF4eTNBPMRu3EJqSxgfZl6okDj6zg+BpClg2KKEWcCRQgJAEQPw
-	 ufII38amPBGYvW1WHwTf85H5CzNrII22ejhwsy6wvg1TkeT6WIjBMHJvo+iRczt84f
-	 AnZDdUvL/lq/g==
-Date: Wed, 20 Aug 2025 16:14:54 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Eric =?iso-8859-1?Q?Gon=E7alves?= <ghatto404@gmail.com>
-Cc: andersson@kernel.org, linux-kernel@vger.kernel.org, conor+dt@kernel.org,
-	krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	konradybcio@kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: qcom: document r8q board binding
-Message-ID: <175572449449.1124582.9121877496040488320.robh@kernel.org>
-References: <20250815151426.32023-1-ghatto404@gmail.com>
- <20250815151426.32023-2-ghatto404@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=h1qXUEbdtlAgrxsI/4+Du31rfSYgWO8Y6Jz4hC93jK9jDKxqhB87Wgie5OpNwu4McT9R21vjMO7pr6cHFbOyTBK1oVxVXVl7BSTJ+0kWqaWbOgEwEGpvH5C4X00yMZod+LTX3zGybHI2/QXBnwTdIiYuYcWHJMqPesyoh9wG/5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weathered-steel.dev; spf=pass smtp.mailfrom=weathered-steel.dev; dkim=pass (2048-bit key) header.d=weathered-steel.dev header.i=@weathered-steel.dev header.b=kQMm3rIG; arc=none smtp.client-ip=79.135.106.111
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weathered-steel.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weathered-steel.dev
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=weathered-steel.dev;
+	s=protonmail3; t=1755724588; x=1755983788;
+	bh=GrowVB5MF8RNBNwUOvZofvnxbDvD4JbTvirhxl7xE1k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:In-Reply-To:From:To:
+	 Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=kQMm3rIGRtZ2UZDa8nH+6paX7zsLGP4rBuWwjsRup9hpRLmC7MdxUGJiLuKiHXNyg
+	 381gxbXrkDWdURQuBRW2Rtdz25GeipS++Qku5zR8LXB3NnWP92XxfjukSHyG94mvbP
+	 7/1kzFc5I0YKW134r5YJmxF8tgRWHUZQyxjAFVgY1Y04h3bsAHC35w2aFBaXEWtSU2
+	 L5P5BsmFAOjYg8ZE5hBfX21ZlDsjBJep2fJF1suNlJsEWoScDzTLVuyKk1/iAVMMDO
+	 XG3BtLXtq19i/BBpah2h1URvK0wKAC1jq9LLSR22IqSuaDOAGo7HyD6DIg6QObofRO
+	 ZRNnOsICam4fg==
+X-Pm-Submission-Id: 4c6fQJ4sXMz2ScCq
+Date: Wed, 20 Aug 2025 21:16:19 +0000
+From: Elle Rhumsaa <elle@weathered-steel.dev>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Drew Fustini <fustini@kernel.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v14 5/7] dt-bindings: pwm: thead: Add T-HEAD TH1520 PWM
+ controller
+Message-ID: <aKY7IzAg0IX4UfWW@archiso>
+References: <20250820-rust-next-pwm-working-fan-for-sending-v14-0-df2191621429@samsung.com>
+ <CGME20250820083546eucas1p2cc370ae89e7a87e3f3b9266967501b44@eucas1p2.samsung.com>
+ <20250820-rust-next-pwm-working-fan-for-sending-v14-5-df2191621429@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250815151426.32023-2-ghatto404@gmail.com>
+In-Reply-To: <20250820-rust-next-pwm-working-fan-for-sending-v14-5-df2191621429@samsung.com>
 
-
-On Fri, 15 Aug 2025 15:14:25 +0000, Eric Gonçalves wrote:
-> Add binding for the Samsung Galaxy S20 FE 4G/5G (SM-G980/SM-G981B) board,
->  codenamed R8Q,
-> which is based on the Qualcomm Snapdragon 865 SoC.
+On Wed, Aug 20, 2025 at 10:35:40AM +0200, Michal Wilczynski wrote:
+> Add the Device Tree binding documentation for the T-HEAD
+> TH1520 SoC PWM controller.
 > 
-> Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Tested-by: Drew Fustini <fustini@kernel.org>
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/pwm/thead,th1520-pwm.yaml  | 48 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 49 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/pwm/thead,th1520-pwm.yaml b/Documentation/devicetree/bindings/pwm/thead,th1520-pwm.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..855aec59ac53c430adc849271235686e87b10e6c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/thead,th1520-pwm.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/thead,th1520-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: T-HEAD TH1520 PWM controller
+> +
+> +maintainers:
+> +  - Michal Wilczynski <m.wilczynski@samsung.com>
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: thead,th1520-pwm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: SoC PWM clock
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/thead,th1520-clk-ap.h>
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +      pwm@ffec01c000 {
+> +          compatible = "thead,th1520-pwm";
+> +          reg = <0xff 0xec01c000 0x0 0x4000>;
+> +          clocks = <&clk CLK_PWM>;
+> +          #pwm-cells = <3>;
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d79dc21f22d143ca8cde6a06194545fbc640e695..a64027f441e8e23c579b469b2451b514e5d2802c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21732,6 +21732,7 @@ F:	Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+>  F:	Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
+>  F:	Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+>  F:	Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
+> +F:	Documentation/devicetree/bindings/pwm/thead,th1520-pwm.yaml
+>  F:	Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+>  F:	arch/riscv/boot/dts/thead/
+>  F:	drivers/clk/thead/clk-th1520-ap.c
+> 
+> -- 
+> 2.34.1
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
 
