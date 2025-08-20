@@ -1,225 +1,188 @@
-Return-Path: <devicetree+bounces-206979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F1FCB2E30B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 19:11:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE70FB2E334
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 19:17:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9FD43A6CAE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 17:10:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ADDAA22F8A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 17:15:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46BE633438D;
-	Wed, 20 Aug 2025 17:10:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 380CE335BAA;
+	Wed, 20 Aug 2025 17:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dt6BpLVU"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="iXdiIBjc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C623277AA
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 17:10:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755709855; cv=none; b=f1bQbmlCKs0UmBFQWEYJhP8DEAySoOKLUFGpvH8HtDeor9Cidl65GwEFs+HqYJPba7n3Kwl9da72pbmJUHD2tfaHdkuGQ+oV0YwJSmdOcmCBNuP40IB4LOQNCz0HFbd/fCSEZBwkq2gwAxWb9QgEvfQ6VcIdn0GES2VI7EAmU/8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755709855; c=relaxed/simple;
-	bh=hG8SxVO+5AdfLJQh4Ugi3YNkNI9qHS2bc2aupXJCtSo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JvliyQLjBdSZudG6h/AWCWHVz86DwGJxi8nB22yAoZ3fuTxjgBpyrXir5Qid7ybj7hdCx5W2s++t3p/KLtwgYVYGXWyERKrIAPb+vipiGZ9QMmlOLx9z7hnFJiGFIhDXcEcmifv4wr6OjvG9ZHQY7SydyzVgAdv0Ur6FmCYqOYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dt6BpLVU; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-71fb85c4b59so9430387b3.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 10:10:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755709852; x=1756314652; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=727UKZSKS9UwGe6aim6XorGjWW+I61+OozHvio/cjhs=;
-        b=dt6BpLVUopBd6rT89t63P5PgQIiF2+wrayKgd8MCrHPlBDf6QR10HjiFZK4fC40dfO
-         LbLuYG5Tz7+JrD+bFpD6Qm14XR46zYl6qVbsrgLAQDcKRz++xHavmUtnLwywDSOUnI+P
-         DBdmS8hZ3zu9U9BcTUjW5TTlT4YtNctDufasVQhs/Btj5aQTw4g0tp/UPYKB3ljQcdin
-         mTraIbTQPUso6IJBL6kSJT+noeCHYA1UesrN/6gaIHb6TJaVQmyH6dJE50rykIj6l7zJ
-         qJmUHLAvUnUmjj59A7UVyiLCz0gkili1uRBA8lMN73Qq+XZ8HPx1QN/HbxNkFGJxvmKu
-         OSIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755709852; x=1756314652;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=727UKZSKS9UwGe6aim6XorGjWW+I61+OozHvio/cjhs=;
-        b=oUIQN6Z8E3/MYOjV5ITj9SLIZGnZh3FEybs7wAHmO8UdYnNSqlK3BODvjL9CGEEUw+
-         pvcUZQxvIUV7XQHxkJM2loEIq0Su65ve9CWHZ5AdstOPZcF0+K4K+hCeSwysVX/V+hgS
-         m0cM0f2BHrNgNplGr3M2zFnH72WHtxyHDJStT9Yq0qfCU/qIeZ+hV9NgjAG5bynOuL6o
-         1bDLvrVPwHNuUnzH7P8Kkr44U1/F93+tB0cNR9z+KmlovxeMLgwBbq6bbVSW5AWYcPMK
-         Mh8eQpFiWCD72eKc3GF0ZLVi32uJGAU+3ey5xG3xZD/OoXVZ6jREpUyP4Tg4c8Tx98/J
-         CExw==
-X-Forwarded-Encrypted: i=1; AJvYcCXRhbu53PXAHNrTyIvQV+c6qeLajG822xM7sVE1AMBqiAZqi4AKvUoiYdKW9PPusCiUsJql4fQ3OTzV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx48VawdK4FiNjQRuyc/+tsZc3WRwxwxPlOiLGLhsQVvc01hoUh
-	DngVQQ5siYTKzUAJVX2azpfIsQtxjGZAFkGf4Aa3iZ1Ff5m46gC8Zo7HbwfnMU+rWU386aAyUZI
-	PtnQgNODR9PVtHKcRPmy7ikY2waqk2hhWSWiJaUdyxQ==
-X-Gm-Gg: ASbGnct/ONqf4Rcyp0vj46v5utl+18uAOPYmoJ+bUXTLs2Tt4iMlZGWpSuuHIL2nA6A
-	gA5y0Q+fJXJiDip5A1voIPlF3dKhMj0f3d6z9T7U6JoMf7wRafJpQyoxKtO3MxYDybgVa1FTBlK
-	9Yp8y33HPSRazzvTB1ECSQJyoshaRBGl6HqUqHokQOY7pUBt7e/zMv/1EvAqd2Jm++WUIKVv9b5
-	HM7JcYy
-X-Google-Smtp-Source: AGHT+IEpDwtZVI6H+GfGnTfQIwUyY5UUZdBfiqI97/jjpj/Lpw9zMkd2OWo35A3c2Mc0ZAvXui6OtqnR/RLurFK8aDA=
-X-Received: by 2002:a05:690c:4b8d:b0:71b:f419:2099 with SMTP id
- 00721157ae682-71fc6380a74mr4423317b3.21.1755709852320; Wed, 20 Aug 2025
- 10:10:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D59CC321447;
+	Wed, 20 Aug 2025 17:14:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755710099; cv=pass; b=o1rfIMjzfadph5ExeuHI9ZPdidbD53FDeKG7v9P8DXGXl7d35oe1A0Y0Zt2Ieh1vBCWyrXt7h+Cnhen2rPqBKW25i6GRW8x0l6rX4aKnzq5gRwI3NIhuSOWDlF9yf3GL+GtFyioO98F41XNpkOlsoovdMYAnQMbe0lopUvQ08mg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755710099; c=relaxed/simple;
+	bh=sV4kV/mfpkuY2wa8iKDdxtO5llhW9IcZK2g3plBieoY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gZR5TxkYcQgjUGvd43QUMtqcDgNWQc4RYVFsrJFwsflk7sde8eqSlsEv4NFA3RNjKsmA0ri1SEcP8o5BhsYCS2WBcpjoNbncWT8AaDKQN+bdUEHNDdlWgG1nh0eWcRHZnVkTEXSIlnIwmqQT7NKj+fXxJbRIgkcbvuqJnz6jlCs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=iXdiIBjc; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1755710040; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Tim5F0HvYU373WHcbS+AW8itdXClm69OGGAsV1A46kh652ncp3eSt6GC0leBhqQH405N+NPRTuGFjKQEUvPvcrXmcjPYge5C/9fszUGPrpZ5XGJoWwPlyg6Izx+fS2Si8WlHPNLOTPyqgUchpe4WQwKCX0+b+lLw//3TM164iRw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1755710040; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=DaMNOnKm2AnfZhbaigAUu68c7YdBR4a87CV7XaTyqjQ=; 
+	b=NO+n+dEsIpuIEW/n/h9GYA9kEKtT860Sym3jjxLtnbWPN+LQVmltK9yAjn4BT/NP9BeIqZ29j6cMMWzQ8cVuRxHQsn+gkG6m06E2i3FvJET1GwFmdYbpD/1QAJ/EvgPsXeR8DaWuwm6GggX8aaDWOJ1UsDCWYze9LFtBPVar8h4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
+	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1755710040;
+	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=DaMNOnKm2AnfZhbaigAUu68c7YdBR4a87CV7XaTyqjQ=;
+	b=iXdiIBjcdK3P7kvXuElLIVC112o9r1eEOb6UZAwC74zp+49vHMbc2ihpozoDyC7T
+	X+KKEt/amBhjUN4d6/KrsnmQM8X6JXL/Fxoc1teeoq21qpT+5zcDfZ1qpXkTHyX+0Oa
+	tsnKB3Yni2Qt7wENZUUvI7IQ/xdgh6kf7HnAjcUQ=
+Received: by mx.zohomail.com with SMTPS id 1755710039628806.7841478498982;
+	Wed, 20 Aug 2025 10:13:59 -0700 (PDT)
+From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+To: airlied@gmail.com,
+	amergnat@baylibre.com,
+	andrew+netdev@lunn.ch,
+	andrew-ct.chen@mediatek.com,
+	angelogioacchino.delregno@collabora.com,
+	ariel.dalessandro@collabora.com,
+	broonie@kernel.org,
+	chunkuang.hu@kernel.org,
+	ck.hu@mediatek.com,
+	conor+dt@kernel.org,
+	davem@davemloft.net,
+	dmitry.torokhov@gmail.com,
+	edumazet@google.com,
+	flora.fu@mediatek.com,
+	houlong.wei@mediatek.com,
+	jeesw@melfas.com,
+	jmassot@collabora.com,
+	kernel@collabora.com,
+	krzk+dt@kernel.org,
+	kuba@kernel.org,
+	kyrie.wu@mediatek.corp-partner.google.com,
+	lgirdwood@gmail.com,
+	linus.walleij@linaro.org,
+	louisalexis.eyraud@collabora.com,
+	maarten.lankhorst@linux.intel.com,
+	matthias.bgg@gmail.com,
+	mchehab@kernel.org,
+	minghsiu.tsai@mediatek.com,
+	mripard@kernel.org,
+	p.zabel@pengutronix.de,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	sean.wang@kernel.org,
+	simona@ffwll.ch,
+	support.opensource@diasemi.com,
+	tiffany.lin@mediatek.com,
+	tzimmermann@suse.de,
+	yunfei.dong@mediatek.com
+Cc: devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-sound@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH v1 00/14] MediaTek dt-bindings sanitization (MT8173)
+Date: Wed, 20 Aug 2025 14:12:48 -0300
+Message-ID: <20250820171302.324142-1-ariel.dalessandro@collabora.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250820085609eucas1p25d7c6d67318b6c332e3f238705544b19@eucas1p2.samsung.com>
- <20250820-apr_14_for_sending-v12-0-4213ccefbd05@samsung.com> <20250820-apr_14_for_sending-v12-2-4213ccefbd05@samsung.com>
-In-Reply-To: <20250820-apr_14_for_sending-v12-2-4213ccefbd05@samsung.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 20 Aug 2025 19:10:15 +0200
-X-Gm-Features: Ac12FXxCH2ttqXRbmi_2dmdMWE4eeauuwFrI7EIdSSvrawO-ealoi74PXSk4RH8
-Message-ID: <CAPDyKFrjHdASRUDxR+KROovV0sherhqdkOgHC9hoA6dhdMr39A@mail.gmail.com>
-Subject: Re: [PATCH v12 2/4] dt-bindings: gpu: img,powervr-rogue: Add TH1520
- GPU support
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Drew Fustini <fustini@kernel.org>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On Wed, 20 Aug 2025 at 10:56, Michal Wilczynski
-<m.wilczynski@samsung.com> wrote:
->
-> Rework the PowerVR Rogue GPU binding to use an explicit, per variant
-> style for defining power domain properties and add support for the
-> T-HEAD TH1520 SoC's GPU.
->
-> To improve clarity and precision, the binding is refactored so that
-> power domain items are listed explicitly for each variant [1]. The
-> previous method relied on an implicit, positional mapping between the
-> `power-domains` and `power-domain-names` properties. This change
-> replaces the generic rules with self contained if/then blocks for each
-> GPU variant, making the relationship between power domains and their
-> names explicit and unambiguous.
->
-> The generic if block for img,img-rogue, which previously required
-> power-domains and power-domain-names for all variants, is removed.
-> Instead, each specific GPU variant now defines its own power domain
-> requirements within a self-contained if/then block, making the schema
-> more explicit.
->
-> This new structure is then used to add support for the
-> `thead,th1520-gpu`. While its BXM-4-64 IP has two conceptual power
-> domains, the TH1520 SoC integrates them behind a single power gate. The
-> new binding models this with a specific rule that enforces a single
-> `power-domains` entry and disallows the `power-domain-names` property.
->
-> Link: https://lore.kernel.org/all/4d79c8dd-c5fb-442c-ac65-37e7176b0cdd@linaro.org/ [1]
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+This patch series continues the effort to address Device Tree validation
+warnings for MediaTek platforms, with a focus on MT8173. It follows the initial
+cleanup series by Angelo (https://www.spinics.net/lists/kernel/msg5780177.html)
 
-Even if you already have the necessary ack, feel free to add:
+Similarly to the ongoing MT8183 work done by Julien Massot, this patchset
+eliminates several of the remaining warnings by improving or converting DT
+bindings to YAML, adding missing properties, and updating device tree files
+accordingly.
 
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 
-> ---
->  .../devicetree/bindings/gpu/img,powervr-rogue.yaml | 37 +++++++++++++++++-----
->  1 file changed, 29 insertions(+), 8 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> index 4450e2e73b3ccf74d29f0e31e2e6687d7cbe5d65..c87d7bece0ecd6331fc7d1a479bbdaf68bac6e6d 100644
-> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> @@ -21,6 +21,11 @@ properties:
->            # work with newer dts.
->            - const: img,img-axe
->            - const: img,img-rogue
-> +      - items:
-> +          - enum:
-> +              - thead,th1520-gpu
-> +          - const: img,img-bxm-4-64
-> +          - const: img,img-rogue
->        - items:
->            - enum:
->                - ti,j721s2-gpu
-> @@ -77,14 +82,18 @@ required:
->  additionalProperties: false
->
->  allOf:
-> -  # Constraints added alongside the new compatible strings that would otherwise
-> -  # create an ABI break.
->    - if:
->        properties:
->          compatible:
->            contains:
-> -            const: img,img-rogue
-> +            const: img,img-axe-1-16m
->      then:
-> +      properties:
-> +        power-domains:
-> +          items:
-> +            - description: Power domain A
-> +        power-domain-names:
-> +          maxItems: 1
->        required:
->          - power-domains
->          - power-domain-names
-> @@ -93,13 +102,20 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: img,img-axe-1-16m
-> +            const: thead,th1520-gpu
->      then:
->        properties:
-> +        clocks:
-> +          minItems: 3
-> +        clock-names:
-> +          minItems: 3
->          power-domains:
-> -          maxItems: 1
-> -        power-domain-names:
-> -          maxItems: 1
-> +          items:
-> +            - description: The single, unified power domain for the GPU on the
-> +                TH1520 SoC, integrating all internal IP power domains.
-> +        power-domain-names: false
-> +      required:
-> +        - power-domains
->
->    - if:
->        properties:
-> @@ -109,9 +125,14 @@ allOf:
->      then:
->        properties:
->          power-domains:
-> -          minItems: 2
-> +          items:
-> +            - description: Power domain A
-> +            - description: Power domain B
->          power-domain-names:
->            minItems: 2
-> +      required:
-> +        - power-domains
-> +        - power-domain-names
->
->    - if:
->        properties:
->
-> --
-> 2.34.1
->
+Ariel D'Alessandro (14):
+  media: dt-bindings: Convert MediaTek mt8173-mdp bindings to YAML
+  media: dt-bindings: Convert MediaTek mt8173-vpu bindings to YAML
+  dt-bindings: arm: mediatek: mmsys: Add assigned-clocks/rates
+    properties
+  net: dt-bindings: Convert Marvell 8897/8997 bindings to YAML
+  sound: dt-bindings: Convert MediaTek RT5650 codecs bindings to YAML
+  dt-bindings: display: mediatek,od: Add mediatek,gce-client-reg
+    property
+  dt-bindings: display: mediatek,ufoe: Add mediatek,gce-client-reg
+    property
+  arm64: dts: mediatek: mt8173: Fix mt8173-pinctrl node names
+  dt-bindings: pinctrl: mediatek,mt65xx-pinctrl: Allow gpio-line-names
+  regulator: dt-bindings: Convert Dialog Semiconductor DA9211 Regulators
+    to YAML
+  arm64: dts: mediatek: mt8173-elm: Drop unused bank supply
+  dt-bindings: soc: mediatek: pwrap: Add power-domains property
+  dt-bindings: input/touchscreen: Convert MELFAS MIP4 Touchscreen to
+    YAML
+  dt-bindings: media: mediatek,jpeg: Fix jpeg encoder/decoder ranges
+
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml |   9 +
+ .../display/mediatek/mediatek,od.yaml         |  10 +
+ .../display/mediatek/mediatek,ufoe.yaml       |  11 +
+ .../input/touchscreen/melfas,mip4_ts.yaml     |  55 +++++
+ .../input/touchscreen/melfas_mip4.txt         |  20 --
+ .../bindings/media/mediatek,mt8173-mdp.yaml   | 174 +++++++++++++++
+ .../bindings/media/mediatek,mt8173-vpu.yaml   |  76 +++++++
+ .../media/mediatek,mt8195-jpegdec.yaml        |  31 +--
+ .../media/mediatek,mt8195-jpegenc.yaml        |  15 +-
+ .../bindings/media/mediatek-mdp.txt           |  95 --------
+ .../bindings/media/mediatek-vpu.txt           |  31 ---
+ .../bindings/net/marvell,sd8897-bt.yaml       |  91 ++++++++
+ .../bindings/net/marvell-bt-8xxx.txt          |  83 -------
+ .../pinctrl/mediatek,mt65xx-pinctrl.yaml      |   2 +
+ .../devicetree/bindings/regulator/da9211.txt  | 205 ------------------
+ .../bindings/regulator/dlg,da9211.yaml        | 104 +++++++++
+ .../bindings/soc/mediatek/mediatek,pwrap.yaml |  15 ++
+ .../sound/mediatek,mt8173-rt5650.yaml         |  73 +++++++
+ .../bindings/sound/mt8173-rt5650.txt          |  31 ---
+ .../boot/dts/mediatek/mt8173-elm-hana.dtsi    |   2 +-
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi  |  31 ++-
+ arch/arm64/boot/dts/mediatek/mt8173-evb.dts   |  14 +-
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  14 +-
+ 23 files changed, 672 insertions(+), 520 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/melfas,mip4_ts.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/melfas_mip4.txt
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8173-vpu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/mediatek-mdp.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/mediatek-vpu.txt
+ create mode 100644 Documentation/devicetree/bindings/net/marvell,sd8897-bt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
+ delete mode 100644 Documentation/devicetree/bindings/regulator/da9211.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/dlg,da9211.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/mt8173-rt5650.txt
+
+-- 
+2.50.1
+
 
