@@ -1,88 +1,103 @@
-Return-Path: <devicetree+bounces-206702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E589B2D52C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:47:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97209B2D533
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:52:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3E1D1685BD
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:46:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1896B7B9BA1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:50:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E75CC255E53;
-	Wed, 20 Aug 2025 07:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80882D8779;
+	Wed, 20 Aug 2025 07:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZdoUNVYf"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="fjB2SWgE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9B9227563;
-	Wed, 20 Aug 2025 07:46:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333D22D8379
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:52:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755675984; cv=none; b=cT0NlNUJFyvihIzHqfxdpgmQity8uoqOv7RObPu25KoFImxScL8UjsCIOmdA4kSIr0MqSQjdr0w7xAC5emboTf9Ob1E5vZoEq4gET4w42kcbeMe7EKF72P9F3kfGX5SCFOBxMLjQapDsWK+jqYXzuILcZb0FsmW7nxEMfwxGKw4=
+	t=1755676332; cv=none; b=lyaPOTHtxo2/4ZrymjX9gOpg4I5i7g75NcQGXdJ1GlW56e9Z2pjmwC6j4NUPdl10T1Et1HNZBK0bIpDBEulLkw/HFvA+AWFn+JlwxkPg+CXGxtmuFEdf7YRrXHHuVb4ByxetIdtsI5R9CwLPqaTrSB7ssvfiEho1bih9lHrZ+qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755675984; c=relaxed/simple;
-	bh=nEGzvYYrNHjBD+BsPHTYKJ//lWK16bNqWvxHypFf4xo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mLQR82yWumr7KtT4Vi3EtpyyJvEretnQWO7yX4/nzObf3SeeS8x0eJNrGeCfs03kBUW4sIgVQD/tCk6WiyNRVSf6UlZy1YgUBJHGqjGO0nigLXwcxmLwkV66/xbpYSf0JP4vUYudx9O75f6CNKtKrqLy1M+qjEtMhzxkkL2Kwwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZdoUNVYf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B88C6C4CEEB;
-	Wed, 20 Aug 2025 07:46:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755675984;
-	bh=nEGzvYYrNHjBD+BsPHTYKJ//lWK16bNqWvxHypFf4xo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZdoUNVYfWppzQsbJFbLvj37skiHTu/Ow5EoHq0IpyfGCpoAYFJpA6rmUzogEnEVJ5
-	 nzOjWsMH4W2PBwEgIQ/l/CPLDy4C3I17yxo4QVr1ojlGvU3or7N0T/x9JlndIinSQG
-	 a/MYiUgfpwetaEQfsO8lqpuNXZpR629++TRjR3RIm+QBOcz3EMCZjh2pOnOSbCP+Q6
-	 cj9cyc+ralb9+NIi21l+5ChXq+VvcFdg4L9160IMUFuGKywNdR1XWB7MN5swnJiUYK
-	 qr/GBhtDDzJcM60v32dApW1zlP1PkNPrV/8zbH93yBgKwEtFa6ySl6XwODFm7WQqY9
-	 XGqjsAJk6/msQ==
-Date: Wed, 20 Aug 2025 09:46:21 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: panel: document Synaptics
- TDDI panel
-Message-ID: <20250820-heretic-ivory-vole-4f3d63@kuoka>
-References: <20250819-panel-synaptics-tddi-v4-0-448f466d16a6@disroot.org>
- <20250819-panel-synaptics-tddi-v4-1-448f466d16a6@disroot.org>
+	s=arc-20240116; t=1755676332; c=relaxed/simple;
+	bh=elLLSuyPTheoaJ0MPlpkd6YA8BTKoQCtubTKZJG4wWg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=NI95TyrHU2CeIwh6tSKnRVWRgMc+FZvtC1eMPWBwof11A+yy2SUJGMXDBtQ7N47x3KELVXjJIickDna46q+seSr7zjNn5wGuBgQTLrRGcR7/St7DFSyncwRagtLlYYk2CIq/fBQxvsZK9Q4xlWna3p304C7Mi2jOCerZTei0Esg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=fjB2SWgE; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+DKIM-Signature: a=rsa-sha256; b=fjB2SWgEt51cTCOpks9gjwooiZHQ9M4zvI/RLb67ZDFZclKxRMkXHIN2pz4MhKf3jv4LcUxEDH3cz5pPt7qBOakfvNliFjxHToHr/tLIa8MC6o4tOD9+ymwb24SlBB0X451Wp1utLcUKwexwyxYovgik1qlJ9gq5/9ncClmNINGy20tqF9s3DILsBWGWFfab5CG4e0uJz1be1odFQ9mDPGtyKrCPZ9At5+lxGIuseEYDncH/0zNZfoi7BS35NpDx7lGeRny1zNZOivGXmUatSZ3dkrtQm6U0ok/mr5/G3QGNxyB6+xxGSIBpR1cbiPKj8wmrAXZBalmW/Yri+MUA5g==; s=purelymail3; d=purelymail.com; v=1; bh=elLLSuyPTheoaJ0MPlpkd6YA8BTKoQCtubTKZJG4wWg=; h=Feedback-ID:Received:Date:Subject:From:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1035053768;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Wed, 20 Aug 2025 07:51:27 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250819-panel-synaptics-tddi-v4-1-448f466d16a6@disroot.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 20 Aug 2025 09:51:24 +0200
+Message-Id: <DC73AUJUPBLN.2ZN5PDNUVR33L@mentallysanemainliners.org>
+Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/3] clk: samsung: exynos990: Fix CMU TOP mux/div widths
+ and add fixed-factors
+From: "Igor Belwon" <igor.belwon@mentallysanemainliners.org>
+To: "Denzeel Oliva" <wachiturroxd150@gmail.com>, "Krzysztof Kozlowski"
+ <krzk@kernel.org>, "Sylwester Nawrocki" <s.nawrocki@samsung.com>, "Chanwoo
+ Choi" <cw00.choi@samsung.com>, "Alim Akhtar" <alim.akhtar@samsung.com>,
+ "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
+ <sboyd@kernel.org>, "Rob Herring" <robh@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250819-2-v1-0-e84b47b859ce@gmail.com>
+ <20250819-2-v1-1-e84b47b859ce@gmail.com>
+In-Reply-To: <20250819-2-v1-1-e84b47b859ce@gmail.com>
 
-On Tue, Aug 19, 2025 at 08:26:44PM +0530, Kaustabh Chakraborty wrote:
-> Document the Synaptics TDDI (Touch/Display Integration) panel hardware.
-> Along with the MIPI-DSI panel, these devices also have an in-built LED
-> backlight device and a touchscreen, all packed together in a single chip.
-> 
-> Also, add compatibles for supported panels - TD4101 and TD4300. Both
-> have the '-panel' suffix so as to remove any ambiguity between the panel
-> and touchscreen chips.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  .../display/panel/synaptics,td4300-panel.yaml      | 89 ++++++++++++++++++++++
+Hi Denzeel,
 
-I am not going to do the work twice... you need to clearly document
-reasons of dropping people's review.
+Thanks for your patches.
+
+On Wed Aug 20, 2025 at 12:19 AM CEST, Denzeel Oliva wrote:
+> Correct mux/div bit widths in CMU TOP (DPU, DSP_BUS, G2D_MSCL,
+> HSI0/1/2). Replace wrong divs with fixed-factor clocks for
+> HSI1/2 PCIe and USBDP debug. Also fix OTP rate. These align
+> with Exynos990 downstream cmucal and ensure correct parent/rate
+> selection.
+>
+
+[snip]
+
+> @@ -837,7 +837,7 @@ static const struct samsung_div_clock top_div_clks[] =
+__initconst =3D {
+>  	DIV(CLK_DOUT_CMU_SHARED0_DIV2, "dout_cmu_shared0_div2", "mout_pll_share=
+d0",
+>  	    CLK_CON_DIV_PLL_SHARED0_DIV2, 0, 1),
+>  	DIV(CLK_DOUT_CMU_SHARED0_DIV3, "dout_cmu_shared0_div3", "mout_pll_share=
+d0",
+> -	    CLK_CON_DIV_PLL_SHARED0_DIV3, 0, 2),
+> +	    CLK_CON_DIV_PLL_SHARED0_DIV3, 0, 1),
+>  	DIV(CLK_DOUT_CMU_SHARED0_DIV4, "dout_cmu_shared0_div4", "dout_cmu_share=
+d0_div2",
+>  	    CLK_CON_DIV_PLL_SHARED0_DIV4, 0, 1),
+
+As per the downstream clock driver, PLL_SHARED0_DIV3 has a divratio of
+0, 2. Was there any reason to change this? [1]
+
+[1] https://github.com/pascua28/android_kernel_samsung_s20fe/blob/3be539e9c=
+d22b89ba3cc8282945a0c46ff27341d/drivers/soc/samsung/cal-if/exynos9830/cmuca=
+l-sfr.c#L3935
 
 Best regards,
-Krzysztof
-
+Igor
 
