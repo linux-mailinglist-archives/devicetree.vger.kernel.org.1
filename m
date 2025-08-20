@@ -1,126 +1,207 @@
-Return-Path: <devicetree+bounces-206891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF18AB2DE7E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 15:59:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48CFAB2DEA4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:05:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF68518849CF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 13:56:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AB30167678
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 755DC20C023;
-	Wed, 20 Aug 2025 13:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D03125C6FF;
+	Wed, 20 Aug 2025 14:01:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K1k+mqGo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IwgMLjpk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6977C1FECAD;
-	Wed, 20 Aug 2025 13:56:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80DC12571B8;
+	Wed, 20 Aug 2025 14:00:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755698180; cv=none; b=gDzMIF3EuQHa5kN179Lh2ImfRX5iaT4MmKsPG7Ra/Q9z+dlMTK8FnHcZddqwobNIr6lWcUKGhCWt3LPg0+f129qIAcuR2vOPtsr6sH98UbedSkvT0nBuZNVDbAm5KLjmBlOjs1f/D6v3qu7ZrYF+4vyHxiCPuRhTx2vPto2xPdo=
+	t=1755698460; cv=none; b=CIpUdaaCwMVvAA/tQNscEfl1ng8MtyqIWAnOBOLVj5g/u8HkufOjywRN1AdKkZ58pXBKppUiivSW0YQdQ+vnpOO2B3sPJmo1CFBKx/qxtU2MYTNkikOWX8mzTrKwgNmKaOdsHIC7sw4TH2I35+BD6kd745cfAca8kiHK0G+ua9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755698180; c=relaxed/simple;
-	bh=Z7G/14If/9CK+UBZzzYPV1MmXUnSBLj4Fxu7EHPGP+g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h4jq2i4XY5ZpBUcrBjGJA8SB7HiS2PlHg8dxOio+oP2pufbvnmsQGVZqDuynh1GxVwxrw0CflI9INp3Y79frqQVltJnDmMBfh+Ok5k/eXsEd1eExUTBTOIksVo96ogv7mVQTdIkn1zzbHPViucNQbCM9LsSyE2muEgdHv5mpVFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K1k+mqGo; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755698179; x=1787234179;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Z7G/14If/9CK+UBZzzYPV1MmXUnSBLj4Fxu7EHPGP+g=;
-  b=K1k+mqGoGNdeyNBqi3cLB5E/QyEs6y5IS1f1Zi8xUoxEoWfZw/e/pt65
-   Ngt6KroO9POyPwg7t1BLeIDKA/l1ksW88SJiFuOOz5WJRYsGTtShnZwq6
-   GBA7X1ZfFAFxNwORQhC2LyvQQhP+uZtKDzW9hKDqn/KabohwswOJMv/BX
-   gNKdgYtYmCvWpsbxbkVv+Hz0KPmZt73AK07jmwCaZcMV4gXviE8ZAofur
-   FGw3eyyQcPj8Zo1HF0zxzTBN3V8j7BrDHBHdtgLfwCKykcJ2pM6qKTVyR
-   W+YJBk+LVmvk3zzNmOJsnej2PHBUxAqHn+P699L6XNyNzVHNbcXrnNpHO
-   A==;
-X-CSE-ConnectionGUID: WRhHSB/eSAKZcVkWSADCgg==
-X-CSE-MsgGUID: Knk3w1WXRpywFjSWcwpXZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="80557129"
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
-   d="scan'208";a="80557129"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2025 06:56:18 -0700
-X-CSE-ConnectionGUID: JJ5OOMrQRs+MEc4bgOwlWw==
-X-CSE-MsgGUID: U8f7/K0RQny2Vb4X74yvRA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
-   d="scan'208";a="173387942"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2025 06:56:15 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uojIS-00000006wyS-4AbF;
-	Wed, 20 Aug 2025 16:56:12 +0300
-Date: Wed, 20 Aug 2025 16:56:12 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Dixit Parmar <dixitparmar19@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
- TLV493D 3D Magentic sensor
-Message-ID: <aKXT_HOrY1XUlsLu@smile.fi.intel.com>
-References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
- <20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
- <20250816140448.37f38d0f@jic23-huawei>
- <aKVTJXe50zf07ipR@dixit>
+	s=arc-20240116; t=1755698460; c=relaxed/simple;
+	bh=tOgZOofje6w/ZsbegjwPT59Z9rnpVimZqMwjk3+cw58=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WnLzY9781uvfRb0Kpoj+eXAX9YDZJDO9ZNvbHJGdYBS4cT83eOnqgzUtrhDvmqFFTqhslgHrOIlOMSIfVh0Oc3jSucxe/3uhUA63TiwsDzkPsrfWfXR6pC7Ja4aX0sonyhphbAgx2d1vnn8HD+u4H9ukdxMsazjGBJSxLr4HRIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IwgMLjpk; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-afcb7af30a5so1096764766b.3;
+        Wed, 20 Aug 2025 07:00:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755698457; x=1756303257; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m9h2QLkI6YkYRhYdghU2MiWTpV4YprWIN5TJOvTtl/4=;
+        b=IwgMLjpkTWRxm/prJdydSgJT4sVINNkDQ4g77qhd2+oo0ATjWRnh6GTfoAw8zCGUuq
+         I6zuR/DZ4Zhe6P8k0ESQiD5CjNUyf5seqa/ja61z7YX9amk4HX58q3WhiRd8NRm3pcKz
+         0RRoVSP43/NRC8GaR7apfttGF/wvmoaxudCsxAL2SIILaGW66m+z14xXTcKK14wBUUgb
+         9KAPg/E0LT1EMUQjLpOuJDpqP4goTnDtNR63wZ5VY2xJKRGPUXAx3IoFya3OvvEuDoJX
+         OX5OG/wfjJfDs5xI2fCdjoKOLkA4YmbLOGYI1w3vsGGei7F3IfqTX19AQTGXoiZMwFw8
+         JaFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755698457; x=1756303257;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=m9h2QLkI6YkYRhYdghU2MiWTpV4YprWIN5TJOvTtl/4=;
+        b=L5HQmZmnledbR2XfYcxeWSVGjaX1E/b5mKuGUNoOGmZLcoNDbP0y2si5h61t/+EEgx
+         eYuoobBdxNgRDl8k/0LZaJ/vWgyBRynubFjs3mDDF462MTqJyTG/zDfeUkzJttvbdM/h
+         m9ebs3LfYGHC2suhuANtnqRkybztiE+OqYwJRIlMP4qihKipL/vxvb0vsZ9n+4vGdjwQ
+         oIDx8fMIHuGGttMHrwDlndzB8bHElCzzLaL6IEJmeWuDcMvmtw89Zl+CPeRCeR5CmlRB
+         VH40/ZKlIzGn5KVIgDOloTfthDK+KhFdDvCJiZPHFl7qIJaadBVKgm5kIE77HU9wb2qj
+         D8rw==
+X-Forwarded-Encrypted: i=1; AJvYcCX8gt3M20ohl4qlLFqIcBd8XpTxP3IANEnyJ+AXQk/btvS26iEmpxaMWYv383wirI76bRPxdYLCK9ru@vger.kernel.org, AJvYcCXiM+cB9+ZgyI2pDa93z9EHtZxzOM2sWf6tEePFcWV2XFPJMBtkvhsKuMTjfyLDIsIOUTcUCZCe5EmDdPWP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIcwPAdXxsPOxDwiIX0UOF91XDlvXuV/eUOmAI4IM3jq4ui8ds
+	i7AeIE9658bhCxf6HE3R3YZKDf/kVBfHOCeHh6YAeOcilGUHB+Az+YVl4ozq1QDXj+bXTEGcpim
+	Z54ihn7vxA2Q0YqrCRhGo9FSTuNKv/BYcW1v0
+X-Gm-Gg: ASbGncuQAQ4e9SxKRqpLFNiwGR1srHFELYHEYU1oQVvqSpSaVSOWz+1NlzrKD9qEN7i
+	yQcDZC146gOw8BMiO9FJrGP/JPEyDXdfXeJoHqJCMdoWV4lgAVgDhfW/EHlqQQ/2ttuksVo6atN
+	oGzdVVxjctk0kN6xjfiN5kWPzcHA+lAwTBqyucuK0v1+SlSM/owO0uRkeYm9TPq+BXhwMhrfrzi
+	qPQJac272FV7U1U
+X-Google-Smtp-Source: AGHT+IFV+ro30RViXmPmh+UAaPLX9QXo+YSh1EhMZ8DdlEeQ+YTmgGE1awr/lw8YhiJs9zwakmOnOmQJdBgREnZFde0=
+X-Received: by 2002:a17:907:3c8b:b0:afc:b13d:ea7a with SMTP id
+ a640c23a62f3a-afdf020c2f4mr277148966b.57.1755698456244; Wed, 20 Aug 2025
+ 07:00:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aKVTJXe50zf07ipR@dixit>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20240205171930.968-1-linux.amoon@gmail.com> <20240205171930.968-5-linux.amoon@gmail.com>
+ <cf47b82c-6307-475b-af3a-eab7f09715f0@linaro.org> <CANAwSgTOpDmZGR33veBWrzr75=xEZ-28iu=GeCzqa0ZPXxDchw@mail.gmail.com>
+ <f87069a4-042c-467a-94fb-0b65bfa4758d@linaro.org> <CANAwSgR1+Fb5Si6yBU6JXCfRiq-XU0xjr-ecVbnALMj7qmv0Sg@mail.gmail.com>
+In-Reply-To: <CANAwSgR1+Fb5Si6yBU6JXCfRiq-XU0xjr-ecVbnALMj7qmv0Sg@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Wed, 20 Aug 2025 19:30:38 +0530
+X-Gm-Features: Ac12FXzAr4dY-DLEEvK_oha48667po-sPu4Fnf6VcphXOs4zMjuTfD8jZc6AdGA
+Message-ID: <CANAwSgQvYyE3rZqBHR2_Q0FzggznOh=fhtBQVJZ1DRn73P24pQ@mail.gmail.com>
+Subject: Re: [PATCHv1 4/5] arm64: dts: amlogic: Add cache information to the
+ Amlogic S922X SoC
+To: neil.armstrong@linaro.org
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 20, 2025 at 10:16:29AM +0530, Dixit Parmar wrote:
-> On Sat, Aug 16, 2025 at 02:04:48PM +0100, Jonathan Cameron wrote:
+Hi Neil,
 
-...
+On Tue, 27 Feb 2024 at 18:34, Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> Hi Niel,
+>
+> On Tue, 6 Feb 2024 at 20:31, <neil.armstrong@linaro.org> wrote:
+> >
+> > On 06/02/2024 11:15, Anand Moon wrote:
+> > > Hi Neil,
+> > >
+> > > On Tue, 6 Feb 2024 at 14:30, Neil Armstrong <neil.armstrong@linaro.or=
+g> wrote:
+> > >>
+> > >> On 05/02/2024 18:19, Anand Moon wrote:
+> > >>> As per S922X datasheet add missing cache information to the Amlogic
+> > >>> S922X SoC.
+> > >>>
+> > >>> - Each Cortex-A53 core has 32 KB of instruction cache and
+> > >>>        32 KB of L1 data cache available.
+> > >>> - Each Cortex-A73 core has 64 KB of L1 instruction cache and
+> > >>>        64 KB of L1 data cache available.
+> > >>> - The little (A53) cluster has 512 KB of unified L2 cache available=
+.
+> > >>> - The big (A73) cluster has 1 MB of unified L2 cache available.
+> > >>
+> > >> Datasheet says:
+> > >> The quad core Cortex=E2=84=A2-A73 processor is paired with A53 proce=
+ssor in a big.Little configuration, with each
+> > >> core has L1 instruction and data chaches, together with a single sha=
+red L2 unified cache with A53
+> > >>
+> > > Ok,
+> > >
+> > > Since all the Cortex=E2=84=A2-A73 and Cortex=E2=84=A2-A53 share some =
+improvements in
+> > > the architecture with some improvements in cache features
+> > > hence I update the changes accordingly.
+> > > Also, I checked this in the ARM documentation earlier on this.
+> >
+> > I don't understand, Amlogic states it's a shared L2 cache, but you trus=
+t
+> > the ARM documentation instead ???
+>
+> Yes please find the Cortex=E2=84=A2-A73 TRM
+> L1 Cache
+> https://developer.arm.com/documentation/100048/0002/level-1-memory-system=
+/about-the-l1-memory-system?lang=3Den
+> L2 Cache
+> https://developer.arm.com/documentation/100048/0002/level-2-memory-system=
+/about-the-l2-memory-system?lang=3Den
+> >
+> > >
+> > >> And there's no indication of the L1 or L2 cache sizes.
+> > >
+> > > What I feel is in general all the Cortex=E2=84=A2-A73 and Cortex=E2=
+=84=A2-A53 supports
+> > > L1 and L2 cache size since it is part of the core features.
+> > > but I opted for these size values from a Wikipedia article.
+> > >
+> > > On my Odroid N2+, I observe the following.
+> > >
+> > > I have also done some testing on the stress-ng to verify this.
+> >
+> >
+> > Ok I don't feel confident adding numbers that comes out of thin air,
+> > and even more since they are only shared to userspace.
+> >
+> > I think we should only add the numbers which are 100% sure
+>
+> Best way to let the Amlogic SoC members comment on the CPU  L1/ / L2 cach=
+e size.
+> But with the lack of pref PMU events we cannot test this feature.
+>
+> >
+> >
+> > This looks pretty, but let's keep exporting verified data.
+> >
+I just wanted to revisit this patch series with some updates on
 
-> > > +	TLV493D_AXIS_X,
-> > > +	TLV493D_AXIS_Y,
-> > > +	TLV493D_AXIS_Z,
-> > > +	TLV493D_TEMPERATURE
-> > As below.
-> > 
-> > > +};
-> > > +
-> > > +enum tlv493d_op_mode {
-> > > +	TLV493D_OP_MODE_POWERDOWN,
-> > > +	TLV493D_OP_MODE_FAST,
-> > > +	TLV493D_OP_MODE_LOWPOWER,
-> > > +	TLV493D_OP_MODE_ULTRA_LOWPOWER,
-> > > +	TLV493D_OP_MODE_MASTERCONTROLLED
-> > This is not a terminating entry, so would typically have a trailing comma.
-> Isn't the last entry in the enum list is termintating entry and it should
-> not have trailing comma?
+Here is where the Android TV provides the cache details.
+[1] https://androidpctv.com/comparative-amlogic-s922x/
 
-No, it's not semantically. (Yes, it's terminating the list syntactically)
+Amlogic S922X Hexa Core SoC has four ARM Cortex-A73 cores capable of
+reaching 1.8Ghz
+with 1MB L2 cache + 2 Cortex-A53 RAM processors with 256k L2 cache,
 
-> > > +};
+https://boardor.com/blog/understanding-the-architecture-of-arm-cortex-a53-c=
+ache
 
--- 
-With Best Regards,
-Andy Shevchenko
+Also  Amlogic A311D processor utilizes a "big.LITTLE" architecture, combini=
+ng:
 
+Quad-core ARM Cortex-A73:
+Each Cortex-A73 core has:
+     64 KB L1 instruction cache 64 KB L1 data cache
+The Cortex-A73 cluster shares a 1 MB unified L2 cache.
 
+Dual-core ARM Cortex-A53:
+Each Cortex-A53 core has:
+  32 KB L1 instruction cache, 32 KB L1 data cache
+
+The Cortex-A53 cluster shares a 512 KB unified L2 cache.
+
+From what I understand, CPU caches are a core feature of the CPU.
+Do you think I should update these patches and resend ?
+
+Thanks
+-Anand
 
