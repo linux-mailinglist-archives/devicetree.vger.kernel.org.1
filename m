@@ -1,154 +1,126 @@
-Return-Path: <devicetree+bounces-206899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AEF2B2DEE5
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:16:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC80AB2DEF5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:18:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4523E176CF3
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:12:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 191CE623FB8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:13:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9A8926E704;
-	Wed, 20 Aug 2025 14:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8785626B2D3;
+	Wed, 20 Aug 2025 14:13:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N6HT4GkD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lhSQxCBd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80A8021E0AD
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 14:12:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0827255E53;
+	Wed, 20 Aug 2025 14:13:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755699163; cv=none; b=p4SPgouR9GmK5olCFTcllAdqEZzFbv55iknvNdC7wHJZqJOo0enAkMegM79kZpGLUW14CRH365dHY2WgDxuYcFroP+lN6Dfg+NihDe56UPen9zm0FRCMah5VcgtvDeZO4Z9DgowrMSLWOdFo43+SZCdxoXnynMTsOHYrYJVROho=
+	t=1755699195; cv=none; b=IgHwBdS4KnGT8mpLn/k1aR/ikod6Ol0saVX/HkEOOb9dl/IFNhotEmcMi4HdFv78HA4RfGbjVUdeUoFFodkBJa2sLtaLHRb3WYYdtoKLFBokrQpKHDUQj2UG67uUmu6XsdFOUnzkpD44bSkbcNc3VDX2aT208zXf+psel6K49Rg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755699163; c=relaxed/simple;
-	bh=H/RTJDY9eM1acY1XItQorh6/fncB7JYm4MnQAbwNEWM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=T0SqryThDCvGZ3VMJsv9891i3XuFWjX8t/3tRGHPfUXtA5enaqrqeCCuJymSB6SbX2mC9xGGquj/eHOtIFmQqMGN4BW9/ZgnKbMmeM3bq0COw5+eh7DKPxn9pjPXBDrrcC2OCcraSVMY3eEwJgE9rVtuRx72USQynDNsxP2+jog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N6HT4GkD; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-afdf5843940so6650766b.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:12:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755699160; x=1756303960; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6DicCiRUfEBKSVE+lWissFYluUrOy+BhCrrkg8D9e0s=;
-        b=N6HT4GkDW6x50HId1dhpzKCUm2ciomRMESX0PQAX1wpKK6kHNPJ4PaZtuD1Cfy+tcH
-         D0CyHuBKDVu3ODxVb4agi8canKH6mpO67BbyJl8+l9OEmcJ9RUG7kYymw8dKlj4N6VZU
-         pJyD9RvmjPUHVQB+woJIIRI8FzUctB/SyfXGG0asbKTTi3GaG62mqi24elFON58BtK4h
-         S9hJS7pZskzCQ3kaIBssM9Lartj2QkAoLPJnEBaNRiCBSn1UYQasfPAj6+CGZ9dTfKNi
-         B/jfKPvLRlon+wTEDXjHUQLsFKi1CYG9GM9LEOJzW0noAa0nd2X0fT5iBZYFGqgIIqlT
-         Nkxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755699160; x=1756303960;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6DicCiRUfEBKSVE+lWissFYluUrOy+BhCrrkg8D9e0s=;
-        b=Nwe74yJGEeruKqzXtx6RlimQJub41DS/Ha/aet+oaBNezhl9uJff5NGZQb6c0MbV1D
-         XV21NF/sUROlPcLUhs1qK7iDFT2PRp+e9oXIwTCCNENWYu4Y1ZYuSUpY2zA9Kh/f5BNM
-         Q5bBiT+Eh2+/M8ds+mgpk/r4DrtiKHy24r7X5xa+3OToWQbFAECozZ4s6w/quQMoDCHq
-         2IHf7w96cBEzq7DlOF0bFMuaFUunnOLlYkOGVt2H5MHkuaV/XvLFnnzoeqxOkkb/dTnJ
-         i7p8Nm49QRGTw9qe8ujbWcGjBxPw2BTNiaM18DDBJDT/Ar8n927a5Oq4G34z2+yr1goB
-         Jlhw==
-X-Forwarded-Encrypted: i=1; AJvYcCWhENtQKi1w2xTZxRpF2WtKq08Jm1pYUcBu5h04vdZn6hqXPTexe3uC2jQLXqkKipYqPRLxVBBM060m@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYuRIyfyCy1m6gPPG74NUXoQI1dM8vNC6c+CA0tDjlGcBqdBYw
-	e3/eAWD23Ycj5qof92xbnRvYIxpie4CFEzH2+6nX0camN07IB0jxOy088v5jWKplxrsq6adkF2M
-	JWiAx
-X-Gm-Gg: ASbGnctZE1O5aofpQz0Q+J5INz8HF5p81J2tTm3aHBOw3rTU4lk+kDqgS0u+1/9t3cb
-	oxLTvAD6DDh6C3Z/0i43v5tx+TgNH+BbEc58Y0AREzve007F+G3O3HYdXs7KFeOkE83gaJ3eSxg
-	dsXRBGVZw9i4+OEg4Lat8NQrXbQaHuJkTMEb8c4RZF+rv/q2ONCOd41OQDjr6OcCPPnLY+s0KIs
-	3S5V46caBQgzyo+iGG6IhotCb8HgZJVPHvMPyfsuX3uMa+lAhZZ24dXGQRKC3XXRNWeb1v9Gzz6
-	s7XlP3KYVYNy9B1irG8iBUlD6ljuwBzs+xBDVltf05AzvOGPvV+6iyrgFw/KYLXuWGN5uNe1m7N
-	XxCz6VBO2bK0RfhcjYDubtKWaPZsaw6lklg==
-X-Google-Smtp-Source: AGHT+IFqzeaOsHYkCFi/BajZxPmhBjlCcFnmT90BtcmwpVY7GgK8f0nIWHXUb+iwDk/ynDENIjdTXg==
-X-Received: by 2002:a17:907:72ce:b0:afc:ebfd:c285 with SMTP id a640c23a62f3a-afdf0099fbemr145741866b.1.1755699159726;
-        Wed, 20 Aug 2025 07:12:39 -0700 (PDT)
-Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afded4796ddsm186181866b.55.2025.08.20.07.12.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Aug 2025 07:12:38 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1755699195; c=relaxed/simple;
+	bh=VfORanwWK0N2IhGqM8/NSiG1djWcKbLvF+xLsE3bUv0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GalfCSn0oGQcxkqZ6s3eGq0iV/MoYgiGwxIhAuDwG4emGCJ7RDYjMGx5X1NB7lbQq1vdF0DtJ9bxtMc4WNzbBbyksUb6wkm5PGYxNVT0MaYTf4+TbONams0eruFPOJ9CUo51wSCiKT6e50b4ra7ck+U0JDTImm/v2vkGkzf0NlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lhSQxCBd; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755699194; x=1787235194;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VfORanwWK0N2IhGqM8/NSiG1djWcKbLvF+xLsE3bUv0=;
+  b=lhSQxCBdJ3COdJ/bYPnndOtQeI7PMnea21xkKLz44eMnNhXMO97KzCxZ
+   MDgZtS5UtvTJrvk9LlMxcNS587eNNie0YwYJbdcPKp20A3KhS7Dgjjxkf
+   NoUiPIdoxL8Vx/z0Qg0ddbX2+or9EEI6HJLH229qhmre6tZpmLT4i2Y6a
+   sfJlJeOU8JEk1nQEM3cJ1Yrf5I3gQVqnF8ZofmcRXowLVCvwTe7jRDTdA
+   do0YiJyhqorEsiITavYSlF1Jf9aHRGmjq4LZU7hA8zhA5TqUMRtk2S4z5
+   wjJP9BQwVXZmRFZPmo9CVMrMQHxr7cbQ7Hi9PdeZFPuQVllxUKufLIvmR
+   Q==;
+X-CSE-ConnectionGUID: QibCzH58QB2Mfc4f7niEIQ==
+X-CSE-MsgGUID: 1K+00CdPRNOe54wSaVqUtg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="61781622"
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
+   d="scan'208";a="61781622"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2025 07:13:13 -0700
+X-CSE-ConnectionGUID: TSwpvnkqSheNUQkwfrIe3Q==
+X-CSE-MsgGUID: 6XH5irdqTRyaRUjP2zyWfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
+   d="scan'208";a="199006074"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2025 07:13:10 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uojYp-00000006xCa-26br;
+	Wed, 20 Aug 2025 17:13:07 +0300
+Date: Wed, 20 Aug 2025 17:13:07 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Ioana Risteiu <Ioana.Risteiu@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	Ramona Nechita <ramona.nechita@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sm8750-mtp: Add speaker Soundwire port mapping
-Date: Wed, 20 Aug 2025 16:12:34 +0200
-Message-ID: <20250820141233.216713-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.48.1
+Subject: Re: [PATCH v4 3/4] iio: adc: extract setup function without backend
+Message-ID: <aKXX8-ZrIgl9DeSs@smile.fi.intel.com>
+References: <20250820120247.3012-1-Ioana.Risteiu@analog.com>
+ <20250820120247.3012-4-Ioana.Risteiu@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1495; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=H/RTJDY9eM1acY1XItQorh6/fncB7JYm4MnQAbwNEWM=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopdfRWuX0u0X8hZ2BPrL0udyUeXVspH2Ux0Uuh
- flmJ8NRBGmJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKXX0QAKCRDBN2bmhouD
- 16q9D/9uVUFTPBjlyNVgd54pqVKud6L/UpgtrUwAaKJpF3y3vYUQoVMQUNLyz23vUue0om/LiEp
- nMKrCDF4tDiQiuNEHkmidSRPzXnNsyZXkjxgZ9dizGmQ3/sQQ35s0iaUyvTwuLXZazKa+Ritlab
- tAhL/Jk/smDckQ1X9zIFfzLtbzdyjhmw8ZpLUZRqnt8mIqsd7HrQqGjzOEp0hYmza8mCAbmpfn8
- sWrzclE3RtCureai1hRCNWpjwHWpUFpeaa3J4lY+1x38f/Q/aKaVJtOrrsc6ioX13UKxaQU7P6H
- v+8VcUUG3ETqNhij49+9BFSsh8w0sfK42JkKZbXikJyCUw5MM8pLlv25n3znZhOKkDABM85layq
- YXk5QW/Ka/EGhoTFS8OCaha/Az7OQFD0UNQLkmDEPnKU2O6YGSgtZBveQV1UI3pzfmihfHKwtXo
- fv8PwzHkO1hrbUFLo9PJ0gc3GarUYo3qiQrHQceFg+jA9nRX6rpV2sM8ZeEgvyovYRPbj4429TF
- /Z4BORZBp0euajixvfqCEeywBi0F+Extfxd2LFAW1NHk0mapHFs7f6+3DYvPWHtgFjvwd71A++s
- tkwwa4LFtcxoAlw74kw9d55lYGq+y6P9HSzuz7MoMyNxpTAwiUr4usrGNG6F9TFZPgTLwR8/q3y w5HsiS9EGRYcGjQ==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250820120247.3012-4-Ioana.Risteiu@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Add appropriate mappings of Soundwire ports of WSA883x speaker
-to correctly map the Speaker ports to the WSA macro ports.
+On Wed, Aug 20, 2025 at 03:02:44PM +0300, Ioana Risteiu wrote:
+> Refactor probe function by moving the initialization specific to
+> communication without iio-backend into a separate setup function.
+> 
+> The purpose of this modification is better code organization. No
+> functional changes intended.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8750-mtp.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+...
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8750-mtp.dts b/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
-index 75cfbb510be5..946ba53fe63a 100644
---- a/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
-@@ -938,6 +938,13 @@ left_spkr: speaker@0,1 {
- 		sound-name-prefix = "SpkrLeft";
- 		#thermal-sensor-cells = <0>;
- 		vdd-supply = <&vreg_l15b_1p8>;
-+		/*
-+		 * WSA8835 Port 1 (DAC)     <=> SWR0 Port 1 (SPKR_L)
-+		 * WSA8835 Port 2 (COMP)    <=> SWR0 Port 2 (SPKR_L_COMP)
-+		 * WSA8835 Port 3 (BOOST)   <=> SWR0 Port 3 (SPKR_L_BOOST)
-+		 * WSA8835 Port 4 (VISENSE) <=> SWR0 Port 10 (SPKR_L_VI)
-+		 */
-+		qcom,port-mapping = <1 2 3 10>;
- 	};
- 
- 	/* WSA883x, right/back speaker */
-@@ -951,6 +958,13 @@ right_spkr: speaker@0,2 {
- 		sound-name-prefix = "SpkrRight";
- 		#thermal-sensor-cells = <0>;
- 		vdd-supply = <&vreg_l15b_1p8>;
-+		/*
-+		 * WSA8835 Port 1 (DAC)     <=> SWR0 Port 4 (SPKR_R)
-+		 * WSA8835 Port 2 (COMP)    <=> SWR0 Port 5 (SPKR_R_COMP)
-+		 * WSA8835 Port 3 (BOOST)   <=> SWR0 Port 6 (SPKR_R_BOOST)
-+		 * WSA8835 Port 4 (VISENSE) <=> SWR0 Port 11 (SPKR_R_VI)
-+		 */
-+		qcom,port-mapping = <4 5 6 11>;
- 	};
- };
- 
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "request IRQ %d failed\n",
+> +					st->spi->irq);
+
+Something went wrong with the indentation.
+
+...
+
+> +	ret = ad7779_setup_without_backend(st, indio_dev);
+
+>  
+
+Now we have redundant blank line here, please remove it.
+
+>  	if (ret)
+>  		return ret;
+
 -- 
-2.48.1
+With Best Regards,
+Andy Shevchenko
+
 
 
