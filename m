@@ -1,202 +1,395 @@
-Return-Path: <devicetree+bounces-206894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 628ADB2DEA1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:05:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C282B2DECE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:13:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 766B3189D176
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:02:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDB0B161DD3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B972325D558;
-	Wed, 20 Aug 2025 14:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D70263F28;
+	Wed, 20 Aug 2025 14:08:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LZUTVUf6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f95pVk7Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E7B21D59C;
-	Wed, 20 Aug 2025 14:01:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4825725F798;
+	Wed, 20 Aug 2025 14:08:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755698499; cv=none; b=kzT+kCi+KXOJRvuBxPHlAv6K2KfZMYaFwT5bqg+UbLcUnM0KFJRPqOEqN53bHKg6MRDDp5DkFweyC4JQHcs0ifyldOCg75G6p2LCSVxTXWZwW07yBopqinrT6U7tyt18PyDBUo8tQNLNxExe1bxYtVmVkLZLOYRclE57C6Lz2Xo=
+	t=1755698927; cv=none; b=bjgBAGL9Wrn7OhhpxZOgrAawIBi5qS7e4EhUSRZkc+96GXwHEp16VM/9vEMwANCQJqETgjwnqtv03Ed8g8IbxfUNZgxzeLFoCD8UjP9jwTwKZhb0B5IReCuyoquyQ1VFd1XHqLpjcqcQPFbTILPt5kO9MnKcKGAw3WOME65pLRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755698499; c=relaxed/simple;
-	bh=mNgrOaOzDD2mooavRMaXw3re03XEZVIOCcf09EZBKhI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K8ZwpTgrcE280vy1Z0lz/AimFGwdpXkt2hsFVd4KXxWea6ppjA17oWDG5H7Fxm2NaGnitb7fL3lbAbJuZv3Nr6RNTmNDNEli4vUBRSHREjfJq6NNPgBbG4dIZaNIuhS5F2fXz/jVQTyDuKTJWPGO3TDUgU6VjKqXltS02YEtjKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LZUTVUf6; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-afcb7a0550cso986080666b.2;
-        Wed, 20 Aug 2025 07:01:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755698496; x=1756303296; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1b7SewZAz6UJbowyw2858+jipp4/HLFXQ/0LNBzaDtw=;
-        b=LZUTVUf6j8MR0Js+Hl8rGmZ5GKY8wdKVwjgGYY/npOqO479Hq/vsJ7thWJWiuOb1li
-         wtzafHDnQXYYM6u2AZLB2yKk+BVctdPWb+uAobqfR2/uZt6vljeMj2YT/DsGjWDFdKiD
-         fdqY9Nifnmn94NN/tKy64FcaoFGEHmjDo6Iol7UH+SMW8Cmpj2atnzvZXYSm0yHL/NZ9
-         OXudapLRWeS6EeRaM6b3R3vDnWXJHobpcT2w4gD55INdfnUGqjVP8X5yz+QJpq5BV3Bv
-         3Bk2y/ankVt8TLb52WDwaqw3EfESzR2vSTcKRozbkdbIFhlZEvjFZ86wghzY6fTq+5hy
-         H77A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755698496; x=1756303296;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1b7SewZAz6UJbowyw2858+jipp4/HLFXQ/0LNBzaDtw=;
-        b=Xo4+XfFB6Ua4mpyfdavwRmoX6J56ccCwkSkUZCjSLm2RfG5jPm0J67dxVKH85S2tR2
-         CBPr0PSNkFhjwCTmf/4pC+nfAhglPCNHNhUKUbeiCRV/+9Qx3F08whPF1x+C+S1WIEeK
-         rcPkHON96UzJJHVhopvgoOe/hxGSW48MOGbKz5GAVxxJSh0RFeqL7Dv4sAV8ROv/ZA33
-         eN5ynYIf5rMxbCdxUQ1101A2P/YehdcKiMmAYOYdCIzTQJf+bA8bUsbXLgkRPH0Se/bD
-         13fyPBmDOvusqKUAebOg+olP88UPWtzpx0owoQPkwuSx/OWAJeKwRC9RnhDE3flupGW7
-         iTEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXjTsBJUGDuxuhPlyCGOFPa0xoLOElaw7Ji2SFYb5It0/a+4xcB46Kx4DK01DbUiTPgFGNemwzSOwaimxo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVbcbrXml/Rx/1bDyTlfIfa1UTqwR0sxspWAskJJGJ7uWriYcH
-	YN6+gzcS2KpJwxTRerR5Q/zXom4jadRbZjNWI3oPKY/JZmjRjaGfS+FbCTB4QC+X+XrhSZbOS2r
-	zr0lB3KQgXSYXryhAaWc9lj3wKOPSG9Y=
-X-Gm-Gg: ASbGnctZoiAuUvGTe2npAGq9YcrxjpHVvJfl/f/O1fmXPqKZYBGhklx7Zpbi52Srw3c
-	KxWT+4kfsTYfhtjtZFwHqkMoJw0GBPqs8+YOBW27Opx/WExrIGfYGgIABLvnIed2vtFMnOpd5BM
-	s1ETM5YsgN5Xzs7UYDL54uZgGdXSygmfH2p4ZcX8xDGW7hEGTrEc7k3/lMLS705sbwMkem/Va2y
-	jh6lg==
-X-Google-Smtp-Source: AGHT+IG0mgYvT5kpudU6JBy79HoJor3+A1PLqYusQ7whieg5l9/kAstZ1IOiqt1ql+aYF7lyLGGYc4RTYbIiHCVo5p4=
-X-Received: by 2002:a17:907:60d2:b0:ae3:6d27:5246 with SMTP id
- a640c23a62f3a-afdf0205351mr278895766b.48.1755698495409; Wed, 20 Aug 2025
- 07:01:35 -0700 (PDT)
+	s=arc-20240116; t=1755698927; c=relaxed/simple;
+	bh=JT5fbIVV1PlEoEDLWiwgYr8s80d/+idcn0bSCX/C5nY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d6RwudUWcwCxUP72n9rVg30vtHAxN77ZCdI+7ghA+iupKmSU2OMJEHVQjHjATB35458hLoA2bw6nYC2j6mpNbBHz1pIIUWQYCVMJE0HE707/MCWiEaVNDzha96PC3Blern9DiIvvgTX6E+uNcSr8elUDhc3mRUVzLXxQsQDMNk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f95pVk7Y; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755698925; x=1787234925;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=JT5fbIVV1PlEoEDLWiwgYr8s80d/+idcn0bSCX/C5nY=;
+  b=f95pVk7Y+6jRPU2SGazMPWXDusuHPwOz5a76D/cbEoa/QY90e/xX0wGf
+   0D8PkmYOtzBBUVzv7nC1hXvSMue4fVVay6E6jux4/gimzXRAjm19/z/PG
+   gzi25B1K2sSLdi/GFlc2sFN6Uokc3bilnZghcawpaWJN6wkf7wIQAmyLv
+   nxBuVv/EW+ujlm2NaacPQ3wmgPITeIVqD/NlxEg0GkIGCOKuaaqyQNVCg
+   w4kdGrJbX/BQ5ATlPQrVP7PR/u0gY3yQs4W5tB3wY6bJbYXt+ns8AtmQY
+   2m50bVXf+AacDZDXOw7pnWCqYCQ7YAg6R3GD1frVK3drCy1kHVtF9KoEb
+   g==;
+X-CSE-ConnectionGUID: G6bRY8WsT2upuifvneCUng==
+X-CSE-MsgGUID: K33i+kYDRn65r5zJ10pbXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="56993727"
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
+   d="scan'208";a="56993727"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2025 07:08:44 -0700
+X-CSE-ConnectionGUID: SeH5IhflSRCaaeLwBTO8Vg==
+X-CSE-MsgGUID: giXJZ4SGTdGwXKJkP5U4mg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
+   d="scan'208";a="205298112"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2025 07:08:42 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uojUU-00000006x8G-2L6R;
+	Wed, 20 Aug 2025 17:08:38 +0300
+Date: Wed, 20 Aug 2025 17:08:38 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
+ TLV493D 3D Magentic sensor
+Message-ID: <aKXW5pGiN18DyIZ7@smile.fi.intel.com>
+References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
+ <20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240205171930.968-1-linux.amoon@gmail.com> <20240205171930.968-2-linux.amoon@gmail.com>
- <CANAwSgSzUW97U8MbWPdb_g4hqEpvLrVDGHG9Gjs2xALbDasqmg@mail.gmail.com>
-In-Reply-To: <CANAwSgSzUW97U8MbWPdb_g4hqEpvLrVDGHG9Gjs2xALbDasqmg@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 20 Aug 2025 19:31:16 +0530
-X-Gm-Features: Ac12FXyMcTdBuOxtvDWahcqoFUq85wpCJOj43vT1dhbjrrGJIqgkd2zIHaAMyYo
-Message-ID: <CANAwSgT5RPNviXGfP9wdXoYMB220b=fd0mFbcANtWzSu+aPDQw@mail.gmail.com>
-Subject: Re: [PATCHv1 1/5] arm64: dts: amlogic: Add cache information to the
- Amlogic GXBB and GXL SoC
-To: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Neil,
+On Thu, Aug 14, 2025 at 08:23:43AM +0530, Dixit Parmar wrote:
+> The Infineon TLV493D is a Low-Power 3D Magnetic Sensor. The Sensor
+> applications includes joysticks, control elements (white goods,
+> multifunction knops), or electric meters (anti tampering) and any
+> other application that requires accurate angular measurements at
+> low power consumptions.
+> 
+> The Sensor is configured over I2C, and as part of Sensor measurement
+> data it provides 3-Axis magnetic fields and temperature core measurement.
+> 
+> The driver supports raw value read and buffered input via external trigger
+> to allow streaming values with the same sensing timestamp.
+> 
+> While the sensor has an interrupt pin multiplexed with an I2C SCL pin.
+> But for bus configurations interrupt(INT) is not recommended, unless timing
+> constraints between I2C data transfers and interrupt pulses are monitored
+> and aligned.
+> 
+> The Sensor's I2C register map and mode information is described in product
+> User Manual [1].
 
-On Tue, 27 Feb 2024 at 18:33, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Hi Neil,
->
-> On Mon, 5 Feb 2024 at 22:50, Anand Moon <linux.amoon@gmail.com> wrote:
-> >
-> > As per S905 and S905X datasheet add missing cache information to
-> > the Amlogic GXBB and GXL SoC.
-> >
-> > - Each Cortex-A53 core has 32KB of L1 instruction cache available and
-> >         32KB of L1 data cache available.
-> > - Along with 512KB Unified L2 cache.
-> >
-> > To improve system performance.
-> >
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> > Datasheet
-> > [0] https://dn.odroid.com/S905/DataSheet/S905_Public_Datasheet_V1.1.4.pdf
-> > ---
->
-> As per the Arm Cortex A53 TRM documentation
-> [0] https://developer.arm.com/documentation/ddi0500/j/Introduction/Implementation-options?lang=en
->
-> Since this SoC supports arm-pmu we could  read cache info using perf
-> [1] https://www.baeldung.com/linux/analyze-cache-misses
->
-> [alarm@archl-librecm ~]$ sudo perf list
->
-> List of pre-defined events (to be used in -e or -M):
->
->   branch-instructions OR branches                    [Hardware event]
->   branch-misses                                      [Hardware event]
->   bus-cycles                                         [Hardware event]
->   cache-misses                                       [Hardware event]
->   cache-references                                   [Hardware event]
->   cpu-cycles OR cycles                               [Hardware event]
->   instructions                                       [Hardware event]
->   alignment-faults                                   [Software event]
->   bpf-output                                         [Software event]
->   cgroup-switches                                    [Software event]
->   context-switches OR cs                             [Software event]
->   cpu-clock                                          [Software event]
->   cpu-migrations OR migrations                       [Software event]
->   dummy                                              [Software event]
->   emulation-faults                                   [Software event]
->   major-faults                                       [Software event]
->   minor-faults                                       [Software event]
->   page-faults OR faults                              [Software event]
->   task-clock                                         [Software event]
->   duration_time                                      [Tool event]
->   user_time                                          [Tool event]
->   system_time                                        [Tool event]
->
-> armv8_cortex_a53:
->   L1-dcache-loads OR armv8_cortex_a53/L1-dcache-loads/
->   L1-dcache-load-misses OR armv8_cortex_a53/L1-dcache-load-misses/
->   L1-dcache-prefetch-misses OR armv8_cortex_a53/L1-dcache-prefetch-misses/
->   L1-icache-loads OR armv8_cortex_a53/L1-icache-loads/
->   L1-icache-load-misses OR armv8_cortex_a53/L1-icache-load-misses/
->   dTLB-load-misses OR armv8_cortex_a53/dTLB-load-misses/
->   iTLB-load-misses OR armv8_cortex_a53/iTLB-load-misses/
->   branch-loads OR armv8_cortex_a53/branch-loads/
->   branch-load-misses OR armv8_cortex_a53/branch-load-misses/
->   node-loads OR armv8_cortex_a53/node-loads/
->   node-stores OR armv8_cortex_a53/node-stores/
->   br_immed_retired OR armv8_cortex_a53/br_immed_retired/[Kernel PMU event]
->   br_mis_pred OR armv8_cortex_a53/br_mis_pred/       [Kernel PMU event]
->   br_pred OR armv8_cortex_a53/br_pred/               [Kernel PMU event]
->   bus_access OR armv8_cortex_a53/bus_access/         [Kernel PMU event]
->   bus_cycles OR armv8_cortex_a53/bus_cycles/         [Kernel PMU event]
->   cid_write_retired OR armv8_cortex_a53/cid_write_retired/[Kernel PMU event]
->   cpu_cycles OR armv8_cortex_a53/cpu_cycles/         [Kernel PMU event]
->   exc_return OR armv8_cortex_a53/exc_return/         [Kernel PMU event]
->
-> [alarm@archl-librecm ~]$ perf stat -B -e
-> cache-references,cache-misses,cycles,instructions,branches,faults,migrations
-> sleep 5
->
->  Performance counter stats for 'sleep 5':
->
->              52794      cache-references:u
->               2311      cache-misses:u                   #    4.38% of
-> all cache refs
->             480343      cycles:u
->             140018      instructions:u                   #    0.29
-> insn per cycle
->              15012      branches:u
->                 46      faults:u
->                  0      migrations:u
->
->        5.008073381 seconds time elapsed
->
->        0.000000000 seconds user
->        0.006952000 seconds sys
->
-I just wanted to revisit this patch series with some updates on
-Arm Cortex A53 TRM, here are the L1 and L2 Cache size details.
+> --- a/drivers/iio/magnetometer/Makefile
+> +++ b/drivers/iio/magnetometer/Makefile
+> @@ -23,6 +23,8 @@ st_magn-$(CONFIG_IIO_BUFFER) += st_magn_buffer.o
+>  obj-$(CONFIG_IIO_ST_MAGN_I2C_3AXIS) += st_magn_i2c.o
+>  obj-$(CONFIG_IIO_ST_MAGN_SPI_3AXIS) += st_magn_spi.o
+>  
+> +obj-$(CONFIG_INFINEON_TLV493D)		+= tlv493d.o
+> +
+>  obj-$(CONFIG_SENSORS_HMC5843)		+= hmc5843_core.o
+>  obj-$(CONFIG_SENSORS_HMC5843_I2C)	+= hmc5843_i2c.o
+>  obj-$(CONFIG_SENSORS_HMC5843_SPI)	+= hmc5843_spi.o
 
-[1] https://developer.arm.com/documentation/ddi0500/j/Level-1-Memory-System/About-the-L1-memory-system?lang=en
-[2] https://developer.arm.com/documentation/ddi0500/j/Level-2-Memory-System/About-the-L2-memory-system?lang=en
-[3] https://boardor.com/blog/understanding-the-architecture-of-arm-cortex-a53-cache
+I haven't got the ordering rules here and in Kconfig. Can it be alphabetical?
 
-Thanks
--Anand
+...
+
+> +enum tlv493d_channels {
+> +	TLV493D_AXIS_X,
+> +	TLV493D_AXIS_Y,
+> +	TLV493D_AXIS_Z,
+> +	TLV493D_TEMPERATURE
+> +};
+> +
+> +enum tlv493d_op_mode {
+> +	TLV493D_OP_MODE_POWERDOWN,
+> +	TLV493D_OP_MODE_FAST,
+> +	TLV493D_OP_MODE_LOWPOWER,
+> +	TLV493D_OP_MODE_ULTRA_LOWPOWER,
+> +	TLV493D_OP_MODE_MASTERCONTROLLED
+> +};
+
++ trailing commas in both cases as discussed in the other email.
+
+...
+
+> +static const u32 tlv493d_sample_rate_us[] = {
+> +	[TLV493D_OP_MODE_POWERDOWN] = 0,
+> +	[TLV493D_OP_MODE_FAST] = 305,
+> +	[TLV493D_OP_MODE_LOWPOWER] = 10000,
+> +	[TLV493D_OP_MODE_ULTRA_LOWPOWER] = 100000,
+
+Perhaps
+	10 * USEC_PER_MSEC
+	100 * USEC_PER_MSEC
+
+respectively?
+
+> +	[TLV493D_OP_MODE_MASTERCONTROLLED] = 305
+
++ Trailing comma.
+
+> +};
+
+...
+
+> +static s16 tlv493d_get_channel_data(u8 *b, enum tlv493d_channels ch)
+> +{
+> +	u16 val;
+> +
+> +	switch (ch) {
+> +	case TLV493D_AXIS_X:
+> +		val = FIELD_GET(TLV493D_BX_MAG_X_AXIS_MSB, b[TLV493D_RD_REG_BX]) << 4 |
+> +			FIELD_GET(TLV493D_BX2_MAG_X_AXIS_LSB, b[TLV493D_RD_REG_BX2]) >> 4;
+
+Wrong indentation, make both 'F':s to be in the same column.
+
+> +		break;
+> +	case TLV493D_AXIS_Y:
+> +		val = FIELD_GET(TLV493D_BY_MAG_Y_AXIS_MSB, b[TLV493D_RD_REG_BY]) << 4 |
+> +			FIELD_GET(TLV493D_BX2_MAG_Y_AXIS_LSB, b[TLV493D_RD_REG_BX2]);
+> +		break;
+> +	case TLV493D_AXIS_Z:
+> +		val = FIELD_GET(TLV493D_BZ_MAG_Z_AXIS_MSB, b[TLV493D_RD_REG_BZ]) << 4 |
+> +			FIELD_GET(TLV493D_BZ2_MAG_Z_AXIS_LSB, b[TLV493D_RD_REG_BZ2]);
+> +		break;
+> +	case TLV493D_TEMPERATURE:
+> +		val = FIELD_GET(TLV493D_TEMP_TEMP_MSB, b[TLV493D_RD_REG_TEMP]) << 8 |
+> +			FIELD_GET(TLV493D_TEMP2_TEMP_LSB, b[TLV493D_RD_REG_TEMP2]);
+> +		break;
+> +	}
+
+Ditto for all of the above.
+
+> +	return sign_extend32(val, 11);
+> +}
+
+...
+
+> +static int tlv493d_get_measurements(struct tlv493d_data *data, s16 *x, s16 *y,
+> +				s16 *z, s16 *t)
+
+Indentation issue. Please, check fully the code for such issues.
+
+> +{
+> +	u8 buff[7] = {};
+> +	int err, ret;
+> +	struct device *dev = &data->client->dev;
+> +	u32 sleep_us = tlv493d_sample_rate_us[data->mode];
+> +
+> +	guard(mutex)(&data->lock);
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/*
+> +	 * Poll until data is valid,
+> +	 * For a valid data TLV493D_TEMP_CHANNEL bit of TLV493D_RD_REG_TEMP should be set to 0.
+> +	 * The sampling time depends on the sensor mode. poll 3x the time of the sampling time.
+> +	 */
+> +	ret = read_poll_timeout(i2c_master_recv, err, err ||
+> +			FIELD_GET(TLV493D_TEMP_CHANNEL, buff[TLV493D_RD_REG_TEMP]) == 0,
+
+Please, resplit logically, i.e leave the condition on the single line.
+Also to make it shorter you can use '!' instead of ' == 0'.
+
+> +			sleep_us, 3 * sleep_us, false, data->client, buff,
+> +			ARRAY_SIZE(buff));
+> +	if (ret) {
+> +		dev_err(dev, "i2c read poll timeout, error:%d\n", ret);
+> +		goto out_put_autosuspend;
+> +	}
+> +	if (err < 0) {
+> +		dev_err(dev, "i2c read data failed, error:%d\n", err);
+> +		ret = err;
+> +		goto out_put_autosuspend;
+> +	}
+> +
+> +	*x = tlv493d_get_channel_data(buff, TLV493D_AXIS_X);
+> +	*y = tlv493d_get_channel_data(buff, TLV493D_AXIS_Y);
+> +	*z = tlv493d_get_channel_data(buff, TLV493D_AXIS_Z);
+> +	*t = tlv493d_get_channel_data(buff, TLV493D_TEMPERATURE);
+> +
+> +out_put_autosuspend:
+> +	pm_runtime_put_autosuspend(dev);
+> +	return ret;
+> +}
+
+...
+
+> +	s16 x, y, z, t;
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret = tlv493d_get_measurements(data, &x, &y, &z, &t);
+> +		if (ret)
+> +			return ret;
+> +
+> +		/* Return raw values for requested channel */
+> +		switch (chan->address) {
+> +		case TLV493D_AXIS_X:
+> +			*val = x;
+> +			return IIO_VAL_INT;
+> +		case TLV493D_AXIS_Y:
+> +			*val = y;
+> +			return IIO_VAL_INT;
+> +		case TLV493D_AXIS_Z:
+> +			*val = z;
+> +			return IIO_VAL_INT;
+> +		case TLV493D_TEMPERATURE:
+> +			*val = t;
+> +			return IIO_VAL_INT;
+> +		default:
+> +			return -EINVAL;
+> +		}
+
+Just wondering if you have tested for negative coordinates, does it propagate
+correctly?
+
+> +	case IIO_CHAN_INFO_SCALE:
+> +		switch (chan->type) {
+> +		case IIO_MAGN:
+> +			/*
+> +			 * Magnetic field scale: 0.0098 mTesla (i.e. 9.8 µT)
+> +			 * Magnetic field in Gauss: mT * 10 = 0.098.
+> +			 */
+> +			*val = 98;
+> +			*val2 = 1000;
+> +			return IIO_VAL_FRACTIONAL;
+> +		case IIO_TEMP:
+> +			/*
+> +			 * Temperature scale: 1.1 °C per LSB, expressed as 1100 m°C
+> +			 * Returned as integer for IIO core to apply:
+> +			 * temp = (raw + offset) * scale
+> +			 */
+> +			*val = 1100;
+> +			return IIO_VAL_INT;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		switch (chan->type) {
+> +		case IIO_TEMP:
+> +			/*
+> +			 * Temperature offset includes sensor-specific raw offset
+> +			 * plus compensation for +25°C bias in formula.
+> +			 * offset = -raw_offset + (25000 / 1100)
+> +			 * -340 + 22.72 = -317.28
+> +			 */
+> +			*val = -31728;
+> +			*val2 = 100;
+> +			return IIO_VAL_FRACTIONAL;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+
+...
+
+> +static irqreturn_t tlv493d_trigger_handler(int irq, void *ptr)
+> +{
+> +	int ret;
+> +	s16 x, y, z, t;
+> +	struct iio_poll_func *pf = ptr;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct tlv493d_data *data = iio_priv(indio_dev);
+> +	struct device *dev = &data->client->dev;
+> +	struct {
+> +		s16 channels[3];
+> +		s16 temperature;
+> +		aligned_s64 timestamp;
+> +	} scan;
+> +
+> +	ret = tlv493d_get_measurements(data, &x, &y, &z, &t);
+> +	if (ret) {
+> +		dev_err(dev, "failed to read sensor data\n");
+> +		goto out_trigger_notify;
+> +	}
+> +
+> +	scan.channels[0] = x;
+> +	scan.channels[1] = y;
+> +	scan.channels[2] = z;
+> +	scan.temperature = t;
+> +	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan),
+> +				pf->timestamp);
+
+Interestingly that you have used 100 limit and suddenly don't do it here
+and maybe elsewhere. Why inconsistent style? Please, go through the whole
+file and make sure the style is consistent in all of the aspects:
+- C style used
+- comments style (one-line and multi-line)
+- indentation
+- etc.
+
+> +out_trigger_notify:
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+...
+
+> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
+> +				iio_pollfunc_store_time,
+> +				tlv493d_trigger_handler,
+> +				NULL);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "iio triggered buffer setup failed\n");
+> +
+> +	ret = pm_runtime_set_active(dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = devm_pm_runtime_enable(dev);
+> +	if (ret < 0)
+> +		return ret;
+
+For each of 'ret < 0' please double check that this is indeed required.
+Otherwise, use common style for all standard cases, i.e.
+
+	if (ret)
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
