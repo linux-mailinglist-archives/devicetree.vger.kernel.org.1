@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-207030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9176BB2E5AB
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:33:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AC40B2E5B3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:36:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8086D5C1B61
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 19:33:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F8C81CC078E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 19:36:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1531728489B;
-	Wed, 20 Aug 2025 19:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF9F28489B;
+	Wed, 20 Aug 2025 19:36:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S6wpkuqy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gQ43nyeo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEEB636CE0C;
-	Wed, 20 Aug 2025 19:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AC2336CE0C;
+	Wed, 20 Aug 2025 19:36:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755718432; cv=none; b=Nl7VfCUpb1U1awtSkponJ+c+u70RyaLXBelTKnGygy1qnLCnGfhpoS7quMG/SAbOkaXEfYcNuwaipbx+knKLhPBMEy3rLyvcDtQ2y20CDyhi4/Bfi60C0sPcmr4P5+N0cIs3yojRNGNUO2VR9NvlaJuZ/sR0Jc1u18Tj8Pc043g=
+	t=1755718588; cv=none; b=cp9Io8CYfmV7dCjYadpNTApQdetXCeCKn39HGp4KIpJz+LbzGPas8sIKEQVZL1hHTIKBPf3/Tl0/K1ni7eaIXkGxjbzE97kTLT7dgcIqeT+b1FST+gqhKzR6AGvAI1M15uL0HjkvOELmJY3mfo0WMFdgnoHp+8ROtMUU6dMsKzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755718432; c=relaxed/simple;
-	bh=oaWPMSjxQnZr7qgJMIj4hchkhbV9nr70B3dzzNr6DdI=;
+	s=arc-20240116; t=1755718588; c=relaxed/simple;
+	bh=2MK83q8fm+W+GxCxyndeu3wsn/WRUJyYnSEotKUfP6Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IrnWFjwExDzqgHtFbWWQOdQSTjjFO7EvPEbk+VHEo9HRez81C+GDgIb29BzRiA0DAOb6KGJPJ2GmraL3dqx1YBE7/VTKUU5Q1RukHgNF7wWbtqqUu+vUu1E/JAr3nAGtOfPNMgoLUr34OZVOa0FGRiNKTjfDFWQFyiixrsRH/uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S6wpkuqy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87A3CC4CEE7;
-	Wed, 20 Aug 2025 19:33:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DtAQP7OIkkWBb0OEh6RSGCVLYIgbWcKd0PjubgpAZacxnONTilTjy4lfsdhYY+PQkt8VVMFAo3nzh9cflLQIxggTRpKuBxVzhyitlOMgbOWC0RXyv6z6YiVvC3L3VKF8CA3I725OG1RxIGU5VWZEWX1nZ79WcgAk9IUNXXJL8Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gQ43nyeo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06FF8C4CEE7;
+	Wed, 20 Aug 2025 19:36:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755718431;
-	bh=oaWPMSjxQnZr7qgJMIj4hchkhbV9nr70B3dzzNr6DdI=;
+	s=k20201202; t=1755718588;
+	bh=2MK83q8fm+W+GxCxyndeu3wsn/WRUJyYnSEotKUfP6Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S6wpkuqyOOZ7VeI+eTzcnehvvKa0/gPeodSNx0Qobjdt6z2z+l3wdW23K2brI26Ww
-	 kjGW5MHUO4lsA4RFiMlN5UHa08CmFwkprjI126B7IOyslDyQQSRqK9XJ4+mlRSngep
-	 L9PUWX1muebFDPmY6RuPVIRMfpalfpdnm7Qdu3PeLmD1f47TEO3VviX4Us1+3UDp1B
-	 S9ov0NptNvIjhkl6KYuo5iLTasymXldCGnMoloAz/foo6t11pSnGuIeij1wsztfU84
-	 Wcv6DSiMSFkqda53049FSy+zMDckwvZsoanuTT4baVSSjg2jF6UBZZWaKGdhOKqh/J
-	 UKkzen5fWSiLw==
-Date: Wed, 20 Aug 2025 20:33:47 +0100
+	b=gQ43nyeo20agUsZqPkTAeBMNWRAWci5exsOGQz5TZ2xLQvStbqJYbysnYfZAjoW69
+	 GLeuKLTtmE7f+zjfeb4MJpkX2Vsz9+eXvTHsT/GbtQScG42qFyYuqO7FhWkIzgw2hr
+	 0iaemP2xP2EfkLo8DM9fgufHDvZfcGqR83dO1YIA14wqsSqr1Zbcar10Kzcz5+poie
+	 Rqxv7+MhFQUumWbc/YgTMrWPBNn+oCuoLCyOvZ85CORmQyVALN6Lin/enQzbR2rmTS
+	 +sM4fyitI3wXGs7U9/y/PvDf4StUxm4wJ8jjiuGopJpDf2lJdNxhNzs210q2CXbWan
+	 93lLV78GC+p2g==
+Date: Wed, 20 Aug 2025 20:36:23 +0100
 From: Conor Dooley <conor@kernel.org>
-To: remi.buisson@tdk.com
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/9] dt-bindings: iio: imu: Add inv_icm45600
-Message-ID: <20250820-decode-move-3a4497d2df72@spud>
-References: <20250820-add_newport_driver-v5-0-2fc9f13dddee@tdk.com>
- <20250820-add_newport_driver-v5-1-2fc9f13dddee@tdk.com>
+To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Cc: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, jikos@kernel.org, bentiss@kernel.org,
+	dianders@chromium.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: Add Parade TC3408 touchscreen
+ controller
+Message-ID: <20250820-despair-aftermost-034a1f899f41@spud>
+References: <20250820122520.3356738-1-yelangyan@huaqin.corp-partner.google.com>
+ <20250820122520.3356738-2-yelangyan@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,35 +60,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="JOFvzgy1b8g+glJG"
+	protocol="application/pgp-signature"; boundary="4+jjH6/rh50/BQUb"
 Content-Disposition: inline
-In-Reply-To: <20250820-add_newport_driver-v5-1-2fc9f13dddee@tdk.com>
+In-Reply-To: <20250820122520.3356738-2-yelangyan@huaqin.corp-partner.google.com>
 
 
---JOFvzgy1b8g+glJG
+--4+jjH6/rh50/BQUb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 20, 2025 at 02:24:19PM +0000, Remi Buisson via B4 Relay wrote:
-> From: Remi Buisson <remi.buisson@tdk.com>
+On Wed, Aug 20, 2025 at 08:25:19PM +0800, Langyan Ye wrote:
+> The tc3408 touch screen chip same as Elan eKTH6915 controller
+> has a reset gpio. The difference is that they have different
+> post_power_delay_ms.
 >=20
-> Document the ICM-45600 devices devicetree bindings.
->=20
-> Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
+> Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
 
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---JOFvzgy1b8g+glJG
+--4+jjH6/rh50/BQUb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKYjGwAKCRB4tDGHoIJi
-0uiFAQCRXy/GGeKkcNM7BR8TWYgymdQ6LYkEegpPsL4t9EpoLwD+MeJa+7vmDp9v
-7zUFb15dWYjjMD4xdolU09uhNQWDpww=
-=L/O/
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKYjtwAKCRB4tDGHoIJi
+0gccAP9QfOYySBQKkm1pFVXm3hP5HM0XpEfKQXtJNbu76yyFHwD/QVseVWkMh8Dq
+N2Oh8XMg5LzYparXNKsQN8z0eFgY4wk=
+=Umhn
 -----END PGP SIGNATURE-----
 
---JOFvzgy1b8g+glJG--
+--4+jjH6/rh50/BQUb--
 
