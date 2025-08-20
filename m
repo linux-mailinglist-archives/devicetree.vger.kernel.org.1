@@ -1,61 +1,75 @@
-Return-Path: <devicetree+bounces-207082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E3AB2E724
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 23:05:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E753B2E731
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 23:08:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39D32188F961
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:05:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0946B566051
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:08:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BEB2287266;
-	Wed, 20 Aug 2025 21:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF1C2E62DD;
+	Wed, 20 Aug 2025 21:08:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sjacJnEr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oihkB/d6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336EE1E7C05;
-	Wed, 20 Aug 2025 21:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 755D425DB06;
+	Wed, 20 Aug 2025 21:08:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755723886; cv=none; b=SsN/q9cJyvhfrR78FWW4paUil3MwafnNQYgqnAE9A5SRtcx6G0Olse2TqOQjcbKf8WbPN1qjf49fn9i3yuz9YLPzwsXY5nz6QQMSjGy2d+GahUJbOviOIoEh/XotfrwmhOpDhiGIoJHZLgS4biOnqi48mLykmf9zL+xXfjFQg8M=
+	t=1755724084; cv=none; b=MZ126m2B3jGpDLc0tsmNbJDOfWDrydfqU9qBJjU7+Iv6tCa7TbZ/GfElJ+jon9p5aSTSohC+HRiFgcyLP1StUjkbqPGbdy7CECQAGn4Yt/Ou+aIJz2FRAhWzeWjqW8fslRj1pdtv2SMCTRPJneQw5eD8LzRnRfeYR6C6283g0a8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755723886; c=relaxed/simple;
-	bh=GsmVJZPTsLQEAHe+gxRF/6AYyy9Goq4zhnJSCA0tdL4=;
+	s=arc-20240116; t=1755724084; c=relaxed/simple;
+	bh=rkoobUseBl3ZPCzxbYJUmI8ZVFYkuSdLZI+boJGT8UU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h0OKT7kVUWGSa2xcOkVC/uSzw2/tXjtNUv6syafBy71LVIBAtp/w4GtfNClWD9hIWOPWUNgCgr8zA/k1iGV/Qh++0IQ0BjEsGB7gvZzD7bgGMRdiPokLuPX7zaeTvf1KBtGjcg4a2FCoPW4AUpGUZrPPi5lhO/hXEAn1xrP43gA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sjacJnEr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A04BBC4CEE7;
-	Wed, 20 Aug 2025 21:04:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uZ3vkb8/F21W8uMJrikTFYuWh7ABgvYzw+mYJzNx9KLXs0iBOlFmetK2Pz3aQSkCA6Q0TXEiH5WFlyxX4RZWLiu56X4DC4IvMXo5zsjxGv0uYqlAbaxQQHi4H7BHET92mqFj4QjyDYupdrTlAj8fJiFXG1Cl1zQ0kZxAPrvHO9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oihkB/d6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D80C6C4CEE7;
+	Wed, 20 Aug 2025 21:08:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755723883;
-	bh=GsmVJZPTsLQEAHe+gxRF/6AYyy9Goq4zhnJSCA0tdL4=;
+	s=k20201202; t=1755724084;
+	bh=rkoobUseBl3ZPCzxbYJUmI8ZVFYkuSdLZI+boJGT8UU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sjacJnErxYI2KXAognM5mGUqE5eO/3AFANXEDB2ECRNt/aD88h5jkkUv3vpAKshCl
-	 KoxkxPhCSP0LGoe3+NHxUNSk0Aeax2t/xTmYCl4SkwxLxAuNr+cS/phUvGrFoWtBXA
-	 7J+tFxiS/mAuWffm6WEmTs9Rgf1z+URn9Q9NqQN5eWF9kkAdpZtNxEgL5sFKy6hw9G
-	 OZjcKwhi/iquWjGQ8C9AnEeLpj9PcjjUPcJkU1EwI3XLXTlNcbJUT+xHRqL/UbBxt4
-	 2LrdcsRq0+PDgjHKqHMWA0OvGT/05/OhWVHpiyjl/vK2kUI1IvSxfmR8v1/YkjIoxG
-	 v6RGn4FUuSY6g==
-Date: Wed, 20 Aug 2025 16:04:42 -0500
+	b=oihkB/d6bpuibPKO7CVwMQ1R8sWllUitiVtdBsUS035RrAaBSORoBP936GmEIOsbu
+	 OjULfbVu+pQfvp8jTOoJyz0e6MVlvFM9oi6QWxgpuJQgtivFicURpKEfobLF0866nf
+	 qbhhahV5cBcAWDgxDq6/d/tMq50+hvWGhmleVCS+7nvUo0ye0IyNyQVIulpizy/mLO
+	 VqV7qeC0YV7tWXSDwSsP7Jin6VG+A++3DMHUBQl3UzhNhwcoLc2ETx3SgG+7ihvuCc
+	 wECvB67E1XPAUPi9vquTOpqkaDk6gSIg8erCwUnLSE0K8Rla8SQpyYWiKFqjWS6IJe
+	 XJxwBTnEKC6uA==
+Date: Wed, 20 Aug 2025 16:08:03 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Markus Heidelberg <m.heidelberg@cab.de>
-Cc: Christian Eggers <ceggers@arri.de>, linux-kernel@vger.kernel.org,
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Maxime Ripard <mripard@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Rob Clark <robin.clark@oss.qualcomm.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	freedreno@lists.freedesktop.org,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Simona Vetter <simona@ffwll.ch>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Mahadevan <quic_mahap@quicinc.com>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Jiri Prchal <jiri.prchal@aksignal.cz>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: eeprom: at25: use "size" for FRAMs
- without device ID
-Message-ID: <175572388233.1043073.3428639598454610702.robh@kernel.org>
-References: <20250815095839.4219-1-m.heidelberg@cab.de>
- <20250815095839.4219-2-m.heidelberg@cab.de>
+	dri-devel@lists.freedesktop.org, David Airlie <airlied@gmail.com>
+Subject: Re: [PATCH v6 5/6] dt-bindings: display/msm: add stream pixel clock
+ bindings for MST
+Message-ID: <175572408273.1071685.13722769967964549822.robh@kernel.org>
+References: <20250815-dp_mst_bindings-v6-0-e715bbbb5386@oss.qualcomm.com>
+ <20250815-dp_mst_bindings-v6-5-e715bbbb5386@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,19 +78,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250815095839.4219-2-m.heidelberg@cab.de>
+In-Reply-To: <20250815-dp_mst_bindings-v6-5-e715bbbb5386@oss.qualcomm.com>
 
 
-On Fri, 15 Aug 2025 11:58:36 +0200, Markus Heidelberg wrote:
-> Not all FRAM chips have a device ID and implement the corresponding read
-> command. Thus the memory size, which is contained in the device ID,
-> cannot be detected and has to be set manually as it is done for EEPROMs.
+On Fri, 15 Aug 2025 17:30:32 +0300, Dmitry Baryshkov wrote:
+> From: Abhinav Kumar <quic_abhinavk@quicinc.com>
 > 
-> Link: https://lore.kernel.org/all/20250401133148.38330-1-m.heidelberg@cab.de/
-> Signed-off-by: Markus Heidelberg <m.heidelberg@cab.de>
+> On a vast majority of Qualcomm chipsets DisplayPort controller can
+> support several MST streams (up to 4x). To support MST these chipsets
+> use up to 4 stream pixel clocks for the DisplayPort controller. Expand
+> corresponding clock bindings for these platforms and fix example
+> schema files to follow updated bindings.
+> 
+> Note: On chipsets that do support MST, the number of streams supported
+> can vary between controllers. For example, SA8775P supports 4 MST
+> streams on mdss_dp0 but only 2 streams on mdss_dp1.
+> 
+> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Signed-off-by: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/eeprom/at25.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  .../bindings/display/msm/dp-controller.yaml        | 63 +++++++++++++++++++++-
+>  .../bindings/display/msm/qcom,sa8775p-mdss.yaml    | 20 +++++--
+>  .../bindings/display/msm/qcom,sar2130p-mdss.yaml   | 10 ++--
+>  .../bindings/display/msm/qcom,sm8750-mdss.yaml     | 10 ++--
+>  .../bindings/display/msm/qcom,x1e80100-mdss.yaml   | 10 ++--
+>  5 files changed, 99 insertions(+), 14 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
