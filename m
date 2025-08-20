@@ -1,112 +1,95 @@
-Return-Path: <devicetree+bounces-206953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAE65B2E20D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 18:14:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A022EB2E27A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 18:37:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9FF4179421
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:07:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE1A03B8E90
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 16:35:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C93B6322A0D;
-	Wed, 20 Aug 2025 16:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E22B327794;
+	Wed, 20 Aug 2025 16:34:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SdYg4dng"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tnIY8P6c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9938B2797AE;
-	Wed, 20 Aug 2025 16:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 602892D9EE6;
+	Wed, 20 Aug 2025 16:34:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755706063; cv=none; b=FjVJyiT4ecSzS+9wDKtc8HTn3GBpecPx6k34FuA7HhAf33DEQByfdehAUfJxRW0VqeMzQuyAl3Myt5wLCLwTAgxG6T0zLi6gCraxYSkbInJ2hvSX4iPS1LaJhYuBmdy4n+5sDHkOh/iHstyXH1GxVlbSVkGhFMFz62mLhvKuf84=
+	t=1755707698; cv=none; b=M/3rcjuas5Yu1/bJYmnRnLd4ZYQPMB9knTgbjPJlt3Tciyh3y0Z1tjf2hahug3qK7YbNBNyrU9SSi6pwQyOCFBYJvW1dxNH6cWf1wTMFA4HzsSK9fD16RHyYnJnt5CoAmrAvMVS/glwbWRrjP+v3/C7cfp50ODu8SC8D3VBw514=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755706063; c=relaxed/simple;
-	bh=Fc6Djx8B9AyLUd9B+FppF5No5ax5Rsl2+whttkvW4ps=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EGmM+UmvtRrRmZb2rMgA93OjM/nsNu7Kr/1N+jaXPk4JYM0+QLybXREW44+kutde7OmSqJd1TbcL6NOFtv3U09hOKf5DGFe2WnoCJu8fyVDYKFnm3i10yMkjtpnC9rczYc7WvlfcY3lvuBmVwcggtUUi2Z5YVlmtZERRUajnITo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SdYg4dng; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39AFDC4CEE7;
-	Wed, 20 Aug 2025 16:07:40 +0000 (UTC)
+	s=arc-20240116; t=1755707698; c=relaxed/simple;
+	bh=k1UR+GG0otyO1qJ2r59t7k1ZcXWSqNV1MoXw5+jfitA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BdGt9RvOnOHz3KhJYWBaCMoHMENShD5driaAHUeOoLCYUyvJ5HjQ72g3aim5QLm71bI/0QI+Tk+259euT2/xNY7xnIs5Tkep8GPpzZoLftswrGmMZaov29pgr1OaUgczDR7C8cuXG/XcrGyRFd1FD8mehjiZSxejneFKFP4BQAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tnIY8P6c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DA9BC4CEE7;
+	Wed, 20 Aug 2025 16:34:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755706062;
-	bh=Fc6Djx8B9AyLUd9B+FppF5No5ax5Rsl2+whttkvW4ps=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SdYg4dng5SJPT6E+XjYcNIxfPAKCyJ9Ma7ZguYWwFhh2yhFJyMgyhP0ZH3aAicOxE
-	 AtkAsPmudNikzTaA3UvB6/Yt2FgkUP2uVHPbyuh6irNEKtqmd6633yG0LXRA8xn7bf
-	 FsbX17YAY5k08e+JpWuNuqedoEr+KzZ48UMqv4T60r+ct3FJ4hgCRmASxrwaHnX91t
-	 UpwVtQT4NwEyibJfweA15QmoeCfpRLTBDIh1XXqbrc1n7m45ODBi/apkFF+dBcsCfH
-	 gz6hdrGVbjIATtgoD88fmOVgB8Kl0W66znKJtOF/s3zDNgoxYEMQGt8wXgDFgbt+Cz
-	 B1o+wU8Yb8/Bg==
-Date: Wed, 20 Aug 2025 21:37:36 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Yulin Lu <luyulin@eswincomputing.com>
-Cc: dlemoal@kernel.org, cassel@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kishon@kernel.org, linux-phy@lists.infradead.org,
-	ningyu@eswincomputing.com, zhengyu@eswincomputing.com,
-	linmin@eswincomputing.com, huangyifeng@eswincomputing.com,
-	fenglin@eswincomputing.com, lianghujun@eswincomputing.com
-Subject: Re: [PATCH v2 3/3] phy: eswin: Create eswin directory and add
- EIC7700 SATA PHY driver
-Message-ID: <aKXyyAT-xRPhoYDx@vaman>
-References: <20250819134722.220-1-luyulin@eswincomputing.com>
- <20250819140043.1862-1-luyulin@eswincomputing.com>
+	s=k20201202; t=1755707697;
+	bh=k1UR+GG0otyO1qJ2r59t7k1ZcXWSqNV1MoXw5+jfitA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=tnIY8P6c1hXonqTCWWhQ2AC/Gkr9n7axwXUrAAXTO075UsBSjNBJ/GemoAnN9C0Ct
+	 GZ2rSmI3ZHNgXxfc44UIPKqbiGZgLV7lF9W9CfnJu5GjZa9fBgs+9UyqGwGQH1KY2c
+	 hbiyyKHlusnh+QPZUKYFs2aBWw9wxxVCWiF+O4hR0XhVzvPNgo/Rd1uIGAUIaTzju0
+	 fx4piWYdJDGBxFAmty08cbx2Y/l4SuVOhihYVAT2wCen8YCYYKr8RDShBOoUMSNPtE
+	 VHGLFUlR6Ipm317Qj2WiaZwI3m12kQy/zPFy2+Rno3qQWG4Z5MSehNBzuLXxqmr3l2
+	 rm6Le5LAeIpww==
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Richard Leitner <richard.leitner@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] usb: usb251xb: support usage case without I2C control
+Date: Thu, 21 Aug 2025 00:17:40 +0800
+Message-ID: <20250820161743.23458-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250819140043.1862-1-luyulin@eswincomputing.com>
+Content-Transfer-Encoding: 8bit
 
-On 19-08-25, 22:00, Yulin Lu wrote:
-> From: luyulin <luyulin@eswincomputing.com>
-> 
-> Created the eswin phy driver directory and added support for
-> the SATA phy driver on the EIC7700 SoC platform.
-> 
-> Signed-off-by: luyulin <luyulin@eswincomputing.com>
+Currently, the usb251xb assumes i2c control. But from HW point of
+view, the hub supports usage case without any i2c, we only want the
+gpio controls.
 
-Please use full name as you have used in the copyright notices
+Refactor the code so that register writes for configuration are only
+performed if the device has a i2c_client provided and also register as
+a platform driver. This allows the driver to be used to manage GPIO
+based control of the device.
 
+Since v2:
+ - add usage example w/o i2c control in dt-binding
+ - update commit msg
+ - remove of_match_ptr
 
-> +#define SATA_P0_PHY_TX_PREEMPH_GEN2	(0x05 << 8)
-> +#define SATA_P0_PHY_TX_PREEMPH_GEN3	(0x08 << 16)
-> +#define SATA_MPLL_MULTIPLIER		(0x3c << 16)
+Since v1:
+ - make the modern pm macros usage a separate patch
+ - use pm_sleep_ptr instead of pm_ptr for usb251xb_plat_pm_ops, because
+   this ops is for PM_SLEEP only.
 
-Use GENMASK for these
+Jisheng Zhang (3):
+  dt-bindings: usb: usb251xb: support usage case without I2C control
+  usb: usb251xb: use modern PM macros
+  usb: usb251xb: support usage case without I2C control
 
-> +static int eic7700_sata_phy_init(struct phy *phy)
-> +{
-> +	struct eic7700_sata_phy *sata_phy = phy_get_drvdata(phy);
-> +	u32 val = 0;
-> +	int ret = 0;
-
-both initializations are superfluous
-
-> +static int eic7700_sata_phy_exit(struct phy *phy)
-> +{
-> +	struct eic7700_sata_phy *sata_phy = phy_get_drvdata(phy);
-> +	u32 val = 0;
-
-here and other places
-
-> +static struct platform_driver eic7700_sata_phy_driver = {
-> +	.probe	= eic7700_sata_phy_probe,
-> +	.driver = {
-> +		.of_match_table	= eic7700_sata_phy_of_match,
-> +		.name  = "eswin,sata-phy",
-> +		.suppress_bind_attrs = true,
-
-why?
+ .../devicetree/bindings/usb/usb251xb.yaml     |   9 +-
+ drivers/usb/misc/usb251xb.c                   | 108 +++++++++++++++---
+ 2 files changed, 102 insertions(+), 15 deletions(-)
 
 -- 
-~Vinod
+2.50.0
+
 
