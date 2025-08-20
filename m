@@ -1,87 +1,119 @@
-Return-Path: <devicetree+bounces-206950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F13B2E118
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 17:30:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 884FBB2E153
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 17:39:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DAA31CC4002
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 15:25:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50075AA0EC4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 15:26:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5215A334381;
-	Wed, 20 Aug 2025 15:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 389DC23816C;
+	Wed, 20 Aug 2025 15:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HCLvxhhm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lAR6BJ08"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2277F3277BD;
-	Wed, 20 Aug 2025 15:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BA76213E9C;
+	Wed, 20 Aug 2025 15:22:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755703121; cv=none; b=TjIqR5hQ0tGNu+sGwfRK/eE5rK0c52kYhiUtypyYSPMMVfFW67N2jrNu0aWPbZR+8+0Tc6pySWhCzghcsCtXGMhVd364zoCiese2vA2I3cL/vMwuDhDIibWrUK9lW5iklUmC89zawvqQilU7Kf+D+Or/Ak7lTg+G7LGfX8xEEF0=
+	t=1755703341; cv=none; b=ZDnUlS44MMN1uVUysLoDekH2e+S/nNwtKuZ81mLpv4Z9Or7AbG7Pmg/F19qNwo6N+VOkuU4NrkOMPm6xwL5QQxR650aubdT2tlGXkSKESDmSHbl9MHGzQ9IZ9DP8dP5qnUGM8b18R98pyVNrTM7b/yanzWtb+vl2my1hZTFpe4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755703121; c=relaxed/simple;
-	bh=hpA3HB2nYO+BOH0DraEZkK1mUoeOKRwSQx3yrhDgd8Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ObXxoIc2gqMN9jyrOfCMdOUuaZWyYEUWVHrc4+D8ZsN3Z4BL5k3+i3kBw/AEtJzw7nsokFpu3fltauJAu/N8Vuf7W3YoT6d4WurucEsInqtUMXfyw83ISiVxdBcD1nhfrgceGu70bmexnXbMZ00SN0hutuQjd9AV4Vw2NgZsOg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HCLvxhhm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E18FC4CEE7;
-	Wed, 20 Aug 2025 15:18:40 +0000 (UTC)
+	s=arc-20240116; t=1755703341; c=relaxed/simple;
+	bh=WicMk5bXj+8CW5HOYykWjDmuIMEIuDhQq/0pN4w5DuY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T7ImfCFLFGSuh+auuEy+zjOUOLOEnNNUB6j9+s1/7uFftjl0SxSPTwNw1eodVW5BvKJAl/9xZYKmYMXsF5p027x8NtKqDbVH1YRxi4GXdZ8+rsjLqRxjT0kbsOo67Q1Lm6NKfdaSGy3yY5Sdrb5txn1Z4xaVvaqR05J0hclwDC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lAR6BJ08; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A16DC4CEEB;
+	Wed, 20 Aug 2025 15:22:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755703120;
-	bh=hpA3HB2nYO+BOH0DraEZkK1mUoeOKRwSQx3yrhDgd8Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=HCLvxhhm7iyY1MQFUj/zAFdoBTuOMk1HHlO/HjXQ+cRvr4KrGI60RVjvPB60qPNw9
-	 ZZVLruQeIWyxJZtgPMj00/pe0CcWD7EUhdE+9fHtyPBSHEWkYVVvjhNT4Uz8QLC5EE
-	 6eN6TASlRFmrHUkJc5UDGt7gElEoQzf7AR4vnuWG+j84GK5l99mawe6d6YVYN5S8EJ
-	 9li+OvVZiydevexmUPSEMpkG76w25cDmjGkOdWlVZpDJKXfBipjBIzJegODdGkSbb/
-	 fTTPAOJgdX8h0rmXvl1cf/PYwTWuF+O7BwMTTXVuLRNsNuIEylZyrwd3asU+4XJXsT
-	 mEVH02Q1N7eQw==
-Date: Wed, 20 Aug 2025 08:18:39 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
- john@phrozen.org, devicetree@vger.kernel.org, netdev@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net v2 0/2] mips: lantiq: fix ethernet support
-Message-ID: <20250820081839.4eeaf5eb@kernel.org>
-In-Reply-To: <aKWiWX50F6kQNc13@alpha.franken.de>
-References: <20250817131022.3796476-1-olek2@wp.pl>
-	<20250819182641.1b7ff210@kernel.org>
-	<aKWiWX50F6kQNc13@alpha.franken.de>
+	s=k20201202; t=1755703340;
+	bh=WicMk5bXj+8CW5HOYykWjDmuIMEIuDhQq/0pN4w5DuY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lAR6BJ08Zr0VfKheoNHRPcNGFxdMvD43/8ZbF0hdD0tq1psDcjK9qp01/oJBJ2YKM
+	 MSdcFY7VSFUVIAbkxzuRflPHJusr9vEXwKPUGmWBSY/HO0nW3GdTExdIy7WBWFsBZ1
+	 UnEmGnfRXbjb88jK+I7AsBPdN4+ekwso7eJq7RTpPVqIsjm7s+j9/NuSKJr5o7UNot
+	 7SdAA1E3TDElUXqFcf7PYZqBy/ojrK7mm1qPqBxUtqdj6G5rnkm3p3Nvom+GAiv7rn
+	 09iszIwgdl2g5u7itHrTvol8vNQ29NyeGfWS4/P40Uc7DBZ18ZN3UdTk7Jt/m6qEJ4
+	 oqRbH/1e5JBDQ==
+Date: Wed, 20 Aug 2025 17:22:18 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Charan Teja Kalla <quic_charante@quicinc.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
+	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+	Jared Kangas <jkangas@redhat.com>, Mattijs Korpershoek <mkorpershoek@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v5 2/2] dma-buf: heaps: Introduce a new heap for reserved
+ memory
+Message-ID: <20250820-gainful-cuttlefish-of-pleasure-b3ecc0@houat>
+References: <20250617-dma-buf-ecc-heap-v5-0-0abdc5863a4f@kernel.org>
+ <20250617-dma-buf-ecc-heap-v5-2-0abdc5863a4f@kernel.org>
+ <a5526631-15fc-479f-8ac8-015231357080@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="4hxaerdxh2nrqase"
+Content-Disposition: inline
+In-Reply-To: <a5526631-15fc-479f-8ac8-015231357080@quicinc.com>
 
-On Wed, 20 Aug 2025 12:24:25 +0200 Thomas Bogendoerfer wrote:
-> On Tue, Aug 19, 2025 at 06:26:41PM -0700, Jakub Kicinski wrote:
-> > On Sun, 17 Aug 2025 14:49:05 +0200 Aleksander Jan Bajkowski wrote:  
-> > > This series fixes broken Ethernet in the upstream danube dts. The
-> > > driver doesn't attach due to missing burst length property. OpenWRT
-> > > has its own dts, which is correct, so the problem has only been
-> > > spotted now. Other dts inconsistencies with bindings have been
-> > > fixed as well.  
-> > 
-> > Hi Thomas, Aleksander tagged these for net, are you okay with us taking
-> > them via the networking tree? Looks like these are half DTS changes.  
-> 
-> Aleksander is further changing the Lantiq DTs, so I'd prefer to take
-> this patches through the MIPS tree.
 
-SG! Feel free to add:
+--4hxaerdxh2nrqase
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 2/2] dma-buf: heaps: Introduce a new heap for reserved
+ memory
+MIME-Version: 1.0
 
-Acked-by: Jakub Kicinski <kuba@kernel.org>
--- 
-pw-bot: not-applicable
+Hi,
+
+On Fri, Aug 08, 2025 at 03:46:21PM +0530, Charan Teja Kalla wrote:
+> On 6/17/2025 5:55 PM, Maxime Ripard wrote:
+> > +static void carveout_heap_dma_buf_release(struct dma_buf *buf)
+> > +{
+> > +	struct carveout_heap_buffer_priv *buffer_priv =3D buf->priv;
+> > +	struct carveout_heap_priv *heap_priv =3D buffer_priv->heap;
+> > +	unsigned long len =3D buffer_priv->num_pages * PAGE_SIZE;
+> > +
+> > +	gen_pool_free(heap_priv->pool, buffer_priv->paddr, len);
+>=20
+> Just checking If clearing of the memory is missed before releasing it to
+> the free pool. If not, isn't it a leak of data when the heap is being
+> used by the multiple apps.
+>=20
+> BTW, thanks for these patches.
+
+Thanks for the review. Note that we've since moved to another approach
+here:
+https://lore.kernel.org/r/20250721-dma-buf-ecc-heap-v7-0-031836e1a942@kerne=
+l.org
+
+Maxime
+
+--4hxaerdxh2nrqase
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaKXoKQAKCRAnX84Zoj2+
+dow2AYC3Ylr7sSSAO15OugjV/WG7eVzYYLltaBeuKPZRasmbb0lVu2m4UhfgAtLW
+tSOmswsBfRnsiVEOeHk1VckfBWFThgfDpJg1QkDZWytCn9JugXgGANgTiDRqLdjJ
+WGr85+dNFg==
+=pEPY
+-----END PGP SIGNATURE-----
+
+--4hxaerdxh2nrqase--
 
