@@ -1,85 +1,222 @@
-Return-Path: <devicetree+bounces-207095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 672B4B2E7B2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 23:49:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B65FAB2E7C4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 23:56:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 593EC16DC86
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:48:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C84D1CC2C65
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:56:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C54334376;
-	Wed, 20 Aug 2025 21:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8650D3375A7;
+	Wed, 20 Aug 2025 21:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j89Fnpan"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ABF/DvJb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2DC2BE7A6;
-	Wed, 20 Aug 2025 21:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F07335BD0;
+	Wed, 20 Aug 2025 21:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755726530; cv=none; b=R/Dh+eW0Z/edLRdZPFjeb43lhDLQfjkV0XYf5POWkDNSHwYsOi9rv4uVxIgzDJKyNVgDaL/aP5GpaBNG4/Kb5kD3zcT3b/jhaDiC+yJgRINAEkFSbbB46zmpthvZj9sbD/kPG3pwQSJQrK+a9HCkSDy1MQdzWKPMprUlkb0Hh4Y=
+	t=1755726980; cv=none; b=ZeJV9swUdD1YHlsuu+DHugcwM65Ac+h8+n6CXEb/JMlikpavDtDlSuka2zFLhG0hRvem7A37cZoS5nyjrYwsHydOJjvcviictkTl9HhYSXJutVPTyUUisdM9xC6OR1Mj/Qv4oy6XMJbaU86B65cdw3hsFZ+aMbfMbJtPi/ONWfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755726530; c=relaxed/simple;
-	bh=qH0h2tOn9Z19DroXvhL+6bNfSaAXjcN9VS5tRg0Hhts=;
+	s=arc-20240116; t=1755726980; c=relaxed/simple;
+	bh=0rUHM2uemlukqAn2SUAopv8MRbyIeZpCqjQQeDYDJaQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bXd91Ow675LFLn/ZH8KCwCiolmULXohl9rCu7IJGAOJTxbZfSqQKywkr5KFAhJkzLl0V/DO6lEUgJn+MLZY4skTbrY0Tj6hZ153xkgknuY1JJctub9U6zqGaoaM+KMQP6qZy+oA3GjuoSTdnQBpJXKd4r+DaJDm+XVHNUu2MfiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j89Fnpan; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC316C4CEE7;
-	Wed, 20 Aug 2025 21:48:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=k2QzK7goOG2l74pxc+IXK5Qk9yYl/MvzVMLX6JisyEUWs4tA0Mgf9myFNKS44mWgZ1dLBgbZOxzXk2fZ/pjlCwClQCaB5jJya13+BtrVYfE6Cp+MRg8SF49swj18g5QvCtaT3JPzUebftOJyETTGNBdvArd/k7DsOwvKvrxBti0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ABF/DvJb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A3ABC4CEE7;
+	Wed, 20 Aug 2025 21:56:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755726530;
-	bh=qH0h2tOn9Z19DroXvhL+6bNfSaAXjcN9VS5tRg0Hhts=;
+	s=k20201202; t=1755726980;
+	bh=0rUHM2uemlukqAn2SUAopv8MRbyIeZpCqjQQeDYDJaQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j89FnpanDGUpCQhqKL0sA8eFdMyZUuFd4zOfGXPKiw0fFva48x/mlXMIspFoQiGW6
-	 q1tBeAlELDzdagBz+mRyPprvisMN/4cx4x0mpc6eoQU8SY3NtBXV4FHn8ur6leSRSY
-	 SAW0RRCEJmpyDumzp1d48fkRrdU7nZFAsvpM6kPt5xyEqSpvS7xRhv7yCjHh4AfUAa
-	 hK1/CSHgM7cLjSU80dc0kLE/67kO/DOdSvyTzTCRyUTCRZY2p3Upoci/n2FlM4Mwf/
-	 mtfZsng6ETDVqZYbuioxPQs8CG6L3NzDUqxt8Ige0yZ4HEnymC1PA7/j7Bkx6BWloP
-	 DRhG/dsrQtjlA==
-Date: Wed, 20 Aug 2025 16:48:49 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	linux-kernel@vger.kernel.org,
+	b=ABF/DvJbxqGXza3FxFbixGqKBqH73e+JPH6xVycVidOenOqzumdOqzd2Dr0PFeLkk
+	 C9Cua9MvYGWHo8FmJEzkyJ0MQlPchKQQLmsyB1392ZtTi6Fk+nJwlgp+g1OcYPVMhq
+	 kWR4uV63i7/cDt0wzhlX3PGtLAk0ZNERXS1Tkj1ekAYLaa7pLSKAoKQJ923zhtA0Ml
+	 lE/uJHY4GAyKDaUptb/2A9ZNieQ+W3e8XH3KzOJU6SnXHlE8pK2tp7qFpN02Dga5Dt
+	 WqfDOU6evwGNrqnUHdMzZxW8HOXEF72EM3HeETMhP3TzL4qlDDLWWEIwRn3A3OXFcy
+	 6JYQv5PLl22Jw==
+Date: Wed, 20 Aug 2025 16:56:19 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: extcon: rt8973a: Convert DT bindings to YAML
-Message-ID: <175572652839.1377855.2943403733213575519.robh@kernel.org>
-References: <20250817-rt8973a-dt-bindings-yaml-v1-1-150eb4599dc9@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Val Packett <val@packett.cool>
+Subject: Re: [PATCH 1/7] dt-bindings: media: i2c: Add DW9718S, DW9719 and
+ DW9761 VCM
+Message-ID: <20250820215619.GA1381920-robh@kernel.org>
+References: <20250817-dw9719-v1-0-426f46c69a5a@apitzsch.eu>
+ <20250817-dw9719-v1-1-426f46c69a5a@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250817-rt8973a-dt-bindings-yaml-v1-1-150eb4599dc9@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250817-dw9719-v1-1-426f46c69a5a@apitzsch.eu>
 
-
-On Sun, 17 Aug 2025 10:52:04 +0200, Artur Weber wrote:
-> Convert the device tree bindings for Richtek RT8973A MUIC to the YAML
-> format. No functional changes.
+On Sun, Aug 17, 2025 at 07:09:20PM +0200, André Apitzsch wrote:
+> Document Dongwoon DW9718S, DW9719 and DW9761 VCM devicetree bindings.
 > 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> I've added Chanwoo Choi as the binding maintainer as he is listed
-> as the author of the driver for this device; I can change this if
-> needed.
-> ---
->  .../devicetree/bindings/extcon/extcon-rt8973a.txt  | 23 ----------
->  .../bindings/extcon/richtek,rt8973a-muic.yaml      | 49 ++++++++++++++++++++++
->  2 files changed, 49 insertions(+), 23 deletions(-)
+> Signed-off-by: André Apitzsch <git@apitzsch.eu>
 > 
+> --
+> 
+> The possible values for sac-mode and vcm-prescale of DW9719 and DW9761
+> are missing because there is no documentation available.
+> ---
+>  .../bindings/media/i2c/dongwoon,dw9719.yaml        | 115 +++++++++++++++++++++
+>  1 file changed, 115 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..80fd3fd42327fcafe3ff209d1cd6bbe17b8a211b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9719.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Dongwoon Anatech DW9719 Voice Coil Motor (VCM) Controller
+> +
+> +maintainers:
+> +  - devicetree@vger.kernel.org
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+No. Must be someone that has the h/w or cares about it. If there is no 
+one, then we don't need the binding.
 
+> +
+> +description:
+> +  The Dongwoon DW9718S/9719/9761 is a single 10-bit digital-to-analog converter
+> +  with 100 mA output current sink capability, designed for linear control of
+> +  voice coil motors (VCM) in camera lenses. This chip provides a Smart Actuator
+> +  Control (SAC) mode intended for driving voice coil lenses in camera modules.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - dongwoon,dw9718s
+> +      - dongwoon,dw9719
+> +      - dongwoon,dw9761
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: VDD power supply
+> +
+> +  dongwoon,sac-mode:
+> +    description: |
+> +      Slew Rate Control mode to use: direct, LSC (Linear Slope Control) or
+> +      SAC1-SAC6 (Smart Actuator Control).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +      - 0   # Direct mode
+> +      - 1   # LSC mode
+> +      - 2   # SAC1 mode (operation time# 0.32 x Tvib)
+> +      - 3   # SAC2 mode (operation time# 0.48 x Tvib)
+> +      - 4   # SAC3 mode (operation time# 0.72 x Tvib)
+> +      - 5   # SAC4 mode (operation time# 1.20 x Tvib)
+> +      - 6   # SAC5 mode (operation time# 1.64 x Tvib)
+> +      - 7   # SAC6 mode (operation time# 1.88 x Tvib)
+> +    default: 4
+> +
+> +  dongwoon,vcm-prescale:
+> +    description:
+> +      Indication of VCM switching frequency dividing rate select.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: dongwoon,dw9718s
+> +    then:
+> +      properties:
+> +        dongwoon,sac-mode:
+> +          default: 4
+> +        dongwoon,vcm-prescale:
+> +          description:
+> +            The final frequency is 10 MHz divided by (value + 2).
+> +          minimum: 0
+
+That's already the minimum being unsigned.
+
+> +          maximum: 15
+> +          default: 0
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: dongwoon,dw9719
+> +    then:
+> +      properties:
+> +        dongwoon,sac-mode:
+> +          default: 4
+> +        dongwoon,vcm-prescale:
+> +          default: 96
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: dongwoon,dw9761
+> +    then:
+> +      properties:
+> +        dongwoon,sac-mode:
+> +          default: 6
+
+At the top-level you already said the default is 4. The if/then is an 
+AND operation. 'default' is just an annotation and has no effect on 
+validation. I would just drop it from the if/then altogether. It's not 
+worth the complexity.
+
+> +        dongwoon,vcm-prescale:
+> +          default: 62
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        actuator@c {
+> +            compatible = "dongwoon,dw9718s";
+> +            reg = <0x0c>;
+> +
+> +            vdd-supply = <&pm8937_l17>;
+> +
+> +            dongwoon,sac-mode = <4>;
+> +            dongwoon,vcm-prescale = <0>;
+> +        };
+> +    };
+> 
+> -- 
+> 2.50.1
+> 
 
