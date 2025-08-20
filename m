@@ -1,84 +1,53 @@
-Return-Path: <devicetree+bounces-207111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CDE4B2E86B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 01:05:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 868ADB2E891
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 01:19:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2450F565009
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 23:05:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7459A24C94
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 23:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDAA728750D;
-	Wed, 20 Aug 2025 23:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C4dCd2Um"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD652DCF61;
+	Wed, 20 Aug 2025 23:19:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A363C36CE0E;
-	Wed, 20 Aug 2025 23:05:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B5D280312;
+	Wed, 20 Aug 2025 23:19:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755731121; cv=none; b=XuhoBn2GF1938/rTP+q7Qh9vFeS6Cz74T352gX7IfXnGNlxWvGzkrtxYWNM+eJv2xLwYBm/mmnyRj9qJxsT1B7+F4D4xB6MAy+qMbq3TI7SgS6H+ns7a5GlAujkv1QCBE08oxp642Rz1UlXBgFRtusEIz/gioJHxAjV13nkUzQI=
+	t=1755731964; cv=none; b=qDg8HVCLFAkuwL+NPZXLTiKRha0ajKS1nxwJ4WQgjAbQN8F3w+DNOu7jF9vC3kYBKrVl9OiQVO2NExtHzvaTO3iOUcXHwym4q9dg581PzzHc0eoujA/UzMhNqSr0m/PaWH6ajDSjCerObv8qULUYRLVE0tofsRHgvr6BrRvx3Ic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755731121; c=relaxed/simple;
-	bh=nr1/ZpykDzY/GfAUTO5xatJNE5SpOD44gVut+/do0Kk=;
+	s=arc-20240116; t=1755731964; c=relaxed/simple;
+	bh=OPrm5w5AdkT61ri9wEdzjMx15VSmDR3Jtu0GD6sZi5s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mQ20umf9qI5kGr0u9doN/ic0W1hNg7+JVWz/0BszMzHh/USkUTcaPVekw9861m7K9i42gESMJDkYRGcb4tPAjI7Ujygo3xS8is1QpAVjLP6LXisBpr5GSstmDdp744OZmC2M6EbqONv2LFGF/trAasZSLgj5SSY5gJ0gGLFH0ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C4dCd2Um; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755731120; x=1787267120;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nr1/ZpykDzY/GfAUTO5xatJNE5SpOD44gVut+/do0Kk=;
-  b=C4dCd2UmGtXN46RBBUSBVDEY8Z5B2iM72k6mkDEMCRSDUg97eqhUcanL
-   mviEzwdLiW9w01FJkT//Pewebf6ziyIkmzcGMNYdht0penIZvhe2WpFGU
-   3UPaY/I95+lz5mrbXjIYYkFAOtc9sqZVYsPHVWyMFkxgfr4oKVQbgou8p
-   h4mPnoEmmiLvHKd6ESCIOmKDzL/ItV61U/vqRRottMZG27CRmHsWR7Msn
-   YXqFntiVkyYUo+XCW6uHE8t0lD76hEh8LpOybV8mYuQUz2CT7px8dEnML
-   ID0ciV40alN9Hl0TKR28yDjkEDmXBCBaM72TyQ74pky+Mbz/tw7zvMbA+
-   Q==;
-X-CSE-ConnectionGUID: xsPSMkO4RdGgeJ90vBOHng==
-X-CSE-MsgGUID: qayqUP8GT3mcse3M6xmQKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="58080239"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; 
-   d="scan'208";a="58080239"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2025 16:05:19 -0700
-X-CSE-ConnectionGUID: 5wTcD2vyQQmnoR1aFrmA/A==
-X-CSE-MsgGUID: D3ukZWbfTly7d+vDz1QS3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; 
-   d="scan'208";a="199234003"
-Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2025 16:05:18 -0700
-Date: Wed, 20 Aug 2025 16:11:35 -0700
-From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-To: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>,
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
-	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ricardo Neri <ricardo.neri@intel.com>,
-	Yunhong Jiang <yunhong.jiang@linux.intel.com>,
-	Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v5 00/10] x86/hyperv/hv_vtl: Use a wakeup mailbox to boot
- secondary CPUs
-Message-ID: <20250820231135.GA24797@ranerica-svr.sc.intel.com>
-References: <20250627-rneri-wakeup-mailbox-v5-0-df547b1d196e@linux.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jQAUooMdFZjwgj0T3jQNuaQfegk8euwHHuAKFQMHXwD0Qm/sutyaClRIppAlILNXFsv3uqrIq2++c0EHGyPdI8HrrTKmsTOdMtziBRDppAOTVJ8nTjCmpYvURc8IPyvBPjP0CATuGazVSOstppZfNcNAB1kk9zCWZnuVisVM4nE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [180.158.240.122])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id D8A5D340E0E;
+	Wed, 20 Aug 2025 23:19:21 +0000 (UTC)
+Date: Thu, 21 Aug 2025 07:19:17 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, skhan@linuxfoundation.org,
+	linux-kernel-mentees@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: spacemit: add UART resets for Soc K1
+Message-ID: <20250820231917-GYB1065530@gentoo>
+References: <20250807191817.157494-1-hendrik.hamerlinck@hammernet.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,34 +56,126 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250627-rneri-wakeup-mailbox-v5-0-df547b1d196e@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20250807191817.157494-1-hendrik.hamerlinck@hammernet.be>
 
-On Fri, Jun 27, 2025 at 08:35:06PM -0700, Ricardo Neri wrote:
-> Hi,
+Hi Hendrik, 
+
+On 21:18 Thu 07 Aug     , Hendrik Hamerlinck wrote:
+> Add reset control entries for all UARTs in the SpaceMIT K1 SoC Device Tree.
+> UART0 was functional as it did not need a reset. But the other UARTs were
+> unable to access their registers without the reset being applied.
 > 
-> Here is a new version of this series. Thanks to Rafael for his feedback!
-> I incorporated his feedback in this updated version. Please see the
-> changelog for details.
+..
+> Although perhaps not needed I did add the reset for UART0 as well,
+> to ensure consistency across all UARTs. With the current-speed set to
+> 112500 baud rate, it matches the factory U-Boot settings.
+> This should not give issues with early console usage. But perhaps it could
+> be a good idea to let somebody else confirm this as well.
 > 
-> If the DeviceTree bindings look good, then the patches should be ready for
-> review by the x86, ACPI, and Hyper-V maintainers.
+Adding reset to UART0 is just fine, so we don't need to presume it will
+rely on bootloader to de-assert the controller
+
+please write changelogs in imperative mood, you can follow
+https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#changelog
+
+> Tested this locally on both Orange Pi RV2 and Banana Pi BPI-F3 boards. 
+> I enabled the UART9 and was able to use it successfully.
 > 
-> I did not change the cover letter but I included it here for completeness.
+> Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+> ---
+>  arch/riscv/boot/dts/spacemit/k1.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
-> Thanks in advance for your feedback!
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> index abde8bb07c95..7a5196a98085 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> @@ -667,6 +667,8 @@ uart0: serial@d4017000 {
+>  				clocks = <&syscon_apbc CLK_UART0>,
+>  					 <&syscon_apbc CLK_UART0_BUS>;
+>  				clock-names = "core", "bus";
+..
+> +				current-speed = <115200>;
+please drop this property, dtsi file should contain generic info for SoC,
+even in real cases, all boards use UART0 as serial output and configured
+at baudrate 115200, it still be able to alter to different frequency..
 
-Hello,
+besides, if you really want to set baudrate, then I'd suggest to configure
+it at board specific dts file, 
+  stdout-path = "serial0:115200n8";
 
-I would like to know what else is needed to move this patchset forward.
-Rafael and Rob have reviewed the DeviceTree bindings. Rafael has reviewed
-the relocation of the code that makes use of the mailbox.
+> +				resets = <&syscon_apbc RESET_UART0>;
+>  				interrupts = <42>;
+>  				reg-shift = <2>;
+>  				reg-io-width = <4>;
+> @@ -680,6 +682,7 @@ uart2: serial@d4017100 {
+>  				clocks = <&syscon_apbc CLK_UART2>,
+>  					 <&syscon_apbc CLK_UART2_BUS>;
+>  				clock-names = "core", "bus";
+> +				resets = <&syscon_apbc RESET_UART2>;
+>  				interrupts = <44>;
+>  				reg-shift = <2>;
+>  				reg-io-width = <4>;
+> @@ -693,6 +696,7 @@ uart3: serial@d4017200 {
+>  				clocks = <&syscon_apbc CLK_UART3>,
+>  					 <&syscon_apbc CLK_UART3_BUS>;
+>  				clock-names = "core", "bus";
+> +				resets = <&syscon_apbc RESET_UART3>;
+>  				interrupts = <45>;
+>  				reg-shift = <2>;
+>  				reg-io-width = <4>;
+> @@ -706,6 +710,7 @@ uart4: serial@d4017300 {
+>  				clocks = <&syscon_apbc CLK_UART4>,
+>  					 <&syscon_apbc CLK_UART4_BUS>;
+>  				clock-names = "core", "bus";
+> +				resets = <&syscon_apbc RESET_UART4>;
+>  				interrupts = <46>;
+>  				reg-shift = <2>;
+>  				reg-io-width = <4>;
+> @@ -719,6 +724,7 @@ uart5: serial@d4017400 {
+>  				clocks = <&syscon_apbc CLK_UART5>,
+>  					 <&syscon_apbc CLK_UART5_BUS>;
+>  				clock-names = "core", "bus";
+> +				resets = <&syscon_apbc RESET_UART5>;
+>  				interrupts = <47>;
+>  				reg-shift = <2>;
+>  				reg-io-width = <4>;
+> @@ -732,6 +738,7 @@ uart6: serial@d4017500 {
+>  				clocks = <&syscon_apbc CLK_UART6>,
+>  					 <&syscon_apbc CLK_UART6_BUS>;
+>  				clock-names = "core", "bus";
+> +				resets = <&syscon_apbc RESET_UART6>;
+>  				interrupts = <48>;
+>  				reg-shift = <2>;
+>  				reg-io-width = <4>;
+> @@ -745,6 +752,7 @@ uart7: serial@d4017600 {
+>  				clocks = <&syscon_apbc CLK_UART7>,
+>  					 <&syscon_apbc CLK_UART7_BUS>;
+>  				clock-names = "core", "bus";
+> +				resets = <&syscon_apbc RESET_UART7>;
+>  				interrupts = <49>;
+>  				reg-shift = <2>;
+>  				reg-io-width = <4>;
+> @@ -758,6 +766,7 @@ uart8: serial@d4017700 {
+>  				clocks = <&syscon_apbc CLK_UART8>,
+>  					 <&syscon_apbc CLK_UART8_BUS>;
+>  				clock-names = "core", "bus";
+> +				resets = <&syscon_apbc RESET_UART8>;
+>  				interrupts = <50>;
+>  				reg-shift = <2>;
+>  				reg-io-width = <4>;
+> @@ -771,6 +780,7 @@ uart9: serial@d4017800 {
+>  				clocks = <&syscon_apbc CLK_UART9>,
+>  					 <&syscon_apbc CLK_UART9_BUS>;
+>  				clock-names = "core", "bus";
+> +				resets = <&syscon_apbc RESET_UART9>;
+>  				interrupts = <51>;
+>  				reg-shift = <2>;
+>  				reg-io-width = <4>;
+> -- 
+> 2.43.0
+> 
 
-Would it be possible for the Hyper-V maintainers to take a look (Michael
-Kelley has reviewed the patches already)? Perhaps this could increase the
-confidence of the x86 maintainers.
-
-Thanks!
-
-Ricardo
+-- 
+Yixun Lan (dlan)
 
