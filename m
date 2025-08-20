@@ -1,110 +1,126 @@
-Return-Path: <devicetree+bounces-206890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C263B2DE77
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 15:57:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF18AB2DE7E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 15:59:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25C8116F89D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 13:52:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF68518849CF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 13:56:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379721D61B7;
-	Wed, 20 Aug 2025 13:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 755DC20C023;
+	Wed, 20 Aug 2025 13:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UFGFeipw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K1k+mqGo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E43111A9FB5;
-	Wed, 20 Aug 2025 13:52:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6977C1FECAD;
+	Wed, 20 Aug 2025 13:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755697961; cv=none; b=ZsBpWuPar6EO0PAo6cfe/qk6HGFDqsLZDtpL6B8sjkSZrPWV1GHKdtmQk7PoZi8pqBUPXODCAURgOVhpMb5gT+iPAbVY2JXP1xRzchJAa/zIX/cs4xOcyzHnhKCPKgT7pqFxqsf7BBD8ntoaDsKakY4+buljmROkwjCh8jfURTo=
+	t=1755698180; cv=none; b=gDzMIF3EuQHa5kN179Lh2ImfRX5iaT4MmKsPG7Ra/Q9z+dlMTK8FnHcZddqwobNIr6lWcUKGhCWt3LPg0+f129qIAcuR2vOPtsr6sH98UbedSkvT0nBuZNVDbAm5KLjmBlOjs1f/D6v3qu7ZrYF+4vyHxiCPuRhTx2vPto2xPdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755697961; c=relaxed/simple;
-	bh=e6xWfKDZKJ1nHTZR9zFz86W0PJbkIoZCR4yIosPV2i0=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bwq3mGwHBF2YDfQobqI4gWj/EU6vMeYSQ39rkZz2Jto8Z+HXmsw6XRnSonLJKk5OuqFptsqwXEVY+5HfplD6Urni3LPUDKky0sAxU/jdshUFAG1kwRe+qEiefdUAVda7W5HiDbaSvqGk34tkcrp/UVtE4DGaxmJbJmeOJ6048h8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UFGFeipw; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57KDqJ2e261463;
-	Wed, 20 Aug 2025 08:52:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755697939;
-	bh=GL9sAeRKOASA+eAc8v67yQLe5ezdU+IrDN1Fs5amqjc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=UFGFeipw+uQJHat4UONB2RUWeM6loMedMBLjso0MpqRCE3IgGqPYxnTxPOoS9W1hD
-	 WyfYAbu1bac8ShGI28m8/xVwdQhH+hzo9wJDyZwu7e3rC4TaneV5rdAvkzLLFvZPkO
-	 ViAAOPixF+DGi3dIlHBCcvmJ+wk19mHvo0VOIvzA=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57KDqJSe1828734
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 20 Aug 2025 08:52:19 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 20
- Aug 2025 08:52:19 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 20 Aug 2025 08:52:19 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [172.24.231.84])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57KDqIHg597953;
-	Wed, 20 Aug 2025 08:52:18 -0500
-Date: Wed, 20 Aug 2025 19:22:17 +0530
-From: s-vadapalli <s-vadapalli@ti.com>
-To: Michael Walle <mwalle@kernel.org>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j722s-main: add legacy PCIe interrupts
-Message-ID: <ae898bf0-705f-4e36-9664-37c401f5fee7@ti.com>
-References: <20250819111317.1082515-1-mwalle@kernel.org>
+	s=arc-20240116; t=1755698180; c=relaxed/simple;
+	bh=Z7G/14If/9CK+UBZzzYPV1MmXUnSBLj4Fxu7EHPGP+g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h4jq2i4XY5ZpBUcrBjGJA8SB7HiS2PlHg8dxOio+oP2pufbvnmsQGVZqDuynh1GxVwxrw0CflI9INp3Y79frqQVltJnDmMBfh+Ok5k/eXsEd1eExUTBTOIksVo96ogv7mVQTdIkn1zzbHPViucNQbCM9LsSyE2muEgdHv5mpVFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K1k+mqGo; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755698179; x=1787234179;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Z7G/14If/9CK+UBZzzYPV1MmXUnSBLj4Fxu7EHPGP+g=;
+  b=K1k+mqGoGNdeyNBqi3cLB5E/QyEs6y5IS1f1Zi8xUoxEoWfZw/e/pt65
+   Ngt6KroO9POyPwg7t1BLeIDKA/l1ksW88SJiFuOOz5WJRYsGTtShnZwq6
+   GBA7X1ZfFAFxNwORQhC2LyvQQhP+uZtKDzW9hKDqn/KabohwswOJMv/BX
+   gNKdgYtYmCvWpsbxbkVv+Hz0KPmZt73AK07jmwCaZcMV4gXviE8ZAofur
+   FGw3eyyQcPj8Zo1HF0zxzTBN3V8j7BrDHBHdtgLfwCKykcJ2pM6qKTVyR
+   W+YJBk+LVmvk3zzNmOJsnej2PHBUxAqHn+P699L6XNyNzVHNbcXrnNpHO
+   A==;
+X-CSE-ConnectionGUID: WRhHSB/eSAKZcVkWSADCgg==
+X-CSE-MsgGUID: Knk3w1WXRpywFjSWcwpXZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="80557129"
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
+   d="scan'208";a="80557129"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2025 06:56:18 -0700
+X-CSE-ConnectionGUID: JJ5OOMrQRs+MEc4bgOwlWw==
+X-CSE-MsgGUID: U8f7/K0RQny2Vb4X74yvRA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; 
+   d="scan'208";a="173387942"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2025 06:56:15 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uojIS-00000006wyS-4AbF;
+	Wed, 20 Aug 2025 16:56:12 +0300
+Date: Wed, 20 Aug 2025 16:56:12 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
+ TLV493D 3D Magentic sensor
+Message-ID: <aKXT_HOrY1XUlsLu@smile.fi.intel.com>
+References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
+ <20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
+ <20250816140448.37f38d0f@jic23-huawei>
+ <aKVTJXe50zf07ipR@dixit>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250819111317.1082515-1-mwalle@kernel.org>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <aKVTJXe50zf07ipR@dixit>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Tue, Aug 19, 2025 at 01:13:17PM +0200, Michael Walle wrote:
+On Wed, Aug 20, 2025 at 10:16:29AM +0530, Dixit Parmar wrote:
+> On Sat, Aug 16, 2025 at 02:04:48PM +0100, Jonathan Cameron wrote:
 
-Hello Michael,
+...
 
-> The kernel will try to map the legacy interrupt pins, but the
-> interrupt mapping is missing from the device tree and thus that
-> fails with:
-> 
->    pcieport 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
-> 
-> Add the node for the legacy PCIe interrupts to fix that. This is just
-> compile-time tested.
+> > > +	TLV493D_AXIS_X,
+> > > +	TLV493D_AXIS_Y,
+> > > +	TLV493D_AXIS_Z,
+> > > +	TLV493D_TEMPERATURE
+> > As below.
+> > 
+> > > +};
+> > > +
+> > > +enum tlv493d_op_mode {
+> > > +	TLV493D_OP_MODE_POWERDOWN,
+> > > +	TLV493D_OP_MODE_FAST,
+> > > +	TLV493D_OP_MODE_LOWPOWER,
+> > > +	TLV493D_OP_MODE_ULTRA_LOWPOWER,
+> > > +	TLV493D_OP_MODE_MASTERCONTROLLED
+> > This is not a terminating entry, so would typically have a trailing comma.
+> Isn't the last entry in the enum list is termintating entry and it should
+> not have trailing comma?
 
-INTx is not supported by the driver as explained at:
-https://lore.kernel.org/r/be3e3c5f-0d48-41b0-87f4-2210f13b9460@ti.com/
+No, it's not semantically. (Yes, it's terminating the list syntactically)
 
-The patch to fix the error displayed in the logs was posted at:
-https://lore.kernel.org/r/20240726135903.1255825-1-s-vadapalli@ti.com/
-but wasn't accepted as-is. A different approach will be required to fix
-of_irq_parse_pci() instead as pointed out at:
-https://lore.kernel.org/r/20240729080006.GA8698@thinkpad/
+> > > +};
 
-[Trimmed]
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Regards,
-Siddharth.
+
 
