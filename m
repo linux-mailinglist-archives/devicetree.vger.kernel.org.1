@@ -1,271 +1,140 @@
-Return-Path: <devicetree+bounces-206845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F49DB2DBC1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 13:53:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35E59B2DBFB
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:04:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 159D74E51D8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 11:52:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55F7C5C3E6C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 12:03:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937AD2E7193;
-	Wed, 20 Aug 2025 11:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05FE32ECE80;
+	Wed, 20 Aug 2025 12:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NbFnfdJY"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="WMWpUo/6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCA222E54DD
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 11:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A99221F0C;
+	Wed, 20 Aug 2025 12:03:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755690771; cv=none; b=U7IpwxHjeKBa4ZcWEnamPE6HVi8Y2rdrlp3DQu4/CiKeZI6+AM94BJ9vbqXhMdR63HTispuQEv6FNpFLcLRopwHgydMBOeofac7aphe7Ye5FyZZ8Ewq2Cc6lxvQ0gNvc3mSBlCxTLWlv9wGhWc3s4Aj9mf3MajbFrqmV6Oc511s=
+	t=1755691423; cv=none; b=JKKmfeWjyGOaWEEwX/QaIjCWYzdk0U0NeU1dOfgEvk8N3+wnS5YmeggRC4zd4gf5TgWOwH0kt194j2Gbd3XdyiY0PSpdieSLo3P4l3i5SDfUtfIdU1FVvcHMRETIr3EA3bIC70F/QnQSUT2QenSzYeDSF4lQMAR3gXLOD1SgB7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755690771; c=relaxed/simple;
-	bh=+036hMkub/Af/78NBaftIgQF6n0LrLF1Du+6bYcKRAY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rGsMfo/BWkVFTjW/14VLRgf2MeoHy2tpAbFab6UjXq2bkcO/umdIg5eBqOd/Y4MtkeQHq+5yCw7JRPSt7PWCGWHEFG4GeAQk8poQfNxe6k5l8q81qExU1RygLTHNpOXLVEFh5dCLAs/eJiFygM9QmuXKWhv2uI4iMcznRCIoYq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NbFnfdJY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57KASlG6028174
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 11:52:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=1NU5anoXaPxzB4evmItsYtEq
-	4iSlXrdsVmJAEsKcsCQ=; b=NbFnfdJYQFNM8SCh4++tmwy0/BvWkAI43WOCQSSh
-	O3o7Qz9qkdEC99FA+82EDK98grL5bjNiakj1q0hgVSU/Urecc7h6AsF7YMslu1oC
-	z6OqTD4bHTKCcNaLzC2ILLWw3xqDowiDjKQFUstWZWaCvElKl2fd1Qllce0Wco6y
-	Iw+0ry2qPplv0VmFicL5XDUqV9HM9CmFG3R2PUPpHvkyvwmqiV48EvbJaLSJgYYr
-	XgJqfnyBSBLMTzp7k8DOzFM18HzywyAl7ZAhZwDA263cxgBoqeqWeJEBJbCs3q1I
-	qloXnMJOr66vMBVgyAkjxPjx9bnp5tg2oMVfNYwV2qzEzw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52asj7x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 11:52:47 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-70bc9937844so42034906d6.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 04:52:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755690767; x=1756295567;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1NU5anoXaPxzB4evmItsYtEq4iSlXrdsVmJAEsKcsCQ=;
-        b=m6wvr3wkNwy/LY5RwOg+8SuxcDjU5TnXjyqR+AENSYsBeWIrOkd0FCW92pw8PyYyQE
-         b7kPdaJE9mVad00JpD30iW9q4nhv3icaHPpznvo004Nt3OR3oBhXcU2QAIIotC8iiBV+
-         FO4du1dZuvhzo9VQqPnG0S/XjgwcHb6BWDXCFFfkIfwIKe4eTBEVMgLEsVf2pinQgedA
-         05hQ/BfRvDgrDQbgFhsfXvQpskqh7txeQDsOlQAVFUZyVt1MYyiOXkBgL+sBn42ftgT8
-         CArQ/b838btg3EWdJ9JroCWegqDmP7E6VxJ3MvLWbNedj0XKpy9i07PGOuheFRRaJDiu
-         l0SA==
-X-Forwarded-Encrypted: i=1; AJvYcCUpS7K464wBbvblj4qps1xBT/CRlYtA8I/ilhZyflTg5IZ1h+q9AVl+tRskewJEpmgTHAVDcmcSKrk1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrjyAZ3ufUDSEPq6nfzMvo90piUT7kxZWnMzy9XwX389+CQNIi
-	odJujwLSHkb3EhQ4EI+T7bGMjnWiE4ZXTI8vNF4iz68hVL+hFpvL6Z7rr7bEvT1yrhvlPkTSLoE
-	X0ngCDSWx1kyjru+MYbQyvGlNY/iNp8r3BkPRYUA8GYKFteeFvWdG2Jfid7H1CRVV
-X-Gm-Gg: ASbGnctaVy4qUiquC3MipCUWvbKzhRQFPCRA68NHRHtYnv5Mhwcia7W0bxLq6KURv8v
-	9BoHHWpSwhUyP4DFJaJYHAUvT4eHfcfMfACuzRvQ5JhgFJSdaeItDYTXLk9/9d6/4jVC1Svhbgx
-	h8AXxt0o8xi/i5Qiquzkw/vI50pJYQfOhehzkN3etIfgVAHoUh2h9MPAKwbxpBnpT73ZBmiposJ
-	CyyZJkObZPaKp4yNYhOeh8rduS19zaYzC86GZdjgAVwepZR/BV1sRaF+mwDszNltTJVFG+46bfy
-	mGsPD7BXBTVmRaGXfDKbe1Zrnqpp/0HLBtjc57mIQveNfEKNAQ+6gz+L0yWd6Ne5aG+FFMWePfj
-	cvS12ZGEsEicT+TXNNkHhXOUQBXDjJOO0B0RwX9z2/qYaYXiTPV3x
-X-Received: by 2002:ad4:574d:0:b0:707:3ad0:1f15 with SMTP id 6a1803df08f44-70d76fa2d8dmr29441826d6.18.1755690766874;
-        Wed, 20 Aug 2025 04:52:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEXhlwYJEE7/G3XlVPANthN7ixhS1XYB40WO19b3qrubjjpDOPnmRSenoHFW9qSHFfTgNHFoQ==
-X-Received: by 2002:ad4:574d:0:b0:707:3ad0:1f15 with SMTP id 6a1803df08f44-70d76fa2d8dmr29441236d6.18.1755690766314;
-        Wed, 20 Aug 2025 04:52:46 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef35f105sm2554042e87.50.2025.08.20.04.52.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Aug 2025 04:52:45 -0700 (PDT)
-Date: Wed, 20 Aug 2025 14:52:43 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1755691423; c=relaxed/simple;
+	bh=iH2aEpZAIs2Ttrt2WX7X9DkIYXbh6w6N9H1OKDktGfA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Vb+4IaLMehdIxq/pkXBglKdFQ3eZ9Px69qWfQ+2L/TS2C6ZwnvQv+aicrkwJnONfOp9vuLNEEzU85rz8M/wcM/pgpY/EZIHFXaLEddNrNOiB+rFBABBpdRMqscm6osFB3ZbDwWKspo/+8xg0OcKxFV0NwQ/msALASQKNftMhims=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=WMWpUo/6; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57KAYTfT004315;
+	Wed, 20 Aug 2025 08:03:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=DQO2fPstsjoNNKgx27dGq8T1+0l
+	edFcfgPjctQMPMjs=; b=WMWpUo/6ll000e9xv3CWSI6yr8zqd2tH2UHcFIpfCav
+	LdIylBKmoJqNuTi3hcrIyn1wq3ny4XrC08oChjGhQ+sjTRtMCTVP8wEiytxdP0Or
+	1qGv57HpiJsXO/M7wfhhD5Oxy1pMUoNhYH9b8OpBvyaA2N4KSlsoUePdDOVHTIz5
+	pphHFa1qDpgxsYFn5V4TD+UwRwrrngVGJWn0cHrGWgds0+AoIRi6+9wtzMgLluPG
+	QSjd/FRlWvz1q90+kc64phQLNIve22c40RvjxgTQJHoJjqsZ4wZh0ZzO9XgFHcUL
+	8s89HLTj7U3vHris15ZjvFIP/ZGCpNYdaTrBTDvhl8g==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 48n0td3gs9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Aug 2025 08:03:15 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 57KC3Ejx037333
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 20 Aug 2025 08:03:14 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 20 Aug
+ 2025 08:03:14 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Wed, 20 Aug 2025 08:03:14 -0400
+Received: from IRISTEIU-L01.ad.analog.com (IRISTEIU-L01.ad.analog.com [10.48.65.173])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 57KC31n0020092;
+	Wed, 20 Aug 2025 08:03:03 -0400
+From: Ioana Risteiu <Ioana.Risteiu@analog.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        David
+ Lechner <dlechner@baylibre.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?=
+	<nuno.sa@analog.com>,
+        Andy Shevchenko <andy@kernel.org>, Rob Herring
+	<robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v2 14/15] arm64: dts: qcom: Add initial Milos dtsi
-Message-ID: <2hv4yuc7rgtglihc2um2lr5ix4dfqxd4abb2bqb445zkhpjpsi@rozikfwrdtlk>
-References: <20250713-sm7635-fp6-initial-v2-0-e8f9a789505b@fairphone.com>
- <20250713-sm7635-fp6-initial-v2-14-e8f9a789505b@fairphone.com>
- <3e0299ad-766a-4876-912e-438fe2cc856d@oss.qualcomm.com>
- <DBE6TK1KDOTP.IIT72I1LUN5M@fairphone.com>
- <DBE8G88CIQ53.2N51CABIBJOOO@fairphone.com>
- <DBOC7QBND54K.1SI5V9C2Z76BY@fairphone.com>
- <55420d89-fcd4-4cb5-a918-d8bbe2a03d19@oss.qualcomm.com>
- <DC74DPI8WS81.17VCYVY34C2F9@fairphone.com>
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Ramona Nechita <ramona.nechita@analog.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Ioana Risteiu <Ioana.Risteiu@analog.com>
+Subject: [PATCH v4 0/4] Add IIO backend support for AD7779
+Date: Wed, 20 Aug 2025 15:02:41 +0300
+Message-ID: <20250820120247.3012-1-Ioana.Risteiu@analog.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DC74DPI8WS81.17VCYVY34C2F9@fairphone.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfXz3T5xNCuZEbs
- 3bvMIxCCPjujJb6QavEIB9Uur97a92lBY7KQWIuIyVsc1Lue7t5W7aCE4u00p5pMzVl8oSrpbUk
- QkJ1PFC1pO9KJzByW65ZiC4UpiUoaSFPvEESu2IUPnI/Z23nKxGwnH6H8w3xUoRxFouQV0qxIKk
- Y/tCRiO7jClpmNSHVCZoZ4zNyX3biiNq6QPlaktZWH6RpFDaRbNVT90iZmpxipyvJH+WcusOlKQ
- PyJY5C/dNqDOpPZS8qZ0YH5z/ZEbZ+iXlxQ4XuZJVNVWcb29Wv4DwegTDL1fCRf4HeN93lMACu7
- qqQni9foLgmOi8HrDfPqi2cyIoXmbXbnKfWuc7W90Ncey3x8W3G50GI96+lc+96jbz6F6KWodAG
- 7ksD05erggPETN9jpXyH/DB1w9Rikw==
-X-Authority-Analysis: v=2.4 cv=TIIci1la c=1 sm=1 tr=0 ts=68a5b70f cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=6H0WHjuAAAAA:8 a=XuIBa_usxpjq5QTMMVUA:9 a=CjuIK1q_8ugA:10
- a=OIgjcC2v60KrkQgK7BGD:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-ORIG-GUID: F4tASs1o2Pjtcry-BULXXj9UxJ-s3-RN
-X-Proofpoint-GUID: F4tASs1o2Pjtcry-BULXXj9UxJ-s3-RN
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=bvAVxEai c=1 sm=1 tr=0 ts=68a5b983 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=2OwXVqhp2XgA:10 a=nAsWaW9lDWL_MRO3WFIA:9 a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: UepdhggsrW14I3SMO6ynExzMAYd4b6m2
+X-Proofpoint-ORIG-GUID: UepdhggsrW14I3SMO6ynExzMAYd4b6m2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE5MDE5NSBTYWx0ZWRfXx2zgBEySksVs
+ rAcyVL2b51ryHvE2yrxGkdDk4ExG+C29O50hI5WuPh2ujIk0UNLTyH5U82tjROk27nQEXk+Pr2Z
+ GxuEi2U/zBYfTfmEwGtwUjfNoyPNIYC3nRwRrZpEP/agznxoGk1ppJhQtQjvP28ABBm3u9LSX5K
+ V7bBqLxWPCEO9FyOoHh0ulVuI+fj7vp22EOA5ldsPo1ZLZifTTCm9bCgCAo+yCPQnRBqbA4lC30
+ 3WrzH3bT4GMaCgkmK40QoSGZ3FCKxhH55/ycXA/KdbZy8JL0Lc7dSX0bF5tWwVZLvcK9K7yEHAc
+ iXUWtyIJosKcXkgmB2eIuCGTl3/w4eI5P1TAuUqxKfLaNNcc/X5qWyCXXkXbyBnck2F5nNbN28K
+ ojpU1mJjlOH6WwAToMumwgkFkY2+KA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-20_03,2025-08-20_02,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 priorityscore=1501 clxscore=1015 phishscore=0
- bulkscore=0 impostorscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
+ adultscore=0 impostorscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0
+ spamscore=0 suspectscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
+ reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508190195
 
-On Wed, Aug 20, 2025 at 10:42:09AM +0200, Luca Weiss wrote:
-> Hi Konrad,
-> 
-> On Sat Aug 2, 2025 at 2:04 PM CEST, Konrad Dybcio wrote:
-> > On 7/29/25 8:49 AM, Luca Weiss wrote:
-> >> Hi Konrad,
-> >> 
-> >> On Thu Jul 17, 2025 at 11:46 AM CEST, Luca Weiss wrote:
-> >>> Hi Konrad,
-> >>>
-> >>> On Thu Jul 17, 2025 at 10:29 AM CEST, Luca Weiss wrote:
-> >>>> On Mon Jul 14, 2025 at 1:06 PM CEST, Konrad Dybcio wrote:
-> >>>>> On 7/13/25 10:05 AM, Luca Weiss wrote:
-> >>>>>> Add a devicetree description for the Milos SoC, which is for example
-> >>>>>> Snapdragon 7s Gen 3 (SM7635).
-> >>>>>>
-> >>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> >>>>>> ---
-> >>>>>
-> >>>>> [...]
-> >>>>>> +
-> >>>>>> +		spmi_bus: spmi@c400000 {
-> >>>>>> +			compatible = "qcom,spmi-pmic-arb";
-> >>>>>
-> >>>>> There's two bus instances on this platform, check out the x1e binding
-> >>>>
-> >>>> Will do
-> >>>
-> >>> One problem: If we make the labels spmi_bus0 and spmi_bus1 then we can't
-> >>> reuse the existing PMIC dtsi files since they all reference &spmi_bus.
-> >>>
-> >>> On FP6 everything's connected to PMIC_SPMI0_*, and PMIC_SPMI1_* is not
-> >>> connected to anything so just adding the label spmi_bus on spmi_bus0
-> >>> would be fine.
-> >>>
-> >>> Can I add this to the device dts? Not going to be pretty though...
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-> >>> index d12eaa585b31..69605c9ed344 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-> >>> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-> >>> @@ -11,6 +11,9 @@
-> >>>  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> >>>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> >>>  #include "milos.dtsi"
-> >>> +
-> >>> +spmi_bus: &spmi_bus0 {};
-> >>> +
-> >>>  #include "pm7550.dtsi"
-> >>>  #include "pm8550vs.dtsi"
-> >>>  #include "pmiv0104.dtsi" /* PMIV0108 */
-> >>>
-> >>> Or I can add a second label for the spmi_bus0 as 'spmi_bus'. Not sure
-> >>> other designs than SM7635 recommend using spmi_bus1 for some stuff.
-> >>>
-> >>> But I guess longer term we'd need to figure out a solution to this, how
-> >>> to place a PMIC on a given SPMI bus, if reference designs start to
-> >>> recommend putting different PMIC on the separate busses.
-> >> 
-> >> Any feedback on this regarding the spmi_bus label?
-> >
-> > I had an offline chat with Bjorn and we only came up with janky
-> > solutions :)
-> >
-> > What you propose works well if the PMICs are all on bus0, which is
-> > not the case for the newest platforms. If some instances are on bus0
-> > and others are on bus1, things get ugly really quick and we're going
-> > to drown in #ifdefs.
-> >
-> >
-> > An alternative that I've seen downstream is to define PMIC nodes in
-> > the root of a dtsi file (not in the root of DT, i.e. NOT under / { })
-> > and do the following:
-> >
-> > &spmi_busN {
-> > 	#include "pmABCDX.dtsi"
-> > };
-> >
-> > Which is "okay", but has the visible downside of having to define the
-> > temp alarm thermal zone in each board's DT separately (and doing
-> > mid-file includes which is.. fine I guess, but also something we avoided
-> > upstream for the longest time)
-> >
-> >
-> > Both are less than ideal when it comes to altering the SID under
-> > "interrupts", fixing that would help immensely. We were hoping to
-> > leverage something like Johan's work on drivers/mfd/qcom-pm8008.c,
-> > but that seems like a longer term project.
-> >
-> > Please voice your opinions
-> 
-> Since nobody else jumped in, how can we continue?
-> 
-> One janky solution in my mind is somewhat similar to the PMxxxx_SID
-> defines, doing something like "#define PM7550_SPMI spmi_bus0" and then
-> using "&PM7550_SPMI {}" in the dtsi. I didn't try it so not sure that
-> actually works but something like this should I imagine.
-> 
-> But fortunately my Milos device doesn't have the problem that it
-> actually uses both SPMI busses for different PMICs, so similar to other
-> SoCs that already have two SPMI busses, I could somewhat ignore the
-> problem and let someone else figure out how to actually place PMICs on
-> spmi_bus0 and spmi_bus1 if they have such a hardware.
+  - Add axi_adc_num_lanes_set in the adi_axi_adc_ops structure to support
+  setting number of lanes used by AXI ADC.
+  - Add the generic io-backends property to the AD7779 binding to enable
+  support for the IIO backend framework.
+  - Add the adi,num-lanes property to set the number of lanes used by
+  AD7779.
+  - Move the initialization specific to communication without iio-backend
+  into a separate setup function.
+  - Add a new functionality to ad7779 driver that streams data through data
+  output interface using IIO backend interface.
 
-I'd say, ignore it for now.
+Ioana Risteiu (4):
+  iio: adc: adi-axi-adc: add axi_adc_num_lanes_set
+  dt-bindings: iio: adc: add IIO backend support
+  iio: adc: extract setup function without backend
+  iio: adc: update ad7779 to use IIO backend
 
-> 
-> Regards
-> Luca
-> 
-> >
-> > Konrad
-> 
+ .../bindings/iio/adc/adi,ad7779.yaml          |  44 +++-
+ drivers/iio/adc/ad7779.c                      | 197 ++++++++++++++----
+ drivers/iio/adc/adi-axi-adc.c                 |   1 +
+ 3 files changed, 203 insertions(+), 39 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.47.2
+
 
