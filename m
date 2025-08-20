@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-206856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60FD1B2DC24
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:11:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D040B2DC2D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 14:12:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE252725D09
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 12:11:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52CD3172704
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 12:11:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B852E2E7621;
-	Wed, 20 Aug 2025 12:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388962EB87E;
+	Wed, 20 Aug 2025 12:11:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.grinn-global.com (mail.grinn-global.com [77.55.128.204])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121072EB87E;
-	Wed, 20 Aug 2025 12:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACB942E7165;
+	Wed, 20 Aug 2025 12:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.55.128.204
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755691869; cv=none; b=GMthNPugxYnYDtwCOV4bBxJS6H19oEG99np+6OUNXuA1OBHckb8kRoJ2mToBzclTDMJqGd5XE6Pz32ZfwyorVdH/JYiB1TMc73a8w+An4cZ5DyaNkxxdRah5tcR40CtkKQfO1HrjpB3O7yMPyx6IXuuA07nrbDJNfoRUHCKmnW8=
+	t=1755691873; cv=none; b=sIa/ahN+r/9+gLE1w6tq+Rb8tpaWXPeGIab4Dj94miQoOAOUrdkpbiTj4voXTbMWrFcAdEYUqdcmrOLZPBj51dpQArxhEajDJBoLRtliHPFrBQWwBsKkegczrhfY+7xt4wnkXwXBYP1fjlbGyI52hKs8hWbPIlAHs1O5Rc0ek8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755691869; c=relaxed/simple;
-	bh=BmhGATSJATQ0TPSipOVR3WeIgcVSNNQPfWfkeR+oZh0=;
+	s=arc-20240116; t=1755691873; c=relaxed/simple;
+	bh=70O9dtKk3KmW2RMEP4/wsPzR72RsUOMCy2QltB5Xv2s=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gtt7wmzL/Lt5Oqu1M01V9P+yf/Ey/pzkEO1d6n22Yk3cwVwB3vMqyk+oMxM9uD1nuT27r5A0tsXGU5Q1/5iohFIt1HXZGd7+h5vmBO7+edLP/vk48oqQphmvweowX1vbTJ4KCij4abBLxUQZ7hIvM7I2PXteAyux7A+CIrQC8zA=
+	 MIME-Version; b=ehRNUdJlbTtOl1aOIRzKq2FrJueb/zZfQH2Q2Sg+4//z2rKiwPqE1oxq5JC0/fTwbMLuh0eLxM07lVkRiLn+XekpUsQyCrEWqqJ2Hj52H/sdASSLydXUE/M1of4lTvJsGa73SxnaA3ySeqZOZULzNUYBB4QKNPl4wKALpjDeAcs=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=grinn-global.com; spf=pass smtp.mailfrom=grinn-global.com; arc=none smtp.client-ip=77.55.128.204
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=grinn-global.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=grinn-global.com
@@ -34,8 +34,8 @@ X-Spam-Flag: NO
 X-Spam-Score: -1
 X-Spam-Level: 
 Received: from mateusz.int.grinn-global.com (f90-187.icpnet.pl [46.228.90.187])
-	by server220076.nazwa.pl (Postfix) with ESMTP id 603A21BDE37;
-	Wed, 20 Aug 2025 14:11:05 +0200 (CEST)
+	by server220076.nazwa.pl (Postfix) with ESMTP id B99271BDE28;
+	Wed, 20 Aug 2025 14:11:08 +0200 (CEST)
 From: Mateusz Koza <mateusz.koza@grinn-global.com>
 To: angelogioacchino.delregno@collabora.com,
 	robh@kernel.org
@@ -49,10 +49,11 @@ Cc: krzk+dt@kernel.org,
 	marcin.czarnecki@grinn-global.com,
 	b.bilas@grinn-global.com,
 	mateusz.koza@grinn-global.com,
-	andrew@lunn.ch
-Subject: [PATCH v3 3/4] arm64: dts: mediatek: mt8370-grinn-genio-510-sbc: Add Grinn GenioSBC-510
-Date: Wed, 20 Aug 2025 14:09:04 +0200
-Message-ID: <20250820120905.993189-4-mateusz.koza@grinn-global.com>
+	andrew@lunn.ch,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 4/4] dt-bindings: arm: mediatek: Add grinn,genio-510-sbc
+Date: Wed, 20 Aug 2025 14:09:05 +0200
+Message-ID: <20250820120905.993189-5-mateusz.koza@grinn-global.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250820120905.993189-1-mateusz.koza@grinn-global.com>
 References: <20250820120905.993189-1-mateusz.koza@grinn-global.com>
@@ -63,64 +64,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-NA-AI-Spam-Probability: 0.44
+X-NA-AI-Spam-Probability: 0.50
 X-NA-AI-Is-Spam: no
 
-From: Bartosz Bilas <b.bilas@grinn-global.com>
-
-Add support for Grinn GenioSBC-510. Based on the commit introducing
-support for the Grinn GenioSBC-700, this change adds support for the
-Grinn GenioSBC-510, a single-board computer based on the MediaTek Genio
-510 SoC.
+Add device tree bindings support for the Grinn GenioSBC-510, a
+single-board computer based on the MediaTek Genio 510 SoC.
 
 More details about the hardware:
 - https://grinn-global.com/products/grinn-geniosom-510
 - https://grinn-global.com/products/grinn-genioboard-edge-ai-sbc
 
-Signed-off-by: Bartosz Bilas <b.bilas@grinn-global.com>
+Signed-off-by: Mateusz Koza <mateusz.koza@grinn-global.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/arm64/boot/dts/mediatek/Makefile         |  1 +
- .../mediatek/mt8370-grinn-genio-510-sbc.dts   | 19 +++++++++++++++++++
- 2 files changed, 20 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8370-grinn-genio-510-sbc.dts
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 7383d75d8041..729d786b1236 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -102,6 +102,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk-eth.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk-hdmi.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-genio-510-evk.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-grinn-genio-510-sbc.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-genio-700-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-grinn-genio-700-sbc.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8370-grinn-genio-510-sbc.dts b/arch/arm64/boot/dts/mediatek/mt8370-grinn-genio-510-sbc.dts
-new file mode 100644
-index 000000000000..117ea694cda3
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8370-grinn-genio-510-sbc.dts
-@@ -0,0 +1,19 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 Grinn sp. z o.o.
-+ * Author: Bartosz Bilas <bartosz.bilas@grinn-global.com>
-+ */
-+/dts-v1/;
-+
-+#include "mt8370.dtsi"
-+#include "mt8390-grinn-genio-som.dtsi"
-+#include "mt8390-grinn-genio-sbc.dtsi"
-+
-+/ {
-+	model = "Grinn GenioSBC-510";
-+	compatible = "grinn,genio-510-sbc", "mediatek,mt8370", "mediatek,mt8188";
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0 0x40000000 1 0x00000000>;
-+	};
-+};
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 122af0bad141..468672b0296a 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -425,6 +425,7 @@ properties:
+           - const: mediatek,mt8365
+       - items:
+           - enum:
++              - grinn,genio-510-sbc
+               - mediatek,mt8370-evk
+           - const: mediatek,mt8370
+           - const: mediatek,mt8188
 -- 
 2.43.0
 
