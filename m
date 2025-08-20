@@ -1,170 +1,158 @@
-Return-Path: <devicetree+bounces-206790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FA86B2D8F9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 11:47:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22EA7B2D941
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 11:53:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 113905C7885
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:42:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB16F1C46A7A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:47:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACE52E5D39;
-	Wed, 20 Aug 2025 09:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A73342E339C;
+	Wed, 20 Aug 2025 09:40:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="G7tU03cB"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NlKIlU90"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 815C72DCC05;
-	Wed, 20 Aug 2025 09:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5002E2F14
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 09:40:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755682726; cv=none; b=ccG9j5eVcxm14HULbY8SUJcwXL9IW2+YRAFUl+hFgWYMGGB43MnyD9GKUnUULMTcXVYIJTS9x6cXT2m3VIRd95MTk/hmFNOF3B0K764tjYZuQkti4Ob4eEy+V8+b5Rwk4H9lGBre7ayiEIG/0HtuIjfmpINcEytLxbF1QwpEe5E=
+	t=1755682859; cv=none; b=LhiCSquhwMbHWYtSIK0niJQm8oQpPQZyX8nKWPZt8Plh/DA0dORkX2VPUFexiv23NQrp0o093dEXtn4vERaVzhLvPucuGmpo9rjDVmU38/2xEiAp2Tq/z1xIl/MTM/Uf3eBQvT171sLerynSgI6zMB8CXB46X+Ew/oXTn7i23ZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755682726; c=relaxed/simple;
-	bh=i2RS9ufnn3gc7ItTemTi/RCxCeB/pqw9n7JsnJJ+DuU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NTvRRuRVmx7YLC3/lg5XkUKkaF4eLiRRNjCmo0rn4WU7voU/8f6lW/DJDaUxT7cFW6xOhU1YK1/KHM/a2lZCkHzL0LkKMcvtLJf3dhkKYnqXygJp+/RHJoiLVRUoJ6odlhoiZSVKDOJcdPWKaxtc6/LxnAuzTvml/WOvIV1JFBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=G7tU03cB; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 7407a4447da911f08729452bf625a8b4-20250820
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=xkR4rONaXtekytURydVCH77DowLYp9V+d3cs5YgAAAU=;
-	b=G7tU03cBBKnrvyMDfO9Gjwbumfh66GXPMGfXk4ZUw9TIDFd7fvXJ/nF3eRemD2hr35A/cCnhVB0Z8nyPG2Q5/MDoCLWtJLbnfpDGALyt85/27azc1uNeNWKxKYYivmNFykG6d4H8AnNHuVESxW5ZQf5s9BBKwWwqLZYlbXqfgpk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.3,REQID:16c76fbe-c493-42f0-a8cd-197549ee2e29,IP:0,UR
-	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:-5
-X-CID-META: VersionHash:f1326cf,CLOUDID:049b6a6d-c2f4-47a6-876f-59a53e9ecc6e,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:-5,Content:0|15|50,EDM:
-	-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,
-	AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 7407a4447da911f08729452bf625a8b4-20250820
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-	(envelope-from <xiandong.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2090453162; Wed, 20 Aug 2025 17:38:39 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Wed, 20 Aug 2025 17:38:35 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Wed, 20 Aug 2025 17:38:36 +0800
-From: Xiandong Wang <xiandong.wang@mediatek.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Yongqiang Niu
-	<yongqiang.niu@mediatek.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<sirius.wang@mediatek.com>, <vince-wl.liu@mediatek.com>,
-	<jh.hsu@mediatek.com>, <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	Xiandong Wang <xiandong.wang@mediatek.com>
-Subject: [PATCH v4 4/4] mailbox: mtk-cmdq: Fix clock handling using clk_bulk_prepare_enable
-Date: Wed, 20 Aug 2025 17:38:23 +0800
-Message-ID: <20250820093831.23437-5-xiandong.wang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250820093831.23437-1-xiandong.wang@mediatek.com>
-References: <20250820093831.23437-1-xiandong.wang@mediatek.com>
+	s=arc-20240116; t=1755682859; c=relaxed/simple;
+	bh=pTVx/c7v7MNwSE85DS5ROcGDXqyxeTPbAbsaxq9a8VE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tRTz29G62yZjenv4J2rmYNAfNhVMpLV4nPFkd4EqVB6m5EyTo0lbW+wPmcHdiUKt0xp6zZ8wDB96Kh8fqiD6thOhKjZnfRqooNVHL9T7vHEnHZCJn+Cd70KU7a0jGov7pvFudHL0Af4e1nV3qH44/Pnn+JjYqGMdtW6PWe3BWt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=NlKIlU90; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45a1b0c82eeso51506925e9.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 02:40:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1755682855; x=1756287655; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yzzsV1XvsxlzkLd9loB0EUOGKZo196ybFa4QKb2RzLU=;
+        b=NlKIlU90l1/TjezKDMR4DpoIMk273lERZ+uJotAYJJ402Hts/SYKrdiMs4fCVgo3Fs
+         wuB0cUQzBGc1dWGuibrZ74pgLUe3sbs3zlpa701WVLmklzADGCymtY9o3JV4x1+fCb8z
+         XEVWpuNyt3AYRhGZN0d1DEOML/h8kC5qRrAz5YS6oo2mt+ppZ8vdikWlInILBn0oVhM9
+         qO4J9sjUyqvZ/7NGm7tgumN0SAo+2XAlHapN0JcOIoLL6hue47fIlqGsXoKfK1/vn9dr
+         p+vYajI1KHlh56xjEt5UuAJ1BT1TihVvGqKH3bdQMz7BJQ8aQfjli4sJLJJbgHAtXZ1c
+         YTOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755682855; x=1756287655;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yzzsV1XvsxlzkLd9loB0EUOGKZo196ybFa4QKb2RzLU=;
+        b=JwjbSoRUjhTHmgYMqsmfWE4q5vZDpY+tMqX+vM+D1aDlwFoe2iRN1mV6PorTp99EpY
+         z1Az+Z0t1nqZ63iR/Epjxu2QQ6ssSsPxdvjPh5Ud+jAsmEKAfAVFMhLu7UVXdq9dmgKP
+         5ekBeWM4I7LpDBMY5AcDsLy797B+TyIveQyby4aTFjGrSPgO10wlY9+IJRS6bbPK8eMO
+         FffpkPOej7leRf/agoNAH1ncI1U6gDuueldTWCE/E2uUi4a8xHhJAtOf3U9S6jhu9Qyj
+         1Gn2Qor4rlwmiesAJI2B33BqePxgxlYSkYfC2Q7R3oWHrdNA05nKreVz84YX33dshy0R
+         t5AA==
+X-Gm-Message-State: AOJu0Yw72Mk+gmaisn3Y/hIJAPQBPpNcp50MzhAUZHOTD4EU25Z6YPvP
+	rX6jIj+ioIjN34015kWIykvGHg+CSyH++k7Ryiz467z7IczMSHQr3Q6LZvfdp8yjIhDoVpPeKy0
+	/fxr0
+X-Gm-Gg: ASbGncvKhu2xJDt96dVqJXxdM1KF2F6hslxWSajoNZPNvXlbDT62S2sU1iAYlgG8akb
+	LszSkWwLlyWNpt9u81G9Xp6JVZqAQ7ghuN9d9uVDsUqgQ6GlGOgAsib+SGXQ0scRqeTCIFv9f70
+	jpDcmsRNGSeKcBoFxDSf+YgdMvmanfkNE3CbvhnOCO5MNgZpOjSBkPXl+GxkjnuAF5FE8UleeTF
+	A3BmjiGzKbj/NHvecwMpRIodXN0Q+A7ewLYzlrCwvmNkwsOTDGEz0gzB6SoRHgukcdhZmMtjnUb
+	Te4tqUPxcfB3KMb0ejmKyAm0Wu01GK7KBc81Vhv/KsoQMpiQOLov1ypMKt+4GqqZpHQScBnqICF
+	P6adgdzCyx7xB1ivLcsSapEB1HdagqIJVgJoOx2o/FM+2GdBDsS5gfJa3qrlaKzBvzkzeszRZ82
+	v08w==
+X-Google-Smtp-Source: AGHT+IEeghXw0m6JDZS1d5MhVcQIQaVDe3djwuj01U6mfo4wAkk3Pv0FB0hXUATB2KRJRFAtHH/lOg==
+X-Received: by 2002:a05:600c:4584:b0:455:f59e:fd9b with SMTP id 5b1f17b1804b1-45b479f3a13mr15577625e9.24.1755682854663;
+        Wed, 20 Aug 2025 02:40:54 -0700 (PDT)
+Received: from ?IPV6:2a02:2f04:620a:8b00:70df:79b5:b54c:4e1a? ([2a02:2f04:620a:8b00:70df:79b5:b54c:4e1a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b47c4bd0asm24800545e9.14.2025.08.20.02.40.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Aug 2025 02:40:54 -0700 (PDT)
+Message-ID: <31361b5c-32de-4618-bb89-f550f03b47d1@tuxon.dev>
+Date: Wed, 20 Aug 2025 12:40:52 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/7] dt-bindings: phy: renesas,usb2-phy: Mark resets as
+ required for RZ/G3S
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, biju.das.jz@bp.renesas.com,
+ krzk+dt@kernel.org, geert+renesas@glider.be, kishon@kernel.org,
+ linux-phy@lists.infradead.org, yoshihiro.shimoda.uh@renesas.com,
+ conor+dt@kernel.org, magnus.damm@gmail.com, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, p.zabel@pengutronix.de, vkoul@kernel.org
+References: <20250819054212.486426-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250819054212.486426-2-claudiu.beznea.uj@bp.renesas.com>
+ <175558495459.3265640.2032619822487575179.robh@kernel.org>
+ <20250819133744.GA87211-robh@kernel.org>
+Content-Language: en-US
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20250819133744.GA87211-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On MT8189, the GCE clock is mounted on the MMInfra clock, so it is
-necessary to enable or disable the parent clock before handling  the GCE
-clock to ensure correct switching for GCE usage.
+Hi, Rob,
 
-Replace clk_bulk_enable and clk_bulk_disable with
-clk_bulk_prepare_enable and clk_bulk_disable_unprepare in  suspend and
-resume, so both the module clock and its parent clock can be enabled or
-disabled properly.
+On 8/19/25 16:37, Rob Herring wrote:
+> On Tue, Aug 19, 2025 at 01:29:17AM -0500, Rob Herring (Arm) wrote:
+>>
+>> On Tue, 19 Aug 2025 08:42:06 +0300, Claudiu wrote:
+>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>
+>>> The reset lines are mandatory for the Renesas RZ/G3S platform and must be
+>>> explicitly defined in device tree.
+>>>
+>>> Fixes: f3c849855114 ("dt-bindings: phy: renesas,usb2-phy: Document RZ/G3S phy bindings")
+>>> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>> ---
+>>>
+>>> Changes in v5:
+>>> - none
+>>>
+>>> Changes in v4:
+>>> - none
+>>>
+>>> Changes in v3:
+>>> - collected tags
+>>> - rebased on top of latest version of renesas,usb2-phy.yaml;
+>>>    Conor, Geert: I kept your tags; please let me know if you consider it
+>>>    otherwise
+>>>
+>>> Changes in v2:
+>>> - none; this patch is new
+>>>
+>>>   Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>
+>> My bot found errors running 'make dt_binding_check' on your patch:
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>>
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250819054212.486426-2-claudiu.beznea.uj@bp.renesas.com
+> 
+> No issue here. The QCom folks have broken "make dt_binding_check" in
+> linux-next...
 
-This change modifies the clock API used for suspend and resume
-to ensure correct module and parent clock handling on MT8189.
+Is patch 3/7 in this series still good? I can't find any issue with it locally.
 
-Signed-off-by: Xiandong Wang <xiandong.wang@mediatek.com>
----
- drivers/mailbox/mtk-cmdq-mailbox.c | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-index 54d008ebdf33..98c9742ea6f4 100644
---- a/drivers/mailbox/mtk-cmdq-mailbox.c
-+++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-@@ -211,7 +211,7 @@ static void cmdq_init(struct cmdq *cmdq)
- {
- 	int i;
- 
--	WARN_ON(clk_bulk_enable(cmdq->pdata->gce_num, cmdq->clocks));
-+	WARN_ON(clk_bulk_prepare_enable(cmdq->pdata->gce_num, cmdq->clocks));
- 
- 	cmdq_vm_toggle(cmdq, true);
- 	cmdq_gctl_value_toggle(cmdq, true);
-@@ -219,7 +219,7 @@ static void cmdq_init(struct cmdq *cmdq)
- 	writel(CMDQ_THR_ACTIVE_SLOT_CYCLES, cmdq->base + CMDQ_THR_SLOT_CYCLES);
- 	for (i = 0; i <= CMDQ_MAX_EVENT; i++)
- 		writel(i, cmdq->base + CMDQ_SYNC_TOKEN_UPDATE);
--	clk_bulk_disable(cmdq->pdata->gce_num, cmdq->clocks);
-+	clk_bulk_disable_unprepare(cmdq->pdata->gce_num, cmdq->clocks);
- }
- 
- static int cmdq_thread_reset(struct cmdq *cmdq, struct cmdq_thread *thread)
-@@ -383,7 +383,7 @@ static int cmdq_runtime_resume(struct device *dev)
- 	struct cmdq *cmdq = dev_get_drvdata(dev);
- 	int ret;
- 
--	ret = clk_bulk_enable(cmdq->pdata->gce_num, cmdq->clocks);
-+	ret = clk_bulk_prepare_enable(cmdq->pdata->gce_num, cmdq->clocks);
- 	if (ret)
- 		return ret;
- 
-@@ -398,7 +398,7 @@ static int cmdq_runtime_suspend(struct device *dev)
- 
- 	cmdq_gctl_value_toggle(cmdq, false);
- 	cmdq_vm_toggle(cmdq, false);
--	clk_bulk_disable(cmdq->pdata->gce_num, cmdq->clocks);
-+	clk_bulk_disable_unprepare(cmdq->pdata->gce_num, cmdq->clocks);
- 	return 0;
- }
- 
-@@ -437,12 +437,8 @@ static int cmdq_resume(struct device *dev)
- 
- static void cmdq_remove(struct platform_device *pdev)
- {
--	struct cmdq *cmdq = platform_get_drvdata(pdev);
--
- 	if (!IS_ENABLED(CONFIG_PM))
- 		cmdq_runtime_suspend(&pdev->dev);
--
--	clk_bulk_unprepare(cmdq->pdata->gce_num, cmdq->clocks);
- }
- 
- static int cmdq_mbox_send_data(struct mbox_chan *chan, void *data)
-@@ -761,8 +757,6 @@ static int cmdq_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, cmdq);
- 
--	WARN_ON(clk_bulk_prepare(cmdq->pdata->gce_num, cmdq->clocks));
--
- 	cmdq_init(cmdq);
- 
- 	err = devm_request_irq(dev, cmdq->irq, cmdq_irq_handler, IRQF_SHARED,
--- 
-2.46.0
-
+Thank you,
+Claudiu
 
