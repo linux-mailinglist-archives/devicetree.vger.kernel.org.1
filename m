@@ -1,116 +1,136 @@
-Return-Path: <devicetree+bounces-207015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 077B7B2E4D2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 20:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B61EB2E4E9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 20:28:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 664A71CC0B39
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 18:21:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A32DA1CC1FAC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 18:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DB35278E7C;
-	Wed, 20 Aug 2025 18:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2347627877F;
+	Wed, 20 Aug 2025 18:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sy2n40jy"
+	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="yFKNgzIz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34D672765CE;
-	Wed, 20 Aug 2025 18:20:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1307A3EA8D
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 18:27:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755714052; cv=none; b=X3f21a/n7Rvo0AR86v+rO+yvK21bospUYt0CzMn9Z78aM9cldu+7yRItXeoCS5K2RzAiavD7Ir/ixjuv/iliru5GZ+2lakr3By3UhArLRVZDU6L7kMFhPLQcte3I9hR1I6BzqKCPArF8CN9GTMXNPoTtQf68nqeZ1OoGy/IqWeA=
+	t=1755714479; cv=none; b=gM4TyXPRfUr7qMfCCFZ9vvSR0H5MSkNaXRhtgPYCdvtka+/viwhTgTA2rkZY9SocCb6GFcuilqSd6zPV4Cqf/ffW99//U4elMs2rv1E8NhNkHA5t2PjkKoGsd2ZVp4AOfxzyqt7yTt7tEszNNZL9ohvhQaMdXxeq29FnSIE+zxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755714052; c=relaxed/simple;
-	bh=RbplsefrmVx9yxbUrzJhLU2rhn7lzNQM/8FC1eNUedA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kPA1KXKAD/Bqt7ebBkSQG4G6bLa2VuxXumGdpbdKPJwKs4IVCkjPkqS+0fHtJD/Vt5P+xG3PsK3mDJXrljMKAD49Pv682RYFr5SRWA50g9Rjd7lcpN8Re2ZbLsvjcpCJnFJX9GmKgPkXBLfHzVUDcujXg+hBYB8Kx9o1c/rRi+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sy2n40jy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36407C4CEE7;
-	Wed, 20 Aug 2025 18:20:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755714051;
-	bh=RbplsefrmVx9yxbUrzJhLU2rhn7lzNQM/8FC1eNUedA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Sy2n40jywwGVjo3BrwA4p9agmRVoRXDTjg44ZgGe4F8rj/UV9lGrjrs8KiPd0pLVJ
-	 YkW/dVr1f/bkW3+FMQrjTiiW/lNB9irIufkZzwZLcjTtZrnTYNRs5GQeeJa16nlQa1
-	 U/MNjsjeJOlbGaN55bx8cqT4lWUokFQcsxWFAJ3DL5nf991R3jPK6M3oAh/pAQ4oHI
-	 6IWP+YXgmPoMp2/JRL8MuQt0wbPGToGllbBQE1F3ZgYw6gbUGFTtH8G9UqP2i/EJI0
-	 edaX2vB2YewK/KETxgYmBVDbCOBTUn7Lt1JqJL7sD2H4xInKZI1oMrA9GBI1I1taNa
-	 nHS6X2TKGRp3w==
-Date: Wed, 20 Aug 2025 19:20:45 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, dri-devel@lists.freedesktop.org,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>, Robert Foss <rfoss@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-tmds181: Add TI TMDS181
- and SN65DP159 bindings
-Message-ID: <20250820-agreeably-tinker-63ca6b0b652a@spud>
-References: <20250812145256.135645-1-mike.looijmans@topic.nl>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3b7d4319-e208-470d-9ada-585343a64822@emailsignatures365.codetwo.com>
- <20250812145256.135645-2-mike.looijmans@topic.nl>
- <20250812-designing-tyke-db85527b373d@spud>
- <f4ec7690-322e-493a-b346-7b9560ac0616@topic.nl>
- <9fba4917-a24f-4fee-8f1a-7509a0bc542e@kernel.org>
- <2d694c9c-704e-4353-8b57-de83eb5a7f96@topic.nl>
- <1b517073-cadb-41e4-b470-54a6ad93dd59@kernel.org>
- <3a4448a5-a01f-4d4e-a890-56eb9357abd3@topic.nl>
+	s=arc-20240116; t=1755714479; c=relaxed/simple;
+	bh=epICB6jVv4l91QaSUZCtYLQ+aCm+xHSlUTQPeCzhx+8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IUiyN0zZ7ZwPHSKBN9D40uh47NW92lnMVoW8fLeLBLk59hHVWP+Es6EGHQ+Rk26gLXfNGQm+/YsiMxmBRZ+3ZxwIqD2U0q090mIov/K0B9n3ttEIKghaMKtzhNguYkuqO0ztmD9oreDwsL2Unm8L+v9G1edZBLx64hlb5QWHHAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=yFKNgzIz; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=hammernet.be
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45a1b066b5eso986425e9.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 11:27:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1755714475; x=1756319275; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8NPVQBMSrrf3jhmLLcgVMSadSNRoC9cJI1+fcHorCmY=;
+        b=yFKNgzIzGMLu58HxIBl+pwfGwhBNqpn8/1CfyIE7wCzDFDo1ds+PAnFco75EH5eRp+
+         BTQHWvaoiLNI0vsRSO6ti1k+NprtN+F0wT1I4bQlNj5jngJMj7xzuRz+LVlUHBjC4G7X
+         mvTFhq9WVIdrZaNtDniWOKW+s5Nw55UzU5i8l4Fvctk4cMSAVdFZsu3KpL4iVBvtn4o1
+         rnJyfmlOncsP3yoY+j76TjSp4aJ7VvRr4c7fkE0fdzqVZuvycjWHJ4GVVydALaF5NJiF
+         +WF6iJkHG6x8T7XlWui9Mt90OswPTti3U6S4vtmkcp2c/Q9bQGV/NnHYh6miBfI/TzlK
+         CvpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755714475; x=1756319275;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8NPVQBMSrrf3jhmLLcgVMSadSNRoC9cJI1+fcHorCmY=;
+        b=RY0QSyLWsVtBT+0Gq9+7PTK6gLNsZRX5qRidlMHpDSAR1NC5272YQ5BWqXD9MZLMLk
+         KIWX0KGgKcwh5nVAv+VDFGe1cJC1VPSU/QSnZqUTdgQz2loXTt6KyXhklnMwywHJL05m
+         8ra9FF+HCkn0Srs7sCITdN1ygQYqKXwQ19IAh8Th3c0JiVfwrwv2StT1Emhi7Kv58XvT
+         X0e8qnq8fJ1+aqAXiDxrf59+tDZcXpNT189pUeOu+JS/hC6womResgvUdV4kkZB7QI3K
+         IAvLozQYjzUkgDTRw/30Evj0Fp89S7WowzCu0jLwWd0hejZsElp88mvizEn8Hn4+2TOg
+         tEsw==
+X-Forwarded-Encrypted: i=1; AJvYcCWZ9ToilGJ18mj4dfLa+tU+GhNFs76P1uXO32vgv0i9xCLpbzEfTWzs8u/Ev+B7f2ShUkiC5TRWL+WP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyE0sPgM2EUq8tSOqCRwQQEmE3UhI/HLock4pU362AHPY/LHmiI
+	r5YwwbAawO4pdIztnc8H/RCcPpOFQOVrccXpsZ12mJMolrzVrM3zpnzNCF4UqZnTy+o=
+X-Gm-Gg: ASbGncvQiXeospb/nYh7IGPcwcLmqpvu3ayyrsAiSkcH010L3RN29KASYVTjhBy5U58
+	R3G+wvuiWkUswumOwE70BVuPYleWxyCt4PDBqMCUeIgtOMXQHuQFMots4/QVAmXEAE5SFueqGLh
+	+4XM82tgMcp5EWl4Bbo3tjMcDScX86mae8V0mDKcAF9T2jAUJCVVm0TIk0vpweHNLqRFnw7TCUa
+	NgM2ndd0GUXll3ZMt5H28rEQWA5pp7sZisZOnoQlsBvUcWt9cOG6AzVXJU+P/zoq6TbmVhDmzBQ
+	4PtNddMy8SK6cyN608kmcVvCla/ZGSTJDE3mQZz01lXYd6MNgw2nmWY1lBCExT8+wS6y4GJyTXb
+	NGBwb5ELBqbaVNf9EYlzeMxQUmK4VLv23+1wrWuie0O+s1P+oEce7UC3mU1zotDBvakv2odO1cA
+	K3g4CSCZSOIhpKBvONCMsfK8c=
+X-Google-Smtp-Source: AGHT+IGQKS3XqM+4Wd++Np9yalKPfzEFkK54upvYWtNTNYRTddwvhBFV5n3bYbpZpN+GCnzAAC724g==
+X-Received: by 2002:a05:600c:4a06:b0:43d:42b:e186 with SMTP id 5b1f17b1804b1-45b47ab2420mr21491235e9.8.1755714475079;
+        Wed, 20 Aug 2025 11:27:55 -0700 (PDT)
+Received: from ?IPV6:2a02:1807:2a00:3400:7e73:cf38:ddee:2b1d? ([2a02:1807:2a00:3400:7e73:cf38:ddee:2b1d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b47c310efsm46093025e9.7.2025.08.20.11.27.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Aug 2025 11:27:54 -0700 (PDT)
+Message-ID: <1a4a25d2-25a1-4d06-bba6-50f51cfbb619@hammernet.be>
+Date: Wed, 20 Aug 2025 20:27:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="/ZOkBy57ISHRxPqm"
-Content-Disposition: inline
-In-Reply-To: <3a4448a5-a01f-4d4e-a890-56eb9357abd3@topic.nl>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] riscv: dts: spacemit: add UART resets for Soc K1
+To: dlan@gentoo.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr
+Cc: skhan@linuxfoundation.org, linux-kernel-mentees@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, elder@riscstar.com
+References: <20250807191817.157494-1-hendrik.hamerlinck@hammernet.be>
+Content-Language: en-US
+From: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+In-Reply-To: <20250807191817.157494-1-hendrik.hamerlinck@hammernet.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hello,
 
---/ZOkBy57ISHRxPqm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 8/7/25 21:18, Hendrik Hamerlinck wrote:
+> Add reset control entries for all UARTs in the SpaceMIT K1 SoC Device Tree.
+> UART0 was functional as it did not need a reset. But the other UARTs were
+> unable to access their registers without the reset being applied.
+>
+> Although perhaps not needed I did add the reset for UART0 as well,
+> to ensure consistency across all UARTs. With the current-speed set to
+> 112500 baud rate, it matches the factory U-Boot settings.
+> This should not give issues with early console usage. But perhaps it could
+> be a good idea to let somebody else confirm this as well.
+I have tested this version for a while and no longer see the need for
+additional confirmation.
 
-On Wed, Aug 20, 2025 at 11:37:24AM +0200, Mike Looijmans wrote:
+>
+> Tested this locally on both Orange Pi RV2 and Banana Pi BPI-F3 boards. 
+> I enabled the UART9 and was able to use it successfully.
+>
+Just a gentle reminder about this patch.
 
-> I actually planned (I have implemented it locally already for v3) for the
-> driver to check the chip type and complain if it doesn't match the
-> devicetree. If the wrong device is there, the most likely cause is that the
-> input and output buses got mixed up. That would also justify having separate
-> compatibles, right?
+All UARTs are listed in the K1 device tree and probed by the 8250_of driver,
+but without reset lines most of them are non-functional. Adding the resets
+makes them usable when mapped to devices.
 
-It's not the kernel's job to verify the devicetree, it should be assumed
-to be correct. You're ensuring that when another compatible device
-arrives later on that a new string in a binding will not be sufficient
-for the device to be supported and driver changes will be required to
-make it work.
+This patch is limited to DTS reset handling, so UARTs are usable in the
+current state. I’m aware Alex Elder is assigned to the UART peripheral on
+the wiki and will likely handle the broader driver improvements (DMA,
+clock updates, full baud-rate support), so this should not interfere with
+that work.
 
---/ZOkBy57ISHRxPqm
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks for taking a look!
 
------BEGIN PGP SIGNATURE-----
+Kind regards,
+Hendrik
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKYR/QAKCRB4tDGHoIJi
-0o2sAP9EAzYIeuLIPvdoHl8WRMoGk7q1EJo0Ubj8CI5znYzYXwEAl2Co+1KKffuW
-r9QASGtzznRJwItPEkgRfk7EDrfnAAA=
-=EItT
------END PGP SIGNATURE-----
-
---/ZOkBy57ISHRxPqm--
 
