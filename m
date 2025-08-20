@@ -1,87 +1,60 @@
-Return-Path: <devicetree+bounces-206787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3373B2D8E4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 11:45:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F422B2D84C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 11:34:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 519733A5623
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:41:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43FF0A007D5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C472E4267;
-	Wed, 20 Aug 2025 09:38:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="O1jwZ7JC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71EFF26CE22;
+	Wed, 20 Aug 2025 09:28:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7E8275865;
-	Wed, 20 Aug 2025 09:38:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+Received: from zg8tmja5ljk3lje4mi4ymjia.icoremail.net (zg8tmja5ljk3lje4mi4ymjia.icoremail.net [209.97.182.222])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F8E24BCE8;
+	Wed, 20 Aug 2025 09:28:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.97.182.222
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755682683; cv=none; b=rdDMgH7setrAx6B/Wt13pOsXZJE8vKuBx8DvIWJ+++nNh/DU8l1/pKGvbdDYpt9Aweq95KEQ+zfnNZMJ4zUQN3xeSB7qXTR3QG9XdyK4wrMQFMi0djth/dwYb9ORI7gAA2kDpbodDiUaI7SPb3bSDRDYDqARWbrTD3SpuPRk8ZU=
+	t=1755682110; cv=none; b=RuHZODT8Go0IL/QYTjkSDgkwWD9Lnz9sufvs4NMTveZxPywW3rM7pnNkUBWtTUq1cFYpdt38GrECi7ZRVmxnq0Zh5LmwQQGOspw6kWsYmBrnH1mZLtVyEC1HuwX5l1819Nm32aaXM4WtGuGUEg/1ACi9clstiBxDIY4Co3VL9xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755682683; c=relaxed/simple;
-	bh=xKa0O/SngrtF2YaSdM2z+vQ1VXaK3fatis0FtdVUw0Q=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s3+iKp4uBCJ8chWKmvLnSObbCiFUW6RuxA69bN0IkyctZU4W9ByI6PiV96kXNQgl7QStr9eBjQoLyg1AbBamzrM/4LXAELgDsMK/IAHc3BbND8w9oG1/7Sx+HKt9bqiynRUU8nORm4iU1I5gUIlTmTqowZoM/6K8eX4WYabOvBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=O1jwZ7JC; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57K9brrN3165901;
-	Wed, 20 Aug 2025 04:37:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755682673;
-	bh=VjsUd7nv0GPIjNDND7mWWJy38PU6jOtmXtrIPRTVCCA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=O1jwZ7JCIQTtetRC2Mhco++BfCnWhsRlmM1lT5wP+tkWtSANus4eviWcd8G4GF0lb
-	 hIBzRaojmsqKwWeYqhaLcVzgOydNBO2QSSjW2Y+bUiLl7eWELqd9t89B4xzKlVqyr3
-	 hrz4H+VkrpxNeFhtuagbkP77DtVPk78JCfuQ2cc0=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57K9bqVF1098620
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 20 Aug 2025 04:37:52 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 20
- Aug 2025 04:37:52 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 20 Aug 2025 04:37:52 -0500
-Received: from pratham-Workstation-PC (pratham-workstation-pc.dhcp.ti.com [10.24.69.191])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57K9bopl020385;
-	Wed, 20 Aug 2025 04:37:51 -0500
-From: T Pratham <t-pratham@ti.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller"
-	<davem@davemloft.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: T Pratham <t-pratham@ti.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Kamlesh
- Gurudasani <kamlesh@ti.com>,
-        Manorit Chawdhry <m-chawdhry@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>, Vishal
- Mahaveer <vishalm@ti.com>,
-        Kavitha Malarvizhi <k-malarvizhi@ti.com>
-Subject: [PATCH v7 1/2] dt-bindings: crypto: Add binding for TI DTHE V2
-Date: Wed, 20 Aug 2025 14:42:26 +0530
-Message-ID: <20250820092710.3510788-2-t-pratham@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250820092710.3510788-1-t-pratham@ti.com>
-References: <20250820092710.3510788-1-t-pratham@ti.com>
+	s=arc-20240116; t=1755682110; c=relaxed/simple;
+	bh=W5vE5WeHG2HQjSKkH4tpgmk3A7OE8K28nDCuKd5sGUo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=IRjRst9R76ZE6rvbG2qgQLVaYaYdgqpZv9EVFwxAPwZnmp8Hfv56OEYQaqu4GA3va9kN6zHaWvsZaxp2flvl9dcCSZ/EXmsaZrnGPmvQTeID5q+1OCjxtMFja4pE42hWdDZxsor/ovqc85aID6Cem8MVzpnuqVLTePLxVVMGkxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=209.97.182.222
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0006800LT.eswin.cn (unknown [10.12.96.77])
+	by app2 (Coremail) with SMTP id TQJkCgAHmZIilaVoRwTBAA--.56702S2;
+	Wed, 20 Aug 2025 17:28:03 +0800 (CST)
+From: Yulin Lu <luyulin@eswincomputing.com>
+To: dlemoal@kernel.org,
+	cassel@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-ide@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	vkoul@kernel.org,
+	kishon@kernel.org,
+	linux-phy@lists.infradead.org
+Cc: ningyu@eswincomputing.com,
+	zhengyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	fenglin@eswincomputing.com,
+	lianghujun@eswincomputing.com,
+	Yulin Lu <luyulin@eswincomputing.com>
+Subject: [PATCH v2 2/3] dt-bindings: phy: eswin: Document for EIC7700 SoC SATA PHY
+Date: Wed, 20 Aug 2025 17:27:58 +0800
+Message-Id: <20250820092758.803-1-luyulin@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
+In-Reply-To: <20250819134722.220-1-luyulin@eswincomputing.com>
+References: <20250819134722.220-1-luyulin@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,96 +62,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-CM-TRANSID:TQJkCgAHmZIilaVoRwTBAA--.56702S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7ur15Ww4xXw1rWFyUXF4DCFg_yoW8GFy3pa
+	1kGrykWFnaqr1Ik39xJ3W0kF13Jws7uFWYvrs7K3WUtrn8J3Z5ta1ak3WYv3WUAF48Way5
+	XFZIga43Aw4UA3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9G14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
+	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
+	wI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
+	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v2
+	0xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxV
+	W8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRidbbtUUUUU==
+X-CM-SenderInfo: pox13z1lq6v25zlqu0xpsx3x1qjou0bp/
 
-Add DT binding for Texas Instruments DTHE V2 cryptography engine.
+Add document for the SATA phy on the EIC7700 SoC platform,
+describing its usage.
 
-DTHE V2 is introduced as a part of TI AM62L SoC and can currently be
-only found in it.
-
-Signed-off-by: T Pratham <t-pratham@ti.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Yulin Lu <luyulin@eswincomputing.com>
 ---
- .../bindings/crypto/ti,am62l-dthev2.yaml      | 50 +++++++++++++++++++
- MAINTAINERS                                   |  6 +++
- 2 files changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
+ .../bindings/phy/eswin,eic7700-sata-phy.yaml  | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/eswin,eic7700-sata-phy.yaml
 
-diff --git a/Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml b/Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
+diff --git a/Documentation/devicetree/bindings/phy/eswin,eic7700-sata-phy.yaml b/Documentation/devicetree/bindings/phy/eswin,eic7700-sata-phy.yaml
 new file mode 100644
-index 000000000000..5486bfeb2fe8
+index 000000000000..d914cb4402d8
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/phy/eswin,eic7700-sata-phy.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/crypto/ti,am62l-dthev2.yaml#
++$id: http://devicetree.org/schemas/phy/eswin,eic7700-sata-phy.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: K3 SoC DTHE V2 crypto module
++title: Eswin EIC7700 SoC SATA PHY
 +
 +maintainers:
-+  - T Pratham <t-pratham@ti.com>
++  - Yulin Lu <luyulin@eswincomputing.com>
++  - Huan He <hehuan1@eswincomputing.com>
 +
 +properties:
 +  compatible:
-+    enum:
-+      - ti,am62l-dthev2
++    const: eswin,eic7700-sata-phy
++
++  "#phy-cells":
++    const: 0
 +
 +  reg:
 +    maxItems: 1
 +
-+  dmas:
-+    items:
-+      - description: AES Engine RX DMA Channel
-+      - description: AES Engine TX DMA Channel
-+      - description: SHA Engine TX DMA Channel
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx1
-+      - const: tx2
-+
 +required:
 +  - compatible
++  - "#phy-cells"
 +  - reg
-+  - dmas
-+  - dma-names
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    crypto@40800000 {
-+        compatible = "ti,am62l-dthev2";
-+        reg = <0x40800000 0x10000>;
-+
-+        dmas = <&main_bcdma 0 0 0x4700 0>,
-+               <&main_bcdma 0 0 0xc701 0>,
-+               <&main_bcdma 0 0 0xc700 0>;
-+        dma-names = "rx", "tx1", "tx2";
++    sata-phy@50440300 {
++        compatible = "eswin,eic7700-sata-phy";
++        reg = <0x50440300 0x40>;
++        #phy-cells = <0>;
 +    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fe168477caa4..0f5bb8ad7653 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25169,6 +25169,12 @@ S:	Odd Fixes
- F:	drivers/clk/ti/
- F:	include/linux/clk/ti.h
- 
-+TI DATA TRANSFORM AND HASHING ENGINE (DTHE) V2 CRYPTO DRIVER
-+M:	T Pratham <t-pratham@ti.com>
-+L:	linux-crypto@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
-+
- TI DAVINCI MACHINE SUPPORT
- M:	Bartosz Golaszewski <brgl@bgdev.pl>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
 -- 
-2.43.0
+2.25.1
 
 
