@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-206670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B37B2D3C3
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:55:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1F55B2D3CB
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:57:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F0B75871AD
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 05:55:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3575F4E113A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 05:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1CD02882CA;
-	Wed, 20 Aug 2025 05:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDD72BD031;
+	Wed, 20 Aug 2025 05:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MaYnT4m0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i1/hWcg0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7895236124;
-	Wed, 20 Aug 2025 05:55:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F03429ACFC;
+	Wed, 20 Aug 2025 05:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755669347; cv=none; b=DIjKHKQc9q51CPzQcFOhMnQuT800IIljPLfrAfbiA6fZVRSNXa/ykRoptm2ku2J9q0TK4xgQkkJIe8X3hN3Q1VfpoCeEmjjuMlTJrlpokq2bbeAbGKNDOGdLeS1cu8G97EIdwHtC0RdAd+nb3tp4hhmmJHULImmdXNejtmpdhwM=
+	t=1755669444; cv=none; b=qr2gsY6YoAZNnFscyaYTYMRpbYKve/2wKVpiI+rjuGvjXScd2+BhKJlkoMLWO3nM9ddhPfAErrBtLFfx3wGcsbJ+iKQQS2zWxRcFMrqvLGebDzxXbOpf9rAtOFMcgppdS69r0uNzzRkjp3za6/HTDKamWnUPcsn4ykYZcdHM3Gg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755669347; c=relaxed/simple;
-	bh=E0+N2wRZMXrF5z7DzstfXp7XFzQUZ047KHqMx/8n9/c=;
+	s=arc-20240116; t=1755669444; c=relaxed/simple;
+	bh=Y+062joObmsol1gkoHoKktNswPMSOYB1ABAm6sd7nWo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SdqRqRnLnrVdCyVhnEt1wrEzPzIVMj2o1w0eqTRr15w7C+gkOGlUgActd0kBWLMrXzE+2YEZo3UB3jayrM61yv2gPo+uMwQkgtbzh5HL5wUxwIDJNGYDCNS14kJCz2YLdc+JGX9hk1te8Eg5q5CrHIw/ZJe4B/vcHvbZ/RwduEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MaYnT4m0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF70FC4CEEB;
-	Wed, 20 Aug 2025 05:55:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MUAlUtTlPH9ollUMNTVDz40Nbb7vF6a/0gppuQV8d5o49kGrHs/nz+gr3i2cz7qGXe+kmOCPX12d42XT92uv0+x7F3bZmwK7Jyb0lHotE0PiG6K9aMs0WDt21Gm1oWYWMuB7C+Yqg5T+7Fm2VSbZad+gZNt6RBgmA6jJyHb0ukY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i1/hWcg0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88B74C4CEEB;
+	Wed, 20 Aug 2025 05:57:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755669346;
-	bh=E0+N2wRZMXrF5z7DzstfXp7XFzQUZ047KHqMx/8n9/c=;
+	s=k20201202; t=1755669443;
+	bh=Y+062joObmsol1gkoHoKktNswPMSOYB1ABAm6sd7nWo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MaYnT4m0WN5eTjiALC52eebZA7CkBr3MIQgRikIjOLXsB1N/2HNI44GM7HjYB0eMO
-	 35d8QG8sppzDG/FQA4DJ6YRhE7zFvBRcsPPnZFxLuWdKGqWLyfk+r4OETZLoOlbpU2
-	 2I9MGCNJJBp0HStJczx2UvAveNeXt6dZLsH3ssUbSD5zn0zklCvyFEeAUI8LpglyA8
-	 16AGF6zKHv0PlLhuPRhiuugUPQX/nNMUS0Cg1Y0gPf/zwP0PNIDRweRbQGDURyY1L+
-	 2KOz61EailChCTvdMFzZtvnqRVGNJiYk8P9Amq95gVlQUL85iysu9N0n1aRha0lE14
-	 YGCMqKkRc5l0Q==
-Message-ID: <aab06f96-83c9-4e1c-9e1b-6148a3055e67@kernel.org>
-Date: Wed, 20 Aug 2025 07:55:38 +0200
+	b=i1/hWcg0oXxgedGDs9KjrtglcEwNsrTrut3izxrXACCm9P0zu4NeOwzFQX/iBs1Ai
+	 ln5kfCMEwQgToHf7br9+tSkW04D24wQmuXdfabgarxqN1u1wb9CeZjGfRXi1IGHV68
+	 jFQ8x6sjaP6IjxNeiGf4Qd7yHiaSYdkXKqT2LQStSUdLtaP1PWR+zPVppgtOfAj+aU
+	 xRUZ0j0Fohp7Ib9Sr/MYaJhj/lysGt5D0vJDvCsk3buzO772Sn1Sto1L9zHVKoy1M/
+	 3pgniaoRYgIMWFjGb6AlzZN1wCjWRN5bkVbpCcN6H4w8zajy4NBAQQ7uiugbwIg4n6
+	 U12NwUktYflGg==
+Message-ID: <e0bec141-6aef-475f-b997-60fdf8234b82@kernel.org>
+Date: Wed, 20 Aug 2025 07:57:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,38 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/6] dt-bindings: media: Add MT8196
- mediatek,vcodec-encoder
-To: =?UTF-8?B?SXJ1aSBXYW5nICjnjovnkZ4p?= <Irui.Wang@mediatek.com>,
- =?UTF-8?B?S3lyaWUgV3UgKOWQtOaZlyk=?= <Kyrie.Wu@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- =?UTF-8?B?R2VvcmdlIFN1biAo5a2Z5p6XKQ==?= <George.Sun@mediatek.com>,
- =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= <tiffany.lin@mediatek.com>,
- "andrzejtp2010@gmail.com" <andrzejtp2010@gmail.com>,
- "nhebert@chromium.org" <nhebert@chromium.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
- "nicolas.dufresne@collabora.com" <nicolas.dufresne@collabora.com>,
- =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= <Yunfei.Dong@mediatek.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "sebastian.fricke@collabora.com" <sebastian.fricke@collabora.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
- =?UTF-8?B?QW5kcmV3LUNUIENoZW4gKOmZs+aZuui/qik=?=
- <Andrew-CT.Chen@mediatek.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>
-References: <20250814085642.17343-1-kyrie.wu@mediatek.com>
- <20250814085642.17343-6-kyrie.wu@mediatek.com>
- <20250815-meek-porcelain-oarfish-1411e3@kuoka>
- <cff7beabdfce15b014597f6fbb0ea23375ecb902.camel@mediatek.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: mfd: twl: Add missing sub-nodes for
+ TWL4030 & TWL603x
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Jihed Chaibi <jihed.chaibi.dev@gmail.com>, linux-kernel@vger.kernel.org,
+ peter.ujfalusi@gmail.com, dmitry.torokhov@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, lgirdwood@gmail.com, tiwai@suse.com,
+ conor+dt@kernel.org, lee@kernel.org, ukleinek@kernel.org,
+ broonie@kernel.org, gregkh@linuxfoundation.org, linus.walleij@linaro.org,
+ brgl@bgdev.pl, aaro.koskinen@iki.fi, khilman@baylibre.com,
+ rogerq@kernel.org, tony@atomide.com, linux-gpio@vger.kernel.org,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-sound@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-omap@vger.kernel.org, shuah@kernel.org
+References: <20250816021523.167049-1-jihed.chaibi.dev@gmail.com>
+ <20250816021523.167049-2-jihed.chaibi.dev@gmail.com>
+ <20250819-humongous-muscular-curassow-5accd5@kuoka>
+ <20250819223157.0b271c74@akair>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -127,124 +112,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <cff7beabdfce15b014597f6fbb0ea23375ecb902.camel@mediatek.com>
+In-Reply-To: <20250819223157.0b271c74@akair>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/08/2025 04:55, Irui Wang (王瑞) wrote:
-> Dear Krzysztof,
-> 
-> Thanks for your reviewing.
-> 
-> On Fri, 2025-08-15 at 10:54 +0200, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
+On 19/08/2025 22:31, Andreas Kemnade wrote:
 >>
+>>> +          type: object
+>>> +          $ref: /schemas/usb/ti,twlxxxx-usb.yaml#  
 >>
->> On Thu, Aug 14, 2025 at 04:56:41PM +0800, Kyrie Wu wrote:
->>> From: Irui Wang <irui.wang@mediatek.com>
->>>
->>> Add MT8196 encoder compatible string, which will reference VCP
->>> device.
+>> Are you sure your patchset is bsiectable? Apply this patch and test. You
+>> will see errors and you must fix these. Even after fixing you have
+>> strict dependencies so your cover letter must explain these (or merging
+>> constraints)...
 >>
->> You ignored comments from v2.
-> 
-> I think I misunderstood the v2 comments, I rewrote the title because it
-> said dt-bindings and encoder twice, this is not enough, right? we need
-> to describe more information in Body text?
+> what are the rules here regarding bisectability? non-existing files
 
-where are lore links in the changelog? Why aren't you using b4 to submit
-patches?
-
-> 
->>
->>>
->>> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
->>
->> Incorrect SoB chain.
->>
->>> ---
->>>  .../bindings/media/mediatek,vcodec-encoder.yaml | 17
->>> +++++++++++++++++
->>>  1 file changed, 17 insertions(+)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>> encoder.yaml
->>> b/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>> encoder.yaml
->>> index ebc615584f92..bb4dbf23ccc5 100644
->>> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>> encoder.yaml
->>> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>> encoder.yaml
->>> @@ -24,6 +24,7 @@ properties:
->>>                - mediatek,mt8188-vcodec-enc
->>>                - mediatek,mt8192-vcodec-enc
->>>                - mediatek,mt8195-vcodec-enc
->>> +              - mediatek,mt8196-vcodec-enc
->>>        - items:
->>>            - const: mediatek,mt8186-vcodec-enc
->>>            - const: mediatek,mt8183-vcodec-enc
->>> @@ -58,6 +59,11 @@ properties:
->>>      description:
->>>        Describes point to scp.
->>>
->>> +  mediatek,vcp:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description:
->>> +      Describes point to vcp.
->>
->> For what? You just repeated the property name. You must say here
->> something useful instead: why this is needed, what is its purpose.
-> 
-> I would like to say:
-> "define this 'mediatek,vcp' property here, this is a phandle point to
-
-Don't explain to us what DT is. Above is 100% redundant.
-
-> vcp device, for platforms using vcp firmware."
-
-Explain what is the purpose of this in hardware, how hardware uses it,
-what problem for hardware this addresses.
-
-
-> 
-> Is this OK for you?
->>
->>
-> 
->>> +
->>>    power-domains:
->>>      maxItems: 1
->>>
->>> @@ -76,6 +82,17 @@ required:
->>>    - iommus
->>>
->>>  allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - mediatek,mt8196-vcodec-enc
->>> +
->>> +    then:
->>> +      required:
->>> +        - mediatek,vcp
->>
->> else
->>
->> mediatek,vcp: false
-> 
-> I think the else statement is no need here. Different platforms are
-> using different firmware phandle, vpu, scp, and vcp. so we use if-then
-> to describe the required property for these platforms. 
-
-Hm? I just told you it is needed. Otherwise, explain why each
-variant/device has now VCP.
-
-You have entire commit msg to explain all this.
+dt_binding_check.
 
 
 Best regards,
