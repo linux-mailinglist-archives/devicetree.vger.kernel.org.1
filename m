@@ -1,123 +1,192 @@
-Return-Path: <devicetree+bounces-206667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B194BB2D3AB
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:39:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F8ACB2D39E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:38:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0989A17C223
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 05:37:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B71A1622B6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 05:36:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A70442BE64B;
-	Wed, 20 Aug 2025 05:36:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAA052BD582;
+	Wed, 20 Aug 2025 05:36:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="u6RreG4n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BfwQZe35"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94B762C11EF
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 05:36:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C7B29B8C7;
+	Wed, 20 Aug 2025 05:36:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755668196; cv=none; b=R0UCw5XT3W9g7pshA4KFQTk7D6jYMBvxiYZRwUIrWgmo5SQfrREavE4QEOqJjNQ0cJDn35awK1NWr9iAk6D8m9RiB3Zb1baZdSyuiOh0yOafRUnBsBD3b8J3hq//GH0k2tUEP4Mzt2+TUTYq6NXbYOOtJLboJJT1omE7ycWd55E=
+	t=1755668186; cv=none; b=Aem/IfGr2SvY8q4cMixhepuMJWqyLbZtOE/p8iNJauMV55nCZ19jgUH1nH6KTguB6VCr36vSrOlnU5KfK1fePDRShxjFdba2UML1AmUvjOOCNdDffkERrrz85144KVMCTAdfzYw2orO0M15laj4axkbb/s/CNUgyNuqggMolR4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755668196; c=relaxed/simple;
-	bh=vZCGHIfOyQem5ZftKVv2fj0MKNFvwzOaIWQWfqnghac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=B6z0wodyXteKbSowHOUDnAEIs/3PFZ9G7frMa4On7JMvvpVAVA/99EIxjsqBtYg2KJqihVA1UBLT0nAOQFRT9fNSUmyjC9xd7NP6okR4CVORrWjEBfn7wMY2hnZU8D45SbZ7qBnbZVLWlF/YSNbPOP1M3VAg+aEAPhlYEcN9swA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=u6RreG4n; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57K5aDTh3121137;
-	Wed, 20 Aug 2025 00:36:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755668173;
-	bh=bcKlqhvo3UrNX+TEl2kZdu9Cx+bpM2S04wcrZzwPMbc=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=u6RreG4nebEd/fC7+b6i8c1SqIyvizGXDcwpjm3ajCFnDXxheEOuwTbU8hZs4aLVl
-	 2d6zW1D91NWvA3oDElyRCLM1H0uBP2jcB1t+NVFrJK//wXb8nFU51EB/BuTyVEco8k
-	 8P9A4Wl0KKH+npfcilnioW+FjEP8fiWrvmCFEXZI=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57K5aDYh1124355
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 20 Aug 2025 00:36:13 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 20
- Aug 2025 00:36:12 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 20 Aug 2025 00:36:12 -0500
-Received: from [172.24.235.208] (hkshenoy.dhcp.ti.com [172.24.235.208])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57K5a6BS3910485;
-	Wed, 20 Aug 2025 00:36:06 -0500
-Message-ID: <8a31d1c5-4233-4696-bf8c-58f5db68d41f@ti.com>
-Date: Wed, 20 Aug 2025 11:06:05 +0530
+	s=arc-20240116; t=1755668186; c=relaxed/simple;
+	bh=HYPoFiFLRxG42Zg9Yow1s/PYyk0iCHliP3CbKVzlxn0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NAdnixHPQqfh+XSKvG5U4jhj8ecUnNw00kleZ7Y9ybq3QFYBUAeySNju05f4vIPiaMIqAHLcXnV61LNUNKP095jGK83N4HUHdC9Nh4VLxtvvVeENfiq5X+vliUFbkSmSC5sWNrA3xX34ftsvJC+IwPuUIJQoAIVwUJKc0JeWSRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BfwQZe35; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45a1b00797dso40989115e9.0;
+        Tue, 19 Aug 2025 22:36:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755668183; x=1756272983; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LpZa+JPccDc9KLWdW0+nhzLGDXDPAdvgpyxHtmEgm0M=;
+        b=BfwQZe35LklEbC4EmQzu1WgUL+mKJZyQ+UxWuJ7z+rJJ4BfdudK/PFItEb9YcZ0eTT
+         pHH+4u38uWe6ELmhNzmdW3jKgwfRVauMIOhXvtITpUKzkKrPdm9AhQijtMf8zEVP7J3X
+         uc04dlmf3j3UCBOePXCvWfXDdSZr9xDTsjuMM7BzzrpTb5mDUDkDvFG2BKWlyTIzD1Ix
+         rMGhmbwuw57F33YihZ45AbuxlR21Ip2Fp26MwMOIL4G5EFvbjWsUYePUBBS5DImc/oX7
+         Gd/zkCfYJGxNyxkwtgrvnRenKfK+IO97MvaWgKoXcjc4LCAVxDjY7+aA+5FRAZlKAAg3
+         Aelw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755668183; x=1756272983;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LpZa+JPccDc9KLWdW0+nhzLGDXDPAdvgpyxHtmEgm0M=;
+        b=OHuRcX9Hve7e4E0ro4z81Xm7hQStQK4hAsr5QJB0JpzXc9I7riNpHMDAYl7qte1ZEx
+         BvsOGZZHqW8rHO2KUWswe4QGBuBFAQdLcDvGB46W8bNhAgv+j996pOrQvTfZ7IqJB+ZI
+         znFMw6pgijT7q0PgnvHPh2sU8J61dVXlaQuMJ3JoPd0KHSbsDSN0r/XKj9Rxf0cJdd0q
+         ZKhKSoszgueujBeShwEkY/2yJh9PJj9WkETVo+tJZfSnobiLldUdJVBkKdkhwJ3mE6Hg
+         AhTVt8pkqwrBFcR5l3b+edRz36xtl0zVVURv1mSLhme9MJfT11mZWqaYWLMsBVi4ua/2
+         pKwg==
+X-Forwarded-Encrypted: i=1; AJvYcCWJYBGqZMhbzuGhQ53YlRYu/Y1k2pTeRgptQPKfWossiUA/2R0LcUbo5GnEHNW9GkbhBYBgLBVL8vco@vger.kernel.org, AJvYcCWlSA/XqhY8C0/Yn0WtcJQUqTAfe8SqzACfZP7E1BGRLOyJ9bpeQUEdxr5vnczD5pLra91pjfzPm15zQPo=@vger.kernel.org, AJvYcCX+GgHNEgkIAQjQLR8wEZkBLaQm52a2k1PYOu/QCpKk7kYzwE/JbyIfRFeqhmaWZAo+rWMnzjn8Upc7kCpY@vger.kernel.org
+X-Gm-Message-State: AOJu0YyB20kgcj4nbHCh0BOie602q/X/pfaIplIRCqQOargmCP+V1bju
+	rKx2z3cHULquieoNOup7vf0G9EKylbkec+RKLGfoGQU1ae7kMyQhtGvfEtOh8u05UwJ5c9d753X
+	JLLLmTV7OoJe1ytgwhkreSWr/i42S010=
+X-Gm-Gg: ASbGncsI9QxkeY0PINn0Q+HDKgR7eZ541j367S5og4SNHKnhAulvrffe5WqBpy5vC6v
+	kuZHV+4UK3g6VP3MeJ5Cd2D2YEJHUvv9SjcCY3/P5EW5H7que2JI6RZnpgDPTeULfsk114ye7tQ
+	uM8BZzrvsb9pZwOfbCn44323i9KkPCZ0r3Pnui2QYnICpz6Sdk65yAwgPNuIjP7MBAgVKI1VbbK
+	eUa/XhV
+X-Google-Smtp-Source: AGHT+IFCGRUhyg5MEnt8Z7ehVIISHI73hg764i8d03hFNfXUKIfBV7mBy4zClBQs+uDpUF9hcHMP58immWi39AxH54U=
+X-Received: by 2002:a05:600c:1910:b0:45b:47e1:ef69 with SMTP id
+ 5b1f17b1804b1-45b47e1f727mr6649275e9.36.1755668182818; Tue, 19 Aug 2025
+ 22:36:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/3] devicetree: bindings: dsiplay: panel:
- panel-simple.yaml: Add Raspberry pi dsi panel compatible
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Harikrishna Shenoy
-	<h-shenoy@ti.com>
-CC: <neil.armstrong@linaro.org>, <jessica.zhang@oss.qualcomm.com>,
-        <airlied@gmail.com>, <simona@ffwll.ch>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <thierry.reding@gmail.com>, <sam@ravnborg.org>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <s-jain1@ti.com>,
-        <devarsht@ti.com>, <u-kumar1@ti.com>
-References: <20250818154746.1373656-1-h-shenoy@ti.com>
- <20250818154746.1373656-2-h-shenoy@ti.com>
- <td7d5mldzdunb4sxs5rxa4tfnvvpolcmpwurcv5ubn47whnqek@azedwe6h3y5r>
-Content-Language: en-US
-From: Harikrishna Shenoy <a0512644@ti.com>
-In-Reply-To: <td7d5mldzdunb4sxs5rxa4tfnvvpolcmpwurcv5ubn47whnqek@azedwe6h3y5r>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250819120428.83437-1-clamor95@gmail.com> <20250819120428.83437-2-clamor95@gmail.com>
+ <20250819202542.GA1254999-robh@kernel.org>
+In-Reply-To: <20250819202542.GA1254999-robh@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Wed, 20 Aug 2025 08:36:11 +0300
+X-Gm-Features: Ac12FXz4o5j9EQTZbSCDH24-D7MsVs5e4lTkXJPmutwJNw7AWvoVJ9DQFlQCgbA
+Message-ID: <CAPVz0n1ETyYiaaw_ixEUeJM7xTqoRgcqmB0APige6=NNWsRDPg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: media: i2c: document Sony IMX111 CMOS sensor
+To: Rob Herring <robh@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Dongcheng Yan <dongcheng.yan@intel.com>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+	Sylvain Petinot <sylvain.petinot@foss.st.com>, 
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, Jingjing Xiong <jingjing.xiong@intel.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On 8/19/25 06:54, Dmitry Baryshkov wrote:
-> On Mon, Aug 18, 2025 at 09:17:44PM +0530, Harikrishna Shenoy wrote:
->> Add RPi DSI panel[0] as a valid compatible for simple-panel.
->>
->> [0]: https://www.raspberrypi.com/products/raspberry-pi-touch-display/
->>
->> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
->> ---
->>   .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
->> index 1ac1f0219079..65f486f2bc9d 100644
->> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
->> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
->> @@ -268,6 +268,8 @@ properties:
->>         - rocktech,rk070er9427
->>           # Rocktech Display Ltd. RK043FN48H 4.3" 480x272 LCD-TFT panel
->>         - rocktech,rk043fn48h
->> +        # Raspberry, 7" dsi panel
->> +      - rpi,7inch-dsi
-> It's powertip,ph800480t013-idf02
-Could you please point to any documentation for this?
+=D0=B2=D1=82, 19 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 23:2=
+5 Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
 >
->>           # Samsung Electronics 10.1" WXGA (1280x800) TFT LCD panel
->>         - samsung,ltl101al01
->>           # Samsung Electronics 10.1" WSVGA TFT LCD panel
->> -- 
->> 2.34.1
->>
+> On Tue, Aug 19, 2025 at 03:04:26PM +0300, Svyatoslav Ryhel wrote:
+> > Add bindings for Sony IMX111 CMOS Digital Image Sensor found in LG
+> > Optimus 4X (P880) and Optimus Vu (P895) smartphones.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  .../bindings/media/i2c/sony,imx111.yaml       | 126 ++++++++++++++++++
+> >  1 file changed, 126 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,im=
+x111.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx111.ya=
+ml b/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
+> > new file mode 100644
+> > index 000000000000..52d88f5d477e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
+> > @@ -0,0 +1,126 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/sony,imx111.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Sony IMX111 8MP CMOS Digital Image Sensor
+> > +
+> > +maintainers:
+> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > +
+> > +description:
+> > +  IMX111 sensor is a Sony CMOS active pixel digital image sensor with =
+an active
+> > +  array size of 2464H x 3280V. It is programmable through I2C interfac=
+e. Image
+> > +  data is sent through MIPI CSI-2, through 1 or 2 lanes.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: sony,imx111
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description: EXTCLK with possible frequency from 6 to 54 MHz
+> > +    maxItems: 1
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +
+> > +  iovdd-supply:
+> > +    description: Digital IO power supply (1.8V)
+> > +
+> > +  dvdd-supply:
+> > +    description: Digital power supply (1.2V)
+> > +
+> > +  avdd-supply:
+> > +    description: Analog power supply (2.7V)
+> > +
+> > +  eeprom:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      A phandle to the node of the eeprom, that holds sensors configur=
+ation data.
+>
+> This assumes the eeprom is dedicated to the sensor. What if it is just a
+> subset of some eeprom or other storage. Perhaps this should use nvmem
+> binding.
+>
+> > +
+> > +  flash-leds: true
+> > +  lens-focus: true
+> > +
+> > +  orientation: true
+> > +  rotation: true
+>
+> Use 'unevaluatedProperties' instead and drop these.
+>
+> > +
+> > +  assigned-clocks: true
+> > +  assigned-clock-rates: true
+> > +  assigned-clock-parents: true
+>
+> Always allowed on nodes with 'clocks', so drop.
+>
+
+All your suggestions are valid and were applied, thank you!
 
