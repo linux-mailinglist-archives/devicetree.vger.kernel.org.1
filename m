@@ -1,107 +1,136 @@
-Return-Path: <devicetree+bounces-206803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135EFB2D988
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 12:05:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E66B3B2D98E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 12:05:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DBD53BDDC7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 10:02:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F7B55C4134
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 10:04:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D492DCBF8;
-	Wed, 20 Aug 2025 10:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA1D231826;
+	Wed, 20 Aug 2025 10:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZGU0GtSa"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mEKy38OC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABDE825B2F4;
-	Wed, 20 Aug 2025 10:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653BE19F464
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 10:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755684116; cv=none; b=WdazypYV+lnzSlzRow+89w/rBs1oe5qja90MTrADLeElkm7HHzHdKKims0gktkl+6CCNIzVU22Fkhp2n3VG6uu953BGIq05G/txL6lDhHXr5knwsoL4JL/Ly/UHpN/2mw3s2ulLtJ3OlwKpIxwqhhxTrt5WWi3tPe74fhsTdt74=
+	t=1755684270; cv=none; b=J5W5YCsMbsQhvcpWeovhO5IILfe/938Lgi9mOtTmZs6q87vUe7jcbJF4USYiGlfRoUF8eU+Hbs/3t39u87G4HWLbMT5Q0qwoB9N3G6cgDn4qUCwWN/gQrBSZPY2NSxHso6zuOEhF07oYMwkk+Il+dCjUr8QxbfbyiVz+K1qxids=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755684116; c=relaxed/simple;
-	bh=12AnyT+nJoWQ7Zwaii1m23uRfTezoxAQyxFRGP9xcJE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NMvujnHEVprflIoeztgMfAg/CHvm7/tWTXYxDT53UuOtNw9I+VyjBjA4wtpi3yoFaaxecRkKZxjpAGVnOJx8ZhFOM61GyFCpQKcJfQytq86NkA86CanVBofwoIiTbWeBusPdrKHzRsPIUjChbTqKQFg3VWBV99HxM7rq/YwlKes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZGU0GtSa; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-afcb6856dfbso135654766b.1;
-        Wed, 20 Aug 2025 03:01:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755684113; x=1756288913; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=12AnyT+nJoWQ7Zwaii1m23uRfTezoxAQyxFRGP9xcJE=;
-        b=ZGU0GtSaia6c7oRbML6lADmYKU0RbnTI36/ylaz5Yn8LDvSxxMtyHvzvHKCAbhlG2k
-         Bd0DYzCxbp1hpKzEziVYtqC/LTiivzsebPDNPE7jU4+1FGoC3PwgKCJffMUfzTjxfigV
-         3IZtr/U54z1lbMb9I2M3lkgSDigUEXnD7wldMTlsbqKvS+UJdH3qd+JyLkpAXxNOR3em
-         qM4Xnots2roarxEPaW/KF/4mc9qLt+8GdD1ugvetXvLtV6TQOAwK3CMPMkP+Xl97Fn5I
-         vp7pqCB3jtEBmu/JT89cvW93XA/By7MhCy8dN2i2iZmb/dHhJPbsklvPNd54p7Npl5ng
-         a17A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755684113; x=1756288913;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=12AnyT+nJoWQ7Zwaii1m23uRfTezoxAQyxFRGP9xcJE=;
-        b=BQHB8cEuGTcD3dVsGUS1vNs7B6Fqq4Nj5Eq32eQePZgKsHPYKX7L/CYNsoDlQSp38s
-         7LuMx+d0H3oIS0Jkx0oZ5m/z7frAnUj7y1tkl0CT519Ui8fzHsjVANstm97Ju0G8s6oj
-         pf3H+VcgsL1mUz8wbhupCQ4Lvrbqx6ycN9c5MYuXuViEEI2XN/Z9f6fGLgfb1opZ09iX
-         wsPCLPSXWlu/hzl1xPQmce2c//KLPwpUKZmidN+yVsGnuCVJfld8f0JbeQtXNjcC76U3
-         wFD0XggV3ROWyCHeLOQzMaJzB81rn80ZdcsVwpzQdyS+sWp+Z3jTfUmCXTq0f9JMHiqJ
-         v59Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWXrEA1M+9PvoIVOIR7cTE4l6iu3QSCS4ucLZFzMJkompXUqGTiuM56W/LNKhiu5NbKGCwPMdTx1hAn@vger.kernel.org, AJvYcCXFmP9/SQNDZKee8R2C1kFGdrBnxsDNTZcmby9sXPebGP2ie7VGGXvHV+oHm2solIFO9tCe9zSYs4m5@vger.kernel.org, AJvYcCXqavfaM8q87CceNYatBCvrcpW3b6vr+bgVMaAzkQoYFSwoUnRylFknLX6hNK9XT+KUYz464M7J+IVpT+6u@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYPb6n7yFZZlUtcbhUnWLf8PDYVuItCzF1FdS4lP8RKCp4fuUc
-	xJeR727pR23rv0CIiXZ03r0Pr9y8n5k7xVimXJrDYxWVJ0FlftpxWjTAiL+eo+d9cRJJ0tSeihd
-	VBUglNp/dd8OX364EqrEsLQNf+FC41a8=
-X-Gm-Gg: ASbGncvyUairRk+gBfpbUmx/UAMltvj2sD90baF0diq8Ax7Y2/5YXNShguf62as3xrA
-	8V9zSaRmh0NPmQGl342qKLbRuQ/ue+E/Ax8wGk9x4JCVDKbcURMWWEKLa5DIeySewh/41AC0MH7
-	b4LFtjUWJEbBTEEJsKyB0H/OlLuKCbvLumG9tF2P3ZqTuZU29ZXrINMs0fwmp8b27fdwqCgHhHz
-	d3qNF6DTA==
-X-Google-Smtp-Source: AGHT+IFx5Eh1kW3R5r0QFg3LtRwwSdNhv1kVoTvGNSNhlU62fSSAV7t5q9oAWFv4dZLxsmnwQxgh/Xb6Co2y3gYK8gA=
-X-Received: by 2002:a17:906:164f:b0:afd:eb4f:d5cc with SMTP id
- a640c23a62f3a-afdeb4fe8d9mr244918466b.31.1755684112729; Wed, 20 Aug 2025
- 03:01:52 -0700 (PDT)
+	s=arc-20240116; t=1755684270; c=relaxed/simple;
+	bh=oG0zDfQYLoZFTXU1onaQG6Ak5RU24C8p3Av1yEHPaJ4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=F9t5E3/0Oz5SdlyXerp42QhS+6CHJvkOkMgn/8rajCfWzN+6V8HI/gusMgw1T2SmvWrZmhIpvpcF9TaHv/lxeMeONW+UmM8JUd4SqeRP0koGTKn79QF6iG5tehEnENKtq/MyE5YA3VqFkwV9EIMR+QMn1m/sQftXDqcg3n7A/d0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mEKy38OC; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57KA4Awu3170873;
+	Wed, 20 Aug 2025 05:04:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755684250;
+	bh=Bg/wxNDlDGejcpYhDbQUNn4X6pECHdSGzNxkCuMyiXA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=mEKy38OCJYJjiL5hbZQeX59/TDkd1HvrdDP+aBPsOYK81A8vFPxSzWqKw/pfjI343
+	 0ryP0VzsISe3sZKNOzbiuaau0lDM3TZoOmJmTI/s0+u7xdECyJoLFjhrPb8v/VgZFt
+	 +aeqOJ+xcQrN5Uf2XrO33oauZeWnZanyx9K8C9ec=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57KA4ABj1973989
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 20 Aug 2025 05:04:10 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 20
+ Aug 2025 05:04:08 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 20 Aug 2025 05:04:08 -0500
+Received: from [172.24.22.46] (lt5cg1457vgj.dhcp.ti.com [172.24.22.46])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57KA42TR052951;
+	Wed, 20 Aug 2025 05:04:02 -0500
+Message-ID: <fe6f848e-d7bf-477d-bad0-0c8a860f3ae6@ti.com>
+Date: Wed, 20 Aug 2025 15:34:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250819-upstream-changes-v7-0-88a33aa78f6a@watter.com> <20250819-upstream-changes-v7-3-88a33aa78f6a@watter.com>
-In-Reply-To: <20250819-upstream-changes-v7-3-88a33aa78f6a@watter.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 20 Aug 2025 13:01:16 +0300
-X-Gm-Features: Ac12FXylz2Y87CBNiuwQVGcly02ciYY7x3x6JJevipMf-BQsWT2EglArAWCcHUY
-Message-ID: <CAHp75VdavWbSZD9Jqp5wqZKbvWJUL0n4-g93C4e2midT5aAu6g@mail.gmail.com>
-Subject: Re: [PATCH v7 3/5] iio: mcp9600: White space and fixed width cleanup
-To: Ben Collins <bcollins@watter.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Hepp <andrew.hepp@ahepp.dev>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+User-Agent: Betterbird (Windows)
+Subject: Re: [RFC PATCH 1/3] devicetree: bindings: dsiplay: panel:
+ panel-simple.yaml: Add Raspberry pi dsi panel compatible
+To: Harikrishna Shenoy <a0512644@ti.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>,
+        Harikrishna Shenoy <h-shenoy@ti.com>
+CC: <neil.armstrong@linaro.org>, <jessica.zhang@oss.qualcomm.com>,
+        <airlied@gmail.com>, <simona@ffwll.ch>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <nm@ti.com>, <kristo@kernel.org>,
+        <thierry.reding@gmail.com>, <sam@ravnborg.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <s-jain1@ti.com>,
+        <devarsht@ti.com>, <u-kumar1@ti.com>
+References: <20250818154746.1373656-1-h-shenoy@ti.com>
+ <20250818154746.1373656-2-h-shenoy@ti.com>
+ <td7d5mldzdunb4sxs5rxa4tfnvvpolcmpwurcv5ubn47whnqek@azedwe6h3y5r>
+ <8a31d1c5-4233-4696-bf8c-58f5db68d41f@ti.com>
+From: "Raghavendra, Vignesh" <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <8a31d1c5-4233-4696-bf8c-58f5db68d41f@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Aug 20, 2025 at 2:45=E2=80=AFAM Ben Collins <bcollins@watter.com> w=
-rote:
->
-> Make tabs consistent for register definitions and also fix width
-> to byte size.
-
-Reviewed-by: Andy Shevchenko <abdy@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
---=20
-With Best Regards,
-Andy Shevchenko
+
+On 8/20/2025 11:06 AM, Harikrishna Shenoy wrote:
+> 
+> On 8/19/25 06:54, Dmitry Baryshkov wrote:
+>> On Mon, Aug 18, 2025 at 09:17:44PM +0530, Harikrishna Shenoy wrote:
+>>> Add RPi DSI panel[0] as a valid compatible for simple-panel.
+>>>
+>>> [0]: https://www.raspberrypi.com/products/raspberry-pi-touch-display/
+>>>
+>>> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+>>> ---
+>>>   .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-
+>>> simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-
+>>> simple.yaml
+>>> index 1ac1f0219079..65f486f2bc9d 100644
+>>> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>>> @@ -268,6 +268,8 @@ properties:
+>>>         - rocktech,rk070er9427
+>>>           # Rocktech Display Ltd. RK043FN48H 4.3" 480x272 LCD-TFT panel
+>>>         - rocktech,rk043fn48h
+>>> +        # Raspberry, 7" dsi panel
+>>> +      - rpi,7inch-dsi
+>> It's powertip,ph800480t013-idf02
+> Could you please point to any documentation for this?
+
+Git log would point you to it: 
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=051e95ee7ec10050154e4c8f48be4d99ac83f8fc
+
+>>
+>>>           # Samsung Electronics 10.1" WXGA (1280x800) TFT LCD panel
+>>>         - samsung,ltl101al01
+>>>           # Samsung Electronics 10.1" WSVGA TFT LCD panel
+>>> -- 
+>>> 2.34.1
+>>>
+
 
