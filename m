@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-206688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C29EB2D473
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:04:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11887B2D46B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:03:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B419C4E33F2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:02:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A65EA1C2376D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9356D2C11EC;
-	Wed, 20 Aug 2025 07:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E42B2D24A9;
+	Wed, 20 Aug 2025 07:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ayql48Ud"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AdvSAJ68"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC7482C21C5
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D732C235B
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:02:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755673373; cv=none; b=Wf/JCz9osfKycqqYTlA4Hhb2Zx3NfAn2xZ70FdgRcVQtfJ6JNojgEidKhQG+Vweq2o+s+8BO7iOUz7AfFFdaTiOpznc3wbK2q8TfzTWW7tL6tRfm7Bg75Ndr97L5c95YC8vpRle7hj7D/cbTTuXOOb4209yIJBvh1dZ8ZGdCCRI=
+	t=1755673375; cv=none; b=fes0bALltqMUdobaw+uhE/v4Gqg3u8qhinLNL0/QaCAICtSvnTSFuynggxAtx+Vtoqchrxvtr/gHr2Nn5hsx5UgN0TrChy/pDDdRrMkE22mbLRH+dM2meR0gqffe1vi06Unb0HFEFTsp0spdeAeov6ITJszdcVtrYHs7p+fGBRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755673373; c=relaxed/simple;
-	bh=x6AMMrfKmpsnt80qI/jaePh0x1MxD2M+8h0kme5S3Q4=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=poWekvLUSUTJVHOr5PoUFLtBPVvZHDj5uphm+xcInFljYFvJWj2ABB2wK3dlqBRbY5EnYp1aEXQ3Zxb90DQkBu1XVAoqOnxJND9Ef3kd/nW6qPuXscD/sJIiGU43Jf3V0OD22j8VWtz6jMlfbOxWo0y7ac1F79M9qCVprwtKCxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ayql48Ud; arc=none smtp.client-ip=209.85.218.54
+	s=arc-20240116; t=1755673375; c=relaxed/simple;
+	bh=Pxy1ceX/K708ATMRkgiCl/qGBMScopnigW8cLcERjdY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=ubmEARf8QAp0lY4nPNSGtig2mMLtXd5Pq6pxSL6OFua25AXUMCPVbZMNCA4HyHhp/+ENTogx+oqCtwhGsa/vNYnDcyoShRdgFtgjLf0YnzgXRuxfEXucZbiTjxtL1Xqhmr7pt2MTLH146IdG4ZekgfTjcdx+uG1sufNX3qBcrLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AdvSAJ68; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-afcb7ab87ffso94417466b.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 00:02:51 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-afcb7aecf92so81693566b.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 00:02:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755673370; x=1756278170; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kz8t+h/h/0n0QXBXq+nhgUGC9ql7IeTr95ekPgWAy9w=;
-        b=Ayql48UdW5wMucRBLmRuaPoWOcyrK3nFUzVxt5MGg968ELMyZ/66J8ndjJX3duik0h
-         Uju8Dhu6Y5pNuiNePl/8/il0ijnKn5yq/ZycqHRKcyHxOvVDZ7UwGRLm7kQGJJLurEdg
-         bWZkpnoo2HkWGGSbBnC5Urro5z9U2GotEz2O1kBeSdkKyiLcwG56A5gCt2wtlNGuUryV
-         bux0ILtS4LZn8xl+udlfZFWTuN77m3mV1ldvbfMR3QjqYbFto92THAnYjyA5wyDMp5wh
-         uWTK4FLC6kjUd9MWoKEV9USSY5KmWfZPtv5lsJM9PkwlQ/7plWhLplI+8YhuMR10mSBb
-         dvvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755673370; x=1756278170;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1755673372; x=1756278172; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Kz8t+h/h/0n0QXBXq+nhgUGC9ql7IeTr95ekPgWAy9w=;
-        b=WGN4U9FVXHu6eoCCAFBARBZesx94TV8h4Poo6odmxW3R2t3yy5UrioKc3Tme1Aiz3Z
-         bD7kTv7tzGi5m0xsCa3kHjehWI8RLX6kYOTAPMGvd8Pnnpy4tzjdqkzXAOGXFC7/X/SW
-         505bzaSkxSi22larc2Lqij9pQa55R/d2rkrW8zGzj1LzwPpN2zNa746dBsl5yjDkyCzO
-         /bskkU9qNVk+RY5QU0bveB21d3go4VX06M7gRFwSxGLNNVjvTtRxyd7QVm/JW/o+r/YV
-         kWL+df4v80hDKRw7shO7bjABb0QqXz3eXhq0Rnrdd0sKSggX7YF3CYdSFOlBPPUw5NYW
-         K8aA==
-X-Forwarded-Encrypted: i=1; AJvYcCWg/JfXX/G5dDH44FoNYxHkQl7mGP+LSVrGAEy2Z3uOcdn91GzIxIUQEewnYyWLfcUqFqVbFydqu28e@vger.kernel.org
-X-Gm-Message-State: AOJu0YxE/a3XH4kmR2an++s0e4VugQzq7ocNugt69TwmRcVXZvtwq1s2
-	/nod+uvv+tPg4NXZx8ZdC6cVTI7KNuqqKruEg0GiK6NmUR+fVPtUfyq2yJmqbAAvBhY=
-X-Gm-Gg: ASbGncvHeF6tu0jecSskTBaRc9lsLvUZtPIoHBAzsO14T4z+qhswPqSWI4KYt3DHdXe
-	wWHqrnnF3U8mxQAcXdXUaEdmzf4A+DB4KZpY/aY795Kgrtq3b7Aded/wnIoKJSqUFdSfEVqBhYr
-	1PLy0nLbBM0UeK6PG90eclHnAVir4rSsQrHtadGwAcN+UFjCN49pNT/bKf72YEDAh67KpEBxQr0
-	xK7UIwUg27QSOTla1IsVpPJOJEJxHfhrqfdsBxrRAaoKhw6N2yTL+pyFwUB2F5h0Nzi2XcQQi9K
-	oGiRRInzmU7bnxcKTM9WS5kA7PnfQwlgPr4F+en9mUmAMYHN9PHrcObxhOo9VSWhZhz3HuYGi7F
-	9dvzskAGM0VMspBTnd1mchcFxRnYPS2te21kZbL4OQB1J66Q/gw==
-X-Google-Smtp-Source: AGHT+IEUJtY9T7M3w+t6NgODZP2UMBO1bB6yUNgABbdBlZ++2gMxl+ZFtQKIgu4nmM7A4aFMOc3sVQ==
-X-Received: by 2002:a17:907:6094:b0:af9:3d0a:f383 with SMTP id a640c23a62f3a-afdf019afd1mr77479066b.6.1755673370012;
-        Wed, 20 Aug 2025 00:02:50 -0700 (PDT)
+        bh=DH177aI32fcw+0fi3Kr7cEylMFjtb1+kKdAUsXxCdWo=;
+        b=AdvSAJ68XSZnVb7UaPm7wodp7sbHA7ey0737d5oKC++nhOluF3g0ugaz8/bc5DgOTA
+         PjtGs1UgJMsNjxIDilzxQM9q/DkKL2hqhXkU0ri5pIIzeSxzg7bxOPYtN44jBYbrOh6G
+         gJO+kUVusosyVAWIl3IKOj0o12Tz9gMUIZ2IePuOi+Bt53gcaE03cOPeJX6qaASLurxs
+         EGsqtZp1az1xNVdN6ub/IwNmyBtx/vQ3YR4uLyVYkJfrohevgnfZUzjgmxkuqIMAGxoQ
+         1CLGKgXS2PeSZjW2aazOR3VwHW+09dYZAkuJ/KtJIf5sBxiV0UZKI0dg+vTgM9LC8pL3
+         MLJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755673372; x=1756278172;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DH177aI32fcw+0fi3Kr7cEylMFjtb1+kKdAUsXxCdWo=;
+        b=F+LOn7f8H0nQlaluvyR0YfKWWgzZgNkhT7mZV/iN7MS7UbVQYNFUvououKtqW7a+18
+         VxwiNXgMr8GvWC8eAK0O443B2AjtddSJU3Kiq0UihRANrSVXZcBRUwnJXT44f4n/gCXn
+         ylbUtIsvXvqlzVf5PkMCjOdQyTRZbuYEsA4ogmZsjAAA2YJ8DKkQ96iyaPZvmND1jvsE
+         VzsDIALa3VOPQNSqpaUI1pDjz9tbdvL4VjQHAcPx3HNWIml7cj2TP5R5GRv5cS5aeh6u
+         uwnaYNgw4IvPbb7K1nYtRYEpaybhPzSypiebCVakJcNLGAec01KiOpwAfRzNGI0et8yI
+         yqsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXvu2MRkbymOYWGGRr3geN/m5Q9Pug3tEGcRgBespCmy4g7/kVtkGyvPjK4sTAWixsrxIz6BRw2AXT8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLm2Gch97rO7hQ54XAeFh3rRtBBkX/gCXgcTr3MxfFASGM3V4Z
+	nBkMR0dBzIvn0kAlYYqHfVi12QxRGyvlJAC0IEE4zMFldSVieWWdE4fc7ABeZBou2ZA=
+X-Gm-Gg: ASbGnctJ2dlWlBzlpbbyhgK/y52iLEqRs0ZEruiLkCi7enzLpJwBhkIOBcpedf7VhGc
+	nWjhVmMIPLlVLtuEhJKD734IkeV+K0sJZ1QoDq+2eEvyC8/6PcXrXdS4jN7d1rkORNRoeZ+ETvG
+	jTr8uUSaLedGYF4IPgWcY5EVfxcibMIf3H+Uomd5C+gCA8BRJNROmVXV8aID3JFh55Je6J72LSh
+	StsuSXF9x4FshoFHKf7zRMpQBqktKlPNatOpm4Cshc49iREF5qdsvpDhYjppTYTTzdThtBdcYrH
+	78D4DqWfmbJh+ATtgR6zsTKYI1tnsr7pWT40ASTlub1CYWQEOeZDjU8yHffgUguG5YRpIAYm7Ks
+	5uA8zUJ7XdC2ecE483OlyZVEQZnGqqPB2ZIt80zQ=
+X-Google-Smtp-Source: AGHT+IF9FNxgrgCt2MNISlOazft7efckRUUOCCyDUI6tMZE11GXZO0az7ewPiYnvvCxno2JpihA7NQ==
+X-Received: by 2002:a17:906:7316:b0:aec:4f0a:f9ac with SMTP id a640c23a62f3a-afdf02106f1mr69015866b.6.1755673372063;
+        Wed, 20 Aug 2025 00:02:52 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afdf6ff14f8sm37756466b.67.2025.08.20.00.02.47
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afdf6ff14f8sm37756466b.67.2025.08.20.00.02.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Aug 2025 00:02:49 -0700 (PDT)
+        Wed, 20 Aug 2025 00:02:51 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 0/3] dt-bindings: display: Few cleanups
-Date: Wed, 20 Aug 2025 09:02:39 +0200
-Message-Id: <20250820-dt-bindings-display-v1-0-d5b2555df51f@linaro.org>
+Date: Wed, 20 Aug 2025 09:02:40 +0200
+Subject: [PATCH 1/3] dt-bindings: display: ingenic,jz4780-hdmi: Add missing
+ clock-names
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,10 +85,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAA9zpWgC/x3M3QpAQBBA4VfRXJta6ye8ilwsM5jS0o5E8u42l
- 9/FOQ8oB2GFNnkg8Ckqm4/I0gTGxfmZUSgarLGlqa1BOnAQT+JnRRLdV3dj01QuK/KxrhxBLPf
- Ak1z/tevf9wMZuMYIZQAAAA==
-X-Change-ID: 20250820-dt-bindings-display-996a143c86ad
+Message-Id: <20250820-dt-bindings-display-v1-1-d5b2555df51f@linaro.org>
+References: <20250820-dt-bindings-display-v1-0-d5b2555df51f@linaro.org>
+In-Reply-To: <20250820-dt-bindings-display-v1-0-d5b2555df51f@linaro.org>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
@@ -106,47 +107,49 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-rockchip@lists.infradead.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=871;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=999;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=x6AMMrfKmpsnt80qI/jaePh0x1MxD2M+8h0kme5S3Q4=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopXMRGm342NsJMwTGBeIUU3aEDsSSJNSmaCf3z
- 2hb1+uhE/aJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKVzEQAKCRDBN2bmhouD
- 18bZD/91yp/iNgPOT/8uepdf/zbiG/DGKC1+o61nNJG7BV5sIXxSsdSZ1foiLkHXibtjcNRwQ/s
- x+wbb+LGT8rwNihSQTbClhlnGpXKGOb5kIJQ9z3T+PIKGYN6CIV3o4p6hfvnGiiew5aADThPKJ9
- 8NFQigShv/pzBXx/7yRzb4UyRxhkvfSjxBXf76ppaLwyvUh3Tcf5awj8aHfTVb9kR2jVBM21gAD
- SRTfGiqhC9yWvPJP16o9c3sdHOf8Pak2qnpJyfXj8yXGv3+EpcwZ4oJj55lq0mjIBoTlHaedT8L
- CwM/STq7YsVkiQHD2Yd6bln07WWyUdQtXiVUbm/JBKJgSAyysh1/E7VRbp17BQ2yvsl8AuRzi1X
- qVjHurkILLCLqiOGWuyYBYbr+Oddhxx3w3ZDR47yvJGMmXlHwfzTab5U5IW8OfiXHiSgAP0STuS
- zfMQFCqSeskPBGzRZm3FMVw6Cmlt4kZSgBff7JbYb6rD7dQZF1Z185+7beNhzP7mkFdtVplBT6B
- ueg1Uhz/o51bOZgNc3s2Jf/nBPRDEFwXdw5iSS63VO+LfPJsFJmg98MoUMEpkCbz4oMfag2Ig6Z
- Tl/wWTVLi9tC3Z4XuYkUHpUtHbUGghMGsxPnlZ+gCDNEYcdQN30wBgZOxKPet6HCgmghz8FDqla
- d+DIIriSdXsoRwg==
+ bh=Pxy1ceX/K708ATMRkgiCl/qGBMScopnigW8cLcERjdY=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopXMVT/M8Kz0Rj97OPMv9sVNcaz0uJrb0hpTH8
+ kC19UClVTGJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKVzFQAKCRDBN2bmhouD
+ 18JrD/0Q2MVyZwW9e4PQUvRkQCrJj1FZOoyd6meUdkZZCtOx5WXnCz6j7oqqPHzA84QftUJIEsb
+ J4c4cgQf6k6PZn+zX7ck4MK2YbM5Z/ptaV6cyi5Q3nB+sNqkWxX2ZTEt2GFPbSjFVhmYB9G28K4
+ Ov8uyjdeLuFnCQxWj9RtBVw0joZGfx5pEs5xI9dHfCJbMd95Qou4cqJtAbFwUnE8dLMROGaJyp0
+ sxJYXnKH91zEJl+MxF5orITmFGsZsdBUfeBrzOlkJHZWSEDQHaJ5u8e6qzq6z3tVXu8wUWdL5kw
+ PaiwcT8AQrcAndkVNiUDkjMc14HH383AyaT0//MGYrdZPxZmd03GC8hGGBAf/duk2GfNHN7ZifZ
+ dGPbiOqW6FdyG5Hztz3myV2M9Tozh5G0/H5NHGpehXf3dgFqQTgWKp9xBiGUcsuPBLrJft2S0U9
+ OC4BNjPaJ+KtIYYmMETw84dGimY/hECbjUO9Oo+d8z0fMtuPrSp2j4130edqJNQ5SrEPEfuEgDj
+ +vk/PCpEVNFcSGXMqqrTfeewDXEfp+mdbh2t6yLFC6pnfcu7X85/2W7+8Qbcohm+mmv1EcpG6EP
+ IPbnKFuQQIHsU4CgtjCPd4w0QEevG7ssarieYUB4hEUsO005lHEsQP8BMgUTZCPPdDUPAp//BRy
+ HNJzhF/eT5axvSQ==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Few minor issues fixed.
-Rob, can you take them directly? Display bindings are pretty often not
-picked up.
+The binding references synopsys,dw-hdmi.yaml schema which defines both
+'clocks' and 'clock-names' with variable length, therefore we need here
+also same constraint for 'clock-names' as for 'clocks'.
 
-Best regards,
-Krzysztof
-
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Krzysztof Kozlowski (3):
-      dt-bindings: display: ingenic,jz4780-hdmi: Add missing clock-names
-      dt-bindings: display: ti,tdp158: Add missing reg constraint
-      dt-bindings: display: rockchip,dw-mipi-ds: Narrow clocks for rockchip,rk3288-mipi-dsi
-
  .../devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml        | 3 +++
- Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml        | 1 +
- .../devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml     | 2 ++
- 3 files changed, 6 insertions(+)
----
-base-commit: c2a1a5ede4717e6f12d49fe5177a66d40cbf4847
-change-id: 20250820-dt-bindings-display-996a143c86ad
+ 1 file changed, 3 insertions(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+index 0b27df429bdce0b7e080ab291ee0c4c6b51f8e1f..84df3cf239d5bedf8a5806bb48507fea207c7167 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+@@ -26,6 +26,9 @@ properties:
+   clocks:
+     maxItems: 2
+ 
++  clock-names:
++    maxItems: 2
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.48.1
 
 
