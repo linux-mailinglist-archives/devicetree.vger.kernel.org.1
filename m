@@ -1,41 +1,80 @@
-Return-Path: <devicetree+bounces-206682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22AAFB2D43C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 08:48:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C29EB2D473
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 09:04:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A69C762790C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 06:48:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B419C4E33F2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 07:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD22255F5E;
-	Wed, 20 Aug 2025 06:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9356D2C11EC;
+	Wed, 20 Aug 2025 07:02:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ayql48Ud"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E351F30A9;
-	Wed, 20 Aug 2025 06:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC7482C21C5
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 07:02:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755672522; cv=none; b=mxi4UIKmoNj1TX1SpYF+u8c9Dpo0Fo5FBmouNSAqjIAO9Kw42eNzCnTRL8avJtfGGqhyi0+bsm7jVZve4PFCwOiTBi6ctgLMSOFB72wUnwJ2Pe/SoaM2Ki6xTuNvT0EaZVqvSX3+wjcoV4eioG5rzqWWRTw5IpmLURmbYlpShb0=
+	t=1755673373; cv=none; b=Wf/JCz9osfKycqqYTlA4Hhb2Zx3NfAn2xZ70FdgRcVQtfJ6JNojgEidKhQG+Vweq2o+s+8BO7iOUz7AfFFdaTiOpznc3wbK2q8TfzTWW7tL6tRfm7Bg75Ndr97L5c95YC8vpRle7hj7D/cbTTuXOOb4209yIJBvh1dZ8ZGdCCRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755672522; c=relaxed/simple;
-	bh=49DBKkptDFzzA2ZrfYvNanOnxBOu5JYgjj8zU6d4Jvg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RvhI7qsKUTI5N4gbA0yg+m7UXiDb7eGE/TiaVSj+ZLRXWpsgQ8duMqyVjO4Iyst/5ouHRVipEMEf5oeKykDdbWoOKXvAgO/IQiL4PzrqWSnYf2bLqdqPis/XzPtL3nQsSUKBpPFam8g9gm6yuN1/Yrw0J8wl0Nk5XjgH5zW9heU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [127.0.0.2] (unknown [114.241.87.235])
-	by APP-03 (Coremail) with SMTP id rQCowABHoYKbb6Vozu+wDQ--.65205S7;
-	Wed, 20 Aug 2025 14:47:58 +0800 (CST)
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-Date: Wed, 20 Aug 2025 14:47:54 +0800
-Subject: [PATCH net-next v6 5/5] riscv: dts: spacemit: Add Ethernet support
- for Jupiter
+	s=arc-20240116; t=1755673373; c=relaxed/simple;
+	bh=x6AMMrfKmpsnt80qI/jaePh0x1MxD2M+8h0kme5S3Q4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=poWekvLUSUTJVHOr5PoUFLtBPVvZHDj5uphm+xcInFljYFvJWj2ABB2wK3dlqBRbY5EnYp1aEXQ3Zxb90DQkBu1XVAoqOnxJND9Ef3kd/nW6qPuXscD/sJIiGU43Jf3V0OD22j8VWtz6jMlfbOxWo0y7ac1F79M9qCVprwtKCxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ayql48Ud; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-afcb7ab87ffso94417466b.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 00:02:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755673370; x=1756278170; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kz8t+h/h/0n0QXBXq+nhgUGC9ql7IeTr95ekPgWAy9w=;
+        b=Ayql48UdW5wMucRBLmRuaPoWOcyrK3nFUzVxt5MGg968ELMyZ/66J8ndjJX3duik0h
+         Uju8Dhu6Y5pNuiNePl/8/il0ijnKn5yq/ZycqHRKcyHxOvVDZ7UwGRLm7kQGJJLurEdg
+         bWZkpnoo2HkWGGSbBnC5Urro5z9U2GotEz2O1kBeSdkKyiLcwG56A5gCt2wtlNGuUryV
+         bux0ILtS4LZn8xl+udlfZFWTuN77m3mV1ldvbfMR3QjqYbFto92THAnYjyA5wyDMp5wh
+         uWTK4FLC6kjUd9MWoKEV9USSY5KmWfZPtv5lsJM9PkwlQ/7plWhLplI+8YhuMR10mSBb
+         dvvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755673370; x=1756278170;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Kz8t+h/h/0n0QXBXq+nhgUGC9ql7IeTr95ekPgWAy9w=;
+        b=WGN4U9FVXHu6eoCCAFBARBZesx94TV8h4Poo6odmxW3R2t3yy5UrioKc3Tme1Aiz3Z
+         bD7kTv7tzGi5m0xsCa3kHjehWI8RLX6kYOTAPMGvd8Pnnpy4tzjdqkzXAOGXFC7/X/SW
+         505bzaSkxSi22larc2Lqij9pQa55R/d2rkrW8zGzj1LzwPpN2zNa746dBsl5yjDkyCzO
+         /bskkU9qNVk+RY5QU0bveB21d3go4VX06M7gRFwSxGLNNVjvTtRxyd7QVm/JW/o+r/YV
+         kWL+df4v80hDKRw7shO7bjABb0QqXz3eXhq0Rnrdd0sKSggX7YF3CYdSFOlBPPUw5NYW
+         K8aA==
+X-Forwarded-Encrypted: i=1; AJvYcCWg/JfXX/G5dDH44FoNYxHkQl7mGP+LSVrGAEy2Z3uOcdn91GzIxIUQEewnYyWLfcUqFqVbFydqu28e@vger.kernel.org
+X-Gm-Message-State: AOJu0YxE/a3XH4kmR2an++s0e4VugQzq7ocNugt69TwmRcVXZvtwq1s2
+	/nod+uvv+tPg4NXZx8ZdC6cVTI7KNuqqKruEg0GiK6NmUR+fVPtUfyq2yJmqbAAvBhY=
+X-Gm-Gg: ASbGncvHeF6tu0jecSskTBaRc9lsLvUZtPIoHBAzsO14T4z+qhswPqSWI4KYt3DHdXe
+	wWHqrnnF3U8mxQAcXdXUaEdmzf4A+DB4KZpY/aY795Kgrtq3b7Aded/wnIoKJSqUFdSfEVqBhYr
+	1PLy0nLbBM0UeK6PG90eclHnAVir4rSsQrHtadGwAcN+UFjCN49pNT/bKf72YEDAh67KpEBxQr0
+	xK7UIwUg27QSOTla1IsVpPJOJEJxHfhrqfdsBxrRAaoKhw6N2yTL+pyFwUB2F5h0Nzi2XcQQi9K
+	oGiRRInzmU7bnxcKTM9WS5kA7PnfQwlgPr4F+en9mUmAMYHN9PHrcObxhOo9VSWhZhz3HuYGi7F
+	9dvzskAGM0VMspBTnd1mchcFxRnYPS2te21kZbL4OQB1J66Q/gw==
+X-Google-Smtp-Source: AGHT+IEUJtY9T7M3w+t6NgODZP2UMBO1bB6yUNgABbdBlZ++2gMxl+ZFtQKIgu4nmM7A4aFMOc3sVQ==
+X-Received: by 2002:a17:907:6094:b0:af9:3d0a:f383 with SMTP id a640c23a62f3a-afdf019afd1mr77479066b.6.1755673370012;
+        Wed, 20 Aug 2025 00:02:50 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afdf6ff14f8sm37756466b.67.2025.08.20.00.02.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Aug 2025 00:02:49 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/3] dt-bindings: display: Few cleanups
+Date: Wed, 20 Aug 2025 09:02:39 +0200
+Message-Id: <20250820-dt-bindings-display-v1-0-d5b2555df51f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,112 +83,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250820-net-k1-emac-v6-5-c1e28f2b8be5@iscas.ac.cn>
-References: <20250820-net-k1-emac-v6-0-c1e28f2b8be5@iscas.ac.cn>
-In-Reply-To: <20250820-net-k1-emac-v6-0-c1e28f2b8be5@iscas.ac.cn>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAA9zpWgC/x3M3QpAQBBA4VfRXJta6ye8ilwsM5jS0o5E8u42l
+ 9/FOQ8oB2GFNnkg8Ckqm4/I0gTGxfmZUSgarLGlqa1BOnAQT+JnRRLdV3dj01QuK/KxrhxBLPf
+ Ak1z/tevf9wMZuMYIZQAAAA==
+X-Change-ID: 20250820-dt-bindings-display-996a143c86ad
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Vivian Wang <wangruikang@iscas.ac.cn>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Vivian Wang <uwu@dram.page>, 
- Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
- Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+ Conor Dooley <conor+dt@kernel.org>, 
+ "H. Nikolaus Schaller" <hns@goldelico.com>, Arnaud Vrac <avrac@freebox.fr>, 
+ Pierre-Hugues Husson <phhusson@freebox.fr>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-CM-TRANSID:rQCowABHoYKbb6Vozu+wDQ--.65205S7
-X-Coremail-Antispam: 1UD129KBjvJXoW7Kw43Gw1ftrWfAF43Cr45Jrb_yoW8WrW7pa
-	y3CFsaqFZrCr1fKw43Zr9F9r13Ga95GrWkC3y3uF1rJ3yIvFZ0vw1rtw17tr1DGrW5X34Y
-	vr10yFyxurnFkw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmS14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
-	4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oVCq
-	3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7
-	IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4U
-	M4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2
-	kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-	bVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67
-	AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI
-	42IY6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF
-	4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBI
-	daVFxhVjvjDU0xZFpf9x0pRQJ5wUUUUU=
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-Developer-Signature: v=1; a=openpgp-sha256; l=871;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=x6AMMrfKmpsnt80qI/jaePh0x1MxD2M+8h0kme5S3Q4=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBopXMRGm342NsJMwTGBeIUU3aEDsSSJNSmaCf3z
+ 2hb1+uhE/aJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKVzEQAKCRDBN2bmhouD
+ 18bZD/91yp/iNgPOT/8uepdf/zbiG/DGKC1+o61nNJG7BV5sIXxSsdSZ1foiLkHXibtjcNRwQ/s
+ x+wbb+LGT8rwNihSQTbClhlnGpXKGOb5kIJQ9z3T+PIKGYN6CIV3o4p6hfvnGiiew5aADThPKJ9
+ 8NFQigShv/pzBXx/7yRzb4UyRxhkvfSjxBXf76ppaLwyvUh3Tcf5awj8aHfTVb9kR2jVBM21gAD
+ SRTfGiqhC9yWvPJP16o9c3sdHOf8Pak2qnpJyfXj8yXGv3+EpcwZ4oJj55lq0mjIBoTlHaedT8L
+ CwM/STq7YsVkiQHD2Yd6bln07WWyUdQtXiVUbm/JBKJgSAyysh1/E7VRbp17BQ2yvsl8AuRzi1X
+ qVjHurkILLCLqiOGWuyYBYbr+Oddhxx3w3ZDR47yvJGMmXlHwfzTab5U5IW8OfiXHiSgAP0STuS
+ zfMQFCqSeskPBGzRZm3FMVw6Cmlt4kZSgBff7JbYb6rD7dQZF1Z185+7beNhzP7mkFdtVplBT6B
+ ueg1Uhz/o51bOZgNc3s2Jf/nBPRDEFwXdw5iSS63VO+LfPJsFJmg98MoUMEpkCbz4oMfag2Ig6Z
+ Tl/wWTVLi9tC3Z4XuYkUHpUtHbUGghMGsxPnlZ+gCDNEYcdQN30wBgZOxKPet6HCgmghz8FDqla
+ d+DIIriSdXsoRwg==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Milk-V Jupiter uses an RGMII PHY for each port and uses GPIO for PHY
-reset.
+Few minor issues fixed.
+Rob, can you take them directly? Display bindings are pretty often not
+picked up.
 
-Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+Best regards,
+Krzysztof
+
 ---
- arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts | 46 +++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+Krzysztof Kozlowski (3):
+      dt-bindings: display: ingenic,jz4780-hdmi: Add missing clock-names
+      dt-bindings: display: ti,tdp158: Add missing reg constraint
+      dt-bindings: display: rockchip,dw-mipi-ds: Narrow clocks for rockchip,rk3288-mipi-dsi
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-index 4483192141049caa201c093fb206b6134a064f42..c5933555c06b66f40e61fe2b9c159ba0770c2fa1 100644
---- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-@@ -20,6 +20,52 @@ chosen {
- 	};
- };
- 
-+&eth0 {
-+	phy-handle = <&rgmii0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <0>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(110) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii0: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&eth1 {
-+	phy-handle = <&rgmii1>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <250>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(115) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii1: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
+ .../devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml        | 3 +++
+ Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml        | 1 +
+ .../devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml     | 2 ++
+ 3 files changed, 6 insertions(+)
+---
+base-commit: c2a1a5ede4717e6f12d49fe5177a66d40cbf4847
+change-id: 20250820-dt-bindings-display-996a143c86ad
 
+Best regards,
 -- 
-2.50.1
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
