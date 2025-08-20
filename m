@@ -1,100 +1,111 @@
-Return-Path: <devicetree+bounces-207038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C60B2E5F0
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 21:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 680E9B2E5FF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 22:04:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 311695C75B8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 19:59:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58B8B5E0C75
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 20:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B3927FB3A;
-	Wed, 20 Aug 2025 19:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C88626C3AE;
+	Wed, 20 Aug 2025 20:03:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iFLTaOeO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GeHJaS6B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F071DDA18;
-	Wed, 20 Aug 2025 19:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E2A24A054;
+	Wed, 20 Aug 2025 20:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755719987; cv=none; b=BQ1Lh0wKGU/wMs7a+j4zw/ek3OInnDqEPXBT+knOVegy1v+qoOIAW13UQm4RAVuLOpZO+f+nKlXbUCuO4zSUU7WkFYxQZbI3a0el56MN0UrNyiD6ffiptFxx1CP+ZFPq5Hs1B/ogXikfLtyu02aOv32B4LUIQu26yfYIgg6pY8o=
+	t=1755720236; cv=none; b=JgDa9WSsQTU0nfuj6tuK/xmUYrnQbdQJEZGnf46biPHI9074YuoK4sgo+5cAvmrYHhD6j1T5Iz4oVydUEwZnjw/ICqJ0gqLWPIQdEpk1qgFoYn1UpgWErl6JQZ4i/MaV1x33oLxGj60IcIcTwSbf00jHF6QNKyAt2U5Y2GRBuyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755719987; c=relaxed/simple;
-	bh=5YZTBg91StssS8CLY8edYTCDHeeCUPhH7a/Oy9Gtgxo=;
+	s=arc-20240116; t=1755720236; c=relaxed/simple;
+	bh=anNhsvCEDdZAFrVHuAW6Yq14ZRmsgEq59nDp1oTYxZ0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qlA5OkIKaksCU7BNjwI/BgvZL4Gp0AMLEHPFItxaT+i8KayRf61QVvNgpeCa13Lp4401xLYYAwtx2c//9U0OJUIrsTUIKOpwXx6tMui/ZV7dzSD/Bl3BtqVMu/d9CrrV4xMZgMYRZzYNZFiwRyg7IC6ki8kW93TlhBdtEqN6WSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iFLTaOeO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6973AC4CEE7;
-	Wed, 20 Aug 2025 19:59:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=s7uXyoQZqmrNEIgJt5nolvE62cqG+WmW8+JYgvZLyqqlvJBdj6ZtxyqSYzK//8TW3fbH10MMvMOmXGbzBDaRMEqd3XbP1zR20HTERiounp/IDi6rkuBT9Ry8d8ux8mVMW03Hgb2KJn3IRFa4un3TLHbtYhILBjc7LWLyF2J14s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GeHJaS6B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07889C4CEE7;
+	Wed, 20 Aug 2025 20:03:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755719985;
-	bh=5YZTBg91StssS8CLY8edYTCDHeeCUPhH7a/Oy9Gtgxo=;
+	s=k20201202; t=1755720235;
+	bh=anNhsvCEDdZAFrVHuAW6Yq14ZRmsgEq59nDp1oTYxZ0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iFLTaOeOOX21B+JnSaJ8f1fz70JoPxM4xSUwV2CLXvdXaBxgN5Ph3w8Z+0R+qmwiZ
-	 xHJ4zbMyptHmxhbdDeaCziDELJCn+hKNP3l6LuY7VLXj71Y9w1G6sQ7bKuxUM8yKkk
-	 O9/Xi/6l5rHJL891xzHs0O6xTuUHpi4UKyfVHCrR59Cs8pHvUYDke75YwKRfH+Ukff
-	 Z87Hr52+3MOdLbOspdWplJHIlPOfJL3aA2F8sOH/iGMhyRrHVIg6DM3aeWvDaUv5RF
-	 KSUCBmwirvRKyxc71oIgx0cYUJuH2dImiVuzmyvlpMjK5mdzviZNSfExiD3qRicrGV
-	 WXr7a1oeVFraQ==
-Date: Wed, 20 Aug 2025 14:59:44 -0500
+	b=GeHJaS6B8aM9Udh1FibxBFg3+IsWGhQ5XurO6jabKMivoDhVotrmQPElYvdfiUnRX
+	 y50h/H3ETrqUKhsSB7ipAOr8XJDPlcB5VXzl/QAVJESTe4+OUh1yTMQONS0d0lhS4O
+	 FfSeEtEh0cI18x9kpZkpuGWBxQwqgvgqj4f16DSkyhzeiUTzzk5Hk8K0j6Rz1f6SMz
+	 Bj0gzFyyqGDrFWgKRGtLJ9P1YpqNwB2cyokm+8YF26QOVw0KA9jgP+9jpkgUcRbLHT
+	 Nb7lRBcXe+Y42ezBDMzF7S44Le8bE1CoFX5R+jbW+Fi4wRsDWQJ+ey89iYQb0lMT7G
+	 seJ+tPSW9SU1Q==
+Date: Wed, 20 Aug 2025 15:03:54 -0500
 From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Add vaux for
- i.MX PCIe
-Message-ID: <20250820195944.GA596147-robh@kernel.org>
-References: <20250814085920.590101-1-hongxing.zhu@nxp.com>
- <20250814085920.590101-2-hongxing.zhu@nxp.com>
- <aJ4yuo6bULFy7uAv@lizhi-Precision-Tower-5810>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, nuno.sa@analog.com,
+	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH 0/6] mfd: Add support for the LTC4283 Hot Swap Controller
+Message-ID: <20250820200354.GA602656-robh@kernel.org>
+References: <20250814-ltc4283-support-v1-0-88b2cef773f2@analog.com>
+ <5713bb5b-3301-46bc-b30a-d2e4c58d1036@roeck-us.net>
+ <2svr42ee7akwxwj5nizwe4a4hqdk4rslv7ivxraqg3jy6m3mxz@lfpn2nx4jdmm>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <aJ4yuo6bULFy7uAv@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2svr42ee7akwxwj5nizwe4a4hqdk4rslv7ivxraqg3jy6m3mxz@lfpn2nx4jdmm>
 
-On Thu, Aug 14, 2025 at 03:02:18PM -0400, Frank Li wrote:
-> On Thu, Aug 14, 2025 at 04:59:19PM +0800, Richard Zhu wrote:
-> > Refer to PCIe CEM r6.0, sec 2.3 WAKE# Signal, WAKE# signal is only
-> > asserted by the Add-in Card when all its functions are in D3Cold state
-> > and at least one of its functions is enabled for wakeup generation.
-> >
-> > The 3.3V auxiliary power (+3.3Vaux) must be present and used for wakeup
-> > process. Since the main power supply would be gated off to let Add-in
-> > Card to be in D3Cold, add the vaux and keep it enabled to power up WAKE#
-> > circuit for the entire PCIe controller lifecycle when WAKE# is supported.
+On Thu, Aug 14, 2025 at 03:15:29PM +0100, Nuno Sá wrote:
+> On Thu, Aug 14, 2025 at 05:54:26AM -0700, Guenter Roeck wrote:
+> > On 8/14/25 03:52, Nuno Sá via B4 Relay wrote:
+> > > The LTC4283 device features programmable current limit with foldback and
+> > > independently adjustable inrush current to optimize the MOSFET safe
+> > > operating area (SOA). The SOA timer limits MOSFET temperature rise for
+> > > reliable protection against overstresses.
+> > > 
+> > > An I2C interface and onboard ADC allow monitoring of board current, voltage,
+> > > power, energy, and fault status.
+> > > 
+> > > It also features 8 pins that can be configured as GPIO devices. But since
+> > > the main usage for this device is monitoring, the GPIO part is optional
+> > > while the HWMON is being made as required.
+> > > 
+> > > Also to note that the device has some similarities with the already
+> > > supported ltc4282 hwmon driver but it is different enough to be in it's own
+> > > driver (apart from being added as MFD). The register map is also fairly
+> > > different.
+> > > 
+> > > Last time (for the ltc4282) I tried to add the gpio bits directly in the
+> > > hwmon driver but Guenter did not really liked it and so this time I'm doing
+> > > it as MFD.
+> > > 
+> > Nowadays I suggest that people use auxiliary drivers in such situations.
 > 
-> if it is standard, it should move to snps,dw-pcie-common.yaml.
+> I see. But do you have any issue with it being MFD?
 
-It is standard because PCIe spec defines them. pci-bus-common.yaml 
-already defines these:
+I do...
 
-  vpcie12v-supply:
-    description: 12v regulator phandle for the slot
+> I'm anyways tempted to the auxiliary device idea. The main usage for
+> this device is HWMON and I dunno anyone would use it only as a GPIO
+> controller. With the auxiliary device we would only need one bindings file
+> and slightly better bindings for the pins functionality.
 
-  vpcie3v3-supply:
-    description: 3.3v regulator phandle for the slot
-
-  vpcie3v3aux-supply:
-    description: 3.3v AUX regulator phandle for the slot
-
-Note that these should really be defined in the root port node rather 
-than the host bridge node. We've done the latter because the RP node is 
-often not defined.
+For this reason. The driver structure influencing the binding design is 
+a problem, but I think MFD is more to blame on that.
 
 Rob
 
