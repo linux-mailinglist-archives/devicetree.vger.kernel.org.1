@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-206830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E19B2DB34
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 13:38:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0B5BB2DB39
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 13:39:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC42FA06604
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 11:36:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 303C817DE14
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 11:36:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B302EE27C;
-	Wed, 20 Aug 2025 11:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E81322E2DF0;
+	Wed, 20 Aug 2025 11:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Lsu1LkDT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F6TSXgnj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F592E6127
-	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 11:35:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD4672D372A;
+	Wed, 20 Aug 2025 11:35:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755689707; cv=none; b=f1uJvixyc6r/23d+unk5PdUYToMMJMbbmen3X34PeHwnpn1RbfdC7wwmLO4pgGOGLgWMHhW1E4bPLm6cEqAeAo0vdxfLwZq5P/Skai5c5Idak8Nc1zM9aDNeKpKHvFOr49GxRJb/dEzBzQ8chXedQm7w1XNpzuEf3Z1+7IhB4q0=
+	t=1755689756; cv=none; b=CjHYXWb7bQeDtriSg2lrUaQB5L7GRBuWa4B2No6aycYr2gfkdNfZQnKKYinTZy/2+zfB2JAylsbCoPc4UmDq73mVt1wggeryrlKIqQ8Gy+MLcw4Y0Oc8P2sMAEsKkNAdYlGiuFF+JXfUSj5sTumPmx86B0WY1QR8LlvDRwaUXxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755689707; c=relaxed/simple;
-	bh=QOHtLk5QqbgZtnm43GlNAZR0h56vCGCpRCGU58YU9R8=;
+	s=arc-20240116; t=1755689756; c=relaxed/simple;
+	bh=aL/Gb7jMTCPt9Wn//aIlu4oVuntmLeGbABS2BL/rpQc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=agki5rTEzEsuNOH1eBFK6SBQh+fDHTfu1Bd4pLrNOOcwa/oSm8AQGNW18G0I15IrN6Fcgm8qTFip/lADn8Z5ngRncvAOyMGoZWiBdgWJki+op0vE9gCoIK+ZHoNyBpQ7o22l33bhzPriT4mafJWI+llv8387439A0evdzDsklLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Lsu1LkDT; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id D8794C6B3B9;
-	Wed, 20 Aug 2025 11:34:49 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 58B9D606A0;
-	Wed, 20 Aug 2025 11:35:03 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 658B71C22D8F8;
-	Wed, 20 Aug 2025 13:34:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1755689701; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=QOHtLk5QqbgZtnm43GlNAZR0h56vCGCpRCGU58YU9R8=;
-	b=Lsu1LkDTMPB1LU5muwhWVRn23FMJLNqKfUMsR9IDJHWjE45qmCxx5AP6d9b55ZECZsgZpb
-	q9hc/A+lIm20Lru3taO2asF6l6H/8VyMy+Jum/cCxT2ReEVhkFLPRayceA0Qdix1PO4W5m
-	gr5lQUmpUdJOlRtGpmwloQSI0I9fO65qPP7lXklBAtQVw0p08f1bi1F++WujW+Rs5+xTGV
-	NqypZSpQHsuLa2kCClB4Ihvb2bTrT0sGGeYb881pGLbvQofXGZUT24IIxf2eLwmT/h0yRD
-	4XXsx7oq8udgN9HrcROhny4ywakOpELNa1sr97A5W7qm6hufK1fy9+/QcwrSnA==
-Message-ID: <3c8d191c-efd6-4756-9c71-109236d4c54c@bootlin.com>
-Date: Wed, 20 Aug 2025 13:34:04 +0200
+	 In-Reply-To:Content-Type; b=qfUHW1SDdP4DsfSFnpigVxxSS4k42rVQZK3SHF21M8PodCi4JnSyT0ndjsLVfPKpVWbuW1SkpsD+StZbZFV+YS1tO7+Fenl8ACWuWa3Wl5xvsQyd0z3ox3PggFwU2BYjRnbRAs+fYy6Rj7kqtMDE1WTLZKqqRvSdH1KgIoF+9+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F6TSXgnj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0F99C116B1;
+	Wed, 20 Aug 2025 11:35:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755689755;
+	bh=aL/Gb7jMTCPt9Wn//aIlu4oVuntmLeGbABS2BL/rpQc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=F6TSXgnjncEQ8738OOqFwQkHtQ6e5721OuIf0sTlwotYiZolMEJ2dXMtzKo7c9cz6
+	 WmjmJIqil7An17/4kH5dVPanjJxkgrjo2VDfGqANQ5UFSTalxM0XWGz/wb6stQKRyS
+	 FUJ6FeMIGHvFUJsB7rMrVbbPy46f+UEIiew47P+rfy/MOb3wmD12N+vNDCJAe9pwP+
+	 yC0c9Ck4rIuyg7w3DwMz3BashFp/bPjM2CBcw5Sda1WINk+PPzH10zWz81KyIisE6V
+	 S9JQ8T92Azt3kEj2Hl9NNzLgEKYekL5WA9ep2vnFM62u2Lah5RnUaS0TMwANAlVX42
+	 5kMWW5dC/hIwA==
+Message-ID: <2e16f923-5dad-4c8d-80d7-667dbece92c9@kernel.org>
+Date: Wed, 20 Aug 2025 13:35:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,47 +50,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v6 2/5] net: spacemit: Add K1 Ethernet MAC
-To: Vivian Wang <wangruikang@iscas.ac.cn>, Andrew Lunn
- <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Vivian Wang <uwu@dram.page>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-tmds181: Add TI TMDS181
+ and SN65DP159 bindings
+To: Mike Looijmans <mike.looijmans@topic.nl>, Conor Dooley <conor@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20250820-net-k1-emac-v6-0-c1e28f2b8be5@iscas.ac.cn>
- <20250820-net-k1-emac-v6-2-c1e28f2b8be5@iscas.ac.cn>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+References: <20250812145256.135645-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3b7d4319-e208-470d-9ada-585343a64822@emailsignatures365.codetwo.com>
+ <20250812145256.135645-2-mike.looijmans@topic.nl>
+ <20250812-designing-tyke-db85527b373d@spud>
+ <f4ec7690-322e-493a-b346-7b9560ac0616@topic.nl>
+ <9fba4917-a24f-4fee-8f1a-7509a0bc542e@kernel.org>
+ <2d694c9c-704e-4353-8b57-de83eb5a7f96@topic.nl>
+ <1b517073-cadb-41e4-b470-54a6ad93dd59@kernel.org>
+ <3a4448a5-a01f-4d4e-a890-56eb9357abd3@topic.nl>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20250820-net-k1-emac-v6-2-c1e28f2b8be5@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <3a4448a5-a01f-4d4e-a890-56eb9357abd3@topic.nl>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Vivian,
+On 20/08/2025 11:37, Mike Looijmans wrote:
+> 
+> Met vriendelijke groet / kind regards,
+> 
+> Mike Looijmans
+> System Expert
+> 
+> 
+> TOPIC Embedded Products B.V.
+> Materiaalweg 4, 5681 RJ Best
+> The Netherlands
+> 
+> T: +31 (0) 499 33 69 69
+> E: mike.looijmans@topic.nl
+> W: www.topic.nl
 
-On 20/08/2025 08:47, Vivian Wang wrote:
-> The Ethernet MACs found on SpacemiT K1 appears to be a custom design
-> that only superficially resembles some other embedded MACs. SpacemiT
-> refers to them as "EMAC", so let's just call the driver "k1_emac".
->
-> Supports RGMII and RMII interfaces. Includes support for MAC hardware
-> statistics counters. PTP support is not implemented.
->
-> Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>
-> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+Please fix your email client not to attach such top signature.
 
-I've read through the driver and it's looking good to me
+...
 
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+>>
+>> Also, e.g. first file in iio/adc:
+>> adi,ad4000.yaml
+>>
+> I think I get it. Instead of having compatibles "a" and "b" the driver only 
+> supports "a" in its match table, and the devicetree entry must be either 
+> compatible="a"; or compatible="b","a". Using compatible="b"; would be disallowed.
+> 
+> I actually planned (I have implemented it locally already for v3) for the 
+> driver to check the chip type and complain if it doesn't match the devicetree. 
+> If the wrong device is there, the most likely cause is that the input and 
+> output buses got mixed up. That would also justify having separate 
 
-Maxime
+I don't understand why. I don't get what is input and output bus.
 
+Either devices are compatible or not.
+
+If you can check which device you have via registers, then usually they
+are compatible.
+
+Best regards,
+Krzysztof
 
