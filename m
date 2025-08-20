@@ -1,112 +1,108 @@
-Return-Path: <devicetree+bounces-206878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA6CDB2DDD9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 15:33:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 173E5B2DE05
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 15:39:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9BD9566419
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 13:32:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 112281702B1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 13:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0EE031CA68;
-	Wed, 20 Aug 2025 13:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADFFD326D71;
+	Wed, 20 Aug 2025 13:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bxhfX2eJ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Lxm4LncN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84CB22DECDF;
-	Wed, 20 Aug 2025 13:32:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C413218CD;
+	Wed, 20 Aug 2025 13:33:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755696734; cv=none; b=LVQAbC0mo3DOganmgCTcWmQlfFupI/166hDjvCoFC9U+UricJelIyRiJp+EfcOqlJYJXLHUxnJVTHyj4FEHo0MDWCY3DjEetF2HfPe1QlIfV9h+suOOS57+wm8qSXmCOq57pQot5j1WcK+14YFZ5lsItncjAIG3/8qVsrrYhzF8=
+	t=1755696827; cv=none; b=t1D/El1YK3ZnXyD+LEVPXeXhD/xoH5ycZv5L4tUv4NV+90RDtH4rhTO7Zpoi0ORkSzkU7t6BGEAdbK0tt9d9/VAM+oJJsrw3zMR/YMMQqIKqxTHMxX3+ijGSs18eWjIbwqFtWFPraXV44dEg0itR/c9OcVQB77366VxuMA73vN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755696734; c=relaxed/simple;
-	bh=VmC64I3c//25kcKmSiyTSzAZcozMKfr1010PUjIHDRU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=QvgJurgiN8fbvJlXfLy6xrcXai5oSTfUJGwPzed9bMnCqlaKucAwEUqjjRf6au+2LlDh6hyPI2oOLjN6plKyZRORhLzwCBQd9u+xsXPpUWcSSpcT/mxTmu3kk0btg2bOVJd5pAAIcgZFRCxzSDIQQYJGyx+0w2AHK6cUL/TItdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bxhfX2eJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3A84C4CEED;
-	Wed, 20 Aug 2025 13:32:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755696734;
-	bh=VmC64I3c//25kcKmSiyTSzAZcozMKfr1010PUjIHDRU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=bxhfX2eJTx39hAXzOH8F7an19eyMbxkzJjHMdJmpy3TQOhp97PD3lpExGPEnpy3PD
-	 wRYx/EhkPiuSGlKTgwFN2tNTfvc7q9v2W+iQaLR7U+qxX8GkFwSC2im0jYMPQJjwpD
-	 zASTRNomGiOlZvb7bTvBShGhDS7ngEunfL/Aplp2tUQhaUFys4g93u9yg4sZ3+LqoT
-	 OQgPnyYIP8K4whbPTyzcwZBN/qb/RdF4RiRS91O7Zpct+DMDFgU96I4QecIhfi76bQ
-	 P9ojNjlIscgmedSHc1f+6uNK1IghdLvp5A1gBaRWWl7Xy0aHpXaQnVhQBdTZHR1KPb
-	 J0UT4fxB3QGeA==
-Date: Wed, 20 Aug 2025 08:32:11 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1755696827; c=relaxed/simple;
+	bh=SaNvr16XH7ej2OcXCQ1iRpF9atHKPorFp7MQLGCnfjs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=aO6cvDOn2adYCDiiic0Cg2hJbRBRatnDgUeRrDEypXOvKFw3FgrsrVDDnQnKh6IS/cwOTyRWDb5nTwEn//TMstZHOsqFvLJqVlNVdkWMEF3Uu5M89PnfG6kSqeVSNx6XMbfvIynXN66zsWqDuYv1di5xW5WJiCFV/zlLTnqW5yM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Lxm4LncN; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1755696823;
+	bh=SaNvr16XH7ej2OcXCQ1iRpF9atHKPorFp7MQLGCnfjs=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=Lxm4LncNaa+hg66D90Mv8uIt9ZS7bBKPXRKwixPiMamgBj+MlLq+GKRCnrEYXF9Zv
+	 K4O8DdzbWKptMKtRuyiZ7EjsNS+tf+n0ANEkVcr48rZMtt9G2/ZUuyMAODBbMVdyBw
+	 9bzbx38MYoYqDzZapd6D4Ah7dii3KOWJuwKjEUI3aMzYlk25d25qqAE1IrG9Ul4qH5
+	 TXn6ihImAU13F73fbOTBpViQKDeYQ4FPOQnMtp/BplzrTCOV6E3whfMybGMIr7MfJf
+	 gq8sWrk4z7VK/CpH34VO45pG1rc5YU/B4oCTJxS9gCfQwCIAY3vykR2iEeXME3lepv
+	 5LhB/otf/pKvQ==
+Received: from localhost-live.home (2a01cb0892f2d600C8F85CF092d4af51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 99DDF17E02B0;
+	Wed, 20 Aug 2025 15:33:42 +0200 (CEST)
+Message-ID: <ff583d9675181e2e6f39169a55da8958014f0ea5.camel@collabora.com>
+Subject: Re: [PATCH 5/9] dt-bindings: sound: Convert MT8183 DA7219 sound
+ card bindings to YAML
+From: Julien Massot <julien.massot@collabora.com>
+To: Rob Herring <robh@kernel.org>
+Cc: kernel@collabora.com, Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>,  Ikjoon Jang
+ <ikjn@chromium.org>, Enric Balletbo i Serra <eballetbo@kernel.org>, Chen-Yu
+ Tsai	 <wenst@chromium.org>, Weiyi Lu <weiyi.lu@mediatek.com>, Eugen Hristev
+	 <eugen.hristev@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark
+ Brown	 <broonie@kernel.org>, Julien Massot <jmassot@collabora.com>, Sean
+ Wang	 <sean.wang@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
+Date: Wed, 20 Aug 2025 15:33:41 +0200
+In-Reply-To: <20250801172821.GA3111733-robh@kernel.org>
+References: <20250801-mtk-dtb-warnings-v1-0-6ba4e432427b@collabora.com>
+	 <20250801-mtk-dtb-warnings-v1-5-6ba4e432427b@collabora.com>
+	 <20250801172821.GA3111733-robh@kernel.org>
+Organization: Collabora Ltd.
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Project_Global_Chrome_Upstream_Group@mediatek.com, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Jjian Zhou <Jjian.Zhou@mediatek.com>, linux-mediatek@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wenst@chromium.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Jassi Brar <jassisinghbrar@gmail.com>
-To: Jjian Zhou <jjian.zhou@mediatek.com>
-In-Reply-To: <20250820094545.23821-2-jjian.zhou@mediatek.com>
-References: <20250820094545.23821-1-jjian.zhou@mediatek.com>
- <20250820094545.23821-2-jjian.zhou@mediatek.com>
-Message-Id: <175569669451.3275225.15370422405683288436.robh@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: mailbox: mediatek,mt8196-vcp-mbox:
- add mtk vcp-mbox document
 
+On Fri, 2025-08-01 at 12:28 -0500, Rob Herring wrote:
+> On Fri, Aug 01, 2025 at 01:18:07PM +0200, Julien Massot wrote:
+> > Convert the Device Tree binding for MT8183-based boards using the
+> > DA7219 headset codec and optional MAX98357, RT1015 or RT1015P speaker
+> > amplifiers from the legacy .txt format to YAML schema.
+> >=20
+> > This improves binding validation and removes DT schema warnings
+> > for boards using these audio components.
+> >=20
+> > Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> > ---
+> > =C2=A0.../bindings/sound/mt8183-da7219-max98357.txt=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 21 ----------
+> > =C2=A0.../devicetree/bindings/sound/mt8183-da7219.yaml=C2=A0=C2=A0 | 49=
+ ++++++++++++++++++++++
+>=20
+> mediatek,mt8183_da7219.yaml
+>=20
+Ok, Fixed in v2.
 
-On Wed, 20 Aug 2025 17:45:37 +0800, Jjian Zhou wrote:
-> The MTK VCP mailbox enables the SoC to communicate with the VCP by passing
-> messages through 64 32-bit wide registers. It has 32 interrupt vectors in
-> either direction for signalling purposes.
-> 
-> This adds a binding for Mediatek VCP mailbox.
-> 
-> Signed-off-by: Jjian Zhou <jjian.zhou@mediatek.com>
-> ---
->  .../mailbox/mediatek,mt8196-vcp-mbox.yaml     | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,mt8196-vcp-mbox.yaml
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/mediatek,mt8196-vcp-mbox.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
- 	 $id: http://devicetree.org/schemas/mailbox/mtk,mt8196-vcp-mbox.yaml
- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/mediatek,mt8196-vcp-mbox.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250820094545.23821-2-jjian.zhou@mediatek.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thanks,
+Julien
 
