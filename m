@@ -1,59 +1,89 @@
-Return-Path: <devicetree+bounces-206650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC1AFB2D24E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 05:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15DD7B2D206
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 04:40:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52E756859ED
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 03:08:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB1AF3BFCC7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 02:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647A9235BE2;
-	Wed, 20 Aug 2025 03:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E982147F9;
+	Wed, 20 Aug 2025 02:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="WcOh3ZWS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F4OJlt/N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF8A2185AA;
-	Wed, 20 Aug 2025 03:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701FCB663;
+	Wed, 20 Aug 2025 02:40:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755659302; cv=none; b=OJJ1dczB/6auE4nEWt6oHM5FfUrmMDiifW9zUB6miaBeKl/9uHpESq5AaOVCKk/fo19tuaWz1QNjen/qMSJ+QhWW0AJYCmaCRSyiaPihRmNhDuPfyLXRoqnAxZEGyztvUxt9Tl56SaF4in7AoJKSsZkah6VxNZbPCJU/QD/p5Jw=
+	t=1755657652; cv=none; b=h49Zda17B/wGhjf1NwXm6qBfnjcWqq0W3AfYlZJtg18SiM9bIYC0uq4cSYm+vzor1/LcQlN6OAl7ZIUQ+Fb/03FLCpGn4p+p3Fqnc07X+lNI8o1EcSn//y9CLaIFCFY0hPrj3fbbxeQttzgHpDeD3G9DsuBCw/JllisbTTKTUe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755659302; c=relaxed/simple;
-	bh=ZXSSwhiLothcw42T8WV/C2Hk6BN4vEWGCis46vc1PUo=;
+	s=arc-20240116; t=1755657652; c=relaxed/simple;
+	bh=JKgaCr7lFgvAES2UujZEWfRkmOo5foqMlEXWqdUMs3g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RHz44hXRPHh9EED1tpscf6mPXV4jrDrImpvAdfv/JPKYQ1F7PC08sTDocMrt23ThP2ZqmccIaytz3DsrkWAA36N3Wz0KFfgttwrygxF4I7pV1cizxdIrxsABB0Y54oZEzNeFOUS+NU93pWIJd0jRfuWXK1H4qCaFhkOnl9r8aDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=WcOh3ZWS; arc=none smtp.client-ip=220.197.32.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=xhgXz+NGz9dE9bo3AgVhV+r8lEFLGIj0GKiYKAiGm04=;
-	b=WcOh3ZWSv2Xk56vJhMpz6KCwCHurEduYoLeL7PSDayXg+xQrZ93ge37SGl8rre
-	qbREsrJMJ1iAf4gfl0pxJaV1UcCM62QN2AYFMzqJ7gIp7iWsybmOZFIKrUn6JFfe
-	Z4mUlqrF450rsSaU6hCZ39ffVes2sW4EiuAnLV1kfqA/U=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgAn5W6VNKVobNX3Ag--.59759S3;
-	Wed, 20 Aug 2025 10:36:07 +0800 (CST)
-Date: Wed, 20 Aug 2025 10:36:04 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Christoph Stoidner <c.stoidner@phytec.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-Subject: Re: [PATCH v3] arm64: dts: freescale: imx93-phycore-som: Delay the
- phy reset by a gpio
-Message-ID: <aKU0lPi485xA5SS9@dragon>
-References: <20250524112315.695376-1-c.stoidner@phytec.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YCg1lsyUpJlK8Su7gTK/n6EZ0dryxGfn9GDOma30eFkyQrX4S9Cv3l0yL580kDFblk2Uz31OYBAdWmFJ38l5X0vh7iABAdlc8PFtC/KX34U7IuCCi4frJS+1I0gfxUQrUd7D9dN9x5v1jEUb0CPoiJ6sat7X2aZ2DI82CS7n9Pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F4OJlt/N; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-b47156b3b79so359700a12.0;
+        Tue, 19 Aug 2025 19:40:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755657650; x=1756262450; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5o8thSzIALN1uPBnoTvMoKA6rLfBMmP8vLMFrWtTp60=;
+        b=F4OJlt/NeEMZ3YiuWA83kocz5qqxCjrOrKS4TVXqkPXsnfqzMvZKdIaBZrvV7H5slY
+         BNUMB9ykA+1Rs5cpuZvaHyrzQynZmuhV5WYEtsZE87KCRnaY2s585GkHVNSgKScn3Y+B
+         +XpkiUOnYJWWoy4J6KRrYahnC1Lvwq2D2Ptwpgn03gD05ysMLc2ylsGFeRDeK8v04byO
+         0BS7pWYBPdcpCEIeIce95oB3SuhDonBdu/TLHfhT9weG6s6S2XvVqnfG3g0dNkrXVmYI
+         Fu70mBZZxNMdeUgIHUOY6z1aRvCurJ3hE48NjQ1oH3XAbDhl6qPpXDHykocS6wM0JdJy
+         roHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755657650; x=1756262450;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5o8thSzIALN1uPBnoTvMoKA6rLfBMmP8vLMFrWtTp60=;
+        b=xI3TL1tU/eh/yzSj3Kgm2Er12s4eekVbM1SKhW/zKJqiH2vF4vJ7AsLcbZhRYapCcn
+         gP3cGsonrAC+PdcAA1qdmVutXm0LaUQT2verJChbByozw+LpB6VrSKVRQsBj3qzq8F0d
+         cduQwMBG1oMZzs5GFiTla0bDLlps+OyQyGAre+79zq6n/alZsjLPgst/kgoWaaimY8s6
+         kY2KIBv3hh0JtyP/PVyabJecdGJjkA7JAo4VjSjeJmnyG+nVi/q/mzq2r7jmAIBhuRKK
+         gppX77IGuNOiQ9zzHA1aqMXtAe2IE6PqtxMy8xqDJcXwqvSubmAOQTOD0v10RG+ZN8+e
+         MbaA==
+X-Forwarded-Encrypted: i=1; AJvYcCVZic6Zua9w2tWGVv+pwadUQE9Nzd20ztjmzTHeYTRREuySegPY7rZaHKdeKdiv9OxPI1cuEgXk0SzO@vger.kernel.org, AJvYcCWfJnXsENHrmsFLEPh52esxEKHh6PeqYR4y1FQgEyF8hyb2xywhudctdjSPKbVQZofmc5Xnu0M8jAO78mfw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyth+vmqyz2FVEcrbx5UVidM2SVu942pBNfEgoSLvuHgQqBSdFT
+	Aeg60dbbvz+uEpfdMcp48ul0ynhArfLPpQItuQvAqRtpFFWHzlLF07Ac
+X-Gm-Gg: ASbGncsx687p4UanxQQeBbiBl9gJWYpg69u2F7zZ8leHNp97L24Fv6t3DWHN4JBUm+Y
+	Gq9I5Uz9r/Iu2b2aoyMKsUzQVVkm4jYtv68pOsQOnOHZ1RD4XeB6IhoO3zSvHvptUA55zRQMxXI
+	x1iOPnyDM//egdW3wn7fhxDIMXf16BItxK7UIRKPAUJ1fJ5TZU2n1dBFx6z3X8yk48whUIbmoE8
+	259riyi1Mjbhx0ja6L7xTsPsea1vGb1KAaEyQGf7tustSmkn2NWtjnXBANGWdPVu0oECqcITyXY
+	Jmp4sM1mrMGZW4ccOgN4CAbDtYNXkoqs6Xsz0UtRSrsfbxh241WBEz0lfwuO0DJ/wxGma7k9a18
+	YA7H9I85LATrSqfY=
+X-Google-Smtp-Source: AGHT+IHq6qOIwEilWM/BAT9k4oZ2UZBkL4UPMZyaTKIJz4HZq4C0Dc+kdcM0flbXi6E7TpzgZz7WIw==
+X-Received: by 2002:a17:903:90f:b0:237:e3bc:7691 with SMTP id d9443c01a7336-245ee117b55mr18310785ad.13.1755657650342;
+        Tue, 19 Aug 2025 19:40:50 -0700 (PDT)
+Received: from anyang ([106.250.177.234])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-245ed4ec0ddsm10880125ad.114.2025.08.19.19.40.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Aug 2025 19:40:49 -0700 (PDT)
+Date: Wed, 20 Aug 2025 11:40:44 +0900
+From: Dongjin Kim <tobetter@gmail.com>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
+	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	robh@kernel.org
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Change ethernet TXD timing
+ delay value
+Message-ID: <aKU1rJKzkkS4P+VT@anyang>
+References: <20250819075522.2238643-1-tobetter@gmail.com>
+ <20250819151019.877709-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,28 +92,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250524112315.695376-1-c.stoidner@phytec.de>
-X-CM-TRANSID:M88vCgAn5W6VNKVobNX3Ag--.59759S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7GF13Gr47JrWDuryDKry3urg_yoWxuwb_ua
-	y8K3ZFkw42yrZYgF4fKF42gr43uaykGFyrXr4rJw4fXryrXa4DWFn5Arn3Zr98X3yS9ry3
-	WF909a4xursrWjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUb7PEDUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNhe1G2ilNJffuAAA3G
+In-Reply-To: <20250819151019.877709-1-amadeus@jmu.edu.cn>
 
-On Sat, May 24, 2025 at 01:23:15PM +0200, Christoph Stoidner wrote:
-> According to the datasheet the phy needs to be held in reset until the
-> reference clock got stable. Even though no issue was observed, fix this
-> as the software should always comply with the specification.
+On Tue, Aug 19, 2025 at 11:10:19PM +0800, Chukun Pan wrote:
+> Hi,
 > 
-> Use gpio4 23, which is connected to the phy reset pin. On the same pin
-> RX_ER was used before, but this signal is optional and can be dropped.
+> > Very poor network performance is observed on the ODROID-M1 Board
+> > (REV 1.0 20220613) when running iperf3 (under 200Mbits/sec), and
+> > this problem can be resolved after changing the value of TXD
+> > timing to 0x35 from 0x4f.
 > 
-> Note: This comes into effect with the phyCOREs SOM hardware revision 4.
-> In revisions before, this gpio is not connected, and the phy reset is
-> managed with the global hardware reset circuit.
+> Can you try changing phy-mode to "rgmii-id" ?
 > 
-> Signed-off-by: Christoph Stoidner <c.stoidner@phytec.de>
+> ```
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
+> @@ -200,7 +200,7 @@ &gmac0 {
+>  	assigned-clock-rates = <0>, <125000000>;
+>  	clock_in_out = "output";
+>  	phy-handle = <&rgmii_phy0>;
+> -	phy-mode = "rgmii";
+> +	phy-mode = "rgmii-id";
+>  	phy-supply = <&vcc3v3_sys>;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&gmac0_miim
+> @@ -209,9 +209,6 @@ &gmac0_rx_bus2
+>  		     &gmac0_rgmii_clk
+>  		     &gmac0_rgmii_bus>;
+>  	status = "okay";
+> -
+> -	tx_delay = <0x4f>;
+> -	rx_delay = <0x2d>;
+>  };
+>  
+>  &gpu {
+> ```
+> 
+> --
+> 2.25.1
+> 
+> 
+Thank you for suggesting me to try 'rgmii-id' again.
 
-Applied, thanks!
+I'd remember that 'rgmii-id' didn't work with the very early version of
+the board, however your suggestion works. Let me test the change with
+more boards and submit the new patch when it's done.
 
+Thanks a lot.
+Dongjin Kim.
 
