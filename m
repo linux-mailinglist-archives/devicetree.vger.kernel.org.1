@@ -1,114 +1,119 @@
-Return-Path: <devicetree+bounces-207012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9D90B2E480
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 19:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E6ABB2E4B9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 20:12:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14EC31BA70E6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 17:57:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C70CC188EB46
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 18:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F31CF275B05;
-	Wed, 20 Aug 2025 17:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FCE3272E43;
+	Wed, 20 Aug 2025 18:10:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="USAUCJTw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4E9273803;
-	Wed, 20 Aug 2025 17:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9A68224B01;
+	Wed, 20 Aug 2025 18:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755712596; cv=none; b=tKxZaO/YSwxYoblUbAU0IV1cQysaMwtRt+4DPQonI0A8Y1/NaTRvA0fWseRXrqj4bg6/ifJI00RuJ+82A95cF8nJnxQ2Iu9NvQU+cxCzpf59rifx0cv5/X1oSJQ+FPijfmrOOFd7EyTL4p2MZ5WrWLo3x33XxJQ/A/fBssZzlkA=
+	t=1755713422; cv=none; b=oHNsByRrzpWg1A98R3FkntmDBiFv5JUpyA5B6UhL1INWmg5RDCsk8073DhT2TRmMYHLoK3W54e+9Y/sYbuTiyqNpT2b/PC4JCq0u+8VXdJPiw4KkUFQLde0KadbEYShh2bpVu5ftT1PTl9zkt2wxoY/4bfTcn0Za8pzT60eEI0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755712596; c=relaxed/simple;
-	bh=PAk45Dqw/IAb5hhcZzBL27LdnwY8NSIC8b5E9cb1V/4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VkKUX5EHl+gYdw0/C0wY/KaUrexej9Y81DvIpL+hOIuoOD/KbolLMBGth8R95LFR0rJfIrUujJcE3oAj5iOdR0F7y917jGMz2ahXg+CuXVmfl97NVcgbr1g2y9nUMVpmPaJYaIymIK636FTSTmovOYpc3hHJr4Slk2+1BbtrRK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.110] (unknown [114.241.87.235])
-	by APP-01 (Coremail) with SMTP id qwCowAB3Z6sLDKZou3TODQ--.64161S2;
-	Thu, 21 Aug 2025 01:55:23 +0800 (CST)
-Message-ID: <2601e3bd-b3d4-4eb1-bcb5-e4fbd9fe9c96@iscas.ac.cn>
-Date: Thu, 21 Aug 2025 01:55:23 +0800
+	s=arc-20240116; t=1755713422; c=relaxed/simple;
+	bh=FJxphuTyUVocXd/pa2H2+aAq89f2FJJnAgj6E0GIPc4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=nwj76xVwLriWgdp5V06sOMQnwEj3JQU5yyiEEEeCogaj5nckr1I0MaxvwdYrepNdU0699orZWBwMBDY14NRugPIKthuwSHl0gXHhXp8IpTqQ4XqOiRJM7HmUkN3t52p5v1mCHaNiU9uA9amwTUuFI0z9WabP1rcf4aM9YhdP5Qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=USAUCJTw; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2445824dc27so1246705ad.3;
+        Wed, 20 Aug 2025 11:10:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755713419; x=1756318219; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rBEVB9H4EoZDoSSlySK1aiGBE2ClU4D49thMvdHYEzI=;
+        b=USAUCJTwqQynuxPbtnGLh17T2qQkVV7D/g/2uiGL0s5greRShryMjy3jofq0NOdwM0
+         CTFHfhottFpL3LRw6LyRCHquD227qKWKmF72jFdnNS/C8LeNLpSuIpDLPSZ23ZR818qV
+         V9pyPyXnqaQzu4rP2nNsow79hZNugIOhE69aUSjk/ZXLiW3vv0rKVcyk/rtATLEe1BiK
+         oSdnAbnhdA1+nlE2MObTme1GbUh0m+3ONrYNrGK/J7CPlOtgZx0tGSnqtZ9P0Ztslu1u
+         BCKlPZuQmJz+foZouJPPdmOe7i2YVKvn+8SGgwWGCCb21D3xzm4/UtHnITE8al5oEz0U
+         SKbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755713419; x=1756318219;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rBEVB9H4EoZDoSSlySK1aiGBE2ClU4D49thMvdHYEzI=;
+        b=joSWU4IorEVsbgh3ov2GgalQPKZ0MiEjn9Qs8OCZUoBgiUlzUQBvCGBKmrmTZlivPU
+         QPkHLXw4Y9NK++mjadlMWL1ic+Kz3WINGsfd5byKzJ+MoAi87zzuGcHNuEVfgDv2i6PS
+         zIAE8WkvdjBEigzDd2HuGLeu2tU2YbSkn9/ujesLxKt7Aebbv3bxWAAbXY5ixvpgtqpC
+         dWWj//BNktR9a2BuBohdz9kLpwiDu93IIE3mZNQug0TcGkaW61Ol6+h0p6EhDry/X0MR
+         60tBnkpvZcdWrnjk3rKzvF91QZOmqWwiaEnnLO9iQEfoPXxKytXciuD5mc+WAUwudKXR
+         1vng==
+X-Forwarded-Encrypted: i=1; AJvYcCUaD8W7r3Cy8WsbkW5VjhI6xAG6MneaxSIRUjYg/dd79NucICVdIwXvswYojFj7b4wUY5pUmBaUFiajOQY=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzl5CYEAo3BcHqTxCqioBtQGPnQh3lDpkbbMUbLLwFnjoIU/ONt
+	99l9zhnXHc1BCQDihKP03Hpj9P6HYwKgyUFKdYj3s/l7ti70Nl2tdBtxbj6hNbRU
+X-Gm-Gg: ASbGnctymyvnu7EyJrBHW+r5cyBJ9QncvOHnFeAxaq81WBgygZXOSSKeTXDOtYRDPfS
+	svT4DloITVCizjdVvlTrrEfxXspcnzGV6L5esYQ1yDK6t/p36kJWl4OV0w1p0pKTv7Xjk3nsdeR
+	+K5/VEKSuKzbxWaTIVEc70wwrOWj2mxs/Yt8zq+GoiBtnUEv9CczcB7lcvovFzVHznR1kF+uJ+O
+	5oxJg/ewDkztRP7uY42JBa603LXDn5N7O5XeGMErXvMxa+69w2Y96q2SPcWjMuw/tvAWKLL9MDK
+	s2+IIxW9wirodKKBR0qODN6/2+dL+PUp9MJbGfFkfXQiTLA4T8Z+kcJ97gGe9xnwcuAv0mZ4PZs
+	wWBicMPGnxVE=
+X-Google-Smtp-Source: AGHT+IEpkl493kQ0YKFiRGAgQWELm5+0QmGeW3PSVaUEBDhf3NGLVGC8IEpypNw0+gCfcyWn/od7/Q==
+X-Received: by 2002:a17:902:e811:b0:23f:f68b:fa1d with SMTP id d9443c01a7336-245ef217714mr54934255ad.39.1755713419280;
+        Wed, 20 Aug 2025 11:10:19 -0700 (PDT)
+Received: from lt.. ([101.0.62.84])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-245ed4f7b77sm32776715ad.117.2025.08.20.11.10.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Aug 2025 11:10:18 -0700 (PDT)
+From: eisantosh95@gmail.com
+To: devicetree@vger.kernel.org
+Cc: robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-kernel@vger.kernel.org,
+	Santosh Mahto <eisantosh95@gmail.com>
+Subject: [PATCH] docs: devicetree: fix typo in writing-schema.rst
+Date: Wed, 20 Aug 2025 23:40:13 +0530
+Message-Id: <20250820181013.17817-1-eisantosh95@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v5 4/5] riscv: dts: spacemit: Add Ethernet
- support for BPI-F3
-To: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>,
- Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Vivian Wang <uwu@dram.page>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
- Shuah Khan <skhan@linuxfoundation.org>
-References: <20250812-net-k1-emac-v5-0-dd17c4905f49@iscas.ac.cn>
- <20250812-net-k1-emac-v5-4-dd17c4905f49@iscas.ac.cn>
- <463dcfa3-152e-4a48-9821-debdc29c89b2@hammernet.be>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <463dcfa3-152e-4a48-9821-debdc29c89b2@hammernet.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qwCowAB3Z6sLDKZou3TODQ--.64161S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrurWrJr43Kw45AFy8Gr45Wrg_yoWfArbE9F
-	WSqFnxu34ku3W0gr1UtanxAr1FqrZxWryaqas8twn5J34Ivw4UGw1rJas5JwnxGFy2qrnr
-	ZFyagF4jyr12vjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbVxYjsxI4VWkKwAYFVCjjxCrM7AC8VAFwI0_Xr0_Wr1l1xkIjI8I
-	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
-	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0
-	cI8IcVCY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwV
-	C2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
-	Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJV
-	W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
-	wI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr
-	0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
-	17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcV
-	C0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
-	6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa
-	73UjIFyTuYvjxUkX_TUUUUU
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
+From: Santosh Mahto <eisantosh95@gmail.com>
 
-On 8/13/25 21:34, Hendrik Hamerlinck wrote:
->
-> On 8/12/25 04:02, Vivian Wang wrote:
->> Banana Pi BPI-F3 uses an RGMII PHY for each port and uses GPIO for PHY
->> reset.
->>
->> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
->>
-> Tested on Banana Pi BPI-F3 and Orange Pi RV2. Verified SSH shell over eth0
-> and eth1 interfaces, and basic UDP connectivity using iperf3. Thank you!
->
-> Tested-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+Fixes a spelling mistake in writing-schema.rst:
+"interpretted" → "interpreted"
 
-Thank you for the testing! I've already put this trailer on v6, but
-forgot to reply here.
+Signed-off-by: Santosh Mahto <eisantosh95@gmail.com>
+---
+ Documentation/devicetree/bindings/writing-schema.rst | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I haven't included the DTS patch for Orange Pi RV2 in v6, because the
-board DTS is not in v6.17-rc1. However, it is in Yixun's spacemit tree,
-AFAICT, so if we get the driver in for v6.18 I'll send the DTS
-separately to spacemit mailing list. If we don't, I'll include it
-alongside the driver when rebasing to v6.18-rc1.
-
-Vivian "dramforever" Wang
-
+diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
+index 470d1521fa174..fcd4726f8df4c 100644
+--- a/Documentation/devicetree/bindings/writing-schema.rst
++++ b/Documentation/devicetree/bindings/writing-schema.rst
+@@ -53,7 +53,7 @@ description
+   The default without any indicators is flowed, plain scalar style where single
+   line breaks and leading whitespace are stripped. Paragraphs are delimited by
+   blank lines (i.e. double line break). This style cannot contain ": " in it as
+-  it will be interpretted as a key. Any " #" sequence will be interpretted as
++  it will be interpreted as a key. Any " #" sequence will be interpreted as
+   a comment. There's other restrictions on characters as well. Most
+   restrictions are on what the first character can be.
+ 
+-- 
+2.34.1
 
 
