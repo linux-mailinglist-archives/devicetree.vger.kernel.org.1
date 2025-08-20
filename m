@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-206637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604AEB2D1C7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 04:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CBE4B2D1D0
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 04:17:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EAEB1BC811F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 02:12:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58F291C24ADD
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 02:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CC72BE7B5;
-	Wed, 20 Aug 2025 02:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3886202F9C;
+	Wed, 20 Aug 2025 02:17:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
+Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E29277C9B;
-	Wed, 20 Aug 2025 02:12:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EA32202F8B;
+	Wed, 20 Aug 2025 02:17:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755655927; cv=none; b=Hp1T/M9VDFMYMEfDOEWRInE1Wz6JTkZyaW/IZgfTjXGq5CCrVhj+ZUNtcP3zbmAsZkIv4/aJd8z2NV+rP9hJJZZsyPsex0wbpvaTUvjYUqWIQWO2MxLER1p1VS2+SY5KIUrCMfCryHA1blpAPd0XPi5bFHlvE6AH7mswWnI1thU=
+	t=1755656274; cv=none; b=GvAZINxQnfbyEy+4QwDW3aOQOAG9FbkpQfM7hFGeA9LcZOAd18peMnFP48gClxZxGaER75t2Nr0kUVBOeRKBilch/OQyTGjiAhPBxNzrYo1oOf+CSj33irRhPzFs8x+MaudBiMpv5vvYnJEQOIPuwXu9Yb87EI4tKKbPv54s5eM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755655927; c=relaxed/simple;
-	bh=cdfHdr6Zj0orzSqkRA9RQZJ6dX7CTTKfLSfk4X0HnwM=;
+	s=arc-20240116; t=1755656274; c=relaxed/simple;
+	bh=CtjNduMpa6vBd17voRHpTk9aBOQS+GxxSurGRGrOvL8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I/ZB0Uv53p4EgHrQ9m9wIWj74zAvXHhFuRCdG4ImF20hl5G9CKwTEb4dCDKtFwD2hxTLfF7OhsKrC7H+cuVSBTEOr0NUZf2UqHelO/5x0hQAxTlOQPndiatggscvwgrZyyjgjdeU5mcQVFf0QJaHu6iV3z5uDtx4918kyYyVCYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.128
+	 In-Reply-To:Content-Type; b=U9+Y0ZPHTClBnZ2fcpWc4pV/7+3Zm1P4SYH9GsbB9UIenOIOO7Vp45557vl+VqArdQ1nHx6Nr+ZlnlkI4bLlia7lSTnSyJKhGgmK2D/ESOwFSGUJuri3e9vPiYrQmT2Dq34fqrBRiHgpHvUj27TnrIFbUb/xSIkGHyfnXq2D4Z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1755655827t927a0bd5
-X-QQ-Originating-IP: ZT11A4xCrpS+Sor2dkaS5pC77IPe/BP9zy8H4U6AHgI=
+X-QQ-mid: zesmtpip3t1755656213t5f3e686c
+X-QQ-Originating-IP: Ak+PhEWaVg7vGtjuhuEht2sFkVHdkBKroE3obuaqw14=
 Received: from [IPV6:240f:10b:7440:1:74a0:7bf7 ( [localhost])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 20 Aug 2025 10:10:24 +0800 (CST)
+	id ; Wed, 20 Aug 2025 10:16:51 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 11893107500383784646
-Message-ID: <0318E801E3D6726D+65c4f189-4e22-4a9b-83d7-cbb0816df373@radxa.com>
-Date: Wed, 20 Aug 2025 11:10:24 +0900
+X-BIZMAIL-ID: 737961017978575348
+Message-ID: <1D03D9D55EB70125+5dd53657-8d25-44b8-9098-d50ed83422b2@radxa.com>
+Date: Wed, 20 Aug 2025 11:16:50 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,63 +46,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: remove vcc_3v3_pmu regulator
- for Radxa E52C
+Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: update pinctrl names for
+ Radxa E52C
 To: Chukun Pan <amadeus@jmu.edu.cn>
 Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
  krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <BCD8E43E564BC334+1e45d36f-edc7-4c3c-90c9-7b0f2a52360f@radxa.com>
- <20250819134028.634780-1-amadeus@jmu.edu.cn>
+References: <ABB74D9D1E3774F3+5a8c0d7d-fb7f-47c0-8308-e2b69f0628c1@radxa.com>
+ <20250819150038.874297-1-amadeus@jmu.edu.cn>
 Content-Language: en-US
 From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20250819134028.634780-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20250819150038.874297-1-amadeus@jmu.edu.cn>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-QQ-SENDSIZE: 520
 Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: MmpliBmRb3iCLdw8c0spTNXU6TGj4Xmfp1WZIYGew9nEtKY/wIFp5pn9
-	TNXMWzB2m0kjG9wVZOKqHfCk0SPETLP87/VchZ3ehWPz15kjsrniYdmgnRyMMXjb/ycANw5
-	W5ORlKAPkVdMc3ZPaY04V3guJ6sizPXcU0eD5lx/j3jzhfLn3SDjUtE6dMslx50Kv54FrW5
-	+Q+AUaiY4Cd5mL0nBVy+UnaVd0JNwkbKCoakyi5WPHS8yT4HAoTZOHY1HHY0wdX7ghJzjjW
-	MQ52JzF+lqyDfWFI/1SRRXJzeAAigElGP17zjCsnvX0KjXeEDH554lwOycoMbn95n04/pv3
-	2dZ0IM5nq3uWme7XRKCCMIm2NGOCrJnn7bHPnT3i6fFgKoh9llivxcJWp/qCjWpigM7QZ9P
-	KpeXu81J3Adw0Nu9OCEQ/R7m46QQcyEMF6Fi7ygLawhN+BmMNjn26J3jZEiCe++G1xbgkbr
-	EIJ4RI8YNRobWC89+/p5PMi3bNk2kupLDQwv9Uad8L6rtMMWtsRmA8ZpNlONLzR/oyoOFGU
-	BFU3kdxFMmQTaLCt8sO1XIWHvXZjFUGjlKudR+MbFIz/DgPCAJ1857hE2ikGcqS0kKPm6MQ
-	RhDmrYLgR1qWvV78y3p5UITewahjjH4tAGVmwTL7c+VG28cOJDM+YO9D5LjI0Xmydj42DDU
-	wkeztLdh1Wftm7Yw6dEUR29eyNZUbEHanoQnfJFkh7pYU2Bqq06GUYQTqpS3DonavKtinHi
-	6MjQx+D/F/9HKl6r3IK2ozeTqfAnnqttdEeac9nysfIh7q/iPD8rAiv6RVeN3+3X2iPj0Pr
-	gCBd9xqvXcKi+Z2FhFYBr+TDYcFOETV6qRlVeBefTh+HGv+z93+zcZh9rIu9x6xEol1hLuP
-	UFCPS7sYAnsrN+UZpNsD4t2DhikRnNq9F/I0EM6F3xJA6XQt0FOuL6TJ0aL9fcQIwG2nz8k
-	R6fV4Q3ZKgsHMYA2v826UivwbkAkoIwAzDVt7iK5w9N/wiqvGj7RiO7KLr4/hR/7LqBdq+S
-	CPz0WtYVc7h61uCVGm
-X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-XMAILINFO: Obs4Jap+oQoElEGq0Lc5JCw+Xektz5mLbP5RVRl29pHgLbh1bR4O+EAw
+	xU974t2idpKBM+kVij2aqJ/iWYAMBjYxPeN3V2KLggL2w6O2XlwlTcddob/stHHSCEXq5bh
+	2wN4zpH1H6P3o6fITDklD+nvaKOVgkN8YxpgeZBLE0a1+NzHwg/gkNEwm61Ps2xiDRgJjqb
+	qLfeIU3P/2tpdDrcosS1w0xSRJ+8nN4hXcflwwYZ++gWIGpDuAha54+ap2cl03MJ1dcsA8p
+	rxoCnwelsNGFQilUTUf/+ca/RliHQcfaOgp+oiAhrNI+3FYO93f4KmCV3d/aPnozgeJVTeu
+	V5CH4lInD2sooD8SOiJ1ANmNVG9x6e/+ZjtLgy7ZaTv6FXnyf35kooFzWi1QXO5QmiOrgiN
+	PL/+v690/6Gt0f0v9Py22m1D5MBx1JiEPcipnkompcC9jsbBwNHk3B8jDJ7zqI7MaeoMImh
+	luETTpH0rKjLrdLhcyFIjYjxFZe7Y1/x4KRwzgWKC4Z5TqY8avChRaaNhBYPyNOZu8p8yho
+	CutfioZntOrOPnwMZ8cRi1LVCv3R63N5El0WUq43Zq/QQ0HgAsvzo+SIe7TGX6Iwn3mq6Ei
+	XWhCF6QoBFb6qNQek4Wj3KxeoxChMV77kfk9sooMfafgNwGxnDpxS3SItmziTmR+wFCNrUs
+	ewIHMmMPzETGW0f1X7FlQn8HwLCnlAAEJ3xuhBRi/IsLkqSonW0xtfHib7imOa7OZqvpqM4
+	LWzHthfKuMx9QYwpjANiuPGqbn5pzIeQh5BYD5nPT3nukVTPWeFBAiWvldzHTO3r4I+VH6x
+	VjERtqJDBkt7zLbGfaeSwnrxFeebE+cLaaL9LQQtsaLKqLT+R+daZGuGdA/a0dqvIJQIjJ2
+	QxwYl7lvrWGi2gwOW+7JYUJQ9QxKS+f5/QrWVkR8z8hIozMlH2IT76tu5PfZBmi1dXTUuVm
+	dXedPW6PMK/gWLSk3LxFUAYYibmDz6ruwwmVpyCbQGWfqxU0ThM01PBwLuOCn1vlH/FRM+K
+	A84NmXUjTz6AgGfEjxEHXnzmldcFg=
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
 X-QQ-RECHKSPAM: 0
 
 Hi Chukun,
 
-On 8/19/25 22:40, Chukun Pan wrote:
+On 8/20/25 00:00, Chukun Pan wrote:
 > Hi,
 > 
->> How about the following instead?
+>> "The name of a node should be somewhat generic".
 >>
->> @@ -538,7 +538,7 @@ regulator-state-mem {
->> 				};
->> 			};
->>
->> -			vcc_3v3_s3: dcdc-reg8 {
->> +			vcc_3v3_pmu: vcc_3v3_s3: dcdc-reg8 {
->> 				regulator-name = "vcc_3v3_s3";
->> 				regulator-always-on;
->> 				regulator-boot-on;
+>>    https://github.com/devicetree-org/devicetree-specification/blob/v0.4/source/chapter2-devicetree-basics.rst?plain=1#L193
 > 
-> On rk356x, the Flash chip is usually powered by VCCIO_FLASH, which
-> is also connected through a 0 ohm resistor, so I didn't write like
-> this. e.g. https://github.com/torvalds/linux/commit/a706a593cb19
+> Usually we use the name on the schematic. For example, the patch for e24c:
 
-I think it should match the schematic, i.e. it should be "vcc-supply = 
-<&vccio_flash>;".
+I don't mind using names that match the schematic, as long as the device 
+tree maintainer doesn't object.
 
 Best regards,
 
@@ -110,6 +100,30 @@ Best regards,
 FUKAUMI Naoki
 Radxa Computer (Shenzhen) Co., Ltd.
 
+> https://lore.kernel.org/lkml/20250727144409.327740-4-jonas@kwiboo.se/
+> 
+> ```
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&gpio0_a0_user>;
+> ```
+> 
+> If this is incorrect, I will abandon the pinctrl changes for
+> the user key and power LED.
+> 
+>>> -		vcc_5v0_pwren_h: regulator-5v0-1 {
+>>> -		usb_otg_pwren_h: regulator-5v0-0 {
+> 
+> But I don't think the above is correct.
+> 
+>>    https://lore.kernel.org/all/20241216113052.15696-1-naoki@radxa.com/T/#u
+>>
+>> (I don't understand why this only applies to me...)
+> 
+> I don't know this. I thought the nodenames of pinctrl and regulator
+> were a bit weird, so I changed the pinctrl's.
+> 
 > Thanks,
 > Chukun
 > 
