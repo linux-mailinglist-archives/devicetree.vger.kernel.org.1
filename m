@@ -1,110 +1,152 @@
-Return-Path: <devicetree+bounces-206814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-206815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E463B2DA1E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 12:33:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E65B2DA2F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 12:38:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32B991C4632B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 10:33:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5EE65A20AB
+	for <lists+devicetree@lfdr.de>; Wed, 20 Aug 2025 10:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC6D2E2EE4;
-	Wed, 20 Aug 2025 10:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBAB32E285C;
+	Wed, 20 Aug 2025 10:37:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="GAiESyXk"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="O8I9Ir9g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37C42DA77F;
-	Wed, 20 Aug 2025 10:33:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755685994; cv=pass; b=kdQ5958F8MS2w9yZZkCsE2KS+wwjkF4HyLvWPrscqYlmQRq0C9wJBe0q9ihKtgW7aTfke/u0oj7R++AhyXyNPSmO48oy4UbFy3gvrCjQTV90hWUh1U4wElVXb6RpRbcIm0vM2r9gamDRCnWQwNP9p7H51BiVOjqSytsj8LhR0JY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755685994; c=relaxed/simple;
-	bh=rrskv1JmlyRnC+Gj2D6YwvlKmMG7APvxEaIBKzMAY10=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=POgekaUmhN4CkNT+aqCt0busZbGsL51GSO1/e1dzC1DZyGHLocbzzwVHz31JnIg78za2Kx70RkESEYngXczlQTTR6Q0DqqpoDNYEsti28i85ytCDHxv/HXCamn5Qc1IswZXMqmzraRpcbVJ1F0fdX7+1yw0vTVmXclTsT40exsE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=GAiESyXk; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1755685964; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=aWtPItNJt0nBMeetRrPmmjbxyGSVF9bGO0kIpyRp3SGnwaVSpsLKB5UIFjHEfbBA/03TYt+2QuWmECEG8jJsdtkYNjCQH7Yz0yJofoXWROQUjGyThHFBZg9x5bhopb+/Uv2n4Z1BMEXY/yrjVLpenwCxtZGjm68Z6m7EZqrwEts=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1755685964; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=UHE4xv6IMWn9xVuYe/yB5BmyxtdoVIMDD7/BwcD/9QY=; 
-	b=mMbhjEyDw5wcmyZWq3YIRNEM42wf46sfs5Qe/r9jrG3dUJuqUoA8kZh0M/uIv1Wr1ezAf54WLVnX36L0P5e9mMkEcgWAtE8jU7d7r5OuUjdWynBRgkpjvnaM7mPxwBqPiqm6to7UbroaGJb/JQ//gHkQimF8YeAf+VLL3kVT5pc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
-	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1755685964;
-	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=UHE4xv6IMWn9xVuYe/yB5BmyxtdoVIMDD7/BwcD/9QY=;
-	b=GAiESyXkzIFmcFn5sOzZnfcvsq5I2Dtus47a5JDxac+sv8IopOguCtuS4zsbZrVp
-	bURPLN896N/2/asKPJnqZJypBZMhLxwArh/pZDM7ibzFvz3zglC6Lx54nCvy3pylsP8
-	HvPPyu9rYLrwiImNgpExvI7tcsVh4VJjXN0Yqk/I=
-Received: by mx.zohomail.com with SMTPS id 175568596154683.63382003069205;
-	Wed, 20 Aug 2025 03:32:41 -0700 (PDT)
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	jose.abreu@synopsys.com,
-	nelson.costa@synopsys.com,
-	shawn.wen@rock-chips.com,
-	nicolas.dufresne@collabora.com,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: kernel@collabora.com,
-	linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v1 2/2] media: dt-bindings: snps,dw-hdmi-rx.yaml: Updated maintainers entry
-Date: Wed, 20 Aug 2025 13:30:59 +0300
-Message-ID: <20250820103059.342850-2-dmitry.osipenko@collabora.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250820103059.342850-1-dmitry.osipenko@collabora.com>
-References: <20250820103059.342850-1-dmitry.osipenko@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CAB72E2DDC
+	for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 10:37:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755686274; cv=none; b=I2Hh/3YSkjRcb4+/rcO+67Igy1wjXws5S5xaRJTWCXj5PkpLZsQ7ZGYRpATiBbMSYJL8c6tnm9d5nmQ6tSnTMLUXE4gJ4Uw53I/JD3uMr5VPvl7iZyt2QnbwJRm03TyHZezYfWfifbIaq5bGFA+zl4RgIBe1y+t6p5LQJ4dFG6M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755686274; c=relaxed/simple;
+	bh=3CpKgxRpCYawooW49w6wb+ri8TL4dLwEPi6doAWrbfs=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=i2fhqgsaVrbq8kAWW64cKt2KEH7PrlF/8BPk09Yen2CXMz31oEI/udqOFXI9wbgwNSavs6L9sxB5Rkc7CIjRJeJ2Q2tcHqR2LcNueoJYNXaDc0H/Tt8+HTec8UEy5AanUV/UUF3cBSnewZrvO3HMxT3xZdf2B5wgxz9Iaz4P4oU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=O8I9Ir9g; arc=none smtp.client-ip=91.218.175.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1755686270;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LR7oamsLXiIEp2PWmQM+Y8/7Bo4DrxhgzvH8C2oVFno=;
+	b=O8I9Ir9gH5qd+hA7zlVyuHursR2TU0TquTG3CH6W8Da655CBQGQf8IJ2gZBBp4lhxqSmnU
+	kgaViDUqKxtRmX+ltQ/vfSkdZAPaJEOymgYqztV0eySs+IwF32Lh03GE00qA6oSYtEzXtp
+	KBqrHFG5g3PjXCWryY/KuaEnheFpVCgB5mcQlyMDDSLOvNIilKorJQ67Scmr1ouP6ShJVF
+	mn/zsHP5dzEjvz2wKEa8fRSTh4gI8D/b5P08Sqvxk1nV6jc82QP1VPYZnTUZyhonA9tGBm
+	YDHIDf9NkD5srFSy0dckRleBON/Y5c1BPvqTQ9vQWpVa7gUnlq7en9Et5hCBJg==
+Content-Type: multipart/signed;
+ boundary=1d9ff9570717d375168b9ca28d86c87a4db6edce1af1be67cd4ffe114401;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Wed, 20 Aug 2025 12:37:38 +0200
+Message-Id: <DC76U4GVR0O2.1HXLEPCF8BG02@cknow.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+Cc: "Lee Jones" <lee@kernel.org>, "Pavel Machek" <pavel@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Jacek Anaszewski"
+ <jacek.anaszewski@gmail.com>, <linux-leds@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: leds: Clearly mark label property as
+ deprecated
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+References: <20250815104805.405009-1-didi.debian@cknow.org>
+ <b30905fa-6bd1-47dd-8371-f609d418387b@kernel.org>
+ <DC2ZLORG11W0.1CS78L6F2OV4Q@cknow.org>
+ <20250820-hairy-economic-wildebeest-ba25a1@kuoka>
+In-Reply-To: <20250820-hairy-economic-wildebeest-ba25a1@kuoka>
+X-Migadu-Flow: FLOW_OUT
 
-Shreeya no longer works at Collabora, set Dmitry as maintainer of
-the Synopsys HDMI RX binding.
+--1d9ff9570717d375168b9ca28d86c87a4db6edce1af1be67cd4ffe114401
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
----
- Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Wed Aug 20, 2025 at 10:14 AM CEST, Krzysztof Kozlowski wrote:
+> On Fri, Aug 15, 2025 at 02:06:49PM +0200, Diederik de Haas wrote:
+>> On Fri Aug 15, 2025 at 1:00 PM CEST, Krzysztof Kozlowski wrote:
+>> > On 15/08/2025 12:47, Diederik de Haas wrote:
+>> >> The text description already mentioned the label property was
+>> >> deprecated, but using the 'deprecated' property makes is clearer and
+>> >> more explicit.
+>> >>=20
+>> >> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+>> >> ---
+>> >>  Documentation/devicetree/bindings/leds/common.yaml | 1 +
+>> >>  1 file changed, 1 insertion(+)
+>> >>=20
+>> >
+>> > Please first read previous discussions:
+>>=20
+>> [I reversed the order of the links so the oldest is first]
+>>=20
+>> > https://lore.kernel.org/all/20221122111124.6828-1-cniedermaier@dh-elec=
+tronics.com/
+>>=20
+>> Rob: "They ['function' and 'label'] serve 2 different purposes."
+>>=20
+>> > https://lore.kernel.org/all/20240509110545.49889-1-linux@fw-web.de/
+>>=20
+>> Krzysztof: "I don't think there was conclusion to make it deprecated on
+>> last attempt"
+>>=20
+>> I agree.
+>> What I don't understand: Why wasn't the text updated to correct the
+>> incorrect statement about deprecation (that's how I interpret it now)?
+>> Or some other conclusion being made and that that will be reflected in
+>> the text and/or a deprecated property.
+>>=20
+>> Otherwise the confusion remains and then it's just a matter of time
+>> before a 4th person comes along proposing the same patch.
+>> And possibly even more harmful: people use it incorrectly.
+>
+> Whatever change you want to do here, I expect to address one way or
+> another these previous discussions. If the code is confusing, refine the
+> description. But not in a way which ignored previous feedbacks.
 
-diff --git a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-index 510e94e9ca3a..b7f6c87d0e06 100644
---- a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-+++ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-@@ -8,7 +8,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Synopsys DesignWare HDMI RX Controller
- 
- maintainers:
--  - Shreeya Patel <shreeya.patel@collabora.com>
-+  - Dmitry Osipenko <dmitry.osipenko@collabora.com>
- 
- description:
-   Synopsys DesignWare HDMI Input Controller preset on RK3588 SoCs
--- 
-2.50.1
+I'm not going to make a change.
 
+I thought I would be making (more) explicit what the binding says.
+Apparently I read/interpreted it incorrectly. What I described above is
+how I currently interpret the *confusion* text/discussion. Is that
+correct? I have no idea. That I'm at least the 3rd person proposing this
+change indicates I'm not the only one who is confused.
+
+IMO it's up to a/the maintainer to make a decision and that should then
+be reflected in the binding, which should fix any confusion.
+
+I hadn't looked at the code yet, but *I*IUC the code should follow the
+binding, not the other way around. That's how I have interpreted
+(mostly your) comments related to various binding patches ever since I
+started actively following upstream(ing) work. Which (again) may be an
+incorrect interpretation.
+
+Regards,
+  Diederik
+
+--1d9ff9570717d375168b9ca28d86c87a4db6edce1af1be67cd4ffe114401
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaKWldwAKCRDXblvOeH7b
+btBmAQD1JHjz6wVqq6gTPmRfqgFiNxJqJCcz46DN0b+ZxQsbxAEArC+y6rxDn6tN
+msQRrdwHK3Ic9gU5uPGEpj5/vERYRwU=
+=tljW
+-----END PGP SIGNATURE-----
+
+--1d9ff9570717d375168b9ca28d86c87a4db6edce1af1be67cd4ffe114401--
 
