@@ -1,177 +1,273 @@
-Return-Path: <devicetree+bounces-207651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 160EAB3027F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:58:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8007B3028E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 21:03:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADBF61CC7918
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:58:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85376723F82
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:03:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB86E34F477;
-	Thu, 21 Aug 2025 18:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A0E23451D6;
+	Thu, 21 Aug 2025 19:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mLgRJJrz"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="XyaBG7Ri"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A02D3469F2
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 18:56:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8926A3451BA;
+	Thu, 21 Aug 2025 19:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755802613; cv=none; b=mCKjdRGER/zTVB2UvUHhi014M3UdtFF3oJP8uBrDgJ6zRkiSofR6khWWw7ziBYhf9DPRpDuJMOQP3dBYAxemBN00dX8HVpQC4Fe2enWnDBRoIx+nQVZ/8yHojb5ywcPKW+f8h9UU4JcYQfPWNhIzIkscUV0eAJPxkJtpicBmU1Y=
+	t=1755803009; cv=none; b=h0P1li0aytQ6aE0fpSGn8RG7L3rIkcK6fgk2Yk8OMueZnWurU21WwLJN5TU5QrsntkZLjGRCSlu/8vycJ/8nIx3xhD9FHlWDQZAQd39+3cEeCFprP8I0MHAABww3eDRnstRTD6weUCP/3ylLRSvJwwdQrISaXHCZy4Pe8sggFJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755802613; c=relaxed/simple;
-	bh=EfCx1AnACdzORFWTq7a/mK0KpOzkdsdN9am6A77xvlQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=u5RycPNp3l5P2Lt9ofyghqlLRZkbTqg1i2jQUH/Y1rdUV/rDZ5mViXITOJlVWKnbYufa1/pkTpjGWhJy7xPv9pEtx8R5Rqf09nTPentjY6eKJzq9t83HGKmp4GtgQDXZJG136IRF7CFF6/GWzgfd9EM+/IOMRfV2RG9krFYd088=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mLgRJJrz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57LI9LGf010875
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 18:56:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	L+vnrfh5wkxvST6moGu8zFwo8y31WtRfprWTPNuMSjg=; b=mLgRJJrzeWOzkkBq
-	xCdYQeB0PJkwP3l8K9NTongMTO0eSNXFlAhDK+wUFynDp81nQaIRKh7VfQtXOdiE
-	xuNxQC9G5nLfpCnYQ5YrcmR8Tnw8E9nrUo2LxtYJH3kR25h+g4omYtf/tpgSpPMm
-	3W2mzK6+YR1LZBLUFpCIEYUwfMMsnV73/pN4oRBoVwSh03Ewz28xC6dc9y3vLvDl
-	lp3dk6Q/U9HBqsCJXymhGt/iUaVtzVa/xirDK9/vtjMtF7DBADWB99Ta6/53WWOh
-	NmwRBcpWwHyBeEl4BBaZ1BQNgfHoI7YDF+DgnMr+dEZcZMQWXo5KUYCgMxluHUSe
-	SfZafw==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ngt8cbaw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 18:56:51 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-76e2eac5c63so1256002b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 11:56:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755802610; x=1756407410;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=L+vnrfh5wkxvST6moGu8zFwo8y31WtRfprWTPNuMSjg=;
-        b=Mtf/t1hVaNkD7WyEJHJDcylVq0UmhHHgTEapbjEJbGi09mNDGEx2NrKZuICP5Z21aK
-         +MwAGUgtedzm8W2jkXaP9+hlB+198Gkt2NCkHzcam4W0ZhTZ8DSIoGnyFZCyc0uacMpR
-         sRAh+8aEQslpOFLMEq8bH+oUxc4Xe9kIQTDFLVCRsms/bk3WBuLwwf9kNA2O2rKPjxsZ
-         SUu/SDx/lSeQ6BR6PokxwmMDfjDLgIoMXIlmxWC13Lqly7NikG5Xd6Fyc+EkIXZ2/Fn9
-         ftuCwWC/Du9RZaacQhw7ErgEzbH/DFdY7qYC22YFFXECTjFOdpgRViJbpZJQyzvk6vcu
-         DvMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVYjLTwBncf8gd5G28umNDYPSBDNisRijCufAHj2U9bIvUaFUfXsjrCwojHuXiyurze2tYlqCNuPMEm@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywp8aFfr+u3mlHV27tyo6tpCPVlYoz1DfT6U53UvE/3l7hY29WS
-	wefisA6XckSwDmMTZ+zF0QSqEyt18ODS9UoWP9f1qpPR+LCZECFQK/4l22VpVVGKREmNY12/n3b
-	+trUmm3GaRNZ1z8ffMaQkSLu6tLLCbo6eGsf0osezZx5VOGM9Fq26kH65cralW68T
-X-Gm-Gg: ASbGncuJE/NWCq9r6SoDhYEDLmkCk+/a3IR13z1AAfeLdA3NCO6nTacFjgYAs7QGKzD
-	S6gwdU13e9hRqhapn4Y6JttMlAfg2CqRDxwg/HUAqosYjrAnu0+hntuvZNWPHroPQY1d/NTo6T5
-	xEz0mzypNhwjRFb5YTyPZs/qhBv1fQaprFtB94saNRsY4U0xewH27rpiEzzyfzs8GgFXA6oZL4h
-	CXOUPZKNyt7CNgYV1oe6v2kCAv3bLQxk5DhVnI59WWITNyQZKoy1oYSc4oNcV40F70aRjR6F3Mx
-	FhgGPIa22+krbXnMhhwQCu2nK/IfkegkOKMoreA2Aa/ERWRCc7rn/l2QMEj2Zm1C
-X-Received: by 2002:a05:6a20:72a2:b0:220:9e54:d5cc with SMTP id adf61e73a8af0-24340daf836mr290733637.31.1755802610065;
-        Thu, 21 Aug 2025 11:56:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEbkoS9Oleg0BMcUAm50PQQmuIuPc1U5sybFr6bqhLl0blAssfD7XkEWCeGVPUZNhzXoPJurw==
-X-Received: by 2002:a05:6a20:72a2:b0:220:9e54:d5cc with SMTP id adf61e73a8af0-24340daf836mr290691637.31.1755802609615;
-        Thu, 21 Aug 2025 11:56:49 -0700 (PDT)
-Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4764090b0esm2106977a12.37.2025.08.21.11.56.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Aug 2025 11:56:49 -0700 (PDT)
-From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Date: Fri, 22 Aug 2025 00:25:31 +0530
-Subject: [PATCH v4 6/6] arm64: dts: qcom: qcs9100-ride: Enable Adreno 663
- GPU
+	s=arc-20240116; t=1755803009; c=relaxed/simple;
+	bh=K7ta94DpLE6fw+AXw4ZZg5vvLwhliWaim3CJ8FB5U5c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nES22PiKE5gTpImo6kruY87IzMtQ0a9gq2Ru2vB2g93/uAdYrshB9PUqAkl7rdoehEiYw9RBnebJYh46RT5bjaoNX40YVUEItqOtorrDtU8C3xiIOJAJBuXKjaFOaNkIibqoupFAUvI5TVRMp+DVprktQG4yofyU7m7KDTcopUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=XyaBG7Ri; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 23F2C6DE;
+	Thu, 21 Aug 2025 21:02:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1755802946;
+	bh=K7ta94DpLE6fw+AXw4ZZg5vvLwhliWaim3CJ8FB5U5c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XyaBG7Rinfr0E+pwsKG5H450l56Ng/3nOU+0zi4zHgEgyyghRhwQDQ6xEo8dNK11Q
+	 oovohHEbGCCPgkAIFwR5yZLk4cVauAZjlfUnAb0cEtAr9ipNdXZdptMs+M4Slvp1fU
+	 OHQsAlj5VO9aGoz40yy7GSZspTLVI346419qOMPs=
+Date: Thu, 21 Aug 2025 22:02:59 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, Stefan Klug <stefan.klug@ideasonboard.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Dafna Hirschfeld <dafna@fastmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH 3/6] media: rkisp1: Refactor clocks initialization
+Message-ID: <20250821190259.GD25098@pendragon.ideasonboard.com>
+References: <20250616011115.19515-1-laurent.pinchart@ideasonboard.com>
+ <20250616011115.19515-4-laurent.pinchart@ideasonboard.com>
+ <lmv4bhe2xf55ogmvzqcv4hrqwlzsyxaycg3u45ein4kppbnqxa@rw6gnoxydosq>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250822-a663-gpu-support-v4-6-97d26bb2144e@oss.qualcomm.com>
-References: <20250822-a663-gpu-support-v4-0-97d26bb2144e@oss.qualcomm.com>
-In-Reply-To: <20250822-a663-gpu-support-v4-0-97d26bb2144e@oss.qualcomm.com>
-To: Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Connor Abbott <cwabbott0@gmail.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>
-Cc: Gaurav Kohli <quic_gkohli@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Akhil P Oommen <akhilpo@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755802565; l=812;
- i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
- bh=EfCx1AnACdzORFWTq7a/mK0KpOzkdsdN9am6A77xvlQ=;
- b=XGnXES9y4qk+wZkRRx2ofUbx6TA5EXdyY08i0sz/1HJLxVoi0TaTp4HQb61vD0riKc2tD5RrK
- 1hNS0+25QZAB23PNN4ZH5Revq3TcNgTO+Zc4bv5OXYJfmLzq12ECf0c
-X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
- pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDEzNCBTYWx0ZWRfX9wcUP6C04QY0
- nhtZIG3vx2lJq7KtuxbTlG0oWcS8cwoTejzygv/KIOivseqO1Y58ZEl3vgM+7zce0VnqlCG6bgU
- N18PjgLc2Lpmlq0XQPWiqFBPqDfa/VWg3/X9OukjmFJUWULaZ9RZBveYZNpAe3FPMbHkTaqpkLK
- tGo+jKAlvGewinsOBecR+HHm7YyCUCKBO/FCRipY54SEGbo7YP/bZV/sJhiYLdbhpuy90ObR2D5
- dsrXwir+Ju82pMP5YuwxB5x/m+KBSfbU0In4Nk2+8HHaT77X+MwLwOtF520e4fxQh9lMlqBFNvt
- RuPGD5GU3XUfwfvLj+MsCnaAcVbExW/W/O9fPlrNJwqS9CrcRhKE6n9PHk7B9PTOxuXNttIiBI4
- V8d42IlBNe9BCvPzUAIqFzkCwr6zSg==
-X-Authority-Analysis: v=2.4 cv=c/fygR9l c=1 sm=1 tr=0 ts=68a76bf3 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=jbU5qkt2-FsioPMlu34A:9
- a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-GUID: dXfQlGP2U0VsiNGBF9GtQMndC2Scqbk_
-X-Proofpoint-ORIG-GUID: dXfQlGP2U0VsiNGBF9GtQMndC2Scqbk_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-21_03,2025-08-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
- phishscore=0 spamscore=0 impostorscore=0 clxscore=1015 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200134
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <lmv4bhe2xf55ogmvzqcv4hrqwlzsyxaycg3u45ein4kppbnqxa@rw6gnoxydosq>
 
-Enable GPU on both qcs9100-ride platforms and provide the path
-for zap shader.
+On Thu, Aug 21, 2025 at 08:48:23PM +0200, Jacopo Mondi wrote:
+> On Mon, Jun 16, 2025 at 04:11:12AM +0300, Laurent Pinchart wrote:
+> > ISP instances in different SoCs differ in the number of clocks they use,
+> > but not in the clock names. Refactor clocks initialization to avoid
+> > duplicating the clock names per platform, and lower the total number of
+> > clocks from 8 to 4 as no platform uses more than 4 clocks. Use a static
+> > assert to ensure at build time that the size of the arrays match.
+> >
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  .../platform/rockchip/rkisp1/rkisp1-common.h  |  8 +--
+> >  .../platform/rockchip/rkisp1/rkisp1-dev.c     | 60 ++++++++++---------
+> >  2 files changed, 34 insertions(+), 34 deletions(-)
+> >
+> > diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h b/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h
+> > index ca952fd0829b..c4af1277fc6b 100644
+> > --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h
+> > +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h
+> > @@ -55,7 +55,7 @@ struct regmap;
+> >  #define RKISP1_BUS_INFO				"platform:" RKISP1_DRIVER_NAME
+> >
+> >  /* maximum number of clocks */
+> > -#define RKISP1_MAX_BUS_CLK			8
+> > +#define RKISP1_MAX_BUS_CLK			4
+> >
+> >  /* a bitmask of the ready stats */
+> >  #define RKISP1_STATS_MEAS_MASK			(RKISP1_CIF_ISP_AWB_DONE |	\
+> > @@ -139,8 +139,7 @@ enum rkisp1_feature {
+> >  /*
+> >   * struct rkisp1_info - Model-specific ISP Information
+> >   *
+> > - * @clks: array of ISP clock names
+> > - * @clk_size: number of entries in the @clks array
+> > + * @num_clocks: number of clocks
+> >   * @isrs: array of ISP interrupt descriptors
+> >   * @isr_size: number of entries in the @isrs array
+> >   * @isp_ver: ISP version
+> > @@ -152,8 +151,7 @@ enum rkisp1_feature {
+> >   * ISP model, version, or integration in a particular SoC.
+> >   */
+> >  struct rkisp1_info {
+> > -	const char * const *clks;
+> > -	unsigned int clk_size;
+> > +	unsigned int num_clocks;
+> >  	const struct rkisp1_isr_data *isrs;
+> >  	unsigned int isr_size;
+> >  	enum rkisp1_cif_isp_version isp_ver;
+> > diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
+> > index dc65a7924f8a..0788b7a64ae9 100644
+> > --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
+> > +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
+> > @@ -8,6 +8,7 @@
+> >   * Copyright (C) 2017 Rockchip Electronics Co., Ltd.
+> >   */
+> >
+> > +#include <linux/build_bug.h>
+> >  #include <linux/clk.h>
+> >  #include <linux/interrupt.h>
+> >  #include <linux/mfd/syscon.h>
+> > @@ -491,13 +492,6 @@ static irqreturn_t rkisp1_isr(int irq, void *ctx)
+> >  	return ret;
+> >  }
+> >
+> > -static const char * const px30_isp_clks[] = {
+> > -	"isp",
+> > -	"aclk",
+> > -	"hclk",
+> > -	"pclk",
+> > -};
+> > -
+> >  static const struct rkisp1_isr_data px30_isp_isrs[] = {
+> >  	{ "isp", rkisp1_isp_isr, BIT(RKISP1_IRQ_ISP) },
+> >  	{ "mi", rkisp1_capture_isr, BIT(RKISP1_IRQ_MI) },
+> > @@ -505,8 +499,7 @@ static const struct rkisp1_isr_data px30_isp_isrs[] = {
+> >  };
+> >
+> >  static const struct rkisp1_info px30_isp_info = {
+> > -	.clks = px30_isp_clks,
+> > -	.clk_size = ARRAY_SIZE(px30_isp_clks),
+> > +	.num_clocks = 4,
+> >  	.isrs = px30_isp_isrs,
+> >  	.isr_size = ARRAY_SIZE(px30_isp_isrs),
+> >  	.isp_ver = RKISP1_V12,
+> > @@ -518,19 +511,12 @@ static const struct rkisp1_info px30_isp_info = {
+> >  	.max_height = 2448,
+> >  };
+> >
+> > -static const char * const rk3399_isp_clks[] = {
+> > -	"isp",
+> > -	"aclk",
+> > -	"hclk",
+> > -};
+> > -
+> >  static const struct rkisp1_isr_data rk3399_isp_isrs[] = {
+> >  	{ NULL, rkisp1_isr, BIT(RKISP1_IRQ_ISP) | BIT(RKISP1_IRQ_MI) | BIT(RKISP1_IRQ_MIPI) },
+> >  };
+> >
+> >  static const struct rkisp1_info rk3399_isp_info = {
+> > -	.clks = rk3399_isp_clks,
+> > -	.clk_size = ARRAY_SIZE(rk3399_isp_clks),
+> > +	.num_clocks = 3,
+> >  	.isrs = rk3399_isp_isrs,
+> >  	.isr_size = ARRAY_SIZE(rk3399_isp_isrs),
+> >  	.isp_ver = RKISP1_V10,
+> > @@ -542,19 +528,12 @@ static const struct rkisp1_info rk3399_isp_info = {
+> >  	.max_height = 3312,
+> >  };
+> >
+> > -static const char * const imx8mp_isp_clks[] = {
+> > -	"isp",
+> > -	"hclk",
+> > -	"aclk",
+> 
+> it seems to me that clk_bulk_prepare_enable() guarantees ordering
+> of the clock sources enablement (I know regulators do not, if
+> I'm not mistaken).
+> 
+> Is it a problem that imx8mp used to declare hclk before aclk as the
+> other platforms do ?
 
-Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+No, I don't think the order matters.
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi b/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-index 25e756c141606fbe0876ed48a54809b372650903..e9540cbff78ee44d6d92de10464c660a05a68db9 100644
---- a/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-@@ -436,6 +436,14 @@ vreg_l8e: ldo8 {
- 	};
- };
- 
-+&gpu {
-+	status = "okay";
-+};
-+
-+&gpu_zap_shader {
-+	firmware-name = "qcom/sa8775p/a663_zap.mbn";
-+};
-+
- &i2c11 {
- 	clock-frequency = <400000>;
- 	status = "okay";
+> > -};
+> > -
+> >  static const struct rkisp1_isr_data imx8mp_isp_isrs[] = {
+> >  	{ NULL, rkisp1_isr, BIT(RKISP1_IRQ_ISP) | BIT(RKISP1_IRQ_MI) },
+> >  };
+> >
+> >  static const struct rkisp1_info imx8mp_isp_info = {
+> > -	.clks = imx8mp_isp_clks,
+> > -	.clk_size = ARRAY_SIZE(imx8mp_isp_clks),
+> > +	.num_clocks = 3,
+> >  	.isrs = imx8mp_isp_isrs,
+> >  	.isr_size = ARRAY_SIZE(imx8mp_isp_isrs),
+> >  	.isp_ver = RKISP1_V_IMX8MP,
+> > @@ -582,6 +561,32 @@ static const struct of_device_id rkisp1_of_match[] = {
+> >  };
+> >  MODULE_DEVICE_TABLE(of, rkisp1_of_match);
+> >
+> > +static const char * const rkisp1_clk_names[] = {
+> 
+> You could also presize the array with RKISP1_MAX_BUS_CLK so that you
+> won't need an assertion ? It's true however that if RKISP1_MAX_BUS_CLK
+>  > the number of declared elements you won't get a warning..
+
+Yes, that's why I didn't do it.
+
+> > +	"isp",
+> > +	"aclk",
+> > +	"hclk",
+> > +	"pclk",
+> > +};
+> > +
+> > +static int rkisp1_init_clocks(struct rkisp1_device *rkisp1)
+> > +{
+> > +	const struct rkisp1_info *info = rkisp1->info;
+> > +	unsigned int i;
+> > +	int ret;
+> > +
+> > +	static_assert(ARRAY_SIZE(rkisp1_clk_names) == ARRAY_SIZE(rkisp1->clks));
+> > +
+> > +	for (i = 0; i < info->num_clocks; i++)
+> > +		rkisp1->clks[i].id = rkisp1_clk_names[i];
+> > +
+> > +	ret = devm_clk_bulk_get(rkisp1->dev, info->num_clocks, rkisp1->clks);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	rkisp1->clk_size = info->num_clocks;
+> 
+> rkisp1->clk_size is now only used in rkisp1_runtime_suspend() which
+> can easily access rkisp->info->num_clocks. Would it be better to not
+> duplicate the information in your opinion ?
+
+You've now found in 4/6 that we still need it :-)
+
+> > +	return 0;
+> > +}
+> > +
+> >  static int rkisp1_probe(struct platform_device *pdev)
+> >  {
+> >  	const struct rkisp1_info *info;
+> > @@ -639,12 +644,9 @@ static int rkisp1_probe(struct platform_device *pdev)
+> >  		}
+> >  	}
+> >
+> > -	for (i = 0; i < info->clk_size; i++)
+> > -		rkisp1->clks[i].id = info->clks[i];
+> > -	ret = devm_clk_bulk_get(dev, info->clk_size, rkisp1->clks);
+> > +	ret = rkisp1_init_clocks(rkisp1);
+> >  	if (ret)
+> >  		return ret;
+> > -	rkisp1->clk_size = info->clk_size;
+> >
+> >  	if (info->isp_ver == RKISP1_V_IMX8MP) {
+> >  		unsigned int id;
 
 -- 
-2.50.1
+Regards,
 
+Laurent Pinchart
 
