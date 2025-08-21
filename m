@@ -1,188 +1,154 @@
-Return-Path: <devicetree+bounces-207423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA90AB2F681
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:26:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E01B2F67B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:25:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4561AC2C33
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:21:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E4D91888A1D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:25:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 687DF30E853;
-	Thu, 21 Aug 2025 11:20:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65B1930DD35;
+	Thu, 21 Aug 2025 11:25:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="cowfdV/1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HOlQqZjn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02470222599;
-	Thu, 21 Aug 2025 11:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11792153E7;
+	Thu, 21 Aug 2025 11:25:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755775253; cv=none; b=LA3rBaggaZ1Ea9xKsjfVwGkPQQaHz1HQHEkpipscjfDyvEbX1WpXOYTqX6W59vAwWV9EAhAcCNJdTJfk2EyQStj/gI2fUTPJHWKiwUICVUJ7AccPGLHzkTPulF4Qw4C7vTL9Ndjv5ko2Q/WNvVOwpHRM2Fu3z4gUIZiMBV938jg=
+	t=1755775504; cv=none; b=aOgPvdKpKBx9lLXYCDeiM7p0uv+u3ULYWhEnm1iDxV70VC3QFQKz3TEGeMLP5yzTnpRfFsPfXriK9RmnH5K8fypjbscdiB6ATkXyk1FN+CRZ/TEDRRZ4nEIq9xoTJRY+Kxd6jY5uIBVUuj0RlgmfK+ntCA7JFy+TFglJ7YQfisY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755775253; c=relaxed/simple;
-	bh=Q4npPNa8PUekFYlhJuH6KQeooA2aD9xYG1c6BK+8yj8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Z2bmSPxtjo74r9ieUb2qAxtQA+VTNlnZwWeIp28BvzhvoM3F91PrA4CGit9xn2NWFmG/QGZ0/65RCPkE+YrbYiExv9Tv81dDdanI8CQyiD4Hbg74//Lf+7/XCwpHpreT+qcj3sic1LqJjI7+qdQd4lE5LKRnlPnJSYXtxkOHcdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=cowfdV/1; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=hV9FzOpgihOnkSeldoBzR9nbpx8CCTOhTT8mRX0CqQI=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1755775246; v=1; x=1756207246;
- b=cowfdV/1xWy8OF9JxuuKIIxhf998Dis9BV22MSYmvarRIaWSIFoCbkWdFatf4avZ5a4kMKSs
- QpY+qKBW1frKW4dhV3Sp5daip8J/AljYGssjMSkMvhhxWduGnTKz0fgl9Y2ZOX6zwH/Zi3m9/yn
- gR5un5ORIhAWKYaFip5hvpioJymbxm9JvcbgXLx2KvcL6ht+vXiM5e9FfcA44WgQ5AjWcjqXjl0
- 805MoKTGsmeA613rlNM7xIcblmgAhZFQWYPvlJh05NyceF5rPVj+hlCsoJM484HjIVQG8Wqy2+z
- 1PnAQo1pc5f9LhH+yIjbHgglodsx/w018f5tG4ZAV3K2g==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id 9f9f6c40; Thu, 21 Aug 2025 13:20:46 +0200
-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Date: Thu, 21 Aug 2025 13:20:36 +0200
-Subject: [PATCH v4 2/2] mmc: sdhci-pxav3: add state_uhs pinctrl setting
+	s=arc-20240116; t=1755775504; c=relaxed/simple;
+	bh=kPfmGuwFf1kMfm7JGSdPsxEDOubFA6Jez1gBV82/D1Y=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jlgtHBBhPmavoYv/7qO/iKlITQFMPGBtgA0Pjs21nt7dq9NRqm4WFO0dYCAdwpV1/zua/K2Y3mzY0ahGNrqrRwt6uQASqtVPzY/rVlt/nqe7iFQpMOrEHSMwZZsF2evd3PhqtiOJuP9W6r1piMgult6KujwCaPfO0e7MIE+y6Hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HOlQqZjn; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57L9bD9u027108;
+	Thu, 21 Aug 2025 11:24:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ncz350tN3idw0xFydFdh0X
+	Ae81YIbOJSLboHqQlJXvo=; b=HOlQqZjn7C1L0MGgvqXQGAB+N2TpIunLTpv2d8
+	ULao867HZQndlQU2NV+D/HVOknpXDHhl7zNt0mLczNG2cn2uSqyE3HAcUW2+Lsxu
+	PLsGWnpNbTLKUVQdgdSsAaCor1BvTrWq66opzbMejTFRHEGY7PeVoxExBjJNyZmK
+	7fP1wzCQFmA9ef3eAQc68l0SMlU/WqOTKjvxodOBWM6PR58s/ZKIKA/WV79yMmf/
+	htz5IiVEzkzJ+ey4ymknPU4y/8Ms0yrPw4eTJruXZtO8ddq6BWYTziv2CvEbh9rn
+	psuY5djDaBQw+WCJWWtTOWi98SrTT0qeXTWoLVZJjLUqLk6g==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n528w6a1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Aug 2025 11:24:56 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57LBOttu016594
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Aug 2025 11:24:55 GMT
+Received: from hu-rdwivedi-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Thu, 21 Aug 2025 04:24:51 -0700
+From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <mani@kernel.org>,
+        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>
+Subject: [PATCH V3 0/5] Enable UFS MCQ support for SM8650 and SM8750
+Date: Thu, 21 Aug 2025 16:53:58 +0530
+Message-ID: <20250821112403.12078-1-quic_rdwivedi@quicinc.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250821-pxav3-uhs-v4-2-bb588314f3c3@dujemihanovic.xyz>
-References: <20250821-pxav3-uhs-v4-0-bb588314f3c3@dujemihanovic.xyz>
-In-Reply-To: <20250821-pxav3-uhs-v4-0-bb588314f3c3@dujemihanovic.xyz>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>
-Cc: Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>, 
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3563;
- i=duje@dujemihanovic.xyz; s=20240706; h=from:subject:message-id;
- bh=Q4npPNa8PUekFYlhJuH6KQeooA2aD9xYG1c6BK+8yj8=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDBnLGblDO9+pKPFvn5NrKP1kT9x6l9DVHJ2TJhT0P9Rat
- HG/ZsObjlIWBjEuBlkxRZbc/47XeD+LbN2evcwAZg4rE8gQBi5OAZjIT1NGhgMnrxXYrN5UyxVp
- njhxR8Qd/iWzLjrcjl69wzeSkYf9iAYjw0Sdc+JCmqpGobt+9lv92/vRLl5RRiu00tBq95aWKc6
- abAA=
-X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
- fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=I4c8hNgg c=1 sm=1 tr=0 ts=68a70208 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=2OwXVqhp2XgA:10 a=LEFlebn9EtuLqDGMg7kA:9
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: jziUfZQRfARq2k3c0Od9rGlRFFEXNpSb
+X-Proofpoint-ORIG-GUID: jziUfZQRfARq2k3c0Od9rGlRFFEXNpSb
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX5eGjSVhDVxQb
+ 0Ve1aJmby4yB3pmsB9FAuEY15cfnyIlEY5n4oF7FH+nyO2S40FRJcUFnjUYl98gAT3/wq6Bo4XE
+ pfTQKllXAQXOvfnGS+bkj5zVw0Wr56YwCH5CkxMn13DjnVEfi+n94RqpS7+g0W1vUGXI0Y+I8vv
+ NVE2zsAke8g9Pc1yyBPlORL8L7E14Rbd3b0kXJG8kC1rBS0HYWZT07GIdCoC7HSOo4N1xE2KNBl
+ gyqg2GmZ/udquJWEhVCPBL78tD3IOs7DbZKOwIP7Qfgs6DlPWAhtuHiEl7mGbInD8q1FcmdiTGc
+ CWNruOo6zbHMlXToQyTj8M+sXeJYR/sxfz0vIkLfcs+b6zemylF+jDeFXYhtFJUJPOMbSFINmVX
+ 8sX8DmOksbQrR2SjKigA7XnAgF5Zeg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-21_03,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 malwarescore=0 spamscore=0 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 impostorscore=0 bulkscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
 
-Different bus clocks require different pinctrl states to remain stable.
-Add support for selecting between a default and UHS state according to
-the bus clock.
+This patch series enables Multi-Circular Queue (MCQ) support for the UFS
+host controller on Qualcomm SM8650 and SM8750 platforms. MCQ improves
+performance and scalability by allowing multiple hardware queues.
 
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
----
-Changes in v4:
-- Fix cosmetic issue
-- Update trailers
+The series streamlines MCQ resource mapping by using a single MCQ region
+mapping instead of multiple separate resource regions, making the driver
+more maintainable and less prone to resource mapping errors.
 
-Changes in v3:
-- Move pinctrl stuff out of platdata
-- Add helper for pinstate lookup
-- Thanks to Adrian for the suggestions
+Patch 1 streamlines UFS MCQ resource mapping with a single MCQ region
+mapping, simplifying the current approach that involved multiple resource
+mappings and dynamic resource allocation.
 
-Changes in v2:
-- Don't attempt to lookup pinstates if getting pinctrl fails
-- Only select pinstates if both of them are valid
-- dev_warn() -> dev_dbg()
----
- drivers/mmc/host/sdhci-pxav3.c | 41 ++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 40 insertions(+), 1 deletion(-)
+Patch 2 refactors MCQ register dump logic to align with the new resource
+mapping approach, updating function signatures and using direct base
+addresses.
 
-diff --git a/drivers/mmc/host/sdhci-pxav3.c b/drivers/mmc/host/sdhci-pxav3.c
-index 1371960e34ebbb955ba2334451ed4734041a7b1b..238f508f2fb0bd1194e42c77420d3748c952039e 100644
---- a/drivers/mmc/host/sdhci-pxav3.c
-+++ b/drivers/mmc/host/sdhci-pxav3.c
-@@ -20,9 +20,11 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_device.h>
-+#include <linux/pinctrl/consumer.h>
- #include <linux/pm.h>
- #include <linux/pm_runtime.h>
- #include <linux/mbus.h>
-+#include <linux/units.h>
- 
- #include "sdhci.h"
- #include "sdhci-pltfm.h"
-@@ -51,6 +53,9 @@ struct sdhci_pxa {
- 	struct clk *clk_io;
- 	u8	power_mode;
- 	void __iomem *sdio3_conf_reg;
-+	struct pinctrl *pinctrl;
-+	struct pinctrl_state *pins_default;
-+	struct pinctrl_state *pins_uhs;
- };
- 
- /*
-@@ -313,8 +318,20 @@ static void pxav3_set_power(struct sdhci_host *host, unsigned char mode,
- 		mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, vdd);
- }
- 
-+static void pxav3_set_clock(struct sdhci_host *host, unsigned int clock)
-+{
-+	struct sdhci_pltfm_host *phost = sdhci_priv(host);
-+	struct sdhci_pxa *pxa = sdhci_pltfm_priv(phost);
-+	struct pinctrl_state *pins = clock < 100 * HZ_PER_MHZ ? pxa->pins_default : pxa->pins_uhs;
-+
-+	if (pins)
-+		pinctrl_select_state(pxa->pinctrl, pins);
-+
-+	sdhci_set_clock(host, clock);
-+}
-+
- static const struct sdhci_ops pxav3_sdhci_ops = {
--	.set_clock = sdhci_set_clock,
-+	.set_clock = pxav3_set_clock,
- 	.set_power = pxav3_set_power,
- 	.platform_send_init_74_clocks = pxav3_gen_init_74_clocks,
- 	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
-@@ -366,6 +383,19 @@ static inline struct sdhci_pxa_platdata *pxav3_get_mmc_pdata(struct device *dev)
- }
- #endif
- 
-+static struct pinctrl_state *pxav3_lookup_pinstate(struct device *dev, struct pinctrl *pinctrl,
-+						   const char *name)
-+{
-+	struct pinctrl_state *pins = pinctrl_lookup_state(pinctrl, name);
-+
-+	if (IS_ERR(pins)) {
-+		dev_dbg(dev, "could not get pinstate '%s': %ld\n", name, PTR_ERR(pins));
-+		return NULL;
-+	}
-+
-+	return pins;
-+}
-+
- static int sdhci_pxav3_probe(struct platform_device *pdev)
- {
- 	struct sdhci_pltfm_host *pltfm_host;
-@@ -440,6 +470,15 @@ static int sdhci_pxav3_probe(struct platform_device *pdev)
- 			host->mmc->pm_caps |= pdata->pm_caps;
- 	}
- 
-+	pxa->pinctrl = devm_pinctrl_get(dev);
-+	if (!IS_ERR(pxa->pinctrl)) {
-+		pxa->pins_default = pxav3_lookup_pinstate(dev, pxa->pinctrl, "default");
-+		if (pxa->pins_default)
-+			pxa->pins_uhs = pxav3_lookup_pinstate(dev, pxa->pinctrl, "state_uhs");
-+	} else {
-+		dev_dbg(dev, "could not get pinctrl handle: %ld\n", PTR_ERR(pxa->pinctrl));
-+	}
-+
- 	pm_runtime_get_noresume(&pdev->dev);
- 	pm_runtime_set_active(&pdev->dev);
- 	pm_runtime_set_autosuspend_delay(&pdev->dev, PXAV3_RPM_DELAY_MS);
+Patch 3 removes the unused ufshcd_res_info structure and associated enum
+definitions that are no longer needed after the resource mapping refactor.
+
+Patches 4 and 5 update the device trees for SM8650 and SM8750 respectively
+to enable MCQ by adding the necessary register mappings and MSI parent.
+
+Tested on SM8650 and SM8750.
+
+Changes from v2:
+1. Removed dt-bindings patch as existing binding supports required
+   reg-names format.
+2. Added patch to refactor MCQ register dump logic for new resource
+   mapping.
+3. Added patch to remove unused ufshcd_res_info structure from UFS core.
+4. Changed reg-names from "ufs_mem" to "std" in device tree patches.
+5. Reordered patches with driver changes first, then device tree changes.
+6. Updated SM8750 MCQ region size from 0x2000 to 0x15000
+
+Nitin Rawat (3):
+  ufs: ufs-qcom: Streamline UFS MCQ resource mapping
+  ufs: ufs-qcom: Refactor MCQ register dump logic
+  scsi: ufs: core: Remove unused ufshcd_res_info structure
+
+Palash Kambar (1):
+  arm64: dts: qcom: sm8750: Enable MCQ support for UFS controller
+
+Ram Kumar Dwivedi (1):
+  arm64: dts: qcom: sm8650: Enable MCQ support for UFS controller
+
+ arch/arm64/boot/dts/qcom/sm8650.dtsi |   7 +-
+ arch/arm64/boot/dts/qcom/sm8750.dtsi |   8 +-
+ drivers/ufs/host/ufs-qcom.c          | 180 +++++++++++----------------
+ drivers/ufs/host/ufs-qcom.h          |  22 +++-
+ include/ufs/ufshcd.h                 |  25 ----
+ 5 files changed, 104 insertions(+), 138 deletions(-)
 
 -- 
 2.50.1
