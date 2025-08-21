@@ -1,165 +1,194 @@
-Return-Path: <devicetree+bounces-207667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E346EB3034D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 22:00:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 288C4B304B0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 22:20:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A11E5AA1868
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:00:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A5C8173BD4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E2C25B31C;
-	Thu, 21 Aug 2025 20:00:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0760434F488;
+	Thu, 21 Aug 2025 20:08:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="jS+BWXoc"
+	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="jpXHWhf5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2093.outbound.protection.outlook.com [40.107.92.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E95A2749C7
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 20:00:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755806427; cv=none; b=I9OPPmaFHY/iwa1EKdP6gDGNWrO926cBCUMA//6EagQtHTB7Xv8qU0ykMNMjZK/P79Gr0OXs/TiiLn7NUp+uIClu0d6g0N6mIpziOdRUVUqyBTCZDRkB0A7izFUJOLGmaD54mdyck0XLoXfHIxARIZE+4L1PUliYX4+8d66GqZQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755806427; c=relaxed/simple;
-	bh=r0gXAtCV7EUCFkV5gjbF2aQx3aCD44zbAzyaUi6as9o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fp/jKWRUOkyK5vQZO/81+CcDcKwJ20pI/U/UQpGIuFseWNkf9eBjN2z3LPEfsrtUc7Q7a0Qw7C/0NlbdbzrmpedI97WxS8D7f+msHx8A1rc8nS2ysX/qQYEFaQ5HlluQwd4TRlBB7eVlqQdmMld83fxh7/7pGWqTVogILp0T1wI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=jS+BWXoc; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=LEW2I1czzyMeSYLfep8ZMRopXKRwX2OobVyqzpp69zA=; b=jS+BWXocQtJe2lsrRpis+FI719
-	Yq2WuUIGnfIs8pxCZrjqDBhbhqygL7Wb7fbzdGNoK6Fk++4O2W/0YBat8PmYlhqs/9RwtgCNGtXqu
-	9RvMIc+3o88b6G3mQ1lG7UZw7v7xr4Glx5R+W7uzyeMoDMaJ2p3toSenoLLdIFOhbj1xhLLpRaOb1
-	z+E6f6zCIjtSnLCo2VJVWSwTMbUGmUi63iQNL1L1povm7BTH2E9GzhXNgWpTUOkBHJNcOkMx8L7c4
-	znFhOeLEc4bhqVZerWfO/44/lWexEaxwYji3Ix3yuLeVpF8nQIdnOZYcDuH0VkB75Og2iz+mZ/ZTx
-	+oh5wVqw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40740)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1upBSQ-000000001au-1ESV;
-	Thu, 21 Aug 2025 21:00:22 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1upBSO-000000001MS-2U9R;
-	Thu, 21 Aug 2025 21:00:20 +0100
-Date: Thu, 21 Aug 2025 21:00:20 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Frank Wunderlich <frank-w@public-files.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH v2] ARM64: dts: mcbin: fix SATA ports on Macchiatobin
-Message-ID: <aKd61N0AptNzYc0Z@shell.armlinux.org.uk>
-References: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
- <aKdgHGElBEyHeP67@shell.armlinux.org.uk>
- <A598C273-6EEA-4F86-8E5E-A07F80295AA6@public-files.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F4C35FC10;
+	Thu, 21 Aug 2025 20:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.93
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755806881; cv=fail; b=F783yTGKzQHdJ6TywbUGXfjNORCJgXrEgEWS28lxmn3JZjm3RT4Z0h4iOsuslcqXTAsHiVvXNCVw+FLuGQ8zpqbf/LD7561Hg/ZyElljvyjgmpVyARDRJVdYzhpcFhlcSnJj2hMJ0GxAnpjCMQLbJ5cdmewt24zGnyiwqmlf6+U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755806881; c=relaxed/simple;
+	bh=V6IYRrIJVaz8j/NBH5b4Ydgi+A5f1DjeTUAup4PVBZo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=I5HZVbDiyQcqiNuUc/VhD+Fb8e1UvfT+yN1Wl2Vw3k7AvhKVvPJ3WMmd+A+mpI/qfaSUQBK63bkyPN2Emcq7AITT39WlsD7SUm5NNYusmaEooaJbIFLB4dMxib6kaUz57EvVva/8YXtIjOG21PZrGI/21DO4Zi0obdD12MvEU+Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=jpXHWhf5; arc=fail smtp.client-ip=40.107.92.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QO161KxaaUi0E+OFkLF4O2/DXhNcZZLBh3ml/iqspKAgrCG5JC0GhJhLe/e4t40gB6bwV+RsBA6Okgo+pCrm2ZPqpWAMwf4hAwpNlPEBprE1xUcM/Jo1T0eJLgpcvv0jcK+ofAzrEP1QTGw6BklenMoyxTvZXeG8ciijCJFDgW20b150Oe/kfdZEd/7hdTlIf8m22tEmM+GVYgf9tCuqZXb3wJ0R89RmuwAE47wR4fflrGdWGinVeWfg9730ECA88CXAzXEnDJ8Zsu312sNvhJIPNnaBRG5r857QDnDRmLzV5On2GtA3Z9cWdrPweNcqZtTJ/R2QCy/wwmSTMEyk3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hAZKIl7VFsJA7T3DhrwuzSXASjRuY7aTSJnOGFZNr3c=;
+ b=Z4AMCNJoKFkqb9QpBTpiWs5PAw+ufpa0tgzZOpsAw6ufXOHZWjXbbW+ADbhQN6uaWKtnuFcKhk/RehCtiZiddP1EUhVh8q0hFvd26ndQZ0WjkWqxJnEOwPrBI8vKA9eXbH4qzOBSM/Q9O37Xp5HtY3x0ERXjP4PfixUmODg9G4+GCpRc0K6kmBrN7Yi2qyBAPi8bWQ9j/PAI1Yle0zxt49NqWct2qwFpQRIhr/tJIWUUYBpux6LV/GojqnKGb9THI+Hu526WTCIIZ1GJpYcGxS7ZFFpOLmxtwiCeJxN5barVb4uLnnLdnazmj4zPiu63fSeMZHPiKXTy8tMZJchHLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 50.233.182.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axiado.com;
+ dmarc=none action=none header.from=axiado.com; dkim=none (message not
+ signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hAZKIl7VFsJA7T3DhrwuzSXASjRuY7aTSJnOGFZNr3c=;
+ b=jpXHWhf5c2IotDn2TedD/3O9583mohIEaEHFr7xqwQavgMW7CRg5O69IorjDjhJID/hhFGuk8z2fFRRyjHxABdaMWpGvc+FGLBLlpKqV23dQUKEfrurnLG+vXHQoOQbyjh0yHvQ4Scm4y2fgCepjdvBWCduxMMO79PaWz5LzDz/xeTYqIMLfaDTY+92WDsO9eV8ME+GNGUSABh66BAGtJdINt3HpS/ZXYaINsvg9SbIIXricln8NTI19hfw7LHHSiQhaBz7FPD4tLKRGaLtn3rQ4W/nPNZSjxYIlI2QT/fv7C6MUeNhBFQM4lmbHCHP/nuiclWU75m2ktnuAwpSa5A==
+Received: from MW4PR03CA0219.namprd03.prod.outlook.com (2603:10b6:303:b9::14)
+ by BL4PR18MB6432.namprd18.prod.outlook.com (2603:10b6:208:5a7::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.14; Thu, 21 Aug
+ 2025 20:07:54 +0000
+Received: from BY1PEPF0001AE19.namprd04.prod.outlook.com
+ (2603:10b6:303:b9:cafe::a0) by MW4PR03CA0219.outlook.office365.com
+ (2603:10b6:303:b9::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.16 via Frontend Transport; Thu,
+ 21 Aug 2025 20:07:54 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 50.233.182.194)
+ smtp.mailfrom=axiado.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axiado.com;
+Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
+ designate 50.233.182.194 as permitted sender)
+ receiver=protection.outlook.com; client-ip=50.233.182.194; helo=[127.0.1.1];
+Received: from [127.0.1.1] (50.233.182.194) by
+ BY1PEPF0001AE19.mail.protection.outlook.com (10.167.242.101) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.8
+ via Frontend Transport; Thu, 21 Aug 2025 20:07:54 +0000
+From: Harshit Shah <hshah@axiado.com>
+Date: Thu, 21 Aug 2025 13:07:44 -0700
+Subject: [PATCH] arm64: dts: axiado: Add missing UART aliases
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <A598C273-6EEA-4F86-8E5E-A07F80295AA6@public-files.de>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250821-axiado-ax3000-missing-serial-alias-v1-1-527d979c3ea0@axiado.com>
+X-B4-Tracking: v=1; b=H4sIAI98p2gC/y2NQQ6CQAxFr0K6tklhJDJexbCoULEJDjpVQ0K4u
+ xVd/by/eG8Bk6xicCwWyPJW0yk5lLsCuiunQVB7Z6ioqqkpA/Ks3E8+gYjwpmaaBvxaeEQelQ1
+ D7PZNDAc6cwQX3bNcdN4ip/bHWR4vbz3/57p+AIvTkUiJAAAA
+X-Change-ID: 20250813-axiado-ax3000-missing-serial-alias-39c489370ba9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Harshit Shah <hshah@axiado.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=929; i=hshah@axiado.com;
+ h=from:subject:message-id; bh=V6IYRrIJVaz8j/NBH5b4Ydgi+A5f1DjeTUAup4PVBZo=;
+ b=owEB7QES/pANAwAKAfFYcxGhMtX7AcsmYgBop3yW6oNfUZsuN8AzgM4L4eM95icW6V5pxi/GX
+ wkIh/xATqiJAbMEAAEKAB0WIQRO3pC/7SkLS2viWOvxWHMRoTLV+wUCaKd8lgAKCRDxWHMRoTLV
+ +0xAC/90XyxfM7F6i58VlfHWvJfJ/5FFw1HjNOyhguRd6YIxM7vNm+ERPJG2+u6GAc4ag1bbQtI
+ oUXxjEinz07Ro31XKNsvHaqG3vyJQ+PwJlIYzed1zy5PJiWNMJy/x6rOpZCl91dsojWNR1EoSU7
+ h8emdqdsmKvxBI3FnA2iyqlkBLwmpvadjwl5FdTDWQJIB+6PLM1MfvnmLyvOy6uoL/hZZhMxYNu
+ eZeO3VPGMB3235wi7wQPNkaxz3EexCwrg2dcV5Hl4fHgQbyqIfrAZSdfD9G0aQnR5D4a148BeB4
+ sq5LhATwJorWPBabEC17Bi3SRzTs3a3uMxhoUdLWHAxDqMYah/yr75PI1xEwe+a+f9HQUQYCr0x
+ FAjiM7TudLmcq3quNoOjYhzSiM7JHSIwEJttQUkhrDfDxjljolj5PyNv2FYIKtluCJ/lpDFYf8S
+ l4QY+/WX2IGH25BDVPpnBhbg8l8tmjPf0UCv588izYWF7Asjehw2mFAei2tbWXP7vTqCo=
+X-Developer-Key: i=hshah@axiado.com; a=openpgp;
+ fpr=4EDE90BFED290B4B6BE258EBF1587311A132D5FB
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE19:EE_|BL4PR18MB6432:EE_
+X-MS-Office365-Filtering-Correlation-Id: d01f2c56-5bd9-449d-6b9c-08dde0ee69fd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SXpRcFZMcVNGSkUwNGFmSDBGS2tiaDdGcGZ3K2RQeDl4Ly9wU2laenNQK2Fn?=
+ =?utf-8?B?NU53QlBWREVmL3VwdytOZ2UwMHdlZ3FOSlBFSDBVNk9YS3FJeldicVJLdy9q?=
+ =?utf-8?B?U05lSkpGNFg1Y2lqYzgzUUFMYzBNOTRieTJZVDhFTDhiWU55aFhxa25lWXdh?=
+ =?utf-8?B?ZzAzYjQvTndLMlllS1I3Q3JWR0xpdXRQR2JzWjNNM2ZqVWdJaGF3SFVlK016?=
+ =?utf-8?B?bzdSTGFHMTdxVUU3NnAzOTE0SFkrWlRRWS9kSnpQRVNpTTJYcDFiMjdsaTVv?=
+ =?utf-8?B?amtnc1pFMTlwY1NYOTh5aWYrTURQQTQrNUQ2c3FSSWtLWG9tbDZSWi9qT2Rt?=
+ =?utf-8?B?VEhkTWc5QlJxN1I3RTRDZGxWcGZuWnBuNVFSS0g2Qk81OTN5VHdZNUlFL1pT?=
+ =?utf-8?B?VER6a2V5c1A3VnNLUjJiVUI0NHh4L3l0d2Y0U2hDdHMzZlppSEhwUjhpMG1X?=
+ =?utf-8?B?Q0RodUlYeXBGZVRyUDg4UUZhTTFpVERrdWpESCtvUm51aHJWdnJxM1F0V1Jn?=
+ =?utf-8?B?aVN1Ty9MUmo1aUhTYnlCRmMzMTV3c2ErdTNJMlRNNWNrSStwRWcydGVjY2xH?=
+ =?utf-8?B?TklXYnh4Wnl3Q3RWS0xKWENEOW9lU2syKzhyQWNaMnlhQUVGOFVJcjVSZTE5?=
+ =?utf-8?B?aklYSDNZS0JHSEJmV2VObXNJN2lHVGhlcllCSDZ3YlhERTJxMjNHMmRzRnZk?=
+ =?utf-8?B?VDV6SnRKd3pZUnNraDNUYXErWmw2SVNJRDdPNW5LcStvTmVHTzJ0Y3gzeXBl?=
+ =?utf-8?B?bmhxT1dmUEswcWtNTjJoUlZjL3NkcmRUNFdBTFUwY2RhdWZ0VUU2WG5nYTZU?=
+ =?utf-8?B?Y3ZnbnN1SkVKdkRRbW1EcTJ2MlRFb25wTDhSMFlDdWljcXdlUXhHZGlJMnVL?=
+ =?utf-8?B?V0I0T1pTeTRyWStuK3RxWHBDME54MG0yNnJ4TVpib0VSYnVtbmRjNnh5MUVH?=
+ =?utf-8?B?eG4wa3FKb1VLYmk1aGMrR201cjEwbnhiRUE1YU91MFl4UnprNWo0SHVKMWNm?=
+ =?utf-8?B?Ky9aTkhQSlFEVklTVWFESGNZY1pTRTIzOEVuYjVrRnU3Q2VkSXZJUjIyd3lH?=
+ =?utf-8?B?RFJ6RlJHNzFLMk5KeTVhaTAxaXNHSTZLRFRxVDFrUTFJZlFoQ3JBYjdyalVD?=
+ =?utf-8?B?WFE5RVc4WXpncG5CVW1PNExVb3JSNjZoNWt0a2Voc2NjRmFITk1CaDByZW96?=
+ =?utf-8?B?MDI2dTRIZjM5QXNWSEdTTm5lbUtpdEwvRjk0UGs4S0MzKzJmWGYrS3d1RU1V?=
+ =?utf-8?B?WDJocklpdWtoL2x1NTBEOWhOMXpHRWpQUjhucEhJMG9pS2J3NEVqcWxJZ1Mz?=
+ =?utf-8?B?SWx6OWt1aW5jcDZqQk1YWUVwazgyYzg4OUVlRXJEWVlpaTR2a1Y4ZWdzYzRV?=
+ =?utf-8?B?c21DTFpkN0hvenQ2cFVDNnlwSFRuUTZOUHBkcUdpYXNRdi8rM1FQSWQ1ZU5q?=
+ =?utf-8?B?dngvc0w4ekF2RWlQQklPeis0WnhqSlRjUllZVTJ0ZmxUYXltZHVxVWljZThB?=
+ =?utf-8?B?TW44TGhBMEFlWDhBTEQzaC9HSXRaZEVRWXUyeW51MFoxcjNieGNJbll2ZmR5?=
+ =?utf-8?B?YlZ1OGJibGo1dEJETnFKeUx3RkNhWU52K0tSWlM4bCtxNDBGM2xFMWRqcDFr?=
+ =?utf-8?B?eVcra2V1SnFWSXFCL1dOSWtlTy8rREhqUjR3MWlLYXB6ZzN6ckRDZEw3TStI?=
+ =?utf-8?B?TGVDYjA5SkRrNFIzWEl1ZCsxUHNtOU9LczlSVHFSMC9OUmxTNWluQlVJVC81?=
+ =?utf-8?B?L3o0TFhvTk9icWhUT1lLT2g4UG94K3J3MXAybXBLdlhMVGk2ZDNJMmVNQVVp?=
+ =?utf-8?B?QmZCYnp0SG52OXJaY0U2aHVTRWtTaUYxNlVuMDNnUy9DWWxYZ2ZBTk45VDZy?=
+ =?utf-8?B?akZMeWFzTHRnY0dCL21hYWg0V2QwckpDWG4zOW5YRDZaYTB5d0pLOVQ0Z3RH?=
+ =?utf-8?B?WVlVeU1QZUloZk12cXBPWDFsK2Uwb3B5bXpvdUxYb2JzUW9uNXA2NFFsMXc2?=
+ =?utf-8?B?aE44aWQyMW94YlBjNzVMRW1FRGFvdkp2M1V4bzh0RkpFcjBqMlA5N2JvL0pO?=
+ =?utf-8?Q?c36eLt?=
+X-Forefront-Antispam-Report:
+	CIP:50.233.182.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:[127.0.1.1];PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1102;
+X-OriginatorOrg: axiado.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2025 20:07:54.1271
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d01f2c56-5bd9-449d-6b9c-08dde0ee69fd
+X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[50.233.182.194];Helo=[[127.0.1.1]]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BY1PEPF0001AE19.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR18MB6432
 
-On Thu, Aug 21, 2025 at 08:20:07PM +0200, Frank Wunderlich wrote:
-> Am 21. August 2025 20:06:20 MESZ schrieb "Russell King (Oracle)" <linux@armlinux.org.uk>:
-> >On Thu, Aug 21, 2025 at 06:43:28PM +0100, Russell King (Oracle) wrote:
-> >> Booting 6.16 on the Macchiatobin, I discover that I can no longer
-> >> access my disks, and thus the userspace boot fails. The cause appears
-> >> to be that one of the SATA controllers doesn't have any ports:
-> >> 
-> >> [    1.190312] ahci f4540000.sata: supply ahci not found, using dummy regulator
-> >> [    1.196255] ahci f4540000.sata: supply phy not found, using dummy regulator
-> >> [    1.202026] ahci f4540000.sata: No port enabled
-> >> 
-> >> This is as a result of the blamed commit below which added a default
-> >> disabled status to the .dtsi, but didn't properly update the mcbin
-> >> dtsi file. Fix this regression.
-> >> 
-> >> Fixes: 30023876aef4 ("arm64: dts: marvell: only enable complete sata nodes")
-> >> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> >
-> >Frank,
-> >
-> >I think this is also similarly broken by your patch:
-> >
-> >arch/arm64/boot/dts/marvell/armada-8040-db.dts
-> >
-> >as you've updated the ports on one SATA controller but not the other
-> >in the same way as you omitted the second controller on mcbin.
-> >
-> >I'd also question this:
-> >
-> >arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
-> >
-> >as you updated the other cn9132, but not this one which was introduced
-> >in 6.11, and your change was in 6.13. Please can you look at both of
-> >these and send appropriate fixes?
-> >
-> >Thanks.
-> >
-> 
-> Hi,
-> 
-> I sent it at least twice..maybe this new was added in between.
+Axiado AX3000 EVK has total of 4 UART ports. Add missing alias for uart0,
+uart1, uart2.
 
-Nope. You patched Macchiatobin badly - you failed to use grep to find
-all the sites that you needed to update.
+This fixes the probe failures on the remaining UARTs.
 
-$ grep -rA4 sata-port@ arch/arm64/boot/dts/marvell
+Signed-off-by: Harshit Shah <hshah@axiado.com>
+---
+ arch/arm64/boot/dts/axiado/ax3000-evk.dts | 3 +++
+ 1 file changed, 3 insertions(+)
 
-would've shown you where you need to patch.
+diff --git a/arch/arm64/boot/dts/axiado/ax3000-evk.dts b/arch/arm64/boot/dts/axiado/ax3000-evk.dts
+index 92101c5b534bfac8b463adaa1c4f0d4367d01e21..b86e969625573bf92bdd5e4435ea571dd7500de2 100644
+--- a/arch/arm64/boot/dts/axiado/ax3000-evk.dts
++++ b/arch/arm64/boot/dts/axiado/ax3000-evk.dts
+@@ -14,6 +14,9 @@ / {
+ 	#size-cells = <2>;
+ 
+ 	aliases {
++		serial0 = &uart0;
++		serial1 = &uart1;
++		serial2 = &uart2;
+ 		serial3 = &uart3;
+ 	};
+ 
 
-The timeline here is:
+---
+base-commit: 8742b2d8935f476449ef37e263bc4da3295c7b58
+change-id: 20250813-axiado-ax3000-missing-serial-alias-39c489370ba9
 
-- I added support for Macchiatobin in November 2018. There was no need
-  to describe the ports at that point.
-
-- Miquel Raynal updated the description in July 2019 to add the
-  sata-port nodes for each of the _three_ ports that are present on
-  the hardware.
-
-- You patched the file in January 2025, only touching the cp0_sata0
-  device, ignoring the cp1_sata0 description below it.
-
-So no, it has not been added since, it was always there.
-
-> But i have no marvell board for testing so i cannot verify my changes
-> are correct.
-
-It will only show up if one has a platform that has disks connected
-to all three SATA connectors, otherwise it's lost in the kernel boot
-log noise.
-
-The only way to do this is to take care, use grep to find all the
-sites that need to be updated, make the changes, and then check again
-using grep that you have indeed got all the necessary sites.
-
-> I only tried to fix binding errors.
-
-I have to say that this is the root of the problem - while it may
-seem helpful to fix warnings etc one sees, it is only helpful if they
-are done carefully and with utmost care to avoid the attempt causing
-a regression.
-
+Best regards,
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Harshit Shah <hshah@axiado.com>
+
 
