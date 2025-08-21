@@ -1,126 +1,221 @@
-Return-Path: <devicetree+bounces-207267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A6A3B2EFC8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:35:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C60B2EF8F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:28:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C14741CC5147
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 07:33:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 193DC7B807C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 07:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BCC82E92DC;
-	Thu, 21 Aug 2025 07:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85D662E92B4;
+	Thu, 21 Aug 2025 07:28:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="rKtu5ExU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE482E92DA;
-	Thu, 21 Aug 2025 07:32:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28A32E8B86
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 07:28:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755761576; cv=none; b=tAXWIIQ3EbI6awy64KFmJQDO4vSZLclBKFAyb+3BWONfDRlkQrGcgeYEVPWzo1aEZwdETJOAWtL1Gs82+JG6OxRBVEP+pJ0Ir8nrxFCBceX8tTqAo/+tgksMhE0WXdfdGu8h3U9RwdaDgFtGsJcmuDJZSpHV2gCucs0bs4csBxQ=
+	t=1755761288; cv=none; b=FyA17Ch9BapBIvo3rZ1ItSOq75rRcqldDZtEGywV6lETIeZcEtw6irP0T2UfJKyqvNp4+Af3dD01Mw0KF6e+LyNHBfazsS5S+cVizA65UmPE+I/su9fhUGLAYctw6UlspgYKRaYW/nMq+SuzydWoH9RZu2cz2TCzSXbSZPLpMR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755761576; c=relaxed/simple;
-	bh=iR7W9OBIg/YoAAEk8o+v4Qww1X9xHOdg9QT6r7jtb8c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bH1aduXjMi6nSRI1OxQVVjZ/TPekA5SlFAZzcntvkpXN8tQJ75cvgvYIQiKCZmrRMfGig2yWiexmv9Oqj4r11jffHV9+0T5uKrGGGJkp+a3DMzkUJKx+zjShDuUeYZ53Kkgbujs8CTs5FCBnKeuslri88/T7Tw6GG9iMq1ebJbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-53b17534eeeso266060e0c.3;
-        Thu, 21 Aug 2025 00:32:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755761573; x=1756366373;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5G76ZiP1l04eRnUL+woGlRNtcvSbJmIHOuwOKU1fo5k=;
-        b=W2M+vthg7R5KQMSTVFl3oLmKAKn/fuKJHZpSD+ROejCkEop3pnePpyjzpwmEUtFxct
-         cqQMDZ8K2JwWiUn9mP0KOnjTATA85zfwaOb18eKJgnbRrTr4wjT0b6bA2YdDCkg7Ujgh
-         HaBk5iWQYV9D13BrWfnvWEOy3aeXoObda1eiX/WEAkgwoLKLs+DIDasTNsQM7GLEIQLi
-         Nuj5+JNn0fJRyeTd+CSaF+gSfmcgBEatnD6/OPc9ag2TyxSFSe2ZszftI6TDF5+H29DO
-         x38/Q6FRH3dqy6+AvMYQ/yNle5z/tC4o7g6W8Yzzp8iF6vxgwdNrxCWxGYy32So9cM3/
-         2TRg==
-X-Forwarded-Encrypted: i=1; AJvYcCUtYAdXFXggMDgt++Ut4uQYCZ+XTdbhPcMr224V0rM85pUZC/Y+LZwc06vrtkKl2MnKIe8BNUZL2Bhx@vger.kernel.org, AJvYcCVYlRKHqQns4m57nTccw4ckVTktO62QJCtubr9ZTswEgGkJURew1N0jNp03iLCAkQ7UJ4svDxcaoUoZwKRAv/QO+38=@vger.kernel.org, AJvYcCVa9NlV7hcK5FSPOyPc1Gcl9esc8Pprf/Oc0BTlbb2HLV+l57GPt7FsJqAArhmZvRQUz/j9Ar5/fg+I@vger.kernel.org, AJvYcCVh6oGiuTHxA6slMG02LlEinoo9EChj+U/EK4EJqFjGPjVYlG72VVXnruRb0IslXeI5g8HKEXPw+8o2@vger.kernel.org, AJvYcCWzwNOXuSbfKfkr388loriLI8C7E+uaLwtQ8J/Pg4nwiel7vKYew7aJoo3wHCYgXDdC5Ya1xJXP/SmbzgEi@vger.kernel.org
-X-Gm-Message-State: AOJu0YwM5830RzXEjFOHQC3p3IfoaE8qhTOR4UKh+O1O5+O4A/xzb+4N
-	rH7pvphK6G1CRKVQ7cktQ4pnS9Wnrb0jzW5Eatk6S2qcZNVD4Al8Ie3akORruhd3
-X-Gm-Gg: ASbGnctufC5J498dPThQf7O/U4vdoqyys/5p/eppwaY5a5BguaM1PVRqp0HMOJNvJrW
-	69IAMj6bXVDHLHAsurJxFc5B2h16eHYJe36Z2kiVdv91T0hfJ/yMuMmsWEZBm7uFKgwvm79AV/z
-	eJ4BOt4IRRLPp668R7iZAWRcxd3sAoOeAEu4eae0SzON0m583PbB5EEX0Q/9TpqR1OYvRJ6Dfn2
-	OY1eXKrAmWcwFvTsIQKVjeNCXxBWqq9fBF1YYGcvvCcAhFFU3eu4mYLJ+L4hw1nIvF+ZOOtxDrj
-	M6aGE9W8mR2DAUrg8D3y2iglNBYTGUWYetEZ/qjugHjLW2Oi3uDDwPmEwTxRYG2+iQiNwTRVvP6
-	umKegE6XULva8hiTaAZMY348Eab0pC1Rw+r3UTIbir6Pex5kQ0PwPw4idMf8V
-X-Google-Smtp-Source: AGHT+IEvPadvvCjlqTkLcsVvoOxXWxY6JCaIK9t63EjMOycQ80Ax647sJDgibdZedCRW1cb95Z9VSQ==
-X-Received: by 2002:a05:6122:3d0b:b0:531:188b:c19e with SMTP id 71dfb90a1353d-53c7d83aac7mr297981e0c.2.1755761572460;
-        Thu, 21 Aug 2025 00:32:52 -0700 (PDT)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53b2bed8eb8sm3623728e0c.21.2025.08.21.00.32.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Aug 2025 00:32:52 -0700 (PDT)
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-8921eb4befaso44655241.2;
-        Thu, 21 Aug 2025 00:32:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVbS0hbWotO+4kXM8mHWKp2BoXZTZzO1s9qWJJkW0rr81km4QIrkScBV5sI2zIlFehtoLYpHrFPbKA4@vger.kernel.org, AJvYcCVvkXtNfttsJdleJ+tLAjLj+UJLkpYIuu7DbNyo3+oMZXUDEoD8y/XsYRXCE7ZSn9vHw5cn8Xp8NvSZ8wE2@vger.kernel.org, AJvYcCX2Ttsyf/Vr8QtRU0SaFHBlxjLoIXJDk6jqVPKwvgD6nFZ3hq+qzOcPzVu6axqsbN4uzxMd74SZhBInVwmwrhE5ezk=@vger.kernel.org, AJvYcCX9NsqebSswSAJBIMIs/cNTcGKT1WVNX39y2xArnC9oEpNAc5gfl5NWoJmEWxlzwukZC0RoeejTyOyk@vger.kernel.org, AJvYcCXxfvUoXynw5afkjv5G22uyV+3tsCgFaeDQZ9IOQrGzBYyg5k1avP7kj7iGKZvpZUvAfem10/kfv6F2@vger.kernel.org
-X-Received: by 2002:a67:e7c5:0:b0:4e7:5f31:7443 with SMTP id
- ada2fe7eead31-51bdf241ebemr427508137.9.1755761571596; Thu, 21 Aug 2025
- 00:32:51 -0700 (PDT)
+	s=arc-20240116; t=1755761288; c=relaxed/simple;
+	bh=JX+HMmmVfC/Gb5Ceal7WyEE+upL2KdlJsVe5Gs5Fg7g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=ogCcnaXenpnaBpsxi0Hqe7UcFjwyXhaC/zHm3ABqpLPG5T2EbtTjJWjRWislSRODJrBmuNsJj/HZggUWssJvq+2Ty7mBwJZsUV41Rh+hlEV/zE0/MGgYXf995rDRGvc279GIpmnkZQRFSZJG6AqMXn9GnRQJj0589GxQydkFrLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=rKtu5ExU; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250821072802epoutp036cc2bd14583ad2e079c62504430bed26~dt5Wd_9GB0972109721epoutp03K
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 07:28:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250821072802epoutp036cc2bd14583ad2e079c62504430bed26~dt5Wd_9GB0972109721epoutp03K
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1755761283;
+	bh=kIEzbM1wjpfjpBTjR8+fUys/t1BiTFWldKBcRdfEidU=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=rKtu5ExU1UnNizFj8Vm/mRbKo3qfSZK4BVPjx+aqVF5S5e1Oe0BQlB7svXRvFL8k+
+	 Zwt51YQQlZPqS89nij6UY4JDUeMQdlifDI0QdA5yYQ+b6hgZ/1D/kqgnV7UQ/knpY1
+	 uXwX/O4Aeq0htO8M6lcp71tpJVmup/r9dHBpSwHs=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250821072802epcas5p3caee3e065d5e0e7a566e46afb18db514~dt5V0MifD3131031310epcas5p3I;
+	Thu, 21 Aug 2025 07:28:02 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.90]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4c6w013QXKz2SSKf; Thu, 21 Aug
+	2025 07:28:01 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250821072800epcas5p4fb5ee3058bd9da196616f59a0db14899~dt5UibNfG0078300783epcas5p4G;
+	Thu, 21 Aug 2025 07:28:00 +0000 (GMT)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250821072757epsmtip1a400ab3ff3f859daab20e7e0476d04f6~dt5RScs_k0547905479epsmtip1Y;
+	Thu, 21 Aug 2025 07:27:57 +0000 (GMT)
+From: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
+	andre.draszik@linaro.org, peter.griffin@linaro.org, kauschluss@disroot.org,
+	ivo.ivanov.ivanov1@gmail.com, igor.belwon@mentallysanemainliners.org,
+	johan@kernel.org, m.szyprowski@samsung.com, s.nawrocki@samsung.com,
+	pritam.sutar@samsung.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
+	dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
+	selvarasu.g@samsung.com
+Subject: [PATCH v6 0/6] initial usbdrd phy support for Exynosautov920 soc
+Date: Thu, 21 Aug 2025 13:06:57 +0530
+Message-Id: <20250821073703.2498302-1-pritam.sutar@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250801084825.471011-1-tommaso.merciai.xr@bp.renesas.com>
- <20250801084825.471011-3-tommaso.merciai.xr@bp.renesas.com> <aKYG-ph43pjgiHF_@vaman>
-In-Reply-To: <aKYG-ph43pjgiHF_@vaman>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 21 Aug 2025 09:32:40 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUWEspGvAvrm1T_hSjHmEhqAO4+OPfRWRZP+PTP-EO=5Q@mail.gmail.com>
-X-Gm-Features: Ac12FXzPw4V06_RhWFxxZjKCzjwq7JCDGr5NyUZSqRo7upsFc1Tlulg44uQr3Mg
-Message-ID: <CAMuHMdUWEspGvAvrm1T_hSjHmEhqAO4+OPfRWRZP+PTP-EO=5Q@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: dma: rz-dmac: Document RZ/G3E family of SoCs
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, tomm.merciai@gmail.com, 
-	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250821072800epcas5p4fb5ee3058bd9da196616f59a0db14899
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250821072800epcas5p4fb5ee3058bd9da196616f59a0db14899
+References: <CGME20250821072800epcas5p4fb5ee3058bd9da196616f59a0db14899@epcas5p4.samsung.com>
 
-Hi Vinod,
+This SoC has a single USB 3.1 DRD combo phy and three USB2.0 only
+DRD phy controllers as mentined below
 
-On Wed, 20 Aug 2025 at 19:33, Vinod Koul <vkoul@kernel.org> wrote:
-> On 01-08-25, 10:48, Tommaso Merciai wrote:
-> > The DMAC block on the RZ/G3E SoC is identical to the one found on the
-> > RZ/V2H(P) SoC.
-> >
-> > No driver changes are required, as `renesas,r9a09g057-dmac` will be used
-> > as a fallback compatible string on the RZ/G3E SoC.
->
-> I seem to have only 2/3 w.o cover, nothing in pw too...?
+  * Combo phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
+    compatible to the USB3.0 SS(5Gbps). 'Add-on USB2.0' phy is added
+    to support USB2.0 HS(480Mbps), FS(12Mbps) and LS(1.5Mbps) data rates.
+    These two phys are combined to form a combo phy as mentioned below.
 
-Lore has the full series:
-https://lore.kernel.org/all/20250801084825.471011-1-tommaso.merciai.xr@bp.renesas.com/
 
-Only patch 2/3 was meant for you.
-Patches 1/3 and 3/3 are clk and DTS patches, which I have already
-applied to my renesas-clk and renesas-devel trees, as the new DT
-binding is straightforward.
+   USB30DRD_0 port
 
-Thanks!
+ +------------------------------------------------------------+
+ |                                                            |
+ |                (combo) USB phy controller                  |
+ |      +----------------------------------------------+      |
+ |      |                  USB HSPHY                   |      |
+ |      |  (samsung,exynosautov920-usbdrd-combo-hsphy) |      |
+ |      +----------------------------------------------+      |
+ |                                                            |
+ |    +--------------------------------------------------+    |
+ |    |                   USB SSPHY                      |    |
+ |    |   (samsung,exynosautov920-usb31drd-combo-ssphy)  |    |
+ |    +--------------------------------------------------+-   |
+ |                                                            |
+ +------------------------------------------------------------+
+ |                                                            |
+ |                     USBDRD30 Link                          |
+ |                       Controller                           |
+ +------------------------------------------------------------+
 
-Gr{oetje,eeting}s,
+  * USB2.0 phy supports only UTMI+ interface. USB2.0DRD phy
+    is very similar to the existing Exynos850 support in this driver.
 
-                        Geert
+    USB20DRD_0/1/2 ports
+
+      +---------------------------------------------------+
+      |                                                   |
+      |                USB PHY controller                 |
+      |    +-----------------------------------------+    |
+      |    |              USB HSPHY                  |    |
+      |    |  (samsung,exynosautov920-usbdrd-phy)    |    |
+      |    +-----------------------------------------+    |
+      |                                                   |
+      +---------------------------------------------------+
+      |                                                   |
+      |             USBDRD20_* Link                       |
+      |                Controller                         |
+      |                                                   |
+      +---------------------------------------------------+
+
+The "USB20 phy output isolation" is shared across the USB20 phys.
+We have to bypass isolation when any one of the USBs is configured
+and enable it when all are turned off. The "USB31 phy isolation"
+is seperate for USB31 phy.
+
+This patchset only supports device mode and same is verified with
+as NCM device
+
+changelog
+----------
+Changes in v6:
+- added else part for new supplies in schemas those are only
+  supported for exynosautov920.
+- addressed comments for driver given in v5.
+  link for v5: https://lore.kernel.org/linux-phy/20250805115216.3798121-1-pritam.sutar@samsung.com/
+
+Changes in v5:
+- significant changes were added in v4, removed "Reviewed-by" tag.
+- addressed comments from v4 patchset.
+  - patch (1/6)
+    - DTS style is corrected and added required supplies in code/schema.
+    - schema block added to resolve below failure during 'dtbs_check'.
+      Unevaluated properties are not allowed ('dvdd075-usb-supply', 'vdd18-usb20-supply', 'vdd33-usb20-supply' were unexpected.
+  - patch (2/6)
+    - removed usage_counter(take this later in subsequent patch-sets)
+  - patch (3/6)
+    - There are 3 types of the phys in this SoC.
+      - one is simmilar with exynos850 as mentioned in patch no.1.
+      - second supports only USB3.1 SSP+ and denoted in patch no 5
+      - third supports only USB2.0 HS as in patch3.
+    - hs phy in combo phy is "NOT" same as phy. (in patch no. 1)
+    - These three phys(usbdrd-phy, combo-hsphy, combo-ssphy) are totally
+      deferent, "NOT" same, hence added three compatible for three phys.
+  - patch (5/6)
+    - Since there are two phys in combo phy, explaination is given
+      in each patch.
+  link for v4: https://lore.kernel.org/linux-phy/20250701120706.2219355-1-pritam.sutar@samsung.com/
+
+Changes in v4:
+- addressed comments from v3 patchset
+  - removed dts related patches, to be posted in new patchset.
+  - added regulator, pmu and power sequences.
+  - phy isol is shared across USBs, added usage counter to bypass or
+    enable phy isolation.
+  - modified schemas with hs and combo phy compatible names
+    (used "combo" to denote combo phy) and regulators
+- modified code to work with binding and unbinding devices/drivers
+- added "Reviewed-by" tag.
+  link for v3: https://lore.kernel.org/linux-phy/20250613055613.866909-1-pritam.sutar@samsung.com/
+
+Changes in v3:
+- Updated dt-bindings for USB2.0 only.
+- Added dt-bindings for combo phy.
+- Added implementation for combo phy (SS and HS phy).
+- Added added DTS nodes for all the phys
+  link for v2: https://lore.kernel.org/linux-phy/20250516102650.2144487-1-pritam.sutar@samsung.com/
+
+Changes in v2:
+- Used standard GENMASK() and FIELD_GET() to get the major version
+  from controller version register.
+  link for v1: https://lore.kernel.org/linux-phy/20250514134813.380807-1-pritam.sutar@samsung.com/
+
+Pritam Manohar Sutar (6):
+  dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 HS phy
+    compatible
+  phy: exynos5-usbdrd: support HS phy for ExynosAutov920
+  dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo hsphy
+  phy: exynos5-usbdrd: support HS combo phy for ExynosAutov920
+  dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo ssphy
+  phy: exynos5-usbdrd: support SS combo phy for ExynosAutov920
+
+ .../bindings/phy/samsung,usb3-drd-phy.yaml    |  50 ++
+ drivers/phy/samsung/phy-exynos5-usbdrd.c      | 651 ++++++++++++++++++
+ include/linux/soc/samsung/exynos-regs-pmu.h   |   3 +
+ 3 files changed, 704 insertions(+)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
