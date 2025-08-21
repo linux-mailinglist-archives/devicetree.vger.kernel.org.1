@@ -1,118 +1,281 @@
-Return-Path: <devicetree+bounces-207625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C032B30150
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:44:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7BE5B30183
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:55:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 735AE3B7DEF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:44:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EE9C176DC5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:55:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE3F33A02C;
-	Thu, 21 Aug 2025 17:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8BFC341674;
+	Thu, 21 Aug 2025 17:54:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="bOJ6kBEd"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dzKAwygS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE089275B06
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:44:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565882D63E1
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:54:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755798258; cv=none; b=KqVf17tLWAlKP8HbVG5fCXADm8gfhKyajCRsldgZFxUTvq9DiAn/A2FgVqkv50Z6sQ28mkNBtXGcD9VFwvL6GLJJngX40WOKxkCXBXzwGGWPAeEayeyMnWhKyoBSNYsUDXDMqJUfIFuyPpG/mQjBz6lCE1JfDzAEvRkpqba2+50=
+	t=1755798899; cv=none; b=P7U3kNAJwIJavwVAkkLmDuzaW1nKhsVL0WTe6Fred4wLZ1xXwKd9Anj5ncE1CFYGGbI475XcrLyArfRJqBO62N+3SZDArWzTI8IZJ9aCQrErtoOPWAjfiuLlwXQWIYWRI41AhqRCxL88+vm/5dVWVjdeveUkh1YMWP3o/1LOT+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755798258; c=relaxed/simple;
-	bh=ndXuZhlVB55njYdb9zYoE6/yCxgsV+U8y1OcDBfFX8o=;
-	h=From:To:Cc:Subject:MIME-Version:Content-Disposition:Content-Type:
-	 Message-Id:Date; b=PDCQnqSIIEs6dLdObpIOfmf5EFpVi81832YwUfwlVJ9Q5TseEqXHkTfWT7y8iPqj/SRPUGt/gldM61btg5ZJswdkk8qovhUTX1QQhWoiLUB/VHAVaao53egBrr0sbG9eK7VlmqFmm9AAYJXl96/09KgLSq+nVgs/50qIHvmyQg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=bOJ6kBEd; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
-	:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-	Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=OhfDopMLlSzRjCi00Eq04iQOcGmfz7Cch60FwRXbW2w=; b=bOJ6kBEdqkrsjj6Ncj7wyV0pSR
-	R2xIoVvbjl0QvrPE32Uhdg5FnOgsr2klRchP9lga5iy4N57EbG+APRy3+pMAZVSaQoT39UiyCWWO6
-	TUQuPERYTVcfemXY0LY6JzQp4TLCfcum1Xdf5K09WpQgWLsUPdAjt8VEO2TobVDNTT77gTLh4vFpq
-	aQy8jaVhf/+ZPkxI97a5ujEpQizScWRionK8OtQSu9VH66iS2eaXBi0YKivfm5hOMRMoZLib2ri5o
-	e1wZaMEehLMESc6b0EJpi0+dliwwg+RlRkmy6mGfSa/QNSFMoZ1AqSh48qCg60quf7eWht4NbzF+S
-	JyJbsfYQ==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:46994 helo=rmk-PC.armlinux.org.uk)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <rmk@armlinux.org.uk>)
-	id 1up9Kg-000000001SK-0GL4;
-	Thu, 21 Aug 2025 18:44:14 +0100
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1up9Jw-00BbOE-VC; Thu, 21 Aug 2025 18:43:29 +0100
-From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-To: Frank Wunderlich <frank-w@public-files.de>
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Rob Herring <robh@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: [PATCH v2] ARM64: dts: mcbin: fix SATA ports on Macchiatobin
+	s=arc-20240116; t=1755798899; c=relaxed/simple;
+	bh=PFa690eod7vbQoPrBTBGBZTqe+BMbVh+t4iOEti3jnw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iwWSE1C4J6idWPu2auRsrPSPEi1nu/WI6z2MA5GWgziqiKSoZG6aNICTk9wPfNZ7oWT6pruns4hMfTl476RbllGql3S242ZykwyHUKpGqBDmCng3MCorIZTMt1Nu+r18abpM+Smrkk99JOTULAYCe8pFGXqhFRWNL2zCfiOnPYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dzKAwygS; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57L9b7oP030556
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:54:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=7F2iS3xObjAX92GGdMnwxH
+	2K3kJqgrYwHb57/wCGVV0=; b=dzKAwygSPajxfPtAWa1k3jE5nomgXSYgKLT5/k
+	yp9Yt4uNmcdzb5Ga9TEQU5vDSr5UBRbZANGmMD4VwRPdNOADDMTcAJpqK//Q1Zc4
+	FyhkwNYQSWOPiCfb/LsV5DuE/GSnMXSX7P9ZLd/SMNEPb2glg2aS/+ifqZ8PPWBT
+	1mXS+/ay9PBm1LDhhePvR+7iSZ1/tZ10KY4mwLEZltv2BJLFkOPDQTmV1mGagPx3
+	RPFj1ua//tJY0UMoqCkTUEtI4IdUq2Noj0Tq05aabNJSZwVxjqU5pnCr4FFfhFiN
+	kG2fkJb55uYGRpZdZVvMBwLARc2dWN1TlAq5U5O3UH3uCv+w==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52a6fdv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:54:57 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-76e2e614889so1315158b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 10:54:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755798897; x=1756403697;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7F2iS3xObjAX92GGdMnwxH2K3kJqgrYwHb57/wCGVV0=;
+        b=ZyWoESCvATfP3OPSVpcH0G9hEu/xc4Ue4ZIGCsXn1QsAgWGCYEbbKw7vaA8vBglGAI
+         LL1Y4VkWjNMekMxuNoIRLesKla0mK7M+VEIAR5Naef3xKGVOcAniRyyLIE1RM+wnHOks
+         HeBrnL4ov0VFHWZHNNFkZj0XRnoduSXqUs3K5XlgFLyV9V4LgeCrNw+3SHTqmNoLhUim
+         m88D3KXTx62WzS4vEOiPl/UB5AbGGyS0c2B19QzYKbP7UAn424GOKtu1rs4pwHrYKvxi
+         eF4rF19QzcHhlG0AB+UR4Ki/3nPltzU4I1SP3Yyv9dE8u3e4jTVgWApZtjus10Xa8mPF
+         SnrA==
+X-Forwarded-Encrypted: i=1; AJvYcCWaT5U9we7nL0HzHrJqsLdR/9lEazsDGadq6biQ6lNP+uJONNa7HlhLSQs7xHeTW9X01N6+GL7vdM3Y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyi1qO2HAbpNHBSv8+AbuOpQgOdJVTtL9ji3UoW8ryypoIEEhcW
+	/XHKz4uLWgWVcHdwm1ZGO5XdHSXnIebaIxNwtHXW484jMPxkeebAf9AV6l91x/AbjLW565Anzpa
+	fZiKYXDpIP/k6IQw3EfZnubyE9M/ISTJDDZndYXKgz+cLcQl0mzmaMF4DjfHZcE1r
+X-Gm-Gg: ASbGncvSto4ZI+PFbLxRaYZT0obGp948SdnFxJdjqT57gf7DoexLm9UqFfTTU7fI08q
+	G3xycGqV4iuc3r36oOOwOhn3R/QUnat5aE76nSZC6oWLgkW/oM0FI+nd7up6h3t7q+6aKiK19/i
+	07dzszA3aBSTZQ/lkscmVbvYDYd/QMJ/kpmmh09nzP0Zc0GECweG/YCXUXPfulZl8lnDGNUwSVf
+	rlzfzlwvhZfkOqnDQLLKaylBAw+4jdntTt0+KNk3S88gCX1ABReplVacZanyloDh+5HGwk8sN9Z
+	Jvc7d8cZ+7mARYFIVkT3XFdSGhUK1YQjh6yO61R+wyxViifua/9CdU+s8J4OjsivHyJCQBuS38+
+	Z
+X-Received: by 2002:a05:6a00:1a8b:b0:76e:885a:c331 with SMTP id d2e1a72fcca58-7702fc7597cmr290729b3a.31.1755798896589;
+        Thu, 21 Aug 2025 10:54:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGHdfCq/ZDg3n95yEzjK9PbaokU3P+W+8kWA1gzRlO4XEPL8VOLZfw4yxx7aajJbuGBkf+VAQ==
+X-Received: by 2002:a05:6a00:1a8b:b0:76e:885a:c331 with SMTP id d2e1a72fcca58-7702fc7597cmr290700b3a.31.1755798896124;
+        Thu, 21 Aug 2025 10:54:56 -0700 (PDT)
+Received: from hu-vvalluru-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e830d3558sm8053939b3a.75.2025.08.21.10.54.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Aug 2025 10:54:55 -0700 (PDT)
+From: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+Date: Thu, 21 Aug 2025 23:24:28 +0530
+Subject: [PATCH v3] arm64: dts: qcom: lemans-evk: Enable Display Port
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date: Thu, 21 Aug 2025 18:43:28 +0100
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250821-enable-iq9-dp-v3-1-8c3a719e3b9a@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAFRdp2gC/3XPwW7DIAwG4FeJOI8KAwnQ095j2sGAWZHapIE02
+ lTl3UfTw6Rpu1j6LfmzfWeVSqbKjt2dFVpzzdPYgnrpWDjh+EE8x5aZFLIXBoDTiP7curPj8co
+ xxuCCAdcHx9rMtVDKn7v39v7MheZbY5dnk3msxMN0ueTl2AFiL6JTlqxNASMokHowPgrnSQtlf
+ KLBpsQe1inXZSpf+6kr7Ng/V63AgQ9RWSAQvTbqdar1MN/w/Fh8aGUHV/mDWCl+I7Ihzqj2H0q
+ pjf4D2bbtGwZgUwlCAQAA
+X-Change-ID: 20250711-enable-iq9-dp-addc9c7195c9
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Shashank Maurya <quic_ssmaurya@quicinc.com>,
+        Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755798892; l=3547;
+ i=venkata.valluru@oss.qualcomm.com; s=20250711; h=from:subject:message-id;
+ bh=V5g7F5RRDwJD+H4l8qjmFMShWrA8kWLy0TMticjfMnU=;
+ b=MaekKgqai/A8QlOyblqrfq3lV3L6YCeYbTrz5UL0DviZdnmMUki016PkLEsXMMHwIHsJWJQ43
+ o6nTJw6sVMADqQb55RJI7vcyn38WFZJ/vq4V6rqeAEp80LtoVJ/hPzX
+X-Developer-Key: i=venkata.valluru@oss.qualcomm.com; a=ed25519;
+ pk=f/CAPG1ZGl5SP8S1GuC97WMhUEV87h0JheHkNMt1nhM=
+X-Authority-Analysis: v=2.4 cv=feD0C0QF c=1 sm=1 tr=0 ts=68a75d71 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=Zrbf0049nC-wOleC0xsA:9 a=QEXdDO2ut3YA:10
+ a=IoOABgeZipijB_acs4fv:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: KWuTEJM9wqKCvNBbmzcYv5RwWuI8rw3_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX4D+yFLs6kn/a
+ xU9+z39Oz9gS17L6+j3NHZY5JVx/W/ZtkBLrNemuCvXwgZRYXnSlVFrhmvHecEYPMvXgTADl5g6
+ lWH62kLZ2sVD2WpxyTRZj/PCqNwXD2/hHGoTlHBV1PTQe4XUqzSUC7eYfRIaylWA4kerbGvvfYk
+ ef7t+A2xr6uKn++7lXo19VutJvJEgRLevDt7WGEWthkbuuN5dEVE1aV1zfxu6hyGWfIUc1kXXGy
+ t6axJMDol6i2RwjifCPOzo+kjbN3HQvjTieURfHWPbeDt569BkJbgnm+BoCpbbKCQwV8MHmle17
+ ULa/n9+Vp0ZeOJQVcO8c1p++FMsaAhpuBd8H68B9uVt99M5P80cK+d0ZeDMqhIryr4zECe7mAqn
+ DWkyvRP7nMTS7NnJqnLYq10D7I5NXw==
+X-Proofpoint-GUID: KWuTEJM9wqKCvNBbmzcYv5RwWuI8rw3_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-21_03,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 adultscore=0 malwarescore=0 bulkscore=0
+ lowpriorityscore=0 spamscore=0 impostorscore=0 suspectscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
 
-Booting 6.16 on the Macchiatobin, I discover that I can no longer
-access my disks, and thus the userspace boot fails. The cause appears
-to be that one of the SATA controllers doesn't have any ports:
+From: Shashank Maurya <quic_ssmaurya@quicinc.com>
 
-[    1.190312] ahci f4540000.sata: supply ahci not found, using dummy regulator
-[    1.196255] ahci f4540000.sata: supply phy not found, using dummy regulator
-[    1.202026] ahci f4540000.sata: No port enabled
+Lemans EVK board has two mini-DP connectors, connected to EDP0
+and EDP1 phys. Other EDP phys are available on expansion
+connectors for the mezzanine boards.
+Enable EDP0 and EDP1 along with their corresponding PHYs.
 
-This is as a result of the blamed commit below which added a default
-disabled status to the .dtsi, but didn't properly update the mcbin
-dtsi file. Fix this regression.
-
-Fixes: 30023876aef4 ("arm64: dts: marvell: only enable complete sata nodes")
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Signed-off-by: Shashank Maurya <quic_ssmaurya@quicinc.com>
+Signed-off-by: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Changes in v3:
+- moved pinctrl nodes to soc dtsi.
+- Link to v2: https://lore.kernel.org/r/20250820-enable-iq9-dp-v2-1-973c9ca22474@oss.qualcomm.com
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-index 6170ca8f908f..8c7db2e87e30 100644
---- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-@@ -388,11 +388,13 @@ &cp1_sata0 {
- 	/* CPS Lane 1 - U32 */
- 	sata-port@0 {
- 		phys = <&cp1_comphy1 0>;
-+		status = "okay";
+Changes in v2:
+- added dp-connector nodes for edp0 and edp1.
+- Link to v1: https://lore.kernel.org/r/20250711-enable-iq9-dp-v1-1-6d381e105473@oss.qualcomm.com
+---
+ arch/arm64/boot/dts/qcom/lemans-evk.dts | 70 +++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/lemans.dtsi    | 12 ++++++
+ 2 files changed, 82 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+index 669ac52f4cf6aece72141416068268531fd9f79a..9e415012140b8a0c17c36580b9c6d3ad6cadcbca 100644
+--- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
++++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+@@ -22,6 +22,30 @@ aliases {
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
  	};
++
++	edp0-connector {
++		compatible = "dp-connector";
++		label = "EDP0";
++		type = "mini";
++
++		port {
++			edp0_connector_in: endpoint {
++				remote-endpoint = <&mdss0_dp0_out>;
++			};
++		};
++	};
++
++	edp1-connector {
++		compatible = "dp-connector";
++		label = "EDP1";
++		type = "mini";
++
++		port {
++			edp1_connector_in: endpoint {
++				remote-endpoint = <&mdss0_dp1_out>;
++			};
++		};
++	};
+ };
  
- 	/* CPS Lane 3 - U31 */
- 	sata-port@1 {
- 		phys = <&cp1_comphy3 1>;
-+		status = "okay";
+ &apps_rsc {
+@@ -253,6 +277,52 @@ vreg_l8e: ldo8 {
  	};
  };
  
++&mdss0 {
++	status = "okay";
++};
++
++&mdss0_dp0 {
++	pinctrl-0 = <&dp0_hot_plug_det>;
++	pinctrl-names = "default";
++
++	status = "okay";
++};
++
++&mdss0_dp0_out {
++	data-lanes = <0 1 2 3>;
++	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
++
++	remote-endpoint = <&edp0_connector_in>;
++};
++
++&mdss0_dp0_phy {
++	vdda-phy-supply = <&vreg_l1c>;
++	vdda-pll-supply = <&vreg_l4a>;
++
++	status = "okay";
++};
++
++&mdss0_dp1 {
++	pinctrl-0 = <&dp1_hot_plug_det>;
++	pinctrl-names = "default";
++
++	status = "okay";
++};
++
++&mdss0_dp1_out {
++	data-lanes = <0 1 2 3>;
++	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
++
++	remote-endpoint = <&edp1_connector_in>;
++};
++
++&mdss0_dp1_phy {
++	vdda-phy-supply = <&vreg_l1c>;
++	vdda-pll-supply = <&vreg_l4a>;
++
++	status = "okay";
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+index 64f5378c6a4770cee2c7d76cde1098d7df17a24a..7c9972c28a54008dc0bc1b556d93c0707a278dd4 100644
+--- a/arch/arm64/boot/dts/qcom/lemans.dtsi
++++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+@@ -5004,6 +5004,18 @@ tlmm: pinctrl@f000000 {
+ 			gpio-ranges = <&tlmm 0 0 149>;
+ 			wakeup-parent = <&pdc>;
+ 
++			dp0_hot_plug_det: dp0-hot-plug-det-state {
++				pins = "gpio101";
++				function = "edp0_hot";
++				bias-disable;
++			};
++
++			dp1_hot_plug_det: dp1-hot-plug-det-state {
++				pins = "gpio102";
++				function = "edp1_hot";
++				bias-disable;
++			};
++
+ 			qup_i2c0_default: qup-i2c0-state {
+ 				pins = "gpio20", "gpio21";
+ 				function = "qup0_se0";
+
+---
+base-commit: 1aa50d938e88fcad1312467bd09be4037bfe68ff
+change-id: 20250711-enable-iq9-dp-addc9c7195c9
+
+Best regards,
 -- 
-2.30.2
+Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
 
 
