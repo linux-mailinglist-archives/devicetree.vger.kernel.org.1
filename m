@@ -1,87 +1,62 @@
-Return-Path: <devicetree+bounces-207626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7BE5B30183
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:55:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 628C9B301A8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:03:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EE9C176DC5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:55:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E2777BB7B9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8BFC341674;
-	Thu, 21 Aug 2025 17:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A83534165B;
+	Thu, 21 Aug 2025 18:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dzKAwygS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t98mUctK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565882D63E1
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:54:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A7A32E54BA;
+	Thu, 21 Aug 2025 18:03:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755798899; cv=none; b=P7U3kNAJwIJavwVAkkLmDuzaW1nKhsVL0WTe6Fred4wLZ1xXwKd9Anj5ncE1CFYGGbI475XcrLyArfRJqBO62N+3SZDArWzTI8IZJ9aCQrErtoOPWAjfiuLlwXQWIYWRI41AhqRCxL88+vm/5dVWVjdeveUkh1YMWP3o/1LOT+Q=
+	t=1755799386; cv=none; b=k4l8Zz1UcdHAKeEqvHGToHvpHESIMCZ3vLMdTB8tOid62UX78s/Ov08UymtVty7b6EBdm8s+djtgOl/AuO/Xdmeq2zSv8Jv4SGmGDPtr22R5Ea09ZbD0yNlI9rXU02f5ZdyBO3LwjWZiFryj3JFT50IxbURRZFqZDmm/6jLRhYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755798899; c=relaxed/simple;
-	bh=PFa690eod7vbQoPrBTBGBZTqe+BMbVh+t4iOEti3jnw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iwWSE1C4J6idWPu2auRsrPSPEi1nu/WI6z2MA5GWgziqiKSoZG6aNICTk9wPfNZ7oWT6pruns4hMfTl476RbllGql3S242ZykwyHUKpGqBDmCng3MCorIZTMt1Nu+r18abpM+Smrkk99JOTULAYCe8pFGXqhFRWNL2zCfiOnPYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dzKAwygS; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57L9b7oP030556
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:54:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=7F2iS3xObjAX92GGdMnwxH
-	2K3kJqgrYwHb57/wCGVV0=; b=dzKAwygSPajxfPtAWa1k3jE5nomgXSYgKLT5/k
-	yp9Yt4uNmcdzb5Ga9TEQU5vDSr5UBRbZANGmMD4VwRPdNOADDMTcAJpqK//Q1Zc4
-	FyhkwNYQSWOPiCfb/LsV5DuE/GSnMXSX7P9ZLd/SMNEPb2glg2aS/+ifqZ8PPWBT
-	1mXS+/ay9PBm1LDhhePvR+7iSZ1/tZ10KY4mwLEZltv2BJLFkOPDQTmV1mGagPx3
-	RPFj1ua//tJY0UMoqCkTUEtI4IdUq2Noj0Tq05aabNJSZwVxjqU5pnCr4FFfhFiN
-	kG2fkJb55uYGRpZdZVvMBwLARc2dWN1TlAq5U5O3UH3uCv+w==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52a6fdv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:54:57 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-76e2e614889so1315158b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 10:54:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755798897; x=1756403697;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7F2iS3xObjAX92GGdMnwxH2K3kJqgrYwHb57/wCGVV0=;
-        b=ZyWoESCvATfP3OPSVpcH0G9hEu/xc4Ue4ZIGCsXn1QsAgWGCYEbbKw7vaA8vBglGAI
-         LL1Y4VkWjNMekMxuNoIRLesKla0mK7M+VEIAR5Naef3xKGVOcAniRyyLIE1RM+wnHOks
-         HeBrnL4ov0VFHWZHNNFkZj0XRnoduSXqUs3K5XlgFLyV9V4LgeCrNw+3SHTqmNoLhUim
-         m88D3KXTx62WzS4vEOiPl/UB5AbGGyS0c2B19QzYKbP7UAn424GOKtu1rs4pwHrYKvxi
-         eF4rF19QzcHhlG0AB+UR4Ki/3nPltzU4I1SP3Yyv9dE8u3e4jTVgWApZtjus10Xa8mPF
-         SnrA==
-X-Forwarded-Encrypted: i=1; AJvYcCWaT5U9we7nL0HzHrJqsLdR/9lEazsDGadq6biQ6lNP+uJONNa7HlhLSQs7xHeTW9X01N6+GL7vdM3Y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyi1qO2HAbpNHBSv8+AbuOpQgOdJVTtL9ji3UoW8ryypoIEEhcW
-	/XHKz4uLWgWVcHdwm1ZGO5XdHSXnIebaIxNwtHXW484jMPxkeebAf9AV6l91x/AbjLW565Anzpa
-	fZiKYXDpIP/k6IQw3EfZnubyE9M/ISTJDDZndYXKgz+cLcQl0mzmaMF4DjfHZcE1r
-X-Gm-Gg: ASbGncvSto4ZI+PFbLxRaYZT0obGp948SdnFxJdjqT57gf7DoexLm9UqFfTTU7fI08q
-	G3xycGqV4iuc3r36oOOwOhn3R/QUnat5aE76nSZC6oWLgkW/oM0FI+nd7up6h3t7q+6aKiK19/i
-	07dzszA3aBSTZQ/lkscmVbvYDYd/QMJ/kpmmh09nzP0Zc0GECweG/YCXUXPfulZl8lnDGNUwSVf
-	rlzfzlwvhZfkOqnDQLLKaylBAw+4jdntTt0+KNk3S88gCX1ABReplVacZanyloDh+5HGwk8sN9Z
-	Jvc7d8cZ+7mARYFIVkT3XFdSGhUK1YQjh6yO61R+wyxViifua/9CdU+s8J4OjsivHyJCQBuS38+
-	Z
-X-Received: by 2002:a05:6a00:1a8b:b0:76e:885a:c331 with SMTP id d2e1a72fcca58-7702fc7597cmr290729b3a.31.1755798896589;
-        Thu, 21 Aug 2025 10:54:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGHdfCq/ZDg3n95yEzjK9PbaokU3P+W+8kWA1gzRlO4XEPL8VOLZfw4yxx7aajJbuGBkf+VAQ==
-X-Received: by 2002:a05:6a00:1a8b:b0:76e:885a:c331 with SMTP id d2e1a72fcca58-7702fc7597cmr290700b3a.31.1755798896124;
-        Thu, 21 Aug 2025 10:54:56 -0700 (PDT)
-Received: from hu-vvalluru-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76e830d3558sm8053939b3a.75.2025.08.21.10.54.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Aug 2025 10:54:55 -0700 (PDT)
-From: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
-Date: Thu, 21 Aug 2025 23:24:28 +0530
-Subject: [PATCH v3] arm64: dts: qcom: lemans-evk: Enable Display Port
+	s=arc-20240116; t=1755799386; c=relaxed/simple;
+	bh=+hDXx6EahSKYVsdXiGT3+Ns+DUu9UsAG4PZJGUJkP0g=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=eZ7iuj7mdkhG3rgozYZSF5XnWqsyRoC4i+NDkZ15gF4AIVpLpVMDYVWredqeVnO6wOAmxWjoJAFkD0bP9ls/sVv+soU5Bk6wyu+k53RKZ4zRPvNLu0XypYn3sPoM7R+SLJsVzD/DlCZi/uYiFabgRRTDipN+4ICHnE5f0QzDltc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t98mUctK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29C69C4CEEB;
+	Thu, 21 Aug 2025 18:03:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755799385;
+	bh=+hDXx6EahSKYVsdXiGT3+Ns+DUu9UsAG4PZJGUJkP0g=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=t98mUctKHD1oOF0o5AWMTF9AQJoF4WI4IREfvuF3AQiB0ayUU6J4Pn9hDdCWX8boD
+	 GEouHkX4VCwM4OyHFomAj33UceHHnhgDt6WN0Tkl/BNyT0XDr98HrcHAHoWTGijh6W
+	 Qk1uyow4jPKJzIQWCNn66b6mqjwEqi8vfW0gtnIXIHSJkDZugdZLIm/Y+gk/UjBeWR
+	 mWLyQDngm600t4DXZtxIR9/WZTpg1TLbiMNBuCFif/VlfwSa/mvchEmljX0GQti8xC
+	 UUFoYi3carqbNFgZHOCN99yn+QlYlo4pJZkqGZeEqBKXTrcaM918c0Lsc9HqdacnE9
+	 rbeTHN4vnbwFA==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250821083100.46340-2-krzysztof.kozlowski@linaro.org>
+References: <20250821083100.46340-2-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: Minor whitespace cleanup in example
+Message-Id: <175579938289.113971.15653749852299099860.b4-ty@kernel.org>
+Date: Thu, 21 Aug 2025 19:03:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,192 +65,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250821-enable-iq9-dp-v3-1-8c3a719e3b9a@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAFRdp2gC/3XPwW7DIAwG4FeJOI8KAwnQ095j2sGAWZHapIE02
- lTl3UfTw6Rpu1j6LfmzfWeVSqbKjt2dFVpzzdPYgnrpWDjh+EE8x5aZFLIXBoDTiP7curPj8co
- xxuCCAdcHx9rMtVDKn7v39v7MheZbY5dnk3msxMN0ueTl2AFiL6JTlqxNASMokHowPgrnSQtlf
- KLBpsQe1inXZSpf+6kr7Ng/V63AgQ9RWSAQvTbqdar1MN/w/Fh8aGUHV/mDWCl+I7Ihzqj2H0q
- pjf4D2bbtGwZgUwlCAQAA
-X-Change-ID: 20250711-enable-iq9-dp-addc9c7195c9
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Shashank Maurya <quic_ssmaurya@quicinc.com>,
-        Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755798892; l=3547;
- i=venkata.valluru@oss.qualcomm.com; s=20250711; h=from:subject:message-id;
- bh=V5g7F5RRDwJD+H4l8qjmFMShWrA8kWLy0TMticjfMnU=;
- b=MaekKgqai/A8QlOyblqrfq3lV3L6YCeYbTrz5UL0DviZdnmMUki016PkLEsXMMHwIHsJWJQ43
- o6nTJw6sVMADqQb55RJI7vcyn38WFZJ/vq4V6rqeAEp80LtoVJ/hPzX
-X-Developer-Key: i=venkata.valluru@oss.qualcomm.com; a=ed25519;
- pk=f/CAPG1ZGl5SP8S1GuC97WMhUEV87h0JheHkNMt1nhM=
-X-Authority-Analysis: v=2.4 cv=feD0C0QF c=1 sm=1 tr=0 ts=68a75d71 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=Zrbf0049nC-wOleC0xsA:9 a=QEXdDO2ut3YA:10
- a=IoOABgeZipijB_acs4fv:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: KWuTEJM9wqKCvNBbmzcYv5RwWuI8rw3_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX4D+yFLs6kn/a
- xU9+z39Oz9gS17L6+j3NHZY5JVx/W/ZtkBLrNemuCvXwgZRYXnSlVFrhmvHecEYPMvXgTADl5g6
- lWH62kLZ2sVD2WpxyTRZj/PCqNwXD2/hHGoTlHBV1PTQe4XUqzSUC7eYfRIaylWA4kerbGvvfYk
- ef7t+A2xr6uKn++7lXo19VutJvJEgRLevDt7WGEWthkbuuN5dEVE1aV1zfxu6hyGWfIUc1kXXGy
- t6axJMDol6i2RwjifCPOzo+kjbN3HQvjTieURfHWPbeDt569BkJbgnm+BoCpbbKCQwV8MHmle17
- ULa/n9+Vp0ZeOJQVcO8c1p++FMsaAhpuBd8H68B9uVt99M5P80cK+d0ZeDMqhIryr4zECe7mAqn
- DWkyvRP7nMTS7NnJqnLYq10D7I5NXw==
-X-Proofpoint-GUID: KWuTEJM9wqKCvNBbmzcYv5RwWuI8rw3_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-21_03,2025-08-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 adultscore=0 malwarescore=0 bulkscore=0
- lowpriorityscore=0 spamscore=0 impostorscore=0 suspectscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
+X-Mailer: b4 0.15-dev-cff91
 
-From: Shashank Maurya <quic_ssmaurya@quicinc.com>
+On Thu, 21 Aug 2025 10:31:01 +0200, Krzysztof Kozlowski wrote:
+> The DTS code coding style expects exactly one space around '='
+> character.
+> 
+> 
 
-Lemans EVK board has two mini-DP connectors, connected to EDP0
-and EDP1 phys. Other EDP phys are available on expansion
-connectors for the mezzanine boards.
-Enable EDP0 and EDP1 along with their corresponding PHYs.
+Applied to
 
-Signed-off-by: Shashank Maurya <quic_ssmaurya@quicinc.com>
-Signed-off-by: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
----
-Changes in v3:
-- moved pinctrl nodes to soc dtsi.
-- Link to v2: https://lore.kernel.org/r/20250820-enable-iq9-dp-v2-1-973c9ca22474@oss.qualcomm.com
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Changes in v2:
-- added dp-connector nodes for edp0 and edp1.
-- Link to v1: https://lore.kernel.org/r/20250711-enable-iq9-dp-v1-1-6d381e105473@oss.qualcomm.com
----
- arch/arm64/boot/dts/qcom/lemans-evk.dts | 70 +++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/lemans.dtsi    | 12 ++++++
- 2 files changed, 82 insertions(+)
+Thanks!
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-index 669ac52f4cf6aece72141416068268531fd9f79a..9e415012140b8a0c17c36580b9c6d3ad6cadcbca 100644
---- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-@@ -22,6 +22,30 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	edp0-connector {
-+		compatible = "dp-connector";
-+		label = "EDP0";
-+		type = "mini";
-+
-+		port {
-+			edp0_connector_in: endpoint {
-+				remote-endpoint = <&mdss0_dp0_out>;
-+			};
-+		};
-+	};
-+
-+	edp1-connector {
-+		compatible = "dp-connector";
-+		label = "EDP1";
-+		type = "mini";
-+
-+		port {
-+			edp1_connector_in: endpoint {
-+				remote-endpoint = <&mdss0_dp1_out>;
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -253,6 +277,52 @@ vreg_l8e: ldo8 {
- 	};
- };
- 
-+&mdss0 {
-+	status = "okay";
-+};
-+
-+&mdss0_dp0 {
-+	pinctrl-0 = <&dp0_hot_plug_det>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&mdss0_dp0_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+
-+	remote-endpoint = <&edp0_connector_in>;
-+};
-+
-+&mdss0_dp0_phy {
-+	vdda-phy-supply = <&vreg_l1c>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
-+&mdss0_dp1 {
-+	pinctrl-0 = <&dp1_hot_plug_det>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&mdss0_dp1_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+
-+	remote-endpoint = <&edp1_connector_in>;
-+};
-+
-+&mdss0_dp1_phy {
-+	vdda-phy-supply = <&vreg_l1c>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
- &qupv3_id_1 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
-index 64f5378c6a4770cee2c7d76cde1098d7df17a24a..7c9972c28a54008dc0bc1b556d93c0707a278dd4 100644
---- a/arch/arm64/boot/dts/qcom/lemans.dtsi
-+++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
-@@ -5004,6 +5004,18 @@ tlmm: pinctrl@f000000 {
- 			gpio-ranges = <&tlmm 0 0 149>;
- 			wakeup-parent = <&pdc>;
- 
-+			dp0_hot_plug_det: dp0-hot-plug-det-state {
-+				pins = "gpio101";
-+				function = "edp0_hot";
-+				bias-disable;
-+			};
-+
-+			dp1_hot_plug_det: dp1-hot-plug-det-state {
-+				pins = "gpio102";
-+				function = "edp1_hot";
-+				bias-disable;
-+			};
-+
- 			qup_i2c0_default: qup-i2c0-state {
- 				pins = "gpio20", "gpio21";
- 				function = "qup0_se0";
+[1/1] ASoC: dt-bindings: Minor whitespace cleanup in example
+      commit: d78e48ebe04e9566f8ecbf51471e80da3adbceeb
 
----
-base-commit: 1aa50d938e88fcad1312467bd09be4037bfe68ff
-change-id: 20250711-enable-iq9-dp-addc9c7195c9
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Best regards,
--- 
-Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
