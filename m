@@ -1,50 +1,94 @@
-Return-Path: <devicetree+bounces-207385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FDD3B2F5A0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:50:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A4DBB2F5B6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:56:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26024587E39
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:50:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEFB4AA78E4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2333308F16;
-	Thu, 21 Aug 2025 10:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677A6308F3C;
+	Thu, 21 Aug 2025 10:56:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mnkrqOXH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HBQ7YQJ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84DB3308F02;
-	Thu, 21 Aug 2025 10:50:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA012ED17C;
+	Thu, 21 Aug 2025 10:56:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755773414; cv=none; b=g+2W7wWTLH8GicqRyQEOeulhllSTxl2djV55e2b2y8piKkbjBj8SFBis4dkCKZ5WyMjx8zUaJ4qbTO09u2qZhoH3FUdZAt2lIXWsIILNYCmYDuevfWwS4nH3Vc/Sh3xgmgqjHI2Yku9lZa2wHqKOHCJaVRICYC3b9fXgZrFcbKI=
+	t=1755773807; cv=none; b=OCFIHhKSo8zvHFH7AGI3AFw0i/HqolBTYBgpEtE5p3V7k1dlciGZ7Z5YpFZ+mdkQqJFeI3h3VSE0pbIJGtUwdOZY/ojHrJ2y4HXk1j2A1lEn1sP/l2oUCVYaX6wUbwKISmUEKSLR2G1GnngYsZaBaPlj7O7aV+HAKr0mWbMYoK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755773414; c=relaxed/simple;
-	bh=3pWLHc7LmGxgUyl74J5LFWhSFK0KCYRgf/oJ2btTLDI=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=JNA90HiKf8ce6WalzuRukEfdlyVPe2oONvNREXJ5JzqE1MKXPS6VUxb2QXoyLT9aZCYUKa6iAXARrBpnHH0zHn5PshkvvSg/AMEd5t/hE7vIgM/lp+eoUOMe83Oq64Lnve0sMd/6gf1eVEoDKEiRx3f/9jGb3ybdO2hnB6DdDGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mnkrqOXH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDF9EC4CEEB;
-	Thu, 21 Aug 2025 10:50:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755773414;
-	bh=3pWLHc7LmGxgUyl74J5LFWhSFK0KCYRgf/oJ2btTLDI=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=mnkrqOXHzIRqsY8fvy/vAHAEDK9+sT2XcxY9xn12xK8HxrmGkTImR/ebMLe6Xg81K
-	 9NQTFTqJSFPSMl1S6PaYn/sges8X/7fUeBexkwwPwHhijE5L4pVmhP32LC2miHSKKv
-	 o+nLUJVkitI9LhycxaVByhD0TBaA+/bYlJ5rmOgbjzMVrrRuj7hzj900DDSYfFA7eT
-	 F9UxuUaKuim+ajVoK30suue2H+MhKvSxNCJNYqnW9EAKC+lFh2QLnm4RDGRI1Y470n
-	 k2u/PlhV7243xai0eq/2QifGsf0oVFHbar0dCoNJwDLXufGu6cV0nNGGqblMvlI0MU
-	 VMsNbFt4ZU3Fw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 70F05383BF5B;
-	Thu, 21 Aug 2025 10:50:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1755773807; c=relaxed/simple;
+	bh=FoGQcz7DeqX74u0WtayvPR42rWrDI1OCq5th/Z+nfuw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NLm0FiAP8pkGY6xdfunVWIpdi4J5gLIpykS+sa793kJ5tpoOHMY8iZP2a3ysbv3yuQ0RbvifetoyXyjA9w5HMUzGMXw1/kDAxbw2VjkZ42Z+/UMNtLr0aHKPkdODfOaMOAVAOZY7qHl0TpI1KxmlObKd2z4QlYpnRffkkIm5pek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HBQ7YQJ3; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-afcb79db329so122475866b.2;
+        Thu, 21 Aug 2025 03:56:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755773804; x=1756378604; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sMyUEbLcanRX5H+fT/hbCuFWtgzsfYsMYARRkrN4bEM=;
+        b=HBQ7YQJ3yJkV1gVlVa5Z/Ro7gbnpgalPFB8yOCkcgLE9OBj2l1wvQ0EutSXsdoWamS
+         tueNsZSs3GbM4XjJNdSVjrP5TlVBcSa81QV6X9aWY3mzGGn9rwVQ7DWHnNlg8x6QL4do
+         EV6OrjrnNTo+p+hVlj/cu2mlu61Tansdzq6UOqLgzTPOjo+MOKMBmFRZNZfTyXJeJPEg
+         CWYZq//BqDY55mR9vOtZT5OSvhlMIIxsgQJykxdrFmvyzp97OrTWKG7y22WPSondEO7p
+         xGd5tlqP2Vpsw3EXYVbH3O1fFZzpe6nUmz8hR9hrHK/me3cTnQ4AvzIZzZaPFSdlT4He
+         6iqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755773804; x=1756378604;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sMyUEbLcanRX5H+fT/hbCuFWtgzsfYsMYARRkrN4bEM=;
+        b=Lz6rt6VgNuPzxcmF/BBd/olewkaUmRKFc/s/9sEPuN8dX+Us42Y0XH/Y3emlqFWWXt
+         YL06hHAZVwP3jGzP9qkMjPR7NGghcmy4DlifM0/8WOV1BimZTDgS+2hRs1vR8kZw/fTr
+         wqG0JpWp5lf4LfoR7jzoqf8FDu9lzGhIJIJNa9HMd1tKM0+2sAw9zbnGsKJzRP39gpLs
+         5E64z7z+57OifqZhAdWbsAeEylcQHiBxA9F92KMQXneHbtQpCS1oY3ItGQxQRLIhLdcW
+         SGqg0XsH29fG3f+TajKs/ANyWybiLAyNKbhz33CQeWgUlmEMgfoX4QTt62Q3OhKWMibd
+         QBnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU87WWAhi2iGfBLomd1i5g+4HIllBJU/sQ1IWenzhAX9Jo5pJjMFAqK0UjWS60XTbl/YVpyrey38mOh7XeR@vger.kernel.org, AJvYcCWiSDJf9fGcvBCqBxTkn6WrtcR0Q163yjdjy3UEaKDkvaV+rkp0VlcGwAwDIYS7JNK8ai/0no5G37SD@vger.kernel.org
+X-Gm-Message-State: AOJu0YylCKELR3iwArmSNQfzTG1GaOUlULvrvjQuEsJi6ZJlks4+n+bg
+	aMYr38VWdemRBrUHrRjco8gG0gfhTvtqRlzup7EnO4spj5Y9D1h4qx3/
+X-Gm-Gg: ASbGncvwd04T2NUngYOvsoLQpQoSdLrAH5CjpC1oGTE+pNG0+TKvxyukPBTxBlo/I1A
+	OMhsaKIF2WaWoqoFtMcUOvHk/BCK+yRERuO4AIy2nBCOewVz998UmPSIrJLnnVTNinix/ecDSfE
+	yHnCcdDGpOOVtV+RSQhQC63xoh0y+j81IleFVd06neBZN97kcrlXOIzMKue4eSvDNoRoP7hEDwK
+	Gh/AeJ7pAG36dxRm9hCIZp0SOUv73BjEQsRc0BXo31LQq+nlFXPmvR7zBDX2aWDwQVo3F/uOF/q
+	S8neQpxyzFLipPaA5lDfbKoJP9ZSqJZ2XZw2I3PHn6g+A5hM4tl2Yhp0kByiHB5hEVtYrLYKhoc
+	zlTuvYukRdD98PybiJtPv7+gcQyHedL1XUcOOWtYh2Dl0ZvacvGo6
+X-Google-Smtp-Source: AGHT+IHms9vlv4FD5+T1jUisxyplhUFRbxyMMUf0tERN5qe6K/kx17X13rQpCE7FAsb5xSQZMirW1g==
+X-Received: by 2002:a17:906:f583:b0:ae0:d9f3:9131 with SMTP id a640c23a62f3a-afe0781c6c1mr151935066b.6.1755773803670;
+        Thu, 21 Aug 2025 03:56:43 -0700 (PDT)
+Received: from DESKTOP-TTOGB9M.localdomain ([92.120.5.3])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-afded4790bbsm373602866b.56.2025.08.21.03.56.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Aug 2025 03:56:43 -0700 (PDT)
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Switch to using AIPSTZ5 on i.MX8MP
+Date: Thu, 21 Aug 2025 13:56:30 +0300
+Message-ID: <20250821105634.1893-1-laurentiumihalcea111@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,77 +96,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v8 00/14] Add PPE driver for Qualcomm IPQ9574 SoC
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175577342325.986145.13841394351982921726.git-patchwork-notify@kernel.org>
-Date: Thu, 21 Aug 2025 10:50:23 +0000
-References: <20250818-qcom_ipq_ppe-v8-0-1d4ff641fce9@quicinc.com>
-In-Reply-To: <20250818-qcom_ipq_ppe-v8-0-1d4ff641fce9@quicinc.com>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, quic_leiwei@quicinc.com, quic_suruchia@quicinc.com,
- quic_pavir@quicinc.com, horms@kernel.org, corbet@lwn.net, kees@kernel.org,
- gustavoars@kernel.org, p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-hardening@vger.kernel.org, quic_kkumarcs@quicinc.com,
- quic_linchen@quicinc.com
 
-Hello:
+From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-This series was applied to netdev/net-next.git (main)
-by Paolo Abeni <pabeni@redhat.com>:
+This series is a combination of the previously dropped patches from [1]
+and the config-related patch from [2]. This enables the usage of AIPSTZ5
+on i.MX8MP-based platforms.
 
-On Mon, 18 Aug 2025 21:14:24 +0800 you wrote:
-> The PPE (packet process engine) hardware block is available in Qualcomm
-> IPQ chipsets that support PPE architecture, such as IPQ9574 and IPQ5332.
-> The PPE in the IPQ9574 SoC includes six Ethernet ports (6 GMAC and 6
-> XGMAC), which are used to connect with external PHY devices by PCS. The
-> PPE also includes packet processing offload capabilities for various
-> networking functions such as route and bridge flows, VLANs, different
-> tunnel protocols and VPN. It also includes an L2 switch function for
-> bridging packets among the 6 Ethernet ports and the CPU port. The CPU
-> port enables packet transfer between the Ethernet ports and the ARM
-> cores in the SoC, using the Ethernet DMA.
-> 
-> [...]
+[1]: https://lore.kernel.org/lkml/20250610160152.1113930-1-laurentiumihalcea111@gmail.com/
+[2]: https://lore.kernel.org/lkml/20250707234628.164151-1-laurentiumihalcea111@gmail.com/
 
-Here is the summary with links:
-  - [net-next,v8,01/14] dt-bindings: net: Add PPE for Qualcomm IPQ9574 SoC
-    https://git.kernel.org/netdev/net-next/c/1898fc572118
-  - [net-next,v8,02/14] docs: networking: Add PPE driver documentation for Qualcomm IPQ9574 SoC
-    https://git.kernel.org/netdev/net-next/c/6b9f301985a3
-  - [net-next,v8,03/14] net: ethernet: qualcomm: Add PPE driver for IPQ9574 SoC
-    https://git.kernel.org/netdev/net-next/c/353a0f1d5b27
-  - [net-next,v8,04/14] net: ethernet: qualcomm: Initialize PPE buffer management for IPQ9574
-    https://git.kernel.org/netdev/net-next/c/8a971df98c4e
-  - [net-next,v8,05/14] net: ethernet: qualcomm: Initialize PPE queue management for IPQ9574
-    https://git.kernel.org/netdev/net-next/c/806268dc7efd
-  - [net-next,v8,06/14] net: ethernet: qualcomm: Initialize the PPE scheduler settings
-    https://git.kernel.org/netdev/net-next/c/331227983814
-  - [net-next,v8,07/14] net: ethernet: qualcomm: Initialize PPE queue settings
-    https://git.kernel.org/netdev/net-next/c/7a23a8af179d
-  - [net-next,v8,08/14] net: ethernet: qualcomm: Initialize PPE service code settings
-    https://git.kernel.org/netdev/net-next/c/73d05bdaf01e
-  - [net-next,v8,09/14] net: ethernet: qualcomm: Initialize PPE port control settings
-    https://git.kernel.org/netdev/net-next/c/8821bb0f6262
-  - [net-next,v8,10/14] net: ethernet: qualcomm: Initialize PPE RSS hash settings
-    https://git.kernel.org/netdev/net-next/c/1c46c3c0075c
-  - [net-next,v8,11/14] net: ethernet: qualcomm: Initialize PPE queue to Ethernet DMA ring mapping
-    https://git.kernel.org/netdev/net-next/c/fa99608a9a9e
-  - [net-next,v8,12/14] net: ethernet: qualcomm: Initialize PPE L2 bridge settings
-    https://git.kernel.org/netdev/net-next/c/8cc72c6c9236
-  - [net-next,v8,13/14] net: ethernet: qualcomm: Add PPE debugfs support for PPE counters
-    https://git.kernel.org/netdev/net-next/c/a2a7221dbd2b
-  - [net-next,v8,14/14] MAINTAINERS: Add maintainer for Qualcomm PPE driver
-    https://git.kernel.org/netdev/net-next/c/ad5cef7ef01c
+Laurentiu Mihalcea (4):
+  arm64: defconfig: enable i.MX AIPSTZ driver
+  arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
+  arm64: dts: imx8mp: add aipstz-related definitions
+  arm64: dts: imx8mp: make 'dsp' node depend on 'aips5'
 
-You are awesome, thank you!
+ arch/arm64/boot/dts/freescale/imx8mp-aipstz.h | 33 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 16 ++++++---
+ arch/arm64/configs/defconfig                  |  1 +
+ 3 files changed, 46 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aipstz.h
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.34.1
 
 
