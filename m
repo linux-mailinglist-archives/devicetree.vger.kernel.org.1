@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-207624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4504B3014D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:43:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C032B30150
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:44:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 513123BB507
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:42:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 735AE3B7DEF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6483B338F54;
-	Thu, 21 Aug 2025 17:42:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE3F33A02C;
+	Thu, 21 Aug 2025 17:44:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="k9YK+/vJ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="bOJ6kBEd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E7233A01A
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:42:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE089275B06
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:44:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755798130; cv=none; b=UWoeyglxzjRYkceK+/62B5/eb1Jase2DQqjnupJ2+k1tMMQHYkg67iKByypdcMKPeCvxGDAHaKudPf3fYZDCW8Ak2yaUPXbGtV10CrbQsJFNsuF4vBF5HCE0WqU2n+A8kgKrTGcYTYZXzY1ivAqWdS98tT+eqo8TbpE3ynwo2BM=
+	t=1755798258; cv=none; b=KqVf17tLWAlKP8HbVG5fCXADm8gfhKyajCRsldgZFxUTvq9DiAn/A2FgVqkv50Z6sQ28mkNBtXGcD9VFwvL6GLJJngX40WOKxkCXBXzwGGWPAeEayeyMnWhKyoBSNYsUDXDMqJUfIFuyPpG/mQjBz6lCE1JfDzAEvRkpqba2+50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755798130; c=relaxed/simple;
-	bh=XxvTRadOQ4sPIBFD8B4XMQ05Gc1CZL1VdiPRqG5QLxI=;
+	s=arc-20240116; t=1755798258; c=relaxed/simple;
+	bh=ndXuZhlVB55njYdb9zYoE6/yCxgsV+U8y1OcDBfFX8o=;
 	h=From:To:Cc:Subject:MIME-Version:Content-Disposition:Content-Type:
-	 Message-Id:Date; b=nL03IEzPEJw5ti8kMeXkLaSgWO0uaRFSmOgLpnZ9BXfXIwKl89lXbPqLhw2MQiFYM0jcoGU2L0NJT3uTMUPEH8vFA3KsA5Ttcegc8ROWlJ3UvCp5eGjoaZ8StfUAHAKRkHXvMZ5LK849YdDKD7xzcLE9CYezjtGFU7lLuum0omo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=k9YK+/vJ; arc=none smtp.client-ip=78.32.30.218
+	 Message-Id:Date; b=PDCQnqSIIEs6dLdObpIOfmf5EFpVi81832YwUfwlVJ9Q5TseEqXHkTfWT7y8iPqj/SRPUGt/gldM61btg5ZJswdkk8qovhUTX1QQhWoiLUB/VHAVaao53egBrr0sbG9eK7VlmqFmm9AAYJXl96/09KgLSq+nVgs/50qIHvmyQg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=bOJ6kBEd; arc=none smtp.client-ip=78.32.30.218
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -37,21 +37,21 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
 	Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
 	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=1aewH5preMvU/Xy2FMGeAQKp67ZZSayn0lnSqAtVQmY=; b=k9YK+/vJTPJn2/rjUfGxdGWd+J
-	p/3R0uFEarwXi8r5pmK+GmeoIQw8fnrfpoH4Uv8IfhLYospLbPil/NkuN63Vxkq0y/lJUYa38nrvA
-	ioh/PD7h9zrbUgsU5NFNQlECGWTbMmXkQ6wyJopc0YBl1N1WHv+Ktxi+FGsk2SgsnKqjrxRn8gR/o
-	9Jb76hCdSU56E4O4MPz+qkmNfQsj2DlGVRwhhqoJTkGOztPgeXCjH7W1H2Hg2C1h1ERDV3W5rTXR+
-	Cy3LG7V1SgZV6Ekj7ULwYyc77Azh+09FeO6+UmebIBIdLtYL+tQqN83a5kBiNkEhKZouGkyfcF9x5
-	ToNDJVxQ==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:33616 helo=rmk-PC.armlinux.org.uk)
+	bh=OhfDopMLlSzRjCi00Eq04iQOcGmfz7Cch60FwRXbW2w=; b=bOJ6kBEdqkrsjj6Ncj7wyV0pSR
+	R2xIoVvbjl0QvrPE32Uhdg5FnOgsr2klRchP9lga5iy4N57EbG+APRy3+pMAZVSaQoT39UiyCWWO6
+	TUQuPERYTVcfemXY0LY6JzQp4TLCfcum1Xdf5K09WpQgWLsUPdAjt8VEO2TobVDNTT77gTLh4vFpq
+	aQy8jaVhf/+ZPkxI97a5ujEpQizScWRionK8OtQSu9VH66iS2eaXBi0YKivfm5hOMRMoZLib2ri5o
+	e1wZaMEehLMESc6b0EJpi0+dliwwg+RlRkmy6mGfSa/QNSFMoZ1AqSh48qCg60quf7eWht4NbzF+S
+	JyJbsfYQ==;
+Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:46994 helo=rmk-PC.armlinux.org.uk)
 	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <rmk@armlinux.org.uk>)
-	id 1up9Ia-000000001Rz-0GAm;
-	Thu, 21 Aug 2025 18:42:04 +0100
+	id 1up9Kg-000000001SK-0GL4;
+	Thu, 21 Aug 2025 18:44:14 +0100
 Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
 	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1up9Hr-00BbKf-1Q; Thu, 21 Aug 2025 18:41:19 +0100
+	id 1up9Jw-00BbOE-VC; Thu, 21 Aug 2025 18:43:29 +0100
 From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
 To: Frank Wunderlich <frank-w@public-files.de>
 Cc: Andrew Lunn <andrew@lunn.ch>,
@@ -62,7 +62,7 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
 	linux-arm-kernel@lists.infradead.org,
 	Rob Herring <robh@kernel.org>,
 	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: [PATCH] ARM64: dts: mcbin: fix SATA ports on Macchiatobin
+Subject: [PATCH v2] ARM64: dts: mcbin: fix SATA ports on Macchiatobin
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,9 +72,9 @@ MIME-Version: 1.0
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1up9Hr-00BbKf-1Q@rmk-PC.armlinux.org.uk>
+Message-Id: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
 Sender: Russell King <rmk@armlinux.org.uk>
-Date: Thu, 21 Aug 2025 18:41:19 +0100
+Date: Thu, 21 Aug 2025 18:43:28 +0100
 
 Booting 6.16 on the Macchiatobin, I discover that I can no longer
 access my disks, and thus the userspace boot fails. The cause appears
@@ -88,7 +88,7 @@ This is as a result of the blamed commit below which added a default
 disabled status to the .dtsi, but didn't properly update the mcbin
 dtsi file. Fix this regression.
 
-Fixes: 30023876aef4 arm64: dts: marvell: only enable complete sata nodes
+Fixes: 30023876aef4 ("arm64: dts: marvell: only enable complete sata nodes")
 Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 ---
  arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi | 2 ++
