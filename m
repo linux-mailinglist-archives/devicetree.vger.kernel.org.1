@@ -1,194 +1,228 @@
-Return-Path: <devicetree+bounces-207397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25D95B2F5F0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:10:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6524B2F60C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:12:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E92851CC723A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:09:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 556711BC61F2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95AE830DD09;
-	Thu, 21 Aug 2025 11:08:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E19930DD0D;
+	Thu, 21 Aug 2025 11:12:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WsOpmPr6"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="t0Y5RbJm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010068.outbound.protection.outlook.com [52.101.69.68])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25DE30C352
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 11:08:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755774529; cv=fail; b=EaWbDxgdDJ5mFpvPVV3eS91oAYMg2UwDsn2+oahannb5D/108icEnU9Fzn55qlIECKMQHVRrturo/AEdVvE3euaF6dZC8Ibez85K0VxCULwLUZWZu7vhJ78x2Udh2FshvFrwWTzoZXn7K02pmu0DbX1cZmr4UsIhlieM6RG+dHc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755774529; c=relaxed/simple;
-	bh=EhXXbCDSMbYhVZUMHYbTf+9DO6l1Umy9pIsakH/Nut8=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=A3INlrzl6ArBwNaGcBuvIb3idCgrBreIErMOghR3w1ORrSpnizkGFtc1Qs2OUBrcXYjln3iT8el2GE+yoD66sqPX4Y2slOG9mbj2iGYYuaOZWIOQYPfKfWVhheQve8IUNsCeXNZi4wRSU0JOwB6Se9uS2vmdnlPgXUnm77MgXkM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WsOpmPr6; arc=fail smtp.client-ip=52.101.69.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i5a9hNO8E5/M3eTEE7N4ijyRNUnHyk/bEJS0RRqbp1MBC0djmYuM+E80pKtwxe+tpviDPWxbY6gOlT+kO/4hZlOzuaOKT1RoBH6UYcPL/S+PZf1qgFgDNd39hDp4Lk/bw9WqwYdfhLJHYLAIzY1OZsRNTwBd4mGiA0iB5vRQLO7yJtRYDzkRITJXauymYJFZ/d9yDyBPIdQ1YxTksdBHq3RqLrrKcDObrkeKq3EAn3OpLNlp2nQCdL/Sn5nqmqMR0V98Pwh/yd11BXUgDiEG4unIQ1wbYeHYzztRyIeIrRjgJfTFFtOrrQeqyauB7GFN6JEiMQrW2W6LdNOdpkg+VQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uMitHveeKHYCMatoWaQE65AIAsP83X+o09/dFX2v3p0=;
- b=QkLNkdBYIXYNw3gQCPy9PmDadG275OziJKd8Ho0PxC1yKnTBtvefDiL14u39aIdU5gM1+u0+7DpmYeZwuBR5lIFn2alaLFiDkqQ731T9hNGlxf3chfDryZ5Sz/p3w/X81UIh3lwzkJJi3DUy9EWiUrNnVNMBNkhsuAhhZAWAkqMp/5btpEMpRY7U7Yw45zXYojn9GGI7WVYVbKtyf8ACcbItcpfJaZgY5FJ+6cvdZiLZq2Cr1gTJoAbVNWv4HVdSEti+6cZwfbsf5ftXQuyjz/jSakBbiWIyg5j6WhkqPjoc/iQ4mN2C7xbsyRPq8zYNhlT3VZaMHiSZ6s3Dqxu5VQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uMitHveeKHYCMatoWaQE65AIAsP83X+o09/dFX2v3p0=;
- b=WsOpmPr65xKQI3rqJB0QuPfnsStC0TDKyX0pQ7BijmQsuN3h4jXSpzIioJZLCx20AQM0bMEPvRECr0owxvSX5ReWvXWB+m5WAWJ8RV2ueTOQyyVCQEESTWM+X4nWtHgyQqjiAGcHCBP+iZwi1hxKREqtkbtbgOiacHh5dNLtZxClR/h9A4h0SvrOeM7+3W+uziO020Kj6728y7h27uNnCY3w/TMbkq476SXkPKMk/d35SSmgziabWye9S7OhOyAlrd+ziFSaHhjL+qYspH4piF3YOU+1j8LzLvPpTp+EhteBjHcjXq4TkSzpsjb37Kt9NGRIcLBh8TFd9LBWofOEiQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by AS8PR04MB7766.eurprd04.prod.outlook.com (2603:10a6:20b:2aa::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.15; Thu, 21 Aug
- 2025 11:08:44 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%4]) with mapi id 15.20.9052.014; Thu, 21 Aug 2025
- 11:08:44 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	kernel@pengutronix.de,
-	festevam@gmail.com
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm64: dts: imx95: add fsl,phy-tx-vref-tune-percent tuning properties for USB3 PHY
-Date: Thu, 21 Aug 2025 19:08:28 +0800
-Message-Id: <20250821110828.20980-1-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0008.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::14) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB2D304BD8;
+	Thu, 21 Aug 2025 11:12:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755774749; cv=none; b=TlZNe0Dcn1WktH4EDR4m3GVegZRG9zzMowYLbP3f6bVaO3P3ezpc0sgymIQZjpYs6bVFH7nOUTdBfwEPrrXNjyuHMOoIlXqOpGMtgWyrBl9HXKyG3SBcaehh/NuRuDsCXhW+JR7WqzqeUqaJj5PrJ/ufapJ91jf3TcCbfr8b3OU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755774749; c=relaxed/simple;
+	bh=rh2xmRDg16batEKdcuvG/Ijbj9vj0VGi+3thcgNZo/A=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=n582WMYATe1owfFHnFWTHOsHn0Dul7HClQEHiZ4A5TnBYcAHc333B7DeESJbPnsFVFKYJOtuo8Xsgq7176aKiE1e9Ta1iZ0bTQlpVe308Q869sHZqbwzTpmFTkr/+suMJR4cbE3SFxepCyRqh7suzBPvbvuYXlTqqWMS4O+D80k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=t0Y5RbJm; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57LAg3FU015986;
+	Thu, 21 Aug 2025 13:12:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=X+qzU/CTwFD1hKZMqSzOxX
+	ahtSY5VOj2gTRB2d6uLcM=; b=t0Y5RbJmiRbMtS506SvgSz4xp/cZCGARjz6IkI
+	IFYoAg/9DXtj/drHkpn8hp22FlxyUyK7RsZaJKveb6Hv2OsADZRNosfQ51LISE5i
+	yt7V0Kv19XOPNCFiIJubu1z8zfsO9oPOY5A8LF3dGNcE7DQ/5vVKYC+Mq9cZuFSA
+	dyNS0nza7MgbEzYzmOqzg0mRqo6d3Y2/PKYEZyLuaUxBpLNhEoKLN50u6WeI6jp5
+	2KmyS4hc/NL1mABdvm/eYDuUF88UB9XWBUPy3GbELwbPlcqH/F6kUcdhsyt5NluT
+	7gdOWEqCAno7LNxCqamLwpyEv/en1jrtOQfKpSJlsnKnVPiA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48nj3v3n7y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Aug 2025 13:12:07 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id E0F814004C;
+	Thu, 21 Aug 2025 13:10:48 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7C75B74E7CE;
+	Thu, 21 Aug 2025 13:09:50 +0200 (CEST)
+Received: from localhost (10.252.7.99) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 21 Aug
+ 2025 13:09:50 +0200
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Subject: [PATCH v4 00/13] Enable display support for STM32MP25
+Date: Thu, 21 Aug 2025 13:08:50 +0200
+Message-ID: <20250821-drm-misc-next-v4-0-7060500f8fd3@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|AS8PR04MB7766:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a0178da-1f0b-4d75-e00e-08dde0a317bf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?BX1S5jKFtrycvnvJ/xcKneTKPB0/OQeYOAmG+g+RvJguYJrqQvOVdm467FZ4?=
- =?us-ascii?Q?l3NWVMGOpKKBr+yshInhIM1IMLwq17uFNOx4AxlDg6pCGdNjX0xLNrw+pdSH?=
- =?us-ascii?Q?d5d/Jnp8Vh6/UqKvvrPLst0MTfd5KSWKtfSZMabSgI7Tsw2X/22Aatg2tQaz?=
- =?us-ascii?Q?7cH9oZgS3nk8bksJSzin6b4pnBeAF5yj+SAqZIBqqBw/JLxZjkgW346MVWKL?=
- =?us-ascii?Q?rTRkcKoXCR2cQnkiPF6UlmdDwPhbfv3zUD98iuA13r89QAxNm5fojI1Ja8iL?=
- =?us-ascii?Q?3tvJtlY7+vsjD7+hESVeHSIz/ZVIkKaAJ6DoEhgjqBQPCNP46qff2n4oURtQ?=
- =?us-ascii?Q?EyilgZZdffxvU6cUCUUN3LZScS54j67dMr2EHjBHQDmEl2dZJQjViv3/s00T?=
- =?us-ascii?Q?yNtMOhJdtwvtEDWDVyG6VTd5563NbU7xkAUt78mTWcCYxDx80A61SL5OXkaR?=
- =?us-ascii?Q?2i9nOps5Au4cFa/Jhyl2mjF6wOMCDLBshj8pAJJR7c2LZ7FSYAWpoO2tcUEv?=
- =?us-ascii?Q?whPPvh7HstWUW+QVoxcM3D93TKQZwLh6hcIIE2HeOOvzYlHnNPrktmjWpo1p?=
- =?us-ascii?Q?YyyEqhf+jCYR9w0lcjR017sXzuQbulPtys1XoaLxF0XIRx5mETv/BP+ji6hA?=
- =?us-ascii?Q?4foNOHuAhM1fT2rclwFM8Bs+0eiHT/mynZbEvQSTYtu/iYf4jn77eoeVNhIB?=
- =?us-ascii?Q?B41+fVUMuG7NN7h5CckqLm4IrfdsHSBMrPqKhsJcK4gCjsTXgvdz0/Uk53z6?=
- =?us-ascii?Q?9EupRXseB60GC//E4PvDh+sHnvhkc/KrkKKk6t7ClEMtnWLTNYJ0Oiyf0sOe?=
- =?us-ascii?Q?7tP9AGz7SkJ+UEZTn7Uig229iCDFTdBIom2eBqsMDfhZtmQXiQUUU25eKaU/?=
- =?us-ascii?Q?3ZqwzI7/K8kdKs/8d8OL3seAdGEwaAt660jFypcbmWjgXr3jPXYN+6vOU/j7?=
- =?us-ascii?Q?Ips4/IBhsQnW0pn/Z4d0+P499POB4X57B96Yy7oUExeREwsftRUBKXWLV8xV?=
- =?us-ascii?Q?qIV26xrerjCQc1reIC0uklDOTPFa8tYqLkRvXRAk47+wSHojABdqOn08gpDJ?=
- =?us-ascii?Q?FtYbQEaXnflmREG+yPOicyZTeYO2x/z555VLBTfunZl171CLWPI3v9D6Z+Em?=
- =?us-ascii?Q?vHPSfhogNDUlcd+St2p55TT+5rjbMhiGCUXbZBi3fAZQQHb8eNO3HUsDtIa4?=
- =?us-ascii?Q?wfbrKaM3VZ6KRRWb97wtMU+1rkf5uOpKl4iFbgLskX/FBt3a6im7NBLgw/ni?=
- =?us-ascii?Q?Fm/Nqru4pnGcnc1E3a9fxQKT5FC+H8oeSs4ftnHcsJd+PDyQSy6UrfKF7G51?=
- =?us-ascii?Q?D1eIu8Eca76IRnPvYGAitlIuYlbqw7Qp4CRQYjsEy6iUUG6YGcbFsFTQ14Dj?=
- =?us-ascii?Q?fVKU8KILfZZNb4hp0q4JlD3SM3WMYcd2WC/In5GQ+OiO0/eLKqNqYcqCJ/84?=
- =?us-ascii?Q?R6T2yA8hKTwx8KxVyWjF0u2+Z5lNRewu4GdeHPm89Aa07y2xjK1OFg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ebSNe63XD6FGDFljbFv0JhuChIwubyDDitBH70vUgDyrOgZEL4TtbdI5cra1?=
- =?us-ascii?Q?XvSHB04MSwVz27UN64m/r0YqA0q03u031oVlAoZdaWNr9sYI1/S5y1ApX+4f?=
- =?us-ascii?Q?CQC1ZKAE/rpRwVMApi+HXGFwcTi+TRpzgOfABH8GwN5xjYhcPWZC6yQubBv8?=
- =?us-ascii?Q?K7AZ/jxzEtDvPnZLqQc++mUNOz4lAVEFDQ7tghx5erWG3Qn9N7lMrNrNPgub?=
- =?us-ascii?Q?OECNIfHf+SHW2oPtf1BbJc+6JulJx2/8iJMjfteEHJhidl2mjj+sSlXQqsaK?=
- =?us-ascii?Q?hUwLY/RkaOROiqGX23tHP7+BCE0/uDhyLf0PvI8wdrREaIKZegh4ScXOMo1L?=
- =?us-ascii?Q?icjdIRD6E6qiDDus/Uw+rc9SMFHK8trEV54UWgucKvsi7Tne8R57CS4Nw4Qr?=
- =?us-ascii?Q?SNe3+XWyoMPMOVXQ9HVktXAlwW9n3aEmzDAy9212N2jNomKHbtyDcsOdPFvr?=
- =?us-ascii?Q?9ees3JBqqB4rH6igwT5EFRXKKCpee3gQ8VsfbGskTUrAqCo0BYYEYNy970Lv?=
- =?us-ascii?Q?AhK0Q0RlYD55P9U5qyURVzBOF6lgf6oGNLl6nSR4hCbg0MgeIO8439Zk4DxV?=
- =?us-ascii?Q?JewyZd7soXTngdKjkN4IbJ7JCnekM/GARzCFYeigd9cJLJ4LXJLx51d8YF8j?=
- =?us-ascii?Q?oKPxvQTnm2BXiOWNseW7hWqM+eEypj0NJFKzSxyQqaI8+qols/6UtQ1ZCprQ?=
- =?us-ascii?Q?SQwSm2G1aggZNJbrVjRv7GY40RCBb+7enySCJ49Ro01uehQQJGpPMROR9Foi?=
- =?us-ascii?Q?xQmwhpuV/KdmyJWznHB7d5z6X2GV7oUlVVV4NABzXX6qcQVMBpChIOXZpzyF?=
- =?us-ascii?Q?ByAgvSwRh5cHjoF4+wG40iQbMsIP1bvyytsehy8Coh93y5XA1PSZiugawav3?=
- =?us-ascii?Q?RjFNDFfId14cYJSQM8G/DgSy1ABwK/OIsFGKOO0PMW3r/IgYEvE40+LTdNOO?=
- =?us-ascii?Q?+rGffStnW0sP7pS5ooIvd+eN0OpPivUamarXn72ZkjbUEGDmajxvY//0aYGo?=
- =?us-ascii?Q?DxhmqRUrU6HJxdv4tKwPBEuLbipTC9lkokvXwizvNl6n3+V2ybv8W8l0UAgu?=
- =?us-ascii?Q?s+SlQUism+7BP7Ab8Fl/27Driy6VBPxmDWLzWpnhMuPi1Q0gKGDwsF278tv8?=
- =?us-ascii?Q?y0xwqGdqG6v9L9cliw+cQ6vwFKAxBH/K5VrcgJroE/chgqjPm62/GRNC9/k6?=
- =?us-ascii?Q?F0+5JxWI+ELyq5kXhjbSKxm/l109M2b9vs1BD4REI4BDKt+feXA3XQTj385Y?=
- =?us-ascii?Q?0kK96TIoqNAp/n07KZI98JjAHPmJHEzOfa6n0s6EIYC7bhJUc8yym5RlODrA?=
- =?us-ascii?Q?HgW/k9jI+QBKwGBHSj9sQ1e+yZlY10iQSxkNgQcLReBg9Oo6mD6wrCqbpezl?=
- =?us-ascii?Q?HRhVn3Nhql1GzLa9V+wvGxxbBmC4nPgxRD+TCxQqkM3M6ify9zab6QT35OVg?=
- =?us-ascii?Q?VAfa3KgjFPKD3kbFYVWU7Ziz+5GrQuCaF+V0qBiwNfuQTQzgSrVZIjwh6+E0?=
- =?us-ascii?Q?8eo1vBY85m68bV+X0nvCnY4jhgG+G6933GOIvPn2pNcuWgngU7oKFaft1G+J?=
- =?us-ascii?Q?phXOYwlS+o2EB+eJ5tCvY3tL7qfUA7sjSyoK09T5?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a0178da-1f0b-4d75-e00e-08dde0a317bf
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2025 11:08:44.2329
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I6Su72hm3enSK4qj5XospneB/gxupnU0HwDf+y0bj4WPaHqJBAo8MkuvVkKA7cgo2G3lvfW2eBc9he6gfVT7YQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7766
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAEL+pmgC/2XMSQ6CMACF4auQri3pPLjyHsYFdJAuANOSBkO4u
+ wUXKi7fS75/AcnF4BI4VwuILocUxqEMdqqA6Zrh7mCwZQOCCEcCS2hjD/uQDBzcPEHWeIaEwYZ
+ xD4p5ROfDvPeut7K7kKYxPvd8xtv7LknCD6WMIYIN14opJ4jx+uLHlOo01WbswdbK5OMVJkdPi
+ seUeKsYE9TKf0+/vT56WjximFMtlWtt++vXdX0BDTzX0iwBAAA=
+X-Change-ID: 20250617-drm-misc-next-4af406c1c45f
+To: Yannick Fertre <yannick.fertre@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Maxime
+ Coquelin" <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-21_03,2025-08-20_03,2025-03-28_01
 
-Add it to improve USB signal quality.
+This series aims to add and enable sufficient LVDS display support for
+STM32MP257F-EV1 board.
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+LVDS is the default use case to drive a display panel on STM32MP257F-EV,
+even though DSI panels will be supported in the near future.
+
+The LTDC needs a pixel rate in sync with the bridge currently in use.
+For that both DSI and LVDS bridges need to declare an internal clock and
+become clock provider to the mux. The mux then selects the reference
+clock for the LTDC pixel rate generation.
+
+For now this mux is handled internally in the LTDC, while waiting for
+the STM32 clock framework to merge a 'clk-mux' based on the SYSCFG.
+This explains the link done in the patch [7/8] between the LVDS,
+providing the reference clock for the LTDC internals.
+
+  +----------+              |\
+  |  DSI PHY |------------->| \           +------------+
+  |          |ck_dsi_phy    |  |          |            |
+  +----------+              |  |--------->|    LTDC    |
+  +----------+              |  |pixel_clk |            |
+  | LVDS PHY |------------->|  |          +------------+
+  |          |clk_pix_lvds  |  |
+  +----------+              |  |
+                            |  |
+   ck_ker_ltdc ------------>| /
+                            |/|
+                              └- SYSCFG
+
+Clock selection applies as follow:
+- 0b00: Selects ck_dsi_phy
+- 0b01: Selects clk_pix_lvds
+- 0b10: Selects ck_ker_ltdc (for parallel or DSI display).
+- 0b11: Reserved
+
+The reset value of the register controlling the mux is 0b01, meaning
+that the default clock assigned is the clk_pix_lvds.  This causes two
+things:
+
+- In order to get basic display on the LVDS encoder, like intended,
+nothing has to be done on this mux within the LTDC driver (which for now
+explains the unused syscfg phandle on the LTDC node in the device-tree).
+
+- 'pixel_clk' is dependent from 'clk_pix_lvds' because of the LTDC clock
+domains.  They also need to be sync to get a coherent pixel rate though
+the display clock tree (which explains the LVDS phandle on the LTDC node
+in the device-tree).
+
+Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
 ---
- arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts | 1 +
- arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts | 1 +
- 2 files changed, 2 insertions(+)
+Changes in v4:
+- Documentation:
+  - LTDC: Add "st,stm32mp255-ltdc" compatible.  After internal
+    discussion, we came to the solution that the LTDC on STM32MP255 SoC
+    needs its own compatible, since it does have the same amount of
+    clocks than on STM32MP251 SoC.
+- Devicetree:
+  - Add "st,stm32mp255" compatible on corresponding dtsi
+- Drivers:
+  - LTDC: Handle "st,stm32mp255" compatible
+- Remove Rob's r-b from patch [01/13] since it was modified.
+- Link to v3: https://lore.kernel.org/r/20250819-drm-misc-next-v3-0-04153978ebdb@foss.st.com
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-index 46f6e0fbf2b0..f0aff01cefbf 100644
---- a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-@@ -1082,6 +1082,7 @@ &usb3_phy {
- 	fsl,phy-pcs-tx-swing-full-percent = <100>;
- 	fsl,phy-tx-preemp-amp-tune-microamp = <600>;
- 	fsl,phy-tx-vboost-level-microvolt = <1156>;
-+	fsl,phy-tx-vref-tune-percent = <100>;
- 	status = "okay";
- 
- 	port {
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-index 2f949a0d48d2..064bc508eb1b 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-@@ -622,6 +622,7 @@ &usb3_phy {
- 	fsl,phy-pcs-tx-swing-full-percent = <100>;
- 	fsl,phy-tx-preemp-amp-tune-microamp = <600>;
- 	fsl,phy-tx-vboost-level-microvolt = <1156>;
-+	fsl,phy-tx-vref-tune-percent = <100>;
- 	orientation-switch;
- 	status = "okay";
- 
+Changes in v3:
+- Rebased on latest drm-misc-next
+- Documentation:
+  - LTDC: Clamp correctly min/maxItems value
+  - LVDS: Remove second 'items' keyword
+- Add Krzysztof's trailer where relevant
+- Link to v2: https://lore.kernel.org/r/20250812-drm-misc-next-v2-0-132fd84463d7@foss.st.com
+
+Changes in v2:
+- Documentation:
+  - Add support for new compatible "st,stm32mp255-lvds"
+  - Change LTDC compatible for SoC compliant one
+  - Make clearer LTDC clock-names property
+- Devicetree:
+  - Change compatible according to the documentation
+  - Change clock and clock-names order to match documentation (and avoid
+    warnings)
+- Drivers:
+  - Change LTDC compatible
+- Add Rob's trailer where relevant
+- Link to v1: https://lore.kernel.org/r/20250725-drm-misc-next-v1-0-a59848e62cf9@foss.st.com
+
+---
+Raphael Gallais-Pou (11):
+      dt-bindings: display: st: add two new compatibles to LTDC device
+      dt-bindings: display: st,stm32-ltdc: add access-controllers property
+      dt-bindings: display: st: add new compatible to LVDS device
+      dt-bindings: display: st,stm32mp25-lvds: add access-controllers property
+      dt-bindings: display: st,stm32mp25-lvds: add power-domains property
+      dt-bindings: arm: stm32: add required #clock-cells property
+      arm64: dts: st: add ltdc support on stm32mp251
+      arm64: dts: st: add ltdc support on stm32mp255
+      arm64: dts: st: add lvds support on stm32mp255
+      arm64: dts: st: add clock-cells to syscfg node on stm32mp251
+      arm64: dts: st: enable display support on stm32mp257f-ev1 board
+
+Yannick Fertre (2):
+      drm/stm: ltdc: support new hardware version for STM32MP25 SoC
+      drm/stm: ltdc: handle lvds pixel clock
+
+ .../bindings/arm/stm32/st,stm32-syscon.yaml        | 31 ++++++---
+ .../devicetree/bindings/display/st,stm32-ltdc.yaml | 53 ++++++++++++++-
+ .../bindings/display/st,stm32mp25-lvds.yaml        | 13 +++-
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             | 19 ++++++
+ arch/arm64/boot/dts/st/stm32mp255.dtsi             | 20 +++++-
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         | 79 ++++++++++++++++++++++
+ drivers/gpu/drm/stm/drv.c                          | 12 +++-
+ drivers/gpu/drm/stm/ltdc.c                         | 58 +++++++++++++++-
+ drivers/gpu/drm/stm/ltdc.h                         |  6 ++
+ 9 files changed, 273 insertions(+), 18 deletions(-)
+---
+base-commit: c8cea4371e5eca30cda8660aabb337747dabc51d
+change-id: 20250617-drm-misc-next-4af406c1c45f
+
+Best regards,
 -- 
-2.34.1
+Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
 
 
