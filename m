@@ -1,231 +1,150 @@
-Return-Path: <devicetree+bounces-207175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EC26B2ED38
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:50:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE28B2ED54
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:53:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29A69B6382A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 04:48:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05A2C1C231A0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 04:52:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022502E88AE;
-	Thu, 21 Aug 2025 04:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66522E36F9;
+	Thu, 21 Aug 2025 04:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Q7EhPCLb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eKlf5NVX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370DB2C21EB;
-	Thu, 21 Aug 2025 04:49:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162A32DFA39;
+	Thu, 21 Aug 2025 04:50:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755751769; cv=none; b=MLYpzV6T/aJyVXLVGic7qQsdgXn2yNYAmD9y0d7VADsWkE/aiBpwkFIltKvsvERuZhFD6lMaoa0uHa9hDHirpY5jj7Q18IZM41uDSaH3iGjLpkeJrxYpM2/ZTeBFAahzvGLBDfhXQilUDtyiVnIDoDn5oJiJmds3R9oYz6lIVUc=
+	t=1755751831; cv=none; b=YawygIaaZpaekA/MLq0XdQt5Jek9n7hlveJsLmC4BLDgzFzXVW+g9jIKOZBvUKrZ4KVchSuRo1bnbdzD/++dcPwNSeTEqF8YlCHrg0F+vplKj32rEkOo5LDEBGkUA/y50oy6HyDxgPkGZnrr5RfOL/bepAhYV3rMPsR7fGh0gR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755751769; c=relaxed/simple;
-	bh=S+9vUXeeoLmZU0el5AUi0Iv2XV5huSwC7mL0NCniyUc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=V7TLq7foglJ0bNAx+Qw+l6qUOa5GHdZpGgxKEGYr0iBZjspLzuowP0HJs+UmtDXzpf44C7UhBpYd25hxnpy1Mz6/OG4h0GHFpsWOigx54oyVBY+poCEmtuyPUy8we1Zdi/YkqkBHywHkzZuem5Gu4oy5rWBTwqBvFwKLGO+zg3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Q7EhPCLb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57L3ZJXH021483;
-	Thu, 21 Aug 2025 04:49:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=dRXdR2GuLj9
-	wZzFFhpaJZan7/AsXjlsHzNDXSkWyYsw=; b=Q7EhPCLbQyNS9yrKQVcSxsD3uTy
-	BJ3qTtd6scI8pJAf1rKyg8hcAqtWpoN77sgJraWVig472FNLMPsMd7a0SPdph9GI
-	HLmRhcCo1iq5kFYpFlazQIa3w4bA0c6oF2wwRPWIirpbmv9x4wOscvkMTNuqAZPK
-	SbQipDsR5LBS2rVz1rdxIwGl+K1QaV58EBSJXjDdPV1R8atlyMwvf6HwyJRhFF2q
-	gEpwEcb9unKeBUKvDOqNQdpYcwxb5kpfdwY9FXb4iLysEIg41nPtYmDdDOHlDgF0
-	Vw1GRxwd9MknjwETJhDL6oiV4ZjXjghV9VINrppG4VkomLqlVngC9e44Hkw==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ngtdhuvg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Aug 2025 04:49:22 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 57L4nJO6022016;
-	Thu, 21 Aug 2025 04:49:19 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 48jk2m9977-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Aug 2025 04:49:19 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 57L4nHdp021922;
-	Thu, 21 Aug 2025 04:49:19 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-pkumpatl-hyd.qualcomm.com [10.147.245.204])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 57L4nIuN021966
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Aug 2025 04:49:19 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3914174)
-	id 8FDE95D6; Thu, 21 Aug 2025 10:19:16 +0530 (+0530)
-From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-        quic_pkumpatl@quicinc.com, kernel@oss.qualcomm.com,
-        Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v8 9/9] arm64: dts: qcom: qcm6490-idp: Add sound card
-Date: Thu, 21 Aug 2025 10:19:14 +0530
-Message-Id: <20250821044914.710044-10-quic_pkumpatl@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250821044914.710044-1-quic_pkumpatl@quicinc.com>
-References: <20250821044914.710044-1-quic_pkumpatl@quicinc.com>
+	s=arc-20240116; t=1755751831; c=relaxed/simple;
+	bh=UpF5QA6HbdvrWUXvkPpNz8Yu47AUnft8BjwhbRzZQbE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EP0v9iegeGDRkarYG4+fhweiwVah4fgNqO/I2YVLle4hi/EtPiJnZqpYiI4hMcH/Mt/5FGqe6bvvcgpPFuHIraJVDEqCn6UL2zPEnDRpZaydXZQhzzUJto2BGK4SAYA3JQInCepRLIjMyYUaZNQ82m9mfwmcUHGUc4iKMuWpDl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eKlf5NVX; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3b9dc5c6521so259680f8f.1;
+        Wed, 20 Aug 2025 21:50:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755751828; x=1756356628; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9dtO2gp3iJdG58JTW82ssdRgH9CvjrDF+oqDkonvQAA=;
+        b=eKlf5NVX2TZ7TUP4O4Ndu83jcBvLC0Ijlz7XBBgbHGDOMeWFGYF7rjmG1XRoGrc2Hq
+         4F8SQ8Pg6oSM0bGbCpndnDcUAzHnGBPIZdXLySaY0o5lfcTSDKwsvrBj+stMAK7mDYQ8
+         lECl2P7PzUJ7nnza4GGqSOp49KmS/IFzU7KMz+zoDJHJbNel0wdxJFops2w3oh3pfXBm
+         SsnFH4ts+Hur+TMEB27aHt9R5MYvFjqhZJ6sbNxu0L9l0XkMVQdY5LUzUo6Ulvi6vCTi
+         YfsDlhFauRj7/rQpc528ksoSPVVjB19ZXQp/Dmit1t5qb54ALf+It5TFBwrFk9Ukglqv
+         318w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755751828; x=1756356628;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9dtO2gp3iJdG58JTW82ssdRgH9CvjrDF+oqDkonvQAA=;
+        b=t1KN0/FaW+XUTf5rYkpmqwNkC4iEX46hmlhmlh03M1OSbbPe58+jwiWq2T3wN0VkX0
+         LkFb09pJraXgbLUT6hiBdYYBNEfrSHdWf/pfHkpKNv3OR6f/rM7UES10lRqFqwVmpBkZ
+         P4+GszSwvlk6dUs6yEvV1qwcDA8f1Qp0yVjBKE8ZYjJmeQTLOUXH7FaQIfxpoN0pnP72
+         dGzPlnB7LeXmz1sjvjMG4iZG1AtJitnNV0v3+i/29gFpTZbIKVVothxx9yehnr1mEmiL
+         lBBVD0LMmKnDz8n6t+yWNZdvgqp3ZKWT3MbBO45XKmrAz/ribDTAi1eyqNJrGRb+0FPe
+         2Cjw==
+X-Forwarded-Encrypted: i=1; AJvYcCX6P81+IuSf4Ymop0Psgv+bXJ9c2GldouzESNoEu7LjQACDPblHi/ZPkrtAhgp8byRpP9r5Ot3/+ey/@vger.kernel.org, AJvYcCXFgf02NiVZ90/D8z0GsOi5BVgUOJPn2cvEnAQJx88SyGie1IQesiuTBXEzbpzWE/FCHev+MCW1Pbk=@vger.kernel.org, AJvYcCXJZ6rmc319XOL2JqcwPrNRNR9QpDunAhq03fKy2Kf0Rjwv329kFg4Y16qAC7vWMoSsuIFBIwDPphe02wWM@vger.kernel.org, AJvYcCXJzvFSLgmQp04FwqLxohjrggIb+qI7vErBW6QLZ2C+WqOPAZarbbetRNMTyPsir/FwOIigBtHom8MYEC8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlaY7O8HqAcKdtlwRVfE5dj+wHfqZZQ+AHd9qYf9S0wQPn8F2D
+	zWtdt2z8M+u03lmeIQMoAVVurjVPKCWp5we7SHFgqEfS9ANV5auY6l0+Q0oTmgo5qE3Z9RpMnnT
+	OgcLM2kr0KILeOYMt55D7dslacJqghwA=
+X-Gm-Gg: ASbGnct1BB+EYi0glILJzV5aiQALoo2Re7fdXb9HPnseQTBddebG9SzYUa8kf19Prqe
+	8/3AK/FciYI5P5eBGW5WaPVofj1fJWNY+MjBZOxidPZWXFlrR5xmqw1p8qwwX+v2ddxXR6DOwz0
+	TiWFLoGIFnPaNlBmG6FzFYI0bmn2v/0nL8SszqYe+CNebBVq0IRKHphOPNb8ubTbb1gf0hM+vwF
+	97covmaMNfG4whA8Y4=
+X-Google-Smtp-Source: AGHT+IGYecgy9j572GZwpeAgWSoV3mseOhv6g1iDfgwoDh9FQ1EL/Iny+JK2np6zkwE9E5Tijf8v1e6C3NJH07riTbo=
+X-Received: by 2002:a05:6000:144d:b0:3b9:7c00:b6a8 with SMTP id
+ ffacd0b85a97d-3c496028fe5mr742205f8f.41.1755751828104; Wed, 20 Aug 2025
+ 21:50:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=LexlKjfi c=1 sm=1 tr=0 ts=68a6a553 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=yo8woGbAw4EISn_yZD4A:9
- a=TjNXssC_j7lpFel5tvFf:22 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-GUID: 92XSdq5Nt4GDb-rc4e4w1k2htVzp7Tel
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDEzNSBTYWx0ZWRfX0dzkXJFDYnrb
- +Zqf2YWhHxg47NJyTNHInEtf1HoIX1oR6EEAJNzK+taNwr+GrUsS40pOzOhBTB2CV/JkdqshPtp
- kHBmxnqLsnpmB31ZKpZ9zEb40GY0h7/vu5kh4AwLM1v3LNb+LFdrC7EVYOtFt0GKF+VPfRYhpPm
- kquO1fJ+X6ZWR3QhREZWespgfQdansN6hbukLBZ8VrCB66JGrbtu6JX62rH378o19PsHTMe+1It
- y7vXbR1sEU/X/Vre7GvcJLSOiJ/ytO8QLMX/e4ZnOhd+fmPbSb1DYeHbOFYYoQlnPY+kd8WoZ15
- bSe8AcjGnt6gTvmky/OBfOpPlE+I+CQ7KnCa89PsxRTfAP0406Mc2CYeMPLoHmE4uo2bhS0TcL9
- coMnMIG2gCmvkQHaHSsYcct8DLv/BQ==
-X-Proofpoint-ORIG-GUID: 92XSdq5Nt4GDb-rc4e4w1k2htVzp7Tel
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-20_06,2025-08-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0 malwarescore=0
- spamscore=0 priorityscore=1501 suspectscore=0 clxscore=1015 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200135
+References: <20250820114231.150441-1-clamor95@gmail.com> <20250820114231.150441-5-clamor95@gmail.com>
+ <20250820-spinning-arrogance-31b71d969bb8@spud>
+In-Reply-To: <20250820-spinning-arrogance-31b71d969bb8@spud>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Thu, 21 Aug 2025 07:50:16 +0300
+X-Gm-Features: Ac12FXyqEn6pzjt3rR9t2N0ja6nKMmgk5yQvgEV89ksNAHwqJ8_loYldvESgGtU
+Message-ID: <CAPVz0n35onsKZGjWDFGX+h7AoOxkd9S4QsR3ABNGxzcj6iXs9Q@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] dt-bindings: thermal: tegra: add Tegra114 soctherm header
+To: Conor Dooley <conor@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
+	Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	"Jiri Slaby (SUSE)" <jirislaby@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+=D1=81=D1=80, 20 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 22:4=
+4 Conor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Wed, Aug 20, 2025 at 02:42:29PM +0300, Svyatoslav Ryhel wrote:
+> > This adds header for the Tegra114 SOCTHERM device tree node.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  .../dt-bindings/thermal/tegra114-soctherm.h   | 20 +++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> >  create mode 100644 include/dt-bindings/thermal/tegra114-soctherm.h
+> >
+> > diff --git a/include/dt-bindings/thermal/tegra114-soctherm.h b/include/=
+dt-bindings/thermal/tegra114-soctherm.h
+> > new file mode 100644
+> > index 000000000000..b605e53284fe
+> > --- /dev/null
+> > +++ b/include/dt-bindings/thermal/tegra114-soctherm.h
+> > @@ -0,0 +1,20 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> > +/*
+> > + * This header provides constants for binding nvidia,tegra114-soctherm=
+.
+> > + */
+> > +
+> > +#ifndef _DT_BINDINGS_THERMAL_TEGRA114_SOCTHERM_H
+> > +#define _DT_BINDINGS_THERMAL_TEGRA114_SOCTHERM_H
+> > +
+> > +#define TEGRA114_SOCTHERM_SENSOR_CPU 0
+> > +#define TEGRA114_SOCTHERM_SENSOR_MEM 1
+> > +#define TEGRA114_SOCTHERM_SENSOR_GPU 2
+> > +#define TEGRA114_SOCTHERM_SENSOR_PLLX 3
+>
+> > +#define TEGRA114_SOCTHERM_SENSOR_NUM 4
+>
+> Why is this "NUM" sensor not in the driver?
+> hint: if this is the number of sensors, remove it from the binding ;)
+>
 
-Add the sound card node with tested playback over WSA8835 speakers,
-digital on-board mics along with wcd9370 headset playabck and record.
+It must have got here by accident, thank you for pointing
 
-Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 84 ++++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index 379ee346a33a..73fce639370c 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -757,6 +757,90 @@ &sdhc_2 {
- 	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
- };
- 
-+&sound {
-+	compatible = "qcom,qcm6490-idp-sndcard";
-+	model = "QCM6490-IDP";
-+
-+	audio-routing = "SpkrLeft IN", "WSA_SPK1 OUT",
-+			"SpkrRight IN", "WSA_SPK2 OUT",
-+			"IN1_HPHL", "HPHL_OUT",
-+			"IN2_HPHR", "HPHR_OUT",
-+			"AMIC2", "MIC BIAS2",
-+			"TX DMIC0", "MIC BIAS1",
-+			"TX DMIC1", "MIC BIAS2",
-+			"TX DMIC2", "MIC BIAS3",
-+			"TX SWR_ADC1", "ADC2_OUTPUT",
-+			"VA DMIC0", "VA MIC BIAS3",
-+			"VA DMIC1", "VA MIC BIAS3",
-+			"VA DMIC2", "VA MIC BIAS1",
-+			"VA DMIC3", "VA MIC BIAS1";
-+
-+	wsa-dai-link {
-+		link-name = "WSA Playback";
-+
-+		codec {
-+			sound-dai = <&left_spkr>, <&right_spkr>,
-+				    <&swr2 0>, <&lpass_wsa_macro 0>;
-+		};
-+
-+		cpu {
-+			sound-dai = <&q6apmbedai WSA_CODEC_DMA_RX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+
-+	wcd-playback-dai-link {
-+		link-name = "WCD Playback";
-+
-+		codec {
-+			sound-dai = <&wcd9370 0>, <&swr0 0>, <&lpass_rx_macro 0>;
-+		};
-+
-+		cpu {
-+			sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+
-+	wcd-capture-dai-link {
-+		link-name = "WCD Capture";
-+
-+		codec {
-+			sound-dai = <&wcd9370 1>, <&swr1 0>, <&lpass_tx_macro 0>;
-+		};
-+
-+		cpu {
-+			sound-dai = <&q6apmbedai TX_CODEC_DMA_TX_3>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+
-+	va-dai-link {
-+		link-name = "VA Capture";
-+
-+		codec {
-+			sound-dai = <&lpass_va_macro 0>;
-+		};
-+
-+		cpu {
-+			sound-dai = <&q6apmbedai VA_CODEC_DMA_TX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+};
-+
- &swr0 {
- 	status = "okay";
- 
--- 
-2.34.1
-
+> > +
+> > +#define TEGRA_SOCTHERM_THROT_LEVEL_NONE 0
+> > +#define TEGRA_SOCTHERM_THROT_LEVEL_LOW  1
+> > +#define TEGRA_SOCTHERM_THROT_LEVEL_MED  2
+> > +#define TEGRA_SOCTHERM_THROT_LEVEL_HIGH 3
+> > +
+> > +#endif
+> > --
+> > 2.48.1
+> >
 
