@@ -1,125 +1,208 @@
-Return-Path: <devicetree+bounces-207321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE13BB2F294
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:44:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C02AB2F29A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:45:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2C061890134
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:39:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA9CB18956A5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:42:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 593202C2ABF;
-	Thu, 21 Aug 2025 08:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADF32EB5DA;
+	Thu, 21 Aug 2025 08:41:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UNNSDlpj"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Qljfhbkh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE3A29A303;
-	Thu, 21 Aug 2025 08:38:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE7F2EA494;
+	Thu, 21 Aug 2025 08:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755765532; cv=none; b=hauTx7Ynb2j8amQwrx7gobxU/oxHKaHYodnV99VDxtI6midLiqzpivRQEIwoHf8S5wNiteWmY5E1INr7aBzsmtJ05XlJXRAnqZhAOAOS0EBP99h3iZkTcvxHXW4jMBbAOr49Eqoo7UYBtckHHalgz30mQ3PIFT4EqNo3tigkh6c=
+	t=1755765686; cv=none; b=Pcr/ys9GuSYQrnNsvPgezopwDFe/y8j6ymbZIE3wuWKu0rHAE41QISkEPksCDWSr70H56gPf7SzAduEexJVzwbtBwO8fZwbFsxC31xoRiQklGlFKrVMdf8D6qbsaS4U6HFDsHVkzU35a0aOnlaIx/LM3NwbmvMXEgPBZxWeVm4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755765532; c=relaxed/simple;
-	bh=OOWbc93NNAvuoFHJIERvL2ni0Hh4WX8rxmSVcRBWSh8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=WPfzjX6wKkJrf0DLNirC7fmZyDwCZtZkeq7gc8Oz4JUvYz6o2fdUPr+4y5tgdxcfWMU/+7SKt7j1FHE9q7x0pwSAD1ou8E1uNEFTRVIWcoZApNISyn6uiY0EGAPIHUMAlkmdJrUShnyFhVSdB8bIXx/4r9QmiPn9YO6aUkINZAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UNNSDlpj; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1755765528;
-	bh=OOWbc93NNAvuoFHJIERvL2ni0Hh4WX8rxmSVcRBWSh8=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=UNNSDlpjULRYhhubgyBlL3uOvOZTQmSqPOv2MHax1e1KRJ+2nv98syzqmrv6NZaFI
-	 ew7WR8HtaioqREui4tfTOLNyfdHkExd7J2MWERwm9fix6D4Yb7wQXduX7SWIAqg8UY
-	 mwk3EISANgsXq/dfh6J76UGV1FiYryAIkNMh7w2kLN+gNNkxtHXy/Sh0AF6iaOhCgV
-	 OSffjmCunuEHnVAQmQ81fFFEqoDytDBrz9adhKQFrmh/uVp1TQAg0iQdQ6L93BSgRm
-	 EQ8c1LE2Eb1YwT+uTausgVfHy1MEVfLt20KvB28Zaw0blRjONprF1wgajZb26iDZxJ
-	 YLYdrr4VkAu5w==
-Received: from localhost-live.home (2a01cb0892f2D600c8F85CF092D4aF51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0B55E17E0C8C;
-	Thu, 21 Aug 2025 10:38:46 +0200 (CEST)
-Message-ID: <6491baf3e08454f2ea042934f9f781cf21cbf4d7.camel@collabora.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: clock: mediatek: Add power-domains
- property
-From: Julien Massot <julien.massot@collabora.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: kernel@collabora.com, Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Ikjoon Jang <ikjn@chromium.org>,
-  Enric Balletbo i Serra	 <eballetbo@kernel.org>, Chen-Yu Tsai
- <wenst@chromium.org>, Weiyi Lu	 <weiyi.lu@mediatek.com>, Eugen Hristev
- <eugen.hristev@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Julien Massot <jmassot@collabora.com>,  Sean Wang
- <sean.wang@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- linux-clk@vger.kernel.org, 	devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, 	linux-sound@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Date: Thu, 21 Aug 2025 10:38:46 +0200
-In-Reply-To: <376a8f00-e803-4ab1-a54e-6535e41ebaee@kernel.org>
-References: <20250820-mtk-dtb-warnings-v2-0-cf4721e58f4e@collabora.com>
-	 <20250820-mtk-dtb-warnings-v2-1-cf4721e58f4e@collabora.com>
-	 <20250821-whimsical-mustang-of-champagne-ca7a7d@kuoka>
-	 <376a8f00-e803-4ab1-a54e-6535e41ebaee@kernel.org>
-Organization: Collabora Ltd.
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1755765686; c=relaxed/simple;
+	bh=Hr2Mq/c3wRRLOd0x+eYAg6WQzQOLsymSwbT9bZ4h144=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lGfilkozWmrrC/67w1roxUnYBOdKFo9BDJc9rdqcsKndS1lL4tTL4Gxf0tmymPeaAMxCamXkabhcN69iIKbKPum32vW0/WJmISgJ1tyQ3/cDD5v3GlPUNBq7M9T80GCzPm2kbQuTCLRnxTYSUoW1pp3OUztFLs9xw5DZViURwIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Qljfhbkh; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755765685; x=1787301685;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Hr2Mq/c3wRRLOd0x+eYAg6WQzQOLsymSwbT9bZ4h144=;
+  b=QljfhbkhbjcZWVOOvL8XgZnw0HR6JRo+u6aqWNRJw5H7UjTD9QnRTtw8
+   AUAGcg/An0hLQKnFYp5KopLnSpx2X+JFupMt63T5nD9KBOwasy9BXCV/7
+   hiMawYXUDEoLgXqFPhgltqNkgqOs8xYLhDw0R/ER+DBaMGpGFrJh5m5WK
+   e6dUjIc17K24NTxLqMec4/YUw12P3gTdodDIf0mYJE7MB2wLBn26DGirG
+   CuoX7oUBS3nWkY5S3V287oAkmwSZM2KAAWpCz+ldObP/zQzl8j5vEW24W
+   RNPhbIj1Tu15d6mEkKbmIZiL5DcPHjl1JCreBG691bvJ+I262u9zsekcD
+   w==;
+X-CSE-ConnectionGUID: 81dr9XMNRxe13JcEZmrJNg==
+X-CSE-MsgGUID: YY1VzbSmSsWeBTDfE7gbVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="57759724"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; 
+   d="scan'208";a="57759724"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2025 01:41:24 -0700
+X-CSE-ConnectionGUID: VBxdbat7RHmC/2tZJbIT4A==
+X-CSE-MsgGUID: sI80Ql8OSPiy1PZeQZXOGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; 
+   d="scan'208";a="199229185"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by fmviesa001.fm.intel.com with ESMTP; 21 Aug 2025 01:41:19 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1up0rF-000K6l-0s;
+	Thu, 21 Aug 2025 08:41:17 +0000
+Date: Thu, 21 Aug 2025 16:41:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yulin Lu <luyulin@eswincomputing.com>, dlemoal@kernel.org,
+	cassel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-ide@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	vkoul@kernel.org, kishon@kernel.org, linux-phy@lists.infradead.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	ningyu@eswincomputing.com, zhengyu@eswincomputing.com,
+	linmin@eswincomputing.com, huangyifeng@eswincomputing.com,
+	fenglin@eswincomputing.com, lianghujun@eswincomputing.com,
+	luyulin <luyulin@eswincomputing.com>
+Subject: Re: [PATCH v2 3/3] phy: eswin: Create eswin directory and add
+ EIC7700 SATA PHY driver
+Message-ID: <202508211623.d8Spdqn7-lkp@intel.com>
+References: <20250819140043.1862-1-luyulin@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250819140043.1862-1-luyulin@eswincomputing.com>
 
-Hi Krzysztof,=20
+Hi Yulin,
 
-Thanks for the review
-On Thu, 2025-08-21 at 09:30 +0200, Krzysztof Kozlowski wrote:
-> On 21/08/2025 09:16, Krzysztof Kozlowski wrote:
-> > On Wed, Aug 20, 2025 at 03:44:52PM +0200, Julien Massot wrote:
-> > > The mt8183-mfgcfg node uses a power domain in its device tree node.
-> > > To prevent schema validation warnings, add the optional `power-domain=
-s`
-> > > property to the binding schema for mediatek syscon clocks.
-> > >=20
-> > > Fixes: 1781f2c46180 ("arm64: dts: mediatek: mt8183: Add power-domains=
- property to mfgcfg")
-> >=20
-> > Checkpatch complains here, but more important - where is explanation of
-> > dropped tag?
+kernel test robot noticed the following build errors:
 
-Right the proper tag is=20
-Fixes: 1781f2c46180 ("arm64: dts: mediatek: mt8183: Add power-domains prope=
-rity to mfgcfg")
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.17-rc2 next-20250820]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> >=20
-> > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
-llabora.com>
-> >=20
-> > But this tag appeared? It wasn't even given!
-> >=20
-> > You remove public tags and add tags never given on the lists.
->=20
-> I found Angelo's tag, but still dropping other acks is not explained.
->=20
-Regarding the tags: in v2 the patch changed quite a lot after I applied
-Angelo's suggestion, so I decided to drop Rob=E2=80=99s Acked-by as it no l=
-onger
-applies to the new version. I should have explained this in the changelog.
+url:    https://github.com/intel-lab-lkp/linux/commits/Yulin-Lu/dt-bindings-ata-eswin-Document-for-EIC7700-SoC-ahci/20250820-213411
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250819140043.1862-1-luyulin%40eswincomputing.com
+patch subject: [PATCH v2 3/3] phy: eswin: Create eswin directory and add EIC7700 SATA PHY driver
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250821/202508211623.d8Spdqn7-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250821/202508211623.d8Spdqn7-lkp@intel.com/reproduce)
 
-Regards,
-Julien
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508211623.d8Spdqn7-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/phy/eswin/phy-eic7700-sata.c:60:8: error: call to undeclared function 'readl'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+      60 |                 if ((readl(base + reg) & checkbit) == status)
+         |                      ^
+   drivers/phy/eswin/phy-eic7700-sata.c:79:8: error: call to undeclared function 'readl'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+      79 |         val = readl(sata_phy->regs + SATA_CLK_CTRL);
+         |               ^
+>> drivers/phy/eswin/phy-eic7700-sata.c:81:2: error: call to undeclared function 'writel'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+      81 |         writel(val, sata_phy->regs + SATA_CLK_CTRL);
+         |         ^
+   drivers/phy/eswin/phy-eic7700-sata.c:119:8: error: call to undeclared function 'readl'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     119 |         val = readl(sata_phy->regs + SATA_RESET_CTRL);
+         |               ^
+   drivers/phy/eswin/phy-eic7700-sata.c:121:2: error: call to undeclared function 'writel'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     121 |         writel(val, sata_phy->regs + SATA_RESET_CTRL);
+         |         ^
+   drivers/phy/eswin/phy-eic7700-sata.c:172:8: error: call to undeclared function 'readl'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     172 |         val = readl(sata_phy->regs + SATA_CLK_CTRL);
+         |               ^
+   drivers/phy/eswin/phy-eic7700-sata.c:174:2: error: call to undeclared function 'writel'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     174 |         writel(val, sata_phy->regs + SATA_CLK_CTRL);
+         |         ^
+   7 errors generated.
+
+
+vim +/readl +60 drivers/phy/eswin/phy-eic7700-sata.c
+
+    52	
+    53	static int wait_for_phy_ready(void __iomem *base, u32 reg, u32 checkbit,
+    54				      u32 status)
+    55	{
+    56		unsigned long start = jiffies;
+    57		unsigned long timeout = start + PHY_READY_TIMEOUT;
+    58	
+    59		while (time_before(start, timeout)) {
+  > 60			if ((readl(base + reg) & checkbit) == status)
+    61				return 0;
+    62			usleep_range(50, 70);
+    63		}
+    64	
+    65		return -EFAULT;
+    66	}
+    67	
+    68	static int eic7700_sata_phy_init(struct phy *phy)
+    69	{
+    70		struct eic7700_sata_phy *sata_phy = phy_get_drvdata(phy);
+    71		u32 val = 0;
+    72		int ret = 0;
+    73	
+    74		/*
+    75		 * The SATA_CLK_CTRL register offset controls the pmalive, rxoob,
+    76		 * and rbc clocks gate provided by the PHY through the HSP bus,
+    77		 * and it is not registered in the clock tree.
+    78		 */
+    79		val = readl(sata_phy->regs + SATA_CLK_CTRL);
+    80		val |= SATA_SYS_CLK_EN;
+  > 81		writel(val, sata_phy->regs + SATA_CLK_CTRL);
+    82	
+    83		writel(SATA_CLK_RST_SOURCE_PHY, sata_phy->regs + SATA_REF_CTRL1);
+    84		writel(SATA_P0_AMPLITUDE_GEN1 | SATA_P0_AMPLITUDE_GEN2 |
+    85		       SATA_P0_AMPLITUDE_GEN3, sata_phy->regs + SATA_PHY_CTRL0);
+    86		writel(SATA_P0_PHY_TX_PREEMPH_GEN1 | SATA_P0_PHY_TX_PREEMPH_GEN2 |
+    87		       SATA_P0_PHY_TX_PREEMPH_GEN3, sata_phy->regs + SATA_PHY_CTRL1);
+    88		writel(SATA_LOS_LEVEL | SATA_LOS_BIAS,
+    89		       sata_phy->regs + SATA_LOS_IDEN);
+    90		writel(SATA_M_CSYSREQ | SATA_S_CSYSREQ,
+    91		       sata_phy->regs + SATA_AXI_LP_CTRL);
+    92		writel(SATA_REF_REPEATCLK_EN | SATA_REF_USE_PAD,
+    93		       sata_phy->regs + SATA_REG_CTRL);
+    94		writel(SATA_MPLL_MULTIPLIER, sata_phy->regs + SATA_MPLL_CTRL);
+    95		usleep_range(15, 20);
+    96	
+    97		/*
+    98		 * The SATA_RESET_CTRL register offset controls reset/deassert
+    99		 * for both the port and the PHY through the HSP bus,
+   100		 * and it is not registered in the reset tree.
+   101		 */
+   102		val = readl(sata_phy->regs + SATA_RESET_CTRL);
+   103		val &= ~(SATA_PHY_RESET | SATA_PORT_RESET);
+   104		writel(val, sata_phy->regs + SATA_RESET_CTRL);
+   105	
+   106		ret = wait_for_phy_ready(sata_phy->regs, SATA_P0_PHY_STAT,
+   107					 SATA_P0_PHY_READY, 1);
+   108		if (ret < 0)
+   109			dev_err(&sata_phy->phy->dev,
+   110				"PHY READY check failed\n");
+   111		return ret;
+   112	}
+   113	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
