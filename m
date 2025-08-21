@@ -1,84 +1,82 @@
-Return-Path: <devicetree+bounces-207341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419B1B2F3A4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:19:18 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F2D2B2F3AF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:21:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 159B7B61A72
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:17:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E810C4E5BEC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:21:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E58402D374B;
-	Thu, 21 Aug 2025 09:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66FEC2EE60A;
+	Thu, 21 Aug 2025 09:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Vu+ZS+8b"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cMcRzcND"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19456286410;
-	Thu, 21 Aug 2025 09:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4040E2E7F2C;
+	Thu, 21 Aug 2025 09:20:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755767927; cv=none; b=GmQ32ytlbEsFrsWBAzaFhqFXF4w02N2lF5y5Gv6VOlKjzO3UgFA5lsaAvqg2RGWWRotuU62VetkhXYCuvrVh2fJmITmPJWx58fIFjCbbieWxy9AbM7+PxUFYQsvZkcMXel5JJNZY8PLFmiZUeEJxWAU4rd3LD9piZ0ZYhQIl+/A=
+	t=1755768062; cv=none; b=I6Wh9AoNfC/SigOnDKXnTU6frKl3PVYZnDclgPbZxwLFZWNrfeHjVDoWsG104/ziE4/++5b2OcmqqHBfrRS3hRvaNDPjZcAVj173yGTOkXK6kcJ4N72BrRFn9Lm35Th2fqbwi+N9jYEm3YHxevniSt4E47HNrbojWDcCg6rz3eU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755767927; c=relaxed/simple;
-	bh=9wJUy2pIzz/eXObRyOLyevUA0C/y2nNe8ZHk9pUjyNU=;
+	s=arc-20240116; t=1755768062; c=relaxed/simple;
+	bh=vU4EYdc/EKoe2WBmkLeZxO2806sbca6uZyVv9w0qr8s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X/PldSDG4h7k3+mH3AqULnDHe16+Dn7VUktIo2OFlLJf5a8V6HBF4YKPfxYU6OnhkCUaKUwJuVLWxM1GNyyu7qjeuTc7SbPudgmr9GZSEJgpAdunETHsYjD/Zf22CioZxYEoebq8LD19n3X1YVtO8c7DSpok3UxWYNfsV4tN6Do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Vu+ZS+8b; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=JVxK70wO6KKnrHElITfsQuxv8BhFZx0n5Yz0k3Nbc3jdkO/TvJUL4e1X9QZTkQ9eSh0oTT4DE6kesJ3SeJ8TZ3HGcU3fR+ds0VmOoASf4dlnax/iCeDVH59ty49n2QfPX/H/01vd7DDG40EnIMGWi3obps9ycmHSgiw1YvzPzoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cMcRzcND; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755767926; x=1787303926;
+  t=1755768060; x=1787304060;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=9wJUy2pIzz/eXObRyOLyevUA0C/y2nNe8ZHk9pUjyNU=;
-  b=Vu+ZS+8bC6HHN+JbmoU7lgBkCoabG1N7undVPqc6MuN9naB91/LPQpOm
-   WGWAQKAaHkV6+Xg2OlhrlleN8qNgjjyK2Mq/epQxbNWhJsoBrxFPJYVLT
-   iZh8QJgBIE/KiwPlwUTX+3XTrlNfPiHQySdA4KyxQ753iFJYTWO2n3goe
-   yvGcmgQlwPpMoD0e9YICC6P78zeDGIhvNOpEswve1vx1ZtyWKN9gVu7VT
-   xanCzEXdlyqekEUcV1kCv4vpGtaE6ZzazfbRpnw2DooxIY98G+AHXWJQ+
-   BlxcrCGrbBMVtUfZkoquzVto8jf0f/NZn2EaTbOqmEzMOupbtRcMkszQm
+  bh=vU4EYdc/EKoe2WBmkLeZxO2806sbca6uZyVv9w0qr8s=;
+  b=cMcRzcNDmaI09CvS+gA/WjT43yGoNBtgMVHwUIucigrSj1WCe2aG1eyt
+   c8P+o9uPjKm/iZkG8K9YfGJLAXgqUUryKJSJYmU1mhCQOi9Y5uvoTKPlU
+   f9AMfK3rtyHJa8y+xv3yjd752suvwnNbTj2ZqwqybiTU+k7etNA3jhEif
+   dHxxWtV6AAD/ZGUi3umORdloA50VZwwZI88VAGaUh4/REjlD3dkOZgYmi
+   dRt1LbEMNChsfo4pYsYKJcXChBNJTqL+86RTcvL9Dl9qrZn59DT9FB/Id
+   ahzM+/TofaeOAMwcmYMxwYFxortw8Y1Cl6/G99PHaYCy06LSDb7TAMpBG
    g==;
-X-CSE-ConnectionGUID: uzEbot9FS3qoxbcuxXo5jw==
-X-CSE-MsgGUID: F1G0qarkQ9CE0DUx/Ji6rQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="75636262"
+X-CSE-ConnectionGUID: /o5yjpQtSEeED8L23mCGHw==
+X-CSE-MsgGUID: t4fbmDz9Qhup3uVE3PZVsA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="83471154"
 X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; 
-   d="scan'208";a="75636262"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2025 02:18:45 -0700
-X-CSE-ConnectionGUID: m5/DctAQS2WdFesJTtVVlg==
-X-CSE-MsgGUID: ZKuCyK3FTX2ClJKLzE29Uw==
+   d="scan'208";a="83471154"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2025 02:21:00 -0700
+X-CSE-ConnectionGUID: fiYNp7w5RfuNh0l9nedrUQ==
+X-CSE-MsgGUID: NcNxE3BVTcyY9WQ0piuGlg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; 
-   d="scan'208";a="199341082"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.237])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2025 02:18:43 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 6E87F11F738;
-	Thu, 21 Aug 2025 12:18:40 +0300 (EEST)
-Date: Thu, 21 Aug 2025 12:18:40 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+   d="scan'208";a="167577746"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2025 02:20:56 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1up1TZ-00000007BPf-2glW;
+	Thu, 21 Aug 2025 12:20:53 +0300
+Date: Thu, 21 Aug 2025 12:20:53 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: remi.buisson@tdk.com
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Tarang Raval <tarang.raval@siliconsignals.io>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] media: i2c: Add OmniVision OV6211 image sensor
- driver
-Message-ID: <aKbkcL_j3LsdoMo4@kekkonen.localdomain>
-References: <20250812213024.361267-1-vladimir.zapolskiy@linaro.org>
- <20250812213024.361267-3-vladimir.zapolskiy@linaro.org>
- <aKMXy_L0eBRJRcsn@kekkonen.localdomain>
- <03690367-aff0-4128-86aa-65a6d489b6cb@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/9] iio: imu: inv_icm45600: add buffer support in iio
+ devices
+Message-ID: <aKbk9WYtfb5L5la4@smile.fi.intel.com>
+References: <20250820-add_newport_driver-v5-0-2fc9f13dddee@tdk.com>
+ <20250820-add_newport_driver-v5-3-2fc9f13dddee@tdk.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,198 +85,417 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <03690367-aff0-4128-86aa-65a6d489b6cb@linaro.org>
+In-Reply-To: <20250820-add_newport_driver-v5-3-2fc9f13dddee@tdk.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Vladimir,
+On Wed, Aug 20, 2025 at 02:24:21PM +0000, Remi Buisson via B4 Relay wrote:
+> 
+> Add FIFO control functions.
+> Support hwfifo watermark by multiplexing gyro and accel settings.
+> Support hwfifo flush.
 
-On Wed, Aug 20, 2025 at 01:57:52AM +0300, Vladimir Zapolskiy wrote:
-> Hi Sakari,
-> 
-> thank you so much for review. Please find a few comments below.
-> 
-> On 8/18/25 15:08, Sakari Ailus wrote:
-> > Hi Vladimir,
-> > 
-> > Thanks for the update.
-> > 
-> > On Wed, Aug 13, 2025 at 12:30:24AM +0300, Vladimir Zapolskiy wrote:
-> > > OmniVision OV6211 is a monochrome image sensor, which produces frames in
-> > > 8/10-bit raw output format and supports 400x400, 200x200 and 100x100
-> > > output image resolution modes.
-> > > 
-> > > Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> 
-> <snip>
-> 
-> > > +static int ov6211_set_ctrl(struct v4l2_ctrl *ctrl)
-> > > +{
-> > > +	struct ov6211 *ov6211 = container_of(ctrl->handler, struct ov6211,
-> > > +					     ctrl_handler);
-> > > +	int ret;
-> > > +
-> > > +	/* V4L2 controls values will be applied only when power is already up */
-> > > +	if (!pm_runtime_get_if_in_use(ov6211->dev))
-> > 
-> > I think this should be pm_runtime_get_if_active() as no writes will now
-> > take place even if the sensor is powered on.
-> 
-> Ack.
-> 
-> > > +		return 0;
-> > > +
-> > > +	switch (ctrl->id) {
-> > > +	case V4L2_CID_ANALOGUE_GAIN:
-> > > +		ret = cci_write(ov6211->regmap, OV6211_REG_ANALOGUE_GAIN,
-> > > +				ctrl->val, NULL);
-> > > +		break;
-> > > +	case V4L2_CID_EXPOSURE:
-> > > +		ret = cci_write(ov6211->regmap, OV6211_REG_EXPOSURE,
-> > > +				ctrl->val << 4, NULL);
-> > > +		break;
-> > > +	default:
-> > > +		ret = -EINVAL;
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	pm_runtime_put(ov6211->dev);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static const struct v4l2_ctrl_ops ov6211_ctrl_ops = {
-> > > +	.s_ctrl = ov6211_set_ctrl,
-> > > +};
-> > > +
-> > > +static int ov6211_init_controls(struct ov6211 *ov6211)
-> > > +{
-> > > +	struct v4l2_ctrl_handler *ctrl_hdlr = &ov6211->ctrl_handler;
-> > > +	const struct ov6211_mode *mode = &supported_modes[0];
-> > > +	struct v4l2_fwnode_device_properties props;
-> > > +	s64 exposure_max, pixel_rate, h_blank;
-> > > +	struct v4l2_ctrl *ctrl;
-> > > +	int ret;
-> > > +
-> > > +	ret = v4l2_ctrl_handler_init(ctrl_hdlr, 8);
-> > > +	if (ret)
-> > > +		return ret;
-> > 
-> > This check can be omitted. Up to you.
-> 
-> This check I would prefer to keep, otherwise I have a feeling that under
-> ENOMEM the following code would make an attempt to insert the controls
-> data over an NULL pointer...
-> 
-> I'll mock it to check it explicitly though, but I'm inclined to keep it.
+...
 
-The control framework will handle that internally.
+> +#define INV_ICM45600_SENSOR_CONF_KEEP_VALUES {U8_MAX, U8_MAX, U8_MAX, U8_MAX, }
 
-> 
-> <snip>
-> 
-> > > +
-> > > +	ret = cci_write(ov6211->regmap, OV6211_REG_MODE_SELECT,
-> > > +			OV6211_MODE_STREAMING, NULL);
-> > > +	if (ret) {
-> > > +		dev_err(ov6211->dev, "failed to start streaming: %d\n", ret);
-> > > +		goto error;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +
-> > > +error:
-> > > +	pm_runtime_mark_last_busy(ov6211->dev);
-> > 
-> > Please omit direct calls to pm_runtime_mark_last_busy(); this is now called
-> > via the runtime PM put autosuspend etc. functions.
-> > 
-> 
-> Ack.
-> 
-> <snip>
-> 
-> > > +	if (bus_cfg.nr_of_link_frequencies != 1 ||
-> > > +	    bus_cfg.link_frequencies[0] != link_freq_menu_items[0]) {
-> > 
-> > Could you use v4l2_link_freq_to_bitmap()? I think it'd simplify the
-> > function and possibly error handling, too.
-> > 
-> 
-> Ack, let it be so.
-> 
-> > > +		dev_err(ov6211->dev, "Unsupported MIPI CSI2 link frequency\n");
-> > > +		ret = -EINVAL;
-> > > +		goto error;
-> > > +	}
-> > > +
-> > > +error:
-> > > +	v4l2_fwnode_endpoint_free(&bus_cfg);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static int ov6211_power_on(struct device *dev)
-> > > +{
-> > > +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> > > +	struct ov6211 *ov6211 = to_ov6211(sd);
-> > > +	int ret;
-> > > +
-> > > +	if (ov6211->avdd) {
-> > > +		ret = regulator_enable(ov6211->avdd);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +	}
-> > > +
-> > > +	if (ov6211->dovdd) {
-> > > +		ret = regulator_enable(ov6211->dovdd);
-> > > +		if (ret)
-> > > +			goto avdd_disable;
-> > > +	}
-> > > +
-> > > +	if (ov6211->dvdd) {
-> > > +		ret = regulator_enable(ov6211->dvdd);
-> > > +		if (ret)
-> > > +			goto dovdd_disable;
-> > > +	}
-> > 
-> > Can you use the regulator bulk functions? Or if the order is required, add
-> > a comment about it? Otherwise someone will provide a "fix" soon afterwards.
-> > :-)
-> 
-> I've already responded to a similar review comment from Krzysztof on v1,
-> here the rationale is to follow a deliberately selected model of having
-> some of regulators as optional. Moreover the "digital core" DVDD regulator
-> is truly optional, there is a working sensor configuration to omit it.
-> 
-> Unfortunately so far there is no bulk regulator helper, which deals properly
-> with optional regulators, so I would prefer to keep it registered this way.
+When one line, no need to have inner trailing comma, besides that missed space.
 
-Won't the regulator framework provide you a dummy regulator if a given
-regulator isn't assigned to the device in DT?
+...
 
-E.g. the CCS driver unconditionally requests regulators and fails on error.
-It still works on ACPI platforms without any regulators (as in terms of the
-regulator framework).
+> +{
+> +	unsigned int mask, val;
+> +	int ret;
+> +
+> +	/* Update only FIFO EN bits. */
+> +	mask = INV_ICM45600_FIFO_CONFIG3_GYRO_EN |
+> +	       INV_ICM45600_FIFO_CONFIG3_ACCEL_EN;
 
-> > > +	gpiod_set_value_cansleep(ov6211->reset_gpio, 0);
-> > > +	usleep_range(10 * USEC_PER_MSEC, 15 * USEC_PER_MSEC);
-> > > +
-> > > +	ret = clk_prepare_enable(ov6211->xvclk);
-> > 
-> > Is the clock really supposed to be enabled here, and not e.g. before
-> > lifting reset?
-> > 
-> 
-> The so called "gated" mode of XVCLK clock says that is should be enabled
-> after releasing XSHUTDOWN pin, so I don't see a mistake here.
-> 
-> Please note, it's basically a common part with other OmniVision sensors,
-> for instance you may get a reference from OG01A1B product specification etc.
-> 
-> Thank you for review. Shortly I'll send another new but very similar
-> image sensor driver acknowledging your given comments.
+> +	val = 0;
+
+Why not to put it under else branch?
+
+> +	if ((fifo_en & INV_ICM45600_SENSOR_GYRO) || (fifo_en & INV_ICM45600_SENSOR_ACCEL))
+> +		val = (INV_ICM45600_FIFO_CONFIG3_GYRO_EN | INV_ICM45600_FIFO_CONFIG3_ACCEL_EN);
+> +
+> +	ret = regmap_update_bits(st->map, INV_ICM45600_REG_FIFO_CONFIG3, mask, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->fifo.en = fifo_en;
+> +	inv_icm45600_buffer_update_fifo_period(st);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static unsigned int inv_icm45600_wm_truncate(unsigned int watermark, size_t packet_size,
+> +					     unsigned int fifo_period)
+> +{
+> +	size_t watermark_max, grace_samples;
+> +
+> +	/* Keep 20ms for processing FIFO. fifo_period is in ns */
+> +	grace_samples = (20U * 1000000U) / fifo_period;
+
+We have NSEC_PER_MSEC, other similar constants, check respective time.h and units.h.
+
+> +	if (grace_samples < 1)
+> +		grace_samples = 1;
+> +
+> +	watermark_max = INV_ICM45600_FIFO_SIZE_MAX / packet_size;
+> +	watermark_max -= grace_samples;
+> +
+> +	return min(watermark, watermark_max);
+
+Where is the header for min()?
+
+> +}
+
+...
+
+> +/**
+> + * inv_icm45600_buffer_update_watermark - update watermark FIFO threshold
+> + * @st:	driver internal state
+
+> + * Returns 0 on success, a negative error code otherwise.
+
+Return section is missed and has to be the last one. Please, read how to create
+proper kernel-doc.
+
+> + * FIFO watermark threshold is computed based on the required watermark values
+> + * set for gyro and accel sensors. Since watermark is all about acceptable data
+> + * latency, use the smallest setting between the 2. It means choosing the
+> + * smallest latency but this is not as simple as choosing the smallest watermark
+> + * value. Latency depends on watermark and ODR. It requires several steps:
+> + * 1) compute gyro and accel latencies and choose the smallest value.
+> + * 2) adapt the chosen latency so that it is a multiple of both gyro and accel
+> + *    ones. Otherwise it is possible that you don't meet a requirement. (for
+> + *    example with gyro @100Hz wm 4 and accel @100Hz with wm 6, choosing the
+> + *    value of 4 will not meet accel latency requirement because 6 is not a
+> + *    multiple of 4. You need to use the value 2.)
+> + * 3) Since all periods are multiple of each others, watermark is computed by
+> + *    dividing this computed latency by the smallest period, which corresponds
+> + *    to the FIFO frequency.
+> + */
+> +int inv_icm45600_buffer_update_watermark(struct inv_icm45600_state *st)
+> +{
+> +	const size_t packet_size = sizeof(struct inv_icm45600_fifo_2sensors_packet);
+> +	unsigned int wm_gyro, wm_accel, watermark;
+> +	u32 period_gyro, period_accel, period;
+> +	u32 latency_gyro, latency_accel, latency;
+> +
+> +	/* Compute sensors latency, depending on sensor watermark and odr. */
+> +	wm_gyro = inv_icm45600_wm_truncate(st->fifo.watermark.gyro, packet_size,
+> +					   st->fifo.period);
+> +	wm_accel = inv_icm45600_wm_truncate(st->fifo.watermark.accel, packet_size,
+> +					    st->fifo.period);
+> +	/* Use us for odr to avoid overflow using 32 bits values. */
+> +	period_gyro = inv_icm45600_odr_to_period(st->conf.gyro.odr) / 1000UL;
+> +	period_accel = inv_icm45600_odr_to_period(st->conf.accel.odr) / 1000UL;
+
+Replace 1000UL by the respective predefined constants.
+
+> +	latency_gyro = period_gyro * wm_gyro;
+> +	latency_accel = period_accel * wm_accel;
+> +
+> +	/* 0 value for watermark means that the sensor is turned off. */
+> +	if (wm_gyro == 0 && wm_accel == 0)
+> +		return 0;
+> +
+> +	if (latency_gyro == 0) {
+> +		watermark = wm_accel;
+> +		st->fifo.watermark.eff_accel = wm_accel;
+> +	} else if (latency_accel == 0) {
+> +		watermark = wm_gyro;
+> +		st->fifo.watermark.eff_gyro = wm_gyro;
+> +	} else {
+> +		/* Compute the smallest latency that is a multiple of both. */
+> +		if (latency_gyro <= latency_accel)
+> +			latency = latency_gyro - (latency_accel % latency_gyro);
+> +		else
+> +			latency = latency_accel - (latency_gyro % latency_accel);
+> +		/* Use the shortest period. */
+> +		period = min(period_gyro, period_accel);
+> +		/* All this works because periods are multiple of each others. */
+> +		watermark = max(latency / period, 1);
+> +		/* Update effective watermark. */
+> +		st->fifo.watermark.eff_gyro = max(latency / period_gyro, 1);
+> +		st->fifo.watermark.eff_accel = max(latency / period_accel, 1);
+> +	}
+> +
+> +
+
+One blank line is enough.
+
+> +	st->buffer.u16 = cpu_to_le16(watermark);
+> +	return regmap_bulk_write(st->map, INV_ICM45600_REG_FIFO_WATERMARK,
+> +				 &st->buffer.u16, sizeof(st->buffer.u16));
+> +}
+
+...
+
+...
+
+> +	if (sensor == INV_ICM45600_SENSOR_GYRO)
+> +		ret = inv_icm45600_set_gyro_conf(st, &conf, sleep);
+> +	else
+> +		ret = inv_icm45600_set_accel_conf(st, &conf, sleep);
+> +
+> +	return ret;
+
+Just return directly in the branches.
+
+...
+
+> +int inv_icm45600_buffer_fifo_read(struct inv_icm45600_state *st)
+> +{
+> +	const ssize_t packet_size = sizeof(struct inv_icm45600_fifo_2sensors_packet);
+> +	__le16 *raw_fifo_count;
+> +	size_t fifo_nb, i;
+> +	ssize_t size;
+> +	const struct inv_icm45600_fifo_sensor_data *accel, *gyro;
+> +	const __le16 *timestamp;
+> +	const s8 *temp;
+> +	unsigned int odr;
+> +	int ret;
+> +
+> +	/* Reset all samples counters. */
+> +	st->fifo.count = 0;
+> +	st->fifo.nb.gyro = 0;
+> +	st->fifo.nb.accel = 0;
+> +	st->fifo.nb.total = 0;
+> +
+> +	/* Read FIFO count value. */
+> +	raw_fifo_count = &st->buffer.u16;
+> +	ret = regmap_bulk_read(st->map, INV_ICM45600_REG_FIFO_COUNT,
+> +			       raw_fifo_count, sizeof(*raw_fifo_count));
+> +	if (ret)
+> +		return ret;
+
++ blank line
+
+> +	fifo_nb = le16_to_cpup(raw_fifo_count);
+> +
+> +	/* Check and limit number of samples if requested. */
+> +	if (fifo_nb == 0)
+> +		return 0;
+
+Better to reformat as
+
+	/* Check and limit number of samples if requested. */
+	fifo_nb = le16_to_cpup(raw_fifo_count);
+	if (fifo_nb == 0)
+		return 0;
+
+> +	/* Try to read all FIFO data in internal buffer. */
+> +	st->fifo.count = fifo_nb * packet_size;
+> +	ret = regmap_noinc_read(st->map, INV_ICM45600_REG_FIFO_DATA,
+> +				st->fifo.data, st->fifo.count);
+> +	if (ret == -ENOTSUPP || ret == -EFBIG) {
+
+Strictly speaking this is a bit of layering issue, do we have other means to
+check the support before even trying?
+
+> +		/* Read full fifo is not supported, read samples one by one. */
+> +		ret = 0;
+> +		for (i = 0; i < st->fifo.count && ret == 0; i += packet_size)
+> +			ret = regmap_noinc_read(st->map, INV_ICM45600_REG_FIFO_DATA,
+> +						&st->fifo.data[i], packet_size);
+> +	}
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < st->fifo.count; i += size) {
+> +		size = inv_icm45600_fifo_decode_packet(&st->fifo.data[i], &accel, &gyro,
+> +						       &temp, &timestamp, &odr);
+> +		if (size <= 0)
+
+Doesn't size < 0 is an error condition that should be returned?
+
+> +			break;
+> +		if (gyro != NULL && inv_icm45600_fifo_is_data_valid(gyro))
+> +			st->fifo.nb.gyro++;
+> +		if (accel != NULL && inv_icm45600_fifo_is_data_valid(accel))
+> +			st->fifo.nb.accel++;
+
+Drop ' != NULL' parts.
+
+> +		st->fifo.nb.total++;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +int inv_icm45600_buffer_init(struct inv_icm45600_state *st)
+> +{
+> +	int ret;
+> +	unsigned int val;
+> +
+> +	st->fifo.watermark.eff_gyro = 1;
+> +	st->fifo.watermark.eff_accel = 1;
+> +
+> +	/* Disable all FIFO EN bits. */
+> +	ret = regmap_write(st->map, INV_ICM45600_REG_FIFO_CONFIG3, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Disable FIFO and set depth. */
+> +	val = FIELD_PREP(INV_ICM45600_FIFO_CONFIG0_MODE_MASK,
+> +			 INV_ICM45600_FIFO_CONFIG0_MODE_BYPASS);
+> +	val |= INV_ICM45600_FIFO_CONFIG0_FIFO_DEPTH_MAX;
+
+FIELD_MODIFY()
+
+> +	ret = regmap_write(st->map, INV_ICM45600_REG_FIFO_CONFIG0, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable only timestamp in fifo, disable compression. */
+> +	ret = regmap_write(st->map, INV_ICM45600_REG_FIFO_CONFIG4,
+> +			   INV_ICM45600_FIFO_CONFIG4_TMST_FSYNC_EN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable FIFO continuous watermark interrupt. */
+> +	return regmap_set_bits(st->map, INV_ICM45600_REG_FIFO_CONFIG2,
+> +			       INV_ICM45600_REG_FIFO_CONFIG2_WM_GT_TH);
+> +}
+
+...
+
+> +#ifndef INV_ICM45600_BUFFER_H_
+> +#define INV_ICM45600_BUFFER_H_
+> +
+> +#include <linux/bits.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/types.h>
+
+IWYU, please.
+
+...
+
+> +/* FIFO data packet */
+> +struct inv_icm45600_fifo_sensor_data {
+> +	__le16 x;
+> +	__le16 y;
+> +	__le16 z;
+> +} __packed;
+
+Why __packed? Do you expect this to be on unaligned addresses?
+
+...
+
+> +#define INV_ICM45600_DATA_INVALID		S16_MIN
+
+limits.h?
+
+...
+
+> +static inline s16 inv_icm45600_fifo_get_sensor_data(__le16 d)
+> +{
+> +	return le16_to_cpu(d);
+
+asm/byteorder.h ?
+
+> +}
+
+...
+
+> +static inline bool
+> +inv_icm45600_fifo_is_data_valid(const struct inv_icm45600_fifo_sensor_data *s)
+> +{
+> +	s16 x, y, z;
+> +
+> +	x = inv_icm45600_fifo_get_sensor_data(s->x);
+> +	y = inv_icm45600_fifo_get_sensor_data(s->y);
+> +	z = inv_icm45600_fifo_get_sensor_data(s->z);
+> +
+> +	if (x == INV_ICM45600_DATA_INVALID &&
+> +	    y == INV_ICM45600_DATA_INVALID &&
+> +	    z == INV_ICM45600_DATA_INVALID)
+> +		return false;
+> +
+> +	return true;
+
+'if' can be avoided. But it's up to you. All depends on the readability of the
+end result.
+
+> +}
+
+...
+
+> +/**
+> + * inv_icm45600_irq_init() - initialize int pin and interrupt handler
+> + * @st:		driver internal state
+> + * @irq:	irq number
+> + * @irq_type:	irq trigger type
+> + * @open_drain:	true if irq is open drain, false for push-pull
+> + *
+> + * Returns 0 on success, a negative error code otherwise.
+
+kernel-doc validation...
+
+> + */
+
+...
+
+> +	st->fifo.data = devm_kzalloc(dev, 8192, GFP_KERNEL);
+> +	if (!st->fifo.data)
+> +		return dev_err_probe(dev, -ENOMEM, "Cannot allocate fifo memory\n");
+
+HAve you checked what will happen in this case? Please, take a look and update
+the code accordingly.
+
+...
+
+> -	scoped_guard(mutex, &st->lock)
+> +	scoped_guard(mutex, &st->lock) {
+
+Ah, nice. It should have been done in the first place and put a comment to that
+patch that scoped_guard() {} used specifically for limiting churn in the next
+changes.
+
+>  		/* Restore sensors state. */
+>  		ret = inv_icm45600_set_pwr_mgmt0(st, st->suspended.gyro,
+
+> -						st->suspended.accel, NULL);
+> +						 st->suspended.accel, NULL);
+
+Stray change.
+
+> +		if (ret)
+> +			return ret;
+> +
+> +		/* Restore FIFO data streaming. */
+> +		if (st->fifo.on) {
+> +			struct inv_icm45600_sensor_state *gyro_st = iio_priv(st->indio_gyro);
+> +			struct inv_icm45600_sensor_state *accel_st = iio_priv(st->indio_accel);
+> +			unsigned int val;
+> +
+> +			inv_sensors_timestamp_reset(&gyro_st->ts);
+> +			inv_sensors_timestamp_reset(&accel_st->ts);
+> +			val = FIELD_PREP(INV_ICM45600_FIFO_CONFIG0_MODE_MASK,
+> +					 INV_ICM45600_FIFO_CONFIG0_MODE_STREAM);
+> +			ret = regmap_update_bits(st->map, INV_ICM45600_REG_FIFO_CONFIG0,
+> +						 INV_ICM45600_FIFO_CONFIG0_MODE_MASK, val);
+> +			if (ret)
+> +				return ret;
+> +			/* FIFO_CONFIG3_IF_EN must only be set at end of FIFO the configuration */
+> +			ret = regmap_set_bits(st->map, INV_ICM45600_REG_FIFO_CONFIG3,
+> +					      INV_ICM45600_FIFO_CONFIG3_IF_EN);
+
+This relies on the code elsewhere, much better to return here if an error
+condition happened.
+
+> +		}
+> +	}
 
 -- 
-Regards,
+With Best Regards,
+Andy Shevchenko
 
-Sakari Ailus
+
 
