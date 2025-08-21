@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-207500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12CEEB2FB67
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 15:56:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DA11B2FB65
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 15:56:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 156C2B6624A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:53:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 282B5B65E1F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:53:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C0C120AF67;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F023521D5AF;
 	Thu, 21 Aug 2025 13:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pv/oNVby"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sTpXBVtC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2047C15E5DC
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 13:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A0882EC563
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 13:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755784413; cv=none; b=jf9fla86vtSAQKjPVVdYBdP4TNp6vM2jl41eARU7eJaanXcrrInjWHuEat24namz2Ve5ko2u2/YjsJJO5K01uUOe15NpNS3sACeHdbPDvcr+J5ZGPg3Le5E6cK/xBTwGDSQXIOC5zyWtr+FTdylZIazwTjc/IcBCUry48027ma8=
+	t=1755784414; cv=none; b=BuVCs0AB1hf2M0ry2jB8GRAToOGqmTpgcjYOd2X6xH4QGZBb09sLz+s74fnerIukgPLyahT/4vvGShnRfUtPuJ9OG6AXC0xLmetQXN60M6XWfwtr+gySXdn/FltvCVwPqsNlJzmpTcn9h97WOzPV5jxRoG+On2WhpiUIk9mSzTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755784413; c=relaxed/simple;
-	bh=Aq4B8ubCvdna8UpVPGeOGxwN0aFnE91nXSAPqGRX4oM=;
+	s=arc-20240116; t=1755784414; c=relaxed/simple;
+	bh=pyH/63l8u2jxoznNAi489bH4KgxW+yncyv7Dzzy0ooQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nrScSe1fmjYfV2W3C2QAJX6dAGPs/2JcxQOIqsjNUiSU0lxnWR2KkxJyvEA2EWn4hXMDuHu1FMQgv+obuAI/dhrOhYWHBeAYW4OOzSICkQEsUii1YAU478dmF5M9jSh2PNpQruYX8RljYPldpxzoMKqG9zzFUHQrTsa8t3cflYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pv/oNVby; arc=none smtp.client-ip=209.85.128.49
+	 In-Reply-To:To:Cc; b=T9kcc4A7lDlHABYHwSjihJ8C9M3KDQGF8EPQUlA1tf5AgbjlWx5racF7IFOalpz78+G2gL0pkfwrosWenfB/j51fYvnz9uRGC96Q7whculu1OFc/l6GNmUarSy4eEY8GCgt2GIohgsCDPvNd+UZg7KW5xcHMiQdzYyKeKELswj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sTpXBVtC; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45a15fd04d9so14319265e9.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 06:53:31 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45a1b001f55so5526215e9.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 06:53:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755784410; x=1756389210; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755784411; x=1756389211; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=4EIBQO1Gz3enJDEIRLN/ppBfRRD6TDZUCn9XNdLrwEY=;
-        b=Pv/oNVby5CIy8h/e3pVCwo3ru1S7A8embIu4p8VKRYDyuL1v0oOsHijZJiZDFaX75E
-         zbBAX0+nCxbJV3LIqsS7IvtCGoN60cKGDokXzZdimhRIrlGfqumgtXvtZTEB9WhZrCo8
-         NIx/TLsyzNV30fJ3gIf8Qb7q5AzaHXskOOw9oA7+f0l89R5HLapShvwoBkYuJ2oCJuGE
-         JkPwkhEBw9SrTJmcgyI91Sn8odCIRkv6MDqegntEQXf8Hq3grvwpkoq8l0JCk1ud5R9E
-         XVqJnVUwlMnSpLta8U2ga6PKjruIFdaY2fDWDSA7g/DUW/lCHlpZqxGm/hni2T54E1pe
-         cHTw==
+        bh=e1ILbTWVVpwSmSFNMNdMYlh6Zb0YmwB9OaOmacH3ozk=;
+        b=sTpXBVtCu+D4oUsyTrdbP25FjZdnpJYc8+RzxJGw1nTejs7JmXTTodv3FAitU5x4gj
+         ZzrJiawmEdMayV2eqAd+A1Z/6NxHQT021Hv330i772apU/y7fGpd2gHVJiVAgxhdTR18
+         DlK/K4txS95CqHRbiqOZuckR6J3ecHu8c9VlqGz4/YSmxHaGg2ZqCoTqDMRFPE0V5MOJ
+         wfBQWpebW8PTIKQfbeuUVuepGPJ+0n7WxTnSarBbCnxHN/W0IYXdO3ZC7ymguTEymfOa
+         42aPnwHtkmmJ9PPJ7wYtKRX2T0nB/kLbRAIxTohWXk68LuFCUjPQ+vkg3kLCYijvlNbY
+         c7eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755784410; x=1756389210;
+        d=1e100.net; s=20230601; t=1755784411; x=1756389211;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4EIBQO1Gz3enJDEIRLN/ppBfRRD6TDZUCn9XNdLrwEY=;
-        b=rgyjFPE8FF3snKZsFqkf7OaF0hT1GcbUQ3Twy2y5xLWUesIcNadtPM9tUXt1vJ+uX2
-         kIrMdDtCeEziBP+TX2GZr0NSDgZ58f6HE1rLeuk6jSu+z7B8XETQQZ7W6Pqh5DuorFcx
-         SjA5BQ1LjHLmMrs+rWCgUXRMITNNJEnicStGZEA/fPCbx9Iy00NKl7WKQUKJwm49GtuM
-         s5+QTknrh/F+uGKZVJyHsYLoJCv7dMJHafyhk+hXfo6UQ8dRwmuBxm59mdo7jVj0A3PY
-         GTixASllUWfgYJSB9swapvR0JiFELXTBzqHQK1CTWP9qEKUBIred9kh8PbwZhyXn8YGS
-         gqzw==
-X-Forwarded-Encrypted: i=1; AJvYcCXYOIJyxy2My4T32/VZakOB84e0T3nwPp1P2c876j0PcUxKOFpKcDXK07QUh2pvAW5yFZJnKk8o7TRy@vger.kernel.org
-X-Gm-Message-State: AOJu0YzO4VQuTtmEIrA23XSUXfUO0e3j0cT9oJXBSQH3LUGZNOfWnVTF
-	4laKJqN7Ofwgn1mRyuTNbl7F7IEZSNtqnKbb29ghesSoODkYdEtluzzXhWNxGmcvBs1c38QIFWn
-	oLFdtIvQ=
-X-Gm-Gg: ASbGncsT1X9wHp5VZNjvp1KYavjemeG0GC8sLkbvuPOgkH4wm8EZ9wqzx7aTTtN8NRk
-	59cOnB7FFexeaRuVjCdzx2+x/7r1JDuu5oWvIQay6k02KvoWh2R3ZvIoxAAb6o3wyV2YrV9pibB
-	/ML/JpgkZKPomxlSPKU0TE2Mqy17REeiFSvtZ20CBwZLClf5PY0Mp0ZZHJ5Jj0yX+lSkjejGMWU
-	srzWpZ8J+3peEoE2w/nqt/QCKF+LftWl8i07/IC5me9Y6uI/gmAdd9yXI3AcGSQJBrathQXZV7b
-	+bU4OfxNx0727WvfR7lx5Idc84Y7c6XevCCwuk5dzJ6zNNTeeuI4TkhWYIjibQm+M0q6ArPXU0V
-	9jXdS0NlGyFKwCVoyr57Fo9YPlJqLJMQ1yurIsmqMhVTetvj7B1EiWQ==
-X-Google-Smtp-Source: AGHT+IGAIzsMBvakvxJeKR4kacsmerciP2sEoorpYm9uAOK1lVz1iyXKtDjbXi0GfpWXuuUcYEAuhw==
-X-Received: by 2002:a05:600c:5249:b0:439:4b23:9e8e with SMTP id 5b1f17b1804b1-45b4d8de696mr24534735e9.3.1755784409986;
-        Thu, 21 Aug 2025 06:53:29 -0700 (PDT)
+        bh=e1ILbTWVVpwSmSFNMNdMYlh6Zb0YmwB9OaOmacH3ozk=;
+        b=wSsog6Hp7F3nBFFoZi3eap6fEqoyK311KAt2Oyp5MsFhO31RAAKP8lLDq6h9EsfbIC
+         tqu1PdthokZJorhhCPmp+MsVPJ71rubvNlyHlIOOoC8/aLe8OJmZLzU6JrY5E6cqrj2I
+         Ez7c51jeT4opM4j+LAjbLt+eHCgI6w8Mwv3OVv3HX5J6zWcgw7GH9z4D3kePWSGdyRfg
+         v9zBtYVUq3XaNc8wL8DA4KbiTD/z0uEzVzm/28rCUV5Ba2L8Hn3jJJFqlm/it9p8RhHg
+         hVC25po04/FBambfzcaatIZGJnGa7beJcu22HPMe9WDYF0LJ5B+wzBaQOI68J/k4r9Sg
+         1a/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUjc95LhWxAcjlTcvRw5S45yJLIXyJHkEPZMmIkYsF70RLqTjUggpdQizwDlHiqz5U93wOlGcAYnFwv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoS/FiZossAhNzYMf3MGkO9fEKFOtQFZEMs3yy7HbDbqTVKWPH
+	VEYgFaR64e8FISrO0jGlf49BmqQ3lTXWNqLz6QKwOgeoGMs3c5altF9rB13cMnOazuVYOnvFbQY
+	JsCK1lVY=
+X-Gm-Gg: ASbGnctm7UE7D7L4+cVTbh7vemEoGhjKbQvGjfkbZ1lNJF0DbKF9PBPeEQXiF4DAgXs
+	phiSIVtHKL3fCycQOUNtrTAoVFOvfxl6WnUpBzFYfBhEVYRG52ewE6OUQM0eb6oW+F3823op2gq
+	OuuaIpaIcsAQFfv9A70auWJH8uEP1y/HeSlseWidhzU4e/ZguzLS28U6L7MbWS+ZttcUraFe8L5
+	ESlMFbyGgdNUAtk6BBGW+BKrbpmV1EbBLe1hXwxdU2SuPdPgcKCoDwXCUmjnqxrvXytHe69VTBT
+	nnncEakWYxjsJ9mG7k7PwkrT2ZJA/cgkHGtdkyL5i22Nf0Up/glnrdKRMnorBwxNGCY5rOan6Vc
+	PemItfRffq8SzGS0NZaC/a837a6dNmq0DvQiAudmUus4=
+X-Google-Smtp-Source: AGHT+IHzxFhZ5bX07Dc56gfIt9C/HteSV73uQJi38+JQ7zvs/0J0ficW3iAyseTimoWe+tg8LI3jWw==
+X-Received: by 2002:a05:600c:1f0e:b0:456:19b2:6aa8 with SMTP id 5b1f17b1804b1-45b4d84c455mr22092775e9.19.1755784410744;
+        Thu, 21 Aug 2025 06:53:30 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b4e269d20sm14825015e9.2.2025.08.21.06.53.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b4e269d20sm14825015e9.2.2025.08.21.06.53.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Aug 2025 06:53:29 -0700 (PDT)
+        Thu, 21 Aug 2025 06:53:30 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 21 Aug 2025 15:53:26 +0200
-Subject: [PATCH RFC 1/3] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy:
- Document default phy mode
+Date: Thu, 21 Aug 2025 15:53:27 +0200
+Subject: [PATCH RFC 2/3] phy: qcom: qmp-combo: get default qmpphy_mode from
+ DT
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250821-topic-x1e80100-hdmi-v1-1-f14ad9430e88@linaro.org>
+Message-Id: <20250821-topic-x1e80100-hdmi-v1-2-f14ad9430e88@linaro.org>
 References: <20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org>
 In-Reply-To: <20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org>
 To: Vinod Koul <vkoul@kernel.org>, 
@@ -98,20 +98,20 @@ Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1974;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2458;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=Aq4B8ubCvdna8UpVPGeOGxwN0aFnE91nXSAPqGRX4oM=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBopyTXldbpm4aBJ2CsjXkwQ24ndf393shGxX332QEv
- OXcBGm6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaKck1wAKCRB33NvayMhJ0cV9D/
- 9Ki7JcUNOAeH+4OzoHkHUP+vqAWxGIqz0PI1mKTURjsY+W1XGqbumr63HVm10/uPe+ctdQpVLJcfuf
- P7Zlp2uzHtdNuvdNHUFWiFP2jIOxEK1HkwmTMmw04jj7RMUxj3Wd9+cf4pJJ+1DFLxkM/wCkuIU0lR
- MMhrQWmsHBgI6On5U/7nYJr5EMepeTV8P3nyWYklErdKvijuWm1GRgjNnl57Ff6gNMu+2tmn7Cz5Ct
- 8oJjm9W7Tx99PeMsMx2ypyWeLqMpRmOTpxSRN5WerUHcl0OJ3CNkuapZ3JLT8IgF4rU2KTKCE0Z36+
- CDoahhIPvFO17Tz7Zy7jk6vqQMXHNi7SJKyFST/kGfgtfuM/9SNI698IsBScm+pLMxvtPCSB1FUqQY
- oon8yBV31VcPp1385R5sJHfckSgYKihZDz1iAKFMbVvtKFNEEwqgGF8WJR4/VXBbmVaKi+Dif9hFEP
- 2bB2O/nFsHUGhu8EEv3ghfexcSnnYKoH3Wydbwal/eXBmPuN1Kh8GPY4knHmqO8MrbbwXfyIgEOvsq
- nDIXQLPzsOzvQHY6XRmSL8bb5NRdxqYBT0dVa/VXLHVW5WsJPHPAArX5opq+p6a/vYUQ9e+y0zRT4S
- WDm4iqLuQx9488Xz1o0C46fbw0xJYmU7qt4CgLdUy/BaJHDfyvp1krYTiS9w==
+ bh=pyH/63l8u2jxoznNAi489bH4KgxW+yncyv7Dzzy0ooQ=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBopyTXxH8cN7bUQsx2ZIWRdTEbt3s4adIu96+85UQQ
+ fLvZ5muJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaKck1wAKCRB33NvayMhJ0TLhD/
+ 93xZ6P1uVT6kCXpqkhY/UQNa/NPxUJX9u7kDYnffn2/GBILFXp+woumwdl+2flJztSwB0+KfdQzyKu
+ KJPGQaruufOfFYr05BehiOOe2kbjgvNnmn9yyWw4zTo5VrXkFOoHQ4iuTzKHYk32F8uMqG10/RO5qQ
+ /nNbVvOKEvs8amuanTT0MbET2lkXyydwwLgXB3gti3aB7c9QmyEBOtwetV0NOdJimpZdnmO2mWtWTe
+ I9TX6bZo9RAvOLyE6oB/hn7EXwdrFDuNuoidurmQABLnYeRJOdNZshmKuyFBBxDGz+d7MP2TACSBbs
+ UyH1NEHvvHpI3CgO/vr7toDmSb/eJYK+B0M9b+UIBcPo1cKaUPWLXmRMC6arMI4HaznMZIPo3sAt3t
+ wUTLPwaJVTff7rE4/Up2VO2xHUfc3kROJUG5hTA8+4Uz8VgDYCl1TwWOWhRS2yqYz+EW7KpqSXboiZ
+ R4kC/2X5BpVou+Gq7CiK5JtNLT1LZuQ0v4MNRoE4nFRGwre+lRi1ItlCjx1gv6fPWYHmdrnMhHYyel
+ woXs3YXppSdI5a/ui3pEv2bPe6ccbqZOOOlTqKizqJV1fOGBymr1drs04raN77W2x3RD7PSvjy9uSO
+ wiJtNpDh1FpTLwa6id8vxMoB0E/UHnyxqUbaDJvw4tnxLs9s9yRxu82YpRXg==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
@@ -133,38 +133,58 @@ But if a 4lanes DP->HDMI bridge is directly connected to the
 QMP Comby PHY lanes, in the default routing 2 or the 4 lanes would
 probbaly be USB3, making the DP->HDMI bridge non functional.
 
-Add a property to hint in which layout mode the QMP Comby PHY
+Support the property to set in which layout mode the QMP Comby PHY
 should be as startup.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-index c8bc512df08b5694c8599f475de78679a4438449..129475a1d9527733e43ded5a38aad766f9810fe7 100644
---- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-@@ -76,6 +76,19 @@ properties:
-   mode-switch: true
-   orientation-switch: true
+diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+index 7b5af30f1d028c592500e723ecd27b54ed554709..622db8a204d3c7c95f110e59cab96b07eadabade 100644
+--- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
++++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+@@ -4117,13 +4117,19 @@ static struct phy *qmp_combo_phy_xlate(struct device *dev, const struct of_phand
+ 	return ERR_PTR(-EINVAL);
+ }
  
-+  qcom,combo-initial-mode:
-+    description:
-+      Describe the initial mode of the Combo PHY configuration.
-+      The Combo PHY is a wrapper on top of a DP PHY and an USB3 PHY,
-+      sharing the same SuperSpeed lanes with either DisplayPort over
-+      the 4 lanes (dp), USB3 on a pair of lanes (usb3) or both
-+      technologies in a 2+2 configuration (usb3+dp) as default.
-+    default: usb3+dp
-+    enum:
-+      - usb3+dp
-+      - usb3
-+      - dp
++static const char * const qmpphy_mode_str[] = {
++	[QMPPHY_MODE_USB3DP] = "usb3+dp",
++	[QMPPHY_MODE_DP_ONLY] = "dp",
++	[QMPPHY_MODE_USB3_ONLY] = "usb3",
++};
 +
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
-     properties:
+ static int qmp_combo_probe(struct platform_device *pdev)
+ {
+ 	struct qmp_combo *qmp;
+ 	struct device *dev = &pdev->dev;
+ 	struct device_node *dp_np, *usb_np;
+ 	struct phy_provider *phy_provider;
+-	int ret;
++	int ret, i;
+ 
+ 	qmp = devm_kzalloc(dev, sizeof(*qmp), GFP_KERNEL);
+ 	if (!qmp)
+@@ -4195,6 +4201,18 @@ static int qmp_combo_probe(struct platform_device *pdev)
+ 	 */
+ 	qmp->qmpphy_mode = QMPPHY_MODE_USB3DP;
+ 
++	/* Replace with DT provided mode */
++	if (of_find_property(dev->of_node, "qcom,combo-initial-mode", NULL)) {
++		for (i = 0; i < ARRAY_SIZE(qmpphy_mode_str); ++i) {
++			ret = of_property_match_string(dev->of_node, "qcom,combo-initial-mode",
++						       qmpphy_mode_str[i]);
++			if (!ret) {
++				qmp->qmpphy_mode = i;
++				break;
++			}
++		}
++	}
++
+ 	qmp->usb_phy = devm_phy_create(dev, usb_np, &qmp_combo_usb_phy_ops);
+ 	if (IS_ERR(qmp->usb_phy)) {
+ 		ret = PTR_ERR(qmp->usb_phy);
 
 -- 
 2.34.1
