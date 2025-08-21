@@ -1,273 +1,339 @@
-Return-Path: <devicetree+bounces-207603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFFA5B3000C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:30:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC88B30027
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:35:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60C545659A3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 16:27:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98AB03A60B2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 16:30:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15412DECDD;
-	Thu, 21 Aug 2025 16:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7FC2D9EEA;
+	Thu, 21 Aug 2025 16:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ndDyP9mR"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="taL2TKZM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1756A2DE1FE;
-	Thu, 21 Aug 2025 16:27:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C0CF27510E;
+	Thu, 21 Aug 2025 16:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755793636; cv=none; b=WIzsbTRDXXvmNZ8sB0U9McSYrwseLtIimofen2ibOPvezRnIVa2TlzylNV0FT0f5g1ZPt4fdlUdEmc5SNpv7e/hqyO0zyL+rVUvUy+eP6Jy9iP+g6cVGFGwnlJL1iF7uXr1efrgI82M+e3boPnY4SDfZ5LSYrjpOA8uVQkthB/k=
+	t=1755793853; cv=none; b=r+hhEFWWbqs7CgODRaKseeRv7n4dqx5OZ127UJDr0hTDwDKkZBfJ6Rx79GKay4bYOquqJiBtAPvs47BARiTqH698xzCSS4AuSn4YtKBDiMAjM+hsFF2ijrUfQ6nysjQjLhXyhAzgzmePtRqc2JJmu/PdcH1VpMCwGl5qOmPJ9GQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755793636; c=relaxed/simple;
-	bh=a2VaGbnudM1PA9g6aSsfgVl1WnSIPcWzvBS/7G/JRIQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=adbGaNhGBGA/slkV2pC73Vt4VakTr2kODy7IzjTBNUIKsQbkJPVOv00vXHiqYw8q2mZGVbdnzK4epuMXwUAgBTwb7cHkR+II+A3QWLD4+CMRScoPIXSV9FB4RGutR31ODRiiq3K0n3UJP8kDfIMt4netY+AoS05LRYZG95lXXIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ndDyP9mR; arc=none smtp.client-ip=209.85.167.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-435de838484so823372b6e.3;
-        Thu, 21 Aug 2025 09:27:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755793634; x=1756398434; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UbxwAPRbZLLGWs9r1VP1FnvbCoc9pGEKPj76nnKqTXY=;
-        b=ndDyP9mRJAww0uS8g/LpqD5OGWmWjBndqkXTWodwEcmxdNeM7aMQaKgA9NRT4cvYWr
-         rhNY6tRMM6RfmbhwBhVwhy9GoFKZIt4bCGuPTK6HkgGZY8YFd3I2Yroz4WQqG2RDEjNY
-         tRJiVGaCNnjKsYJI7/GNOqc80r4Y1AnhGuV6uaBFljZTj4R+t2mbFn5Hd1ksq+Z5CMOr
-         VNdimD9hw4R+wJTRI4HJqcuH0OfK+q5KNyNM41Y8j9nnRBn+a84GZVhjrWKTkAVgLlo9
-         FubIU9nbiGs8EzaWtrhE7Q52wJyR7IptmijDsTMDS9kWiUmGSKYEYujL/I3Uc2lQQppI
-         V/1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755793634; x=1756398434;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UbxwAPRbZLLGWs9r1VP1FnvbCoc9pGEKPj76nnKqTXY=;
-        b=dBKGs5vdcAKqOlH+9cXGkjdMt7NcixST7fjCrFG8e6Ku7x+q4ZKtFE6GBoZTMHCRvk
-         ztYxvUyS0vLwbj5r3rM97uyGa317vKuinmir9DxK/hT2WaLSxvQX+cQ28s0Ioi9BVs5n
-         TvQPyn3aofUBfPY7K0syTAg0rWGQCLAcvIoPjBcG4Z54niPbW0B9tkiIzKmqpb0OSdcn
-         eNe+cj3xBrSpYufTLuKSKo4t7IryJehq08PEHubQ0H7bd3niDAi2nv3RZol9iBOSWChb
-         te9vAYy2DpDreBlzKjRGupX9yd16JHcLgm2eaRqJ6I9l6ggb1Vqrhynem6GVBUYXkbOc
-         PMzg==
-X-Forwarded-Encrypted: i=1; AJvYcCVtMb8iOzCaTgaIjoDQEnQXYf33qPMVvzPaBsSKVAPQeeeEx6OZF0+IGBrkQzv3keCMiVoZaq6MHkKX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTXRyqNzzMmTV2ospBy6c/+o3W9xbNbqvcqZ+7pyLGiIUlk/GV
-	uO9dZ/rvo6MV+GjgBiKrrycn3vl0Ul2rDLF32DWiFHgLgwpmvnRjWduz
-X-Gm-Gg: ASbGncsCRJ0yw9lPc6Ozl1EMWTHVOBEIHw3xx/IuKUfUPPcluTEJA0Wym01wsEoNwbu
-	l0OO8NzCi/xiZe6mYoPJmJ6spMbs81kEBHso+ervA7W7Bv0cDrZcPLCHbrOD4Hz8yiBey/kDqFT
-	G6/5ws0xBXSF+Xw2E/yyWkmfnJw7mcs0lymzHIypklYQmJ5H1Gds/xg9lvA2MpvVdkc56p5L6VF
-	W8FgWsngaxr47lVdLt/9993WWdWyC1ROhFu9KHOenHup9mQHfUw7p04fEhUtRa9Yrq55svElJQz
-	dYlZ6BddEKz0ZuJ5lxjGcofr3Er/Yg8pvtNfe1eRg8XeYoR5H0UzBPyZcoC6ioTRtrHO3VgnREk
-	wr0pdkP8xbcdmlC770U6DiGf2GYQ+yzR+dKADMMlmpA==
-X-Google-Smtp-Source: AGHT+IG7yXhlPQPLqBgyGC5iSVZkwtCYQoExiYrE4Ik476mrwWOIwzGKx0YYZ7rN+LaJYEGjIes+Cw==
-X-Received: by 2002:a05:6808:1301:b0:3f9:36ec:dab3 with SMTP id 5614622812f47-437851b75d4mr80511b6e.14.1755793633915;
-        Thu, 21 Aug 2025 09:27:13 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:fb0:1bc0:b19a:18c8:26b9:21c7])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61bec14b3cesm1674706eaf.27.2025.08.21.09.27.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Aug 2025 09:27:13 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	broonie@kernel.org,
-	lee@kernel.org,
-	lgirdwood@gmail.com,
-	sre@kernel.org,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V7 5/5] arm64: dts: rockchip: Add USB and charger to Gameforce Ace
-Date: Thu, 21 Aug 2025 11:24:48 -0500
-Message-ID: <20250821162448.117621-6-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250821162448.117621-1-macroalpha82@gmail.com>
-References: <20250821162448.117621-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1755793853; c=relaxed/simple;
+	bh=DybIH97wxyFrWaVoyca351mEX4CtxWYW6vGgJXt/2jE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YA+cZJe2hVavDJygiZlTqHvblRBgfULKlTrmfNtjUqlEU+a10BtGrJdKSBK7U8qUaq8YXBajQKOlmygB3tcTE4qstPY8h6jUc02pikvmo+AesOreXoZ4NhftfXMLmYgqLTiRk6VzzeAnXk2U9yJ2grd/AB4UOe2MHxa6PElE7Io=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=taL2TKZM; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id D37FE250;
+	Thu, 21 Aug 2025 18:29:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1755793790;
+	bh=DybIH97wxyFrWaVoyca351mEX4CtxWYW6vGgJXt/2jE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=taL2TKZMwaPfZvu4Fwbe5D3AaohYPihTfYr+STon/G6hCmtrK9TXM6SIQJ2i7db2Q
+	 4GLIFcfIw5yzEazmidXD7CtJPQxxdAuanRRdeF6sDZBWDRKtC8rUQdYYJFZHEnl57w
+	 m/dEhKys8DKcxqYZkIe32yyPSn+18yzbwjWkJ9VE=
+Date: Thu, 21 Aug 2025 19:30:25 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: linux-media@vger.kernel.org, Isaac Scott <isaac.scott@ideasonboard.com>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 11/12] media: imx-mipi-csis: Initial support for
+ multiple output channels
+Message-ID: <20250821163025.GB29629@pendragon.ideasonboard.com>
+References: <20250821000944.27849-1-laurent.pinchart@ideasonboard.com>
+ <20250821000944.27849-12-laurent.pinchart@ideasonboard.com>
+ <aKdBu9AQfwxl8b4I@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aKdBu9AQfwxl8b4I@lizhi-Precision-Tower-5810>
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Thu, Aug 21, 2025 at 11:56:43AM -0400, Frank Li wrote:
+> On Thu, Aug 21, 2025 at 03:09:43AM +0300, Laurent Pinchart wrote:
+> > Some CSIS instances feature more than one output channel. Update
+> > register macros accordingly, parse the number of channels from the
+> > device tree, and update register dumps and event counters to log
+> > per-channel data.
+> >
+> > Support for routing virtual channels and data types to output channels
+> > through the subdev internal routing API will come later.
+> >
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> > Changes since v1:
+> >
+> > - Update more per-channel registers
+> > - Update commit message
+> > ---
+> >  drivers/media/platform/nxp/imx-mipi-csis.c | 239 +++++++++++++--------
+> >  1 file changed, 152 insertions(+), 87 deletions(-)
+> >
+> > diff --git a/drivers/media/platform/nxp/imx-mipi-csis.c b/drivers/media/platform/nxp/imx-mipi-csis.c
+> > index 83ba68a20bd1..b1136336a57f 100644
+> > --- a/drivers/media/platform/nxp/imx-mipi-csis.c
+> > +++ b/drivers/media/platform/nxp/imx-mipi-csis.c
+> > @@ -54,7 +54,7 @@
+> >
+> ...
+> >
+> > +	{ false, 0, MIPI_CSIS_INT_SRC_FRAME_START(0),		"Frame Start 0" },
+> > +	{ false, 1, MIPI_CSIS_INT_SRC_FRAME_START(1),		"Frame Start 1" },
+> > +	{ false, 2, MIPI_CSIS_INT_SRC_FRAME_START(2),		"Frame Start 2" },
+> > +	{ false, 3, MIPI_CSIS_INT_SRC_FRAME_START(3),		"Frame Start 3" },
+> > +	{ false, 0, MIPI_CSIS_INT_SRC_FRAME_END(0),		"Frame End 0" },
+> > +	{ false, 1, MIPI_CSIS_INT_SRC_FRAME_END(1),		"Frame End 1" },
+> > +	{ false, 2, MIPI_CSIS_INT_SRC_FRAME_END(2),		"Frame End 2" },
+> > +	{ false, 3, MIPI_CSIS_INT_SRC_FRAME_END(3),		"Frame End 3" },
+> > +	{ true, 0, MIPI_CSIS_DBG_INTR_SRC_CAM_VSYNC_FALL(0),	"VSYNC Falling Edge 0" },
+> > +	{ true, 1, MIPI_CSIS_DBG_INTR_SRC_CAM_VSYNC_FALL(1),	"VSYNC Falling Edge 1" },
+> > +	{ true, 2, MIPI_CSIS_DBG_INTR_SRC_CAM_VSYNC_FALL(2),	"VSYNC Falling Edge 2" },
+> > +	{ true, 3, MIPI_CSIS_DBG_INTR_SRC_CAM_VSYNC_FALL(3),	"VSYNC Falling Edge 3" },
+> > +	{ true, 0, MIPI_CSIS_DBG_INTR_SRC_CAM_VSYNC_RISE(0),	"VSYNC Rising Edge 0" },
+> > +	{ true, 1, MIPI_CSIS_DBG_INTR_SRC_CAM_VSYNC_RISE(1),	"VSYNC Rising Edge 1" },
+> > +	{ true, 2, MIPI_CSIS_DBG_INTR_SRC_CAM_VSYNC_RISE(2),	"VSYNC Rising Edge 2" },
+> > +	{ true, 3, MIPI_CSIS_DBG_INTR_SRC_CAM_VSYNC_RISE(3),	"VSYNC Rising Edge 3" },
+> >  };
+> >
+> > -#define MIPI_CSIS_NUM_EVENTS ARRAY_SIZE(mipi_csis_events)
+> > +#define MIPI_CSIS_NUM_EVENTS		ARRAY_SIZE(mipi_csis_events)
+> 
+> unneccesary change for this patch
 
-Add support for the BQ25703A charger manager and boost regulator to
-the Gameforce Ace. Add the USB-C port and PHY as well as they all
-depend on each other for operation.
+It's meant to have the same alignment as the next line.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../dts/rockchip/rk3588s-gameforce-ace.dts    | 122 ++++++++++++++++++
- 1 file changed, 122 insertions(+)
+> > +#define MIPI_CSIS_NUM_ERROR_EVENTS	(MIPI_CSIS_NUM_EVENTS - 20)
+> >
+> >  enum mipi_csis_clk {
+> >  	MIPI_CSIS_CLK_PCLK,
+> > @@ -300,7 +334,9 @@ struct mipi_csis_device {
+> >  	struct clk_bulk_data *clks;
+> >  	struct reset_control *mrst;
+> >  	struct regulator *mipi_phy_regulator;
+> > +
+> >  	const struct mipi_csis_info *info;
+> > +	unsigned int num_channels;
+> >
+> >  	struct v4l2_subdev sd;
+> >  	struct media_pad pads[CSIS_PADS_NUM];
+> > @@ -655,8 +691,8 @@ static void mipi_csis_set_params(struct mipi_csis_device *csis,
+> >  			MIPI_CSIS_ISP_SYNC_VSYNC_EINTV(0));
+> >
+> >  	val = mipi_csis_read(csis, MIPI_CSIS_CLK_CTRL);
+> > -	val |= MIPI_CSIS_CLK_CTRL_WCLK_SRC;
+> > -	val |= MIPI_CSIS_CLK_CTRL_CLKGATE_TRAIL_CH0(15);
+> > +	val |= MIPI_CSIS_CLK_CTRL_WCLK_SRC(0);
+> > +	val |= MIPI_CSIS_CLK_CTRL_CLKGATE_TRAIL(0, 15);
+> >  	val &= ~MIPI_CSIS_CLK_CTRL_CLKGATE_EN_MSK;
+> >  	mipi_csis_write(csis, MIPI_CSIS_CLK_CTRL, val);
+> >
+> > @@ -673,7 +709,7 @@ static void mipi_csis_set_params(struct mipi_csis_device *csis,
+> >  	/* Update the shadow register. */
+> >  	val = mipi_csis_read(csis, MIPI_CSIS_CMN_CTRL);
+> >  	mipi_csis_write(csis, MIPI_CSIS_CMN_CTRL,
+> > -			val | MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW |
+> > +			val | MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW(0) |
+> >  			MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW_CTRL);
+> >  }
+> >
+> > @@ -764,16 +800,19 @@ static irqreturn_t mipi_csis_irq_handler(int irq, void *dev_id)
+> >
+> >  	/* Update the event/error counters */
+> >  	if ((status & MIPI_CSIS_INT_SRC_ERRORS) || csis->debug.enable) {
+> > -		for (i = 0; i < MIPI_CSIS_NUM_EVENTS; i++) {
+> > +		for (i = 0; i < ARRAY_SIZE(csis->events); i++) {
+> 
+> This is nice change, but I think it is not related with this patch. May
+> need sperate patch.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts b/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-index 55fc7cbef58d..f5894672fcbd 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-@@ -612,6 +612,56 @@ &i2c6 {
- 	pinctrl-0 = <&i2c6m3_xfer>;
- 	status = "okay";
- 
-+	fusb302: typec@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PC7 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&usbc0_int>;
-+		pinctrl-names = "default";
-+		vbus-supply = <&usb_otg_vbus>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			data-role = "dual";
-+			label = "USB-C";
-+			op-sink-microwatt = <1000000>;
-+			power-role = "dual";
-+			self-powered;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+				     PDO_FIXED(9000, 3000, PDO_FIXED_USB_COMM)
-+				     PDO_FIXED(12000, 3000, PDO_FIXED_USB_COMM)>;
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			try-power-role = "sink";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					usbc0_orien_sw: endpoint {
-+						remote-endpoint = <&usbdp_phy0_orientation_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					usbc0_role_sw: endpoint {
-+						remote-endpoint = <&dwc3_0_role_switch>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					dp_altmode_mux: endpoint {
-+						remote-endpoint = <&usbdp_phy0_dp_altmode_mux>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- 	rtc_hym8563: rtc@51 {
- 		compatible = "haoyu,hym8563";
- 		reg = <0x51>;
-@@ -640,8 +690,34 @@ battery@62 {
- 			 0x2F 0x00 0x64 0xA5 0xB5 0x1C 0xF0 0x49>;
- 		cellwise,monitor-interval-ms = <5000>;
- 		monitored-battery = <&battery>;
-+		power-supplies = <&bq25703>;
- 		status = "okay";
- 	};
-+
-+	bq25703: charger@6b {
-+		compatible = "ti,bq25703a";
-+		reg = <0x6b>;
-+		input-current-limit-microamp = <5000000>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PD5 IRQ_TYPE_LEVEL_LOW>;
-+		monitored-battery = <&battery>;
-+		pinctrl-0 = <&charger_int_h>;
-+		pinctrl-names = "default";
-+		power-supplies = <&fusb302>;
-+
-+		regulators {
-+			usb_otg_vbus: vbus {
-+				enable-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
-+				pinctrl-0 = <&boost_enable_h>;
-+				pinctrl-names = "default";
-+				regulator-max-microamp = <960000>;
-+				regulator-max-microvolt = <5088000>;
-+				regulator-min-microamp = <512000>;
-+				regulator-min-microvolt = <4992000>;
-+				regulator-name = "usb_otg_vbus";
-+			};
-+		};
-+	};
- };
- 
- &i2c7 {
-@@ -853,6 +929,12 @@ usbc0_int: usbc0-int {
- 			rockchip,pins =
- 				<0 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
-+
-+		usbc_sbu_dc: usbc-sbu-dc {
-+			rockchip,pins =
-+				<4 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>,
-+				<4 RK_PA1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
- 	};
- 
- 	vcc3v3-lcd {
-@@ -1286,6 +1368,46 @@ bluetooth {
- 	};
- };
- 
-+&usb_host0_xhci {
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		dwc3_0_role_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc0_role_sw>;
-+		};
-+	};
-+};
-+
-+&usbdp_phy0 {
-+	mode-switch;
-+	orientation-switch;
-+	pinctrl-0 = <&usbc_sbu_dc>;
-+	pinctrl-names = "default";
-+	sbu1-dc-gpios = <&gpio4 RK_PA0 GPIO_ACTIVE_HIGH>;
-+	sbu2-dc-gpios = <&gpio4 RK_PA1 GPIO_ACTIVE_HIGH>;
-+	rockchip,dp-lane-mux = <2 3>;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		usbdp_phy0_orientation_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc0_orien_sw>;
-+		};
-+
-+		usbdp_phy0_dp_altmode_mux: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&dp_altmode_mux>;
-+		};
-+	};
-+};
-+
- &vop {
- 	status = "okay";
- };
+I think a separate patch just for this one-line change would be
+overkill. Given that this patch touches event reporting, I'd rather keep
+this here.
+
+> >  			struct mipi_csis_event *event = &csis->events[i];
+> >
+> > +			if (event->channel >= csis->num_channels)
+> > +				continue;
+> > +
+> >  			if ((!event->debug && (status & event->mask)) ||
+> >  			    (event->debug && (dbg_status & event->mask)))
+> >  				event->counter++;
+> >  		}
+> >  	}
+> >
+> > -	if (status & MIPI_CSIS_INT_SRC_FRAME_START)
+> > +	if (status & MIPI_CSIS_INT_SRC_FRAME_START(0))
+> >  		mipi_csis_queue_event_sof(csis);
+> >
+> >  	spin_unlock_irqrestore(&csis->slock, flags);
+> > @@ -850,7 +889,7 @@ static void mipi_csis_clear_counters(struct mipi_csis_device *csis)
+> >  static void mipi_csis_log_counters(struct mipi_csis_device *csis, bool non_errors)
+> >  {
+> >  	unsigned int num_events = non_errors ? MIPI_CSIS_NUM_EVENTS
+> > -				: MIPI_CSIS_NUM_EVENTS - 8;
+> > +				: MIPI_CSIS_NUM_ERROR_EVENTS;
+> 
+> I think old code logic is strange. err events is not last trail of events
+> array. when non_errors false, only last 8 events have not logs.
+
+The error events are at the beginning of the array, and before this
+change there was 8 non-error events at the end. The code would log
+either all events, or just the error events (all minus the last 8).
+
+> 
+> And I found all place call mipi_csis_log_counters(, true) in whole driver.
+
+Indeed. I wonder why. Looking at the code, I think we should only log
+non-error counters when csis->debug.enable is set. That's a candidate
+for a separate patch.
+
+> >  	unsigned int counters[MIPI_CSIS_NUM_EVENTS];
+> >  	unsigned long flags;
+> >  	unsigned int i;
+> > @@ -861,45 +900,67 @@ static void mipi_csis_log_counters(struct mipi_csis_device *csis, bool non_error
+> >  	spin_unlock_irqrestore(&csis->slock, flags);
+> >
+> >  	for (i = 0; i < num_events; ++i) {
+> > +		const struct mipi_csis_event *event = &csis->events[i];
+> > +
+> > +		if (event->channel >= csis->num_channels)
+> > +			continue;
+> > +
+> >  		if (counters[i] > 0 || csis->debug.enable)
+> >  			dev_info(csis->dev, "%s events: %d\n",
+> > -				 csis->events[i].name,
+> > -				 counters[i]);
+> > +				 event->name, counters[i]);
+> >  	}
+> >  }
+> >
+> > +struct mipi_csis_reg_info {
+> > +	u32 addr;
+> > +	unsigned int offset;
+> > +	const char * const name;
+> > +};
+> > +
+> > +static void mipi_csis_dump_channel_reg(struct mipi_csis_device *csis,
+> > +				       const struct mipi_csis_reg_info *reg,
+> > +				       unsigned int channel)
+> > +{
+> > +	dev_info(csis->dev, "%16s%u: 0x%08x\n", reg->name, channel,
+> > +		 mipi_csis_read(csis, reg->addr + channel * reg->offset));
+> > +}
+> > +
+> >  static int mipi_csis_dump_regs(struct mipi_csis_device *csis)
+> >  {
+> > -	static const struct {
+> > -		u32 offset;
+> > -		const char * const name;
+> > -	} registers[] = {
+> > -		{ MIPI_CSIS_CMN_CTRL, "CMN_CTRL" },
+> > -		{ MIPI_CSIS_CLK_CTRL, "CLK_CTRL" },
+> > -		{ MIPI_CSIS_INT_MSK, "INT_MSK" },
+> > -		{ MIPI_CSIS_DPHY_STATUS, "DPHY_STATUS" },
+> > -		{ MIPI_CSIS_DPHY_CMN_CTRL, "DPHY_CMN_CTRL" },
+> > -		{ MIPI_CSIS_DPHY_SCTRL_L, "DPHY_SCTRL_L" },
+> > -		{ MIPI_CSIS_DPHY_SCTRL_H, "DPHY_SCTRL_H" },
+> > -		{ MIPI_CSIS_ISP_CONFIG_CH(0), "ISP_CONFIG_CH0" },
+> > -		{ MIPI_CSIS_ISP_RESOL_CH(0), "ISP_RESOL_CH0" },
+> > -		{ MIPI_CSIS_SDW_CONFIG_CH(0), "SDW_CONFIG_CH0" },
+> > -		{ MIPI_CSIS_SDW_RESOL_CH(0), "SDW_RESOL_CH0" },
+> > -		{ MIPI_CSIS_DBG_CTRL, "DBG_CTRL" },
+> > -		{ MIPI_CSIS_FRAME_COUNTER_CH(0), "FRAME_COUNTER_CH0" },
+> > +	static const struct mipi_csis_reg_info common_registers[] = {
+> > +		{ MIPI_CSIS_CMN_CTRL, 0, "CMN_CTRL" },
+> > +		{ MIPI_CSIS_CLK_CTRL, 0, "CLK_CTRL" },
+> > +		{ MIPI_CSIS_INT_MSK, 0, "INT_MSK" },
+> > +		{ MIPI_CSIS_DPHY_STATUS, 0, "DPHY_STATUS" },
+> > +		{ MIPI_CSIS_DPHY_CMN_CTRL, 0, "DPHY_CMN_CTRL" },
+> > +		{ MIPI_CSIS_DPHY_SCTRL_L, 0, "DPHY_SCTRL_L" },
+> > +		{ MIPI_CSIS_DPHY_SCTRL_H, 0, "DPHY_SCTRL_H" },
+> > +		{ MIPI_CSIS_DBG_CTRL, 0, "DBG_CTRL" },
+> > +	};
+> > +	static const struct mipi_csis_reg_info channel_registers[] = {
+> > +		{ MIPI_CSIS_ISP_CONFIG_CH(0), 0x10, "ISP_CONFIG_CH" },
+> > +		{ MIPI_CSIS_ISP_RESOL_CH(0), 0x10, "ISP_RESOL_CH" },
+> > +		{ MIPI_CSIS_SDW_CONFIG_CH(0), 0x10, "SDW_CONFIG_CH" },
+> > +		{ MIPI_CSIS_SDW_RESOL_CH(0), 0x10, "SDW_RESOL_CH" },
+> > +		{ MIPI_CSIS_FRAME_COUNTER_CH(0), 4, "FRAME_COUNTER_CH" },
+> >  	};
+> > -
+> > -	unsigned int i;
+> > -	u32 cfg;
+> >
+> >  	if (!pm_runtime_get_if_in_use(csis->dev))
+> >  		return 0;
+> >
+> >  	dev_info(csis->dev, "--- REGISTERS ---\n");
+> >
+> > -	for (i = 0; i < ARRAY_SIZE(registers); i++) {
+> > -		cfg = mipi_csis_read(csis, registers[i].offset);
+> > -		dev_info(csis->dev, "%17s: 0x%08x\n", registers[i].name, cfg);
+> > +	for (unsigned int i = 0; i < ARRAY_SIZE(common_registers); i++) {
+> > +		const struct mipi_csis_reg_info *reg = &common_registers[i];
+> > +
+> > +		dev_info(csis->dev, "%17s: 0x%08x\n", reg->name,
+> > +			 mipi_csis_read(csis, reg->addr));
+> > +	}
+> > +
+> > +	for (unsigned int chan = 0; chan < csis->num_channels; chan++) {
+> > +		for (unsigned int i = 0; i < ARRAY_SIZE(channel_registers); ++i)
+> > +			mipi_csis_dump_channel_reg(csis, &channel_registers[i],
+> > +						   chan);
+> >  	}
+> >
+> >  	pm_runtime_put(csis->dev);
+> > @@ -1422,6 +1483,12 @@ static int mipi_csis_parse_dt(struct mipi_csis_device *csis)
+> >
+> >  	of_property_read_u32(node, "clock-frequency", &csis->clk_frequency);
+> >
+> > +	csis->num_channels = 1;
+> > +	of_property_read_u32(node, "fsl,num-channels", &csis->num_channels);
+> > +	if (csis->num_channels < 1 || csis->num_channels > MIPI_CSIS_MAX_CHANNELS)
+> > +		return dev_err_probe(csis->dev, -EINVAL,
+> > +				     "Invalid fsl,num-channels value\n");
+> > +
+> >  	return 0;
+> >  }
+> >
+> > @@ -1445,10 +1512,8 @@ static int mipi_csis_probe(struct platform_device *pdev)
+> >
+> >  	/* Parse DT properties. */
+> >  	ret = mipi_csis_parse_dt(csis);
+> > -	if (ret < 0) {
+> > -		dev_err(dev, "Failed to parse device tree: %d\n", ret);
+> > +	if (ret < 0)
+> >  		return ret;
+> > -	}
+> >
+> >  	/* Acquire resources. */
+> >  	csis->regs = devm_platform_ioremap_resource(pdev, 0);
+
 -- 
-2.43.0
+Regards,
 
+Laurent Pinchart
 
