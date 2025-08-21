@@ -1,88 +1,44 @@
-Return-Path: <devicetree+bounces-207146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F474B2EB27
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 04:23:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 457FCB2EB5D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 04:42:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C53B56465F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 02:22:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19B9AA08696
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 02:41:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E93F21FF44;
-	Thu, 21 Aug 2025 02:22:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mx8Xv+UK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA3C2DA743;
+	Thu, 21 Aug 2025 02:40:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CC3B2B9A5
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 02:22:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B67F725E814;
+	Thu, 21 Aug 2025 02:40:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755742938; cv=none; b=H2UasxoQt9TgyaS1V49LbKzVHmbWNRUsuRDPEWrn5Skj7SgHpaz3CixnfShgnzWELjdxdtUPXrGuwfIsbPO7X096rPTSmvmtAwxOzV5SIMetfTXFTU/+qPTiI8Ypvb+vwgEjxnU8qaHgVWK9DJi875pelCjnwJ+Iye9FDtVJqfE=
+	t=1755744035; cv=none; b=JIMKF5kYSScb/5ZE0uBaamivpZoPjyOiBUWRbKWQJqfuYizj624AtvN3hZI1gsszfcUh4dljzivoLz0+n/m/Q5TUCPTltk76s94++nmLkd7nxa5sRKjdifT+/HRIwXKUYyjSLittB5X8AmTfKwpBXzYnrH5nO7RhbZXYI+1Wz5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755742938; c=relaxed/simple;
-	bh=M+Tt7lOyvwNBEVxje7vB5+qnUcdtvBNxt4rOINYoqf0=;
+	s=arc-20240116; t=1755744035; c=relaxed/simple;
+	bh=XtEgcKNQAGzQQNVlVBAnaCEy/2+2n2owQn6xiBD7Y4I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MaeushnIAbI9whjymwk4FGz0jFHH4TQCaS5mn8YpzvRFWE2Hr7hA1n2XR6HmVlgitebu24hPoLDFPRxxZV+m9ev1bFwqlXPIIiZ5GsqGWPOQxqxQaF+XOocEMBjzuNy4j+FgRrYrLWZxN1WdG1o84FUfRcWTl1aH468nvVxM/Nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mx8Xv+UK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57KIviYL013810
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 02:22:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fhuQQAYtkFz1+EMzbo9h41xY8JijUtMlK2wIkAFemmg=; b=mx8Xv+UKFekjgIea
-	zpwoOjBGpC8vG24HybBj9dFPUt5QlmnxYQI1nLF8qREnKjpKlPZWWhwvbIQSm75g
-	AcfvH8kA10kv7f/86IZhqHh0uayUClUfBvRuLXE/AJBKZPrNY2mJlOufKoHv0fVy
-	c0OBFnzpDknd9ZbpLkJ98UFg9FM+oxyx+q7o3t19K0C754pSN2QwlwdVhOeGq05S
-	wyA/ACFZPVgH4tfzv/wZNXwBN7MwYWzXTMeO+citUmkwfWKIixxOuoUwhJzeacWI
-	NaBtSrWeTcKHyU4ig+xdplvCIu80jwleequB4k36qWtceMtk4klLI/tzwrWQemCl
-	SJD2FQ==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ngtdhhgr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 02:22:16 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-323267915ebso1269475a91.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 19:22:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755742936; x=1756347736;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fhuQQAYtkFz1+EMzbo9h41xY8JijUtMlK2wIkAFemmg=;
-        b=GMOwKq69Ws9ChLTZkUY5ZDMmtnk5ZRe7ux6JkTZPP/eMp54wKNfWmAcEqvD2Mg5Vx+
-         rl7TOGo3Oxnl7EV7U0vyNS5vNdUD3tc7OY8EudveDjKnBIW1jACDi0MQC95Bc1Zc/VEH
-         NJBNkp2qhOornL7KI5QSrNarbWDF4RhO8487TN3lYaKuy0SO1ayO+XF4TMbW6fEoIe2F
-         /8cqqlbkCIjzcn6rlaOHzb3O3WhFDtN9IBMY8gN64aFhUD/gm7ZOBOGj2atGRXLwrIlw
-         rdQu/iA8N6OjzjDgtYXFduLnQZyNDpvk/DqsCITPfD6bPImhq96UUkT3optZRL6R/x66
-         mVGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUk8WcidtMYxYQxRjVz/UBPvlI69bK8KtPFuedz/xNhgPAKfNaaATzP5rXIJwUAP4f+eKOw/TSzNi7J@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBroo7ZlOmKLpeaoaVKtns8UJ4BBaiZINY3k6Mk2Yw8KmvkV8L
-	D/2OS1xIlYOtWSnOVAB+dLWMbdymWe4OZpb2cm1HKKf7ULbKBci18UzQ6voqdzwFq6EtQzkon/u
-	Lk221upuQYEfbs903Q3m5tDdrs7ljpu3F02/K76SAWwAqKWPodazYRPj9klfHo8EE
-X-Gm-Gg: ASbGncsSLsb3eREPKFzziKO9b+H5Lu4+oFkN0OeXsY4GAPDGRpMsaOyIdrUdPuLK/34
-	5wnfJFb+waRjo/a9LNlmHS17ybfr4mGzMeaGTJpoWKW0PuFObHpzPJZHM7nno4NbnF387Hw+g6o
-	HXkKYghMzX9wXSXLXZ9Z8wal1ubDhrim2NocrCn8GOlA7g3LNrtCIkw8OLvILNk2QFYLGHlWTyX
-	QFbmzWdtIh08oRoD0a4DaHwmf8tB0ap8LVauFtedNOOdTPy9Cyra0VzFlkqRy4nmCtICwJeUJlA
-	BAZiYE5BFH6hy1fjdAFLPH3/Iy12MaK2lLq30J8ZtBR3hE3G+xViaIOZe1V188yihnxDueK4mtt
-	m8uhYlYF0ETANWlHs0Z9ZvjSCelNlXKxD
-X-Received: by 2002:a17:90b:53c4:b0:324:e642:b5ca with SMTP id 98e67ed59e1d1-324ed13a72dmr1379020a91.29.1755742935718;
-        Wed, 20 Aug 2025 19:22:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEJRz4sysTqGhrRLL4dSQy2QlK07feYrDXxAVKB+n79aOM7MsuZWRLWFY/xgGqdwpBUmHYgnw==
-X-Received: by 2002:a17:90b:53c4:b0:324:e642:b5ca with SMTP id 98e67ed59e1d1-324ed13a72dmr1378979a91.29.1755742935196;
-        Wed, 20 Aug 2025 19:22:15 -0700 (PDT)
-Received: from [10.133.33.88] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-324f23d745csm356703a91.4.2025.08.20.19.22.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Aug 2025 19:22:14 -0700 (PDT)
-Message-ID: <f467aade-e604-448d-b23e-9b169c30ff2e@oss.qualcomm.com>
-Date: Thu, 21 Aug 2025 10:22:05 +0800
+	 In-Reply-To:Content-Type; b=Tw6zrcPPMPwnidwC5TNB0v0yCOHTW4Mx9IEjzsUbDgT9Qx1upp7aPoSa5tRngjlDM/rrkaDJ+C64sszfEn8DZNbD1CtqT9L9huDyHROLr+FpplzolnmZ8QaoJavFqAsnrnXuAcs/9LcMwaYYFUfvdyf3UYV8jkAuGj6eFa3nQCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=linux.starfivetech.com; spf=none smtp.mailfrom=linux.starfivetech.com; arc=none smtp.client-ip=54.204.34.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=linux.starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.starfivetech.com
+X-QQ-mid: esmtpgz12t1755744015tdf80e59d
+X-QQ-Originating-IP: O6wBfJ/mxbSxcRE/MwEPz7eaNjXY68MXi0HQGF45vL4=
+Received: from [192.168.125.98] ( [113.104.140.179])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 21 Aug 2025 10:40:13 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 2970625901000882426
+Message-ID: <257702B5AE6EE65A+20bf1aab-7fa4-45ba-a8ae-d3aeb5f6e9d9@linux.starfivetech.com>
+Date: Thu, 21 Aug 2025 10:40:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,84 +46,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/6] net: stmmac: Inverse the phy-mode definition
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Vinod Koul <vkoul@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, stable+noautosel@kernel.org
-References: <20250819-qcs615_eth-v4-0-5050ed3402cb@oss.qualcomm.com>
- <20250819-qcs615_eth-v4-2-5050ed3402cb@oss.qualcomm.com>
- <80a60564-3174-4edd-a57c-706431f2ad91@lunn.ch>
+Subject: Re: [PATCH v1 4/4] riscv: dts: starfive: add Milk-V Mars CM Lite
+ system-on-module
+To: E Shattow <e@freeshell.de>, Emil Renner Berthing <kernel@esmil.dk>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <20250724094912.253723-1-e@freeshell.de>
+ <20250724094912.253723-5-e@freeshell.de>
 Content-Language: en-US
-From: Yijie Yang <yijie.yang@oss.qualcomm.com>
-In-Reply-To: <80a60564-3174-4edd-a57c-706431f2ad91@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Hal Feng <hal.feng@linux.starfivetech.com>
+In-Reply-To: <20250724094912.253723-5-e@freeshell.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=LexlKjfi c=1 sm=1 tr=0 ts=68a682d8 cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=uddfqdTxQVX4ueY0IN0A:9
- a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-GUID: xQqvenhTyShFUAB_6fG5LBYXwwbzj6n-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDEzNSBTYWx0ZWRfXywuQDlfjRNxX
- ABgWfZbsEBMnliqnQFSxJZDEQPIdVQUBiOPGji74yMlGglF9MM/zwgdMLJ5ACgE1L4MsRMmxXio
- 6SWzdirTIm5IP7SvVv9Ti4q+lZiUQmc8OfIWpglbj7qszwJqNpwdGHKyLqOtGGcFiA5ftuic+mu
- lTXP7M4AzwaA8CsLICmN7v3AUzukCROIXqOtLPXX2TCawASLjGsYSYDXZuersSge8mMJOMnbf68
- or57f6F7VNJm/BFXlLykDw108g1jOVpyv1uZTx2BheYr2dhKrr5SYxQD87OxtyesVAOGCJor56X
- NW51q4HK7P1BxvM0zGZ3qKe2B7WowXo9bz0KzEmztvedFeli2NjoSEJPJ4dz2WOGssJekiMi0+C
- rgQPAgc9zYczVopLLswTnmVzHW9kEg==
-X-Proofpoint-ORIG-GUID: xQqvenhTyShFUAB_6fG5LBYXwwbzj6n-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-20_06,2025-08-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0 malwarescore=0
- spamscore=0 priorityscore=1501 suspectscore=0 clxscore=1015 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200135
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:linux.starfivetech.com:qybglogicsvrgz:qybglogicsvrgz5a-1
+X-QQ-XMAILINFO: M73dZ22rf3ldFg4O0MeBLYBuOqz0LIhlhXW3qJWkzJRFebW8KldGJhBe
+	fzaJUkpmIAGC92ofh2o9J4A6TbsZgExNKwg55eKMjO26dZI6qcFZxYcJmHxOV0HGgtsId+0
+	vKFNzM74TICJXCFm4rWu6tkaz19AoLErFCZ9pv3GjCtdEyxZ1+U+IbWUb35ma/vUvRYNqnj
+	uuAKAlSCmjC+boWiom20fSJ4z1biIuFGbHGI/dzdXYmPP1e9D/o7Q8Do1Ls1XPc6Y4nAsSm
+	Uwr86Ao/AadgPuw8Xfbg4nx80lLTt3KR6W4NmVz8EDHLfy2WAZgn0mcSbl+e0cV/AAwWVrh
+	PxoV7nJMNcQxaRJEZ0oD1du51yJRcBaVOtE2PLngvBXbgOQsC8Wib0YVNvc/GywWwf6kRaS
+	qJx+6YxGkUdRMbh79w3eP6NTUbNAM5v/35R85zspK/rHtAlk20T/PyhrS55bpzHVAEGNU8+
+	9nWDsPNdCYpMEWpIfrWjUfCVS5rIXT0JLWDjPc2x5NpplPMqV86UeyAgVgKoI2XnwIpi7Tb
+	QNKbNpXWACTa1ckhNQWPbrUj7ShURVjJaJqMSfkyWuk/6nrv/YBkBgK9oYciurLItStMPYT
+	djqgeyd4Te9ITvINwNP/A3H2tKZ4w77oIkRrQjRXsAWCUPLaaL1I7yITl4PK7qjxJDWG2rr
+	eP4hMBFdV8r3iXgGePROhpg12OZIJbVu57XpZbFXb50HlW7QZJjxhUjGSxAzTUtrBFu7X4k
+	aMEqBuckxJCRcjAzP1re/rtvvWXVN8Vut6FVRwAYKudbV71DPtN8LpQZwDKWvKT23Wvbo7a
+	N6xAQXoG4zlxykzmWWEiXC+mOen7wdRTeXjJwlSIb01uRQIwSvU11Fowky0h3aBWBH735ua
+	GL0232Pi9Tv7iy0SKmhzA/mPnMYYgeIi22nfdteC7fTErRJpjqAiKDMEMp+KszN1+hVoVcZ
+	fXTvp86Q4e/Ki2yo/YPlZFOUFIj+2vMXpZi1MM5Q5NNufIlc4P3RlxN5P+FXhtFnAcJe3Gc
+	dCdiCpcLXITqDAbaG+
+X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
+X-QQ-RECHKSPAM: 0
 
-
-
-On 2025-08-20 00:20, Andrew Lunn wrote:
->>   static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos, int speed)
->>   {
->>   	struct device *dev = &ethqos->pdev->dev;
->> -	int phase_shift;
->> +	int phase_shift = 0;
->>   	int loopback;
->>   
->>   	/* Determine if the PHY adds a 2 ns TX delay or the MAC handles it */
->> -	if (ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_ID ||
->> -	    ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_TXID)
->> -		phase_shift = 0;
->> -	else
->> +	if (ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_ID)
->>   		phase_shift = RGMII_CONFIG2_TX_CLK_PHASE_SHIFT_EN;
+On 7/24/2025 5:48 PM, E Shattow wrote:
+> Milk-V Mars CM Lite is a System-on-Module based on the Milk-V Mars CM
+> without the onboard eMMC storage component populated and configured
+> instead for SD3.0 Card Slot on that interface via 100-pin connector.
 > 
-> Does this one setting control both RX and TX delays? The hardware
-> cannot support 2ns delay on TX, but 0ns on RX? Or 2ns on RX but 0ns on
-> TX?
+> Link to Milk-V Mars CM Lite schematics: https://github.com/milkv-mars/mars-files/tree/main/Mars-CM_Hardware_Schematices
+> Link to StarFive JH7110 Technical Reference Manual: https://doc-en.rvspace.org/JH7110/TRM/index.html
+> Link to Raspberry Pi CM4IO datasheet: https://datasheets.raspberrypi.com/cm4io/cm4io-datasheet.pdf
 > 
+> Add the devicetree file to make use of StarFive JH7110 common supported
+> features PMIC, EEPROM, UART, I2C, GPIO, PCIe, QSPI Flash, PWM, and
+> Ethernet. Also configure the eMMC interface mmc0 for SD Card use and
+> configure the common SD Card interface mmc1 for onboard SDIO BT+WiFi.
+> 
+> Signed-off-by: E Shattow <e@freeshell.de>
+> ---
+>  arch/riscv/boot/dts/starfive/Makefile         |   1 +
+>  .../dts/starfive/jh7110-milkv-marscm-lite.dts | 176 ++++++++++++++++++
+>  2 files changed, 177 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+> index 79742617ddab..62b659f89ba7 100644
+> --- a/arch/riscv/boot/dts/starfive/Makefile
+> +++ b/arch/riscv/boot/dts/starfive/Makefile
+> @@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-emmc.dtb
+> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-lite.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+> new file mode 100644
+> index 000000000000..e110146f0b76
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+> @@ -0,0 +1,176 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2025 E Shattow <e@freeshell.de>
+> + */
+> +
+> +/dts-v1/;
+> +#include <dt-bindings/pinctrl/starfive,jh7110-pinctrl.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include "jh7110-common.dtsi"
 
-This setting is only for Tx delay. Rx delays are taken care separately 
-with DLL delays.
+You can just include "jh7110-milkv-marscm-emmc.dts" instead of "jh7110-common.dtsi".
+And then adding mmc0 changes will be enough.
 
-> 	Andrew
+Best regards,
+Hal
 
--- 
-Best Regards,
-Yijie
+...
+
+> +&mmc0 {
+> +	bus-width = <4>;
+> +	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
+> +};
+> +
+> +&mmc0_pins {
+> +	pwren-pins {
+> +		pinmux = <GPIOMUX(22, GPOUT_HIGH,
+> +				      GPOEN_ENABLE,
+> +				      GPI_NONE)>;
+> +	};
+> +};
+> +
+...
 
 
