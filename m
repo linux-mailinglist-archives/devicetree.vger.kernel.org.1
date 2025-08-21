@@ -1,281 +1,127 @@
-Return-Path: <devicetree+bounces-207658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83304B302B6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 21:15:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8DDB302D4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 21:23:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A33B58261B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:15:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A260A3A9C5B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B0E242D60;
-	Thu, 21 Aug 2025 19:15:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 832D434AAF6;
+	Thu, 21 Aug 2025 19:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="msUqaaYr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TjipredU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E25BE56A;
-	Thu, 21 Aug 2025 19:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F7601F948;
+	Thu, 21 Aug 2025 19:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755803741; cv=none; b=A7qukEYegllbecubYWSn5zhG4Z2NsvcY0FRFmPsJF8CRi8k9tCgC2vSYugxJaaGQG0Q+Thg3VYkw0t9+ToUOLPDoBD4WuXrXyvq7Ve6F7Ep8Jdv9hASuV+Jchtltzs0BKFPqta/ApdDU0X8aRMrNZ9uBH5+o5Q32WaX+30EdYHo=
+	t=1755804233; cv=none; b=JXEfslm2qIPYVFJZ0mvyjNFWwf+cxLnjPCEHdvMVm7luVgBqggqb6wt5Ss0W/Brs2BgBtfZfRin91o/CKkE3oUdMQivYlJXsa8lp+3obI6I6wPESG5mKE0W8U4C7GkUJ7IeeiNL491PxbhR9xIpF3jjRn+5TNlCovKTKW29UVDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755803741; c=relaxed/simple;
-	bh=VbRXV/w+zRkp8CEoIZHH0UlrY++GLjFUmifVxgiB8H4=;
+	s=arc-20240116; t=1755804233; c=relaxed/simple;
+	bh=ZjZW3xaTk92JHRhfwk9CdBU4Fsf43qj1FDXPfSJqJmU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aedDHTKe9qWSEMj8E0Wou54sYS9CUgPP538Nx5KitDJpMpfK+njPmJ/1bnzFxaHoSMYN1srIu/kr6XGHhIx1C9vzEY9bBVeRuFUPiY7fEGLIMWjn2CV3wOv06FnHoLTWtw2FwGucIw8vL+kz8Vgv7seC6YjZtdYEI5f8VE233+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=msUqaaYr; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (mob-5-90-51-28.net.vodafone.it [5.90.51.28])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CF5B86DE;
-	Thu, 21 Aug 2025 21:14:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1755803677;
-	bh=VbRXV/w+zRkp8CEoIZHH0UlrY++GLjFUmifVxgiB8H4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=msUqaaYruEimE5D3n3EC10gz/h0QsCY49TWEhRAoSnjSxyQkJdgrnqQCRfw3GyoWN
-	 UymvRwE2TKkVKIc9RHxYo0sayd5Wg6+lcf/hfTTiSVkk3aCg+ukxIfHu12snuAktm6
-	 i/aB3dQWRb7r3EqYGfTjjQcFh77cPgUwQ2tjnAN0=
-Date: Thu, 21 Aug 2025 21:15:33 +0200
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
-	linux-media@vger.kernel.org, Stefan Klug <stefan.klug@ideasonboard.com>, 
-	Lucas Stach <l.stach@pengutronix.de>, Dafna Hirschfeld <dafna@fastmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH 3/6] media: rkisp1: Refactor clocks initialization
-Message-ID: <ektjfg6hcotmz2k3j3qbibweetgdq5guqsh7p46zv44lsdx365@rjbic3m2magc>
-References: <20250616011115.19515-1-laurent.pinchart@ideasonboard.com>
- <20250616011115.19515-4-laurent.pinchart@ideasonboard.com>
- <lmv4bhe2xf55ogmvzqcv4hrqwlzsyxaycg3u45ein4kppbnqxa@rw6gnoxydosq>
- <20250821190259.GD25098@pendragon.ideasonboard.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bvX8W/YU6dfCiI9+nGSOgbSXnPB2nJdsUipW+v0QbBFHf9WhCmqte8AIrJvjjsrwojImBHS+/z8/pmp6RbS35L579aPth1yyQfd+XdMDZXk7qwOMgbzyGfXTbTK22KEJq1CyUjL2L3sSr0zJG4btsDOY2GadyuJUiOIaVDdlaiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TjipredU; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-76e39ec6e05so1216995b3a.2;
+        Thu, 21 Aug 2025 12:23:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755804231; x=1756409031; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GwLToObS9wN2E94iBpYxKsBNZP49OCzPMmD+i5CI6oE=;
+        b=TjipredUurrGrYcvsbMPzq/XqxpCrYCx4v7AyLUiP2yY9urlsYGy8SWh7ENV3+1UNo
+         x9+7mIvgIjwqSQ8KasXZBRWaJoR9f5QJRYh2Bg7yBToZtbG6VS58sMyqb1p0kRwl+9Ue
+         mqT1jbEXFr+WhiHYmgaVX/SeGByj4LTNUkbiQBqpDgmndGUN2rmurWG4Z89t7CTY39U3
+         OxQtEpdQ0SN1QbmDH7BP3T+48vARRs8+Y8XvCvCXTRazgQ2MBgyuLWLRsNq8CbCl1Wz/
+         tjI4T/qBAG6Ai7tgUj/6qhx3v5l9zAmu4EgJtuYBBgqSDJKAt3aYSqcP9lzPixWEP07P
+         SCiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755804231; x=1756409031;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GwLToObS9wN2E94iBpYxKsBNZP49OCzPMmD+i5CI6oE=;
+        b=Imr+ksZ2/ejmfjNnwVIyGouZA6Iegua0n+quZs169ZHybntUmeXCquvJBL9ThLlhpl
+         3Ysn/ULi/rPZXwqh6/QzUEi2448I+dgNjfZml2c/7VIJja4BhZdDQjRANrDbYH6t2srv
+         kGIbaQhcumPLC2DQq+lwjFz3XMsgp8qA+gMQrjjZ/DHCwLwoF+6mpLJvM7PdZa+urEGf
+         nW1Ez6Emze56PfHP4b0LUDZmH0LdnO20lLkzG1k1Hx3Ur+iogO6dke2Al4fo+JdmrDyx
+         IrLTDO+4mv4g+DfrhIfWStZfnhXtZT77l1bV0OqPktcGRZ4d2EFsTX/XbIH+JtiqdLmp
+         xbNw==
+X-Forwarded-Encrypted: i=1; AJvYcCVd/qJsTNMwuu8LI+xukMwuQZSuTGIT2607LZ1EUzRHYom5FO0VmYRbOfmhJQHoOcGXWdtCO2li84v4@vger.kernel.org, AJvYcCX7voERPqaMGRlODf7XH1drO/shhhCpuj300EWoLkZ8aWuGQAC/VuXAwGBH2afhabxLLFJVmJm4B3ue@vger.kernel.org, AJvYcCXIqHnUjfodv8lEz1os16ZZTZtn91XFxD9RAXpUGOKq0anwNqVybWgEzMgQV1YytAGMTH0vI0qP45tl5Qba@vger.kernel.org
+X-Gm-Message-State: AOJu0YyksvHSnF5k4dEsIC8F3ofb7cnX10WCtsFx0PAEx3BoL8pNdEAG
+	1uh/y3akhfH7X3bCvoUn2XkMrLa30qYwyNuFKHBxPI2FKmDwCeii+/q7
+X-Gm-Gg: ASbGncu0YETLRQZ3vAQyeOsilcKK2pFnNrbO4azOwOrVPfwsIY5/Pr77OvCZ8mYhGhJ
+	pwJQBEErj3hHH2YTv6+/qO9KYl9/Btz4KsSmuNCZWoFAcIXFnQRJjwmjQZOqeAU+04UY+LsHGdb
+	36w7++mUp1semiP1Herv9S/hgcx3bkZtvrp4zbiW1/B8OG/5Gb0BHDKFKDEtJ2WZPRU9VPfEqka
+	bN219xTFyqoZZGbeHFDtcGGIOd74xf8GpJlV0YR7Ktz98vgOPN2t5dPQL/RNFvCcAuCoMn1htFH
+	J2K4grikpXlLAMTA4ttY7vi4SlzRRuIrWIPSA8xDSBbo5HaEj+ocmWZYs0PfgU+FUdn7MPFkK8p
+	D+jwlrLPYxaRwPLwtqF/IdLW3gCVAYw==
+X-Google-Smtp-Source: AGHT+IGLIIWFLR1VKYkqDlFL8XdgVSTqxteEHtPGg75YFIj2fes5gzkZ+w4ysK+R7xQKent42dPWgQ==
+X-Received: by 2002:a05:6a20:2446:b0:240:66:bfbf with SMTP id adf61e73a8af0-24340d2c0aemr368744637.32.1755804231225;
+        Thu, 21 Aug 2025 12:23:51 -0700 (PDT)
+Received: from localhost ([2804:30c:1f77:e900:8ef5:b053:b8a:9345])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-76e951da867sm5037870b3a.102.2025.08.21.12.23.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Aug 2025 12:23:50 -0700 (PDT)
+Date: Thu, 21 Aug 2025 16:24:11 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>,
+	Kim Seer Paller <kimseer.paller@analog.com>
+Subject: Re: [PATCH v1 0/2] Add MAX14001/MAX14002 support
+Message-ID: <aKdyW1rWlwNFg85k@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1755778211.git.marilene.agarcia@gmail.com>
+ <20250821-haziness-squeamish-81713e94d079@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250821190259.GD25098@pendragon.ideasonboard.com>
+In-Reply-To: <20250821-haziness-squeamish-81713e94d079@spud>
 
-Hi Laurent
+On 08/21, Conor Dooley wrote:
+> On Thu, Aug 21, 2025 at 10:36:06AM -0300, Marilene Andrade Garcia wrote:
+> > Hello maintainers,
+> > 
+> > This patch series adds basic support for the Analog Devices 
+> > MAX14001/MAX14002, configurable, isolated 10-bit ADCs for multi-range 
+...
+> 
+> Something gone wrong here? There's already a v9 from another ADI
+> employee on the list:
+> https://lore.kernel.org/all/20230710042723.46084-2-kimseer.paller@analog.com/
 
-On Thu, Aug 21, 2025 at 10:02:59PM +0300, Laurent Pinchart wrote:
-> On Thu, Aug 21, 2025 at 08:48:23PM +0200, Jacopo Mondi wrote:
-> > On Mon, Jun 16, 2025 at 04:11:12AM +0300, Laurent Pinchart wrote:
-> > > ISP instances in different SoCs differ in the number of clocks they use,
-> > > but not in the clock names. Refactor clocks initialization to avoid
-> > > duplicating the clock names per platform, and lower the total number of
-> > > clocks from 8 to 4 as no platform uses more than 4 clocks. Use a static
-> > > assert to ensure at build time that the size of the arrays match.
-> > >
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > ---
-> > >  .../platform/rockchip/rkisp1/rkisp1-common.h  |  8 +--
-> > >  .../platform/rockchip/rkisp1/rkisp1-dev.c     | 60 ++++++++++---------
-> > >  2 files changed, 34 insertions(+), 34 deletions(-)
-> > >
-> > > diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h b/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h
-> > > index ca952fd0829b..c4af1277fc6b 100644
-> > > --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h
-> > > +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h
-> > > @@ -55,7 +55,7 @@ struct regmap;
-> > >  #define RKISP1_BUS_INFO				"platform:" RKISP1_DRIVER_NAME
-> > >
-> > >  /* maximum number of clocks */
-> > > -#define RKISP1_MAX_BUS_CLK			8
-> > > +#define RKISP1_MAX_BUS_CLK			4
-> > >
-> > >  /* a bitmask of the ready stats */
-> > >  #define RKISP1_STATS_MEAS_MASK			(RKISP1_CIF_ISP_AWB_DONE |	\
-> > > @@ -139,8 +139,7 @@ enum rkisp1_feature {
-> > >  /*
-> > >   * struct rkisp1_info - Model-specific ISP Information
-> > >   *
-> > > - * @clks: array of ISP clock names
-> > > - * @clk_size: number of entries in the @clks array
-> > > + * @num_clocks: number of clocks
-> > >   * @isrs: array of ISP interrupt descriptors
-> > >   * @isr_size: number of entries in the @isrs array
-> > >   * @isp_ver: ISP version
-> > > @@ -152,8 +151,7 @@ enum rkisp1_feature {
-> > >   * ISP model, version, or integration in a particular SoC.
-> > >   */
-> > >  struct rkisp1_info {
-> > > -	const char * const *clks;
-> > > -	unsigned int clk_size;
-> > > +	unsigned int num_clocks;
-> > >  	const struct rkisp1_isr_data *isrs;
-> > >  	unsigned int isr_size;
-> > >  	enum rkisp1_cif_isp_version isp_ver;
-> > > diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-> > > index dc65a7924f8a..0788b7a64ae9 100644
-> > > --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-> > > +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-> > > @@ -8,6 +8,7 @@
-> > >   * Copyright (C) 2017 Rockchip Electronics Co., Ltd.
-> > >   */
-> > >
-> > > +#include <linux/build_bug.h>
-> > >  #include <linux/clk.h>
-> > >  #include <linux/interrupt.h>
-> > >  #include <linux/mfd/syscon.h>
-> > > @@ -491,13 +492,6 @@ static irqreturn_t rkisp1_isr(int irq, void *ctx)
-> > >  	return ret;
-> > >  }
-> > >
-> > > -static const char * const px30_isp_clks[] = {
-> > > -	"isp",
-> > > -	"aclk",
-> > > -	"hclk",
-> > > -	"pclk",
-> > > -};
-> > > -
-> > >  static const struct rkisp1_isr_data px30_isp_isrs[] = {
-> > >  	{ "isp", rkisp1_isp_isr, BIT(RKISP1_IRQ_ISP) },
-> > >  	{ "mi", rkisp1_capture_isr, BIT(RKISP1_IRQ_MI) },
-> > > @@ -505,8 +499,7 @@ static const struct rkisp1_isr_data px30_isp_isrs[] = {
-> > >  };
-> > >
-> > >  static const struct rkisp1_info px30_isp_info = {
-> > > -	.clks = px30_isp_clks,
-> > > -	.clk_size = ARRAY_SIZE(px30_isp_clks),
-> > > +	.num_clocks = 4,
-> > >  	.isrs = px30_isp_isrs,
-> > >  	.isr_size = ARRAY_SIZE(px30_isp_isrs),
-> > >  	.isp_ver = RKISP1_V12,
-> > > @@ -518,19 +511,12 @@ static const struct rkisp1_info px30_isp_info = {
-> > >  	.max_height = 2448,
-> > >  };
-> > >
-> > > -static const char * const rk3399_isp_clks[] = {
-> > > -	"isp",
-> > > -	"aclk",
-> > > -	"hclk",
-> > > -};
-> > > -
-> > >  static const struct rkisp1_isr_data rk3399_isp_isrs[] = {
-> > >  	{ NULL, rkisp1_isr, BIT(RKISP1_IRQ_ISP) | BIT(RKISP1_IRQ_MI) | BIT(RKISP1_IRQ_MIPI) },
-> > >  };
-> > >
-> > >  static const struct rkisp1_info rk3399_isp_info = {
-> > > -	.clks = rk3399_isp_clks,
-> > > -	.clk_size = ARRAY_SIZE(rk3399_isp_clks),
-> > > +	.num_clocks = 3,
-> > >  	.isrs = rk3399_isp_isrs,
-> > >  	.isr_size = ARRAY_SIZE(rk3399_isp_isrs),
-> > >  	.isp_ver = RKISP1_V10,
-> > > @@ -542,19 +528,12 @@ static const struct rkisp1_info rk3399_isp_info = {
-> > >  	.max_height = 3312,
-> > >  };
-> > >
-> > > -static const char * const imx8mp_isp_clks[] = {
-> > > -	"isp",
-> > > -	"hclk",
-> > > -	"aclk",
-> >
-> > it seems to me that clk_bulk_prepare_enable() guarantees ordering
-> > of the clock sources enablement (I know regulators do not, if
-> > I'm not mistaken).
-> >
-> > Is it a problem that imx8mp used to declare hclk before aclk as the
-> > other platforms do ?
->
-> No, I don't think the order matters.
->
-> > > -};
-> > > -
-> > >  static const struct rkisp1_isr_data imx8mp_isp_isrs[] = {
-> > >  	{ NULL, rkisp1_isr, BIT(RKISP1_IRQ_ISP) | BIT(RKISP1_IRQ_MI) },
-> > >  };
-> > >
-> > >  static const struct rkisp1_info imx8mp_isp_info = {
-> > > -	.clks = imx8mp_isp_clks,
-> > > -	.clk_size = ARRAY_SIZE(imx8mp_isp_clks),
-> > > +	.num_clocks = 3,
-> > >  	.isrs = imx8mp_isp_isrs,
-> > >  	.isr_size = ARRAY_SIZE(imx8mp_isp_isrs),
-> > >  	.isp_ver = RKISP1_V_IMX8MP,
-> > > @@ -582,6 +561,32 @@ static const struct of_device_id rkisp1_of_match[] = {
-> > >  };
-> > >  MODULE_DEVICE_TABLE(of, rkisp1_of_match);
-> > >
-> > > +static const char * const rkisp1_clk_names[] = {
-> >
-> > You could also presize the array with RKISP1_MAX_BUS_CLK so that you
-> > won't need an assertion ? It's true however that if RKISP1_MAX_BUS_CLK
-> >  > the number of declared elements you won't get a warning..
->
-> Yes, that's why I didn't do it.
->
-> > > +	"isp",
-> > > +	"aclk",
-> > > +	"hclk",
-> > > +	"pclk",
-> > > +};
-> > > +
-> > > +static int rkisp1_init_clocks(struct rkisp1_device *rkisp1)
-> > > +{
-> > > +	const struct rkisp1_info *info = rkisp1->info;
-> > > +	unsigned int i;
-> > > +	int ret;
-> > > +
-> > > +	static_assert(ARRAY_SIZE(rkisp1_clk_names) == ARRAY_SIZE(rkisp1->clks));
-> > > +
-> > > +	for (i = 0; i < info->num_clocks; i++)
-> > > +		rkisp1->clks[i].id = rkisp1_clk_names[i];
-> > > +
-> > > +	ret = devm_clk_bulk_get(rkisp1->dev, info->num_clocks, rkisp1->clks);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	rkisp1->clk_size = info->num_clocks;
-> >
-> > rkisp1->clk_size is now only used in rkisp1_runtime_suspend() which
-> > can easily access rkisp->info->num_clocks. Would it be better to not
-> > duplicate the information in your opinion ?
->
-> You've now found in 4/6 that we still need it :-)
->
+Yes, my procedure for finding parts for GSoC projects failed to find that set.
+From quick read of v9 thread, the reason for that not being applied was lack
+of detailed comments about device data transfer handling?
+Anyway, I guess the only thing left to do now is see what can be taken from
+Marilene's set and applied on top of Kim's one.
 
-Yes I did, so I can now
-Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-
-Thanks
-  j
-
-> > > +	return 0;
-> > > +}
-> > > +
-> > >  static int rkisp1_probe(struct platform_device *pdev)
-> > >  {
-> > >  	const struct rkisp1_info *info;
-> > > @@ -639,12 +644,9 @@ static int rkisp1_probe(struct platform_device *pdev)
-> > >  		}
-> > >  	}
-> > >
-> > > -	for (i = 0; i < info->clk_size; i++)
-> > > -		rkisp1->clks[i].id = info->clks[i];
-> > > -	ret = devm_clk_bulk_get(dev, info->clk_size, rkisp1->clks);
-> > > +	ret = rkisp1_init_clocks(rkisp1);
-> > >  	if (ret)
-> > >  		return ret;
-> > > -	rkisp1->clk_size = info->clk_size;
-> > >
-> > >  	if (info->isp_ver == RKISP1_V_IMX8MP) {
-> > >  		unsigned int id;
->
-> --
-> Regards,
->
-> Laurent Pinchart
+I'm sorry for this unfortunate situation.
 
