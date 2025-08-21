@@ -1,128 +1,125 @@
-Return-Path: <devicetree+bounces-207320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A4CEB2F284
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:41:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE13BB2F294
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:44:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9000016C3F9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:34:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2C061890134
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:39:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91AF627B33D;
-	Thu, 21 Aug 2025 08:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 593202C2ABF;
+	Thu, 21 Aug 2025 08:38:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="enVuY8+7"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UNNSDlpj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04AA277CB4
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 08:33:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE3A29A303;
+	Thu, 21 Aug 2025 08:38:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755765224; cv=none; b=RuXoMJU3O8OFw8rUxp6jQiRzo9SxMT8pIkgMLk35P94IASWs/zC4J2RqCivQQ118F9BEJceTMQkZfzL/N5C3KWeGwCWeYpakx8ud9C8rVd+cR5RpYzn7eK+27eXRMzRsPvEZ+sb7Q2tD5H/csLkDVMI5DxWnjwxFRwj9AcC34MA=
+	t=1755765532; cv=none; b=hauTx7Ynb2j8amQwrx7gobxU/oxHKaHYodnV99VDxtI6midLiqzpivRQEIwoHf8S5wNiteWmY5E1INr7aBzsmtJ05XlJXRAnqZhAOAOS0EBP99h3iZkTcvxHXW4jMBbAOr49Eqoo7UYBtckHHalgz30mQ3PIFT4EqNo3tigkh6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755765224; c=relaxed/simple;
-	bh=dUiKgRAI3A9prYuCnQ9p9wAtGjplO7hUq0Q2if+VdEA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IKohw/XbbtX1GP0IRQsDU34S18NtaouHe8XQ2wws62GunBVtYWnbufULB6b3oJpmg/1DHvoZULmh4+Busp+M9UKGiLyPdHs4QeoioOzpWlAK9pht+Gwnz0a+sxyt3aETDkdjViFcG5o4J0Q00+kNv7y9FINa9ra6KAj2ytr+Ois=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=enVuY8+7; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1755765221;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iHkbj41Kh3yJaLj8nTXZWWFLEJs9EarVkmAtxTUg4F8=;
-	b=enVuY8+7GWHqah6VuIrStl6NIETfJNgJg6lk1WLO8mj1BMAS/crPRoOcrd69+QSXHbmbd3
-	C3sS1cREc7LI9jS3tf799zrrbMt8as4B5muwmD3a2Lr3RrkYQzG26cnUyNwZAC3CwJpR/F
-	JkgEEqGrWn1mGkTa/iIiGSgrlPttd7s=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-156-W112auD0NF6QiV5OPsKlWA-1; Thu,
- 21 Aug 2025 04:33:37 -0400
-X-MC-Unique: W112auD0NF6QiV5OPsKlWA-1
-X-Mimecast-MFC-AGG-ID: W112auD0NF6QiV5OPsKlWA_1755765215
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+	s=arc-20240116; t=1755765532; c=relaxed/simple;
+	bh=OOWbc93NNAvuoFHJIERvL2ni0Hh4WX8rxmSVcRBWSh8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=WPfzjX6wKkJrf0DLNirC7fmZyDwCZtZkeq7gc8Oz4JUvYz6o2fdUPr+4y5tgdxcfWMU/+7SKt7j1FHE9q7x0pwSAD1ou8E1uNEFTRVIWcoZApNISyn6uiY0EGAPIHUMAlkmdJrUShnyFhVSdB8bIXx/4r9QmiPn9YO6aUkINZAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UNNSDlpj; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1755765528;
+	bh=OOWbc93NNAvuoFHJIERvL2ni0Hh4WX8rxmSVcRBWSh8=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=UNNSDlpjULRYhhubgyBlL3uOvOZTQmSqPOv2MHax1e1KRJ+2nv98syzqmrv6NZaFI
+	 ew7WR8HtaioqREui4tfTOLNyfdHkExd7J2MWERwm9fix6D4Yb7wQXduX7SWIAqg8UY
+	 mwk3EISANgsXq/dfh6J76UGV1FiYryAIkNMh7w2kLN+gNNkxtHXy/Sh0AF6iaOhCgV
+	 OSffjmCunuEHnVAQmQ81fFFEqoDytDBrz9adhKQFrmh/uVp1TQAg0iQdQ6L93BSgRm
+	 EQ8c1LE2Eb1YwT+uTausgVfHy1MEVfLt20KvB28Zaw0blRjONprF1wgajZb26iDZxJ
+	 YLYdrr4VkAu5w==
+Received: from localhost-live.home (2a01cb0892f2D600c8F85CF092D4aF51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id A25D019560B2;
-	Thu, 21 Aug 2025 08:33:34 +0000 (UTC)
-Received: from localhost (unknown [10.72.112.99])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 9E6BE180029D;
-	Thu, 21 Aug 2025 08:33:32 +0000 (UTC)
-Date: Thu, 21 Aug 2025 16:33:26 +0800
-From: Baoquan He <bhe@redhat.com>
-To: Andrew Morton <akpm@linux-foundation.org>, Brian Mak <makb@juniper.net>
-Cc: Dave Young <dyoung@redhat.com>, Alexander Graf <graf@amazon.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"H. Peter Anvin" <hpa@zytor.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>, x86@kernel.org,
-	kexec@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] kexec: Add KEXEC_FILE_NO_CMA as a legal flag
-Message-ID: <aKbZ1h5mjtfoFMh8@MiWiFi-R3L-srv>
-References: <20250805211527.122367-1-makb@juniper.net>
- <20250805211527.122367-2-makb@juniper.net>
- <20250820214756.5c7b551e4723d9f0b5dd55e3@linux-foundation.org>
+	(Authenticated sender: jmassot)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0B55E17E0C8C;
+	Thu, 21 Aug 2025 10:38:46 +0200 (CEST)
+Message-ID: <6491baf3e08454f2ea042934f9f781cf21cbf4d7.camel@collabora.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: clock: mediatek: Add power-domains
+ property
+From: Julien Massot <julien.massot@collabora.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: kernel@collabora.com, Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Ikjoon Jang <ikjn@chromium.org>,
+  Enric Balletbo i Serra	 <eballetbo@kernel.org>, Chen-Yu Tsai
+ <wenst@chromium.org>, Weiyi Lu	 <weiyi.lu@mediatek.com>, Eugen Hristev
+ <eugen.hristev@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, Julien Massot <jmassot@collabora.com>,  Sean Wang
+ <sean.wang@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ linux-clk@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, 	linux-sound@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Date: Thu, 21 Aug 2025 10:38:46 +0200
+In-Reply-To: <376a8f00-e803-4ab1-a54e-6535e41ebaee@kernel.org>
+References: <20250820-mtk-dtb-warnings-v2-0-cf4721e58f4e@collabora.com>
+	 <20250820-mtk-dtb-warnings-v2-1-cf4721e58f4e@collabora.com>
+	 <20250821-whimsical-mustang-of-champagne-ca7a7d@kuoka>
+	 <376a8f00-e803-4ab1-a54e-6535e41ebaee@kernel.org>
+Organization: Collabora Ltd.
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250820214756.5c7b551e4723d9f0b5dd55e3@linux-foundation.org>
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
 
-On 08/20/25 at 09:47pm, Andrew Morton wrote:
-> On Tue, 5 Aug 2025 14:15:26 -0700 Brian Mak <makb@juniper.net> wrote:
-> 
-> > Commit 07d24902977e ("kexec: enable CMA based contiguous allocation")
-> > introduces logic to use CMA-based allocation in kexec by default. As
-> > part of the changes, it introduces a kexec_file_load flag to disable the
-> > use of CMA allocations from userspace. However, this flag is broken
-> > since it is missing from the list of legal flags for kexec_file_load.
-> > kexec_file_load returns EINVAL when attempting to use the flag.
-> > 
-> > Fix this by adding the KEXEC_FILE_NO_CMA flag to the list of legal flags
-> > for kexec_file_load.
-> > 
-> > Fixes: 07d24902977e ("kexec: enable CMA based contiguous allocation")
-> 
-> A description of the userspace-visible runtime effects of this bug
-> would be very helpful, please.  A lot more than "is broken"!
-> 
-> Also, could we please have some reviewer input on this change?
+Hi Krzysztof,=20
 
-I didn't receive this patchset, and kexec mailing list is not in CC.
-I don't know what happened.
+Thanks for the review
+On Thu, 2025-08-21 at 09:30 +0200, Krzysztof Kozlowski wrote:
+> On 21/08/2025 09:16, Krzysztof Kozlowski wrote:
+> > On Wed, Aug 20, 2025 at 03:44:52PM +0200, Julien Massot wrote:
+> > > The mt8183-mfgcfg node uses a power domain in its device tree node.
+> > > To prevent schema validation warnings, add the optional `power-domain=
+s`
+> > > property to the binding schema for mediatek syscon clocks.
+> > >=20
+> > > Fixes: 1781f2c46180 ("arm64: dts: mediatek: mt8183: Add power-domains=
+ property to mfgcfg")
+> >=20
+> > Checkpatch complains here, but more important - where is explanation of
+> > dropped tag?
 
-> 
-> 
-> > --- a/include/linux/kexec.h
-> > +++ b/include/linux/kexec.h
-> > @@ -460,7 +460,8 @@ bool kexec_load_permitted(int kexec_image_type);
-> >  
-> >  /* List of defined/legal kexec file flags */
-> >  #define KEXEC_FILE_FLAGS	(KEXEC_FILE_UNLOAD | KEXEC_FILE_ON_CRASH | \
-> > -				 KEXEC_FILE_NO_INITRAMFS | KEXEC_FILE_DEBUG)
-> > +				 KEXEC_FILE_NO_INITRAMFS | KEXEC_FILE_DEBUG | \
-> > +				 KEXEC_FILE_NO_CMA)
-> >  
-> >  /* flag to track if kexec reboot is in progress */
-> >  extern bool kexec_in_progress;
-> > -- 
-> > 2.25.1
-> > 
-> 
+Right the proper tag is=20
+Fixes: 1781f2c46180 ("arm64: dts: mediatek: mt8183: Add power-domains prope=
+rity to mfgcfg")
 
+> >=20
+> > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
+llabora.com>
+> >=20
+> > But this tag appeared? It wasn't even given!
+> >=20
+> > You remove public tags and add tags never given on the lists.
+>=20
+> I found Angelo's tag, but still dropping other acks is not explained.
+>=20
+Regarding the tags: in v2 the patch changed quite a lot after I applied
+Angelo's suggestion, so I decided to drop Rob=E2=80=99s Acked-by as it no l=
+onger
+applies to the new version. I should have explained this in the changelog.
+
+Regards,
+Julien
 
