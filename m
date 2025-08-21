@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-207418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ED44B2F663
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:21:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C6DB2F65D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:21:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B52417D64A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:19:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97D33B61073
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08FCC30EF99;
-	Thu, 21 Aug 2025 11:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5538130E824;
+	Thu, 21 Aug 2025 11:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="asvtgowC"
+	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="j5PPxBiT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA16A305050;
-	Thu, 21 Aug 2025 11:19:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15E8830DD1C;
+	Thu, 21 Aug 2025 11:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755775171; cv=none; b=u5CJhV9qyZ2DRI+XoXCSrZ8Din1oTQ9FEWofrawfO32XWhtePtMA8g4d9ELiA/80xiyfZr1p+X3YyPCD0PsX9hlwfyjXqW7N3orOjfYN6U1K8+hniIVTIbm8PSPjIqAUiNqcnFgwWqZ01jvIPKF7x/280zqWKvkk0iaM1QgOsfw=
+	t=1755775253; cv=none; b=U3D2oFDjIXssHdCMwDZqnXBQ8/WLWCPR/3gOBksM+X5CiVKc0YSczn0jiK6NGD3rx4nR1mbH/ctTYSpgj2DjFVXt9RgwH5BjOijF+bl/xTGd5tAxhC2O2PlwnqowYWUpf+OZsUqt1fY1zY32Rw+CS4JaPVT1oBDCB39PQyySStU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755775171; c=relaxed/simple;
-	bh=va+Fk/D/QIqK+E/Wc67U3aTPeSCsla0Fk/GDekTcvpo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YUW3jpiqmgRKjK64Mko3LqRz7H/A96spGu3GRZR4hYUAMhCpTYukqnt4loyEUqb4/DiIHozBeOyTJi/O9GyudbaUdXgHZx/hd6cBGRzdZbCJoNrTcUnBmu97ckeJu7dgN/x9Yyw/g1yAqbU3KhvG50Lbw73X21hkCinG4oH2Xqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=asvtgowC; arc=none smtp.client-ip=37.205.8.231
+	s=arc-20240116; t=1755775253; c=relaxed/simple;
+	bh=cIC7s5NmpQyvXwv7gG+89a1BknGeLYatlzWDzXINP2k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bdo3Iax4pnyn3KubkA2HNic9SIZmqgbcqOL5MbD2GB9fh9WHpVlYmiZpjBgSvauSvyousDqD45myLw9TICZ1NZnJdkDEPpQGSBHghmLfJMzxNjYqmX41hliIoz/Xcqj6zK5gP9KJNutnwhakFHVXh5Vq+tz1mNy2nhvNdWCawX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=j5PPxBiT; arc=none smtp.client-ip=37.205.8.231
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=TeoXivUMSMZOUdm9E1b1+7fzZ8rfIj1eekPuvAamVYo=;
+DKIM-Signature: a=rsa-sha256; bh=b5NI1TT88MTAqiLI8nYID5mlHscCtsllJzEYglqt6qE=;
  c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1755775106; v=1; x=1756207106;
- b=asvtgowCtq20brGTP/+zGKWPSmk7nzucKC1QLpj1yp6vFIhGM+aWKw1zvSdf4LAQm/JkAIFW
- RzwUPYet8nZeVXUky2OHG8GmKHcGIAqhYQnqAdZQjMB2LZLzxCQ8iGkVeBDATkGMcMPOcv84HXB
- aTdmHAKG9BVHONsiWguJP+ra2Zg8n2QSAvdAuMcyFlmb4ADrq70gao7r5wVLlh5I+cvY1Pj6eTx
- Y8k2J606NyysMyPeWWKJzxtht+albinI9zqFZH82NwKdHKjmeALhuQMuXhdf2zomkrPHSTPT8ex
- FwiAMoC7wFqheOmCw2KAXIX1YV55tTFuVMLD7gTrKQTDQ==
+ h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:Message-Id:Message-Id:References:Autocrypt:Openpgp;
+ i=@dujemihanovic.xyz; s=default; t=1755775244; v=1; x=1756207244;
+ b=j5PPxBiTvDOwFSaeA6BirgHVzTLFljn+kg/Yp0fmSaLTbb7hWNS0gSQ/zoFItiTdnUh0on6B
+ r6TskX44OIyqecm+C4KPRrkvYhHnfQx6Jpj89dCXknB4RqC6qNlGDADHLZ0FEcZirV13uKit+uW
+ cxA/RGCM+CS/o2HUgw1NITrcuiVBux9jOwCUqlGa1G3ewBJWq9D7nmczcxw4+e4JslYjbXvSPzK
+ 7uOXC4KSP28ONaWWh7cKWey61eYwQHxbHFMRS4JloIB10y5hC1qdIP857X/cec+/huGJwrSziTC
+ kMgSX3Uy7piMEjQBOWE0p4epRS5ETH2L0aVgRo8n52xjA==
 Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id 8a00f894; Thu, 21 Aug 2025 13:18:26 +0200
+ ESMTPS id 95b49b87; Thu, 21 Aug 2025 13:20:44 +0200
 From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Date: Thu, 21 Aug 2025 13:17:46 +0200
-Subject: [PATCH v2 4/4] arm64: dts: marvell: pxa1908: Add power domains
+Subject: [PATCH v4 0/2] mmc: sdhci-pxav3: pinctrl setting for fast bus
+ clocks
+Date: Thu, 21 Aug 2025 13:20:34 +0200
+Message-Id: <20250821-pxav3-uhs-v4-0-bb588314f3c3@dujemihanovic.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,90 +54,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250821-pxa1908-genpd-v2-4-eba413edd526@dujemihanovic.xyz>
-References: <20250821-pxa1908-genpd-v2-0-eba413edd526@dujemihanovic.xyz>
-In-Reply-To: <20250821-pxa1908-genpd-v2-0-eba413edd526@dujemihanovic.xyz>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAAIBp2gC/3XOwQ6CMAyA4VcxOzuzbmygJ9/DeICtk5kIZJMFJ
+ Ly7g4sc8Pg3zddOJKB3GMjlMBGP0QXXNimy44HoumweSJ1JTTjjkuVQ0G4oo6B9Hag5S1VZNCA
+ sI2m/82jdsFq3e+rahXfrx5WOsEz3lAiUUY6ZBC6VBauupn/iy6XjbXT6NIwfsmiR/4SCwVbgS
+ SitBp3xQuf5X0FsBbUVxPKDZcIiioJVbE+Y5/kLLnA3Ty4BAAA=
+X-Change-ID: 20250718-pxav3-uhs-d956bfed13f0
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc: David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>, 
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>
+Cc: Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>, 
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
  =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2261;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1603;
  i=duje@dujemihanovic.xyz; s=20240706; h=from:subject:message-id;
- bh=va+Fk/D/QIqK+E/Wc67U3aTPeSCsla0Fk/GDekTcvpo=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDBnLGepcbFdqhfmViLZPVj0cq7ZL9GhW1OvV3mc8ru8/s
- mWZo09fRykLgxgXg6yYIkvuf8drvJ9Ftm7PXmYAM4eVCWQIAxenAExkz3ZGhm/V0TL3F3t622xN
- PuvnkHnqonntpp/MmxzYWtqTD0z0v8DwP8nKcda89cyF5jW5WgpuM2yN2XyW2h59VHdWzS3zR7s
- JCwA=
+ bh=cIC7s5NmpQyvXwv7gG+89a1BknGeLYatlzWDzXINP2k=;
+ b=owGbwMvMwCW21nBykGv/WmbG02pJDBnLGbl5y9n6WA8cuWx1O+DC1KXfWFpO3Y5UE+bg3KU8y
+ 1ZuQnlyRykLgxgXg6yYIkvuf8drvJ9Ftm7PXmYAM4eVCWQIAxenAEzE9R4jw9R6U/s87228rjZb
+ PbcY26sujd90bDuTTqfR1VtPzvoeMmdkWL3/eeqWiLyFM2Ya1GubvjgcKnYz9P70kkOX33IkdAf
+ XsgMA
 X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
  fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
 
-Update the APMU clock controller's compatible to allow the new power
-domain driver to probe. Also add the first two power domain consumers:
-IOMMU (fixes probing) and framebuffer.
+Hello,
+
+This small series adds a pinctrl setting for fast MMC bus clocks to the
+pxav3 driver. On bus clocks above 100 MHz, driving the data pins at a
+higher current helps maintain signal quality.
+
+This series is related to Marvell PXA1908 SoC support merged into v6.17.
 
 Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
 ---
-v2:
-- Drop power controller node
-- &pd -> &apmu
+Changes in v4:
+- Address maintainer comments:
+  - Fix if-else braces
+- Rebase on v6.17-rc2
+- Update trailers
+- Link to v3: https://lore.kernel.org/r/20250806-pxav3-uhs-v3-0-2f03fee380b0@dujemihanovic.xyz
+
+Changes in v3:
+- Address maintainer comments:
+  - Refactor driver patch
+- Remove RFC tag
+- Update trailers
+- Link to v2: https://lore.kernel.org/r/20250801-pxav3-uhs-v2-0-afc1c428c776@dujemihanovic.xyz
+
+Changes in v2:
+- Address maintainer comments:
+  - Newline between properties in if:
+  - Don't try to lookup pinstates if pinctrl is NULL
+  - Only change pinstates if both are valid
+  - Replace dev_warn() with dev_dbg()
+- Link to v1: https://lore.kernel.org/r/20250718-pxav3-uhs-v1-0-2e451256f1f6@dujemihanovic.xyz
+
 ---
- arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts | 1 +
- arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi                       | 5 ++++-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+Duje Mihanović (2):
+      dt-bindings: mmc: sdhci-pxa: add state_uhs pinctrl
+      mmc: sdhci-pxav3: add state_uhs pinctrl setting
 
-diff --git a/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts b/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
-index 47a4f01a7077bfafe2cc50d0e59c37685ec9c2e9..d61922f326a4654a45ab4312ea512ac1b8b01c50 100644
---- a/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
-+++ b/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
-@@ -23,6 +23,7 @@ chosen {
- 		fb0: framebuffer@17177000 {
- 			compatible = "simple-framebuffer";
- 			reg = <0 0x17177000 0 (480 * 800 * 4)>;
-+			power-domains = <&apmu PXA1908_POWER_DOMAIN_DSI>;
- 			width = <480>;
- 			height = <800>;
- 			stride = <(480 * 4)>;
-diff --git a/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi b/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi
-index cf2b9109688ce560eec8a1397251ead68d78a239..ae85b90eeb408a8f4014ec7b60048ae1fd3d4044 100644
---- a/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi
-+++ b/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi
-@@ -3,6 +3,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/marvell,pxa1908.h>
-+#include <dt-bindings/power/marvell,pxa1908-power.h>
- 
- / {
- 	model = "Marvell Armada PXA1908";
-@@ -79,6 +80,7 @@ smmu: iommu@c0010000 {
- 			#iommu-cells = <1>;
- 			interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>,
- 				<GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-+			power-domains = <&apmu PXA1908_POWER_DOMAIN_VPU>;
- 			status = "disabled";
- 		};
- 
-@@ -291,9 +293,10 @@ sdh2: mmc@81000 {
- 			};
- 
- 			apmu: clock-controller@82800 {
--				compatible = "marvell,pxa1908-apmu";
-+				compatible = "marvell,pxa1908-apmu", "syscon";
- 				reg = <0x82800 0x400>;
- 				#clock-cells = <1>;
-+				#power-domain-cells = <1>;
- 			};
- 		};
- 	};
+ .../devicetree/bindings/mmc/sdhci-pxa.yaml         | 29 +++++++++++++--
+ drivers/mmc/host/sdhci-pxav3.c                     | 41 +++++++++++++++++++++-
+ 2 files changed, 66 insertions(+), 4 deletions(-)
+---
+base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
+change-id: 20250718-pxav3-uhs-d956bfed13f0
 
+Best regards,
 -- 
-2.50.1
+Duje Mihanović <duje@dujemihanovic.xyz>
 
 
