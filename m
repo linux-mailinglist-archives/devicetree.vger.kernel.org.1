@@ -1,90 +1,97 @@
-Return-Path: <devicetree+bounces-207343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65012B2F3C8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:25:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC3DB2F3D5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:27:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9C3E3AFC91
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:22:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E94B4178E09
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:23:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7812D47FB;
-	Thu, 21 Aug 2025 09:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 974872EFD8A;
+	Thu, 21 Aug 2025 09:23:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED622D3A9E;
-	Thu, 21 Aug 2025 09:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2F61FA272;
+	Thu, 21 Aug 2025 09:23:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755768168; cv=none; b=I/hLmM4AGylIvrYweabby7NLD7LZWuN6ewP/Qa8rNPnJZ/W7MX29kKhgWQ4pUNYOMMkxMe6o/OY9atGtmjniSOZsa7SCSxLjV/1K3IvDzWaK8BXeTCDZQdJREs5yS3/hLk4j2GMU73BE6Vpjg6mVg72eMd7bglPfnqMVoyPixpM=
+	t=1755768211; cv=none; b=lTq6lNrx0S2cYmZ19ZLUock0pKByJ9jEB6Cb5JiQ72TO5TN7T45qf6xAzfyLhUzoF+RTcScBPN2SF8bG/Lhr0jSPCaR4+w8QILnWB9hESgGZDsn6Z9vbVQwTzWLIEhCtPew0eAODkt1U8kKlA5fINc1r0d3CcJ25ZNQyMPmXL3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755768168; c=relaxed/simple;
-	bh=pNjuviuiA7HK8pyx2K/S+jSNV8oUtA4ctJGXF7XGnwo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WeEZOPFYC/oYYGfhy2+qfcnI7Vp9AkmdCkMBGQOXmE9p2aTCxBmFW/UsY+f3ro1exCcl5RxtSvcm9KpfkI05ZZC3woVHpa01ggQZo5TmXmhO6nD9Ybxla2rl5JDDa4ISNhNtuyDS48ws4+TTaJK9HUOa95KnTlWAOfSpw7j4kIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 051901515;
-	Thu, 21 Aug 2025 02:22:37 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B4EFC3F58B;
-	Thu, 21 Aug 2025 02:22:43 -0700 (PDT)
-Date: Thu, 21 Aug 2025 10:22:40 +0100
-From: Andre Przywara <andre.przywara@arm.com>
+	s=arc-20240116; t=1755768211; c=relaxed/simple;
+	bh=ZFzgJhx4hn1G8tRLV0NFu2vvp6dXVo4Mk/gknDvLzS4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=altuBb5KUjfBrpZWOBXFzJso32dZGU4eN99guAfoPKARtAHsFSIduPlDl7n9EEsqlNLriSltZIAXpe/Sr5kkhVC534P0tW9PfjJN7vkRfnEXeiKPVttKM2kmoQSfykIcDpsalhOqi+8GgSSiHIOdbJ4SpXVijFk7Yz7kCmIDWUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [180.158.240.122])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 0CD3A340DED;
+	Thu, 21 Aug 2025 09:23:28 +0000 (UTC)
+Date: Thu, 21 Aug 2025 17:23:23 +0800
+From: Yixun Lan <dlan@gentoo.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-ide@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: ata: highbank: Minor whitespace cleanup in
- example
-Message-ID: <20250821102240.02a5721c@donnerap.manchester.arm.com>
-In-Reply-To: <20250821083239.46726-2-krzysztof.kozlowski@linaro.org>
-References: <20250821083239.46726-2-krzysztof.kozlowski@linaro.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lukas Wunner <lukas@wunner.de>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH] dt-bindings: gpio: Minor whitespace cleanup in example
+Message-ID: <20250821092323-GYC1065530@gentoo>
+References: <20250821083213.46642-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250821083213.46642-2-krzysztof.kozlowski@linaro.org>
 
-On Thu, 21 Aug 2025 10:32:40 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Hi Krzysztof, 
 
+On 10:32 Thu 21 Aug     , Krzysztof Kozlowski wrote:
 > The DTS code coding style expects exactly one space around '='
 > character.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Acked-by: Andre Przywara <andre.przywara@arm.com>
-
-Thanks,
-Andre
-
 > ---
->  Documentation/devicetree/bindings/ata/sata_highbank.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/gpio/maxim,max31910.yaml  | 6 +++---
+>  .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml          | 2 +-
+>  2 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/ata/sata_highbank.yaml b/Documentation/devicetree/bindings/ata/sata_highbank.yaml
-> index f23f26a8f21c..48bdca0f5577 100644
-> --- a/Documentation/devicetree/bindings/ata/sata_highbank.yaml
-> +++ b/Documentation/devicetree/bindings/ata/sata_highbank.yaml
-> @@ -85,7 +85,7 @@ examples:
->          dma-coherent;
->          calxeda,port-phys = <&combophy5 0>, <&combophy0 0>, <&combophy0 1>,
->                               <&combophy0 2>, <&combophy0 3>;
-> -        calxeda,sgpio-gpio =<&gpioh 5 1>, <&gpioh 6 1>, <&gpioh 7 1>;
-> +        calxeda,sgpio-gpio = <&gpioh 5 1>, <&gpioh 6 1>, <&gpioh 7 1>;
->          calxeda,led-order = <4 0 1 2 3>;
->          calxeda,tx-atten = <0xff 22 0xff 0xff 23>;
->          calxeda,pre-clocks = <10>;
+..
+> diff --git a/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
+> index ec0232e72c71..83e0b2d14c9f 100644
+> --- a/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
+> @@ -80,7 +80,7 @@ examples:
+>      gpio@d4019000 {
+>        compatible = "spacemit,k1-gpio";
+>        reg = <0xd4019000 0x800>;
+> -      clocks =<&ccu 9>, <&ccu 61>;
+> +      clocks = <&ccu 9>, <&ccu 61>;
+>        clock-names = "core", "bus";
+>        gpio-controller;
+>        #gpio-cells = <3>;
+> -- 
+> 2.48.1
+> 
 
+thanks, for spacemit,k1-gpio
+
+Acked-by: Yixun Lan <dlan@gentoo.org>
+-- 
+Yixun Lan (dlan)
 
