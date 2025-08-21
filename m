@@ -1,285 +1,209 @@
-Return-Path: <devicetree+bounces-207274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB2EFB2EFF2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:44:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FA9AB2EFF6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:44:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2CB71BA0D5A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 07:41:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F78C1BC0D87
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 07:42:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B70283695;
-	Thu, 21 Aug 2025 07:40:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A773E2475E3;
+	Thu, 21 Aug 2025 07:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="paI360l2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E10EehIu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 115282629F
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 07:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9DB64690;
+	Thu, 21 Aug 2025 07:41:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755762048; cv=none; b=DTZAycIUhFFvQZc49FlDvlKPZb+NCsTRNSQbWX5SstjCYiFt8b+E3zTcfiKJYs/Z6qHJsdGEmJU1xWsySg6MyyOWOEzbPhuLuFYtqa4FvmGYjr7aqXJaHw3Rr4ZfvfZl/ByqCLhzj1iV98YLY6w7fAbRZ0BSY7v0a9fWW6vUatQ=
+	t=1755762103; cv=none; b=eTAXOP2HY8Ypbi2fnGXEg1FOfkZunYJYnhtrbBvR1ajotP4OzugX8mxX8VpQ/9vgAFoKCdjKlk5bSXweSVmTVA3hvCXrjblm5Z/ISkELgQci6h+I0vMdeRw7jsdbOnonTelIdjFRhT8Xum0YtXtQZhcewUAFr7coxXbRJP8n1DQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755762048; c=relaxed/simple;
-	bh=Uj3lhiNQ8KTr4No999KBtD5ZsLbjQ3f79sUlJDHS0tg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fFpYWP+od/D1IWGLrbAh8pBEanwOzYKflS5EfdScFjby/JtTEdPNWTLM/1SPjWNGuv5ICjOo6re6YOTWEUimnTC2VSgYT20vEfDMAlTgtXxjYJgZhCoXpxmU5C09J/s1AKFV8o/7aJ8Z1BzA/FUVat6S90nsmzUODfV5g+w4iAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=paI360l2; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-afcb7af30a5so119941866b.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 00:40:44 -0700 (PDT)
+	s=arc-20240116; t=1755762103; c=relaxed/simple;
+	bh=kPrcHdkc/3j6mEtJqp6XmZ7ZekHXYjAyIttUc51h7/k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KdjjQSTPB8xcZwcoIqsjJco+M1NyrrFTyUCjWdBHsJUzsRA5sNUtVL6jrVecNXJYN2Z4+HIiKwONKHZLqCwXCb3ZWSaOgQEcfxcqnC0TF59solP50ve6oqUC6n8ZmTOfP4nTDVJQ7pVYs4UFIcq5PZkVWxVnMOcjW/5dIHLeZiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E10EehIu; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6188b7532f3so1144934a12.2;
+        Thu, 21 Aug 2025 00:41:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1755762043; x=1756366843; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UOmX8DoVDkdi25dNPPFg/anGS8Ls6i4vihgyINbx3eI=;
-        b=paI360l21SWhZYekRBoBldNtbNlggtjTEkV5yobCx2NadeoBa9xSBwXClqKI7zV9Zx
-         nEdNZ779qCpmNO4SspzhzPJvD+pJszCwTv5109KY+ulHiKCKpy56jPFMvzvhImHvfYqh
-         j+x77tPi+4j8VqsWgxd9ujlTX6XL6SpNgW5DPFHX1UCwT/9FqhOT+CTTOQmXoxrCbciP
-         NDBqBXPt4OR6yEp4DYqRIT/KDttkWZpMCNOh5iC4cvsl1s19yZMDckrGtJh1aBNTQQ0u
-         zt3VEFEGZH6hMEV5lMB9NyWdojju3SdSeCTqzSWyrMd4JA9P/XeQcyMLgJq+WcS3PcKn
-         yeMQ==
+        d=gmail.com; s=20230601; t=1755762100; x=1756366900; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EIZhMIR98sN11ESgeJLOLyQsEESU4OFFo5q5jHVEOWw=;
+        b=E10EehIuI+t5Eszr2SqDYcXVpvJuU2pGjBJp8QrEqM+dYJ7ryeybOHeV7IGt02FJ3x
+         Q+feDy2MWl7rnJArrbOuo17zklcD4vIItrfKcEXw8fQZGooOqkA+X5iOf9qZ+phNyk0v
+         Ooo561QdPqQJQvzrwb4FvTC8FpanCYEFpPvGp9B0jFRSFJhZYF8HbdADha0CPMlEXZ+c
+         LiMZ8M3Bl2zvrPrD2S5Zlyd/43k12BAJlqwaXzcpQHYgSZg+KJpQi7HzTBEAUFwGltFd
+         m62sFBq2C+P5HD9peSulvO5jXjx0sWqd8nJioptCpvRsF1UZySXeVYAvdcBXerUqJut0
+         3XPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755762043; x=1756366843;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UOmX8DoVDkdi25dNPPFg/anGS8Ls6i4vihgyINbx3eI=;
-        b=ODTZA5t9/vHZ1btrxmUktAg5gFVs4fHl8eu3rFckp/JZwQ6Ho3WrZm04czjJU6fgWi
-         ZZS7P/rxSZWg/U/aPnaHCUG6rzQ/Osb8RPJkpiwDrD4ehLDF8rhZzl4aRaPFBLF1HTAK
-         Lvo8ZJvTMAyaLadMI1XUYBqkZmPMCJKisXpM9Q0BkUQXONMC1Rjd6/TF0Zc3hBe4/OBe
-         jVWwBAwiMr7CplS+nVpoEcKUPd0kdBmvfyEwrL7c79T3ZKGX0nAzAg4+OfyUMTFld7UF
-         qhDU/VuomC/sjTCXfLsHB61GcITKw6vadMo1oXwkzUwSb2OSNXbppx+GoXTqOerkcZRR
-         /nWA==
-X-Forwarded-Encrypted: i=1; AJvYcCVKfV3z+aE6b0DXIOyaSEwuMDrPKAVXeRCW7913a47mjl4UfIs973nVNr+f/eD1IrWOPfAPJE6pOuxc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVxxlASfrx79cGfxKzkSMF5aVjCrTNopRuLJbDbH8hTGtNujOZ
-	7dRLQJ3yE3+7mB+Acaso3KMEGEOTl6RZTUXmBQKL98POo3UqUvVmAq8+E11iAnmh1fc=
-X-Gm-Gg: ASbGncuawoVx9aQPWyHef3urFiNRm0ur/uD7abWL6a0cCqETOevGrZfSeWCBuOkmvgD
-	igAJRKJwQSmUAnr2u56zeiqo4U+yIEWY/HCw9+DpVw50Tig0w1zSZ04MsfrlvFx26l3UD8RyRWs
-	bLa/QVJvDASfUxSJODtoSm3T7r5U1VNeXODteVn+x1qf/kmOGPOyldI16AYc2VH4r6syz5HjNop
-	+kR4YfNaBpL81eon1qJ5NCmwSfHb2SIziGLPQUDvrmmBAnSbjoh9k60Lv5eTSpRN4tm6hlRLPDf
-	rjYhTEWO4HENXdGVCrab5kiR9dS7OpZAfer1v+0wnJEKrksTBT4S6e95sfeJlsMGHRdAfbv/nUR
-	TkSc9Oa4PXZ920n4D87TsmWpwshFbmA==
-X-Google-Smtp-Source: AGHT+IHEJwqxJwdifUOCSxwxS8LU3s+6tTaEhqmWIZcz8WNrqBZn4cOf5NK2eo88RGZk0Kt+NV58dg==
-X-Received: by 2002:a17:907:3e89:b0:afd:d9e4:5a4a with SMTP id a640c23a62f3a-afe07d61255mr154660366b.62.1755762043006;
-        Thu, 21 Aug 2025 00:40:43 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.81])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afded309f55sm341039666b.47.2025.08.21.00.40.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Aug 2025 00:40:42 -0700 (PDT)
-Message-ID: <d004d9c4-f71b-49e6-9ced-031761f5e338@tuxon.dev>
-Date: Thu, 21 Aug 2025 10:40:40 +0300
+        d=1e100.net; s=20230601; t=1755762100; x=1756366900;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EIZhMIR98sN11ESgeJLOLyQsEESU4OFFo5q5jHVEOWw=;
+        b=Ss+n2jNqwnk5thNtLmUh2oM2BdAYgtPBr/bO3ufacahghOio2ejyGx6V7XG0xV1inr
+         QxtiFvi8iablEguhvGGFOJOvoFPbIrzpunWseT2JYHliVeyg1j4PnqeO+/3RWs8bm+fL
+         gGHzkxQ8F1IYrkeSYqCX1Flu0YJaZ8iy06GOA0IxGRpB5GMdnedrdRDKJEVKEelWeH1z
+         Unya/OIgtK82q/D4q/MSuGd//x6fIA14fTI2fnNqkTCqbvDQOQulUJV9IgATQs0i8Ugo
+         ENFPfleo8VeUi8MABr9Bey1s3nDsKx9gTHM+O/ooWTFo3z2jS4OjrglugUBpw1Gl5n/Z
+         NxeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVidJDQu11PsFWRsPaomHSabQKGKw4fmj7PzAYHYsV+D8eLJ0dkDOQkD8N5BHaHfvDNawR65CmH64xQh/U8@vger.kernel.org, AJvYcCWfZd/usTxE+EbwxQqBxW+57lQUjYlz3E4CG5chlsNuz6WUlP2WrNFY606r+dFLWKHR8ZPnmG1C6Jv+@vger.kernel.org, AJvYcCXOSqQQH4BiigAv5joGoj/gov6HlSfd6Auy6tDlYI5tOhJQFGBWqluJ4hJ/AAug9g8HeykWYGkVOdMs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVG+664vezUmofG0BA3EpEo9yQSoo8BIvNNg8rOVHW6ey8QKMk
+	h44yMx+InDdCLNBePUVgdhscOViof1dnyNeRVkpm3eZM9XwncRpVT/oSTSalzNgrCGNBWpi6fhK
+	pAFvRCkjQJNus0gmpCs549d1OV+QMtTo=
+X-Gm-Gg: ASbGncsx4wpbc4FIL3lW5LIikm+zQhH3balhxXSp8IFV5ekKm7T0MjepUhyHemTWOnP
+	/CEMNv6RUlDGK53gSa+mM88nmS4X3a14i8WSAvY8qaoPyRnlwYylBK8Jc20uNAox0IqUkW8szmE
+	9y1UZbVoM6ACSg18uLiOzPFJ8ZWAryU9b6QvdGz3BToHRkN2Alg0IWOYYLIOVkqEwx4A2I0QFxP
+	nZAzqJkrg==
+X-Google-Smtp-Source: AGHT+IGWrfnL2SF9aG13X/8PLv4wY0UjJxCUOu5WcsnQ/IYf2m8xwQLk9znhMWW+p4PGneh9sBL6NNAwfLOYS8k/ngk=
+X-Received: by 2002:a17:907:9814:b0:af2:b9b5:1c06 with SMTP id
+ a640c23a62f3a-afe079d37a9mr127119666b.14.1755762099776; Thu, 21 Aug 2025
+ 00:41:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/9] PCI: of_property: Restore the arguments of the
- next level parent
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, catalin.marinas@arm.com,
- will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, lizhi.hou@amd.com, linux-pci@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
- <20250704161410.3931884-4-claudiu.beznea.uj@bp.renesas.com>
- <7wmpgldjvznbllotblv6ufybd2qqzb2ole2nhvbx4xiavyqa2b@ezaqwghxmbve>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <7wmpgldjvznbllotblv6ufybd2qqzb2ole2nhvbx4xiavyqa2b@ezaqwghxmbve>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
+ <20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
+ <aKXW5pGiN18DyIZ7@smile.fi.intel.com> <aKaMPMnGRyvKqTny@dixit>
+In-Reply-To: <aKaMPMnGRyvKqTny@dixit>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Thu, 21 Aug 2025 10:41:03 +0300
+X-Gm-Features: Ac12FXz4IG57-fSP6z8NGcm7Oz5k2l0xepeyfpOthmM1oC4nqwZJWP_9DzbV7KQ
+Message-ID: <CAHp75Vdw5X1Y057fpGjdvVGwKq0x0UBdm8py+m+55RbzXi1PJw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
+ TLV493D 3D Magentic sensor
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi, Manivannan,
+On Thu, Aug 21, 2025 at 6:02=E2=80=AFAM Dixit Parmar <dixitparmar19@gmail.c=
+om> wrote:
+> On Wed, Aug 20, 2025 at 05:08:38PM +0300, Andy Shevchenko wrote:
 
-On 20.08.2025 20:47, Manivannan Sadhasivam wrote:
-> On Fri, Jul 04, 2025 at 07:14:03PM GMT, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> of_pci_make_dev_node() creates a device tree node for the PCIe bridge it
->> detects. The node name follows the format: pci_type@pci_slot,pci_func. If
->> such a node already exists in the current device tree, a new one is not
->> created.
->>
->> When the node is created, its contents are populated with information from
->> the parent node. In the case of root complex nodes described in the device
->> tree, the created node duplicates the interrupt-map property. However, the
->> duplicated interrupt-map property does not correctly point to the next
->> interrupt controller.
->>
->> For example, in the case of the Renesas RZ/G3S SoC, the resulting device
->> tree node is as follows (only relevant DT properties are shown):
->>
->> pcie@11e40000 {
->>
->>     // ...
->>
->>     interrupt-map = <0x00 0x00 0x00 0x01 0x1f 0x00 0x00 0x00 0x00
->>                      0x00 0x00 0x00 0x02 0x1f 0x00 0x00 0x00 0x01
->>                      0x00 0x00 0x00 0x03 0x1f 0x00 0x00 0x00 0x02
->>                      0x00 0x00 0x00 0x04 0x1f 0x00 0x00 0x00 0x03>;
->>     interrupt-map-mask = <0x00 0x00 0x00 0x07>;
->>     interrupt-controller;
->>     #interrupt-cells = <0x01>;
->>
->>     #address-cells = <0x03>;
->>     #size-cells = <0x02>;
->>
->>     phandle = <0x1f>;
->>
->>     // ...
->>
->>     pci@0,0 {
->>         reg = <0x00 0x00 0x00 0x00 0x00>;
->>         interrupt-map = <0x10000 0x00 0x00 0x01 0x1f 0x00 0x11e40000 0x00 0x00
->>                          0x10000 0x00 0x00 0x02 0x1f 0x00 0x11e40000 0x00 0x01
->>                          0x10000 0x00 0x00 0x03 0x1f 0x00 0x11e40000 0x00 0x02
->>                          0x10000 0x00 0x00 0x04 0x1f 0x00 0x11e40000 0x00 0x03>;
->>         interrupt-map-mask = <0xffff00 0x00 0x00 0x07>;
->>         #interrupt-cells = <0x01>;
->>
->>         #address-cells = <0x03>;
->>         #size-cells = <0x02>;
->>
->>         // ...
->>     };
->> };
->>
->> With this pci@0,0 node, the interrupt-map parsing code behaves as follows:
->>
->> When a PCIe endpoint is enumerated and it requests to map a legacy
->> interrupt, of_irq_parse_raw() is called requesting the interrupt from
->> pci@0,0. If INTA is requested, of_irq_parse_raw() first matches:
->>
->> interrupt-map = <0x10000 0x00 0x00 0x01 0x1f 0x00 0x11e40000 0x00 0x00>
->>
->> from the pci@0,0 node. It then follows the phandle 0x1f to the interrupt
->> parent, looking for a mapping for interrupt ID 0x00
->> (0x00 0x11e40000 0x00 0x00). However, the root complex node does not
->> provide this mapping in its interrupt-map property, causing the interrupt
->> request to fail.
->>
-> 
-> Are you trying to say that the generated bridge node incorrectly uses Root
-> Complex node as the interrupt parent?
+...
 
-I'm trying to say that the generated bridge node is wrong because it copies
-the interrupt-map from the root complex mapping int 0x1 to 0x0 in the
-bridge node, while it should have map the int 0x1 to something valid for
-root complex mapping.
+> > >  st_magn-$(CONFIG_IIO_BUFFER) +=3D st_magn_buffer.o
+> > >  obj-$(CONFIG_IIO_ST_MAGN_I2C_3AXIS) +=3D st_magn_i2c.o
+> > >  obj-$(CONFIG_IIO_ST_MAGN_SPI_3AXIS) +=3D st_magn_spi.o
+> > >
+> > > +obj-$(CONFIG_INFINEON_TLV493D)             +=3D tlv493d.o
+> > > +
+> > >  obj-$(CONFIG_SENSORS_HMC5843)              +=3D hmc5843_core.o
+> > >  obj-$(CONFIG_SENSORS_HMC5843_I2C)  +=3D hmc5843_i2c.o
+> > >  obj-$(CONFIG_SENSORS_HMC5843_SPI)  +=3D hmc5843_spi.o
+> >
+> > I haven't got the ordering rules here and in Kconfig. Can it be alphabe=
+tical?
+> From what I can see, the order is alphabetical based on the CONFIG option=
+ in the
+> Makefile and Kconfig, and I kept CONFIG_INFINEO_TLV493D after CONFIG_IIO_=
+ST*.
+> Isn't it in correct order? or my understanding is incorrect?
 
-E.g. when some device requests INT with id 0x1 from bridge the bridge
-mapping returns 0x0 then the returned 0x0 is used to find a new mapping on
-the root complex based on what is provided for in with interrupt-map DT
-property.
+I dunno, The file name there is with the vendor prefix, in many cases
+the configuration option is with vendor prefix as well, but the file.
 
+...
 
-> 
-> I'm getting confused since your example above shows '0x1f' as the interrupt
-> parent phandle for both Root Complex and bridge nodes. But I don't know to which
-> node this phandle corresponds to.
+> > > +   switch (ch) {
+> > > +   case TLV493D_AXIS_X:
+> > > +           val =3D FIELD_GET(TLV493D_BX_MAG_X_AXIS_MSB, b[TLV493D_RD=
+_REG_BX]) << 4 |
+> > > +                   FIELD_GET(TLV493D_BX2_MAG_X_AXIS_LSB, b[TLV493D_R=
+D_REG_BX2]) >> 4;
+> >
+> > Wrong indentation, make both 'F':s to be in the same column.
+> To have 'F' in the same column, it will need spaces after tab (I think it=
+s not
+> advisable to mix spaces and tabs).
 
-Root complex node from this patch description has:
+No, mixing tabs and spaces basically means spaces inside TABs or
+before TABs. The TABS followed by solely spaces is okay and the
+correct way to indent.
 
-phandle = <0x1f>;
+> With just tabs the second FIELD_GET will be
+> align to 'v' of val. What will be the correct indentation?
 
+...
 
-> 
-> In any case, since this seems to be an independent fix, please send it
-> separately.
+> > > +static int tlv493d_get_measurements(struct tlv493d_data *data, s16 *=
+x, s16 *y,
+> > > +                           s16 *z, s16 *t)
+> >
+> > Indentation issue. Please, check fully the code for such issues.
+> I followed the single tab after default as suggested. At which column the=
+ s16 *z should be align to?
 
-Yes, once port bindings are added this fix is not needed for this driver
-anymore. Will post it as a separate fix.
+s16 starts with the same column as struct.
 
-Thank you,
-Claudiu
+...
 
+> > > +   ret =3D read_poll_timeout(i2c_master_recv, err, err ||
+> > > +                   FIELD_GET(TLV493D_TEMP_CHANNEL, buff[TLV493D_RD_R=
+EG_TEMP]) =3D=3D 0,
+> >
+> > Please, resplit logically, i.e leave the condition on the single line.
+> > Also to make it shorter you can use '!' instead of ' =3D=3D 0'.
+> Having both conditions in same line will go out of 80 char length limit, =
+even with !.
+> Is it fine?
 
-> 
-> - Mani
-> 
->> To avoid this, in the interrupt-map property of the nodes generated by
->> of_pci_make_dev_node() map legacy interrupts to entries that are valid in
->> the next level interrupt controller in the interrupt mapping tree.
->>
->> With this, the generated pci@0,0 node and its parent look as follows:
->>
->> pcie@11e40000 {
->>     // ...
->>
->>     interrupt-map = <0x00 0x00 0x00 0x01 0x1f 0x00 0x00 0x00 0x00
->>                      0x00 0x00 0x00 0x02 0x1f 0x00 0x00 0x00 0x01
->>                      0x00 0x00 0x00 0x03 0x1f 0x00 0x00 0x00 0x02
->>                      0x00 0x00 0x00 0x04 0x1f 0x00 0x00 0x00 0x03>;
->>     interrupt-map-mask = <0x00 0x00 0x00 0x07>;
->>     interrupt-controller;
->>     #interrupt-cells = <0x01>;
->>
->>     #address-cells = <0x03>;
->>     #size-cells = <0x02>;
->>
->>     phandle = <0x1f>;
->>
->>     // ...
->>
->>     pci@0,0 {
->>         reg = <0x00 0x00 0x00 0x00 0x00>;
->>         interrupt-map = <0x10000 0x00 0x00 0x01 0x1f 0x00 0x11e40000 0x00 0x01
->>                          0x10000 0x00 0x00 0x02 0x1f 0x00 0x11e40000 0x00 0x02
->>                          0x10000 0x00 0x00 0x03 0x1f 0x00 0x11e40000 0x00 0x03
->>                          0x10000 0x00 0x00 0x04 0x1f 0x00 0x11e40000 0x00 0x04>;
->>         interrupt-map-mask = <0xffff00 0x00 0x00 0x07>;
->>         #interrupt-cells = <0x01>;
->>
->>         #address-cells = <0x03>;
->>         #size-cells = <0x02>;
->>     };
->> };
->>
->> Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
->> Changes in v3:
->> - none; this patch is new
->>
->>  drivers/pci/of_property.c | 8 ++++++++
->>  1 file changed, 8 insertions(+)
->>
->> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
->> index 506fcd507113..8dfed096326f 100644
->> --- a/drivers/pci/of_property.c
->> +++ b/drivers/pci/of_property.c
->> @@ -243,6 +243,14 @@ static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
->>  		}
->>  		of_property_read_u32(out_irq[i].np, "#address-cells",
->>  				     &addr_sz[i]);
->> +
->> +		/*
->> +		 * Restore the arguments of the next level parent if a map
->> +		 * was found.
->> +		 */
->> +		out_irq[i].np = pnode;
->> +		out_irq[i].args_count = 1;
->> +		out_irq[i].args[0] = pin;
->>  	}
->>  
->>  	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
->> -- 
->> 2.43.0
->>
-> 
+In _this_ case yes. I expect something like this to see
 
+   ret =3D read_poll_timeout(i2c_master_recv, err,
+                   err || !FIELD_GET(TLV493D_TEMP_CHANNEL,
+buff[TLV493D_RD_REG_TEMP]),
+
+...
+
+> > Just wondering if you have tested for negative coordinates, does it pro=
+pagate
+> > correctly?
+> Yes I have validated, it reports correct negative coordinate values.
+
+OK!
+
+> > > +   iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan),
+> > > +                           pf->timestamp);
+> >
+> > Interestingly that you have used 100 limit and suddenly don't do it her=
+e
+> > and maybe elsewhere. Why inconsistent style? Please, go through the who=
+le
+> > file and make sure the style is consistent in all of the aspects:
+> > - C style used
+> > - comments style (one-line and multi-line)
+> > - indentation
+> > - etc.
+> I tried to follow 80 limit(except few places where it was just on border =
+or not
+> clear to read). I belive the standard is to use 80 limit(correct me if I =
+referred
+> wrong place) and I will recheck to meet that.
+
+There are two standards, the old and strict one -- 80 characters, and
+this subsystem _tries_ to follow it and relaxed with 100 limit.
+The exceptions are possible when it affects readability.
+
+--
+With Best Regards,
+Andy Shevchenko
 
