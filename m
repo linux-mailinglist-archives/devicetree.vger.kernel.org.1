@@ -1,192 +1,202 @@
-Return-Path: <devicetree+bounces-207376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309DEB2F547
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:26:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37617B2F54F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:28:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83EF05E5C75
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:25:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C82C01883D74
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:28:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86F452F7466;
-	Thu, 21 Aug 2025 10:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A822FC86E;
+	Thu, 21 Aug 2025 10:28:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QPULIdwc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CivwUtCh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5204A2F5492;
-	Thu, 21 Aug 2025 10:25:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D2D62FABEC
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 10:28:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755771922; cv=none; b=Lwu3NAq0YL2d6SN5cUdtLhQ2Z6UcgHtNwslMSUbCJ5HE62A73X1vJlXozcjo0kBCXPZ+s6+VTFi8GOyMnBZ+MpaSHRszUz/n5SnfF5XbxzruGw3etPsFYDwqI+6HOX2cJemZINRGKh0ZdPGSy+zYbAVJEq1OkDG3Z3kyGJjrQao=
+	t=1755772106; cv=none; b=OVlYtuSZkjjiwHzD/u1KmH8aHCJudL4EwgkR78PPzhGjUmOazsIctqGvZdz/x9ipt/hiDjuZQcuI6mgXUymvBcT/dlY/N1SbG+pHsbF/AoPjpDE1XexJOsbf9Zn0NuCDNIZaCZoLp4aZUZgjhJaCeZ3i86ZQ8XgbVcGKmZmU4o8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755771922; c=relaxed/simple;
-	bh=ORTjv3YVqf7tKuswYRO+Ecti+tHql9FqphRkmWE57tg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uIS4C3Wt7QK17ztir7oYm6gaLk0vIAx8BvxSzIDc92qaqnqIdaXzPp9ESDcl0l9I6C+0vYEzuuQJnk5lzKwPIiqP420lS10GtNkt0ksM7TZQZUXZgCptFMyawM0aV0LmQo+qK9LWN0723DF4w/F9+Aj+09Z3LoVynyRBv3hqFYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QPULIdwc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F9A1C4CEEB;
-	Thu, 21 Aug 2025 10:25:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755771919;
-	bh=ORTjv3YVqf7tKuswYRO+Ecti+tHql9FqphRkmWE57tg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QPULIdwcaNqt09nbyOt6cG69mFU7KE+z/YDsBLC+6QCrO733Rv8gicsUdi/n2CLra
-	 3pjjq3rP7mvOXOfd2byRx9QriPg0Tev/gGPaV9mz3O0DvpWyzBCvi6cFyT38BehraB
-	 KKphm+1osP13chkL5WxNxZd7sE+hHAQ3jP+d0o+LW88a1X+j89AJW1F2KB3iaU0x3E
-	 EvHLNVKv8Tff+anLhmUPHpmoCpUzq+XUQ3f94dPR9PFeQVBzq3txIrdAX+0ynUF4Nn
-	 qe27HLnYSx+ZLvON6+k87GoFcr9c/jWh6tRDYVqXro9/k/Yubt3N1Sf40TE8rL3v5F
-	 P3jFLeR5cR66Q==
-Message-ID: <8279536d-c4f4-477a-9823-3e7b452c3c33@kernel.org>
-Date: Thu, 21 Aug 2025 12:25:13 +0200
+	s=arc-20240116; t=1755772106; c=relaxed/simple;
+	bh=tfZPMqZtElzvCkRSGhlgoViognsyA3Qe60Shjgy56KI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XOr1wQ8PjsAh4y6DuZCSKQaU0+XYoUmvayFtaSuUHHibhP+Mrd5Ibo+pIveiFtJo8DSLOQEkWvy9hwO+u1uan0uNE3NGIOOLtU+8IokTNN4EKWxsAPS6RlvPD1JyCakfCR0v7T6tLmBUW7XW0MJA6jcwBBTkbrvYYgMDx+rZ4ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CivwUtCh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57L9bD65014843
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 10:28:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Bo/sYYeMVH8ubDzUgHDxT88A
+	ZENWIvmqdh74NivXn0w=; b=CivwUtChF8i1DNVsez1ALO1+qJB3ve2S7jUeT5r0
+	LmxxdTJx0OVqCVRcTyLKGsbXHvHx6R9XKyQSmuQ28t5VE+9cvH9k5FaBInfMjnX0
+	JjIqEP5+hxHNuYO66Vh+J3/M7t2XWQVpobj7hYSEoPV5z8PS7/352vy5bEOJckEr
+	j0Z41snS1EXDZREWJ4+PF5WR73VUhgppFNzy7yR90sS6M+wancgB6Z5trIm9FjT/
+	FjYX0qLcKjBMgVO2gVZStG8Ub/DbnXz4MhGXYFm7nOLgnVGPqaUKqIqE2zV/Zqlz
+	fMtLIqeVo/HOMKQlH/lIya/tBWp37D+snFXNoibYywITOw==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n528w11b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 10:28:24 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-70a928da763so18410496d6.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 03:28:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755772103; x=1756376903;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Bo/sYYeMVH8ubDzUgHDxT88AZENWIvmqdh74NivXn0w=;
+        b=ZUbn3OndRiNKop7zlOBYSPOHjYoj8W1KWVGL/Q7GAcnDvLNE7qnKo5VAldULFXV5pI
+         dZFRcruTv9JlsPhbn9/C6Zn1q/+hnwop7EjFW0cFvwOUU8+sCqXEQ8jXzbZ4+Ql8+6IE
+         BvMeS7IBDPGufKkR2ehQW3vmqX2iBoMKga9cFnmi1cQw3OZjFcLqN3VeSXTszyd7zJuB
+         2z5VXEAjfJlZSQ3KcT0RwY1ZonVP3y9dUS9fIj3ZRpSA3bmbzsTWgrxQL89LdXvoOaU4
+         9DiHD27i7DX0mDEHGnHoiYkUO53Zv+u1K26IVlYfMVzT9X8cmxH5yxtRaSRqbEwtTQi3
+         y/Kg==
+X-Forwarded-Encrypted: i=1; AJvYcCWg1mqCPzGrbILfEYgHRwx3PnhcfSoZSJIyl1nNVLLeY5FVHG7QpeCjOLWVrfyErQNj/rguwVwLpE/9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHQQOlj+R+abeoBJ27sQ5zDua1jIxsEJsxip2PWohrA7/n5mK/
+	NFxJh5V4SK4VOMsBDdes2nT4idIo/UP0xXeWxk/Nr6t/qnVyldZfv97DkX2/3RUUk69xDHFsSMC
+	fLoKnRHWsjdUWZOcYrgxBG06M9F/acOFVHO51xvtAGJiGsF7bQ1dSsDufDr5Ulncq
+X-Gm-Gg: ASbGnctVrfL6G3W0hqZQ3nGicNTtgGPEvSOeJH1vlhmZH8G8sDHhhdP1uRO509c8h6s
+	LLg4WJix0AXmwLpXDgw3uL0NJ2P3F2xWK7JnBKTFZCFUrWwqUUL1IIr5rtRidlXP/U+26zfSbsy
+	vDNYIOemEuo38a7HBVUR9asd6cCRI3lBGtAV9+NfwQm50jCPQs06yougq/1zmM9tVM0/vOpcQN1
+	zzB5Itf8tBzdKJVc8Cayvqv65grn+VHKh5i6rUttR5NTZBpnRNokWHVg2yxU6hIxHjzqLyw0s4b
+	CI3daYqKF7X3cYeQZy22lv5Cb2RmTYV5NTUdsgA0RnA/x3LoQxZZMYq6Zk5ASxmCJQfyshKkV9X
+	5hY7s507p+pGYqYHEJBkma/kPV3xmhFxevZg+hzDKaI/Dk0tjbGH/
+X-Received: by 2002:a05:6214:21c2:b0:709:31f8:fd96 with SMTP id 6a1803df08f44-70d88e96a7dmr16543856d6.20.1755772103363;
+        Thu, 21 Aug 2025 03:28:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGwYF+lZ1f8liHpI39C8YmGl+9DTxpGYR/3aTWLPUKxMN0WxZXjU48KYaq6jDvJjEnbHvlfEw==
+X-Received: by 2002:a05:6214:21c2:b0:709:31f8:fd96 with SMTP id 6a1803df08f44-70d88e96a7dmr16543666d6.20.1755772102918;
+        Thu, 21 Aug 2025 03:28:22 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef3cc9c7sm3038380e87.71.2025.08.21.03.28.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Aug 2025 03:28:22 -0700 (PDT)
+Date: Thu, 21 Aug 2025 13:28:18 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/6] dt-bindings: display/msm: dp-controller: document
+ QCS8300 compatible
+Message-ID: <3ws6xfmmrnjybn4umbbnzjdksqberzuxslz6uxpabtsz2yzyss@jwblshilyx4p>
+References: <20250821-qcs8300_mdss-v8-0-e9be853938f9@oss.qualcomm.com>
+ <20250821-qcs8300_mdss-v8-2-e9be853938f9@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/9] dt-bindings: nvme: apple,nvme-ans: Add Apple A11
-To: Krzysztof Kozlowski <krzk@kernel.org>, Nick Chan <towinchenmi@gmail.com>
-Cc: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Neal Gompa <neal@gompa.dev>, Jassi Brar <jassisinghbrar@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Keith Busch <kbusch@kernel.org>,
- Jens Axboe <axboe@kernel.dk>, Christoph Hellwig <hch@lst.de>,
- Sagi Grimberg <sagi@grimberg.me>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, iommu@lists.linux.dev,
- linux-nvme@lists.infradead.org
-References: <20250818-t8015-nvme-v2-0-65648cd189e0@gmail.com>
- <20250818-t8015-nvme-v2-6-65648cd189e0@gmail.com>
- <20250819-polite-papaya-catfish-1a9d1a@kuoka>
- <8ac418ae-7ff0-4d5c-9f11-c24e36618ac1@kernel.org>
- <b3cd1b3f-fa0e-4a98-84c7-e4271f262795@kernel.org>
-Content-Language: en-US
-From: Sven Peter <sven@kernel.org>
-In-Reply-To: <b3cd1b3f-fa0e-4a98-84c7-e4271f262795@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250821-qcs8300_mdss-v8-2-e9be853938f9@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=fpOFpF4f c=1 sm=1 tr=0 ts=68a6f4c8 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=WnZbLXWYNgm-BG77tk8A:9 a=CjuIK1q_8ugA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-GUID: 0Js2QlDB9UjaeFIMSzoZW5Vha1LHQ8v6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX3msgO5ipsMwb
+ GRqCvdJhGJ0/TgvYAXHca4YUl9exc9aICPIuRRYp3GQMif45dLxQvcWNqk3m6b4j9Vg6Zy+7//k
+ r7wnycgJLW3aZKP8vNayKXVX4RPi4sPYXChjbYEI+j4wvAgQN+WO7Qx7nTUA4hTP4GaMYtuim4o
+ gVU8W7lAdQ8mn8FcShqUrFTUJjsc0zfqaSEGyaB3VMmTWIrZM01tylxvMvQa645V4zc2ZKWOZbf
+ xYNQZhUmdi0yiP3LV4fOZ4ARGlYqiEOlJ+Ox2rW8Ax78wycm/y2i6ajTwNaaLvNdCMylApIrfPr
+ Xby/xYu9hCWu0yQZgOlrfbX2PyHIVy25pFW4G1Aes1k0alZb4tY8pNJ7miCrwrVda9bcn19iJL4
+ EDd9mkHSQatPsrabD1pANhU8rEvA8w==
+X-Proofpoint-ORIG-GUID: 0Js2QlDB9UjaeFIMSzoZW5Vha1LHQ8v6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-21_02,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 spamscore=0 clxscore=1015 adultscore=0
+ suspectscore=0 bulkscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
 
-On 19.08.25 13:34, Krzysztof Kozlowski wrote:
-> On 19/08/2025 12:01, Sven Peter wrote:
->> On 19.08.25 11:18, Krzysztof Kozlowski wrote:
->>> On Mon, Aug 18, 2025 at 04:42:59PM +0800, Nick Chan wrote:
->>>> Add ANS2 NVMe bindings for Apple A11 SoC.
->>>>
->>>> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
->>>> ---
->>>>    .../devicetree/bindings/nvme/apple,nvme-ans.yaml          | 15 +++++++++------
->>>>    1 file changed, 9 insertions(+), 6 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml b/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
->>>> index fc6555724e1858e8a16f6750302ff0ad9c4e5b88..4127d7b0a0f066fd0e144b32d1b676e3406b9d5a 100644
->>>> --- a/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
->>>> +++ b/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
->>>> @@ -11,12 +11,14 @@ maintainers:
->>>>    
->>>>    properties:
->>>>      compatible:
->>>> -    items:
->>>> -      - enum:
->>>> -          - apple,t8103-nvme-ans2
->>>> -          - apple,t8112-nvme-ans2
->>>> -          - apple,t6000-nvme-ans2
->>>> -      - const: apple,nvme-ans2
->>>> +    oneOf:
->>>> +      - const: apple,t8015-nvme-ans2
->>>> +      - items:
->>>> +          - enum:
->>>> +              - apple,t8103-nvme-ans2
->>>> +              - apple,t8112-nvme-ans2
->>>> +              - apple,t6000-nvme-ans2
->>>> +          - const: apple,nvme-ans2
->>>
->>> When some months ago this pattern of generic fallback appeared, I
->>> believe I commented it is bad idea. So now months later we have a proof
->>> - generic fallback is useless and you should have been using SoC
->>> specific compatibles from the start.
->>>
->>> Now it is just confusing and this broken pattern will be spreading more
->>> and more, because you folks put generic compatibles everywhere.
->>
->> I haven't commented on the dt-bindings yet because I suspect this patch
->> is wrong but haven't had time to test this yet.
->>
->> I believe we want "apple,t8015-nvme-ans2", "apple,nvme-ans2" here and
->> then use the code Nick added for "apple,nvme-ans2" by default and only
->> enable additional features (NVMMU, linear submission queue) when we see
->> the SoC-specific compatibles for t8103, t8112, and t6000. IIRC these
->> newer SoCs still support the old way of submitting commands just fine
->> and the new way was added at some point to add support for this weird
->> integrated IOMMU.
->>
->> I've already seen some strings about ANS3 somewhere which I suspect
->> will be the controller in some future SoC (or maybe M3/M4 which we
->> haven't reverse engineered yet) that actually breaks compatibility.
+On Thu, Aug 21, 2025 at 11:35:57AM +0800, Yongxing Mou wrote:
+> Add compatible string for the DisplayPort controller found on the
+> Qualcomm QCS8300 SoC.
 > 
+> The Qualcomm QCS8300 platform comes with one DisplayPort controller
+> with same base offset as SM8650. It requires new compatible string
+> because QCS8300 controller supports 4 MST streams. And 4 MST streams
+> support will be enabled as part of MST feature support. Currently, using
+> SM8650 data structure to enable SST on QCS8300 in the driver.
+
+Bindings describe the hardware. There is no point in discussing the
+driver here.
+
 > 
-> This was 99% predictable and expected months/years ago when first Apple
-> M1 generic compatibles appeared. I just do not understand why so much
-> effort from reviewers has to go into explaining this and for arguing
-> over that, and eventually we are right.
+> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index 68a6fd27506fda004e53174db5bcc88a29e8d2a6..ac44abfdd2853393ae199387c9ae2c37e1c48f52 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -18,6 +18,7 @@ properties:
+>    compatible:
+>      oneOf:
+>        - enum:
+> +          - qcom,qcs8300-dp
+>            - qcom,sa8775p-dp
+>            - qcom,sc7180-dp
+>            - qcom,sc7280-dp
+> @@ -179,6 +180,7 @@ allOf:
+>            compatible:
+>              contains:
+>                enum:
+> +                - qcom,qcs8300-dp
+>                  - qcom,sa8775p-dp
+>                  - qcom,x1e80100-dp
+>        then:
+> @@ -217,8 +219,9 @@ allOf:
+>            compatible:
+>              contains:
+>                enum:
+> -                # some of SA8775P DP controllers support 4 streams MST,
+> +                # SA8775P DP0 and QCS8300 DP controllers support 4 streams MST,
+>                  # others just 2 streams MST
+
+QCS8300 has only one DP. As such, it doesn't belong to this clause.
+
+> +                - qcom,qcs8300-dp
+>                  - qcom,sa8775p-dp
+>        then:
+>          properties:
+> 
+> -- 
+> 2.34.1
 > 
 
-Right, so we're in a bad situation now because we didn't listen. That 
-sucks and I'm sorry.
-
-How do we move on from here now though?
-
-I think for any new bindings it's pretty clear, we just do what we 
-should've done from the very beginning:
-Whenever we upstream a new device that has no bindings yet we only use 
-tXXXX-whatever as compatible and use that as a fallback in case later 
-(or earlier) SoCs work with the same driver.
-
-
-
-Then we still have to deal with the stuff that's already upstream. I see 
-two options here:
-
-
-1) For situations like this one where the generic one just doesn't make 
-any sense we deprecate "apple,nvme-ans2" in the binding and use
-"apple,t8103-nvme-ans2" as the fallback instead, i.e. just
-"apple,t8103-nvme-ans2" for M1, "apple,t6000-nvme-ans2", 
-"apple,t8103-nvme-ans2" for M1 Pro, and just "apple,t8015-nvme-ans2" for 
-A11.
-
-We keep the generic one in the driver for now but also add
-"apple,t8103-nvme-ans2". We then remove the generic one from all 
-upstream DTS files but keep it inside the downstream files we ship to 
-users for now to avoid pain with kernel upgrades/downgrades.
-A year or two from now we can then delete the deprecated generic 
-compatibles everywhere. This all has to be synced with OpenBSD and 
-u-boot as well since both also use these bindings.
-It's gonna be rather painful but this would clean up the entire mess.
-
-
-2) We keep using the ones that are already upstream and just accept that 
-the situation is a mess and add comment above all the bindings that we 
-messed up and that this should not be used as pattern.
-In this case that means it'll just be "apple,t8015-nvme-ans2" for A11 
-without any fallback and we keep everything else the way it is.
-
-I prefer option (2) but if you really want to get rid of all this mess 
-I'll also work on (1).
-
-Would either option work for you or do you have a better idea?
-
-
-
-Thanks,
-
-
-Sven
+-- 
+With best wishes
+Dmitry
 
