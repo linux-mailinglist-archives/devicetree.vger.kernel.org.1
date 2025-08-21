@@ -1,62 +1,67 @@
-Return-Path: <devicetree+bounces-207634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1A62B301C9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:14:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B36B301D1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:16:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D5D3AC6F80
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:14:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 961397AFC30
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7BDA343D66;
-	Thu, 21 Aug 2025 18:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF5F20E6E2;
+	Thu, 21 Aug 2025 18:16:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u8QczOCu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hYp9AWFY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B543343206;
-	Thu, 21 Aug 2025 18:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC0D54C6E;
+	Thu, 21 Aug 2025 18:16:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755800053; cv=none; b=LVs+4nhGp72gGTgLpFRseVLO3lRyhnRiBcBgGE6p96ypU4y1nZAPrlNwE/kKectILTL4UG870zm2yDfg7awCcJTBk4tc0Isa/z3TonGDy9sotrkTlTvDQ6sLQTO8RITrjc8Fl4fSCiwXQKZoemFLxue7lzsJc5+UxLRNM9d5QtM=
+	t=1755800168; cv=none; b=FBoq7QBwU2rfXtMYxppRz1l12UwH+47cAyqG+0qoVSRGBq7l1hPyPGp0uEp+pSH3zvv6URGW4rmiH1q6M31NWsf8IrtifXhBWhI1ZpFj7BCo5wH8icb0RuR5JW+KerMCBJnJXQvEz2KhqbZnXjqdprdl2MQY/Gwcup/SsgNJlwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755800053; c=relaxed/simple;
-	bh=nBWsjCFrH9n831mWGNuiepEV6u0UFeNqezMi0WiliNU=;
+	s=arc-20240116; t=1755800168; c=relaxed/simple;
+	bh=veW0qVFrmP47n0MUNc/joNwN/5xsR0WE60fQR3ZiOZE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aUhd2P1LdGWpfabtveJnpoxAnoTszYYjcrUpGJdU+VBsqV17BCe+peHc7hlbGgr2jRrH1F8moCppUiSSAhDlExPtM+oJQl1rNoE6KExf8IecSRhL5cw4r2oHpMVJvH5CxCreBfb5d1vb5mAaflHkrBHWbGMjJ9pZyB5gU1ERaaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u8QczOCu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC7FEC4CEEB;
-	Thu, 21 Aug 2025 18:14:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GF64UauMTBESS5MHbXMlEwWC+OqWuT4cVyZ96j4mMfrugHi6ev92iA7NgamuiqmrrYuS3PtgdIAzyYJIvWfPtt/tvLkiiJ+yEGTE/nD2s3RC3OTRTuD67AuZAF17o1BmsrAXwDBprbsZnKejO44ajmGa/pIdf1hv4SaSOmQJogE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hYp9AWFY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C45BCC4CEEB;
+	Thu, 21 Aug 2025 18:16:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755800053;
-	bh=nBWsjCFrH9n831mWGNuiepEV6u0UFeNqezMi0WiliNU=;
+	s=k20201202; t=1755800168;
+	bh=veW0qVFrmP47n0MUNc/joNwN/5xsR0WE60fQR3ZiOZE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u8QczOCu3hUV3EkOPZUZoDb6NG/gF9OkmSC6u9l6/LSrHjBoxfoLrnSur8aZwduuU
-	 3iBm5CHqlpmIp88XTqjKZmv56SEDkoMIwKB2Ury1FTapOrxBWHEbdLwRuYdKd4AUOK
-	 ECVewGg3dzWJSlvysrqItlyGL5U4TaDsfXFPOCohGVwnOhM2K98k5wSsBVdjuWHWwL
-	 lkmvza+LcbhIy1RtJ698Ce0Vdty77capjEf3jmeFMQbXOGb4BG146PftJmWFViZxV+
-	 x+Z36fIOs9cMxtOvAtI1JXK12jGd7IBeIFKv8Sn3QrmQ+N4fMSYSUUAvERID6foUmk
-	 UM/Dc2Lidj0Rw==
-Date: Thu, 21 Aug 2025 19:14:08 +0100
+	b=hYp9AWFYRh3mF7NBTTSLlPoJwwxzpv25iOtNzhRzubHXstr/DOdqulCQZku3uk/jK
+	 06P3dfIOcjm/M2pdaPVTrhlZitfvwtEgaoBctkDJSCnVHRc7ysQ5/mi9JE3kWBK7VV
+	 7sUsQyv5eGwkFG/I1XIYUbo7T/d/tMtQJhQFKl0ORVnzrk52GEebLcreIsDWjQL417
+	 lcQr48Dt7kxy0etfmqWrwGcuaQU6wryRmP7ThyHrkxQR+havRdB4bbmCym+5EuAvnp
+	 QzLOP7I5ScwuC5aI1+t8HwNsEEiYFt31HfBZQknW9+7PSvOQJFYeY6aGNh+S2tWpPt
+	 7KO+Bft3YJRnQ==
+Date: Thu, 21 Aug 2025 19:16:03 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Chen-Yu Tsai <wens@csie.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: "biju.das.au" <biju.das.au@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [RFC PATCH 7/9] dt-bindings: pinctrl: add compatible for
- Allwinner A733
-Message-ID: <20250821-pancreas-unadvised-301d1c97d893@spud>
-References: <20250821004232.8134-1-andre.przywara@arm.com>
- <20250821004232.8134-8-andre.przywara@arm.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"magnus.damm" <magnus.damm@gmail.com>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 06/11] dt-bindings: usb: Document Renesas RZ/G3E USB3HOST
+Message-ID: <20250821-arrange-exhume-aed87b75305c@spud>
+References: <20250820171812.402519-1-biju.das.jz@bp.renesas.com>
+ <20250820171812.402519-7-biju.das.jz@bp.renesas.com>
+ <20250820-onyx-salad-c5c96f6bd480@spud>
+ <TY3PR01MB113464F2ED8BFBB823B038C038632A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,40 +69,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fN0j2auDIV16SvDf"
+	protocol="application/pgp-signature"; boundary="7GlMQwMLMmaJG8we"
 Content-Disposition: inline
-In-Reply-To: <20250821004232.8134-8-andre.przywara@arm.com>
+In-Reply-To: <TY3PR01MB113464F2ED8BFBB823B038C038632A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 
 
---fN0j2auDIV16SvDf
+--7GlMQwMLMmaJG8we
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 21, 2025 at 01:42:30AM +0100, Andre Przywara wrote:
-> The A733 contains a pin controller similar to previous SoCs, although
-> with a change in the MMIO register frame layout.
-> This SoC uses the new style of DT binding, where the pinmux values for
-> each pin group are stored in the new "allwinner,pinmux" property in the
-> DT node.
+On Thu, Aug 21, 2025 at 07:15:59AM +0000, Biju Das wrote:
+> Hi Conor,
 >=20
-> Add the new compatible to the existing A523 binding, since they share a
-> lot of features, including the number of banks and clocks.
+> Thanks for the feedback.
 >=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: 20 August 2025 21:11
+> > Subject: Re: [PATCH 06/11] dt-bindings: usb: Document Renesas RZ/G3E US=
+B3HOST
+> >=20
+> > On Wed, Aug 20, 2025 at 06:17:53PM +0100, Biju wrote:
+> > > From: Biju Das <biju.das.jz@bp.renesas.com>
+> > >
+> > > Document the Renesas RZ/G3E USB3.2 Gen2 Host Controller (a.k.a USB3HO=
+ST).
+> > > The USB3HOST is compliant with the Universal Serial Bus 3.2
+> > > Specification Revision 1.0.
+> > >  - Supports 1 downstream USB receptacles
+> > >      - Number of SSP Gen2 or SS ports: 1
+> > >      - Number of HS or FS or LS ports: 1
+> > >  - Supports Super Speed Plus Gen2x1 (10 Gbps), Super Speed (5 Gbps),
+> > >    High Speed (480 Mbps), Full Speed (12Mbps), and Low Speed (1.5 Mbp=
+s).
+> > >  - Supports all transfer-types: Control, Bulk, Interrupt, Isochronous=
+, and
+> > >    these split-transactions.
+> > >  - Supports Power Control and Over Current Detection.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >=20
+> > > +---
+> > > +$id: http://devicetree.org/schemas/usb/renesas,rzg3e-xhci.yaml#
+> >=20
+> > > +    const: renesas,r9a09g047-xhci
+> >=20
+> > How come these don't match? I don't understand your naming scheme at al=
+l, so idk which is even correct!
+>=20
+> r9a09g047 is SoC part number which also known as RZ/G3E SoC.
+>=20
+> I just followed the convention used in [1] and [2].
+> Please let me know I should change rzg3e-xhci.yaml->r9a09g047-xhci.yaml ?
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+What's the benefit of using that instead of the compatible, other than
+confusing me?
 
---fN0j2auDIV16SvDf
+>=20
+> [1]
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commi=
+t/Documentation/devicetree/bindings?h=3Dnext-20250820&id=3D44b91d61c505863b=
+8ae90b7094aee5ca0dce808f
+>=20
+> [2]
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commi=
+t/Documentation/devicetree/bindings?h=3Dnext-20250820&id=3Db2d25905366b4e67=
+91f60e6bc76a636d1b88e6f8
+>=20
+> Cheers,
+> Biju
+
+--7GlMQwMLMmaJG8we
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKdh8AAKCRB4tDGHoIJi
-0lKcAQD8RyJydvqrkR+jJa3Wl0CkRS+neXINdwjdjqrN8vpVvwEA5y2g4dnXspVS
-iaMQLZXHzU4D05bspJveUFNNS+RimgQ=
-=OXBk
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKdiYwAKCRB4tDGHoIJi
+0hSPAPoDdOTqCsOU1Lt3flNQYSPU1t6vbvU4LII0fUo2sw2JvAEA4rYPc7+ZtKBS
+xeByEQ0cVKS3bqvr0RWjOxjWXs2GRwA=
+=hwrx
 -----END PGP SIGNATURE-----
 
---fN0j2auDIV16SvDf--
+--7GlMQwMLMmaJG8we--
 
