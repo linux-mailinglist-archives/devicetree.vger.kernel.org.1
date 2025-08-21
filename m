@@ -1,97 +1,102 @@
-Return-Path: <devicetree+bounces-207168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BDDAB2ED07
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:38:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83550B2ED27
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:48:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4402D60022E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 04:35:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3933F1C23163
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 04:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230E12BEFE7;
-	Thu, 21 Aug 2025 04:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F6A1AF0A7;
+	Thu, 21 Aug 2025 04:48:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bcc.bai.ne.jp header.i=@bcc.bai.ne.jp header.b="Lf/6EaDs"
+	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="CvDA5XY4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rmx-b.mailgw.jp (smx-b.mailgw.jp [210.171.6.216])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B93C3241C8C;
-	Thu, 21 Aug 2025 04:30:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.171.6.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007A6347C7;
+	Thu, 21 Aug 2025 04:47:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755750615; cv=none; b=cpt9VgYhjP/VQtqUMj1Ux/y7BWUTjmLU17642Fpa2/vXqpdPPcBEJzYCNWDE515pq/+AX891Ffb7JbmcC7Nh028pAiudPfB/ZtVryJH5n4ugVVYzBA/gQJAqf60kLCOGR222jSo9I5aelrLIst+iNkJPBHtvi6r7rAlu37JfKWY=
+	t=1755751680; cv=none; b=WL01BL5KKljM9Qam8j8iSuu19c8B1JrxNggOKB7Wohsu0iIGfbFQQYR7BoCeRAYDWJr39hpXlVUnn519HPJ2U5j2dO3ZuAug+dZzQ9rmaK2fLUcJwQZnH9W/uEQrMCsHeJtIJfH8QQzHmTmRXWhvgVnugBSmgZYlyKjN+rLTxLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755750615; c=relaxed/simple;
-	bh=fvsDE9OhzMp4QliZrWDNKfFRbFD3fhjBN25T9pf6Mz4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=folCdCZ3rM+Oh6fwMe8vN718ZzNM7gG0liPXWB5HAwTgYiOkFFE86tu+NkT0t1MYHJOoTc+LpqkQotPP+1BXHPb0nZ9470XqG1iWFx3LXYuu9ou7u7XtGqzRY+mzzUr9XTK6a/2/grbQi/2OfLJThF2O3cS1UpF5RxnlO7KFmwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bcc.bai.ne.jp; spf=pass smtp.mailfrom=bcc.bai.ne.jp; dkim=pass (2048-bit key) header.d=bcc.bai.ne.jp header.i=@bcc.bai.ne.jp header.b=Lf/6EaDs; arc=none smtp.client-ip=210.171.6.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bcc.bai.ne.jp
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bcc.bai.ne.jp
-Received: from bccml.bai.ne.jp (bccml-a.bai.ne.jp [210.171.3.161])
-	by rmx-b.mailgw.jp  with ESMTP id 57L4JXgl015567-57L4JXgm015567;
-	Thu, 21 Aug 2025 13:19:33 +0900
-Received: from subuntu-desktop.bai.ne.jp (bai859bcd79.bai.ne.jp [133.155.205.121])
-	by bccml.bai.ne.jp (Postfix) with ESMTPA id A30E88054A;
-	Thu, 21 Aug 2025 13:19:32 +0900 (JST)
-From: Hide Hako <opi5plus@bcc.bai.ne.jp>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Hide Hako <opi5plus@bcc.bai.ne.jp>
-Subject: [PATCH] rm64: dts: rockchip: Enables sound output from the audio jack on OrangePI5 Plus
-Date: Thu, 21 Aug 2025 13:15:56 +0900
-Message-ID: <20250821041555.4781-2-opi5plus@bcc.bai.ne.jp>
-X-Mailer: git-send-email 2.48.1
+	s=arc-20240116; t=1755751680; c=relaxed/simple;
+	bh=s9beO2CbS4BGY4VluAibPH2xkOmXO0+zZTnWtdDIyoI=;
+	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
+	 Mime-Version:Content-Type; b=mHib93To+qTHFcsjI1vQxbR+gjj8zyDDsZOJFrQ7lxnVKs03WDZs+E3zOqbsJzQ8RpJldZy4j1Bxei4KqaSJ9vuLHpCQsObtu7C0RWJvV5BiZX9UQIJ27Q0QQQo6uEjvP2FD9mApXLs7mn8fkjKgD4yaLGkcI7wGHNXDKmWKewQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b=CvDA5XY4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0FCEC4CEF4;
+	Thu, 21 Aug 2025 04:47:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+	s=korg; t=1755751678;
+	bh=s9beO2CbS4BGY4VluAibPH2xkOmXO0+zZTnWtdDIyoI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=CvDA5XY4aN67rGgi2OSdyrOpEVOn7NxmxoH2uDjIDpSs8anlTLBTKbRMz/iHchRzO
+	 W6HmgQ39fV65HHE0el8KyLHwXTIPh7kS0RAZieQaiD55oz40iINm/BZdX57b3cSsit
+	 soo/PqlghcS5IlzQDrxA+Pkb6MtHp/z7ntLDFpzo=
+Date: Wed, 20 Aug 2025 21:47:56 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Brian Mak <makb@juniper.net>
+Cc: Baoquan He <bhe@redhat.com>, Dave Young <dyoung@redhat.com>, Alexander
+ Graf <graf@amazon.com>, Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar
+ <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, Dave Hansen
+ <dave.hansen@linux.intel.com>, "H. Peter Anvin" <hpa@zytor.com>, Rob
+ Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ <x86@kernel.org>, <kexec@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] kexec: Add KEXEC_FILE_NO_CMA as a legal flag
+Message-Id: <20250820214756.5c7b551e4723d9f0b5dd55e3@linux-foundation.org>
+In-Reply-To: <20250805211527.122367-2-makb@juniper.net>
+References: <20250805211527.122367-1-makb@juniper.net>
+	<20250805211527.122367-2-makb@juniper.net>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-FE-Last-Public-Client-IP: 210.171.3.161
-X-FE-Envelope-From: opi5plus@bcc.bai.ne.jp
-X-FE-Policy-ID: 3:1:23:SYSTEM, 3:1:2:SYSTEM
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=bcc.bai.ne.jp; s=20240516; c=relaxed/relaxed;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=3QZn1YoSh3Q8XHPm793CBLJp8xovUxZX6zix9L2ZwO8=;
- b=Lf/6EaDsG+DNeeEUuOTYCYh93mbMnyyB0JgnHvmdHs6iK5EG7bxI4axBZp2NNPY4p6ZjTA2VxO5V
-	KdCBgCSXAYoH1wCwuldMT5q349AuPHkzMNgbMlYSKt0o7M2VX/5JE8Tjfvi6dldZO7BUWZH4dYH9
-	5uQu2EOHWL3WXQScftjkwmJIiPueEz5BN6epWMds410OltS0o+zjmFaLcJAzJh2ol4bHzr+NWXRP
-	iN94S6DLb1j71EB/+cWl31nDM9hYEXAACoDJtLJEfRWYIy6H2aNopZBocFDQsskaVzN8/LzTe9Xd
-	n7ADw1LkGUr5o7OijPL/J6kMkMMiUivDAWt0kg==
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Currently, analog sound is not output from the audio jack.
-This patch allows you to select analog headphones in alsamixer.
-Works with kernel 6.16.1, but not 6.17.
+On Tue, 5 Aug 2025 14:15:26 -0700 Brian Mak <makb@juniper.net> wrote:
 
-Signed-off-by: Hide Hako <opi5plus@bcc.bai.ne.jp>
----
- arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+> Commit 07d24902977e ("kexec: enable CMA based contiguous allocation")
+> introduces logic to use CMA-based allocation in kexec by default. As
+> part of the changes, it introduces a kexec_file_load flag to disable the
+> use of CMA allocations from userspace. However, this flag is broken
+> since it is missing from the list of legal flags for kexec_file_load.
+> kexec_file_load returns EINVAL when attempting to use the flag.
+> 
+> Fix this by adding the KEXEC_FILE_NO_CMA flag to the list of legal flags
+> for kexec_file_load.
+> 
+> Fixes: 07d24902977e ("kexec: enable CMA based contiguous allocation")
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
-index 91d56c34a..656aac2df 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
-@@ -113,6 +113,7 @@ analog_sound: sound {
- 		simple-audio-card,mclk-fs = <256>;
- 		simple-audio-card,bitclock-master = <&daicpu>;
- 		simple-audio-card,frame-master = <&daicpu>;
-+		simple-audio-card,pin-switches = "Headphones";
- 		/*TODO: SARADC_IN3 is used as MIC detection / key input */
- 
- 		daicpu: simple-audio-card,cpu {
--- 
-2.48.1
+A description of the userspace-visible runtime effects of this bug
+would be very helpful, please.  A lot more than "is broken"!
 
+Also, could we please have some reviewer input on this change?
+
+Thanks.
+
+> --- a/include/linux/kexec.h
+> +++ b/include/linux/kexec.h
+> @@ -460,7 +460,8 @@ bool kexec_load_permitted(int kexec_image_type);
+>  
+>  /* List of defined/legal kexec file flags */
+>  #define KEXEC_FILE_FLAGS	(KEXEC_FILE_UNLOAD | KEXEC_FILE_ON_CRASH | \
+> -				 KEXEC_FILE_NO_INITRAMFS | KEXEC_FILE_DEBUG)
+> +				 KEXEC_FILE_NO_INITRAMFS | KEXEC_FILE_DEBUG | \
+> +				 KEXEC_FILE_NO_CMA)
+>  
+>  /* flag to track if kexec reboot is in progress */
+>  extern bool kexec_in_progress;
+> -- 
+> 2.25.1
+> 
 
