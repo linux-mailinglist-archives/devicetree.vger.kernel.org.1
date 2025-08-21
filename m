@@ -1,80 +1,61 @@
-Return-Path: <devicetree+bounces-207471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C9F4B2FA46
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 15:25:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80821B2FA50
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 15:27:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A2D63B4F01
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:21:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8646018830B9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6073132BF56;
-	Thu, 21 Aug 2025 13:21:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE7B6334386;
+	Thu, 21 Aug 2025 13:24:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="aXqgfhv8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE51332BF57
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 13:21:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D784E3314D7;
+	Thu, 21 Aug 2025 13:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755782504; cv=none; b=q3nnF54jRnozLmGuQ57MTCRoB7uh8jRx88nG/S65Gibv3VFpcVpQegPXUOKKxGuH/aIoSh69qMfJrNDFaJWv019Fspbv76yjX9WUzaczdwlJ9A3dJapYDKnNghfkxD1ibHI2SPY1H+6qLeWNffMrA9Lq1aZY0Qhvpqd8ZP+JTqM=
+	t=1755782674; cv=none; b=nRxG0sqS7BS0DqQAyBbEYPQzYq8KYmuoFwXcAgocj4RhWa4dIrqMIb5rA0a9/eqi7fcAzjZnejtSyWhyriJz/COgEXgos4GYUm1dPtCCYvYuQGtAtx1PH0Ku/o3vVk1vZTj2Lq4ZktcZC4sdmEjBsECS8h4uQO0IeFPTam5RpOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755782504; c=relaxed/simple;
-	bh=W8oIlS2h1YPSW2RCaPjV5TA/bkt4+gglZE1HOsmlJjQ=;
+	s=arc-20240116; t=1755782674; c=relaxed/simple;
+	bh=pKhC7fbxuTvTXd2Op7gWnhvnmstqrBBATThltGesA7M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ULIB1r7F+1Q3siyEsdHnCbA+CEj2zpLjAIGhMrmfeq4aCprL6LJy4Z3ahzzrZV8otn1kogSaT8jz2Az9eWulWHxEIUtOdQhMb/6oeqdMx8+8aXOqEKTEA6rz8PF3LR4E814/TS/c7mLBW224EKkn5tI+CZYpPZuWpuiTT1fCTBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1up5ER-0000UN-IZ; Thu, 21 Aug 2025 15:21:31 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1up5EP-001Q3r-0n;
-	Thu, 21 Aug 2025 15:21:29 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1up5EP-0082gA-0L;
-	Thu, 21 Aug 2025 15:21:29 +0200
-Date: Thu, 21 Aug 2025 15:21:29 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	Frank Li <frank.li@nxp.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	Varun Sethi <V.Sethi@nxp.com>,
-	Sahil Malhotra <sahil.malhotra@nxp.com>
-Subject: Re: [EXT] Re: [PATCH v18 3/7] firmware: imx: add driver for NXP
- EdgeLock Enclave
-Message-ID: <20250821132129.hwnnqdagalvxw2uk@pengutronix.de>
-References: <AM9PR04MB8604611B8D91B5526C9704E69545A@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <20250627084653.6vgwnm3llf3zknlp@pengutronix.de>
- <b02055bb-0995-4fd8-99f3-4ca5146eedd4@kontron.de>
- <20250630121722.wviidlggt7hguyt7@pengutronix.de>
- <087b8689-7443-4720-a94c-160edd31a5da@kontron.de>
- <AM9PR04MB8604C05882605EDB4913DA089549A@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <20250714094124.e6fnkrocnqagbm22@pengutronix.de>
- <AM9PR04MB8604EFCC5400DEBB7DF0CF49952DA@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <20250806132701.fouikyuqtzdsxqwh@pengutronix.de>
- <AM9PR04MB8604A636762E81DF9EA9A9B89532A@AM9PR04MB8604.eurprd04.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ldeLiAwbWRatTprteR527awKLo9kvzSSxLPmbtLwhwRyk8ytpygjyCccSaI938ovVAPmUXSYkSKyiyzTKjbtK3IGtq/BRmVQN1g4vnAWhRe2O8x7JOicZ2nONwZ5XY0oQV5MjgQdZ4KcJDh/CBt1FZKCoN6VrR5xnY8OMIxPsUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=aXqgfhv8; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=cpXaZMqjSZbAgdwg8mSDEftWCWDwoNsLUW2Eef19G38=; b=aXqgfhv8eg6zEIGtl21VggWx5Z
+	us+jnh526lU0meVen16i2u0Nzg/J148die1WZMebLepoq/W05DUw4lXttx+AGOaW8OdafpUnqUSbc
+	HFDoJYaEKkD83dETjzus75JXBkQZ1ol9ale5AOPta2u1D6wSsw9cPgyojjEWL6Wbyh5U=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1up5H1-005SGu-S5; Thu, 21 Aug 2025 15:24:11 +0200
+Date: Thu, 21 Aug 2025 15:24:11 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Hsun Lai <i@chainsx.cn>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	heiko@sntech.de, inindev@gmail.com, quentin.schulz@cherry.de,
+	jonas@kwiboo.se, sfr@canb.auug.org.au,
+	nicolas.frattaroli@collabora.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski@linaro.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v1 2/2] arm64: dts: rockchip: add DTs for 100ASK DShanPi
+ A1
+Message-ID: <40b212df-2a55-48d5-8479-07c2de7b7cd6@lunn.ch>
+References: <20250821110942.172150-1-i@chainsx.cn>
+ <20250821110942.172150-3-i@chainsx.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,105 +64,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <AM9PR04MB8604A636762E81DF9EA9A9B89532A@AM9PR04MB8604.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20250821110942.172150-3-i@chainsx.cn>
 
-On 25-08-21, Pankaj Gupta wrote:
-> 
-> 
-> > On 25-08-06, Pankaj Gupta wrote:
-> > > > On 25-07-09, Pankaj Gupta wrote:
-> > > > > > Am 30.06.25 um 14:17 schrieb Marco Felsch:
-> > 
-> > ...
-> > 
-> > > > Lockdown: For a verified boot setup you need to burn an eFuse at
-> > > > some
-> > > point,
-> > > > to tell the bootROM to boot only correct verified firmware images.
-> > > >
-> > > > After this lockdown it's no longer possible to burn eFuses from the
-> > > > REE
-> > > albeit
-> > > > the production line setup still requires the support.
-> > > >
-> > > Understood. ELE access from both secure and non-secure world is fixed
-> > > in Q3 release.
-> > > User can be able to modify eFuses via OPTEE.
-> > 
-> > Splitting the read and write between two drivers is even worse.
-> 
-> This could be use-case dependent. Depends on how customer will deploy its
-> solution.
+> +&gmac0 {
+> +	phy-mode = "rgmii-id";
+> +	clock_in_out = "output";
+> +	phy-handle = <&rgmii_phy0>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&eth0m0_miim
+> +		     &eth0m0_tx_bus2
+> +		     &eth0m0_rx_bus2
+> +		     &eth0m0_rgmii_clk
+> +		     &eth0m0_rgmii_bus>;
+> +	status = "okay";
+> +};
+> +
+> +&gmac1 {
+> +	phy-mode = "rgmii-id";
+> +	clock_in_out = "output";
+> +	phy-handle = <&rgmii_phy1>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&eth1m0_miim
+> +		     &eth1m0_tx_bus2
+> +		     &eth1m0_rx_bus2
+> +		     &eth1m0_rgmii_clk
+> +		     &eth1m0_rgmii_bus
+> +		     &ethm0_clk1_25m_out>;
+> +	status = "okay";
+> +};
 
-I don't get this. You introduce even more segmentation if the read-path
-uses another driver than the write-path and if this is optional.
+> +&mdio0 {
+> +	rgmii_phy0: phy@1 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x1>;
+> +		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&gmac0_rst>;
+> +		reset-assert-us = <20000>;
+> +		reset-deassert-us = <100000>;
+> +		reset-gpios = <&gpio0 RK_PC2 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&mdio1 {
+> +	rgmii_phy1: phy@1 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x1>;
+> +		clocks = <&cru REFCLKO25M_GMAC1_OUT>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&gmac1_rst>;
+> +		reset-assert-us = <20000>;
+> +		reset-deassert-us = <100000>;
+> +		reset-gpios = <&gpio0 RK_PC5 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
 
-> > Can you please point out why you can't just move the driver parts into the
-> > tee? I do see many advantages if only op-tee is used:
-> 
-> The ELE's KEY derivation function takes account of world from where, the
-> operations are requested.
-> - The key derived from secure world and from non-secure world will be
-> different.
+For these nodes only:
 
-Which is correct and no reason for not having an OP-TEE only solution.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-> There are different use-case for ELE accesses from both the worlds.
->
-> Using OPTEE ELE driver for Linux specific ELE-HSM requests, it will add
-> significant overhead.
->
-> Usecases like Transparent TLS offload while securing the secrets in HSM,
-> would incur additional overhead.
-
-Of course, the ELE communication itself will be faster if Linux
-communicates directly with the ELE instead of going through OP-TEE.
-
-But to be honest I don't think that the ELE usage itself is much faster
-than using OP-TEE and the ARMv8 Crypto-Extensions.
-
-For the ELE you need to:
- - setup the context (incl. the message and all mailbox mechanism)
- - wait for the ELE to be accessible (only one ELE, only one
-   normal-world MU).
- - transfered the messages to/from the ELE
- - the ELE processing should be equal to the CPU processing time
-
-(Side note: What is the ELE behavior if the secure-world stresses the
-ELE? Is there a MU priority so the normal-world MU may get blocked
-(never addressed) or are both MUs scheduled in round-robin?)
-
-For OP-TEE you need to:
- - setup the context
- - switch the CPU mode
- - make use of ARMv8 Crypte-Extensions
-
-On i.MX8M, which uses the CAAM (the ELE predecessor), we can verify that
-the ARMv8 crypto extensions are much faster than the crypto-engine
-itself. Therefore the CAAM is mostly unused.
-
-Are there measurements/application-notes that show that the usage of the
-ELE is more performant than using the crypto-extensions?
-
-> IOT-cases where real-time encrypted feed from sensors, will take latency
-> hit.
-
-Does the ELE support inline en-/decryption? If not, I don't think so.
-
-The data needs to be read from the CPU first, afterwards it needs to be
-prepared for the ELE and transfered to/from the ELE. Also there is just
-a single ELE with a single normal-world MU, so you need to handle
-concurrent access if there are multiple ELE-users
-(sensor+tls-offloading).
-
-If CPU is used, the data still needs to be read from the communication
-interface but afterwards doesn't need to be passed to another IP. Also
-there are multiple CPUs.
-
-Regards,
-  Marco
+    Andrew
 
