@@ -1,198 +1,185 @@
-Return-Path: <devicetree+bounces-207365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 666F9B2F4D3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:05:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BCE9B2F69A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:29:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E4F97287B1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:05:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4A1C16A7E7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:26:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02E42E0B45;
-	Thu, 21 Aug 2025 10:05:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25AF530F542;
+	Thu, 21 Aug 2025 11:25:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2111.outbound.protection.partner.outlook.cn [139.219.146.111])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF9442F0C40
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 10:05:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755770724; cv=none; b=ndTv1dOkJOqcvQqnHv2n3tuBhLz49nH2QlXMnId6+Vhdh+SsU2BcRn/J1HCTGgFYpAsC9ZLr1F+/shqf2MCDOm7dsRCycZXUEiFR+9Q01KaNIPc13GkoF1BJkGcGvP31dd4/FiwDcLgODmkguKwmaowf111oZA6RO5K7YP2zClI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755770724; c=relaxed/simple;
-	bh=Kuiy6M+c34XOWZ6h6vh9kbd23reNtEjtUaOCR7T8gLk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NH5SUtA+21PKWCLkjke3y9WDKTrokuhKVmXgz4Fz/rwuoaRcHFXtk+NnwJd26rae0LSzvk4TWhI1whjJE6wuXmVcf/13BGe0uhkNIlMa9fDwR0xuw1MbO7ZLRWVDaWnqx/+rZQayUqga4KK6DlVwsPbMQV4tGakEtYJUx7pFWNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1up2AP-0000TZ-AE; Thu, 21 Aug 2025 12:05:09 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1up2AO-001OXg-36;
-	Thu, 21 Aug 2025 12:05:08 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1up2AO-007znM-2e;
-	Thu, 21 Aug 2025 12:05:08 +0200
-Date: Thu, 21 Aug 2025 12:05:08 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Pankaj Gupta <pankaj.gupta@nxp.com>,
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8621DF756;
+	Thu, 21 Aug 2025 11:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.111
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755775546; cv=fail; b=d6qPZ7RIOamLPv7RByb1gdAZyTW6o2U0gupORf6tykPqKqGXxrqMIo++UdbJCb0q8q9q+oVaFmPq0w7ejZ6tOn59V6iHs87y3dLn1+47Gp0V7etBCq8re+maa5OVXNTuJLjmtn0Pa3AmOVUKu8ZxFW2mwUR1Hjb+dOqOQzX5U5A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755775546; c=relaxed/simple;
+	bh=cV4Cu1VcOHWL/tL08uf6YXhdo4XOIpTgmPRSqnyJL4E=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=CJgWQkPmgyX3swvrM1igouIS6sEsJwmqlWAWwbSoYeUtf4YqbdfpLaJNdjTPsuLjP708bGB4Uq+ykW3Phy1oYIbAz2F/JmGWr7W5V2xKEBXj6bbpK6Lnf0uHRaIv3c8UxoUXQX5eMYEutmi4YDPW+MwpINtneBR2Sc6P8YU7vww=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.111
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+Received: from ZQ2PR01MB1259.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:12::11) by ZQ0PR01MB1256.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:18::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.26; Thu, 21 Aug
+ 2025 11:10:42 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fbAgX+PPMANAdM/gZd6CEWyCOLwo8qrIgPKJNU1s51xX/uytA5Yeyek9a4p+R+F71ag+eG5WJrTs3QpT2AUV7b4VQAhNHJqD5afwkt9NSEf1MigINSj9O4KZtkyf6W/hZg/mtXI6R54Dm2Fb6iypulGKFOXMPn+RGrFRlobitXN17tYdXLRJqAXo+O8nnxeVOmpVFNLvODOo4PRpqOTA5E/sugsg8rb+7vOgbMcGKxUDIvvyliL2XABklGJY4c5YJm77yi5nPINIWO930Wn4G5m2/16T1/yfECxhWkPhbD0R75FH+mWu+pyjniTYiThsk3AotpuTWaJOfk85cVmACg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tvXxXwdZA9r4SvKdyqenBtsYqx/xrQfaE5lhbki4t0Q=;
+ b=SOPAqgImBVTXR2bppp9+hBGENoMlu0gxeZAsXmeDmP7ztNgQSNKpazcw+uTW2b94wMsk5C9hOF004+LG8EmkKYFXwYu+ttYEJP1fHbqRyqg9nGxoEX+ezHuLGzE0/S6LXz54HD1sRVfMmAyFAJHcKp696oxnQ3noduVBXucp6BliCoITLTwytiRxT/WI0lRyHrkED2NjB/noc4LkgMiPqTX0Svcr5NZ39ogemCJZbPWMLz/P6BBqp1K/yp/KgPc2MAoqkIMducfn2/0omkiXPyGtjtX6C4ahPzp5zy6klKUKXEBfKFci92yLSqrScR+PvdaVjYp18Cij3PjIneHS/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14) by ZQ2PR01MB1259.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:12::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.27; Thu, 21 Aug
+ 2025 10:10:27 +0000
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::2595:ef4d:fae:37d7%6]) with mapi id 15.20.9031.024; Thu, 21 Aug 2025
+ 10:10:27 +0000
+From: Hal Feng <hal.feng@starfivetech.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	Frank Li <frank.li@nxp.com>
-Subject: Re: [PATCH v18 0/7] firmware: imx: driver for NXP secure-enclave
-Message-ID: <20250821100508.sh35kuosczdhadpa@pengutronix.de>
-References: <20250619-imx-se-if-v18-0-c98391ba446d@nxp.com>
- <41909d9a-0ee8-460b-8c0a-1ceee0cf8723@kontron.de>
- <20250821095032.5o2trkwf6mdmyx4w@pengutronix.de>
- <PAXPR04MB845980CB4C7EDB091495DC058832A@PAXPR04MB8459.eurprd04.prod.outlook.com>
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: Hal Feng <hal.feng@starfivetech.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [RFC 0/3] Add support for StarFive VisionFive 2 Lite board
+Date: Thu, 21 Aug 2025 18:09:27 +0800
+Message-ID: <20250821100930.71404-1-hal.feng@starfivetech.com>
+X-Mailer: git-send-email 2.43.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BJXPR01CA0057.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:12::24) To ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PAXPR04MB845980CB4C7EDB091495DC058832A@PAXPR04MB8459.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic:
+	ZQ2PR01MB1307:EE_|ZQ2PR01MB1259:EE_|ZQ0PR01MB1256:EE_
+X-MS-Office365-Filtering-Correlation-Id: 75caa3f5-1c11-4cad-656c-08dde09af3b9
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|1800799024|41320700013|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ PAld+bx4qhYnbbCEggrhDq7EL/XeXmglUYQFEeJqGbHITl0jVaujbj9k1/WA9rpPyQgG5RoKGZPSxQztOZ8APEDRqWzrC/z+5wqjGHf4wOZwdsytsg3r+Y9mKx98i5pEUu2u+X5mhpztS63ZApfYwhsfkYztU7IOZzbTh8GUEUui/agRr4obW4oz7SmoILiWifPkMql4epw63/6Zf05F5tAe5d3GiBonBAGOBh9982SB0GxLL8w1+QXejJK+Fi4IUVzqAqg0KDgpk/pvjotw/LwYWRZkNL+L1Sd15TMNP8hB3KGyBzKnt1iLSaPZHd53hElvZ/40atIHa6Dj8l1581gkz03mFW1kYRjfjAX+Y/b0WSTcbvDSRZPlJT9wW4veHHlkKbGkaMM1C47hYd5hSGRzoVBbGL8xabP7SveXr2CrqEH5d2jWm+BsLR9Y8CkyyIYpWdOL/2tsLvS8ajJoFGhfL5F6+Gfkhx2NE+XSs7MchLBRaiKggmIEBfZXLhoSo8+tQxyVRH3H7opyojsz0nHbtUlG626qw3iMzvtYqN+byCIF1EWq2AnM/yrbj0059s2CiNsQPKmR+/CJRBrNAmj+l1TzV+6iSyx0dxNICPs=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(41320700013)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?hf80pLYbg86kAxQ/EZ2PsWhqUC01z4rJZpp/nBZ8RYnX102a8patYeY/fDBj?=
+ =?us-ascii?Q?w6P/0Jlkyoek+pbUwC8EpF4jOE0EOd70YSLqp2nRq3LK787qFkAZZWFcRyXv?=
+ =?us-ascii?Q?/ED5iyGOoIJVvG21azwvX/A0SGNoWdOq1LiJEzKHO7/t4YfTKiYS6rHZrlFb?=
+ =?us-ascii?Q?wwRCE5jG2y/VYShMUi52aoFWy1D5azHpHZGjtChMEIlIHfvyu7hG3L0i2Fxg?=
+ =?us-ascii?Q?9bDhBrKO960rQiy8fDi3DgrGVXqzGMW1asgQWnb3Qbew3u8c8xIFjqQNlw5A?=
+ =?us-ascii?Q?qfyKUF50DhIs3vhJNc36HQLpbiBERdbnyliaM/+tTkc8fbWiBjQAbI9gbFjv?=
+ =?us-ascii?Q?Opz+JfEBwZqHugh0n4RMBXPix156itU6ztyOvl2QGyRcoQRuiDjf7iDM2s/z?=
+ =?us-ascii?Q?GFONduqgkgkbKpSZ3XXt08BvNkA5bzG9m3cQW7Ej3jt0D3VMTI/hb6yifvld?=
+ =?us-ascii?Q?KchXcIrPjvyCY5wTElXnoN+swhz78tC0Vj4bR0CskrnJsHwr/sfnl7r5O9MR?=
+ =?us-ascii?Q?S6V+r7RucrYO/BDzWFbns1hb7UcWbNPhrJLKY8tmeVSpknepbIHMk/WrwOk0?=
+ =?us-ascii?Q?YdOuboBz/vtWTtEzYvhRslJmucUsLj5egVpG84C9UinPEl1HCu9Lhrps2OD4?=
+ =?us-ascii?Q?4gc5QM7mwoDPqNzeLradTfvfhzQOMCk3exSazQ8gCHHmvwc8FI/A6P5Rk+tc?=
+ =?us-ascii?Q?fwZdBd0ib68JFlJBXYmuzTUH6/y5lqMMvEKuxV3i09Hfps9tKCUvVZ5NkxAz?=
+ =?us-ascii?Q?mwbrNy3Xfv/s/095gf6UYA2dEaoNiUs20IddPSJKVw1dAc4Zk+uttGZRv+HQ?=
+ =?us-ascii?Q?EECVXQ3Ywr4WRu+seuLhg8bmTxhZ5KqSPV/n1fU1kejrId2yZeILeOP1rjpb?=
+ =?us-ascii?Q?qyw2F2xuZeGNP4mEuvWP3jy+Vb45uS8kcrNRnBsCQnWPg1L0tGzyO0LJjY/h?=
+ =?us-ascii?Q?VntEG0LtEB+6kLTRs+jSeH84cVJHijbnXODVQknY4KzcGh6aNox8LMMVJLBo?=
+ =?us-ascii?Q?9uZc9klLUZHwmzBR99Fy9k1OaMaTGIwsPK186nD2BI2gzF9/Z/6Y4yGQPdKn?=
+ =?us-ascii?Q?x1dF3OAumhVz0HMdm/8GlXq/uLMMpSJ+kKwdqXoHzT2lYZIdxlTxVP//lCP+?=
+ =?us-ascii?Q?bE6WflRRk3aj5VONl1JlFz2XVZvL/ZlBDTCHt+c8JAWedntpARJoP/Jsp4Kk?=
+ =?us-ascii?Q?ox4FRzspr5T5DciYhse56fCdIC+UB9oG3w8Wz0D2Siiyp421ErIg3GhmF0zO?=
+ =?us-ascii?Q?ba4MBRch5+B6Zjs8Glc6HCA28Iqo/FsZyY54uufyEoZweCdOV1ZYQA6eMIkU?=
+ =?us-ascii?Q?sWH3ndajYrDDb9Y7OB3ZavucZMKWS24hx9INaBHPn5Cz6mEwDjojkDMXzR3c?=
+ =?us-ascii?Q?qk152Csr56diZzMOcrmBqIwWdfZAhi0E6O3i3rxHxNhQ7HqBpMgwAf2U/Hkj?=
+ =?us-ascii?Q?hYr3I4gsF5R349M7bvZmkBJ7EeS5u25CtU2bypjGVDNrycKJIiUoUfGgnzbC?=
+ =?us-ascii?Q?9MMT/kcU9mTqDtN+TGiaA9VGgmLzVoCpV4kxgOinTnsAzdl3bRB66asw1lb9?=
+ =?us-ascii?Q?y6kzpu3xnPsK8ZY7KczALO0RYVz6yjiIvNRuWgs/epUd3NmYenBMr2xzsuw4?=
+ =?us-ascii?Q?sQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75caa3f5-1c11-4cad-656c-08dde09af3b9
+X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2025 10:10:27.6410
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 668Qm0dqoxKt2lmisOALxb62+Q1zmBpIHj8NemiL/oNmB5IDKxLOs9bvDNSkqT/T7yakSq/ts6uVy5hBZ9yp0CvNdlDwz+ebbH2L7nljsp8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1259
+X-OriginatorOrg: starfivetech.com
 
-Hi Peng,
+VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S industrial
+SoC which can run at -40~85 degrees centigrade and up to 1.25GHz.
 
-On 25-08-21, Peng Fan wrote:
-> Hi Marco,
-> 
-> > Subject: Re: [PATCH v18 0/7] firmware: imx: driver for NXP secure-
-> > enclave
-> > 
-> > > Shawn mentioned for the v17, he wanted to test this [1]. Marco had
-> > > some concerns on the general approach [2]. How can we move on?
-> > >
-> > > FWIW I have tested the v15 of this series with the ELE OTP driver [3]
-> > > on
-> > > i.MX93 and we use this currently in our downstream kernel.
-> > 
-> > From my pov, this series causes more confusions till the ELE FW fix is
-> > available because you need to be really careful during the integration
-> > in case of a verified-boot setup which are the most common setups
-> > these days.
-> > 
-> > Not sure why NXP doesn't just add the OP-TEE support for the required
-> > features e.g. eFuses, watchdog, HWRNG. The whole Linux part is mostly
-> > in place.
-> 
-> You mean let OP-TEE handle eFuses, watchdog, HWRNG, then linux
-> relies on OP-TEE to use the features?
+Board features:
+- JH7110S SoC
+- 2/4/8 GiB LPDDR4 DRAM
+- AXP15060 PMIC
+- 40 pin GPIO header
+- 1x USB 3.0 host port
+- 3x USB 2.0 host port
+- 1x M.2 M-Key (size: 2242)
+- 1x MicroSD slot (optional non-removable eMMC)
+- 1x QSPI Flash
+- 1x I2C EEPROM
+- 1x 1Gbps Ethernet port
+- SDIO-based Wi-Fi & UART-based Bluetooth
+- 1x HDMI port
+- 1x 2-lane DSI
+- 1x 2-lane CSI
 
-Exactly, due to the FW issue only one MU can be used. OP-TEE could use
-the secure MU and Linux uses the features via OP-TEE because these
-features are not very timing critical and some features are _only_
-available through OP-TEE, e.g. writing eFuses after the device was
-locked-down.
+For more details, please see
+https://www.kickstarter.com/projects/starfive/visionfive-2-lite-unlock-risc-v-sbc-at-199
 
-Regards,
-  Marco
+Hal Feng (3):
+  dt-bindings: riscv: Add StarFive JH7110S SoC and VisionFive 2 Lite
+    board
+  riscv: dts: starfive: jh7110-common: Move out some nodes to the board
+    dts
+  riscv: dts: starfive: Add VisionFive 2 Lite board device tree
+
+ .../devicetree/bindings/riscv/starfive.yaml   |   5 +
+ arch/riscv/boot/dts/starfive/Makefile         |   2 +
+ .../boot/dts/starfive/jh7110-common.dtsi      |  22 ---
+ .../jh7110-deepcomputing-fml13v01.dts         |  49 ++++++
+ .../boot/dts/starfive/jh7110-milkv-mars.dts   |  49 ++++++
+ .../dts/starfive/jh7110-pine64-star64.dts     |  49 ++++++
+ .../jh7110-starfive-visionfive-2.dtsi         |  46 ++++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  16 --
+ .../jh7110s-starfive-visionfive-2-lite.dts    | 152 ++++++++++++++++++
+ 9 files changed, 352 insertions(+), 38 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts
 
 
-> 
-> Thanks,
-> Peng.
-> 
-> > 
-> > Regards,
-> >   Marco
-> > 
-> > >
-> > > [1]
-> > >
-> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2F
-> > patc
-> > > hwork.kernel.org%2Fproject%2Flinux-
-> > mm%2Fpatch%2F20250424111632.103637-
-> > > 1-
-> > lorenzo.stoakes%40oracle.com%2F%2326356782&data=05%7C02%7C
-> > peng.fan%4
-> > >
-> > 0nxp.com%7C1ac2ac137e8a41d871c508dde098450d%7C686ea1d3bc
-> > 2b4c6fa92cd99c
-> > >
-> > 5c301635%7C0%7C0%7C638913666802700666%7CUnknown%7CTW
-> > FpbGZsb3d8eyJFbXB0
-> > >
-> > eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiT
-> > WFpbCIsIl
-> > >
-> > dUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=%2FSC9WU4CoKtPrVuhjL
-> > uLC7trQhAcbEkaCu
-> > > xohN%2FIuM0%3D&reserved=0
-> > > [2]
-> > >
-> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2F
-> > patc
-> > > hwork.kernel.org%2Fproject%2Flinux-arm-
-> > kernel%2Fpatch%2F20250619-imx-s
-> > > e-if-v18-3-
-> > c98391ba446d%40nxp.com%2F%2326443037&data=05%7C02%7Cpe
-> > ng.fa
-> > >
-> > n%40nxp.com%7C1ac2ac137e8a41d871c508dde098450d%7C686ea1
-> > d3bc2b4c6fa92cd
-> > >
-> > 99c5c301635%7C0%7C0%7C638913666802714776%7CUnknown%7C
-> > TWFpbGZsb3d8eyJFb
-> > >
-> > XB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOI
-> > joiTWFpbCI
-> > >
-> > sIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=B%2BUZWN6OjkEu27C
-> > By1%2FFKte9Uw9NQ
-> > > DA%2Be9EdPZhtAUk%3D&reserved=0
-> > > [3]
-> > >
-> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2F
-> > patc
-> > > hwork.kernel.org%2Fproject%2Flinux-arm-
-> > kernel%2Fpatch%2F20250416142715
-> > > .1042363-2-
-> > frieder%40fris.de%2F&data=05%7C02%7Cpeng.fan%40nxp.com%7C1a
-> > >
-> > c2ac137e8a41d871c508dde098450d%7C686ea1d3bc2b4c6fa92cd99c
-> > 5c301635%7C0%
-> > >
-> > 7C0%7C638913666802731697%7CUnknown%7CTWFpbGZsb3d8eyJFb
-> > XB0eU1hcGkiOnRyd
-> > >
-> > WUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoy
-> > fQ%3D%3
-> > >
-> > D%7C0%7C%7C%7C&sdata=RilSInf5N%2FfrF04qOubqT2yNjC%2FwAhy
-> > Oe6GIEfwtIGs%3
-> > > D&reserved=0
-> > >
-> 
-> 
+base-commit: 068a56e56fa81e42fc5f08dff34fab149bb60a09
+-- 
+2.43.2
+
 
