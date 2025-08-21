@@ -1,150 +1,146 @@
-Return-Path: <devicetree+bounces-207180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE28B2ED54
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:53:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F90CB2ED69
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 07:09:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05A2C1C231A0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 04:52:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25025584A3E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 05:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66522E36F9;
-	Thu, 21 Aug 2025 04:50:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5261B22A4CC;
+	Thu, 21 Aug 2025 05:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eKlf5NVX"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ADTSZn+8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162A32DFA39;
-	Thu, 21 Aug 2025 04:50:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B3A3C17;
+	Thu, 21 Aug 2025 05:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755751831; cv=none; b=YawygIaaZpaekA/MLq0XdQt5Jek9n7hlveJsLmC4BLDgzFzXVW+g9jIKOZBvUKrZ4KVchSuRo1bnbdzD/++dcPwNSeTEqF8YlCHrg0F+vplKj32rEkOo5LDEBGkUA/y50oy6HyDxgPkGZnrr5RfOL/bepAhYV3rMPsR7fGh0gR0=
+	t=1755752966; cv=none; b=n0g/OUb13Ufzp2cyj1TKUew/9StTG9hLpfoglUFJVeGaz14RZfkBW/CaP+N6YBGM2e+M21zs1SKp/40uO/mZEcRu2zFe+nWqJfEQ/AKpso+YUiRBD0M9sfex3h6pzZh/EftFw3F39FIUvfd+EoJxwx5dVTdagmPvmuHChj/CbAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755751831; c=relaxed/simple;
-	bh=UpF5QA6HbdvrWUXvkPpNz8Yu47AUnft8BjwhbRzZQbE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EP0v9iegeGDRkarYG4+fhweiwVah4fgNqO/I2YVLle4hi/EtPiJnZqpYiI4hMcH/Mt/5FGqe6bvvcgpPFuHIraJVDEqCn6UL2zPEnDRpZaydXZQhzzUJto2BGK4SAYA3JQInCepRLIjMyYUaZNQ82m9mfwmcUHGUc4iKMuWpDl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eKlf5NVX; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3b9dc5c6521so259680f8f.1;
-        Wed, 20 Aug 2025 21:50:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755751828; x=1756356628; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9dtO2gp3iJdG58JTW82ssdRgH9CvjrDF+oqDkonvQAA=;
-        b=eKlf5NVX2TZ7TUP4O4Ndu83jcBvLC0Ijlz7XBBgbHGDOMeWFGYF7rjmG1XRoGrc2Hq
-         4F8SQ8Pg6oSM0bGbCpndnDcUAzHnGBPIZdXLySaY0o5lfcTSDKwsvrBj+stMAK7mDYQ8
-         lECl2P7PzUJ7nnza4GGqSOp49KmS/IFzU7KMz+zoDJHJbNel0wdxJFops2w3oh3pfXBm
-         SsnFH4ts+Hur+TMEB27aHt9R5MYvFjqhZJ6sbNxu0L9l0XkMVQdY5LUzUo6Ulvi6vCTi
-         YfsDlhFauRj7/rQpc528ksoSPVVjB19ZXQp/Dmit1t5qb54ALf+It5TFBwrFk9Ukglqv
-         318w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755751828; x=1756356628;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9dtO2gp3iJdG58JTW82ssdRgH9CvjrDF+oqDkonvQAA=;
-        b=t1KN0/FaW+XUTf5rYkpmqwNkC4iEX46hmlhmlh03M1OSbbPe58+jwiWq2T3wN0VkX0
-         LkFb09pJraXgbLUT6hiBdYYBNEfrSHdWf/pfHkpKNv3OR6f/rM7UES10lRqFqwVmpBkZ
-         P4+GszSwvlk6dUs6yEvV1qwcDA8f1Qp0yVjBKE8ZYjJmeQTLOUXH7FaQIfxpoN0pnP72
-         dGzPlnB7LeXmz1sjvjMG4iZG1AtJitnNV0v3+i/29gFpTZbIKVVothxx9yehnr1mEmiL
-         lBBVD0LMmKnDz8n6t+yWNZdvgqp3ZKWT3MbBO45XKmrAz/ribDTAi1eyqNJrGRb+0FPe
-         2Cjw==
-X-Forwarded-Encrypted: i=1; AJvYcCX6P81+IuSf4Ymop0Psgv+bXJ9c2GldouzESNoEu7LjQACDPblHi/ZPkrtAhgp8byRpP9r5Ot3/+ey/@vger.kernel.org, AJvYcCXFgf02NiVZ90/D8z0GsOi5BVgUOJPn2cvEnAQJx88SyGie1IQesiuTBXEzbpzWE/FCHev+MCW1Pbk=@vger.kernel.org, AJvYcCXJZ6rmc319XOL2JqcwPrNRNR9QpDunAhq03fKy2Kf0Rjwv329kFg4Y16qAC7vWMoSsuIFBIwDPphe02wWM@vger.kernel.org, AJvYcCXJzvFSLgmQp04FwqLxohjrggIb+qI7vErBW6QLZ2C+WqOPAZarbbetRNMTyPsir/FwOIigBtHom8MYEC8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlaY7O8HqAcKdtlwRVfE5dj+wHfqZZQ+AHd9qYf9S0wQPn8F2D
-	zWtdt2z8M+u03lmeIQMoAVVurjVPKCWp5we7SHFgqEfS9ANV5auY6l0+Q0oTmgo5qE3Z9RpMnnT
-	OgcLM2kr0KILeOYMt55D7dslacJqghwA=
-X-Gm-Gg: ASbGnct1BB+EYi0glILJzV5aiQALoo2Re7fdXb9HPnseQTBddebG9SzYUa8kf19Prqe
-	8/3AK/FciYI5P5eBGW5WaPVofj1fJWNY+MjBZOxidPZWXFlrR5xmqw1p8qwwX+v2ddxXR6DOwz0
-	TiWFLoGIFnPaNlBmG6FzFYI0bmn2v/0nL8SszqYe+CNebBVq0IRKHphOPNb8ubTbb1gf0hM+vwF
-	97covmaMNfG4whA8Y4=
-X-Google-Smtp-Source: AGHT+IGYecgy9j572GZwpeAgWSoV3mseOhv6g1iDfgwoDh9FQ1EL/Iny+JK2np6zkwE9E5Tijf8v1e6C3NJH07riTbo=
-X-Received: by 2002:a05:6000:144d:b0:3b9:7c00:b6a8 with SMTP id
- ffacd0b85a97d-3c496028fe5mr742205f8f.41.1755751828104; Wed, 20 Aug 2025
- 21:50:28 -0700 (PDT)
+	s=arc-20240116; t=1755752966; c=relaxed/simple;
+	bh=7NK2zGbzjLLRpqod79quDmy2E0aLjV9FgP8j/73b5vE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GO5CvAq9M+NXUeBKKjKdfWFcEWN3F3Pz7F2hgpDZrWmYpLbnDwGB82TShDagJ1J4XH4bwvMdlHvO9YcHC8Bo+cD9uVBCQSmzUoTiJAfMTBmvFZfrgv5NjtOjdStZy80mEmSCwOTn5G/b1SKfO8+jgrbElpYi8Bta4H5SMW5kTwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ADTSZn+8; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57L59Hcf411850;
+	Thu, 21 Aug 2025 00:09:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755752957;
+	bh=hFB3oC/joJWZDcoQlOQoYsmel5gZzcnRSFC0rE3cftg=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ADTSZn+8UYtlDiHeijjFNw4nqgkzvEBRHAmOdfnJDVjd91hUvHWgea8fWeW220BUr
+	 3qe9QDWQYoQKoVhArf5XvRmhccoNIXoh/1F2cI+RLO7d2piuitCtjwmaE5Jg/TrN90
+	 z5sSiKgk4hzEuYZnD/3Zo5wxVCHQlfiW2p4z/KUw=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57L59Huj1883868
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 21 Aug 2025 00:09:17 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 21
+ Aug 2025 00:09:17 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 21 Aug 2025 00:09:17 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.231.84])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57L59Gf41621045;
+	Thu, 21 Aug 2025 00:09:16 -0500
+Date: Thu, 21 Aug 2025 10:39:15 +0530
+From: s-vadapalli <s-vadapalli@ti.com>
+To: Michael Walle <mwalle@kernel.org>
+CC: s-vadapalli <s-vadapalli@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j722s-main: add legacy PCIe interrupts
+Message-ID: <663079dc-54cf-4f29-a68b-fc9678c44af0@ti.com>
+References: <20250819111317.1082515-1-mwalle@kernel.org>
+ <ae898bf0-705f-4e36-9664-37c401f5fee7@ti.com>
+ <DC7B5N92V9KZ.34OXBFYOIEWBO@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250820114231.150441-1-clamor95@gmail.com> <20250820114231.150441-5-clamor95@gmail.com>
- <20250820-spinning-arrogance-31b71d969bb8@spud>
-In-Reply-To: <20250820-spinning-arrogance-31b71d969bb8@spud>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 21 Aug 2025 07:50:16 +0300
-X-Gm-Features: Ac12FXyqEn6pzjt3rR9t2N0ja6nKMmgk5yQvgEV89ksNAHwqJ8_loYldvESgGtU
-Message-ID: <CAPVz0n35onsKZGjWDFGX+h7AoOxkd9S4QsR3ABNGxzcj6iXs9Q@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] dt-bindings: thermal: tegra: add Tegra114 soctherm header
-To: Conor Dooley <conor@kernel.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	"Jiri Slaby (SUSE)" <jirislaby@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <DC7B5N92V9KZ.34OXBFYOIEWBO@kernel.org>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-=D1=81=D1=80, 20 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 22:4=
-4 Conor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Wed, Aug 20, 2025 at 02:42:29PM +0300, Svyatoslav Ryhel wrote:
-> > This adds header for the Tegra114 SOCTHERM device tree node.
+On Wed, Aug 20, 2025 at 04:00:45PM +0200, Michael Walle wrote:
+> Hi Siddharth,
+> 
+> On Wed Aug 20, 2025 at 3:52 PM CEST, s-vadapalli wrote:
+> > On Tue, Aug 19, 2025 at 01:13:17PM +0200, Michael Walle wrote:
 > >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../dt-bindings/thermal/tegra114-soctherm.h   | 20 +++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> >  create mode 100644 include/dt-bindings/thermal/tegra114-soctherm.h
+> > Hello Michael,
 > >
-> > diff --git a/include/dt-bindings/thermal/tegra114-soctherm.h b/include/=
-dt-bindings/thermal/tegra114-soctherm.h
-> > new file mode 100644
-> > index 000000000000..b605e53284fe
-> > --- /dev/null
-> > +++ b/include/dt-bindings/thermal/tegra114-soctherm.h
-> > @@ -0,0 +1,20 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/*
-> > + * This header provides constants for binding nvidia,tegra114-soctherm=
-.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_THERMAL_TEGRA114_SOCTHERM_H
-> > +#define _DT_BINDINGS_THERMAL_TEGRA114_SOCTHERM_H
-> > +
-> > +#define TEGRA114_SOCTHERM_SENSOR_CPU 0
-> > +#define TEGRA114_SOCTHERM_SENSOR_MEM 1
-> > +#define TEGRA114_SOCTHERM_SENSOR_GPU 2
-> > +#define TEGRA114_SOCTHERM_SENSOR_PLLX 3
->
-> > +#define TEGRA114_SOCTHERM_SENSOR_NUM 4
->
-> Why is this "NUM" sensor not in the driver?
-> hint: if this is the number of sensors, remove it from the binding ;)
->
+> >> The kernel will try to map the legacy interrupt pins, but the
+> >> interrupt mapping is missing from the device tree and thus that
+> >> fails with:
+> >> 
+> >>    pcieport 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
+> >> 
+> >> Add the node for the legacy PCIe interrupts to fix that. This is just
+> >> compile-time tested.
+> >
+> > INTx is not supported by the driver as explained at:
+> > https://lore.kernel.org/r/be3e3c5f-0d48-41b0-87f4-2210f13b9460@ti.com/
+> >
+> > The patch to fix the error displayed in the logs was posted at:
+> > https://lore.kernel.org/r/20240726135903.1255825-1-s-vadapalli@ti.com/
+> > but wasn't accepted as-is. A different approach will be required to fix
+> > of_irq_parse_pci() instead as pointed out at:
+> > https://lore.kernel.org/r/20240729080006.GA8698@thinkpad/
+> 
+> Thanks for the pointers.
+> 
+> I've just checked the J722S errata sheet and there is no such
+> erratum. So, is that sheet outdated or was it fixed?
 
-It must have got here by accident, thank you for pointing
+According to the Errata documents, the errata only affects J721E SoC.
+The procedure to enable the INTx support is the following:
+1. Update DT bindings to indicate that INTx is valid only for SoCs other
+   than J721E SoCs on the basis of the compatible.
+2. Add support in the pci-j721e.c driver for INTx.
+3. Finally, the current patch or patches for other SoCs to add INTx can
+   be posted and merged.
 
-> > +
-> > +#define TEGRA_SOCTHERM_THROT_LEVEL_NONE 0
-> > +#define TEGRA_SOCTHERM_THROT_LEVEL_LOW  1
-> > +#define TEGRA_SOCTHERM_THROT_LEVEL_MED  2
-> > +#define TEGRA_SOCTHERM_THROT_LEVEL_HIGH 3
-> > +
-> > +#endif
-> > --
-> > 2.48.1
-> >
+The following series which was posted in 2021 corresponds to 1 and 2
+above:
+https://lore.kernel.org/r/20210811123846.31921-1-kishon@ti.com/
+
+Please note that the above series was included in the downstream (TI)
+Linux in the past. It was observed that despite the Errata not affecting
+the AM64 SoC (contains a Cadence PCIe Controller and is programmed by the
+same pci-j721e.c driver), legacy interrupts were missed and resulted in the
+PCIe Endpoint device becoming non-functional. Resolving this issue
+required retriggering the interrupt following which the device became
+functional.
+
+Therefore, it is encouraged that MSI/MSI-X are used instead. If INTx is a
+necessity (unlike the current patch which only aims to prevent error logs
+from showing up), then the aforementioned series can be used with the
+disclaimer that it may still lead to interrupts being missed.
+
+Regards,
+Siddharth.
 
