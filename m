@@ -1,197 +1,202 @@
-Return-Path: <devicetree+bounces-207705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5EDAB30733
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 22:54:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01066B30841
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 23:22:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B330643A92
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:48:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65CFB7AC51E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 21:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D425935334D;
-	Thu, 21 Aug 2025 20:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954052C0267;
+	Thu, 21 Aug 2025 21:21:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="koPwVTjr"
+	dkim=pass (2048-bit key) header.d=landley.net header.i=@landley.net header.b="E7Ze60CN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bird.elm.relay.mailchannels.net (bird.elm.relay.mailchannels.net [23.83.212.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF76B393DC8;
-	Thu, 21 Aug 2025 20:23:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755807840; cv=none; b=Q/DnzdoRWFoDvWj0GQEcS33yHG7pQOU/j985p8+w3mpSK90JOh0NglXZS4dIfxZvS7eK0HPPQxyXtJsIdRbLIoPr8+kwlv2ys0VVqkA/uoI3efh2ET4EYO54XeuNtGiAL7SmOsx/KjHxFwkjbY+xMGUALCTUZ1zUk+BYOMtmKeo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755807840; c=relaxed/simple;
-	bh=Cizxs/P2irfDlryDsjxKycybTWORDLrQ1LUKqF1th7Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OoYZ68qhwtR3FX8KO2+m7nFw+VF2nTow2yil3T3pVAMHFQI8NuS+DsZvgilQQGwegdUHBGE0xTjrGscjd8coPWDdzHYwthg6DRcwqjK/xff/BK+Dtu546pEPX+j42XYr94gB8PxcmEMWI0akZiz2sA8Q3RFXTiOA2b36nmaGxTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=koPwVTjr; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-afcb78d5dcbso214566666b.1;
-        Thu, 21 Aug 2025 13:23:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755807837; x=1756412637; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gXlwtKU45Pzzd2YVoa2TN0t0WP5vR33r5koKI6Tl+Ko=;
-        b=koPwVTjrTf4PRWtGi1WjhLYKOcNWt3cgx8NmVxdo7e02WG91cHeLNIKzdXwyWfzUch
-         rVyZ2aaSTnPqdQx3TfcCTVmWwLUPRxWuxuDyCq3tjQfghlsa4UdtRTKCAX6zDHEaV7iS
-         FhkjukcoteeMFoNgyO1mlCHLw9EWaAlEcoXlRtgGVBrSUVLVxEwuIQcASS+bzJdaj4sT
-         xTERZFsZsOFsnyi59g1DPlg6AzmRCkQWEvkKjItfNfbvCk9WsDYLQQoNGGEJ9jL9FFiq
-         bDCUCyEDMKNZgmfHQFsII5u+8VQJtBTOmNo/3d7/6pcuAej7RuDfXU/u0R2VlOu/NMMd
-         V4NQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755807837; x=1756412637;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gXlwtKU45Pzzd2YVoa2TN0t0WP5vR33r5koKI6Tl+Ko=;
-        b=C1g1tb8b+f4K7BJNj6XB1KXVwdYMm7ZgWOSc0kZ7JFErrpe9EOqzo90mcdA51M/s1N
-         IBtd5BDdiPm58Bsa42jkKMrKoeVJWzHQ7ziVVHxCTqPG2pkje1pX/IGynjkEhTI3dw+6
-         MSTSpkkD3Zc7KfzLM89k0MUlsRg7Ge/z+5zCrYlWIBntL/7x375XFSLE4r+kAhwj/Zqt
-         e/Tm6bLeTpLA/N/3TqO72KkmJtEGlZNDlFV0IfqV8RVKmk6nyH+XpEzB009PD9Nn0RX0
-         dri0vHNRMitEF56TLkFnUvCp3K4JotbVprOLVPF7fpq75pJaTu+6ZnvKtM1O3ugbU3R+
-         P8hg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4b0jnlazX9FMLg6EVTcG+Jl+7bednHQn+QU4jysHLPtQON+bY7uPw51eqv4yvVhiHvlKlcQFxq/9a@vger.kernel.org, AJvYcCVkaTquWiqRoo+qP/feJe9sM0pNfGxj1XNv58wnQbNF2w5frPdmCL0SAO7VtDQ5VY6JOTmS145RzkLCNA==@vger.kernel.org, AJvYcCXRSPpxijEJpdbfvF7+pKFXdCAgcsilWRTQDSyI0LFrl4nLbm2IBSzgU0fHuk37/uHtGBduj9rNj4u7DyC+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2rgxyxU9ztUBUPXT16GJNvULPbiMpDZ9hrbJpsPhmPry7qQMz
-	evkkDa7eIWWVBIsbN0dB+SQacneqjvExJkvy5VnLt8MHoXHycqngSXe/ngAt3EHEU9pctWwPLnX
-	J3slyDTmzkv6qE7jWVJBi/Do4941CKno=
-X-Gm-Gg: ASbGncvfyPUHA9pDNj6vFCCGVYssOHxpYqE4+Y06kDLjz80M5DWJH3Y48LyDaIoXClB
-	RMz9zWT8s9vvcIh3gmPMmhQR3wLTXOeWYSrXU7pxQJTxaly22MJFIuoIIba4f1WE/Um+WwehDg4
-	9ZEeHVs9uSiUHfPRzhZe0wyUo1vXEtrSoxl+NJ2ldXfBnF4J2L7lrVP2Sh64Qs2tfo7oBwg+mM9
-	PwT6iw=
-X-Google-Smtp-Source: AGHT+IHIYxAlW0wdKVqXqWGmik0VHZ23YZswPVolpElJrmrIAwK3nTUptY7Cx0xWOz0onASSV4A6nfB3jFRInlgOceI=
-X-Received: by 2002:a17:907:7ea9:b0:afe:11:2141 with SMTP id
- a640c23a62f3a-afe2953815amr41949266b.31.1755807837104; Thu, 21 Aug 2025
- 13:23:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFE52BD001;
+	Thu, 21 Aug 2025 21:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.212.17
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755811316; cv=pass; b=aaORIOpLJVEA+8B8f+l1Eguax2mXDzlPiHWtbIqIX7uUr8BD0wIaolgJPN3EhfigLKe2vQU5NIBVaRzSHzXITieA1NG6a8y2A41NlBTn/tqo2tD54EW4KsErJLhxdMIauW85TWKf1GVfdohWw8W1YKONeLihrfgcynLQp8aIH0U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755811316; c=relaxed/simple;
+	bh=gHc9N+sPNmbFdoVvlcXaXBnEUwSsL2C2pPfbjITtm2c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T24ZERiKtkukb2gip27u04p3LUQ2LzdbRX0C7Q7gHbl6my40KWs8SMPfIl1Qe3ffqIclOMSQzuc2POlhxgQ5Zybfc171Mpr/qb0aUFeRICrvAFE5BlSU/y+k/ewng1EPNnhJXrQ48gD2LoLe0isoUAuS8XhPYYpoiFODy4IS5BA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=landley.net; spf=pass smtp.mailfrom=landley.net; dkim=pass (2048-bit key) header.d=landley.net header.i=@landley.net header.b=E7Ze60CN; arc=pass smtp.client-ip=23.83.212.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=landley.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=landley.net
+X-Sender-Id: dreamhost|x-authsender|rob@landley.net
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 67DB02C60D5;
+	Thu, 21 Aug 2025 21:02:47 +0000 (UTC)
+Received: from pdx1-sub0-mail-a254.dreamhost.com (trex-blue-3.trex.outbound.svc.cluster.local [100.96.37.67])
+	(Authenticated sender: dreamhost)
+	by relay.mailchannels.net (Postfix) with ESMTPA id BB8372C6073;
+	Thu, 21 Aug 2025 21:02:44 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1755810165; a=rsa-sha256;
+	cv=none;
+	b=VA395R/iBN/iOB+2AT3Sx/h1V57sN4gvPNEF/dlZq+Ge5opPfCJ/TpPnVatyDp0CHNJxEv
+	tfDOgcPj/9I3SSVqRyD5TEldt/tqv/xweW+60BgBStohBbFv8e2ynhrglN2nyyxh25jZQA
+	YORnb92Kh16oV1zpUf9tESKgdmeBarvhIeE7vF0+64eZYgtrrOlVucRk0kDNPxv7OQ5qY/
+	E2N1+scnJbeXWvTnXGmf8uS0oFkgbmIM+zJq5T0ul1As2+W1OWWVvNCUD+YIrVnck8t/2A
+	ji//1hdJ9dZfNDYeeIgIAVsb/CjjUaJAfb6JHpd7XAcTnKIglfss8ZWkvQuNWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1755810165;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=PiRdnVkb3Mdck8rf90p7+DnOfB9A+JduUXfai72Z7+4=;
+	b=fvPcQG0GmaTFX0s1SvnPmsgzy7jrpdnnof5z+FJUBRcZNz6Yrb7EjpplCBztg5XKo8l85X
+	vHXX5ehr9qCvBYjGuVtmUvNX7211fZM0R9Xql2poMvPoFXHnoBmEFYsyNj4CC5rM9SmwHO
+	EAPh/w93JrVjFX3ybeA5SbFS+CvE6mYStAXAMcPUXA2p3YmsqIRTR+lWEtDtz6xxqipg7a
+	wI/lpLAQAIurkhZwCy7PSEzAmul2gk48lwVbObDJY/IKmMwgd9RSptaiYI45tUTfv3K7ml
+	HcRlx8kRl3opZw0WLx0xmQEJVlTb7vOavtegGw4yurw/8Zt+PJG4G0s6aM2eNg==
+ARC-Authentication-Results: i=1;
+	rspamd-b597879cf-ngsbq;
+	auth=pass smtp.auth=dreamhost smtp.mailfrom=rob@landley.net
+X-Sender-Id: dreamhost|x-authsender|rob@landley.net
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: dreamhost|x-authsender|rob@landley.net
+X-MailChannels-Auth-Id: dreamhost
+X-Macabre-Bubble: 2f8dd21033f8e097_1755810167283_2720825162
+X-MC-Loop-Signature: 1755810167283:381200934
+X-MC-Ingress-Time: 1755810167283
+Received: from pdx1-sub0-mail-a254.dreamhost.com (pop.dreamhost.com
+ [64.90.62.162])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.96.37.67 (trex/7.1.3);
+	Thu, 21 Aug 2025 21:02:47 +0000
+Received: from [IPV6:2607:fb90:faae:51e1:d9d4:2e42:ae75:9827] (unknown [172.58.14.113])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: rob@landley.net)
+	by pdx1-sub0-mail-a254.dreamhost.com (Postfix) with ESMTPSA id 4c7G431Sm7zDF;
+	Thu, 21 Aug 2025 14:02:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=landley.net;
+	s=dreamhost; t=1755810164;
+	bh=PiRdnVkb3Mdck8rf90p7+DnOfB9A+JduUXfai72Z7+4=;
+	h=Date:Subject:To:Cc:From:Content-Type:Content-Transfer-Encoding;
+	b=E7Ze60CNKAiVA+WD8T4gncR5kdArdw1idFuny3yPyKtIHpxERaG5Sb3tizBAEbBL/
+	 1rZpQo1GhUTePym7uXRlMqKbqQScRPDFlva0DiRf+aR0LSjS/M+i/0OSjzvlYfTtCd
+	 IgsnjyNyyunyCtWVkBI/altwWbggCNtHJGZ7XJ3zZhXH203GZsTE7otLwmIRNL/uUV
+	 Fjdx1AxvsaHevwhNKe1sIfhj+tUt6JSudtond1NWpomo1JJ7C5lGodn70E5f4LSu22
+	 96C1BYubVxQ4CfoUOIKdH3ZsHxphuqfLytr7+LmMt956XvMF7DNvFXe8gaUzBPpzRP
+	 pM+ZgqBhRFNkw==
+Message-ID: <4df745a6-2997-4eee-87b1-0c77ff46cfdd@landley.net>
+Date: Thu, 21 Aug 2025 16:02:41 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250820163120.24997-1-jefflessard3@gmail.com>
- <20250820163120.24997-5-jefflessard3@gmail.com> <CAHp75VfyR0cjnC6C6Xy8x9nTREdAgbjo18RLYNRzoLc6KmXnTA@mail.gmail.com>
- <20250820-clock-easiness-850342f716f3@spud> <CAHp75Ve-bM5ax3=0JkmaU-Kx1ME3VW34=Eqp2bRBA6mO6nZHmg@mail.gmail.com>
- <20250821-diminish-landlord-653a876e3cec@spud> <CAHp75VcDDCjt4vTpnSCprfAzK+czJiB_PRDXuLkvtuHZg4SLEw@mail.gmail.com>
- <CAHp75VfVYkmYFHdQgs1+3=jy50SuOaEXcT8Q8qXS34ctxRYKbg@mail.gmail.com> <20250821-hardener-underpay-e30d1eb6de6b@spud>
-In-Reply-To: <20250821-hardener-underpay-e30d1eb6de6b@spud>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 21 Aug 2025 23:23:20 +0300
-X-Gm-Features: Ac12FXzdR4vC2rgeo4a0VtMuzqjNviRhr0QkcdAlTAL5QGGovFj_YGB-LNhc5q8
-Message-ID: <CAHp75Vf4evsVh8gDAWWpUDfLL-E1FZ2nGE1KusWhn1jAhw=Jjg@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] MAINTAINERS: Add entry for TM16xx driver
-To: Conor Dooley <conor@kernel.org>, Joe Perches <joe@perches.com>
-Cc: =?UTF-8?Q?Jean=2DFran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert@linux-m68k.org>, devicetree@vger.kernel.org, 
-	linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	=?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, 
-	Boris Gjenero <boris.gjenero@gmail.com>, Christian Hewitt <christianshewitt@gmail.com>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Paolo Sabatino <paolo.sabatino@gmail.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: net: Add support for J-Core EMAC
+To: Rob Herring <robh@kernel.org>, "D. Jeff Dionne" <jeff@coresemi.io>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Artur Rojek <contact@artur-rojek.eu>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250815194806.1202589-3-contact@artur-rojek.eu>
+ <aa6bdc05-81b0-49a2-9d0d-8302fa66bf35@kernel.org>
+ <cab483ef08e15d999f83e0fbabdc4fdf@artur-rojek.eu>
+ <CAMuHMdVGv4UHoD0vbe3xrx8Q9thwrtEaKd6X+WaJgJHF_HXSaQ@mail.gmail.com>
+ <26699eb1-26e8-4676-a7bc-623a1f770149@kernel.org>
+ <295AB115-C189-430E-B361-4A892D7528C9@coresemi.io>
+ <bc96aab8-fbb4-4869-a40a-d655e01bb5c7@kernel.org>
+ <CAMuHMdW0NZHCX1V01N4oay-yKuOf+RR5YV3kjNFiM6X6aVAvdw@mail.gmail.com>
+ <0784109c-bb3e-4c4e-a516-d9e11685f9fb@kernel.org>
+ <CB2BF943-8629-4D01-8E52-EEC578A371B5@coresemi.io>
+ <20250820213959.GA1242641-robh@kernel.org>
+Content-Language: en-US
+From: Rob Landley <rob@landley.net>
+In-Reply-To: <20250820213959.GA1242641-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Aug 21, 2025 at 11:11=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
-> On Thu, Aug 21, 2025 at 10:35:07PM +0300, Andy Shevchenko wrote:
-> > On Thu, Aug 21, 2025 at 10:33=E2=80=AFPM Andy Shevchenko
-> > <andy.shevchenko@gmail.com> wrote:
-> > > On Thu, Aug 21, 2025 at 8:40=E2=80=AFPM Conor Dooley <conor@kernel.or=
-g> wrote:
-> > > > On Wed, Aug 20, 2025 at 11:29:47PM +0300, Andy Shevchenko wrote:
-> > > > > On Wed, Aug 20, 2025 at 10:52=E2=80=AFPM Conor Dooley <conor@kern=
-el.org> wrote:
-> > > > > > On Wed, Aug 20, 2025 at 10:08:06PM +0300, Andy Shevchenko wrote=
-:
-> > > > > > > On Wed, Aug 20, 2025 at 7:31=E2=80=AFPM Jean-Fran=C3=A7ois Le=
-ssard
-> > > > > > > <jefflessard3@gmail.com> wrote:
-> > > > > > >
-> > > > > > > Besides the missing commit message, the main part of this pat=
-ch should
-> > > > > > > be merged with the patch 2 where the YAML file is being added=
-.
-> > > > > > > Otherwise it will be a dangling file. I dunno if DT tooling h=
-as its
-> > > > > > > own concept of a maintainer database, though.
-> > > > > >
-> > > > > > get_maintainer.pl will pull the maintainer out of the file, so =
-it won't be
-> > > > > > truly dangling without a way to associate Jean-Fran=C3=A7ois wi=
-th this file, if
-> > > > > > that;s what you mean.
-> > > > >
-> > > > > Let's assume patch 2 is applied and patch 4 is not, what will be =
-the
-> > > > > result of get_maintainer.pl for the YAML file?
-> > > >
-> > > > Andy Shevchenko <andy@kernel.org> (maintainer:AUXILIARY DISPLAY DRI=
-VERS)
-> > > > Geert Uytterhoeven <geert@linux-m68k.org> (reviewer:AUXILIARY DISPL=
-AY DRIVERS)
-> > > > Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTEN=
-ED DEVICE TREE BINDINGS)
-> > > > Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE =
-AND FLATTENED DEVICE TREE BINDINGS)
-> > > > Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FL=
-ATTENED DEVICE TREE BINDINGS)
-> > > > "Jean-Fran=C3=A7ois Lessard" <jefflessard3@gmail.com> (commit_signe=
-r:1/1=3D100%,authored:1/1=3D100%,added_lines:471/471=3D100%,in file)
-> > > >                                                                    =
-                                                 ^^^^^^^
-> > >
-> > > Which is a git lookup heuristics. If you disable that, there is no
-> > > maintainer for the file. Try with --m and --no-git (IIRC the option
-> > > name).
->
-> Also, I think linewrap might done some fuckery cos it was the
-> "in file" I was pointing to, pretty sure that's not coming from git.
-> I tried ./scripts/get_maintainer.pl --nogit --nogit-fallback -f Documenta=
-tion/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
-> (I think --nogit-fallback is the salient option, --nogit is a default
-> actually) and I got:
-> Andy Shevchenko <andy@kernel.org> (maintainer:AUXILIARY DISPLAY DRIVERS)
-> Geert Uytterhoeven <geert@linux-m68k.org> (reviewer:AUXILIARY DISPLAY DRI=
-VERS)
-> Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEV=
-ICE TREE BINDINGS)
-> Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FL=
-ATTENED DEVICE TREE BINDINGS)
-> Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENE=
-D DEVICE TREE BINDINGS)
-> "Jean-Fran=C3=A7ois Lessard" <jefflessard3@gmail.com> (in file)
->                                                   ^^^^^^^
-> and the in file still appears.
+On 8/20/25 16:39, Rob Herring wrote:
+> On Mon, Aug 18, 2025 at 10:55:51PM +0900, D. Jeff Dionne wrote:
+>> J-Core SoCs are assembled with an SoC generator tool from standard
+>> components.  An SoC has a ROM from soc_gen with a Device Tree binary
+>> included.  Therefore, J-Core SoC devices are designed to ‘just work’
+>> with linux, but this means the DT entires are generic, slightly
+>> different than standard device tree practice.
+> 
+> Yes. Though doesn't the SoC generator evolve/change? New features in the
+> IP blocks, bug fixes, etc. Soft IP for FPGAs is similar I think.
 
-Cool, thanks for providing this, TIL! Is this documented somewhere? I
-mean how should I know that YAML files are not orphaned by default
-(assuming they are correct and have a "maintainer" field inside)?
+The j-core guys almost never change the hardware interface on a deployed 
+I/O device: when the existing interface is too limiting they do a new 
+design with a different interface. (You'll notice in the github soc_top, 
+components/ has ddr and ddr2, and components/misc has aic and aic2 from 
+when the interrupt controller changed, for example. Those aren't version 
+numbers, those are rewrites.)
 
-> devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE =
-TREE BINDINGS)
-> linux-kernel@vger.kernel.org (open list)
-> AUXILIARY DISPLAY DRIVERS status: Odd Fixes
->
-> > Actually doesn't checkpatch complain in this case?
->
-> The usual warning about MAINTAINERS appears ye, the one that appears
-> whenever a file is moved, created or deleted. I personally don't care
-> about that, as long as the end result of a series deals with it since
-> the file will produce the correct maintainer list in a bisection etc
-> anyway. Of course, your subsystem your prerogative.
+Outputting a different constellation of devices/busses from the SOC 
+generator is more akin to running "make menuconfig". There isn't an 
+ancestor/descendant relationship there, it's a generator working from a 
+configuration to instantiate and connect existing components.
 
-Shouldn't checkpatch also be fixed at least for that part as
-get_maintainer does?
+> There
+> we typically just require the versioning schema be documented and
+> correlate to the IP versions (vs. made up v1, v2, v3).
 
---=20
-With Best Regards,
-Andy Shevchenko
+There hasn't been a new version of the 100baseT specification recently.
+
+The same chunk of bitstream is still driving the same PHY chips on the 
+boards (or compatible, long out of patent) via the same small parallel 
+bus at 50mhz. The engineers are no more interested in changing the 
+kernel side interface than they are in changing the PHY side interface.
+
+> This is all pretty niche I think, so I'm not too concerned about what 
+> you do here.
+
+Eh, not that niche. Just hardware development culture rather than 
+software development culture. What's the model number on your microwave? 
+If you need to replace it, how many versions will you advance?
+
+Chip model numbers tend to be assigned by marketing well after the fact, 
+and don't necessarily have a linear relationship even for the big boys 
+making central components other people build entire systems around:
+
+https://en.wikipedia.org/wiki/List_of_Qualcomm_Snapdragon_systems_on_chips
+
+The Pentium II's development name was Kalmath, Pentium III was Katmai, 
+then Pentium 4 was a space heater and everybody backed up and switched 
+to "Pentium M" (which was MEANT to be a mobile chip but was instead a 
+"not stupid" chip) and then they did "Core"... And then "Core 2" and 
+"Core Duo" were different things and "Core 2 Duo" was both of those 
+things, and then they had i3 and i5 and i7 but they all came out at the 
+same time...
+
+Jeep produced a "Cherokee" for 50 years and expected the user to step 
+from a 1973 model to a 2023 model and be able to drive it the same 
+(modulo major flag day changes like stick shift or leaded gasoline) with 
+zero learning curve. Hardware developers of today go "here's an sd card, 
+it goes click-click into your device and it just works, the only numbers 
+you really need to know are price and capacity" (modulo microsd, but 
+they still provide adapter sleds).
+
+Software developers think that "DOS 2.0" and "DOS 3.0" or "Windows 3.0" 
+and "Windows 3.1" being profoundly different and largely incompatible is 
+just normal, and track that stuff minutely.
+
+Different culture.
+
+Rob
 
