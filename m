@@ -1,113 +1,149 @@
-Return-Path: <devicetree+bounces-207463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3EF2B2F880
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 14:45:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B506B2F8FB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 14:55:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 222C4603E1A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:43:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71F681BA2071
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 118E031DD9D;
-	Thu, 21 Aug 2025 12:42:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AA98311C00;
+	Thu, 21 Aug 2025 12:50:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="txzMEN3F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e79uk4uh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449A730F7E1;
-	Thu, 21 Aug 2025 12:41:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBA330DD3E;
+	Thu, 21 Aug 2025 12:50:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755780123; cv=none; b=moJW3ML+Fj+uLEhs2OGVEghbC5NOjeo1LD5zuCbuaiW8leoWj6as7JiRcV8yUkvWbSchWR0MEG3D99Yf/7C9widtAjjDlkOtp348t0yt8cH/aHdo8m42MaBWEmTz99s21pewF9oYYp1FDsR+eI9m/bgeOVoxgS0XIraweNgGR2s=
+	t=1755780615; cv=none; b=eA1BqaFhjHzy7JzPz3p1FHLbY7KCVnPgjivBMMNVldcqbp+YzDR/c4H+PAQKl/AIwpoYuXwtuSe3PIm6rtWscYxZ78UgcUQpUUmTdSboy6fdOGSjQyZ9U4IrWw9a1kXxmRNx4CJrBZ/WYIIRhUYg5e1OKQ9o/36sKrzkZfstHCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755780123; c=relaxed/simple;
-	bh=CU4cTKvaSQ23yYf+H4pKFowY3NHmF+KaBQQhNfP4Zvg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=TD4/1pvkTAzmwcUBaHowHpsXby8MAsHY6ag1xJydkvAsP2kIIe2oWxUwtf03PgJwKr0gLtWE3zJiGZjGs3eOtzhUsi8Z3ReAXcihLePw8gWLvdOh4w9xuTmRzb7h6KWWWw65KLWciMYoQ20KHRPxMd08PrI0NdqNbG2Tqlxy/JE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=txzMEN3F; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1755780615; c=relaxed/simple;
+	bh=GnjsYseB3x82SxnBPiq9wVpuJ57d9eN+HPgAIsk934U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kLMoLABBV0JL//dzdxd1N5Q4z83bCAAWmEdUQlwfAZennJN6UaiwTE3odh8wlsnnYq1OWgx4xaNslS3A8hhE9dMgRfrrBiUH9lfv4INCDBMT74/AVetoCpkGVmHoVeinmpPADsG20B3B0Y1nwpMBVRb5HJmt5D4LcbLpV7Jkmw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e79uk4uh; arc=none smtp.client-ip=209.85.222.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7e8705415ceso110538085a.1;
+        Thu, 21 Aug 2025 05:50:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755780612; x=1756385412; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GPd7TEjWkozgvC/v5mJtOM5zRUUP6vJZ0SAdjA9o64g=;
+        b=e79uk4uhwK/lzYFLZO3juq26t8RDdGBqcFL6uRxd+Dx003nscSeYQmdFJooCWsDC7J
+         AVkDW5zSEU0BZVklNDbZZ11d6sOuRMmY2nI1ac8QoAqG1wxMDQIaG9SQYGJrCwAn3n1j
+         Lvs9+D30GuzL5kxAZ6fTOjVTlG4JJQwj2GmP34jm93znJhdQYaFijuomw14BXKCFxZY5
+         Gmea2ToU85z2rnIle3W3qzEQuFwcL13QhPd9qysSvK3MaEjCVoa4Y+Cd6tQ72/OirypU
+         Jb3TEIWJ/cqRyxgEqOyfbJulgoGjhUrbxXlIBRKKMlKGHnIGtIpKml2Te3qjaGvheiKF
+         LNqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755780612; x=1756385412;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GPd7TEjWkozgvC/v5mJtOM5zRUUP6vJZ0SAdjA9o64g=;
+        b=oqMj2SluRZQzaL6abF8Soh2fFX0WSi6454Y+AE6KBxwEWBbIhQSqDM3O0Xs89JVQfR
+         VbebnNY5AMzODool0TRpsbLmhSoD7zY2U/kAvWKQcNtBdI4EK1ryDezMi8j71sW3lbwf
+         RKR4qwTjrmb6x6Ha6E9unA6AV6De4cVI3rT6NQk+sULMyMejzov9z0cgTfFJx2T6aCg5
+         CVWFoCCHolDIue5TaEpE7qROudQxcxizN+4vjc+OGoGsrIszIUXauE8rz1MMz8U5De0w
+         LGSohhqJ8E3lB1RqDx06nxR4xa/aFxhHhwkAOTjkg00R9bXzQ1lYQekea6BvK3t5OG+n
+         XV5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUZwYNnEhtGVLcRFtYPP2xhmz58XkcAgPxsl/TJDuqU7RiO4QHr2ORcpfi2cOx/AZo53dap4kQ4@vger.kernel.org, AJvYcCUdzg9n1iHK8EOT9HaayLH7vtRwxQ7HWE0/BUrg99NZmkumz8W1RSExrSQgiYmxqe0y7jOqOOoxXr5F@vger.kernel.org, AJvYcCVNwS/uU9C/HXmU9b1ydcm1kQjwZLeIMjsFfY1FBG20Yu0CaKsHoYcu9muHUhKvUfNND1zBaXLEagyBpt/+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWdsiWFzuMSXh51AfG5TeBTjVsuuFP8cswiWw2FfzLd+EwRPgw
+	ofiovTeX+TAbWUhcIrBRwZs1hB8/Cr5tJ6cOYKxUl/ogBK9+LMBZGLOm
+X-Gm-Gg: ASbGnct7WfYp4oUOgqpb9ZI9DZtJGGMgZg0QB8g53b9EHGiLon1NsH0E9VJ6CLhGuO1
+	qivE50+VSXZ6BTm16SrgQmBzOBzR14Fwn48SpxJYcXNW3VjNvAqCCEpDk35i3lLvGj6OkDwhgqw
+	xVwKx9aYkIRG3HvwCJtDnQccxpuvOU2AHnfgmligLtoeJARdRUV/H5NQ8tYulvnjY0y+OyzZF6Y
+	5AZ0p3jHXY76KhtY/3wWY6+mdtrXCFjd9A8pLOUIo64KJN0dwKEVXEtb9lqycB6ueujFJ3HWY0u
+	x5M/V2XUq2KuZI6DNLbaslIcgXSoj7ayYWW3L8tOZ4xAonirOQ+SGypdPzuLs49gACEhzWCVyhq
+	aDLCrndLzDCuzNUpwMgYxWPRJq6W8O5OZVFFU0DNnd/ozP3GBKrNEN9Gyzg==
+X-Google-Smtp-Source: AGHT+IHKlAINmciaKPdOD0ea73iO/5ZcLBWhJDwWa0ZbgscyKMHmIXQTkwQ9F922ubbV6Q5wAXzySg==
+X-Received: by 2002:a05:620a:17a8:b0:7e8:324e:c7e8 with SMTP id af79cd13be357-7ea08e8086bmr221288085a.44.1755780612282;
+        Thu, 21 Aug 2025 05:50:12 -0700 (PDT)
+Received: from glsmbp.wifi.local.cmu.edu (cmu-device2.nat.cmu.net. [128.2.149.252])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4b11de44f76sm100197321cf.50.2025.08.21.05.50.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Aug 2025 05:50:11 -0700 (PDT)
+Date: Thu, 21 Aug 2025 08:50:09 -0400
+From: "Gabriel L. Somlo" <gsomlo@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Karol Gugala <kgugala@antmicro.com>,
+	Mateusz Holenko <mholenko@antmicro.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Lars Povlsen <lars.povlsen@microchip.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: net: litex,liteeth: Correct example
+ indentation
+Message-ID: <aKcWAant1Y4481q9@glsmbp.wifi.local.cmu.edu>
+References: <20250821083038.46274-3-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1755780117;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2qBXp2L6ghuaOFTwpw0VcF+lJn82b0iwLgdjpHusKRY=;
-	b=txzMEN3FKtz1olFZUVrErfLHlhVNtHZp9Kd/i2sWnJtnGBam8Rdp3Oaogr0G23n5z4Eehf
-	nGkZ9OB8Xo587f3LLNgNZFk6nWKx26GGOODXnDG6QmhwykAptAb4nKdWsxH5mY0lzf762R
-	v5ZuMJSkoNsbXkwH1yFunobZ3E4zLw9ecdcIjUIrrUWy3yPU3o8Radlqb5OGtBQjUE46wM
-	IzknYv9LHjnyR4g9tqA83ILR4aotfauXFfh970xI8ortZznliPacH7OK51v7hjHYF0jUKk
-	eCuIcurdewmlFv0qdyBGbByDQeQawkgA59EaxihTeqGqU8F1X+bMOwNtY3h9UA==
-Content-Type: multipart/signed;
- boundary=3b571f17c3ddaedec092828a238ae966d2c316d9a762f9d2cf5b0d604e2a;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Thu, 21 Aug 2025 14:41:34 +0200
-Message-Id: <DC843K2CRBHH.1IUX1SB576TFZ@cknow.org>
-Cc: "Robin Murphy" <robin.murphy@arm.com>, <linux-pm@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <kernel@collabora.com>
-Subject: Re: [PATCH v2 2/3] thermal: rockchip: shut up GRF warning
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>, "Rafael J.
- Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>,
- "Zhang Rui" <rui.zhang@intel.com>, "Lukasz Luba" <lukasz.luba@arm.com>,
- "Heiko Stuebner" <heiko@sntech.de>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>
-References: <20250820-thermal-rockchip-grf-warning-v2-0-c7e2d35017b8@kernel.org> <20250820-thermal-rockchip-grf-warning-v2-2-c7e2d35017b8@kernel.org>
-In-Reply-To: <20250820-thermal-rockchip-grf-warning-v2-2-c7e2d35017b8@kernel.org>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250821083038.46274-3-krzysztof.kozlowski@linaro.org>
+X-Clacks-Overhead: GNU Terry Pratchett
 
---3b571f17c3ddaedec092828a238ae966d2c316d9a762f9d2cf5b0d604e2a
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Thu, Aug 21, 2025 at 10:30:39AM +0200, Krzysztof Kozlowski wrote:
+> DTS example in the bindings should be indented with 2- or 4-spaces, so
+> correct a mixture of different styles to keep consistent 4-spaces.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Wed Aug 20, 2025 at 7:40 PM CEST, Sebastian Reichel wrote:
-> Most of the recent Rockchip devices do not have a GRF associated
-> with the tsadc IP. Let's avoid printing a warning on those devices.
+Acked-by: Gabriel Somlo <gsomlo@gmail.com>
 
-Retested with v2 of this patch (set) and there were still no regressions
-on Rock64 (rk3328), RockPro64 (rk3399) and Quartz64-B (rk3566).
-I skipped testing my NanoPi R5S (rk3568) this time.
+Thanks,
+--Gabriel
 
-And on Rock 5B (rk3588) I (still) no longer see this warning:
-
-  rockchip-thermal fec00000.tsadc: Missing rockchip,grf property
-
-So also with v2:
-
-Tested-by: Diederik de Haas <didi.debian@cknow.org>
-
-Cheers,
-  Diederik
-
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  drivers/thermal/rockchip_thermal.c | 23 ++++++++++++++++++-----
->  1 file changed, 18 insertions(+), 5 deletions(-)
-
---3b571f17c3ddaedec092828a238ae966d2c316d9a762f9d2cf5b0d604e2a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaKcUAwAKCRDXblvOeH7b
-bkU/AQCEUoGxVyVSNGRj6qG6NCl2nThKkgrDRtbsVWcAv4iiLQEA5qiGnnUdk7ma
-IuxRHRF24a7aweQEHZRYm58eco2GUQQ=
-=xzaV
------END PGP SIGNATURE-----
-
---3b571f17c3ddaedec092828a238ae966d2c316d9a762f9d2cf5b0d604e2a--
+>  .../devicetree/bindings/net/litex,liteeth.yaml         | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/litex,liteeth.yaml b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> index ebf4e360f8dd..bbb71556ec9e 100644
+> --- a/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> +++ b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> @@ -86,12 +86,12 @@ examples:
+>          phy-handle = <&eth_phy>;
+>  
+>          mdio {
+> -          #address-cells = <1>;
+> -          #size-cells = <0>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+>  
+> -          eth_phy: ethernet-phy@0 {
+> -            reg = <0>;
+> -          };
+> +            eth_phy: ethernet-phy@0 {
+> +                reg = <0>;
+> +            };
+>          };
+>      };
+>  ...
+> -- 
+> 2.48.1
+> 
 
