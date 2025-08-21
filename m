@@ -1,158 +1,121 @@
-Return-Path: <devicetree+bounces-207614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F8CB3005E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:46:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60829B30090
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:56:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3CCD7A7D90
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 16:44:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BD5C68782A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 16:50:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5D62E54C2;
-	Thu, 21 Aug 2025 16:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 094862E5428;
+	Thu, 21 Aug 2025 16:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="Ng7N4n9h";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OSYTZMdM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wkWlqK7d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a2-smtp.messagingengine.com (fout-a2-smtp.messagingengine.com [103.168.172.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22AE92E54BA;
-	Thu, 21 Aug 2025 16:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54DC026B2C8
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 16:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755794774; cv=none; b=ovCrO5WV5WulXZKoBcfuzlkW9zKzy6XY8+wUjb79woH8moAmPL7ZA2FHS0IM0eJxnwEFB4fqqevOHdF65ZpHS2dtNabAL/CnqITNWEEIl4cjBQnnf4AOreak7anQSuy4N0MjWJX6UMmPXlfRJ8LJENL5uaGCu1+fZ6YMvvw+ruw=
+	t=1755795052; cv=none; b=DZfB0XaZCw8no3kfgKSE9r1Kb1XRMcDI/iPDZ7DHY94gWVT4ALHvwFsDausUtIT/Jd+4mMIlsSAmpxUifsr736U+UnDXVIsAyeB6y3z31FO1Obepu9TeN43x+SMdYfZqj6fnSPwwNiMQxtWr1v/6rEv3aW8NpTktErw7mOFk8h8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755794774; c=relaxed/simple;
-	bh=DcrE6+JxXxbNj6GZ08XgNzzMqLYDnItWhUBIpf2DxRo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k2GJMttrqpyqmfByUaYwGPoI/+X2Z+Q6eZeFowKDqB8WTbQmx9f1qKnJlvLje93TQkOXxgw5/RsHKKxL+IJfyNzfEvk/EK9L3xuQtPKkuW51MWQO1G00DkTyJBGeaGX2V8a5WreL9t1MUKjFiruSUcIHfHEKO3iDQ8ov3HWkLDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=Ng7N4n9h; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=OSYTZMdM; arc=none smtp.client-ip=103.168.172.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-07.internal (phl-compute-07.internal [10.202.2.47])
-	by mailfout.phl.internal (Postfix) with ESMTP id 4A4F0EC0787;
-	Thu, 21 Aug 2025 12:46:12 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-07.internal (MEProxy); Thu, 21 Aug 2025 12:46:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm2; t=1755794772; x=1755881172; bh=0L3vM6YLmg
-	9pq/ypW1IqncbW6S6DkPhBxKBhDP3z0o0=; b=Ng7N4n9hWaKAXoCUELKodmIoji
-	oDL3Zzpv7nQCCsaclA0XaLOjXCyXp5c6tn54FhoT3QrxEtGRpF/P4Z/CAcq14OJR
-	/BLDh4Y5OVUvMxcE8qZnzEEjzq+hjmbbY8fMuyc6bCWqPpYWmYlpfeWZHXnAOWA8
-	+Zt2E4RTMAbjOp1yReYdCwymgE2UXV1FQ8/a12O+RrQK3pjZMyxEnKQG6Gs2YJhs
-	wWmw5COkxZzWq5tlC225WBY77NwedNmQJhZyTR0eFntmo7rBe7ANiHYI5t2Zn4vl
-	SVLYkck3kIP1XfGIZRCRei4h5rfFtbqQ516kp5whyjPCnKlUD/q5EwXfdV/A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-	1755794772; x=1755881172; bh=0L3vM6YLmg9pq/ypW1IqncbW6S6DkPhBxKB
-	hDP3z0o0=; b=OSYTZMdMAIaG24G5LpRZuVxYDMHEnqIZNPTIkiKpV/6nKgIx49S
-	fGLl2phjvaJ+Bubu2ZbsSY2QBZk3KM0i4LCiwnRhsDjrEiW1pX93GFLxU69c0wWc
-	IrgqarCbu5oyv4l2qFxIsRrg8ywScwMbubQZXMiOCJRL1yq9FpQmKjbyINYoB41a
-	5CggNO9p9DkUw/qSm3Sd03LZhuSkvQU3KKlM97fvw44hNWQeJMaB9U53pUAiwm1v
-	TIaNkV6sae5rNkwvfPDu/ujAOXX4cR5GFAZp4rvmcg9jP8dfeZhzk/X8iUH8Y3fJ
-	1AbOkF2uDxu95rhV7uMbpbnbQ72PVesZM/w==
-X-ME-Sender: <xms:U02naD1N0U4V6oV3luaKuJXxkv0zi0v6MnhWUXbm4UcDjFzVZxDjtA>
-    <xme:U02naPyX0r1a-0rYWFWGTsV2EhBJAIpcy3nqA9cDzCFN1SB-DE0AjmF5g2KC2e_RB
-    8kD-gYPmUflUcm_Iyw>
-X-ME-Received: <xmr:U02naFoI-v70Z4EWn51BxGS4H7ZZec5W_gZOC-ALfJEclI_XWcD_ZE51OBloEypSOPEhYljIIoCGZ2YGgcF0HiW-zm2KGAWsSqo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduiedujeehucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepfffhvfevuffkfhggtggujgesthdtredttddtjeenucfhrhhomheplfgrnhhnvgcu
-    ifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqeenucggtffrrghtthgvrhhnpefgvd
-    ffveelgedujeeffeehheekheelheefgfejffeftedugeethfeuudefheefteenucevlhhu
-    shhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjsehjrghnnhgruh
-    drnhgvthdpnhgspghrtghpthhtohepudelpdhmohguvgepshhmthhpohhuthdprhgtphht
-    thhopehsvhgvnheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghhrvghgkhhhsehlih
-    hnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgv
-    lhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtph
-    htthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepsggrlhgs
-    iheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlhihsshgrsehrohhsvghniiifvg
-    highdrihhopdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtohep
-    vhhkohhulheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:U02naFUjWm7bqMbHMqhQOCBhCTseEZUUqtqp52JO8fKZz8P1qoCuSg>
-    <xmx:U02naMr_1gCuchPPYb_lPU7gPd33-HA5ykGlwbhi5ub0OkizlWaajQ>
-    <xmx:U02naJGGXIlio0tWiw2kv2dxlo_bRfyM7IUSQTIlc135VcoQnhlV6w>
-    <xmx:U02naOtFBjO-D_11veXXRj35ifrFUX03GuGhNW1JFbdYuu5srvLD5A>
-    <xmx:VE2naLhO1Uz_DBEYnjSUo92ko0qwruBAvn3Kka33EQIKTm_9aTB1P2JV>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 21 Aug 2025 12:46:11 -0400 (EDT)
-Date: Thu, 21 Aug 2025 18:46:10 +0200
-From: Janne Grunau <j@jannau.net>
-To: Sven Peter <sven@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH RFC 13/22] usb: typec: tipd: Read USB4, Thunderbolt and
- DisplayPort status for cd321x
-Message-ID: <20250821164610.GF1270980@robin.jannau.net>
-References: <20250821-atcphy-6-17-v1-0-172beda182b8@kernel.org>
- <20250821-atcphy-6-17-v1-13-172beda182b8@kernel.org>
+	s=arc-20240116; t=1755795052; c=relaxed/simple;
+	bh=MA5CoRznscTD/9JPv2I1fgD+UFpMWzRT7Bcr37nG6ws=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pTX+0/zxkfup5hxCQOz+GdbEpsLvGQV9LKFffBQ1noN0YD+JhUowhQkLrxdETDNMWsF2qA2tsmBL069UrI2hjeaxDWiyj1ZSTbP8Q9oxVYpoJuUR+4ADLHijwH3zdTPrU91xP23J7D9c8SAn3oDs69+Kt1XowRPZvJKE93686YM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wkWlqK7d; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-55ce5287a47so1102778e87.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 09:50:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755795049; x=1756399849; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MA5CoRznscTD/9JPv2I1fgD+UFpMWzRT7Bcr37nG6ws=;
+        b=wkWlqK7dAOZ1y+MgUubgf3rcCYYAXyFlwlaf6n4BDE1E8OdI9GvbbFHWXkFl/JUFpg
+         QKfV51wUQLLQmaYPN84dofbifww2acVr069Lix2t8jO531wrxko2uFTV43AqOPGFcPC2
+         WI2CIbzgrmnkREqIIFNuu2TPj9+XqcicbgOur3++CAajgcp1uC8YwLk5Fwy7lmsjwGok
+         75qkS0ue+edCqf8SETxtdazBQpUu9ZXtTajUIpPtPT6xsd1EBJvuWNjHjaa7OPUO71m5
+         bNJnhuWZ4pei0ddwxz9G8ZSvM8adFkmUF72vyFqcPzooTr27LGesDsqJ0Z61m+Om3WsQ
+         McEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755795049; x=1756399849;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MA5CoRznscTD/9JPv2I1fgD+UFpMWzRT7Bcr37nG6ws=;
+        b=kJsI5gkqvq1cea5sx0wvZYEcGgXvdcshBmnhxpwVScVpc/TBXH6k5PADRzPcBrTa6W
+         1CBZfmYriVbclB6FWum7Jc9wzhwDoVlGQyNKRHSi6avLpgp54i7h+BheMh61y121CeEC
+         xVGvQbo7EfCEYMHksMDrE3sbF5G6bTS+udRK0lIU7KJCF3uyLiScIHOLXxVy5fMwr36Q
+         FXJIHxuCZMWHWUWWdv6k9G/xPQMpdLIvlZUT4+mDVFOqB8jWkZJ/CNvcADREsfxtXkSN
+         nWb9F8c7zdnCw/N3lBwprsV4gbBHTT/NoXSjQxuwPuMaZFynPGLUfRH21g6I5N4yIDPQ
+         0AcA==
+X-Forwarded-Encrypted: i=1; AJvYcCVGaB/8UhwuZ4AgqMsnuj8MQPG6aOhcvpzVzI9prt7CZDD+5L9l0/v3Fks/ryYU63af9FDk9BytoNKh@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywzapj7LTeJYe21reQAPvN/OUkGCQPR0g5Zn1ectC8nO3pnE2cm
+	n4oKXJGHFD6MqHdeLgj28GvQ+vFvPJH7lapTYU1RQgoo47/YKw6d7egcO4H6GBWYwNooyVwTAwZ
+	ARHZIgdoAYgQP4+Ybim8zzoh7JggU6xwUUZ9sTJRGOA==
+X-Gm-Gg: ASbGncvYiPkqGO2ZdVcLBvsy0NwmJkqhGGDGuZQok48VQotUV7AHENj7eGbgoc2mIeY
+	LLc/1qy3fJ7ttvVV5jdYUNoherjF5QD1MjgrwUHxbu2EwphwVA9NWhgfLtQI4doBrpxOM5Bdji4
+	OPfhKSEQwECNaEqCyCD24nw40pnJdK2z23sZ3nVJcgH9q4wBUDcy+HhZDmqGk5vZZ/X1A9zglvc
+	ld/913Eto5sz/4MhQ==
+X-Google-Smtp-Source: AGHT+IHXxJmnZpxwlzV39CihpI1fip8jHsQ3wqrQIPStR8+WqibfCJ2j76EEt47pzZKFul7hhblBfkLJ4pGoe6B1jMM=
+X-Received: by 2002:a05:651c:23c8:20b0:32a:78f7:9bef with SMTP id
+ 38308e7fff4ca-33549e3ad61mr6524161fa.8.1755795049223; Thu, 21 Aug 2025
+ 09:50:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250821-atcphy-6-17-v1-13-172beda182b8@kernel.org>
+References: <20250710002047.1573841-1-ksk4725@coasia.com> <CGME20250821124039epcas5p34b77813c9936b8b70c801e0e1b67891a@epcas5p3.samsung.com>
+ <20250821123310.94089-1-ravi.patel@samsung.com> <20250821123310.94089-6-ravi.patel@samsung.com>
+In-Reply-To: <20250821123310.94089-6-ravi.patel@samsung.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 21 Aug 2025 18:50:38 +0200
+X-Gm-Features: Ac12FXwqIo6zLlw0fIpSEAb-CCiAQ7nCYe-8wPk85-SMsx3heqK_K_zSrsS4110
+Message-ID: <CACRpkdbdpcPBC8mwazoXHy+HE+hH-XWDkfHV4Uz38YhZU7UH7w@mail.gmail.com>
+Subject: Re: [PATCH v2 05/10] pinctrl: samsung: Add ARTPEC-8 SoC specific configuration
+To: Ravi Patel <ravi.patel@samsung.com>
+Cc: jesper.nilsson@axis.com, mturquette@baylibre.com, sboyd@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, krzk@kernel.org, 
+	s.nawrocki@samsung.com, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
+	tomasz.figa@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	arnd@arndb.de, ksk4725@coasia.com, kenkim@coasia.com, pjsin865@coasia.com, 
+	gwk1013@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com, 
+	smn1196@coasia.com, pankaj.dubey@samsung.com, shradha.t@samsung.com, 
+	inbaraj.e@samsung.com, swathi.ks@samsung.com, hrishikesh.d@samsung.com, 
+	dj76.yang@samsung.com, hypmean.kim@samsung.com, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-arm-kernel@axis.com, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, soc@lists.linux.dev, 
+	Priyadarsini G <priya.ganesh@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 21, 2025 at 03:39:05PM +0000, Sven Peter wrote:
-> CD321x supports various alternate modes and stores information once
-> these are entered into separate status registers. Read those when they
-> are active when reading TPS_DATA_STATUS to prepare supporting these.
-> 
-> Signed-off-by: Sven Peter <sven@kernel.org>
-> ---
->  drivers/usb/typec/tipd/core.c | 81 ++++++++++++++++++++++++++++++++++++++++---
->  1 file changed, 77 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> index 51b0f3be8b66a743ddc3ea96c1b25f597a1e8f6c..59d270eb50ea3dc49ad32ff71f8354e23c1083c9 100644
-> --- a/drivers/usb/typec/tipd/core.c
-> +++ b/drivers/usb/typec/tipd/core.c
-> @@ -35,14 +35,19 @@
->  #define TPS_REG_INT_MASK2		0x17
->  #define TPS_REG_INT_CLEAR1		0x18
->  #define TPS_REG_INT_CLEAR2		0x19
-> -#define TPS_REG_SYSTEM_POWER_STATE	0x20
->  #define TPS_REG_STATUS			0x1a
-> +#define TPS_REG_SYSTEM_POWER_STATE	0x20
-> +#define TPS_REG_USB4_STATUS		0x24
-> +#define TPS_REG_DP_SID_STATUS		0x58
+On Thu, Aug 21, 2025 at 2:40=E2=80=AFPM Ravi Patel <ravi.patel@samsung.com>=
+ wrote:
 
-TPS_REG_DP_SID_STATUS is added twice, below in the correct order
+> From: SeonGu Kang <ksk4725@coasia.com>
+>
+> Add Axis ARTPEC-8 SoC specific configuration data to enable pinctrl.
+>
+> Signed-off-by: SeonGu Kang <ksk4725@coasia.com>
+> Signed-off-by: Priyadarsini G <priya.ganesh@samsung.com>
+> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
 
->  #define TPS_REG_SYSTEM_CONF		0x28
->  #define TPS_REG_CTRL_CONF		0x29
->  #define TPS_REG_BOOT_STATUS		0x2D
->  #define TPS_REG_POWER_STATUS		0x3f
->  #define TPS_REG_PD_STATUS		0x40
->  #define TPS_REG_RX_IDENTITY_SOP		0x48
-> +#define TPS_REG_CF_VID_STATUS		0x5e
-> +#define TPS_REG_DP_SID_STATUS		0x58
+Looks good to me.
 
-here
+I expect that Krzysztof will queue this and send
+to me with a pull request once he's happy with it.
 
-Janne
+Yours,
+Linus Walleij
 
