@@ -1,153 +1,146 @@
-Return-Path: <devicetree+bounces-207367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 712ACB2F4E7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:14:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67FB8B2F505
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:17:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DE551C275E1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:14:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 011F77B0A91
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:15:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 855C52F0666;
-	Thu, 21 Aug 2025 10:14:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328332EB5DE;
+	Thu, 21 Aug 2025 10:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="Sa1Tb74T"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oaT58RzG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EF2264F99;
-	Thu, 21 Aug 2025 10:14:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D952F0C40;
+	Thu, 21 Aug 2025 10:16:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755771259; cv=none; b=OPK5PfD3DJnJ0UVVcqwSfQibBQ5mnHu5Xj9/nlbNE4OtcEedIKoVmwPIPT/0ED7FdinhK7MRjIhnIlRI/9j++5JH/lcbXFsLM2cvE4uW6Us2gkDJvjI7aPtge1JfSsjTHWEdNZSwUblkWfuZdgHtYVOU0PK7usESjgRnJoHHplU=
+	t=1755771404; cv=none; b=u8EUc93a+nCGYv4F+nxPpDxoRJoS1EpaLKo2NVulF3CZf451NPfGrOnZxt9GyOC/KZlnXyONBV1+On9pHJ7o6lV8Rcqkb189mK9kQ1L+7panZeNADlcQp0rBS6OlHaj6gTf+S5AmzOW/wHdXnHZUCCQSSXC8o6SYmGNL3y67vxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755771259; c=relaxed/simple;
-	bh=cM1YyM6yYa+RXccBpuLDpkZ6GribivREOwjxc1lSsYs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HaR9FqQEW9Ol+20V9rNAye7EG4Ow+bkYHrg9QDbc1vP/ptRa3lH3wQPc88Ty2Nkl6pPJI7Z273sHMfIBzv0EQiqPmBVy3GiSuC/cLrx4H1JEzT1xDvaYASCRplu9vkX4ICGEJba4MAHtUX5orfLcJROPVM6XY6F7rSwgFJdL8+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=Sa1Tb74T; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=xwbnmilUfefNilKkhDbCSq1WdkxVj2w6J1wxm3ypUeo=; b=Sa1Tb74TcVeI48mk0D7etjkPmT
-	/XwwnzzlPnizwBDMQZuztD9nAVDIBux9SKp1iehpl1mfi7sFRCP7mgxcbnrxGlVctgQiLG0WPcpkf
-	1zzOkLC6i9LWVvKphMqv2pPPdoDz6iy9q6NBNpGlvnHBJCp6S80YG7CuMkibhoDs0ELIUptnpWbud
-	QeTdCNwimGza4HPEmvSNaSWw6kDjxT28eS8RWDztdy9OsP9kKFIm2Uk/1RwIZ2XwbUItSUEj0Dh/B
-	jpnyNtgkcPyRGfKsL96mhPfDo3SiNMN22XmjXkffk3L/f93y56FRFxNfxlmItW8yMQKrtyw8naSqE
-	v6IWCS5Q==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33696)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1up2JD-000000000zI-0BCu;
-	Thu, 21 Aug 2025 11:14:15 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1up2JB-0000000010g-2pb6;
-	Thu, 21 Aug 2025 11:14:13 +0100
-Date: Thu, 21 Aug 2025 11:14:13 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Yangfl <mmyangfl@gmail.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next v5 3/3] net: dsa: yt921x: Add support for Motorcomm
- YT921x
-Message-ID: <aKbxdaDFMe2Fqnxu@shell.armlinux.org.uk>
-References: <20250820075420.1601068-1-mmyangfl@gmail.com>
- <20250820075420.1601068-4-mmyangfl@gmail.com>
- <aKbZM6oYhIN6cBQb@shell.armlinux.org.uk>
- <CAAXyoMMGCRZTuhYG0zxTgKdDdgB1brU7BAUiCVR_MheFK-n5Yw@mail.gmail.com>
- <aKbuQ7MCbq1JL9sw@shell.armlinux.org.uk>
+	s=arc-20240116; t=1755771404; c=relaxed/simple;
+	bh=sfAhUgeS5s0r1RIkkZlzAowK+T0GKo6mu/F3FrB2y+E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LxxhluDLs7oBG8Q0bn6inqYnwUMfE+ttUlAHfbRFBTgqz/KE321s1+C48aAJdWktmYpjR/iJVEkeiRIhT61NacDbkmlG+abowRgHDY3Sb7fhpYpalaLiQskvwufHRw4k85Sbb0QwrUkSRpoM4LRJgOJsxWbCVpr1++W98Q9hTe4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oaT58RzG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57L9b8X4003637;
+	Thu, 21 Aug 2025 10:16:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=xO17CGSm7MfGPLbc4UydaG
+	gv98jwTBkBtyeXnZH5mNA=; b=oaT58RzGkEi9hR0KRRk78qOkPi9TZdrtGoOYus
+	wY3ulim3+n2SsZS4h6kc7BSwfhwtv/WX/iaoxKUs08UN6k4TKscWjrKJn7UGxQSL
+	qpHcIgQzW5eH4+Q/KSHcCHz6StuqG2YER5GYhuct+lHGj0oDVLxVa8bqErAvqCok
+	CuJeeoySJiWC/J2PZOHImwHJjwjqHmq0KAx6ddpHVenERK/oPZSInb8oBc7CjAhm
+	//OjGgM+iDlYxGuPNiOmfOwCeDbDDedpzKXV+xV8k+p69KwzftKFqvg1kx6R0aQ9
+	sLpvWhiyUok5q3IxMlD6dgVhUVZpxW46pmOV6bgs0Qx1ZC5Q==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ngtdjvtc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Aug 2025 10:16:30 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57LAGTkj014313
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Aug 2025 10:16:29 GMT
+Received: from hu-rdwivedi-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Thu, 21 Aug 2025 03:16:24 -0700
+From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+To: <mani@kernel.org>, <alim.akhtar@samsung.com>, <avri.altman@wdc.com>,
+        <bvanassche@acm.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <agross@kernel.org>,
+        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH V2 0/4] Add DT-based gear and rate limiting support
+Date: Thu, 21 Aug 2025 15:46:05 +0530
+Message-ID: <20250821101609.20235-1-quic_rdwivedi@quicinc.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aKbuQ7MCbq1JL9sw@shell.armlinux.org.uk>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=LexlKjfi c=1 sm=1 tr=0 ts=68a6f1fe cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=2OwXVqhp2XgA:10 a=P4RA78Fcj83t06hIkt4A:9
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: xC_B_8Q-S0mhTOggwtpkYcu8Q7z-ZaEN
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDEzNSBTYWx0ZWRfX6sVydOZPw2en
+ jcnaZ7tOwwS/UkhVVqO6iJ1MIKe+TnI4su/aQ7n8Lzq+LivQ2GYpf4eJndY6b9N3xca5LQDn4Dw
+ fH4b3oBmNpQvT31Jzvnl1jajudBxm/JAzLmhJC6J1nFHJ+K5YkRiQq/Zf2qsv2DyXzlSX2DrQo3
+ 1A+vlZW7OBVgRCTx2nbyFsHCVYpAh+pKhhsTvDgjaFiQZSD9KZT8wsYs38uEtYbXMPGO+3MWa8A
+ 3n8Xi84zx+wT9IT6ND+wPZ+STRiBRSvpPMQTn2/WzBS02ANkqhyuFMNvk3GaBziBycxSCLbKeUy
+ IJdHMeiUsGC6lLDxDk11U+ZxxJI+kGrLn1mFziNwd0h2RLmOi2YsxMDYa1a40Ew7+4o3Uj4SEm4
+ xfLfow0NL0iRRNUeP1m8zijXV/losg==
+X-Proofpoint-ORIG-GUID: xC_B_8Q-S0mhTOggwtpkYcu8Q7z-ZaEN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-21_02,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0 malwarescore=0
+ spamscore=0 priorityscore=1501 suspectscore=0 clxscore=1015 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200135
 
-On Thu, Aug 21, 2025 at 11:00:35AM +0100, Russell King (Oracle) wrote:
-> On Thu, Aug 21, 2025 at 05:25:46PM +0800, Yangfl wrote:
-> > On Thu, Aug 21, 2025 at 4:30 PM Russell King (Oracle)
-> > <linux@armlinux.org.uk> wrote:
-> > > Someone clearly doesn't believe in reading the documentation before
-> > > writing code. This also hasn't been tested in any way. Sorry, but
-> > > I'm going to put as much effort into this review as you have into
-> > > understanding the phylink API, and thus my review ends here.
-> > >
-> > > NAK.
-> > 
-> > Sorry I'm quite new here. I don't understand very clearly why a
-> > different set of calls is involved in dsa_switch_ops, so I referred to
-> > other dsa drivers and made a working driver (at least tested on my
-> > device), but I would appreciate it much if you could point it out in
-> > an earlier version of series.
-> 
-> This isn't dsa_switch_ops, but phylink_mac_ops, which are well
-> documented in include/linux/phylink.h. Please read the documentation
-> found in that header file detailing the phylink_mac_ops methods.
-> You'll find a brief overview before the struct, and then in the #if 0
-> section, detailed per-method documentation.
+This patch series adds support for limiting the maximum high-speed
+gear and rate used by the UFS controller via device tree properties.
 
-Also, the reason I state that it hasn't been tested is because when
-your mac_config method is invoked, and print debug information which
-includes state->speed and state->duplex, and then go on to use these.
-Phylink's sole call path to mac_config() does this:
+Some platforms may have signal integrity, clock configuration, or
+layout issues that prevent reliable operation at higher gears or rates.
+This is especially critical in automotive and other platforms where
+stability is prioritized over peak performance.
 
-        /* Stop drivers incorrectly using these */
-        linkmode_zero(st.lp_advertising);
-        st.speed = SPEED_UNKNOWN;
-        st.duplex = DUPLEX_UNKNOWN;
-        st.an_complete = false;
-        st.link = false;
+The series follows this logical progression:
+1. Document the new DT properties in the common UFS binding
+2. Clean up existing redundant code in the qcom driver
+3. Add platform-level parsing support for the new properties
+4. Integrate the platform support in the qcom driver
 
-        phylink_dbg(pl,
-                    "%s: mode=%s/%s/%s adv=%*pb pause=%02x\n",
-                    __func__, phylink_an_mode_str(pl->act_link_an_mode),
-                    phy_modes(st.interface),
-                    phy_rate_matching_to_str(st.rate_matching),
-                    __ETHTOOL_LINK_MODE_MASK_NBITS, st.advertising,
-                    st.pause);
+This approach makes the functionality available to other UFS host
+drivers and provides a cleaner, more maintainable implementation.
 
-        pl->mac_ops->mac_config(pl->config, pl->act_link_an_mode, &st);
+Changes from V1: 
+- Restructured patch series for better logical flow and maintainability.
+- Moved DT bindings to ufs-common.yaml making it available for all UFS 
+  controllers.
+- Added platform-level support in ufshcd-pltfrm.c for code reusability.
+- Separated the cleanup patch to remove redundant hs_rate assignment in
+  qcom driver.
+- Removed SA8155 DTS changes to keep the series focused on core
+  functionality.
+- Improved commit messages with better technical rationale.
 
-and you would've noticed in your debug print that e.g. state->speed and
-state->duplex are both always -1, and thus are not useful. Note also the
-debugging that phylink includes.
+Ram Kumar Dwivedi (4):
+  ufs: dt-bindings: Document gear and rate limit properties
+  ufs: ufs-qcom: Remove redundant re-assignment to hs_rate
+  ufs: pltfrm: Allow limiting HS gear and rate via DT
+  ufs: ufs-qcom: Add support for limiting HS gear and rate
 
-Note that no other mac_config() implementations refer to state->speed
-and state->duplex. The only time drivers _write_ to these is in the
-pcs_get_state() method if they support a PCS.
-
-Therefore, I think your code is completely untested.
-
-I'm also concerned about the SMI locking, which looks to me like you
-haven't realised that the MDIO bus layer has locking which guarantees
-that all invocations of the MDIO bus read* and write* methods are
-serialised.
-
-Thanks.
+ .../devicetree/bindings/ufs/ufs-common.yaml   | 16 ++++++++++
+ drivers/ufs/host/ufs-qcom.c                   | 21 ++++++++++----
+ drivers/ufs/host/ufshcd-pltfrm.c              | 29 +++++++++++++++++++
+ drivers/ufs/host/ufshcd-pltfrm.h              |  1 +
+ 4 files changed, 61 insertions(+), 6 deletions(-)
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.50.1
+
 
