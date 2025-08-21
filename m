@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-207200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E90B2EE1A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC6AB2EE1C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:22:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99E3D3B8CFD
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:21:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55D4B685094
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C3F253B64;
-	Thu, 21 Aug 2025 06:21:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BE926CE3A;
+	Thu, 21 Aug 2025 06:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YoV5Elbv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EV6mFJY0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0221C191493
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 06:21:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25B1263C7F;
+	Thu, 21 Aug 2025 06:22:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755757306; cv=none; b=FIoo/Lwz+OUjnhlImNOJTqXWJg7z6DN2RE2Xwzg9Jmhk+2Zz1irV2PQX9GPmTDCqrfhOVor05EPwSCFFUmE+T23pfAT63vJZmEZ1Q+gg8EizTr8yhAGWGm1TjdTDwPJS2E3UdtMvS2QwrkFRAe/cFOSewd1d27jMgMp0CIhooF4=
+	t=1755757363; cv=none; b=brND3u9WWpRYfO2BRoM1p0GcoLZMnbE2LRt+S/Ih6wx3/kHUlPmzE8agZeJA23lJIgab1uhs5Md855+ZTjPwCTi0HiH9toWb1IZMvBXxXuS+kr/zkvZKVOSxwlH+SBwNGdlHVO8RP7Y+kxIFbLjvdh8lvEX2ACVxu3Zk8jCVV+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755757306; c=relaxed/simple;
-	bh=6VNsI/N4B/EW5utrfXsQlUXVtQn6DmOr0JNjtEqFOjc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PXYwwRtQXAx+1ac+ERaa+Y1RGIysxhA7zzyqTz4Gx8gEC5pzumrwhjSQVQko9PcP0+Gp/v2aKQ02r0+fcdXhE5vfGAJjbgpyADnzmvhXaGHXnU6PzSrIKLy1Bf8RtADCTWjEpenmQ95DSRH7IDeYzW7wNFjjMu8nSSQ2O+o6X5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YoV5Elbv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89B3EC4CEED;
-	Thu, 21 Aug 2025 06:21:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755757305;
-	bh=6VNsI/N4B/EW5utrfXsQlUXVtQn6DmOr0JNjtEqFOjc=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=YoV5ElbvhjeKqyOhS5sPMho2JfcyfZjfVo2rMROrWbaf1mEU5ezuH9JuFKRqnR5aP
-	 0SoWHH3VveFghrXrL+9+Ul40MrQoGJbBqSjY/VqnlxGmRm6nh//jYlWNOJQfvyOQjI
-	 XaCcDoMcqsbnXlTZCHW9iIx4HTNRZtXBDnOGz66XD+kNo1/+MHRJ/C94cQfKd6qiFb
-	 +rFGWn2KjHB4XGJkmeohCQc+7IV618WomH4eATF4eJ0SwVogVMwaXT5a5E3qfgkqJl
-	 i0cRX20KhmY9e8GstYmrPdn1OAFvP5Q9gFWfTn7xW4oWTNtSIrLw1SgPJa2RlXiwqg
-	 CQAun5KwqMbhQ==
-Message-ID: <58a28f10-f063-419a-9b30-206f00df70a6@kernel.org>
-Date: Thu, 21 Aug 2025 08:21:41 +0200
+	s=arc-20240116; t=1755757363; c=relaxed/simple;
+	bh=nQx/iQvnZ+I2T0GIhyLovy+j/Ynj0Tg3BFgTsn0i5tM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=r7mRCuNgAL30sCtgFGXMk20PL6FoeVE1ipxdAGaNQCm30ZCeEdHVVX6x/r2lQ0zztNy7nAkueoXpPsGttGoa+iOWQlYK7EtkJOQ2+qmLx5GZsbcwJFk0q0y1XTp96jVb6OiAxapwyn1uxBntUVICAg5Gj+q5oRRouILGjS/LH3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EV6mFJY0; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57L6M54V3305637;
+	Thu, 21 Aug 2025 01:22:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755757325;
+	bh=+vJVxTr5AHSZEu8bxIlDbDhn59zoNQNyPn9xBd8vgkw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=EV6mFJY0jKsNYOvj+LkyWYmlQiR0z+RfMJTyn6mtrobEWLhqTAOM/l2HrxQgwB4ga
+	 RlJhC/rhP57hNj7qIvob6ub/14sj5yt8A/0Z1kmM0Kwr1eYPlPNncfLn9S+GoJrBPd
+	 DKwBN7IDuEOwKykQ6eRk+uK/g30ycMQdKPACzkjM=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57L6M5LE2331658
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 21 Aug 2025 01:22:05 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 21
+ Aug 2025 01:22:04 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 21 Aug 2025 01:22:04 -0500
+Received: from [172.24.233.149] (ws.dhcp.ti.com [172.24.233.149])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57L6LvC51423337;
+	Thu, 21 Aug 2025 01:21:58 -0500
+Message-ID: <9fa2e0ab-fed1-4d19-a735-e5458014f549@ti.com>
+Date: Thu, 21 Aug 2025 11:51:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,89 +65,172 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: mfd: add Traverse Ten64 board
- controller
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mathew McBride <matt@traverse.com.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
-References: <20250813023435.27776-2-matt@traverse.com.au>
- <20250821061115.18254-1-matt@traverse.com.au>
- <20250821061115.18254-2-matt@traverse.com.au>
- <58192df0-aa6e-44e2-9dfd-9e0402d1fe9a@kernel.org>
+Subject: Re: [PATCH v4 11/12] media: ti: j721e-csi2rx: Submit all available
+ buffers
+To: Sjoerd Simons <sjoerd@collabora.com>, <jai.luthra@linux.dev>,
+        <laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>,
+        Julien Massot
+	<jmassot@collabora.com>
+CC: <y-abhilashchandra@ti.com>, <devarsht@ti.com>, <vaishnav.a@ti.com>,
+        <s-jain1@ti.com>, <vigneshr@ti.com>, <mchehab@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
+        <tomi.valkeinen@ideasonboard.com>, <jai.luthra@ideasonboard.com>,
+        <changhuang.liang@starfivetech.com>, <jack.zhu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, "Liu (EP), Bin"
+	<b-liu@ti.com>
+References: <20250514112527.1983068-1-r-donadkar@ti.com>
+ <20250514112527.1983068-12-r-donadkar@ti.com>
+ <ab421c6f9fc804a6f03833d824d5776c7272e6bb.camel@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <58192df0-aa6e-44e2-9dfd-9e0402d1fe9a@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Rishikesh Donadkar <r-donadkar@ti.com>
+In-Reply-To: <ab421c6f9fc804a6f03833d824d5776c7272e6bb.camel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 21/08/2025 08:19, Krzysztof Kozlowski wrote:
-> On 21/08/2025 08:11, Mathew McBride wrote:
->> Add device tree binding for the board (micro)controller on Ten64 family
->> boards[1].
+
+On 01/07/25 13:39, Sjoerd Simons wrote:
+> Hey,
+
+
+Hi Sjoerd,
+
+>
+> On Wed, 2025-05-14 at 16:55 +0530, Rishikesh Donadkar wrote:
+>> From: Jai Luthra <j-luthra@ti.com>
 >>
-> 
-> Do not attach (thread) your patchsets to some other threads (unrelated
-> or older versions). This buries them deep in the mailbox and might
-> interfere with applying entire sets.
-> 
->> The schema is simple and is (presently) only consumed by U-Boot, but it
->> is possible that it could be consumed by nvmem or other type drivers in
->> the future, as well as extended to future Traverse boards.
+>> We already make sure to submit all available buffers to DMA in each DMA
+>> completion callback.
 >>
->> The categorisation as a "MFD" follows that of comparable devices such
->> as "gw,gsc", "google,chros-ec" and "kontron,sl28cpld".
-> 
-> That is not MFD device. Google EC is for example, but you have only one
-> function. I think we will move all of them to some separate ec directory.
+>> Move that logic in a separate function, and use it during stream start
+>> as well, as most application queue all their buffers before stream on.
+>>
+>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+>> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> ---
+>>   .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 43 +++++++++++--------
+>>   1 file changed, 24 insertions(+), 19 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> index 7986f96c5e11b..ba2a30bfed37d 100644
+>> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> @@ -651,6 +651,27 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
+>>   	return ret;
+>>   }
+>>   
+>> +static int ti_csi2rx_dma_submit_pending(struct ti_csi2rx_ctx *ctx)
+>> +{
+>> +	struct ti_csi2rx_dma *dma = &ctx->dma;
+>> +	struct ti_csi2rx_buffer *buf;
+>> +	int ret = 0;
+>> +
+>> +	/* If there are more buffers to process then start their transfer. */
+>> +	while (!list_empty(&dma->queue)) {
+>> +		buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer,
+>> list);
+>> +		ret = ti_csi2rx_start_dma(ctx, buf);
+>> +		if (ret) {
+>> +			dev_err(ctx->csi->dev,
+>> +				"Failed to queue the next buffer for DMA\n");
+>> +			vb2_buffer_done(&buf->vb.vb2_buf,
+>> VB2_BUF_STATE_ERROR);
+>> +			break;
+> The break here seems wrong and does change the previous logic; It means once *a*
+> buffer fails to start DMA, you'll no longer try to submit the other (queued)
+> buffers. If this was called from the DMA callback of the last submitted buffer
+> and userspace doesn't re-queue the error buffer, then capturing will stop, even
+> if there were still queued up buffers from a userspace pov.
+>
+>
+> For a potential next iteration you probably also want to wrap in the changes
+> from to fix list_del corruption:
+> https://lore.kernel.org/all/20250630-j721e-dma-fixup-v1-1-591e378ab3a8@collabora.com/
 
-gw,gsc and kontrol are also MFD from Linux point of view, so that was
-justified. Your case is not justified at all.
 
-Best regards,
-Krzysztof
+Thank you for the pointer !
+
+I will make these changes in the next revision
+
+
+Regards,
+
+Rishikesh
+
+>
+>
+>
+>> +		}
+>> +		list_move_tail(&buf->list, &dma->submitted);
+>> +	}
+>> +	return ret;
+>> +}
+>> +
+>>   static void ti_csi2rx_dma_callback(void *param)
+>>   {
+>>   	struct ti_csi2rx_buffer *buf = param;
+>> @@ -671,18 +692,7 @@ static void ti_csi2rx_dma_callback(void *param)
+>>   	vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
+>>   	list_del(&buf->list);
+>>   
+>> -	/* If there are more buffers to process then start their transfer. */
+>> -	while (!list_empty(&dma->queue)) {
+>> -		buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer,
+>> list);
+>> -
+>> -		if (ti_csi2rx_start_dma(ctx, buf)) {
+>> -			dev_err(ctx->csi->dev,
+>> -				"Failed to queue the next buffer for DMA\n");
+>> -			vb2_buffer_done(&buf->vb.vb2_buf,
+>> VB2_BUF_STATE_ERROR);
+>> -		} else {
+>> -			list_move_tail(&buf->list, &dma->submitted);
+>> -		}
+>> -	}
+>> +	ti_csi2rx_dma_submit_pending(ctx);
+>>   
+>>   	if (list_empty(&dma->submitted))
+>>   		dma->state = TI_CSI2RX_DMA_IDLE;
+>> @@ -941,7 +951,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq,
+>> unsigned int count)
+>>   	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
+>>   	struct ti_csi2rx_dev *csi = ctx->csi;
+>>   	struct ti_csi2rx_dma *dma = &ctx->dma;
+>> -	struct ti_csi2rx_buffer *buf;
+>>   	unsigned long flags;
+>>   	int ret = 0;
+>>   
+>> @@ -980,16 +989,13 @@ static int ti_csi2rx_start_streaming(struct vb2_queue
+>> *vq, unsigned int count)
+>>   	ctx->sequence = 0;
+>>   
+>>   	spin_lock_irqsave(&dma->lock, flags);
+>> -	buf = list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
+>>   
+>> -	ret = ti_csi2rx_start_dma(ctx, buf);
+>> +	ret = ti_csi2rx_dma_submit_pending(ctx);
+>>   	if (ret) {
+>> -		dev_err(csi->dev, "Failed to start DMA: %d\n", ret);
+>>   		spin_unlock_irqrestore(&dma->lock, flags);
+>> -		goto err_pipeline;
+>> +		goto err_dma;
+>>   	}
+>>   
+>> -	list_move_tail(&buf->list, &dma->submitted);
+>>   	dma->state = TI_CSI2RX_DMA_ACTIVE;
+>>   	spin_unlock_irqrestore(&dma->lock, flags);
+>>   
+>> @@ -1004,7 +1010,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue
+>> *vq, unsigned int count)
+>>   
+>>   err_dma:
+>>   	ti_csi2rx_stop_dma(ctx);
+>> -err_pipeline:
+>>   	video_device_pipeline_stop(&ctx->vdev);
+>>   	writel(0, csi->shim + SHIM_CNTL);
+>>   	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
 
