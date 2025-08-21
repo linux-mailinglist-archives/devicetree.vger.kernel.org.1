@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-207199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06592B2EE15
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:20:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8E90B2EE1A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:21:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D4363BEC06
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:19:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99E3D3B8CFD
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D79B4A32;
-	Thu, 21 Aug 2025 06:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C3F253B64;
+	Thu, 21 Aug 2025 06:21:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cA+TnYlz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YoV5Elbv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0760834CF9
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 06:19:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0221C191493
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 06:21:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755757188; cv=none; b=ID7Tt9TTBEZHSuRqcMP2TAPIN2PKmRh9p/nzJG23IUWq3bEoYIkUAqmElu7qeIGELpRlSB6m8m4TdmRMr0LchHroEbbmrVGYOuHLGNyEXjkYKiMDs1927c+O3oGF5YxHZGK1wCH2P3tTu5xUWxCVXRUzcjsmn8p/r+eGz1AvkRU=
+	t=1755757306; cv=none; b=FIoo/Lwz+OUjnhlImNOJTqXWJg7z6DN2RE2Xwzg9Jmhk+2Zz1irV2PQX9GPmTDCqrfhOVor05EPwSCFFUmE+T23pfAT63vJZmEZ1Q+gg8EizTr8yhAGWGm1TjdTDwPJS2E3UdtMvS2QwrkFRAe/cFOSewd1d27jMgMp0CIhooF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755757188; c=relaxed/simple;
-	bh=r0DyjwvQCPk0SYxS5PQ/rHJ8r+OR73U64vCv6XY4imE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sXGpJ5Ldc61BiFyo/X0AUon9rILTGP6n3St1XQSgb3KQyA/IJNlNMC+dUwV6IFr8Zb7C6rbdvFIxICMFk2+Zp6QLAtoysgLYkwp9zme4uukRtUWLYYrb6PevmdKvAeBgiBSCDfpMAFklJ897Rtugewu7DKhrazm+7p+PV442uJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cA+TnYlz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A338C4CEED;
-	Thu, 21 Aug 2025 06:19:45 +0000 (UTC)
+	s=arc-20240116; t=1755757306; c=relaxed/simple;
+	bh=6VNsI/N4B/EW5utrfXsQlUXVtQn6DmOr0JNjtEqFOjc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=PXYwwRtQXAx+1ac+ERaa+Y1RGIysxhA7zzyqTz4Gx8gEC5pzumrwhjSQVQko9PcP0+Gp/v2aKQ02r0+fcdXhE5vfGAJjbgpyADnzmvhXaGHXnU6PzSrIKLy1Bf8RtADCTWjEpenmQ95DSRH7IDeYzW7wNFjjMu8nSSQ2O+o6X5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YoV5Elbv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89B3EC4CEED;
+	Thu, 21 Aug 2025 06:21:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755757187;
-	bh=r0DyjwvQCPk0SYxS5PQ/rHJ8r+OR73U64vCv6XY4imE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cA+TnYlzrHZ3lJuQfCFF248J7oCh3cAcrCyAYneZfKa0cYHam9X7HYhgtsDD3zQjn
-	 r0fr0ChJWkeEwwz2cQ1Ji0ODdr5IPqOD1fzyKpOPm2Yj4kTTHj6XyrxAR39BEJjG24
-	 nZmamygtIbh8KnjhnRiN4oIC7RVOLU9z0VuJKzxukrHgGkgr6Yl4yRhUSmzkWC7xiy
-	 y+g68+55FxRkrva/kuEWEGEN4RMblNjCmt/H2DqsVaMAFiVnXYex23iqJD0qtplzzs
-	 uVawBqY5q40YQeRz559yLK8LsrF41o05fI05UNEuyXK86Qg6wfvW73sDfDyO+EP2Af
-	 hW0JZ1OnglNRw==
-Message-ID: <58192df0-aa6e-44e2-9dfd-9e0402d1fe9a@kernel.org>
-Date: Thu, 21 Aug 2025 08:19:43 +0200
+	s=k20201202; t=1755757305;
+	bh=6VNsI/N4B/EW5utrfXsQlUXVtQn6DmOr0JNjtEqFOjc=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=YoV5ElbvhjeKqyOhS5sPMho2JfcyfZjfVo2rMROrWbaf1mEU5ezuH9JuFKRqnR5aP
+	 0SoWHH3VveFghrXrL+9+Ul40MrQoGJbBqSjY/VqnlxGmRm6nh//jYlWNOJQfvyOQjI
+	 XaCcDoMcqsbnXlTZCHW9iIx4HTNRZtXBDnOGz66XD+kNo1/+MHRJ/C94cQfKd6qiFb
+	 +rFGWn2KjHB4XGJkmeohCQc+7IV618WomH4eATF4eJ0SwVogVMwaXT5a5E3qfgkqJl
+	 i0cRX20KhmY9e8GstYmrPdn1OAFvP5Q9gFWfTn7xW4oWTNtSIrLw1SgPJa2RlXiwqg
+	 CQAun5KwqMbhQ==
+Message-ID: <58a28f10-f063-419a-9b30-206f00df70a6@kernel.org>
+Date: Thu, 21 Aug 2025 08:21:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,6 +52,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3 1/2] dt-bindings: mfd: add Traverse Ten64 board
  controller
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Mathew McBride <matt@traverse.com.au>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -60,7 +61,7 @@ Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
 References: <20250813023435.27776-2-matt@traverse.com.au>
  <20250821061115.18254-1-matt@traverse.com.au>
  <20250821061115.18254-2-matt@traverse.com.au>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <58192df0-aa6e-44e2-9dfd-9e0402d1fe9a@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -105,71 +106,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250821061115.18254-2-matt@traverse.com.au>
+In-Reply-To: <58192df0-aa6e-44e2-9dfd-9e0402d1fe9a@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/08/2025 08:11, Mathew McBride wrote:
-> Add device tree binding for the board (micro)controller on Ten64 family
-> boards[1].
+On 21/08/2025 08:19, Krzysztof Kozlowski wrote:
+> On 21/08/2025 08:11, Mathew McBride wrote:
+>> Add device tree binding for the board (micro)controller on Ten64 family
+>> boards[1].
+>>
 > 
-
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
-
-> The schema is simple and is (presently) only consumed by U-Boot, but it
-> is possible that it could be consumed by nvmem or other type drivers in
-> the future, as well as extended to future Traverse boards.
+> Do not attach (thread) your patchsets to some other threads (unrelated
+> or older versions). This buries them deep in the mailbox and might
+> interfere with applying entire sets.
 > 
-> The categorisation as a "MFD" follows that of comparable devices such
-> as "gw,gsc", "google,chros-ec" and "kontron,sl28cpld".
-
-That is not MFD device. Google EC is for example, but you have only one
-function. I think we will move all of them to some separate ec directory.
-
+>> The schema is simple and is (presently) only consumed by U-Boot, but it
+>> is possible that it could be consumed by nvmem or other type drivers in
+>> the future, as well as extended to future Traverse boards.
+>>
+>> The categorisation as a "MFD" follows that of comparable devices such
+>> as "gw,gsc", "google,chros-ec" and "kontron,sl28cpld".
 > 
-> [1] https://ten64doc.traverse.com.au/hardware/microcontroller/
-> 
-> Signed-off-by: Mathew McBride <matt@traverse.com.au>
-> ---
->  .../mfd/traverse,ten64-controller.yaml        | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/traverse,ten64-controller.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/traverse,ten64-controller.yaml b/Documentation/devicetree/bindings/mfd/traverse,ten64-controller.yaml
-> new file mode 100644
-> index 0000000000000..4e2f2063605cd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/traverse,ten64-controller.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/traverse,ten64-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Traverse Ten64 board microcontroller
-> +
-> +maintainers:
-> +  - Mathew McBride <matt@traverse.com.au>
-> +
-> +description: |
-> +  The board microcontroller on the Ten64 board family is responsible for
-> +  management of power sources on the board, as well as signalling the SoC
-> +  to power on and reset.
-> +
-> +  Communication between the SoC and controller is via I2C, at a fixed address
+> That is not MFD device. Google EC is for example, but you have only one
+> function. I think we will move all of them to some separate ec directory.
 
-Either you make it a schema or drop it.
-
-> +  of 0x7e. While the controller firmware implements several functions, there
-> +  are presently no parameters that are configurable by DT properties, except
-> +  those that are required of an I2C bus endpoint.
-
-This paragraph wasn't here before. It's completely redundant, drop.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+gw,gsc and kontrol are also MFD from Linux point of view, so that was
+justified. Your case is not justified at all.
 
 Best regards,
 Krzysztof
