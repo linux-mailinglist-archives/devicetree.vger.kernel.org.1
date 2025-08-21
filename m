@@ -1,93 +1,114 @@
-Return-Path: <devicetree+bounces-207299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EAD1B2F079
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:05:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA169B2F172
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:25:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E4ECA27CE0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:03:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE3385C683D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE7EB2EB5C8;
-	Thu, 21 Aug 2025 08:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1099C2EB5B0;
+	Thu, 21 Aug 2025 08:16:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ai6YzjaK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 373062EAD1B;
-	Thu, 21 Aug 2025 08:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20ABD2EA754;
+	Thu, 21 Aug 2025 08:16:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755763349; cv=none; b=PdvxrspL9REMYLGtLuobjIKOYPD8OocPhqee5DxIt0660RSWpNJU3QGQN+3iElugP8UheP3glvs219TW9gGOI/mK8rjh/0zuQvC4BxunKj4AvIOQLqqL6kGzd5DB5bBORmeGSkBT2b4QkTGMdann+qRVj7YBx5lcGDtetyXGn3g=
+	t=1755764218; cv=none; b=UbkOthGD8J1vDuZ12eJNpAMfFJyn7xFMwyWwUJfw5QVtXHY+YNMzJ0x6VS3Fhm5Pd240YhgSRr7EtAVZrxVvp+zozxf6f1U8eYENOCkcxMqYomcgzsHNe+nDOYswWwDS7EWShe9SUY7AIHylcdOeY/69EWId01cgeBifeEMitls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755763349; c=relaxed/simple;
-	bh=tm3xCUjka8QQlURenrEVc9mlc+Uxa4SXF2NrSxVFsjk=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iiX5P7DHEI4b76WHWa/D8VQPd14QM8R6Yg9HmUAc3sZ8qN+R4+m1d3j7q/qtM3NAkzxvESMJXja/78fIGvW5QPr0Ca2bpy/ukAKzKRoERJyCqkZCHBd4doKW8b4tkeCYaLy/p3xmpUGz75Fn487nm8YJXp+kZa3TI8C/H6eBtRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 21 Aug
- 2025 16:02:15 +0800
-Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Thu, 21 Aug 2025 16:02:15 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: ryan_chen <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson
-	<bjorn.andersson@oss.qualcomm.com>, Geert Uytterhoeven
-	<geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
-	<nfraprado@collabora.com>, Taniya Das <quic_tdas@quicinc.com>, Lad Prabhakar
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Kuninori Morimoto
-	<kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@google.com>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-	<soc@lists.linux.dev>, Mo Elbadry <elbadrym@google.com>, Rom Lemarchand
-	<romlem@google.com>, William Kennington <wak@google.com>, Yuxiao Zhang
-	<yuxiaozhang@google.com>, <wthai@nvidia.com>, <leohu@nvidia.com>,
-	<dkodihalli@nvidia.com>, <spuranik@nvidia.com>
-Subject: [PATCH v4 5/5] arm64: configs: Update defconfig for AST2700 platform support
-Date: Thu, 21 Aug 2025 16:02:14 +0800
-Message-ID: <20250821080214.513090-6-ryan_chen@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250821080214.513090-1-ryan_chen@aspeedtech.com>
-References: <20250821080214.513090-1-ryan_chen@aspeedtech.com>
+	s=arc-20240116; t=1755764218; c=relaxed/simple;
+	bh=2eMsqlZvaI7r1XsM6Mfdx+rXe7GGSP61IGJmjFAGA1k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oJxf8XovnYRHm5mCyP+ZZl0j/SoVdQyTD/kFa6TctlMuht/AsfqNgrVvf38CaW8Ri+1FbCgOMhWLcVSuFYeYN318LfO4KK9qW5HwbKSBqq2VdwAVObbwC9lnkLyrnSGf6PGYOf4OMtMM3ivSKJ/lDKcr52LrfXZGQh0jxgaaq7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ai6YzjaK; arc=none smtp.client-ip=220.197.32.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=iz16ggPl0fT3RVXnz81iuKxXxLF6gIVdgoLvPtuFQ9A=;
+	b=ai6YzjaK3ckMOnwi5QSbxs8PgXPTVvpjONez8ZQ/0W3fyxptM7Al1gNuq5ig53
+	QgsUpi8zdz6jFn5xw4dn5YPNxAzx9duXbM3peyAhT7RzOxmRh+XHCTbqtTByC2jU
+	9NAD+TPJ738FqKdYgIKr6xbd3um4NdW3SnylxE8brn3To=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgC3vvYo06ZoTvMZAw--.64178S3;
+	Thu, 21 Aug 2025 16:04:58 +0800 (CST)
+Date: Thu, 21 Aug 2025 16:04:56 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Xu Yang <xu.yang_2@nxp.com>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: s32g3: Fix whitespace issue in device
+ tree
+Message-ID: <aKbTKJqoxwKKJsu_@dragon>
+References: <cover.1752703107.git.dan.carpenter@linaro.org>
+ <52960eb1-4432-436b-89aa-d50fc7da2c3a@sabinyo.mountain>
+ <95b3a17e-a5a2-4d84-960c-2539af9d5450@kernel.org>
+ <e4c5fe15-87c8-42d5-b4d7-09e3d1f7e712@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e4c5fe15-87c8-42d5-b4d7-09e3d1f7e712@suswa.mountain>
+X-CM-TRANSID:Ms8vCgC3vvYo06ZoTvMZAw--.64178S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW7KFy7Zr47Xw1xCF1rZr4Utwb_yoW8JFyxpF
+	W5CF1jyrWUtrWfAwn7J340gF45Zws5WF98Wry8u347CFZ0vwnYqF92grWY9w15Wrs5Gryx
+	AF4aga4xCa4DZ3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jrOz3UUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNwvCKGim0yuvEgAA3d
 
-Enable options for ASPEED AST2700 SoC.
+On Fri, Jul 18, 2025 at 06:21:00PM +0300, Dan Carpenter wrote:
+> On Fri, Jul 18, 2025 at 08:58:19AM +0200, Krzysztof Kozlowski wrote:
+> > On 17/07/2025 00:46, Dan Carpenter wrote:
+> > > Checkpatch points out that this should use spaces instead of tabs.
+> > > "ERROR: code indent should use tabs where possible".
+> > > 
+> > > Reported-by: Xu Yang <xu.yang_2@nxp.com>
+> > > Closes: https://lore.kernel.org/all/u7glt7mn33lbdeskbr4ily6tjjifvffy64llwpi5b2rrhx5tnv@y2h2y3oz3xc4/
+> > > Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+> > > ---
+> > 
+> > Patches were not merged, so this should be squashed there... or you
+> > meant they went with Greg USB? Then no, that's dissapointing, you are
+> > not supposed to send DTS patches to Greg's subsystem.
+> 
+> I worry that I have accidentally stepped into politics...
+> 
+> Yes, it went through Greg's tree.
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+I don't find two DTS patches in v6.17-rc1.  I tried to pick them up, but
+this one doesn't apply.  So you may want to resend them.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 7e04a2905ce4..fe354c91cb7f 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -38,6 +38,7 @@ CONFIG_ARCH_AIROHA=y
- CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_ALPINE=y
- CONFIG_ARCH_APPLE=y
-+CONFIG_ARCH_ASPEED=y
- CONFIG_ARCH_BCM=y
- CONFIG_ARCH_BCM2835=y
- CONFIG_ARCH_BCM_IPROC=y
--- 
-2.34.1
+> I'm just using get_maintainer.pl.
+> Looking at it now, Greg and linux-usb weren't even on the Cc list for
+> the DTS patches.  There was probably some b4 magic which let him apply
+> the whole series.
+> 
+> How was this supposed to have worked?
+
+The DTS changes should be sent separately from usb driver ones.
+
+Shawn
 
 
