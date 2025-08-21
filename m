@@ -1,140 +1,134 @@
-Return-Path: <devicetree+bounces-207617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1BCDB300E4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:20:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F0EB3010F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:29:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01D76608777
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:19:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F6481D00780
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03CC2310647;
-	Thu, 21 Aug 2025 17:19:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XlLnFvpg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D92338F29;
+	Thu, 21 Aug 2025 17:27:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCAF0308F02;
-	Thu, 21 Aug 2025 17:19:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60792338F21
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:27:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755796786; cv=none; b=hAfJKYu52rce76YhhTCM3gyeamsxuhTbz/L7Sj6n0ScHBRmH+efpwTkC6ZqVZebeQaXXq1vuz7j+gtGe/644q5Wvutsh91PsY6KlE16VzAs2nPdEaS4TMZd9rFs3IPtgzWZ69PeJ3Jq36ulJfwA5JLbTWkkzaobSwLbLdgVsYeM=
+	t=1755797223; cv=none; b=WDEad7oIkJVRjmwvwSfQeP+6VFSFbFBX0yFvVXSrUiwL0kGOD9D5rq5jrUGs7D9incWCyycdSLFUJDhBmJcSXtfeE9AS72LpRmnlD6Q/k+2oLGvBQuWhsf6gjMFVaqoGHBqVknl121PVEqWHGTUVZ8v7g3AnaoNFbCnJ9yrIolk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755796786; c=relaxed/simple;
-	bh=IkEM90j9AB9fEVUaubBHggr7J8lF+yeDnZnqMajK8Pc=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=O+SA8dYAb3kEv8h4IcuEjI+re+qOymXHwA8vJ6EBzTegG+Oe1Ab5WGcvAvvR4mBJTEy7NY168TBygx6Co68z+bu+lkAPPC9Ys4nofQNTmDJje9hVNYvuyNISvVck3aWj/QvPYDa9+ZKJDfLtzc4TsDh+nWPLe3rS1cLYTuD+o7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XlLnFvpg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECCE3C4CEF4;
-	Thu, 21 Aug 2025 17:19:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755796786;
-	bh=IkEM90j9AB9fEVUaubBHggr7J8lF+yeDnZnqMajK8Pc=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=XlLnFvpguszjxbVQMQmmvQr18rAXlaCwrmPQn1BBthnaf0Nii2oICZx8GgMZoyu7W
-	 R0IPqBkYfHW5JpotaqQ7fLDwbei2ttpwVs0fYw2pVoKfCV+PtUeXTyKEk6W+w1ydcn
-	 1MJXg7djUXA7jlGcIlRY0VNEoyP3bdPw+GLzaI7qGgqJKhtYdzU8N6JwFAJoLHKG9B
-	 +xq0M2ZhC2DypCTCExctIizJyiol05dA+8wzxrd4ShgWCtYb5InkldWB40j/4gBCws
-	 06G+PJcgTbD8TPYrBul2rWtYDNolXOQm8jAott4kr8FYeioXsNJqu3wI0TY6T10IGw
-	 3xmysks9SZIGw==
-Date: Thu, 21 Aug 2025 12:19:45 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1755797223; c=relaxed/simple;
+	bh=27PkDugFDXO+RkBfyXFnee1MMhm1ZsvwaLoTK5nHyGs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BWAh0WdY14GMOHeHIv33Mbaw+CFvUNSKjELOUQUye3n695Rf4RD5XzZW8i68c/g4E/NPViGOhndm1+3zTPpBdknBPC0dzwJHy06Uez+uwPwWiz/H3HzB0JL19ICs0AxQ1l/QY2nKyAarulAYffyoqr+hVkSU4oNKETx5uWaUBMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <m.felsch@pengutronix.de>)
+	id 1up93e-0002Ta-Hh; Thu, 21 Aug 2025 19:26:38 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+Subject: [PATCH v3 0/4] Input: Add support for TouchNetix aXiom touchscreen
+Date: Thu, 21 Aug 2025 19:26:35 +0200
+Message-Id: <20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- Thomas Zimmermann <tzimmermann@suse.de>, Shawn Guo <shawnguo@kernel.org>, 
- imx@lists.linux.dev, David Airlie <airlied@gmail.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, 
- dri-devel@lists.freedesktop.org, Simona Vetter <simona@ffwll.ch>, 
- Sam Ravnborg <sam@ravnborg.org>, linux-arm-kernel@lists.infradead.org, 
- Thierry Reding <thierry.reding@gmail.com>, 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMtWp2gC/4XOPQ6DMAwF4KtUmZvKTgk/nXqPqgMEFzw0QQlEV
+ Ii7NyB16sBi6flJn72IQJ4piNtpEZ4iB3Y2hev5JExf244ktykLBSqDAjIZc4kgRzewSXMyfTC
+ eyMp6ZvdOlS5ypBIBUSRj8PTiefcfz5R7DqPzn/1cxG27y4hYHcgRJcgcVVYp3VQFlveBbDeN3
+ lmeLy2JjY/qR2rQ6pBUiaw1tU16u84B/sh1Xb8s0RGTIgEAAA==
+X-Change-ID: 20240704-v6-10-topic-touchscreen-axiom-105761e81011
+To: Luis Chamberlain <mcgrof@kernel.org>, 
+ Russ Weight <russ.weight@linux.dev>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
- Fabio Estevam <festevam@gmail.com>
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-In-Reply-To: <20250821-v6-17-topic-imx8mp-skov-dts-jutouch-10inch-v1-0-b492ef807d12@pengutronix.de>
-References: <20250821-v6-17-topic-imx8mp-skov-dts-jutouch-10inch-v1-0-b492ef807d12@pengutronix.de>
-Message-Id: <175579643516.37357.10852050615304641702.robh@kernel.org>
-Subject: Re: [PATCH 0/5] arm64: dts: imx8mp-skov: add new 10" variant
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Kamel Bouhara <kamel.bouhara@bootlin.com>, 
+ Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>, 
+ Danilo Krummrich <dakr@kernel.org>, Danilo Krummrich <dakr@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-input@vger.kernel.org, kernel@pengutronix.de, 
+ Marco Felsch <m.felsch@pengutronix.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi,
 
-On Thu, 21 Aug 2025 09:55:27 +0200, Steffen Trumtrar wrote:
-> Add a new board variant for the Skov i.MX8MP based family of boards.
-> 
-> This variant uses a different 10" panel than the existing ones.
-> 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
-> Steffen Trumtrar (5):
->       dt-bindings: vendor-prefixes: Add JuTouch Technology Co, Ltd
->       dt-bindings: display: simple: Add JuTouch JT101TM023 panel
->       drm/panel: simple: add JuTouch JT101TM023
->       dt-bindings: arm: fsl: add compatible for Skov i.MX8MP variant
->       arm64: dts: imx8mp-skov: support new 10" panel board
-> 
->  Documentation/devicetree/bindings/arm/fsl.yaml     |  1 +
->  .../bindings/display/panel/panel-simple.yaml       |  2 +
->  .../devicetree/bindings/vendor-prefixes.yaml       |  2 +
->  arch/arm64/boot/dts/freescale/Makefile             |  1 +
->  .../imx8mp-skov-revc-jutouch-jt101tm023.dts        | 79 ++++++++++++++++++++++
->  drivers/gpu/drm/panel/panel-simple.c               | 35 ++++++++++
->  6 files changed, 120 insertions(+)
-> ---
-> base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
-> change-id: 20250821-v6-17-topic-imx8mp-skov-dts-jutouch-10inch-9ef9faa75514
-> 
-> Best regards,
-> --
-> Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> 
-> 
-> 
+this adds the support for the TouchNetix aXiom touchcontroller family.
 
+The following features are added:
+ - I2C communication
+ - Input event handling
+ - Touchcontroller firmware (AXFW or ALC) updates
+ - Touchcontroller config (TH2CFGBIN) updates
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Regards,
+  Marco
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Changes in v3:
+- Link to v2: https://lore.kernel.org/r/20250529-v6-10-topic-touchscreen-axiom-v2-0-a5edb105a600@pengutronix.de
+- firmware: fix commit message (Russ)
+- dt-bindings: Add ack from Krzysztof
+- dt-bindings: make use of GPIO_ACTIVE_LOW (Krzysztof)
+- dt-bindings: drop 'panel: true' property (Krzysztof)
+- driver: make use of sysfs_emit (Greg)
+- driver: s/WARN()/dev_warn()/ to not take down the system (Greg)
+- driver: fix build dependency error by adding "depends on DRM || !DRM"
+- driver: harmonize usage printing to u%02X
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Changes in v2:
+- Link to v1: https://lore.kernel.org/r/20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de
+- Rework the firmware-duplicate handling -> expose the error to the
+  userspace
+- Drop Krzysztof Kozlowski ACK and RB
+- Add panel-follower support
+- Add sysfs-driver-input-touchnetix-axiom documentation
+- Add support for new firmware 4.8.9
+- Add support to handle 2D and 3D firmware
 
-  pip3 install dtschema --upgrade
+---
+Kamel Bouhara (2):
+      dt-bindings: vendor-prefixes: Add TouchNetix AS
+      dt-bindings: input: Add TouchNetix axiom touchscreen
 
+Marco Felsch (2):
+      firmware_loader: expand firmware error codes with up-to-date error
+      Input: Add TouchNetix aXiom I2C Touchscreen support
 
-This patch series was applied (using b4) to base:
- Base: using specified base-commit 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+ .../testing/sysfs-driver-input-touchnetix-axiom    |   74 +
+ .../input/touchscreen/touchnetix,ax54a.yaml        |   62 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ drivers/base/firmware_loader/sysfs_upload.c        |    1 +
+ drivers/input/touchscreen/Kconfig                  |   17 +
+ drivers/input/touchscreen/Makefile                 |    1 +
+ drivers/input/touchscreen/touchnetix_axiom.c       | 2974 ++++++++++++++++++++
+ include/linux/firmware.h                           |    2 +
+ lib/test_firmware.c                                |    1 +
+ 9 files changed, 3134 insertions(+)
+---
+base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
+change-id: 20240704-v6-10-topic-touchscreen-axiom-105761e81011
 
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20250821-v6-17-topic-imx8mp-skov-dts-jutouch-10inch-v1-0-b492ef807d12@pengutronix.de:
-
-arch/arm64/boot/dts/freescale/imx8mp-skov-revc-jutouch-jt101tm023.dtb: touchscreen@2a (eeti,exc81w32): compatible: 'oneOf' conditional failed, one must be fixed:
-	['eeti,exc81w32'] is too short
-	'eeti,exc3000' was expected
-	'eeti,exc80h60' was expected
-	'eeti,exc80h84' was expected
-	from schema $id: http://devicetree.org/schemas/input/touchscreen/eeti,exc3000.yaml#
-
-
-
-
+Best regards,
+-- 
+Marco Felsch <m.felsch@pengutronix.de>
 
 
