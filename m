@@ -1,117 +1,165 @@
-Return-Path: <devicetree+bounces-207628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F0EBB301B2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:06:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEA97B301B3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:06:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE1BD3B7BBD
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:06:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99BB73B7ED6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0EBC3115B8;
-	Thu, 21 Aug 2025 18:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB6634165B;
+	Thu, 21 Aug 2025 18:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="NbUsgwLr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i77FBwAj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 264841FE44D
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 18:06:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 008491FE44D;
+	Thu, 21 Aug 2025 18:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755799587; cv=none; b=auap3QoOS/MTm8PbYRJxMvV700OELhEmo+A9xSIEXqmcxM4B0vGM9argdyI060gcojzYXxP4OfmryzCwgFdflZqdqUlVfj6xf6MDQ3jiYhwKhPnevlOcyZMIbpG9CC7PbjcWAcPGPe1z75PXGSvQpT7hHpP5ntMmil4tic5W1bE=
+	t=1755799615; cv=none; b=ppH6l+YelXlWhUuD6ZNb/L1UQZM+EM9OIAM5wvWIF3EIfh1EebvDojlQJjYBkocI7dnZYxFiVf8LE5c4DZH66Vesw9mKo5T9dUjeVvL/mZLU9adW3bPPITgVUPJwtZbjp2R7BK0sqcTNTs9yw+wKhEoAMX1jxl1uWRseqg+5268=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755799587; c=relaxed/simple;
-	bh=gXdkZCMbVit4H4f9IGUCeg5+UNllBn10G6K7Fmgx1Fg=;
+	s=arc-20240116; t=1755799615; c=relaxed/simple;
+	bh=L/oJic+hclWcb0OI6z6PFM6TWuSsr8HbYDJJztF2IHM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KZfNYOZm3ap5VvbbDvyve7/o08usR4wMgD78SDtvVhTcQ9vDsUSmjH23o+T0C8xjIuw8jgZ+u7rYI5H4pCogGaY08cGtmH2/0re3xfbgjTaiowJ3PVl+2aC01MOm2g/QSMKtqSnd8RjzQQbWcOAThSV+FyOeQSUXHNsJAyzxUCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=NbUsgwLr; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vuQY2HuepKB5t5U67BTcopXXonRlXHtdLgfJBFihPDE=; b=NbUsgwLrQXI4L+IQKROV3GcfNQ
-	FRXJpQOKFHvHUFbaIbQ5mFL3W1xFqWpuwAMC8aNcbfCieNjYu3ELpr6yZvCZPebQ2WXWklJLc2QMX
-	W66uybxtg1x8qyNxxKMj95XPOBSNOIpdL/QXqc11JDuHI+p1NbqRez9VzrSk8IaYOC1fyNSTMczVu
-	mHBuk5k9g7/xVFB8zljWpmXPhlo7KQD6iODCCGYNd2JOOa0XMcVajeFm083zTeb0uX3wIcxED2pEP
-	D1qt+90d8L5VzPbwFFG+6KrgIIjzJ31wNj47bbTfwf6hylnvrb0aVrw8+ocKMMf9syXyjdZ6bEXsd
-	GzkUit/w==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38870)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1up9g7-000000001Tf-0XXn;
-	Thu, 21 Aug 2025 19:06:23 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1up9g4-000000001Gr-27Qf;
-	Thu, 21 Aug 2025 19:06:20 +0100
-Date: Thu, 21 Aug 2025 19:06:20 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Frank Wunderlich <frank-w@public-files.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Gregory Clement <gregory.clement@bootlin.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=hEHQhIR2GEHgtjVzDxMQb19ZyUoftr3egay7nJ9XX5lajsDgPfweVb6ZClwIEpJzlcLY7jBkmj3VK4JdcPCNdYRsTynth4Z47e7WWs4xQV1dVZOy07iIDi1u3EjdcUKXonZFIWb00fRHGtPsnH7kWfXsw5ddMOxsdB74FwdhZZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i77FBwAj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D557C113CF;
+	Thu, 21 Aug 2025 18:06:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755799614;
+	bh=L/oJic+hclWcb0OI6z6PFM6TWuSsr8HbYDJJztF2IHM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=i77FBwAj5KCJ1unBguppDBo8oE61T2JpPjBkc1QTmATgP+nvT6ovEVnJB4nnCupgV
+	 EGei9Yw/8szzsDdUF4mk+iNg3nq7pZ2PzDJ3ftUYE4RWNjXHosxGX0TOJxoXfyRTPe
+	 uOsxzNMsRNtIR3YBkO/Vt/EN8f+Rm9brNDcGg/YMYqWnnOLLKItKL0agfqz4htTpn6
+	 jPKbL2s1bj0R/qFZjTQXjXcWzmDIUVXKaksq4GPtti1HjpTAWTXxIlghoK3TIeeiYL
+	 pepjs4HRi6TEQt9u2lu49/ZpUrzI1VrIbE2TiqReXkhW0QwXtiaZzvj5K7YSE21kWL
+	 rppp67bMMl6GA==
+Date: Thu, 21 Aug 2025 19:06:48 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH v2] ARM64: dts: mcbin: fix SATA ports on Macchiatobin
-Message-ID: <aKdgHGElBEyHeP67@shell.armlinux.org.uk>
-References: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+	Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>,
+	Kim Seer Paller <kimseer.paller@analog.com>
+Subject: Re: [PATCH v1 0/2] Add MAX14001/MAX14002 support
+Message-ID: <20250821-haziness-squeamish-81713e94d079@spud>
+References: <cover.1755778211.git.marilene.agarcia@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="CmbokF2ke1ZZ2/fW"
 Content-Disposition: inline
-In-Reply-To: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <cover.1755778211.git.marilene.agarcia@gmail.com>
 
-On Thu, Aug 21, 2025 at 06:43:28PM +0100, Russell King (Oracle) wrote:
-> Booting 6.16 on the Macchiatobin, I discover that I can no longer
-> access my disks, and thus the userspace boot fails. The cause appears
-> to be that one of the SATA controllers doesn't have any ports:
-> 
-> [    1.190312] ahci f4540000.sata: supply ahci not found, using dummy regulator
-> [    1.196255] ahci f4540000.sata: supply phy not found, using dummy regulator
-> [    1.202026] ahci f4540000.sata: No port enabled
-> 
-> This is as a result of the blamed commit below which added a default
-> disabled status to the .dtsi, but didn't properly update the mcbin
-> dtsi file. Fix this regression.
-> 
-> Fixes: 30023876aef4 ("arm64: dts: marvell: only enable complete sata nodes")
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-Frank,
+--CmbokF2ke1ZZ2/fW
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I think this is also similarly broken by your patch:
+On Thu, Aug 21, 2025 at 10:36:06AM -0300, Marilene Andrade Garcia wrote:
+> Hello maintainers,
+>=20
+> This patch series adds basic support for the Analog Devices=20
+> MAX14001/MAX14002, configurable, isolated 10-bit ADCs for multi-range=20
+> binary inputs. Besides the implemented ADC readings, these devices have=
+=20
+> more features, like a binary comparator; a filtered reading that can=20
+> provide the average of the last 2, 4, or 8 ADC readings; and an inrush=20
+> comparator that triggers the inrush current. There is also a fault featur=
+e=20
+> that can diagnose seven possible fault conditions.=20
+>=20
+> To keep the commits simple and organized, these initial driver support=20
+> patches aim to upstream only the features related to reading two register=
+s,=20
+> one that contains the latest ADC reading, and another one that contains=
+=20
+> the latest filtered ADC readings. Though, _raw and _mean_raw are providin=
+g=20
+> the same results in this initial version since the data averaging config=
+=20
+> interface is not implemented yet. For this, IIO_CHAN_INFO_AVERAGE_RAW was=
+=20
+> used to return the filtered average of ADC readings. An additional patch=
+=20
+> documenting the in_voltageY_mean_raw interface can be added on v2 if that=
+=20
+> would be desirable. The idea is to use in_voltageY_mean_raw to return the=
+=20
+> filtered average value, and also to set how many ADC readings (0, 2, 4,=
+=20
+> or 8) are included in the mean calculation. I would also like to know if=
+=20
+> you have any feedback on using IIO_CHAN_INFO_AVERAGE_RAW in this way.
+>=20
+> The changes were tested using the Raspberry Pi modified kernel version=20
+> rpi-6.6 on Raspberry Pi 5 hardware. For testing, the MAX14001PMB evaluati=
+on=20
+> board was used, which contains two MAX14001 devices. According to the=20
+> board=E2=80=99s circuit configuration, one device measures current and th=
+e other=20
+> measures voltage. Due to the evaluation board=E2=80=99s circuitry, the de=
+vices=20
+> also receive an offset that allows them to measure negative values. None=
+=20
+> of these evaluation board-specific characteristics were included in the=
+=20
+> driver code (neither the offset nor the current channel capability).=20
+> However, they were considered in the calculation of the values read by th=
+e=20
+> devices. Should the code that applies these board configuration parameter=
+s=20
+> be added as an additional driver file inside the IIO subsystem, or should=
+=20
+> it remain only in a user application file?
+>=20
+> The code was developed during the GSoC program as part of the Analog=20
+> Devices Mentorship. Many thanks to my mentors Marcelo Schmitt,  Ceclan=20
+> Dumitru, Jonathan Santos and Dragos Bogdan for their guidance, reviews,=
+=20
+> and explanations about the IIO subsystem code.
+>=20
+> I intend to keep sending patches to cover all the features of the device.
 
-arch/arm64/boot/dts/marvell/armada-8040-db.dts
+Something gone wrong here? There's already a v9 from another ADI
+employee on the list:
+https://lore.kernel.org/all/20230710042723.46084-2-kimseer.paller@analog.co=
+m/
 
-as you've updated the ports on one SATA controller but not the other
-in the same way as you omitted the second controller on mcbin.
+--CmbokF2ke1ZZ2/fW
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I'd also question this:
+-----BEGIN PGP SIGNATURE-----
 
-arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKdgOAAKCRB4tDGHoIJi
+0ndsAP99s7LMlpgxtMf7eN2DmaSN0b8LV21wDZYkD2RqSqpaoAEAz2PZfylULpkf
+XMvWyYRkXnivvg/7pKONfBaScDs7gAg=
+=ShSV
+-----END PGP SIGNATURE-----
 
-as you updated the other cn9132, but not this one which was introduced
-in 6.11, and your change was in 6.13. Please can you look at both of
-these and send appropriate fixes?
-
-Thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+--CmbokF2ke1ZZ2/fW--
 
