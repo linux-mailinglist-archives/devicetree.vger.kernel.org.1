@@ -1,158 +1,192 @@
-Return-Path: <devicetree+bounces-207374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B9DB2F53D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:25:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 309DEB2F547
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:26:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A7DF723F86
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:23:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83EF05E5C75
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:25:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E33712F8BEA;
-	Thu, 21 Aug 2025 10:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86F452F7466;
+	Thu, 21 Aug 2025 10:25:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="qz2uZROb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QPULIdwc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F69C2F7477;
-	Thu, 21 Aug 2025 10:22:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5204A2F5492;
+	Thu, 21 Aug 2025 10:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755771742; cv=none; b=C6bOmI7ZTEVVjimOgpZC28aJuRK+Iym5Nlof7tc7uX55PDa8GexWyNuPKGVqqrgWq3JQCzgBDlRxD/mClC2WDYCurMwZpz/FTdIQRfje4jJTbAd3KYKgD5V/x1ReQWEax7eGp4LVEdYTxwbpPaBMi5zrGH4moVBcSCgsVTwQ3+Q=
+	t=1755771922; cv=none; b=Lwu3NAq0YL2d6SN5cUdtLhQ2Z6UcgHtNwslMSUbCJ5HE62A73X1vJlXozcjo0kBCXPZ+s6+VTFi8GOyMnBZ+MpaSHRszUz/n5SnfF5XbxzruGw3etPsFYDwqI+6HOX2cJemZINRGKh0ZdPGSy+zYbAVJEq1OkDG3Z3kyGJjrQao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755771742; c=relaxed/simple;
-	bh=ke0Mxr0+ImBybm5HcDHtBUz1ItD/FtBXs42PEiftTSA=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=Le0cTAnlfnIHeznNRxgzxn1A41EKD4iy14PKSlWKcAfYy5xj+BuELLo0lt63vyJUT/492eYR7ezR571VT++8SV4uXzJa00OZ8+Av1SqplzimWSG1A71gZXpHIFPxQ7SABlpdtic8H9kRFRSrex9zBJ0uRBRBXGssTymAuMtrRF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=qz2uZROb; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=MP8TZmTt1aO0rpPA1VlRUx+vlzVRWV5nJEBr4K4uwl0=; b=qz2uZRObXNze480DbNKjv5VPkW
-	YLo9HqggwTP8dZEICRHFewux8E07N0TBIU5w/8BTYnnffMxo8cFxSMQFe0SRy9oSEaxi33XTtOKtD
-	MXsL7ZvbvzkoMQYLm5d2nbOthDU6MHPR8kSuPTI3yQuzWT8GkpbXSWiUCvVqntGKF7aH2P4+q3DuV
-	adYAf3QzqqcjC1YUQOpxbnTpoKJ+Z+3WI1XiCM4BD0b4/U1AtS3fi294mb62emLGR83Ewao7/o8CF
-	df38ChQn9qVjHEm113uAnE4dV0i+WJSPVN53eKbVrxm3ofBKaJ/BUInqskoCT4DRcQBP/SPyl1qSX
-	Azz7/mmg==;
-Received: from [122.175.9.182] (port=17203 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1up2Qu-0000000H5N8-2MGl;
-	Thu, 21 Aug 2025 06:22:13 -0400
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 3ECC81781F9F;
-	Thu, 21 Aug 2025 15:52:06 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 159FC17823D4;
-	Thu, 21 Aug 2025 15:52:06 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id vjuA_uO9NEBg; Thu, 21 Aug 2025 15:52:05 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id B84611781F9F;
-	Thu, 21 Aug 2025 15:52:05 +0530 (IST)
-Date: Thu, 21 Aug 2025 15:52:05 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: kuba <kuba@kernel.org>
-Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	pabeni <pabeni@redhat.com>, robh <robh@kernel.org>, 
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
-	ssantosh <ssantosh@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	m-malladi <m-malladi@ti.com>, s hauer <s.hauer@pengutronix.de>, 
-	afd <afd@ti.com>, jacob e keller <jacob.e.keller@intel.com>, 
-	horms <horms@kernel.org>, johan <johan@kernel.org>, 
-	m-karicheri2 <m-karicheri2@ti.com>, s-anna <s-anna@ti.com>, 
-	glaroque <glaroque@baylibre.com>, 
-	saikrishnag <saikrishnag@marvell.com>, 
-	kory maincent <kory.maincent@bootlin.com>, 
-	diogo ivo <diogo.ivo@siemens.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	basharath <basharath@couthit.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	ALOK TIWARI <alok.a.tiwari@oracle.com>, 
-	Bastien Curutchet <bastien.curutchet@bootlin.com>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <641170813.212171.1755771725482.JavaMail.zimbra@couthit.local>
-In-Reply-To: <20250820081713.2d243c55@kernel.org>
-References: <20250812110723.4116929-1-parvathi@couthit.com> <20250812133534.4119053-5-parvathi@couthit.com> <20250815115956.0f36ae06@kernel.org> <1969814282.190581.1755522577590.JavaMail.zimbra@couthit.local> <20250818084020.378678a7@kernel.org> <1714979234.207867.1755695297667.JavaMail.zimbra@couthit.local> <20250820081713.2d243c55@kernel.org>
-Subject: Re: [PATCH net-next v13 4/5] net: ti: prueth: Adds link detection,
- RX and TX support.
+	s=arc-20240116; t=1755771922; c=relaxed/simple;
+	bh=ORTjv3YVqf7tKuswYRO+Ecti+tHql9FqphRkmWE57tg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uIS4C3Wt7QK17ztir7oYm6gaLk0vIAx8BvxSzIDc92qaqnqIdaXzPp9ESDcl0l9I6C+0vYEzuuQJnk5lzKwPIiqP420lS10GtNkt0ksM7TZQZUXZgCptFMyawM0aV0LmQo+qK9LWN0723DF4w/F9+Aj+09Z3LoVynyRBv3hqFYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QPULIdwc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F9A1C4CEEB;
+	Thu, 21 Aug 2025 10:25:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755771919;
+	bh=ORTjv3YVqf7tKuswYRO+Ecti+tHql9FqphRkmWE57tg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QPULIdwcaNqt09nbyOt6cG69mFU7KE+z/YDsBLC+6QCrO733Rv8gicsUdi/n2CLra
+	 3pjjq3rP7mvOXOfd2byRx9QriPg0Tev/gGPaV9mz3O0DvpWyzBCvi6cFyT38BehraB
+	 KKphm+1osP13chkL5WxNxZd7sE+hHAQ3jP+d0o+LW88a1X+j89AJW1F2KB3iaU0x3E
+	 EvHLNVKv8Tff+anLhmUPHpmoCpUzq+XUQ3f94dPR9PFeQVBzq3txIrdAX+0ynUF4Nn
+	 qe27HLnYSx+ZLvON6+k87GoFcr9c/jWh6tRDYVqXro9/k/Yubt3N1Sf40TE8rL3v5F
+	 P3jFLeR5cR66Q==
+Message-ID: <8279536d-c4f4-477a-9823-3e7b452c3c33@kernel.org>
+Date: Thu, 21 Aug 2025 12:25:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/9] dt-bindings: nvme: apple,nvme-ans: Add Apple A11
+To: Krzysztof Kozlowski <krzk@kernel.org>, Nick Chan <towinchenmi@gmail.com>
+Cc: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Neal Gompa <neal@gompa.dev>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Keith Busch <kbusch@kernel.org>,
+ Jens Axboe <axboe@kernel.dk>, Christoph Hellwig <hch@lst.de>,
+ Sagi Grimberg <sagi@grimberg.me>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, iommu@lists.linux.dev,
+ linux-nvme@lists.infradead.org
+References: <20250818-t8015-nvme-v2-0-65648cd189e0@gmail.com>
+ <20250818-t8015-nvme-v2-6-65648cd189e0@gmail.com>
+ <20250819-polite-papaya-catfish-1a9d1a@kuoka>
+ <8ac418ae-7ff0-4d5c-9f11-c24e36618ac1@kernel.org>
+ <b3cd1b3f-fa0e-4a98-84c7-e4271f262795@kernel.org>
+Content-Language: en-US
+From: Sven Peter <sven@kernel.org>
+In-Reply-To: <b3cd1b3f-fa0e-4a98-84c7-e4271f262795@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds link detection, RX and TX support.
-Thread-Index: 0Ddp1f2DlVt3suYoV83jhextCZCwAQ==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 
-Hi,
-
-> On Wed, 20 Aug 2025 18:38:17 +0530 (IST) Parvathi Pudi wrote:
->> > On Mon, 18 Aug 2025 18:39:37 +0530 (IST) Parvathi Pudi wrote:
->> >> +       if (num_rx_packets < budget && napi_complete_done(napi, num_rx_packets))
->> >>                 enable_irq(emac->rx_irq);
->> >> -       }
->> >>  
->> >>         return num_rx_packets;
->> >>  }
->> >> 
->> >> We will address this in the next version.
->> > 
->> > Ideally:
->> > 
->> >	if (num_rx < budget && napi_complete_done()) {
->> >		enable_irq();
->> >		return num_rx;
->> >	}
->> > 
->> > 	return budget;
->> 
->> However, if num_rx < budget and if napi_complete_done() is false, then
->> instead of returning the num_rx the above code will return budget.
->> 
->> So, unless I am missing something, the previous logic seems correct to me.
->> Please let me know otherwise.
+On 19.08.25 13:34, Krzysztof Kozlowski wrote:
+> On 19/08/2025 12:01, Sven Peter wrote:
+>> On 19.08.25 11:18, Krzysztof Kozlowski wrote:
+>>> On Mon, Aug 18, 2025 at 04:42:59PM +0800, Nick Chan wrote:
+>>>> Add ANS2 NVMe bindings for Apple A11 SoC.
+>>>>
+>>>> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+>>>> ---
+>>>>    .../devicetree/bindings/nvme/apple,nvme-ans.yaml          | 15 +++++++++------
+>>>>    1 file changed, 9 insertions(+), 6 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml b/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
+>>>> index fc6555724e1858e8a16f6750302ff0ad9c4e5b88..4127d7b0a0f066fd0e144b32d1b676e3406b9d5a 100644
+>>>> --- a/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
+>>>> +++ b/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
+>>>> @@ -11,12 +11,14 @@ maintainers:
+>>>>    
+>>>>    properties:
+>>>>      compatible:
+>>>> -    items:
+>>>> -      - enum:
+>>>> -          - apple,t8103-nvme-ans2
+>>>> -          - apple,t8112-nvme-ans2
+>>>> -          - apple,t6000-nvme-ans2
+>>>> -      - const: apple,nvme-ans2
+>>>> +    oneOf:
+>>>> +      - const: apple,t8015-nvme-ans2
+>>>> +      - items:
+>>>> +          - enum:
+>>>> +              - apple,t8103-nvme-ans2
+>>>> +              - apple,t8112-nvme-ans2
+>>>> +              - apple,t6000-nvme-ans2
+>>>> +          - const: apple,nvme-ans2
+>>>
+>>> When some months ago this pattern of generic fallback appeared, I
+>>> believe I commented it is bad idea. So now months later we have a proof
+>>> - generic fallback is useless and you should have been using SoC
+>>> specific compatibles from the start.
+>>>
+>>> Now it is just confusing and this broken pattern will be spreading more
+>>> and more, because you folks put generic compatibles everywhere.
+>>
+>> I haven't commented on the dt-bindings yet because I suspect this patch
+>> is wrong but haven't had time to test this yet.
+>>
+>> I believe we want "apple,t8015-nvme-ans2", "apple,nvme-ans2" here and
+>> then use the code Nick added for "apple,nvme-ans2" by default and only
+>> enable additional features (NVMMU, linear submission queue) when we see
+>> the SoC-specific compatibles for t8103, t8112, and t6000. IIRC these
+>> newer SoCs still support the old way of submitting commands just fine
+>> and the new way was added at some point to add support for this weird
+>> integrated IOMMU.
+>>
+>> I've already seen some strings about ANS3 somewhere which I suspect
+>> will be the controller in some future SoC (or maybe M3/M4 which we
+>> haven't reverse engineered yet) that actually breaks compatibility.
 > 
-> IIRC either way is fine, as long as num_rx doesn't go over budget.
+> 
+> This was 99% predictable and expected months/years ago when first Apple
+> M1 generic compatibles appeared. I just do not understand why so much
+> effort from reviewers has to go into explaining this and for arguing
+> over that, and eventually we are right.
+> 
 
-Sure. We will address this in the next version.
+Right, so we're in a bad situation now because we didn't listen. That 
+sucks and I'm sorry.
+
+How do we move on from here now though?
+
+I think for any new bindings it's pretty clear, we just do what we 
+should've done from the very beginning:
+Whenever we upstream a new device that has no bindings yet we only use 
+tXXXX-whatever as compatible and use that as a fallback in case later 
+(or earlier) SoCs work with the same driver.
 
 
-Thanks and Regards,
-Parvathi.
+
+Then we still have to deal with the stuff that's already upstream. I see 
+two options here:
+
+
+1) For situations like this one where the generic one just doesn't make 
+any sense we deprecate "apple,nvme-ans2" in the binding and use
+"apple,t8103-nvme-ans2" as the fallback instead, i.e. just
+"apple,t8103-nvme-ans2" for M1, "apple,t6000-nvme-ans2", 
+"apple,t8103-nvme-ans2" for M1 Pro, and just "apple,t8015-nvme-ans2" for 
+A11.
+
+We keep the generic one in the driver for now but also add
+"apple,t8103-nvme-ans2". We then remove the generic one from all 
+upstream DTS files but keep it inside the downstream files we ship to 
+users for now to avoid pain with kernel upgrades/downgrades.
+A year or two from now we can then delete the deprecated generic 
+compatibles everywhere. This all has to be synced with OpenBSD and 
+u-boot as well since both also use these bindings.
+It's gonna be rather painful but this would clean up the entire mess.
+
+
+2) We keep using the ones that are already upstream and just accept that 
+the situation is a mess and add comment above all the bindings that we 
+messed up and that this should not be used as pattern.
+In this case that means it'll just be "apple,t8015-nvme-ans2" for A11 
+without any fallback and we keep everything else the way it is.
+
+I prefer option (2) but if you really want to get rid of all this mess 
+I'll also work on (1).
+
+Would either option work for you or do you have a better idea?
+
+
+
+Thanks,
+
+
+Sven
 
