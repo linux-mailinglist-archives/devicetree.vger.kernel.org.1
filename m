@@ -1,42 +1,41 @@
-Return-Path: <devicetree+bounces-207621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65802B3010A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:29:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FC52B300FF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:28:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4D055A5FB0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:27:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 283CC7BD875
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D55E338F32;
-	Thu, 21 Aug 2025 17:27:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1FAC3115B8;
+	Thu, 21 Aug 2025 17:26:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42AC31813A
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:27:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787603112C2
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755797224; cv=none; b=rKcyqmvML8MyYp+8ip3xpVLBwZnZa5rkV+5vSxQar+4vIKkOJ3bmSyqhUNeBnOqVPYh3vZWMyKCIT2wCPp3OcQq2ChQxJTIDuo0XSQTsbt51OG3A3BM3cXbDPyBk//oFNY4IhHm24FpL1P0v0W1fD38x4VvqgH8YUC5fKkcB9tk=
+	t=1755797219; cv=none; b=UyoMean18wDGt9BGz9j3IhEDfCVvgx4uqv5xupyAGCzhhJlg3gXlC0P4cHxXKZfC6l/bA8+MAS3Rgy+QsBQVyDfsK9cjLo7Yb+d3ltvZ7w2NKUA4tUhoN4165OD5q+Yug7hmAKIDW6UhRTgepZOr0mRuYeN/YujJ4jaSZjD9bXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755797224; c=relaxed/simple;
-	bh=tu6X+letYmWAKyHgSsIJheEiaxj569v4emLeSYXBn9c=;
+	s=arc-20240116; t=1755797219; c=relaxed/simple;
+	bh=iIL19uhRG2hs+HR7Jey0AH181EwvWBDJTmOePmFTXmI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dOxbX3J20L2YRBrL1gjF3jr/Kka8YeZHsUN376GtyIrJPs1Qm6+PJPT+USdbCi6084Y0dlgIeFryLFKFh2hgU4bw3AVpK2nqaA+rtKo7oMJJlT8NlAfwJV9HMfoB9YszmObXGqx9ROHZEIBzHgf16PaXpmOk4t75q90UYVvRgqs=
+	 In-Reply-To:To:Cc; b=YlbOvPo8uPA736oFC5oMtrD8/o0Yw1bFAOVo8yDilDdkF5pZbpDzrPOLDijiy0Uw1yxIXD+iEzb2PqrxMogGRgXoQ9AvBam0xzygrGkPlK01DUtRp9yqCS39t3/MPxaNNsz4H5bFLJrZfM0YT56RxkhYs8MhdFz/bIK0YUXc0OM=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1up93e-0002Ta-Jz; Thu, 21 Aug 2025 19:26:38 +0200
+	id 1up93e-0002Ta-MP; Thu, 21 Aug 2025 19:26:38 +0200
 From: Marco Felsch <m.felsch@pengutronix.de>
-Date: Thu, 21 Aug 2025 19:26:36 +0200
-Subject: [PATCH v3 1/4] firmware_loader: expand firmware error codes with
- up-to-date error
+Date: Thu, 21 Aug 2025 19:26:37 +0200
+Subject: [PATCH v3 2/4] dt-bindings: vendor-prefixes: Add TouchNetix AS
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -45,7 +44,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250821-v6-10-topic-touchscreen-axiom-v3-1-940ccee6dba3@pengutronix.de>
+Message-Id: <20250821-v6-10-topic-touchscreen-axiom-v3-2-940ccee6dba3@pengutronix.de>
 References: <20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de>
 In-Reply-To: <20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de>
 To: Luis Chamberlain <mcgrof@kernel.org>, 
@@ -61,6 +60,7 @@ To: Luis Chamberlain <mcgrof@kernel.org>,
  Danilo Krummrich <dakr@kernel.org>, Danilo Krummrich <dakr@kernel.org>
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-input@vger.kernel.org, kernel@pengutronix.de, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
  Marco Felsch <m.felsch@pengutronix.de>
 X-Mailer: b4 0.14.2
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
@@ -68,63 +68,30 @@ X-SA-Exim-Mail-From: m.felsch@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add FW_UPLOAD_ERR_DUPLICATE to allow drivers to inform the firmware_loader
-framework that the update is not required. This can be the case if the
-user provided firmware matches the current running firmware.
+From: Kamel Bouhara <kamel.bouhara@bootlin.com>
 
-Sync lib/test_firmware.c accordingly.
+Add vendor prefix for TouchNetix AS (https://www.touchnetix.com/products/).
 
+Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
- drivers/base/firmware_loader/sysfs_upload.c | 1 +
- include/linux/firmware.h                    | 2 ++
- lib/test_firmware.c                         | 1 +
- 3 files changed, 4 insertions(+)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
-index 829270067d1632f92656859fb9143e3fa9635670..0a583a1b3f4fde563257566426d523fbf839b13f 100644
---- a/drivers/base/firmware_loader/sysfs_upload.c
-+++ b/drivers/base/firmware_loader/sysfs_upload.c
-@@ -28,6 +28,7 @@ static const char * const fw_upload_err_str[] = {
- 	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
- 	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
- 	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
-+	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
- };
- 
- static const char *fw_upload_progress(struct device *dev,
-diff --git a/include/linux/firmware.h b/include/linux/firmware.h
-index aae1b85ffc10e20e9c3c9b6009d26b83efd8cb24..fe7797be4c08cd62cdad9617b8f70095d5e0af2f 100644
---- a/include/linux/firmware.h
-+++ b/include/linux/firmware.h
-@@ -29,6 +29,7 @@ struct firmware {
-  * @FW_UPLOAD_ERR_RW_ERROR: read or write to HW failed, see kernel log
-  * @FW_UPLOAD_ERR_WEAROUT: FLASH device is approaching wear-out, wait & retry
-  * @FW_UPLOAD_ERR_FW_INVALID: invalid firmware file
-+ * @FW_UPLOAD_ERR_DUPLICATE: firmware is already up to date (duplicate)
-  * @FW_UPLOAD_ERR_MAX: Maximum error code marker
-  */
- enum fw_upload_err {
-@@ -41,6 +42,7 @@ enum fw_upload_err {
- 	FW_UPLOAD_ERR_RW_ERROR,
- 	FW_UPLOAD_ERR_WEAROUT,
- 	FW_UPLOAD_ERR_FW_INVALID,
-+	FW_UPLOAD_ERR_DUPLICATE,
- 	FW_UPLOAD_ERR_MAX
- };
- 
-diff --git a/lib/test_firmware.c b/lib/test_firmware.c
-index 211222e63328f970228920f5662ee80cc7f51215..603c3a4b385c849944a695849a1894693234b5eb 100644
---- a/lib/test_firmware.c
-+++ b/lib/test_firmware.c
-@@ -1133,6 +1133,7 @@ static const char * const fw_upload_err_str[] = {
- 	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
- 	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
- 	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
-+	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
- };
- 
- static void upload_err_inject_error(struct test_firmware_upload *tst,
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 5d2a7a8d3ac6c666c8b557c2ef385918e5e97bf9..a45b3091f50041cb79a99631c52a1b0c5d6b5f2b 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1567,6 +1567,8 @@ patternProperties:
+     description: Toradex AG
+   "^toshiba,.*":
+     description: Toshiba Corporation
++  "^touchnetix,.*":
++    description: TouchNetix AS
+   "^toumaz,.*":
+     description: Toumaz
+   "^tpk,.*":
 
 -- 
 2.39.5
