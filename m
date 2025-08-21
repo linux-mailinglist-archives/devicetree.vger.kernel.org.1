@@ -1,107 +1,92 @@
-Return-Path: <devicetree+bounces-207254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CDF9B2EF79
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:23:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8BD0B2EF8B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:28:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA3FB721792
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 07:23:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B12D8188504C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 07:28:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBB52E8DE8;
-	Thu, 21 Aug 2025 07:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F4C2E8B93;
+	Thu, 21 Aug 2025 07:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJoRmHDM"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="cAnZIVwX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FF32E88B3;
-	Thu, 21 Aug 2025 07:22:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E392915853B;
+	Thu, 21 Aug 2025 07:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755760977; cv=none; b=t+Ae6uLqAOrKfe9JB3TAsprnWY8HGwyfC/iMUWvcmUSlp9Wpq+iTaBxWcHdvLtwN/m6/BnWBR2R17GvvRJwx/nX1G0c9y4smpWa/acUJYMxAC/FKubu0bvthYG/DXTq2nMIjTmqmrfN0FkmvHY7oUCjY+Q9imMu/DKFp3reIVsE=
+	t=1755761286; cv=none; b=aGW/EMPI+fmoeKCF5neZPg2cFjfSUaJAuLGzZRSwF6btcERQ78Qd25Resvo8oPyFXsKZv+jhdGfnfvp6JXfvujPIkkSFRCapPDEAZT9biWQq5nO84Hi6wc83DbnKp5ozu4d5LC4B0fWcsxU0hF6G1EVxvTixgHXNqNJBgdpq7bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755760977; c=relaxed/simple;
-	bh=T46ijkWrftgyRm8rX/GBvJ6Yur70E701SHV6rcR7lC4=;
+	s=arc-20240116; t=1755761286; c=relaxed/simple;
+	bh=svqcbi3OmPTDfakiBEfBMCs3Ex89tSVr80w/U+8RMkA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ghlwF6S4ihsn+X4QTx1FAcwuSG3jWOC67Fvn3b+LutXo2WGXwuS9SGH9S+QtlaMc49jfZOlYXjNEAmg0Ss6qQy/tUV37XaNVVFE3FvV3icC932UOypX9BCFVNa34h/RuQnzcKU3uBLNoPQ6Tw8+Tpy6rbVpKxXkSrdSzl7fUSeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJoRmHDM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05172C4CEED;
-	Thu, 21 Aug 2025 07:22:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755760977;
-	bh=T46ijkWrftgyRm8rX/GBvJ6Yur70E701SHV6rcR7lC4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qJoRmHDMZNHujyjato45IzZ3S6xhMQYYvgUamdzPh3iuT0NVgUKsSp+MZMevYvgS2
-	 XC31JHTFdSwB6+c1ZnzhPzmmNtjjgRfWhtnGCUApevzphn2u/TqolBK7eNPDTI7OiA
-	 vOA8CJAJjwUMpxxwux7t7FWHgYe70uKvmKl2j61IIhMtI/EnGwMw95xIO8WtSqd/tK
-	 QbBIpMWj8m/CazJcc2y02uhoWq3gYn4COeIokf2azni+0u7a6ktkYGf0hctUqMbp/B
-	 oferhbf5rEmt+ylI+Xxj854jSM3hMTp7fkw0A3eAEfmbrNsZDV+/fYXTwg66LxXJ1w
-	 wvxGT+UuowE6g==
-Date: Thu, 21 Aug 2025 09:22:54 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: David Yang <mmyangfl@gmail.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [net-next v5 1/3] dt-bindings: net: dsa: yt921x: Add Motorcomm
- YT921x switch support
-Message-ID: <20250821-melodic-giga-python-6b2dc2@kuoka>
-References: <20250820075420.1601068-1-mmyangfl@gmail.com>
- <20250820075420.1601068-2-mmyangfl@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lMd8QAYhC9RoFziWRbOpsxkKn8wcXs6wOOsepL9T7/LZN9iigvhlxooI4E1GuWBFuykiVtCCPAlsq+1H4bzoL92jiC/0epxs9txlA10evXdT9GoMiPKnnMRvGqy76BQo6hL1cZLM+2sgdq2JStHOOo28rKx88Ew7tjevBc/mRq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=cAnZIVwX; arc=none smtp.client-ip=220.197.32.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=vSKYxpG2l1hLbvhop/k88VTpfR3m9wwP+xtV0BRw8B8=;
+	b=cAnZIVwXcfoCbePnaF9lR41aRUKHK61RpFnwD8UwDIeLYSLWPFvT6OhrmTX6dK
+	QZdvcJp6PhMfEe5NDEI8NjyqU5JQ+jF/peP0O/xTFKWsTtPmTccTMpH4vEOY4rfp
+	25DPz1Qs59k+A8kWUrP3ftU3bARpRy829m15pXT02xmNU=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDnnyhGyqZoY5IZAw--.37745S3;
+	Thu, 21 Aug 2025 15:27:04 +0800 (CST)
+Date: Thu, 21 Aug 2025 15:27:02 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+	linux-amarula@amarulasolutions.com,
+	Wolfgang Birkner <wolfgang.birkner@bshg.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] ARM: dts: imx6ulz-bsh-smm-m2: fix resume via console
+Message-ID: <aKbKRmzJ75uoVTxB@dragon>
+References: <20250715141322.1305512-1-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250820075420.1601068-2-mmyangfl@gmail.com>
+In-Reply-To: <20250715141322.1305512-1-dario.binacchi@amarulasolutions.com>
+X-CM-TRANSID:Ms8vCgDnnyhGyqZoY5IZAw--.37745S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW5Kw4ruFWrur47Jr45WryDKFg_yoWxGFX_ur
+	18Grn7X3Wjy3WxA3WIyr4UZryjgw47GrZxW3yFkw1fJFy8urZ7Ga97tr13ArW7Wr4rK347
+	W3WYvan0yw47JjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUb7PEDUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNQiI7WimykhiKAAA3e
 
-On Wed, Aug 20, 2025 at 03:54:14PM +0800, David Yang wrote:
-> The Motorcomm YT921x series is a family of Ethernet switches with up to
-> 8 internal GbE PHYs and up to 2 GMACs.
-
-Please use standard email subjects, so with the PATCH keyword in the
-title. 'git format-patch -vX' helps here to create proper versioned patches.
-Another useful tool is b4. Skipping the PATCH keyword makes filtering of
-emails more difficult thus making the review process less convenient.
-
+On Tue, Jul 15, 2025 at 04:13:10PM +0200, Dario Binacchi wrote:
+> From: Wolfgang Birkner <wolfgang.birkner@bshg.com>
 > 
-> Signed-off-by: David Yang <mmyangfl@gmail.com>
-> ---
->  .../bindings/net/dsa/motorcomm,yt921x.yaml    | 150 ++++++++++++++++++
->  1 file changed, 150 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml
+> Despite the current configuration being compliant with the technical
+> reference manual (TRM), testing on the system showed that resuming from
+> suspend via UART4 (used as the console) fails unless any other UART
+> is also enabled.
+> 
+> In our use case, UART2 is enabled to ensure reliable resume when UART4
+> is used as the console.
+> 
+> Signed-off-by: Wolfgang Birkner <wolfgang.birkner@bshg.com>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
-...
-
-> +  mdio-external:
-> +    $ref: /schemas/net/mdio.yaml#
-> +    unevaluatedProperties: false
-> +    description: |
-> +      External MDIO bus to access external components. External PHYs for GMACs
-> +      (Port 8-9) are expected to be connected to the external MDIO bus in
-> +      vendor's reference design, but that is not a hard limitation from the
-> +      chip.
-> +
-> +allOf:
-
-This goes after required: block.
-
-But don't resend just for that.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+Weird, but applied.
 
 
