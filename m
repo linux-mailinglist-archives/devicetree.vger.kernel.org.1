@@ -1,132 +1,254 @@
-Return-Path: <devicetree+bounces-207659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA79B302CA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 21:21:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3223AB30265
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E59324E2745
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:21:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6DEC7BB2F0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A995334AAF6;
-	Thu, 21 Aug 2025 19:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8654C343D8A;
+	Thu, 21 Aug 2025 18:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b="PyOYl/Aa"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gzjfZb4n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www571.your-server.de (www571.your-server.de [78.46.3.230])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC9E34AAF0;
-	Thu, 21 Aug 2025 19:21:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.46.3.230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B514C2253FC
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 18:56:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755804103; cv=none; b=gpZl7YEwqa4ZHV05swSxl9Q5wfOkkO85A3MpHL6rNo7E9csMutQIp4G8MB4CpHaf7mxLarmQz7Fng4Hpj1buT3O5GBHPPOWi/3qcr8vE0lp2kFwS86iNNv2bjl3ibotjgG7qfVlOLPnDurTo0mfKDTkFl1agqd4puw/ii7oj7Ws=
+	t=1755802577; cv=none; b=Ng2WVP6Cg4kCZk5hvkJK87u0I6FN+peI5sBs1ls11RMoBA91o6iAOK60xrmwBdFg3vy3vDKLgDheqH8IW2fJbOnqZD8orf/f7RMy/Xn0Q4+ych4z3RKa8r4aeYEFN1SO1hhWk2pLhJiwnka3vBOYVZjJo56VDD3zFmjcVc7TNf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755804103; c=relaxed/simple;
-	bh=9mmC57fqiW/CDgmXrXmLgJFmPtncNpi9tgM8einNv+g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mKvyIrHa0zUb6Wqr19ZKnXXcGM9TW8w+j8qvJAOH9eIC0FT7U8mlQXiShRvvqB4dDzdwhxKe8ajEt6FHjN/uqSmuH6exAS74nHXW2aGeCaMFPk6X9ph999Uaua0QZP3c/6iQe0krD8BXSd0IGSQJ/piGOh3EqRPuSaeXm1vkTwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de; spf=pass smtp.mailfrom=it-klinger.de; dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b=PyOYl/Aa; arc=none smtp.client-ip=78.46.3.230
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=it-klinger.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=it-klinger.de; s=default2502; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=MJPn6pdlhSOyboOro+8VXBZQMw43Z9UgpGkHulJjXTE=; b=PyOYl/AaZYJ2hjEzZVWDwnNXQR
-	NqNR2MSP0z6owBZQLtgUOqNyj9ECsdf8ehWSAJqxaLHRVQfooQ0D6GTuLJO8gtLA4uCs3D6KqLVPt
-	Vxl8sa60OpIMDIJj/hj+s0KJZwq+jbKPELQm1UvCv9W03AyCO+Km8K4XX0e0uWphgbdiCOVylfNkH
-	ffq7oF+fi4tqVdHd+UrGmb3034uifGkeMtmB0fK0GS4dRs6toGa3ad2dIKtnO1nkiKUj6UmIkrnmM
-	cDogbj98thcuF1P3Q2JvQuAy9Sez7SXYl1Vm/zr9mE+iRHXEHP7os46NPOFXBSnphKTgB80Jm0kW2
-	VQJFHHYQ==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-	by www571.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <ak@it-klinger.de>)
-	id 1upAQ2-000CVe-07;
-	Thu, 21 Aug 2025 20:53:49 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy06.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ak@it-klinger.de>)
-	id 1upAQ1-0006XM-10;
-	Thu, 21 Aug 2025 20:53:49 +0200
-Date: Thu, 21 Aug 2025 20:53:47 +0200
-From: Andreas Klinger <ak@it-klinger.de>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lars@metafoo.de,
-	javier.carrasco.cruz@gmail.com, mazziesaccount@gmail.com,
-	arthur.becker@sentec.com, perdaniel.olsson@axis.com,
-	mgonellabolduc@dimonoff.com, muditsharma.info@gmail.com,
-	clamor95@gmail.com, emil.gedenryd@axis.com,
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/3] iio: light: add support for veml6046x00 RGBIR
- color sensor
-Message-ID: <aKdrO7DE8ky2DBu2@mail.your-server.de>
-References: <20250715085810.7679-1-ak@it-klinger.de>
- <20250715085810.7679-3-ak@it-klinger.de>
- <aHdWAUMMH43tIqV4@smile.fi.intel.com>
- <aIMy_BHJYNA20k-x@mail.your-server.de>
- <aKbqLpJMCxJd3QXW@smile.fi.intel.com>
+	s=arc-20240116; t=1755802577; c=relaxed/simple;
+	bh=FcgwT2lr8YlNaT7Bm2l6BjGqNuK65onJ/o5ee9+8krY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=N5wsLqIl/AEG0ji8h7ztf3VhmHwXxweUxotVm8bhPDGy3Vt5JqpiDSFdYCTQlK9ItrdBPPmQNrhnmSwzlDMMmJHapuOnePdmDwBl0CYAD3GlKzgLb2iq3R/pnh+5Ksfnl/LNLgKfwz1hLHlKdhtANYoWNPM6UWyDA88TuqV6dmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gzjfZb4n; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57LI94he024936
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 18:56:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=oTXJBQ026YeZhaceP99mQt
+	yN1CpO9CuuOPT3Jjwbyrg=; b=gzjfZb4n54GfRVRZb7C90Y8QI5lzj5FxCCt1E9
+	5zcPJKlVQlfL8xluQatUm9dI+ZDNmH/dZ6AM1M1/JD0SIOrNao4w+DcETioVUn/h
+	fMX0Cep5plIkiE9PiJAq4WtzyP6yIqSgwn3wmVdo0p0tGOjrs97dyxO62otK7HwT
+	b8s3dxnuKmfGf1DHPXpHQClZS3wcr4xJN0EAZbtmY7iIg7idmct8JyfOeIr/bAO9
+	E5EJxEPjYn+XnjwDrHnnG4cBP4oRr57sikO38XK3oOKh5IaAf84FBHP8Bgzfcp5m
+	eUVe8iPl0w6GHWMaXfNxGTgJYWKrUb6ARU/RDF9SKF/69/0A==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52axdaf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 18:56:14 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-76e2e8bb2d2so1372826b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 11:56:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755802572; x=1756407372;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oTXJBQ026YeZhaceP99mQtyN1CpO9CuuOPT3Jjwbyrg=;
+        b=UQLntFyspaFVPDkZzDH6/mQV+WXxmLlfKkDkZpkrGYdTBkDXyiooT2arfurGl+iMBF
+         +GJ3st9O2EnsqjQs/sTYwFhOhO/EJVlfimzRai08ToMPGC6aZSxs78ZgvQ3kKkwQ+LmO
+         hhSbC0zc3071A45We2Qgt4RkZDplnciOVmTTIE5rXmjl4tiMEDQSJc9VZDCR3SghKPvJ
+         zCMzCrnd5uZhzFwp78IVAQOFtdBKF1rqWap1/DXCbQVO0nBjYpfHngws8kP/5fKCFAFG
+         CgkU5wewxf5MEvYcRY/R573WBAH8cOAJgUtUHrQutJiXQLorgBQi2xrWuQWP0dvet4ur
+         GMbg==
+X-Forwarded-Encrypted: i=1; AJvYcCWf4Zw5/z5UsR6d1OsBc6XdlJSGnJ7q3943K5+5OhNiGKI0vt8jgDTY4w4fp/fUbrPsiKr5bxl4t70B@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWDvep3cx2zBhGedQVPNsucSlHqB3siQgn7e4IKnTFeHlvoSXK
+	z7jKkp1TgOAI9A9kx/Q3+z8Mtvu5cn6kkY7I7Ga26AMN4qG1Qr/HTGsNCS4szO/XqtBHiUieR7E
+	8qs7sH+khFLzXtQVWV7dGVN+9w2qYb+vDZ5J7f4OKUV7knjwcHLnmf4Gf0DTcQYmW
+X-Gm-Gg: ASbGnctJEWeyGyitGKlO/dGG+YcVHqao2FRWo6Ph3upOHYJKi0HuQlkfJj4aTM0W38M
+	bHjCg/vQgfqMajyfPLpceZMFlV1tlfHBWhAiAh+yDeIL8OPnvnIN6nZmm9hWxaNjDgDsi5oNHd2
+	mv8DVI0RXpK5uNbM4O8eIipa918wdeRK8saDdQBZ/eVfAJDED+aEyZpOhjXexmlCv7WEKLDIUwT
+	S4EORemIqRDeiDm3kr+vUzJ4dwyuDetSSSGYLeMXsTqAyHYTTiP1x4C8Uqfw8pGGw03/u+j4czk
+	kjWKJ3g9JPTfRE+0kRiC/6XbkTrkYfjRwA+apVKGjf+9RJKOm6tuPSH/4Q9STuTs
+X-Received: by 2002:a05:6a20:7d9f:b0:21f:ee3f:8ad5 with SMTP id adf61e73a8af0-24340b27e92mr321682637.20.1755802572019;
+        Thu, 21 Aug 2025 11:56:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEBoneDdyEkq/OWMq0DJwi1kXkYbQV7m0+Zv7a3wMlxUxX6D8Lk2EftueK+duyryCOsS0BpIA==
+X-Received: by 2002:a05:6a20:7d9f:b0:21f:ee3f:8ad5 with SMTP id adf61e73a8af0-24340b27e92mr321633637.20.1755802571569;
+        Thu, 21 Aug 2025 11:56:11 -0700 (PDT)
+Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4764090b0esm2106977a12.37.2025.08.21.11.56.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Aug 2025 11:56:11 -0700 (PDT)
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Subject: [PATCH v4 0/6] DRM/MSM: Support for Adreno 663 GPU
+Date: Fri, 22 Aug 2025 00:25:25 +0530
+Message-Id: <20250822-a663-gpu-support-v4-0-97d26bb2144e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="BsflbtbAoRY220fB"
-Content-Disposition: inline
-In-Reply-To: <aKbqLpJMCxJd3QXW@smile.fi.intel.com>
-X-Virus-Scanned: Clear (ClamAV 1.0.7/27739/Thu Aug 21 10:27:23 2025)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ1rp2gC/23Qy27DIBAF0F+xWBeLAYyxFVX5j6oLjHEyUv0IY
+ 7uPKP9enKhVq2Q5gzhXc8+MQsRArM7OLIYVCcchDfopY/7ohkPg2KaZSSG1qKDkzhjFD9PCaZm
+ mMc68AV0W3kprhGHp2xRDhx9X8uU1zUekeYyf14QVtu0PZu+xFbjgsuiCU51qjW73pwU9Dj73Y
+ 882bpW/BAgpHxAyEcq2TlmptKnKe0L9IZR4QKhENG0HbeWDERL+E5fblTGkLeF8O5U1jgJP7z3
+ OdbaaPHUVPWyN9IHIXZuss11KLYQVCkAAqFwLqGTJgb87wj4f3BfG/UiUnxb3tmlb5HPKvHwDr
+ KCaNqsBAAA=
+X-Change-ID: 20240917-a663-gpu-support-b1475c828606
+To: Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Connor Abbott <cwabbott0@gmail.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>
+Cc: Gaurav Kohli <quic_gkohli@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755802565; l=4106;
+ i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
+ bh=FcgwT2lr8YlNaT7Bm2l6BjGqNuK65onJ/o5ee9+8krY=;
+ b=hGbkLj+kugLo2CD8trct5i7IGa9gMltoVrO97Iyosa4m+2/a/FiKOyUlipfATGIkpunMI33/6
+ LQviyj58eyHBgoCPPZ/cy5NlkbdgB9PURdpbn06oQdM07lYQQ4j4lWa
+X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
+ pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX2Zrv4/kW6IbM
+ a/W+pxasLt4HCj74AwpDdeU6nitXRt7hJA3J9KWApqFyw1q0Bxbkb9seNnuKmbR1SeTwsgAtaU6
+ BBDy3/PwBPONyp2tkiWsUDdBCpRfqg7cDahhbPiMEGysATvIYKtSvobvfTrpCay0G3MM8MtubYJ
+ wSeVaUiMr+u/qL8s90Ec1Gv1kwIcoP/XraUxY0N7t5jd103VGkFB0N07lSGgFf7NR3yUkNU2Vxv
+ EMJ7mD95rcpuDGzbDZHi65Y0b0Sy5h8CWZooevZImP6Xd0JPqToTb8GMSJR8CnyAlEKXRrZfhcL
+ iVqTara7oHS/Wi2c3rCxb/TCeS/Udf2oEWf9gHbgZboOZjsLZ0QR9YWORKdoVrCD2UGLIAsvNeW
+ lXoctEJ6JU/ik5e1p2kFFEEFstzKRg==
+X-Authority-Analysis: v=2.4 cv=TIIci1la c=1 sm=1 tr=0 ts=68a76bce cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=pGLkceISAAAA:8 a=KKAkSRfTAAAA:8 a=tVI0ZWmoAAAA:8
+ a=QyXUC8HyAAAA:8 a=e5mUnYsNAAAA:8 a=jTv6lf4Jh5MpNzVl0_IA:9 a=QEXdDO2ut3YA:10
+ a=IoOABgeZipijB_acs4fv:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+ a=-BPWgnxRz2uhmvdm1NTO:22 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-ORIG-GUID: QlwHgMKRY2ueYqudvz_zVk43IpKi_eQU
+X-Proofpoint-GUID: QlwHgMKRY2ueYqudvz_zVk43IpKi_eQU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-21_03,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 suspectscore=0 priorityscore=1501 clxscore=1015 phishscore=0
+ bulkscore=0 impostorscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
 
+This series adds support for Adreno 663 gpu found in SA8775P (Lemans)
+chipsets. The closest gpu which is currently supported in drm-msm is A660.
+Following are the major differences with that:
+	1. gmu/zap firmwares
+	2. Recommended to disable Level2 swizzling
 
---BsflbtbAoRY220fB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Verified kmscube/weston/glmark2-es2. This series is rebased on top of
+v6.17-rc1.
 
-Hi Andy,
+Due to the renaming of the Leman's devicetree files [1], this v4
+revision had to wait for quite sometime.
 
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> schrieb am Do, 21. Aug =
-12:43:
-> > > > +	part_id =3D le16_to_cpu(reg);
-> > > > +	if (part_id !=3D 0x0001)
-> > > > +		dev_info(dev, "Unknown ID %#04x\n", part_id);
-> > >=20
-> > > For 0 it will print 0 and not 0x0000. Is it okay?
-> >=20
-> > I just tried and it prints 0x00 if the part_id is 0.
->=20
-> This is interesting... So it's not 0, nor 0x0000?
+Patch#1 is for Rob Clark, Patch#2 for Srinivas and the rest are for Bjorn to pick up.
 
-No. It prints 0x00 on my BeagleBoneBlack with kernel 6.16.0-rc5.
+[1] https://lore.kernel.org/all/20250803110113.401927-1-wasim.nazir@oss.qualcomm.com/
 
-Andreas
+To: Rob Clark <robdclark@gmail.com>
+To: Sean Paul <sean@poorly.run>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Marijn Suijten <marijn.suijten@somainline.org>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Connor Abbott <cwabbott0@gmail.com>
+To: Srinivas Kandagatla <srini@kernel.org>
+Cc: Gaurav Kohli <quic_gkohli@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
 
+-Akhil
 
---BsflbtbAoRY220fB
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+Changes in v4:
+- Rebased on top of another series which renames DT files
+- Enabled GPU on IoT boards as per the latest definition
+- Picked up SKU detection support
+- Added GPU passive cooling support
+- Link to v3: https://lore.kernel.org/r/20241030-a663-gpu-support-v3-0-bdf1d9ce6021@quicinc.com
 
------BEGIN PGP SIGNATURE-----
+Changes in v3:
+- Rebased on the latest msm-next tip
+- Added R-b tags from Dmitry
+- Dropped patch #1 and #2 from v2 revision since they are already
+picked up in msm-next
+- Link to v2: https://lore.kernel.org/r/20241022-a663-gpu-support-v2-0-38da38234697@quicinc.com
 
-iQGzBAABCgAdFiEE7/NrAFtB/Pj7rTUyyHDM+xwPAVEFAminazsACgkQyHDM+xwP
-AVErKQv7BcvpopjcA540YIbkMLjXkAhC4E2sIeu0ECxlfQ/1MgQeLW/K99kULoQl
-2m2JxkVaHl43qmmLdZwOAsWLOLGMmVrOJVambXsMTHAYqj3iP1sKB7TVmOvW6x0M
-VtkRF+41spEStMUfkv8WViRVUvDHM8n/kI1EPZzcxqTBMF4FOyhBVVvM0qMZQDzs
-f6SKi3xP8L1i5mCmHlZCC2o3t4Pwq0YT0x7iUGwq1RvGw1cVTkznYZLm8EbiqIt5
-gvi3/s+Bp2RA+Hq1jKYEfDIikryYxRKns2UKsjfJ1lQDI9IG2Oqv6DjK0I+GEYLE
-ZRQbMLEf9Vi+7/IGvCmHXhU7KJgJmXrMiJlA+g78jR8GjXqjmhKekQfcimsriVFY
-z5YiR/zTcqw0iFKfRbDO9rHS7ZuBGiqhnfNmJ8TcXLHUHIMBLWmPZwt61XXTrNUM
-Pic8ZJAv4ayAticgCBwz/zzhJt9YrYJktmc6w8hrq4UAbGMtn7pB89HrtxwWLQkF
-93iem3Xg
-=9IwD
------END PGP SIGNATURE-----
+Changes in v2:
+- Fixed ubwc configuration (dimtry)
+- Split out platform dt patch (dimtry)
+- Fix formatting in the dt patch (dimtry)
+- Updated Opp table to include all levels
+- Updated bw IB votes to match downstream
+- Rebased on top of msm-next tip
+- Link to v1: https://lore.kernel.org/r/20240918-a663-gpu-support-v1-0-25fea3f3d64d@quicinc.com
 
---BsflbtbAoRY220fB--
+---
+Akhil P Oommen (4):
+      drm/msm/adreno: Add speedbins for A663 GPU
+      dt-bindings: nvmem: qfprom: Add sa8775p compatible
+      arm64: dts: qcom: lemans-evk: Enable Adreno 663 GPU
+      arm64: dts: qcom: qcs9100-ride: Enable Adreno 663 GPU
+
+Gaurav Kohli (1):
+      arm64: dts: qcom: lemans: Add GPU cooling
+
+Puranam V G Tejaswi (1):
+      arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
+
+ .../devicetree/bindings/nvmem/qcom,qfprom.yaml     |   1 +
+ arch/arm64/boot/dts/qcom/lemans-evk.dts            |   8 +
+ arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi   |   8 +
+ arch/arm64/boot/dts/qcom/lemans.dtsi               | 183 +++++++++++++++++++--
+ drivers/gpu/drm/msm/adreno/a6xx_catalog.c          |   5 +
+ 5 files changed, 193 insertions(+), 12 deletions(-)
+---
+base-commit: 062b3e4a1f880f104a8d4b90b767788786aa7b78
+change-id: 20240917-a663-gpu-support-b1475c828606
+prerequisite-message-id: <20250803110113.401927-1-wasim.nazir@oss.qualcomm.com>
+prerequisite-patch-id: 765475c5f1418d986e661a213cfb33ee6ffb9548
+prerequisite-patch-id: 03c6d1a5b0ae9095845828fc5cbb701b00f41131
+prerequisite-patch-id: f7b8a288cf4ef309b4027f0b617b7435c17d6b1f
+prerequisite-patch-id: aacfb31f99b75b2f5bf2f44bbd9abf8db0f66b1d
+prerequisite-patch-id: dc442a0932abeb5139daa547a1b1f4282fa9a6fa
+prerequisite-patch-id: e8a728d629b4bdd22bc1ef21f3d593e17a8d3b44
+prerequisite-patch-id: 067fe8f5151b3fea9cbc37192e559a123abcdb71
+prerequisite-patch-id: 62150f33bd304fc34b8fbb4aab953c6c4bb8a566
+
+Best regards,
+-- 
+Akhil P Oommen <akhilpo@oss.qualcomm.com>
+
 
