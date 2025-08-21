@@ -1,522 +1,140 @@
-Return-Path: <devicetree+bounces-207346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A0AB2F3E7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:28:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B90FFB2F414
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:36:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 617701C20FBF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:29:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8F8C568750
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:34:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383032EE60E;
-	Thu, 21 Aug 2025 09:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8324A2EE61D;
+	Thu, 21 Aug 2025 09:34:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kF3Vr1Oy"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="T8ff140E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84D1428031D;
-	Thu, 21 Aug 2025 09:28:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CDE2D47E2
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 09:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755768522; cv=none; b=M65Jww9JFHEGsLK6a5ulT7s8OIeGkrdi0ls8iMnUw3zXnJ8uGhpl18s5NtPsiV7uQ0aNzesZXN6OK0OurGYichyQxLHSDFdxSfXNYJRgJ20dxjQaOsDBsyK3ASr7wmVJBJuWrBRFXQ2FXd++LnKAcNLGPhs2YAQPhvToYpxD688=
+	t=1755768852; cv=none; b=WdS6VOp13KftT9FeRw3F7+qL9ufnhQUDCdtpQL1d9VTUteMhy6GkHLN35W2fk9cGzFCofJXds0LRM/BFA/cTPxXuf2XVVf/zjZIASMVHKk+kpCMAWeBph6rP2uEO0KVTz/igGO8KJrfeMlU+HkZuCOuoPxfh0XULzTwYLUhX1g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755768522; c=relaxed/simple;
-	bh=cZModQeBMGeyUWSM72lOIX26lZnedL/6BGrCahhw6T0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bZGkU42oX57rv/q7uy4jbQvHMqNTyARrjewcvV6qr2JMv2QFNhyOYUyikH+jZPfPZvN1G057divniLmBj2RrBzyI0OtKYMdlDfvauTX3e2AqtZO9BiJFqnnFqAmsdlnp2ys736JtV0VKyHELX5Og9vN/sAOrc1YcuCuSfMdxzXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kF3Vr1Oy; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D3740C7B;
-	Thu, 21 Aug 2025 11:27:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1755768458;
-	bh=cZModQeBMGeyUWSM72lOIX26lZnedL/6BGrCahhw6T0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kF3Vr1Oyve3CblT7dThAUDDdpFtErMvuDcfAkotHsZ6yNqYgFSW7+AEl4Fmjf/r8o
-	 K6cPF7m8xmAnviPsaqfF3zrBcix5YDSE1FBdguByrjGujh8ejdvxNvYGadzvUw6tFc
-	 FOtk+fNLVRkdbaKimxNQ5mVMNPEQrAOEinHhUbe8=
-Message-ID: <7284cad0-b71b-49dc-bb09-cd9f1ff00028@ideasonboard.com>
-Date: Thu, 21 Aug 2025 12:28:32 +0300
+	s=arc-20240116; t=1755768852; c=relaxed/simple;
+	bh=PNb/nRsrwcOa6HJppSS/RjzXDIpOjCmhW2yjf0ZaEM0=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rCNkhnMJoXc/y30QMYz8TMJFPV5vcRO4cZyTyB4PGz00KsHmhxRJDoYTV5XlYuqr2nPYzGJyHk2O1q3Z+eKxrcfsXk/vmrxVnhM2Lbgsk9sWcbzmZvaOWAilWGenGOVJvmr2/9frxJm4HY6UFF/vhK+PXfJL+nbCbczHsud/S9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=T8ff140E; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-afcb7a7bad8so114249166b.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 02:34:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1755768848; x=1756373648; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/ojUaTpvSXrb1YYw6X/ClOYy1t7RbcHRqQubeSVaCHY=;
+        b=T8ff140ELmhvUmLOgm1aUrKOHy6927rQh06wP/kR+Z3/t+AfNQ2B6PqniiiYZipO6o
+         i0pve8aGPZA98gvBNKABbsQp2JeOWNmN+prarI2FUMsnpt9SLHBFcRr7GUqp1QcjP99p
+         vysmHSmby0G2i4YLiRBAW92I5z+orngT81xTvdSfDk+XDOtMXJh1uuJPvUEiwVjoQb9H
+         Kp8/k+zdwmLQSFVYOffokg1olT5/uGfMjMd+yNYK+jF+HWUAA0/qPmsapDmamRvWgLTS
+         JasJiD/QhpQ2HMyN9DBGQEzwG07GITqFm9VkbWAQLNwER3E6C8Mw+N4YFIgBn8keD+Is
+         XNiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755768848; x=1756373648;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/ojUaTpvSXrb1YYw6X/ClOYy1t7RbcHRqQubeSVaCHY=;
+        b=C7YarfFXXxCnfrifbfoDdfg2IVLmK2GhEgiPF6BAmKERBRyRhQGcB46bhFtNvTbFxf
+         +n2GyVisHg0+iwYDnyG/JEm+sZwflgXI4aBSNvg7agxk6KX4ovvy93ZTAnKq4a7YHytU
+         vVlbUCxFgNY4/o7ANfJFNV8R/4OoiCches9SIxJM/9qe81C1kQoch1fCwHX4oNX+mPFL
+         1vM+t0cL7UTiT/Tl+9+TT+5azOzrHahiUVNpoIaVpxQH3akJxowTZFHxzPCyHO30sYYn
+         sfHn3Tbr/SD+2goOGBnVAou2oINRbrRmNowU/o6pysNfGr+CseexEbIqPcjrKwcn5m+O
+         +oXA==
+X-Forwarded-Encrypted: i=1; AJvYcCXDbN2fXpluZfqFMoKoSLw9Y3kkMGWdsO7km4jsQSWOeA1POt5sdhEMWmrdI46zL5a8wLJ87YTXEU8t@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/A262ZrU4LSnCxGNhtK4eSlf91Uw1111V8EQcbS3aBQ8OJj8f
+	AGVleDRG1niXGYxYNMLoFUnFzT563zIpsVW0eLlZIFKnl4BDtQe/jRPG/B4x/La5ezI=
+X-Gm-Gg: ASbGnct4v9rF0B8rmB+vcyiruCYyW7bzUZw1Qokvw6EcPYANvD87zz9+ZB1DoEfUiVz
+	QXe6kLMCqFhoLdx03daxMij9GVpch/lyAoeCjC23grteOXNQm8hE46Ixu8iipsezEuhh8EtKlIN
+	G1Y0e1ELCJmKueeDbA1LEuPIqrQaITRnnSzF1S94dcBOrCigrtT77qwO3LLr8BoMsKI0vouGuOR
+	y7Blqk9E2BhGwPnevyf8BLMJNF+JIT5YdS0MKRaqXLBz4WfNnkXYxYgQmuzIFZt8QI/aL1WL3to
+	dCESyoNvcEOXx95tWXqx8HTv/5JVJU6l4kd/5+MsxssyKmfgHAZuottsAZxgy1oepsTZavqTVJG
+	2fS0fpyqI9JdrGuBiXqg2VabM9FyCrxUfuCafKh6gYNkwJkAkNk+j02zbKKbY
+X-Google-Smtp-Source: AGHT+IGPCUQP85VmKt4U/J+vg5UYsiEcQk49TrIi2gpsuaTBNikjE5BQOCAgsWj7wUzO+PxhtVD0Ow==
+X-Received: by 2002:a17:906:6a0c:b0:ae0:c943:785c with SMTP id a640c23a62f3a-afe07b35df2mr161258766b.35.1755768847653;
+        Thu, 21 Aug 2025 02:34:07 -0700 (PDT)
+Received: from localhost (host-79-36-0-44.retail.telecomitalia.it. [79.36.0.44])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afded2bc305sm350000666b.18.2025.08.21.02.34.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Aug 2025 02:34:07 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Thu, 21 Aug 2025 11:35:59 +0200
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: Andrea della Porta <andrea.porta@suse.com>, linus.walleij@linaro.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	florian.fainelli@broadcom.com, wahrenst@gmx.net,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, iivanov@suse.de, mbrugger@suse.com,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH v3 3/3] arm64: defconfig: Enable BCM2712 on-chip pin
+ controller driver
+Message-ID: <aKbofxfSKO4oGKHG@apocalypse>
+References: <cover.1754922935.git.andrea.porta@suse.com>
+ <04c67a8fc50f2688fd3a6616bc03b3ac4d4977fb.1754922935.git.andrea.porta@suse.com>
+ <570088fa-2861-487a-a2db-2d1d87d700f6@suse.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 6/6] drm: renesas: rz-du: mipi_dsi: Add support for
- RZ/V2H(P) SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>,
- Magnus Damm <magnus.damm@gmail.com>
-References: <20250728201435.3505594-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250728201435.3505594-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-In-Reply-To: <20250728201435.3505594-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <570088fa-2861-487a-a2db-2d1d87d700f6@suse.de>
 
-Hi,
+Hi Stanimir,
 
-On 28/07/2025 23:14, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 10:25 Tue 19 Aug     , Stanimir Varbanov wrote:
+> Hi Andrea,
 > 
-> Add DSI support for Renesas RZ/V2H(P) SoC.
-
-I think a bit longer desc would be in order, as this is not just a "add
-a new compatible string" patch, but we have new registers and functions.
-
-> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v6->v7:
-> - Used the new apis for calculating the PLLDSI
->   parameters in the DSI driver.
+> On 8/11/25 5:46 PM, Andrea della Porta wrote:
+> > Select the on-chip pin controller driver for BCM2712 SoC.
+> > 
+> > On RapsberryPi 5 devices it is primarily needed to operate the
+> > bluetooth and WiFi devices, to configure the uSD interface
+> > and the power button.
+> > 
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > ---
+> >  arch/arm64/configs/defconfig | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> > index 58f87d09366c..fafcd7851eb2 100644
+> > --- a/arch/arm64/configs/defconfig
+> > +++ b/arch/arm64/configs/defconfig
+> > @@ -592,6 +592,7 @@ CONFIG_SPI_TEGRA114=m
+> >  CONFIG_SPI_SPIDEV=m
+> >  CONFIG_SPMI=y
+> >  CONFIG_SPMI_MTK_PMIF=m
+> > +CONFIG_PINCTRL_BRCMSTB=y
 > 
-> v5->v6:
-> - Made use of GENMASK() macro for PLLCLKSET0R_PLL_*,
->   PHYTCLKSETR_* and PHYTHSSETR_* macros.
-> - Replaced 10000000UL with 10 * MEGA
-> - Renamed mode_freq_hz to mode_freq_khz in rzv2h_dsi_mode_calc
-> - Replaced `i -= 1;` with `i--;`
-> - Renamed RZV2H_MIPI_DPHY_FOUT_MIN_IN_MEGA to
->   RZV2H_MIPI_DPHY_FOUT_MIN_IN_MHZ and
->   RZV2H_MIPI_DPHY_FOUT_MAX_IN_MEGA to
->   RZV2H_MIPI_DPHY_FOUT_MAX_IN_MHZ.
+> Have you tried as module and part of initramfs?
+
+Yes, it works.
+
+Thanks,
+Andrea
+
 > 
-> v4->v5:
-> - No changes
-> 
-> v3->v4
-> - In rzv2h_dphy_find_ulpsexit() made the array static const.
-> 
-> v2->v3:
-> - Simplifed V2H DSI timings array to save space
-> - Switched to use fsleep() instead of udelay()
-> 
-> v1->v2:
-> - Dropped unused macros
-> - Added missing LPCLK flag to rzv2h info
-> ---
->  .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 345 ++++++++++++++++++
->  .../drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h   |  34 ++
->  2 files changed, 379 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> index 893a90c7a886..3b2f77665309 100644
-> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> @@ -7,6 +7,7 @@
->  
->  #include <linux/bitfield.h>
->  #include <linux/clk.h>
-> +#include <linux/clk/renesas-rzv2h-cpg-pll.h>
->  #include <linux/delay.h>
->  #include <linux/dma-mapping.h>
->  #include <linux/io.h>
-> @@ -46,6 +47,11 @@ struct rzg2l_mipi_dsi_hw_info {
->  			      u64 *hsfreq_millihz);
->  	unsigned int (*dphy_mode_clk_check)(struct rzg2l_mipi_dsi *dsi,
->  					    unsigned long mode_freq);
-> +	struct {
-> +		const struct rzv2h_pll_limits **limits;
-> +		const u8 *table;
-> +		const u8 table_size;
-> +	} cpg_plldsi;
->  	u32 phy_reg_offset;
->  	u32 link_reg_offset;
->  	unsigned long min_dclk;
-> @@ -53,6 +59,11 @@ struct rzg2l_mipi_dsi_hw_info {
->  	u8 features;
->  };
->  
-> +struct rzv2h_dsi_mode_calc {
-> +	unsigned long mode_freq_khz;
-> +	struct rzv2h_pll_pars dsi_parameters;
-> +};
-> +
->  struct rzg2l_mipi_dsi {
->  	struct device *dev;
->  	void __iomem *mmio;
-> @@ -75,11 +86,22 @@ struct rzg2l_mipi_dsi {
->  	unsigned int lanes;
->  	unsigned long mode_flags;
->  
-> +	struct rzv2h_dsi_mode_calc mode_calc;
-> +
->  	/* DCS buffer pointers when using external memory. */
->  	dma_addr_t dcs_buf_phys;
->  	u8 *dcs_buf_virt;
->  };
->  
-> +static const struct rzv2h_pll_limits rzv2h_plldsi_div_limits = {
-> +	.fout = { .min = 80 * MEGA, .max = 1500 * MEGA },
-> +	.fvco = { .min = 1050 * MEGA, .max = 2100 * MEGA },
-> +	.m = { .min = 64, .max = 1023 },
-> +	.p = { .min = 1, .max = 4 },
-> +	.s = { .min = 0, .max = 5 },
-> +	.k = { .min = -32768, .max = 32767 },
-> +};
-> +
->  static inline struct rzg2l_mipi_dsi *
->  bridge_to_rzg2l_mipi_dsi(struct drm_bridge *bridge)
->  {
-> @@ -194,6 +216,155 @@ static const struct rzg2l_mipi_dsi_timings rzg2l_mipi_dsi_global_timings[] = {
->  	},
->  };
->  
-> +struct rzv2h_mipi_dsi_timings {
-> +	const u8 *hsfreq;
-> +	u8 len;
-> +	u8 start_index;
-> +};
-> +
-> +enum {
-> +	TCLKPRPRCTL,
-> +	TCLKZEROCTL,
-> +	TCLKPOSTCTL,
-> +	TCLKTRAILCTL,
-> +	THSPRPRCTL,
-> +	THSZEROCTL,
-> +	THSTRAILCTL,
-> +	TLPXCTL,
-> +	THSEXITCTL,
-> +};
-> +
-> +static const u8 tclkprprctl[] = {
-> +	15, 26, 37, 47, 58, 69, 79, 90, 101, 111, 122, 133, 143, 150,
-> +};
-> +
-> +static const u8 tclkzeroctl[] = {
-> +	9, 11, 13, 15, 18, 21, 23, 24, 25, 27, 29, 31, 34, 36, 38,
-> +	41, 43, 45, 47, 50, 52, 54, 57, 59, 61, 63, 66, 68, 70, 73,
-> +	75, 77, 79, 82, 84, 86, 89, 91, 93, 95, 98, 100, 102, 105,
-> +	107, 109, 111, 114, 116, 118, 121, 123, 125, 127, 130, 132,
-> +	134, 137, 139, 141, 143, 146, 148, 150,
-> +};
-> +
-> +static const u8 tclkpostctl[] = {
-> +	8, 21, 34, 48, 61, 74, 88, 101, 114, 128, 141, 150,
-> +};
-> +
-> +static const u8 tclktrailctl[] = {
-> +	14, 25, 37, 48, 59, 71, 82, 94, 105, 117, 128, 139, 150,
-> +};
-> +
-> +static const u8 thsprprctl[] = {
-> +	11, 19, 29, 40, 50, 61, 72, 82, 93, 103, 114, 125, 135, 146, 150,
-> +};
-> +
-> +static const u8 thszeroctl[] = {
-> +	18, 24, 29, 35, 40, 46, 51, 57, 62, 68, 73, 79, 84, 90,
-> +	95, 101, 106, 112, 117, 123, 128, 134, 139, 145, 150,
-> +};
-> +
-> +static const u8 thstrailctl[] = {
-> +	10, 21, 32, 42, 53, 64, 75, 85, 96, 107, 118, 128, 139, 150,
-> +};
-> +
-> +static const u8 tlpxctl[] = {
-> +	13, 26, 39, 53, 66, 79, 93, 106, 119, 133, 146,	150,
-> +};
-> +
-> +static const u8 thsexitctl[] = {
-> +	15, 23, 31, 39, 47, 55, 63, 71, 79, 87,
-> +	95, 103, 111, 119, 127, 135, 143, 150,
-> +};
-> +
-> +static const struct rzv2h_mipi_dsi_timings rzv2h_dsi_timings_tables[] = {
-> +	[TCLKPRPRCTL] = {
-> +		.hsfreq = tclkprprctl,
-> +		.len = ARRAY_SIZE(tclkprprctl),
-> +		.start_index = 0,
-> +	},
-> +	[TCLKZEROCTL] = {
-> +		.hsfreq = tclkzeroctl,
-> +		.len = ARRAY_SIZE(tclkzeroctl),
-> +		.start_index = 2,
-> +	},
-> +	[TCLKPOSTCTL] = {
-> +		.hsfreq = tclkpostctl,
-> +		.len = ARRAY_SIZE(tclkpostctl),
-> +		.start_index = 6,
-> +	},
-> +	[TCLKTRAILCTL] = {
-> +		.hsfreq = tclktrailctl,
-> +		.len = ARRAY_SIZE(tclktrailctl),
-> +		.start_index = 1,
-> +	},
-> +	[THSPRPRCTL] = {
-> +		.hsfreq = thsprprctl,
-> +		.len = ARRAY_SIZE(thsprprctl),
-> +		.start_index = 0,
-> +	},
-> +	[THSZEROCTL] = {
-> +		.hsfreq = thszeroctl,
-> +		.len = ARRAY_SIZE(thszeroctl),
-> +		.start_index = 0,
-> +	},
-> +	[THSTRAILCTL] = {
-> +		.hsfreq = thstrailctl,
-> +		.len = ARRAY_SIZE(thstrailctl),
-> +		.start_index = 3,
-> +	},
-> +	[TLPXCTL] = {
-> +		.hsfreq = tlpxctl,
-> +		.len = ARRAY_SIZE(tlpxctl),
-> +		.start_index = 0,
-> +	},
-> +	[THSEXITCTL] = {
-> +		.hsfreq = thsexitctl,
-> +		.len = ARRAY_SIZE(thsexitctl),
-> +		.start_index = 1,
-> +	},
-> +};
-> +
-> +static u16 rzv2h_dphy_find_ulpsexit(unsigned long freq)
-> +{
-> +	static const unsigned long hsfreq[] = {
-> +		1953125UL,
-> +		3906250UL,
-> +		7812500UL,
-> +		15625000UL,
-> +	};
-> +	static const u16 ulpsexit[] = {49, 98, 195, 391};
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(hsfreq); i++) {
-> +		if (freq <= hsfreq[i])
-> +			break;
-> +	}
-> +
-> +	if (i == ARRAY_SIZE(hsfreq))
-> +		i--;
-> +
-> +	return ulpsexit[i];
-> +}
-> +
-> +static u16 rzv2h_dphy_find_timings_val(unsigned long freq, u8 index)
-> +{
-> +	const struct rzv2h_mipi_dsi_timings *timings;
-> +	u16 i;
-> +
-> +	timings = &rzv2h_dsi_timings_tables[index];
-> +	for (i = 0; i < timings->len; i++) {
-> +		unsigned long hsfreq = timings->hsfreq[i] * 10 * MEGA;
-> +
-> +		if (freq <= hsfreq)
-> +			break;
-> +	}
-> +
-> +	if (i == timings->len)
-> +		i--;
-> +
-> +	return timings->start_index + i;
-> +};
-
-I have to say I really don't like this... In the minimum, the method how
-this works has to be explained in a comment. These values can't really
-be calculated? If we really have to deal with hardcoded values and with
-that table from the docs, I would say that just replicate the table in
-the driver (i.e. a struct that represents one row of the table), instead
-of the method in this driver.
-
-Or was this method added based on earlier feedback, for v3? I see
-"Simplifed V2H DSI timings array to save space" in the change log. If
-so, at least document it clearly.
-
-> +
->  static void rzg2l_mipi_dsi_phy_write(struct rzg2l_mipi_dsi *dsi, u32 reg, u32 data)
->  {
->  	iowrite32(data, dsi->mmio + dsi->info->phy_reg_offset + reg);
-> @@ -318,6 +489,150 @@ static int rzg2l_dphy_conf_clks(struct rzg2l_mipi_dsi *dsi, unsigned long mode_f
->  	return 0;
->  }
->  
-> +static unsigned int rzv2h_dphy_mode_clk_check(struct rzg2l_mipi_dsi *dsi,
-> +					      unsigned long mode_freq)
-> +{
-> +	u64 hsfreq_millihz, mode_freq_hz, mode_freq_millihz;
-> +	struct rzv2h_pll_div_pars cpg_dsi_parameters;
-> +	struct rzv2h_pll_pars dsi_parameters;
-> +	bool parameters_found;
-> +	unsigned int bpp;
-> +
-> +	bpp = mipi_dsi_pixel_format_to_bpp(dsi->format);
-> +	mode_freq_hz = mul_u32_u32(mode_freq, KILO);
-> +	mode_freq_millihz = mode_freq_hz * MILLI;
-> +	parameters_found =
-> +		rzv2h_get_pll_divs_pars(dsi->info->cpg_plldsi.limits[0],
-> +					&cpg_dsi_parameters,
-> +					dsi->info->cpg_plldsi.table,
-> +					dsi->info->cpg_plldsi.table_size,
-> +					mode_freq_millihz);
-> +	if (!parameters_found)
-> +		return MODE_CLOCK_RANGE;
-> +
-> +	hsfreq_millihz = DIV_ROUND_CLOSEST_ULL(cpg_dsi_parameters.div.freq_millihz * bpp,
-> +					       dsi->lanes);
-> +	parameters_found = rzv2h_get_pll_pars(&rzv2h_plldsi_div_limits,
-> +					      &dsi_parameters, hsfreq_millihz);
-> +	if (!parameters_found)
-> +		return MODE_CLOCK_RANGE;
-> +
-> +	if (abs(dsi_parameters.error_millihz) >= 500)
-> +		return MODE_CLOCK_RANGE;
-> +
-> +	memcpy(&dsi->mode_calc.dsi_parameters, &dsi_parameters, sizeof(dsi_parameters));
-> +	dsi->mode_calc.mode_freq_khz = mode_freq;
-> +
-> +	return MODE_OK;
-> +}
-> +
-> +static int rzv2h_dphy_conf_clks(struct rzg2l_mipi_dsi *dsi, unsigned long mode_freq,
-> +				u64 *hsfreq_millihz)
-> +{
-> +	struct rzv2h_pll_pars *dsi_parameters = &dsi->mode_calc.dsi_parameters;
-> +	unsigned long status;
-> +
-> +	if (dsi->mode_calc.mode_freq_khz != mode_freq) {
-> +		status = rzv2h_dphy_mode_clk_check(dsi, mode_freq);
-> +		if (status != MODE_OK) {
-> +			dev_err(dsi->dev, "No PLL parameters found for mode clk %lu\n",
-> +				mode_freq);
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	*hsfreq_millihz = dsi_parameters->freq_millihz;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rzv2h_mipi_dsi_dphy_init(struct rzg2l_mipi_dsi *dsi,
-> +				    u64 hsfreq_millihz)
-> +{
-> +	struct rzv2h_pll_pars *dsi_parameters = &dsi->mode_calc.dsi_parameters;
-> +	unsigned long lpclk_rate = clk_get_rate(dsi->lpclk);
-> +	u32 phytclksetr, phythssetr, phytlpxsetr, phycr;
-> +	struct rzg2l_mipi_dsi_timings dphy_timings;
-> +	u16 ulpsexit;
-> +	u64 hsfreq;
-> +
-> +	hsfreq = DIV_ROUND_CLOSEST_ULL(hsfreq_millihz, MILLI);
-> +
-> +	if (dsi_parameters->freq_millihz == hsfreq_millihz)
-> +		goto parameters_found;
-> +
-> +	if (rzv2h_get_pll_pars(&rzv2h_plldsi_div_limits,
-> +			       dsi_parameters, hsfreq_millihz))
-> +		goto parameters_found;
-> +
-> +	dev_err(dsi->dev, "No PLL parameters found for HSFREQ %lluHz\n", hsfreq);
-> +	return -EINVAL;
-> +
-> +parameters_found:
-
-Maybe:
-
-if (dsi_parameters->freq_millihz != hsfreq_millihz &&
-	!rzv2h_get_pll_pars(&rzv2h_plldsi_div_limits, dsi_parameters,
-			hsfreq_millihz)) {
-	dev_err(dsi->dev, "No PLL parameters found for HSFREQ %lluHz\n",
-		hsfreq);
-	return -EINVAL;
-}
-
-keeps the flow a bit cleaner.
-
-> +	dphy_timings.tclk_trail =
-> +		rzv2h_dphy_find_timings_val(hsfreq, TCLKTRAILCTL);
-> +	dphy_timings.tclk_post =
-> +		rzv2h_dphy_find_timings_val(hsfreq, TCLKPOSTCTL);
-> +	dphy_timings.tclk_zero =
-> +		rzv2h_dphy_find_timings_val(hsfreq, TCLKZEROCTL);
-> +	dphy_timings.tclk_prepare =
-> +		rzv2h_dphy_find_timings_val(hsfreq, TCLKPRPRCTL);
-> +	dphy_timings.ths_exit =
-> +		rzv2h_dphy_find_timings_val(hsfreq, THSEXITCTL);
-> +	dphy_timings.ths_trail =
-> +		rzv2h_dphy_find_timings_val(hsfreq, THSTRAILCTL);
-> +	dphy_timings.ths_zero =
-> +		rzv2h_dphy_find_timings_val(hsfreq, THSZEROCTL);
-> +	dphy_timings.ths_prepare =
-> +		rzv2h_dphy_find_timings_val(hsfreq, THSPRPRCTL);
-> +	dphy_timings.tlpx =
-> +		rzv2h_dphy_find_timings_val(hsfreq, TLPXCTL);
-> +	ulpsexit = rzv2h_dphy_find_ulpsexit(lpclk_rate);
-> +
-> +	phytclksetr = FIELD_PREP(PHYTCLKSETR_TCLKTRAILCTL, dphy_timings.tclk_trail) |
-> +		      FIELD_PREP(PHYTCLKSETR_TCLKPOSTCTL, dphy_timings.tclk_post) |
-> +		      FIELD_PREP(PHYTCLKSETR_TCLKZEROCTL, dphy_timings.tclk_zero) |
-> +		      FIELD_PREP(PHYTCLKSETR_TCLKPRPRCTL, dphy_timings.tclk_prepare);
-> +	phythssetr = FIELD_PREP(PHYTHSSETR_THSEXITCTL, dphy_timings.ths_exit) |
-> +		     FIELD_PREP(PHYTHSSETR_THSTRAILCTL, dphy_timings.ths_trail) |
-> +		     FIELD_PREP(PHYTHSSETR_THSZEROCTL, dphy_timings.ths_zero) |
-> +		     FIELD_PREP(PHYTHSSETR_THSPRPRCTL, dphy_timings.ths_prepare);
-> +	phytlpxsetr = rzg2l_mipi_dsi_phy_read(dsi, PHYTLPXSETR) & ~PHYTLPXSETR_TLPXCTL;
-> +	phytlpxsetr |= FIELD_PREP(PHYTLPXSETR_TLPXCTL, dphy_timings.tlpx);
-> +	phycr = rzg2l_mipi_dsi_phy_read(dsi, PHYCR) & ~GENMASK(9, 0);
-> +	phycr |= FIELD_PREP(PHYCR_ULPSEXIT, ulpsexit);
-> +
-> +	/* Setting all D-PHY Timings Registers */
-> +	rzg2l_mipi_dsi_phy_write(dsi, PHYTCLKSETR, phytclksetr);
-> +	rzg2l_mipi_dsi_phy_write(dsi, PHYTHSSETR, phythssetr);
-> +	rzg2l_mipi_dsi_phy_write(dsi, PHYTLPXSETR, phytlpxsetr);
-> +	rzg2l_mipi_dsi_phy_write(dsi, PHYCR, phycr);
-> +
-> +	rzg2l_mipi_dsi_phy_write(dsi, PLLCLKSET0R,
-> +				 FIELD_PREP(PLLCLKSET0R_PLL_S, dsi_parameters->s) |
-> +				 FIELD_PREP(PLLCLKSET0R_PLL_P, dsi_parameters->p) |
-> +				 FIELD_PREP(PLLCLKSET0R_PLL_M, dsi_parameters->m));
-> +	rzg2l_mipi_dsi_phy_write(dsi, PLLCLKSET1R,
-> +				 FIELD_PREP(PLLCLKSET1R_PLL_K, dsi_parameters->k));
-> +	fsleep(20);
-
-Why sleep? Sleeps should (almost) always have a comment, explaining what
-it is waiting for.
-
-> +
-> +	rzg2l_mipi_dsi_phy_write(dsi, PLLENR, PLLENR_PLLEN);
-> +	fsleep(500);
-> +
-> +	return 0;
-> +}
-> +
-> +static void rzv2h_mipi_dsi_dphy_startup_late_init(struct rzg2l_mipi_dsi *dsi)
-> +{
-> +	fsleep(220);
-
-Especially sleeps like this, where the upper side is "open ended".
-
-> +	rzg2l_mipi_dsi_phy_write(dsi, PHYRSTR, PHYRSTR_PHYMRSTN);
-> +}
-> +
-
- Tomi
-
+> ~Stan
 
