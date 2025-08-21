@@ -1,167 +1,125 @@
-Return-Path: <devicetree+bounces-207191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9880B2EDE6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:06:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10BBAB2EDEB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:10:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3183A04545
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:06:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A36491BC6B5F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF53325BEE5;
-	Thu, 21 Aug 2025 06:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EFE7285C8E;
+	Thu, 21 Aug 2025 06:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="vXAGdynY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qSDyyGlb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6908120330;
-	Thu, 21 Aug 2025 06:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4336C20330;
+	Thu, 21 Aug 2025 06:09:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755756396; cv=none; b=R+FL+6loEoMAKrZPz7sWcpo5syQC3CS3s0OvXu0umTrpZAFvbDG1UsRBuVSgjTqWTZIUhpP3jxk5OJcjm53bSH03qSCh4RT5T3tbaes9rjv3e+0IUsVGrs/aDtgkPGUNO2ExSvSd50k7/5Uz8WNsOx0H647uIxnauxt6a2dQceg=
+	t=1755756581; cv=none; b=hcpAdzqHilNqM0AEl2CwQyHtiQUcnV7jwi5WNjVOpqAeTafyXn77iyp3oxkKGETEswST/khu14gtEVFnKUYalEaL7oLdyN71P0L+Xv5sSREDiEROnqgS/5oVWRphpQzCL0NDr3OvPgUUwtStfQZVc12PziKtf8hwQnfYtWLVBcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755756396; c=relaxed/simple;
-	bh=dm3k7OO2F5a6ZxEZX6fQ0JkPscb6j/xn6v9kNebGVFw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kPFAzgAKTBwDc9hPX55K/J50Oh7aDFSk4m88SWf9lcMAknims6tnZ4luIWu9u18FCJkd7Lh5BBgd3qYuPAjuVPHDKpAlFaOHFv8emV4awZ1yCKE9n1fKLB6H1i7n/w8dnsI/9BDFDEyAi5lpr5Z9Mtpgu3djiMp+YRSBUaJvTzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=vXAGdynY; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 693211F99A;
-	Thu, 21 Aug 2025 08:06:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1755756391;
-	bh=5LeyRtpyuW55yhWUN6UCJJFNU3yjTx94Q5pC/9mD8Go=; h=From:To:Subject;
-	b=vXAGdynY/VP5F5OmYQXNvMje6hhApmzcNLSY6ngtZvjmSghuVWQuTQuLEA05pZrnf
-	 Aj5zKNypjtmuDmKMhRpX6nPW3UuE2yqAQIAidK+6HtPXXU0yr0wEqsWWswnDv3Cqu9
-	 +tqwYExKHQIGm1B84+tmJB5d47VAi/yEismZ+DsItrvmQtW9FcHGGOJAU3fESkxk5o
-	 syxsvbU8TBiyckoHiBC5EO0oute5VSzeD2sX4mDi8URj0rAdL+WHUyUu/K6MSUlUkP
-	 8tRQeK/40xZso/EwYmU6RbNWo8M6sUIe+ZMVLDU5467qXp8JzlB5yVCkI1PFNrJdeK
-	 9uBdICyocm6Sg==
-Date: Thu, 21 Aug 2025 08:06:29 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Beleswar Padhi <b-padhi@ti.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, afd@ti.com,
-	u-kumar1@ti.com, hnagalla@ti.com, jm@ti.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Parth Pancholi <parth.pancholi@toradex.com>,
-	Jo_o Paulo Gon_alves <joao.goncalves@toradex.com>
-Subject: Re: [PATCH 16/33] arm64: dts: ti: k3-am62p-verdin: Add missing cfg
- for TI IPC Firmware
-Message-ID: <20250821060629.GB7503@francesco-nb>
-References: <20250814223839.3256046-1-b-padhi@ti.com>
- <20250814223839.3256046-17-b-padhi@ti.com>
+	s=arc-20240116; t=1755756581; c=relaxed/simple;
+	bh=+6TOGYhYEIU/8k1rPuzrG50OHYFzos40YjnYn+/WN9M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CPbMWchsvRpBvefWFgQiep21BspO93thMR+mQylbUs0EQsiW78Zr59S+s+H4rWaemE5++JuybfSR+NJDMWShEOE3lE1/+QG+X+x4oSvYMUPUitdTPPKNHiQ8la0/awS56x178OWa86geHlRdzr3RgzcOSxqHhABtmiXwtPFMXNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qSDyyGlb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A16A8C4CEED;
+	Thu, 21 Aug 2025 06:09:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755756580;
+	bh=+6TOGYhYEIU/8k1rPuzrG50OHYFzos40YjnYn+/WN9M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qSDyyGlbLJQXc56HbFKIehoihG9IOphbtEeyVOrzT5A0oPUibPgILM/MpXS0oFpII
+	 xKUmu6Uyql1I/sj2RGenI5goO3VwA9j7vPWHvji/JbVNyI1xBfaQ7by96nD6NNbW0T
+	 IPwLoNpRaEfECXyQw69swTo84N9Rgfo1O/OV1UYHJwy2V+pBoWY7vrDgshH/RyqQLU
+	 Nq1p+m5hgj7nR6JylGCgpfAp+KwWYlXfF0GCAc+nxYijRNk3rYJvBg3hF8Fm7SYoqD
+	 O62AZQDZ4nxijUkvy5cP0hhH4I6yCUsXWVTW98p/mDPNK3fj/SB6klg1YIQozblUOD
+	 oGUQ2t1bYXSag==
+Message-ID: <80723310-97e6-45ea-8154-c48de40e14aa@kernel.org>
+Date: Thu, 21 Aug 2025 08:09:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250814223839.3256046-17-b-padhi@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net] ARM: dts: aspeed: ast2600-evb: Correct phy-mode to rgmii-id
+To: Jacky Chou <jacky_chou@aspeedtech.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+ andrew@codeconstruct.com.au, howard_chiu@aspeedtech.com, arnd@arndb.de,
+ andrew+netdev@lunn.ch
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20250821052555.298860-1-jacky_chou@aspeedtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250821052555.298860-1-jacky_chou@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Aug 15, 2025 at 04:08:22AM +0530, Beleswar Padhi wrote:
-> The wkup_r5fss0_core0_memory_region is used to store the text/data
-> sections of the Device Manager (DM) firmware itself and is necessary for
-> platform boot. Whereas the wkup_r5fss0_core0_dma_memory_region is used
-> for allocating the Virtio buffers needed for IPC with the DM core which
-> could be optional. The labels were incorrectly used in the
-> k3-am62p-verdin.dtsi file. Correct the firmware memory region label.
+On 21/08/2025 07:25, Jacky Chou wrote:
+> According to the latest ethernet-controller.yaml.
+> Since there is no RGMII delay on AST2600 EVB, the phy-mode property of all
+> MACs change to "rgmii-id" mode.
 > 
-> Currently, only mailbox node is enabled with FIFO assignment. However,
-> there are no users of the enabled mailboxes. Add the missing carveouts
-> for WKUP and MCU R5F remote processors, and enable those by associating
-> to the above carveout and mailboxes. This config aligns with other AM62P
-> boards and can be refactored out later.
-> 
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+> Fixes: 4d338ee40ba8 ("ARM: dts: aspeed: ast2600-evb: Enable RX delay for MAC0/MAC1")
+> Fixes: 2ca5646b5c2f ("ARM: dts: aspeed: Add AST2600 and EVB")
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
 > ---
-> Cc: Francesco Dolcini <francesco.dolcini@toradex.com>
-> Cc: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> Cc: Parth Pancholi <parth.pancholi@toradex.com>
-> Cc: Jo_o Paulo Gon_alves <joao.goncalves@toradex.com>
-> Requesting for a review/test.
-> 
->  arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi | 42 ++++++++++++++++++++-
->  1 file changed, 41 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
-> index 6a04b370d149..0687debf3bbb 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
-> @@ -162,7 +162,25 @@ secure_ddr: optee@9e800000 {
->  			no-map;
->  		};
->  
-> -		wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
-> +		mcu_r5fss0_core0_dma_memory_region: mcu-r5fss-dma-memory-region@9b800000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9b800000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		mcu_r5fss0_core0_memory_region: mcu-r5fss-memory-region@9b900000 {
+>  arch/arm/boot/dts/aspeed/aspeed-ast2600-evb.dts | 8 ++++----
 
-Node name should be generic, `memory@9b900000` ?
+No, DTS cannot go to net. Why do you propose that?
 
-this applies in multiple patches in this series
-
-
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9b900000 0x00 0xf00000>;
-> +			no-map;
-> +		};
-> +
-> +		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9c800000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		wkup_r5fss0_core0_memory_region: r5f-memory@9c900000 {
->  			compatible = "shared-dma-pool";
->  			reg = <0x00 0x9c900000 0x00 0x01e00000>;
->  			no-map;
-> @@ -848,6 +866,28 @@ mbox_mcu_r5_0: mbox-mcu-r5-0 {
->  	};
->  };
->  
-> +&wkup_r5fss0 {
-> +	status = "okay";
-> +};
-> +
-> +&wkup_r5fss0_core0 {
-> +	mboxes = <&mailbox0_cluster0 &mbox_r5_0>;
-> +	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
-> +			<&wkup_r5fss0_core0_memory_region>;
-> +	status = "okay";
-> +};
-> +
-> +&mcu_r5fss0 {
-> +	status = "okay";
-> +};
-> +
-> +&mcu_r5fss0_core0 {
-> +	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5_0>;
-> +	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-> +			<&mcu_r5fss0_core0_memory_region>;
-> +	status = "okay";
-> +};
-> +
->  &main0_alert {
->  	temperature = <95000>;
->  };
-> -- 
-> 2.34.1
-> 
+Best regards,
+Krzysztof
 
