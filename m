@@ -1,152 +1,330 @@
-Return-Path: <devicetree+bounces-207226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84748B2EE80
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:46:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52936B2EE8A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:46:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6F2F7A2C20
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:44:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CAACA076E5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:46:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B862423E33D;
-	Thu, 21 Aug 2025 06:46:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADAD227B339;
+	Thu, 21 Aug 2025 06:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SXujOBQa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FgXXdnbI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D3119047F;
-	Thu, 21 Aug 2025 06:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFB3827A12C
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 06:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755758763; cv=none; b=PhVlBI+k9+4nHCbxY7O2ZpXlaJ4KMTP4hGwiAW8/8R8s1w4NCWNuy2TRzVyoI7xKtBhoeGMJr9yIM9diKHUmsJto4kCX36/AaJFSS8hrQIcoD49E6DzTQhCbY8AeTMOravKEw+qKOErLmSV7PgxTWkyMY1+zJXQH8+m10PWUQFY=
+	t=1755758790; cv=none; b=VNuDhb9EhZaQqsc8vBX/ErM2qIwBDFv9DXIJ48W8qRNZK6dTZaZkb7uMd050FZjEeelmbclj4CY0QgbLWkAAgrJBRmMxCWhCU0bKonsKfhmTm0jbCXwN28blmra/eqYvsVIHnbW0oWbthv8cNe/v8cdOFSBrMOf78TUVLpBn9XY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755758763; c=relaxed/simple;
-	bh=oBwPDZXX3KOkpIoUmCaMcfZGJPlZNWTmlwvi8mY8yv8=;
+	s=arc-20240116; t=1755758790; c=relaxed/simple;
+	bh=esEYAxrAJ5xtsje+9V5Y+/0tDjttOECQ/FdjnNxmY0k=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X0uDIkLC+CRc8MOR7C3CQTf65C1gC9T3pKt4+9BjT6wIHrpC74B7Kp2I9BrN6GXN7Bo6jmk89fdwSrZ7/1ofMJdv8y1kWE/bcj1o7wHbgAPbbB6mYXO1YjVpGA+84JNTCWgq8QHPP2rhmB+reGruKDLFyMq0LL2yxeJ+r2A7Dwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SXujOBQa; arc=none smtp.client-ip=209.85.128.49
+	 To:Cc:Content-Type; b=KDZZJDtE8HHZkfUrPC94vhfHVr8+yCrzvKk+txvODoEgsg/Q45LfNrbbRHeC7AobYOtshYHM0j05i/4ywsEd2JyVYvy2KClv+wyVnYbM+BpxicynUwy8ZqandGIG+m/lzc+UamD4uPVJHVlxZlriyjn0jCQOr/RQvOCF104/gnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FgXXdnbI; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45a15fd04d9so11358505e9.1;
-        Wed, 20 Aug 2025 23:46:01 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-55ce522c7a3so649512e87.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Aug 2025 23:46:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755758760; x=1756363560; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1755758787; x=1756363587; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vySJJlycB8sAhA00gy1auHre6+C0cbwZ/xtdefFT+k8=;
-        b=SXujOBQag3Lzuh7c7nibUyBm/mL2eT4gFaPqcCVI56alwiKmAwwNqsx/F85svQ9qL8
-         NK+ICk7o8DuRpPPZHQ+rqG43i6qgySbqYJ1m9GrE5vvzAp62z1Z7CdhXJLR+YAiejIS8
-         Cj7p05abRE4MT/i5WVZNbbOd2PZt7YDli5L1FYl0P9cjF1l4BR/JBL5FwD6IhAr9qQ3P
-         s5/5czRVC56pu+9piZACf1d+ZtmrMLZtn/d2PtcrYu+65Od0iWSl0eKkamOPEjtfepBB
-         sP7TZhnnNgd0gyMUR1HcaCFrLjQ15H4wYAv5diJcOogW7riZJlnISpkEBA6gvsw0AxC0
-         ubXQ==
+        bh=qRyT61e1WUYEl9NHF1Uk/Zuo/sT4PFrgnPFcHdrhsgU=;
+        b=FgXXdnbI23lxeAIbuKHYnWtxNRRdiyf8jOe1V9Fm/EC1LiM9D1wfN9A+Caoi1oyX2Z
+         iPxVp+kLKIRY3XGk2/N9v6XXoFJw0OKGlKabFHaOeXm6xosQn64PwUm8rorT8pMfw3Ml
+         YuOKJFm8P26YI5783lTWFaU/4dadYyVaak8nkP20bcVgk8LJjWByDT4zQ67Ny6ZlO4QJ
+         vpejBVy0aO6bsj6QYuasBT4Q7k99iTZuDUZtVWBnDJtxiMKde9DvYmDyxUO+p7JYh/9V
+         zFBw0g0Rbj0nkPEmJiVxWJuK5OgU3NssqR7MtK+32SuexwBK3FalV+J2SkM5TQ5RaHSy
+         /bNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755758760; x=1756363560;
+        d=1e100.net; s=20230601; t=1755758787; x=1756363587;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vySJJlycB8sAhA00gy1auHre6+C0cbwZ/xtdefFT+k8=;
-        b=l8KptdLW+w45GrvnuFvj4hMDRHBR8gksna+LsbIqFz3l20x1wImnLKiapfsjxbHVjU
-         zaAtjJgOZS6pJKRneQsUDUQwdQJBIYaraTuWRNieMpJbg9TnRCrW1RKsmXukhk9E1UgX
-         9UKGUIsE8LFRJ6Duf1tRxvHyo357K8556ox9ybkYchPC4F+wxk+PXnObNMLo6RE51Yjv
-         aWQOZC/AqeiPoTkwg/rYe1xLWip8h47ZMoY9ZJ4SqbINciTRUlFHrwkAcFkiUph2lTVk
-         UFAuvJQdwN4/cg78r5RmvaWmzNVo/yB590sHJaeVuP1dazfZSrFkUxPjhgW3ZLoPjNdF
-         mr1A==
-X-Forwarded-Encrypted: i=1; AJvYcCU0I/Tw1nFBedwgxz4Br1tWs+3PhCrweOTEDLCa6bx9kaC8k0FJPazoRFvHbnraLA9FVPEH4BbCzszdXKFO@vger.kernel.org, AJvYcCUuec2yfNtIcQTOSwwRY/fFXmQiYpRgaW9wYZglIC9I6iO+VBmculJqXLir93u1Qr6CnQj4DcuAdnP3Xps=@vger.kernel.org, AJvYcCVcQOl5/fPhN7bAYuGvNfXa3xX2wciN+DfHVMB4Z4rrWq2dThwIK4Gzj0/9Tt/t3uQQxzaSBJVODaw=@vger.kernel.org, AJvYcCWPlX6ekCxI5vk8gy5bNgJPVptNuD3aVXSOqLVP5AR/FW+ewMjIjalqrQ9IjeVhRB+tOjxIEmGkSapo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyy+qdGr3OviF01zqCgrC9Z1IavTsoWYkEbjw8PlpICj7I3yV3y
-	otbwtWom1g+68PGHy7WLmcTQwqg8/3ORIdl0QXjllEdXi8/cwAOUWHBeOPHlJybC40KdMopyb+0
-	jXa2nn5fL/rERD5BPTAt4RhII2Ym+iBw=
-X-Gm-Gg: ASbGnctuA3LLd9GLA89xdpaU2spDJZkIJz9FheYzWL76zi6pnuZxblSZ8QvBUiFbgH/
-	XeypOKRLOmk3Z6rA3Mnecv/pNN38vho/f3tsBzNniu7rmy+m79ZWNtVUwLC59hSIW/CQkvs7S8o
-	DCfnBqvNPhE9lStL1+497C40OaecAod6KNYOrLefjm9f1Cu2BpSDwdAw1MZnea/RFoG0MQBCQGU
-	Ljj3LVA
-X-Google-Smtp-Source: AGHT+IGXWzA0eS0R61Nf3Ndtr7L0dAU4ibk8l1naE99zl3Xmp3m5QQ7zPsDbMVQxHdfBBrCs0Rs7rWmMy9G6zGgH5X0=
-X-Received: by 2002:a05:6000:440b:b0:3b9:53b:ee91 with SMTP id
- ffacd0b85a97d-3c4b50e1e6amr586739f8f.17.1755758759776; Wed, 20 Aug 2025
- 23:45:59 -0700 (PDT)
+        bh=qRyT61e1WUYEl9NHF1Uk/Zuo/sT4PFrgnPFcHdrhsgU=;
+        b=NWrUPUn12/Y3CAl+e5G1pWZWgnJd5COIYqfdJqgByZkdgTuCK3OQXSh15xPMo6E4ql
+         hu7tIcCFoGyORrwTCMzr6VFJh1Q2Jpq2LC3HdXBPAh6Bo29bmd4LO4oF6wdUvT3gXBYk
+         iCsIWsLZvG2S9uF0J0TtA9bVySE+F4sIizmz0s4PpBsYPhVgWu5AM0L0a/AvlAlRfhxh
+         twUCDndPTLSkcczIoW/frTA5E1Muzep4NSSP5VSyg1iDY7jMdIFFaEN2Xo/tc9Ha5AQt
+         8/DUgbKktZBWP+rf6ZnbLVqcjvlyVuAw+ZLQMwpzKXRcNRylsSGLCfFOn467zBjkNgUj
+         OCUw==
+X-Forwarded-Encrypted: i=1; AJvYcCWmmf6wL76oWB80H4T2ZA5cnHLijxYaycTWdTI6DGUlZYaxLave9VfloFx4+CekaB0KFd05wqm2kK81@vger.kernel.org
+X-Gm-Message-State: AOJu0YxW+HtoOhyZm4NA2TS5luBEEovx3VeBnAzRbXx/3XZaPcnBYIwa
+	FL+WEyexCxdN/oAU4R26gSfd5ClL08fP2+S+t3Om1+j1uqOxBJW8Kek7YemO3UUGtfgbNFwVMTj
+	kzMs1WU7j5sINq8YPoSUWljXrxBnceaI=
+X-Gm-Gg: ASbGncsE/KnUas8ZZ1svYM6z2uU09y7fC1L8rqe1m4XIsnkhFP/vZWbUfbo9DOR6Edh
+	BzPSXFWVNEwFW61Oa9aAg1/uPXCJVvX78yruSQ55x22bLu37l8aYZviJeYkfLwyzEcBTA2zfIcX
+	mvKmvoCctzfn4rWPqX5AvaSeGUMA5u9Ve7F+QTbElfrrIuII+S7xlUhAFVuHWyZwSomwjzz2rc+
+	QnAqz+PaPnYCoGkK/I=
+X-Google-Smtp-Source: AGHT+IHirWqapTfh+EM+TJH6W5s+p3sDKFtH9F9Vb3GELh9r3v7phKfRDXcpvrffcDzKu1JlRcdEzPYRi72teRHlz6M=
+X-Received: by 2002:ac2:4bd1:0:b0:55b:8e2e:8cc7 with SMTP id
+ 2adb3069b0e04-55e0d550330mr417317e87.42.1755758786572; Wed, 20 Aug 2025
+ 23:46:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250820114231.150441-1-clamor95@gmail.com> <20250820114231.150441-5-clamor95@gmail.com>
- <4683661.LvFx2qVVIh@senjougahara>
-In-Reply-To: <4683661.LvFx2qVVIh@senjougahara>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 21 Aug 2025 09:45:48 +0300
-X-Gm-Features: Ac12FXzzH6qdl35BE9pgAbfUkoPCC90SJxU_f0DKbt596WihCit9QQ_DfDsklT8
-Message-ID: <CAPVz0n3pfaY9SboHhiG6NqPBjwvA4KvSeOvfadjH2DQJtcpcjw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] dt-bindings: thermal: tegra: add Tegra114 soctherm header
-To: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, "Jiri Slaby (SUSE)" <jirislaby@kernel.org>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1754890670.git.zhoubinbin@loongson.cn> <89732d64415077ecd9f74c5853c542e62c0dfe26.1754890670.git.zhoubinbin@loongson.cn>
+In-Reply-To: <89732d64415077ecd9f74c5853c542e62c0dfe26.1754890670.git.zhoubinbin@loongson.cn>
+From: Keguang Zhang <keguang.zhang@gmail.com>
+Date: Thu, 21 Aug 2025 14:45:49 +0800
+X-Gm-Features: Ac12FXyLsYW7dgKCwRMYRQteslNoHXA0nlBHr7BLldraWtOmRhrZhYSAi96QR1g
+Message-ID: <CAJhJPsW3KGL=FH5ZVqvRr-RD+ih09mFNuk7wGXepGVSw7bTaiw@mail.gmail.com>
+Subject: Re: [PATCH v2 6/8] mtd: rawnand: loongson: Add Loongson-2K0500 NAND
+ controller support
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Huacai Chen <chenhuacai@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-mtd@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-=D1=87=D1=82, 21 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 09:3=
-9 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
+On Mon, Aug 11, 2025 at 2:03=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
 >
-> On Wednesday, August 20, 2025 8:42=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > This adds header for the Tegra114 SOCTHERM device tree node.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../dt-bindings/thermal/tegra114-soctherm.h   | 20 +++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> >  create mode 100644 include/dt-bindings/thermal/tegra114-soctherm.h
-> >
-> > diff --git a/include/dt-bindings/thermal/tegra114-soctherm.h
-> > b/include/dt-bindings/thermal/tegra114-soctherm.h new file mode 100644
-> > index 000000000000..b605e53284fe
-> > --- /dev/null
-> > +++ b/include/dt-bindings/thermal/tegra114-soctherm.h
-> > @@ -0,0 +1,20 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/*
-> > + * This header provides constants for binding nvidia,tegra114-soctherm=
-.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_THERMAL_TEGRA114_SOCTHERM_H
-> > +#define _DT_BINDINGS_THERMAL_TEGRA114_SOCTHERM_H
-> > +
-> > +#define TEGRA114_SOCTHERM_SENSOR_CPU 0
-> > +#define TEGRA114_SOCTHERM_SENSOR_MEM 1
-> > +#define TEGRA114_SOCTHERM_SENSOR_GPU 2
-> > +#define TEGRA114_SOCTHERM_SENSOR_PLLX 3
-> > +#define TEGRA114_SOCTHERM_SENSOR_NUM 4
-> > +
-> > +#define TEGRA_SOCTHERM_THROT_LEVEL_NONE 0
-> > +#define TEGRA_SOCTHERM_THROT_LEVEL_LOW  1
-> > +#define TEGRA_SOCTHERM_THROT_LEVEL_MED  2
-> > +#define TEGRA_SOCTHERM_THROT_LEVEL_HIGH 3
+> The Loongson-2K0500 NAND controller is similar to the Loongson-1C.
 >
-> Please use the TEGRA114 prefix for these as well. I see that it's missing=
- in
-> the Tegra124 header, which is unfortunate.
+> It supports a maximum capacity of 16GB FLASH per chip with a maximum
+> page size of 8KB, and it supports up to 4 chip selects and 4 RDY
+> signals.
+>
+> Its DMA controller is defaulted to APBDMA0.
+>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  drivers/mtd/nand/raw/Kconfig                  |  2 +-
+>  .../mtd/nand/raw/loongson-nand-controller.c   | 55 ++++++++++++++++++-
+>  2 files changed, 54 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
+> index d9e3f13666ac..7b0c5d06aa95 100644
+> --- a/drivers/mtd/nand/raw/Kconfig
+> +++ b/drivers/mtd/nand/raw/Kconfig
+> @@ -464,7 +464,7 @@ config MTD_NAND_NUVOTON_MA35
+>
+>  config MTD_NAND_LOONGSON
+>         tristate "Loongson NAND controller"
+> -       depends on LOONGSON1_APB_DMA || COMPILE_TEST
+> +       depends on LOONGSON1_APB_DMA || LOONGSON2_APB_DMA || COMPILE_TEST
+>         select REGMAP_MMIO
+>         help
+>           Enables support for NAND controller on Loongson family chips.
+> diff --git a/drivers/mtd/nand/raw/loongson-nand-controller.c b/drivers/mt=
+d/nand/raw/loongson-nand-controller.c
+> index 5a51c7d299cc..7a15df3fcd31 100644
+> --- a/drivers/mtd/nand/raw/loongson-nand-controller.c
+> +++ b/drivers/mtd/nand/raw/loongson-nand-controller.c
+> @@ -3,6 +3,7 @@
+>   * NAND Controller Driver for Loongson family chips
+>   *
+>   * Copyright (C) 2015-2025 Keguang Zhang <keguang.zhang@gmail.com>
+> + * Copyright (C) 2025 Binbin Zhou <zhoubinbin@loongson.cn>
+>   */
+>
+>  #include <linux/kernel.h>
+> @@ -26,6 +27,7 @@
+>  #define LOONGSON_NAND_IDH_STATUS       0x14
+>  #define LOONGSON_NAND_PARAM            0x18
+>  #define LOONGSON_NAND_OP_NUM           0x1c
+> +#define LOONGSON_NAND_CS_RDY_MAP       0x20
+>
+>  /* Bitfields of nand command register */
+>  #define LOONGSON_NAND_CMD_OP_DONE      BIT(10)
+> @@ -40,6 +42,23 @@
+>  #define LOONGSON_NAND_CMD_READ         BIT(1)
+>  #define LOONGSON_NAND_CMD_VALID                BIT(0)
+>
+> +/* Bitfields of nand cs/rdy map register */
+> +#define LOONGSON_NAND_MAP_CS1_SEL      GENMASK(11, 8)
+> +#define LOONGSON_NAND_MAP_RDY1_SEL     GENMASK(15, 12)
+> +#define LOONGSON_NAND_MAP_CS2_SEL      GENMASK(19, 16)
+> +#define LOONGSON_NAND_MAP_RDY2_SEL     GENMASK(23, 20)
+> +#define LOONGSON_NAND_MAP_CS3_SEL      GENMASK(27, 24)
+> +#define LOONGSON_NAND_MAP_RDY3_SEL     GENMASK(31, 28)
+> +
+> +#define LOONGSON_NAND_CS_SEL0  BIT(0)
+> +#define LOONGSON_NAND_CS_SEL1  BIT(1)
+> +#define LOONGSON_NAND_CS_SEL2  BIT(2)
+> +#define LOONGSON_NAND_CS_SEL3  BIT(3)
+> +#define LOONGSON_NAND_CS_RDY0  BIT(0)
+> +#define LOONGSON_NAND_CS_RDY1  BIT(1)
+> +#define LOONGSON_NAND_CS_RDY2  BIT(2)
+> +#define LOONGSON_NAND_CS_RDY3  BIT(3)
+> +
+>  /* Bitfields of nand timing register */
+>  #define LOONGSON_NAND_WAIT_CYCLE_MASK  GENMASK(7, 0)
+>  #define LOONGSON_NAND_HOLD_CYCLE_MASK  GENMASK(15, 8)
+> @@ -53,6 +72,8 @@
+>  #define LOONGSON_NAND_READ_ID_SLEEP_US         1000
+>  #define LOONGSON_NAND_READ_ID_TIMEOUT_US       5000
+>
+> +#define LOONGSON_NAND_64BIT_DMA                BIT(0)
+
+It's strongly suggested to replace this flag with a dma_bits field in
+loongson_nand_host.
+Please see the comments below.
+
+> +
+>  #define BITS_PER_WORD                  (4 * BITS_PER_BYTE)
+>
+>  struct loongson_nand_host;
+> @@ -83,6 +104,7 @@ struct loongson_nand_data {
+>         unsigned int hold_cycle;
+>         unsigned int wait_cycle;
+>         unsigned int nand_cs;
+
+Add unsigned int dma_bits;
+
+> +       unsigned int flags;
+>         void (*set_addr)(struct loongson_nand_host *host, struct loongson=
+_nand_op *op);
+>  };
+>
+> @@ -751,7 +773,7 @@ static int loongson_nand_controller_init(struct loong=
+son_nand_host *host)
+>         struct device *dev =3D host->dev;
+>         struct dma_chan *chan;
+>         struct dma_slave_config cfg =3D {};
+> -       int ret;
+> +       int ret, val;
+>
+>         host->regmap =3D devm_regmap_init_mmio(dev, host->reg_base, &loon=
+gson_nand_regmap_config);
+>         if (IS_ERR(host->regmap))
+> @@ -761,6 +783,9 @@ static int loongson_nand_controller_init(struct loong=
+son_nand_host *host)
+>                 regmap_update_bits(host->regmap, LOONGSON_NAND_PARAM, hos=
+t->data->id_cycle_field,
+>                                    host->data->max_id_cycle << __ffs(host=
+->data->id_cycle_field));
+>
+> +       if (host->data->flags & LOONGSON_NAND_64BIT_DMA)
+> +               dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
+> +
+
+Sorry, all platforms should call dma_set_mask_and_coherent(),
+including Loongson-1, which I missed earlier.
+       ret =3D dma_set_mask_and_coherent(dev,
+DMA_BIT_MASK(host->data->dma_bits));
+       if (ret)
+               return dev_err_probe(dev, ret, "failed to set DMA mask\n");
+
+>         chan =3D dma_request_chan(dev, "rxtx");
+>         if (IS_ERR(chan))
+>                 return dev_err_probe(dev, PTR_ERR(chan), "failed to reque=
+st DMA channel\n");
+> @@ -776,7 +801,14 @@ static int loongson_nand_controller_init(struct loon=
+gson_nand_host *host)
+>
+>         init_completion(&host->dma_complete);
+>
+> -       return 0;
+> +       val =3D FIELD_PREP(LOONGSON_NAND_MAP_CS1_SEL, LOONGSON_NAND_CS_SE=
+L1)
+> +           | FIELD_PREP(LOONGSON_NAND_MAP_RDY1_SEL, LOONGSON_NAND_CS_RDY=
+1)
+> +           | FIELD_PREP(LOONGSON_NAND_MAP_CS2_SEL, LOONGSON_NAND_CS_SEL2=
+)
+> +           | FIELD_PREP(LOONGSON_NAND_MAP_RDY2_SEL, LOONGSON_NAND_CS_RDY=
+2)
+> +           | FIELD_PREP(LOONGSON_NAND_MAP_CS3_SEL, LOONGSON_NAND_CS_SEL3=
+)
+> +           | FIELD_PREP(LOONGSON_NAND_MAP_RDY3_SEL, LOONGSON_NAND_CS_RDY=
+3);
+> +
+> +       return regmap_write(host->regmap, LOONGSON_NAND_CS_RDY_MAP, val);
+
+Chip selects should be set before requesting the DMA channel.
+
+>  }
+>
+>  static int loongson_nand_chip_init(struct loongson_nand_host *host)
+> @@ -890,6 +922,7 @@ static const struct loongson_nand_data ls1b_nand_data=
+ =3D {
+>         .hold_cycle =3D 0x2,
+>         .wait_cycle =3D 0xc,
+>         .nand_cs =3D 0x0,
+
+Add .dma_bits =3D 32,
+
+> +       .flags =3D 0,
+
+The assignment `.flags =3D 0x0` is redundant and can be removed.
+
+>         .set_addr =3D ls1b_nand_set_addr,
+>  };
+>
+> @@ -901,6 +934,19 @@ static const struct loongson_nand_data ls1c_nand_dat=
+a =3D {
+>         .hold_cycle =3D 0x2,
+>         .wait_cycle =3D 0xc,
+>         .nand_cs =3D 0x0,
+
+Add .dma_bits =3D 32,
+
+> +       .flags =3D 0,
+
+Ditto.
+
+> +       .set_addr =3D ls1c_nand_set_addr,
+> +};
+> +
+> +static const struct loongson_nand_data ls2k0500_nand_data =3D {
+> +       .max_id_cycle =3D 6,
+> +       .id_cycle_field =3D GENMASK(14, 12),
+> +       .status_field =3D GENMASK(23, 16),
+> +       .op_scope_field =3D GENMASK(29, 16),
+> +       .hold_cycle =3D 0x4,
+> +       .wait_cycle =3D 0x12,
+> +       .nand_cs =3D 0x0,
+> +       .flags =3D LOONGSON_NAND_64BIT_DMA,
+
+Replace LOONGSON_NAND_64BIT_DMA with .dma_bits =3D 64,
+
+>         .set_addr =3D ls1c_nand_set_addr,
+>  };
+>
+> @@ -913,6 +959,10 @@ static const struct of_device_id loongson_nand_match=
+[] =3D {
+>                 .compatible =3D "loongson,ls1c-nand-controller",
+>                 .data =3D &ls1c_nand_data,
+>         },
+> +       {
+> +               .compatible =3D "loongson,ls2k0500-nand-controller",
+> +               .data =3D &ls2k0500_nand_data,
+> +       },
+>         { /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, loongson_nand_match);
+> @@ -929,5 +979,6 @@ static struct platform_driver loongson_nand_driver =
+=3D {
+>  module_platform_driver(loongson_nand_driver);
+>
+>  MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
+> +MODULE_AUTHOR("Binbin Zhou <zhoubinbin@loongson.cn>");
+>  MODULE_DESCRIPTION("Loongson NAND Controller Driver");
+>  MODULE_LICENSE("GPL");
+> --
+> 2.47.3
 >
 
-Sure. I assume decision not to use TEGRA124 was intentional since
-these defines are used in Tegra124, Tegra132 and Tegra210 device
-trees.
 
-> > +
-> > +#endif
->
->
->
->
+--
+Best regards,
+
+Keguang Zhang
 
