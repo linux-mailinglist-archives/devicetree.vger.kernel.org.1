@@ -1,355 +1,227 @@
-Return-Path: <devicetree+bounces-207240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFED7B2EF2F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:14:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 680A2B2EF4A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:18:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE8CE16B45F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 07:14:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55E7A175B12
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 07:16:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F285257851;
-	Thu, 21 Aug 2025 07:14:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051722DFA39;
+	Thu, 21 Aug 2025 07:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DFvo8JWs"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="myZG2OzL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011064.outbound.protection.outlook.com [40.107.74.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFDD27C154
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 07:14:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755760455; cv=none; b=D940zqikMGXatvPmaG/kUSanrLdY8IO9dj/Ylh2hQqccHOUdiboI5PL+aBdEZD9l20JPYreOCQDUsnxH0W1Ee1tFQQjyxuRxEi/dH3kiDrYDinveOJQWpr2KP9DqP/XGE41auG53koXA9bXU0DfQqczLwF74KrdBCYBjumfkQ0c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755760455; c=relaxed/simple;
-	bh=n1Y2BGuH7iKG2GvW4qBG7ldoRWZvuNsMPhdicKLieQk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gMCt2UDTcjVMc319pL4wXVpSnoooVBDxD8PANk0FWYKnIneo+D0fKXo5yJJnsJ7yMv3ccLAhuafJOjXpcDJNYWP9ZkVUNRRUT277qnA4XjNJw7c8xQ1RutXGmrtpKNJ7jklDDeq/4a6WU/E8PUJ0d0cWnTxAAoiXuVw4rzCatuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DFvo8JWs; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-afcb7ae31caso130556666b.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 00:14:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755760451; x=1756365251; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d72kV5AqQ71r4FWlV/x/IF1vyWIU5hmO/NIRIMsWbyA=;
-        b=DFvo8JWs5k1Lnmda23X0zokXQLSm910kVbvYKMoNsxvpvM/X5qqz2ZjUwqf76cd0po
-         nFM57yQQmFNPsw31QTlSkV/qiQMQ9fJ/8skWW9XPfyol977u1ccnesGOgomfXdmkBUSf
-         12O+SM4vyKFuOLEg2vfLvA/XLbYqxMIvkQENVrALvKesv8RqwKfjsHDqKwDc9RLGLwN2
-         o3Wiq6XyhvLqcTPb1CwnUQZIwzJl9hnNsIDHsb+dPemXBaAZ9Gjs3s6Z6iyyvDqBJtiw
-         8OjhsFpqzypmi1bK2DaZljACxaBARY/EJnxCp74/csPhK60djL+ffmE74TqQ/XfFRLNi
-         tYcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755760451; x=1756365251;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=d72kV5AqQ71r4FWlV/x/IF1vyWIU5hmO/NIRIMsWbyA=;
-        b=NsBRB/6FTTIgCQeq6sg7HAfwcPv+phLytTHzL9kQp5wwN43Ufm3jLzG8SIatku7nHb
-         3CCjxT/9d8PHtuJmo3qSehsrjz2ZyEMi/8YDpMH4jZx1UT7hJUUoW8JyDwixmaj1Ip1X
-         Ev991CBvf/L/BJviCfzVqAuR546QrjUWu3GXBZNX/v5y//efKxVE1kcOcs1eFPH5bg0H
-         UqSeEQgTTbs5+OZnCH5qjr/6Wq5WRZBri+yQUKUtdS7W51BEx20fuf+rl5ZO46AxDxuh
-         2xr3unh3//VHN+F1KObpk8fyocJXHNIYsp3F9fviCFLLH8bg+msUlQ2ACMz3ttlgS24v
-         QANA==
-X-Forwarded-Encrypted: i=1; AJvYcCXFYGbC48EfXKNTBBx4hiYRk8n+W93qOkBQIp47RsL51ZYnE6Egafc5SPKvsGA0GdAgFwb05nPRNqxi@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCXhYtOfrUGoJbmE0PWPBHq7VZZ/96lEK0munOzob/p5JQ27qP
-	qRyp+PrxuwBFe2jWhYVaJVz4BP58NNAAHfy+Ag1ywEBSrW5CjITETpXsaVkHomst6tPf1524EUE
-	SSRZyCsSx38KtDEiFsUlo0p2sDpt5NaiQ6e10Pe8Ejw==
-X-Gm-Gg: ASbGnctsC1QJbCLq4Yu46ZQEANzXDcX4PZREbeu6IggcqvnZpFWWZIybj4zn6m9njWK
-	bugG9Dws2lgC0bsW773qEMi7bmRK4jxQV+IQo6aVRTU+56IELv7tblqrlSpFMY+j9rdt9f0qh32
-	iaWhBpZN9EiZ/LXvS6bVqkVQAptfQ4t5fjChY4QBOrtK/I5ipwXske9xirTUQDXeDu/b0uHR3K7
-	RyvlHW9gA==
-X-Google-Smtp-Source: AGHT+IF/gzSFnR8QEoExjxqmg99tfrdz12dCDe5b2qQ6U8hREAVE8SbvqbihBKEL2quYQG/vK0hoMW1ZY+G2bfY/7K4=
-X-Received: by 2002:a17:907:9484:b0:af9:b4e9:8638 with SMTP id
- a640c23a62f3a-afe0745289amr140607166b.0.1755760450874; Thu, 21 Aug 2025
- 00:14:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FF722D7806;
+	Thu, 21 Aug 2025 07:16:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.64
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755760565; cv=fail; b=Inl0mMFp4fCLL6cbuxW4lBbC91eJIDxdiVLkNbrno5P9+H/Hgxbg/184r1forI8YQfhE91Y9Bmn7MTT+94D1yDHX5zhxqyhX8ygk2EAnT/QqpcuCI3N3jntfpdrm4uVs4ZY3t/PUImDJGKR3V03OJRItKatMNBC6MP3HnCAukPs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755760565; c=relaxed/simple;
+	bh=x+gd9GRTeplStdk00MSVAPyfhOhQIKEdvK/CTviCY3I=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=YQWS6f6ayvrnxAdI1YZA+oNNe/Gf9rTDZxRj1sr70qAeWTAjuRtpv/NP/Zp6ty2HbJxCMCreh5xepr+pavDCDG/pqq0c3kseguigtV0nh3VbCd7Zs1wM/ZnDrlbG1ez1P18hBydToMl9Z/j6ZMk0/WBlcT6TM8jcADFacT1oaDE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=myZG2OzL; arc=fail smtp.client-ip=40.107.74.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BBlXuMq1nGvK7rTbFKD0we2cycwAilzmwoaXwGwF/2oEQmysQWlsA/iwFM+hZGQOPGdsx+y+5aCxnwKlihHqGv2HXOJ/VeMlmmbWA1iVkrkwZ+HvmAYGUhTJcLqQR37gneYSr+xZYNlhoTEz3EAxDAjrtcoFyYLFwdidb116h40Egyfnq2K+jXCixXyAqDCxbOpwTyjrH4kr09gqIRdMdRlXQCU9OyOOJGoOHMLpilv4T3kE8qStqmOHh1wwhbksMeddROi7qEaW8OiixBQQUJt80zoadq++X/Fc+9V64hRKC2qDiAozTryzp93XY34ICZVAJNVnwNAyQOoJ1j+HJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gEiaeoL6eVq+WGt0MQLT0ZymU5HdKs96XoQXOxr8ra8=;
+ b=uVtXpqydFjEFGKv7h1iRdLPkyQvMFF8CKTjRT9gdvbjWSlZxS5flqcqB7lWrSbMXbRhHxiEqy4/Zm4UMY6NUd+elBbEAaJG+0r6eOgeaqI9PZoID/fk0r3euoh2Qv4mxnyzSptY68H7odpluFelLgX4hBfwq/Rv8c4m6iqS7vKpVKf/cIaiKRIMiMnAYXc9D31CF7C0aJBywPsXQjQmZivM8Fsob5Uo940riHLzomIYj4CcDA6KHrCzm2MpEvblsaocZpFnCAzkNOY+e+ZyBDrfeOVldk1+fLMwPCC/wbn1hhdkBaUOCGu6bDGxiUsSaZCCvV62RUNtWXMUQf3I+Kg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gEiaeoL6eVq+WGt0MQLT0ZymU5HdKs96XoQXOxr8ra8=;
+ b=myZG2OzLEcwJTxuhl0a11cuKkCT5WwKqrP8nIVyXZGVD0jKDYXgZLvJohofCfWL2XG1rGDqWvJp2W00gYxbZS80hRQCda2ldjtbUmgLXmtKjw6KqVUJDiN6/FZeGlo0nfipRm0V+2LEcoLVrG63dPLcC8AowvObyar/Q6ATEjf0=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYWPR01MB8902.jpnprd01.prod.outlook.com (2603:1096:400:169::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.14; Thu, 21 Aug
+ 2025 07:15:59 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%7]) with mapi id 15.20.9052.013; Thu, 21 Aug 2025
+ 07:15:59 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Conor Dooley <conor@kernel.org>, biju.das.au <biju.das.au@gmail.com>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+	magnus.damm <magnus.damm@gmail.com>, "linux-usb@vger.kernel.org"
+	<linux-usb@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH 06/11] dt-bindings: usb: Document Renesas RZ/G3E USB3HOST
+Thread-Topic: [PATCH 06/11] dt-bindings: usb: Document Renesas RZ/G3E USB3HOST
+Thread-Index: AQHcEfZvZDRnta0l60q2xS4yxsPDG7Rr+UIAgAC25fA=
+Date: Thu, 21 Aug 2025 07:15:59 +0000
+Message-ID:
+ <TY3PR01MB113464F2ED8BFBB823B038C038632A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20250820171812.402519-1-biju.das.jz@bp.renesas.com>
+ <20250820171812.402519-7-biju.das.jz@bp.renesas.com>
+ <20250820-onyx-salad-c5c96f6bd480@spud>
+In-Reply-To: <20250820-onyx-salad-c5c96f6bd480@spud>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYWPR01MB8902:EE_
+x-ms-office365-filtering-correlation-id: 809a2f64-a80a-48e2-5190-08dde0829464
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|366016|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?fxPv2LRuDH7SXmbzRNZPyled7BiGgavJ9VyuJb5thYJiV+b6dUB1GHv9RqL/?=
+ =?us-ascii?Q?aq8SMx4TmJJzx4IMDcG6E4L1pcEPdMwhDTdEkyiLIEfOzwlthoiQMOxmH5n6?=
+ =?us-ascii?Q?iSRm+FNVQO/8tp0sLscgeGti0wAAMA0/rT7Mz8R158WOpk8K26R3+BaK950J?=
+ =?us-ascii?Q?s0nIJ0BymN+P2xMl7Uni9yAsQDIU91Z5oGZlnt1uJx4HbLfIJ12JOl2Ep0/9?=
+ =?us-ascii?Q?Rm4rSi6JoubD3DuDqGBZqaQPYl2mmTas07/zrWPV40FOWsO3QCF/vhr652Ri?=
+ =?us-ascii?Q?aaXMyf3fDzD2jQJSMsJ7b3jWNoIMwqQe3kDfHaBLX1CBr2tTDEiRfh3dT3y5?=
+ =?us-ascii?Q?cyeTgTB3Wo0R4NVpu5LsGjQ8sOKbQz6u9FPAckYocbp4TsXo3CPeURsLpqN4?=
+ =?us-ascii?Q?0XQQrmsf3HEt+zl/II1s5dvRFoedUNHTYTdt51UCAVhL+GBx6RVC/NlgB6zM?=
+ =?us-ascii?Q?Mc722tM1QlDBM5ES77vUYDOUDMuKZvDbBUXqejv1gND/ObvR1iNU9dmA+t8c?=
+ =?us-ascii?Q?4M7nIADdzjXybAbu3iUoDAtv0ApQYCAzEbW0+RkA6cF/RhGSc1OxOgVzQrg2?=
+ =?us-ascii?Q?PfS/zmLtru5Ef6I8ixMF01UHhKBIMf27Q+AbSJuE9Z87MDwlaAzsLNXuV6Vc?=
+ =?us-ascii?Q?XLc6N3gVGVfPPGqFJNswzZxDNKKMZy5edFi1Y/mgMRAU5yC1Zu5k6zFCtS1W?=
+ =?us-ascii?Q?ci2CwdDkjwoBwnsKnVwSb32N6tgMRh9mnTg1DLQ+wwwJznwiKUTt+VW+WDqV?=
+ =?us-ascii?Q?D1DZIGhc1tjmcLbKGxG17X1XBgzFYusNHNReAke58Cte7Pf5FSS2YSLrb7CU?=
+ =?us-ascii?Q?uYXw0B+x9mOfPSOThx99P3KCMBXJ6t8/VeKULdaURSgkBut22UYzGygN9iYz?=
+ =?us-ascii?Q?P470Gb8kJG9r1P282kq03yRQh8fOOgS+UykD+Zl1ED9vtxXSAzn1j/qaQ/AM?=
+ =?us-ascii?Q?0Yn5kOkfamKZzgbOD/DoDrPiOcFpK4UZdOUVU0n6vG4J/9WvMBooBMHz4Gxi?=
+ =?us-ascii?Q?DB+t1bDKxMwGa6g7Cz5cGItCVoBJnqGuieLY9SkkT7sxc3HjxJb3qXnvhmdv?=
+ =?us-ascii?Q?1pwFyNlWiVa3XeTMNEZx2D1+PCKf4o/JKdxH2X4j0Wp4Ms5dCt7XNUdQ+u3S?=
+ =?us-ascii?Q?dILdDcU9f7+il3grfTcDYLzphAxaThI8/yxfwA6q2DlkHHaQayzAG2kehgNW?=
+ =?us-ascii?Q?35UY45pQDnDhG97uau+aWWEn4fc/fNNOZuJ6RdR3nIFxuj/Gxbx7/gyk9F7X?=
+ =?us-ascii?Q?CVHn96A5wwI0bj0mZKolHIxj0iRhMpPp04T1c9qfB1U2ZwAZs2pDzJtNlw+O?=
+ =?us-ascii?Q?r8Oa7eBRitxpk39xf9kd0lcEpAvoOBSt/PVQounh9bQlH10MIdvhJ1s1GGwl?=
+ =?us-ascii?Q?+l2A5sWT77oWl+HwcC+38PI/Jh2lWNlXBkfTfVrW6oop5GCHvQlaD0MNe8N+?=
+ =?us-ascii?Q?Zv107gAYW78=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?xqxTTHasTBHoJWd+a6v28aLxmp0jnJZQm/HsbFu3G/iQ/l5OWCNV1pxKZ2DY?=
+ =?us-ascii?Q?IU0TviX6I5vKQltulIJIdZD57RGGL3O9aB+6OLs+ZBAmOEUpLCRZYHFObK4E?=
+ =?us-ascii?Q?mQmrYVkkNrs3cIk6+DxB0iziRpxlH56u4DtIbyg/lgBAe6nBPXvsbrETvh2i?=
+ =?us-ascii?Q?LNtzMxaKZYwj3tD8UpV1BMCt4XM5gzmP0tUvleem6tciQ6HpJmNDvdHAGGuE?=
+ =?us-ascii?Q?t0tYvDeRPujIhcY/zXAFWiO2yhJJubzNZZVA0//J44GcZd/M36ChAOGpRj98?=
+ =?us-ascii?Q?ufp/qIHno3Swvg7bb333PofIPMCVKYIr5dj0gJ8Y3dNuQi5xAenUm9W/uhah?=
+ =?us-ascii?Q?+D2fO8nVz07obAQOPEe01B7mhiMlC/O2W2lk5WFqvrCY6+bJdCug834VeALd?=
+ =?us-ascii?Q?jfTeo589eEF8vNSPFwQfpGRPboCl0c2nSpm/X44w4csrykcOjE1WW72YZso8?=
+ =?us-ascii?Q?0NnoLu2Gi3nMgsRgHn8kK6SBLTjNIbluNK3YPv/9Q7Bhj3ijsLodskLEKnhR?=
+ =?us-ascii?Q?lq0MTq8I3dv2vaLRoEqPmszJDO8Gv/T97Qiqfup17r8K2ijkX0W6beaRew4I?=
+ =?us-ascii?Q?TjBASU0Ci2m6HI4Bq/bKeNlRAgxlPXTKGXOAUDEdrr7AmhTaNZ/V/qr5k/YJ?=
+ =?us-ascii?Q?a8f4jdrTS1UPTKPD2TmnaM2zAPecxEgmRMiSIr+xM7r4QFVQ0z2QRkL1DTSO?=
+ =?us-ascii?Q?0HCdAq32LAxkrRbZggP6eud4y6uifyf6BwCl0wijUsMk+yp1YqcKH8WQBTFK?=
+ =?us-ascii?Q?sauBZclTelxzVaHRoSuXE0S5vlipeRslEnL4qdKQpCQLeG3iauTduq+4swHe?=
+ =?us-ascii?Q?7g5AARGYy9ZrAmumwcG1BU/RAhjy1uPe8VH3QOZ0SeMM6oLNW3weTArHWPQ9?=
+ =?us-ascii?Q?dR0ezFxnR4n0d5zK/NtBSGWm0sA/1B3pXoCblHArPN3hxCSOSmyaTvpkZSIc?=
+ =?us-ascii?Q?eYY227NR/Va86TKrGyDz4JP7XS0Pz2bo2rKVozzICOaraEm90spxb1S4kswy?=
+ =?us-ascii?Q?WxTVvf+NXpSQLqa1fQkA1abDMchtwXtI8tk2a7iHMErXcAHlnfy1VUe5b+lM?=
+ =?us-ascii?Q?R4eh1YFYl+P65yJCh+Egbw3Amlx5j2x8Lwy8te0O3Czk99/t2tSt0ceWtF3L?=
+ =?us-ascii?Q?guNLKfoOk/l1MzMuULFJBXewSLPN/M/rPi9MrFjOlLc0MUY/xw3sRp6pH0NW?=
+ =?us-ascii?Q?9aZje6rmzipU4MVZszVwLH/UY38JRRQrj0LiQRNUtkY4octtYzUyYxLwca/s?=
+ =?us-ascii?Q?HJN4adH5Vh/sA+WUdpJZ1nleCWZucv82yCW5U9xIc/bYafcXiSoCK8cIKfdW?=
+ =?us-ascii?Q?wZD9hfbWmkepqYLzq43DLEmgnc0byVLfu1uwEab/030tTcblRdOuNfyAjEnl?=
+ =?us-ascii?Q?Cy4pF40bcAhtLJQjmudgOC273m0YYtyaZkE6td3zMZwEb/fZe/5A/puGZ1Q4?=
+ =?us-ascii?Q?e+PXlxb6oC78fznTNaILHAGZJfSVnslj0zJiHc94i17sYLf07TBW/daIqA94?=
+ =?us-ascii?Q?/TV4hi/drdyzxe5jEXqA8w4inaw1+jLSk7nWZEqgRAUb33QyJ0L16xK2h7aA?=
+ =?us-ascii?Q?gT3EfFs5FFcjtThngLAL1FgzV/iMvm8ZV7oZtDqS4akbFWT7/bql4gZiS1pn?=
+ =?us-ascii?Q?FA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754890670.git.zhoubinbin@loongson.cn> <89732d64415077ecd9f74c5853c542e62c0dfe26.1754890670.git.zhoubinbin@loongson.cn>
- <CAJhJPsW3KGL=FH5ZVqvRr-RD+ih09mFNuk7wGXepGVSw7bTaiw@mail.gmail.com>
-In-Reply-To: <CAJhJPsW3KGL=FH5ZVqvRr-RD+ih09mFNuk7wGXepGVSw7bTaiw@mail.gmail.com>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Thu, 21 Aug 2025 15:13:58 +0800
-X-Gm-Features: Ac12FXwlluWwN2EL5-pW7xP4YIsIoV3SOA07dCKLtV974jNddA8n9MGvt4ISBvE
-Message-ID: <CAMpQs4JyDTm_b0G-msqVO0nkxHHTOGoBDuUjYm+8+hpQKLZLyA@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] mtd: rawnand: loongson: Add Loongson-2K0500 NAND
- controller support
-To: Keguang Zhang <keguang.zhang@gmail.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Huacai Chen <chenhuacai@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-mtd@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 809a2f64-a80a-48e2-5190-08dde0829464
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Aug 2025 07:15:59.5931
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AkOgkIVECNXUKj93t+x7mzAvyvtBx+ZYwK6n2iR6C112CPXk/vi88WN4QFnmE2b+T/f5MAlqfwuzlAY7BcOU0UV5Y6NVGIdPv22RMXkRvcE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB8902
 
-Hi Keguang:
+Hi Conor,
 
-Thanks for your reply.
+Thanks for the feedback.
 
-On Thu, Aug 21, 2025 at 2:46=E2=80=AFPM Keguang Zhang <keguang.zhang@gmail.=
-com> wrote:
->
-> On Mon, Aug 11, 2025 at 2:03=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.=
-cn> wrote:
+> -----Original Message-----
+> From: Conor Dooley <conor@kernel.org>
+> Sent: 20 August 2025 21:11
+> Subject: Re: [PATCH 06/11] dt-bindings: usb: Document Renesas RZ/G3E USB3=
+HOST
+>=20
+> On Wed, Aug 20, 2025 at 06:17:53PM +0100, Biju wrote:
+> > From: Biju Das <biju.das.jz@bp.renesas.com>
 > >
-> > The Loongson-2K0500 NAND controller is similar to the Loongson-1C.
+> > Document the Renesas RZ/G3E USB3.2 Gen2 Host Controller (a.k.a USB3HOST=
+).
+> > The USB3HOST is compliant with the Universal Serial Bus 3.2
+> > Specification Revision 1.0.
+> >  - Supports 1 downstream USB receptacles
+> >      - Number of SSP Gen2 or SS ports: 1
+> >      - Number of HS or FS or LS ports: 1
+> >  - Supports Super Speed Plus Gen2x1 (10 Gbps), Super Speed (5 Gbps),
+> >    High Speed (480 Mbps), Full Speed (12Mbps), and Low Speed (1.5 Mbps)=
+.
+> >  - Supports all transfer-types: Control, Bulk, Interrupt, Isochronous, =
+and
+> >    these split-transactions.
+> >  - Supports Power Control and Over Current Detection.
 > >
-> > It supports a maximum capacity of 16GB FLASH per chip with a maximum
-> > page size of 8KB, and it supports up to 4 chip selects and 4 RDY
-> > signals.
-> >
-> > Its DMA controller is defaulted to APBDMA0.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  drivers/mtd/nand/raw/Kconfig                  |  2 +-
-> >  .../mtd/nand/raw/loongson-nand-controller.c   | 55 ++++++++++++++++++-
-> >  2 files changed, 54 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfi=
-g
-> > index d9e3f13666ac..7b0c5d06aa95 100644
-> > --- a/drivers/mtd/nand/raw/Kconfig
-> > +++ b/drivers/mtd/nand/raw/Kconfig
-> > @@ -464,7 +464,7 @@ config MTD_NAND_NUVOTON_MA35
-> >
-> >  config MTD_NAND_LOONGSON
-> >         tristate "Loongson NAND controller"
-> > -       depends on LOONGSON1_APB_DMA || COMPILE_TEST
-> > +       depends on LOONGSON1_APB_DMA || LOONGSON2_APB_DMA || COMPILE_TE=
-ST
-> >         select REGMAP_MMIO
-> >         help
-> >           Enables support for NAND controller on Loongson family chips.
-> > diff --git a/drivers/mtd/nand/raw/loongson-nand-controller.c b/drivers/=
-mtd/nand/raw/loongson-nand-controller.c
-> > index 5a51c7d299cc..7a15df3fcd31 100644
-> > --- a/drivers/mtd/nand/raw/loongson-nand-controller.c
-> > +++ b/drivers/mtd/nand/raw/loongson-nand-controller.c
-> > @@ -3,6 +3,7 @@
-> >   * NAND Controller Driver for Loongson family chips
-> >   *
-> >   * Copyright (C) 2015-2025 Keguang Zhang <keguang.zhang@gmail.com>
-> > + * Copyright (C) 2025 Binbin Zhou <zhoubinbin@loongson.cn>
-> >   */
-> >
-> >  #include <linux/kernel.h>
-> > @@ -26,6 +27,7 @@
-> >  #define LOONGSON_NAND_IDH_STATUS       0x14
-> >  #define LOONGSON_NAND_PARAM            0x18
-> >  #define LOONGSON_NAND_OP_NUM           0x1c
-> > +#define LOONGSON_NAND_CS_RDY_MAP       0x20
-> >
-> >  /* Bitfields of nand command register */
-> >  #define LOONGSON_NAND_CMD_OP_DONE      BIT(10)
-> > @@ -40,6 +42,23 @@
-> >  #define LOONGSON_NAND_CMD_READ         BIT(1)
-> >  #define LOONGSON_NAND_CMD_VALID                BIT(0)
-> >
-> > +/* Bitfields of nand cs/rdy map register */
-> > +#define LOONGSON_NAND_MAP_CS1_SEL      GENMASK(11, 8)
-> > +#define LOONGSON_NAND_MAP_RDY1_SEL     GENMASK(15, 12)
-> > +#define LOONGSON_NAND_MAP_CS2_SEL      GENMASK(19, 16)
-> > +#define LOONGSON_NAND_MAP_RDY2_SEL     GENMASK(23, 20)
-> > +#define LOONGSON_NAND_MAP_CS3_SEL      GENMASK(27, 24)
-> > +#define LOONGSON_NAND_MAP_RDY3_SEL     GENMASK(31, 28)
-> > +
-> > +#define LOONGSON_NAND_CS_SEL0  BIT(0)
-> > +#define LOONGSON_NAND_CS_SEL1  BIT(1)
-> > +#define LOONGSON_NAND_CS_SEL2  BIT(2)
-> > +#define LOONGSON_NAND_CS_SEL3  BIT(3)
-> > +#define LOONGSON_NAND_CS_RDY0  BIT(0)
-> > +#define LOONGSON_NAND_CS_RDY1  BIT(1)
-> > +#define LOONGSON_NAND_CS_RDY2  BIT(2)
-> > +#define LOONGSON_NAND_CS_RDY3  BIT(3)
-> > +
-> >  /* Bitfields of nand timing register */
-> >  #define LOONGSON_NAND_WAIT_CYCLE_MASK  GENMASK(7, 0)
-> >  #define LOONGSON_NAND_HOLD_CYCLE_MASK  GENMASK(15, 8)
-> > @@ -53,6 +72,8 @@
-> >  #define LOONGSON_NAND_READ_ID_SLEEP_US         1000
-> >  #define LOONGSON_NAND_READ_ID_TIMEOUT_US       5000
-> >
-> > +#define LOONGSON_NAND_64BIT_DMA                BIT(0)
->
-> It's strongly suggested to replace this flag with a dma_bits field in
-> loongson_nand_host.
-> Please see the comments below.
->
-> > +
-> >  #define BITS_PER_WORD                  (4 * BITS_PER_BYTE)
-> >
-> >  struct loongson_nand_host;
-> > @@ -83,6 +104,7 @@ struct loongson_nand_data {
-> >         unsigned int hold_cycle;
-> >         unsigned int wait_cycle;
-> >         unsigned int nand_cs;
->
-> Add unsigned int dma_bits;
->
-> > +       unsigned int flags;
-> >         void (*set_addr)(struct loongson_nand_host *host, struct loongs=
-on_nand_op *op);
-> >  };
-> >
-> > @@ -751,7 +773,7 @@ static int loongson_nand_controller_init(struct loo=
-ngson_nand_host *host)
-> >         struct device *dev =3D host->dev;
-> >         struct dma_chan *chan;
-> >         struct dma_slave_config cfg =3D {};
-> > -       int ret;
-> > +       int ret, val;
-> >
-> >         host->regmap =3D devm_regmap_init_mmio(dev, host->reg_base, &lo=
-ongson_nand_regmap_config);
-> >         if (IS_ERR(host->regmap))
-> > @@ -761,6 +783,9 @@ static int loongson_nand_controller_init(struct loo=
-ngson_nand_host *host)
-> >                 regmap_update_bits(host->regmap, LOONGSON_NAND_PARAM, h=
-ost->data->id_cycle_field,
-> >                                    host->data->max_id_cycle << __ffs(ho=
-st->data->id_cycle_field));
-> >
-> > +       if (host->data->flags & LOONGSON_NAND_64BIT_DMA)
-> > +               dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-> > +
->
-> Sorry, all platforms should call dma_set_mask_and_coherent(),
-> including Loongson-1, which I missed earlier.
->        ret =3D dma_set_mask_and_coherent(dev,
-> DMA_BIT_MASK(host->data->dma_bits));
->        if (ret)
->                return dev_err_probe(dev, ret, "failed to set DMA mask\n")=
-;
->
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/renesas,rzg3e-xhci.yaml#
+>=20
+> > +    const: renesas,r9a09g047-xhci
+>=20
+> How come these don't match? I don't understand your naming scheme at all,=
+ so idk which is even correct!
 
-OK, if it is also required by Loongson-1, I will refactor this part.
-In addition, I will address all of the following comments in the V4
-patchset, as the V3 patchset[1] has already been submitted.
+r9a09g047 is SoC part number which also known as RZ/G3E SoC.
 
-[1]: https://lore.kernel.org/all/cover.1755757841.git.zhoubinbin@loongson.c=
-n/
+I just followed the convention used in [1] and [2].
+Please let me know I should change rzg3e-xhci.yaml->r9a09g047-xhci.yaml ?
 
-You are welcome to continue to comment on that patchset as well.
-> >         chan =3D dma_request_chan(dev, "rxtx");
-> >         if (IS_ERR(chan))
-> >                 return dev_err_probe(dev, PTR_ERR(chan), "failed to req=
-uest DMA channel\n");
-> > @@ -776,7 +801,14 @@ static int loongson_nand_controller_init(struct lo=
-ongson_nand_host *host)
-> >
-> >         init_completion(&host->dma_complete);
-> >
-> > -       return 0;
-> > +       val =3D FIELD_PREP(LOONGSON_NAND_MAP_CS1_SEL, LOONGSON_NAND_CS_=
-SEL1)
-> > +           | FIELD_PREP(LOONGSON_NAND_MAP_RDY1_SEL, LOONGSON_NAND_CS_R=
-DY1)
-> > +           | FIELD_PREP(LOONGSON_NAND_MAP_CS2_SEL, LOONGSON_NAND_CS_SE=
-L2)
-> > +           | FIELD_PREP(LOONGSON_NAND_MAP_RDY2_SEL, LOONGSON_NAND_CS_R=
-DY2)
-> > +           | FIELD_PREP(LOONGSON_NAND_MAP_CS3_SEL, LOONGSON_NAND_CS_SE=
-L3)
-> > +           | FIELD_PREP(LOONGSON_NAND_MAP_RDY3_SEL, LOONGSON_NAND_CS_R=
-DY3);
-> > +
-> > +       return regmap_write(host->regmap, LOONGSON_NAND_CS_RDY_MAP, val=
-);
->
-> Chip selects should be set before requesting the DMA channel.
->
-> >  }
-> >
-> >  static int loongson_nand_chip_init(struct loongson_nand_host *host)
-> > @@ -890,6 +922,7 @@ static const struct loongson_nand_data ls1b_nand_da=
-ta =3D {
-> >         .hold_cycle =3D 0x2,
-> >         .wait_cycle =3D 0xc,
-> >         .nand_cs =3D 0x0,
->
-> Add .dma_bits =3D 32,
->
-> > +       .flags =3D 0,
->
-> The assignment `.flags =3D 0x0` is redundant and can be removed.
->
-> >         .set_addr =3D ls1b_nand_set_addr,
-> >  };
-> >
-> > @@ -901,6 +934,19 @@ static const struct loongson_nand_data ls1c_nand_d=
-ata =3D {
-> >         .hold_cycle =3D 0x2,
-> >         .wait_cycle =3D 0xc,
-> >         .nand_cs =3D 0x0,
->
-> Add .dma_bits =3D 32,
->
-> > +       .flags =3D 0,
->
-> Ditto.
->
-> > +       .set_addr =3D ls1c_nand_set_addr,
-> > +};
-> > +
-> > +static const struct loongson_nand_data ls2k0500_nand_data =3D {
-> > +       .max_id_cycle =3D 6,
-> > +       .id_cycle_field =3D GENMASK(14, 12),
-> > +       .status_field =3D GENMASK(23, 16),
-> > +       .op_scope_field =3D GENMASK(29, 16),
-> > +       .hold_cycle =3D 0x4,
-> > +       .wait_cycle =3D 0x12,
-> > +       .nand_cs =3D 0x0,
-> > +       .flags =3D LOONGSON_NAND_64BIT_DMA,
->
-> Replace LOONGSON_NAND_64BIT_DMA with .dma_bits =3D 64,
->
-> >         .set_addr =3D ls1c_nand_set_addr,
-> >  };
-> >
-> > @@ -913,6 +959,10 @@ static const struct of_device_id loongson_nand_mat=
-ch[] =3D {
-> >                 .compatible =3D "loongson,ls1c-nand-controller",
-> >                 .data =3D &ls1c_nand_data,
-> >         },
-> > +       {
-> > +               .compatible =3D "loongson,ls2k0500-nand-controller",
-> > +               .data =3D &ls2k0500_nand_data,
-> > +       },
-> >         { /* sentinel */ }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, loongson_nand_match);
-> > @@ -929,5 +979,6 @@ static struct platform_driver loongson_nand_driver =
-=3D {
-> >  module_platform_driver(loongson_nand_driver);
-> >
-> >  MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
-> > +MODULE_AUTHOR("Binbin Zhou <zhoubinbin@loongson.cn>");
-> >  MODULE_DESCRIPTION("Loongson NAND Controller Driver");
-> >  MODULE_LICENSE("GPL");
-> > --
-> > 2.47.3
-> >
->
->
-> --
-> Best regards,
->
-> Keguang Zhang
+[1]
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/=
+Documentation/devicetree/bindings?h=3Dnext-20250820&id=3D44b91d61c505863b8a=
+e90b7094aee5ca0dce808f
 
---=20
-Thanks.
-Binbin
+[2]
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/=
+Documentation/devicetree/bindings?h=3Dnext-20250820&id=3Db2d25905366b4e6791=
+f60e6bc76a636d1b88e6f8
+
+Cheers,
+Biju
 
