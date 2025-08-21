@@ -1,57 +1,78 @@
-Return-Path: <devicetree+bounces-207366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D007DB2F4DB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:09:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 712ACB2F4E7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:14:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD2DAA2437F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:09:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DE551C275E1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCD112EF649;
-	Thu, 21 Aug 2025 10:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 855C52F0666;
+	Thu, 21 Aug 2025 10:14:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="Sa1Tb74T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2736015853B;
-	Thu, 21 Aug 2025 10:09:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EF2264F99;
+	Thu, 21 Aug 2025 10:14:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755770983; cv=none; b=ZdW1+OYeu1rBStQ+SzSskfTGGpNEFYyaAE4rlxTv1Ry78QF2maYQtDruiJ+7x6l+vnSA1ZMvL5q3hvxBz77brXRWPDgddzqUhIlG6L6nsX5npfbTZLR2cCA6rWORY1fOyaA5IDH5Ott3d83dwHxRTqnFZwb8xsnbXB5oimFz+t4=
+	t=1755771259; cv=none; b=OPK5PfD3DJnJ0UVVcqwSfQibBQ5mnHu5Xj9/nlbNE4OtcEedIKoVmwPIPT/0ED7FdinhK7MRjIhnIlRI/9j++5JH/lcbXFsLM2cvE4uW6Us2gkDJvjI7aPtge1JfSsjTHWEdNZSwUblkWfuZdgHtYVOU0PK7usESjgRnJoHHplU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755770983; c=relaxed/simple;
-	bh=WwaS8eTlAszXOeyCPkuLg9sjc11XcUyEfyVvgsJRaY0=;
+	s=arc-20240116; t=1755771259; c=relaxed/simple;
+	bh=cM1YyM6yYa+RXccBpuLDpkZ6GribivREOwjxc1lSsYs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gYTzpGmCOJnACtV5B50Ck7FUoIo2QR8zju8cSRmoPEPIntFFtmUx9fXl07YzuXkr/LWuWVGwIPzga8NffbzPxBOCJNu1ax9pjDUyZkH0hx4/r03X0QEGirWAQXneU1uMGtwtrrmOVDylx4jhQXe/fjm406cj8Ri7QhDfeWn7yyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 23CCE152B;
-	Thu, 21 Aug 2025 03:09:33 -0700 (PDT)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2F3663F63F;
-	Thu, 21 Aug 2025 03:09:39 -0700 (PDT)
-Date: Thu, 21 Aug 2025 11:09:36 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Deepti Jaggi <quic_djaggi@quicinc.com>,
-	Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=HaR9FqQEW9Ol+20V9rNAye7EG4Ow+bkYHrg9QDbc1vP/ptRa3lH3wQPc88Ty2Nkl6pPJI7Z273sHMfIBzv0EQiqPmBVy3GiSuC/cLrx4H1JEzT1xDvaYASCRplu9vkX4ICGEJba4MAHtUX5orfLcJROPVM6XY6F7rSwgFJdL8+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=Sa1Tb74T; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=xwbnmilUfefNilKkhDbCSq1WdkxVj2w6J1wxm3ypUeo=; b=Sa1Tb74TcVeI48mk0D7etjkPmT
+	/XwwnzzlPnizwBDMQZuztD9nAVDIBux9SKp1iehpl1mfi7sFRCP7mgxcbnrxGlVctgQiLG0WPcpkf
+	1zzOkLC6i9LWVvKphMqv2pPPdoDz6iy9q6NBNpGlvnHBJCp6S80YG7CuMkibhoDs0ELIUptnpWbud
+	QeTdCNwimGza4HPEmvSNaSWw6kDjxT28eS8RWDztdy9OsP9kKFIm2Uk/1RwIZ2XwbUItSUEj0Dh/B
+	jpnyNtgkcPyRGfKsL96mhPfDo3SiNMN22XmjXkffk3L/f93y56FRFxNfxlmItW8yMQKrtyw8naSqE
+	v6IWCS5Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33696)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1up2JD-000000000zI-0BCu;
+	Thu, 21 Aug 2025 11:14:15 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1up2JB-0000000010g-2pb6;
+	Thu, 21 Aug 2025 11:14:13 +0100
+Date: Thu, 21 Aug 2025 11:14:13 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Yangfl <mmyangfl@gmail.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <arm-scmi@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@oss.qualcomm.com>, Nikunj Kela <quic_nkela@quicinc.com>
-Subject: Re: [PATCH v6] dt-bindings: firmware: arm,scmi: allow multiple
- instances
-Message-ID: <aKbwYALhw3ZFqGii@bogus>
-References: <20250730-8255-scmi-v6-1-a7d8ba19aded@quicinc.com>
- <e5c5c2da-ae77-4738-9f0f-33c51111f91c@quicinc.com>
- <aKbTKq04umCgS_eL@pluto>
- <a59908c9-38d8-492d-9e3f-5560d272689b@linaro.org>
- <aKbeRVsLpXcpiyHb@pluto>
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next v5 3/3] net: dsa: yt921x: Add support for Motorcomm
+ YT921x
+Message-ID: <aKbxdaDFMe2Fqnxu@shell.armlinux.org.uk>
+References: <20250820075420.1601068-1-mmyangfl@gmail.com>
+ <20250820075420.1601068-4-mmyangfl@gmail.com>
+ <aKbZM6oYhIN6cBQb@shell.armlinux.org.uk>
+ <CAAXyoMMGCRZTuhYG0zxTgKdDdgB1brU7BAUiCVR_MheFK-n5Yw@mail.gmail.com>
+ <aKbuQ7MCbq1JL9sw@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,89 +82,72 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aKbeRVsLpXcpiyHb@pluto>
+In-Reply-To: <aKbuQ7MCbq1JL9sw@shell.armlinux.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Thu, Aug 21, 2025 at 09:52:21AM +0100, Cristian Marussi wrote:
-> On Thu, Aug 21, 2025 at 10:29:00AM +0200, Krzysztof Kozlowski wrote:
-> > On 21/08/2025 10:04, Cristian Marussi wrote:
-> > > On Wed, Aug 20, 2025 at 11:44:26AM -0700, Deepti Jaggi wrote:
-> > >>
-> > >> On 7/30/25 14:30, Deepti Jaggi wrote:
-> > >>> From: Nikunj Kela <quic_nkela@quicinc.com>
-> > >>>
-> > > 
-> > > Hi,
-> > > 
-> > >>> Allow multiple SCMI instances by extending the scmi node name to include
-> > >>> an instance number suffix.
-> > >>>
-> > >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > >>> Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-> > >>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
-> > >>> Signed-off-by: Deepti Jaggi <quic_djaggi@quicinc.com>
-> > >>> ---
-> > >>> Changes in v6:
-> > >>>          - Dropped 'this change' from description
-> > >>> 	- Link to v5: https://lore.kernel.org/all/20250423005824.3993256-1-quic_djaggi@quicinc.com
-> > >>>
-> > >>> Changes in v5:
-> > >>>          - Added Reviewed-by tag
-> > >>> 	- Link to v4: https://lore.kernel.org/all/20240910163456.2383372-1-quic_nkela@quicinc.com
-> > >>>
-> > >>> Changes in v4:
-> > >>>          - Dropped 'virtual' from subject and description
-> > >>> 	- Link to v3: https://lore.kernel.org/all/20240905201217.3815113-1-quic_nkela@quicinc.com
-> > >>>
-> > >>> Changes in v3:
-> > >>>          - Added Reviewed-by tag
-> > >>>          - Removed the patch from original series[1]
-> > >>>
-> > >>> Changes in v2:
-> > >>>          - Fixed scmi nodename pattern
-> > >>>
-> > >>> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
-> > >>> ---
-> > >>>   Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 2 +-
-> > >>>   1 file changed, 1 insertion(+), 1 deletion(-)
-> > >>>
-> > >>> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > >>> index abbd62f1fed0993ab98fa44bdb9a0575f8e1c78e..be817fd9cc34b14009a3b1d69e78b802215571b6 100644
-> > >>> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > >>> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > >>> @@ -27,7 +27,7 @@ anyOf:
-> > >>>   properties:
-> > >>>     $nodename:
-> > >>> -    const: scmi
-> > >>> +    pattern: '^scmi(-[0-9]+)?$'
-> > >>>     compatible:
-> > >>>       oneOf:
-> > >>>
-> > >>> ---
-> > >>> base-commit: 0b90c3b6d76ea512dc3dac8fb30215e175b0019a
-> > >>> change-id: 20250728-8255-scmi-ed963ef8f155
-> > >>
-> > >> Gentle ping!!
+On Thu, Aug 21, 2025 at 11:00:35AM +0100, Russell King (Oracle) wrote:
+> On Thu, Aug 21, 2025 at 05:25:46PM +0800, Yangfl wrote:
+> > On Thu, Aug 21, 2025 at 4:30 PM Russell King (Oracle)
+> > <linux@armlinux.org.uk> wrote:
+> > > Someone clearly doesn't believe in reading the documentation before
+> > > writing code. This also hasn't been tested in any way. Sorry, but
+> > > I'm going to put as much effort into this review as you have into
+> > > understanding the phylink API, and thus my review ends here.
+> > >
+> > > NAK.
 > > 
-> > You cannot ping gently while screaming!!! (you see how gentle this feels?)
-> > 
-> > >> Could you please review the patch?
-> > >>
-> > > 
-> > > I thought this was already reviewed/acked and merged since ages....
-> > > ...also the wording-change in the commit message LGTM.
-> > > 
-> > > Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-> > 
-> > It was. Twice! This is just unjustified ping.
+> > Sorry I'm quite new here. I don't understand very clearly why a
+> > different set of calls is involved in dsa_switch_ops, so I referred to
+> > other dsa drivers and made a working driver (at least tested on my
+> > device), but I would appreciate it much if you could point it out in
+> > an earlier version of series.
 > 
-> I'd like to add a new tag at this point.
-> 
-> Reviewed-!!-by-!!: Cristian Marussi <cristian.marussi@arm.com>
-> 
+> This isn't dsa_switch_ops, but phylink_mac_ops, which are well
+> documented in include/linux/phylink.h. Please read the documentation
+> found in that header file detailing the phylink_mac_ops methods.
+> You'll find a brief overview before the struct, and then in the #if 0
+> section, detailed per-method documentation.
 
-I wish I could apply something fancy like this 😁. I will apply it soon.
+Also, the reason I state that it hasn't been tested is because when
+your mac_config method is invoked, and print debug information which
+includes state->speed and state->duplex, and then go on to use these.
+Phylink's sole call path to mac_config() does this:
+
+        /* Stop drivers incorrectly using these */
+        linkmode_zero(st.lp_advertising);
+        st.speed = SPEED_UNKNOWN;
+        st.duplex = DUPLEX_UNKNOWN;
+        st.an_complete = false;
+        st.link = false;
+
+        phylink_dbg(pl,
+                    "%s: mode=%s/%s/%s adv=%*pb pause=%02x\n",
+                    __func__, phylink_an_mode_str(pl->act_link_an_mode),
+                    phy_modes(st.interface),
+                    phy_rate_matching_to_str(st.rate_matching),
+                    __ETHTOOL_LINK_MODE_MASK_NBITS, st.advertising,
+                    st.pause);
+
+        pl->mac_ops->mac_config(pl->config, pl->act_link_an_mode, &st);
+
+and you would've noticed in your debug print that e.g. state->speed and
+state->duplex are both always -1, and thus are not useful. Note also the
+debugging that phylink includes.
+
+Note that no other mac_config() implementations refer to state->speed
+and state->duplex. The only time drivers _write_ to these is in the
+pcs_get_state() method if they support a PCS.
+
+Therefore, I think your code is completely untested.
+
+I'm also concerned about the SMI locking, which looks to me like you
+haven't realised that the MDIO bus layer has locking which guarantees
+that all invocations of the MDIO bus read* and write* methods are
+serialised.
+
+Thanks.
 
 -- 
-Regards,
-Sudeep
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
