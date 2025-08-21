@@ -1,138 +1,118 @@
-Return-Path: <devicetree+bounces-207623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4AD8B30145
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:40:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4504B3014D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:43:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1230AAC14A6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:40:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 513123BB507
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 17:42:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C98FE338F54;
-	Thu, 21 Aug 2025 17:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6483B338F54;
+	Thu, 21 Aug 2025 17:42:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hs/WZRy3"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="k9YK+/vJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B750338F4D;
-	Thu, 21 Aug 2025 17:40:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E7233A01A
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 17:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755798007; cv=none; b=SVjz1H2IGeNuLlr2dHAL/RiPMmk4GAe/jm8udH/5FHE8spk+V84Vkl7xpNyVa5iqeTBj7myx0o6nQG1aSJYxVmwfH3EP7cdY1Kmfx2cwgVOzl+ryBbfkF/fJJM03ueK+ZRwwzWy377reWapPPUdDgoOO35ZZ+YVapg/tbYuFFAI=
+	t=1755798130; cv=none; b=UWoeyglxzjRYkceK+/62B5/eb1Jase2DQqjnupJ2+k1tMMQHYkg67iKByypdcMKPeCvxGDAHaKudPf3fYZDCW8Ak2yaUPXbGtV10CrbQsJFNsuF4vBF5HCE0WqU2n+A8kgKrTGcYTYZXzY1ivAqWdS98tT+eqo8TbpE3ynwo2BM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755798007; c=relaxed/simple;
-	bh=1sIllrMwfMD+NGq0n7bHU63yN5BaM6c6Q6yHOP6isOI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tLg+lF1pA3PJNKofrlZuxHRJkgcn1amxApJAds4du3ffPyszEdx21JHYNeMCA2qMr7IEQij/+bcyHLSs94O9SbwHMEWK9U0p84VhZI19G1BNn7H3WUrEWy0uX7awTzOfHGm/zh72RRCPBqS9fB0F933Dkphpft75XmDnJ2XnNdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hs/WZRy3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3557AC4CEF4;
-	Thu, 21 Aug 2025 17:40:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755798007;
-	bh=1sIllrMwfMD+NGq0n7bHU63yN5BaM6c6Q6yHOP6isOI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hs/WZRy3brH8u5kvag32pb6pDd+bWfscsYuohJYnM1oQuWN3btomBG1so4tzhL6k+
-	 yTBLVQjwZmWVwBdUznb+Pb5UNuc7OwTOEsH+6MGGWqX15MSmPRg3gh6oPAtVfVE829
-	 O9uF5Z5IoOBzTzSFrjhIVRvXQ1D5pPNjEraDAD+aoPRAEjhhxoFIFc0goEoTdbPbP5
-	 lJb+xkGROfhPzY8Cgd0Bpsjv9WSGF3RwTKcGISY2hhWWsDaElujIsrsPJ/J74DQUWT
-	 lPsKXAAUYv8v1qVFT6Au8gSG4vS/LZr/3/OGmUl5MXGdWRjXZr+hZJwr9CEG1Ed1uw
-	 Thxf+j2cSrGoA==
-Date: Thu, 21 Aug 2025 18:40:01 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: =?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1755798130; c=relaxed/simple;
+	bh=XxvTRadOQ4sPIBFD8B4XMQ05Gc1CZL1VdiPRqG5QLxI=;
+	h=From:To:Cc:Subject:MIME-Version:Content-Disposition:Content-Type:
+	 Message-Id:Date; b=nL03IEzPEJw5ti8kMeXkLaSgWO0uaRFSmOgLpnZ9BXfXIwKl89lXbPqLhw2MQiFYM0jcoGU2L0NJT3uTMUPEH8vFA3KsA5Ttcegc8ROWlJ3UvCp5eGjoaZ8StfUAHAKRkHXvMZ5LK849YdDKD7xzcLE9CYezjtGFU7lLuum0omo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=k9YK+/vJ; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
+	:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+	Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=1aewH5preMvU/Xy2FMGeAQKp67ZZSayn0lnSqAtVQmY=; b=k9YK+/vJTPJn2/rjUfGxdGWd+J
+	p/3R0uFEarwXi8r5pmK+GmeoIQw8fnrfpoH4Uv8IfhLYospLbPil/NkuN63Vxkq0y/lJUYa38nrvA
+	ioh/PD7h9zrbUgsU5NFNQlECGWTbMmXkQ6wyJopc0YBl1N1WHv+Ktxi+FGsk2SgsnKqjrxRn8gR/o
+	9Jb76hCdSU56E4O4MPz+qkmNfQsj2DlGVRwhhqoJTkGOztPgeXCjH7W1H2Hg2C1h1ERDV3W5rTXR+
+	Cy3LG7V1SgZV6Ekj7ULwYyc77Azh+09FeO6+UmebIBIdLtYL+tQqN83a5kBiNkEhKZouGkyfcF9x5
+	ToNDJVxQ==;
+Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:33616 helo=rmk-PC.armlinux.org.uk)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <rmk@armlinux.org.uk>)
+	id 1up9Ia-000000001Rz-0GAm;
+	Thu, 21 Aug 2025 18:42:04 +0100
+Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
+	id 1up9Hr-00BbKf-1Q; Thu, 21 Aug 2025 18:41:19 +0100
+From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+To: Frank Wunderlich <frank-w@public-files.de>
+Cc: Andrew Lunn <andrew@lunn.ch>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-	Boris Gjenero <boris.gjenero@gmail.com>,
-	Christian Hewitt <christianshewitt@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Paolo Sabatino <paolo.sabatino@gmail.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v3 4/4] MAINTAINERS: Add entry for TM16xx driver
-Message-ID: <20250821-diminish-landlord-653a876e3cec@spud>
-References: <20250820163120.24997-1-jefflessard3@gmail.com>
- <20250820163120.24997-5-jefflessard3@gmail.com>
- <CAHp75VfyR0cjnC6C6Xy8x9nTREdAgbjo18RLYNRzoLc6KmXnTA@mail.gmail.com>
- <20250820-clock-easiness-850342f716f3@spud>
- <CAHp75Ve-bM5ax3=0JkmaU-Kx1ME3VW34=Eqp2bRBA6mO6nZHmg@mail.gmail.com>
+	devicetree@vger.kernel.org,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Rob Herring <robh@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Subject: [PATCH] ARM64: dts: mcbin: fix SATA ports on Macchiatobin
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9a0pSoNSVPmCuODg"
 Content-Disposition: inline
-In-Reply-To: <CAHp75Ve-bM5ax3=0JkmaU-Kx1ME3VW34=Eqp2bRBA6mO6nZHmg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <E1up9Hr-00BbKf-1Q@rmk-PC.armlinux.org.uk>
+Sender: Russell King <rmk@armlinux.org.uk>
+Date: Thu, 21 Aug 2025 18:41:19 +0100
 
+Booting 6.16 on the Macchiatobin, I discover that I can no longer
+access my disks, and thus the userspace boot fails. The cause appears
+to be that one of the SATA controllers doesn't have any ports:
 
---9a0pSoNSVPmCuODg
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[    1.190312] ahci f4540000.sata: supply ahci not found, using dummy regulator
+[    1.196255] ahci f4540000.sata: supply phy not found, using dummy regulator
+[    1.202026] ahci f4540000.sata: No port enabled
 
-On Wed, Aug 20, 2025 at 11:29:47PM +0300, Andy Shevchenko wrote:
-> On Wed, Aug 20, 2025 at 10:52=E2=80=AFPM Conor Dooley <conor@kernel.org> =
-wrote:
-> >
-> > On Wed, Aug 20, 2025 at 10:08:06PM +0300, Andy Shevchenko wrote:
-> > > On Wed, Aug 20, 2025 at 7:31=E2=80=AFPM Jean-Fran=C3=A7ois Lessard
-> > > <jefflessard3@gmail.com> wrote:
-> > >
-> > > Besides the missing commit message, the main part of this patch should
-> > > be merged with the patch 2 where the YAML file is being added.
-> > > Otherwise it will be a dangling file. I dunno if DT tooling has its
-> > > own concept of a maintainer database, though.
-> >
-> > get_maintainer.pl will pull the maintainer out of the file, so it won't=
- be
-> > truly dangling without a way to associate Jean-Fran=C3=A7ois with this =
-file, if
-> > that;s what you mean.
->=20
-> Let's assume patch 2 is applied and patch 4 is not, what will be the
-> result of get_maintainer.pl for the YAML file?
+This is as a result of the blamed commit below which added a default
+disabled status to the .dtsi, but didn't properly update the mcbin
+dtsi file. Fix this regression.
 
-Andy Shevchenko <andy@kernel.org> (maintainer:AUXILIARY DISPLAY DRIVERS)
-Geert Uytterhoeven <geert@linux-m68k.org> (reviewer:AUXILIARY DISPLAY DRIVE=
-RS)
-Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVIC=
-E TREE BINDINGS)
-Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLAT=
-TENED DEVICE TREE BINDINGS)
-Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED =
-DEVICE TREE BINDINGS)
-"Jean-Fran=C3=A7ois Lessard" <jefflessard3@gmail.com> (commit_signer:1/1=3D=
-100%,authored:1/1=3D100%,added_lines:471/471=3D100%,in file)
-                                                                           =
-                                         ^^^^^^^
+Fixes: 30023876aef4 arm64: dts: marvell: only enable complete sata nodes
+Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+---
+ arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TR=
-EE BINDINGS)
-linux-kernel@vger.kernel.org (open list)
-AUXILIARY DISPLAY DRIVERS status: Odd Fixes
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+index 6170ca8f908f..8c7db2e87e30 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+@@ -388,11 +388,13 @@ &cp1_sata0 {
+ 	/* CPS Lane 1 - U32 */
+ 	sata-port@0 {
+ 		phys = <&cp1_comphy1 0>;
++		status = "okay";
+ 	};
+ 
+ 	/* CPS Lane 3 - U31 */
+ 	sata-port@1 {
+ 		phys = <&cp1_comphy3 1>;
++		status = "okay";
+ 	};
+ };
+ 
+-- 
+2.30.2
 
-
---9a0pSoNSVPmCuODg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKdZ8QAKCRB4tDGHoIJi
-0gRIAQDCHeN6EUw4++cLtlKkOqbGoogoRAdewYIEJXFJCF8kxgEA5GJQ2XxYCo0S
-q8S9jAuI17Nwy6+5/0FQ52Sncbnt5wg=
-=oqX/
------END PGP SIGNATURE-----
-
---9a0pSoNSVPmCuODg--
 
