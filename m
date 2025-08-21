@@ -1,93 +1,133 @@
-Return-Path: <devicetree+bounces-207190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED8DB2ED98
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 07:30:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55930B2EDF8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:13:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D0B23ABFAB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 05:29:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 318195C27FC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B75228CF6D;
-	Thu, 21 Aug 2025 05:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E5625BEE5;
+	Thu, 21 Aug 2025 06:13:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fUhvOiMV"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="zONGa+v4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 155C9241679;
-	Thu, 21 Aug 2025 05:29:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 077FC4A32;
+	Thu, 21 Aug 2025 06:13:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755754186; cv=none; b=iTIgHWlI1l2XBqP61l/wL5WpF5GBnDhZvYOAzZu1WAN/RWAf0Z5oVBnh7WHJvWhqtXQpXCxA7RjdIB1IEkFuSAJeMWDKpkZQKLPM5Wj4KT9Et1kcQQAEP3HsuqPDNQApKC7KHrxwRE5z924al/zgfHyOVcthLv0VsOpEn/KAt0o=
+	t=1755756793; cv=none; b=JTiveXfymz2C5VwI+xwqh5JKoL/1a6zBMKiwZotwyTQe6Jmm+pQ89J1OzZO1moCQjg1/3vDcs0BkibA+DLRm5u62sG2CXJ7s/b69qgWwXHLfozv6RE5UxUtaCrsBhEoo2+TwO6u1ALzNHvkI7/KW/geA6IcT36EUOZGhgEV20T0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755754186; c=relaxed/simple;
-	bh=okRW6FFazSlKUnEisFp7x3V8vbljvh2Ty8xEGZtNcDM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Pg1G1+2Yyq6f4y13r3VyDaYa78k/91DIxEAMSyfzGcm99kcGAp1W0iEgIH4/FskQhKGtpl0d113yY9AXA77PaL3t4+XPY3/V1BAEOhxQ6KNoGnQ7UnZE2qV+uVR0DzA8jWyZ1wZ34GaA0iJVEteXx1jLg1CNYqK5qt1Y9TBHpbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fUhvOiMV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B327C4CEED;
-	Thu, 21 Aug 2025 05:29:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755754185;
-	bh=okRW6FFazSlKUnEisFp7x3V8vbljvh2Ty8xEGZtNcDM=;
-	h=From:To:Cc:Subject:Date:From;
-	b=fUhvOiMV0uLCi8BqtXnIpiPSOVnByxHq+hizLdvyE3gl8E3jsx36yX8KrdLWTqfs5
-	 Ro/K2EmyJx5YrK2asUgQlnfATVohbSfivo8s91EwBhzHc0Hm5Hgt3lC34isdy9jGqx
-	 3qMFTvDfGO45qv2VHEynRgP6XG/VqPbfCivfPTLtmhmIaZ62ti+ccDUTy3ACD1ZKKO
-	 QUeDzqq3HTA/hcxzDkgr5wiaHY0Zm/iOeOKBCsmLga7kLy4b9Ubiff6mKjdE/rm7JK
-	 orNdpjf6+1RMfnDf6QX01zZ3mCoNb7j+OlbazBSVp4+WuVCFC972LRQr08AH9b+XU6
-	 rxM7XcccZXxLQ==
-Received: by wens.tw (Postfix, from userid 1000)
-	id 8A9725FE2C; Thu, 21 Aug 2025 13:29:42 +0800 (CST)
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Chen-Yu Tsai <wens@csie.org>,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: rk3588-orangepi-5: Add supplies for eMMC
-Date: Thu, 21 Aug 2025 13:29:39 +0800
-Message-Id: <20250821052939.1869171-1-wens@kernel.org>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1755756793; c=relaxed/simple;
+	bh=5Rd1KLtf8zQOsf+WxURU9WHlomXnffj+uLZyprYQBiE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WxMm8DGrdpe1HD8peQxs2clRoCOS1my2VL7jJnnVPOBMhZLLyHIOpNjip/89DHeG+IRMDqCMpH+RRSslwBQFoBWVr36z3sHjBEo4+XR/bI0y33UOsgHUL/y7XbKRX32fKX9WRVdlaidN2MJW1L7NiimDHFDD0IRFZs2ekfFKoFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=zONGa+v4; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id CA76C1F928;
+	Thu, 21 Aug 2025 08:03:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1755756208;
+	bh=FrScFWxwUweYwsRmH5bskazblTnrXR09gx4xHuFB8Kg=; h=From:To:Subject;
+	b=zONGa+v4bwGNv4NkMlLXJBcl+T66Aubn6+uZeZqZRxlK6EgqdY9fErRukWmC0wcPt
+	 pn+NE89+6dK+apL5q0hIvkumyummyYKvGo+21g+mKTaGmaVZcabaqZCg43Q/6fnbcd
+	 QW/kncFmMvnikr+nvoWPZYcleJNZ36/AhUhEcGq8/2p+Y7wtNc9ujO35A0Uy3ZaTcm
+	 pE3kSJCiUk+54u+aHTd813thKqqoG3Mud2to++HEWJM4axNNQkqSejgqDNRlXa3fY7
+	 KR7xNojpleTwPv/DH5HtYZ8BIuAl1PSQ3o4AKlzatsaRjzSLfzyqjmmrwUPADRDzp6
+	 xFoJWqyMOhsMw==
+Date: Thu, 21 Aug 2025 08:03:24 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Beleswar Padhi <b-padhi@ti.com>
+Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, afd@ti.com,
+	u-kumar1@ti.com, hnagalla@ti.com, jm@ti.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 20/33] arm64: dts: ti: k3-am62: Enable Mailbox nodes at
+ the board level
+Message-ID: <20250821060324.GA7503@francesco-nb>
+References: <20250814223839.3256046-1-b-padhi@ti.com>
+ <20250814223839.3256046-21-b-padhi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250814223839.3256046-21-b-padhi@ti.com>
 
-From: Chen-Yu Tsai <wens@csie.org>
+On Fri, Aug 15, 2025 at 04:08:26AM +0530, Beleswar Padhi wrote:
+> Mailbox nodes defined in the top-level AM62x SoC dtsi files are
+> incomplete and may not be functional unless they are extended with a
+> chosen interrupt and connection to a remote processor.
+> 
+> As the remote processors depend on memory nodes which are only known at
+> the board integration level, these nodes should only be enabled when
+> provided with the above information.
+> 
+> Disable the Mailbox nodes in the dtsi files and only enable the ones
+> that are actually used on a given board.
+> 
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi         | 1 +
+>  arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts | 1 +
+>  arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi       | 1 +
+>  3 files changed, 3 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index 029380dc1a35..40fb3c9e674c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -808,6 +808,7 @@ mailbox0_cluster0: mailbox@29000000 {
+>  		#mbox-cells = <1>;
+>  		ti,mbox-num-users = <4>;
+>  		ti,mbox-num-fifos = <16>;
+> +		status = "disabled";
+>  	};
+>  
+>  	ecap0: pwm@23100000 {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
+> index df2e1b0e74a1..2140e0cdec85 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
+> @@ -299,6 +299,7 @@ &epwm2 {
+>  };
+>  
+>  &mailbox0_cluster0 {
+> +	status = "okay";
 
-The eMMC description is missing both vmmc and vqmmc supplies.
+add new line
 
-Add them to complete the description.
+>  	mbox_m4_0: mbox-m4-0 {
+>  		ti,mbox-rx = <0 0 0>;
+>  		ti,mbox-tx = <1 0 0>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> index fba6f5c8d099..1c44d17281dd 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> @@ -1335,6 +1335,7 @@ &main_i2c3 {
+>  };
+>  
+>  &mailbox0_cluster0 {
+> +	status = "okay";
 
-Fixes: 236d225e1ee7 ("arm64: dts: rockchip: Add board device tree for rk3588-orangepi-5-plus")
-Fixes: ea63f4666e48 ("arm64: dts: rockchip: refactor common rk3588-orangepi-5.dtsi")
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
- arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+add new line
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
-index 91d56c34a1e4..8a8f3b26754d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
-@@ -365,6 +365,8 @@ &sdhci {
- 	max-frequency = <200000000>;
- 	mmc-hs400-1_8v;
- 	mmc-hs400-enhanced-strobe;
-+	vmmc-supply = <&vcc_3v3_s3>;
-+	vqmmc-supply = <&vcc_1v8_s3>;
- 	status = "okay";
- };
- 
--- 
-2.39.5
-
+>  	mbox_m4_0: mbox-m4-0 {
+>  		ti,mbox-rx = <0 0 0>;
+>  		ti,mbox-tx = <1 0 0>;
+> -- 
+> 2.34.1
+> 
 
