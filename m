@@ -1,115 +1,102 @@
-Return-Path: <devicetree+bounces-207655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 237B0B302A0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 21:09:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5347DB302AB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 21:12:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48ED0A01113
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:07:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11A501CC324A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58B1345759;
-	Thu, 21 Aug 2025 19:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CC1346A11;
+	Thu, 21 Aug 2025 19:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EejnxMjr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kijUHdnT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8758C343D87;
-	Thu, 21 Aug 2025 19:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E8D3469F2;
+	Thu, 21 Aug 2025 19:11:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755803270; cv=none; b=d5Wpth6WrqxIPqV5fC6yVLEoHaz9Os6SHrFGAwLKA9YKyNrafqguSaJ8334Jkj/PVBgkmt0t1olgW8RB1QR6RHuMrqnyozx8iLpbOC1fr53HjCtfXPv26RjTTCu2NwKUTBRthjUBvYpnjtfdik+UqZs31CfypGaC8i5O0bzZgpY=
+	t=1755803499; cv=none; b=AHnYPNLM2Qj4mBxAloNLewpXBSH2F/ARB16cxUxHOA4wAt6SSaQ3VL1PBYldsJewTlML8AN8OlHgeYVf7tCTkR3RS7gxtXez4Kf3DtUEIrqndoUOZHGgUbyZOWGSXjDV9Rh1UKFlpOmhbf7nAQgdqrTvWZS6PkiD3XcFgMfX5bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755803270; c=relaxed/simple;
-	bh=RPmQF6mnQdnGp9QUWME/YW9qBlWrRt+tgOREDQtfpc8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kVf63pqtFZeA9TRdxqH1QAJJ7GkDzGS+2/3cuHcv2lJ2zbiK1kngeEvhZtYEkml9iLVKv4qC/KOKoZd97yRw7R41CO5I91AEa8dijMQdunrxVgk69fvNMPHFj6/K5utg05S662RV+vqUlUsjw79DqISPPe2Xf+XhStrkw6J6rwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EejnxMjr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9785C4CEEB;
-	Thu, 21 Aug 2025 19:07:49 +0000 (UTC)
+	s=arc-20240116; t=1755803499; c=relaxed/simple;
+	bh=uBeS+0q2RfC8E0D72PJXd2iaXb6wfvh3yNZW4yspKXQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RK536ve0tiL2HW6O2NQLm6UJZp/VyiRhOoNI6PPc+Y3O4YAyqP4pbgO9n617p1c4QqrdaGWLO9B6n2TVaU94XP5QOfjjUPocM5Gi2bZgDP/MnTdfmYIy8zxQdM79w8ZExf7hupGWAkz71WRatbQGEIVrMOS0pDjnYcXf22Qh6I4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kijUHdnT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1406EC4CEEB;
+	Thu, 21 Aug 2025 19:11:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755803269;
-	bh=RPmQF6mnQdnGp9QUWME/YW9qBlWrRt+tgOREDQtfpc8=;
-	h=From:To:Cc:Subject:Date:From;
-	b=EejnxMjrf6zHCJbY0GiID8QPnHIO8b4KgoqIsLTY9/73yarfuaGo3QgLlgaLj6T77
-	 nnAuJAJsMloUcjJyMn9g8TgcxoIWCiyOiVgAz+EDoJifDlfpl8DBbJpInlKtz69q7X
-	 9XL/Q5hRjhpgcvh3r3wbXHRfr2JLkHWC3UeDEs5kWlMQOs8GN6W11OJKRkDVwacbIY
-	 uJM9P7eOwe/PpmJC7ZmKRJ2vE8rAYmixHZznsIIRO8sx546cFXZORWlPNMPMZhbM0S
-	 6Y+TmOfTjL5bRLb2eZ/LQCAzx4ZqONMbxYtt7fLmtjEbRFKriHAos3ZK4o8JJS8IqM
-	 AT2O6HopIvc6A==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: Add Cortex-A320/A520AE/A720AE cores and PMU
-Date: Thu, 21 Aug 2025 14:07:21 -0500
-Message-ID: <20250821190722.417639-1-robh@kernel.org>
-X-Mailer: git-send-email 2.50.1
+	s=k20201202; t=1755803498;
+	bh=uBeS+0q2RfC8E0D72PJXd2iaXb6wfvh3yNZW4yspKXQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kijUHdnTxV825tQwAxz4HfPtuqm6T0T+mT+WxRjh/D7F4OUdxWHIfltQsGl5ykAOB
+	 dXLvFBd/jI8kX+UJG16ktu8W7D9f+gkrqrFbriO3Oe48JBGRD+2EpCBU/i6KHtzVd2
+	 0Om7167ANP4ywCiEhnqwinj5Veq5XWFDPajsolGuZ6y8iO7SzWG4yIRs28/yGby88H
+	 0pRNAk3x5WFGhkPzdp7exxe4YVURRBcscfgz9Yq7RvxLlHWJmQIaCY0Pjlv5/RMCCb
+	 7g5PwjDM38OaRPoQyON9bTGWdg997vY5agkQO7th9cFDBBZQ2v5yLSAZCfexeNGx/X
+	 Se0dkqW6SCUpA==
+Date: Thu, 21 Aug 2025 14:11:37 -0500
+From: Rob Herring <robh@kernel.org>
+To: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+Cc: Conor Dooley <conor@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Min Lin <linmin@eswincomputing.com>,
+	Pritesh Patel <pritesh.patel@einfochips.com>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Yu Chien Peter Lin <peterlin@andestech.com>,
+	Charlie Jenkins <charlie@rivosinc.com>,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Darshan Prajapati <darshan.prajapati@einfochips.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>,
+	rafal@milecki.pl, Anup Patel <anup@brainfault.org>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/7] dt-bindings: vendor-prefixes: add eswin
+Message-ID: <20250821191137.GA421206-robh@kernel.org>
+References: <20250616112316.3833343-1-pinkesh.vaghela@einfochips.com>
+ <20250616112316.3833343-4-pinkesh.vaghela@einfochips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250616112316.3833343-4-pinkesh.vaghela@einfochips.com>
 
-Add the recently introduced Cortex-A320/A520AE/A720AE core and PMU
-compatible strings.
+On Mon, Jun 16, 2025 at 04:53:12PM +0530, Pinkesh Vaghela wrote:
+> From: Pritesh Patel <pritesh.patel@einfochips.com>
+> 
+> Add new vendor string to dt bindings.
+> This new vendor string is used by
+> - ESWIN EIC770X SoC
+> - HiFive Premier P550 board which uses EIC7700 SoC.
+> 
+> Link: https://www.eswin.com/en/
+> Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
+> Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+> Signed-off-by: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/cpus.yaml | 3 +++
- Documentation/devicetree/bindings/arm/pmu.yaml  | 3 +++
- 2 files changed, 6 insertions(+)
+I applied this patch as 'eswin' is already in use in several bindings.
 
-diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-index bb1ab514924d..17dda753bd3b 100644
---- a/Documentation/devicetree/bindings/arm/cpus.yaml
-+++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-@@ -145,11 +145,14 @@ properties:
-       - arm,cortex-a78
-       - arm,cortex-a78ae
-       - arm,cortex-a78c
-+      - arm,cortex-a320
-       - arm,cortex-a510
-       - arm,cortex-a520
-+      - arm,cortex-a520ae
-       - arm,cortex-a710
-       - arm,cortex-a715
-       - arm,cortex-a720
-+      - arm,cortex-a720ae
-       - arm,cortex-a725
-       - arm,cortex-m0
-       - arm,cortex-m0+
-diff --git a/Documentation/devicetree/bindings/arm/pmu.yaml b/Documentation/devicetree/bindings/arm/pmu.yaml
-index 295963a3cae7..9bb109e947dd 100644
---- a/Documentation/devicetree/bindings/arm/pmu.yaml
-+++ b/Documentation/devicetree/bindings/arm/pmu.yaml
-@@ -48,11 +48,14 @@ properties:
-           - arm,cortex-a76-pmu
-           - arm,cortex-a77-pmu
-           - arm,cortex-a78-pmu
-+          - arm,cortex-a320-pmu
-           - arm,cortex-a510-pmu
-           - arm,cortex-a520-pmu
-+          - arm,cortex-a520ae-pmu
-           - arm,cortex-a710-pmu
-           - arm,cortex-a715-pmu
-           - arm,cortex-a720-pmu
-+          - arm,cortex-a720ae-pmu
-           - arm,cortex-a725-pmu
-           - arm,cortex-x1-pmu
-           - arm,cortex-x2-pmu
--- 
-2.50.1
-
+Rob
 
