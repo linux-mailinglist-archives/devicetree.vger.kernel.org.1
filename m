@@ -1,223 +1,134 @@
-Return-Path: <devicetree+bounces-207292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22C0CB2F05B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:01:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3BAEB2F06C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:03:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B1853ACA0B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:01:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CEF0582F11
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B364B2EA464;
-	Thu, 21 Aug 2025 08:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A859E2EA723;
+	Thu, 21 Aug 2025 08:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cVbfFlaS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M+RFZSQd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFAA12EA14E;
-	Thu, 21 Aug 2025 08:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61652EA729
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 08:01:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755763267; cv=none; b=HODoecBOUjX7VwRvTUq1DnbCrq8xreMYrrPeljXjUV3RJcsOitxppvhvj27LPeU8laTL8DHi3Ire4tJO7a/qED0MX9P2k6jC6AHhMVCy08p1JQTm5jxxQKIPtoyoCTqBtHjL8FDK40nLA9aEzy7otcYmb1oyc+OpXmOtspXUMyI=
+	t=1755763271; cv=none; b=iK9UETlaPgRDqBylgY/PXOdmTPvP6hOYcLnOYmJ96ROx1q+wXmuG0G9kGIRZc0E103taeQ78CO8KO/P0ADZehv/uEze9HtZL7AVpzZVx4zR4CqSUA3QVBGk4AQp94oRqnTOhAwZ7czDEteFZGlWOLMCa1ldDKWsHfdlTye5dsdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755763267; c=relaxed/simple;
-	bh=LDomPiZ9p1Qt2fE9RQvZk4IbzMA8y76qgVlk+q9O49M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qA64/IekbLeSiiOZEPt+Vfsg5lzuRrQeMW6H4X4FPDF17AxM1Rtzo4U+lzwbWsL7w6Z16leiv83KATLjcr5m/K1JuPd+TPqC5XJO+mR9UfrFKct47ntjgvthxWd4tMTpSiY9h+1BX1yhQ43KZ5ocY6/OonhXplNXxIqESeQ0YmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cVbfFlaS; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3c380aa198eso288617f8f.0;
-        Thu, 21 Aug 2025 01:01:05 -0700 (PDT)
+	s=arc-20240116; t=1755763271; c=relaxed/simple;
+	bh=WM8iBOuPE1mzfpli1zA7QCdO0jJda95qiYQylczUrj8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TLXJE1KDw6PUXgTL25C85oHjegVr6jK+W399BuacjyWH3GRztvvTm7j/i2/ObFJ0T30+7OVx/8bPDkM2mPTvJL38kIGXydQdiNqK9NkSq/62H5udfAcyskQE1VLqY4PdV1S3cYU75+9hgN7y7WABJB4GmcvUSOt6RsRISEImnEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M+RFZSQd; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-afcb731ca55so8125466b.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 01:01:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755763264; x=1756368064; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1755763268; x=1756368068; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cYC81/CspQI2x5Zt5nFbZgxnDKsw/U0sKguPuiHeEsU=;
-        b=cVbfFlaSRfAS/dVH9WK5idYBXwUUUws2DHtZ2QKvRvQbDWbbI13bD2PdGfzho3ASMy
-         7zRfQoDFPX1iRRvqDRnc4Oz5NcQroreQAvVX5wtsH0DoB+qfrVSnndIB0onStRvM2YxC
-         2a9mBy5QUmZy2uIQ7M+TYv//8fA5rAYLER21fpJtvrFuSQci6nka29CyG0z1HQkIbNQK
-         iWqFlupEmaxxNLzKBXV91T6hs1O2nkmuJepV3znfYCJIgvbjvcijdIJTVz2FodqYbimT
-         vcPbjQ4Yso2Vea2ifl0c7RQsxwWagsi0422IOPEO5uwLZAsjgywhEr75w4v8dQXYfik2
-         1v/w==
+        bh=BiJM73jXetXZPDg3FG4r1HGiBdkCRmSbEWZmqbaw5yc=;
+        b=M+RFZSQdQef57NMCCLl7slGI0kQgLEwJQHcjok9NGQFvnyjeo5rSsHCybCYgA1y+WM
+         R8/E9x2/LwXrff0vr4GjFI9VQn6eAw3zuY4oKlrUfTBhMNKrFy+TVNSXzQ1S1GCydjte
+         6SxxwZX9mkSKzewi4rx80bo0fZQYZKLyzW+kF7KNS4Np3mmqxfq2KWFHTqKSwzzfBeNt
+         pYp7hxOU0lQpVX0nl53ZG5RUf0S2QgC8EqMAnGifxCGyEJpv6Mt//Vv/9i7QhrFJwXcY
+         1QDldoe4RNycnGiKz7wXjmSSLAFODeRd7hd28FsOn8mEZx0mto+OrbDRzvop6FWCE2W/
+         re7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755763264; x=1756368064;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1755763268; x=1756368068;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cYC81/CspQI2x5Zt5nFbZgxnDKsw/U0sKguPuiHeEsU=;
-        b=O3pEiO92PaDE2pDMF/mmdIenRK1Yxp9+Kw+wRVaKWznvhV4NsowmYnEqLyxnf09zgy
-         eTPjWLfSppQx9DFj2JjfQXMIVCwFp0i2CmqIweCT5sJgTAM8o3Gt4/ya5iNpNmVjJk6w
-         Wh9Cw/CTH/w7581JiOhYZju9w8RcZu8hKCcq7DVVHxdD9IjydAcdA6UWoRKUoj/8V4hj
-         QgHQIL6DM72L9iaqTas+MX9SSqvE/WGGcv8p0YUntxOTXQo8rnWyvor/JjnLC6lwD0MG
-         9vAHDNWAmaxPz6Ce26vwNDfK+zmpIZoHWwjFu1YBWaFxS99YMdS0nX02oq9nLo/5CjVN
-         zKSg==
-X-Forwarded-Encrypted: i=1; AJvYcCV6HoV5fV9j/rWbj5+OCQ2V0jYX+S3h1qDDf5y+HTfNtJfW13Pz/EDYTfQKsQe/xn1wO8h6pMGTiZQz/JI=@vger.kernel.org, AJvYcCW/sChiY4SMfp1fe0CWs1mkXyXMmrJL0GuLfRZzXp4vDikjd0MBcy/uz0YcD50EKzeFB+n+/W5flOno@vger.kernel.org, AJvYcCWciwGq20Jzrn4kqVOBwLe+si//cBrtT0KHGUymp17qW/XJVrzuVWd+DdILApOuXpLFJElsmUFEflk=@vger.kernel.org, AJvYcCXWKUzhxDKvp0FDKS0WRJytb7ovTR8Era7Zl7U0MC6RI7bdnlVHmZLica8Vd+eM71nLcxA538nhq0bGW6zt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7WphJVjIx8ZOIIxyRMVAC9RTkiADpw80lt357WbhPAAg7AzAZ
-	r2LAqUqFXKmPx4dJ+X8oTasfc57FoZ+TDW6ttrcI7mkJDR4p1uyXYVinQ+NfGBZ5NPCTfj6V5t0
-	pVvhrum2NHTuyEuCXnSGVFHF6KZCl0/0=
-X-Gm-Gg: ASbGncvgs+VO+ex9S7zblaM37jNXIWZN2ChRBpT2gSeJYFgufp3YMwke06RcE9hdqq7
-	++gVFe+/Tf8+XJOMi4XNsO2Qu93VNRIMf29N1IvVfBRRAEBsuMo3mNokV8ycpi3lvqRrXeipQfG
-	ffb7sdOL3W/R8dNuoMYbYF2WcTN/z5H7aC192xdUPDZCuh2EmDfaBBA50VqyhcKtCSZZ/BuQBsV
-	2o8l1ot
-X-Google-Smtp-Source: AGHT+IHlu6plWkGMAqF0313C+JSEwT6vux+7MQ+TdBXXvqnjy/h7v5byLE/hb46RMj242B7yotgV8zSydX3+XR8ue+A=
-X-Received: by 2002:a05:6000:2307:b0:3c3:d82c:2295 with SMTP id
- ffacd0b85a97d-3c49549d23dmr1368855f8f.24.1755763263696; Thu, 21 Aug 2025
- 01:01:03 -0700 (PDT)
+        bh=BiJM73jXetXZPDg3FG4r1HGiBdkCRmSbEWZmqbaw5yc=;
+        b=fjTM0yRhXEWvH2FIx+ROex5h5kqJS03zzsdnnVByCJUNjJt2yNa83wIDqPK3d0bQFO
+         sz3LP+YeC3k3XMbNI+3g6tfdTHwkh/f5BgFlZGWb7cIElU+P1E7vfbzPt9wq+r0UaCyF
+         PfmkxJ+jQH9Dx7suIz7cWCcoonDP9GblWKrbF2UP7QyrKDVbNWl/q82Xl++XXqTYbbug
+         26ZwozQB7f8Bh4SlKH4xXf2+4G1IOjG0SAjmZlVNinmdqR+QtwJYVXyAngMH1ktcV60C
+         pKotJwm9DaPDyNxL0kJSgDOBVNLNVLVdEzjTiqk7wkIc3OR6pwl9g4KRkmVL/Oh3rOCu
+         Kziw==
+X-Forwarded-Encrypted: i=1; AJvYcCXBIl2547vWRftS/MwE7gDjCPinedce/Aht6/2N4dU+S9Zown9Gr1z0z49d0h6R1EVY427V/RXlTggg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUJ6JbqHsUf2n3LrnbtVnKEcKBUcOAZU3cmODmXnCUbgt+BqKu
+	dAG759dXwWlIeP3gmJXRdD2Z/nxPZVyFKSpG9F2A5qpKmD7CFsI6knOobZ+y+C0ZJbkWF8dbb5m
+	V716e
+X-Gm-Gg: ASbGncu7h+3FZdMDp+pLLdL8QChy5hUH/UwEMG3JGFmFbgYeD5KSHZ+ehtl+XKEVoPY
+	lYoq7sNQ4Zlz4X8zo+o3vi44+fWNwCBTmPX4pAqM/pKKb4wQ+mT9A0deENkpzWlt8YkKB7UQ4aJ
+	blJFdJHaSuKniQ6O9/W7ZnbEUMFZUTQt9STyLsz/TLDUnOGeHTHZ6YLr3v0fHSa8HfjmdRHuHSE
+	0qzrzjK/4WQo3U5wfIoRhSynT5rCVvgLSo0HeoaF/pryE9LeaHDORSiJhiesZO1YNigQDUW74DW
+	7y3PThbS09Z6+5z6cihJ7XOG9rnjeCPXpEe/h+nUghJo7i1Qqb53Ty644TkHdMLx0rzyhGpk0Yd
+	bTzgVFlkKtyO4c7Zg3o16Me4dORFuyuP3tg==
+X-Google-Smtp-Source: AGHT+IH3gn8Qycx/6jx0+ZrjQBw2uOwmfgWlfZLnew0fX/8+fSDm7labToVuHmhoQfKaLY1+ZXezHA==
+X-Received: by 2002:a17:907:86a2:b0:ae1:808:85ea with SMTP id a640c23a62f3a-afe07e22fcemr84096366b.8.1755763267959;
+        Thu, 21 Aug 2025 01:01:07 -0700 (PDT)
+Received: from kuoka.. ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afe0051f99asm160445566b.80.2025.08.21.01.01.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Aug 2025 01:01:06 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: krzk@kernel.org,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	imx@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: w1: imx: Add an entry for the interrupts property
+Date: Thu, 21 Aug 2025 10:01:03 +0200
+Message-ID: <175576325985.37108.788865752007366111.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250819121344.2765940-1-festevam@gmail.com>
+References: <20250819121344.2765940-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250820114231.150441-1-clamor95@gmail.com> <20250820114231.150441-4-clamor95@gmail.com>
- <22816196.EfDdHjke4D@senjougahara>
-In-Reply-To: <22816196.EfDdHjke4D@senjougahara>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 21 Aug 2025 11:00:52 +0300
-X-Gm-Features: Ac12FXyXQq5Kfxjhl2aCxdTEED7OiYUsslF67UQV98LjSRtX5dSrp8cwLQqjhNY
-Message-ID: <CAPVz0n0vCjM=tz_GAM9TTKO76eMmq-1AjW4y8C==GDg2NUZE=w@mail.gmail.com>
-Subject: Re: [PATCH v3 3/6] thermal: tegra: soctherm-fuse: prepare calibration
- for Tegra114 support
-To: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, "Jiri Slaby (SUSE)" <jirislaby@kernel.org>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=583; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject:message-id; bh=UUyNC56jMamtus4MZ2ppbC8jQAbVbVoRYAvxv/kIeFs=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoptI/a3T64yN5wlcUrqeGW4KNHuT3rYZvmUNH/
+ ciOSNLG6IuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKbSPwAKCRDBN2bmhouD
+ 1/XHD/41SooDF0qcGmR2Qhh0gauo86YW3mpcfx1AzIwEZhSD324gIuU3H7MZBaG25RqaD06ZYeN
+ +heUHEl7QH4vYE0OohCVvkoIp/GguLA6UcIbCqJGBsX39YrkXdp3FnDbOYnKd+szao3B/d54FsA
+ eM49dfRC942RaPkWQB1Sgjo7IYRuqx8w6mvViW8JnRIFs2gRXjEKmfQ/El0vqe6E5k/OxNT3TFU
+ MEOR0pfn5Meq3JXarvlpgb5sNM+dX/mOkJLvq8O6iIFrQVQFJleJ39F7mh18EcgivTj/K/apU+S
+ vq7mRhBJu4slSp3B3oiXwF6cpy4zs6DJUchtv7oyAk3dfiqYZvh3E85RGWfsGsMXt1lzAlVDNfj
+ xn6hzTHPodZtWTv52hXVXJ1xkg14rXs7senXyOhwwwaOGkqMz+XR1scYcLSji/L+ML2PgluBdUt
+ pLlpX75dc57GnCpnNDDd33w4sYrOMfcojxAC0dprF6KAqQmss3I+58yUv9Fc0NIojTabKBlqc7t
+ tk4wbbpO/snTfsI39DTZOcJ4HRp91pESOOf6MoWqQ0ROphHbFQgrAdC9sRIlui593hksQdmeVVd
+ rnpy4GeI7lpgH/5WgUcWGbmeqfZL7nlc+alCh9hM49IKGtGRbINi4wDZ3KiTHQYyPJnk/fXkbMJ dqTkIVLo0L3lS4A==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Transfer-Encoding: 8bit
 
-=D1=87=D1=82, 21 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 10:4=
-2 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Wednesday, August 20, 2025 8:42=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > The Tegra114 has a different fuse calibration register layout and addre=
-ss
-> > compared to other Tegra SoCs, requiring SOCTHERM shift, mask, register
-> > address, and nominal calibration values to be configurable.
-> >
-> > Additionally, a use_lower_precision option was implemented to account f=
-or
-> > the Tegra114's 0.5C thermal data output, which differs from the 1C
-> > precision of newer SoCs.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  drivers/thermal/tegra/soctherm-fuse.c     | 31 ++++++++++++++++-------
-> >  drivers/thermal/tegra/soctherm.h          |  8 +++++-
-> >  drivers/thermal/tegra/tegra124-soctherm.c |  6 +++++
-> >  drivers/thermal/tegra/tegra132-soctherm.c |  6 +++++
-> >  drivers/thermal/tegra/tegra210-soctherm.c |  6 +++++
-> >  5 files changed, 47 insertions(+), 10 deletions(-)
-> >
-> > diff --git a/drivers/thermal/tegra/soctherm-fuse.c
-> > b/drivers/thermal/tegra/soctherm-fuse.c index 190f95280e0b..d27876dd9b2=
-a
-> > 100644
-> > --- a/drivers/thermal/tegra/soctherm-fuse.c
-> > +++ b/drivers/thermal/tegra/soctherm-fuse.c
-> > @@ -9,15 +9,10 @@
-> >
-> >  #include "soctherm.h"
-> >
-> > -#define NOMINAL_CALIB_FT                     105
-> > -#define NOMINAL_CALIB_CP                     25
-> > -
-> >  #define FUSE_TSENSOR_CALIB_CP_TS_BASE_MASK   0x1fff
-> >  #define FUSE_TSENSOR_CALIB_FT_TS_BASE_MASK   (0x1fff << 13)
-> >  #define FUSE_TSENSOR_CALIB_FT_TS_BASE_SHIFT  13
-> >
-> > -#define FUSE_TSENSOR_COMMON                  0x180
-> > -
-> >  /*
-> >   * Tegra210: Layout of bits in FUSE_TSENSOR_COMMON:
-> >   *    3                   2                   1                   0
-> > @@ -26,7 +21,7 @@
-> >   * |       BASE_FT       |      BASE_CP      | SHFT_FT | SHIFT_CP  |
-> >   * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-> >   *
-> > - * Tegra12x, etc:
-> > + * Tegra124:
-> >   * In chips prior to Tegra210, this fuse was incorrectly sized as 26 b=
-its,
-> >   * and didn't hold SHIFT_CP in [31:26]. Therefore these missing six bi=
-ts
-> >   * were obtained via the FUSE_SPARE_REALIGNMENT_REG register [5:0].
-> > @@ -44,6 +39,13 @@
-> >   * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-> >   * |---------------------------------------------------| SHIFT_CP  |
-> >   * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-> > + *
-> > + * Tegra114: Layout of bits in FUSE_TSENSOR_COMMON aka FUSE_VSENSOR_CA=
-LIB:
-> > + *    3                   2                   1                   0
-> > + *  1 0 9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2 1 0
-> > + * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-> > + * | SHFT_FT |       BASE_FT       | SHIFT_CP  |      BASE_CP      |
-> > + * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-> >   */
-> >
-> >  #define CALIB_COEFFICIENT 1000000LL
-> > @@ -77,7 +79,7 @@ int tegra_calc_shared_calib(const struct
-> > tegra_soctherm_fuse *tfuse, s32 shifted_cp, shifted_ft;
-> >       int err;
-> >
-> > -     err =3D tegra_fuse_readl(FUSE_TSENSOR_COMMON, &val);
-> > +     err =3D tegra_fuse_readl(tfuse->fuse_common_reg, &val);
-> >       if (err)
-> >               return err;
-> >
-> > @@ -96,10 +98,21 @@ int tegra_calc_shared_calib(const struct
-> > tegra_soctherm_fuse *tfuse, return err;
-> >       }
-> >
-> > +     shifted_cp =3D (val & tfuse->fuse_shift_cp_mask) >>
-> > +                  tfuse->fuse_shift_cp_shift;
-> >       shifted_cp =3D sign_extend32(val, 5);
-> >
-> > -     shared->actual_temp_cp =3D 2 * NOMINAL_CALIB_CP + shifted_cp;
-> > -     shared->actual_temp_ft =3D 2 * NOMINAL_CALIB_FT + shifted_ft;
-> > +     shared->actual_temp_cp =3D 2 * tfuse->nominal_calib_cp + shifted_=
-cp;
-> > +     shared->actual_temp_ft =3D 2 * tfuse->nominal_calib_ft + shifted_=
-ft;
-> > +
-> > +     /*
-> > +      * Tegra114 provides fuse thermal corrections in 0.5C while newer
-> > +      * SoCs provide data in 1C
-> > +      */
->
-> I've been looking a bit into these fuses, and from what I can tell the
-> precision for these fuses should be in 0.5C units for all of Tegra114, 12=
-4,
-> and 210. The documented nominal CP (cold) and FT (hot) temperatures for
-> Tegra114 should be 25C and 90C respectively.
->
-> The reason for the code '2 * NOMINAL_CALIB_XX + shifted_xx' then is that =
-the
-> value of 'actual_temp_xx' is in 0.5C units -- NOMINAL_CALIB_XX being in 1=
-C
-> units and being multiplied by 2 to match the units of the shifted_xx valu=
-es
-> coming from fuses.
->
-> If you're getting correct values with your code, clearly there's more hij=
-inks
-> going on.
->
 
-I have based this code on downstream kernel which sometimes can be
-quite challenging to understand correctly. If you assume that Tegra114
-fits into existing driver even more, that is great, I will test it and
-remove unnecessary parts.
+On Tue, 19 Aug 2025 09:13:44 -0300, Fabio Estevam wrote:
+> There is an interrupt line connected to the one-wire block on
+> the i.MX51 and i.MX53.
+> 
+> Add an entry for the interrupt property to avoid the following dt-schema
+> warning:
+> 
+> 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
+> 
+> [...]
+
+Applied, thanks!
+
+[1/1] dt-bindings: w1: imx: Add an entry for the interrupts property
+      https://git.kernel.org/krzk/linux-w1/c/411053cb6657a3cf8db50a2d004a112070ca14b2
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
