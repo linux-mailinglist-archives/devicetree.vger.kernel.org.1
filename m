@@ -1,172 +1,161 @@
-Return-Path: <devicetree+bounces-207493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84167B2FB2E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 15:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4EA1B2FB03
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 15:47:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFE36169407
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:45:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3AC16259C9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:41:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE8535A28E;
-	Thu, 21 Aug 2025 13:38:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98AE3451C8;
+	Thu, 21 Aug 2025 13:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MeKQLs90"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OT9kcjrs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0502FB63D;
-	Thu, 21 Aug 2025 13:38:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7769D3451A6
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 13:37:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755783498; cv=none; b=DU6NBm5gZNjMgs54v/mv4G51y5zU5H5nlY6ErcQOXHEVWhsMPtN6bea9YNKcQ6lSwAOdnGfYgGQXDIRc6qFpgzOgPb6ViEK3nvPREO8tJAmWMHXZLQq+OWY/hxCWZsPHx6o/iiFBm8aiTYQ1+bJuFIVYTlxiMJvtUN5Pm7KKnK0=
+	t=1755783456; cv=none; b=r3eXsuUpA01zr5ofN5LhBZrUv7eQzZ/2gDDZHfsa6ipHVpgKdYMFi+w5gE0rwLAW1NJlCWqOx9R67m0WL32Znbj3BcvjMG2muxOmPaEhFURHKpwUIJoX++T2YBNvV98B+lVJcpO/VatgdFZ78BoeEsb4GLiOpsVN/G3zMLmoFBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755783498; c=relaxed/simple;
-	bh=jpyyfJZ3wZjnpV5SblE0NutxVO+W/yDeF8Nd17GPfHA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=uy9X7sUshc9k1Z9DMTVzu2Hniaxq7YO+UQSpWVQhFPkNHpsjO7KARRHzzpTBEly5U2foZYydW+klDcDSDA/yX5pEj7+FeUTkWgDY9I9BdJ5lBg7LZC6c8l6ujnbuu0+vhPAeLlprQdRJ3XDO1LWpguiu0+7pgQSbknQYhXfQt04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MeKQLs90; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b471738daabso864269a12.1;
-        Thu, 21 Aug 2025 06:38:16 -0700 (PDT)
+	s=arc-20240116; t=1755783456; c=relaxed/simple;
+	bh=lHxdAfx6drvAEMKHrEQ+9RA9el2H+2d4jMGmrfBAI3M=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NC+KvaZe3q0T/ZygqG3KYC2yrq1m8tMftDcK9lk910gnfn46SLLi/MAo/PIrp/xQnY0jTtbetMWMstjJp0a56rU6XyQGf/ThOmWqOU1Ezc7//uyFGDiZ1R6PYZh6EPGpTPLkbUYf3TlNZEEPeC736DV7Hd81A+TLUKEPCNtx2MY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OT9kcjrs; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3b9e418ba08so455102f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 06:37:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755783495; x=1756388295; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=esEDUmE0VIr6GRhE45jzfN1SkKfoVSy9xWBhokrQK1s=;
-        b=MeKQLs90Asmq7Tj9dYCwtaeD/HzclS8QYGZfcCIe0KjgVWnYp7YDwwICYJseud4iw7
-         dpHX8oDqLh015wlpH3nfmgs+MDHccSjkibEGPChRwvVcoJ78ENBOyX2MgDiG7mZEgNWJ
-         VkO6fcv6+udjHwzmdwj87RmWP3dTvgMnCB66H9jeqPm71piNHzXw5phNe121eVp+QOAT
-         hCjVcy0bUa6rogclyqyiPe3+KNJVWCJ61uB5kpjhzw2XYj6CgsR8pkAOt0R9cQkNkDCL
-         mAxzdGc4mh0gvCwmkB+rqeJYFS0KM2luhQW59/kTPpJdigJExoClFXXKEMF9gsYeQHSm
-         EtvQ==
+        d=linaro.org; s=google; t=1755783453; x=1756388253; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tN+1JMlzAi9JrxRaDDza1sKyz82ZxT7Qa8I/nBZwio4=;
+        b=OT9kcjrsqW8Zi2a+UTDl6mayMosJvnnjKui7b/m8BbBI6UiKbQQVfKkP4crBm0Oz4F
+         2p8/113jgJQWkYzsh/NlKiCDsU34aWMX9/0T11fuz29JcUbnpGFBWvdhV0h7TJbHXq0c
+         NnQoZ2dsjblxS04jQOPZuCLE+RBUjqKIcVuVtRVAJRsX/S4Kpn48qnP9JAv1028fTPSU
+         FFBEsuJ/OcM39jQz1deLYb6+/w5xgFTqWiHkJWFAx+UM6X+3Mp/s5BucxL9OLcjqFbPh
+         qqtGMz+8vHAHiRd5ieax6i1c+RpWo69SQWy0nvim6q5qVi8uDMoNpuVbb3ezxNLw9rBx
+         EmDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755783495; x=1756388295;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1755783453; x=1756388253;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=esEDUmE0VIr6GRhE45jzfN1SkKfoVSy9xWBhokrQK1s=;
-        b=EJbQhnMi/yfaU8AyMfpAirLVu7WtGFGFEqcW8wbIwkxZ2CMocL5Zm64OjR2To59tCQ
-         LqYAR8hKt6h3gV6Nc1VyO/Yq68ldLBqRyBhO1ruc5jbnEihcJ7Sng12svLg/k3o9LqaL
-         3hnAXvjQ+VGoWnd1e5sB3NsSAgW1kkfzNxmP6vZSCLBBceVP/QPu7FQJFaCIvj3qI1IV
-         1e5y9/8VhbwK7D6FGWFqhfdVie7wAcfFZBP1KP9bAFMsZNGYQ2HrRmwJlPR9F7xHnyCD
-         qckdeWoCrd3+ETFvYDUv5Vkd9lkGL8Su9Jh9qA/lZ/js+127VMeDiSF6lGmkjhvFLGNU
-         Y9bQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXpUzyhk/ivf7bQKYKxX6cfqGhfQ7kzSQ/P47WCnQv56ER99kfOY7+7S0LsD+FsU7cC9MUijWQeNSBQ0P+u@vger.kernel.org, AJvYcCXuBqq14WaMeUBTHarLkrc2S01TYIbOsy5vW1ddV/WOiH6VjwVTSnb//NkBX0VUuI0qeRNSLjfJmDkO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/fwbjSZulNNpC72enYRdKwoyYcPLjFdfNjTcAC6tjH73VhOeo
-	k063p7NaK+vxWLG+mK3fSx0ycTiTpPfmycfY5CE9DM6i2TGqpPfRikddJOQ2foVMeRs=
-X-Gm-Gg: ASbGncuX8N37OA3DjI6ChlWqb4O9vA1UDMVlOYh1XAxRVYuuop2fHw2B0NsvIMta4YG
-	6bKftn1BRFWIK44tiD1CEYy4l9b9qjmyxTtIOT48wa6wOykAuiuBZeLLJg5ByS+6BZxh5hj+sXh
-	43SkG0T9iblkL3nHmK2MjJVdLi6AcdMWf4/OZfsLxGN6EBiDR/v66Gkxx6GYvbvdb2uh2emxzcx
-	o3DZ/6eX5MmpDepwTcLIAKiZ5GiGk4iRCSOClpS3xUpQpORD9dwn5DJ3GkSjjSTH9DwOEZfuqkB
-	S6MaOIUL4OjNLp1fgiqIB0EdJyVLucxByxblM0Z9708JQN2YiK1bsJyhEFyatjH5XEfkZZQ2KdQ
-	Zv79TJi5ik/hi/zFrXb8H5An67sCxyCc8hmffHwuqErnEAw==
-X-Google-Smtp-Source: AGHT+IHgverFFgcsM9ygJ2BBNvU8MobgERrhsHsqO7oSPjujuH8HZo21nsDpSJc3wdWFWXsZ07MtSw==
-X-Received: by 2002:a17:903:18cf:b0:23f:fdeb:4171 with SMTP id d9443c01a7336-245fedb032emr24346475ad.39.1755783495351;
-        Thu, 21 Aug 2025 06:38:15 -0700 (PDT)
-Received: from localhost.localdomain ([2804:7f5:b08b:9c08:cdb4:8bd9:b0e0:e77c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-245ed336002sm56660795ad.5.2025.08.21.06.38.08
+        bh=tN+1JMlzAi9JrxRaDDza1sKyz82ZxT7Qa8I/nBZwio4=;
+        b=TGyBGVL8BRTssvCELOJ/MJIqOtB5NaY3mtNAqsuP+dI0E3OMcGZeLV4l9D1101d8v7
+         JrUiBK5rccw7zR7WkgMHZo1xG6sW5YO3Ve7d5/kOvn9ArV4DKuLtL7g9QoyPdDCOc3OW
+         JeVWC9HkkJSZL5UqACDL+vKNLVC33erIH21EL4uwcwawmWG1GC8Uha8iyOqlYyUaQwKH
+         e86vfL5viwSM0UCN9VSvJIDhQsGbkw9Ssu+e901m2bSvp3XLw91UmGOoSX+AH2RdzkyN
+         P8kNyF1RJPCtRLet9YGjE6FJSBJ+BQEMDZhNhxd400IZ3hBvR+cAca7CCqt/Llbuf/1B
+         wZvg==
+X-Forwarded-Encrypted: i=1; AJvYcCVPQwqco/bCu09xWfZw283ZWRY2LPYLFTsTq8lS4AuGYwQRIEKTBae24TAaXVw4B6BOOdT+7yNsW9ZK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdPBoBUTWSpKE8QypalDjlaPXeO8+iDqbq+9pLFyHJaVs1ZfNg
+	ZrXZZU02+T2vu697Vrp5O8YFtwWT5QlKvaanrhMydJnEO3X08Z2pPNJeDHtyhx5Afqw=
+X-Gm-Gg: ASbGncsBrnDLpgEfjlvntvcmzHHTYpUgBDNmCD9xQe5qpK3Fx0G84wnrqzPFLri0i8s
+	hHSnnveyqzC6wLozt/P3c0i6k8NLUQJSM2JPzhNbPrvRPMnZx33xH5uwtw8C2XIzFdaRzHCs6mR
+	iXooFfHCq3Od9OF1aR1KYOvGXV29C36YEDRHA49i48po3uibrpcNaEreukY1sCuDVh+FtVjUA3s
+	mJw1MI0xJ4wCxS8caae+v9PElxC8M5sgOLN2omR9isOZDSFDwhQP7nvW4DdKq6S/pyugly1JIMl
+	PBX6Es7Kv8NVJj+zLcLkEVwxJbMJNr0GL32B9g1svm508fbaWcIjmceUZpI0CgTbX/2SFreJ8J1
+	W/f42vTovFZ42NiyEegsyis1Iuj4QT+h65jACkakpYBw=
+X-Google-Smtp-Source: AGHT+IF4qATvDre6u6qGxJpYoTmNEnWQPDRN/r6SU3PDoCmwqsWf/nprS83Off+/UKEsllsPDLcmHw==
+X-Received: by 2002:a05:6000:1a8f:b0:3b9:148b:e78 with SMTP id ffacd0b85a97d-3c49640c025mr1893677f8f.53.1755783452615;
+        Thu, 21 Aug 2025 06:37:32 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b4db2ab4asm28937605e9.8.2025.08.21.06.37.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Aug 2025 06:38:14 -0700 (PDT)
-From: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
-To: linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-	Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	Jonathan Santos <Jonathan.Santos@analog.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>
-Subject: [PATCH v1 0/2] Add MAX14001/MAX14002 support
-Date: Thu, 21 Aug 2025 10:36:06 -0300
-Message-Id: <cover.1755778211.git.marilene.agarcia@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Thu, 21 Aug 2025 06:37:32 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 00/14] arm64: dts: qcom: Set up 4-lane DP for sm8[56]50 &
+ x1e boards
+Date: Thu, 21 Aug 2025 15:37:19 +0200
+Message-Id: <20250821-topic-x1e80100-4lanes-v1-0-0b1a0d093cd5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA8hp2gC/x3MQQqEMAxA0atI1gaSomP1KuKitHEMSJVWpCDef
+ cos3+L/B7IklQxT80CSW7MesYLbBvzm4ldQQzUYMj1Zw3gdp3osLJaYCLvdRcnobAjDyj70nxF
+ qeyZZtfy/8/K+P/fTT0xnAAAA
+X-Change-ID: 20250821-topic-x1e80100-4lanes-a8dd7f1cd569
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2453;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=lHxdAfx6drvAEMKHrEQ+9RA9el2H+2d4jMGmrfBAI3M=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBopyEVyr5+Lu7VVJOtZuCSrKDnpBDEskyXxS7Ru+AU
+ wnUdGamJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaKchFQAKCRB33NvayMhJ0fMuEA
+ CWe8PWDWYVMClSnqHKyan716akgjcWqZevHW7lAPN04f4MIdFQxsAzGkRuydfYSKdAyhvz5wQIFQFq
+ QACBej2/+Mq5be76C4hx7h9E6kp5wAPyCx5tkaQarwCM/5j+kFXC3TkXz70Kdls+p5vO6rlnYFcT9N
+ hleR/uWPufkxS+OidMnfGAetGBB9EpUJYD8FHBCVJOmq12A3tdX1U+0uLFwT8NwqQyhgHveqfUV49F
+ 1Wt++Oo24gpLWlYntubNDC5neKdKCk48C4j76RZdH8GF2pwhHgwhdAWkqfeOCj/xsjKkqnQPPX0lUC
+ OoUwdI6SsHbPzmPxducP04WbqoP7F3+eflfzlsLYjWng0oyOWwIdOKQ1Zf8IiIO2OWGLuh+LnjtNOt
+ TXKSRsiGos8bMKGjM0VfnFSzXA2AP2n5wPRZeoFOnUpV7My8MLmjeFGT8IeiyzpXbY98J9A1uxzljp
+ j/q8cilvImv37QhQ/mRexu+ai1XTE1UHhnzqGjffrrf4DP5q5+ZRtXqZ98vzgBs/RB4/rjbgRtXZLq
+ Onl7hDef9ECFfYdFl8nQbgvfoH7nYaGP3L8eLYBiJHQCxgJpoGVV6IucUvF4Gjbm2wUt9Xg04PMt6w
+ cZ4T4XvIO9hO9Uuh8YERZ12fNLuhLil63a9yeBJsxfYmiPx14EbtGSIYJG7w==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Hello maintainers,
+Now the 4lanes support in the QMP Combo PHY has been merged in [1],
+add the required plumbing in DT.
 
-This patch series adds basic support for the Analog Devices 
-MAX14001/MAX14002, configurable, isolated 10-bit ADCs for multi-range 
-binary inputs. Besides the implemented ADC readings, these devices have 
-more features, like a binary comparator; a filtered reading that can 
-provide the average of the last 2, 4, or 8 ADC readings; and an inrush 
-comparator that triggers the inrush current. There is also a fault feature 
-that can diagnose seven possible fault conditions. 
+[1] https://lore.kernel.org/all/20250807-topic-4ln_dp_respin-v4-0-43272d6eca92@oss.qualcomm.com/
 
-To keep the commits simple and organized, these initial driver support 
-patches aim to upstream only the features related to reading two registers, 
-one that contains the latest ADC reading, and another one that contains 
-the latest filtered ADC readings. Though, _raw and _mean_raw are providing 
-the same results in this initial version since the data averaging config 
-interface is not implemented yet. For this, IIO_CHAN_INFO_AVERAGE_RAW was 
-used to return the filtered average of ADC readings. An additional patch 
-documenting the in_voltageY_mean_raw interface can be added on v2 if that 
-would be desirable. The idea is to use in_voltageY_mean_raw to return the 
-filtered average value, and also to set how many ADC readings (0, 2, 4, 
-or 8) are included in the mean calculation. I would also like to know if 
-you have any feedback on using IIO_CHAN_INFO_AVERAGE_RAW in this way.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (14):
+      arm64: dts: qcom: sm8550: allow mode-switch events to reach the QMP Combo PHY
+      arm64: dts: qcom: sm8650: allow mode-switch events to reach the QMP Combo PHY
+      arm64: dts: qcom: x1e80100: allow mode-switch events to reach the QMP Combo PHYs
+      arm64: dts: qcom: sm8550-hdk: Set up 4-lane DP
+      arm64: dts: qcom: sm8550-qrd: Set up 4-lane DP
+      arm64: dts: qcom: sm8650-hdk: Set up 4-lane DP
+      arm64: dts: qcom: sm8650-qrd: Set up 4-lane DP
+      arm64: dts: qcom: x1e001de-devkit: Set up 4-lane DP
+      arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s: Set up 4-lane DP
+      arm64: dts: qcom: x1e80100-dell-xps13-9345: Set up 4-lane DP
+      arm64: dts: qcom: x1e80100-hp-omnibook-x14: Set up 4-lane DP
+      arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Set up 4-lane DP
+      arm64: dts: qcom: x1e80100-microsoft-romulus: Set up 4-lane DP
+      arm64: dts: qcom: x1e80100-qcp: Set up 4-lane DP
 
-The changes were tested using the Raspberry Pi modified kernel version 
-rpi-6.6 on Raspberry Pi 5 hardware. For testing, the MAX14001PMB evaluation 
-board was used, which contains two MAX14001 devices. According to the 
-board’s circuit configuration, one device measures current and the other 
-measures voltage. Due to the evaluation board’s circuitry, the devices 
-also receive an offset that allows them to measure negative values. None 
-of these evaluation board-specific characteristics were included in the 
-driver code (neither the offset nor the current channel capability). 
-However, they were considered in the calculation of the values read by the 
-devices. Should the code that applies these board configuration parameters 
-be added as an additional driver file inside the IIO subsystem, or should 
-it remain only in a user application file?
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts                     | 2 +-
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts                     | 2 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi                        | 1 +
+ arch/arm64/boot/dts/qcom/sm8650-hdk.dts                     | 2 +-
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts                     | 2 +-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi                        | 1 +
+ arch/arm64/boot/dts/qcom/x1e001de-devkit.dts                | 6 +++---
+ arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts       | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts       | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts    | 6 +++---
+ arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi    | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                   | 6 +++---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi                      | 3 +++
+ 14 files changed, 26 insertions(+), 21 deletions(-)
+---
+base-commit: 7fa4d8dc380fbd81a9d702a855c50690c9c6442c
+change-id: 20250821-topic-x1e80100-4lanes-a8dd7f1cd569
 
-The code was developed during the GSoC program as part of the Analog 
-Devices Mentorship. Many thanks to my mentors Marcelo Schmitt,  Ceclan 
-Dumitru, Jonathan Santos and Dragos Bogdan for their guidance, reviews, 
-and explanations about the IIO subsystem code.
-
-I intend to keep sending patches to cover all the features of the device.
-
-Thank you for your time,
 Best regards,
-Marilene Andrade Garcia.
-
-
-Marilene Andrade Garcia (2):
-  dt-bindings: iio: adc: Add MAX14001
-  iio: adc: Add basic support for MAX14001
-
- .../bindings/iio/adc/adi,max14001.yaml        |  78 +++++++
- MAINTAINERS                                   |   8 +
- drivers/iio/adc/Kconfig                       |  10 +
- drivers/iio/adc/Makefile                      |   1 +
- drivers/iio/adc/max14001.c                    | 213 ++++++++++++++++++
- 5 files changed, 310 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
- create mode 100644 drivers/iio/adc/max14001.c
-
-
-base-commit: 7c680c4dbbb5365ad78ce661886ce1668ff40f9c
 -- 
-2.34.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
