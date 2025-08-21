@@ -1,67 +1,72 @@
-Return-Path: <devicetree+bounces-207666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1D47B30333
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 21:49:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E346EB3034D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 22:00:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B7597BF40B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 19:47:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A11E5AA1868
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9695D2E3B0D;
-	Thu, 21 Aug 2025 19:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E2C25B31C;
+	Thu, 21 Aug 2025 20:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GEsgulqW"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="jS+BWXoc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665EF2C21EC;
-	Thu, 21 Aug 2025 19:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E95A2749C7
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 20:00:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755805724; cv=none; b=b2klY7RHNB4FbLp/yFlteiE7+7qDumdv4hVgWToH5exxPLB7/a4lZk7GeOZpNC1bDkGzqXdoHExU6KW734ayU82mqNtahvbJeGisqRgoUXB71Rb/zLKnEAvCgZnKarhSWKBAESpjgWjJj1LbQYg6gdEj2J+GYE1I3mbaQdSnTic=
+	t=1755806427; cv=none; b=I9OPPmaFHY/iwa1EKdP6gDGNWrO926cBCUMA//6EagQtHTB7Xv8qU0ykMNMjZK/P79Gr0OXs/TiiLn7NUp+uIClu0d6g0N6mIpziOdRUVUqyBTCZDRkB0A7izFUJOLGmaD54mdyck0XLoXfHIxARIZE+4L1PUliYX4+8d66GqZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755805724; c=relaxed/simple;
-	bh=WEIIKeLrop4poqHTNKV2qrFN5V55F44pNdz+Gf7fIfI=;
+	s=arc-20240116; t=1755806427; c=relaxed/simple;
+	bh=r0gXAtCV7EUCFkV5gjbF2aQx3aCD44zbAzyaUi6as9o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ME4NT9O3ZiIxA1TSCm6Y2dpaN3Br13tCT3ddx6d1X1MwGAgau/gM6HhJ5/BShU6NcNmHPs34z1CMhL3oBFzgwQb/GVEs69qle09/w4q4HVBZ36g2tt+5kEn4v8X0zjCEdy5akjroB02vV9KQ7GKyTLWST3kMPzO2MtxBAD2ar6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GEsgulqW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDAD8C4CEEB;
-	Thu, 21 Aug 2025 19:48:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755805723;
-	bh=WEIIKeLrop4poqHTNKV2qrFN5V55F44pNdz+Gf7fIfI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GEsgulqWjTPKiElNvYm/ryWR1n55vykIkBV3hLHpuxBVOngtQxXjss1YX/9CQZTuR
-	 +NVgjS5P4U5z54A1h8AkASFKymPTRoj2CjUtTsZmCrhhn2vc62qMpoIfKMoWNlIb6a
-	 iaaXgfRtEFV5QY+Cov9+IrBB8Ytovl0sMjLXfHRJuX9hnG56c0QENCQ+o5diIvFqyQ
-	 AsPU9swFD6+Z9o1TNIMEoVH9wo+mdLGg3S06B7yXscu/CJa/ak1dvT4oPePcqEk6MN
-	 EjFZoyHnWrHFEGqGReqPn1ynU5B5g2uBqwY0vnnouffpn/z3wtysM7C8B+VfRYjd/q
-	 pVWtM/QF0OHgQ==
-Date: Thu, 21 Aug 2025 14:48:42 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Wenbin Yao <wenbin.yao@oss.qualcomm.com>
-Cc: Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	linux-phy@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
-	konrad.dybcio@oss.qualcomm.com,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fp/jKWRUOkyK5vQZO/81+CcDcKwJ20pI/U/UQpGIuFseWNkf9eBjN2z3LPEfsrtUc7Q7a0Qw7C/0NlbdbzrmpedI97WxS8D7f+msHx8A1rc8nS2ysX/qQYEFaQ5HlluQwd4TRlBB7eVlqQdmMld83fxh7/7pGWqTVogILp0T1wI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=jS+BWXoc; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=LEW2I1czzyMeSYLfep8ZMRopXKRwX2OobVyqzpp69zA=; b=jS+BWXocQtJe2lsrRpis+FI719
+	Yq2WuUIGnfIs8pxCZrjqDBhbhqygL7Wb7fbzdGNoK6Fk++4O2W/0YBat8PmYlhqs/9RwtgCNGtXqu
+	9RvMIc+3o88b6G3mQ1lG7UZw7v7xr4Glx5R+W7uzyeMoDMaJ2p3toSenoLLdIFOhbj1xhLLpRaOb1
+	z+E6f6zCIjtSnLCo2VJVWSwTMbUGmUi63iQNL1L1povm7BTH2E9GzhXNgWpTUOkBHJNcOkMx8L7c4
+	znFhOeLEc4bhqVZerWfO/44/lWexEaxwYji3Ix3yuLeVpF8nQIdnOZYcDuH0VkB75Og2iz+mZ/ZTx
+	+oh5wVqw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40740)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1upBSQ-000000001au-1ESV;
+	Thu, 21 Aug 2025 21:00:22 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1upBSO-000000001MS-2U9R;
+	Thu, 21 Aug 2025 21:00:20 +0100
+Date: Thu, 21 Aug 2025 21:00:20 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Frank Wunderlich <frank-w@public-files.de>
+Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Gregory Clement <gregory.clement@bootlin.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org, qiang.yu@oss.qualcomm.com
-Subject: Re: [PATCH v2 2/4] dt-bindings: PCI: qcom: Document the Glymur PCIe
- Controller
-Message-ID: <175580571576.471370.10486560769596957109.robh@kernel.org>
-References: <20250821-glymur_pcie5-v2-0-cd516784ef20@oss.qualcomm.com>
- <20250821-glymur_pcie5-v2-2-cd516784ef20@oss.qualcomm.com>
+	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Subject: Re: [PATCH v2] ARM64: dts: mcbin: fix SATA ports on Macchiatobin
+Message-ID: <aKd61N0AptNzYc0Z@shell.armlinux.org.uk>
+References: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
+ <aKdgHGElBEyHeP67@shell.armlinux.org.uk>
+ <A598C273-6EEA-4F86-8E5E-A07F80295AA6@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,35 +75,91 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250821-glymur_pcie5-v2-2-cd516784ef20@oss.qualcomm.com>
+In-Reply-To: <A598C273-6EEA-4F86-8E5E-A07F80295AA6@public-files.de>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-
-On Thu, 21 Aug 2025 02:44:29 -0700, Wenbin Yao wrote:
-> From: Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
+On Thu, Aug 21, 2025 at 08:20:07PM +0200, Frank Wunderlich wrote:
+> Am 21. August 2025 20:06:20 MESZ schrieb "Russell King (Oracle)" <linux@armlinux.org.uk>:
+> >On Thu, Aug 21, 2025 at 06:43:28PM +0100, Russell King (Oracle) wrote:
+> >> Booting 6.16 on the Macchiatobin, I discover that I can no longer
+> >> access my disks, and thus the userspace boot fails. The cause appears
+> >> to be that one of the SATA controllers doesn't have any ports:
+> >> 
+> >> [    1.190312] ahci f4540000.sata: supply ahci not found, using dummy regulator
+> >> [    1.196255] ahci f4540000.sata: supply phy not found, using dummy regulator
+> >> [    1.202026] ahci f4540000.sata: No port enabled
+> >> 
+> >> This is as a result of the blamed commit below which added a default
+> >> disabled status to the .dtsi, but didn't properly update the mcbin
+> >> dtsi file. Fix this regression.
+> >> 
+> >> Fixes: 30023876aef4 ("arm64: dts: marvell: only enable complete sata nodes")
+> >> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> >
+> >Frank,
+> >
+> >I think this is also similarly broken by your patch:
+> >
+> >arch/arm64/boot/dts/marvell/armada-8040-db.dts
+> >
+> >as you've updated the ports on one SATA controller but not the other
+> >in the same way as you omitted the second controller on mcbin.
+> >
+> >I'd also question this:
+> >
+> >arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
+> >
+> >as you updated the other cn9132, but not this one which was introduced
+> >in 6.11, and your change was in 6.13. Please can you look at both of
+> >these and send appropriate fixes?
+> >
+> >Thanks.
+> >
 > 
-> On the Qualcomm Glymur platform the PCIe host is compatible with the DWC
-> controller present on the X1E80100 platform. So document the PCIe
-> controllers found on Glymur and use the X1E80100 compatible string as a
-> fallback in the schema.
+> Hi,
 > 
-> Signed-off-by: Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
-> Signed-off-by: Wenbin Yao <wenbin.yao@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
+> I sent it at least twice..maybe this new was added in between.
 
+Nope. You patched Macchiatobin badly - you failed to use grep to find
+all the sites that you needed to update.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+$ grep -rA4 sata-port@ arch/arm64/boot/dts/marvell
 
-If a tag was not added on purpose, please state why and what changed.
+would've shown you where you need to patch.
 
-Missing tags:
+The timeline here is:
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+- I added support for Macchiatobin in November 2018. There was no need
+  to describe the ports at that point.
 
+- Miquel Raynal updated the description in July 2019 to add the
+  sata-port nodes for each of the _three_ ports that are present on
+  the hardware.
 
+- You patched the file in January 2025, only touching the cp0_sata0
+  device, ignoring the cp1_sata0 description below it.
 
+So no, it has not been added since, it was always there.
+
+> But i have no marvell board for testing so i cannot verify my changes
+> are correct.
+
+It will only show up if one has a platform that has disks connected
+to all three SATA connectors, otherwise it's lost in the kernel boot
+log noise.
+
+The only way to do this is to take care, use grep to find all the
+sites that need to be updated, make the changes, and then check again
+using grep that you have indeed got all the necessary sites.
+
+> I only tried to fix binding errors.
+
+I have to say that this is the root of the problem - while it may
+seem helpful to fix warnings etc one sees, it is only helpful if they
+are done carefully and with utmost care to avoid the attempt causing
+a regression.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
