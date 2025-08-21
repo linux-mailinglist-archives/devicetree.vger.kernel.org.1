@@ -1,182 +1,152 @@
-Return-Path: <devicetree+bounces-207503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01CD8B2FB69
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 15:56:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00FBCB2FB94
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 16:00:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8F3AB668E0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:54:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCC647B0893
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 973162DC334;
-	Thu, 21 Aug 2025 13:54:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iWz4lPi1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83AA02EC566;
+	Thu, 21 Aug 2025 13:56:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB962248F66
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 13:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA4D2EC55D;
+	Thu, 21 Aug 2025 13:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755784452; cv=none; b=Rnt9jEjUEkYsy2MoIRks0z7TZXL/ZM66hX7GjcT9XInTLQoF2GtoMkCOIGkp7l4p2gnY1GOfdOMAWvlMkuScdsaUu4qT826HEt+Y37ff8AfW0eZGkNfMN7q1BxEwfoDLWtChMgQ8tqXKqrLQutqpChN2QvdbgmEeCAnusCFqn7U=
+	t=1755784576; cv=none; b=Gp69b4lQA4T1djo4Pk9XAtGuFLENz3oW3br9pn6QS2rliN0KnlXugqg21eW16KW2SjmXwn82+KVMdfuHX6MGTSiC/opsS6JSfmgd55ednGIBpWJkT92JQ2fW1ws570hWR83MgJddpvOmDkrc+w/E4i3rHD7ISKJ6ve9DoL1LSzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755784452; c=relaxed/simple;
-	bh=K7K1KFmhjG6AH9WAfV1w1/GupF3x0r4fsGu82qYsV64=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=SMCjxIz3srsSrPfjVjEiZuwksWCkj8DZ8bYWAclHDK5nb6mqs6bNF6RGPWWLamENxRs0Vce7jPjLLvLl6hhyQvOOwcI8k5PWVpQTRYMorEakE43Spsh8cH99q5EC3VbPbCHCVTR5QZTSMRDJHJgGysps/ygoz1Vq8pW7n9L+PNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iWz4lPi1; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45a1abf5466so6918535e9.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 06:54:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755784449; x=1756389249; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NcAFOaN1CJ8Zx6t25zUDIgX+kWlzSknyU1WRK2iy4xs=;
-        b=iWz4lPi1nw7ANIawVzKaAnvbhvvRw87EFwK1FgCaJWaBoIRnd16M5pPkZ39V4Qk2vi
-         BBLtAfLl1u1VEN4ktfu0mK4BrsZpVtRBCM8705tnorSwndUz7Rjpu0iJOLr4CLXv0tIK
-         lY9FmskCdmvTNQNMT/GPGLwc6zj8knaCoYYMGNnAJHitQeA12SljWs2dS6Mu4FZ2fcwA
-         Gw9goF3WEol9NfhZIz1O1+VU1f+ur01jeW57upB++kQoSe4zJRWgMMbc2IC8oVXPYoKI
-         aVPuZZ7jN6IS4zWs9QAmMCcquh6p519wWuEq0PjXpr+jvjhjC1T682n65DuFIot2PC1f
-         zlLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755784449; x=1756389249;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=NcAFOaN1CJ8Zx6t25zUDIgX+kWlzSknyU1WRK2iy4xs=;
-        b=lXhNgwEdTRke8PbOODFfrgQngNkCHh/100lSZDqc24YJ9yghukbPwgo/TQrVGRcxSf
-         wo2sIhfEGTox6Y2ETby6C8o4W5Kp/98VOdKLm+V/3YWi042D1Dgj6TKVFQSCkPQ95WPF
-         iY29xlDJauAiQrsFf7Z7MNk2kxTZDLJANbCWCz7T2aEhvSJ4RfkxdvjkVwBLA/PQ1ZUz
-         9JayL4+9y9IR0YIqAeh0+Lp/Y7eOFeplllPzV7JD/RCjWeWX3UG9EzOgAZIKN6HfMqSn
-         lpVP86F3y5th2Dun3ptqMfKPNgxTw25HVAcwD8L5fE3qYakNj2Uf+OKiSWwqusW6UOS9
-         fAAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWuyD2BvZ4Qh3UDKxKCAjuzL7o0U0CM6nkcNv0ePQvn4cyuaafb7yKzickuuxl9ruxmGOgRWvV/2mmN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9Pp+6DAfJEgC92A+ZITz0LFNDDoEvEXcl/VOUoJTaMq5+4Ovz
-	WXpYfcCBSPMuJViiRp1cm5iTJbYI9j2ASFQ5X/V1gYTGnRcUCWUdVlDo6ji0oY+/eUc=
-X-Gm-Gg: ASbGncuzJdUBrskvcJm8bYe49J5pIYOnHB9nlMlPZVxMGr/f66caa6Ad+gt1fzlVadd
-	1UJhX7eMW0aJa1lzSC8yOGG8X+MSMA8s3dboZWsHOHyYZCsavZvlzNJYLxDnMpquO3TB7gAyC/l
-	Pl6YJcw7Tpz0x3Fdl1gFUUZCEgjspHnti1XYm9FXLA0Juqb5wipp2r2p6o3IbtLKco906qPdYfc
-	/uGD8LSVfowW4opBwDLQef+8r4z0BD7lkcE6zooPExAY7/fZSMdyZJjuZtIqhVKwiQSmyf3ahgG
-	rxvTyW+phBbMBVfpicc0uoPYdSXukL6DmsW35jxL1iDhLEqM9s8LHNVdPM6Gf4xgDIXz2ZlW/fw
-	r9Ct4nW2bNL8rnjtu9Ky/bBwgagLtwFN7ZmLcqh1kmlK7qXDCjS1/Z666PtlbTniMYeB19Evk0/
-	LZW7QMH044AQ==
-X-Google-Smtp-Source: AGHT+IEsRKSBRUKz66P6P/5wWuHxTBcjLS0ZzpFh/MkwNVQjeeuRsGa7dz4SuecF+G6aOJVR3hB0kg==
-X-Received: by 2002:a05:600c:4343:b0:45b:47e1:f603 with SMTP id 5b1f17b1804b1-45b4d817001mr12069425e9.18.1755784448937;
-        Thu, 21 Aug 2025 06:54:08 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:443c:3616:7f17:f26d? ([2a01:e0a:3d9:2080:443c:3616:7f17:f26d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b4e2ba619sm13709035e9.4.2025.08.21.06.54.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Aug 2025 06:54:08 -0700 (PDT)
-Message-ID: <5f8318b8-6ad4-42bb-a0a0-7cb5cc45a1ec@linaro.org>
-Date: Thu, 21 Aug 2025 15:54:07 +0200
+	s=arc-20240116; t=1755784576; c=relaxed/simple;
+	bh=3oc/IJQWBfYXXDjTK4ag+YVXoDkcvRedFhQypw2sN3w=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Sq8+OPY4kr1WRr173DzmhSolzfCb2gaxlCVahdGVaWengbl9nIt0cy4s6g4LXEBbZXcM6LP+/XtaNx5xC9dI7/hE1WLQua193Plvcr/oGRQ0bgvNDudXoIUj5pvIWZBogH63imQKEmLqTTG3BcIfsX/Y9Pe/EGQ7pl7xb8peGLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from ROG.lan (unknown [118.251.176.166])
+	by APP-03 (Coremail) with SMTP id rQCowAAngIFZJadoCYkTDg--.22571S2;
+	Thu, 21 Aug 2025 21:55:39 +0800 (CST)
+From: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
+To: paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	anup@brainfault.org,
+	pbonzini@redhat.com,
+	shuah@kernel.org,
+	cyan.yang@sifive.com,
+	cleger@rivosinc.com,
+	charlie@rivosinc.com,
+	cuiyunhui@bytedance.com,
+	samuel.holland@sifive.com,
+	namcao@linutronix.de,
+	jesse@rivosinc.com,
+	inochiama@gmail.com,
+	yongxuan.wang@sifive.com,
+	ajones@ventanamicro.com,
+	parri.andrea@gmail.com,
+	mikisabate@gmail.com,
+	yikming2222@gmail.com,
+	thomas.weissschuh@linutronix.de
+Cc: linux-riscv@list.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org,
+	linux-kselftest@vger.kernel.org,
+	pincheng.plct@isrc.iscas.ac.cn
+Subject: [PATCH 0/5] RISC-V: Add Zilsd/Zclsd support in hwprobe and KVM
+Date: Thu, 21 Aug 2025 21:55:22 +0800
+Message-Id: <20250821135527.224044-1-pincheng.plct@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 00/14] arm64: dts: qcom: Set up 4-lane DP for sm8[56]50 &
- x1e boards
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250821-topic-x1e80100-4lanes-v1-0-0b1a0d093cd5@linaro.org>
- <aKcjcB9yABjEv1KR@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <aKcjcB9yABjEv1KR@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowAAngIFZJadoCYkTDg--.22571S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7ur1kJF1xGr15GFy8Gw1xXwb_yoW8trW5pa
+	n5Cw15KF1kXFy7C34fAr48ur1rKF4ru393Jrn3t348WFW3Cr95Jr9ak3ZxZF18ArZ29ry0
+	93WrKw1I93Z7AaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9F14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWUWVWUuwAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
+	0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
+	zVAF1VAY17CE14v26rWY6r4UJwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r
+	1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_
+	JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcS
+	sGvfC2KfnxnUUI43ZEXa7VUU0JmUUUUUU==
+X-CM-SenderInfo: pslquxhhqjh1xofwqxxvufhxpvfd2hldfou0/
 
-On 21/08/2025 15:47, Stephan Gerhold wrote:
-> On Thu, Aug 21, 2025 at 03:37:19PM +0200, Neil Armstrong wrote:
->> Now the 4lanes support in the QMP Combo PHY has been merged in [1],
->> add the required plumbing in DT.
->>
->> [1] https://lore.kernel.org/all/20250807-topic-4ln_dp_respin-v4-0-43272d6eca92@oss.qualcomm.com/
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->> Neil Armstrong (14):
->>        arm64: dts: qcom: sm8550: allow mode-switch events to reach the QMP Combo PHY
->>        arm64: dts: qcom: sm8650: allow mode-switch events to reach the QMP Combo PHY
->>        arm64: dts: qcom: x1e80100: allow mode-switch events to reach the QMP Combo PHYs
->>        arm64: dts: qcom: sm8550-hdk: Set up 4-lane DP
->>        arm64: dts: qcom: sm8550-qrd: Set up 4-lane DP
->>        arm64: dts: qcom: sm8650-hdk: Set up 4-lane DP
->>        arm64: dts: qcom: sm8650-qrd: Set up 4-lane DP
->>        arm64: dts: qcom: x1e001de-devkit: Set up 4-lane DP
->>        arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s: Set up 4-lane DP
->>        arm64: dts: qcom: x1e80100-dell-xps13-9345: Set up 4-lane DP
->>        arm64: dts: qcom: x1e80100-hp-omnibook-x14: Set up 4-lane DP
->>        arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Set up 4-lane DP
->>        arm64: dts: qcom: x1e80100-microsoft-romulus: Set up 4-lane DP
->>        arm64: dts: qcom: x1e80100-qcp: Set up 4-lane DP
->>
->>   arch/arm64/boot/dts/qcom/sm8550-hdk.dts                     | 2 +-
->>   arch/arm64/boot/dts/qcom/sm8550-qrd.dts                     | 2 +-
->>   arch/arm64/boot/dts/qcom/sm8550.dtsi                        | 1 +
->>   arch/arm64/boot/dts/qcom/sm8650-hdk.dts                     | 2 +-
->>   arch/arm64/boot/dts/qcom/sm8650-qrd.dts                     | 2 +-
->>   arch/arm64/boot/dts/qcom/sm8650.dtsi                        | 1 +
->>   arch/arm64/boot/dts/qcom/x1e001de-devkit.dts                | 6 +++---
->>   arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi | 4 ++--
->>   arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts       | 4 ++--
->>   arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts       | 4 ++--
->>   arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts    | 6 +++---
->>   arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi    | 4 ++--
->>   arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                   | 6 +++---
->>   arch/arm64/boot/dts/qcom/x1e80100.dtsi                      | 3 +++
->>   14 files changed, 26 insertions(+), 21 deletions(-)
-> 
-> Nitpick: Could you send a patch for x1-crd.dtsi and
-> x1-asus-zenbook-a14.dtsi as well? :')
+Hi all,
 
-Sure I'll add them.
+This patch series adds support for the recently ratified Zilsd
+(Load/Store pair instructions) and Zclsd (Compressed Load/Store pair
+instructions) extensions to the RISC-V Linux kernel. It covers device tree
+binding,ISA string parsing, hwprobe exposure, KVM guest handling and selftests.
 
-Neil
+Zilsd and Zclsd allow more efficient memory access sequences on RV32. My
+goal is to enable glibc and other user-space libraries to detect these
+extensions via hwprobe and make use of them for optimized
+implementations of common routines. To achieve this, the Linux kernel
+needs to recognize and expose the availability of these extensions
+through the device tree bindings, ISA string parsing and hwprobe
+interfaces. KVM support is also required to correctly virtualize these
+features for guest environments.
 
-> 
-> Thanks,
-> Stephan
+The series is structured as follows:
+- Patch 1: Add device tree bindings documentation for Zilsd and Zclsd
+- Patch 2: Extend RISC-V ISA extension string parsing to recognize them.
+- Patch 3: Export Zilsd and Zclsd via riscv_hwprobe
+- Patch 4: Allow KVM guests to use them.
+- Patch 5: Add KVM selftests.
+
+This series of patches is a preparatory step toward enabling user-space
+optimizations in glibc that leverage Zilsd and Zclsd, by providing the
+necessary kernel-side support.
+
+Please review, and let me know if any adjustments are needed.
+
+Thanks,
+Pincheng Wang
+
+
+Pincheng Wang (5):
+  dt-bidings: riscv: add Zilsd and Zclsd extension descriptions
+  riscv: add ISA extension parsing for Zilsd and Zclsd
+  riscv: hwprobe: export Zilsd and Zclsd ISA extensions
+  riscv: KVM: allow Zilsd and Zclsd extensions for Guest/VM
+  KVM: riscv: selftests: add Zilsd and Zclsd extension to get-reg-list
+    test
+
+ Documentation/arch/riscv/hwprobe.rst          |  8 ++++
+ .../devicetree/bindings/riscv/extensions.yaml | 39 +++++++++++++++++++
+ arch/riscv/include/asm/hwcap.h                |  2 +
+ arch/riscv/include/uapi/asm/hwprobe.h         |  2 +
+ arch/riscv/include/uapi/asm/kvm.h             |  2 +
+ arch/riscv/kernel/cpufeature.c                | 24 ++++++++++++
+ arch/riscv/kernel/sys_hwprobe.c               |  2 +
+ arch/riscv/kvm/vcpu_onereg.c                  |  2 +
+ .../selftests/kvm/riscv/get-reg-list.c        |  6 +++
+ 9 files changed, 87 insertions(+)
+
+-- 
+2.39.5
 
 
