@@ -1,152 +1,515 @@
-Return-Path: <devicetree+bounces-207330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0595B2F322
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:02:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11809B2F32D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:03:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 94BC94E5B21
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:02:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD5B51C2702F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 09:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B06285073;
-	Thu, 21 Aug 2025 09:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC0A2D3740;
+	Thu, 21 Aug 2025 09:02:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QLZRqdgt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bzVF3klE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70028284B33;
-	Thu, 21 Aug 2025 09:02:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40BCE2D2494;
+	Thu, 21 Aug 2025 09:02:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755766928; cv=none; b=cU+r4ns3H1ASOzgxbDXN9SlPxOqFP2oWRN7O4Pg3cOcWrBx2oN9U7PtVtJZ9NiY1XpsEgI29i/hKkPnetlV37H+L/NZ12sgyaiBqvhDJ4XPWBuScvZFIX8Fecc/5QU5MX12l+oQGuODZ8TS1TyFzfQNcv7+aV5Lsh91PZ7U1Jy4=
+	t=1755766976; cv=none; b=U6jMnb8STwLvJ1cEEanm8oxtWOsK5JX0wTZpr9bo/mh/XALaNHZA5x+iu0x6iOWhdw3TzEp8PmazhoAUCSF/Hv9wxMjQCDQ5ujuBFxr8wteipcITc8JG5p15lSP/qDE6jclmTeSIAjEO8muhuu4v08PJtUff5IrjkgB5dvRQXJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755766928; c=relaxed/simple;
-	bh=dVFzBPWCzdNl+r+IY4jDzYJATdF5aoUko5LV3cDF84k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uBY+9Pr/Di2mEx1eJfoI+3kR21QZ86D9TQRq53jLpSU+NU5Zl+sR0vT1klYUgfXgqqJNLY4TO6KKWUP4KpEDkCs6LsiCmjOA1kiu8W4qvF4286TVwoF1CXsgqRSXV5iUPVjDpaDbpVOcbDlC5XiibJ1LmpGa8BKG925R2PrtdeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QLZRqdgt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D71F6C4CEED;
-	Thu, 21 Aug 2025 09:02:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755766928;
-	bh=dVFzBPWCzdNl+r+IY4jDzYJATdF5aoUko5LV3cDF84k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QLZRqdgtZEelsPlMflFm2C3NnPS4QOajGSQyftyVN8kcvf1TV2K0gr1eGV2mCsoWW
-	 cB8oGiF0wfjsy41Zd1PHwvcBvRK5JhC+TBgf7KtIz/cxal5P2q5tLtmzjKLIxJdoRn
-	 MF+aOO64sRPGY71Cn4iaHdHyFht0NgAyqLzJ43iPY4zzL4Wr3HxiaVzgQ/Nh0UZ8yw
-	 zlanym+SivgCFQLpnfv/ds4I45KvaxwbzyYqAMWaz6U67wflZPAz859rjWyT3IndFm
-	 YzIH34c6RCS3GJFt3bkElmpU42LHNuhbJx7C6ABfcOz/Untba72/38Hl1JoD/m9dff
-	 fU88UzTBGSyfQ==
-Message-ID: <4b4f0bbb-c0bd-49c7-a75f-cee71bbd0002@kernel.org>
-Date: Thu, 21 Aug 2025 11:02:02 +0200
+	s=arc-20240116; t=1755766976; c=relaxed/simple;
+	bh=5Ct1X/NWDfj1g40enmLEC9nkoZJMpOpO47zVSn/Uc7g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S3txPh/Bvvks9tyK8A799R0u3PHEDffPTPm+FsKRk8iREgHLYHsXQIvrxouSFGybuqhtmOpfg0Bbf2y3pN9rmd3oh6yXnoSq5YxRXj62jTunEZRCAGdqC4W0gkF1TSAXjUkevS3WEcotQiRe/IwXxzUVzfkykjObUZVPn7E+vfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bzVF3klE; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755766974; x=1787302974;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5Ct1X/NWDfj1g40enmLEC9nkoZJMpOpO47zVSn/Uc7g=;
+  b=bzVF3klES1BShUMJSDgTLxIVQH6e9aN7SZFUd8NLLmVnVZHxp0PCgNm8
+   iUc0AtnW2C2qGVH2gCk+umaThQLOi+lfmIU/ozB4YS7asYSRk1ZsZ26wT
+   sSX2ytsdQp8LXYDz/+ERGLHRsO7k+DXRFM41IQFZ4Xl4Q8QJ6BEUjhf+g
+   3YZSqnZWtCZDniC9wnXvbRM23bwphCpBRIv4gteEE8ykRfzVDKv+9X/MC
+   zo8XI3DS5QwtaKctBN4N8vsNxcCsuCB+HQ1JE/1ioJrYD4JiLSXMGbtiX
+   YK9MoNgjd+XkGgxtqbHN5iQpyrCWUpojBUVDCTkv703VugAaZzl/RWfk8
+   w==;
+X-CSE-ConnectionGUID: TgAkPCMPTMmGx0UFM/IfQA==
+X-CSE-MsgGUID: wfI7OLeBTvm3ah7wfi9/8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="58118527"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; 
+   d="scan'208";a="58118527"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2025 02:02:53 -0700
+X-CSE-ConnectionGUID: AHxlsIQWSeyrzXTDwXQGbg==
+X-CSE-MsgGUID: gqG2rZ2xTs6EQgOdeBJomw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; 
+   d="scan'208";a="168279667"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2025 02:02:51 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1up1C4-00000007BCh-0F4P;
+	Thu, 21 Aug 2025 12:02:48 +0300
+Date: Thu, 21 Aug 2025 12:02:47 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: remi.buisson@tdk.com
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/9] iio: imu: inv_icm45600: add new inv_icm45600
+ driver
+Message-ID: <aKbgt_g3FsLMM8-g@smile.fi.intel.com>
+References: <20250820-add_newport_driver-v5-0-2fc9f13dddee@tdk.com>
+ <20250820-add_newport_driver-v5-2-2fc9f13dddee@tdk.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] riscv: dts: eswin: Add clock driver support
-To: =?UTF-8?B?6JGj57uq5rSL?= <dongxuyang@eswincomputing.com>,
- mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, linux-riscv@lists.infradead.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-References: <20250815093539.975-1-dongxuyang@eswincomputing.com>
- <20250815093754.1143-1-dongxuyang@eswincomputing.com>
- <0ef61f03-0346-491d-ad2a-293e24cbc4a8@kernel.org>
- <3fa3950e.371.198c1770125.Coremail.dongxuyang@eswincomputing.com>
- <bfa23779-9861-4ae4-9ced-9f347394f033@kernel.org>
- <27984d9.51f.198cbcde8d7.Coremail.dongxuyang@eswincomputing.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <27984d9.51f.198cbcde8d7.Coremail.dongxuyang@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250820-add_newport_driver-v5-2-2fc9f13dddee@tdk.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 21/08/2025 10:45, 董绪洋 wrote:
->>>>> +		/* fixed clock */
->>>>> +		fixed_rate_clk_apll_fout2: fixed-rate-apll-fout2 {
->>>>
->>>> Such pattern was years ago NAKed.
->>>>
->>>> No, don't ever bring nodes per clock.
->>>>
->>> We have defined a large number of clock devices. 
->>> The comment of v3 is "Driver is also way too big for simple clock driver and I 
->>> am surprised to see so many redundancies.". Therefore, we modified the clock 
->>> driver code and moved the description of clock device from the driver to the DTS.
->>>
->>> But, this comment is that don't ever bring nodes per clock. We’ve run into some
->>
->> And? What is unclear in that comment?
->>
->>> trouble and aren’t sure which approach aligns better with community guidelines. 
->>> Could you share your advice or suggestions on the best way forward?
->>
->> Look at any other recent clock drivers.
+On Wed, Aug 20, 2025 at 02:24:20PM +0000, Remi Buisson via B4 Relay wrote:
 > 
-> I found out that the recent clock drivers, such as sophgo/clk-sg2044.c 
-> and rockchip/clk-rk3562.c, the clock tree information of them was placed
-> in the C code. 
-> So, for EIC7700 SoC, should the clock tree information be placed in
-> clk-eic7700.c just as clk-sg2044.c? Is this understanding correct?
+> Core component of a new driver for InvenSense ICM-45600 devices.
+> It includes registers definition, main probe/setup, and device
+> utility functions.
+> 
+> ICM-456xx devices are latest generation of 6-axis IMU,
+> gyroscope+accelerometer and temperature sensor. This device
+> includes a 8K FIFO, supports I2C/I3C/SPI, and provides
+> intelligent motion features like pedometer, tilt detection,
+> and tap detection.
 
-Yes, entire clock hierarchy for one clock controller should be coded in
-the Linux driver. How do you name it or how do you split your drivers to
-code it efficiently, is different topic.
+...
+
+> +#ifndef INV_ICM45600_H_
+> +#define INV_ICM45600_H_
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/iio/common/inv_sensors_timestamp.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/types.h>
+
+Please, follow IWYU principle. Also, it's better to split out the IIO group as
+it's part of the subsystem this driver is for.
+
+#include <linux/bitfield.h>
+#include <linux/bits.h>
+#include <linux/types.h>
+
+#include <linux/iio/common/inv_sensors_timestamp.h>
+#include <linux/iio/iio.h>
+
+(but again, the list of the headers seems incorrect / incomplete).
+
+...
+
+> +struct inv_icm45600_state {
+> +	struct mutex lock;
+
+No header for this.
+
+> +	struct regmap *map;
+
+No forward declaration.
+
+> +	struct regulator *vddio_supply;
+
+Ditto.
+
+> +	struct iio_mount_matrix orientation;
 
 
-Best regards,
-Krzysztof
+
+> +	struct iio_dev *indio_gyro;
+> +	struct iio_dev *indio_accel;
+> +	const struct inv_icm45600_chip_info *chip_info;
+> +	struct {
+> +		s64 gyro;
+> +		s64 accel;
+> +	} timestamp;
+> +	union {
+> +		u8 buff[2];
+> +		__le16 u16;
+> +		u8 ireg[3];
+> +	} buffer __aligned(IIO_DMA_MINALIGN);
+> +};
+
+...
+
+> +#define INV_ICM45600_FIFO_SIZE_MAX			(8 * 1024)
+
+SZ_8K from sizes.h ?
+
+...
+
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/limits.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/types.h>
+
+As per above, please double check for IWYU principle.
+
+...
+
+> +static int inv_icm45600_ireg_read(struct regmap *map, unsigned int reg,
+> +				   u8 *data, size_t count)
+> +{
+> +	const struct device *dev = regmap_get_device(map);
+> +	struct inv_icm45600_state *st = dev_get_drvdata(dev);
+> +	unsigned int d;
+
+> +	ssize_t i;
+
+Why signed? Same comment for all similar cases.
+
+> +	int ret;
+> +
+> +	st->buffer.ireg[0] = FIELD_GET(INV_ICM45600_REG_BANK_MASK, reg);
+> +	st->buffer.ireg[1] = FIELD_GET(INV_ICM45600_REG_ADDR_MASK, reg);
+> +
+> +	/* Burst write address. */
+> +	ret = regmap_bulk_write(map, INV_ICM45600_REG_IREG_ADDR, st->buffer.ireg, 2);
+> +	/* Wait while the device is busy processing the address. */
+> +	fsleep(INV_ICM45600_IREG_DELAY_US);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Read the data. */
+> +	for (i = 0; i < count; i++) {
+> +		ret = regmap_read(map, INV_ICM45600_REG_IREG_DATA, &d);
+> +		/* Wait while the device is busy processing the data. */
+> +		fsleep(INV_ICM45600_IREG_DELAY_US);
+> +		if (ret)
+> +			return ret;
+> +		data[i] = d;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +	if (FIELD_GET(INV_ICM45600_REG_BANK_MASK, reg) == 0)
+
+Why not using positive conditional?
+
+> +		return regmap_bulk_read(map, FIELD_GET(INV_ICM45600_REG_ADDR_MASK, reg),
+> +					val_buf, val_size);
+> +
+> +	return inv_icm45600_ireg_read(map, reg, val_buf, val_size);
+
+	if (FIELD_GET(INV_ICM45600_REG_BANK_MASK, reg))
+		return inv_icm45600_ireg_read(map, reg, val_buf, val_size);
+
+Ditto for other similar cases.
+
+...
+
+> +static int inv_icm45600_write(void *context, const void *data,
+> +				   size_t count)
+
+This is perfectly 1 line, please, check that the code utilises exactly 80 limit
+when there is a room. It's probably a wrapping done by the (mis)configured editor.
+
+...
+
+> +static const struct regmap_config inv_icm45600_regmap_config = {
+> +	.reg_bits = 16,
+> +	.val_bits = 8,
+
+No cache?
+
+> +};
+
+...
+
+> +static const struct inv_icm45600_conf inv_icm45600_default_conf = {
+> +	.gyro = {
+> +		.mode = INV_ICM45600_SENSOR_MODE_OFF,
+> +		.fs = INV_ICM45686_GYRO_FS_2000DPS,
+> +		.odr = INV_ICM45600_ODR_800HZ_LN,
+> +		.filter = INV_ICM45600_GYRO_LP_AVG_SEL_8X,
+> +	},
+> +	.accel = {
+> +		.mode = INV_ICM45600_SENSOR_MODE_OFF,
+> +		.fs = INV_ICM45686_ACCEL_FS_16G,
+> +		.odr = INV_ICM45600_ODR_800HZ_LN,
+> +		.filter = INV_ICM45600_ACCEL_LP_AVG_SEL_4X,
+> +	},
+> +};
+
+Can you split the patch adding accel or gyro separately? I haven't checked all
+the details, so it might be not worth it, just consider it.
+
+...
+
+> +u32 inv_icm45600_odr_to_period(enum inv_icm45600_odr odr)
+> +{
+> +	static const u32 odr_periods[INV_ICM45600_ODR_MAX] = {
+> +		0, 0, 0,	/* reserved values */
+
+Make it one per line as the rest.
+
+> +		156250,		/* 6.4kHz */
+> +		312500,		/* 3.2kHz */
+> +		625000,		/* 1.6kHz */
+> +		1250000,	/* 800kHz */
+> +		2500000,	/* 400Hz */
+> +		5000000,	/* 200Hz */
+> +		10000000,	/* 100Hz */
+> +		20000000,	/* 50Hz */
+> +		40000000,	/* 25Hz */
+> +		80000000,	/* 12.5Hz */
+> +		160000000,	/* 6.25Hz */
+> +		320000000,	/* 3.125Hz */
+> +		640000000,	/* 1.5625Hz */
+
+These seem to be times or so, can you use proper naming instead of _periods?
+
+> +	};
+> +
+> +	return odr_periods[odr];
+> +}
+
+...
+
+> +int inv_icm45600_debugfs_reg(struct iio_dev *indio_dev, unsigned int reg,
+> +			     unsigned int writeval, unsigned int *readval)
+> +{
+> +	struct inv_icm45600_state *st = iio_device_get_drvdata(indio_dev);
+
+> +	int ret;
+
+Useless, just return directly.
+
+> +	guard(mutex)(&st->lock);
+
+> +	if (readval)
+> +		ret = regmap_read(st->map, reg, readval);
+> +	else
+> +		ret = regmap_write(st->map, reg, writeval);
+> +
+> +	return ret;
+> +}
+
+...
+
+> +/**
+> + *  inv_icm45600_setup() - check and setup chip
+> + *  @st:	driver internal state
+> + *  @chip_info:	detected chip description
+> + *  @reset:	define whether a reset is required or not
+> + *  @bus_setup:	callback for setting up bus specific registers
+> + *
+> + *  Returns 0 on success, a negative error code otherwise.
+
+Please, run kernel-doc validator. It's not happy (Return section is missing)
+
+> + */
+
+...
+
+> +	if (val != chip_info->whoami) {
+> +		if (val == U8_MAX || val == 0)
+
+Hmm... Perhaps in_range() ?
+
+> +			return dev_err_probe(dev, -ENODEV,
+> +					     "Invalid whoami %#02x expected %#02x (%s)\n",
+> +					     val, chip_info->whoami, chip_info->name);
+
+> +		else
+
+Redundant 'else'.
+
+> +			dev_warn(dev, "Unexpected whoami %#02x expected %#02x (%s)\n",
+> +				 val, chip_info->whoami, chip_info->name);
+> +	}
+
+...
+
+> +		ret = regmap_write(st->map, INV_ICM45600_REG_MISC2,
+> +				   INV_ICM45600_MISC2_SOFT_RESET);
+> +		if (ret)
+> +			return ret;
+> +		/* IMU reset time: 1ms. */
+> +		fsleep(1000);
+
+Use 1 * USEC_PER_MSEC and drop useless comment after that.
+You will need time.h for it.
+
+> +
+> +		if (bus_setup) {
+> +			ret = bus_setup(st);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +
+> +		ret = regmap_read(st->map, INV_ICM45600_REG_INT_STATUS, &val);
+> +		if (ret)
+> +			return ret;
+> +		if (!(val & INV_ICM45600_INT_STATUS_RESET_DONE)) {
+> +			dev_err(dev, "reset error, reset done bit not set\n");
+> +			return -ENODEV;
+> +		}
+
+...
+
+> +static int inv_icm45600_enable_regulator_vddio(struct inv_icm45600_state *st)
+> +{
+> +	int ret;
+> +
+> +	ret = regulator_enable(st->vddio_supply);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Wait a little for supply ramp. */
+> +	fsleep(3000);
+
+As per above.
+
+> +	return 0;
+> +}
+
+...
+
+> +int inv_icm45600_core_probe(struct regmap *regmap, const struct inv_icm45600_chip_info *chip_info,
+> +				bool reset, inv_icm45600_bus_setup bus_setup)
+> +{
+> +	struct device *dev = regmap_get_device(regmap);
+> +	struct fwnode_handle *fwnode;
+> +	struct inv_icm45600_state *st;
+> +	struct regmap *regmap_custom;
+> +	int ret;
+> +
+> +	regmap_custom = devm_regmap_init(dev, &inv_icm45600_regmap_bus,
+> +					 regmap, &inv_icm45600_regmap_config);
+
+There is room for 'regmap' on the previous line.
+
+> +	if (IS_ERR(regmap_custom))
+> +		return dev_err_probe(dev, PTR_ERR(regmap_custom), "Failed to register regmap\n");
+> +
+> +	st = devm_kzalloc(dev, sizeof(*st), GFP_KERNEL);
+> +	if (!st)
+> +		return dev_err_probe(dev, -ENOMEM, "Cannot allocate memory\n");
+> +
+> +	dev_set_drvdata(dev, st);
+> +
+> +	ret = devm_mutex_init(dev, &st->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->map = regmap_custom;
+> +
+> +	ret = iio_read_mount_matrix(dev, &st->orientation);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to retrieve mounting matrix\n");
+> +
+> +	st->vddio_supply = devm_regulator_get(dev, "vddio");
+> +	if (IS_ERR(st->vddio_supply))
+> +		return PTR_ERR(st->vddio_supply);
+> +
+> +	ret = devm_regulator_get_enable(dev, "vdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get vdd regulator\n");
+> +
+> +	/* IMU start-up time. */
+> +	fsleep(100000);
+
+100 * USEC_PER_MSEC
+
+> +	ret = inv_icm45600_enable_regulator_vddio(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_add_action_or_reset(dev, inv_icm45600_disable_vddio_reg, st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = inv_icm45600_setup(st, chip_info, reset, bus_setup);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = inv_icm45600_timestamp_setup(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Setup runtime power management. */
+> +	ret = devm_pm_runtime_set_active_enabled(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pm_runtime_get_noresume(dev);
+> +	/* Suspend after 2 seconds. */
+> +	pm_runtime_set_autosuspend_delay(dev, 2000);
+
+2 * MSEC_PER_SEC and drop yet another useless comment.
+
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_put(dev);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int inv_icm45600_resume(struct device *dev)
+> +{
+> +	struct inv_icm45600_state *st = dev_get_drvdata(dev);
+> +	int ret = 0;
+
+Why assignment?
+
+> +	ret = pm_runtime_force_resume(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	scoped_guard(mutex, &st->lock)
+> +		/* Restore sensors state. */
+> +		ret = inv_icm45600_set_pwr_mgmt0(st, st->suspended.gyro,
+> +						st->suspended.accel, NULL);
+
+With guard()() this whole construction will look better.
+
+> +	return ret;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
