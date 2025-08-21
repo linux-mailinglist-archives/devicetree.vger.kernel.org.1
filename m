@@ -1,140 +1,182 @@
-Return-Path: <devicetree+bounces-207379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66BE9B2F55A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:32:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4849CB2F575
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 12:37:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80B5056150C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:31:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EBA11CC3268
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 10:36:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21DEC2D9ECA;
-	Thu, 21 Aug 2025 10:31:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57953074A7;
+	Thu, 21 Aug 2025 10:36:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="j686JQrA";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ELkRK+/u"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GVVeM7wW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CE817A2F6;
-	Thu, 21 Aug 2025 10:31:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73D62307487
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 10:36:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755772291; cv=none; b=e1e38FqDSROJwWQec5/HcaXXQTqYT367FVOGnwg45KfF/n1LqhAwPagD/WUBUnGt3Jj3Jz8nY666ByYS+edHfs/VN92Ot7EsdId5aw4qwCE/yC6YVl0OdQItlqittj3nqWCkKQG4Q2OyYH9e2o20OnTidPHTfDFC9F4amc5r8eQ=
+	t=1755772570; cv=none; b=FMoTK996waC+Mij3HUuvyx26xEUvPcZQNUw1zEepQdB0FP4P6Zrz4Jsqlru/E1VjhZRTT+j95lGez1jhYL+N5mBlD/D8vdKdfoC312/4P4mbVZLhjm4Fhe50jh2R34cveA+NKKvfT2BbKfnu4CbIdvVciss38hojhUT2u9o5qkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755772291; c=relaxed/simple;
-	bh=L2n256knK+5dIW7WpN0KI9rFJ2kkJpRTU1MxJYBy+A8=;
+	s=arc-20240116; t=1755772570; c=relaxed/simple;
+	bh=RDuV1besyzzDAzdyFeQhw0JwJepUWtsZGZmkP0nNXDw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J23N4uN5drBCtS1874l4mIxyS6ykh95N4NbULuSc8sva0fP8lo46jRPP4Pfu7HJykXGokeYh3J/Q27orjYt9/3/0ET+dMmxwlyub19/qphXAWEBYTUukAq9RtMegp1ofyAyN7BAGiwfqmm/UQ5KbSdNrYcZLWPBga1LodG88TSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=j686JQrA; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ELkRK+/u; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 1EFD614000F8;
-	Thu, 21 Aug 2025 06:31:28 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Thu, 21 Aug 2025 06:31:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm2; t=1755772288; x=1755858688; bh=PXKKI4OnXo
-	7t/YcWii3j+mJxOzhErP8TYu8TKKt71MY=; b=j686JQrAisvABfKcShupGMSwRS
-	br5RiBNpoR/5x/WdLoCsWaE/jZbUCa0bdiMZoP8mQfbjnZSrZngUR+0xsK/+9R90
-	wnNIQ3oqulZFKR90W+jPHHkKqgzBvI/HnfCYpuvSEe2jqKDyV4lpfOEyuNL2/qr3
-	C/w+alqMrRgqk7sRvi9VkQCqta3F/Z/ahkvTKfTY45NAFdRGqovXJ46Vbz6VZNRn
-	ojUgTKpF8k56vFEsN71kcY02sYT0YEhkuM6BnJeREhrM1EHAUnlVsvhw88vB9H+T
-	hUBojEAjlrZNpJNx4a2X3tdTOsQ1P/jXvbw9JhHVnuNBMIVXtkNxrnCMz8DA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-	1755772288; x=1755858688; bh=PXKKI4OnXo7t/YcWii3j+mJxOzhErP8TYu8
-	TKKt71MY=; b=ELkRK+/u7cZsOZClFlftg0BLd8LFmFzLPKpEarwFmg1S5qlVmXP
-	jCnWIQsQ5re3AlrADDTlfDvvLq2lUbhkEUZY8VYwX95WNmJNloY7bJNEcaUTKPwR
-	hvJYt2js+Up/64jJdK7jlgapUVrbM547UZbXiXO3hob5/jHiqlYJj304p6fS7tZa
-	cmXKKPhmxQqubAcI49zWX9GTg14F3dhRreEivjNtCxAmvSJfnr/10nVk11BflRsJ
-	SVZQAPqPqMmxwbYQrhl3/c7PjwtCjB/zivyn3wL460o1TZGfJnq93VlvuaDc9WcL
-	XJ3vmupyXBkw7cBrVya/IYk+qkPGIIhmR5Q==
-X-ME-Sender: <xms:f_WmaHZb7-9Xi55LSqFbgdhaZxNCe8RPzgyDMEu0jh5xKUPhpzohdQ>
-    <xme:f_WmaMUWzlarwwy7d5hhkGAqOeqsIStx-YHGL1kqb1sb6CIrECYpVUREYXPZLa55O
-    ZNnnEB35t7ltJFqhwY>
-X-ME-Received: <xmr:f_WmaHFPPlcnIyX62t4Lg-Sv5v2kWxUDHwpPgd3_PQZmi_JGfy2q9ZWSwJWE4OPHLwuDslf9D0t_Vplq-ccysQyfBjRBDmJz8-0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduiedutddtucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepfffhvfevuffkfhggtggujgesthdtredttddtjeenucfhrhhomheplfgrnhhnvgcu
-    ifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqeenucggtffrrghtthgvrhhnpefgvd
-    ffveelgedujeeffeehheekheelheefgfejffeftedugeethfeuudefheefteenucevlhhu
-    shhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehjsehjrghnnhgruh
-    drnhgvthdpnhgspghrtghpthhtohepuddvpdhmohguvgepshhmthhpohhuthdprhgtphht
-    thhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshhvvghnsehkvghrnh
-    gvlhdrohhrghdprhgtphhtthhopegrlhihshhsrgesrhhoshgvnhiifigvihhgrdhiohdp
-    rhgtphhtthhopehnvggrlhesghhomhhprgdruggvvhdprhgtphhtthhopehkrhiikhdoug
-    htsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghl
-    rdhorhhgpdhrtghpthhtohepkhgvthhtvghnihhssehophgvnhgsshgurdhorhhgpdhrtg
-    hpthhtohepmhgrrhgtrghnsehmrghrtggrnhdrshhtpdhrtghpthhtoheprghsrghhihes
-    lhhishhtshdrlhhinhhugidruggvvh
-X-ME-Proxy: <xmx:f_WmaOZj_fNrTtNvP0lOwNRNBC3qfZShIW1IjIFRoj0EzONnzKcrKg>
-    <xmx:f_WmaOF4ViS7Ns38LIbqcmqU-JXKpiAsrjJ6_rS2y6kMC9jm3NcBDg>
-    <xmx:f_WmaM2AxTDvLAgkj7is4jeLWe8gIPYp0c71bcBG4rkGeM5R2l-MhA>
-    <xmx:f_WmaKz4kVZWeMZGdnwhZPLVprAZ9p-TB9-8cpNELntu2Z2ChhqsdQ>
-    <xmx:gPWmaHJIvsyYvtbRZcgHsJBj1t34ZPnZbGKcUktHp4tQA-6YcPP_M_2M>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 21 Aug 2025 06:31:27 -0400 (EDT)
-Date: Thu, 21 Aug 2025 12:31:26 +0200
-From: Janne Grunau <j@jannau.net>
-To: Rob Herring <robh@kernel.org>
-Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Kettenis <kettenis@openbsd.org>,
-	Hector Martin <marcan@marcan.st>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: arm: apple: Add t8112 j415 compatible
-Message-ID: <20250821103126.GD1270980@robin.jannau.net>
-References: <20250813-apple-dt-sync-6-17-v1-0-209f15d10aa0@jannau.net>
- <20250813-apple-dt-sync-6-17-v1-4-209f15d10aa0@jannau.net>
- <20250820190708.GA538860-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RxNwA0nWK3VrmMToImtvXYhYNEaZSs4I3hVCYSv2k+vJftZOVhQm/NnC0hjV5NNulc4zX974Fr7hmTU7wls1aBsHhusbEU9Bln4pyT1vW1cZy0KoITCBXo4IHPn2F7BAiz7hdgWYglKTPM+azl7pUr9bGzD4Ryf2S6B7a051CnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GVVeM7wW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57L9bB85024226
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 10:36:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=7oo2zqFqG/uy2ujzQIvz8umA
+	iinujNdzdiBtiiHUTrI=; b=GVVeM7wW3PQpz36KtSKHXA79R1SZCspJcF5r9uyi
+	OKQkaeZtpNw+/A1Whiwkh+K3IyE4EWBS+h2HQuOd8kZFr1tmWExrArY5Tyzfbe+P
+	f0IlHRHGbcxxzNkS4t2tqpmWywHvE6EtMoScQuNk95ZSz16Fd/kjHi9+8zh9U8Kg
+	3vc2yYdqviPozvZgOcdookVZ2SqHRKF0eT6ms42zB5gxuJZeznWCFhgjK4xWnsTp
+	X3feIci0VaQupEf+oVnV0HPIDycorZNffGd7rl6WNeoJfrMzE4OMzVogFIpmbiTB
+	LWeN6YI+RUm95Egq4aMINaq8O/3heQUHuxrgLAt6DmaZMQ==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52ad4ma-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 10:36:08 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-70a9f534976so26718546d6.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 03:36:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755772567; x=1756377367;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7oo2zqFqG/uy2ujzQIvz8umAiinujNdzdiBtiiHUTrI=;
+        b=sH+pSlRrryMbFqK0P95fQ3rtIarJNiKLhghhCjBXlg5YLTLPgVXE8ceNDyaWQFmC+a
+         RF1SBUSJKwg1SyT4B882cLFErnvCInra93ghfrbzCtGDHTsSgYLSD100oPgbwhtW2zwR
+         wLDkXHVED8MOUYDc+ZLeuuiqnT2/Zqb/1FsJ64uHezZPwZ3y/IrwaFdl9Qm0QhGeHXDr
+         UpAr34l0mlIXXW0LVm9F5sszljCrcMxJnitvCeEfETUydRhCSLycAxDZcD+IfYqRqzs+
+         f73MuStbOPJiEkFF4Unk70ev9xjMoyIV/mbkk2zJhThX9R88NPSozL338C0Ch/d0c67U
+         57eA==
+X-Forwarded-Encrypted: i=1; AJvYcCXvY5SlQvxn8Tkx2VSwd2qhTVTsmM1y94kzJCGuIM5m+UVOiTuYptdIyHtafRCny4wm/Joe+fj9gMk5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYGrq3LDnXrTsAF0xvxuq2sHHe+JN3XrQpXdOOAPr/BjcVC+/C
+	ltOlNt3kcxrcrR7Lj51o0PYrL9ZAJpsDLB+ToDME+1gOtkBEAaOHex/Ngk7fA378SMeHD3mbkIZ
+	tTSzA43HTQlFwwAwgcJo6sNFrFvhWpjJLjYoGqTkWp3vE4QscF9K9Ll83XmTqYJoz
+X-Gm-Gg: ASbGncsrYDZCP789qXFqrV3aONkhI8JxNajNePVkTTRN6GvqOyx/GWYx9EMgiq++l2d
+	FXh9EwaRhsquD2OQvJsc8JmXeNETxWiv0T1rYOb8ZiT1lof0NuXOZkBquJ43MWnYfgN6MaFjZBB
+	PrMKMjB+ZaKGnnGeIE7L56qQflxb534EWWUwNUfNI/axo7O4JdsTVbdoCyN65hoDqItmp69MB+9
+	vj4qHKrMeg/Pn7wIz/kD2lSiwuMbxPgu6kimJPgceDhoiPRwm5RdfHBFwtj1Ol7DN63Krsk5qx+
+	KmEN8jiE7ZujLZxqmKw+Klpg7U5I8zSLNpi5NjcNBXy9BFravk+WbuideY0vgMmxd3zCBIL6ijR
+	4C8zv/FiC71ljB3M+B1Zxc4Vkuk3+tQ+ba6Nf/TdscP1b7oBSsMnn
+X-Received: by 2002:a05:6214:5184:b0:707:62c5:975b with SMTP id 6a1803df08f44-70d88e6e24amr16306246d6.15.1755772567143;
+        Thu, 21 Aug 2025 03:36:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFJD+FeF4dIo0pLY6T95BYJZrasalSuOqAYF2ufCE5H5qdImROfk2vmGTbiJggf0s0m/2xKdA==
+X-Received: by 2002:a05:6214:5184:b0:707:62c5:975b with SMTP id 6a1803df08f44-70d88e6e24amr16305876d6.15.1755772566559;
+        Thu, 21 Aug 2025 03:36:06 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef369bd7sm2985905e87.68.2025.08.21.03.36.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Aug 2025 03:36:05 -0700 (PDT)
+Date: Thu, 21 Aug 2025 13:36:03 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shashank Maurya <quic_ssmaurya@quicinc.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: lemans-evk: Enable Display Port
+Message-ID: <e2ke65gru7b75rnlg5cqlxpk3e7322tewvt7gvugjgnoezgdfh@6pqiymj7nipu>
+References: <20250820-enable-iq9-dp-v2-1-973c9ca22474@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250820190708.GA538860-robh@kernel.org>
+In-Reply-To: <20250820-enable-iq9-dp-v2-1-973c9ca22474@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: JXGTOD20OWGlYDjsFlEcVzIBQGeYIywS
+X-Authority-Analysis: v=2.4 cv=B83gEOtM c=1 sm=1 tr=0 ts=68a6f698 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=MzpP2GudIQyLNU4cacwA:9 a=CjuIK1q_8ugA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: JXGTOD20OWGlYDjsFlEcVzIBQGeYIywS
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX4x5fx+zbj8HA
+ LuK63tl68+NJY6lkmUExfORcBJW1JomhmbtiH1TubvW6ncdxIihy3CkZK16ktbZdCUbpmU/VdPB
+ LeDoLS4Tq21BBBBYEdXSHaXDBTbCNc1BLkISqbwe8FHq+9jhGYevsI+oYdb3I16tMoR3hY4Lmp5
+ N3PmlYmArr0L+j97d4zPVdvNN40HEVmkYfrUcJYa4keIt+VQKhblnvf5hQSiSkPpAeEwIeRteSO
+ Zal5esVv9xQh0E2BWKMRzbaTtkJQ140VrZykOPz5vEX5HOp/QJQ8e7IDR2EqOVashHDatqOpzXD
+ pt0Fj/j4esBTwIj31OUjQnrPEG/bUiILzWzuZz/cucm1FoGidPCa9QERw3CeDgAKEWf9Mkxnjfi
+ GSpagzsQUbRGztr8M7iVioebIHgkWQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-21_02,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
+ lowpriorityscore=0 adultscore=0 impostorscore=0 clxscore=1015 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
 
-On Wed, Aug 20, 2025 at 02:07:08PM -0500, Rob Herring wrote:
-> On Wed, Aug 13, 2025 at 11:53:36AM +0200, Janne Grunau wrote:
-> > This adds the "apple,j415" (MacBook Air (15-inch, M2, 2023) to the
-> > apple,t8112 platform.
-> > 
-> > Signed-off-by: Janne Grunau <j@jannau.net>
-> > ---
-> >  Documentation/devicetree/bindings/arm/apple.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/apple.yaml b/Documentation/devicetree/bindings/arm/apple.yaml
-> > index da60e9de1cfbd0151e973c3aafba6d0880fc21aa..3b90b5df60507b245de387de104a4e64f234139a 100644
-> > --- a/Documentation/devicetree/bindings/arm/apple.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/apple.yaml
-> > @@ -93,6 +93,7 @@ description: |
-> >  
-> >    - MacBook Air (M2, 2022)
-> >    - MacBook Pro (13-inch, M2, 2022)
-> > +  - MacBook Pro (15-inch, M2, 2023)
+On Wed, Aug 20, 2025 at 07:58:35PM +0530, Prahlad Valluru wrote:
+> From: Shashank Maurya <quic_ssmaurya@quicinc.com>
 > 
-> s/Pro/Air/?
+> Lemans EVK board has two mini-DP connectors, connected to EDP0
+> and EDP1 phys. Other EDP phys are available on expansion
+> connectors for the mezzanine boards.
+> Enable EDP0 and EDP1 along with their corresponding PHYs.
+> 
+> Signed-off-by: Shashank Maurya <quic_ssmaurya@quicinc.com>
+> Signed-off-by: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+> ---
+> Changes in v2:
+> - added dp-connector nodes for edp0 and edp1.
+> - Link to v1: https://lore.kernel.org/r/20250711-enable-iq9-dp-v1-1-6d381e105473@oss.qualcomm.com
+> ---
+>  arch/arm64/boot/dts/qcom/lemans-evk.dts | 84 +++++++++++++++++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+> 
+> @@ -261,6 +331,20 @@ &sleep_clk {
+>  	clock-frequency = <32768>;
+>  };
+>  
+> +&tlmm {
+> +	dp0_hot_plug_det: dp0-hot-plug-det-state {
+> +		pins = "gpio101";
+> +		function = "edp0_hot";
+> +		bias-disable;
+> +	};
+> +
+> +	dp1_hot_plug_det: dp1-hot-plug-det-state {
+> +		pins = "gpio102";
+> +		function = "edp1_hot";
+> +		bias-disable;
+> +	};
 
-yes, thanks. changed moved the added entry below "MacBook Air (M2, 2022)"
+Please move these to the SoC dtsi.
 
-Janne
+> +};
+> +
+>  &uart10 {
+>  	compatible = "qcom,geni-debug-uart";
+>  	pinctrl-0 = <&qup_uart10_default>;
+> 
+> ---
+> base-commit: 1aa50d938e88fcad1312467bd09be4037bfe68ff
+> change-id: 20250711-enable-iq9-dp-addc9c7195c9
+> 
+> Best regards,
+> -- 
+> Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+> 
+
+-- 
+With best wishes
+Dmitry
 
