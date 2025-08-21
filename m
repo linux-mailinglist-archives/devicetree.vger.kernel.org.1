@@ -1,163 +1,116 @@
-Return-Path: <devicetree+bounces-207211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D49B2EE4C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:36:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3923FB2EE5D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 08:40:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C602563389
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:36:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03AE03B475D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 06:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D93EE255248;
-	Thu, 21 Aug 2025 06:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B9352D4810;
+	Thu, 21 Aug 2025 06:37:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b="J7juqJTv";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="D0ae8aPS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sun3t1hh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a3-smtp.messagingengine.com (fout-a3-smtp.messagingengine.com [103.168.172.146])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 891B7266B6B
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 06:36:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D8CF2BEFE8;
+	Thu, 21 Aug 2025 06:37:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755758172; cv=none; b=jYxK1SZ45A1noQ+0C/zBZyCTuSHYIHO1MneUbNu6FNkQ+/KZtFy0vwtPM4oT1Y5mhZKHjpcNtbTRO+4q+jWExgoor5PJ5dmVwT2rtWwc8zwozQqYZEChnQp1poJOe78zP9VqAOemmbrJq2Bv+V8JN5y6dljDGWE+GNxBOn/U2HE=
+	t=1755758262; cv=none; b=T8V7cHBwhPJupqG3uEMDdBkgOQWvztl7zadZpbgeKiPdu2pVrKNCRcK3o3TgdbOIlLiMyqA2K3r7VdN3VAlYDotazXq8Izx9hgwwTa+GtcDq3AV7OFDHMuWGxK0ZoMx1lC0FSpL25UnyJXjCTRzU/pqmtHTtBlgNgT6ivqqL7ek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755758172; c=relaxed/simple;
-	bh=s10zWVirRhwztSC3uIHXZ7fOANJnwowDcKPVRD8o8kE=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=UV6nO0r6zEMTiSMka6/Pc0EzC8FrSxaqthiS5i9as6erqNzNlDBlRtXCe+Z32H9QAU/6BbGtpBAmK3kCrT8KxH+PR1Am7Z0oIWnq+aCzL+oSwlZlAU1lWqSNlCcc4H4K2gO1s4pUv/r5caY62V6uZP4cIVg+yZHnOwwt03JFdgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au; spf=pass smtp.mailfrom=traverse.com.au; dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b=J7juqJTv; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=D0ae8aPS; arc=none smtp.client-ip=103.168.172.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=traverse.com.au
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfout.phl.internal (Postfix) with ESMTP id AAB46EC0064;
-	Thu, 21 Aug 2025 02:36:06 -0400 (EDT)
-Received: from phl-imap-18 ([10.202.2.89])
-  by phl-compute-01.internal (MEProxy); Thu, 21 Aug 2025 02:36:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1755758166; x=1755844566; bh=awCl8mZNDWUiA7LOi84dnKU9phxqklU6
-	SWZAtwSFwMc=; b=J7juqJTvx//eV3PJ7g/3JHvO7F/qYTCA43EnQFhCnwFXE83Z
-	lUa3dHNqasLVRZTEF9rISjkj9psjKBzHEzaw932+eKU6wIhOHnPIA14S4g4CBCJ3
-	AllGN0Lq6k0UdJmZNaHAmd4T3Kmp7dvMHVgKAD2MiOwZQT48Gjf/yNYWXXl7ds8C
-	FY1n5T9mQYOdVo7PfaDzhScLfNE1PEeuSyXfqF4NadhXm558YzmJ7+KXMWTDUQlU
-	eiegecjvRNkdcFI+Z9LQq/+bv0kpF1YCjRfr7Y4ZAiWMFrZLqRpEzLmwPykdCVFv
-	qjwUaCsTO69sr5wHIf+E4xGMVVkEz+zPUV5jjA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1755758166; x=
-	1755844566; bh=awCl8mZNDWUiA7LOi84dnKU9phxqklU6SWZAtwSFwMc=; b=D
-	0ae8aPSqTIEc50/HBJTnrKhVO4Ey/y3sPTmlif7+DB+s/BQPCcgETKnO7orzLwJZ
-	lKRWZlxAEKZe1ll2uttMEHEBMMuHkBJxUllI3gssxeTZhEFxILHUk2WiLPJIqz5u
-	Pmpi1dIQoEk1X/E4cVIFvcxnJSoNnXPmRPoEQz2Xk6mN5rQQOnua1gOUCaUSVsAJ
-	vqZcx5iVqGT/XZNsXd+gKS/IeD+lrsXh9x/tfDyUs4TtHPOtaozITNdZ4hAU9fx1
-	atJBIs81OoV5luznkpIXDTsYIl2MX15aEfPfls7VqSsTgEKQBDOjlpQwpMpQEehK
-	CeD8j1FtCyqp3QF9Gre0g==
-X-ME-Sender: <xms:Vr6maJPsETLIxCzpY0xs-UQTZCjBh8RKyJ-uo_ty6aGgPJgy6KzhNw>
-    <xme:Vr6maL_op0W_LTi4mR3vD0UbjjiJO_ruSoxb0IffE5fOLnxupSOXjE0lopwFdLqE3
-    L6tDUClWe6eXL04GKY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduiedtheefucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedfofgrthhh
-    vgifucfotgeurhhiuggvfdcuoehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruheqne
-    cuggftrfgrthhtvghrnhepvdeitdeufeffheeltddutddtuddugfdtveffffekvdffvdfh
-    gfejuedtgeeluddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
-    hfrhhomhepmhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghupdhnsggprhgtphhtthho
-    peefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehkrhiikheskhgvrhhnvghlrd
-    horhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhi
-    nhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrh
-    drkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:Vr6maM0C-vOL3QsoAgcqMBlvO-x1lGauUm1ll6E5xhD4hV3L_W8arA>
-    <xmx:Vr6maB9pxkhQ-608VgtvyVD7WxNTOMeBjdgRpuXbyetcpaR5_Cw5Mw>
-    <xmx:Vr6maMtcr2zjRUXBQB8U_gRKuqWOrszUOQhjyjdL4r8A1dAFiK_sbg>
-    <xmx:Vr6maEDyFtdrtI6QBlzYk7aINfpFrO1RBmlQb082VSUKvCQlsJcxTg>
-    <xmx:Vr6maL6XNoTFixNrjH3VVeY8CwJ-00ZRHRQC_ZZmwbJG3pzvbi1P9ZgJ>
-Feedback-ID: i426947f3:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 747A515C008C; Thu, 21 Aug 2025 02:36:06 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1755758262; c=relaxed/simple;
+	bh=AXMmQlL5kvjii97BT5wuk1EpAnCzrmI+u1fqWegbaGU=;
+	h=Content-Type:Date:Message-Id:Cc:From:To:Subject:References:
+	 In-Reply-To; b=mK1ZfyWp2sjq/VVOhdWknL6sOcC3wewa6jnNVNvAX6l4DgixOiz7xgKbZM4XVqTyom0POoQ1tcmP/gcXGNgPHNC1dSX77VZ2NpFXilnACi/Mj9G+AW71qpGWgT1x1sL1gZsqA5K5Eo04BxFJUSwkMaXLOlII5+tE9tveFHsJ7Y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sun3t1hh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 830CEC4CEED;
+	Thu, 21 Aug 2025 06:37:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755758261;
+	bh=AXMmQlL5kvjii97BT5wuk1EpAnCzrmI+u1fqWegbaGU=;
+	h=Date:Cc:From:To:Subject:References:In-Reply-To:From;
+	b=sun3t1hh94JMitWYhgzcEdQC+GHnoLg1ovIto7FsMhRP1PUlJNaDUccJ3SzuWnlkF
+	 EfDQhEGK8dIlRQCuhX26NC1uDqIVr3aWizuBSmnCgZOO2Amz1Z+p0iPX2ViDlcxM6l
+	 IuF2uMc6hJc4DAFxX/aTkd03u4/mUJvElnTuOPHExjUWDaLOgIklK5W/0e5f1qlLjX
+	 b04JaLEaE1jqjX7b5xeCGqgXqL2//bW6UAMOBfHv6rdqC6qyVI9M/0DwvU7VYNAYT1
+	 C/0n3Gg+3SROzv0Uyd4yZwO7NV2+N7S1NOqMZBtfmkCa+Pw/M4uyfSkjAxAonZie+I
+	 oXaWAqWI0DGQQ==
+Content-Type: multipart/signed;
+ boundary=6e0bd8a8b640f082cfb6850cca9df390417e4a46f66449d7859a78f39371;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Thu, 21 Aug 2025 08:37:37 +0200
+Message-Id: <DC7WCWIUD576.1YXDRIK1OSR8G@kernel.org>
+Cc: "Mathew McBride" <matt@traverse.com.au>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Benson Leung" <bleung@chromium.org>,
+ "Guenter Roeck" <groeck@chromium.org>, "Tim Harvey"
+ <tharvey@gateworks.com>, "Lee Jones" <lee@kernel.org>,
+ <devicetree@vger.kernel.org>, <chrome-platform@lists.linux.dev>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: mfd: Move embedded controllers to own
+ directory
+X-Mailer: aerc 0.16.0
+References: <20250821062840.9383-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250821062840.9383-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-ThreadId: Abvx3TMA-vy3
-Date: Thu, 21 Aug 2025 16:35:22 +1000
-From: "Mathew McBride" <matt@traverse.com.au>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Message-Id: <26199775-297f-4b91-9cc9-ec06d0a86e7e@app.fastmail.com>
-In-Reply-To: <58192df0-aa6e-44e2-9dfd-9e0402d1fe9a@kernel.org>
-References: <20250813023435.27776-2-matt@traverse.com.au>
- <20250821061115.18254-1-matt@traverse.com.au>
- <20250821061115.18254-2-matt@traverse.com.au>
- <58192df0-aa6e-44e2-9dfd-9e0402d1fe9a@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mfd: add Traverse Ten64 board controller
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
+--6e0bd8a8b640f082cfb6850cca9df390417e4a46f66449d7859a78f39371
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Thank for your feedback.
+On Thu Aug 21, 2025 at 8:28 AM CEST, Krzysztof Kozlowski wrote:
+> Move ChromeOS Embedded Controller, Gateworks System Controller and
+> Kontron sl28cpld Board Management Controller to new subdirectory
+> "embedded-controller" matching their purpose.  MFD is coming from Linux
+> and does not really fit the actual purpose of this hardware.
+>
+> Rename Gateworks GSC filename to match compatible, as preferred for
+> bindings.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Thu, Aug 21, 2025, at 4:19 PM, Krzysztof Kozlowski wrote:
-> On 21/08/2025 08:11, Mathew McBride wrote:
-> > Add device tree binding for the board (micro)controller on Ten64 family
-> > boards[1].
-> > 
-> 
-> Do not attach (thread) your patchsets to some other threads (unrelated
-> or older versions). This buries them deep in the mailbox and might
-> interfere with applying entire sets.
-> 
-Understood, my apologies.
+Not sure if I can even ack that, if not, disregard it:
 
-> > The schema is simple and is (presently) only consumed by U-Boot, but it
-> > is possible that it could be consumed by nvmem or other type drivers in
-> > the future, as well as extended to future Traverse boards.
-> > 
-> > The categorisation as a "MFD" follows that of comparable devices such
-> > as "gw,gsc", "google,chros-ec" and "kontron,sl28cpld".
-> 
-> That is not MFD device. Google EC is for example, but you have only one
-> function. I think we will move all of them to some separate ec directory.
+Acked-by: Michael Walle <mwalle@kernel.org> # for sl28cpld
 
-Noted, I will wait for that change to progress before moving any further with this.
+> ---
+>
+> Cc: Mathew McBride <matt@traverse.com.au>
+>
+> Lee,
+> Can you take it via MFD?
 
-Hypothetically, the ten64-controller may acquire some sort of "child" binding such as
-watchdog and nvmem in the future, similar to the other "EC" devices, there just has not
-been a need to do so yet.
+That would be good, as I also have a new patch series (planned for
+this week) for a sl28cpld compatible "sa67mcu" embedded controller,
+which touches that file. As it also contains MFD patches, I'd expect
+that the DT changes of that series also go through the MFD tree then.
 
-[snip]
+-michael
 
-> > +  Communication between the SoC and controller is via I2C, at a fixed address
-> 
-> Either you make it a schema or drop it.
-Is this in reference to the "fixed address"? In which case, I'll remove references to any fixed address.
-> 
-> > +  of 0x7e. While the controller firmware implements several functions, there
-> > +  are presently no parameters that are configurable by DT properties, except
-> > +  those that are required of an I2C bus endpoint.
-> 
-> This paragraph wasn't here before. It's completely redundant, drop.
-Will be removed as noted above.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
+--6e0bd8a8b640f082cfb6850cca9df390417e4a46f66449d7859a78f39371
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Many Thanks,
-Matt
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaKa+shIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/hl1wGAtUsFu6ERO54ALkWdfzQLlwDcBnVp8Qzs
+3YXN76+ZzparZalD55wi9eO5sumO8DyOAYDvDL2SA+j//XLuslZjZ1elBrLRuo4Y
+kwPLZdkE5CigSMCUCcxk0SAcP5S1T+eSAf0=
+=t/V2
+-----END PGP SIGNATURE-----
+
+--6e0bd8a8b640f082cfb6850cca9df390417e4a46f66449d7859a78f39371--
 
