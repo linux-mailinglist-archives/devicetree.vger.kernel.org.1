@@ -1,127 +1,332 @@
-Return-Path: <devicetree+bounces-207438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 136CAB2F72D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:54:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66744B2F737
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:55:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71307189B687
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:50:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 526581C28A33
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2C92DECCD;
-	Thu, 21 Aug 2025 11:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C2BD2DE202;
+	Thu, 21 Aug 2025 11:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SOdMdOOt"
+	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="mRGZom4X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3E82DCBF1;
-	Thu, 21 Aug 2025 11:49:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BB0C2DAFD9;
+	Thu, 21 Aug 2025 11:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755776982; cv=none; b=DbWUi4N9iyhd0pluOyk5+0r7bV0t6rMFYUyE8DRlLJgdOTVJqPheih0kv4Z1+Jm/YnnqqhhoP36FHb6lWZrFdLH7WOGQimFdpa9ThuBPLFVBZNNNrX9bYdd1U/Hvq4WFFGxOf5uEyCSc4ZHr2isF3jGn0vQmSvpFlEprQ533HSc=
+	t=1755777201; cv=none; b=BpILoEiNqUdmfPebxBiFSkurl9OC0qgfD0FLsEy5sE2k7CrSuTHPy0AeYaH0NYsL8zVi5sp8LJP5bFnO2ks1NPAYVbnNoHeiFl2Wh1VFblZgN1Op0O4HHJ4T4Kyau/GBAYKzXWzF+EH5ojJL+OI/8zxSRshbCH44muMk+ZtxJ/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755776982; c=relaxed/simple;
-	bh=6PVq/zZa+SwhhHyRiLenM67ntGlbcg2uiCnKoN4945M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MxtIlfg7C/c+uJ97LLdKpwPmPZW5FzOtyK43dTcmSRxaoin/QxmvMQrcj0r/5mIGadsCPUZiQSi/eZJGN/WQPVQaahPcC5aRVwbr2ouz1LgdL1qg1FZVce0MTQSrDNhdPIwKak7KX2UA/P47wr6hPAR2xwHPgU7oPbPe/F0aAtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SOdMdOOt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7109AC4CEEB;
-	Thu, 21 Aug 2025 11:49:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755776981;
-	bh=6PVq/zZa+SwhhHyRiLenM67ntGlbcg2uiCnKoN4945M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SOdMdOOtNPhCHtZ6SyQ5cRqp3KT0LvzjSTuKeR4lp63lR7maBkQLkRmMivnkdH7w9
-	 mbvdG3k1X/pugtI7rKs0L2hKxLSKwI/rFPYAnXCOzf+TuHqd6jzD87129xAHBDt8rg
-	 KbpbCF8JEr5IlpjQ3EyeOfW9Ms3cp5i3BoCxArDRaOgW0+w8C87+ffM5gFgUI5fkt8
-	 OnFOBeWyjXRe8GnUn5tcN+2zoyTa1E9GGyuXpaahIXTeMWXkuXlpqoD6qV1xLY+xde
-	 lkr4Umvb0l+1lA9gJW/twbNfNL3Y0ipJJkW4tYHCzS1X8LBxDEZiI0AqiLhypc3la6
-	 4MG0uwlgjFCWg==
-Message-ID: <eeecc7a3-8ce3-4cfd-8d40-988736fc0c59@kernel.org>
-Date: Thu, 21 Aug 2025 13:49:36 +0200
+	s=arc-20240116; t=1755777201; c=relaxed/simple;
+	bh=x5kxTzWqBCYssiMEo0DTtYkVmAm8zy4FuX0Mfb7pLLs=;
+	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
+	 Mime-Version:Content-Type; b=r7mSoy7s2y4qW0LmQ229zFKMvmW/f8CQlMiZqJUaN3L0U3p3R4hRMmX+VtuN+IUhHtXbxgK1tNI21BvlpX1m794EZuLXNbo1HUIaom84ytfJPVFTDslxiJllVOeIpQ8cl/Vbkf7UmKKuuMBymMhy5iEpk1WOkKNPYKGm0t0hP9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b=mRGZom4X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E753C4CEEB;
+	Thu, 21 Aug 2025 11:53:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+	s=korg; t=1755777200;
+	bh=x5kxTzWqBCYssiMEo0DTtYkVmAm8zy4FuX0Mfb7pLLs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=mRGZom4XfgUeNcPZgDAJrnyc+nZ4bDcz+SEVzpBuaT0i002GKaJIlXBpatKnve3jn
+	 jHi83YMjRE9qCoGfJ98VlDb6FqqVxrhBc+bxDPVx4VXpQHIqkNN1dX2mRDxDKx2v/e
+	 BU+byz05zLIbem8rll6p1jhhHsXoKRZ6bhThPNaY=
+Date: Thu, 21 Aug 2025 04:53:19 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Baoquan He <bhe@redhat.com>
+Cc: Brian Mak <makb@juniper.net>, Dave Young <dyoung@redhat.com>, Alexander
+ Graf <graf@amazon.com>, Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar
+ <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, Dave Hansen
+ <dave.hansen@linux.intel.com>, "H. Peter Anvin" <hpa@zytor.com>, Rob
+ Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ x86@kernel.org, kexec@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] kexec: Add KEXEC_FILE_NO_CMA as a legal flag
+Message-Id: <20250821045319.72e81f40e021e54e2131ac44@linux-foundation.org>
+In-Reply-To: <aKbZ1h5mjtfoFMh8@MiWiFi-R3L-srv>
+References: <20250805211527.122367-1-makb@juniper.net>
+	<20250805211527.122367-2-makb@juniper.net>
+	<20250820214756.5c7b551e4723d9f0b5dd55e3@linux-foundation.org>
+	<aKbZ1h5mjtfoFMh8@MiWiFi-R3L-srv>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 4/5] arm64: dts: qcom: sm8650: Enable MCQ support for
- UFS controller
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mani@kernel.org, James.Bottomley@HansenPartnership.com,
- martin.petersen@oracle.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org
-References: <20250821112403.12078-1-quic_rdwivedi@quicinc.com>
- <20250821112403.12078-5-quic_rdwivedi@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250821112403.12078-5-quic_rdwivedi@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 21/08/2025 13:24, Ram Kumar Dwivedi wrote:
-> Enable Multi-Circular Queue (MCQ) support for the UFS host controller
-> on the Qualcomm SM8650 platform by updating the device tree node. This
-> includes adding new register region for MCQ and specifying the MSI parent
-> required for MCQ operation.
+On Thu, 21 Aug 2025 16:33:26 +0800 Baoquan He <bhe@redhat.com> wrote:
+
+> On 08/20/25 at 09:47pm, Andrew Morton wrote:
+> > On Tue, 5 Aug 2025 14:15:26 -0700 Brian Mak <makb@juniper.net> wrote:
+> > 
+> > > Commit 07d24902977e ("kexec: enable CMA based contiguous allocation")
+> > > introduces logic to use CMA-based allocation in kexec by default. As
+> > > part of the changes, it introduces a kexec_file_load flag to disable the
+> > > use of CMA allocations from userspace. However, this flag is broken
+> > > since it is missing from the list of legal flags for kexec_file_load.
+> > > kexec_file_load returns EINVAL when attempting to use the flag.
+> > > 
+> > > Fix this by adding the KEXEC_FILE_NO_CMA flag to the list of legal flags
+> > > for kexec_file_load.
+> > > 
+> > > Fixes: 07d24902977e ("kexec: enable CMA based contiguous allocation")
+> > 
+> > A description of the userspace-visible runtime effects of this bug
+> > would be very helpful, please.  A lot more than "is broken"!
+> > 
+> > Also, could we please have some reviewer input on this change?
 > 
-> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8650.dtsi | 7 ++++++-
+> I didn't receive this patchset, and kexec mailing list is not in CC.
+> I don't know what happened.
 
-I don't understand why you combine DTS patch into UFS patchset. This
-creates impression of dependent work, which would be a trouble for merging.
+Well that's annoying.  kexec@ and linux-kernel were on the cc line.
 
-Best regards,
-Krzysztof
+Here's what's in mm.git's mm-hotfixes branch:
+
+From: Brian Mak <makb@juniper.net>
+Subject: kexec: add KEXEC_FILE_NO_CMA as a legal flag
+Date: Tue, 5 Aug 2025 14:15:26 -0700
+
+Commit 07d24902977e ("kexec: enable CMA based contiguous allocation")
+introduces logic to use CMA-based allocation in kexec by default.  As part
+of the changes, it introduces a kexec_file_load flag to disable the use of
+CMA allocations from userspace.  However, this flag is broken since it is
+missing from the list of legal flags for kexec_file_load.  kexec_file_load
+returns EINVAL when attempting to use the flag.
+
+Fix this by adding the KEXEC_FILE_NO_CMA flag to the list of legal flags
+for kexec_file_load.
+
+Link: https://lkml.kernel.org/r/20250805211527.122367-2-makb@juniper.net
+Fixes: 07d24902977e ("kexec: enable CMA based contiguous allocation")
+Signed-off-by: Brian Mak <makb@juniper.net>
+Cc: Alexander Graf <graf@amazon.com>
+Cc: Baoquan He <bhe@redhat.com>
+Cc: Borislav Betkov <bp@alien8.de>
+Cc: Dave Young <dyoung@redhat.com>
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>
+Cc: Thomas Gleinxer <tglx@linutronix.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+---
+
+ include/linux/kexec.h |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+--- a/include/linux/kexec.h~kexec-add-kexec_file_no_cma-as-a-legal-flag
++++ a/include/linux/kexec.h
+@@ -460,7 +460,8 @@ bool kexec_load_permitted(int kexec_imag
+ 
+ /* List of defined/legal kexec file flags */
+ #define KEXEC_FILE_FLAGS	(KEXEC_FILE_UNLOAD | KEXEC_FILE_ON_CRASH | \
+-				 KEXEC_FILE_NO_INITRAMFS | KEXEC_FILE_DEBUG)
++				 KEXEC_FILE_NO_INITRAMFS | KEXEC_FILE_DEBUG | \
++				 KEXEC_FILE_NO_CMA)
+ 
+ /* flag to track if kexec reboot is in progress */
+ extern bool kexec_in_progress;
+_
+
+
+and the second patch I placed in mm-unstable:
+
+From: Brian Mak <makb@juniper.net>
+Subject: x86/kexec: carry forward the boot DTB on kexec
+Date: Tue, 5 Aug 2025 14:15:27 -0700
+
+Currently, the kexec_file_load syscall on x86 does not support passing a
+device tree blob to the new kernel.  Some embedded x86 systems use device
+trees.  On these systems, failing to pass a device tree to the new kernel
+causes a boot failure.
+
+To add support for this, we copy the behavior of ARM64 and PowerPC and
+copy the current boot's device tree blob for use in the new kernel.  We do
+this on x86 by passing the device tree blob as a setup_data entry in
+accordance with the x86 boot protocol.
+
+This behavior is gated behind the KEXEC_FILE_FORCE_DTB flag.
+
+Link: https://lkml.kernel.org/r/20250805211527.122367-3-makb@juniper.net
+Signed-off-by: Brian Mak <makb@juniper.net>
+Cc: Alexander Graf <graf@amazon.com>
+Cc: Baoquan He <bhe@redhat.com>
+Cc: Borislav Betkov <bp@alien8.de>
+Cc: Dave Young <dyoung@redhat.com>
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>
+Cc: Thomas Gleinxer <tglx@linutronix.de>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+---
+
+ arch/x86/kernel/kexec-bzimage64.c |   47 ++++++++++++++++++++++++++--
+ include/linux/kexec.h             |    5 ++
+ include/uapi/linux/kexec.h        |    4 ++
+ kernel/kexec_file.c               |    1 
+ 4 files changed, 53 insertions(+), 4 deletions(-)
+
+--- a/arch/x86/kernel/kexec-bzimage64.c~x86-kexec-carry-forward-the-boot-dtb-on-kexec
++++ a/arch/x86/kernel/kexec-bzimage64.c
+@@ -16,6 +16,8 @@
+ #include <linux/kexec.h>
+ #include <linux/kernel.h>
+ #include <linux/mm.h>
++#include <linux/libfdt.h>
++#include <linux/of_fdt.h>
+ #include <linux/efi.h>
+ #include <linux/random.h>
+ 
+@@ -212,6 +214,28 @@ setup_efi_state(struct boot_params *para
+ }
+ #endif /* CONFIG_EFI */
+ 
++#ifdef CONFIG_OF_FLATTREE
++static void setup_dtb(struct boot_params *params,
++		      unsigned long params_load_addr,
++		      unsigned int dtb_setup_data_offset)
++{
++	struct setup_data *sd = (void *)params + dtb_setup_data_offset;
++	unsigned long setup_data_phys, dtb_len;
++
++	dtb_len = fdt_totalsize(initial_boot_params);
++	sd->type = SETUP_DTB;
++	sd->len = dtb_len;
++
++	/* Carry over current boot DTB with setup_data */
++	memcpy(sd->data, initial_boot_params, dtb_len);
++
++	/* Add setup data */
++	setup_data_phys = params_load_addr + dtb_setup_data_offset;
++	sd->next = params->hdr.setup_data;
++	params->hdr.setup_data = setup_data_phys;
++}
++#endif /* CONFIG_OF_FLATTREE */
++
+ static void
+ setup_ima_state(const struct kimage *image, struct boot_params *params,
+ 		unsigned long params_load_addr,
+@@ -336,6 +360,17 @@ setup_boot_parameters(struct kimage *ima
+ 			sizeof(struct efi_setup_data);
+ #endif
+ 
++#ifdef CONFIG_OF_FLATTREE
++	if (image->force_dtb && initial_boot_params) {
++		setup_dtb(params, params_load_addr, setup_data_offset);
++		setup_data_offset += sizeof(struct setup_data) +
++				     fdt_totalsize(initial_boot_params);
++	} else {
++		pr_debug("Not carrying over DTB, force_dtb = %d\n",
++			 image->force_dtb);
++	}
++#endif
++
+ 	if (IS_ENABLED(CONFIG_IMA_KEXEC)) {
+ 		/* Setup IMA log buffer state */
+ 		setup_ima_state(image, params, params_load_addr,
+@@ -529,6 +564,12 @@ static void *bzImage64_load(struct kimag
+ 				sizeof(struct setup_data) +
+ 				RNG_SEED_LENGTH;
+ 
++#ifdef CONFIG_OF_FLATTREE
++	if (image->force_dtb && initial_boot_params)
++		kbuf.bufsz += sizeof(struct setup_data) +
++			      fdt_totalsize(initial_boot_params);
++#endif
++
+ 	if (IS_ENABLED(CONFIG_IMA_KEXEC))
+ 		kbuf.bufsz += sizeof(struct setup_data) +
+ 			      sizeof(struct ima_setup_data);
+@@ -537,7 +578,7 @@ static void *bzImage64_load(struct kimag
+ 		kbuf.bufsz += sizeof(struct setup_data) +
+ 			      sizeof(struct kho_data);
+ 
+-	params = kzalloc(kbuf.bufsz, GFP_KERNEL);
++	params = kvzalloc(kbuf.bufsz, GFP_KERNEL);
+ 	if (!params)
+ 		return ERR_PTR(-ENOMEM);
+ 	efi_map_offset = params_cmdline_sz;
+@@ -647,7 +688,7 @@ static void *bzImage64_load(struct kimag
+ 	return ldata;
+ 
+ out_free_params:
+-	kfree(params);
++	kvfree(params);
+ 	return ERR_PTR(ret);
+ }
+ 
+@@ -659,7 +700,7 @@ static int bzImage64_cleanup(void *loade
+ 	if (!ldata)
+ 		return 0;
+ 
+-	kfree(ldata->bootparams_buf);
++	kvfree(ldata->bootparams_buf);
+ 	ldata->bootparams_buf = NULL;
+ 
+ 	return 0;
+--- a/include/linux/kexec.h~x86-kexec-carry-forward-the-boot-dtb-on-kexec
++++ a/include/linux/kexec.h
+@@ -395,6 +395,9 @@ struct kimage {
+ 
+ 	/* Information for loading purgatory */
+ 	struct purgatory_info purgatory_info;
++
++	/* Force carrying over the DTB from the current boot */
++	bool force_dtb;
+ #endif
+ 
+ #ifdef CONFIG_CRASH_HOTPLUG
+@@ -461,7 +464,7 @@ bool kexec_load_permitted(int kexec_imag
+ /* List of defined/legal kexec file flags */
+ #define KEXEC_FILE_FLAGS	(KEXEC_FILE_UNLOAD | KEXEC_FILE_ON_CRASH | \
+ 				 KEXEC_FILE_NO_INITRAMFS | KEXEC_FILE_DEBUG | \
+-				 KEXEC_FILE_NO_CMA)
++				 KEXEC_FILE_NO_CMA | KEXEC_FILE_FORCE_DTB)
+ 
+ /* flag to track if kexec reboot is in progress */
+ extern bool kexec_in_progress;
+--- a/include/uapi/linux/kexec.h~x86-kexec-carry-forward-the-boot-dtb-on-kexec
++++ a/include/uapi/linux/kexec.h
+@@ -22,12 +22,16 @@
+  * KEXEC_FILE_ON_CRASH : Load/unload operation belongs to kdump image.
+  * KEXEC_FILE_NO_INITRAMFS : No initramfs is being loaded. Ignore the initrd
+  *                           fd field.
++ * KEXEC_FILE_FORCE_DTB : Force carrying over the current boot's DTB to the new
++ *                        kernel on x86. This is already the default behavior on
++ *                        some other architectures, like ARM64 and PowerPC.
+  */
+ #define KEXEC_FILE_UNLOAD	0x00000001
+ #define KEXEC_FILE_ON_CRASH	0x00000002
+ #define KEXEC_FILE_NO_INITRAMFS	0x00000004
+ #define KEXEC_FILE_DEBUG	0x00000008
+ #define KEXEC_FILE_NO_CMA	0x00000010
++#define KEXEC_FILE_FORCE_DTB	0x00000020
+ 
+ /* These values match the ELF architecture values.
+  * Unless there is a good reason that should continue to be the case.
+--- a/kernel/kexec_file.c~x86-kexec-carry-forward-the-boot-dtb-on-kexec
++++ a/kernel/kexec_file.c
+@@ -255,6 +255,7 @@ kimage_file_prepare_segments(struct kima
+ 	}
+ 
+ 	image->no_cma = !!(flags & KEXEC_FILE_NO_CMA);
++	image->force_dtb = flags & KEXEC_FILE_FORCE_DTB;
+ 
+ 	if (cmdline_len) {
+ 		image->cmdline_buf = memdup_user(cmdline_ptr, cmdline_len);
+_
+
 
