@@ -1,158 +1,253 @@
-Return-Path: <devicetree+bounces-207734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49BD8B309CF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 01:03:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5BE2B309E5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 01:14:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FD371CC8188
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 23:03:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69BD4623130
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 23:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A6312E7F14;
-	Thu, 21 Aug 2025 23:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64B262DC332;
+	Thu, 21 Aug 2025 23:14:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZtagFIkR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rZpOV3X7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C98222CBD9;
-	Thu, 21 Aug 2025 23:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3236F286D50;
+	Thu, 21 Aug 2025 23:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755817240; cv=none; b=EhxWBmuNfsVpj5DaUuAEA0qMPBpk1nh6qv5zMD/Wn2OWV6FBX+wJhB40wGexmBBeydS2BY+uobZmXqrnEHph8k1QODsXQLw16SZV7pdpfIrtxR06QPEJLO2LuCP8vm+MP9jQO125jlRLj2AHTShfLAsEs5HEyrN3q9Gq1wsQDxU=
+	t=1755818063; cv=none; b=GDJwxfcNwoYhz8lagLXrRuVaJqYvcO2yo66UQx3sAIqWboKEVv4WiZKIkekjS8rLN+G4qdbsFP1uwzn18KuwvO8Uaze44wbIfiudKh9+YRfWlJPovfGywRNLrXlNDdFk1lxyYQUjyI6j2SoSsz4qpMn0C7nA0wa2zM5FHsbv4iY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755817240; c=relaxed/simple;
-	bh=7rA8qT8sloOt+Gomxv3Dk1liyMq9TmAjnM4+H4zgnNg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pCEz2w2Bj4Rxm9Xpd4pZvdidZk0cJEAIZSEFYgMoFeZK0Xvl6Ea7q3hgplsKOi+W7ZMEwyeHHTMfkzUPborKvwI6agN/+psW4fg7zhiUCQMJ5YBXUEnJo/ZA8uX33Uld7t/NMccqxS361/RjqI522NzeKI9XR2A1ZPGtKDu5PdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZtagFIkR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6998C4CEEB;
-	Thu, 21 Aug 2025 23:00:39 +0000 (UTC)
+	s=arc-20240116; t=1755818063; c=relaxed/simple;
+	bh=zkvshjcFzWG50O/pScvDURQ9fCVL6bGdtUAFxbZxmO0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=STtt97YgxxdVLoel2rBlY7mEPsHxKfYlvTH9q54Df1mNyKpdj+2cxYU+LEaDl6JeAfO4U7qPefn80vpN3JqCzw3i2IRGs98SslNVFSp9qPlGkee8Ccx9IJ5s7ZRhPBYLG25Ox5MqkCf/qZgpGLmXgqK87cvVJvoDQTDTMKKWz0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rZpOV3X7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8524C4CEEB;
+	Thu, 21 Aug 2025 23:14:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755817239;
-	bh=7rA8qT8sloOt+Gomxv3Dk1liyMq9TmAjnM4+H4zgnNg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ZtagFIkRBhoOh73FBc0x7ALmgqNspRrbh6BmuUp6WEuXtyEux8yoMDvLnF7mWh4gZ
-	 PXE49H392eRD9iyygMGGk/bRgRh/3fIq9WybGzxcJ58hueOJpf08zGfKgyhyKwv5fK
-	 GSt5FuGAcA+rlzqgpfUYEL+Ii2zot892scxQtsyXnYub2/eZupTrCIDFY9o/5l2vMT
-	 weR9WqrCgVZqfSQILqY52+eOQIEHmgWE9FLZpUZze5KkRVikfdG3Y0rF4dl3NAL7xt
-	 4bhWYhO6PYpVy51nDJzd/ibMu0PsFE9UajxHXd0IOnbLX/4DG81W/ooKCDDMdjh2eq
-	 uwCZbECdBkPVw==
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afcb731caaaso227066466b.0;
-        Thu, 21 Aug 2025 16:00:39 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV3Tp4It1mjMipQrbB8xXlLuR7JRa3Vk6ss2OUunRQcCyOF/dcSCoU/JH8p/7Lb1TXF62Eh38CaEIKV@vger.kernel.org, AJvYcCVKTUULhEE3Obvl0G1uL4/pIlArevuuHbwrZWFfXETv9MdUkenK4dYn6b6Au6dU0GqC4KYqVktJwpjK@vger.kernel.org, AJvYcCW1XpzvMR+HwTGfyIkYdLRmY6Ca/3g9/sA1Cp4MpU3PgM5O82EmHsAy8aEVUkqbGmR53S7zcZvI0UbgAfe9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMJAM0b1YPWoCUWm8iMhm40hDXFdwt6olk0B+5bDWp01Rx3awB
-	ojWyc39TGK0oegMV9HR9xraMaIAKRkMGzxWMCuRPSskJ8c83pugLMCCExqJDTkRjEScV/B66qPr
-	ANIfmGbg4fiNcHBQKWzkMat51GR6acQ==
-X-Google-Smtp-Source: AGHT+IH5ReMKgM2/3Os0oHRo+pFjl/n9LIXHNBEW/4vyJJ36lhUYYD+Ni5LGTFHEdqrEFWxNcknX16jT/C8BnP/4Q+Q=
-X-Received: by 2002:a17:907:72d2:b0:af9:8c20:145b with SMTP id
- a640c23a62f3a-afe28f7622amr76678966b.10.1755817238412; Thu, 21 Aug 2025
- 16:00:38 -0700 (PDT)
+	s=k20201202; t=1755818062;
+	bh=zkvshjcFzWG50O/pScvDURQ9fCVL6bGdtUAFxbZxmO0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=rZpOV3X7vM/+xZhBzFZx9X4PJUC7Lr4N8ayg2H5IRAnzb9rBcCe33yEmcE8UQbyNR
+	 yK3CrjDjZA8YSwDMRNS+VM9MmFqoUQ+zb36GYNwHGV3El/BnPxvTQQTAgFnJh0xrQd
+	 AFTOzvJcQV5HENN6MBxREzPkYmIGdo2f3EhgqNh+gYgPh6xRDC6xl57jcnv/uhspwQ
+	 kDXaZJCY/3kQesywbz2PefI9iyzCPD+qEcrDCUkcqL5lSv09FrENYoXvM1NWsk99CR
+	 1RzS12EYK0IajEC0spl1xGT4isw8GPlI57gwytl1Uov/fcRK34IiUOOlPtABl++lfV
+	 eDw1xuNuLXy9Q==
+Date: Thu, 21 Aug 2025 16:14:20 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang
+ <uwu@dram.page>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, Junhui Liu
+ <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v6 2/5] net: spacemit: Add K1 Ethernet MAC
+Message-ID: <20250821161420.7c9804f7@kernel.org>
+In-Reply-To: <20250820-net-k1-emac-v6-2-c1e28f2b8be5@iscas.ac.cn>
+References: <20250820-net-k1-emac-v6-0-c1e28f2b8be5@iscas.ac.cn>
+	<20250820-net-k1-emac-v6-2-c1e28f2b8be5@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250821-atcphy-6-17-v1-0-172beda182b8@kernel.org>
- <20250821-atcphy-6-17-v1-3-172beda182b8@kernel.org> <20250821163320.GE1270980@robin.jannau.net>
-In-Reply-To: <20250821163320.GE1270980@robin.jannau.net>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 21 Aug 2025 18:00:27 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL=y2OT4YrzT8z0O0T2hpM5X1k2pFEb8XjBRPoNMdO5kw@mail.gmail.com>
-X-Gm-Features: Ac12FXwdtTBi83iz9IiQlPSDZ_3W-XM65JsHn03GR3jMgiJWuYGJBjpjvfkth58
-Message-ID: <CAL_JsqL=y2OT4YrzT8z0O0T2hpM5X1k2pFEb8XjBRPoNMdO5kw@mail.gmail.com>
-Subject: Re: [PATCH RFC 03/22] dt-bindings: phy: Add Apple Type-C PHY
-To: Janne Grunau <j@jannau.net>
-Cc: Sven Peter <sven@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Felipe Balbi <balbi@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 21, 2025 at 11:33=E2=80=AFAM Janne Grunau <j@jannau.net> wrote:
->
-> On Thu, Aug 21, 2025 at 03:38:55PM +0000, Sven Peter wrote:
-> > Apple's Type-C PHY (ATCPHY) is a PHY for USB 2.0, USB 3.x,
-> > USB4/Thunderbolt, and DisplayPort connectivity found in Apple Silicon
-> > SoCs.
-> >
-> > The PHY handles muxing between these different protocols and also provi=
-des
-> > the reset controller for the attached dwc3 USB controller.
-> >
-> > Signed-off-by: Sven Peter <sven@kernel.org>
-> > ---
-> >  .../devicetree/bindings/phy/apple,atcphy.yaml      | 210 +++++++++++++=
-++++++++
-> >  MAINTAINERS                                        |   1 +
-> >  2 files changed, 211 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/phy/apple,atcphy.yaml b/=
-Documentation/devicetree/bindings/phy/apple,atcphy.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..eb14010557c94f313b54b52=
-8e2d4039fe540062a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/phy/apple,atcphy.yaml
-> > @@ -0,0 +1,210 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/phy/apple,atcphy.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Apple Type-C PHY (ATCPHY)
-> > +
-> > +maintainers:
-> > +  - Sven Peter <sven@kernel.org>
-> > +
-> > +description:
-> > +  The Apple Type-C PHY (ATCPHY) is a PHY for USB 2.0, USB 3.x,
-> > +  USB4/Thunderbolt, and DisplayPort connectivity found in Apple Silico=
-n SoCs.
-> > +
-> > +  The PHY handles muxing between these different protocols and also pr=
-ovides the
-> > +  reset controller for the attached dwc3 USB controller.
-> > +
-> > +  The PHY is designed for USB4 operation and does not handle individua=
-l
-> > +  differential pairs as distinct DisplayPort lanes. Any reference to l=
-ane in
-> > +  this binding hence refers to two differential pairs (RX and TX) as u=
-sed in USB
-> > +  terminology.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - apple,t6000-atcphy
-> > +      - apple,t6000-atcphy-dp-only # PHY hardwired to DP-to-HDMI conve=
-rter on M2 Pro MacBook
->
-> The comment is misleading, "t6000-atcphy-dp-only" would be for M1
-> Pro/Max Macbooks. M2 Pro/Max Macbooks use the same design so the
-> corresponding "apple,t6020-atcphy-dp-only" compatible is missing.
-> I'm not sure this is the correct design though as the HW block is
-> identical to "apple,t6000-atcphy".
-> I think it might be better to have either the DRM KMS driver or a
-> custom DP->HDMI drm_bridge switch the mode to DP-only.
-> Or atcphy could initialize itself to DP-only based on the available
-> ports.
+On Wed, 20 Aug 2025 14:47:51 +0800 Vivian Wang wrote:
+> +static void emac_tx_mem_map(struct emac_priv *priv, struct sk_buff *skb)
+> +{
+> +	struct emac_desc_ring *tx_ring = &priv->tx_ring;
+> +	struct emac_desc tx_desc, *tx_desc_addr;
+> +	struct device *dev = &priv->pdev->dev;
+> +	struct emac_tx_desc_buffer *tx_buf;
+> +	u32 head, old_head, frag_num, f;
+> +	bool buf_idx;
+> +
+> +	frag_num = skb_shinfo(skb)->nr_frags;
+> +	head = tx_ring->head;
+> +	old_head = head;
+> +
+> +	for (f = 0; f < frag_num + 1; f++) {
+> +		buf_idx = f % 2;
+> +
+> +		/*
+> +		 * If using buffer 1, initialize a new desc. Otherwise, use
+> +		 * buffer 2 of previous fragment's desc.
+> +		 */
+> +		if (!buf_idx) {
+> +			tx_buf = &tx_ring->tx_desc_buf[head];
+> +			tx_desc_addr =
+> +				&((struct emac_desc *)tx_ring->desc_addr)[head];
+> +			memset(&tx_desc, 0, sizeof(tx_desc));
+> +
+> +			/*
+> +			 * Give ownership for all but first desc initially. For
+> +			 * first desc, give at the end so DMA cannot start
+> +			 * reading uninitialized descs.
+> +			 */
+> +			if (head != old_head)
+> +				tx_desc.desc0 |= TX_DESC_0_OWN;
+> +
+> +			if (++head == tx_ring->total_cnt) {
+> +				/* Just used last desc in ring */
+> +				tx_desc.desc1 |= TX_DESC_1_END_RING;
+> +				head = 0;
+> +			}
+> +		}
+> +
+> +		if (emac_tx_map_frag(dev, &tx_desc, tx_buf, skb, f)) {
+> +			netdev_err(priv->ndev, "Map TX frag %d failed", f);
+> +			goto dma_map_err;
+> +		}
+> +
+> +		if (f == 0)
+> +			tx_desc.desc1 |= TX_DESC_1_FIRST_SEGMENT;
+> +
+> +		if (f == frag_num) {
+> +			tx_desc.desc1 |= TX_DESC_1_LAST_SEGMENT;
+> +			tx_buf->skb = skb;
+> +			if (emac_tx_should_interrupt(priv, frag_num + 1))
+> +				tx_desc.desc1 |=
+> +					TX_DESC_1_INTERRUPT_ON_COMPLETION;
+> +		}
+> +
+> +		*tx_desc_addr = tx_desc;
+> +	}
+> +
+> +	/* All descriptors are ready, give ownership for first desc */
+> +	tx_desc_addr = &((struct emac_desc *)tx_ring->desc_addr)[old_head];
+> +	dma_wmb();
+> +	WRITE_ONCE(tx_desc_addr->desc0, tx_desc_addr->desc0 | TX_DESC_0_OWN);
+> +
+> +	emac_dma_start_transmit(priv);
+> +
+> +	tx_ring->head = head;
+> +
+> +	return;
+> +
+> +dma_map_err:
+> +	dev_kfree_skb_any(skb);
 
-Doesn't sound like this should be a different compatible. There's a
-'phy-mode' property or you can define the mode in the 'phys' cells for
-the DP controller.
+You free the skb here.. 
 
-Rob
+> +	priv->ndev->stats.tx_dropped++;
+> +}
+> +
+> +static netdev_tx_t emac_start_xmit(struct sk_buff *skb, struct net_device *ndev)
+> +{
+> +	struct emac_priv *priv = netdev_priv(ndev);
+> +	int nfrags = skb_shinfo(skb)->nr_frags;
+> +	struct device *dev = &priv->pdev->dev;
+> +
+> +	if (unlikely(emac_tx_avail(priv) < nfrags + 1)) {
+> +		if (!netif_queue_stopped(ndev)) {
+> +			netif_stop_queue(ndev);
+> +			dev_err_ratelimited(dev, "TX ring full, stop TX queue\n");
+> +		}
+> +		return NETDEV_TX_BUSY;
+> +	}
+> +
+> +	emac_tx_mem_map(priv, skb);
+> +
+> +	ndev->stats.tx_packets++;
+> +	ndev->stats.tx_bytes += skb->len;
+
+.. and then you use skb here.
+
+> +	/* Make sure there is space in the ring for the next TX. */
+> +	if (unlikely(emac_tx_avail(priv) <= MAX_SKB_FRAGS + 2))
+> +		netif_stop_queue(ndev);
+> +
+> +	return NETDEV_TX_OK;
+> +}
+
+> +static void emac_get_ethtool_stats(struct net_device *dev,
+> +				   struct ethtool_stats *stats, u64 *data)
+> +{
+> +	struct emac_priv *priv = netdev_priv(dev);
+> +	u64 *rx_stats = (u64 *)&priv->rx_stats;
+> +	int i;
+> +
+> +	scoped_guard(spinlock_irqsave, &priv->stats_lock) {
+
+Why is this spin lock taken in irqsave mode?
+Please convert the code not to use scoped_guard()
+There's not a single flow control (return) in any of them.
+It's just hiding the information that you're unnecessarily masking irqs.
+See
+https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#using-device-managed-and-cleanup-h-constructs
+
+> +		emac_stats_update(priv);
+> +
+> +		for (i = 0; i < ARRAY_SIZE(emac_ethtool_rx_stats); i++)
+> +			data[i] = rx_stats[emac_ethtool_rx_stats[i].offset];
+> +	}
+
+> +static void emac_tx_timeout_task(struct work_struct *work)
+> +{
+> +	struct net_device *ndev;
+> +	struct emac_priv *priv;
+> +
+> +	priv = container_of(work, struct emac_priv, tx_timeout_task);
+> +	ndev = priv->ndev;
+
+I don't see this work ever being canceled.
+What prevents ndev from being freed before it gets to run?
+
+> +/* Called when net interface is brought up. */
+> +static int emac_open(struct net_device *ndev)
+> +{
+> +	struct emac_priv *priv = netdev_priv(ndev);
+> +	struct device *dev = &priv->pdev->dev;
+> +	int ret;
+> +
+> +	ret = emac_alloc_tx_resources(priv);
+> +	if (ret) {
+> +		dev_err(dev, "Error when setting up the Tx resources\n");
+> +		goto emac_alloc_tx_resource_fail;
+> +	}
+> +
+> +	ret = emac_alloc_rx_resources(priv);
+> +	if (ret) {
+> +		dev_err(dev, "Error when setting up the Rx resources\n");
+> +		goto emac_alloc_rx_resource_fail;
+> +	}
+> +
+> +	ret = emac_up(priv);
+> +	if (ret) {
+> +		dev_err(dev, "Error when bringing interface up\n");
+> +		goto emac_up_fail;
+> +	}
+> +	return 0;
+> +
+> +emac_up_fail:
+
+please name the jump labels after the destination not the source.
+Please fix everywhere in the driver.
+This is covered in the kernel coding style docs.
+
+> +	emac_free_rx_resources(priv);
+> +emac_alloc_rx_resource_fail:
+> +	emac_free_tx_resources(priv);
+> +emac_alloc_tx_resource_fail:
+> +	return ret;
+> +}
+
 
