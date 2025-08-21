@@ -1,69 +1,54 @@
-Return-Path: <devicetree+bounces-207131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0580AB2E95C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 02:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB3A5B2E990
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 02:45:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E87BD1CC095B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 00:11:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 970451CC2B0A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 00:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D73F1DD543;
-	Thu, 21 Aug 2025 00:10:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="T2XwGjKY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C0531E32B7;
+	Thu, 21 Aug 2025 00:45:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A9F155A30;
-	Thu, 21 Aug 2025 00:10:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F561B4F0E;
+	Thu, 21 Aug 2025 00:45:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755735031; cv=none; b=rgGDznHzTV1ByIqeGw2iCY7BEH7kSwZoDyMrshWkw9QiUnDzF6dunC3aMu1IWhl/rg1R+Rnxu32hO5qa0myBlvtDmgBIHRoljDACWVPP00wiY5bKrJnyQ6ltMmBR4xogmtHBBfL1xb3VoP8BQb4K3OQp5/+LJPdcbcakpQXMKM0=
+	t=1755737144; cv=none; b=aj8Oao9yQUiq6xHa8GNRwdenNzhVIoz+0UkSOYcFIqtKWhcK74Lepn7UUtmGv3G/jLLPWhvEnuYvlcKsq/gnBU/1b8JanBKzHFQXHWXzsUgNUZ9nt+pqq9+S5mvaZtvZJlsZchf69+XCdVvnLnhxrXeCW9+NL3e9efu8w0P2KjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755735031; c=relaxed/simple;
-	bh=0nzu8oC3ffmv9rpSEMOZQJ9N9DYkxzrSgeJVZpSNZ2k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KMaQf6pEsGvUdC+wTXC0J7uI9mwi75/tYz2F+WPnEc4+MmnoVQoTfShXVosbyPKKYUQIXWvL+iZ39wbgYgumdHmDIhGI2aL9FgD8OV7Dp6P/wRnhE5/x5RDfxnk/2Bt6SduU6bXniLNKCuX5Jr1r6zFfvf5aOJ8ciOeUkASL178=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=T2XwGjKY; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 3ADE719E7;
-	Thu, 21 Aug 2025 02:09:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1755734968;
-	bh=0nzu8oC3ffmv9rpSEMOZQJ9N9DYkxzrSgeJVZpSNZ2k=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=T2XwGjKY1G8EOe/98cekbYAiP7GM1P46xs9cuYTWxSO0nCW7AtJK51sGPNevOfihi
-	 NJfDCBj1FN1ADZbDePxnigZ0/x12cbG95OuXLiEdBDU0MdZwL74UBaWcPihA981dvk
-	 PwV+oZdzz1AQFR1OoxrbT9rEfU2pebkQWbagzOj4=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-media@vger.kernel.org
-Cc: Isaac Scott <isaac.scott@ideasonboard.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1755737144; c=relaxed/simple;
+	bh=AFXvlAwoLU5z3YJfxR7cTbix0/9LPU19KpOFnjR4sNw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ne5cic/Gf01rj36r7FtWuxCEqz6+YU/0jfOf/CNRS6b4ubRbY/PrEwGVs3Z7uEyipFccOI1bdogBnF+HfOVQoEnFD7gh1cDL7L/ZyHAY/mOMcNk37a2uI8h+WgMBiUgRaSp3wz0f12t1POpWEkEeWwgnexWwKyblkwee8yNBR6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A454212FC;
+	Wed, 20 Aug 2025 17:45:32 -0700 (PDT)
+Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DEA5B3F63F;
+	Wed, 20 Aug 2025 17:45:38 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
+	Yixun Lan <dlan@gentoo.org>,
+	linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 12/12] arm64: dts: imx8mp: Specify the number of channels for CSI-2 receivers
-Date: Thu, 21 Aug 2025 03:09:44 +0300
-Message-ID: <20250821000944.27849-13-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20250821000944.27849-1-laurent.pinchart@ideasonboard.com>
-References: <20250821000944.27849-1-laurent.pinchart@ideasonboard.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Subject: [RFC PATCH 0/9] pinctrl: sunxi: Allwinner A733 support
+Date: Thu, 21 Aug 2025 01:42:23 +0100
+Message-ID: <20250821004232.8134-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.46.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,38 +57,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The CSI-2 receivers in the i.MX8MP have 3 output channels. Specify this
-in the device tree, to enable support for more than one channel in
-drivers.
+This series adds support for the pinctrl and GPIO IP in the new
+Allwinner A733 SoC.
+With all our abstractions and data structure driven code, life could
+have been so easy, but Allwinner decided to change the layout of the
+MMIO register frame, which requires all kinds of special handling and
+code changes here and there. Hopefully this new layout (which admittedly
+looks more future proof) will stay around for a while, but I am not
+holding my breath on this.
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+In summary, the changes are:
+- Each GPIO bank now occupies 128 bytes instead of just 36 or 48.
+- PortA (not implemented on the A733) starts at offset 0x80, not at 0.
+- The non-bank specific registers are moved into this gap at the
+  beginning.
+- There are two new registers per bank, to set or clear bits in the GPIO
+  data register, to allow for single-write, lockless GPIO settings.
+- The drive level register is moved (to make room for the set/clr regs).
+- The IRQ registers are moved into the now bigger respective bank control
+  registers part, instead of being grouped separately, as before.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index bb24dba7338e..1e52840078df 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1764,6 +1764,7 @@ mipi_csi_0: csi@32e40000 {
- 				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_250M>,
- 							 <&clk IMX8MP_CLK_24M>;
- 				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
-+				fsl,num-channels = <3>;
- 				status = "disabled";
- 
- 				ports {
-@@ -1799,6 +1800,7 @@ mipi_csi_1: csi@32e50000 {
- 				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_250M>,
- 							 <&clk IMX8MP_CLK_24M>;
- 				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
-+				fsl,num-channels = <3>;
- 				status = "disabled";
- 
- 				ports {
+The series follows the usual pattern of refactoring first, to prepare
+for the new MMIO frame layout (patches 1-4), then using the changed code
+to enable support for this new generation, in patch 5/9.
+Patch 6/9 adds support for the one new feature of this SoC's pinctrl IP,
+the lockless GPIO settings feature.
+Patch 7/9 adds the new DT bindings, patch 8/9 enables the secondary
+controller, which curiously is not using the new layout, but looks very
+similar to the secondary A523 pin controller.
+The final patch 9/9 then adds the driver stub file, which just describes
+the GPIO bank configuration and lists the two quirk bits that engage the
+code changes added for the new layout.
+
+Based on v6.17-rc1.
+
+I am marking this as RFC, as I don't have suitable hardware for testing.
+Also I am not 100% convinced the IRQ number to pin mapping, as needed by
+the new IRQ register location, works correctly.
+Please have a look, check whether the changes look sane, and test it if
+you have access to hardware.
+
+A branch (together with the AXP318W PMIC code) is available at:
+https://github.com/apritzel/linux/commits/a733-rfc
+
+Cheers,
+Andre
+
+Andre Przywara (9):
+  pinctrl: sunxi: rename SUNXI_PINCTRL_NEW_REG_LAYOUT
+  pinctrl: sunxi: pass down flags to pinctrl routines
+  pinctrl: sunxi: only use PortK special handling on A523
+  pinctrl: sunxi: refactor IRQ register accessors
+  pinctrl: sunxi: support A733 generation MMIO register layout
+  pinctrl: sunxi: add support for set/clear regs
+  dt-bindings: pinctrl: add compatible for Allwinner A733
+  pinctrl: sunxi: a523-r: add a733-r compatible string
+  pinctrl: sunxi: Add support for the Allwinner A733
+
+ .../allwinner,sun55i-a523-pinctrl.yaml        |  6 +-
+ drivers/pinctrl/sunxi/Kconfig                 |  5 ++
+ drivers/pinctrl/sunxi/Makefile                |  1 +
+ drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c     |  2 +-
+ drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c |  3 +-
+ drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c   |  2 +-
+ drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c   | 51 +++++++++++
+ drivers/pinctrl/sunxi/pinctrl-sunxi.c         | 85 +++++++++++--------
+ drivers/pinctrl/sunxi/pinctrl-sunxi.h         | 76 +++++++++++------
+ 9 files changed, 169 insertions(+), 62 deletions(-)
+ create mode 100644 drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
+
 -- 
-Regards,
-
-Laurent Pinchart
+2.46.3
 
 
