@@ -1,127 +1,178 @@
-Return-Path: <devicetree+bounces-207669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF4BB30583
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 22:31:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CDCEB30592
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 22:32:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B902D188E969
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:28:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6529560A83
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B3282C029C;
-	Thu, 21 Aug 2025 20:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAFE22D7DC4;
+	Thu, 21 Aug 2025 20:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="C2KVTl9D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fzzx2DPw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648D52C029B
-	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 20:11:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D21E2D7DC1;
+	Thu, 21 Aug 2025 20:11:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755807082; cv=none; b=YNsHc9GIDPvkKXCqw9KQGS1qEffi+5psI6mAqLc82fLTJkuzfR2lPLLwG5vNkWPcSwjg5UjkhSsWCXcgdP8VEEH4PdQeABciVvXphQQO5WTww7R2iX90crB/QxCZr5CXGtAojYfWVNtQpjrpm9Ku/0IkX7DnyG+XDrw/+LqBB6Y=
+	t=1755807112; cv=none; b=LBxKfmlD6Dj1tU7LUlogj0X8MeMjdUfEmOedS711RtTbMNVxDPuOMZUrb/+W5UPfmJiQXCwY4z0KR7L749qQMwTfnUniXsXBH/w4Ml0n0q56OQfUfcE5IAbm8gUT0to8/A5oJfA3GaGB1tjhtoef0J1MSL8kv8S4/9f/XaXnBmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755807082; c=relaxed/simple;
-	bh=YQGvu8WTmPCPzqWakZNI87hlIRMhqvvRz4WlHiv/L3E=;
+	s=arc-20240116; t=1755807112; c=relaxed/simple;
+	bh=7UOumc/dJtyyg/QHnSWjD+BJvJ9yDJg2TGgCVbIk6CM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZoRe9KZzuovXrd7QuZ1DH31OoXhCAUt/hGmf2p0KVFf+Ii8fkcqwokmfR2H+j1+OZVTcNwtd1xgu9FUtbs6YLvK/b4FQjM2Suu4aIFa+hrZQdPHCIC0OlXrup1eO/sjLKj7E3h0AQEE82vDVhT195/J7GLoe3y6klxiR2CcYiGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=C2KVTl9D; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=45/oL7TH5+TGvWd8PazpVpDzPuV3807fNqnSSyv5vlE=; b=C2KVTl9Dlq7FMvTgORUrh43h8q
-	0gozHCii4BfC9lUpgox1CnoDP9nxCwjv0l/HrKnsAXnHyECWvWUprDtPOd8xfjQphKKE4LfDEsTg9
-	9zkADyLw1XZXh9gyS8MFIjjkVVqDE/txbb9SSmOfDIuyUip1h+SC/04rVId9xR+51YPKKvG71qcJL
-	SruIRj0e9JC4HAcjXKZ5LCydV1xrUuq5HqOihi4ZFJP4MVyo/8wHiRnWOqzj6UIDmZgJRqVPpc9bz
-	hVklpy/uWsV5T8lJ8LQbLKhBkriq8wqAC0RZ6ZYYqYWs82jQp8XBQIFEZXA452ja7HUBv1RlpHZ4Q
-	wx7U30qQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56772)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1upBcz-000000001bF-1JAE;
-	Thu, 21 Aug 2025 21:11:17 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1upBcx-000000001NS-3Mk2;
-	Thu, 21 Aug 2025 21:11:15 +0100
-Date: Thu, 21 Aug 2025 21:11:15 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Gregory Clement <gregory.clement@bootlin.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=lUWfjXs53Ket06dTowXE1WvdWTATldTHmHq0BNp2PmurdlM+8agbSQS5bY1vUblXg3aF/PjQtqAgSQMMNK4ZqKFP9/DQIXgAtxsii8Iwzxm4LXg26j+YLTSkeYNxehT89dF+GIDnSIs0LL7uJgEHWpdIiubuklRaF+iQ+mp9XZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fzzx2DPw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDEADC113CF;
+	Thu, 21 Aug 2025 20:11:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755807112;
+	bh=7UOumc/dJtyyg/QHnSWjD+BJvJ9yDJg2TGgCVbIk6CM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fzzx2DPw9mcPZMFjVVeE3vDfbB+KsTvTOnjiRss1yZIQQxDOGeQpx3470+JJWdfsO
+	 i1sriDdf22FFpp1If8dgdkNQL4vNBD4Cn5YKOPkKmm0KtBBoWaU13VzG/Zmxjehg8Q
+	 fNR+hoVptU7F4jnjPJ+lJ0sSYjpd5MOeiMuWnY3UImZtXq1Hrxtx72eDNAKimjhO1F
+	 XXth8RidvFkZmsKxU3c1knwY4UBeSmKZYRBZ79V3005xl8WsVLeuk0pzz7zBNps05W
+	 Fz2hQUQaw7Vw9LBHELUopkY2fTVbb0uAe+wJNQRaS12AIzxsan3ATUJjt/YmFOA3Y2
+	 RMAIs7/8XrHSA==
+Date: Thu, 21 Aug 2025 21:11:46 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: =?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH v2] ARM64: dts: mcbin: fix SATA ports on Macchiatobin
-Message-ID: <aKd9Y4pQ7pMFL3iY@shell.armlinux.org.uk>
-References: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
- <aKdgHGElBEyHeP67@shell.armlinux.org.uk>
- <A598C273-6EEA-4F86-8E5E-A07F80295AA6@public-files.de>
- <4d7d6e91-7ebe-4efa-8c52-949004a20812@lunn.ch>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+	Boris Gjenero <boris.gjenero@gmail.com>,
+	Christian Hewitt <christianshewitt@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Paolo Sabatino <paolo.sabatino@gmail.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v3 4/4] MAINTAINERS: Add entry for TM16xx driver
+Message-ID: <20250821-hardener-underpay-e30d1eb6de6b@spud>
+References: <20250820163120.24997-1-jefflessard3@gmail.com>
+ <20250820163120.24997-5-jefflessard3@gmail.com>
+ <CAHp75VfyR0cjnC6C6Xy8x9nTREdAgbjo18RLYNRzoLc6KmXnTA@mail.gmail.com>
+ <20250820-clock-easiness-850342f716f3@spud>
+ <CAHp75Ve-bM5ax3=0JkmaU-Kx1ME3VW34=Eqp2bRBA6mO6nZHmg@mail.gmail.com>
+ <20250821-diminish-landlord-653a876e3cec@spud>
+ <CAHp75VcDDCjt4vTpnSCprfAzK+czJiB_PRDXuLkvtuHZg4SLEw@mail.gmail.com>
+ <CAHp75VfVYkmYFHdQgs1+3=jy50SuOaEXcT8Q8qXS34ctxRYKbg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="knF+Ka0cSC/ofLUy"
 Content-Disposition: inline
-In-Reply-To: <4d7d6e91-7ebe-4efa-8c52-949004a20812@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <CAHp75VfVYkmYFHdQgs1+3=jy50SuOaEXcT8Q8qXS34ctxRYKbg@mail.gmail.com>
 
-On Thu, Aug 21, 2025 at 08:25:21PM +0200, Andrew Lunn wrote:
-> > Hi,
-> > 
-> > I sent it at least twice..maybe this new was added in between.
-> > But i have no marvell board for testing so i cannot verify my changes are correct.
-> > I only tried to fix binding errors.
-> > regards Frank
-> 
-> You might be able to use ./scripts/dtc/dtx_diff
-> 
-> Generate the DTB before the change and after, and they should be
-> identical if the disable in the dtsi is correctly re-enabled in the
-> .dts file.
 
-I'm not sure that would help, because before Frank's patch, there were
-no "status" properties in any of the sata-port nodes. After Frank's
-patch, we end up with a mixture of "okay" and "disabled" depending
-on whether the port is actually used - and the problem here is catching
-all those that are actually being used on the hardware. In other words,
-those notes that should have status = "okay" rather than status =
-"disabled" added to them.
+--knF+Ka0cSC/ofLUy
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-As I just stated, using grep:
+On Thu, Aug 21, 2025 at 10:35:07PM +0300, Andy Shevchenko wrote:
+> On Thu, Aug 21, 2025 at 10:33=E2=80=AFPM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> > On Thu, Aug 21, 2025 at 8:40=E2=80=AFPM Conor Dooley <conor@kernel.org>=
+ wrote:
+> > > On Wed, Aug 20, 2025 at 11:29:47PM +0300, Andy Shevchenko wrote:
+> > > > On Wed, Aug 20, 2025 at 10:52=E2=80=AFPM Conor Dooley <conor@kernel=
+=2Eorg> wrote:
+> > > > > On Wed, Aug 20, 2025 at 10:08:06PM +0300, Andy Shevchenko wrote:
+> > > > > > On Wed, Aug 20, 2025 at 7:31=E2=80=AFPM Jean-Fran=C3=A7ois Less=
+ard
+> > > > > > <jefflessard3@gmail.com> wrote:
+> > > > > >
+> > > > > > Besides the missing commit message, the main part of this patch=
+ should
+> > > > > > be merged with the patch 2 where the YAML file is being added.
+> > > > > > Otherwise it will be a dangling file. I dunno if DT tooling has=
+ its
+> > > > > > own concept of a maintainer database, though.
+> > > > >
+> > > > > get_maintainer.pl will pull the maintainer out of the file, so it=
+ won't be
+> > > > > truly dangling without a way to associate Jean-Fran=C3=A7ois with=
+ this file, if
+> > > > > that;s what you mean.
+> > > >
+> > > > Let's assume patch 2 is applied and patch 4 is not, what will be the
+> > > > result of get_maintainer.pl for the YAML file?
+> > >
+> > > Andy Shevchenko <andy@kernel.org> (maintainer:AUXILIARY DISPLAY DRIVE=
+RS)
+> > > Geert Uytterhoeven <geert@linux-m68k.org> (reviewer:AUXILIARY DISPLAY=
+ DRIVERS)
+> > > Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED=
+ DEVICE TREE BINDINGS)
+> > > Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AN=
+D FLATTENED DEVICE TREE BINDINGS)
+> > > Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLAT=
+TENED DEVICE TREE BINDINGS)
+> > > "Jean-Fran=C3=A7ois Lessard" <jefflessard3@gmail.com> (commit_signer:=
+1/1=3D100%,authored:1/1=3D100%,added_lines:471/471=3D100%,in file)
+> > >                                                                      =
+                                               ^^^^^^^
+> >
+> > Which is a git lookup heuristics. If you disable that, there is no
+> > maintainer for the file. Try with --m and --no-git (IIRC the option
+> > name).
 
-$ grep -rA4 sata-port@ arch/arm64/boot/dts/marvell
+Also, I think linewrap might done some fuckery cos it was the
+"in file" I was pointing to, pretty sure that's not coming from git.
+I tried ./scripts/get_maintainer.pl --nogit --nogit-fallback -f Documentati=
+on/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
+(I think --nogit-fallback is the salient option, --nogit is a default
+actually) and I got:
+Andy Shevchenko <andy@kernel.org> (maintainer:AUXILIARY DISPLAY DRIVERS)
+Geert Uytterhoeven <geert@linux-m68k.org> (reviewer:AUXILIARY DISPLAY DRIVE=
+RS)
+Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVIC=
+E TREE BINDINGS)
+Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLAT=
+TENED DEVICE TREE BINDINGS)
+Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED =
+DEVICE TREE BINDINGS)
+"Jean-Fran=C3=A7ois Lessard" <jefflessard3@gmail.com> (in file)
+                                                  ^^^^^^^
+and the in file still appears.
+devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TR=
+EE BINDINGS)
+linux-kernel@vger.kernel.org (open list)
+AUXILIARY DISPLAY DRIVERS status: Odd Fixes
 
-is sufficient to find all the locations in the dts(i) files that have
-a sata-port node defined, and in the context gives the rest of the
-node properties, thus showing whether there is a status property present
-or missing.
+> Actually doesn't checkpatch complain in this case?
 
-This is _exactly_ how I've identified that there are two more platforms
-that are similarly broken.
+The usual warning about MAINTAINERS appears ye, the one that appears
+whenever a file is moved, created or deleted. I personally don't care
+about that, as long as the end result of a series deals with it since
+the file will produce the correct maintainer list in a bisection etc
+anyway. Of course, your subsystem your prerogative.
 
-This is not something that one can trivially check by doing a boot test
-on platforms - I missed it despite booting the kernel on another
-Macchiatobin as it's only a single kernel message amongst many that
-says that something's wrong.
+--knF+Ka0cSC/ofLUy
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The only real way of doing this kind of change is to use grep and
-similar to check that all sites have been caught.
+-----BEGIN PGP SIGNATURE-----
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKd9ggAKCRB4tDGHoIJi
+0rumAP9De46/73MOVgngZyV5AK9LyWOXePmU5X0dCUT8/XjpKwEAnsRD5eJ+kjTt
+lmla59yRJHpp9dIezZkkESz+KLp6rg0=
+=Lif/
+-----END PGP SIGNATURE-----
+
+--knF+Ka0cSC/ofLUy--
 
