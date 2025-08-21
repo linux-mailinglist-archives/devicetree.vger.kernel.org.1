@@ -1,152 +1,122 @@
-Return-Path: <devicetree+bounces-207430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6CC3B2F695
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:28:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A803B2F6A7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 13:30:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B04A71CC7952
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:27:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 069F55A19AB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 11:27:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8C9331AF20;
-	Thu, 21 Aug 2025 11:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAFF130E853;
+	Thu, 21 Aug 2025 11:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C16JoFy9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ACKT920q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E2C431985A;
-	Thu, 21 Aug 2025 11:25:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E9330BF76
+	for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 11:27:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755775551; cv=none; b=U3h9973dYhfvBuRdRthLukWDH9cDaCKpQIP8OaHdrP7k9tjPbOYGObA4PW0AHNE6vi6LZQRxIjJp8n95bx1l+v8fqkpYc1SVATz5xW7SgGyDXIWWH9g+SsW1V1R+IDUQZmM8y+hzJJu2kcjsIeHbQCBu/B64Zq/9FNOaIUIzTvQ=
+	t=1755775639; cv=none; b=tTt0aIz/CCLiA6DtMrWvIMBs5Kmz00RzQdSttTX1gClwgB9T6UrqaYjhDikUU0/N9zdoxl/juwYDZoF5Ms2ym8Leg0IN+B5gmzbLOha6fu8WFJ1mRq+PuDcpwmBdVr583eI9GZYDSC/n0CFrwsUg78+N/Zy8nPl3b1J5kKLYlKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755775551; c=relaxed/simple;
-	bh=DQI5PFOftteEpgUgGsM1ZTHGhuKliyoVKDfrACcNPWo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M94xbX34tzBPUGI/NlfkR6yA3Vbp3HBmW+uh0A05/c0bmJU4zNHSQkELC2CSVxxiub6w1b2YP2mZRk8bbR/SfUWMllN5Jf7SIxY8lIBr44inEiw2MBxIHzkt3/rZ/ZcCau9ZJ5py4JbXso2lp/mAIbLL9jeYO59BuI3f6lZpdvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=C16JoFy9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57L9bCFE015666;
-	Thu, 21 Aug 2025 11:25:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3XMdxPyMUKzLOCLIVG29pgB5DIDRNKXHxpZB0AYQFL0=; b=C16JoFy9Y0J5BsUo
-	cSCDw9ntpx3R1/pzZxPs6ArHW9ZAoZnMNCoo2qCmEBBZjPu8z7ADBZBwm8iZDrhG
-	mOL4FpyvUVtCu/jA6R7Z3looYxKtIcwWTsRZ3oPJg32IMoV0RTUyMEXKCUiKA96t
-	UmMdfRMBBOltl3/jBBWH2UoM8CRWj6mWhnd8m7D0HbQyYZC3RI99ZRc2CvGL7MQZ
-	VfHcuzzW/KhagMtHbUhR9381Z2dIHT0pIjvWY+PZF+h/Aqa+lgIVX1gBmgbQFRZt
-	Tf5+XaQ4ejboHZoT2GG97cMvEdOZjbKf4eZfaKSs/m+i0x6YDD6J/jicsM+qfY/C
-	9Jbmmw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52955kb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Aug 2025 11:25:17 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57LBPGsm029368
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Aug 2025 11:25:16 GMT
-Received: from hu-rdwivedi-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Thu, 21 Aug 2025 04:25:12 -0700
-From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <mani@kernel.org>,
-        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>
-Subject: [PATCH V3 5/5] arm64: dts: qcom: sm8750: Enable MCQ support for UFS controller
-Date: Thu, 21 Aug 2025 16:54:03 +0530
-Message-ID: <20250821112403.12078-6-quic_rdwivedi@quicinc.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250821112403.12078-1-quic_rdwivedi@quicinc.com>
-References: <20250821112403.12078-1-quic_rdwivedi@quicinc.com>
+	s=arc-20240116; t=1755775639; c=relaxed/simple;
+	bh=2iuhQehcGJ/STLL1wVwziWidGXccPhxvPLuOUY7+u3Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SMlMIKwdcJMbJlBOJvaTv1/t6xJRZeWRMeewwC5DQWDuGz7XX3vit5j2EbfCD8Nc8uCS8YHCB8POpFSJJpdO6UYf/Bc4aUOxRvsnw4fx+4V/1qX0yw2duzghO0FoeVu/1FtcXPbY0mHkzPQy1t6GswUI5N4GH3CHWTShr63Xkb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ACKT920q; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-55ce5090b1cso804089e87.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 04:27:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755775635; x=1756380435; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2iuhQehcGJ/STLL1wVwziWidGXccPhxvPLuOUY7+u3Q=;
+        b=ACKT920qQiAd6VgrDZoeSP9T5ju8bLYhTZQVbegXxugi68H7x9K3HNxnB5qfatoho4
+         9Uc9HqfLTeBngZRWRYZNufcm3st5bEqU/cHCxcCzzPq5L6DtN6mJQzFgIkZhwgWXso6/
+         Qfg1ovAePCbYdYQZaZF3P0qV/OJRad1WDvDvW3RyPRMn/hp2t99np+dyIuNTFvhqE5+v
+         yXijG82JAdK03KNicdw9RJ81ebZZISm9FJHBX/bwifACDlANFkqL14TDECxWHzClSek3
+         8Avha6w1N5awtfvIb/pU39z1/rxaqrC2ROkbTiv8rojq7XbM0u5lqxAGPEy1DU4B1CUZ
+         foxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755775635; x=1756380435;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2iuhQehcGJ/STLL1wVwziWidGXccPhxvPLuOUY7+u3Q=;
+        b=BFmPcdqC0Hu6j+qnz3zMgsR4QWV14aIHIBxW7mLbWyd7JbtEyO2Ds1plhlvBuIPAOj
+         AZyaX57y8o6X1SI682ZMSxshh62Afmbm4SK9RCpoCo8zHYk7uztYdQtDus3DX/OcRzJE
+         vmOqrAnayeoaTLkpXs/0M2OpJN03hEfvU1kWEBAWsPljImOQOQaDEk/+cSZTKyX0aSiC
+         Be4R8Kq8d1rkZfRNUYbobzT4lzu3IyEI3CNk/Py9oHXEmSevFlf8Td68CsSm96kT7zhp
+         uQDrbG6Ryq4/V/lhaNQPxo0iY7gmG4kxfhlnpj6MZDDf0LlRMKd7zPld9/lnMHYNNzCZ
+         vCng==
+X-Forwarded-Encrypted: i=1; AJvYcCXmalIneB12dFaDhEGYUtcXt6vdgGHcRQ/9dQh5K8vz3Imtyr2BcegQh2jaitdGBgpolghyMZ6CJV8c@vger.kernel.org
+X-Gm-Message-State: AOJu0YyX4P4PiEmhPMoiN+Jm0UOBAvYz6WBqffenakKWkWQeyPMzioMn
+	KY/DJyecvbO+QRQvZEvgBAuQbilxgD/HtvaRJ9hx92+k/S0YzLjNDNzBMrPE7wXt0yu21VAAMvE
+	XrjdRdOe4uJtpeuM1jNQPP5AExKdJYWtPtgIfbEF+2bCcfCAItawt4jg=
+X-Gm-Gg: ASbGnct2vZiQERsmkLVWS3oYFmTSYRnfmoN52YhHYWlzcw4EfWnlnDTUvppv1uLIuvl
+	nGKf/1gWGThwdoRNJzhUXq6IRTWacnJG4bHskg9nVRzJkRY94cDOXEk0EQsk9Ul0JOwr2xCPEkn
+	eQ9Pv1DDlGoQIP7APHcnB4fpleCdqZL9HVnV8nWUs5ccxgVH7Ky8fRlEAeVS4bp3h6KLQhCBr08
+	2B3p1U=
+X-Google-Smtp-Source: AGHT+IHfxoqcChsLfygBUpUWn2PCNNKaUpVfkw0VSrAeJy75AQZfqbB6MGhf72lV5Y0Gxx16LXjumAnruYNQwdN8gFk=
+X-Received: by 2002:a05:6512:2284:b0:553:d702:960c with SMTP id
+ 2adb3069b0e04-55e0d5c59f0mr805985e87.56.1755775635103; Thu, 21 Aug 2025
+ 04:27:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=Aui3HO9P c=1 sm=1 tr=0 ts=68a7021d cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=lw8srnNUBVFv889I-LYA:9
- a=TjNXssC_j7lpFel5tvFf:22 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-ORIG-GUID: D3LI--i-AweVs-y4jotR_8ZHBgDnWJI6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX3Tt7EUNtJAj4
- DAbMZVY8R+BGh1W5eadX7KNl6KJQ1QuJITxcEpQmTFz+5Ly08C2Yd8hoX1y7NdeuJGkmuFemOLu
- t0nd15P5ehYceiSA0OJpH8VfDJynPqjsAjJj73MmFUltmhyHWeSGE4z3XNteLkg7FjJVkvuYt0k
- ETQuJWhBAiBbJjy+gWXQO6J8tsgbDZIVBBzSvVNZoi5Xsn5LdiwYy1WI8HxF5dDj0+2UA1HlEkf
- cVcr/l6Z/3YKtRFAP0CGD1M0cRBpC5Mk3UoD3/SzOOqGqQ5MGAp16YfO9QPpSu7BqaHkhaqAyv+
- zGskkKz/lMzHliqfMuOz9uX4aCXIAxjwAtBOS/6NBRH4ihYq0pF+7BWz5EZ0MiR+d56IqWNXaEj
- yJ5JKSjEVN41k4L8VDY3jZytr8sLeQ==
-X-Proofpoint-GUID: D3LI--i-AweVs-y4jotR_8ZHBgDnWJI6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-21_03,2025-08-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
- priorityscore=1501 adultscore=0 suspectscore=0 malwarescore=0 bulkscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2508110000
- definitions=main-2508200013
+References: <20250811163749.47028-2-ziyao@disroot.org> <20250811163749.47028-4-ziyao@disroot.org>
+ <CACRpkdZp8FLrxgkeZ=xzSPgny51iDZ3KRCrxpoSdgF8_=df=KQ@mail.gmail.com> <aKRw1pEUUwd4cQoW@pie>
+In-Reply-To: <aKRw1pEUUwd4cQoW@pie>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 21 Aug 2025 13:27:03 +0200
+X-Gm-Features: Ac12FXx9O5o9dI7NgdWBP_7YslWNrW827bj2s6nLtLSzojwBRCZi2QrMsWTrODw
+Message-ID: <CACRpkdZCs6u6Tyos_ufBoeZ9V+51btEQ2wbPv1GRp5RNGZcUyA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] pinctrl: ls2k0300: Support Loongson 2K0300 SoC
+To: Yao Zi <ziyao@disroot.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
+	WANG Xuerui <kernel@xen0n.name>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
+	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Palash Kambar <quic_pkambar@quicinc.com>
+On Tue, Aug 19, 2025 at 2:41=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
 
-Enable Multi-Circular Queue (MCQ) support for the UFS host controller
-on the Qualcomm SM8750 platform by updating the device tree node. This
-includes adding new register region for MCQ and specifying the MSI parent
-required for MCQ operation.
+> > Which is fine if the pins actually cannot be used for GPIO, but if they
+> > can, and this is just implicit for unconfigured pins ... then add
+> > functions and groups for GPIO.
+>
+> For 2K0300, we want these pins to be able to multiplexed as GPIOs, but
+> since this pinctrl driver could configure nothing for GPIO mode pins, I
+> think it's enough to implement only the gpio_request_enable() callback
+> and do the multiplexing work here, is this correct?
 
-Signed-off-by: Palash Kambar <quic_pkambar@quicinc.com>
-Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sm8750.dtsi | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Yes that is the quick and elegant solution.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-index 79ca262f5811..e55edc0a6e6e 100644
---- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-@@ -3329,7 +3329,10 @@ ufs_mem_phy: phy@1d80000 {
- 
- 		ufs_mem_hc: ufs@1d84000 {
- 			compatible = "qcom,sm8750-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
--			reg = <0x0 0x01d84000 0x0 0x3000>;
-+			reg = <0x0 0x01d84000 0x0 0x3000>,
-+			      <0x0 0x1da0000  0x0 0x15000>;
-+			reg-names = "std",
-+				    "mcq";
- 
- 			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
- 
-@@ -3363,11 +3366,12 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 					     "cpu-ufs";
- 
- 			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
-+
- 			required-opps = <&rpmhpd_opp_nom>;
- 
- 			iommus = <&apps_smmu 0x60 0>;
- 			dma-coherent;
--
-+			msi-parent = <&gic_its 0x60>;
- 			lanes-per-direction = <2>;
- 
- 			phys = <&ufs_mem_phy>;
--- 
-2.50.1
+> I originally thought it's okay to multiplex pins as GPIO with an usual
+> pinctrl configuration, and didn't realize that it causes conflicts on
+> strict controllers since the pin will be claimed by both pincontroller
+> and GPIO controller. Thanks for the reminder.
 
+This is true as well, some drivers use an explicit "gpio" function
+and for these the the new .function_is_gpio() callback is especially
+helpful.
+
+I think it is helpful if you're using the callbacks too (we can
+determine if we're already in GPIO mode) but it's not necessary.
+
+Yours,
+Linus Walleij
 
