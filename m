@@ -1,98 +1,158 @@
-Return-Path: <devicetree+bounces-207733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B514B3098C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 00:46:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49BD8B309CF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 01:03:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A13A6212C4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 22:46:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FD371CC8188
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 23:03:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 744FA2EAD14;
-	Thu, 21 Aug 2025 22:43:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A6312E7F14;
+	Thu, 21 Aug 2025 23:00:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="amuhykT/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZtagFIkR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446012EA726;
-	Thu, 21 Aug 2025 22:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C98222CBD9;
+	Thu, 21 Aug 2025 23:00:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755816205; cv=none; b=nR/jGDrHKeBlxr8MjrqD7i0eVuKIAroOHI1+298dC3OxONMlzY/ME9p31uoFt6MBuUTLcGvN7SpoyKvSebMBupw4hZUBV/uod2YMkS228Ux+ksMXw8NTDhsTY7MNWWlcbp+kPPuMsVDM1BNVcDuqNRNJ8HE9yrOENKMBuY7UM7M=
+	t=1755817240; cv=none; b=EhxWBmuNfsVpj5DaUuAEA0qMPBpk1nh6qv5zMD/Wn2OWV6FBX+wJhB40wGexmBBeydS2BY+uobZmXqrnEHph8k1QODsXQLw16SZV7pdpfIrtxR06QPEJLO2LuCP8vm+MP9jQO125jlRLj2AHTShfLAsEs5HEyrN3q9Gq1wsQDxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755816205; c=relaxed/simple;
-	bh=0XbwMb6mfin25nqVmVGrS3TJAQ9t4OcYnRFmV8vF+TI=;
+	s=arc-20240116; t=1755817240; c=relaxed/simple;
+	bh=7rA8qT8sloOt+Gomxv3Dk1liyMq9TmAjnM4+H4zgnNg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WnhrkYpYgnyMgn1hhsdkQ00kzYA7GabvXOnF8U2z+WBFhEYQdjfLmFVrfSfvbefZiUYxAK41oVIQU1q9RYQlhEGOiZkizvK28oPd+5zs8TLX1nWiq803P4uNhQ7iApnqJo1izXKyf49Pqz5M1Z0aNVh17ALR79pLrDIevWkQn4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=amuhykT/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B50E0C4AF0B;
-	Thu, 21 Aug 2025 22:43:24 +0000 (UTC)
+	 To:Cc:Content-Type; b=pCEz2w2Bj4Rxm9Xpd4pZvdidZk0cJEAIZSEFYgMoFeZK0Xvl6Ea7q3hgplsKOi+W7ZMEwyeHHTMfkzUPborKvwI6agN/+psW4fg7zhiUCQMJ5YBXUEnJo/ZA8uX33Uld7t/NMccqxS361/RjqI522NzeKI9XR2A1ZPGtKDu5PdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZtagFIkR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6998C4CEEB;
+	Thu, 21 Aug 2025 23:00:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755816204;
-	bh=0XbwMb6mfin25nqVmVGrS3TJAQ9t4OcYnRFmV8vF+TI=;
+	s=k20201202; t=1755817239;
+	bh=7rA8qT8sloOt+Gomxv3Dk1liyMq9TmAjnM4+H4zgnNg=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=amuhykT/6bNl92qycxjo47EVZhzUA0e1iADgBLIPhuY6UAix9Wo8dl1CVaPx5knEw
-	 mUFsbfRFgwb7MyLDGPcZaWZ+pZG4jnpIahOHvFysCbuvjSR/v7rOehquS3TEoeesCB
-	 7/XlSuRgxFUTyoYiv/UZMN6ATtX80HlIc8c4w9/SIHN2HSLOeArcXf7eXV070BVZBf
-	 hDGiqYoU3D7rAuMjQUdtcOvPZcW4myQBcFPoqCv2TWnlHxMCFVVl2NyMV4XmqS5dPG
-	 RF+2nHPP2T4+BIF5JxutNhAAZQ9KwGMi4MaXVNjIgzQ2Y+UUdrSi/5ewxdsoMXRAB1
-	 pVGryf1fQR4ZQ==
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-afcb79db329so218975766b.2;
-        Thu, 21 Aug 2025 15:43:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUfz0c1qZhuC4XBAp9kV5LQgY6lvgHJrzivhDIK3Upd04Aa00NK8iqspEyMMnSzH/YmNToFi4Kn/Kay@vger.kernel.org, AJvYcCV5AFXnEFtLXdeaskCBGoc36pWuo2q+ctjIBrPItroXGBssigwkyjeqF1nqtFaS+m7mo+QJv2R91R0k@vger.kernel.org, AJvYcCXHEYaT3qRDMcXlyA5RsaK79htmgJxRHbsRrR7XYZaAWUeRKX1IisA0FspwhGuOoKVv5OSODAYXl4HcZB/J@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyjf9MYVXZ+7RIeyCEfRXxq71e3CNPt+e9KEoVERUxaqNHrXjyK
-	NGZwhBgLTESM3YqiLNVMo1wcyuaGbWlab0h/VgPwPMwhP/33D6qMrxFV0/JiLo0l+lF7FT/8rXp
-	Q1BW0XMRCpwsxJAettPQhuE76Eum45g==
-X-Google-Smtp-Source: AGHT+IH5yQMQji2hRsT6QwRFxddQ2y8BE8bx5gJJ7gFL6eR9s/SUuEMn0KPKpJsw1jIA0I1WxumHVB9d6lrVFiKy6WE=
-X-Received: by 2002:a17:907:6e91:b0:adb:4342:e898 with SMTP id
- a640c23a62f3a-afe28f6a89bmr73376466b.28.1755816203289; Thu, 21 Aug 2025
- 15:43:23 -0700 (PDT)
+	b=ZtagFIkRBhoOh73FBc0x7ALmgqNspRrbh6BmuUp6WEuXtyEux8yoMDvLnF7mWh4gZ
+	 PXE49H392eRD9iyygMGGk/bRgRh/3fIq9WybGzxcJ58hueOJpf08zGfKgyhyKwv5fK
+	 GSt5FuGAcA+rlzqgpfUYEL+Ii2zot892scxQtsyXnYub2/eZupTrCIDFY9o/5l2vMT
+	 weR9WqrCgVZqfSQILqY52+eOQIEHmgWE9FLZpUZze5KkRVikfdG3Y0rF4dl3NAL7xt
+	 4bhWYhO6PYpVy51nDJzd/ibMu0PsFE9UajxHXd0IOnbLX/4DG81W/ooKCDDMdjh2eq
+	 uwCZbECdBkPVw==
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afcb731caaaso227066466b.0;
+        Thu, 21 Aug 2025 16:00:39 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV3Tp4It1mjMipQrbB8xXlLuR7JRa3Vk6ss2OUunRQcCyOF/dcSCoU/JH8p/7Lb1TXF62Eh38CaEIKV@vger.kernel.org, AJvYcCVKTUULhEE3Obvl0G1uL4/pIlArevuuHbwrZWFfXETv9MdUkenK4dYn6b6Au6dU0GqC4KYqVktJwpjK@vger.kernel.org, AJvYcCW1XpzvMR+HwTGfyIkYdLRmY6Ca/3g9/sA1Cp4MpU3PgM5O82EmHsAy8aEVUkqbGmR53S7zcZvI0UbgAfe9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMJAM0b1YPWoCUWm8iMhm40hDXFdwt6olk0B+5bDWp01Rx3awB
+	ojWyc39TGK0oegMV9HR9xraMaIAKRkMGzxWMCuRPSskJ8c83pugLMCCExqJDTkRjEScV/B66qPr
+	ANIfmGbg4fiNcHBQKWzkMat51GR6acQ==
+X-Google-Smtp-Source: AGHT+IH5ReMKgM2/3Os0oHRo+pFjl/n9LIXHNBEW/4vyJJ36lhUYYD+Ni5LGTFHEdqrEFWxNcknX16jT/C8BnP/4Q+Q=
+X-Received: by 2002:a17:907:72d2:b0:af9:8c20:145b with SMTP id
+ a640c23a62f3a-afe28f7622amr76678966b.10.1755817238412; Thu, 21 Aug 2025
+ 16:00:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250821215703.869628-1-robh@kernel.org> <20250821215703.869628-2-robh@kernel.org>
- <CACRpkdY5Oi6sM8i2OQFkSYUQ-Wwi4FTD3Q3uQ=C6BJyTo8FPKQ@mail.gmail.com>
-In-Reply-To: <CACRpkdY5Oi6sM8i2OQFkSYUQ-Wwi4FTD3Q3uQ=C6BJyTo8FPKQ@mail.gmail.com>
+References: <20250821-atcphy-6-17-v1-0-172beda182b8@kernel.org>
+ <20250821-atcphy-6-17-v1-3-172beda182b8@kernel.org> <20250821163320.GE1270980@robin.jannau.net>
+In-Reply-To: <20250821163320.GE1270980@robin.jannau.net>
 From: Rob Herring <robh@kernel.org>
-Date: Thu, 21 Aug 2025 17:43:10 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+gty=zHMnaOd9COh-vjAxHenQWtbn9EczA73qGbfzCSQ@mail.gmail.com>
-X-Gm-Features: Ac12FXwunv16yw6bnZIocD2VS8MWHN95_HSfSlaZ39HW0byBPg8Z-HL8ztuaLxk
-Message-ID: <CAL_Jsq+gty=zHMnaOd9COh-vjAxHenQWtbn9EczA73qGbfzCSQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] rtc: x1205: Fix Xicor X1205 vendor prefix
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+Date: Thu, 21 Aug 2025 18:00:27 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL=y2OT4YrzT8z0O0T2hpM5X1k2pFEb8XjBRPoNMdO5kw@mail.gmail.com>
+X-Gm-Features: Ac12FXwdtTBi83iz9IiQlPSDZ_3W-XM65JsHn03GR3jMgiJWuYGJBjpjvfkth58
+Message-ID: <CAL_JsqL=y2OT4YrzT8z0O0T2hpM5X1k2pFEb8XjBRPoNMdO5kw@mail.gmail.com>
+Subject: Re: [PATCH RFC 03/22] dt-bindings: phy: Add Apple Type-C PHY
+To: Janne Grunau <j@jannau.net>
+Cc: Sven Peter <sven@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Felipe Balbi <balbi@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 21, 2025 at 5:21=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
-.org> wrote:
+On Thu, Aug 21, 2025 at 11:33=E2=80=AFAM Janne Grunau <j@jannau.net> wrote:
 >
-> On Thu, Aug 21, 2025 at 11:57=E2=80=AFPM Rob Herring (Arm) <robh@kernel.o=
-rg> wrote:
->
-> > The vendor for the X1205 RTC is not Xircom, but Xicor which was acquire=
-d
-> > by Intersil. Since the I2C subsystem drops the vendor prefix for driver
-> > matching, the vendor prefix hasn't mattered.
+> On Thu, Aug 21, 2025 at 03:38:55PM +0000, Sven Peter wrote:
+> > Apple's Type-C PHY (ATCPHY) is a PHY for USB 2.0, USB 3.x,
+> > USB4/Thunderbolt, and DisplayPort connectivity found in Apple Silicon
+> > SoCs.
 > >
-> > Fixes: 6875404fdb44 ("rtc: x1205: Add DT probing support")
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > The PHY handles muxing between these different protocols and also provi=
+des
+> > the reset controller for the attached dwc3 USB controller.
+> >
+> > Signed-off-by: Sven Peter <sven@kernel.org>
+> > ---
+> >  .../devicetree/bindings/phy/apple,atcphy.yaml      | 210 +++++++++++++=
+++++++++
+> >  MAINTAINERS                                        |   1 +
+> >  2 files changed, 211 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/apple,atcphy.yaml b/=
+Documentation/devicetree/bindings/phy/apple,atcphy.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..eb14010557c94f313b54b52=
+8e2d4039fe540062a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/apple,atcphy.yaml
+> > @@ -0,0 +1,210 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/apple,atcphy.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Apple Type-C PHY (ATCPHY)
+> > +
+> > +maintainers:
+> > +  - Sven Peter <sven@kernel.org>
+> > +
+> > +description:
+> > +  The Apple Type-C PHY (ATCPHY) is a PHY for USB 2.0, USB 3.x,
+> > +  USB4/Thunderbolt, and DisplayPort connectivity found in Apple Silico=
+n SoCs.
+> > +
+> > +  The PHY handles muxing between these different protocols and also pr=
+ovides the
+> > +  reset controller for the attached dwc3 USB controller.
+> > +
+> > +  The PHY is designed for USB4 operation and does not handle individua=
+l
+> > +  differential pairs as distinct DisplayPort lanes. Any reference to l=
+ane in
+> > +  this binding hence refers to two differential pairs (RX and TX) as u=
+sed in USB
+> > +  terminology.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - apple,t6000-atcphy
+> > +      - apple,t6000-atcphy-dp-only # PHY hardwired to DP-to-HDMI conve=
+rter on M2 Pro MacBook
 >
-> This should probably be tagged for stable since there is
-> a device tree using this (correct) compatible and it doesn't
-> probe right now.
+> The comment is misleading, "t6000-atcphy-dp-only" would be for M1
+> Pro/Max Macbooks. M2 Pro/Max Macbooks use the same design so the
+> corresponding "apple,t6020-atcphy-dp-only" compatible is missing.
+> I'm not sure this is the correct design though as the HW block is
+> identical to "apple,t6000-atcphy".
+> I think it might be better to have either the DRM KMS driver or a
+> custom DP->HDMI drm_bridge switch the mode to DP-only.
+> Or atcphy could initialize itself to DP-only based on the available
+> ports.
 
-It should probe just fine as I explained. The I2C subsystem strips the
-vendor prefix off for matching, so what you put doesn't really matter.
+Doesn't sound like this should be a different compatible. There's a
+'phy-mode' property or you can define the mode in the 'phys' cells for
+the DP controller.
 
 Rob
 
