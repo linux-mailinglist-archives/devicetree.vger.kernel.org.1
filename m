@@ -1,146 +1,125 @@
-Return-Path: <devicetree+bounces-207515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3315AB2FBF0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 16:10:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D0E5B2FC0D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 16:13:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8587AE7B5F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 14:04:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 635D21CE7F8C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 14:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7012F6187;
-	Thu, 21 Aug 2025 14:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D9D22069A;
+	Thu, 21 Aug 2025 14:08:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515A62F619B;
-	Thu, 21 Aug 2025 14:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A780623D7D4;
+	Thu, 21 Aug 2025 14:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755784932; cv=none; b=DLjsP9My8BV58XddVllsu14HwDKcV18uppO90myojZz0esTNbTF0LaFIfvjFobdzQGiylrI90kH3QGZiMlGswjxnesASJeWDD0xdWN4jOibJRO2lDkJhHpADumCk+sliUaso92rj7wo9Mx7GC0TEA/Wltm89ubKsQe36sFsG09M=
+	t=1755785329; cv=none; b=DcEdIArJ+o971eNlvIxKK9H7x5M5CR1PFBivw50Whw30kTXp1C9Dq1k1l28w+ihaZWUef7EUL6XdlucNqJ/8D+7yzUl3aGkcYBi8YH1dw1CP3jjn/tGfNs1XWfBeSwGS/lw5fevi+I5hy1EwEm+sGKaMPEPLDfP081L76iOmKz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755784932; c=relaxed/simple;
-	bh=j+dnGsQvvMyv+gqHvh4MX/eBm+f7ZHWkpmRE/R7IECM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qGoTeGXkptHgN19j+xPPB5ACUTgT2RqNnRv5raU4jffgNo6VrERhdjZMl9r4IS6dyRgPVW0Q4zYmcF2rOkbw2/PxwrcsWSHz/F9B2+7OLad5hIIv96pkZjKMd7ft0LK3FKhX04fDbfqTR8++dbW2BBBSqYB0nA034vkUstrBvV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from ROG.lan (unknown [118.251.176.166])
-	by APP-03 (Coremail) with SMTP id rQCowABn+Xq+JqdoP8MTDg--.22469S7;
-	Thu, 21 Aug 2025 22:01:50 +0800 (CST)
-From: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
-To: paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	anup@brainfault.org,
-	pbonzini@redhat.com,
-	shuah@kernel.org,
-	cyan.yang@sifive.com,
-	cleger@rivosinc.com,
-	charlie@rivosinc.com,
-	cuiyunhui@bytedance.com,
-	samuel.holland@sifive.com,
-	namcao@linutronix.de,
-	jesse@rivosinc.com,
-	inochiama@gmail.com,
-	yongxuan.wang@sifive.com,
-	ajones@ventanamicro.com,
-	parri.andrea@gmail.com,
-	mikisabate@gmail.com,
-	yikming2222@gmail.com,
-	thomas.weissschuh@linutronix.de
-Cc: linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org,
-	linux-kselftest@vger.kernel.org,
-	pincheng.plct@isrc.iscas.ac.cn
-Subject: [PATCH v1 RESEND 5/5] KVM: riscv: selftests: add Zilsd and Zclsd extension to get-reg-list test
-Date: Thu, 21 Aug 2025 22:01:31 +0800
-Message-Id: <20250821140131.225756-6-pincheng.plct@isrc.iscas.ac.cn>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250821140131.225756-1-pincheng.plct@isrc.iscas.ac.cn>
-References: <20250821140131.225756-1-pincheng.plct@isrc.iscas.ac.cn>
+	s=arc-20240116; t=1755785329; c=relaxed/simple;
+	bh=c3Po+GrocO8GJJuaoQl2k9EyZndU/YgvtVya44+YOCg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aUxs+u75FfwPu1PcYZUA+usTRS0gSyy/MWDo8eIQRh/cT3X0mh7KU1dqMzzXinlYFjtj7zvnEQtrPtZA/uv9px5KenSbLk93SyISYF9YWUyDi4jJhTAsDGodoyPIB2pBe/OXkDqjDM0P/USAOJPC9BDRfJeX0+AeqKYQnkwCJac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.106] (unknown [114.241.87.235])
+	by APP-01 (Coremail) with SMTP id qwCowADXA6hfKKdoj+MRDg--.46265S2;
+	Thu, 21 Aug 2025 22:08:31 +0800 (CST)
+Message-ID: <c1396997-fa92-47cd-9bc6-8dcb67e87eb8@iscas.ac.cn>
+Date: Thu, 21 Aug 2025 22:08:21 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowABn+Xq+JqdoP8MTDg--.22469S7
-X-Coremail-Antispam: 1UD129KBjvJXoW7Cw47Ar47Jw4fZr4kXryUAwb_yoW8ZF15pr
-	1rA39Ikr4kJ34fA392y3s8Ww18Xws8Jws5Cw43ur4fAryjyryxtFnrA3W3Jr1DJa4Fqr1S
-	yF1fWr12vw40yrUanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUml14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWUWVWUuwAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
-	4UJwA2z4x0Y4vEx4A2jsIE14v26r4j6F4UM28EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_
-	Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6x
-	IIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWxJVW8Jr1lOx8S6xCaFVCjc4AY6r1j
-	6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x0262
-	8vn2kIc2xKxwCY1x0262kKe7AKxVWrXVW3AwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE
-	7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI
-	8E67AF67kF1VAFwI0_Wrv_Gr1UMIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Gr0_
-	Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4UJVWxJr1lIxAIcVCF04k26cxKx2IYs7xG6r
-	1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4U
-	JbIYCTnIWIevJa73UjIFyTuYvjTRZGYpUUUUU
-X-CM-SenderInfo: pslquxhhqjh1xofwqxxvufhxpvfd2hldfou0/
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 3/3] riscv: dts: starfive: Add VisionFive 2 Lite board
+ device tree
+To: Hal Feng <hal.feng@starfivetech.com>, Conor Dooley <conor+dt@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250821100930.71404-1-hal.feng@starfivetech.com>
+ <20250821100930.71404-4-hal.feng@starfivetech.com>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20250821100930.71404-4-hal.feng@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:qwCowADXA6hfKKdoj+MRDg--.46265S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7Wr1UKF4fXrWxZr4rWFyxuFg_yoWDWwc_Ga
+	4kKw1fGF4UJF1kK3s8Grn7CF1FyayavrnxA3yFvr47JF9Yg34Yy3ZrG3y0kF1UAF1jgFs8
+	GFn3WF4qkr4kKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbskYjsxI4VW3JwAYFVCjjxCrM7AC8VAFwI0_Gr0_Xr1l1xkIjI8I
+	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0
+	cI8IcVCY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
+	w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMc
+	vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xKxwCY
+	1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
+	C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
+	wI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjx
+	v20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2
+	jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxU2X_-DUUUU
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-The KVM RISC-V allows Zilsd and Zclsd extensions for Guest/VM so add
-this extension to get-reg-list test.
+On 8/21/25 18:09, Hal Feng wrote:
+> [...]
+> +++ b/arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts
+> @@ -0,0 +1,152 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2025 StarFive Technology Co., Ltd.
+> + * Copyright (C) 2025 Hal Feng <hal.feng@starfivetech.com>
+> + */
+> +
+> +/dts-v1/;
+> +#include "jh7110-common.dtsi"
+> +
+> +/ {
+> +	model = "StarFive VisionFive 2 Lite";
+> +	compatible = "starfive,visionfive-2-lite", "starfive,jh7110s";
+> +};
 
-Signed-off-by: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
----
- tools/testing/selftests/kvm/riscv/get-reg-list.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Might need to add starfive,jh7110s to:
 
-diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-index a0b7dabb5040..477bd386265f 100644
---- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-+++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-@@ -78,7 +78,9 @@ bool filter_reg(__u64 reg)
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCB:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCD:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCF:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCLSD:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCMOP:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZILSD:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFA:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFH:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFHMIN:
-@@ -530,7 +532,9 @@ static const char *isa_ext_single_id_to_str(__u64 reg_off)
- 		KVM_ISA_EXT_ARR(ZCB),
- 		KVM_ISA_EXT_ARR(ZCD),
- 		KVM_ISA_EXT_ARR(ZCF),
-+		KVM_ISA_EXT_ARR(ZCLSD),
- 		KVM_ISA_EXT_ARR(ZCMOP),
-+		KVM_ISA_EXT_ARR(ZILSD),
- 		KVM_ISA_EXT_ARR(ZFA),
- 		KVM_ISA_EXT_ARR(ZFH),
- 		KVM_ISA_EXT_ARR(ZFHMIN),
-@@ -1199,7 +1203,9 @@ struct vcpu_reg_list *vcpu_configs[] = {
- 	&config_zcb,
- 	&config_zcd,
- 	&config_zcf,
-+	&config_zclsd,
- 	&config_zcmop,
-+	&config_zilsd,
- 	&config_zfa,
- 	&config_zfh,
- 	&config_zfhmin,
--- 
-2.39.5
+  drivers/cpufreq/cpufreq-dt-platdev.c
+
+So that it can use the opp stuff here:
+
+> +
+> +&cpu_opp {
+> +	opp-312500000 {
+> +		opp-hz = /bits/ 64 <312500000>;
+> +		opp-microvolt = <800000>;
+> +	};
+> +	opp-417000000 {
+> +		opp-hz = /bits/ 64 <417000000>;
+> +		opp-microvolt = <800000>;
+> +	};
+> +	opp-625000000 {
+> +		opp-hz = /bits/ 64 <625000000>;
+> +		opp-microvolt = <800000>;
+> +	};
+> +	opp-1250000000 {
+> +		opp-hz = /bits/ 64 <1250000000>;
+> +		opp-microvolt = <1000000>;
+> +	};
+> +};
+> +> [...]
 
 
