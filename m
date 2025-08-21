@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-207633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6564DB301C3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:12:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1A62B301C9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 20:14:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FE1AAC6493
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:12:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D5D3AC6F80
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 18:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0DB0343206;
-	Thu, 21 Aug 2025 18:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7BDA343D66;
+	Thu, 21 Aug 2025 18:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jrbldMhW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u8QczOCu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97CF24C6E;
-	Thu, 21 Aug 2025 18:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B543343206;
+	Thu, 21 Aug 2025 18:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755799952; cv=none; b=fHOVzr0Z9SbOIGbZk4CCLp275XYscnkgqOEjtcSsIg6Vl8DHiTooB3NCZgQsOKEs8XF7GiUJS3MigTTDM8+9toA+GrkBHEZlQO55ZI5Y6l4prHFEb3uIsMgRXjHkbL2QTILm4wxpqRykIkKpxq/MPISvtXEuj+eSYGSciGm/Nyg=
+	t=1755800053; cv=none; b=LVs+4nhGp72gGTgLpFRseVLO3lRyhnRiBcBgGE6p96ypU4y1nZAPrlNwE/kKectILTL4UG870zm2yDfg7awCcJTBk4tc0Isa/z3TonGDy9sotrkTlTvDQ6sLQTO8RITrjc8Fl4fSCiwXQKZoemFLxue7lzsJc5+UxLRNM9d5QtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755799952; c=relaxed/simple;
-	bh=tyZZ+il8BMFYTQkAPqh2zWtcW1YYUU3DlFkhMHgu0cs=;
+	s=arc-20240116; t=1755800053; c=relaxed/simple;
+	bh=nBWsjCFrH9n831mWGNuiepEV6u0UFeNqezMi0WiliNU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KoCgktHonw5HRkpfIoUalbMcpz74iRUtkqmDxTW08U2xKxU6nevkZRqNnPUqgZYMAlwud64MrbSpp55Wjx6RPH6IzNTCXSIzVq5esNMrG/EuSta139IqMVVmJWyDbcaQaHhCTOlHDHzK991uq/ivbZhtFifgmJoXgcXmT6/tg8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jrbldMhW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79B2DC4CEEB;
-	Thu, 21 Aug 2025 18:12:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aUhd2P1LdGWpfabtveJnpoxAnoTszYYjcrUpGJdU+VBsqV17BCe+peHc7hlbGgr2jRrH1F8moCppUiSSAhDlExPtM+oJQl1rNoE6KExf8IecSRhL5cw4r2oHpMVJvH5CxCreBfb5d1vb5mAaflHkrBHWbGMjJ9pZyB5gU1ERaaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u8QczOCu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC7FEC4CEEB;
+	Thu, 21 Aug 2025 18:14:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755799952;
-	bh=tyZZ+il8BMFYTQkAPqh2zWtcW1YYUU3DlFkhMHgu0cs=;
+	s=k20201202; t=1755800053;
+	bh=nBWsjCFrH9n831mWGNuiepEV6u0UFeNqezMi0WiliNU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jrbldMhWX5CiMxOc8iQ+3bFUFDSo2J7QvQoVDX5+d2TS/S4+JogfQay5R7re4KtMX
-	 4raE5FpjqgERfbc5DUol18xjsccrX+F4mjJvwJcPcFYo9wLbe25hV++timmdwvbtCc
-	 xNCrh6GKumyWk8LSextmRdyKWgyNiFIxOWyKIt5XeyAipeIIzsqAXdcIS77zfYBvrX
-	 sLQcrvKhsbtwrvaDl7AQbGn2s+DTlReSPgE9h5S5O6pCNuz4GEruNpq8wmrhoASfUI
-	 5lDe9xaOMaCMZcr38WASAKZ83RIBIONE1ppqPBE2OA6tZ+rGoMOvbxfTmU+5KnrJ/i
-	 YzWMANvgvwPcg==
-Date: Thu, 21 Aug 2025 19:12:27 +0100
+	b=u8QczOCu3hUV3EkOPZUZoDb6NG/gF9OkmSC6u9l6/LSrHjBoxfoLrnSur8aZwduuU
+	 3iBm5CHqlpmIp88XTqjKZmv56SEDkoMIwKB2Ury1FTapOrxBWHEbdLwRuYdKd4AUOK
+	 ECVewGg3dzWJSlvysrqItlyGL5U4TaDsfXFPOCohGVwnOhM2K98k5wSsBVdjuWHWwL
+	 lkmvza+LcbhIy1RtJ698Ce0Vdty77capjEf3jmeFMQbXOGb4BG146PftJmWFViZxV+
+	 x+Z36fIOs9cMxtOvAtI1JXK12jGd7IBeIFKv8Sn3QrmQ+N4fMSYSUUAvERID6foUmk
+	 UM/Dc2Lidj0Rw==
+Date: Thu, 21 Aug 2025 19:14:08 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Donald Shannon <donalds@nvidia.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org, etanous@nvidia.com
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add NVIDIA VR144NVL board
-Message-ID: <20250821-baffling-immersion-e86971edb6e0@spud>
-References: <20250821051047.3638978-1-donalds@nvidia.com>
- <20250821051047.3638978-3-donalds@nvidia.com>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Chen-Yu Tsai <wens@csie.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [RFC PATCH 7/9] dt-bindings: pinctrl: add compatible for
+ Allwinner A733
+Message-ID: <20250821-pancreas-unadvised-301d1c97d893@spud>
+References: <20250821004232.8134-1-andre.przywara@arm.com>
+ <20250821004232.8134-8-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,95 +64,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="I8HKQZSFF8kf2/3M"
+	protocol="application/pgp-signature"; boundary="fN0j2auDIV16SvDf"
 Content-Disposition: inline
-In-Reply-To: <20250821051047.3638978-3-donalds@nvidia.com>
+In-Reply-To: <20250821004232.8134-8-andre.przywara@arm.com>
 
 
---I8HKQZSFF8kf2/3M
+--fN0j2auDIV16SvDf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 20, 2025 at 10:10:47PM -0700, Donald Shannon wrote:
-> +// I2C2
-> +// Baseboard 0 Management 1
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +
-> +	i2c-mux@70 {
-> +		compatible = "nxp,pca9548";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		reg = <0x70>;
-> +		i2c-mux-idle-disconnect;
-> +		vdd-supply = <&reg_3v3_stby>;
-> +
-> +		c0uphy0: i2c@0 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		reg = <0>;
+On Thu, Aug 21, 2025 at 01:42:30AM +0100, Andre Przywara wrote:
+> The A733 contains a pin controller similar to previous SoCs, although
+> with a change in the MMIO register frame layout.
+> This SoC uses the new style of DT binding, where the pinmux values for
+> each pin group are stored in the new "allwinner,pinmux" property in the
+> DT node.
+>=20
+> Add the new compatible to the existing A523 binding, since they share a
+> lot of features, including the number of banks and clocks.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Incorrect indent.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +		};
-> +
-> +		c0uphy2: i2c@1 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <1>;
-> +		};
-> +
-> +		c0unused2: i2c@2 {
-
-If these are unused, why are they here?
-
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <2>;
-> +		};
-> +
-> +		c0unused3: i2c@3 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <3>;
-> +		};
-> +
-> +		c0unused4: i2c@4 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <4>;
-> +		};
-> +
-> +		c0unused5: i2c@5 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <5>;
-> +		};
-> +
-> +		c0unused6: i2c@6 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <6>;
-> +		};
-> +
-> +		c0unused7: i2c@7 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <7>;
-> +		};
-> +	};
-
---I8HKQZSFF8kf2/3M
+--fN0j2auDIV16SvDf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKdhiwAKCRB4tDGHoIJi
-0m2xAP4wGIl/Es2Bp6NAxJ+HV4Tf8VzTJK8IeGd3GjtpjTwM/gD/QRt1hUb5Xf9D
-jc00evZQh79KWiMdlVcfo/aTExP+xws=
-=y2Po
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKdh8AAKCRB4tDGHoIJi
+0lKcAQD8RyJydvqrkR+jJa3Wl0CkRS+neXINdwjdjqrN8vpVvwEA5y2g4dnXspVS
+iaMQLZXHzU4D05bspJveUFNNS+RimgQ=
+=OXBk
 -----END PGP SIGNATURE-----
 
---I8HKQZSFF8kf2/3M--
+--fN0j2auDIV16SvDf--
 
