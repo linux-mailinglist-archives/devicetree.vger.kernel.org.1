@@ -1,159 +1,170 @@
-Return-Path: <devicetree+bounces-207147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 457FCB2EB5D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 04:42:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52AF6B2EBA0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 05:04:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19B9AA08696
-	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 02:41:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AD435E7175
+	for <lists+devicetree@lfdr.de>; Thu, 21 Aug 2025 03:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA3C2DA743;
-	Thu, 21 Aug 2025 02:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2173239E69;
+	Thu, 21 Aug 2025 03:02:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UlbgpzV9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B67F725E814;
-	Thu, 21 Aug 2025 02:40:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 400B572625;
+	Thu, 21 Aug 2025 03:02:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755744035; cv=none; b=JIMKF5kYSScb/5ZE0uBaamivpZoPjyOiBUWRbKWQJqfuYizj624AtvN3hZI1gsszfcUh4dljzivoLz0+n/m/Q5TUCPTltk76s94++nmLkd7nxa5sRKjdifT+/HRIwXKUYyjSLittB5X8AmTfKwpBXzYnrH5nO7RhbZXYI+1Wz5c=
+	t=1755745357; cv=none; b=JIjmdSiCFX3GE4xCKkDaNVUjFMzclWc9PNfEyF8fm6w0UV82bs7LOTlrl6hj6lKAGVtxLV/K4Tm1r0ZXLo02b4fwTWDcQ5KzJMGegq3XaAFMnv6up1VchyOMSBv5dwNPcMdXDHBUzsVA2tJzyTWyaoOfxaoqsg+s+VogCGo50LY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755744035; c=relaxed/simple;
-	bh=XtEgcKNQAGzQQNVlVBAnaCEy/2+2n2owQn6xiBD7Y4I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Tw6zrcPPMPwnidwC5TNB0v0yCOHTW4Mx9IEjzsUbDgT9Qx1upp7aPoSa5tRngjlDM/rrkaDJ+C64sszfEn8DZNbD1CtqT9L9huDyHROLr+FpplzolnmZ8QaoJavFqAsnrnXuAcs/9LcMwaYYFUfvdyf3UYV8jkAuGj6eFa3nQCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=linux.starfivetech.com; spf=none smtp.mailfrom=linux.starfivetech.com; arc=none smtp.client-ip=54.204.34.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=linux.starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.starfivetech.com
-X-QQ-mid: esmtpgz12t1755744015tdf80e59d
-X-QQ-Originating-IP: O6wBfJ/mxbSxcRE/MwEPz7eaNjXY68MXi0HQGF45vL4=
-Received: from [192.168.125.98] ( [113.104.140.179])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 21 Aug 2025 10:40:13 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2970625901000882426
-Message-ID: <257702B5AE6EE65A+20bf1aab-7fa4-45ba-a8ae-d3aeb5f6e9d9@linux.starfivetech.com>
-Date: Thu, 21 Aug 2025 10:40:13 +0800
+	s=arc-20240116; t=1755745357; c=relaxed/simple;
+	bh=bWMVrNOVfPMX3DncgMd1dbvhJtqrq/a1s1GPAm2XBfQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tQFIksUh771u3hzq5/dS3iYnL1Lne3m6th1rMU8jYsPZYcKsFGTHql/ZB5wJHe0wz/Y1sFNZPyXEAN+cUYSwPKLiwA/OcTArtF93zbg3VtkJOMnIHmR4jE5ITZUuBAy1lty0p/uVEAeRhNjt2C9Q+RyajoFFeBWD7Yvzg+Yk2+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UlbgpzV9; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-b4746fd4793so418014a12.1;
+        Wed, 20 Aug 2025 20:02:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755745354; x=1756350154; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=H+yNnJl0nmiMyeV3J4ApUboB+WgBDUAw4zuzTjk6SvA=;
+        b=UlbgpzV9uzD5CuBFGeplDEcEkDNdsy1F/hK4zix4omoLEQnByi95PXtLfwi5RVqmfM
+         1HCxI+3mkeU6g66HLrhC2Qhl1NJdQit8tuo049cH0Pw4ZJpautKvNKbmysYF7jv/SS3b
+         WGaYWVAP8HB9P3WoT6HSXUUK86vgXkKVAkEFMQt/LHhbKkvSOTNuT3d2CJcc2d6vLF9N
+         75Tmf37AS6yT6hdJzqUPrGtfncSO3LfnucsSj7fyQktLCs+1bxRibbTxs0LWmu5Wcfqm
+         JuMa73SniAUmsnbn0XnfgibKVu8odL5nxcqKKO8KFTY+d2y7Yy9wz6yW8sRcpu2DXcXZ
+         94bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755745354; x=1756350154;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H+yNnJl0nmiMyeV3J4ApUboB+WgBDUAw4zuzTjk6SvA=;
+        b=u8DSm7eHaoNFRj/6umZhq85KTLwCGWBTp1NYeyUNFUV/9eBtvdCj5UpjVNekFFR6sl
+         t4Y4kYVxCmOimwuDRttIbV+SW49AYTdBsF4HZ4zxmP0gBOFkJXkfyScsERsXOvoCxiYQ
+         6zNTSse4xtsX+PJSQRQyed5OLvgZ9ibE2+Dw8zLMIzqfzcrDw5c4qpiDV7Rdr33NqkjN
+         WhiQULca5ZZ2iZYima28uXEStRFyBwll2soLojumyWLJe6jJaGANbLBB3FGucGYv53Ft
+         XnJ9l/BPtrqOHrP1jAioaY2rG8iNyBQ31y1CvFv4Ty34VcutoC1KJoZo74uL/52x6ejh
+         JYXg==
+X-Forwarded-Encrypted: i=1; AJvYcCU8paxaw9mjGwLbqnhh573E2jrkRHLu/5qg7KeqPRIFRj6XOiYzkPBexAZp/9ns2mvXbOOccHSNPeFW@vger.kernel.org, AJvYcCVWdETt1ybXJfeWiwQPplzwk4nMkPESTYvXrwaFrDZFe1/7aeyujK5gkGkRxhQ6YuSQ95DkdCijI3m5@vger.kernel.org, AJvYcCXajO6aQGbHiHjZ236LuyFbNNfJXOH0mzmXvhls1z8vsXcyVJCJFBv40mLtCdMo4Wdv3okcNFhGRqEkTqeD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMDk/5sdRd1xmI6Y0H5eN3MSvwS7Agm3YJU+kWd0ak3lcOAARe
+	7VW2uzonN9SLuAksFLvJU6/J/awJhAsp0WFvCU7ef+jw3PU6yIVsxTpl
+X-Gm-Gg: ASbGncunXbTIPJEcGnWRREN/xxb8KU/GxmQ4ssSBUvvfHq9ZL3rSkzEGBq0vrvltUr3
+	NhOmgGi2YcOhFaoEFHNg5x4UExeJt+stzG0FvH59N4k+LHhsDcQxCrGPD/vBVppPJ92Rbl/CLTZ
+	ICOmIAoU4KUGtejHz8pamd3KKVfB+7WlCTPz54aJxOFjiGgBoqI29ilUF3rLm9IOCEWBArvSwXf
+	sLwc0ApEwj/Zu5pyUn7ZRPFBtIpL/p84aMO058c6gdlFwIeavfyqfwiQRkAer+DpANi6+Ftnopg
+	KES/2ed6t2fjmrpPr3F/VJEzZDqYqPjkQSlhGtKQFj2nScF4nXvV7Ijxh9/KJck5BeE/JZIvwjw
+	DM7KUsYZ1Dqpb89MWR4XWlJ3gzPxMy2wG
+X-Google-Smtp-Source: AGHT+IHfM2PkU1zBKQT67Gn7RDeJ+jOs085eGJGUm0+KZox6BjbABkR+OV3JkYCr0UnDrl7z+SF6nA==
+X-Received: by 2002:a17:903:1a43:b0:240:3dbb:7603 with SMTP id d9443c01a7336-245fec1314amr14154145ad.19.1755745354248;
+        Wed, 20 Aug 2025 20:02:34 -0700 (PDT)
+Received: from dixit ([2401:4900:1c7e:c20:1722:fdbc:50da:3590])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-245ed376f6asm40512715ad.64.2025.08.20.20.02.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Aug 2025 20:02:33 -0700 (PDT)
+Date: Thu, 21 Aug 2025 08:32:20 +0530
+From: Dixit Parmar <dixitparmar19@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
+ TLV493D 3D Magentic sensor
+Message-ID: <aKaMPMnGRyvKqTny@dixit>
+References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
+ <20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
+ <aKXW5pGiN18DyIZ7@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/4] riscv: dts: starfive: add Milk-V Mars CM Lite
- system-on-module
-To: E Shattow <e@freeshell.de>, Emil Renner Berthing <kernel@esmil.dk>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20250724094912.253723-1-e@freeshell.de>
- <20250724094912.253723-5-e@freeshell.de>
-Content-Language: en-US
-From: Hal Feng <hal.feng@linux.starfivetech.com>
-In-Reply-To: <20250724094912.253723-5-e@freeshell.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.starfivetech.com:qybglogicsvrgz:qybglogicsvrgz5a-1
-X-QQ-XMAILINFO: M73dZ22rf3ldFg4O0MeBLYBuOqz0LIhlhXW3qJWkzJRFebW8KldGJhBe
-	fzaJUkpmIAGC92ofh2o9J4A6TbsZgExNKwg55eKMjO26dZI6qcFZxYcJmHxOV0HGgtsId+0
-	vKFNzM74TICJXCFm4rWu6tkaz19AoLErFCZ9pv3GjCtdEyxZ1+U+IbWUb35ma/vUvRYNqnj
-	uuAKAlSCmjC+boWiom20fSJ4z1biIuFGbHGI/dzdXYmPP1e9D/o7Q8Do1Ls1XPc6Y4nAsSm
-	Uwr86Ao/AadgPuw8Xfbg4nx80lLTt3KR6W4NmVz8EDHLfy2WAZgn0mcSbl+e0cV/AAwWVrh
-	PxoV7nJMNcQxaRJEZ0oD1du51yJRcBaVOtE2PLngvBXbgOQsC8Wib0YVNvc/GywWwf6kRaS
-	qJx+6YxGkUdRMbh79w3eP6NTUbNAM5v/35R85zspK/rHtAlk20T/PyhrS55bpzHVAEGNU8+
-	9nWDsPNdCYpMEWpIfrWjUfCVS5rIXT0JLWDjPc2x5NpplPMqV86UeyAgVgKoI2XnwIpi7Tb
-	QNKbNpXWACTa1ckhNQWPbrUj7ShURVjJaJqMSfkyWuk/6nrv/YBkBgK9oYciurLItStMPYT
-	djqgeyd4Te9ITvINwNP/A3H2tKZ4w77oIkRrQjRXsAWCUPLaaL1I7yITl4PK7qjxJDWG2rr
-	eP4hMBFdV8r3iXgGePROhpg12OZIJbVu57XpZbFXb50HlW7QZJjxhUjGSxAzTUtrBFu7X4k
-	aMEqBuckxJCRcjAzP1re/rtvvWXVN8Vut6FVRwAYKudbV71DPtN8LpQZwDKWvKT23Wvbo7a
-	N6xAQXoG4zlxykzmWWEiXC+mOen7wdRTeXjJwlSIb01uRQIwSvU11Fowky0h3aBWBH735ua
-	GL0232Pi9Tv7iy0SKmhzA/mPnMYYgeIi22nfdteC7fTErRJpjqAiKDMEMp+KszN1+hVoVcZ
-	fXTvp86Q4e/Ki2yo/YPlZFOUFIj+2vMXpZi1MM5Q5NNufIlc4P3RlxN5P+FXhtFnAcJe3Gc
-	dCdiCpcLXITqDAbaG+
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aKXW5pGiN18DyIZ7@smile.fi.intel.com>
 
-On 7/24/2025 5:48 PM, E Shattow wrote:
-> Milk-V Mars CM Lite is a System-on-Module based on the Milk-V Mars CM
-> without the onboard eMMC storage component populated and configured
-> instead for SD3.0 Card Slot on that interface via 100-pin connector.
+On Wed, Aug 20, 2025 at 05:08:38PM +0300, Andy Shevchenko wrote:
+> > --- a/drivers/iio/magnetometer/Makefile
+> > +++ b/drivers/iio/magnetometer/Makefile
+> > @@ -23,6 +23,8 @@ st_magn-$(CONFIG_IIO_BUFFER) += st_magn_buffer.o
+> >  obj-$(CONFIG_IIO_ST_MAGN_I2C_3AXIS) += st_magn_i2c.o
+> >  obj-$(CONFIG_IIO_ST_MAGN_SPI_3AXIS) += st_magn_spi.o
+> >  
+> > +obj-$(CONFIG_INFINEON_TLV493D)		+= tlv493d.o
+> > +
+> >  obj-$(CONFIG_SENSORS_HMC5843)		+= hmc5843_core.o
+> >  obj-$(CONFIG_SENSORS_HMC5843_I2C)	+= hmc5843_i2c.o
+> >  obj-$(CONFIG_SENSORS_HMC5843_SPI)	+= hmc5843_spi.o
 > 
-> Link to Milk-V Mars CM Lite schematics: https://github.com/milkv-mars/mars-files/tree/main/Mars-CM_Hardware_Schematices
-> Link to StarFive JH7110 Technical Reference Manual: https://doc-en.rvspace.org/JH7110/TRM/index.html
-> Link to Raspberry Pi CM4IO datasheet: https://datasheets.raspberrypi.com/cm4io/cm4io-datasheet.pdf
+> I haven't got the ordering rules here and in Kconfig. Can it be alphabetical?
+From what I can see, the order is alphabetical based on the CONFIG option in the
+Makefile and Kconfig, and I kept CONFIG_INFINEO_TLV493D after CONFIG_IIO_ST*.
+Isn't it in correct order? or my understanding is incorrect?
 > 
-> Add the devicetree file to make use of StarFive JH7110 common supported
-> features PMIC, EEPROM, UART, I2C, GPIO, PCIe, QSPI Flash, PWM, and
-> Ethernet. Also configure the eMMC interface mmc0 for SD Card use and
-> configure the common SD Card interface mmc1 for onboard SDIO BT+WiFi.
+> > +static s16 tlv493d_get_channel_data(u8 *b, enum tlv493d_channels ch)
+> > +{
+> > +	u16 val;
+> > +
+> > +	switch (ch) {
+> > +	case TLV493D_AXIS_X:
+> > +		val = FIELD_GET(TLV493D_BX_MAG_X_AXIS_MSB, b[TLV493D_RD_REG_BX]) << 4 |
+> > +			FIELD_GET(TLV493D_BX2_MAG_X_AXIS_LSB, b[TLV493D_RD_REG_BX2]) >> 4;
 > 
-> Signed-off-by: E Shattow <e@freeshell.de>
-> ---
->  arch/riscv/boot/dts/starfive/Makefile         |   1 +
->  .../dts/starfive/jh7110-milkv-marscm-lite.dts | 176 ++++++++++++++++++
->  2 files changed, 177 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+> Wrong indentation, make both 'F':s to be in the same column.
+To have 'F' in the same column, it will need spaces after tab (I think its not
+advisable to mix spaces and tabs). With just tabs the second FIELD_GET will be
+align to 'v' of val. What will be the correct indentation?
 > 
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-> index 79742617ddab..62b659f89ba7 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-emmc.dtb
-> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-lite.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
-> new file mode 100644
-> index 000000000000..e110146f0b76
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
-> @@ -0,0 +1,176 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2025 E Shattow <e@freeshell.de>
-> + */
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/pinctrl/starfive,jh7110-pinctrl.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include "jh7110-common.dtsi"
+> > +static int tlv493d_get_measurements(struct tlv493d_data *data, s16 *x, s16 *y,
+> > +				s16 *z, s16 *t)
+> 
+> Indentation issue. Please, check fully the code for such issues.
+I followed the single tab after default as suggested. At which column the s16 *z should be align to?
+> > +	/*
+> > +	 * Poll until data is valid,
+> > +	 * For a valid data TLV493D_TEMP_CHANNEL bit of TLV493D_RD_REG_TEMP should be set to 0.
+> > +	 * The sampling time depends on the sensor mode. poll 3x the time of the sampling time.
+> > +	 */
+> > +	ret = read_poll_timeout(i2c_master_recv, err, err ||
+> > +			FIELD_GET(TLV493D_TEMP_CHANNEL, buff[TLV493D_RD_REG_TEMP]) == 0,
+> 
+> Please, resplit logically, i.e leave the condition on the single line.
+> Also to make it shorter you can use '!' instead of ' == 0'.
+Having both conditions in same line will go out of 80 char length limit, even with !.
+Is it fine?
+> 
+> Just wondering if you have tested for negative coordinates, does it propagate
+> correctly?
+Yes I have validated, it reports correct negative coordinate values.
+> > +	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan),
+> > +				pf->timestamp);
+> 
+> Interestingly that you have used 100 limit and suddenly don't do it here
+> and maybe elsewhere. Why inconsistent style? Please, go through the whole
+> file and make sure the style is consistent in all of the aspects:
+> - C style used
+> - comments style (one-line and multi-line)
+> - indentation
+> - etc.
+I tried to follow 80 limit(except few places where it was just on border or not
+clear to read). I belive the standard is to use 80 limit(correct me if I referred
+wrong place) and I will recheck to meet that.
 
-You can just include "jh7110-milkv-marscm-emmc.dts" instead of "jh7110-common.dtsi".
-And then adding mmc0 changes will be enough.
-
-Best regards,
-Hal
-
-...
-
-> +&mmc0 {
-> +	bus-width = <4>;
-> +	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
-> +};
-> +
-> +&mmc0_pins {
-> +	pwren-pins {
-> +		pinmux = <GPIOMUX(22, GPOUT_HIGH,
-> +				      GPOEN_ENABLE,
-> +				      GPI_NONE)>;
-> +	};
-> +};
-> +
-...
-
+Thank you for careful review,
+Dixit Parmar
 
