@@ -1,81 +1,87 @@
-Return-Path: <devicetree+bounces-208177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE179B31C10
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:39:49 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5EADB31BA4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:32:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AAC91D63B8E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:32:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D55D34E0F69
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:32:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A27307AF2;
-	Fri, 22 Aug 2025 14:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC64D309DBD;
+	Fri, 22 Aug 2025 14:27:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C9Iw445E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OOFxFx+z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 389DE2D7DC1;
-	Fri, 22 Aug 2025 14:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4D23054F0;
+	Fri, 22 Aug 2025 14:27:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755872855; cv=none; b=jEgvzlaRgt2SZWXFfTMsPWu8vyaA7xmx/1a8sSQlcaf60+vZMWG5Ift8U61hyPgf32zf++sh1StkQXhhGUa1BkUP0mhc/LCpFEENN4N7M+2gn2FO15caSLRkFR9kg80C9KJnRx1eg3eMs4Va/HC8vQ1bBmCnIwIKH+WqmvHZaLE=
+	t=1755872876; cv=none; b=l3AZqr09pG7U6FBMk1Twdt/8tIm3IheV7BSVsq9DvcIbTErryuWslkyIU0mPZFryHE8ENKA0DZFA9wzurTO+i459+r9fJCgGJDG/6Y//xNhjThrTNkjdBR2WfUqKhRCrhPEXjlAxB3YNLDkz5rLRBG4Hc/73piWpCpAG3PYAkpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755872855; c=relaxed/simple;
-	bh=8F9BbYfnOTNHBOO+Z3nv2sPP1jZcZHNE98BLd3qLBs8=;
+	s=arc-20240116; t=1755872876; c=relaxed/simple;
+	bh=irk5yZ+gV1gl0gGAvBwOOJ8uWctLDlLbZ+2m5RgI+CU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lYRiXhfwOwfQo81YHNdVZrp/Lctu24oMXrh5Jvl/Y6bH7GPus+sv6+oW7ZTgYpxYioPJqNNH+RXCT64wmqYG7mo6CMzkBCWFtuCwkOscHrYl5dXE2C4xAu4Suc+4Clq8f49TAzbl2G9keoLBxg8e1HP0FUdG3EIcz/xsDvcX2Xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C9Iw445E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBE7FC4CEED;
-	Fri, 22 Aug 2025 14:27:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=D30EcqENqbUXbbroBCwUF33ETJ5YNA8XUSO5hJblv/qCNLKq/ZlKyBi8z9cbBrOa7SS/7Jk4QXvQ2TZXlMbDJoLiqhtA51a2Y8dlNUZtZgOIpaCfaMhEoOf7VrajdT6koy5hftt56uBsimHo7AGGGmiKE9XxEYbHn8e458qTphE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OOFxFx+z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B06EDC113D0;
+	Fri, 22 Aug 2025 14:27:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755872855;
-	bh=8F9BbYfnOTNHBOO+Z3nv2sPP1jZcZHNE98BLd3qLBs8=;
+	s=k20201202; t=1755872876;
+	bh=irk5yZ+gV1gl0gGAvBwOOJ8uWctLDlLbZ+2m5RgI+CU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C9Iw445E+SOWmXKGD1xGgBNUvUQsJJNBotJ+vYEzKZbgos7ybOowT51+mSV2N9Pos
-	 Q8t522BLGi+fNYg1SPhremVDXtfTGKjLP1+YNiUxDm29HCuzSUsQ7G6X6Itf9076Bg
-	 jliWSQj2tPXS/mrYiidZh5ipOerNyVFRNSuC7dF7MepN4bwNw1xVzY9Q2VE2QnJchU
-	 vnahMVproW4mHT7rX2CISqldU1/L5IiFcG3FuarpMH45X3cFNg50nKxBHZbl0GlhfS
-	 T78XOLlizlzxnfDY2p8ENvyPtxl08MePXn7577wPwEnSbSxzMCrgM5ATiaAIWgJF8p
-	 TtmgLp8b1tkOQ==
-Date: Fri, 22 Aug 2025 09:27:34 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
-	devicetree@vger.kernel.org, Imre Kaloz <kaloz@openwrt.org>,
-	linux-gpio@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 3/4] dt-bindings: gpio-mmio: Add MMIO for IXP4xx
- expansion bus
-Message-ID: <175587285377.3657858.11210919466369180925.robh@kernel.org>
-References: <20250820-ixp4xx-eb-mmio-gpio-v1-0-0e167398c8ac@linaro.org>
- <20250820-ixp4xx-eb-mmio-gpio-v1-3-0e167398c8ac@linaro.org>
+	b=OOFxFx+z6AHFNDnYjlj4uDUZVzNvpKzmRYbH8U9WeJYP/Nt6LS9xT4v2cqHWB9FQr
+	 28OzgQndB9SvEeE6BDakhVsfOebO6662OesQsdRQiRnlDrLshYSI3v5xhVcsqssXa5
+	 CcKx3ipUE1ffUrPxPXEOpsWbT5a+yBLaVcnq0u7xPGGxyxVgulrCbCxiaWEwTOzXJJ
+	 hG6vv8dCruR6z4zyqxEjZj5TyEGLacAIjkw4Gj8BM474HS+GZwrrbKwMAQp62yrYx7
+	 eQh4qxpZgMu3EnvwMbIjg7DMPRVcPfbB/xhpAtnSqZnM1k6CcMqRGq8aszaGhJtCdj
+	 zswqaDnXbaNXQ==
+Date: Fri, 22 Aug 2025 19:57:41 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Brian Norris <briannorris@chromium.org>
+Subject: Re: [PATCH 4/6] PCI: of: Add an API to get the BDF for the device
+ node
+Message-ID: <nphfnyl4ps7y76ra4bvlyhl2rwcaal42zyrspzlmeqqksqa5bi@zzpiolboiomp>
+References: <20250819-pci-pwrctrl-perst-v1-0-4b74978d2007@oss.qualcomm.com>
+ <20250819-pci-pwrctrl-perst-v1-4-4b74978d2007@oss.qualcomm.com>
+ <20250822135147.GA3480664-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250820-ixp4xx-eb-mmio-gpio-v1-3-0e167398c8ac@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250822135147.GA3480664-robh@kernel.org>
 
-
-On Wed, 20 Aug 2025 12:59:45 +0200, Linus Walleij wrote:
-> This expansion is a simple MMIO-mapped GPIO device but the bus has a
-> number of additional properties that we need to bring in using
-> a reference to the bus child node schema.
+On Fri, Aug 22, 2025 at 08:51:47AM GMT, Rob Herring wrote:
+> On Tue, Aug 19, 2025 at 12:44:53PM +0530, Manivannan Sadhasivam wrote:
+> > Bus:Device:Function (BDF) numbers are used to uniquely identify a
+> > device/function on a PCI bus. Hence, add an API to get the BDF from the
+> > devicetree node of a device.
 > 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../devicetree/bindings/gpio/gpio-mmio.yaml        | 31 +++++++++++++++++++++-
->  1 file changed, 30 insertions(+), 1 deletion(-)
-> 
+> For FDT, the bus should always be 0. It doesn't make sense for FDT. The 
+> bus number in DT reflects how firmware configured the PCI buses, but 
+> there's no firmware configuration of PCI for FDT.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+This API is targeted for DT platforms only, where it is used to uniquely
+identify a devfn. What should I do to make it DT specific and not FDT?
 
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
