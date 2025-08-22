@@ -1,174 +1,203 @@
-Return-Path: <devicetree+bounces-208088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 524FBB31892
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:59:05 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B34E8B31862
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:53:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8821A1C8631D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:56:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AD84C4E1D8E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 131F5303C86;
-	Fri, 22 Aug 2025 12:54:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31A1C2FC029;
+	Fri, 22 Aug 2025 12:53:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="yrD/44iT"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="keyaL7QO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433822FD1C8;
-	Fri, 22 Aug 2025 12:54:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92ED2FC008;
+	Fri, 22 Aug 2025 12:53:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755867250; cv=none; b=bUUdG28wqYDvAJ1hrcqzx26E2hLeIMldl2d7eoH8/DMjK1+S+ZCrAH+4Zq7o/lkhmHmYHySV0WqpV+zWmA7iKqSrFlpVZTXLgnQHmLvhHipQpXg3Yrs7f40PHNlWH5Fi8Yz8dxXvcdr4fUVmdMcTMB3fHoJ9RMSrADuaopNObiU=
+	t=1755867207; cv=none; b=nBlqqNxEnIEHrnuZmNg6PzrYpSfqFXwM63BfqBh4iDNYwhkDycQ1mP/Xsq/fx8Vve9UVF3LAp6NTH7166imeurl4KBIdaVLufxgvvm6n7xK/A0ZCZi36yui2MBnyrdFMNYU1tP0kTT1Oh1K1N6LOJO88XTog2fUq6q5lSVYx1JM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755867250; c=relaxed/simple;
-	bh=zCMBJK8gsK34ZEoHJ8DDDujm7zPzdGwOgGL1+YdKfJc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=c55Rj4CVH/mJw8IDbST5KovWgqtzWAm9c5M/SASJtDp9TlJz6zobEY4XF2FyNR3EN9L8U348zeeDESGnhdM6thlGcEQGDy/bSSq36gW5md0hscYll9HVsoufT4xMOx2q1NaZLLazW+djAWBqt+yi1/t6xLCSuXyRHKu551gm4S8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=yrD/44iT; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57MCc12j019648;
-	Fri, 22 Aug 2025 14:53:50 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	J0xEHhpDr5Ii0lNf94Y5NJ7HClkQVYYRlfEovqbGqyo=; b=yrD/44iTpG6d7ZWH
-	wgrtFXahyjJZvdUKlQCA4ddPj0sRoExjds+LljZRRBiQ0y5Vs/RqnX2RPKD2rdDX
-	+GeUDKKbq7pQs/fLkoAEqA5Yeqe8/6eqSnCqTBNKQ0mtxwfBV0O+TdGXuQQy6i5T
-	b7YzugGDY6bL8EsJ47ZHyg71QYyP5uHOWfV/rJUC6VK7Wkoe06e1YqwP9DtWCbba
-	TrjmsxWD8z3bziyn0nc+6/2MiDX8U8Fz96kcXVgve5t7mje+bzwOoQRSQvKeQFWl
-	dqXpLwcKhVex7DPC1lghryENCpzYxpQ52mfnxGufdt2SODr8pacM8ut7eUqqT787
-	RhXNaA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48n81wtrcs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Aug 2025 14:53:50 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5314C40044;
-	Fri, 22 Aug 2025 14:52:36 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B0FF66C67BC;
-	Fri, 22 Aug 2025 14:51:24 +0200 (CEST)
-Received: from [10.48.87.178] (10.48.87.178) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 22 Aug
- 2025 14:51:23 +0200
-Message-ID: <09c20af0-e33f-4325-9cf5-249cb2f31b38@foss.st.com>
-Date: Fri, 22 Aug 2025 14:51:23 +0200
+	s=arc-20240116; t=1755867207; c=relaxed/simple;
+	bh=PLU7Jy+4Idnvc1wYz0kN+QAM+kuaOgeNMCbhEi1tcJc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oTstRToFP9EwtM1Tkqmmk2meTvAiQKnMPjW0Biy7IfqQmxJaCb37WKOIXtWCyZTRoBYgtNQAhu9MNOH4CzUAKaHtxgkGbl6f1pO9hBzRHgViOANW2wWEI9j/gFYtJPNcePKMi9GfNTHfEWdrfdZEwigAqYFXsW1h+6rEKl9iILI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=keyaL7QO; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: fa8c272a7f5611f0b33aeb1e7f16c2b6-20250822
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=gdrKdZ51IexfRxyYh9eQjGmdG6o5t0ED4W3C8AISUc8=;
+	b=keyaL7QOfXRiAu0qbA6h3ulRSnAWmYhVkTofO8RvB/kxM8HAPDWVg25iIYoHjYAiVanjphn2u2hnPp0v83bE7G3fUbE7VYDbe7zrVfOOHQzbnvyhInr9amNJ8mls6Jd5sOavdiFZMqX/ByN03TQV0Q7Y6RqfPOKy0WFExmtT7gY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.3,REQID:ecee648e-dd5a-428c-bae7-8cc573aef1a4,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:f1326cf,CLOUDID:e2f6c344-18c5-4075-a135-4c0afe29f9d6,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|102,TC:-5,Content:0|15|50,EDM:-3,
+	IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:
+	0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: fa8c272a7f5611f0b33aeb1e7f16c2b6-20250822
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+	(envelope-from <darren.ye@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1089959311; Fri, 22 Aug 2025 20:53:19 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 22 Aug 2025 20:53:17 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 22 Aug 2025 20:53:16 +0800
+From: Darren.Ye <darren.ye@mediatek.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Linus
+ Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>, Darren Ye
+	<darren.ye@mediatek.com>
+Subject: [PATCH v7 00/10] ASoC: mediatek: Add support for MT8196 SoC
+Date: Fri, 22 Aug 2025 20:52:29 +0800
+Message-ID: <20250822125301.12333-1-darren.ye@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/13] dt-bindings: arm: stm32: add required
- #clock-cells property
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Philippe Cornu
-	<philippe.cornu@foss.st.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Maxime
- Coquelin" <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250821-drm-misc-next-v4-0-7060500f8fd3@foss.st.com>
- <20250821-drm-misc-next-v4-6-7060500f8fd3@foss.st.com>
-Content-Language: en-US
-From: Yannick FERTRE <yannick.fertre@foss.st.com>
-In-Reply-To: <20250821-drm-misc-next-v4-6-7060500f8fd3@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-22_04,2025-08-20_03,2025-03-28_01
+X-MTK: N
 
-Hi Raphael,
+From: Darren Ye <darren.ye@mediatek.com>
 
-Thanks for the patch.
-Reviewed-by: Yannick Fertre <yannick.fertre@foss.st.com>
+This series of patches adds support for Mediatek AFE of MT8196 SoC.
+Patches are based on broonie tree "for-next" branch.
 
-Le 21/08/2025 à 13:08, Raphael Gallais-Pou a écrit :
-> On STM32MP25 SoC, the syscfg peripheral provides a clock to the display
-> subsystem through a multiplexer.  Since it only provides a single clock,
-> the cell value is 0.
->
-> Doing so allows the clock consumers to reach the peripheral and gate the
-> clock accordingly.
->
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> ---
->   .../bindings/arm/stm32/st,stm32-syscon.yaml        | 31 +++++++++++++++-------
->   1 file changed, 21 insertions(+), 10 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> index ed97652c84922813e94b1818c07fe8714891c089..95d2319afe235fa86974d80f89c9deeae2275232 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> @@ -36,20 +36,31 @@ properties:
->     clocks:
->       maxItems: 1
->   
-> +  "#clock-cells":
-> +    const: 0
-> +
->   required:
->     - compatible
->     - reg
->   
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        enum:
-> -          - st,stm32mp157-syscfg
-> -          - st,stm32f4-gcan
-> -then:
-> -  required:
-> -    - clocks
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - st,stm32mp157-syscfg
-> +              - st,stm32f4-gcan
-> +    then:
-> +      required:
-> +        - clocks
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: st,stm32mp25-syscfg
-> +    then:
-> +      required:
-> +        - "#clock-cells"
->   
->   additionalProperties: false
->   
->
+Changes since v6:
+ - optimize mtk_afe_pcm_pointer interface and improved logic checks.
+ - update mt8196_afe_private structure by removing unused member variables.
+ - only reference clocks directly supplied to afe and set required frequencies directly.
+ - update adda driver according to reviewer suggestions.
+ - update i2s driver according to reviewer suggestions.
+ - update tdm driver according to reviewer suggestions.
+ - optimize platform driver and update widget rotues.
+ - move the sof route from platform driver to the machine driver, and moved pinctrl to platform driver.
+ - update the afe yaml file to remove unnecessary clock references.
+
+Changes since v5:
+ - restore the commit message for mediatek,mt8196-afe.yaml and only remove the string document.
+ - add reviewed owner for mediatek,mt8196-nau8825.yaml.
+ - use SND_JACK_AVOUT as jack status.
+ - use GENMASK_ULL to support 64-bit address masks.
+ - modify the afe platform and i2s dai driver code based on reviewer's suggestions.
+
+Changes since v4:
+ - modify the mediatek,mt8196-afe.yaml commit message and add reviewed owner.
+ - modify the mediatek,mt8196-nau8825.yaml commit message.
+ - modify the audio common code based on reviewer's suggestions.
+ - add reviewed and tested owners in the audio common code submission message.
+ - fix cm update cnt calculation issue.
+
+Changes since v3:
+ - the AFE TOP CG index is added to the common header.
+ - remove the audsys clk register and directly read and write to the regmap of afe cg clk.
+ - modify the clk logic according to the suggestions.
+ - remove the macro definition of MTKAIF4
+ - remove the tdm cg event and directly read and write the tdm cg reg form the widget.
+ - remove the i2s and cm cg event and directly read and write cg reg.
+ - afe hopping and f26m clk cg are placed in remap_register_patch and enable.
+ - the yaml file is modified according to the suggestions.
+ - replace SND_SOC_DAIFMT_CBS_CFS with SND_SOC_DAIFMT_CBC_CFC.
+
+Changes since v2:
+  - remove the mtk_memif_set_channel interface modify.
+  - remove duplicate definitions from the header file.
+  - move the afe gate clk to the audio driver for management and registration
+    and manage the afe clk gate in each dai driver.
+  - delete the useless clk source.
+  - the i2s driver adds i2s clk gate management, removes the additional dts
+    configuration of i2s4.
+  - the afe and i2s dai driver,memif and irq data structs are encapsulated using
+    macros to reduce the amount of code.
+  - the volatile reg is modified as suggested.
+  - mt6681 codec is not supported, the mt6681 keyword is removed.
+  - the name of the machine driver is changed from mt8196-mt6681.c to mt8196-nau8825.c
+  - remove the i2s4 configuration from mt8196-afe.yaml and make the modifications as suggested.
+  - change the mt8196-mt6681.yaml to mt8196-nau8825.yaml and make the modifications as suggested.
+
+Changes since v1:
+  - modify mtk_memif_set_channel and mtk_afe_pcm_pointer interfaces
+    are improved to support mt8196.
+  - remove duplicate definitions in the mt8196 common header file.
+  - cm logic is merge into the afe platform driver.
+  - modify afe clk to return judgment logic and remove useless clk sources.
+  - refactor the mt8196 adda dai driver.
+  - remove the gpio module and use SND_SOC_DAPM_PINCTRL to manage it.
+  - removes CONNSYS_I2S related functions that are not supported in i2s dai driver.
+  - fixed mt8196-afe.yaml and mt8196-mt6681.yaml syntax issues.
+  - modify log printing in all modules.
+  - optimize the header file included for machine driver.
+
+Darren Ye (10):
+  ASoC: mediatek: common: modify mtk afe platform driver for mt8196
+  ASoC: mediatek: mt8196: add common header
+  ASoC: mediatek: mt8196: support audio clock control
+  ASoC: mediatek: mt8196: support ADDA in platform driver
+  ASoC: mediatek: mt8196: support I2S in platform driver
+  ASoC: mediatek: mt8196: support TDM in platform driver
+  ASoC: mediatek: mt8196: add platform driver
+  ASoC: dt-bindings: mediatek,mt8196-afe: add audio AFE
+  ASoC: mediatek: mt8196: add machine driver with nau8825
+  ASoC: dt-bindings: mediatek,mt8196-nau8825: Add audio sound card
+
+ .../bindings/sound/mediatek,mt8196-afe.yaml   |   113 +
+ .../sound/mediatek,mt8196-nau8825.yaml        |   100 +
+ sound/soc/mediatek/Kconfig                    |    30 +
+ sound/soc/mediatek/Makefile                   |     1 +
+ .../mediatek/common/mtk-afe-platform-driver.c |    56 +-
+ .../mediatek/common/mtk-afe-platform-driver.h |     2 +
+ sound/soc/mediatek/mt8196/Makefile            |    14 +
+ sound/soc/mediatek/mt8196/mt8196-afe-clk.c    |   580 +
+ sound/soc/mediatek/mt8196/mt8196-afe-clk.h    |    64 +
+ sound/soc/mediatek/mt8196/mt8196-afe-common.h |   205 +
+ sound/soc/mediatek/mt8196/mt8196-afe-pcm.c    |  2497 ++++
+ sound/soc/mediatek/mt8196/mt8196-dai-adda.c   |   845 ++
+ sound/soc/mediatek/mt8196/mt8196-dai-i2s.c    |  2613 ++++
+ sound/soc/mediatek/mt8196/mt8196-dai-tdm.c    |   675 +
+ .../mediatek/mt8196/mt8196-interconnection.h  |   121 +
+ sound/soc/mediatek/mt8196/mt8196-nau8825.c    |   868 ++
+ sound/soc/mediatek/mt8196/mt8196-reg.h        | 12068 ++++++++++++++++
+ 17 files changed, 20834 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8196-afe.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8196-nau8825.yaml
+ create mode 100644 sound/soc/mediatek/mt8196/Makefile
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-afe-clk.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-afe-clk.h
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-afe-common.h
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-afe-pcm.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-dai-adda.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-dai-i2s.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-dai-tdm.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-interconnection.h
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-nau8825.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-reg.h
+
+-- 
+2.45.2
+
 
