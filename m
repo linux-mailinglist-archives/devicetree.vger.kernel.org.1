@@ -1,151 +1,202 @@
-Return-Path: <devicetree+bounces-208365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D436B3224B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 20:32:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 392A1B322AC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:15:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 111B71D61FB9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 18:32:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9142AE134B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:15:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DFB42BEC2C;
-	Fri, 22 Aug 2025 18:32:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E925D253B4C;
+	Fri, 22 Aug 2025 19:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HKw7bP4S"
+	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="Po9x6PMn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2099.outbound.protection.outlook.com [40.107.101.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E765322DA02
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 18:32:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755887537; cv=none; b=seXBAXcXL9Yl3LWW/K96r9p8M0q3iI1bept2dA2lDv6CLttlgsi9F4kzVbTipIXvuk4Du20VWzq00KwI6UU1IvSiHfmxM3s4dmq0wV9AM3799VlghI73zNa4ddEiuOKsswX3jCHmEwqp6aTey1cgetJp3oUFi+MiMtaXa5zEYKQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755887537; c=relaxed/simple;
-	bh=t2Ssh7nG32987+a8+QxEIMoJj2YqMDm4ueKdOaDDhf4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hGAuDPro2sio3NzZWKL63ZXfvHnAqaOMAtQPirAJWD1n+xNK537NOzoEarwZCPe9fTsILm9130tlKcXbAtYi5gJazI+dqLzL1pCJpEN47VJyzJcGumr5AfaltOSyGeNxp8QAe1hGa19XT+NLEE7Rh4CNd02p2P+vYv0dQeRDDRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HKw7bP4S; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57MHUlFX018220
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 18:32:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=2kF+UHt3RQZ9sKwYUnht3JJb
-	3AN4kfQFQklzuuzACdw=; b=HKw7bP4SgHZje4mEEpfk1z3YhOK/4j7A8Fbaw8Tz
-	6kTekaTVK50xtp+mTMkKWGprk7V4i8P0sQf5OjbCSXWdLGDPBye6e4Hh6fBp1dMz
-	ewG1ZZXU9izkXM7D9Pp2cI3SzrodO0rSr3TMaXkT/pycqmbaN/9VSohd6q+keLQ/
-	9CPEiWVBInMyX6j47qsl/ihYz6zP67lWJS+NqpmawHwpJsoIHlFWRBwroJbZ3COy
-	YsuXRwXtV7QhvgROmphYmH1redEOuP4Al6568+u7qq1a4BOCOZZv5L43i+4fPTWG
-	i7pzLbLOaeezuvqMUh48mTxmpkRSG7SgJ9WdfwlsdBUVog==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48pw10g69f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 18:32:15 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-70d9f5bded7so14244716d6.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 11:32:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755887534; x=1756492334;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2kF+UHt3RQZ9sKwYUnht3JJb3AN4kfQFQklzuuzACdw=;
-        b=t1ZYigi2J9Bbm80ZebZ2yF2zrlYAyOTMuAu+PlJA8oHx8G4v5x4HUmqzNLjKJdFK87
-         gNt1A62lSMY5Ysdurp8K2qYdE9LmGwRqsCDhtyMlQ4HckpT6ZZds+xAHR5KBBT6PKre2
-         CuHO+kexbDn2bs+eyIWQ2hfAAzQjAmerON6Ao+UMlxct2TAwykTXhD7Ebvj/DHHrrier
-         CzHE1M4NiBeWq34R4JOKLvBmbNKfZD4Fr9mtymcuDILNiIerEwetLKiVDhV5ppA15/6j
-         Qx1TuVHZiyD8MamSHJOoc0FcsCPKSVwKv7Z2YqS6SlBDr1MDqrCXWJnSBnyeYUpJK1Gu
-         4eOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZ1G8z0KKBmYFZPp6bVZgVrlDs6SBOaA5YNO+bqctIIMz3oRV8BcJmcElPKSCjcT4FpMdMpmouYH4R@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzk3H6L0Ameb6cfj0pjHPyAGUF4fLPTjFXwtWH2Meh1UsjmmjCP
-	MdSzOuPJVrOrig6Q6nJ2hzMCMESDksiScGZ0t8uMit5Qw+MntfEa6f4r3qsm4Y+kyd+S8bmLGoq
-	44wF8bZyUbHPM5m5qucUcBUKHWcKUBPMi23PpQUPmcNBofdYS39/cgwC/718JV6zD
-X-Gm-Gg: ASbGncvUcawUggab0JxlhLKIQUcYrH35SiRQzkQLAG15JJ4x2b544xfShJex5hSmJce
-	iqcJvL6uWsLYDNLYLb1v515TzvXzHA35JyY7ngOTupSuvOPGcqcjwIfEOi5hgslzb/YNKnBtgXE
-	nAY3lO96oaFmBPGsNCTyiN8Lss7u9LyH2StCWOcHU6FlWGRT4H5PhKW65NdvDbwEy2qDt1Kt1qb
-	fn6CZZ9HGbZK8jcAEuVYWtoDIzSNhVu8DmbJ7p3badlyBDE707Tdjnfp5OwFfo7ctUulyaUggxK
-	SkBbzQDSKkHjh3+c59TGlUQNS7Z6kzPwlWiaIJtcNICPu0UZci+B2X0HATTw25TxOKyXx9x4+fE
-	vhlG/OCFdaJuqemqb92wNvpi9dTccwiBlv69/N+oZq0z3xpB6LPAo
-X-Received: by 2002:a05:6214:2463:b0:70d:8549:a9dc with SMTP id 6a1803df08f44-70d971ecba5mr45207966d6.46.1755887533704;
-        Fri, 22 Aug 2025 11:32:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEGUwecfBarwnXQpcnjnUt1xcMPQBcCSeakWpQc5KmvE+AdTu302f3u+QjNzhIWHgctycCfdw==
-X-Received: by 2002:a05:6214:2463:b0:70d:8549:a9dc with SMTP id 6a1803df08f44-70d971ecba5mr45207446d6.46.1755887533192;
-        Fri, 22 Aug 2025 11:32:13 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55f35bfcb27sm96296e87.19.2025.08.22.11.32.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Aug 2025 11:32:12 -0700 (PDT)
-Date: Fri, 22 Aug 2025 21:32:10 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/5] drm/panel: simple: add JuTouch JT101TM023
-Message-ID: <4gyzjoshra7mwkagkhbk2uzxsfeb57ufkr2qilppunka4cem7n@zf7rm75hdd2n>
-References: <20250821-v6-17-topic-imx8mp-skov-dts-jutouch-10inch-v1-0-b492ef807d12@pengutronix.de>
- <20250821-v6-17-topic-imx8mp-skov-dts-jutouch-10inch-v1-3-b492ef807d12@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF022D0C91;
+	Fri, 22 Aug 2025 19:15:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.101.99
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755890129; cv=fail; b=Uiph6bFm4ZoxFdfU99pA+ZhCylrcX0peiXyGEt1SgHcTZ3irDQsZmxHE8WnOTw5Fsnoho7sO89Xwe+Eiz3DZV5/lFl5GxPlx0dSPolwbZ5gQc6eQG84bgfpVxhZOM5/AIUHPWLe2wdwdcYaw9xwrpQILZqONJWkD62E/J/LJgXU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755890129; c=relaxed/simple;
+	bh=FgphQcoG+DlnEqB4jfkdWUB3Ga7nEjUCjRTnSibHBmw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=cURHYjxAeiPY6bex26ogELHte+hngko2i6v+QcNUdmqfnCt5T/CYq6wPJr0pMEyIlKs/+1nZ9+NfT39RISChhH//DpwOEkn6dVD8JJJUji9BYtPgjn8bEyO++H81KNU1UjNsAb2to6ZwSHAI5dbNRS6WuUUl2V46CF8SBbi1FXs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=Po9x6PMn; arc=fail smtp.client-ip=40.107.101.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=h1DKUgas+E9HVKw6uRlMEsqOem98Pv2dqeCfxc4dOCWwRzO9B+/H6pn3jdqX0aG6nuRZ90LwBiFISHTIJWlJsoJTk5o2PxxWSJLDbMwRn3qACLCvXniOzh59Qo2akRUflpd7tDJbHsbB0CTyxz4hlWs2+mvdBTohLhNERdMMIvhWhA4B5xfjj3WBrLjgEoSLQwSTOr5kePFqYne2jerhQ4WdoiWyxnSn3YMWlB1sKCrBjhoEqimoLjPtE0ngdpdssPaG+Gql6VhxJcCxT2i/hVCtc5HhtgF7d6v0780hBT6/9JXQm9w2LCsqy1QXZ+zbHkm9jHNfoz/IyTDimLZAJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sOg9yBVnKXtQW1qiQWx896srMKcez1QafqjQ/RaukKM=;
+ b=iTmeHrFNkYhLW9hYY/SvHEy6JsiZMzNFPiDgfCd1vZWxenyZX51w/mf0ilCuQ9nkEACrOSKWFWqprGpWWmFb2ldYBOcyjD33FGiXVxBg99Tx5KJLovwR92ofjOziIRUdaMAqL7a7fkvMoBZRIExKPVoUaGLVyKDJk1kXHN2Qedw8eArtMqlcUzPk+EiSFQ4m/VBUYlZK+IDbQFOsReACDwlfEo1ZvbxnnvqnDniQiFCny2TLJ4tJCBV+HLLa3eaNu9BV0LroKBffxjlIqM7nG1BxgMeUrzTuUeIh+oX+pUnxe/wzWi/RsxiZxRtHcA58kBYdu634cCy7xfkkLKXgtw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 50.233.182.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axiado.com;
+ dmarc=none action=none header.from=axiado.com; dkim=none (message not
+ signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sOg9yBVnKXtQW1qiQWx896srMKcez1QafqjQ/RaukKM=;
+ b=Po9x6PMny7fZ+zSyaPleyaseBvyZ4qsVFiUIsgDP2ESK2cjiMF3wCRstpmXrVWyRFuJNyWml/UWsE5oO/+BFVgG83JxA6EqYhZAKR/sWKVhFzkx52DVtuInEHecR/Ga8OkGIqm9MZvUu1b+aiz63HW7bSoR1X4p8mAviQbdIst4weK9ZoFyW4kKyu1327SgbAK8Q9Fl5J91cYK1m3IXg5vUFifKFG6HL7BH1gDYIaqLVHTPl7/68iUFtahNemUwqY6IoGnieqJdnWfIZSD34eziJSlRFXJ7S4umOZ+RfO5YD2Xm9CMSrmAx6fY7S+OSogLOgh44ONbU++mUhBYxseg==
+Received: from BN8PR04CA0015.namprd04.prod.outlook.com (2603:10b6:408:70::28)
+ by SA1PR18MB4536.namprd18.prod.outlook.com (2603:10b6:806:1e3::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.14; Fri, 22 Aug
+ 2025 19:15:24 +0000
+Received: from BL6PEPF00020E65.namprd04.prod.outlook.com
+ (2603:10b6:408:70:cafe::f7) by BN8PR04CA0015.outlook.office365.com
+ (2603:10b6:408:70::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.19 via Frontend Transport; Fri,
+ 22 Aug 2025 19:15:23 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 50.233.182.194)
+ smtp.mailfrom=axiado.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axiado.com;
+Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
+ designate 50.233.182.194 as permitted sender)
+ receiver=protection.outlook.com; client-ip=50.233.182.194; helo=[127.0.1.1];
+Received: from [127.0.1.1] (50.233.182.194) by
+ BL6PEPF00020E65.mail.protection.outlook.com (10.167.249.26) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.8
+ via Frontend Transport; Fri, 22 Aug 2025 19:15:22 +0000
+From: Harshit Shah <hshah@axiado.com>
+Date: Fri, 22 Aug 2025 12:15:10 -0700
+Subject: [PATCH v2] arm64: dts: axiado: Add missing UART aliases
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250821-v6-17-topic-imx8mp-skov-dts-jutouch-10inch-v1-3-b492ef807d12@pengutronix.de>
-X-Proofpoint-ORIG-GUID: 9o17bIBIR-JRrth4hAgS1q6B0xJGviYJ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIyMDE2MCBTYWx0ZWRfX9CRWCkamsUEJ
- 3NpUAD7KAvY8y8tP8QylfuLDXKu8m9D6Mc0z8G8F/t8O0s4ul5+ByL2vCcYcUVkSJ9cIkFw+H3X
- DFrcE+v6R2ik7viDrbdVXwJmH3aeOKt25ufrj9gzSMPf7etF1FtRG1bpf1+xw0N8ObjW5OWBc7z
- OD/ruQSaVr9I133x2E8Zt/Ol+zlLmt4ku9cspGZ5G1SPm1r7CpmttA+fQipvavggYW+fCSjVHnn
- DfMVC4zdm16D4ZUjGrYZPW7W9BcZTI5GGGjpN7V1w8G+H9TCEo/Tmln+OO501D7rpqwSfmM4mQ/
- aFh+AEahWvDJvC7H/GHBkt4SCdYVfJyRCy2Upr+m/OxVgUpGgWO9ULbEbHspyxl9Bo3gYUGfQ9G
- hzy0b2SX
-X-Proofpoint-GUID: 9o17bIBIR-JRrth4hAgS1q6B0xJGviYJ
-X-Authority-Analysis: v=2.4 cv=B4G50PtM c=1 sm=1 tr=0 ts=68a8b7af cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=Acj4BH8ZA6BBt8B7gSkA:9 a=CjuIK1q_8ugA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-22_04,2025-08-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 suspectscore=0 spamscore=0 phishscore=0 priorityscore=1501
- adultscore=0 impostorscore=0 clxscore=1015 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508220160
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250822-axiado-ax3000-missing-serial-alias-v2-1-54052d75467b@axiado.com>
+X-B4-Tracking: v=1; b=H4sIAL3BqGgC/42Oyw6CMBBFf4V07Zg+JFBX/odhMbYVJgGqLRIM4
+ d8tYOLW1eTc5N4zM4sukIvsnM0suJEi+T6BPGTMNNjXDsgmZpLLnJdCAU6E1qejOOfQUYzU17C
+ uYAvYEkZQ2pxKrQp+Q83S0CO4O02b5FrtHNzzlVzDL2woDj68t0dGsaZfpxT/OEcBAnJZWF1oo
+ xzyy146Gt+xalmWD9LGHS3qAAAA
+X-Change-ID: 20250813-axiado-ax3000-missing-serial-alias-39c489370ba9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Harshit Shah <hshah@axiado.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1201; i=hshah@axiado.com;
+ h=from:subject:message-id; bh=FgphQcoG+DlnEqB4jfkdWUB3Ga7nEjUCjRTnSibHBmw=;
+ b=owEB7QES/pANAwAKAfFYcxGhMtX7AcsmYgBoqMHJze8NOuKI4fxX1G4hk4mM0teEp4eqAQRmw
+ bwGI1bBUYGJAbMEAAEKAB0WIQRO3pC/7SkLS2viWOvxWHMRoTLV+wUCaKjByQAKCRDxWHMRoTLV
+ +7YUC/4+xFdGQml/ARkX4JQHa3iIX3v8/xwWfDcs1/jVwFbJXIhxgTbxbLcoPxCG4Sad11YdgML
+ ZY05FZkXCBoxHvYQ10py4IkNco1HPgRmnF4BMKhJWmLNprLH02+WjmLNLrXkQgoouz6oTVJuswQ
+ taW890qKHvEJf+2sSBpXjZxY714nvbxP20bTmYSo+uZwNsh0q0QD8ucaTaMMiDgooOk7RuDMWDB
+ wuK9RR2mhg+Ql5s0SCHturZgXOmpPLrLsWGUvd6SxcvWwdXI1x+1qcPI7XzIW+9ZrM0oZJXul6T
+ 7yNMBkd4nBkvjjExKHssWG4Inr3G7VKMLszl5mLRh7s80aenjdHuxQO+MBaW42e0nuz3iWagmdz
+ xeUb8+cfBdCZPFD6jY8CdcW75JAvp1x3TzeP1m+lMwlqScSsLYmqaGwRqrlEU+HY5C2lCBnwuGV
+ q/WZP5Vk7OldHSdrvgC+DjNK1UuKspMMCuTdYofxYyVmPD83hRb53YCh1oWPbH0Et08/Y=
+X-Developer-Key: i=hshah@axiado.com; a=openpgp;
+ fpr=4EDE90BFED290B4B6BE258EBF1587311A132D5FB
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF00020E65:EE_|SA1PR18MB4536:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04668c8b-3d82-4be2-3e1f-08dde1b03e38
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700013|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UW1QZmd6ME9oWmpJSVNiVUMvTURMQkVpNno5OHE1N2xNV2d1ZVd1WXNJTWFy?=
+ =?utf-8?B?RThJRUpxOEc5RDQxdTM0Yzg2cnlrSFpYWUY3TEc1cFp0L0l0anFhWW9RSnU1?=
+ =?utf-8?B?WDVJdndWV25VNjZDMXZYOFlubUx0L2pueXNaNTU5cHVHMlY4OGtUTSs0UWpt?=
+ =?utf-8?B?ZktPYlNzdzRBK01YbGFHcStmb25QWWtNQ3BhN1hlc2NmbmtyWTh4bHdEd3Nm?=
+ =?utf-8?B?R3AwMGQzS3Zna3hEVjdxTUpQVy9RZzZrTmNvQmNJU3k0aU5xdTZOdnhTT0ZB?=
+ =?utf-8?B?RzdjaHlMclNEMXhjdUQyNmpaM0RpZ0p5SDVSYVpmUGI5RXlwYTlxaVEyelpw?=
+ =?utf-8?B?eWZSaWFESGdMck5UWENGNDA1UThUMDd5ZjFhYStkSlhBWG82TG1kWVM4RkdU?=
+ =?utf-8?B?STlvc0JpTVBXVzdvQjM5Y1pENzFVVXZYNExvVjNXQU9ZeW1mVGtIVzRONUxF?=
+ =?utf-8?B?dU5BMTR3WEdxWFpybVlOV3M2SkxWUXVkSyswbHIzVGdpY0VvTU0zd01zWStz?=
+ =?utf-8?B?M0xObmtOT2IvMFo2OGFiRjNIVWVVV29mTllOSm1GelJYTFhuUEhSSkVpUSs2?=
+ =?utf-8?B?ZnJZUWt1L2d6WG1SZTJ1MWk1bmt2WGNORUxYY0x1N0wzS2ZTenpXeDhtWEYv?=
+ =?utf-8?B?OFpBM2YvNWc0aytWbnJIWUx3S2RaVXRodzUxSXlRb2FZWW1CMllsT29HcDlE?=
+ =?utf-8?B?bE1hNGMweC8yTUluSFE0Nnl5bHlibHJsWnU0akY1NHFzZmF6MzRwSW1jNGRS?=
+ =?utf-8?B?a2xVeWJNSStzUFI5cTZTb0JKcVcwK1hLanVGS3ZGR3dRTW45SUpiWVV2YUdI?=
+ =?utf-8?B?M2Jock1BMHpHOHBHM25HaTNjSWk5a3ZTcWRMYmd3ZnZzSDFyU3hNc0krejRG?=
+ =?utf-8?B?a0Z3T2pKeXJKNmVuMkZXdS9Ha0FhRW1GdmxmT3ZZOFBZWXF0bVZKb0MzdGYw?=
+ =?utf-8?B?QXVCdzBFRnZVbHd1NG5qV09tRG0vZjdYMC9PbjVJSjVXekdMTzRnOVUvYStQ?=
+ =?utf-8?B?TUthSHQwRUJRVW9Obkh2MmRva3Z3U1J4TVhuVXN2alh0RmlFZDBoQU9wVjlH?=
+ =?utf-8?B?SFp6Mi9wTEx2d01pdTBNMUlPMWoxSUdjdkg1RHRteXBGck9rSzNpaDZSMFpx?=
+ =?utf-8?B?SkF1clVsbC9xc1F2b0FyNVVjQXRCdGlNSiswNGgwZ2pjZXY0Ti8rMGhYdlp6?=
+ =?utf-8?B?NjNydThma3hERVErZ0VnTEkrcHgwVXI2Y2JXbUxRWHRjNDQxQkhoR0EvZnR0?=
+ =?utf-8?B?L0tjOGJNbmdXMEdyTFZKQUdvZklyVnB4Q1ZqN3FoWmZvU01kdEN2Y2U2WjNn?=
+ =?utf-8?B?d1NDZ2VLRENPSGZkSVhyT0NFSzVsTzlqVi9VZCsrMVBvQm9MZ3ZXdlErdGVP?=
+ =?utf-8?B?OUxHeCtZWGpEd3VzUTZHc0J1NkZ1a2xIMGNZZWZwaGEwM1RHeHdCUFRLb2RI?=
+ =?utf-8?B?VjB5NnFMK2ltL1h1SU54b3FTNWMwSW82cHc4M21jeFA1d0lDbUNzc3NtSkdy?=
+ =?utf-8?B?cEloem9RWUtOb0lWU1hxKzVrOHpsbWNMTkgxNndKME1CS2Qya0dFL01ZYWtl?=
+ =?utf-8?B?VVVBNFAxdmI0SlhzdWEraHdiZVZpbEtJOEdQK1FlY1BOcDdjOWlRSCsyb3h6?=
+ =?utf-8?B?Mk5IaHRBSmxyNTZVNTFrR01KTDhNTWdiUVE1cUlNUFphSVhISHpnZHpUUWs1?=
+ =?utf-8?B?aEJnWE5yRW02QU1xS3lOY2J2dmdKa3RxbFJ5Y0loay9BOVMwV1VWWlVSS1lz?=
+ =?utf-8?B?MXZDUUd5M0Z4OStudmhIdXhjaWNmK0hiamdxekFjL1dBMmV3U0RyN1UwV2pD?=
+ =?utf-8?B?S25wem4ybjRTY2NRRXUreXB4aW5YZEFvbUU0YnZqb21PbTI0ZjZsZ3p6aElI?=
+ =?utf-8?B?UERzZHVueUFOUDh5dVFURU9FOWdSbGQ0bkpSUCtQYTh1d0duR3hjNVRIMjVO?=
+ =?utf-8?B?eE9TeEliVlZqWWZlM2dIV1REWVZERjQxMVdtQVh4MEMxdGduMWJGZWMvbjcr?=
+ =?utf-8?B?WUhoM3RJWWhOQlR5V1owbFptU0gzRlQ3NmNoYVFYSUxady9DSzRZanFuLzNG?=
+ =?utf-8?Q?H3glh+?=
+X-Forefront-Antispam-Report:
+	CIP:50.233.182.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:[127.0.1.1];PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024);DIR:OUT;SFP:1102;
+X-OriginatorOrg: axiado.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2025 19:15:22.3124
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04668c8b-3d82-4be2-3e1f-08dde1b03e38
+X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[50.233.182.194];Helo=[[127.0.1.1]]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF00020E65.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR18MB4536
 
-On Thu, Aug 21, 2025 at 09:55:30AM +0200, Steffen Trumtrar wrote:
-> Add JuTouch Technology JT101TM023 10" 1280x800 LVDS panel support.
-> 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
->  drivers/gpu/drm/panel/panel-simple.c | 35 +++++++++++++++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
-> 
+Fixes: 1f7055779001 ("arm64: dts: axiado: Add initial support for AX3000 SoC and eval board")
+Axiado AX3000 EVK has total of 4 UART ports. Add missing alias for uart0,
+uart1, uart2.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+This fixes the probe failures on the remaining UARTs.
 
+Signed-off-by: Harshit Shah <hshah@axiado.com>
+---
+Changes in v2:
+- Add missing "Fixes:" tag in commit msg
+- Link to v1: https://lore.kernel.org/r/20250821-axiado-ax3000-missing-serial-alias-v1-1-527d979c3ea0@axiado.com
+---
+ arch/arm64/boot/dts/axiado/ax3000-evk.dts | 3 +++
+ 1 file changed, 3 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/axiado/ax3000-evk.dts b/arch/arm64/boot/dts/axiado/ax3000-evk.dts
+index 92101c5b534bfac8b463adaa1c4f0d4367d01e21..b86e969625573bf92bdd5e4435ea571dd7500de2 100644
+--- a/arch/arm64/boot/dts/axiado/ax3000-evk.dts
++++ b/arch/arm64/boot/dts/axiado/ax3000-evk.dts
+@@ -14,6 +14,9 @@ / {
+ 	#size-cells = <2>;
+ 
+ 	aliases {
++		serial0 = &uart0;
++		serial1 = &uart1;
++		serial2 = &uart2;
+ 		serial3 = &uart3;
+ 	};
+ 
+
+---
+base-commit: 8742b2d8935f476449ef37e263bc4da3295c7b58
+change-id: 20250813-axiado-ax3000-missing-serial-alias-39c489370ba9
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Harshit Shah <hshah@axiado.com>
+
 
