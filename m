@@ -1,100 +1,130 @@
-Return-Path: <devicetree+bounces-207998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA0AB31473
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:58:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A460EB31484
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:00:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55250BA2E4C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:56:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89F7A164150
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:00:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6853A2F0C74;
-	Fri, 22 Aug 2025 09:56:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D52288C12;
+	Fri, 22 Aug 2025 10:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="T4DxzR7t"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ItRoWf+n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801E7393DE3;
-	Fri, 22 Aug 2025 09:56:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E5D296BAF;
+	Fri, 22 Aug 2025 10:00:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755856591; cv=none; b=mN3K1cktAbcOzWenQWNK/ofSOPdR84oXrKkuQddzDHHGEHPwmnJZ3udnN4qfFNIuj5x/VSFGodkjmyflu28r3h9MobfHUMAy1axRSzStKN6dxNMvRcAhKlntJNLIhM5L25Oy0ZwC4RSiIt8G/nbv8UHMfXrlIM+POZ4M2ne8Rs8=
+	t=1755856847; cv=none; b=Wz6fttQCWdJALgl2TTEf1ZMcC+n65DBj6G26+1Yd3ucrK1zUpXKbWzQ3FQ0sHCS1V7IeIZh7FxI9/Ks8MSI1nso+0WJTe7o9ZukwIA1U8Qv+J+4nBE/UKkuA9ujsDdlKA9gt+8KqGc/vXhuLwQj9r+EN2G4gcuZdCT3f61KwDaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755856591; c=relaxed/simple;
-	bh=tgckGPbISKEcEPYGCd8ujBQHXdjyOsreicDQ4ji0UDo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lL1qDKNc7aggIaGc6lyOJzApClimbEUULwNZVG4azNaK9kME8tD9M+R8yNMSS/xuyyN5WIMdb6awsPy97ygLk6KMCQYnIUDmpP6myXVluNdLdxaMRMzr2X9aNsjSj7b3f9imD6Ceds3gUEywl0XPRqiZqQPqUynBVr92BCmGAyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=T4DxzR7t; arc=none smtp.client-ip=1.95.21.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=+yjDaQyPgYqGebRjvxpL8l2neia8BuLCnzPQdpLeVTM=;
-	b=T4DxzR7tcHi98ViJJbeBYKPBhulpgzrgyRYi9kbKin+yVnymIXkjdpdEyJqEMs
-	i88NIHdHaTxrjy1l/JGbjWcw5++tAVsZAgeYppk1DK17rMyoGTv5N8OQMBnjBT/C
-	yx1sRWoDEVkTcJwmtCzSPokv6ddQ7nIikD1bnHNh6ObVc=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDHFG6vPqhobTYWAw--.11247S3;
-	Fri, 22 Aug 2025 17:56:01 +0800 (CST)
-Date: Fri, 22 Aug 2025 17:55:59 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH v2 0/7] ARM: dts: clean up most ls1021a CHECK_DTB warning
-Message-ID: <aKg-r76oH34VAH1i@dragon>
-References: <20250820-ls1021a_dts_warning-v2-0-2e39648a32b7@nxp.com>
+	s=arc-20240116; t=1755856847; c=relaxed/simple;
+	bh=KX1whVnGIXfAaXHzOtQ9m6c964Ll60XPU3DshLpZbNw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Lvu1csvd4gcKDJTnunz9k2tUUz6l0wcC87i0qYGK1nAYqWIPiUF+LpTncgXT24N+b26L+RCbpcNU9jTJnHioycj+Ho9zwHu93kIjZauM62coVL2wi65S8wn4e1MngJj5EzjUIKFKzfzllNW0iEW7TKTZlKCIGK79dN+b8Xc23IM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ItRoWf+n; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 8C8CBC8EC4A;
+	Fri, 22 Aug 2025 10:00:24 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 5D6EC604AD;
+	Fri, 22 Aug 2025 10:00:38 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A5F881C228674;
+	Fri, 22 Aug 2025 12:00:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1755856837; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=Cwcx/LLJrt6Uufc15KwGlNwi/lfz0dnv+k38+ZDJcSY=;
+	b=ItRoWf+nQG+M1Lwn65p6sSiFvXticGD8sE6THoM6h5mfmlo7E4wkegkFFkjxRCAwAkUCfN
+	CQa8DEr0JLLoRNie6KJNmW9nX6t2FXMO7cWRWiu7TmZWDWavLcFL99MzRh5mVdLp26oxws
+	C9vjARs1PMfQLc6AmBRwRkYJ4YTgskKbs3sbcaYVN06Mh/N9p8I9yxpwIFJfHi9mqNsWP4
+	18bAYde0DtCt+xGLSjy5vDV+JEj2lrOGb1w7yV5ulK7qARF24SNN36deyBEyb30HsmSpTI
+	kMOFKyjteZTcNTPx4CN4LktKK88tP+2UqH31hIPWUahG+5E3gXtULCLf/hUtKQ==
+Message-ID: <fb499f87-141b-4098-9011-37ec273a07dd@bootlin.com>
+Date: Fri, 22 Aug 2025 11:59:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250820-ls1021a_dts_warning-v2-0-2e39648a32b7@nxp.com>
-X-CM-TRANSID:M88vCgDHFG6vPqhobTYWAw--.11247S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Xw17GF4kXFyfWryUXFW3Awb_yoWkuwc_WF
-	43tF4xGF4UCrW2ka15GFyqvryvk3yqyFsxGFy3Cwn8JF9xJF13Wan0y3Wjq3WjgrWFv34q
-	9r9rCr42q34FyjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8VwZ7UUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIhIAZWioPrISGQAA3S
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v11 08/16] net: phy: Introduce generic SFP
+ handling for PHY drivers
+To: kernel test robot <lkp@intel.com>, davem@davemloft.net
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
+ Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
+ =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>,
+ =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
+ Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+ Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Rob Herring <robh@kernel.org>, Romain Gantois <romain.gantois@bootlin.com>,
+ Daniel Golle <daniel@makrotopia.org>
+References: <20250814135832.174911-9-maxime.chevallier@bootlin.com>
+ <202508151058.jqJsn9VB-lkp@intel.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <202508151058.jqJsn9VB-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Aug 20, 2025 at 12:36:50PM -0400, Frank Li wrote:
-> clean up most ls1021a CHECK_DTB warning.
-> 
-> Old uboot check esdhc@1560000. The new uboot already switch to check both
-> esdhc@1560000 and mmc@1560000. So we can rename it now.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Changes in v2:
-> - squash rename to flash patches
-> - remove duplicate patches already post in
-> https://lore.kernel.org/linux-devicetree/20250725061339.266125-1-alexander.stein@ew.tq-group.com/
-> - Link to v1: https://lore.kernel.org/r/20250818-ls1021a_dts_warning-v1-0-7a79b6b4a0e2@nxp.com
-> 
-> ---
-> Frank Li (7):
->       ARM: dts: ls1021a: Rename node name nor to flash
->       ARM: dts: ls1021a: Rename 'mdio-mux-emi1' to 'mdio-mux@54'
->       ARM: dts: ls1021a: Rename esdhc@1560000 to mmc@1560000
->       ARM: dts: ls1021a: Rename node name power-controler to wakeup-controller
->       ARM: dts: ls1021a: remove big-endian for mmc modes
->       ARM: dts: ls1021a-tsn: Remove redundant #address-cells for ethernet-switch@1
->       ARM: dts: ls1021a-tqmls1021a-mbls1021a-rgb-cdtech: Remove fallback compatible string edt,edt-ft5x06
 
-Frank,
 
-Could you rebase on imx/dt branch?
+On 15/08/2025 05:25, kernel test robot wrote:
+> Hi Maxime,
+>
+> kernel test robot noticed the following build warnings:
+>
+> [auto build test WARNING on net-next/main]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Maxime-Chevallier/dt-bindings-net-Introduce-the-ethernet-connector-description/20250814-221559
+> base:   net-next/main
+> patch link:    https://lore.kernel.org/r/20250814135832.174911-9-maxime.chevallier%40bootlin.com
+> patch subject: [PATCH net-next v11 08/16] net: phy: Introduce generic SFP handling for PHY drivers
+> config: i386-randconfig-013-20250815 (https://download.01.org/0day-ci/archive/20250815/202508151058.jqJsn9VB-lkp@intel.com/config)
+> compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250815/202508151058.jqJsn9VB-lkp@intel.com/reproduce)
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202508151058.jqJsn9VB-lkp@intel.com/
+>
+> All warnings (new ones prefixed by >>):
+>
+>>> drivers/net/phy/phy_device.c:1625:47: warning: variable 'iface' is uninitialized when used here [-Wuninitialized]
+>      1625 |                 return port->ops->configure_mii(port, true, iface);
+>           |                                                             ^~~~~
+>     drivers/net/phy/phy_device.c:1597:2: note: variable 'iface' is declared here
+>      1597 |         phy_interface_t iface;
+>           |         ^
+>     1 warning generated.
+>
+That's completly wrong indeed... I had an extra question to ask to Russell
+wrt. that feature, then forgot about it and sent the series...
 
-Shawn
+I'll address that then
 
+Maxime
 
