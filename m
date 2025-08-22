@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-208396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4038EB323BC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 22:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4422EB323C4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 22:49:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17AD31D63A95
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 20:44:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9ACC1D61480
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 20:49:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C637A2D8371;
-	Fri, 22 Aug 2025 20:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3092EB87B;
+	Fri, 22 Aug 2025 20:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="myyMEVM+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TREzWGI/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C88D2D7DCA;
-	Fri, 22 Aug 2025 20:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD23226B769;
+	Fri, 22 Aug 2025 20:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755895435; cv=none; b=bdh5/Kz74v+U+Y6S+2TYyoWazJJ9yAQIjQChgl5Ty54PP/sMDdT5ucIEh/agN2kopJM03/sxqx0/Io5uBEP0AjF/per3JV7VHo8czh4IAiwLukLfPjmpvpOJ4pgfnEwQxs85r/QpYtRbcaw9aPpkVcwnpucHCcDdLeXsPeUkotg=
+	t=1755895761; cv=none; b=ESDQ7SqP0pee4xn8WuhsN3ivXr/7WpSRLt0kkIx95Xcpjc+9pdKgHwtmRUtzZptaAWEcOnCYsHmAvoqMUJCU2G+SaeBKdrQUzoxvD8RQHeLL+ubMP40gIgUOhVAbgAjzqtsRugn95GlK32EVgjQW94R9yxK2zxvYtsaNpqGhbfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755895435; c=relaxed/simple;
-	bh=TEdHF9pUX27RDqqMATVQj7+pnf8Vs/Rf6VDbI1qD1Lk=;
+	s=arc-20240116; t=1755895761; c=relaxed/simple;
+	bh=wmRCLD9hOfy0sueOqSOzM5LT8HdFfskptuv1HyGoOiA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NModu3fWrNw9/OfbEHozTwZRAduY8Fm1v4DV41mK8OXIJE13kIwDXvzsujZKOaZNi/9YiU0e3rutx70emWU/Gm3gJr2+7jq09t/2TYDlTOCGM2i5fnyl/A7bU71m2xiV5CL60RHLsxwOuOVDseVN2npYxMuD7wchU6n6brWc4CI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=myyMEVM+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A1F9C4CEED;
-	Fri, 22 Aug 2025 20:43:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EHED+wvLcLJ5IkkQ2CeTqAZvHj7iDiTct2hlEaQE+sTKOEP7m805g+qY9qQ91vjdMk161RR7uY1r+4bYsZjuFhemPB0/tTzAzqm1arnFmFHfcXAH257U3N6g1slxLIoLlEbpIbTL4GDLNwujPDF15KU39MVytPcx9YJyXSrrMkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TREzWGI/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3E0FC4CEED;
+	Fri, 22 Aug 2025 20:49:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755895435;
-	bh=TEdHF9pUX27RDqqMATVQj7+pnf8Vs/Rf6VDbI1qD1Lk=;
+	s=k20201202; t=1755895761;
+	bh=wmRCLD9hOfy0sueOqSOzM5LT8HdFfskptuv1HyGoOiA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=myyMEVM+bG7+YSaMj6mY2qSH8azZg5DrqUVeNO5J30SqcakUL1hcNdIoGKP1xJCLX
-	 AP3TMdbKHat3PbYVL99dJnb4p3+vvlet5ome8KfpPnNtrQyb5zwncNFGbDAbd0SjdG
-	 ydTEvhFHNa5jRrjCjmc7QH8T5SvIPWHy9DYPx7Ik92gJ2Gr5XFcqHHpeV9dnHUDjQ1
-	 fFiiNmill6JZ8rsVEWWXVc+5sr9J2iAVRUO4FNc8IF/TpHRxlPfV44lfcxeCQ0Dyif
-	 KU7Co8VS4oHGDY8b0ADiAzrRgKiFwNYJueNi8ud5pvOi+fVBRpzfjRB2Fzgwx7nZlS
-	 fQ0aLSJ9nKI6Q==
-Date: Fri, 22 Aug 2025 13:43:53 -0700
+	b=TREzWGI/KHNYiYiVKXn4mwg3b3FDPsPm24JWVzD9c1QWsPwZ6vnvsxHNQPR75cOJD
+	 h/72DFHoP8T0ao4DFDBGMhPYmu0IpfPbmRiWJNdFGLE8YO0Pa1T9ke5JUiElqtV6JH
+	 lFeNa8Tmod24lBIkxtq/BTVX2iwnt1whenapPUEn1FFg3jKjuIiKO1JD/bpDEZJIA9
+	 AbpPQ+Q8zrHEMbcdMsVdOUsMkUfoVPRiZcMnwgg2ORnHfLFsr+ZZ0lQLLbpHDjcAg3
+	 N/Xw7dzGn05qpazPV5vG/uSe1RTsGssQHCRo+QUHzeniWihGOHjCssXmIX9qvG88hS
+	 iXu7Mi4hl2xXg==
+Date: Fri, 22 Aug 2025 13:49:19 -0700
 From: Drew Fustini <fustini@kernel.org>
 To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
 	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
 	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v13 3/4] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU
- node
-Message-ID: <aKjWiU4fQw3k77GR@x1>
-References: <20250822-apr_14_for_sending-v13-0-af656f7cc6c3@samsung.com>
- <CGME20250821222023eucas1p1805feda41e485de76c2981beb8b9102d@eucas1p1.samsung.com>
- <20250822-apr_14_for_sending-v13-3-af656f7cc6c3@samsung.com>
+	Benno Lossin <lossin@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v14 7/7] riscv: dts: thead: Add PWM fan and thermal
+ control
+Message-ID: <aKjXzyyYd9QneIKf@x1>
+References: <20250820-rust-next-pwm-working-fan-for-sending-v14-0-df2191621429@samsung.com>
+ <CGME20250820083548eucas1p2a40775d53dfd9f8608671cc20003fd7d@eucas1p2.samsung.com>
+ <20250820-rust-next-pwm-working-fan-for-sending-v14-7-df2191621429@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,36 +79,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250822-apr_14_for_sending-v13-3-af656f7cc6c3@samsung.com>
+In-Reply-To: <20250820-rust-next-pwm-working-fan-for-sending-v14-7-df2191621429@samsung.com>
 
-On Fri, Aug 22, 2025 at 12:20:17AM +0200, Michal Wilczynski wrote:
-> Add a device tree node for the IMG BXM-4-64 GPU present in the T-HEAD
-> TH1520 SoC used by the Lichee Pi 4A board. This node enables support for
-> the GPU using the drm/imagination driver.
+On Wed, Aug 20, 2025 at 10:35:42AM +0200, Michal Wilczynski wrote:
+> Add Device Tree nodes to enable a PWM controlled fan and it's associated
+> thermal management for the Lichee Pi 4A board.
 > 
-> By adding this node, the kernel can recognize and initialize the GPU,
-> providing graphics acceleration capabilities on the Lichee Pi 4A and
-> other boards based on the TH1520 SoC.
+> This enables temperature-controlled active cooling for the Lichee Pi 4A
+> board based on SoC temperature.
 > 
-> Add fixed clock gpu_mem_clk, as the MEM clock on the T-HEAD SoC can't be
-> controlled programatically.
-> 
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> Reviewed-by: Drew Fustini <drew@pdp7.com>
-> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Acked-by: Matt Coster <matt.coster@imgtec.com>
+> Reviewed-by: Drew Fustini <fustini@kernel.org>
+> Tested-by: Drew Fustini <fustini@kernel.org>
 > Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
+>  arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 67 +++++++++++++++++++++++
+>  1 file changed, 67 insertions(+)
 
-I've applied this to thead-dt-for-next [1]:
-
-0f78e44fb857 ("riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU node")
+Do you think it makes sense to coordinate this with the "Initial thermal
+management for Lichee Pi 4A board" series [1] from Icenowy?
 
 Thanks,
 Drew
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=thead-dt-for-next
-
+[1] https://lore.kernel.org/linux-riscv/20250816093209.2600355-1-uwu@icenowy.me/
 
