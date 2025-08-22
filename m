@@ -1,159 +1,146 @@
-Return-Path: <devicetree+bounces-208074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43FE2B31850
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50CC0B3187A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:56:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73FA5624BD5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:50:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FF6B1794C4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BDC62FAC0D;
-	Fri, 22 Aug 2025 12:49:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E292FDC5D;
+	Fri, 22 Aug 2025 12:53:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SDESnmyJ"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="vSkjrpa5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC182FB607
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 12:49:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5931C2FDC39;
+	Fri, 22 Aug 2025 12:53:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755866968; cv=none; b=Om3kBWb5xVu9ZEfAsffhI0bOz/o42lXH1K2JC6MDKB5vjiXh4c9vGQMFrmtmybKiL46HKAOmZL2iusCaEXC6z5bZPSBHbXH4dYW65ioT1F0LTeSPFBEpDwDFp2Czn4OWMBA54QNCx0XtdAXI4b4EPcXT3moOby6hgLfOMPHefS0=
+	t=1755867231; cv=none; b=c7BCHnQc+e2DzbNPbpLAZs7GQk9PneMMVoA7XO6cf/kvthiLFh089+PwVE90JXtKf7Nm3lklO2eKiRjOrZ3J6EGsF4S0T3VWush0AFxR5h1A8/Fk5GCtK7lKIY0nc+xBrszEn2alioa681ha+LkzCwrNGa10ZOJIhpQljPo2QnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755866968; c=relaxed/simple;
-	bh=hqPSW8gjRuHQDQ+i6kbMnBBBnlr60fdu7FJ683wtg9E=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=p+BSCsHGNXbEaZMj8TB33npdRBSgMQqXiQtqeJuETiyM/UUKWWpUIs77JeYtzcZP5PFwT2xfhG7NWr6sL6ufur5H6ez34PmyBJt1EmfyujyQMqduMkMn97X78DnQq3i9mW0qEy6ea91hyh6GNla8tm7I5IhaYr8FbVHALJwxsKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SDESnmyJ; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id A2999C653ED;
-	Fri, 22 Aug 2025 12:49:08 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 45D03604AD;
-	Fri, 22 Aug 2025 12:49:22 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 58D961C22DAC7;
-	Fri, 22 Aug 2025 14:49:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1755866961; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Ua42caSIreMTSgZq76zsnJuAIzw5ug7AfcH2QBcncRU=;
-	b=SDESnmyJ/kgcZDMS117RQSYG6rtBD/JCv3cYBZOa9cHLPlLtCFuEa5ocMI/hx9RFSDNbG7
-	L2Sewj3/uIebW3MjKm87ZtSWD0uuJ9wy8pyVSDDdmKN2ZOGdHqmEk6CVZbYXeqqGvOXaz3
-	VU2ejhHOYZUxXIj2xWhYJOt9atBG7jK/AgR0LKXDK+s1YqGhLKGbb1MojYTW3wmMzNpvGD
-	U3I9ZAbTNFdzR6nu9DKlol+72VaLaT5Q5yrJN8plgt7jpNOrZd9DtH4QtId4+zMdz630LJ
-	yL3mgzLzGsLAhOKUkLYGGxNtx89sBeu+Mho/QbCpLdG0PBEA/zUVHgA9DRP/xg==
+	s=arc-20240116; t=1755867231; c=relaxed/simple;
+	bh=vH8/FgNJ/kKiEHe3xzg4cL21oJWFn8KzapA/btnIAtM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=L/EpFMRnn89ddTkw4/FUldDzFlxlMov8kpd8pGl/isNZATzDC9NwBV2l/AYZ80NEaYLs+EoesbS9rLIBWtnwwMCrJfChc/AIDSGT3i8a1AMISJ2qGunqYdiNPkDvYbTGABOhJtVOoCZSELNrUVYQ3OTsmuy7vhsrSH1yO023x1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=vSkjrpa5; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57MCcbNM031206;
+	Fri, 22 Aug 2025 14:53:32 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	Re6rTgjaOJt8smZc/4rZ4g/4BKkxRKmFfBQq298eT/0=; b=vSkjrpa5OzOilbnY
+	AjvA+2dJFsXmfJ3ZW8ELuKj1dBb5TWl2cyFaTAcL6A5Ho33Ldol3BZXL1ba+EAQD
+	t6Ngsy6BQPi4iG9buPN/p6gaFdkFq5kHCoowmxLEzl1RsbP1KxClrsHxI+q15DDl
+	9pRunOVJuO3M+/xBrjA7I3NfDhJsaGur9B52FTKJW/wKhn1XVyYWPaRzKTWOFGDc
+	t/Y48qbFH9z87oQuWH9KK+in4+hcThVTOAv7wcOf20gl72r0gnPSa832bbZe7oE0
+	jVSQxSE2BWoLi9XtSjEjAiSbT1TXpkYAQO0AYNCVRuTQ33aL77NArUd1Gy0nCk8a
+	da41+Q==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48nd5xs75p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Aug 2025 14:53:32 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 20DAF4002D;
+	Fri, 22 Aug 2025 14:52:16 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 04C7871DB56;
+	Fri, 22 Aug 2025 14:51:17 +0200 (CEST)
+Received: from [10.130.74.180] (10.130.74.180) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 22 Aug
+ 2025 14:51:16 +0200
+Message-ID: <ddb2c0d4-cf26-4357-ad76-5417030dcfd4@foss.st.com>
+Date: Fri, 22 Aug 2025 14:51:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 22 Aug 2025 14:49:10 +0200
-Message-Id: <DC8YVXKCZAE4.5QJM9MP4HJZ5@bootlin.com>
-Subject: Re: [PATCH v13 04/10] pwm: max7360: Add MAX7360 PWM support
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>, "Michael Walle"
- <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Andy Shevchenko"
- <andriy.shevchenko@linux.intel.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250811-mdb-max7360-support-v13-0-e79fcabff386@bootlin.com>
- <20250811-mdb-max7360-support-v13-4-e79fcabff386@bootlin.com>
- <l5crrk3ugpo2ggjtykcy5eretclgntebyq52xuouekoimbrsvh@u4koyu5z2wwi>
-In-Reply-To: <l5crrk3ugpo2ggjtykcy5eretclgntebyq52xuouekoimbrsvh@u4koyu5z2wwi>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 01/13] dt-bindings: display: st: add two new
+ compatibles to LTDC device
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Yannick Fertre <yannick.fertre@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Maxime
+ Coquelin" <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250821-drm-misc-next-v4-0-7060500f8fd3@foss.st.com>
+ <20250821-drm-misc-next-v4-1-7060500f8fd3@foss.st.com>
+ <20250822-gifted-messy-fulmar-1eab63@kuoka>
+Content-Language: en-US
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+In-Reply-To: <20250822-gifted-messy-fulmar-1eab63@kuoka>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-22_04,2025-08-20_03,2025-03-28_01
 
-On Mon Aug 18, 2025 at 11:05 AM CEST, Uwe Kleine-K=C3=B6nig wrote:
-> Hello,
->
-> On Mon, Aug 11, 2025 at 12:46:22PM +0200, Mathieu Dubois-Briand wrote:
->> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
->>=20
->> Add driver for Maxim Integrated MAX7360 PWM controller, supporting up to
->> 8 independent PWM outputs.
->>=20
->> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
->> Co-developed-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.co=
-m>
->> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
->> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
->> ---
->> ...
->> +static int max7360_pwm_round_waveform_tohw(struct pwm_chip *chip,
->> +					   struct pwm_device *pwm,
->> +					   const struct pwm_waveform *wf,
->> +					   void *_wfhw)
->> +{
->> +	struct max7360_pwm_waveform *wfhw =3D _wfhw;
->> +	u64 duty_steps;
->> +
->> +	/*
->> +	 * Ignore user provided values for period_length_ns and duty_offset_ns=
-:
->> +	 * we only support fixed period of MAX7360_PWM_PERIOD_NS and offset of=
- 0.
->> +	 * Values from 0 to 254 as duty_steps will provide duty cycles of 0/25=
-6
->> +	 * to 254/256, while value 255 will provide a duty cycle of 100%.
->> +	 */
->> +	if (wf->duty_length_ns >=3D MAX7360_PWM_PERIOD_NS) {
->> +		duty_steps =3D MAX7360_PWM_MAX;
->> +	} else {
->> +		duty_steps =3D (u32)wf->duty_length_ns * MAX7360_PWM_STEPS / MAX7360_=
-PWM_PERIOD_NS;
->> +		if (duty_steps =3D=3D MAX7360_PWM_MAX)
->> +			duty_steps =3D MAX7360_PWM_MAX - 1;
->> +	}
->> +
->> +	wfhw->duty_steps =3D min(MAX7360_PWM_MAX, duty_steps);
->> +	wfhw->enabled =3D !!wf->period_length_ns;
->> +
->> +	if (wf->period_length_ns < MAX7360_PWM_PERIOD_NS)
->
-> I know this code was suggested as is by me, but I think we need:
->
-> 	if (wf->period_length_ns && wf->period_length_ns < MAX7360_PWM_PERIOD_NS=
-)
->
-> here to prevent to trigger a PWM_DEBUG warning. Sorry to spot this only
-> now.
->
 
-Right, this does make sense. I will send a new version shortly.
 
->> +		return 1;
->> +	else
->> +		return 0;
->> +}
+On 8/22/25 10:00, Krzysztof Kozlowski wrote:
+> On Thu, Aug 21, 2025 at 01:08:51PM +0200, Raphael Gallais-Pou wrote:
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          maxItems: 1
+>> +        clock-names:
+>> +          maxItems: 1
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - st,stm32mp251-ltdc
+>> +    then:
+>> +      properties:
+>> +        clocks:
+> minItems: 2
 >
-> Best regards
-> Uwe
+>> +          maxItems: 2
+>> +        clock-names:
+> minItems: 2
+>
+> Best regards,
+> Krzysztof
 
+Dumb mistakes... I'll correct it in the upcoming version.
+
+Thanks,
 Best regards,
-Mathieu
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Raphaël
+>
 
 
