@@ -1,195 +1,137 @@
-Return-Path: <devicetree+bounces-207918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE754B312C7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:20:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B07A0B312D9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:23:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB02CA0827F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:20:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF9017BE157
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:21:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF1D2ECE9B;
-	Fri, 22 Aug 2025 09:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC48D2EAB8D;
+	Fri, 22 Aug 2025 09:23:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SA6SLlHc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yramlMjx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AA762E8B7F;
-	Fri, 22 Aug 2025 09:20:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C64732E717B
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:23:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755854409; cv=none; b=NESdLe6pxkzCWy+uJtceZlOBNEHUwv8GKI9IjHGDRjXB3CX7b6TWq8t1YJ9yAlzCLvP3XwKo8mmQ+Wcez2ao/rWe2z0zUA/2oUUiMB70ZRNhdl1Nnsc5z6jT4Xa/FzzvxKmvrc+SJmuLhEZOYRf39J3/0snBijKnByYEXr2nntc=
+	t=1755854585; cv=none; b=I9wAPWOdTKY1CtGpE5S+mXKA8zGfJmKXcMMrUnHd4xx9+TuGFACD6r8yE1nN8dU1TsdbmHzTY0EeTqC0fohYgqolcHTRNFPJjrDapuXUkimp8d/j8ccDW94IBpLmm3ivKhunwSixqZ9yWgTf1WhHIcKmqxaOOvrK4FmpJzrygZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755854409; c=relaxed/simple;
-	bh=ZylEyDi98Z35TcvrppRd4qANA6h13aRuwFsZau22r7A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=j79x0K7fVgpvx3XHhNHt/jOk9KL9C3QoDgcD0uqwTwZ7vkUM2Dm6kkxLYyFvLlkbbmkq8OZyNQT9Koa6CLmwatVSKt3IgdGOuaparFIn7yVtx1teXjPQP/0tD06HzAOv0TrrOeaNpeGVdlw3ITsjihlyjoD70rePNraQKQUa7oE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SA6SLlHc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2834DC19423;
-	Fri, 22 Aug 2025 09:20:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755854409;
-	bh=ZylEyDi98Z35TcvrppRd4qANA6h13aRuwFsZau22r7A=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=SA6SLlHcNUIkrOLR+vSz+x6rwispT/nvDcFcmOWrsy0n4DFLaQEhH2/Nl6l3qz3UR
-	 1Nal5Gli/ATgNv57N3bqRC/qQPdtxKMIzprJiiZmktnCXhrokfprIAp9nJFbBjc/2Y
-	 6groYqvkwsffDVhc/tQhq8SwSlQVgDXZzEoHJYYGfcVKcEa3Hzl/+55e5At6IMoe98
-	 TnslnoheTjRQe9kHgVR/OYFhDAiUG5wN1ufkW7s37mTKWtaLuO+tBc8ioiBeLxIZYM
-	 wamr4EI1hlv/t2h/ZJBhWc7200+J6JyxHAtAR4AVWVc92o5xsF1Tg8Y1DPT/H4eDQ+
-	 os/NjRNA21UxA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CA52CA0FE7;
-	Fri, 22 Aug 2025 09:20:09 +0000 (UTC)
-From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
-Date: Fri, 22 Aug 2025 11:20:06 +0200
-Subject: [PATCH 2/2] arm64: dts: freescale: imx8mp-moduline-display-106:
- Use phys to replace xceiver-supply
+	s=arc-20240116; t=1755854585; c=relaxed/simple;
+	bh=A81kBoegl40q6quwOX0WX4yiOUHqnmUUvR3iJOA0a2w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UHK5+zhb2F66AoY4AlN7gY2yk3crM/uT/KdTDgVKJ9vc0aFUPqTts3sgedndAd+5SUtz0VR0xDESZgl9eOCvMpDFvNIiLphHAd5I3/G+G7Q2ZQcx5C/7Uw3eemjieupIc+P03HPQYkncSGDpdNQYOY6v+XC0rifrGqopD6Ldlf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yramlMjx; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-333f92cb94eso16493161fa.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 02:23:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755854581; x=1756459381; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8rvb5BTFOBJCsAqheRi5OrrkHsnM2r6jQ+WuONy16iw=;
+        b=yramlMjxo2HVLHr77caITJqmao78DQi+W03uRRGABVDoijpNsUeuSCdK1TmpiJ0hXi
+         GdZ4vJX75/t4Q+Q9Da1aUSKfT/UUVQNzpkZVqBZd7/uWx4WotQs1xPHzUoD63hJlWajX
+         VAj/Pdcsg4mCr3WWO+WVte+c9XTUg0bzLml3DfEek7dleo4tySjsDb9Wpf0pDxppHiIX
+         cqiFdOvgyAqqOqrmV9U0qKwyk7iEiojvSM0EvAc8MvwykNTPCwxI3uYvlKRc6SgiCz4s
+         AnguQxajQDLQ1IS+mXISkUlGcJXvmR9W+RpSLjxoi6fb6rmdb9bnmctZozyEhIt65U28
+         HiGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755854581; x=1756459381;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8rvb5BTFOBJCsAqheRi5OrrkHsnM2r6jQ+WuONy16iw=;
+        b=GUYKeutAqOb9ao5mTr0WzJ2g5uJ4+maobXliCAf2l/dMEvFuxs/eBSRUbRzsN9SRD/
+         XJzBdBWdPK2/w0PIEMEOTXMG4f/D74l+QWdd+OxUQMk6fl3RK7avISE0Rw3j/0+y+pt9
+         mNSWdLRoJvA2pM4K7R0WvcLZ0EvcDo9SVOypSj9cqXkufbrie9ighsqtrRDFW0FoaqhS
+         WOh/i0j3uph9YnIQ1n+w01aNqUUITVYE1CJc4MTi2YIpMJiv40K5FzefCkvLXN1WNp/g
+         vKIOmRzLAcYl9oQEV8ssCnQ/01xpTwBaqDVdES99VYsXmKIqvUY2pneEDXaTQKYTt0QX
+         dWpA==
+X-Forwarded-Encrypted: i=1; AJvYcCUgx0EuIUOT2RJZutV2RJR3ZmUsbJF4hL+E/qHx+6zJ+f1c5h4DyyDDISY0LxtfDKTRHTjV5SfnqBAh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDmb9FhzJbaFdckUsgHbRrJjbM0OysbpGx6HW/z1XbSW6utooO
+	1q2ZpAVBEZLobh39drbEYgvLC3zuLWmLNRlp9zu7mcVsgqHbOrSQj7VJN3ehvYnRwhp8gFRGLkD
+	bT2YOPpoZRNtpwVB3w2GBxrCygGpzglB3lF76KN5NiQ==
+X-Gm-Gg: ASbGncvT9Zw+h4gszjlCwnpKsm366BUlvLGUed8ZkZmUH/O4tgjJ/Zo8CE1BwHLSYil
+	Er1UHy3xQg+nwUDRB2LA1pMp0kssK8gmU7vpX0gwoGWVYIOknSZKqPC4BIr0KfmkesGITwhnkZY
+	r/+gI2l7Low6H2YiR9TjxLoWUlyOzOpMiQDoqyQlYyQ3vWOgKVsIZiZRGutplUPT5Gsp8PhrztV
+	s90rNLt+p6Dl2SLJQ==
+X-Google-Smtp-Source: AGHT+IGmS+5jZRiY3M87jYqtd1N1nFCNBKn5R2TEdrmd3+xxfd4PG/kXNNSVVgmhRVuloDKPRDouFdqjsq+r/vvoIgA=
+X-Received: by 2002:a2e:8a86:0:b0:32b:5272:38eb with SMTP id
+ 38308e7fff4ca-33651002d61mr7071001fa.40.1755854580887; Fri, 22 Aug 2025
+ 02:23:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250822-can_phy3-v1-2-73b3ba1690ee@gocontroll.com>
-References: <20250822-can_phy3-v1-0-73b3ba1690ee@gocontroll.com>
-In-Reply-To: <20250822-can_phy3-v1-0-73b3ba1690ee@gocontroll.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>, 
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Aswath Govindraju <a-govindraju@ti.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- Maud Spierings <maudspierings@gocontroll.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755854408; l=3211;
- i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
- bh=3qC9ijohg7RvMYciIPYZcn8wTBRyjIFHSL6DEIr3OxU=;
- b=etRLer/PNIwaB1X431+vRlpBjcg9LUm8EiVCrz7CK1y4hesXitJfyrd9pcRa7f5lbqI0qYT+E
- c5x7VddteCgD6MmYywIbqzzkgLHv9mu28Lq9wywz0Jmsfk32wkWEmK9
-X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
- pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
-X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
- with auth_id=341
-X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
-Reply-To: maudspierings@gocontroll.com
+References: <20250822075712.27314-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250822075712.27314-2-krzysztof.kozlowski@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 22 Aug 2025 11:22:49 +0200
+X-Gm-Features: Ac12FXwu_A2fq6cbJB5U4ofkj6w0TKETQ4RpzZE3LHHotvIJu8LJQDJ8_-1dTpA
+Message-ID: <CACRpkdbLKXx7GEOPemFGSTFy8oDG99TUFwC7sH7xkaoqe-cY8A@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: mfd: Move embedded controllers to own directory
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>, 
+	Guenter Roeck <groeck@chromium.org>, Tim Harvey <tharvey@gateworks.com>, 
+	Michael Walle <mwalle@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Jean Delvare <jdelvare@suse.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Lee Jones <lee@kernel.org>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Cheng-Yi Chiang <cychiang@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Tinghan Shen <tinghan.shen@mediatek.com>, devicetree@vger.kernel.org, 
+	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-sound@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+	Mathew McBride <matt@traverse.com.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Maud Spierings <maudspierings@gocontroll.com>
+On Fri, Aug 22, 2025 at 9:57=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-Fix the can tranceivers to actually use the new phy description instead
-of the regulator tweak.
+> Move ChromeOS Embedded Controller, Gateworks System Controller and
+> Kontron sl28cpld Board Management Controller to new subdirectory
+> "embedded-controller" matching their purpose.  MFD is coming from Linux
+> and does not really fit the actual purpose of this hardware.
+>
+> Rename Gateworks GSC filename to match compatible, as preferred for
+> bindings.
 
-Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
----
- .../imx8mp-tx8p-ml81-moduline-display-106.dts      | 46 +++++++++++-----------
- 1 file changed, 22 insertions(+), 24 deletions(-)
+Maybe add some definition of what we mean with "embedded controller"?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106.dts b/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106.dts
-index afd886dd590ff6f125d1d0e91aa71ae0063b5fd1..88ad422c27603b77c1099f2efe61953999c35f77 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106.dts
-@@ -36,6 +36,24 @@ external-sensor-supply {
- 		vout-supply = <&reg_5v0_sensor>;
- 	};
- 
-+	flexcan1_phy: can-phy0 {
-+		compatible = "ti,tcan1051", "ti,tcan1042";
-+		#phy-cells = <0>;
-+		pinctrl-0 = <&pinctrl_flexcan1_stby>;
-+		pinctrl-names = "default";
-+		max-bitrate = <5000000>;
-+		standby-gpios = <&gpio4 3 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	flexcan2_phy: can-phy1 {
-+		compatible = "ti,tcan1051", "ti,tcan1042";
-+		#phy-cells = <0>;
-+		pinctrl-0 = <&pinctrl_flexcan2_stby>;
-+		pinctrl-names = "default";
-+		max-bitrate = <5000000>;
-+		standby-gpios = <&gpio5 9 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	reg_1v8_per: regulator-1v8-per {
- 		compatible = "regulator-fixed";
- 		pinctrl-0 = <&pinctrl_reg_1v8>;
-@@ -85,26 +103,6 @@ reg_6v4: regulator-6v4 {
- 		regulator-name = "6v4";
- 	};
- 
--	reg_can1_stby: regulator-can1-stby {
--		compatible = "regulator-fixed";
--		pinctrl-0 = <&pinctrl_flexcan1_reg>;
--		pinctrl-names = "default";
--		regulator-max-microvolt = <3300000>;
--		regulator-min-microvolt = <3300000>;
--		regulator-name = "can1-stby";
--		gpio = <&gpio4 3 GPIO_ACTIVE_LOW>;
--	};
--
--	reg_can2_stby: regulator-can2-stby {
--		compatible = "regulator-fixed";
--		pinctrl-0 = <&pinctrl_flexcan2_reg>;
--		pinctrl-names = "default";
--		regulator-max-microvolt = <3300000>;
--		regulator-min-microvolt = <3300000>;
--		regulator-name = "can2-stby";
--		gpio = <&gpio5 9 GPIO_ACTIVE_LOW>;
--	};
--
- 	sound {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,bitclock-master = <&cpudai>;
-@@ -180,16 +178,16 @@ adc@2 {
- };
- 
- &flexcan1 {
-+	phys = <&flexcan1_phy>;
- 	pinctrl-0 = <&pinctrl_flexcan1>;
- 	pinctrl-names = "default";
--	xceiver-supply = <&reg_can1_stby>;
- 	status = "okay";
- };
- 
- &flexcan2 {
-+	phys = <&flexcan2_phy>;
- 	pinctrl-0 = <&pinctrl_flexcan2>;
- 	pinctrl-names = "default";
--	xceiver-supply = <&reg_can2_stby>;
- 	status = "okay";
- };
- 
-@@ -278,7 +276,7 @@ MX8MP_IOMUXC_SPDIF_TX__CAN1_TX
- 		>;
- 	};
- 
--	pinctrl_flexcan1_reg: flexcan1reggrp {
-+	pinctrl_flexcan1_stby: flexcan1stbygrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SAI1_RXD1__GPIO4_IO03
- 				(MX8MP_DSE_X2 | MX8MP_FSEL_FAST | MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-@@ -294,7 +292,7 @@ MX8MP_IOMUXC_UART3_RXD__CAN2_TX
- 		>;
- 	};
- 
--	pinctrl_flexcan2_reg: flexcan2reggrp {
-+	pinctrl_flexcan2_stby: flexcan2stbygrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09
- 				(MX8MP_DSE_X2 | MX8MP_FSEL_FAST | MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
+Something like:
 
--- 
-2.50.1
+"An embedded controller is a discrete component that contains a
+microcontroller (i.e. a small CPU running a small firmware without
+operating system) mounted into a larger computer system running
+a fully fledged operating system that needs to utilize the embedded
+controller as part of its operation."
 
+> Acked-by: Michael Walle <mwalle@kernel.org> # for sl28cpld
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Overall this looks reasonable:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
 
