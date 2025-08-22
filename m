@@ -1,161 +1,209 @@
-Return-Path: <devicetree+bounces-208068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60BE2B317A3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:24:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9ECCB317DF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:32:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F03E1884385
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:22:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 488643AB1E5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:32:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A3E2FB600;
-	Fri, 22 Aug 2025 12:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0A92ED866;
+	Fri, 22 Aug 2025 12:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wPI/W6Bw"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Zahfk0R3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DE02F90CE
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 12:20:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EE2378F58;
+	Fri, 22 Aug 2025 12:32:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755865221; cv=none; b=o0ePv6xD6YcZZ31cgMzLVvvSNwPZgR1LForcL0m1m8he4bIGFCyOkeekWZCj8eG9JnkMs2M6d9D3qTrFIvY0pxYpc7pLthqnIIkCYw/yTWVmSv0XWHmDuIhBQp6wfqkKyv8WF8iOxM6zabX5pYeAmZfO8id6ZB5AdixbXNdjRJE=
+	t=1755865931; cv=none; b=mb2mSolBDaIWldKTvCMWJXpv6x8yQkbIBbJIF0ZCNeaKXpbZxpe51OJa3z/6MqnLy69GH+8wJrD0ZwwUp5ZpfxHzE3sKaFEuKcyy39mGfcR3Xa8r/YYcbx6xaHs1T/kijFkrIxuai/kx3Bb78bi5tdS48libqyxAUau5558b1vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755865221; c=relaxed/simple;
-	bh=E+jjXFPUMrxcYQGu8J7/hIVke/CYM0YElSc0SIVOFOY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XiqXE3UXGmzVqkGAtmS6QkqUCgIAIQxsybta+hPPDcyfQQ7dsZNkzDaDNEhf5CGZwmrFKxHbLXkTH9f6Aotb3oCeYt4BtmhxG5pBMrfp6M1VP0/fOKrAb9x5ng0uS2Yvt/E570GLSqDdQHFnJVF3wgZhxWyG+SHwSYQyB1g2w9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wPI/W6Bw; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-afcb78d5dcbso304108966b.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 05:20:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755865217; x=1756470017; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+xkZUgl3H4hv9cLVhOUAUwY3EVtx+RdpSL2hivLR0Zc=;
-        b=wPI/W6BwthVlNUPNzLzufM9I6dgQ+h1SyWMvhGfL0LzVWF+kI2r3Zb5q+64B/QV7Y2
-         /gsfJOqaYUHqX8p7SGu8AI/+7spslErOX875FLxq6b38z8zRq4UhqLR4CjeJ674TAnos
-         HkMSEqC7KEyM/KJ0sFajav5NUz5hPMMX3qGwA+WIc2+fK4OudYr8H2a0sY03Ze0wf/FI
-         WMwlzoWPLyGC9DNG6fUSneTiMFO6AKvgsyavST4n8Zu+q276rc+b8edwDm0NW25+u6nj
-         bFBpB2Pi+sCAtfv7ock39Tu2EhG8nrKMafEVSRFXhhVYC4bR12TEoKKCf85LztA/I9M/
-         yBTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755865217; x=1756470017;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+xkZUgl3H4hv9cLVhOUAUwY3EVtx+RdpSL2hivLR0Zc=;
-        b=HjaKFin9q1ubDP9ZEjqDwjypsUlvcxmgjq+f0RluXRNK7pF6lLVeafqHR/+8kRo82n
-         Odk706V7WgQp9JcocHe+sPKrEzU8xHVazMDwh65MEiJFVw7IKj7qjkX7LCP+WQCaeOiv
-         w0QmWtWM3jkaZ+7FnxfLOSJdIfs+9ORWfg5GFeHWIBtlD2JXZNzQsU6kxkJpPFf34/xR
-         aqJ7/DUJg3/vzvz2aBR2LK4LOj5tcS9NOS+L6sVyE+OQghNtNXfYNWUFVuvGdKEWG7o6
-         k9T2yK6vsKluzSWMc6sQX7QNnNyXdiVDwF3qkfFtIJdaiTMFbgGqb6z3s+k0GEZYESqA
-         Ql2g==
-X-Forwarded-Encrypted: i=1; AJvYcCX8HthtXvWB21kkkNFGdDapHJoKOXp3V4pmqv9rHb18ZOcz6J0oZQ9kGb53up6vMOxfr1DQS/+4PFRh@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywf9TG8ZWvx/5PRUY4tue7n3Kpu8n3ZNd+ls00+Z44d40WnWvVj
-	KSIYSVxjd8rdLFlB8UglaTzb/kbpLp7+/DYdRKuIX541qIIOMk8sY/xsAQ+qW9HHDkI=
-X-Gm-Gg: ASbGncvHmxDe5aLiqvGFGxWGsekIlUFneNQDovczePPFYGB51OYFOu9WI+p+YcxxhXu
-	T2WojgiDvbsQgrbdGgsHJWZrU0FOIAPnlROmYWLsYUqvGUnHbeB0B6UpBysNKp2TkcPUzfxbhSt
-	NY6SxbpSR44+6e6CrHwUfG36+yp0jE7gue6g+Zm3x/mDwQL5zh+f1U9y0P01G7726arBSAwagyB
-	Mm75pgbexjRbNht9kDaOqp8mTijhEWsAUy6s/A+M223yehG8LtkmCaeFL5BLEsctyuUMCsnA84R
-	/uSB+8k1F9PhDpjTIGo43PoQUbgqADFnkRvH/161E/D2jBnMHdG7Ze+lF8B9SXwPQhSJ5BDpXMZ
-	PkIf2g2quOzUyMG4dVArqOYF4aIwjieQab/0PHYkcvgK+
-X-Google-Smtp-Source: AGHT+IH5MaDGOj90Ebe5kfSzujnkbY69jrqA+f32eLf+heWKCPnDNRvGCa6CIbti/l7iOXpa0qJl/g==
-X-Received: by 2002:a17:906:6a1c:b0:af9:9ab0:6f3a with SMTP id a640c23a62f3a-afe28fd7ec3mr252586066b.23.1755865216613;
-        Fri, 22 Aug 2025 05:20:16 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:63f:a353:7a5a:5beb])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afded4cab98sm604993966b.89.2025.08.22.05.20.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Aug 2025 05:20:16 -0700 (PDT)
-Date: Fri, 22 Aug 2025 14:20:11 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 3/3] arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s:
- add HDMI nodes
-Message-ID: <aKhge2ngLwj4uhmC@linaro.org>
-References: <20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org>
- <20250821-topic-x1e80100-hdmi-v1-3-f14ad9430e88@linaro.org>
- <as7pbmhfgsg3ht3s5lu25pfjjamaxyonuohkuohono3kr2mxii@posspuko4vwa>
- <aKhYYjUuOQ7H1aPm@linaro.org>
- <26j2trl7lypmqzjnw6kwgqz32eqcags34qpgaua7zbwxd4lbgx@n54gemj42xbd>
+	s=arc-20240116; t=1755865931; c=relaxed/simple;
+	bh=1vOkihTL/FW3jv5lIyr5b0s5TaRbEjA9TqMW25XJvZQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ORLUrHG62p+lNidBnlNonKhYb707tg/txYvLOB4mxXDdL/cLwSr29L4W388HcpJjGi6T98Sz+NsfjsAxOIA06krDBYgTbGzIKu0cx/3+vM2VF+L9lHyDJkk7ZgBtwgWB/OadKvQN22Sqr4R0raz2ZplmGNLizWaMcT7nfUOWv3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Zahfk0R3; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57MCHGJl009682;
+	Fri, 22 Aug 2025 14:31:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	JBT1UDpbACmKUTz7QVz33kNvVsoysRpJ/dCT2cDLpW4=; b=Zahfk0R3fVBUSlts
+	KqSACcCnut8KaGkwtIZecPsqlTIN+SuQG3TxqHT8iCCddekygt83cXwczb6jvr8l
+	VA5fiAaU2B9eDZFRDludMIopoz/7pBF3ktLeHYyH/cMsPjipz1O0bMlQJpx4wQfS
+	R/Z3uz3liKRAL6xgoz7HxXQeBAnVxPFRkQlz9/kEK8Drl08bmPIB4x2w7LuNiFd7
+	tFg1Rqwtz1vEr1JgQ6B4pyq+Yd6e9hfmFKl5XtKOSJ5bNofx1m2eWSIvSe4ggcJj
+	ckmbEczqw+Lql/Way9StH+kZfUmq3PrmX24dfd2vKR6z6qZLobT/H9ddXOm+zsss
+	BcUoMw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48np7n752x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Aug 2025 14:31:55 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1470240046;
+	Fri, 22 Aug 2025 14:30:40 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1F9F26C2A88;
+	Fri, 22 Aug 2025 14:29:43 +0200 (CEST)
+Received: from [10.48.87.178] (10.48.87.178) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 22 Aug
+ 2025 14:29:42 +0200
+Message-ID: <512c5e41-276d-4c2c-936c-718347df3711@foss.st.com>
+Date: Fri, 22 Aug 2025 14:29:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <26j2trl7lypmqzjnw6kwgqz32eqcags34qpgaua7zbwxd4lbgx@n54gemj42xbd>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 01/13] dt-bindings: display: st: add two new
+ compatibles to LTDC device
+To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Maxime
+ Coquelin" <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250821-drm-misc-next-v4-0-7060500f8fd3@foss.st.com>
+ <20250821-drm-misc-next-v4-1-7060500f8fd3@foss.st.com>
+Content-Language: en-US
+From: Yannick FERTRE <yannick.fertre@foss.st.com>
+In-Reply-To: <20250821-drm-misc-next-v4-1-7060500f8fd3@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-22_04,2025-08-20_03,2025-03-28_01
 
-On Fri, Aug 22, 2025 at 02:57:24PM +0300, Dmitry Baryshkov wrote:
-> On Fri, Aug 22, 2025 at 01:45:38PM +0200, Stephan Gerhold wrote:
-> > On Fri, Aug 22, 2025 at 02:01:30PM +0300, Dmitry Baryshkov wrote:
-> > > On Thu, Aug 21, 2025 at 03:53:28PM +0200, Neil Armstrong wrote:
-> > > > The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
-> > > > connected to the third QMP Combo PHY 4 lanes.
-> > > > 
-> > > > Add all the data routing, disable mode switching and specify the
-> > > > QMP Combo PHY should be in DP-Only mode to route the 4 lanes to
-> > > > the underlying DP phy.
-> > > > 
-> > > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > > > ---
-> > > >  .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    | 44 ++++++++++++++++++++++
-> > > >  1 file changed, 44 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> > > > index 4cf61c2a34e31233b1adc93332bcabef22de3f86..5b62b8c3123633360f249e3ecdc8ea23f44e8e09 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> > > > @@ -62,6 +62,20 @@ switch-lid {
-> > > >  		};
-> > > >  	};
-> > > >  
-> > > > +
-> > > > +	hdmi-connector {
-> > > > +		compatible = "hdmi-connector";
-> > > > +		type = "a";
-> > > > +		pinctrl-0 = <&hdmi_hpd_default>;
-> > > > +		pinctrl-names = "default";
-> > > [...]
-> > > > +
-> > > > +		port {
-> > > > +			hdmi_con: endpoint {
-> > > > +				remote-endpoint = <&usb_1_ss2_qmpphy_out>;
-> > > 
-> > > Please describe the transparent bridge too. It can be covered by the
-> > > simple-bridge.yaml / simple-bridge.c
-> > > 
-> > 
-> > I think this isn't the case here(?), but how are we going to handle
-> > devices where we don't know which bridge chip is used? I've seen at
-> > least 3 or 4 different chips already across all X1E laptops and we don't
-> > have schematics for most of them.
-> 
-> Open the case, inspect the board, identify the chip. Everything is as
-> usual.
-> 
+Hi Raphael,
 
-The chip might not have any visible identifier. :-) But I guess there is
-no point theorizing about such potential issues now. We'll see. I agree
-it would be cleaner to have the bridges modelled.
+Thanks for the patch.
 
-Thanks,
-Stephan
+Acked-by: Yannick Fertre <yannick.fertre@foss.st.com>
+
+Le 21/08/2025 à 13:08, Raphael Gallais-Pou a écrit :
+> The new STMicroelectronics SoC features a display controller similar to
+> the one used in previous SoCs.  Because there is additional registers,
+> and different mandatory clocks it is incompatible with existing IPs.  On
+> STM32MP251, the device only needs two clocks while on STM32MP255 it
+> needs four.
+>
+> Add the new names to the list of compatible string and handle each
+> quirks accordingly.
+>
+> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> ---
+>   .../devicetree/bindings/display/st,stm32-ltdc.yaml | 50 +++++++++++++++++++++-
+>   1 file changed, 48 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> index d6ea4d62a2cfae26353c9f20a326a4329fed3a2f..bcedcfef5427f5725a0473c09628e70d172c8f58 100644
+> --- a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> +++ b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> @@ -12,7 +12,10 @@ maintainers:
+>   
+>   properties:
+>     compatible:
+> -    const: st,stm32-ltdc
+> +    enum:
+> +      - st,stm32-ltdc
+> +      - st,stm32mp251-ltdc
+> +      - st,stm32mp255-ltdc
+>   
+>     reg:
+>       maxItems: 1
+> @@ -24,11 +27,16 @@ properties:
+>       minItems: 1
+>   
+>     clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 4
+>   
+>     clock-names:
+>       items:
+>         - const: lcd
+> +      - const: bus
+> +      - const: ref
+> +      - const: lvds
+> +    minItems: 1
+>   
+>     resets:
+>       maxItems: 1
+> @@ -51,6 +59,44 @@ required:
+>     - resets
+>     - port
+>   
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32-ltdc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 1
+> +        clock-names:
+> +          maxItems: 1
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32mp251-ltdc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 2
+> +        clock-names:
+> +          maxItems: 2
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32mp255-ltdc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 4
+> +        clock-names:
+> +          minItems: 4
+> +
+>   additionalProperties: false
+>   
+>   examples:
+>
 
