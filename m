@@ -1,179 +1,139 @@
-Return-Path: <devicetree+bounces-208352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FE97B321A1
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EEF6B321C2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:51:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9606E18826D0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:43:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64C3918933C1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 869D93128C6;
-	Fri, 22 Aug 2025 17:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B15D285C90;
+	Fri, 22 Aug 2025 17:50:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ma9zEUp3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="A2KAcRL3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1265610B;
-	Fri, 22 Aug 2025 17:42:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D93A20296C;
+	Fri, 22 Aug 2025 17:50:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755884570; cv=none; b=k8R5DBZkjYumb+Esk/Jl9oukYh/dx4s8fpLZJ9SNnkXndklrxQ+Slx5GiaS253cngYykb0UXvjNGIcbJcBrGj3FBpCKGOcxVTLZnySdykOPmyo5l5tvfh2zCS9dgnIzrosJgGZf3DQR/9Z3cZr1nBv9nRB2QC97EExm2QO0hzDo=
+	t=1755885018; cv=none; b=sI95UbijGD9H0S49SZFeQHQDllpYKkMVBBGL2d1ILkep1xCKUyChBTj4/hFwzK/DL537pBZl3EbKLnkScsb+ru3u66NIxJnayFUbx9CN4zSqAH+G+wJwiPT5AAbidafOxip0Bp0WXR9zDFGnnTXLubprGO0pqZSxaAJES1sJgA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755884570; c=relaxed/simple;
-	bh=6e/hLhNrAAVCq8R56k5WmJgRfZ8WLuqlSuEHvyTjeJY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HogwW4VtVqx21iUg109hYHWfRyOB4yCmS4OahJhiDGZEXZAC/T35scPS9XK4NwgiTQeQFW3NNoitiZxI3KoU2Ntq/mtJMzOP6rrVUoOJ01xR6i6PQwv5dcs3svu/4cYu8gKBpWJBVDMuV0KA2YYpqveKIjTvv9esnwm78P4A8c8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ma9zEUp3; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-32326e71c31so1900241a91.3;
-        Fri, 22 Aug 2025 10:42:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755884568; x=1756489368; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=eCaKntriNX9X76AtgWLOepHoJZS+qCu003aK7xkrmig=;
-        b=Ma9zEUp3hIRX67gFG8P4tRMtTynA77xy6EjqwKDNugNiQKXwysfu4YjlKgP2t4uTOC
-         rVRgMKa4/AzdE+vtk1NoTZ96KL73AKvwHZRhr3nVjHKQkAOYU9dBlsMKaWzNxr7Spw2j
-         veyyXWPB+kzeRa34nTyB++geYiaGMBDK8NDjmfZQP6Tk9WmynuaLaYbpGBixM9crlL64
-         pEcH1awc7FMXibDQQULUTGaAa2XAZroE8xYfmMWH3R/w7ACLRAEYNbtALwg+PR9zV8X+
-         o0CljgW/tSPMpIkM0bBRHOcFjL9RDlVbxujpb3E60B+lodlcA1FaZR2rqmP0RNB2bU+/
-         feyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755884568; x=1756489368;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eCaKntriNX9X76AtgWLOepHoJZS+qCu003aK7xkrmig=;
-        b=PimRMXSqhq/i+a+ZNmBV+Ath1VDyTecjd1EJPdpqKdAXsaO8hOTZxBfbEqcxyEd50T
-         ic1RzD1Msy1fqzcOO13rUytzNrhMX0cCEtre5yxuQaeRS0Kc5RKdsPIY100NnFa1lKCn
-         iYm/V7QJqYspIPLmFPKv76jKjTh2rn5rjvfBJ4yjose6dBLAlCnibPph48lI9w2NOxaT
-         3TW/rm/8MX7dA2eep9OoE3bymRWXVqdnijBC6jdSfVFsGkJZXG9KjGKlBVjXpTDwtmKc
-         iyd/VMATj2dgsqpnphrHSEV/6ZK12zl4PdFT8bOMyfsWpJiJsT+6sJCCN1lRCWsaJpMG
-         nhcg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOtHya9Z5Qg9nxjNoO5jqw0AkoyZmgzn9DY37L/LLcZ+7Y2XFI6144AYlV2PGom/7zELT7EYQ+BcoJ@vger.kernel.org, AJvYcCW0glxi7eKL2D4z/LrCT/16pV29ciNv9zp09g+6mRwwVgebQA7GRE23R7FTKZ7B8lGGMXVr/oh1F3o=@vger.kernel.org, AJvYcCXLSRbERwA+rdn9h1+Tt6twk1VtQG1z8Q3Yx58K6lQwNozun+m7DGrcue8lWLZ3bAPy85mYwfdcu9XmY3fl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5W548MUr1yFjz1oUk9py39t4+2eCU+yYcFH6YQO3pmYTwaq3d
-	WGwVmk4SM0ugs1gGnU5AQZgqi3++8xWfkvMizKzcva+du/3zcFu3uiuO
-X-Gm-Gg: ASbGnct2lKwrAbx5ydN/avumPrs3vyB5hzRIYHlMIXlQtHaA+74UPbWT8+NiB49Mo6X
-	c/qoR9A5XIoVFCgOjTX34gxnRPb37U/cTfkRpHA7BbQs7mvIcCefDhwkzI2dF1Qkdo8Gis7B03/
-	Y028ClExypVEPcORDaDwT00OtnPU0IJ1pfyoMVlKqZkZpVUnJTfXQH8zL/WP+8ldd7EEyYfK2zK
-	gfddPfvqsO8nAa0bgZ0SL/8MvWbYIQoob4ft/UdEC8AU845iMQKi9+lNXb9xUJNlsJRwTC/55qi
-	Bdu4NCNE8lztl5tPlu/TVYh8wTyC7EmgEWDKwjwPB7uYbVAGwVIJDYc56DSG9tRSSxiYxxrGLKy
-	vqlrFRI99Kra/UupIQWhxPbi3aBfuvPxZUgZYs4Il
-X-Google-Smtp-Source: AGHT+IEalTXMRLBExjkJfhmWbKfZGlEYQ2B/07dHyNwP07FTl5MUSsyyOzKrKUj/4k/aKk0GC0EYCg==
-X-Received: by 2002:a17:90b:4a47:b0:323:264f:bc42 with SMTP id 98e67ed59e1d1-32515ec2d23mr4934158a91.3.1755884568015;
-        Fri, 22 Aug 2025 10:42:48 -0700 (PDT)
-Received: from x1 (97-120-254-139.ptld.qwest.net. [97.120.254.139])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3254ae8ae9csm287059a91.11.2025.08.22.10.42.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Aug 2025 10:42:46 -0700 (PDT)
-Date: Fri, 22 Aug 2025 10:42:44 -0700
-From: Drew Fustini <pdp7pdp7@gmail.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Matt Coster <Matt.Coster@imgtec.com>, Drew Fustini <drew@pdp7.com>,
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Frank Binns <Frank.Binns@imgtec.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Drew Fustini <fustini@kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v13 1/4] drm/imagination: Use pwrseq for TH1520 GPU power
- management
-Message-ID: <aKisFGwxmgV7u3XF@x1>
-References: <20250822-apr_14_for_sending-v13-0-af656f7cc6c3@samsung.com>
- <CGME20250821222020eucas1p20e40b85b991da0b4d867df76e55350ed@eucas1p2.samsung.com>
- <20250822-apr_14_for_sending-v13-1-af656f7cc6c3@samsung.com>
- <aa8d4ffb-4607-4bff-9d87-8635cd37d439@imgtec.com>
- <55e606c5-9ac0-4e0b-8506-5f88a6fc540e@samsung.com>
- <daf94e44-7c37-4fa6-a31e-b043b7bf46f1@samsung.com>
- <6df6dc78-d86e-4289-bbe2-0bfe4b168c43@samsung.com>
+	s=arc-20240116; t=1755885018; c=relaxed/simple;
+	bh=crlFXTtPOCRSODeADxqFBsqvA33SprWic8ysA0jIVTU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CNmvupMODMcZLAqj8Nr9xkXE8lw9Ma1CPQXB+XEi1aigU3D6qyCcEuxlZi8Au98Q7BvDi9+MSGAly/9QpNWElSv5oXZuLpDgw1KxfnXay4gIJtR9jr2wg5UiZD4GLMW5tY8N24PseFmeVnNY15tJd8iwKKVVWxHLdzirYDyqun0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=A2KAcRL3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57MHVBn0027462;
+	Fri, 22 Aug 2025 17:50:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	SseLQ8AT+W4NgEjzst/ukb/WLq/b5dpMpdoRkCRc3Lo=; b=A2KAcRL3jXXAntPj
+	hPgIvCFgeprGqjCcV3NDn0zBnom9fA1yjqK+8quuXrp9Y6PVtzLa2UExUVn1flAC
+	R8AyPXMSvr6QjyfypEZJ0jDuUu1VEXw7YvDzbMrfubaBdVjAnua6ALTT4zjw751Q
+	6+sc4+HadjSYyF0M57QOpd3WC6vBNYiO04IOOiYhAucgZnxwC8zyBagPYdeD4yUk
+	o7TqF0bEYhgoWhJzdVss/UePDb2+vmlNFuU1yHdaFP287VFEi0pN37aT+13CVAr3
+	AQq4QUdO+CXgNJ7UWCUJUivrnXQ6hfKoHWBvCgioIDYgKpErTgqNRX1euZv8QbYR
+	2byV4Q==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48pw108203-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Aug 2025 17:50:10 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57MHo9Gs032106
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Aug 2025 17:50:09 GMT
+Received: from [10.216.23.81] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Fri, 22 Aug
+ 2025 10:50:05 -0700
+Message-ID: <096260bb-a016-4099-b23c-ae76b0c6d472@quicinc.com>
+Date: Fri, 22 Aug 2025 23:19:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6df6dc78-d86e-4289-bbe2-0bfe4b168c43@samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 2/5] ufs: ufs-qcom: Refactor MCQ register dump logic
+To: Manivannan Sadhasivam <mani@kernel.org>
+CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <James.Bottomley@hansenpartnership.com>, <martin.petersen@oracle.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>
+References: <20250821112403.12078-1-quic_rdwivedi@quicinc.com>
+ <20250821112403.12078-3-quic_rdwivedi@quicinc.com>
+ <3dp7gqh3lflz3y6vj4ya4lv35llmttte7oilsptei2m3yp6efm@h3wncsrgxztv>
+Content-Language: en-US
+From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+In-Reply-To: <3dp7gqh3lflz3y6vj4ya4lv35llmttte7oilsptei2m3yp6efm@h3wncsrgxztv>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: AOP4GgLJRocAbqd3m2Tge2pHfn--lJqX
+X-Authority-Analysis: v=2.4 cv=Z+fsHGRA c=1 sm=1 tr=0 ts=68a8add2 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
+ a=xFLw_cd-ZLVkc5SjNV0A:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIyMDE2MCBTYWx0ZWRfX3PsZ+VlN9a2d
+ 8E20PbEKCynzxwU8b0By0W2I0+N1uWTVyb+MR+br9LMI0iwN/+uW6ENKWRnTMRV6LSHYiXmMH0n
+ gFZTY1gQIX352KA+5lc+g240ccYaNL/3LHJc0MPLO5OtVZ/OVsVQz+J0PCJXfakZ+6LP3jS2Dnf
+ 2aqykhoXcinaNFVS4KelxwD+fmWgEFmvlDOCWuGFeOS/R+lHtwzUqcQN7veAvWhWHi3pImIugv9
+ CaPorG8a6gLyKKlzuUBpjkETCIygYOdQD+lc0OF+EPolXYCl3k9aJsRqA/vp+Ipy8dcJTbdxxS5
+ 5da+5dwMJ3Flc3wfAJVViUKZlkObQy68gspc43D6q5LO7VnFt57wqBhcWJFn4YL+6h+2EN5Q0MT
+ awJzznua
+X-Proofpoint-ORIG-GUID: AOP4GgLJRocAbqd3m2Tge2pHfn--lJqX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-22_04,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 spamscore=0 priorityscore=1501 bulkscore=0
+ adultscore=0 malwarescore=0 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508220160
 
-On Fri, Aug 22, 2025 at 01:49:38PM +0200, Michal Wilczynski wrote:
-> 
-> 
-> On 8/22/25 12:26, Michal Wilczynski wrote:
-> > 
-> > 
-> > On 8/22/25 12:04, Michal Wilczynski wrote:
-> >>
-> >>
-> >> On 8/22/25 11:28, Matt Coster wrote:
-> >>> On 21/08/2025 23:20, Michal Wilczynski wrote:
-> >>>> Update the Imagination PVR DRM driver to leverage the pwrseq framework
-> >>>> for managing the complex power sequence of the GPU on the T-HEAD TH1520
-> >>>> SoC.
-> >>>>
-> >>>> To cleanly separate platform-specific logic from the generic driver,
-> >>>> this patch introduces an `init` callback to the `pwr_power_sequence_ops`
-> >>>> struct. This allows for different power management strategies to be
-> >>>> selected at probe time based on the device's compatible string.
-> >>>>
-> >>>> A `pvr_device_data` struct, associated with each compatible in the
-> >>>> of_device_id table, points to the appropriate ops table (manual or
-> >>>> pwrseq).
-> >>>>
-> >>>> At probe time, the driver now calls the `->init()` op. For pwrseq-based
-> >>>> platforms, this callback calls `devm_pwrseq_get("gpu-power")`, deferring
-> >>>> probe if the sequencer is not yet available. For other platforms, it
-> >>>> falls back to the existing manual clock and reset handling. The runtime
-> >>>> PM callbacks continue to call the appropriate functions via the ops
-> >>>> table.
-> >>>>
-> >>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> >>>
-> >>> Reviewed-by: Matt Coster <matt.coster@imgtec.com>
-> >>>
-> >>> Would you like me to take the non-DTS changes via drm-misc-next?
-> >>
-> >> Yeah I think this would be appropriate.
-> >> Thanks !
-> > 
-> > Hi Drew,
-> > 
-> > Matt offered to take the non-DTS patches (1/4 and 4/4) from this series
-> > through the DRM tree.
-> > 
-> > This leaves the DT binding and TH1520 DT patches (2/4 and 3/4). Would
-> > you be able to pick them up through your tree ?
-> 
-> Aw,
-> Sorry I think Matt also meant to take the dt-binding patch, so there would be
-> only patch 3 for your tree.
 
-Yes, that makes sense, I will the dts patch through thead-dt-for-next:
 
-[PATCH v13 3/4] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU node
+On 22-Aug-25 2:38 PM, Manivannan Sadhasivam wrote:
+> On Thu, Aug 21, 2025 at 04:54:00PM GMT, Ram Kumar Dwivedi wrote:
+>> From: Nitin Rawat <quic_nitirawa@quicinc.com>
+>>
+>> Refactor MCQ register dump to align with the new resource mapping.
+>> As part of refactor, below changes are done:
+>>
+>> - Update ufs_qcom_dump_regs() function signature to accept direct
+>>   base address instead of resource ID enum
+>> - Modify ufs_qcom_dump_mcq_hci_regs() to use hba->mcq_base and
+>>   calculated addresses from MCQ operation info
+>> - Replace enum ufshcd_res with direct memory-mapped I/O addresses
+>>
+>> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> 
+> Missing your s-o-b tag. Please spare some time to check these rudimentary rules
+> before submitting.
+Hi Mani,
+
+sure, I will take care of this going forward.
 
 Thanks,
-Drew
+Ram.
+
+> 
+> - Mani
+> 
+
 
