@@ -1,292 +1,750 @@
-Return-Path: <devicetree+bounces-207933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE23B31336
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:33:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBDF3B31380
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:41:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C15925C1FB8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:30:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B9E2AE3DDC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA4852F363B;
-	Fri, 22 Aug 2025 09:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B8F42F069A;
+	Fri, 22 Aug 2025 09:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Hp3LNij+"
+	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="HAsydl0R";
+	dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b="SFQBjRK+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A7A2F39A7
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:28:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755854897; cv=none; b=qJ5dD/m38whMMiemvzPCgyiskDPJpTbkJuaDNkqv07QtY0rUqIwO03cVsTEvaxZ6X4sWPSUk1BUYt1G512QWFo1mnSlH6hs2HdESP7YlGos3k/S24FccteLd6S6JZr5uYo6c7xm3JJbOXe8F47QykM2xB6ivRlGg5QmrGpkfnok=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755854897; c=relaxed/simple;
-	bh=SOT5cGlpb58tUYLt/M6MzsCLIazUCm6K/kilP0NCvb8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ENG8VyFlYaVQsB3E7wnaJrkVqNh/38dy6IVDOJ8QD2oJfIW/xHr0odsjGaUnsnZ8tXQo7uIVFl7RfvSZQj5XKmlymMZIRIRE6ptPVV1fupo4NrrQxH9KjgN9C6XcklTWx1B5YarI05dVudtUHeE5ThHRFpW2MIEOr2HLDafrIW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Hp3LNij+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57M8UNWf001102
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:28:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mdI99dLf1C1ECl5BQMbQ2XzHbC/9lRRaEhwE6+uDPVk=; b=Hp3LNij+hhmAgt0W
-	Qz603IKO6AGRWBBsM4I/cWVuRInqyXVApRJ7Evt2AIbmKYWN/mFEFbxAaW04pERg
-	Cz05Vl6qyIgzKwyLayo2nNbN1GIryaduRTGHG6KCy8ab68ANGAP4XRZg0KfLkTqZ
-	64XWtVbm+iCudMMJuUTAUmwZbNX2I6ArF2ss0e7MBX6YAyDoZZZW+EAuqOjHzS7S
-	gYs49gwroJRTt8cxp/fJdKB9XEBj21az+WjgwNseVgAI/WadAg5RvOeFqqa9RfC+
-	1eDjue23wbYe+a2h62RiytoHBX4LrZh9WoOBaGv36kkvEHpml5lovrUXfGAoAcOO
-	mbIJiQ==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n5298q4b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:28:14 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-324fbd47789so1428088a91.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 02:28:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755854894; x=1756459694;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mdI99dLf1C1ECl5BQMbQ2XzHbC/9lRRaEhwE6+uDPVk=;
-        b=PZsHTkHwXtdZj6J3NQquo97Sw07dzi+UbEvZphOryJqw0eXlRGodO0OmIia+GfuDfb
-         IBSOa2ToumC8fz29zg8ctJhWQXEBRoslIePmVdQs5Y7lLWRyniCp4XCkj94Jj60XAzm8
-         5xseSHNKtxWLTSx0VdlMIsnnMRc9IiEBSQQUz4Qvq2dtlNUDC3u4v2g9ruw5F79pKwPJ
-         XhGlHjdBPwY1yCygJUyKPfVjJopZicFNKnVvvU1+oaNZGofRl/FhSh6s10upbL2QFSlW
-         rfKzCwpThGb3cUekRVv0PC9EQP3dRYHyfheUStZGApMM5ZHpK5MlAVa0S06wQdqMbncE
-         UYqA==
-X-Forwarded-Encrypted: i=1; AJvYcCVLRknbVldzxnolMtV9pH9VGzTPqrirlRFxzWTeKEwPXEkUnCVyca84/9bjxeEQI1udYJyC2hVf89Nb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGCmbxsHnzDHGT6R0xPaD+xkVWXgzIqXPtg7E6atDFizYpySSb
-	iJ2wt1dKsDnKZZ3sqvNVpir7QKOiARVmGZH14sUQJ/gPIF2yANjUd4UZ0g4hGB/JaKQLOyWvCwU
-	HjhQ+JSEN0+l8hzvZefQk6O7Z4GWFUiyEAYtLuA/+yeas5DWkXLulypYDJMEwig/i
-X-Gm-Gg: ASbGncsWz4G0pD7JQQLltI/A2QAIGHxeSmpjFgoST0newimIxZNsyHxNiSmDa2LndZX
-	EQtZ4XvjvwAXPtg6JR4aXkBxG6pSz2OZ/m1nAeDNvC+sEZeZ15dNLgDjKy3xxEMiGV9LZlaZUC7
-	OmulSyT3267OMZziiSaVtxwi/qUf2xD/VV3AAGB9I6cL+GSRW3Wcn4xl9R9Dne40TQV04iUPPfy
-	IHNLzDSTGGF7a2MZjl5i0z3GhGjZTzGrnMXZSnY7CfarWVJ+c1gky9o6OqESsg2tsOOgGpwDO3e
-	wpFzCqf6kfb+b8LSOC7TNjrNtBlWXtWgVEIabxikfHg/YR2qBQIUjOdDA+hIar6FAgPP+UFThN8
-	=
-X-Received: by 2002:a17:90b:278b:b0:323:7e7f:b8f4 with SMTP id 98e67ed59e1d1-32518b80cfamr3394095a91.37.1755854893867;
-        Fri, 22 Aug 2025 02:28:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE7VrExFnDlGbeOR1PxrtvPDRrJOKWRFkczToKjKFje2jrXPwafW08yHjZroWItQyC6aiaimQ==
-X-Received: by 2002:a17:90b:278b:b0:323:7e7f:b8f4 with SMTP id 98e67ed59e1d1-32518b80cfamr3394041a91.37.1755854893306;
-        Fri, 22 Aug 2025 02:28:13 -0700 (PDT)
-Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32525205d1csm549417a91.4.2025.08.22.02.28.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Aug 2025 02:28:12 -0700 (PDT)
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Fri, 22 Aug 2025 14:57:33 +0530
-Subject: [PATCH v7 5/5] PCI: qcom: Add support for ECAM feature
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 981CF2F066D;
+	Fri, 22 Aug 2025 09:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.180.163
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755854975; cv=fail; b=QFFC8IDreqzY6iF7/cLh6pPeka5AbriaCtah9bsPdUkvZ3u6lmQ8YcQwG2u6TidFydv8gxIRCcd+r38oyukvyKwK0ygU7idZdtYVBsUTUy/t6DBrzqzTfIHWEWidWhlpqmyM04lUHasGPtIaTGAAMyHS8mdvI/uFpLduVwMoiEs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755854975; c=relaxed/simple;
+	bh=gzMAmoAWuUD9Q2NLbU6r1mVLBAgvmn7Pk/e6h63BBKg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=QfxnHHM6P7geNj40uAQn7/ukXVSdsPVTUqrhYJN50svpub+SDdF88m+Ph3RuSB/PYg2bu8ay72ucOCzDUCsrP0MrqesUKsl5nqC0/bizKts8zmspIBAwZ2tAm9Ar1AZ7PU+2PEeckM6SaxIXDiU4az1xgVqYOGbpcldVu0nDGG8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=HAsydl0R; dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b=SFQBjRK+; arc=fail smtp.client-ip=185.132.180.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
+Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
+	by mx07-00376f01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 57M501l41142438;
+	Fri, 22 Aug 2025 10:28:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=dk201812; bh=y52k4Sj6Jr2AeU/HvdogzM4Ad
+	AVvxZ2sjOTWhuHudag=; b=HAsydl0Rp/zZml4pG44VvBjNWgWtTfLhzPd8bmi3F
+	hDr5x9x1rABjMpVw5TmXz2VQvjMreajZtR/svn55rVGkWuFpPZqIX0HdtfK4BJwz
+	lkfYCnEjZBkcIWntGN5szt1zWC+gGurWy9Cmr6T3VTjfiqjV3DSJVcP4oX+f+nSi
+	dle+JMN8EA0BwR4a2cbBk8Acw5PD86aw4mtlbV3VUq4apON7Ui0FekpvLICXzSvH
+	A2mVyxy8GLHMxtHzYcwBcWjvWdH/7V1/pAche8U5gkdh8LSU1y03m5zB66fd1MH0
+	7RXvr63idvBngM6BjXheOQ2nwe8Z+e0m2bpQZPZAptV4w==
+Received: from cwxp265cu008.outbound.protection.outlook.com (mail-ukwestazon11020128.outbound.protection.outlook.com [52.101.195.128])
+	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 48jj2qpfey-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 22 Aug 2025 10:28:41 +0100 (BST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=s+/rOA/PyrWHO3xq4DV+OL19VOhO2Twi8462LvBZPf9A8A9RiHoC+PyJN1rly+FT7t5VeRTklL3rOdqrbrEKBEB4K40nmusmicFAXsfp2jck4bEDN7Xbiz4F1H2JgDyRQ23+0p/QIMkHC3P3cdCvYfDNJ9es1VLyV3urLrEyMRiRYH6Aw9BDd/D3Gm5d96HoawxyO8ABHSmTGjKl3CvyO3pHUmKk/i0XPWAWYzzYxf9k+1hKqAIYSv87+x5K0fA4aqhQ4PkR7LPvpexv4ZdKc+bZ2O7eDlVFqpZt1fsoDF2CGldUWhkAB9CRKSYVFai4mGqSjVQAPYXF5+7Z4zj71Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y52k4Sj6Jr2AeU/HvdogzM4AdAVvxZ2sjOTWhuHudag=;
+ b=dtw8qgwjj3NNr7G6bIXmd5qyj0FxsssRkCdBEmP0wRKTPavOeHhIcBfZt9gwBwQmm5EyA00LTw+XJKeEO2LlFju4qrOdYl2ShhoT9bdFdKUR1hUteRwvCpTtaeKPlSh/1dY9deUsuKbdndx2+5EcS3cooeGx4Or1+q8mNe1frB2QKJond7ORwral39j7fr3FZ4FzetjzbOWQ0F1z2El894kaOVmVvy4Dua3iQ7vsuEwfqYDyAQePLEuLhSwIZUClu3ZuXnDy+NQnKKXsHu3XY6AflSRlFpG/zM8Jzm7PTQy7BVoDfiJHcCXY1Qdru5Cu5hnnSNc6tzFPLeecDoixig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
+ dkim=pass header.d=imgtec.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y52k4Sj6Jr2AeU/HvdogzM4AdAVvxZ2sjOTWhuHudag=;
+ b=SFQBjRK+PxYNgVVEfze96DRR7vQg0ZyhH+k9NCTRD0pTfzZR/p5QdFLLaGuP0tgCQSauxbNT/+WuXgDZLvfq/lp8He3m5j6GD4O/32FP+RDEgAtxbnmE8BqAfkb5C5cNXs7GZ+7lOaEgxnu9pvrEY05Ka90nnk7er4HB9F4s7V4=
+Received: from CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:e7::8) by
+ CWXP265MB3302.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:e7::12) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9052.18; Fri, 22 Aug 2025 09:28:37 +0000
+Received: from CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::8e9d:6b2f:9881:1e15]) by CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::8e9d:6b2f:9881:1e15%7]) with mapi id 15.20.9052.017; Fri, 22 Aug 2025
+ 09:28:37 +0000
+From: Matt Coster <Matt.Coster@imgtec.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+CC: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Frank Binns <Frank.Binns@imgtec.com>,
+        Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Paul Walmsley
+	<paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou
+	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+        Ulf Hansson
+	<ulf.hansson@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Drew
+ Fustini <fustini@kernel.org>,
+        "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "linux-pm@vger.kernel.org"
+	<linux-pm@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH v13 1/4] drm/imagination: Use pwrseq for TH1520 GPU power
+ management
+Thread-Topic: [PATCH v13 1/4] drm/imagination: Use pwrseq for TH1520 GPU power
+ management
+Thread-Index: AQHcE0cjGRHtMZbs+02iUmGfZJD91w==
+Date: Fri, 22 Aug 2025 09:28:37 +0000
+Message-ID: <aa8d4ffb-4607-4bff-9d87-8635cd37d439@imgtec.com>
+References: <20250822-apr_14_for_sending-v13-0-af656f7cc6c3@samsung.com>
+ <CGME20250821222020eucas1p20e40b85b991da0b4d867df76e55350ed@eucas1p2.samsung.com>
+ <20250822-apr_14_for_sending-v13-1-af656f7cc6c3@samsung.com>
+In-Reply-To: <20250822-apr_14_for_sending-v13-1-af656f7cc6c3@samsung.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CWXP265MB3397:EE_|CWXP265MB3302:EE_
+x-ms-office365-filtering-correlation-id: a86b92e0-9da0-452c-f75a-08dde15e4614
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|4053099003|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?Qk1XamZxb3c4STlmTDNiNVBSYWd4Z2RJVllxUUpxb1dIVXgrWG1nZ3grODRt?=
+ =?utf-8?B?aEFtVDY2ZDB2MWlkS0E1bXUvSzdPSkJ5MnloOW5lcnBuYmdDSlFzZzlFRVIx?=
+ =?utf-8?B?eHFETUhFSFBCVkZEUk81ZE9MWE5TUzUrdjB6dDRvSVNYSkxHQmNuY0F2RmFW?=
+ =?utf-8?B?YjltYm85WXNDN0ZMYy9waVY3c1orY25yMk9vT0NoSFpqSTRIQU5ZT2Jaa3V5?=
+ =?utf-8?B?UzRObnpHWlBBY3FXZXgwbWJjbVpnY1Zmak9mdFBZTTIvYzVrS0o1ZlR2cHZ2?=
+ =?utf-8?B?VTQrYk0zNXhUM0NDdmtuWHl3di9GajZqT20rb2JDdW1ZNmRVc2RjNTdES1Jt?=
+ =?utf-8?B?a2FBbC9adGc2Rm93U3ZLbnpGTXRtNVdIeUhJbzZ3TlhpWkxuZHM0d0VOWW5O?=
+ =?utf-8?B?Q3pPc3ViOFdTL1BlK2xKeG1ST2s3UVFWRVpTWlgrRnZPU1lOMHVZM2Zac3Jn?=
+ =?utf-8?B?c1pvUlhMYzZ0RExSdzZnaGF1RXdvTVV1ekZtdzdla0lJMVJIbStJSVc4MU9i?=
+ =?utf-8?B?R1FSY3Z1V1dVcDhVSlg0em5ESkxJYkNNOWR4VjNFa2l1OWRrTGIvYzF2dyts?=
+ =?utf-8?B?WktlamZVR1dEOHcrZmFQU1BGQ2p0ZFMzMy80QTBMejAvZGVFK0V2eU5tbjM2?=
+ =?utf-8?B?U2RXY25XKzF4WG9lSXVkQnA2VDNGc1R0SitzR0EydUNvMGd6Q2FwRzZsNjFa?=
+ =?utf-8?B?dTVzNHBSL3h6eXY5eXFsb1lhSkp2b1dIS0ZMa05QMnBCbFlTMVVBOUYwTDVO?=
+ =?utf-8?B?WUlKNjd1c2UvRmE2OVRDZ3pxbjRYZ0R0RkU3dG04WUpLYmQwYkNNWTdFTk95?=
+ =?utf-8?B?TC9sVjBCWGJjaWxWNXBnWUdpMDJJUFlZOTZzMm9kMjlpcHFlYTdHZi9mZ1NF?=
+ =?utf-8?B?dHRLelkzRG52S2lxbEo2Yit0ZU1xbHJzMUNmSjB3RjMxczFFdkZXc2VOUzRF?=
+ =?utf-8?B?RzAyM1lIWUhISG96bEdLNGtvbThOZUtPOGsvUWthUUVqa3JVa2hHVUJlZkdq?=
+ =?utf-8?B?V0lQTERPbkw1RkRyanVQOCtKL1VPd3R3dG54aXBMSEw2VTdaUFNNblhDL3RJ?=
+ =?utf-8?B?M0dpTGJDRWNhdFAzRFBxeW9PbkJjWHNXY0U2VzFBZjdyWmxLKys1aG9kMkZN?=
+ =?utf-8?B?V0p4ZzRGU0d2SDVMTHdIR1BQWFBqWWpZNU5NVUdCLzF4K0NwekJwR21rSjhp?=
+ =?utf-8?B?ekZNVW9yY0Z3ZEtJL2FWb29kUXlPQjFlamhpM0hZNktSQzlPVDYyLzJ1ME5l?=
+ =?utf-8?B?WFB0QnpJcG16d09helY4WWxyS3lKeDNBbUdEays3WnNhZllqanZySTdyUzQw?=
+ =?utf-8?B?N0x0VTk2eFFyZHc5Vml1VDVEdi9WYlpwb2FlMVVJcFYwM3dWdzRVRFRldWhH?=
+ =?utf-8?B?WG5XSjNvSTRlcmw5RGdZMmJ4dkxkRVJLVEg3eFhCZDY0T0RlT1RFUkc5K0U4?=
+ =?utf-8?B?ams5ejRGRS82Y2RyajlrQWFlOFhUNVZ5TTFEMit6ZzlFaTUrb1dpYzROWG1E?=
+ =?utf-8?B?QkZiWGZiQUJDMHpLVFloSUhTZDV1OSt2WU9kUktNa21mOCs5MVBhQzltN2J2?=
+ =?utf-8?B?S0FiTGpIL2tnZE4xOGtKTEZSVGczUjhHa3U3SXJWbUduTTRyQThrcEViZlk1?=
+ =?utf-8?B?SkFhRXorNDNyRGt3UVl0K3BCcWt0SmtUNlBCOVFraUdCR2M5cWNRcUtjMzlX?=
+ =?utf-8?B?Z1FBeHAxZ01ZNDVIY2w2bGYrM2d2TFpUVFZIczlCZUY1ZTVweHdJSHgrYUxi?=
+ =?utf-8?B?bkljZnNEVVBERmd1a3hQM2hYczdYTHExTUVqTFU3Mk01MXVHdDZrSjIxcjhT?=
+ =?utf-8?B?dUc3N2Jhd05Lc21XZVRxOEpIZVRQcUlBVXVPcFdvU2dnMSsxQWNzTWlZR1lL?=
+ =?utf-8?B?VW0yNk9jOTF1T3lsTGljMFFORWN3SmFzYnVhVktGbTRVaElMd3RydVduV0pN?=
+ =?utf-8?B?VHJpcEs5aWpYL0FNV0hQd00yZzdscnU0S3NwNjduU2kxcmlIdVM0azJacUdO?=
+ =?utf-8?B?cDFYcTkzZG1nPT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(4053099003)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?aWlGNEpDbmxjUDB0bzlJVXZZb0JxdktSUnlkd21XdE1vVll2RmcySGxLMkFS?=
+ =?utf-8?B?QjZjeUwveUJDNysrb21wYVQyWUtrOVVjaVNGU2F1VGtScHJONmpEampJb2lp?=
+ =?utf-8?B?R1BpdzVTbTExUlRwRG5wQXlIYU1LaVMzN1JXTjVLTkxxRGYzUFJxYmUwbFhX?=
+ =?utf-8?B?U0h3enRna1ErRHZZcmZaR2xzUGtrWWJKenUyaUZ1TVdLcWFBbGxQSEIrbzV0?=
+ =?utf-8?B?QkljRUlnWGdZbzNCdXZxaytJMk5VRThpOW9HNE9Wck9zb2xVSzhlTC96cGtQ?=
+ =?utf-8?B?WkFncUF1VFE0eXVnQzMvY3gyMFFobHZLSXd0MEpaL3pyRzAyNmZTMUNvWE0r?=
+ =?utf-8?B?d0ZDSE03TERWWGsrSHJPVWZNcmEySitIRi91RjgzUUt5UXZMWXZWaWRCSmNi?=
+ =?utf-8?B?eDlER2lEK1A3NnMrTEZ0bU1OWm91cWRTSUlONGc4cVRjZjZLSEFpakR3SzdP?=
+ =?utf-8?B?bzZLTUtZb096WHJ1Y1ZUMXUwRVJVR3FISXM1b0RGVkxOcHRZeml0TVRsRXlJ?=
+ =?utf-8?B?S3dJcksreGZaUTd1S3RPY2JzUGV1VTV0NkFaUzUrTGJwclFtUVhZTElOWWs2?=
+ =?utf-8?B?ZXNob2s3SDdDMzVoSi95YXMwUnJPWXE4cVFPN0c1Wmc4WHd4ZlFIZjEvQlU5?=
+ =?utf-8?B?a1pXN3dIWTBmTXJLMlBmSUc1TVBsNng1bW83OW9nOG95MlBKK0pNUmZwZ0Iy?=
+ =?utf-8?B?SlhQWE9rZFVSTWZnVXpEaS9uUFZXYWZ0eUdqWTdJeXNRRklaTE9aVTEyQmtm?=
+ =?utf-8?B?eEk3TW1PRnhLTWdUR2szbVVGOVk2eWdCZzVCZGtkNnVFY09laEVsK1o0VGJH?=
+ =?utf-8?B?MHpaTmNuajFJZ3dabGN5S2c2QWVQdE5oZENRTTlsbUtOSDFiK1Qyb3hVVVpx?=
+ =?utf-8?B?MzduaVEwS09MZkVvR0NBeEtlcWhxYnUvMWFlK2NFL0NDV2NIY0tid1h1Zm5v?=
+ =?utf-8?B?NVBCM0NZM3h6MUJwRzJJRDRJVUVXS3VVa0FnM0dxZXVERWdBSHJhakdYRUZ5?=
+ =?utf-8?B?Nkl5aWJXRS8wU21TaXpzdEpJdHFxSkViRWJGTHVNa29QSmZIOXpCdUR3TENz?=
+ =?utf-8?B?OWVFY0tZMmxZb1pzOEFRNVNaOUhGUVBMaUFab2d4VEdJL0x1dktlOG5BM00z?=
+ =?utf-8?B?ZzEySGFndkYwczVOa1pES1VNSnJZeTNnV0NvZko1MWtDV2ZFT0M1dTZHRmtw?=
+ =?utf-8?B?Y09zMTBnWlR5SjVaK2ZiNUs0a0FReGxlS1hZR3lCM3E0akkzaVBKaXNzdTJB?=
+ =?utf-8?B?N3FnZlNoSCsrSWE5WlZkb2QzenNkdC9TMG5UYkloQjVzVnFueFNjU2hTblpy?=
+ =?utf-8?B?U01pQ2R3L01IZjFNakJNQXl4dzZpdjZxbDVpN3JubGtwNG43VW9nZnZ5bGVW?=
+ =?utf-8?B?bElRQnpQYlVmb0orZlZiRkpuT0NzUElZVy9mdW1aNU1NL2YrSVNBVlR1SGtz?=
+ =?utf-8?B?S1haazhUSG1WemJhZ0g1Um5jM21sZlJUeDhTdk4vUXV6c1lMZDhtZUJpOEk2?=
+ =?utf-8?B?Vkh2eTBOQUx0TUx0dE91eXM5MTFoY3ZnYnlOeDNFUWs0N0QzVXRaMzhyVU1h?=
+ =?utf-8?B?UExKa2YxWG8xQ1I0R2c4VkhRMWdDVXB2QmFVWk8rYUJCdlh6ckFjcXdkMXdD?=
+ =?utf-8?B?M0tDWmVodzJiR3VCK083RWppVWJDcDI2a1l5OWFpUGpNcGR4ejgzcjdLRGlI?=
+ =?utf-8?B?V1lYelB1ek12b2FxZUViT0FQSFZCSkNaUUhpSk1xZUptSXlzOFdnNWw1ekJM?=
+ =?utf-8?B?WUdkTjVHcVl3U0cyZVBXd1Y5a2V5eVZUQ1BOMnM2MVFVS3RPcXRtaUVjWGpv?=
+ =?utf-8?B?UU1SbmZPdEM4ZURvYTFuMzZBNEhFWGVacXlFR2E2ZlU4MnRMZFg5VEJINUtm?=
+ =?utf-8?B?TVdrV3pwZm5Xdys3MGc3NHBOejBMOVFwdHZBbGRMN2lrN0R5eWJEZHk0bUFn?=
+ =?utf-8?B?S21JL25DYVJUN3dEZ1pudmZsRWpJSTU5eC9HTkNpTnJpblYzdjNRSXkvMmhi?=
+ =?utf-8?B?THRrWEJRdXZaR1RqdFB6VHQ5OG5ueFhNZnRDZDdJcC8rbHRQOGg1R0tBYlF1?=
+ =?utf-8?B?VUxMOTd5M0twQk1iYVkzcVVKbzEwV21ZMXA2SFpicXB3OS9GdHIzck81Q3lU?=
+ =?utf-8?B?QTFveUFlQWx5UW9jUUJsWC9UOVUva0RlM2owNkNZSGxQZHpVdVdhWVhDd2xm?=
+ =?utf-8?B?NlE9PQ==?=
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="------------kKJxzkDrURcIHkNRgSm40aqx"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250822-ecam_v4-v7-5-098fb4ca77c1@oss.qualcomm.com>
-References: <20250822-ecam_v4-v7-0-098fb4ca77c1@oss.qualcomm.com>
-In-Reply-To: <20250822-ecam_v4-v7-0-098fb4ca77c1@oss.qualcomm.com>
-To: cros-qcom-dts-watchers@chromium.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
-        quic_vpernami@quicinc.com, mmareddy@quicinc.com,
-        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755854858; l=5936;
- i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=SOT5cGlpb58tUYLt/M6MzsCLIazUCm6K/kilP0NCvb8=;
- b=PF3Wa+0tr/NJw7WQoFVepnVqF4s/maNySJH6w91uf6PxfRpxdKYWzXvtiHWI00ODmZi0e+AyM
- cFpVdfFbJotBfmpnqZpairwKVe3mtoiCKIThAB27sQVUiXkXXjyy32N
-X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-GUID: 4EiSJ6YdN6342Z-HT1QI7uCzy7nk3T4O
-X-Proofpoint-ORIG-GUID: 4EiSJ6YdN6342Z-HT1QI7uCzy7nk3T4O
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX7Lo/8zq65I59
- 2YNanxMFP3qaEgKPYrwwatQZYVGDMGCP5UushzbIb++vleb0CObVzM3qFMWxqBHz2PPqZ+gY8Ze
- YY4kiHn/iLVuNx/Zd/GKMI4fy8GZj3FXFfkEs01JWoGUErVRjvFt5WxGTqfN3orqItbgOI9w8Qh
- s+YaI/F009+DGcu5GPqfAMx7ssCYAYWkOweJLuxZVvjraounNTmkt+gSuEVm4UP1wYDH3xmZ13l
- 6Z14i/m6JoSVIBoAwVaGtcKkvMQK9UefaNZqd/Ld5sxsqd1CSFOp6gInSupqlJOF1gZ+9v9g0Dg
- 4hUy/fdiQVVqYWfLAsqoH+Y9cf3yUH8rRiNTys2923iYTS9u2A5pfvUPjAZ0aTvPIREDVC4viKP
- Sxpv+lnFdxnKpguuRgw1IGLnG9WJWA==
-X-Authority-Analysis: v=2.4 cv=SPkblOvH c=1 sm=1 tr=0 ts=68a8382e cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=oQbQ34n3Jerzy_GFPTkA:9
- a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-22_03,2025-08-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 priorityscore=1501 bulkscore=0 spamscore=0 phishscore=0
- impostorscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
+X-OriginatorOrg: imgtec.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: a86b92e0-9da0-452c-f75a-08dde15e4614
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2025 09:28:37.5167
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FF17MgnII1oBNg67YpcWVccm+eMu143sSatHA5kQNyyopDUq8IVeqxa55/UV5nSCqrvM+LLSP4fFkX6OBecOig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB3302
+X-Authority-Analysis: v=2.4 cv=FodcP2rq c=1 sm=1 tr=0 ts=68a8384a cx=c_pps
+ a=E97w5jz+2IRT4H1jtDRTXQ==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
+ a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
+ a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=2OwXVqhp2XgA:10
+ a=NgoYpvdbvlAA:10 a=hD80L64hAAAA:8 a=r_1tXGB3AAAA:8 a=Zornl2wlG5gKESBgaPUA:9
+ a=QEXdDO2ut3YA:10 a=3aJdYfjQ7cC_OQ9j5skA:9 a=FfaGCDsud1wA:10
+ a=t8nPyN_e6usw4ciXM-Pk:22 a=nl4s5V0KI7Kw-pW0DWrs:22 a=pHzHmUro8NiASowvMSCR:22
+ a=xoEH_sTeL_Rfw54TyV31:22
+X-Proofpoint-ORIG-GUID: BLVypNAaUGS-wkcwdHe9gyVG3U3FAXWq
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIyMDA4OCBTYWx0ZWRfX4WugGpy9i3w/
+ smepuPUOfjj94lSvrA3Aq7WvZpfQemCQMjTkdlk7v8G4hVpqPL06KsoCpII/hFmS6kUUqUaEj/6
+ s/NzKtdDDCbuyaWEV8bE9n5F5Yb/KUfIq4+JyHTiQeiNGYScIgRgOssqZdUDsBAux7X5V9vSmGn
+ BY6V8DlYAxoTSoQKyb++4Haq7LT9U8qvPlGmAWocf/FZoRb9sbRzfGmd3OaY3TBuCdEjHK3M9TV
+ uIJpqJgr0UMfsn6VDpaXTKyfRE68d0EgWD0nhKGFwt4rH+cx+NyTKeJt+CRpAeZKz4dHxJqRkfo
+ W0bVJHDvh9rw1KRrp88eL8Q5s2SQOCuXUH9m6WWQ5ZBXS7Qrg5BMqAJPDM0h73Fo5NodJqdA7yr
+ z7eM4loO1sUlTZmgKL5SffXRPZe1Fg==
+X-Proofpoint-GUID: BLVypNAaUGS-wkcwdHe9gyVG3U3FAXWq
 
-The ELBI registers falls after the DBI space, PARF_SLV_DBI_ELBI register
-gives us the offset from which ELBI starts. So override ELBI with the
-offset from PARF_SLV_DBI_ELBI and cfg win to map these regions.
+--------------kKJxzkDrURcIHkNRgSm40aqx
+Content-Type: multipart/mixed; boundary="------------JJd0FReICCRZ3UPVwu0kCzvo";
+ protected-headers="v1"
+From: Matt Coster <matt.coster@imgtec.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns
+ <frank.binns@imgtec.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Drew Fustini <fustini@kernel.org>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
+Message-ID: <aa8d4ffb-4607-4bff-9d87-8635cd37d439@imgtec.com>
+Subject: Re: [PATCH v13 1/4] drm/imagination: Use pwrseq for TH1520 GPU power
+ management
+References: <20250822-apr_14_for_sending-v13-0-af656f7cc6c3@samsung.com>
+ <CGME20250821222020eucas1p20e40b85b991da0b4d867df76e55350ed@eucas1p2.samsung.com>
+ <20250822-apr_14_for_sending-v13-1-af656f7cc6c3@samsung.com>
+In-Reply-To: <20250822-apr_14_for_sending-v13-1-af656f7cc6c3@samsung.com>
 
-On root bus, we have only the root port. Any access other than that
-should not go out of the link and should return all F's. Since the iATU
-is configured for the buses which starts after root bus, block the
-transactions starting from function 1 of the root bus to the end of
-the root bus (i.e from dbi_base + 4kb to dbi_base + 1MB) from going
-outside the link through ECAM blocker through PARF registers.
+--------------JJd0FReICCRZ3UPVwu0kCzvo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 70 ++++++++++++++++++++++++++++++++++
- 1 file changed, 70 insertions(+)
+On 21/08/2025 23:20, Michal Wilczynski wrote:
+> Update the Imagination PVR DRM driver to leverage the pwrseq framework
+> for managing the complex power sequence of the GPU on the T-HEAD TH1520=
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 5092752de23866ef95036bb3f8fae9bb06e8ea1e..8f3c86c77e2604fd7826083f63b66b4cb62a341d 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -55,6 +55,7 @@
- #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
- #define PARF_Q2A_FLUSH				0x1ac
- #define PARF_LTSSM				0x1b0
-+#define PARF_SLV_DBI_ELBI			0x1b4
- #define PARF_INT_ALL_STATUS			0x224
- #define PARF_INT_ALL_CLEAR			0x228
- #define PARF_INT_ALL_MASK			0x22c
-@@ -64,6 +65,16 @@
- #define PARF_DBI_BASE_ADDR_V2_HI		0x354
- #define PARF_SLV_ADDR_SPACE_SIZE_V2		0x358
- #define PARF_SLV_ADDR_SPACE_SIZE_V2_HI		0x35c
-+#define PARF_BLOCK_SLV_AXI_WR_BASE		0x360
-+#define PARF_BLOCK_SLV_AXI_WR_BASE_HI		0x364
-+#define PARF_BLOCK_SLV_AXI_WR_LIMIT		0x368
-+#define PARF_BLOCK_SLV_AXI_WR_LIMIT_HI		0x36c
-+#define PARF_BLOCK_SLV_AXI_RD_BASE		0x370
-+#define PARF_BLOCK_SLV_AXI_RD_BASE_HI		0x374
-+#define PARF_BLOCK_SLV_AXI_RD_LIMIT		0x378
-+#define PARF_BLOCK_SLV_AXI_RD_LIMIT_HI		0x37c
-+#define PARF_ECAM_BASE				0x380
-+#define PARF_ECAM_BASE_HI			0x384
- #define PARF_NO_SNOOP_OVERRIDE			0x3d4
- #define PARF_ATU_BASE_ADDR			0x634
- #define PARF_ATU_BASE_ADDR_HI			0x638
-@@ -87,6 +98,7 @@
- 
- /* PARF_SYS_CTRL register fields */
- #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
-+#define PCIE_ECAM_BLOCKER_EN			BIT(26)
- #define MST_WAKEUP_EN				BIT(13)
- #define SLV_WAKEUP_EN				BIT(12)
- #define MSTR_ACLK_CGC_DIS			BIT(10)
-@@ -134,6 +146,9 @@
- /* PARF_LTSSM register fields */
- #define LTSSM_EN				BIT(8)
- 
-+/* PARF_SLV_DBI_ELBI */
-+#define SLV_DBI_ELBI_ADDR_BASE			GENMASK(11, 0)
-+
- /* PARF_INT_ALL_{STATUS/CLEAR/MASK} register fields */
- #define PARF_INT_ALL_LINK_UP			BIT(13)
- #define PARF_INT_MSI_DEV_0_7			GENMASK(30, 23)
-@@ -317,6 +332,48 @@ static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
- 	qcom_perst_assert(pcie, false);
- }
- 
-+static void qcom_pci_config_ecam(struct dw_pcie_rp *pp)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-+	u64 addr, addr_end;
-+	u32 val;
-+
-+	/* Set the ECAM base */
-+	writel_relaxed(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
-+	writel_relaxed(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
-+
-+	/*
-+	 * The only device on root bus is the Root Port. Any access to the PCIe
-+	 * region will go outside the PCIe link. As part of enumeration the PCI
-+	 * sw can try to read to vendor ID & device ID with different device
-+	 * number and function number under root bus. As any access other than
-+	 * root bus, device 0, function 0, should not go out of the link and
-+	 * should return all F's. Since the iATU is configured for the buses
-+	 * which starts after root bus, block the transactions starting from
-+	 * function 1 of the root bus to the end of the root bus (i.e from
-+	 * dbi_base + 4kb to dbi_base + 1MB) from going outside the link.
-+	 */
-+	addr = pci->dbi_phys_addr + SZ_4K;
-+	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE);
-+	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE_HI);
-+
-+	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE);
-+	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE_HI);
-+
-+	addr_end = pci->dbi_phys_addr + SZ_1M - 1;
-+
-+	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT);
-+	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT_HI);
-+
-+	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT);
-+	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT_HI);
-+
-+	val = readl_relaxed(pcie->parf + PARF_SYS_CTRL);
-+	val |= PCIE_ECAM_BLOCKER_EN;
-+	writel_relaxed(val, pcie->parf + PARF_SYS_CTRL);
-+}
-+
- static int qcom_pcie_start_link(struct dw_pcie *pci)
- {
- 	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-@@ -326,6 +383,9 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
- 		qcom_pcie_common_set_16gt_lane_margining(pci);
- 	}
- 
-+	if (pci->pp.ecam_enabled)
-+		qcom_pci_config_ecam(&pci->pp);
-+
- 	/* Enable Link Training state machine */
- 	if (pcie->cfg->ops->ltssm_enable)
- 		pcie->cfg->ops->ltssm_enable(pcie);
-@@ -1314,6 +1374,7 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
- 	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-+	u16 offset;
- 	int ret;
- 
- 	qcom_ep_reset_assert(pcie);
-@@ -1322,6 +1383,15 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
- 	if (ret)
- 		return ret;
- 
-+	if (pp->ecam_enabled) {
-+		/*
-+		 * Override ELBI when ECAM is enabled, as when ECAM
-+		 * is enabled ELBI moves along with the dbi config space.
-+		 */
-+		offset = FIELD_GET(SLV_DBI_ELBI_ADDR_BASE, readl(pcie->parf + PARF_SLV_DBI_ELBI));
-+		pci->elbi_base = pci->dbi_base + offset;
-+	}
-+
- 	ret = qcom_pcie_phy_power_on(pcie);
- 	if (ret)
- 		goto err_deinit;
+> SoC.
+>=20
+> To cleanly separate platform-specific logic from the generic driver,
+> this patch introduces an `init` callback to the `pwr_power_sequence_ops=
+`
+> struct. This allows for different power management strategies to be
+> selected at probe time based on the device's compatible string.
+>=20
+> A `pvr_device_data` struct, associated with each compatible in the
+> of_device_id table, points to the appropriate ops table (manual or
+> pwrseq).
+>=20
+> At probe time, the driver now calls the `->init()` op. For pwrseq-based=
 
--- 
-2.34.1
+> platforms, this callback calls `devm_pwrseq_get("gpu-power")`, deferrin=
+g
+> probe if the sequencer is not yet available. For other platforms, it
+> falls back to the existing manual clock and reset handling. The runtime=
 
+> PM callbacks continue to call the appropriate functions via the ops
+> table.
+>=20
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+
+Reviewed-by: Matt Coster <matt.coster@imgtec.com>
+
+Would you like me to take the non-DTS changes via drm-misc-next?
+
+Cheers,
+Matt
+
+> ---
+>  drivers/gpu/drm/imagination/pvr_device.c |  22 +----
+>  drivers/gpu/drm/imagination/pvr_device.h |  17 ++++
+>  drivers/gpu/drm/imagination/pvr_drv.c    |  23 ++++-
+>  drivers/gpu/drm/imagination/pvr_power.c  | 158 +++++++++++++++++++++++=
+--------
+>  drivers/gpu/drm/imagination/pvr_power.h  |  15 +++
+>  5 files changed, 176 insertions(+), 59 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/imagination/pvr_device.c b/drivers/gpu/drm=
+/imagination/pvr_device.c
+> index 8b9ba4983c4cb5bc40342fcafc4259078bc70547..294b6019b4155bb7fdb7de7=
+3ccf7fa8ad867811f 100644
+> --- a/drivers/gpu/drm/imagination/pvr_device.c
+> +++ b/drivers/gpu/drm/imagination/pvr_device.c
+> @@ -23,6 +23,7 @@
+>  #include <linux/firmware.h>
+>  #include <linux/gfp.h>
+>  #include <linux/interrupt.h>
+> +#include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/reset.h>
+> @@ -121,21 +122,6 @@ static int pvr_device_clk_init(struct pvr_device *=
+pvr_dev)
+>  	return 0;
+>  }
+> =20
+> -static int pvr_device_reset_init(struct pvr_device *pvr_dev)
+> -{
+> -	struct drm_device *drm_dev =3D from_pvr_device(pvr_dev);
+> -	struct reset_control *reset;
+> -
+> -	reset =3D devm_reset_control_get_optional_exclusive(drm_dev->dev, NUL=
+L);
+> -	if (IS_ERR(reset))
+> -		return dev_err_probe(drm_dev->dev, PTR_ERR(reset),
+> -				     "failed to get gpu reset line\n");
+> -
+> -	pvr_dev->reset =3D reset;
+> -
+> -	return 0;
+> -}
+> -
+>  /**
+>   * pvr_device_process_active_queues() - Process all queue related even=
+ts.
+>   * @pvr_dev: PowerVR device to check
+> @@ -618,6 +604,9 @@ pvr_device_init(struct pvr_device *pvr_dev)
+>  	struct device *dev =3D drm_dev->dev;
+>  	int err;
+> =20
+> +	/* Get the platform-specific data based on the compatible string. */
+> +	pvr_dev->device_data =3D of_device_get_match_data(dev);
+> +
+>  	/*
+>  	 * Setup device parameters. We do this first in case other steps
+>  	 * depend on them.
+> @@ -631,8 +620,7 @@ pvr_device_init(struct pvr_device *pvr_dev)
+>  	if (err)
+>  		return err;
+> =20
+> -	/* Get the reset line for the GPU */
+> -	err =3D pvr_device_reset_init(pvr_dev);
+> +	err =3D pvr_dev->device_data->pwr_ops->init(pvr_dev);
+>  	if (err)
+>  		return err;
+> =20
+> diff --git a/drivers/gpu/drm/imagination/pvr_device.h b/drivers/gpu/drm=
+/imagination/pvr_device.h
+> index 7cb01c38d2a9c3fc71effe789d4dfe54eddd93ee..ab8f56ae15df6c2888feb16=
+b1d87b59510961936 100644
+> --- a/drivers/gpu/drm/imagination/pvr_device.h
+> +++ b/drivers/gpu/drm/imagination/pvr_device.h
+> @@ -37,6 +37,9 @@ struct clk;
+>  /* Forward declaration from <linux/firmware.h>. */
+>  struct firmware;
+> =20
+> +/* Forward declaration from <linux/pwrseq/consumer.h> */
+> +struct pwrseq_desc;
+> +
+>  /**
+>   * struct pvr_gpu_id - Hardware GPU ID information for a PowerVR devic=
+e
+>   * @b: Branch ID.
+> @@ -57,6 +60,14 @@ struct pvr_fw_version {
+>  	u16 major, minor;
+>  };
+> =20
+> +/**
+> + * struct pvr_device_data - Platform specific data associated with a c=
+ompatible string.
+> + * @pwr_ops: Pointer to a structure with platform-specific power funct=
+ions.
+> + */
+> +struct pvr_device_data {
+> +	const struct pvr_power_sequence_ops *pwr_ops;
+> +};
+> +
+>  /**
+>   * struct pvr_device - powervr-specific wrapper for &struct drm_device=
+
+>   */
+> @@ -98,6 +109,9 @@ struct pvr_device {
+>  	/** @fw_version: Firmware version detected at runtime. */
+>  	struct pvr_fw_version fw_version;
+> =20
+> +	/** @device_data: Pointer to platform-specific data. */
+> +	const struct pvr_device_data *device_data;
+> +
+>  	/** @regs_resource: Resource representing device control registers. *=
+/
+>  	struct resource *regs_resource;
+> =20
+> @@ -148,6 +162,9 @@ struct pvr_device {
+>  	 */
+>  	struct reset_control *reset;
+> =20
+> +	/** @pwrseq: Pointer to a power sequencer, if one is used. */
+> +	struct pwrseq_desc *pwrseq;
+> +
+>  	/** @irq: IRQ number. */
+>  	int irq;
+> =20
+> diff --git a/drivers/gpu/drm/imagination/pvr_drv.c b/drivers/gpu/drm/im=
+agination/pvr_drv.c
+> index b058ec183bb30ab5c3db17ebaadf2754520a2a1f..916b40ced7eb0408fe985ba=
+1b83b3be2eb024bae 100644
+> --- a/drivers/gpu/drm/imagination/pvr_drv.c
+> +++ b/drivers/gpu/drm/imagination/pvr_drv.c
+> @@ -1480,15 +1480,33 @@ static void pvr_remove(struct platform_device *=
+plat_dev)
+>  	pvr_power_domains_fini(pvr_dev);
+>  }
+> =20
+> +static const struct pvr_device_data pvr_device_data_manual =3D {
+> +	.pwr_ops =3D &pvr_power_sequence_ops_manual,
+> +};
+> +
+> +static const struct pvr_device_data pvr_device_data_pwrseq =3D {
+> +	.pwr_ops =3D &pvr_power_sequence_ops_pwrseq,
+> +};
+> +
+>  static const struct of_device_id dt_match[] =3D {
+> -	{ .compatible =3D "img,img-rogue", .data =3D NULL },
+> +	{
+> +		.compatible =3D "thead,th1520-gpu",
+> +		.data =3D &pvr_device_data_pwrseq,
+> +	},
+> +	{
+> +		.compatible =3D "img,img-rogue",
+> +		.data =3D &pvr_device_data_manual,
+> +	},
+> =20
+>  	/*
+>  	 * This legacy compatible string was introduced early on before the m=
+ore generic
+>  	 * "img,img-rogue" was added. Keep it around here for compatibility, =
+but never use
+>  	 * "img,img-axe" in new devicetrees.
+>  	 */
+> -	{ .compatible =3D "img,img-axe", .data =3D NULL },
+> +	{
+> +		.compatible =3D "img,img-axe",
+> +		.data =3D &pvr_device_data_manual,
+> +	},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, dt_match);
+> @@ -1513,4 +1531,5 @@ MODULE_DESCRIPTION(PVR_DRIVER_DESC);
+>  MODULE_LICENSE("Dual MIT/GPL");
+>  MODULE_IMPORT_NS("DMA_BUF");
+>  MODULE_FIRMWARE("powervr/rogue_33.15.11.3_v1.fw");
+> +MODULE_FIRMWARE("powervr/rogue_36.52.104.182_v1.fw");
+>  MODULE_FIRMWARE("powervr/rogue_36.53.104.796_v1.fw");
+> diff --git a/drivers/gpu/drm/imagination/pvr_power.c b/drivers/gpu/drm/=
+imagination/pvr_power.c
+> index 187a07e0bd9adb2f0713ac2c8e091229f4027354..c6e7ff9e935d3b348eff695=
+3c633c72410fdf507 100644
+> --- a/drivers/gpu/drm/imagination/pvr_power.c
+> +++ b/drivers/gpu/drm/imagination/pvr_power.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_domain.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/pwrseq/consumer.h>
+>  #include <linux/reset.h>
+>  #include <linux/timer.h>
+>  #include <linux/types.h>
+> @@ -234,6 +235,118 @@ pvr_watchdog_init(struct pvr_device *pvr_dev)
+>  	return 0;
+>  }
+> =20
+> +static int pvr_power_init_manual(struct pvr_device *pvr_dev)
+> +{
+> +	struct drm_device *drm_dev =3D from_pvr_device(pvr_dev);
+> +	struct reset_control *reset;
+> +
+> +	reset =3D devm_reset_control_get_optional_exclusive(drm_dev->dev, NUL=
+L);
+> +	if (IS_ERR(reset))
+> +		return dev_err_probe(drm_dev->dev, PTR_ERR(reset),
+> +				     "failed to get gpu reset line\n");
+> +
+> +	pvr_dev->reset =3D reset;
+> +
+> +	return 0;
+> +}
+> +
+> +static int pvr_power_on_sequence_manual(struct pvr_device *pvr_dev)
+> +{
+> +	int err;
+> +
+> +	err =3D clk_prepare_enable(pvr_dev->core_clk);
+> +	if (err)
+> +		return err;
+> +
+> +	err =3D clk_prepare_enable(pvr_dev->sys_clk);
+> +	if (err)
+> +		goto err_core_clk_disable;
+> +
+> +	err =3D clk_prepare_enable(pvr_dev->mem_clk);
+> +	if (err)
+> +		goto err_sys_clk_disable;
+> +
+> +	/*
+> +	 * According to the hardware manual, a delay of at least 32 clock
+> +	 * cycles is required between de-asserting the clkgen reset and
+> +	 * de-asserting the GPU reset. Assuming a worst-case scenario with
+> +	 * a very high GPU clock frequency, a delay of 1 microsecond is
+> +	 * sufficient to ensure this requirement is met across all
+> +	 * feasible GPU clock speeds.
+> +	 */
+> +	udelay(1);
+> +
+> +	err =3D reset_control_deassert(pvr_dev->reset);
+> +	if (err)
+> +		goto err_mem_clk_disable;
+> +
+> +	return 0;
+> +
+> +err_mem_clk_disable:
+> +	clk_disable_unprepare(pvr_dev->mem_clk);
+> +
+> +err_sys_clk_disable:
+> +	clk_disable_unprepare(pvr_dev->sys_clk);
+> +
+> +err_core_clk_disable:
+> +	clk_disable_unprepare(pvr_dev->core_clk);
+> +
+> +	return err;
+> +}
+> +
+> +static int pvr_power_off_sequence_manual(struct pvr_device *pvr_dev)
+> +{
+> +	int err;
+> +
+> +	err =3D reset_control_assert(pvr_dev->reset);
+> +
+> +	clk_disable_unprepare(pvr_dev->mem_clk);
+> +	clk_disable_unprepare(pvr_dev->sys_clk);
+> +	clk_disable_unprepare(pvr_dev->core_clk);
+> +
+> +	return err;
+> +}
+> +
+> +const struct pvr_power_sequence_ops pvr_power_sequence_ops_manual =3D =
+{
+> +	.init =3D pvr_power_init_manual,
+> +	.power_on =3D pvr_power_on_sequence_manual,
+> +	.power_off =3D pvr_power_off_sequence_manual,
+> +};
+> +
+> +static int pvr_power_init_pwrseq(struct pvr_device *pvr_dev)
+> +{
+> +	struct device *dev =3D from_pvr_device(pvr_dev)->dev;
+> +
+> +	pvr_dev->pwrseq =3D devm_pwrseq_get(dev, "gpu-power");
+> +	if (IS_ERR(pvr_dev->pwrseq)) {
+> +		/*
+> +		 * This platform requires a sequencer. If we can't get it, we
+> +		 * must return the error (including -EPROBE_DEFER to wait for
+> +		 * the provider to appear)
+> +		 */
+> +		return dev_err_probe(dev, PTR_ERR(pvr_dev->pwrseq),
+> +				     "Failed to get required power sequencer\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int pvr_power_on_sequence_pwrseq(struct pvr_device *pvr_dev)
+> +{
+> +	return pwrseq_power_on(pvr_dev->pwrseq);
+> +}
+> +
+> +static int pvr_power_off_sequence_pwrseq(struct pvr_device *pvr_dev)
+> +{
+> +	return pwrseq_power_off(pvr_dev->pwrseq);
+> +}
+> +
+> +const struct pvr_power_sequence_ops pvr_power_sequence_ops_pwrseq =3D =
+{
+> +	.init =3D pvr_power_init_pwrseq,
+> +	.power_on =3D pvr_power_on_sequence_pwrseq,
+> +	.power_off =3D pvr_power_off_sequence_pwrseq,
+> +};
+> +
+>  int
+>  pvr_power_device_suspend(struct device *dev)
+>  {
+> @@ -252,11 +365,7 @@ pvr_power_device_suspend(struct device *dev)
+>  			goto err_drm_dev_exit;
+>  	}
+> =20
+> -	clk_disable_unprepare(pvr_dev->mem_clk);
+> -	clk_disable_unprepare(pvr_dev->sys_clk);
+> -	clk_disable_unprepare(pvr_dev->core_clk);
+> -
+> -	err =3D reset_control_assert(pvr_dev->reset);
+> +	err =3D pvr_dev->device_data->pwr_ops->power_off(pvr_dev);
+> =20
+>  err_drm_dev_exit:
+>  	drm_dev_exit(idx);
+> @@ -276,53 +385,22 @@ pvr_power_device_resume(struct device *dev)
+>  	if (!drm_dev_enter(drm_dev, &idx))
+>  		return -EIO;
+> =20
+> -	err =3D clk_prepare_enable(pvr_dev->core_clk);
+> +	err =3D pvr_dev->device_data->pwr_ops->power_on(pvr_dev);
+>  	if (err)
+>  		goto err_drm_dev_exit;
+> =20
+> -	err =3D clk_prepare_enable(pvr_dev->sys_clk);
+> -	if (err)
+> -		goto err_core_clk_disable;
+> -
+> -	err =3D clk_prepare_enable(pvr_dev->mem_clk);
+> -	if (err)
+> -		goto err_sys_clk_disable;
+> -
+> -	/*
+> -	 * According to the hardware manual, a delay of at least 32 clock
+> -	 * cycles is required between de-asserting the clkgen reset and
+> -	 * de-asserting the GPU reset. Assuming a worst-case scenario with
+> -	 * a very high GPU clock frequency, a delay of 1 microsecond is
+> -	 * sufficient to ensure this requirement is met across all
+> -	 * feasible GPU clock speeds.
+> -	 */
+> -	udelay(1);
+> -
+> -	err =3D reset_control_deassert(pvr_dev->reset);
+> -	if (err)
+> -		goto err_mem_clk_disable;
+> -
+>  	if (pvr_dev->fw_dev.booted) {
+>  		err =3D pvr_power_fw_enable(pvr_dev);
+>  		if (err)
+> -			goto err_reset_assert;
+> +			goto err_power_off;
+>  	}
+> =20
+>  	drm_dev_exit(idx);
+> =20
+>  	return 0;
+> =20
+> -err_reset_assert:
+> -	reset_control_assert(pvr_dev->reset);
+> -
+> -err_mem_clk_disable:
+> -	clk_disable_unprepare(pvr_dev->mem_clk);
+> -
+> -err_sys_clk_disable:
+> -	clk_disable_unprepare(pvr_dev->sys_clk);
+> -
+> -err_core_clk_disable:
+> -	clk_disable_unprepare(pvr_dev->core_clk);
+> +err_power_off:
+> +	pvr_dev->device_data->pwr_ops->power_off(pvr_dev);
+> =20
+>  err_drm_dev_exit:
+>  	drm_dev_exit(idx);
+> diff --git a/drivers/gpu/drm/imagination/pvr_power.h b/drivers/gpu/drm/=
+imagination/pvr_power.h
+> index ada85674a7ca762dcf92df40424230e1c3910342..b853d092242cc90cb98cf66=
+100679a309055a1dc 100644
+> --- a/drivers/gpu/drm/imagination/pvr_power.h
+> +++ b/drivers/gpu/drm/imagination/pvr_power.h
+> @@ -41,4 +41,19 @@ pvr_power_put(struct pvr_device *pvr_dev)
+>  int pvr_power_domains_init(struct pvr_device *pvr_dev);
+>  void pvr_power_domains_fini(struct pvr_device *pvr_dev);
+> =20
+> +/**
+> + * struct pvr_power_sequence_ops - Platform specific power sequence op=
+erations.
+> + * @init: Pointer to the platform-specific initialization function.
+> + * @power_on: Pointer to the platform-specific power on function.
+> + * @power_off: Pointer to the platform-specific power off function.
+> + */
+> +struct pvr_power_sequence_ops {
+> +	int (*init)(struct pvr_device *pvr_dev);
+> +	int (*power_on)(struct pvr_device *pvr_dev);
+> +	int (*power_off)(struct pvr_device *pvr_dev);
+> +};
+> +
+> +extern const struct pvr_power_sequence_ops pvr_power_sequence_ops_manu=
+al;
+> +extern const struct pvr_power_sequence_ops pvr_power_sequence_ops_pwrs=
+eq;
+> +
+>  #endif /* PVR_POWER_H */
+>=20
+
+
+--=20
+Matt Coster
+E: matt.coster@imgtec.com
+
+--------------JJd0FReICCRZ3UPVwu0kCzvo--
+
+--------------kKJxzkDrURcIHkNRgSm40aqx
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+wnsEABYIACMWIQS4qDmoJvwmKhjY+nN5vBnz2d5qsAUCaKg4RQUDAAAAAAAKCRB5vBnz2d5qsMzj
+AP4/Jr16IB6GykZkM/5G23PgH+UU266PrN46tleziUznZAEAnCyLzMQFsAUWwPHlNweke5KXIfpo
+7x1z4k5Tw+xoYAE=
+=8xu5
+-----END PGP SIGNATURE-----
+
+--------------kKJxzkDrURcIHkNRgSm40aqx--
 
