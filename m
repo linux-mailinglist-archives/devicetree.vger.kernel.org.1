@@ -1,83 +1,48 @@
-Return-Path: <devicetree+bounces-208031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D4DB3160E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:03:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 132F0B31626
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:12:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 084747B59E4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:01:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0D2A3A8239
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0723E2BEFFD;
-	Fri, 22 Aug 2025 11:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79BA12E3B05;
+	Fri, 22 Aug 2025 11:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d8DfVnKr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T2Ib62DD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5F072C029E
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 11:02:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D0721255D;
+	Fri, 22 Aug 2025 11:12:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755860580; cv=none; b=sf8FumwgWTb+cqklmI/XwTzjKVm1GyK5Ph2nuumYvOIQWxn8rZbML0Lc0bbsq6E4TbtE+pLIT6Mj5YbHYkIOv4mC/2XwX8pf2Uo+LVcP1W7ifeGtQ9N0pm+sydZjER+CqDxRQDUSKpM3c6pgaiOxK4I4CCEtWwadC1xBXzlIIxY=
+	t=1755861128; cv=none; b=cgM0RyYPMV+E7RLlwfJQiJM8aFvFeuhxDB5hQT0Kb3Ap+GQjIPtgiUeZIBsaEzPozeNp7mLO+yIS5SOfZIT1nuU29Kh1ejxdDvVC3GpDC5MxMJwfZxwXS5UcvQZAyVBMTkXcYqnD5mh5pkWl51AN6eEVnDeX/OeMbfv4Ne3aHaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755860580; c=relaxed/simple;
-	bh=wEg0i8ljpxKTk+ox+KSaAg2bJ9cNagorHHhQEBmrDtU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ZYdO9qQbnPHHNd4vAd7kMLPRweB0eWmOtsEWgN30fNJXmiF3GfIYEp/CTEDtxVhimah9o/xo05iJLDOfPkPNw1RGlNWX7MTgZnDwxnWiijBeYCjaqpzciwPpecW9E93/YUj83aFPejjyyUFGreBpmb5C0IcGTctlPuuSP9jbhbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d8DfVnKr; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45b55ed86b9so1219825e9.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 04:02:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755860577; x=1756465377; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cSPNDRQEXSByP3k9ud61Mdrc8MbERDVLg0jj88ZjWgE=;
-        b=d8DfVnKrAvg6QVFmg9IlUIrbXthKUUTiQSyIbp9xRyNDyv97l5hEPKm2bUY1RahPTu
-         tvCr/IMMLskmrkIMBC5z4kKcv4MqwH1QPgnAHtdHQNCdkXKVunDqobsqpkf3CETLDnnw
-         mR6VKBNbMSHeKhyZl4PVQw0fh1NZbOEKLUj9TiM2NAvwTLPk6CkUIduRn99xYk1l+SNS
-         +sCVcFdLZZs4zXd1DCWoHxrvMBPaH4BXecD5KsOpGHGd54iUybngpC7FLGh9OqfjCkZZ
-         HpQ0p9TGeJkefyHd06FOYZk0mh31V8/I+BhKkX1F7HKn0xGzATyteVcvK4YAFk5JZW2+
-         Cg3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755860577; x=1756465377;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=cSPNDRQEXSByP3k9ud61Mdrc8MbERDVLg0jj88ZjWgE=;
-        b=ctAs8i4Og7ai6mpaDZ/7pJmPFr/yFiacVPXhwtgmB9yaGltornzLWn2wUuNDhEGQmt
-         kCcGcY4Icg0flfnLQnpahH30/Hbfi9VEdu0Z66xq/U+RTBRY3uuDTh/5SA2BD+OOY5xJ
-         VxzMgo7vFuWhSu7J/cdafXOoZUps0E/vll7w4US6I0dALr++AR/AXQaHqNwANF61Iy6E
-         b3GEQnrDvSX34TOhw/nfhy7iMNK0hxKLZ5DrtjhnPp3emens7VvRg6Rsn+OhfBL/rIkV
-         wfTqel6PLKw3QKuUIHPnioysVxzq+VBWwpleiGlu6GJeCIxz/pHpBZj9PWfaFYD50Wj8
-         ua1A==
-X-Forwarded-Encrypted: i=1; AJvYcCVbUg59rmaSnQuLpe4TJiwwtLTeOkVWHaQpxbdUoOxWDvJeCotUOUOahOFz6lV91BVcICsyrRIldeEJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7xQVVqDgpbOA6F49SQJmCVB2/kGS8x0HKGusQDDxIyew3PAKr
-	qzUgUoqUG8Ha362TOmQhS79QRXhyXH260JNh1F4yckFTRU9ZVLxxriPzYjODvCkTkkQ=
-X-Gm-Gg: ASbGncuKd6jXZ5l0n+ko06LAWCud+ZXS6zI2qFH3ZuyVSwQ/G7UF6lDpJsh0VXsM6dQ
-	YGgGUxiuh8NwNrrEpI6oLWT1IRexFezK+yeEInQOD9vvqY4vh4iXcpZ0QYTJqZ/19iV4+EOUbAE
-	DEqwtdojaQFxtPSyHVLNCY/tlpEh6FEXYyAXI6GEmYMxT4GhAsM29lfpzF7v8Rtj02Y2qdy/5/M
-	QhJ/9dMFh+74zClF1Gdtvy5qdVGrpE6sOhsEWLiafjUENFhkvabD/MLhowT+55hUOJvq++yAH3b
-	OQwHL08SwpHfdO/mbvOePBVF8iWGQ7KHY6DBHngPIcCCAIgoSRrZVErGDm5IETvn3WT696L6R/c
-	b6PixP9mvuepfBe25p6px8SF6fIKnjsDu1svDD5ie4PnImdrz64Mkid4ER8ClEomaUhEfkMm9SW
-	U=
-X-Google-Smtp-Source: AGHT+IE9PTwlyQ2HBsXoeltYN2/3zplP7/7veKdqNUYfYAOzMFeQKW/6u0My0eAnWH9Eypu5kHR5qw==
-X-Received: by 2002:a05:600c:3b22:b0:458:c002:6888 with SMTP id 5b1f17b1804b1-45b517d9ef7mr18067295e9.32.1755860576998;
-        Fri, 22 Aug 2025 04:02:56 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:3dd7:7361:c101:6a77? ([2a01:e0a:3d9:2080:3dd7:7361:c101:6a77])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b50e3a587sm35232305e9.18.2025.08.22.04.02.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Aug 2025 04:02:56 -0700 (PDT)
-Message-ID: <431de5f8-2dca-4ec0-9b94-fcc12480e8c9@linaro.org>
-Date: Fri, 22 Aug 2025 13:02:56 +0200
+	s=arc-20240116; t=1755861128; c=relaxed/simple;
+	bh=N8II0tKKmr+jYcX2kJ5FQ3s6Z9IvUZ67ogJraYwkwok=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Nakl5cbR9BQBt+NxkTgWw+WaPRaVUiAp1o6hVcOJP9X8wausKgeGt8X0nT/FWKLCm5ZwQqwlKvL7GQ7jDmSwx8oD5HPs3kEnct/LBYHTQlkes7qcq5JuzV8AurFUtcMlAANoAvUIBhSsEvSvW+vbhfgYgbwEHlvy7gSyGzCnvdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T2Ib62DD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5024C4CEED;
+	Fri, 22 Aug 2025 11:12:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755861128;
+	bh=N8II0tKKmr+jYcX2kJ5FQ3s6Z9IvUZ67ogJraYwkwok=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T2Ib62DDl42DK3INX+lvLhkuJhI2GerHhn03pcnvfWvOa3dJkj4JPa/AesfThZXBx
+	 p7aJddQhoLLE/ZBgDDebC7CZ7gb8Sq/w5xiXmAnXt/m81BF0oy40umPD6q9P1TGeYi
+	 0zPOAbH2v1A3Zeevh5rWSUKJ7X6eXGZRKyBvAW3AMcSiKnnJ0lC/ueQbHKAdmZXAge
+	 frp2a0fw7zS9JNAui+cD7X76jHJMIKX8xr99meyrWCzvJ8fo3k/WNmK1fA+MtyyznU
+	 kRwJRbHoBYtluoXDlsKPYtUybXloqlaoS7/vvEKAlhCMsxh+Q6E7l/rflNovf2cSUs
+	 kBYBc4hVWNnxg==
+Message-ID: <5950bff3-cce5-4a26-aad7-9314542f70dd@kernel.org>
+Date: Fri, 22 Aug 2025 13:12:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,158 +50,186 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH RFC 3/3] arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s:
- add HDMI nodes
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/4] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
+ i.MX8ULP compatible string
+To: Guoniu Zhou <guoniu.zhou@nxp.com>, Rui Miguel Silva <rmfrfs@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Martin Kepplinger <martink@posteo.de>, Purism Kernel Team <kernel@puri.sm>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Frank Li <Frank.Li@nxp.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org>
- <20250821-topic-x1e80100-hdmi-v1-3-f14ad9430e88@linaro.org>
- <as7pbmhfgsg3ht3s5lu25pfjjamaxyonuohkuohono3kr2mxii@posspuko4vwa>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <as7pbmhfgsg3ht3s5lu25pfjjamaxyonuohkuohono3kr2mxii@posspuko4vwa>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20250822-csi2_imx8ulp-v2-0-26a444394965@nxp.com>
+ <20250822-csi2_imx8ulp-v2-1-26a444394965@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250822-csi2_imx8ulp-v2-1-26a444394965@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/08/2025 13:01, Dmitry Baryshkov wrote:
-> On Thu, Aug 21, 2025 at 03:53:28PM +0200, Neil Armstrong wrote:
->> The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
->> connected to the third QMP Combo PHY 4 lanes.
->>
->> Add all the data routing, disable mode switching and specify the
->> QMP Combo PHY should be in DP-Only mode to route the 4 lanes to
->> the underlying DP phy.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    | 44 ++++++++++++++++++++++
->>   1 file changed, 44 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
->> index 4cf61c2a34e31233b1adc93332bcabef22de3f86..5b62b8c3123633360f249e3ecdc8ea23f44e8e09 100644
->> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
->> @@ -62,6 +62,20 @@ switch-lid {
->>   		};
->>   	};
->>   
->> +
->> +	hdmi-connector {
->> +		compatible = "hdmi-connector";
->> +		type = "a";
->> +		pinctrl-0 = <&hdmi_hpd_default>;
->> +		pinctrl-names = "default";
+On 22/08/2025 12:50, Guoniu Zhou wrote:
+> The CSI-2 receiver in the i.MX8ULP is almost identical to the version
+> present in the i.MX8QXP/QM. But have different reset and clock design,
+> so add a device-specific compatible string for i.MX8ULP to handle the
+> difference.
 > 
-> If this is a DP HPD signal, it should be a part of the DP device.
+> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
+> ---
+>  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 42 ++++++++++++++++++++--
+>  1 file changed, 40 insertions(+), 2 deletions(-)
 > 
->> +
->> +		port {
->> +			hdmi_con: endpoint {
->> +				remote-endpoint = <&usb_1_ss2_qmpphy_out>;
-> 
-> Please describe the transparent bridge too. It can be covered by the
-> simple-bridge.yaml / simple-bridge.c
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+> index 3389bab266a9adbda313c8ad795b998641df12f3..ca485d1d596c274eb7e1f3cdc39c61bb54cc0685 100644
+> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+> @@ -21,7 +21,9 @@ properties:
+>            - fsl,imx8mq-mipi-csi2
+>            - fsl,imx8qxp-mipi-csi2
+>        - items:
+> -          - const: fsl,imx8qm-mipi-csi2
+> +          - enum:
+> +              - fsl,imx8ulp-mipi-csi2
+> +              - fsl,imx8qm-mipi-csi2
 
-Ack, indeed it could take the pinctrl thing.
+That;s some sort of random change. Previously code was correctly sorted
+- u > q... now it is not
 
-Neil
+>            - const: fsl,imx8qxp-mipi-csi2
+>  
+>    reg:
+> @@ -39,12 +41,19 @@ properties:
+>                       clock that the RX DPHY receives.
+>        - description: ui is the pixel clock (phy_ref up to 333Mhz).
+>                       See the reference manual for details.
+> +      - description: pclk is the lpav bus clock of i.MX8ULP. It provides
+> +                     clock to CSI_REG module.
+> +                     (see section "4.5.4 Peripheral clock diagrams,
+> +                      Figure 76 MIPI CSI clocking" in IMX8ULPRM REV1)
+> +    minItems: 3
+>  
+>    clock-names:
+>      items:
+>        - const: core
+>        - const: esc
+>        - const: ui
+> +      - const: pclk
+> +    minItems: 3
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -125,19 +134,48 @@ required:
+>    - ports
+>  
+>  allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8ulp-mipi-csi2
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+> +        resets:
+> +          maxItems: 2
+> +          minItems: 2
+
+minItems goes before max.
+
+> +        clocks:
+> +          minItems: 4
+> +        clock-names:
+> +          minItems: 4
+> +
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              enum:
+>                - fsl,imx8qxp-mipi-csi2
+> +          not:
+> +            contains:
+> +              enum:
+> +                - fsl,imx8ulp-mipi-csi2
+>      then:
+>        properties:
+>          reg:
+>            minItems: 2
+>          resets:
+>            maxItems: 1
+> -    else:
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8mq-mipi-csi2
+> +    then:
+>        properties:
+>          reg:
+>            maxItems: 1
+
+I don't see what we asked you for - restrict other variants.
+
+Answer previous review:
+
+"Or explain why old hardware has now 4
+clocks. That explanation is missing."
 
 > 
-> 
->> +			};
->> +		};
->> +	};
->> +
->>   	pmic-glink {
->>   		compatible = "qcom,x1e80100-pmic-glink",
->>   			     "qcom,sm8550-pmic-glink",
->> @@ -1007,6 +1021,14 @@ &mdss_dp1_out {
->>   	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
->>   };
->>   
->> +&mdss_dp2 {
->> +	status = "okay";
->> +};
->> +
->> +&mdss_dp2_out {
->> +	data-lanes = <0 1 2 3>;
->> +};
->> +
->>   &mdss_dp3 {
->>   	/delete-property/ #sound-dai-cells;
->>   
->> @@ -1263,6 +1285,12 @@ &tlmm {
->>   			       <72 2>, /* Secure EC I2C connection (?) */
->>   			       <238 1>; /* UFS Reset */
->>   
->> +	hdmi_hpd_default: hdmi-hpd-default-state {
->> +		pins = "gpio126";
->> +		function = "usb2_dp";
->> +		bias-disable;
->> +	};
->> +
->>   	eusb3_reset_n: eusb3-reset-n-state {
->>   		pins = "gpio6";
->>   		function = "gpio";
->> @@ -1486,6 +1514,22 @@ &usb_1_ss0_qmpphy_out {
->>   	remote-endpoint = <&retimer_ss0_ss_in>;
->>   };
->>   
->> +&usb_1_ss2_qmpphy {
->> +	vdda-phy-supply = <&vreg_l2j_1p2>;
->> +	vdda-pll-supply = <&vreg_l2d_0p9>;
->> +
->> +	qcom,combo-initial-mode = "dp";
->> +
->> +	/delete-property/ mode-switch;
->> +	/delete-property/ orientation-switch;
->> +
->> +	status = "okay";
->> +};
->> +
->> +&usb_1_ss2_qmpphy_out {
->> +	remote-endpoint = <&hdmi_con>;
->> +};
->> +
->>   &usb_1_ss1_hsphy {
->>   	vdd-supply = <&vreg_l3j_0p8>;
->>   	vdda12-supply = <&vreg_l2j_1p2>;
->>
->> -- 
->> 2.34.1
->>
-> 
 
+
+Best regards,
+Krzysztof
 
