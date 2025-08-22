@@ -1,97 +1,112 @@
-Return-Path: <devicetree+bounces-208399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D412B323DE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 22:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4856B323EF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 23:09:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7231B580202
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 20:59:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06E6E5685CE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:09:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912DE3009C1;
-	Fri, 22 Aug 2025 20:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2812E11D5;
+	Fri, 22 Aug 2025 21:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="Fb/QHsdN"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="m50fFHfF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37FE928726F;
-	Fri, 22 Aug 2025 20:59:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4E6235355;
+	Fri, 22 Aug 2025 21:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755896372; cv=none; b=VTgEbaK5NH+mk/UgDu3XX/F9JUoVI4B8XnVJ2MY5QjTThbKO9wDXGuBosxehL9MlchhIRMFRIJwGIJDNT8TV6xAcBsBfNjZomeEEB7joQc7AyPJCgNzmjkHTvgkFJlEXK2RmUTgMOVozZ94N6qwHCU7ASIjYm8LB+Gc/xt9ER44=
+	t=1755896941; cv=none; b=I+NG5Lya00B2n3y0lHxNPwyQta8tIDCxkBJo9eZFl/2ad/C/J2g4Ws4iWmZkqmA9Pt2UZ/HligliHVofgk4x9ZiPrwbaugDUz49DyonMZKgobMSPW1L4Y7PlBbuTcUllFbk0TfQRHZ6S87Becqj3gRYafoqBaR8R9hzR8vw9Xbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755896372; c=relaxed/simple;
-	bh=ZO1xB19sLASKZGiZeAMZAeh5CkOBEqS1C10uFP87I88=;
+	s=arc-20240116; t=1755896941; c=relaxed/simple;
+	bh=cfTElvMytB+f8/t/+lVoyM9KAY4OTHDEn0AZz76FBZU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UFXSr9hYooZ9tN6aUunEldxPfpUiNwLAX2VdfX3NWwfwo6DrFTA/tPY4ac/aab6TXBYG682gM59tKMisMjasMUMYYQOT+pbHgERpae8SbZtgTxTs6BgYz8HiT+4FBltzhdLowoGrysapzuBlsR18dH+RWLcyn10bE5LRB1/k7sI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=Fb/QHsdN; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=VE6qGcpOBptbfyWtsDbPdbSi5iQYynI3yhAWfcylssU=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1755896360; v=1; x=1756328360;
- b=Fb/QHsdNqricuj3bK2V+FKhmpwu4jcDsV2yXmFGeltNEurS1jCPTBcPPwaC9TlikZNxye+NC
- 87pJCNNEelNcsu77cJXshgdZEtBN+t30qGUijM3vjo9jKpPbfiiFHvaGejuKRtP7plDXfs9MOsD
- jHZ0BgPLAqvuaqk+p8RgObq4yJHzPKuJ3pd3K6AUI2EWB6UR0x8oKKdJcbjPwzuIw/qOt+/DM7C
- lC/mpaQyujSqaaDKilZUdqEy+LTEjwjCGq4ZIVEWNMIHVUDBCsa9Sj7duz+lzJM3P7OroO/MU0w
- GsoQ/ECyheEOc8nosjC2Vxh7Y0BRYb09lsHUzjXUNWcoA==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id 17a16cd0; Fri, 22 Aug 2025 22:59:20 +0200
-From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje@dujemihanovic.xyz>
-To: Rob Herring <robh@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: power: Add Marvell PXA1908 domains
-Date: Fri, 22 Aug 2025 22:59:19 +0200
-Message-ID: <5013342.GXAFRqVoOG@radijator>
-In-Reply-To: <20250822193624.GA187008-robh@kernel.org>
-References:
- <20250821-pxa1908-genpd-v2-0-eba413edd526@dujemihanovic.xyz>
- <20250821-pxa1908-genpd-v2-2-eba413edd526@dujemihanovic.xyz>
- <20250822193624.GA187008-robh@kernel.org>
+	 MIME-Version:Content-Type; b=islPaCdtVqo1W1ZjRZD7mvlo2q3Cz0vRPt07nloh+MfHMdWEd2SG7mmlL4T/K2Iq/2rqw/IrFqQekS1UwZTKzatKaJR72stE6mL6j+06Qiky1ARgrbPeF6RM7IQudveuzGP1TfIEPBaJxe7X/2ssV/RLwiZk54NEHJRjXxtZyw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=m50fFHfF; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=cypEHEpRR2kJqbcPVa7GjXp1ID7KVO6yBwZP58hpPu8=; b=m50fFHfFtMqgCcu9VSJ5v/1T6H
+	rXZjeTd4nbm4TotaElmywFPoV8XWbvuSL8GfaN6a0xWhFP1p1hlUN8ukE7DdXvkYtnaWjfoG4D0je
+	JC2lnZk/8KsCYsbU7QoRjO0hQVndHLLDaOe1i3U2ep9K0lAY7RWGhPeiEDWtCxbc+9se5lg8uEIxD
+	LMATyPUYvXPGh7wsS4XepSWRK68sUL0SfF70hBPSFw85dmzzccZSp629CltlOpyppucRM1bRNIUJq
+	DtYXKHHGXdselR2BtScg+0iTxTl/8apdFsRowbsNS1kCHLh2PbDTLr5VOOgZj+nmkxAlVGRVI3Yh3
+	ObWwOPog==;
+Received: from i53875a83.versanet.de ([83.135.90.131] helo=phil..)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1upYzr-000415-Uo; Fri, 22 Aug 2025 23:08:28 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	hjc@rock-chips.com,
+	andy.yan@rock-chips.com,
+	andyshrk@163.com,
+	nicolas.frattaroli@collabora.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: (subset) [PATCH 00/13] Support DSI output on rk3576 and roc-rk3576-pc board
+Date: Fri, 22 Aug 2025 23:08:25 +0200
+Message-ID: <175589689704.3303128.5679950731528883388.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250707164906.1445288-1-heiko@sntech.de>
+References: <20250707164906.1445288-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-
-On Friday, 22 August 2025 21:36:24 Central European Summer Time Rob Herring=
- wrote:
-> On Thu, Aug 21, 2025 at 01:17:44PM +0200, Duje Mihanovi=C4=87 wrote:
-> > Add device tree bindings for Marvell PXA1908's power domains.
-> >=20
-> > Signed-off-by: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
-> > ---
-> > v2:
-> > - Drop schema
-> > ---
-> >=20
-> >  include/dt-bindings/power/marvell,pxa1908-power.h | 17 +++++++++++++++=
-++
-> >  1 file changed, 17 insertions(+)
->=20
-> This should be squashed into the previous patch. The Reviewed-by stands
-> with that.
-
-Should the resulting patch have a 'dt-bindings: power:' title prefix?
-
-Regards,
-=2D-
-Duje
+Content-Transfer-Encoding: 8bit
 
 
+On Mon, 07 Jul 2025 18:48:53 +0200, Heiko Stuebner wrote:
+> This enables all the necesary bits and bindings to get display output
+> on the dm-m10r800-v3s addon module for the Firefly roc-rk3576-pc board.
+> 
+> A bit of cleanup of the ili9881c, because the driver was still trying
+> to send dcs commands when the underlying DSI driver might have already
+> switched to video-mode, which caused me quite a bit of headache until
+> I realized this being the culprit for my garbled display output :-) .
+> 
+> [...]
+
+Applied, thanks!
+
+[01/13] drm/panel: ilitek-ili9881c: turn off power-supply when init fails
+        commit: 6c66eba502709a78281333187c1add7b71f7201f
+[02/13] drm/panel: ilitek-ili9881c: move display_on/_off dcs calls to (un-)prepare
+        commit: 5efa82492066fcb32308210fb3f0b752af74334f
+[03/13] drm/panel: ilitek-ili9881c: convert (un-)prepare to mipi_dsi_multi_context
+        commit: 9002f55ee4480f23bd2ce91fb5fca536ce31717e
+[04/13] dt-bindings: vendor-prefixes: Add prefix for Shenzhen Bestar Electronic
+        commit: 8e484ff181b177ea2e86e537fd7a5c8f9d7532ad
+[05/13] dt-bindings: display: ili9881c: Add Bestar BSD1218-A101KL68 LCD panel
+        commit: 157ba8c6742931a617a34555c27dd10b36385cf3
+[06/13] drm/panel: ilitek-ili9881c: Add Bestar BSD1218-A101KL68 support
+        commit: 38dbbbb41c515d72b0a82fde3cec450d068f5e94
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
