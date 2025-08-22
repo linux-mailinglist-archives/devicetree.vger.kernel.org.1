@@ -1,144 +1,139 @@
-Return-Path: <devicetree+bounces-208073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C66F4B31849
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:50:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91979B3182B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:46:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64290AC817E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:49:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 163BD1CE2922
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:47:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901A82FC00E;
-	Fri, 22 Aug 2025 12:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304F528AB1E;
+	Fri, 22 Aug 2025 12:46:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="4t5an2Iv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="C7tUhWqJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42CF2F6196;
-	Fri, 22 Aug 2025 12:48:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F241199FAC
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 12:46:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755866924; cv=none; b=OAnTgU+0lBcjjt9ubNtjRldyjqn9pGSYmjNCWBDNwIl+uRX/AOz+Vs6/rYuSXi08HY/10a4DQFBJ1mPXf90TPu3w9T8FxGDJWsC4GY9JQYArXfmXnsuxl39IenZspW6Vi40MEBOga1ByU7rt4dHsgwnDx7abtIy5keHjYGZG+Z4=
+	t=1755866807; cv=none; b=G77J9jDkFDSb0XbVZcG7qEnr9hZfZvCnLvvh8fAD28a/6YCxuiO5A7LWnDLsK8zR+onAKe+jstxQifELNA37XlVl2JyFQGViDXQMJ2ZGp0mdnV+ymf/mTKdn6t5RoHinI9FMArzdfuFeD1n306YVOfBsZNc85+L+vrI4HVSwJGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755866924; c=relaxed/simple;
-	bh=3xhnfcc/k5yv3VnUt/EjE5Lj7F1moiQvxJV3agD7uEQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Tc/OxhTEuQWYyTv50pJawihs0Bx/fHpRsVf+KEQZtjUNPrAThON6iwO9XgM3hPffvK0uPmWVFOhRnLV6Sb8MxOCcck3F5MGzPLflEbBpOdkADVS2+kvBnQs/8ZNih1JKVOzI7b2kHgc29/L5kGH9ij/WPZSlNkCiIXFDXoMzWKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=4t5an2Iv; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57MCgmp0005067;
-	Fri, 22 Aug 2025 14:48:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	TGbeZuqspzRioDGrdvKPMUoTcNPF7/XnoWtRoGzbxwQ=; b=4t5an2Ivhpfv44vd
-	pS602YSZFg2zu/Ma53LpeLjt9uVgcrxM/zA9mrYjWj9md+D50UqoNLMtyrHBVThD
-	ns2T8NhfiIJCji7gnXToOWLv4qUmlUMqBllMGf2MY9BnjwOeLh5CgH3UMjdRkuSU
-	jvmo7fQ6ukEBWck3EDHSq1y5zZYveTyPQ86nsPnvY6gLUxRFeauBIYCOfihhJfWL
-	dIjBrHGib5QXRPnevSicyqCidUtqNAxfN8vlggmd/fbqe6Oav96TABlTaKr2kWQe
-	T4UFAa1zB6vmq3QL4LBz0qeJFizbY7ncMbp7ZnZMtDWG0iSXjT0bdR6/cRbgG4El
-	snQJ0g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48nd5xs6qd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Aug 2025 14:48:29 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7D0E540048;
-	Fri, 22 Aug 2025 14:47:14 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8279A71DB2B;
-	Fri, 22 Aug 2025 14:46:17 +0200 (CEST)
-Received: from [10.48.87.178] (10.48.87.178) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 22 Aug
- 2025 14:46:16 +0200
-Message-ID: <13ae9184-e835-476c-a96c-df8cd94c6e4b@foss.st.com>
-Date: Fri, 22 Aug 2025 14:46:16 +0200
+	s=arc-20240116; t=1755866807; c=relaxed/simple;
+	bh=tcviW4G1fDsbaEUKf3XybDgKjInDOsiywJ+lM5Z01DU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iV3q7o/4ZusSlUiYBrpxrPHPV83oYLZOR/cQBQ3budIPCEzta/3f3rWnNiRKKC6c4ateDudfQn6AM3ErkATsEa5L8D41in++mWn4QNxbDwKUyRSbMmLR05xJ+4dZhmyB8jbS8SSirbnY0ReidNcD4gRfY+vTTWv4xEeT4hie4vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=C7tUhWqJ; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57MCkQIN252257;
+	Fri, 22 Aug 2025 07:46:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755866786;
+	bh=2/Z7AQaALVvEWhQ6ZXNpSTA/Gnv5SxuZNVgMdoe1R10=;
+	h=From:To:Subject:Date;
+	b=C7tUhWqJ7fmXy+d+V6sOOIOApA5kMVGCDjCtK63z3YMXQr03xHi4kM5nML3SmRZ2T
+	 ZXahxHHidF11BCI/jp6XdEYgLtV/ijze9cSpjXnqOaY27+tbRWathpULTCx4lEZZ5r
+	 j03tLe80FwUMRWVacoLoNjBTi6Un5vPwYA/My+WY=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57MCkQcN2709225
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 22 Aug 2025 07:46:26 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 22
+ Aug 2025 07:46:25 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 22 Aug 2025 07:46:25 -0500
+Received: from hkshenoy.dhcp.ti.com (hkshenoy.dhcp.ti.com [172.24.235.208])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57MCkMjP3847096;
+	Fri, 22 Aug 2025 07:46:23 -0500
+From: Harikrishna Shenoy <h-shenoy@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-j721e-main: Add DSI and DPHY-TX
+Date: Fri, 22 Aug 2025 18:16:22 +0530
+Message-ID: <20250822124622.1424473-1-h-shenoy@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 04/13] dt-bindings: display: st,stm32mp25-lvds: add
- access-controllers property
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Philippe Cornu
-	<philippe.cornu@foss.st.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Maxime
- Coquelin" <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250821-drm-misc-next-v4-0-7060500f8fd3@foss.st.com>
- <20250821-drm-misc-next-v4-4-7060500f8fd3@foss.st.com>
-Content-Language: en-US
-From: Yannick FERTRE <yannick.fertre@foss.st.com>
-In-Reply-To: <20250821-drm-misc-next-v4-4-7060500f8fd3@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-22_04,2025-08-20_03,2025-03-28_01
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Raphael,
+From: Rahul T R <r-ravikumar@ti.com>
 
-Thanks for the patch.
+TI's J721E SoC supports a DPI to DSI video signal conversion bridge on
+it's platform bus. The IP is from Cadence, and it has a custom TI
+wrapper around it to facilitate integration.
 
-Acked-by: Yannick Fertre <yannick.fertre@foss.st.com>
+This IP takes the DPI video signals from DSS and alongwith the DPHY IP,
+it transmits DSI video signals out of the SoC.
 
-Le 21/08/2025 à 13:08, Raphael Gallais-Pou a écrit :
-> access-controllers is an optional property that allows a peripheral to
-> refer to one or more domain access controller(s).
->
-> This property is added when the peripheral is under the STM32 firewall
-> controller.  It allows an accurate representation of the hardware, where
-> the peripheral is connected to a firewall bus.  The firewall can then
-> check the peripheral accesses before allowing its device to probe.
->
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> ---
->   Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml | 3 +++
->   1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml b/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
-> index 74e61d95370c299130410cdaae833514324c3e8f..05a73bbc246a8994b6aabf7c2cd9dca773232be4 100644
-> --- a/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
-> +++ b/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
-> @@ -59,6 +59,9 @@ properties:
->     resets:
->       maxItems: 1
->   
-> +  access-controllers:
-> +    maxItems: 1
-> +
->     ports:
->       $ref: /schemas/graph.yaml#/properties/ports
->   
->
+Add support for DSI bridge and the DPHY-TX.
+
+Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 31 +++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index ab3666ff4297..d65b6fcae338 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -1887,6 +1887,37 @@ port@4 {
+ 		};
+ 	};
+ 
++	dphy2: phy@4480000 {
++		compatible = "ti,j721e-dphy";
++		reg = <0x00 0x04480000 0x00 0x1000>;
++		clocks = <&k3_clks 296 1>, <&k3_clks 296 3>;
++		clock-names = "psm", "pll_ref";
++		#phy-cells = <0>;
++		power-domains = <&k3_pds 296 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 296 3>;
++		assigned-clock-parents = <&k3_clks 296 4>;
++		assigned-clock-rates = <19200000>;
++		status = "disabled";
++	};
++
++	dsi0: dsi@4800000 {
++		compatible = "ti,j721e-dsi";
++		reg = <0x00 0x04800000 0x00 0x100000>, <0x00 0x04710000 0x00 0x100>;
++		clocks = <&k3_clks 150 1>, <&k3_clks 150 5>;
++		clock-names = "dsi_p_clk", "dsi_sys_clk";
++		power-domains = <&k3_pds 150 TI_SCI_PD_EXCLUSIVE>;
++		interrupt-parent = <&gic500>;
++		interrupts = <GIC_SPI 600 IRQ_TYPE_LEVEL_HIGH>;
++		phys = <&dphy2>;
++		phy-names = "dphy";
++		status = "disabled";
++
++		dsi0_ports: ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++	};
++
+ 	dss: dss@4a00000 {
+ 		compatible = "ti,j721e-dss";
+ 		reg =
+-- 
+2.34.1
+
 
