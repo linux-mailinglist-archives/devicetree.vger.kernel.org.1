@@ -1,87 +1,93 @@
-Return-Path: <devicetree+bounces-207895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF6EBB311F7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:40:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78733B3121A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:46:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABF445C216F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:40:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB28FAC400C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7055C2EB872;
-	Fri, 22 Aug 2025 08:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDEEE2ECD12;
+	Fri, 22 Aug 2025 08:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y5EPUiZr"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Mrr/ECZ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41BA0221577;
-	Fri, 22 Aug 2025 08:40:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC8119D880;
+	Fri, 22 Aug 2025 08:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755852038; cv=none; b=QI0pwfL4+EuGwFtgPo3BCQDSvs5DaKhyaqs16sZaz7MbDE5CycyaZKeB7fD/bcnT0412HIJwAJQf3iCe9UhvtJR+yUBXG/xUdVpqdZdrDpxbd+ePsM+4wRmnWf3EDomkuJ8fcSqKeAcJSiMm+Au5FMndlnqThFz6OAGPzvfLIxk=
+	t=1755852260; cv=none; b=EDR6ncOupxI/+McwEZBP19nCff/F3z00HgNloencoldHBaLaTgalc1nYIsXfnBPK3FDnEpG1dceYIcSpFpNePD26ofQAOEN4kfH+ARf3AW8MdAcfCiXnqD36hw4N5r3meoHBQciK722ddUnk/qfGsx84sR/pEWuUEZXHeD4AVkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755852038; c=relaxed/simple;
-	bh=U672dK4v+PxxtgESXJvazGOxF0mN37c2SaWpTHVq4kw=;
+	s=arc-20240116; t=1755852260; c=relaxed/simple;
+	bh=i5MGaGPZFXaGix0CeJMOQeq3AS/r/2cOZSfHKXkBdqk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FoQNhK66jMn77ElT6+/X29J0jOBmvVaQDOUVz3WdWcfDvfWybtoNTgcCZQ2g7glWHHU0mbonc9CgYzNQ5aYr74Kwcw80VaeylF6JW8oY8U5XbMJpsaF/vlaRD3AvTa3u9W877fYWr0sx6zqvfko/6lH3pEs3HDQYGiMLzCty1hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y5EPUiZr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 343E7C4CEF1;
-	Fri, 22 Aug 2025 08:40:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755852037;
-	bh=U672dK4v+PxxtgESXJvazGOxF0mN37c2SaWpTHVq4kw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y5EPUiZrJHAk5vVeEqIsRoeciPf0S9JnYzOhTFVuQGXj3vz4PNYmszz+WsgYzr+Kj
-	 1VH94zdXC5rNm7DZwhj3pNoy5me0A+UReQjBj5q3IGEesCy6LtRKzjgIs5fxZG2Xvi
-	 dj+qM6qqndKAmMbCtzItUHjSI5ALwFrOv5L5OaEARZVars60iUwzHWMvDqKk9w57OB
-	 vvRiK8nQDaUOePtu4NUPTHK+qyctgJMsGf5uqTVDdc5fzbQomftZjBMef1HSarWfHV
-	 k97D8Mty4Ho1sdAfsTIB3McUgB4YHxdEiqQSFLK+h9Yal3u6iy8kXAz5Psi/YrFjLJ
-	 SYNI3UhgdEHrw==
-Date: Fri, 22 Aug 2025 10:40:35 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, 
-	Russ Weight <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Kamel Bouhara <kamel.bouhara@bootlin.com>, Marco Felsch <kernel@pengutronix.de>, 
-	Henrik Rydberg <rydberg@bitmath.org>, Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] dt-bindings: input: Add TouchNetix axiom
- touchscreen
-Message-ID: <20250822-pristine-earwig-of-vigor-b7b3bf@kuoka>
-References: <20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de>
- <20250821-v6-10-topic-touchscreen-axiom-v3-3-940ccee6dba3@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=M72BE/4MN1vW+A/uDQXnd2LMoxocZCnGZh4s9Iu5s9+6At7hLONcKib9w2l5Q5Hf8rngQaxycNsM2kN/KDC2+msyhtJU+inbDrPA1MYCcqDIQtPgb805tl0inHptHiwESXThqSqw0Wz9wsrNgsJYHljwnz0xP5kXvoj35/CTaTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Mrr/ECZ1; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=YcyCpXC//LwKFU9yjAyJNXfcojjXsbo2azge4YgyYVc=;
+	b=Mrr/ECZ13cJlTtArHixXMkiu25wJJaamvKcsqFEDchBndXLXXtYkoq3en9d4SI
+	Ai7V6QkKTRYiNwm/SIhGD9mCkpNJOqGJlhody5pzkemMje/TdILct0kEEwQcH4CN
+	9S1FzV2e314/87B9dGhuPfnVdRH362k4EdTMeE9QxzQMk=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgCnZW9sLahoW3sVAw--.14819S3;
+	Fri, 22 Aug 2025 16:42:23 +0800 (CST)
+Date: Fri, 22 Aug 2025 16:42:20 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Joy Zou <joy.zou@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, peng.fan@nxp.com, richardcochran@gmail.com,
+	catalin.marinas@arm.com, will@kernel.org, ulf.hansson@linaro.org,
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, frieder.schrempf@kontron.de,
+	primoz.fiser@norik.com, othacehe@gnu.org,
+	Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com, netdev@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	Frank.Li@nxp.com
+Subject: Re: [PATCH v8 03/11] arm64: dts: freescale: move aliases from
+ imx93.dtsi to board dts
+Message-ID: <aKgtbDHjU6Ldku5T@dragon>
+References: <20250806114119.1948624-1-joy.zou@nxp.com>
+ <20250806114119.1948624-4-joy.zou@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250821-v6-10-topic-touchscreen-axiom-v3-3-940ccee6dba3@pengutronix.de>
+In-Reply-To: <20250806114119.1948624-4-joy.zou@nxp.com>
+X-CM-TRANSID:M88vCgCnZW9sLahoW3sVAw--.14819S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUorcfUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAQSxZWioHpAnjAAAs0
 
-On Thu, Aug 21, 2025 at 07:26:38PM +0200, Marco Felsch wrote:
-> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+On Wed, Aug 06, 2025 at 07:41:11PM +0800, Joy Zou wrote:
+> The aliases is board level property rather than soc property, so move
+> these to each boards.
 > 
-> Add the TouchNetix axiom I2C touchscreen device tree bindings
-> documentation.
-> 
-> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  .../input/touchscreen/touchnetix,ax54a.yaml        | 62 ++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Joy,
 
-Best regards,
-Krzysztof
+Could you resend those DTS patches with a rebase, as they do not apply
+any more?
+
+Shawn 
 
 
