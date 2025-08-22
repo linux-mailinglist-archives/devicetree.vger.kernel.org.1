@@ -1,155 +1,139 @@
-Return-Path: <devicetree+bounces-208019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B2AB31585
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:34:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00DCBB315A0
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:41:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F3EF24E418C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:34:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E08D7AE66C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:39:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7872F4A10;
-	Fri, 22 Aug 2025 10:34:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A7F12F548C;
+	Fri, 22 Aug 2025 10:41:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NbJHNySp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Js6V+l1k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24A12E9730
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 10:34:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 129C61A9F83;
+	Fri, 22 Aug 2025 10:41:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755858890; cv=none; b=utxyyNhnuSvxy+SnKBIwzH7joV43dDL/d+pZOTD3P/23txoaEvs0qkkd0usmBeLsT4Ot9bZ6RsvPTsxRzwcpMNryPuhkR0iQIyXg+J2y6vHSm/3/Z2UvE4yRoNfS64Ospwf2blg65oP9wjUe0mC9FYbeaWEtG7Hjb52PhUVRH2I=
+	t=1755859284; cv=none; b=BMA7o+bJtAQglbI81O+V3QDrfhBMuFJJzJpRdR96/390hzMV69Jjgw0t1u9MxZ0l3j4n1gU9qplNAA7N1IdfnMKwmlrCJ7mSlpIGlHdKKElDBDYp2pivmkspVG7jAe9K/UqvKgs65lkmlO8+DluwSToFlVqbQRV3W2cbCTbYq8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755858890; c=relaxed/simple;
-	bh=cNc3uQTBlPMD/fIqEi+w2U9HdRDuV2p5IcMHEWL2ySw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bQJhZBn9jUd/HHRuYr851elALImw7WvkuUDNqIp1PMePczR9Z61fLTBrvaXQ3oIlKvEW1IQWeCl6p3CFj3yqlQb+L7SeoXRpF6KdTjTt2L3c+rsj4OAexhDHwMAssw1dJZQQpuWm5iNhsy3KqTa0qgqkCrQVy45NSRD8EFf+HUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NbJHNySp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57M8UWkZ006750
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 10:34:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=kveQ+tzxSixYaW9ElHHUjKWE
-	uXQ0n186XTdsODdNbAY=; b=NbJHNySp6cGBngKyWzHr7So4mttf5+9GBE3hYVFs
-	ZEd6u2yMLX0GIOPRWpZg0P+mTOKlZC69c1twVJFxi4UZ4JMTDfEl1CbY8IKOuhQR
-	/azdpfol49X2Vyx6kaZwaxPr4pe1g3MjDloys9oQeyikt/r2p36HX/r1Wmjek2pZ
-	RCkZafM7HAjwxsvM15rtswXP1qsP6d6FhDBKHDZuGQoYv/TkuipsJLcNIZ/slQLq
-	3YCyx/mrbJCQFqrXw7neMCIYfEVDm92cZR0Lb29VLbOlcvAfG7z98b62y8iEbn8H
-	M87g89SlpvBZQBzuoUogJ7QyylEaPwQPASW/1ljOS630iA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n5290vme-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 10:34:47 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b109be525eso43966921cf.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 03:34:47 -0700 (PDT)
+	s=arc-20240116; t=1755859284; c=relaxed/simple;
+	bh=Me1dJg/pHlizlj5H84yNP2X0isXkGGoFfRDIoGVPRWc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JJ8ggRRdP1LHaht5eQ6tnN6qMZmpi79fc1v6kLWBM5g6B14YaDx/KycL+rqXWyrzkuB2of7HmTu3H9HKC5ZBC95ank5cBrJY9Mihi+YnY70p6tXfVwxyohff7tQK+ik81V4g3nBd9nT3BjtCHpInJZPIY3+8oke434ZNWAd8hOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Js6V+l1k; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-76e2ea79219so2391842b3a.2;
+        Fri, 22 Aug 2025 03:41:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755859282; x=1756464082; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dNhDX4p0fKfiv+TH9iIj+ArcAJDpkAdzS+QmGkDY6Ck=;
+        b=Js6V+l1kZs75fXAj4clIB5xtP55YwR64rb3FxiOUlaxgnsM9K4/MB+g07o98clKrGM
+         WNdiMxTshzR9jrNqfF57ZjHm8E8oFb7uUKTl2kAJZTJgVXF01JFm4uPMKHFQzu3mZu2r
+         6kEgodAKEjPMoCMKM3t6/2S1IeGITKqATNAu7mwgYHNp3lYFfE6uaD1WtxvRGfTjsJ+O
+         RguThyEtRpDWz5pbXvGJjuuB5ZpHLVYaFMhVuc0GODmfcg15uBqUuz/vnRb8EM9kqcsO
+         SBU4B5GP4F+a23deLDMUvm7iktwvPoivrtSuKBPwHzTmAhQQzieI7cITHYvKk6UYar4L
+         Llgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755858887; x=1756463687;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kveQ+tzxSixYaW9ElHHUjKWEuXQ0n186XTdsODdNbAY=;
-        b=ivMYXuKWpH+NeTQpIsAXnUdBTVRt4swVN9FZzLXTAHwLNndsbH88nSCDtVn9RHxLiD
-         c9DTp8DJQgH2eaYLnDMal89LGnclxMGEQgLrp3f/AT4tIFPtrbUTrO713k+bgbsHQNK+
-         p9yzTsMiPD2TFRK4OyF66C5frVC/0A6ZatryxyUQkbzFyjizso6WxS6bv0VCaoAlGVwV
-         pptZ8zZGgYmYk11PYnzLdFymj+AkhD8WCHNTFIEad9OZt1cAShYw8CIciK2l4B/3OLIS
-         UeMcS/XEa/mpmDq8jwUJtPQ2d5ZjtQ1hUjRTk8aydjN2fuq0GBAXaCcVJdWb5BWlCqi+
-         rzhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW7NiDZZ81b5++vacPghFqkWCUE4QdOIys577law5TETvu/1VKVqAMXDj+/OHBSar6EzbGTZQqi86Ji@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCFnd4QNcPvl4NchGWHJlHzH6YZCsNkoKThRSqkToo7U23StAt
-	SmAkJMQ5rYjulIbIT3zOV3QJ6zMfbBmr2Es3Paloyu2LdsOV3Fsy8FezKtUZPljgFzGZnGykzJS
-	ow8s4F6+ZtoVlIebEe/NbhluBH8S9SlXHY03KCAR9tC3L5oi3Ce0QPMn0vJdMQoXW
-X-Gm-Gg: ASbGncve1Luv9neK1hm05ZFCwjE2bIbLR9JifNUGCI/mO3qEtukfbb9bhJsqMWa61HV
-	GsKM4SX6ClyqAbDIaH5crNMnFSbBBIkx6sLIZV56uRBm44pt+fYZBiSs6G4w6BIMTlwGe6M0Ryj
-	/LmAEUWp6Xxyd+ZtvpJEripiXwalDoXRCQw8wTZqod0djBxwpcDjiMP+4YmQJy+F7fT4YLwTHx+
-	e0JXaFG8qO3iMK2N39eXw47x9asprYa4ZRBCGuCd/4d+bxekYmxhFVKrdu2iv+Ywl/KvWfSXoRC
-	Al2xJSnTjnvbf+7FOjdbS5L41Ylu1tTN3RK4hQmaWCxZHT5BT78w+BWzL5EF+HBl48WFDRduxB3
-	Bsdd2qC95cllxrLQ+oEmp6uCYSBfF1AklXSO/ay0fN9hWKSupiBs4
-X-Received: by 2002:a05:622a:1a27:b0:4b0:65cc:f64f with SMTP id d75a77b69052e-4b2aab3c33bmr22432811cf.54.1755858886917;
-        Fri, 22 Aug 2025 03:34:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGitENoH3QIhDfrMsc85KABpbqP+cmpwOZOUhVCbOkZutTUgU8nZ46PieBebtYJ+AhzzSGsfA==
-X-Received: by 2002:a05:622a:1a27:b0:4b0:65cc:f64f with SMTP id d75a77b69052e-4b2aab3c33bmr22432591cf.54.1755858886489;
-        Fri, 22 Aug 2025 03:34:46 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef3513c9sm3554851e87.29.2025.08.22.03.34.45
+        d=1e100.net; s=20230601; t=1755859282; x=1756464082;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dNhDX4p0fKfiv+TH9iIj+ArcAJDpkAdzS+QmGkDY6Ck=;
+        b=cmmQSlD089ptJWbXEnRyB4zCrQ+Ip38VKnRwiCnSfbYsf59NDkHnJ7BU+qxmWP/j/9
+         vRvIY2dubaCn2bta+PztTx4l2NRQsfbESXnT3t1q4vHHpYQTxESqGbsPQGc+3uujwXr9
+         BkC3dQQ2flnxbcds1G+Awk84QfVOE8v/46+dJUTv0vIKGvKt4to2NHUyN31L3jVQf2hM
+         9PLo8juIs/7xdGlD+byfR/fYKdQw3/qpOOJ3+pbQLrKkiyxb8pThFtusZgZDUl2cUlgb
+         4F3dMJVXccxQAQME4LyX/1l57wslRb+C1HYCqG90F44qGa0j5RDipiS/CefjSql74E5U
+         FdEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVjIht+gSjxSQL45FebsdBMa8efirkLs82YADvdM9lTsasQncizHdDd+XK+RHGD31IZT7IBx2v2VkMDUHBO@vger.kernel.org, AJvYcCWNu6v/zpGiB0CptjO4S82YldO5pfs9KK2O87Kww3kJoJbM7nuZTVgu253zFO7y1ruqOf0+64iQEwbc@vger.kernel.org, AJvYcCWTw/tCWYIpQJwakKzNVjMuV/lZlbtOx/zBaplIbbUkA5zT0Htnym8pcWI1c56qYUD7oMaCVasHg5fZTmg=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywji61ckYOZnGiYCu+fQoAEkmCNK76lU1sDs33+35yL+JevtiV0
+	DtqsDgCz70/Q3k4DyKg0DdQ/m9oA6l0e/P99DvyNlQADSbTqNu4iqT15l+GVx35B
+X-Gm-Gg: ASbGncs1o5viliJYMH4N2M9eZ8DXIt+fS0jwGQh8tO7GKwh3spIn3M1mzTs8lCUSy+V
+	/EkOShllD2P0+mV01f8GWfeQ7/PMroNbK8xnyU6d//EswmIyyO2l0C3WhCPR3era+O1pOiYvENP
+	SxpD0kJWA6br4Ad3ORMItZDgPu0QSlWG5uGVTalBeT9Tjz/7H62McersT+k6lRHC8B8bCxKUR56
+	Tgr5+eaFOSKY64oHx5TIoHFB8imNf7AEcKHHFFV2DwSKtUIhNqB2y2nZ+yDYGnMJ/v5MG43HxLP
+	9p49d8qn3oHcVL4FRpgpExpVXXgVbIyOAj/IT18TwHaWCvGD7HgJHkEI+/gHK/WLcqqtul+3mCd
+	UbI3nBLXSQY+EucG2txIaCsrTTl7GYEArod6QRBZ1ni5b6i04DkLEAA==
+X-Google-Smtp-Source: AGHT+IGFbM8ZjqqsU+rm9GDna/8IXtWUPRaXMNahHH9CkarNnF51vCXglirbqDNJp085MX6wfShpkw==
+X-Received: by 2002:a17:903:178b:b0:240:8cec:4823 with SMTP id d9443c01a7336-2462eeea432mr31617995ad.41.1755859282081;
+        Fri, 22 Aug 2025 03:41:22 -0700 (PDT)
+Received: from 100ask.localdomain ([116.234.74.152])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24615b25fddsm38310785ad.138.2025.08.22.03.41.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Aug 2025 03:34:45 -0700 (PDT)
-Date: Fri, 22 Aug 2025 13:34:43 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 5/6] drm/msm: mdss: Add QCS8300 support
-Message-ID: <iza3iyj6ztuudm5rqfrxtalwxfghzsguf3pieulylebdblq7sw@divpjvwwvmsg>
-References: <20250821-qcs8300_mdss-v8-0-e9be853938f9@oss.qualcomm.com>
- <20250821-qcs8300_mdss-v8-5-e9be853938f9@oss.qualcomm.com>
+        Fri, 22 Aug 2025 03:41:21 -0700 (PDT)
+From: Nino Zhang <ninozhang001@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: thierry.reding@gmail.com,
+	jonathanh@nvidia.com,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Nino Zhang <ninozhang001@gmail.com>
+Subject: [PATCH] arm64: dts: tegra: fix APB DMA controller node name
+Date: Fri, 22 Aug 2025 18:41:11 +0800
+Message-ID: <20250822104111.416390-1-ninozhang001@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250821-qcs8300_mdss-v8-5-e9be853938f9@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=fpOFpF4f c=1 sm=1 tr=0 ts=68a847c7 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=PV2lBtblPjvqxubg-rEA:9 a=CjuIK1q_8ugA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-GUID: dlSyZqN8LI4Xfpb3-oclFA-6RhGtMQ4Z
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX9CNDNKgVRDud
- yQeEDAFMJKiF8iT2Gsv4BnT+i0AmEnuEr0+MnVTFsJuR7nS80vmyu4OxcwEH2R14wKRzc0YX+ND
- ltUUZmfPD40j4XdqRC8AMNk3haxZqmUhE/DFl/dRcC0LsbfgUvg2C+aj2AroYuuyELdDS0EVKJI
- IDzhy40YPlpE3/hsi1cyCqbyxsfUYBJ4Lol4wwlBvZeJrb3sowojdgbAz4Fx84Y2hlL/huq3IDk
- QSuz4ny75G3Gj/KVG2Gl5oDWCtO7XNqQlw8GD6FJqQ+ufZeX5JmqnJIFhFo7yoHJqDYKvPWCU6j
- FZUKdxf9ywr7itG1uNCJYcnf06p1M5yb6cgZr9Sj/uelqLpDqs+19xGBSqAbx4KyfUu8ZstrQzn
- hbYeglSZEpZuf+3ZEuEkF3jK1FEKDw==
-X-Proofpoint-ORIG-GUID: dlSyZqN8LI4Xfpb3-oclFA-6RhGtMQ4Z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-22_03,2025-08-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 spamscore=0 clxscore=1015 adultscore=0
- suspectscore=0 bulkscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
+Content-Transfer-Encoding: 8bit
 
-On Thu, Aug 21, 2025 at 11:36:00AM +0800, Yongxing Mou wrote:
-> Add Mobile Display Subsystem (MDSS) support for the QCS8300 platform.
-> 
-> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> ---
->  drivers/gpu/drm/msm/msm_mdss.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
+The APB DMA controller node is currently named "dma@60020000",
+but according to the binding
+Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.yaml
+the node name should be "dma-controller".
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Update the node name to match the binding and fix dtbs_check
+warnings.
 
+Signed-off-by: Nino Zhang <ninozhang001@gmail.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra132.dtsi | 2 +-
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/nvidia/tegra132.dtsi b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
+index 5bcccfef3f7f..f6e63ffe1ff8 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra132.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
+@@ -271,7 +271,7 @@ gpio: gpio@6000d000 {
+ 		interrupt-controller;
+ 	};
+ 
+-	apbdma: dma@60020000 {
++	apbdma: dma-controller@60020000 {
+ 		compatible = "nvidia,tegra124-apbdma", "nvidia,tegra148-apbdma";
+ 		reg = <0x0 0x60020000 0x0 0x1400>;
+ 		interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+index 402b0ede1472..a5018c486326 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+@@ -502,7 +502,7 @@ gpio: gpio@6000d000 {
+ 		interrupt-controller;
+ 	};
+ 
+-	apbdma: dma@60020000 {
++	apbdma: dma-controller@60020000 {
+ 		compatible = "nvidia,tegra210-apbdma", "nvidia,tegra148-apbdma";
+ 		reg = <0x0 0x60020000 0x0 0x1400>;
+ 		interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
 -- 
-With best wishes
-Dmitry
+2.43.0
+
 
