@@ -1,138 +1,99 @@
-Return-Path: <devicetree+bounces-207880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 577D2B310F2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:59:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B8DDB3110A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:02:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 383C917FCB2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 07:59:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0402E168168
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE91F2EA499;
-	Fri, 22 Aug 2025 07:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595BF2DEA6F;
+	Fri, 22 Aug 2025 08:00:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EHsW+l5l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw22-7.mail.saunalahti.fi (fgw22-7.mail.saunalahti.fi [62.142.5.83])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFEF72EA470
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 07:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.83
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314F2269D18;
+	Fri, 22 Aug 2025 08:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755849561; cv=none; b=LF72abudfPLj6/wJ2sWhQUqFwzCfbh4ZsVoSHGrOu4LRl/yOnfs+op1PB4Jh4hz0LODmPR6zU2sOsc+M5MbmFhrZ1qo1JLng1CvO/n4OVLj8GJp7a3p35jzdYZZNJUp2kxuIK18NygnO4JYbEveKBMeKBNhsbokTQJJLLrvsPuk=
+	t=1755849625; cv=none; b=X1T+I5N0/qNAO0fsVYsxcyUey18cTNvTRf1Q+UbZSKMtklD+pFvXEOArpILbk0zqkmLzfg7bg75zFQczawouByptV+cFZKu69xsW5+ldjAW5ucIS5Dguf8SET5LOPYQVMItsDrddl/D+nyOR5/Q9bsgELag3JlZKA3568MJGrUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755849561; c=relaxed/simple;
-	bh=isb+WOffCe80ewUMhsej7eWncD11fX8dEgS7COQD2Xg=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CGAkWw7mwUCKxiYuP9mBYVEJjSFf2naH5OPxTb1frD6oMerDPQGdq8Kw00Lqdit0T+8+3En0bIEUHYYEDr/QYhzvTIS2MJxMwuAlt9q7lYdUZOtcHnDPFXD10TBQF103t3bw4FG8LliRvoSsDOUos0k0lf5C83zAlBcC+xPaMnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-26-232.elisa-laajakaista.fi [88.113.26.232])
-	by fgw22.mail.saunalahti.fi (Halon) with ESMTP
-	id e625f4d6-7f2d-11f0-a74a-005056bdf889;
-	Fri, 22 Aug 2025 10:59:16 +0300 (EEST)
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 22 Aug 2025 10:59:15 +0300
-To: Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Andreas Klinger <ak@it-klinger.de>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lars@metafoo.de,
-	javier.carrasco.cruz@gmail.com, arthur.becker@sentec.com,
-	perdaniel.olsson@axis.com, mgonellabolduc@dimonoff.com,
-	muditsharma.info@gmail.com, clamor95@gmail.com,
-	emil.gedenryd@axis.com, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/3] iio: light: add support for veml6046x00 RGBIR
- color sensor
-Message-ID: <aKgjU6Pqhaj8oTqO@pixelbook>
-References: <20250715085810.7679-1-ak@it-klinger.de>
- <20250715085810.7679-3-ak@it-klinger.de>
- <aHdWAUMMH43tIqV4@smile.fi.intel.com>
- <aIMy_BHJYNA20k-x@mail.your-server.de>
- <aKbqLpJMCxJd3QXW@smile.fi.intel.com>
- <aKdrO7DE8ky2DBu2@mail.your-server.de>
- <4d4120fa-3a20-4cc4-a078-ee94e03229f9@gmail.com>
- <aKgbDAk9G5Vbsxeq@pixelbook>
+	s=arc-20240116; t=1755849625; c=relaxed/simple;
+	bh=3LSBrlgPclPcn4MCgtRigx2+6I/Y0aDUi3B5dRZXgJU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XddnWDfe2sRYj8Pbx4op2KrxSbM9SA33KjmboM8ttRB/sgIHmsOKvixMPWw7+F5yiOk1nRIKL6itSw2TEYMqFNey8GCt5Ujl8HlRBaa3bDBAUU6zKKIjOqe9AffVW+DE9f58cSlhxXupAutO3Le1No64yiOI+W/A81SE+AJAdug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EHsW+l5l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED615C4CEF1;
+	Fri, 22 Aug 2025 08:00:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755849624;
+	bh=3LSBrlgPclPcn4MCgtRigx2+6I/Y0aDUi3B5dRZXgJU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EHsW+l5lBzW6kIrQPVMAzO+pLHcaO9NHZlYPxnKMkHMJ4t0v1jWgeqNJeriGCTOXy
+	 4mj7Yj0W1lhPZncT1Q1rcwbsRxk1frpx6p7fK521064HLZoSTKOaSv50jbwGhAff/R
+	 IGcREZsoQUt7Fy2BogPc0NRiig+ip1MyOv3g5ntKq2/8rWKboO7f4bhSaFhujEu5CZ
+	 PSfI/bxD8EFetgLxg7/grV6GwCEP0bCMmDdQfUc/FVg9Ha6gKVnLj846fyyFWodWhN
+	 B02F0I1VKT99cWB6hfO4VHiOUqLVdHXNy+xBcWZ0KRY78b6KttQ2Z+JJfMSCAYO9Kh
+	 018gCc3WKLGrw==
+Date: Fri, 22 Aug 2025 10:00:21 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Cc: Yannick Fertre <yannick.fertre@foss.st.com>, 
+	Philippe Cornu <philippe.cornu@foss.st.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 01/13] dt-bindings: display: st: add two new
+ compatibles to LTDC device
+Message-ID: <20250822-gifted-messy-fulmar-1eab63@kuoka>
+References: <20250821-drm-misc-next-v4-0-7060500f8fd3@foss.st.com>
+ <20250821-drm-misc-next-v4-1-7060500f8fd3@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aKgbDAk9G5Vbsxeq@pixelbook>
+In-Reply-To: <20250821-drm-misc-next-v4-1-7060500f8fd3@foss.st.com>
 
-Fri, Aug 22, 2025 at 10:23:56AM +0300, Andy Shevchenko kirjoitti:
-> Fri, Aug 22, 2025 at 08:39:35AM +0300, Matti Vaittinen kirjoitti:
-> > On 21/08/2025 21:53, Andreas Klinger wrote:
-> > > Andy Shevchenko <andriy.shevchenko@linux.intel.com> schrieb am Do, 21. Aug 12:43:
+On Thu, Aug 21, 2025 at 01:08:51PM +0200, Raphael Gallais-Pou wrote:
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 1
+> +        clock-names:
+> +          maxItems: 1
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32mp251-ltdc
+> +    then:
+> +      properties:
+> +        clocks:
 
-+Cc: Rasmus (I am wondering what your opinion is on %#x for plain 0)
+minItems: 2
 
-...
+> +          maxItems: 2
+> +        clock-names:
 
-> > > > > > > +	part_id = le16_to_cpu(reg);
-> > > > > > > +	if (part_id != 0x0001)
-> > > > > > > +		dev_info(dev, "Unknown ID %#04x\n", part_id);
-> > > > > > 
-> > > > > > For 0 it will print 0 and not 0x0000. Is it okay?
-> > > > > 
-> > > > > I just tried and it prints 0x00 if the part_id is 0.
-> > > > 
-> > > > This is interesting... So it's not 0, nor 0x0000?
-> > > 
-> > > No. It prints 0x00 on my BeagleBoneBlack with kernel 6.16.0-rc5.
-> > 
-> > I think this makes sense because of the '#' -flag. The "0x" is appended
-> > because of it, and this consumes 2 characters from the 4 character field,
-> > leaving only 2 chars left for the value.
-> > 
-> > What I find interesting is that gcc on my PC does:
-> > 
-> >         printf("%#04x\n", 0);
-> >         printf("%#04x\n", 1);
-> >         printf("%#04x\n", 10);
-> >         printf("%#04x\n", 17);
-> > 
-> > 0000
-> > 0x01
-> > 0x0a
-> > 0x11
-> > 
-> > gcc version 15.2.1 20250808 (Red Hat 15.2.1-1) (GCC)
-> > 
-> > It'd be nice to learn why the zero is treated differently? Andy, did you
-> > have some insight as you asked this?
-> 
-> Nice, we have so many variants now on how to treat 0 with %#x cases...
-> My understanding was that it should print plain 0 without even 0x prefix, but
-> since we specify 04 it prints 4 of them, so this behaviour seems consistent to
-> me, the 0x00 case seems buggy.
-> 
-> Now to the standards...
-> 
-> https://pubs.opengroup.org/onlinepubs/9699919799/functions/fprintf.html
-> 
-> Read this:
-> "For x or X conversion specifiers, a **non-zero** result shall have 0x (or 0X) prefixed to it."
-> 
-> ** -- is my marking to make a point.
-> 
-> So, 0x00 is a bug in Andreas case and has to be fixed somewhere.
+minItems: 2
 
-Note, even if we want to deviate the kernel implementation, the 0x00 is still
-buggy since 04 defines *minimum* digits of the *value* to be printed. 0x00
-prints only 2 out of 4.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
 
