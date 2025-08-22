@@ -1,516 +1,188 @@
-Return-Path: <devicetree+bounces-208347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78DDAB3214B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:13:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC5CB3217A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:26:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D505B205DD
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:11:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 815DA1C27329
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:26:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D19322758;
-	Fri, 22 Aug 2025 17:10:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECC5278E7B;
+	Fri, 22 Aug 2025 17:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b="NzPazdCi"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YX9L9seI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E9E31E112
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 17:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01AFB1096F;
+	Fri, 22 Aug 2025 17:26:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755882659; cv=none; b=VY/5MDHqQtMTb19hmRwV8E58L+UEgSVCA+Kj0bGVCUfAB4XAVpfu9bMskNH1JMOTK+hC7ngca/P1HFN9DhC5P6zfzcp9bN5pSMo9Ugrv4yEhx87JzZuTl+VLXB7YGEFkM2bLpIyVqw/pnFoWiMluH5UVr+yyM3Wz92JcVw5uaPE=
+	t=1755883576; cv=none; b=avan3kEGiiUYZA4GEQWsFRgpFPTBzxXkOv0GP/MPVoAjEiIl3TOoxlEZfjnv1IAyn/TbDp8gCsDhOnh+Y24I9FCCIzIN57WCiihsCo7m/fXw9fR9fy6/O+hEGMTqPSIrP2GEHFjMqihxYWK9Jy9F1vvdxtrzsRyhjtRDcHn6+fQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755882659; c=relaxed/simple;
-	bh=HHmPum0PvEApNjgYAUOlDA8D8AEOdfimGezg2ryCHSc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kKA+FF01U5nxt/2YQApWlokQBJhqxDWuBR500eFqDd7+BZGx72eQpaE+zReoUimk05Z8ess/DpEd0cUs4A6P4MAXYt5SlWV2tfMAlKWsAbLZIV6UI7FrlX0XkMhW8FISucR0pIoddXTstjGmsvbkXnXH4K5Pftq0BnXGeDsJ2Lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk; spf=pass smtp.mailfrom=pinefeat.co.uk; dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b=NzPazdCi; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pinefeat.co.uk
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45a1b00e4a1so19217905e9.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 10:10:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pinefeat.co.uk; s=google; t=1755882655; x=1756487455; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b4hLmrqBB55CYWs4MdA1e/l8rKfd2dtL/Ee5u7ARa7s=;
-        b=NzPazdCimdo/PXu21HDwNYv1XgPBtfqD8/0t2PyxLhtp+XCwg3qFAHq8UQf0neMNUc
-         /4nVClhxSdQR3rK+7YKPW1s0IXpxeNakXv7KIKfaaOCj4DQKB6P0979ztkbVb08yWUji
-         2aAZ1V/SOMpYaGI6u9P7jcHq1hJ2jxrjH6uR405kR8RvsK7Sv3jnSKBEcfUFD8k+pcOI
-         91rwIa0AFdxF3yrUDHImh5CEYzyzvk+KrJTODHcI/DL/kwYfWRF8rCuTmYv1F/LJNUfI
-         iCaF2uBX7x48xzSPJCsIk8dCX1uvHG6zHoatNWYXKQCTyShRKB+PTUasF2M2J5AWJDzM
-         nBYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755882655; x=1756487455;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b4hLmrqBB55CYWs4MdA1e/l8rKfd2dtL/Ee5u7ARa7s=;
-        b=HdZjsooZvTIlQAxjM4S4TC8XCqWEpvcljSc/65Q5PfYHtrwoqkegIJ1s/cNvQQqNzr
-         Nwkxl9Qn82k/Z0BrMKJ0i4TsUstp2MqmDfpRHnoGkWCHzmz3SgGQlFM7QvMxNIB/KKWx
-         IdmrSUwbdVPqPGqUHeDvWjybzA1XSwpbJj3/k3unJDqp/lDelcCZGLROoyMw1WosVIl+
-         Oa/qAlTGbUjk6IDqB7qwQiokY5mmNQhEvuMPBua/sOa2sQrUp4H8HT+c1u63wAuiyGyq
-         oeE8YYtxdO4CdsUy/AxcC6WbfzV7cNq1x77+qAr3EdX73HhBywhbDYqKQ/0FCK93MyLk
-         mfXA==
-X-Gm-Message-State: AOJu0YwAVVEG/rrqq+W0p8Kr/pi+z7GPZfDczv4KPzc4J3FEBYiyaj1U
-	v4BlSazcj9/Tw2mLsQrnf8QB9O4zWZbupeEhPC7P7id+VFilNErCRcd4UTm2tnrajKo=
-X-Gm-Gg: ASbGnctrYIxXfOKGEzOdEYV/0UdbZkVbKqct17PKU32CiOVRqzzhOsfhTWi4VSLtGjz
-	ypgxsm0LMfMWwwvazPxtcVMHtHWJsCH6R9cKucsmui0sasdh9KJcFXnY7XQVyl1HnLRUVOrI0VR
-	cWsPiDCiWKGciZcz1OXq5pCEJh65Rhuer9shdF1wIfGIKTnZwI9CU7k+XzImYVp28rLtGD8/1tC
-	NVDRxiUlj9fmpPvKW/8BS4kfW1U3x+ej4kQ/DTFMF9rEZ3IaOPCbHn4MUzx0WYCN949CwVFteYK
-	xCTxD5+VLMy4/EyarvjTtVzCZLSkGSG/gqRvK65klEWShgm7nBHXXlQLyRLwzu7Qako6FvMVMTl
-	1Fe86zrPKN01rfoZxBFA86PfAICFoEKsraDNCTZtn
-X-Google-Smtp-Source: AGHT+IHLjdTaWeGq77BO6a00h2dMlJRZMVT2zHXYDxoWLtDw4WlNcVwHZIhnDM2wjhd2gILSQrMR6w==
-X-Received: by 2002:a05:600c:3212:b0:459:df48:3b19 with SMTP id 5b1f17b1804b1-45b517c5df0mr24515925e9.18.1755882654828;
-        Fri, 22 Aug 2025 10:10:54 -0700 (PDT)
-Received: from asmirnov-G751JM.Home ([2a02:c7c:b28c:1f00:c77a:e59e:20e0:4966])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c70f237fefsm233780f8f.30.2025.08.22.10.10.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Aug 2025 10:10:54 -0700 (PDT)
-From: Aliaksandr Smirnou <support@pinefeat.co.uk>
-To: jacopo.mondi@ideasonboard.com,
-	hverkuil@xs4all.nl,
-	mchehab@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Aliaksandr Smirnou <support@pinefeat.co.uk>,
-	Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
-Subject: [PATCH v4 2/2] media: i2c: Pinefeat cef168 lens control board driver
-Date: Fri, 22 Aug 2025 18:10:41 +0100
-Message-Id: <20250822171041.7340-3-support@pinefeat.co.uk>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250822171041.7340-1-support@pinefeat.co.uk>
-References: <20250822171041.7340-1-support@pinefeat.co.uk>
+	s=arc-20240116; t=1755883576; c=relaxed/simple;
+	bh=EnYBmOMUMgHOtWNIvXTWSSwe2cfet+zGjc8f4XAiOtw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EJpcfyAAFCCnueT0cGK2UJr/SbAVuAn6Vn2lXvjhqflsFD6YFFUlXWSObS3ah/tc0IFDhuFRXg2stxzTRNs4b5VlQ9UVe925aZfOOckGLingbQGx69KcX+Z7QjOp/zltB8eWHSL5oQ1D6p7tVKbTKI4NUvmLAUOHBGt5xlAixwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YX9L9seI; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57MHQ6fb295383;
+	Fri, 22 Aug 2025 12:26:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755883566;
+	bh=96MWakcLYUDT4lNqC75SMCSgjUsPFgGv1W6nK3rjsuU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=YX9L9seIhewXnb2QsC4bjdEtDoAMoXFkyWAnpsBFkN1PyVaWONu/7f8AeBq+eDf5Q
+	 J6erPhEHgUV75IAmHNNLKgpq49I0zcvk9Qe/FJld1e6qI8Rd3HPc9+0ipN+hexI445
+	 x3huy9SjjDXX3WwkwciYLeiSBsHHPAT9AfVjHtxM=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57MHQ6hu3435230
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 22 Aug 2025 12:26:06 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 22
+ Aug 2025 12:26:06 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 22 Aug 2025 12:26:05 -0500
+Received: from [10.249.139.51] ([10.249.139.51])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57MHQ1RA4168190;
+	Fri, 22 Aug 2025 12:26:01 -0500
+Message-ID: <a076e204-aa71-430e-a762-b8111d23d2e6@ti.com>
+Date: Fri, 22 Aug 2025 22:56:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 33/33] arm64: dts: ti: k3-j7*-ti-ipc-firmware: Switch MCU
+ R5F cluster to Split-mode
+To: Andrew Davis <afd@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250814223839.3256046-1-b-padhi@ti.com>
+ <20250814223839.3256046-34-b-padhi@ti.com>
+ <9a3f4271-ada2-48aa-b99d-023619ec5e12@ti.com>
+Content-Language: en-US
+From: Beleswar Prasad Padhi <b-padhi@ti.com>
+In-Reply-To: <9a3f4271-ada2-48aa-b99d-023619ec5e12@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add support for the Pinefeat cef168 lens control board that provides
-electronic focus and aperture control for Canon EF & EF-S lenses on
-non-Canon camera bodies.
+Hi Andrew, Nishanth,
 
-Signed-off-by: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
----
- MAINTAINERS                        |   1 +
- drivers/media/i2c/Kconfig          |   9 +
- drivers/media/i2c/Makefile         |   1 +
- drivers/media/i2c/cef168.c         | 331 +++++++++++++++++++++++++++++
- include/uapi/linux/v4l2-controls.h |   6 +
- 5 files changed, 348 insertions(+)
- create mode 100644 drivers/media/i2c/cef168.c
+On 8/15/2025 9:18 PM, Andrew Davis wrote:
+> On 8/14/25 5:38 PM, Beleswar Padhi wrote:
+>> Several TI K3 SoCs like J7200, J721E, J721S2, J784S4 and J742S2 have a
+>> R5F cluster in the MCU domain which is configured for LockStep mode at
+>> the moment. The necessary support to use MCU R5F cluster in split mode
+>> was added in the bootloader. And the TI IPC firmware for the split
+>> processors is already available public.
+>>
+>> Therefore, Switch this R5F cluster to Split mode by default in all the
+>> boards using TI IPC Firmware config (k3-j7*-ti-ipc-firmware). This
+>> gives out an extra general purpose R5F core free to run any applications
+>> as required. Lockstep mode remains default in the SoC level dtsi, so
+>> downstream board dts which do not use TI IPC Firmware config should not
+>> be impacted by this switch.
+>>
+>> Users who prefer to use the fault-tolerant lockstep mode with TI IPC
+>> firmware config, can do that by setting `ti,cluster-mode` property to 1.
+>
+> What a user prefers and other configuration like that does not belong
+> in devicetree, which should only describe the hardware.
+>
+> Configuration should be done using the normal methods, like kernel
+> cmdline, module params, ioctls, etc.. Maybe we can even set the mode
+> based on some signal in the firmware itself, like in the resource table.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 811c6a150029..a531fb05faa4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19990,6 +19990,7 @@ M:	Aliaksandr Smirnou <support@pinefeat.co.uk>
- L:	linux-media@vger.kernel.org
- S:	Supported
- F:	Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
-+F:	drivers/media/i2c/cef168.c
- 
- PLANTOWER PMS7003 AIR POLLUTION SENSOR DRIVER
- M:	Tomasz Duszynski <tduszyns@gmail.com>
-diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-index 6237fe804a5c..df2b33f03ab7 100644
---- a/drivers/media/i2c/Kconfig
-+++ b/drivers/media/i2c/Kconfig
-@@ -791,6 +791,15 @@ config VIDEO_AK7375
- 	  capability. This is designed for linear control of
- 	  voice coil motors, controlled via I2C serial interface.
- 
-+config VIDEO_CEF168
-+	tristate "CEF168 lens control support"
-+	select CRC8
-+	help
-+	  This is a driver for the CEF168 lens control board.
-+	  The board provides an I2C interface for electronic focus
-+	  and aperture control of EF and EF-S lenses. The driver
-+	  integrates with the V4L2 sub-device API.
-+
- config VIDEO_DW9714
- 	tristate "DW9714 lens voice coil support"
- 	depends on GPIOLIB
-diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-index 5873d29433ee..75a95f850f18 100644
---- a/drivers/media/i2c/Makefile
-+++ b/drivers/media/i2c/Makefile
-@@ -25,6 +25,7 @@ obj-$(CONFIG_VIDEO_BT856) += bt856.o
- obj-$(CONFIG_VIDEO_BT866) += bt866.o
- obj-$(CONFIG_VIDEO_CCS) += ccs/
- obj-$(CONFIG_VIDEO_CCS_PLL) += ccs-pll.o
-+obj-$(CONFIG_VIDEO_CEF168) += cef168.o
- obj-$(CONFIG_VIDEO_CS3308) += cs3308.o
- obj-$(CONFIG_VIDEO_CS5345) += cs5345.o
- obj-$(CONFIG_VIDEO_CS53L32A) += cs53l32a.o
-diff --git a/drivers/media/i2c/cef168.c b/drivers/media/i2c/cef168.c
-new file mode 100644
-index 000000000000..cfcef476f09d
---- /dev/null
-+++ b/drivers/media/i2c/cef168.c
-@@ -0,0 +1,331 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2025 Pinefeat LLP
-+
-+#include <linux/crc8.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/v4l2-controls.h>
-+#include <media/v4l2-ctrls.h>
-+#include <media/v4l2-device.h>
-+#include <media/v4l2-event.h>
-+
-+#define CEF168_NAME "cef168"
-+
-+#define CEF168_V4L2_CID_CUSTOM(ctrl) \
-+	(V4L2_CID_USER_CEF168_BASE + custom_##ctrl)
-+
-+enum { custom_lens_id, custom_data, custom_focus_range, custom_calibrate };
-+
-+#define INP_CALIBRATE 0x22
-+#define INP_SET_FOCUS 0x80
-+#define INP_SET_FOCUS_P 0x81
-+#define INP_SET_FOCUS_N 0x82
-+#define INP_SET_APERTURE 0x7A
-+#define INP_SET_APERTURE_P 0x7B
-+#define INP_SET_APERTURE_N 0x7C
-+
-+#define CEF_CRC8_POLYNOMIAL 168
-+
-+DECLARE_CRC8_TABLE(cef168_crc8_table);
-+
-+struct cef168_data {
-+	__u8 lens_id;
-+	__u8 moving : 1;
-+	__u8 calibrating : 2;
-+	__u16 moving_time;
-+	__u16 focus_position_min;
-+	__u16 focus_position_max;
-+	__u16 focus_position_cur;
-+	__u16 focus_distance_min;
-+	__u16 focus_distance_max;
-+	__u8 crc8;
-+} __packed;
-+
-+struct cef168_device {
-+	struct v4l2_ctrl_handler ctrls;
-+	struct v4l2_subdev sd;
-+};
-+
-+static inline struct cef168_device *to_cef168(struct v4l2_ctrl *ctrl)
-+{
-+	return container_of(ctrl->handler, struct cef168_device, ctrls);
-+}
-+
-+static inline struct cef168_device *sd_to_cef168(struct v4l2_subdev *subdev)
-+{
-+	return container_of(subdev, struct cef168_device, sd);
-+}
-+
-+static int cef168_i2c_write(struct cef168_device *cef168_dev, u8 cmd, u16 val)
-+{
-+	struct i2c_client *client = v4l2_get_subdevdata(&cef168_dev->sd);
-+	int retry, ret;
-+
-+	__le16 le_data = cpu_to_le16(val);
-+	char tx_data[4] = { cmd, ((u8 *)&le_data)[0], ((u8 *)&le_data)[1] };
-+
-+	tx_data[3] = crc8(cef168_crc8_table, tx_data, 3, CRC8_INIT_VALUE);
-+
-+	for (retry = 0; retry < 3; retry++) {
-+		ret = i2c_master_send(client, tx_data, sizeof(tx_data));
-+		if (ret == sizeof(tx_data))
-+			return 0;
-+		else if (ret != -EIO && ret != -EREMOTEIO)
-+			break;
-+	}
-+
-+	dev_err(&client->dev, "I2C write fail after %d retries, ret=%d\n",
-+		retry, ret);
-+	return -EIO;
-+}
-+
-+static int cef168_i2c_read(struct cef168_device *cef168_dev,
-+			   struct cef168_data *rx_data)
-+{
-+	struct i2c_client *client = v4l2_get_subdevdata(&cef168_dev->sd);
-+
-+	int ret = i2c_master_recv(client, (char *)rx_data,
-+				  sizeof(struct cef168_data));
-+	if (ret != sizeof(struct cef168_data)) {
-+		dev_err(&client->dev, "I2C read fail, ret=%d\n", ret);
-+		return -EIO;
-+	}
-+
-+	u8 computed_crc = crc8(cef168_crc8_table, (const u8 *)rx_data,
-+			       sizeof(struct cef168_data) - 1, CRC8_INIT_VALUE);
-+	if (computed_crc != rx_data->crc8) {
-+		dev_err(&client->dev,
-+			"CRC mismatch calculated=0x%02X read=0x%02X\n",
-+			computed_crc, rx_data->crc8);
-+		return -EIO;
-+	}
-+
-+	rx_data->moving_time = le16_to_cpup((__le16 *)&rx_data->moving_time);
-+	rx_data->focus_position_min = le16_to_cpup((__le16 *)&rx_data->focus_position_min);
-+	rx_data->focus_position_max = le16_to_cpup((__le16 *)&rx_data->focus_position_max);
-+	rx_data->focus_position_cur = le16_to_cpup((__le16 *)&rx_data->focus_position_cur);
-+	rx_data->focus_distance_min = le16_to_cpup((__le16 *)&rx_data->focus_distance_min);
-+	rx_data->focus_distance_max = le16_to_cpup((__le16 *)&rx_data->focus_distance_max);
-+
-+	return 0;
-+}
-+
-+static int cef168_set_ctrl(struct v4l2_ctrl *ctrl)
-+{
-+	struct cef168_device *dev = to_cef168(ctrl);
-+	u8 cmd;
-+
-+	switch (ctrl->id) {
-+	case V4L2_CID_FOCUS_ABSOLUTE:
-+		return cef168_i2c_write(dev, INP_SET_FOCUS, ctrl->val);
-+	case V4L2_CID_FOCUS_RELATIVE:
-+		cmd = ctrl->val < 0 ? INP_SET_FOCUS_N : INP_SET_FOCUS_P;
-+		return cef168_i2c_write(dev, cmd, abs(ctrl->val));
-+	case V4L2_CID_IRIS_ABSOLUTE:
-+		return cef168_i2c_write(dev, INP_SET_APERTURE, ctrl->val);
-+	case V4L2_CID_IRIS_RELATIVE:
-+		cmd = ctrl->val < 0 ? INP_SET_APERTURE_N : INP_SET_APERTURE_P;
-+		return cef168_i2c_write(dev, cmd, abs(ctrl->val));
-+	case CEF168_V4L2_CID_CUSTOM(calibrate):
-+		return cef168_i2c_write(dev, INP_CALIBRATE, 0);
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int cef168_get_ctrl(struct v4l2_ctrl *ctrl)
-+{
-+	struct cef168_data data;
-+	struct cef168_device *dev = to_cef168(ctrl);
-+	int rval;
-+
-+	rval = cef168_i2c_read(dev, &data);
-+	if (rval < 0)
-+		return rval;
-+
-+	switch (ctrl->id) {
-+	case V4L2_CID_FOCUS_ABSOLUTE:
-+		ctrl->val = data.focus_position_cur;
-+		return 0;
-+	case CEF168_V4L2_CID_CUSTOM(focus_range):
-+		ctrl->p_new.p_u32[0] = ((u32)data.focus_position_min << 16) |
-+				       (u32)data.focus_position_max;
-+		return 0;
-+	case CEF168_V4L2_CID_CUSTOM(lens_id):
-+		ctrl->p_new.p_u8[0] = data.lens_id;
-+		return 0;
-+	case CEF168_V4L2_CID_CUSTOM(data):
-+		memcpy(ctrl->p_new.p_u8, &data, sizeof(data));
-+		return 0;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static const struct v4l2_ctrl_ops cef168_ctrl_ops = {
-+	.g_volatile_ctrl = cef168_get_ctrl,
-+	.s_ctrl = cef168_set_ctrl,
-+};
-+
-+static const struct v4l2_ctrl_config cef168_lens_id_ctrl = {
-+	.ops = &cef168_ctrl_ops,
-+	.id = CEF168_V4L2_CID_CUSTOM(lens_id),
-+	.type = V4L2_CTRL_TYPE_U8,
-+	.name = "Lens ID",
-+	.min = 0,
-+	.max = U8_MAX,
-+	.step = 1,
-+	.def = 0,
-+	.flags = V4L2_CTRL_FLAG_VOLATILE | V4L2_CTRL_FLAG_READ_ONLY,
-+};
-+
-+static const struct v4l2_ctrl_config cef168_focus_range_ctrl = {
-+	.ops = &cef168_ctrl_ops,
-+	.id = CEF168_V4L2_CID_CUSTOM(focus_range),
-+	.type = V4L2_CTRL_TYPE_U32,
-+	.name = "Focus Range",
-+	.min = 0,
-+	.max = U32_MAX,
-+	.step = 1,
-+	.def = 0,
-+	.flags = V4L2_CTRL_FLAG_VOLATILE | V4L2_CTRL_FLAG_READ_ONLY,
-+};
-+
-+static const struct v4l2_ctrl_config cef168_data_ctrl = {
-+	.ops = &cef168_ctrl_ops,
-+	.id = CEF168_V4L2_CID_CUSTOM(data),
-+	.type = V4L2_CTRL_TYPE_U8,
-+	.name = "Data",
-+	.min = 0,
-+	.max = U8_MAX,
-+	.step = 1,
-+	.def = 0,
-+	.dims = { sizeof(struct cef168_data) / sizeof(u8) },
-+	.elem_size = sizeof(u8),
-+	.flags = V4L2_CTRL_FLAG_VOLATILE | V4L2_CTRL_FLAG_READ_ONLY,
-+};
-+
-+static const struct v4l2_ctrl_config cef168_calibrate_ctrl = {
-+	.ops = &cef168_ctrl_ops,
-+	.id = CEF168_V4L2_CID_CUSTOM(calibrate),
-+	.type = V4L2_CTRL_TYPE_BUTTON,
-+	.name = "Calibrate",
-+};
-+
-+static const struct v4l2_subdev_core_ops cef168_core_ops = {
-+	.log_status = v4l2_ctrl_subdev_log_status,
-+	.subscribe_event = v4l2_ctrl_subdev_subscribe_event,
-+	.unsubscribe_event = v4l2_event_subdev_unsubscribe,
-+};
-+
-+static const struct v4l2_subdev_ops cef168_ops = {
-+	.core = &cef168_core_ops,
-+};
-+
-+static int cef168_init_controls(struct cef168_device *dev)
-+{
-+	struct v4l2_ctrl *ctrl;
-+	struct v4l2_ctrl_handler *hdl = &dev->ctrls;
-+	const struct v4l2_ctrl_ops *ops = &cef168_ctrl_ops;
-+
-+	v4l2_ctrl_handler_init(hdl, 8);
-+
-+	ctrl = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_FOCUS_ABSOLUTE, 0, S16_MAX,
-+				 1, 0);
-+	if (ctrl)
-+		ctrl->flags |= V4L2_CTRL_FLAG_VOLATILE |
-+			       V4L2_CTRL_FLAG_EXECUTE_ON_WRITE;
-+	v4l2_ctrl_new_std(hdl, ops, V4L2_CID_FOCUS_RELATIVE, S16_MIN, S16_MAX,
-+			  1, 0);
-+	ctrl = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_IRIS_ABSOLUTE, 0, S16_MAX,
-+				 1, 0);
-+	if (ctrl)
-+		ctrl->flags |= V4L2_CTRL_FLAG_WRITE_ONLY |
-+			       V4L2_CTRL_FLAG_EXECUTE_ON_WRITE;
-+	v4l2_ctrl_new_std(hdl, ops, V4L2_CID_IRIS_RELATIVE, S16_MIN, S16_MAX, 1,
-+			  0);
-+	ctrl = v4l2_ctrl_new_custom(hdl, &cef168_calibrate_ctrl, NULL);
-+	if (ctrl)
-+		ctrl->flags |= V4L2_CTRL_FLAG_WRITE_ONLY |
-+			       V4L2_CTRL_FLAG_EXECUTE_ON_WRITE;
-+	v4l2_ctrl_new_custom(hdl, &cef168_focus_range_ctrl, NULL);
-+	v4l2_ctrl_new_custom(hdl, &cef168_data_ctrl, NULL);
-+	v4l2_ctrl_new_custom(hdl, &cef168_lens_id_ctrl, NULL);
-+
-+	if (hdl->error)
-+		dev_err(dev->sd.dev, "%s fail error: 0x%x\n", __func__,
-+			hdl->error);
-+	dev->sd.ctrl_handler = hdl;
-+	return hdl->error;
-+}
-+
-+static int cef168_probe(struct i2c_client *client)
-+{
-+	struct cef168_device *cef168_dev;
-+	int rval;
-+
-+	cef168_dev = devm_kzalloc(&client->dev, sizeof(*cef168_dev),
-+				  GFP_KERNEL);
-+	if (!cef168_dev)
-+		return -ENOMEM;
-+
-+	v4l2_i2c_subdev_init(&cef168_dev->sd, client, &cef168_ops);
-+	cef168_dev->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
-+				V4L2_SUBDEV_FL_HAS_EVENTS;
-+
-+	rval = cef168_init_controls(cef168_dev);
-+	if (rval)
-+		goto err_cleanup;
-+
-+	rval = media_entity_pads_init(&cef168_dev->sd.entity, 0, NULL);
-+	if (rval < 0)
-+		goto err_cleanup;
-+
-+	cef168_dev->sd.entity.function = MEDIA_ENT_F_LENS;
-+
-+	rval = v4l2_async_register_subdev(&cef168_dev->sd);
-+	if (rval < 0)
-+		goto err_cleanup;
-+
-+	crc8_populate_msb(cef168_crc8_table, CEF_CRC8_POLYNOMIAL);
-+
-+	return 0;
-+
-+err_cleanup:
-+	v4l2_ctrl_handler_free(&cef168_dev->ctrls);
-+	media_entity_cleanup(&cef168_dev->sd.entity);
-+
-+	return rval;
-+}
-+
-+static void cef168_remove(struct i2c_client *client)
-+{
-+	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-+	struct cef168_device *cef168_dev = sd_to_cef168(sd);
-+
-+	v4l2_async_unregister_subdev(&cef168_dev->sd);
-+	v4l2_ctrl_handler_free(&cef168_dev->ctrls);
-+	media_entity_cleanup(&cef168_dev->sd.entity);
-+}
-+
-+static const struct of_device_id cef168_of_table[] = {
-+	{ .compatible = "pinefeat,cef168" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, cef168_of_table);
-+
-+static struct i2c_driver cef168_i2c_driver = {
-+	.driver = {
-+		.name = CEF168_NAME,
-+		.of_match_table = cef168_of_table,
-+	},
-+	.probe = cef168_probe,
-+	.remove = cef168_remove,
-+};
-+
-+module_i2c_driver(cef168_i2c_driver);
-+
-+MODULE_AUTHOR("support@pinefeat.co.uk>");
-+MODULE_DESCRIPTION("CEF168 lens driver");
-+MODULE_LICENSE("GPL");
-diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-index f836512e9deb..7d6d026ef2ea 100644
---- a/include/uapi/linux/v4l2-controls.h
-+++ b/include/uapi/linux/v4l2-controls.h
-@@ -228,6 +228,12 @@ enum v4l2_colorfx {
-  */
- #define V4L2_CID_USER_RKISP1_BASE		(V4L2_CID_USER_BASE + 0x1220)
- 
-+/*
-+ * The base for Pinefeat CEF168 driver controls.
-+ * We reserve 16 controls for this driver.
-+ */
-+#define V4L2_CID_USER_CEF168_BASE		(V4L2_CID_USER_BASE + 0x1230)
-+
- /* MPEG-class control IDs */
- /* The MPEG controls are applicable to all codec controls
-  * and the 'MPEG' part of the define is historical */
--- 
-2.34.1
 
+Agreed with your point.. But that is going to take a long time to implement
++ upstream. I interpreted from [0] that it was okay to enable this split 
+mode
+once we had refactored the firmware related nodes in an overlay? (Since
+people can swap out the dtsi if they don't need the firmware config)
+
+Nishanth/Andrew,
+Please advise if this patch is okay or should be dropped in the revision...
+
+[0]: https://lore.kernel.org/all/20250523114822.jrv73frz2wbzdd6d@falsify/
+
+Thanks,
+Beleswar
+
+>
+> Andrew
+>
+>>
+>> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+>> ---
+>> arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi | 1 +
+>> arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi | 1 +
+>> arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi | 1 +
+>> .../boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi | 1 +
+>>   4 files changed, 4 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
+>> index 8eff7bd2e771..ddf3cd899d0e 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
+>> @@ -94,6 +94,7 @@ &main_timer2 {
+>>     &mcu_r5fss0 {
+>>       status = "okay";
+>> +    ti,cluster-mode = <0>;
+>>   };
+>>     &mcu_r5fss0_core0 {
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi
+>> index 5b3fa95aed76..57890a3b38a2 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi
+>> @@ -211,6 +211,7 @@ &main_timer15 {
+>>   };
+>>     &mcu_r5fss0 {
+>> +    ti,cluster-mode = <0>;
+>>       status = "okay";
+>>   };
+>>   diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
+>> index 40c9f2b64e7e..7ee8a8615246 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
+>> @@ -179,6 +179,7 @@ &main_timer5 {
+>>   };
+>>     &mcu_r5fss0 {
+>> +    ti,cluster-mode = <0>;
+>>       status = "okay";
+>>   };
+>>   diff --git 
+>> a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi
+>> index b5a4496a05bf..e12fa55a4df0 100644
+>> --- 
+>> a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi
+>> +++ 
+>> b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi
+>> @@ -254,6 +254,7 @@ &main_timer9 {
+>>   };
+>>     &mcu_r5fss0 {
+>> +    ti,cluster-mode = <0>;
+>>       status = "okay";
+>>   };
+>
 
