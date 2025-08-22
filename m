@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-208334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A449B32094
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 18:34:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C27BB320A0
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 18:37:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D1847AF5ED
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:32:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 663B87B7783
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58BBA2F83D4;
-	Fri, 22 Aug 2025 16:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E339289E07;
+	Fri, 22 Aug 2025 16:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gSgMwNBy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8hLAZfJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CDA2580CF;
-	Fri, 22 Aug 2025 16:34:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5756D1F463C;
+	Fri, 22 Aug 2025 16:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755880446; cv=none; b=UMTv60gGY9hIDATRBoGZ6jxYTtFKVhhzy21p2YRC/8L+cNCnY/j+FBFavkqoOOke9nPKsAIBhFzQTRPWeSVKXGpuqv293kILVSiwevaFcfqR/5XlHrQUbPHTq5DtEODg1HTmnt2KQjR7vdBun9yNMbLTIs1Aih9x6YLW3xilL7E=
+	t=1755880629; cv=none; b=JXCp3kEO+7hU6hIJ8Pf+akyXeSSPqMVQPRAWytazdTjUSkwOgTLJ4rO45EjD+2qt6oIwcgl4e6V78gpxZ85oIdvMkfgfNLNQB8WHGpoxLnZ85P/Ia0J8NoI+JmBActKvxh/jI87GnjLcvN5llQ7ahJ4YfzSfNZq4ElNqwiRAlbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755880446; c=relaxed/simple;
-	bh=iKMaqY2T2MvMaFi0XbUWD0o8saOVzIOavh0WskJFFJk=;
+	s=arc-20240116; t=1755880629; c=relaxed/simple;
+	bh=Nu4e6UeAXwVcvfZtjpDX4+Fvi5Hf97mH4y1qIQ3VZzA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BDU6PYt9cMo11b1YWtY461Mz+SDDgDAKVutpd0ofHvk9yp9bl8AC9dVhcB+Ki9yohGAgOXmDZupP/7oiTRHp/ciH5w4bTpavpxgrv4+RtPRfl893ucRkydK5/gW1F8PaAFBse+X4Fla6zullujLm5CEldxahV4g9l0mlIQd+pSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gSgMwNBy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D87CEC4CEED;
-	Fri, 22 Aug 2025 16:33:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=POkTcU3/NgeGouEkHlhywmkuvL/2y5LRK+hS0EoJo4VxkbbKZYxBDrSxoD3psn1HuUn9NLU6NWkkb2nY31UB3zM+B7vpqtTWuDpCJMD5M3wOIw2d55S9YaPzdTIkt/nSjSgMarIVZI7fsrFrVQH+W8fv9pxsPRN26rviYZl0Evo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n8hLAZfJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73852C4CEED;
+	Fri, 22 Aug 2025 16:37:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755880445;
-	bh=iKMaqY2T2MvMaFi0XbUWD0o8saOVzIOavh0WskJFFJk=;
+	s=k20201202; t=1755880628;
+	bh=Nu4e6UeAXwVcvfZtjpDX4+Fvi5Hf97mH4y1qIQ3VZzA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gSgMwNByRYG87aU+xs9MlnWyfggyMpBShAVpHsDhv7+s2Rl50S6MV03gYuI5AIodC
-	 gHcJY5vJ8pODlXqfgGFRJt9EsHTYJ9w2zZFxRJzHV80px0qH3IDHBBl2EIDCGFHNVc
-	 NdTJacp29PXHOA/QWlJPY6xryO5kHtiYrIf2AmdKyPGVZOmtYOiIeRzrL/a25q30Mp
-	 zcBN6hWt8nLuR0iQficgQqnP2PL2DpHAas3KYnbbJjCNjhbrFEoluJgwSHM9RLb14W
-	 /tnD6l4HBcfilMhKlkILzTEKi08X16/ucccvai6fqwMVP7CYKttBi9Kng1v051vWcI
-	 yXe6kg4RWOPiA==
-Date: Fri, 22 Aug 2025 17:33:57 +0100
+	b=n8hLAZfJovCKOU2fELvFU+ZBcFqnowH+57AbthIsjm22+oAhTNi6jrkkShDDkK6K/
+	 C1H8s6gvzNgkXr31PNpTZ4UMCG/1+hzaGo4VbrTKm/r+LrQ5wGvaWOI55XUeKNykvT
+	 /jSzs4nHn9hFj1gb2KcPdkn6rZ0txqkgQnhe57K9CLyHSIJCjeTsQgr2OWkdLM7wc5
+	 W8umRxG2B8NtlR/N5bVucmEIwDjeM2AjYC3sxBa07queDIccM1qoYlZ43ooRfiqC6b
+	 D9zNd4dWYQxcO/nfvNYuzpk5PzHkPtB0GUYx+K9iKYzqGnGYiP5NHwB6Gf5ylsP3K7
+	 BPZUyP/CprI9A==
+Date: Fri, 22 Aug 2025 17:37:04 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, anup@brainfault.org, pbonzini@redhat.com,
-	shuah@kernel.org, cyan.yang@sifive.com, cleger@rivosinc.com,
-	charlie@rivosinc.com, cuiyunhui@bytedance.com,
-	samuel.holland@sifive.com, namcao@linutronix.de, jesse@rivosinc.com,
-	inochiama@gmail.com, yongxuan.wang@sifive.com,
-	ajones@ventanamicro.com, parri.andrea@gmail.com,
-	mikisabate@gmail.com, yikming2222@gmail.com,
-	thomas.weissschuh@linutronix.de, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v1 RESEND 1/5] dt-bidings: riscv: add Zilsd and Zclsd
- extension descriptions
-Message-ID: <20250822-purge-doubling-f38988284db1@spud>
-References: <20250821140131.225756-1-pincheng.plct@isrc.iscas.ac.cn>
- <20250821140131.225756-2-pincheng.plct@isrc.iscas.ac.cn>
+To: Hal Feng <hal.feng@starfivetech.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC 1/3] dt-bindings: riscv: Add StarFive JH7110S SoC and
+ VisionFive 2 Lite board
+Message-ID: <20250822-rascal-geometry-83c35926ea7e@spud>
+References: <20250821100930.71404-1-hal.feng@starfivetech.com>
+ <20250821100930.71404-2-hal.feng@starfivetech.com>
+ <20250821-pencil-anguished-6b8467adbd38@spud>
+ <ZQ2PR01MB13071F6F2732451DBE3BEE9DE63D2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,120 +69,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="iXs4qi8wL7fiAACn"
+	protocol="application/pgp-signature"; boundary="nZfVf4i1qpRGT5hz"
 Content-Disposition: inline
-In-Reply-To: <20250821140131.225756-2-pincheng.plct@isrc.iscas.ac.cn>
+In-Reply-To: <ZQ2PR01MB13071F6F2732451DBE3BEE9DE63D2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
 
 
---iXs4qi8wL7fiAACn
+--nZfVf4i1qpRGT5hz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 21, 2025 at 10:01:27PM +0800, Pincheng Wang wrote:
-> Add descriptions for the Zilsd (Load/Store pair instructions) and
-> Zclsd (Compressed Load/Store pair instructions) ISA extensions
-> which were ratified in commit f88abf1 ("Integrating load/store
-> pair for RV32 with the main manual") of the riscv-isa-manual.
+On Fri, Aug 22, 2025 at 07:37:29AM +0000, Hal Feng wrote:
+> > On 22.08.25 02:17, Conor Dooley wrote:
+> > On Thu, Aug 21, 2025 at 06:09:28PM +0800, Hal Feng wrote:
+> > > Add device tree bindings for the StarFive JH7110S SoC and the
+> > > VisionFive 2 Lite board equipped with it.
+> > >
+> > > JH7110S SoC is an industrial SoC which can run at -40~85 degrees
+> > > centigrade and up to 1.25GHz. Its CPU cores and peripherals are mostly
+> > > similar to those of the JH7110 SoC.
+> >=20
+> > How "mostly" is mostly? Are there memory map or capability differences?
 >=20
-> Signed-off-by: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
-> ---
->  .../devicetree/bindings/riscv/extensions.yaml | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
+> To be precise, the CPU cores and peripherals are the same as those of the
+> JH7110 SoC. I will improve the commit description in the next version.
+
+Ye, please do. The complete lack of differences other than thermals
+and cpu performance is what allows you to use all the same compatibles
+for the peripherals after all!
+
 >=20
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index ede6a58ccf53..d72ffe8f6fa7 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -366,6 +366,20 @@ properties:
->              guarantee on LR/SC sequences, as ratified in commit b1d80660=
-5f87
->              ("Updated to ratified state.") of the riscv profiles specifi=
-cation.
-> =20
-> +        - const: zilsd
-> +          description:
-> +            The standard Zilsd extension which provides support for alig=
-ned
-> +            register-pair load and store operations in 32-bit instruction
-> +            encodings, as ratified in commit f88abf1 ("Integrating
-> +            load/store pair for RV32 with the main manual") of riscv-isa=
--manual.
-> +
-> +        - const: zclsd
-> +          description:
-> +            The Zclsd extension implements the compressed (16-bit) versi=
-on of the
-> +            Load/Store Pair for RV32. As with Zilsd, this extension was =
-ratified
-> +            in commit f88abf1 ("Integrating load/store pair for RV32 wit=
-h the
-> +            main manual") of riscv-isa-manual.
-> +
->          - const: zk
->            description:
->              The standard Zk Standard Scalar cryptography extension as ra=
-tified
-> @@ -847,6 +861,16 @@ properties:
->              anyOf:
->                - const: v
->                - const: zve32x
-> +      # Zclsd depends on Zilsd and Zca
-> +      - if:
-> +          contains:
-> +            anyOf:
-> +              - const: zclsd
-> +        then:
-> +          contains:
-> +            anyOf:
-> +              - const: zilsd
-> +              - const: zca
-> =20
->  allOf:
->    # Zcf extension does not exist on rv64
-> @@ -864,6 +888,21 @@ allOf:
->            not:
->              contains:
->                const: zcf
-> +  # Zilsd extension does not exist on rv64
-> +  - if:
-> +      properties:
-
-> +        riscv,isa-extensions:
-> +          contains:
-> +            const: zilsd
-
-This syntax is odd, it shouldn't be required to have zilsd in here and
-in the then. Did you copy this from Zcf or come up with it yourself
-because it didn't work otherwise?
-
-> +        riscv,isa-base:
-> +          contains:
-> +            const: rv64i
-> +    then:
-> +      properties:
-> +        riscv,isa-extensions:
-> +          not:
-> +            contains:
-> +              const: zilsd
-> =20
->  additionalProperties: true
->  ...
-> --=20
-> 2.39.5
+> Here are the differences between them:=20
+> JH7110 supports 0~70 degrees centigrade and up to 1.5GHz.
+> JH7110S supports -40~85 degrees centigrade and up to 1.25GHz.
+>=20
+> Best regards,
+> Hal
+>=20
+> >=20
+> > >
+> > > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/riscv/starfive.yaml | 5 +++++
+> > >  1 file changed, 5 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > index 7ef85174353d..a2952490709f 100644
+> > > --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > @@ -33,6 +33,11 @@ properties:
+> > >                - starfive,visionfive-2-v1.3b
+> > >            - const: starfive,jh7110
+> > >
+> > > +      - items:
+> > > +          - enum:
+> > > +              - starfive,visionfive-2-lite
+> > > +          - const: starfive,jh7110s
+> > > +
+> > >  additionalProperties: true
+> > >
+> > >  ...
+> > > --
+> > > 2.43.2
+> > >
 >=20
 
---iXs4qi8wL7fiAACn
+--nZfVf4i1qpRGT5hz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKib9QAKCRB4tDGHoIJi
-0irLAQCV5/SvoxN05dR+xOZRbx3ngdqvZgXtTOXV1Bvb1u1sbgEAqB+ZSQTXtrTn
-OOlkomc7ojGER25FiOTQpdYiyfasmAg=
-=zFKH
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKicsAAKCRB4tDGHoIJi
+0sCgAQCngjj8rbPb0Af9BMZYRbpS50JcfXIJv0U+8Lki4SL4CQEAzz2rJzTiq/u6
+Udk42wTGzXD6bXBGwcGrUnFUsV713ws=
+=6L7i
 -----END PGP SIGNATURE-----
 
---iXs4qi8wL7fiAACn--
+--nZfVf4i1qpRGT5hz--
 
