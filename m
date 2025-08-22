@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-208173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEF51B31BCE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:36:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B3CEB31BD2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E220466008E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:30:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 031281D03F04
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:31:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8182A3218B1;
-	Fri, 22 Aug 2025 14:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4DC32276E;
+	Fri, 22 Aug 2025 14:24:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dQhLwhwK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hky698M3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5467D3101DA;
-	Fri, 22 Aug 2025 14:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5047308F17;
+	Fri, 22 Aug 2025 14:24:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755872661; cv=none; b=aJ0eOQ6bZEwiw1Na1u/YmkDcCiuErJ4UXz49KMnPjyiJ54sx8CLC+L1g4ZgnDnkKYksBdHU24sDKQn9m9xTQ85W3eTZyKZeOYyD1YpGBLErCiVS+H3onE0JahN7WDfimKuZ7WtnvJWdb37EiLyGjJEQMWHYjw7/cbQocNYAOrTA=
+	t=1755872686; cv=none; b=ptz/k46hOTgPHGqzJs+UHpMYr2CRWQmQfe9LoShGKfIsYXBaZKO3wgCILzPMoM7Jz2chWT+VM/+JjmuL7SN81kyQn8kXWOo2kEiYPlyBnFbfcNtuQx8EmlXqewmuo+9OE44yWumX4Hh7jfl3o1t+JaeGhsCRtlYtEa6GhjfiYeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755872661; c=relaxed/simple;
-	bh=GHecUB/f6hF+l9nChS4AFiY+XY/E6xx0si6J6vs4S50=;
+	s=arc-20240116; t=1755872686; c=relaxed/simple;
+	bh=HFVpnX0R7jrpMF7KCx0+/Ci75McUnVWl8/IVi/u3Vok=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OFnINe2/C3VT9ynd+e7Jld/rlQSSR/ENLWZjoIFkkG/AJ0x7EUZlWgYk6sOcZkheNTEM8hap76gRRhlPDw3vXR/cADJmwDWEmg+SECLBY+jx1tc/nXDKCvf5Ly0seO/v18QX8fempamLc+jt3sMRdLckmbl8Tkncrg2o6nclBn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dQhLwhwK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE016C4CEED;
-	Fri, 22 Aug 2025 14:24:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mzqjuSFFH+bArqK38UWc3kNqgt/GmYlPvMyaOzOxoKzzdnslOg36AJfoDIGiIlWhBDxGcKCi/O9bAGOB+F0SJgoH1MhQocHmw3ZehH/g9DuME1ggIcI61zKFXQ8NJL9LdGlo1E0HUOYBLGHJS0qPS0qdEsSy4GosKNSgk6RpPFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hky698M3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88552C4CEED;
+	Fri, 22 Aug 2025 14:24:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755872660;
-	bh=GHecUB/f6hF+l9nChS4AFiY+XY/E6xx0si6J6vs4S50=;
+	s=k20201202; t=1755872686;
+	bh=HFVpnX0R7jrpMF7KCx0+/Ci75McUnVWl8/IVi/u3Vok=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dQhLwhwK9qrnQh0flYJggQka8E9ZJzmwlNyAz3bfl0zQfiwan5NF/9FvEXCkpfzG2
-	 UupBjYLXpTAxzPNfowHY8wR7FevmagLt8My5R2DRDtbh89GRxOWNmxWxoSHxRiuWRq
-	 Vo/k7FSAsf6Pk+xGvOF41pl0MkbnNsWqEZ49JWls1wxcthZveWEQhM+OaCijUyK06P
-	 /r7MpjTSsCvyJue9PKF6SCPgoLB5ah9QXKItaB0BZDPD7hOrkaYbN0la8fsaShRnmc
-	 DZsqAb946JMkf8qu9xNWWPGOST3sTqIf3kVJkrsUoqXnFEUqqZtInP5MYOnlZPXwnV
-	 Ee7I6aPWCj55Q==
-Date: Fri, 22 Aug 2025 09:24:20 -0500
+	b=hky698M3w3Jo60RFCZPhfHN5G7DcSjv84XvseS6cb9Xa0Jz4dBjalvr1xn9BQutiy
+	 xVEdtZEzKaWTTIMG04jzqk72ASR/FjgoC+9c+ZohIC38I/k/zOQFMbLBW79c9AX733
+	 fQUbEhQUyHeCEvaow195GZe5PVlql0QZv10ni0WlmV3pZEAh45MLOcXf5K8qT2L5B5
+	 mATIGBkKKIyuBGjjV7axtXPVirB6+DocVA7kT/4XuzAJXC9LLZ9qlv4aLBhX9QAd5A
+	 vm20Gt+ONBuJjZHo8E2AhLt410c2f70af5NHvd1K1YBv/UDLE5jjkC4tSoIFTg6SVc
+	 1Yg5L8osXhbQg==
+Date: Fri, 22 Aug 2025 09:24:45 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
-	jose.abreu@synopsys.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	kernel@collabora.com, nicolas.dufresne@collabora.com,
-	Heiko Stuebner <heiko@sntech.de>, nelson.costa@synopsys.com,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-media@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	shawn.wen@rock-chips.com, Hans Verkuil <hverkuil@xs4all.nl>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] media: dt-bindings: snps,dw-hdmi-rx.yaml: Updated
- maintainers entry
-Message-ID: <175587265951.3629173.15028167331028929815.robh@kernel.org>
-References: <20250820103059.342850-1-dmitry.osipenko@collabora.com>
- <20250820103059.342850-2-dmitry.osipenko@collabora.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: linux-gpio@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+	Linus Walleij <linusw@kernel.org>, devicetree@vger.kernel.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>, Imre Kaloz <kaloz@openwrt.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: gpio-mmio: Support hogs
+Message-ID: <175587268530.3633026.8738384877552624323.robh@kernel.org>
+References: <20250820-ixp4xx-eb-mmio-gpio-v1-0-0e167398c8ac@linaro.org>
+ <20250820-ixp4xx-eb-mmio-gpio-v1-1-0e167398c8ac@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,19 +61,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250820103059.342850-2-dmitry.osipenko@collabora.com>
+In-Reply-To: <20250820-ixp4xx-eb-mmio-gpio-v1-1-0e167398c8ac@linaro.org>
 
 
-On Wed, 20 Aug 2025 13:30:59 +0300, Dmitry Osipenko wrote:
-> Shreeya no longer works at Collabora, set Dmitry as maintainer of
-> the Synopsys HDMI RX binding.
+On Wed, 20 Aug 2025 12:59:43 +0200, Linus Walleij wrote:
+> We use hogs on some MMIO GPIO controllers so make sure the
+> bindings support this using a pattern property.
 > 
-> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/gpio/gpio-mmio.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
