@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-208097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CAE2B3190B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:16:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B8C4B31901
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:15:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74FB6A03783
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:11:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94006188A5AB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:13:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4E1C2FD1BE;
-	Fri, 22 Aug 2025 13:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B252FD7C9;
+	Fri, 22 Aug 2025 13:13:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PC3Si3dL"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="U19nGedy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4362FD7AA
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 13:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D9A2FC021
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 13:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755868296; cv=none; b=IfAxdAbFoy8XVBJetcDkkOIpp5D2m6BTBECBp4oyBisJ+4TQB56l4l/yQ9BXQCikqh8JdOFDtK32PJG1Q1BqfZ8Oh4xTdsbN277LZIlhiKqsbLDNOKK1/YKAQYbSKcgNPIn3UY0iYChreZAMXGBv9QeHkKrBcfFCqnp+3X7SvUY=
+	t=1755868410; cv=none; b=hLU2ObB3GPAuwJ+yo4UbDKJfNz9qyUW3ZIOLc3+Q1RcLFkxdiryZ0Fsps5tmMMyewX0A7wiDMvs/6hUXL/99NNwxxkqfz+pyAjAqWeHfMkq9pDa7yrrcUUb8YZNfSAO1j6lVGDiJMegwpzxpYShxpf9JARg6rBEvG/EPZOgWAnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755868296; c=relaxed/simple;
-	bh=JJF+a5fQ86AE00MztsykhjvHTWdeKpLGVhBGUioLYrU=;
+	s=arc-20240116; t=1755868410; c=relaxed/simple;
+	bh=xwmQglZ4ynQpUcBnG3RnegQ8txT3zm/VD+oLXC5P7xc=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=jCSaHG8zkMEeXPi8dFfqmNs4efC9Dhp7TOHiPQY1h1tuPn7xuorWTnq//9LFO6ePnzt4vOr3VSAkC79UZzSpXxjSfoKRJ4dqjsk5J/0psqH6nm4qchlPrT4bpJAwvorTEvBqMp4TPdhsVdun/tBQNui2tQoFXtT/D5Zrqzfu7Xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PC3Si3dL; arc=none smtp.client-ip=185.246.84.56
+	 MIME-Version:Content-Type; b=lpF1yxebpPvhxPobRtK+P4HcmNBVmpa7kZkY1gdl6HoU7RdokeEnkWKRvs2imGVuOomBpICnPdUkAFgUQ2xkwxvvJ2WA3r4Ge+69PHRGdNEh7Vu3h5FYG+d1Tn5XthSInkoRh4dk9aMlR/yz5+gqJujti4kASOtTXFc8QmY+ZtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=U19nGedy; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 1183F1A0D24;
-	Fri, 22 Aug 2025 13:11:33 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 7005C4E40BA8
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 13:13:26 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id CADDA604AD;
-	Fri, 22 Aug 2025 13:11:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 65ED51C22A1CE;
-	Fri, 22 Aug 2025 15:11:26 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 40A4B604AD;
+	Fri, 22 Aug 2025 13:13:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4E2881C22D64F;
+	Fri, 22 Aug 2025 15:13:22 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1755868291; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1755868405; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=+TB1L+FQUyzl0MZXwgPCTGStPNNRpx5XfsGy8ZsCSSo=;
-	b=PC3Si3dL073tGT7/St5ggmnQp5llUhCaOW88SWlw/wJdhJK0qLNY3/bfS3+VOR63HOCzw6
-	ZTfzYrzxkZV2ekIAovNo0pwhw6oHhsqzyRFSq5iLv/TuJO2I47JXntjDUZ4Onmw11r1dTw
-	a5/fp10LoYpW+SLzGb40Qx0TrK2gjNIqfZf149Ec4SpwA9OBvKQpwbfTwZ4mXcR8kkFOU9
-	3+E0HoDcAZZYVI5MS6YRCH64k/zyiQZd4w8quC8xy4VWvyFYZG8XQWjVb/AYe8+xigGbwE
-	oxC2CovGbpXqY2x+6iaVBsOhleAS45dqt9yta+uiE+atcB694BA+4esUs6+dYw==
+	bh=/Xt9kUxaqedEzy7mb2YdVsoY32BQaXwaTEeI7OTr1mI=;
+	b=U19nGedyT/NWgRKxA+WD/R29xrHhG9nr2wfXWNXFRyfnhV+d4gf5yMaIoz++E9KbH66fbz
+	Gq83IrRY5ZpSoJkHctNTLoTUzse7acZVa+0y53sGJxW0ywSMbI+HHL5QC+yFZI5OgRvr19
+	oFIz9UTxepVGWNHzGbRYsfmzVKr2vo92txZAkHxiNgc7gcWEVyfTKYUveLhJHEaYO3Z4wI
+	YbJn4nTCc7iVAa2odeR6jGBFA270hfJdlfnZzfuVFKRdfectOn9QPH3IXywP7QLgsEXgSb
+	7R2KTV5sU04iw5L47uEkjilULQ1nCvCf/nvUVWmldT1tqpDEJgv/Ei5ZMQKgiQ==
 From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Frank Wunderlich
- <frank-w@public-files.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH v2] ARM64: dts: mcbin: fix SATA ports on Macchiatobin
-In-Reply-To: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
-References: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
-Date: Fri, 22 Aug 2025 15:11:26 +0200
-Message-ID: <87sehj5wn5.fsf@BLaptop.bootlin.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Andrew Lunn
+ <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: marvell: Minor whitespace cleanup
+In-Reply-To: <20250819131633.86478-2-krzysztof.kozlowski@linaro.org>
+References: <20250819131633.86478-2-krzysztof.kozlowski@linaro.org>
+Date: Fri, 22 Aug 2025 15:13:22 +0200
+Message-ID: <87plcn5wjx.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,57 +70,78 @@ Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Last-TLS-Session-Version: TLSv1.3
 
-"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk> writes:
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-> Booting 6.16 on the Macchiatobin, I discover that I can no longer
-> access my disks, and thus the userspace boot fails. The cause appears
-> to be that one of the SATA controllers doesn't have any ports:
+> The DTS code coding style expects exactly one space around '=3D'
+> character.
 >
-> [    1.190312] ahci f4540000.sata: supply ahci not found, using dummy reg=
-ulator
-> [    1.196255] ahci f4540000.sata: supply phy not found, using dummy regu=
-lator
-> [    1.202026] ahci f4540000.sata: No port enabled
->
-> This is as a result of the blamed commit below which added a default
-> disabled status to the .dtsi, but didn't properly update the mcbin
-> dtsi file. Fix this regression.
->
-> Fixes: 30023876aef4 ("arm64: dts: marvell: only enable complete sata node=
-s")
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Applied on mvebu/fixes
+Applied on mvebu/dt64
 
 Thanks,
 
 Gregory
 
 > ---
->  arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi   | 2 +-
+>  arch/arm64/boot/dts/marvell/cn9132-clearfog.dts | 4 ++--
+>  arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi | 2 +-
+>  3 files changed, 4 insertions(+), 4 deletions(-)
 >
-> diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/ar=
-m64/boot/dts/marvell/armada-8040-mcbin.dtsi
-> index 6170ca8f908f..8c7db2e87e30 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-> @@ -388,11 +388,13 @@ &cp1_sata0 {
->  	/* CPS Lane 1 - U32 */
->  	sata-port@0 {
->  		phys =3D <&cp1_comphy1 0>;
-> +		status =3D "okay";
->  	};
+> diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/b=
+oot/dts/marvell/ac5-98dx25xx.dtsi
+> index 605f5be1538c..4878773883c9 100644
+> --- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> @@ -322,7 +322,7 @@ spi1: spi@805a8000 {
 >=20=20
->  	/* CPS Lane 3 - U31 */
->  	sata-port@1 {
->  		phys =3D <&cp1_comphy3 1>;
-> +		status =3D "okay";
->  	};
+>  		nand: nand-controller@805b0000 {
+>  			compatible =3D "marvell,ac5-nand-controller";
+> -			reg =3D  <0x0 0x805b0000 0x0 0x00000054>;
+> +			reg =3D <0x0 0x805b0000 0x0 0x00000054>;
+>  			#address-cells =3D <0x1>;
+>  			#size-cells =3D <0x0>;
+>  			interrupts =3D <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts b/arch/arm64=
+/boot/dts/marvell/cn9132-clearfog.dts
+> index 0f53745a6fa0..c872c8eca518 100644
+> --- a/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
+> +++ b/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
+> @@ -559,7 +559,7 @@ led@2 {
 >  };
 >=20=20
+>  &cp2_ethernet {
+> -	status =3D  "okay";
+> +	status =3D "okay";
+>  };
+>=20=20
+>  /* SRDS #2 - 5GE */
+> @@ -572,7 +572,7 @@ &cp2_eth0 {
+>  };
+>=20=20
+>  &cp2_gpio1 {
+> -	pinctrl-names=3D "default";
+> +	pinctrl-names =3D "default";
+>  	pinctrl-0 =3D <&cp2_rsvd9_pins>;
+>=20=20
+>  	/* J21 */
+> diff --git a/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi b/arch/arm64=
+/boot/dts/marvell/cn9132-sr-cex7.dtsi
+> index afc041c1c448..1c9996d8cb24 100644
+> --- a/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi
+> @@ -442,7 +442,7 @@ tpm@0 {
+>  		reg =3D <0>;
+>  		compatible =3D "infineon,slb9670", "tcg,tpm_tis-spi";
+>  		spi-max-frequency =3D <10000000>;
+> -		pinctrl-names  =3D "default";
+> +		pinctrl-names =3D "default";
+>  		pinctrl-0 =3D <&cp1_tpm_irq_pins>;
+>  		interrupt-parent =3D <&cp1_gpio1>;
+>  		interrupts =3D <17 IRQ_TYPE_LEVEL_LOW>;
 > --=20
-> 2.30.2
+> 2.48.1
 >
 
 --=20
