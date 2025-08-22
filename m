@@ -1,99 +1,126 @@
-Return-Path: <devicetree+bounces-207780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 955EFB30C6E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 05:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78F1FB30C73
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 05:20:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C46543BF7A8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 03:17:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3414BA0478F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 03:20:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 431D02882DF;
-	Fri, 22 Aug 2025 03:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60CA289E13;
+	Fri, 22 Aug 2025 03:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="5OuwMnFk"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="oEPWH/gz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1ED22578A;
-	Fri, 22 Aug 2025 03:17:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55D8A22172C;
+	Fri, 22 Aug 2025 03:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755832672; cv=none; b=lswpjXUpDyMqGHp+ompfrH2xGvJD6sCuypj5JzSECRW0mSVO4Wdb9NTxnl2wWWSL2brf+ECob/mCu6Tc/wXP/60kBDHIam498FY/IpEKa6lfFQtDHa4LfNdAl4QFQYxbPRYrvXi0CjdZIQvJ7lc197qRiaVOG46j86c1rFyaNuo=
+	t=1755832845; cv=none; b=TgOUkjzn00zYa6dor8sZr2Z95wUVl/Vn2r2Hziin5ezaNctcZ+BKOu8XwrPykQRGqY9ZTQ3xSzSf9vyI18EeILntUvMF8zYc9AkT8w/QMbSA1l/QB9e3gHSm2E1njrbAlRxKrbkU4TQAoMdGy73rcCUl+xGQ1riLwEsoBObfu1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755832672; c=relaxed/simple;
-	bh=U91kuvG7t2D2eG/kbuTSn6ZjVILpojBxiIDh8I8Ofbw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tz8Gn04RPH41IzdOIAWn8LV9z6CtIH9vpxziO9Cpk/JMXuNFZryUpjgHdAjKEtuvVF632g/JKj6tKKSFSek5UyvOE4TiCqlvOK+MMF6EAf7zUREuGfmqa7T8M67K4y653NIZY4ZgeSHNBh1ndGM0HrI+p4H3YALGYPkUb8wj/Yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=5OuwMnFk; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=FQHWCj2G7uE0VQTePlKYzggszJQgMhjnofu5HSi2Vew=; b=5OuwMnFk8XspHeSWT5qjK0jRrg
-	C0ctkC7F0t/TaaLvA8Rr/qlr4y6DSI/6ALz5iiVOM4Uf4PUAurNE49I9LOCAHJClYQK3D+vGHkPse
-	NOT9YoUvBtM6e8cRThEI7IZ4FAJqJrCOXw5YOaKpl45cH8SYNgZzrHQ8wAVoZsVq7jno=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1upIHZ-005X48-JB; Fri, 22 Aug 2025 05:17:37 +0200
-Date: Fri, 22 Aug 2025 05:17:37 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?utf-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
-Cc: weishangjuan@eswincomputing.com, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
-	yong.liang.choong@linux.intel.com, vladimir.oltean@nxp.com,
-	jszhang@kernel.org, jan.petrous@oss.nxp.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, inochiama@gmail.com,
-	boon.khai.ng@altera.com, dfustini@tenstorrent.com, 0x1207@gmail.com,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: Re: Re: Re: Re: Re: [PATCH v3 2/2] ethernet: eswin: Add eic7700
- ethernet driver
-Message-ID: <548973df-2fa8-4502-9f7c-668d0eeb16c6@lunn.ch>
-References: <c212c50e-52ae-4330-8e67-792e83ab29e4@lunn.ch>
- <7ccc507d.34b1.1980d6a26c0.Coremail.lizhi2@eswincomputing.com>
- <e734f2fd-b96f-4981-9f00-a94f3fd03213@lunn.ch>
- <6c5f12cd.37b0.1982ada38e5.Coremail.lizhi2@eswincomputing.com>
- <6b3c8130-77f0-4266-b1ed-2de80e0113b0@lunn.ch>
- <006c01dbfafb$3a99e0e0$afcda2a0$@eswincomputing.com>
- <28a48738-af05-41a4-be4c-5ca9ec2071d3@lunn.ch>
- <2b4deeba.3f61.1985fb2e8d4.Coremail.lizhi2@eswincomputing.com>
- <bad83fec-afca-4c41-bee4-e4e4f9ced57a@lunn.ch>
- <3261748c.629.198cfa3bc10.Coremail.lizhi2@eswincomputing.com>
+	s=arc-20240116; t=1755832845; c=relaxed/simple;
+	bh=D+BEUaDZ2sK7ZJxEfqc3LcWo/ohH8HIPEE8rKADLHVQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=H4MOtOeK6habpST5uwR5rINLEo1mdjwlH5fxo9gyFcFAQmXJAc0w4Fz9RmdqJXlJ54Ebwxqybs+gAI4lDgiJyZ19eoMy7v8o7CMKQolh0MnFni+WvPL5JVZ3ZpArIkm47IrTweeQBT2Y8GGU3d8VIFt7b53QBkX6FW1qXwsgj4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=oEPWH/gz; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3261748c.629.198cfa3bc10.Coremail.lizhi2@eswincomputing.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1755832841;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=r1MSjRRE6yUSWPMHEAUcp2VekQ/i3BRrfkltmpMLCjI=;
+	b=oEPWH/gzrsp0qyfpLjduleSsCJb5NJaDYPeQ5XRapK/9fSiqFDHXyoAUnFzYvmb7xO9/vQ
+	Lf4kmy4bIuCpsJUApQHN19NVC5u2P4dMDr9gXb3G0Rw/qZBHAvNb2uuEXxMDQoUjL4SK8C
+	QKd6jpXXxL30QWV3paSXwCV1xb98C8FbK1zxlUPuo2DLMQf7I4WmOjeDz+5swCz4hCne8y
+	OxLPVHTDuYPUqrf5Ere4y4rpId+jusXSoAjMyh06xH56khmJcCGUP3iC9QWLYNArR+fVFl
+	wvE/61iNjD3lqt/CkUCkdHwLI8LkON9qs1sUe1dMOnfo9ZQv5Z5JFJrsw/mpPA==
+Date: Fri, 22 Aug 2025 05:20:40 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
+ <lukasz.luba@arm.com>, Heiko Stuebner <heiko@sntech.de>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Diederik de Haas
+ <didi.debian@cknow.org>, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ kernel@collabora.com
+Subject: Re: [PATCH v2 3/3] dt-bindings: thermal: rockchip: tighten grf
+ requirements
+In-Reply-To: <20250820-thermal-rockchip-grf-warning-v2-3-c7e2d35017b8@kernel.org>
+References: <20250820-thermal-rockchip-grf-warning-v2-0-c7e2d35017b8@kernel.org>
+ <20250820-thermal-rockchip-grf-warning-v2-3-c7e2d35017b8@kernel.org>
+Message-ID: <9ca53c3ee08a0e1c25adf916376f9a65@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-> We re-tuned and verified that setting the TXD and RXD delays to 0 and
-> configuring TXEN and RXDV to 0 yielded the same hardware performance as
-> long as we only applied delays (e.g. 200ps) to TXCLK and RXCLK.
+Hello Sebastian,
 
-This is in addition to phy-mode = 'rgmii-id'?
+On 2025-08-20 19:40, Sebastian Reichel wrote:
+> Instead of having an optional rockchip,grf property, forbid using it on
+> platforms without registers in a GRF being needed for thermal 
+> monitoring
+> and make it mandatory on the platforms actually needing it.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../devicetree/bindings/thermal/rockchip-thermal.yaml     | 15 
+> +++++++++++++++
+>  1 file changed, 15 insertions(+)
 
-> Therefore, in the next patch, we will drop the vendor-specific properties
-> (e.g. eswin,dly-param-*) and keep only the standard attributes, namely
-> rx-internal-delay-ps and tx-internal-delay-ps.
-> Is this correct?
+Thanks for the patch!  It matches what's already presented in your
+patch 2/3, so it's looking good to me. Please feel free to include
 
-Yes, 200ps is a small tuning value, when the PHY adds the 2ns. This is
-O.K.
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 
-	Andrew
+> diff --git
+> a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> index
+> 573f447cc26ed7100638277598b0e745d436fd01..9fa5c4c49d76e3a689f31797875124e7fb30d3df
+> 100644
+> --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> @@ -119,6 +119,21 @@ required:
+>    - resets
+> 
+>  allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,px30-tsadc
+> +              - rockchip,rk3366-tsadc
+> +              - rockchip,rk3399-tsadc
+> +              - rockchip,rk3568-tsadc
+> +    then:
+> +      required:
+> +        - rockchip,grf
+> +    else:
+> +      properties:
+> +        rockchip,grf: false
+>    - if:
+>        not:
+>          properties:
 
