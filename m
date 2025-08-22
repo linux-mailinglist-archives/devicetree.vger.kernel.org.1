@@ -1,103 +1,84 @@
-Return-Path: <devicetree+bounces-207891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06838B311B4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:25:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B53CDB311D6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:30:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D65C5C716F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:25:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6451B1CE5808
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:28:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0FB72EDD59;
-	Fri, 22 Aug 2025 08:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F46296BA3;
+	Fri, 22 Aug 2025 08:27:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bm9SIROR"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="AnWz0oyJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8132D2EDD51;
-	Fri, 22 Aug 2025 08:23:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27288216E26;
+	Fri, 22 Aug 2025 08:27:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755851026; cv=none; b=TB3rQ77VjylMfUdtIiFssu4mbvgmdQG0h68CDLWmI9U5Cn7cjEfOjXrJV9auvO/C26DBFo4CF7yupsCdAVH2y8A2j4pNDxc3wv+Ms9MSFNsVNYwiInIB+gBXsfm5eXe2xMSMvXL7Y8U/QGVIKyjz6ADCe6Fpm2ZgZQDw8sIyBrw=
+	t=1755851272; cv=none; b=lrq98xciEuScGakwU//oSg/QQM38qZ73aojqxYRp1pVHusQ6414aiuGPuJspjA3aPcxcicss9kQAGblARXESR551QNeBa0+oaFp9K43zC+Dsa/5DAOQPkPmylXhz3OvRIyumxy3UtUFn4/2RiGpbJmPPJnRFYSaVLYDuzOt5rhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755851026; c=relaxed/simple;
-	bh=03Yx5LsV5HItH5QD6ggezJ6636qthAU/TCRiuL0s6Rw=;
+	s=arc-20240116; t=1755851272; c=relaxed/simple;
+	bh=thenpvWiSLNDmB4c+x2qmtcODgkESbbw9ot/N9LrtU4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LOFYy3Y/N5jsJOYjscVPwHQq2l4I0LFCAB2Mb7POk9xLx1eAzAFeiEJgJAPUJFVpdr1GW//0YZ8j76Tb2C31hm/j16F0EDUhpnkCdfyz2NWFxJP/INB1XY8VlDxlyjtS2vXrbXUjF/y5SVC1+zzfNXeSQoRHqLnA2Ec1+Ktyv8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bm9SIROR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88B9AC4CEF4;
-	Fri, 22 Aug 2025 08:23:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755851026;
-	bh=03Yx5LsV5HItH5QD6ggezJ6636qthAU/TCRiuL0s6Rw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bm9SIRORzl86UdGbHLm1Ms0KwZAMngOfadY+IvoGnbquFnazG1NnAYHBVt2tOPDsm
-	 HNAiSKCVAlS4KwVP1dK9/RGv9bKMYqNteVt2KmLUW4Li5zuu9gmsRp6nfHBA5BbvEY
-	 /Tc+MJk852doMdH5aGPZbDoFA4FJSFBYjer+enngRv0XMquboez/V1sJjj2IUge+VJ
-	 xCRjDGr7CCTiGQYYBbRpxgF48rREh87d5wJnc2iq/oPZzaJ6vy70yIeJrrv8bu2MrJ
-	 zU5qWKdRWNrSNjVtU+iQLC2qW3qgnPEFvhbrWvHLRP3unP8Dd4deWXy1qcMme+/tYZ
-	 Y7PSytC6wwRDA==
-Date: Fri, 22 Aug 2025 10:23:43 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	Matthias Kaehlcke <mka@chromium.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v3 3/4] dt-bindings: usb: microchip,usb2514: add support
- for port vbus-supply
-Message-ID: <20250822-maize-elk-of-growth-2a30bb@kuoka>
-References: <20250821-v6-16-topic-usb-onboard-dev-v3-0-6d2b38a5d818@pengutronix.de>
- <20250821-v6-16-topic-usb-onboard-dev-v3-3-6d2b38a5d818@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=L0DxgdzokJVp1azutTiCf9bdDcFEBlQt0EqglpdCeDgFrdfYx19qTj88512mdSeRcIHToHKyuV24acSFmaMqQ3n2nX9nzoZPVS2YvI2z28vKn0kjPUleM5Yuz+tiKV0mbiSeOiddSXXZTyiqVBy6lnlVvu2zwTc+DXyHnynP1lM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=AnWz0oyJ; arc=none smtp.client-ip=220.197.32.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=xnNoai/6WE+/YlaBeq11xGUrY7PQToHaLx/C4M43Y8c=;
+	b=AnWz0oyJz8V/4sZx9Iaz7D0/y3nOogBQQJdsf0NZtHCIHCQjvhHFLHlGeeePh6
+	owD6fhuEK+5uCgRf3JXUn+wtHRgi8D4D20Er0tyH02+421ETvx5fHyeWi2dJh5Ae
+	0IroioHDWG0gcmTOv1ICe7kRNAB9+rEkKaNxsEuoohghM=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgDnBYvDKahoGlEVAw--.10154S3;
+	Fri, 22 Aug 2025 16:26:45 +0800 (CST)
+Date: Fri, 22 Aug 2025 16:26:43 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: mbrugger@suse.com, chester62515@gmail.com,
+	ghennadi.procopciuc@oss.nxp.com, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, s32@nxp.com, kernel@pengutronix.de,
+	festevam@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/8] Add the STM and the SWT nodes for the s32g2 and
+ s32g3
+Message-ID: <aKgpwzqlmK71Guio@dragon>
+References: <20250731140146.62960-1-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250821-v6-16-topic-usb-onboard-dev-v3-3-6d2b38a5d818@pengutronix.de>
+In-Reply-To: <20250731140146.62960-1-daniel.lezcano@linaro.org>
+X-CM-TRANSID:M88vCgDnBYvDKahoGlEVAw--.10154S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUwg4SUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNAW-JWioKcXcnAAA3H
 
-On Thu, Aug 21, 2025 at 06:31:57PM +0200, Marco Felsch wrote:
-> Some PCB designs don't connect the USB hub port power control GPIO and
-> instead make use of a host controllable regulator. Add support for this
-> use-case by introducing portX-vbus-supply property.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/usb/microchip,usb2514.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-> index 4e3901efed3fcd4fbbd8cb777f9df4fcadf2ca00..ac1e5f1a5ea2e66c61ce92154385952b15e78e55 100644
-> --- a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-> +++ b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
-> @@ -49,6 +49,12 @@ patternProperties:
->      $ref: /schemas/usb/usb-device.yaml
->      additionalProperties: true
->  
-> +  "^port[1-7]-vbus-supply$":
-> +    type: object
-> +    description:
-> +      Regulator controlling the USB VBUS on portX. Only required if the host
-> +      controls the portX VBUS.
+On Thu, Jul 31, 2025 at 04:01:33PM +0200, Daniel Lezcano wrote:
+> Daniel Lezcano (8):
+>   arm64: dts: s32g2: Add the System Timer Module nodes
+>   arm64: dts: s32g274-rd2: Enable the STM timers
+>   arm64: dts: s32g3: Add the System Timer Module nodes
+>   arm64: dts: s32g399a-rdb3: Enable the STM timers
+>   arm64: dts: s32g2: Add the Software Timer Watchdog (SWT) nodes
+>   arm64: dts: s32g274-rd2: Enable the SWT watchdog
+>   arm64: dts: s32g3: Add the Software Timer Watchdog (SWT) nodes
+>   arm64: dts: s32g399a-rdb3: Enable the SWT watchdog
 
-Your commit msg should briefly describe status of previous discussion:
-why Rob's comment was not applied. Otherwise we repeat: this looks like
-property of specific port.
-
-The binding does not list ports now, but lists hard-wired devices, so my
-question is now: is this per hard-wired device or per port (even if port
-is hot-pluggable)?
-
-Best regards,
-Krzysztof
+Applied all, thanks!
 
 
