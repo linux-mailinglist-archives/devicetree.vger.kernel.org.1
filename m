@@ -1,232 +1,130 @@
-Return-Path: <devicetree+bounces-208099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A08FFB31912
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:16:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CAE2B3190B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:16:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7884A055E2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:12:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74FB6A03783
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EC32FD7BB;
-	Fri, 22 Aug 2025 13:12:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4E1C2FD1BE;
+	Fri, 22 Aug 2025 13:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="0Eedm75k"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PC3Si3dL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44CAC33DF;
-	Fri, 22 Aug 2025 13:12:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4362FD7AA
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 13:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755868370; cv=none; b=qDlzby9XfaPa3RgA6Eu+h5gsIEajgimqKYe8DcRZSAQzC4kSG1hMIqugzTPy8ySyCt/OHXIhWS7sWkkedrtdiMWsTxogmzd3r/vZ3hRWvtGJFVZeX8dDOxO5MBAop+d04A8mopjkG3QtJtwLDIhL1Dq7JhqGzYzdLUM8WQ44osw=
+	t=1755868296; cv=none; b=IfAxdAbFoy8XVBJetcDkkOIpp5D2m6BTBECBp4oyBisJ+4TQB56l4l/yQ9BXQCikqh8JdOFDtK32PJG1Q1BqfZ8Oh4xTdsbN277LZIlhiKqsbLDNOKK1/YKAQYbSKcgNPIn3UY0iYChreZAMXGBv9QeHkKrBcfFCqnp+3X7SvUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755868370; c=relaxed/simple;
-	bh=q4JqQt2fVhFDOCL8SkHpfrtTrPWIgWAQ2A8aiau95Zw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hy7mtSJZ8IDVfb7cS+/ylJsSlTCHpo36Ab4/0bBjutfmSKtDx19V3bssVA5HJ3JPXVS9ntSzIZpuoyBCkiCkofl/Xy5bzKQf6ughARV/0eltYBrRh8WlNJmHc35EUkp3OgQj5D6BX4J7kFKCF+L3zTCOPyIICjdG6FUttA6gBbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=0Eedm75k; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57MCcqnv031363;
-	Fri, 22 Aug 2025 15:12:34 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	GokK0EwgMtfsSNnIpttne/zzS1Pm4lLm8u+xuFpTDOc=; b=0Eedm75kc0PDSdky
-	/8jqHNndow2ZEb5RGHoy9LDDl00fo7DN6SI+sP01h0hN4/eGmIohw8BY+4hnQ7TK
-	QJIMF7f/QQPTc1auYlfMmDjrNgw7pa4havE+xo6jvNi3jwYsG0ssCAr+A0clIdb2
-	ih4l/a8IJcuw8mIqnVosxq2OSXKWOrRHTJE5qqMyYKzZ8LsqE+K5jWHpOxP5ePeF
-	FWVyfur2bVOnOYGxfybcYo7SsAj0BCWT17YbvQdJsYhdOhEmYIM1kpi9+og2Q64M
-	9Rh7ilp4ZnMMZRQMnkuDw9cTbbYvHqOBde8ooYnKiZXZDD9RBwshHnxecYV+c8V2
-	9ZmL8Q==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48nd5xs993-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Aug 2025 15:12:34 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F380D4002D;
-	Fri, 22 Aug 2025 15:11:15 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 415ED7206CF;
-	Fri, 22 Aug 2025 15:10:19 +0200 (CEST)
-Received: from [10.48.87.178] (10.48.87.178) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 22 Aug
- 2025 15:10:18 +0200
-Message-ID: <d193523c-5508-4bba-971b-8c0a8b7b44de@foss.st.com>
-Date: Fri, 22 Aug 2025 15:10:17 +0200
+	s=arc-20240116; t=1755868296; c=relaxed/simple;
+	bh=JJF+a5fQ86AE00MztsykhjvHTWdeKpLGVhBGUioLYrU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=jCSaHG8zkMEeXPi8dFfqmNs4efC9Dhp7TOHiPQY1h1tuPn7xuorWTnq//9LFO6ePnzt4vOr3VSAkC79UZzSpXxjSfoKRJ4dqjsk5J/0psqH6nm4qchlPrT4bpJAwvorTEvBqMp4TPdhsVdun/tBQNui2tQoFXtT/D5Zrqzfu7Xo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PC3Si3dL; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 1183F1A0D24;
+	Fri, 22 Aug 2025 13:11:33 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id CADDA604AD;
+	Fri, 22 Aug 2025 13:11:32 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 65ED51C22A1CE;
+	Fri, 22 Aug 2025 15:11:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1755868291; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=+TB1L+FQUyzl0MZXwgPCTGStPNNRpx5XfsGy8ZsCSSo=;
+	b=PC3Si3dL073tGT7/St5ggmnQp5llUhCaOW88SWlw/wJdhJK0qLNY3/bfS3+VOR63HOCzw6
+	ZTfzYrzxkZV2ekIAovNo0pwhw6oHhsqzyRFSq5iLv/TuJO2I47JXntjDUZ4Onmw11r1dTw
+	a5/fp10LoYpW+SLzGb40Qx0TrK2gjNIqfZf149Ec4SpwA9OBvKQpwbfTwZ4mXcR8kkFOU9
+	3+E0HoDcAZZYVI5MS6YRCH64k/zyiQZd4w8quC8xy4VWvyFYZG8XQWjVb/AYe8+xigGbwE
+	oxC2CovGbpXqY2x+6iaVBsOhleAS45dqt9yta+uiE+atcB694BA+4esUs6+dYw==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Frank Wunderlich
+ <frank-w@public-files.de>
+Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Subject: Re: [PATCH v2] ARM64: dts: mcbin: fix SATA ports on Macchiatobin
+In-Reply-To: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
+References: <E1up9Jw-00BbOE-VC@rmk-PC.armlinux.org.uk>
+Date: Fri, 22 Aug 2025 15:11:26 +0200
+Message-ID: <87sehj5wn5.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 13/13] arm64: dts: st: enable display support on
- stm32mp257f-ev1 board
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Philippe Cornu
-	<philippe.cornu@foss.st.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Maxime
- Coquelin" <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250821-drm-misc-next-v4-0-7060500f8fd3@foss.st.com>
- <20250821-drm-misc-next-v4-13-7060500f8fd3@foss.st.com>
-Content-Language: en-US
-From: Yannick FERTRE <yannick.fertre@foss.st.com>
-In-Reply-To: <20250821-drm-misc-next-v4-13-7060500f8fd3@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-22_04,2025-08-20_03,2025-03-28_01
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Raphael,
+"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk> writes:
 
-Thanks for the patch.
-
-Acked-by: Yannick Fertre <yannick.fertre@foss.st.com>
-
-Le 21/08/2025 à 13:09, Raphael Gallais-Pou a écrit :
-> Enable the following IPs on stm32mp257f-ev1 in order to get display:
->     * LTDC
->     * LVDS
->     * WSVGA LVDS panel (1024x600)
->     * Panel LVDS backlight as GPIO backlight
->     * ILI2511 i2c touchscreen
+> Booting 6.16 on the Macchiatobin, I discover that I can no longer
+> access my disks, and thus the userspace boot fails. The cause appears
+> to be that one of the SATA controllers doesn't have any ports:
 >
-> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> [    1.190312] ahci f4540000.sata: supply ahci not found, using dummy reg=
+ulator
+> [    1.196255] ahci f4540000.sata: supply phy not found, using dummy regu=
+lator
+> [    1.202026] ahci f4540000.sata: No port enabled
+>
+> This is as a result of the blamed commit below which added a default
+> disabled status to the .dtsi, but didn't properly update the mcbin
+> dtsi file. Fix this regression.
+>
+> Fixes: 30023876aef4 ("arm64: dts: marvell: only enable complete sata node=
+s")
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+
+Applied on mvebu/fixes
+
+Thanks,
+
+Gregory
+
 > ---
->   arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 79 ++++++++++++++++++++++++++++++
->   1 file changed, 79 insertions(+)
+>  arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-> index 836b1958ce65fb72c99d634a92af3efaf9844d76..2958ad413b0675575d84942e193a16f80197b88e 100644
-> --- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-> +++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-> @@ -86,6 +86,43 @@ mm_ospi1: mm-ospi@60000000 {
->   			no-map;
->   		};
->   	};
-> +
-> +	panel_lvds: display {
-> +		compatible = "edt,etml0700z9ndha", "panel-lvds";
-> +		enable-gpios = <&gpiog 15 GPIO_ACTIVE_HIGH>;
-> +		backlight = <&panel_lvds_backlight>;
-> +		power-supply = <&scmi_v3v3>;
-> +		status = "okay";
-> +
-> +		width-mm = <156>;
-> +		height-mm = <92>;
-> +		data-mapping = "vesa-24";
-> +
-> +		panel-timing {
-> +			clock-frequency = <54000000>;
-> +			hactive = <1024>;
-> +			vactive = <600>;
-> +			hfront-porch = <150>;
-> +			hback-porch = <150>;
-> +			hsync-len = <21>;
-> +			vfront-porch = <24>;
-> +			vback-porch = <24>;
-> +			vsync-len = <21>;
-> +		};
-> +
-> +		port {
-> +			lvds_panel_in: endpoint {
-> +				remote-endpoint = <&lvds_out0>;
-> +			};
-> +		};
-> +	};
-> +
-> +	panel_lvds_backlight: backlight {
-> +		compatible = "gpio-backlight";
-> +		gpios = <&gpioi 5 GPIO_ACTIVE_HIGH>;
-> +		default-on;
-> +		status = "okay";
-> +	};
->   };
->   
->   &arm_wdt {
-> @@ -183,6 +220,15 @@ imx335_ep: endpoint {
->   			};
->   		};
->   	};
-> +
-> +	ili2511: ili2511@41 {
-> +		compatible = "ilitek,ili251x";
-> +		reg = <0x41>;
-> +		interrupt-parent = <&gpioi>;
-> +		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-> +		reset-gpios = <&gpiog 14 GPIO_ACTIVE_LOW>;
-> +		status = "okay";
-> +	};
->   };
->   
->   &i2c8 {
-> @@ -230,6 +276,39 @@ timer {
->   	};
->   };
->   
-> +&ltdc {
-> +	status = "okay";
-> +
-> +	port {
-> +		ltdc_ep0_out: endpoint {
-> +			remote-endpoint = <&lvds_in>;
-> +		};
-> +	};
-> +};
-> +
-> +&lvds {
-> +	status = "okay";
-> +
-> +	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		port@0 {
-> +			reg = <0>;
-> +			lvds_in: endpoint {
-> +				remote-endpoint = <&ltdc_ep0_out>;
-> +			};
-> +		};
-> +
-> +		port@1 {
-> +			reg = <1>;
-> +			lvds_out0: endpoint {
-> +				remote-endpoint = <&lvds_panel_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->   &rtc {
->   	status = "okay";
->   };
+> diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/ar=
+m64/boot/dts/marvell/armada-8040-mcbin.dtsi
+> index 6170ca8f908f..8c7db2e87e30 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+> @@ -388,11 +388,13 @@ &cp1_sata0 {
+>  	/* CPS Lane 1 - U32 */
+>  	sata-port@0 {
+>  		phys =3D <&cp1_comphy1 0>;
+> +		status =3D "okay";
+>  	};
+>=20=20
+>  	/* CPS Lane 3 - U31 */
+>  	sata-port@1 {
+>  		phys =3D <&cp1_comphy3 1>;
+> +		status =3D "okay";
+>  	};
+>  };
+>=20=20
+> --=20
+> 2.30.2
 >
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
