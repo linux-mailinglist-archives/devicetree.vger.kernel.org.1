@@ -1,142 +1,137 @@
-Return-Path: <devicetree+bounces-208344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C31EB32126
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:09:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0808B32141
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:12:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38954B60FD6
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:08:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 164A4642AE2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:11:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400B831352E;
-	Fri, 22 Aug 2025 17:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A4C031DDBC;
+	Fri, 22 Aug 2025 17:10:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C4+wIUPb"
+	dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b="ZzvyV4Hu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F4BB31AF36;
-	Fri, 22 Aug 2025 17:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA508313545
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 17:10:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755882570; cv=none; b=fxsGkr7UbhJYm5KgdmJMiOfOInItZGsH+UFcuT+WVHwT+gibnPf8dA3o7eHUaWSCggZDRH+Ie3HIjYNAWC/AEl6EfPs+CXX2EjrZFXGK20yCRSXfVgOEZa3QLm4LUW71RbkBY5o0RMmsYigVcAevwpyXeR40WhIg2XFJIpKWGBM=
+	t=1755882657; cv=none; b=Hv8GHy/spkQf+SVYljiCEnw4O59hILjUj6mhjOn0Co6gQivqQZ0M++qCEIS1/K3XkMYfcgJyc3cTGlu9ywoB5MN/RuAHti+RKN0SBvOpZQ5PvMLjlYk/RMEKcbH/19eWrreLzTgFDM/e7rQIK1bzPlhuDiKaxmNDE8cIwwju430=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755882570; c=relaxed/simple;
-	bh=7Edpu4iaigfyMUiRCVPJ8Q6j8sogTZ4BIgKymb2DFMw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nuiFywQMCxXuWHK348nwXtrMiPQKeF1F+uAn+3eTP8Z/NnBZN8TLPodJv3OtQuuEyUjAYukgIrttUsiUNoioV7fbKSAAPyE43XQUKl3dcRlbEflWeot3eWQ5H7rUwGTjuoDsfa+GlMrzA7LZsb7lsAeOr7pMYJoNEFdrAKDi2Es=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C4+wIUPb; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755882569; x=1787418569;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7Edpu4iaigfyMUiRCVPJ8Q6j8sogTZ4BIgKymb2DFMw=;
-  b=C4+wIUPbOdQDw1nkMdDvYgCMGdWe8VQw+N6EaM9/pcy5Dzkvheu99CW/
-   Pdgxry7ogt9KfZhBQUB0uHDONzmVvcbvt2aotBlq2E3BVHAIHZEnBWjq0
-   b364hUoRWjhnCvKgVieQbezTMHOo/jwETFxVeZoGfbIXBHQMKH8Fw1msB
-   Ay9Cl/0ZOzpeRYAJqs7le3qB6jcd91Yhu9W/A+nePQ0We5c4w3v9PjLxe
-   o9Fj1gS4/7OAhmH6vqFxBWXWcQLoRJRwohHdkHOZW4oVkD86+Jmio3k0L
-   ztc3HJ8DaPnmP1m+H/8mTdvXKuSYRAXrj1CjYtbkuc47jbkxYp/0ZLLhN
-   w==;
-X-CSE-ConnectionGUID: rZZ1TfvDTFaAHtei3GF5ng==
-X-CSE-MsgGUID: nnC4yLELQnqvfER1rh1LXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="58145624"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
-   d="scan'208";a="58145624"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2025 10:09:28 -0700
-X-CSE-ConnectionGUID: bSznwY7qTReg8XKsoJX+Qw==
-X-CSE-MsgGUID: 5jtGIIBhT2ugTPUQX6bJ8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
-   d="scan'208";a="168947402"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 22 Aug 2025 10:09:24 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1upVG1-000LZR-1i;
-	Fri, 22 Aug 2025 17:09:01 +0000
-Date: Sat, 23 Aug 2025 01:07:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xiandong Wang <xiandong.wang@mediatek.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, sirius.wang@mediatek.com,
-	vince-wl.liu@mediatek.com, jh.hsu@mediatek.com,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	Xiandong Wang <xiandong.wang@mediatek.com>
-Subject: Re: [PATCH v3 3/4] mailbox: mtk-cmdq: Add cmdq driver for mt8189
-Message-ID: <202508230035.zCJcuz93-lkp@intel.com>
-References: <20250819033746.16405-4-xiandong.wang@mediatek.com>
+	s=arc-20240116; t=1755882657; c=relaxed/simple;
+	bh=FcS3lVango2lJ/7H1mnUAZSXYOc30orPYr2Ga4jvAh0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dYjmkJ/W8Bmg5yZqFDH1wXM+vrHcMgp4yhuIwC17V84YPCIK0CshTSZRANlpJ5t587gZzIKViz69o3j/QHmxaV1BYkl1wE8SKH4x9kHQtD8X4fb6PxsM/NYip4q6yGEXZjeO5yig57zq0gl+Y4/ZLpHpFdz3sCIfe9W5MgPYqgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk; spf=pass smtp.mailfrom=pinefeat.co.uk; dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b=ZzvyV4Hu; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pinefeat.co.uk
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b9e418ba08so1051153f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 10:10:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pinefeat.co.uk; s=google; t=1755882653; x=1756487453; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7sB8nLNw7OUCAbqYw05qQ79tpzJtdnEdFbZCz5X3kyU=;
+        b=ZzvyV4HuIkohWNFmLz+2MEKqft42wy0aluU+WbeWgNiaS2zLzCMXEgmaSaeS80pTvg
+         s2WqTncN5Bh2NQt+VM91/i+qfEqXDRY7kBPQfRRzHrFVF2DLQzboc5Ccox8e21Gf1Q3O
+         x3WPdLH2HXLtZG7eTCA4INGMhzHbgIV/R7ZFok7cy9DiYkfRAgPftSP1mb0OSxsLfSEw
+         FhxtDbZBslvN1blk0vpgbTDrcBe6rLkvWhTvhHLEbo6P1WLKnSbDRAT5rNdKTMtGpsGJ
+         LdOyrkmkklaFdnHUwSkMYY3SfonvFX/tdA4+4RMvNwodyXqJXVx3MMVPtH7hKFWLefFU
+         L6Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755882653; x=1756487453;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7sB8nLNw7OUCAbqYw05qQ79tpzJtdnEdFbZCz5X3kyU=;
+        b=X/d2Pww69VQP+xQFhPEMAiJ6NbpdPpImChvzIq6nrvYUJWwLyzSEvXIIJK5QCgHme/
+         Dili+9SEgZB87SyiDfkjgV43zFU7nds0jrWWdrYWKX36YgHYnxIxPB4QCFdpqZMMo0R1
+         Ny+AwF0DTwyGTC3bo22UbdV0RDrB7yN+LittO3FitrmuvXQjDaBoF3oMWEMpmbFavUG+
+         7vzthq2j9FnCDfg+34bjXuAJYwITWhmB2sAq5vhnDmGtr7R/p9SzrwrmMCfiDELWbbOy
+         BzpIVEUb+0+WX4GobUzYw+NEu/mLeB1DcFbdLKAJR6zZbVrSq8IXUA1EiTbCBbiPW4xd
+         wo5Q==
+X-Gm-Message-State: AOJu0Yx2IqN7pBp5zd4hearJyBLr8Xchcj7OnPQmlX1HlVk3COhF2Ndp
+	q3TqJFmeECe1i+hkNW9FWwwFHVFFVN1Fj31grupmk2EoouS27eXLCAdPSdTVbDXoP9U=
+X-Gm-Gg: ASbGncuKsHnXpqxQUpAIiJ5EP44ZO20aovn/NYIhDfNcdXyIrC0ta69zHxvezPgzQG+
+	+CmYsuqxhtEL6g7bIvJlJi3GHJEDTsfGfq1IJUspJVyDVc58fEw8fJ8E8s8h8TDU3nqaBnBaGUj
+	mw80QCX6ML+Wj6gdG2YGdZx3k7neTLknT+LfUpUi5Vd3o6My9SO85guAzYF2dSrdZK6K8mI+SWH
+	iJ6TUboiB6INn2nqx69CAx6lpYV5TkPAJArHlY8GR5qSi/zhpM14XU36atASAKyOZ1E6XwDHLRI
+	zy+oq1GlBI2rmQb/0BoMHDQIgtbMU3EF0sUMXXdNLRqih6kXInxECd8AxW4IqLq43OlDj6fja8N
+	fAjHWgrmR+HuLYMyFNw6oDVWFPKW+ixmm7rJwL3rT
+X-Google-Smtp-Source: AGHT+IGmQCo02uaOxqBVlYeS/KQ/EsgJf8zCN4ilwcnU/gzOWtAftv/rtJe77Qa04lzmMg3zuwnBJQ==
+X-Received: by 2002:a05:6000:2081:b0:3b9:148b:e78 with SMTP id ffacd0b85a97d-3c5dcdfc385mr3193656f8f.53.1755882652889;
+        Fri, 22 Aug 2025 10:10:52 -0700 (PDT)
+Received: from asmirnov-G751JM.Home ([2a02:c7c:b28c:1f00:c77a:e59e:20e0:4966])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c70f237fefsm233780f8f.30.2025.08.22.10.10.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Aug 2025 10:10:52 -0700 (PDT)
+From: Aliaksandr Smirnou <support@pinefeat.co.uk>
+To: jacopo.mondi@ideasonboard.com,
+	hverkuil@xs4all.nl,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Aliaksandr Smirnou <support@pinefeat.co.uk>
+Subject: [PATCH v4 0/2] Pinefeat cef168 lens control board driver
+Date: Fri, 22 Aug 2025 18:10:39 +0100
+Message-Id: <20250822171041.7340-1-support@pinefeat.co.uk>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250819033746.16405-4-xiandong.wang@mediatek.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Xiandong,
+This patch series adds support for the Pinefeat adapter, which interfaces
+Canon EF and EF-S lenses to non-Canon camera bodies. The cef168 circuit
+control board provides an I2C interface for electronic focus and aperture
+control. The driver integrates with the V4L2 sub-device API.
 
-kernel test robot noticed the following build errors:
+For more information about the product, see:
+https://github.com/pinefeat/cef168
 
-[auto build test ERROR on jassibrar-mailbox/for-next]
-[also build test ERROR on robh/for-next krzk/for-next krzk-dt/for-next linus/master v6.17-rc2 next-20250822]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Changes in v4:
+ - removed driver mention from the hardware documentation;
+ - added named email in commit signed-off-by;
+ - added select CRC8 in Kconfig;
+ - removed header file;
+ - moved variable declaration at the beginning of the function;
+ - removed kerneldoc from structures;
+ - removed control id check as the core handles this for us;
+ - removed Power Management Runtime (pm_runtime_*) calls as redundant;
+ - reserved v4l2 controls in linux header file;
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Xiandong-Wang/dt-bindings-mailbox-add-cmdq-yaml-for-MT8189/20250819-113946
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jassibrar/mailbox.git for-next
-patch link:    https://lore.kernel.org/r/20250819033746.16405-4-xiandong.wang%40mediatek.com
-patch subject: [PATCH v3 3/4] mailbox: mtk-cmdq: Add cmdq driver for mt8189
-config: arm-randconfig-001-20250822 (https://download.01.org/0day-ci/archive/20250823/202508230035.zCJcuz93-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project d26ea02060b1c9db751d188b2edb0059a9eb273d)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250823/202508230035.zCJcuz93-lkp@intel.com/reproduce)
+Link to v3: https://lore.kernel.org/all/20250817130549.7766-1-support@pinefeat.co.uk/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508230035.zCJcuz93-lkp@intel.com/
+Patches:
+  dt-bindings: Pinefeat cef168 lens control board
+  media: i2c: Pinefeat cef168 lens control board driver
 
-All errors (new ones prefixed by >>):
-
->> drivers/mailbox/mtk-cmdq-mailbox.c:781:3: error: field designator 'mminfra_offset' does not refer to any field in type 'const struct gce_plat'
-     781 |         .mminfra_offset = 0x40000000, /* 1GB */
-         |         ~^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 error generated.
+ .../bindings/media/i2c/pinefeat,cef168.yaml   |  47 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/media/i2c/Kconfig                     |   9 +
+ drivers/media/i2c/Makefile                    |   1 +
+ drivers/media/i2c/cef168.c                    | 331 ++++++++++++++++++
+ include/uapi/linux/v4l2-controls.h            |   6 +
+ 7 files changed, 403 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
+ create mode 100644 drivers/media/i2c/cef168.c
 
 
-vim +781 drivers/mailbox/mtk-cmdq-mailbox.c
-
-   777	
-   778	static const struct gce_plat gce_plat_mt8189 = {
-   779		.thread_nr = 32,
-   780		.shift = 3,
- > 781		.mminfra_offset = 0x40000000, /* 1GB */
-   782		.control_by_sw = false,
-   783		.sw_ddr_en = true,
-   784		.gce_num = 2
-   785	};
-   786	
-
+base-commit: 2b38afce25c4e1b8f943ff4f0a2b51d6c40f2ed2
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
