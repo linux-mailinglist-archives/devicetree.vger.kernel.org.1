@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-207861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBE79B31058
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:27:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA0A4B3105D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:27:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 957BE1CE4539
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 07:27:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 112C8B623EF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 07:26:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4E12EA172;
-	Fri, 22 Aug 2025 07:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966E22EA48A;
+	Fri, 22 Aug 2025 07:27:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VrxRkAjY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JZTLG8Ud"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78FFC2E9ECB
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 07:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 099552E7BCF
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 07:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755847632; cv=none; b=Krp3dGvmg9XU68XdkM5FXjGMeO5uvg9O8jRMGlIol5HzBQRqafPGo+44CYaQSK5cn9uXPJaWFmxlK2OCwlTd+bDpLYVJr7gdlIR9vayaplEXKbhWCbHzvIY0o9IEyYZmuz6eBKY1ozNo4C7eftXfSQvK0h+g/cHQYqCtIKVwT9s=
+	t=1755847636; cv=none; b=CSKyJagcyRwltAHQ2JWj+AdmfsvYs4AATIQx98AZyg6A4Ujtp9PB5VbjyJ1CqgpDXDi92sWmlt6vaFZw6thoNcRrfmaFkxZDvPyxj8MLTCnO5aL8UsAGOKX85S705mTPqgrqIjRbjYQ6q5Z/DcIs35XdFW295J0aErbvnMpaSKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755847632; c=relaxed/simple;
-	bh=CLvam64GpjkvK9z9EBex7fnXV+Xe1Yh5pbFJp8bR21M=;
+	s=arc-20240116; t=1755847636; c=relaxed/simple;
+	bh=zRF/SWKg7J8zSJMhgoR7B0BpUTYTZqskWOwFGNr7t0U=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mzDgbKwN6n/ZwJqVE32x1Up0tC0v/onCLGisv/GGUALvfqSepGD8nRPEUHV8YIN0uWWPU+330PnfUYLtM6x4xDXkzpt8B5Rk12UgEeV8EmZq/YKHnjiC3PqQToByqYfGunUmFxjKR0ozaOzWZe6auFDGEoQCnZihWKnNzFPU7yY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VrxRkAjY; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=AmNMMvAUr1YTOF0GX9MWBiKR6aLLMwnA9eb6FcsRu4PB9uM1KXOtur7z0DpZA2xZKF0AxLcakjT10Pl89Qg294qrag07n9IqODu3hFa821TkVIZ7oZ8vCyl7ColoXAwTRxb3VKEpNTIR1NdFgAorGVyYp+GCXUUM9f4ssWBt4H0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JZTLG8Ud; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57M6uRlW006008
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 07:27:09 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57M6uRZ1027931
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 07:27:14 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=CgYC/weqOyG
-	d9M8cE9Fo8jaIsPKmSKrevJQt6OIFqZ8=; b=VrxRkAjYRFYtY1uJpVxGFOCV4i3
-	Nf6fA4M3nksP5zGbPWmdbOLJ2Kj0EpKReni8pCtQCVnvyKxOj0OwBf3Paqw/6ovm
-	XykPBouT9fRPG6nMwYgxFWdP9UhngEyVN/A6jbX7ltVZlruMGpLl+qlhi4rm5RZg
-	U7/EYU9qmTPCSi0RNsRMD+Vh7ECVd5KcbfQjmS15uNW07d7SyBHLJQ0hg5LXHpRK
-	AmlVSDjMGcv7vJ1CR7TqZHFYVv8DDoaP6A6Bb2Gbefyg5JxDRpu45bIYOVrXdSqG
-	9Bv9Y950SzIhVuMf1ZEA/Ttc7emwUnmaWtyWYEBgfP7hhRDqmw61nwhg/Kw==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52dr4ru-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=sLkMtTr2Bn5
+	K4bQdcvBu5RXJWEJPuqmisraPjRoHi84=; b=JZTLG8UdvEGhrXgafJghaE6AEqz
+	KW55gyrCFst3Dkb30kMhwcH2RTRQBMGwO0Q0CrIdytViNa+cqappP4w8mfH/g4gz
+	OYsIHDJKMKlLpthKIAkopTa17fT73C3AhTYieIIOsUTbocIzF0aFN9Ivl03r2KDS
+	ofUNn/USOsRMASyUIfFkMPssqSyiD6EpEvHNHisce3+0WYn71xvR3lsx5kqCxVER
+	kzanZv7iwaX+SC4iJJwSgJfHIIFwMNhDqpVesbZ7izj/VdwnrTkYQzJ2acB/1TNC
+	J7bDrHlWCMr2BohPQm092sV+aP3P8ILA7x/g/MPWeNNDSu2jNvC7azY8EnQ==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52988g9-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 07:27:09 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-324e41e946eso3540899a91.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 00:27:09 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 07:27:14 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-32505dbe21cso965100a91.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 00:27:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755847628; x=1756452428;
+        d=1e100.net; s=20230601; t=1755847633; x=1756452433;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CgYC/weqOyGd9M8cE9Fo8jaIsPKmSKrevJQt6OIFqZ8=;
-        b=HdEKIUDqsdQ0Mvuho7QDanKEh4UjCmY+UOIWbKW03s5PPx5L+frnT450rxN5+zw+ku
-         sso2TuwW+4h35i+luhjoxuxCPHpxlM1RW9qb/t8SL8ESOuy0mVA6O5ltA/L9T5MV3A9R
-         ahGTPQqnwKkqK2b0tGxMufKAON66GcbuRLEYUHeIGYJP1oKx0qmbiPYvi1znAIZQ03/c
-         RbjhUU4DNhwXk0jxlfN3YYgEYog0/k83pa5dLDfJbVs+fK/OjhdeYRxm1M0VJRQno8yC
-         abqqjaOV2JE3KPwNTSZzYWOoqJ/pRWjw2HnCCuIeguxgW0pe4PhpWJqiM+MM9dD6BhWi
-         aNHg==
-X-Forwarded-Encrypted: i=1; AJvYcCUydE+rWa6FW4fd1+AsOEiPYdl8iLJ/ls5ycsZlJXKbpp2BenoOZn1tLtpxsLet1Wo92Wewj5krOXiQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxz2M1QAbkJQaHonqv9SAGm6Xb8hJkvpDR0hlHuG7ivs88FR/dI
-	lwvDwnP5aXKgciAGrZ0f3ygkiwA9s43TSZ2E0qe7sc1wwTgKUlWqmjaiAL2mcyNDLTKCfOJIuiW
-	Akcv2LOxqzDMSH7b9DHa1t79osbWki7PgvkxnqlfWvXzsSsmezmwssmLCcIMS9Ea0
-X-Gm-Gg: ASbGncvoV+RTOR2eFWEyvuzSQ7uOjR/ECHvsCK91Th4hhTrp0ZR9L+WKZ5K3LFrI6Hr
-	hAZEazsc+ZmKiO+5wvJw6jMkSOXFn9IhQyMM0sxUrb0fFYB3iWc/b39J6wiGf/99iDTJAjOfp7k
-	+9vRZHT4/eeF4Eu69w5dS3bristwQ/pcCnnhwQNlc32e3TRjrkje07sEGI8ZfrRsG66TIuPu342
-	F+DUyAsoFBGJ9r78wk1im7GdlTLqMmt2+Er6tQd7YESzlYUUUUd3gNaxdR7jnO2/gLE+R6JEXGQ
-	aQwjBs+xU38ZAR1Bezw57N1PRyYMX0ZumujY65eeZFsIlyRsqsXkQ2KuwILHSl9BDrBZ5VjadZh
-	K
-X-Received: by 2002:a17:90b:3b8d:b0:321:c4f9:e5b5 with SMTP id 98e67ed59e1d1-32515eda512mr2721224a91.28.1755847627845;
-        Fri, 22 Aug 2025 00:27:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFPXSm6bqwkB+lq/+CeeHKNmwDCs1TpmePhgenu74kzGX2ngcV6qC7lpHpf4+TyFgCMwrYB2w==
-X-Received: by 2002:a17:90b:3b8d:b0:321:c4f9:e5b5 with SMTP id 98e67ed59e1d1-32515eda512mr2721181a91.28.1755847627235;
-        Fri, 22 Aug 2025 00:27:07 -0700 (PDT)
+        bh=sLkMtTr2Bn5K4bQdcvBu5RXJWEJPuqmisraPjRoHi84=;
+        b=vYL8uMtGtrZquS0+DtyqNFerY5ik1D3aR1s5AVFFnEiF6CFIAdyknt5FJ+oMofYEud
+         ZHoHYLZYop8crbpb04mBBA06xtvBnnIcurM69FuS3Iw18ffoIxgpzAe50RRgf4OecULx
+         KCeLJPSmxZoZsBizdoH1Mj2da5Qzg24e1vjKb8S19EWaK5Nkp4AlwdlaQc/Psm+tU2UE
+         TaMAOU8wf9YLWryDVXB3AUQ/vln5V9WlW+QOGRIoz/rk7ZEgqXZLbUQZqYwGw06nXkU1
+         P0r0zN1GKA2SIhnYgp+BIyPIzbZg95+86Bemzy9HKtgYForBXnlDLNQ8ev0cLlrKA9zi
+         Cplg==
+X-Forwarded-Encrypted: i=1; AJvYcCXY1LkkFaZoQFrgtte44j17D9xYQQgH/c9WGEnCiQvFdTaSOb2RcJX3V6zh4qgzAFmH67OfKz2FcBnM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwC7//Vl0Fm83OODSkVXipJKc+yXVKE3F+5yfrIqTyBjLY5QIMu
+	Z7hwnbuHkhB6oJq0veliwgkYlbyCQreXBaE8rzTKbO7k4jUMUp74OPxs9p2jhr6gcjswDDb8Gd8
+	xop5STE+0Km9dgytB0e11DOzHh9HdlLODz/o5dn73VmYT7Sr/Z8QrepwLwB1F10sx
+X-Gm-Gg: ASbGncuFIJHOpo/sMM/ZbDpf5/+fDjPUhF6trTHI9pmtg8siS71z4eXQrv9mfMFAbWi
+	nvg+g9NfIMnEPAftwerPVwCNU+GVcJi4oRHULZHxZzjFZuWparKeT4Qb7/WaRAs6pu6hXG5lHuI
+	9yYQQLYw7EdIOTOlq+juBTrAlYhDLJGDnwux0CgBdDk5XUlKwkV7VRW9wb+/SZ3m9YPMNWpM1iD
+	zP7MjYruj0Rgaszogw9Uo9z81sSrmD4DcuOY0KATuQ8FbRB1tuEzry5UmzPcRAKia7m8G3cSRcQ
+	9n0/2M6aSdBkP0PoanNlNnsegIW0JlkdOHd5JFsGxlkpU2a4hMelfgL0eaW9oqAlLG77WJkBick
+	L
+X-Received: by 2002:a17:90b:55c7:b0:321:1680:e056 with SMTP id 98e67ed59e1d1-32515e36b50mr2995198a91.9.1755847633546;
+        Fri, 22 Aug 2025 00:27:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFsnvfjM+sJnS56KF2zpncH91f2aO5DeQUnn9KXd7VBs1w3xVslfyycQjtQYddBs5i+aAOL0g==
+X-Received: by 2002:a17:90b:55c7:b0:321:1680:e056 with SMTP id 98e67ed59e1d1-32515e36b50mr2995158a91.9.1755847632922;
+        Fri, 22 Aug 2025 00:27:12 -0700 (PDT)
 Received: from hu-vdadhani-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4763fe3047sm6416367a12.17.2025.08.22.00.27.01
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4763fe3047sm6416367a12.17.2025.08.22.00.27.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Aug 2025 00:27:06 -0700 (PDT)
+        Fri, 22 Aug 2025 00:27:12 -0700 (PDT)
 From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
 To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
         conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
@@ -89,11 +89,10 @@ To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
 Cc: mukesh.savaliya@oss.qualcomm.com,
-        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 1/6] dt-bindings: qcom: se-common: Add QUP Peripheral-specific properties for I2C, SPI, and SERIAL bus
-Date: Fri, 22 Aug 2025 12:56:46 +0530
-Message-Id: <20250822072651.510027-2-viken.dadhaniya@oss.qualcomm.com>
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Subject: [PATCH v6 2/6] soc: qcom: geni-se: Cleanup register defines and update copyright
+Date: Fri, 22 Aug 2025 12:56:47 +0530
+Message-Id: <20250822072651.510027-3-viken.dadhaniya@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250822072651.510027-1-viken.dadhaniya@oss.qualcomm.com>
 References: <20250822072651.510027-1-viken.dadhaniya@oss.qualcomm.com>
@@ -104,141 +103,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX4iSpZxSkhVgw
- wCVoJ6Cs1bB2E3wcmydz7WeVn6Y5TzsipyMTfaEU6wvBSN0Y65nC9uBOt9CtaMuGE+E9QPH5su6
- Z4nGuHf4LmRLM2MyK80xBYloHEBX9FakB9JII4i98rdfjmsLaV29RKNpuI9enfmGdew3/s17k/M
- xKj7mS/yaXCh6hE44dXzPH/YwwXIaDxRMyZ2XKlZI0FAsrtrtKomK+i6QyJ0GPR2Fj+Gq+clT4b
- kpwEhqH1FYtuIUwL3ynUvdxo+cRryukX740x3XEuTKZN9ycVoD/Q2ND/TTzaQzNDwG8b0AdqbjW
- j4YLQnyBIfXxtj+YsgzZEpXZ/PDvvf6K03sUFN0VhX6jwPHOe0vSWStWqY1DIjJsF7ZdY44i7TM
- 8xvQQacxQDK2pgRXuyMFiFdC6HnbXg==
-X-Proofpoint-ORIG-GUID: JIYwsH201H_2xF7ZJZSMm3DjYiQz-nDg
-X-Proofpoint-GUID: JIYwsH201H_2xF7ZJZSMm3DjYiQz-nDg
-X-Authority-Analysis: v=2.4 cv=SoXJKPO0 c=1 sm=1 tr=0 ts=68a81bcd cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
- a=gEfo2CItAAAA:8 a=KKAkSRfTAAAA:8 a=M1Du_JTgEIh7wHf307cA:9
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=TjNXssC_j7lpFel5tvFf:22 a=sptkURWiP4Gy88Gu7hUp:22
- a=cvBusfyB2V15izCimMoJ:22
+X-Authority-Analysis: v=2.4 cv=ZJKOWX7b c=1 sm=1 tr=0 ts=68a81bd2 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=cWaLTDLleWsxmrQceUoA:9
+ a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-ORIG-GUID: dcRGNkBohWSi6FH_MeWTSPC6H_XA8Bef
+X-Proofpoint-GUID: dcRGNkBohWSi6FH_MeWTSPC6H_XA8Bef
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfXzi2k/oo2VgXc
+ TxMKv/+aQltac2qYs33GThxPfNBunnS9Q6UR4R9WSOm22v36aycYHYg0PS8xPv7fr9RGCFyjP5u
+ oBudgO3hdiBWnjdfrePWictauuym+vNcz/b6bxfNSIIQ1ecDCHkIBRcN27hjcYrT721fcG+FrYu
+ BJUVIDh8cR59gmZLRFI1svGycKqyn2T7LaTduSiKLqbONA3i15BRb6FyAsmrTzpQJncW17Dg8Ei
+ SFfJzbdYtSCIvWoCrOSLy1TokDIfKoqSOM+zni7Tm3zlPFiX8raIRILadZyeqnnOj5SMJm38mHO
+ cn9qbL6dYkv17XZDP00PVF5bKUfycrpNOpzsUurOEKY49TRZt0DyZb3yL6t4qBWV90FF1u604Lg
+ cgU0j/VAefmrNkyxCxsnMiM0gr9KJQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-22_02,2025-08-20_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0
- priorityscore=1501 suspectscore=0 malwarescore=0 phishscore=0 clxscore=1015
+ bulkscore=0 priorityscore=1501 malwarescore=0 adultscore=0 suspectscore=0
+ lowpriorityscore=0 impostorscore=0 phishscore=0 clxscore=1015 spamscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
 
-Introduce a new YAML schema for QUP-supported peripherals. Define common
-properties used across QUP-supported peripherals.
+Refactor register macros for consistency and clarity and remove redundant
+definitions and update naming for better alignment.
+Update copyright to include Qualcomm Technologies, Inc.
 
-Add property `qcom,enable-gsi-dma` to configure the Serial Engine (SE) for
-QCOM GPI DMA mode.
-
-Reference the common schema YAML in the GENI I2C, SPI, and SERIAL YAML
-files.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Co-developed-by: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
-Signed-off-by: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
 Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
 ---
-v5 -> v6:
+ drivers/soc/qcom/qcom-geni-se.c | 32 ++++++++++++++++----------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
-- No change.
-
-v5 Link: https://lore.kernel.org/linux-i2c/20250624095102.1587580-2-viken.dadhaniya@oss.qualcomm.com/
-
-v4 -> v5:
-
-- Add Reviewed-by tag.
-- Update the email domain from 'quic' to 'oss'.
-
-v4 Link: https://lore.kernel.org/all/20250503111029.3583807-2-quic_vdadhani@quicinc.com/
-
-v3 -> v4:
-
-- Update qcom,gsi-dma-allowed property name to qcom,enable-gsi-dma.
-- Remove full stop form title.
-- Add reference of common schema YAML in the I2C, SPI, and SERIAL YAML files.
-
-v3 Link: https://lore.kernel.org/linux-arm-msm/20250303124349.3474185-3-quic_vdadhani@quicinc.com/
----
----
- .../bindings/i2c/qcom,i2c-geni-qcom.yaml      |  1 +
- .../serial/qcom,serial-geni-qcom.yaml         |  1 +
- .../soc/qcom/qcom,se-common-props.yaml        | 26 +++++++++++++++++++
- .../bindings/spi/qcom,spi-geni-qcom.yaml      |  1 +
- 4 files changed, 29 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,se-common-props.yaml
-
-diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-index 9f66a3bb1f80..51534953a69c 100644
---- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-+++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-@@ -75,6 +75,7 @@ required:
+diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+index 3c3b796333a6..e8ab2833815e 100644
+--- a/drivers/soc/qcom/qcom-geni-se.c
++++ b/drivers/soc/qcom/qcom-geni-se.c
+@@ -1,5 +1,8 @@
+ // SPDX-License-Identifier: GPL-2.0
+-// Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
++/*
++ *  Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
++ *  Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ */
  
- allOf:
-   - $ref: /schemas/i2c/i2c-controller.yaml#
-+  - $ref: /schemas/soc/qcom/qcom,se-common-props.yaml#
-   - if:
-       properties:
-         compatible:
-diff --git a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-index dd33794b3534..ed7b3909d87d 100644
---- a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-+++ b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-@@ -12,6 +12,7 @@ maintainers:
+ /* Disable MMIO tracing to prevent excessive logging of unwanted MMIO traces */
+ #define __DISABLE_TRACE_MMIO__
+@@ -110,22 +113,20 @@ struct geni_se_desc {
+ static const char * const icc_path_names[] = {"qup-core", "qup-config",
+ 						"qup-memory"};
  
- allOf:
-   - $ref: /schemas/serial/serial.yaml#
-+  - $ref: /schemas/soc/qcom/qcom,se-common-props.yaml#
+-#define QUP_HW_VER_REG			0x4
++/* Common QUPV3 registers */
++#define QUPV3_HW_VER_REG		0x4
  
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,se-common-props.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,se-common-props.yaml
-new file mode 100644
-index 000000000000..6a34f05a07e8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,se-common-props.yaml
-@@ -0,0 +1,26 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/qcom/qcom,se-common-props.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: QUP Peripheral-specific properties for I2C, SPI and SERIAL bus
-+
-+description:
-+  The Generic Interface (GENI) based Qualcomm Universal Peripheral (QUP) is
-+  a programmable module that supports a wide range of serial interfaces
-+  such as UART, SPI, I2C, I3C, etc. This defines the common properties used
-+  across QUP-supported peripherals.
-+
-+maintainers:
-+  - Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
-+  - Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-+
-+properties:
-+  qcom,enable-gsi-dma:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Configure the Serial Engine (SE) to transfer data in QCOM GPI DMA mode.
-+      By default, FIFO mode (PIO/CPU DMA) will be selected.
-+
-+additionalProperties: true
-diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
-index 2e20ca313ec1..d12c5a060ed0 100644
---- a/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
-+++ b/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
-@@ -25,6 +25,7 @@ description:
+ /* Common SE registers */
+-#define GENI_INIT_CFG_REVISION		0x0
+-#define GENI_S_INIT_CFG_REVISION	0x4
+-#define GENI_OUTPUT_CTRL		0x24
+-#define GENI_CGC_CTRL			0x28
+-#define GENI_CLK_CTRL_RO		0x60
+-#define GENI_FW_S_REVISION_RO		0x6c
++#define SE_GENI_INIT_CFG_REVISION	0x0
++#define SE_GENI_S_INIT_CFG_REVISION	0x4
++#define SE_GENI_CGC_CTRL		0x28
++#define SE_GENI_CLK_CTRL_RO		0x60
++#define SE_GENI_FW_S_REVISION_RO	0x6c
+ #define SE_GENI_BYTE_GRAN		0x254
+ #define SE_GENI_TX_PACKING_CFG0		0x260
+ #define SE_GENI_TX_PACKING_CFG1		0x264
+ #define SE_GENI_RX_PACKING_CFG0		0x284
+ #define SE_GENI_RX_PACKING_CFG1		0x288
+-#define SE_GENI_M_GP_LENGTH		0x910
+-#define SE_GENI_S_GP_LENGTH		0x914
+ #define SE_DMA_TX_PTR_L			0xc30
+ #define SE_DMA_TX_PTR_H			0xc34
+ #define SE_DMA_TX_ATTR			0xc38
+@@ -142,7 +143,6 @@ static const char * const icc_path_names[] = {"qup-core", "qup-config",
+ #define SE_DMA_RX_IRQ_EN		0xd48
+ #define SE_DMA_RX_IRQ_EN_SET		0xd4c
+ #define SE_DMA_RX_IRQ_EN_CLR		0xd50
+-#define SE_DMA_RX_LEN_IN		0xd54
+ #define SE_DMA_RX_MAX_BURST		0xd5c
+ #define SE_DMA_RX_FLUSH			0xd60
+ #define SE_GSI_EVENT_EN			0xe18
+@@ -179,7 +179,7 @@ static const char * const icc_path_names[] = {"qup-core", "qup-config",
+ /* SE_DMA_GENERAL_CFG */
+ #define DMA_RX_CLK_CGC_ON		BIT(0)
+ #define DMA_TX_CLK_CGC_ON		BIT(1)
+-#define DMA_AHB_SLV_CFG_ON		BIT(2)
++#define DMA_AHB_SLV_CLK_CGC_ON		BIT(2)
+ #define AHB_SEC_SLV_CLK_CGC_ON		BIT(3)
+ #define DUMMY_RX_NON_BUFFERABLE		BIT(4)
+ #define RX_DMA_ZERO_PADDING_EN		BIT(5)
+@@ -196,7 +196,7 @@ u32 geni_se_get_qup_hw_version(struct geni_se *se)
+ {
+ 	struct geni_wrapper *wrapper = se->wrapper;
  
- allOf:
-   - $ref: /schemas/spi/spi-controller.yaml#
-+  - $ref: /schemas/soc/qcom/qcom,se-common-props.yaml#
+-	return readl_relaxed(wrapper->base + QUP_HW_VER_REG);
++	return readl_relaxed(wrapper->base + QUPV3_HW_VER_REG);
+ }
+ EXPORT_SYMBOL_GPL(geni_se_get_qup_hw_version);
  
- properties:
-   compatible:
+@@ -220,12 +220,12 @@ static void geni_se_io_init(void __iomem *base)
+ {
+ 	u32 val;
+ 
+-	val = readl_relaxed(base + GENI_CGC_CTRL);
++	val = readl_relaxed(base + SE_GENI_CGC_CTRL);
+ 	val |= DEFAULT_CGC_EN;
+-	writel_relaxed(val, base + GENI_CGC_CTRL);
++	writel_relaxed(val, base + SE_GENI_CGC_CTRL);
+ 
+ 	val = readl_relaxed(base + SE_DMA_GENERAL_CFG);
+-	val |= AHB_SEC_SLV_CLK_CGC_ON | DMA_AHB_SLV_CFG_ON;
++	val |= AHB_SEC_SLV_CLK_CGC_ON | DMA_AHB_SLV_CLK_CGC_ON;
+ 	val |= DMA_TX_CLK_CGC_ON | DMA_RX_CLK_CGC_ON;
+ 	writel_relaxed(val, base + SE_DMA_GENERAL_CFG);
+ 
 -- 
 2.34.1
 
