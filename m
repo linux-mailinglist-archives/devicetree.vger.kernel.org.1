@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-208409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 924E6B324A0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 23:34:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABF2AB324A6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 23:35:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BD8F188D7FF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:32:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C2BBAE31F1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0E4338F26;
-	Fri, 22 Aug 2025 21:29:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 316B2221F09;
+	Fri, 22 Aug 2025 21:32:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uOgDQtkT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lHol3RJ6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B314B20F07C;
-	Fri, 22 Aug 2025 21:29:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0777A1531C8;
+	Fri, 22 Aug 2025 21:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755898172; cv=none; b=X2MKt4Egub+IG1CRZm+w9NEAFSv1ezDedpHEb3D3NqyJHGiOdJoOyfnzbOefMdLMtBjXuPUg1+Rw6kAJ/DCwvKgyysVLy+Jfwuate3MckwS9Mpq0wtDgB7wcGnYBpmMN23i/x7Wjc8qi1G3p2z7OQ0WYc8M6v5kBlOUD9aU6j0M=
+	t=1755898348; cv=none; b=SFIAChaC+TDcvjkp/H1eZy6kY5AwFhawjwmuraFfHzEFurcd/v63w+Ie6zml8E/danlQIjsXgPvyqM3Vgpwc+K9H+J/+b4PYvoTKpON1UFIcLDFF4rTgb36oqDkOIxs4rf+DCiQT6mmYv5+BhpqLThk8crUSub3vi3MNJu3VOfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755898172; c=relaxed/simple;
-	bh=XdRfsuCBeE2JPGsoh0xnqLu4uAHzTxPybD5NLEAdrus=;
+	s=arc-20240116; t=1755898348; c=relaxed/simple;
+	bh=LeSrXwZaADMtK37404XLtISL1PIAJ7ce7zI3rX1/TPU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GFOh+WRUNFeFUnp49JxU0CtzGC8jgHz6SlRG//hvY+HxfB/0hkxl0m9ATHnzmoKInMxpI8U2fSbUp085MeuelhMT9Vnurpws2827Ew+MQW+ayV1XaN4UeKhQJJ0Rv525MDtOZviYsfXFKCBQ4yEowPpUxuX5Zvotay5gmmQM9/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uOgDQtkT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BA80C4CEED;
-	Fri, 22 Aug 2025 21:29:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zw7TwjCKoXd73FiQ+DaU+kElkXdkU5qdzd9bZhPKwHE5VHX09HkHhUvbDeizVe4gijGWf1oMtlqVayux4VFa2csi6SrlyZIv0xBIaH7alIYtDzMQo4Ig7Tl8oECn0lKEgNwaplCxIruR2dWch/i35FJL24FVNc3I56ngjLcWMAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lHol3RJ6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DE28C4CEF1;
+	Fri, 22 Aug 2025 21:32:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755898172;
-	bh=XdRfsuCBeE2JPGsoh0xnqLu4uAHzTxPybD5NLEAdrus=;
+	s=k20201202; t=1755898347;
+	bh=LeSrXwZaADMtK37404XLtISL1PIAJ7ce7zI3rX1/TPU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uOgDQtkTFuyN6OSUi4Zg7YTx3n4m4lFnUxCOO8c1PiER+3BJMUwdo9DOBrgyzC2oQ
-	 nA5Df4iyKsTWLxcNNJVcUf4T5YMs9FGJ+lhcCm15tJn0TuEMrkBTpiLzvA+nF6ynKS
-	 Uqmf7/i/Z9ecUybh+xHVtFs6Hedv3jevj7Wif6XOqGv6NQGsZ27EnT6xGq7n34sXEb
-	 GKQHVWEHu2vFQzjnLz+jrNJSCn9NzUYDk/ZeG6Q13+GiHdvQvt8v7fKvTWs1HWiPux
-	 1SOP7zlaj9wG9gVVVnI6XRnJav0Yq+cxgEgigSWfMrsC9/6YkmxuTVlFrny8ORiZvG
-	 GYJxcXitlLM5w==
-Date: Fri, 22 Aug 2025 14:29:30 -0700
+	b=lHol3RJ6EquQtHwVZq0nrk9+hlq6+jOft1pTk2RVAdHdRTwrOkIO+IUQrqf/pmJEg
+	 1n6NQ/MtXiQokBc0Kjf24UdDebYVZLvqb9crhaX0mGRT2kUI3b1xzndF5+8WbuE14D
+	 bSPzdOrt3VXitdVkEQuWJhmrRDZZ7v/lnmvHiCHwsl1mGYn+ErmXH4WpY8B9E/bUuC
+	 bWKPe8NO+B9jAQ7VOYjJJuFmahxov/1InwJgVTFyS1SAcYejIbIuMZ18tAgFQ/6dL4
+	 1voe4twkuiDZcxhQdjlAlD4f2b3Z0JlkDQsbgLRgVXIEd8Exzj4uFfPbTzoZXr6RGk
+	 XcLRLj4oeM7bw==
+Date: Fri, 22 Aug 2025 14:32:26 -0700
 From: Drew Fustini <fustini@kernel.org>
 To: Icenowy Zheng <uwu@icenowy.me>
 Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
@@ -50,11 +50,11 @@ Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
 	Conor Dooley <conor+dt@kernel.org>, Han Gao <rabenda.cn@gmail.com>,
 	Yao Zi <ziyao@disroot.org>, linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] riscv: dts: thead: th1520: add coefficients to the
- PVT node
-Message-ID: <aKjhOuqlQyuLCVEK@x1>
+Subject: Re: [PATCH 3/3] riscv: dts: thead: th1520: add soft PWM fan for
+ Lichee Pi 4A
+Message-ID: <aKjh6hrhrRqUvnSd@x1>
 References: <20250816093209.2600355-1-uwu@icenowy.me>
- <20250816093209.2600355-2-uwu@icenowy.me>
+ <20250816093209.2600355-4-uwu@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,49 +63,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250816093209.2600355-2-uwu@icenowy.me>
+In-Reply-To: <20250816093209.2600355-4-uwu@icenowy.me>
 
-On Sat, Aug 16, 2025 at 05:32:07PM +0800, Icenowy Zheng wrote:
-> The manual of TH1520 contains a set of coefficients a little different
-> to the driver default ones.
+On Sat, Aug 16, 2025 at 05:32:09PM +0800, Icenowy Zheng wrote:
+> Because of the SoM+Dock design of Lichee Pi 4A, heat dissipation does
+> not work well; fortunately it comes with a fan port with PWM driving
+> capability.
 > 
-> Add them to the device tree node of PVT.
+> As the hardware PWM controller of Lichee Pi 4A isn't ready yet, drive it
+> with pwm-gpio driver (software PWM) now.
+> 
+> A long PWM period is used, because not only software PWM is used, but
+> also the fan port is a 2-pin one and fast PWM might confuse the BLDC
+> driver on fans.
 > 
 > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 > ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 53 +++++++++++++++++++
+>  arch/riscv/boot/dts/thead/th1520.dtsi         |  2 +-
+>  2 files changed, 54 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> index 03f1d73190499..e9c81bdabed8a 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -676,6 +676,10 @@ pvt: pvt@fffff4e000 {
->  			reg-names = "common", "ts", "pd", "vm";
->  			clocks = <&aonsys_clk>;
->  			#thermal-sensor-cells = <1>;
-> +			moortec,ts-coeff-g = <42740>;
-> +			moortec,ts-coeff-h = <220500>;
-> +			moortec,ts-coeff-j = <(-160)>;
-> +			moortec,ts-coeff-cal5 = <4094>;
->  		};
+> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+> index 4020c727f09e8..f696db01353c5 100644
+> --- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+> @@ -4,6 +4,7 @@
+>   */
 >  
->  		gpio@fffff52000 {
-> -- 
-> 2.50.1
-> 
+>  #include "th1520-lichee-module-4a.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+>  
+>  / {
+>  	model = "Sipeed Lichee Pi 4A";
+> @@ -28,6 +29,58 @@ aliases {
+>  	chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+> +
+> +	gpio_pwm: gpio-pwm {
+> +		#pwm-cells = <3>;
+> +		compatible = "pwm-gpio";
+> +		gpios = <&gpio3 3 GPIO_ACTIVE_HIGH>;
+> +	};
 
-I think moortec,ts-coeff-XXX will need to be rounded to nearest multiple
-of 100 as dtbs_check warns that:
+I think the node name needs to be 'pwm' instead of 'gpio-pwm' as dtbs_check
+warns that:
 
-pvt@fffff4e000: moortec,ts-coeff-g: 42740 is not a multiple of 100
-	from schema $id: http://devicetree.org/schemas/hwmon/moortec,mr75203.yaml#
-pvt@fffff4e000: moortec,ts-coeff-j: -160 is not a multiple of 100
-	from schema $id: http://devicetree.org/schemas/hwmon/moortec,mr75203.yaml#
-pvt@fffff4e000: moortec,ts-coeff-g: 42740 is not a multiple of 100
-	from schema $id: http://devicetree.org/schemas/hwmon/moortec,mr75203.yaml#
-pvt@fffff4e000: moortec,ts-coeff-j: -160 is not a multiple of 100
-	from schema $id: http://devicetree.org/schemas/hwmon/moortec,mr75203.yaml#
+gpio-pwm: $nodename:0: 'gpio-pwm' does not match '^pwm(@.*|-([0-9]|[1-9][0-9]+))?$'
+from schema $id: http://devicetree.org/schemas/pwm/pwm-gpio.yaml#
 
 Thanks,
 Drew
