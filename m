@@ -1,90 +1,87 @@
-Return-Path: <devicetree+bounces-207896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C25DAB31201
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:42:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF6EBB311F7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:40:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB8C67B08EB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:41:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABF445C216F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E6C72EBBB1;
-	Fri, 22 Aug 2025 08:42:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7055C2EB872;
+	Fri, 22 Aug 2025 08:40:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="je0N7Nlk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y5EPUiZr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A09D287276;
-	Fri, 22 Aug 2025 08:42:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41BA0221577;
+	Fri, 22 Aug 2025 08:40:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755852156; cv=none; b=eiMHIxLqvHNYgkzWfcLkFqCZuleumJHIGvSWWx8mzvCRXCj0bVuTrQRng53xJ772VtBRUXqoE9ibs1Jjy2q5nDivQYBUb468WPZEhn5iPJqFjWOTGPGdlqshBdpDVymZ3WOonT4a2xJ6UXILZ78FIj916wBGQdlkfWvS88+Lg3o=
+	t=1755852038; cv=none; b=QI0pwfL4+EuGwFtgPo3BCQDSvs5DaKhyaqs16sZaz7MbDE5CycyaZKeB7fD/bcnT0412HIJwAJQf3iCe9UhvtJR+yUBXG/xUdVpqdZdrDpxbd+ePsM+4wRmnWf3EDomkuJ8fcSqKeAcJSiMm+Au5FMndlnqThFz6OAGPzvfLIxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755852156; c=relaxed/simple;
-	bh=WHCfEIYrpZ9r/ypC/WgaKQSC3GIDtKB9TvHLS/cyANQ=;
+	s=arc-20240116; t=1755852038; c=relaxed/simple;
+	bh=U672dK4v+PxxtgESXJvazGOxF0mN37c2SaWpTHVq4kw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PtlxwKYfIYgKDi7gb73UY9Lv4Pv1ygQAz1MSAbptX6zLK3zUxKvUchWvv/xGb4FIKsdfAmh195jr+GgVkiRCjZSbrlMjAF9otFJk6UA5ErKXFIJ5XXdB36rsKYHoE3bQkB2yMLExQXHKPTlg0e0DfNiTtGMugal8VR5n1GicsN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=je0N7Nlk; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=XrMbvNKRSNnSF17wBBbmWQ82eEPNaqSlEuR4cZ/H4CM=;
-	b=je0N7NlkWm2hwsblw0RIflKegRq7k3Te40Q5yJVH9a/Z3td9XRc3Z8mqLIrYIL
-	ydY7X5rlP6z80W6dVxUbz3XYMZvx7Z6yq0KsBoV/uw0gXOjbKB4Kha1iDMPNUQ6K
-	mTxe+NMwbIJRIv2WOA6wHHIgySXcZFOJYchR871XRCztI=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgBXpG3mLKho6HQVAw--.9849S3;
-	Fri, 22 Aug 2025 16:40:08 +0800 (CST)
-Date: Fri, 22 Aug 2025 16:40:05 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Joy Zou <joy.zou@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, peng.fan@nxp.com, richardcochran@gmail.com,
-	catalin.marinas@arm.com, will@kernel.org, ulf.hansson@linaro.org,
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, frieder.schrempf@kontron.de,
-	primoz.fiser@norik.com, othacehe@gnu.org,
-	Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux@ew.tq-group.com, netdev@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	Frank.Li@nxp.com
-Subject: Re: [PATCH v8 01/11] dt-bindings: arm: fsl: add i.MX91 11x11 evk
- board
-Message-ID: <aKgs5TylbGJ2GBiQ@dragon>
-References: <20250806114119.1948624-1-joy.zou@nxp.com>
- <20250806114119.1948624-2-joy.zou@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FoQNhK66jMn77ElT6+/X29J0jOBmvVaQDOUVz3WdWcfDvfWybtoNTgcCZQ2g7glWHHU0mbonc9CgYzNQ5aYr74Kwcw80VaeylF6JW8oY8U5XbMJpsaF/vlaRD3AvTa3u9W877fYWr0sx6zqvfko/6lH3pEs3HDQYGiMLzCty1hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y5EPUiZr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 343E7C4CEF1;
+	Fri, 22 Aug 2025 08:40:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755852037;
+	bh=U672dK4v+PxxtgESXJvazGOxF0mN37c2SaWpTHVq4kw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Y5EPUiZrJHAk5vVeEqIsRoeciPf0S9JnYzOhTFVuQGXj3vz4PNYmszz+WsgYzr+Kj
+	 1VH94zdXC5rNm7DZwhj3pNoy5me0A+UReQjBj5q3IGEesCy6LtRKzjgIs5fxZG2Xvi
+	 dj+qM6qqndKAmMbCtzItUHjSI5ALwFrOv5L5OaEARZVars60iUwzHWMvDqKk9w57OB
+	 vvRiK8nQDaUOePtu4NUPTHK+qyctgJMsGf5uqTVDdc5fzbQomftZjBMef1HSarWfHV
+	 k97D8Mty4Ho1sdAfsTIB3McUgB4YHxdEiqQSFLK+h9Yal3u6iy8kXAz5Psi/YrFjLJ
+	 SYNI3UhgdEHrw==
+Date: Fri, 22 Aug 2025 10:40:35 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Luis Chamberlain <mcgrof@kernel.org>, 
+	Russ Weight <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Marco Felsch <kernel@pengutronix.de>, 
+	Henrik Rydberg <rydberg@bitmath.org>, Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] dt-bindings: input: Add TouchNetix axiom
+ touchscreen
+Message-ID: <20250822-pristine-earwig-of-vigor-b7b3bf@kuoka>
+References: <20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de>
+ <20250821-v6-10-topic-touchscreen-axiom-v3-3-940ccee6dba3@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250806114119.1948624-2-joy.zou@nxp.com>
-X-CM-TRANSID:M88vCgBXpG3mLKho6HQVAw--.9849S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU5qXdUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEhuxZWioJsERLQAAsG
+In-Reply-To: <20250821-v6-10-topic-touchscreen-axiom-v3-3-940ccee6dba3@pengutronix.de>
 
-On Wed, Aug 06, 2025 at 07:41:09PM +0800, Joy Zou wrote:
-> From: Pengfei Li <pengfei.li_1@nxp.com>
+On Thu, Aug 21, 2025 at 07:26:38PM +0200, Marco Felsch wrote:
+> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
 > 
-> Add the board imx91-11x11-evk in the binding document.
+> Add the TouchNetix axiom I2C touchscreen device tree bindings
+> documentation.
 > 
-> Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
-> Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+>  .../input/touchscreen/touchnetix,ax54a.yaml        | 62 ++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
 
-Applied, thanks!
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
