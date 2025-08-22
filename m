@@ -1,95 +1,123 @@
-Return-Path: <devicetree+bounces-208377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8B6B3230E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:41:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F11B32318
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:44:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0BAC627D0E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:41:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CBB5B206CD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:44:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF492D4813;
-	Fri, 22 Aug 2025 19:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4114B2D4B40;
+	Fri, 22 Aug 2025 19:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mYJUlVdB"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cMb/1Qd4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7869B2D3A93;
-	Fri, 22 Aug 2025 19:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842EB26A1B9;
+	Fri, 22 Aug 2025 19:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755891688; cv=none; b=a6Cnt5Bo0OxT/vmlB1thySbkrrGauTNpJ4k+F2ycTcibG/Ea7q09+3RUv/O063VFdT+eM1hWmT8OqQgSqQ6P9v3n5Vu/Ap2/Jv2KaUeCVobP75yq1kLz7pXR4T3xmlFMMitk6f3HJwENhpjB8ZHubaRqhqmwXJVNWnzCdhtVxII=
+	t=1755891884; cv=none; b=Ats7reOkxWPUf1GPtV5rHjdVAc4XBuH1o2hH8AwqBfMMv9x2sAC10QMB5y9HJJmh+yCYheNUqyT6rzJs5TEX0bFoHmZwzaNPKDv0zLd3qMQPVNB4WCTDJRvXNcD04R7NqREXK6Unt209OVAJs353vWQgNfh/dZXihGLcAA2JOSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755891688; c=relaxed/simple;
-	bh=eVhTL55Cm/6jgWL3xyRWgpeQ5O3aDDaXksPPEMZoazg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H2tYxcBMVqMPzYl6aTYt5vfPl1muI9NpmvtBAmDIakOrC6d6T3+D3RzESw3vFx+u7iajS49XpkT0u8feBnTVScWL6S8cG34xJZDTpVrpj1tGTlowxDGgL3GEZJRmDSbNnitQ4KjTo9AVAh/aloeh3NAdCby9FzkliZEjCv3shjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mYJUlVdB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3053C4CEED;
-	Fri, 22 Aug 2025 19:41:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755891688;
-	bh=eVhTL55Cm/6jgWL3xyRWgpeQ5O3aDDaXksPPEMZoazg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mYJUlVdBFQggbK3gCHZQDTQ8fxT/62u5/b0gxUqtbAQPqmsBxzbR6pok+E9S6CEq5
-	 j9e/wZ3BNvumE1jzvZp/903YJMNqvdRUvunfyEiKM8rE92d6RJuRwdGHFAu0zSog0f
-	 uq6ZMyWU1CgNbCjd75iA4gO6JW3XIbyAMSMVcwlw859GwPHsbDKY9E/qh8Gv9kkK7G
-	 vEs2SRklIfM9kyITlDd5jAqMHxhRjd6uRoqh3JOdDVBzDnjvxV54KjwE0Mpr/qlv6H
-	 rIy1e0plUs1zMEs1d844I/eGZYTlHEDaWU/QQaL3LE1MFV/9jxPrQ9/ocw9SLSN7yR
-	 yjGz2ty31vNiQ==
-Date: Fri, 22 Aug 2025 14:41:27 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ravi Patel <ravi.patel@samsung.com>
-Cc: linus.walleij@linaro.org, mturquette@baylibre.com,
-	cw00.choi@samsung.com, gwk1013@coasia.com, krzk@kernel.org,
-	linux-arm-kernel@axis.com, kenkim@coasia.com, inbaraj.e@samsung.com,
-	ksk4725@coasia.com, tomasz.figa@gmail.com, shradha.t@samsung.com,
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, pankaj.dubey@samsung.com, arnd@arndb.de,
-	dj76.yang@samsung.com, linux-samsung-soc@vger.kernel.org,
-	conor+dt@kernel.org, jesper.nilsson@axis.com,
-	mingyoungbo@coasia.com, hgkim05@coasia.com, smn1196@coasia.com,
-	will@kernel.org, swathi.ks@samsung.com, krzk+dt@kernel.org,
-	soc@lists.linux.dev, catalin.marinas@arm.com, pjsin865@coasia.com,
-	s.nawrocki@samsung.com, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, hrishikesh.d@samsung.com,
-	alim.akhtar@samsung.com, sboyd@kernel.org, hypmean.kim@samsung.com
-Subject: Re: [PATCH v2 07/10] dt-bindings: arm: axis: Add ARTPEC-8 grizzly
- board
-Message-ID: <175589168671.193824.7456670123807424853.robh@kernel.org>
-References: <20250710002047.1573841-1-ksk4725@coasia.com>
- <20250821123310.94089-1-ravi.patel@samsung.com>
- <CGME20250821124050epcas5p22b08f66c69633f10986b7c19b3cd8cb4@epcas5p2.samsung.com>
- <20250821123310.94089-8-ravi.patel@samsung.com>
+	s=arc-20240116; t=1755891884; c=relaxed/simple;
+	bh=HRCJucDAxwR1vzK1TCRotaBhVputfowz8e0wsEsHu7w=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=D2fE68WpJHK+u+Y8JfJ7deAta2IiMTsyKhr3WbzEmZ9q/KrIrxuKLtBUMgU6bhQHWtgpIxqqEpwGmDCdIVw7+WXgtLqDsaGH/ta7Iqsc1YPGYIXuAky7/LpgGQtCDPAF4mAG5JGmoaFwGMMHPJOT4xC8A/PCvhGfLGiZ2QHIY14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cMb/1Qd4; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57MJiTBu318936;
+	Fri, 22 Aug 2025 14:44:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755891869;
+	bh=6vynMBNt9zHEV0YaHp/1iQ9KsKnJ3qZTQ8Qg8vs2o7c=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=cMb/1Qd4ZSGg4Tg4jM3n9AE66JJ0MHb0/GXlTGNueP01q3Sx0yxi8bHjPO9C0Hc0l
+	 GDDq9vhU0wSGl9iZBmkwz6mkQ3JYC2SR6SYD3uVRlo4PI8Lp21DykHtwZI8vCrXsnQ
+	 ae3yZErzds6H6nlnV9A+PC7ImB5toudFqtvOSHvc=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57MJiTZn3834554
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 22 Aug 2025 14:44:29 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 22
+ Aug 2025 14:44:29 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 22 Aug 2025 14:44:29 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57MJiTXv123210;
+	Fri, 22 Aug 2025 14:44:29 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, <linux-omap@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Nishanth Menon <nm@ti.com>
+Subject: Re: (subset) [PATCH 1/4] ARM: dts: omap: dm814x: Split 'reg' per entry
+Date: Fri, 22 Aug 2025 14:44:27 -0500
+Message-ID: <175589184750.648983.14374917269820538529.b4-ty@ti.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20250819131651.86569-5-krzysztof.kozlowski@linaro.org>
+References: <20250819131651.86569-5-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250821123310.94089-8-ravi.patel@samsung.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi Krzysztof Kozlowski,
 
-On Thu, 21 Aug 2025 18:02:51 +0530, Ravi Patel wrote:
-> From: SungMin Park <smn1196@coasia.com>
+On Tue, 19 Aug 2025 15:16:52 +0200, Krzysztof Kozlowski wrote:
+> Multiple entries in 'reg' should be encoded in separate <>.
 > 
-> Document the Axis ARTPEC-8 SoC binding and the grizzly board
-> which uses ARTPEC-8 SoC.
-> 
-> Signed-off-by: SungMin Park <smn1196@coasia.com>
-> Signed-off-by: SeonGu Kang <ksk4725@coasia.com>
-> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
-> ---
->  Documentation/devicetree/bindings/arm/axis.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[4/4] arm64: dts: ti: k3-am6548: Minor whitespace cleanup
+      commit: 44189ccdfc2c96af4b06303c265030cda0e0bf51
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
 
