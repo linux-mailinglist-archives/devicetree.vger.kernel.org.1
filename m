@@ -1,104 +1,148 @@
-Return-Path: <devicetree+bounces-208403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1158B32406
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 23:16:21 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41835B3240E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 23:20:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F232AA046F3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:16:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3586A4E2033
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 301DA31355B;
-	Fri, 22 Aug 2025 21:16:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E34C31353E;
+	Fri, 22 Aug 2025 21:20:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="fynZ0aC+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o4gwtYPv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989F82EB861;
-	Fri, 22 Aug 2025 21:16:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D473C27B335;
+	Fri, 22 Aug 2025 21:20:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755897369; cv=none; b=Kym1Cbp2BCLc2un1MQa1ter3wSP5P3kt/ZNLVAUcj+1QuBWvHmuBOAJVuOngiJkH4vA973Zeg6dowb27s8jEqil5GiaNUmNsVd57I/HcX0PIVjiggE2OHH7siHA41EG0IB9jlMA7ec+pbAkAVAb6e321NgNfT1jVO65U8z7/qBw=
+	t=1755897645; cv=none; b=VxIjyWoIMlWRGChXiht+vrkWm8f24GF7bswySZyEnbBxzePmq7bI/+dcgD8ErBvcJx1WELTpL7Wx9GP3/eC8/I2m5JLHaEcPI+3sBotL6VEG9b5LIFLrdGqVbkl12Y0uT/i96zvCuN8RPE/K0O9KkPMD1yobPNmhsPYjyFIPlMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755897369; c=relaxed/simple;
-	bh=ZB+oCURk+FKq3Yr7Udo2n/2oBoAQiUJpcsqJiCSCiuE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=amSYdhJ0oA1YuQK1Q1np8f8WtiV0zRXCLuifj/q6S5ogQZnleXzPkcV0lzPa6oCezITmL/VxDyhlQSPDOGvEWQqdQOpqyE+T/v3lAFYVONvsJj4gZxHGYuAYsbJu4IDh/t5utQkddLFGWsr1zQSeiTcUxRGvlx8yasZFsrBnB+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=fynZ0aC+; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=il8hQMyYfXw8Tzc5sMl2lQfGh5RbcWxWYW3ucD/cb6A=; b=fynZ0aC+YlzyqDD4FY9zewVQIF
-	56ZPhZCK4JrmqwCsIFYyjHXl4Gn5RzbWhahxobiC0G3VrpBzWVMLX84iQvYgLICQoi/N1nxs57xV6
-	Cs5buzQUXm/qj9j26+HWra+6mZL6k3nLJptNO+yZFZgXk4I8osr9fFBI8sufkxIB8dsE73RwJQiXs
-	dOzEnM6jM308RctZLplYa7BBArafztWwqvyxLGyXm4WgLykBfh5rvZqhCwXRntKD98+oECQT7aI9f
-	I64phKLZX8Y0ALyhm6/gB7/wYxp+5DAMiqMsQRkq1mOWXHBcu8oLjYOM7nnDx3ibZ+Wvilg/kanQc
-	LiaCQm9g==;
-Received: from i53875a83.versanet.de ([83.135.90.131] helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1upZ6x-0004T7-IZ; Fri, 22 Aug 2025 23:15:47 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: neil.armstrong@linaro.org,
-	quic_jesszhan@quicinc.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	hjc@rock-chips.com,
-	andy.yan@rock-chips.com,
-	andyshrk@163.com,
-	nicolas.frattaroli@collabora.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: (subset) [PATCH 00/13] Support DSI output on rk3576 and roc-rk3576-pc board
-Date: Fri, 22 Aug 2025 23:15:44 +0200
-Message-ID: <175589734234.3314397.11816121357365151257.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250707164906.1445288-1-heiko@sntech.de>
-References: <20250707164906.1445288-1-heiko@sntech.de>
+	s=arc-20240116; t=1755897645; c=relaxed/simple;
+	bh=vtsRBb4sPfT6W/YuCCdEbbOfe14BIwGnGP4Fd7ycMyo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s8jF8lsFrUg01N1vL+eluEkD02TlR3bSe/sTBlq/1q1IY0fVHvXqDf9bQvCZ4d1gNfhnhTwcB3VuRhHD/hcpxv75kvfnGkv3VSjdalLMyCKa69F04q0CwTVFVj9G1IIaJxYGBKLFg4hDEloKa1XKHLK7gbYHtlujtcJPy9mfdAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o4gwtYPv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ED3DC4CEED;
+	Fri, 22 Aug 2025 21:20:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755897644;
+	bh=vtsRBb4sPfT6W/YuCCdEbbOfe14BIwGnGP4Fd7ycMyo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=o4gwtYPve2kzqW5VoEoRCbZfLcL2oSL+8xpjZXUzaw5f2WKCbpmr6f40mHE00Bqz4
+	 618bZC932KkR/cmbVhsqYsCLMlYSlutIfBYmCkHkucmfln+V10ch/D8D3XagzlpQTX
+	 JHRa1n9EvkxC3k6zkCV1gCZoviAiLRAo9ywDMGhaMiCfyhhtHZaVljD9MjFwJO0dm5
+	 /ElPtJfF1E715k/R/7Wb1fqRARAXlLj6VlsE1R64yrBOe8HNWtwTyQvjATNSnjc7Zt
+	 VqjuRqK8ZXk96UkWiK4MH1NQDJh/iDE4RQ1sNHga3E1TtyLLtyWrlywtDIKUWWlzIn
+	 cNXZHGODn6Xgw==
+Date: Fri, 22 Aug 2025 16:20:43 -0500
+From: Rob Herring <robh@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 1/6] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp:
+ Reference usb-switch.yaml to allow mode-switch
+Message-ID: <20250822212043.GA475528-robh@kernel.org>
+References: <20250807-topic-4ln_dp_respin-v4-0-43272d6eca92@oss.qualcomm.com>
+ <20250807-topic-4ln_dp_respin-v4-1-43272d6eca92@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250807-topic-4ln_dp_respin-v4-1-43272d6eca92@oss.qualcomm.com>
 
-
-On Mon, 07 Jul 2025 18:48:53 +0200, Heiko Stuebner wrote:
-> This enables all the necesary bits and bindings to get display output
-> on the dm-m10r800-v3s addon module for the Firefly roc-rk3576-pc board.
+On Thu, Aug 07, 2025 at 06:33:19PM +0200, Konrad Dybcio wrote:
+> From: Neil Armstrong <neil.armstrong@linaro.org>
 > 
-> A bit of cleanup of the ili9881c, because the driver was still trying
-> to send dcs commands when the underlying DSI driver might have already
-> switched to video-mode, which caused me quite a bit of headache until
-> I realized this being the culprit for my garbled display output :-) .
+> The QMP USB3/DP Combo PHY can work in 3 modes:
+> - DisplayPort Only
+> - USB3 Only
+> - USB3 + DisplayPort Combo mode
 > 
-> [...]
+> In order to switch between those modes, the PHY needs to receive
+> Type-C events, allow marking to the phy with the mode-switch
+> property in order to allow the PHY to Type-C events.
+> 
+> Reference usb-switch.yaml as a simpler way to allow the mode-switch
+> property instead of duplicating the property definition.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml     | 7 +++----
+>  1 file changed, 3 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> index 38ce04c35d945d0d8d319191c241920810ee9005..c8bc512df08b5694c8599f475de78679a4438449 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> @@ -73,10 +73,8 @@ properties:
+>      description:
+>        See include/dt-bindings/phy/phy-qcom-qmp.h
+>  
+> -  orientation-switch:
+> -    description:
+> -      Flag the PHY as possible handler of USB Type-C orientation switching
+> -    type: boolean
+> +  mode-switch: true
+> +  orientation-switch: true
+>  
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+> @@ -106,6 +104,7 @@ required:
+>    - "#phy-cells"
+>  
+>  allOf:
+> +  - $ref: /schemas/usb/usb-switch.yaml#
 
-Applied, thanks!
+As reported already in this thread, this adds a crap load of warnings as 
+it makes ports or port required. Sigh. Can QCom folks pay more attention 
+to this please. Every cycle the number goes up though that's often 
+temporary because there's no coordination of taking .dts files after 
+bindings. But generally, progress on QCom warnings has stalled.
 
-[08/13] dt-bindings: display: rockchip: Add rk3576 to RK3588 DW DSI2 controller schema
-        commit: f05530bdaf42aa0e6bb4cde76ba6a081cf473d44
-[09/13] drm/rockchip: dsi2: add support rk3576
-        commit: b6f11f114759a088acf44e86b5cd72f24de85d44
+Here's the top (bottom?) platforms in arm64. The first number is 
+total warnings. The 2nd number is unique warnings (to remove inflated 
+numbers due to lots of boards per SoC).
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+mediatek:785:166
+hisilicon:133:112
+qcom:362:104
+broadcom:286:104
+marvell:558:80
+apm:78:58
+rockchip:128:57
+nvidia:199:53
+sprd:30:29
+xilinx:94:22
+
+Congrats on 3rd place. There's a bunch of pending Mediatek fixes, so I 
+expect you all will move up to 2nd soon. 
+
+All this data is updated daily. There's some scripts to get and process 
+the logs here[1].
+
+Rob
+
+[1] https://gitlab.com/robherring/ci-jobs.git
 
