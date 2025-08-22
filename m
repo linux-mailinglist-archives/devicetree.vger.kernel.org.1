@@ -1,78 +1,101 @@
-Return-Path: <devicetree+bounces-207955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F110B313C7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:44:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E93EBB313B1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:44:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BA19B017EE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:38:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 964481D23440
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:39:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73BF71EBA0D;
-	Fri, 22 Aug 2025 09:33:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76A842EDD73;
+	Fri, 22 Aug 2025 09:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="aOygQgko"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qW8Dkhm5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D912EF65F
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3C8291C3F;
+	Fri, 22 Aug 2025 09:33:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755855185; cv=none; b=lLKTFHYX0EZQiEd9uBElUdgkjjTbJlojSvRDH2zB++JwHZrA7TfdWvSkbwdnltGAsjmM5gikVe7MHzMh8sP7g9mjclf+Pr7zBXjNzR0GRRT8JgH4hkoJfDBNfGLPWoheGMdMb3skRsf/9n/5eLRJ8VOy3h590QhM2qGDn2dU/nw=
+	t=1755855234; cv=none; b=cnQGx6VvZHHJQ/aOHakgqx5LMGoJXBP2NSF86gPSbPXaa0hgCAHTrIKDmJeXnH3d02oFU/wz3K00IB5OHaK5X322m+s+Aw7mh/u1sPt0zmy263AkIZVQHzqPPMvBd+kT0+TTzGSQNlbEtVPEl6FXo/3ZL3G77ION9AYAhHv0I18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755855185; c=relaxed/simple;
-	bh=7VQvdlNb/y4/eGH/Iy/WJpknB6SKJEPsJTruwjxrFSo=;
+	s=arc-20240116; t=1755855234; c=relaxed/simple;
+	bh=l/Mx1B8W3cmAkQuq0/d3MKrqsLFHRjyPr8nhD/OLtq0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E+OsBxULx/wCUoux9sPNOo05PmJJjjABLxXP104A3SGn31KChH+xZfdsKkyOOfrbcszbH8RFO+4rk1QUKWlNIZHkztz34w5nOtMuKgDCH28WXGyRDfJadQRLIoRHLgoeqtAGxz3jg2zjDUxA6qi+GJcUXS51iWJfDO7i3nhLf6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=aOygQgko; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=bHGTe7z2X8VhNkwBjYC+POamvLkfxWgR48fLTVRtZcw=;
-	b=aOygQgkooXvr4XzEcpTOuE1/Zwc7ECheoiXTrTD15h+kpJYOhPe0RD191+8wyq
-	4U0ajuZTkae81jsumFF/hSuJImH2sEDStGSiD5nCBVjRQYGUS3+iFexh/fznJ21/
-	y7IdWGPrkikqoKxC7HCQaJqzfW8ylAe3glUbJtVvNDvyM=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDnX_k2OahoS3soAw--.11369S3;
-	Fri, 22 Aug 2025 17:32:39 +0800 (CST)
-Date: Fri, 22 Aug 2025 17:32:37 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, stefan@agner.ch, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH] ARM: dts: vf: Change the NAND controller node name
-Message-ID: <aKg5NQH09gNqYicc@dragon>
-References: <20250819194018.2850727-1-festevam@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OvJVP9CfayRj+OXDjh7Jm8WV2P+Tf8xaFrnQlZ3S3z5gnPikpF2s1Y+sfgfsAEHnTzxb/eenwm3qZ4vuPyruPndsZv01rooWtfamXWZ48zvjpwbOSWQTP2lr42y9Q+vngNuiH2B0FuywBjXGigmqU9xLYWSEa2bAP4p4ntL6QJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qW8Dkhm5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 281C9C113D0;
+	Fri, 22 Aug 2025 09:33:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755855233;
+	bh=l/Mx1B8W3cmAkQuq0/d3MKrqsLFHRjyPr8nhD/OLtq0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qW8Dkhm50XyxlTPMvx55jL4RnR3x8r5pj34wFRwmGzkdty04mftV1GHHALpktBWG2
+	 JvRyRTQOGAAJlDnm0MPFfbM7RMiPv/E7bfGMlNFGqumhPqqYrOkG3Own1BOmnKdmhg
+	 jAKbQqlaOvj3kuJPTgubvk5Rm/pjYd5LOk7TP0fypKuRb20WXtHLkj7lyizx4n5Y/2
+	 jUUe29woLYmRD5K1NytUiu/O6GLVLwNQuoBlFqkqCguypfotlahlckKJiTTWac1XJX
+	 wcNXXq2KmnsXJjkSZx59ji1v+aaDLbwghzDGLD4vI/nxZKeM4CiCB9D18IUcxx9Yc1
+	 7GRLI4UbKJfJg==
+Date: Fri, 22 Aug 2025 11:33:51 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Michael Riesch <michael.riesch@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Kever Yang <kever.yang@rock-chips.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, Diederik de Haas <didi.debian@cknow.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Collabora Kernel Team <kernel@collabora.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	stable@kernel.org
+Subject: Re: [PATCH v2 2/7] dt-bindings: phy: rockchip-inno-csi-dphy: make
+ power-domains non-required
+Message-ID: <20250822-chirpy-capuchin-of-apotheosis-1133fc@kuoka>
+References: <20250616-rk3588-csi-dphy-v2-0-7a94f079b712@collabora.com>
+ <20250616-rk3588-csi-dphy-v2-2-7a94f079b712@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250819194018.2850727-1-festevam@gmail.com>
-X-CM-TRANSID:Ms8vCgDnX_k2OahoS3soAw--.11369S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU84E_DUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIhefBWioOTcFoAAA3E
+In-Reply-To: <20250616-rk3588-csi-dphy-v2-2-7a94f079b712@collabora.com>
 
-On Tue, Aug 19, 2025 at 04:40:18PM -0300, Fabio Estevam wrote:
-> fsl,vf610-nfc.yaml references nand-controller.yaml, which only allows the
-> node to be 'nand-controller'.
+On Tue, Aug 19, 2025 at 01:00:36AM +0200, Michael Riesch wrote:
+> There are variants of the Rockchip Innosilicon CSI DPHY (e.g., the RK3568
+> variant) that are powered on by default as they are part of the ALIVE power
+> domain.
+> Remove 'power-domains' from the required properties in order to avoid false
+> negatives.
 > 
-> Change it accordingly to fix the following dt-schema warning: 
+> Fixes: 22c8e0a69b7f ("dt-bindings: phy: add compatible for rk356x to rockchip-inno-csi-dphy")
+> Cc: stable@kernel.org
+> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> $nodename:0: 'nand@400e0000' does not match '^nand-controller(@.*)?'
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+> index 5ac994b3c0aa..42da616ae2e3 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+> @@ -57,7 +57,6 @@ required:
+>    - clocks
+>    - clock-names
+>    - '#phy-cells'
+> -  - power-domains
 
-Applied, thanks!
+This could then be restricted per each variant in if:then:.
+
+Best regards,
+Krzysztof
 
 
