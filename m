@@ -1,151 +1,114 @@
-Return-Path: <devicetree+bounces-208100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B8C4B31901
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:15:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9120EB31920
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:18:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94006188A5AB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:13:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D0993AC901
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B252FD7C9;
-	Fri, 22 Aug 2025 13:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91E02FE56D;
+	Fri, 22 Aug 2025 13:15:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="U19nGedy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q3vb/9bR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D9A2FC021
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 13:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B9AD2327A3;
+	Fri, 22 Aug 2025 13:15:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755868410; cv=none; b=hLU2ObB3GPAuwJ+yo4UbDKJfNz9qyUW3ZIOLc3+Q1RcLFkxdiryZ0Fsps5tmMMyewX0A7wiDMvs/6hUXL/99NNwxxkqfz+pyAjAqWeHfMkq9pDa7yrrcUUb8YZNfSAO1j6lVGDiJMegwpzxpYShxpf9JARg6rBEvG/EPZOgWAnQ=
+	t=1755868546; cv=none; b=jrLQ2XLNkvu292ZavMDVKF2ltPw1BchbVsJD3Fu9mhWmA0/j6vfpxYt/cbbQTGeys03+uVlgH+//Db6kDqd3gTQ94zj1jS1pORySmuDFnZojaydJQbVHRMU0HUGViYZWbhDlmUMSIGaN0w+j0b5a1vrTqtFP+XV+dYoZiJRLKxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755868410; c=relaxed/simple;
-	bh=xwmQglZ4ynQpUcBnG3RnegQ8txT3zm/VD+oLXC5P7xc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=lpF1yxebpPvhxPobRtK+P4HcmNBVmpa7kZkY1gdl6HoU7RdokeEnkWKRvs2imGVuOomBpICnPdUkAFgUQ2xkwxvvJ2WA3r4Ge+69PHRGdNEh7Vu3h5FYG+d1Tn5XthSInkoRh4dk9aMlR/yz5+gqJujti4kASOtTXFc8QmY+ZtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=U19nGedy; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 7005C4E40BA8
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 13:13:26 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 40A4B604AD;
-	Fri, 22 Aug 2025 13:13:26 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4E2881C22D64F;
-	Fri, 22 Aug 2025 15:13:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1755868405; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=/Xt9kUxaqedEzy7mb2YdVsoY32BQaXwaTEeI7OTr1mI=;
-	b=U19nGedyT/NWgRKxA+WD/R29xrHhG9nr2wfXWNXFRyfnhV+d4gf5yMaIoz++E9KbH66fbz
-	Gq83IrRY5ZpSoJkHctNTLoTUzse7acZVa+0y53sGJxW0ywSMbI+HHL5QC+yFZI5OgRvr19
-	oFIz9UTxepVGWNHzGbRYsfmzVKr2vo92txZAkHxiNgc7gcWEVyfTKYUveLhJHEaYO3Z4wI
-	YbJn4nTCc7iVAa2odeR6jGBFA270hfJdlfnZzfuVFKRdfectOn9QPH3IXywP7QLgsEXgSb
-	7R2KTV5sU04iw5L47uEkjilULQ1nCvCf/nvUVWmldT1tqpDEJgv/Ei5ZMQKgiQ==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Andrew Lunn
- <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] arm64: dts: marvell: Minor whitespace cleanup
-In-Reply-To: <20250819131633.86478-2-krzysztof.kozlowski@linaro.org>
-References: <20250819131633.86478-2-krzysztof.kozlowski@linaro.org>
-Date: Fri, 22 Aug 2025 15:13:22 +0200
-Message-ID: <87plcn5wjx.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1755868546; c=relaxed/simple;
+	bh=QM3gjLdrNdwQPyENWkbDDxd/9VE9sssykatbfX7JD+I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bUOiYJsSnqcuKgER23mNXRhewiKnFK+RxBzwJq73J84lhJ+CS0Z1RFpcg7p7cb3e7YCnzTPNhhOke5hj2lHpEqV7dDQPCsqkghsbGXXilyv/tSsBf4/hmaH+rX+pHeJl3ad43xLFpORnjKZriAN3aIi2N8IslyH30bnDr4Z/9W0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q3vb/9bR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8702C4CEED;
+	Fri, 22 Aug 2025 13:15:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755868546;
+	bh=QM3gjLdrNdwQPyENWkbDDxd/9VE9sssykatbfX7JD+I=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Q3vb/9bRAAfrzjQZl6sT867unT/MdR+1UvalIDRdaHZHoo+itisutypbRuzKVvP21
+	 5BxuWWfnwZFtsk0ZtvDJ8ot4xBqP0lfO6dIKZYoAD/Tk6rNuzkGKhTWPf1WJ/TwFHl
+	 IPXYunMUsxtKnA8fQbxJ4leIu9TvhjFAAUErMPOPKhkOWmtH1LedAlW+/xKPNUd6k0
+	 9xIn1ThPiROt9D9w9V/Gkg4Nv2StW8Vq70/bGvm3YNGxgjIIXGaPfXJFhGKKztcsUt
+	 kVlXekwq1IXGFJk0Q9pqgkHXszSoT5O1VH+KuXLYNDRIE0bWwzgXPtfqETUkStfjXw
+	 ZfbeBIZ4uHX5w==
+From: Michael Walle <mwalle@kernel.org>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Lee Jones <lee@kernel.org>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-watchdog@vger.kernel.org
+Subject: [PATCH v1 0/7] Initial Kontron SMARC-sAM67 support
+Date: Fri, 22 Aug 2025 15:15:24 +0200
+Message-Id: <20250822131531.1366437-1-mwalle@kernel.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+Now that the PMIC support is there, we can finally, upstream the
+support for this board. Besides the usual device tree, this
+patchset contains the support for the on-board house keeping MCU. It
+make extensive reuse of the drivers for the former SMARC-sAL28
+board. Besides different hwmon sensors, all the dt binding patches
+will just add a board specific compatible (in addition to the old
+sl28 compatible) to make any future board specific quirks possible.
 
-> The DTS code coding style expects exactly one space around '=3D'
-> character.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I'm aware that there is a patch [1] which moves the sl28cpld MFD
+schema to a different directory. Once that patch is merged, I'll
+repost this series. But I already want to get some early feedback.
 
-Applied on mvebu/dt64
+[1] https://lore.kernel.org/r/20250822075712.27314-2-krzysztof.kozlowski@linaro.org/
 
-Thanks,
+Michael Walle (7):
+  dt-bindings: arm: ti: Add bindings for Kontron SMARC-sAM67 module
+  dt-bindings: mfd: sl28cpld: add sa67mcu compatible
+  dt-bindings: hwmon: sl28cpld: add sa67mcu compatible
+  dt-bindings: watchdog: add SMARC-sAM67 support
+  dt-bindings: nvmem: sl28cpld: add sa67mcu compatible
+  hwmon: sl28cpld: add SMARC-sAM67 support
+  arm64: dts: ti: Add support for Kontron SMARC-sAM67
 
-Gregory
+ .../devicetree/bindings/arm/ti/k3.yaml        |    1 +
+ .../hwmon/kontron,sl28cpld-hwmon.yaml         |    1 +
+ .../bindings/mfd/kontron,sl28cpld.yaml        |    7 +-
+ .../nvmem/layouts/kontron,sl28-vpd.yaml       |    7 +-
+ .../watchdog/kontron,sl28cpld-wdt.yaml        |    7 +-
+ arch/arm64/boot/dts/ti/Makefile               |    6 +
+ .../dts/ti/k3-am67a-kontron-sa67-base.dts     | 1092 +++++++++++++++++
+ .../dts/ti/k3-am67a-kontron-sa67-gbe1.dtso    |   19 +
+ .../ti/k3-am67a-kontron-sa67-rtc-rv8263.dtso  |   24 +
+ drivers/hwmon/sl28cpld-hwmon.c                |   76 +-
+ 10 files changed, 1234 insertions(+), 6 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-gbe1.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-rtc-rv8263.dtso
 
-> ---
->  arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi   | 2 +-
->  arch/arm64/boot/dts/marvell/cn9132-clearfog.dts | 4 ++--
->  arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi | 2 +-
->  3 files changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/b=
-oot/dts/marvell/ac5-98dx25xx.dtsi
-> index 605f5be1538c..4878773883c9 100644
-> --- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-> @@ -322,7 +322,7 @@ spi1: spi@805a8000 {
->=20=20
->  		nand: nand-controller@805b0000 {
->  			compatible =3D "marvell,ac5-nand-controller";
-> -			reg =3D  <0x0 0x805b0000 0x0 0x00000054>;
-> +			reg =3D <0x0 0x805b0000 0x0 0x00000054>;
->  			#address-cells =3D <0x1>;
->  			#size-cells =3D <0x0>;
->  			interrupts =3D <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-> diff --git a/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts b/arch/arm64=
-/boot/dts/marvell/cn9132-clearfog.dts
-> index 0f53745a6fa0..c872c8eca518 100644
-> --- a/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
-> +++ b/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
-> @@ -559,7 +559,7 @@ led@2 {
->  };
->=20=20
->  &cp2_ethernet {
-> -	status =3D  "okay";
-> +	status =3D "okay";
->  };
->=20=20
->  /* SRDS #2 - 5GE */
-> @@ -572,7 +572,7 @@ &cp2_eth0 {
->  };
->=20=20
->  &cp2_gpio1 {
-> -	pinctrl-names=3D "default";
-> +	pinctrl-names =3D "default";
->  	pinctrl-0 =3D <&cp2_rsvd9_pins>;
->=20=20
->  	/* J21 */
-> diff --git a/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi b/arch/arm64=
-/boot/dts/marvell/cn9132-sr-cex7.dtsi
-> index afc041c1c448..1c9996d8cb24 100644
-> --- a/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi
-> @@ -442,7 +442,7 @@ tpm@0 {
->  		reg =3D <0>;
->  		compatible =3D "infineon,slb9670", "tcg,tpm_tis-spi";
->  		spi-max-frequency =3D <10000000>;
-> -		pinctrl-names  =3D "default";
-> +		pinctrl-names =3D "default";
->  		pinctrl-0 =3D <&cp1_tpm_irq_pins>;
->  		interrupt-parent =3D <&cp1_gpio1>;
->  		interrupts =3D <17 IRQ_TYPE_LEVEL_LOW>;
-> --=20
-> 2.48.1
->
+-- 
+2.39.5
 
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
