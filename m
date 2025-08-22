@@ -1,192 +1,112 @@
-Return-Path: <devicetree+bounces-208408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D022B32498
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 23:33:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 924E6B324A0
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 23:34:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98A7E1D2550D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:31:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BD8F188D7FF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91FD5340D93;
-	Fri, 22 Aug 2025 21:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0E4338F26;
+	Fri, 22 Aug 2025 21:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c2SDqyJS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uOgDQtkT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1CE33EB1D;
-	Fri, 22 Aug 2025 21:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B314B20F07C;
+	Fri, 22 Aug 2025 21:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755898060; cv=none; b=FEWZeRIeUeDjPXf63Xtyx7XlCGKLAUUWJG4xrl0Gzjjfc9IvYD1P5JDlyCQK9YEggsRvDESDdhw1RGG6KmUJT/Yj3EmT0Ahdc1eLA4c3u4piVMel99k9wQxEkzWfBledT8NPFSUiG5J6J+D9r7Gs/5gqwtPf6zwQ5dnP5knO3zI=
+	t=1755898172; cv=none; b=X2MKt4Egub+IG1CRZm+w9NEAFSv1ezDedpHEb3D3NqyJHGiOdJoOyfnzbOefMdLMtBjXuPUg1+Rw6kAJ/DCwvKgyysVLy+Jfwuate3MckwS9Mpq0wtDgB7wcGnYBpmMN23i/x7Wjc8qi1G3p2z7OQ0WYc8M6v5kBlOUD9aU6j0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755898060; c=relaxed/simple;
-	bh=HpMSsYpyCPlFj74ZKEihN0J4dnJzaki8VEY4sa1qWsQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=PJF9Z9zRnHOoXCKHzzdfAq23jXiYpt4va1P8fyPx0H9X+cZviWLgV0X/VZXTwZCkgrUvztWVnifU6wlbJnbxW0TP6iQPgpvdQhWxLuAjY3HyOiwGBudlwtc550ksYJ/+7cCjK9fqjFlQkZwtLTh+VhoYPjr43wPPgTyhF5tX++E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c2SDqyJS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7DAEC4CEF1;
-	Fri, 22 Aug 2025 21:27:39 +0000 (UTC)
+	s=arc-20240116; t=1755898172; c=relaxed/simple;
+	bh=XdRfsuCBeE2JPGsoh0xnqLu4uAHzTxPybD5NLEAdrus=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GFOh+WRUNFeFUnp49JxU0CtzGC8jgHz6SlRG//hvY+HxfB/0hkxl0m9ATHnzmoKInMxpI8U2fSbUp085MeuelhMT9Vnurpws2827Ew+MQW+ayV1XaN4UeKhQJJ0Rv525MDtOZviYsfXFKCBQ4yEowPpUxuX5Zvotay5gmmQM9/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uOgDQtkT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BA80C4CEED;
+	Fri, 22 Aug 2025 21:29:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755898059;
-	bh=HpMSsYpyCPlFj74ZKEihN0J4dnJzaki8VEY4sa1qWsQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=c2SDqyJScPESg1glrinrRFpy9UCxzbJCA6GcUNaYpTyIXMkZ5nhtCk/toPGPkQEe8
-	 WRqxHBLe+21e5iEUMWMIpsGGMaD/G1gGR+tuB8JFuJliC76OQkMv16v+MxqiZA9h59
-	 SZf2a/U7wfpeHpktuydgkejUFxMHFa9g6KOZpN2DbEgbW/o0kvMI86dj7uRV86D/hG
-	 cRsAxOnaHhGR6BHovF0z47TkjrxS5+xlNZOnIiu+CxJ9o5XHGfrb+wCpTrhQi0FHMa
-	 GcBiFFh6yQ/199NWzIfBD895L2/MGoXJyvN1vdiZCNquyo9ILoodvYZuFXhjUuy0pq
-	 b7bh9BsfoALLg==
-Date: Fri, 22 Aug 2025 16:27:39 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1755898172;
+	bh=XdRfsuCBeE2JPGsoh0xnqLu4uAHzTxPybD5NLEAdrus=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uOgDQtkTFuyN6OSUi4Zg7YTx3n4m4lFnUxCOO8c1PiER+3BJMUwdo9DOBrgyzC2oQ
+	 nA5Df4iyKsTWLxcNNJVcUf4T5YMs9FGJ+lhcCm15tJn0TuEMrkBTpiLzvA+nF6ynKS
+	 Uqmf7/i/Z9ecUybh+xHVtFs6Hedv3jevj7Wif6XOqGv6NQGsZ27EnT6xGq7n34sXEb
+	 GKQHVWEHu2vFQzjnLz+jrNJSCn9NzUYDk/ZeG6Q13+GiHdvQvt8v7fKvTWs1HWiPux
+	 1SOP7zlaj9wG9gVVVnI6XRnJav0Yq+cxgEgigSWfMrsC9/6YkmxuTVlFrny8ORiZvG
+	 GYJxcXitlLM5w==
+Date: Fri, 22 Aug 2025 14:29:30 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Han Gao <rabenda.cn@gmail.com>,
+	Yao Zi <ziyao@disroot.org>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] riscv: dts: thead: th1520: add coefficients to the
+ PVT node
+Message-ID: <aKjhOuqlQyuLCVEK@x1>
+References: <20250816093209.2600355-1-uwu@icenowy.me>
+ <20250816093209.2600355-2-uwu@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- devicetree@vger.kernel.org, Gregory Clement <gregory.clement@bootlin.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250822133329.312326-3-krzysztof.kozlowski@linaro.org>
-References: <20250822133329.312326-3-krzysztof.kozlowski@linaro.org>
-Message-Id: <175589786306.518460.17450425303264875357.robh@kernel.org>
-Subject: Re: [PATCH 1/2] arm64: dts: marvell: armada-37xx: Add default PCI
- interrup controller address cells
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250816093209.2600355-2-uwu@icenowy.me>
 
-
-On Fri, 22 Aug 2025 15:33:30 +0200, Krzysztof Kozlowski wrote:
-> Add missing address-cells 0 to the PCI interrupt node to silence W=1
-> warning:
+On Sat, Aug 16, 2025 at 05:32:07PM +0800, Icenowy Zheng wrote:
+> The manual of TH1520 contains a set of coefficients a little different
+> to the driver default ones.
 > 
->   armada-37xx.dtsi:518.4-521.29: Warning (interrupt_map): /soc/pcie@d0070000:interrupt-map:
->     Missing property '#address-cells' in node /soc/pcie@d0070000/interrupt-controller, using 0 as fallback
+> Add them to the device tree node of PVT.
 > 
-> Value '0' is correct because:
-> 1. GIC interrupt controller does not have children,
-> 2. interrupt-map property (in PCI node) consists of five components and
->    the fourth component "parent unit address", which size is defined by
->    '#address-cells' of the node pointed to by the interrupt-parent
->    component, is not used (=0)
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 > ---
->  arch/arm64/boot/dts/marvell/armada-37xx.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index 03f1d73190499..e9c81bdabed8a 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -676,6 +676,10 @@ pvt: pvt@fffff4e000 {
+>  			reg-names = "common", "ts", "pd", "vm";
+>  			clocks = <&aonsys_clk>;
+>  			#thermal-sensor-cells = <1>;
+> +			moortec,ts-coeff-g = <42740>;
+> +			moortec,ts-coeff-h = <220500>;
+> +			moortec,ts-coeff-j = <(-160)>;
+> +			moortec,ts-coeff-cal5 = <4094>;
+>  		};
+>  
+>  		gpio@fffff52000 {
+> -- 
+> 2.50.1
 > 
 
+I think moortec,ts-coeff-XXX will need to be rounded to nearest multiple
+of 100 as dtbs_check warns that:
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+pvt@fffff4e000: moortec,ts-coeff-g: 42740 is not a multiple of 100
+	from schema $id: http://devicetree.org/schemas/hwmon/moortec,mr75203.yaml#
+pvt@fffff4e000: moortec,ts-coeff-j: -160 is not a multiple of 100
+	from schema $id: http://devicetree.org/schemas/hwmon/moortec,mr75203.yaml#
+pvt@fffff4e000: moortec,ts-coeff-g: 42740 is not a multiple of 100
+	from schema $id: http://devicetree.org/schemas/hwmon/moortec,mr75203.yaml#
+pvt@fffff4e000: moortec,ts-coeff-j: -160 is not a multiple of 100
+	from schema $id: http://devicetree.org/schemas/hwmon/moortec,mr75203.yaml#
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250822 (exact match)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/marvell/' for 20250822133329.312326-3-krzysztof.kozlowski@linaro.org:
-
-arch/arm64/boot/dts/marvell/cn9130-cf-pro.dtb: /soc/bus@f0000000/system-controller@6f8000/clock-cpu: failed to match any schema with compatible: ['marvell,ap807-cpu-clock']
-arch/arm64/boot/dts/marvell/cn9130-db.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9130-cf-pro.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9130-cf-base.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9131-db.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-7040-db.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dtb: usb@58000 (marvell,armada3700-xhci): Unevaluated properties are not allowed ('marvell,usb-misc-reg' was unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/generic-xhci.yaml#
-arch/arm64/boot/dts/marvell/armada-7040-mochabin.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9131-db.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9132-clearfog.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9132-clearfog.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9130-db-B.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dtb: mmc@d8000 (marvell,armada-3700-sdhci): Unevaluated properties are not allowed ('marvell,xenon-emmc' was unexpected)
-	from schema $id: http://devicetree.org/schemas/mmc/marvell,xenon-sdhci.yaml#
-arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dtb: connector (usb-a-connector): Unevaluated properties are not allowed ('phy-supply' was unexpected)
-	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
-arch/arm64/boot/dts/marvell/cn9131-db-B.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9131-db-B.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9131-db-B.dtb: /cp1-bus/bus@f4000000/system-controller@440000/clock: failed to match any schema with compatible: ['marvell,cp110-clock']
-arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9132-db-B.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dtb: /cp0-bus/bus@f2000000/system-controller@400000/thermal-sensor@70: failed to match any schema with compatible: ['marvell,armada-cp110-thermal']
-arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9132-db-B.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9132-db-B.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9132-db.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-8040-db.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9130-crb-B.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9130-crb-A.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/armada-8040-db.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9132-db.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-arch/arm64/boot/dts/marvell/cn9132-db.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
-
-
-
-
-
+Thanks,
+Drew
 
