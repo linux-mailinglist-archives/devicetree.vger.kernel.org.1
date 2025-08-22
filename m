@@ -1,124 +1,137 @@
-Return-Path: <devicetree+bounces-208337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BB0B320B2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 18:46:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3163CB320B8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 18:48:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D0BA7BF0A3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:45:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B30291BA842B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7685B30BF76;
-	Fri, 22 Aug 2025 16:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32D0D2E284B;
+	Fri, 22 Aug 2025 16:48:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="c87zeZya"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HrvrSPn7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89CDC19D065;
-	Fri, 22 Aug 2025 16:46:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6812E285C8C;
+	Fri, 22 Aug 2025 16:48:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755881202; cv=none; b=L0wLp7skj956JZdhThZ0WrRFxNtFDFeozIRQPQ9lc+NtWCk4TxFvRmm/4BCTyAZdaEwdEWu7NKYOgrIuJPw/as0ulEiW6pBdcSpXBVVpmKtI0Id7MQgT5yIdcOlKMI0CYl2RQCMcTPb2SImrL/dZYZ8L05rluUToWNxp4X08MhQ=
+	t=1755881301; cv=none; b=s9RXF6UDmRby3YzDM4x2NgAFDYkL+fcZIuf3FM65E+Q8jsLFQJ5o27CsfxwwhVJV6OZBEp5x3RFO7Aviw4VUib4nD7edA/uH0hBLjRVAWNdLss/yHBU9wDMTGFIN/1TVp+HFwqN9NXQopRsl2yyAE0oQJf2BMmsmPq9ZlYrHXGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755881202; c=relaxed/simple;
-	bh=xZw3xCmdaTgqysDoX1I4kHuuzOlYOaqK/aqxfrjdNaA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mIsHp0fiexjmIRBL7PkH4bNo6k1fUFuJ0KHtoPpn4DQFwtVGIwO4NP8Ci3kd4+3KBd2IaT+cNfTW/eUFALQcb1rH0Us6jV6peh8tTlHdkk26MjbX79SLj0kba2MDowZT64qUdePQhyB+RUY4QfEXUfyS6PFeob/WlqVZB2YW6kw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=c87zeZya; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57MGkSQ0767275;
-	Fri, 22 Aug 2025 11:46:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755881188;
-	bh=xZw3xCmdaTgqysDoX1I4kHuuzOlYOaqK/aqxfrjdNaA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=c87zeZyaCR8hFditjjF7r2RqT/oHTT9shI6qp/bFHOAsZPlR7/oGlEH8bzdThZRvH
-	 CJJwP5uGO/hOjlZ0bU44neg9GvNsTx9BgIEfitf7Y3odkZAX2+WTARWt/Pti/faD8N
-	 SDub5M6rdOQ3BTBWOFW6YdRdtch22OLldoQKMihU=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57MGkSVc3042487
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 22 Aug 2025 11:46:28 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 22
- Aug 2025 11:46:27 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 22 Aug 2025 11:46:27 -0500
-Received: from [10.249.139.51] ([10.249.139.51])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57MGkKN83835587;
-	Fri, 22 Aug 2025 11:46:21 -0500
-Message-ID: <0f2060e4-269d-4865-806e-7ace5c3cdabd@ti.com>
-Date: Fri, 22 Aug 2025 22:16:19 +0530
+	s=arc-20240116; t=1755881301; c=relaxed/simple;
+	bh=m9/zEgxBbLFqMOjy+Vf77O/OAO1RTz6rJmG6l1hSjBk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TMMyrGQMO3adIH//a062vxPWnkauPquTWt7XwMI8fYrnJ2QJxjvFbSpbAKzNKdFH6Bl//m7Xyl9gWRqruHROoTwUGfbud8jrAOpAkChZlNivfem3mU2YGWXXZ6bZOrzBo2XQJrRTeE9JRM6PzDHVHAQOk5lSIoeLCPmKMb7XQsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HrvrSPn7; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-afcb79f659aso383732966b.2;
+        Fri, 22 Aug 2025 09:48:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755881296; x=1756486096; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3ryekvywWpfMy8Ss+YQoqzDrE/6dWRIDmmej9hkWous=;
+        b=HrvrSPn7N3RpZReWrPUBHMvPAYs8hzxHNUVkGPANTTtkejovq5NmiRSFGy9KYW8Ik2
+         eG8rbgFRiViyD48KBfVjOGkrMLYI1oZh7cAK6S7GKDrMSlKXojGGVPSQM+xKROQkVb/1
+         xBr5UMUTqbz4aJQWmmK4gZSdl8Nl9CcKfnV4LmUVUr3scvjGNdI8pbdLFqKEWqxR1pGe
+         FF8hw4SQ8tg6l7qvl/eDkBmJbRQEei+fWEmzP3QDeMK7BkeC3lAOyGjiaBubOVJkHOyS
+         hQ3SBTVuQxWUIdD7jGj+4ARoDjRQPB/yqUzLASVirxHkVURHVNVgPND2u+Jhp/4I6lkP
+         UX3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755881296; x=1756486096;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3ryekvywWpfMy8Ss+YQoqzDrE/6dWRIDmmej9hkWous=;
+        b=NB0QH73Hihv9Z1Sv5i+aYkI/6yg+tEFqo3DP4cn3GRbmXSQPNizcCzUPr6Cz4X1ntF
+         TmaCDriZSyjT+BPyCWZjnHJDGXN5ZtN9YYWxjVIH2hOm80L2CapeEwioVY5ujCEmVjo/
+         HVHHLZsmRqKecjwkZWNhGoccdhSSztzb0bOKh2p3/tEKBnbuhEjvVyD2VKzSyBE9xb+Z
+         tLPwQq2goa0dBk1fkWJeZoKRRjiH6jM1p4MQ+TR65Yux+VFQqtqZQAyxn0SAZahMhwrk
+         oVGXxVx08xNzkwkuHR4R1BqUupCp795rAicN9al18pcGgeynEbvRo4qpTkGrawRU0N+6
+         dWyA==
+X-Forwarded-Encrypted: i=1; AJvYcCVlH4f+uXTFoF1oqxQPLMvcugbbean/nHk5qfRkuPDiuMec30AGeyaraZEEUHx8nKnBF280hI087ATs@vger.kernel.org, AJvYcCVt3obyycwfwhX1HxdIqmfNUoBb/qtPywCAbGTugaP55/bgYNQvO5gWZFE8AQAmY5j9c7bYFjj43kpz@vger.kernel.org, AJvYcCWDaOCK9EPzffCVDd16m4zHyDerf89Du1Tq9p/9x0JgH+ICv6hz1kS0g142eEzWdkGctcOvBYmMWZNKRAJ1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzREoOgy271jHHCAVomUuyL4pkSSTKzYb5UvIil9b9ikmfut2mn
+	UhlegVG4kZIEipRsjybIpATlgk/sV0/isvqkhWUxBb22WOyX/nMeKtU8WTveANBaQWtJUK1BNTX
+	5r64W+D+A5mXr7z+syhFAKnoBSG3aXwdr0+R9Uww=
+X-Gm-Gg: ASbGncsKv7vC6VjB+VgOnul9lQaKPM3+s54ZOQ/ybxapOo50y+d7xNDkhczov+neDV9
+	XVX64IlR6jzIpQk30FZjZcQf6t+T0PMHgQ9JscsVo6jtDgpgFjSvMpuYIamrneMx/lcSiM/zDT0
+	G+ffPIDkJFozQyLJamGGXp6okuxS34MnU+EnL+VHyDFQz9kjV8ij1bAtberFHvjxWLufrXETJkq
+	kq9WmC/zA==
+X-Google-Smtp-Source: AGHT+IFm68yZ6GRjGnbguBBagvthdC7rt33OMmtjlajRu/zNCcj+GlG3u+QtHSQkuyPMsXuH2Y0+HkMsH6lmQ6nMsUI=
+X-Received: by 2002:a17:907:7202:b0:af9:bfef:156b with SMTP id
+ a640c23a62f3a-afe296a7876mr259675366b.59.1755881295464; Fri, 22 Aug 2025
+ 09:48:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/33] arm64: dts: ti: k3-am62-verdin: Add missing cfg for
- TI IPC Firmware
-To: Francesco Dolcini <francesco@dolcini.it>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <afd@ti.com>,
-        <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Hiago De Franco
-	<hiago.franco@toradex.com>,
-        Jo_o Paulo Gon_alves
-	<joao.goncalves@toradex.com>,
-        Stefan Eichenberger
-	<stefan.eichenberger@toradex.com>,
-        Max Krummenacher
-	<max.krummenacher@toradex.com>,
-        Andrejs Cainikovs
-	<andrejs.cainikovs@toradex.com>
-References: <20250814223839.3256046-1-b-padhi@ti.com>
- <20250814223839.3256046-19-b-padhi@ti.com>
- <20250821061214.GC7503@francesco-nb>
-Content-Language: en-US
-From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <20250821061214.GC7503@francesco-nb>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250822-upstream-changes-v8-0-40bb1739e3e2@watter.com>
+ <20250822-upstream-changes-v8-4-40bb1739e3e2@watter.com> <CAHp75VdMCY3=bL2t7zWw0D1WqtiLXrWi+ptjpaxK16b8J1KVSg@mail.gmail.com>
+ <7C976B5E-781D-472B-B2C8-3AD22550E036@watter.com>
+In-Reply-To: <7C976B5E-781D-472B-B2C8-3AD22550E036@watter.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 22 Aug 2025 19:47:39 +0300
+X-Gm-Features: Ac12FXyQ6joBP2nusnELrLQPneRJfO01oBOdppEm3OUW9-7VBBVAUa3Juz1iLHs
+Message-ID: <CAHp75VdbfCenb+N4rY59hG1E9DL9s4ibCdQX=Ar8hT0_wi5h+Q@mail.gmail.com>
+Subject: Re: [PATCH v8 4/5] iio: mcp9600: Recognize chip id for mcp9601
+To: Ben Collins <bcollins@watter.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andrew Hepp <andrew.hepp@ahepp.dev>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Aug 22, 2025 at 7:07=E2=80=AFPM Ben Collins <bcollins@watter.com> w=
+rote:
+> > On Aug 22, 2025, at 11:57=E2=80=AFAM, Andy Shevchenko <andy.shevchenko@=
+gmail.com> wrote:
+> > On Fri, Aug 22, 2025 at 4:24=E2=80=AFPM Ben Collins <bcollins@watter.co=
+m> wrote:
 
-On 8/21/2025 11:42 AM, Francesco Dolcini wrote:
-> On Fri, Aug 15, 2025 at 04:08:24AM +0530, Beleswar Padhi wrote:
->> The wkup_r5fss0_core0_memory_region is used to store the text/data
->> sections of the Device Manager (DM) firmware itself and is necessary for
->> platform boot. Whereas the wkup_r5fss0_core0_dma_memory_region is used
->> for allocating the Virtio buffers needed for IPC with the DM core which
->> could be optional. The labels were incorrectly used in the
->> k3-am62-verdin.dtsi file. Correct the firmware memory region label.
->>
->> Currently, only mailbox node is enabled with FIFO assignment for a
->> single M4F remote core. However, there are no users of the enabled
->> mailboxes. Add the missing carveouts for WKUP R5F and MCU M4F remote
->> processors, and enable those by associating to the above carveout and
->> mailboxes. This config aligns with other AM62 boards and can be
->> refactored out later.
-> Are these memory ranges fine with 512MB DDR memory?
+...
 
+> >> +struct mcp9600_data {
+> >> +       struct i2c_client *client;
+> >> +};
+> >> +
+> >
+> >> -struct mcp9600_data {
+> >> -       struct i2c_client *client;
+> >> -};
+> >> -
+> >
+> > Seems we discussed this. And my suggestion was to defer the change to
+> > when it will be needed.
+>
+> And my response was that it=E2=80=99s needed in 5/5 where I add the mcp96=
+00_config()
+> function. That function will need to be before mcp9600_channels[] in the
+> IIR patch series.
+>
+> So either I move mcp9600_data now, or I leave it and put mcp9600_config()
+> below it, and then in the IIR series I=E2=80=99ll have to move both up.
+>
+> Didn=E2=80=99t seem to make sense to move 30 lines of code later when I c=
+an move
+> 3 lines now.
 
-Yes, they are.
+TBH, I have no strong preference, I leave this to Jonathan and other review=
+ers.
 
-DDR memory range: 0x80000000 - 0xA0000000
-Carveout range:        0x9CB00000 - 0x9E700000
-
-Thanks,
-Beleswar
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
