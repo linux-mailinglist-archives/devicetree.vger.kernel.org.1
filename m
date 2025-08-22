@@ -1,210 +1,302 @@
-Return-Path: <devicetree+bounces-208087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 656A4B31884
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:57:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E161B3189F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:00:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE81AA0347B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:55:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53BF4B61456
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C5130148F;
-	Fri, 22 Aug 2025 12:54:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F6C2FD7A7;
+	Fri, 22 Aug 2025 12:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Qizcvcax"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="XcvgCYNC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA18301465;
-	Fri, 22 Aug 2025 12:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D5581BF58;
+	Fri, 22 Aug 2025 12:57:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755867242; cv=none; b=DoFIQVGc6iToSZ9OhYTxawT2p6NF2YV5cADLX8h/LNCIKW67IN6mYzoT5/YKatI/fOZ0yX4dgizHuIEzmXr0N8NnsvgLq7V5fmRypP1uNI0D02lofEGCadh74PWc+g7dTyOupu4380G52wn4X/w541IXUYz6oEfAQ7BhBLqY+tM=
+	t=1755867457; cv=none; b=HOCQssmVdgsfqJWTLrk6ipT9K9RoegY+aOs0gQso8y5JO+m2yGjHEtkYhY9377oGsZgcrdjwyCEyzzc4ghke+f9k6p6PiruqPzDlcs1w+/4iUqw6T/oaqBki+TCFZsuujw6hqNqZ+9ny+w8RlugdzFiqmrfV3vbAUQdbHcZQHK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755867242; c=relaxed/simple;
-	bh=Te0ho3pz2NfR8BqN8aLJYQorQGC7EvtxapDMAw+KjH0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mAnZN8D8jXtr58KoBO51APgyQ5lC83dwmnjdj2v1JKSCc17Av3Nz4NG4T8awUf97R27FxPd6TexFcWlfWrDdPE6L+3leBZ/e17/FFrljrozOsP34rDrAxDnk3qWOgNH0+i/k2qm/Goa7jfxCxmanmeAaW6yh7hQddADHpGM3X7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Qizcvcax; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 0e92678e7f5711f0b33aeb1e7f16c2b6-20250822
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=/QiMgaVLOAOBbB0zzFeIJKagsHQm6FFy1ZPWjVMcc5A=;
-	b=QizcvcaxRbwp8JlC7zS9662BtIco5FcdvkdqDNLXyFQWVu62/r6+SHUzfDycesiwds5GgqffE1N7JmZQEAWRoaVDJTEB4xz9ztQcInIqRTwVhOXG8TWIT/WbPl/QLEZ/dzHfe9wQzbQjuJbQg477CGBO1GuMSXFz9MtWPLC4euw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.3,REQID:51cfd86a-410d-4a01-97ca-40631e6bf5ea,IP:0,UR
-	L:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:25
-X-CID-META: VersionHash:f1326cf,CLOUDID:a1f7c344-18c5-4075-a135-4c0afe29f9d6,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:-5,Content:0|15|50,EDM:
-	-3,IP:nil,URL:11|97|99|83|106|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,CO
-	L:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 0e92678e7f5711f0b33aeb1e7f16c2b6-20250822
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
-	(envelope-from <darren.ye@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1534367532; Fri, 22 Aug 2025 20:53:53 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Fri, 22 Aug 2025 20:53:51 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Fri, 22 Aug 2025 20:53:49 +0800
-From: Darren.Ye <darren.ye@mediatek.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>, Darren Ye
-	<darren.ye@mediatek.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 10/10] ASoC: dt-bindings: mediatek,mt8196-nau8825: Add audio sound card
-Date: Fri, 22 Aug 2025 20:52:39 +0800
-Message-ID: <20250822125301.12333-11-darren.ye@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250822125301.12333-1-darren.ye@mediatek.com>
-References: <20250822125301.12333-1-darren.ye@mediatek.com>
+	s=arc-20240116; t=1755867457; c=relaxed/simple;
+	bh=CT95aoj3GcK+SLYSHbca/fGwUzXYdmxWd4vrd1wnp/8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ViMEnOtnBa8hdm67/rtZJIryE43Gl8BAKgk8TU4xrhU4995/YUPekuWrFsbSeUsa+62DijwXyKf5ktRsc+eDC5h+w6NK/aFBPKpyrO53WXUtpiYcdgQnQ85j3viiobgju56QAnvIAkgihAVi/FUe+CcW38NFBPHpjo2Bi+KEJUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=XcvgCYNC; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57MBxc3F027155;
+	Fri, 22 Aug 2025 14:57:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	opW6CQ+EIqTEuYkWoukvWl2zvBo6YGtnwvOV0fo5tV8=; b=XcvgCYNC8hOKLHmF
+	1YDvila7DCEL29BYb+Cndwdb4UamCtkBVMaO0olvOYEkz8Ta1dyt++QR6K0HqlJ+
+	2Ujeg87Q1C3JWiTeeMdOPOZjr4p1IxE+Av05+lzUzv976+fTI/ob2H+tgxaPUe7G
+	9rZN1MtW0e4JbbY7EAgG4cJjjqPFRgWfxJ53b4ooX1xbvIMutq3meYl37n7tBn36
+	8tsmJuL3n5RKcWwTxlol4eP+b8PyYLS+HCtsdLiedVAH/fXDnen6pQIc3HaldI6h
+	+eID3SWXnI5kbWGoSt2XR+hV7TSLIU/Bf4jbQgFW2cXVMHeB/AuMDxRPrYVq+Wxg
+	wlAoiQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48n70dk5vh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Aug 2025 14:57:15 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1D46A40046;
+	Fri, 22 Aug 2025 14:56:00 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0A67571EE06;
+	Fri, 22 Aug 2025 14:55:05 +0200 (CEST)
+Received: from [10.48.87.178] (10.48.87.178) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 22 Aug
+ 2025 14:55:04 +0200
+Message-ID: <46e08e79-a735-453d-9804-d5ed9fb4bb82@foss.st.com>
+Date: Fri, 22 Aug 2025 14:55:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 07/13] drm/stm: ltdc: support new hardware version for
+ STM32MP25 SoC
+To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Maxime
+ Coquelin" <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250821-drm-misc-next-v4-0-7060500f8fd3@foss.st.com>
+ <20250821-drm-misc-next-v4-7-7060500f8fd3@foss.st.com>
+Content-Language: en-US
+From: Yannick FERTRE <yannick.fertre@foss.st.com>
+In-Reply-To: <20250821-drm-misc-next-v4-7-7060500f8fd3@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-22_04,2025-08-20_03,2025-03-28_01
 
-From: Darren Ye <darren.ye@mediatek.com>
+Hi Raphael,
 
-Add soundcard bindings for the MT8196 SoC with the NAU8825 audio codec.
+Thanks for the patch.
 
-Signed-off-by: Darren Ye <darren.ye@mediatek.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../sound/mediatek,mt8196-nau8825.yaml        | 100 ++++++++++++++++++
- 1 file changed, 100 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8196-nau8825.yaml
+Acked-by: Yannick Fertre <yannick.fertre@foss.st.com>
 
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8196-nau8825.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8196-nau8825.yaml
-new file mode 100644
-index 000000000000..83350faa1e29
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt8196-nau8825.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mediatek,mt8196-nau8825.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek MT8196 ASoC sound card
-+
-+maintainers:
-+  - Darren Ye <darren.ye@mediatek.com>
-+
-+allOf:
-+  - $ref: sound-card-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8196-nau8825-sound
-+      - mediatek,mt8196-rt5682s-sound
-+      - mediatek,mt8196-rt5650-sound
-+
-+  mediatek,platform:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle of MT8188 ASoC platform.
-+
-+patternProperties:
-+  "^dai-link-[0-9]+$":
-+    type: object
-+    description:
-+      Container for dai-link level properties and CODEC sub-nodes.
-+
-+    properties:
-+      link-name:
-+        description:
-+          This property corresponds to the name of the BE dai-link to which
-+          we are going to update parameters in this node.
-+        items:
-+          enum:
-+            - TDM_DPTX_BE
-+            - I2SOUT6_BE
-+            - I2SIN6_BE
-+            - I2SOUT4_BE
-+            - I2SOUT3_BE
-+
-+      codec:
-+        description: Holds subnode which indicates codec dai.
-+        type: object
-+        additionalProperties: false
-+        properties:
-+          sound-dai:
-+            minItems: 1
-+            maxItems: 2
-+        required:
-+          - sound-dai
-+
-+      dai-format:
-+        description: audio format.
-+        items:
-+          enum:
-+            - i2s
-+            - right_j
-+            - left_j
-+            - dsp_a
-+            - dsp_b
-+
-+      mediatek,clk-provider:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description: Indicates dai-link clock master.
-+        enum:
-+          - cpu
-+          - codec
-+
-+    additionalProperties: false
-+
-+    required:
-+      - link-name
-+
-+required:
-+  - compatible
-+  - mediatek,platform
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    sound {
-+        compatible = "mediatek,mt8196-nau8825-sound";
-+        model = "mt8196-nau8825";
-+        mediatek,platform = <&afe>;
-+        dai-link-0 {
-+            link-name = "I2SOUT6_BE";
-+            dai-format = "i2s";
-+            mediatek,clk-provider = "cpu";
-+            codec {
-+                sound-dai = <&nau8825>;
-+            };
-+        };
-+    };
-+
-+...
--- 
-2.45.2
-
+Le 21/08/2025 à 13:08, Raphael Gallais-Pou a écrit :
+> From: Yannick Fertre <yannick.fertre@foss.st.com>
+>
+> STM32MP25 SoC features a new version of the LTDC IP.  Add its compatible
+> to the list of device to probe and implement its quirks.
+>
+> This hardware supports a pad frequency of 150MHz and a peripheral bus
+> clock.
+>
+> Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> ---
+>   drivers/gpu/drm/stm/drv.c  | 12 +++++++++++-
+>   drivers/gpu/drm/stm/ltdc.c | 38 +++++++++++++++++++++++++++++++++++---
+>   drivers/gpu/drm/stm/ltdc.h |  5 +++++
+>   3 files changed, 51 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/stm/drv.c b/drivers/gpu/drm/stm/drv.c
+> index 8ebcaf953782d806a738d5a41ff1f428b0ccff78..ab00d1a6140cc32e71e10abc82f7956328b518e3 100644
+> --- a/drivers/gpu/drm/stm/drv.c
+> +++ b/drivers/gpu/drm/stm/drv.c
+> @@ -236,8 +236,18 @@ static void stm_drm_platform_shutdown(struct platform_device *pdev)
+>   	drm_atomic_helper_shutdown(platform_get_drvdata(pdev));
+>   }
+>   
+> +static struct ltdc_plat_data stm_drm_plat_data = {
+> +	.pad_max_freq_hz = 90000000,
+> +};
+> +
+> +static struct ltdc_plat_data stm_drm_plat_data_mp25 = {
+> +	.pad_max_freq_hz = 150000000,
+> +};
+> +
+>   static const struct of_device_id drv_dt_ids[] = {
+> -	{ .compatible = "st,stm32-ltdc"},
+> +	{ .compatible = "st,stm32-ltdc", .data = &stm_drm_plat_data, },
+> +	{ .compatible = "st,stm32mp251-ltdc", .data = &stm_drm_plat_data_mp25, },
+> +	{ .compatible = "st,stm32mp255-ltdc", .data = &stm_drm_plat_data_mp25, },
+>   	{ /* end node */ },
+>   };
+>   MODULE_DEVICE_TABLE(of, drv_dt_ids);
+> diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
+> index ba315c66a04d72758b9d3cfcd842432877f66d3a..17548dd3484a0a3e1015c58c752b80f8892a0ff7 100644
+> --- a/drivers/gpu/drm/stm/ltdc.c
+> +++ b/drivers/gpu/drm/stm/ltdc.c
+> @@ -14,6 +14,7 @@
+>   #include <linux/interrupt.h>
+>   #include <linux/media-bus-format.h>
+>   #include <linux/module.h>
+> +#include <linux/of.h>
+>   #include <linux/of_graph.h>
+>   #include <linux/pinctrl/consumer.h>
+>   #include <linux/platform_device.h>
+> @@ -51,6 +52,7 @@
+>   #define HWVER_10300 0x010300
+>   #define HWVER_20101 0x020101
+>   #define HWVER_40100 0x040100
+> +#define HWVER_40101 0x040101
+>   
+>   /*
+>    * The address of some registers depends on the HW version: such registers have
+> @@ -1779,6 +1781,7 @@ static int ltdc_get_caps(struct drm_device *ddev)
+>   {
+>   	struct ltdc_device *ldev = ddev->dev_private;
+>   	u32 bus_width_log2, lcr, gc2r;
+> +	const struct ltdc_plat_data *pdata = of_device_get_match_data(ddev->dev);
+>   
+>   	/*
+>   	 * at least 1 layer must be managed & the number of layers
+> @@ -1794,6 +1797,8 @@ static int ltdc_get_caps(struct drm_device *ddev)
+>   	ldev->caps.bus_width = 8 << bus_width_log2;
+>   	regmap_read(ldev->regmap, LTDC_IDR, &ldev->caps.hw_version);
+>   
+> +	ldev->caps.pad_max_freq_hz = pdata->pad_max_freq_hz;
+> +
+>   	switch (ldev->caps.hw_version) {
+>   	case HWVER_10200:
+>   	case HWVER_10300:
+> @@ -1811,7 +1816,6 @@ static int ltdc_get_caps(struct drm_device *ddev)
+>   		 * does not work on 2nd layer.
+>   		 */
+>   		ldev->caps.non_alpha_only_l1 = true;
+> -		ldev->caps.pad_max_freq_hz = 90000000;
+>   		if (ldev->caps.hw_version == HWVER_10200)
+>   			ldev->caps.pad_max_freq_hz = 65000000;
+>   		ldev->caps.nb_irq = 2;
+> @@ -1842,6 +1846,7 @@ static int ltdc_get_caps(struct drm_device *ddev)
+>   		ldev->caps.fifo_threshold = false;
+>   		break;
+>   	case HWVER_40100:
+> +	case HWVER_40101:
+>   		ldev->caps.layer_ofs = LAY_OFS_1;
+>   		ldev->caps.layer_regs = ltdc_layer_regs_a2;
+>   		ldev->caps.pix_fmt_hw = ltdc_pix_fmt_a2;
+> @@ -1849,7 +1854,6 @@ static int ltdc_get_caps(struct drm_device *ddev)
+>   		ldev->caps.pix_fmt_nb = ARRAY_SIZE(ltdc_drm_fmt_a2);
+>   		ldev->caps.pix_fmt_flex = true;
+>   		ldev->caps.non_alpha_only_l1 = false;
+> -		ldev->caps.pad_max_freq_hz = 90000000;
+>   		ldev->caps.nb_irq = 2;
+>   		ldev->caps.ycbcr_input = true;
+>   		ldev->caps.ycbcr_output = true;
+> @@ -1872,6 +1876,8 @@ void ltdc_suspend(struct drm_device *ddev)
+>   
+>   	DRM_DEBUG_DRIVER("\n");
+>   	clk_disable_unprepare(ldev->pixel_clk);
+> +	if (ldev->bus_clk)
+> +		clk_disable_unprepare(ldev->bus_clk);
+>   }
+>   
+>   int ltdc_resume(struct drm_device *ddev)
+> @@ -1887,7 +1893,13 @@ int ltdc_resume(struct drm_device *ddev)
+>   		return ret;
+>   	}
+>   
+> -	return 0;
+> +	if (ldev->bus_clk) {
+> +		ret = clk_prepare_enable(ldev->bus_clk);
+> +		if (ret)
+> +			drm_err(ddev, "failed to enable bus clock (%d)\n", ret);
+> +	}
+> +
+> +	return ret;
+>   }
+>   
+>   int ltdc_load(struct drm_device *ddev)
+> @@ -1922,6 +1934,20 @@ int ltdc_load(struct drm_device *ddev)
+>   		return -ENODEV;
+>   	}
+>   
+> +	if (of_device_is_compatible(np, "st,stm32mp251-ltdc") ||
+> +	    of_device_is_compatible(np, "st,stm32mp255-ltdc")) {
+> +		ldev->bus_clk = devm_clk_get(dev, "bus");
+> +		if (IS_ERR(ldev->bus_clk))
+> +			return dev_err_probe(dev, PTR_ERR(ldev->bus_clk),
+> +					     "Unable to get bus clock\n");
+> +
+> +		ret = clk_prepare_enable(ldev->bus_clk);
+> +		if (ret) {
+> +			drm_err(ddev, "Unable to prepare bus clock\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+>   	/* Get endpoints if any */
+>   	for (i = 0; i < nb_endpoints; i++) {
+>   		ret = drm_of_find_panel_or_bridge(np, 0, i, &panel, &bridge);
+> @@ -2034,6 +2060,9 @@ int ltdc_load(struct drm_device *ddev)
+>   
+>   	clk_disable_unprepare(ldev->pixel_clk);
+>   
+> +	if (ldev->bus_clk)
+> +		clk_disable_unprepare(ldev->bus_clk);
+> +
+>   	pinctrl_pm_select_sleep_state(ddev->dev);
+>   
+>   	pm_runtime_enable(ddev->dev);
+> @@ -2042,6 +2071,9 @@ int ltdc_load(struct drm_device *ddev)
+>   err:
+>   	clk_disable_unprepare(ldev->pixel_clk);
+>   
+> +	if (ldev->bus_clk)
+> +		clk_disable_unprepare(ldev->bus_clk);
+> +
+>   	return ret;
+>   }
+>   
+> diff --git a/drivers/gpu/drm/stm/ltdc.h b/drivers/gpu/drm/stm/ltdc.h
+> index 9d488043ffdbc652deeede71c9d57d45fb89d3c6..ddfa8ae61a7ba5dc446fae647562d0ec8e6953e1 100644
+> --- a/drivers/gpu/drm/stm/ltdc.h
+> +++ b/drivers/gpu/drm/stm/ltdc.h
+> @@ -40,10 +40,15 @@ struct fps_info {
+>   	ktime_t last_timestamp;
+>   };
+>   
+> +struct ltdc_plat_data {
+> +	int pad_max_freq_hz;	/* max frequency supported by pad */
+> +};
+> +
+>   struct ltdc_device {
+>   	void __iomem *regs;
+>   	struct regmap *regmap;
+>   	struct clk *pixel_clk;	/* lcd pixel clock */
+> +	struct clk *bus_clk;	/* bus clock */
+>   	struct mutex err_lock;	/* protecting error_status */
+>   	struct ltdc_caps caps;
+>   	u32 irq_status;
+>
 
