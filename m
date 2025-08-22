@@ -1,123 +1,121 @@
-Return-Path: <devicetree+bounces-208152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5ECEB31A3D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:53:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A77B31A43
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:53:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1DECB014D9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:47:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8340189349A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2903054E6;
-	Fri, 22 Aug 2025 13:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE6630748B;
+	Fri, 22 Aug 2025 13:50:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DTdzuJvM"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="QgGX7ZhP";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="s+1VBDk+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7883043AB;
-	Fri, 22 Aug 2025 13:46:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24C5305056;
+	Fri, 22 Aug 2025 13:50:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755870399; cv=none; b=kc390Y5CumW7p1xh/X87LM+q5oFFzA8HIZ1j6m++IQusOwBMMlukSbT/qHVLfcDUm6i1qMe2F0p53boO/fiWPs1ZZ2wR8uprWOjecRrEpJiBdR7TWKOFeX48M1FyYXxeZnBxCWJyq7HqbW3NyHxUvgFQicDYZgaArZLYbTnmOcI=
+	t=1755870618; cv=none; b=fGNcvdOI8iltir8elc4GxRJkEAa4+AUPuGN+7EwMj3RBIZUlH4OIJlVu9ifNAGWy7fv2dU3LHY4avmQUxhfcHxh7J4hmo3qkswj7Uhz8sRlU2maq8atMBWgn/ju3ab9O1vdeaiicmMKcYjZ41kTdWbFnZMVBuF3h5823FOkINoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755870399; c=relaxed/simple;
-	bh=I7ueha+r9tVxSlgmxhcRqo50bwX+Ec9JtVfEvdOGt10=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kxvkv096blqPNOgPThW8OkfvXOwx6EcXz380+UHOrBxhakJhx1sp1IlrZxYckbSRQ1nCYYDCiVDhSWleXwQG/ExCOzDs4aaTyUk1uNRvEVyj7x0L/jakLhCSIxMIZx5ZGtGeM/VmFzjSpNh1esFO7qYnUPycOhHrTWEyFOAyLO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DTdzuJvM; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755870397; x=1787406397;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=I7ueha+r9tVxSlgmxhcRqo50bwX+Ec9JtVfEvdOGt10=;
-  b=DTdzuJvMHM/6ruLZKTzHAhUg5NkqiKcM5Rg6rjjfWkFrn8/5j3069N2q
-   WzJ6NIftEc2H/TSgcGuL2EasPR2SRLdT0/Wc6id26OOJKy2q3nEm5DmVE
-   G3qRGK4TRYB2J8h3jc/ejQAMUUUWZWdhus+32Myr5z5I8r3xie6ovk5tV
-   x0eGjfeAPJbc+1Hctv8QDNtH0Jqqpr+LgjEoU0qynn7mE3sd0BYd/ct0l
-   ekP+g+Tgxx+uUpX+jbHyDKyQeiqZvAy9EWHOk9MnGyoT8FWsF79ViFhRE
-   og3Ew9FX5EPqSBjTm2QGB3hIOx8aBddttn/p4ESdE9n3KSsMW2uD/h9uB
-   A==;
-X-CSE-ConnectionGUID: bMC/YndSQO+axPdpf31bfw==
-X-CSE-MsgGUID: i9dU/ETpQnC5opOGej68TQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="58127721"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; 
-   d="scan'208";a="58127721"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2025 06:46:34 -0700
-X-CSE-ConnectionGUID: QwgNP83qSI+txb7SNHlEkQ==
-X-CSE-MsgGUID: 5VsrkszkTQqlDQwFZFKWqg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; 
-   d="scan'208";a="168614612"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by fmviesa006.fm.intel.com with ESMTP; 22 Aug 2025 06:46:30 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1upS68-000LLP-22;
-	Fri, 22 Aug 2025 13:46:28 +0000
-Date: Fri, 22 Aug 2025 21:46:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje@dujemihanovic.xyz>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	s=arc-20240116; t=1755870618; c=relaxed/simple;
+	bh=O+jSnGaHmKUiGj/WIWuyxFIkp8DW2wFsMApt4aRCWk0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aDRUDWT5IC7AnpD/3l0hZgN89oBhFb2wy0vCx9ZUBod50e/m3lInmXa/Kilq4d3hU+tk7pE7qGMrD03ZlpsyIlQIoywGSbH8VXrIurr7HLQF0SDzE+yQu2Vm3FM10bzubZ96sVrlI0LxX4OQNoFz3NzVhcwYHBDrqaWWY7AYQqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=QgGX7ZhP; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=s+1VBDk+ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1755870615; x=1787406615;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=i8SzWexuyxV3a/gZZD74upExkExDhyw1A7Y1hYQSeJQ=;
+  b=QgGX7ZhP/qsjNITTnIeOJm/Z0tJcrWt4uLrPb+EU0lDt0wOGKnwjiTqr
+   jUAp6bGQV/ANp8cUmNTOEAEXbGsrgmrR5cxbZU+gUupc2wCdKm9guwM4p
+   MpS/BbFgG5jOmAZdyAA3CJIVA+TM9B528yvhZlkVsNu57/dfXLOjPC4ur
+   pAiUdU+v1aWH/q2LgVPEtcMPGCCr6268SPHsvJeK6tiFQRUI87ayn97Jn
+   YA6OwmRm65cBknDoVpobfoHlAyibt+7TtIWCejXybRYvySc301n20zK8s
+   7jGR2fkogF/f5lJvD6j1jmqHjVas94KycAwUfjrZlXdwIrfErrCYVz9pt
+   w==;
+X-CSE-ConnectionGUID: RK9H41DpTCS3CByLwAY3rQ==
+X-CSE-MsgGUID: skqb6SrqRDSeFAom8mYn5A==
+X-IronPort-AV: E=Sophos;i="6.17,309,1747692000"; 
+   d="scan'208";a="45868362"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 22 Aug 2025 15:50:12 +0200
+X-CheckPoint: {68A87593-22-20CAA7DA-EC9DC758}
+X-MAIL-CPID: D0CC8B2240F01A85C119B8645B255DF3_0
+X-Control-Analysis: str=0001.0A002119.68A875CC.0049,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 626E3160B0F;
+	Fri, 22 Aug 2025 15:50:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1755870607; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=i8SzWexuyxV3a/gZZD74upExkExDhyw1A7Y1hYQSeJQ=;
+	b=s+1VBDk+fgy9gxQMAjPdNyt098wOeiyJM/96Fa9To++aaoDGuGvZhl03gt1aOqHeZUfrB1
+	ArdVeUUUoVzwcwfmAegOUzfppZgiPNXiFBuyZyiwN3bXNohJBcpiBNT7SgrRpv45BwaEFn
+	aRA3A7gu+R6nBseyw4TnWdFt1RH4UlqxBnS+HNIvEmS+0ZILdwhsu6on3PP8sCTStO1p20
+	EZj57KM7ckqM9BVz+muI/Ez6XlIK48KtBOqdjHnXusyLLWTG9eZIJvwYHJcOF2oII7OTl1
+	8VW/1l+r7sEv5OV0eOIu1VNwovmcUjoR0DSNIxUmJkGbNSMw8p5+5RIZs+4Dsw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, David Wronek <david@mainlining.org>,
-	Karel Balej <balejk@matfyz.cz>, phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Subject: Re: [PATCH v2 3/4] clk: mmp: Add PXA1908 power domain driver
-Message-ID: <202508222109.6oqAqWW7-lkp@intel.com>
-References: <20250821-pxa1908-genpd-v2-3-eba413edd526@dujemihanovic.xyz>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] ARM: dts: mba6ul: Add MicIn routing
+Date: Fri, 22 Aug 2025 15:49:54 +0200
+Message-ID: <20250822134955.3321137-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250821-pxa1908-genpd-v2-3-eba413edd526@dujemihanovic.xyz>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Duje,
+MicIn is connected to IN3_L. Add routing including the Mic Bias.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-[auto build test WARNING on c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Duje-Mihanovi/dt-bindings-clock-marvell-pxa1908-Add-syscon-compatible-to-apmu/20250821-192805
-base:   c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
-patch link:    https://lore.kernel.org/r/20250821-pxa1908-genpd-v2-3-eba413edd526%40dujemihanovic.xyz
-patch subject: [PATCH v2 3/4] clk: mmp: Add PXA1908 power domain driver
-config: m68k-kismet-CONFIG_PM-CONFIG_COMMON_CLK_PXA1908-0-0 (https://download.01.org/0day-ci/archive/20250822/202508222109.6oqAqWW7-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20250822/202508222109.6oqAqWW7-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508222109.6oqAqWW7-lkp@intel.com/
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for PM when selected by COMMON_CLK_PXA1908
-   WARNING: unmet direct dependencies detected for PM
-     Depends on [n]: !MMU [=y]
-     Selected by [y]:
-     - COMMON_CLK_PXA1908 [=y] && COMMON_CLK [=y] && (ARCH_MMP || COMPILE_TEST [=y]) && OF [=y]
-
+diff --git a/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi b/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi
+index 67a3d484bc9f1..65fde4f52587c 100644
+--- a/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi
+@@ -146,6 +146,13 @@ sound {
+ 		ssi-controller = <&sai1>;
+ 		audio-codec = <&tlv320aic32x4>;
+ 		audio-asrc = <&asrc>;
++		audio-routing =
++			"IN3_L", "Mic Jack",
++			"Mic Jack", "Mic Bias",
++			"IN1_L", "Line In Jack",
++			"IN1_R", "Line In Jack",
++			"Line Out Jack", "LOL",
++			"Line Out Jack", "LOR";
+ 	};
+ };
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
