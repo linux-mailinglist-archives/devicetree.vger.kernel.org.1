@@ -1,188 +1,179 @@
-Return-Path: <devicetree+bounces-207963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CB40B313E7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:47:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F28EEB313E1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:47:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 913521C22977
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:41:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B117627D55
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069AB219A81;
-	Fri, 22 Aug 2025 09:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8612F99B8;
+	Fri, 22 Aug 2025 09:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="d5M/X4ZM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a0a/ehrZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64741216E26;
-	Fri, 22 Aug 2025 09:35:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C002F8BE6
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755855359; cv=none; b=PhCAhSzvZfK8l5+kHrnqy59tcgSqZdBnZpZ/ICfVxH+CcPm+lyMXpqmZ4qDHL2SxhS6leaTJN8VeaFzCwEQ+Cfu9IjlGn32evMYyUVD+OOXvTaGgIvO0Q+f4RoJVkjJRjY5dH98bAnt0RBUtJWifS/CnQF4h3Mbw9ELNROwq3FA=
+	t=1755855333; cv=none; b=kHuG5bLEUzxt0s2Zk2WOfajdNeO7m0Jl3VNDYfuQZVMSWQM82ZUjoCYQJIMCuV0Zumb8Cc3RqUGOC60YtrLQFtEnRKLUkFy/CpsrhaRnjgvsyIuDgeFoAxgVJ8WR5h18vQgBbp3vVMi6DIPc7ahYJgujdP3r+QvUTgyIRENRbYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755855359; c=relaxed/simple;
-	bh=Uc2IpWtM+zVbkbcO4rcfTAtLdzFd4VXXB5icpjxC18Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=BJ/jfrE4fgtSCwrn5fBFOuOm0NOdyQUsWuP373RiL7Wbp2h55am/basLlDD1BUR1P731upjcSMw6OYwNcHXOl0MI8wXPfOdoRpZtsqhc/iL8Jn2RyObjw1ymJ+qpdAwZQZp6PDBX/394294CdFBcI2luzvES4HFePU8Q+AoeZhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=d5M/X4ZM reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=JxgCFVEuQkp07FCw4bSduVBC2/i6b/QVEgUNfJ28zgM=; b=d
-	5M/X4ZMKBtNeeArwzm2cjNVLuWiWCBuBprMWEdwrkDmriEN50zdHGQfUDUhAnL3L
-	HBDgU2tK16P6eWh85KSKMbROtDSIN+njdM7x8ewy0gheovCPjeeTq+zMwkpTiJjY
-	BH+cUIF9B6I23dIPkcu+Q8DuivUuNFEXbadsqQffj4=
-Received: from andyshrk$163.com ( [103.29.142.67] ) by
- ajax-webmail-wmsvr-40-118 (Coremail) ; Fri, 22 Aug 2025 17:34:54 +0800
- (CST)
-Date: Fri, 22 Aug 2025 17:34:54 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org, naoki@radxa.com,
-	stephen@radxa.com, cristian.ciocaltea@collabora.com,
-	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
-	yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, robh@kernel.org,
-	sebastian.reichel@collabora.com,
-	"Andy Yan" <andy.yan@rock-chips.com>
-Subject: Re:Re: [PATCH v6 00/10] Add support for RK3588 DisplayPort
- Controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20250519(9504565a)
- Copyright (c) 2002-2025 www.mailtech.cn 163com
-In-Reply-To: <7omsdz6hjhpmzi7a2meem64dm2jrxhivczt3gdi24jyrp5lgjp@iucsgwqtjqzc>
-References: <20250728082846.3811429-1-andyshrk@163.com>
- <1ebeae81.8b20.198cc3ac94a.Coremail.andyshrk@163.com>
- <7omsdz6hjhpmzi7a2meem64dm2jrxhivczt3gdi24jyrp5lgjp@iucsgwqtjqzc>
-X-NTES-SC: AL_Qu2eB/Seukoi4iOeY+kfmUgWjuw/WsG1v/Ul1YBSP556jDDp2CEdenRSImbo8e60Ah+gmgmGYh920MpQRrVzc6w39RtMhO7IpQNdGTAfgU5ltw==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1755855333; c=relaxed/simple;
+	bh=u2cVZCViLmM0qGu+nHCKy5aS4XNiSfo4aTc8MMywpew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RpzNGh/7t8WcUWCL5j9NWWyRQI9EknMF84kRrzOfk26D2o7m4Ax4dcfvxl1gng6SS6Oa7zUffp8eF3tEpsLEv2ZGbC5Nwh1NlNr+usv6w4xYI1YYOq3mlwIadHZonnfuMAoKRJXra0VJgrYjsHivSP1TkdCj1xiPHmzloaa5+qA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a0a/ehrZ; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45b49f7aaf5so11617205e9.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 02:35:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755855328; x=1756460128; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:from:references:cc:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OJkW9jOdewoj0W9ptZbkJ608Pxc0QK82I1kL9/NJC98=;
+        b=a0a/ehrZdcTI55fygq5cj1TlhARWCwekzYiSa3ff47F148jFUzCGB7pG8EbKIRX/3L
+         09Qf87e9fyhyUKcMRyVaucsY01MGoKg7XXFzCIzc3C4uifGkGTLzWxl9TJVwT2yqwoVQ
+         z0BrgmUYFxeaAxQCJ5YhBQvm7i3TMsNzPmU81DjGuptv7bDXmlvTnOmsy+OlbHyW4AK2
+         93kl/Qmsk4oVnuNu1mUbBVd5wVWHaflSWIeSV0efhA1LT5+Gzs2TTvxLSIxOOaGiuEfz
+         zY9kJ2njTWMLDSaxqNbNh3PdP2kjGlZsA7MT9yykzZEh6pQIW1tKs+p2775xa7s0wsTL
+         AfVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755855328; x=1756460128;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:from:references:cc:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=OJkW9jOdewoj0W9ptZbkJ608Pxc0QK82I1kL9/NJC98=;
+        b=mXVm6fkRCUu3wqnXjwcyrOk/VB/PTcTOUerKsbEOAK3ZnjlOo9E3dENvnoraFmN1pP
+         /BbTpayVLmOeNXOlY3XXFHXYobDbvL7u6j42q6vVWv8caAahlOlVRlzXmdE58jRwJvBO
+         h6ADdvmewSbt8g8I9dfj4HC3XipGpZL0ZunFymSwOi8wFXmBcaDDX5duUzwX7mKXmn4+
+         9o4bKRgietUBxf1hB5cDeme8ahEfUZJBnIkCF6RcWiNCgk3jnfrxNKp3gjSKwOAMarhg
+         cAYE5egL/X4dRrka3TG2gBicAzXV4MbpX6rMGGVYNPHIUepd+pUt2xUx10ea9GN1r4k9
+         1XlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWy0Ol2bfxxYbFxlcgmkHdyPmRkMzJ+GDYvJ7ZXxkT404BbnD+xQB1IGH0ltox6IrEr9+WkS/ISAj07@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFzRGH3IE4eLDItwTBpnx4QWNUSvDTGH3bGQMP4pBdGx9bn4l+
+	PNexhczHcK5S084kIxaGOsijbw3s4zG57JHBuPcbIxsbi1Hx3Zswwd9C4Mmsym76Zc0=
+X-Gm-Gg: ASbGncsO8TK7rRhc7YfRj2WDbGntWwk4muaRAVoBOIOuvPp/RRz8IZ4EmynFCzmPmvT
+	gfQE2qfhlUjTydPy7VmacYuCLZmqd9LvgWjX+OBrg7Af5BzA09Q13fKVQ33AkBprpGa+7OEnegh
+	Asd8W4UXFB3rMSHSZh2+8O9C7KoAE6zXisSarpr8uvc4PJ4qXDv1CX5+NX6ThD3l8dCi61D86e4
+	iA1tP8NahdVveRYS3oOSH/eXDyUYU5arzojb8gOGvmSovp1Fri5lM89dzwtWQX3HWutGPmxgvnl
+	B/SQoZ3eI2osVNXmQScpIjuDZcyoGvEJ8ULLoNsuqv/zxDGgMMjjSi9OOdhIMxPr5WirWOoMgHL
+	ZWpjpWq1+3TtckczeD/NA07IutYYw+7uCtoGWEV2u10fzHKprtCb8RjKYFzrGoln21KZz5AB1X7
+	4=
+X-Google-Smtp-Source: AGHT+IHLpgQ4dn+cM03lopM+8J38FUhN5HG9CkM9OhhaBf0+riVpwc8dRtPrCsKf5QsWgdRMaAlFJA==
+X-Received: by 2002:a05:6000:288a:b0:3b7:92ca:2831 with SMTP id ffacd0b85a97d-3c5daa2800dmr1587093f8f.12.1755855327805;
+        Fri, 22 Aug 2025 02:35:27 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:3dd7:7361:c101:6a77? ([2a01:e0a:3d9:2080:3dd7:7361:c101:6a77])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c0777892basm14547830f8f.56.2025.08.22.02.35.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Aug 2025 02:35:27 -0700 (PDT)
+Message-ID: <9f6ee709-662e-4bd1-ac28-601bb530458c@linaro.org>
+Date: Fri, 22 Aug 2025 11:35:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <5975acef.83fc.198d1218fa1.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:digvCgD3Hz6+OahoDLwfAA--.10703W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEhmxXmioNN1wugAFsC
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+User-Agent: Mozilla Thunderbird
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 01/10] arm64: dts: qcom: x1e80100: Add pinctrl template
+ for eDP0 HPD
+To: Stephan Gerhold <stephan.gerhold@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+ Abel Vesa <abel.vesa@linaro.org>, Xilin Wu <wuxilin123@gmail.com>,
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+ Srinivas Kandagatla <srini@kernel.org>, Sibi Sankar
+ <quic_sibis@quicinc.com>, Rajendra Nayak <quic_rjendra@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20250822-x1e80100-add-edp-hpd-v2-0-6310176239a6@linaro.org>
+ <20250822-x1e80100-add-edp-hpd-v2-1-6310176239a6@linaro.org>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250822-x1e80100-add-edp-hpd-v2-1-6310176239a6@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-CkhlbGxvIERtaXRyeSwKCkF0IDIwMjUtMDgtMjEgMTk6MzY6MDEsICJEbWl0cnkgQmFyeXNoa292
-IiA8ZG1pdHJ5LmJhcnlzaGtvdkBvc3MucXVhbGNvbW0uY29tPiB3cm90ZToKPk9uIFRodSwgQXVn
-IDIxLCAyMDI1IGF0IDA2OjQ0OjIxUE0gKzA4MDAsIEFuZHkgWWFuIHdyb3RlOgo+PiAKPj4gCj4+
-IEhlbGxvIERtaXRyeSwKPj4gICAgIAo+PiAKPj4gQXQgMjAyNS0wNy0yOCAxNjoyODoyNSwgIkFu
-ZHkgWWFuIiA8YW5keXNocmtAMTYzLmNvbT4gd3JvdGU6Cj4+ID5Gcm9tOiBBbmR5IFlhbiA8YW5k
-eS55YW5Acm9jay1jaGlwcy5jb20+Cj4+ID4KPj4gPgo+PiA+VGhlcmUgYXJlIHR3byBEVyBEUFRY
-IGJhc2VkIERpc3BsYXlQb3J0IENvbnRyb2xsZXIgb24gcmszNTg4IHdoaWNoCj4+ID5hcmUgY29t
-cGxpYW50IHdpdGggdGhlIERpc3BsYXlQb3J0IFNwZWNpZmljYXRpb24gVmVyc2lvbiAxLjQgd2l0
-aAo+PiA+dGhlIGZvbGxvd2luZyBmZWF0dXJlczoKPj4gPgo+PiA+KiBEaXNwbGF5UG9ydCAxLjRh
-Cj4+ID4qIE1haW4gTGluazogMS8yLzQgbGFuZXMKPj4gPiogTWFpbiBMaW5rIFN1cHBvcnQgMS42
-MkdicHMsIDIuN0dicHMsIDUuNEdicHMgYW5kIDguMUdicHMKPj4gPiogQVVYIGNoYW5uZWwgMU1i
-cHMKPj4gPiogU2luZ2xlIFN0cmVhbSBUcmFuc3BvcnQoU1NUKQo+PiA+KiBNdWx0aXN0cmVhbSBU
-cmFuc3BvcnQgKE1TVCkKPj4gPiogVHlwZS1DIHN1cHBvcnQgKGFsdGVybmF0ZSBtb2RlKQo+PiA+
-KiBIRENQIDIuMiwgSERDUCAxLjMKPj4gPiogU3VwcG9ydHMgdXAgdG8gOC8xMCBiaXRzIHBlciBj
-b2xvciBjb21wb25lbnQKPj4gPiogU3VwcG9ydHMgUkJHLCBZQ2JDcjQ6NDo0LCBZQ2JDcjQ6Mjoy
-LCBZQ2JDcjQ6MjowCj4+ID4qIFBpeGVsIGNsb2NrIHVwIHRvIDU5NE1Iego+PiA+KiBJMlMsIFNQ
-RElGIGF1ZGlvIGludGVyZmFjZQo+PiA+Cj4+ID5UaGUgY3VycmVudCB2ZXJzaW9uIG9mIHRoaXMg
-cGF0Y2ggc2VyaWVzIG9ubHkgc3VwcG9ydHMgYmFzaWMgZGlzcGxheSBvdXRwdXRzLgo+PiA+SSBj
-b25kdWN0ZWQgdGVzdHMgd2l0aCBEUDAgaW4gMTA4MHAgYW5kIDRLQDYwIFlDYkNyNDoyOjAgbW9k
-ZXM7IHRoZSBBTFQvVHlwZS1DCj4+ID5tb2RlIHdhcyB0ZXN0ZWQgb24gUm9jayA1QiwgRFAxIHdh
-cyB0ZXN0ZWQgb24gUm9jayA1IElUWCBieSBTdGVwaGVuIGFuZCBQaW90ci4KPj4gPkhEQ1AgYW5k
-IGF1ZGlvIGZlYXR1cmVzIHJlbWFpbiB1bmltcGxlbWVudGVkLgo+PiA+Rm9yIFJLMzU4OCwgaXQn
-cyBvbmx5IHN1cHBvcnQgU1NULCB3aGlsZSBpbiB0aGUgdXBjb21pbmcgUkszNTc2LCBpdCBjYW4g
-c3VwcG9ydAo+PiA+TVNUIG91dHB1dC4KPj4gCj4+IAo+PiAKPj4gIENvdWxkIHlvdSB0YWtlIHRo
-aXMgc2VyaWVzPyBJdCB3b3VsZCBiZSBuaWNlIGlmIHRoZXkgY291bGQgbGFuZCBMaW51eCA2LjE4
-Lgo+Cj5kaW0gY2hlY2twYXRjaCBjb21wbGFpbnMgYWJvdXQgdGhlIERXIGxpYnJhcnkgcGF0Y2g6
-Cj4KPgo+LTozODU6IENIRUNLOlVOQ09NTUVOVEVEX0RFRklOSVRJT046IHN0cnVjdCBtdXRleCBk
-ZWZpbml0aW9uIHdpdGhvdXQgY29tbWVudAo+IzM4NTogRklMRTogZHJpdmVycy9ncHUvZHJtL2Jy
-aWRnZS9zeW5vcHN5cy9kdy1kcC5jOjMyMzoKPisJc3RydWN0IG11dGV4IGlycV9sb2NrOwo+Cj4t
-OjgxOTogQ0hFQ0s6VU5ORUNFU1NBUllfUEFSRU5USEVTRVM6IFVubmVjZXNzYXJ5IHBhcmVudGhl
-c2VzIGFyb3VuZCAndiAhPSBhZGotPnZvbHRhZ2Vfc3dpbmdbaV0nCj4jODE5OiBGSUxFOiBkcml2
-ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWRwLmM6NzU3Ogo+KwkJaWYgKCh2ICE9IGFk
-ai0+dm9sdGFnZV9zd2luZ1tpXSkgfHwgKHAgIT0gYWRqLT5wcmVfZW1waGFzaXNbaV0pKQo+Cj4t
-OjgxOTogQ0hFQ0s6VU5ORUNFU1NBUllfUEFSRU5USEVTRVM6IFVubmVjZXNzYXJ5IHBhcmVudGhl
-c2VzIGFyb3VuZCAncCAhPSBhZGotPnByZV9lbXBoYXNpc1tpXScKPiM4MTk6IEZJTEU6IGRyaXZl
-cnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctZHAuYzo3NTc6Cj4rCQlpZiAoKHYgIT0gYWRq
-LT52b2x0YWdlX3N3aW5nW2ldKSB8fCAocCAhPSBhZGotPnByZV9lbXBoYXNpc1tpXSkpCj4KPi06
-MTc1NDogQ0hFQ0s6VVNMRUVQX1JBTkdFOiB1c2xlZXBfcmFuZ2UgaXMgcHJlZmVycmVkIG92ZXIg
-dWRlbGF5OyBzZWUgZnVuY3Rpb24gZGVzY3JpcHRpb24gb2YgdXNsZWVwX3JhbmdlKCkgYW5kIHVk
-ZWxheSgpLgo+IzE3NTQ6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHct
-ZHAuYzoxNjkyOgo+Kwl1ZGVsYXkoMTApOwo+Cj5Db3VsZCB5b3UgcGxlYXNlIHRha2UgYSBsb29r
-IGFuZCBmaXggdGhvc2U/CgpTb3JyeSwgdGhlc2UgaXNzdWVzIGhhdmUgYmVlbiBmaXhlZCBpbiB2
-ZXJzaW9uIFY3WzBdLgoKWzBdaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvZHJpLWRldmVsLzIwMjUw
-ODIyMDYzOTU5LjY5MjA5OC0xLWFuZHlzaHJrQDE2My5jb20vVC8jdAoKPgo+PiAKPj4gCj4+ID4K
-Pj4gPgo+PiA+Q2hhbmdlcyBpbiB2NjoKPj4gPi0gVXNlIGRybV9kcF92c2Nfc2RwX3N1cHBvcnRl
-ZAo+PiA+LSBTdG9yZSBicGMvYnBwL2NvbG9yIGZvcm1hdCBpbiBkd19kcF9icmlkZ2Vfc3RhdGUK
-Pj4gPi0gQ29sbGVjdCBSZXZpZXdlZC1ieSB0YWdzCj4+ID4tIExpbmsgdG8gVjU6IGh0dHBzOi8v
-bG9yZS5rZXJuZWwub3JnL2xpbnV4LXJvY2tjaGlwLzIwMjUwNzE2MTAwNDQwLjgxNjM1MS0xLWFu
-ZHlzaHJrQDE2My5jb20vCj4+ID4KPj4gPkNoYW5nZXMgaW4gdjU6Cj4+ID4tIFVzZSBkcm1fZHBf
-cmVhZF9zaW5rX2NvdW50X2NhcCBpbnN0ZWFkIG9mIHRoZSBwcml2YXRlIGltcGxlbWVudGF0aW9u
-Lgo+PiA+LSBGaXJzdCBpbmNsdWRlZCBpbiB0aGlzIHZlcnNpb24uCj4+ID4tIExpbmsgdG8gVjQ6
-IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXJvY2tjaGlwLzIwMjUwNjE5MDYzOTAwLjcw
-MDQ5MS0xLWFuZHlzaHJrQDE2My5jb20vCj4+ID4KPj4gPkNoYW5nZXMgaW4gdjQ6Cj4+ID4tIERy
-b3AgdW5uZWNlc3NhcnkgaGVhZGVyIGZpbGVzCj4+ID4tIFN3aXRjaCB0byBkZXZtX2RybV9icmlk
-Z2VfYWxsb2MKPj4gPi0gRHJvcCB1bnVzZWQgZnVuY3Rpb24KPj4gPi0gQWRkIHBsYXRmb3JtX3Nl
-dF9kcnZkYXRhCj4+ID4tIExpbmsgdG8gVjM6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4
-LXJvY2tjaGlwLzIwMjUwNDAzMDMzNzQ4LjI0NTAwNy0xLWFuZHlzaHJrQDE2My5jb20vCj4+ID4K
-Pj4gPgo+PiA+Q2hhbmdlcyBpbiB2MzoKPj4gPi0gUmViYXNlIG9uIGRybS1taXNjLW5leHQKPj4g
-Pi0gU3dpdGNoIHRvIGNvbW1vbiBoZWxwZXJzIHRvIHBvd2VyIHVwL2Rvd24gZHAgbGluawo+PiA+
-LSBPbmx5IHBhc3MgcGFyYW1ldGVycyB0byBwaHkgdGhhdCBzaG91bGQgYmUgc2V0Cj4+ID4tIEZp
-cnN0IGludHJvZHVjZWQgaW4gdGhpcyB2ZXJzaW9uLgo+PiA+LSBGaXJzdCBpbnRyb2R1Y2VkIGlu
-IHRoaXMgdmVyc2lvbi4KPj4gPi0gQWRkIFJBNjIwIGludG8gYnJpZGdlIGNoYWluLgo+PiA+LSBM
-aW5rIHRvIFYyOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1yb2NrY2hpcC8yMDI1MDMx
-MjEwNDIxNC41MjUyNDItMS1hbmR5c2hya0AxNjMuY29tLwo+PiA+Cj4+ID5DaGFuZ2VzIGluIHYy
-Ogo+PiA+LSBGaXggYSBjaGFyYWN0ZXIgZW5jb2RpbmcgaXNzdWUKPj4gPi0gRml4IGNvbXBpbGUg
-ZXJyb3Igd2hlbiBidWlsZCBhcyBtb2R1bGUKPj4gPi0gQWRkIHBoeSBpbml0Cj4+ID4tIE9ubHkg
-dXNlIG9uZSBkd19kcF9saW5rX3RyYWluX3NldAo+PiA+LSBpbmxpbmUgZHdfZHBfcGh5X3VwZGF0
-ZV92c19lbXBoCj4+ID4tIFVzZSBkcF9zZHAKPj4gPi0gQ2hlY2sgcmV0dXJuIHZhbHVlIG9mIGRy
-bV9tb2Rlc2V0X2xvY2sKPj4gPi0gTWVyZ2UgY29kZSBpbiBhdG9taWNfcHJlX2VuYWJsZS9tb2Rl
-X2ZpeHVwIHRvIGF0b21pY19jaGVjawo+PiA+LSBSZXR1cm4gTlVMTCBpZiBjYW4ndCBmaW5kIGEg
-c3VwcG9ydGVkIG91dHB1dCBmb3JtYXQKPj4gPi0gRml4IG1heF9saW5rX3JhdGUgZnJvbSBwbGF0
-X2RhdGEKPj4gPi0gbm8gaW5jbHVkZSB1YXBpIHBhdGgKPj4gPi0gc3dpdGNoIHRvIGRybW1fZW5j
-b2Rlcl9pbml0Cj4+ID4tIFNvcnQgaW4gYWxwaGFiZXRpY2FsIG9yZGVyCj4+ID4tIExpbmsgdG8g
-VjE6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXJvY2tjaGlwLzIwMjUwMjIzMTEzMDM2
-Ljc0MjUyLTEtYW5keXNocmtAMTYzLmNvbS8KPj4gPgo+PiA+QW5keSBZYW4gKDEwKToKPj4gPiAg
-ZHQtYmluZGluZ3M6IGRpc3BsYXk6IHJvY2tjaGlwOiBBZGQgc2NoZW1hIGZvciBSSzM1ODggRFBU
-WCBDb250cm9sbGVyCj4+ID4gIGRybS9icmlkZ2U6IHN5bm9wc3lzOiBBZGQgRFcgRFBUWCBDb250
-cm9sbGVyIHN1cHBvcnQgbGlicmFyeQo+PiA+ICBkcm0vcm9ja2NoaXA6IEFkZCBSSzM1ODggRFBU
-WCBvdXRwdXQgc3VwcG9ydAo+PiA+ICBNQUlOVEFJTkVSUzogQWRkIGVudHJ5IGZvciBEVyBEUFRY
-IENvbnRyb2xsZXIgYnJpZGdlCj4+ID4gIGR0LWJpbmRpbmdzOiBkaXNwbGF5OiBzaW1wbGUtYnJp
-ZGdlOiBBZGQgcmE2MjAgY29tcGF0aWJsZQo+PiA+ICBkcm0vYmlyZGdlOiBzaW1wbGUtYnJpZGdl
-OiBBZGQgc3VwcG9ydCBmb3IgcmFkeGEgcmE2MjAKPj4gPiAgYXJtNjQ6IGR0czogcm9ja2NoaXA6
-IEFkZCBEUDAgZm9yIHJrMzU4OAo+PiA+ICBhcm02NDogZHRzOiByb2NrY2hpcDogQWRkIERQMSBm
-b3IgcmszNTg4Cj4+ID4gIGFybTY0OiBkdHM6IHJvY2tjaGlwOiBFbmFibGUgRGlzcGxheVBvcnQg
-Zm9yIHJrMzU4OHMgQ29vbCBQaSA0Qgo+PiA+ICBhcm02NDogZHRzOiByb2NrY2hpcDogRW5hYmxl
-IERQMkhETUkgZm9yIFJPQ0sgNSBJVFgKPj4gPgo+PiA+IC4uLi9kaXNwbGF5L2JyaWRnZS9zaW1w
-bGUtYnJpZGdlLnlhbWwgICAgICAgICB8ICAgIDEgKwo+PiA+IC4uLi9kaXNwbGF5L3JvY2tjaGlw
-L3JvY2tjaGlwLGR3LWRwLnlhbWwgICAgICB8ICAxNTAgKysKPj4gPiBNQUlOVEFJTkVSUyAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgICA4ICsKPj4gPiBhcmNoL2FybTY0L2Jv
-b3QvZHRzL3JvY2tjaGlwL3JrMzU4OC1iYXNlLmR0c2kgfCAgIDMwICsKPj4gPiAuLi4vYXJtNjQv
-Ym9vdC9kdHMvcm9ja2NoaXAvcmszNTg4LWV4dHJhLmR0c2kgfCAgIDMwICsKPj4gPiAuLi4vYm9v
-dC9kdHMvcm9ja2NoaXAvcmszNTg4LXJvY2stNS1pdHguZHRzICAgfCAgIDU5ICsKPj4gPiAuLi4v
-Ym9vdC9kdHMvcm9ja2NoaXAvcmszNTg4cy1jb29scGktNGIuZHRzICAgfCAgIDM3ICsKPj4gPiBk
-cml2ZXJzL2dwdS9kcm0vYnJpZGdlL3NpbXBsZS1icmlkZ2UuYyAgICAgICAgfCAgICA1ICsKPj4g
-PiBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL0tjb25maWcgICAgICAgfCAgICA3ICsK
-Pj4gPiBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL01ha2VmaWxlICAgICAgfCAgICAx
-ICsKPj4gPiBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWRwLmMgICAgICAgfCAy
-MDk0ICsrKysrKysrKysrKysrKysrCj4+ID4gZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL0tjb25m
-aWcgICAgICAgICAgICAgIHwgICAgOSArCj4+ID4gZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL01h
-a2VmaWxlICAgICAgICAgICAgIHwgICAgMSArCj4+ID4gZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlw
-L2R3X2RwLXJvY2tjaGlwLmMgICAgIHwgIDE1MCArKwo+PiA+IGRyaXZlcnMvZ3B1L2RybS9yb2Nr
-Y2hpcC9yb2NrY2hpcF9kcm1fZHJ2LmMgICB8ICAgIDEgKwo+PiA+IGRyaXZlcnMvZ3B1L2RybS9y
-b2NrY2hpcC9yb2NrY2hpcF9kcm1fZHJ2LmggICB8ICAgIDEgKwo+PiA+IGluY2x1ZGUvZHJtL2Jy
-aWRnZS9kd19kcC5oICAgICAgICAgICAgICAgICAgICB8ICAgMjAgKwo+PiA+IDE3IGZpbGVzIGNo
-YW5nZWQsIDI2MDQgaW5zZXJ0aW9ucygrKQo+PiA+IGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9yb2NrY2hpcC9yb2NrY2hpcCxkdy1k
-cC55YW1sCj4+ID4gY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lu
-b3BzeXMvZHctZHAuYwo+PiA+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vcm9j
-a2NoaXAvZHdfZHAtcm9ja2NoaXAuYwo+PiA+IGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2Ry
-bS9icmlkZ2UvZHdfZHAuaAo+PiA+Cj4+ID4tLSAKPj4gPjIuNDMuMAo+PiA+Cj4KPi0tIAo+V2l0
-aCBiZXN0IHdpc2hlcwo+RG1pdHJ5Cg==
+On 22/08/2025 11:28, Stephan Gerhold wrote:
+> At the moment, we indirectly rely on the boot firmware to set up the
+> pinctrl for the eDP HPD line coming from the internal display. If the boot
+> firmware does not configure the display (e.g. because a different display
+> is selected for output in the UEFI settings), then the display fails to
+> come up and there are several errors in the kernel log:
+> 
+>   [drm:dpu_encoder_phys_vid_wait_for_commit_done:544] [dpu error]vblank timeout: 80020041
+>   [drm:dpu_kms_wait_for_commit_done:524] [dpu error]wait for commit done returned -110
+>   [drm:dpu_encoder_frame_done_timeout:2715] [dpu error]enc40 frame done timeout
+>   ...
+> 
+> Add a new &edp0_hpd_default pinctrl template that can be used by boards to
+> set up the eDP HPD pin correctly. All boards upstream so far need the same
+> configuration; if a board needs a different configuration it can just avoid
+> using this template and define a custom one in the board DT.
+> 
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index f293b13ecc0ce426661187ac793f147d12434fcb..32fa9fa6fb946c4933f74fd0ee820ecb9284901e 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -5808,6 +5808,12 @@ tlmm: pinctrl@f100000 {
+>   			gpio-ranges = <&tlmm 0 0 239>;
+>   			wakeup-parent = <&pdc>;
+>   
+> +			edp0_hpd_default: edp0-hpd-default-state {
+> +				pins = "gpio119";
+> +				function = "edp0_hot";
+> +				bias-disable;
+> +			};
+> +
+>   			qup_i2c0_data_clk: qup-i2c0-data-clk-state {
+>   				/* SDA, SCL */
+>   				pins = "gpio0", "gpio1";
+> 
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
