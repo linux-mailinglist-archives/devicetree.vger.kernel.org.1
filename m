@@ -1,117 +1,349 @@
-Return-Path: <devicetree+bounces-207784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C7FB30C8E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 05:28:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FE5CB30C9B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 05:33:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58C711897A6F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 03:27:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34573727C4C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 03:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BFB28A1ED;
-	Fri, 22 Aug 2025 03:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 739D128A72F;
+	Fri, 22 Aug 2025 03:33:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Kbx5ldeO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45A5D1096F;
-	Fri, 22 Aug 2025 03:26:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D8A517AE11
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 03:33:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755833204; cv=none; b=dogOR2KdwX/Yf6ljqcMGFLum9W+G/2BEx7eindVGCPT8JOu00YrRd1M24AbiepbvscjmUXszZYFQeF2Kse6/G4JJSWGVmfNpYw3adH28LkZ/juXeSWhdPve/enTtSHPP44xkZ4xaXcWPPrlgYCfK7IN7ySdePCOKzRQNJHOWTls=
+	t=1755833619; cv=none; b=AptxHb/kklVZ99n0minyW3gJheNDkou3GdgulM46HnncvUPx3gfJrL54lrOZwnowEvaEcHa7FyneXg0pRqKcQWFDSCBb6Llwm2bXM8bw0yADMlQY6/tMzig+bEkUr96sEGeMO7NjCMasqUuMy+/luDE9mSksxyRwbt9cL+7aEwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755833204; c=relaxed/simple;
-	bh=wF1ylDXFmSCDCWt+ugfOeabac+MMovP6GAcpIG+yjw0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=mQFDoyr8YrEBkgTr02rgZSeek59tW2RQkQBq8LF6v42x8bmRet+aWNnBCgLJD2tJExvs5BXZcHQ4H0PkumaZ6elfU/mbeMQytNzXE5MbEahQbeb5toZ203/bZtNI7mNf+BEQLTP7UkrHrnchtjJykVi7Ab8AvcoC9ePbwMXc2hQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from lizhi2$eswincomputing.com ( [10.11.96.26] ) by
- ajax-webmail-app1 (Coremail) ; Fri, 22 Aug 2025 11:26:02 +0800 (GMT+08:00)
-Date: Fri, 22 Aug 2025 11:26:02 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: =?UTF-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
-To: "Andrew Lunn" <andrew@lunn.ch>
-Cc: weishangjuan@eswincomputing.com, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
-	yong.liang.choong@linux.intel.com, vladimir.oltean@nxp.com,
-	jszhang@kernel.org, jan.petrous@oss.nxp.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, inochiama@gmail.com,
-	boon.khai.ng@altera.com, dfustini@tenstorrent.com, 0x1207@gmail.com,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: Re: Re: Re: Re: Re: Re: [PATCH v3 2/2] ethernet: eswin: Add
- eic7700 ethernet driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <548973df-2fa8-4502-9f7c-668d0eeb16c6@lunn.ch>
-References: <c212c50e-52ae-4330-8e67-792e83ab29e4@lunn.ch>
- <7ccc507d.34b1.1980d6a26c0.Coremail.lizhi2@eswincomputing.com>
- <e734f2fd-b96f-4981-9f00-a94f3fd03213@lunn.ch>
- <6c5f12cd.37b0.1982ada38e5.Coremail.lizhi2@eswincomputing.com>
- <6b3c8130-77f0-4266-b1ed-2de80e0113b0@lunn.ch>
- <006c01dbfafb$3a99e0e0$afcda2a0$@eswincomputing.com>
- <28a48738-af05-41a4-be4c-5ca9ec2071d3@lunn.ch>
- <2b4deeba.3f61.1985fb2e8d4.Coremail.lizhi2@eswincomputing.com>
- <bad83fec-afca-4c41-bee4-e4e4f9ced57a@lunn.ch>
- <3261748c.629.198cfa3bc10.Coremail.lizhi2@eswincomputing.com>
- <548973df-2fa8-4502-9f7c-668d0eeb16c6@lunn.ch>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1755833619; c=relaxed/simple;
+	bh=8ae7BQ/H/X/z4I/Wl0/AJn7VdqEwsqiB6/27yyCXE+A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T4lb8J6g4SWbK9Kfo0B7jJ6Jm10kzlqa6mMhdPzR73JfAWQBkIYbfOs1ADYwU06REGNLQOuirzclVZto0ngJyE+V1uSIYkDF7YZOWcXH7UuAKihf9JpZ12q6eiQgQEFmthnmnljhlZKyk9YZjCwrXHFmytrMYr3vCASE8pTfmio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Kbx5ldeO; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1755833615;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vED3sHUD/eaxwLo5XUmcXYQAR0YhiuGg9wbVZx1Y6yI=;
+	b=Kbx5ldeOpZRAf3z8CQNsvgPR/h0bwtPlyceS961nfUtDnVAsLeXGHibIiU87yj1jS4Mbxm
+	5HhQERTCx1uZxDH0jxt+kKQdD+zo/R30ufTK1d7vFbGPQtCckzXpaxUGP3vn0rzmiHBYDQ
+	tHrJ34Jechif4VOwhEruC6Saa8uFxa0=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-689-AuXN_JCMMFm-2Msz8Mk6JQ-1; Thu,
+ 21 Aug 2025 23:33:31 -0400
+X-MC-Unique: AuXN_JCMMFm-2Msz8Mk6JQ-1
+X-Mimecast-MFC-AGG-ID: AuXN_JCMMFm-2Msz8Mk6JQ_1755833609
+Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 999AD195608B;
+	Fri, 22 Aug 2025 03:33:28 +0000 (UTC)
+Received: from localhost (unknown [10.72.112.99])
+	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 6CE29180029E;
+	Fri, 22 Aug 2025 03:33:25 +0000 (UTC)
+Date: Fri, 22 Aug 2025 11:33:21 +0800
+From: Baoquan He <bhe@redhat.com>
+To: Andrew Morton <akpm@linux-foundation.org>,
+	Alexander Graf <graf@amazon.com>, Brian Mak <makb@juniper.net>
+Cc: Dave Young <dyoung@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
+	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"H. Peter Anvin" <hpa@zytor.com>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>, x86@kernel.org,
+	kexec@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] kexec: Add KEXEC_FILE_NO_CMA as a legal flag
+Message-ID: <aKflAV8XNjqeu1Dj@MiWiFi-R3L-srv>
+References: <20250805211527.122367-1-makb@juniper.net>
+ <20250805211527.122367-2-makb@juniper.net>
+ <20250820214756.5c7b551e4723d9f0b5dd55e3@linux-foundation.org>
+ <aKbZ1h5mjtfoFMh8@MiWiFi-R3L-srv>
+ <20250821045319.72e81f40e021e54e2131ac44@linux-foundation.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <1935a8ad.648.198cfcfdcb1.Coremail.lizhi2@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TAJkCgDH3g9L46do9c3BAA--.11720W
-X-CM-SenderInfo: xol2xx2s6h245lqf0zpsxwx03jof0z/1tbiAgECDGinSk8OdAABs8
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250821045319.72e81f40e021e54e2131ac44@linux-foundation.org>
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
 
-RGVhciBBbmRyZXcgTHVubiwKVGhhbmsgeW91IGZvciB5b3VyIHZhbHVhYmxlIGFuZCBwcm9mZXNz
-aW9uYWwgc3VnZ2VzdGlvbnMuClBsZWFzZSBmaW5kIG91ciBleHBsYW5hdGlvbnMgZW1iZWRkZWQg
-YmVsb3cgeW91ciBjb21tZW50cyBpbiB0aGUKb3JpZ2luYWwgZW1haWwuCgpCZXN0IHJlZ2FyZHMs
-CgpMaSBaaGkKRXN3aW4gQ29tcHV0aW5nCgoKPiAtLS0tLeWOn+Wni+mCruS7ti0tLS0tCj4g5Y+R
-5Lu25Lq6OiAiQW5kcmV3IEx1bm4iIDxhbmRyZXdAbHVubi5jaD4KPiDlj5HpgIHml7bpl7Q6MjAy
-NS0wOC0yMiAxMToxNzozNyAo5pif5pyf5LqUKQo+IOaUtuS7tuS6ujog5p2O5b+XIDxsaXpoaTJA
-ZXN3aW5jb21wdXRpbmcuY29tPgo+IOaKhOmAgTogd2Vpc2hhbmdqdWFuQGVzd2luY29tcHV0aW5n
-LmNvbSwgYW5kcmV3K25ldGRldkBsdW5uLmNoLCBkYXZlbUBkYXZlbWxvZnQubmV0LCBlZHVtYXpl
-dEBnb29nbGUuY29tLCBrdWJhQGtlcm5lbC5vcmcsIHJvYmhAa2VybmVsLm9yZywga3J6aytkdEBr
-ZXJuZWwub3JnLCBjb25vcitkdEBrZXJuZWwub3JnLCBuZXRkZXZAdmdlci5rZXJuZWwub3JnLCBk
-ZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZywgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZywg
-bWNvcXVlbGluLnN0bTMyQGdtYWlsLmNvbSwgYWxleGFuZHJlLnRvcmd1ZUBmb3NzLnN0LmNvbSwg
-cm1rK2tlcm5lbEBhcm1saW51eC5vcmcudWssIHlvbmcubGlhbmcuY2hvb25nQGxpbnV4LmludGVs
-LmNvbSwgdmxhZGltaXIub2x0ZWFuQG54cC5jb20sIGpzemhhbmdAa2VybmVsLm9yZywgamFuLnBl
-dHJvdXNAb3NzLm54cC5jb20sIHByYWJoYWthci5tYWhhZGV2LWxhZC5yakBicC5yZW5lc2FzLmNv
-bSwgaW5vY2hpYW1hQGdtYWlsLmNvbSwgYm9vbi5raGFpLm5nQGFsdGVyYS5jb20sIGRmdXN0aW5p
-QHRlbnN0b3JyZW50LmNvbSwgMHgxMjA3QGdtYWlsLmNvbSwgbGludXgtc3RtMzJAc3QtbWQtbWFp
-bG1hbi5zdG9ybXJlcGx5LmNvbSwgbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3Jn
-LCBuaW5neXVAZXN3aW5jb21wdXRpbmcuY29tLCBsaW5taW5AZXN3aW5jb21wdXRpbmcuY29tLCBw
-aW5rZXNoLnZhZ2hlbGFAZWluZm9jaGlwcy5jb20KPiDkuLvpopg6IFJlOiBSZTogUmU6IFJlOiBS
-ZTogUmU6IFtQQVRDSCB2MyAyLzJdIGV0aGVybmV0OiBlc3dpbjogQWRkIGVpYzc3MDAgZXRoZXJu
-ZXQgZHJpdmVyCj4gCj4gPiBXZSByZS10dW5lZCBhbmQgdmVyaWZpZWQgdGhhdCBzZXR0aW5nIHRo
-ZSBUWEQgYW5kIFJYRCBkZWxheXMgdG8gMCBhbmQKPiA+IGNvbmZpZ3VyaW5nIFRYRU4gYW5kIFJY
-RFYgdG8gMCB5aWVsZGVkIHRoZSBzYW1lIGhhcmR3YXJlIHBlcmZvcm1hbmNlIGFzCj4gPiBsb25n
-IGFzIHdlIG9ubHkgYXBwbGllZCBkZWxheXMgKGUuZy4gMjAwcHMpIHRvIFRYQ0xLIGFuZCBSWENM
-Sy4KPiAKPiBUaGlzIGlzIGluIGFkZGl0aW9uIHRvIHBoeS1tb2RlID0gJ3JnbWlpLWlkJz8KPiAK
-Clllcywgb3VyIHJlLXR1bmluZyBhbmQgdmVyaWZpY2F0aW9uIHdlcmUgcGVyZm9ybWVkIHdpdGgg
-cGh5LW1vZGUgc2V0IHRvCnJnbWlpLWlkLgoKPiA+IFRoZXJlZm9yZSwgaW4gdGhlIG5leHQgcGF0
-Y2gsIHdlIHdpbGwgZHJvcCB0aGUgdmVuZG9yLXNwZWNpZmljIHByb3BlcnRpZXMKPiA+IChlLmcu
-IGVzd2luLGRseS1wYXJhbS0qKSBhbmQga2VlcCBvbmx5IHRoZSBzdGFuZGFyZCBhdHRyaWJ1dGVz
-LCBuYW1lbHkKPiA+IHJ4LWludGVybmFsLWRlbGF5LXBzIGFuZCB0eC1pbnRlcm5hbC1kZWxheS1w
-cy4KPiA+IElzIHRoaXMgY29ycmVjdD8KPiAKPiBZZXMsIDIwMHBzIGlzIGEgc21hbGwgdHVuaW5n
-IHZhbHVlLCB3aGVuIHRoZSBQSFkgYWRkcyB0aGUgMm5zLiBUaGlzIGlzCj4gTy5LLgo+IAo+IAlB
-bmRyZXcK
+On 08/21/25 at 04:53am, Andrew Morton wrote:
+> On Thu, 21 Aug 2025 16:33:26 +0800 Baoquan He <bhe@redhat.com> wrote:
+> 
+> > On 08/20/25 at 09:47pm, Andrew Morton wrote:
+> > > On Tue, 5 Aug 2025 14:15:26 -0700 Brian Mak <makb@juniper.net> wrote:
+......snip.....
+> ---
+> 
+>  include/linux/kexec.h |    3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> --- a/include/linux/kexec.h~kexec-add-kexec_file_no_cma-as-a-legal-flag
+> +++ a/include/linux/kexec.h
+> @@ -460,7 +460,8 @@ bool kexec_load_permitted(int kexec_imag
+>  
+>  /* List of defined/legal kexec file flags */
+>  #define KEXEC_FILE_FLAGS	(KEXEC_FILE_UNLOAD | KEXEC_FILE_ON_CRASH | \
+> -				 KEXEC_FILE_NO_INITRAMFS | KEXEC_FILE_DEBUG)
+> +				 KEXEC_FILE_NO_INITRAMFS | KEXEC_FILE_DEBUG | \
+> +				 KEXEC_FILE_NO_CMA)
+>  
+>  /* flag to track if kexec reboot is in progress */
+>  extern bool kexec_in_progress;
+
+Yeah, this is a good catch and great fix. Without this fix,
+kexec_file_load syscall will failed and return '-EINVAL' when
+KEXEC_FILE_NO_CMA is specified just as below code shows. So, for this
+patch, 
+
+Acked-by: Baoquan He <bhe@redhat.com>
+
+
+And, by the way, has the user space kexec-tools got the change merged
+to allow KEXEC_FILE_NO_CMA specified?
+
+And, Alexander, I am wondering why this is not captured when you test
+specifying KEXEC_FILE_NO_CMA case. Or you just skip the no_cma case
+testing?
+
+===================================================================
+SYSCALL_DEFINE5(kexec_file_load, int, kernel_fd, int, initrd_fd, 
+                unsigned long, cmdline_len, const char __user *, cmdline_ptr,
+                unsigned long, flags)
+{               
+        int image_type = (flags & KEXEC_FILE_ON_CRASH) ?
+                         KEXEC_TYPE_CRASH : KEXEC_TYPE_DEFAULT;
+        struct kimage **dest_image, *image;
+        int ret = 0, i;
+
+        /* We only trust the superuser with rebooting the system. */
+        if (!kexec_load_permitted(image_type))
+                return -EPERM;
+
+        /* Make sure we have a legal set of flags */
+        if (flags != (flags & KEXEC_FILE_FLAGS))
+                return -EINVAL;
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	......
+}
+=====================================================
+
+> _
+> 
+> 
+> and the second patch I placed in mm-unstable:
+> 
+> From: Brian Mak <makb@juniper.net>
+> Subject: x86/kexec: carry forward the boot DTB on kexec
+> Date: Tue, 5 Aug 2025 14:15:27 -0700
+> 
+> Currently, the kexec_file_load syscall on x86 does not support passing a
+> device tree blob to the new kernel.  Some embedded x86 systems use device
+> trees.  On these systems, failing to pass a device tree to the new kernel
+> causes a boot failure.
+> 
+> To add support for this, we copy the behavior of ARM64 and PowerPC and
+> copy the current boot's device tree blob for use in the new kernel.  We do
+> this on x86 by passing the device tree blob as a setup_data entry in
+> accordance with the x86 boot protocol.
+> 
+> This behavior is gated behind the KEXEC_FILE_FORCE_DTB flag.
+> 
+> Link: https://lkml.kernel.org/r/20250805211527.122367-3-makb@juniper.net
+> Signed-off-by: Brian Mak <makb@juniper.net>
+> Cc: Alexander Graf <graf@amazon.com>
+> Cc: Baoquan He <bhe@redhat.com>
+> Cc: Borislav Betkov <bp@alien8.de>
+> Cc: Dave Young <dyoung@redhat.com>
+> Cc: "H. Peter Anvin" <hpa@zytor.com>
+> Cc: Ingo Molnar <mingo@redhat.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Saravana Kannan <saravanak@google.com>
+> Cc: Thomas Gleinxer <tglx@linutronix.de>
+> Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+> ---
+> 
+>  arch/x86/kernel/kexec-bzimage64.c |   47 ++++++++++++++++++++++++++--
+>  include/linux/kexec.h             |    5 ++
+>  include/uapi/linux/kexec.h        |    4 ++
+>  kernel/kexec_file.c               |    1 
+>  4 files changed, 53 insertions(+), 4 deletions(-)
+> 
+> --- a/arch/x86/kernel/kexec-bzimage64.c~x86-kexec-carry-forward-the-boot-dtb-on-kexec
+> +++ a/arch/x86/kernel/kexec-bzimage64.c
+> @@ -16,6 +16,8 @@
+>  #include <linux/kexec.h>
+>  #include <linux/kernel.h>
+>  #include <linux/mm.h>
+> +#include <linux/libfdt.h>
+> +#include <linux/of_fdt.h>
+>  #include <linux/efi.h>
+>  #include <linux/random.h>
+>  
+> @@ -212,6 +214,28 @@ setup_efi_state(struct boot_params *para
+>  }
+>  #endif /* CONFIG_EFI */
+>  
+> +#ifdef CONFIG_OF_FLATTREE
+> +static void setup_dtb(struct boot_params *params,
+> +		      unsigned long params_load_addr,
+> +		      unsigned int dtb_setup_data_offset)
+> +{
+> +	struct setup_data *sd = (void *)params + dtb_setup_data_offset;
+> +	unsigned long setup_data_phys, dtb_len;
+> +
+> +	dtb_len = fdt_totalsize(initial_boot_params);
+> +	sd->type = SETUP_DTB;
+> +	sd->len = dtb_len;
+> +
+> +	/* Carry over current boot DTB with setup_data */
+> +	memcpy(sd->data, initial_boot_params, dtb_len);
+> +
+> +	/* Add setup data */
+> +	setup_data_phys = params_load_addr + dtb_setup_data_offset;
+> +	sd->next = params->hdr.setup_data;
+> +	params->hdr.setup_data = setup_data_phys;
+> +}
+> +#endif /* CONFIG_OF_FLATTREE */
+> +
+>  static void
+>  setup_ima_state(const struct kimage *image, struct boot_params *params,
+>  		unsigned long params_load_addr,
+> @@ -336,6 +360,17 @@ setup_boot_parameters(struct kimage *ima
+>  			sizeof(struct efi_setup_data);
+>  #endif
+>  
+> +#ifdef CONFIG_OF_FLATTREE
+> +	if (image->force_dtb && initial_boot_params) {
+> +		setup_dtb(params, params_load_addr, setup_data_offset);
+> +		setup_data_offset += sizeof(struct setup_data) +
+> +				     fdt_totalsize(initial_boot_params);
+> +	} else {
+> +		pr_debug("Not carrying over DTB, force_dtb = %d\n",
+> +			 image->force_dtb);
+> +	}
+> +#endif
+> +
+>  	if (IS_ENABLED(CONFIG_IMA_KEXEC)) {
+>  		/* Setup IMA log buffer state */
+>  		setup_ima_state(image, params, params_load_addr,
+> @@ -529,6 +564,12 @@ static void *bzImage64_load(struct kimag
+>  				sizeof(struct setup_data) +
+>  				RNG_SEED_LENGTH;
+>  
+> +#ifdef CONFIG_OF_FLATTREE
+> +	if (image->force_dtb && initial_boot_params)
+> +		kbuf.bufsz += sizeof(struct setup_data) +
+> +			      fdt_totalsize(initial_boot_params);
+> +#endif
+> +
+>  	if (IS_ENABLED(CONFIG_IMA_KEXEC))
+>  		kbuf.bufsz += sizeof(struct setup_data) +
+>  			      sizeof(struct ima_setup_data);
+> @@ -537,7 +578,7 @@ static void *bzImage64_load(struct kimag
+>  		kbuf.bufsz += sizeof(struct setup_data) +
+>  			      sizeof(struct kho_data);
+>  
+> -	params = kzalloc(kbuf.bufsz, GFP_KERNEL);
+> +	params = kvzalloc(kbuf.bufsz, GFP_KERNEL);
+
+Wondering how big the dtb blob is, can you explain a little bit about
+the kvzalloc usage here?
+
+Except of this, I have no other concern about this patch.
+
+And what's your plan about the user space kexec-tool change?
+
+>  	if (!params)
+>  		return ERR_PTR(-ENOMEM);
+>  	efi_map_offset = params_cmdline_sz;
+> @@ -647,7 +688,7 @@ static void *bzImage64_load(struct kimag
+>  	return ldata;
+>  
+>  out_free_params:
+> -	kfree(params);
+> +	kvfree(params);
+>  	return ERR_PTR(ret);
+>  }
+>  
+> @@ -659,7 +700,7 @@ static int bzImage64_cleanup(void *loade
+>  	if (!ldata)
+>  		return 0;
+>  
+> -	kfree(ldata->bootparams_buf);
+> +	kvfree(ldata->bootparams_buf);
+>  	ldata->bootparams_buf = NULL;
+>  
+>  	return 0;
+> --- a/include/linux/kexec.h~x86-kexec-carry-forward-the-boot-dtb-on-kexec
+> +++ a/include/linux/kexec.h
+> @@ -395,6 +395,9 @@ struct kimage {
+>  
+>  	/* Information for loading purgatory */
+>  	struct purgatory_info purgatory_info;
+> +
+> +	/* Force carrying over the DTB from the current boot */
+> +	bool force_dtb;
+>  #endif
+>  
+>  #ifdef CONFIG_CRASH_HOTPLUG
+> @@ -461,7 +464,7 @@ bool kexec_load_permitted(int kexec_imag
+>  /* List of defined/legal kexec file flags */
+>  #define KEXEC_FILE_FLAGS	(KEXEC_FILE_UNLOAD | KEXEC_FILE_ON_CRASH | \
+>  				 KEXEC_FILE_NO_INITRAMFS | KEXEC_FILE_DEBUG | \
+> -				 KEXEC_FILE_NO_CMA)
+> +				 KEXEC_FILE_NO_CMA | KEXEC_FILE_FORCE_DTB)
+>  
+>  /* flag to track if kexec reboot is in progress */
+>  extern bool kexec_in_progress;
+> --- a/include/uapi/linux/kexec.h~x86-kexec-carry-forward-the-boot-dtb-on-kexec
+> +++ a/include/uapi/linux/kexec.h
+> @@ -22,12 +22,16 @@
+>   * KEXEC_FILE_ON_CRASH : Load/unload operation belongs to kdump image.
+>   * KEXEC_FILE_NO_INITRAMFS : No initramfs is being loaded. Ignore the initrd
+>   *                           fd field.
+> + * KEXEC_FILE_FORCE_DTB : Force carrying over the current boot's DTB to the new
+> + *                        kernel on x86. This is already the default behavior on
+> + *                        some other architectures, like ARM64 and PowerPC.
+>   */
+>  #define KEXEC_FILE_UNLOAD	0x00000001
+>  #define KEXEC_FILE_ON_CRASH	0x00000002
+>  #define KEXEC_FILE_NO_INITRAMFS	0x00000004
+>  #define KEXEC_FILE_DEBUG	0x00000008
+>  #define KEXEC_FILE_NO_CMA	0x00000010
+> +#define KEXEC_FILE_FORCE_DTB	0x00000020
+>  
+>  /* These values match the ELF architecture values.
+>   * Unless there is a good reason that should continue to be the case.
+> --- a/kernel/kexec_file.c~x86-kexec-carry-forward-the-boot-dtb-on-kexec
+> +++ a/kernel/kexec_file.c
+> @@ -255,6 +255,7 @@ kimage_file_prepare_segments(struct kima
+>  	}
+>  
+>  	image->no_cma = !!(flags & KEXEC_FILE_NO_CMA);
+> +	image->force_dtb = flags & KEXEC_FILE_FORCE_DTB;
+>  
+>  	if (cmdline_len) {
+>  		image->cmdline_buf = memdup_user(cmdline_ptr, cmdline_len);
+> _
+> 
+
 
