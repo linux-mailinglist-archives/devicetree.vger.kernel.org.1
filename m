@@ -1,139 +1,161 @@
-Return-Path: <devicetree+bounces-207993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1843B31452
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:55:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CC21B31436
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:53:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2C5B1D23AD8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:51:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8004BA2BEB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8186F2EFDB0;
-	Fri, 22 Aug 2025 09:43:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D232EF673;
+	Fri, 22 Aug 2025 09:44:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="xn+orgFD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i6gmK0BZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3EBE28B7EF;
-	Fri, 22 Aug 2025 09:43:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F3A22882CA;
+	Fri, 22 Aug 2025 09:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755855805; cv=none; b=XF3NSbBpylAZ/60o3inT/5UysI1r9/o8e1Gq8Alhdksl725WBLXf/he3HlO7QQgc4ChK+Cuzf4O+jvaFfSNCmeJTsTmalIa0xO1lxqheGpdbu0JerDKq4An0PFA5utr9QL2DFr0jiF5ArsDUcOtkj341s42y0tMZUUY6RlLWP+M=
+	t=1755855858; cv=none; b=nck03/i0nvJU9LXDBGlKFVm3xR4VvWBvdAVdGLMevwkKHhS9mbphTtOWLC6RlJKrKGHyDDJK5Fjd3C9AqwJgFmQVr6d8gv4IJSzuTfI+0ZJuERPy/NuIObKiLbQFy18a7ennsaOOvmqIJYcb5OOEn48escXy4kmosw2bhkt0zm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755855805; c=relaxed/simple;
-	bh=XvLLjO10ZjfDDDyrr6k2ma2BhF/RNPJ4DSCV+fvgoPg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=li6qCLVtcoofcLzL6ROT63iCAdiQHeLR9PU6639pKCDiHQglZM28ICTCw/EXuSjPesvW2I9FMFQibEtd4TPs+7r+lXEAcrUIDTADi0dTYCkbU1ITZM0PciFHtlVEOciOFSpVr4ylOQ+DmgpLCbNu8qaGkYZ0CrcO8z7RArWaUJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=xn+orgFD; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+	s=arc-20240116; t=1755855858; c=relaxed/simple;
+	bh=W2C6Re7Vw3DtX+1rmGtIoWysL7yYT+6xAjbwTheXHf0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hR4KnnYy19YcIEd1w9eScKNXbKCuNvRY+ytfktSUemTyuzTPPkX71vGJn4mxhNdqZ1Y918Sw/dzgGvjnMRk4HuXSpkXWyPPIKnFGl0jqY9VV91ZJ7GvlnXpOmCTqqMYhXO39nhudYrUrmlWXA/1qSSEwjKcIT0dSVQRVwpsOJLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=i6gmK0BZ; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1755855803; x=1787391803;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=XvLLjO10ZjfDDDyrr6k2ma2BhF/RNPJ4DSCV+fvgoPg=;
-  b=xn+orgFDfKERT1aKz/Gil9nJfGHNp8BVNN+BYiL9s7xFz/ZF/STxZd1n
-   8YAGWZDQgtsVtUihUEjSLKp27MZQLa6TpF1vbppQqbHuqOW5/NgCqU4u/
-   6ncqNlylpt/huWXsj6hMYVwnXmwcczp13lNM/h83KL7Brn1YirKXwPx7k
-   c84NIw0cgb3y84d/y9+5HHoj37wHDjXAYsDrcp6D2rfi7LCwo3Prrwpk0
-   +ftipjC5YYO1/+iAcHslGCncUjRO6zyp/4xOXIKt8LL48ob2Az7qTmM/O
-   yOgFfR1In6pZjSh8jr+ZbbNZ1AvfR0WcaD4V0pPCzL4Xe5x2R1Jjo9YaF
-   g==;
-X-CSE-ConnectionGUID: LGcmkA5hT8qi7s/85J+MnQ==
-X-CSE-MsgGUID: YHj2pwobRuWKcPBmUWDZiQ==
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755855857; x=1787391857;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=W2C6Re7Vw3DtX+1rmGtIoWysL7yYT+6xAjbwTheXHf0=;
+  b=i6gmK0BZuZaHrrgAP2hrvI8btZa4nGIPKOR1XvHoljmaXBw0le/VE53C
+   bIG6gBaANTj6ldGmtDmgedMbK0tudDc+uQtB0p3eKIerM9zSPTnu/v2mT
+   WjJF451BfswBFqQuiTh4q+7l1hC1K1quNEv7ojyenQGJOUIw+1rGEJvNh
+   tTc54SRj4Ce+anVAaR+e/OJStt4gS2fMEBT7vX9SKiEXUeRAm6N2bF3oZ
+   Gdq6usy/2Jmu+umrN5DhrrJM+/AgkFOeY7SygC8tr6lOkiyhZJY90vyPa
+   XopPew77TNFmY0Axgmxm/0dDTEsjSsyuwlUcpUAAA4S4TK0v7ZcSNt+Z5
+   Q==;
+X-CSE-ConnectionGUID: vubCQiGHQaKV4UX7uMedKg==
+X-CSE-MsgGUID: Oo4v44Q5RnuXLSIbQowBXg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="57362167"
 X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; 
-   d="scan'208";a="51127577"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Aug 2025 02:43:16 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Fri, 22 Aug 2025 02:42:54 -0700
-Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
- Transport; Fri, 22 Aug 2025 02:42:50 -0700
-Message-ID: <73371973-d6b4-418c-a51c-2e89abab61e8@microchip.com>
-Date: Fri, 22 Aug 2025 11:42:49 +0200
+   d="scan'208";a="57362167"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2025 02:44:17 -0700
+X-CSE-ConnectionGUID: 0OcfKOZ0RUi9+kz/e89TkA==
+X-CSE-MsgGUID: obP/HrmxQJi3iyj3ivPTUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; 
+   d="scan'208";a="168571682"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by fmviesa006.fm.intel.com with ESMTP; 22 Aug 2025 02:44:15 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1upOJg-000L8F-11;
+	Fri, 22 Aug 2025 09:44:12 +0000
+Date: Fri, 22 Aug 2025 17:43:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jisheng Zhang <jszhang@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] clocksource/drivers: Add ARM SSE(Subsystems for
+ Embedded) Timer driver
+Message-ID: <202508221736.qO3Ji6Dw-lkp@intel.com>
+References: <20250821152429.26995-3-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] net: cadence: macb: Set upper 32bits of DMA ring
- buffer
-To: Stanimir Varbanov <svarbanov@suse.de>, <netdev@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-rpi-kernel@lists.infradead.org>, Broadcom internal kernel review list
-	<bcm-kernel-feedback-list@broadcom.com>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
-	Andrea della Porta <andrea.porta@suse.com>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
-	<jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	<stable@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>
-References: <20250822093440.53941-1-svarbanov@suse.de>
- <20250822093440.53941-2-svarbanov@suse.de>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Content-Language: en-US, fr
-Organization: microchip
-In-Reply-To: <20250822093440.53941-2-svarbanov@suse.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250821152429.26995-3-jszhang@kernel.org>
 
-On 22/08/2025 at 11:34, Stanimir Varbanov wrote:
-> In case of rx queue reset and 64bit capable hardware, set the upper
-> 32bits of DMA ring buffer address.
-> 
-> Cc: stable@vger.kernel.org # v4.6+
-> Fixes: 9ba723b081a2 ("net: macb: remove BUG_ON() and reset the queue to handle RX errors")
-> Credits-to: Phil Elwell <phil@raspberrypi.com>
-> Credits-to: Jonathan Bell <jonathan@raspberrypi.com>
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Hi Jisheng,
 
-Looks good to me: thanks!
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+kernel test robot noticed the following build errors:
 
-> ---
-> v1 -> v2:
->   - Added credits.
->   - Use lower_32_bits() for RBQP register writes for consistency (Nicolas).
->   - Added Fixes tag.
-> 
->   drivers/net/ethernet/cadence/macb_main.c | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-> index ce95fad8cedd..36717e7e5811 100644
-> --- a/drivers/net/ethernet/cadence/macb_main.c
-> +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -1634,7 +1634,11 @@ static int macb_rx(struct macb_queue *queue, struct napi_struct *napi,
->                  macb_writel(bp, NCR, ctrl & ~MACB_BIT(RE));
-> 
->                  macb_init_rx_ring(queue);
-> -               queue_writel(queue, RBQP, queue->rx_ring_dma);
-> +               queue_writel(queue, RBQP, lower_32_bits(queue->rx_ring_dma));
-> +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> +               if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> +                       macb_writel(bp, RBQPH, upper_32_bits(queue->rx_ring_dma));
-> +#endif
-> 
->                  macb_writel(bp, NCR, ctrl | MACB_BIT(RE));
-> 
-> --
-> 2.47.0
-> 
+[auto build test ERROR on tip/timers/core]
+[also build test ERROR on robh/for-next linus/master v6.17-rc2 next-20250822]
+[cannot apply to daniel-lezcano/clockevents/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Jisheng-Zhang/dt-bindings-timer-Add-ARM-SSE-Subsystems-for-Embedded-timer/20250822-000122
+base:   tip/timers/core
+patch link:    https://lore.kernel.org/r/20250821152429.26995-3-jszhang%40kernel.org
+patch subject: [PATCH 2/2] clocksource/drivers: Add ARM SSE(Subsystems for Embedded) Timer driver
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250822/202508221736.qO3Ji6Dw-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250822/202508221736.qO3Ji6Dw-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508221736.qO3Ji6Dw-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/clocksource/timer-sse.c: In function 'sse_setup_clockevent':
+>> drivers/clocksource/timer-sse.c:228:13: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
+     228 |         if (FIELD_GET(CNTP_CFG_AIVAL_MASK, val) == CNTP_CFG_AIVAL_IMPL) {
+         |             ^~~~~~~~~
+
+
+vim +/FIELD_GET +228 drivers/clocksource/timer-sse.c
+
+   211	
+   212	static int sse_setup_clockevent(struct device *dev, struct sse_timer_frame *f,
+   213					unsigned long rate)
+   214	{
+   215		int ret;
+   216		u32 val = readl_relaxed(f->base + CNTP_CFG);
+   217	
+   218		f->ticks_per_jiffy = DIV_ROUND_UP(rate, HZ);
+   219	
+   220		f->ce.name = "sse-timer";
+   221		f->ce.rating = 300;
+   222		f->ce.irq = f->irq;
+   223		f->ce.cpumask = cpu_possible_mask;
+   224		f->ce.features = CLOCK_EVT_FEAT_PERIODIC | CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_DYNIRQ;
+   225		f->ce.set_state_shutdown = sse_ce_shutdown;
+   226		f->ce.set_next_event = sse_ce_next_event;
+   227		f->ce.set_state_oneshot_stopped = sse_ce_shutdown;
+ > 228		if (FIELD_GET(CNTP_CFG_AIVAL_MASK, val) == CNTP_CFG_AIVAL_IMPL) {
+   229			f->ce.set_state_periodic = sse_ce_set_periodic;
+   230			f->ce.set_state_oneshot = sse_ce_set_oneshot;
+   231		}
+   232	
+   233		clockevents_config_and_register(&f->ce, rate, 0xf, ULONG_MAX);
+   234	
+   235		ret = devm_request_irq(dev, f->irq, sse_timer_interrupt,
+   236				       IRQF_TIMER | IRQF_NOBALANCING,
+   237				       f->ce.name, f);
+   238		if (ret) {
+   239			dev_err(dev, "Unable to register interrupt\n");
+   240			return ret;
+   241		}
+   242	
+   243		return 0;
+   244	}
+   245	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
