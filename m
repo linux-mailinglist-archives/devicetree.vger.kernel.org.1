@@ -1,87 +1,77 @@
-Return-Path: <devicetree+bounces-208178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5EADB31BA4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:32:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A5DDB31C0D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:39:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D55D34E0F69
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:32:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E78A35A7163
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:33:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC64D309DBD;
-	Fri, 22 Aug 2025 14:27:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 673F8307AF9;
+	Fri, 22 Aug 2025 14:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OOFxFx+z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RsF+rM+0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4D23054F0;
-	Fri, 22 Aug 2025 14:27:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4007A3074AF;
+	Fri, 22 Aug 2025 14:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755872876; cv=none; b=l3AZqr09pG7U6FBMk1Twdt/8tIm3IheV7BSVsq9DvcIbTErryuWslkyIU0mPZFryHE8ENKA0DZFA9wzurTO+i459+r9fJCgGJDG/6Y//xNhjThrTNkjdBR2WfUqKhRCrhPEXjlAxB3YNLDkz5rLRBG4Hc/73piWpCpAG3PYAkpc=
+	t=1755872893; cv=none; b=Be6N4SYge1Dg9H8BYy9t2ExAp8DnAJH1j070FJEmN5Q2A221ee1qdW1jzedar6Uo8dKjXc5vHHJhT5qNiBsXoJB6LQpuMfzaMZ8QEPnOIOzXjsOWz65rlQHOWOBtW1Yij6bB+HhMy/98zF0R7S2rz/hHzoLZHcm9ufwk8/B2mjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755872876; c=relaxed/simple;
-	bh=irk5yZ+gV1gl0gGAvBwOOJ8uWctLDlLbZ+2m5RgI+CU=;
+	s=arc-20240116; t=1755872893; c=relaxed/simple;
+	bh=Bg4BwiCa0x7CKCha6z/wu1lKngLbUF7suUy/O+Pg1H8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D30EcqENqbUXbbroBCwUF33ETJ5YNA8XUSO5hJblv/qCNLKq/ZlKyBi8z9cbBrOa7SS/7Jk4QXvQ2TZXlMbDJoLiqhtA51a2Y8dlNUZtZgOIpaCfaMhEoOf7VrajdT6koy5hftt56uBsimHo7AGGGmiKE9XxEYbHn8e458qTphE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OOFxFx+z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B06EDC113D0;
-	Fri, 22 Aug 2025 14:27:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=T52e1FUkV1aY8qEYTDI698nYz1DwinuAo/cZqDHnW0Y0yHZrJREiGrtOv/0XS1O1qJit0P159zrrp4mo4327oyIgHE7ZzAsNNUKYIR5so+zVLYVAyl3QFgqEmecbF5amC0dz4j+t3g/TpD8R7ReB9skp+FS4rDNvSuctAYcNDEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RsF+rM+0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1044C4CEED;
+	Fri, 22 Aug 2025 14:28:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755872876;
-	bh=irk5yZ+gV1gl0gGAvBwOOJ8uWctLDlLbZ+2m5RgI+CU=;
+	s=k20201202; t=1755872893;
+	bh=Bg4BwiCa0x7CKCha6z/wu1lKngLbUF7suUy/O+Pg1H8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OOFxFx+z6AHFNDnYjlj4uDUZVzNvpKzmRYbH8U9WeJYP/Nt6LS9xT4v2cqHWB9FQr
-	 28OzgQndB9SvEeE6BDakhVsfOebO6662OesQsdRQiRnlDrLshYSI3v5xhVcsqssXa5
-	 CcKx3ipUE1ffUrPxPXEOpsWbT5a+yBLaVcnq0u7xPGGxyxVgulrCbCxiaWEwTOzXJJ
-	 hG6vv8dCruR6z4zyqxEjZj5TyEGLacAIjkw4Gj8BM474HS+GZwrrbKwMAQp62yrYx7
-	 eQh4qxpZgMu3EnvwMbIjg7DMPRVcPfbB/xhpAtnSqZnM1k6CcMqRGq8aszaGhJtCdj
-	 zswqaDnXbaNXQ==
-Date: Fri, 22 Aug 2025 19:57:41 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH 4/6] PCI: of: Add an API to get the BDF for the device
- node
-Message-ID: <nphfnyl4ps7y76ra4bvlyhl2rwcaal42zyrspzlmeqqksqa5bi@zzpiolboiomp>
-References: <20250819-pci-pwrctrl-perst-v1-0-4b74978d2007@oss.qualcomm.com>
- <20250819-pci-pwrctrl-perst-v1-4-4b74978d2007@oss.qualcomm.com>
- <20250822135147.GA3480664-robh@kernel.org>
+	b=RsF+rM+0Z9IW6gvF3S2uQ/yNRK+1bQTCY/slWzkWkmBKOqs0JPFb93I6NB1adUSo+
+	 nmCjcZDD3vMc1KpwrUbaNw1OdLnKbe61ZI8UmVXweOO0EtevkLI2nEsb8IkfHoKe7g
+	 oplRNGs3awY86Bs7RV4qHM09ebh3x1b5yHVNYlGxJyhhxUBblQGcNgK9dXuhj2+qfV
+	 Zj0rsfe3mhPgqat5aQ2f041HwgwnxcyHfXLdn7ReWL8+zXQs1Ku/80c5U3k15wYaRR
+	 OvTiowG0QMAGUwjTp6BeueOY9HV9/uvMUtodX6ughXpIYbm1gwxQgrhHxilkmnjiU2
+	 0XTeIu4vxcMMA==
+Date: Fri, 22 Aug 2025 09:28:12 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH] dt-bindings: usb: IXP4xx UDC bindings
+Message-ID: <175587289177.3663586.2746945073352237568.robh@kernel.org>
+References: <20250820-ixp4xx-udc-bindings-v1-1-640f29140164@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250822135147.GA3480664-robh@kernel.org>
+In-Reply-To: <20250820-ixp4xx-udc-bindings-v1-1-640f29140164@linaro.org>
 
-On Fri, Aug 22, 2025 at 08:51:47AM GMT, Rob Herring wrote:
-> On Tue, Aug 19, 2025 at 12:44:53PM +0530, Manivannan Sadhasivam wrote:
-> > Bus:Device:Function (BDF) numbers are used to uniquely identify a
-> > device/function on a PCI bus. Hence, add an API to get the BDF from the
-> > devicetree node of a device.
+
+On Wed, 20 Aug 2025 14:11:01 +0200, Linus Walleij wrote:
+> This adds device tree bindings for the IXP4xx USB Device
+> Controller (UDC).
 > 
-> For FDT, the bus should always be 0. It doesn't make sense for FDT. The 
-> bus number in DT reflects how firmware configured the PCI buses, but 
-> there's no firmware configuration of PCI for FDT.
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  .../devicetree/bindings/usb/intel,ixp4xx-udc.yaml  | 39 ++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+> 
 
-This API is targeted for DT platforms only, where it is used to uniquely
-identify a devfn. What should I do to make it DT specific and not FDT?
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
