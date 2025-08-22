@@ -1,117 +1,123 @@
-Return-Path: <devicetree+bounces-208410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABF2AB324A6
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 23:35:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0292B324A1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 23:34:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C2BBAE31F1
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:32:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C59C623797
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:33:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 316B2221F09;
-	Fri, 22 Aug 2025 21:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1672253F3;
+	Fri, 22 Aug 2025 21:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lHol3RJ6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JjP6CzhD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0777A1531C8;
-	Fri, 22 Aug 2025 21:32:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2A1418E025;
+	Fri, 22 Aug 2025 21:33:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755898348; cv=none; b=SFIAChaC+TDcvjkp/H1eZy6kY5AwFhawjwmuraFfHzEFurcd/v63w+Ie6zml8E/danlQIjsXgPvyqM3Vgpwc+K9H+J/+b4PYvoTKpON1UFIcLDFF4rTgb36oqDkOIxs4rf+DCiQT6mmYv5+BhpqLThk8crUSub3vi3MNJu3VOfY=
+	t=1755898385; cv=none; b=piTV2wxbzEApeNm2M33OoYwEIAcPyRY6iPBFbmD8WJIuTUW34Pbffd7roHZ3tNbWwglT6kZsVOf8C+nQzjlmIG4pKcg9fD5yLhRK8KkrdqbUbXkdRTImtwcN5tuCcfNejxDFP/YQygIw8irQEFbT+x4GWYfVYEMjZM8rKOgYKLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755898348; c=relaxed/simple;
-	bh=LeSrXwZaADMtK37404XLtISL1PIAJ7ce7zI3rX1/TPU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zw7TwjCKoXd73FiQ+DaU+kElkXdkU5qdzd9bZhPKwHE5VHX09HkHhUvbDeizVe4gijGWf1oMtlqVayux4VFa2csi6SrlyZIv0xBIaH7alIYtDzMQo4Ig7Tl8oECn0lKEgNwaplCxIruR2dWch/i35FJL24FVNc3I56ngjLcWMAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lHol3RJ6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DE28C4CEF1;
-	Fri, 22 Aug 2025 21:32:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755898347;
-	bh=LeSrXwZaADMtK37404XLtISL1PIAJ7ce7zI3rX1/TPU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lHol3RJ6EquQtHwVZq0nrk9+hlq6+jOft1pTk2RVAdHdRTwrOkIO+IUQrqf/pmJEg
-	 1n6NQ/MtXiQokBc0Kjf24UdDebYVZLvqb9crhaX0mGRT2kUI3b1xzndF5+8WbuE14D
-	 bSPzdOrt3VXitdVkEQuWJhmrRDZZ7v/lnmvHiCHwsl1mGYn+ErmXH4WpY8B9E/bUuC
-	 bWKPe8NO+B9jAQ7VOYjJJuFmahxov/1InwJgVTFyS1SAcYejIbIuMZ18tAgFQ/6dL4
-	 1voe4twkuiDZcxhQdjlAlD4f2b3Z0JlkDQsbgLRgVXIEd8Exzj4uFfPbTzoZXr6RGk
-	 XcLRLj4oeM7bw==
-Date: Fri, 22 Aug 2025 14:32:26 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Han Gao <rabenda.cn@gmail.com>,
-	Yao Zi <ziyao@disroot.org>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] riscv: dts: thead: th1520: add soft PWM fan for
- Lichee Pi 4A
-Message-ID: <aKjh6hrhrRqUvnSd@x1>
-References: <20250816093209.2600355-1-uwu@icenowy.me>
- <20250816093209.2600355-4-uwu@icenowy.me>
+	s=arc-20240116; t=1755898385; c=relaxed/simple;
+	bh=qc4VtCzC5iA9jJFQPDwUr258FyQvh0265IhdsBWV9nc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tTLXorpLYOLUTagEgmwWrz2Z3KuEPH64f+49Sx0Z+P/KwDlGId8xOVfUK+zNvR1qsqzGlhcDKd7Etg6HK3YmeRHtb2TtlXIFVioDSxTMEbrJOaIlXRJdrdtkQ62AgMveWzJljsTo6Hvm6uIQ5tEuODSPcH6Kz6KFfVjVJ/xsJxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JjP6CzhD; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-76e92b3ded3so1323234b3a.2;
+        Fri, 22 Aug 2025 14:33:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755898383; x=1756503183; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cbxUDYSkcfSyuOmhdt6DxCZGSkJMa92pasDj2sJtI7M=;
+        b=JjP6CzhD7mwovwFR16isniz7pu7GNbcOCBte+ZNtRvCKDJ3DscwlpafghCBBxVscFj
+         OPm8IOphniTdPOGCSmUfWAksBktDgrUhObh2EkBwFqXI9jhkC5C50Ij1qaChgR9Ve6+V
+         OJXLgAWaRT6MbUSbqaEpVby82m4/gPGgtM4WlxVXS1VFZEQGApKH+oSGuxQ2JeNkXpVw
+         ZG4P0GD7/ccwftfm3zVxFCc1uBPsA4rmByp5eDK23zHNm8syH5awAmj24rzWkZyJWqSD
+         PZ6OKIbN64XxjmDxdRFyZgJj4InE/Btsga66ysT8R7a0kEeENcTxhbgnsDBXIi/CSv6B
+         82Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755898383; x=1756503183;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cbxUDYSkcfSyuOmhdt6DxCZGSkJMa92pasDj2sJtI7M=;
+        b=XyUeKoVHtWK4NqGbEqqUEzGDNI/5JGZ2XmM0jM5EKXrr9PwP//m1wh8YUlpUCTo3+e
+         UfOwCkgUgxlxwt1tFD13jx2GebTO/s9eEdRCnoaxFHpj0KkKa4aIHlVCObGVIJtIqT/5
+         o3ZTGqh05ojIR6EEgcliHrBUM1LfFvSec4CGOmZDqmVw1rNzujes1Q6rI24IOrcPXuek
+         5nHIrKWqRgfS/2A/1DG0BANstzyfL4PU/GDS2ri1pM1h2N/wdATFqUUJ7pXPhz6RUrDN
+         7GtxRUblf/EeZQJweC5QWSG+8HMb8fIcaGEQ9ia+RfiEtsgyWaNu/rvpnKBBgfISSqFC
+         kG8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVyJypAzF/vqLCA43e/hip0IZzyGZy/F1rOV7soN3PobHr+PmGXp9/dc8MoOw6+dG3Dhxsvtc9HlTHHzVQ=@vger.kernel.org, AJvYcCXb6UjFIYeZ9DXA8w7E4IpIVXNg5SnYazNUrO3F6gdzqi0zm8jBQXIg7dLBzEAy+8L4EhVvjZijLrtJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxs5ORHD5XsMvppbJhKtldT+6C8TsyJVNpXXqFIxGiAITHJJfyr
+	6AUk/ueoDCRenSWNM/8sGKlvRHT01bby09Bpi4qN1VLjJemSZvcvD9xV
+X-Gm-Gg: ASbGncvHkshGybn/iE+oo0flgMGVAFnqwMr8DGm9knO2lqiWp5JDKv7ma9IyznMQWoK
+	PTw8hW5I7eZI7Y1/jx8PMz9pi0iQ7W0qIQc++6F+AyUtbtlSRdbDPSH5kZyxxKuSyXeWziTnR3h
+	YdoPYqzUUaOihDbFzOJSzi0njfW+CIwaKtgiwe8wuBiKv/KtYfCOaTVjHLaLLOhOUC5GEj2L8Mr
+	Hn0gwWLyzA10jRnlEwUVBYKluCMvIGyRcN2t3RiwxA/I+HfqRUqA0lEyN1IgN4tqdDfoe3IYU4e
+	K11ljoCZRhP5rYHUH3SXDQBL4B1dhcnTIp3GnzLuffKx/EKs2taXbdZCjiCqk/jWAYhRjrUb0Rh
+	Q7TdL8f+7z5zoPY+VbF0VdcdDmC0uPz1HBu4mcDK+zCZDE9w=
+X-Google-Smtp-Source: AGHT+IHIKKRnxk8kUwQx22V5fjRik2AjaNox9iWdfVwvg6WufzdjdyyHOO3jB3+yIyBtgLXaolbrqQ==
+X-Received: by 2002:a17:903:19ce:b0:235:eb8d:7fff with SMTP id d9443c01a7336-2462ef1f70amr57820005ad.28.1755898382592;
+        Fri, 22 Aug 2025 14:33:02 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:5ae1:41a6:4f22:1c64])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2466889a088sm5111305ad.134.2025.08.22.14.32.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Aug 2025 14:33:02 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: dmitry.torokhov@gmail.com
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH] dt-bindings: input: touchscreen: tsc2007: Document 'wakeup-source'
+Date: Fri, 22 Aug 2025 18:32:45 -0300
+Message-Id: <20250822213245.125901-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250816093209.2600355-4-uwu@icenowy.me>
+Content-Transfer-Encoding: 8bit
 
-On Sat, Aug 16, 2025 at 05:32:09PM +0800, Icenowy Zheng wrote:
-> Because of the SoM+Dock design of Lichee Pi 4A, heat dissipation does
-> not work well; fortunately it comes with a fan port with PWM driving
-> capability.
-> 
-> As the hardware PWM controller of Lichee Pi 4A isn't ready yet, drive it
-> with pwm-gpio driver (software PWM) now.
-> 
-> A long PWM period is used, because not only software PWM is used, but
-> also the fan port is a 2-pin one and fast PWM might confuse the BLDC
-> driver on fans.
-> 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> ---
->  .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 53 +++++++++++++++++++
->  arch/riscv/boot/dts/thead/th1520.dtsi         |  2 +-
->  2 files changed, 54 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> index 4020c727f09e8..f696db01353c5 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include "th1520-lichee-module-4a.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
->  
->  / {
->  	model = "Sipeed Lichee Pi 4A";
-> @@ -28,6 +29,58 @@ aliases {
->  	chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
-> +
-> +	gpio_pwm: gpio-pwm {
-> +		#pwm-cells = <3>;
-> +		compatible = "pwm-gpio";
-> +		gpios = <&gpio3 3 GPIO_ACTIVE_HIGH>;
-> +	};
+The 'wakeup-source' property is used by many devicetree files and is
+also supported by the tsc2007_core driver.
 
-I think the node name needs to be 'pwm' instead of 'gpio-pwm' as dtbs_check
-warns that:
+Document it to avoid the following dt-schema warning:
 
-gpio-pwm: $nodename:0: 'gpio-pwm' does not match '^pwm(@.*|-([0-9]|[1-9][0-9]+))?$'
-from schema $id: http://devicetree.org/schemas/pwm/pwm-gpio.yaml#
+'wakeup-source' does not match any of the regexes: '^pinctrl-[0-9]+$'
 
-Thanks,
-Drew
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+ .../devicetree/bindings/input/touchscreen/ti.tsc2007.yaml       | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti.tsc2007.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti.tsc2007.yaml
+index 8bb4bc7df4fa..2a225baeb1a9 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/ti.tsc2007.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/ti.tsc2007.yaml
+@@ -26,6 +26,8 @@ properties:
+ 
+   pendown-gpio: true
+ 
++  wakeup-source: true
++
+   ti,max-rt:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: maximum pressure.
+-- 
+2.34.1
+
 
