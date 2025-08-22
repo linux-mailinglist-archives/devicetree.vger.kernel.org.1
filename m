@@ -1,98 +1,90 @@
-Return-Path: <devicetree+bounces-207843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BFF9B30F93
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:52:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD926B30FA4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:55:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B61AA02B3B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 06:51:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C519972615D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 06:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 461192E6138;
-	Fri, 22 Aug 2025 06:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554F62E5B07;
+	Fri, 22 Aug 2025 06:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EksWfMZl"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PJrfF+3Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EFAB2E5428
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 06:51:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1382E22AE;
+	Fri, 22 Aug 2025 06:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755845484; cv=none; b=lDzOucu4cevNc/TisoVWRK6jtz+Ts9MDah/j25PBxMxx2bofnt6J5oaHYxqf9u6H35vjhX3i//h3d26mRupKcQUjqInbzMMMXJnfwmVu1PT+g6fT63TyE9u9nPduQJsPbGz1/GV+4BTJ1ODT9rpiwRXpe5V6nc/lTWIaFYAiBJA=
+	t=1755845614; cv=none; b=bGCyjqEYnMBFyXHPUHN4MqE64LhcoVjO/+7DqbO2/afQWCjIPu2+tEdg42rwZZCRR0l7qKeiavDVgPW4ek79Fd6N6+oJkBseFIRSfauj1iEKog0JanjW1X/QCPXZhT4TNMNbb94RML+OrS6tDR5kPHXsi2oKB1DgKzjv6nm2RxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755845484; c=relaxed/simple;
-	bh=w+fF5jilwCss3OzaglG2MI9XKzVq/OKDUeZWYv3d5Qs=;
+	s=arc-20240116; t=1755845614; c=relaxed/simple;
+	bh=9wRvB665rcxu8fe1PXnuVkbMQ0wZR5mh+LTi0x0XhqE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K7P03VXegMSJOfDJy958J0h4pwOX28g7dbP74bOWuzNVX4NnxEP3O6/xybQBUxjOUapZp/lcLkzN033mnQiY7JtTKTMXHhZ2fO9j7moOhyMgyleUX32M6++MSHbswgpJUIaYlng8shDNLwgyBVn1sYl4CwGWL53JHKdjydZK/Ow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EksWfMZl; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2449978aceaso12643155ad.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 23:51:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755845481; x=1756450281; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wnWlGVKFdFIBt1j22TCSqfwegODnyLKYBcy7SHn/za4=;
-        b=EksWfMZlgr4e5ZZThYERWiBQ7aMeSuPlEUg2Lbwog/Po0WjlUTyewqcU0wAuE23gS0
-         YaXbNNe3hoGrMgH9pE+x98EThdmcpXDbf4ZKlyClWmW7va0ThDh4ljLFhIyyGSl/lKkS
-         okjFw0PmAnlvexeq6aeqFl5r5euYi+8FL20H9JAP4SD/M2pJQEXDaqVPo2UQMf0DyBaB
-         shYCg8xsZn0xEyiqn3ZcbD8GQvp5GFvrnVuHcebM7j+Dow10jOmvA6zv7s0HHes3fKmn
-         mFNNHJKJaCxP4txRNdhaGi5RyK/6O+P0K+CB0f0blNOnb96aSHRRerAq55B6tjUMPYt3
-         x95Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755845481; x=1756450281;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wnWlGVKFdFIBt1j22TCSqfwegODnyLKYBcy7SHn/za4=;
-        b=a3uEn+MzhiACmJpmcseys7jsy0rPlgD2p4IlWDHT1gOedUih1+TtCHk5KC6Tx2adUr
-         kgHX2ETK7fWzqSJjJv8571iRGuRb1H3S0S6cYtoWOTwOUlPfqVCxaodJKnHF4SPFvZvc
-         GKe/rMULiO774dtDcF5/In4b6ytc01x8UP5kXI8vF1N6a8VYW9Z3K6I9TMHyAawMIiZa
-         BesDKOg9Gani6BBBwP0eEZbD4dZaMl4gSYUxOiWigPwC3UZqipD9hFYOHM60ShIRlDLM
-         v/omNxxKgI2UEBkLBtI3VXCxwVzelVuBCl/YOJ+Ok84zAPoq2oLe987ow7K71WOlVh3r
-         OZ3A==
-X-Forwarded-Encrypted: i=1; AJvYcCUvxRt5pr9Qevw1A4CEgCbRHweUDaHnBIuGbRJ5wNyrn7E7xptR3nxPWwJprafo43jDtO1kK1y94yRH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8jM69Kp0gRyJUIPB9dIB8TjhzRMUknV6ZMPjxyz44a18YbeAW
-	Op0dZ6m9z2xZvA41Tw+jkSR4MJRjPrgbaQKnsJK6U5Wgfho4aMh4RaeITvFFrvrx9wI=
-X-Gm-Gg: ASbGncvAjBlzamSylvK21N5Zn7Z7irYPWAeaQBNIQYW5E7QMB4Znwq8QR3wt4B/MxV4
-	DgHQz/8pYz2ShUkLHTjl8DavV1UYPz/yJm/G6CETns2OBbgZON8bFYLQPxGi7BUHF6dRoVIS/4n
-	DJMTc8PHRtLXekBcKny+Aedo6BAX7dc1wG8zNErjh5boPXgmRB0HSH24BFyDDTbhZzUftkZrqHr
-	0JPk5M01sam5402fj6EEIvXK170SzTBcL8WCipw5FtElLOGV2JhlxRQ6fuBzXOCoj2ZsawZUN1m
-	m+ThlO9hWRHomLzRN7eowsoZZvU6rfQb83nXkst1gD/mzkpw7qXuwyy20hff7yIlm7xW6/gGRjA
-	0N/IxOogAZN86CflRwgFjZs/y
-X-Google-Smtp-Source: AGHT+IFuWz2fYkZGwCki5RHEZnzuVzd/HPxt47eh+hbJsFpZ62hbUXT2LVNh+1RDFwpb0mmLfChYMw==
-X-Received: by 2002:a17:902:d607:b0:246:441f:f111 with SMTP id d9443c01a7336-246441ff47cmr14160665ad.43.1755845480880;
-        Thu, 21 Aug 2025 23:51:20 -0700 (PDT)
-Received: from localhost ([122.172.87.165])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-245ed4c7489sm74182225ad.70.2025.08.21.23.51.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Aug 2025 23:51:20 -0700 (PDT)
-Date: Fri, 22 Aug 2025 12:21:18 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/7] OPP: Move refcount and key update for readability
- in _opp_table_find_key()
-Message-ID: <20250822065118.qktpqaudc2uhgzdm@vireshk-i7>
-References: <20250820-opp_pcie-v4-0-273b8944eed0@oss.qualcomm.com>
- <20250820-opp_pcie-v4-2-273b8944eed0@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JikeXitFyAeBiGv79bng246zl2fPN9RRn//YlQyZONFRy83sqPRmxAhOvmMDQrbSnIFst+NK2AM+CQe2uCpiPsLuI8VWo26ZXmVM981KiMxXdlybW+MGNTf8CDa8hqr2lkypaMP7xm5H0Aq8nbPds+xsZE5o4/lvGzHYo/0RHpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PJrfF+3Q; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755845613; x=1787381613;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9wRvB665rcxu8fe1PXnuVkbMQ0wZR5mh+LTi0x0XhqE=;
+  b=PJrfF+3QstoDlAtbXlZJWNTKjqqbwHl8UnYyTw7dn/64uFZA3tlZlFa7
+   kOqvmmjL7VrGa7nugOHZ0UPKXD0Pzt1MrAfhVehkTA5dR0iVf3Khl79yp
+   hnUZ6OQ9E+/GOTfUu/JVkBlL9/z515Wov4CyzU3rsvq3gMiJYvsqTIj/C
+   tHtbj8cybYhf59+alT0JAOXAK9B9zoqGrUgnrdj6TtJU6fYFhEsC7Ob8S
+   tZ3SeJfUDsWtKS7g6Qnqg2vdHswtYl+iQ2EOJxevqW30730JR0gMZA4YU
+   3ZmBpiwajQJikVWFdVb6wzYtlOdIrROwMwXqDyJI1mCHsDMLrQx5Lt5Al
+   g==;
+X-CSE-ConnectionGUID: 8h4QFdWqQ3OEHDaz8pFaZA==
+X-CSE-MsgGUID: /5W3JcALQE+1b3P1vkNzaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="60777425"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; 
+   d="scan'208";a="60777425"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2025 23:53:32 -0700
+X-CSE-ConnectionGUID: G0lx52a5T56sJGD0DmjRDQ==
+X-CSE-MsgGUID: q6bYU03qRYWZlhUkuK6F1w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; 
+   d="scan'208";a="168246511"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa009.jf.intel.com with ESMTP; 21 Aug 2025 23:53:28 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1upLeP-000Kzf-0H;
+	Fri, 22 Aug 2025 06:53:25 +0000
+Date: Fri, 22 Aug 2025 14:52:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: Add basic support for MAX14001
+Message-ID: <202508221427.TaHJJwvG-lkp@intel.com>
+References: <2919a00f86c1188b83446853bcb9740138d70f44.1755778212.git.marilene.agarcia@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,33 +93,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250820-opp_pcie-v4-2-273b8944eed0@oss.qualcomm.com>
+In-Reply-To: <2919a00f86c1188b83446853bcb9740138d70f44.1755778212.git.marilene.agarcia@gmail.com>
 
-On 20-08-25, 13:58, Krishna Chaitanya Chundru wrote:
-> Refactor _opp_table_find_key() to improve readability by moving the
-> reference count increment and key update inside the match condition block.
-> 
-> Also make the 'assert' check mandatory instead of treating it as optional.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  drivers/opp/core.c | 14 ++++++--------
->  1 file changed, 6 insertions(+), 8 deletions(-)
+Hi Marilene,
 
-Applied with:
+kernel test robot noticed the following build errors:
 
-@@ -554,8 +554,9 @@ static struct dev_pm_opp *_opp_table_find_key(struct opp_table *opp_table,
-        list_for_each_entry(temp_opp, &opp_table->opp_list, node) {
-                if (temp_opp->available == available) {
-                        if (compare(&opp, temp_opp, read(temp_opp, index), *key)) {
--                               /* Increment the reference count of OPP */
-                                *key = read(opp, index);
-+
-+                               /* Increment the reference count of OPP */
-                                dev_pm_opp_get(opp);
-                                break;
-                        }
+[auto build test ERROR on 7c680c4dbbb5365ad78ce661886ce1668ff40f9c]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Marilene-Andrade-Garcia/dt-bindings-iio-adc-Add-MAX14001/20250821-225647
+base:   7c680c4dbbb5365ad78ce661886ce1668ff40f9c
+patch link:    https://lore.kernel.org/r/2919a00f86c1188b83446853bcb9740138d70f44.1755778212.git.marilene.agarcia%40gmail.com
+patch subject: [PATCH v1 2/2] iio: adc: Add basic support for MAX14001
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250822/202508221427.TaHJJwvG-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250822/202508221427.TaHJJwvG-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508221427.TaHJJwvG-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/iio/adc/max14001.c:10:10: fatal error: 'asm/unaligned.h' file not found
+      10 | #include <asm/unaligned.h>
+         |          ^~~~~~~~~~~~~~~~~
+   1 error generated.
+
+
+vim +10 drivers/iio/adc/max14001.c
+
+  > 10	#include <asm/unaligned.h>
+    11	#include <linux/bitfield.h>
+    12	#include <linux/bitrev.h>
+    13	#include <linux/module.h>
+    14	#include <linux/spi/spi.h>
+    15	#include <linux/iio/iio.h>
+    16	#include <linux/regulator/consumer.h>
+    17	
 
 -- 
-viresh
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
