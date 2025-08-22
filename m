@@ -1,119 +1,158 @@
-Return-Path: <devicetree+bounces-208213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 819F6B31D55
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:06:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DFADB31D67
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:07:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6AC3583173
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:58:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2481F1CE714D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8CC313526;
-	Fri, 22 Aug 2025 14:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04CD33CE84;
+	Fri, 22 Aug 2025 14:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="jp+mSv00"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="a6X3SpP1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A93AE320CDB;
-	Fri, 22 Aug 2025 14:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 008A533A017;
+	Fri, 22 Aug 2025 14:58:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755874638; cv=none; b=cbm6alVFeGtEe/PGcJLdN6R/PzmMyvSmIAA/O4k9KOlfJMy+xuQA4yDM4KnYRhjfAoyMjyewD3xYVhABD4ruC+hltDgU5FTeCetZUb75AtUhI8nwhrcXhnTMUStJazafAaRn228JTa1pqODFcwVkHHrIeWVPe9gOBM8GsCUm6yI=
+	t=1755874731; cv=none; b=uwhOMAZUSZHCKs9yLZF6gNuB+TshbeWKxQwjKuLjEdcJr44Zjmq5CN2kFPLj8ai81xI9F1ZO58QmaOQOOwvyHOk5Nb8Bnjrf4hF55TXM0oqF9wYps1c8GAnjktP6GziMQeag/j7/lA50Xa+k5KCRYdALxjwKVeb1mDLL1G3YZlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755874638; c=relaxed/simple;
-	bh=NX2EmAHptM0cpfbEil35UWdEA2+irxa/S467sbBJ+F8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XJMIrgkix0YGAK+83efpb+PlmwChA2/4OEvp2IhKBe/7A73zn1Z/KlJSCFdw0uSkYbOdu3Fb1+Wav24+bE0S/OBLa2Fi+6qz+Byst4P7ZpZxmq8HJecWldpWSzlCEtR1xpTYc+LsJ2E4MmbDHoC7oyayDiOANij1LugUhXlfpCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=jp+mSv00; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1755874636; x=1787410636;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=NX2EmAHptM0cpfbEil35UWdEA2+irxa/S467sbBJ+F8=;
-  b=jp+mSv00uScIjwRrxZzRHWzXN5X/G1A4/9OWf8XyVnUNuXRjwcsBZduh
-   wEFMG70PBz/NUeLjVbW1PY0FQMQcqtJi/azic2/oyoKvAB8HTMzsju7Xo
-   GOqUCxiRN3BI7tHoei2h8nhKJ3RQMLDp+C2L6WdX26KJuzzHFpJer3HqB
-   EwW4N4CVkPgGAen6284F9Yf5QTBBvipoaomnWMGQbldJNUK63IjeUuHJO
-   SRKkRf4uPDMEkFQtermPIJu3bspyBOkTXZ7G+15jNsIY/X3MDvYXd7QsQ
-   T3L/YjHLf+t7mcn8rytCsCttc4O9z8U0I/upoWyiXO3E5ErNhImXvSPag
-   g==;
-X-CSE-ConnectionGUID: G8MtUZCmTuS7MMvct1brrg==
-X-CSE-MsgGUID: 9da9UzP/RpGB51ZixKeqdw==
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; 
-   d="scan'208";a="44987207"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Aug 2025 07:57:09 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Fri, 22 Aug 2025 07:56:38 -0700
-Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
- Transport; Fri, 22 Aug 2025 07:56:36 -0700
-Message-ID: <b7089f9a-92d9-4652-b571-b749637c609f@microchip.com>
-Date: Fri, 22 Aug 2025 16:56:35 +0200
+	s=arc-20240116; t=1755874731; c=relaxed/simple;
+	bh=plRxkTMh5Z39UbxuFVkxtwfnP2adp6rEyti1GEBuxUs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DdjchqvqqyeN6rt+q5OU033loCc90ynWgNnlvTbgmeZs30CKBkgpQA5iJqwecdfEO0yo5N8LnaA2kTbr4zOkjFh3l+NGQ5ieuymz99mnO0B1CL1h+YN6PmUAlhZG/ltK3NKvv0bS9ejOAF1fkfy4bdg2OXOQ/6se/FPJUO6lE3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=a6X3SpP1; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=URE+D0su0VrFUP7J2zinaAZYCW+u5ytWrsWx4Tu1kSM=; b=a6X3SpP1CYO6BFEjd1MVrQR8n8
+	XaLu9Y7G4b3T/ocEmHIea4xVFgcCk3hQjE5OFc8navQIH0k3Gty98oGsMTgWaGM8gOkENWerVKQqu
+	0BbHxjVdSo0EYbHm8qYwJa13ANfz8L955a2QljUJ2iw8NjFzO3PNcSY5jRvRL/EubTxc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1upTE5-005ai6-NZ; Fri, 22 Aug 2025 16:58:45 +0200
+Date: Fri, 22 Aug 2025 16:58:45 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jack Ping CHNG <jchng@maxlinear.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, davem@davemloft.net,
+	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, yzhu@maxlinear.com,
+	sureshnagaraj@maxlinear.com
+Subject: Re: [PATCH net-next 1/2] net: maxlinear: Add build support for MxL
+ SoC
+Message-ID: <610db76b-7327-4331-888e-e538857c0887@lunn.ch>
+References: <20250822090809.1464232-1-jchng@maxlinear.com>
+ <20250822090809.1464232-2-jchng@maxlinear.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: microchip: sama7d65: Force SDMMC Legacy mode
-To: <Ryan.Wanner@microchip.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, Aubin Constans <Aubin.Constans@microchip.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-References: <20250819170528.126010-1-Ryan.Wanner@microchip.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Content-Language: en-US, fr
-Organization: microchip
-In-Reply-To: <20250819170528.126010-1-Ryan.Wanner@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250822090809.1464232-2-jchng@maxlinear.com>
 
-On 19/08/2025 at 19:05, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
-> 
-> The SDMMC in this IP currently only supports legacy mode
+> +Driver Location
+> +===============
+> +
+> +The driver source code is located in the kernel tree at:
+> +  drivers/net/ethernet/maxlinear/
+> +
+> +Interfaces are created as standard Linux `net_device` interfaces:
 
-... but we're working on it ;-)
+Pointless comment. Anything else would be NACKed.
 
-> due to a hardware quirk, setting the flags to reflect the limitation.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> +
+> +- eth0, eth1 (up to 2)
 
-That's fair enough for the time being:
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+This is also questionable. Yes, the kernel will give them names like
+this, but systemd will then rename them.
 
-Regards,
-   Nicolas
+> +- Multiqueue support (e.g., eth0 has multiple TX/RX queues)
+> +
+> +Kernel Configuration
+> +====================
+> +
+> +The driver is located in the menu structure at:
+> +
+> +  -> Device Drivers
+> +    -> Network device support
+> +      -> Ethernet driver support
+> +        -> MaxLinear NPU Ethernet driver
+> +
+> +Or set in your kernel config:
+> +  CONFIG_NET_VENDOR_MAXLINEAR=y
+> +  CONFIG_MAXLINEAR_ETH=y
+> +
+> +Maintainers
+> +===========
+> +
+> +See the MAINTAINERS file:
+> +
+> +    MAXLINEAR ETHERNET DRIVER
+> +    M: Jack Ping Chng <jchng@maxlinear.com>
+> +    L: netdev@vger.kernel.org
+> +    S: Supported
+> +    F: drivers/net/ethernet/maxlinear/
+> +
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index bce96dd254b8..9164ba07a9c3 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15101,6 +15101,13 @@ W:	https://linuxtv.org
+>  T:	git git://linuxtv.org/media.git
+>  F:	drivers/media/radio/radio-maxiradio*
+>  
+> +MAXLINEAR ETHERNET DRIVER
+> +M:	Jack Ping Chng <jchng@maxlinear.com>
+> +L:	netdev@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/networking/device_drivers/ethernet/maxlinear/*
+> +F:	drivers/net/ethernet/maxlinear/
+> +
+>  MAXLINEAR ETHERNET PHY DRIVER
+>  M:	Xu Liang <lxu@maxlinear.com>
+>  L:	netdev@vger.kernel.org
+> diff --git a/drivers/net/ethernet/Kconfig b/drivers/net/ethernet/Kconfig
+> index f86d4557d8d7..94d0bb98351a 100644
+> --- a/drivers/net/ethernet/Kconfig
+> +++ b/drivers/net/ethernet/Kconfig
+> @@ -33,6 +33,7 @@ source "drivers/net/ethernet/aquantia/Kconfig"
+>  source "drivers/net/ethernet/arc/Kconfig"
+>  source "drivers/net/ethernet/asix/Kconfig"
+>  source "drivers/net/ethernet/atheros/Kconfig"
+> +source "drivers/net/ethernet/maxlinear/Kconfig"
 
-> ---
->   arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-> index 7eaf6ca233ec..d086437f5e6f 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-> @@ -387,6 +387,8 @@ &rtt {
->   
->   &sdmmc1 {
->   	bus-width = <4>;
-> +	no-1-8-v;
-> +	sdhci-caps-mask = <0x0 0x00200000>;
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pinctrl_sdmmc1_default>;
->   	status = "okay";
+This file is sorted. Please insert in the correct location. Please
+check all your other insertions.
 
+> +
+> +	snprintf(ndev->name, IFNAMSIZ, "eth%%d");
+
+The core does that.
+
+> +static int mxl_eth_probe(struct platform_device *pdev)
+> +{
+> +	struct mxl_eth_drvdata *pdata;
+
+Historically, pdata has been used for platform_data. With the adoption
+of DT, platform_data is not used much any more, but to greybeards like
+me, i still read it as platform_data. More normal would be priv, or
+maybe in this case drvdata, since the structure is called
+mxl_eth_drvdata.
+
+	Andrew
 
