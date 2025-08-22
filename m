@@ -1,149 +1,166 @@
-Return-Path: <devicetree+bounces-208038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99E0FB316A5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:47:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C42D6B316AC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 441C31C8819C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:46:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D6C85A4B73
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2285C2E8E19;
-	Fri, 22 Aug 2025 11:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 521762EF657;
+	Fri, 22 Aug 2025 11:48:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V0CPMuUD"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="d74udDNd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A5125B687
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 11:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82BE2E2DE6
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 11:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755863147; cv=none; b=AyJbRVZPZFsa6B+FNW6ZsyxVqsWwxB0rxYiQJNhPp5h9Me2Xq+0UPbzMJrPSF7YFniUrBNV2fX6jbp0zH7A+J8El/sBMDW2ifgL+uiOtRYb/Gvam3q6ZC9YtxqcCySU/mfC+Dpc1B8kg93DFpKQR6hztoRwcAshygISnUZjQGN0=
+	t=1755863312; cv=none; b=qlXK+2ykFkmRW5FhgcqLZM07wVVlCTqwD33NWdGWrxdoJJCFziugONEZ4oZi2L5pjQ13Y/DE1aTSQDBoSm4cEuopBcIDkmWtthCLkbJL6K0Lxkte/rrY9pEprfW2Ui9GUknwxdvzaRClh1bEdu/DYVPjm7dQPJgv88PPRy+8yV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755863147; c=relaxed/simple;
-	bh=xgTcVv1+T6O/ZT0Qdiz0Je+GkcjQdQoA+CbqSo/EOtE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T3/52dIraFnzNgk0NqnydvNV5hC0rfBtF5ADmNsDTv3gST1uoNV/tPHzrWvzbHqBb8NNyS27PfI6Xz8Pw6qFFxuubZ7jQh8J2YuJifJc0jyA56Xht785wwFI6Y6POuTQY5/wwgJ1xq/B/OKkGOgo8Bspy/XSEyhUKCAV6QvrKgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V0CPMuUD; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-afcb61f6044so354265766b.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 04:45:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755863144; x=1756467944; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=z4OUvE+/qeMt3Ot3GYxNSoy/OyQHU/DgOy4nkkkxS3g=;
-        b=V0CPMuUDgp5v9MIx8aOe+jHztES54FM3r5g7tS1CT1Zg6oKaLbaqPyjmBIDCjODOWj
-         oRhX0xQnMI+zZnpVtuuATMttbUwcrWWXGFnzAMM3T7KvCtgIm/QfSsyBbE+p8vtLOoDw
-         ONGrdkeb8doqxJ3xhUu8Sd1loTNob7qNB9XXt5VZs8WZmuF7nZuISasZCZm2Ta+IOSY+
-         VkUPxc0geZDOgpasstsepTRnkVKeKuZQnYWkbnJr2MjjiXEkYpXy7P4RJYQvDdugzBkR
-         dpG5fQhSig8SA1C1nyX4io9jQVePRLLTdx1MT4fUzYPXrqTQ2aiHxckAZNaxgaAzNtvn
-         UeNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755863144; x=1756467944;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z4OUvE+/qeMt3Ot3GYxNSoy/OyQHU/DgOy4nkkkxS3g=;
-        b=HuE7KLdi01lvAKXB1RlemqbJAePCixeKtGVLYwG/wfT6bH3TeBxlnYJwXCmvdTf0tg
-         CMrHelr4k5kMhQXkiIaBEH2YlSC/w73YUZpUcUQMXkjP44AWTBvM0EhfLPXjYv5R2XLf
-         6k4WZ6Og+AnPonK43qnL3nsIGjjJdlWtY/VtamJYoIdfmbWm2hBkTZomC3pyU/eFda0x
-         bx/7cX5Pr4iw/Bc78FnkUIVLVrcIj+2nPKWrQuhIGW6OXhHoDwWsAQdxs3b4pQRRqXUP
-         XX0QcXvBr4mSNhOBn9yhcGaEYXzHOgHUVCAgGrfy7G4jS0SszOWX0qnQ7/ay2TKFmt2P
-         YguA==
-X-Forwarded-Encrypted: i=1; AJvYcCWuPco6+xiFOK5UwyvCONyDHkYVmvsl6ZgTuAZd9qJ3lLrfoxLn7OUSGGgOVLxnwCCj3h/ndWSXur8K@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOTFJ9qQSqAUFCiSTAnsQUho9E6hovkcWakfriIq3gs952XTp0
-	Tis5E1BGKNqJo1vTJrbuPsAk9PdF0BIA60LUrUx90velZ2txIDC+CBxTBuKWsuP9qmA=
-X-Gm-Gg: ASbGncsvyYAtFkcB1ubyB11tVlURDcPLQJoxkxmlW3orf5ZwgaXinEHilQ46v4sjEg/
-	5NFzxq1NK55KxWyIzhkGz2lBmdki7J1yyPkw/p4YqfohiFLcmpM05EIYP5U37Q/YBj7uy8bB9K9
-	2aBE/aoPjnasxF4V0ZeUplGsljnFAO9Te+tY+dsPFaoDMHKqJi9brPRDZ4rRUxr1JDDPIJzZTkA
-	TXUsn3iQq3M96bYSff7QmE5hj7SVUUSTWtqoV5ED1Ri4Hr9r4IqD2DsUW03e09A66uYf5H01mfe
-	35UEO53b9w0bK0XSus/VbnFg9vNOZL9SfjyePnIyPfP6Phw/MkGOkbYL35Xb0AZC/IEC/AUzfxI
-	rKwolBidVJjUhwd99rF2VUZQRY4XmrT48rFLFf0PGpdan
-X-Google-Smtp-Source: AGHT+IGP1JS6P3jPLucWErJ+X2vbBJZkNfA72X488Al6ZrxHQ3otij/kMnekLD+6J4EjuK4lppcisA==
-X-Received: by 2002:a17:906:4794:b0:afc:aac3:6d2 with SMTP id a640c23a62f3a-afe28fcd53fmr252056366b.2.1755863143536;
-        Fri, 22 Aug 2025 04:45:43 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:63f:a353:7a5a:5beb])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afded307138sm590844266b.45.2025.08.22.04.45.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Aug 2025 04:45:43 -0700 (PDT)
-Date: Fri, 22 Aug 2025 13:45:38 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 3/3] arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s:
- add HDMI nodes
-Message-ID: <aKhYYjUuOQ7H1aPm@linaro.org>
-References: <20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org>
- <20250821-topic-x1e80100-hdmi-v1-3-f14ad9430e88@linaro.org>
- <as7pbmhfgsg3ht3s5lu25pfjjamaxyonuohkuohono3kr2mxii@posspuko4vwa>
+	s=arc-20240116; t=1755863312; c=relaxed/simple;
+	bh=JsmbBh9zOMLHqHK84o+JX7ZaGFFwKJOvdPNpFTm5Ock=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=rG9pSKMm1qJ4XDn8ZieV+hhtaigN6w1BkclDgHT7ItkB+SUWZ9gvya6nEIhG/7I5PgDD2gd9B6y4kp+8xiGMemY8wj/lnNX28tloYnPNhoKW/tfBJTPsgIqjWLNLgNB3Njb7Dp6v9YUj5bjAB8PVy48Y6N6uEVi23DeTCFt0xDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=d74udDNd; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250822114827epoutp03b44b9a6c1af21c2b1e17681fe9325a03~eFGAZvNgy0143501435epoutp034
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 11:48:27 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250822114827epoutp03b44b9a6c1af21c2b1e17681fe9325a03~eFGAZvNgy0143501435epoutp034
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1755863307;
+	bh=ujFd4Giejy/I8yLtIBnVKvcKVCgcw/eNDX6Exvhq7UA=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=d74udDNdRLlEbqqumXK4rJgpifPriLPXzz9b0W+Aas1YiC5aN5I3DGXbT8IjmiMzL
+	 qHLFdlv5mr9p9wCaIkmTO7YvYUH5KI9gWiGQltIY3HJSofgO3gWufJC200A20nG460
+	 shvObn4sAShELbef1IenGujP9Pf+zN1+8DEdG5Qk=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250822114826epcas5p3a9642723b496f7b1b96daf8adfdf6de2~eFF-roZFA0540505405epcas5p3v;
+	Fri, 22 Aug 2025 11:48:26 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.95]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4c7dk12S6Mz2SSKX; Fri, 22 Aug
+	2025 11:48:25 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250822114824epcas5p2aa289a9a1e75e075c3ccc31f4f2ccb12~eFF9IW-Rj0864208642epcas5p2Q;
+	Fri, 22 Aug 2025 11:48:24 +0000 (GMT)
+Received: from FDSFTE411 (unknown [107.122.81.184]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250822114819epsmtip1c9b4c65341b860acb88b9ac5f2783f81~eFF4r4n5q2807728077epsmtip1l;
+	Fri, 22 Aug 2025 11:48:19 +0000 (GMT)
+From: "Ravi Patel" <ravi.patel@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <jesper.nilsson@axis.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <s.nawrocki@samsung.com>,
+	<cw00.choi@samsung.com>, <alim.akhtar@samsung.com>,
+	<linus.walleij@linaro.org>, <tomasz.figa@gmail.com>,
+	<catalin.marinas@arm.com>, <will@kernel.org>, <arnd@arndb.de>
+Cc: <ksk4725@coasia.com>, <kenkim@coasia.com>, <pjsin865@coasia.com>,
+	<gwk1013@coasia.com>, <hgkim05@coasia.com>, <mingyoungbo@coasia.com>,
+	<smn1196@coasia.com>, <pankaj.dubey@samsung.com>, <shradha.t@samsung.com>,
+	<inbaraj.e@samsung.com>, <swathi.ks@samsung.com>,
+	<hrishikesh.d@samsung.com>, <dj76.yang@samsung.com>,
+	<hypmean.kim@samsung.com>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-arm-kernel@axis.com>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+	<soc@lists.linux.dev>
+In-Reply-To: <3a936b3b-0599-4b0a-83a8-52b899c24125@kernel.org>
+Subject: RE: [PATCH v2 08/10] arm64: dts: exynos: axis: Add initial ARTPEC-8
+ SoC support
+Date: Fri, 22 Aug 2025 17:18:18 +0530
+Message-ID: <000001dc135a$aa6b10c0$ff413240$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <as7pbmhfgsg3ht3s5lu25pfjjamaxyonuohkuohono3kr2mxii@posspuko4vwa>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGJY/8wx4BImu0YLFPVfwpfqUmFNgKGrjAaAh8NcQIA49H5zwGbeAXBtNq/wGA=
+Content-Language: en-in
+X-CMS-MailID: 20250822114824epcas5p2aa289a9a1e75e075c3ccc31f4f2ccb12
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250821124055epcas5p4d1072e9b4ef29587e0fd8606bc1abc4f
+References: <20250710002047.1573841-1-ksk4725@coasia.com>
+	<20250821123310.94089-1-ravi.patel@samsung.com>
+	<CGME20250821124055epcas5p4d1072e9b4ef29587e0fd8606bc1abc4f@epcas5p4.samsung.com>
+	<20250821123310.94089-9-ravi.patel@samsung.com>
+	<3a936b3b-0599-4b0a-83a8-52b899c24125@kernel.org>
 
-On Fri, Aug 22, 2025 at 02:01:30PM +0300, Dmitry Baryshkov wrote:
-> On Thu, Aug 21, 2025 at 03:53:28PM +0200, Neil Armstrong wrote:
-> > The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
-> > connected to the third QMP Combo PHY 4 lanes.
-> > 
-> > Add all the data routing, disable mode switching and specify the
-> > QMP Combo PHY should be in DP-Only mode to route the 4 lanes to
-> > the underlying DP phy.
-> > 
-> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > ---
-> >  .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    | 44 ++++++++++++++++++++++
-> >  1 file changed, 44 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> > index 4cf61c2a34e31233b1adc93332bcabef22de3f86..5b62b8c3123633360f249e3ecdc8ea23f44e8e09 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> > @@ -62,6 +62,20 @@ switch-lid {
-> >  		};
-> >  	};
-> >  
-> > +
-> > +	hdmi-connector {
-> > +		compatible = "hdmi-connector";
-> > +		type = "a";
-> > +		pinctrl-0 = <&hdmi_hpd_default>;
-> > +		pinctrl-names = "default";
-> [...]
-> > +
-> > +		port {
-> > +			hdmi_con: endpoint {
-> > +				remote-endpoint = <&usb_1_ss2_qmpphy_out>;
-> 
-> Please describe the transparent bridge too. It can be covered by the
-> simple-bridge.yaml / simple-bridge.c
-> 
 
-I think this isn't the case here(?), but how are we going to handle
-devices where we don't know which bridge chip is used? I've seen at
-least 3 or 4 different chips already across all X1E laptops and we don't
-have schematics for most of them.
+
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> Sent: 22 August 2025 12:09
+> To: Ravi Patel <ravi.patel@samsung.com>; jesper.nilsson@axis.com; mturquette@baylibre.com; sboyd@kernel.org;
+> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; s.nawrocki@samsung.com; cw00.choi@samsung.com;
+> alim.akhtar@samsung.com; linus.walleij@linaro.org; tomasz.figa@gmail.com; catalin.marinas@arm.com; will@kernel.org;
+> arnd@arndb.de
+> Cc: ksk4725@coasia.com; kenkim@coasia.com; pjsin865@coasia.com; gwk1013@coasia.com; hgkim05@coasia.com;
+> mingyoungbo@coasia.com; smn1196@coasia.com; pankaj.dubey@samsung.com; shradha.t@samsung.com;
+> inbaraj.e@samsung.com; swathi.ks@samsung.com; hrishikesh.d@samsung.com; dj76.yang@samsung.com;
+> hypmean.kim@samsung.com; linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-samsung-
+> soc@vger.kernel.org; linux-arm-kernel@axis.com; linux-clk@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> gpio@vger.kernel.org; soc@lists.linux.dev
+> Subject: Re: [PATCH v2 08/10] arm64: dts: exynos: axis: Add initial ARTPEC-8 SoC support
+> 
+> On 21/08/2025 14:32, Ravi Patel wrote:
+> > From: SungMin Park <smn1196@coasia.com>
+> >
+> > Add initial device tree support for Axis ARTPEC-8 SoC.
+> >
+> > This SoC contains 4 Cortex-A53 CPUs and several other peripheral IPs.
+> >
+> > Signed-off-by: SungMin Park <smn1196@coasia.com>
+> > Signed-off-by: SeonGu Kang <ksk4725@coasia.com>
+> > Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
+> ...
+> 
+> > +
+> > +	timer {
+> > +		compatible = "arm,armv8-timer";
+> > +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+> 
+> No CPU mask?
+
+Thanks for review and pointing out.
+
+Yes. You are right.
+I will add GIC_CPU_MASK_SIMPLE(4) in next version as this uses GICv2 (gic-400) not GICv3.
+
+This may be carried out from other exynos/fsd platforms
+
+I found below 2 related links.
+https://lkml.org/lkml/2025/6/13/1073
+https://lkml.org/lkml/2023/11/28/403
 
 Thanks,
-Stephan
+Ravi
+
+> 
+> > +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+> > +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+> > +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+> > +	};
+> > +};
+> 
+> 
+> Best regards,
+> Krzysztof
+
 
