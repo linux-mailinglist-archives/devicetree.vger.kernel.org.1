@@ -1,196 +1,135 @@
-Return-Path: <devicetree+bounces-207816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DECA7B30EA3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:15:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93100B30EC4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:22:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D3F77BFE2C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 06:13:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAA2A3AA8C1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 06:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31F6B2E336C;
-	Fri, 22 Aug 2025 06:15:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9C02E3B17;
+	Fri, 22 Aug 2025 06:22:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LR7mDKA2"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dUou/LpX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1852E2EF5;
-	Fri, 22 Aug 2025 06:15:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7280427AC32;
+	Fri, 22 Aug 2025 06:22:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755843307; cv=none; b=dHpxkRVpCJyMMSAEzqxPJpZ/K1NE7TWcPmgu6OHqZF9MwkSPj89jiZJsShUwBqM6P6HspMX8Pa7oGy48apyLdvih05D0HxQvpJa51PGV/3I5jUpkR2aeXNO5zQtIYOylYavKtAF4D4rQ3fZvGEEKZ+Fy8hRUt7emwxYgQgA/7Cs=
+	t=1755843729; cv=none; b=Jzcfk8jsUxE+edTDEMCFFXO3pBpM7r+Kch9kiweAhE8d8/Yh1pZS7fWRu2M0Itzq1l/mh3rtGTgUfFhxZfL5pTM+XeONSXeRiVxcSJkb6Vrb3IsB+Mh98RmYDjBd4gUCYlE72I1CC/ExlqXluFuMP/ETZgqBICQxD5r021/8OgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755843307; c=relaxed/simple;
-	bh=26zbFI6hb3mIw5E6fR+zJorauuLVdmbMe2rz4rsCbfc=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JmpXOSG1QBRKOZh2ZCht8JpMLGAx0r6TjXMEvJ5dx22KPzGVAqo8uAlwq1UAPLTfjs+p53OMVmlKCvqc7FqIpcObfS+h/nLh07INh+qr2j6lUtZXHnZBDw48DumQ9HA6I6ogeWmJz+QB3+yXzT4UPEAavJ5uYbIYJjgsuHphnqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LR7mDKA2; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b4717330f9eso1247451a12.1;
-        Thu, 21 Aug 2025 23:15:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755843304; x=1756448104; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OY4GJHvVYK+N5LUJGUaOnp3q0oNX2or2mbmIQLdKleU=;
-        b=LR7mDKA2wavEoiIHgxsk+ERkJPQPyOMizjkSDHHwT3duNrtbXbfTrUmfS4c7el5gES
-         C/L4xjjB1o0wQPlQsBkXMi5lz/r2LDAx5bbrzqUg2qdahGQ1Vg6cuUGSV/iOhoYlwE4v
-         DrMENF3dqmNI9rwcBKhqmPTTW/j7LazZoyGk57iO7P+mS9eblz9R/+i4ZOjGQaxAuzZI
-         Pz0yA/ndpZ0LZxo8k1N24AI52gzLSOnlyVPQFCkmc+QeSX653+sPCGt/bWCoF1NP4QO8
-         FSu6Ixl0439OoEz3AGvgHvGm5fQsCNKGj+4aKBq5gYbYD5K4prvdwg597NFfrNh0AkHe
-         3kGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755843304; x=1756448104;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OY4GJHvVYK+N5LUJGUaOnp3q0oNX2or2mbmIQLdKleU=;
-        b=Nf62G3MwPKA5QdUnS6xRD5GIY1cJYQm65u6HGL6hJLQdhmhMleI7H/hgODEG+re/6J
-         sNTlwfrB6ury2lUhG81cFcnA4S+GA8RH96xdM/WyZodhUIGZaaTafJsq8s8uDp9eSnrJ
-         ye2DASiEBjObgS919ngz296UkEYAdOIBaLqbr8F+Ut1ZZ+tS8yoT+NQJt17nqkL/Q3dG
-         jeFUn5i+C+Yd8C0UfeGNafy1J+43tst1DYQz6evN29RwGoFYFaTZJeMqiEoBELyLtlg5
-         uNTQE6QBJD1md8Ahh/EsbzixriCym5gvveVleilCKtctn7yeZ4KjvhT4U7EOZgpXsb9E
-         d2xw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOiHFaAmuG/lHNAgxsy4G6YL1QfBF4H84rnCcDZ15TtEFHyXCuMJMoWYjfaWsKdNaPTqxc84obhKIpImb3@vger.kernel.org, AJvYcCUP1xL0GiUpU3bfjcrd1rwUMUuN23ge2KOUb08Y2lu8jycevh4g/E+RHRTDCGiJ3VEq3TfgdEXqaX70@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz34tlltsX/GuCLZX0AYHbXuLF5UykDd4yPDk26vOwSEi+1FO1Z
-	/hkc22pybnWUpQ8D3AcQR1AtbE1lGNfHk5q18MGXxJj5Ug9b+8va5ncc
-X-Gm-Gg: ASbGncvZto0ipYttwAQGGaq+utDJoLfZ9ABCR7zppPpdktFgnYuK0n7cogZcmf9HEDU
-	94e4zfyD8p1TdlvErjiHRtFhrhg1P8vDwsRdqWqhmg0Zk3RrlLe0rGVatg0A8RofxTpDCGMYsmZ
-	bx91bLx76EohZoXrZLb039DTUu66WfnLlKK0fGSHENbqHhujFGTQcGy9Q90wT/NkHNrR0/UJmju
-	MkhRnKKYS/LPefJMsAh4q+dtggnpk2SjIw4+FneyS7pVNN4RvFn6Ls69mMcZ4aRiGBFmTWryV6P
-	s9v9jLBGPmDAHbKZA2CT9GoJR12yWNEd1o5akpM8jDWAmv7b+Ej80DaLj5ZQYFJuBGnOIydfLhi
-	24XhaR90DRh1A2YebaYi4XqITB7SmjoJtvRzNMzFoY1NbyK86oK9HX3o6oIZpdd53BoEeFlFWyV
-	GgXH31jgyGr1PilE+D6V8Q+WO223/V
-X-Google-Smtp-Source: AGHT+IEX8roGyBHGJ/i9ej1bGUzipkk+L88noriLAZ1+JU3Yv/i6WVdaBF5O/2TerwAvPB7SMxG8mg==
-X-Received: by 2002:a17:903:2ac8:b0:234:986c:66bf with SMTP id d9443c01a7336-2462edd7d39mr20587355ad.11.1755843304375;
-        Thu, 21 Aug 2025 23:15:04 -0700 (PDT)
-Received: from peter-bmc.. (2001-b400-e35d-8041-a0f2-62d1-f7aa-e5b7.emome-ip6.hinet.net. [2001:b400:e35d:8041:a0f2:62d1:f7aa:e5b7])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-246181c48c1sm28660385ad.116.2025.08.21.23.15.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Aug 2025 23:15:04 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] ARM: dts: aspeed: harma: revise gpio name
-Date: Fri, 22 Aug 2025 14:14:52 +0800
-Message-ID: <20250822061454.2610386-3-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250822061454.2610386-1-peteryin.openbmc@gmail.com>
-References: <20250822061454.2610386-1-peteryin.openbmc@gmail.com>
+	s=arc-20240116; t=1755843729; c=relaxed/simple;
+	bh=ayqQLuz2t+cV2/mN6Vv7S5ueWn5bRegzJbzeM4HF7pM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BUAmNswKO+ZP4LcxCo2Kh2gLK/w/lh5ok6AEMi0FDDoEg9OSgXKw87twccMmky2Ro7WKEjSMLGa72LdgZUsHOs4xZ0LedcEI7ZVnPYHfvrVJU6/3hi0j8Rk9Wcw8j2LO7c6Z6mi0I4N5sADlGrcwhhuNiSSU9bbyhuFHhSWsTRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dUou/LpX; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57M6LvPp186577;
+	Fri, 22 Aug 2025 01:21:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755843717;
+	bh=9tHPqKKnRlf/2yoYaU51ff9krR9hR2OUkjvBjZR7nbs=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=dUou/LpX8uNa3HvO0F+Tq/zAfHL4I1JJB3OnLNEzOvy3pP0vqtk3b/PUCshyEVRUr
+	 0mlBM704WiDbJ9EgwcbQgn5NCh1oiDVuY+V8xH/I5pCqK2f0SBeo3HVAaUcRxXRZQD
+	 dLtKH13IqLeVzdR6B7L/zjmwxk8pVpudZnyWJRsE=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57M6Lvxf2699211
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 22 Aug 2025 01:21:57 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 22
+ Aug 2025 01:21:56 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 22 Aug 2025 01:21:57 -0500
+Received: from [172.24.233.249] (ula0502350.dhcp.ti.com [172.24.233.249])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57M6LpGm3090508;
+	Fri, 22 Aug 2025 01:21:52 -0500
+Message-ID: <eaf4c015-a9e2-486b-a5ca-f98ce2146866@ti.com>
+Date: Fri, 22 Aug 2025 11:51:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] Add cpufreq and USB support for AM62D2
+To: Nishanth Menon <nm@ti.com>, "Raghavendra, Vignesh" <vigneshr@ti.com>
+CC: <praneeth@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <khasim@ti.com>, <v-singh1@ti.com>,
+        <afd@ti.com>, <bb@ti.com>, <s-vadapalli@ti.com>
+References: <20250820083331.3412378-1-p-bhagat@ti.com>
+ <20250821122741.eqrwystfey7nwvym@outfit>
+Content-Language: en-US
+From: Paresh Bhagat <p-bhagat@ti.com>
+In-Reply-To: <20250821122741.eqrwystfey7nwvym@outfit>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Update GPIO label definitions in the device tree to reflect the correct
-power and control signal names. This includes:
+Hi Nishanth and Vignesh,
 
-- Rename "fcb0-activate" to "fcb1-activate" and "fcb2-activate"
-- Add labels for:
-  - power-p3v3-standby
-  - power-p1v8-good
-  - power-pvdd33-s5
-  - power-pvdd18-s5
-  - power-asic-good
-  - power-12v-memory-good
+On 21/08/25 17:57, Nishanth Menon wrote:
+> On 14:03-20250820, Paresh Bhagat wrote:
+>> This patch series introduces following changes:
+>>
+>> * Patch 1 fixes the register length in main_pmx/padconfig for AM62D
+>>   and AM62A.
+>>
+>> * Patch 2 enables USB support for AM62D2-EVM by adding pinmux and device
+>>   tree nodes.
+>>
+>> * Patch 3 adds AM62D2 SoC to cpufreq-dt-platdev blacklist so that
+>>   cpufreq is handled by the ti-cpufreq driver instead of the
+>>   generic cpufreq-dt driver.
+>>
+>> * Patch 4 extends ti-cpufreq to register AM62D2 SoC support by
+>>   reusing the am62a7_soc_data.
+>>
+>> Boot Logs-
+>> https://gist.github.com/paresh-bhagat12/e29d33c3fd92ff17580edf1441ece9f9
+>>
+>> Tech Ref Manual-https://www.ti.com/lit/pdf/sprujd4
+>> Schematics Link-https://www.ti.com/lit/zip/sprcal5
+>>
+>> Paresh Bhagat (3):
+>>    arm64: dts: ti: k3-am62d2-evm: Enable USB support
+>>    cpufreq: dt-platdev: Blacklist ti,am62d2 SoC
+>>    cpufreq: ti: Add support for AM62D2
+>>
+>> Vibhore Vardhan (1):
+>>    arm64: dts: ti: k3-am62a-main: Fix pinctrl properties
+> Please do not mix things up to maintainers. Please post patches #1,2
+> separately to DT maintainers - these do not have any relationship with
+> the rest of the driver patches.
 
-- Replace unnamed GPIOs with appropriate labels such as:
-  - irq-pvddcore0-ocp-alert
-  - irq-pvddcore1-ocp-alert
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 21 +++++++++++--------
- 1 file changed, 12 insertions(+), 9 deletions(-)
+Thanks for the review. I will keep patches in separate series for 
+further set of patches.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-index 741d2d9b6d03..81278a7702de 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-@@ -234,7 +234,7 @@ gpio@12 {
- 		"","",
- 		"","",
- 		"","",
--		"","fcb1-activate",
-+		"","fcb2-activate",
- 		"","";
- 	};
- };
-@@ -308,7 +308,7 @@ gpio@12 {
- 		"","",
- 		"","",
- 		"","",
--		"","fcb0-activate",
-+		"","fcb1-activate",
- 		"","";
- 	};
- };
-@@ -698,14 +698,14 @@ &sgpiom0 {
- 	"","",
- 	/*A4-A7 line 8-15*/
- 	"","power-config-asic-module-enable",
--	"","power-config-asic-power-good",
--	"","power-config-pdb-power-good",
-+	"power-p3v3-standby","power-config-asic-power-good",
-+	"power-p1v8-good","power-config-pdb-power-good",
- 	"presence-cpu","smi-control-n",
- 	/*B0-B3 line 16-23*/
- 	"","nmi-control-n",
--	"","nmi-control-sync-flood-n",
--	"","",
-+	"power-pvdd33-s5","nmi-control-sync-flood-n",
- 	"","",
-+	"power-pvdd18-s5","",
- 	/*B4-B7 line 24-31*/
- 	"","FM_CPU_SP5R1",
- 	"reset-cause-rsmrst","FM_CPU_SP5R2",
-@@ -749,7 +749,7 @@ &sgpiom0 {
- 	/*F4-F7 line 88-95*/
- 	"presence-asic-modules-0","rt-cpu0-p1-force-enable",
- 	"presence-asic-modules-1","bios-debug-msg-disable",
--	"","uart-control-buffer-select",
-+	"power-asic-good","uart-control-buffer-select",
- 	"presence-cmm","ac-control-n",
- 	/*G0-G3 line 96-103*/
- 	"FM_CPU_CORETYPE2","",
-@@ -801,7 +801,7 @@ &sgpiom0 {
- 	"asic0-card-type-detection2-n","",
- 	"uart-switch-lsb","",
- 	"uart-switch-msb","",
--	"","",
-+	"power-12v-memory-good","",
- 	/*M4-M7 line 200-207*/
- 	"","","","","","","","",
- 	/*N0-N3 line 208-215*/
-@@ -809,7 +809,10 @@ &sgpiom0 {
- 	/*N4-N7 line 216-223*/
- 	"","","","","","","","",
- 	/*O0-O3 line 224-231*/
--	"","","","","","","","",
-+	"","",
-+	"irq-pvddcore0-ocp-alert","",
-+	"irq-pvddcore1-ocp-alert","",
-+	"","",
- 	/*O4-O7 line 232-239*/
- 	"","","","","","","","",
- 	/*P0-P3 line 240-247*/
--- 
-2.43.0
-
+>
+>>   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi |  2 +-
+>>   arch/arm64/boot/dts/ti/k3-am62d2-evm.dts  | 21 +++++++++++++++++++++
+>>   drivers/cpufreq/cpufreq-dt-platdev.c      |  1 +
+>>   drivers/cpufreq/ti-cpufreq.c              |  2 ++
+>>   4 files changed, 25 insertions(+), 1 deletion(-)
+>>
+>> -- 
+>> 2.34.1
+>>
 
