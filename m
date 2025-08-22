@@ -1,194 +1,188 @@
-Return-Path: <devicetree+bounces-207961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A66B313DE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:46:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB40B313E7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:47:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF4D61D00793
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:41:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 913521C22977
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560D02F9992;
-	Fri, 22 Aug 2025 09:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069AB219A81;
+	Fri, 22 Aug 2025 09:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="FUlBe9oD";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="XYDerVas";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="FUlBe9oD";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="XYDerVas"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="d5M/X4ZM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA8F2F8BF0
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:35:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64741216E26;
+	Fri, 22 Aug 2025 09:35:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755855332; cv=none; b=PaitqFT3zBWnPhfbgoh0PnH21jhwN/9Gib5AcWw7RAMglDfDNbMAGIhYD30pEtPi+zT8aMA4z/LDwqjeoHzMu1X+aEGaSfEtehJ8dGiMoSC9LXvTw35aIyKfobkuRTkVL5ry7hCtK/pDffJbFsXb3gkqhn0XAdG8bgkE1dZMoNQ=
+	t=1755855359; cv=none; b=PhCAhSzvZfK8l5+kHrnqy59tcgSqZdBnZpZ/ICfVxH+CcPm+lyMXpqmZ4qDHL2SxhS6leaTJN8VeaFzCwEQ+Cfu9IjlGn32evMYyUVD+OOXvTaGgIvO0Q+f4RoJVkjJRjY5dH98bAnt0RBUtJWifS/CnQF4h3Mbw9ELNROwq3FA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755855332; c=relaxed/simple;
-	bh=eSnmXWts4lneydS0K/gTCRVPllwqwqUG5QtbWvHQzRg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=d36N3QXKQ5/oO09Ylx+tkiErCdqkmzv5Jfd6DCPmFwg7LTG1xA5wWi3hlUedcQIHab+T29wtvCqk/0vVF64dX6OrM0O4vlpYdbwFANK8SxB6tjCyN82aIg9/c4gvud+qGphOL2OayOuxzDFVzHJDvgzrtEMDsVHHvMTB2rTEia4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=FUlBe9oD; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=XYDerVas; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=FUlBe9oD; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=XYDerVas; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 4CB4221EF7;
-	Fri, 22 Aug 2025 09:35:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1755855315; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=x3cvBSh7xfmCgersmZjZ++hf/VLsBTmIFoCXCaq9iVA=;
-	b=FUlBe9oD26o0XZdtDyHCgjBg62Z0OGVJO5zSxXGPr7Wz8cTYQnTti9yOvKF/S3OB/VDugC
-	tunprtW+mUJyBNWWyo0gHHlZRr3ZxpTMPjaZDX7Fp6G0rdG8hEeAH9kHuxivjZFbQ9fvUk
-	82Sgu1aMjrUsG9rq8MJLy0jjFDvPomg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1755855315;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=x3cvBSh7xfmCgersmZjZ++hf/VLsBTmIFoCXCaq9iVA=;
-	b=XYDerVasOgVrlHTFHZVf9HKe46rgSqVEXgEyQ84aN+Nwp4pV3qm0CZK7iOMIM5f9RIg9vP
-	pcFtzOSdxAjxNMDA==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1755855315; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=x3cvBSh7xfmCgersmZjZ++hf/VLsBTmIFoCXCaq9iVA=;
-	b=FUlBe9oD26o0XZdtDyHCgjBg62Z0OGVJO5zSxXGPr7Wz8cTYQnTti9yOvKF/S3OB/VDugC
-	tunprtW+mUJyBNWWyo0gHHlZRr3ZxpTMPjaZDX7Fp6G0rdG8hEeAH9kHuxivjZFbQ9fvUk
-	82Sgu1aMjrUsG9rq8MJLy0jjFDvPomg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1755855315;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=x3cvBSh7xfmCgersmZjZ++hf/VLsBTmIFoCXCaq9iVA=;
-	b=XYDerVasOgVrlHTFHZVf9HKe46rgSqVEXgEyQ84aN+Nwp4pV3qm0CZK7iOMIM5f9RIg9vP
-	pcFtzOSdxAjxNMDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4660C13A31;
-	Fri, 22 Aug 2025 09:35:14 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id wK3sDtI5qGihMAAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Fri, 22 Aug 2025 09:35:14 +0000
-From: Stanimir Varbanov <svarbanov@suse.de>
-To: netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Stanimir Varbanov <svarbanov@suse.de>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH v2 5/5] arm64: dts: broadcom: Enable RP1 ethernet for Raspberry Pi 5
-Date: Fri, 22 Aug 2025 12:34:40 +0300
-Message-ID: <20250822093440.53941-6-svarbanov@suse.de>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250822093440.53941-1-svarbanov@suse.de>
-References: <20250822093440.53941-1-svarbanov@suse.de>
+	s=arc-20240116; t=1755855359; c=relaxed/simple;
+	bh=Uc2IpWtM+zVbkbcO4rcfTAtLdzFd4VXXB5icpjxC18Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=BJ/jfrE4fgtSCwrn5fBFOuOm0NOdyQUsWuP373RiL7Wbp2h55am/basLlDD1BUR1P731upjcSMw6OYwNcHXOl0MI8wXPfOdoRpZtsqhc/iL8Jn2RyObjw1ymJ+qpdAwZQZp6PDBX/394294CdFBcI2luzvES4HFePU8Q+AoeZhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=d5M/X4ZM reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=JxgCFVEuQkp07FCw4bSduVBC2/i6b/QVEgUNfJ28zgM=; b=d
+	5M/X4ZMKBtNeeArwzm2cjNVLuWiWCBuBprMWEdwrkDmriEN50zdHGQfUDUhAnL3L
+	HBDgU2tK16P6eWh85KSKMbROtDSIN+njdM7x8ewy0gheovCPjeeTq+zMwkpTiJjY
+	BH+cUIF9B6I23dIPkcu+Q8DuivUuNFEXbadsqQffj4=
+Received: from andyshrk$163.com ( [103.29.142.67] ) by
+ ajax-webmail-wmsvr-40-118 (Coremail) ; Fri, 22 Aug 2025 17:34:54 +0800
+ (CST)
+Date: Fri, 22 Aug 2025 17:34:54 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org, naoki@radxa.com,
+	stephen@radxa.com, cristian.ciocaltea@collabora.com,
+	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
+	yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, robh@kernel.org,
+	sebastian.reichel@collabora.com,
+	"Andy Yan" <andy.yan@rock-chips.com>
+Subject: Re:Re: [PATCH v6 00/10] Add support for RK3588 DisplayPort
+ Controller
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20250519(9504565a)
+ Copyright (c) 2002-2025 www.mailtech.cn 163com
+In-Reply-To: <7omsdz6hjhpmzi7a2meem64dm2jrxhivczt3gdi24jyrp5lgjp@iucsgwqtjqzc>
+References: <20250728082846.3811429-1-andyshrk@163.com>
+ <1ebeae81.8b20.198cc3ac94a.Coremail.andyshrk@163.com>
+ <7omsdz6hjhpmzi7a2meem64dm2jrxhivczt3gdi24jyrp5lgjp@iucsgwqtjqzc>
+X-NTES-SC: AL_Qu2eB/Seukoi4iOeY+kfmUgWjuw/WsG1v/Ul1YBSP556jDDp2CEdenRSImbo8e60Ah+gmgmGYh920MpQRrVzc6w39RtMhO7IpQNdGTAfgU5ltw==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-5.30 / 50.00];
-	REPLY(-4.00)[];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	ARC_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[dt,netdev];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	R_RATELIMIT(0.00)[to_ip_from(RL7mwea5a3cdyragbzqhrtit3y)];
-	TO_MATCH_ENVRCPT_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo];
-	RCVD_COUNT_TWO(0.00)[2];
-	RCVD_TLS_ALL(0.00)[]
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Spam-Score: -5.30
+Message-ID: <5975acef.83fc.198d1218fa1.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:digvCgD3Hz6+OahoDLwfAA--.10703W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEhmxXmioNN1wugAFsC
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-Enable RP1 ethernet DT node for Raspberry Pi 5.
-
-Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
- .../boot/dts/broadcom/bcm2712-rpi-5-b.dts      | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-index a70a9b158df3..c70d1cb7f3b6 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-@@ -23,3 +23,21 @@ &pcie1 {
- &pcie2 {
- 	status = "okay";
- };
-+
-+&rp1_eth {
-+	status = "okay";
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&phy1>;
-+
-+	mdio {
-+		reg = <0x1>;
-+		reset-gpios = <&rp1_gpio 32 GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <5000>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		phy1: ethernet-phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
--- 
-2.47.0
-
+CkhlbGxvIERtaXRyeSwKCkF0IDIwMjUtMDgtMjEgMTk6MzY6MDEsICJEbWl0cnkgQmFyeXNoa292
+IiA8ZG1pdHJ5LmJhcnlzaGtvdkBvc3MucXVhbGNvbW0uY29tPiB3cm90ZToKPk9uIFRodSwgQXVn
+IDIxLCAyMDI1IGF0IDA2OjQ0OjIxUE0gKzA4MDAsIEFuZHkgWWFuIHdyb3RlOgo+PiAKPj4gCj4+
+IEhlbGxvIERtaXRyeSwKPj4gICAgIAo+PiAKPj4gQXQgMjAyNS0wNy0yOCAxNjoyODoyNSwgIkFu
+ZHkgWWFuIiA8YW5keXNocmtAMTYzLmNvbT4gd3JvdGU6Cj4+ID5Gcm9tOiBBbmR5IFlhbiA8YW5k
+eS55YW5Acm9jay1jaGlwcy5jb20+Cj4+ID4KPj4gPgo+PiA+VGhlcmUgYXJlIHR3byBEVyBEUFRY
+IGJhc2VkIERpc3BsYXlQb3J0IENvbnRyb2xsZXIgb24gcmszNTg4IHdoaWNoCj4+ID5hcmUgY29t
+cGxpYW50IHdpdGggdGhlIERpc3BsYXlQb3J0IFNwZWNpZmljYXRpb24gVmVyc2lvbiAxLjQgd2l0
+aAo+PiA+dGhlIGZvbGxvd2luZyBmZWF0dXJlczoKPj4gPgo+PiA+KiBEaXNwbGF5UG9ydCAxLjRh
+Cj4+ID4qIE1haW4gTGluazogMS8yLzQgbGFuZXMKPj4gPiogTWFpbiBMaW5rIFN1cHBvcnQgMS42
+MkdicHMsIDIuN0dicHMsIDUuNEdicHMgYW5kIDguMUdicHMKPj4gPiogQVVYIGNoYW5uZWwgMU1i
+cHMKPj4gPiogU2luZ2xlIFN0cmVhbSBUcmFuc3BvcnQoU1NUKQo+PiA+KiBNdWx0aXN0cmVhbSBU
+cmFuc3BvcnQgKE1TVCkKPj4gPiogVHlwZS1DIHN1cHBvcnQgKGFsdGVybmF0ZSBtb2RlKQo+PiA+
+KiBIRENQIDIuMiwgSERDUCAxLjMKPj4gPiogU3VwcG9ydHMgdXAgdG8gOC8xMCBiaXRzIHBlciBj
+b2xvciBjb21wb25lbnQKPj4gPiogU3VwcG9ydHMgUkJHLCBZQ2JDcjQ6NDo0LCBZQ2JDcjQ6Mjoy
+LCBZQ2JDcjQ6MjowCj4+ID4qIFBpeGVsIGNsb2NrIHVwIHRvIDU5NE1Iego+PiA+KiBJMlMsIFNQ
+RElGIGF1ZGlvIGludGVyZmFjZQo+PiA+Cj4+ID5UaGUgY3VycmVudCB2ZXJzaW9uIG9mIHRoaXMg
+cGF0Y2ggc2VyaWVzIG9ubHkgc3VwcG9ydHMgYmFzaWMgZGlzcGxheSBvdXRwdXRzLgo+PiA+SSBj
+b25kdWN0ZWQgdGVzdHMgd2l0aCBEUDAgaW4gMTA4MHAgYW5kIDRLQDYwIFlDYkNyNDoyOjAgbW9k
+ZXM7IHRoZSBBTFQvVHlwZS1DCj4+ID5tb2RlIHdhcyB0ZXN0ZWQgb24gUm9jayA1QiwgRFAxIHdh
+cyB0ZXN0ZWQgb24gUm9jayA1IElUWCBieSBTdGVwaGVuIGFuZCBQaW90ci4KPj4gPkhEQ1AgYW5k
+IGF1ZGlvIGZlYXR1cmVzIHJlbWFpbiB1bmltcGxlbWVudGVkLgo+PiA+Rm9yIFJLMzU4OCwgaXQn
+cyBvbmx5IHN1cHBvcnQgU1NULCB3aGlsZSBpbiB0aGUgdXBjb21pbmcgUkszNTc2LCBpdCBjYW4g
+c3VwcG9ydAo+PiA+TVNUIG91dHB1dC4KPj4gCj4+IAo+PiAKPj4gIENvdWxkIHlvdSB0YWtlIHRo
+aXMgc2VyaWVzPyBJdCB3b3VsZCBiZSBuaWNlIGlmIHRoZXkgY291bGQgbGFuZCBMaW51eCA2LjE4
+Lgo+Cj5kaW0gY2hlY2twYXRjaCBjb21wbGFpbnMgYWJvdXQgdGhlIERXIGxpYnJhcnkgcGF0Y2g6
+Cj4KPgo+LTozODU6IENIRUNLOlVOQ09NTUVOVEVEX0RFRklOSVRJT046IHN0cnVjdCBtdXRleCBk
+ZWZpbml0aW9uIHdpdGhvdXQgY29tbWVudAo+IzM4NTogRklMRTogZHJpdmVycy9ncHUvZHJtL2Jy
+aWRnZS9zeW5vcHN5cy9kdy1kcC5jOjMyMzoKPisJc3RydWN0IG11dGV4IGlycV9sb2NrOwo+Cj4t
+OjgxOTogQ0hFQ0s6VU5ORUNFU1NBUllfUEFSRU5USEVTRVM6IFVubmVjZXNzYXJ5IHBhcmVudGhl
+c2VzIGFyb3VuZCAndiAhPSBhZGotPnZvbHRhZ2Vfc3dpbmdbaV0nCj4jODE5OiBGSUxFOiBkcml2
+ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWRwLmM6NzU3Ogo+KwkJaWYgKCh2ICE9IGFk
+ai0+dm9sdGFnZV9zd2luZ1tpXSkgfHwgKHAgIT0gYWRqLT5wcmVfZW1waGFzaXNbaV0pKQo+Cj4t
+OjgxOTogQ0hFQ0s6VU5ORUNFU1NBUllfUEFSRU5USEVTRVM6IFVubmVjZXNzYXJ5IHBhcmVudGhl
+c2VzIGFyb3VuZCAncCAhPSBhZGotPnByZV9lbXBoYXNpc1tpXScKPiM4MTk6IEZJTEU6IGRyaXZl
+cnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctZHAuYzo3NTc6Cj4rCQlpZiAoKHYgIT0gYWRq
+LT52b2x0YWdlX3N3aW5nW2ldKSB8fCAocCAhPSBhZGotPnByZV9lbXBoYXNpc1tpXSkpCj4KPi06
+MTc1NDogQ0hFQ0s6VVNMRUVQX1JBTkdFOiB1c2xlZXBfcmFuZ2UgaXMgcHJlZmVycmVkIG92ZXIg
+dWRlbGF5OyBzZWUgZnVuY3Rpb24gZGVzY3JpcHRpb24gb2YgdXNsZWVwX3JhbmdlKCkgYW5kIHVk
+ZWxheSgpLgo+IzE3NTQ6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHct
+ZHAuYzoxNjkyOgo+Kwl1ZGVsYXkoMTApOwo+Cj5Db3VsZCB5b3UgcGxlYXNlIHRha2UgYSBsb29r
+IGFuZCBmaXggdGhvc2U/CgpTb3JyeSwgdGhlc2UgaXNzdWVzIGhhdmUgYmVlbiBmaXhlZCBpbiB2
+ZXJzaW9uIFY3WzBdLgoKWzBdaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvZHJpLWRldmVsLzIwMjUw
+ODIyMDYzOTU5LjY5MjA5OC0xLWFuZHlzaHJrQDE2My5jb20vVC8jdAoKPgo+PiAKPj4gCj4+ID4K
+Pj4gPgo+PiA+Q2hhbmdlcyBpbiB2NjoKPj4gPi0gVXNlIGRybV9kcF92c2Nfc2RwX3N1cHBvcnRl
+ZAo+PiA+LSBTdG9yZSBicGMvYnBwL2NvbG9yIGZvcm1hdCBpbiBkd19kcF9icmlkZ2Vfc3RhdGUK
+Pj4gPi0gQ29sbGVjdCBSZXZpZXdlZC1ieSB0YWdzCj4+ID4tIExpbmsgdG8gVjU6IGh0dHBzOi8v
+bG9yZS5rZXJuZWwub3JnL2xpbnV4LXJvY2tjaGlwLzIwMjUwNzE2MTAwNDQwLjgxNjM1MS0xLWFu
+ZHlzaHJrQDE2My5jb20vCj4+ID4KPj4gPkNoYW5nZXMgaW4gdjU6Cj4+ID4tIFVzZSBkcm1fZHBf
+cmVhZF9zaW5rX2NvdW50X2NhcCBpbnN0ZWFkIG9mIHRoZSBwcml2YXRlIGltcGxlbWVudGF0aW9u
+Lgo+PiA+LSBGaXJzdCBpbmNsdWRlZCBpbiB0aGlzIHZlcnNpb24uCj4+ID4tIExpbmsgdG8gVjQ6
+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXJvY2tjaGlwLzIwMjUwNjE5MDYzOTAwLjcw
+MDQ5MS0xLWFuZHlzaHJrQDE2My5jb20vCj4+ID4KPj4gPkNoYW5nZXMgaW4gdjQ6Cj4+ID4tIERy
+b3AgdW5uZWNlc3NhcnkgaGVhZGVyIGZpbGVzCj4+ID4tIFN3aXRjaCB0byBkZXZtX2RybV9icmlk
+Z2VfYWxsb2MKPj4gPi0gRHJvcCB1bnVzZWQgZnVuY3Rpb24KPj4gPi0gQWRkIHBsYXRmb3JtX3Nl
+dF9kcnZkYXRhCj4+ID4tIExpbmsgdG8gVjM6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4
+LXJvY2tjaGlwLzIwMjUwNDAzMDMzNzQ4LjI0NTAwNy0xLWFuZHlzaHJrQDE2My5jb20vCj4+ID4K
+Pj4gPgo+PiA+Q2hhbmdlcyBpbiB2MzoKPj4gPi0gUmViYXNlIG9uIGRybS1taXNjLW5leHQKPj4g
+Pi0gU3dpdGNoIHRvIGNvbW1vbiBoZWxwZXJzIHRvIHBvd2VyIHVwL2Rvd24gZHAgbGluawo+PiA+
+LSBPbmx5IHBhc3MgcGFyYW1ldGVycyB0byBwaHkgdGhhdCBzaG91bGQgYmUgc2V0Cj4+ID4tIEZp
+cnN0IGludHJvZHVjZWQgaW4gdGhpcyB2ZXJzaW9uLgo+PiA+LSBGaXJzdCBpbnRyb2R1Y2VkIGlu
+IHRoaXMgdmVyc2lvbi4KPj4gPi0gQWRkIFJBNjIwIGludG8gYnJpZGdlIGNoYWluLgo+PiA+LSBM
+aW5rIHRvIFYyOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1yb2NrY2hpcC8yMDI1MDMx
+MjEwNDIxNC41MjUyNDItMS1hbmR5c2hya0AxNjMuY29tLwo+PiA+Cj4+ID5DaGFuZ2VzIGluIHYy
+Ogo+PiA+LSBGaXggYSBjaGFyYWN0ZXIgZW5jb2RpbmcgaXNzdWUKPj4gPi0gRml4IGNvbXBpbGUg
+ZXJyb3Igd2hlbiBidWlsZCBhcyBtb2R1bGUKPj4gPi0gQWRkIHBoeSBpbml0Cj4+ID4tIE9ubHkg
+dXNlIG9uZSBkd19kcF9saW5rX3RyYWluX3NldAo+PiA+LSBpbmxpbmUgZHdfZHBfcGh5X3VwZGF0
+ZV92c19lbXBoCj4+ID4tIFVzZSBkcF9zZHAKPj4gPi0gQ2hlY2sgcmV0dXJuIHZhbHVlIG9mIGRy
+bV9tb2Rlc2V0X2xvY2sKPj4gPi0gTWVyZ2UgY29kZSBpbiBhdG9taWNfcHJlX2VuYWJsZS9tb2Rl
+X2ZpeHVwIHRvIGF0b21pY19jaGVjawo+PiA+LSBSZXR1cm4gTlVMTCBpZiBjYW4ndCBmaW5kIGEg
+c3VwcG9ydGVkIG91dHB1dCBmb3JtYXQKPj4gPi0gRml4IG1heF9saW5rX3JhdGUgZnJvbSBwbGF0
+X2RhdGEKPj4gPi0gbm8gaW5jbHVkZSB1YXBpIHBhdGgKPj4gPi0gc3dpdGNoIHRvIGRybW1fZW5j
+b2Rlcl9pbml0Cj4+ID4tIFNvcnQgaW4gYWxwaGFiZXRpY2FsIG9yZGVyCj4+ID4tIExpbmsgdG8g
+VjE6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXJvY2tjaGlwLzIwMjUwMjIzMTEzMDM2
+Ljc0MjUyLTEtYW5keXNocmtAMTYzLmNvbS8KPj4gPgo+PiA+QW5keSBZYW4gKDEwKToKPj4gPiAg
+ZHQtYmluZGluZ3M6IGRpc3BsYXk6IHJvY2tjaGlwOiBBZGQgc2NoZW1hIGZvciBSSzM1ODggRFBU
+WCBDb250cm9sbGVyCj4+ID4gIGRybS9icmlkZ2U6IHN5bm9wc3lzOiBBZGQgRFcgRFBUWCBDb250
+cm9sbGVyIHN1cHBvcnQgbGlicmFyeQo+PiA+ICBkcm0vcm9ja2NoaXA6IEFkZCBSSzM1ODggRFBU
+WCBvdXRwdXQgc3VwcG9ydAo+PiA+ICBNQUlOVEFJTkVSUzogQWRkIGVudHJ5IGZvciBEVyBEUFRY
+IENvbnRyb2xsZXIgYnJpZGdlCj4+ID4gIGR0LWJpbmRpbmdzOiBkaXNwbGF5OiBzaW1wbGUtYnJp
+ZGdlOiBBZGQgcmE2MjAgY29tcGF0aWJsZQo+PiA+ICBkcm0vYmlyZGdlOiBzaW1wbGUtYnJpZGdl
+OiBBZGQgc3VwcG9ydCBmb3IgcmFkeGEgcmE2MjAKPj4gPiAgYXJtNjQ6IGR0czogcm9ja2NoaXA6
+IEFkZCBEUDAgZm9yIHJrMzU4OAo+PiA+ICBhcm02NDogZHRzOiByb2NrY2hpcDogQWRkIERQMSBm
+b3IgcmszNTg4Cj4+ID4gIGFybTY0OiBkdHM6IHJvY2tjaGlwOiBFbmFibGUgRGlzcGxheVBvcnQg
+Zm9yIHJrMzU4OHMgQ29vbCBQaSA0Qgo+PiA+ICBhcm02NDogZHRzOiByb2NrY2hpcDogRW5hYmxl
+IERQMkhETUkgZm9yIFJPQ0sgNSBJVFgKPj4gPgo+PiA+IC4uLi9kaXNwbGF5L2JyaWRnZS9zaW1w
+bGUtYnJpZGdlLnlhbWwgICAgICAgICB8ICAgIDEgKwo+PiA+IC4uLi9kaXNwbGF5L3JvY2tjaGlw
+L3JvY2tjaGlwLGR3LWRwLnlhbWwgICAgICB8ICAxNTAgKysKPj4gPiBNQUlOVEFJTkVSUyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgICA4ICsKPj4gPiBhcmNoL2FybTY0L2Jv
+b3QvZHRzL3JvY2tjaGlwL3JrMzU4OC1iYXNlLmR0c2kgfCAgIDMwICsKPj4gPiAuLi4vYXJtNjQv
+Ym9vdC9kdHMvcm9ja2NoaXAvcmszNTg4LWV4dHJhLmR0c2kgfCAgIDMwICsKPj4gPiAuLi4vYm9v
+dC9kdHMvcm9ja2NoaXAvcmszNTg4LXJvY2stNS1pdHguZHRzICAgfCAgIDU5ICsKPj4gPiAuLi4v
+Ym9vdC9kdHMvcm9ja2NoaXAvcmszNTg4cy1jb29scGktNGIuZHRzICAgfCAgIDM3ICsKPj4gPiBk
+cml2ZXJzL2dwdS9kcm0vYnJpZGdlL3NpbXBsZS1icmlkZ2UuYyAgICAgICAgfCAgICA1ICsKPj4g
+PiBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL0tjb25maWcgICAgICAgfCAgICA3ICsK
+Pj4gPiBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL01ha2VmaWxlICAgICAgfCAgICAx
+ICsKPj4gPiBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWRwLmMgICAgICAgfCAy
+MDk0ICsrKysrKysrKysrKysrKysrCj4+ID4gZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL0tjb25m
+aWcgICAgICAgICAgICAgIHwgICAgOSArCj4+ID4gZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL01h
+a2VmaWxlICAgICAgICAgICAgIHwgICAgMSArCj4+ID4gZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlw
+L2R3X2RwLXJvY2tjaGlwLmMgICAgIHwgIDE1MCArKwo+PiA+IGRyaXZlcnMvZ3B1L2RybS9yb2Nr
+Y2hpcC9yb2NrY2hpcF9kcm1fZHJ2LmMgICB8ICAgIDEgKwo+PiA+IGRyaXZlcnMvZ3B1L2RybS9y
+b2NrY2hpcC9yb2NrY2hpcF9kcm1fZHJ2LmggICB8ICAgIDEgKwo+PiA+IGluY2x1ZGUvZHJtL2Jy
+aWRnZS9kd19kcC5oICAgICAgICAgICAgICAgICAgICB8ICAgMjAgKwo+PiA+IDE3IGZpbGVzIGNo
+YW5nZWQsIDI2MDQgaW5zZXJ0aW9ucygrKQo+PiA+IGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9yb2NrY2hpcC9yb2NrY2hpcCxkdy1k
+cC55YW1sCj4+ID4gY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lu
+b3BzeXMvZHctZHAuYwo+PiA+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vcm9j
+a2NoaXAvZHdfZHAtcm9ja2NoaXAuYwo+PiA+IGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2Ry
+bS9icmlkZ2UvZHdfZHAuaAo+PiA+Cj4+ID4tLSAKPj4gPjIuNDMuMAo+PiA+Cj4KPi0tIAo+V2l0
+aCBiZXN0IHdpc2hlcwo+RG1pdHJ5Cg==
 
