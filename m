@@ -1,60 +1,67 @@
-Return-Path: <devicetree+bounces-208214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DFADB31D67
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:07:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3C8B31D90
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:10:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2481F1CE714D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:01:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFA3AB420BE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:02:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04CD33CE84;
-	Fri, 22 Aug 2025 14:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F80343214;
+	Fri, 22 Aug 2025 14:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="a6X3SpP1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KrvTPCvq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 008A533A017;
-	Fri, 22 Aug 2025 14:58:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B7803431FD;
+	Fri, 22 Aug 2025 14:59:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755874731; cv=none; b=uwhOMAZUSZHCKs9yLZF6gNuB+TshbeWKxQwjKuLjEdcJr44Zjmq5CN2kFPLj8ai81xI9F1ZO58QmaOQOOwvyHOk5Nb8Bnjrf4hF55TXM0oqF9wYps1c8GAnjktP6GziMQeag/j7/lA50Xa+k5KCRYdALxjwKVeb1mDLL1G3YZlA=
+	t=1755874778; cv=none; b=P97gdk+SOxfyIWxdIHe7foxS/CNHZdc4c+c5Ih/XCcOlgle8GU0lswmWIqqIYx5Drdf9wc2Vrgjac4EKU9462BFAKxqleZl4xt2NdPNDI3BVySnXvKqgnOJMS2L0qyp6QlfqG7DmHe62nRrfvaZImGEYygPC4JQMPKUBmSAYBZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755874731; c=relaxed/simple;
-	bh=plRxkTMh5Z39UbxuFVkxtwfnP2adp6rEyti1GEBuxUs=;
+	s=arc-20240116; t=1755874778; c=relaxed/simple;
+	bh=QiIs1pkIuMyELjCt2/wzjrK99v47E1KfFEUFDvAoA+0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DdjchqvqqyeN6rt+q5OU033loCc90ynWgNnlvTbgmeZs30CKBkgpQA5iJqwecdfEO0yo5N8LnaA2kTbr4zOkjFh3l+NGQ5ieuymz99mnO0B1CL1h+YN6PmUAlhZG/ltK3NKvv0bS9ejOAF1fkfy4bdg2OXOQ/6se/FPJUO6lE3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=a6X3SpP1; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=URE+D0su0VrFUP7J2zinaAZYCW+u5ytWrsWx4Tu1kSM=; b=a6X3SpP1CYO6BFEjd1MVrQR8n8
-	XaLu9Y7G4b3T/ocEmHIea4xVFgcCk3hQjE5OFc8navQIH0k3Gty98oGsMTgWaGM8gOkENWerVKQqu
-	0BbHxjVdSo0EYbHm8qYwJa13ANfz8L955a2QljUJ2iw8NjFzO3PNcSY5jRvRL/EubTxc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1upTE5-005ai6-NZ; Fri, 22 Aug 2025 16:58:45 +0200
-Date: Fri, 22 Aug 2025 16:58:45 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jack Ping CHNG <jchng@maxlinear.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, davem@davemloft.net,
-	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, yzhu@maxlinear.com,
-	sureshnagaraj@maxlinear.com
-Subject: Re: [PATCH net-next 1/2] net: maxlinear: Add build support for MxL
- SoC
-Message-ID: <610db76b-7327-4331-888e-e538857c0887@lunn.ch>
-References: <20250822090809.1464232-1-jchng@maxlinear.com>
- <20250822090809.1464232-2-jchng@maxlinear.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LqXaRM/7XrHT88oS/mXN93ddKGkFncKCz6n61ZPLd++wcLBjQ3XcqOcHC3UHtCv4bWHkY8OLvCKf3/Bho0RQY62TTtIzeAIn4O58GfQS/fy4Y6RtgeMqZLky5IvBRVVXgkbQYiyxSGmW+NDzwTRM9WRjdgj8DAmFkBqIakxYeT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KrvTPCvq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FF5AC4CEED;
+	Fri, 22 Aug 2025 14:59:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755874775;
+	bh=QiIs1pkIuMyELjCt2/wzjrK99v47E1KfFEUFDvAoA+0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KrvTPCvqxasOYk65yKmYn7lc/TcvBvmKohNLldcr/oPoO7OMyNaZuJTg2rm4kAW+h
+	 sqAv/ThuDyXTmk+f1LigOr804JFCW9zYXwNncd3aTv+1uBvjbgJwWSt/4+2HJEN1dl
+	 YWJB1i6RWhwLFY+djvibe8bjiBp9S1bRuJEvp+VpvPmxCQDSF1lW1HAadgUvxEPfjZ
+	 op9VlFZUqi1M/f3k6oJcRf1S+Fc/eLK79phhKjNdrNmikUHyLrqTf5PQmiOZ74zmJW
+	 XKQE71hMzis6/z8R1OvFITmzMP3VExwUX6MrWaldcuFtjSInANv9b2iDiOmDjM4Hd+
+	 TwcjGf+8gvQkQ==
+Date: Fri, 22 Aug 2025 09:59:34 -0500
+From: Rob Herring <robh@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <treding@nvidia.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Prashant Gaikwad <pgaikwad@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Dmitry Osipenko <digetx@gmail.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 2/9] dt-bindings: memory: Document Tegra114 Memory
+ Controller
+Message-ID: <20250822145934.GA3791610-robh@kernel.org>
+References: <20250820151323.167772-1-clamor95@gmail.com>
+ <20250820151323.167772-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,96 +70,155 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250822090809.1464232-2-jchng@maxlinear.com>
+In-Reply-To: <20250820151323.167772-3-clamor95@gmail.com>
 
-> +Driver Location
-> +===============
-> +
-> +The driver source code is located in the kernel tree at:
-> +  drivers/net/ethernet/maxlinear/
-> +
-> +Interfaces are created as standard Linux `net_device` interfaces:
-
-Pointless comment. Anything else would be NACKed.
-
-> +
-> +- eth0, eth1 (up to 2)
-
-This is also questionable. Yes, the kernel will give them names like
-this, but systemd will then rename them.
-
-> +- Multiqueue support (e.g., eth0 has multiple TX/RX queues)
-> +
-> +Kernel Configuration
-> +====================
-> +
-> +The driver is located in the menu structure at:
-> +
-> +  -> Device Drivers
-> +    -> Network device support
-> +      -> Ethernet driver support
-> +        -> MaxLinear NPU Ethernet driver
-> +
-> +Or set in your kernel config:
-> +  CONFIG_NET_VENDOR_MAXLINEAR=y
-> +  CONFIG_MAXLINEAR_ETH=y
-> +
-> +Maintainers
-> +===========
-> +
-> +See the MAINTAINERS file:
-> +
-> +    MAXLINEAR ETHERNET DRIVER
-> +    M: Jack Ping Chng <jchng@maxlinear.com>
-> +    L: netdev@vger.kernel.org
-> +    S: Supported
-> +    F: drivers/net/ethernet/maxlinear/
-> +
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index bce96dd254b8..9164ba07a9c3 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15101,6 +15101,13 @@ W:	https://linuxtv.org
->  T:	git git://linuxtv.org/media.git
->  F:	drivers/media/radio/radio-maxiradio*
+On Wed, Aug 20, 2025 at 06:13:16PM +0300, Svyatoslav Ryhel wrote:
+> Add Tegra114 suffort into existing Tegra124 MC schema with the most notable
+> difference in the amount of EMEM timings.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  .../nvidia,tegra124-mc.yaml                   | 106 +++++++++++++-----
+>  1 file changed, 80 insertions(+), 26 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+> index 7b18b4d11e0a..e2568040213d 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+> @@ -19,7 +19,9 @@ description: |
 >  
-> +MAXLINEAR ETHERNET DRIVER
-> +M:	Jack Ping Chng <jchng@maxlinear.com>
-> +L:	netdev@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/networking/device_drivers/ethernet/maxlinear/*
-> +F:	drivers/net/ethernet/maxlinear/
+>  properties:
+>    compatible:
+> -    const: nvidia,tegra124-mc
+> +    enum:
+> +      - nvidia,tegra114-mc
+> +      - nvidia,tegra124-mc
+>  
+>    reg:
+>      maxItems: 1
+> @@ -62,31 +64,7 @@ patternProperties:
+>              minimum: 1000000
+>              maximum: 1066000000
+>  
+> -          nvidia,emem-configuration:
+> -            $ref: /schemas/types.yaml#/definitions/uint32-array
+
+The type should stay here. It is not conditional.
+
+> -            description: |
+> -              Values to be written to the EMEM register block. See section
+> -              "15.6.1 MC Registers" in the TRM.
+> -            items:
+> -              - description: MC_EMEM_ARB_CFG
+> -              - description: MC_EMEM_ARB_OUTSTANDING_REQ
+> -              - description: MC_EMEM_ARB_TIMING_RCD
+> -              - description: MC_EMEM_ARB_TIMING_RP
+> -              - description: MC_EMEM_ARB_TIMING_RC
+> -              - description: MC_EMEM_ARB_TIMING_RAS
+> -              - description: MC_EMEM_ARB_TIMING_FAW
+> -              - description: MC_EMEM_ARB_TIMING_RRD
+> -              - description: MC_EMEM_ARB_TIMING_RAP2PRE
+> -              - description: MC_EMEM_ARB_TIMING_WAP2PRE
+> -              - description: MC_EMEM_ARB_TIMING_R2R
+> -              - description: MC_EMEM_ARB_TIMING_W2W
+> -              - description: MC_EMEM_ARB_TIMING_R2W
+> -              - description: MC_EMEM_ARB_TIMING_W2R
+> -              - description: MC_EMEM_ARB_DA_TURNS
+> -              - description: MC_EMEM_ARB_DA_COVERS
+> -              - description: MC_EMEM_ARB_MISC0
+> -              - description: MC_EMEM_ARB_MISC1
+> -              - description: MC_EMEM_ARB_RING1_THROTTLE
+> +          nvidia,emem-configuration: true
+>  
+>          required:
+>            - clock-frequency
+> @@ -109,6 +87,82 @@ required:
+>    - "#iommu-cells"
+>    - "#interconnect-cells"
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - nvidia,tegra114-mc
+> +    then:
+> +      patternProperties:
+> +        "^emc-timings-[0-9]+$":
+> +          patternProperties:
+> +            "^timing-[0-9]+$":
+> +              properties:
+> +                nvidia,emem-configuration:
+> +                  $ref: /schemas/types.yaml#/definitions/uint32-array
+> +                  description: |
+
+Drop '|'.
+
+> +                    Values to be written to the EMEM register block. See section
+> +                    "20.11.1 MC Registers" in the TRM.
+> +                  items:
+> +                    - description: MC_EMEM_ARB_CFG
+> +                    - description: MC_EMEM_ARB_OUTSTANDING_REQ
+> +                    - description: MC_EMEM_ARB_TIMING_RCD
+> +                    - description: MC_EMEM_ARB_TIMING_RP
+> +                    - description: MC_EMEM_ARB_TIMING_RC
+> +                    - description: MC_EMEM_ARB_TIMING_RAS
+> +                    - description: MC_EMEM_ARB_TIMING_FAW
+> +                    - description: MC_EMEM_ARB_TIMING_RRD
+> +                    - description: MC_EMEM_ARB_TIMING_RAP2PRE
+> +                    - description: MC_EMEM_ARB_TIMING_WAP2PRE
+> +                    - description: MC_EMEM_ARB_TIMING_R2R
+> +                    - description: MC_EMEM_ARB_TIMING_W2W
+> +                    - description: MC_EMEM_ARB_TIMING_R2W
+> +                    - description: MC_EMEM_ARB_TIMING_W2R
+> +                    - description: MC_EMEM_ARB_DA_TURNS
+> +                    - description: MC_EMEM_ARB_DA_COVERS
+> +                    - description: MC_EMEM_ARB_MISC0
+> +                    - description: MC_EMEM_ARB_RING1_THROTTLE
 > +
->  MAXLINEAR ETHERNET PHY DRIVER
->  M:	Xu Liang <lxu@maxlinear.com>
->  L:	netdev@vger.kernel.org
-> diff --git a/drivers/net/ethernet/Kconfig b/drivers/net/ethernet/Kconfig
-> index f86d4557d8d7..94d0bb98351a 100644
-> --- a/drivers/net/ethernet/Kconfig
-> +++ b/drivers/net/ethernet/Kconfig
-> @@ -33,6 +33,7 @@ source "drivers/net/ethernet/aquantia/Kconfig"
->  source "drivers/net/ethernet/arc/Kconfig"
->  source "drivers/net/ethernet/asix/Kconfig"
->  source "drivers/net/ethernet/atheros/Kconfig"
-> +source "drivers/net/ethernet/maxlinear/Kconfig"
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - nvidia,tegra124-mc
+> +    then:
+> +      patternProperties:
+> +        "^emc-timings-[0-9]+$":
+> +          patternProperties:
+> +            "^timing-[0-9]+$":
+> +              properties:
+> +                nvidia,emem-configuration:
+> +                  $ref: /schemas/types.yaml#/definitions/uint32-array
+> +                  description: |
+> +                    Values to be written to the EMEM register block. See section
+> +                    "15.6.1 MC Registers" in the TRM.
+> +                  items:
+> +                    - description: MC_EMEM_ARB_CFG
+> +                    - description: MC_EMEM_ARB_OUTSTANDING_REQ
+> +                    - description: MC_EMEM_ARB_TIMING_RCD
+> +                    - description: MC_EMEM_ARB_TIMING_RP
+> +                    - description: MC_EMEM_ARB_TIMING_RC
+> +                    - description: MC_EMEM_ARB_TIMING_RAS
+> +                    - description: MC_EMEM_ARB_TIMING_FAW
+> +                    - description: MC_EMEM_ARB_TIMING_RRD
+> +                    - description: MC_EMEM_ARB_TIMING_RAP2PRE
+> +                    - description: MC_EMEM_ARB_TIMING_WAP2PRE
+> +                    - description: MC_EMEM_ARB_TIMING_R2R
+> +                    - description: MC_EMEM_ARB_TIMING_W2W
+> +                    - description: MC_EMEM_ARB_TIMING_R2W
+> +                    - description: MC_EMEM_ARB_TIMING_W2R
+> +                    - description: MC_EMEM_ARB_DA_TURNS
+> +                    - description: MC_EMEM_ARB_DA_COVERS
+> +                    - description: MC_EMEM_ARB_MISC0
+> +                    - description: MC_EMEM_ARB_MISC1
+> +                    - description: MC_EMEM_ARB_RING1_THROTTLE
 
-This file is sorted. Please insert in the correct location. Please
-check all your other insertions.
+I imagine every SoC is going to be slightly different. I really don't 
+care to know what are all the magic registers in the list, so I would 
+just drop all this and just document the length. Just treat it as opaque 
+data like calibration data we have in other bindings.
 
-> +
-> +	snprintf(ndev->name, IFNAMSIZ, "eth%%d");
-
-The core does that.
-
-> +static int mxl_eth_probe(struct platform_device *pdev)
-> +{
-> +	struct mxl_eth_drvdata *pdata;
-
-Historically, pdata has been used for platform_data. With the adoption
-of DT, platform_data is not used much any more, but to greybeards like
-me, i still read it as platform_data. More normal would be priv, or
-maybe in this case drvdata, since the structure is called
-mxl_eth_drvdata.
-
-	Andrew
+Rob
 
