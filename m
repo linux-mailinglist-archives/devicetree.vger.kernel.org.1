@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-207773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41489B30C3A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 05:08:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DC81B30C3D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 05:08:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F8CE1D01259
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 03:08:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 914241D0263E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 03:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B00027AC2A;
-	Fri, 22 Aug 2025 03:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C68E127F017;
+	Fri, 22 Aug 2025 03:07:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="MQiYRw6w"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="kqxwAYqf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 024F626F46C
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 03:06:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FE3B27E06D
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 03:07:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755832021; cv=none; b=bQV2KU7GQZHVDM4ZrzxCRPbcpTx7b7Z1sfFwSfRaHlY9tjpIMh9VwsiS+fAN5jCHX+c3bxyqsaDIsPOXk1cL0+fMl1cDZsJ0GnGvlsLnojCsyp/g9U7viOZO1ewExQuIH8SPxhX5ln+l3AQxi6myBTh8Eb6Veh8JtUgYurT03hc=
+	t=1755832025; cv=none; b=NwYnyR5U0OZJd+SnknpGnrwzot1CeC1xcm8q0FrygLwkti0nNckN/U+wmTua6J5/MvYeBhl2MrGrtaqYvARu9JI7sUgsxDWnLeIm5SkctQEpgJfHNM4GDPsE4U+KUW1Sb8OrJWbkm0UfID2x0DE6jq0ZB2zsGLvIaJ4rL3Nmmgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755832021; c=relaxed/simple;
-	bh=JP0Sw65EOT4NHCK35qrtENIdh4sdphX+d8qoRvIjZfM=;
+	s=arc-20240116; t=1755832025; c=relaxed/simple;
+	bh=cFrWQEEvMc/7ZId6uak27PuJOXHlyYH9+xN4BakqZpE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GGygoGovClCvog198C4HW4W8nHhyrn1ZT96o4WK3bteTuO7D4P7ogdGX4ojhM7/Y3gvIlX4RF57CnHqIUhLIOpYMw6lIK2atrLcC6NQ29MyWjpHt44mNACu7XsEGVb9bzkV7ZMe96gmaagqwdKdWQjK+8M8XfrYZoX84uIw2ILE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=MQiYRw6w; arc=none smtp.client-ip=209.85.210.172
+	 In-Reply-To:To:Cc; b=cdJnxJKywwB3DhVQ/uOXb/IqMBp54/0kcSEXEpK2Yv4uvJDZ2B7bo3ZHiPYv6U7YBDMOn6yiGNs6yGk+XXQs4X4eg9r+sQhSIllqIrLlCiwIj9qlVtN1+WqmKemKguIpL3sYOqFqwtyprz2eMV1pC3C4JNv5wWpLeEF/EWTEQw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=kqxwAYqf; arc=none smtp.client-ip=209.85.215.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-76e39ec6f30so1589325b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 20:06:59 -0700 (PDT)
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b471740e488so1341297a12.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Aug 2025 20:07:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755832019; x=1756436819; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755832023; x=1756436823; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XtQvt8lm8/UHHNz+8CMXd5C/9rKefGZFh5EhUafS5gg=;
-        b=MQiYRw6wDJ3Y124qd4SBPUb8Wpkprab56WT4U/0w8TqivGWQmKQPn0G7OsOPN3vox0
-         GmrZSqZsDGcJu56Zvjn9T4u5N7BXSSbbIWwg0oQx7gIVx9S76gUv6+lL2LDK3xxL0bZ2
-         LeAOKA9wMTqhfC8DrlAXdp+0sllSeOWsgSzwsqWZve42JZx9nXX002cWUna6UnmldMGY
-         /I4OuOKw4Mvl1m06ubXUc6ymtqys/t65pp/igLSadyAbFrCGwNdVHo1vsm6pFN4Yq5e5
-         qbWrSB80kGc2fUvMwdmW51bsQSHukLduOIV/Cy1u8Du/W2LhANh1GIFDMn58u+GK1Nn1
-         XITg==
+        bh=ZudeS21S7Z9HKYl2WwDLHxu+6vkPHg6qhFAwHt0tdNs=;
+        b=kqxwAYqfBHgQ+JJwAUosXmJYFt2MWianOW0QzPwGqRmtycDq8U1CkUom4Xlm8h92M1
+         hVlE6rjaHeTpgjRjHiAf2CxZnAFQXkvnRibp6/vVG41wGGKLmB5SAXD+I0JMq1zXqrxF
+         RJ/taYk/h2rV8qrhhA2LZdW25pv+jY4gx0s4ZHmmpkNVi5IcwszB3oxVouOuk717fOu/
+         7EwpRSfyotgKGzqxW1W4KNNjtST7hie0v3/P86VCUelODnd42RKVQTvch+aDOLuQHdOs
+         NoMm/X9mAL3HDMuMwjqKjb4SV2yoDrT2PQ/YJaAsEcPVJF5LarrGkRiy7cSmD2JqyVDm
+         npvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755832019; x=1756436819;
+        d=1e100.net; s=20230601; t=1755832023; x=1756436823;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XtQvt8lm8/UHHNz+8CMXd5C/9rKefGZFh5EhUafS5gg=;
-        b=tCZZ78L7pqJ3ZT9MdpY8e6Ln/dEwRBhggpibHPBzUNRL5j/XhedU4g8QIa4xm/ABOw
-         d+9H1x62aLOM3hr7RAA4NTEv/hGNvsQvnRogVEWjHwO+AzUqUxlqZ71oLz+WOe0wqehq
-         EDdBKO/N+ms8TZOBAAfyva4Asb8N05n4qQOFOe9VFISdLABmosqrpUE76hyGn+oWMSE+
-         thovCmQ1Fb85OwKg/Lui9wtvGwLrw+9QVy3tiloHIlTmgppSsFOUmAQoKGHsd0IrgY7M
-         SdLvNi69yj2prvajtFiYWR6kmAj2jVGRNfpZOP9FAU4zEwjKdUS3AlSORMnBtXm4yDUR
-         cwuw==
-X-Forwarded-Encrypted: i=1; AJvYcCXsz0Q5lCGVcrxEkldfTpOKBwXIGil1NrQFbwdgaJ6/riKmioRNSWfSMdK1IvuPkPS71xnX2T+6lsvd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrGeJKiwkHTahwp9cQPgTmps+YhrKmglD6xa5rlr1bFGmqXgCy
-	X2GZ6JLowWC0r5njaAWZqQRYHNth9B9KMTtQDbZ8D0BMonqQos8D/SO8+QGhb9ZpmkY=
-X-Gm-Gg: ASbGncsSfTVqHMi7/gaEGY5ozvYyBVMQOvHAyITv3eSflgCOdIUWR9UNN3WTJlbR5C9
-	E7KGQG3jrcbcHtGsrs4XBJ7PF2dVXNXYfIqzHmTPLg/M21Nl+bYqEJlyXJgHbR/DLDpgjb+V6tl
-	OgFVyhJsRmvvmjTuaZLQvieaW/1fXsuHOrXwpgVYxpBUIspq+5C8ijVEwJw9xf7Zk+rv4bO5cTj
-	bN5WMkxLbygYmH+NAsammZCIzSltPoYOBfWTcyeDvaH7ovXZVWTfijYpCPkXpCU35JCsWEjyxa7
-	ATk1tdg7GeVxrjC83/dMzkF3JkwYBxMH/ONVdigcFak/Bg/yo++3qMgVhZU90yxzjBFoPHF8Vx6
-	8FwD9dCIYEdRp62wmGD8GlGDpGr4q0wtwmQ==
-X-Google-Smtp-Source: AGHT+IFy0F1It4YMiy66wNzMrVWGW3rtyeZwnA2Mto2V1Iiq0zsuEd/8gIg4XCp3DGmUoishTl063A==
-X-Received: by 2002:a05:6a20:1585:b0:232:7c7b:1c7b with SMTP id adf61e73a8af0-24340c429e2mr2292745637.14.1755832019211;
-        Thu, 21 Aug 2025 20:06:59 -0700 (PDT)
+        bh=ZudeS21S7Z9HKYl2WwDLHxu+6vkPHg6qhFAwHt0tdNs=;
+        b=g7bocDec1GmiALrBHorzhMwUvm4YHUT/Jwxl24Q6ZjoOFu/YrDEtV3qk9j++7WVDlP
+         dcQe5xK4IBJ3PUiwuYIj80BXBeArlu3cUnu8M87j0lLQIZUUYm80vZ7oqp+BC/tP4qw2
+         8IPuhGAB5hTp6l9vtQ+5oK8SAH/1dk9hzGwSrb/j3CFUYvG5gCuSsyoAsuhpkAc+4ysq
+         JIW4+JdUTyVWH4yMj+CkmK+p41S3XtLXISnSJxvUOgS5Id0TEtyRK9FKEwbSAT8d6Lue
+         1tkfiElAnQUNHybHS+qNfktE1U6Gv8bP26XLD8NXCQjN4xxDpA/WHadDHAaUsUyY7pwk
+         hMhw==
+X-Forwarded-Encrypted: i=1; AJvYcCViFfAdUDxt68xAO79KCb6i37EBwRvn+SPnOYxHkDg8SqfaUaeELQaqSFgU+t6kF46wfWo8N9mwpO+d@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyMK0+FYm/h7+zmm0eTTxxKsvXnqbVfOLcyTamyJLqtiV2Wiab
+	uAjA5YR/cwTULW7VouqHPMYuc1TsUVgcCNfzw45mXgU1C9toW0xaDG+cSsuo/QyFZWM=
+X-Gm-Gg: ASbGncvv9YghXQVyCXxY+/0wlCB7E3Ce5V4bhVx0vuyZGRaYzIaz5ov+fE1G4GHbV4U
+	FrTJA5qGeFkJ5HFvsaj2U8SMQkt7Gv0nz0tY3oCCn2OmKEMzGMBOYxW8XqLHIEX9RPCGWEJqVj7
+	i0xQ6LzAagXbNKIg0hoV4wiSIbdou06m6rYmhKqo53Pa2PvIoDWYe94C3vWT1b4y3DIHxVLpQDv
+	mpi9Uj2B2BWrIj54GbbbVvgoeSu57s6RzlVw2hnfSgYpCk3k3SA6HiE+Ch4YKsRRqt9X6KXDXIm
+	Jf3ptn+qSCl8+BvM7utuCKdTI+zUwaMbXTvCVzhts34BaK08Mh6oolv5tDoNEk6MkEn74KiPn8P
+	g9Ov6+qehdARSqhIgRMlB1C/Sqr7YAZf5clzb08lT8oJm
+X-Google-Smtp-Source: AGHT+IGm4j2NRRY1FzjfoUSGytYiPyWd0cIxjX3x+KRIkqu4iEC4XXZhVq4VrVHDhxiZRilFQYwnKA==
+X-Received: by 2002:a05:6a20:6a0b:b0:240:489:be9c with SMTP id adf61e73a8af0-24340cd3104mr2211058637.39.1755832023564;
+        Thu, 21 Aug 2025 20:07:03 -0700 (PDT)
 Received: from [127.0.1.1] ([222.71.237.178])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b47769afc1bsm2756777a12.19.2025.08.21.20.06.55
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b47769afc1bsm2756777a12.19.2025.08.21.20.06.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Aug 2025 20:06:58 -0700 (PDT)
+        Thu, 21 Aug 2025 20:07:03 -0700 (PDT)
 From: Guodong Xu <guodong@riscstar.com>
-Date: Fri, 22 Aug 2025 11:06:31 +0800
-Subject: [PATCH v5 5/8] dmaengine: mmp_pdma: Add SpacemiT K1 PDMA support
- with 64-bit addressing
+Date: Fri, 22 Aug 2025 11:06:32 +0800
+Subject: [PATCH v5 6/8] riscv: dts: spacemit: Add PDMA node for K1 SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250822-working_dma_0701_v2-v5-5-f5c0eda734cc@riscstar.com>
+Message-Id: <20250822-working_dma_0701_v2-v5-6-f5c0eda734cc@riscstar.com>
 References: <20250822-working_dma_0701_v2-v5-0-f5c0eda734cc@riscstar.com>
 In-Reply-To: <20250822-working_dma_0701_v2-v5-0-f5c0eda734cc@riscstar.com>
 To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -102,171 +101,53 @@ Cc: Alex Elder <elder@riscstar.com>, Vivian Wang <wangruikang@iscas.ac.cn>,
  Troy Mitchell <troy.mitchell@linux.spacemit.com>
 X-Mailer: b4 0.14.2
 
-Add support for SpacemiT K1 PDMA controller which features 64-bit
-addressing capabilities.
+Add PDMA dma-controller node under dma_bus for SpacemiT K1 SoC.
 
-The SpacemiT K1 PDMA extends the descriptor format with additional
-32-bit words for high address bits, enabling access to memory beyond
-4GB boundaries. The new spacemit_k1_pdma_ops provides necessary 64-bit
-address handling functions and k1 specific controller configurations.
-
-Key changes:
-- Add ARCH_SPACEMIT dependency to Kconfig
-- Define new high 32-bit address registers (DDADRH, DSADRH, DTADRH)
-- Add DCSR_LPAEEN bit for Long Physical Address Extension Enable
-- Implement 64-bit operations for SpacemiT K1 PDMA
+The PDMA node is marked as disabled by default, allowing board-specific
+device trees to enable it as needed.
 
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
+Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 ---
-v5: No change.
-v4: No change.
-v3: No change.
-v2: New patch.
-  - Implement 64-bit addrssing support to mmp_pdma
-  - Add support for SpacemiT K1 PDMA
-  - Extend the MMP_PDMA entry in Kconfig to depend on ARCH_SPACEMIT
+v5:
+- Add reviewed-by from Troy.
+v4:
+- Rename the node from pdma0 to pdma
+- For consistnecy, put the "interrupts" after "clocks" and "resets"
+v3:
+- Adjust pdma0 position, ordering by device address
+- Update properties according to the newly created schema binding
+v2:
+- Updated the compatible string.
+- Rebased. Part of the changes in v1 is now in this patchset:
+   - "riscv: dts: spacemit: Add DMA translation buses for K1"
+   - Link: https://lore.kernel.org/all/20250623-k1-dma-buses-rfc-wip-v1-0-c0144082061f@iscas.ac.cn/
 ---
- drivers/dma/Kconfig    |  2 +-
- drivers/dma/mmp_pdma.c | 81 ++++++++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 82 insertions(+), 1 deletion(-)
+ arch/riscv/boot/dts/spacemit/k1.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-index 05c7c7d9e5a4e52a8ad7ada8c8b9b1a6f9d875f6..b8a74b1798ba1d44b26553990428c065de6fc535 100644
---- a/drivers/dma/Kconfig
-+++ b/drivers/dma/Kconfig
-@@ -450,7 +450,7 @@ config MILBEAUT_XDMAC
+diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+index abde8bb07c95c5a745736a2dd6f0c0e0d7c696e4..861f0fe18083fa158da51bd3be2808609f6233f4 100644
+--- a/arch/riscv/boot/dts/spacemit/k1.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+@@ -660,6 +660,17 @@ dma-bus {
+ 			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
+ 				     <0x1 0x00000000 0x1 0x80000000 0x3 0x00000000>;
  
- config MMP_PDMA
- 	tristate "MMP PDMA support"
--	depends on ARCH_MMP || ARCH_PXA || COMPILE_TEST
-+	depends on ARCH_MMP || ARCH_PXA || ARCH_SPACEMIT || COMPILE_TEST
- 	select DMA_ENGINE
- 	help
- 	  Support the MMP PDMA engine for PXA and MMP platform.
-diff --git a/drivers/dma/mmp_pdma.c b/drivers/dma/mmp_pdma.c
-index 38d1a4cdfd0e92e53c77b61caa1133559ef40dbd..d07229a748868b8115892c63c54c16130d88e326 100644
---- a/drivers/dma/mmp_pdma.c
-+++ b/drivers/dma/mmp_pdma.c
-@@ -28,6 +28,9 @@
- #define DDADR(n)	(0x0200 + ((n) << 4))
- #define DSADR(n)	(0x0204 + ((n) << 4))
- #define DTADR(n)	(0x0208 + ((n) << 4))
-+#define DDADRH(n)	(0x0300 + ((n) << 4))
-+#define DSADRH(n)	(0x0304 + ((n) << 4))
-+#define DTADRH(n)	(0x0308 + ((n) << 4))
- #define DCMD		0x020c
- 
- #define DCSR_RUN	BIT(31)	/* Run Bit (read / write) */
-@@ -44,6 +47,7 @@
- #define DCSR_EORSTOPEN	BIT(26)	/* STOP on an EOR */
- #define DCSR_SETCMPST	BIT(25)	/* Set Descriptor Compare Status */
- #define DCSR_CLRCMPST	BIT(24)	/* Clear Descriptor Compare Status */
-+#define DCSR_LPAEEN	BIT(21)	/* Long Physical Address Extension Enable */
- #define DCSR_CMPST	BIT(10)	/* The Descriptor Compare Status */
- #define DCSR_EORINTR	BIT(9)	/* The end of Receive */
- 
-@@ -76,6 +80,16 @@ struct mmp_pdma_desc_hw {
- 	u32 dsadr;	/* DSADR value for the current transfer */
- 	u32 dtadr;	/* DTADR value for the current transfer */
- 	u32 dcmd;	/* DCMD value for the current transfer */
-+	/*
-+	 * The following 32-bit words are only used in the 64-bit, ie.
-+	 * LPAE (Long Physical Address Extension) mode.
-+	 * They are used to specify the high 32 bits of the descriptor's
-+	 * addresses.
-+	 */
-+	u32 ddadrh;	/* High 32-bit of DDADR */
-+	u32 dsadrh;	/* High 32-bit of DSADR */
-+	u32 dtadrh;	/* High 32-bit of DTADR */
-+	u32 rsvd;	/* reserved */
- } __aligned(32);
- 
- struct mmp_pdma_desc_sw {
-@@ -222,6 +236,57 @@ static u64 get_desc_dst_addr_32(const struct mmp_pdma_desc_hw *desc)
- 	return desc->dtadr;
- }
- 
-+/* For 64-bit PDMA */
-+static void write_next_addr_64(struct mmp_pdma_phy *phy, dma_addr_t addr)
-+{
-+	writel(lower_32_bits(addr), phy->base + DDADR(phy->idx));
-+	writel(upper_32_bits(addr), phy->base + DDADRH(phy->idx));
-+}
++			pdma: dma-controller@d4000000 {
++				compatible = "spacemit,k1-pdma";
++				reg = <0x0 0xd4000000 0x0 0x4000>;
++				clocks = <&syscon_apmu CLK_DMA>;
++				resets = <&syscon_apmu RESET_DMA>;
++				interrupts = <72>;
++				dma-channels = <16>;
++				#dma-cells= <1>;
++				status = "disabled";
++			};
 +
-+static u64 read_src_addr_64(struct mmp_pdma_phy *phy)
-+{
-+	u32 low = readl(phy->base + DSADR(phy->idx));
-+	u32 high = readl(phy->base + DSADRH(phy->idx));
-+
-+	return ((u64)high << 32) | low;
-+}
-+
-+static u64 read_dst_addr_64(struct mmp_pdma_phy *phy)
-+{
-+	u32 low = readl(phy->base + DTADR(phy->idx));
-+	u32 high = readl(phy->base + DTADRH(phy->idx));
-+
-+	return ((u64)high << 32) | low;
-+}
-+
-+static void set_desc_next_addr_64(struct mmp_pdma_desc_hw *desc, dma_addr_t addr)
-+{
-+	desc->ddadr = lower_32_bits(addr);
-+	desc->ddadrh = upper_32_bits(addr);
-+}
-+
-+static void set_desc_src_addr_64(struct mmp_pdma_desc_hw *desc, dma_addr_t addr)
-+{
-+	desc->dsadr = lower_32_bits(addr);
-+	desc->dsadrh = upper_32_bits(addr);
-+}
-+
-+static void set_desc_dst_addr_64(struct mmp_pdma_desc_hw *desc, dma_addr_t addr)
-+{
-+	desc->dtadr = lower_32_bits(addr);
-+	desc->dtadrh = upper_32_bits(addr);
-+}
-+
-+static u64 get_desc_src_addr_64(const struct mmp_pdma_desc_hw *desc)
-+{
-+	return ((u64)desc->dsadrh << 32) | desc->dsadr;
-+}
-+
-+static u64 get_desc_dst_addr_64(const struct mmp_pdma_desc_hw *desc)
-+{
-+	return ((u64)desc->dtadrh << 32) | desc->dtadr;
-+}
-+
- static int mmp_pdma_config_write(struct dma_chan *dchan,
- 				 struct dma_slave_config *cfg,
- 				 enum dma_transfer_direction direction);
-@@ -1110,10 +1175,26 @@ static const struct mmp_pdma_ops marvell_pdma_v1_ops = {
- 	.dma_mask = 0,			/* let OF/platform set DMA mask */
- };
- 
-+static const struct mmp_pdma_ops spacemit_k1_pdma_ops = {
-+	.write_next_addr = write_next_addr_64,
-+	.read_src_addr = read_src_addr_64,
-+	.read_dst_addr = read_dst_addr_64,
-+	.set_desc_next_addr = set_desc_next_addr_64,
-+	.set_desc_src_addr = set_desc_src_addr_64,
-+	.set_desc_dst_addr = set_desc_dst_addr_64,
-+	.get_desc_src_addr = get_desc_src_addr_64,
-+	.get_desc_dst_addr = get_desc_dst_addr_64,
-+	.run_bits = (DCSR_RUN | DCSR_LPAEEN),
-+	.dma_mask = DMA_BIT_MASK(64),	/* force 64-bit DMA addr capability */
-+};
-+
- static const struct of_device_id mmp_pdma_dt_ids[] = {
- 	{
- 		.compatible = "marvell,pdma-1.0",
- 		.data = &marvell_pdma_v1_ops
-+	}, {
-+		.compatible = "spacemit,k1-pdma",
-+		.data = &spacemit_k1_pdma_ops
- 	}, {
- 		/* sentinel */
- 	}
+ 			uart0: serial@d4017000 {
+ 				compatible = "spacemit,k1-uart",
+ 					     "intel,xscale-uart";
 
 -- 
 2.43.0
