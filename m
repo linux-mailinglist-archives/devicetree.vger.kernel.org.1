@@ -1,251 +1,144 @@
-Return-Path: <devicetree+bounces-208134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40717B319BD
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:36:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F7CB319C9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:38:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87D4C188718F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:35:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B7EB640A35
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEA88304BA3;
-	Fri, 22 Aug 2025 13:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB8CD305E19;
+	Fri, 22 Aug 2025 13:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QkownOw/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="joFIIhie"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30123305044;
-	Fri, 22 Aug 2025 13:32:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C4E3054C7
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 13:33:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755869551; cv=none; b=XplRr4C1VlVukvWThy3CenEx+LeI4hBViEW8TpUamEb5yp0xUWgkbKPSQ3Yrqt5ThJNd6BKq8vUZ4zva1LpFWnFUzhb/M3Y8s94gLkyUZGR7k7o0px4fJfaCphGGHgZyoHNoMQQT113tN8NKjy3bPee+TWhUf9seApb2ynqke9s=
+	t=1755869597; cv=none; b=tRxQiTUCuWm/JFRv1I2y4YtQFvRJa4FVD4eo7dGjNQTxaUXgWSSh2wiab2XZSDHb56OvqfT+GLmk1Rrlb8CsH1kGmiSujIZHNsxbRJcIT4mJ22VHxiwwrLmV+9UN9ei41/YrF6m2kZ7Ul/FiUoRfa4SnZhoVykMGAIm5YsUX8YI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755869551; c=relaxed/simple;
-	bh=hMeLI6sw3gUXDyoKayVnNX/dUnPqtksPtByEZI0A1z8=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=sU6aBgdToS7a0n0OZYPPL7ZNdUqJJz7U+09RUVp0e8rBpfBHC/IaDb2sYgezbvhuw2N61D/IHPKSkfs3gWA0jlU+j8F5S0q8sCVFj+tEVT5UUNaj2G/VJ7qDOTjGglkrRmtd/tlmJVcnIR4s7C1IddzM6t9WmEFP+SG3otYYWlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QkownOw/; arc=none smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-70d9f5bdf63so3016236d6.0;
-        Fri, 22 Aug 2025 06:32:29 -0700 (PDT)
+	s=arc-20240116; t=1755869597; c=relaxed/simple;
+	bh=wBmo3kbfIxIyD5dwKOQGVZ3JiT7ZOos1M4ntpCsT3Gk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YVXMT3OFmeXOKkhF8mmQGZ8hyPmaf4fTBLWhy8VadUU5MuY1DBtjB1FeAJ4e89DDivEajwcsKLQIv78ZOvb1RJHbSOQcH/AXNdNL/2+nfTw7aIyQq1fzIhGREdk2tE+7jS4XjFyxso8tdjE4wl/Mjrm9W4KMm9/6+V4jwOFgK8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=joFIIhie; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-61c297e8306so36512a12.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 06:33:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755869549; x=1756474349; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=XuZlS9CdHDUq6B5dMplRyOq4bbNsojpePygP+1WONy4=;
-        b=QkownOw/QLLnJGkHOHiSYH5u4DRTyaIayg3ZRWOBAr9gBsAGs9/Ez2ItNwzq6R0cd1
-         qGCUrpOSK9Gz2Md7K1xznWpq4+EfdF4qSjwuQXjuM3WemoL/JszTwypDAWdE20veaYil
-         TQi3XnMrC4QpxHKrWLtf4HSZCAuwuyCK3nbF26IDMEtuoeadfB1z1CO1avL0n2fDt9Vo
-         svOenfaONKauA4usIy/Rre5yXV2uZd2djR3CW5TX0VDIHzf13N4zi5mhe/B1yQWH4lo/
-         8Ycqh3fvniX9mBrNIo06AZe8az3kGNkLcOQ/FcI0/M6ocOFhN8SRQZwmPvrrPdwfJ95W
-         2Nvw==
+        d=linaro.org; s=google; t=1755869593; x=1756474393; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BFHOC0io9g0o+2fapfpOBebq2bCjMy1h8J+xiMNdOIU=;
+        b=joFIIhiei+t0Py+rmIrKmKhOsEQ6GSkd1ZZUvw/V4fKHVEi6wOctUySw8Ewf5e0E6M
+         TuJGYPIXXzAetumVpFvKi/afvj/0ZVgaBNikuvPcxeOsuqAdEt4HRYC5LzYHU+fhv639
+         scwj3yGFfUqgXQRkFU0+U5zOm1M4XGX+nPVydtx7kxRwa+y1++U88nd/ySGrwEBVsmTq
+         v8pJ/na1EszVpAB1wi9719mLPvzHAWzHLc1AbpSIO7toC2xtAeZ6C8tro6d553Yql/OR
+         L7yRyAODTDQP3dXnouaRPLTkBiR2GwvTu4tsMAFxTH8zR/40w5VrPhymGvj347twihZe
+         evbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755869549; x=1756474349;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XuZlS9CdHDUq6B5dMplRyOq4bbNsojpePygP+1WONy4=;
-        b=pc2zl4dtamY+jK1O/b95ArP3d2B0mGZMPQ6hlmwXM2LDl/5Ok7n+1guozbQonIElWx
-         zqtRyCqh21RmKpVlyKdpVITMc/Ow0V3u74An3e9uOMAjvWGLgi1v72idxe9XQGMZzaZH
-         BNJ0n7aZBsTSb88uRI+ZCWth+FlmxNZoc+4aCQqjrDh5vItMfwYyWZ9UlNW2lXEom4il
-         kt8Vo28ZdJN4+FWFMHP/Ce+k0iyB7980kFTsK7KR4S5rdKFbVe2trK258NLZb6URM93f
-         sY5lw+P1AMqGGWXVczF0IXAKIiNE670Awaf2o97riWcC1ad8gzLm/mBZLyWIWyY0kwqv
-         49CQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/1vak+wZ1gL9sYUVxPk2pDRqPPB6RvcAnq4SyF3kZ1vPbMwmXIXshzoYydXgeeIRH8zmRXD+KRfat@vger.kernel.org, AJvYcCVdWWc/k+KPxTzhnHtSVeYgRreR3iXxWlAuWljWm7YU+flSGbbQes7b1WzfE4uQEbyKZAmdwxGfq/yK6g==@vger.kernel.org, AJvYcCW9M6CnP8DcX8Vwzj7uO1jc9eC9F03GEs24IRSg6dQLZ7Wq9lfKASUdm+bPlTQPG/nBVxx/QRnTQP2YDmma@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZpPOz6zbBP2fZhpwFFswzG6TOv+aGvB3CMaN1MiJzgIOTuZhH
-	g9aIwW1XgTgiCIqlQ1YDWbrgiTvPZ3zdL6ks0xGn2f2LERo4XEy7kJ0H
-X-Gm-Gg: ASbGncukG0D18tKWbXdcV7t6gmCnPuhptYZGbRzLUqBQ1RvivWGJfIO+GsL8DoUbFMP
-	v6t2dDZdOGA3qENgr40nDz84BaA0vPj9EHJ+n0GNTamFWJuazSnh3z2eMlXbQtZ4g010DdN40sq
-	fSGDd+XDfi2RxCoQlEVJpoF0ZJpVVsMXKEn7Pra5q4IEt/UgOouQN82trgYGLNe2uKYai/xI7el
-	Iyw0b6vI5bCBgH3j49IcpcM/NE2HtqEFaDmlX1i0kBThftvoV+1ROISU5QofVO/ETe7lCh2b2ZF
-	HpW0F7LPid9VqON4LCKAD2xDol0gxMv91dOSfDugYzamXBQ96zdfxCuRNfA2BfJClpBAIXYORN+
-	CEi+Z9YVc3jyIrjlqZ7tmbf667w83kSeTKcq64WhRczha46rnxRqAtvtMeJvtr6hp0smeHA==
-X-Google-Smtp-Source: AGHT+IEjadA/NQ4eTXrSAMGW+6h4cl/2RbaQhY90jc9D/bpRGmD57y852aiTXAQFMmPR61h2M5NXRA==
-X-Received: by 2002:a05:6214:d0e:b0:70d:857c:a1c9 with SMTP id 6a1803df08f44-70d97350721mr37311346d6.62.1755869547857;
-        Fri, 22 Aug 2025 06:32:27 -0700 (PDT)
-Received: from [127.0.0.1] (modemcable197.17-162-184.mc.videotron.ca. [184.162.17.197])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-70ba906706esm124241126d6.17.2025.08.22.06.32.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Aug 2025 06:32:27 -0700 (PDT)
-Date: Fri, 22 Aug 2025 09:32:24 -0400
-From: =?ISO-8859-1?Q?Jean-Fran=E7ois_Lessard?= <jefflessard3@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, devicetree@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
- =?ISO-8859-1?Q?Andreas_F=E4rber?= <afaerber@suse.de>,
- Boris Gjenero <boris.gjenero@gmail.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Paolo Sabatino <paolo.sabatino@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3_2/4=5D_dt-bindings=3A_auxdisp?=
- =?US-ASCII?Q?lay=3A_add_Titan_Micro_Electronics_TM16xx?=
-User-Agent: Thunderbird for Android
-In-Reply-To: <68ff2e14-19db-4d4c-8390-8fd2ec9e2c48@kernel.org>
-References: <20250820163120.24997-1-jefflessard3@gmail.com> <20250820163120.24997-3-jefflessard3@gmail.com> <20250821-funny-hasty-poodle-582053@kuoka> <7CD0DD74-EB4A-414B-B22E-E9248ECF8CBC@gmail.com> <68ff2e14-19db-4d4c-8390-8fd2ec9e2c48@kernel.org>
-Message-ID: <B4F3471D-5227-4D8A-8C18-AB0676845985@gmail.com>
+        d=1e100.net; s=20230601; t=1755869593; x=1756474393;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BFHOC0io9g0o+2fapfpOBebq2bCjMy1h8J+xiMNdOIU=;
+        b=F2kCxI500RmWYUX9S6nzNzv9phUwDvD02PKw+SJCXNSkfU7QznmnZp5k+bUbTnA7Au
+         NCTAlMi9jYxOwL4+yMPmdXC57djuDtE0nPPOy9hwV5RxSEQS2k6CyWuMRyMO+TLZY7cf
+         +60yQh8Rh+Vd0liH/e9FXl1hzgLOXIfOyI5iUvJ16ZNK0y6embq/t+rbvWYYOhGdchcw
+         h1zVtXCLxtV47PTqJg92hYtnwkh2d0PrYGlRi3YCDGZvPBC698tz6z/tfOBj/EZqqvng
+         l65haMEfKt63ZQc22v6su8EGcu9pWNHHQmc8xNLGLR5iFQnoGzN/EU4Jhsnn2SI5L+ir
+         Wk1w==
+X-Forwarded-Encrypted: i=1; AJvYcCXJWRImDDuto3xJqKzoia+P5GQeUNNIUiaxmOpy2YR5Enf22kGRZzqv0hPFtCZkh5GHPrltHPZqMWfv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxdz1MfX+phHld71SJKsYCFXswKnCMJ8ZCBDUqHCVFe7ApWsiUF
+	2bOAPuQ+ec2a8HuGNRLYChujL50YEdjYF9eWiId7xuJNMHNDg/AewwQmaVEChtVfHnE=
+X-Gm-Gg: ASbGncvUuGocr+mlzQs7r0mHHNmFjj4RkJZCquVlgJWhEKdNKxLDdCgpcHXkRS1ka1c
+	vw757vAwSRNE1Pj/qisS2wHIa/QonNdYou9+Q/dmCfbuQ5EJmQ6f07d6RbjCTHK6n9QOIkIScaw
+	t2zS+pQANQ/PPoyroWoQ11sw+cTgOWiJohoo3Wl5BmqHiYaPEyvFVYAJxDySwtAaTmd8d7J4DNs
+	rJmBocPH+WILk6+GAwccERkY9zmlMm6bpBsmo/uWntdqDmOeaMUTVEuFRJD56K/VtVQ7wSJzU2r
+	8ZRlG4SupXOReYGpcMItV5/jhw2DE5l8c0ximjF8r62ZDFQtidKU/HZNnd3HqVrP990LMmzxKI+
+	B3ndNFxLRlG+wIGPJFym47xrvMQW4jfimog==
+X-Google-Smtp-Source: AGHT+IF0Xwlv3Rrf/C03hmGVd0k/7kdYNfMsfW7Jcb6mh78D7QdfCpUt2d6qVO+BaDy74Ko7HCfWgg==
+X-Received: by 2002:a05:6402:348e:b0:61c:22bc:b207 with SMTP id 4fb4d7f45d1cf-61c22bcb3c6mr799727a12.0.1755869593007;
+        Fri, 22 Aug 2025 06:33:13 -0700 (PDT)
+Received: from kuoka.. ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61a7577462esm6984160a12.36.2025.08.22.06.33.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Aug 2025 06:33:12 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: ti: k3-j721s2: Add default PCI interrup controller address cells
+Date: Fri, 22 Aug 2025 15:33:10 +0200
+Message-ID: <20250822133309.312189-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1312; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=wBmo3kbfIxIyD5dwKOQGVZ3JiT7ZOos1M4ntpCsT3Gk=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoqHGVWUdwHDptTGA7iZdCDsmkuIdKy3wqepGPC
+ pE/eGTH/JqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKhxlQAKCRDBN2bmhouD
+ 1/MsD/wMWffWNAolAGwnNwVa1nFOJuOBrzvBM7+J2lxF14EKnnzhoffbj1ynFHes38QTRNQt9Fg
+ 5CqG5wh5hsDzK55ejAqrYcUH8VL59ukHeNR7ocJk9cDJaHHVU2hDRIo+vs/Htf2q8/kyAqqEvn6
+ A+y49RYhdtbUUmh24+79Chh5xgG4UDwv2uI1xQ46fMe8ivN3CssmIpkDjjdv716gie0UwSRMqX6
+ Z2ZFha/fSk1hD+wzBjxvC3uPnIwbnriOu0UbirFDNQKXGOlLAc4Qp6hm/gxCQHdISimMkeP+u3w
+ foHEPu6pz3GfOGyf+2X0ZLrkBKw0B5hlUQoMSKuLlvrm146PI/AtZ3+z27uN6Ov60UP2Dd3ALT1
+ ILNAs1tcps4nejlvC5D44+2a+7RbWO2Ki2vzQX3rWJZ7dlxkQ9rW75Em9COPW8w2y+nQ9X3etQZ
+ SBrwiW4LtsRyn1VOlt3gvY/teUb8t45zbaM0CXpzp+hXQBX7xwg9KEeiQJJ/R9fiMcwHp1GTZHW
+ LtlDALgoFxqR8RLEiJfSeVUjsTpWgg7ZtZSxSLh1NsMDLqbUslj4BZbiUBT8IUxG4P7WLSNLFa7
+ ociB55Pln/NEiDm6pbHMRUAViGnfW0KbmIJ+Gu6uhX7rtk2qd/J5iJZIBeJ3eDQ5r6x85eAgVur 8yKAxa/NzFEgsdg==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Transfer-Encoding: 8bit
 
-Le 22 ao=C3=BBt 2025 02 h 44 min 26 s HAE, Krzysztof Kozlowski <krzk@kernel=
-=2Eorg> a =C3=A9crit=C2=A0:
->On 21/08/2025 17:16, Jean-Fran=C3=A7ois Lessard wrote:
->>>
->>>> +      # Controllers with titanmec,tm1650 fallback
->>>> +      - items:
->>>> +          - enum:
->>>> +              - fdhisi,fd650
->>>> +              - wxicore,aip650
->>>> +          - const: titanmec,tm1650
->>>> +      - const: titanmec,tm1650
->>>> +      # Canonical standalone controllers
->>>
->>> Drop
->>>
->>>> +      - const: fdhisi,fd620
->>>> +      - const: fdhisi,fd655
->>>> +      - const: fdhisi,fd6551
->>>> +      - const: titanmec,tm1620
->>>> +      - const: titanmec,tm1638
->>>> +      - const: winrise,hbs658
->>>
->>> This is one enum
->>>
->>=20
->> Well received=2E I followed the older style and will adopt the modern a=
-pproach:
->>=20
->> properties:
->>   compatible:
->>     items:
->>       - enum:
->>           - fdhisi,fd628
->>           - princeton,pt6964
->>           - wxicore,aip1628
->>           - wxicore,aip1618
->>           - fdhisi,fd650
->>           - wxicore,aip650
->>           - fdhisi,fd620
->>           - fdhisi,fd655
->>           - fdhisi,fd6551
->>           - titanmec,tm1620
->>           - titanmec,tm1638
->>           - winrise,hbs658
->>       - enum:
->>           - titanmec,tm1628
->>           - titanmec,tm1618
->>           - titanmec,tm1650
->>     minItems: 1
->>     maxItems: 2
->>=20
->> Fallback relationships will be documented explicitly in the binding=E2=
-=80=99s description=2E
->
->Sorry, but what? I commented under specific lines=2E Why are you changing
->other things?
->
->
+Add missing address-cells 0 to the PCI interrupt node to silence W=1
+warning:
 
-I apologize for misunderstanding=2E I hope this fits your specific comment=
-s:
+  k3-j721s2-main.dtsi:1431.3-1434.29: Warning (interrupt_map): /bus@100000/pcie@2910000:interrupt-map:
+    Missing property '#address-cells' in node /bus@100000/pcie@2910000/interrupt-controller, using 0 as fallback
 
-properties:
-  compatible:
-    oneOf:
-      - items:
-          - enum:
-              - fdhisi,fd628
-              - princeton,pt6964
-              - wxicore,aip1628
-          - const: titanmec,tm1628 =20
-      - items:
-          - enum:
-              - wxicore,aip1618
-          - const: titanmec,tm1618
-      - items:
-          - enum:
-              - fdhisi,fd650
-              - wxicore,aip650
-          - const: titanmec,tm1650
-      - enum:
-          - titanmec,tm1628
-          - titanmec,tm1618
-          - titanmec,tm1650
-          - fdhisi,fd620
-          - fdhisi,fd655
-          - fdhisi,fd6551
-          - titanmec,tm1620
-          - titanmec,tm1638
-          - winrise,hbs658
+Value '0' is correct because:
+1. GIC interrupt controller does not have children,
+2. interrupt-map property (in PCI node) consists of five components and
+   the fourth component "parent unit address", which size is defined by
+   '#address-cells' of the node pointed to by the interrupt-parent
+   component, is not used (=0)
 
->>=20
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  label:
->>>> +    description: Name of the entire device
->>>> +    default: display
->>>
->>> Huh? Why do you need label? Are you sure auxdisplays have labels?
->>>
->>>
->>=20
->> Display integrates with the LED subsystem (/sys/class/leds), where labe=
-l is
->> a standard property per leds/common=2Eyaml=2E It ensures predictable LE=
-D class
->> device naming when multiple display instances are present, following es=
-tablished
->> LED subsystem conventions rather than general DT naming rules=2E
->
->You want to say that top level node is like LED? Then probably it misses
->common=2Eyaml reference=2E Although I am still puzzled=2E=2E=2E you have =
-sub nodes
->for actual LEDs, no?
->
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-The top-level device node is registered as a pseudo-LED device to control =
-the
-entire display (brightness 0-7, digits) via /sys/class/leds/{label}=2E
-Individual LED icons are separate LED devices at
-/sys/class/leds/{label}::{function} with on/off status control (brightness=
- 0-1)=2E
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index 726374dc8795..0ad752975acd 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -1437,6 +1437,7 @@ pcie1_rc: pcie@2910000 {
+ 
+ 		pcie1_intc: interrupt-controller {
+ 			interrupt-controller;
++			#address-cells = <0>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-parent = <&gic500>;
+ 			interrupts = <GIC_SPI 324 IRQ_TYPE_EDGE_RISING>;
+-- 
+2.48.1
 
-However, the top-level pseudo-LED shouldn't support all LED properties
-(no color, function, trigger-sources, etc=2E), so I'll reference specific
-properties from leds/common=2Eyaml rather than the entire schema:
-
-  label:
-    $ref: /schemas/leds/common=2Eyaml#/properties/label
-  max-brightness:
-    $ref: /schemas/leds/common=2Eyaml#/properties/max-brightness
-
-This approach provides LED subsystem consistency while avoiding inappropri=
-ate=20
-properties for the entire display=2E
-
->>=20
->> If helpful, I can add a $ref to /schemas/leds/common=2Eyaml#/properties=
-/label
->> or include its description explicitly=2E
->>=20
-
-Best Regards,
-Jean-Fran=C3=A7ois Lessard
 
