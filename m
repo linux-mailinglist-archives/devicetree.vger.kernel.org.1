@@ -1,57 +1,63 @@
-Return-Path: <devicetree+bounces-208172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3428FB31BC8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:36:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF51B31BCE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:36:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8F02643F21
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:30:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E220466008E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74987313548;
-	Fri, 22 Aug 2025 14:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8182A3218B1;
+	Fri, 22 Aug 2025 14:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n7wztDtc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dQhLwhwK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46674305E2B;
-	Fri, 22 Aug 2025 14:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5467D3101DA;
+	Fri, 22 Aug 2025 14:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755872604; cv=none; b=WIDzQfpwMV9OhyMBhTNnjCWajRB5TBxTv4zInO0GfsrjmNV8Qd24N4DPVFMgCLqCCE4eZVbPSZqDS8EhSLPGzMrhftcocq/OGJ0vKk7FP4uCXl7iQbzUlqElCx3ISphz40WxCTJenobU4I2FtLudbRKO4zAjelT7OBBPTqID3Wc=
+	t=1755872661; cv=none; b=aJ0eOQ6bZEwiw1Na1u/YmkDcCiuErJ4UXz49KMnPjyiJ54sx8CLC+L1g4ZgnDnkKYksBdHU24sDKQn9m9xTQ85W3eTZyKZeOYyD1YpGBLErCiVS+H3onE0JahN7WDfimKuZ7WtnvJWdb37EiLyGjJEQMWHYjw7/cbQocNYAOrTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755872604; c=relaxed/simple;
-	bh=p12u8vR8qiv7q0T3C6sATwxvsQ21DT4TNvgeIZFALCw=;
+	s=arc-20240116; t=1755872661; c=relaxed/simple;
+	bh=GHecUB/f6hF+l9nChS4AFiY+XY/E6xx0si6J6vs4S50=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p93z2zMHflhaSFAq6q1pVtY3o0exs54Sp6P5I3cxGh7M7+nq13TpCi5CVjfh8febt8OTgDtQq9lJ7WLb7pSgE/Y7DImCc4vc800QxG0zkZYHo1W0DiPG4ErIrw6mUph2mtSsrAkbd0szXIsS5rYuG9h2AH3hMfwY1aiFnDcwxGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n7wztDtc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60A69C4CEED;
-	Fri, 22 Aug 2025 14:23:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OFnINe2/C3VT9ynd+e7Jld/rlQSSR/ENLWZjoIFkkG/AJ0x7EUZlWgYk6sOcZkheNTEM8hap76gRRhlPDw3vXR/cADJmwDWEmg+SECLBY+jx1tc/nXDKCvf5Ly0seO/v18QX8fempamLc+jt3sMRdLckmbl8Tkncrg2o6nclBn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dQhLwhwK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE016C4CEED;
+	Fri, 22 Aug 2025 14:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755872603;
-	bh=p12u8vR8qiv7q0T3C6sATwxvsQ21DT4TNvgeIZFALCw=;
+	s=k20201202; t=1755872660;
+	bh=GHecUB/f6hF+l9nChS4AFiY+XY/E6xx0si6J6vs4S50=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n7wztDtcoLnf4euD7YyiSJ6Cdw+vq/HiDC9PejmzhDILhI5g/hqEWfEcH/TSTfLCQ
-	 g2UNAq+U18UTfNxZDh2bE1OW9Lms79Y+NQeyEbH3ud8oGwfFz3eBAQr6bSdhW7rV0l
-	 sr0FF7pECu1A11xgznHzRZitNnzwMdlsry+l1gqRRQkG7q45UQ2RO40dQvXmpHT3Cw
-	 d1fuNYFlmygAZ7kLZC1R1w0I9LT6tfq92XQCOoWYG8oJoYtzuZlLDPtC1iufG1R7Qc
-	 4Mlc0O6v9m9egfm9IuuSQ73DJllJbjPQnSJ3hI5LdqM/kHAtoBNBotcXP2FlvbzqVH
-	 jmToV1ArHKQvQ==
-Date: Fri, 22 Aug 2025 09:23:22 -0500
+	b=dQhLwhwK9qrnQh0flYJggQka8E9ZJzmwlNyAz3bfl0zQfiwan5NF/9FvEXCkpfzG2
+	 UupBjYLXpTAxzPNfowHY8wR7FevmagLt8My5R2DRDtbh89GRxOWNmxWxoSHxRiuWRq
+	 Vo/k7FSAsf6Pk+xGvOF41pl0MkbnNsWqEZ49JWls1wxcthZveWEQhM+OaCijUyK06P
+	 /r7MpjTSsCvyJue9PKF6SCPgoLB5ah9QXKItaB0BZDPD7hOrkaYbN0la8fsaShRnmc
+	 DZsqAb946JMkf8qu9xNWWPGOST3sTqIf3kVJkrsUoqXnFEUqqZtInP5MYOnlZPXwnV
+	 Ee7I6aPWCj55Q==
+Date: Fri, 22 Aug 2025 09:24:20 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Salih Erim <salih.erim@amd.com>
-Cc: jic23@kernel.org, devicetree@vger.kernel.org, andy@kernel.org,
-	linux-kernel@vger.kernel.org, conall.ogriofa@amd.com,
-	nuno.sa@analog.com, dlechner@baylibre.com, krzk@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
-	michal.simek@amd.com
-Subject: Re: [PATCH v2] MAINTAINERS: Update xilinx-ams driver maintainers
-Message-ID: <175587260151.3622268.4895714822866786813.robh@kernel.org>
-References: <20250820100519.2272509-1-salih.erim@amd.com>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
+	jose.abreu@synopsys.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	kernel@collabora.com, nicolas.dufresne@collabora.com,
+	Heiko Stuebner <heiko@sntech.de>, nelson.costa@synopsys.com,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	linux-media@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	shawn.wen@rock-chips.com, Hans Verkuil <hverkuil@xs4all.nl>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] media: dt-bindings: snps,dw-hdmi-rx.yaml: Updated
+ maintainers entry
+Message-ID: <175587265951.3629173.15028167331028929815.robh@kernel.org>
+References: <20250820103059.342850-1-dmitry.osipenko@collabora.com>
+ <20250820103059.342850-2-dmitry.osipenko@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,18 +66,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250820100519.2272509-1-salih.erim@amd.com>
+In-Reply-To: <20250820103059.342850-2-dmitry.osipenko@collabora.com>
 
 
-On Wed, 20 Aug 2025 11:05:19 +0100, Salih Erim wrote:
-> Anand left AMD/Xilinx some time ago. Salih and Connall are new
-> maintainers of xilinx-ams driver.
+On Wed, 20 Aug 2025 13:30:59 +0300, Dmitry Osipenko wrote:
+> Shreeya no longer works at Collabora, set Dmitry as maintainer of
+> the Synopsys HDMI RX binding.
 > 
-> Signed-off-by: Salih Erim <salih.erim@amd.com>
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 > ---
->  Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml | 3 ++-
->  MAINTAINERS                                                    | 3 ++-
->  2 files changed, 4 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
