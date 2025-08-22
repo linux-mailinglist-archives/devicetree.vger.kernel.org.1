@@ -1,261 +1,100 @@
-Return-Path: <devicetree+bounces-208219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51B59B31DCE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:14:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 982F5B31DA3
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:11:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 775BDB45EA1
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:06:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62CBE18981EC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:07:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B091917F1;
-	Fri, 22 Aug 2025 15:05:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E77C11DB375;
+	Fri, 22 Aug 2025 15:06:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SO/viMQV"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="rbmIm9Di"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04A9B3F9D2;
-	Fri, 22 Aug 2025 15:05:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 200991D63E8;
+	Fri, 22 Aug 2025 15:06:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755875104; cv=none; b=IOdKr+0KCxOUT1KQFuO6eGCY85C5wEJNUpMniOq2UPtq1p8ECYUjg4o8OUHfSR29VU8HKJY5Fnrw2dBUOQvkfhjZ64Nn/xG9yzNV7Ojxisfuda7SMaXfMjphGYCyMknH56XoD4BGieI9dcub3uHOuoe6aVvuYhHt6oGjG6UgodA=
+	t=1755875186; cv=none; b=abs2U68nyFbzT2KNIhZIkDfJlP1TYvLk21/qTQw7uPfRugN14J5A/QdtLj3TX4XVhMyyss4zrhhUOoVUt4H7zaa9RUqALMCuwJiXnZOhuWmus15A24Rdsj7IZHea4Lsq3brbZguBPIIhQkKl4sbMfORH2Pqr20NsWMEY5UndiVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755875104; c=relaxed/simple;
-	bh=tGSSNSnFFWPZY21Ur0558xtTyXaUmF1cBPI/rRqOS3g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PF143m5EmJofXLhqMaWHylstSjmP1wYJkSS6Bh3Qg5f0Bc7JkKlHbP4N1TmujGLxnWsf0/fwxnKh23pHXL+yTyn5Zk8YI8pM/M5vIPH34zVgsWS27pvVOBrlWP/QEMGQr+4+sl2egOTLTRdwEGlMBuKas9jT9QhBDj42gfatjfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SO/viMQV; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3c4368ab352so1075701f8f.1;
-        Fri, 22 Aug 2025 08:05:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755875101; x=1756479901; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jSy3uP111tmp0BYAk5JJsg/1JnSS0DO1D4O3BOeuxDQ=;
-        b=SO/viMQVv19xDwv0W+EqZLzF90zM52OAp2jz0NnZgK/4uGx+JoSxSRkeI2oYzpfGTa
-         FMpNtcY4XL22tMqpwLjyjuFaf/cgaXjvsO5nr2sDNrt8sFXeioccJy7GdRKwpDLqx1mv
-         ooJqhlTvHO2FS3Djbk6VAtxvwQV7S9iv3qHbhGqp+j78pnNI3xJEhjQmqu9fExDvbh7Z
-         KxPMjUiPprA5+kEjY3hav2l/yJyI6KDjJkKwqISpghiPoDQBdPLuWxrR1K4PLYjvvaZs
-         8Kq5O8VrujNUIeSsB3YDNjyzppNjX4WcNe/jLhQbzIHigQLv+cuc3+c3W2ZdTSZs4kM/
-         Pwcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755875101; x=1756479901;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jSy3uP111tmp0BYAk5JJsg/1JnSS0DO1D4O3BOeuxDQ=;
-        b=QEz5yBWUHlHMg44WbjX/UQsIdvXq+78yl+DJNTf6GNE8UVE8UJ3bBLxUh0yzCU4kR9
-         T22nIJ0b1zALjPj1SUR+7gG+0YNn9Pkzu7UVwonxqJ+hRdoblW6xjusiTXrg50BYNz6w
-         GKO4zPAi3lrYGANKWRmZfj517RHkgLxnRUwIZmSMRAsukiDvhR71WZjx+wgJCnGJKvfD
-         es++rGkByYr3b64ayEXkxilYXOkhMEw/DDibtWQhzRSk18CGzYg5q3uk3ZKElkWNYuAv
-         mbDXg5qYEKjNovgBEHUuIpdbHFJCsHPbbEVqP8B9AxBhUlz4dJY44m95T4nbwkEF5ZKe
-         tYDg==
-X-Forwarded-Encrypted: i=1; AJvYcCUoGoZtwXOOqkmJ6E/D+2e1QiQhU702xZCredeqnGjy7DVUKagKlNwucrZu3vXNu5Ro4t8pkwb6iTnpVAw=@vger.kernel.org, AJvYcCVR0hnUM4DGAJzV+YcO/b1g3q+tsLhlfYeximFVUvyPnl58nzsz2frPpcWbIgBN+8Af838ty8RsFRAYWccy@vger.kernel.org, AJvYcCW6N2l4lwrTDmn7TP1D3eRMPj3iyiqWDEc97Izi4SENk4xsYosR3YcBX8F2YEOERtG50U7e3PykvkHl@vger.kernel.org, AJvYcCWP9g5y4CM4FQdwsOzlG0lZqfzkowypNojE8h5bWmuOj5coctdwYOaOb1uHdo/B3FKnT4pBRooebOKf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzf/A/ib/ZBENpGI5kF9r/YPFNmJ7u7ZAEUCGwia1CIpLSHrPAp
-	8qE9hVL4wn+9SQa9dGwmBmp3glRdTLY4UqtjjfuplM4HwlrRPHtFUs3/A78Snukoss1QICQ4rDN
-	RkyXR1PbxWPX47G2DY3hwKSUM/mT+pRM=
-X-Gm-Gg: ASbGnctZ1yXh8Ok8GvLcLW1mUCB0K947/0wTUkERcdZijRxdfSVTvfBK3rOcfAfvlBx
-	nmSIu+dq4fVjf4oTEgIDeyiGgXGgEvXfgkxKXjM7yeMgwJNBBkyE8qa4xFKpZHM7Ro9u//deAJ4
-	CyacJlZsMZr0rSF+iUs5bjy/zIclxcV6KBvwfUiNIqzPZW6mxn9UOEiGSVifLgg23lPadKwUR9o
-	31lmkQV
-X-Google-Smtp-Source: AGHT+IHdbJCM1JrU9aZhUhCW3G/ZDFnrficgj+epThhDt8C/ZyJfJc4LFShS/wBERzgRCfTyJaZymDF2pTWqYPZCvmI=
-X-Received: by 2002:a05:6000:310d:b0:3c3:d82c:2295 with SMTP id
- ffacd0b85a97d-3c5dad0fdbamr2848028f8f.24.1755875101014; Fri, 22 Aug 2025
- 08:05:01 -0700 (PDT)
+	s=arc-20240116; t=1755875186; c=relaxed/simple;
+	bh=nFx4SitBgKvpBoMIHIeC2jnMHcJO2iqNTQ+yJXq99tE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E/LWQS+z2NsVc00bHsLEi5NBsV1xmIuCJ5jrCAcBz0dgZ7eOkli7SxZ1OmcEnSUy7scM8uiQHxowBgqW1X1uWWTq141MbrUSN+Qo83CFzcUVsT+Nza2ey6zOJxiKbnIXzfuTV30uDpPXqEX6N0hDN0PRCyS5LsqeBmHivwuqcl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=rbmIm9Di; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=eZ+hmLIUg/dB26LXq+Xb6ycLseoaXyIsUKUrBLdYLQo=; b=rbmIm9Diily/hJ/p4qXomerB17
+	FYkEzE7RKjqqOyaUqrzy52oHBmvfm8GE9hI9wTM1+1bXAyR9i8miJcCBlPQQ5KnJbZPmQq1SYRUF1
+	45F7ydUPR8hgaCZqrH2MeGTKcHcBX6N9ezT8en0WhYGrAQu3ZrhoBHg/Tr6jdbSkj9F0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1upTLR-005akn-BZ; Fri, 22 Aug 2025 17:06:21 +0200
+Date: Fri, 22 Aug 2025 17:06:21 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jack Ping CHNG <jchng@maxlinear.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, davem@davemloft.net,
+	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, yzhu@maxlinear.com,
+	sureshnagaraj@maxlinear.com
+Subject: Re: [PATCH net-next 0/2] Add MxL Ethernet driver & devicetree binding
+Message-ID: <d369e95f-7660-4771-8494-7cd83aa01906@lunn.ch>
+References: <20250822090809.1464232-1-jchng@maxlinear.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250820151323.167772-1-clamor95@gmail.com> <20250820151323.167772-3-clamor95@gmail.com>
- <20250822145934.GA3791610-robh@kernel.org>
-In-Reply-To: <20250822145934.GA3791610-robh@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Fri, 22 Aug 2025 18:04:49 +0300
-X-Gm-Features: Ac12FXypG4PfqbTzwK4muiuwuwQ2NYN0lKk_T4ivOXsgmwVEHmwuJibOvc-hr2M
-Message-ID: <CAPVz0n3ysZA2ku4PzcwVTyuii_ORe=3qkD1z+iYAmVYFhZuUCA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/9] dt-bindings: memory: Document Tegra114 Memory Controller
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <treding@nvidia.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
-	Dmitry Osipenko <digetx@gmail.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250822090809.1464232-1-jchng@maxlinear.com>
 
-=D0=BF=D1=82, 22 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 17:5=
-9 Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Wed, Aug 20, 2025 at 06:13:16PM +0300, Svyatoslav Ryhel wrote:
-> > Add Tegra114 suffort into existing Tegra124 MC schema with the most not=
-able
-> > difference in the amount of EMEM timings.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../nvidia,tegra124-mc.yaml                   | 106 +++++++++++++-----
-> >  1 file changed, 80 insertions(+), 26 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidi=
-a,tegra124-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/n=
-vidia,tegra124-mc.yaml
-> > index 7b18b4d11e0a..e2568040213d 100644
-> > --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra=
-124-mc.yaml
-> > +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra=
-124-mc.yaml
-> > @@ -19,7 +19,9 @@ description: |
-> >
-> >  properties:
-> >    compatible:
-> > -    const: nvidia,tegra124-mc
-> > +    enum:
-> > +      - nvidia,tegra114-mc
-> > +      - nvidia,tegra124-mc
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -62,31 +64,7 @@ patternProperties:
-> >              minimum: 1000000
-> >              maximum: 1066000000
-> >
-> > -          nvidia,emem-configuration:
-> > -            $ref: /schemas/types.yaml#/definitions/uint32-array
->
-> The type should stay here. It is not conditional.
->
-> > -            description: |
-> > -              Values to be written to the EMEM register block. See sec=
-tion
-> > -              "15.6.1 MC Registers" in the TRM.
-> > -            items:
-> > -              - description: MC_EMEM_ARB_CFG
-> > -              - description: MC_EMEM_ARB_OUTSTANDING_REQ
-> > -              - description: MC_EMEM_ARB_TIMING_RCD
-> > -              - description: MC_EMEM_ARB_TIMING_RP
-> > -              - description: MC_EMEM_ARB_TIMING_RC
-> > -              - description: MC_EMEM_ARB_TIMING_RAS
-> > -              - description: MC_EMEM_ARB_TIMING_FAW
-> > -              - description: MC_EMEM_ARB_TIMING_RRD
-> > -              - description: MC_EMEM_ARB_TIMING_RAP2PRE
-> > -              - description: MC_EMEM_ARB_TIMING_WAP2PRE
-> > -              - description: MC_EMEM_ARB_TIMING_R2R
-> > -              - description: MC_EMEM_ARB_TIMING_W2W
-> > -              - description: MC_EMEM_ARB_TIMING_R2W
-> > -              - description: MC_EMEM_ARB_TIMING_W2R
-> > -              - description: MC_EMEM_ARB_DA_TURNS
-> > -              - description: MC_EMEM_ARB_DA_COVERS
-> > -              - description: MC_EMEM_ARB_MISC0
-> > -              - description: MC_EMEM_ARB_MISC1
-> > -              - description: MC_EMEM_ARB_RING1_THROTTLE
-> > +          nvidia,emem-configuration: true
-> >
-> >          required:
-> >            - clock-frequency
-> > @@ -109,6 +87,82 @@ required:
-> >    - "#iommu-cells"
-> >    - "#interconnect-cells"
-> >
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - nvidia,tegra114-mc
-> > +    then:
-> > +      patternProperties:
-> > +        "^emc-timings-[0-9]+$":
-> > +          patternProperties:
-> > +            "^timing-[0-9]+$":
-> > +              properties:
-> > +                nvidia,emem-configuration:
-> > +                  $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +                  description: |
->
-> Drop '|'.
->
-> > +                    Values to be written to the EMEM register block. S=
-ee section
-> > +                    "20.11.1 MC Registers" in the TRM.
-> > +                  items:
-> > +                    - description: MC_EMEM_ARB_CFG
-> > +                    - description: MC_EMEM_ARB_OUTSTANDING_REQ
-> > +                    - description: MC_EMEM_ARB_TIMING_RCD
-> > +                    - description: MC_EMEM_ARB_TIMING_RP
-> > +                    - description: MC_EMEM_ARB_TIMING_RC
-> > +                    - description: MC_EMEM_ARB_TIMING_RAS
-> > +                    - description: MC_EMEM_ARB_TIMING_FAW
-> > +                    - description: MC_EMEM_ARB_TIMING_RRD
-> > +                    - description: MC_EMEM_ARB_TIMING_RAP2PRE
-> > +                    - description: MC_EMEM_ARB_TIMING_WAP2PRE
-> > +                    - description: MC_EMEM_ARB_TIMING_R2R
-> > +                    - description: MC_EMEM_ARB_TIMING_W2W
-> > +                    - description: MC_EMEM_ARB_TIMING_R2W
-> > +                    - description: MC_EMEM_ARB_TIMING_W2R
-> > +                    - description: MC_EMEM_ARB_DA_TURNS
-> > +                    - description: MC_EMEM_ARB_DA_COVERS
-> > +                    - description: MC_EMEM_ARB_MISC0
-> > +                    - description: MC_EMEM_ARB_RING1_THROTTLE
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - nvidia,tegra124-mc
-> > +    then:
-> > +      patternProperties:
-> > +        "^emc-timings-[0-9]+$":
-> > +          patternProperties:
-> > +            "^timing-[0-9]+$":
-> > +              properties:
-> > +                nvidia,emem-configuration:
-> > +                  $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +                  description: |
-> > +                    Values to be written to the EMEM register block. S=
-ee section
-> > +                    "15.6.1 MC Registers" in the TRM.
-> > +                  items:
-> > +                    - description: MC_EMEM_ARB_CFG
-> > +                    - description: MC_EMEM_ARB_OUTSTANDING_REQ
-> > +                    - description: MC_EMEM_ARB_TIMING_RCD
-> > +                    - description: MC_EMEM_ARB_TIMING_RP
-> > +                    - description: MC_EMEM_ARB_TIMING_RC
-> > +                    - description: MC_EMEM_ARB_TIMING_RAS
-> > +                    - description: MC_EMEM_ARB_TIMING_FAW
-> > +                    - description: MC_EMEM_ARB_TIMING_RRD
-> > +                    - description: MC_EMEM_ARB_TIMING_RAP2PRE
-> > +                    - description: MC_EMEM_ARB_TIMING_WAP2PRE
-> > +                    - description: MC_EMEM_ARB_TIMING_R2R
-> > +                    - description: MC_EMEM_ARB_TIMING_W2W
-> > +                    - description: MC_EMEM_ARB_TIMING_R2W
-> > +                    - description: MC_EMEM_ARB_TIMING_W2R
-> > +                    - description: MC_EMEM_ARB_DA_TURNS
-> > +                    - description: MC_EMEM_ARB_DA_COVERS
-> > +                    - description: MC_EMEM_ARB_MISC0
-> > +                    - description: MC_EMEM_ARB_MISC1
-> > +                    - description: MC_EMEM_ARB_RING1_THROTTLE
->
-> I imagine every SoC is going to be slightly different. I really don't
-> care to know what are all the magic registers in the list, so I would
-> just drop all this and just document the length. Just treat it as opaque
-> data like calibration data we have in other bindings.
->
+On Fri, Aug 22, 2025 at 05:08:07PM +0800, Jack Ping CHNG wrote:
+> Hello netdev maintainers,
+> 
+> This patch series adds support for the MaxLinear LGM SoC's Ethernet
+> controller, including:
+> 
+> Patch 1: Adds build infrastructure and the main driver for the MaxLinear LGM
+> SoC Ethernet controller.
+> Patch 2: Introduces the devicetree binding documentation for the MaxLinear LGM
+> Network Processor.
+> 
+> The driver supports multi-port operation and is integrated with standard Linux
+> network device driver framework. The devicetree binding documents the required
+> properties for the hardware description.
+> 
+> Please review and let me know if any changes are required.
 
-I though about length but not only names, amount of registers,
-unfortunately, changes as well.
+"if any changes are required"
 
-> Rob
+ROFL. Have you ever seen a new network driver where v1 got accepted?
+
+Anyway, thanks for starting small. But there is still a way to go
+before this will be accepted.
+
+FYI: DT patches go first in the series.
+
+I suggest you subscribe to the netdev list, and spend 15-30 minutes a
+day reading patches and reviews. You can learn a lot that way, and
+avoid repeating mistakes others have made.
+
+    Andrew
+
+---
+pw-bot: cr
 
