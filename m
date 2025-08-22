@@ -1,77 +1,75 @@
-Return-Path: <devicetree+bounces-208379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A27B3231B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:45:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B07D3B32320
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 21:45:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E560627E49
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:45:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E3D51D27C47
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 19:46:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06ED2D4B6F;
-	Fri, 22 Aug 2025 19:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92EB32D59E3;
+	Fri, 22 Aug 2025 19:45:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nlqkzU9F"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XEJRFaL+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC252D3748;
-	Fri, 22 Aug 2025 19:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFF872C15A2;
+	Fri, 22 Aug 2025 19:45:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755891908; cv=none; b=W+Fg/eTQczVdwxAD0xanbrgrZFDCuO5W2MLFbGwM1ZGWzZLR8nhl3hjQPxcQvd97RNeG3rZfhS1/P2lGsbDTAJDq4ujHfHANNY9I+5NfOkr8EVEeWyNkYjvpBg5RExL3A1NM8hzQR7MDRKm1wIGLujOjamq9c3PgKPohPilkMrY=
+	t=1755891945; cv=none; b=WRn4WNYOWJAPmYWTZZvK9SXEP983ABe9H+ES3jBT9XUYiW3KmfgWo9fgbCxTz5l5ivjXE7aBMmOXL5ATy2GfBvFdszGiPtZIyHro4Iarfoj2D7JAGbwx+Uu2gBJ7NT5zXi8aM8WYVPDFHXKiOpW4OGA+Y9nlItohCBWA+vniOJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755891908; c=relaxed/simple;
-	bh=gh5gC3Z1OjXTLbFp2ZJcVc9T55LS+XJHUJyb09gjH40=;
+	s=arc-20240116; t=1755891945; c=relaxed/simple;
+	bh=ZKLERqOKgHXb/xzTqRvZ+WYPteXr+Gy7F+ziFJ/AQnQ=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Wn5pxw5Oke8kQHadyZJ5jNGNN9Wa+cj4hcsCthKtRm8jL9PmPaElvscj0tW6OfSJrPAwHtiTP/NgtiQipmNSm5QHnieK33DcUS2MCT5LEUUw5ApE5EC7aP2MI+ScfODWukVEb7yLLEYA5SV2sC+UOV5RBSdcbZVNvc0DQWEZpX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nlqkzU9F; arc=none smtp.client-ip=198.47.23.234
+	 MIME-Version:Content-Type; b=PH7+AOJGc7klOjF1caPdLjLLhYt5+gJxVOj/Av6scCSsgBixH1II6cn0tV14eExs0e5zc5v22LOZB0vby3oITcmjWNkC0Yce70xeeQg5441c4IdBuXnTCAp+okURRW+e0EWUWogVt4fho6opkZQ9f81pHdRhQ+uYAwlp+ie5B9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XEJRFaL+; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57MJj1oB319076;
-	Fri, 22 Aug 2025 14:45:01 -0500
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57MJjcpj319191;
+	Fri, 22 Aug 2025 14:45:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755891901;
-	bh=7SzRokkMKHyGOyZyYSr2/sLuIjvPVIIRRofT3eBfPO4=;
+	s=ti-com-17Q1; t=1755891938;
+	bh=koQegF4UW9iKzxQUE2TMKsD0Dt3GZxMJZZ6wyyEEhGc=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=nlqkzU9FL/1vR1sY6j6uiHNO+Vk2bbucBnVQnSr/jE73gUXPJ9SJeJJ09VThDvETO
-	 ZcbCNvV28vLskiUBfqGRs76YEIJmkrIyd/WHPLx0XM7pGbJ4Tp46tKkclzuUAqzX4X
-	 q7jJWp4F174h7Z2j/s2LVb1eE98DQBTsSrJ3uqYQ=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57MJj1Ig3502370
+	b=XEJRFaL+NiFqNf5LwYG/ZDzlzvAozDmTRwwO+34DcAEtNfyH4cYg2HQj1ydPoXMLY
+	 jcyCge7Yh9GNz7Qx/3gqp2/qwdfxXwLZi2TCXDFVn7Uey1py+M1T2ISd3WS0g8BKRH
+	 uTWwhDAUfsa6k1a8gFJGExpedLXxh+6goXMuLg0Y=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57MJjcqL3503101
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 22 Aug 2025 14:45:01 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 22 Aug 2025 14:45:38 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 22
- Aug 2025 14:45:00 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2025 14:45:38 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 22 Aug 2025 14:45:00 -0500
+ Frontend Transport; Fri, 22 Aug 2025 14:45:38 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57MJj0V3123482;
-	Fri, 22 Aug 2025 14:45:00 -0500
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57MJjcPP4032874;
+	Fri, 22 Aug 2025 14:45:38 -0500
 From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2: Add default PCI interrup controller address cells
-Date: Fri, 22 Aug 2025 14:44:59 -0500
-Message-ID: <175589187470.649734.635057180914460439.b4-ty@ti.com>
+To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Switch to PCIe Multilink + USB configuration
+Date: Fri, 22 Aug 2025 14:45:36 -0500
+Message-ID: <175589190685.650517.15346755331299004953.b4-ty@ti.com>
 X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250822133309.312189-2-krzysztof.kozlowski@linaro.org>
-References: <20250822133309.312189-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250819105717.372893-1-s-vadapalli@ti.com>
+References: <20250819105717.372893-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,29 +80,29 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Krzysztof Kozlowski,
+Hi Siddharth Vadapalli,
 
-On Fri, 22 Aug 2025 15:33:10 +0200, Krzysztof Kozlowski wrote:
-> Add missing address-cells 0 to the PCI interrupt node to silence W=1
-> warning:
+On Tue, 19 Aug 2025 16:27:00 +0530, Siddharth Vadapalli wrote:
+> The SERDES0 instance of SERDES on the AM69 SoC is a Cadence Torrent SERDES
+> and it has 4 lanes which are allocated in the following manner:
+> Lane0 and Lane1 to PCIe1
+> Lane2 to PCIe3
+> Lane3 to USB0
 > 
->   k3-j721s2-main.dtsi:1431.3-1434.29: Warning (interrupt_map): /bus@100000/pcie@2910000:interrupt-map:
->     Missing property '#address-cells' in node /bus@100000/pcie@2910000/interrupt-controller, using 0 as fallback
-> 
-> Value '0' is correct because:
-> 1. GIC interrupt controller does not have children,
-> 2. interrupt-map property (in PCI node) consists of five components and
->    the fourth component "parent unit address", which size is defined by
->    '#address-cells' of the node pointed to by the interrupt-parent
->    component, is not used (=0)
+> Until [0], the Cadence Torrent SERDES driver only supported configuring
+> the SERDES for a PCIe + USB configuration whereby all lanes of the
+> SERDES configured for PCIe will operate at the same speed. As a result,
+> PCIe1 and PCIe3 instances of PCIe will either fall down to a common
+> speed based on the PCIe peers that they are each connected to, or, the
+> PCIe link could fail to be setup.
 > 
 > [...]
 
-I have applied the following to branch ti-k3-dts-next on [1] with a
-minor subject line fixup. Thank you!
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-[1/1] arm64: dts: ti: k3-j721s2: Add default PCI interrup controller address cells
-      commit: 04f1c432b7ae38415a1cf374f39954d5a612c23a
+[1/1] arm64: dts: ti: k3-am69-sk: Switch to PCIe Multilink + USB configuration
+      commit: 76397d42e248335aa41acbf0af6d096220605202
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
