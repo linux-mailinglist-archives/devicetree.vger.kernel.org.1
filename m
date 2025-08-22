@@ -1,145 +1,113 @@
-Return-Path: <devicetree+bounces-207801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19138B30E2B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 07:39:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D15CB30E35
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 07:41:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB9FA7B8E66
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 05:38:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DA6D16AA1E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 05:41:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6EC82E1F14;
-	Fri, 22 Aug 2025 05:39:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98EEF2E266C;
+	Fri, 22 Aug 2025 05:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C5UspzPJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C5j435qr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0FF8223DF5;
-	Fri, 22 Aug 2025 05:39:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BED328B4FD;
+	Fri, 22 Aug 2025 05:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755841180; cv=none; b=dypxWL9+MEIvcksDxzlAQhugAikeVrZHVVTCpy7+2czimQlxh4MusO0SOkggYhbvhAo5uaCCrydnXLMRNNtc1MsjxcleSHAnbykt9eqciDTa5tcDGeQnqJYl63SCH4HnCafQtEXALOeyHCHVvLl3i2k8e4W3VZNlhjH9ZTYf8FU=
+	t=1755841289; cv=none; b=GIY24Goxvh8bXvt4anVmNuA19VPRlmpkPonQ1FqdPIyAu/1zy73QjzbY3G+EnRpbGsv0esz1Cxn/WwEw+wk2IX/Muqft9Kc2BLrsEid//eI8dUYRw3MXubIOY+5iAdpcgthkU6xvsk2SYCf3VUWkW0LMxkH98xFDz/cl24dywwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755841180; c=relaxed/simple;
-	bh=DUOcddI3mXvRcjypV5McRymWt4WifssDE6eXu1LlC+E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eTOMQgMp4oxZEUBpLS4f5ZPHGo85WVSse9+s3E8FCIaW0PrUUZ05ZCPZ9hBIjEVU2AoxeUhZvcW04KTTtM83OecEaRRTfMrrf7FlxbkkvnBaAFrK3D7IQ/Y0MP1ubowAMAepQxSPX5wKqkKZpeTSjDNawpiCib/zE/ArFuxgVdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C5UspzPJ; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-55ce508cfe0so1640239e87.0;
-        Thu, 21 Aug 2025 22:39:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755841177; x=1756445977; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cktSZhhDXy0hCif2W3DZbZQLN29cfh8CxR1aWKR6R68=;
-        b=C5UspzPJPF6swIKGPttrOJ6ScqTd1tcK2fiLrmHobRYFDiTBdIK+IsSiIk9H69Wj98
-         SGy8soQ8BcwLhDYl+eIaEIKy3nv8Eay0Cdw4RkszNVrmYxPjHL0TFkzSVc//fAxDKHqh
-         Vc8jpR6uv4sdKm82AgsBJ6HLZXR65S/abuyxBdLYJGp+ugSHqTLjSrPLFlVd9MJPQnHk
-         o8C0nggu2rpdJRBdaUs2JMyx+A5BPlpvRb6pX4SgN7bgULE4rfkWQYIVK51MVrQ+3x+H
-         bhgte2K28l5KZh+1MysFxqWUHpGALlP7w8m8603tRebd/IbKls2bu+S7NVL3Kkkv0QW3
-         g4Ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755841177; x=1756445977;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cktSZhhDXy0hCif2W3DZbZQLN29cfh8CxR1aWKR6R68=;
-        b=cKF301h0AYgB0ROcxLc2shgl9c9wKJ+YrF2agsiipsVJy7eupN9NkPeQBRw7Nn6Z7y
-         Kf5FMdjapM54NEHtKLztEfvlKHtoHEZnbNud32UA6SKh8V+tgrYkUw11HpZiKeoVwC4Q
-         bFu9B3Zm1MNFx6O54qclXU5aoKJC3xCAjm1cprArHcSqnCXs9D+9Mo0sv7+UaYn4GOPb
-         wShqRIesBw0u06crGGkWIRq9iqk1UEb3fS6BRHvcuc1F9fu2ZQ/1v22UkxK8jMSRVm+y
-         mRZsmxnkXs/zFy763TfkI+75Ms1frDNq/BwQyC6qWEh6flg7fxTj80E8RQv4DRSrK/Gg
-         TT4w==
-X-Forwarded-Encrypted: i=1; AJvYcCUdDBsCYP92d1Z9VqyJKBJttIrekOVsP2dii5z5xiBApn7c031wSixQQDIZBBiZIagDh3AjwBMk6MID@vger.kernel.org, AJvYcCVQptUJGtNhf4oZiu4sQj0EZ94f23tqqMvCJFMAmSfpa0VhFs3ul4P4jT9+PfanNjm9OdcRntKvTuQu@vger.kernel.org, AJvYcCXECMAWSgjhg+iFY3+lk23sufxWSX2CPiLfjdgz7+tAsi5KtzklRyJzyf8WYmY2ePEbk0RGSihJLhuF923c@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNG7lanzLjHyh1VqT6Sk086QWKNxXXiiUgh/e1EQRa7e7zsRyF
-	//kBzqUsDPj9sPZvytIU0SnzTO12/eaK83AyUHmLrPq0brRoa3zIo9Bx
-X-Gm-Gg: ASbGncvu4Jc7fAiKIGVd/H8zs1VZCv6Aqf1Frf/0+IlaNBZMImBDzuac7vzgMw2d+Gj
-	d9Or8w84TO97TQxI1SyceYVhIRWJFyBVqaDtSCX1QR9hZQFmBvcUYCpxIzQx/sPKJBpU2S18ZCo
-	is6X7EHzT8G1IqwtAj7kfwi5zt5qI1Cv4cfGaHRJ5EX9I5Oujk7zF6Q++1kO2xwcE9D/g305Yvl
-	mKXtZyfGeL3Bqo5ShAt51VdRDvx4QeD2EB8sIUvnBIL38Qtfxqm/9RGuRCHUa+hnod5PM89P1Ad
-	T78svP6vVdyhRzXxI7dFjPIe17Fr0FQmEHJkOXgqx250sbg7mtWJjO9v6IjRE0dANpdcgZswGbD
-	fDlR7Isrpe0RmuNXsN0WkWZX5YVjiS4WFBlvn6pD1uFR7SQxu5aVK/zHIGXOYGRXMR1fge1djvO
-	+TbNY=
-X-Google-Smtp-Source: AGHT+IFdQlgDjn1LUPHReBm14miSwkL8ekDjE0cyhua5Y4fRBWhxH4K9ZBeoTPcaldW02MqLA7962w==
-X-Received: by 2002:a05:6512:260f:b0:55c:d5f8:7866 with SMTP id 2adb3069b0e04-55f0d3e3306mr539973e87.57.1755841176778;
-        Thu, 21 Aug 2025 22:39:36 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cef47387esm3297633e87.164.2025.08.21.22.39.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Aug 2025 22:39:36 -0700 (PDT)
-Message-ID: <4d4120fa-3a20-4cc4-a078-ee94e03229f9@gmail.com>
-Date: Fri, 22 Aug 2025 08:39:35 +0300
+	s=arc-20240116; t=1755841289; c=relaxed/simple;
+	bh=SWllvQUuWXUiZ37XKVOHkxwQQPRk+5jHJR1X7QQbqWU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JG7Y4HkiBfBGu1LwosZGKkGmWcKsGfceIaj/Mdl5VVjtr1QY9iis1nhKbKMgoSqCw2j6Z3sLgMZo0ENzhls+OS2t/ZZjCoxlG7mFZVQo6+fkp7PjTRKV2H2lWq4p2qiMmkSM2xoH/QcVrZpzh8scE7xKxCJ/zWuIoFDW6lI7Rmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C5j435qr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E4FA4C4CEF1;
+	Fri, 22 Aug 2025 05:41:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755841289;
+	bh=SWllvQUuWXUiZ37XKVOHkxwQQPRk+5jHJR1X7QQbqWU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=C5j435qr4Pj8VO0GCMmm/0ypKQMl7HSaVhfYN5xCQH/qpPo9DacK5T5F9oS+M0TKp
+	 8H1h8ty/DB1Zkz7xbceBqro39/dRNmgI69ehsKsG3CnUmUpYBejhyMkrChVkcAkJA6
+	 eGCVhz+jMl42iemjHiz3QytcNtmJq6AJvRuKAyFbKo7keecwUaG89HqysDFknHZxuc
+	 Adet3E4iRgKeRl4k+aFHRnSoMYYQnj7pEJeBZD+xU8KStkZDQ/ypOf9D72AlvSzUIk
+	 p+fGI6tNeTGH1Crq4/TXoZAYkjXD72DBKG28qb8qC9krbAhf9PzJgUr5EbCwQV2+XF
+	 DsqzeK65yyBEA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DB9EFCA0EFF;
+	Fri, 22 Aug 2025 05:41:28 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/5] Power: Add power domain driver for S6 S7 S7D
+Date: Fri, 22 Aug 2025 13:39:54 +0800
+Message-Id: <20250822-pm-s6-s7-s7d-v1-0-82e3f3aff327@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] iio: light: add support for veml6046x00 RGBIR
- color sensor
-To: Andreas Klinger <ak@it-klinger.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, lars@metafoo.de, javier.carrasco.cruz@gmail.com,
- arthur.becker@sentec.com, perdaniel.olsson@axis.com,
- mgonellabolduc@dimonoff.com, muditsharma.info@gmail.com, clamor95@gmail.com,
- emil.gedenryd@axis.com, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250715085810.7679-1-ak@it-klinger.de>
- <20250715085810.7679-3-ak@it-klinger.de>
- <aHdWAUMMH43tIqV4@smile.fi.intel.com> <aIMy_BHJYNA20k-x@mail.your-server.de>
- <aKbqLpJMCxJd3QXW@smile.fi.intel.com> <aKdrO7DE8ky2DBu2@mail.your-server.de>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <aKdrO7DE8ky2DBu2@mail.your-server.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKoCqGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDCyMD3YJc3WIz3WJzIErRtTQ1SDM3MkhMTDZLUQJqKShKTcusABsXHVt
+ bCwC3esbIXgAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ "hongyu.chen1" <hongyu.chen1@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755841286; l=1213;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=SWllvQUuWXUiZ37XKVOHkxwQQPRk+5jHJR1X7QQbqWU=;
+ b=v6zP1X1MiyNWQVfGhjRcfGOC0lt9iG/FSAbPc+2Df+zqZf0YLjimp7/DcF5ze+DfN5jFWSfkw
+ C5A8U4wNBWFDDsajqvt6DFrIfF7N0vlKPmgrOvHh1HqITJru5NZz9yJ
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-On 21/08/2025 21:53, Andreas Klinger wrote:
-> Hi Andy,
-> 
-> Andy Shevchenko <andriy.shevchenko@linux.intel.com> schrieb am Do, 21. Aug 12:43:
->>>>> +	part_id = le16_to_cpu(reg);
->>>>> +	if (part_id != 0x0001)
->>>>> +		dev_info(dev, "Unknown ID %#04x\n", part_id);
->>>>
->>>> For 0 it will print 0 and not 0x0000. Is it okay?
->>>
->>> I just tried and it prints 0x00 if the part_id is 0.
->>
->> This is interesting... So it's not 0, nor 0x0000?
-> 
-> No. It prints 0x00 on my BeagleBoneBlack with kernel 6.16.0-rc5.
+Add power controller driver support for Amlogic S6 S7 S7D SoC.
 
-I think this makes sense because of the '#' -flag. The "0x" is appended 
-because of it, and this consumes 2 characters from the 4 character 
-field, leaving only 2 chars left for the value.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+hongyu.chen1 (5):
+      dt-bindings: power: add Amlogic S6 S7 S7D power domains
+      pmdomain: amlogic: Add support for S6 S7 S7D power domains controller
+      arm64: dts: amlogic: s6: add power domain controller node
+      arm64: dts: amlogic: s7: add power domain controller node
+      arm64: dts: amlogic: s7d: add power domain controller node
 
-What I find interesting is that gcc on my PC does:
+ .../bindings/power/amlogic,meson-sec-pwrc.yaml     |  3 +
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        | 10 +++
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        | 10 +++
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       | 10 +++
+ drivers/pmdomain/amlogic/meson-secure-pwrc.c       | 95 ++++++++++++++++++++++
+ include/dt-bindings/power/amlogic,s6-pwrc.h        | 29 +++++++
+ include/dt-bindings/power/amlogic,s7-pwrc.h        | 20 +++++
+ include/dt-bindings/power/amlogic,s7d-pwrc.h       | 27 ++++++
+ 8 files changed, 204 insertions(+)
+---
+base-commit: ffeebf7587f518a3717fad308cf735adbbcaba97
+change-id: 20250820-pm-s6-s7-s7d-950f720aac6d
 
-         printf("%#04x\n", 0);
-         printf("%#04x\n", 1);
-         printf("%#04x\n", 10);
-         printf("%#04x\n", 17);
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-0000
-0x01
-0x0a
-0x11
 
-gcc version 15.2.1 20250808 (Red Hat 15.2.1-1) (GCC)
-
-It'd be nice to learn why the zero is treated differently? Andy, did you 
-have some insight as you asked this?
-
-Yours,
-	-- Matti
 
