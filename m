@@ -1,235 +1,200 @@
-Return-Path: <devicetree+bounces-208032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 132F0B31626
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:12:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D232B3167D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:41:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0D2A3A8239
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:12:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EB981C811E4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:40:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79BA12E3B05;
-	Fri, 22 Aug 2025 11:12:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8372F90CE;
+	Fri, 22 Aug 2025 11:39:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T2Ib62DD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fefZzZ0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D0721255D;
-	Fri, 22 Aug 2025 11:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB012F8BC0
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 11:39:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755861128; cv=none; b=cgM0RyYPMV+E7RLlwfJQiJM8aFvFeuhxDB5hQT0Kb3Ap+GQjIPtgiUeZIBsaEzPozeNp7mLO+yIS5SOfZIT1nuU29Kh1ejxdDvVC3GpDC5MxMJwfZxwXS5UcvQZAyVBMTkXcYqnD5mh5pkWl51AN6eEVnDeX/OeMbfv4Ne3aHaU=
+	t=1755862794; cv=none; b=dVJVHoi4pyx37Px6dXXT84vaPWDB2AuinYYu+5Aw1IJ48IGlRD/9TS18G4cOicpMD8BEg6WqL7A/R4kVQBPiTZCug+FBX80pLvFGkQpS/tRaNDUSvUYhkaRdTXuqYWLkgLvA+n1nOPIb1j0/eiV2CdbtCVI1rJsKGI4kWAblpPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755861128; c=relaxed/simple;
-	bh=N8II0tKKmr+jYcX2kJ5FQ3s6Z9IvUZ67ogJraYwkwok=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nakl5cbR9BQBt+NxkTgWw+WaPRaVUiAp1o6hVcOJP9X8wausKgeGt8X0nT/FWKLCm5ZwQqwlKvL7GQ7jDmSwx8oD5HPs3kEnct/LBYHTQlkes7qcq5JuzV8AurFUtcMlAANoAvUIBhSsEvSvW+vbhfgYgbwEHlvy7gSyGzCnvdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T2Ib62DD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5024C4CEED;
-	Fri, 22 Aug 2025 11:12:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755861128;
-	bh=N8II0tKKmr+jYcX2kJ5FQ3s6Z9IvUZ67ogJraYwkwok=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T2Ib62DDl42DK3INX+lvLhkuJhI2GerHhn03pcnvfWvOa3dJkj4JPa/AesfThZXBx
-	 p7aJddQhoLLE/ZBgDDebC7CZ7gb8Sq/w5xiXmAnXt/m81BF0oy40umPD6q9P1TGeYi
-	 0zPOAbH2v1A3Zeevh5rWSUKJ7X6eXGZRKyBvAW3AMcSiKnnJ0lC/ueQbHKAdmZXAge
-	 frp2a0fw7zS9JNAui+cD7X76jHJMIKX8xr99meyrWCzvJ8fo3k/WNmK1fA+MtyyznU
-	 kRwJRbHoBYtluoXDlsKPYtUybXloqlaoS7/vvEKAlhCMsxh+Q6E7l/rflNovf2cSUs
-	 kBYBc4hVWNnxg==
-Message-ID: <5950bff3-cce5-4a26-aad7-9314542f70dd@kernel.org>
-Date: Fri, 22 Aug 2025 13:12:01 +0200
+	s=arc-20240116; t=1755862794; c=relaxed/simple;
+	bh=f1sfJBo9o9dJwhSGCcqMGBl3Mfx9Jh4l5ycFIjel2jU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BMy8J2+8zHal8hBos7+q7+FUUj1+Bacoy/oFNaDVLGlYT/i1aFSgjIDrCjwGe28LnaMTzCJyO+F3qUejccITix/wxbXSA6bCl1nY6sq5gLH03ivyT8ffd03inOz1Oxj6hGJMOSpLuohBzvOIjA2NKKDJazZhVxDeSM9RM59fX7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fefZzZ0s; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57M8ULQf024175
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 11:39:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=mFLMQVHg9cUjUEhLaX2Ovvk3
+	EYltYMYiOOM3208zwIA=; b=fefZzZ0srzoPiQhmmzfGpi1DyaX9SAVzKXnhgT/d
+	bV65ZO1PHEya7vwAm9CF/psxiTiQfLRHpeGZl0SbBuTCQZWo35ysFq+IYBuojt38
+	bUK0n8xt7tTXm8bOl4BAqTeDbq95f3URJiFP/2zR1GZDLhSGzjBWhZQYvw5zrkLp
+	0iCtOmSnuRh+DMrOFpakiwuTX0QV0IEoDZx6VfW4mMf9dU+LFnxbJV0lgHwOn2hL
+	Hok9bVosGimlmduYCY3RJcAlNCJp/ZgMQQmf8ojs+TZEI45VFLiNf8k+GgtUItDb
+	V+Sl0jGBcZPaRB7r8TO+9w5QCaSdSxPj142NH7NkyAn8iA==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48n52ah41g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 11:39:52 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-70a9f55eb56so41977646d6.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 04:39:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755862791; x=1756467591;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mFLMQVHg9cUjUEhLaX2Ovvk3EYltYMYiOOM3208zwIA=;
+        b=ey61HKYzTgmlgqXzC8+Tvz+nak7PeJuPPV04QvPxMjrIHZFJdf2r7HR/1VmlztaZ17
+         MhtBtiY4m19t1Ua/bjhO6U16LlecsRCdZCYU5GxnPduUpXDpEr/4zhQBhf/sZJvr9Igu
+         ++wy9lsVlgVZzCCG7BXBrxBcSW4enlNupHvfbduDJGuPlNApbNWAB4k6pOUi29wl3e9u
+         HMntRZbeHQmql2UtaGU9bF4sdnBiJSNqrY4jN4bJkPEFB15rCHSrOP8ZE5UsXfRCC1yz
+         sL77rFsi9WHgWUBF98AWlqo4Rg0tFPj47fDu6bFiCAITLFEVNzB0ERcYMVOtLsKRESjb
+         lwUA==
+X-Forwarded-Encrypted: i=1; AJvYcCUK1RhgXtiIGnNMUWHekh7vU8qsIS7vSHsnOeLiJpLq6by85wTmjrcXZD5NQPRhRjMc7uMDawZKivps@vger.kernel.org
+X-Gm-Message-State: AOJu0YylI0pMTaBGvzSNU+wAaNRSJweZohSK8D4tXZhknvuqoscpjH25
+	IanthXBSS9ue6TL5GoMhJnlhJXnmuw5DzzhpOMrIBdr+gulatlA29qrzdTExGHrk1KL45TZ7hCs
+	SwVA1QJio8XCkKY++nKO6cuGnZ+ADPy0UVOOPlePtnNBmnW6froZJEgp1iypWHW90
+X-Gm-Gg: ASbGnct3tYVzekdTZK6X+EEx+TxzZCmaG42II4xouqh+ARTZNLvaABQR1dwb1JoYYt5
+	aKelQ5UVd6YfRRrF5ySNkI9FlRuZQxv4O8f9Uo2VIhYPwzif4tSc+bcD7yWLk9avMOKGnstkHkl
+	uDIxomyUWifQF/L5YtbEQVVQYKP9vcIiQX/kfp5LOEkOMS70fk1zbjWKRC7PXbpQSXLq7buL649
+	617xQWmv0YvX8KqRafOZ1+cHlHdXnDs01TV6ybnVt5bK4m8gvzbiguz7S1PZH+MSAaabk31lHbc
+	Bo2rrH5ZWvIHLeNJSVpThepXCumZ6SuBX0QruXFxzus3tizvJxvWAOF28oaZ/1PYYZl1NuIRJfB
+	y/XIytrFlP+xqKRebdxdDjXXGy771FyEm165LrZAlLEljaL2wHmyz
+X-Received: by 2002:a05:6214:d43:b0:70d:82f7:180e with SMTP id 6a1803df08f44-70d971ed40bmr37217096d6.50.1755862790495;
+        Fri, 22 Aug 2025 04:39:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHkbMfEBfr5OYFm9+slBBWnRivUg5jHHYuYw9w+zfkzG2JGT2dc4mFkYoJUMqOd72SEqiVvCw==
+X-Received: by 2002:a05:6214:d43:b0:70d:82f7:180e with SMTP id 6a1803df08f44-70d971ed40bmr37216476d6.50.1755862789959;
+        Fri, 22 Aug 2025 04:39:49 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3363b33a986sm4244671fa.48.2025.08.22.04.39.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Aug 2025 04:39:49 -0700 (PDT)
+Date: Fri, 22 Aug 2025 14:39:47 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 1/3] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy:
+ Document default phy mode
+Message-ID: <kxevo35c7tsbjeu4b7ep3f4eld5t4ohy35x4igaki6n7uvteev@ifotwczstsn3>
+References: <20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org>
+ <20250821-topic-x1e80100-hdmi-v1-1-f14ad9430e88@linaro.org>
+ <yc7ceoq3bn3lkxdwkrk64ecubej64vblpwlwzyj5cuep2wmjui@nln2t2yicu7o>
+ <018751b8-8b9c-4966-94e2-f3ec8625f87d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
- i.MX8ULP compatible string
-To: Guoniu Zhou <guoniu.zhou@nxp.com>, Rui Miguel Silva <rmfrfs@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Martin Kepplinger <martink@posteo.de>, Purism Kernel Team <kernel@puri.sm>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Frank Li <Frank.Li@nxp.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250822-csi2_imx8ulp-v2-0-26a444394965@nxp.com>
- <20250822-csi2_imx8ulp-v2-1-26a444394965@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250822-csi2_imx8ulp-v2-1-26a444394965@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <018751b8-8b9c-4966-94e2-f3ec8625f87d@linaro.org>
+X-Proofpoint-ORIG-GUID: OynIUbqCbDKPxm1zJoQeaJN0ODh4jTga
+X-Authority-Analysis: v=2.4 cv=B83gEOtM c=1 sm=1 tr=0 ts=68a85708 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=KKAkSRfTAAAA:8 a=shYPb7jLr3MzxgU6IIEA:9 a=CjuIK1q_8ugA:10
+ a=OIgjcC2v60KrkQgK7BGD:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: OynIUbqCbDKPxm1zJoQeaJN0ODh4jTga
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIwMDAxMyBTYWx0ZWRfX+zGjxvrcKZtN
+ 9PRDdy64oDzowriWU7Yf9pIWi01nAXB5Jd7tqknLCIRPtqu0NwofDITKd3bcunKYcyljFb88hKO
+ 47LGl7TP9klTbK/08fWNYIrczJnjdUdXV3uuKMhPS9ZyM0UocMXY9yjw2U+XjqBxJCU8jkAh+2N
+ KvGWEu4XeWAGbGJeqSkC4EGdj3YPIEzq6a8g6GfNUih3kgLo6U5OrCYPS8NqGrsEpsO3jwPUcMK
+ 6Uxofm+li4bpO9NO1RpzXCbXD2wIt+j3uUtooNBr6dmanmNe4T/lkDNlEGxgAdU7N2lSDTbbcqH
+ lWDT7pUI5hbFaYjtKNDw6LRse/vUmING1NPGDwWbILc33vG2IdX3pcW0NhyYSrbnmWvx/tHqpxs
+ /8WBEaPbMAeON6rZ/LQt2Q1rpKF9sQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-22_04,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
+ lowpriorityscore=0 adultscore=0 impostorscore=0 clxscore=1015 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508200013
 
-On 22/08/2025 12:50, Guoniu Zhou wrote:
-> The CSI-2 receiver in the i.MX8ULP is almost identical to the version
-> present in the i.MX8QXP/QM. But have different reset and clock design,
-> so add a device-specific compatible string for i.MX8ULP to handle the
-> difference.
+On Fri, Aug 22, 2025 at 01:02:21PM +0200, Neil Armstrong wrote:
+> On 22/08/2025 12:57, Dmitry Baryshkov wrote:
+> > On Thu, Aug 21, 2025 at 03:53:26PM +0200, Neil Armstrong wrote:
+> > > The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
+> > > of a combo glue to route either lanes to the 4 shared physical lanes.
+> > > 
+> > > The routing of the lanes can be:
+> > > - 2 DP + 2 USB3
+> > > - 4 DP
+> > > - 2 USB3
+> > > 
+> > > And the layout of the lanes can be swpped depending of an
+> > > eventual USB-C connector orientation.
+> > > 
+> > > Nevertheless those QMP Comby PHY can be statically used to
+> > > drive a DisplayPort connector, DP->HDMI bridge, USB3 A Connector...
+> > > 
+> > > But if a 4lanes DP->HDMI bridge is directly connected to the
+> > > QMP Comby PHY lanes, in the default routing 2 or the 4 lanes would
+> > > probbaly be USB3, making the DP->HDMI bridge non functional.
+> > > 
+> > > Add a property to hint in which layout mode the QMP Comby PHY
+> > > should be as startup.
+> > > 
+> > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > > ---
+> > >   .../bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         | 13 +++++++++++++
+> > >   1 file changed, 13 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> > > index c8bc512df08b5694c8599f475de78679a4438449..129475a1d9527733e43ded5a38aad766f9810fe7 100644
+> > > --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> > > +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> > > @@ -76,6 +76,19 @@ properties:
+> > >     mode-switch: true
+> > >     orientation-switch: true
+> > > +  qcom,combo-initial-mode:
+> > > +    description:
+> > > +      Describe the initial mode of the Combo PHY configuration.
+> > > +      The Combo PHY is a wrapper on top of a DP PHY and an USB3 PHY,
+> > > +      sharing the same SuperSpeed lanes with either DisplayPort over
+> > > +      the 4 lanes (dp), USB3 on a pair of lanes (usb3) or both
+> > > +      technologies in a 2+2 configuration (usb3+dp) as default.
+> > 
+> > SPecifying this as an initial mode means that it can be switched later.
+> > Should we generalize this and desribe it as bus-type (from
+> > video-interfaces.yaml) and allow it to be present only if there is no
+> > mode-switch property?
 > 
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-> ---
->  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 42 ++++++++++++++++++++--
->  1 file changed, 40 insertions(+), 2 deletions(-)
+> I was not sure about that, and yes we should do that instead but I'm not
+> sure about how.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> index 3389bab266a9adbda313c8ad795b998641df12f3..ca485d1d596c274eb7e1f3cdc39c61bb54cc0685 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> @@ -21,7 +21,9 @@ properties:
->            - fsl,imx8mq-mipi-csi2
->            - fsl,imx8qxp-mipi-csi2
->        - items:
-> -          - const: fsl,imx8qm-mipi-csi2
-> +          - enum:
-> +              - fsl,imx8ulp-mipi-csi2
-> +              - fsl,imx8qm-mipi-csi2
+> bus-type sounds great, but the numbering doesn't match so I was thinking instead
+> something like phy-type with a string or use the numbers from include/dt-bindings/phy/phy.h
 
-That;s some sort of random change. Previously code was correctly sorted
-- u > q... now it is not
-
->            - const: fsl,imx8qxp-mipi-csi2
->  
->    reg:
-> @@ -39,12 +41,19 @@ properties:
->                       clock that the RX DPHY receives.
->        - description: ui is the pixel clock (phy_ref up to 333Mhz).
->                       See the reference manual for details.
-> +      - description: pclk is the lpav bus clock of i.MX8ULP. It provides
-> +                     clock to CSI_REG module.
-> +                     (see section "4.5.4 Peripheral clock diagrams,
-> +                      Figure 76 MIPI CSI clocking" in IMX8ULPRM REV1)
-> +    minItems: 3
->  
->    clock-names:
->      items:
->        - const: core
->        - const: esc
->        - const: ui
-> +      - const: pclk
-> +    minItems: 3
->  
->    power-domains:
->      maxItems: 1
-> @@ -125,19 +134,48 @@ required:
->    - ports
->  
->  allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx8ulp-mipi-csi2
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +        resets:
-> +          maxItems: 2
-> +          minItems: 2
-
-minItems goes before max.
-
-> +        clocks:
-> +          minItems: 4
-> +        clock-names:
-> +          minItems: 4
-> +
->    - if:
->        properties:
->          compatible:
->            contains:
->              enum:
->                - fsl,imx8qxp-mipi-csi2
-> +          not:
-> +            contains:
-> +              enum:
-> +                - fsl,imx8ulp-mipi-csi2
->      then:
->        properties:
->          reg:
->            minItems: 2
->          resets:
->            maxItems: 1
-> -    else:
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx8mq-mipi-csi2
-> +    then:
->        properties:
->          reg:
->            maxItems: 1
-
-I don't see what we asked you for - restrict other variants.
-
-Answer previous review:
-
-"Or explain why old hardware has now 4
-clocks. That explanation is missing."
+Well... we can add more entries there and map them in the driver.
 
 > 
+> The thing is, do we want to keep the dual dp+usb3 as static ? I think it's very possible
+> a board would connect the combo phy to an USB3 A connector and a 2lanes DisplayPort connector.
+
+I'm not sure I follow the question. Could you please explain what you've
+meant here?
 
 
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
