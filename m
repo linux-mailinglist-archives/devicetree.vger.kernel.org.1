@@ -1,230 +1,128 @@
-Return-Path: <devicetree+bounces-207883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 837AAB3114B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81A2DB31153
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:13:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EF5D1C81240
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:07:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 787381884AC5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 278312EAB93;
-	Fri, 22 Aug 2025 08:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34002DEA6F;
+	Fri, 22 Aug 2025 08:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EUr9GDfD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aNksuNWB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FE125A640;
-	Fri, 22 Aug 2025 08:06:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5F821FF45
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 08:08:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755850001; cv=none; b=AegmDU7xDZED7/VuaOe4MMc4HdnXTb74r8szdQIf0tHkkxQuaL5rC2XPfcvrWNWWhNH0sDWmEbgy/X4QF4E8ZK20RXGlXeonxtak9/p37NBQZYzz7UzPCmMJ1LDl9IcG0KQrXzIFEfj+0g2iuK0PbQnWEY3CxkOw3KGd/usaVtY=
+	t=1755850132; cv=none; b=t2yGi3N8nyfcDLMmmOXkmMAAPREhkVzd42koh57KbmxZkE46ifWAhx7eiHDCO9GqAtdXwr0xM86PltWZslTOloOTkQg0Vrs12kETU2uDS+sTLifkajZVtj+ya7yklvo+8Zzl3frRVjXujns2GACLlXVJ2L5DzwCE78d8SeoZ8ew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755850001; c=relaxed/simple;
-	bh=h+QAsLHcHphnO5GHj6GjYLiZ/feVrj2o6O4fk/onQb8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pBj4klmyY6L3LpIgIzJoQdwNlVyKUZXWcEwpglEmJighw4zBiUrwnhqZueop/c97Sj+negZYv112VB+q98ywVF9sgNB0jTL+yqce201aDkWBWUYEWyH8opuGgaN0gj7L9TQN7dhBv0Lo95YHdCG9lcdZg5RxJsmbalj1IvVQ6sY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EUr9GDfD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78C23C4CEF1;
-	Fri, 22 Aug 2025 08:06:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755850000;
-	bh=h+QAsLHcHphnO5GHj6GjYLiZ/feVrj2o6O4fk/onQb8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EUr9GDfD8Z2950nOET7InqJEUXnuDGDPMhoubseAdozACiGlBK9WLmCcMw0riNAya
-	 eJbMRl4Na+cluvsk6Qp4rq4LrLT/z4vNyMErnuxoTVVUv4pzP9pgnGSimpBWXLGc4D
-	 1iHa3t0ihZVXmRNtyPBaXrt7opCcjmsKh6FIcDggpQ2oYAyJaRs+/A5EaKKmnEquRS
-	 xKdwzcZjlspSypdDJlP4aUlD0F0eh4uccQ8oiZ/mQQ0K25BrhCCiUC1DOKc3XuH2jj
-	 8uCxJcjFV1VzZflj0phVSvaRaP1lMICpLjU+5wigQuGrHQMYv6rFpj/yc5xZcMGC1m
-	 HO/xN2j5kiaKA==
-Date: Fri, 22 Aug 2025 13:36:23 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org, 
-	kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v5 1/3] PCI: qcom: Add equalization settings for 8.0 GT/s
- and 32.0 GT/s
-Message-ID: <z54p5x5u56u7dprrlv3obzhxotjgimbufa2spajoqvnlrevgdd@4dejnkmiegrh>
-References: <20250819071649.1531437-1-ziyue.zhang@oss.qualcomm.com>
- <20250819071649.1531437-2-ziyue.zhang@oss.qualcomm.com>
+	s=arc-20240116; t=1755850132; c=relaxed/simple;
+	bh=gcyyJ3A5+OKGc6ZQvYcrHgZc5PnnJU7+8btR3+9SeDI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=CKS4WUYX7i8GQH7uuN7U9lA26a5USQ5m8/zjIf2VToFDK2BAjZfGAa3h+fXy3toFwYg2MkHmrv1HhGS8rx/JFoji6ZsPSqdu7G62jXscbxjbknUTM2HQ3IfQEz78g14XgFsYdUwzx2dJtvQ8Sb7z1xUZ9Ezs147eIDHWFLGz+40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aNksuNWB; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45a1b004a31so12580555e9.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 01:08:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755850129; x=1756454929; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TNEBpGgZdG/2jJwkaxvAijY+ORi32/fy01Nt/XLeMz4=;
+        b=aNksuNWBZ4gPWFE3BOx95zh9f8QtMwqMY2ZiY90uWqq0ZmA0TsdBZx94V62m85ukIT
+         kPv4TklQgWLPQNWMiX60q2fenqBu212tdQbHrrJ9YDeerIHyAYGC7VIsoyVaso/KpZDC
+         mENG9bPS8Oi/JIqQoWINePz0hrodaJhhDibhGx5e/nMMO9qgzFoKGP0PRLdavONsvUY9
+         k9BwxUEIfjppiJ6NTGOBNmQ2oZ8VpLny2QNxp1POG95AGLVjyUY8RHzJcKmeO+tGWY4+
+         5Kn681SFjV2emvXt1SFtZs7tfK+f89IxHsr+xT/ZPY1zrwv7WAoTpDY26jWza5DdRnFL
+         6dCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755850129; x=1756454929;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TNEBpGgZdG/2jJwkaxvAijY+ORi32/fy01Nt/XLeMz4=;
+        b=odTwtCJwVh2+KSMJ0PZIqC1XegUNSkhXbF8LQTkrlXkTxQvtsdivp/x7kqo+rr/JQm
+         yMMq1Ff4VxZqBVYQFqaNuXvcKeGJFGYP8prmuz0/K2sJZj4NAKImrJ4YenME67AFqGZw
+         jCBWtcWSudhf01Yo7Sm5ci86MTtydhvkHmfEi55n7V6NMGEolxd9YZPi6TfRsRlpC2wH
+         62fmaE1LG2R7ahh4t6VjldBK9gamjoZamPmTf7W+kIwvgPrIdVYUw/jC6ECjaRsH7pLC
+         RlMiVnw2v/KJmpNry2X5n6JqWd5o+bVrWOGOruXntoPa0zLNS8Ajie1VbGNxaj1q9ZUS
+         gvPw==
+X-Forwarded-Encrypted: i=1; AJvYcCUHqe6KHYGZbeJQnrfFrCl318emLaipFWflc/+QPIw+8P4S1/fNxZEGsrFrBdhUStSL+fMAVZKd19GC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIdiTFgchAMd8ol7fuPfemFb02xQ7iSE3t2YQ+l4EsI0bz4XzG
+	YWrKDodpAXDxKK0Io1yNcI/alaT7uyxuWFA3N+ZAozqCkDELtv/ESPqh01UgiqWvS9k=
+X-Gm-Gg: ASbGncuiF+/hXpmXL5txO0QOrfLhsaLr0KBBlMV97YnJaErVCTiXBtro1RNRKD08y8/
+	v2r9bL/IZVClB87+saHzG/iZZ+uP2Zb7EiOGPCAEd8bPswW1eomXchC0Wnp+3hukGS1ez/h4Nqi
+	Dc+qJUEo0vinkbarUbPPcetcamdEB1onrpGaQdHFkVcg50Fk+IJtH38dI7wOj3ItReIFpUPl7If
+	xmAHwEFlHCBLToxp5g3jvHQ3uYaINb7Xbq5kNRehNOt6Y3ereCIz4yKKt8S9mOe2inRQUILM9EC
+	aAMb4fKPhhFFKnHvPewg10N6vFOcr9gnYu9fv5nBAPsifrepaQnJeqe1BY81XKhEGqcq6p9p0V9
+	TsLoOyS4IdeVWE/HqL6F/IR9Xj80=
+X-Google-Smtp-Source: AGHT+IEsxW6o/F7dQT5UHqvxMpkKhAVZlHmWm8Xnxd3OnhbNdincCBQd5nTWNUKg/zsTGxuq9w18LQ==
+X-Received: by 2002:a05:600c:1c1d:b0:459:dc92:b95f with SMTP id 5b1f17b1804b1-45b5179ce00mr17667625e9.5.1755850129318;
+        Fri, 22 Aug 2025 01:08:49 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45b50de8a94sm28905885e9.12.2025.08.22.01.08.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Aug 2025 01:08:49 -0700 (PDT)
+Date: Fri, 22 Aug 2025 11:08:46 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Lizhi Hou <lizhi.hou@amd.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kernel-janitors@vger.kernel.org
+Subject: [PATCH next] of: dynamic: Fix use after free in
+ of_changeset_add_prop_helper()
+Message-ID: <aKgljjhnpa4lVpdx@stanley.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250819071649.1531437-2-ziyue.zhang@oss.qualcomm.com>
+X-Mailer: git-send-email haha only kidding
 
-On Tue, Aug 19, 2025 at 03:16:46PM GMT, Ziyue Zhang wrote:
-> Add lane equalization setting for 8.0 GT/s and 32.0 GT/s to enhance link
-> stability and avoid AER Correctable Errors reported on some platforms
-> (eg. SA8775P).
-> 
+If the of_changeset_add_property() function call fails, then this code
+frees "new_pp" and then dereference it on the next line.  Return the
+error code directly instead.
 
-So this is fixing an issue, right? Then you should add relevant Fixes tag. I
-guess the tag here would be the commit that added SA8775p.
+Fixes: c81f6ce16785 ("of: dynamic: Fix memleak when of_pci_add_properties() failed")
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+---
+ drivers/of/dynamic.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-> 8.0 GT/s, 16.0 GT/s and 32.0 GT/s require the same equalization setting.
-> This setting is programmed into a group of shadow registers, which can be
-> switched to configure equalization for different speeds by writing 00b,
-> 01b and 10b to `RATE_SHADOW_SEL`.
-> 
-> Hence program equalization registers in a loop using link speed as index,
-> so that equalization setting can be programmed for 8.0 GT/s, 16.0 GT/s
-> and 32.0 GT/s.
-> 
-> Co-developed-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.h  |  1 -
->  drivers/pci/controller/dwc/pcie-qcom-common.c | 58 +++++++++++--------
->  drivers/pci/controller/dwc/pcie-qcom-common.h |  2 +-
->  drivers/pci/controller/dwc/pcie-qcom-ep.c     |  6 +-
->  drivers/pci/controller/dwc/pcie-qcom.c        |  6 +-
->  5 files changed, 41 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index b5e7e18138a6..11de844428e5 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -123,7 +123,6 @@
->  #define GEN3_RELATED_OFF_GEN3_EQ_DISABLE	BIT(16)
->  #define GEN3_RELATED_OFF_RATE_SHADOW_SEL_SHIFT	24
->  #define GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK	GENMASK(25, 24)
-> -#define GEN3_RELATED_OFF_RATE_SHADOW_SEL_16_0GT	0x1
->  
->  #define GEN3_EQ_CONTROL_OFF			0x8A8
->  #define GEN3_EQ_CONTROL_OFF_FB_MODE		GENMASK(3, 0)
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-common.c b/drivers/pci/controller/dwc/pcie-qcom-common.c
-> index 3aad19b56da8..cb98e66d81d9 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-common.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-common.c
-> @@ -8,9 +8,11 @@
->  #include "pcie-designware.h"
->  #include "pcie-qcom-common.h"
->  
-> -void qcom_pcie_common_set_16gt_equalization(struct dw_pcie *pci)
-> +void qcom_pcie_common_set_equalization(struct dw_pcie *pci)
->  {
->  	u32 reg;
-> +	u16 speed;
-> +	struct device *dev = pci->dev;
-
-Reverse Xmas order please.
-
->  
->  	/*
->  	 * GEN3_RELATED_OFF register is repurposed to apply equalization
-> @@ -19,32 +21,40 @@ void qcom_pcie_common_set_16gt_equalization(struct dw_pcie *pci)
->  	 * determines the data rate for which these equalization settings are
->  	 * applied.
->  	 */
-> -	reg = dw_pcie_readl_dbi(pci, GEN3_RELATED_OFF);
-> -	reg &= ~GEN3_RELATED_OFF_GEN3_ZRXDC_NONCOMPL;
-> -	reg &= ~GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK;
-> -	reg |= FIELD_PREP(GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK,
-> -			  GEN3_RELATED_OFF_RATE_SHADOW_SEL_16_0GT);
-> -	dw_pcie_writel_dbi(pci, GEN3_RELATED_OFF, reg);
->  
-> -	reg = dw_pcie_readl_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF);
-> -	reg &= ~(GEN3_EQ_FMDC_T_MIN_PHASE23 |
-> -		GEN3_EQ_FMDC_N_EVALS |
-> -		GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA |
-> -		GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA);
-> -	reg |= FIELD_PREP(GEN3_EQ_FMDC_T_MIN_PHASE23, 0x1) |
-> -		FIELD_PREP(GEN3_EQ_FMDC_N_EVALS, 0xd) |
-> -		FIELD_PREP(GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA, 0x5) |
-> -		FIELD_PREP(GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA, 0x5);
-> -	dw_pcie_writel_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF, reg);
-> +	for (speed = PCIE_SPEED_8_0GT; speed <= pcie_link_speed[pci->max_link_speed]; ++speed) {
-> +		if (speed > PCIE_SPEED_32_0GT) {
-> +			dev_warn(dev, "Skipped equalization settings for speeds higher than 32.0 GT/s\n");
-> +			break;
-> +		}
->  
-> -	reg = dw_pcie_readl_dbi(pci, GEN3_EQ_CONTROL_OFF);
-> -	reg &= ~(GEN3_EQ_CONTROL_OFF_FB_MODE |
-> -		GEN3_EQ_CONTROL_OFF_PHASE23_EXIT_MODE |
-> -		GEN3_EQ_CONTROL_OFF_FOM_INC_INITIAL_EVAL |
-> -		GEN3_EQ_CONTROL_OFF_PSET_REQ_VEC);
-> -	dw_pcie_writel_dbi(pci, GEN3_EQ_CONTROL_OFF, reg);
-> +		reg = dw_pcie_readl_dbi(pci, GEN3_RELATED_OFF);
-> +		reg &= ~GEN3_RELATED_OFF_GEN3_ZRXDC_NONCOMPL;
-> +		reg &= ~GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK;
-> +		reg |= FIELD_PREP(GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK,
-> +			  speed - PCIE_SPEED_8_0GT);
-> +		dw_pcie_writel_dbi(pci, GEN3_RELATED_OFF, reg);
-> +
-> +		reg = dw_pcie_readl_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF);
-> +		reg &= ~(GEN3_EQ_FMDC_T_MIN_PHASE23 |
-> +			GEN3_EQ_FMDC_N_EVALS |
-> +			GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA |
-> +			GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA);
-> +		reg |= FIELD_PREP(GEN3_EQ_FMDC_T_MIN_PHASE23, 0x1) |
-> +			FIELD_PREP(GEN3_EQ_FMDC_N_EVALS, 0xd) |
-> +			FIELD_PREP(GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA, 0x5) |
-> +			FIELD_PREP(GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA, 0x5);
-> +		dw_pcie_writel_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF, reg);
-> +
-> +		reg = dw_pcie_readl_dbi(pci, GEN3_EQ_CONTROL_OFF);
-> +		reg &= ~(GEN3_EQ_CONTROL_OFF_FB_MODE |
-> +			GEN3_EQ_CONTROL_OFF_PHASE23_EXIT_MODE |
-> +			GEN3_EQ_CONTROL_OFF_FOM_INC_INITIAL_EVAL |
-> +			GEN3_EQ_CONTROL_OFF_PSET_REQ_VEC);
-> +		dw_pcie_writel_dbi(pci, GEN3_EQ_CONTROL_OFF, reg);
-> +	}
->  }
-> -EXPORT_SYMBOL_GPL(qcom_pcie_common_set_16gt_equalization);
-> +EXPORT_SYMBOL_GPL(qcom_pcie_common_set_equalization);
->  
->  void qcom_pcie_common_set_16gt_lane_margining(struct dw_pcie *pci)
->  {
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-common.h b/drivers/pci/controller/dwc/pcie-qcom-common.h
-> index 7d88d29e4766..7f5ca2fd9a72 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-common.h
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-common.h
-> @@ -8,7 +8,7 @@
->  
->  struct dw_pcie;
->  
-> -void qcom_pcie_common_set_16gt_equalization(struct dw_pcie *pci);
-> +void qcom_pcie_common_set_equalization(struct dw_pcie *pci);
->  void qcom_pcie_common_set_16gt_lane_margining(struct dw_pcie *pci);
->  
->  #endif
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> index 60afb4d0134c..aeb166f68d55 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> @@ -511,10 +511,10 @@ static int qcom_pcie_perst_deassert(struct dw_pcie *pci)
->  		goto err_disable_resources;
->  	}
->  
-> -	if (pcie_link_speed[pci->max_link_speed] == PCIE_SPEED_16_0GT) {
-> -		qcom_pcie_common_set_16gt_equalization(pci);
-> +	qcom_pcie_common_set_equalization(pci);
-> +
-> +	if (pcie_link_speed[pci->max_link_speed] == PCIE_SPEED_16_0GT)
-
-This condition has existed even before this patch, but just noticing this
-possible issue. So if 'max_link_speed' is > 16 GT/s, we do not need to set lane
-margining? We used the same logic to set equalization setting earlier also.
-
-- Mani
-
+diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+index dd30b7d8b5e4..2eaaddcb0ec4 100644
+--- a/drivers/of/dynamic.c
++++ b/drivers/of/dynamic.c
+@@ -935,13 +935,15 @@ static int of_changeset_add_prop_helper(struct of_changeset *ocs,
+ 		return -ENOMEM;
+ 
+ 	ret = of_changeset_add_property(ocs, np, new_pp);
+-	if (ret)
++	if (ret) {
+ 		__of_prop_free(new_pp);
++		return ret;
++	}
+ 
+ 	new_pp->next = np->deadprops;
+ 	np->deadprops = new_pp;
+ 
+-	return ret;
++	return 0;
+ }
+ 
+ /**
 -- 
-மணிவண்ணன் சதாசிவம்
+2.47.2
+
 
