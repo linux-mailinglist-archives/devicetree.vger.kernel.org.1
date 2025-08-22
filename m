@@ -1,69 +1,62 @@
-Return-Path: <devicetree+bounces-208323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBB9EB3205F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 18:22:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88F2B32069
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 18:23:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68DB158197C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:18:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B37C2586199
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:20:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C4B25B312;
-	Fri, 22 Aug 2025 16:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB392749D2;
+	Fri, 22 Aug 2025 16:20:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EDU2rvAm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IMi+85sx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BC11A9FB9;
-	Fri, 22 Aug 2025 16:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D129239567;
+	Fri, 22 Aug 2025 16:20:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755879510; cv=none; b=KUfQ8L3fLq9hph8RfwEbt5ZIrcsg84q0lRadUU9SMuPTt9sZQSj/0QWfxayvAIwuztgFsVxWS4XXpKSGTTlVRuEJRuEuESzVX5c9rSLIdxIGlMQxGqatiuzWdjYUrwBgEzXQOiVn/FPKQoo0gOV6s5RvlSb5vr0sWLLIAOM2aY4=
+	t=1755879644; cv=none; b=bUZhR9eDSsKbUkHXLkTwCTO6dp3CHf5/V+svqgVy4+xhcdLP/HJN/AvkqaFesdIS+zLZrXQOCPYfi4NYtNHpJLZIRxy9/+UXuX/NrIFNW0s67IymMJxHaaMWnwhu8M+6Pea58TFtOGp9NW4BKlV95U5tnx225CnMmDsiGtbGH4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755879510; c=relaxed/simple;
-	bh=YHS/oTRhurrO0NtuvfArtyVRbEqEjh/ZB1xiPazD29Y=;
+	s=arc-20240116; t=1755879644; c=relaxed/simple;
+	bh=O6G/Aax9AfaMy7cKL+RsehhRcoBaJheJ6T/fA+30ExQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AU9sicsfdz6pxVARdUiGz9g0temQ8fuZdPQm9MwUqk9iGFKHdCeSB3suMHI5T7+C5VEeU/t4fLCdG3r8on6CG000h/gvuRXpvboDKSgaOdBL3krWUkGACJg85JE7BkcUg4TRYWB3zRR8zaNUHKM+6M8ymUL7J8s3hPmDWsuG0E0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EDU2rvAm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55908C4CEED;
-	Fri, 22 Aug 2025 16:18:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CpaXoqdI0MjjwOXu5EnG9dwQXnQw1GZyNAJQ+SFOOiM6tsVvOIoLLNpCXJnBqQfyCP1ps5t8Gp9yEBnLeY0qB3om3ta234OSREk1YDej2+bkf0d1sGQX9HuIMDdU4W4gvlF3erXswCOJWrLtD2ra8qcs/ZmxWGb9ofiOODv8x5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IMi+85sx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDDF6C4CEED;
+	Fri, 22 Aug 2025 16:20:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755879509;
-	bh=YHS/oTRhurrO0NtuvfArtyVRbEqEjh/ZB1xiPazD29Y=;
+	s=k20201202; t=1755879644;
+	bh=O6G/Aax9AfaMy7cKL+RsehhRcoBaJheJ6T/fA+30ExQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EDU2rvAmbrdsQmwDOOf46wZpKyL79qRomVIeWW1n6gS+yGd2aa3KJt0xVHllb94fb
-	 2/RJfy54Qd2giI2kVNErQ5hLopgJdVaiOBJPLcpVlhWZDKCN2qHxjj1F3p/6FzIuqD
-	 cCL0MFjAhJUrdB8XJWpraXU7FAvF3KAotwPbxoGwx+qAoWM+iepoHi5GQ1qdPm5ary
-	 4NQEekp8Ifz4NSKy7pPjz2ojCvad7wU0KHnFqMnEVC9Z8bnrkNmp5weCUQAnARUWEe
-	 7qqkU+kHH/Giaa0T7uEwdskfo/gTaGOeb0VtMfHIRGX26IBnMTzkhlBER0NTF6l/oi
-	 gUQm++Qs+Oi4Q==
-Date: Fri, 22 Aug 2025 11:18:28 -0500
+	b=IMi+85sxc1/ebXZRbIBpo4iBm8lXcoJfP4+kwGGXyCpjHfoNtlDFDvNC/LW32XO4r
+	 CG1JJYVPeLew2z7dIrQFOGnnO7d/RYV4Q7bE5hDMMRLewFNS3ZAYr7Ud1/yAAXkRx/
+	 43vth9t6BDB7bdpNfbUPyU/OLIEPq+9oLdm4sx8UVGEtYY4PRE2ZyVDwg126Zglmc0
+	 nUR3ZTKPMEIxqlVMtaaCiNxeHM5ZE680VhZGM8jB5oravxZ/44se1K4ikBk+fdcWKU
+	 jKRTNZGfB+o7+Mf9OFihrQBdnqt1bXTW7k50TNsx3YGRbBSRhCQR7IICOhPh3wTMFZ
+	 4RShDckUvXiMQ==
+Date: Fri, 22 Aug 2025 11:20:43 -0500
 From: Rob Herring <robh@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Conor Dooley <conor@kernel.org>, "biju.das.au" <biju.das.au@gmail.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+To: Biju <biju.das.au@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
-	"magnus.damm" <magnus.damm@gmail.com>,
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 03/11] dt-bindings: phy: renesas: Document Renesas RZ/G3E
- USB3.0 PHY
-Message-ID: <20250822161828.GA3905962-robh@kernel.org>
+Subject: Re: [PATCH 06/11] dt-bindings: usb: Document Renesas RZ/G3E USB3HOST
+Message-ID: <20250822162043.GA3920949-robh@kernel.org>
 References: <20250820171812.402519-1-biju.das.jz@bp.renesas.com>
- <20250820171812.402519-4-biju.das.jz@bp.renesas.com>
- <20250820-primer-shaded-66da9fa4bcae@spud>
- <20250820-commodity-curator-1f580789885b@spud>
- <TY3PR01MB113467039A598C0EDC284AE198632A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <20250820171812.402519-7-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,31 +65,124 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <TY3PR01MB113467039A598C0EDC284AE198632A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <20250820171812.402519-7-biju.das.jz@bp.renesas.com>
 
-On Thu, Aug 21, 2025 at 07:18:59AM +0000, Biju Das wrote:
-> Hi Conor,
+On Wed, Aug 20, 2025 at 06:17:53PM +0100, Biju wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
 > 
-> Thanks for the feedback.
+> Document the Renesas RZ/G3E USB3.2 Gen2 Host Controller (a.k.a USB3HOST).
+> The USB3HOST is compliant with the Universal Serial Bus 3.2 Specification
+> Revision 1.0.
+>  - Supports 1 downstream USB receptacles
+>      - Number of SSP Gen2 or SS ports: 1
+>      - Number of HS or FS or LS ports: 1
+>  - Supports Super Speed Plus Gen2x1 (10 Gbps), Super Speed (5 Gbps),
+>    High Speed (480 Mbps), Full Speed (12Mbps), and Low Speed (1.5 Mbps).
+>  - Supports all transfer-types: Control, Bulk, Interrupt, Isochronous, and
+>    these split-transactions.
+>  - Supports Power Control and Over Current Detection.
 > 
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: 20 August 2025 21:13
-> > Subject: Re: [PATCH 03/11] dt-bindings: phy: renesas: Document Renesas RZ/G3E USB3.0 PHY
-> > 
-> > On Wed, Aug 20, 2025 at 09:10:07PM +0100, Conor Dooley wrote:
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > 
-> > Now that I look again, same applies here with the different filename and compatible. Copypaste mistake?
-> > Or why does the compatible not match the filename?
-> > 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  .../bindings/usb/renesas,rzg3e-xhci.yaml      | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/renesas,rzg3e-xhci.yaml
 > 
-> r9a09g047 is SoC part number which also known as RZ/G3E SoC.
-> 
-> I just followed the convention used in [1] and [2].
-> Please let me know, should I change rzg3e-usb3-phy.yaml.yaml-> r9a09g047-usb3-phy.yaml ?
+> diff --git a/Documentation/devicetree/bindings/usb/renesas,rzg3e-xhci.yaml b/Documentation/devicetree/bindings/usb/renesas,rzg3e-xhci.yaml
+> new file mode 100644
+> index 000000000000..2f73ea2e1e78
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/renesas,rzg3e-xhci.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/renesas,rzg3e-xhci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G3E USB 3.2 Gen2 Host controller
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
 
-I think it is fine as-is.
+Common USB and XHCI properties don't apply?
 
-Rob
+> +properties:
+> +  compatible:
+> +    const: renesas,r9a09g047-xhci
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Logical OR of all interrupt signals.
+> +      - description: System management interrupt
+> +      - description: Host system error interrupt
+> +      - description: Power management event interrupt
+> +      - description: xHC interrupt
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: all
+> +      - const: smi
+> +      - const: hse
+> +      - const: pme
+> +      - const: xhc
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    maxItems: 2
+> +
+> +  phy-names:
+> +    items:
+> +      - const: usb2-phy
+> +      - const: usb3-phy
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - power-domains
+> +  - resets
+> +  - phys
+> +  - phy-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/renesas,r9a09g047-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    usb@15850000 {
+> +      compatible = "renesas,r9a09g047-xhci";
+> +      reg = <0x15850000 0x10000>;
+> +      interrupts = <GIC_SPI 759 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 758 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 757 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 756 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 755 IRQ_TYPE_LEVEL_HIGH>;
+> +      interrupt-names = "all", "smi", "hse", "pme", "xhc";
+> +      clocks = <&cpg CPG_MOD 0xaf>;
+> +      power-domains = <&cpg>;
+> +      resets = <&cpg 0xaa>;
+> +      phys = <&usb3_phy>, <&usb3_phy>;
+> +      phy-names = "usb2-phy", "usb3-phy";
+> +    };
+> -- 
+> 2.43.0
+> 
 
