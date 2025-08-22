@@ -1,102 +1,94 @@
-Return-Path: <devicetree+bounces-208221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A85B31DF5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:17:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 366FEB31DE1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:15:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45CE956741B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:07:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E71B1887EA9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:11:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC92F1A9F95;
-	Fri, 22 Aug 2025 15:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CEDB1F583D;
+	Fri, 22 Aug 2025 15:10:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="hXO651aH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ndsnKge/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562BC3F9D2;
-	Fri, 22 Aug 2025 15:07:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6468E1E2834;
+	Fri, 22 Aug 2025 15:10:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755875245; cv=none; b=tg5bYo+wLTZC3E3qKZwKbBtAiaypTRMGszZHADkXmcCvvNlcZhOd73l60O2Z2MZ2TnSoKadrSxGfJnxbXQ1w6hqHO4ONXsq9Vnemitfw4vHhC8v9/ZVfxJGgDGyH9a+RAjkNCef2VE/cy25fKroJ5zzfUs1inhH1pja/kabjUF8=
+	t=1755875451; cv=none; b=TiV7iwUfnWvCaO7yUJeiWd3ROdsYyimj7qxuTlWmdNcQPGofdnDaq5T+AASk1jscWxkQgZVsHM7XRHHx6r3HizSiUaw+Lptztbg6Y0y7kLHsKTNwH/ctmC+/2e9MK2iF5i/zQogl0QxTg+RiYjNbjanyoFlXdUZeWaevalahXXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755875245; c=relaxed/simple;
-	bh=fU2ORU4cOlSGX33IXl2CgMrG8x38iM8RTLwSMonKKTw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p89RzLXVy4joIlGzu3V0uLHs/naAfXlAwGPqKmhfIrKP7FCsTp5Iay2qfxoDiHNRdsvRD3z2JwqSyrTp1W4aC+5M7SEXFzKADvTbwfewR30NgAtC7cZGvk0ueniBS6SQfhEtjNmqzV0Yi6PxwLGkU74nAky6Ask+PFxIBXt2HXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=hXO651aH; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=ohAxfRMC3hfwx3bWNwqhsVIp9/GkRkVmDTq9tXa2hWo=; b=hXO651aHiuKcKK9LsfPxhe2tEp
-	/8OWWYskvDMRuZTlbG+4fOkc9r7tDDxYQ0QqX/7RRpFesk0ufQbFKGouuGM6nqhVi2yDJBf3rZ/aw
-	4FPAtzdypX427e2MTU678VK5lIBfIQmCAKbDrOc6E4MNirID2u/1RTotan2tqz2Ju8dyhS6LthjLL
-	43+yXto27VZDs845hMcae/pE0gIiCsLmOYKLC+82oXRzGQ/p5ZM1dHoaT55M122dhefJfWdcvM9fC
-	XevwYqlfLWY+mnN0oJzNkcj9ieqI9ZWjM7+7KCrwnpeV80xCvvwgCNA6xNl+wLL/DhNhjjq29AcRC
-	orFl6uaA==;
-Received: from i53875a83.versanet.de ([83.135.90.131] helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1upTM4-00016y-MI; Fri, 22 Aug 2025 17:07:00 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Shresth Prasad <shresthprasad7@gmail.com>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Yao Zi <ziyao@disroot.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1755875451; c=relaxed/simple;
+	bh=qBAyRodyfRh78G2uxakZpehoj7ao6KSddD/e4iAX3sk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Geuo+yc1VwdW5zzwpqj9iNj2w0FiDQBAv7rwTFpBp+Z1YwLQI6VL/4/VveLniesM7E/pLxYyESx18cdijZDOL/uyQSfJvkW2ae+/Ta+KGW+XMkVF5z2dHaNOf/1cUyJEzxf7ufqXhJaHwEKCLb0FQykdB3bCQ0G8HnTiUh9U0LY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ndsnKge/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C07BC4CEED;
+	Fri, 22 Aug 2025 15:10:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755875451;
+	bh=qBAyRodyfRh78G2uxakZpehoj7ao6KSddD/e4iAX3sk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ndsnKge/6j/Z9BWT++REFN7u9tKc0uGX6xVqKti8YWkC5pta0hltDhTEfpFvObz7t
+	 I7p/IoRdh/tQt8wPXqSjEW05GDJLBKPsVh8pYocv0mpBFdC+3GQeaAxgKtx3hzVm/S
+	 K7VMIoNXDcum9s3cmJDwO3zk4Cuy4N6XdR7uyZbqajfcna2zj7VrVvInUAnA+xmJiU
+	 Yy/+sfL8Cb/ZFPF5z5eGSl6xmjiQJDcp4PFcOej9ezDiMLS/1SFexRoCt1DuiEaqNq
+	 +7Xn0hZWhcqRDIZ3H6W+Awnth0kL0A5zy3JLRf1pqbJssms1xD5c+6T6HyJnaHUZBT
+	 /Tw+cGl0a1MJA==
+Date: Fri, 22 Aug 2025 10:10:50 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Jacky Bai <ping.bai@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v5 0/6] Support RK3528 variant of Rockchip naneng-combphy
-Date: Fri, 22 Aug 2025 17:06:56 +0200
-Message-ID: <175587519618.3220879.13156903990488376391.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250728102947.38984-2-ziyao@disroot.org>
-References: <20250728102947.38984-2-ziyao@disroot.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v2 1/1] dt-bindings: gpio: Move fsl,mxs-pinctrl.txt into
+ gpio-mxs.yaml
+Message-ID: <175587544961.3817064.4646134256095091634.robh@kernel.org>
+References: <20250820164946.3782702-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250820164946.3782702-1-Frank.Li@nxp.com>
 
 
-On Mon, 28 Jul 2025 10:29:42 +0000, Yao Zi wrote:
-> Rockchip RK3528 ships a naneng-combphy that operates in either PCIe or
-> USB 3.0 mode. It has a similar control logic to previous generations of
-> naneng-combphy but an apparently different register layout.
+On Wed, 20 Aug 2025 12:49:45 -0400, Frank Li wrote:
+> Move mxs-pinctrl part into gpio-mxs.yaml and add pinctrl examples to fix
+> below CHECK_DTB warning:
 > 
-> This series prepares phy-rockchip-naneng-combphy.c for variants with a
-> different register layout and add RK3528 support.
+> arch/arm/boot/dts/nxp/mxs/imx28-xea.dtb: pinctrl@80018000 (fsl,imx28-pinctrl):
+>    'auart0-2pins@0', 'auart0@0',  ... 'usb1@1' do not match any of the regexes: 'gpio@[0-9]+$', 'pinctrl-[0-9]+'
 > 
-> [...]
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Changes in v2
+> - Add more description about over 10 years devices.
+> ---
+>  .../devicetree/bindings/gpio/gpio-mxs.yaml    |  80 ++++++++++-
+>  .../bindings/pinctrl/fsl,mxs-pinctrl.txt      | 127 ------------------
+>  2 files changed, 75 insertions(+), 132 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,mxs-pinctrl.txt
+> 
 
-Applied, thanks!
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-[6/6] arm64: dts: rockchip: Add naneng-combphy for RK3528
-      commit: 70bb21cbc8c704c664b5d3ea417f3e35376fc229
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
 
