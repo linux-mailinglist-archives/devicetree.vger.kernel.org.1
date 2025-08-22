@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-208309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C07B31FCA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 17:58:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D609B32007
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 18:05:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76585B67E7B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:56:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F8F3626404
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:58:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77BF525B1DC;
-	Fri, 22 Aug 2025 15:57:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BC022475C2;
+	Fri, 22 Aug 2025 15:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zL8V0nfy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nc4RBFX3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3860246BC1
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 15:57:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2786251793
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 15:57:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755878224; cv=none; b=idenmyHnxUqoFJgeWy1FF6OMIksKDSMjKi/dENfo/7qhLu2eDdGtq53ThQ0eng2LLW3LTIgU0P93xRbUdnGKsfNfpjj2v80Ugjx2MDSkUnXxw7/lVRo+h/RgmstX8QX4j1aTEBhdXH9I/qUqqDaOYwlm2u82Ph7LNZ4j4/bXci0=
+	t=1755878226; cv=none; b=W0gDpJHUiHx6d/H3fc++Wq3XWq8KKbxyvznHlqDNP0RjabFTi8G19cXDxxZhFRp8rfUMQ8PTXrP7PPROltNrkiqCt7uUbegQC68ASiYAk7FSYNQ9epV9Wbqh8EGllgf9PIGjnwzbmSoYlvmGzYIdr2LEyPxh/FNOvodsrebAjhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755878224; c=relaxed/simple;
-	bh=RXNwtS2EB/XgMHsPwffhQQ6cv/0BGdA9+5dc06pDkBE=;
+	s=arc-20240116; t=1755878226; c=relaxed/simple;
+	bh=YFqi6/NWrUlmt2b3QOkHs1JyvEC+8LOPUYSaxL53bJs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sLN3lGz541Ifs5MqtfAyMFlrYZs62M+8PLBzMYN0F/ITJLNN4CA7bZaBfVFoiPqSST9Yzyq+gaxeyZtSQzx9clRm5PTxv8DAJ77wgpiSJ10pPwP2v+m2OaD/le9YBF0WV1bZ1VucNex/8e+C/tIqRaPBhaTahDGovF+r59JsrhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zL8V0nfy; arc=none smtp.client-ip=209.85.221.52
+	 In-Reply-To:To:Cc; b=fwZGtUulWdmldp/kbYqgU1MqOHXlhHwuuUAnLX0Knd1IUdCMAkEoe+NEHm6GT7SdFn3uY+bPkTOdcUz/7ydyGC6frtEBlPJx4tYRPcnqLk0uEhHoDhPdIGYvw7VR2jr9xHQ76lXFTFdgcaL5pfyEGpzmM0jg8q2hoxw4ujPJYRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nc4RBFX3; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3c68ac7e1c4so248365f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 08:57:01 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3b9d41baedeso1176750f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 08:57:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755878220; x=1756483020; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755878221; x=1756483021; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=xMNvJ09N/9TdiQdCVO0uS/C2xMlkflJ7U48e0oR1Qmg=;
-        b=zL8V0nfyGa7HnPrFYvVsHYIZMxrRffYpnrwNIzTVm4lqD5I+vvi4HWRO1rZoHQusEs
-         LU+Y38OlzVjhv26lvY9JV9sLEkqlMc5vC1wk8rqm7Y3Rjg0TDR5T4zQlK5g4pwtY+elN
-         KnaQ4hsBMcMADPtY8RqBZtLMV067UPIfRV7jvNaQKmnLml/618UsN5so4KeQl8er08Al
-         Z0eWNN0vjxPPyLnfZ26RgCM1dJAkaxTFo9+LJZ+Fjc1u9tUI1hvQgOd6U9GBCS9WCKeR
-         eXTqk7080zjrPIBFQr7lnnOTKWMHgUwustnFq0xTxCbTCJlXqjYYFWXEANx8oM9Ovscb
-         clUw==
+        bh=ZAVGtahgYWKfPyILUb2iy7548QDqDVffD4gGLjCb7tc=;
+        b=Nc4RBFX3RuNwYoCDZAMj1XEIyD1zWnLp5CIzd1YSoJ/SPi/2kc1MaPaL2da/L5iXUr
+         /K5U4eLiz+u5mIN1fXmft2HKnJk00PvqEYtWFbj/GU4mA/RBBfCnOFIzo1lyqIxMVAPZ
+         wvdWM81wSTbwjQVP4RHusmwqnB4v0Tj27Deg6TLYAqp9xodHILvq7k0zYOTjWaJywx85
+         Kl/vWmrVOaSHDmXEZGp9o8FqDJexVgWhsvJmuFh9k2b/WGus340d/fmqGwpmTyGaFF66
+         LumCLqnn4rXe4m+l4t7uJW308nyrjwjxB1O1gE1pDhjmmz4cuAYDFAtpMUCOBsCHq0JG
+         yQ0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755878220; x=1756483020;
+        d=1e100.net; s=20230601; t=1755878221; x=1756483021;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xMNvJ09N/9TdiQdCVO0uS/C2xMlkflJ7U48e0oR1Qmg=;
-        b=Uppb91n4MfZ1xfOpz4KOr480x2KCYZunlrJKOgQPTttbd6FnsfJTH9H+sBcC2dAipT
-         Ra+5RjPAuXDjWFeog7nn/qvVFSpkV1pdz+yx9J8rMcL5rS0cMyzR4ytaRP8vtOgriQwf
-         OBaEZYI909OQ3ZybWTLjYUPaWN2Er3wApX0F0LD02KKN8Tc3yWgzhdlvTsdF+2Ii8h+H
-         Srnw/hFHQLrHINRMM2cAoEhWZtJ+qLld+8CshirpdNUcui5WtZhRX/sEGwzh64JkIeZB
-         5GwU+fluFlu0tFLASr9eEYMYzhmAO7Jxfi0vrBHvda6UhmTlVfy63UNMTc9ZHlfumSSm
-         Ngig==
-X-Forwarded-Encrypted: i=1; AJvYcCWq1ovqJU0nlZpw0/mAO2icrIWq+c48ZR9Uc3n8g8mML6vU/ySXw2UXle2zCyO6po1oMRx+1Z4T1sw5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUGMuetwFNBkoxBeyZv10xB61uWodEbj5cEJIZDzyoDndyGCF/
-	4sQMQ0Hywzp/l34yc0TgFXMDtLq5PWmfu84A9xR6+sln2JSSYinCDjvEteDIJrjFBZo=
-X-Gm-Gg: ASbGnctyfiqdi8UrKsopZGw45XYlZSIaB0+JLtVNYF1gmTlS0llfTz5LiBTwNIf+lbK
-	C6SXXtcaeXasyX1GIwxHWqCIhJ1a2msjNDu+vl9lPTq/z3EWwGOZWVmpt4QPqCeiTP0CELw0IFb
-	qA1G4elNZX+OuEvzCIohck0UIaPBxpq1H1qHrFtWwUzkcAP29ZwT4vYSgSTb90/TfcQ0709wy8T
-	FcrzYnMnnigZQ+zT/bAqWn68By8SoYw3rQ1G2NFzKfm9LPh2VJnvPfvjb1LQg25r+XuBhtxNINu
-	XrqJ/AAku8LBHLYY9V4QpXD4FYZbxLm1OYrXsKx/jlangvuHQOi/TcXdVf+S03DUpOkPYoYLmCp
-	oVP/0vTRyOp0+s+uM5XlX5Zrgous7cvfDk2MxbaJA/tc=
-X-Google-Smtp-Source: AGHT+IERmB0PR9y0DV27mbGLpsXITt8jpcCmN2vindEbPvdNOo31trMg++Jt/W/Q3ADTFruoyLSDrg==
-X-Received: by 2002:a05:6000:18ad:b0:3b7:9c79:32bb with SMTP id ffacd0b85a97d-3c5dcdf9bd9mr3177477f8f.44.1755878220314;
+        bh=ZAVGtahgYWKfPyILUb2iy7548QDqDVffD4gGLjCb7tc=;
+        b=OF4ZY9VUS2qBoV8MvQX+PLVbnqjN46mXG2rHxoOME+TiISajAet7nJ98vcLh74HmWi
+         1nuHeNJBCDPeUB7b9tpb8ysDsIiE6LFyetFY0ag626X4/QMdeI87v70d5drSaODieEDK
+         YPtwM4Q0ap28+NqIY3C1axdptjxQkAdupinirhwkegfTWuB3y4D0C7lPTMO95mSzUaxU
+         pnejm8yD3bVlx5tIGzq0/MNml/hPl6Ov5JAaV1s87CGleB2ZqW6zGSQ50zKCdlJWEx05
+         TJH5ykiLBQ6GdZyM42elNB9QbkzJ+7bFBX11iVkiodtEF83YxIxRpwKlvx+dLP9tKbc+
+         ZewA==
+X-Forwarded-Encrypted: i=1; AJvYcCXqHAniqwNvi9CCrfbfmf6gSdm5p/SMPMQwTBy69BOsxDdnEyyv2EcZCNvpwmdw6WvcBlzAU//VwvxH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxvd4ZY4pXV5N9LIZo3LfWlj295NiljtOFa6QyQ2NQ3z1Fnbd5b
+	+nZ1zrumednapo7KA3acgXy0U+APF/LWyikHclISr5ay6LRfaRCiHJf4C87FbfVSU2E=
+X-Gm-Gg: ASbGncu7cVihKyLMlT1F1MaWOs3ifCCsdFDuFO1A2/+803x7Za5MZ5r3pyQa7DU4qaw
+	/u+Chg/c7SKLDM7MMTL/EZwrr+XETDOf6ooD0ofeGCgmpQVqQch+hV3PkkTAgs8TWpJra22c/+Q
+	0975IMKRcB5ml+V0rW/wiBtMAdzGAgrl6QIht9ihvjhHXZqRDKXdpjy92K/h0SrKiPw0L+FIAcX
+	T1EmXd6ND4aLEc0tIcYgC2NCaNZRVF3JLYEXRUV39wVxxnSvfh56UPxE2P65sTWAX7/zUBFxCUm
+	QRoSBtMIlEXlY6yhID25Gpxg+sFRHYpzWJO8l5FQnPEcw0BDAHl3tI3byYepihzpbsyT1CsVrv7
+	vFOy/MjLonS/oAUh4xnKb8PACt4K2g64pM+c4YtdYxPU=
+X-Google-Smtp-Source: AGHT+IHqvo2qrzcZn2XOlsTRHSHZltKx0LNhC0cPRmaBvxwSQIOoJzj6Bw0KG2/5ozgdsZKpaf90ig==
+X-Received: by 2002:a05:6000:2891:b0:3b9:13d6:cb4a with SMTP id ffacd0b85a97d-3c5dd0ebe98mr2485153f8f.59.1755878220996;
         Fri, 22 Aug 2025 08:57:00 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c3c89cd4d4sm10095765f8f.42.2025.08.22.08.56.59
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c3c89cd4d4sm10095765f8f.42.2025.08.22.08.57.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 22 Aug 2025 08:57:00 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 22 Aug 2025 17:56:53 +0200
-Subject: [PATCH v3 5/9] arm64: dts: qcom: sm8650: move dp0 data-lanes to
- SoC dtsi
+Date: Fri, 22 Aug 2025 17:56:54 +0200
+Subject: [PATCH v3 6/9] arm64: dts: qcom: x1e80100: move dp0/1/2 data-lanes
+ to SoC dtsi
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250822-topic-x1e80100-4lanes-v3-5-5363acad9e32@linaro.org>
+Message-Id: <20250822-topic-x1e80100-4lanes-v3-6-5363acad9e32@linaro.org>
 References: <20250822-topic-x1e80100-4lanes-v3-0-5363acad9e32@linaro.org>
 In-Reply-To: <20250822-topic-x1e80100-4lanes-v3-0-5363acad9e32@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -95,74 +95,279 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1885;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8534;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=RXNwtS2EB/XgMHsPwffhQQ6cv/0BGdA9+5dc06pDkBE=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBoqJNGHblH5gHil6ZVXZSOuUgExa1pone/1zDZn4Yk
- RSoLC9aJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaKiTRgAKCRB33NvayMhJ0Zr2D/
- 92ZsPfP0nbaSc0E7A5yH1pVmGwod+Q4b7wvVUWDaP2Os/wvUFbrVMexKpSWw/mpICnZugkjogyUiQi
- 3VXyJNBALELVDSc4xpe2yvO5U7L+eCNiPjTJkorfwsaDdjVPqMgWrbNFWitO+FvI0saaMphDo5rzOh
- aks/h3s87h7+xB2cIiz0t0lKXmO0MLJnM9YiDmQoQaYtBDXEoQEerjPxuNVvl9tFolbus53Ejxy7hv
- JzSmfkYEIARdvWHjhBkiuVNDgz7i1rTLck3ln9FVgDTIY84xTZ9cO3GSDDREqWoiQ6uadZknWhiSx4
- 0JXwgllMDkQnl6rX7DphFPD+5W+lu72NHO97WF9PWeSBc0Krn7jsfC4WpFz5V3LIGf3edC6Ba/8Qj4
- s1WEO0uF+LEqK4YaWtx5cNJCQsifEfvQFXwLsSS4+UFbcse5rfrHz0dVJBQlXWcdHcmmdp0/UxOZRL
- VDmqAUXlxPGpTWC+ZA0x95G8vzwHzp8+M/p5k6H9stQQ67pp7RK3iEPnqHT9U3ZvpH9yNFKkQrAWRK
- HntOCImHUMOY0tMvCt0BDkoZGV2Fx39Kq6/olpyS3TRd7h0VvNsaUo3G4GV47kaXfIJBzkCdZygV2m
- TM4T/Uhc2HrhASpukXNSUl8OrPqYxGS1EG1dQl+om30GBiuv6eFFyCn0EPIQ==
+ bh=YFqi6/NWrUlmt2b3QOkHs1JyvEC+8LOPUYSaxL53bJs=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBoqJNGURAyNRdY1ykneNLWuM1nhqLnFzD1WEBzXh6J
+ r7oqbHiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaKiTRgAKCRB33NvayMhJ0e4gEA
+ C/VvnEc7rXXzbZDTKULNE6IAZRCvyw+i+kuGGvuO0c1PQ5FdKZKJLMIx3gFgVKWV3yhxI2j2ptBbXs
+ ZnN1n8UnvmRoSn9tFYxIZrvYZZ6jbBaCum7aZiPzi28ktSrxUXxtl6Kv8vP4meftZW6rB4ffE9De8Z
+ G0SxCmrwBQYK2iGmA+qXw3ZqPoibgC6JFxGnKss8svmAJQLaGZ2mp61LPkiKVoymSx675NW1FDwemj
+ VRgQOVX7D7dQFY8rpdV6rZXd3/utj2ojnBk6F+HDM1Oyfh2ayz1t4CDma4aY2kI9KI+O2kF/gp12H0
+ LcmaiYArtZJ5j1bJqhbHx3T/mOVOAvTMHSnH+E9HyArrw3L1xBx4BiItiQ6BiBeKpOyudzD2ShHFnG
+ 5lsT7w29bQ+z5Lc6SJ4e1HSU9zSQtuVeXidejlDJHVKuT9YyGrYqSwNKlMlDf+bvJQfOXxH06F1JEi
+ ahia0XaN4VdH5RkyNhyBarcqWdlxAB9MC740pvOLgZji3Jvn3NS6KeG4CXyKb6SRLsH/gj5a6cgZuw
+ 1K8XCB7XPnLjDHMZsRMWMh9ccVlq4ho64agz9C7LWCas2JWa/2SgV5wg9+0y+xogKz/MziDOfSQFHQ
+ E0GOviT5/SjnofE1gsXZYxpiqmBc0zid0kes79/U6N9nJS99TZX0sxa7zbbA==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
 The connection between the QMP Combo PHY and the DisplayPort
-controller is fixed in SoC, so move the data-lanes property
+controller is fixed in SoC, so move the data-lanes properties
 in the SoC dtsi.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 4 ----
- arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 4 ----
- arch/arm64/boot/dts/qcom/sm8650.dtsi    | 1 +
- 3 files changed, 1 insertion(+), 8 deletions(-)
+ arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi           | 2 --
+ arch/arm64/boot/dts/qcom/x1-crd.dtsi                        | 3 ---
+ arch/arm64/boot/dts/qcom/x1e001de-devkit.dts                | 3 ---
+ arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi | 2 --
+ arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts       | 2 --
+ arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts       | 2 --
+ arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts    | 3 ---
+ arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi    | 2 --
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                   | 3 ---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi                      | 3 +++
+ 10 files changed, 3 insertions(+), 22 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-index a00da76a60620b998973cab189f12eeaa0a448fa..d4e5c95e93395b84292366a6ad8bc1ee7d7c362b 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-@@ -941,10 +941,6 @@ &mdss_dp0 {
- 	status = "okay";
+diff --git a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
+index 16d045cf64c08c02c420787e000f4f45cfc2c6ff..beb484e36b0473fd52106e0752a11424d1530337 100644
+--- a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
+@@ -985,7 +985,6 @@ &mdss_dp0 {
  };
  
--&mdss_dp0_out {
+ &mdss_dp0_out {
 -	data-lanes = <0 1>;
--};
--
- &pcie0 {
- 	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
- 	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-index 081b7e40f5742120a611cbfa57a59dfb1dc19b9f..d71031cb26e2ecb1bf5c4e8b200e68f2d3b5d3a4 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-@@ -892,10 +892,6 @@ &mdss_dp0 {
- 	status = "okay";
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
  };
  
--&mdss_dp0_out {
+@@ -994,7 +993,6 @@ &mdss_dp1 {
+ };
+ 
+ &mdss_dp1_out {
 -	data-lanes = <0 1>;
--};
--
- &pcie0 {
- 	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
- 	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 1a750ae39232419d3b496f5a009f16ac8de40fa0..289ab35210c1b429d2337cbe4a5a479eb36d8b7d 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -5721,6 +5721,7 @@ port@1 {
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/x1-crd.dtsi b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
+index e3d2fc342bd184473b37882f3bc4f9c4d23135bd..47dd99ecf02650ceee8247c9908dfc86c0f45aa2 100644
+--- a/arch/arm64/boot/dts/qcom/x1-crd.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
+@@ -1149,7 +1149,6 @@ &mdss_dp0 {
+ };
+ 
+ &mdss_dp0_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -1158,7 +1157,6 @@ &mdss_dp1 {
+ };
+ 
+ &mdss_dp1_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -1167,7 +1165,6 @@ &mdss_dp2 {
+ };
+ 
+ &mdss_dp2_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+index 2d9627e6c7983daedba87619ba01074ee22b43c9..1c46f69308a6a726f61ac4121bf6027c7d474e95 100644
+--- a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
++++ b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+@@ -983,7 +983,6 @@ &mdss_dp0 {
+ };
+ 
+ &mdss_dp0_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -992,7 +991,6 @@ &mdss_dp1 {
+ };
+ 
+ &mdss_dp1_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -1001,7 +999,6 @@ &mdss_dp2 {
+ };
+ 
+ &mdss_dp2_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+index 4cf61c2a34e31233b1adc93332bcabef22de3f86..abea14aa1a16437ec3ae21a68dd085c97914a452 100644
+--- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+@@ -994,7 +994,6 @@ &mdss_dp0 {
+ };
+ 
+ &mdss_dp0_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -1003,7 +1002,6 @@ &mdss_dp1 {
+ };
+ 
+ &mdss_dp1_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+index 6b27067f0be66b5c41fa681ff3b4f535100bdf59..6f646b23305e7497794d01b7744c753695d94a2b 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+@@ -884,7 +884,6 @@ &mdss_dp0 {
+ };
+ 
+ &mdss_dp0_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -893,7 +892,6 @@ &mdss_dp1 {
+ };
+ 
+ &mdss_dp1_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+index f9ce2a63767c151192b0618ee2154e8d97316c1b..ce1885e4c56300bf09c0f59deef4f6a38c80d1b0 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+@@ -1028,7 +1028,6 @@ &mdss_dp0 {
+ };
+ 
+ &mdss_dp0_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -1037,7 +1036,6 @@ &mdss_dp1 {
+ };
+ 
+ &mdss_dp1_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+index 71becfc5e6f649299b05b0b93cf74b81dea9fa57..c03dbded1624ea52013b40a9bef4dfadde0863fe 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+@@ -1061,7 +1061,6 @@ &mdss_dp0 {
+ };
+ 
+ &mdss_dp0_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -1070,7 +1069,6 @@ &mdss_dp1 {
+ };
+ 
+ &mdss_dp1_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -1079,7 +1077,6 @@ &mdss_dp2 {
+ };
+ 
+ &mdss_dp2_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+index 27dd5e4e9939124360544ee9c59900ebb01f3f49..eeef0cb2606a350594f03d91762a73e4dce021a9 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+@@ -949,7 +949,6 @@ &mdss_dp0 {
+ };
+ 
+ &mdss_dp0_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -958,7 +957,6 @@ &mdss_dp1 {
+ };
+ 
+ &mdss_dp1_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+index 9369b76c668b5c008fefd85d5ca18e87ab9ce93f..2d557dd9c4fb59ef72174401f418335b4c1e13e2 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+@@ -890,7 +890,6 @@ &mdss_dp0 {
+ };
+ 
+ &mdss_dp0_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -899,7 +898,6 @@ &mdss_dp1 {
+ };
+ 
+ &mdss_dp1_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+@@ -908,7 +906,6 @@ &mdss_dp2 {
+ };
+ 
+ &mdss_dp2_out {
+-	data-lanes = <0 1>;
+ 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 48c715e9ada33d4909049bca28c68a6b24ca0b0a..be1c2152fcd66aabe275527ca756f2598887e34b 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -5380,6 +5380,7 @@ port@1 {
  						reg = <1>;
  
  						mdss_dp0_out: endpoint {
 +							data-lanes = <0 1>;
- 							remote-endpoint = <&usb_dp_qmpphy_dp_in>;
+ 							remote-endpoint = <&usb_1_ss0_qmpphy_dp_in>;
+ 						};
+ 					};
+@@ -5463,6 +5464,7 @@ port@1 {
+ 						reg = <1>;
+ 
+ 						mdss_dp1_out: endpoint {
++							data-lanes = <0 1>;
+ 							remote-endpoint = <&usb_1_ss1_qmpphy_dp_in>;
+ 						};
+ 					};
+@@ -5545,6 +5547,7 @@ port@1 {
+ 						reg = <1>;
+ 
+ 						mdss_dp2_out: endpoint {
++							data-lanes = <0 1>;
+ 							remote-endpoint = <&usb_1_ss2_qmpphy_dp_in>;
  						};
  					};
 
