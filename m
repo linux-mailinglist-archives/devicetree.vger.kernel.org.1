@@ -1,268 +1,158 @@
-Return-Path: <devicetree+bounces-208119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A21B3198E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:31:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94D16B319B5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 15:35:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D742AE4422
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:28:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D40E6167415
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 13:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B012FF17C;
-	Fri, 22 Aug 2025 13:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839A92D480B;
+	Fri, 22 Aug 2025 13:31:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g68YPzzb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9942FE586;
-	Fri, 22 Aug 2025 13:27:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BD983009C6
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 13:31:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755869270; cv=none; b=mq1PzxIp62g7DMFjfoMzFByWI6l5NItt+FN8UMusF2IZZveF3Wsve3kUpb8GGBBxVIv0x93vJiJE7aA+D5nb4dPnNcraqSMQ3qmwo7OWRNOEagvHOCrvN4sGaLMq6gExQlKeVLDoSUIkVuUg7DsVKyF5R0wPg7ctZpvAq1a9B1c=
+	t=1755869486; cv=none; b=QKJzRJeHI0GGcqUuflwwsqn8osbAgLVwnHxjklbhTcnANWDZxdpTBV8HhkRgy2zioakR7D6sohANjtOVE84q7mhOvR6l4F7W19V9Ys2392nQmN71nvyL2wTwTruY4lI8cHUxZlXTqCcdZc6yxSAsMTTxyFkKlCrWxaOz26sUjlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755869270; c=relaxed/simple;
-	bh=CvQW0D4khBGNDHhog9aZU9HwDtvPDlg7O4IlJEZ4bfk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IKQmOtD6vg5vYrJ+oiAjkdNF3ecnd3CLJZTTD3B4iaCh2CRvSL/gdIXXsSMfITQH+5P7rTK4g9CuEjOcgXZKP3M1FetRvpwqRGIYT53gSub3P3r6ojIXkhaVbKtwd5So67yHsrwBKjLIYUPlJVfbhtn7um30IRg6kXUDXFyVwg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.105] (unknown [114.241.87.235])
-	by APP-03 (Coremail) with SMTP id rQCowADnQIIncKhoqZtfDg--.14333S2;
-	Fri, 22 Aug 2025 21:27:04 +0800 (CST)
-Message-ID: <50926ebd-f8c0-485b-87cd-f7552df4bcd4@iscas.ac.cn>
-Date: Fri, 22 Aug 2025 21:27:03 +0800
+	s=arc-20240116; t=1755869486; c=relaxed/simple;
+	bh=8E6nImJ8N1opGmR7K7GVvgClRbKq2rqRED8a2qwcAxQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ktwv6IBbJPMstzVOFVMsffmsFYcbLAYtXdEmW7NNMyBralHXRlsaJNjIe32SyGUp6+TgsL50hpl6JAouiB/cnBAWp/4zZXyKmPYg0zmBlTWRpnQ4LaPJNArzzrknix57nlXKrr7xdjFhAOV2MvKQt1CydDYEYOzmUXEvith/qnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g68YPzzb; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-afdf393978eso31563266b.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 06:31:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755869482; x=1756474282; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sXR/Mce4wnzCN/euqWV2Ip2YQgL/Gld/DHXWnsUXf5U=;
+        b=g68YPzzbJRS2U9PH35DIeU5HYurh8sNlD0paypuoV9e5CIyQywxza/fI/zFFkbLn7c
+         UPGWEWEi3CExsb7AVVqflhshHhijyJzW5QhsrirUo8FCMlLEc5ixGmyal+KAmahQqvwK
+         RA98bm+9L8dZRwmC2ooBJn8Iu9oQCPEdHnh6ow2Tp3RiFbg8VVwXybBqRwZCOuYXVIWi
+         wov7CoFmrPT2xiGjdLmPH7bHPnpsB25duhBXBKhVDGHBVkQm583CSMORJ6jsfzgyFJBu
+         P0zsPbaU+NR1aOR7yh1t0nGGnCwFh9fBJZmWlCCjyyc4Mgr2u9PYTJB7IruqD106Y2bs
+         4Sbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755869482; x=1756474282;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sXR/Mce4wnzCN/euqWV2Ip2YQgL/Gld/DHXWnsUXf5U=;
+        b=Fl1qOn+YJ23Ru/yZvJo/cxEPQqLz/oxRsyDwR7JN9eOBdY07QE1HhdQYRs2LIoO8hg
+         f4cxXaXheRXyW2FDxbAZjho+uikPlmZR/vX5cd6TcvzHoMNkzuWD+D0K28iywON81kqh
+         lvEFZNYSmo4lNdMdvnPzshlOJJ2cbz72QwlcQiFmpXkWq1Q7Wozl91TUw2m75yFdubG/
+         4pPmnA6voesmdXgks6DunptM1HirORsb7PDJ6j5R2EuFdYQioUFDgdlVLuAKFOsrc01D
+         jJ91Y8tvET5Ila97tZbCuRYvtGpt3fU4o0UXKFsr99u2ttX3EFQBilA3VPjzm63XJXFU
+         /a7w==
+X-Forwarded-Encrypted: i=1; AJvYcCVHDH/ycfJaCEhbDVvSmygObAOZyZZxsypSnSTbdYvXmVfDY28oJyZlsUvYuEQkx3v49jSXr6pgL3lD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuNlEvfVEl6i72mW8P6vUMjG0jxg9+7CPcja2jOqOXedVCPfSA
+	yd8VPwe8T7nl3n8qpGQNx/h2l4z6mYUZq6TGu8xsGKHEPDUOuAI4TkTQMawjYHxpN5ms3ZS2xpi
+	/oDKW
+X-Gm-Gg: ASbGnct0dEIb8ICTzVVkjHUFi9LGFAuVPK/floVsJ930iAwhxxkrZBN1IlvymM1TW+k
+	2rPJmVU4UByNe/w0WZfNeIFWrvWO9d7/Z+ftdtLcmW2bLXxjKN7jQt4veamWPMWtg6zc/HLKVvK
+	qLJbd6ij7Mh0kRYul2y3TtaIRAuM63s+5Yilr45VjaznRBapew7mducuXPbPkvGCczsXcaYLJiv
+	b4Qn6uOMDuRclsE6PqzD7/b1/w7imF5B2knp0YskD84RNGE4ADY/+aXWBfAc43d+Pm0yitFH49r
+	D3HGKBascpo5b6J7d15CuBUZlBJtXlDvtx384AIy/KvEQjQ28wBw4ZHeMVhsvWZlNf/wlOQzHwK
+	GKuxgAXn3xiWScxuKEdg9L+ER3i2twhIEmxNcoREJmoGb4ubmqA==
+X-Google-Smtp-Source: AGHT+IE1SyS7rdAiTfqSibtZfokao085p20ry5c6FKV9TDDo0DnlnMgSkdOJ4Z1Iyt5EsBmYWbKM5g==
+X-Received: by 2002:a17:907:6e92:b0:af9:6666:4acb with SMTP id a640c23a62f3a-afe295279f9mr138617666b.10.1755869482347;
+        Fri, 22 Aug 2025 06:31:22 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afdf24bc40dsm554863066b.109.2025.08.22.06.31.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Aug 2025 06:31:21 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 00/10] arm64: dts: freescale/nxp/imx: Minor GIC
+ interrupt-map cleanups
+Date: Fri, 22 Aug 2025 15:31:09 +0200
+Message-Id: <20250822-b4-dts-interrupt-address-cells-imx-v1-0-f1b479da9340@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v6 2/5] net: spacemit: Add K1 Ethernet MAC
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Vadim Fedorenko
- <vadim.fedorenko@linux.dev>, Junhui Liu <junhui.liu@pigmoral.tech>,
- Simon Horman <horms@kernel.org>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
- Vivian Wang <uwu@dram.page>
-References: <20250820-net-k1-emac-v6-0-c1e28f2b8be5@iscas.ac.cn>
- <20250820-net-k1-emac-v6-2-c1e28f2b8be5@iscas.ac.cn>
- <20250821161420.7c9804f7@kernel.org>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20250821161420.7c9804f7@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:rQCowADnQIIncKhoqZtfDg--.14333S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3JFy3XFyxKFyDAr15urW3ZFb_yoW7ArW8pF
-	W8Wa1DAF48Xrn7Cr47Xr4UAFnFvr1xXw15u3WYyaya9F9IkrySgryrKrWak34rCr909r1F
-	vr4jv343WFn5KrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvqb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
-	w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMc
-	vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xKxwCY
-	1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
-	C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
-	wI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjx
-	v20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2
-	jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0x
-	ZFpf9x07bIBTOUUUUU=
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-B4-Tracking: v=1; b=H4sIAB1xqGgC/x2NQQqDQAwAvyI5N+CmiuJXSg+riTWgW0m2RRD/3
+ qXHmcPMCS6m4jBUJ5h81fWdCoRbBdMS00tQuTBQTW3dE+HYIGdHTVnMPnvGyGzijpOsa/HbgU0
+ bA/XzeO8CQwntJrMe/8njeV0/GPNdgnQAAAA=
+X-Change-ID: 20250822-b4-dts-interrupt-address-cells-imx-45a128fb371d
+To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1713;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=8E6nImJ8N1opGmR7K7GVvgClRbKq2rqRED8a2qwcAxQ=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoqHEfkFR5SYp6LIxDwIDpcspsTQNZOP6eApiR0
+ nS5WmK7QLOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKhxHwAKCRDBN2bmhouD
+ 10JzEACXW7APJRig+9Zh6eycLANivQsTEwANrpmd+3ax0sbYfgY6QZmkaTbajHW0mqLqGx5qT09
+ Wl+6pVSZ5648eRy/NFIhmrw2R/qYgWb43mbRqx9FyOOoNLn5HRjv+vOhDX+QjADkgW+ar7USaBK
+ XsdAcnQe9chvXnwPD4Wta63I7uqczB56/wmt94B1pfVyPwUJMgeNqt70+PGCvCn4qoo0T3q7Sur
+ Q1m/qVsJIX3dBFk2/xElUddPPiCiPX+eb4RkvxrJSm6f/WlbG9aMORnoxMw2m8GktzxLNxic/ra
+ R36wXN0kGTkIynY/jm7n63paNMnF+xixTE8ZAimjMWRjutg9xf8pYRRgg9guBvT5xc+F3H1w8i6
+ tK49RrcKVoY+6GowWiNp5jsoycJ80jCV+jxRlHHQvUSz92Ui0peThrbEC6hS6AdAZ1iPb+DN4QY
+ rlD1zs2ap2SxjISRpxBM/xjoTfeigfgpWkOogXtgkHCXGkhykAYKnK1We0H8wlDmyFnNX8b9dZD
+ f5o5CgjqGSLyUm+nGKDRKBAku9xJ72jHmtgQBfv/+qyWOiDZmMQuLbXnG/oPD/QACNrSa4JAr1A
+ 01BVWhlM+Guez6MGZbrRfxYk3Osvcqvi8OVQhP0pa9CWgR4hLUoVmoHEsTZ8O5+KmdO7C76iJN+
+ XDPt04+eMv0SsGA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Hi Jakub,
+One W=1 warning cleanup for Freescale.
 
-Thank you for the comments.
+Best regards,
+Krzysztof
 
-On 8/22/25 07:14, Jakub Kicinski wrote:
-> On Wed, 20 Aug 2025 14:47:51 +0800 Vivian Wang wrote:
->> +static void emac_tx_mem_map(struct emac_priv *priv, struct sk_buff *skb)
->> +{
->> +	struct emac_desc_ring *tx_ring = &priv->tx_ring;
->> +	struct emac_desc tx_desc, *tx_desc_addr;
->> +	struct device *dev = &priv->pdev->dev;
->> +	struct emac_tx_desc_buffer *tx_buf;
->> +	u32 head, old_head, frag_num, f;
->> +	bool buf_idx;
->> +
->> +	frag_num = skb_shinfo(skb)->nr_frags;
->> +	head = tx_ring->head;
->> +	old_head = head;
->> +
->> +	for (f = 0; f < frag_num + 1; f++) {
->> +		buf_idx = f % 2;
->> +
->> +		/*
->> +		 * If using buffer 1, initialize a new desc. Otherwise, use
->> +		 * buffer 2 of previous fragment's desc.
->> +		 */
->> +		if (!buf_idx) {
->> +			tx_buf = &tx_ring->tx_desc_buf[head];
->> +			tx_desc_addr =
->> +				&((struct emac_desc *)tx_ring->desc_addr)[head];
->> +			memset(&tx_desc, 0, sizeof(tx_desc));
->> +
->> +			/*
->> +			 * Give ownership for all but first desc initially. For
->> +			 * first desc, give at the end so DMA cannot start
->> +			 * reading uninitialized descs.
->> +			 */
->> +			if (head != old_head)
->> +				tx_desc.desc0 |= TX_DESC_0_OWN;
->> +
->> +			if (++head == tx_ring->total_cnt) {
->> +				/* Just used last desc in ring */
->> +				tx_desc.desc1 |= TX_DESC_1_END_RING;
->> +				head = 0;
->> +			}
->> +		}
->> +
->> +		if (emac_tx_map_frag(dev, &tx_desc, tx_buf, skb, f)) {
->> +			netdev_err(priv->ndev, "Map TX frag %d failed", f);
->> +			goto dma_map_err;
->> +		}
->> +
->> +		if (f == 0)
->> +			tx_desc.desc1 |= TX_DESC_1_FIRST_SEGMENT;
->> +
->> +		if (f == frag_num) {
->> +			tx_desc.desc1 |= TX_DESC_1_LAST_SEGMENT;
->> +			tx_buf->skb = skb;
->> +			if (emac_tx_should_interrupt(priv, frag_num + 1))
->> +				tx_desc.desc1 |=
->> +					TX_DESC_1_INTERRUPT_ON_COMPLETION;
->> +		}
->> +
->> +		*tx_desc_addr = tx_desc;
->> +	}
->> +
->> +	/* All descriptors are ready, give ownership for first desc */
->> +	tx_desc_addr = &((struct emac_desc *)tx_ring->desc_addr)[old_head];
->> +	dma_wmb();
->> +	WRITE_ONCE(tx_desc_addr->desc0, tx_desc_addr->desc0 | TX_DESC_0_OWN);
->> +
->> +	emac_dma_start_transmit(priv);
->> +
->> +	tx_ring->head = head;
->> +
->> +	return;
->> +
->> +dma_map_err:
->> +	dev_kfree_skb_any(skb);
-> You free the skb here.. 
->
->> +	priv->ndev->stats.tx_dropped++;
->> +}
->> +
->> +static netdev_tx_t emac_start_xmit(struct sk_buff *skb, struct net_device *ndev)
->> +{
->> +	struct emac_priv *priv = netdev_priv(ndev);
->> +	int nfrags = skb_shinfo(skb)->nr_frags;
->> +	struct device *dev = &priv->pdev->dev;
->> +
->> +	if (unlikely(emac_tx_avail(priv) < nfrags + 1)) {
->> +		if (!netif_queue_stopped(ndev)) {
->> +			netif_stop_queue(ndev);
->> +			dev_err_ratelimited(dev, "TX ring full, stop TX queue\n");
->> +		}
->> +		return NETDEV_TX_BUSY;
->> +	}
->> +
->> +	emac_tx_mem_map(priv, skb);
->> +
->> +	ndev->stats.tx_packets++;
->> +	ndev->stats.tx_bytes += skb->len;
-> .. and then you use skb here.
->
->> +	/* Make sure there is space in the ring for the next TX. */
->> +	if (unlikely(emac_tx_avail(priv) <= MAX_SKB_FRAGS + 2))
->> +		netif_stop_queue(ndev);
->> +
->> +	return NETDEV_TX_OK;
->> +}
+---
+Krzysztof Kozlowski (10):
+      arm64: dts: fsl-ls1012a: Add default GIC address cells
+      arm64: dts: fsl-ls1043a: Add default GIC address cells
+      arm64: dts: fsl-ls1046a: Add default GIC address cells
+      arm64: dts: imx8dxl: Add default GIC address cells
+      arm64: dts: imx8mm: Add default GIC address cells
+      arm64: dts: imx8mp: Add default GIC address cells
+      arm64: dts: imx8mq: Add default GIC address cells
+      arm64: dts: imx8qm: Add default GIC address cells
+      arm64: dts: imx8qxp: Add default GIC address cells
+      arm64: dts: imx8: Use GIC_SPI for interrupt-map for readability
 
-Thanks for the catch. I'll fix the error handling here in the next version.
+ arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi     |  1 +
+ arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi     |  1 +
+ arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi     |  1 +
+ arch/arm64/boot/dts/freescale/imx8-ss-hsio.dtsi    |  8 ++++----
+ arch/arm64/boot/dts/freescale/imx8dxl-ss-hsio.dtsi |  8 ++++----
+ arch/arm64/boot/dts/freescale/imx8dxl.dtsi         |  1 +
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi          |  1 +
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi          |  1 +
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi          |  1 +
+ arch/arm64/boot/dts/freescale/imx8qm-ss-hsio.dtsi  | 16 ++++++++--------
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi          |  1 +
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi         |  1 +
+ 12 files changed, 25 insertions(+), 16 deletions(-)
+---
+base-commit: 812efb8b495f2ca50795062b77415b0e8d9d7e53
+change-id: 20250822-b4-dts-interrupt-address-cells-imx-45a128fb371d
 
->> +static void emac_get_ethtool_stats(struct net_device *dev,
->> +				   struct ethtool_stats *stats, u64 *data)
->> +{
->> +	struct emac_priv *priv = netdev_priv(dev);
->> +	u64 *rx_stats = (u64 *)&priv->rx_stats;
->> +	int i;
->> +
->> +	scoped_guard(spinlock_irqsave, &priv->stats_lock) {
-> Why is this spin lock taken in irqsave mode?
-> Please convert the code not to use scoped_guard()
-> There's not a single flow control (return) in any of them.
-> It's just hiding the information that you're unnecessarily masking irqs.
-> See
-> https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#using-device-managed-and-cleanup-h-constructs
-
-I'll fix these in the next version.
-
->> +		emac_stats_update(priv);
->> +
->> +		for (i = 0; i < ARRAY_SIZE(emac_ethtool_rx_stats); i++)
->> +			data[i] = rx_stats[emac_ethtool_rx_stats[i].offset];
->> +	}
->> +static void emac_tx_timeout_task(struct work_struct *work)
->> +{
->> +	struct net_device *ndev;
->> +	struct emac_priv *priv;
->> +
->> +	priv = container_of(work, struct emac_priv, tx_timeout_task);
->> +	ndev = priv->ndev;
-> I don't see this work ever being canceled.
-> What prevents ndev from being freed before it gets to run?
-Oops. I'll fix the handling of this timer in the next version.
->> +/* Called when net interface is brought up. */
->> +static int emac_open(struct net_device *ndev)
->> +{
->> +	struct emac_priv *priv = netdev_priv(ndev);
->> +	struct device *dev = &priv->pdev->dev;
->> +	int ret;
->> +
->> +	ret = emac_alloc_tx_resources(priv);
->> +	if (ret) {
->> +		dev_err(dev, "Error when setting up the Tx resources\n");
->> +		goto emac_alloc_tx_resource_fail;
->> +	}
->> +
->> +	ret = emac_alloc_rx_resources(priv);
->> +	if (ret) {
->> +		dev_err(dev, "Error when setting up the Rx resources\n");
->> +		goto emac_alloc_rx_resource_fail;
->> +	}
->> +
->> +	ret = emac_up(priv);
->> +	if (ret) {
->> +		dev_err(dev, "Error when bringing interface up\n");
->> +		goto emac_up_fail;
->> +	}
->> +	return 0;
->> +
->> +emac_up_fail:
-> please name the jump labels after the destination not the source.
-> Please fix everywhere in the driver.
-> This is covered in the kernel coding style docs.
->
-I'll fix in next version.
-
-Thanks,
-Vivian "dramforever" Wang
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
