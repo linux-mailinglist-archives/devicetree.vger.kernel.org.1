@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-207886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D663B31185
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:19:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E8F2B31191
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 219055E05B2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:17:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B3B55C39B6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259E42EA173;
-	Fri, 22 Aug 2025 08:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23372EA737;
+	Fri, 22 Aug 2025 08:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xz+DcCTv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NMpKRcVM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA8C72E9EA9;
-	Fri, 22 Aug 2025 08:17:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D5D7261B;
+	Fri, 22 Aug 2025 08:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755850627; cv=none; b=NCgEWDhXYrfRRozxyzh6bPzxndil7JqRbaBouf1ukOINJ2kMj/i9KP81Lx9giQ3oYDbIc4l7FdRQcRyFDoGp1Qqke0U272ZV/73oAYP/kIb7BdlI9CO1trDe28Vy9ZGAxmlMWAkdr6B3tP8FztZ4KzzFTEGkc6nXgHtxv5/acgQ=
+	t=1755850790; cv=none; b=DCKDB2qlt6kgrdKqVR65bkXTi4UVd0jiM8E9Aqs6x3A4IHRZqeQot33JgakrEqGeRwxg6HNTH7uW2Di6+n1XaV0Y7CB/6CBGm4zzKRbOaQYjJIANw7ghV0Sp/PqxQOo4SDrE7zEI79vS30QJQgDVJwI902i0KD01k2d7jk5CC34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755850627; c=relaxed/simple;
-	bh=EbORPN2iJKLpKFOR50XHkuBFz0WUjg9cW/T4/Cf7FdQ=;
+	s=arc-20240116; t=1755850790; c=relaxed/simple;
+	bh=HkE8AZTiPlzHsol+TKib6yPCz1oDuxVyBqFtTZA3Btc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BRIGUJ6P6xkr6klvUEgyNOGQ5dUQ8CyFmjH8waCLXznb/c+wsiEbPjfhWiisyhTmMu1latB3po3wPJ8iJXJvzpEl7F3WcsXUhU78kdxGNiH0PYq7Yjy2OPumqCGzWyvNCgPFZA5SRh2/tf4mFnYBx1SKGFeksdWUbKiXXXU2e+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xz+DcCTv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D3A9C4CEF4;
-	Fri, 22 Aug 2025 08:17:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IRU4JMJ9giTNeNY9np5P7fMiwvXQwgQyAh7TofALq6Qa9k4wvI979p4fqxXSAhQkuKs2kfl3nSdKXhmsjm3xnMMA/02ew3bZ8VrSyouZnR3ZTWS+Wod5tRUQpphRpMwHyun73EQeVmbPwXTFGD2F3IxbkRXSKg4qzCFKUK68Kzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NMpKRcVM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64FF6C113D0;
+	Fri, 22 Aug 2025 08:19:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755850626;
-	bh=EbORPN2iJKLpKFOR50XHkuBFz0WUjg9cW/T4/Cf7FdQ=;
+	s=k20201202; t=1755850790;
+	bh=HkE8AZTiPlzHsol+TKib6yPCz1oDuxVyBqFtTZA3Btc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xz+DcCTvWUtx6w5Bq9wvjapFgw9hAfiehSNZokoSK0bzMTGw0H/BwaV7bmFvvpSmu
-	 4onb4j15cF+R6Y9LQbmukU81Imq4K/RYNCxmT/le5teKzMYrO3lJqRUkQaqxcPjfAS
-	 xfQzlDP7EazTtNzzLrVOltBmx6zRmJH2kr8W74Plf8c1B8ADyrpTdPi7UxvoMYTgNH
-	 B3HD51/GYr2O166+OvBgp2ROjLIv8mvWDyyn3o9wa16CwCtcarQq9qoH1TfDtmLtoW
-	 USK1m9qxni4oubkgFzaINIY2dsnDPpRz3iI65VrKipudwfGK+AFX3x6MryRNrIZ/8K
-	 AVK/EI4NzApZw==
-Date: Fri, 22 Aug 2025 10:17:04 +0200
+	b=NMpKRcVM2avITumqfYtpR1lJyNy1YGhcacH85UaXAzpSXOttsKoYASi0FKUaU3c3Z
+	 LZHMKa+Bm/tK9LhnO2Le6hkD6TRDDCwIacrsKCKDXxIg3cHlGkfTmyiz4J+tX0OeAk
+	 +y6hEJuRDwzIELlvKjoq1Z/cI3PB+gLj+leRv87IKdhqt2q0SAY8ZI6960dHWt5gUK
+	 RySJvhreS+KKJ0IDElOiOI+xhgkPpvCHElNb4FFvdwk7IKHfAHFglep3zi7q1pPCd0
+	 eL6wJM9h5zVy8CgVKdGsLd1BYeRPNfwPbu3NlXrHrHuE8IRVt4WpZOUTBL6jv9UGHx
+	 PdKiNBgxIMILQ==
+Date: Fri, 22 Aug 2025 10:19:47 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Richard Leitner <richard.leitner@linux.dev>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: usb: usb251xb: support usage case
- without I2C control
-Message-ID: <20250822-quantum-hungry-orca-e6c6cb@kuoka>
-References: <20250820161743.23458-1-jszhang@kernel.org>
- <20250820161743.23458-2-jszhang@kernel.org>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hector Martin <marcan@marcan.st>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>, 
+	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	iommu@lists.linux.dev, linux-nvme@lists.infradead.org
+Subject: Re: [PATCH v3 6/9] dt-bindings: nvme: apple,nvme-ans: Add Apple A11
+Message-ID: <20250822-singing-boobook-from-heaven-ef5cf8@kuoka>
+References: <20250821-t8015-nvme-v3-0-14a4178adf68@gmail.com>
+ <20250821-t8015-nvme-v3-6-14a4178adf68@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,40 +65,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250820161743.23458-2-jszhang@kernel.org>
+In-Reply-To: <20250821-t8015-nvme-v3-6-14a4178adf68@gmail.com>
 
-On Thu, Aug 21, 2025 at 12:17:41AM +0800, Jisheng Zhang wrote:
-> Currently, the usb251xb assumes i2c control, and the corresponding
-> dt node looks like the following:
+On Thu, Aug 21, 2025 at 11:56:43PM +0800, Nick Chan wrote:
+> Add ANS2 NVMe bindings for Apple A11 SoC.
 > 
-> i2c {
-> 	usb-hub@2c {
-> 		compatible = "microchip,usb2512b";
-> 		reg = <0x2c>;
-> 		reset-gpios = <&porta 8 GPIO_ACTIVE_LOW>;
-> 	};
-> };
-
-Above is redundant, obvious from stagtement that USB can be a device on
-I2C bus. Just keep it simple.
-
-> 
-> But from HW point of view, the hub supports usage case without any i2c
-> control, I.E we only want the gpio controls, for example the following
-> dt node:
-> 
-> usb-hub {
-> 	compatible = "microchip,usb2512b";
-> 	reset-gpios = <&porta 8 GPIO_ACTIVE_LOW>;
-> };
-> 
-> Modify the dt-binding of usb2512b to support this usage case, and add
-> usage example to the examples section.
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
 > ---
->  Documentation/devicetree/bindings/usb/usb251xb.yaml | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/nvme/apple,nvme-ans.yaml          | 15 +++++++++------
+>  1 file changed, 9 insertions(+), 6 deletions(-)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
