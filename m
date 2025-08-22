@@ -1,165 +1,188 @@
-Return-Path: <devicetree+bounces-208333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3ADFB32091
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 18:33:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A449B32094
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 18:34:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7998F1D24CD2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:33:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D1847AF5ED
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 16:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34AFC307484;
-	Fri, 22 Aug 2025 16:32:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58BBA2F83D4;
+	Fri, 22 Aug 2025 16:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MQ4XfgrR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gSgMwNBy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4000307AEF;
-	Fri, 22 Aug 2025 16:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CDA2580CF;
+	Fri, 22 Aug 2025 16:34:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755880378; cv=none; b=JofBWm69bSiU7Yb3PMgoPPwnMAhZprks1bF+Y5LmSLwZ1W7dFnKfTLYJIxnD+a8MQN2/4EXTCn5xlGZxlbjbnWY1wETN4ShUuRvuVmUklImvKfDEpwOtaUdvDZ0exWHeIJP4y5jgnIwCLPbuMkBeXQ4tse2oIdrfF3/nQSxnWgM=
+	t=1755880446; cv=none; b=UMTv60gGY9hIDATRBoGZ6jxYTtFKVhhzy21p2YRC/8L+cNCnY/j+FBFavkqoOOke9nPKsAIBhFzQTRPWeSVKXGpuqv293kILVSiwevaFcfqR/5XlHrQUbPHTq5DtEODg1HTmnt2KQjR7vdBun9yNMbLTIs1Aih9x6YLW3xilL7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755880378; c=relaxed/simple;
-	bh=v8ugcgTu7bbLe8dolOnMLhzuaOv9SbsTPs8vI8fWV4c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QYAtAkKMP+WAxSw7EU0sU4kAvK/uWKzDUA/penvV25rTuDXKqk+VrMzH9D/6ennUR13PfRcchrGTwXceuB/cTjJ6//6FXrRkKlazBr/plv/fZEAtn1xF7PJDnFi0GyOsiTDxOi94iki9YoJSGcrNis3FMdMtgmTbl9oPBolAXkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MQ4XfgrR; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57MGWngF287782;
-	Fri, 22 Aug 2025 11:32:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755880369;
-	bh=NTnjIUy88MysrGcFmO7KCg/wbiZ4kQxZ42DLi+ANSIg=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=MQ4XfgrRIfp3DZoJlaa9zoJqSLZSWrtgmhkgWqI5oyM6R24LkFFXrTrHn61b7AlMt
-	 1XK3bRBrwQ36O8plpKH5MbZau4gR0BvvSD/w7br3zMG6jhIjHKAHU+mPhe3s7qKru4
-	 CWnZneP8rx6mTlotIeRdGdg5o1+rElCPZFOvB1uY=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57MGWnRw3403910
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 22 Aug 2025 11:32:49 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 22
- Aug 2025 11:32:49 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 22 Aug 2025 11:32:49 -0500
-Received: from [10.249.139.51] ([10.249.139.51])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57MGWd6e3822193;
-	Fri, 22 Aug 2025 11:32:40 -0500
-Message-ID: <c3e31030-4f4f-4235-84c7-93a62265bce5@ti.com>
-Date: Fri, 22 Aug 2025 22:02:37 +0530
+	s=arc-20240116; t=1755880446; c=relaxed/simple;
+	bh=iKMaqY2T2MvMaFi0XbUWD0o8saOVzIOavh0WskJFFJk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BDU6PYt9cMo11b1YWtY461Mz+SDDgDAKVutpd0ofHvk9yp9bl8AC9dVhcB+Ki9yohGAgOXmDZupP/7oiTRHp/ciH5w4bTpavpxgrv4+RtPRfl893ucRkydK5/gW1F8PaAFBse+X4Fla6zullujLm5CEldxahV4g9l0mlIQd+pSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gSgMwNBy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D87CEC4CEED;
+	Fri, 22 Aug 2025 16:33:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755880445;
+	bh=iKMaqY2T2MvMaFi0XbUWD0o8saOVzIOavh0WskJFFJk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gSgMwNByRYG87aU+xs9MlnWyfggyMpBShAVpHsDhv7+s2Rl50S6MV03gYuI5AIodC
+	 gHcJY5vJ8pODlXqfgGFRJt9EsHTYJ9w2zZFxRJzHV80px0qH3IDHBBl2EIDCGFHNVc
+	 NdTJacp29PXHOA/QWlJPY6xryO5kHtiYrIf2AmdKyPGVZOmtYOiIeRzrL/a25q30Mp
+	 zcBN6hWt8nLuR0iQficgQqnP2PL2DpHAas3KYnbbJjCNjhbrFEoluJgwSHM9RLb14W
+	 /tnD6l4HBcfilMhKlkILzTEKi08X16/ucccvai6fqwMVP7CYKttBi9Kng1v051vWcI
+	 yXe6kg4RWOPiA==
+Date: Fri, 22 Aug 2025 17:33:57 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, anup@brainfault.org, pbonzini@redhat.com,
+	shuah@kernel.org, cyan.yang@sifive.com, cleger@rivosinc.com,
+	charlie@rivosinc.com, cuiyunhui@bytedance.com,
+	samuel.holland@sifive.com, namcao@linutronix.de, jesse@rivosinc.com,
+	inochiama@gmail.com, yongxuan.wang@sifive.com,
+	ajones@ventanamicro.com, parri.andrea@gmail.com,
+	mikisabate@gmail.com, yikming2222@gmail.com,
+	thomas.weissschuh@linutronix.de, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org, kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v1 RESEND 1/5] dt-bidings: riscv: add Zilsd and Zclsd
+ extension descriptions
+Message-ID: <20250822-purge-doubling-f38988284db1@spud>
+References: <20250821140131.225756-1-pincheng.plct@isrc.iscas.ac.cn>
+ <20250821140131.225756-2-pincheng.plct@isrc.iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/33] arm64: dts: ti: k3-j7200: Enable remote processors
- at board level
-To: "Kumar, Udit" <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <afd@ti.com>, <hnagalla@ti.com>, <jm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20250814223839.3256046-1-b-padhi@ti.com>
- <20250814223839.3256046-2-b-padhi@ti.com>
- <b257999d-df16-405c-830b-5397da37c6ed@ti.com>
-Content-Language: en-US
-From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <b257999d-df16-405c-830b-5397da37c6ed@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-
-Hi Udit,
-
-On 8/15/2025 8:00 AM, Kumar, Udit wrote:
-> Hello Beleswar,
->
-> On 8/15/2025 4:08 AM, Beleswar Padhi wrote:
->> Remote Processors defined in top-level J7200 SoC dtsi files are
->> incomplete without the memory carveouts and mailbox assignments which
->> are only known at board integration level.
->>
->> Therefore, disable the remote processors at SoC level and enable them at
->> board level where above information is available.
->>
->> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi       | 3 +++
->>   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 3 +++
->>   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi     | 9 +++++++++
->>   3 files changed, 15 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi 
->> b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> index 5ce5f0a3d6f5..628ff89dd72f 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> @@ -1516,6 +1516,7 @@ main_r5fss0: r5fss@5c00000 {
->>           ranges = <0x5c00000 0x00 0x5c00000 0x20000>,
->>                <0x5d00000 0x00 0x5d00000 0x20000>;
->>           power-domains = <&k3_pds 243 TI_SCI_PD_EXCLUSIVE>;
->> +        status = "disabled";
->>             main_r5fss0_core0: r5f@5c00000 {
->>               compatible = "ti,j7200-r5f";
->> @@ -1530,6 +1531,7 @@ main_r5fss0_core0: r5f@5c00000 {
->>               ti,atcm-enable = <1>;
->>               ti,btcm-enable = <1>;
->>               ti,loczrama = <1>;
->> +            status = "disabled";
->>           };
->>             main_r5fss0_core1: r5f@5d00000 {
->> @@ -1545,6 +1547,7 @@ main_r5fss0_core1: r5f@5d00000 {
->>               ti,atcm-enable = <1>;
->>               ti,btcm-enable = <1>;
->>               ti,loczrama = <1>;
->> +            status = "disabled";
->>           };
->>       };
->>   diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi 
->> b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
->> index 56ab144fea07..692c4745040e 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
->> @@ -612,6 +612,7 @@ mcu_r5fss0: r5fss@41000000 {
->>           ranges = <0x41000000 0x00 0x41000000 0x20000>,
->>                <0x41400000 0x00 0x41400000 0x20000>;
->>           power-domains = <&k3_pds 249 TI_SCI_PD_EXCLUSIVE>;
->> +        status = "disabled";
->
-> Please leave boot critical fw as is.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="iXs4qi8wL7fiAACn"
+Content-Disposition: inline
+In-Reply-To: <20250821140131.225756-2-pincheng.plct@isrc.iscas.ac.cn>
 
 
-The nodes that are disabled here, are enabled back in the
-board level files. So, it has no effective change on the boards.
+--iXs4qi8wL7fiAACn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->
-> Here are my suggestions
->
->  create one boot-critical-fw-dtsi for mcu_r5fss0 , include this fw 
-> files in all boards.
+On Thu, Aug 21, 2025 at 10:01:27PM +0800, Pincheng Wang wrote:
+> Add descriptions for the Zilsd (Load/Store pair instructions) and
+> Zclsd (Compressed Load/Store pair instructions) ISA extensions
+> which were ratified in commit f88abf1 ("Integrating load/store
+> pair for RV32 with the main manual") of the riscv-isa-manual.
+>=20
+> Signed-off-by: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
+> ---
+>  .../devicetree/bindings/riscv/extensions.yaml | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index ede6a58ccf53..d72ffe8f6fa7 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -366,6 +366,20 @@ properties:
+>              guarantee on LR/SC sequences, as ratified in commit b1d80660=
+5f87
+>              ("Updated to ratified state.") of the riscv profiles specifi=
+cation.
+> =20
+> +        - const: zilsd
+> +          description:
+> +            The standard Zilsd extension which provides support for alig=
+ned
+> +            register-pair load and store operations in 32-bit instruction
+> +            encodings, as ratified in commit f88abf1 ("Integrating
+> +            load/store pair for RV32 with the main manual") of riscv-isa=
+-manual.
+> +
+> +        - const: zclsd
+> +          description:
+> +            The Zclsd extension implements the compressed (16-bit) versi=
+on of the
+> +            Load/Store Pair for RV32. As with Zilsd, this extension was =
+ratified
+> +            in commit f88abf1 ("Integrating load/store pair for RV32 wit=
+h the
+> +            main manual") of riscv-isa-manual.
+> +
+>          - const: zk
+>            description:
+>              The standard Zk Standard Scalar cryptography extension as ra=
+tified
+> @@ -847,6 +861,16 @@ properties:
+>              anyOf:
+>                - const: v
+>                - const: zve32x
+> +      # Zclsd depends on Zilsd and Zca
+> +      - if:
+> +          contains:
+> +            anyOf:
+> +              - const: zclsd
+> +        then:
+> +          contains:
+> +            anyOf:
+> +              - const: zilsd
+> +              - const: zca
+> =20
+>  allOf:
+>    # Zcf extension does not exist on rv64
+> @@ -864,6 +888,21 @@ allOf:
+>            not:
+>              contains:
+>                const: zcf
+> +  # Zilsd extension does not exist on rv64
+> +  - if:
+> +      properties:
 
+> +        riscv,isa-extensions:
+> +          contains:
+> +            const: zilsd
 
-That is the plan for a future series :)
+This syntax is odd, it shouldn't be required to have zilsd in here and
+in the then. Did you copy this from Zcf or come up with it yourself
+because it didn't work otherwise?
 
-Thanks,
-Beleswar
+> +        riscv,isa-base:
+> +          contains:
+> +            const: rv64i
+> +    then:
+> +      properties:
+> +        riscv,isa-extensions:
+> +          not:
+> +            contains:
+> +              const: zilsd
+> =20
+>  additionalProperties: true
+>  ...
+> --=20
+> 2.39.5
+>=20
 
->
-> other IPC optional firmware can reside in one dtsi or dtso,
->
->
->> [..]
+--iXs4qi8wL7fiAACn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKib9QAKCRB4tDGHoIJi
+0irLAQCV5/SvoxN05dR+xOZRbx3ngdqvZgXtTOXV1Bvb1u1sbgEAqB+ZSQTXtrTn
+OOlkomc7ojGER25FiOTQpdYiyfasmAg=
+=zFKH
+-----END PGP SIGNATURE-----
+
+--iXs4qi8wL7fiAACn--
 
