@@ -1,254 +1,142 @@
-Return-Path: <devicetree+bounces-207738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA76BB30A38
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 02:20:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7677B30A49
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 02:28:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B50062A554A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 00:20:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96D1C1D005A4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 00:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D77C04C81;
-	Fri, 22 Aug 2025 00:20:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ECAFFC0A;
+	Fri, 22 Aug 2025 00:28:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="SNHIihHs"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="F9J1ksJ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2040.outbound.protection.outlook.com [40.107.95.40])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC154A04;
-	Fri, 22 Aug 2025 00:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755822053; cv=fail; b=pqZeHulZD2NU3X2zcJ03wVCtaVrXEiXc5jvN+fqYhtxCnw13oqRVBpei0FWqO5fsPvjvCxcuTve8Yv6s/CDOkS0vhqoKYEe9j0Up+gNk0Cf6b404wkq4aLpWnTfHcFE/UgMw9rF1KWiocGYTXk5dzieOyfaO4SOUBaNJRV93yFs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755822053; c=relaxed/simple;
-	bh=ueT3TedEbrzNN4xLwav9sfglU59Sp49gVjBvaECu7ho=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=LdyAGIFG2L1chwwKRp/vc3d+k/jpHj+4BtC5mwX1cTLm7qTUNp/lLZv9K75tFqVo7XVRzAFwva40k5/KMSFKOrhLRx+rlDWgkUPjc0vZ9fTYg69yqX/Aw11X9Fjy3vVf8WN9mhV2SvKr2HYNAL5lmi2/NKpqL3UXw3Lm6E5pi08=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=SNHIihHs; arc=fail smtp.client-ip=40.107.95.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GDq+nPBZW5cDCUaXkLyCfXuwgBZARVVYzKhDX/1tnDjS0qifYCeXx13zdBd/pjy1KmvQIYoPgl6QAVBzWcSby6WjSwfcahenIFAG2tdkzkNjPBXuyN7DcLDbchz5A7dVcUjYg4wNfjTEABe9B+VSvCK0FWU0BKLmRItHGiYNytL30/w9XHFcdeqFocbBO4NV8O7WzGrJKj+p9bB+LolJFkd97eWFts96t7YC7VI7jRAqzPo3Y6hiPCOuwzeMKPVh/GUma9887O8yC3y9OWkoz8EE75tcT1CqwPNexL9vcDp/7KmQmgi+Pl7ItZN9JjQtp+QZfAFIpZu/FgdfluFAOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4xK7osL4CNDIriK/GOmavo7xV+ncgy0nNqAl/PcC8k0=;
- b=Nxmr/Ilu/gKeu4C4JjhganXJK17+j6Rfr5ci/5pm+pU3gmbgEAQZhVwMvg+Pfxvj2scmporzOkaz3Z+qYN/nRa678jcUF1QSWWh3FM4VmKM7Fh2FPV4Rq0i5ABDDH2S5FumGQ75ZsEysEkj5vD8HKr6ST0buYQ5RIYHmrxzGrw86VHudZjg9feYHImv53EMShHRQ9IUjdLCvfWt2qFsAU9GlUK66v+FQ6q2/6e7NQLCJ2RrtD0dljrQXAOQFSo0Pqztj/MN7cAQqO9tAzvMJWU8tMWQsJ1zzAq1qPEEkbBvOy1CG9FvbnC1vVAf5tmz62F0fCePY2bfeHMF2NWSZMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4xK7osL4CNDIriK/GOmavo7xV+ncgy0nNqAl/PcC8k0=;
- b=SNHIihHs++iZNV79IuQ16IiVfkoUGdHxAPVBFHJ3DF06OmXjYsFwHcPiC6PS+KX65XmG6qqUNOQ+MHM4U1vATGhsmJU4XTskY+pPvLpIIArgA7I8owEcnYActy8ijiLwiepd2XPrs3N0o7sxylnMD2e4yAo99lsZdzPqcoczhPBqCFUfxNNipO3nydrcfGBoO0MDvHDoQN8TGc2BtO/nDoYcskEu2RDaUFoJ1+fs48+4kj9Q9u9ZiqDWb3SgsF4uhzorRfvAbV9zvN37DrhG1tTpReP9H7t1Aw3bWNBsovy68DueUOR1s9ZHRRtmA4Q7KStZqlaobxDAumA5dcAD9A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from PH7PR12MB7282.namprd12.prod.outlook.com (2603:10b6:510:209::7)
- by IA1PR12MB9530.namprd12.prod.outlook.com (2603:10b6:208:593::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.14; Fri, 22 Aug
- 2025 00:20:49 +0000
-Received: from PH7PR12MB7282.namprd12.prod.outlook.com
- ([fe80::6f03:f851:7f6c:c68d]) by PH7PR12MB7282.namprd12.prod.outlook.com
- ([fe80::6f03:f851:7f6c:c68d%7]) with mapi id 15.20.9031.023; Fri, 22 Aug 2025
- 00:20:49 +0000
-Message-ID: <03741606-1ef2-4099-889e-2e0ef27cbb15@nvidia.com>
-Date: Thu, 21 Aug 2025 17:20:48 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add NVIDIA VR144NVL board
-To: Conor Dooley <conor@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org, etanous@nvidia.com
-References: <20250821051047.3638978-1-donalds@nvidia.com>
- <20250821051047.3638978-3-donalds@nvidia.com>
- <20250821-baffling-immersion-e86971edb6e0@spud>
-Content-Language: en-US
-From: Donald Shannon <donalds@nvidia.com>
-In-Reply-To: <20250821-baffling-immersion-e86971edb6e0@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY5PR17CA0037.namprd17.prod.outlook.com
- (2603:10b6:a03:167::14) To PH7PR12MB7282.namprd12.prod.outlook.com
- (2603:10b6:510:209::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C9B4A3E;
+	Fri, 22 Aug 2025 00:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755822483; cv=none; b=RX+fgOL5jASwqVgwwgn8qWHvawUgE6JOdN08Tfhru8ho71CMHX4nyfMljJNgr2+I465SDCNsC7zXPTf2P27MweYLePQxgf6RXDcYArxCH0e9hPUSk34EG2ZhvZDqlT3p5nQ1ZrLddz5UXUAIr4AlFk2PQY+nfmD4ncSEauyOlGE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755822483; c=relaxed/simple;
+	bh=hvocuKs0+lw53BxD/QtBS2ovnPYm5W3zP08TmRzB3Eg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aFLoWF/S7jHHOXnOe4b/1htjEQnIZWU5yOZ7kUDKaaRjZGXGfd+z2Z6yau8BqaFOJRUhqtQMybv1AcT8ok29xrRWWABA27dnRwmiOVXaRELHUCLvwNxGVrXI8oxw7jEe/DruT9NXreefmtJrns0Jhojweo5J+i8Voym2qP2twIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=F9J1ksJ7; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 77C36228;
+	Fri, 22 Aug 2025 02:26:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1755822418;
+	bh=hvocuKs0+lw53BxD/QtBS2ovnPYm5W3zP08TmRzB3Eg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=F9J1ksJ7ShlCf2QiTyLFtXUeecI3jn8g0Iz2Er3pQMMVky6EqM+YG/3wic5ZcHmes
+	 Ig0cgiOtD4ZwGmuDsP2Z9aFJM+Lan6d6bw/EvDiXutQkUQyJI13MhicK+Ti+xHmFnT
+	 M1miaP9s/xGxH4eg0qcKUWf9ZRFoBizFbAQaEUEM=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-media@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Inbaraj E <inbaraj.e@samsung.com>,
+	Isaac Scott <isaac.scott@ideasonboard.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Martin Kepplinger <martink@posteo.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Purism Kernel Team <kernel@puri.sm>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 00/13] media: imx-mipi-csis: Cleanups and debugging improvements
+Date: Fri, 22 Aug 2025 03:27:20 +0300
+Message-ID: <20250822002734.23516-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.49.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB7282:EE_|IA1PR12MB9530:EE_
-X-MS-Office365-Filtering-Correlation-Id: e15f29a5-b3ec-42c7-4b42-08dde111bf55
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?NC95UmJFQ05iVnVkR2h1UWVGR21SZTdZUzVDSjhGb1hWUkk3ZUlKcEJDRkVp?=
- =?utf-8?B?MXo5VG1xZHFMRS9ldEZLYjNjZGovQ0s3RWJaY0xPdm1NdSsrOGVOWDhBQ0Ry?=
- =?utf-8?B?SGtRelRnSTBLbHRkWTBaVUdNWW84a3Q1SGg2dGNLa29sVUVHcnVXRUd6d2Z6?=
- =?utf-8?B?T2RFdWIxcjk1bW9JSFZLRnN1VTcrVVRqR0JkNlRXS2JlOWFnYndibjY0WDFG?=
- =?utf-8?B?ZXRYT2ZkK1F1OHM4ZlVIWGlnYUNidkpLQ2RJdmwyRytvdjd2cVdPc3lZZm1P?=
- =?utf-8?B?VGFQeFBLQ2ZKY1djSDdRZDVpWkwwdTdGcTI0NGJKVUQ3a1I3ckR5NDJEZFNO?=
- =?utf-8?B?MVlpcDBjQjMxa3lsZjNZbGVMRlBEU3RuRWNXUFFLZzA5b2lhbTJHZms2MlA3?=
- =?utf-8?B?b1p6Wk5HT21PckNlSWxhdlNEY2VtMGtkaVJGSjZLOGd4WnlsMSt0dlpNcVBS?=
- =?utf-8?B?dXJNN1lRRm8zcTBENE5UOW9MY05OVUJOWE1VWkRHaUJ4OGs4dU45b3FoMVI5?=
- =?utf-8?B?d2JCc2hwRWlHalJrRlBoMlJ2NGk5cm96UkpvM3lVMzI0ay9UV3RFcDE0V3gv?=
- =?utf-8?B?QmVrWVBqV21VVy94MnNqT2cxRTU2Z3JMVW94c3NUS1FYQ21yWm9HZVdkQWJH?=
- =?utf-8?B?RnNPblFFREhWZkl4cC9TdWlEcXRocC9LMEZTOWpZSkVBalBYUWpjTUpQN1lJ?=
- =?utf-8?B?ZnN5Wjl0TWRXYU5CRzlXR1RJZW5JSkhpNFowMUlsWFNhaURTMFlqeUZVV3Rh?=
- =?utf-8?B?dWZFcWQwYnhEcGRHeS9LL0FJd3ZaK2t2YUUxV2dGWENyNE1RSWZMbHNpajc3?=
- =?utf-8?B?cmJGY3BHYjFQZUNiYjZXZTJhTTdYbXo0eElNaHhkTkg2R0s5N0RPcmJQM3Bz?=
- =?utf-8?B?cUxRQWlmQWNROTRYWnVIcm5nWDcycjRQeEFjZE1vUVFBOHdJRWJQTWZMZzJV?=
- =?utf-8?B?Q2t6M2xRV1lQSjlTYkFJRmdDVWpDTHZPT050cHpKSDhJK3ozd2ZWTHdTZ3lH?=
- =?utf-8?B?RktsanNEb2RMY2VJdC9nT3pNcDJsaDFURXJtLzhjZFNFTVBSSkFGaEpNaGxz?=
- =?utf-8?B?bFl5VEFEYWt0Y0hlaitZaU1idTU3VTZTQm5HTDF4enVJdFZ6c2hSU0paLzd0?=
- =?utf-8?B?VEZrVTMrSlJidUpTNjVWVnBTdjUwM0VqeEFnRjVqN1BBVDdJNncxWDM3WUoy?=
- =?utf-8?B?SWVGenNPS3JlRUR2Qnk5cXI1d0JYNG0wbmNhSm9CUGpWSFpTY3VvdTVoUmFP?=
- =?utf-8?B?VkUrdXVhendyRjMrdzk0dzExWDYwY3loSVhsRzNMRXVJb1EvRFZCOExBeW9j?=
- =?utf-8?B?UkpGdVpEVm00STdCaEdLT1dWZXpLZkhCT0ZJamplSkprTk1Bc1FRWDlOZjF2?=
- =?utf-8?B?cXBkUzdqZGd1aG1xTGc1eVJMQ3JJd0hiQUlZUEc4L3pQS2k2SEtGdWZpbllt?=
- =?utf-8?B?ZFhKYjJlb2Z1RkFTNUFXVUtqcUdzKzFqMHRzM1FxNFl4RUtHZUR0ajFpaGFz?=
- =?utf-8?B?Q0kxRXlaVERxYlFPQzhIVTQ1Nmx4eWRFaXJVY3FNZzhXL050WmlsaUdteWsz?=
- =?utf-8?B?WWdhNDY2QmhsZ2ZaeSs0RllqRnNIN3VYYUVSUTNncVVWd2dMSEhBdFBkaDR2?=
- =?utf-8?B?R0MzNG1FeS83a1lkSWliV201cnNBdDFrY0tCb2cvaXV6akx2SnVVY0hVLzZR?=
- =?utf-8?B?bXJZYlIyMzFqN3p0SG91YUdQVHdJdzgyWW5HK1MwT2xIdVJWdlpJR2cyMnB6?=
- =?utf-8?B?OTJ3UlU4NVVkTjFRK0M0KzI0czdVRFgyTUY0QkFKKzFXd21PK2ljejBybDcv?=
- =?utf-8?B?QWVaZDQyYzVTZ2tlQXdlVndlMFlpTU5BelFhZHdjdUNJeElnWDFZbEVXUlIr?=
- =?utf-8?B?eCtZMkdGYnpHajdORkVmYXV3L0hnbUd2VXJDa0hZNVY3aUVUSEg3a2VyeG9X?=
- =?utf-8?Q?VCaL2GQJM8k=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB7282.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bEVUYzAvd0JwRmg1cGVnTUtIMjRlMFFuZ0VMRmZJS1ZiOFpTdHlFeXVSRVp1?=
- =?utf-8?B?czVIaWVrdCtLWGJaVW9LTmtsQ05La28vZ3JXMWxlUUlWeGtJTVFmK3J3TDlr?=
- =?utf-8?B?VWt4UVFlNXdVSjBlKzBocW9iOGs3aFJYSWxDdmQxVWp1SnB6bjY0QllhSEdJ?=
- =?utf-8?B?TXVyUU1jeXBvT3g0djVQUEk3TmF5Nmx0VVlFRTFnR1Zjd3dkekpQOVZhT2wy?=
- =?utf-8?B?Y3dldWkvYTlSVFlJcjY1dm9MelZ2OUVHU2cxTjJWSUszYVlDUnRkdU9VZXVT?=
- =?utf-8?B?VzgxbDcvYkhYT1p3RS9Bdkpzc2ZOd1A4ZkNDUUtwcW5EcmdFaEt3MlpUMVFr?=
- =?utf-8?B?YXB5dno2V1BmbkZXUWNrZmFINElxMGRUZjlwTUlXQmNIWDVBYzdUSGZrWFhu?=
- =?utf-8?B?bGdyTmhkRWVoYysyT3lvQTlFYktkM01yU3RJRDlpQUFqQ2kzWGVIempacTVi?=
- =?utf-8?B?dWkrbC9KUzI0NlJnOVVjWVFlTmdQZ3VVQ3FtMlI5endoR2I1RzVuYXZpVGRT?=
- =?utf-8?B?WFpCVVZoRmx2UWF1WFU5dE1XYkZ2a1lBR1VmaEF2ZlJpaE9QU1hKSngxTTR3?=
- =?utf-8?B?Nys0cGZGdkoyU3FrTFByYnBBcEhuTmpiM3VtRXltL3V1ZzI4U0xvNTZnVWNs?=
- =?utf-8?B?blg3QisweUs5QXZibEZQTDI2bURaek9lQ2p1eUdkazgra1RSanY1c3duYjRU?=
- =?utf-8?B?SzZ1ZFhwait5U2R5OW8xNUJUME9MU2RCN0xHbHQ1M3ZybEtqblJtemtoelNG?=
- =?utf-8?B?Skc1TjZJbTlQaERjWTJXN21rYkZ3Ukh1Q3VSVU9PQnR1cmVWeWFYcENzcW80?=
- =?utf-8?B?bUJoanovdXpVT2kzNEFPOHIyVjRpWW55Q3g3WjJSTm9pcENWNE9uZmhQbGI3?=
- =?utf-8?B?Q1RmOThWUDNyYUpYK05PYWJ6bWdXOGRpWTJqNHcvZ2NvYlJ3MGRMd2VSb2JL?=
- =?utf-8?B?Q0VXUDQzWVB5RHBXcHRrcUdkQmFhNnJUNVcxSytEZGFUZ0g1aUdGT0lvdmdZ?=
- =?utf-8?B?bFJHSTZZcjkyUXJPeEtkc3gxTmVPR1MybzRISHZ6MEpaTzBFM3A1MXJKYWds?=
- =?utf-8?B?VDVmYnFHV04zVHFRMVRjR1QrUFBCQk9jR3Q0TGJXcm1HckV3Zlg1a0xJTzJ3?=
- =?utf-8?B?OUtONEVjRUJaTnYzdVIybWFnOUd6Z3VJVmRISzd4SEQ3cHdvWGVBNmdYSUZC?=
- =?utf-8?B?aGxLVUw5L3Q4a09Lc2NpODlKWnBNSXYvSy9WZ1pmODBEd0RCaS9YblNnZGpY?=
- =?utf-8?B?a0E2NGZmSGlvdVhYUUdOdG16Y01jYStXV0c2UWhSZHJHeG95NlY1ZDRaKzFS?=
- =?utf-8?B?bllpVStDZzQyVnNHMUxnUm5Ha2ZidG9RUmJuQ2NKTGgxMXR6clZweXVoUVk3?=
- =?utf-8?B?M29jUFJSeFdYN3QzSkdqMjUzLytpdm85eTF4M2Z5V3ErQWoxQkszZERiV2VJ?=
- =?utf-8?B?dGt4QXkwc0htL3UyRzl6T2F2TEV2V2J3eTFsS1RXK1Z3Qk9FeG53VW5uNGhh?=
- =?utf-8?B?enh0bDZjNThGUHA2QTNYV3N5akxRZ2FPNDVnMVNXQTZYNERxMkE5M2FQRG9G?=
- =?utf-8?B?NjdkRW5qK2JTUDl5NXFBcEpYMU12VkV5OEp2eUVQcHV3NVFRRU1nV1BDQmpv?=
- =?utf-8?B?Q29DU2gvYXVXeDFhVXB3ZHFqU0FiY2ZNOXhNN0xOeDN1V3ZhNkpiYmFTL1Vl?=
- =?utf-8?B?cCtRaVZ0UDUzK0F3N0RubGt1MVcweVgyaUxDenF6Rk1UaWRMSlU4cGZNeGJs?=
- =?utf-8?B?NkJhaVRtOUZ2RmZ5TlZhY3hlSzNKdFk4Yk5SY3BOSmp5OU9YS0V3dFhQcWt2?=
- =?utf-8?B?UXZlblo0U0M0NmxXalpGU3N5SDFSYTZ2KzZtc1p0b2lXL3RJVXJXNGhlNmd2?=
- =?utf-8?B?NEZ3NlNPN3E0bW5lT1JyOVl0a0FwOFZZQnhpS0tNL2FPUGwwVnVUTURqcTdU?=
- =?utf-8?B?NGdHNElmS2hJVFhxbWtOVTVpc0Z0Vm5Zb1o5QXFqUkpJK3NtNENaWXQwOUpy?=
- =?utf-8?B?UmQySkFBSjNwc2JJb3dsS1MwcTBjaTNSSyt3NWVGMlE3bDZIeGYyK1RyWWU1?=
- =?utf-8?B?aUFjc3BJUWYyWDZWRllERTlKQi9LeUtwZUp1ellhbXBUd0FneXEzb2I5S2pt?=
- =?utf-8?Q?/txaEsx4J2O7p5DlQCvil15si?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e15f29a5-b3ec-42c7-4b42-08dde111bf55
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB7282.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2025 00:20:49.8590
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ixF4qwuMCDNXIgrsjUl6Nq64RTX7JEe8rpvV+YiZYpAwf1+rH9txWalyjzpq05dbsogQ4OhNWCKUaJkX9T9oSw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB9530
+Content-Transfer-Encoding: 8bit
 
-On 8/21/25 11:12, Conor Dooley wrote:
+Hello,
 
-> On Wed, Aug 20, 2025 at 10:10:47PM -0700, Donald Shannon wrote:
->> +// I2C2
->> +// Baseboard 0 Management 1
->> +&i2c1 {
->> +	clock-frequency = <400000>;
->> +	status = "okay";
->> +
->> +	i2c-mux@70 {
->> +		compatible = "nxp,pca9548";
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +		reg = <0x70>;
->> +		i2c-mux-idle-disconnect;
->> +		vdd-supply = <&reg_3v3_stby>;
->> +
->> +		c0uphy0: i2c@0 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +		reg = <0>;
-> Incorrect indent.
->
->> +		};
->> +
->> +		c0uphy2: i2c@1 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <1>;
->> +		};
->> +
->> +		c0unused2: i2c@2 {
-> If these are unused, why are they here?
->
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <2>;
->> +		};
->> +
->> +		c0unused3: i2c@3 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <3>;
->> +		};
->> +
->> +		c0unused4: i2c@4 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <4>;
->> +		};
->> +
->> +		c0unused5: i2c@5 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <5>;
->> +		};
->> +
->> +		c0unused6: i2c@6 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <6>;
->> +		};
->> +
->> +		c0unused7: i2c@7 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <7>;
->> +		};
->> +	};
+This patch series bring a few miscellaneous improvements to the
+imx-mipi-csis driver, and in particular improves the debugging
+infrastructure.
 
-Hi Connor,
+Patch 01/13 starts by making the v4l2_get_link_freq() function accept a
+const media_pad argument. This conflicts with [1], I don't mind rebasing
+on top of it. Sakari, if you plan to get that patch merged soon, feel
+free to take 01/13 too.
 
-I will remove those and we can add the busses back in for other platform variants' dts-es later if needed.
+The next three patches, 02/13 to 04/13, are small cleanups. Patch 05/13
+then aligns the code with the reference manual for register field names,
+increasing readability of the driver when read alongside the hardware
+documentation. Patch 06/13 (new in this version) also improves the
+register macros by standardizing usage of GENMASK. Patch 07/13 fixes a
+small alignment issue in register dumps, and patch 08/13 logs per-lane
+start of transmission error instead of supporting the first data lane
+only, easing debugging of D-PHY issues.
 
-Thanks.
+The next two patches deprecate the clock-frequency DT property, which
+shouldn't have been added in the first place. Patch 09/13 improves
+handling of the clock frequency in the driver, and patch 10/13
+deprecates the property in the DT bindings. The driver still supports
+the property to ensure backward compatibility.
+
+The last three patches introduce support for multiple output channels
+and wire it up in the debugging infrastructure. The CSIS IP core
+supports up to 4 output channels, with the number of instantiated
+channels being a property of the SoC integration. So far, only the
+i.MX8MP is known to have multiple output channels. Patch 11/13 adds a
+corresponding DT property, and patch 12/13 adds initial support for that
+property in the driver, and uses it to dump per-channel registers and
+event counters. Finally, patch 13/13 sets the property in the i.MX8MP
+DT.
+
+[1] https://lore.kernel.org/linux-media/20250819094533.2335-3-sakari.ailus@linux.intel.com
+
+Laurent Pinchart (13):
+  media: v4l2-common: Constify media_pad argument to
+    v4l2_get_link_freq()
+  media: imx-mipi-csis: Simplify access to source pad
+  media: imx-mipi-csis: Standardize const keyword placement
+  media: imx-mipi-csis: Shorten name of subdev state variables
+  media: imx-mipi-csis: Rename register macros to match reference manual
+  media: imx-mipi-csis: Use GENMASK for all register field masks
+  media: imx-mipi-csis: Fix field alignment in register dump
+  media: imx-mipi-csis: Log per-lane start of transmission errors
+  media: imx-mipi-csis: Only set clock rate when specified in DT
+  dt-bindings: media: nxp,imx-mipi-csi2: Mark clock-frequency as
+    deprecated
+  dt-bindings: media: nxp,imx-mipi-csi2: Add fsl,num-channels property
+  media: imx-mipi-csis: Initial support for multiple output channels
+  arm64: dts: imx8mp: Specify the number of channels for CSI-2 receivers
+
+ .../bindings/media/nxp,imx-mipi-csi2.yaml     |  18 +-
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |   2 +
+ drivers/media/platform/nxp/imx-mipi-csis.c    | 353 +++++++++++-------
+ drivers/media/v4l2-core/v4l2-common.c         |   2 +-
+ include/media/v4l2-common.h                   |   3 +-
+ 5 files changed, 232 insertions(+), 146 deletions(-)
+
+
+base-commit: a75b8d198c55e9eb5feb6f6e155496305caba2dc
+-- 
+Regards,
+
+Laurent Pinchart
 
 
