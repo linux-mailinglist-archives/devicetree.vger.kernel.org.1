@@ -1,124 +1,162 @@
-Return-Path: <devicetree+bounces-208412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44496B3250C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 00:27:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23BDBB32517
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 00:36:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D74D160752
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 22:26:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1D741B669AC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 22:36:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4D22BEFF8;
-	Fri, 22 Aug 2025 22:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A445428A73A;
+	Fri, 22 Aug 2025 22:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ESv9/Sq+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W4ltF1m+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F303723505F;
-	Fri, 22 Aug 2025 22:26:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B23F1E5705;
+	Fri, 22 Aug 2025 22:35:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755901566; cv=none; b=ll8GKTHdkT2EOyMDZMmrJOPjNEZi7ogMo5M96nXtwwIawNTtCzGXDgLroT2r5kELrvAttxcLJcZkUqlAvcbVIkTGtCPoLTG440GCvlOXI15CfQxu2bC0Wd+1/R1kNO4VfV51+nkykUyI9gnjMcO64us6TqLSd+cpbf+jzgK6Pjs=
+	t=1755902158; cv=none; b=SNKvk6FrNheK88RJPqbI3fIxlOh2GyTN4vVpUSI55ue7PwNHtx0mJOpCigfHnzn4PLJqoz1/Sh/2a4VjTyLOsM4LzFeVZ/nQxFkomHeBlKsw9HOla2LWQik9waV6QoO0rvpNiYIgd8wyOEjiDDFVzCjsNQsqkws6X8HLslPkCv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755901566; c=relaxed/simple;
-	bh=T5U3T59xMxutbqhRQ80mhcOf2qZtze/ckJ399JrRFoo=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bBUYCSDWNZEp9dWPEuQTlh8oecNBXeYruI+Q+JM98NxSW1ZpMxZQPB26Idcq+A6YT6l4RzPDwT/kIvMZHiELyNwcP+HU6hUuvOlnUIH1RiAX7twXC/O6EGdWTzfgAOlmluNO3ymRQJw+3CGQuVfVpd+85A0vyp11iH/nZe365Rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ESv9/Sq+; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1755902158; c=relaxed/simple;
+	bh=Lhwv9UQUrS2xvVCkZM2LZ1wXZlHrl5i/oZNWX1nu4AY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VwvgJkFzpHfeFXpCgXzH/RAXEfwx6S06vlt0lrMzveUT2y5UVfEKyrMhrZktFujvrxawEn8xvgxmjwiNOmkv51pjqXqZzy6kUPbwb7SEB+YEazg1TSdXHJAIyTCU7MxPTGB+QVzDfzTUmC9eSkYTxDg5VuwS52O3Ysy4ehVZM24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W4ltF1m+; arc=none smtp.client-ip=209.85.210.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45a1b05d252so20308125e9.1;
-        Fri, 22 Aug 2025 15:26:04 -0700 (PDT)
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-76e2eb3726cso1906366b3a.3;
+        Fri, 22 Aug 2025 15:35:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755901563; x=1756506363; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1yIf7UahS4pxZ1gqlZo5h06LoLmN0soC2fUAOI/fcBk=;
-        b=ESv9/Sq+HEn9fRM7+ndfKCD92JaMaMv6k8Wvgs8ImUho55+b9m817uK4t0otOkTYuh
-         1A9aHXpDjNohGHSYL0gkDd8EBUtuZcza75Mv254hgXd3hT5q8jk047+YJkr3uK49By4n
-         bq68LzooTl8IwBA/IVYvdCg3XJs5dHxcNUhJ0wZUdNhu5j7Jd54JtRcXkjdPZX1y/CHz
-         tL3S6wd0Zuu8V++7MBNRb0pT/k4ZnUvJJ2/kQDQowiIY9RCFdQCjt5J4fem8Qy1/BrrH
-         5jHVT7Vl7fkzYcvcHYMpCNW86TNSeMRUR4EUpU+RGw1P6y0/3RcxK/V+TWeljXujmmOk
-         jPyA==
+        d=gmail.com; s=20230601; t=1755902156; x=1756506956; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=0FwDTbQ/G9GOnQP/jL8VoYGNnb8b98LqDD6ErxzxZ3A=;
+        b=W4ltF1m+sbZLaUoCKO9JjIiUIqKuwfDwKijRR2u2N1DM/pHWPwUFFh0PiUWWzKYkrB
+         ktNq5zID08UUQWXv06yknV3BprkyWK/CBiUPDXYWLTQ0oDK9zbunk/tuUJGoqwSr/Rpj
+         9eO8c0nEoDZlXTvac45QjiKWTC9gpN26mWemUhA8Aeep6V2lExb0fdJnh96g71lDlBEa
+         f9xLiT248uzUbaItrExn+z/s1dQsW62DM4Eyp92FauTqyaBYvdnCX2Ba6SBA5vV2ZxXJ
+         ZJDRuVkJkaBhO4kitOi/CZdAHCcu+uGMltLZZrKfkK2UhaNNpqgEtrw4pk07UKlLrg07
+         mz9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755901563; x=1756506363;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1yIf7UahS4pxZ1gqlZo5h06LoLmN0soC2fUAOI/fcBk=;
-        b=LnyoenPowo/k/stBjvUx5GiJYkt07Hj6iOkbpBnbeINA5Zbv8yr4E5qwID2HvvA91I
-         8rYEUl1QuZldUnUUIItCcv62YUMoJYm518kU0Jc6KziqE6/0yssYRyGnlAf6dG15RmXa
-         6cM06MCumfscJDswnkZ11mcAYwC8XEwUSjO6GLw6qUMJG7iLDZy3aq+gzwwj7w3S6i2x
-         CeGLSQ+1dVg5E7EXVA9klZwF1OfaxfSJfORt1TClA6rzKWrrLryQQF4rsgqrE58NuPdR
-         NXG5xjur2FJrdvIx27IXIc/wKlLyTCLTVpulBtGDRXejAWlasE1rEcAOxykkJMR/fWOT
-         03dA==
-X-Forwarded-Encrypted: i=1; AJvYcCVHXA8/EqzEa8ngRUr4rRqPrl3lkcTg5Zv78Weto1weMmrEWHCRCoh3ShF3ACdHlfcItZwn2vYu0vLy@vger.kernel.org, AJvYcCWHSw3lzFgFjHif9AWu/Ov5eka/ffHlWQrQ9LYdrJ30oVc5e2WmFVj+MMlYY4fnQ+R5rUi8AN4AOS9tGqS7@vger.kernel.org, AJvYcCWjxlr2T0bKs+Zu31UqxwmnY/BgatynUX6gLuRNiocvdWXcjpoEVjMPTHpNR5wxtk6p/5AbWXxVeJVNxw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyq4hTNpL4Ku+ZRnN4CXrGajK+RcBg2Mx87V7efj0Md7Nebr/iS
-	iQ9P5Syj4c57BW/Mje/5I7rxh52yNQzkC0dasMmBztekGhQiQXKCHsQ=
-X-Gm-Gg: ASbGnct3Je/iIqct+Y0ONeamDfO56oGmWQMD42Mw+UpWJtjCfRy++wL3OpfqcbkxQbp
-	V5Xseijqz+XXWFCB7ECHiHT4dHOW9UC9Fmvea52tSqlO4d84nBSH2Z8UcbCn5XxzArgZ5otz3xr
-	7mZWY4U4JwCsvupcsIAupNkdWG6NbSwpkJNZ71SBU3r9VkZRaLSZDcMjZogI81j6/BkE2EeoKD2
-	hkVZT3IAomS7+QmO5c/XCJ7mZoFOTTdtg/q9eJGpodKEAtJSw7bFBbYZGkGa8WQnySd/dTu8xiK
-	LoXG5ZmsuJg0RwkvV07g4ez/oPrmcI+uvd1kmXgFvJfaz02jYThKGFkf0YlZbISeZ3RdqUG51+X
-	FORlBFQKzEbMxsx7aZCJLRNGQIAkt0mRuTiL2pYpa2NzuyQ==
-X-Google-Smtp-Source: AGHT+IEJMybfO8956xjyYvUhaELGFJCgGASiKmKJ7a5pJizulPbRSnIF/KoBKRBTVTDjZPCdLYkenA==
-X-Received: by 2002:a05:600c:4715:b0:458:aed1:f82c with SMTP id 5b1f17b1804b1-45b517d3b30mr34477415e9.22.1755901563145;
-        Fri, 22 Aug 2025 15:26:03 -0700 (PDT)
-Received: from localhost.localdomain ([2a0d:e487:58f:6d42:4e65:e74f:bc8e:3791])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b4e8f4552sm41226025e9.8.2025.08.22.15.26.02
+        d=1e100.net; s=20230601; t=1755902156; x=1756506956;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0FwDTbQ/G9GOnQP/jL8VoYGNnb8b98LqDD6ErxzxZ3A=;
+        b=t3sNa6UTVrX6dOB+/vk0I1ZcoRRXsogOyNSGhOyptzrlO35rkZRvxv5+5MN++ig8vl
+         9t2BS3TyXGMWHNy0ifw4L2EZ87+ojCizMbGP2VZoh5VZaTj5Y7M9F9KhMzMkHQlJUOJ9
+         n0YX+C7/i6aAtWNXj6Dl0CJ+OdCEVmvmLcnrjQ1FI07nvkJzkAkEJCuDenAVBu/6a4WK
+         1nv6qQ7y7C6qEC0ouX1b7GWJicLquozzWzK7gB82py0SKCjonrKR3C2bjgaVCM2DSxIN
+         4zz5hdY8uJM/uWDfNgl76i2BWiGH/8ak0FlppShHX4g2fnoKp9Tl5M+xRbI/Jg32wBmX
+         axCw==
+X-Forwarded-Encrypted: i=1; AJvYcCWLJrdxjDbHpPq5scKCp1CoND+PhSCjfclAtKxYgAk4unr1eqC2jdtH+nXEaYkHZoy69PL19c15pRoGnK8j@vger.kernel.org, AJvYcCWfpHMNIdGRQ/0lhh/O/Umv6ne4M19isb/0jhcwUZntryU9OjlKZOPc2k+e5pVsMeRSqV2P@vger.kernel.org, AJvYcCWtUJo/wEHkHBQy8kmWQY+6ZMWi0i0eYRhGLvnmy7wIv/cFKAabay0qepefHcOjP4T230OQ52ac8rC0@vger.kernel.org, AJvYcCX0WPQEx/X+rGPqiN9FYbzXRlTcHyl+3W7ZiT+LXpRMBEm0KI95pjv9IlYCDfzFj/UzK7fV6f4bvqCs@vger.kernel.org, AJvYcCXxPXVI7v/S+LLqoW1KQpI3qSdeSyhN1IQ+nf3CrADvMRasR5lrOt7ri90o9GolHTBds/eMhcNhBpnLb5jERFZJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcnZ5w6apazYOAwCT1o3ich9Yy8GZr60GrIUVTUfq4JYuQG+Ms
+	Aytq0j7qjRmL1257gKZzzK2ZLVR0R1S25eR/5ywLVULfjdFUq+UCLjSG
+X-Gm-Gg: ASbGncskW30UaHVDRLT3Qve0c/crj91ZSRivsAstgNAoAedroGXns4mtir3I0QyDg/z
+	JCjQr4GRmn84cwKTDINgBS3520/2c9m+1GTA83rXKLWPQmo+q1R1WgpgYg4JlTieeS5umbAkGR2
+	VzJny8JbfiD0XCTi9KwwYvPmonxzfclnUnQ2OHhEbJhwRZqOTtxgDNQXcSajf7b9u8472tGYTkS
+	Z1dt6IHB3tJggHVIQj56SKezLGjvOxDI6FieGuUfS01zDMuRG0jjpQhw6cXupntWca8I1dqBBCB
+	KbXVYk5xTM5niqzwJFWfMGJTcnE+CDpiz68QxHkZ+RsUg9+Be8X11KMZqabnrkjbmYd7Ei1qXmt
+	bwhqZ1jwqJWaSiWXL+bW/lw==
+X-Google-Smtp-Source: AGHT+IEYCh8C0L6ZZn0L/gbp+7wJ7PcWlxjsVE+Dj4tzEhoWhx2t2CE2bxPom3RqYKmnOJkBIwjJZA==
+X-Received: by 2002:a05:6a21:32a8:b0:240:3c3:7ffa with SMTP id adf61e73a8af0-24340dc8405mr7563526637.43.1755902156183;
+        Fri, 22 Aug 2025 15:35:56 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-3254aa4f9e6sm802727a91.16.2025.08.22.15.35.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Aug 2025 15:26:02 -0700 (PDT)
-From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-To: tony@atomide.com
-Cc: krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	shuah@kernel.org,
-	jihed.chaibi.dev@gmail.com
-Subject: [PATCH] ARM: dts: ti: omap: am335x-baltos: Fix ti,en-ck32k-xtal property in DTS to use correct boolean syntax
-Date: Sat, 23 Aug 2025 00:25:30 +0200
-Message-Id: <20250822222530.113520-1-jihed.chaibi.dev@gmail.com>
-X-Mailer: git-send-email 2.39.5
+        Fri, 22 Aug 2025 15:35:55 -0700 (PDT)
+Date: Sat, 23 Aug 2025 06:34:56 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, anup@brainfault.org, 
+	pbonzini@redhat.com, shuah@kernel.org, cyan.yang@sifive.com, cleger@rivosinc.com, 
+	charlie@rivosinc.com, cuiyunhui@bytedance.com, samuel.holland@sifive.com, 
+	namcao@linutronix.de, jesse@rivosinc.com, inochiama@gmail.com, 
+	yongxuan.wang@sifive.com, ajones@ventanamicro.com, parri.andrea@gmail.com, 
+	mikisabate@gmail.com, yikming2222@gmail.com, thomas.weissschuh@linutronix.de
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org, kvm@vger.kernel.org, 
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v1 RESEND 1/5] dt-bidings: riscv: add Zilsd and Zclsd
+ extension descriptions
+Message-ID: <znik7dcyeipf57xerlm5gwjszcaaeujoukr7g4a7wt7lsfu366@skany6k7agt4>
+References: <20250821140131.225756-1-pincheng.plct@isrc.iscas.ac.cn>
+ <20250821140131.225756-2-pincheng.plct@isrc.iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250821140131.225756-2-pincheng.plct@isrc.iscas.ac.cn>
 
-The ti,en-ck32k-xtal property, defined as a boolean in the Device Tree
-schema, was incorrectly assigned a value (<1>) in the DTS file, causing
-a validation error: "size (4) error for type flag". The driver uses
-of_property_read_bool(), expecting a boolean. Remove the value to fix
-the dtbs_check error.
+On Thu, Aug 21, 2025 at 10:01:27PM +0800, Pincheng Wang wrote:
+> Add descriptions for the Zilsd (Load/Store pair instructions) and
+> Zclsd (Compressed Load/Store pair instructions) ISA extensions
+> which were ratified in commit f88abf1 ("Integrating load/store
+> pair for RV32 with the main manual") of the riscv-isa-manual.
+> 
+> Signed-off-by: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
+> ---
+>  .../devicetree/bindings/riscv/extensions.yaml | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> index ede6a58ccf53..d72ffe8f6fa7 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -366,6 +366,20 @@ properties:
+>              guarantee on LR/SC sequences, as ratified in commit b1d806605f87
+>              ("Updated to ratified state.") of the riscv profiles specification.
+>  
+> +        - const: zilsd
+> +          description:
+> +            The standard Zilsd extension which provides support for aligned
+> +            register-pair load and store operations in 32-bit instruction
+> +            encodings, as ratified in commit f88abf1 ("Integrating
+> +            load/store pair for RV32 with the main manual") of riscv-isa-manual.
+> +
+> +        - const: zclsd
+> +          description:
+> +            The Zclsd extension implements the compressed (16-bit) version of the
+> +            Load/Store Pair for RV32. As with Zilsd, this extension was ratified
+> +            in commit f88abf1 ("Integrating load/store pair for RV32 with the
+> +            main manual") of riscv-isa-manual.
+> +
+>          - const: zk
+>            description:
+>              The standard Zk Standard Scalar cryptography extension as ratified
+> @@ -847,6 +861,16 @@ properties:
+>              anyOf:
+>                - const: v
+>                - const: zve32x
 
-Fixes: 262178b6b8e5
-Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
----
- arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> +      # Zclsd depends on Zilsd and Zca
+> +      - if:
+> +          contains:
+> +            anyOf:
+> +              - const: zclsd
+> +        then:
+> +          contains:
+> +            anyOf:
+> +              - const: zilsd
+> +              - const: zca
+>  
 
-diff --git a/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi b/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi
-index ae2e8dffb..ea47f9960 100644
---- a/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi
-@@ -269,7 +269,7 @@ &tps {
- 	vcc7-supply = <&vbat>;
- 	vccio-supply = <&vbat>;
- 
--	ti,en-ck32k-xtal = <1>;
-+	ti,en-ck32k-xtal;
- 
- 	regulators {
- 		vrtc_reg: regulator@0 {
--- 
-2.39.5
+Should be allOf? I see the comment says "Zclsd" requires both "Zilsd"
+and "Zca".
+
+Regards,
+Inochi
 
 
