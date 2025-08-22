@@ -1,150 +1,112 @@
-Return-Path: <devicetree+bounces-207763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9116FB30BF1
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 04:40:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 395E7B30BFB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 04:45:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22CE33B13E7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 02:40:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A60C60062E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 02:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E76C212559;
-	Fri, 22 Aug 2025 02:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45698246BD2;
+	Fri, 22 Aug 2025 02:44:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hiPWYt9i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hozn43S9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B7F1FDE09;
-	Fri, 22 Aug 2025 02:40:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E8C242D93;
+	Fri, 22 Aug 2025 02:44:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755830431; cv=none; b=f0jxChg5uX1sAOtaOddLyDHUk5sRZjldXctRLE991n4Js3CtKHLk8qs7g/86JqDcMitut5y2ANCO0K6gt8XhWYrgbxHs9EQGWbp886d8S7e72WNey5ujKsmkkt4F0OQBkXjia3Rf99CN3cFwjcNfXXrR+4ThlrFGMyfl6cW4SdU=
+	t=1755830697; cv=none; b=ZwBauV6a8SUPFu2Dnl8yVsywDAoQnJD7XyX49JhxyJDUkPt4e9pVBwY3eR30uh63ApSvwUd/MJWLb2QYN+AziCF7X1OzMYZn2zDSic0oZuLNXNxR5LCb3j5nfuAxdR+bAJNPcXUvBLM9Gh/gwLj6RA6MLzXaC7woFAJX7btlMz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755830431; c=relaxed/simple;
-	bh=UEXnKRf3mD8f0fCGxXElWXXYh45iG/Jat56fxEbcdaY=;
+	s=arc-20240116; t=1755830697; c=relaxed/simple;
+	bh=ymmCrP+/+P+LpNntOeSJe6zYTkGwo1FDY5h+FuIYRoc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=umjtFJx1yNzlKH3k3JPCidkwVuvNgv02WLc3RN57G8P0awLtJhZQdNBJnE6DTDvSH2OxNYCEZfUMfolk5ERQDy/G9aArUTHD6wxCqO09vYhM+CDXE8aQeMhMux2hz6D2oIktsrXAwAVRpREHfNfVIUZmNNULeSQiOF8nC3I4ejI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hiPWYt9i; arc=none smtp.client-ip=209.85.214.178
+	 Content-Type:Content-Disposition:In-Reply-To; b=l5C56BU4qu+ogOOE7ogWL0RoclZtzQoFr+YjjjsDA49KJqumcjoZZIJgjMhymjb/mB+bcCFSug75pxZsU5SX3QTYigMsxiLh/wB1GusXJ6HDEKLI+PaN+111uwLp5Vbkr1VB5nNnHve9fqPepmOPeUXeyqzAKBZpLLlHc0GWaiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hozn43S9; arc=none smtp.client-ip=209.85.215.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-24458194d83so13951285ad.2;
-        Thu, 21 Aug 2025 19:40:29 -0700 (PDT)
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-b4717ba0d5dso1198535a12.1;
+        Thu, 21 Aug 2025 19:44:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755830429; x=1756435229; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kmvNAnTZATirx63QNW/bi/wjuXppZJGFct7U0B/kgqk=;
-        b=hiPWYt9iz33srmOrOKkLbqLrD0Hn1WMt9sdWQ44ANnbcKJOwDab+L0HC8e6GdWDneD
-         VvwxpNtlIax2S8BR6ARvaXen+isotk2C37SwEQJXRp//1eACq+xbxe4gIG4BWKaPm2Iy
-         e41YFiA2yS+4pFK2BKLBwM4t7+tWYw+Vm+O8AC3Our1NiDyH1mjfI/xO5rsBDxROgUeo
-         Ei7pby/eEBIafAmAHaUZ7H5sr5OhoiEDfqKpzmbHFAtYj7J3H4KKKT7nG9M4zXYWUjaD
-         uqCfxk5umPP0ft3hFnkCtm6HBdYIbSxaeunrkJedPCqHkmYCWxNiV1nx+BTgP1r5DO5n
-         qHOg==
+        d=gmail.com; s=20230601; t=1755830695; x=1756435495; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uHOsZL5h3AOX8Ev+qfsTMnxg8y5sgs76/JGMQGQVcN8=;
+        b=Hozn43S9Gpx3MM8hSNcuPMpOYsnP4kdoTADWf84Qb/87vwXulHE+dhXVB9woc1eCql
+         vzBuKO146f+fZNlcXAYs/pno9f6XfsjxA7g+hM13WjKEN8flR/8dmjY2pykEPNOWuk5U
+         pn8BFUcVdXoZzzywC3JnSN/r9cQ9X5WDBTOxNtIDwQQx1/nKamzDYGlABzGh8xvHdAvv
+         pdfhpYXJsVUboXbFkgpjwshroVThXa8KCaUPtyrQw1jCnNAeP9x47dx+T7TvHPAt/ZX3
+         ZNMiniqcbQFEyrjEYLZ71nyDIWiNbTLXnW67EOPnvBl8QttKYmSGN+3mhhMcjff2kdNF
+         TApw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755830429; x=1756435229;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kmvNAnTZATirx63QNW/bi/wjuXppZJGFct7U0B/kgqk=;
-        b=N7BZnNPB0ZlF3q5VC86/aC/+fck/NHUIEJuwEaVAT/VpnApofFXFvvOY++o7hpAS29
-         0WN2fY9wH2Y113eRZq2o/vdpy6iiBhtfFo2wERs21l2tRaa96zWltLzF76U4A9RC4fVN
-         6G+bolgxHYlDZ34LeTRtICISZjyR3OH9YuKeo15GNzPAdF0iGQIbvAdhZQRVjGATfvX7
-         ijcCW58g7dGHGMfUvnSff06jPCCcRG12PLeljhAMH1lLwzYnck7bakE+WnKqw294zmrP
-         ZzDEr488ecnNiRuzXria/gyNYqdQxG34gH6e/64zLpAa39N0r0D0V3zcnHEZXo3RtgKS
-         yXEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUJqUuObR6K2ZsLc2SzYiciyTXcJbeGw1juGpaxN/PDS7P/J7/w4TD6tJGFhjssQdGarxw3wWtg4t87@vger.kernel.org, AJvYcCVGi2yDYwJ0rQ16EHkyNYUsTm584E+kM08x7vCRBlYMQjcbKdSj9A2capCjYDzUHNQysJnWXjUObnKxH6Bs@vger.kernel.org, AJvYcCWOQzJGP11P+Hz/3ZLQbJi0TulSSPt+9p67fCCabiIOjYXdelH/66LbegQzTfLfaPMknwPgZ5hopxU2@vger.kernel.org
-X-Gm-Message-State: AOJu0YyC8MV+3HLw/1KjQ5UrjM3h0E6odF1OSe2rxLTUAJtAgUBWXE2U
-	jjT9NCmXBpqEwpPRzWBCUAQu28eO2S5hM+MFzSdNJi397Dv8BLJ0OQ7vPuwyGFXs
-X-Gm-Gg: ASbGncvH/9Uz8ecE+cthp6KuDes37kPJR/HrW6EErCfWwZXr71gK++AhcJU870E0I4X
-	/AlWP8Mr1vEeJ8Z3wS4BIH/bilwLN41RxorQa4d8aeThPbprqjVzdNDSuHR8xCYZtYkumnmWDtq
-	Pj9KEw/TZxApHKZiQG3KQhMqXe/4ees65yskHtgJ5zgd1b3HtxGHHZT4wPoE9A+ESsC61KRCu/B
-	QXKLJvJyvkOcAd0qzXjkdi3KN2A1cUpUZcu2unvfSLONqRAoVIXwq2lQlkPDw+YvDDkJHfXHLCL
-	h/ffstvdwa+9r3lbbmX/i8aJIEhSmx4yzituXusDg9BiYz/0bhgUvSDfS6q4YKUQ/IZ/CPgUbn2
-	Ct159g/90LEHJazMt8Vtr
-X-Google-Smtp-Source: AGHT+IFytykecvrBPA/1/PLvPPDO1rJvEes1V0ZtApwJlR0ery/qJrkcNhzy1lk95OeOs9onGVk0Uw==
-X-Received: by 2002:a17:902:f688:b0:246:61f:e977 with SMTP id d9443c01a7336-2462ef9e616mr15378225ad.60.1755830428872;
-        Thu, 21 Aug 2025 19:40:28 -0700 (PDT)
-Received: from dixit ([2401:4900:1c7e:807:34f9:502:b902:b409])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-245f3cada79sm58097645ad.48.2025.08.21.19.40.23
+        d=1e100.net; s=20230601; t=1755830695; x=1756435495;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uHOsZL5h3AOX8Ev+qfsTMnxg8y5sgs76/JGMQGQVcN8=;
+        b=Kw2HfoMRMwQw5yVj2/l3axQfwe4ScKLghM2vlc16YmVdkFZZSjCOZkCWKEQY0bB8B8
+         plIzCiJr5UijuKyc25QEKRwOAQqcqUFFUYWrDrIpUgqluYWubiU8h04M25ckjhevVg72
+         yh0+sJZz4n+eNxOLrdlxP4i7fWygA+QX3DMtkeObDrFa/0SljzbeeQDE1P+h3fdy0HzO
+         QMCcu88uWE+LD+T9t5ZG5JAUvh4k3TST0WoJtBgxWFrMn8iG8AP3egtm+Fwg4yASaCHR
+         6nh3TNBuLtRm9aeIKEVEMBpzfK5CueUws2d58/z20wSQyoWiiPMgimcpIt8skfhIeCpj
+         ip4A==
+X-Forwarded-Encrypted: i=1; AJvYcCURcux4gU0qFChN4yeyh1Q2R81c87uiZFHvIN3EmU7Cl81jE0+wMASeAiCac5I8SnN//U9LFQDeTfmT@vger.kernel.org, AJvYcCXgkoKkHziDzbPp3q+YhQP+21D8yT851XFeSFhMVzXewjzV7Pur8dmjaZPE5lcFsEuAJkBjcijFwKiESB1X@vger.kernel.org, AJvYcCXxh12pDh5+CiAGF9ev2XZ6pBqounOhFjQ3MZwTQTgCbwYtJU93e/eanjElne8SCSrTjBmW5FwM8t16U74=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqLQqh+RQfNay+GmWW5bD4iqCIjC6xKO6DMPst4WrGyg4l31Au
+	ov+yc53RW57WvbAAcAhwp0NjjV3hNO4imr/e5/1Gt/SDl1GamL+HXl2X
+X-Gm-Gg: ASbGncsVo1Rwc9G0t2lKvcz/dr9CTmkIW4bk0UoZD7ece8o9+t8Jok8RYR3GZDUaV/M
+	Ht0tXrA3Y5FY0aPpRLj8xUSB1iYbYeBVCzuZHYU//zd1RAucO718xFwSmc2FnsZj6g8Kvp448U7
+	IfjiPa2b4cPGrpCVLECWu5tH3DuAhdd2GptAZoHr/6z/iTAFjc/+xIpHoMB0V/Z9egThup31grl
+	8S9fsyfWkFjS2akKzrRK+o2MOTN1xQc4lpqTQh6HgCN6WxmscRksVRdzLEweiZZ1mD2etaDCj+j
+	KIL5UOaDZtGVdiS2RdvjGmL//E48mfDJRGnWRbxLz6q/ZyXRbfS5HN9gQRhBxtZkrobs/AZ5RUE
+	fqT2oNTbM9PvnrVHOH+rgfJX2k7c+ye7s
+X-Google-Smtp-Source: AGHT+IG/bG+rHH6H4KxhjjaxQycZZAweGpYfTMuCllHKApJ6KI6vKWQZMMacqTWR/3qipm3upk4BaQ==
+X-Received: by 2002:a05:6a20:2450:b0:243:78a:82d2 with SMTP id adf61e73a8af0-24340e2aeddmr1948063637.31.1755830694893;
+        Thu, 21 Aug 2025 19:44:54 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:9cb2:179:b04b:be48])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77033785903sm262094b3a.66.2025.08.21.19.44.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Aug 2025 19:40:28 -0700 (PDT)
-Date: Fri, 22 Aug 2025 08:10:20 +0530
-From: Dixit Parmar <dixitparmar19@gmail.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
- TLV493D 3D Magentic sensor
-Message-ID: <aKfYlP-yWdQi34db@dixit>
-References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
- <20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
- <aKXW5pGiN18DyIZ7@smile.fi.intel.com>
- <aKaMPMnGRyvKqTny@dixit>
- <CAHp75Vdw5X1Y057fpGjdvVGwKq0x0UBdm8py+m+55RbzXi1PJw@mail.gmail.com>
+        Thu, 21 Aug 2025 19:44:54 -0700 (PDT)
+Date: Thu, 21 Aug 2025 19:44:51 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, 
+	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:ARM/LPC32XX SOC SUPPORT" <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [RESEND v2 1/1] dt-bindings: input: convert lpc32xx-key.txt to
+ yaml format
+Message-ID: <x43o5o4pcmhoudaeoklzanvivvwgytyrubvfwjfigcplaizgzm@ll5mq3nzsgnb>
+References: <20250818183814.3603308-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75Vdw5X1Y057fpGjdvVGwKq0x0UBdm8py+m+55RbzXi1PJw@mail.gmail.com>
+In-Reply-To: <20250818183814.3603308-1-Frank.Li@nxp.com>
 
-On Thu, Aug 21, 2025 at 10:41:03AM +0300, Andy Shevchenko wrote:
-> On Thu, Aug 21, 2025 at 6:02 AM Dixit Parmar <dixitparmar19@gmail.com> wrote:
-> > On Wed, Aug 20, 2025 at 05:08:38PM +0300, Andy Shevchenko wrote:
+On Mon, Aug 18, 2025 at 02:38:13PM -0400, Frank Li wrote:
+> Convert lpc32xx-key.txt to yaml format.
 > 
-> ...
+> Additional changes:
+> - set maximum of key-row(column) to 4.
+> - add ref to matrix-keymap.yaml.
 > 
-> > > >  st_magn-$(CONFIG_IIO_BUFFER) += st_magn_buffer.o
-> > > >  obj-$(CONFIG_IIO_ST_MAGN_I2C_3AXIS) += st_magn_i2c.o
-> > > >  obj-$(CONFIG_IIO_ST_MAGN_SPI_3AXIS) += st_magn_spi.o
-> > > >
-> > > > +obj-$(CONFIG_INFINEON_TLV493D)             += tlv493d.o
-> > > > +
-> > > >  obj-$(CONFIG_SENSORS_HMC5843)              += hmc5843_core.o
-> > > >  obj-$(CONFIG_SENSORS_HMC5843_I2C)  += hmc5843_i2c.o
-> > > >  obj-$(CONFIG_SENSORS_HMC5843_SPI)  += hmc5843_spi.o
-> > >
-> > > I haven't got the ordering rules here and in Kconfig. Can it be alphabetical?
-> > From what I can see, the order is alphabetical based on the CONFIG option in the
-> > Makefile and Kconfig, and I kept CONFIG_INFINEO_TLV493D after CONFIG_IIO_ST*.
-> > Isn't it in correct order? or my understanding is incorrect?
-> 
-> I dunno, The file name there is with the vendor prefix, in many cases
-> the configuration option is with vendor prefix as well, but the file.
-Hi Jonathan, Can you please suggest best possible way here?
+> Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-> 
-> > > Interestingly that you have used 100 limit and suddenly don't do it here
-> > > and maybe elsewhere. Why inconsistent style? Please, go through the whole
-> > > file and make sure the style is consistent in all of the aspects:
-> > > - C style used
-> > > - comments style (one-line and multi-line)
-> > > - indentation
-> > > - etc.
-> > I tried to follow 80 limit(except few places where it was just on border or not
-> > clear to read). I belive the standard is to use 80 limit(correct me if I referred
-> > wrong place) and I will recheck to meet that.
-> 
-> There are two standards, the old and strict one -- 80 characters, and
-> this subsystem _tries_ to follow it and relaxed with 100 limit.
-> The exceptions are possible when it affects readability.
-Understood, I will go with 100 limit and make sure everything is well within it.
+Applied, thank you.
 
-Thanks,
-Dixit
+-- 
+Dmitry
 
