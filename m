@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-207901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B41B3125E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 10:55:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 461B7B31276
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:02:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5166189D3B3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 08:55:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21C021C80D04
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09A9287276;
-	Fri, 22 Aug 2025 08:54:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 310714C83;
+	Fri, 22 Aug 2025 09:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="rjOIvWTe"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="d5WraUMZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07728393DE7;
-	Fri, 22 Aug 2025 08:54:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.181.231.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60C3139D
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:01:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755852890; cv=none; b=P7rGgm1kmdIKY9JDHw8BcZukFSylN9xwYo/Utu/zp6VVJLdezY28qjudLMAmazrCRhWvRHIubn0GW6L04BdgyOcgUjLKbwKo7RShurfv/6MJecNrPxuPwKBLKEccAjnpfj3ig8iyjODzwDhutgDcHnjb8WRH8j7v/s44PW2PDiU=
+	t=1755853316; cv=none; b=OLRC9IwSoVbUOVpgcI5u8RW3egLiXlKY4iRosOpJOdiy6ghahXpscRNmXWezru6xoLT4O6tiKayk+SlzAayc5CyiQRlEtGFBOlgWXracyIPL5Al7m2foDarLPHbF2JutaY/0TrgarApUsSwYInDvF0OF+ibyrO60glwyC4DXom0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755852890; c=relaxed/simple;
-	bh=7DRLTvUN8Oydnr7V2W/N7Sny8gya5mniJ0/+hxJRsNs=;
+	s=arc-20240116; t=1755853316; c=relaxed/simple;
+	bh=9ge1KhfR4GPontv0mr0iYuisXbmPgCbvoZHfhrs08jI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SazuCz4eBtB8pDVuv/B+No2n8uaIhPgCmJrRFfWg8bYDM1ub58iZRboipXglKUlc2RxiSr3AIn8ds03UDZb0waNWqyrQdVUJJEzGN/++m0WBj2FjeFana8VN0+Le8T3XFTyi/pV+wHhHuXoHp+cg/5zAEqSrbWSxFvYLM+IwRqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=rjOIvWTe; arc=none smtp.client-ip=180.181.231.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=W7WLQSNz7B5RmfHyRA2ZmCbMpTFkCh7ouhNUUgwN4UU=; b=rjOIvWTeS1BXXRyaEyOUnuiorc
-	C4wzdLdyBnQEvOi0ZOUsO9KJxrtDxGelvwWby72cJjAYpJzmcaXEzl3ExPqaOSqdpoR6OnDJyk7Nf
-	rWpB2acr68Liz0u97C8ZQVlMIGIdIA4fsv6O/Oi8If9FMV3YjfYDYgtn0LowvAoDkQ4Ai+XIBiCCq
-	/ziMG5MJl8y6tgCM+vyLQrOv7iEaGKycKr1rgTt+7gXRqCVz/RRUc8PWr9LHivVB2dIyKt/ydKNaS
-	my+6SsvHYrqZ1A9gqGXSmdqpVN3oUKXrj8uE+hXg5xipSPtFMr6ByeipDAjHYMTVKm1lHTYkWI2ll
-	0ECLA+kQ==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1upNIM-00GMNJ-2C;
-	Fri, 22 Aug 2025 16:54:44 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 22 Aug 2025 16:54:43 +0800
-Date: Fri, 22 Aug 2025 16:54:43 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Ruud.Derwig@synopsys.com,
-	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
-	Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-Subject: Re: [PATCH v4 4/6] Add SPAcc ahash support
-Message-ID: <aKgwU4sVZrAHZ05s@gondor.apana.org.au>
-References: <20250808122631.697421-1-pavitrakumarm@vayavyalabs.com>
- <20250808122631.697421-5-pavitrakumarm@vayavyalabs.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dji839xa4JBz/WjF+Y8NJWzTGw1NqvLby7ceHXZl6jsYCb6p+t9MtL1N3UoZxAtOqBPsgYvabPxXgaVtUeMdoQdRWB0jWk3tnY7CTe2pf2LDo+25DTc73PIJbRsVd0IzU8meVHFn1DigEShv4tshY9YT2v6H99ErN0PAggCcnHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=d5WraUMZ; arc=none smtp.client-ip=220.197.32.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=szsFJQd7FpONlwOm+0H1IEbNubvgFFPa2+Vofeysjbs=;
+	b=d5WraUMZ95QQRPkROwQ+DJ10P6fMlQcaMqqvkrYcaC/eItrxon8v3z4g0R4o6c
+	tKl8zjkrKgYXpRmu3VT7nhgMDiZwIYAAqifwv6nWO0t5uFl2jeNidrBtao33Oljz
+	cQp1nV2sa0bJzLlxaJYFKZmFsHVu/9w7rWF7KQID7148I=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3H9PLMahoWSkcAw--.15940S3;
+	Fri, 22 Aug 2025 17:01:01 +0800 (CST)
+Date: Fri, 22 Aug 2025 17:00:59 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, kernel@dh-electronics.com
+Subject: Re: [PATCH] arm64: dts: imx8mp: Fix missing microSD slot vqmmc on DH
+ electronics i.MX8M Plus DHCOM
+Message-ID: <aKgxy6tmlw28awes@dragon>
+References: <20250810160340.10042-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,65 +63,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250808122631.697421-5-pavitrakumarm@vayavyalabs.com>
+In-Reply-To: <20250810160340.10042-1-marek.vasut@mailbox.org>
+X-CM-TRANSID:Mc8vCgD3H9PLMahoWSkcAw--.15940S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUeLvtDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNQ3DKWioMc2g0gAA3c
 
-On Fri, Aug 08, 2025 at 05:56:29PM +0530, Pavitrakumar Managutte wrote:
->
-> +static int spacc_hash_digest(struct ahash_request *req)
-> +{
-> +	int rc = 0;
-> +	struct crypto_ahash *reqtfm = crypto_ahash_reqtfm(req);
-> +	struct spacc_crypto_ctx *tctx = crypto_ahash_ctx(reqtfm);
-> +	struct spacc_crypto_reqctx *ctx = ahash_request_ctx(req);
-> +	struct spacc_priv *priv = dev_get_drvdata(tctx->dev);
-> +	const struct spacc_alg *salg = spacc_tfm_ahash(&reqtfm->base);
-> +
-> +	/* direct single shot digest call */
-> +	ctx->single_shot = 1;
-> +	ctx->total_nents = sg_nents(req->src);
-> +
-> +	/* alloc tmp_sgl */
-> +	tctx->tmp_sgl = kmalloc(sizeof(*tctx->tmp_sgl) * 2, GFP_KERNEL);
-> +
-> +	if (!tctx->tmp_sgl)
-> +		return -ENOMEM;
+On Sun, Aug 10, 2025 at 06:03:07PM +0200, Marek Vasut wrote:
+> Add missing microSD slot vqmmc-supply property, otherwise the kernel
+> might shut down LDO5 regulator and that would power off the microSD
+> card slot, possibly while it is in use. Add the property to make sure
+> the kernel is aware of the LDO5 regulator which supplies the microSD
+> slot and keeps the LDO5 enabled.
+> 
+> Fixes: 8d6712695bc8 ("arm64: dts: imx8mp: Add support for DH electronics i.MX8M Plus DHCOM and PDK2")
+> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
 
-You should use a software fallback to handle the failure case.
+Applied, thanks!
 
-Also GFP_KERNEL cannot be used because this path may be called
-from softirqs.  Please use GFP_ATOMIC.
-
-> +	sg_init_table(tctx->tmp_sgl, 2);
-> +	tctx->tmp_sgl[0].length = 0;
-> +
-> +	if (tctx->handle < 0 || !tctx->ctx_valid) {
-> +		priv = NULL;
-> +		priv = dev_get_drvdata(salg->dev);
-> +		tctx->dev = get_device(salg->dev);
-> +
-> +		rc = spacc_is_mode_keysize_supported(&priv->spacc,
-> +						     salg->mode->id, 0, 1);
-> +		if (rc)
-> +			tctx->handle = spacc_open(&priv->spacc,
-> +						  CRYPTO_MODE_NULL,
-> +						  salg->mode->id, -1, 0,
-> +						  spacc_digest_cb,
-> +						  reqtfm);
-
-This thing needs to be redesigned.  The digest function can be
-called from softirq context, so it must never sleep.  The function
-spacc_open tries to obtain a mutex and this cannot possibly work.
-
-I think you should hook this up to crypto_engine which would allow
-your driver to sleep.
-
-Another request is that your driver is too big to review.  Please
-submit one functionality at a time so that it's easier for me.  Perhaps
-start with just skcipher since that's where spacc_open is currently.
-
-Cheers,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
