@@ -1,531 +1,225 @@
-Return-Path: <devicetree+bounces-207965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05743B313ED
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:48:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FD7FB3137A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:40:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32AAE1D2044D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:42:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D74C517EB3C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:35:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEFB42F548A;
-	Fri, 22 Aug 2025 09:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 123692F0C74;
+	Fri, 22 Aug 2025 09:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sMhN6xSX"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="eCmvL6PR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96F72F362B
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:36:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 211B927A456
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:30:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755855403; cv=none; b=S/p67UiJt/KZzxL1Vlvxo1KX4NtK39IXtTHDEWCldfz4ESfpmP5XgtpWkol4y7yqaFfZ0CWUVJyiUssYMylYFo3N3nQHaqqqE2aXHc4js3cqMGkJH0VD3d1GZIXstLIVODQavThTlMJ3AC5tRaehNo7ZjLcNkpy+vRQ3/RKuG4s=
+	t=1755855011; cv=none; b=sas5yDNRyrja93VSkG6bRHdYiLXIUxGBKo+gtRewk72bYYi03lsdGG1kQc/cGcJRVeUfwC+vWVQDYs9QrJawXYRL+U5PA2h/JByj6VQDKVrAlOo5ecgXPnT8aYpsU4jFgPwKpjwI3g5Q/+83MzslWp4w5eVHT0FBg7Vrp31MOIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755855403; c=relaxed/simple;
-	bh=Ru72dzH6CcO3HdmshXWVQKHfLm0onn8kOzSjOBskji8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FMEvOnQr4nPL4f1RC4CSPHa00KAqzmf9mF5pvZhE3q28GyW+CarlabbEarZMNQCVjxJG//OxOsnIY4VxsSnaA9EWoRvmfXVxmRXhe++RBqL0K57yF9QuUVvN9L7Ij0YkuRncHjWlFTcDLiOzbMlQJQOkGdXnTffkuBQsdH95sTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sMhN6xSX; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-71d601859f5so16416987b3.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 02:36:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755855399; x=1756460199; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kf+CyVGh1QHS1PkbjKcHGY/6k+CR5O9UX200twaR+/E=;
-        b=sMhN6xSXwPTTw9NPpysFiBYWXbZr0w0/DJYIdY5/HD1c02jYe9qp+95hIMv0kqHBCD
-         aPbUheGinj+9KTmiJdM+e5tiXj4YtHhWlZnwrNVMYSFJ+X8e2s4cfVMQx+p6yA1VcVmr
-         MHQ2hzzSXTAVrj3LJdrFjEebJhnFm7IW/eBXfV6vfbXTYp4B+GZ0ArLix7Bl1AhJQpCK
-         perrDvpOCtyQ89Hx9abxTIKZiG7aNCrUM9fcSChGHQG/asEtg1cB54CSBO6gaHdf73A7
-         oOc+WIHDunvBTOaszMgoDW/aGKG8ySQ2UEwwYzLK9/xpNcTmoH4JRNd8BqtXqkBgu1OP
-         YeGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755855399; x=1756460199;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kf+CyVGh1QHS1PkbjKcHGY/6k+CR5O9UX200twaR+/E=;
-        b=REc3USjjaQ4BGqiZ9/baut2sviUKhnvAWRXhImlqirzGyW1RYvtkPdzWh6ey7HQuv3
-         L0p0bLJ2AmI1K7g8NemuYSaSt72s1YvJB6+DO5cmHuPfAlnQiCGei46+NtQ0uO1NqXDl
-         K+I82FCzER8FagzAQxfh2ta3ri/+IgX8aXVj7xzlilXvc1vdJgRacbtyUFxQIVbz4Iqw
-         ITk9i9+co29W2MUrceJu9uxEx9lc5v2ip7YM0Rhuzp7DnuI4+6i9omPrkoanGO4A8mba
-         LdRGp3i9EUnXU9F4nivdhrTJZCIF8ErBgoqg5ng4WJC/V8kVxNetQB01PC1SOiaUmCw4
-         gY3A==
-X-Forwarded-Encrypted: i=1; AJvYcCXd0IgfySYP9ra864+vHjOre9gnRjf7kWibKXIC6bcPTKR4y9DpQ5iJnnwrobbC1Fmc2lYCk69hDeIm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXZhirYEUlt9a7mhkOVSm5Lr6MqAPF4BOBs2naKyBb1iDAxMmR
-	PXsG+QqLGvHfTavaxk49KhO5yfBylKXTbgwNDY6TD6N8GgLrDNfVGSP0afa0QvmZJP6A1o8cqUo
-	BCy7lc/qyrBgpviFd5vUsbJUW27h5XmBXYePjGgAKBw==
-X-Gm-Gg: ASbGncstHqFmiFpCxR3Fl7TbIi/DTXtywhyTSgC8RB0wkW/gcYImzWZ26NdzNqQKQ85
-	cMztA+JYY8Ekj+zMNImKy1likhmKhgdd9Om4bUI3oBSE5IsOxw8sgfuNQohPvp7upyDk9B3wv+k
-	Y32HHn4B4yZpusMMwIUrzrld4T1BLXjoET6nzRfsTTzRyAM3/+QdXBJeJrT+KvUL7rWsSpG6ICL
-	bl+lqu3
-X-Google-Smtp-Source: AGHT+IFrNSo/L6uEHcDP8r2F6liyi1v4cmZgTHZpa0LIkug04eoxV4wP2Ed9/DxooBcTty3gQ4cziEUnYQDUIX8w/ww=
-X-Received: by 2002:a05:690c:4493:b0:71e:841f:6799 with SMTP id
- 00721157ae682-71fdc3294d0mr22283917b3.21.1755855398395; Fri, 22 Aug 2025
- 02:36:38 -0700 (PDT)
+	s=arc-20240116; t=1755855011; c=relaxed/simple;
+	bh=1uw+3uuS5rdzZRDvYhsqt8LLzJI8q90hK+L9MVbBm94=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=IHpIRoljhnkr36Wdht5MCOHS7MNmw0BNHY6rPorTZI6FbK/qF5Imw+8g+ZXFoXAJFNxGKoMKFqryB1WzCnWX5gZZxACdlT6iMr9kmzG84koYlpTWZbP9Ve9kOwfYQaTfEGDO8GvddMTxHbswwF2O7osiWEHCaoF8XZ/D9uZfV2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=eCmvL6PR; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250822093007epoutp03b664e3537e0c72e281baedee96db97fb~eDNONmYsL0903809038epoutp03j
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:30:07 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250822093007epoutp03b664e3537e0c72e281baedee96db97fb~eDNONmYsL0903809038epoutp03j
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1755855007;
+	bh=ZY3wuhu23N4dIdZAWG8reCT5M0EmNA/MHqs2a9XwCA8=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=eCmvL6PRtxLkq0Q582cORQQolAXMC0V4I3xVoJs3NlEDNgHQZG1G3yLbZrTew4IQS
+	 ApzA7gvBeEPgVqwNd2mlnRi/cd/r99hiODeZb/23lowGGQMB3ifM9RNpxloStisJom
+	 Bd1b/PjdzbqmVCfVwdl1BbxrBKFmX/GSjSOWCsfA=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250822093006epcas5p19e2f162c41992c68fe78e49bc4b88a44~eDNNkjuhj2272122721epcas5p1x;
+	Fri, 22 Aug 2025 09:30:06 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.94]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4c7ZfP5kBDz6B9m7; Fri, 22 Aug
+	2025 09:30:05 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250822093005epcas5p16df62346568b8c6570cfff7c01da0667~eDNMEfS8N2004220042epcas5p1q;
+	Fri, 22 Aug 2025 09:30:05 +0000 (GMT)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250822093001epsmtip226e5c3b4db5511cb0469e1492c701494~eDNJD89Ne0061000610epsmtip2J;
+	Fri, 22 Aug 2025 09:30:01 +0000 (GMT)
+From: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
+	andre.draszik@linaro.org, peter.griffin@linaro.org, kauschluss@disroot.org,
+	ivo.ivanov.ivanov1@gmail.com, igor.belwon@mentallysanemainliners.org,
+	johan@kernel.org, m.szyprowski@samsung.com, s.nawrocki@samsung.com,
+	pritam.sutar@samsung.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
+	dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
+	selvarasu.g@samsung.com
+Subject: [PATCH v7 0/6] initial usbdrd phy support for Exynosautov920 soc
+Date: Fri, 22 Aug 2025 15:08:39 +0530
+Message-Id: <20250822093845.1179395-1-pritam.sutar@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250821-pxa1908-genpd-v2-0-eba413edd526@dujemihanovic.xyz> <20250821-pxa1908-genpd-v2-3-eba413edd526@dujemihanovic.xyz>
-In-Reply-To: <20250821-pxa1908-genpd-v2-3-eba413edd526@dujemihanovic.xyz>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 22 Aug 2025 11:36:02 +0200
-X-Gm-Features: Ac12FXwTIkzJKtDqOTwBi8LGRZbQGotFqgLm5vzl0UBnThOpGCgdrIxuC96gIxg
-Message-ID: <CAPDyKFoHWNuSmnN0e=QR73r0Ea-XJogbB8S3K+_=VRovzXL2Sw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] clk: mmp: Add PXA1908 power domain driver
-To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>, phone-devel@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250822093005epcas5p16df62346568b8c6570cfff7c01da0667
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250822093005epcas5p16df62346568b8c6570cfff7c01da0667
+References: <CGME20250822093005epcas5p16df62346568b8c6570cfff7c01da0667@epcas5p1.samsung.com>
 
-On Thu, 21 Aug 2025 at 13:19, Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz> =
-wrote:
->
-> Marvell's PXA1908 SoC has a few power domains for its VPU, GPU, image
-> processor and DSI PHY. Add a driver to control these.
->
-> Also create a separate Kconfig entry for the PXA1908 clock drivers to
-> allow satisfying the driver's dependencies.
->
-> Signed-off-by: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
-> ---
-> v2:
-> - Move to clk subsystem, instantiate the driver from the APMU clock
->   driver
-> - Drop clock handling
-> - Squash MAINTAINERS patch
-> ---
->  MAINTAINERS                             |   5 +
->  drivers/clk/Kconfig                     |   1 +
->  drivers/clk/mmp/Kconfig                 |  14 ++
->  drivers/clk/mmp/Makefile                |   5 +-
->  drivers/clk/mmp/clk-pxa1908-apmu.c      |   2 +-
->  drivers/clk/mmp/clk.h                   |   2 +
->  drivers/clk/mmp/pxa1908-power-domains.c | 253 ++++++++++++++++++++++++++=
-++++++
->  7 files changed, 280 insertions(+), 2 deletions(-)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index daf520a13bdf6a991c0160a96620f40308c29ee0..309090a5ba6c03a2c00d3e39a=
-896748958ffa593 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2869,9 +2869,14 @@ ARM/Marvell PXA1908 SOC support
->  M:     Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
->  L:     linux-arm-kernel@lists.infradead.org (moderated for non-subscribe=
-rs)
->  S:     Maintained
-> +C:     ircs://irc.oftc.net/pxa1908-mainline
-> +F:     Documentation/devicetree/bindings/clock/marvell,pxa1908.yaml
->  F:     arch/arm64/boot/dts/marvell/mmp/
-> +F:     drivers/clk/mmp/Kconfig
->  F:     drivers/clk/mmp/clk-pxa1908*.c
-> +F:     drivers/clk/mmp/pxa1908-power-domains.c
->  F:     include/dt-bindings/clock/marvell,pxa1908.h
-> +F:     include/dt-bindings/power/marvell,pxa1908-power.h
->
->  ARM/Mediatek RTC DRIVER
->  M:     Eddie Huang <eddie.huang@mediatek.com>
-> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> index 4d56475f94fc1e28823fe6aee626a96847d4e6d5..68a9641fc649a23013b2d8a9e=
-9f5ecb31d623abb 100644
-> --- a/drivers/clk/Kconfig
-> +++ b/drivers/clk/Kconfig
-> @@ -511,6 +511,7 @@ source "drivers/clk/imx/Kconfig"
->  source "drivers/clk/ingenic/Kconfig"
->  source "drivers/clk/keystone/Kconfig"
->  source "drivers/clk/mediatek/Kconfig"
-> +source "drivers/clk/mmp/Kconfig"
->  source "drivers/clk/meson/Kconfig"
->  source "drivers/clk/mstar/Kconfig"
->  source "drivers/clk/microchip/Kconfig"
-> diff --git a/drivers/clk/mmp/Kconfig b/drivers/clk/mmp/Kconfig
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..9dca5b50fd15a1d2ca71163c6=
-49a51592da15021
-> --- /dev/null
-> +++ b/drivers/clk/mmp/Kconfig
-> @@ -0,0 +1,14 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +config COMMON_CLK_PXA1908
-> +       bool "Clock driver for Marvell PXA1908"
-> +       depends on ARCH_MMP || COMPILE_TEST
-> +       depends on OF
-> +       default y if ARCH_MMP && ARM64
-> +       select PM
-> +       select PM_GENERIC_DOMAINS
-> +       select PM_GENERIC_DOMAINS_OF
-> +       select REGMAP_MMIO
-> +       help
-> +         This driver supports the Marvell PXA1908 SoC clocks. The SoC's =
-power
-> +         domains are also supported by the driver.
-> diff --git a/drivers/clk/mmp/Makefile b/drivers/clk/mmp/Makefile
-> index 062cd87fa8ddcc6808b6236f8c4dd524aaf02030..0b9ad29087ff23b8dc247bfd3=
-8f0e55382e16759 100644
-> --- a/drivers/clk/mmp/Makefile
-> +++ b/drivers/clk/mmp/Makefile
-> @@ -11,4 +11,7 @@ obj-$(CONFIG_MACH_MMP_DT) +=3D clk-of-pxa168.o clk-of-p=
-xa910.o
->  obj-$(CONFIG_COMMON_CLK_MMP2) +=3D clk-of-mmp2.o clk-pll.o pwr-island.o
->  obj-$(CONFIG_COMMON_CLK_MMP2_AUDIO) +=3D clk-audio.o
->
-> -obj-$(CONFIG_ARCH_MMP) +=3D clk-of-pxa1928.o clk-pxa1908-apbc.o clk-pxa1=
-908-apbcp.o clk-pxa1908-apmu.o clk-pxa1908-mpmu.o
-> +obj-$(CONFIG_COMMON_CLK_PXA1908) +=3D clk-pxa1908-apbc.o clk-pxa1908-apb=
-cp.o \
-> +       clk-pxa1908-mpmu.o clk-pxa1908-apmu.o pxa1908-power-domains.o
-> +
-> +obj-$(CONFIG_ARCH_MMP) +=3D clk-of-pxa1928.o
-> diff --git a/drivers/clk/mmp/clk-pxa1908-apmu.c b/drivers/clk/mmp/clk-pxa=
-1908-apmu.c
-> index d3a070687fc5b9fb5338f377f82e7664ca0aac29..3d4494cfc9bc28e1e614a11f5=
-6aa3d211fb6ec26 100644
-> --- a/drivers/clk/mmp/clk-pxa1908-apmu.c
-> +++ b/drivers/clk/mmp/clk-pxa1908-apmu.c
-> @@ -98,7 +98,7 @@ static int pxa1908_apmu_probe(struct platform_device *p=
-dev)
->
->         pxa1908_axi_periph_clk_init(pxa_unit);
->
-> -       return 0;
-> +       return pxa1908_pd_register(&pdev->dev);
->  }
->
->  static const struct of_device_id pxa1908_apmu_match_table[] =3D {
-> diff --git a/drivers/clk/mmp/clk.h b/drivers/clk/mmp/clk.h
-> index c83cec169ddc5e3fcd0561cf857f248178c25b68..6d3d089a0372fa48c8f61acea=
-cdd1b2059f2c8dd 100644
-> --- a/drivers/clk/mmp/clk.h
-> +++ b/drivers/clk/mmp/clk.h
-> @@ -258,4 +258,6 @@ struct generic_pm_domain *mmp_pm_domain_register(cons=
-t char *name,
->                 u32 power_on, u32 reset, u32 clock_enable,
->                 unsigned int flags, spinlock_t *lock);
->
-> +int pxa1908_pd_register(struct device *dev);
-> +
->  #endif
-> diff --git a/drivers/clk/mmp/pxa1908-power-domains.c b/drivers/clk/mmp/px=
-a1908-power-domains.c
+This SoC has a single USB 3.1 DRD combo phy and three USB2.0 only
+DRD phy controllers as mentined below
 
-By looking at the implementation of the power-domain code below, it
-seems to me that this code is better maintained within the pmdomain
-subsystem (drivers/pmdomain/pxa perhaps). May I suggest that you move
-it there.
-
-I guess the easiest way to do this is to export the
-pxa1908_pd_register() function - but you could explore using the
-auxiliary bus too, to instantiate a power-domain driver as an
-auxiliary driver.
-
-Other than that, the code looks good to me!
-
-Kind regards
-Uffe
+  * Combo phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
+    compatible to the USB3.0 SS(5Gbps). 'Add-on USB2.0' phy is added
+    to support USB2.0 HS(480Mbps), FS(12Mbps) and LS(1.5Mbps) data rates.
+    These two phys are combined to form a combo phy as mentioned below.
 
 
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..9f698a17e5a920d0472b74fce=
-137b42cae0569d2
-> --- /dev/null
-> +++ b/drivers/clk/mmp/pxa1908-power-domains.c
-> @@ -0,0 +1,253 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright 2025 Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
-> + */
-> +
-> +#include <linux/container_of.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/regmap.h>
-> +#include <linux/units.h>
-> +
-> +#include <dt-bindings/power/marvell,pxa1908-power.h>
-> +
-> +#include "clk.h"
-> +
-> +/* VPU, GPU, ISP */
-> +#define APMU_PWR_CTRL_REG      0xd8
-> +#define APMU_PWR_BLK_TMR_REG   0xdc
-> +#define APMU_PWR_STATUS_REG    0xf0
-> +
-> +/* DSI */
-> +#define APMU_DEBUG             0x88
-> +#define DSI_PHY_DVM_MASK       BIT(31)
-> +
-> +#define POWER_ON_LATENCY_US    300
-> +#define POWER_OFF_LATENCY_US   20
-> +
-> +#define NR_DOMAINS     5
-> +
-> +struct pxa1908_pd_ctrl {
-> +       struct genpd_onecell_data onecell_data;
-> +       struct generic_pm_domain *domains[NR_DOMAINS];
-> +       struct regmap *base;
-> +};
-> +
-> +struct pxa1908_pd_data {
-> +       u32 reg_clk_res_ctrl;
-> +       u32 hw_mode;
-> +       u32 pwr_state;
-> +       bool keep_on;
-> +       int id;
-> +};
-> +
-> +struct pxa1908_pd {
-> +       const struct pxa1908_pd_data data;
-> +       struct pxa1908_pd_ctrl *ctrl;
-> +       struct generic_pm_domain genpd;
-> +       struct device *dev;
-> +       bool initialized;
-> +       int num_clks;
-> +};
-> +
-> +static bool pxa1908_pd_is_on(struct pxa1908_pd *pd)
-> +{
-> +       struct pxa1908_pd_ctrl *ctrl =3D pd->ctrl;
-> +
-> +       return regmap_test_bits(ctrl->base, APMU_PWR_STATUS_REG, pd->data=
-.pwr_state);
-> +}
-> +
-> +static int pxa1908_pd_power_on(struct generic_pm_domain *genpd)
-> +{
-> +       struct pxa1908_pd *pd =3D container_of(genpd, struct pxa1908_pd, =
-genpd);
-> +       struct pxa1908_pd_ctrl *ctrl =3D pd->ctrl;
-> +       const struct pxa1908_pd_data *data =3D &pd->data;
-> +       unsigned int status;
-> +       int ret =3D 0;
-> +
-> +       regmap_set_bits(ctrl->base, data->reg_clk_res_ctrl, data->hw_mode=
-);
-> +       if (data->id !=3D PXA1908_POWER_DOMAIN_ISP)
-> +               regmap_write(ctrl->base, APMU_PWR_BLK_TMR_REG, 0x20001fff=
-);
-> +       regmap_set_bits(ctrl->base, APMU_PWR_CTRL_REG, data->pwr_state);
-> +
-> +       usleep_range(POWER_ON_LATENCY_US, POWER_ON_LATENCY_US * 2);
-> +
-> +       ret =3D regmap_read_poll_timeout(ctrl->base, APMU_PWR_STATUS_REG,=
- status,
-> +                                      status & data->pwr_state, 6, 25 * =
-USEC_PER_MSEC);
-> +       if (ret =3D=3D -ETIMEDOUT)
-> +               dev_err(pd->dev, "timed out powering on domain '%s'\n", p=
-d->genpd.name);
-> +
-> +       return ret;
-> +}
-> +
-> +static int pxa1908_pd_power_off(struct generic_pm_domain *genpd)
-> +{
-> +       struct pxa1908_pd *pd =3D container_of(genpd, struct pxa1908_pd, =
-genpd);
-> +       struct pxa1908_pd_ctrl *ctrl =3D pd->ctrl;
-> +       const struct pxa1908_pd_data *data =3D &pd->data;
-> +       unsigned int status;
-> +       int ret;
-> +
-> +       regmap_clear_bits(ctrl->base, APMU_PWR_CTRL_REG, data->pwr_state)=
-;
-> +
-> +       usleep_range(POWER_OFF_LATENCY_US, POWER_OFF_LATENCY_US * 2);
-> +
-> +       ret =3D regmap_read_poll_timeout(ctrl->base, APMU_PWR_STATUS_REG,=
- status,
-> +                                      !(status & data->pwr_state), 6, 25=
- * USEC_PER_MSEC);
-> +       if (ret =3D=3D -ETIMEDOUT) {
-> +               dev_err(pd->dev, "timed out powering off domain '%s'\n", =
-pd->genpd.name);
-> +               return ret;
-> +       }
-> +
-> +       return regmap_clear_bits(ctrl->base, data->reg_clk_res_ctrl, data=
-->hw_mode);
-> +}
-> +
-> +static inline int pxa1908_dsi_power_on(struct generic_pm_domain *genpd)
-> +{
-> +       struct pxa1908_pd *pd =3D container_of(genpd, struct pxa1908_pd, =
-genpd);
-> +       struct pxa1908_pd_ctrl *ctrl =3D pd->ctrl;
-> +
-> +       return regmap_set_bits(ctrl->base, APMU_DEBUG, DSI_PHY_DVM_MASK);
-> +}
-> +
-> +static inline int pxa1908_dsi_power_off(struct generic_pm_domain *genpd)
-> +{
-> +       struct pxa1908_pd *pd =3D container_of(genpd, struct pxa1908_pd, =
-genpd);
-> +       struct pxa1908_pd_ctrl *ctrl =3D pd->ctrl;
-> +
-> +       return regmap_clear_bits(ctrl->base, APMU_DEBUG, DSI_PHY_DVM_MASK=
-);
-> +}
-> +
-> +#define DOMAIN(_id, _name, ctrl, mode, state) \
-> +       [_id] =3D { \
-> +               .data =3D { \
-> +                       .reg_clk_res_ctrl =3D ctrl, \
-> +                       .hw_mode =3D BIT(mode), \
-> +                       .pwr_state =3D BIT(state), \
-> +                       .id =3D _id, \
-> +               }, \
-> +               .genpd =3D { \
-> +                       .name =3D _name, \
-> +                       .power_on =3D pxa1908_pd_power_on, \
-> +                       .power_off =3D pxa1908_pd_power_off, \
-> +               }, \
-> +       }
-> +
-> +static struct pxa1908_pd domains[NR_DOMAINS] =3D {
-> +       DOMAIN(PXA1908_POWER_DOMAIN_VPU, "vpu", 0xa4, 19, 2),
-> +       DOMAIN(PXA1908_POWER_DOMAIN_GPU, "gpu", 0xcc, 11, 0),
-> +       DOMAIN(PXA1908_POWER_DOMAIN_GPU2D, "gpu2d", 0xf4, 11, 6),
-> +       DOMAIN(PXA1908_POWER_DOMAIN_ISP, "isp", 0x38, 15, 4),
-> +       [PXA1908_POWER_DOMAIN_DSI] =3D {
-> +               .genpd =3D {
-> +                       .name =3D "dsi",
-> +                       .power_on =3D pxa1908_dsi_power_on,
-> +                       .power_off =3D pxa1908_dsi_power_off,
-> +                       /*
-> +                        * TODO: There is no DSI driver written yet and u=
-ntil then we probably
-> +                        * don't want to power off the DSI PHY ever.
-> +                        */
-> +                       .flags =3D GENPD_FLAG_ALWAYS_ON,
-> +               },
-> +               .data =3D {
-> +                       /* See above. */
-> +                       .keep_on =3D true,
-> +               },
-> +       },
-> +};
-> +
-> +static void pxa1908_pd_cleanup(struct pxa1908_pd_ctrl *ctrl)
-> +{
-> +       struct pxa1908_pd *pd;
-> +       int ret;
-> +
-> +       for (int i =3D NR_DOMAINS - 1; i >=3D 0; i--) {
-> +               pd =3D &domains[i];
-> +
-> +               if (!pd->initialized)
-> +                       continue;
-> +
-> +               ret =3D pm_genpd_remove(&pd->genpd);
-> +               if (ret)
-> +                       dev_err(pd->dev, "failed to remove domain '%s': %=
-d\n",
-> +                               pd->genpd.name, ret);
-> +               if (pxa1908_pd_is_on(pd) && !pd->data.keep_on)
-> +                       pxa1908_pd_power_off(&pd->genpd);
-> +       }
-> +}
-> +
-> +static int
-> +pxa1908_pd_init(struct pxa1908_pd_ctrl *ctrl, int id, struct device *dev=
-)
-> +{
-> +       struct pxa1908_pd *pd =3D &domains[id];
-> +       int ret;
-> +
-> +       pd->dev =3D dev;
-> +       pd->ctrl =3D ctrl;
-> +       ctrl->domains[id] =3D &pd->genpd;
-> +
-> +       /* Make sure the state of the hardware is synced with the domain =
-table above. */
-> +       if (pd->data.keep_on) {
-> +               ret =3D pd->genpd.power_on(&pd->genpd);
-> +               if (ret) {
-> +                       dev_err(dev, "failed to power on domain '%s': %d\=
-n", pd->genpd.name, ret);
-> +                       return ret;
-> +               }
-> +       } else {
-> +               if (pxa1908_pd_is_on(pd)) {
-> +                       dev_warn(dev,
-> +                                "domain '%s' is on despite being default=
- off; powering off\n",
-> +                                pd->genpd.name);
-> +
-> +                       ret =3D pxa1908_pd_power_off(&pd->genpd);
-> +                       if (ret) {
-> +                               dev_err(dev, "failed to power off domain =
-'%s': %d\n",
-> +                                       pd->genpd.name, ret);
-> +                               return ret;
-> +                       }
-> +               }
-> +       }
-> +
-> +       ret =3D pm_genpd_init(&pd->genpd, NULL, !pd->data.keep_on);
-> +       if (ret) {
-> +               dev_err(dev, "domain '%s' failed to initialize: %d\n", pd=
-->genpd.name, ret);
-> +               return ret;
-> +       }
-> +
-> +       pd->initialized =3D true;
-> +
-> +       return 0;
-> +}
-> +
-> +int pxa1908_pd_register(struct device *dev)
-> +{
-> +       struct pxa1908_pd_ctrl *ctrl;
-> +       int ret;
-> +
-> +       ctrl =3D devm_kzalloc(dev, sizeof(*ctrl), GFP_KERNEL);
-> +       if (!ctrl)
-> +               return -ENOMEM;
-> +
-> +       ctrl->base =3D syscon_node_to_regmap(dev->of_node);
-> +       if (IS_ERR(ctrl->base)) {
-> +               dev_err(dev, "no regmap available\n");
-> +               return PTR_ERR(ctrl->base);
-> +       }
-> +
-> +       ctrl->onecell_data.domains =3D ctrl->domains;
-> +       ctrl->onecell_data.num_domains =3D NR_DOMAINS;
-> +
-> +       for (int i =3D 0; i < NR_DOMAINS; i++) {
-> +               ret =3D pxa1908_pd_init(ctrl, i, dev);
-> +               if (ret)
-> +                       goto err;
-> +       }
-> +
-> +       return of_genpd_add_provider_onecell(dev->of_node, &ctrl->onecell=
-_data);
-> +
-> +err:
-> +       pxa1908_pd_cleanup(ctrl);
-> +       return ret;
-> +}
->
-> --
-> 2.50.1
->
+   USB30DRD_0 port
+
+ +------------------------------------------------------------+
+ |                                                            |
+ |                (combo) USB phy controller                  |
+ |      +----------------------------------------------+      |
+ |      |                  USB HSPHY                   |      |
+ |      |  (samsung,exynosautov920-usbdrd-combo-hsphy) |      |
+ |      +----------------------------------------------+      |
+ |                                                            |
+ |    +--------------------------------------------------+    |
+ |    |                   USB SSPHY                      |    |
+ |    |   (samsung,exynosautov920-usb31drd-combo-ssphy)  |    |
+ |    +--------------------------------------------------+-   |
+ |                                                            |
+ +------------------------------------------------------------+
+ |                                                            |
+ |                     USBDRD30 Link                          |
+ |                       Controller                           |
+ +------------------------------------------------------------+
+
+  * USB2.0 phy supports only UTMI+ interface. USB2.0DRD phy
+    is very similar to the existing Exynos850 support in this driver.
+
+    USB20DRD_0/1/2 ports
+
+      +---------------------------------------------------+
+      |                                                   |
+      |                USB PHY controller                 |
+      |    +-----------------------------------------+    |
+      |    |              USB HSPHY                  |    |
+      |    |  (samsung,exynosautov920-usbdrd-phy)    |    |
+      |    +-----------------------------------------+    |
+      |                                                   |
+      +---------------------------------------------------+
+      |                                                   |
+      |             USBDRD20_* Link                       |
+      |                Controller                         |
+      |                                                   |
+      +---------------------------------------------------+
+
+The "USB20 phy output isolation" is shared across the USB20 phys.
+We have to bypass isolation when any one of the USBs is configured
+and enable it when all are turned off. The "USB31 phy isolation"
+is seperate for USB31 phy.
+
+This patchset only supports device mode and same is verified with
+as NCM device
+
+changelog
+----------
+Changes in v7:
+- added fixes for driver build warnings
+  link for v6: https://lore.kernel.org/linux-phy/20250821073703.2498302-1-pritam.sutar@samsung.com/
+
+Changes in v6:
+- added else part for new supplies in schemas those are only
+  supported for exynosautov920.
+- addressed comments for driver given in v5.
+  link for v5: https://lore.kernel.org/linux-phy/20250805115216.3798121-1-pritam.sutar@samsung.com/
+
+Changes in v5:
+- significant changes were added in v4, removed "Reviewed-by" tag.
+- addressed comments from v4 patchset.
+  - patch (1/6)
+    - DTS style is corrected and added required supplies in code/schema.
+    - schema block added to resolve below failure during 'dtbs_check'.
+      Unevaluated properties are not allowed ('dvdd075-usb-supply', 'vdd18-usb20-supply', 'vdd33-usb20-supply' were unexpected.
+  - patch (2/6)
+    - removed usage_counter(take this later in subsequent patch-sets)
+  - patch (3/6)
+    - There are 3 types of the phys in this SoC.
+      - one is simmilar with exynos850 as mentioned in patch no.1.
+      - second supports only USB3.1 SSP+ and denoted in patch no 5
+      - third supports only USB2.0 HS as in patch3.
+    - hs phy in combo phy is "NOT" same as phy. (in patch no. 1)
+    - These three phys(usbdrd-phy, combo-hsphy, combo-ssphy) are totally
+      deferent, "NOT" same, hence added three compatible for three phys.
+  - patch (5/6)
+    - Since there are two phys in combo phy, explaination is given
+      in each patch.
+  link for v4: https://lore.kernel.org/linux-phy/20250701120706.2219355-1-pritam.sutar@samsung.com/
+
+Changes in v4:
+- addressed comments from v3 patchset
+  - removed dts related patches, to be posted in new patchset.
+  - added regulator, pmu and power sequences.
+  - phy isol is shared across USBs, added usage counter to bypass or
+    enable phy isolation.
+  - modified schemas with hs and combo phy compatible names
+    (used "combo" to denote combo phy) and regulators
+- modified code to work with binding and unbinding devices/drivers
+- added "Reviewed-by" tag.
+  link for v3: https://lore.kernel.org/linux-phy/20250613055613.866909-1-pritam.sutar@samsung.com/
+
+Changes in v3:
+- Updated dt-bindings for USB2.0 only.
+- Added dt-bindings for combo phy.
+- Added implementation for combo phy (SS and HS phy).
+- Added added DTS nodes for all the phys
+  link for v2: https://lore.kernel.org/linux-phy/20250516102650.2144487-1-pritam.sutar@samsung.com/
+
+Changes in v2:
+- Used standard GENMASK() and FIELD_GET() to get the major version
+  from controller version register.
+  link for v1: https://lore.kernel.org/linux-phy/20250514134813.380807-1-pritam.sutar@samsung.com/
+
+Pritam Manohar Sutar (6):
+  dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 HS phy
+    compatible
+  phy: exynos5-usbdrd: support HS phy for ExynosAutov920
+  dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo hsphy
+  phy: exynos5-usbdrd: support HS combo phy for ExynosAutov920
+  dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo ssphy
+  phy: exynos5-usbdrd: support SS combo phy for ExynosAutov920
+
+ .../bindings/phy/samsung,usb3-drd-phy.yaml    |  50 ++
+ drivers/phy/samsung/phy-exynos5-usbdrd.c      | 651 ++++++++++++++++++
+ include/linux/soc/samsung/exynos-regs-pmu.h   |   3 +
+ 3 files changed, 704 insertions(+)
+
+-- 
+2.34.1
+
 
