@@ -1,145 +1,146 @@
-Return-Path: <devicetree+bounces-208061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D581BB31735
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:12:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 562FFB31759
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 14:15:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8343EB05182
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:10:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C4D517872F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 12:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F31E2FC006;
-	Fri, 22 Aug 2025 12:09:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76F712FD7A1;
+	Fri, 22 Aug 2025 12:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="WolNuskl"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="LAYLKyig"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DF162FB62C
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 12:08:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB642FCBE8;
+	Fri, 22 Aug 2025 12:14:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755864543; cv=none; b=nl4MLL7J141ZAvuq3Un7Vn+b0lFR+ujDf0+j1Eq9I48AUUkHbmHI6LgXU1APpzqlAdWUjO+3n9PQsHGoliHE8DlvZ5PbsFfiOxrzq0UaylQP5dF3oMeW54CkEpLVE4msEEQujq7O0K5/KnDWIxlNj9mPXvJ94UltfczdiJ/+TJw=
+	t=1755864878; cv=none; b=XSmABL5myv7s38wSVti8Qud9hQuFFyU6CzQhb6tOWXGBI2Nc1rDiL73VXua1ooXcR2CgdD6893v/rZXN18PyuynjmEasa5w4MydBb4IwLS5DXm9tPW/mCu6gCS7cegJCdEqhTULGsDC+fD+ubnNyM25jEzVhn5tU0AYpTWBC5So=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755864543; c=relaxed/simple;
-	bh=nLOyAWpzOxcLbnq6AYRm7XRxX4QswK3V/TLTzyzGOjs=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=dzr72lCnYwCVk2YA4WLOz18VO5Gybx/zE8BIOrFVf1msZVtpoOYy7j1LBjQSCHftUKKt2xVTJd8Q1VDs0S7hahojIaJAQmclAxP+v8bNnXI15GxdYX9lGgxyIpGimwA9vyRrbI94Wt0xHpGA/DCpCoN5HoMzpSJhJim+//Psnuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=WolNuskl; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250822120856epoutp039ccc4f394f3ac5261cd7427bead8022d~eFX4YYf4S2051120511epoutp03L
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 12:08:56 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250822120856epoutp039ccc4f394f3ac5261cd7427bead8022d~eFX4YYf4S2051120511epoutp03L
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1755864536;
-	bh=lET1kWbDLqrIbol+G/CIjHWw2OZjsq9g7OfEHWdvLhI=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=WolNusklP2tPVeQsUUFTpoi76gsovm194InhNOSHq7mcJKNAWfjDLXOI/ZsAGcYVx
-	 FMiMVYEDvjWIBDc3I9lvLlQ6817/HP1S6GCI6+jAncykr9Tp110dKjjfk5pGP/k7dk
-	 G22xA6VX6fFjKHMwEuh0mG4d5NRCJcB2N1L+nvMA=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250822120855epcas5p396d2099360b9ba11aa5a33fc9502af6a~eFX3h5JrT2585025850epcas5p3L;
-	Fri, 22 Aug 2025 12:08:55 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.87]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4c7f9f16r4z2SSKb; Fri, 22 Aug
-	2025 12:08:54 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250822120853epcas5p15497652f90d08bf64646bac341be80e8~eFX1qy8Mg2210422104epcas5p1D;
-	Fri, 22 Aug 2025 12:08:53 +0000 (GMT)
-Received: from FDSFTE411 (unknown [107.122.81.184]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250822120848epsmtip184aef53aafea6c576ae0dbebc5b6f376~eFXxPWsKW0871608716epsmtip1j;
-	Fri, 22 Aug 2025 12:08:48 +0000 (GMT)
-From: "Ravi Patel" <ravi.patel@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <jesper.nilsson@axis.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <s.nawrocki@samsung.com>,
-	<cw00.choi@samsung.com>, <alim.akhtar@samsung.com>,
-	<linus.walleij@linaro.org>, <tomasz.figa@gmail.com>,
-	<catalin.marinas@arm.com>, <will@kernel.org>, <arnd@arndb.de>
-Cc: <ksk4725@coasia.com>, <kenkim@coasia.com>, <pjsin865@coasia.com>,
-	<gwk1013@coasia.com>, <hgkim05@coasia.com>, <mingyoungbo@coasia.com>,
-	<smn1196@coasia.com>, <pankaj.dubey@samsung.com>, <shradha.t@samsung.com>,
-	<inbaraj.e@samsung.com>, <swathi.ks@samsung.com>,
-	<hrishikesh.d@samsung.com>, <dj76.yang@samsung.com>,
-	<hypmean.kim@samsung.com>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-arm-kernel@axis.com>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<soc@lists.linux.dev>
-In-Reply-To: <ceb20624-7405-40c5-9c29-1a7339e0cca4@kernel.org>
-Subject: RE: [PATCH v2 02/10] clk: samsung: Add clock PLL support for
- ARTPEC-8 SoC
-Date: Fri, 22 Aug 2025 17:38:47 +0530
-Message-ID: <000301dc135d$86ed30d0$94c79270$@samsung.com>
+	s=arc-20240116; t=1755864878; c=relaxed/simple;
+	bh=xUzCqw8G2JO1bhdytol3kfokW1GSmJ1/SVm3V50NR/g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XexFkd716uxhmHVoM1gfIUfTJeJPuLpCA8HMmgzKuwGQPjE5e9zQ8QqLEOPa/vYxnHTwlHZpFXtbJ4funFZdwzSZR23XICEOK/7/rHS8uFOk64OQ/+RxtDqhbApdJqCwWp0dVPmuiqfybHVKlkCdipwi4S63oehAKTudC7peQWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=LAYLKyig; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1755864877; x=1787400877;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=xUzCqw8G2JO1bhdytol3kfokW1GSmJ1/SVm3V50NR/g=;
+  b=LAYLKyigeTTjvC34kfVLH4i9EbjGdZko/yCTxg1NLSTWxnkwbLhDiE96
+   rmkCYHU/6nsb7XlRJnUDre2RKyLvmCf/L/XMzgYpDLIrYM//xkSVmVuHc
+   Y5hsB5F82+Y4aO6KeFxCY1IO7d1jde/3HCYdU2XTLt42UrCpZFo+/nKqe
+   W8nY5a/XEKcHulou0s5FEeubJXT4igk4KLqKBfn3gnkz7bqlsYSuBqWnA
+   o+D7gIt0T2o270kI0uTklHUXCvVI6bBz5gYsvbZ0N1jmRA7ySmsQcO89P
+   GPJwsKEe0l9CLNfN4B81cg1bvgj3VKqv5NZFks7U9pcTPgmlKtQTChsG2
+   w==;
+X-CSE-ConnectionGUID: UKvKOVZXRqugqNL71FaA+g==
+X-CSE-MsgGUID: /uRisEj6RXar0b2HQ8WGoQ==
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; 
+   d="scan'208";a="45527384"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Aug 2025 05:14:21 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Fri, 22 Aug 2025 05:13:59 -0700
+Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Fri, 22 Aug 2025 05:13:55 -0700
+Message-ID: <364fadbd-20fd-4f89-8a86-ed5b8d87ab42@microchip.com>
+Date: Fri, 22 Aug 2025 14:13:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/5] net: cadence: macb: Add support for Raspberry Pi
+ RP1 ethernet controller
+To: Stanimir Varbanov <svarbanov@suse.de>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<linux-rpi-kernel@lists.infradead.org>, Broadcom internal kernel review list
+	<bcm-kernel-feedback-list@broadcom.com>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
+	<jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Andrew Lunn <andrew@lunn.ch>
+References: <20250822093440.53941-1-svarbanov@suse.de>
+ <20250822093440.53941-4-svarbanov@suse.de>
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Content-Language: en-US, fr
+Organization: microchip
+In-Reply-To: <20250822093440.53941-4-svarbanov@suse.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGJY/8wx4BImu0YLFPVfwpfqUmFNgKGrjAaAcRz3scCHvrcAQFBK/RJtNaTkzA=
-Content-Language: en-in
-X-CMS-MailID: 20250822120853epcas5p15497652f90d08bf64646bac341be80e8
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250821124024epcas5p349dda3c9e0523cc07acf2889476beeb1
-References: <20250710002047.1573841-1-ksk4725@coasia.com>
-	<20250821123310.94089-1-ravi.patel@samsung.com>
-	<CGME20250821124024epcas5p349dda3c9e0523cc07acf2889476beeb1@epcas5p3.samsung.com>
-	<20250821123310.94089-3-ravi.patel@samsung.com>
-	<ceb20624-7405-40c5-9c29-1a7339e0cca4@kernel.org>
 
-
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: 22 August 2025 12:02
-> To: Ravi Patel <ravi.patel@samsung.com>; jesper.nilsson@axis.com; mturquette@baylibre.com; sboyd@kernel.org;
-> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; s.nawrocki@samsung.com; cw00.choi@samsung.com;
-> alim.akhtar@samsung.com; linus.walleij@linaro.org; tomasz.figa@gmail.com; catalin.marinas@arm.com; will@kernel.org;
-> arnd@arndb.de
-> Cc: ksk4725@coasia.com; kenkim@coasia.com; pjsin865@coasia.com; gwk1013@coasia.com; hgkim05@coasia.com;
-> mingyoungbo@coasia.com; smn1196@coasia.com; pankaj.dubey@samsung.com; shradha.t@samsung.com;
-> inbaraj.e@samsung.com; swathi.ks@samsung.com; hrishikesh.d@samsung.com; dj76.yang@samsung.com;
-> hypmean.kim@samsung.com; linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-samsung-
-> soc@vger.kernel.org; linux-arm-kernel@axis.com; linux-clk@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> gpio@vger.kernel.org; soc@lists.linux.dev
-> Subject: Re: [PATCH v2 02/10] clk: samsung: Add clock PLL support for ARTPEC-8 SoC
+On 22/08/2025 at 11:34, Stanimir Varbanov wrote:
+> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 > 
-> On 21/08/2025 14:32, Ravi Patel wrote:
-> > +
-> > +static const struct clk_ops samsung_pll1031x_clk_ops = {
-> > +	.recalc_rate = samsung_pll1031x_recalc_rate,
-> > +	.round_rate = samsung_pll_round_rate,
+> The RP1 chip has the Cadence GEM block, but wants the tx_clock
+> to always run at 125MHz, in the same way as sama7g5.
+> Add the relevant configuration.
 > 
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+> ---
+>   drivers/net/ethernet/cadence/macb_main.c | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
 > 
-> This will conflict with round_rate drop, so might need rebasing. Please
-> follow up discussion or decisions in the round rate patchset.
-
-Thanks for review. Yes, I can see conflicts with below patch 
-https://lore.kernel.org/linux-samsung-soc/20250811-clk-for-stephen-round-rate-v1-99-b3bf97b038dc@redhat.com/
-
-Since merging strategy of round_rate patches are not clear as of now, will wait for couple of days before posting v3.
-Request to review other patches also.
-
-Thanks,
-Ravi
-
+> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+> index 36717e7e5811..260fdac46f4b 100644
+> --- a/drivers/net/ethernet/cadence/macb_main.c
+> +++ b/drivers/net/ethernet/cadence/macb_main.c
+> @@ -5135,6 +5135,17 @@ static const struct macb_config versal_config = {
+>          .usrio = &macb_default_usrio,
+>   };
 > 
-> Best regards,
-> Krzysztof
+> +static const struct macb_config raspberrypi_rp1_config = {
+> +       .caps = MACB_CAPS_GIGABIT_MODE_AVAILABLE | MACB_CAPS_CLK_HW_CHG |
+> +               MACB_CAPS_JUMBO |
+> +               MACB_CAPS_GEM_HAS_PTP,
+> +       .dma_burst_length = 16,
+> +       .clk_init = macb_clk_init,
+> +       .init = macb_init,
+> +       .usrio = &macb_default_usrio,
+> +       .jumbo_max_len = 10240,
+> +};
+> +
+>   static const struct of_device_id macb_dt_ids[] = {
+>          { .compatible = "cdns,at91sam9260-macb", .data = &at91sam9260_config },
+>          { .compatible = "cdns,macb" },
+> @@ -5155,6 +5166,7 @@ static const struct of_device_id macb_dt_ids[] = {
+>          { .compatible = "microchip,mpfs-macb", .data = &mpfs_config },
+>          { .compatible = "microchip,sama7g5-gem", .data = &sama7g5_gem_config },
+>          { .compatible = "microchip,sama7g5-emac", .data = &sama7g5_emac_config },
+> +       { .compatible = "raspberrypi,rp1-gem", .data = &raspberrypi_rp1_config },
+>          { .compatible = "xlnx,zynqmp-gem", .data = &zynqmp_config},
+>          { .compatible = "xlnx,zynq-gem", .data = &zynq_config },
+>          { .compatible = "xlnx,versal-gem", .data = &versal_config},
+> --
+> 2.47.0
+> 
 
 
