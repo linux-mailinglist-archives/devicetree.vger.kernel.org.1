@@ -1,137 +1,358 @@
-Return-Path: <devicetree+bounces-207919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-207927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B07A0B312D9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:23:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14433B31312
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 11:30:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF9017BE157
-	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:21:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B49141C2301A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Aug 2025 09:28:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC48D2EAB8D;
-	Fri, 22 Aug 2025 09:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636C122D9F1;
+	Fri, 22 Aug 2025 09:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yramlMjx"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="HCpzWZv5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C64732E717B
-	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:23:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEE2D2EF669
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:26:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755854585; cv=none; b=I9wAPWOdTKY1CtGpE5S+mXKA8zGfJmKXcMMrUnHd4xx9+TuGFACD6r8yE1nN8dU1TsdbmHzTY0EeTqC0fohYgqolcHTRNFPJjrDapuXUkimp8d/j8ccDW94IBpLmm3ivKhunwSixqZ9yWgTf1WhHIcKmqxaOOvrK4FmpJzrygZY=
+	t=1755854810; cv=none; b=JtSUSE3rBsONwOqW8ttcWbKqqyP/dRgbdxqm3Il6ygfKDU8ToglAX+qrIRGP1M+YzS41bQRd5LW7zuNxqOV+NGsVZnAq6pduppT2dhGNcX3jFIygTKsiByIjeOVTyDejtF4oo7ikKRN248+RBbleZ77vddkrBF8ypVuooGQPluY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755854585; c=relaxed/simple;
-	bh=A81kBoegl40q6quwOX0WX4yiOUHqnmUUvR3iJOA0a2w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UHK5+zhb2F66AoY4AlN7gY2yk3crM/uT/KdTDgVKJ9vc0aFUPqTts3sgedndAd+5SUtz0VR0xDESZgl9eOCvMpDFvNIiLphHAd5I3/G+G7Q2ZQcx5C/7Uw3eemjieupIc+P03HPQYkncSGDpdNQYOY6v+XC0rifrGqopD6Ldlf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yramlMjx; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-333f92cb94eso16493161fa.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 02:23:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755854581; x=1756459381; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8rvb5BTFOBJCsAqheRi5OrrkHsnM2r6jQ+WuONy16iw=;
-        b=yramlMjxo2HVLHr77caITJqmao78DQi+W03uRRGABVDoijpNsUeuSCdK1TmpiJ0hXi
-         GdZ4vJX75/t4Q+Q9Da1aUSKfT/UUVQNzpkZVqBZd7/uWx4WotQs1xPHzUoD63hJlWajX
-         VAj/Pdcsg4mCr3WWO+WVte+c9XTUg0bzLml3DfEek7dleo4tySjsDb9Wpf0pDxppHiIX
-         cqiFdOvgyAqqOqrmV9U0qKwyk7iEiojvSM0EvAc8MvwykNTPCwxI3uYvlKRc6SgiCz4s
-         AnguQxajQDLQ1IS+mXISkUlGcJXvmR9W+RpSLjxoi6fb6rmdb9bnmctZozyEhIt65U28
-         HiGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755854581; x=1756459381;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8rvb5BTFOBJCsAqheRi5OrrkHsnM2r6jQ+WuONy16iw=;
-        b=GUYKeutAqOb9ao5mTr0WzJ2g5uJ4+maobXliCAf2l/dMEvFuxs/eBSRUbRzsN9SRD/
-         XJzBdBWdPK2/w0PIEMEOTXMG4f/D74l+QWdd+OxUQMk6fl3RK7avISE0Rw3j/0+y+pt9
-         mNSWdLRoJvA2pM4K7R0WvcLZ0EvcDo9SVOypSj9cqXkufbrie9ighsqtrRDFW0FoaqhS
-         WOh/i0j3uph9YnIQ1n+w01aNqUUITVYE1CJc4MTi2YIpMJiv40K5FzefCkvLXN1WNp/g
-         vKIOmRzLAcYl9oQEV8ssCnQ/01xpTwBaqDVdES99VYsXmKIqvUY2pneEDXaTQKYTt0QX
-         dWpA==
-X-Forwarded-Encrypted: i=1; AJvYcCUgx0EuIUOT2RJZutV2RJR3ZmUsbJF4hL+E/qHx+6zJ+f1c5h4DyyDDISY0LxtfDKTRHTjV5SfnqBAh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDmb9FhzJbaFdckUsgHbRrJjbM0OysbpGx6HW/z1XbSW6utooO
-	1q2ZpAVBEZLobh39drbEYgvLC3zuLWmLNRlp9zu7mcVsgqHbOrSQj7VJN3ehvYnRwhp8gFRGLkD
-	bT2YOPpoZRNtpwVB3w2GBxrCygGpzglB3lF76KN5NiQ==
-X-Gm-Gg: ASbGncvT9Zw+h4gszjlCwnpKsm366BUlvLGUed8ZkZmUH/O4tgjJ/Zo8CE1BwHLSYil
-	Er1UHy3xQg+nwUDRB2LA1pMp0kssK8gmU7vpX0gwoGWVYIOknSZKqPC4BIr0KfmkesGITwhnkZY
-	r/+gI2l7Low6H2YiR9TjxLoWUlyOzOpMiQDoqyQlYyQ3vWOgKVsIZiZRGutplUPT5Gsp8PhrztV
-	s90rNLt+p6Dl2SLJQ==
-X-Google-Smtp-Source: AGHT+IGmS+5jZRiY3M87jYqtd1N1nFCNBKn5R2TEdrmd3+xxfd4PG/kXNNSVVgmhRVuloDKPRDouFdqjsq+r/vvoIgA=
-X-Received: by 2002:a2e:8a86:0:b0:32b:5272:38eb with SMTP id
- 38308e7fff4ca-33651002d61mr7071001fa.40.1755854580887; Fri, 22 Aug 2025
- 02:23:00 -0700 (PDT)
+	s=arc-20240116; t=1755854810; c=relaxed/simple;
+	bh=wOwI2oKPnDRuHjZ2SOx+OFwv2fBfKeaehXv6eU6r2tU=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=aPQe2/SVjhRw6nh0jZXM5rm3hB9qbRWke0PKCFKJk/SEioW3CAREm+023ge05yCJXk+lewbxTFBGK2sDi1NfHpTVRjN/Pgf1QVZakP1uIy+uBFHaGjJIxj5XCC+FC3ViJaWr/ihVl8YECC6NVGHXGvA5/RYmzhE2B5kZoKy0O68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=HCpzWZv5; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250822092638epoutp031cd392c8c25f8fd1708311c0d7620536~eDKL9GJwf0502305023epoutp03S
+	for <devicetree@vger.kernel.org>; Fri, 22 Aug 2025 09:26:38 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250822092638epoutp031cd392c8c25f8fd1708311c0d7620536~eDKL9GJwf0502305023epoutp03S
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1755854798;
+	bh=nmtEoeQlWuqYko7mqBv9pQr3Zd1olsc1MAqj9gtJ+xo=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=HCpzWZv55h4/Y3Rnp1lf4B3OehmY2sv1WXATu/E8TIH9xI1JiUvdMJc96nTLLOTrU
+	 NRHX6Gwhywx84a6gjxknJR5WU9QgJaMZz/nqalCscox3T28UUmNW0e/crGbjBh8VjW
+	 yXPFJoLzQYdYkxChWMST6TkzFwJK96nYt7OdC1Q4=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250822092637epcas5p29a7dd2208e947a9732298efc46494f7e~eDKK4z4X51122911229epcas5p27;
+	Fri, 22 Aug 2025 09:26:37 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.92]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4c7ZZP0Mkqz6B9m5; Fri, 22 Aug
+	2025 09:26:37 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250822092636epcas5p41d4c9c6511ed7d0194c95e651ba0d6b3~eDKJrf--63154431544epcas5p4e;
+	Fri, 22 Aug 2025 09:26:36 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250822092633epsmtip197617a5a4f4d248d605769bfa26a2454~eDKGnqxap0570405704epsmtip1Z;
+	Fri, 22 Aug 2025 09:26:33 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<igor.belwon@mentallysanemainliners.org>, <johan@kernel.org>,
+	<m.szyprowski@samsung.com>, <s.nawrocki@samsung.com>
+Cc: <oe-kbuild-all@lists.linux.dev>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <202508220553.lm7ExAxG-lkp@intel.com>
+Subject: RE: [PATCH v6 6/6] phy: exynos5-usbdrd: support SS combo phy for
+ ExynosAutov920
+Date: Fri, 22 Aug 2025 14:56:32 +0530
+Message-ID: <006f01dc1346$db4edf50$91ec9df0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250822075712.27314-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250822075712.27314-2-krzysztof.kozlowski@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 22 Aug 2025 11:22:49 +0200
-X-Gm-Features: Ac12FXwu_A2fq6cbJB5U4ofkj6w0TKETQ4RpzZE3LHHotvIJu8LJQDJ8_-1dTpA
-Message-ID: <CACRpkdbLKXx7GEOPemFGSTFy8oDG99TUFwC7sH7xkaoqe-cY8A@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mfd: Move embedded controllers to own directory
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>, 
-	Guenter Roeck <groeck@chromium.org>, Tim Harvey <tharvey@gateworks.com>, 
-	Michael Walle <mwalle@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Jean Delvare <jdelvare@suse.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Lee Jones <lee@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Cheng-Yi Chiang <cychiang@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Tinghan Shen <tinghan.shen@mediatek.com>, devicetree@vger.kernel.org, 
-	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-sound@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	Mathew McBride <matt@traverse.com.au>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHdPSQ+XjFsLeZLd+6ieGPrJFm5GwFxhWqcAlQOQPW0Tc8gUA==
+Content-Language: en-in
+X-CMS-MailID: 20250822092636epcas5p41d4c9c6511ed7d0194c95e651ba0d6b3
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250821212909epcas5p3cfcff210863febc2410cf661172be683
+References: <20250821073703.2498302-7-pritam.sutar@samsung.com>
+	<CGME20250821212909epcas5p3cfcff210863febc2410cf661172be683@epcas5p3.samsung.com>
+	<202508220553.lm7ExAxG-lkp@intel.com>
 
-On Fri, Aug 22, 2025 at 9:57=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+Hi, 
 
-> Move ChromeOS Embedded Controller, Gateworks System Controller and
-> Kontron sl28cpld Board Management Controller to new subdirectory
-> "embedded-controller" matching their purpose.  MFD is coming from Linux
-> and does not really fit the actual purpose of this hardware.
->
-> Rename Gateworks GSC filename to match compatible, as preferred for
-> bindings.
+> -----Original Message-----
+> From: kernel test robot <lkp@intel.com>
+> Sent: 22 August 2025 02:58 AM
+> To: Pritam Manohar Sutar <pritam.sutar@samsung.com>; vkoul@kernel.org;
+> kishon@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
+> conor+dt@kernel.org; alim.akhtar@samsung.com; andre.draszik@linaro.org;
+> peter.griffin@linaro.org; kauschluss@disroot.org;
+> ivo.ivanov.ivanov1@gmail.com; igor.belwon@mentallysanemainliners.org;
+> johan@kernel.org; m.szyprowski@samsung.com; s.nawrocki@samsung.com
+> Cc: oe-kbuild-all@lists.linux.dev; linux-phy@lists.infradead.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org;
+> rosa.pila@samsung.com; dev.tailor@samsung.com;
+> faraz.ata@samsung.com; muhammed.ali@samsung.com;
+> selvarasu.g@samsung.com
+> Subject: Re: [PATCH v6 6/6] phy: exynos5-usbdrd: support SS combo phy for
+> ExynosAutov920
+> 
+> Hi Pritam,
+> 
+> kernel test robot noticed the following build warnings:
+> 
+> [auto build test WARNING on robh/for-next] [also build test WARNING on
+> krzk/for-next linus/master v6.17-rc2 next-20250821] [If your patch is
+applied
+> to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> url:    https://protect2.fireeye.com/v1/url?k=07116f39-666ac5ae-0710e476-
+> 74fe4860001d-17dff89291ad3b5b&q=1&e=45b4f292-bcb1-4614-86a0-
+> c790a47fb814&u=https%3A%2F%2Fgithub.com%2Fintel-lab-
+> lkp%2Flinux%2Fcommits%2FPritam-Manohar-Sutar%2Fdt-bindings-phy-
+> samsung-usb3-drd-phy-add-ExynosAutov920-HS-phy-
+> compatible%2F20250821-153122
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+for-
+> next
+> patch link:    https://lore.kernel.org/r/20250821073703.2498302-7-
+> pritam.sutar%40samsung.com
+> patch subject: [PATCH v6 6/6] phy: exynos5-usbdrd: support SS combo phy
+> for ExynosAutov920
+> config: arc-randconfig-001-20250822 (https://download.01.org/0day-
+> ci/archive/20250822/202508220553.lm7ExAxG-lkp@intel.com/config)
+> compiler: arc-linux-gcc (GCC) 8.5.0
+> reproduce (this is a W=1 build): (https://download.01.org/0day-
+> ci/archive/20250822/202508220553.lm7ExAxG-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new
+version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes:
+> | https://lore.kernel.org/oe-kbuild-all/202508220553.lm7ExAxG-lkp@intel.
+> | com/
+> 
+> All warnings (new ones prefixed by >>):
+> 
+>    drivers/phy/samsung/phy-exynos5-usbdrd.c: In function
+> 'exynosautov920_usb31drd_cr_write':
+> >> drivers/phy/samsung/phy-exynos5-usbdrd.c:2167:17: warning: unused
+> >> variable 'dev' [-Wunused-variable]
+>      struct device *dev = phy_drd->dev;
+>                     ^~~
+>    drivers/phy/samsung/phy-exynos5-usbdrd.c: In function
+> 'exynosautov920_usb31drd_port_phy_ready':
+> >> drivers/phy/samsung/phy-exynos5-usbdrd.c:2137:6: warning: 'reg' is
+> >> used uninitialized in this function [-Wuninitialized]
+>      reg &= ~(PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
+>      ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>        PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR);
+>        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>    during RTL pass: mach
+>    drivers/phy/samsung/phy-exynos5-usbdrd.c: In function
+> 'exynos5_usbdrd_phy_probe':
+>    drivers/phy/samsung/phy-exynos5-usbdrd.c:3056:1: internal compiler
+> error: in arc_ifcvt, at config/arc/arc.c:9110
+>     }
+>     ^
+>    Please submit a full bug report,
+>    with preprocessed source if appropriate.
+>    See <https://gcc.gnu.org/bugs/> for instructions.
+> 
+> 
+> vim +/dev +2167 drivers/phy/samsung/phy-exynos5-usbdrd.c
+> 
+>   2125
+>   2126	static void
+>   2127	exynosautov920_usb31drd_port_phy_ready(struct
+> exynos5_usbdrd_phy *phy_drd)
+>   2128	{
+>   2129		struct device *dev = phy_drd->dev;
+>   2130		void __iomem *reg_phy = phy_drd->reg_phy;
+>   2131		static const unsigned int timeout_us = 20000;
+>   2132		static const unsigned int sleep_us = 40;
+>   2133		u32 reg;
+>   2134		int err;
+>   2135
+>   2136		/* Clear cr_para_con */
+> > 2137		reg &= ~(PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
+>   2138
+> 	PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR);
+>   2139		reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
+>   2140		writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+>   2141		writel(0x0, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON1);
+>   2142		writel(0x0, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
+>   2143
+>   2144		exynosautov920_usb31drd_cr_clk(phy_drd, true);
+>   2145		exynosautov920_usb31drd_cr_clk(phy_drd, false);
+>   2146
+>   2147		/*
+>   2148		 * The maximum time from phy reset de-assertion to
+de-
+> assertion of
+>   2149		 * tx/rx_ack can be as high as 5ms in fast
+simulation mode.
+>   2150		 * Time to phy ready is < 20ms
+>   2151		 */
+>   2152		err = readl_poll_timeout(reg_phy +
+>   2153
+> 	EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0,
+>   2154				reg, !(reg &
+> PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK),
+>   2155				sleep_us, timeout_us);
+>   2156		if (err)
+>   2157			dev_err(dev, "timed out waiting for
+rx/tx_ack:
+> %#.8x\n", reg);
+>   2158
+>   2159		reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
+>   2160		writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+>   2161	}
+>   2162
+>   2163	static void
+>   2164	exynosautov920_usb31drd_cr_write(struct exynos5_usbdrd_phy
+> *phy_drd,
+>   2165					 u16 addr, u16 data)
+>   2166	{
+> > 2167		struct device *dev = phy_drd->dev;
+>   2168		void __iomem *reg_phy = phy_drd->reg_phy;
+>   2169		u32 cnt = 0;
+>   2170		u32 reg;
+>   2171
+>   2172		/* Pre Clocking */
+>   2173		reg = readl(reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+>   2174		reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
+>   2175		writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+>   2176
+>   2177		/*
+>   2178		 * tx clks must be available prior to assertion of
+tx req.
+>   2179		 * tx pstate p2 to p0 transition directly is not
+permitted.
+>   2180		 * tx clk ready must be asserted synchronously on tx
+clk prior
+>   2181		 * to internal transmit clk alignment sequence in
+the phy
+>   2182		 * when entering from p2 to p1 to p0.
+>   2183		 */
+>   2184		do {
+>   2185			exynosautov920_usb31drd_cr_clk(phy_drd,
+true);
+>   2186			exynosautov920_usb31drd_cr_clk(phy_drd,
+false);
+>   2187			cnt++;
+>   2188		} while (cnt < 15);
+>   2189
+>   2190		reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
+>   2191		writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+>   2192
+>   2193		/*
+>   2194		 * tx data path is active when tx lane is in p0
+state
+>   2195		 * and tx data en asserted. enable cr_para_wr_en.
+>   2196		 */
+>   2197		reg = readl(reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
+>   2198		reg &= ~PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA;
+>   2199		reg |=
+> FIELD_PREP(PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA, data) |
+>   2200			PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_EN;
+>   2201		writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
+>   2202
+>   2203		/* write addr */
+>   2204		reg = readl(reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+>   2205		reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR;
+>   2206		reg |=
+> FIELD_PREP(PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR, addr) |
+>   2207			PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
+>   2208			PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
+>   2209		writel(reg, reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+>   2210
+>   2211		/* check cr_para_ack*/
+>   2212		cnt = 0;
+>   2213		do {
+>   2214			/*
+>   2215			 * data symbols are captured by phy on
+rising edge of
+> the
+>   2216			 * tx_clk when tx data enabled.
+>   2217			 * completion of the write cycle is
+acknowledged by
+> assertion
+>   2218			 * of the cr_para_ack.
+>   2219			 */
+>   2220			exynosautov920_usb31drd_cr_clk(phy_drd,
+true);
+>   2221			reg = readl(reg_phy +
+> EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
+>   2222			if ((reg &
+> PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK))
+>   2223				break;
+>   2224
+>   2225			exynosautov920_usb31drd_cr_clk(phy_drd,
+false);
+>   2226
+>   2227			/*
+>   2228			 * wait for minimum of 10 cr_para_clk cycles
+after phy
+> reset
+>   2229			 * is negated, before accessing control regs
+to allow
+> for
+>   2230			 * internal resets.
+>   2231			 */
+>   2232			cnt++;
+>   2233		} while (cnt < 10);
+>   2234
+>   2235		if (cnt < 10)
+>   2236			exynosautov920_usb31drd_cr_clk(phy_drd,
+false);
+>   2237	}
+>   2238
+> 
+> --
+> 0-DAY CI Kernel Test Service
+> https://protect2.fireeye.com/v1/url?k=96757503-f70edf94-9674fe4c-
+> 74fe4860001d-38e3f56dae8e119d&q=1&e=45b4f292-bcb1-4614-86a0-
+> c790a47fb814&u=https%3A%2F%2Fgithub.com%2Fintel%2Flkp-tests%2Fwiki
 
-Maybe add some definition of what we mean with "embedded controller"?
+Will post v7 with the fixes for these warnings.
 
-Something like:
+Thank you.
 
-"An embedded controller is a discrete component that contains a
-microcontroller (i.e. a small CPU running a small firmware without
-operating system) mounted into a larger computer system running
-a fully fledged operating system that needs to utilize the embedded
-controller as part of its operation."
+Regards,
+Pritam
 
-> Acked-by: Michael Walle <mwalle@kernel.org> # for sl28cpld
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Overall this looks reasonable:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
 
