@@ -1,173 +1,149 @@
-Return-Path: <devicetree+bounces-208432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12889B32729
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 09:11:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE2D2B32743
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 09:26:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C32951B6675A
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 07:12:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 823D5AE1D28
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 07:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA5422425B;
-	Sat, 23 Aug 2025 07:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1790E21B9C5;
+	Sat, 23 Aug 2025 07:26:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VEiFoNYN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DXKHdz/r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6886221736;
-	Sat, 23 Aug 2025 07:11:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E08F2566;
+	Sat, 23 Aug 2025 07:26:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755933111; cv=none; b=dB6oX9p5FUv40TnTlnAcmq9ESMd7Nqh7hrhzk8miLC0j/zI2Ok2at2giVWdzHwiRdoJmufmdtLVlhXH9SJlYerGGXt3xn4iR2aO30P/lqU/wvRNtb0PZvW5Ifg9EoPSI6kHpkeuqVykZKI9lJQahfn4k8sm7mEiA6cF8JS1vKWk=
+	t=1755933980; cv=none; b=IenoYexLK5V+Dq/f4YXNauvOyB+xNSBnU/dl073wgfDoHcy86i/f0+mE66k5mVoarRdpzTwkMy7j3Y3s8OSpb2M9TmGOv+fcAdUfoDNvezRfVs8n5X77wRbCujeqd/C04YA++GuojKPZWIMXmtWmp/HwrUNKm3yP/cUZblpAdDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755933111; c=relaxed/simple;
-	bh=jGVpPERW5NP1rnaGTAcvIEIQaG44vKcBtYOfI1JBcS8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l8kQ8EXOItOg/q+OT70rTCNS3S69AF6MSfBmnVkGQq3se9PzZHbEySwfcqv9KV4kJVThiNrzHsMkich3R9jQ3zATDAUm02aDzu2uLtKvFAiGwWr/PUVb+f4g60HGvJRK2ZnakTBN0OuSspSWbPkL2oCdNBZ6k5o/zvN5lfZ15XE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VEiFoNYN; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755933110; x=1787469110;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jGVpPERW5NP1rnaGTAcvIEIQaG44vKcBtYOfI1JBcS8=;
-  b=VEiFoNYNsms6JZxGbPqwpjZEaR3NYg5qGfKg7V7C79qSkWswXcvNSiuK
-   GF9ySESv2CVirFB9NfMGfn5Dv40qH8S2iwlDAQgC+ToTrLygLq86Jyg2X
-   uaZnAAYE9wQcMWSqYUjS9TbyupVSZonZvtqbhQTge/SY9JZLMyUc4bJKq
-   pc6TlatOJ1FvtQ0CUK2Zw25uHAFEhDPGHDdzY6O49IiVBTMKWuk29TKCc
-   0sO65Ol5H2ysPLMdZX4EKOurhuD3B9YXagth9l8e/I5ovcPhDiHxSc6Ed
-   oE7ksWMisg6D9pVogtwKS9I9/MwB3pZN/M6us/VJZvH/uuH+1eb2zlZwU
-   A==;
-X-CSE-ConnectionGUID: 1jqiIYlhTbKt9J2uYQBOuA==
-X-CSE-MsgGUID: 1XVEGI6ESRmHLzDBVX7MCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="60858173"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
-   d="scan'208";a="60858173"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2025 00:11:49 -0700
-X-CSE-ConnectionGUID: Jubo2rtVTOGHdEnsPCW6Yg==
-X-CSE-MsgGUID: BWV5dKzARCmUx6HMiM7IWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
-   d="scan'208";a="199755162"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by fmviesa001.fm.intel.com with ESMTP; 23 Aug 2025 00:11:45 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1upiPe-000M9n-32;
-	Sat, 23 Aug 2025 07:11:42 +0000
-Date: Sat, 23 Aug 2025 15:10:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jie Gan <jie.gan@oss.qualcomm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
-	Mao Jinlong <jinlmao.mao@oss.qualcomm.com>,
-	Tao Zhang <quic_taozha@quicinc.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] coresight: tpdm: add static tpdm support
-Message-ID: <202508231400.bELUAEeq-lkp@intel.com>
-References: <20250822103008.1029-3-jie.gan@oss.qualcomm.com>
+	s=arc-20240116; t=1755933980; c=relaxed/simple;
+	bh=mYIoenXd/IpYeqyX5AvyE414zM30cm97tDjS5JDQcqU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZYJuhzYqi2NZw2ZMLtGzMe6ABlJturiE/ziOLai5vJX1yBo1KPfdDIvr3jRyIl5ht1vlsg+jWJMlbe7VynAVXV8ImZJJ4N9I7iIeboM9IMJxYhQx2/CYxRmtATpbp+QKgpB3hhTYsSLXkKbRxXTc7i15bYdTUN6FsQq9VkRuqVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DXKHdz/r; arc=none smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-53b174f7cf0so2135720e0c.2;
+        Sat, 23 Aug 2025 00:26:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755933977; x=1756538777; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rVlSYjVo3nTEnki3rIbRUK8FN5NzrO8Q60sy9BA7q9w=;
+        b=DXKHdz/r9Q10eEz7Wt1fYWwxp7sIRT2p13C4ZXMKCxN3xzF8zwatOLo2tF8mpyIaEG
+         HKdiTSSngQlJZPQ/q1r+2zIF+ulIRDVATsmHD5nT10HQKBUhOnOrDWjJc0pXk1SyjQ6c
+         aNKJXk5P2TObjQZHsLrgIr1wp7TQ2oXthWG9bsIxxkcoqaVmgWJAFJCkw2SKjiT6EVPM
+         agZiU1W10MoEisT05hmdHcLX8gO21qApjPTSo3VqCnzhRYD9xkNmsRQJXOt1C1kvut4h
+         ByhWnLQX1D6MiChEE8/7zDun6IBXstdW71GJfR18IpsAq/fKApfMxSdOR2Sy1+p3t3/h
+         s7NQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755933977; x=1756538777;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rVlSYjVo3nTEnki3rIbRUK8FN5NzrO8Q60sy9BA7q9w=;
+        b=XqPy/TN00QtOPbuZZuex4ank3tsrGpfEtm4YO86pCpxauxE5UwHlwOdeuDbcTHStff
+         +B1LNXhAWzK/FfsfAC9fcZ/bPXth+PWkmX1gv94583cKw72oOxulZIPoezMbmfj+e8DY
+         0ofO9yk60bedxS+93lUw233ZXTG6b4afydDrJBMgIm0RiO2oVvv9XSTRmy5dbZFeW080
+         xOhetM6Un5tpNsbgPWMd5gDGOUoZ4kKDM7MrCy/98gkeOmZsxj+lK0f0SIg45EvAFgCQ
+         EY1DSoMeGvpo7xOabWxhuRwc0C07BF3QoywqNSbaTYy75NBKfZjj85nq7gGt/mSBGbAP
+         ogcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX0ze+QgMLpmpZqQVtz7PPfsGQnpr9JZr8AUVmKZcE2yRbRFMtDmBw+6oSTVhC9t2fHrwBBXccMXbMXsonx@vger.kernel.org, AJvYcCXnJvlqzak1KcinBtVC74mhblQGxmdHzrz/zQiTyqwid17sWBmytyk0rmjUL+Lf2NtRLy1UXaBDo+b1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNxhkUVNFb4Bvq/AGf7p2oIqKuFHYkRE0NpnarCqEILMzmvt+7
+	QSAuWdqGOPWFNZ0odG899vg7qyRonkCY5UH8K95No2yHcuuotomlJdnshPLAZDmfaCTUuQplPtC
+	q683OEbXAHbxXmnI/dA4pHcEpak8bT6A=
+X-Gm-Gg: ASbGncvOJUa8egaKvyVOLB2CMRpHDYPxum25jiOow9EKYOiiHRDfs+lxtDwvK+Lii8y
+	hU/1tXS5IAfY2mRUwO/YBm7e0h0htcgevxaBz1i6CFVLnPDcT71kBQeDcko0NF4dV4QOZtfzyR+
+	9Q+833ivhwsA94I0kALKxP3Zj5szY1n0q8H1vwh+sN9Lhcvq1BQDkWk71iU1xVlJYxYgn8khq8w
+	6aPvUTyZjBcNQGcQ0lxS1Og2uA6hojYV2W8Ii0=
+X-Google-Smtp-Source: AGHT+IG8HKFFrvXPwmFL0HGsDqh5gr6WMb1N9BQcImjwawf3PcPnwN+u1Q+Ebg42DYzKdWHh3ImGW0i7JXgl3MCjjUs=
+X-Received: by 2002:a05:6122:d0b:b0:537:b126:bf07 with SMTP id
+ 71dfb90a1353d-53c8a2b2a8fmr1582470e0c.1.1755933977291; Sat, 23 Aug 2025
+ 00:26:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250822103008.1029-3-jie.gan@oss.qualcomm.com>
+References: <20250822060417.52935-1-alex.t.tran@gmail.com> <CAL_JsqKQEiGvt8H+7vO38PkMsmb3+CHvb=d2QcLd6zBOfNLs=A@mail.gmail.com>
+In-Reply-To: <CAL_JsqKQEiGvt8H+7vO38PkMsmb3+CHvb=d2QcLd6zBOfNLs=A@mail.gmail.com>
+From: Alex Tran <alex.t.tran@gmail.com>
+Date: Sat, 23 Aug 2025 00:26:06 -0700
+X-Gm-Features: Ac12FXzCio97Y1lti_VJO8_NgOsoiu5B6f0wrEzx9lyl0LDZH_IBSR8LGetMykk
+Message-ID: <CA+hkOd6hcGAgmSsSuFdrXQU2p2OSfeuVL2re-dPzKpA5+DNVUg@mail.gmail.com>
+Subject: Re: [PATCH] scripts/dtc/flattree.c: stringtable_insert optimization
+To: Rob Herring <robh@kernel.org>
+Cc: saravanak@google.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Jie,
+I didn't take into account the substring cases. Originally I thought
+that incrementing by each string in the table would be more efficient
+than by each character to reduce iterations but now with checking for
+substrings it is more difficult. I could use strstr(haystack, needle)
+to detect substrings and get the position on top of the changes I made
+but the performance boost would be negligible. I'll drop this patch.
 
-kernel test robot noticed the following build errors:
+Thanks for the review.
 
-[auto build test ERROR on next-20250822]
-[also build test ERROR on v6.17-rc2]
-[cannot apply to robh/for-next linus/master v6.17-rc2 v6.17-rc1 v6.16]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Fri, Aug 22, 2025 at 6:34=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Fri, Aug 22, 2025 at 1:04=E2=80=AFAM Alex Tran <alex.t.tran@gmail.com>=
+ wrote:
+> >
+> > Increment string by string instead of character by character.
+>
+> Why? Are you doing something where this provides measurable improvement?
+>
+> >
+> > Signed-off-by: Alex Tran <alex.t.tran@gmail.com>
+> > ---
+> >  scripts/dtc/flattree.c | 4 +---
+> >  1 file changed, 1 insertion(+), 3 deletions(-)
+>
+> This is a copy of upstream dtc. If you want to make changes to dtc,
+> you have to submit them upstream.
+>
+> >
+> > diff --git a/scripts/dtc/flattree.c b/scripts/dtc/flattree.c
+> > index 1bcd8089c5b9..156ca5da89b2 100644
+> > --- a/scripts/dtc/flattree.c
+> > +++ b/scripts/dtc/flattree.c
+> > @@ -222,9 +222,7 @@ static int stringtable_insert(struct data *d, const=
+ char *str)
+> >  {
+> >         unsigned int i;
+> >
+> > -       /* FIXME: do this more efficiently? */
+> > -
+> > -       for (i =3D 0; i < d->len; i++) {
+> > +       for (i =3D 0; i < d->len; i +=3D strlen(d->val + i) + 1) {
+>
+> This isn't equivalent. If 'd' was 'foobar' and 'str' was 'bar', then
+> before we'd match. Now you don't.
+>
+> >                 if (streq(str, d->val + i))
+> >                         return i;
+> >         }
+> > --
+> > 2.50.1
+> >
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jie-Gan/dt-bindings-arm-document-the-static-TPDM-compatible/20250822-183421
-base:   next-20250822
-patch link:    https://lore.kernel.org/r/20250822103008.1029-3-jie.gan%40oss.qualcomm.com
-patch subject: [PATCH v1 2/3] coresight: tpdm: add static tpdm support
-config: arm-randconfig-002-20250823 (https://download.01.org/0day-ci/archive/20250823/202508231400.bELUAEeq-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250823/202508231400.bELUAEeq-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508231400.bELUAEeq-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/hwtracing/coresight/coresight-tpda.c: In function 'tpdm_read_element_size':
->> drivers/hwtracing/coresight/coresight-tpda.c:77:17: error: label 'out' used but not defined
-      77 |                 goto out;
-         |                 ^~~~
 
 
-vim +/out +77 drivers/hwtracing/coresight/coresight-tpda.c
-
-    57	
-    58	/*
-    59	 * Read the element size from the TPDM device. One TPDM must have at least one of the
-    60	 * element size property.
-    61	 * Returns
-    62	 *    0 - The element size property is read
-    63	 *    Others - Cannot read the property of the element size
-    64	 */
-    65	static int tpdm_read_element_size(struct tpda_drvdata *drvdata,
-    66					  struct coresight_device *csdev)
-    67	{
-    68		int rc = -EINVAL;
-    69		struct tpdm_drvdata *tpdm_data = dev_get_drvdata(csdev->dev.parent);
-    70	
-    71		if (coresight_is_static_tpdm(csdev)) {
-    72			rc = fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
-    73						      "qcom,dsb-element-bits", &drvdata->dsb_esize);
-    74			rc &= fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
-    75						       "qcom,cmb-element-bits", &drvdata->cmb_esize);
-    76	
-  > 77			goto out;
-    78		}
-    79	
-    80		if (tpdm_data->dsb) {
-    81			rc = fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
-    82					"qcom,dsb-element-bits", &drvdata->dsb_esize);
-    83		}
-    84	
-    85		if (tpdm_data->cmb) {
-    86			rc = fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
-    87					"qcom,cmb-element-bits", &drvdata->cmb_esize);
-    88		}
-    89	
-    90		if (rc)
-    91			dev_warn_once(&csdev->dev,
-    92				"Failed to read TPDM Element size: %d\n", rc);
-    93	
-    94		return rc;
-    95	}
-    96	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--=20
+Alex Tran
+alex.t.tran@gmail.com | 408-406-2417
 
