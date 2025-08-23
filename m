@@ -1,169 +1,140 @@
-Return-Path: <devicetree+bounces-208467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1BABB32899
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 14:46:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99719B328B5
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 15:11:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ECC85C759F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 12:46:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1ABC27A28DD
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 13:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDEA6278146;
-	Sat, 23 Aug 2025 12:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D0625A2A7;
+	Sat, 23 Aug 2025 13:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FKmQKVs6"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ZiMqRRr9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A23A9277C8D;
-	Sat, 23 Aug 2025 12:43:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4FBF23BCE2
+	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 13:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755953034; cv=none; b=tq4fAZuNYqsJqU5mw3xo4X6V2gVDV5bIGH9mS6U+sbhFC/diaO4M5Q4NCZMl8ioW7D5prrPQiKgQMxhm8VwCVTDogooPJzBdl82xtyPTBiWGX3CQjVFgKUKUIdml0A3Ek94F5etB0T9+tqKnPPVPry8IGS4Vw10JIAerkvLnfew=
+	t=1755954695; cv=none; b=dMb4l9SKZ2roKK2d4FgvNAvTBee0BzkHkj5Sg7ponKoTwrMg6y3G7/R0iI5sHJZDgbd9Of16krSvVciXWYSKacmq7v7XyR+Lcp01QNARQKNJeSM+i3IXFXGWgLtxAlZF6Mkck5IHkqrgoRhrPtMY0CxTpMF0p6QZNcjB1TQ8F/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755953034; c=relaxed/simple;
-	bh=2MvRqg6db2hlEoYeXL+KXE0Pz5fSjhUlKeSSolL4RgU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZfvDwpfbTCQ9Ov9Lf7TnUApYmh9sUhbsnMY+34fJv8HyaqrRrxW4m/dyjfyQxN67IXATriM9/8TwC91XiTzq/FIcUJHc7+KHLsr/9FOu4JKZxBJw3J1SxORNzxaABSkLH1q+siFC2BdUfoWgbLGHpdSWDSl14Sr78J0jQJ16Cmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FKmQKVs6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 543ECC4FDFC;
-	Sat, 23 Aug 2025 12:43:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755953034;
-	bh=2MvRqg6db2hlEoYeXL+KXE0Pz5fSjhUlKeSSolL4RgU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=FKmQKVs6L26o+932W0nDgQ44U+tN24LtYqn1SnSO9Vj5UvsH41ERmOxKuRqFZvCnm
-	 1Y6xJWsgaEnYqnbpS/iH9A3RvC0n7JKTIyxes2F7r644I9EtJoHlRWcGe47Bz4zjKX
-	 dTQjUk+fv+PKBfopAkHkMX6OtJUly3jRJR2Cb47v2Mn9IXbJnYDkpzvDTXQBjIy+k8
-	 qBKXNvPJU4iM3XNlsRgFtqbEOUtF3wku/+unxpa002k0XbZHxKXZy56v3zfxIUl0eK
-	 nVxZH+p79Fd9pidQNPe6b/xlGhQ0UO4djMqmHyGIPB+0tLJgtKRhluhLNagIxtGXII
-	 ed6+b+177o0Vw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C314CA0EED;
-	Sat, 23 Aug 2025 12:43:54 +0000 (UTC)
-From: Maud Spierings via B4 Relay <devnull+maud_spierings.hotmail.com@kernel.org>
-Date: Sat, 23 Aug 2025 14:43:52 +0200
-Subject: [PATCH 3/3] arm64: dts: rockchip: Enable the NPU on the orangepi 5
- boards
+	s=arc-20240116; t=1755954695; c=relaxed/simple;
+	bh=I8mvS0BbwcPzpAldr30b0h17KTJ3yaJ7PjTV1jAPy9k=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=qT66vr517bIDse2I8sfVJ8w1WGMvLGVTJcVPyzhf2DY62rQAClYaQEjsXjSjSExJ37k7Ii9gouEQm+cWFSBxsN3z2PVw2xfwajRU57BJrF/8eEyOa5Z8WkH550tpfutp/D/geTXXWiJ9/GFnXucRbtFe2UQ2pFUCSHSNooYkJgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ZiMqRRr9; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250823131131epoutp02ce0d1fbfeb6a0aa21fcc996b328f8765~eZ30bxFkC0520005200epoutp021
+	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 13:11:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250823131131epoutp02ce0d1fbfeb6a0aa21fcc996b328f8765~eZ30bxFkC0520005200epoutp021
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1755954691;
+	bh=WiQTdOzmRl4diLSEyaAVQbrK02Hybw4ffhxcVsTNGiM=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=ZiMqRRr9uH/lN4Q0d1TmeATkDKmMvkmfWkes2vqRPPQPWuDbIsAjeH+h2NqYGgfeI
+	 qoLXZBflMVx3FF0jlGENgEUoGMeA3g1JPmIZOnkN4xx+/NQ1UqCfYTAVIm6fbMR99B
+	 dmH6gzHILcfJAwowyIjlUGDKraQBpeKCUmxmrGqY=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250823131130epcas5p43f11088842c7f9b7f44340b05f222777~eZ3zBWwHU3181231812epcas5p4i;
+	Sat, 23 Aug 2025 13:11:30 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.94]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4c8HWP28gCz3hhT3; Sat, 23 Aug
+	2025 13:11:29 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250823131128epcas5p3d9a44a02d9295f8c614cf2e14d7c5e50~eZ3xYVpFR0066200662epcas5p3g;
+	Sat, 23 Aug 2025 13:11:28 +0000 (GMT)
+Received: from FDSFTE196 (unknown [107.116.189.214]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250823131124epsmtip2695fc1d2c6e33945577f3e502b3c925b~eZ3tq6noF1099010990epsmtip2h;
+	Sat, 23 Aug 2025 13:11:24 +0000 (GMT)
+From: "Inbaraj E" <inbaraj.e@samsung.com>
+To: "'Laurent Pinchart'" <laurent.pinchart@ideasonboard.com>
+Cc: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <krzk@kernel.org>,
+	<s.nawrocki@samsung.com>, <s.hauer@pengutronix.de>, <shawnguo@kernel.org>,
+	<cw00.choi@samsung.com>, <rmfrfs@gmail.com>, <martink@posteo.de>,
+	<mchehab@kernel.org>, <linux-fsd@tesla.com>, <will@kernel.org>,
+	<catalin.marinas@arm.com>, <pankaj.dubey@samsung.com>,
+	<shradha.t@samsung.com>, <ravi.patel@samsung.com>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <alim.akhtar@samsung.com>,
+	<linux-samsung-soc@vger.kernel.org>, <kernel@puri.sm>,
+	<kernel@pengutronix.de>, <festevam@gmail.com>,
+	<linux-media@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>
+In-Reply-To: <20250818092133.GA5862@pendragon.ideasonboard.com>
+Subject: RE: [PATCH v2 05/12] media: imx-mipi-csis: Move clk to
+ mipi_csis_info structure
+Date: Sat, 23 Aug 2025 18:41:23 +0530
+Message-ID: <00e501dc142f$6fa00a10$4ee01e30$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQK5oFMD+tt4mLQU5V9KgVyIDaUIUQIYHCmyAlXzoNQBZbmW2rKGel0g
+Content-Language: en-in
+X-CMS-MailID: 20250823131128epcas5p3d9a44a02d9295f8c614cf2e14d7c5e50
+X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250823-orangepi5-v1-3-ae77dd0e06d7@hotmail.com>
-References: <20250823-orangepi5-v1-0-ae77dd0e06d7@hotmail.com>
-In-Reply-To: <20250823-orangepi5-v1-0-ae77dd0e06d7@hotmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Ondrej Jirman <megi@xff.cz>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Maud Spierings <maud_spierings@hotmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755953033; l=1851;
- i=maud_spierings@hotmail.com; s=20241110; h=from:subject:message-id;
- bh=oBmYWOYe78XM4Z0Bh7EdEdBYV/CCziVSeJYCFliWyGo=;
- b=/HVPsjCoScbYi0ithXRZqLZtHuyD8mfp54LrdD+vPVXniIw1gI0zTG4LaPUiJycPh1IC4SjNU
- foRZ8VAIYOFAIwm7Sq5U0k5/Jct24ObIRRPCJqd9hPim2awDBEjlIsc
-X-Developer-Key: i=maud_spierings@hotmail.com; a=ed25519;
- pk=CeFKVnZvRfX2QjB1DpdiAe2N+MEjwLEB9Yhx/OAcxRc=
-X-Endpoint-Received: by B4 Relay for maud_spierings@hotmail.com/20241110
- with auth_id=273
-X-Original-From: Maud Spierings <maud_spierings@hotmail.com>
-Reply-To: maud_spierings@hotmail.com
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250814141025epcas5p2b226c4eaab5d60d0e95f684e2ef930f2
+References: <20250814140943.22531-1-inbaraj.e@samsung.com>
+	<CGME20250814141025epcas5p2b226c4eaab5d60d0e95f684e2ef930f2@epcas5p2.samsung.com>
+	<20250814140943.22531-6-inbaraj.e@samsung.com>
+	<20250818092133.GA5862@pendragon.ideasonboard.com>
 
-From: Maud Spierings <maud_spierings@hotmail.com>
 
-Enable the NPU and the PMIC that powers it.
+Hi Laurent,
 
-Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
----
- .../arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi | 56 ++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+Thanks for the review.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
-index 91d56c34a1e456e18db31e1bbe7252b7e4632588..ac1df223d6a25f3059ce33970953745e402ef695 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
-@@ -258,6 +258,28 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1m2_xfer>;
-+	status = "okay";
-+
-+	vdd_npu_s0: regulator@42 {
-+		compatible = "rockchip,rk8602";
-+		reg = <0x42>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_npu_s0";
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
- &i2c6 {
- 	clock-frequency = <400000>;
- 	status = "okay";
-@@ -352,6 +374,40 @@ &pd_gpu {
- 	domain-supply = <&vdd_gpu_s0>;
- };
- 
-+&pd_npu {
-+	domain-supply = <&vdd_npu_s0>;
-+};
-+
-+&rknn_core_0 {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_core_1 {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_core_2 {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_mmu_0 {
-+	status = "okay";
-+};
-+
-+&rknn_mmu_1 {
-+	status = "okay";
-+};
-+
-+&rknn_mmu_2 {
-+	status = "okay";
-+};
-+
- &saradc {
- 	vref-supply = <&vcc_1v8_s0>;
- 	status = "okay";
+>=20
+> On Thu, Aug 14, 2025 at 07:39:36PM +0530, Inbaraj E wrote:
+> > clock names in NXP SoC's is different from the FSD SoC. Inorder to
+>=20
+> s/clock/Clock/
+> s/Inorder/In order/
+>=20
+I'll change in next patchset.
 
--- 
-2.50.1
+> Is the difference really a matter of SoCs, or is it because the FSD SoC u=
+ses a
+> different version of the IP ?
+>=20
 
+Yes, it is dependent on the version of the IP.  Thanks for pointing it out.=
+ I'll update commit
+description accordingly.
+
+> I also suspect that the =22phy=22 clock was added by mistake, and isn't n=
+eeded in
+> NXP SoCs. Could you please check and confirm if the v3.3 and
+> v3.6.3 versions of the IP have an input PHY clock ?
+
+I don't have manuals for v3.3 and v3.6.3, So I cannot confirm  this.=20
+
+>=20
+> > extend this driver to use for FSD SoC. Move the clock names to
+> > mipi_csis_info structure.
+> >
+
+Regards,
+Inbaraj E
 
 
