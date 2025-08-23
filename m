@@ -1,143 +1,143 @@
-Return-Path: <devicetree+bounces-208565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23E4EB32ADD
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 18:33:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A546B32AE1
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 18:35:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D69B21BC71C0
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 16:33:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49BC01BC76FF
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 16:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C11D205502;
-	Sat, 23 Aug 2025 16:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C367221D88;
+	Sat, 23 Aug 2025 16:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gTmAaLwk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X2M9e4Es"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F111BCA0E
-	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 16:33:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40C51F4161;
+	Sat, 23 Aug 2025 16:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755966786; cv=none; b=pjLT80uvSHpoWehqRLcRgQKOoCM/z3wJDfdosd0oJLmvGww+zN2c46S3GfCYIa1UC1qimfh2LGVx3Bz09BiGvcJwbpiSBR08Vm3qptELkJuZC6k2y2JehE2E2Da9NXw8c5EaIsG2oIMKm+RY8Hz1yfcSRRR7yGzL32PL3Ox6Y1w=
+	t=1755966906; cv=none; b=FGCfynqTyRSRMC+LCD2qxx0AvSnSAUrgF9sC8nFdXfcmbEw5ih0s1JJSmgyatwpq7/qMgqgjBTb9VP0e4kRuvq9WGTi8b2zQqcDTyhD2ck4JwOn24vYb9SPDoRZ5TxIaMtLtVFnhSX63+yyrwkvV5XIyKOn3wOMSCKomFmf3dJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755966786; c=relaxed/simple;
-	bh=yxuy3oDJ08FCrS2YoJDAqGlTn0pBViRwW5im30kIBpM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TxmSYoP8QIakgCBtLJredy4SaumLe77v5Ualbwl6BgqFSOCv8CzPoqqgs4dXpDCHNsnZbmOuER4NEiOtu6SLi68tQTw6b1EmOje28//EAk9R4HF8dfeqxUdz3Tc38Z08sHJt0a9YoCpqlYSB42H6BVNKFbJgFN8aenqKo+AHX20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gTmAaLwk; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-6188b7895e9so470432a12.3
-        for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 09:33:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755966783; x=1756571583; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=STNSS1T+h+xo04Oxr4E7Wd3mL52PcoQ8ncvgJmGARK0=;
-        b=gTmAaLwkWChz+NX6/AOFlK0vuvp+a74V5sWhyHPqvM5tv4yH8tYvtG3mttcwjsu6s/
-         NfI61cVvYu6XqF/2RqVPvG9H2cip78FS5PlZranI0sIsrgEkZb5wQI4bbjtg8hKPmmc1
-         CwL4fPkmiVu5HQd0K66q7L+m91n04umS6SHHqm6Rag9I5izstfyYZrd2Hr+tJvwMoZBl
-         sI58yG5Ri05ptDEiyFRblaQ37pRY9KBbN85r8Cm3L/dHoePYeHwO2l+eeE0CMa0DSR61
-         aGBeh7MybHXgLd5pmaD0Df6Bxlj6NldvHLA9JpQuf0oMCwLJnL7knsr1ZYIKgXTBCWHN
-         IbQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755966783; x=1756571583;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=STNSS1T+h+xo04Oxr4E7Wd3mL52PcoQ8ncvgJmGARK0=;
-        b=RmrNvdTmPgkmY2dB19TL8Wfm0rtX7VoFcpFIvKT/ydvXDPTwqtteoAYSHEDuhekYcd
-         sujQ0cJu4rlIXrYnGsXwgRjFRhrJ8DO4WQvN9t/nuQyGEFYVP12tlW10ZdmJyC+ji4vs
-         rHmGxu28/eVfutOUfgZsAXTXTWw1k1wNhooBoraMU99+yOBO/v2V4OErTJFbzI3/YFZ4
-         kmCC2QrywyD0DMrPtJj2EQmxvUfirwxW6Z51uZlVgLXjzzgayuTkbXtXubwqOfkwVcNX
-         fqPNQd5uTeyw006q5nAFIFndYe3iO2lm67bNvoHCrx6RxGYLBPfUbXQfQl579abpyKKz
-         TSgw==
-X-Forwarded-Encrypted: i=1; AJvYcCX6pA8wWOK7cmSYlY04czHxfgx1KnwTPctt+Jmt4fro/FiDlnc8+yBsQEeZuqYOVcg+kdu6Rwr4Z3Or@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywx8VgvRCIKJNps4sNmnmoxVqY1xnUYoRY/qAEDspXDt7WCZhCB
-	mrVn03ibp+TDQOBzv15DQeXmRKyvOmusx9FlFEFd4gAOR48JBOImjH49umycePyuHJY=
-X-Gm-Gg: ASbGnct89kyzDFmkIllbXdJzgCudswN97zK6GN1teDN0nHC9R/AxgNtR8/iJwXP2EbH
-	bPKAUCGalgFJshJhn2yS0MG2zig2yl5dmFTcT3xTIqpM51JMGVZkEYynbgzlj0Wv3VZr7pWbUl5
-	bO6eSO2Bm2lcr27nH7D19anYYEl0Cw7TmuF1I+7lulnfylBsC8HaF1DjPfjTAmGckO+9BXzDx1n
-	TzA3Tq6ZXN1PBmZrhQHPeLfTkmqGbmZHi0wM8LY7OuDGKopj8xxBvRCbSHzbXR8x1K4ts4WPIi9
-	gSpqY0FB/wTnT+8arOvsbUrGxukzOOchhecgdoOre5vGcG6Qgsw0DcFwj6fgmqz8QNVCv1+TVhx
-	jRV4Ob1/Vr5iYymLUqnxT1p2AcnYEB9b7PcDk5n3MxojL
-X-Google-Smtp-Source: AGHT+IErPaYZ/R95hNRLUPhZsS2vquoXzXo7P0FirUWFb/QPx3CCkmkS9LQTJIIb4KUb+7m1ka+ieg==
-X-Received: by 2002:a17:906:c116:b0:af9:6580:c34f with SMTP id a640c23a62f3a-afe2943e3a9mr312096366b.9.1755966782918;
-        Sat, 23 Aug 2025 09:33:02 -0700 (PDT)
-Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afe492d8713sm197936366b.67.2025.08.23.09.33.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Aug 2025 09:33:02 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: interrupt-controller: marvell,cp110-icu: Document address-cells
-Date: Sat, 23 Aug 2025 18:32:59 +0200
-Message-ID: <20250823163258.49648-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.48.1
+	s=arc-20240116; t=1755966906; c=relaxed/simple;
+	bh=DPDtTcuBskg1W1btrqujpaiwu10iFm1YYay+tvV2FPo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iresFNg6eof/OBMO1pjF41OeFFpfIEvA/PxohLE0HqWO8QOUkSFqx5wVMdmJbo42B1EZ0cgA7Q//DM5u38B/Fn3usQwpOmu9hGftBBp3IRITOvWXnmh6eIFp0EHle72xKYjl9KFqbxG5WIFu2++S64ljEdhXecXhuNsLeEFvOqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X2M9e4Es; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1713FC4CEE7;
+	Sat, 23 Aug 2025 16:35:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755966905;
+	bh=DPDtTcuBskg1W1btrqujpaiwu10iFm1YYay+tvV2FPo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=X2M9e4EsDHFKOGlr24f4WFlsXIirLYBnf4AcDXX5qnGpGf3SNf3Tl5RmlcDEZ9Wcy
+	 N62DCDJwSs9+MN6Rtj7Kzze6rMgTpNZRs5pahzmtpXywrEAj9q7cf0TKGYjjgZgWb/
+	 GPL5U7ykGqw1lDilf2Ud5T1SEHnDaUZwkDPrVBpsBTy+kz0DX3ljUx4ud2pDlnF6Qt
+	 OnvZaINUAfII5QNLO2hLh1V34PbHVJx7btSN9N8kdz3EkAjeytWAniAl37MLzmD7il
+	 RhGRMYYA1F3hkKWA/LhPnhlZmIloou4MYaLJrr8bU1IuJV9pHK49B+6p1O+utd2FcF
+	 wD+efr99cQbXQ==
+Message-ID: <088db082-f3e2-4e66-a2b2-374452184dea@kernel.org>
+Date: Sat, 23 Aug 2025 18:35:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1096; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=yxuy3oDJ08FCrS2YoJDAqGlTn0pBViRwW5im30kIBpM=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoqe06CKqz7vUiMX/kbfeMtXcTP08L2/emP36Fu
- j85/zUeakuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKntOgAKCRDBN2bmhouD
- 14R+D/4pm/ejDJYyjI2JDvZXREerlPNO9m1qSmi0mMowWiIXkWWOWxKHtQDHCRn8bpYMQqvedoY
- 5qT3c2EIqLROQg/54kSFJDSGDgy5gEDK08FL2uF27HXMD1PyMWaDEmyhpC5daRfjpf6H0dN0pMR
- abKotXNpGXBr8Xvvh2NPOoxRK0dp9e3Fzo971IhRUREJo7YDI1XiUpn7oqnMe6VAXePKsGF1Igi
- vMOP9Q+DZamATcJ3DyWEy+QeLHjXkSXisKlnTzdRssoHl4JoKTwPbEGwHFMYOWp2YlID7Of1mIP
- EP5EGdY/kwIms4ZzZcMN0lv4p/FrOMAS/rjvG7cqb7i+rd/IjlzscYYK6wkVb2hVoPSC+vuCl9L
- /QWz1TDq/Wd6nbkjd8QujodZRZVEMGTr5AypicnOVAfAg5Sc6z90vzaZDvs3ZrVJ49XgK8tnG+d
- eW3XRb1mMLfFg7xV1LR1tUF5ez2aqaHkj0DX1y9bbj0oZVsB3QIKWJ8Z7OU/ImL4eHFjDJhubuU
- jSgaH2lJFT2wfE+mNxa3BXQbm2TLjGTctZuyv2Z32MQZzbLt56IvWTofi263L05psauT4lOyawV
- HF/b1MGUXfYwKi8195yFpTQKxyx+v6vTdN/fMIggDQg5wkjgwCcfLEJlqweIZ9VW8+OpY5Su8q2 f91fdG/0GpnTbeQ==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: marvell: armada-37xx: Add default PCI
+ interrup controller address cells
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ devicetree@vger.kernel.org, Gregory Clement <gregory.clement@bootlin.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20250822133329.312326-3-krzysztof.kozlowski@linaro.org>
+ <175589786306.518460.17450425303264875357.robh@kernel.org>
+ <962afcee-48ca-415f-9011-ffb25e082b36@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <962afcee-48ca-415f-9011-ffb25e082b36@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The CP110 ICU children are interrupt controllers and can be referenced
-in interrupt-map properties (e.g. in
-arch/arm64/boot/dts/marvell/armada-cp11x.dtsi), thus the nodes should
-have address-cells property.
+On 23/08/2025 10:54, Krzysztof Kozlowski wrote:
+> On 22/08/2025 23:27, Rob Herring (Arm) wrote:
+>>
+>>
+>> This patch series was applied (using b4) to base:
+>>  Base: attempting to guess base-commit...
+>>  Base: tags/next-20250822 (exact match)
+>>
+>> If this is not the correct base, please add 'base-commit' tag
+>> (or use b4 which does this automatically)
+>>
+>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/marvell/' for 20250822133329.312326-3-krzysztof.kozlowski@linaro.org:
+>>
+>> arch/arm64/boot/dts/marvell/cn9130-cf-pro.dtb: /soc/bus@f0000000/system-controller@6f8000/clock-cpu: failed to match any schema with compatible: ['marvell,ap807-cpu-clock']
+>> arch/arm64/boot/dts/marvell/cn9130-db.dtb: interrupt-controller@1e0000 (marvell,cp110-icu): interrupt-controller@10: '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+>> 	from schema $id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
+> 
+> Yeah, that's on me. I spotted now also LKP report about the same for my
+> branch.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I fixed it here:
+https://lore.kernel.org/linux-devicetree/20250823163258.49648-2-krzysztof.kozlowski@linaro.org/T/#u
 
----
+There is no strict dependency between this patchset and above bindings,
+but this DTS should be applied by maintainer after when binding hits
+next (so linux-next does not get new warnings).
 
-See
-https://lore.kernel.org/linux-devicetree/175589786306.518460.17450425303264875357.robh@kernel.org/
-for reference.
----
- .../bindings/interrupt-controller/marvell,cp110-icu.yaml       | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/marvell,cp110-icu.yaml b/Documentation/devicetree/bindings/interrupt-controller/marvell,cp110-icu.yaml
-index 9d4f06f45372..ddfce217e119 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/marvell,cp110-icu.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/marvell,cp110-icu.yaml
-@@ -49,6 +49,9 @@ patternProperties:
-       reg:
-         maxItems: 1
- 
-+      '#address-cells':
-+        const: 0
-+
-       '#interrupt-cells':
-         const: 2
- 
--- 
-2.48.1
-
+Best regards,
+Krzysztof
 
