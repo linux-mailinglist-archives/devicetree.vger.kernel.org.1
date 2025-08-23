@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-208500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 963A3B32985
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 17:20:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F1EB3298F
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 17:31:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 791EC1B656F8
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 15:20:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25F3E7B38DC
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 15:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA6322BE7B4;
-	Sat, 23 Aug 2025 15:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FDB42E8E0E;
+	Sat, 23 Aug 2025 15:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RwSZSjsh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H9w6QO35"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27E9261593;
-	Sat, 23 Aug 2025 15:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32F12E8DE0;
+	Sat, 23 Aug 2025 15:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755962407; cv=none; b=SXWKthMgkKu07Rj9YEfAKnVzOU1V7W+w8i/FcBAI8XQ71RgsW6OAdy0ixv76OKeabPWSijoBIjqvPRLBpwOZKiwHW27es68cCUG5ctpRDBa7suxIZ/9Q01aEi0NX6b3PHeKqJxXrzj4OYLXAE6RKwiVtm32nbOAKiBfx4F9fidw=
+	t=1755963081; cv=none; b=ai4nvgFapPlQNX1PXFjLdaLTgefyn3EghF02pEXvpkOCqN++j3UwwZMK6jF/qglWjHz2AAkyONZPvvm8L9ElSkMn9X2kIZL7QM31flTGDLp7wiBb71EYMy3Nn3D93/jWtHjIpUVRgssRPr0cZ+hrLZJvi4WVLCQPX+2dlFXqzCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755962407; c=relaxed/simple;
-	bh=lBf991ZvGcpGafI+brvV7j+drtIcox/nU4hUyq688bU=;
+	s=arc-20240116; t=1755963081; c=relaxed/simple;
+	bh=peKJlMIXpNGNRv7+CSi1rJHa22V/cNoeK8bCvQMkNoM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eZ3E/EiKuX/HbWobcdP/9xYd75AMrcQfi0e2o1M6UdkkW58krILtPZIiRc9W9ZqnxXtIvYGYbIeGn1OAUM1BZYVQ7PSSSK2r5ApbSUuoYMXZZ3R6InNCmIO1GxgaDB86vFAN5sbEzcb4P45mG90joyI/Sf6cqQe2/p8kGpHeWEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RwSZSjsh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71CD7C4CEE7;
-	Sat, 23 Aug 2025 15:20:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WHpBips8dDbinh5hoPestG/MgQ0/Jor8Z7iHU5oETiRjC9mt3FOarn6v1jkGo0HmmfC/0+qmpniT2l+dvJc9VKIAZHplY8Be7KDt9poWyTLGpr+uMfnOgy2E+IGopk36t1DHw4DwsANUy3KBUez8xmjSh4Z8nc1vEhbocwxCw90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H9w6QO35; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D81F0C4CEE7;
+	Sat, 23 Aug 2025 15:31:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755962407;
-	bh=lBf991ZvGcpGafI+brvV7j+drtIcox/nU4hUyq688bU=;
+	s=k20201202; t=1755963081;
+	bh=peKJlMIXpNGNRv7+CSi1rJHa22V/cNoeK8bCvQMkNoM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RwSZSjshFs2szoMB96HGmrR3pVbYijhPVDqXXHvcLbmqnZEw3TZ3L8jXlGJpnlx0S
-	 cErNIYSx3c9Bt5ae+lKqXvB3JCP7FQQzs+YXSVW6zHtVZje3qqEtggjvZHsjCPcj1e
-	 pb/Rj4jei1Yv2Fzg2xIKOR9gua4DiYa9LRenKrAEX8xukSOpIBGsg8A0isIlE/4mKa
-	 BuaM4mUVw6h0grKk6+b5SgUswzmISa4hX870y8forjKyjU0M3A/aJKmoFMthzG7GEo
-	 zt/Dq2uMc8PkDoPeYu4oNyHAJ0l0heom6SsiqE71rpjJ/Dbx+B3w8Dif7y0DtkJn+I
-	 K1oeytv5fBeYg==
-Message-ID: <fc90c450-cdb2-4bb0-bb36-5a4ccd9ba325@kernel.org>
-Date: Sat, 23 Aug 2025 17:20:03 +0200
+	b=H9w6QO35mWm02RcB2Vh/AE19QzN5WdT8tKG0DRNOO5rMc7R48AdTeuGdH0JhOja27
+	 pzCtHOj75JaKlCQihl4qMtBs5JQjk5KwMK//3fkAmz87nfhRmHkNQVUVkJJ+o8kF4e
+	 0xxVyhLlt5Tb1ShoDNgL7eV7jLiXVvBtaVymIB+6zBcE7PQig+5nAb7Y6zl40HHE6b
+	 5lQaYrfi54lG6IsqEtTN9iTK4zAf7Z5L8a4Fjzz+BLBcKpbPDV6M50xaNEHIFwzS80
+	 vBV2YTcbWM9grmRMD+/6n/ZWOvkwKAfZDlGprwUlTc/4OaqZxq2zZxOOzX6qrlcSX4
+	 QJ837Gt9spZ4Q==
+Message-ID: <322df419-10fb-412c-9c3f-7493d9a58670@kernel.org>
+Date: Sat, 23 Aug 2025 17:31:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: memory-controllers: add StarFive
- JH7110 SoC DMC
-To: E Shattow <e@freeshell.de>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Hal Feng <hal.feng@starfivetech.com>,
- Minda Chen <minda.chen@starfivetech.com>
-References: <20250823085818.203263-1-e@freeshell.de>
- <20250823085818.203263-2-e@freeshell.de>
+Subject: Re: [PATCH v2 11/12] arm64: defconfig: Enable FSD CSIS DMA driver
+To: Inbaraj E <inbaraj.e@samsung.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ s.nawrocki@samsung.com, s.hauer@pengutronix.de, shawnguo@kernel.org,
+ cw00.choi@samsung.com, rmfrfs@gmail.com, laurent.pinchart@ideasonboard.com,
+ martink@posteo.de, mchehab@kernel.org, linux-fsd@tesla.com, will@kernel.org,
+ catalin.marinas@arm.com, pankaj.dubey@samsung.com, shradha.t@samsung.com,
+ ravi.patel@samsung.com
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alim.akhtar@samsung.com,
+ linux-samsung-soc@vger.kernel.org, kernel@puri.sm, kernel@pengutronix.de,
+ festevam@gmail.com, linux-media@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20250814140943.22531-1-inbaraj.e@samsung.com>
+ <CGME20250814141057epcas5p21ca33641e42164886dc1bf404237876d@epcas5p2.samsung.com>
+ <20250814140943.22531-12-inbaraj.e@samsung.com>
+ <1b37bc94-8f2b-4da3-be2e-4d0076672169@kernel.org>
+ <00d401dc13d2$65033080$2f099180$@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,17 +113,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250823085818.203263-2-e@freeshell.de>
+In-Reply-To: <00d401dc13d2$65033080$2f099180$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/08/2025 10:58, E Shattow wrote:
-> Describe JH7110 SoC DDR external memory interface.
+On 23/08/2025 04:05, Inbaraj E wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: E Shattow <e@freeshell.de>
+> Thanks for the review.
+> 
+>>
+>> Tesla FSD
+>>
+>> You are changing defconfig for all platforms, it's not your personal or
+>> company defconfig.
+> 
+> I noticed that Exynos and NXP driver configs are added in the defconfig.
+> Could you please clarify why I shouldn't add my driver config in defconfig?
 
-Don't send the same patch multiple times. To which one people should
-respond?
+No, I gave you rationale why your commit description is poor.
 
 Best regards,
 Krzysztof
