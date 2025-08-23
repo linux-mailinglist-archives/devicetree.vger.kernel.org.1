@@ -1,40 +1,80 @@
-Return-Path: <devicetree+bounces-208435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B173B32792
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 10:10:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA12B327B6
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 10:47:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A0D81B63091
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 08:10:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8753F7B1F3F
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 08:45:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361ED231A32;
-	Sat, 23 Aug 2025 08:10:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21A19235C17;
+	Sat, 23 Aug 2025 08:47:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HyudJt84"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74CDD21930A;
-	Sat, 23 Aug 2025 08:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A61E1B6CE9
+	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 08:47:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755936617; cv=none; b=LLLKAx+Ns4DUOnFmE2Ng6vXH2rAsR02BaZqO7dTh29xe+Nv+dMksXd5zS51ydN2WeM1CQn1rOKSsviD1hwd/4ngcPVC7ypoMYW6zSyagM7GSkrYGEkZNAf3+cpFlDe88Rud6p6tqBgoRAch11wxKnar01moWtr3YEj25k3udb+s=
+	t=1755938835; cv=none; b=txcMk7Urs+kDmdP1kc/+tTcVeRauGw7U2mbCY3rWe+TYY9NpObuG+8zl6fF423YQOO/N8aGQ6ByHxHvyoC/kxdkh6qFTzhMZKfRNMD+KieuhKGQI2QVTFfHdpUSIdM0MiVeOTC3CgSyk+9tavLfmn843vzWRozENp4AngfdEddQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755936617; c=relaxed/simple;
-	bh=IXYpi+l2BOIEmVSt1JlAsJ5MOncWtEB4+DOLzIso7+U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q3CuGPNYDmuvdQhkKF799Oanc1DnFb8TJT9va+PkZ7csq9awU6xLpQ0VnkI07mYyc3BUno7k6K4OviMV7z/1SwaZHpxR1LLVhMSVdOadSfo89SsL6s8IlkB6i9I7s/F/5pTvg643fUREHdb9+Y2L4lBcUeUmSRcGURFA2awGSpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [192.168.2.54] (unknown [98.97.26.119])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 2A41EB4E0012;
-	Sat, 23 Aug 2025 10:10:02 +0200 (CEST)
-Message-ID: <44cca647-fc1c-4d3c-854e-14943d6d9b06@freeshell.de>
-Date: Sat, 23 Aug 2025 01:10:00 -0700
+	s=arc-20240116; t=1755938835; c=relaxed/simple;
+	bh=psW7PnbWYtOYOHOIG8rSs5vCB83txsjAyHIx7fbljxA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=HEXvCnIkUhh698h53jgTZnPQ+GrcFlSJUKvG3CqyKtEjly++HHtG2slf3jt8dZDIEhLjPIJA1oecvisDhjaSLb3XWEhv6MnwmA8QkBKj3YA177R+GxAtMhR6kx66tbsMsp9mBvO8IfcEbziKL/KLILIPLi0EwIX70HFMVqvIA6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HyudJt84; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-afdf4bb0e5cso37078066b.2
+        for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 01:47:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755938831; x=1756543631; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=63rf6UW69I7dzJvUbjS/g+o800Qui00mrJJtWDKwN9I=;
+        b=HyudJt84KvoUNGhW48ffr2cdS2o/IOR4FERU8ERrN/AiyvJRfZoz3p3mU2D2Ko6CtH
+         fY9jD+IzVwt4Xc8E66gBKy8T5xpab6nIwK+0UoAJMs2S2aAP2/I3Vf/HGnbLKCbCDIcT
+         5cSyoAo6CTXo242xkeU6g2Mbb5oHe+A6HmMSVZmqoiO/W3BQI2oiiocc7VM3giP5Hsst
+         CnQ04vVWbjLAt8t1pjd48cyiGC6blq32AHnOUwnlOv+/2/3kpO/LA/cV+EusKW+gmWvR
+         pQCW+xxUD7LMFW0zRIGghDjzMsSlPVNNqkP5d/YNEIZXyL3JQahnk5YV7U3tv4fAWJFc
+         4fGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755938831; x=1756543631;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=63rf6UW69I7dzJvUbjS/g+o800Qui00mrJJtWDKwN9I=;
+        b=UuR1xHNL/u2Zb9+jS4jktfIcHH+DHzenR2Lxu/Txup/OQxISY+T+WVfP0T7hl0nN11
+         ynFQiE7P3la+8k1X6bK/wvsKoicMT4o76YCawsqWuXF8f1IWqnAlyUkpD4iyAlK1ouCJ
+         01Pnyet+LXL2x8ElNOb3ZaqbeAy9by1UyxSSs6Y/+hG6TcTUgIbnozdjkrpwDuWLh+AO
+         ruSUJK0+RcgezxBKh/rqqtPU4ttUGrw5QV4ECsHShjvRn89RRbPKttcn6E+SnTUihhS5
+         ahZYOOMqteKbFtDFilrDeEtfJuvF4M3qUeNaLbYbG3aI0gw0AIVUnwzt7wuc7NLjZJEt
+         cU3A==
+X-Forwarded-Encrypted: i=1; AJvYcCXjx4m1E/x7UYsf9iBURP6oeNmPFbrxrEGpVWvIdPXIBiEV3gbIUZ+FNJVlf6ZKrhZqUDKzv/FNdYHf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgCLTaNDehoAgBJAfaJO/9aVzZOPJ0IVHrJwA8JxFvPoW8PH/X
+	ONeWywUwMHBzlZg6lzPVa39ek1hnDHkywktTHnKw8RisI9kTvsK3o4KhjxqgAo1piUM=
+X-Gm-Gg: ASbGnctAg6o+PGYRcGsdKR/eesVJSnqXSXeR7b+2t10FtJNiEguLeG9xvXjaSjtcsEF
+	MdyPM0H5NRJjzswAaUnqfU2ACuT7C+XHJKKEbRS7uggkbW771UOsAZWm9XoBo1kK+/BlCy6shfk
+	ehERnauq82FzMrpNiCl0axZm/1xzQ8q1H2/G/kaAeirOfH1k0GXMLC6P1S3AiORnndRaA8MsWvM
+	zEb3n/f2HnWKIvfUrlNX6ALzIW/06RZJR94zdb596gpNUUTbdOslliakb1guYfvPizyzPhAkyHr
+	3jS48V6ymTHwZy+VUPrerN6x/yQ9KPma/3LZMT9bkBmZcMIkgG97JZ1Q3fHL5u11Fu7A3ofI6wK
+	hmojRjZqTW+DVSyYL0iWd5KFg1oN2m/mCN4rN/V/nSp0=
+X-Google-Smtp-Source: AGHT+IGTEJ8SbKPY7zKGNwC0BrMP8HgDH2XNiA3vCklY0PS5TihvmIa43Qo9BCTwLKgAiIe+jA7kiA==
+X-Received: by 2002:a17:906:4fd2:b0:ae0:da2d:44bb with SMTP id a640c23a62f3a-afe28f07324mr255351566b.1.1755938831294;
+        Sat, 23 Aug 2025 01:47:11 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afe4900a18asm133130666b.49.2025.08.23.01.47.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 23 Aug 2025 01:47:10 -0700 (PDT)
+Message-ID: <ee241506-96a1-431e-a7a7-2e5848fce0e0@linaro.org>
+Date: Sat, 23 Aug 2025 10:47:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,200 +82,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: jh7110: bootph-pre-ram
- hinting needed by boot loader
-To: Hal Feng <hal.feng@starfivetech.com>, Conor Dooley <conor@kernel.org>,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-References: <20250815073739.79241-1-e@freeshell.de>
- <20250815073739.79241-4-e@freeshell.de>
- <ZQ2PR01MB1307CE398A5993B9E5B93357E6312@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
- <4b516172-bd75-432a-9c96-f02fbfb68c16@freeshell.de>
- <ZQ2PR01MB1307FE7D4D538EEBB9A578C7E63D2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+Subject: Re: [PATCH 2/2] arm64: dts: marvell: armada-cp11x: Add default ICU
+ address cells
+To: Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250822133329.312326-3-krzysztof.kozlowski@linaro.org>
+ <20250822133329.312326-4-krzysztof.kozlowski@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <ZQ2PR01MB1307FE7D4D538EEBB9A578C7E63D2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <20250822133329.312326-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 8/22/25 02:27, Hal Feng wrote:
+On 22/08/2025 15:33, Krzysztof Kozlowski wrote:
+> Add missing address-cells 0 to the ICU interrupt node to silence W=1
+> warning:
 > 
+>   armada-cp11x.dtsi:547.3-47: Warning (interrupt_map): /cp0-bus/pcie@f2600000:interrupt-map:
+>     Missing property '#address-cells' in node /cp0-bus/bus@f2000000/interrupt-controller@1e0000/interrupt-controller@10, using 0 as fallback
 > 
->> -----Original Message-----
->> From: E Shattow <e@freeshell.de>
->> Sent: 2025年8月20日 11:49
->> To: Hal Feng <hal.feng@starfivetech.com>; Conor Dooley <conor@kernel.org>;
->> Emil Renner Berthing <kernel@esmil.dk>; Rob Herring <robh@kernel.org>;
->> Krzysztof Kozlowski <krzk+dt@kernel.org>; Paul Walmsley
->> <paul.walmsley@sifive.com>; Palmer Dabbelt <palmer@dabbelt.com>; Albert
->> Ou <aou@eecs.berkeley.edu>; Alexandre Ghiti <alex@ghiti.fr>
->> Cc: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
->> riscv@lists.infradead.org
->> Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: jh7110: bootph-pre-ram
->> hinting needed by boot loader
->>
->>
->>
->> On 8/17/25 23:05, Hal Feng wrote:
->>>> On 15.08.25 15:37, E Shattow wrote:
->>>> Add bootph-pre-ram hinting to jh7110.dtsi:
->>>>   - CPU interrupt controller(s)
->>>>   - core local interrupt timer
->>>>   - DDR memory controller
->>>>   - oscillator
->>>>   - syscrg clock-controller
->>>>
->>>> Signed-off-by: E Shattow <e@freeshell.de>
->>>> ---
->>>>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 9 +++++++++
->>>>  1 file changed, 9 insertions(+)
->>>>
->>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>> b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>> index 14df3d062a45..884a3526cb0f 100644
->>>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>> @@ -35,6 +35,7 @@ S7_0: cpu@0 {
->>>>
->>>>  			cpu0_intc: interrupt-controller {
->>>>  				compatible = "riscv,cpu-intc";
->>>> +				bootph-pre-ram;
->>>>  				interrupt-controller;
->>>>  				#interrupt-cells = <1>;
->>>>  			};
->>>> @@ -68,6 +69,7 @@ U74_1: cpu@1 {
->>>>
->>>>  			cpu1_intc: interrupt-controller {
->>>>  				compatible = "riscv,cpu-intc";
->>>> +				bootph-pre-ram;
->>>>  				interrupt-controller;
->>>>  				#interrupt-cells = <1>;
->>>>  			};
->>>> @@ -101,6 +103,7 @@ U74_2: cpu@2 {
->>>>
->>>>  			cpu2_intc: interrupt-controller {
->>>>  				compatible = "riscv,cpu-intc";
->>>> +				bootph-pre-ram;
->>>>  				interrupt-controller;
->>>>  				#interrupt-cells = <1>;
->>>>  			};
->>>> @@ -134,6 +137,7 @@ U74_3: cpu@3 {
->>>>
->>>>  			cpu3_intc: interrupt-controller {
->>>>  				compatible = "riscv,cpu-intc";
->>>> +				bootph-pre-ram;
->>>>  				interrupt-controller;
->>>>  				#interrupt-cells = <1>;
->>>>  			};
->>>> @@ -167,6 +171,7 @@ U74_4: cpu@4 {
->>>>
->>>>  			cpu4_intc: interrupt-controller {
->>>>  				compatible = "riscv,cpu-intc";
->>>> +				bootph-pre-ram;
->>>>  				interrupt-controller;
->>>>  				#interrupt-cells = <1>;
->>>>  			};
->>>> @@ -321,6 +326,7 @@ mclk_ext: mclk-ext-clock {
->>>>
->>>>  	osc: oscillator {
->>>>  		compatible = "fixed-clock";
->>>> +		bootph-pre-ram;
->>>>  		clock-output-names = "osc";
->>>>  		#clock-cells = <0>;
->>>>  	};
->>>> @@ -354,6 +360,7 @@ soc {
->>>>  		clint: timer@2000000 {
->>>>  			compatible = "starfive,jh7110-clint", "sifive,clint0";
->>>>  			reg = <0x0 0x2000000 0x0 0x10000>;
->>>> +			bootph-pre-ram;
->>>>  			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc
->>>> 7>,
->>>>  					      <&cpu1_intc 3>, <&cpu1_intc 7>,
->>>>  					      <&cpu2_intc 3>, <&cpu2_intc 7>,
->> @@ -376,6 +383,7 @@
->>>> memory-controller@15700000 {
->>>>  			compatible = "starfive,jh7110-dmc";
->>>>  			reg = <0x0 0x15700000 0x0 0x10000>,
->>>>  			      <0x0 0x13000000 0x0 0x10000>;
->>>> +			bootph-pre-ram;
->>>>  			clocks = <&syscrg JH7110_PLLCLK_PLL1_OUT>;
->>>>  			clock-names = "pll1_out";
->>>>  			resets = <&syscrg JH7110_SYSRST_DDR_AXI>, @@ -
->>>> 892,6 +900,7 @@ qspi: spi@13010000 {
->>>>  		syscrg: clock-controller@13020000 {
->>>>  			compatible = "starfive,jh7110-syscrg";
->>>>  			reg = <0x0 0x13020000 0x0 0x10000>;
->>>> +			bootph-pre-ram;
->>>>  			clocks = <&osc>, <&gmac1_rmii_refin>,
->>>>  				 <&gmac1_rgmii_rxin>,
->>>>  				 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
->>>
->>> pllclk also needs to add bootph-pre-ram. Because it is the dependency of
->> syscrg.
->>>
->>> 		pllclk: clock-controller {
->>> 			compatible = "starfive,jh7110-pll";
->>> +			bootph-pre-ram;
->>> 			clocks = <&osc>;
->>> 			#clock-cells = <1>;
->>> 		};
->>>
->>> Best regards,
->>> Hal
->>
->> What users are there for 'pllclk' at U-Boot SPL phase? There does not seem to
->> be any difference in testing U-Boot and Linux with or without this hint for
->> 'pllclk'.
+> Value '0' is correct because:
+> 1. GIC interrupt controller does not have children,
+> 2. interrupt-map property (in PCI node) consists of five components and
+>    the fourth component "parent unit address", which size is defined by
+>    '#address-cells' of the node pointed to by the interrupt-parent
+>    component, is not used (=0)
 > 
-> I see commit 8b3f2eb7d8912204bda2d914b8a9a1ce1c31bb5c adding this line to
-> solve some problems.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> https://lore.kernel.org/all/20250330162421.238483-1-heinrich.schuchardt@canonical.com/
+> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> index a057e119492f..d9d409eac259 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> @@ -202,6 +202,7 @@ CP11X_LABEL(icu): interrupt-controller@1e0000 {
+>  			CP11X_LABEL(icu_nsr): interrupt-controller@10 {
+>  				compatible = "marvell,cp110-icu-nsr";
+>  				reg = <0x10 0x20>;
+> +				#address-cells = <0>;
+This is not GIC, so it might need bindings adjustment. LKP reported:
 
-Yes, there was some mistake in how I am testing U-Boot SPL. Given that
-(U-Boot code base) jh7110-u-boot.dtsi override is replaced with contents:
+interrupt-controller@1e0000 (marvell,cp110-icu):
+interrupt-controller@10: '#address-cells' does not match any of the
+regexes: '^pinctrl-[0-9]+$'
 
-/ {
-        soc {
-                memory-controller@15700000 {
-                        clock-frequency = <2133>; /* starfive_ddr.c
-driver needs update to use common clocks */
-                };
-        };
-};
-
-&syscrg {
-        assigned-clock-rates = <0>; /* cpufreq not implemented, use
-defaults */
-};
-
-I am now able to reproduce this boot failure in U-Boot SPL on Star64.
-
-Additionally, U-Boot SPL fails to boot if 'gmac1_rgmii_rxin' or
-'gmac1_rmii_refin' are missing bootph-pre-ram hint, as a dependency of
-syscrg. It is okay to omit hints for 'gmac0_rgmii_rxin' and
-'gmac0_rmii_refin' as the dependency of aoncrg not used at U-Boot SPL.
-
-In the next version of this series will be added bootph-pre-ram hints
-for syscrg dependencies: 'pllclk', 'gmac1_rgmii_rxin', and
-'gmac1_rmii_refin'
-
-Thank you, Hal.
-
--E
-
-> 
-> Best regards,
-> Hal
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
-
+Best regards,
+Krzysztof
 
