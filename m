@@ -1,330 +1,187 @@
-Return-Path: <devicetree+bounces-208463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D4B4B3286E
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 13:59:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A66CFB3287C
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 14:15:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 037A97AF875
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 11:58:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6178FAC19C3
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 12:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D1B2571DA;
-	Sat, 23 Aug 2025 11:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB152253F3;
+	Sat, 23 Aug 2025 12:15:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Cbu8brKP"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="UsVxS1Zt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from mout.web.de (mout.web.de [217.72.192.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE352550AF
-	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 11:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F7F193077;
+	Sat, 23 Aug 2025 12:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755950384; cv=none; b=HLYbhZ1+4Du2EkCYE1R2IQVNSg78UBVZ3H3wmcPConHjrpna11GwGdF/uFFIvSAbMLQ1i14XosRehVIcHpWG0x6RZoZxPNpGTB8XziXs/1S6v5OcCZbWMwEu4RExw5HhE4Ssc4DKZvP/5hhrhsmtQfBBzNJAhATxLGu/6MN9Vys=
+	t=1755951325; cv=none; b=F92mk6/5mlGGJxBF2odnVWopDA4NVPsooHJTsba6yNiA3KLAB8gzaJg58ipPo1IcXtWqyAdSMvEkm1TnIARzu6xuw0bWrGaG0FSohMH3fg6TKn2mN1sPIDlengkb+1IAAUDz0D/HJ6iLDLtO92ogB3FTPOHv9C77y8SCwhSpn/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755950384; c=relaxed/simple;
-	bh=/Ug/L3tKFgEpQdqM8e0FqxPaEr1dmPxuR4e6I4gemhM=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=e0hRcPLlHhYS8SjBhoQhSqTjihQYuzBW7dKYiT9+5NsnI8i67m4gyUeXDbVgp3qkz0pg8AsiEmedyWFCzqN0y7yJNsred2iJ2Sbkxf3o7zCwX7SOQ5EL2ceok5Gtv8lkr/IVV4LcbyEQtNjmNBNk6AMA6Odb/zFtZ+NYdK9pMRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Cbu8brKP; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250823115939epoutp0111e02f68b63802b47b348b11ea3852a9~eY5EuDWCc2775327753epoutp01I
-	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 11:59:39 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250823115939epoutp0111e02f68b63802b47b348b11ea3852a9~eY5EuDWCc2775327753epoutp01I
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1755950379;
-	bh=iH6hgTPw7EB8v1igevb2sHc8YeKV98oq0HbpxzaPbH8=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=Cbu8brKPTHiSPUck8omOCZ+4XX6eADeAYqycHNAjNyUT8G4ZH2DM4TVYp5uWVmmvu
-	 LNVVfGnhJAPRWMOg40TQh+rG6A7rCTqgO0NxyH34+z4gdYYdIyLb9JNBIto+riJsUF
-	 rkVV+YBObGH0Qo25e7emKlkPmDKFaymXeRJYniCk=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250823115938epcas5p2a6483ded6bd42ae2b0c2a1058f77a3cd~eY5D0z5D91074810748epcas5p20;
-	Sat, 23 Aug 2025 11:59:38 +0000 (GMT)
-Received: from epcas5p1.samsung.com (unknown [182.195.38.93]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4c8FwT6tQ4z6B9m9; Sat, 23 Aug
-	2025 11:59:37 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250823115937epcas5p1f853b0000848b6d8b15b9008429e7b4a~eY5COYS6T0189601896epcas5p1H;
-	Sat, 23 Aug 2025 11:59:37 +0000 (GMT)
-Received: from FDSFTE196 (unknown [107.116.189.214]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250823115933epsmtip227d8435bfceb85f01b212483a05c141f~eY4_g2_fd2947029470epsmtip2V;
-	Sat, 23 Aug 2025 11:59:33 +0000 (GMT)
-From: "Inbaraj E" <inbaraj.e@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <mturquette@baylibre.com>,
-	<sboyd@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <s.nawrocki@samsung.com>, <s.hauer@pengutronix.de>,
-	<shawnguo@kernel.org>, <cw00.choi@samsung.com>, <rmfrfs@gmail.com>,
-	<laurent.pinchart@ideasonboard.com>, <martink@posteo.de>,
-	<mchehab@kernel.org>, <linux-fsd@tesla.com>, <will@kernel.org>,
-	<catalin.marinas@arm.com>, <pankaj.dubey@samsung.com>,
-	<shradha.t@samsung.com>, <ravi.patel@samsung.com>
-Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <alim.akhtar@samsung.com>,
-	<linux-samsung-soc@vger.kernel.org>, <kernel@puri.sm>,
-	<kernel@pengutronix.de>, <festevam@gmail.com>,
-	<linux-media@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>
-In-Reply-To: 
-Subject: RE: [PATCH v2 12/12] media: fsd-csis: Add support for FSD CSIS DMA
-Date: Sat, 23 Aug 2025 17:29:32 +0530
-Message-ID: <00e401dc1425$65ea9490$31bfbdb0$@samsung.com>
+	s=arc-20240116; t=1755951325; c=relaxed/simple;
+	bh=MWffY0o51QrrlpB+oHjD7N4xIKUMbNrJ8QCwYVVc9ZQ=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=cpTQDLkzE2G91Q9T/XVSli6cCS/2KDa/cRGkYjk10oeasgsRjNqYYSZuoup4rzL7N4VEf50brf1FRDsVVwAUb3HVer7j7xo8CRh8Bki46HUJLmziSsZ5ifKYJUezyJTbji/QYJuB3uKbW4TGQqcNv5UzkRQv7DV+J5Tg7VdOHYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=UsVxS1Zt; arc=none smtp.client-ip=217.72.192.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1755951283; x=1756556083; i=markus.elfring@web.de;
+	bh=JZupNgyDCywSPEVi8QHgO5gsSonLJl51i4Hq+4q5O8M=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=UsVxS1ZtYPPi5JhgUusJPIrUda4wWMVqkNokClYCTVOSDpYWYbfV7Mfhs2Q3W2kV
+	 bAwO+nh2Kq2gxRd3+wO/p0d/kB6CamZXqygCo+REvFdjFLSTJqNUtFKA7KLv86Lhq
+	 wMOAObEuMaym7T2FnFCKsrHmKhThpwnG6XIL63NNJi9D0Y776opIw7pPmLIUi8YAr
+	 oACoVjvLdrSzX3/MZHFnMwNbQtGf3HvYaM1hiLU30+baFwoDh5INU/hMTokNiHWYI
+	 LGUYksBW7iWcujqmX2eaP5JvcDfTfdqkHRnQF8KCfAQdzI8DQ1mmEeBV+OfStKm3r
+	 e2X5JN3JJ5xSw+LtEg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.69.194]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MK52q-1v6vO907wc-00Utya; Sat, 23
+ Aug 2025 14:14:43 +0200
+Message-ID: <6f2db559-5088-4082-ab5e-7b4a66723eb8@web.de>
+Date: Sat, 23 Aug 2025 14:14:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQK5oFMD+tt4mLQU5V9KgVyIDaUIUQLOIzgLAmiUCqAC0LEeUbJ0pR0QgAAo+XA=
-Content-Language: en-in
-X-CMS-MailID: 20250823115937epcas5p1f853b0000848b6d8b15b9008429e7b4a
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250814141103epcas5p14516cbe45c21d28ba9e231da99940aa1
-References: <20250814140943.22531-1-inbaraj.e@samsung.com>
-	<CGME20250814141103epcas5p14516cbe45c21d28ba9e231da99940aa1@epcas5p1.samsung.com>
-	<20250814140943.22531-13-inbaraj.e@samsung.com>
-	<b1f59033-12d0-4395-85f1-e296a5dbca5f@kernel.org> 
+User-Agent: Mozilla Thunderbird
+To: James Morse <james.morse@arm.com>, linux-arm-kernel@lists.infradead.org,
+ linux-acpi@vger.kernel.org, devicetree@vger.kernel.org
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ Amit Singh Tomar <amitsinght@marvell.com>,
+ Baisheng Gao <baisheng.gao@unisoc.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>, bobo.shaobowang@huawei.com,
+ Carl Worth <carl@os.amperecomputing.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
+ <conor+dt@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Dave Martin <Dave.Martin@arm.com>, David Hildenbrand <david@redhat.com>,
+ Drew Fustini <dfustini@baylibre.com>,
+ D Scott Phillips <scott@os.amperecomputing.com>,
+ Fenghua Yu <fenghuay@nvidia.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Hanjun Guo <guohanjun@huawei.com>, Jamie Iles <quic_jiles@quicinc.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, Koba Ko <kobak@nvidia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Len Brown <lenb@kernel.org>,
+ Linu Cherian <lcherian@marvell.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Peter Newman <peternewman@google.com>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rex Nie <rex.nie@jaguarmicro.com>,
+ Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+ Shameer Kolothum <shameerkolothum@gmail.com>,
+ Shanker Donthineni <sdonthineni@nvidia.com>,
+ Shaopeng Tan <tan.shaopeng@fujitsu.com>, Sudeep Holla
+ <sudeep.holla@arm.com>, Will Deacon <will@kernel.org>,
+ Xin Hao <xhao@linux.alibaba.com>
+References: <20250822153048.2287-6-james.morse@arm.com>
+Subject: Re: [PATCH 05/33] ACPI / PPTT: Find cache level by cache-id
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20250822153048.2287-6-james.morse@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Qu0CFpEklXcJA1oHaNG97ZwkzNgU/lo58aVYxv00Qfpjt3xgpCb
+ rbvCzWw1mR5N77Sy/JmWUnMcK5qiEmpgAaCZEOg7RQoF0NXiizR044BdiqJ9vbPjTmlB9YF
+ ma62IRCeNFxOeGWKq5VNFWOO4D8ec0Dattpryg+JC7WUSGlvrbp88k7s4QNDkdClijd9n/b
+ 5qzlHwBkMb+owxYVKwsfA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:+jJkB4Utdbg=;S6f4kOtwK/6EVIU8qoMhe1rHR7q
+ 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
+ JhMoB0o=
 
+=E2=80=A6
+> +++ b/include/linux/acpi.h
+=E2=80=A6
+> @@ -221,6 +222,17 @@ void acpi_reserve_initial_tables (void);
+>  void acpi_table_init_complete (void);
+>  int acpi_table_init (void);
+=E2=80=A6
+> +DEFINE_FREE(acpi_table, struct acpi_table_header *, if (!IS_ERR(_T)) ac=
+pi_put_table(_T))
+> +
+>  int acpi_table_parse(char *id, acpi_tbl_table_handler handler);
+=E2=80=A6
 
+How do you think about to offer the addition of such a special macro call
+by another separate update step?
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
+cumentation/process/submitting-patches.rst?h=3Dv6.17-rc2#n81
 
-> -----Original Message-----
-> From: Inbaraj E <inbaraj.e@samsung.com>
-> Sent: 23 August 2025 17:20
-> To: 'Krzysztof Kozlowski' <krzk@kernel.org>; 'mturquette@baylibre.com'
-> <mturquette@baylibre.com>; 'sboyd@kernel.org' <sboyd@kernel.org>;
-> 'robh@kernel.org' <robh@kernel.org>; 'krzk+dt@kernel.org'
-> <krzk+dt@kernel.org>; 'conor+dt@kernel.org' <conor+dt@kernel.org>;
-> 's.nawrocki@samsung.com' <s.nawrocki@samsung.com>;
-> 's.hauer@pengutronix.de' <s.hauer@pengutronix.de>;
-> 'shawnguo@kernel.org' <shawnguo@kernel.org>;
-> 'cw00.choi@samsung.com' <cw00.choi@samsung.com>; 'rmfrfs@gmail.com'
-> <rmfrfs@gmail.com>; 'laurent.pinchart@ideasonboard.com'
-> <laurent.pinchart@ideasonboard.com>; 'martink@posteo.de'
-> <martink@posteo.de>; 'mchehab@kernel.org' <mchehab@kernel.org>;
-> 'linux-fsd@tesla.com' <linux-fsd@tesla.com>; 'will@kernel.org'
-> <will@kernel.org>; 'catalin.marinas@arm.com' <catalin.marinas@arm.com>;
-> 'pankaj.dubey@samsung.com' <pankaj.dubey@samsung.com>;
-> 'shradha.t@samsung.com' <shradha.t@samsung.com>;
-> 'ravi.patel@samsung.com' <ravi.patel@samsung.com>
-> Cc: 'linux-clk@vger.kernel.org' <linux-clk@vger.kernel.org>;
-> 'devicetree@vger.kernel.org' <devicetree@vger.kernel.org>; 'linux-
-> kernel@vger.kernel.org' <linux-kernel@vger.kernel.org>;
-> 'alim.akhtar@samsung.com' <alim.akhtar@samsung.com>; 'linux-samsung-
-> soc@vger.kernel.org' <linux-samsung-soc@vger.kernel.org>;
-> 'kernel@puri.sm' <kernel@puri.sm>; 'kernel@pengutronix.de'
-> <kernel@pengutronix.de>; 'festevam@gmail.com' <festevam@gmail.com>;
-> 'linux-media@vger.kernel.org' <linux-media@vger.kernel.org>;
-> 'imx@lists.linux.dev' <imx@lists.linux.dev>; 'linux-arm-
-> kernel@lists.infradead.org' <linux-arm-kernel@lists.infradead.org>
-> Subject: RE: [PATCH v2 12/12] media: fsd-csis: Add support for FSD CSIS DMA
-> 
-> Hi Krzysztof,
-> 
-> Thanks for the review.
-> 
-> >
-> > On 14/08/2025 16:09, Inbaraj E wrote:
-> > > FSD CSIS IP bundles DMA engine for receiving frames from MIPI-CSI2 bus.
-> > > Add support internal DMA controller to capture the frames.
-> > >
-> > > Signed-off-by: Inbaraj E <inbaraj.e@samsung.com>
-> >
-> > I commented on order of patches and got more surprise - final driver
-> > patch after DTS defconfig. It's really wrong order.
-> 
-> I'll fix in next patchset.
-> 
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -3334,6 +3334,14 @@ S:	Maintained
-> > >  F:	Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> > >  F:	drivers/media/platform/samsung/s5p-mfc/
-> > >
-> > > +ARM/SAMSUNG FSD BRIDGE DRIVER
-> >
-> > TESLA FSD BRIDGE DRIVER
-> > (because ARM/foo are only SoC maintainer entries)
-> >
-> 
-> I'll change in next patchset.
-> 
-> > > +M:	Inbaraj E <inbaraj.e@samsung.com>
-> > > +L:	linux-arm-kernel@lists.infradead.org (moderated for non-
-> > subscribers)
-> >
-> > Replace above list with samsung-soc list.
-> >
-> 
-> I'll change in next patchset.
-> 
-> > > +L:	linux-media@vger.kernel.org
-> > > +S:	Maintained
-> > >  source "drivers/media/platform/samsung/exynos-gsc/Kconfig"
-> > >  source "drivers/media/platform/samsung/exynos4-is/Kconfig"
-> > > +
-> > > +config VIDEO_FSD_CSIS
-> >
-> > VIDEO_TSLA_FSD_CSIS
-> 
-> I'll change in next patchset.
-> 
-> >
-> > > +	tristate "FSD SoC MIPI-CSI2 media controller driver"
-> > > +	depends on VIDEO_DEV && VIDEO_V4L2_SUBDEV_API
-> > > +	depends on HAS_DMA
-> > > +	depends on OF
-> >
-> > OF seems unneeded dependency
-> >
-> > But you miss ARCH_TESLA_FSD instead.
-> >
-> >
-> 
-> I'll remove OF and add ARCH_TESLA_FSD in next patchset.
-> 
-> > > +	select VIDEOBUF2_DMA_CONTIG
-> > > +	select V4L2_FWNODE
-> > > +	help
-> > > +	  This is a video4linux2 driver for FSD SoC MIPI-CSI2 Rx.
-> >
-> > Tesla FSD
-> 
-> I'll add in next patchset.
-> 
-> > > new file mode 100644
-> > > index 000000000000..74f46038d506
-> > > --- /dev/null
-> > > +++ b/drivers/media/platform/samsung/fsd-csis/fsd-csis.c
-> > > @@ -0,0 +1,1709 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Copyright (c) 2022-2025 Samsung Electronics Co., Ltd.
-> > > + *             https://www.samsung.com
-> > > + *
-> > > + * FSD CSIS V4L2 Capture driver for FSD SoC.
-> >
-> > "Tesla FSD" in both places
-> 
-> I'll change in next patchset.
-> 
-> >
-> > > + */
-> > > +
-> > > +#include <linux/clk.h>
-> > > +#include <linux/pm_runtime.h>
-> > > +#include <linux/regmap.h>
-> > > +#include <media/v4l2-device.h>
-> > > +#include <media/v4l2-ioctl.h>
-> > > +#include <media/videobuf2-dma-contig.h> #include <media/v4l2-mc.h>
-> >
-> > How can you depend on OF if there is no single OF header?
-> 
-> > > +
-> > > +	ret = devm_request_irq(dev, irq,
-> > > +			csis_irq_handler, IRQF_SHARED, pdev->name, csis);
-> >
-> > Please align these (checkpatch --strict)
-> 
-> I'll fix in next patchset
-> 
-> >
-> > > +
-> > > +	ret = fsd_csis_clk_get(csis);
-> > > +	if (ret < 0)
-> > > +		return ret;
-> > > +
-> > > +	pm_runtime_enable(dev);
-> > > +	if (!pm_runtime_enabled(dev)) {
-> >
-> > That's odd code. Why?
-> >
-> > > +		ret = fsd_csis_runtime_resume(dev);
-> >
-> > Even more questions why?
-> 
-
-Sorry I made typo here
-
- If CONFIG_PM is disabled, the clocks are enabled manually in the driver
- through fsd_csis_runtime_resume API.
- 
- If CONFIG_PM is enabled, the clocks are managed through the PM runtime
- framework.
- 
-> Can you please help me understand what wrong here?
-> 
-> >
-> > > +		if (ret < 0)
-> > > +			return ret;
-> > > +	}
-> > > +
-> > > +	platform_set_drvdata(pdev, csis);
-> > > +
-> > > +	ret = fsd_csis_enable_pll(csis);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = fsd_csis_media_init(csis);
-> > > +	if (ret)
-> > > +		return ret;
-> >
-> > I think you miss clean up of csis->pll completely. Just use
-> > devm_clk_get_enabled and convert everything here to devm.
-> >
-> >
-> 
-> I'll fix in next patchset.
-> 
-> > > +
-> > > +	ret = fsd_csis_async_register(csis);
-> > > +	if (ret)
-> > > +		goto err_media_cleanup;
-> > > +
-> > > +	return 0;
-> > > +
-> > > +err_media_cleanup:
-> > > +	fsd_csis_media_cleanup(csis);
-> >
-> > Also this...
-> >
-> 
-> if fsd_csis_media_init fails, the cleanup is handled internally.
-> Here, cleanup is used only for fsd_csis_async_register failure.
-> 
-> can you please help me understand what is wrong here?
-> 
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static void fsd_csis_remove(struct platform_device *pdev) {
-> > > +	struct fsd_csis *csis = platform_get_drvdata(pdev);
-> > > +
-> > > +static struct platform_driver fsd_csis_driver = {
-> > > +	.probe		= fsd_csis_probe,
-> > > +	.remove		= fsd_csis_remove,
-> > > +	.driver		= {
-> > > +		.name		= FSD_CSIS_MODULE_NAME,
-> > > +		.of_match_table = of_match_ptr(fsd_csis_of_match),
-> >
-> > Drop of_match_ptr, it is not really correct.
-> 
-> Will drop in next patchset.
-> 
-> Regards,
-> Inbaraj E
-
+Regards,
+Markus
 
