@@ -1,77 +1,155 @@
-Return-Path: <devicetree+bounces-208575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 781B7B32C02
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 22:43:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E60EB32C16
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 23:27:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35F60176E18
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 20:41:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EE83A02E60
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 21:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF242EBDD3;
-	Sat, 23 Aug 2025 20:41:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D4623957D;
+	Sat, 23 Aug 2025 21:27:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R2G5oCS3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD1620ADD6;
-	Sat, 23 Aug 2025 20:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC881F4E4F;
+	Sat, 23 Aug 2025 21:27:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755981696; cv=none; b=Llo6OWlTK5pViS3xfgeE2OJwXFKABzmK5RsnBjf+7HWFExHMZ6TrjAYURFqAwyWI0qy0HZLELuM4fQzts4eGLedBhWUS1Cxz7Ern0stwK1xSSccnGIHTF1W9+bH/OSlZjqhgiEAn6sVEaTj7zJY437lDD/6BSeuqTf5xonpU4jA=
+	t=1755984464; cv=none; b=VCaDwjdFokYu37cx2wrHKLCLk0CUWag24mVkcpA8xgUyrNNK91MpdaLYW6x38QbYyG7vjLvCDyiJoJKiY77qOWP37jlrGuN+Mg86yuhinJOMPL/pQcWr77dCsR9yque6vcMTWhh8bKcv/VqhIT5il7eFoI5jH60raLol8/urd0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755981696; c=relaxed/simple;
-	bh=BVh05A9sHwio3fQQi58XUpcajdKH5UmEGOAAms5X0eU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gn7+yqCaNBCcDvnUSFs04/LHbQiLebo1iEGcBXK1Ge4FbFQzIniGTdfFxzooBMJzYjbnscWSrjuV4rgaQmcQ3j9bttryQLbzaSQaa/HmUSzam3oL7rfoHUbmDiq7Dmw71IHE7OaP6lDRWxmoIIAOBL87zwGwMG2XH7Ej9yes6cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [192.168.2.54] (unknown [98.97.26.216])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 4DDFBB4E0012;
-	Sat, 23 Aug 2025 22:41:30 +0200 (CEST)
-Message-ID: <a30e894b-cd23-46d7-9621-2fe039123466@freeshell.de>
-Date: Sat, 23 Aug 2025 13:41:28 -0700
+	s=arc-20240116; t=1755984464; c=relaxed/simple;
+	bh=9lB/x0q6k7LUImz55plsN/l5+3YVz5Z9NsUTm1bXZB8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RsRHXhcC768Depmq2ony8Qy4RK6RRFzu3+SIUSoGyhV4ff4TZZ4+4YkWzhzdWJGo6XVBFZzheOC6ibxvLeRjTBVxxf0mu4Ux7XRr0eAvKHlJoiFxCDP13x7d/wMy5qHusp5OKwfT+HGiOnpQLLAxtIb174GqL0S2zTN5Hk+6m1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R2G5oCS3; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-24457f581aeso23699545ad.0;
+        Sat, 23 Aug 2025 14:27:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755984462; x=1756589262; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3f0+4Vh1MwZCJAgeds3L4wK1Y2nN5MFSu2EhurxFoGY=;
+        b=R2G5oCS3va4xQDjqZoYz/8/Bk93ZqtaHjgw2MRDJdfUwP/fD3v+J8FtGGh6EU1bKgk
+         6AkaYCwtloRnF5gqx4GSA/NxDJEwVCzwhDYkDO0T3JKFON/SQTfqmNG1Eo5E4UFqF5gh
+         5epal5zGhknqvK3cHMwwap/GbyZeicqr+kq8if3miGu5TbWy5i+r20rfcK2qe21Aln4B
+         cNGoKe+XzLhMuTjyhWnnyuzqtBTIFAGjSunnEfzpLeBIpWn5AVB7hqziHJ28CG9KGsUf
+         Kjt+AiRXMyXBGiOns+ceHU5q+/JvROEFucL+4ZKwctCGnpZ0cuD0rfeglTchnllESfFW
+         fQmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755984462; x=1756589262;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3f0+4Vh1MwZCJAgeds3L4wK1Y2nN5MFSu2EhurxFoGY=;
+        b=Jk92n2LeDfwSFW+HMYnHWWGLgAbCsG5/AyTmQrK/7uuldtFTAL9w2eWI1T4u+bHN8i
+         K2OEhsaIaSqZXE3ti0dWnc9/GF7eK9XoCTh7AeHgkxNqvr8FH9rugVkvMxRAW3/w10Rv
+         bUui+eSFnW/7IkOcrVwu/rIGuhzOWys8iDb5P5xcsU49dv4sw4+8i0H0beI/XZa+b3HI
+         ZtZ3e6OaGqKr4rwY0eGusQoONTXDVo+C6xoK6UU8C9aVaViA+cmca55ZQuZGIF0q39cE
+         pdA+202y/aqqy4vrA96ZYVj7hwF+O6ENGANHPmyt+1XAhUnz/vcsRBEHKnc2cMm8fyxu
+         sm3A==
+X-Forwarded-Encrypted: i=1; AJvYcCUMsJ8QI0OzydpShqMadW/jr91z+lfOeznz65FTDebKkQo4ll4G9phDpovKezPHRHmXJ59iwq6Cx41cLCt/@vger.kernel.org, AJvYcCVlERXkwvidladuvYZ8s66/zitWCxFmmCXvtpeaOvLwsQddaxYVB4SLhiQ/jzMWqqncQ9D6whxxibFp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2Qkf6IOjbdJF1/7A2lhYVGKxTsVMY/TaDNASKSRJvRtpXCkxz
+	4rZlWmMkwAgLnHduHlufix1z4U94nh7E48gibOnl97hqOzGR/IwbHOf2
+X-Gm-Gg: ASbGncuZg7GVX+fbgSkeZTqe56cuo1Masz/9I6vT0rHDEVGGfhTbAxX3yDiDD8nrzpl
+	uP+25dzz/v+6+l6woiXL47s9HS1bIW3X0EBVkYD3/G7WTZco2SQ1qAA5qkZnWb+4p24Jx+qSjK8
+	X18CuGOUw0aLA2RtTKVAcxcVnxwMKR0GrarKdE7vLAi6vbqS4r5YYIRxFiomclUND87nQ/0UnkU
+	q2/IbST2kLcuuCMdUkpi+suCGRdXsvcxGOiMhcqi6ZlDQPBB5RzdYuMFiqldLqIv8K2GeoFJ1Jm
+	bo4gbYyv08DcQ0JS9iLKJzOH7K6u1YF4wcRweyzRICFWLKU1R6lWBJQWQpoPWS0X3wu5Nt4k3gy
+	sIp3oGkENHPtEOlLZKRLYNXEaBpURe6xqwrMB7kt0V3IOFzhueM/w
+X-Google-Smtp-Source: AGHT+IG+vW5JGkKEGGGdp4Hd6sF1BS7DCoubVeclZE2QYEcmrjSVeoAj24TqBkympTdtodtDi+cCqg==
+X-Received: by 2002:a17:903:17c3:b0:242:cfc7:1fd6 with SMTP id d9443c01a7336-2462ef446cdmr79305085ad.32.1755984462256;
+        Sat, 23 Aug 2025 14:27:42 -0700 (PDT)
+Received: from fedora ([172.59.162.44])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2466889de85sm28982615ad.153.2025.08.23.14.27.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Aug 2025 14:27:41 -0700 (PDT)
+From: Alex Tran <alex.t.tran@gmail.com>
+To: linus.walleij@linaro.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Alex Tran <alex.t.tran@gmail.com>
+Subject: [PATCH] arch/arm/boot/dts/st/ste-ux500-samsung: dts bluetooth wakeup interrupt
+Date: Sat, 23 Aug 2025 14:27:32 -0700
+Message-ID: <20250823212732.356620-1-alex.t.tran@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: memory-controllers: add StarFive
- JH7110 SoC DMC
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hal Feng <hal.feng@starfivetech.com>,
- Minda Chen <minda.chen@starfivetech.com>
-References: <20250823100159.203925-1-e@freeshell.de>
- <20250823100159.203925-2-e@freeshell.de>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <20250823100159.203925-2-e@freeshell.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 8/23/25 08:20, Krzysztof Kozlowski wrote:
-> On 23/08/2025 10:58, E Shattow wrote:
->> Describe JH7110 SoC DDR external memory interface.
->>
->> Signed-off-by: E Shattow <e@freeshell.de>
->
-> Don't send the same patch multiple times. To which one people should
-> respond?
->
-> Best regards,
-> Krzysztof
+Interrupt support on host wakeup gpio for ste-ux500-samsung bluetooth.
 
-Respond to v3 RESEND (this thread), or I may collect responses from
-either thread they are the same content. I'd missed a linux-riscv list
-CC line on a patch and that confused patchwork, and then I missed
-'RESEND' in subject for the re-send series after the cover letter.
-Patchwork sees the RESEND series now, and sorry for the added noise. -E
+Signed-off-by: Alex Tran <alex.t.tran@gmail.com>
+---
+ arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts | 5 +++--
+ arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts     | 5 +++--
+ arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts     | 5 +++--
+ 3 files changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts
+index c623cc35c5ea..03c679164c11 100644
+--- a/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts
++++ b/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts
+@@ -383,8 +383,9 @@ bluetooth {
+ 				/* BT_WAKE on GPIO199 */
+ 				device-wakeup-gpios = <&gpio6 7 GPIO_ACTIVE_HIGH>;
+ 				/* BT_HOST_WAKE on GPIO97 */
+-				/* FIXME: convert to interrupt */
+-				host-wakeup-gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
++				interrupt-parent = <&gpio3>;
++				interrupts = <1 IRQ_TYPE_EDGE_RISING>;
++				interrupt-names = "host-wakeup";
+ 				/* BT_RST_N on GPIO209 */
+ 				reset-gpios = <&gpio6 17 GPIO_ACTIVE_LOW>;
+ 				pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts
+index 2355ca6e9ad6..bedffd969ec9 100644
+--- a/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts
++++ b/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts
+@@ -475,8 +475,9 @@ bluetooth {
+ 				/* BT_WAKE on GPIO199 */
+ 				device-wakeup-gpios = <&gpio6 7 GPIO_ACTIVE_HIGH>;
+ 				/* BT_HOST_WAKE on GPIO97 */
+-				/* FIXME: convert to interrupt */
+-				host-wakeup-gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
++				interrupt-parent = <&gpio3>;
++				interrupts = <1 IRQ_TYPE_EDGE_RISING>;
++				interrupt-names = "host-wakeup";
+ 				/* BT_RST_N on GPIO209 */
+ 				reset-gpios = <&gpio6 17 GPIO_ACTIVE_LOW>;
+ 				pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts
+index 229f7c32103c..64562a3a262c 100644
+--- a/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts
++++ b/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts
+@@ -481,8 +481,9 @@ bluetooth {
+ 				/* BT_WAKE on GPIO199 */
+ 				device-wakeup-gpios = <&gpio6 7 GPIO_ACTIVE_HIGH>;
+ 				/* BT_HOST_WAKE on GPIO97 */
+-				/* FIXME: convert to interrupt */
+-				host-wakeup-gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
++				interrupt-parent = <&gpio3>;
++				interrupts = <1 IRQ_TYPE_EDGE_RISING>;
++				interrupt-names = "host-wakeup";
+ 				/* BT_RST_N on GPIO209 */
+ 				reset-gpios = <&gpio6 17 GPIO_ACTIVE_LOW>;
+ 				pinctrl-names = "default";
+-- 
+2.51.0
+
 
