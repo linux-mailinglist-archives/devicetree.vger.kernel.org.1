@@ -1,161 +1,173 @@
-Return-Path: <devicetree+bounces-208431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBCF2B32714
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 08:41:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12889B32729
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 09:11:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A88481CC08E9
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 06:42:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C32951B6675A
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 07:12:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50BC3219303;
-	Sat, 23 Aug 2025 06:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA5422425B;
+	Sat, 23 Aug 2025 07:11:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Tgjf3fhy"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VEiFoNYN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B1D1805E;
-	Sat, 23 Aug 2025 06:41:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6886221736;
+	Sat, 23 Aug 2025 07:11:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755931298; cv=none; b=I9uWhH4ueZrG8BTSXwSXKPuhrqyQJwelc94l8r4FyevS9wvVNs7eydl/KC8nyNPdbzkNc6KoliFLs1Rr5RwBAL+0v55x2K1lMWNBtjbcFM9qq39gUknrZz/oF8+aMlmqZF+GI1tpW4yH6khpKz3ss1kak45fiBTnrKt64mZ40Zs=
+	t=1755933111; cv=none; b=dB6oX9p5FUv40TnTlnAcmq9ESMd7Nqh7hrhzk8miLC0j/zI2Ok2at2giVWdzHwiRdoJmufmdtLVlhXH9SJlYerGGXt3xn4iR2aO30P/lqU/wvRNtb0PZvW5Ifg9EoPSI6kHpkeuqVykZKI9lJQahfn4k8sm7mEiA6cF8JS1vKWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755931298; c=relaxed/simple;
-	bh=W2xSsVTOfKvNUrTWf8mlEmNx+BmGW/cRdE/WDxMwuCQ=;
+	s=arc-20240116; t=1755933111; c=relaxed/simple;
+	bh=jGVpPERW5NP1rnaGTAcvIEIQaG44vKcBtYOfI1JBcS8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=esfQt+V7IBNNLZ4Ry6wjTHKcgnqQ1+gkMBFPI4JQJekWH9ssmCsbf+uxr1ZYBJqwRCZSn4oAC+xrbLpVMdZMFPHYP5dcyC5J5AVJhV2X1D2+BrVHEnMyrKWd8gWz+gy11Y6kFNXHLuxFLWrzs3fC3Zc/+JYiNYVug4LNn3cjQYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Tgjf3fhy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05EA8C4CEE7;
-	Sat, 23 Aug 2025 06:41:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1755931297;
-	bh=W2xSsVTOfKvNUrTWf8mlEmNx+BmGW/cRdE/WDxMwuCQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Tgjf3fhy/95FjTkdKOoetheW/ejk9PsgRrIfYJ69pvVByfXzZF+BDHUjnaUQTFFI2
-	 3etnY578RIuxhkTxEA9FHO4kZx8DLjXtNyKuW91mwTNcvLc/XSosyAAO8NMKMPEebd
-	 cb/ucLkpzVx2e0jIOuR3lkwh0JJ22rHLQNsd98Ww=
-Date: Sat, 23 Aug 2025 08:41:34 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: James Morse <james.morse@arm.com>, linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-	LKML <linux-kernel@vger.kernel.org>,
-	Amit Singh Tomar <amitsinght@marvell.com>,
-	Baisheng Gao <baisheng.gao@unisoc.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	bobo.shaobowang@huawei.com,
-	Carl Worth <carl@os.amperecomputing.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=l8kQ8EXOItOg/q+OT70rTCNS3S69AF6MSfBmnVkGQq3se9PzZHbEySwfcqv9KV4kJVThiNrzHsMkich3R9jQ3zATDAUm02aDzu2uLtKvFAiGwWr/PUVb+f4g60HGvJRK2ZnakTBN0OuSspSWbPkL2oCdNBZ6k5o/zvN5lfZ15XE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VEiFoNYN; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755933110; x=1787469110;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jGVpPERW5NP1rnaGTAcvIEIQaG44vKcBtYOfI1JBcS8=;
+  b=VEiFoNYNsms6JZxGbPqwpjZEaR3NYg5qGfKg7V7C79qSkWswXcvNSiuK
+   GF9ySESv2CVirFB9NfMGfn5Dv40qH8S2iwlDAQgC+ToTrLygLq86Jyg2X
+   uaZnAAYE9wQcMWSqYUjS9TbyupVSZonZvtqbhQTge/SY9JZLMyUc4bJKq
+   pc6TlatOJ1FvtQ0CUK2Zw25uHAFEhDPGHDdzY6O49IiVBTMKWuk29TKCc
+   0sO65Ol5H2ysPLMdZX4EKOurhuD3B9YXagth9l8e/I5ovcPhDiHxSc6Ed
+   oE7ksWMisg6D9pVogtwKS9I9/MwB3pZN/M6us/VJZvH/uuH+1eb2zlZwU
+   A==;
+X-CSE-ConnectionGUID: 1jqiIYlhTbKt9J2uYQBOuA==
+X-CSE-MsgGUID: 1XVEGI6ESRmHLzDBVX7MCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="60858173"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="60858173"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2025 00:11:49 -0700
+X-CSE-ConnectionGUID: Jubo2rtVTOGHdEnsPCW6Yg==
+X-CSE-MsgGUID: BWV5dKzARCmUx6HMiM7IWA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="199755162"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by fmviesa001.fm.intel.com with ESMTP; 23 Aug 2025 00:11:45 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1upiPe-000M9n-32;
+	Sat, 23 Aug 2025 07:11:42 +0000
+Date: Sat, 23 Aug 2025 15:10:57 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jie Gan <jie.gan@oss.qualcomm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Dave Martin <Dave.Martin@arm.com>,
-	David Hildenbrand <david@redhat.com>,
-	Drew Fustini <dfustini@baylibre.com>,
-	D Scott Phillips <scott@os.amperecomputing.com>,
-	Fenghua Yu <fenghuay@nvidia.com>, Hanjun Guo <guohanjun@huawei.com>,
-	Jamie Iles <quic_jiles@quicinc.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Koba Ko <kobak@nvidia.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Len Brown <lenb@kernel.org>, Linu Cherian <lcherian@marvell.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Peter Newman <peternewman@google.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rex Nie <rex.nie@jaguarmicro.com>, Rob Herring <robh@kernel.org>,
-	Rohit Mathew <rohit.mathew@arm.com>,
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
-	Shanker Donthineni <sdonthineni@nvidia.com>,
-	Shaopeng Tan <tan.shaopeng@fujitsu.com>,
-	Sudeep Holla <sudeep.holla@arm.com>, Will Deacon <will@kernel.org>,
-	Xin Hao <xhao@linux.alibaba.com>
-Subject: Re: [PATCH 10/33] arm_mpam: Add probe/remove for mpam msc driver and
- kbuild boiler plate
-Message-ID: <2025082328-acorn-wound-5c3d@gregkh>
-References: <20250822153048.2287-11-james.morse@arm.com>
- <00053767-352d-4185-8542-687da0fb5e57@web.de>
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+	Mao Jinlong <jinlmao.mao@oss.qualcomm.com>,
+	Tao Zhang <quic_taozha@quicinc.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] coresight: tpdm: add static tpdm support
+Message-ID: <202508231400.bELUAEeq-lkp@intel.com>
+References: <20250822103008.1029-3-jie.gan@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <00053767-352d-4185-8542-687da0fb5e57@web.de>
+In-Reply-To: <20250822103008.1029-3-jie.gan@oss.qualcomm.com>
 
-On Fri, Aug 22, 2025 at 09:55:33PM +0200, Markus Elfring wrote:
-> …
-> …
-> > +static int mpam_msc_drv_probe(struct platform_device *pdev)
-> > +{
-> …
-> > +	} while (0);
-> > +	mutex_unlock(&mpam_list_lock);
-> > +
-> > +	if (!err) {
-> > +		/* Create RIS entries described by firmware */
-> > +		if (!acpi_disabled)
-> > +			err = acpi_mpam_parse_resources(msc, plat_data);
-> > +		else
-> > +			err = mpam_dt_parse_resources(msc, plat_data);
-> > +	}
-> > +
-> > +	if (!err && fw_num_msc == mpam_num_msc)
-> > +		mpam_discovery_complete();
-> > +
-> > +	if (err && msc)
-> > +		mpam_msc_drv_remove(pdev);
-> > +
-> > +	return err;
-> > +}
-> …
-> 
-> * Would you like to integrate anything from the following source code variant?
-> 
-> 	if (!err)
-> 		/* Create RIS entries described by firmware */
-> 		err = acpi_disabled
-> 		      ? mpam_dt_parse_resources(msc, plat_data)
-> 		      : acpi_mpam_parse_resources(msc, plat_data);
-> 
-> 	if (err) {
-> 		if (msc)
-> 			mpam_msc_drv_remove(pdev);
-> 	} else {
-> 		if (fw_num_msc == mpam_num_msc)
-> 			mpam_discovery_complete();
-> 	}
-> 
-> * How do you think about to increase the application of scope-based resource management
->   at further places?
-> 
-> 
-> Regards,
-> Markus
+Hi Jie,
 
-Hi,
+kernel test robot noticed the following build errors:
 
-This is the semi-friendly patch-bot of Greg Kroah-Hartman.
+[auto build test ERROR on next-20250822]
+[also build test ERROR on v6.17-rc2]
+[cannot apply to robh/for-next linus/master v6.17-rc2 v6.17-rc1 v6.16]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Markus, you seem to have sent a nonsensical or otherwise pointless
-review comment to a patch submission on a Linux kernel developer mailing
-list.  I strongly suggest that you not do this anymore.  Please do not
-bother developers who are actively working to produce patches and
-features with comments that, in the end, are a waste of time.
+url:    https://github.com/intel-lab-lkp/linux/commits/Jie-Gan/dt-bindings-arm-document-the-static-TPDM-compatible/20250822-183421
+base:   next-20250822
+patch link:    https://lore.kernel.org/r/20250822103008.1029-3-jie.gan%40oss.qualcomm.com
+patch subject: [PATCH v1 2/3] coresight: tpdm: add static tpdm support
+config: arm-randconfig-002-20250823 (https://download.01.org/0day-ci/archive/20250823/202508231400.bELUAEeq-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250823/202508231400.bELUAEeq-lkp@intel.com/reproduce)
 
-Patch submitter, please ignore Markus's suggestion; you do not need to
-follow it at all.  The person/bot/AI that sent it is being ignored by
-almost all Linux kernel maintainers for having a persistent pattern of
-behavior of producing distracting and pointless commentary, and
-inability to adapt to feedback.  Please feel free to also ignore emails
-from them.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508231400.bELUAEeq-lkp@intel.com/
 
-thanks,
+All errors (new ones prefixed by >>):
 
-greg k-h's patch email bot
+   drivers/hwtracing/coresight/coresight-tpda.c: In function 'tpdm_read_element_size':
+>> drivers/hwtracing/coresight/coresight-tpda.c:77:17: error: label 'out' used but not defined
+      77 |                 goto out;
+         |                 ^~~~
+
+
+vim +/out +77 drivers/hwtracing/coresight/coresight-tpda.c
+
+    57	
+    58	/*
+    59	 * Read the element size from the TPDM device. One TPDM must have at least one of the
+    60	 * element size property.
+    61	 * Returns
+    62	 *    0 - The element size property is read
+    63	 *    Others - Cannot read the property of the element size
+    64	 */
+    65	static int tpdm_read_element_size(struct tpda_drvdata *drvdata,
+    66					  struct coresight_device *csdev)
+    67	{
+    68		int rc = -EINVAL;
+    69		struct tpdm_drvdata *tpdm_data = dev_get_drvdata(csdev->dev.parent);
+    70	
+    71		if (coresight_is_static_tpdm(csdev)) {
+    72			rc = fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
+    73						      "qcom,dsb-element-bits", &drvdata->dsb_esize);
+    74			rc &= fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
+    75						       "qcom,cmb-element-bits", &drvdata->cmb_esize);
+    76	
+  > 77			goto out;
+    78		}
+    79	
+    80		if (tpdm_data->dsb) {
+    81			rc = fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
+    82					"qcom,dsb-element-bits", &drvdata->dsb_esize);
+    83		}
+    84	
+    85		if (tpdm_data->cmb) {
+    86			rc = fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
+    87					"qcom,cmb-element-bits", &drvdata->cmb_esize);
+    88		}
+    89	
+    90		if (rc)
+    91			dev_warn_once(&csdev->dev,
+    92				"Failed to read TPDM Element size: %d\n", rc);
+    93	
+    94		return rc;
+    95	}
+    96	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
