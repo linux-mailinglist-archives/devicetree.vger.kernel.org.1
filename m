@@ -1,125 +1,112 @@
-Return-Path: <devicetree+bounces-208488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3285FB32938
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 16:37:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6538B32941
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 16:40:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 206361BC256C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 14:38:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0EE856513E
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 14:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C251F1DE892;
-	Sat, 23 Aug 2025 14:37:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="CNCTRXRe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863B42620E4;
+	Sat, 23 Aug 2025 14:40:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from vs81.iboxed.net (vs10.datenmanufaktur-hosting.net [213.160.73.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC9431DF97F;
-	Sat, 23 Aug 2025 14:37:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755959858; cv=pass; b=t8tqjk2uVcG0VuZWSo8LhP8UZwvz9jMU2V6DYAIQRnnSkZQC3S0K0K5c4ooXDqKLOLUgf1hR5TqbcGUJaA1B4AA50lXEMM9sxnY2g99Uiy9ypWYgKOqKotiZvsLx8ukwDCZlJsn7Mq2Uj1QDEm7/olN1Zfa1sjBJX76JSxZObaQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755959858; c=relaxed/simple;
-	bh=w5+3Wj7vfPQ8crCgywXDIjFpd5kHVU1zcCL+s+Zd5yA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=eNaoJeTiBsUvnEjg/E30QHvxrj0euji10iyt+NVXXUy/tlQK3uO3Cy2dnOv9wgCg/Gv2La0nAb1keJL0A6T1V3/FyZ9cPpA24WRQiDE1mmQy0vQYUHHHBinQfL7BHVCYqvgEv8Y4RfFNwj0tNujX0jSUXwphKDPLHMVdS1HSsz0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=CNCTRXRe; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1755959843; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=i0gQp/bDFy9ZbVk4fLw3HLIa/f1GAQblOIedxJHhzUYGSCwuTkJvdY0wHjU21o0+og+XSqjtg3yYfKKap4WQzoWhTWXDEWrrVnVlBeSl9G1wubied71Ihhe+pCDnkfBFJo0U/WBrLh5DfsNi5y0CK+rhiE+gLHmgMBiU6tpZhaA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1755959843; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=w5+3Wj7vfPQ8crCgywXDIjFpd5kHVU1zcCL+s+Zd5yA=; 
-	b=kBXB1g5C0ziF+S7ZfMaRqyDuwu379zZefxwotIZ1GP1UxgoFRpIV8kxoCscYEauQ/RMYDXeq9AXY1/qRqCqY5ufnszn4KfSl0zNUzNyD10dR5peGSjWLLQuYYt6DoS0AEbC8Hd7co3iZEliQOIrT74oi7TX/fpgP2X6pwNDiDR0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1755959843;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=w5+3Wj7vfPQ8crCgywXDIjFpd5kHVU1zcCL+s+Zd5yA=;
-	b=CNCTRXReAmkhoAUkpWYsBs4Cz0aIfjUPGIW85mAOd+QZLGoisIHsQKqvj2WQobPy
-	NSxx54VcBo1e5tZWkf7KSF4PFIAEWqscylWk8Z3esZHmo+wY3QRtT6e05R6byNIgL8q
-	oKBBsdiD7qCIRoSE1eM2gyYPH7exGKWFMo4X84MiGR4RtU7S7T9xDTGxsfNHLqliKgW
-	GOPjocYyzPS6FhX8/Ks5g5lhekpbyzHjJ6TOEKNq9myNpjpgXtTa+bc9rHEGcdg60bL
-	kahhwhWeHFslp8cbPZi7hMjxyLO0tWHW91TZWDdz+q95w/kw75TYsap+Dmx4SLaKWWx
-	0/v+IRh9rg==
-Received: by mx.zohomail.com with SMTPS id 1755959840626388.09144913566183;
-	Sat, 23 Aug 2025 07:37:20 -0700 (PDT)
-Message-ID: <6ac480db63aff3c59603db16e00b9c7b6580b663.camel@icenowy.me>
-Subject: Re: [PATCH 1/3] riscv: dts: thead: th1520: add coefficients to the
- PVT node
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Drew Fustini <fustini@kernel.org>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Han Gao <rabenda.cn@gmail.com>, Yao Zi
- <ziyao@disroot.org>,  linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Date: Sat, 23 Aug 2025 22:37:13 +0800
-In-Reply-To: <aKjhOuqlQyuLCVEK@x1>
-References: <20250816093209.2600355-1-uwu@icenowy.me>
-	 <20250816093209.2600355-2-uwu@icenowy.me> <aKjhOuqlQyuLCVEK@x1>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838A81E9B37;
+	Sat, 23 Aug 2025 14:39:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.73.65
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755960001; cv=none; b=hJ/dAdsVvdriaYwS67cFyzwWUXM4fScA/+1wXqxuVJiaa7H+6+qmrDNAudnc3PGBApKbHQeR0pP0o7f78HKPSxSRyNg26Sroayq+/TFA5FQQNNR1JwddG6X5BE/JHTas+utEh8/qPQdKYPPEetQW4+27HZYBkigDt8Wo+2FS5tM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755960001; c=relaxed/simple;
+	bh=n4sdfey+tTi2oj/zLd0U8WbAxCvs6PmVfQkn7X3MUD0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iC8EXxNG+etXGUsz790Gm4xM3S/kX9LZ0fvmz0Zes+iM2to1Ag2PQGfwzsMcbkt7pLfGd6uBnDYXX4dxspp9IM2jEYol050QxBn3QRt7hdMWT6XH/IRlxMX5VpgjjS0Bj+9dBpcykfy9fN0OJWdeWHXBPfHFBeKNRzVQARKpEcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=blala.de; spf=pass smtp.mailfrom=blala.de; arc=none smtp.client-ip=213.160.73.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=blala.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blala.de
+Received: from blala.de (localhost [127.0.0.1])
+	by vs81.iboxed.net (8.15.2/8.15.2/Debian-14~deb10u1) with ESMTP id 57NEito4012699;
+	Sat, 23 Aug 2025 14:44:55 GMT
+Received: (from akurz@localhost)
+	by blala.de (8.15.2/8.15.2/Submit) id 57NEishN012698;
+	Sat, 23 Aug 2025 14:44:54 GMT
+From: Alexander Kurz <akurz@blala.de>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Dzmitry Sankouski <dsankouski@gmail.com>,
+        "Dr. David Alan Gilbert" <linux@treblig.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, Alexander Kurz <akurz@blala.de>
+Subject: [PATCH v2 0/9] Fix, extend and support OF to mc13xxx pwrbutton
+Date: Sat, 23 Aug 2025 14:44:32 +0000
+Message-Id: <20250823144441.12654-1-akurz@blala.de>
+X-Mailer: git-send-email 2.20.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
-5ZyoIDIwMjUtMDgtMjLmmJ/mnJ/kupTnmoQgMTQ6MjkgLTA3MDDvvIxEcmV3IEZ1c3Rpbmnlhpnp
-gZPvvJoKPiBPbiBTYXQsIEF1ZyAxNiwgMjAyNSBhdCAwNTozMjowN1BNICswODAwLCBJY2Vub3d5
-IFpoZW5nIHdyb3RlOgo+ID4gVGhlIG1hbnVhbCBvZiBUSDE1MjAgY29udGFpbnMgYSBzZXQgb2Yg
-Y29lZmZpY2llbnRzIGEgbGl0dGxlCj4gPiBkaWZmZXJlbnQKPiA+IHRvIHRoZSBkcml2ZXIgZGVm
-YXVsdCBvbmVzLgo+ID4gCj4gPiBBZGQgdGhlbSB0byB0aGUgZGV2aWNlIHRyZWUgbm9kZSBvZiBQ
-VlQuCj4gPiAKPiA+IFNpZ25lZC1vZmYtYnk6IEljZW5vd3kgWmhlbmcgPHV3dUBpY2Vub3d5Lm1l
-Pgo+ID4gLS0tCj4gPiDCoGFyY2gvcmlzY3YvYm9vdC9kdHMvdGhlYWQvdGgxNTIwLmR0c2kgfCA0
-ICsrKysKPiA+IMKgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQo+ID4gCj4gPiBkaWZm
-IC0tZ2l0IGEvYXJjaC9yaXNjdi9ib290L2R0cy90aGVhZC90aDE1MjAuZHRzaQo+ID4gYi9hcmNo
-L3Jpc2N2L2Jvb3QvZHRzL3RoZWFkL3RoMTUyMC5kdHNpCj4gPiBpbmRleCAwM2YxZDczMTkwNDk5
-Li5lOWM4MWJkYWJlZDhhIDEwMDY0NAo+ID4gLS0tIGEvYXJjaC9yaXNjdi9ib290L2R0cy90aGVh
-ZC90aDE1MjAuZHRzaQo+ID4gKysrIGIvYXJjaC9yaXNjdi9ib290L2R0cy90aGVhZC90aDE1MjAu
-ZHRzaQo+ID4gQEAgLTY3Niw2ICs2NzYsMTAgQEAgcHZ0OiBwdnRAZmZmZmY0ZTAwMCB7Cj4gPiDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZWctbmFtZXMg
-PSAiY29tbW9uIiwgInRzIiwgInBkIiwgInZtIjsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNsb2NrcyA9IDwmYW9uc3lzX2Nsaz47Cj4gPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAjdGhlcm1hbC1zZW5z
-b3ItY2VsbHMgPSA8MT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoG1vb3J0ZWMsdHMtY29lZmYtZyA9IDw0Mjc0MD47Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1vb3J0ZWMsdHMtY29lZmYtaCA9IDwy
-MjA1MDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqBtb29ydGVjLHRzLWNvZWZmLWogPSA8KC0xNjApPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbW9vcnRlYyx0cy1jb2VmZi1jYWw1ID0gPDQwOTQ+
-Owo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gwqAKPiA+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ3Bpb0BmZmZmZjUyMDAwIHsKPiA+IC0tIAo+ID4g
-Mi41MC4xCj4gPiAKPiAKPiBJIHRoaW5rIG1vb3J0ZWMsdHMtY29lZmYtWFhYIHdpbGwgbmVlZCB0
-byBiZSByb3VuZGVkIHRvIG5lYXJlc3QKPiBtdWx0aXBsZQo+IG9mIDEwMCBhcyBkdGJzX2NoZWNr
-IHdhcm5zIHRoYXQ6Cj4gCj4gcHZ0QGZmZmZmNGUwMDA6IG1vb3J0ZWMsdHMtY29lZmYtZzogNDI3
-NDAgaXMgbm90IGEgbXVsdGlwbGUgb2YgMTAwCj4gwqDCoMKgwqDCoMKgwqDCoGZyb20gc2NoZW1h
-ICRpZDoKPiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9od21vbi9tb29ydGVjLG1yNzUy
-MDMueWFtbCMKPiBwdnRAZmZmZmY0ZTAwMDogbW9vcnRlYyx0cy1jb2VmZi1qOiAtMTYwIGlzIG5v
-dCBhIG11bHRpcGxlIG9mIDEwMAo+IMKgwqDCoMKgwqDCoMKgwqBmcm9tIHNjaGVtYSAkaWQ6Cj4g
-aHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvaHdtb24vbW9vcnRlYyxtcjc1MjAzLnlhbWwj
-Cj4gcHZ0QGZmZmZmNGUwMDA6IG1vb3J0ZWMsdHMtY29lZmYtZzogNDI3NDAgaXMgbm90IGEgbXVs
-dGlwbGUgb2YgMTAwCj4gwqDCoMKgwqDCoMKgwqDCoGZyb20gc2NoZW1hICRpZDoKPiBodHRwOi8v
-ZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9od21vbi9tb29ydGVjLG1yNzUyMDMueWFtbCMKPiBwdnRA
-ZmZmZmY0ZTAwMDogbW9vcnRlYyx0cy1jb2VmZi1qOiAtMTYwIGlzIG5vdCBhIG11bHRpcGxlIG9m
-IDEwMAo+IMKgwqDCoMKgwqDCoMKgwqBmcm9tIHNjaGVtYSAkaWQ6Cj4gaHR0cDovL2RldmljZXRy
-ZWUub3JnL3NjaGVtYXMvaHdtb24vbW9vcnRlYyxtcjc1MjAzLnlhbWwjCgpUaGVuIGl0IGxvb2tz
-IGxpa2UgdGhlIGJpbmRpbmcgaXMgdG8gYmUgYmxhbWVkIGZvciBub3QgYWxsb3dpbmcgZmluZQp0
-d2Vhay4KCj4gCj4gVGhhbmtzLAo+IERyZXcKCg==
+Goal of this patch series is to make the mc13892 PWRON1 button usable,
+found e.g. on amazon kindle D01100/D01200 readers.
+A ten-year-old IRQ issue needed a fix, mc13783-pwrbutton had to be
+extended to the other to mc13xxx PMIC as well (keeping the mc13892
+PWRON3 key unsupported for simplicity) and adding OF support.
+The implementation has been tested on amazon kindle D01100 and D01200
+readers using PWRON1 of a mc13892.
+
+V2:
+- Convert dt-bindings from txt to fsl,mc13xxx.yaml and add vendor prefix
+  to led-control property, causing changes in dts and driver.
+- Change node name from pwrbuttons to buttons
+- Change property debounce-delay-value to debounce-delay-ms
+- Fixed a section mismatch error
+- Fixed https://lore.kernel.org/r/202508210551.VzAtE5re-lkp@intel.com/
+  (wrong index used when converting to array access)
+- Usage of generic device properties API in mc13783-pwrbutton.c
+- Provide chip-specific max button id via platform_device_id, therefore
+  swap patches 3 and 4.
+
+Thanks in advance for the review effords,
+Cheers, Alexnder
+
+Alexander Kurz (9):
+  Input: mc13783-pwrbutton: fix irq mixup
+  Input: mc13783-pwrbutton: use managed resources
+  Input: mc13783-pwrbutton: convert pdata members to array
+  Input: mc13783-pwrbutton: enable other mc13xxx PMIC
+  dt-bindings: mfd: fsl,mc13xxx: convert txt to DT schema
+  dt-bindings: mfd: fsl,mc13xxx: add buttons node
+  ARM: dts: imx: Use fsl,led-control as mc13xxx node name
+  leds: mc13783: use fsl,led-control as node name
+  Input: mc13783-pwrbutton: add OF support
+
+ .../devicetree/bindings/mfd/fsl,mc13xxx.yaml  | 272 ++++++++++++++++++
+ .../devicetree/bindings/mfd/mc13xxx.txt       | 156 ----------
+ .../dts/nxp/imx/imx27-phytec-phycore-som.dtsi |   2 +-
+ arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts  |   2 +-
+ .../boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts  |   2 +-
+ .../boot/dts/nxp/imx/imx51-zii-scu3-esb.dts   |   2 +-
+ drivers/input/misc/Kconfig                    |   4 +-
+ drivers/input/misc/mc13783-pwrbutton.c        | 235 +++++++++++----
+ drivers/leds/leds-mc13783.c                   |   2 +-
+ include/linux/mfd/mc13783.h                   |   4 +-
+ include/linux/mfd/mc13xxx.h                   |  10 +-
+ 11 files changed, 461 insertions(+), 230 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/mc13xxx.txt
+
+-- 
+2.39.5
 
 
