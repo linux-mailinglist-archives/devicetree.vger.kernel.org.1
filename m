@@ -1,182 +1,226 @@
-Return-Path: <devicetree+bounces-208506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEAB0B329EA
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 17:55:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18F9CB32A78
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 18:10:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90F84170955
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 15:54:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A72E418984F7
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 16:07:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B212E7BBB;
-	Sat, 23 Aug 2025 15:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FEE821ABA4;
+	Sat, 23 Aug 2025 16:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ME5bT/ld"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Qdg2WYrS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06BCC1519A0
-	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 15:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BA7B15B971
+	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 16:06:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755964441; cv=none; b=T7uD9X0ra194V9TSPb/CL0e2O/vkKxmJuXLpaISsmDnFChZsFLd4/NPD/iV2VXqk0D/njqOwlaU9yJhujImLxRPVgCxKPRTFcXuW1mFj9YlxMiLfpHUGAq44tbOd+LlYtcq0hOC+WGDJSJSrFqx+janGoknXCqDuhuWKk9mbLqU=
+	t=1755965196; cv=none; b=C50HFUNLlGg6wNthsOaSvinWYsX5quZsikMel3/xZ8YiTKRFmVTQzanFhKRAEUyIC9GWAkC/2j9HlfSolUyiGSt5s5xWEQAcfI4Bb7g1xjW4toewMLm00C4pKD59YZaqV5SQvNRVEdvctzSQy6xNYvYpZFLiRWEKFiJ5ymt+BpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755964441; c=relaxed/simple;
-	bh=BEBwXHerw3ntKO8As508E0PNezsgrG0rfZYdMmUmjv8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=vEsi6hnh9h2pHRTB3KJGr3lXkCszta/Wud0GB7vDA8HDXWNg84FBbd0YeeKF2nElxjhNxzaPPE4aC40SwNLJw1l+yj+Xu9VGqrWt0YXcRYzqceuz70RLfbWxivrP54sa4KAdOGjP3Ty6fFBvxcNkdg2Ibos9Hrns0EPuqX0nnnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ME5bT/ld; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-afcb7322aa0so41802366b.0
-        for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 08:53:58 -0700 (PDT)
+	s=arc-20240116; t=1755965196; c=relaxed/simple;
+	bh=ebM0IdDULzwaHyK8sfmNQvqNW9VpejYpzO1DUZFcvuI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JvrwZSKdazXoj36JGpSkahSJgifIFuihOCtaYZF/++Vpz2IU47GuaR2XuP7MITWNP1RzhhhB5s8ryIqWeWjR99q2Av8w0L6hbJwlPzO49zJ7iifezwlhxnPbmhTwPe3pKksKhkK8aZVdq9RAFGZMFNefwlW9ZIvtBxWlJcX1Cx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Qdg2WYrS; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-74381df387fso839180a34.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 09:06:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755964437; x=1756569237; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zt9xEnK/GMUK8D+qIpymS0lulZPj2RfyNpNrWhUY2cw=;
-        b=ME5bT/ldwKFVylukKYI1Mfwv5ms3nQgJoVpPdNmHrduHmfZXcwbqnmEdvi+/gLFYSP
-         bs5aQrhMuc3DIT0BCw5K1zWfY/T9EnV/R7CRFJaNBaKR8wPTtKpkm4e3LG5mDnrRyvMH
-         6XxIl/tEkYeHxiZQVWK0yWM1D6PYJydGp59arPEVlXIgQEYUp73EHMZSd96tGCcUqBY0
-         ZRdRblfGk5XGZZ3rmBWStx6b9UJtOIfR5woMlRQk2NOXlwwr7PoGyor8FZC0IHtSHKdq
-         B6FA76tknJcu3JZ2vL66BDO4F7G9Dz4MIDiAgrJHIWnH6zt/lonpPmsawCghjjKEr9pA
-         z0Sw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1755965192; x=1756569992; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MH429/Xzff4T9QzrkUeAzGoqfBH4kBxhtsjO5g2qhx8=;
+        b=Qdg2WYrSvcAEdw0hDQAuQZV30EddACkeYqfLKZitb7mTJRYnc9T1iBBDwHzrf4V9d4
+         qRGlzbMp3q9BHRKftMJ0A4GuOst1LadbEZ4PrOqUNOEu+b98XaCZ4/Yjis3wBmZWobWg
+         53NoRi3thvda1TLPPcbJk7Lk9AqYPO1v6aAjwb7brohRZQZjO4NPEz0jE7ZGhB5sKIZc
+         dKA2zZxVRjnzOWLQLxkPkdgGXYv+8cYM4F9NZLDooPoZ9BjopK+ZLXMYmbuEMmHCoHy2
+         NBfq2TLW0EvEWI5YblbrZGocwV7tSea5wtnbsVwofopR9zyvMuXvjPYWYifJTCmvtFSk
+         j4eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755964437; x=1756569237;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zt9xEnK/GMUK8D+qIpymS0lulZPj2RfyNpNrWhUY2cw=;
-        b=s4YZMUQDVhIoH4E4mBtDyxGsPj8p9B+Y5MpouZe27YXwbCSRMZswuI5GR47UCHhghW
-         HcQJTyl+OgbFmrS9B8cywvgksI7u6sGDADIM/eguxXCUkV7fYqfy/g/h5kQqZyikeWrT
-         DcWK2+iTPwGCreNaggXImGXIaSVljKmioOGK3N2IwylX3/7YbwCcMdWfzR1DfWuO+ghc
-         3dQQoCalBym0DkudZdGXeIIULqUwBrWGKalUwJ3otfl5eILkHxMTxVAjG54Fj3V01Btj
-         kzt2cN3e2az/qUPxp6TOfVzC+gswOogLkavxJSr6JdcyMYCgrE9fOnjhab7xSJmzaAzD
-         Z42Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVNJWXyUMwGEKB/0p46l8xfstK7ZSzj8vzh5PlOcrjLxbuINGr3kdHomG9uf+9WkIc59puR30d1/FOf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3RUpKYx+P0xVefAPAN96NPzDrLIbwfP47iKeKJNrL8JdnxRHY
-	M6tKnK+uXmPglKrFZDIejp2cCsWb4ExSzCFN68SOEbler0LNU9De3hxQUMn7BcHTgko=
-X-Gm-Gg: ASbGncusNthyHtwBGJy6YanuQWYelJB/DsaEJVojVqXXXxQobD8etKzrzcH3qEhRLsN
-	ySXO1oEw68sMDkwveHuuCKtUuUXEjuEpd5dZcAq2F4PpP2oRPE5tbulyUMJ8aoDIGGHv8ErvaPh
-	Z9HgxLnYF6MLTySLWfOMVOLa4r/thczdN0DSLaxfBMjWiT7pV4oVbUUa1O/A6wWQ21jsN9+CnJK
-	9jiSYvGcxlzOrG7ai/iwMJXsTIvVI05JmEZaFn9hyGceJ2N3ZifBR2rr/WPgylzbbT3rErl9lDJ
-	lk1cbv9rRGCAr1go0JXFiVCOjV7h/YhGod1oEkOnbCSRXf3KF7DKEaOGTyX0l8U5LAk+PuXTZpB
-	SLSgkymiu4vLFkNgvSVWFAmZfe8ZiktCWbQ==
-X-Google-Smtp-Source: AGHT+IFx1wcVLNhS6MBGIutE/EnJRngjDp/qfQ6MpvV6BFouq2K1E1mpaTjSPi2NhS8iAUEG5SPpyg==
-X-Received: by 2002:a17:907:6094:b0:af8:fc60:5008 with SMTP id a640c23a62f3a-afe28f09244mr306080366b.4.1755964437314;
-        Sat, 23 Aug 2025 08:53:57 -0700 (PDT)
-Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afe4937a15asm189236566b.115.2025.08.23.08.53.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Aug 2025 08:53:56 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
-	Dikshita Agarwal <quic_dikshita@quicinc.com>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] media: dt-bindings: qcom,sm8550-iris: Do not reference legacy venus properties
-Date: Sat, 23 Aug 2025 17:53:50 +0200
-Message-ID: <20250823155349.22344-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.48.1
+        d=1e100.net; s=20230601; t=1755965192; x=1756569992;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MH429/Xzff4T9QzrkUeAzGoqfBH4kBxhtsjO5g2qhx8=;
+        b=FJPpZ+wU8laO/BhofgAKDo1wUzYkXANyG7F9SdmyNNRJXFzTk3BAOpAaf1NAbfDSDA
+         ffBs0iB6bmErSTEdLabRNIh2mDZ7ymRMQjB+Vm798QyyPSqs9Lx3BGglErsZiQ4WpTfs
+         wxsw4ODlEILDpzaY++FCpgCz98tROpTV99ptEFXEBebiup92sbP2fDHHtw4lYaAqRyfX
+         TZVgDyUZEZq34KSi4J+T2OhW77IQL4su6IuSPUdJKLWv5LaI+QLQSRm+f7HveV8sFnyy
+         +/HcUkiRGEgOyg+sFNknZplwDftoBwrcSi+6xqKxXb5v4X81xCYYXbSj/VMgThh+9P6D
+         7PmA==
+X-Forwarded-Encrypted: i=1; AJvYcCW8wY0ZX0Gc0ObywG69LXR2DUeZguQ0sQw/gsZERtiQWoUAxGHcRa11OI3JwB1FiMGk6O10LDTbonbm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKuVri6f2e0hoLXxmIh2RLvJaUXHkZwkp8VmwJxE3sOWcPVwQD
+	e1ntHOTOujIJ30gwN5Rr8k4jk+S+qmH9/Om4ieaopNUwh3f9ARMqkxwQBM5PM05sYg8=
+X-Gm-Gg: ASbGncuHHUtPVnKEFwbFMn3zlvk8ZVRCVWIX3GfI6/fuIiJ9qTyPO8gTiSy1Tbeclr+
+	ficHvinbTKKiRc1QTFv7wqDxh87rQd2nvIX6OeOvo58Pr74yWsr4GBDGjQBdkd6n76DYuC+aFl1
+	YJCniINU3gizUmq0RUsUJfEvMAnhWQFuag64DQFbjz/lh2NeaQfiWjMkTtvofJ83amy7F3UelWe
+	ZJS8Xe/XV/kITQf3y4Ukzwux5+WqjUumDfXcotv85921RffRe3NfLGVU4rhppCroHIglq8ofyKb
+	1l9FaZP71Ns5p488FsDjuqTdOlZUXolGJ0D7QOiCMq1QkvURHH8GB0W0jYH1mLVi4NXus2WvH+A
+	7RJ8Mq//80WMLIM+H7pOcrta99cd2oAGD6huJ0q8HCQVScBFRrtwXhBHU8dXGtmv7qfaNXB9Z
+X-Google-Smtp-Source: AGHT+IEyRUbE9O2Dou5JQoL703SRQU0rAXzxfBj2sNtV84omC7i2T9OV2vhzOcAE7/ImVyLQKsdiWA==
+X-Received: by 2002:a05:6830:2a16:b0:741:aa58:d500 with SMTP id 46e09a7af769-7450098d167mr3600537a34.3.1755965191927;
+        Sat, 23 Aug 2025 09:06:31 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:4d25:af10:67ec:53d? ([2600:8803:e7e4:1d00:4d25:af10:67ec:53d])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61dc7470b02sm354328eaf.0.2025.08.23.09.06.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 23 Aug 2025 09:06:31 -0700 (PDT)
+Message-ID: <f7089447-f164-406b-8e59-3bd3e8f94d59@baylibre.com>
+Date: Sat, 23 Aug 2025 11:06:30 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1917; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=BEBwXHerw3ntKO8As508E0PNezsgrG0rfZYdMmUmjv8=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoqeQNhzvYWTV96Z2wePTHgAsg+wDg0fw28p+mM
- oqvJpaQEHaJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaKnkDQAKCRDBN2bmhouD
- 14K6D/0XM7xhbbPWhNOrngsV02OIU+OD4BrFRZoMj9RvaiNDicnJQ3tq4bUf7TNBkhIdbVjQ339
- KLDDxSYa/Kbg4IPo8CNYpzNFBcgMmR0seGyjS4CPMMimCl3P73+PV2vsGdCJMSKTisPwrT/P6yh
- 6mNE295Z7uDPPKaethoNziW5KtvB0PwSWsSDPjCejD6+nfmtuYM0Iyys16+zPZmCl9MSTWUPYt8
- K+E3Z7T430XoCYi19JbevyJn+Udv0Cb8wQFLfq/eYUGF4Bt2MrEruLacnIvNBKow1hkdJ7ZJqTi
- 6U564isiBJts6WDHoSMYGubL+ha4zjbUIChF2xAYEOWxv+V681pMmO/96x7ONB6ukGICM2P3qqn
- tnwLaEfV0dXJhAarm7KQZf3t6NmB5krs2mylYyrifcfabmK0r+fN8dyLoWvoOTSRTkeVpgEtmPS
- qrvP+fdsCWW1T1a7zG0PgQNAS4S5DO1VKsSzUQ4hYjE1qDzTOgJmI1I44EabQLzLQ6TkTuGbrHr
- p2SD31IDxdh6Vjc2OKiLleXSkw0zLBJR2afj5VsDP99tq7Yk4zkAhaL+mxfTIxTbBZk/XZSdFMv
- LuuMzx+2fbZEBPHaNHSt7A9+4D2bTByfNcvl90uaic4gxWUZA7uCniWIRGfWc3jShsvo60NQase rcweX2hLXnAxytw==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/5] dt-bindings: iio: mcp9600: Add microchip,mcp9601
+ and add constraints
+To: Ben Collins <bcollins@watter.com>, Jonathan Cameron <jic23@kernel.org>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andrew Hepp <andrew.hepp@ahepp.dev>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250822-upstream-changes-v8-0-40bb1739e3e2@watter.com>
+ <20250822-upstream-changes-v8-2-40bb1739e3e2@watter.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250822-upstream-changes-v8-2-40bb1739e3e2@watter.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The Qualcomm SoC Iris video codec is an evolution of previous Venus and
-it comes with its own Iris Linux drivers.  These new drivers were
-accepted under condition they actually improve state of afairs, instead
-of duplicating old, legacy solutions.
+On 8/22/25 8:23 AM, Ben Collins wrote:
+> Add microchip,mcp9601 compatible in addition to the original
+> microchip,mcp9600 to designate support between these two chips.
+> 
+> The current dt-binding has open-circuit and short-circuit as interrupt
+> names, but these are only supported in mcp9601.
+> 
+> The OC and SC detection requires that mcp9601 VSENSE be wired up, which
+> not only enables the OC SC interrupts, but also the OC and SC status
+> register bits.
+> 
+> Add a microchip,vsense boolean to show the chip is wired for this
+> support.
+> 
+> Add constraints so this feature only applies if the mcp9601 compatible
+> is selected.
+> 
+> Signed-off-by: Ben Collins <bcollins@watter.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../iio/temperature/microchip,mcp9600.yaml         | 56 ++++++++++++++++++++--
+>  1 file changed, 53 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+> index 57b387a1accc776683500949a22ef0290fc876e8..fb3661c805934255d35f664e1018ed2ec91d05f0 100644
+> --- a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Microchip MCP9600 thermocouple EMF converter
+> +title: Microchip MCP9600 and similar thermocouple EMF converters
+>  
+>  maintainers:
+>    - Andrew Hepp <andrew.hepp@ahepp.dev>
+> @@ -14,7 +14,11 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: microchip,mcp9600
+> +    oneOf:
+> +      - const: microchip,mcp9600
+> +      - items:
+> +          - const: microchip,mcp9601
+> +          - const: microchip,mcp9600
+>  
+>    reg:
+>      maxItems: 1
+> @@ -43,8 +47,37 @@ properties:
+>        Use defines in dt-bindings/iio/temperature/thermocouple.h.
+>        Supported types are B, E, J, K, N, R, S, T.
+>  
+> +  microchip,vsense:
+> +    type: boolean
+> +    description:
+> +      This flag indicates that the chip has been wired with VSENSE to
+> +      enable open and short circuit detect.
+> +
+>    vdd-supply: true
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              const: microchip,mcp9601
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 1
+> +          maxItems: 4
+> +        interrupt-names:
+> +          minItems: 1
+> +          maxItems: 4
+> +          items:
+> +            enum:
+> +              - alert1
+> +              - alert2
+> +              - alert3
+> +              - alert4
+> +        microchip,vsense: false
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -64,8 +97,25 @@ examples:
+>              reg = <0x60>;
+>              interrupt-parent = <&gpio>;
+>              interrupts = <25 IRQ_TYPE_EDGE_RISING>;
+> -            interrupt-names = "open-circuit";
+> +            interrupt-names = "alert1";
+>              thermocouple-type = <THERMOCOUPLE_TYPE_K>;
+>              vdd-supply = <&vdd>;
+>          };
+>      };
+> +  - |
+> +    #include <dt-bindings/iio/temperature/thermocouple.h>
 
-Unfortunately binding still references common parts of Venus without
-actual need and benefit.  For example Iris does not use fake
-"video-firmware" device node (fake because there is no actual device
-underlying it and it was added only to work around some Linux issues
-with IOMMU mappings).
+This header isn't used in this example.
 
-Stop referencing venus-common schema in the new Qualcomm Iris bindings
-and move all necessary properties, except unused "video-firmware" (no
-driver usage, no DTS).
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        temperature-sensor@62 {
+> +            compatible = "microchip,mcp9601", "microchip,mcp9600";
+> +            reg = <0x62>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <22 IRQ_TYPE_EDGE_RISING>, <23 IRQ_TYPE_EDGE_RISING>;
+> +            interrupt-names = "open-circuit", "short-circuit";
+> +            vdd-supply = <&vdd>;
+> +            microchip,vsense;
+> +        };
+> +    };
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/media/qcom,sm8550-iris.yaml | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+With that fixed:
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-index c79bf2101812..320227f437a1 100644
---- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-@@ -26,6 +26,9 @@ properties:
-           - qcom,sm8550-iris
-           - qcom,sm8650-iris
- 
-+  reg:
-+    maxItems: 1
-+
-   power-domains:
-     maxItems: 4
- 
-@@ -45,6 +48,12 @@ properties:
-       - const: core
-       - const: vcodec0_core
- 
-+  firmware-name:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-   interconnects:
-     maxItems: 2
- 
-@@ -69,6 +78,9 @@ properties:
- 
-   dma-coherent: true
- 
-+  memory-region:
-+    maxItems: 1
-+
-   operating-points-v2: true
- 
-   opp-table:
-@@ -85,7 +97,6 @@ required:
-   - dma-coherent
- 
- allOf:
--  - $ref: qcom,venus-common.yaml#
-   - if:
-       properties:
-         compatible:
--- 
-2.48.1
+Reviewed-by: David Lechner <dlechner@baylibre.com>
 
 
