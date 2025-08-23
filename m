@@ -1,110 +1,241 @@
-Return-Path: <devicetree+bounces-208434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47CB5B32746
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 09:29:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B173B32792
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 10:10:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0867EAE2272
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 07:29:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A0D81B63091
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 08:10:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2089C224AE6;
-	Sat, 23 Aug 2025 07:28:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ApN3htTq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361ED231A32;
+	Sat, 23 Aug 2025 08:10:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C7813B58D;
-	Sat, 23 Aug 2025 07:28:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74CDD21930A;
+	Sat, 23 Aug 2025 08:10:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755934138; cv=none; b=OnTRgErIOzKfi1Z23SyXJh8muWFaPunE2xmWA8QsNFuV101ud5ObmGqQKmGsII1JfPNcaVSMeX37UHCi80xN2utanQCOAZX1Cp7eVdyT03M60LatrnxkoGjiQv/lrTfZ3PwY4NVFv+g6d0UuLoKjPjxEbE2PW5+Wnr7AAS6JfPs=
+	t=1755936617; cv=none; b=LLLKAx+Ns4DUOnFmE2Ng6vXH2rAsR02BaZqO7dTh29xe+Nv+dMksXd5zS51ydN2WeM1CQn1rOKSsviD1hwd/4ngcPVC7ypoMYW6zSyagM7GSkrYGEkZNAf3+cpFlDe88Rud6p6tqBgoRAch11wxKnar01moWtr3YEj25k3udb+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755934138; c=relaxed/simple;
-	bh=o5ysTK5lUokkQlsJ4ZNuL632O1gJLfvxM3SuJVSpKKs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gjOvN8idBLkZ9W3AJL/no45VySnoyQR9B1IouZkfum9494iR2g+At9V3Mu+3E5D9AUmSx+Rn7eCBu2zTu5u3kN8NgTVtulv9i3tZBlqRjKe9XX6O6Ihn3O3Eowy45y9hxZhV69AarAQDTcrqgHW0jo48e1iz/ALu28oGtKQib9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ApN3htTq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7C1C4CEE7;
-	Sat, 23 Aug 2025 07:28:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755934137;
-	bh=o5ysTK5lUokkQlsJ4ZNuL632O1gJLfvxM3SuJVSpKKs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ApN3htTqKwvJMqTVr/MCNwfEyaqVeh/IlfKc5zg0JqC+1mN6hk4VcjlN8dA7tmtto
-	 c7lHv/c8FqgXoysYwwm3jNdh0g7s9GYopBJSVUlub/NBD+FxAGl8FWC5vsFiDb9fBQ
-	 WrZEhVcBHjveVLoRnK2yC2Sh0/+TNNJ0X4FlO7j5VXvOCFORVUUBE78m9dhPwYerab
-	 KGAjaFKOweHoEKoic6MKZUO5pyUc2fVQOhpJ0S5JXt1DVOH0oUYFCjj7wMgNIKt+wR
-	 BdW+7oaTBKfr/qk272qhgwc3E3cY3X762rKj0HlhqyLTpXm594vZ/lXy+IQPl9MTD7
-	 7qhUcDWV+ItlQ==
-From: Sven Peter <sven@kernel.org>
-To: Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hector Martin <marcan@marcan.st>,
-	Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Keith Busch <kbusch@kernel.org>,
-	Jens Axboe <axboe@kernel.dk>,
-	Christoph Hellwig <hch@lst.de>,
-	Sagi Grimberg <sagi@grimberg.me>,
-	Nick Chan <towinchenmi@gmail.com>
-Cc: Sven Peter <sven@kernel.org>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	iommu@lists.linux.dev,
-	linux-nvme@lists.infradead.org
-Subject: Re: (subset) [PATCH v3 0/9] Add support ANS2 NVMe on Apple A11
-Date: Sat, 23 Aug 2025 09:28:30 +0200
-Message-Id: <175593408419.53541.12520438370584715457.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.5 (Apple Git-154)
-In-Reply-To: <20250821-t8015-nvme-v3-0-14a4178adf68@gmail.com>
-References: <20250821-t8015-nvme-v3-0-14a4178adf68@gmail.com>
+	s=arc-20240116; t=1755936617; c=relaxed/simple;
+	bh=IXYpi+l2BOIEmVSt1JlAsJ5MOncWtEB4+DOLzIso7+U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q3CuGPNYDmuvdQhkKF799Oanc1DnFb8TJT9va+PkZ7csq9awU6xLpQ0VnkI07mYyc3BUno7k6K4OviMV7z/1SwaZHpxR1LLVhMSVdOadSfo89SsL6s8IlkB6i9I7s/F/5pTvg643fUREHdb9+Y2L4lBcUeUmSRcGURFA2awGSpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [192.168.2.54] (unknown [98.97.26.119])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 2A41EB4E0012;
+	Sat, 23 Aug 2025 10:10:02 +0200 (CEST)
+Message-ID: <44cca647-fc1c-4d3c-854e-14943d6d9b06@freeshell.de>
+Date: Sat, 23 Aug 2025 01:10:00 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: jh7110: bootph-pre-ram
+ hinting needed by boot loader
+To: Hal Feng <hal.feng@starfivetech.com>, Conor Dooley <conor@kernel.org>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+References: <20250815073739.79241-1-e@freeshell.de>
+ <20250815073739.79241-4-e@freeshell.de>
+ <ZQ2PR01MB1307CE398A5993B9E5B93357E6312@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+ <4b516172-bd75-432a-9c96-f02fbfb68c16@freeshell.de>
+ <ZQ2PR01MB1307FE7D4D538EEBB9A578C7E63D2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <ZQ2PR01MB1307FE7D4D538EEBB9A578C7E63D2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On Thu, 21 Aug 2025 23:56:37 +0800, Nick Chan wrote:
-> Apple A11 SoC comes with an NVMe controller that is similar to the
-> NVMe controller in M1, but less customized. Notably, it does not
-> have NVMMU or Linear SQ.
+On 8/22/25 02:27, Hal Feng wrote:
 > 
-> The controller is wired to an older variant of the SART address filter,
-> and uses an older variant of ASC mailbox, so add support for them too.
 > 
-> [...]
+>> -----Original Message-----
+>> From: E Shattow <e@freeshell.de>
+>> Sent: 2025年8月20日 11:49
+>> To: Hal Feng <hal.feng@starfivetech.com>; Conor Dooley <conor@kernel.org>;
+>> Emil Renner Berthing <kernel@esmil.dk>; Rob Herring <robh@kernel.org>;
+>> Krzysztof Kozlowski <krzk+dt@kernel.org>; Paul Walmsley
+>> <paul.walmsley@sifive.com>; Palmer Dabbelt <palmer@dabbelt.com>; Albert
+>> Ou <aou@eecs.berkeley.edu>; Alexandre Ghiti <alex@ghiti.fr>
+>> Cc: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
+>> riscv@lists.infradead.org
+>> Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: jh7110: bootph-pre-ram
+>> hinting needed by boot loader
+>>
+>>
+>>
+>> On 8/17/25 23:05, Hal Feng wrote:
+>>>> On 15.08.25 15:37, E Shattow wrote:
+>>>> Add bootph-pre-ram hinting to jh7110.dtsi:
+>>>>   - CPU interrupt controller(s)
+>>>>   - core local interrupt timer
+>>>>   - DDR memory controller
+>>>>   - oscillator
+>>>>   - syscrg clock-controller
+>>>>
+>>>> Signed-off-by: E Shattow <e@freeshell.de>
+>>>> ---
+>>>>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 9 +++++++++
+>>>>  1 file changed, 9 insertions(+)
+>>>>
+>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>>>> b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>>>> index 14df3d062a45..884a3526cb0f 100644
+>>>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>>>> @@ -35,6 +35,7 @@ S7_0: cpu@0 {
+>>>>
+>>>>  			cpu0_intc: interrupt-controller {
+>>>>  				compatible = "riscv,cpu-intc";
+>>>> +				bootph-pre-ram;
+>>>>  				interrupt-controller;
+>>>>  				#interrupt-cells = <1>;
+>>>>  			};
+>>>> @@ -68,6 +69,7 @@ U74_1: cpu@1 {
+>>>>
+>>>>  			cpu1_intc: interrupt-controller {
+>>>>  				compatible = "riscv,cpu-intc";
+>>>> +				bootph-pre-ram;
+>>>>  				interrupt-controller;
+>>>>  				#interrupt-cells = <1>;
+>>>>  			};
+>>>> @@ -101,6 +103,7 @@ U74_2: cpu@2 {
+>>>>
+>>>>  			cpu2_intc: interrupt-controller {
+>>>>  				compatible = "riscv,cpu-intc";
+>>>> +				bootph-pre-ram;
+>>>>  				interrupt-controller;
+>>>>  				#interrupt-cells = <1>;
+>>>>  			};
+>>>> @@ -134,6 +137,7 @@ U74_3: cpu@3 {
+>>>>
+>>>>  			cpu3_intc: interrupt-controller {
+>>>>  				compatible = "riscv,cpu-intc";
+>>>> +				bootph-pre-ram;
+>>>>  				interrupt-controller;
+>>>>  				#interrupt-cells = <1>;
+>>>>  			};
+>>>> @@ -167,6 +171,7 @@ U74_4: cpu@4 {
+>>>>
+>>>>  			cpu4_intc: interrupt-controller {
+>>>>  				compatible = "riscv,cpu-intc";
+>>>> +				bootph-pre-ram;
+>>>>  				interrupt-controller;
+>>>>  				#interrupt-cells = <1>;
+>>>>  			};
+>>>> @@ -321,6 +326,7 @@ mclk_ext: mclk-ext-clock {
+>>>>
+>>>>  	osc: oscillator {
+>>>>  		compatible = "fixed-clock";
+>>>> +		bootph-pre-ram;
+>>>>  		clock-output-names = "osc";
+>>>>  		#clock-cells = <0>;
+>>>>  	};
+>>>> @@ -354,6 +360,7 @@ soc {
+>>>>  		clint: timer@2000000 {
+>>>>  			compatible = "starfive,jh7110-clint", "sifive,clint0";
+>>>>  			reg = <0x0 0x2000000 0x0 0x10000>;
+>>>> +			bootph-pre-ram;
+>>>>  			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc
+>>>> 7>,
+>>>>  					      <&cpu1_intc 3>, <&cpu1_intc 7>,
+>>>>  					      <&cpu2_intc 3>, <&cpu2_intc 7>,
+>> @@ -376,6 +383,7 @@
+>>>> memory-controller@15700000 {
+>>>>  			compatible = "starfive,jh7110-dmc";
+>>>>  			reg = <0x0 0x15700000 0x0 0x10000>,
+>>>>  			      <0x0 0x13000000 0x0 0x10000>;
+>>>> +			bootph-pre-ram;
+>>>>  			clocks = <&syscrg JH7110_PLLCLK_PLL1_OUT>;
+>>>>  			clock-names = "pll1_out";
+>>>>  			resets = <&syscrg JH7110_SYSRST_DDR_AXI>, @@ -
+>>>> 892,6 +900,7 @@ qspi: spi@13010000 {
+>>>>  		syscrg: clock-controller@13020000 {
+>>>>  			compatible = "starfive,jh7110-syscrg";
+>>>>  			reg = <0x0 0x13020000 0x0 0x10000>;
+>>>> +			bootph-pre-ram;
+>>>>  			clocks = <&osc>, <&gmac1_rmii_refin>,
+>>>>  				 <&gmac1_rgmii_rxin>,
+>>>>  				 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
+>>>
+>>> pllclk also needs to add bootph-pre-ram. Because it is the dependency of
+>> syscrg.
+>>>
+>>> 		pllclk: clock-controller {
+>>> 			compatible = "starfive,jh7110-pll";
+>>> +			bootph-pre-ram;
+>>> 			clocks = <&osc>;
+>>> 			#clock-cells = <1>;
+>>> 		};
+>>>
+>>> Best regards,
+>>> Hal
+>>
+>> What users are there for 'pllclk' at U-Boot SPL phase? There does not seem to
+>> be any difference in testing U-Boot and Linux with or without this hint for
+>> 'pllclk'.
+> 
+> I see commit 8b3f2eb7d8912204bda2d914b8a9a1ce1c31bb5c adding this line to
+> solve some problems.
+> 
+> https://lore.kernel.org/all/20250330162421.238483-1-heinrich.schuchardt@canonical.com/
 
-Applied to git@github.com:AsahiLinux/linux.git (apple-soc/drivers-6.18), thanks!
+Yes, there was some mistake in how I am testing U-Boot SPL. Given that
+(U-Boot code base) jh7110-u-boot.dtsi override is replaced with contents:
 
-[1/9] dt-bindings: mailbox: apple,mailbox: Add ASC mailboxes on Apple A11 and T2
-      https://github.com/AsahiLinux/linux/commit/32299eb03414
-[2/9] soc: apple: mailbox: Add Apple A11 and T2 mailbox support
-      https://github.com/AsahiLinux/linux/commit/fee2e558b488
-[3/9] dt-bindings: iommu: apple,sart: Add Apple A11
-      https://github.com/AsahiLinux/linux/commit/08d37b6bdfa7
-[4/9] soc: apple: sart: Make allow flags SART version dependent
-      https://github.com/AsahiLinux/linux/commit/240893c1f5b3
-[5/9] soc: apple: sart: Add SARTv0 support
-      https://github.com/AsahiLinux/linux/commit/58b28ca2e669
+/ {
+        soc {
+                memory-controller@15700000 {
+                        clock-frequency = <2133>; /* starfive_ddr.c
+driver needs update to use common clocks */
+                };
+        };
+};
 
-Best regards,
--- 
-Sven Peter <sven@kernel.org>
+&syscrg {
+        assigned-clock-rates = <0>; /* cpufreq not implemented, use
+defaults */
+};
+
+I am now able to reproduce this boot failure in U-Boot SPL on Star64.
+
+Additionally, U-Boot SPL fails to boot if 'gmac1_rgmii_rxin' or
+'gmac1_rmii_refin' are missing bootph-pre-ram hint, as a dependency of
+syscrg. It is okay to omit hints for 'gmac0_rgmii_rxin' and
+'gmac0_rmii_refin' as the dependency of aoncrg not used at U-Boot SPL.
+
+In the next version of this series will be added bootph-pre-ram hints
+for syscrg dependencies: 'pllclk', 'gmac1_rgmii_rxin', and
+'gmac1_rmii_refin'
+
+Thank you, Hal.
+
+-E
+
+> 
+> Best regards,
+> Hal
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
 
