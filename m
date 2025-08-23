@@ -1,136 +1,116 @@
-Return-Path: <devicetree+bounces-208471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A44B328C8
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 15:29:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62BACB328D1
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 15:39:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3FD23AE49A
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 13:29:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DDF37B6469
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 13:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504A525C6EC;
-	Sat, 23 Aug 2025 13:29:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DAED228CB5;
+	Sat, 23 Aug 2025 13:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Zqa+aqgr"
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="oj1ZnTEf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C89212545
-	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 13:29:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B758C111BF;
+	Sat, 23 Aug 2025 13:38:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755955757; cv=none; b=GWdI5HsYf1fbCGTuPOu4t8/Pbz7ZT+iQreFYFYDmuxFhuExlz/vpnJPbXA62hB2JNBP4m/WSB77mRFMKFP+/74QBMYI/khBTW3mqjwT4jn71S5WBxFcy6OWeMGVuW7rf1EiO5aFbWxO1muslJF20MChF8ZozrwdDAJbP6nV7Y6M=
+	t=1755956339; cv=none; b=ID4vXfVv+TEonE5yhJmheTcbYdZynp87EaBlgvrvmLsytLzgYSnJJob2kXDHp6jOHPptDNYKzp8N+c+YGcvW98bfmqkybQyJ8AFiC8UMfTugQjl8o5/I3HD0u+K/d2qHQkDZCE4kLUuJB3ksQodmBm1ny3yCgwY0mNUCYBjceDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755955757; c=relaxed/simple;
-	bh=u9ena2NoTo+QRILuA8K2q9d32H1jKJNa+yMQOMkNRmI=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=FU7C/49zWYr3xdPACEGjKehnpOEfTFiv9gFrc5GYC4s0evXVDNOXJGnlL6d0HsvV9KwfmBMIVxLWsQYz3jJeU05K7qYxFskP2iQPR/sXNejlDD00aBmCSZPNM1D2NkfjqtUXe6ADAhQ58QMXV9Jjg8NRcMhfm9lcVRnrMvRruvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Zqa+aqgr; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250823132913epoutp044f260f556db206452d4d2a4aaedf4941~eaHQ8LO8K0286402864epoutp04q
-	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 13:29:13 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250823132913epoutp044f260f556db206452d4d2a4aaedf4941~eaHQ8LO8K0286402864epoutp04q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1755955753;
-	bh=K4VL47xU6rx+wQ2n08ewDHtYA71u+fcU72PN1XkjcTs=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=Zqa+aqgr+imSZZBsT0bru0TYwGa3siMcTSBKFYiQRw1tY0/xf/ttoe/blfrq3zWlS
-	 rFNoK07Bixo0dElM8YQBmB1iH4NGBcVOUfGO+eOEqRHKK6HTRMt1KXT5ET0okw+YfN
-	 JhbQoLO3BE0Jrl66CtRrSkrusVcz6d+NyuU9b1HY=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250823132912epcas5p19b424584ce8c9b39ceccc4844559ed31~eaHP6t6MI2896228962epcas5p1Y;
-	Sat, 23 Aug 2025 13:29:12 +0000 (GMT)
-Received: from epcas5p1.samsung.com (unknown [182.195.38.88]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4c8Hvq0wd1z3hhT3; Sat, 23 Aug
-	2025 13:29:11 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250823132909epcas5p2b2f12a18b157c75d531c218373385b91~eaHN0izn-1748017480epcas5p2l;
-	Sat, 23 Aug 2025 13:29:09 +0000 (GMT)
-Received: from FDSFTE196 (unknown [107.116.189.214]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250823132905epsmtip1ffcc6e00eb7cee72387b6cd5521b3ed0~eaHKHyQoL2663526635epsmtip1z;
-	Sat, 23 Aug 2025 13:29:05 +0000 (GMT)
-From: "Inbaraj E" <inbaraj.e@samsung.com>
-To: "'Laurent Pinchart'" <laurent.pinchart@ideasonboard.com>
-Cc: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <krzk@kernel.org>,
-	<s.nawrocki@samsung.com>, <s.hauer@pengutronix.de>, <shawnguo@kernel.org>,
-	<cw00.choi@samsung.com>, <rmfrfs@gmail.com>, <martink@posteo.de>,
-	<mchehab@kernel.org>, <linux-fsd@tesla.com>, <will@kernel.org>,
-	<catalin.marinas@arm.com>, <pankaj.dubey@samsung.com>,
-	<shradha.t@samsung.com>, <ravi.patel@samsung.com>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <alim.akhtar@samsung.com>,
-	<linux-samsung-soc@vger.kernel.org>, <kernel@puri.sm>,
-	<kernel@pengutronix.de>, <festevam@gmail.com>,
-	<linux-media@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <20250818093349.GC5862@pendragon.ideasonboard.com>
-Subject: RE: [PATCH v2 07/12] media: imx-mipi-csis: Add support to configure
- specific vc
-Date: Sat, 23 Aug 2025 18:59:04 +0530
-Message-ID: <00e701dc1431$e839d710$b8ad8530$@samsung.com>
+	s=arc-20240116; t=1755956339; c=relaxed/simple;
+	bh=xD2qXS1OqnfB4ixy8P2YWslAr2PFZXWLVpd7ffyzsoE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f+KSaSkTwi2yUCvAxctzJ3S3Ofe3c61tQMfnsT0S9rtCSwJZiYF8QB9NqhSwR061r711cC5gz5eo0hbB8SmW6lFvfLgAOKoSAwVo2o0tiCdisMINTSGwYcqYECjio2iqeyCam8ixjSy8yVUDI6lNTjjmy7ibqhxxFwLpPT+xy5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=oj1ZnTEf; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1755955885; bh=xD2qXS1OqnfB4ixy8P2YWslAr2PFZXWLVpd7ffyzsoE=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=oj1ZnTEfJLanuyfTM903xQPlU1Q1ZxAOk61DCfYlJ81rLe+UCgVorD+rNBM0WSbY3
+	 iCFG1hYq5ahEN1wheZwwBpTatA1fO5PoMtm6H5MiTM7rYTIZ3hUd2KxN27T02sSdz0
+	 4KrouToU9aj5/NKGP7IQl9VzsD7SrnuR08gHdHA8=
+Date: Sat, 23 Aug 2025 15:31:24 +0200
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To: maud_spierings@hotmail.com
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Fix the headphone detection on
+ the orangepi 5 plus
+Message-ID: <q47mi7iyx4nu3tkrtsjrghlultm3kj4zz73uekffalm2vwjck7@btiiymy6fohy>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	maud_spierings@hotmail.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20250823-orangepi5-v1-0-ae77dd0e06d7@hotmail.com>
+ <20250823-orangepi5-v1-1-ae77dd0e06d7@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQK5oFMD+tt4mLQU5V9KgVyIDaUIUQFnLuCBAPSEv1UBKchLdbKY9dyw
-Content-Language: en-in
-X-CMS-MailID: 20250823132909epcas5p2b2f12a18b157c75d531c218373385b91
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250814141036epcas5p1fc02cea3f97534303673eb8453b6a18f
-References: <20250814140943.22531-1-inbaraj.e@samsung.com>
-	<CGME20250814141036epcas5p1fc02cea3f97534303673eb8453b6a18f@epcas5p1.samsung.com>
-	<20250814140943.22531-8-inbaraj.e@samsung.com>
-	<20250818093349.GC5862@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250823-orangepi5-v1-1-ae77dd0e06d7@hotmail.com>
+
+Hello Maud,
+
+On Sat, Aug 23, 2025 at 02:43:50PM +0200, Maud Spierings via B4 Relay wrote:
+> From: Maud Spierings <maud_spierings@hotmail.com>
+> 
+> The logic of the headphone detect pin seems to be inverted, with this
+> change headphones actually output sound when plugged in.
+> 
+> Verified by checking /sys/kernel/debug/gpio and by listening.
+
+This can also be tested by:
+
+  evtest /dev/input/by-path/platform-sound-event
+
+Which shows inverted output without this patch.
+
+Reviewed-by: Ondřej Jirman <megi@xff.cz>
 
 
-Hi Laurent,
-
-Thanks for the review.
-
->=20
-> Hi Inbaraj,
->=20
-> On Thu, Aug 14, 2025 at 07:39:38PM +0530, Inbaraj E wrote:
-> > MIPI_CSIS_V3_3 and MIPI_CSIS_V3_6_3 support streaming only on VC0.
->=20
-> That doesn't appear to be true, at least for MIPI_CSIS_V3_6_3. I have a p=
-atch
-> series that adds VC support for v3.6.3 in the i.MX8MP, and it has been
-> susccessfully tested.
->=20
-
-Thanks for the patches. I'll add Tesla FSD CSIS support on top of
-Your patch.
-
-> >
-> > +	csis->vc =3D 0;
-> > +
->=20
-> Dynamic VC selection belongs to this patch, not patch 09/12. 09/12 does t=
-oo
-> many different things, it has to be split into one patch per feature.
->=20
-
-I'll break down the patches by feature.=20
-
-Regards,
-Inbaraj E
-
+> Fixes: 236d225e1ee7 ("arm64: dts: rockchip: Add board device tree for rk3588-orangepi-5-plus")
+> Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+> ---
+> There was a big change at some point so it will take some effor to port
+> it back that far.
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> index 121e4d1c3fa5dab0d08edf7cba692a765b48f7b4..8222f1fae8fadc5cbb4ef16b3db5ed975ed43915 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> @@ -77,7 +77,7 @@ &analog_sound {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&hp_detect>;
+>  	simple-audio-card,aux-devs = <&speaker_amp>, <&headphone_amp>;
+> -	simple-audio-card,hp-det-gpios = <&gpio1 RK_PD3 GPIO_ACTIVE_LOW>;
+> +	simple-audio-card,hp-det-gpios = <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>;
+>  	simple-audio-card,widgets =
+>  		"Microphone", "Onboard Microphone",
+>  		"Microphone", "Microphone Jack",
+> 
+> -- 
+> 2.50.1
+> 
+> 
 
