@@ -1,155 +1,120 @@
-Return-Path: <devicetree+bounces-208576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E60EB32C16
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 23:27:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74358B32C81
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 01:09:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EE83A02E60
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 21:27:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50ADE56695D
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 23:09:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D4623957D;
-	Sat, 23 Aug 2025 21:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D9F423BD04;
+	Sat, 23 Aug 2025 23:09:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R2G5oCS3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y4CAkBCn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC881F4E4F;
-	Sat, 23 Aug 2025 21:27:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729311FF1A1;
+	Sat, 23 Aug 2025 23:09:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755984464; cv=none; b=VCaDwjdFokYu37cx2wrHKLCLk0CUWag24mVkcpA8xgUyrNNK91MpdaLYW6x38QbYyG7vjLvCDyiJoJKiY77qOWP37jlrGuN+Mg86yuhinJOMPL/pQcWr77dCsR9yque6vcMTWhh8bKcv/VqhIT5il7eFoI5jH60raLol8/urd0o=
+	t=1755990581; cv=none; b=ODEBs/offqr2W6FJhqvKoXvx4Qc6NT3ZXxqhtgIxRpixAqbdUY8rFYcmFxaNcupo1FVjnrswykfuhRCNq1gP6TBj6S4Wk8K0abi0fcHX9jg+F2c7FYnjBW8UdbLyLiNSszIQWVO90G2QLbT5dFGoAOmENrCO4HPS5EfcQPw7+Jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755984464; c=relaxed/simple;
-	bh=9lB/x0q6k7LUImz55plsN/l5+3YVz5Z9NsUTm1bXZB8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RsRHXhcC768Depmq2ony8Qy4RK6RRFzu3+SIUSoGyhV4ff4TZZ4+4YkWzhzdWJGo6XVBFZzheOC6ibxvLeRjTBVxxf0mu4Ux7XRr0eAvKHlJoiFxCDP13x7d/wMy5qHusp5OKwfT+HGiOnpQLLAxtIb174GqL0S2zTN5Hk+6m1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R2G5oCS3; arc=none smtp.client-ip=209.85.214.177
+	s=arc-20240116; t=1755990581; c=relaxed/simple;
+	bh=p2pU3fFxLFScSmj2hUqBJ8RqBm9xy2DQkrm9ol/p+Ro=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=u45rdyN8qHiThqUVHuYLQVIkUaiuZf2RCaEsbExtYoiFTI6t/BuLCXZLupgPgOYknsX7WbO1PqwYn1MkprAPdt2AyMzM+DCgCri5i7067uJY87x4Izi0ACKQAEYx0rBvnNr779g3oWzHBQ0wqU8XyWD50DYdsU7drUDsJyrfXlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y4CAkBCn; arc=none smtp.client-ip=209.85.160.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-24457f581aeso23699545ad.0;
-        Sat, 23 Aug 2025 14:27:42 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4b133b24ed7so27263811cf.3;
+        Sat, 23 Aug 2025 16:09:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755984462; x=1756589262; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3f0+4Vh1MwZCJAgeds3L4wK1Y2nN5MFSu2EhurxFoGY=;
-        b=R2G5oCS3va4xQDjqZoYz/8/Bk93ZqtaHjgw2MRDJdfUwP/fD3v+J8FtGGh6EU1bKgk
-         6AkaYCwtloRnF5gqx4GSA/NxDJEwVCzwhDYkDO0T3JKFON/SQTfqmNG1Eo5E4UFqF5gh
-         5epal5zGhknqvK3cHMwwap/GbyZeicqr+kq8if3miGu5TbWy5i+r20rfcK2qe21Aln4B
-         cNGoKe+XzLhMuTjyhWnnyuzqtBTIFAGjSunnEfzpLeBIpWn5AVB7hqziHJ28CG9KGsUf
-         Kjt+AiRXMyXBGiOns+ceHU5q+/JvROEFucL+4ZKwctCGnpZ0cuD0rfeglTchnllESfFW
-         fQmw==
+        d=gmail.com; s=20230601; t=1755990578; x=1756595378; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p2pU3fFxLFScSmj2hUqBJ8RqBm9xy2DQkrm9ol/p+Ro=;
+        b=Y4CAkBCntOOYGHRswhqOzYxqNW8sBl1gFieMlKQrDk2AYnn/3h1pSRhI5mD5GFKh24
+         6etukx08sZ2nweykcs61zGrij1lC2aOvWs6GiWieVFgwxcc5oxGdEc5gnOzRFSdR51Y4
+         gGvlp1A86ZtpbsU6Vapj7k8Z3D2pzhNBmctAl3twogNEIOuE7avLmB6qcVC9D/lFxcei
+         PllHcM5EenpQ++ZCqU9uPFBML2RMtawM+3dAR1mzfaggP19alBgSIQn6xI3Pr8VaxNB4
+         qhb6cuAxhiPWe34lqlo7qTl3os2bYMw0U+mnen0t9MVuJEyBOkg7PzusaulLKjitC9y6
+         CE7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755984462; x=1756589262;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3f0+4Vh1MwZCJAgeds3L4wK1Y2nN5MFSu2EhurxFoGY=;
-        b=Jk92n2LeDfwSFW+HMYnHWWGLgAbCsG5/AyTmQrK/7uuldtFTAL9w2eWI1T4u+bHN8i
-         K2OEhsaIaSqZXE3ti0dWnc9/GF7eK9XoCTh7AeHgkxNqvr8FH9rugVkvMxRAW3/w10Rv
-         bUui+eSFnW/7IkOcrVwu/rIGuhzOWys8iDb5P5xcsU49dv4sw4+8i0H0beI/XZa+b3HI
-         ZtZ3e6OaGqKr4rwY0eGusQoONTXDVo+C6xoK6UU8C9aVaViA+cmca55ZQuZGIF0q39cE
-         pdA+202y/aqqy4vrA96ZYVj7hwF+O6ENGANHPmyt+1XAhUnz/vcsRBEHKnc2cMm8fyxu
-         sm3A==
-X-Forwarded-Encrypted: i=1; AJvYcCUMsJ8QI0OzydpShqMadW/jr91z+lfOeznz65FTDebKkQo4ll4G9phDpovKezPHRHmXJ59iwq6Cx41cLCt/@vger.kernel.org, AJvYcCVlERXkwvidladuvYZ8s66/zitWCxFmmCXvtpeaOvLwsQddaxYVB4SLhiQ/jzMWqqncQ9D6whxxibFp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2Qkf6IOjbdJF1/7A2lhYVGKxTsVMY/TaDNASKSRJvRtpXCkxz
-	4rZlWmMkwAgLnHduHlufix1z4U94nh7E48gibOnl97hqOzGR/IwbHOf2
-X-Gm-Gg: ASbGncuZg7GVX+fbgSkeZTqe56cuo1Masz/9I6vT0rHDEVGGfhTbAxX3yDiDD8nrzpl
-	uP+25dzz/v+6+l6woiXL47s9HS1bIW3X0EBVkYD3/G7WTZco2SQ1qAA5qkZnWb+4p24Jx+qSjK8
-	X18CuGOUw0aLA2RtTKVAcxcVnxwMKR0GrarKdE7vLAi6vbqS4r5YYIRxFiomclUND87nQ/0UnkU
-	q2/IbST2kLcuuCMdUkpi+suCGRdXsvcxGOiMhcqi6ZlDQPBB5RzdYuMFiqldLqIv8K2GeoFJ1Jm
-	bo4gbYyv08DcQ0JS9iLKJzOH7K6u1YF4wcRweyzRICFWLKU1R6lWBJQWQpoPWS0X3wu5Nt4k3gy
-	sIp3oGkENHPtEOlLZKRLYNXEaBpURe6xqwrMB7kt0V3IOFzhueM/w
-X-Google-Smtp-Source: AGHT+IG+vW5JGkKEGGGdp4Hd6sF1BS7DCoubVeclZE2QYEcmrjSVeoAj24TqBkympTdtodtDi+cCqg==
-X-Received: by 2002:a17:903:17c3:b0:242:cfc7:1fd6 with SMTP id d9443c01a7336-2462ef446cdmr79305085ad.32.1755984462256;
-        Sat, 23 Aug 2025 14:27:42 -0700 (PDT)
-Received: from fedora ([172.59.162.44])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2466889de85sm28982615ad.153.2025.08.23.14.27.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Aug 2025 14:27:41 -0700 (PDT)
-From: Alex Tran <alex.t.tran@gmail.com>
-To: linus.walleij@linaro.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Alex Tran <alex.t.tran@gmail.com>
-Subject: [PATCH] arch/arm/boot/dts/st/ste-ux500-samsung: dts bluetooth wakeup interrupt
-Date: Sat, 23 Aug 2025 14:27:32 -0700
-Message-ID: <20250823212732.356620-1-alex.t.tran@gmail.com>
-X-Mailer: git-send-email 2.51.0
+        d=1e100.net; s=20230601; t=1755990578; x=1756595378;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p2pU3fFxLFScSmj2hUqBJ8RqBm9xy2DQkrm9ol/p+Ro=;
+        b=dgAnHGaPD6n9Lwo3TKpcjdjytn0g7jfTxlfm1gGao4/zfIFYDAuSFyhrL2Mq03W2XO
+         Nw96hUoKgwEKqyNsHkmV/ZvqxohrjuF1JnTO0TyIXNDhpqdDH+OaVhOE3u6RnfymeNl1
+         HK3+LlkoEQcq5sN0oMMTbJntxPANRW8o0clTEf9KgZ41yoGcBIwZk401DrkuqFspHoc6
+         NPyGBEJtGH3CYQlCvPahnXvnC5RY82YjNTvpq+3fzJwrNiIEBLO5xQ+0hnWntI/TX2jW
+         pUO9G3ujbgpIxL6iF9QpM+Gvrl7QWwIl3N2DHumMr1GHbLv4msa5kofXHYkw2INLaYQ/
+         4JzA==
+X-Forwarded-Encrypted: i=1; AJvYcCV2D8kJv7XyTkRiBBzUu4hCDJVPRDY07ZEym7hyXNlRf4KjOaZtEoI1/Dlix4jyskL4zSzmAZAWoivsqg==@vger.kernel.org, AJvYcCW3PUfJecmIv9RJ9LWuGI8/IEi7BoJNd7UppAXUZ4yHX980rQKf9Ploqr/qFT5Z5SqenGWjvW3w9u6n@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+9Jz5JckGMmtoD0wgxaaaNnH0vscibJVsMCY9gL8dHvtS+LJv
+	csBuqRrgO1mPh9TEG/XfiTzKf6YeKkQBvyIZjFfBS/mtH/JtQndQCbzoyDRNN+ML4U7Gybj3HHA
+	+pORzorW5trmE1ovTGxB1nDsPwBTGqCQ=
+X-Gm-Gg: ASbGncveDaV5PIj6D73YKKNO8kt4C4A6HBgEZVo3nhLCJqnwRccXPtlmDPe6huYCEGE
+	wEtug+p/HZH/ldtjQz8qZU3E7pyg6DoOefIHCK853nUl6vXwVTgwN5mpEeoEzunNVt20l5Nm9Xg
+	KsMPoSUegNXHiDH3Q2fqZ05F8zVUa2HNgfZOI+d3Ftw9tdMpnlJ7aUiCsx/GVAGoZeJOZbS671b
+	x9roJY=
+X-Google-Smtp-Source: AGHT+IEkAzV8H+clwN6tL7gqmSvk56dPwvIVT4gQVPsLgXNkLSqtTBC6lbcVlarR1iUNCNSl5l1xmo1oxjBxcJoE0Ac=
+X-Received: by 2002:a05:622a:1449:b0:4b2:8ac4:ef76 with SMTP id
+ d75a77b69052e-4b2aab27f7fmr97527041cf.69.1755990578167; Sat, 23 Aug 2025
+ 16:09:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250821004232.8134-1-andre.przywara@arm.com> <20250821004232.8134-9-andre.przywara@arm.com>
+In-Reply-To: <20250821004232.8134-9-andre.przywara@arm.com>
+From: Julian Calaby <julian.calaby@gmail.com>
+Date: Sun, 24 Aug 2025 09:09:24 +1000
+X-Gm-Features: Ac12FXwXg3BBSbryJoDW3xmfP_LFIAOgrCsFqUWYjsCuW9pa0DyK6tp1OMBe8g0
+Message-ID: <CAGRGNgXsG5FmwFTSE1BM5qDHz_Jovb4EuRtt-=ipavBDf7AzJQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 8/9] pinctrl: sunxi: a523-r: add a733-r compatible string
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Samuel Holland <samuel@sholland.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Yixun Lan <dlan@gentoo.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Interrupt support on host wakeup gpio for ste-ux500-samsung bluetooth.
+Hi Andre,
 
-Signed-off-by: Alex Tran <alex.t.tran@gmail.com>
----
- arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts | 5 +++--
- arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts     | 5 +++--
- arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts     | 5 +++--
- 3 files changed, 9 insertions(+), 6 deletions(-)
+On Thu, Aug 21, 2025 at 10:46=E2=80=AFAM Andre Przywara <andre.przywara@arm=
+.com> wrote:
+>
+> The secondary Allwinner A733 pincontroller ("-r") is interestingly not
+> using the same new MMIO frame layout as the main controller, but is in
+> fact very similar to the A523-r one: it has two banks, with 14 and 6 pins
+> each. From the driver's perspective, this is all we care about, so we can
+> re-use the a523-r pinctrl driver for the a733-r, too.
+>
+> The individual pinmux settings are different, so we must not use the
+> a523-r compatible string as a fallback, but we can surely let the same
+> driver care for both the a523-r and a733-r IP, as the pinmux values will
+> be provided by the DT.
 
-diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts
-index c623cc35c5ea..03c679164c11 100644
---- a/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts
-+++ b/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts
-@@ -383,8 +383,9 @@ bluetooth {
- 				/* BT_WAKE on GPIO199 */
- 				device-wakeup-gpios = <&gpio6 7 GPIO_ACTIVE_HIGH>;
- 				/* BT_HOST_WAKE on GPIO97 */
--				/* FIXME: convert to interrupt */
--				host-wakeup-gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
-+				interrupt-parent = <&gpio3>;
-+				interrupts = <1 IRQ_TYPE_EDGE_RISING>;
-+				interrupt-names = "host-wakeup";
- 				/* BT_RST_N on GPIO209 */
- 				reset-gpios = <&gpio6 17 GPIO_ACTIVE_LOW>;
- 				pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts
-index 2355ca6e9ad6..bedffd969ec9 100644
---- a/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts
-+++ b/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts
-@@ -475,8 +475,9 @@ bluetooth {
- 				/* BT_WAKE on GPIO199 */
- 				device-wakeup-gpios = <&gpio6 7 GPIO_ACTIVE_HIGH>;
- 				/* BT_HOST_WAKE on GPIO97 */
--				/* FIXME: convert to interrupt */
--				host-wakeup-gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
-+				interrupt-parent = <&gpio3>;
-+				interrupts = <1 IRQ_TYPE_EDGE_RISING>;
-+				interrupt-names = "host-wakeup";
- 				/* BT_RST_N on GPIO209 */
- 				reset-gpios = <&gpio6 17 GPIO_ACTIVE_LOW>;
- 				pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts
-index 229f7c32103c..64562a3a262c 100644
---- a/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts
-+++ b/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts
-@@ -481,8 +481,9 @@ bluetooth {
- 				/* BT_WAKE on GPIO199 */
- 				device-wakeup-gpios = <&gpio6 7 GPIO_ACTIVE_HIGH>;
- 				/* BT_HOST_WAKE on GPIO97 */
--				/* FIXME: convert to interrupt */
--				host-wakeup-gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
-+				interrupt-parent = <&gpio3>;
-+				interrupts = <1 IRQ_TYPE_EDGE_RISING>;
-+				interrupt-names = "host-wakeup";
- 				/* BT_RST_N on GPIO209 */
- 				reset-gpios = <&gpio6 17 GPIO_ACTIVE_LOW>;
- 				pinctrl-names = "default";
--- 
-2.51.0
+If the bank and pin counts are the same and the pinmux values are
+provided by the DT, that means they _are_ compatible, right?
 
+Thanks,
+
+--=20
+Julian Calaby
+
+Email: julian.calaby@gmail.com
+Profile: http://www.google.com/profiles/julian.calaby/
 
