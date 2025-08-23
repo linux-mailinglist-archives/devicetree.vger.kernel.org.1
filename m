@@ -1,154 +1,122 @@
-Return-Path: <devicetree+bounces-208567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DD80B32B0C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 18:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59782B32B4B
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 19:27:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 178C9188A222
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 16:46:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 427361B68959
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 17:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DABF52222CA;
-	Sat, 23 Aug 2025 16:43:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6EA23909F;
+	Sat, 23 Aug 2025 17:27:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="VDwQcKNf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l6La9Yqb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB794481DD;
-	Sat, 23 Aug 2025 16:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1034820297E;
+	Sat, 23 Aug 2025 17:27:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755967418; cv=none; b=fXaLQRIkkkVJrjwKxRqPldDLGm0UpWRGMQWIZqVPlbH757/GspD48u/g/FhbgA61cA3NI/YbopbLxxa8OHxk6fi50rj69Lkro4fMVPCUWLO1lT0yfpdo072Ebfwx3vUlyLdncgb6O2vXPT6lzFHyhFyam028qte5HNAGWFbZtkw=
+	t=1755970054; cv=none; b=GyJx69zJcvg7Ry2o+qYgss0kTdG7E0VSzgXC1eTriYuRbzx3V3adD6vuZYBlCpSZgGZQlAaU9Z5cvfwrH+rIXj2LYppZcqZ+uNoTHQu65O9wY8qEECheQFJv1TcjJaYjFxS8C6SlvL10vvLnm2ioUZ9Ba7/3vbvLRNMx0uyxHxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755967418; c=relaxed/simple;
-	bh=4Og8yNETlVlq7K3HbRNBFTfh1ekXURDTYRiAcTqmXz0=;
+	s=arc-20240116; t=1755970054; c=relaxed/simple;
+	bh=XUSH9JvyIKyy+/sQF9Fg04XQIcS5328kuqvUN7VZnEs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jzRXshmHo6iW2b0Ix/KlECxtp1pSiXZ/vakgTtQQtoXBoCnEa8y/oVP3TUV98y1pz2usXT2UScVrprB2jJYKc0RPFrpzgqGeCh8IeAIie86r+362a6NPro2+bQQivIs5LBXjY2axECOPG4+7XRD//kiM4PTFl/Ani9gCwotFdok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=VDwQcKNf; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id A770F22BD1;
-	Sat, 23 Aug 2025 18:43:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1755967406;
-	bh=al4cMcBWRH9QgIUZIz9Q7Wj6h73BaDiii1apCj2i8oI=;
-	h=Received:Received:From:To:Subject;
-	b=VDwQcKNfKWVRs3Ur1vxksqe0mDrvIRYusFgqfjqnoWR4gfhuN2nVjF2k664KWqZ92
-	 1iw/Vyy+i86F6UAE+Bsu7BUP4KkgDvepAuMwAyveFyXIKtSBtJCk+nylsDtp5CKPXf
-	 PnIEe2Jd8w2WqFP4cJN1vkLpbGHVots+a4HgbTcbqn9TC4Ri5hpB0m5ZNRweKGmRLB
-	 56qtB+TLS2SREtdusePEGjXBPk67NLt7amc2eJDLgxSq0dGe8kNCJnG+PruISc75S/
-	 yHJEiLUR9DM4jE9x7N7ClfovxOJHn2OvpUmQUOlcZqLqorZmg4m9+3lBIPl9D1QwbX
-	 vCxc3pE3MfWyQ==
-Received: from livingston (unknown [192.168.42.11])
-	by gaggiata.pivistrello.it (Postfix) with ESMTP id 608B67F996;
-	Sat, 23 Aug 2025 18:43:26 +0200 (CEST)
-Received: from pivi by livingston with local (Exim 4.96)
-	(envelope-from <francesco@dolcini.it>)
-	id 1uprKw-0002Hl-0k;
-	Sat, 23 Aug 2025 18:43:26 +0200
-Date: Sat, 23 Aug 2025 18:43:26 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Beleswar Prasad Padhi <b-padhi@ti.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>, nm@ti.com, vigneshr@ti.com,
-	kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, afd@ti.com, u-kumar1@ti.com, hnagalla@ti.com,
-	jm@ti.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Parth Pancholi <parth.pancholi@toradex.com>,
-	Jo_o Paulo Gon_alves <joao.goncalves@toradex.com>
-Subject: Re: [PATCH 16/33] arm64: dts: ti: k3-am62p-verdin: Add missing cfg
- for TI IPC Firmware
-Message-ID: <aKnvrh2TSksb_39i@livingston.pivistrello.it>
-References: <20250814223839.3256046-1-b-padhi@ti.com>
- <20250814223839.3256046-17-b-padhi@ti.com>
- <20250821060629.GB7503@francesco-nb>
- <ecff956d-1019-41d0-9bfc-b0bdc30e87ba@ti.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BPPURCZs3Vj/Eivgm/4NLGEHuNjAnXE/hNNyIkrlg2NNigD92O79kEsI/l7FtpC17N031RPBv1NdNmlYoBWmbSnNDUW7QeJWcFeqXM8D0jJTQ6RB74pJhpnl9S4EuUNA0oBoVwC3owJMtOrDjhluH6BwQafc31AgGk9PPrGphho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l6La9Yqb; arc=none smtp.client-ip=209.85.222.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7e87067b15aso361729785a.3;
+        Sat, 23 Aug 2025 10:27:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755970052; x=1756574852; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XUSH9JvyIKyy+/sQF9Fg04XQIcS5328kuqvUN7VZnEs=;
+        b=l6La9Yqbn/3zg1t4P6uwZ/JPMvkRT0hBEd349+8zuqtqEPf5DbY1tkChJHrzL5n4fJ
+         wWri+9bzpVngL588kHuByXMt3SHin8ZF8eBlQ8E64n27zEDeROH19wb0+I03qYXqzjrX
+         kxtgki627QSihwg5Jq1hirAoZ2XcUCD0gfYX17z66auVYI7UkqcAcPkp19vGmcaPA+cm
+         EI3w67oS/3KsX/856Nx3bC1TKJyWFe+qUhzxZnaQckc4e7Xfw4YI2u9HK1+O1o+xUVpb
+         Zqho/YppE/z0aRUWifFuilnuova0lku8bzL3Yc+rep1f7D0tXzCnGAbbHjRNSKkRzajq
+         cSjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755970052; x=1756574852;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XUSH9JvyIKyy+/sQF9Fg04XQIcS5328kuqvUN7VZnEs=;
+        b=F76A8/YGwjcMs2TWM8usc1MvUjFBQ5j657SxBFIKY/a6uR9HG87SE56IBKO/h2d6Wm
+         s7PL0DcL9vUJtsWsNJaLuit9CJTtEe7EYqhagaZiAjDY1aofAEg76Nr7Ke6LJgfILAkf
+         v8t93VhD2gNumSmuWCu8YgZ8siXM3ZNpaIcuT4Dl23lM3gWpoNVRU4MnRoZWKidbhiMg
+         cixeMATJLEqbzSXGSZJDZFTG4yPoB+KhiyggjXuwq+HibDvFZT7EWHGh49Ng9h2YbWX4
+         8Lp69ReVatjBYZLqm5fC9vXCabCIuforaYWRVwuPFQZZ4hl/KV8PzBz0GPijBY7gpGtG
+         dVKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlJpjipvx0d809/G5llpTGZPV0YJ1fD0MKmi8F1231qTP4hKRWSV9WZcZCXTkCD0dBpdFpcrCEalBqUuZW@vger.kernel.org, AJvYcCVfz/ymMKrq+l852byTXRAOrmSkwE+YHJi43bDD6T5ibd6u8NPuZ6tWXBiIFFSubj20mC+fH69uO6tB@vger.kernel.org, AJvYcCWXNoRswR2lAoHiuZHGKqWN6ZtYaCh+CImgpudePzg5utPbSpofvvnkmqiTEPRs3UrUnSR8BfYzgWf7@vger.kernel.org, AJvYcCXmLe1nGtWg53LriOlsTBT4z/pZfYSdCAJPbVX1clBCdd5lRalYgcQn41DOusoXKroPhtdtfqcEn16hY4uQ84wwjtQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2tiPmYzMg3O2jg2X/LLEYTtU2FkrhDz2dN5u9pVgvwFmleVVG
+	jyuDgGqdcRMhJvhGpDuSJMU8ZUxEjUCnVBUtH52q1nCCpIG+O/DAXA/jyzrKJvP1WUc=
+X-Gm-Gg: ASbGncuOl4pM/a9P4gsQXXaL+nbOS2/5sBNDKAVUtVcoUvZy3E1AJlgHhIHJjMBvyPs
+	n20xfPcdwME0rmFRDH3Dl5I1tBDRnDJjgomxUjLZ1UzX7Z61c0AKsgtApOx1sSia0MI+v55i/wZ
+	cgipzCeUM8i4HIwlvqFfeEBQdwzfJ4rfIQSz6hYKXetGsXqKKt3L1cKX6pigAvLBZeNjIuQLLAW
+	9aV4o8n+UhgLiK0Q9BCiZXg9Br4JmoGZe8LcvbMP5st1SS2MPeyMeLqW3HY6m3BEYdAeYjaltci
+	cEcHeMdR273J14XAWujsrXay8R7gQ/bFPV260NeglubHrzhlA6zeun/U0biNiPvtXkHFuSpMbYq
+	pUdLVyBcxGLFgb8+g/l0eY6nQCoCI2QUdQw==
+X-Google-Smtp-Source: AGHT+IHsakSgynYXDTEIxfql1qjzpysL0gClsR895vhO///5Zbblp31VQLCpZlK+UWogbB1c6SvypQ==
+X-Received: by 2002:a05:620a:3189:b0:7e9:f820:2b8f with SMTP id af79cd13be357-7ea110b94b7mr813978585a.80.1755970051597;
+        Sat, 23 Aug 2025 10:27:31 -0700 (PDT)
+Received: from codespaces-a28d22 ([20.42.11.29])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ebede53d5esm176063185a.24.2025.08.23.10.27.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Aug 2025 10:27:31 -0700 (PDT)
+Date: Sat, 23 Aug 2025 17:27:29 +0000
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock: exynos990: Reorder IDs clocks
+ and extend
+Message-ID: <aKn6AYIAG9eUeSx2@codespaces-a28d22>
+References: <20250820-2-v2-0-bd45e196d4c4@gmail.com>
+ <20250820-2-v2-2-bd45e196d4c4@gmail.com>
+ <20250820-diffused-impaired-ba776d39692f@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ecff956d-1019-41d0-9bfc-b0bdc30e87ba@ti.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250820-diffused-impaired-ba776d39692f@spud>
 
-On Fri, Aug 22, 2025 at 10:09:48PM +0530, Beleswar Prasad Padhi wrote:
-> 
-> On 8/21/2025 11:36 AM, Francesco Dolcini wrote:
-> > On Fri, Aug 15, 2025 at 04:08:22AM +0530, Beleswar Padhi wrote:
-> > > The wkup_r5fss0_core0_memory_region is used to store the text/data
-> > > sections of the Device Manager (DM) firmware itself and is necessary for
-> > > platform boot. Whereas the wkup_r5fss0_core0_dma_memory_region is used
-> > > for allocating the Virtio buffers needed for IPC with the DM core which
-> > > could be optional. The labels were incorrectly used in the
-> > > k3-am62p-verdin.dtsi file. Correct the firmware memory region label.
-> > > 
-> > > Currently, only mailbox node is enabled with FIFO assignment. However,
-> > > there are no users of the enabled mailboxes. Add the missing carveouts
-> > > for WKUP and MCU R5F remote processors, and enable those by associating
-> > > to the above carveout and mailboxes. This config aligns with other AM62P
-> > > boards and can be refactored out later.
-> > > 
-> > > Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> > > ---
-> > > Cc: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > Cc: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> > > Cc: Parth Pancholi <parth.pancholi@toradex.com>
-> > > Cc: Jo_o Paulo Gon_alves <joao.goncalves@toradex.com>
-> > > Requesting for a review/test.
-> > > 
-> > >   arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi | 42 ++++++++++++++++++++-
-> > >   1 file changed, 41 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
-> > > index 6a04b370d149..0687debf3bbb 100644
-> > > --- a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
-> > > +++ b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
-> > > @@ -162,7 +162,25 @@ secure_ddr: optee@9e800000 {
-> > >   			no-map;
-> > >   		};
-> > > -		wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
-> > > +		mcu_r5fss0_core0_dma_memory_region: mcu-r5fss-dma-memory-region@9b800000 {
-> > > +			compatible = "shared-dma-pool";
-> > > +			reg = <0x00 0x9b800000 0x00 0x100000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		mcu_r5fss0_core0_memory_region: mcu-r5fss-memory-region@9b900000 {
-> > Node name should be generic, `memory@9b900000` ?
-> 
-> 
-> Humm, that memory is reserved and has the 'no-map' property. So it
-> technically is only used by the node which references it (a particular
-> rproc in this case), and never used by Linux for any allocations. So it
-> is not generic memory per say...
-> 
-> So I was inclined for putting the specific node name which uses the
-> carveout in the label. What do you think?
+> This looks like a massive ABI break, where is the justification for
+> doing it?
+>
+> Cheers,
+> Conor.
 
-My understanding is that the node name must be generic, as required by
-the DT specification. What matters is that this is memory, not what is used
-for.
+Hi Conor,
 
+I reordered because the current IDs don’t match CMU_TOP:
+the PLL mux select is in PLL_CON0, not CON3, which gave wrong/low rates.
+I also added DPU/CMUREF and a missing fixed-factor path to stop bad rates
+and clk_summary hangs on hardware.
+I’d rather fix the mapping now than keep a wrong layout.
 
-So it should be something like
-
-
-mcu_r5fss0_core0_dma_memory: memory@9c900000 {
-	compatible = "shared-dma-pool";
-	reg = <0x00 0x9b800000 0x00 0x100000>;
-	no-map;
-};
-
-
-Francesco
-
+Thanks,
+Denzeel
 
