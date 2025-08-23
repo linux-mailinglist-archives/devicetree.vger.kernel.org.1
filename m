@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-208438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA94B327C0
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 10:58:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F18D6B327E3
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 11:03:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA3B4AE2928
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 08:58:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 444D83B8A83
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 09:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB3B21E1DE7;
-	Sat, 23 Aug 2025 08:58:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D912223D7DB;
+	Sat, 23 Aug 2025 09:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XWAFgJd9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iYOgm18d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14B523ABB3
-	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 08:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105BB22AE45
+	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 09:00:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755939504; cv=none; b=FFESAXv03YFxvqdf9oyguqIuMjF5OqDWj02uDjX+/HkTEIhhaIzTy3pitXYLy6wFsVQjAMVvmkeGSdf2f3zNNIS7F3yS7ZK1kRwacFYe7nW9NffUI5yb4wMUBhhK9HfXeScFrUQR9He4pyMw1PTrAFFF1KfX2jMIGts7WGEnKq4=
+	t=1755939621; cv=none; b=St6fEfqAqPgIQd5SJj3DsvYWaNI4Bz945YLA2gIJi4dZuwemxBhH0iXOZCAQ6biMkoUhlE1YRiQoFvKKLWj0Zp/b3g+X3W+J9q9uQnp9Y46Q8P1wp7SMdr8UaYb940uLhrBQvInnh2r1jNBmwo/HK67msecHBx9UpyrJeqjOduY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755939504; c=relaxed/simple;
-	bh=PObtwKdfbFpwMmLEdwJTBTTUkfPM03mvQi5/aXjANRM=;
+	s=arc-20240116; t=1755939621; c=relaxed/simple;
+	bh=FudAgAKSc+eWc2hWehqLWzQsASEKKgo0Nzb21vtErnQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QN8wCe0U6WlqLmxCqpO2fQmyOOdjkyEzBjyX7D/mYJVK3iIgZDwcV5jZscVxa40MCTxcrsBHdb6W9pDGPXe+Bw3fBcaChQiZy6QbeUmxi1HvK+eKL9Y3UtOyp1mJoh4vf2sXMwTmAc50gmCa8yUlptnColxfjr2E1kw6XcR7Oxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XWAFgJd9; arc=none smtp.client-ip=209.85.218.53
+	 In-Reply-To:Content-Type; b=kHJkH61jFb4NDacr9mj9+ww1ociuHnkIMXQ7X3SzmUHorSnj4uFLbtFudCaPJEz+b0VR1dydxwDGKlYN9v24/m2SyhOoFxIy0ZKcgX2vMcQ9qksmDArweEcgha1wRzZoNPGHCFJity/CLNBmy6MyXGUjMTfwNqEZ4ZhKJVi0rk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iYOgm18d; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-afe48fe3e70so14515366b.2
-        for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 01:58:22 -0700 (PDT)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-afdf5843940so50110966b.2
+        for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 02:00:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755939501; x=1756544301; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755939618; x=1756544418; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ePE9Dw20L6SlufcmjpXW4urwfW8Opv/KYmQhGsNogQA=;
-        b=XWAFgJd9pVVuJTkbiZAXV0gvCwONyzmLOjtwMUh10PK5jpWRKnnq6Ho9NmeP6lqcEa
-         FD3yRo0Dx4tOj+pZzlCcY/i7rm231bKyxRwzDakj5HOK9tvnplOuB/GiJXVaHONT5C2s
-         eztVLtQ8CnSaWf03c7VVMmQ5470LyKb+U9d2QyxfeAyUVaMfkjUY42LHz7+cahJRuTyA
-         sZyTnejVtCsgvMFJXCy3myNqoit94m8nKRg0K04p1uexz0+M8kMc7vEZWOcSMAuUDndc
-         Pz7JwmxYS2KWet9MqY8/4ViKIMHgVmAOdNCDqPpXilPRdoZeLqQB2UWHI2EFvNxECjW9
-         4KoQ==
+        bh=FudAgAKSc+eWc2hWehqLWzQsASEKKgo0Nzb21vtErnQ=;
+        b=iYOgm18dIxJnejFqrAZw1FyzuU4Vk5UU07A/k30atGiZcwPsHrJ9nVlypFUW0jPs1n
+         KfFU5tF/Zzi0+VLy9NF08WaDYwK1plCWKyPcZdOaUSErvdXOrMuGyArVV3VF9rs2/uwn
+         mhzjkPkENP6G2E2SeYEY5Ey6TKSTx4KXs6Fx5Av79W54xLuF2rutD2HuTRKEt1dx4gMO
+         x4fdFV7XF3lqWNj/KVKGlW1ydSI/8PhjuTc2E+F7GtsLRsc8gYpR2CXdwLBZFTZZzkiy
+         FTbswGOsnGf4mbmdg7NRk84Uo8gTYZTJiNfuJ5iSmi0dIDukeIuCyc8pq2IieN87YFRQ
+         /qhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755939501; x=1756544301;
+        d=1e100.net; s=20230601; t=1755939618; x=1756544418;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ePE9Dw20L6SlufcmjpXW4urwfW8Opv/KYmQhGsNogQA=;
-        b=F06xNZX/RFB050+OwGKPcpU+2TSx3hC8LRaZQauX4jxz+9Bhh9+1I/IkR+VlcSGtgV
-         HkidkaKDDSjE4oSxaNU61B1V9D/yNWLT8tQCR6je1n6LZgc8yielJFKkzg07uGcRNzFu
-         kL+tU4kBKXCb0lw25ww7iijpMTdejkHCSpjfctpn9NHcwLiqFGA7/T6NpLz9gstO9UFd
-         17EQ4+I6+5sGY9MTEXXeFNwmIJhadHat6j8cjg85VvCUhptaLiP3oLGpKYaQsjzMpOqs
-         VdaljlySv0T3gF+iZXBYZb++iaDdiTSGG0FvgoXRJotbJ3HIPNSEjwPWa45JaUUO+PjA
-         qx6A==
-X-Forwarded-Encrypted: i=1; AJvYcCWrfoaeoESGAM4Rrg9GTz5hKqiEKbOeriNQ9kq3I86JD8OJdt2F+eYpMN6gXaUiljWJalhsPDkB4+79@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqcxiqDTojbPDGjRHB3eC5VMpH9qzrQhjrxzDx74tgbRxGUqF4
-	R/1wjqiJvzyCGZagASwVHydw9qzkB9GbbI2UG9KGRScHgBPP7AEbYSTXt9yjSo54Kio=
-X-Gm-Gg: ASbGncsofkofaOJga9TTbNQd2Zl7mvnzz5AxjLr1JSD9G4m/To5zCkGXfnoyn5DVXYy
-	JMGpwjj+FdrB5Iptr7cyUNCUoIIwGhtCRSM4yWKpVAtHGjAw+NQX7wxmR4FAB9B9xEIJq00ndLT
-	dxwdPkYLP4dZTXfNMFjhTqeWtMGK9X3ER1sF3dSZQsHy+VCge2Pw5a9nhmXbefyypK6wUDfiCOX
-	wm8Ytx/hCBUACX+IdZqLlq3Q63ISGFnesGZ87+bhTNqP0qwG7UNySIO3LorvW/DMWHoE8tIMDPl
-	UH/shtlAvKqxTYnDPAxXYruNVhbwDhpnPPvmVjUjmrQtlH5jffqWJQs7fjHSX96ZxsppBPlfAvS
-	chLppe9IG61DvfCp5Xq1ydiFj1F0JXaUp0b+c2TvJSFI=
-X-Google-Smtp-Source: AGHT+IE5Kj/tNqfuyToKzvzvaC9n0CcN3DlFEwwJPvxFSpgq3gCwweIjYQFV2Y8GFhKp2y+Z1KhycA==
-X-Received: by 2002:a05:6402:42c7:b0:617:d608:86e0 with SMTP id 4fb4d7f45d1cf-61c1b217ddemr2487383a12.0.1755939500828;
-        Sat, 23 Aug 2025 01:58:20 -0700 (PDT)
+        bh=FudAgAKSc+eWc2hWehqLWzQsASEKKgo0Nzb21vtErnQ=;
+        b=C2qrL+YtFZDcvPhQMzHfI0wk13PTyKxcoBFPJXRFhaam/QpVlETI8C+q8/44AseNAM
+         C99Ud1iiCaNJFg99ekRAFeVLZLzuQZfMYoulJML+nMMlrpEwOJqvX7wOIwmoPZOHH4xe
+         VBwuyYTH1Jgoed5EQGtzRWGd6n02SYCzCW4A22s7BpIRRyBz+IYvI2swhVDf9399NErv
+         q2YERobQV6o0pvO3nr9gR4JrXoOPy9iqo2T8T4vJiygdc2gZgKku7gCvvfozkWuVEORO
+         PhEXLcDHoH3MJzx/31D+hH7GO0/93FyvZXJoFNKcMWVhIWHoWBtKt8GZqp7ltaJLVA5P
+         WBeA==
+X-Gm-Message-State: AOJu0YwnOqEc8qyyfq/BjHbIQmm3xpcea27OE800y86fuju3aWHq1TNU
+	8+x1JuwnhEID/aG7a/IpNhWgSDNXFJk9oGrUK+y4SBbuBGSF1VkAp7tIB35c5lXVdQ8=
+X-Gm-Gg: ASbGncu9w3wrs/oXCaCfi8bXlj1YzgTKCjfWcBNiMB2WRdcf7699pgmhEpEKNpDNo+v
+	vzoqAIvBRH8Jpxjyj2ngfnqimYDL5xqvAA06O8zbtlxBhgTMUfl2aQbktWlcVTT1Rr72e68OQ5o
+	9AaueA6I1FayrhVb/Iyw4Fmy+TPxCbOXslo0miSid0fjbc5yOUcHw3nkLyiKwyg8DP0OprUPwrC
+	NkORWEffGGhoGwjzvJwXmt+bSoohjnUm2oYaaParYIshGx+hIAMf2luarGIWUB4kzzYElUJI2v+
+	Ou99ZCpMd/T4HUsigl6vPbx8mNAzvwn/jSTozlhqpFQJ+63gvzNrMcd8aLJjgGlK0O2YLlyQHyd
+	1leR22OmjoKri9FqvFkG2oVEezimvufzgC+TeiBQkeb0=
+X-Google-Smtp-Source: AGHT+IFF6ycqlUrRBwaFvrj2Xr+Cw2HS4eO7rMsYmrCv8MGa2LJQxfuJYSOOsmb0nfzRpn4jiuGIxg==
+X-Received: by 2002:a05:6402:13c5:b0:617:b5bf:f03f with SMTP id 4fb4d7f45d1cf-61c1b4d013fmr2702207a12.4.1755939618290;
+        Sat, 23 Aug 2025 02:00:18 -0700 (PDT)
 Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61c3119ffdfsm1245064a12.9.2025.08.23.01.58.18
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61c3174f6f6sm1205522a12.51.2025.08.23.02.00.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Aug 2025 01:58:20 -0700 (PDT)
-Message-ID: <99f27c6c-50d9-4290-9a78-c3461a136798@linaro.org>
-Date: Sat, 23 Aug 2025 10:58:17 +0200
+        Sat, 23 Aug 2025 02:00:17 -0700 (PDT)
+Message-ID: <a20d4a67-abef-4f97-95df-bcbeb0eb7d67@linaro.org>
+Date: Sat, 23 Aug 2025 11:00:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,33 +82,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: mfd: Move embedded controllers to own
- directory
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
- Guenter Roeck <groeck@chromium.org>, Tim Harvey <tharvey@gateworks.com>,
- Michael Walle <mwalle@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Jean Delvare <jdelvare@suse.com>,
- Thomas Gleixner <tglx@linutronix.de>, Lee Jones <lee@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Cheng-Yi Chiang <cychiang@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Tinghan Shen <tinghan.shen@mediatek.com>, devicetree@vger.kernel.org,
- chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-sound@vger.kernel.org, linux-watchdog@vger.kernel.org,
- Mathew McBride <matt@traverse.com.au>
-References: <20250822075712.27314-2-krzysztof.kozlowski@linaro.org>
- <20250822204027.GA319356-robh@kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: axiado: Add missing UART aliases
+To: Harshit Shah <hshah@axiado.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250822-axiado-ax3000-missing-serial-alias-v2-1-54052d75467b@axiado.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -156,45 +135,15 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
  vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
  2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20250822204027.GA319356-robh@kernel.org>
+In-Reply-To: <20250822-axiado-ax3000-missing-serial-alias-v2-1-54052d75467b@axiado.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/08/2025 22:40, Rob Herring wrote:
->> ---
->>  .../bindings/{mfd => embedded-controller}/google,cros-ec.yaml | 2 +-
->>  .../gateworks-gsc.yaml => embedded-controller/gw,gsc.yaml}    | 2 +-
->>  .../{mfd => embedded-controller}/kontron,sl28cpld.yaml        | 2 +-
->>  .../devicetree/bindings/gpio/kontron,sl28cpld-gpio.yaml       | 2 +-
->>  .../devicetree/bindings/hwmon/kontron,sl28cpld-hwmon.yaml     | 2 +-
->>  .../bindings/interrupt-controller/kontron,sl28cpld-intc.yaml  | 2 +-
->>  Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml | 2 +-
->>  .../devicetree/bindings/pwm/kontron,sl28cpld-pwm.yaml         | 2 +-
->>  Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml     | 4 ++--
->>  .../devicetree/bindings/sound/google,cros-ec-codec.yaml       | 2 +-
->>  .../devicetree/bindings/watchdog/kontron,sl28cpld-wdt.yaml    | 2 +-
->>  MAINTAINERS                                                   | 4 ++--
->>  12 files changed, 14 insertions(+), 14 deletions(-)
->>  rename Documentation/devicetree/bindings/{mfd => embedded-controller}/google,cros-ec.yaml (99%)
->>  rename Documentation/devicetree/bindings/{mfd/gateworks-gsc.yaml => embedded-controller/gw,gsc.yaml} (98%)
->>  rename Documentation/devicetree/bindings/{mfd => embedded-controller}/kontron,sl28cpld.yaml (97%)
-> 
-> Who's the maintainer for the 'embedded-controller' directory? Fine if 
-> me, just need to know.
+On 22/08/2025 21:15, Harshit Shah wrote:
+> Fixes: 1f7055779001 ("arm64: dts: axiado: Add initial support for AX3000 SoC and eval board")
 
-It does not have corresponding driver subsystem, then I guess you.
-Placing above bindings, whose drivers are  MFD, in the MFD subdirectory
-made it obvious. Now it will be a bit less obvious, but that's the
-drawback of organizing bindings per hardware, not per Linux subsystem.
 
-> 
-> Other candidates:
-> Documentation/devicetree/bindings/platform/*
-> Documentation/devicetree/bindings/misc/olpc,xo1.75-ec.yaml
-> Documentation/devicetree/bindings/misc/ge-achc.yaml ?
-
-Indeed, I'll move these as well.
-
+Completely misplaced tag. Please follow submitting patches.
 
 Best regards,
 Krzysztof
