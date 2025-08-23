@@ -1,310 +1,171 @@
-Return-Path: <devicetree+bounces-208571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 911CEB32BAC
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 21:33:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94A78B32BB3
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 21:38:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 287F017A5C2
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 19:32:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 680EC580732
+	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 19:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CDB91EA7E4;
-	Sat, 23 Aug 2025 19:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA92248869;
+	Sat, 23 Aug 2025 19:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="lXrTgQr6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224B22BD03;
-	Sat, 23 Aug 2025 19:32:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4301F12E9
+	for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 19:38:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755977574; cv=none; b=FYHVfmCKBMfoL1qbs//vXjlonicbH9n+qa+KLukDxuHD5e0vGNG9Z3MQECBoKzl093DnoJAxVL+XAx96Q3PAnHRNDKZg4YPAhPvnTn21q4snRcWTeKWQnWorXKBVFPVovub4uJ8gwsqH7KhcAfqmKYoVQakmdeOr2F0O4jlWCZs=
+	t=1755977913; cv=none; b=GmcnT66ICx2cJ4WK+Qm2tTUpHhg8C8nZUIpFKXMSkAsyllIExLB6adZY4XR3WlssWPhkNm00moERqdU8M86x1UE8+u8rI1QRrV5RW7al9aoQzUZtkxBNGIvT7MtrqhDn6gXX2L8EeJk45SSvRgCNTdLhpfQNuISbptfbMmfLpa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755977574; c=relaxed/simple;
-	bh=F9vAKy3Kj8tLGDHWWzJhc98x9ouHBdjXV9lPFIAqsTU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c+qLuqO/lWZ/T9JUxR2AhchebHqyOhJ3fSD+9Ksbdgh3qfVx8gs/42o2k1nuSdLvfHr0+bjAiwbM0dzij3NFAadD4VW2747Tmn58wS3rAk3iPXD2bHuJDxIViW7VA4gjk/OvZraGvJHbUbxqdJlQx++v4Yp/BP948Z/pr9WiGj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [192.168.2.54] (unknown [98.97.26.216])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 640EAB4E009F;
-	Sat, 23 Aug 2025 21:32:46 +0200 (CEST)
-Message-ID: <fba0b49a-6906-46b8-92e4-d79e57b40d28@freeshell.de>
-Date: Sat, 23 Aug 2025 12:32:44 -0700
+	s=arc-20240116; t=1755977913; c=relaxed/simple;
+	bh=9H5EWBk4yVKoWb98oK8R5kJWtyTvHlhBWPggxu4SXn0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uxKyFoF1uDsiQ9O3Mk7NxZ4uQtxeOkIz/rQleTBJtewvcMcfRqzMaIFUh4mG9Rm/4bVtDjUs60UiAq2onlRd7DjZAOOMkdGnOWIBVQD8EFXF3Q4eJd0I19TlBdhvYTs/M/OFM5k07k89p2Gpu0Q+V+yhDmoY9HQj5wLicDuF8wk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=lXrTgQr6; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-770522b34d1so183565b3a.1
+        for <devicetree@vger.kernel.org>; Sat, 23 Aug 2025 12:38:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1755977911; x=1756582711; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vFoZeto/FDI3HbNA3+yLmKkVSsUZjUZFotfhVBL12vM=;
+        b=lXrTgQr6JhIISSPI/TtVrVlmguy8BHG8uXDzcqkFX6zsY7Al1UgdklHiI/03eLuwGn
+         3i2EvUT5VPG/86ibT1WOjbVGpfzQa1NLHc9hRxz6+sd85PFNF6FU0QMi9Ibzkb4Lqj4O
+         8etasAsGJzw5sinGD11CFVSH+HfTD8L3/N7jc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755977911; x=1756582711;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vFoZeto/FDI3HbNA3+yLmKkVSsUZjUZFotfhVBL12vM=;
+        b=EDBhNvhAMThhxLphzd/BnKXTPCrmKA0Z0Myizdt0jUc2UsrG8zMaXjCTKBzDc+ICPL
+         L+iBAqyeA+qEJumG31Mmwur+WaAchrwYVMJqfIwBEvbKXlRQK3J9M0yY2JrFDtSUX12w
+         3bNfqt60yqiGeg7TLePc65ljgFmKQnfTrFrdNav29tCwWas0smr+nYS1JCSPX+ghXlVp
+         jyj8wWiAWc8WNKUv9trPINNq6bqa2brpSxfTlt9BiBod8i6ysmhxuUE4mMk4+EgY4c6W
+         dEvBak1ZN9RgX3CEdoPXmOytYW6+YXPsvqwSc4NPE22OQ5MC4vX4g/olcPUEpY84hbXP
+         P35g==
+X-Forwarded-Encrypted: i=1; AJvYcCUMmqPOhUoa/EaE19/x8MqQgtieN2bR9h5hyIQG5hNxd5gOtaw+sW0Stnda8EdsvDg4ZPkwVV/yrIbt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5Id2iJBeiID/IlQKSjmfz/bD+psZwsWRX9EH2HPJTYIK6oFd3
+	7302kXxi4DP0A8NrwcV+tCxdyGiqXwmPSOBHM1q2cD06o0LkK95LkoCebzk0hiS4lg==
+X-Gm-Gg: ASbGncvy7vO7jtE3pySkX7zD9zfY2J5WHIazayVz9TMnkNMaT6y0XI2duJB/28gD+6y
+	TQoBP1JXPX4j+w5QBx0GXnCS+mSiSNMsc8r80+s5BZExHBfNlYHRoslBSZ1wBjoT2+CvZrE8/fe
+	bb6/zOcWG39Yfzy2ERPicTTAesi8DlwJtAUeVw+dO/NMTtZhkktIXMmZsBo+ukEMDqBPyC1GzuX
+	nKpAEt6u8A/vb2AXqB4etwc/16/MjJ5KZOWbuAoFLyZE5J77ROCNpY+hzBMs3/Vv9Fv8xupUan4
+	0RO0osQdZFERobZ7W/9il4FfHN7dyM8DsHeYa6Lei/ecQySYeZ+T1vQeeiZzRNsXdeg+Mpb7nQ+
+	9Q5iILN9JpFg0Ub9Xm3lCmQTZ5HgZJlmrSP9sIZRVZS9nivkSw/AOGMrUoXdE
+X-Google-Smtp-Source: AGHT+IHZgEfPSgrzNcfJP0y8VFbZ/mI9XmL1DW5PZYFaB2PJIzNbSTWb31bEH3e4F4au31IY+qw7iw==
+X-Received: by 2002:a05:6a20:258a:b0:23f:f729:2e72 with SMTP id adf61e73a8af0-24340b5832dmr8588883637.1.1755977911137;
+        Sat, 23 Aug 2025 12:38:31 -0700 (PDT)
+Received: from localhost ([2a00:79e0:2e14:7:dde2:2ecc:d200:6390])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-7704025ef80sm3093608b3a.108.2025.08.23.12.38.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 23 Aug 2025 12:38:30 -0700 (PDT)
+From: Brian Norris <briannorris@chromium.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Georgi Djakov <djakov@kernel.org>,
+	Odelu Kukatla <quic_okukatla@quicinc.com>
+Cc: Douglas Anderson <dianders@chromium.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Brian Norris <briannorris@chromium.org>
+Subject: [RFC PATCH] arm64: dts: qcom: sc7280: Drop aggre{1,2}_noc QOS clocks on Herobrine
+Date: Sat, 23 Aug 2025 12:37:18 -0700
+Message-ID: <20250823123718.RFC.1.Idebf1d8bd8ff507462fef9dc1ff47e84c01e9b60@changeid>
+X-Mailer: git-send-email 2.51.0.rc2.233.g662b1ed5c5-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 3/3] riscv: dts: starfive: Add VisionFive 2 Lite board
- device tree
-To: Hal Feng <hal.feng@starfivetech.com>, Conor Dooley <conor+dt@kernel.org>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250821100930.71404-1-hal.feng@starfivetech.com>
- <20250821100930.71404-4-hal.feng@starfivetech.com>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <20250821100930.71404-4-hal.feng@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 8/21/25 03:09, Hal Feng wrote:
-> VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S SoC.
-> 
-> Board features:
-> - JH7110S SoC
-> - 2/4/8 GiB LPDDR4 DRAM
-> - AXP15060 PMIC
-> - 40 pin GPIO header
-> - 1x USB 3.0 host port
-> - 3x USB 2.0 host port
-> - 1x M.2 M-Key (size: 2242)
-> - 1x MicroSD slot (optional non-removable eMMC)
-> - 1x QSPI Flash
-> - 1x I2C EEPROM
-> - 1x 1Gbps Ethernet port
-> - SDIO-based Wi-Fi & UART-based Bluetooth
-> - 1x HDMI port
-> - 1x 2-lane DSI
-> - 1x 2-lane CSI
-> 
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/Makefile         |   2 +
->  .../jh7110s-starfive-visionfive-2-lite.dts    | 152 ++++++++++++++++++
->  2 files changed, 154 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts
-> 
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-> index b3bb12f78e7d..7265c363e2a9 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -13,3 +13,5 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
-> +
-> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110s-starfive-visionfive-2-lite.dtb
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts b/arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts
-> new file mode 100644
-> index 000000000000..a0cb9912eb80
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts
-> @@ -0,0 +1,152 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2025 StarFive Technology Co., Ltd.
-> + * Copyright (C) 2025 Hal Feng <hal.feng@starfivetech.com>
-> + */
-> +
-> +/dts-v1/;
-> +#include "jh7110-common.dtsi"
-> +
-> +/ {
-> +	model = "StarFive VisionFive 2 Lite";
-> +	compatible = "starfive,visionfive-2-lite", "starfive,jh7110s";
-> +};
-> +
-> +&cpu_opp {
-> +	opp-312500000 {
-> +		opp-hz = /bits/ 64 <312500000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-417000000 {
-> +		opp-hz = /bits/ 64 <417000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-625000000 {
-> +		opp-hz = /bits/ 64 <625000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-1250000000 {
-> +		opp-hz = /bits/ 64 <1250000000>;
-> +		opp-microvolt = <1000000>;
-> +	};
-> +};
-> +
-> +&gmac0 {
-> +	starfive,tx-use-rgmii-clk;
-> +	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
-> +	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +};
-> +
-> +&mmc0 {
-> +	bus-width = <4>;
-> +	no-sdio;
-> +	no-mmc;
-> +	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_HIGH>;
-> +	disable-wp;
-> +	cap-sd-highspeed;
-> +};
-> +
-> +&mmc1 {
-> +	max-frequency = <50000000>;
-> +	keep-power-in-suspend;
-> +	non-removable;
-> +};
-> +
-> +&pcie1 {
-> +	enable-gpios = <&sysgpio 27 GPIO_ACTIVE_HIGH>;
-> +	status = "okay";
-> +};
-> +
-> +&phy0 {
-> +	motorcomm,tx-clk-adj-enabled;
-> +	motorcomm,tx-clk-100-inverted;
-> +	motorcomm,tx-clk-1000-inverted;
-> +	motorcomm,rx-clk-drv-microamp = <3970>;
-> +	motorcomm,rx-data-drv-microamp = <2910>;
-> +	rx-internal-delay-ps = <1500>;
-> +	tx-internal-delay-ps = <1500>;
-> +};
-> +
-> +&pwm {
-> +	status = "okay";
-> +};
-> +
-> +&spi0 {
-> +	status = "okay";
-> +};
-> +
-> +&syscrg {
-> +	assigned-clock-rates = <0>, <0>, <0>, <0>, <500000000>, <1250000000>;
-> +};
+Ever since these two commits
 
-Circling back to a topic where I don't understand CPU clocks in hardware
-design, but I have questions, I would want to see 8 divisions instead of
-4 divisions (for both JH7110S and for JH7110). Similar for JH7110S here as:
+  fbd908bb8bc0 ("interconnect: qcom: sc7280: enable QoS configuration")
+  2b5004956aff ("arm64: dts: qcom: sc7280: Add clocks for QOS configuration")
 
-&syscrg {
-	assigned-clock-rates = <0>, <0>, <0>, <0>, <500000000>, <2500000000>;
-};
+Herobrine systems fail to boot due to crashes like the following:
 
-and then in above &cpu_opp as:
+[    0.243171] Kernel panic - not syncing: Asynchronous SError Interrupt
+[    0.243173] CPU: 7 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.11.0 #1 c5464041cff584ced692726af2c4400fa2bde1db
+[    0.243178] Hardware name: Qualcomm Technologies, Inc. sc7280 CRD platform (rev5+) (DT)
+[    0.243180] Call trace:
+[    0.243182]  dump_backtrace+0x104/0x128
+[    0.243194]  show_stack+0x24/0x38
+[    0.243202]  __dump_stack+0x28/0x38
+[    0.243208]  dump_stack_lvl+0x28/0xb8
+[    0.243211]  dump_stack+0x18/0x30
+[    0.243215]  panic+0x134/0x340
+[    0.243219]  nmi_panic+0x48/0x98
+[    0.243227]  arm64_serror_panic+0x6c/0x80
+[    0.243245]  arm64_is_fatal_ras_serror+0xd8/0xe0
+[    0.243261]  do_serror+0x5c/0xa8
+[    0.243265]  el1h_64_error_handler+0x34/0x48
+[    0.243272]  el1h_64_error+0x7c/0x80
+[    0.243285]  regmap_mmio_read+0x5c/0xc0
+[    0.243289]  _regmap_bus_reg_read+0x78/0xf8
+[    0.243296]  regmap_update_bits_base+0xec/0x3a8
+[    0.243300]  qcom_icc_rpmh_probe+0x2d4/0x490
+[    0.243308]  platform_probe+0xb4/0xe0
+[...]
 
-&cpu_opp {
-	opp-312500000 {
-		opp-hz = /bits/ 64 <312500000>;
-		opp-microvolt = <800000>;
-	};
-	opp-357000000 {
-		opp-hz = /bits/ 64 <357000000>;
-		opp-microvolt = <800000>;
-	};
-	opp-417000000 {
-		opp-hz = /bits/ 64 <417000000>;
-		opp-microvolt = <800000>;
-	};
-	opp-500000000 {
-		opp-hz = /bits/ 64 <500000000>;
-		opp-microvolt = <800000>;
-	};
-	opp-625000000 {
-		opp-hz = /bits/ 64 <625000000>;
-		opp-microvolt = <800000>;
-	};
-	opp-833000000 {
-		opp-hz = /bits/ 64 <833000000>;
-		opp-microvolt = <800000>;
-	};
-	opp-1250000000 {
-		opp-hz = /bits/ 64 <1250000000>;
-		opp-microvolt = <1000000>;
-	};
+Specifically, they fail in qcom_icc_set_qos() when trying to write the
+QoS settings for qhm_qup1. Several of the previous nodes (qhm_qspi,
+qhm_qup0, ...) seem to configure without crashing.
 
-	/* avoid division=1 2.5GHz omitted here, not supported by CPU */
-};
+I don't really know what's unique about Herobrine systems vs other
+sc7280 systems that presumably work fine. I'd guess there's some
+conflict with something configured by the boot firmware.
 
-What prevents this functionality I am asking about?  Specifically on
-JH7110 the promotional block diagrams show 3.0GHz maximum (?  I think?
-not sure but what else could this be?) so if that is true why do we not
-divide down from that, avoiding divisions that are problematic?
+I'm submitting as an RFC just to get thoughts from people who hopefully
+know better than me what might be going wrong here.
 
--E
+Fixes: fbd908bb8bc0 ("interconnect: qcom: sc7280: enable QoS configuration")
+Fixes: 2b5004956aff ("arm64: dts: qcom: sc7280: Add clocks for QOS configuration")
+Signed-off-by: Brian Norris <briannorris@chromium.org>
+---
 
-> +
-> +&sysgpio {
-> +	uart1_pins: uart1-0 {
-> +		tx-pins {
-> +			pinmux = <GPIOMUX(22, GPOUT_SYS_UART1_TX,
-> +					      GPOEN_ENABLE,
-> +					      GPI_NONE)>;
-> +			bias-disable;
-> +			drive-strength = <12>;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		rx-pins {
-> +			pinmux = <GPIOMUX(23, GPOUT_LOW,
-> +					      GPOEN_DISABLE,
-> +					      GPI_SYS_UART1_RX)>;
-> +			bias-pull-up;
-> +			drive-strength = <2>;
-> +			input-enable;
-> +			input-schmitt-enable;
-> +			slew-rate = <0>;
-> +		};
-> +
-> +		cts-pins {
-> +			pinmux = <GPIOMUX(24, GPOUT_LOW,
-> +					      GPOEN_DISABLE,
-> +					      GPI_SYS_UART1_CTS)>;
-> +			input-enable;
-> +		};
-> +
-> +		rts-pins {
-> +			pinmux = <GPIOMUX(25, GPOUT_SYS_UART1_RTS,
-> +					      GPOEN_ENABLE,
-> +					      GPI_NONE)>;
-> +			input-enable;
-> +		};
-> +	};
-> +
-> +	usb0_pins: usb0-0 {
-> +		power-pins {
-> +			pinmux = <GPIOMUX(26, GPOUT_HIGH,
-> +					      GPOEN_ENABLE,
-> +					      GPI_NONE)>;
-> +			input-disable;
-> +		};
-> +	};
-> +};
-> +
-> +&uart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart1_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&usb0 {
-> +	dr_mode = "host";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&usb0_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&usb_cdns3 {
-> +	phys = <&usbphy0>, <&pciephy0>;
-> +	phy-names = "cdns3,usb2-phy", "cdns3,usb3-phy";
-> +};
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+index 2ba4ea60cb14..59203ce58c61 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+@@ -394,6 +394,16 @@ &vreg_l2c_1p8 {
+ 
+ /* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
+ 
++/* QoS seems to have conflicts with boot firmware on these devices. */
++&aggre1_noc {
++	/delete-property/ clocks;
++};
++
++/* QoS seems to have conflicts with boot firmware on these devices. */
++&aggre2_noc {
++	/delete-property/ clocks;
++};
++
+ &edp_panel {
+ 	/* Our board provides power to the qcard for the eDP panel. */
+ 	power-supply = <&vreg_edp_3p3>;
+-- 
+2.51.0.rc2.233.g662b1ed5c5-goog
 
 
