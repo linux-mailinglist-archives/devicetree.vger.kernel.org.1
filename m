@@ -1,120 +1,155 @@
-Return-Path: <devicetree+bounces-208577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74358B32C81
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 01:09:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7521B32CC0
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 02:53:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50ADE56695D
-	for <lists+devicetree@lfdr.de>; Sat, 23 Aug 2025 23:09:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6E3E1B62458
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 00:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D9F423BD04;
-	Sat, 23 Aug 2025 23:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6370178F43;
+	Sun, 24 Aug 2025 00:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y4CAkBCn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YPcISu0I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729311FF1A1;
-	Sat, 23 Aug 2025 23:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E494546BF;
+	Sun, 24 Aug 2025 00:53:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755990581; cv=none; b=ODEBs/offqr2W6FJhqvKoXvx4Qc6NT3ZXxqhtgIxRpixAqbdUY8rFYcmFxaNcupo1FVjnrswykfuhRCNq1gP6TBj6S4Wk8K0abi0fcHX9jg+F2c7FYnjBW8UdbLyLiNSszIQWVO90G2QLbT5dFGoAOmENrCO4HPS5EfcQPw7+Jc=
+	t=1755996813; cv=none; b=j+fJCj7MHAB2c7KQwPt1hKYlbNOWDC12aJ+2gGsIMWHQK35umpLNZmiVHGsLAr2/5DVwwLUsEWMZBATOlFPXqZjUl4r2CDQI4wg7xNetcaF1yEGvALXUI1CQV9iVoqW8hxqJzHU6DjNCzuK+vvILA/I9QxqmxNM8DXs6fK+jSLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755990581; c=relaxed/simple;
-	bh=p2pU3fFxLFScSmj2hUqBJ8RqBm9xy2DQkrm9ol/p+Ro=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u45rdyN8qHiThqUVHuYLQVIkUaiuZf2RCaEsbExtYoiFTI6t/BuLCXZLupgPgOYknsX7WbO1PqwYn1MkprAPdt2AyMzM+DCgCri5i7067uJY87x4Izi0ACKQAEYx0rBvnNr779g3oWzHBQ0wqU8XyWD50DYdsU7drUDsJyrfXlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y4CAkBCn; arc=none smtp.client-ip=209.85.160.170
+	s=arc-20240116; t=1755996813; c=relaxed/simple;
+	bh=BaGOU3IFJlVva5JiZ/lq1xm0BXzmWHIiJ31EHMDePr4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m3eQ+PK0RbXWXakjX6jDut57BN0KVz9j/+Ayr9peSf1/A3XE29Ka+UYy3M/WPpq8tvULrPXp9X1L+KUuozvjJGSNLWJnDmdfKsyk2phIo8qItfFfjKdOroyh+1DxkJ0ly8CUIX5o8k+quUXFHxAqs6VbaApOBQ1XPIkozKSEUmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YPcISu0I; arc=none smtp.client-ip=209.85.216.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4b133b24ed7so27263811cf.3;
-        Sat, 23 Aug 2025 16:09:39 -0700 (PDT)
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-32326e67c95so3569183a91.3;
+        Sat, 23 Aug 2025 17:53:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755990578; x=1756595378; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p2pU3fFxLFScSmj2hUqBJ8RqBm9xy2DQkrm9ol/p+Ro=;
-        b=Y4CAkBCntOOYGHRswhqOzYxqNW8sBl1gFieMlKQrDk2AYnn/3h1pSRhI5mD5GFKh24
-         6etukx08sZ2nweykcs61zGrij1lC2aOvWs6GiWieVFgwxcc5oxGdEc5gnOzRFSdR51Y4
-         gGvlp1A86ZtpbsU6Vapj7k8Z3D2pzhNBmctAl3twogNEIOuE7avLmB6qcVC9D/lFxcei
-         PllHcM5EenpQ++ZCqU9uPFBML2RMtawM+3dAR1mzfaggP19alBgSIQn6xI3Pr8VaxNB4
-         qhb6cuAxhiPWe34lqlo7qTl3os2bYMw0U+mnen0t9MVuJEyBOkg7PzusaulLKjitC9y6
-         CE7A==
+        d=gmail.com; s=20230601; t=1755996811; x=1756601611; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LGl7ywJWnMLVhYcOhEEdPTWdvtBYoj0FI5EpbNpy2oY=;
+        b=YPcISu0Icfmb1NHWMgZL34SuhuGeN7R38SpgY6e+KPQ1/GeuqyP8S6YZZdFXruujyD
+         pvBbIaBKxHQJMuopIcxiPLOOZu8MP41DMwCyB+jbAOOWq6uy26GQ+qAsQ5RfUf67QDwK
+         OegDskXPB4HY9nTb8lbvq+SYFd6ewlQuWGTtY/kCrammj3GoD3sVmzh+qlEOWSiwsehO
+         xPwGYb7FRu84vnQ2UooOu9y7h7Tppg8oZn2LVgZTFIs0DVh9RUzxdsOVlBwfmoyevXpV
+         vGg5onYjuARw1iP7TxFZcQi/fB4nt710hnVh/FsHY9WzDaHEHXVFU47hsU5pz3HadTgd
+         EZ4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755990578; x=1756595378;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p2pU3fFxLFScSmj2hUqBJ8RqBm9xy2DQkrm9ol/p+Ro=;
-        b=dgAnHGaPD6n9Lwo3TKpcjdjytn0g7jfTxlfm1gGao4/zfIFYDAuSFyhrL2Mq03W2XO
-         Nw96hUoKgwEKqyNsHkmV/ZvqxohrjuF1JnTO0TyIXNDhpqdDH+OaVhOE3u6RnfymeNl1
-         HK3+LlkoEQcq5sN0oMMTbJntxPANRW8o0clTEf9KgZ41yoGcBIwZk401DrkuqFspHoc6
-         NPyGBEJtGH3CYQlCvPahnXvnC5RY82YjNTvpq+3fzJwrNiIEBLO5xQ+0hnWntI/TX2jW
-         pUO9G3ujbgpIxL6iF9QpM+Gvrl7QWwIl3N2DHumMr1GHbLv4msa5kofXHYkw2INLaYQ/
-         4JzA==
-X-Forwarded-Encrypted: i=1; AJvYcCV2D8kJv7XyTkRiBBzUu4hCDJVPRDY07ZEym7hyXNlRf4KjOaZtEoI1/Dlix4jyskL4zSzmAZAWoivsqg==@vger.kernel.org, AJvYcCW3PUfJecmIv9RJ9LWuGI8/IEi7BoJNd7UppAXUZ4yHX980rQKf9Ploqr/qFT5Z5SqenGWjvW3w9u6n@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+9Jz5JckGMmtoD0wgxaaaNnH0vscibJVsMCY9gL8dHvtS+LJv
-	csBuqRrgO1mPh9TEG/XfiTzKf6YeKkQBvyIZjFfBS/mtH/JtQndQCbzoyDRNN+ML4U7Gybj3HHA
-	+pORzorW5trmE1ovTGxB1nDsPwBTGqCQ=
-X-Gm-Gg: ASbGncveDaV5PIj6D73YKKNO8kt4C4A6HBgEZVo3nhLCJqnwRccXPtlmDPe6huYCEGE
-	wEtug+p/HZH/ldtjQz8qZU3E7pyg6DoOefIHCK853nUl6vXwVTgwN5mpEeoEzunNVt20l5Nm9Xg
-	KsMPoSUegNXHiDH3Q2fqZ05F8zVUa2HNgfZOI+d3Ftw9tdMpnlJ7aUiCsx/GVAGoZeJOZbS671b
-	x9roJY=
-X-Google-Smtp-Source: AGHT+IEkAzV8H+clwN6tL7gqmSvk56dPwvIVT4gQVPsLgXNkLSqtTBC6lbcVlarR1iUNCNSl5l1xmo1oxjBxcJoE0Ac=
-X-Received: by 2002:a05:622a:1449:b0:4b2:8ac4:ef76 with SMTP id
- d75a77b69052e-4b2aab27f7fmr97527041cf.69.1755990578167; Sat, 23 Aug 2025
- 16:09:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755996811; x=1756601611;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LGl7ywJWnMLVhYcOhEEdPTWdvtBYoj0FI5EpbNpy2oY=;
+        b=rXUGCu9jtjZYrIx9GURl2vQUpipA3B+599FevuFcQUeotpRyI2tfer7yMMIil5WAwX
+         7hXNdZ8O8wW51gTfa14hDrU+9xT0SGB3wW5+TeS2HvfSM4gzjiavyD38SGvF2aZ6zznE
+         1lRdNXpC+0ET2YlLBT8Cz9jj/3jLrPovdX9r8KtG9Pm9z+efjhXepWpOQsIA2YcxUftC
+         ikVv96WI2X4HWVg3C6GsG6P4p4YfDsKxrcSsT78fxIGKp7u0RZ95dPPoC+63aR7ULrb9
+         UCM44KkF8edwBCorULx6VFI4VBvkAunS74j0J4uKSfLd0y2+Ps4VkM971QDfw5lp1kVC
+         8cqw==
+X-Forwarded-Encrypted: i=1; AJvYcCVemORevWXt7Zrw+2SgK1XXapYK9pQc+SA8DlEIUXf4tEVzO1W1bAD4NBygcGMK38EqGTP64AtG3RMP@vger.kernel.org, AJvYcCVw/mxlgpgUOg5ft48bVpq1D+QBb1xqJw1xiJkjCxbOdgYVe1QpLMZ7hLcOeskINCsDD4iDbPa/mg27dT3m@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxu3jSSde16UwORZ3o/BsJkvZ3T/QYYRrNE5+P9hl1RhUQVI9bQ
+	Iga1Qp4IRKN8nk/osfSOUl8TZd/ISeHT3RTbuYUgyY3u5iUyotsgPZ9ymwOFgQQ9
+X-Gm-Gg: ASbGnctB2NugQYibDsfX+JJleuL3mBsHtbSJy8duUuu2vKphXxG9tO/Hsc0f8VmP7Uv
+	aQZ2SfHcE40qJq0ijbCDfiMU0wfeLsHNtTjeWkoVZ95p7Vmdco1dNEfrOrJVL/Z6Yk5aMyb++i6
+	NVfUa8R5yWTH4/lCZVkBNlv2i+syntrcr2JzQ8545zHUw7BkvxpmlTX1qK0OOKVkYe8v5MZc9u1
+	VW3wYpMION6aiTUF0D+tclUij0XaSKxNVb7VpThE/aEoeMTCJ6As0vvEUJJ6voxxfESlqblhTtS
+	DoWX7ESTsRcv7GZAlzIlQygHe9nHL6hWBqG6j8ONuTkML1wT62UUznXH6QEQi3nru7l3sItjGY5
+	eCwq28V3v4IylhD6LeFtD3KqvNCNUDQ==
+X-Google-Smtp-Source: AGHT+IFf4Eg5Ex9fCRm8LSQY3U8PsuF4uwMY8YffYbjYFIF6TDtBuxsS9p/B4iBVXNytFK7cee7xQg==
+X-Received: by 2002:a17:90b:1016:b0:324:e6ea:f90f with SMTP id 98e67ed59e1d1-32515e4123bmr8263940a91.9.1755996810743;
+        Sat, 23 Aug 2025 17:53:30 -0700 (PDT)
+Received: from d.home.yangfl.dn42 ([104.28.247.164])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3254af4c38asm3172485a91.17.2025.08.23.17.53.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Aug 2025 17:53:30 -0700 (PDT)
+From: David Yang <mmyangfl@gmail.com>
+To: netdev@vger.kernel.org
+Cc: David Yang <mmyangfl@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v6 0/3] net: dsa: yt921x: Add support for Motorcomm YT921x
+Date: Sun, 24 Aug 2025 08:51:08 +0800
+Message-ID: <20250824005116.2434998-1-mmyangfl@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250821004232.8134-1-andre.przywara@arm.com> <20250821004232.8134-9-andre.przywara@arm.com>
-In-Reply-To: <20250821004232.8134-9-andre.przywara@arm.com>
-From: Julian Calaby <julian.calaby@gmail.com>
-Date: Sun, 24 Aug 2025 09:09:24 +1000
-X-Gm-Features: Ac12FXwXg3BBSbryJoDW3xmfP_LFIAOgrCsFqUWYjsCuW9pa0DyK6tp1OMBe8g0
-Message-ID: <CAGRGNgXsG5FmwFTSE1BM5qDHz_Jovb4EuRtt-=ipavBDf7AzJQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 8/9] pinctrl: sunxi: a523-r: add a733-r compatible string
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Samuel Holland <samuel@sholland.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yixun Lan <dlan@gentoo.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Andre,
+Motorcomm YT921x is a series of ethernet switches developed by Shanghai
+Motorcomm Electronic Technology, including:
 
-On Thu, Aug 21, 2025 at 10:46=E2=80=AFAM Andre Przywara <andre.przywara@arm=
-.com> wrote:
->
-> The secondary Allwinner A733 pincontroller ("-r") is interestingly not
-> using the same new MMIO frame layout as the main controller, but is in
-> fact very similar to the A523-r one: it has two banks, with 14 and 6 pins
-> each. From the driver's perspective, this is all we care about, so we can
-> re-use the a523-r pinctrl driver for the a733-r, too.
->
-> The individual pinmux settings are different, so we must not use the
-> a523-r compatible string as a fallback, but we can surely let the same
-> driver care for both the a523-r and a733-r IP, as the pinmux values will
-> be provided by the DT.
+  - YT9215S / YT9215RB / YT9215SC: 5 GbE phys
+  - YT9213NB / YT9214NB: 2 GbE phys
+  - YT9218N / YT9218MB: 8 GbE phys
 
-If the bank and pin counts are the same and the pinmux values are
-provided by the DT, that means they _are_ compatible, right?
+and up to 2 serdes interfaces.
 
-Thanks,
+This patch adds basic support for a working DSA switch.
 
---=20
-Julian Calaby
+v5: https://lore.kernel.org/r/20250820075420.1601068-1-mmyangfl@gmail.com
+  - use enum for reg in dt binding
+  - fix phylink_mac_ops in the driver
+  - fix coding style
+v4: https://lore.kernel.org/r/20250818162445.1317670-1-mmyangfl@gmail.com
+  - remove switchid from dt binding
+  - remove hsr from tag driver
+  - use ratelimited log in tag driver
+v3: https://lore.kernel.org/r/20250816052323.360788-1-mmyangfl@gmail.com
+  - fix words and warnings in dt binding
+  - remove unnecessary dev_warn_ratelimited and u64_from_u32
+  - remove lag and mst
+  - check for mdio results and fix a unlocked write in conduit_state_change
+v2: https://lore.kernel.org/r/20250814065032.3766988-1-mmyangfl@gmail.com
+  - fix words in dt binding
+  - add support for lag and mst
+v1: https://lore.kernel.org/r/20250808173808.273774-1-mmyangfl@gmail.com
+  - fix coding style
+  - add dt binding
+  - add support for fdb, vlan and bridge
 
-Email: julian.calaby@gmail.com
-Profile: http://www.google.com/profiles/julian.calaby/
+David Yang (3):
+  dt-bindings: net: dsa: yt921x: Add Motorcomm YT921x switch support
+  net: dsa: tag_yt921x: add support for Motorcomm YT921x tags
+  net: dsa: yt921x: Add support for Motorcomm YT921x
+
+ .../bindings/net/dsa/motorcomm,yt921x.yaml    |  150 +
+ drivers/net/dsa/Kconfig                       |    7 +
+ drivers/net/dsa/Makefile                      |    1 +
+ drivers/net/dsa/yt921x.c                      | 3596 +++++++++++++++++
+ include/net/dsa.h                             |    2 +
+ net/dsa/Kconfig                               |    6 +
+ net/dsa/Makefile                              |    1 +
+ net/dsa/tag_yt921x.c                          |  126 +
+ 8 files changed, 3889 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml
+ create mode 100644 drivers/net/dsa/yt921x.c
+ create mode 100644 net/dsa/tag_yt921x.c
+
+-- 
+2.50.1
+
 
