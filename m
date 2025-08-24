@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-208673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AB5B32F5B
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 13:24:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69552B32F6B
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 13:27:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6734B1B62D90
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 11:24:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31696207B36
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 11:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB7F2D543D;
-	Sun, 24 Aug 2025 11:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 443CA2D661D;
+	Sun, 24 Aug 2025 11:27:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kbFQk76l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ESFbhtxp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D238629D0E;
-	Sun, 24 Aug 2025 11:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FF6238C1B;
+	Sun, 24 Aug 2025 11:27:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756034648; cv=none; b=BL4MwpMjSmOGL5PQX8pi1Luh1smCvv/XXCpnFaW4yvW4L/vTYqg7nOmHqQlz69ccCy2oFwBKVAirLwxNqHOD8/HEmr0ocZRvXJJ5WVwM/Ck6HvGeIB5TFUcXVu9ltBIOz5ZvQwhAG5Y+kzn8sDfcl2oKH3mVRscTQ5psSkMNsSY=
+	t=1756034874; cv=none; b=UsvQ8Kwlu/nIyCI6EqyewOyTdyIyc37TBKtGlyL+aWMA1UXIvEbXgG13BVIG4fWzNtC0C1v2qGpT59bPabVmUwIWgWsyw6FdOe0jESdOws4+VildFCIMMpxm0zzLVV/TB5tqep7l6nzPYM2uGuutIrQ4XcaAOWATX0doVdkGpHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756034648; c=relaxed/simple;
-	bh=t9BcqUjMupBLwjDS1XcQiUoTtCSx25XWIEN3xv6mkfk=;
+	s=arc-20240116; t=1756034874; c=relaxed/simple;
+	bh=mNR+dy5ZUFLhj+Ehn7WKvPiI2nRpHfXPZVi3JgGCj0I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p/LTLG/Arypxzb4O8QqYk60+uvLXoezA8WNmKT2b3aJognt8q3o2xIWFMsGMzS0vzzdgmd6jGRSOAITqquIXoxTzuI65XdJOi5frBtwpuPAve6YicCF5gX7gsZYFouiZmdxLqgsSgqnpp8uXB92qtAZXLJp4LGrbz6agskQyPgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kbFQk76l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4464C4CEED;
-	Sun, 24 Aug 2025 11:24:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Xquc7UL329hIZd67FFf86ytQDmQEiryMwOC5qmPLcc97rejje/Y7Zp1wPvpZvOY+SJTwFoo1YeGGb2GUwkfjP4IfbdjKliePhZwaRlyyEIgfhUoQBU2sB2WzkXWb0Fpjg92250T0rQftizh+qOuexrkj6OLozzC41PpoXYKK+CY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ESFbhtxp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78C1BC4CEEB;
+	Sun, 24 Aug 2025 11:27:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756034647;
-	bh=t9BcqUjMupBLwjDS1XcQiUoTtCSx25XWIEN3xv6mkfk=;
+	s=k20201202; t=1756034873;
+	bh=mNR+dy5ZUFLhj+Ehn7WKvPiI2nRpHfXPZVi3JgGCj0I=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kbFQk76lP7NWpdFedpxd+xoNZ45UtQKHEC/Ka3QcPK/ySM+zo7/FqRscmPc5hmCRj
-	 ZZCUizyvYeUpZUS0LioRhIWM5K/7w1dacMegUZI6W0UvEdLN39m5SheeeTPzDWxq/D
-	 wp+U73Q+ffHP4PATNBp5D25yODM+shxs8kbnhxfF3Zr0W9OuBQvzTh9pXvxlx21d+n
-	 9CxmNqNLu41FwPYruFrYZW0bCU9b9+sjsnaH6uoxUeYzcYFzHWsHrPKiQ4rRou1Ykp
-	 GgMwLdhgQ46BxMRKwSWtYKCJHHszTQwQNoH2L5jOcn7SiyEhaKW/o8EsW+2Ea6K/K5
-	 Ct+w+QwRNHO4w==
-Message-ID: <b748f86f-68ee-47fd-8394-f6352f99f3f0@kernel.org>
-Date: Sun, 24 Aug 2025 13:24:02 +0200
+	b=ESFbhtxpKuok84wjPsZSJe8cIJgQ4AQhpBhWTVsmlr77wXkcX4lJSQLM5H57CC1aU
+	 jzw+tkcjbN5iIbWql8+qmFoUaDvrWjqMi0IFGvXJtezEDrn2OgWESQHsFSIDY9tiTz
+	 twWNsISDkXPqGcYORZTB4yH8jcoHm8Jg2/XV4715Ba5iC5852M8SYhtiCi6rLzzX7p
+	 lSKa/GJixOa1Hda7frnYRhjgz62DzZ3BNMt8fnXlkjkWtEfclSlnIkS+wC6KGuQK03
+	 WikArDf/o3a9iKkX60T+uSYc5GURMl9UUB2IJc882432LiPV7w73Zz5zFuPe+8vxQ2
+	 UQhbDdr1jh0MQ==
+Message-ID: <255d3a30-9e44-41d8-8b38-ced6c245d025@kernel.org>
+Date: Sun, 24 Aug 2025 13:27:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: dma: img-mdc-dma: convert to DT schema
-To: Nino Zhang <ninozhang001@gmail.com>, devicetree@vger.kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- vkoul@kernel.org, rahulbedarkar89@gmail.com, linux-mips@vger.kernel.org,
- dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250821150255.236884-1-ninozhang001@gmail.com>
- <20250824034509.445743-1-ninozhang001@gmail.com>
+Subject: Re: [PATCH 1/4] arm64: defconfig: enable i.MX AIPSTZ driver
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250821105634.1893-1-laurentiumihalcea111@gmail.com>
+ <20250821105634.1893-2-laurentiumihalcea111@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,120 +106,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250824034509.445743-1-ninozhang001@gmail.com>
+In-Reply-To: <20250821105634.1893-2-laurentiumihalcea111@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/08/2025 05:45, Nino Zhang wrote:
-> Convert the img-mdc-dma binding from txt to YAML schema.
-> No functional changes except dropping the consumer node
-> (spi@18100f00) from the example, which belongs to the
-> consumer binding instead.
+On 21/08/2025 12:56, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 > 
-> Signed-off-by: Nino Zhang <ninozhang001@gmail.com>
-> ---
-> Changes since v1:
-> - All review comments addressed.
+> Enable the config (CONFIG_IMX_AIPSTZ) for the i.MX AIPSTZ driver, which
+> is required for platforms using the AIPSTZ bridge (e.g. i.MX8MP).
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
+Qualcomm i.MX8MP? You are changing wide defconfig.
 
-> 
-> Open:
-> - Maintainers: set to Rahul Bedarkar + linux-mips per MAINTAINERS entry
->   for Pistachio/CI40 device tree. This seems the closest match to the
->   hardware. Happy to adjust if platform maintainers suggest otherwise.
-> - img,max-burst-multiplier: defined as uint32. A minimum of 1 is used to
->   exclude the invalid case of 0, but the actual supported range has not
->   been confirmed in available documentation. Example uses 16. A maximum
->   will be added once confirmed by platform maintainers or hardware docs.
-> 
->  .../bindings/dma/img,pistachio-mdc-dma.yaml   | 90 +++++++++++++++++++
->  .../devicetree/bindings/dma/img-mdc-dma.txt   | 57 ------------
->  2 files changed, 90 insertions(+), 57 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/img,pistachio-mdc-dma.yaml
->  delete mode 100644 Documentation/devicetree/bindings/dma/img-mdc-dma.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/img,pistachio-mdc-dma.yaml b/Documentation/devicetree/bindings/dma/img,pistachio-mdc-dma.yaml
-> new file mode 100644
-> index 000000000000..4dde54a17f52
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/img,pistachio-mdc-dma.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/img,pistachio-mdc-dma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: IMG Multi-threaded DMA Controller (MDC)
-> +
-> +maintainers:
-> +  - Rahul Bedarkar <rahulbedarkar89@gmail.com>
-> +  - linux-mips@vger.kernel.org
-> +
-> +allOf:
-> +  - $ref: /schemas/dma/dma-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: img,pistachio-mdc-dma
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 32
+Which boards use it?
 
-Why is this flexible?
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: sys
-> +
-> +  img,cr-periph:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: >
-
-Drop >
-
-You already got exactly the same comment.
-
-
-> +      Phandle to peripheral control syscon node with DMA request to channel
-> +      mapping registers.
-> +
-> +  img,max-burst-multiplier:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-
-Does not feel like enough of constraints.
-
-> +    description: >
-> +      Maximum supported burst size multiplier. The maximum burst size is this
-> +      value multiplied by the hardware-reported bus width.
-> +
-> +  "#dma-cells":
-> +    const: 3
-> +    description: |
-> +      DMA specifier cells:
-> +        1: peripheral's DMA request line
-> +        2: channel bitmap: bit N set indicates channel N is usable
-> +        3: thread ID to be used by the channel
-> +
-> +  dma-channels:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-More ignored comments.
-
-Please go back to previous posting and respond to each comment. Then
-implement each one or keep discussing.
 
 Best regards,
 Krzysztof
