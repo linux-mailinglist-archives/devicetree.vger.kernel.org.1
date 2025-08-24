@@ -1,57 +1,61 @@
-Return-Path: <devicetree+bounces-208640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC8CBB32EA7
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 11:18:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FDD7B32EAD
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 11:20:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACA001B61B2A
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 09:18:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72E2F175D61
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 09:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE77255F39;
-	Sun, 24 Aug 2025 09:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFACA261574;
+	Sun, 24 Aug 2025 09:20:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pdDECLdL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BK+OVF4g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 918D022D795;
-	Sun, 24 Aug 2025 09:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EC2625A2BB;
+	Sun, 24 Aug 2025 09:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756027114; cv=none; b=h4ZoMWZ3OsJ1jUxl4UCPzbffZniJaV7a9sm8qMuv80QtV1LksODUmrDRZuGiKdq1LjGZo4uUlkY203A2PjLJkbzOw9aUg90RWuSRlmcfCV3tPI/xqVlbyLgDAff/luH7cpUABLwFcLwuNcchxloGd+/NWlGAHFzFmNLgb5hRrJU=
+	t=1756027219; cv=none; b=d+a/2VuWJplY3PLerM6sAQjZpOnHxGmAgqwrBvVCItw6ciOQSLn8BPouZC3iYIROFSLbEUCbu40W7PVymsG9NaI2WMc4e1sVh4ZLI6vobQ/k/gBPERbw3c1WYrecsSS07lSeHFICeRvuzQUIJrQ7VGNu8uBLOrBaLSAMk+SOJyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756027114; c=relaxed/simple;
-	bh=VPsCCUiQs1o14TPS3fqpP+XKEkTMO7z0UnbmUopc03M=;
+	s=arc-20240116; t=1756027219; c=relaxed/simple;
+	bh=WaSgZUq+epVHd+XOSY4cRjhXqIGdC2DF15B/HTqUaPY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZRnDIpJB2gt9chM7lrEi752YFvuoP9BI2wjs0pVW49rTfQ2Fb/4qWGT8JUxhtM/MBUx1XIry6MJya7s35SLAg2JCTUwSRwc0S7hkMCOKi0CO4B4/8Jvsa7IOsu3gEbJ2XftS0PTBGq5RrzNNaHXVwq+jhNua8q4hhyXtV1E2rKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pdDECLdL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65588C4CEEB;
-	Sun, 24 Aug 2025 09:18:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AdOi8+8oy1jsgHUisN0s23bTbWjGEkr8CJpYmdkwUTR9fDp094y8FsRsgkFBxIcO+to7BDIoqlgLXO9oe/Z+T8tkz42q8YwdtPNRo5ghK1tyhwvpeVKdE9Xc/CiFSsEMzjbJrU3MGOLZ623jDXw4vVgk1upFM4g/Dj7K8+dcJRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BK+OVF4g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DB27C4CEEB;
+	Sun, 24 Aug 2025 09:20:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756027114;
-	bh=VPsCCUiQs1o14TPS3fqpP+XKEkTMO7z0UnbmUopc03M=;
+	s=k20201202; t=1756027218;
+	bh=WaSgZUq+epVHd+XOSY4cRjhXqIGdC2DF15B/HTqUaPY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pdDECLdLKNWb5QGcc080B8DxENTo+q4OqlzyJeYfMRT8BU+mpviia2JuWz4dPPW7K
-	 P3i1R5nGqClren1DPuJNpnFvzFuXLxcDZyqKKFlxKUyZkBC/abkH7xxAqKNGFE9VC/
-	 TgN6msSkTDJ3ixALl/HNQhZ47tzsyHkCvfZ5BpnyABc+G056DpONrgyKry8Wq6Btan
-	 t+2UK4Ove/HAZ2x2qBjbmj4JA3JcdXiDw+vRnne3JJNIS8nn5Lo9jrfMrgiT7aICxj
-	 nS0rEXrkSmfVUovI8zJjmFcCF15bAg67PFETe3DBPcKiGEhpbGkyoqA0UGk6xgBtVT
-	 PKLTXOD3rERSw==
-Date: Sun, 24 Aug 2025 11:18:31 +0200
+	b=BK+OVF4glgIDv3gXlluxs5Zyg7N2lpSXPy9nlIYNvx3vZy8L9GIaOVBOzFZZRvrGG
+	 C0hqtWILT8yjCQVGz4IluNEOPOmTc5cFUoa8uI3DfCHG8vWRsWvEpfbNoKdH4DXbSV
+	 EhRoT3nwMagWk3OcNfi/SXK2MtszMpJgvosrPK+kIrRemdv2FOFw8vkwj+LbaXWT+U
+	 +TULGREI8erBJsm1B4sTaenO/9TfKN/bW964+ZEaSJiiCY3qAiGUIb8bQwoEHKihRZ
+	 f4m9Z3rIYldX1CWFl0+azL3s+31Ql/cqsucRGoUCsjUJDZJeksM9GpbBQjdHy6ovkV
+	 f0Pegv8ehNbSQ==
+Date: Sun, 24 Aug 2025 11:20:15 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: robh@kernel.org, gregkh@linuxfoundation.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, peter.ujfalusi@gmail.com, devicetree@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, shuah@kernel.org
-Subject: Re: [PATCH v6 2/2] usb: dt-bindings: ti,twl6030-usb: convert to DT
- schema
-Message-ID: <20250824-invaluable-sparrow-of-fury-da67b6@kuoka>
-References: <20250822201727.71593-1-jihed.chaibi.dev@gmail.com>
- <20250822201727.71593-3-jihed.chaibi.dev@gmail.com>
+To: David Yang <mmyangfl@gmail.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>, 
+	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Simon Horman <horms@kernel.org>, Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v6 1/3] dt-bindings: net: dsa: yt921x: Add
+ Motorcomm YT921x switch support
+Message-ID: <20250824-jolly-amaranth-panther-97a835@kuoka>
+References: <20250824005116.2434998-1-mmyangfl@gmail.com>
+ <20250824005116.2434998-2-mmyangfl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,24 +64,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250822201727.71593-3-jihed.chaibi.dev@gmail.com>
+In-Reply-To: <20250824005116.2434998-2-mmyangfl@gmail.com>
 
-On Fri, Aug 22, 2025 at 10:17:27PM +0200, Jihed Chaibi wrote:
-> -TWL4030 USB PHY AND COMPARATOR
-> - - compatible : Should be "ti,twl4030-usb"
+On Sun, Aug 24, 2025 at 08:51:09AM +0800, David Yang wrote:
+> The Motorcomm YT921x series is a family of Ethernet switches with up to
+> 8 internal GbE PHYs and up to 2 GMACs.
+> 
+> Signed-off-by: David Yang <mmyangfl@gmail.com>
+> ---
 
-All this should be in previous commit.
+<form letter>
+This is a friendly reminder during the review process.
 
-> - - interrupts : The interrupt numbers to the cpu should be specified. First
-> -   interrupt number is the otg interrupt number that raises ID interrupts
-> -   and VBUS interrupts. The second interrupt number is optional.
-> - - <supply-name>-supply : phandle to the regulator device tree node.
-> -   <supply-name> should be vusb1v5, vusb1v8 and vusb3v1
-> - - usb_mode : The mode used by the phy to connect to the controller. "1"
-> -   specifies "ULPI" mode and "2" specifies "CEA2011_3PIN" mode.
-> -
-> -If a sibling node is compatible "ti,twl4030-bci", then it will find
-> -this device and query it for USB power status.
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
+
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+*If a tag was not added on purpose, please state why* and what changed.
+</form letter>
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
