@@ -1,61 +1,69 @@
-Return-Path: <devicetree+bounces-208595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46373B32D22
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 04:59:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1014DB32D2D
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 05:00:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1C017A8C01
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 02:57:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 967892074D2
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 02:59:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24E2A23BCE7;
-	Sun, 24 Aug 2025 02:56:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B182243371;
+	Sun, 24 Aug 2025 02:56:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BoZv1foM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mp/L285J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEDE523B605;
-	Sun, 24 Aug 2025 02:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DDB1242D6C;
+	Sun, 24 Aug 2025 02:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756004174; cv=none; b=nfOd2kUIvYuE7UvOCLc3dRM8qKdCCar7O3H7tJBUZQYzQKQ3pwXulyWHhNmGDAeET1s4cw16kfxMTE2MpAMUZ1TI+zzxA+TZCRJMFc9EW1aEVGi/5n9dtEEibxIPxt9+B6GBkN+ah/gVZ4xBNUp6ARdUYlZkj03R9ytp2CkisJc=
+	t=1756004176; cv=none; b=SeaLnaD+moxFjHa1CPwLdGYiNwfKNju540+D6J2Mz/aFblrd5LQnxUG69R5k+njM3VYmPNYmdCLmvKSkjTOeyKDObpFeGSAuhACaztofnKv86ESCJF91TB8PrUhmjEMmdoHSFMyuryZM9UPNXqbRlD3hsY2JuoFWUHchKbiF9tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756004174; c=relaxed/simple;
-	bh=QCO2Wu8TSGpxJeVpqUlkP3S7BDw1YhnNMLU8THqlzl0=;
+	s=arc-20240116; t=1756004176; c=relaxed/simple;
+	bh=YoBQlm0ulSox3GmjDc721psnQpnF9RNfbeehuLeMArQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CyOClxLAtqI+DmQ3dG3ISoli1HRPGlIDpouyOwuuNBpNFf+T/U//Pa/vtn5ohfYTRShsa5/hgR4Z2yOYMqNwun9b7WOndAHextB6Ib9QlWNzaKBeVQ3/j+ZPanHXgj4XhlZVjlOxfq3pc/xFvPntHT8Hm4GmGHAcwtFNDLmq/j4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BoZv1foM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4312DC116D0;
-	Sun, 24 Aug 2025 02:56:13 +0000 (UTC)
+	 MIME-Version:Content-Type; b=RkkQOKFhsA9lLarMSEWHL8IP3U3a3aV/HJoPkQ85AfjA4VF1tJuSw2qlfGTlxBBe6vKMLdlzwSB7wqqpBrCQl6WHuEctKg91qOZwfgor55Id2wLJZVUVuz++mHZkOi7dikNPOI6rdfqBBF5t8mlyKCqgjfgJNNv3NT1Xxv4uIts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mp/L285J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9736C113D0;
+	Sun, 24 Aug 2025 02:56:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756004173;
-	bh=QCO2Wu8TSGpxJeVpqUlkP3S7BDw1YhnNMLU8THqlzl0=;
+	s=k20201202; t=1756004175;
+	bh=YoBQlm0ulSox3GmjDc721psnQpnF9RNfbeehuLeMArQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BoZv1foMDKIISRWb5oy7hEH76U4zhQJB3PmEj6+V6K8hMpq9KjRwIM7j9TFYGoRhS
-	 oAJsz0ECVWZK0rKBkATYcTK7LNcBYVPSvDeCwA3HTqL6nDgYO0+6SJUwZPRkJkYYOF
-	 grxQhPxzIyx+9sug9SlFWJGL0rlB3r4bQcPsi7RGnQ/BO7Flx+iWKI6TwRA/ZH7Yjc
-	 KHRneDDcrqul03g6M9YYXS9TRb9v+CMFIDEWU8t68x7hHoOQCVAE5PBE8uuW4yUZCW
-	 d9QoRdSqtibWrjcy4FPCETbDb2j2l/0vmVX2N3UPekows4e3xkCGFYaO9Whl9iue5S
-	 lmOnwn5jif5PQ==
+	b=mp/L285JmYGRq+LCzcFVp1/DXEJ7HSy6Cc9KXQqpsziPWkWnNQLZK0qZxkfoWnhK2
+	 9wMvO/Lbquii8jgBLvTHVP/m0MAmqD2m9rGUHynZmBz5TG+aUIHVk3+N3GL+WkAl9k
+	 YbZCC2+FzASNo6EHgrRystdht53vhg8kTBM6i01Wr86FHgWWfAxnWiD/4v/qb3fK27
+	 m9R8D+DMEFJNvhkxCY7+30SKVPzfw7ls128wCD9LJLu9s79gWHW0k+jW8UWJqzPwwQ
+	 3IHFZtBPS3/ynhQ4mqcdfzqmMeA8U9YnW+B5tKrTGlHTq+nEZCNxOiP0qNUp1SzFf5
+	 B7gXsaqrkpr5g==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Taniya Das <quic_tdas@quicinc.com>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+	Imran Shaik <quic_imrashai@quicinc.com>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: qcom: sm8550: switch to 4 interrupt cells to add PPI partitions for PMUs
-Date: Sat, 23 Aug 2025 21:55:47 -0500
-Message-ID: <175600415288.952266.17495329138850489230.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v5 0/3] Add support for clock controllers and CPU scaling for QCS615
+Date: Sat, 23 Aug 2025 21:55:49 -0500
+Message-ID: <175600415261.952266.11240532352802429049.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250820-topic-sm8550-upstream-pmu-ppi-4-cells-v1-0-a8915672e996@linaro.org>
-References: <20250820-topic-sm8550-upstream-pmu-ppi-4-cells-v1-0-a8915672e996@linaro.org>
+In-Reply-To: <20250702-qcs615-mm-cpu-dt-v4-v5-0-df24896cbb26@quicinc.com>
+References: <20250702-qcs615-mm-cpu-dt-v4-v5-0-df24896cbb26@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,22 +74,26 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 20 Aug 2025 11:49:21 +0200, Neil Armstrong wrote:
-> Swich to 4 interrupt cells on the GIC node to allow us passing
-> the proper PPI interrupt partitions for the ARM PMUs.
+On Wed, 02 Jul 2025 14:43:08 +0530, Taniya Das wrote:
+> Add the video, camera, display and gpu clock controller nodes and the
+> cpufreq-hw node to support cpu scaling.
 > 
-> Based on thr SM8650 work at: [1]
+> Clock Dependency:
+> https://lore.kernel.org/all/20250702-qcs615-mm-v10-clock-controllers-v11-0-9c216e1615ab@quicinc.com
 > 
-> [1] https://lore.kernel.org/all/20250227-topic-sm8650-pmu-ppi-partition-v3-0-0f6feeefe50f@linaro.org/
+> Changes in v5:
+> - Update the documentation for CPUFREQ-HW for QCS615.
+> - Update the device tree node for cpufreq-hw to point to the new compatible.
+> - Link to v4: https://lore.kernel.org/r/20250625-qcs615-mm-cpu-dt-v4-v4-0-9ca880c53560@quicinc.com
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: qcom: sm8550: switch to interrupt-cells 4 to add PPI partitions
-      commit: 40db99f1b6aaf47064aa3891c92eae01da215d6e
-[2/2] arm64: dts: qcom: sm8550: add PPI interrupt partitions for the ARM PMUs
-      commit: 4f97774ac2ee37d29adfd9732009729e1cbf7bdf
+[2/3] arm64: dts: qcom: qcs615: Add clock nodes for multimedia clock
+      commit: f9c36698db91780eed4ee3a90794bda2a4252166
+[3/3] arm64: dts: qcom: qcs615: Add CPU scaling clock node
+      commit: fecc6e0b0260279cd1508903db62f370ef4530d4
 
 Best regards,
 -- 
