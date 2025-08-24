@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-208739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 895F8B331F1
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 20:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C98B331F4
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 20:14:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 264A0447F43
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 18:11:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C4364807BA
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 18:11:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF562E54AF;
-	Sun, 24 Aug 2025 18:09:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92EC2E5B2F;
+	Sun, 24 Aug 2025 18:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7YkPPbO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SDWCSPoB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D732E5435;
-	Sun, 24 Aug 2025 18:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF6F2E5B2B;
+	Sun, 24 Aug 2025 18:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756058964; cv=none; b=adjHMGrbnPyXSLCOz/fBzTc8kX1Vo1vU7hOC3MVy+O4jnb7mkRKQWQmdiotCCN2eqlGntffgSp4+ICYCwp5pgXOlTbunVZFL32rK1heqjWp4pLLvVdiaRHHxLqkX0m4Xp7ZdgzgLmLJbC7qrb64P6LtyO/d54zw5sVllhPVxWdg=
+	t=1756058968; cv=none; b=rtfiplrLjVmF+fQQBvYd5f/nh79/TBq4RNpI72siHkCSvfQuDIgVplKp6k1qrt12V/DkblPmefLsk4CSRea49fyrMi0Ao1NyNCc7BXfbbIXvKD0UCBZlARFKpt38d96Sx76QRuxU7+UA1p/DAEwgaqarkJ2gZ0QQcj4szEQvXoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756058964; c=relaxed/simple;
-	bh=6xwCyuADMxUWNMqY6ctIoE11fZEZ1HKzp+/zu1QHHaI=;
+	s=arc-20240116; t=1756058968; c=relaxed/simple;
+	bh=3jhT/EEyzXANyIz1YGE9FVNl0vOKgiphcREZ9lWL90g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mLM017s70UooMcn1jIn8QFXLm5GkYUH+RU1VmsaZ5EINmIT4xSj8HLP9ZJvyh1kCVbqUgmeBTQuPC1jZ/4uGheOpqEuHOHKQOTqtzSwN85b4ZIvRna+LQfUCJ3w1qV5Aze3xL5/oYJXjdleyWDZmAFvU56e+vnzmhbq2jiprT1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L7YkPPbO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DCF3C4CEEB;
-	Sun, 24 Aug 2025 18:09:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ixjZZ2u2YMLIS3eeEAKz2G+3CYZAeWqsxOraCGYmCAxqMWwFYTftVe9zeoseF52o+Kxnwglf7haqqOIvd9ZyFdnyQHXl/b/bN4pHlrj0dsC9EHxplxBidf2Id1w2tyZn8SbENej4vbs3IjGaP9cBKfeBig57NU7+Eia2yGm0OMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SDWCSPoB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 492EEC4CEEB;
+	Sun, 24 Aug 2025 18:09:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756058964;
-	bh=6xwCyuADMxUWNMqY6ctIoE11fZEZ1HKzp+/zu1QHHaI=;
+	s=k20201202; t=1756058968;
+	bh=3jhT/EEyzXANyIz1YGE9FVNl0vOKgiphcREZ9lWL90g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L7YkPPbOmOrD9BnBR4Wdcf0+6tQC8kef/OFN2zPv4IDHgMXl2YS+jWoO+eXBexl1Z
-	 PAnI317KEYx2/LkOuM/a0gxoQ7ZTVhHPLqbGnxRrNHixhHS0UzMrZ20gG95Ancth0N
-	 I6WgO/NXTrrkq7TN9xKgLgKdwSIqDsWM+5IexId/uUknEkQkJBM+115MtbR0DByfOF
-	 RhhRY5jYIqrVNXYicspO+ZrHyw3KDOmLJOjw6JPYYa5Vg6H+KIfiUEBQSNk3GFd+Sr
-	 KtLDdWTDgj7mjF2rLZ3zLcOLt/SKSX/0dxYbKcLwOfXXsVVPxGeXy9+TJScHqXx/dB
-	 3TXMhO6irsqmA==
-Message-ID: <539ede1a-eab6-4e8d-b108-11033cb39512@kernel.org>
-Date: Sun, 24 Aug 2025 19:14:36 +0200
+	b=SDWCSPoBRgdCgPsYVUlXzW7x7CIMccXAS8j4MHVX9x+3JKLheKpgfFDM41V1CsoKx
+	 xweHNOguHSEN3nIZMAEvuYVnTG8U2YER6x150jLSvSVk+DFWdZYP/qpI7hNFTYBR+s
+	 KtFHMjH0By2bz22KKHj6Wix6AhoDJO2nnvEsYTLR0C6MRThsZGpiiAoAzXEhhvDfCK
+	 s6OJ3ZRgQE9u1DTG53SqHFYtkOKlRh0bootTRDCx5lEJ2Softk9ou9y39tjiGxs2Zo
+	 B1dyXgmK7dP5nuNtAbA818hipqF0LHgD8faj1vbA6T0al7fOZcqzVCFBfL/NWvJ139
+	 KiPiBwPAVXn3g==
+Message-ID: <0cb62840-845b-4a9f-94c6-e40d0b72ce95@kernel.org>
+Date: Sun, 24 Aug 2025 19:16:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] arm64: dts: exynos: google: add Maxim MAX77759
- Fuel-gauge
-To: t.antoine@uclouvain.be, Sebastian Reichel <sre@kernel.org>,
+Subject: Re: [PATCH net-next v6 1/3] dt-bindings: net: dsa: yt921x: Add
+ Motorcomm YT921x switch support
+To: Yangfl <mmyangfl@gmail.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org
-References: <20250804-b4-gs101_max77759_fg-v5-0-03a40e6c0e3d@uclouvain.be>
- <20250804-b4-gs101_max77759_fg-v5-4-03a40e6c0e3d@uclouvain.be>
+ Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250824005116.2434998-1-mmyangfl@gmail.com>
+ <20250824005116.2434998-2-mmyangfl@gmail.com>
+ <20250824-jolly-amaranth-panther-97a835@kuoka>
+ <CAAXyoMOfhSWhRCiFudju-DNtvD+8kHGhLzT2NGBF2cK_Ctviyw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,43 +110,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250804-b4-gs101_max77759_fg-v5-4-03a40e6c0e3d@uclouvain.be>
+In-Reply-To: <CAAXyoMOfhSWhRCiFudju-DNtvD+8kHGhLzT2NGBF2cK_Ctviyw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 04/08/2025 16:26, Thomas Antoine via B4 Relay wrote:
-> From: Thomas Antoine <t.antoine@uclouvain.be>
+On 24/08/2025 11:25, Yangfl wrote:
+> On Sun, Aug 24, 2025 at 5:20 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Sun, Aug 24, 2025 at 08:51:09AM +0800, David Yang wrote:
+>>> The Motorcomm YT921x series is a family of Ethernet switches with up to
+>>> 8 internal GbE PHYs and up to 2 GMACs.
+>>>
+>>> Signed-off-by: David Yang <mmyangfl@gmail.com>
+>>> ---
+>>
+>> <form letter>
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
+>>
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions of patchset, under or above your Signed-off-by tag, unless
+>> patch changed significantly (e.g. new properties added to the DT
+>> bindings). Tag is "received", when provided in a message replied to you
+>> on the mailing list. Tools like b4 can help here. However, there's no
+>> need to repost patches *only* to add the tags. The upstream maintainer
+>> will do that for tags received on the version they apply.
+>>
+>> Please read:
+>> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+>>
+>> *If a tag was not added on purpose, please state why* and what changed.
+>> </form letter>
+>>
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Add the node for the Maxim MAX77759 fuel gauge as a slave of the i2c.
+> Thanks.
 > 
-> The TODO is still applicable given there are other slaves on the
-> bus (e.g. PCA9468, other MAX77759 functions and the MAX20339 OVP).
+>>  - use enum for reg in dt binding
 > 
-> For the device specific values (full design capacity and terminal
-> current), the device should check an EEPROM at address 0x50 of the
-> hsi2c_8 for a battery id stored in register 0x17. A set of parameters
-> for the initialization of the fuel gauge should be chosen based on
-> this id. Those sets are defined here:
-> 
-> Link: https://android.googlesource.com/kernel/gs/+/refs/heads/android-gs-raviole-5.10-android15/arch/arm64/boot/dts/google/gs101-oriole-battery-data.dtsi
-> Link: https://android.googlesource.com/kernel/gs/+/refs/heads/android-gs-raviole-5.10-android15/arch/arm64/boot/dts/google/gs101-raven-battery-data.dtsi
-> 
-> This does not seem to be a standard pattern in the kernel currently
-> so it is not implemented. Values observed on tested devices are
-> instead used. The driver or the devicetree should be should be
-> extended in the future to take versions into account.
-> 
-> The pinctrl name follows the convention proposed in
-> Link: https://lore.kernel.org/all/20250524-b4-max77759-mfd-dts-v2-2-b479542eb97d@linaro.org/
-> 
-> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
-> ---
->  arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 10 ++++++++
->  .../boot/dts/exynos/google/gs101-pixel-common.dtsi | 30 ++++++++++++++++++++++
->  arch/arm64/boot/dts/exynos/google/gs101-raven.dts  | 11 ++++++++
->  3 files changed, 51 insertions(+)
+> I made a change in dt binding. If you are fine with that change, I'll
+> add the tag in the following versions (if any).
 
-Code looks fine, so same comment as for defconfig change.
+
+Cover letter must state the reason.
+
 
 Best regards,
 Krzysztof
