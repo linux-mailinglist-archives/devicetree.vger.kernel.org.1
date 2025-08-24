@@ -1,163 +1,191 @@
-Return-Path: <devicetree+bounces-208671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1DA6B32F44
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 13:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBCAEB32F56
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 13:20:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79E7E2052F1
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 11:14:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AC2D205AA2
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 11:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B721B27E041;
-	Sun, 24 Aug 2025 11:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 093012D541B;
+	Sun, 24 Aug 2025 11:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b="BIX6Ywur"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Loerx6e1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3764317D;
-	Sun, 24 Aug 2025 11:14:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8E22C327D;
+	Sun, 24 Aug 2025 11:20:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756034057; cv=none; b=W67bOjZyK6KM25WO8dpTIQ0PBUyUqnbkCzpNyqAdxt3g/9bzoMj9xcXJ/M93la82tk2rGlcUEvUoM5T+ohycDFBtlUHIqzJTK1OBkvszxM+gecSklnxKjE/NG5WbodzCJUAspyWs1KkVrBITumDESZmb2vmEt03z0v50D1/zqhU=
+	t=1756034426; cv=none; b=Sp3huwp1hGBx/UM1spkm9+VlY1JqT2edoGJcY75gGJubctbiRsPvL3AdFF1ZcP65wnfhlSTQl6417teVJoeIh/Trd8LMvHK82eM1vHBOgANI2gQHX0F97lZ5N2hte4QWIJgiJDxZ6VL192wSusoNBJrL9HDhUE4UTtB9Z3qZgP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756034057; c=relaxed/simple;
-	bh=FerGia3PhqrqFYSjiLJULWoh3Jr9z/+AiMZOROAQOmY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Cc:Subject:
-	 References:In-Reply-To; b=KP6oQd+1ZF/mAa1LfCFC/wM0bA7Wr43NYqpFBdIbwGwqgUQBHnrjWNH+Yr3tx+2rYr8ZKjZXmVIofW7/0hGoyGSehHdO7F6ph0c5iQxMmRJHSqwerNPBLozllFnmPmsVotwHjnrVvZnf/85tV3uYbnG+J9NyJZRePOGGJ/yB0u4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b=BIX6Ywur; arc=none smtp.client-ip=195.113.20.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
-X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
-	serial F5FD910E8FE2121B897F7E55B84E351D
-	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
-	auth type TLS.CUNI
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mff.cuni.cz;
-	s=submission; t=1756034023; x=1757334023;
-	bh=ADa+fVNGO4WZmlPkY9EPlfFvm3fduD+G2BAy5zB2N7o=; h=From;
-	b=BIX6Ywury7THcZTUYmmkJAPhdSkdCI4UXdME4S4FwGX213bfIVVUGxYziYzSB4Otd
-	 aO7LNYITNTTfZc+bz5Gwt2lOk+o4BkyNAAHPccl0otCve2rbHcP4sCS0lFu+TXV+85
-	 YSYIPBEU/wmSzQAXhb9Fu7kdkMdkhw4alxrSmbgn1JrEZIbgBIdaEg16EWXKt9/DUC
-	 SyF0oFa9HIR8p2phDhHrQnxf/mfczW3shD7zzKiiFdmPjV56J+XCYNF9ZODDAK+sV4
-	 siF/aep1v4S1dUr2OgxYgbswwnmpG9uRE2lQIpI7RktRhjAEVqzwF++EhoQDY+EjTl
-	 HZp07okK8RPMQ==
-Received: from localhost (internet5.mraknet.com [185.200.108.250])
-	(authenticated)
-	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 57OBDf7f084268
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
-	Sun, 24 Aug 2025 13:13:43 +0200 (CEST)
-	(envelope-from balejk@matfyz.cz)
+	s=arc-20240116; t=1756034426; c=relaxed/simple;
+	bh=+OkOBQx3yRrZpTiq/fQPXgpZZZmpP5pqcfVE/IglG0g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FGHH+aKvcL3kSrwtil60OblZu/D9/WzIUy0yjj1KVBOSZVuUL4rp4yKFzv/u47UFG/Ay/0YY80lENiXvbIGZvYwCt5VqioARx1PeO6C5+cXdFdzqaP8g9B/9QY4LLrYqplzKxfpoAeGbG3wiuDKhgURY7qIh6axC4GrgPXSiQtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Loerx6e1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48748C4CEEB;
+	Sun, 24 Aug 2025 11:20:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756034426;
+	bh=+OkOBQx3yRrZpTiq/fQPXgpZZZmpP5pqcfVE/IglG0g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Loerx6e1x2VjRNcM3MW45r4qwsF0WnebjbFtGiqfIagnabuMUrPsqGjz/8pdXARkw
+	 pDcnCxi84CPtleCDboazXwXvUSBdvtnBj6PkheZq+ulDz55VkY8MH8RI90GNG8yesn
+	 71NL7ijnhCN0VO3XcIQh5OnC6br9qCwbApjL+qo/Ms5KG+Kbti/S03Yi9OvQxm5F+3
+	 JUAxtYBZGnf0WIOQ3MRZeU6DVtDJRx2z5e6hJOlucBxNfcrNKlq8DGN7H9ckKOu5pW
+	 RGxFM59tXzm/yIgwyvh1fkMLeuAEnA54Zem231jrT3scTFk0YXJeXXWfgCWTHQvv93
+	 GJ5HTTBbOvgjw==
+Message-ID: <510f6efb-ada3-4848-ac8e-16fa5d1b5284@kernel.org>
+Date: Sun, 24 Aug 2025 13:20:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: iio: adc: ad7768-1: add new supported
+ parts
+To: Jonathan Santos <Jonathan.Santos@analog.com>,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Michael.Hennerich@analog.com, lars@metafoo.de, jic23@kernel.org,
+ dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com
+References: <20250824040943.9385-1-Jonathan.Santos@analog.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250824040943.9385-1-Jonathan.Santos@analog.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Sun, 24 Aug 2025 13:13:41 +0200
-Message-Id: <DCAM3WTJ4EXA.32GZBS4G7GWFJ@matfyz.cz>
-To: <linux-mmc@vger.kernel.org>, <ulf.hansson@linaro.org>,
-        =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>,
-        "Andrew Lunn"
- <andrew@lunn.ch>,
-        "Gregory Clement" <gregory.clement@bootlin.com>,
-        "Sebastian Hesselbarth" <sebastian.hesselbarth@gmail.com>,
-        "Rob Herring"
- <robh@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-From: "Karel Balej" <balejk@matfyz.cz>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [PATCH mmc/next 3/3] arm64: dts: samsung,coreprimevelte: add
- SDIO
-References: <20250824110039.28258-1-balejk@matfyz.cz>
- <20250824110039.28258-4-balejk@matfyz.cz>
-In-Reply-To: <20250824110039.28258-4-balejk@matfyz.cz>
+Content-Transfer-Encoding: 7bit
 
-Karel Balej, 2025-08-24T12:53:45+02:00:
-> +	sdh2_pins_0: sdh2-pins-0 {
-> +		pinctrl-single,pins =3D <
-> +			0x24 1
-> +			0x28 1
-> +			0x2c 1
-> +			0x30 1
-> +			0x34 1
-> +			0x38 1
-> +			0x3c 1
-> +			0x40 1
-> +		>;
-> +		pinctrl-single,drive-strength =3D <0x1000 0x1800>;
-> +		pinctrl-single,bias-pullup =3D <0 0xc000 0 0xc000>;
-> +		pinctrl-single,bias-pulldown =3D <0 0xa000 0 0xa000>;
-> +		pinctrl-single,input-schmitt =3D <0 0x30>;
-> +		pinctrl-single,input-schmitt-enable =3D <0x40 0 0x40 0x40>;
-> +		pinctrl-single,low-power-mode =3D <0 0x388>;
-> +	};
-> +
-> +	sdh2_pins_1: sdh2-pins-1 {
-> +		pinctrl-single,pins =3D <0x64 1>;
-> +		pinctrl-single,drive-strength =3D <0x1000 0x1800>;
-> +		pinctrl-single,bias-pullup =3D <0 0xc000 0 0xc000>;
-> +		pinctrl-single,bias-pulldown =3D <0 0xa000 0 0xa000>;
-> +		pinctrl-single,input-schmitt =3D <0 0x30>;
-> +		pinctrl-single,input-schmitt-enable =3D <0x40 0 0x40 0x40>;
-> +		pinctrl-single,low-power-mode =3D <0x208 0x388>;
-> +	};
-> +
-> +	sdh2_pins_2: sdh2-pins-2 {
-> +		pinctrl-single,pins =3D <0x5c 1>;
-> +		pinctrl-single,bias-pullup =3D <0xc000 0xc000 0 0xc000>;
-> +		pinctrl-single,bias-pulldown =3D <0x8000 0xa000 0x8000 0xa000>;
-> +		pinctrl-single,low-power-mode =3D <0x288 0x388>;
-> +	};
-> +
-> +	sdh2_fast_pins_0: sdh2-fast-pins-0 {
-> +		pinctrl-single,pins =3D <
-> +			0x24 1
-> +			0x28 1
-> +			0x2c 1
-> +			0x30 1
-> +			0x34 1
-> +			0x38 1
-> +			0x3c 1
-> +			0x40 1
-> +		>;
-> +		pinctrl-single,drive-strength =3D <0x1800 0x1800>;
-> +		pinctrl-single,bias-pullup =3D <0 0xc000 0 0xc000>;
-> +		pinctrl-single,bias-pulldown =3D <0 0xa000 0 0xa000>;
-> +		pinctrl-single,input-schmitt =3D <0 0x30>;
-> +		pinctrl-single,input-schmitt-enable =3D <0x40 0 0x40 0x40>;
-> +		pinctrl-single,low-power-mode =3D <0 0x388>;
-> +	};
-> +
-> +	sdh2_fast_pins_1: sdh2-fast-pins-1 {
-> +		pinctrl-single,pins =3D <0x64 1>;
-> +		pinctrl-single,drive-strength =3D <0x1800 0x1800>;
-> +		pinctrl-single,bias-pullup =3D <0 0xc000 0 0xc000>;
-> +		pinctrl-single,bias-pulldown =3D <0 0xa000 0 0xa000>;
-> +		pinctrl-single,input-schmitt =3D <0 0x30>;
-> +		pinctrl-single,input-schmitt-enable =3D <0x40 0 0x40 0x40>;
-> +		pinctrl-single,low-power-mode =3D <0x208 0x388>;
-> +	};
-> +
-> +	sdh2_fast_pins_2: sdh2-fast-pins-2 {
-> +		pinctrl-single,pins =3D <0x5c 1>;
-> +		pinctrl-single,drive-strength =3D <0x1800 0x1800>;
-> +		pinctrl-single,bias-pullup =3D <0xc000 0xc000 0 0xc000>;
-> +		pinctrl-single,bias-pulldown =3D <0x8000 0xa000 0x8000 0xa000>;
-> +		pinctrl-single,low-power-mode =3D <0x288 0x388>;
-> +	};
+On 24/08/2025 06:09, Jonathan Santos wrote:
+> Add compatibles for supported parts in the ad7768-1 family:
+> 	ADAQ7767-1, ADAQ7768-1 and ADAQ7769-1
+> 
+> Add property and checks for AAF gain, supported by ADAQ7767-1
+> and ADAQ7769-1 parts:
+> 	adi,gain-milli
+> 
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
 
-Sorry, these got mixed in by accident and should be in a separate future
-patch enabling the eMMC support. I will drop them from here when I send
-the next version.
+git send-email v2*
 
-K. B.
+Not patch by patch. You made it very difficult for us to review and to
+apply.
+
+> ---
+> v2 Changes:
+> * adi,aaf-gain property renamed to adi,gain-milli. Description was 
+>   simplified.
+> * default value add to adi,gain-milli.
+> ---
+>  .../bindings/iio/adc/adi,ad7768-1.yaml        | 43 +++++++++++++++++--
+>  1 file changed, 39 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> index c06d0fc791d3..0c39491f6179 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> @@ -4,18 +4,26 @@
+>  $id: http://devicetree.org/schemas/iio/adc/adi,ad7768-1.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Analog Devices AD7768-1 ADC device driver
+> +title: Analog Devices AD7768-1 ADC family
+>  
+>  maintainers:
+>    - Michael Hennerich <michael.hennerich@analog.com>
+>  
+>  description: |
+> -  Datasheet at:
+> -    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7768-1.pdf
+> +  Analog Devices AD7768-1 24-Bit Single Channel Low Power sigma-delta ADC family
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7768-1.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7767-1.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7768-1.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7769-1.pdf
+>  
+>  properties:
+>    compatible:
+> -    const: adi,ad7768-1
+> +    enum:
+> +      - adi,ad7768-1
+> +      - adi,adaq7767-1
+> +      - adi,adaq7768-1
+> +      - adi,adaq7769-1
+>  
+>    reg:
+>      maxItems: 1
+> @@ -58,6 +66,18 @@ properties:
+>      description:
+>        ADC reference voltage supply
+>  
+> +  adi,gain-milli:
+> +    description: |
+> +       Specifies the gain applied by the Analog Anti-Aliasing Filter (AAF) to the
+> +       ADC input (in milli units). The hardware gain is determined by which input
+
+
+I don't think there is no such thing as "milli units". milli is SI
+prefix, not unit. So "units" is the unit? Or how exactly?
+
+Basis points were before since 2022 so I don't get why these other
+bindings introduced in 2024 could not use it?
+
+Anyway, if you ever do not apply reviewers comment, then your commit msg
+should explain this. Otherwise you get the same discussion here.
+
+Best regards,
+Krzysztof
 
