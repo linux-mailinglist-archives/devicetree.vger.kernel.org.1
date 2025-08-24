@@ -1,101 +1,128 @@
-Return-Path: <devicetree+bounces-208665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE65B32F23
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 12:57:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6ACEB32F41
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 13:13:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2ABB97B45E8
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 10:55:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1209205242
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 11:13:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDAA8264A83;
-	Sun, 24 Aug 2025 10:57:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B24F288C14;
+	Sun, 24 Aug 2025 11:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="a4kTDiri"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q1FooV2S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4430B184E;
-	Sun, 24 Aug 2025 10:57:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 270EF26C3A7;
+	Sun, 24 Aug 2025 11:13:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756033033; cv=none; b=JaOO97tIVXoJvC/HwF4JIDhiPnv8kRE9t8tkxy2KWgn6u3AgY3tYcM4temPibYIN1KSDBeuV+CW6MbRQwNy5VieK+qp+RI91F/Qe01lrfADDYWyKm4B6MPWAxV+6ZadKFRsN08tGQKBbdY3mecWyE51Zfxx/Y8m9UWSS34t7RqQ=
+	t=1756034024; cv=none; b=UBKU38o/nHza/1Z/cQ2ENNe3XGluUHc/kp7Jyw1X4fe5BAdI1Dr2+9Ixhvt2uzJVlwWvPaW6b3wpVYqie7WLQG7WTvYo9l4t0Bal8veLF1NWag/oQXcq6+ZPYi62YCJKKZo+BQuuyVX6ciDGXWHRFhz7vRuZvJji7gi2PkwSsQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756033033; c=relaxed/simple;
-	bh=P0mt7TzoLG/4PyNUbPLOpLehUkcO9dGyQzCVQLh/Vr8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BVayZwnuagWQE3wKMboclz4cQJFSOPQgGWOUKGKhUM2Ymm2MnbpoX1dmBdPQKBe98QUE/q610Seoe5fe6NgWRgJ52kBctsl+W0I+L4WezDVvVsCUF8/reExIb2tvTSwtq5v7aFU7HZQ5bbSQyuY67wRsYeTQ0RCkREqKHF6fi6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=a4kTDiri; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=SvhkTLwnsyU6LHTKXKMHL524UpqTw6jFMLYcBdGhtHU=; b=a4kTDiris9yS3x12O7/dXFjzBQ
-	mNtLHCnN4WqJdpm+eNdWPbTyLsNyWsRq5b8cslO5gYhxfU0jQtFdSC6WqV1Cyw4ZPbqe+LKXAE+5K
-	r7HRh4OjrJ4n7PJM6X0GEvHjddsnMTGyqC7LPYN48Xzmr7j0gBDchFpMNscsM8ghogIMeIWIELLc5
-	/IDma2X/PeG/q/HJ5V7J/nL/2zHIxXGyumfeeQVjwWgpHIX2qd6KIP1eRc6ZNh0xzRDbpZpx5u9Jg
-	1c8Ffu4QhIKVDJSwpnh0TgGvs/Vv7lGJfyC56s9sNpPs+deAnQM/w8VEd2BTuaQhVJayOm0yQf5pJ
-	b/GPTOZQ==;
-Received: from [62.245.128.201] (helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uq8PJ-0005c9-Ne; Sun, 24 Aug 2025 12:57:05 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hsun Lai <i@chainsx.cn>,
- Alex Bee <knaerzche@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: stable+noautosel@kernel.org
-Subject:
- Re: (subset) [PATCH 1/2] arm64: dts: rockchip: Fix wifi interrupts flag on
- Sakura Pi RK3308B
-Date: Sun, 24 Aug 2025 12:57:05 +0200
-Message-ID: <16812972.uLZWGnKmhe@phil>
-In-Reply-To: <175603280229.3445205.18144135063810636432.b4-ty@sntech.de>
-References:
- <20250818090445.28112-3-krzysztof.kozlowski@linaro.org>
- <175603280229.3445205.18144135063810636432.b4-ty@sntech.de>
+	s=arc-20240116; t=1756034024; c=relaxed/simple;
+	bh=mv/bsRsVdM7pQCuwt1SnavPyP9K9Bv9tTNozHds6S8Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Szm/2Hc3AicuwCR3psd7IOfh+vU5kBAEOH1U1PT/HDR19wJkIGjpn6JdT4hH5azezUttXQlfAwIc3lmElrYDShR3Km7QhBIJZIhChVnMhmu1PZKYcNv60tDUXOeNV8QI0YtRjQsw0JpvKv7tddvHHREfiwdXc5k2DXo4fySGT4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q1FooV2S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35C94C4CEEB;
+	Sun, 24 Aug 2025 11:13:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756034021;
+	bh=mv/bsRsVdM7pQCuwt1SnavPyP9K9Bv9tTNozHds6S8Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=q1FooV2SVNS+J+o5HD1EFtwyz4Squld/IWRpQQomvuqnpBezptQ35W+wxahx5C4vC
+	 dTrdpWV3JnhwEYm9AVvK8BXKNPLIL92P+YxNMqF2la7deN50Wvy+Nixy4NngeHjXUu
+	 w9jKLBLmszlZ1jnj6RctxWi3Od5i7SGzDawrVSn2d3W6MGLi9glEFOfYYAwfCXX7uh
+	 0uAhO2Ow+8FxhN5rm4FyEhKghmUB19m8j8PhWcMDjEQuUstj9QRJyuOrqYS4e0Re/6
+	 wCZmr2iPOhOeZFPP6hGpM4r31hGTg4R+xFf1XJEJ5zX9MGkLSbpYmR9ewTZX1ceSiA
+	 4cTCSPMkK064w==
+Message-ID: <6e9cf11f-c160-4833-b3f4-cb22ecf6a26c@kernel.org>
+Date: Sun, 24 Aug 2025 13:13:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH mmc/next 1/3] arm64: dts: samsung,coreprimevelte: add PMIC
+To: Karel Balej <balejk@matfyz.cz>, linux-mmc@vger.kernel.org,
+ ulf.hansson@linaro.org, =?UTF-8?Q?Duje_Mihanovi=C4=87?=
+ <duje@dujemihanovic.xyz>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20250824110039.28258-1-balejk@matfyz.cz>
+ <20250824110039.28258-2-balejk@matfyz.cz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250824110039.28258-2-balejk@matfyz.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Am Sonntag, 24. August 2025, 12:54:43 Mitteleurop=C3=A4ische Sommerzeit sch=
-rieb Heiko Stuebner:
->=20
-> On Mon, 18 Aug 2025 11:04:46 +0200, Krzysztof Kozlowski wrote:
-> > GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-> > These are simple defines so they could be used in DTS but they will not
-> > have the same meaning: GPIO_ACTIVE_HIGH =3D 0 =3D IRQ_TYPE_NONE.
-> >=20
-> > Correct the interrupt flags, assuming the author of the code wanted same
-> > logical behavior behind the name "ACTIVE_xxx", this is:
-> >   ACTIVE_HIGH  =3D> IRQ_TYPE_LEVEL_HIGH
-> >=20
-> > [...]
->=20
-> Applied, thanks!
->=20
-> [2/2] arm64: dts: rockchip: Fix Bluetooth interrupts flag on Neardi LBA33=
-68
->       commit: c9f986a54d4031a9b9dff1eb616b0796aa28c730
-
-Waiting a bit more for patch1, to possibly get some testing.
+On 24/08/2025 12:53, Karel Balej wrote:
+> Bind power management chip to the samsung,coreprimevelte smartphone.
+> This enables support for onkey and RTC as well as for regulators two of
+> which are explicitly bound here to the SD card.
 
 
-Heiko
+Your patches have confusing mmc/next prefix. This is a SoC patchset, not
+mmc.
 
+> 
+> Signed-off-by: Karel Balej <balejk@matfyz.cz>
 
-
+Best regards,
+Krzysztof
 
