@@ -1,67 +1,80 @@
-Return-Path: <devicetree+bounces-208748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B23FB3324D
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 21:16:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72BBAB33263
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 21:39:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D3E63AC501
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 19:16:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A2921B232F8
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 19:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D7514A4F9;
-	Sun, 24 Aug 2025 19:16:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6929621858D;
+	Sun, 24 Aug 2025 19:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="cj0Sdvxs"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ldv31Tmn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63E528F40;
-	Sun, 24 Aug 2025 19:16:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6831372613;
+	Sun, 24 Aug 2025 19:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756062975; cv=none; b=TSgZzi/1OJa0AqAhu7KYkTSry2bOtynPb73I5s0u0DCcwGyswAGU3K60q3DJkJRBu2I0G8/jeHxzYD5iBNjz/EzjsTGhWD9UpGyTJJBTwDjuzb/BLDFITonLikXO5M1RXDccTfSGwJ7lLM/HLnLfe0xzOOpXwXi6CPLQB+TTz2k=
+	t=1756064343; cv=none; b=c3FR98moUNXJA8C9jQL1WOskY/xyWwUidZtP7gPAnSdU91N4+j4hYvnlIjtXrEH/N5xd/YMFoeAeF1DE8dAVGqZBmI4Vp/D3+IR6uVCJJC/wA7aPGCKzbkmthqd1IpKBshpe09HoDZyWZoDwRyrJkKRTUcAa4TkD4diUWmdPUdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756062975; c=relaxed/simple;
-	bh=st9Ds3jobSfw9+5q7AG6j86m/j5n1M7RtSK7AnqNspM=;
+	s=arc-20240116; t=1756064343; c=relaxed/simple;
+	bh=8DlnE/rWJ6b3Mfl7JEc3Sc72YTacrmk6cJufKubDOs4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CXI62CdEr1ojUW7+Kpgcjb4N+n6mWuvEC5t4N4STkFl7X64Cmd+pVDiTzi/9A5ifMlIOwveXGBC4s9sAkI/faJnn4UtNQibWOFB699t0tZdvuKdBCmf2SSRqM390CvNzTzu4ixWvKBiAXzeXGN0dew1qWc5zPPmgv3u2mWOmU14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=cj0Sdvxs; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=TvWEitKYaMPggTFJqji09zRtVLHG02IUVMr57KfVTJI=; b=cj0SdvxsXntwrah3q4bjaCkiAo
-	A/4YS/bAKX8G7fw0d2188+6+mXlcvugqKTLYRq0XEHI7b3930sUUPvJ+XSYLEmDjE2+BUu8sxxD6U
-	kiKFxKEmW2WfeZN+7H/Jl9tWsHa8B++zg30i68cGKcjvtYFZA9BDD1yxWeKh5CauIjWo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uqGCE-005qyt-S2; Sun, 24 Aug 2025 21:16:06 +0200
-Date: Sun, 24 Aug 2025 21:16:06 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Yangfl <mmyangfl@gmail.com>, netdev@vger.kernel.org,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=CpiTZjxz2SIproBGO6IQtma6Istf8q+P7q7PPx2lKT06N7dJHCitVBb1Vilc0oICGIRxnYqfAHWck8BYYZYiTqXmVHuUf86n3t48QHooSNwagE7Rjs/wpxffk7Bqz5dvJkmZ5lRBo6Qet6TWP/aPQ7aOKyxQa/a07xIwaNpuPuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ldv31Tmn; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756064341; x=1787600341;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8DlnE/rWJ6b3Mfl7JEc3Sc72YTacrmk6cJufKubDOs4=;
+  b=Ldv31TmnDZcQGYdCOuS0SZcbvRA+IGb1ej0d3Tj+jZmjyHxE9GSpea+Z
+   OIWuLJUgsuM/TrjumN4mCfZdHLRhT2jPUwogg5EskvCqSgemRb8GKUK9F
+   iSSQ7s8zidIH1fLFYcU3O301d3atzD0zXdpMvN0nvCZIcVXrTA2vZ9RxM
+   YHrFafhyyyrA6jsd0gh8Zq/0a/Xn8P57buDdju58XXdWYx4goxzqbo/BF
+   DOcv5eKjgE9hOc69nhyeDPj33pRsVyfSxiQeWT9/qn0FlI5EWz9JlvcVc
+   bEaxAMFd4xuGtn4GoULSOIjm9pGOqb1JRw6kpcM2cBCIDn5J3OodMi917
+   A==;
+X-CSE-ConnectionGUID: bOtJvWX1QWaM0iTRh1J5qw==
+X-CSE-MsgGUID: 6a31BhUtQo+EtyoQ17HR7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11532"; a="69386969"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="69386969"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2025 12:39:00 -0700
+X-CSE-ConnectionGUID: MSw73TzIQPKqeRD6Q/wQQw==
+X-CSE-MsgGUID: E77TZh/xTvu73DwINgJcmQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="192793643"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by fmviesa002.fm.intel.com with ESMTP; 24 Aug 2025 12:38:58 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uqGYJ-000NBP-1Q;
+	Sun, 24 Aug 2025 19:38:55 +0000
+Date: Mon, 25 Aug 2025 03:38:06 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jisheng Zhang <jszhang@kernel.org>, Vinod Koul <vkoul@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v6 3/3] net: dsa: yt921x: Add support for
- Motorcomm YT921x
-Message-ID: <34f10173-0f88-43cf-81e6-744c73489574@lunn.ch>
-References: <20250824005116.2434998-1-mmyangfl@gmail.com>
- <20250824005116.2434998-4-mmyangfl@gmail.com>
- <ad61c240-eee3-4db4-b03e-de07f3efba12@lunn.ch>
- <CAAXyoMP-Z8aYTSZwqJpDYRVcYQ9fzEgmDuAbQd=UEGp+o5Fdjg@mail.gmail.com>
- <aKtWej0nymW-baTC@shell.armlinux.org.uk>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 14/14] dmaengine: dma350: Support ARM DMA-250
+Message-ID: <202508250351.vxyvTsJa-lkp@intel.com>
+References: <20250823154009.25992-15-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,22 +83,167 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aKtWej0nymW-baTC@shell.armlinux.org.uk>
+In-Reply-To: <20250823154009.25992-15-jszhang@kernel.org>
 
-> > They are locked wrappers for their unlocked counterparts. I'd like to
-> > name the unlocked versions __yt921x_smi_read just like __mdiobus_read,
-> > but that was turned down in the previous version, so I have to give
-> > the locked versions a stranger marker since we use unlocked versions
-> > more often.
-> 
-> Who turned it down, and what reason did they give, given that it's an
-> established pattern in the phylib, mdiobus and mdiodev APIs.
+Hi Jisheng,
 
-I did. In general, DSA drivers don't use __ for their own functions,
-but there are exceptions.
+kernel test robot noticed the following build warnings:
 
-I also think this will all go away once the current problems with
-locking in this driver are solved.
+[auto build test WARNING on vkoul-dmaengine/next]
+[also build test WARNING on robh/for-next krzk-dt/for-next linus/master v6.17-rc2 next-20250822]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-	Andrew
+url:    https://github.com/intel-lab-lkp/linux/commits/Jisheng-Zhang/dmaengine-dma350-Fix-CH_CTRL_USESRCTRIGIN-definition/20250824-000425
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
+patch link:    https://lore.kernel.org/r/20250823154009.25992-15-jszhang%40kernel.org
+patch subject: [PATCH 14/14] dmaengine: dma350: Support ARM DMA-250
+config: x86_64-buildonly-randconfig-002-20250824 (https://download.01.org/0day-ci/archive/20250825/202508250351.vxyvTsJa-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250825/202508250351.vxyvTsJa-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508250351.vxyvTsJa-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/dma/arm-dma350.c:849:34: warning: variable 'sg' is uninitialized when used here [-Wuninitialized]
+     849 |         sglen = DIV_ROUND_UP(sg_dma_len(sg), step_max) * periods;
+         |                                         ^~
+   include/linux/scatterlist.h:34:27: note: expanded from macro 'sg_dma_len'
+      34 | #define sg_dma_len(sg)          ((sg)->dma_length)
+         |                                   ^~
+   include/uapi/linux/const.h:51:40: note: expanded from macro '__KERNEL_DIV_ROUND_UP'
+      51 | #define __KERNEL_DIV_ROUND_UP(n, d) (((n) + (d) - 1) / (d))
+         |                                        ^
+   drivers/dma/arm-dma350.c:835:24: note: initialize the variable 'sg' to silence this warning
+     835 |         struct scatterlist *sg;
+         |                               ^
+         |                                = NULL
+   1 warning generated.
+
+
+vim +/sg +849 drivers/dma/arm-dma350.c
+
+   824	
+   825	static struct dma_async_tx_descriptor *
+   826	d250_prep_cyclic(struct dma_chan *chan, dma_addr_t buf_addr,
+   827			 size_t buf_len, size_t period_len, enum dma_transfer_direction dir,
+   828			 unsigned long flags)
+   829	{
+   830		struct d350_chan *dch = to_d350_chan(chan);
+   831		u32 len, periods, trig, *cmd, tsz;
+   832		dma_addr_t src, dst, phys, mem_addr;
+   833		size_t xfer_len, step_max;
+   834		struct d350_desc *desc;
+   835		struct scatterlist *sg;
+   836		struct d350_sg *dsg;
+   837		int sglen, i;
+   838	
+   839		if (unlikely(!is_slave_direction(dir) || !buf_len || !period_len))
+   840			return NULL;
+   841	
+   842		if (dir == DMA_MEM_TO_DEV)
+   843			tsz = __ffs(dch->config.dst_addr_width | (1 << dch->tsz));
+   844		else
+   845			tsz = __ffs(dch->config.src_addr_width | (1 << dch->tsz));
+   846		step_max = ((1UL << 16) - 1) << tsz;
+   847	
+   848		periods = buf_len / period_len;
+ > 849		sglen = DIV_ROUND_UP(sg_dma_len(sg), step_max) * periods;
+   850	
+   851		desc = kzalloc(struct_size(desc, sg, sglen), GFP_NOWAIT);
+   852		if (!desc)
+   853			return NULL;
+   854	
+   855		dch->cyclic = true;
+   856		dch->periods = periods;
+   857		desc->sglen = sglen;
+   858	
+   859		sglen = 0;
+   860		for (i = 0; i < periods; i++) {
+   861			len = period_len;
+   862			mem_addr = buf_addr + i * period_len;
+   863			do {
+   864				desc->sg[sglen].command = dma_pool_zalloc(dch->cmd_pool, GFP_NOWAIT, &phys);
+   865				if (unlikely(!desc->sg[sglen].command))
+   866					goto err_cmd_alloc;
+   867	
+   868				xfer_len = (len > step_max) ? step_max : len;
+   869				desc->sg[sglen].phys = phys;
+   870				dsg = &desc->sg[sglen];
+   871	
+   872				if (dir == DMA_MEM_TO_DEV) {
+   873					src = mem_addr;
+   874					dst = dch->config.dst_addr;
+   875					trig = CH_CTRL_USEDESTRIGIN;
+   876				} else {
+   877					src = dch->config.src_addr;
+   878					dst = mem_addr;
+   879					trig = CH_CTRL_USESRCTRIGIN;
+   880				}
+   881				dsg->tsz = tsz;
+   882				dsg->xsize = lower_16_bits(xfer_len >> dsg->tsz);
+   883	
+   884				cmd = dsg->command;
+   885				cmd[0] = LINK_CTRL | LINK_SRCADDR | LINK_DESADDR |
+   886					 LINK_XSIZE | LINK_SRCTRANSCFG |
+   887					 LINK_DESTRANSCFG | LINK_XADDRINC | LINK_LINKADDR;
+   888	
+   889				cmd[1] = FIELD_PREP(CH_CTRL_TRANSIZE, dsg->tsz) |
+   890					 FIELD_PREP(CH_CTRL_XTYPE, CH_CTRL_XTYPE_CONTINUE) |
+   891					 FIELD_PREP(CH_CTRL_DONETYPE, CH_CTRL_DONETYPE_CMD) | trig;
+   892	
+   893				cmd[2] = lower_32_bits(src);
+   894				cmd[3] = lower_32_bits(dst);
+   895				cmd[4] = FIELD_PREP(CH_XY_SRC, dsg->xsize) |
+   896					 FIELD_PREP(CH_XY_DES, dsg->xsize);
+   897				if (dir == DMA_MEM_TO_DEV) {
+   898					cmd[0] |= LINK_DESTRIGINCFG;
+   899					cmd[5] = dch->coherent ? TRANSCFG_WB : TRANSCFG_NC;
+   900					cmd[6] = TRANSCFG_DEVICE;
+   901					cmd[7] = FIELD_PREP(CH_XY_SRC, 1);
+   902					cmd[8] = FIELD_PREP(CH_DESTRIGINMODE, CH_DESTRIG_DMA_FC) |
+   903						  FIELD_PREP(CH_DESTRIGINTYPE, CH_DESTRIG_HW_REQ);
+   904				} else {
+   905					cmd[0] |= LINK_SRCTRIGINCFG;
+   906					cmd[5] = TRANSCFG_DEVICE;
+   907					cmd[6] = dch->coherent ? TRANSCFG_WB : TRANSCFG_NC;
+   908					cmd[7] = FIELD_PREP(CH_XY_DES, 1);
+   909					cmd[8] = FIELD_PREP(CH_SRCTRIGINMODE, CH_SRCTRIG_DMA_FC) |
+   910						  FIELD_PREP(CH_SRCTRIGINTYPE, CH_SRCTRIG_HW_REQ);
+   911				}
+   912	
+   913				if (sglen)
+   914					desc->sg[sglen - 1].command[9] = phys | CH_LINKADDR_EN;
+   915	
+   916				len -= xfer_len;
+   917				mem_addr += xfer_len;
+   918				sglen++;
+   919			} while (len);
+   920			desc->sg[sglen - 1].command[1] |= FIELD_PREP(CH_CTRL_DONETYPE,
+   921								     CH_CTRL_DONETYPE_CMD);
+   922		}
+   923	
+   924		/* cyclic list */
+   925		desc->sg[sglen - 1].command[9] = desc->sg[0].phys | CH_LINKADDR_EN;
+   926	
+   927		mb();
+   928	
+   929		return vchan_tx_prep(&dch->vc, &desc->vd, flags);
+   930	
+   931	err_cmd_alloc:
+   932		for (i = 0; i < sglen; i++)
+   933			dma_pool_free(dch->cmd_pool, desc->sg[i].command, desc->sg[i].phys);
+   934		kfree(desc);
+   935		return NULL;
+   936	}
+   937	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
