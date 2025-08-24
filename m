@@ -1,192 +1,138 @@
-Return-Path: <devicetree+bounces-208724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B517CB3314A
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 17:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88703B33165
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 18:13:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9935B201F07
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 15:51:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3905E2066A1
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 16:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 213002D661D;
-	Sun, 24 Aug 2025 15:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E777A2D542B;
+	Sun, 24 Aug 2025 16:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="dFyRrMdh"
+	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="fV+t7S/9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6151526AABE;
-	Sun, 24 Aug 2025 15:51:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED6E72DC32B;
+	Sun, 24 Aug 2025 16:12:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756050707; cv=none; b=ivfkVWdSp/QR5+bfJLKP3E83uXASdN+1TZO0ZaPkoFH2e8nnrC2KD81iCznMSM1EKB0Iqo0EdMHQXBRN/HkkHTPFzZ2oIew99g3f63oi3wA2kAJ9MqQCIuymJY8RzSMAuAUykTC/8dLnmVGLzW5LNJk1vZ1ykyja5tySk9Y55mk=
+	t=1756051980; cv=none; b=VknLXEmnKwlLBS7oZSjOsZGLOdA/gL7HjLJY2P1j1A1mvyV8PhNeOm1F15kdF4vL4T44wDpYQeNl7fe1Emu/LsU5sOdoAIQLkWCHP4xSuRocwHiUEx3hdatrNY+fz6FaoDpSKvVDTxAShq9NUmt0ASbieJOETyqPmETtT+J1NYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756050707; c=relaxed/simple;
-	bh=C0jpTVDrWDYIll7AWohPMa3s7doEJc5uOrojSmRqOpc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N3FpcYkiw24pl8EYiD3WQ/UUZWtaorcDHFK4lajVbZaecirRp0ERAzLE8SrvmIN/VlgwpBcpx5M2ErdulpZG1w1DsWBSvgXzoJVE/1IbH+fACjZEPhu6mPtXbAX/WsllrkO4qqUalMvDSnTVifcWNl+Ku+RKpSe6gWrbrOfrEoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=dFyRrMdh; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=CwqiQcB4xrvcvWNtg6LHRtzZ6d8tG73a+/pJL8A4ZFQ=; b=dFyRrMdhPkkZ4/WTH4BMk+ibml
-	nEogUHkctkxbr+aIr6tZ0kuiILZRx4qExfRqhd4ixb1gkha95dokG38/uIdv9RU/icX+JxHRal+02
-	HWGCwNTv7TfHmMeMTKp4+4X6VmUOCjpeZ6YVfQ25JH3ALYaQqyBu6TDYVneA1cw3Xyl4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uqD0L-005qIz-1h; Sun, 24 Aug 2025 17:51:37 +0200
-Date: Sun, 24 Aug 2025 17:51:37 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: David Yang <mmyangfl@gmail.com>
-Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v6 3/3] net: dsa: yt921x: Add support for
- Motorcomm YT921x
-Message-ID: <ad61c240-eee3-4db4-b03e-de07f3efba12@lunn.ch>
-References: <20250824005116.2434998-1-mmyangfl@gmail.com>
- <20250824005116.2434998-4-mmyangfl@gmail.com>
+	s=arc-20240116; t=1756051980; c=relaxed/simple;
+	bh=fSYuDyKb8xNMZude0THX4ysx4fxikhPLoCzcuoLlgVs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iHY2ckQXbvEmORFxThdJVmMclvKm8Q7SWYtGQHi5epDKcTjU/WUC49gQJQ450YFiJQTvTPf3BSWLAhYIr9Bn69Hw3RImGvDAj4BVmiz8m278+xO5e+hLdcQn/LcHVltMRHPx8fag6CBKz3JgmVMFRz00l0yYblzq8HRPpaLnd60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=fV+t7S/9; arc=none smtp.client-ip=37.205.8.231
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
+DKIM-Signature: a=rsa-sha256; bh=L5sbl4zYf+tk8qonwR4TafqKQvKTexvrqntakCO4Zk4=;
+ c=relaxed/relaxed; d=dujemihanovic.xyz;
+ h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:Message-Id:Message-Id:References:Autocrypt:Openpgp;
+ i=@dujemihanovic.xyz; s=default; t=1756051953; v=1; x=1756483953;
+ b=fV+t7S/96Ju7zO694dL2bS5VZMdK5G4FnHcwGmUAadaGEpQsMLjbifRSB1tLIYya7kfP+vmN
+ 9rmEtZ6JtUOe/+WVlUSR0DeuRcKkvbylpMXUg3xLeTNKCCK4WMUewAG73yxBkdm9IAvJaqgnYKi
+ fGDVJ2UrKuYMlOC5swQhrrUMEaR6IvljEdRviz5/YNjXRTnyOSBEkGDbGTcnzSm19TQtMed/gUw
+ WTCgHkx0kD/BXmeNrwiwcv83ZjTLRPZuqiODsiC/Seo0yBgd+g4QkuRyN6wuUa/11MDfNCeGrKv
+ SXyzkyi/zaUDXclQTM9JcQAVsTc/LtsVC/xg2rx90ey6w==
+Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
+ ESMTPS id e0debe80; Sun, 24 Aug 2025 18:12:33 +0200
+From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+Date: Sun, 24 Aug 2025 18:12:05 +0200
+Subject: [PATCH] dt-bindings: input: touchscreen: imagis: add missing
+ minItems
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250824005116.2434998-4-mmyangfl@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20250824-imagis-minitems-v1-1-cea9db55e87f@dujemihanovic.xyz>
+X-B4-Tracking: v=1; b=H4sIANQ5q2gC/x3MOwqAMBBF0a3I1AZM/OJWxCLqqK9IlIyIENy7w
+ fIU90YSDmChPosU+Ibg8Ak6z2jerd9YYUkmU5i66Eyl4OwGUQ4eFztRlW112bUzN3qiVJ2BVzz
+ /cRjf9wMHHAecYQAAAA==
+X-Change-ID: 20250824-imagis-minitems-4a71387ce61b
+To: Markuss Broks <markuss.broks@gmail.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1908;
+ i=duje@dujemihanovic.xyz; s=20240706; h=from:subject:message-id;
+ bh=fSYuDyKb8xNMZude0THX4ysx4fxikhPLoCzcuoLlgVs=;
+ b=owGbwMvMwCW21nBykGv/WmbG02pJDBmrLT/8WGQs4ii5s9Rol+VLeSm+1M+m4g38hvnv3TdEL
+ WwvbpLqKGVhEONikBVTZMn973iN97PI1u3Zywxg5rAygQxh4OIUgIns38XIsLSlsc87039BKpvh
+ rZmMc/7PKTjyaLn425w174yLI3xsShj+Wc89UO8itrM7xvTHql8pKZOO+xQc3tP8wEH1PrdYYr4
+ YJwA=
+X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
+ fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
 
-> +static int
-> +yt921x_intif_read(struct yt921x_priv *priv, int port, int reg, u16 *valp)
-> +{
-> +	struct device *dev = to_device(priv);
-> +	u32 mask;
-> +	u32 ctrl;
-> +	u32 val;
-> +	int res;
-> +
-> +	res = yt921x_intif_wait(priv);
-> +	if (res)
-> +		return res;
-> +
-> +	mask = YT921X_MBUS_CTRL_PORT_M | YT921X_MBUS_CTRL_REG_M |
-> +	       YT921X_MBUS_CTRL_OP_M;
-> +	ctrl = YT921X_MBUS_CTRL_PORT(port) | YT921X_MBUS_CTRL_REG(reg) |
-> +	       YT921X_MBUS_CTRL_READ;
-> +	res = yt921x_smi_update_bits(priv, YT921X_INT_MBUS_CTRL, mask, ctrl);
-> +	if (res)
-> +		return res;
-> +	res = yt921x_smi_write(priv, YT921X_INT_MBUS_OP, YT921X_MBUS_OP_START);
-> +	if (res)
-> +		return res;
-> +
-> +	res = yt921x_intif_wait(priv);
-> +	if (res)
-> +		return res;
-> +	res = yt921x_smi_read(priv, YT921X_INT_MBUS_DIN, &val);
-> +	if (res)
-> +		return res;
-> +
-> +	if ((u16)val != val)
-> +		dev_err(dev,
-> +			"%s: port %d, reg 0x%x: Expected u16, got 0x%08x\n",
-> +			__func__, port, reg, val);
-> +	*valp = (u16)val;
-> +	return 0;
-> +}
+The binding currently expects exactly 5 keycodes, which matches the
+chip's theoretical maximum but probably not the number of touch keys on
+any phone using the IST3032C. Add a minItems value of 2 to prevent
+dt-validate complaints.
 
-...
+Also add another example to make sure the linux,keycodes property is
+checked.
 
-> +static int yt921x_mbus_int_read(struct mii_bus *mbus, int port, int reg)
-> +{
-> +	struct yt921x_priv *priv = mbus->priv;
-> +	u16 val;
-> +	int res;
-> +
-> +	if (port >= YT921X_PORT_NUM)
-> +		return 0xffff;
-> +
-> +	yt921x_smi_acquire(priv);
-> +	res = yt921x_intif_read(priv, port, reg, &val);
-> +	yt921x_smi_release(priv);
-> +
-> +	if (res)
-> +		return res;
-> +	return val;
-> +}
-> +
-> +static int
-> +yt921x_mbus_int_write(struct mii_bus *mbus, int port, int reg, u16 data)
-> +{
-> +	struct yt921x_priv *priv = mbus->priv;
-> +	int res;
-> +
-> +	if (port >= YT921X_PORT_NUM)
-> +		return 0;
-> +
-> +	yt921x_smi_acquire(priv);
-> +	res = yt921x_intif_write(priv, port, reg, data);
-> +	yt921x_smi_release(priv);
-> +
-> +	return res;
-> +}
+Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
+---
+ .../bindings/input/touchscreen/imagis,ist3038c.yaml    | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-Going back to comment from Russell in an older version:
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+index bd8ede3a4ad8939cef97e9b177548a8fc8386df7..0ef79343bf9a223501aff8b6a525b873e777ea20 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+@@ -35,6 +35,7 @@ properties:
+ 
+   linux,keycodes:
+     description: Keycodes for the touch keys
++    minItems: 2
+     maxItems: 5
+ 
+   touchscreen-size-x: true
+@@ -87,5 +88,22 @@ examples:
+         touchscreen-inverted-y;
+       };
+     };
++  - |
++    #include <dt-bindings/input/linux-event-codes.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      touchscreen@50 {
++        compatible = "imagis,ist3032c";
++        reg = <0x50>;
++        interrupt-parent = <&gpio>;
++        interrupts = <72 IRQ_TYPE_EDGE_FALLING>;
++        vdd-supply = <&ldo2>;
++        touchscreen-size-x = <480>;
++        touchscreen-size-y = <800>;
++        linux,keycodes = <KEY_APPSELECT>, <KEY_BACK>;
++      };
++    };
+ 
+ ...
 
-> > I'm also concerned about the SMI locking, which looks to me like you
-> > haven't realised that the MDIO bus layer has locking which guarantees
-> > that all invocations of the MDIO bus read* and write* methods are
-> > serialised.
-> 
-> The device takes two sequential u16 MDIO r/w into one op on its
-> internal 32b regs, so we need to serialise SMI ops to avoid race
-> conditions. Strictly speaking only locking the target phyaddr is
-> needed, but I think it won't hurt to lock the MDIO bus as long as I
-> don't perform busy wait while holding the bus lock.
+---
+base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
+change-id: 20250824-imagis-minitems-4a71387ce61b
 
-You comment is partially correct, but also wrong. As you can see here,
-you hold the lock for a number of read/writes, not just one u32 write
-split into two MDIO bus transactions.
+Best regards,
+-- 
+Duje Mihanović <duje@dujemihanovic.xyz>
 
-They way you currently do locking is error prone.
-
-1) Are you sure you actually hold the lock on all paths?
-
-2) Are you sure you hold the lock long enough for all code which
-   requires multiple reads/writes?
-
-The mv88e6xxx driver does things differently:
-
-Every function assigned to struct dsa_switch_ops first takes the lock,
-does what needs doing, and then releases the lock just before the
-return.
-
-The lowest level read/write function does a mutex_is_locked() to test
-that the lock is held. If it is not, it prints an error message.
-
-The first part makes it easy to see the lock is held, and it makes it
-clear all operations the driver is doing is covered by the lock, there
-is no need worry about two threads racing.
-
-The second part makes bugs about missing locks obvious, an error
-message is printed.
-
-Please reconsider your locking. Also, please think about, do you need
-a different lock for MDIO, I2C and SPI? Do you need the current
-acquire/release abstract?
-
-	Andrew
 
