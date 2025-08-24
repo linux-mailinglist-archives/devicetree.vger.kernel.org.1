@@ -1,144 +1,105 @@
-Return-Path: <devicetree+bounces-208719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BA68B33132
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 17:27:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA78B33136
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 17:30:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2386A4464CE
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 15:27:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 495F81799AE
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 15:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1247D2DA749;
-	Sun, 24 Aug 2025 15:27:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FEA01B042E;
+	Sun, 24 Aug 2025 15:30:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="th1hQciU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HIg7lPy3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72CDF22B5AD
-	for <devicetree@vger.kernel.org>; Sun, 24 Aug 2025 15:26:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D33ACA5A;
+	Sun, 24 Aug 2025 15:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756049222; cv=none; b=nl0NNN0okpqvHgKMs81Lg6MBoANI1/yWr9SvCLrtilAQGcZSvgj2sO5nxZ5XmCW4I1+Fb85jj3b0kDQNLs94juAkQ1jx7xXfpmqyetLGovquYBCE/17tOqn+FQwAujMXDVWXdwnK6jAEeZ9y5i5WUMeRUjqwfeWXQ2iV1+91xY8=
+	t=1756049452; cv=none; b=YBW3khtbCMglgveUM871wZglOfHaNrqGhw9RtjZq//jmYZAS/BXz32lG06GOX+TRAICbI3V6Rud3auE5j7LDQG7rGgIMXMLo8xYZ0vRT+IHIq/L+pdLcUNRm55ez875VAil4ZSB0gWVWD9pd/IEE1SER50cChrJuYbAMYwsGphg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756049222; c=relaxed/simple;
-	bh=iSA52mppQq6VEdZILw6vObSiFbOmgxHmb/zZhprKPGU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=f/oTHAMSDvWrEeqkbS6fln91R2KTHW1uwX5yJVXTtwoUZLEy3iyVc4qUTWW4mgDUFsjS9JyTTL4cFxkt+8Ql0+vcur/iszdQ2egCcQo9+b9ADjB68Z+RQcnqPqwoCOgMRvNIwYzrg6iNAm7rwJCTuRa9n/MUG3ObLzgFLBkFIs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=th1hQciU; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id B5AE1C6B391;
-	Sun, 24 Aug 2025 15:26:43 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 895B6605F1;
-	Sun, 24 Aug 2025 15:26:57 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 408F11C22C53D;
-	Sun, 24 Aug 2025 17:26:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1756049216; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=W37avhcOHPEOuToxYLINfB6zYTm39to0zmX0Je7/jPg=;
-	b=th1hQciUjmRNbv6BLnof91Y+bfzBVGqM5CSdEEtcq2ZOgLFK3zycmKvAYKHUAFtJf45ale
-	n3VDtvOzQJc+R9Hxt/awwsYepOXPBNFF+pGW1CZK9MNF38dqaCkG5jALOhC1LMlsqrLk+P
-	lY+3KDFH8/975O03IlsyD3bW/CvOLKO26AThr8eq+ikNiL2GeLe7bVDbN0Ypbg431digiT
-	e1ik5t2R/6MPJ43QlfrwhCv98hKr7zDqEXF8uR/tPasK4GHDo8EyyQ3JstFfA1VzLjx+KJ
-	SAKuBILUzO5wsYqAG+Yrb3GURZGS9lkEFjfWnTr35wuKoYFeng9T4NeMPAqtdw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,  Huacai Chen
- <chenhuacai@loongson.cn>,  Rob Herring <robh+dt@kernel.org>,  Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Keguang Zhang <keguang.zhang@gmail.com>,  Richard Weinberger
- <richard@nod.at>,  Vignesh Raghavendra <vigneshr@ti.com>,  Huacai Chen
- <chenhuacai@kernel.org>,  Xuerui Wang <kernel@xen0n.name>,
-  loongarch@lists.linux.dev,  devicetree@vger.kernel.org,
-  linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v3 5/7] mtd: rawnand: loongson: Add Loongson-2K0500 NAND
- controller support
-In-Reply-To: <589b4dfab9c1edd95fa05cba80ec58ea9ca099da.1755757841.git.zhoubinbin@loongson.cn>
-	(Binbin Zhou's message of "Thu, 21 Aug 2025 14:39:19 +0800")
-References: <cover.1755757841.git.zhoubinbin@loongson.cn>
-	<589b4dfab9c1edd95fa05cba80ec58ea9ca099da.1755757841.git.zhoubinbin@loongson.cn>
-User-Agent: mu4e 1.12.7; emacs 30.1
-Date: Sun, 24 Aug 2025 17:26:29 +0200
-Message-ID: <87ms7olp0a.fsf@bootlin.com>
+	s=arc-20240116; t=1756049452; c=relaxed/simple;
+	bh=ELLwqf337+Rd50ax2qN36UfLgzngTVAA0cqVt1cHHyE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J47Z3V6WCyQozxLyAQCLUUZjlpw67r53/IBjIj3o6WAxiA6OHL/N5g0141HnfsHdGu91W5VGV5aw7kk/bUkdg4QyJtAj9VkKYeYJVvrsDRE7T28yxuuz2+d4dRub/5ZdStYhBdo8N9l5IosJkr8H93ysJFU+H71BuhuOHWxB00w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HIg7lPy3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87FA4C4CEEB;
+	Sun, 24 Aug 2025 15:30:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756049451;
+	bh=ELLwqf337+Rd50ax2qN36UfLgzngTVAA0cqVt1cHHyE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HIg7lPy3Sgx8WOylmQSBMhEjLKRNW7fydmaIE3ZvCCmlsEHrLxejsws4nqDSfn2HY
+	 Ymh6+xtYDx9K7b0OgLWsrXjjJa/zVe9kWDsBCb3VLbQzZKaS2TR5r80S+OmiT5tI2D
+	 S0YeBDT50nkosDRlJ5uFwjuImOKOW4JrAN0l9ysax8fKgNSMYzij1hTROpiC23XPLq
+	 L408tHOYgMkiJTgahdacgK+llPRyEcQJ8mwSUX+P7uoV/43iS1ge34HnnUkiSgA16t
+	 kS1pFQ2ghgeFqdOZ5SKDOmMNedlDgf/F5U87w5xjEYrM8VhQdCjwgrxS/en3buO++r
+	 ZX5vwrf+OGawQ==
+Message-ID: <8e6b19e1-e1fc-40fd-bf5c-e36180aefd19@kernel.org>
+Date: Sun, 24 Aug 2025 17:30:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 02/22] dt-bindings: usb: Add Apple dwc3
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+ Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-phy@lists.infradead.org
+References: <20250821-atcphy-6-17-v1-0-172beda182b8@kernel.org>
+ <20250821-atcphy-6-17-v1-2-172beda182b8@kernel.org>
+ <20250822-banana-ferret-of-opposition-0bcfad@kuoka>
+Content-Language: en-US
+From: Sven Peter <sven@kernel.org>
+In-Reply-To: <20250822-banana-ferret-of-opposition-0bcfad@kuoka>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Binbin,
+On 22.08.25 09:24, Krzysztof Kozlowski wrote:
+> On Thu, Aug 21, 2025 at 03:38:54PM +0000, Sven Peter wrote:
+>> +
+>> +  The common content of the node is defined in snps,dwc3.yaml.
+> 
+> Drop sentence, redundant. Schema tells that.
 
-> +#define LOONGSON_NAND_64BIT_DMA		BIT(0)
-> +
->  #define BITS_PER_WORD			(4 * BITS_PER_BYTE)
->=20=20
->  struct loongson_nand_host;
-> @@ -83,6 +104,7 @@ struct loongson_nand_data {
->  	unsigned int hold_cycle;
->  	unsigned int wait_cycle;
->  	unsigned int nand_cs;
-> +	unsigned int flags;
+Ok, will drop it.
 
-Can we turn this into a boolean instead and give it a DMA related name?
-I'm not sure the list of flags will extend rapidly...
+> 
+> ...
+> 
 
->  	void (*set_addr)(struct loongson_nand_host *host, struct loongson_nand_=
-op *op);
->  };
->=20=20
-> @@ -745,7 +767,7 @@ static int loongson_nand_controller_init(struct loong=
-son_nand_host *host)
->  	struct device *dev =3D host->dev;
->  	struct dma_chan *chan;
->  	struct dma_slave_config cfg =3D {};
-> -	int ret;
-> +	int ret, val;
->=20=20
->  	host->regmap =3D devm_regmap_init_mmio(dev, host->reg_base, &loongson_n=
-and_regmap_config);
->  	if (IS_ERR(host->regmap))
-> @@ -755,6 +777,9 @@ static int loongson_nand_controller_init(struct loong=
-son_nand_host *host)
->  		regmap_update_bits(host->regmap, LOONGSON_NAND_PARAM, host->data->id_c=
-ycle_field,
->  				   host->data->max_id_cycle << __ffs(host->data->id_cycle_field));
->=20=20
-> +	if (host->data->flags & LOONGSON_NAND_64BIT_DMA)
-> +		dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-> +
->  	chan =3D dma_request_chan(dev, "rxtx");
->  	if (IS_ERR(chan))
->  		return dev_err_probe(dev, PTR_ERR(chan), "failed to request DMA channe=
-l\n");
-> @@ -770,7 +795,14 @@ static int loongson_nand_controller_init(struct loon=
-gson_nand_host *host)
->=20=20
->  	init_completion(&host->dma_complete);
->=20=20
-> -	return 0;
-> +	val =3D FIELD_PREP(LOONGSON_NAND_MAP_CS1_SEL, LOONGSON_NAND_CS_SEL1)
-> +	    | FIELD_PREP(LOONGSON_NAND_MAP_RDY1_SEL, LOONGSON_NAND_CS_RDY1)
-> +	    | FIELD_PREP(LOONGSON_NAND_MAP_CS2_SEL, LOONGSON_NAND_CS_SEL2)
-> +	    | FIELD_PREP(LOONGSON_NAND_MAP_RDY2_SEL, LOONGSON_NAND_CS_RDY2)
-> +	    | FIELD_PREP(LOONGSON_NAND_MAP_CS3_SEL, LOONGSON_NAND_CS_SEL3)
-> +	    | FIELD_PREP(LOONGSON_NAND_MAP_RDY3_SEL, LOONGSON_NAND_CS_RDY3);
+[..]
 
-Just a nit about the style, '|' should be last character on the previous
-line.
+>> +
+>> +unevaluatedProperties: false
+> 
+> This goes after required.
 
-Otherwise the rest lgtm.
+Ack, moved after required.
+
+
 
 Thanks,
-Miqu=C3=A8l
+
+
+Sven
+
 
