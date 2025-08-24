@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-208710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F6D8B3305E
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 16:24:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA773B33061
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 16:24:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 851AE189DB3B
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 14:24:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABA3A2012B1
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 14:24:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 031E12D543E;
-	Sun, 24 Aug 2025 14:24:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F28B62DEA72;
+	Sun, 24 Aug 2025 14:24:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fe3mPgo1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kmyhqCod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B455D54791
-	for <devicetree@vger.kernel.org>; Sun, 24 Aug 2025 14:24:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39DA62DE6F5;
+	Sun, 24 Aug 2025 14:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756045449; cv=none; b=u0RqNJFmyx6+AryOsHF7pkUta2TvOqBEP03VlFMfonN0vSqvHUVb21FI8vHknx9y7+H0ErdGdTZOcFKsYceKqskOAhhKdHUfkp9KNb22QSnXyWbB80PER+AOpOKhP1g/Tl8OatH9GAQrxyXJtIUuqKjgS8F2QGdsYXjb5EDt4xk=
+	t=1756045453; cv=none; b=Iwu6DFfFbQImbu2CzdqZIQtOsZ+oY9vXEzzEPDW2cbpCZv20mYurvCGideRiDNBuSzv5wgHvutr8rw5Ogmy06nHFgCZLcohq+RFGjzGEHit7gPt3rRTQUNwnhkAciUx8PGbXxfhmiMVHyAtoiz/rbRf0Wy/L8pJG8JgNYLc7Msc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756045449; c=relaxed/simple;
+	s=arc-20240116; t=1756045453; c=relaxed/simple;
 	bh=c3AcTuha+KxfjbXnXT8SmXB8RGUI1YZFmW2b/4MBe7U=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=XfYguJgzDv4ACWST4uX3w8kKae6GCgxuyoGy1ApetFpzL6H9Tu9IZvQwWiLW95tAD4lGF4mk1P8Ov2VHG6zsQvUKFdXcqZQfUvFqkubswPdynrWFeUJKV+AE6bSo7s4tSkLSit0FZ/Qsgihss6pzbmRysw9UJyIMSSsibV5aA+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fe3mPgo1; arc=none smtp.client-ip=185.246.84.56
+	 MIME-Version:Content-Type; b=N2pfPqLEyq812NRGZhdE5GPdp2owF5mCEsC2qc6unUn63syG99o16FAN06IJyc4n4sn6SdG4szwV5thJ4bWXSxtpg3N0puFGHMJ0okloGM1HxMg6gs7tPFsh0UMjZwnszspiaRnBiMSycTrbfKn2Yxyv4R3B+f0QTIMN9pTkwRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kmyhqCod; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id ED75A1A0964;
-	Sun, 24 Aug 2025 14:24:05 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 91D394E40C49;
+	Sun, 24 Aug 2025 14:24:10 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id ACBE4605F1;
-	Sun, 24 Aug 2025 14:24:05 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CDC541C22D86D;
-	Sun, 24 Aug 2025 16:23:59 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 699C8605F1;
+	Sun, 24 Aug 2025 14:24:10 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 49C1C1C22D917;
+	Sun, 24 Aug 2025 16:24:08 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1756045444; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1756045449; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
 	bh=c3AcTuha+KxfjbXnXT8SmXB8RGUI1YZFmW2b/4MBe7U=;
-	b=fe3mPgo1USufpbneU4gpLjsybFhxYZYhtYgY4Tb27R9GxOpor1ouvDDpy7Q0kY4PvUcBtU
-	eW0BehihJDd08PezHVRmOV5ob32ZL6X9xPJvivorXYKsxaXhwMq2KNoZoMltmCxVTwJrOy
-	cqxegAa/87WjJlWnO00Nst1RCeTtHsAd3n6vLkusLtrXaZumlgUAbi5sleilKhD0QTcjRf
-	oWPKerTyGhhdI8Svnf0UauimenJsdGVxbzsASkUYk4VLJAzmkanEiVa9SJWa55Kfmi+h5p
-	XtE4KQtGAEXZe7LjYa9e0lt5ADZOIOiFKPBoAgZY8IctIebEsGauCPpWB5sRAQ==
+	b=kmyhqCod8sx8mGMTZdGYONddj7mpK2JlIiloqBpwHP1Tb8fLE/iwWQyvTdZei3uJxkKxEX
+	20kBeFVxmoWK0FQL6takcW12uQjkJMmN57hCsjebW0BkMyp2Pkwt027S4wqpxFPzW/XCN3
+	5KfmsKXmj9c0fkKGcMXE9Tl8KKdZ2tJdZE+OtnwY7LSUozjXt7kn3hG4DYXZxcV9BXc86f
+	F1noAQQYMK82WGChWF1VswRpGbuLeajpltIy9vY3xLETy+9G1PQ165inP71MlM4R1bZMFx
+	PjI9yWP7g09sQciegkr3OHEQsYvMu3Kblfl1c/r4p+WsM5gLD0yi2BIR5elpfA==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
 To: "Rob Herring (Arm)" <robh@kernel.org>
 Cc: "Rafael J. Wysocki" <rafael@kernel.org>,  Daniel Lezcano
@@ -61,8 +61,8 @@ In-Reply-To: <20250822225645.766397-1-robh@kernel.org> (Rob Herring's message
 	of "Fri, 22 Aug 2025 17:56:44 -0500")
 References: <20250822225645.766397-1-robh@kernel.org>
 User-Agent: mu4e 1.12.7; emacs 30.1
-Date: Sun, 24 Aug 2025 16:23:50 +0200
-Message-ID: <87frdgn6h5.fsf@bootlin.com>
+Date: Sun, 24 Aug 2025 16:24:07 +0200
+Message-ID: <87a53on6go.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
