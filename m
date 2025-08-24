@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-208593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58EC5B32D36
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 05:00:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BADC4B32D24
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 04:59:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD83D3BF96A
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 02:58:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99BC0245CA6
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 02:58:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06EF522E3FA;
-	Sun, 24 Aug 2025 02:56:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 594FB238C23;
+	Sun, 24 Aug 2025 02:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GZsm0boY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZUvW4LPh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06591E834E;
-	Sun, 24 Aug 2025 02:56:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5051EA7CB;
+	Sun, 24 Aug 2025 02:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756004171; cv=none; b=PEIYra8hfWWiMzBmHY9naE+IOPK+pbe5c1DnFqV9R5C5XlK6rAcl2pmWipm5Mtj4kzjQzpHgboou+6L+6Gr/BYGduHYBUpQsBV6blN08xsjEtQS0thTDlpxju9xQcQYRHJsLRACuBlC+Hgzobblc/KrXCDeMFi46T6d+Tw2HSZA=
+	t=1756004173; cv=none; b=o/fv5q+BQejnWYtX7f4JmynSrtg19TZYdnkl7eQ/OI/1zX6X+zwvPAi7N6y3xSPbzuPrCaMqZ1MDuaXAN/EpXzHyuSX3cpD1RP2aXbZXzyHjAfObcp5fG0mEXkmaA7W2Q35tBurkB8jubfIrUvInM6PSmT1VoMgTTuwkkzincMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756004171; c=relaxed/simple;
-	bh=4kGtVLcKFFPEl7NMLob1LNGrRz2CyAz56jiAgp5ZBmc=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XKd843LrG99nd1pIBQ3Svn1XnCeSq/9iTs+e0CSbzKme5Qj2TT9Kse+yztETycRzTibZvFFRE5WeKOArgNT2IY1gI1KtCMxCGuJATOhjyRh4OeukR0upnX7CCwwxTeUudD55KMQy/XJUEhXGffP0rGq9gVOUG4c+zT/29lp5dAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GZsm0boY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD1FCC4CEE7;
-	Sun, 24 Aug 2025 02:56:10 +0000 (UTC)
+	s=arc-20240116; t=1756004173; c=relaxed/simple;
+	bh=SExc3QNx7ShEzeMxNxgu+3EWA1347cfpeNzUUZvT8RE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=C/Ea4i72Oliwlm7YZk4Y5731sP2aXEZE7/8yV8uS6Nlk44tRlwUXaT7k6hKIzxdWrDfZ9dFciOf++EfzGT6tklI8Vaf7NxUwGbr82w8Q9shDBnAcy2ZDDYdp3G/bNCgIPl38NsieIbDVdGHzCLLAYggx1v84Kr5dfM0dZ6OkSGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZUvW4LPh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43DC3C4CEE7;
+	Sun, 24 Aug 2025 02:56:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756004171;
-	bh=4kGtVLcKFFPEl7NMLob1LNGrRz2CyAz56jiAgp5ZBmc=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=GZsm0boYhqucbmOZrQmrBWdsUf+cCK1dAlsHlthPxeVQJ/rn5i2xEGo29JJ09OPUQ
-	 IBfqFi2Jd3uRleErlAqd1AsEplCj5gGensEDa/rGWgYeUOioSZWlcbtEpBzNmllGs6
-	 lcw0XyUsksSqJju+S3L062Hj9Wd2mAUTA9lKEAqTQnj/+M/f882nKgJ90zyv/uBKzx
-	 2cLIRDCs039E7Wsy3aNE1kzAh30Y5Pc59Im/cI1fgCpXlHAvCdnA/PuroMT/bJTMYV
-	 FBeCdNM6X5scLyOS+54DmyauuQDZNu3Ed6AwAXrBZSUgH1Xym9pPyY7x265shQgX0l
-	 9ed8DCk6R2xeQ==
+	s=k20201202; t=1756004173;
+	bh=SExc3QNx7ShEzeMxNxgu+3EWA1347cfpeNzUUZvT8RE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=ZUvW4LPhYHLL+pvtFL6+LSzFyj0XlE94RZ0+oJC5i16y63fFkvNtI1+eT4BFAfly9
+	 GToJwVMcJGLkDo0P4dzwjH6Q7aeaFJCvy2vB3rFTU1vQuOHBe+eTg+kYIRnSkGTdxs
+	 KM5x3YnCePpRlDbgiFoh3nycl87BSC6L9ocSyJ5HKDJBwsw6xspMYRxROGGvl4kni8
+	 1AxLMXltw5y8dWLYgNLA9fdu3tBDBv3CvMA5+Rprc54dkQm5oPgR2WFeBI9ZIL2EU5
+	 OkzTuUFbop6qfc10Rtiu+U4e69MylaHNamvZ1KAbehpZuB8AoLAwQCGNshQ3Cv3WeN
+	 z/PGr0CwJ1+qw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
+To: Vinod Koul <vkoul@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@foundries.io>,
+	Pengyu Luo <mitltlatltl@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	dmaengine@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8750-mtp: Add speaker Soundwire port mapping
-Date: Sat, 23 Aug 2025 21:55:44 -0500
-Message-ID: <175600415287.952266.12481885317656431450.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/3] arm64: dts: qcom: Enable GPI DMA for sc8280xp
+Date: Sat, 23 Aug 2025 21:55:46 -0500
+Message-ID: <175600415270.952266.1079016155668636872.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250820141233.216713-2-krzysztof.kozlowski@linaro.org>
-References: <20250820141233.216713-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250612075724.707457-1-mitltlatltl@gmail.com>
+References: <20250612075724.707457-1-mitltlatltl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,16 +69,19 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 20 Aug 2025 16:12:34 +0200, Krzysztof Kozlowski wrote:
-> Add appropriate mappings of Soundwire ports of WSA883x speaker
-> to correctly map the Speaker ports to the WSA macro ports.
+On Thu, 12 Jun 2025 15:57:21 +0800, Pengyu Luo wrote:
+> This series adds GPI DMA support for sc8280xp platform and related devices.
+> 
+> base-commit: 0bb71d301869446810a0b13d3da290bd455d7c78
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sm8750-mtp: Add speaker Soundwire port mapping
-      commit: 013632a410873d2ac538deb981780407917b2200
+[2/3] arm64: dts: qcom: sc8280xp: Describe GPI DMA controller nodes
+      commit: 71b12166a2be511482226b21105f1952cd8b7fa5
+[3/3] arm64: dts: qcom: sc8280xp: Enable GPI DMA
+      commit: 013d01811a1ea4ce0f676e4110f94c80271586b9
 
 Best regards,
 -- 
