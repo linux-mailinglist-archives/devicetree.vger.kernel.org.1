@@ -1,111 +1,122 @@
-Return-Path: <devicetree+bounces-208751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3A5BB33269
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 21:48:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87328B332AC
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 22:50:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EF0C48106B
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 19:48:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 624A720482B
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 20:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F951A5B8D;
-	Sun, 24 Aug 2025 19:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232C123D7C3;
+	Sun, 24 Aug 2025 20:50:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yandex.ru header.i=@yandex.ru header.b="KrFkjzdN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from forward202a.mail.yandex.net (forward202a.mail.yandex.net [178.154.239.91])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF157260B;
-	Sun, 24 Aug 2025 19:48:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0680A239072;
+	Sun, 24 Aug 2025 20:50:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756064918; cv=none; b=jr3dg6rE+4UNt7Gc8S9aTGNeIr/U/TQmRvJmUmGk+KVe4tc0ySfOAV4+a3bYgdEwT0w+LijJvxZIoAV1lHnwrmQwDcTvWx+s+CHo/qls50+ubZ60RMvUwThCWp5zhuTj9+s8sA66ybxI5eWQJkZ4rxh1uV5CTzrP7j6mabjmhvc=
+	t=1756068650; cv=none; b=qs0Tb9B21KK4atQovTe2hFlmuggVJe+idKlLKM6yXySLXw5sy1kUhmjRnogFJLILu7TSd95YtBwaWrtj3ply+aDD52m2OVMdlkjzC4KdU3Mt+ynDjJ6FVmkMbaDhNm0SETuvcE8/01fYaqP38+krLlM+Z1DsjhFkukhSblvpzXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756064918; c=relaxed/simple;
-	bh=rLvvj/4nnkpq/qznVE44J68fyks0NqHJP8bfYOXtcTY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=txxmumwqhOU6dgF5LuxUyeJ4Ih8grt0DccZetwbajZbHCDpQqkV1Ld2Q2hle5dGal5y3VBL9nJnhtdXvo8kPiWaq005O0z9veGtB8fKeG52XO0EBgvWpHxztQt5wKnzNgSoRv1ocgn2yUYyccu3QV2YOp/vY692b6F2BoehNtCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [192.168.2.54] (unknown [98.97.26.216])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id CF33EB4E0003;
-	Sun, 24 Aug 2025 21:48:24 +0200 (CEST)
-Message-ID: <44585871-aabe-4d6d-b4c9-17d9acaa8063@freeshell.de>
-Date: Sun, 24 Aug 2025 12:48:21 -0700
+	s=arc-20240116; t=1756068650; c=relaxed/simple;
+	bh=fqEukYyRD5T1ITLm7ZKJ9tO/J2dsjjzmG78Xal6Ywtc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MKLAVJAwSbL2JZ0NfIGY9i6rT0gwV/jKxrAWfo+qYzu5Wz7JVoMzs6uL28gCpRr3qFJUiwSlICsGBbeFlOYu9rN81hGOPnO/9Jz4V8RboLGL0R5r8CauwaN0Kun6ZZQM0sluWrg8fINuhBhpcBEqPo8l4iR2ql60IO+Vb7Lf2lI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.ru; spf=pass smtp.mailfrom=yandex.ru; dkim=pass (1024-bit key) header.d=yandex.ru header.i=@yandex.ru header.b=KrFkjzdN; arc=none smtp.client-ip=178.154.239.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.ru
+Received: from forward102a.mail.yandex.net (forward102a.mail.yandex.net [IPv6:2a02:6b8:c0e:500:1:45:d181:d102])
+	by forward202a.mail.yandex.net (Yandex) with ESMTPS id 10A97846CD;
+	Sun, 24 Aug 2025 23:42:18 +0300 (MSK)
+Received: from mail-nwsmtp-smtp-production-main-52.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-52.vla.yp-c.yandex.net [IPv6:2a02:6b8:c1f:e8d:0:640:bba7:0])
+	by forward102a.mail.yandex.net (Yandex) with ESMTPS id AA5A6C0056;
+	Sun, 24 Aug 2025 23:42:09 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-52.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 8gd6rXeMneA0-7dTnpZxT;
+	Sun, 24 Aug 2025 23:42:09 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
+	t=1756068129; bh=xCx8FW0uSugXQ6aPOTyb0QRe4AEJBbn7xSyH0CrfJQw=;
+	h=Cc:To:Message-Id:Date:Subject:From;
+	b=KrFkjzdNwgpWqhtlWn5eDL4orQ3/p+r0qceAfvFHqHOGh9yqRdX8iArjIdbtO9h27
+	 9BNhWsxwjeFolvuhRWvXYQDb7qVJRayTvem6NH4+tFtklCciRldU1LTJUwmfIW4UoX
+	 9PBudzpBy3x9/cBLhARNrqTHZprQOhMFbSF+2f0Q=
+Authentication-Results: mail-nwsmtp-smtp-production-main-52.vla.yp-c.yandex.net; dkim=pass header.i=@yandex.ru
+From: Nickolay Goppen <setotau@yandex.ru>
+Subject: [PATCH 0/3] Add SDM660 LPASS LPI TLMM
+Date: Sun, 24 Aug 2025 23:41:58 +0300
+Message-Id: <20250824-sdm660-lpass-lpi-v1-0-30ba0c8fa025@yandex.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/3] dt-bindings: riscv: Add StarFive JH7110S SoC and
- VisionFive 2 Lite board
-To: Icenowy Zheng <uwu@icenowy.me>, Hal Feng <hal.feng@starfivetech.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250821100930.71404-1-hal.feng@starfivetech.com>
- <20250821100930.71404-2-hal.feng@starfivetech.com>
- <3c2b62e219e50555319da369cafa9a8f79eb71e8.camel@icenowy.me>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <3c2b62e219e50555319da369cafa9a8f79eb71e8.camel@icenowy.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABZ5q2gC/x2MQQqAMAzAviI9O9iqjuFXxEPVqgWdsoII4t8dX
+ gI5JA8oJ2GFtngg8SUqR8ziygLGleLCRqbsgBYbG7A2Ou3eW7OdpJophsJgkbAK3hHk7Ew8y/0
+ vu/59Pyf1xCZiAAAA
+X-Change-ID: 20250824-sdm660-lpass-lpi-a8b02a23861a
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, Nickolay Goppen <setotau@yandex.ru>, 
+ Richard Acayan <mailingradian@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756068128; l=1795;
+ i=setotau@yandex.ru; s=20250815; h=from:subject:message-id;
+ bh=fqEukYyRD5T1ITLm7ZKJ9tO/J2dsjjzmG78Xal6Ywtc=;
+ b=T5t4PS0KtnxJJOV3bnLzFDo+afkgI6Sud1MJaZ+4muVdsWTXP8nNVVbFfblKh2Fbk5FOWpLr9
+ J1ZHnH30xXMByNYe7d3adsNlsdmw1NMzwaFOBe1oCoZC+dw3D6klaiK
+X-Developer-Key: i=setotau@yandex.ru; a=ed25519;
+ pk=Og7YO6LfW+M2QfcJfjaUaXc8oOr5zoK8+4AtX5ICr4o=
 
-On 8/24/25 10:14, Icenowy Zheng wrote:
-> 在 2025-08-21星期四的 18:09 +0800，Hal Feng写道：
->> Add device tree bindings for the StarFive JH7110S SoC
->> and the VisionFive 2 Lite board equipped with it.
->>
->> JH7110S SoC is an industrial SoC which can run at -40~85 degrees
->> centigrade
->> and up to 1.25GHz. Its CPU cores and peripherals are mostly similar
->> to
->> those of the JH7110 SoC.
->>
->> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->> ---
->>  Documentation/devicetree/bindings/riscv/starfive.yaml | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml
->> b/Documentation/devicetree/bindings/riscv/starfive.yaml
->> index 7ef85174353d..a2952490709f 100644
->> --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
->> @@ -33,6 +33,11 @@ properties:
->>                - starfive,visionfive-2-v1.3b
->>            - const: starfive,jh7110
->>  
->> +      - items:
->> +          - enum:
->> +              - starfive,visionfive-2-lite
->> +          - const: starfive,jh7110s
-> 
-> I suggest adding starfive,jh7110 as a fallback here, as it's the SoC
-> best known to most softwares, and JH7110S shouldn't have any difference
-> to JH7110 other than binning.
-> 
->> +
->>  additionalProperties: true
->>  
->>  ...
-> 
+This patch series adds SDM660 LPASS LPI TLMM pinctrl driver and
+introduces pin_offset callback for LPI pinctrl drivers to support
+SDM660's quirky pin_offset function which uses an array with 
+predefined offsets [1].
 
-NAK, it is said the operating parameters of jh7110s are distinct from
-jh7110. You would have to show that it is safe to operate the jh7110s
-with the operating parameters of the jh7110. If anything this would be
-the inverse, some jh711x (or even j71xx to include jh7100) common
-description with fallback operating parameters? And to add this common
-fallback with jh7100 (?), jh7110, jh7110s  -E
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/LA.UM.7.2.c27-07400-sdm660.0/drivers/pinctrl/qcom/pinctrl-lpi.c#L107
+
+Signed-off-by: Nickolay Goppen <setotau@yandex.ru>
+---
+Nickolay Goppen (2):
+      pinctrl: qcom: lpass-lpi: Introduce pin_offset callback
+      dt-bindings: pinctrl: qcom: Add SDM660 LPI pinctrl
+
+Richard Acayan (1):
+      pinctrl: qcom: Add SDM660 LPASS LPI TLMM
+
+ .../pinctrl/qcom,sdm660-lpass-lpi-pinctrl.yaml     |  74 ++++++++
+ drivers/pinctrl/qcom/Kconfig                       |  10 ++
+ drivers/pinctrl/qcom/Makefile                      |   1 +
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.c           |  13 +-
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.h           |   2 +
+ drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c    |   1 +
+ drivers/pinctrl/qcom/pinctrl-sc8280xp-lpass-lpi.c  |   1 +
+ drivers/pinctrl/qcom/pinctrl-sdm660-lpass-lpi.c    | 196 +++++++++++++++++++++
+ drivers/pinctrl/qcom/pinctrl-sm4250-lpass-lpi.c    |   1 +
+ drivers/pinctrl/qcom/pinctrl-sm6115-lpass-lpi.c    |   1 +
+ drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c    |   1 +
+ drivers/pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c    |   1 +
+ drivers/pinctrl/qcom/pinctrl-sm8450-lpass-lpi.c    |   1 +
+ drivers/pinctrl/qcom/pinctrl-sm8550-lpass-lpi.c    |   1 +
+ drivers/pinctrl/qcom/pinctrl-sm8650-lpass-lpi.c    |   1 +
+ 15 files changed, 303 insertions(+), 2 deletions(-)
+---
+base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
+change-id: 20250824-sdm660-lpass-lpi-a8b02a23861a
+
+Best regards,
+-- 
+Nickolay Goppen <setotau@yandex.ru>
+
 
