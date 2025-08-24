@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-208636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5896AB32E93
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 11:03:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7AFB32E9D
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 11:08:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C6591896B78
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 09:03:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29EAC17491A
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 09:08:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB8D01F3FF8;
-	Sun, 24 Aug 2025 09:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E629523C511;
+	Sun, 24 Aug 2025 09:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RiasseGH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MgQqIIEt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0631422DD;
-	Sun, 24 Aug 2025 09:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B364E20322;
+	Sun, 24 Aug 2025 09:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756026203; cv=none; b=bgByGdevg8W79A3pSxCi1HF3j9DSGLC6LzpF2TmNDFpiDKvFDppVUeyZhA/gi63ZJl2zf1nOtxxppUwdkKqha+nlZI/IDDV72Ti0WjWfkYTtF2d8BUKsya02PYTq84Xl+8D4+btcEtAmEih0l4cWaueZL+9odC0zb6E1cNqBd10=
+	t=1756026500; cv=none; b=kvXJgiWoXnGhGpttLGp3ccB1iyXZ7T46KUOAc8st+SfQRKpYDUEJZuZ9QKAGvfHK+Ri/lO8ICpbgDe32diqKoudc310by1uqoYK6Nnk6l+0FT9Bunun1fFlIV7WN+yd+6vOfFAXYKz3XHhMERZcrE6aCOpQ9yjgqeKrqCjOp8WY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756026203; c=relaxed/simple;
-	bh=aKK+a5Rtq2g2c4ZYWeMrcXzRrs5bD2smvrtbxPiNkFg=;
+	s=arc-20240116; t=1756026500; c=relaxed/simple;
+	bh=Yg1Y0LWbqbOqNwBgnXz+CRC+dctwOX6xg8qtYYFm5J4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hdiJiY+LFCE+aZ2V6DMwG3QxnbQeEddNtxyxCCjk4hEQuxiLyEVllNLnbJMwO8ZZohwLWD1WmNAzdTAQrqDUtTRcxoSMqvDgsH7vBmv2LK6mJa/NKrjSAm8lE8w3nB/13Lo8LiYBbrLmSofdQ7SSmPfd3HMYYi9NMKzrMA32LoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RiasseGH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A7BEC4CEEB;
-	Sun, 24 Aug 2025 09:03:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tziMNDhg6HDtMPMOW5l4K3JyrFUHB7lY6pjJiCGz+HmQpBWaHInkKN5YuVCrs9OhC/eo2/DULVCKVTcmWmZm6ATXjhg6mhZnlDpyhPISWtDsUVJ+D7pgTz1e3f+El9brllZQPduPFKUZN0PsnUd2uVMslScU0Dy8A6nQRY/KB8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MgQqIIEt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFFB2C4CEEB;
+	Sun, 24 Aug 2025 09:08:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756026203;
-	bh=aKK+a5Rtq2g2c4ZYWeMrcXzRrs5bD2smvrtbxPiNkFg=;
+	s=k20201202; t=1756026499;
+	bh=Yg1Y0LWbqbOqNwBgnXz+CRC+dctwOX6xg8qtYYFm5J4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RiasseGHLltxvDNCMxwushOE4q4tUe/6u5UQN1v/gkJ0M74FjyqY8DKO4qfztpd68
-	 MJnyFvww6ZFVdUtvJWIWCbc2WpJYJTI28Fx/n2T1CFoySwuU4O7YTgSgRVQ6eDzc2f
-	 QSGS5AxJfPYg7DYZZQdbPzQlM0jzOHlQV3kyo5dWlSvHUrsLtX8FVsC3dBLIZBdTLD
-	 N1spvrCXKE/UzIFhY346cQt4Mu3ct/atUsImruSwSVTQMczp1QL7pbSuw+RwVNRCRO
-	 c8QCaCqtRIyQ5LgM/TnncY/jcMfWQVqAFLOrcAtm+hUHQuTssiSPC9GsLqrKILMUJD
-	 yFtCnBXhKxErQ==
-Message-ID: <dc4046e5-7912-4942-b313-20f29213773c@kernel.org>
-Date: Sun, 24 Aug 2025 11:03:18 +0200
+	b=MgQqIIEt1wGaCYel8cG5qPcOMR83GKAVFur1sZ8/lqIO2J6G4zDD0Ft2DuNGFNpUq
+	 +6e9/P4w7wKQXRJvqhpAm6bpvEWSc/YNEWAgrcJ8sYDxvEdT4ljpkmTWr8pmcRCQE+
+	 CHBxDOu20v4r2Po9Z33nhSnAS8j0sAsZQqCLIN2pMoWQOOLLz70wuFHlQFN0TpNpK6
+	 tSfF0stPcrUMMnDC2/C6sbu6HZeZWM4XOflD6qhNXHIQCn8gHGqVSBonr1rr17iolT
+	 2sI1LyrW4EoR2OzXfNbutZO7SHWTDgExWdCivpJY3XSMGIEgX0CxIg8gqLuRM0UzEb
+	 HOQwJRdOlHSsQ==
+Message-ID: <00f50d92-e4ea-4805-b771-147fa5f5ebe4@kernel.org>
+Date: Sun, 24 Aug 2025 11:08:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] dt-bindings: usb: microchip,usb2514: add support
- for port vbus-supply
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Matthias Kaehlcke <mka@chromium.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- kernel@pengutronix.de
-References: <20250821-v6-16-topic-usb-onboard-dev-v3-0-6d2b38a5d818@pengutronix.de>
- <20250821-v6-16-topic-usb-onboard-dev-v3-3-6d2b38a5d818@pengutronix.de>
- <20250822-maize-elk-of-growth-2a30bb@kuoka>
- <20250822103005.c7ba7dclbgdadyw7@pengutronix.de>
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: add clocks property to
+ enable QoS on sa8775p
+To: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Mike Tipton <mike.tipton@oss.qualcomm.com>
+References: <20250808140300.14784-1-odelu.kukatla@oss.qualcomm.com>
+ <20250808140300.14784-2-odelu.kukatla@oss.qualcomm.com>
+ <90b51e31-3217-4483-bb5b-ec328665a723@kernel.org>
+ <28b97952-1b67-411f-a7fb-ddd558739839@oss.qualcomm.com>
+ <ac83c453-c24d-4c4d-83bc-9ed13f2f9d1e@kernel.org>
+ <7d3e5cf7-4167-4005-ba4b-c1915c254705@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,26 +114,77 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250822103005.c7ba7dclbgdadyw7@pengutronix.de>
+In-Reply-To: <7d3e5cf7-4167-4005-ba4b-c1915c254705@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/08/2025 12:30, Marco Felsch wrote:
->> The binding does not list ports now, but lists hard-wired devices, so my
->> question is now: is this per hard-wired device or per port (even if port
->> is hot-pluggable)?
+On 20/08/2025 10:51, Odelu Kukatla wrote:
 > 
-> Sorry but I don't get you. The binding lists the regulators required to
-> enable/disable the hub downstream port VBUS. These regulators are
+> 
+> On 8/13/2025 11:32 AM, Krzysztof Kozlowski wrote:
+>> On 13/08/2025 07:55, Odelu Kukatla wrote:
+>>>
+>>>
+>>> On 8/12/2025 3:47 PM, Krzysztof Kozlowski wrote:
+>>>> On 08/08/2025 16:02, Odelu Kukatla wrote:
+>>>>> Add reg and clocks properties to enable the clocks required
+>>>>> for accessing QoS configuration.
+>>>>
+>>>>
+>>>> Nothing here explains why EXISTING hardware is being changed. I also
+>>>> remember big discussions and big confusing patches regarding sa8775p
+>>>> (its rename, dropping/changing all providers), and this patch feels like
+>>>> pieces of it without proper justification.
+>>>>
+>>> Thanks for the review.
+>>> I have added description in cover letter, i will add here as well in next revision.> And this is hidden ABI break, no justification, no mentioning either.
+>>>> Again we are discussing basics of ABI breaking patches?
+>>>>
+>>> If you are talking ABI break if we load old DT which may lead to crash, we have .qos_requires_clocks flag which takes care of skipping QoS if required clocks are not enabled.we have addressed this issue through https://lore.kernel.org/all/20240704125515.22194-1-quic_okukatla@quicinc.com/ 
+>>
+>> Format your emails correctly, it's difficult to read.
+>>
+>> Your binding did not require reg and clocks. Now it requires reg and
+>> clocks. This is called ABI break.
+>>
+>> Please follow Qualcomm extensive upstreaming guide, it explains this,
+>> doesn't it? Or follow writing bindings...
+>>
+> 
+> Thanks for your review and guidance.
+> 
+> I agree that adding reg and clocks properties to existing bindings is an
+> ABI break. The sa8775p is a relatively older platform, and when the
+> interconnect provider driver was initially upstreamed, QoS configuration
+> support was not available in the framework. As a result, QoS was not
+> enabled at that time.
 
-Is the port an external facing connector or a hard-wired USB device
-(please read the binding)?
 
-> controlled by an external party e.g. the CPU instead of the USB hub
-> itself. The connection from the CPU to the regulator which controlls the
-> +5V usb-connector pin is hard-wired, yes.
+That's irrelevant reason. Writing bindings since long time ask pretty
+clearly to describe hardware completely, regardless whether Linux
+supports this or not.
 
-I speak about USB devices.
+It does not matter if you enable QoS or not.
+
+> 
+> The motivation for this change is that certain interconnect paths on
+> sa8775p require specific clocks to be enabled to access QoS registers.
+
+This does not look at all like existing device is completely broken.
+
+You just add new feature, so no ABI break.
+
+> QoS configuration is essential for managing latency and bandwidth across
+> subsystems such as CPU, GPU, and multimedia engines. Without it, the
+> system may experience performance degradation, especially under
+
+So how was it working for the last 2 years?
+
+
+> concurrent workloads. Enabling QoS improves system responsiveness and
+> ensures more predictable behavior in high-throughput scenarios.
+
+
 
 Best regards,
 Krzysztof
