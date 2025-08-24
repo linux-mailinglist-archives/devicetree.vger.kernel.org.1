@@ -1,44 +1,48 @@
-Return-Path: <devicetree+bounces-208624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B247B32E00
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 09:38:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81CD6B32E26
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 10:17:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1833E205A5B
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 07:38:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2163A17A756
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 08:16:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91D7C246BD9;
-	Sun, 24 Aug 2025 07:38:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A6BD221727;
+	Sun, 24 Aug 2025 08:16:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bcc.bai.ne.jp header.i=@bcc.bai.ne.jp header.b="e2L96bCA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U05VL8Ft"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rmx-b.mailgw.jp (smx-b.mailgw.jp [210.171.6.216])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C7524467B;
-	Sun, 24 Aug 2025 07:38:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.171.6.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56E6F1BC2A;
+	Sun, 24 Aug 2025 08:16:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756021108; cv=none; b=MKlFuCtsc0cd/GxxQw2v+FS7SnZsfqEvYzz/1skEvanvy/rSq0Wq9CvPjoaVDDBlnzUoe9HN1ZhuID0roMhmmupYcCJlO2twalNUUb6UGfgl/YFiMnATeiqvxkPhEttL9Uxb1RV+fphpFORKtDF0nuQeI1FNQYwoP6V+/xWRBh0=
+	t=1756023399; cv=none; b=NVmFMusqE9yaVLBBvKmMZSpbB9M2EJeS6CKpl41BdJCPrkLX3HnqusGedWw52VuEOizapTpJFI5Pa+j8/I2nCCGkHJFgrtt9OUOctsOgLMT+VyR70V/7zrVJ6i1/p/dIOum38ehW5pZh9TCEJFHU5XsZFq2V2wjuu8AW0tdZEfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756021108; c=relaxed/simple;
-	bh=iDdCpFyWd7epqUGs66dyAmaZv0TFETT0aH5mRBkakJQ=;
+	s=arc-20240116; t=1756023399; c=relaxed/simple;
+	bh=l32x1Te9bfGPB+4kp584f73PJmc+yVGlWYYCPw2loOM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KwMtn8veZUpJcYGv2YnkQ7LycXJsc9ADmLWk6sexfqibcrzCggF2I7dUDoRcg4xJyewPx4+x9+uf6k+jQorf3tTpVbwqeeGZ57vJyfTXm5Du8ejIP+pmQMyOR5ElypIVNogS0ZmsmUndgRn04MaM3wCT4gKamU1aJ+LBgUMiBCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bcc.bai.ne.jp; spf=pass smtp.mailfrom=bcc.bai.ne.jp; dkim=pass (2048-bit key) header.d=bcc.bai.ne.jp header.i=@bcc.bai.ne.jp header.b=e2L96bCA; arc=none smtp.client-ip=210.171.6.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bcc.bai.ne.jp
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bcc.bai.ne.jp
-Received: from bccml.bai.ne.jp (bccml-a.bai.ne.jp [210.171.3.161])
-	by rmx-b.mailgw.jp  with ESMTP id 57O7bqps028395-57O7bqpt028395;
-	Sun, 24 Aug 2025 16:37:52 +0900
-Received: from [192.168.11.8] (bai859bcd79.bai.ne.jp [133.155.205.121])
-	by bccml.bai.ne.jp (Postfix) with ESMTPA id 9DF3781AA6;
-	Sun, 24 Aug 2025 16:37:51 +0900 (JST)
-Message-ID: <5c5e6fe7-866c-4b79-bf52-35a393fbeb3d@bcc.bai.ne.jp>
-Date: Sun, 24 Aug 2025 16:37:51 +0900
+	 In-Reply-To:Content-Type; b=ZHm9bBfsf5JdMZwDsJGsNmo3GcXu8/HLsLBXBAq2zdW6OnIrRW0WxbPNg+ZlW23tmPuBFHNCjFcueS1fCMdiZ7ZevKbXOLhGz8tRfLd4cPcIVR04JSeTwlQNwW5VlS+RYmlLk4qL5Gu2PPvqToimSLpcOlszEMue+axmq8pVruA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U05VL8Ft; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F220C4CEEB;
+	Sun, 24 Aug 2025 08:16:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756023398;
+	bh=l32x1Te9bfGPB+4kp584f73PJmc+yVGlWYYCPw2loOM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=U05VL8FtfGd9U7XQVld8V3O7lu0RdEa/rOG3OcJ41FNXbwBF0mtieHVDOmKYsLepX
+	 j+nPossdZtKREZch761bomNH0k2PDKm8N0r4J5T8uRA54DUUDVrCbHts+zyTogRgJ/
+	 DaSEIXKExNJ+wm4LKNcXkmPEFoIVMSn5t+zwZsfsSXxgYHQr654qK7HCjl59RTzGQz
+	 C1WmbsDEF7dsqFleAXApLBZ/LvPwg7R/7Tgkf1C5CPop3MjhVzsj+U9YUA+zd/sjNz
+	 TKCO3nDzQI5F5cFVr8PCaMKJnm6RFXsWF3S+pwagL5JmK69vAIO6fZKUpCSNPbRcQz
+	 200qMiH9I1OEg==
+Message-ID: <e0c5b9b4-889f-4571-b265-fb6b2885871a@kernel.org>
+Date: Sun, 24 Aug 2025 10:16:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,78 +50,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] rm64: dts: rockchip: Enables sound output from the audio
- jack on OrangePI5 Plus
-To: Maud Spierings <maud_spierings@hotmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-sound@vger.kernel.org, robh@kernel.org
-References: <20250821041555.4781-2-opi5plus@bcc.bai.ne.jp>
- <AM7P189MB1009A6BCD143F9BE5C3341FAE33CA@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock: exynos990: Reorder IDs clocks
+ and extend
+To: Denzeel Oliva <wachiturroxd150@gmail.com>, Conor Dooley <conor@kernel.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250820-2-v2-0-bd45e196d4c4@gmail.com>
+ <20250820-2-v2-2-bd45e196d4c4@gmail.com>
+ <20250820-diffused-impaired-ba776d39692f@spud>
+ <aKn6AYIAG9eUeSx2@codespaces-a28d22>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Hide Hako <opi5plus@bcc.bai.ne.jp>
-In-Reply-To: <AM7P189MB1009A6BCD143F9BE5C3341FAE33CA@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aKn6AYIAG9eUeSx2@codespaces-a28d22>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-FE-Last-Public-Client-IP: 210.171.3.161
-X-FE-Policy-ID: 3:1:2:SYSTEM
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=bcc.bai.ne.jp; s=20240516; c=relaxed/relaxed;
- h=message-id:date:mime-version:subject:to:cc:references:from:content-type;
- bh=b612zyZuwwWZsTfE+gJ72Y9isVumaiaCq1dyAr8cbwI=;
- b=e2L96bCAWEGTgj74lXbRoZnxCIbWVL3ppVqDGlL0ZnVtS7RoSJm2HWDELDPzNuqRkIYFGDW1EkJ5
-	rpHcIPzY025bY5XYdVQTqXqPXJIGgfV7VWbrEhojVRuwnePBlI83Sew7IpdlAL91zFnWDrnuAVy5
-	ieE4VEQrqIqoxC7Vu5j4A+rkFKucGIzVg0AwKXnK971z1rYMff+5hFbB9GCcTKNTaP03rJvyZEb6
-	d3rBs8470uc7P0ZW1bJ9bg9Ge0vfA9vu1rB8Ic32JvSApbE5QqIJj3wmoZklAY+CugAfxanWNy0w
-	/g7lLA3rXnPXxcislm2I01rkBglnTvpUA4F+HA==
 
-Hello Muad
-
-On 2025/08/23 19:00, Maud Spierings wrote:
-> Hello Hide,
->
->> Currently, analog sound is not output from the audio jack.
->> This patch allows you to select analog headphones in alsamixer.
->> Works with kernel 6.16.1, but not 6.17.
+On 23/08/2025 19:27, Denzeel Oliva wrote:
+>> This looks like a massive ABI break, where is the justification for
+>> doing it?
 >>
->> Signed-off-by: Hide Hako <opi5plus@bcc.bai.ne.jp>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi 
->> <https://lore.kernel.org/all/20250821041555.4781-2-opi5plus@bcc.bai.ne.jp/#Z2e.:20250821041555.4781-2-opi5plus::40bcc.bai.ne.jp:1arch:arm64:boot:dts:rockchip:rk3588-orangepi-5.dtsi> 
->> | 1 +
->>   1 filechanged 
->> <https://lore.kernel.org/all/20250821041555.4781-2-opi5plus@bcc.bai.ne.jp/#related>, 
->> 1 insertion(+)
->>
->> diff 
->> <https://lore.kernel.org/all/20250821041555.4781-2-opi5plus@bcc.bai.ne.jp/#iZ2e.:20250821041555.4781-2-opi5plus::40bcc.bai.ne.jp:1arch:arm64:boot:dts:rockchip:rk3588-orangepi-5.dtsi> 
->> --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi 
->> b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi index 
->> 91d56c34a..656aac2df 100644 --- 
->> a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi +++ 
->> b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi @@ -113,6 
->> +113,7 @@ analog_sound: sound { simple-audio-card,mclk-fs = <256>;
->>           simple-audio-card,bitclock-master = <&daicpu>;
->>           simple-audio-card,frame-master = <&daicpu>;
->> + simple-audio-card,pin-switches = "Headphones"; /*TODO: SARADC_IN3 
->> is used as MIC detection / key input */
->>             daicpu: simple-audio-card,cpu {
->> -- 
->> 2.48.1
-> I tried this patch, but I am not able to get any audio out on my 
-> headphones. using kernel 6.16.1
->
-> I did see headphones in alsamixer, but cannot get it to actually 
-> output any audio. Any hints?
-I use ubuntu 25.04.
-Setting -> Sound -> Output Device.
-Two Analog Output-Built-in-Audio are displayed.
-Please select second Analog Output-Built-in-Audio.
+>> Cheers,
+>> Conor.
+> 
+> Hi Conor,
+> 
+> I reordered because the current IDs don’t match CMU_TOP:
+> the PLL mux select is in PLL_CON0, not CON3, which gave wrong/low rates.
 
-I'm currently working on another patch. As pointed out by Jimmy, I'm 
-creating a patch for rk3588-orangepi-5-plus.dts.
-Thank you Muad.
 
-Hide
+IDs are abstract, they cannot give wrong/low rates.
 
+> I also added DPU/CMUREF and a missing fixed-factor path to stop bad rates
+> and clk_summary hangs on hardware.
+
+
+Not really related to ABI.
+
+None of these justify changing the ABI or I don't understand the problem
+at all.
+
+Best regards,
+Krzysztof
 
