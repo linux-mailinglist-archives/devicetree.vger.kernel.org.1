@@ -1,127 +1,197 @@
-Return-Path: <devicetree+bounces-208705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A9BFB32FDC
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 14:00:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD31FB3300D
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 15:18:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A72D417E1A8
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 12:00:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87B731B2253E
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 13:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F3FB2DE710;
-	Sun, 24 Aug 2025 11:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D8923D28F;
+	Sun, 24 Aug 2025 13:18:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ITXGv3iQ"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="dY0Fki/U";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ezBPRlDE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4DB2DE6FC;
-	Sun, 24 Aug 2025 11:58:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F4871DA60D;
+	Sun, 24 Aug 2025 13:18:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756036715; cv=none; b=S3e3jFFqTpOICBNtOIZV3UH8b+oXvDrfw4USMTZkimQN0lXqcH8n8RcVmXzH6Y9CQvFG8peWmMTqOXcZMeA4E2/So8Jei74BAgABL3ufPpKA3pZKG/1oYk+SmILhNOGgTP8Avk4/sD5x1Lp1MygMq9DiG5hux0pKbLpJKX0+Q4k=
+	t=1756041529; cv=none; b=cLSsfqTix3KJh6UFeh1m+7oJdhbNV36nffMfGz6EXo4aBjSDSwJrRruXM8nXIRfFnMdMFoL/pPiSDbUjhNV1jexoYvjHRMfSr9DVl1U0HWwUF4Q4rRRaOcsFOw3qylxlj58YeiGTOohB6JHxW+mkBJh9y5MW7m//xlR38EANZOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756036715; c=relaxed/simple;
-	bh=ixAd5fgH02XrNA6FlGuQzJcZJ1xvB//XoeEe4mROJI8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QusezKAJC61n6Nv2yeOru4IbIrwLP3Kt+YJzc4gQ5qm5waM5UWXRm6vk+bRFoY07yWH9GWbHxdZEogSlg4+C5ZukAqI1F8SjH81dzNRxpTV7bpgmd/cJMk+R1EIYMnhsp0bvm2OcOSnxw4O0QJwSBbKWuNt4YdBqlqdngjgNf9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ITXGv3iQ; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id B4A4A1A0DA2;
-	Sun, 24 Aug 2025 11:58:31 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8EA9E605F1;
-	Sun, 24 Aug 2025 11:58:31 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AE9831C22D26C;
-	Sun, 24 Aug 2025 13:58:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1756036710; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=5BQKLzxHcSP+Ym2rvRUevZmK0xetSeZp3Dz06CAnblU=;
-	b=ITXGv3iQ0lZ7cnzN5bnJT7JjINj3mXBTJEdmdNK3eGu/zUeqAncna/X05CuSdONAVEx1X0
-	HFhElJDjaF29DvsD7bA64rfDbLGP/K7M2+BZ0aKmS7C0ARTv7jYWhF47sXyAOOjKh8hWPQ
-	y88XbBWItCRVsNVof5LsP5h8uR3GWG7LkMf9QpRa2HnQMVq4N5kAj9yFVi0j99Vw4BobEs
-	Y/SWGcB2mEfMziCToNvBt61qw11POpsEr+xnuQu6diX7Rl+wIu+8EL0LJAvwFgnG+CeyO6
-	mOnWIUB+VHvU5+7xb0tiirytJHn/K4iRJaWwHylhj4RC/9O5ftCEVrllSctIQQ==
-From: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Date: Sun, 24 Aug 2025 13:57:29 +0200
-Subject: [PATCH v14 10/10] MAINTAINERS: Add entry on MAX7360 driver
+	s=arc-20240116; t=1756041529; c=relaxed/simple;
+	bh=Y3HaksNBo3DV7bLbSC3M7I7b4eJP4LGWu6gpDI/98EU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hshm3H3Y2V58kVAP3Sm9/OhyCAVin5L0rukBH9jxR6dKQbJuvki3iBspNvNi7s9nJ4BHeHMDfs+//YCuuU1vc32qqYRlu+/cBlzXV/xe1gOK/FunIzNCIicgv1b8p1n6+F8H64fylSo0WZGRL6+ct/4rpD9qLUCbV8s/ATe4Ju0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=dY0Fki/U; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ezBPRlDE; arc=none smtp.client-ip=202.12.124.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+	by mailfout.stl.internal (Postfix) with ESMTP id BE2501D00095;
+	Sun, 24 Aug 2025 09:18:45 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-06.internal (MEProxy); Sun, 24 Aug 2025 09:18:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm2; t=1756041525; x=1756127925; bh=3prZoZB8qt
+	UY6cMZZ2NVeXAFCSeqIEGUhlmdlNJvu3c=; b=dY0Fki/UXlewD9rNROFjTngj5X
+	j4+oBWxM5/68hjgRw0rcab6Qjc532yYJs1TwVwAALlBwai8sqbS7sVOjHRwn4ZGL
+	nCFZ5bsAW1TeIVDCk5pJwtw0bqiAao7H1tC1Nxq/qTkdfuK4Fj9bu9qY5YBTJxPE
+	0rPSm5MbTZ1OpAzjQDzqkd8aDh+7WhnsvkFyRPk/Y4iU4O+wI41/fAclQXJlsN9A
+	57jsxzBOvas0e/BmUe8jX61e7Hph2QSKZzJpBNq6uV+8QTqb5PzXHTzFQljcyAhN
+	/TtbwKKJiTBScVxdTaXMRRwSgkjAImipuLumyQCJ/Os/RshRNzf8KvcuU9Wg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1756041525; x=1756127925; bh=3prZoZB8qtUY6cMZZ2NVeXAFCSeqIEGUhlm
+	dlNJvu3c=; b=ezBPRlDERXj9t162ceFYHGaikmaDdpwRVQPtjblaCgeHZj42Y2U
+	+Wlr3l2OIwFHpJRz+7bINCxDMy8nu/u7mTGwIE5aP7RH3DnZ7+qusBNlJuRPug5j
+	0fF45hIPYMvLYV+i/mo0kMXFPwnPa1CXiu2kak97SBvR9BPjPMyj2LaEkjEWZeWL
+	0e4R5JTOdV6z9yJ5geKX5hytpx3l97WGe4sVu8vF9XLjcex6Z2GfCx++zdo733kY
+	FXClxJ1MFdYTVB4m2QfafjDe9d+m7BKLhXVRlXMXhaJOkWRtCSbA25n22dwwMr4B
+	TobLERzrHFBFuptb43LGjpnq088M3Gy/P+A==
+X-ME-Sender: <xms:NBGraIKCqo-GFIKftdCgEmK2UwGG5cg-SEkjE40So6oWlqn3gmgIqA>
+    <xme:NBGraF1ExnEVCFABdybfg36CZCNsM0bymCUDrPdpPRcAeq7xEI50wKmIMb-iZezDn
+    Ah3dHiSd0BHnI-bvEs>
+X-ME-Received: <xmr:NBGraKeTBZKmc6v9HXIv4n_mjzCXbUjpPfcp72k12dL81XuqNHe1RVN8GeNRByYn0rTDur5fQO8SqEYTdpRzl465jvWT5dhXMx0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduieeliedtucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepfffhvfevuffkfhggtggujgesthdtredttddtjeenucfhrhhomheplfgrnhhnvgcu
+    ifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqeenucggtffrrghtthgvrhhnpefgvd
+    ffveelgedujeeffeehheekheelheefgfejffeftedugeethfeuudefheefteenucevlhhu
+    shhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjsehjrghnnhgruh
+    drnhgvthdpnhgspghrtghpthhtohepudelpdhmohguvgepshhmthhpohhuthdprhgtphht
+    thhopehthhhinhhhrdhnghhuhigvnhesshihnhhophhshihsrdgtohhmpdhrtghpthhtoh
+    epshhvvghnsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhkhheslhhinhhu
+    gihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrd
+    horhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthht
+    oheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegsrghlsghise
+    hkvghrnhgvlhdrohhrghdprhgtphhtthhopegrlhihshhsrgesrhhoshgvnhiifigvihhg
+    rdhiohdprhgtphhtthhopehnvggrlhesghhomhhprgdruggvvh
+X-ME-Proxy: <xmx:NBGraB6hZ5q-Svkbm2ty2CCEP_CAbOL495fy91yKgR8Wq7eaHVgzvw>
+    <xmx:NBGraF8k5CTxPZAkjPP5BMWybAClWCipgkqeV3tw6ZVKNCpH_N_Mag>
+    <xmx:NBGraAL4LqFl6Tm4RJuOqEqtUcF6E8g_MkxVJLNkQqXN-hRnzOLXPQ>
+    <xmx:NBGraAgZuPu3S5haJ24eHA7YcubO9p9kyHm7-tbxABj9KjuFjLgRFA>
+    <xmx:NRGraDmBjBJnwCIeb4-lr5-V1cpi2gSP19-8yGyHidyMMe0wHDHneZkU>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 24 Aug 2025 09:18:43 -0400 (EDT)
+Date: Sun, 24 Aug 2025 15:18:41 +0200
+From: Janne Grunau <j@jannau.net>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Sven Peter <sven@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"asahi@lists.linux.dev" <asahi@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
+Subject: Re: [PATCH RFC 04/22] usb: dwc3: apple: Reset dwc3 during role
+ switches
+Message-ID: <20250824131841.GG1270980@robin.jannau.net>
+References: <20250821-atcphy-6-17-v1-0-172beda182b8@kernel.org>
+ <20250821-atcphy-6-17-v1-4-172beda182b8@kernel.org>
+ <20250821232547.qzplkafogsacnbti@synopsys.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250824-mdb-max7360-support-v14-10-435cfda2b1ea@bootlin.com>
-References: <20250824-mdb-max7360-support-v14-0-435cfda2b1ea@bootlin.com>
-In-Reply-To: <20250824-mdb-max7360-support-v14-0-435cfda2b1ea@bootlin.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kamel Bouhara <kamel.bouhara@bootlin.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756036647; l=1082;
- i=mathieu.dubois-briand@bootlin.com; s=20241219; h=from:subject:message-id;
- bh=ixAd5fgH02XrNA6FlGuQzJcZJ1xvB//XoeEe4mROJI8=;
- b=EMe+5Koun6LkM5+1HplBWQgqwTSzKWVcD7KZ0t7cawgQ2PSv2d9NF/1ZlOS2mKLu0E3KujXB/
- i1VaP+fOG4JBeKfxXAxmXeO9wM3lKt2XPdC8HKEA6dv1MMYU4iHg6OA
-X-Developer-Key: i=mathieu.dubois-briand@bootlin.com; a=ed25519;
- pk=1PVTmzPXfKvDwcPUzG0aqdGoKZJA3b9s+3DqRlm0Lww=
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250821232547.qzplkafogsacnbti@synopsys.com>
 
-Add myself as maintainer of Maxim MAX7360 driver and device-tree bindings.
+On Thu, Aug 21, 2025 at 11:25:51PM +0000, Thinh Nguyen wrote:
+> On Thu, Aug 21, 2025, Sven Peter wrote:
+> > As mad as it sounds, the dwc3 controller present on the Apple M1 must be
+> > reset and reinitialized whenever a device is unplugged from the root
+> > port or when the PHY mode is changed.
+> > 
+> > This is required for at least the following reasons:
+> > 
+> >   - The USB2 D+/D- lines are connected through a stateful eUSB2 repeater
+> >     which in turn is controlled by a variant of the TI TPS6598x USB PD
+> >     chip. When the USB PD controller detects a hotplug event it resets
+> >     the eUSB2 repeater. Afterwards, no new device is recognized before
+> >     the DWC3 core and PHY are reset as well because the eUSB2 repeater
+> >     and the PHY/dwc3 block disagree about the current state.
+> > 
+> >   - It's possible to completely break the dwc3 controller by switching
+> >     it to device mode and unplugging the cable at just the wrong time.
+> >     If this happens dwc3 behaves as if no device is connected.
+> >     CORESOFTRESET will also never clear after it has been set. The only
+> >     workaround is to trigger a hard reset of the entire dwc3 core with
+> >     its external reset line.
+> > 
+> >   - Whenever the PHY mode is changed (to e.g. transition to DisplayPort
+> >     alternate mode or USB4) dwc3 has to be shutdown and reinitialized.
+> >     Otherwise the Type-C port will not be usable until the entire SoC
+> >     has been reset.
+> > 
+> > All of this can be easily worked around by respecting transitions to
+> > USB_ROLE_NONE and making sure the external reset line is asserted when
+> > switching roles. We additionally have to ensure that the PHY is
+> > suspended during init.
+> > 
+> > Signed-off-by: Sven Peter <sven@kernel.org>
+> > ---
+> >  drivers/usb/dwc3/core.c | 61 +++++++++++++++++++++++++++++++++++++++++++++----
+> >  drivers/usb/dwc3/core.h |  3 +++
+> >  drivers/usb/dwc3/drd.c  | 11 ++++++++-
+> >  drivers/usb/dwc3/host.c |  3 ++-
+> >  4 files changed, 72 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> > index 8002c23a5a02acb8f3e87b2662a53998a4cf4f5c..26aa507a738f001409a97ef563c6561433a1cac5 100644
+> > --- a/drivers/usb/dwc3/core.c
+> > +++ b/drivers/usb/dwc3/core.c
 
-Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
----
- MAINTAINERS | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index daf520a13bdf..6ac78b0ccc1c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15011,6 +15011,19 @@ L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	drivers/iio/temperature/max30208.c
- 
-+MAXIM MAX7360 KEYPAD LED MFD DRIVER
-+M:	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
-+F:	Documentation/devicetree/bindings/mfd/maxim,max7360.yaml
-+F:	drivers/gpio/gpio-max7360.c
-+F:	drivers/input/keyboard/max7360-keypad.c
-+F:	drivers/input/misc/max7360-rotary.c
-+F:	drivers/mfd/max7360.c
-+F:	drivers/pinctrl/pinctrl-max7360.c
-+F:	drivers/pwm/pwm-max7360.c
-+F:	include/linux/mfd/max7360.h
-+
- MAXIM MAX77650 PMIC MFD DRIVER
- M:	Bartosz Golaszewski <brgl@bgdev.pl>
- L:	linux-kernel@vger.kernel.org
+> >  	/*
+> >  	 * When current_dr_role is not set, there's no role switching.
+> >  	 * Only perform GCTL.CoreSoftReset when there's DRD role switching.
+> >  	 */
+> > -	if (dwc->current_dr_role && ((DWC3_IP_IS(DWC3) ||
+> > +	if (dwc->role_switch_reset_quirk ||
+> 
+> Don't override the use of GCTL.CoreSoftReset with this quirk. Not all
+> controller versions should use GCTL.CoreSoftReset, the new controller
+> version don't even have it. What version is this vendor using?
 
--- 
-2.39.5
+It reports DWC31, revision 190A and the unlisted version_types
+0x736f3035 (M1), 0x736f3039 (M1 Pro/Max/Ultra) and 0x736f3130 (M2, M2
+Pro/Max/Ultra).
 
+> I'm concern how this condition is needed...
+> 
+> > +		(dwc->current_dr_role && ((DWC3_IP_IS(DWC3) ||
+> >  			DWC3_VER_IS_PRIOR(DWC31, 190A)) &&
+> > -			desired_dr_role != DWC3_GCTL_PRTCAP_OTG)) {
+> > +			desired_dr_role != DWC3_GCTL_PRTCAP_OTG))) {
+> >  		reg = dwc3_readl(dwc->regs, DWC3_GCTL);
+> >  		reg |= DWC3_GCTL_CORESOFTRESET;
+> >  		dwc3_writel(dwc->regs, DWC3_GCTL, reg);
+
+Janne
 
