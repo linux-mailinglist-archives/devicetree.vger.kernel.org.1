@@ -1,67 +1,68 @@
-Return-Path: <devicetree+bounces-208709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B239DB33052
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 16:16:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6D8B3305E
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 16:24:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69430446CA1
-	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 14:16:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 851AE189DB3B
+	for <lists+devicetree@lfdr.de>; Sun, 24 Aug 2025 14:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B88E3189BB0;
-	Sun, 24 Aug 2025 14:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 031E12D543E;
+	Sun, 24 Aug 2025 14:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Uhpwy7hv"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fe3mPgo1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3310C3207;
-	Sun, 24 Aug 2025 14:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B455D54791
+	for <devicetree@vger.kernel.org>; Sun, 24 Aug 2025 14:24:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756044997; cv=none; b=e7NPK/4EROrlb8B9OUc53ilYobKzcwWqC5qItgvyuNxic+Q1H24ArcA5b0bl79g+im0GU0I0IrjENjz3xrPkYjrx/LYIDTKV8zjX6Rtcs7LF5LiEayCJuwcDs10A+l4YFlCFbsnennhvTm5zgwJxGSpATQRaS/jXWXW7FmTSgQo=
+	t=1756045449; cv=none; b=u0RqNJFmyx6+AryOsHF7pkUta2TvOqBEP03VlFMfonN0vSqvHUVb21FI8vHknx9y7+H0ErdGdTZOcFKsYceKqskOAhhKdHUfkp9KNb22QSnXyWbB80PER+AOpOKhP1g/Tl8OatH9GAQrxyXJtIUuqKjgS8F2QGdsYXjb5EDt4xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756044997; c=relaxed/simple;
-	bh=hDA1+sAAQznZuSvbhAqbA9uok3v3wVBCGUFLA2/9YtI=;
+	s=arc-20240116; t=1756045449; c=relaxed/simple;
+	bh=c3AcTuha+KxfjbXnXT8SmXB8RGUI1YZFmW2b/4MBe7U=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=lTc5tnIlLFnq/rghpz6j2fY3VJNLjuK7S3PzJVzABItGYd5p7/1c0/pE3A9B5HjHrUSsfd5DKYWbAcwKDzmW2X5N6uwYBNCJbuQDBD8hqfq+wWxB7/RkRrrE/n5mG6jE4dkeVl0HJgbrZW75Op+HJ5uDuSxxrpJED+SZNHyhQVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Uhpwy7hv; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version:Content-Type; b=XfYguJgzDv4ACWST4uX3w8kKae6GCgxuyoGy1ApetFpzL6H9Tu9IZvQwWiLW95tAD4lGF4mk1P8Ov2VHG6zsQvUKFdXcqZQfUvFqkubswPdynrWFeUJKV+AE6bSo7s4tSkLSit0FZ/Qsgihss6pzbmRysw9UJyIMSSsibV5aA+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fe3mPgo1; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 5CE754E40C49;
-	Sun, 24 Aug 2025 14:16:32 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id ED75A1A0964;
+	Sun, 24 Aug 2025 14:24:05 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2D7D3605F1;
-	Sun, 24 Aug 2025 14:16:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AC2091C22CC97;
-	Sun, 24 Aug 2025 16:16:26 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id ACBE4605F1;
+	Sun, 24 Aug 2025 14:24:05 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CDC541C22D86D;
+	Sun, 24 Aug 2025 16:23:59 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1756044991; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1756045444; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=hDA1+sAAQznZuSvbhAqbA9uok3v3wVBCGUFLA2/9YtI=;
-	b=Uhpwy7hv6gf2ew5zGwaCumzcPZ88Y+0YZnvCAQuKOGEnisEZ08ywOK5hfJgGwMtc8TGxt+
-	1e9dEMHWC5h4KPjBceRUSuHEOmoQBNCTsLgDlIvuGe1l7fkHZ4ABjfbe+HCfLhOIrLV+ro
-	g1dmG07Fe7KAvnpqXUp9cjhYW8Ge1AkZ5FDxeCheO7ZrvMONs2X9faYIjECm80EFWl172B
-	BGtvgiyi/XbqCCh5NfX0/xD0P6PIcD7qKEBp/Z1papRcu9vYckbzMnX4QycvHYvuJlC5hi
-	bqqVw8x9GtooYqCzWzJZgwawiuwmtZ+4XyG7cR90ZrPhjstT87VEyGptBM8L1w==
+	bh=c3AcTuha+KxfjbXnXT8SmXB8RGUI1YZFmW2b/4MBe7U=;
+	b=fe3mPgo1USufpbneU4gpLjsybFhxYZYhtYgY4Tb27R9GxOpor1ouvDDpy7Q0kY4PvUcBtU
+	eW0BehihJDd08PezHVRmOV5ob32ZL6X9xPJvivorXYKsxaXhwMq2KNoZoMltmCxVTwJrOy
+	cqxegAa/87WjJlWnO00Nst1RCeTtHsAd3n6vLkusLtrXaZumlgUAbi5sleilKhD0QTcjRf
+	oWPKerTyGhhdI8Svnf0UauimenJsdGVxbzsASkUYk4VLJAzmkanEiVa9SJWa55Kfmi+h5p
+	XtE4KQtGAEXZe7LjYa9e0lt5ADZOIOiFKPBoAgZY8IctIebEsGauCPpWB5sRAQ==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,  Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
- <conor+dt@kernel.org>,  Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-  linux-kernel@vger.kernel.org,  devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: marvell,cp110-icu:
- Document address-cells
-In-Reply-To: <20250823163258.49648-2-krzysztof.kozlowski@linaro.org>
-	(Krzysztof Kozlowski's message of "Sat, 23 Aug 2025 18:32:59 +0200")
-References: <20250823163258.49648-2-krzysztof.kozlowski@linaro.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,  Daniel Lezcano
+ <daniel.lezcano@linaro.org>,  Zhang Rui <rui.zhang@intel.com>,  Lukasz
+ Luba <lukasz.luba@arm.com>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>,  linux-pm@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: thermal: Convert
+ marvell,armada370-thermal to DT schema
+In-Reply-To: <20250822225645.766397-1-robh@kernel.org> (Rob Herring's message
+	of "Fri, 22 Aug 2025 17:56:44 -0500")
+References: <20250822225645.766397-1-robh@kernel.org>
 User-Agent: mu4e 1.12.7; emacs 30.1
-Date: Sun, 24 Aug 2025 16:14:42 +0200
-Message-ID: <87qzx0n6wd.fsf@bootlin.com>
+Date: Sun, 24 Aug 2025 16:23:50 +0200
+Message-ID: <87frdgn6h5.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,17 +73,16 @@ Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+Hello,
 
-On 23/08/2025 at 18:32:59 +02, Krzysztof Kozlowski <krzysztof.kozlowski@lin=
-aro.org> wrote:
+On 22/08/2025 at 17:56:44 -05, "Rob Herring (Arm)" <robh@kernel.org> wrote:
 
-> The CP110 ICU children are interrupt controllers and can be referenced
-> in interrupt-map properties (e.g. in
-> arch/arm64/boot/dts/marvell/armada-cp11x.dtsi), thus the nodes should
-> have address-cells property.
+> Convert the Marvell Armada 3xx/XP thermal binding to schema.
 >
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Drop the AP80x and CP110 as they have long been deprecated and have
+> been replaced by a new binding.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
 Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
