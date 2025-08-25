@@ -1,39 +1,48 @@
-Return-Path: <devicetree+bounces-209045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F6FB345AF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 17:26:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C14B345C5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 17:29:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 928333ADAA6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 15:26:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF3EE17D4A2
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 15:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CBB62FC001;
-	Mon, 25 Aug 2025 15:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9682FC896;
+	Mon, 25 Aug 2025 15:29:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KTrcdSNw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150482F3627;
-	Mon, 25 Aug 2025 15:26:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800C62FC864;
+	Mon, 25 Aug 2025 15:29:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756135601; cv=none; b=gABUvWdQlQYBOO2L1R66fCLNKwKrIPrOKg7rMSYmvTru/SVT1tWbRy7Pl3YQc7ocRQ8gUfkevlTsbNg+AzsQAmvJxANp4i1oko2fjhz43ZlrRvQUAI5N4ESc1KidQeq1kLroIUtD4mjWBGVXZaxoQwJW+rQ1JCeMV1fdxaFjj/8=
+	t=1756135743; cv=none; b=ofCeT4ZCKdqB8EzUxr15R6qEnTiuREz+9fyVetjckVIncyXsGl9Y/Rk9fGKrubd6UywcblU+RwBajGEdrIMyz/ZcA4FDfrGeI/drmb8P3iIY88K/TbiJ5qQeoRAo+UvO+kM924J6eC1BB93JexB0WCHrctVZC0eqrzSY4gyeaxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756135601; c=relaxed/simple;
-	bh=KhMo0SpotGb/z4U7wZvB4jdhQVQqAkWRO5ZRQrh/7+0=;
+	s=arc-20240116; t=1756135743; c=relaxed/simple;
+	bh=aOMifVKOp4oKKYyO20R51jVPMX1YJXikplRovu+zXS4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AE63sXjL+pTNLsEl9snY2VQeqOQWIcZJ8Ld0d0Gg73ah1XE7CW3oqWJV7wR9m96FZByrxKQP2mKUH+RKy1LRJv/QW6hvuexTeQkN4uQwugfyI+Z0HcCdqhws/h+6rDRA6sEf0mD3/PwegmgLesQeyj4mG81UtglbxSe0WlTqBkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from [192.168.110.25] (unknown [118.251.178.216])
-	by APP-05 (Coremail) with SMTP id zQCowACXLF2WgKxok2QfDw--.14476S2;
-	Mon, 25 Aug 2025 23:26:15 +0800 (CST)
-Message-ID: <a2cc4cbe-82ca-4a89-b623-73721a1f3baf@isrc.iscas.ac.cn>
-Date: Mon, 25 Aug 2025 23:26:13 +0800
+	 In-Reply-To:Content-Type; b=uB6VJVdxKXmayGru/bAeiApWvy6uGl9ZKK5tmTNPl2Aj0SryQdw54d9WmzMKRp2dXHTEN8YWy9SqI31lyrdYDEOx++gu+rRPkIDrH9zCQiNRqGC+KKPF1UZ9loXsrWTpncckz7cd2O/Nh7UbcEvcAp/TpQk97QeXU2klw/l1Nro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KTrcdSNw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95D30C4CEF4;
+	Mon, 25 Aug 2025 15:28:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756135743;
+	bh=aOMifVKOp4oKKYyO20R51jVPMX1YJXikplRovu+zXS4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KTrcdSNwYa4HzJaFgquyZob6pNT4hqE3Do95X3/zpk0g/on7STIImmPrwYly7V58K
+	 sAMt69RVLuVPvyJMi2lHWmfiS0nnwCaNjofGF3UvzsnjuW1vJQ55WPnb6bccxumqJl
+	 QsuPiFJS0A3akEihCcf3szUGidDWcLhq9sXqWpl7QlgmU1ItgL9kT0lAanN6c9H5ID
+	 zF0TdZEKFUAAIHlDmZ6nM15Y2kAzsbesdSNktOiAgH5d9XFBJiB6K9Xy+1JXErmo7X
+	 v4zMFskk1Ypm4Tv4BgYiQgMBVtJFDclHKhdC/SAYVKK2ElVXL86nFGPA3WVqV18nQp
+	 AgFFZWMKL7gLw==
+Message-ID: <9af288b0-2c31-48e2-b9ec-cb9e996ea644@kernel.org>
+Date: Mon, 25 Aug 2025 17:28:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,162 +50,217 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 RESEND 1/5] dt-bidings: riscv: add Zilsd and Zclsd
- extension descriptions
-To: Conor Dooley <conor@kernel.org>
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- anup@brainfault.org, pbonzini@redhat.com, shuah@kernel.org,
- cyan.yang@sifive.com, cleger@rivosinc.com, charlie@rivosinc.com,
- cuiyunhui@bytedance.com, samuel.holland@sifive.com, namcao@linutronix.de,
- jesse@rivosinc.com, inochiama@gmail.com, yongxuan.wang@sifive.com,
- ajones@ventanamicro.com, parri.andrea@gmail.com, mikisabate@gmail.com,
- yikming2222@gmail.com, thomas.weissschuh@linutronix.de,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, devicetree@vger.kernel.org, kvm@vger.kernel.org,
- kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-References: <20250821140131.225756-1-pincheng.plct@isrc.iscas.ac.cn>
- <20250821140131.225756-2-pincheng.plct@isrc.iscas.ac.cn>
- <20250822-purge-doubling-f38988284db1@spud>
-From: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
-In-Reply-To: <20250822-purge-doubling-f38988284db1@spud>
+Subject: Re: [PATCH v10 05/13] media: dt-bindings: add rockchip rk3568 mipi
+ csi-2 receiver
+To: michael.riesch@collabora.com, Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gerald Loacker <gerald.loacker@wolfvision.net>,
+ Markus Elfring <Markus.Elfring@web.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Paul Kocialkowski <paulk@sys-base.io>,
+ Alexander Shiyan <eagle.alexander923@gmail.com>,
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20240220-rk3568-vicap-v10-0-62d8a7b209b4@collabora.com>
+ <20240220-rk3568-vicap-v10-5-62d8a7b209b4@collabora.com>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20240220-rk3568-vicap-v10-5-62d8a7b209b4@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:zQCowACXLF2WgKxok2QfDw--.14476S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxCr47Ww18Kw47Xr4xKrW3Jrb_yoW5Kr43pF
-	Z3GF4kKa90qw13u3s2y3W0vw45AF4kKw13AFnrt34fKa98Zr10gF4ak3Z0qF1rCF48CF4j
-	vw4Ygr15ZrsrAaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvmb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6r1S6rWUM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVW8JVWxJw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26rWY6r4UJwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
-	x0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2
-	z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnU
-	UI43ZEXa7IUYsyCtUUUUU==
-X-CM-SenderInfo: pslquxhhqjh1xofwqxxvufhxpvfd2hldfou0/
 
-On 2025/8/23 0:33, Conor Dooley wrote:
-> On Thu, Aug 21, 2025 at 10:01:27PM +0800, Pincheng Wang wrote:
->> Add descriptions for the Zilsd (Load/Store pair instructions) and
->> Zclsd (Compressed Load/Store pair instructions) ISA extensions
->> which were ratified in commit f88abf1 ("Integrating load/store
->> pair for RV32 with the main manual") of the riscv-isa-manual.
->>
->> Signed-off-by: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
->> ---
->>   .../devicetree/bindings/riscv/extensions.yaml | 39 +++++++++++++++++++
->>   1 file changed, 39 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
->> index ede6a58ccf53..d72ffe8f6fa7 100644
->> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
->> @@ -366,6 +366,20 @@ properties:
->>               guarantee on LR/SC sequences, as ratified in commit b1d806605f87
->>               ("Updated to ratified state.") of the riscv profiles specification.
->>   
->> +        - const: zilsd
->> +          description:
->> +            The standard Zilsd extension which provides support for aligned
->> +            register-pair load and store operations in 32-bit instruction
->> +            encodings, as ratified in commit f88abf1 ("Integrating
->> +            load/store pair for RV32 with the main manual") of riscv-isa-manual.
->> +
->> +        - const: zclsd
->> +          description:
->> +            The Zclsd extension implements the compressed (16-bit) version of the
->> +            Load/Store Pair for RV32. As with Zilsd, this extension was ratified
->> +            in commit f88abf1 ("Integrating load/store pair for RV32 with the
->> +            main manual") of riscv-isa-manual.
->> +
->>           - const: zk
->>             description:
->>               The standard Zk Standard Scalar cryptography extension as ratified
->> @@ -847,6 +861,16 @@ properties:
->>               anyOf:
->>                 - const: v
->>                 - const: zve32x
->> +      # Zclsd depends on Zilsd and Zca
->> +      - if:
->> +          contains:
->> +            anyOf:
->> +              - const: zclsd
->> +        then:
->> +          contains:
->> +            anyOf:
->> +              - const: zilsd
->> +              - const: zca
->>   
->>   allOf:
->>     # Zcf extension does not exist on rv64
->> @@ -864,6 +888,21 @@ allOf:
->>             not:
->>               contains:
->>                 const: zcf
->> +  # Zilsd extension does not exist on rv64
->> +  - if:
->> +      properties:
+On 19/08/2025 00:25, Michael Riesch via B4 Relay wrote:
+> From: Michael Riesch <michael.riesch@collabora.com>
 > 
->> +        riscv,isa-extensions:
->> +          contains:
->> +            const: zilsd
+> Add documentation for the Rockchip RK3568 MIPI CSI-2 Receiver.
 > 
-> This syntax is odd, it shouldn't be required to have zilsd in here and
-> in the then. Did you copy this from Zcf or come up with it yourself
-> because it didn't work otherwise?
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> ---
+>   .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 144 +++++++++++++++++++++
+>   MAINTAINERS                                        |   6 +
+>   2 files changed, 150 insertions(+)
 > 
-
-Yes, I did model this after the existing Zcf constraint in the same 
-file. The structure is nearly identical: cheking for presence of the 
-extension and rv64i, then forbidding it in the "then" branch.
-
-I've tested confirmed that removing the "contains: const: zilsd" from 
-the "if" condition still correctly enforces that zilsd must not appear 
-when rv64i is present. The "then" clause with "not: contains" is sufficient.
-
-Given that the validation behavior is equivalent, but the logic is 
-cleaner and less redundant without the extra "contains", would you 
-recommend updating it to the simpler form:
-
-     - if:
-         properties:
-           riscv,isa-base:
-             contains:
-               const: rv64i
-       then:
-         properties:
-           riscv,isa-extensions:
-             not:
-               contains:
-                 const: zilsd
-
-If so, I'll update it in the next revision.
-
-Thanks for the review!
-
-Best regards,
-Pincheng Wang
-
->> +        riscv,isa-base:
->> +          contains:
->> +            const: rv64i
->> +    then:
->> +      properties:
->> +        riscv,isa-extensions:
->> +          not:
->> +            contains:
->> +              const: zilsd
->>   
->>   additionalProperties: true
->>   ...
->> -- 
->> 2.39.5
->>
-
+> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
+> new file mode 100644
+> index 000000000000..8cbab93b4b85
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
+> @@ -0,0 +1,144 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip RK3568 MIPI CSI-2 Receiver
+> +
+> +maintainers:
+> +  - Michael Riesch <michael.riesch@collabora.com>
+> +
+> +description:
+> +  The Rockchip RK3568 MIPI CSI-2 Receiver is a CSI-2 bridge with one input port
+> +  and one output port. It receives the data with the help of an external
+> +  MIPI PHY (C-PHY or D-PHY) and passes it to the Rockchip RK3568 Video Capture
+> +  (VICAP) block.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - rockchip,rk3588-mipi-csi
+> +          - const: rockchip,rk3568-mipi-csi
+> +      - const: rockchip,rk3568-mipi-csi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Interrupt that signals changes in CSI2HOST_ERR1.
+> +      - description: Interrupt that signals changes in CSI2HOST_ERR2.
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: irq1
+> +      - const: irq2
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: MIPI C-PHY or D-PHY.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: Input port node. Connect to e.g., a MIPI CSI-2 image sensor.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-type:
+> +                enum: [1, 4]
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +            required:
+> +              - bus-type
+> +              - data-lanes
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Output port connected to a RK3568 VICAP port.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - phys
+> +  - ports
+> +  - power-domains
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3568-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+> +    #include <dt-bindings/power/rk3568-power.h>
+> +
+> +    soc {
+> +        interrupt-parent = <&gic>;
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        csi: csi@fdfb0000 {
+> +            compatible = "rockchip,rk3568-mipi-csi";
+> +            reg = <0x0 0xfdfb0000 0x0 0x10000>;
+> +            interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "irq1", "irq2";
+> +            clocks = <&cru PCLK_CSI2HOST1>;
+> +            phys = <&csi_dphy>;
+> +            power-domains = <&power RK3568_PD_VI>;
+> +            resets = <&cru SRST_P_CSI2HOST1>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                csi_in: port@0 {
+> +                    reg = <0>;
+> +
+> +                    csi_input: endpoint {
+> +                        bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+> +                        data-lanes = <1 2 3 4>;
+> +                        remote-endpoint = <&imx415_output>;
+> +                    };
+> +                };
+> +
+> +                csi_out: port@1 {
+> +                    reg = <1>;
+> +
+> +                    csi_output: endpoint {
+> +                        remote-endpoint = <&vicap_mipi_input>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4c39b9fd80bb..2ac4b7a5b255 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21797,6 +21797,12 @@ F:	Documentation/userspace-api/media/v4l/metafmt-rkisp1.rst
+>   F:	drivers/media/platform/rockchip/rkisp1
+>   F:	include/uapi/linux/rkisp1-config.h
+>   
+> +ROCKCHIP MIPI CSI-2 RECEIVER DRIVER
+> +M:	Michael Riesch <michael.riesch@collabora.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
+> +
+>   ROCKCHIP RK3568 RANDOM NUMBER GENERATOR SUPPORT
+>   M:	Daniel Golle <daniel@makrotopia.org>
+>   M:	Aurelien Jarno <aurelien@aurel32.net>
+> 
+Reviewed-by: Bryan O'Donoghue <bod@kernel.org>
 
