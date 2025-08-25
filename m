@@ -1,192 +1,75 @@
-Return-Path: <devicetree+bounces-208885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02A3CB3385A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 09:59:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF313B33871
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 10:07:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAA8217C4C8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 07:59:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C7443BEE89
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 08:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 006B5299AA3;
-	Mon, 25 Aug 2025 07:59:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hewittfamily.org.uk header.i=@hewittfamily.org.uk header.b="R9yowu/4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B414429992A;
+	Mon, 25 Aug 2025 08:07:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from m204-238.eu.mailgun.net (m204-238.eu.mailgun.net [161.38.204.238])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63D1228850B
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 07:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.38.204.238
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756108746; cv=none; b=cvSdhEe1aOuBM5E4JAwj1qSYQZAPw6UQuEC2bqucOgzDWSgP/bF2QnVsit/DFT0c5s5epkFKhty8fAkKWQ4uSU0E2PayBGcYCdnGE/islOJFa+O3okqAflJKohtaxyeSsUDTXBd675ACmo+341OQp+hOPaOQX0M1Md6bxF2cSuo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756108746; c=relaxed/simple;
-	bh=4XTMT6uavwuEBqViPRRFqM1dd7IHrypMtOOT4d+7JH4=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=DsatkLBBwBxapa2AATIiIx7kFUiw/Qdt6zaBQ7FouEDVSVhqjSY9zEAVHJ6dM/419/MPrDJcvHjvIos61UX1q4/Pl2ICD082uOIGb/Rmbz5h5KrQNImEdMV/5M9IsPriOf65oB6JZsNizoIFjxSiFt/CsO5TV1DN2+oU178Bw0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=hewittfamily.org.uk; spf=pass smtp.mailfrom=hewittfamily.org.uk; dkim=pass (2048-bit key) header.d=hewittfamily.org.uk header.i=@hewittfamily.org.uk header.b=R9yowu/4; arc=none smtp.client-ip=161.38.204.238
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=hewittfamily.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hewittfamily.org.uk
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=hewittfamily.org.uk; q=dns/txt; s=s1; t=1756108742; x=1756115942;
- h=To: To: References: Message-Id: Content-Transfer-Encoding: Cc: Date: In-Reply-To: From: From: Subject: Subject: Mime-Version: Content-Type: Sender: Sender;
- bh=4XTMT6uavwuEBqViPRRFqM1dd7IHrypMtOOT4d+7JH4=;
- b=R9yowu/4iSAh3rO22Y2S1x8pG/bu39UTdUZdp8L7nF8zkB+DPLrcsewAcSJsibXOY++aGpw8d7GcS/tzjLod0CwgBc0rd9BhD+PqRK3DfJhK8RVHexxFWXqbtTOW4YdzXmRu9pG+5fHmyruVcNeT2if/Mm2mb4nWtLqwlWEjDWCCsKgK5Eedy0GVZA5DhnMzFunOm5URTMPRz/P7gZ4tqBhbJbc470MJh50+ebhSAfgXyj21mb9XtejLpCMGCKfWx2QwxwrWMEp/yF2M9XBOPg7Hil/6VV/buVXW3mUyzSxbQCa+lj6bigeLYM0gdLdi5914CMhTOlFnrGoK838oJw==
-X-Mailgun-Sid: WyIzZDI1OSIsImRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnIiwiZTM3MjAiXQ==
-Received: from mail.hewittfamily.org.uk (unknown [87.200.95.144]) by
- 6daba92ea63ccfff060124925e5e264487e90b9321cf65b2c1448e79f35e349c with SMTP id
- 68ac17c603c0e2ff1b03e86a (version=TLS1.3, cipher=TLS_AES_128_GCM_SHA256);
- Mon, 25 Aug 2025 07:59:02 GMT
-X-Mailgun-Sending-Ip: 161.38.204.238
-Sender: christian@hewittfamily.org.uk
-Received: from smtpclient.apple (unknown [172.16.20.1])
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.hewittfamily.org.uk (Postfix) with ESMTPSA id 4c9NTv3F5Mz50RyQ;
-	Mon, 25 Aug 2025 11:58:59 +0400 (+04)
-Content-Type: text/plain;
-	charset=utf-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E4D291C1F;
+	Mon, 25 Aug 2025 08:07:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.95.11.211
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756109237; cv=none; b=ObsEFE5GSXeY8KcA+W0/Z89Pty6Vb1ugx40qdMrz695+u37tr9rX0pYqynGYoVc+YtZ29IscG8XGj8H3ZmQBAGC6ygQNgX/RgIR9V/Ifoyz9PODaMPv8K6liiEd7N2EuTkr1fM5ljFyPhtp7jaMf0gYT8jrjYZLi5FVM/vYL15M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756109237; c=relaxed/simple;
+	bh=IBIp2gvwdN7Gzu3Imd4BXP9l50KbPoLZlLKeiU+y9wQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bx37Zvm9FrJyx3zwQ7lp2rCCGAyV1eC70RF09WCC5p5Rr9x2WeTZQ0l5xzUiOL1ClYSo7Q6SURnYEr5DBFgmzYfKh/KuUHTdSVA6fAvGPSzzcyiXcbO/XyzHdYcSTrVTR3wYH+2qP0hv/i+A1NxuPvhF/HpUyHa4G1sDKluM0Xo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lst.de; spf=pass smtp.mailfrom=lst.de; arc=none smtp.client-ip=213.95.11.211
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lst.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lst.de
+Received: by verein.lst.de (Postfix, from userid 2407)
+	id 9E63768AA6; Mon, 25 Aug 2025 10:07:10 +0200 (CEST)
+Date: Mon, 25 Aug 2025 10:07:10 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Jassi Brar <jassisinghbrar@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hector Martin <marcan@marcan.st>, Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	iommu@lists.linux.dev, linux-nvme@lists.infradead.org
+Subject: Re: [PATCH v3 7/9] nvme: apple: Add Apple A11 support
+Message-ID: <20250825080710.GA23193@lst.de>
+References: <20250821-t8015-nvme-v3-0-14a4178adf68@gmail.com> <20250821-t8015-nvme-v3-7-14a4178adf68@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
-Subject: Re: [PATCH v2 01/11] arm64: dts: amlogic: Add cache information to
- the Amlogic GXBB and GXL SoC
-From: Christian Hewitt <christian@hewittfamily.org.uk>
-In-Reply-To: <20250825065240.22577-2-linux.amoon@gmail.com>
-Date: Mon, 25 Aug 2025 11:58:48 +0400
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "moderated list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <19AB5D06-DEB6-4C38-B90D-FCDD9719312C@hewittfamily.org.uk>
-References: <20250825065240.22577-1-linux.amoon@gmail.com>
- <20250825065240.22577-2-linux.amoon@gmail.com>
-To: Anand Moon <linux.amoon@gmail.com>
-X-Synology-Spam-Status: score=-2.601, required 5, autolearn=ham, FREEMAIL_ENVRCPT 0, FROM_HAS_DN 0, FROM_EQ_ENVFROM 0, DBL_PROHIBIT 0, MIME_GOOD -0.1, MV_CASE 0.5, MID_RHS_MATCH_FROM 0, NO_RECEIVED -0.001, RCVD_COUNT_ZERO 0, TAGGED_RCPT 0, MISSING_XM_UA 0, __THREADED 0, FREEMAIL_CC 0, BAYES_HAM -3, TO_MATCH_ENVRCPT_ALL 0, TO_DN_ALL 0, __HDRS_LCASE_KNOWN 0, __BODY_URI_ONLY 0, FREEMAIL_TO 0, ARC_NA 0, MIME_TRACE 0, RCPT_COUNT_TWELVE 0, __NOT_SPOOFED 0
-X-Synology-Spam-Flag: no
-X-Synology-Virus-Status: no
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250821-t8015-nvme-v3-7-14a4178adf68@gmail.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 
-> On 25 Aug 2025, at 10:51=E2=80=AFam, Anand Moon =
-<linux.amoon@gmail.com> wrote:
->=20
-> As per S905 and S905X datasheet add missing cache information to
-> the Amlogic GXBB and GXL SoC.
->=20
-> - Each Cortex-A53 core has 32KB of L1 instruction cache available and
-> 32KB of L1 data cache available.
-> - Along with 512KB Unified L2 cache.
->=20
-> Cache memory significantly reduces the time it takes for the CPU
-> to access data and instructions, leading to faster program execution
-> and overall system responsiveness.
+On Thu, Aug 21, 2025 at 11:56:44PM +0800, Nick Chan wrote:
+> +		writel(anv->hw->max_queue_depth | (anv->hw->max_queue_depth << 16),
 
-Hello Anand,
+One long line left here.
 
-I=E2=80=99m wondering if we are =E2=80=9Cenabling caching=E2=80=9D in =
-these patches (could be
-a significant gain, as per text) or we are =E2=80=9Coptimising =
-caching=E2=80=9D meaning
-the kernel currently assumes generic/safe defaults so having accurate
-descriptions in dt allows better efficiency (marginal gain)?
+Otherwise this looks fine to me.
 
-Stats are also subjective to the workload used, but do you have any
-kind of before/after benchmarks? (for any of the SoCs in the patchset)
+Do you want to merge this through the apple SOC tree?  If so:
 
-Christian
-
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 27 +++++++++++++++++++++++
-> 1 file changed, 27 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi =
-b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index 7d99ca44e660..c1d8e81d95cb 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -95,6 +95,12 @@ cpu0: cpu@0 {
-> compatible =3D "arm,cortex-a53";
-> reg =3D <0x0 0x0>;
-> enable-method =3D "psci";
-> + d-cache-line-size =3D <32>;
-> + d-cache-size =3D <0x8000>;
-> + d-cache-sets =3D <32>;
-> + i-cache-line-size =3D <32>;
-> + i-cache-size =3D <0x8000>;
-> + i-cache-sets =3D <32>;
-> next-level-cache =3D <&l2>;
-> clocks =3D <&scpi_dvfs 0>;
-> #cooling-cells =3D <2>;
-> @@ -105,6 +111,12 @@ cpu1: cpu@1 {
-> compatible =3D "arm,cortex-a53";
-> reg =3D <0x0 0x1>;
-> enable-method =3D "psci";
-> + d-cache-line-size =3D <32>;
-> + d-cache-size =3D <0x8000>;
-> + d-cache-sets =3D <32>;
-> + i-cache-line-size =3D <32>;
-> + i-cache-size =3D <0x8000>;
-> + i-cache-sets =3D <32>;
-> next-level-cache =3D <&l2>;
-> clocks =3D <&scpi_dvfs 0>;
-> #cooling-cells =3D <2>;
-> @@ -115,6 +127,12 @@ cpu2: cpu@2 {
-> compatible =3D "arm,cortex-a53";
-> reg =3D <0x0 0x2>;
-> enable-method =3D "psci";
-> + d-cache-line-size =3D <32>;
-> + d-cache-size =3D <0x8000>;
-> + d-cache-sets =3D <32>;
-> + i-cache-line-size =3D <32>;
-> + i-cache-size =3D <0x8000>;
-> + i-cache-sets =3D <32>;
-> next-level-cache =3D <&l2>;
-> clocks =3D <&scpi_dvfs 0>;
-> #cooling-cells =3D <2>;
-> @@ -125,6 +143,12 @@ cpu3: cpu@3 {
-> compatible =3D "arm,cortex-a53";
-> reg =3D <0x0 0x3>;
-> enable-method =3D "psci";
-> + d-cache-line-size =3D <32>;
-> + d-cache-size =3D <0x8000>;
-> + d-cache-sets =3D <32>;
-> + i-cache-line-size =3D <32>;
-> + i-cache-size =3D <0x8000>;
-> + i-cache-sets =3D <32>;
-> next-level-cache =3D <&l2>;
-> clocks =3D <&scpi_dvfs 0>;
-> #cooling-cells =3D <2>;
-> @@ -134,6 +158,9 @@ l2: l2-cache0 {
-> compatible =3D "cache";
-> cache-level =3D <2>;
-> cache-unified;
-> + cache-size =3D <0x80000>; /* L2. 512 KB */
-> + cache-line-size =3D <64>;
-> + cache-sets =3D <512>;
-> };
-> };
->=20
-> --=20
-> 2.50.1
->=20
->=20
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Acked-by: Christoph Hellwig <hch@lst.de>
 
 
