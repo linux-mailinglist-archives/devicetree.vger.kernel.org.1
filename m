@@ -1,224 +1,349 @@
-Return-Path: <devicetree+bounces-209062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE830B3466E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 17:57:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D99EEB3466C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 17:57:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 760173A5E24
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 15:57:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC663188AEB3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 15:57:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355E82FF144;
-	Mon, 25 Aug 2025 15:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A15EF2FE065;
+	Mon, 25 Aug 2025 15:57:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eSVbWHny"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DDA2FCBFD
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 15:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E802FAC05
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 15:56:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756137422; cv=none; b=cgBhIZ8qdNG3+ykqx+2dwme3+Ot2EEqwZnpIC6eM0L+HJ+YN4sZ46m8muqtktdDj0LkH4O4FzXk7FBeh8+khjlMhRlROk3FEV+sEVxh1OmLAYlflKihlIHrUCsS2QogO7wEiieB1Zr765uIgUkAkzXmdLbflSqtPrcnpU5qI1ZI=
+	t=1756137421; cv=none; b=hkNRH/IGYKryJWX5NHPvB7qS8URamu0M6pBO2fh/iebWwtDWIOamXwh5B1eNflj8xTEZ6onm/JSH+upN9G+BZO6mKRqKBywcXXWJYdyZplKnVXTYYL9tactsaIhKzqSGFWlwfwDDTz+bfVM2ZWWkA443xo67aLUHuXo0MXrkRZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756137422; c=relaxed/simple;
-	bh=4cNWv4HsIy+0tAeRLpaonopaZeHAr5GnHLxGFQXG19E=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Ua3eEEemZVXecohmhnCCQ38QlQvdYrf7TpAI8Nso6rL1j+OjS5h7WIDKM3VfLAZZY70xikN4+GYWgTvnHNC4yQ9nsJhvHqwuqrN8ImaK20qJrw8s0H+hzAXSg07lWM1u0Xpszy4AwKQ/nN+tzvIcejkZB9Q6I9eeK86dsgBFeLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uqZYd-0003lu-Pz; Mon, 25 Aug 2025 17:56:31 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uqZYZ-0025Zy-04;
-	Mon, 25 Aug 2025 17:56:27 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uqZYY-000dPY-2w;
-	Mon, 25 Aug 2025 17:56:26 +0200
-Message-ID: <ca0aabeae81758a64bcad5f8113962e79b06ffd5.camel@pengutronix.de>
-Subject: Re: [PATCH v13 04/11] PCI: stm32: Add PCIe host support for
- STM32MP25
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Christian Bruel <christian.bruel@foss.st.com>, lpieralisi@kernel.org, 
- kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
- bhelgaas@google.com,  krzk+dt@kernel.org, conor+dt@kernel.org,
- mcoquelin.stm32@gmail.com,  alexandre.torgue@foss.st.com,
- linus.walleij@linaro.org, corbet@lwn.net,  shradha.t@samsung.com,
- mayank.rana@oss.qualcomm.com, namcao@linutronix.de, 
- qiang.yu@oss.qualcomm.com, thippeswamy.havalige@amd.com,
- inochiama@gmail.com,  quic_schintav@quicinc.com
-Cc: johan+linaro@kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-doc@vger.kernel.org
-Date: Mon, 25 Aug 2025 17:56:26 +0200
-In-Reply-To: <7378edca-12f4-44a1-9c2a-ea07ebab4ad0@foss.st.com>
-References: <20250820075411.1178729-1-christian.bruel@foss.st.com>
-	 <20250820075411.1178729-5-christian.bruel@foss.st.com>
-	 <e67d5a27fb00040ba87a0b108322747ecca8d05b.camel@pengutronix.de>
-	 <7378edca-12f4-44a1-9c2a-ea07ebab4ad0@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1756137421; c=relaxed/simple;
+	bh=JC64w3tuSkbajzgasYe6Zh8VlInyWVH1Pll+dy7VGfo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rT5c94r24dlVSS6Lam03LfsK+Kg2CMhbr7ADJiJ/EgWR2TUUHyZCoZR2FCrBu5yuZjc/2SELz4hCGyfB0DWIvhD50snM0qryOTgDoRyKnmlJo3SQc25orTHNcnkuKvB3Ed2UrHjBfzL0BmGDvRSW5IXGEE4aD7GLzgXpZKUMy1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eSVbWHny; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57P8Qqlf026003
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 15:56:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	QutffaOQ13Xwk3xH5hQhBka1Be9Thp0ZBqEZpEIMmX4=; b=eSVbWHny/cJccXmn
+	S9JOMBfpnGg6yJJDMgRqDrLtLomR8hUkVFrW2C8iMAVHVja7mHsIdGOQil2rV8es
+	rMo59RJAgl2fR/CYAuMGUWM0y3zoSseb5q5fk6oa8yFzyT4oapyaPlsd0Wt3UXOy
+	fCoRGsYnFxUBrh/JqM1Ybb3+0vdK8CoZ8y8ZziSQ9Q9J1LZu2zd1HNUwuBbXiaTM
+	LOALguo8PDIkmhykfwFvNnaTWYZ8tX61om9T3kxOLK7dL9d9TsK+BL+1wOv5a/Rt
+	ozOnuIXRZfJVwXE6CsCW7OhWR/u0zykML1S57q7CzA1GRJK02UM9IOxiANKgZ0UJ
+	sbfbKQ==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q6x85nuc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 15:56:58 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b47173a00e8so3516441a12.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 08:56:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756137418; x=1756742218;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QutffaOQ13Xwk3xH5hQhBka1Be9Thp0ZBqEZpEIMmX4=;
+        b=etWDCmccHIv0aLcI3fjwx8dEljXGuwtD23UCTkN9+i/ddyGAjspwjJEfAi4a0thbQV
+         czc2yOLFB236QlgOSHwQ+NCfn44Qv6s3k3vylrZ6eXJZLzukuBPMiEsAaLpo2FzwzRbD
+         RZRat42fM+rExa+x8gxD42viULoIVGHKz/dI+uTAtVFfCB/8zs2oVlivHnirv8SRMux3
+         tq34CwisNxrYtfezmMY8i7SzQqHHCxTwQL7bWixVKvSQf3pdbZocKWt0kqfrwDaV5iZS
+         /Z48iIBMfWtoXyOhu/7FIzQ/8HFhkL69QN9yue0sarWhgWl4r7i7NWH+G94JsT1iXYYh
+         B1GQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW81O8gCoJBmKLBFlfFvpXV7QEhx/HR4zIt7qXB+PVzPe0KhGX5Ge6b+wGr9t7Gbxea4xF9i8oJsA1A@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqdXNiS6zuT0dZdX3ngcC91KB8+yKQKyxM/HaqehkpTQQJPeFp
+	X+Fwxy7ZM79RQluwKD/mu2yn8/ISiASPJx9DB6Ftf0l9eAOePNw4/D8aSHXEXmv/CP9RnreSO7v
+	GgS8WxyNK1JSmc/05wIcI2WmHOUfElWyshsimg8xSbZF9Ib29VFFhPGm15+P7xHub
+X-Gm-Gg: ASbGnctir9kddRzqpym5/wEhyoPi+cqpy8bsABFBAvam2N78VpLMuSLY9kFquaThu1z
+	Lg9uuRqCa/uizZIShHzwxHsgtyfbYT606gnfw9zhuPzqVtPPwCU5hKYhEq37fpE7gnwVbJYWN0X
+	jXwgcDVwB2mhVQh6jPYQFQV/jzC3E2Z3CCHkdOQWhf/r64VoPMm5IH0tbKRqcVvAGpIGhjw8aML
+	GqWdk6dlGgxxdfQwKdJTUWy0YljPYvV3+/elcYg/YA5HmEqUixbq0Urk9X6SYXn2rO7Nq5qHDnO
+	Vnx/4bevNhmSnQU97JdWenDoTLLciyFxk4fi/5hye56PF2z0Bb2tEki/5EaDl7dyC4C6ORlCfUK
+	W
+X-Received: by 2002:a17:902:ce87:b0:246:e7ca:3598 with SMTP id d9443c01a7336-246e7ca3766mr35835175ad.38.1756137417904;
+        Mon, 25 Aug 2025 08:56:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHgrzCJcPV9SeMDkGSRfPk/j1dIRe81ecf4/C6a6KOY63K2M2JwS5OVVxjAsuQl2S0Ot4bAiw==
+X-Received: by 2002:a17:902:ce87:b0:246:e7ca:3598 with SMTP id d9443c01a7336-246e7ca3766mr35834875ad.38.1756137417383;
+        Mon, 25 Aug 2025 08:56:57 -0700 (PDT)
+Received: from [192.168.29.113] ([49.43.227.218])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-246e1b6fae5sm27049645ad.140.2025.08.25.08.56.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Aug 2025 08:56:57 -0700 (PDT)
+Message-ID: <919ea7ce-a36a-4eaa-a13a-c693eb9c6c2f@oss.qualcomm.com>
+Date: Mon, 25 Aug 2025 21:26:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/7] OPP: Move refcount and key update for readability
+ in _opp_table_find_key()
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+        Viresh Kumar <vireshk@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+References: <20250820-opp_pcie-v4-0-273b8944eed0@oss.qualcomm.com>
+ <20250820-opp_pcie-v4-2-273b8944eed0@oss.qualcomm.com>
+ <CGME20250825135939eucas1p206b6e2b5ba115f51618c773a1f37939c@eucas1p2.samsung.com>
+ <4066c0b4-807f-401e-baaa-25f4891f10ac@samsung.com>
+Content-Language: en-US
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <4066c0b4-807f-401e-baaa-25f4891f10ac@samsung.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: KH12ylDHeJ_ZpGfOQpPuzXAzVYKflX4U
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDA0NCBTYWx0ZWRfX0Nrtu3LeolV3
+ JoIBHDlVlm3RxPqOrENAwAaNUjLIdi+Xk3nH4ilYItR+RwJ67CuOUSsSFqjxG4SiWKpOrdYIaTr
+ HC3cZEBOuONZbSrAATtLYO3CGfiHq6Tupd7K0savUjrilgiT38pWdrbDWr/6nkU1V95dlUL75Vf
+ CMxNDF0LubKRWMfBfMPZN3ub4r1pSsZjqS8ZVeddmzdAkMfp2bXE26kVaH5wr6g15bVpEU4sEkO
+ CErIGyQ8vVbjYl70XgrKwkbxEzrrJa7UKQBYlsh40ZqNRA2/LJGreY7q8TdvuAPgPRwAS/lsdMh
+ KzsaL3LKpE1R6lG/Fb5iB8EDnx4duNgmsiR2wIQNd32cypzkSJAv+1qUPp+oo/9yaQ7SG22JSTA
+ fSD4r3tf
+X-Proofpoint-GUID: KH12ylDHeJ_ZpGfOQpPuzXAzVYKflX4U
+X-Authority-Analysis: v=2.4 cv=Ep/SrTcA c=1 sm=1 tr=0 ts=68ac87ca cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=TWSI64EsO1MY+X2Q/zVH0g==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=Wpt1jf_klKcEcVUAeWIA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-25_07,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 spamscore=0 adultscore=0 bulkscore=0 suspectscore=0
+ phishscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230044
 
-On Mo, 2025-08-25 at 16:47 +0200, Christian Bruel wrote:
->=20
-> On 8/25/25 11:15, Philipp Zabel wrote:
-> > On Mi, 2025-08-20 at 09:54 +0200, Christian Bruel wrote:
-> > > Add driver for the STM32MP25 SoC PCIe Gen1 2.5 GT/s and Gen2 5GT/s
-> > > controller based on the DesignWare PCIe core.
-> > >=20
-> > > Supports MSI via GICv2m, Single Virtual Channel, Single Function
-> > >=20
-> > > Supports WAKE# GPIO.
-> > >=20
-> > > Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
-> > > ---
-> > >   drivers/pci/controller/dwc/Kconfig      |  12 +
-> > >   drivers/pci/controller/dwc/Makefile     |   1 +
-> > >   drivers/pci/controller/dwc/pcie-stm32.c | 360 +++++++++++++++++++++=
-+++
-> > >   drivers/pci/controller/dwc/pcie-stm32.h |  15 +
-> > >   4 files changed, 388 insertions(+)
-> > >   create mode 100644 drivers/pci/controller/dwc/pcie-stm32.c
-> > >   create mode 100644 drivers/pci/controller/dwc/pcie-stm32.h
-> > >=20
-> > > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/control=
-ler/dwc/Kconfig
-> > > index deafc512b079..a8174817fd5b 100644
-> > > --- a/drivers/pci/controller/dwc/Kconfig
-> > > +++ b/drivers/pci/controller/dwc/Kconfig
-> > > @@ -423,6 +423,18 @@ config PCIE_SPEAR13XX
-> > >   	help
-> > >   	  Say Y here if you want PCIe support on SPEAr13XX SoCs.
-> > >  =20
-> > > +config PCIE_STM32_HOST
-> > > +	tristate "STMicroelectronics STM32MP25 PCIe Controller (host mode)"
-> > > +	depends on ARCH_STM32 || COMPILE_TEST
-> > > +	depends on PCI_MSI
-> > > +	select PCIE_DW_HOST
-> > > +	help
-> > > +	  Enables Root Complex (RC) support for the DesignWare core based P=
-CIe
-> > > +	  controller found in STM32MP25 SoC.
-> > > +
-> > > +	  This driver can also be built as a module. If so, the module
-> > > +	  will be called pcie-stm32.
-> > > +
-> > >   config PCI_DRA7XX
-> > >   	tristate
-> > >  =20
-> > > diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/contro=
-ller/dwc/Makefile
-> > > index 6919d27798d1..1307a87b1cf0 100644
-> > > --- a/drivers/pci/controller/dwc/Makefile
-> > > +++ b/drivers/pci/controller/dwc/Makefile
-> > > @@ -31,6 +31,7 @@ obj-$(CONFIG_PCIE_UNIPHIER) +=3D pcie-uniphier.o
-> > >   obj-$(CONFIG_PCIE_UNIPHIER_EP) +=3D pcie-uniphier-ep.o
-> > >   obj-$(CONFIG_PCIE_VISCONTI_HOST) +=3D pcie-visconti.o
-> > >   obj-$(CONFIG_PCIE_RCAR_GEN4) +=3D pcie-rcar-gen4.o
-> > > +obj-$(CONFIG_PCIE_STM32_HOST) +=3D pcie-stm32.o
-> > >  =20
-> > >   # The following drivers are for devices that use the generic ACPI
-> > >   # pci_root.c driver but don't support standard ECAM config access.
-> > > diff --git a/drivers/pci/controller/dwc/pcie-stm32.c b/drivers/pci/co=
-ntroller/dwc/pcie-stm32.c
-> > > new file mode 100644
-> > > index 000000000000..964fa6f674c8
-> > > --- /dev/null
-> > > +++ b/drivers/pci/controller/dwc/pcie-stm32.c
-> > > @@ -0,0 +1,360 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * STMicroelectronics STM32MP25 PCIe root complex driver.
-> > > + *
-> > > + * Copyright (C) 2025 STMicroelectronics
-> > > + * Author: Christian Bruel <christian.bruel@foss.st.com>
-> > > + */
-> > > +
-> > > +#include <linux/clk.h>
-> > > +#include <linux/mfd/syscon.h>
-> > > +#include <linux/of_platform.h>
-> > > +#include <linux/phy/phy.h>
-> > > +#include <linux/pinctrl/consumer.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/pm_runtime.h>
-> > > +#include <linux/pm_wakeirq.h>
-> > > +#include <linux/regmap.h>
-> > > +#include <linux/reset.h>
-> > > +#include "pcie-designware.h"
-> > > +#include "pcie-stm32.h"
-> > > +#include "../../pci.h"
-> > > +
-> > > +struct stm32_pcie {
-> > > +	struct dw_pcie pci;
-> > > +	struct regmap *regmap;
-> > > +	struct reset_control *rst;
-> >=20
-> > This could be a local variable in stm32_pcie_probe().
->
-> Thank you for pointing that out.
->=20
-> Since we use the same common resources in stm32_pcie for both the host=
-=20
-> and endpoint drivers, aligning the same fields in the struct stm32_pcie=
-=20
-> seems more consistent.
 
-I hadn't seen the host driver at that point.
 
-Aligning struct stm32_pcie with another struct in another .c file as an
-unwritten rule doesn't make sense to me. If parts of the structs should
-be kept aligned between host and endpoint drivers, it would be better
-to define a common base struct in a shared header.
+On 8/25/2025 7:29 PM, Marek Szyprowski wrote:
+> On 20.08.2025 10:28, Krishna Chaitanya Chundru wrote:
+>> Refactor _opp_table_find_key() to improve readability by moving the
+>> reference count increment and key update inside the match condition block.
+>>
+>> Also make the 'assert' check mandatory instead of treating it as optional.
+>>
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> 
+> This patch landed in today's linux-next (20250825) as commit
+> b5323835f050 ("OPP: Reorganize _opp_table_find_key()"). In my tests I
+> found that it causes regressions on my test boards. Reverting this
+> change on top of linux-next fixes booting of all the affected boards.
+> 
+> Here are kernel logs with lockdep enabled:
+> 
+> 1. Exynos4412-based Odroid-U3 board (ARM 32bit):
+> 
+> ============================================
+> WARNING: possible recursive locking detected
+> 6.17.0-rc3-next-20250825 #10901 Not tainted
+> --------------------------------------------
+> kworker/u16:0/12 is trying to acquire lock:
+> cf896040 (&devfreq->lock){+.+.}-{3:3}, at: devfreq_notifier_call+0x30/0x124
+> 
+> but task is already holding lock:
+> cf896040 (&devfreq->lock){+.+.}-{3:3}, at: devfreq_monitor+0x1c/0x1a4
+> 
+> other info that might help us debug this:
+>    Possible unsafe locking scenario:
+> 
+>          CPU0
+>          ----
+>     lock(&devfreq->lock);
+>     lock(&devfreq->lock);
+> 
+>    *** DEADLOCK ***
+> 
+>    May be due to missing lock nesting notation
+> 
+> 4 locks held by kworker/u16:0/12:
+>    #0: c289d0b4 ((wq_completion)devfreq_wq){+.+.}-{0:0}, at:
+> process_one_work+0x1b0/0x70c
+>    #1: f0899f18
+> ((work_completion)(&(&devfreq->work)->work)#2){+.+.}-{0:0}, at:
+> process_one_work+0x1dc/0x70c
+>    #2: cf896040 (&devfreq->lock){+.+.}-{3:3}, at: devfreq_monitor+0x1c/0x1a4
+>    #3: c2e78c4c (&(&opp_table->head)->rwsem){++++}-{3:3}, at:
+> blocking_notifier_call_chain+0x28/0x60
+> 
+> stack backtrace:
+> CPU: 2 UID: 0 PID: 12 Comm: kworker/u16:0 Not tainted
+> 6.17.0-rc3-next-20250825 #10901 PREEMPT
+> Hardware name: Samsung Exynos (Flattened Device Tree)
+> Workqueue: devfreq_wq devfreq_monitor
+> Call trace:
+>    unwind_backtrace from show_stack+0x10/0x14
+>    show_stack from dump_stack_lvl+0x68/0x88
+>    dump_stack_lvl from print_deadlock_bug+0x370/0x380
+>    print_deadlock_bug from __lock_acquire+0x1428/0x29ec
+>    __lock_acquire from lock_acquire+0x134/0x388
+>    lock_acquire from __mutex_lock+0xac/0x10c0
+>    __mutex_lock from mutex_lock_nested+0x1c/0x24
+>    mutex_lock_nested from devfreq_notifier_call+0x30/0x124
+>    devfreq_notifier_call from notifier_call_chain+0x84/0x1d4
+>    notifier_call_chain from blocking_notifier_call_chain+0x44/0x60
+>    blocking_notifier_call_chain from _opp_kref_release+0x3c/0x5c
+>    _opp_kref_release from exynos_bus_target+0x24/0x70
+>    exynos_bus_target from devfreq_set_target+0x8c/0x2e8
+>    devfreq_set_target from devfreq_update_target+0x9c/0xf8
+>    devfreq_update_target from devfreq_monitor+0x28/0x1a4
+>    devfreq_monitor from process_one_work+0x24c/0x70c
+>    process_one_work from worker_thread+0x1b8/0x3bc
+>    worker_thread from kthread+0x13c/0x264
+>    kthread from ret_from_fork+0x14/0x28
+> Exception stack(0xf0899fb0 to 0xf0899ff8)
+> 
+> ...
+> 
+> 
+> 2. Exynos5422-based Odroid-XU3 board (ARM 32bit):
+> 
+> 8<--- cut here ---
+> Unable to handle kernel NULL pointer dereference at virtual address
+> 00000000 when read
+> [00000000] *pgd=00000000
+> Internal error: Oops: 5 [#1] SMP ARM
+> Modules linked in:
+> CPU: 7 UID: 0 PID: 68 Comm: kworker/u34:1 Not tainted
+> 6.17.0-rc3-next-20250825 #10901 PREEMPT
+> Hardware name: Samsung Exynos (Flattened Device Tree)
+> Workqueue: devfreq_wq devfreq_monitor
+> PC is at _opp_compare_key+0x30/0xb4
+> LR is at 0xfffffffc
+> pc : [<c09831c4>]    lr : [<fffffffc>]    psr: 20000013
+> sp : f0a89de0  ip : cfb0e94c  fp : c1574880
+> r10: c14095a4  r9 : f0a89e44  r8 : c2a9c010
+> r7 : cfb0ea80  r6 : 00000001  r5 : cfb0e900  r4 : 00000001
+> r3 : 00000000  r2 : cfb0e900  r1 : cfb0ea80  r0 : cfaf5800
+> Flags: nzCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
+> Control: 10c5387d  Table: 4000406a  DAC: 00000051
+> Register r0 information: slab kmalloc-1k start cfaf5800 pointer offset 0
+> size 1024
+> Register r1 information: slab kmalloc-128 start cfb0ea80 pointer offset
+> 0 size 128
+> Register r2 information: slab kmalloc-128 start cfb0e900 pointer offset
+> 0 size 128
+> Register r3 information: NULL pointer
+> Register r4 information: non-paged memory
+> Register r5 information: slab kmalloc-128 start cfb0e900 pointer offset
+> 0 size 128
+> Register r6 information: non-paged memory
+> Register r7 information: slab kmalloc-128 start cfb0ea80 pointer offset
+> 0 size 128
+> Register r8 information: slab kmalloc-1k start c2a9c000 pointer offset
+> 16 size 1024
+> Register r9 information: 2-page vmalloc region starting at 0xf0a88000
+> allocated at kernel_clone+0x58/0x3c4
+> Register r10 information: non-slab/vmalloc memory
+> Register r11 information: non-slab/vmalloc memory
+> Register r12 information: slab kmalloc-128 start cfb0e900 pointer offset
+> 76 size 128
+> Process kworker/u34:1 (pid: 68, stack limit = 0x050eb3d7)
+> Stack: (0xf0a89de0 to 0xf0a8a000)
+> ..
+> Call trace:
+>    _opp_compare_key from _set_opp+0x78/0x50c
+>    _set_opp from dev_pm_opp_set_rate+0x15c/0x21c
+>    dev_pm_opp_set_rate from panfrost_devfreq_target+0x2c/0x3c
+>    panfrost_devfreq_target from devfreq_set_target+0x8c/0x2e8
+>    devfreq_set_target from devfreq_update_target+0x9c/0xf8
+>    devfreq_update_target from devfreq_monitor+0x28/0x1a4
+>    devfreq_monitor from process_one_work+0x24c/0x70c
+>    process_one_work from worker_thread+0x1b8/0x3bc
+>    worker_thread from kthread+0x13c/0x264
+>    kthread from ret_from_fork+0x14/0x28
+> Exception stack(0xf0a89fb0 to 0xf0a89ff8)
+> ...
+> ---[ end trace 0000000000000000 ]---
+> 
+> 
+> 3. Qualcomm Technologies, Inc. Robotics RB5(ARM 64bit):
+> 
+> ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
+> ufshcd-qcom 1d84000.ufshc: ufshcd_populate_vreg: Unable to find
+> vdd-hba-supply regulator, assuming enabled
+> ufshcd-qcom 1d84000.ufshc: Failed to find OPP for MIN frequency
+> ufshcd-qcom 1d84000.ufshc: ufshcd_pltfrm_init: OPP parse failed -34
+> ufshcd-qcom 1d84000.ufshc: error -ERANGE: ufshcd_pltfrm_init() failed
+> ufshcd-qcom 1d84000.ufshc: probe with driver ufshcd-qcom failed with
+> error -34
+> 
+> 
+> 
+>> ---
+>>    drivers/opp/core.c | 14 ++++++--------
+>>    1 file changed, 6 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+>> index a36c3daac39cd0bdd2a1f7e9bad5b92f0c756153..bf49709b8c39271431772924daf0c003b45eec7f 100644
+>> --- a/drivers/opp/core.c
+>> +++ b/drivers/opp/core.c
+>> @@ -544,24 +544,22 @@ static struct dev_pm_opp *_opp_table_find_key(struct opp_table *opp_table,
+>>    	struct dev_pm_opp *temp_opp, *opp = ERR_PTR(-ERANGE);
+>>    
+>>    	/* Assert that the requirement is met */
+>> -	if (assert && !assert(opp_table, index))
+>> +	if (!assert(opp_table, index))
+>>    		return ERR_PTR(-EINVAL);
+>>    
+>>    	guard(mutex)(&opp_table->lock);
+>>    
+>>    	list_for_each_entry(temp_opp, &opp_table->opp_list, node) {
+>>    		if (temp_opp->available == available) {
+>> -			if (compare(&opp, temp_opp, read(temp_opp, index), *key))
+>> +			if (compare(&opp, temp_opp, read(temp_opp, index), *key)) {
+>> +				/* Increment the reference count of OPP */
+>> +				*key = read(opp, index);
+>> +				dev_pm_opp_get(opp);
+>>    				break;
+>> +			}
+>>    		}
+>>    	}
+>>    
+>> -	/* Increment the reference count of OPP */
+>> -	if (!IS_ERR(opp)) {
+>> -		*key = read(opp, index);
+>> -		dev_pm_opp_get(opp);
+>> -	}
+>> -
+>>    	return opp;
+>>    }
+>>    
+>>
+> Best regards
+Thanks Marek for reporting.
 
-> Additionally, we could improve the code by moving regmap, clk, and rst=
-=20
-> out of probe into a new function, stm32_pcie_resource_get().
->=20
-> Which approach do you think is best? Moving rst to stm32_pcie_probe()=20
-> offers slight optimization,
+Viresh,
 
-This option would be my preference, but it's not a strong one.
+looks like for compare_floor we need to iterate to the OPP table till
+the OPP key is greater than the target key and return previous OPP.
 
-Storing a single pointer unnecessarily isn't a big deal.
-My mind just went "where is it used? - oh, nowhere", so I thought I'd
-point that out.
+In that case the updation of the key and dev_pm_opp_get() should be
+outside as before. We need to remove this part of the patch.
 
-> while using a new stm32_pcie_resource_get()=20
-> provides better modularity.
-
-I think this isn't enough code to warrant sharing
-stm32_pcie_resource_get() between host and endpoint drivers in the
-absence of other shared code.
-
-Whether splitting this out in each driver improves readability of the
-probe functions is a matter of taste. I think it's fine as-is. I
-wouldn't argue against the change either.
-
-> Shall I re-spin a v14 with either of these options?
-
-Don't respin just for this.
-
-regards
-Philipp
+Thanks & Regards,
+Krishna Chaitanya.
 
