@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-208961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D90CB33EA5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 740A6B33EA9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:03:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1865B17378E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 12:02:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D9A916E3D8
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 12:03:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A4D826F46E;
-	Mon, 25 Aug 2025 12:02:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B8826D4DD;
+	Mon, 25 Aug 2025 12:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SE2BL/wZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z6pfJwqb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8983626B2C8
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 12:02:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB47124A066
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 12:03:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756123366; cv=none; b=hGwcYag7OK/Rno92+EnaFMm1WnJVLGdsi2BJyrzL0iP1BLNtT8kaWaaZ8sEIg+8T8VbZHGpLW1EfOPSr6TMw4gXSZqaYklyU2zWDQqbbdAYz8XzOpSpgEEEvX8WPL1kXSemt4OpWQSXelUtL7o6AG6SH3dNPUMRudTGDfT5i5MQ=
+	t=1756123384; cv=none; b=ug0K9W00AgKFL1zMf1pwaFoSgsJ+N3hOGlxB1aLWdBT2Cp6HYtkeioC9poGa+RiOk2LBWfaqk3F1iuXDz1FhRpqIINE5qv4pKahbKsDe0zaMBim/a7Idfe7j7nZgoHsi8mohA26KhmhvncnAsalG2RK7KQPkjI78ApiQDPHtIKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756123366; c=relaxed/simple;
-	bh=kN3O4oAZ9kJwN6mPygYUfzC342hF1oirE9ZK//UXyWA=;
+	s=arc-20240116; t=1756123384; c=relaxed/simple;
+	bh=ZlhfK0/2P69P87bEUDsxJDEFjTWF1f/6DouDWwcAwS8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k2XfThzFsTmIXyzmFWJS9aC94oeibavUUoBx8DhL7gCHEk6CBrTHdrHCUATjDTJUJivQTrspIfvH7s+SYF8kvjZ8wkiBStaXglSYIX3QMJGW524WmnhUW5df/XOF5Z7kvpRt0nCEYZUyoKvJQv5zi7m9HZim8BvbHhER9f92LkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SE2BL/wZ; arc=none smtp.client-ip=209.85.221.43
+	 In-Reply-To:Content-Type; b=RwqWEY9Jh3RpOgUe8iPXToz/MXkBlto+6I5oYezLgDpPObHN5k69VDmIiiethTKTF8g4kF38blS4f1JTkpeo007Y0oKFDCIF/WbC9Ov3F3Mnef2pjEpqfFboHXitIlBsJQ3eoUMv9l5qtA5UaS2Z2dmevlS/9ZChtsI7RR6kNuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z6pfJwqb; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3c68ac7e238so1353392f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 05:02:42 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-afe6a3ba50aso6282866b.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 05:03:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756123360; x=1756728160; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IJvbqf/yt1tsn43VAwo8VG/RGkLizif52M9SXD1q9EE=;
-        b=SE2BL/wZ8ZQHFH9NPi6CMvQrmp5ooM5cHc9ESIWihbo1tnXjTbzDJa0ULyO9JYzPyT
-         sG5e2BD+gRPA5rtyK/sm8X1IASJyvm512i1KW5V68GbA8GfxQht+riDTFvsRY76/Cakq
-         AB7bQyO7G+nF0h9Jrql/38zZHVtFPZqQrv06trPa/GV2MH0dUATtslHglUtLNXJQwccU
-         8RAB/cY4URQouu+0VVoXy8YThpifeIznF9q/u1hVux3LqCgNi8l4ebKR0nszxWzH9ulJ
-         MNXSNe2/mtrWZfAOauHqXFK6bTua0F+HWRl4/iF2bS7jjoxIRKAdmcMXOvhSgDGnQAC+
-         7VRw==
+        d=linaro.org; s=google; t=1756123381; x=1756728181; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Mf2mRUvQjEaytK6URbb7jtr9FhugXWYARb3EBCriAq8=;
+        b=Z6pfJwqbfiHq3GLoac4kCBMvI1CmfwXQpFXAOAq/wj8Fi6MSNDzXjxV4hBXgyofizJ
+         uyw2J5IRYJqcuZMv9MnQzoIz2yZ/cfFir35r9TEl/wEZFw36wibJoRSjHTNztMRNII21
+         0WJMGORd9xucVbxpuOMITPB2JBWOsITWi4aDKysYtyKWY1ygkIhE15lapcuHMTZtYl6L
+         o1ENHP8iQNKgt0L102odXawYa+/y9+zU+nhi35npM8G68c4X8YUA7RBwpoDFY74GLMIB
+         zG4eJBC5GfWZLWLCIa1aKeidPOoBAP986swiwVx5sb75I48wwJlktfsyvGNRwxFmJ5g9
+         FYuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756123360; x=1756728160;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IJvbqf/yt1tsn43VAwo8VG/RGkLizif52M9SXD1q9EE=;
-        b=CrY3cHq71ebCNNvitv6Gsm4yPp5wLM9jpa/ddkRMZpYZVwdLR9OFn5GEJvkAkAkK70
-         qTcI3fBFhxz/+ZoukA2XKyFXts7oTihGryzqxuRvF20Prx3npOEwaWLkwNFLvxu328YD
-         BqsOSKejRMqrrl6RsL+pQf8wHaBC5JypDx3y+TRG1nzl1lz1stlPMeSXrqkOuh+ZSvBo
-         qSHy46C+cInEcHPG4xa9Jpg94w0Sx38bX2g2BnlnDwmeU3AV6eS6i6nl0Zu9G8URr+Cs
-         Pn1eCblrNniEMOlhSwCL8m/vUHoLzgfzvbQfCWQKlN/PoPyoxNNgE8uCFSSUAehCA4du
-         Xxqw==
-X-Forwarded-Encrypted: i=1; AJvYcCUI9jz6whL3tw/sQrEJJScmKnzPc1u+AG7COYoiIrVUm8kpugkfvaedgmyEjiNmjdUAa/wMA7UUOVOx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQ0Bl1weSo/amXnArhtx1OvVhfYR0zIdXayGqGzZFdu5WWyL+a
-	5rbfP/SqmY9coOSnK2xrkSVBjkLwTjTMJsJbStG3fA2lUZTF24YzaHFYjqaAZwmZR6A=
-X-Gm-Gg: ASbGncvh4SQazETf6NvcNG9zZHR/TAa3rN5fSFN6PUrd6RoHLTxyV6qKBKelDHSd2Eh
-	q1su+Oz+QOnPPJMN1L+YxKEn6iuLpX/Z3V0TcvJDb4nmdHF783aQ/brncBM5cIP/xfYM/DTnsLr
-	fHQHEw0XsR8sG8ecyJ8k4rMvBDbRQE1SuXULHS2vDfl1E0/5AkRQN4nDWWn4LTiFsWrmqh9wNvO
-	2ZJaMPM9a1m6mO+Qu8mK6YDJrmDumkv2x1K3wBspVhKub3E+AUtv1+t2p2An2xgzD/0mlf05N1u
-	fJCzNt91lZycFSw3qte7u5E+SndfucHWJBrpyTjbbAde64ZcE5xXUWlPzqKKI6qilK+bHxmKv5x
-	VuGs4cmjWmM8JyN1i3NQySscfii5klk4=
-X-Google-Smtp-Source: AGHT+IHNjJgvFd7vseEGAj3DNMBQJ1GiUVz6n+LYqvwtjb1i5BLxin1zHA6RIo01dWv3lsPQdAUdIQ==
-X-Received: by 2002:a05:6000:310b:b0:3a4:f70e:abda with SMTP id ffacd0b85a97d-3c5db8aae86mr8234480f8f.10.1756123360040;
-        Mon, 25 Aug 2025 05:02:40 -0700 (PDT)
-Received: from [192.168.0.251] ([82.76.204.34])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c711211bd7sm11550954f8f.38.2025.08.25.05.02.37
+        d=1e100.net; s=20230601; t=1756123381; x=1756728181;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Mf2mRUvQjEaytK6URbb7jtr9FhugXWYARb3EBCriAq8=;
+        b=tphadTMwlKHpafBsuI18hOE4ZJhyRm4OQrUr/2+GyTUx1bnA2dH6fhf1i9mMeXi41Q
+         cFZd5NOkHnnzipIRNQNrjBxzxooH9+PjF0xQRR68tj583WMitlh9mJX0pIdtxDZBu+dJ
+         o7gAKgwjLZwFw0NKF2wIyTvKa8HgOfzCcNmHFuO2zSXJtO4HL4l67oI3GaklWoujWjlf
+         ekN+Y9brkvsYf1YRXqKTi2kU33ejMC5yEA7NtstCusHNLYQsS9wqoO4xC7aT0Ipxg3cH
+         1Zy8U7AJqpECJdJ0z0wmDBEY6D7gj0oFZzLoARbypcrbnKw2PtPGW4Z+JPLVQ9YDWQpr
+         Qu3g==
+X-Forwarded-Encrypted: i=1; AJvYcCWByzcjTZTaDpLd/b3z+Y0vwLzvQkAOwEvHBdnsA9atLNSJMMq9CT/++3GhCzvvtknrO8porD5gpSKf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwF3AVELuJG98mD77R3slnBIWH+Q0gdMzKIbJGCwYTFt686N82M
+	mToOwa378wIjo3E0rXKugCx3eNkA3KZl2mXtR2yW0xb0W8G+qqkOXvfV8D1+N1EIg14=
+X-Gm-Gg: ASbGncvT/ugcF4FrTd4WDuXXcYjaZ+StD6s8snyMXa5dXx6BGaOCXzj1h3WgvF87EST
+	pz9FOzyKECuwsL93yFxwtDXokCij+9o0hikK6XBpC+zI+NXZsD1PUhGv5qInzt0f25StPV0ODqk
+	qVzEumC7QzX+pxhxH2R7eAgBTw4kO6t/Or8x3OKFVS/UXj/2v3/ul511lXX/UwfFYtZHB0RLaBn
+	UTnMs8oeRX8KJR9hz094MVY07M0L4rrtXjx67QnaDdOGBTWxcxHuKWKK0hBEyFO6qEhOTohaPU3
+	uUnmt8eQQCFOzOyBRC4wUCNJKJUnZ8J/5HcBew6WVdCZrcYXLLeD22+1A1vxa5qs7qwgAoSsbZh
+	dsg/Sup9aVw29UhCq5KH9W+OIX9nej5PU6BFgdPDd
+X-Google-Smtp-Source: AGHT+IEcBuCR6/r62UtCPJs3co2BNMFrVufjLm66B/o1rQQRjxpq5swzg4+kfnX48ZQUbQibdBprzw==
+X-Received: by 2002:a17:906:64d:b0:afe:7575:df0e with SMTP id a640c23a62f3a-afe7575e61fmr190506266b.11.1756123381153;
+        Mon, 25 Aug 2025 05:03:01 -0700 (PDT)
+Received: from [10.41.1.12] ([213.244.170.152])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afe48fc3d82sm538000466b.44.2025.08.25.05.02.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Aug 2025 05:02:39 -0700 (PDT)
-Message-ID: <c82cb87e-c793-45b1-bfad-fa00fae1d9c7@linaro.org>
-Date: Mon, 25 Aug 2025 13:02:37 +0100
+        Mon, 25 Aug 2025 05:03:00 -0700 (PDT)
+Message-ID: <a3325bf1-2a3f-416a-ba2a-4fb1e9f85e61@linaro.org>
+Date: Mon, 25 Aug 2025 14:02:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,87 +83,160 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] firmware: exynos-acpm: add DVFS protocol
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH] media: dt-bindings: qcom,sm8550-iris: Do not reference
+ legacy venus properties
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
-References: <20250819-acpm-clk-v1-0-6bbd97474671@linaro.org>
- <20250819-acpm-clk-v1-2-6bbd97474671@linaro.org>
- <ca2b3b24-91dd-478f-888e-4f46dd26a672@kernel.org>
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250823155349.22344-2-krzysztof.kozlowski@linaro.org>
+ <20250825113734.iekrgyvctamhb5y7@hu-mojha-hyd.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <ca2b3b24-91dd-478f-888e-4f46dd26a672@kernel.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <20250825113734.iekrgyvctamhb5y7@hu-mojha-hyd.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-
-On 8/24/25 6:11 PM, Krzysztof Kozlowski wrote:
-> On 19/08/2025 13:45, Tudor Ambarus wrote:
->> Add ACPM DVFS protocol handler. It constructs DVFS messages that
->> the APM firmware can understand.
+On 25/08/2025 13:37, Mukesh Ojha wrote:
+> On Sat, Aug 23, 2025 at 05:53:50PM +0200, Krzysztof Kozlowski wrote:
+>> The Qualcomm SoC Iris video codec is an evolution of previous Venus and
+>> it comes with its own Iris Linux drivers.  These new drivers were
+>> accepted under condition they actually improve state of afairs, instead
+>> of duplicating old, legacy solutions.
 >>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>> Unfortunately binding still references common parts of Venus without
+>> actual need and benefit.  For example Iris does not use fake
+>> "video-firmware" device node (fake because there is no actual device
+>> underlying it and it was added only to work around some Linux issues
+>> with IOMMU mappings).
+>>
+>> Stop referencing venus-common schema in the new Qualcomm Iris bindings
+>> and move all necessary properties, except unused "video-firmware" (no
+>> driver usage, no DTS).
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >> ---
->>  drivers/firmware/samsung/Makefile                  |  4 +-
->>  drivers/firmware/samsung/exynos-acpm-dvfs.c        | 85 ++++++++++++++++++++++
->>  drivers/firmware/samsung/exynos-acpm-dvfs.h        | 21 ++++++
->>  drivers/firmware/samsung/exynos-acpm.c             |  5 ++
->>  .../linux/firmware/samsung/exynos-acpm-protocol.h  | 10 +++
->>  5 files changed, 124 insertions(+), 1 deletion(-)
+>>  .../devicetree/bindings/media/qcom,sm8550-iris.yaml | 13 ++++++++++++-
+>>  1 file changed, 12 insertions(+), 1 deletion(-)
 >>
->> diff --git a/drivers/firmware/samsung/Makefile b/drivers/firmware/samsung/Makefile
->> index 7b4c9f6f34f54fd731886d97a615fe1aa97ba9a0..80d4f89b33a9558b68c9083da675c70ec3d05f19 100644
->> --- a/drivers/firmware/samsung/Makefile
->> +++ b/drivers/firmware/samsung/Makefile
->> @@ -1,4 +1,6 @@
->>  # SPDX-License-Identifier: GPL-2.0-only
+>> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+>> index c79bf2101812..320227f437a1 100644
+>> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+>> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+>> @@ -26,6 +26,9 @@ properties:
+>>            - qcom,sm8550-iris
+>>            - qcom,sm8650-iris
 >>  
->> -acpm-protocol-objs			:= exynos-acpm.o exynos-acpm-pmic.o
->> +acpm-protocol-objs			:= exynos-acpm.o
->> +acpm-protocol-objs			+= exynos-acpm-pmic.o
->> +acpm-protocol-objs			+= exynos-acpm-dvfs.o
->>  obj-$(CONFIG_EXYNOS_ACPM_PROTOCOL)	+= acpm-protocol.o
->> diff --git a/drivers/firmware/samsung/exynos-acpm-dvfs.c b/drivers/firmware/samsung/exynos-acpm-dvfs.c
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..ee457c1a3de2ff2e4395d9fc3ff4c13294473b2d
->> --- /dev/null
->> +++ b/drivers/firmware/samsung/exynos-acpm-dvfs.c
->> @@ -0,0 +1,85 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright 2020 Samsung Electronics Co., Ltd.
->> + * Copyright 2020 Google LLC.
->> + * Copyright 2025 Linaro Ltd.
->> + */
+>> +  reg:
+>> +    maxItems: 1
 >> +
->> +#include <linux/bitfield.h>
->> +#include <linux/firmware/samsung/exynos-acpm-protocol.h>
->> +#include <linux/ktime.h>
->> +#include <linux/types.h>
->> +#include <linux/units.h>
+>>    power-domains:
+>>      maxItems: 4
+>>  
+>> @@ -45,6 +48,12 @@ properties:
+>>        - const: core
+>>        - const: vcodec0_core
+>>  
+>> +  firmware-name:
+>> +    maxItems: 1
 >> +
->> +#include "exynos-acpm.h"
->> +#include "exynos-acpm-dvfs.h"
+>> +  interrupts:
+>> +    maxItems: 1
 >> +
->> +#define ACPM_DVFS_ID			GENMASK(11, 0)
->> +#define ACPM_DVFS_REQ_TYPE		GENMASK(15, 0)
+>>    interconnects:
+>>      maxItems: 2
+>>  
+>> @@ -69,6 +78,9 @@ properties:
+>>  
+>>    dma-coherent: true
+>>  
+>> +  memory-region:
+>> +    maxItems: 1
 >> +
->> +enum exynos_acpm_dvfs_func {
->> +	ACPM_DVFS_FREQ_REQ,
->> +	ACPM_DVFS_FREQ_GET,
->> +};
+>>    operating-points-v2: true
+>>  
+>>    opp-table:
+>> @@ -85,7 +97,6 @@ required:
+>>    - dma-coherent
+>>  
+>>  allOf:
+>> -  - $ref: qcom,venus-common.yaml#
+>>    - if:
 > 
-> These are actual values for hardware/firmware? If so, please use rather
-> defines.
+> Saw your reply on 
+> https://lore.kernel.org/lkml/59951c47-1015-4598-a885-25f8f1a27c64@kernel.org/
+> 
+> Just trying to understand ABI here, how all of a sudden we remove a binding
+> for a hardware just because it did not get noticed until yet that as it is
+> not a real device and we always say device tree binding should not depend on
+> drivers but the device but we are saying Iris does not use fake "video-firmware"
+> device node for removal. I am a bit confused.
 
-yes, they are. Will do, thanks!
+About what? What is unclear in standard DT ABI rules?
+
+> 
+> Whether removing will not break any ABI as initial binding enables the IRIS
+> related code to use video-firmware, now we are removing it.
+> I believe, removing binding always break ABI ? or is it depend on driver
+> code not using it ?
+
+There is no single user of this, out of tree (I briefly checked) and
+in-tree, so there is no ABI impact. I am changing the documentation of
+the ABI, but there is no actual ABI break because impact is 0.
+
+I am really sorry but it seems you ask about basics of DT, so please
+first get into docs and other existing discussions.
+
+Best regards,
+Krzysztof
 
