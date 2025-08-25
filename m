@@ -1,96 +1,50 @@
-Return-Path: <devicetree+bounces-209147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63689B34F61
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 00:58:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 704C1B34F8D
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 01:10:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 635601B25EF6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 22:58:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D0772A686A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 23:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033DD2C17A0;
-	Mon, 25 Aug 2025 22:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5482E2C0F91;
+	Mon, 25 Aug 2025 23:10:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Lal8//b+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vCWYb5a+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C76D2571CD
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 22:57:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25CFD2C033C;
+	Mon, 25 Aug 2025 23:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756162643; cv=none; b=cGN9rZEDlSQMQ8lLHFeZix8GmOmMZTpr0GtQ4OFuo2PJ2iFkLT8keOyJkYz8mB78JSzs1rcG+MJ9y0aJO/woThQUbuB5UzagBttkYrvft/WwiJtGvwxVmZ6q36djnf/YcESND7PJWVHzefjtTUd16FisgeWJxq7MW1nJUp+NW84=
+	t=1756163402; cv=none; b=uKHG46IJZNq+gR4KaxOiUNDbrDlUWfCTMafGNIPrPUUITQzj9nUbhGm2us9nTIG8vr97cUR8m1SNemT5/vOwBtdgetzYnhUvbWP1a/CA7d427PnhcSOVmG8uVDOX74ULGd1ZSwSikRs4zq5AKaPNFhMxlvZloIqSWZHNTVU5smQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756162643; c=relaxed/simple;
-	bh=Nvl+APFUB5en559ZQEJgCl7Ibf3Pwlj/L8YOZcRoCYY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=e6ZiCxCdyW4FeXk/7YRuGtNS2UNKKe2gjVDsb+WiHowKf40rjE8QLyMlJ9E/ttpLtlOTu4PSDWOsuc27R7CZdf91qgLfUNJCaTZ166mEXwoA8w/vJiJiUhUgHdqyKUMS6uyxkAZb7bFr/RbXgqHidfNgpftSn/0lVTrnfL/Fb4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Lal8//b+; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-77057c4d88bso1464166b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 15:57:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1756162641; x=1756767441; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=No0PXOSlxr5gHLZibMa4NYjde5mWQl1xnGitNFzv0Ow=;
-        b=Lal8//b+IEUCTqtGrjMqZT9fqtmmePnE07jCnHayETv8cat+U/uIjqdBeuw0WofUmK
-         udgk29Rck4Lf0ybUthaGpquBGmzUiKNEDhGkxolh0C3xzZSZ96z5NP+Fro2S2H6YkANt
-         dCsiatN7dF/9JheUMGicgAAiacTAPcB4hx7eM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756162641; x=1756767441;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=No0PXOSlxr5gHLZibMa4NYjde5mWQl1xnGitNFzv0Ow=;
-        b=gihpa1I+nUDtmJ6WPIDmandrZc3W5hiD/4v+ikpvvuzEuvliN5nRQ4Mvtz6D/z58c+
-         2aYq9bM9a7lwnMpyGBkB2BidQcDwPxpqUsUjtviokdhfXzbP+1K7ycUG6RDjjPbTYxXY
-         GUuwNV9Q/UFJMEtgzy1wfFekD0DKOvsoLvoAonQlETdQtSusFUaP4JJre/w4T6ZDpFqM
-         5jyvelCzqI0y046PRSr3QRZdQ2MXYwiFHbZNXlpOzm5KaurYWA/HFNJKzJ9e2W6vNGJ9
-         rxIH/Tr7shMSkepdTPzDryXye6bxw+B5VN/FAmIi+vEV9e32kO06M2NY9jS5F1yZA/Bw
-         +QdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQloBuRy9a/dtKbdTUrQ6WzLzRKsBfcj4/W7a21aolu6z3in79pzn4uSu71pEw+ntzd0F3CcEdpoZE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4EE81Xb9qqz1ehqVnSwJPEkikHCA1iLc/ecNUDn6hOp5ItbFk
-	p3UGuPgjPfe5Q2dNbrp7TdWDDUMemjrA0rjATZVR/n3jWoVbURIMjX9A0d/ElTWZZA==
-X-Gm-Gg: ASbGncvUSW12RvrTHn6CJDMB/MEhlveVe2Pw+MZdoNjlB77Wvyzo14tV5BbrfAbLyUo
-	hU1Ue2MDUlEYOpUq7vHx2oIsnVjPeqUt1PTMDt+b/2lz9nGp+W1NeeqrUkYrSPSxjp7+DzNJ2P+
-	KWZtcUQW6nJvZbKnGDC66pvTyEd+u8evRRNqlrgHVisjSOxAPyKHiCMNWTqUw6NZ4KOi2iEnxxg
-	5GGsevkFuU+vyDKFqThZ85szc/Zcd+BUghfBlQzhWPWsQDcStIhHzKkvWFkvYYqlbQbSe4aF8ZF
-	A6szpZmVuKkuAVwJw9ve0dabj85vLKbdCZ9MV5zerfksEqGmgFxuv1QVFDWDCR5iQH3iYBwvxhx
-	Xky+ZrvItWwlUUXTyqrrXapAqq46Q2WW03EmlgY68d2+/A/+wvcU6VPOxJfXyVyBX3QezGnUJWG
-	fF45c=
-X-Google-Smtp-Source: AGHT+IFOLQSe2Rtc0YNjSnBoRdF4ZZxObNbu4Py/ZXRegVrx2wgM6pGF9Y0MMS5NL60LCvJfl3yEmA==
-X-Received: by 2002:a05:6a20:4320:b0:23f:fa6e:912c with SMTP id adf61e73a8af0-24340b8da90mr21448836637.2.1756162641441;
-        Mon, 25 Aug 2025 15:57:21 -0700 (PDT)
-Received: from localhost ([2a00:79e0:2e14:7:230e:95:218f:e216])
-        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-b49d4ffc22esm6130554a12.34.2025.08.25.15.57.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Aug 2025 15:57:20 -0700 (PDT)
-From: Brian Norris <briannorris@chromium.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Georgi Djakov <djakov@kernel.org>,
-	Odelu Kukatla <quic_okukatla@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	devicetree@vger.kernel.org,
-	Brian Norris <briannorris@chromium.org>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Drop aggre{1,2}_noc QOS clocks on Herobrine
-Date: Mon, 25 Aug 2025 15:55:57 -0700
-Message-ID: <20250825155557.v2.2.Idebf1d8bd8ff507462fef9dc1ff47e84c01e9b60@changeid>
-X-Mailer: git-send-email 2.51.0.261.g7ce5a0a67e-goog
-In-Reply-To: <20250825155557.v2.1.I018984907c1e6322cf4710bd1ce805580ed33261@changeid>
-References: <20250825155557.v2.1.I018984907c1e6322cf4710bd1ce805580ed33261@changeid>
+	s=arc-20240116; t=1756163402; c=relaxed/simple;
+	bh=tzXq4twNoex0WercRwFPA3AFqoDMKErjDAjo9XOfCh8=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=Ko5cyu+xgtjFxrVVNQuvBX81iRiWnrUmyLs506IvUY1DvAlR1nLU7Gsfxk4CogAxx+rIPFXfLfWonIh6a4Wf/1qQJJ+m8g2/oRx52uhHJMhdXAs/Wl6ihVqXtJQWFtTy1bHTIOLtNv2NdWHdxG42wToxqm3XuC1TJ77VX7jljcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vCWYb5a+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BFE2C4CEED;
+	Mon, 25 Aug 2025 23:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756163401;
+	bh=tzXq4twNoex0WercRwFPA3AFqoDMKErjDAjo9XOfCh8=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=vCWYb5a+m6HPjw3SQWqnkit4NoKO+144n2Pg2Ivdjq6oaT7evYlrvyqbvFH7oANw+
+	 mNtITivMaHMpsytWrbuj9kfHof3hmztgH/z/Et0yucNn8AupPA9R4pbzjF1caj3+zu
+	 xRS05/gKXcvJOTocIvOOjeMet+TaVojV9ZVnT+LFj+bZgCPec1dXG2rnwuuFuitw/h
+	 GoG9a3fFunrAK83gUk0qv0suVamCXpOH3acdP5LLYbkH7NH0N4cv+t45UlowNJ1UZQ
+	 6itPRII68w7/GlwBSREbahq8DRtSO+f0er2QltU2SytFmGfMuNbNcHSeycQgKHYdsh
+	 3447uLnrSYtpg==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADFD0383BF70;
+	Mon, 25 Aug 2025 23:10:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,80 +52,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 1/2] dt-bindings: net: litex,liteeth: Correct example
+ indentation
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <175616340924.3590689.9893533056849831270.git-patchwork-notify@kernel.org>
+Date: Mon, 25 Aug 2025 23:10:09 +0000
+References: <20250821083038.46274-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250821083038.46274-3-krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, kgugala@antmicro.com, mholenko@antmicro.com,
+ gsomlo@gmail.com, joel@jms.id.au, Steen.Hegelund@microchip.com,
+ daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
+ lars.povlsen@microchip.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 
-Ever since these two commits
+Hello:
 
-  fbd908bb8bc0 ("interconnect: qcom: sc7280: enable QoS configuration")
-  2b5004956aff ("arm64: dts: qcom: sc7280: Add clocks for QOS configuration")
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Herobrine systems fail to boot due to crashes like the following:
+On Thu, 21 Aug 2025 10:30:39 +0200 you wrote:
+> DTS example in the bindings should be indented with 2- or 4-spaces, so
+> correct a mixture of different styles to keep consistent 4-spaces.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/net/litex,liteeth.yaml         | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
 
-[    0.243171] Kernel panic - not syncing: Asynchronous SError Interrupt
-[    0.243173] CPU: 7 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.11.0 #1 c5464041cff584ced692726af2c4400fa2bde1db
-[    0.243178] Hardware name: Qualcomm Technologies, Inc. sc7280 CRD platform (rev5+) (DT)
-[    0.243180] Call trace:
-[    0.243182]  dump_backtrace+0x104/0x128
-[    0.243194]  show_stack+0x24/0x38
-[    0.243202]  __dump_stack+0x28/0x38
-[    0.243208]  dump_stack_lvl+0x28/0xb8
-[    0.243211]  dump_stack+0x18/0x30
-[    0.243215]  panic+0x134/0x340
-[    0.243219]  nmi_panic+0x48/0x98
-[    0.243227]  arm64_serror_panic+0x6c/0x80
-[    0.243245]  arm64_is_fatal_ras_serror+0xd8/0xe0
-[    0.243261]  do_serror+0x5c/0xa8
-[    0.243265]  el1h_64_error_handler+0x34/0x48
-[    0.243272]  el1h_64_error+0x7c/0x80
-[    0.243285]  regmap_mmio_read+0x5c/0xc0
-[    0.243289]  _regmap_bus_reg_read+0x78/0xf8
-[    0.243296]  regmap_update_bits_base+0xec/0x3a8
-[    0.243300]  qcom_icc_rpmh_probe+0x2d4/0x490
-[    0.243308]  platform_probe+0xb4/0xe0
-[...]
+Here is the summary with links:
+  - [1/2] dt-bindings: net: litex,liteeth: Correct example indentation
+    https://git.kernel.org/netdev/net-next/c/bc2741b032f8
+  - [2/2] dt-bindings: net: Drop vim style annotation
+    https://git.kernel.org/netdev/net-next/c/7f052126ff38
 
-Specifically, they fail in qcom_icc_set_qos() when trying to write the
-QoS settings for qhm_qup1. Several of the previous nodes (qhm_qspi,
-qhm_qup0, ...) seem to configure without crashing.
-
-We suspect that the TZ firmware on these devices does not expose QoS
-regions to Linux. The right solution here might involve deleting both
-'clocks' and 'reg', but 'reg' would cause more problems. Linux is
-already OK with a missing 'clocks', since pre-2b5004956aff DTBs need to
-be supported, so we go with an easier solution.
-
-Fixes: fbd908bb8bc0 ("interconnect: qcom: sc7280: enable QoS configuration")
-Fixes: 2b5004956aff ("arm64: dts: qcom: sc7280: Add clocks for QOS configuration")
-Signed-off-by: Brian Norris <briannorris@chromium.org>
----
-
-Changes in v2:
- * Update notes about TZ firmware
-
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index 2ba4ea60cb14..6237fc7a13ca 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -394,6 +394,16 @@ &vreg_l2c_1p8 {
- 
- /* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
- 
-+/* TZ firmware on these devices seems to not expose QoS regions to the OS. */
-+&aggre1_noc {
-+	/delete-property/ clocks;
-+};
-+
-+/* TZ firmware on these devices seems to not expose QoS regions to the OS. */
-+&aggre2_noc {
-+	/delete-property/ clocks;
-+};
-+
- &edp_panel {
- 	/* Our board provides power to the qcard for the eDP panel. */
- 	power-supply = <&vreg_edp_3p3>;
+You are awesome, thank you!
 -- 
-2.51.0.261.g7ce5a0a67e-goog
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
