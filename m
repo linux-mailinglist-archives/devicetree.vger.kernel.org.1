@@ -1,172 +1,172 @@
-Return-Path: <devicetree+bounces-209028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4DFFB343E4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:32:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F3ADB34433
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:39:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25C321A81664
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:31:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 368963BF92E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF2E303CB6;
-	Mon, 25 Aug 2025 14:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CFEC2FD1A9;
+	Mon, 25 Aug 2025 14:33:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uZVejJZA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LWTOH8fY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D8122FC88C;
-	Mon, 25 Aug 2025 14:27:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E93E2FABE3;
+	Mon, 25 Aug 2025 14:33:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756132035; cv=none; b=Ym8vYgoQDgS5uwvx4Bk0MH7Lsfk1ClWoemjwPJchHOE6vMzJIgJKB0qcoUBzlpaYL66C3I8c7yBpNFQEQC5Kqd0f0dJ0Nu7qo/ply6jbwQIWm2CVeERo2QLSgewkazmMD1AHcltJ1jUCgLuSHbsn4aHbq9fgqn9Y/+/YVVis+u0=
+	t=1756132414; cv=none; b=mTLSDlP/KPr1+ySLl1n9Ea4tdE7umlqfs9MG81IHhtLJdOj2udxVuoEtW2q9T4qNDuLmhqRI0nzDpHbckuzzKxOQNEXBjhE0PNi86Zq17BJJ8ndC7EFRF3KIZDsbcwRF3RrkcBNwiQs1tqCNqMov6T4e+J4gt4drynksoAYtZXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756132035; c=relaxed/simple;
-	bh=wnEwoAwOmaC9EtbLu07y6gkfUzdalMCzS41u8HyyAeQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HN+pK6JL+NU9wFnSGHmLelHS1eQ8Lt0+0Cf2R/sMIIBD5yWcOCPVLC1wFoDekzc1P29/6wFQSffa2zXmq8IrNsMQhof0IyC6GqeFn9/QT55s5Q2RYcN/buiL3dKhgA0fJMa9UvCdMumWs08MzKSeB2p367hBSl39wPAPSbHknSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uZVejJZA; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57PEQuuY1294958;
-	Mon, 25 Aug 2025 09:26:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756132016;
-	bh=h1zyU1evSKaxO4aYTSyZWEjNsFhfpDLHeNtlMXX9zq4=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=uZVejJZAuewUM17JPFF3XXEXpfhxX/ahO7M27zMyf9xVLZ8py8ftE3iMQnC+qN89F
-	 66gxbjZe1aYjpSTNw/YzCXfC50n8D+r4RDFlCPXdlWOgTvK/cAV69vea6pV1zwf5AS
-	 6jnwuV0z8wBDotk+Tkf2j93ByeJpZ2KxmC4IbPis=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57PEQu8n1236002
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 25 Aug 2025 09:26:56 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 25
- Aug 2025 09:26:55 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 25 Aug 2025 09:26:55 -0500
-Received: from ws.dhcp.ti.com (ws.dhcp.ti.com [172.24.233.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57PEPN433747540;
-	Mon, 25 Aug 2025 09:26:50 -0500
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-To: <jai.luthra@linux.dev>, <laurent.pinchart@ideasonboard.com>,
-        <mripard@kernel.org>
-CC: <r-donadkar@ti.com>, <y-abhilashchandra@ti.com>, <devarsht@ti.com>,
-        <vaishnav.a@ti.com>, <s-jain1@ti.com>, <vigneshr@ti.com>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <sakari.ailus@linux.intel.com>,
-        <hverkuil-cisco@xs4all.nl>, <tomi.valkeinen@ideasonboard.com>,
-        <jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
-        <jack.zhu@starfivetech.com>, <linux-kernel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v5 14/14] media: ti: j721e-csi2rx: Wait for the last drain completion
-Date: Mon, 25 Aug 2025 19:55:22 +0530
-Message-ID: <20250825142522.1826188-15-r-donadkar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250825142522.1826188-1-r-donadkar@ti.com>
-References: <20250825142522.1826188-1-r-donadkar@ti.com>
+	s=arc-20240116; t=1756132414; c=relaxed/simple;
+	bh=xhSK8G/YNCbg2RlmI771QtKKh27941TambAywmDzy9c=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=d7uaJlCpgk98jI2XpP3pEN6OGuJIgslOKEenZ6xr7z/9ktcfVHL3afHe3H4sip77K4S2x4r1CAUneg2hXdNZJqY73O5Ig3BuAE7fR+QsyEtiLWs8Z0DtqhGJXFvEjc5E5bIQ/w6R9DwDnikXnFSaUFVYRYo71u1aTbKjOQvqesw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LWTOH8fY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0420C4CEED;
+	Mon, 25 Aug 2025 14:33:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756132414;
+	bh=xhSK8G/YNCbg2RlmI771QtKKh27941TambAywmDzy9c=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=LWTOH8fY1roq57qXjs3WI/lZEP/bsdBR4bYrmPvYbrPLFt6yLQ3c5usp/ZS4fp+4C
+	 0CETysSPlzvQJshm9ZjJYT0swptyOBauYqtBfiZj/wEUHiIfZ/2GqHwONw8Np0WMwC
+	 n8couoUddgyHAxm/fZe5E3ZMg/XckhXsJ6jnHTdz5Bf95s+mQoTtE4Hoemyse0Ay6v
+	 ABD3S1/sD8MFHTpbxgnge0xtYfcqP0/5Qpd74bw3suZapCikWCEsQmGmXYXgImYPqg
+	 We4oJKxAo+3eWGsu15bK6ofIOpHwvsNd/xwExYoBHeYscFMBfekKqzqRhUFeqhnrfe
+	 ahigTTgSP3siA==
+Date: Mon, 25 Aug 2025 15:33:25 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <Michael.Hennerich@analog.com>,
+ <lars@metafoo.de>, <dlechner@baylibre.com>, <nuno.sa@analog.com>,
+ <andy@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <marcelo.schmitt1@gmail.com>
+Subject: Re: [PATCH v2 2/4] iio: adc: ad7768-1: introduce chip info for
+ future multidevice support
+Message-ID: <20250825153325.421d2a4d@jic23-huawei>
+In-Reply-To: <20250824040953.9547-1-Jonathan.Santos@analog.com>
+References: <20250824040953.9547-1-Jonathan.Santos@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-dmaengine_terminate_sync() causes all activity for the DMA channel to be
-stopped, and may discard data in the DMA FIFO which hasn't been fully
-transferred. No callback functions will be called for any
-incomplete transfers[1].
+On Sun, 24 Aug 2025 01:09:53 -0300
+Jonathan Santos <Jonathan.Santos@analog.com> wrote:
 
-In multistream use case, calling dmaengine_terminate_sync() immediately
-after issuing the last drain transaction will result in no callback
-for the last drain cycle.
+> Add Chip info struct in SPI device to store channel information for
+> each supported part.
+> 
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> ---
+> v2 Changes:
+> * removed AD7768_CHAN_INFO_NONE macro.
+> * reordered fields in ad7768_chip_info struct.
+> * removed trailing comma.
+> ---
+>  drivers/iio/adc/ad7768-1.c | 75 ++++++++++++++++++++++++++------------
+>  1 file changed, 52 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+> index a2e061f0cb08..83b0907b068d 100644
+> --- a/drivers/iio/adc/ad7768-1.c
+> +++ b/drivers/iio/adc/ad7768-1.c
+> @@ -213,6 +213,13 @@ static const struct iio_scan_type ad7768_scan_type[] = {
+>  	},
+>  };
+>  
+> +struct ad7768_chip_info {
+> +	const char *name;
+> +	const unsigned long *available_masks;
+> +	const struct iio_chan_spec *channel_spec;
+> +	int num_channels;
+> +};
+> +
+>  struct ad7768_state {
+>  	struct spi_device *spi;
+>  	struct regmap *regmap;
+> @@ -234,6 +241,7 @@ struct ad7768_state {
+>  	struct gpio_desc *gpio_reset;
+>  	const char *labels[AD7768_MAX_CHANNELS];
+>  	struct gpio_chip gpiochip;
+> +	const struct ad7768_chip_info *chip;
+>  	bool en_spi_sync;
+>  	/*
+>  	 * DMA (thus cache coherency maintenance) may require the
+> @@ -750,24 +758,27 @@ static const struct iio_chan_spec_ext_info ad7768_ext_info[] = {
+>  	{ }
+>  };
+>  
+> +#define AD7768_CHAN(_idx, _msk_avail) {	\
 
-Implement complete callback for the last drain cycle to make sure that
-the last drain has completed properly, this will ensure that stale data
-is not left out in the HW FIFO.
+Check for consistency.  looks like you were aiming for 1 space before \ but didn't
+get it the same everywhere?
 
-[1] : https://docs.kernel.org/driver-api/dmaengine/client.html
+> +	.type = IIO_VOLTAGE,\
+> +	.info_mask_separate_available = _msk_avail,\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),\
+> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) | \
+> +			BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY) | \
+> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),\
+> +	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),\
+> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ), \
+> +	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),\
+> +	.ext_info = ad7768_ext_info,\
+> +	.indexed = 1,\
+> +	.channel = _idx,\
+> +	.scan_index = _idx,\
+> +	.has_ext_scan_type = 1,\
+> +	.ext_scan_type = ad7768_scan_type,\
+> +	.num_ext_scan_type = ARRAY_SIZE(ad7768_scan_type),\
+> +}
+> +
+>  static const struct iio_chan_spec ad7768_channels[] = {
+> -	{
+> -		.type = IIO_VOLTAGE,
+> -		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+> -		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |
+> -					    BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY) |
+> -					    BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
+> -		.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
+> -		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> -		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> -		.ext_info = ad7768_ext_info,
+> -		.indexed = 1,
+> -		.channel = 0,
+> -		.scan_index = 0,
+> -		.has_ext_scan_type = 1,
+> -		.ext_scan_type = ad7768_scan_type,
+> -		.num_ext_scan_type = ARRAY_SIZE(ad7768_scan_type),
+> -	},
+> +	AD7768_CHAN(0, 0),
+>  };
+>  
+>  static int ad7768_read_raw(struct iio_dev *indio_dev,
+> @@ -1334,6 +1345,18 @@ static int ad7768_register_regulators(struct device *dev, struct ad7768_state *s
+>  	return 0;
+>  }
+>  
+> +static const unsigned long ad7768_channel_masks[] = {
+> +	BIT(0),
 
-Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
----
- drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+That doesn't make a lot of sense. Don't provide one for devices with
+only one channel.  Leave it set to NULL and everything should just work.
 
-diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-index 4ac6a76b9409..520ee05eb5b4 100644
---- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-+++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-@@ -62,6 +62,7 @@
- #define TI_CSI2RX_MAX_PADS		(1 + TI_CSI2RX_MAX_SOURCE_PADS)
- 
- #define DRAIN_BUFFER_SIZE		SZ_32K
-+#define DRAIN_TIMEOUT_MS		50
- 
- #define CSI2RX_BRIDGE_SOURCE_PAD	1
- 
-@@ -137,6 +138,7 @@ struct ti_csi2rx_dev {
- 		size_t			len;
- 	} drain;
- 	bool				vc_cached;
-+	struct completion drain_complete;
- };
- 
- static inline struct ti_csi2rx_dev *to_csi2rx_dev(struct v4l2_subdev *sd)
-@@ -624,12 +626,14 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
- static void ti_csi2rx_drain_callback(void *param)
- {
- 	struct ti_csi2rx_ctx *ctx = param;
-+	struct ti_csi2rx_dev *csi = ctx->csi;
- 	struct ti_csi2rx_dma *dma = &ctx->dma;
- 	unsigned long flags;
- 
- 	spin_lock_irqsave(&dma->lock, flags);
- 
- 	if (dma->state == TI_CSI2RX_DMA_STOPPED) {
-+		complete(&csi->drain_complete);
- 		spin_unlock_irqrestore(&dma->lock, flags);
- 		return;
- 	}
-@@ -774,6 +778,7 @@ static int ti_csi2rx_start_dma(struct ti_csi2rx_ctx *ctx,
- static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
- {
- 	struct ti_csi2rx_dma *dma = &ctx->dma;
-+	struct ti_csi2rx_dev *csi = ctx->csi;
- 	enum ti_csi2rx_dma_state state;
- 	unsigned long flags;
- 	int ret;
-@@ -783,6 +788,8 @@ static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
- 	dma->state = TI_CSI2RX_DMA_STOPPED;
- 	spin_unlock_irqrestore(&dma->lock, flags);
- 
-+	init_completion(&csi->drain_complete);
-+
- 	if (state != TI_CSI2RX_DMA_STOPPED) {
- 		/*
- 		 * Normal DMA termination does not clean up pending data on
-@@ -796,6 +803,10 @@ static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
- 				 "Failed to drain DMA. Next frame might be bogus\n");
- 	}
- 
-+	if (!wait_for_completion_timeout(&csi->drain_complete,
-+					 msecs_to_jiffies(DRAIN_TIMEOUT_MS)))
-+		dev_dbg(csi->dev, "DMA transfer timed out for drain buffer\n");
-+
- 	ret = dmaengine_terminate_sync(ctx->dma.chan);
- 	if (ret)
- 		dev_err(ctx->csi->dev, "Failed to stop DMA: %d\n", ret);
--- 
-2.34.1
+> +	0
+> +};
+
 
 
