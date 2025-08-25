@@ -1,287 +1,581 @@
-Return-Path: <devicetree+bounces-209010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2575B342C1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:10:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB0FB342E8
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:15:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 283715E77F7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:03:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F9DF188A8FA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 555DE2F39C2;
-	Mon, 25 Aug 2025 13:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB662EA49C;
+	Mon, 25 Aug 2025 14:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="H/QoveyH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KVMqiJb/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D32482F2917
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 13:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0296F9C0;
+	Mon, 25 Aug 2025 14:14:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756130384; cv=none; b=Z43aHnIsJNyrcIAsr+Ju64rNRPUYxIgIRG+HnonTRSy29Isqkvr7c5NT4CiVdo3BVkBvKIpVGMcnJznCRVLrWGkoGBtv578bUvAaNA2/RfxlCQuE8tubeAR4vIP+EXvAji4I++8tXW06v+yNX9idRZoel6LLoxy0x0IB8MJldXk=
+	t=1756131262; cv=none; b=bD9pvbjb5JIhvxWzxLpY6r4o09LADIwz6LPCKX2oxyjD0sBvTxPFDfqN+gOC0GX8PcSS/o4mfN2DmvTKIesafJhSZrdn2+sz+ChtkpqD6hiwfkuKiTtqreMT5qu3dzuP+ltCFwu5IthUVSyqMj+K3d4vDFLoam1nJpGjWpFIEEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756130384; c=relaxed/simple;
-	bh=v3Gi5YTVW/Cp+kTwx9Yt+qf7HZfn+UuKaA8V/d2uE4k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=p45hVUJrbJaD0lGd9xnsajDdAvCQwnfRQOTg/W8mhsk8QBU8M0qvtJfuy1VpC0eqzvws/GMC0+c/+W+P6ZT/PLN3+OFIheoVouycyYW8cqxAXrIxhGc0pcuZEyyr70YK+smG82AWooE1TZdtOUcnoSXpuAquikQLhrnVFLMbWqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=H/QoveyH; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250825135940euoutp02f90e766a4ce02776046559f409c0394b~fB0a4TeLx2466624666euoutp02H
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 13:59:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250825135940euoutp02f90e766a4ce02776046559f409c0394b~fB0a4TeLx2466624666euoutp02H
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756130380;
-	bh=3cyM1i33QvECmO3VGKlA/wlGJx1DA9pp0W8lw/26QYE=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=H/QoveyHvcQzgAot0x+iV8pueXg2ZF17RltiPR+t9D4LGAbmuTUpK/i5J4E4k2rEw
-	 4kfZJa7nIgD93f+cROxKac2b6uv7VgEXVwaOUIgnLL/iW3Tx1P/csXm9SpPglW4QnL
-	 TXqsmgkHfSM6bOpECYJwGnrLu0flq/wiDZOyyKDw=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250825135939eucas1p206b6e2b5ba115f51618c773a1f37939c~fB0ajcpg01631516315eucas1p2u;
-	Mon, 25 Aug 2025 13:59:39 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250825135937eusmtip155667559731c29c009ae9b30c1a36298~fB0Y2twp60569705697eusmtip1V;
-	Mon, 25 Aug 2025 13:59:37 +0000 (GMT)
-Message-ID: <4066c0b4-807f-401e-baaa-25f4891f10ac@samsung.com>
-Date: Mon, 25 Aug 2025 15:59:37 +0200
+	s=arc-20240116; t=1756131262; c=relaxed/simple;
+	bh=O27boypHUmVhtmIw+EGKRt2WuczW77KvPjxjYV//udI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WppG8OozyH1vbvDBdSd4d0Xu2AJm16AMO9nyNFnaw6DxE7wy2NGEQGb+1T1KbMM1+R22pPewKjtzZTASc5bM/aN0XLEzEVyxn+N+MZd4THwo+kCnxB7MafK6U1GVfEXcN2his5UyTZPNVHFVaSSJFB3bfXoHyJ1Le6Qy8w8f03k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KVMqiJb/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FFEEC4CEED;
+	Mon, 25 Aug 2025 14:14:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756131261;
+	bh=O27boypHUmVhtmIw+EGKRt2WuczW77KvPjxjYV//udI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=KVMqiJb/tJ4nLHwYltL5ujq5Q10ZC2JaODEweCLFO4wD578pQZJbK9Kuqw1I9PviF
+	 wyX5fl/AQx8IsLqavU+6DtDn5ydNLdMTZeO0JDsT7JNl4vRRAVx1QPrnu/jWWyDCqb
+	 8+z03H6c6RAe/E3dDlvxZRAXLMVMpr55VDuAYoSvCNWbZjZixE1RpVIygLbZxKGSPj
+	 MYmFQpckWelqjejH1yg+du1BeKgTVqW4naXp6IbX9p6P5uac0rzzrG31Sv1Xr4GdFD
+	 ttqvJ6GaRiT1OCcZoR0wcojtTZZwqu4y5f3tvD9LTmTC6/wf4oL8fPXAlLIgzRyNbx
+	 Yfj1b+bTNogIg==
+Date: Mon, 25 Aug 2025 15:14:13 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 5/6] docs: iio: add documentation for ade9000 driver
+Message-ID: <20250825151413.2a1e60a8@jic23-huawei>
+In-Reply-To: <20250822160157.5092-6-antoniu.miclaus@analog.com>
+References: <20250822160157.5092-1-antoniu.miclaus@analog.com>
+	<20250822160157.5092-6-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: Re: [PATCH v4 2/7] OPP: Move refcount and key update for
- readability in _opp_table_find_key()
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Viresh
-	Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd
-	<sboyd@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Manivannan
-	Sadhasivam <mani@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring
-	<robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson
-	<andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Krzysztof
-	Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20250820-opp_pcie-v4-2-273b8944eed0@oss.qualcomm.com>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250825135939eucas1p206b6e2b5ba115f51618c773a1f37939c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250825135939eucas1p206b6e2b5ba115f51618c773a1f37939c
-X-EPHeader: CA
-X-CMS-RootMailID: 20250825135939eucas1p206b6e2b5ba115f51618c773a1f37939c
-References: <20250820-opp_pcie-v4-0-273b8944eed0@oss.qualcomm.com>
-	<20250820-opp_pcie-v4-2-273b8944eed0@oss.qualcomm.com>
-	<CGME20250825135939eucas1p206b6e2b5ba115f51618c773a1f37939c@eucas1p2.samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 20.08.2025 10:28, Krishna Chaitanya Chundru wrote:
-> Refactor _opp_table_find_key() to improve readability by moving the
-> reference count increment and key update inside the match condition block.
->
-> Also make the 'assert' check mandatory instead of treating it as optional.
->
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+On Fri, 22 Aug 2025 16:01:54 +0000
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-This patch landed in today's linux-next (20250825) as commit 
-b5323835f050 ("OPP: Reorganize _opp_table_find_key()"). In my tests I 
-found that it causes regressions on my test boards. Reverting this 
-change on top of linux-next fixes booting of all the affected boards.
-
-Here are kernel logs with lockdep enabled:
-
-1. Exynos4412-based Odroid-U3 board (ARM 32bit):
-
-============================================
-WARNING: possible recursive locking detected
-6.17.0-rc3-next-20250825 #10901 Not tainted
---------------------------------------------
-kworker/u16:0/12 is trying to acquire lock:
-cf896040 (&devfreq->lock){+.+.}-{3:3}, at: devfreq_notifier_call+0x30/0x124
-
-but task is already holding lock:
-cf896040 (&devfreq->lock){+.+.}-{3:3}, at: devfreq_monitor+0x1c/0x1a4
-
-other info that might help us debug this:
-  Possible unsafe locking scenario:
-
-        CPU0
-        ----
-   lock(&devfreq->lock);
-   lock(&devfreq->lock);
-
-  *** DEADLOCK ***
-
-  May be due to missing lock nesting notation
-
-4 locks held by kworker/u16:0/12:
-  #0: c289d0b4 ((wq_completion)devfreq_wq){+.+.}-{0:0}, at: 
-process_one_work+0x1b0/0x70c
-  #1: f0899f18 
-((work_completion)(&(&devfreq->work)->work)#2){+.+.}-{0:0}, at: 
-process_one_work+0x1dc/0x70c
-  #2: cf896040 (&devfreq->lock){+.+.}-{3:3}, at: devfreq_monitor+0x1c/0x1a4
-  #3: c2e78c4c (&(&opp_table->head)->rwsem){++++}-{3:3}, at: 
-blocking_notifier_call_chain+0x28/0x60
-
-stack backtrace:
-CPU: 2 UID: 0 PID: 12 Comm: kworker/u16:0 Not tainted 
-6.17.0-rc3-next-20250825 #10901 PREEMPT
-Hardware name: Samsung Exynos (Flattened Device Tree)
-Workqueue: devfreq_wq devfreq_monitor
-Call trace:
-  unwind_backtrace from show_stack+0x10/0x14
-  show_stack from dump_stack_lvl+0x68/0x88
-  dump_stack_lvl from print_deadlock_bug+0x370/0x380
-  print_deadlock_bug from __lock_acquire+0x1428/0x29ec
-  __lock_acquire from lock_acquire+0x134/0x388
-  lock_acquire from __mutex_lock+0xac/0x10c0
-  __mutex_lock from mutex_lock_nested+0x1c/0x24
-  mutex_lock_nested from devfreq_notifier_call+0x30/0x124
-  devfreq_notifier_call from notifier_call_chain+0x84/0x1d4
-  notifier_call_chain from blocking_notifier_call_chain+0x44/0x60
-  blocking_notifier_call_chain from _opp_kref_release+0x3c/0x5c
-  _opp_kref_release from exynos_bus_target+0x24/0x70
-  exynos_bus_target from devfreq_set_target+0x8c/0x2e8
-  devfreq_set_target from devfreq_update_target+0x9c/0xf8
-  devfreq_update_target from devfreq_monitor+0x28/0x1a4
-  devfreq_monitor from process_one_work+0x24c/0x70c
-  process_one_work from worker_thread+0x1b8/0x3bc
-  worker_thread from kthread+0x13c/0x264
-  kthread from ret_from_fork+0x14/0x28
-Exception stack(0xf0899fb0 to 0xf0899ff8)
-
-...
-
-
-2. Exynos5422-based Odroid-XU3 board (ARM 32bit):
-
-8<--- cut here ---
-Unable to handle kernel NULL pointer dereference at virtual address 
-00000000 when read
-[00000000] *pgd=00000000
-Internal error: Oops: 5 [#1] SMP ARM
-Modules linked in:
-CPU: 7 UID: 0 PID: 68 Comm: kworker/u34:1 Not tainted 
-6.17.0-rc3-next-20250825 #10901 PREEMPT
-Hardware name: Samsung Exynos (Flattened Device Tree)
-Workqueue: devfreq_wq devfreq_monitor
-PC is at _opp_compare_key+0x30/0xb4
-LR is at 0xfffffffc
-pc : [<c09831c4>]    lr : [<fffffffc>]    psr: 20000013
-sp : f0a89de0  ip : cfb0e94c  fp : c1574880
-r10: c14095a4  r9 : f0a89e44  r8 : c2a9c010
-r7 : cfb0ea80  r6 : 00000001  r5 : cfb0e900  r4 : 00000001
-r3 : 00000000  r2 : cfb0e900  r1 : cfb0ea80  r0 : cfaf5800
-Flags: nzCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
-Control: 10c5387d  Table: 4000406a  DAC: 00000051
-Register r0 information: slab kmalloc-1k start cfaf5800 pointer offset 0 
-size 1024
-Register r1 information: slab kmalloc-128 start cfb0ea80 pointer offset 
-0 size 128
-Register r2 information: slab kmalloc-128 start cfb0e900 pointer offset 
-0 size 128
-Register r3 information: NULL pointer
-Register r4 information: non-paged memory
-Register r5 information: slab kmalloc-128 start cfb0e900 pointer offset 
-0 size 128
-Register r6 information: non-paged memory
-Register r7 information: slab kmalloc-128 start cfb0ea80 pointer offset 
-0 size 128
-Register r8 information: slab kmalloc-1k start c2a9c000 pointer offset 
-16 size 1024
-Register r9 information: 2-page vmalloc region starting at 0xf0a88000 
-allocated at kernel_clone+0x58/0x3c4
-Register r10 information: non-slab/vmalloc memory
-Register r11 information: non-slab/vmalloc memory
-Register r12 information: slab kmalloc-128 start cfb0e900 pointer offset 
-76 size 128
-Process kworker/u34:1 (pid: 68, stack limit = 0x050eb3d7)
-Stack: (0xf0a89de0 to 0xf0a8a000)
-..
-Call trace:
-  _opp_compare_key from _set_opp+0x78/0x50c
-  _set_opp from dev_pm_opp_set_rate+0x15c/0x21c
-  dev_pm_opp_set_rate from panfrost_devfreq_target+0x2c/0x3c
-  panfrost_devfreq_target from devfreq_set_target+0x8c/0x2e8
-  devfreq_set_target from devfreq_update_target+0x9c/0xf8
-  devfreq_update_target from devfreq_monitor+0x28/0x1a4
-  devfreq_monitor from process_one_work+0x24c/0x70c
-  process_one_work from worker_thread+0x1b8/0x3bc
-  worker_thread from kthread+0x13c/0x264
-  kthread from ret_from_fork+0x14/0x28
-Exception stack(0xf0a89fb0 to 0xf0a89ff8)
-...
----[ end trace 0000000000000000 ]---
-
-
-3. Qualcomm Technologies, Inc. Robotics RB5(ARM 64bit):
-
-ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
-ufshcd-qcom 1d84000.ufshc: ufshcd_populate_vreg: Unable to find 
-vdd-hba-supply regulator, assuming enabled
-ufshcd-qcom 1d84000.ufshc: Failed to find OPP for MIN frequency
-ufshcd-qcom 1d84000.ufshc: ufshcd_pltfrm_init: OPP parse failed -34
-ufshcd-qcom 1d84000.ufshc: error -ERANGE: ufshcd_pltfrm_init() failed
-ufshcd-qcom 1d84000.ufshc: probe with driver ufshcd-qcom failed with 
-error -34
-
-
-
+> Add documentation for ade9000 driver which describes the driver
+> device files and shows how the user may use the ABI for various
+> scenarios (configuration, measurement, etc.).
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
->   drivers/opp/core.c | 14 ++++++--------
->   1 file changed, 6 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index a36c3daac39cd0bdd2a1f7e9bad5b92f0c756153..bf49709b8c39271431772924daf0c003b45eec7f 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -544,24 +544,22 @@ static struct dev_pm_opp *_opp_table_find_key(struct opp_table *opp_table,
->   	struct dev_pm_opp *temp_opp, *opp = ERR_PTR(-ERANGE);
->   
->   	/* Assert that the requirement is met */
-> -	if (assert && !assert(opp_table, index))
-> +	if (!assert(opp_table, index))
->   		return ERR_PTR(-EINVAL);
->   
->   	guard(mutex)(&opp_table->lock);
->   
->   	list_for_each_entry(temp_opp, &opp_table->opp_list, node) {
->   		if (temp_opp->available == available) {
-> -			if (compare(&opp, temp_opp, read(temp_opp, index), *key))
-> +			if (compare(&opp, temp_opp, read(temp_opp, index), *key)) {
-> +				/* Increment the reference count of OPP */
-> +				*key = read(opp, index);
-> +				dev_pm_opp_get(opp);
->   				break;
-> +			}
->   		}
->   	}
->   
-> -	/* Increment the reference count of OPP */
-> -	if (!IS_ERR(opp)) {
-> -		*key = read(opp, index);
-> -		dev_pm_opp_get(opp);
-> -	}
-> -
->   	return opp;
->   }
->   
->
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+>  Documentation/iio/ade9000.rst | 286 ++++++++++++++++++++++++++++++++++
+>  Documentation/iio/index.rst   |   1 +
+>  2 files changed, 287 insertions(+)
+>  create mode 100644 Documentation/iio/ade9000.rst
+>=20
+> diff --git a/Documentation/iio/ade9000.rst b/Documentation/iio/ade9000.rst
+> new file mode 100644
+> index 000000000000..fcb4a36c0282
+> --- /dev/null
+> +++ b/Documentation/iio/ade9000.rst
+> @@ -0,0 +1,286 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +ADE9000 driver
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +This driver supports Analog Device's ADE9000 energy measurement IC on SP=
+I bus.
+> +
+> +1. Supported devices
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +* `ADE9000 <https://www.analog.com/media/en/technical-documentation/data=
+-sheets/ADE9000.pdf>`_
+> +
+> +The ADE9000 is a highly accurate, fully integrated, multiphase energy an=
+d power
+> +quality monitoring device. Superior analog performance and a digital sig=
+nal
+> +processing (DSP) core enable accurate energy monitoring over a wide dyna=
+mic
+> +range. An integrated high end reference ensures low drift over temperatu=
+re
+> +with a combined drift of less than =C2=B125 ppm/=C2=B0C maximum for the =
+entire channel
+> +including a programmable gain amplifier (PGA) and an analog-to-digital
+> +converter (ADC).
+> +
+> +2. Device attributes
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Power and energy measurements are provided for voltage, current, active =
+power,
+> +reactive power, apparent power, and power factor across three phases.
+> +
+> +Each IIO device has a device folder under ``/sys/bus/iio/devices/iio:dev=
+iceX``,
+> +where X is the IIO index of the device. Under these folders reside a set=
+ of
+> +device files, depending on the characteristics and features of the hardw=
+are
+> +device in question. These files are consistently generalized and documen=
+ted in
+> +the IIO ABI documentation.
+> +
+> +The following tables show the ADE9000 related device files, found in the
+> +specific device folder path ``/sys/bus/iio/devices/iio:deviceX``.
+> +
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| Current measurement related device files          | Description       =
+                                       |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_current[0-2]_raw                               | Raw current measur=
+ement for phases A, B, C.              |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_current[0-2]_scale                             | Scale for current =
+channels.                              |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_current[0-2]_calibscale                        | Calibration gain f=
+or current channels (AIGAIN reg).      |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_current[0-2]_offset                            | Offset correction =
+for current channels (IRMSOS reg).     |
+
+So this is not an offset of the _raw reading above.  I.e. userspace should =
+do (_raw + _offset) * _scale I think?
+Even for the RMS calc there is a 2^15 multiplier involved.
+
+So think this one needs a rethink.  Definitely a calibbias not an offset as=
+ it's not something for userspace
+to apply but rather a calibration tweak. Possibly something new is needed t=
+o indicate this only affects
+the RMS calculation.  I'm open to suggestions on how to do that.
+
+
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_altcurrent[0-2]_rms_raw                        | RMS current measur=
+ement for phases A, B, C.              |
+
+Add something kernel on the calc, particularly the influence of what you cu=
+rrently have as offset above. That
+is not obvious.
+
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| Voltage measurement related device files          | Description       =
+                                       |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage[0-2]_raw                               | Raw voltage measur=
+ement for phases A, B, C.              |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage[0-2]_scale                             | Scale for voltage =
+channels.                              |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage[0-2]_calibscale                        | Calibration gain f=
+or voltage channels (AVGAIN reg).      |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage[0-2]_offset                            | Offset correction =
+for voltage channels (VRMSOS reg).     |
+
+As above.
+
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage[0-2]_frequency                         | Measured line freq=
+uency for phases A, B, C.              |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_altvoltage[0-2]_rms_raw                        | RMS voltage measur=
+ement for phases A, B, C.              |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| Power measurement related device files            | Description       =
+                                       |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_power[0-2]_raw                                 | Raw active power m=
+easurement for phases A, B, C.         |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_power[0-2]_active_raw                          | Active power measu=
+rement for phases A, B, C.             |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_power[0-2]_reactive_raw                        | Reactive power mea=
+surement for phases A, B, C.           |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_power[0-2]_apparent_raw                        | Apparent power mea=
+surement for phases A, B, C.           |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_power[0-2]_powerfactor                         | Power factor for p=
+hases A, B, C.                         |
+
+Currently I'm fairly sure this is _active_powerfactor which is not where it=
+ should be.
+please check this doc again vs attributes on the running driver.
+
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_power[0-2]_scale                               | Scale for power ch=
+annels.                                |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_power[0-2]_calibscale                          | Calibration gain f=
+or power channels (APGAIN reg).        |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_power[0-2]_calibbias                           | Calibration offset=
+ for power channels (xWATTOS regs).    |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| Energy measurement related device files           | Description       =
+                                       |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_energy[0-2]_raw                                | Raw energy measure=
+ment for phases A, B, C.               |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_energy[0-2]_scale                              | Scale for energy c=
+hannels.                               |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +
+> ++------------------------------+----------------------------------------=
+--------------------------+
+> +| Shared device attributes     | Description                            =
+                          |
+> ++------------------------------+----------------------------------------=
+--------------------------+
+> +| name                         | Name of the IIO device.                =
+                          |
+> ++------------------------------+----------------------------------------=
+--------------------------+
+> +| frequency                    | System line frequency configuration (50=
+Hz/60Hz).                |
+> ++------------------------------+----------------------------------------=
+--------------------------+
+> +| scale                        | Shared PGA gain setting (1x, 2x, 4x) af=
+fecting all channels.   |
+> ++------------------------------+----------------------------------------=
+--------------------------+
+
+Looks like something odd with formatting in the table here.
+
+
+> +
+> +3. Calibration and scaling
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+> +
+> +The ADE9000 provides multiple levels of gain and offset correction:
+> +
+> +**PGA Gain (shared)**
+> +  The programmable gain amplifier affects the analog input stage for all=
+ channels.
+> +  Controlled via the shared ``scale`` attribute with values 1, 2, or 4.
+> +
+> +**Calibration Gain (per-channel)**
+> +  Fine-tuning calibration gains applied in the digital domain for each c=
+hannel type.
+> +  Controlled via ``calibscale`` attributes (AIGAIN, AVGAIN, APGAIN regis=
+ters).
+> +
+> +**Calibration Offset (per-channel)**
+> +  Hardware calibration offsets applied by the device for power measureme=
+nts.
+> +  Controlled via ``calibbias`` attributes for power channels.
+> +
+> +**Correction Offsets (per-channel)**
+> +  RMS offset corrections for current and voltage measurements.
+> +  Controlled via ``offset`` attributes (IRMSOS, VRMSOS registers).
+
+As per the above - these only affect RMS not the direct measurements so nee=
+d a rethink.
+=20
+> +
+> +4. Event attributes
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +The ADE9000 provides various interrupts that are mapped to IIO events.
+> +Event functionality is only available if the corresponding interrupts are
+> +connected in the device tree.
+> +
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| IIO Event Attribute                               | ADE9000 Datasheet =
+Equivalent                             |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage0_thresh_either_en                      | Zero crossing dete=
+ction interrupt (ZXVA)                 |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage0_thresh_rising_en                      | Swell detection in=
+terrupt (SWELLA)                       |
+
+These seem to be on something to do with RMS not the main voltage channel. =
+ They aren't indicating the peak went
+out of range but rather the RMS value did. Given RMS is a channel modifier,=
+ maybe in_voltage0_rms_thresh_rising
+is enough?  Does the RMS half cycle update change how we should represent t=
+his?  I'm not sure and looking for
+inputs from others more familiar with energy meters.  I had to dig to find =
+what RMS 1/2 was.
+
+
+
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage0_thresh_falling_en                     | Sag/dip detection =
+interrupt (DIPA)                       |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage0_thresh_none_en                        | Zero crossing time=
+out interrupt (ZXTOVA)                 |
+
+Not seeing how a timeout maps to a threshold without a direction.  This is =
+a failure to see an event
+for some time.  The 'for sometime' could be done with a period control but =
+I'm not sure on what.  Maybe a new
+event direction in_voltage0_notthresh_either_en to say a threshold was not =
+crossed?
+
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| events_mag_none_en                                | Energy ready inter=
+rupt (EGYRDY)                          |
+
+Not an event in IIO terms.  Could map this to a trigger as it's indicating =
+a data update of small set of the channels.
+However we'd have to deal with buffering on our slowest channel.
+Do we need to support a dataready on something so slow?  Just poll it enoug=
+h?
+
+Also what is the events_ prefix here?
+
+
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| events_change_none_en                             | Sequence error int=
+errupt (SEQERR)                        |
+
+Why this mapping?  If this is an error condition then maybe use the EV_TYPE=
+_FAULT and add something alongside the openwire
+support we have already upstream.
+
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| events_thresh_none_value                          | Zero crossing time=
+out threshold (ZXTOUT register)        |
+I'd group these so the _value entries come right next the _en entries as th=
+en we can consider them together.
+
+This smells like period which we already have for events when they need to =
+be true for a 'while'. Note the
+units though so you'll have to deal with mapping to those.
+
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage0_thresh_falling_value                  | Sag/dip threshold =
+(DIP_LVL register)                     |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +| in_voltage0_thresh_rising_value                   | Swell threshold (S=
+WELL_LVL register)                     |
+> ++---------------------------------------------------+-------------------=
+---------------------------------------+
+> +
+> +Event directions:
+> +- ``rising``: Upper threshold crossing (swell detection)
+> +- ``falling``: Lower threshold crossing (sag/dip detection)
+> +- ``either``: Any threshold crossing (zero crossing detection)
+> +- ``none``: Timeout or non-directional events
+> +
+> +**Note**: Event attributes are only available if the corresponding inter=
+rupts
+> +(irq0, irq1, dready) are specified in the device tree. The driver works =
+without
+> +interrupts but with reduced functionality.
+> +
+> +5. Device buffers
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +This driver supports IIO buffers for waveform capture. Buffer functional=
+ity
+> +requires the dready interrupt to be connected.
+> +
+> +The device supports capturing voltage and current waveforms for power qu=
+ality
+> +analysis. The waveform buffer can be configured to capture data from dif=
+ferent
+> +channel combinations.
+> +
+> +Supported channel combinations for buffered capture:
+> +- Phase A: voltage and current (IA + VA)
+> +- Phase B: voltage and current (IB + VB)
+> +- Phase C: voltage and current (IC + VC)
+> +- All phases: all voltage and current channels
+> +- Individual channels: IA, VA, IB, VB, IC, VC
+> +
+> +Usage examples
+> +--------------
+> +
+> +Enable waveform capture for Phase A:
+> +
+> +.. code-block:: bash
+> +
+> +        root:/sys/bus/iio/devices/iio:device0> echo 1 > scan_elements/in=
+_current0_en
+> +        root:/sys/bus/iio/devices/iio:device0> echo 1 > scan_elements/in=
+_voltage0_en
+> +
+> +Set buffer length and enable:
+> +
+> +.. code-block:: bash
+> +
+> +        root:/sys/bus/iio/devices/iio:device0> echo 100 > buffer/length
+> +        root:/sys/bus/iio/devices/iio:device0> echo 1 > buffer/enable
+> +
+> +6. Clock output
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +The ADE9000 can provide a clock output via the CLKOUT pin when using an =
+external
+> +crystal/clock source. This feature is enabled by specifying ``#clock-cel=
+ls =3D <0>``
+> +in the device tree. The output clock will be registered as "clkout" and =
+can be
+> +referenced by other devices.
+> +
+> +7. Usage examples
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Show device name:
+> +
+> +.. code-block:: bash
+> +
+> +	root:/sys/bus/iio/devices/iio:device0> cat name
+> +        ade9000
+> +
+> +Read voltage measurements:
+> +
+> +.. code-block:: bash
+> +
+> +        root:/sys/bus/iio/devices/iio:device0> cat in_voltage0_raw
+> +        12345
+> +        root:/sys/bus/iio/devices/iio:device0> cat in_voltage0_scale
+> +        0.000030517
+> +
+> +- Phase A voltage =3D in_voltage0_raw * in_voltage0_scale =3D 0.3769 V
+> +
+> +Read power measurements:
+> +
+> +.. code-block:: bash
+> +
+> +        root:/sys/bus/iio/devices/iio:device0> cat in_power0_active_raw
+> +        5678
+> +        root:/sys/bus/iio/devices/iio:device0> cat in_power0_scale
+> +        0.000244140
+> +
+> +- Phase A active power =3D in_power0_active_raw * in_power0_scale =3D 1.=
+386 W
+> +
+> +Configure PGA gain (affects all channels):
+> +
+> +.. code-block:: bash
+> +
+> +        # Set PGA gain to 2x
+> +        root:/sys/bus/iio/devices/iio:device0> echo 2 > scale
+> +        # Read current gain setting
+> +        root:/sys/bus/iio/devices/iio:device0> cat scale
+> +        2
+> +
+> +Configure line frequency:
+> +
+> +.. code-block:: bash
+> +
+> +        # Set to 60Hz operation
+> +        root:/sys/bus/iio/devices/iio:device0> echo 60 > frequency
+> +        # Read current frequency setting
+> +        root:/sys/bus/iio/devices/iio:device0> cat frequency
+> +        60
+> +
+> +Configure calibration gains:
+> +
+> +.. code-block:: bash
+> +
+> +        # Set current channel 0 calibration gain
+> +        root:/sys/bus/iio/devices/iio:device0> echo 0x800000 > in_curren=
+t0_calibscale
+> +        # Set voltage channel 0 calibration gain
+> +        root:/sys/bus/iio/devices/iio:device0> echo 0x7FFFFF > in_voltag=
+e0_calibscale
+> +
+> +Configure voltage event thresholds (requires interrupts):
+> +
+> +.. code-block:: bash
+> +
+> +        # Set sag detection threshold
+> +        root:/sys/bus/iio/devices/iio:device0> echo 180000 > events/in_v=
+oltage0_thresh_falling_value
+> +        # Enable sag detection
+> +        root:/sys/bus/iio/devices/iio:device0> echo 1 > events/in_voltag=
+e0_thresh_falling_en
+> +
+> +        # Set swell detection threshold
+> +        root:/sys/bus/iio/devices/iio:device0> echo 260000 > events/in_v=
+oltage0_thresh_rising_value
+> +        # Enable swell detection
+> +        root:/sys/bus/iio/devices/iio:device0> echo 1 > events/in_voltag=
+e0_thresh_rising_en
+> +
+> +8. IIO Interfacing Tools
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +See ``Documentation/iio/iio_tools.rst`` for the description of the avail=
+able IIO
+> +interfacing tools.
+> \ No newline at end of file
+
+fix that.
+
+> diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
+> index c106402a91f7..792c815286f4 100644
+> --- a/Documentation/iio/index.rst
+> +++ b/Documentation/iio/index.rst
+> @@ -28,6 +28,7 @@ Industrial I/O Kernel Drivers
+>     ad7606
+>     ad7625
+>     ad7944
+> +   ade9000
+>     adis16475
+>     adis16480
+>     adis16550
 
 
