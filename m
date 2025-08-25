@@ -1,115 +1,121 @@
-Return-Path: <devicetree+bounces-209123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309D1B34AB7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 20:58:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B0CBB34ACE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 21:14:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3131F1A87FFD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 18:58:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76BCB7A251A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 19:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04C127D77B;
-	Mon, 25 Aug 2025 18:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0FB928136F;
+	Mon, 25 Aug 2025 19:14:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="Y0lW4Ohd"
+	dkim=pass (2048-bit key) header.d=palvencia.se header.i=@palvencia.se header.b="bT/9axJC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from m101-out-mua-6.websupport.se (m101-out-mua-6.websupport.se [109.235.175.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 279C2279DB6;
-	Mon, 25 Aug 2025 18:58:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F3623BCEF;
+	Mon, 25 Aug 2025 19:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.235.175.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756148305; cv=none; b=itxKtyKPHlX1rvMoE5pBCbLPhG0mXtpSN5iRstDFJHG67Oz0hUeonrIpvHOmT2t4JdwNBKV0r9t6NnReHb05ymDfYlOsycLUucYbx6GDKddkkfF6vJ9Eq1oXbL/r/XJzHYAElKHuBjaJfrdsDix+8ansGupS8A5c7N0DYNZftgg=
+	t=1756149266; cv=none; b=p59mZBKDsGdWFuiuoU3If6iuTGzrhLEsVYGc99Jr//FH0jxapHDoz+KFz9ca59rpZEVQYeEncI3TqHdAPlpxcfOUQsCyGuC1+UvWB4bepy+z2d1ZE5LA+7FLCzad4I7YW0IFB9DpCDKIFguLzOijyxGgv/Xs+CV6UeoOOWNYsCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756148305; c=relaxed/simple;
-	bh=1/zuFivZomsPME8/8+PeCrrHoyCcc8gLbHYb+qnZXpc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oy9Buwn/+uudXWAk7/7184HSpSInp43kVVARAKBetpbe7x3hajQ64oOkP0H6Hw4A0elIshTW2gaS3NHexNbKdZ0oyQ4/ealo+dfHxFtH/y1aCwrj2KCLrQ5NywjUHi/YvqREfYpZvNWQnGn+l5navyZc0Dw7mmxMNGUzJ28D0Jk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=Y0lW4Ohd; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=lut+2nMqBPAZwhskUcYSHcIkgN0GFw27ibGnIZuPDy0=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1756148278; v=1; x=1756580278;
- b=Y0lW4OhddN5bU3GtpzfzWj3Cp3q851aMj2UyIjCl2QsLSIGJ2BZUlPBXxkVcuPmeBnq+6tU/
- VTuv5qfcS+A7XceSP3EwTg1ehAYoBuwTAHHGkZQn05W0SBzFx9Om42mLaekWcyjU1qc+QG4dgar
- v52VyqSF02Du60oaS68kpn1y/Sa4fRqkj0V6e0AAUCFBnIce7/PWaQ84uj+VLP09ECbnUXdsB6J
- x6vK/wJYRPO7iir6fl8uZL14Ra604p2BlYnG+LVDaB96ljHl3BdkkJzIpLcS85tTGCHThF0fwSM
- WIdCMh8MKgIDlFj8uE/JUVbkaJgJViYMBoWGVDSlxjJwg==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id 21d610d7; Mon, 25 Aug 2025 20:57:58 +0200
-From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje@dujemihanovic.xyz>
-To: Conor Dooley <conor@kernel.org>
-Cc: Markuss Broks <markuss.broks@gmail.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH] dt-bindings: input: touchscreen: imagis: add missing minItems
-Date: Mon, 25 Aug 2025 20:57:57 +0200
-Message-ID: <5917367.DvuYhMxLoT@radijator>
-In-Reply-To: <20250825-capillary-viral-b7448ca6a57e@spud>
-References:
- <20250824-imagis-minitems-v1-1-cea9db55e87f@dujemihanovic.xyz>
- <20250825-capillary-viral-b7448ca6a57e@spud>
+	s=arc-20240116; t=1756149266; c=relaxed/simple;
+	bh=k46bUg4VPtvIWCaMHCfix4FLIE4JV0woTpaHdDa3ARI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aD5RuKfzyxbo+h5vJ8POwhUNbFK+DVqd0svBFNVO3L2zOusch8U2VkDmS2R68KKig51OnpBzXYOgcag3i2YjXxhfrHI+7T8owOru0Dqz642R9CDwThDxSk9COCleHUdiBSQgLcBduDDJ9ZyUe9Oo1G5hkgw32nTXblXUOlSqX2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=palvencia.se; spf=pass smtp.mailfrom=palvencia.se; dkim=pass (2048-bit key) header.d=palvencia.se header.i=@palvencia.se header.b=bT/9axJC; arc=none smtp.client-ip=109.235.175.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=palvencia.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=palvencia.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=palvencia.se;
+	s=mail; t=1756148930;
+	bh=ukDsuI8s1UxUlNDIszPLCcP3lTY/1qlseTcq02pRApM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=bT/9axJCPjJTbKMVTb11wCvMv1l78VnOc0K5h5YC/GH/wKbJeUOYc7iI4kiLfkZ1w
+	 Pc/jEzVqdqhShptvbmJ9GIRgWNUJ2o0cxL18cNvG/IeBiW+SqOhAaHlul+yNEpOUmb
+	 retkJo78ztHLYyAJfV+BZDuKBIbPbsVpiP4GK8065BQsZwp9fP5ZNQXDky69gmPXtC
+	 uOsE4txiazVgTXZUBgeRqnNeN9bIQ5M3xIIPwlNTsCJdxLtjLEVrT67ECRhqzI+OCT
+	 0RxQDZF6mz0zGcbe2khxi2eUNxr820/GL5K+Yd6PYXOuPFKOXbRCpf5QFA87H2ZjcY
+	 M0HbqMZ3LbCyQ==
+Received: from m101-u5-ing.websupport.se (unknown [10.30.5.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	by m101-out-mua-6.websupport.se (Postfix) with ESMTPS id 4c9gLp3JKYz1wn0;
+	Mon, 25 Aug 2025 21:08:50 +0200 (CEST)
+X-Authenticated-Sender: per@palvencia.se
+Authentication-Results: m101-u5-ing.websupport.se;
+	auth=pass smtp.auth=per@palvencia.se smtp.mailfrom=per@palvencia.se
+Received: from rpi (unknown [193.180.91.108])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: per@palvencia.se)
+	by m101-u5-ing.websupport.se (Postfix) with ESMTPSA id 4c9gLn434Gztmd;
+	Mon, 25 Aug 2025 21:08:49 +0200 (CEST)
+Date: Mon, 25 Aug 2025 21:08:36 +0200
+From: Per Larsson <per@palvencia.se>
+To: =?UTF-8?B?SmVhbi1GcmFuw6dvaXM=?= Lessard <jefflessard3@gmail.com>
+Cc: Andy Shevchenko <andy@kernel.org>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/6] dt-bindings: auxdisplay: add Titan Micro
+ Electronics TM16xx
+Message-ID: <20250825210836.71fb0d0d@rpi>
+In-Reply-To: <20250825033237.60143-3-jefflessard3@gmail.com>
+References: <20250825033237.60143-1-jefflessard3@gmail.com>
+	<20250825033237.60143-3-jefflessard3@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-Rspamd-Action: no action
+X-Out-Rspamd-Queue-Id: 4c9gLn434Gztmd
+X-Out-Spamd-Result: default: False [1.90 / 1000.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.10)[text/plain];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	RCVD_COUNT_ZERO(0.00)[0];
+	TAGGED_RCPT(0.00)[dt];
+	ASN(0.00)[asn:35790, ipnet:193.180.91.0/24, country:SE];
+	ARC_NA(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	HAS_X_AS(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_EQ_ENVFROM(0.00)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	MIME_TRACE(0.00)[0:+]
+X-Out-Rspamd-Server: m101-rspamd-out-4
+X-purgate-type: clean
+X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
+X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
+X-purgate: clean
+X-purgate-size: 353
+X-purgate-ID: 155908::1756148930-06102069-1237CFD0/0/0
 
-On Monday, 25 August 2025 18:42:38 Central European Summer Time Conor Doole=
-y wrote:
-> On Sun, Aug 24, 2025 at 06:12:05PM +0200, Duje Mihanovi=C4=87 wrote:
-> > The binding currently expects exactly 5 keycodes, which matches the
-> > chip's theoretical maximum but probably not the number of touch keys on
-> > any phone using the IST3032C. Add a minItems value of 2 to prevent
-> > dt-validate complaints.
->=20
-> Does this mean that there are devicetrees in the wild that use < 5
-> keycodes?
+On Sun, 24 Aug 2025 23:32:28 -0400
+Jean-Fran=C3=A7ois Lessard <jefflessard3@gmail.com> wrote:
 
-Indeed.
+> +  - Digits use 1-cell addressing with explicit segment mapping
 
-> >=20
-> > +  - |
-> > +    #include <dt-bindings/input/linux-event-codes.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    i2c {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +      touchscreen@50 {
-> > +        compatible =3D "imagis,ist3032c";
-> > +        reg =3D <0x50>;
-> > +        interrupt-parent =3D <&gpio>;
-> > +        interrupts =3D <72 IRQ_TYPE_EDGE_FALLING>;
-> > +        vdd-supply =3D <&ldo2>;
-> > +        touchscreen-size-x =3D <480>;
-> > +        touchscreen-size-y =3D <800>;
-> > +        linux,keycodes =3D <KEY_APPSELECT>, <KEY_BACK>;
->=20
-> Does this really need a dedicated example? Why can't the property go
-> into the existing one?
+This new digits layout introduced in v3 implies that a
+different segment mapping can be used per digit by a
+single display/controller. Is that really a thing?
 
-Only the IST3032C is currently known to support these keys and this is enfo=
-rced
-by the binding, so it wouldn't really make sense to add it to the 3038C
-example.
-
-Regards,
-=2D-
-Duje
-
-
-
+Regards
+Per Larsson
 
