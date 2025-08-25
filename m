@@ -1,149 +1,172 @@
-Return-Path: <devicetree+bounces-209030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0F9FB34441
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45728B3444A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:42:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB199162765
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:36:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 049962A6039
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AFF02FD7A4;
-	Mon, 25 Aug 2025 14:34:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40DA22FCBFC;
+	Mon, 25 Aug 2025 14:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fovoz/Vp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJdKUiAY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1111F2EFDBB;
-	Mon, 25 Aug 2025 14:34:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14AAC2FB987;
+	Mon, 25 Aug 2025 14:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756132452; cv=none; b=fHOB357HqkimVEqVsaasSR6sPro8CxFFMDLiB5lpxqbINozJEGkSJcxBOsnLuFl03+GzngiVTFwoT7JiG7hU0fSLA1AtwBHs6wwXfeGXHgjNcD+Z0RVeA17DOtqWIoHvHPLaDvwznzKvkxYrAGUm/xrzNfeUNkCSc1ts5yEv2Vw=
+	t=1756132508; cv=none; b=imCsML/GsiJQbCR1S8yYZt8m67F/cU1S/FxnJGxO16+Gxkg0d/1FYYENAN9AZyRi8QV+o/rLS/RJ/uoy6seBKF3FuuAA8P1iop4JfIb1lOEni+klAe/S0H+kTKzToJLg7RkJ1zwVTGetuEbU/CEBRLVagewifIecM2L5j9RKO/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756132452; c=relaxed/simple;
-	bh=HB6pULNDXxeh1etg0zy/YFv/qO0C+90ihk/cMS1ozcE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=TjTh0yINfL/gC1CdFobKuBuBPIDqamfLryJU2VYuVrPbYrbN8Mst1Leg2Ez5UI0yjp+9f6CF0CLbq7nlZUmT7pQATURYSYRhjrbHoQdun5Jdbyai0mDm3yQCQEXwueW+ILS/pIADiRmKSFHBhKlhYuE+xGDfEkjWZTzsrsl+6mY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fovoz/Vp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C37EC4CEF4;
-	Mon, 25 Aug 2025 14:34:05 +0000 (UTC)
+	s=arc-20240116; t=1756132508; c=relaxed/simple;
+	bh=3snOTNTnBVzm/Wq0dYUe0DK+V1Yn9vByQ4fFZ9yqbQs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Jy37OUUh50qj/YGmfeQ97jFOZ8Q8lGTzZcFiwERK3yGqaoM3SnL6aB+vPgOd+R7FVPOYUxFe27rLyCznIIaLiSgFfGNSOcf0JW1FE6uo4nF3H7LFZdEG5B+rJ1epuqjJIm6iW11Z7kzC6YGYIyTp53wV/B49dO8ddWETXLST5h0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJdKUiAY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5967CC4CEF4;
+	Mon, 25 Aug 2025 14:35:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756132451;
-	bh=HB6pULNDXxeh1etg0zy/YFv/qO0C+90ihk/cMS1ozcE=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
-	b=fovoz/VpGa+QTUk+5KXZSXNiPVdjQP1Zg9pQ6OSV/sR/cNir2T17xgdhzhpl4dATv
-	 FgKyFIUtP4I/NPn4n2Ubw45486K/QKUsbVwI9rE5BzSbBxXJvtTSZx+I8To1Iy6ybB
-	 CeH5AETuwZlmdlGZuFiV9JRSawjcO8AY9w7np8CxVci4tbCDAlcwc50gVRzLwRHSPu
-	 4Raca3x0eeu1xyFA9Bhjyt6oN83dWRr+Jxlu2skfJU3JMrE8tiRwDWthM4rujNhAE5
-	 zukA2KCJHa4/XZYPtvh5aD+SiPZNkjmWvmjt9p6ZKJr/tl+avzp5uHKCgo5B0VBDlX
-	 /TuZJBBWf3UEQ==
-Message-ID: <ea673976-49a6-44f6-8e6c-8d11abe46620@kernel.org>
-Date: Mon, 25 Aug 2025 16:34:04 +0200
+	s=k20201202; t=1756132507;
+	bh=3snOTNTnBVzm/Wq0dYUe0DK+V1Yn9vByQ4fFZ9yqbQs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=uJdKUiAYVljjP/ILKpLivdMPyNwqunWBQoILJZLcj/721BQsBnwEGuiPTSn8mDANG
+	 p1A4NJCGmLlyf1+Yig5eabFJFlbLcu73IWX701MNOqoiUTDDTeocmDtBhkZ1lEZWbD
+	 N+/54wEQnqzUP6LlInVx90E9HM8HK5nOMTHIofweGn00u3r6AzyS5RMjQs6tupW268
+	 QY4BOTHRNZbA6dO7YoXidlL3o8gINk6edJ4+ZfF0uZBWbxOVwsBatyWjRQy0O1CkcX
+	 SlDno4ukj1+mGlRybenyjQVV4jmejiOac04434m5G3IFaXWcFl7CIh/ABc8BcBccat
+	 SuJahravPt7FA==
+Date: Mon, 25 Aug 2025 15:35:00 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <Michael.Hennerich@analog.com>,
+ <lars@metafoo.de>, <dlechner@baylibre.com>, <nuno.sa@analog.com>,
+ <andy@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <marcelo.schmitt1@gmail.com>, Marcelo Schmitt
+ <marcelo.schmitt@analog.com>
+Subject: Re: [PATCH v2 3/4] iio: adc: ad7768-1: use
+ devm_regulator_get_enable_read_voltage()
+Message-ID: <20250825153500.66c658b0@jic23-huawei>
+In-Reply-To: <20250824041003.9727-1-Jonathan.Santos@analog.com>
+References: <20250824041003.9727-1-Jonathan.Santos@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Hans Verkuil <hverkuil+cisco@kernel.org>
-Subject: Re: [PATCH V2 0/4] Add support for VIP
-To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux@armlinux.org.uk, ardb@kernel.org, ebiggers@kernel.org,
- geert+renesas@glider.be, claudiu.beznea@tuxon.dev, bparrot@ti.com,
- andre.draszik@linaro.org, kuninori.morimoto.gx@renesas.com,
- prabhakar.mahadev-lad.rj@bp.renesas.com, heikki.krogerus@linux.intel.com,
- kory.maincent@bootlin.com, florian.fainelli@broadcom.com, lumag@kernel.org,
- dale@farnsworth.org, sbellary@baylibre.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, dagriego@biglakesoftware.com,
- u-kumar1@ti.com
-References: <20250716111912.235157-1-y-abhilashchandra@ti.com>
-Content-Language: en-US, nl
-In-Reply-To: <20250716111912.235157-1-y-abhilashchandra@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-Hi Yemike,
+On Sun, 24 Aug 2025 01:10:03 -0300
+Jonathan Santos <Jonathan.Santos@analog.com> wrote:
 
-On 16/07/2025 13:19, Yemike Abhilash Chandra wrote:
-> This patch series add support for the TI VIP video capture engine.
-> VIP stands for Video Input Port, it can be found on devices such as
-> DRA7xx and provides a parallel interface to a video source such as
-> a sensor or TV decoder. 
-> 
-> Each VIP can support two inputs (slices) and a SoC can be configured
-> with a variable number of VIP's. Each slice can support two ports
-> each connected to its own sub-device.
-> 
-> The first patch in this series updates the outdated MAINTAINERS entry
-> for the TI VPE and CAL drivers. The subsequent three patches introduce
-> support for the TI VIP (Video Input Port) driver.
+> Use devm_regulator_get_enable_read_voltage() function as a standard and
+> concise way of reading the voltage from the regulator and keep the
+> regulator enabled. Replace the regulator descriptor with the direct
+> voltage value in the device struct.
+>=20
+> Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
 
-I'll pick up the MAINTAINERS patch, but the others need more work, so
-v3 is needed for that.
+This makes sense even without the rest of the series, so to reduce
+what you have to deal with in v3, applied to the togreg branch of iio.git
 
-> 
-> Link for v1: https://lore.kernel.org/all/20200522225412.29440-1-bparrot@ti.com/
-> The v1 patch series was posted in the year 2020. This v2 series resumes the
-> effort to upstream VIP support by addressing all previous review comments
-> 
-> Changelog:
-> Changes in v2:
-> - Remove array and just use hsync: true in bindings (Patch 3/5)
-> - Remove array and use enum for bus width in bindings (Patch 3/5)
-> - Use pattern properties since properties across ports are same (Patch 3/5)
-> - Remove vip_dbg, vip_info, vip_err aliases and just use v4l2_dbg, v4l2_info
->   and v4l2_err instead (Patch 4/5)
-> - Remove color space information from vip_formats struct (Patch 4/5)
-> - Use g_std instead of g_std_output (Patch 4/5)
-> - Do not touch pix.priv (Patch 4/5)
-> - Remove all comments with just register values (Patch 4/5)
-> - Remove support for vidioc_default ioctl (Patch 4/5)
-> - In case of any error while streaming, push all pending buffers to vb2 (Patch 4/5)
-> - Address some minor comments made by Hans throughout the driver (Patch 4/5)
-> - Update copyright year at various places
-> 
-> v4l2-compliance output: https://gist.github.com/Yemike-Abhilash-Chandra/b0791cb465fadc11d4c995197cb22f29
+thanks,
 
-Also run v4l2-compliance with the -s option to check compliance while streaming.
+Jonathan
 
-Regards,
-
-	Hans
-
-> 
-> v4l2-compliance cropping and composing tests are failing likely
-> due to OV10635 sensor supporting several discrete frame sizes,
-> fail: v4l2-test-formats.cpp(1560): node->frmsizes_count[pixfmt] > 1
-> 
-> Test logs: https://gist.github.com/Yemike-Abhilash-Chandra/98504ab56416aef38b851036aef5eeb1
-> 
-> Dale Farnsworth (2):
->   dt-bindings: media: ti: vpe: Add bindings for Video Input Port
->   media: ti-vpe: Add the VIP driver
-> 
-> Yemike Abhilash Chandra (2):
->   MAINTAINERS: Update maintainers of TI VPE and CAL
->   Revert "media: platform: ti: Remove unused vpdma_update_dma_addr"
-> 
->  .../devicetree/bindings/media/ti,vip.yaml     |  211 +
->  MAINTAINERS                                   |    3 +-
->  drivers/media/platform/ti/Kconfig             |   13 +
->  drivers/media/platform/ti/vpe/Makefile        |    2 +
->  drivers/media/platform/ti/vpe/vip.c           | 3824 +++++++++++++++++
->  drivers/media/platform/ti/vpe/vip.h           |  719 ++++
->  drivers/media/platform/ti/vpe/vpdma.c         |   32 +
->  drivers/media/platform/ti/vpe/vpdma.h         |    3 +
->  8 files changed, 4806 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/media/ti,vip.yaml
->  create mode 100644 drivers/media/platform/ti/vpe/vip.c
->  create mode 100644 drivers/media/platform/ti/vpe/vip.h
-> 
+> ---
+> v2 Changes:
+> * Removed regulator value check (already done in probe).
+> * Fixed commit message and description as requested.
+> ---
+>  drivers/iio/adc/ad7768-1.c | 35 ++++++++---------------------------
+>  1 file changed, 8 insertions(+), 27 deletions(-)
+>=20
+> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+> index 83b0907b068d..51562367a9d4 100644
+> --- a/drivers/iio/adc/ad7768-1.c
+> +++ b/drivers/iio/adc/ad7768-1.c
+> @@ -224,7 +224,7 @@ struct ad7768_state {
+>  	struct spi_device *spi;
+>  	struct regmap *regmap;
+>  	struct regmap *regmap24;
+> -	struct regulator *vref;
+> +	int vref_uv;
+>  	struct regulator_dev *vcm_rdev;
+>  	unsigned int vcm_output_sel;
+>  	struct clk *mclk;
+> @@ -787,7 +787,7 @@ static int ad7768_read_raw(struct iio_dev *indio_dev,
+>  {
+>  	struct ad7768_state *st =3D iio_priv(indio_dev);
+>  	const struct iio_scan_type *scan_type;
+> -	int scale_uv, ret, temp;
+> +	int ret, temp;
+> =20
+>  	scan_type =3D iio_get_current_scan_type(indio_dev, chan);
+>  	if (IS_ERR(scan_type))
+> @@ -808,11 +808,7 @@ static int ad7768_read_raw(struct iio_dev *indio_dev,
+>  		return IIO_VAL_INT;
+> =20
+>  	case IIO_CHAN_INFO_SCALE:
+> -		scale_uv =3D regulator_get_voltage(st->vref);
+> -		if (scale_uv < 0)
+> -			return scale_uv;
+> -
+> -		*val =3D (scale_uv * 2) / 1000;
+> +		*val =3D (st->vref_uv * 2) / 1000;
+>  		*val2 =3D scan_type->realbits;
+> =20
+>  		return IIO_VAL_FRACTIONAL_LOG2;
+> @@ -1145,13 +1141,6 @@ static const struct iio_trigger_ops ad7768_trigger=
+_ops =3D {
+>  	.validate_device =3D iio_trigger_validate_own_device,
+>  };
+> =20
+> -static void ad7768_regulator_disable(void *data)
+> -{
+> -	struct ad7768_state *st =3D data;
+> -
+> -	regulator_disable(st->vref);
+> -}
+> -
+>  static int ad7768_set_channel_label(struct iio_dev *indio_dev,
+>  						int num_channels)
+>  {
+> @@ -1395,19 +1384,11 @@ static int ad7768_probe(struct spi_device *spi)
+>  		return dev_err_probe(&spi->dev, PTR_ERR(st->regmap24),
+>  				     "Failed to initialize regmap24");
+> =20
+> -	st->vref =3D devm_regulator_get(&spi->dev, "vref");
+> -	if (IS_ERR(st->vref))
+> -		return PTR_ERR(st->vref);
+> -
+> -	ret =3D regulator_enable(st->vref);
+> -	if (ret) {
+> -		dev_err(&spi->dev, "Failed to enable specified vref supply\n");
+> -		return ret;
+> -	}
+> -
+> -	ret =3D devm_add_action_or_reset(&spi->dev, ad7768_regulator_disable, s=
+t);
+> -	if (ret)
+> -		return ret;
+> +	ret =3D devm_regulator_get_enable_read_voltage(&spi->dev, "vref");
+> +	if (ret < 0)
+> +		return dev_err_probe(&spi->dev, ret,
+> +				     "Failed to get VREF voltage\n");
+> +	st->vref_uv =3D ret;
+> =20
+>  	st->mclk =3D devm_clk_get_enabled(&spi->dev, "mclk");
+>  	if (IS_ERR(st->mclk))
 
 
