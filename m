@@ -1,184 +1,305 @@
-Return-Path: <devicetree+bounces-208996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A20DCB34032
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:58:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7DB0B34038
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 15:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57D933B1C3F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 12:58:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53D533A2C23
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 13:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFEAC219319;
-	Mon, 25 Aug 2025 12:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03CC41B21BD;
+	Mon, 25 Aug 2025 13:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OdMz6ZKv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jA7KjOnd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306E8393DCA;
-	Mon, 25 Aug 2025 12:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF0BF374C4
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 13:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756126687; cv=none; b=U7yQuVLYhAS9PeTDkHpW6rh6A5uGo9H5oQ2b5bFffkfC4SMVISoznCCQBuXznWfwANzKOCmztCUHj1VySRlupld2XNWACxJH1lU0VJgOxENmZKR0gebjHLjRcETdEIBhSael1qv/T8klDRpwZFnIu/UYOIwlOFwuCybd7CrNvHw=
+	t=1756126843; cv=none; b=a/qKkxuvTUExaUIa1v6EY4C9sLkGUZHTBegXYxlJfY1+oLe6PcBLckKatKTLdXpnthuA4FRDjQky+74yStGrCCk6bMlutNlbuQK2GRfQhKC+etDyS2dc2mNtBmhIYx2pVKCL0ZrPxdzd/RCxvDrO+SFDMjtLYiEWK9CRnC2cPiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756126687; c=relaxed/simple;
-	bh=11VHbwvlKQoLCv/nWEKxikxqyFyxL4l99GtfkKSEPNc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZDKSLxJcK0itBgQi6tj5RX3FyqXRi7D5eMG02F5q/5gj1YsOhc3hSPoLj5dd+sSq/6GRDoqdxn6EORu0UeItFHI8ph3ANvVB5qzqk6rId4LBbQ40noG5T8EdtzObASQ/QM5/b6Hr0nqMfo2jqjj6DxM5uZFj+X0QaOECq7L67M8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OdMz6ZKv; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-61c51e5e826so2340059a12.2;
-        Mon, 25 Aug 2025 05:58:03 -0700 (PDT)
+	s=arc-20240116; t=1756126843; c=relaxed/simple;
+	bh=xf3DOQMVrG91iKbl7ipebCFVekmIKqtuQ81G7G/taU4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=AX3uFDt9XwzOtpMVvDPLUh0TuqvSD7eWDwiqCi1sAGjKAf98uy6BD/EgZ++aEWmaGz5/o74bmurBJdnhYLVg+I2W/ZXwX2AiWiyUXoXOMJNimZ0U27IFwUKeIEJvn8mYJrwct/JmASU/ENtqHFp8UodidEeZJ6sAbyf+d3Zh2Lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jA7KjOnd; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3c79f0a604aso1010991f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 06:00:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756126682; x=1756731482; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OarwR/ERDNc0Ml+9OWlKLdmjV+iAjoP8ec7vM3/HCIc=;
-        b=OdMz6ZKvFrZhTtPdU4XbJI/bQvPQyN6mIZxMe8CYWPgnhZgYG4GxzEg5/l5rIYh04N
-         5LbymGwz6Bh9i1caz9/uJRjinXSwnAfnTYoyR6YKRmlu88O7JL093TFZ2rzik737rpqm
-         8X5cR+pKL7mBv3Fm9cruazjxHruMGNzbdHpTQ2+Izg2/q+zxdL+vTWQscRMPs0s7p4/4
-         ptCcJKBJyAQMWnIemoUTh9PPlJ8U3z6xXDkBWAy0x+1DEftw9aXSVlN/Je1CBKt14R/0
-         652uAVhyvaYRUkqSd6hTZJg7vWS5Uk1Rx0580e+TnJfv2O+fhGe35LIuUqjYIKwECbgH
-         vxmA==
+        d=linaro.org; s=google; t=1756126840; x=1756731640; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/0VK2T6V+Aj0ASKId11YflidkPTxQI3Y2JHVgkJXJUY=;
+        b=jA7KjOndeExACc7SNVI2FNv3CzXKqGm/L2ZeQEo+2VyXbJEfySb6oLAQhopEytpuwi
+         YllYjy3DU2YHtWOHM3iAz1g03YrqDRbKcz3l+owhbpa+44GX58q7ftWZvcYiQcVg/CDb
+         VTbIRKpRo8o8WuAD0hAA2GBMx4rtET9lX4djVQPWQwrje7tJkb63rPjesGjSFH4oOXh9
+         Oj2GKt5VwPZvR4vh+XfFZSVH6pC4ni5Kq0gltsGqHVwdMQ6OU8BzlQdntQg86girHsAy
+         GXwOAG+RrB5TXrEcw75X5/RkS4O7OVj/d6qHGgNLAQafYR8NyaeZeYaZSORGrz+rrpuz
+         yHoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756126682; x=1756731482;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OarwR/ERDNc0Ml+9OWlKLdmjV+iAjoP8ec7vM3/HCIc=;
-        b=byuq2xUlDy9QzmSfDDb/IjBVkFaCKMyNnmd/0hVIQOObeZQ48rGYjzgBMiobPBPrzo
-         dsjfVHvO6u57D6piauxBT5K0z3GaAEaEQxjvgo+z2Cxyi++/v1uK2/o8UY7XmpquPbZc
-         4E4vWORECT7jtAkxAW4BfUhcr7GA3smTdlnFo1CtIEkeBwQt+Mer0eeINVG14DMnUDFT
-         bhQaWh1Bk2zFaWjrRcR3OCLvUmMleBHKZRgkdd2mlIEesN4Vo2QPEmNO8Ku3TPLGN4yW
-         6PUlwmIbUuWiSllojM918wfsjLSO2j+wFuXdEidtNPsvKKBUjHZ4mnXvQ7J86Jy2ZUVA
-         rohw==
-X-Forwarded-Encrypted: i=1; AJvYcCU3yugIxMauEskSHouvZgquvuJMROr6ioSSwc4iIckOmucIg1U+4R7sEtzC61DPakrSMuHrfX02NxsX@vger.kernel.org, AJvYcCWzzm70pM36fSngIU3vIJ1GeiPjUpPqPOKWyNbOf5A462LEzUxDkyJ0YgHLx3kVXL+RKHACSAJy6NXVcrPL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJfMRRON3RY12gLol4klXQsFzR/IK3eQDkcJoSfuJkCYdK6jCC
-	ip26oQZfpP+eMkyzs8N+J1u4v8VCa4fVqjiqxyh1t5Gs19NKAeTUVSqptW0sWieryQjfq75y2pm
-	7Af7W2QzBH78zgfhyJ9fR7KG+eC4c/rU=
-X-Gm-Gg: ASbGncsCVocO73mUYB3qrYQAKFB9Bj+CPhDDUUK+IL1Kf8Te+rxjMjhiy7Q/OBflX7k
-	62537e+Y4E0hPPkdPyPXVg3nd6drToUSS21kuxm64CuDet3hBm3xXjc4i8vOxuZ7OOtnagzQJnd
-	1bqfahS6UjR5QO+YKsQcwxWH/0JfdOLI9SUFBnBtkrno1o8+h0fNJQGlGKXf84gG4WWxqtkdKMD
-	pEGaw==
-X-Google-Smtp-Source: AGHT+IHaOgzAzLmJeyLPt5DqrZUSYGHwc/5ongY9XyH18a2Jkpiqoy7KErW13Szg0Ppe2orviqO2JQkWL38+o+volS0=
-X-Received: by 2002:a17:907:3e1c:b0:ae0:d4b1:b5f0 with SMTP id
- a640c23a62f3a-afe29548f25mr992674266b.35.1756126682080; Mon, 25 Aug 2025
- 05:58:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756126840; x=1756731640;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/0VK2T6V+Aj0ASKId11YflidkPTxQI3Y2JHVgkJXJUY=;
+        b=qmP7YzzJ7VVKWomZKWiYzY0PUObPlg5XHSQQtNclW/v4MZ1aDKlWhGTGWQSvNf0Vnq
+         vElZjaFYe9und5w5aQ1sf00OcJUCwjtlRjsQcB6KlsgjtovBVtpD3jPUR+AF6pAllD3u
+         z28L074n6MqsUBqIqwlJQPXbaIVxeZ1kUjKKwi+xSt4t89Hrd+PyoZWgPvbgrpF2mtGu
+         scXFCyZbwZgrS/kcLlYd0N3Qlsmz2R6dyx6CZ/Rex2J3gfkVmpDlYXvJCDJjDt+1yhL8
+         AuLRrrmXBfMTVLYD/Qjb3NtvPp9nYnS/FQdLtjmoexWZUf5gcmXpufH6tCiRcmuYDHKc
+         fPmg==
+X-Forwarded-Encrypted: i=1; AJvYcCUQtYi/fwJPTUCKob95aKH1cal2kXkRrqyebpsneKrGeAjTrf/OEpbRHGJ0V1eSu1/uPumlfkmm0stH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsbMMH68c8GApk6zqQ+IuSqawPgKYD9I7psEYzgeVFvtxS5NEV
+	6iZMEnZVTyzNU8vmyYfIkQDMFlsGorIlZf0rzs2I2EmVqGFn3BLSHcVk4zMXoOpiWyQ=
+X-Gm-Gg: ASbGnctGLMa3Vv4sb2cuD4bunfbtLR5OcpZNV2AKL94Crs1omLtlx4sMWtLGtA6btBb
+	ae/7C4VsdwCbe9i86PxOEvgGOrOWfAV082hclVQaq37En6wll/Ai00nblhAEZ3+g3herZPWS1+S
+	iIZjDRqvBVmLz/UDRmb46Jg80cKr5HGrdlh6eC5S+yUDLRBD7/0sCTSX/A1KR38I2kxCserqDQG
+	eC94PP1kWdIbJZige9SgxN0tfKgTOLGwV1oJRtJZViGiq8i2EqNHJaAkgu3Bu1I9/mBlwCB4YAf
+	vqI9RIFmMa9HW9ZQWP6/16EX61ZJ+0Hoa/HuCnVM/63EknDMbYce7raUmHsJyAKWn66d2Jg9tC9
+	XIUXSGE8ARB6nIR774e6xajPcJXqX7cH005/62Q==
+X-Google-Smtp-Source: AGHT+IFKESXASQM+VKjSbNLcCSsxhZD3d1Nqd+0rOXEx7HybgyHMMHJuEk3zwIeA8eDEbkWtc7wtdQ==
+X-Received: by 2002:a05:6000:2dc2:b0:3a1:f5c4:b81b with SMTP id ffacd0b85a97d-3c5daefc754mr9642267f8f.23.1756126839858;
+        Mon, 25 Aug 2025 06:00:39 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3c7112129b9sm11538216f8f.34.2025.08.25.06.00.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Aug 2025 06:00:39 -0700 (PDT)
+Date: Mon, 25 Aug 2025 16:00:35 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: Re: [PATCH v5 4/6] iio: adc: add ade9000 support
+Message-ID: <202508250158.KQ6WdkKh-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250825065240.22577-1-linux.amoon@gmail.com> <20250825065240.22577-2-linux.amoon@gmail.com>
- <19AB5D06-DEB6-4C38-B90D-FCDD9719312C@hewittfamily.org.uk>
-In-Reply-To: <19AB5D06-DEB6-4C38-B90D-FCDD9719312C@hewittfamily.org.uk>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 25 Aug 2025 18:27:44 +0530
-X-Gm-Features: Ac12FXwRodlBz_UjLLJd6RTuYXAAOzs3SHAzCQ_66M5mw-OW-pZnPXMBgXjfwxw
-Message-ID: <CANAwSgQT7Y9_TKsYVignTOX1AWpcK6xEEU5+Dhy6Yd=ZG4qCjw@mail.gmail.com>
-Subject: Re: [PATCH v2 01/11] arm64: dts: amlogic: Add cache information to
- the Amlogic GXBB and GXL SoC
-To: Christian Hewitt <christian@hewittfamily.org.uk>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"moderated list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250822160157.5092-5-antoniu.miclaus@analog.com>
 
-Hi Christian,
+Hi Antoniu,
 
-On Mon, 25 Aug 2025 at 13:29, Christian Hewitt
-<christian@hewittfamily.org.uk> wrote:
->
-> > On 25 Aug 2025, at 10:51=E2=80=AFam, Anand Moon <linux.amoon@gmail.com>=
- wrote:
-> >
-> > As per S905 and S905X datasheet add missing cache information to
-> > the Amlogic GXBB and GXL SoC.
-> >
-> > - Each Cortex-A53 core has 32KB of L1 instruction cache available and
-> > 32KB of L1 data cache available.
-> > - Along with 512KB Unified L2 cache.
-> >
-> > Cache memory significantly reduces the time it takes for the CPU
-> > to access data and instructions, leading to faster program execution
-> > and overall system responsiveness.
->
-> Hello Anand,
->
-> I=E2=80=99m wondering if we are =E2=80=9Cenabling caching=E2=80=9D in the=
-se patches (could be
-> a significant gain, as per text) or we are =E2=80=9Coptimising caching=E2=
-=80=9D meaning
-> the kernel currently assumes generic/safe defaults so having accurate
-> descriptions in dt allows better efficiency (marginal gain)?
->
-> Stats are also subjective to the workload used, but do you have any
-> kind of before/after benchmarks? (for any of the SoCs in the patchset)
->
+kernel test robot noticed the following build warnings:
 
-This is a fundamental feature of Arm64 CPUs that tracks active instructions
-and data within cache-mapped memory pages.
-Enabling it can significantly enhance overall system performance.
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-We can configure more l2 cache memory which is confribable as per the
-Arm TRM document.
-Arm Cortex - A53  - Configurable L2 cache size of 128KB, 256KB, 512KB,
-1MB and 2MB.
-Arm Cortex - A55  - Configurable L2 cache size of 64KB, 128KB, or 256KB
-Arm Cortex - A73 -  Configurable L2 cache size of 256KB, 512KB, 1MB,
-2MB, 4MB, or 8MB.
+url:    https://github.com/intel-lab-lkp/linux/commits/Antoniu-Miclaus/iio-add-IIO_ALTCURRENT-channel-type/20250823-001017
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20250822160157.5092-5-antoniu.miclaus%40analog.com
+patch subject: [PATCH v5 4/6] iio: adc: add ade9000 support
+config: arm-randconfig-r072-20250824 (https://download.01.org/0day-ci/archive/20250825/202508250158.KQ6WdkKh-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 8.5.0
 
-Here's an article that provides detailed insights into the cache feature.
-[0] http://jake.dothome.co.kr/cache4/
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202508250158.KQ6WdkKh-lkp@intel.com/
 
-I tested with a small benchmark to test factorial.
+New smatch warnings:
+drivers/iio/adc/ade9000.c:1009 ade9000_irq1_thread() warn: right shifting more than type allows 16 vs 20
+drivers/iio/adc/ade9000.c:1505 ade9000_write_event_config() error: uninitialized symbol 'tmp'.
+drivers/iio/adc/ade9000.c:1554 ade9000_write_event_config() error: uninitialized symbol 'interrupts'.
 
-Before:>
-alarm@archl-librecm:~$ sudo perf stat -e cache-references,cache-misses ./te=
-st
-Simulated Cache Miss Time (avg): 589 ns
-Factorial(10) =3D 3628800
+Old smatch warnings:
+drivers/iio/adc/ade9000.c:1018 ade9000_irq1_thread() warn: right shifting more than type allows 16 vs 20
+drivers/iio/adc/ade9000.c:1027 ade9000_irq1_thread() warn: right shifting more than type allows 16 vs 20
+drivers/iio/adc/ade9000.c:1036 ade9000_irq1_thread() warn: right shifting more than type allows 16 vs 20
+drivers/iio/adc/ade9000.c:1045 ade9000_irq1_thread() warn: right shifting more than type allows 16 vs 20
+drivers/iio/adc/ade9000.c:1054 ade9000_irq1_thread() warn: right shifting more than type allows 16 vs 20
 
- Performance counter stats for './test':
+vim +1009 drivers/iio/adc/ade9000.c
 
-           3017286      cache-references
-             45414      cache-misses                     #    1.51% of
-all cache refs
+b695e630eecec70 Antoniu Miclaus 2025-08-22   998  		case ADE9000_ST1_ZXIC_BIT:
+b695e630eecec70 Antoniu Miclaus 2025-08-22   999  			iio_push_event(indio_dev,
+b695e630eecec70 Antoniu Miclaus 2025-08-22  1000  				       IIO_UNMOD_EVENT_CODE(IIO_CURRENT,
+b695e630eecec70 Antoniu Miclaus 2025-08-22  1001  							    ADE9000_ST1_ZXIC_BIT,
+b695e630eecec70 Antoniu Miclaus 2025-08-22  1002  							    IIO_EV_TYPE_THRESH,
+b695e630eecec70 Antoniu Miclaus 2025-08-22  1003  							    IIO_EV_DIR_EITHER),
+b695e630eecec70 Antoniu Miclaus 2025-08-22  1004  				       timestamp);
+b695e630eecec70 Antoniu Miclaus 2025-08-22  1005  			handled_irq |= ADE9000_ST1_ZXIC_BIT;
+b695e630eecec70 Antoniu Miclaus 2025-08-22  1006  			break;
+b695e630eecec70 Antoniu Miclaus 2025-08-22  1007  		case ADE9000_ST1_SWELLA_BIT:
+b695e630eecec70 Antoniu Miclaus 2025-08-22  1008  			iio_push_event(indio_dev,
+b695e630eecec70 Antoniu Miclaus 2025-08-22 @1009  				       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
+b695e630eecec70 Antoniu Miclaus 2025-08-22  1010  							    ADE9000_ST1_SWELLA_BIT >> 20,
 
-       0.054512394 seconds time elapsed
+This is a kind of macro expansion bug:
 
-       0.004209000 seconds user
-       0.041866000 seconds sys
+include/linux/iio/events.h
+    27  #define _IIO_EVENT_CODE(chan_type, diff, modifier, direction,           \
+    28                          type, chan, chan1, chan2)                       \
+    29          (((u64)type << 56) | ((u64)diff << 55) |                        \
+    30           ((u64)direction << 48) | ((u64)modifier << 40) |               \
+    31           ((u64)chan_type << 32) | (((u16)chan2) << 16) | ((u16)chan1) | \
+    32           ((u16)chan))
 
-After:>
- # sudo perf stat -e cache-references,cache-misses ./test
-Simulated Cache Miss Time (avg): 426 ns
-Factorial(10) =3D 3628800
+There should be parenthese around "chan" on line 32.
 
- Performance counter stats for './test':
+	((u16)(chan)))
 
-           2814633      cache-references
-             27054      cache-misses                     #    0.96% of
-all cache refs
+Otherwise it's a precendent bug and  we end up doing the cast before we
+do the ">> 20".  Probably around the others as well?  Probably best if
+someone tests this.
 
-       0.041041585 seconds time elapsed
 
-       0.007976000 seconds user
-       0.032009000 seconds sys
+drivers/iio/adc/ade9000.c
+  1425  static int ade9000_write_event_config(struct iio_dev *indio_dev,
+  1426                                        const struct iio_chan_spec *chan,
+  1427                                        enum iio_event_type type,
+  1428                                        enum iio_event_direction dir,
+  1429                                        bool state)
+  1430  {
+  1431          struct ade9000_state *st = iio_priv(indio_dev);
+  1432          u32 interrupts, tmp;
+  1433          int ret;
+  1434  
+  1435          /* Clear all pending events in STATUS1 register (write 1 to clear) */
+  1436          ret = regmap_write(st->regmap, ADE9000_REG_STATUS1, GENMASK(31, 0));
+  1437          if (ret)
+  1438                  return ret;
+  1439  
+  1440          if (type == IIO_EV_TYPE_MAG) {
+  1441                  ret = regmap_update_bits(st->regmap, ADE9000_REG_STATUS0,
+  1442                                           ADE9000_ST0_EGYRDY, ADE9000_ST0_EGYRDY);
+  1443                  if (ret)
+  1444                          return ret;
+  1445                  return regmap_update_bits(st->regmap, ADE9000_REG_MASK0,
+  1446                                           ADE9000_ST0_EGYRDY,
+  1447                                           state ? ADE9000_ST1_SEQERR_BIT : 0);
+  1448          }
+  1449  
+  1450          if (type == IIO_EV_TYPE_CHANGE)
+  1451                  return regmap_update_bits(st->regmap, ADE9000_REG_MASK1,
+  1452                                           ADE9000_ST1_SEQERR_BIT,
+  1453                                           state ? ADE9000_ST1_SEQERR_BIT : 0);
+  1454  
+  1455          if (dir == IIO_EV_DIR_EITHER) {
+  1456                  static const struct {
+  1457                          u32 irq;
+  1458                          u32 wfb_trg;
+  1459                  } trig_arr[6] = {
+  1460                          {
+  1461                                  .irq = ADE9000_ST1_ZXVA_BIT,
+  1462                                  .wfb_trg = ADE9000_WFB_TRG_ZXVA_BIT
+  1463                          }, {
+  1464                                  .irq = ADE9000_ST1_ZXIA_BIT,
+  1465                                  .wfb_trg = ADE9000_WFB_TRG_ZXIA_BIT
+  1466                          }, {
+  1467                                  .irq = ADE9000_ST1_ZXVB_BIT,
+  1468                                  .wfb_trg = ADE9000_WFB_TRG_ZXVB_BIT
+  1469                          }, {
+  1470                                  .irq = ADE9000_ST1_ZXIB_BIT,
+  1471                                  .wfb_trg = ADE9000_WFB_TRG_ZXIB_BIT
+  1472                          }, {
+  1473                                  .irq = ADE9000_ST1_ZXVC_BIT,
+  1474                                  .wfb_trg = ADE9000_WFB_TRG_ZXVC_BIT
+  1475                          }, {
+  1476                                  .irq = ADE9000_ST1_ZXIC_BIT,
+  1477                                  .wfb_trg = ADE9000_WFB_TRG_ZXIC_BIT
+  1478                          },
+  1479                  };
+  1480                  if (state) {
+  1481                          interrupts |= trig_arr[chan->channel * 2 + chan->type].irq;
+  1482                          st->wfb_trg |= trig_arr[chan->channel * 2 + chan->type].wfb_trg;
+  1483                  } else {
+  1484                          interrupts &= ~trig_arr[chan->channel * 2 + chan->type].irq;
+  1485                          st->wfb_trg &= ~trig_arr[chan->channel * 2 + chan->type].wfb_trg;
+  1486                  }
+  1487          }
+  1488  
+  1489          if (dir == IIO_EV_DIR_NONE) {
+  1490                  switch (chan->channel) {
+  1491                  case ADE9000_PHASE_A_NR:
+  1492                          tmp |= ADE9000_ST1_ZXTOVA_BIT;
 
-> Christian
+You can |= an uninitialized variable.
 
-Thanks
--Anand
+  1493                          break;
+  1494                  case ADE9000_PHASE_B_NR:
+  1495                          tmp |= ADE9000_ST1_ZXTOVB_BIT;
+  1496                          break;
+  1497                  case ADE9000_PHASE_C_NR:
+  1498                          tmp |= ADE9000_ST1_ZXTOVC_BIT;
+  1499                          break;
+  1500                  default:
+  1501                          break;
+  1502                  }
+  1503  
+  1504                  if (state)
+  1505                          interrupts |= tmp;
+
+Same.
+
+  1506                  else
+  1507                          interrupts &= ~tmp;
+  1508          } else if (dir == IIO_EV_DIR_RISING) {
+  1509                  switch (chan->channel) {
+  1510                  case ADE9000_PHASE_A_NR:
+  1511                          tmp |= ADE9000_ST1_SWELLA_BIT;
+  1512                          break;
+  1513                  case ADE9000_PHASE_B_NR:
+  1514                          tmp |= ADE9000_ST1_SWELLB_BIT;
+  1515                          break;
+  1516                  case ADE9000_PHASE_C_NR:
+  1517                          tmp |= ADE9000_ST1_SWELLC_BIT;
+  1518                          break;
+  1519                  default:
+  1520                          break;
+  1521                  }
+  1522  
+  1523                  if (state) {
+  1524                          interrupts |= tmp;
+  1525                          st->wfb_trg |= ADE9000_WFB_TRG_SWELL_BIT;
+  1526                  } else {
+  1527                          interrupts &= ~tmp;
+  1528                          st->wfb_trg &= ~ADE9000_WFB_TRG_SWELL_BIT;
+  1529                  }
+  1530          } else if (dir == IIO_EV_DIR_FALLING) {
+  1531                  switch (chan->channel) {
+  1532                  case ADE9000_PHASE_A_NR:
+  1533                          tmp |= ADE9000_ST1_DIPA_BIT;
+  1534                          break;
+  1535                  case ADE9000_PHASE_B_NR:
+  1536                          tmp |= ADE9000_ST1_DIPB_BIT;
+  1537                          break;
+  1538                  case ADE9000_PHASE_C_NR:
+  1539                          tmp |= ADE9000_ST1_DIPC_BIT;
+  1540                          break;
+  1541                  default:
+  1542                          break;
+  1543                  }
+  1544  
+  1545                  if (state) {
+  1546                          interrupts |= tmp;
+  1547                          st->wfb_trg |= ADE9000_WFB_TRG_DIP_BIT;
+  1548                  } else {
+  1549                          interrupts &= ~tmp;
+  1550                          st->wfb_trg &= ~ADE9000_WFB_TRG_DIP_BIT;
+  1551                  }
+  1552          }
+  1553  
+  1554          return regmap_update_bits(st->regmap, ADE9000_REG_MASK1, interrupts,
+  1555                                    interrupts);
+  1556  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
