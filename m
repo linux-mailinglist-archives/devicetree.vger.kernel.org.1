@@ -1,56 +1,68 @@
-Return-Path: <devicetree+bounces-209080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B46D1B34776
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 18:33:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B46BB34778
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 18:34:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 647D51B248FF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:34:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EF021B249E6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:34:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117DE2F2918;
-	Mon, 25 Aug 2025 16:32:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3840301014;
+	Mon, 25 Aug 2025 16:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kmBBlIaw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CICHkMkk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCBC721ADDB;
-	Mon, 25 Aug 2025 16:31:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E1F2FE059;
+	Mon, 25 Aug 2025 16:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756139520; cv=none; b=jng3BfINrvaz7FxTzkPcQyWxjZLmgY435y+lpmmSxsirs/RXHwLxvxPTJwcgavSAzxxnueJlzOC4pwO2IccWZSmXXmMCHswZWFbVowuzwTEvF2RqhJcNCHkTNJA9ENGTvWCK1A748AqDyCAaVLHYEbbAKjQ5olD++UYNM359V1Q=
+	t=1756139566; cv=none; b=q7F1Lns91e6CmKfa+kv4+JZciGcU0awnjuVLDyr2Negb2kPRn8pAwRZCFUUBtC/uv1ekQT7vEE/X+VAA36jJyS5MMELtTy3UyuLRR5rNxroIKrAQlITe6wY0ZweQkDP4BYBI0Xq/tPP3pKPueyk7+p5qPauyy6UeqS10juR7qDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756139520; c=relaxed/simple;
-	bh=/mx6M03nN9EBf2D+R3XgMuMXnvHlGCvvTh5QwNvJmOc=;
+	s=arc-20240116; t=1756139566; c=relaxed/simple;
+	bh=zxHmMRw5/sY4qKaSFZbZXzsqqlDUBxYTyqhzcESdego=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jVO6iw+HN6uQpCheLSMYaqsPo7oEH2RPXGnTMb9Un4Ab1qjEd4mZdiNRXz2XYprPfg8Q8vwRxcQ7MlmDabg/d1JCBQkaVn1s3eotopm9ViNF4m5UEatTvAjPDgGne/HWyk0NoKNtnZScPFTuHfBCU0/qLSQUS9paVeEoQZQ1coI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kmBBlIaw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08878C4CEED;
-	Mon, 25 Aug 2025 16:31:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pLjnYZa6G52SF3908rUS9YIcSoVxKTnuIcN/noD4efX3YeTte0CpocMmZepdf9nD0OaDWTjZL/KqgoquhSYRApOsr2WUMiPBCqT2IsWQDmHgDbJXJ05IJ5Af91bZ6XV5okgJ8IP5rPDtVU8F88feX+XZpCX05cP19aGAUZR6agY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CICHkMkk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E72FC4CEED;
+	Mon, 25 Aug 2025 16:32:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756139519;
-	bh=/mx6M03nN9EBf2D+R3XgMuMXnvHlGCvvTh5QwNvJmOc=;
+	s=k20201202; t=1756139566;
+	bh=zxHmMRw5/sY4qKaSFZbZXzsqqlDUBxYTyqhzcESdego=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kmBBlIawR5wMXRqCRcwZxwluKrnG53+7Eexub+Eb4QHHBxYFlgXa7snpq/o5kyKMF
-	 cceClCD0lFbBX7+wr34F1Ka99TbPd+uMZi8wqQPI2igG+OJ4W64MUEWJ41Jilwi64P
-	 JNjvO0FGbE7G5LCOVY9RsslRqzvK26BoSFXE0uvv/qS1J8SZhcBxNAnoSFf1Cnkhq8
-	 RyQk+8A6vqAL9/XowiK9vNifMZfpLKEJN75xKlWWtUtNgJY+2Gr/8hC0o0OBSP+S3A
-	 RcLaMk/B05JJVSUvxmwGYF0LfAfi3twS13e7OqXKyFSONl+9PxUswKsgfue2QNgUG5
-	 htJgs45xND/xg==
-Date: Mon, 25 Aug 2025 17:31:55 +0100
+	b=CICHkMkkEU+tjKP+MqFEALd3NOdg5W+pElM+0WrIhPjTS6gvBVpk4YyHGw8b9c2G7
+	 D00hZB+RDGmjmf0Zy6Pqpo6llOt2tJXjZeYxygHGe9bo6dmAp6YfArRcXVi9rYmYmy
+	 Nwg3WaISziM97mmNyca5dsnxVT+JJ//QDcaKyASMHtCmV6TEvwbcQOqyNubkA/PgHm
+	 /PIa1chyi6bDCXNEPh8+nIEZihs/0rcDegmUfHxxIP/05Q1kwq1YyDmhNdpcHV3arw
+	 6jp0f8vKZ6Eub9iONvptvqABRZsCoGkYTBoTnkqkNP5z1UViNxCNEymcSUKf4yxppU
+	 1vvCfy5pbJN0w==
+Date: Mon, 25 Aug 2025 17:32:40 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: krzk@kernel.org, mgreer@animalcreek.com, robh@kernel.org,
-	conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: nfc: ti,trf7970a: Restrict the
- ti,rx-gain-reduction-db values
-Message-ID: <20250825-blazer-drift-f4c8d3d9fc8b@spud>
-References: <20250825161059.496903-1-festevam@gmail.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thierry Reding <treding@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	"Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 4/6] dt-bindings: thermal: add Tegra114 soctherm header
+Message-ID: <20250825-subtext-humorist-56ad14987b18@spud>
+References: <20250825104026.127911-1-clamor95@gmail.com>
+ <20250825104026.127911-5-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,35 +70,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="O3y1f/7QYXUFWVpO"
+	protocol="application/pgp-signature"; boundary="7tazrZqeQK2No255"
 Content-Disposition: inline
-In-Reply-To: <20250825161059.496903-1-festevam@gmail.com>
+In-Reply-To: <20250825104026.127911-5-clamor95@gmail.com>
 
 
---O3y1f/7QYXUFWVpO
+--7tazrZqeQK2No255
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 25, 2025 at 01:10:59PM -0300, Fabio Estevam wrote:
-> Instead of stating the supported values for the ti,rx-gain-reduction-db
-> property in free text format, add an enum entry that can help validating
-> the devicetree files.
->=20
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---O3y1f/7QYXUFWVpO
+--7tazrZqeQK2No255
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKyP+wAKCRB4tDGHoIJi
-0maOAP9Bxtnc4chWw8bspT3xPgke7nHYHh6mnrr6LePUSoYDwgEA6lMjBxtnB93s
-i+dgYs0tTh0PqSzUJHsXdlXpc2g3hwE=
-=HznD
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKyQKAAKCRB4tDGHoIJi
+0hNPAP0ZgYlArdqscbq1qWB/DsuZSnXLM/hf1evnYblufG+cdQD/YqSFvmrtGVLV
+7kJhUCGCQ+v7FNibpnCq6pTJpwLnKgs=
+=Cqzt
 -----END PGP SIGNATURE-----
 
---O3y1f/7QYXUFWVpO--
+--7tazrZqeQK2No255--
 
