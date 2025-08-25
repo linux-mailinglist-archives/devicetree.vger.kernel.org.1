@@ -1,288 +1,123 @@
-Return-Path: <devicetree+bounces-208974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B2A7B33EFA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:11:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5DCEB33E77
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 13:55:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7B772076B9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 12:11:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B55A5189D8EA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 11:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDCF2EDD63;
-	Mon, 25 Aug 2025 12:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766312E2F1A;
+	Mon, 25 Aug 2025 11:55:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="usJDOCI6"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CI6X0S/J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FDB22EBDDC;
-	Mon, 25 Aug 2025 12:08:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FC729E11D
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 11:55:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756123718; cv=none; b=c/2+uVLoxd/TeyKbYkH3wgryr04mf7YXv+Q7MjRRfMBiD3TNWY3vQmgo1CcSuhbp5A6VOQ77BMUTEKvIZwnaCzvH7LWrKIBQrnynYpP2S7d98oB7bwmKsibIcqiLc37GVp9kBsAXGdve8VpNxH8ONjRel9cEGFQ++pooC5RR89Q=
+	t=1756122908; cv=none; b=MHHrPKZKrftbcU2i8AG7kOKxfOOotTWkoQAReMQYeKOdq8sPVBxbvbrlu2QvjetL5CspebmwIcThr+YAKFlDU9cvSUJ2vGBBOFVRSqs7rcZhiqGd9QstrglJbErGVZQds7EewiucBbR+QLutFBZEETSN/ZfRKOjqtqQWniAHPxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756123718; c=relaxed/simple;
-	bh=CgZN/JwtbrFNC7CsS3biW1Y/xVDoaqoPO4JwlJIhPIM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vmy8Ge8iilPpI4G7q7JqY72lKRAhrtQY0qSbMct4ycuUI+8mtX6b4qSw5LpZi8zXhd2fMhtgMd3xhbewB+JQlr92hV+J+5tEjxyPDdlkGWrkXiX/kbCkPpnjwE8LVlJQYwVNwfHPXZHUP8BMvQeD3dZS0SPIB1X4X//GyYrVvcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=usJDOCI6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B65CEC4CEED;
-	Mon, 25 Aug 2025 12:08:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756123718;
-	bh=CgZN/JwtbrFNC7CsS3biW1Y/xVDoaqoPO4JwlJIhPIM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=usJDOCI6rn4Ib86tprHSTx5yiGSOsyQadsQ+AfRI+PPE929klxTifsmhPnsDhu1Bl
-	 Q2UtCLYGgtZyYz0ExwjVHibxoAmy6QPPxs/4O7Iko9XWEN8pgyr5Oeo4lJ0jJ5oxCx
-	 Zdt4AMpRiLkgVGyYUNWpi0xCW9u1MihXKYHS/MemqomVSC0WtOoUmXXw7GxXXugaV3
-	 a1+855m742qL5rAjx7Wdf8BGP62k0c3Qx1di8G3jcjNZ7LT4goNAfwmcM9U3Z5pWhu
-	 M9dAEkeg/ygIj9lgRrKAQCj4P89SYyJmcQTbksv5aXBGX+zTBjPMeWqHLLgR3ESV4R
-	 0qmfeXOlt2Zpw==
-Date: Mon, 25 Aug 2025 19:51:20 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Richard Leitner <richard.leitner@linux.dev>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] usb: usb251xb: support usage case without I2C
- control
-Message-ID: <aKxOOGBkR7ZfwCo5@xhacker>
-References: <20250820161743.23458-1-jszhang@kernel.org>
- <20250820161743.23458-4-jszhang@kernel.org>
- <qhfmvqjxad3ngk3azdkyxhw6ka7ijxccl6d2ylu26zlmovmeg3@3f2r4f6ksr6s>
+	s=arc-20240116; t=1756122908; c=relaxed/simple;
+	bh=t4a7zrF0Xr2ClAN6pV1FixF/O//yC/uzplxDHLALIK4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=qQ0lYbaCXRVEkyPA5eP+CrTIWshPvKeF6Pif625D7WQbSVlUGV5ERcTznPSUEQP4KESZ/aNKWKfjrYheC6u9O+37NfIV0zo6dATSA1zfnMpkAosyRek3rQa8byo05FWE+msrYMneXnSbATOSoMGsLxhaa4Yo1Yzjj4HLuyf17N4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CI6X0S/J; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250825115504epoutp043fe356b82b9752d5d2eece63ead184fb~fAHotCNmz2770527705epoutp04M
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 11:55:04 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250825115504epoutp043fe356b82b9752d5d2eece63ead184fb~fAHotCNmz2770527705epoutp04M
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1756122904;
+	bh=t4a7zrF0Xr2ClAN6pV1FixF/O//yC/uzplxDHLALIK4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=CI6X0S/Jsv7Kjb6cHe/Y/TBFcxIENb+lsuEYgQ8sV+JGy+RCHJ/rp+AsYvgFCc83y
+	 4sO2ljNm/Q0wTFqR+1D27EXtXh6nABLvgDnA9Nr53VP6mqr+LExS6QbtiXkhGwKL8o
+	 hnztLPGBbBtRKWtnpraFI8mrEMHAsfLjRXvesLoc=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250825115503epcas5p3cfb8d3f909e3d377f5e0ff6166178520~fAHoFByz-3077330773epcas5p37;
+	Mon, 25 Aug 2025 11:55:03 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.38.90]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4c9TkG5JQ2z2SSKZ; Mon, 25 Aug
+	2025 11:55:02 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250825115502epcas5p4279b95596caf95a26b0d5c6ccec726e9~fAHmgL5x80820308203epcas5p4B;
+	Mon, 25 Aug 2025 11:55:02 +0000 (GMT)
+Received: from FDSFTE196 (unknown [107.116.189.214]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250825115457epsmtip13e6a6a0580ea03ee165871a0c3831561~fAHinOYHh0161601616epsmtip1X;
+	Mon, 25 Aug 2025 11:54:57 +0000 (GMT)
+From: "Inbaraj E" <inbaraj.e@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <s.nawrocki@samsung.com>, <s.hauer@pengutronix.de>,
+	<shawnguo@kernel.org>, <cw00.choi@samsung.com>, <rmfrfs@gmail.com>,
+	<laurent.pinchart@ideasonboard.com>, <martink@posteo.de>,
+	<mchehab@kernel.org>, <linux-fsd@tesla.com>, <will@kernel.org>,
+	<catalin.marinas@arm.com>, <pankaj.dubey@samsung.com>,
+	<shradha.t@samsung.com>, <ravi.patel@samsung.com>
+Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <alim.akhtar@samsung.com>,
+	<linux-samsung-soc@vger.kernel.org>, <kernel@puri.sm>,
+	<kernel@pengutronix.de>, <festevam@gmail.com>,
+	<linux-media@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>
+In-Reply-To: <322df419-10fb-412c-9c3f-7493d9a58670@kernel.org>
+Subject: RE: [PATCH v2 11/12] arm64: defconfig: Enable FSD CSIS DMA driver
+Date: Mon, 25 Aug 2025 17:24:56 +0530
+Message-ID: <015901dc15b7$16a67b40$43f371c0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <qhfmvqjxad3ngk3azdkyxhw6ka7ijxccl6d2ylu26zlmovmeg3@3f2r4f6ksr6s>
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQK5oFMD+tt4mLQU5V9KgVyIDaUIUQHrKQRZAj9O8PIBXjI9/wIrSUI/Adz/j96ya6VQEA==
+Content-Language: en-in
+X-CMS-MailID: 20250825115502epcas5p4279b95596caf95a26b0d5c6ccec726e9
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250814141057epcas5p21ca33641e42164886dc1bf404237876d
+References: <20250814140943.22531-1-inbaraj.e@samsung.com>
+	<CGME20250814141057epcas5p21ca33641e42164886dc1bf404237876d@epcas5p2.samsung.com>
+	<20250814140943.22531-12-inbaraj.e@samsung.com>
+	<1b37bc94-8f2b-4da3-be2e-4d0076672169@kernel.org>
+	<00d401dc13d2$65033080$2f099180$@samsung.com>
+	<322df419-10fb-412c-9c3f-7493d9a58670@kernel.org>
 
-On Sun, Aug 24, 2025 at 08:55:09PM +0200, Richard Leitner wrote:
-> Hi Jisheng,
-> 
-> On Thu, Aug 21, 2025 at 12:17:43AM +0800, Jisheng Zhang wrote:
-> > Currently, the usb251xb assumes i2c control. But from HW point of
-> > view, the hub supports usage case without any i2c, we only want the
-> > gpio controls.
-> > 
-> > Refactor the code so that register writes for configuration are only
-> > performed if the device has a i2c_client provided and also register as
-> > a platform driver. This allows the driver to be used to manage GPIO
-> > based control of the device.
-> > 
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > ---
-> >  drivers/usb/misc/usb251xb.c | 108 +++++++++++++++++++++++++++++++-----
-> >  1 file changed, 94 insertions(+), 14 deletions(-)
-> > 
-> > diff --git a/drivers/usb/misc/usb251xb.c b/drivers/usb/misc/usb251xb.c
-> > index cb2f946de42c..e9a9404d17b2 100644
-> > --- a/drivers/usb/misc/usb251xb.c
-> > +++ b/drivers/usb/misc/usb251xb.c
-> > @@ -17,6 +17,7 @@
-> >  #include <linux/module.h>
-> >  #include <linux/nls.h>
-> >  #include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> >  #include <linux/regulator/consumer.h>
-> >  #include <linux/slab.h>
-> >  
-> > @@ -242,15 +243,19 @@ static int usb251xb_check_dev_children(struct device *dev, void *child)
-> >  static int usb251x_check_gpio_chip(struct usb251xb *hub)
-> >  {
-> >  	struct gpio_chip *gc = gpiod_to_chip(hub->gpio_reset);
-> > -	struct i2c_adapter *adap = hub->i2c->adapter;
-> > +	struct i2c_adapter *adap;
-> >  	int ret;
-> >  
-> > +	if (!hub->i2c)
-> > +		return 0;
-> > +
-> >  	if (!hub->gpio_reset)
-> >  		return 0;
-> >  
-> >  	if (!gc)
-> >  		return -EINVAL;
-> >  
-> > +	adap = hub->i2c->adapter;
-> >  	ret = usb251xb_check_dev_children(&adap->dev, gc->parent);
-> >  	if (ret) {
-> >  		dev_err(hub->dev, "Reset GPIO chip is at the same i2c-bus\n");
-> > @@ -271,7 +276,8 @@ static void usb251xb_reset(struct usb251xb *hub)
-> >  	if (!hub->gpio_reset)
-> >  		return;
-> >  
-> > -	i2c_lock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
-> > +	if (hub->i2c)
-> > +		i2c_lock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
-> >  
-> >  	gpiod_set_value_cansleep(hub->gpio_reset, 1);
-> >  	usleep_range(1, 10);	/* >=1us RESET_N asserted */
-> > @@ -280,7 +286,8 @@ static void usb251xb_reset(struct usb251xb *hub)
-> >  	/* wait for hub recovery/stabilization */
-> >  	usleep_range(500, 750);	/* >=500us after RESET_N deasserted */
-> >  
-> > -	i2c_unlock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
-> > +	if (hub->i2c)
-> > +		i2c_unlock_bus(hub->i2c->adapter, I2C_LOCK_SEGMENT);
-> >  }
-> >  
-> >  static int usb251xb_connect(struct usb251xb *hub)
-> > @@ -289,7 +296,11 @@ static int usb251xb_connect(struct usb251xb *hub)
-> >  	int err, i;
-> >  	char i2c_wb[USB251XB_I2C_REG_SZ];
-> >  
-> > -	memset(i2c_wb, 0, USB251XB_I2C_REG_SZ);
-> > +	if (!hub->i2c) {
-> > +		usb251xb_reset(hub);
-> > +		dev_info(dev, "hub is put in default configuration.\n");
-> > +		return 0;
-> > +	}
-> 
-> You dropped the memset of write buffer. Are you sure this doesn't cause
-> any issues? (Sorry, I'm currently travelling, so I wasn't able to test
-> the series on real hw)
+Hi Krzysztof,
 
-oops, good catch! Even if the removing memset() works it should be in a
-seperate patch. I will send v2 soon. Thanks for your review!
+=2E
+> >
+> > I noticed that Exynos and NXP driver configs are added in the defconfig=
+.
+> > Could you please clarify why I shouldn't add my driver config in defcon=
+fig?
+>=20
+> No, I gave you rationale why your commit description is poor.
 
-> 
-> Apart from that the patch LGTM. Thanks! :-)
-> 
-> >  
-> >  	if (hub->skip_config) {
-> >  		dev_info(dev, "Skip hub configuration, only attach.\n");
-> > @@ -698,18 +709,13 @@ static int usb251xb_i2c_probe(struct i2c_client *i2c)
-> >  	return usb251xb_probe(hub);
-> >  }
-> >  
-> > -static int usb251xb_suspend(struct device *dev)
-> > +static int usb251xb_suspend(struct usb251xb *hub)
-> >  {
-> > -	struct i2c_client *client = to_i2c_client(dev);
-> > -	struct usb251xb *hub = i2c_get_clientdata(client);
-> > -
-> >  	return regulator_disable(hub->vdd);
-> >  }
-> >  
-> > -static int usb251xb_resume(struct device *dev)
-> > +static int usb251xb_resume(struct usb251xb *hub)
-> >  {
-> > -	struct i2c_client *client = to_i2c_client(dev);
-> > -	struct usb251xb *hub = i2c_get_clientdata(client);
-> >  	int err;
-> >  
-> >  	err = regulator_enable(hub->vdd);
-> > @@ -719,7 +725,23 @@ static int usb251xb_resume(struct device *dev)
-> >  	return usb251xb_connect(hub);
-> >  }
-> >  
-> > -static DEFINE_SIMPLE_DEV_PM_OPS(usb251xb_pm_ops, usb251xb_suspend, usb251xb_resume);
-> > +static int usb251xb_i2c_suspend(struct device *dev)
-> > +{
-> > +	struct i2c_client *client = to_i2c_client(dev);
-> > +	struct usb251xb *hub = i2c_get_clientdata(client);
-> > +
-> > +	return usb251xb_suspend(hub);
-> > +}
-> > +
-> > +static int usb251xb_i2c_resume(struct device *dev)
-> > +{
-> > +	struct i2c_client *client = to_i2c_client(dev);
-> > +	struct usb251xb *hub = i2c_get_clientdata(client);
-> > +
-> > +	return usb251xb_resume(hub);
-> > +}
-> > +
-> > +static DEFINE_SIMPLE_DEV_PM_OPS(usb251xb_i2c_pm_ops, usb251xb_i2c_suspend, usb251xb_i2c_resume);
-> >  
-> >  static const struct i2c_device_id usb251xb_id[] = {
-> >  	{ "usb2422" },
-> > @@ -739,13 +761,71 @@ static struct i2c_driver usb251xb_i2c_driver = {
-> >  	.driver = {
-> >  		.name = DRIVER_NAME,
-> >  		.of_match_table = usb251xb_of_match,
-> > -		.pm = pm_sleep_ptr(&usb251xb_pm_ops),
-> > +		.pm = pm_sleep_ptr(&usb251xb_i2c_pm_ops),
-> >  	},
-> >  	.probe = usb251xb_i2c_probe,
-> >  	.id_table = usb251xb_id,
-> >  };
-> >  
-> > -module_i2c_driver(usb251xb_i2c_driver);
-> > +static int usb251xb_plat_probe(struct platform_device *pdev)
-> > +{
-> > +	struct usb251xb *hub;
-> > +
-> > +	hub = devm_kzalloc(&pdev->dev, sizeof(*hub), GFP_KERNEL);
-> > +	if (!hub)
-> > +		return -ENOMEM;
-> > +
-> > +	platform_set_drvdata(pdev, hub);
-> > +	hub->dev = &pdev->dev;
-> > +
-> > +	return usb251xb_probe(hub);
-> > +}
-> > +
-> > +static int usb251xb_plat_suspend(struct device *dev)
-> > +{
-> > +	return usb251xb_suspend(dev_get_drvdata(dev));
-> > +}
-> > +
-> > +static int usb251xb_plat_resume(struct device *dev)
-> > +{
-> > +	return usb251xb_resume(dev_get_drvdata(dev));
-> > +}
-> > +
-> > +static DEFINE_SIMPLE_DEV_PM_OPS(usb251xb_plat_pm_ops, usb251xb_plat_suspend, usb251xb_plat_resume);
-> > +
-> > +static struct platform_driver usb251xb_plat_driver = {
-> > +	.driver = {
-> > +		.name = DRIVER_NAME,
-> > +		.of_match_table = usb251xb_of_match,
-> > +		.pm = pm_sleep_ptr(&usb251xb_plat_pm_ops),
-> > +	},
-> > +	.probe		= usb251xb_plat_probe,
-> > +};
-> > +
-> > +static int __init usb251xb_init(void)
-> > +{
-> > +	int err;
-> > +
-> > +	err = i2c_add_driver(&usb251xb_i2c_driver);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	err = platform_driver_register(&usb251xb_plat_driver);
-> > +	if (err) {
-> > +		i2c_del_driver(&usb251xb_i2c_driver);
-> > +		return err;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +module_init(usb251xb_init);
-> > +
-> > +static void __exit usb251xb_exit(void)
-> > +{
-> > +	platform_driver_unregister(&usb251xb_plat_driver);
-> > +	i2c_del_driver(&usb251xb_i2c_driver);
-> > +}
-> > +module_exit(usb251xb_exit);
-> >  
-> >  MODULE_AUTHOR("Richard Leitner <richard.leitner@skidata.com>");
-> >  MODULE_DESCRIPTION("USB251x/xBi USB 2.0 Hub Controller Driver");
-> > -- 
-> > 2.50.0
-> > 
-> 
-> regards;rl
+I'll update the commit description in next patchset.
+
+>=20
+> Best regards,
+> Krzysztof
+
+Regards,
+Inbaraj E
+
 
