@@ -1,578 +1,260 @@
-Return-Path: <devicetree+bounces-208798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AE44B33493
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 05:33:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92234B334B1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 05:37:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40F2C17E645
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 03:33:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9649B1B23E77
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 03:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78D8275B02;
-	Mon, 25 Aug 2025 03:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C53242D8B;
+	Mon, 25 Aug 2025 03:35:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jk6PxHK+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cS6uwGiS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8BB5269AEE;
-	Mon, 25 Aug 2025 03:32:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0E991F542E
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 03:35:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756092770; cv=none; b=dU11q8F0wmGHDKQ+hSVPeZz9tZj/JLe3Iojv1VZ2IYcD26aU4OKBiiM2iFx0cjBpzL8WRhOKjK8Y5ueqe61GdDOatz6l5+M2AO883/Ujw927ua4tTpHHyZ6WQyzkEYan4yyPqOW2nHcvVmA4XGaYRU4A84FHXsjHYU1xdAc049Y=
+	t=1756092938; cv=none; b=u4Z56PHgl00897IO64kSJ5JqezWTqxTpSjMdX0xbZDsdyKTFrTY9EkBmq9l/x+/EBYYtsymjr3HIidPc1r8vo4e3EEZRPiB4aROxfpcYU2O/zKDJXXHVBSjMK6YkJWesJxc+qSgBkFXRd9NpPHl2cGRRul4lDpd6224Ez2P/8V4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756092770; c=relaxed/simple;
-	bh=86TleQdUi+JMz+iUg6eiKigh7Qwwees0tjmyxXdZMBA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bpQI0tluVkQRyn6f5czGHbU6lMQUB6/uuQ1VX1eHSs3F6pB1bKj0zTHtkaQwxWUKtMucq8MJPqOHHvatS8hGP4aP3SPmOrNijuTZAilgSpWXvEmjUckpy6pOjyY21XFWs413H3tQEtTYsX+Ycckjbwg8uAAA+dlMM5TyTCuyiuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jk6PxHK+; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-70d93f5799bso27264336d6.1;
-        Sun, 24 Aug 2025 20:32:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756092768; x=1756697568; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TBg2VgzadmcpGOk4rK6TKexSA/3pGGW3w4j/3ZDiVuk=;
-        b=Jk6PxHK+0SVKQBSqD1/Jg6YHkeYYnOSvmb8mMA11jhSICMqfAvmZEfji2kXF4YKuOD
-         R+cpC6GMSpsonqY2Ko0AmVohpVoqJnSNlxjucGkpPJKcukvnznM9GL1ra84nPjnAGvZo
-         EQbOfGdGJAyS+2uCcwJTTs9L1WZk0ECi4/58yGB2PdyabBkbL+JHdGqHZbM05VcKW8Rz
-         hn8jEJ3iVrO8HBRe/zX9kyHBucA1LDGYYNsYZ9BjR1xsHnDbofdMUljW3yC90bswuWKN
-         r/ObRrN8z7y76p+BZSGZPu+O2sG9cdz6qGHVgkrwmJ1C3+eQqbdChW1g4xqelJtmNUBs
-         42kQ==
+	s=arc-20240116; t=1756092938; c=relaxed/simple;
+	bh=qZ9NL3rZTf4mXJQ9YET8ly6Im8x6i53yxwCgWen8p3Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RLCd2TkCH4QEL4Ua2vWQhbbsaWElYDWNCKdfKjVGmI7maac0v3xoXGFEDpRrOHu0gVaIMKJ2XdOH/I6b7YMHlukc65MOtf4KAQQV5TIEBBWTPdY+KYd4dZyXP4phpiVi77lsbKHusajourzhAgyAOhu+jMwL0Hqjq9yp2uRdtNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cS6uwGiS; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57OLkfFV001408
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 03:35:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ryd2ucdQoY9f5gPBD78Vpn
+	Qsr3dtA1iQPjb2w1Brn8U=; b=cS6uwGiSg0BcoDVpitcdcYWfx2TY8M713N7zgr
+	dTx4/kfqoy4vWXVl4uDH6TLlmJSkU6eXGVpooLINm3vYOz9F7VA9Z9Xme8LcV3xG
+	adGoKApUBUhqYpliVVYmNKZYft2eiqWqeeL1//KVc35wN7uEfZtRMGA/Ygh4kOe8
+	jbUEa5jgqAxzAXDVHP3mlLra6gs17A9Qo2Jrx7bLDiEczislrOxKn9U0020LdemV
+	8OkbywtdFkwPo/cvCKUUNLJnlhccJXDe+kfnVQ89Xyi5K10wYI/toYHk7Jd2eKmE
+	t3tZGsZb1Xv3kUrcTTkwy4EzTPcFv5bc/frHOYAJvtag5y2g==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q5um3kdh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 03:35:35 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-246164c4743so69560065ad.3
+        for <devicetree@vger.kernel.org>; Sun, 24 Aug 2025 20:35:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756092768; x=1756697568;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TBg2VgzadmcpGOk4rK6TKexSA/3pGGW3w4j/3ZDiVuk=;
-        b=YRCeqRTv4v5kajKXLD0jbTWUBrV378ZTaL6KCoTKGbSWFS/rqKvR6kownHTZnXYC2T
-         ZUfNjkezZPDg/mnnLr6dNvmaXXQOohwhbVarsYpy3EnRCjTvajqqEFqbFUIH90E0lwe4
-         IF9uNH23S0kYAZdrskU4qf98Q3xD4l3a3fiogGo/6AbAKIKuwx5pkHVnSJIgKeln8wEK
-         gAmHqEg2JDKRZjTyN84IhZazq8EzzGW91IjiHL0gBtAKT6Al+P8aOzlIH9r+eCAwU2/x
-         lmaKhwXA+cWi9Cm8pPceqpy1eZEaWm5H9t2PB+o/jAseTcCqetzLvlb3RwSopxhf2/Q8
-         aiaA==
-X-Forwarded-Encrypted: i=1; AJvYcCWGjeySqjN3q7X1Nogbd+hM6fGJSLYowMc6RQyC5ncx3WKy00AKLwhmTxHNBtdyztLrlhGQhEaBriGxFg==@vger.kernel.org, AJvYcCXxFN+82I57LPXCnEgRUIMjsCVevs62eMFU8Tih6qOd9W3osveEDCAtfXKNTp32/HbuMmSWpJm3kJWT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnPk6jKReR8+HzLHQQf+JuY/rY1Rj5bhLa9guyVms+/SnwmARX
-	tI8+osFkBmgDxuci9Brcetal45BJ4cW8xXryTfzwknIBTTbLi7yJiGredE4+fq87
-X-Gm-Gg: ASbGnct3DheESHFpf3qPE8Sa4ZdhuC8iUTxz6w1UXY/XpUnicdGvBu8H1jqHMn6eiuL
-	V3rCzhzK7KIksBDIpUsJbF9YZ75ANpJZpZHHuQG7Zv4F43HwRxGHkmUlzflp8pC/2aJMIr71UR0
-	pj8WEiAKwRH+X+VcPajBQUHyfeMtG5Hyx2OwjI3eLH0pR2sutACsisU2unquZ+x3ibX+lzUFsl1
-	03XNUyoCx1AIzqJ6Q66HqftMNr6UObGazv9IGBx0ZD/VR7iTSEX9HvOeOOsiRQR0KNSalGjKgg5
-	WKXdbJDu5qRV1ZnkXYEB37rOCsFLv35Vtb0PgBLmDPFepL9Es2TSHU4DpcZ8OkGZWsBdOO7dVhM
-	GAqoaY/MknWS02L4Ign9jfKSVTDIt9JIge2JOgAqfFIdQTjx8OTrC6CGNH+0ap2TCgcNu
-X-Google-Smtp-Source: AGHT+IFhNLcyNRLc6FBOHTmkWtIT2E6LZrw6Ey2M5g78X5SqbCh1vY56jLnRhBMGDZid4Nt7qMWdQw==
-X-Received: by 2002:a05:6214:2265:b0:70d:bdd2:7cbb with SMTP id 6a1803df08f44-70dbdd285c3mr24890816d6.42.1756092767433;
-        Sun, 24 Aug 2025 20:32:47 -0700 (PDT)
-Received: from localhost (modemcable197.17-162-184.mc.videotron.ca. [184.162.17.197])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-70da72dbf82sm37709216d6.70.2025.08.24.20.32.46
+        d=1e100.net; s=20230601; t=1756092935; x=1756697735;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ryd2ucdQoY9f5gPBD78VpnQsr3dtA1iQPjb2w1Brn8U=;
+        b=imSGEXmagFFv9+v/TUeoDXg0NZfonJv3Fuiyq6gmd4sUSeKjUMXKTtHbt2RrXte6Jt
+         wtZpD9PzWAkslS0Jq+2gEElo2rqIHtIFiYbxZUNjYuQKlkYYnGxMOZw+x9XibCPPNY3S
+         4fKpOnd6bpeZ6oHOLUW8NxGrmrI5ndD0IFVlTw53O6uADtBTtVHKECw4Fz4jRQd2sa/h
+         ZkK3ztYRBycwh1zR6jraJdf/eKGSdcmOd1d23UVjopTZq8ja44zCMp5u+cJkk2rHXt3H
+         tnnJEzk3Qa23IusRXh+bIHseNkOvE6hlA/0y4QMqCKnx6bv/kLMpOBWOlrdePeT4LPcu
+         QWdg==
+X-Forwarded-Encrypted: i=1; AJvYcCVSbcVN0X5uDdM1Q1DXa/d9G9HFmjdHfK4leIYh9/k+Zqpcy6eYx78dfvOOnSPng4phlYBzA3kCma5O@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSq1ltrx8oEhQx2XlVgzwyHseH/twTjzWPAFuV1kPEZcE/l7vl
+	D0oXnd0ke+q8UaVNWOJwPPRoGUYpT7HQz1s0HYwfIBhuo2EggSO4rr+/XnBrrTNbv9DiMDj3VgN
+	c9hdIE2+JnefzF4o13D9xq5kVx+z7yuDo7HjnuqXVlT9L5/WzDDtVW8jgYi6rPKaZINpwp0rKot
+	M=
+X-Gm-Gg: ASbGncuyeZotrNCveW1erYb4D0CbWHgFQUT/a6gLqNlRRP1Bq6T9hgVpu2HwsoVsMVr
+	32FXydPnoLNo60lCM5Kr0BvqlY9bgfs+C7NGb4NH/bsU2LY2iQvtam+jh1kEc85olMeHp+0gqF1
+	6uv/7bh+bAMvPXzt0MBkUS99n7mGrTS+UvUM9VzVQgZfOU094mweILnDZ4Rz2WYwOzvW9AsjsCB
+	w7yOTUw4V4kstge//rtvYNaioIehQdI5iXDhxYWI6UOzEsE84su7hOseKzykvF9U/ECz8wFlLhi
+	Ny7VfL82PBFQvguU8brya7apT/i4eHQp4SMJ7vzci5VappNHoFihLiI6DZhVxn1UHuFmooM=
+X-Received: by 2002:a17:903:283:b0:240:7f7d:2b57 with SMTP id d9443c01a7336-2462eeb705dmr137572245ad.28.1756092934568;
+        Sun, 24 Aug 2025 20:35:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFZlz+BrNXjKPCdx/qQt5dPlmZ8NTU+F+CBmNtLbnlpD6QJ+Eu4LuSzS//e9Ck4QkG1ZLKxHw==
+X-Received: by 2002:a17:903:283:b0:240:7f7d:2b57 with SMTP id d9443c01a7336-2462eeb705dmr137571795ad.28.1756092934071;
+        Sun, 24 Aug 2025 20:35:34 -0700 (PDT)
+Received: from cse-cd01-lnx.ap.qualcomm.com ([114.94.8.21])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2466877c707sm54859565ad.22.2025.08.24.20.35.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Aug 2025 20:32:47 -0700 (PDT)
-From: =?UTF-8?q?Jean-Fran=C3=A7ois=20Lessard?= <jefflessard3@gmail.com>
-To: Andy Shevchenko <andy@kernel.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v4 6/6] auxdisplay: TM16xx: Add support for SPI-based controllers
-Date: Sun, 24 Aug 2025 23:32:32 -0400
-Message-ID: <20250825033237.60143-7-jefflessard3@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250825033237.60143-1-jefflessard3@gmail.com>
-References: <20250825033237.60143-1-jefflessard3@gmail.com>
+        Sun, 24 Aug 2025 20:35:33 -0700 (PDT)
+From: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+Subject: [PATCH v9 0/6] Display enablement changes for Qualcomm QCS8300
+ platform
+Date: Mon, 25 Aug 2025 11:34:19 +0800
+Message-Id: <20250825-qcs8300_mdss-v9-0-ebda1de80ca0@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL/Zq2gC/22Q7WrDIBSGbyX4exY/o5Yxeh9jBI3HTliSNicNK
+ 6X3PpOWsa3zh/AKPuc874UgjBmQbKsLGWHOmIe+BPdUkfbd93ugOZZMBBOaWW7psUUrGWu6iEi
+ 9rGVikQXPAilfDiOk/LniXt9ueYTjqVCn2yPpANGv1G31fIdqGg9Nh1MTch9zv0c615RRMFyHc
+ rS09W5A3BxP/qMdum5Trpdl3CPMlNWMMEJvuJJS1oxyWua3zXno991w2i0h9+03IngEukDztK2
+ YUMAcKKVCFIHVHsBFnmQCEySXrfEiJh4CWdzeM07DeF6bm80qd/dxv0uaTZFRzhgNiUuV1IPMy
+ pvtD4bgfxh2KcQFsFo6aZP7h3G9Xr8AndwC588BAAA=
+X-Change-ID: 20250818-qcs8300_mdss-a363f0d0ba0b
+To: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Yongxing Mou <yongxing.mou@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756092925; l=5505;
+ i=yongxing.mou@oss.qualcomm.com; s=20241121; h=from:subject:message-id;
+ bh=qZ9NL3rZTf4mXJQ9YET8ly6Im8x6i53yxwCgWen8p3Q=;
+ b=wOyNd7e+GbOdi8G9BSuiD2ELPPHF1GGnTt/CoLuynz6f24q1qlD4nk+WsZystwKyZmkM17oOD
+ ahNiNakwKMHAiuoPKrV9eUXG+v7P8RQ/W9txntcmuAWmcbhBwBTCZkd
+X-Developer-Key: i=yongxing.mou@oss.qualcomm.com; a=ed25519;
+ pk=zeCnFRUqtOQMeFvdwex2M5o0Yf67UHYfwCyBRQ3kFbU=
+X-Authority-Analysis: v=2.4 cv=VtIjA/2n c=1 sm=1 tr=0 ts=68abda07 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=A9Q8OG8lNi9f-aPTaEwA:9 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzMiBTYWx0ZWRfX7CQuY9eRmDO9
+ TAjeIoqfE3FHHFzB2JM4LH3xat98qi8pXYMgUIjZojGhVi6mYyTp1faTQcZ4vto2InBijbjmeqa
+ ZpkZ3BMhp49oMMxwCn0rtkxPi7LkhkxZLEsF9Xp18ncTQzeiqdYLaBZ7LdNdUoso4L5gBBMLVA5
+ OPteEjKHkkQLsyLUvKGpK1P8E3TbRa9cuZmo6ns8j3cmXzPawM3H5F97wVr98JIYLqLmRgsVV82
+ BRmbTVhVM+Kd3g3O9DC8BYsMCbYQtgskAGgQbKz5wnbcidwdOXzl1yRlL0nFSGEIYTUJJbBYiy0
+ tw9GH/xQl+b4e9gHv5kwWFl5ZgmoRRvrFcKCWJ5aekJcPtpuKhc08auwxG594s8ULQkETdJFDQB
+ za3BYutB
+X-Proofpoint-GUID: TRjEWmxtBKcRwYHbDfsWpQA2kElA751Y
+X-Proofpoint-ORIG-GUID: TRjEWmxtBKcRwYHbDfsWpQA2kElA751Y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-25_01,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
+ suspectscore=0 malwarescore=0 adultscore=0 spamscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508230032
 
-Add support for TM16xx-compatible auxiliary display controllers connected
-via the SPI bus.
+This series introduces support to enable the Mobile Display Subsystem (MDSS)
+, Display Processing Unit (DPU), DisplayPort controller for the Qualcomm
+QCS8300 target. It includes the addition of the hardware catalog, compatible
+string, and their YAML bindings.
 
-The implementation includes:
-- SPI driver registration and initialization
-- Probe/remove logic for SPI devices
-- Controller-specific handling and communication sequences
-- Integration with the TM16xx core driver for common functionality
-
-This allows platforms using TM16xx or compatible controllers over SPI to be
-managed by the TM16xx driver infrastructure.
-
-Signed-off-by: Jean-François Lessard <jefflessard3@gmail.com>
+Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
 ---
+Changes in v9: Fixed review comments from Dmitry.
+- Updated the description of dp-controller DT binding.
+- Add new clause only work for QCS8300(one DP controller with 4 streams).
+- Link to v8: https://lore.kernel.org/r/20250821-qcs8300_mdss-v8-0-e9be853938f9@oss.qualcomm.com
 
-Notes:
-    include <linux/of.h> is required for of_match_ptr
+Changes in v8: Fixed review comments from Krzysztof, Dmitry.
+- Fixed incorrect description for dp-controller in driver/dt-binding.[Krzysztof][Dmitry]
+- Fixed incorrect description for ubwc change.[Dmitry]
+- Link to v7: https://lore.kernel.org/r/20250819-qcs8300_mdss-v7-0-49775ef134f4@oss.qualcomm.com
 
- MAINTAINERS                     |   1 +
- drivers/auxdisplay/Kconfig      |   7 +
- drivers/auxdisplay/Makefile     |   1 +
- drivers/auxdisplay/tm16xx_spi.c | 398 ++++++++++++++++++++++++++++++++
- 4 files changed, 407 insertions(+)
- create mode 100644 drivers/auxdisplay/tm16xx_spi.c
+Changes in v7: Fixed review comments from Dmitry.
+- Rebase to next-20250818 and 4 pixel stream series V6.
+- Add more description for the dp-controller dt-bingding change.[Dmitry]
+- Reorder the MDSS change and UBWC change.[Dmitry]
+- Switch to the OSS email.
+- Link to v6: https://lore.kernel.org/r/20250806-mdssdt_qcs8300-v6-0-dbc17a8b86af@quicinc.com
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 51cc910e2..1ee45be14 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25411,6 +25411,7 @@ F:	drivers/auxdisplay/tm16xx.h
- F:	drivers/auxdisplay/tm16xx_core.c
- F:	drivers/auxdisplay/tm16xx_i2c.c
- F:	drivers/auxdisplay/tm16xx_keypad.c
-+F:	drivers/auxdisplay/tm16xx_spi.c
- 
- TMIO/SDHI MMC DRIVER
- M:	Wolfram Sang <wsa+renesas@sang-engineering.com>
-diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
-index 6238e753d..868625596 100644
---- a/drivers/auxdisplay/Kconfig
-+++ b/drivers/auxdisplay/Kconfig
-@@ -536,6 +536,7 @@ config TM16XX
- 	select INPUT_MATRIXKMAP
- 	select TM16XX_KEYPAD if (INPUT)
- 	select TM16XX_I2C if (I2C)
-+	select TM16XX_SPI if (SPI)
- 	help
- 	  This driver supports the following TM16XX compatible
- 	  I2C and SPI 7-segment led display chips:
-@@ -560,6 +561,12 @@ config TM16XX_I2C
- 	help
- 	  Enable I2C support for TM16XX driver.
- 
-+config TM16XX_SPI
-+	tristate
-+	depends on TM16XX
-+	help
-+	  Enable SPI support for TM16XX driver.
-+
- #
- # Character LCD with non-conforming interface section
- #
-diff --git a/drivers/auxdisplay/Makefile b/drivers/auxdisplay/Makefile
-index ba7b310f5..2485a3a67 100644
---- a/drivers/auxdisplay/Makefile
-+++ b/drivers/auxdisplay/Makefile
-@@ -20,3 +20,4 @@ obj-$(CONFIG_TM16XX)		+= tm16xx.o
- tm16xx-y			+= tm16xx_core.o
- tm16xx-$(CONFIG_TM16XX_KEYPAD)	+= tm16xx_keypad.o
- obj-$(CONFIG_TM16XX_I2C)	+= tm16xx_i2c.o
-+obj-$(CONFIG_TM16XX_SPI)	+= tm16xx_spi.o
-diff --git a/drivers/auxdisplay/tm16xx_spi.c b/drivers/auxdisplay/tm16xx_spi.c
-new file mode 100644
-index 000000000..fcc69c5f6
---- /dev/null
-+++ b/drivers/auxdisplay/tm16xx_spi.c
-@@ -0,0 +1,398 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * TM16xx and compatible LED display/keypad controller driver
-+ * Supports TM16xx, FD6xx, PT6964, HBS658, AIP16xx and related chips.
-+ *
-+ * Copyright (C) 2024 Jean-François Lessard
-+ */
-+
-+#include <linux/mod_devicetable.h>
-+#include <linux/of.h>
-+#include <linux/spi/spi.h>
-+
-+#include "tm16xx.h"
-+
-+#define TM16XX_SPI_BUFFER_SIZE	8
-+#define TM16XX_SPI_TWAIT_US	2
-+
-+static int tm16xx_spi_probe(struct spi_device *spi)
-+{
-+	const struct tm16xx_controller *controller;
-+	struct tm16xx_display *display;
-+	int ret;
-+
-+	controller = spi_get_device_match_data(spi);
-+	if (!controller)
-+		return -EINVAL;
-+
-+	display = devm_kzalloc(&spi->dev, sizeof(*display), GFP_KERNEL);
-+	if (!display)
-+		return -ENOMEM;
-+
-+	/* Allocate DMA-safe buffer */
-+	display->spi_buffer = devm_kzalloc(&spi->dev, TM16XX_SPI_BUFFER_SIZE,
-+					   GFP_KERNEL);
-+	if (!display->spi_buffer)
-+		return -ENOMEM;
-+
-+	display->client.spi = spi;
-+	display->dev = &spi->dev;
-+	display->controller = controller;
-+
-+	spi_set_drvdata(spi, display);
-+
-+	ret = tm16xx_probe(display);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static void tm16xx_spi_remove(struct spi_device *spi)
-+{
-+	struct tm16xx_display *display = spi_get_drvdata(spi);
-+
-+	tm16xx_remove(display);
-+}
-+
-+/**
-+ * tm16xx_spi_read() - SPI read helper for controller
-+ * @display: pointer to tm16xx_display
-+ * @cmd: command to send
-+ * @cmd_len: length of command
-+ * @data: buffer for received data
-+ * @data_len: length of data to read
-+ *
-+ * Return: 0 on success, negative error code on failure
-+ */
-+static int tm16xx_spi_read(struct tm16xx_display *display, u8 *cmd,
-+			   size_t cmd_len, u8 *data, size_t data_len)
-+{
-+	struct spi_device *spi = display->client.spi;
-+	struct spi_message msg;
-+	int ret;
-+
-+	dev_dbg(display->dev, "spi_write %*ph", (char)cmd_len, cmd);
-+
-+	/* If STB is high during transmission, command is invalid.
-+	 * Reading requires a minimum 2 microseconds wait (Twait)
-+	 * after the 8th CLK rising edge before reading on falling edge.
-+	 */
-+	struct spi_transfer xfers[2] = {
-+		{
-+			.tx_buf = cmd,
-+			.len = cmd_len,
-+			.cs_change = 0, /* NO CS toggle */
-+			.delay.value = TM16XX_SPI_TWAIT_US,
-+			.delay.unit = SPI_DELAY_UNIT_USECS,
-+		}, {
-+			.rx_buf = data,
-+			.len = data_len,
-+		}
-+	};
-+
-+	spi_message_init_with_transfers(&msg, xfers, ARRAY_SIZE(xfers));
-+
-+	ret = spi_sync(spi, &msg);
-+
-+	dev_dbg(display->dev, "spi_read %*ph", (char)data_len, data);
-+
-+	return ret;
-+}
-+
-+/**
-+ * tm16xx_spi_write() - SPI write helper for controller
-+ * @display: pointer to tm16xx_display
-+ * @data: data to write
-+ * @len: number of bytes to write
-+ *
-+ * Return: 0 on success, negative error code on failure
-+ */
-+static int tm16xx_spi_write(struct tm16xx_display *display, u8 *data, size_t len)
-+{
-+	dev_dbg(display->dev, "spi_write %*ph", (char)len, data);
-+
-+	struct spi_device *spi = display->client.spi;
-+
-+	return spi_write(spi, data, len);
-+}
-+
-+/* SPI controller-specific functions */
-+static int tm1628_init(struct tm16xx_display *display)
-+{
-+	const enum led_brightness brightness = display->main_led.brightness;
-+	const u8 num_grids = display->num_grids;
-+	u8 *cmd = display->spi_buffer;
-+	int ret;
-+
-+	/* Set mode command based on grid count */
-+	cmd[0] = TM16XX_CMD_MODE;
-+	if (num_grids <= 4)
-+		cmd[0] |= TM16XX_MODE_4GRIDS;
-+	else if (num_grids == 5)
-+		cmd[0] |= TM16XX_MODE_5GRIDS;
-+	else if (num_grids == 6)
-+		cmd[0] |= TM16XX_MODE_6GRIDS;
-+	else
-+		cmd[0] |= TM16XX_MODE_7GRIDS;
-+
-+	ret = tm16xx_spi_write(display, cmd, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Set data command */
-+	cmd[0] = TM16XX_CMD_WRITE | TM16XX_DATA_ADDR_AUTO;
-+	ret = tm16xx_spi_write(display, cmd, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Set control command with brightness */
-+	cmd[0] = TM16XX_CMD_CTRL |
-+		 TM16XX_CTRL_BRIGHTNESS(brightness, brightness - 1, TM16XX);
-+	ret = tm16xx_spi_write(display, cmd, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int tm1618_data(struct tm16xx_display *display, u8 index,
-+		       unsigned int grid)
-+{
-+	u8 *cmd = display->spi_buffer;
-+
-+	cmd[0] = TM16XX_CMD_ADDR + index * 2;
-+	cmd[1] = FIELD_GET(TM1618_BYTE1_MASK, grid);
-+	cmd[2] = FIELD_GET(TM1618_BYTE2_MASK, grid) << TM1618_BYTE2_SHIFT;
-+
-+	return tm16xx_spi_write(display, cmd, 3);
-+}
-+
-+static int tm1628_data(struct tm16xx_display *display, u8 index,
-+		       unsigned int grid)
-+{
-+	u8 *cmd = display->spi_buffer;
-+
-+	cmd[0] = TM16XX_CMD_ADDR + index * 2;
-+	cmd[1] = FIELD_GET(TM1628_BYTE1_MASK, grid);
-+	cmd[2] = FIELD_GET(TM1628_BYTE2_MASK, grid);
-+
-+	return tm16xx_spi_write(display, cmd, 3);
-+}
-+
-+static int tm1628_keys(struct tm16xx_display *display)
-+{
-+	u8 *cmd = display->spi_buffer;
-+	u8 *codes = display->spi_buffer;
-+	int ret, i;
-+
-+	cmd[0] = TM16XX_CMD_READ;
-+	ret = tm16xx_spi_read(display, cmd, 1, codes, TM1628_KEY_READ_LEN);
-+	if (ret)
-+		return ret;
-+
-+	/* prevent false readings */
-+	for (i = 0; i < TM1628_KEY_READ_LEN; i++) {
-+		if (codes[i] & ~TM1628_KEY_MASK)
-+			return -EINVAL;
-+	}
-+
-+	tm16xx_for_each_key(display, row, col) {
-+		int byte = col >> 1;
-+		int bit = row + ((col & 1) * 3);
-+		bool value = !!(codes[byte] & BIT(bit));
-+
-+		tm16xx_set_key(display, row, col, value);
-+	}
-+
-+	return 0;
-+}
-+
-+static int tm1638_keys(struct tm16xx_display *display)
-+{
-+	u8 *cmd = display->spi_buffer;
-+	u8 *codes = display->spi_buffer;
-+	int ret, i;
-+
-+	cmd[0] = TM16XX_CMD_READ;
-+	ret = tm16xx_spi_read(display, cmd, 1, codes, TM1638_KEY_READ_LEN);
-+	if (ret)
-+		return ret;
-+
-+	/* prevent false readings */
-+	for (i = 0; i < TM1638_KEY_READ_LEN; i++) {
-+		if (codes[i] & ~TM1638_KEY_MASK)
-+			return -EINVAL;
-+	}
-+
-+	tm16xx_for_each_key(display, row, col) {
-+		int byte = col >> 1;
-+		int bit = (2 - row) + ((col & 1) << 2);
-+		bool value = !!(codes[byte] & BIT(bit));
-+
-+		tm16xx_set_key(display, row, col, value);
-+	}
-+
-+	return 0;
-+}
-+
-+static int tm1618_keys(struct tm16xx_display *display)
-+{
-+	u8 *cmd = display->spi_buffer;
-+	u8 *codes = display->spi_buffer;
-+	int ret, i;
-+
-+	cmd[0] = TM16XX_CMD_READ;
-+	ret = tm16xx_spi_read(display, cmd, 1, codes, TM1618_KEY_READ_LEN);
-+	if (ret)
-+		return ret;
-+
-+	/* prevent false readings */
-+	for (i = 0; i < TM1618_KEY_READ_LEN; i++) {
-+		if (codes[i] & ~TM1618_KEY_MASK)
-+			return -EINVAL;
-+	}
-+
-+	tm16xx_set_key(display, 0, 0, !!(codes[0] & BIT(1)));
-+	tm16xx_set_key(display, 0, 1, !!(codes[0] & BIT(4)));
-+	tm16xx_set_key(display, 0, 2, !!(codes[1] & BIT(1)));
-+	tm16xx_set_key(display, 0, 3, !!(codes[1] & BIT(4)));
-+	tm16xx_set_key(display, 0, 4, !!(codes[2] & BIT(1)));
-+
-+	return 0;
-+}
-+
-+static int fd620_data(struct tm16xx_display *display, u8 index,
-+		      unsigned int grid)
-+{
-+	u8 *cmd = display->spi_buffer;
-+
-+	cmd[0] = TM16XX_CMD_ADDR + index * 2;
-+	cmd[1] = FIELD_GET(FD620_BYTE1_MASK, grid);
-+	cmd[2] = FIELD_GET(FD620_BYTE2_MASK, grid) << FD620_BYTE2_SHIFT;
-+
-+	return tm16xx_spi_write(display, cmd, 3);
-+}
-+
-+static int fd620_keys(struct tm16xx_display *display)
-+{
-+	u8 *cmd = display->spi_buffer;
-+	u8 *codes = display->spi_buffer;
-+	int ret, i;
-+
-+	cmd[0] = TM16XX_CMD_READ;
-+	ret = tm16xx_spi_read(display, cmd, 1, codes, FD620_KEY_READ_LEN);
-+	if (ret)
-+		return ret;
-+
-+	/* prevent false readings */
-+	for (i = 0; i < FD620_KEY_READ_LEN; i++) {
-+		if (codes[i] & ~FD620_KEY_MASK)
-+			return -EINVAL;
-+	}
-+
-+	tm16xx_set_key(display, 0, 0, codes[0] & BIT(0));
-+	tm16xx_set_key(display, 0, 1, codes[0] & BIT(3));
-+	tm16xx_set_key(display, 0, 2, codes[1] & BIT(0));
-+	tm16xx_set_key(display, 0, 3, codes[1] & BIT(3));
-+	tm16xx_set_key(display, 0, 4, codes[2] & BIT(0));
-+	tm16xx_set_key(display, 0, 5, codes[2] & BIT(3));
-+	tm16xx_set_key(display, 0, 6, codes[3] & BIT(0));
-+
-+	return 0;
-+}
-+
-+/* SPI controller definitions */
-+static const struct tm16xx_controller tm1618_controller = {
-+	.max_grids = 7,
-+	.max_segments = 8,
-+	.max_brightness = 8,
-+	.max_key_rows = 1,
-+	.max_key_cols = 5,
-+	.init = tm1628_init,
-+	.data = tm1618_data,
-+	.keys = tm1618_keys,
-+};
-+
-+static const struct tm16xx_controller tm1620_controller = {
-+	.max_grids = 6,
-+	.max_segments = 10,
-+	.max_brightness = 8,
-+	.max_key_rows = 0,
-+	.max_key_cols = 0,
-+	.init = tm1628_init,
-+	.data = tm1628_data,
-+	.keys = NULL,
-+};
-+
-+static const struct tm16xx_controller tm1628_controller = {
-+	.max_grids = 7,
-+	.max_segments = 14, /* seg 11 unused */
-+	.max_brightness = 8,
-+	.max_key_rows = 2,
-+	.max_key_cols = 10,
-+	.init = tm1628_init,
-+	.data = tm1628_data,
-+	.keys = tm1628_keys,
-+};
-+
-+static const struct tm16xx_controller tm1638_controller = {
-+	.max_grids = 8,
-+	.max_segments = 10,
-+	.max_brightness = 8,
-+	.max_key_rows = 3,
-+	.max_key_cols = 8,
-+	.init = tm1628_init,
-+	.data = tm1628_data,
-+	.keys = tm1638_keys,
-+};
-+
-+static const struct tm16xx_controller fd620_controller = {
-+	.max_grids = 5,
-+	.max_segments = 8,
-+	.max_brightness = 8,
-+	.max_key_rows = 1,
-+	.max_key_cols = 7,
-+	.init = tm1628_init,
-+	.data = fd620_data,
-+	.keys = fd620_keys,
-+};
-+
-+#if IS_ENABLED(CONFIG_OF)
-+static const struct of_device_id tm16xx_spi_of_match[] = {
-+	{ .compatible = "titanmec,tm1618",  .data = &tm1618_controller },
-+	{ .compatible = "titanmec,tm1620",  .data = &tm1620_controller },
-+	{ .compatible = "titanmec,tm1628",  .data = &tm1628_controller },
-+	{ .compatible = "titanmec,tm1638",  .data = &tm1638_controller },
-+	{ .compatible = "fdhisi,fd620",     .data = &fd620_controller  },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, tm16xx_spi_of_match);
-+#endif
-+
-+static const struct spi_device_id tm16xx_spi_id[] = {
-+	{ "tm1618",  (kernel_ulong_t)&tm1618_controller },
-+	{ "tm1620",  (kernel_ulong_t)&tm1620_controller },
-+	{ "tm1628",  (kernel_ulong_t)&tm1628_controller },
-+	{ "tm1638",  (kernel_ulong_t)&tm1638_controller },
-+	{ "fd620",   (kernel_ulong_t)&fd620_controller  },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(spi, tm16xx_spi_id);
-+
-+static struct spi_driver tm16xx_spi_driver = {
-+	.driver = {
-+		.name = "tm16xx-spi",
-+		.of_match_table = of_match_ptr(tm16xx_spi_of_match),
-+	},
-+	.probe = tm16xx_spi_probe,
-+	.remove = tm16xx_spi_remove,
-+	.shutdown = tm16xx_spi_remove,
-+	.id_table = tm16xx_spi_id,
-+};
-+module_spi_driver(tm16xx_spi_driver);
-+
-+MODULE_AUTHOR("Jean-François Lessard");
-+MODULE_DESCRIPTION("TM16xx-spi LED Display Controllers");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("TM16XX");
+Changes in v6: Fixed review comments from Konrad, Dmitry.
+- Rewrite commit msg in dp-controller dt-binding change.[Dmitry]
+- Optimize the description in MDSS dt-binding.[Dmitry]
+- Pass the sc8280xp_data as fallback in the UBWC change.[Konrad]
+- Add the DP controller driver change.
+- Link to v5: https://lore.kernel.org/r/20250730-mdssdt_qcs8300-v5-0-bc8ea35bbed6@quicinc.com
+
+Changes in v5:Fixed review comments from Krzysztof, Dmitry.
+- Rebase to next-20250717.
+- Change DP compatible to qcs8300-dp due to add 4 streams support.
+- Add QCS8300 UBWC config change due to rebase.
+- Add 4 streams clk and phy in the mdss yaml.
+- Link to v4: https://lore.kernel.org/r/20250120-mdssdt_qcs8300-v4-0-1687e7842125@quicinc.com
+
+Changes in v4:Fixed review comments from Krzysztof, Dmitry.
+- Use the common style for the dt-bindings commits.[Dmitry]
+- Update the commits msg for the mdss binding patch, explain why they
+  reuse different platform drivers.[Krzysztof]
+- Link to v3: https://lore.kernel.org/r/20250113-mdssdt_qcs8300-v3-0-6c8e93459600@quicinc.com
+
+Changes in v3:Fixed review comments from Krzysztof, Dmitry.
+- Fix the missing space issue in commit message.[Krzysztof]
+- Separate the patch for the phy from this series.[Dmitry]
+- Remove unused dependencies and update in the cover letter.[Dmitry][Krzysztof]
+- Link to v2: https://lore.kernel.org/r/20241226-mdssdt_qcs8300-v2-0-acba0db533ce@quicinc.com
+
+Changes in v2:Fixed review comments from Krzysztof, Dmitry, Rob.
+- Decouple the devicetree changes from this series.[Dmitry][Krzysztof]
+- Drop the dpu driver changes and reuse SA8775P DPU driver.[Dmitry]
+- Fix compilation issues in MDSS bindings.[Rob][Krzysztof]
+- Correct formatting errors and remove unnecessary status in MDSS
+  bindings.[Krzysztof]
+- Add the the necessary information in MDSS changes commit msg.[Dmitry]
+- Rebase MDSS driver changes to https://lore.kernel.org/dri-devel/
+  20241127-msm-mdss-ubwc-v3-0-9782a7c2b023@linaro.org/.[Dmitry]
+- Package the DisplayPort controller and eDP PHY bindings document to
+  this patch series.
+- Collecting MDSS changes reviewd-by Dmitry.
+- Reuse the sa8775p eDP PHY as a fallback compat.[Dmitry]
+- Reuse the sm8650 DP controller as a fallback compat.[Dmitry]
+- Link to v1: https://lore.kernel.org/r/20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com
+---
+This series depend on 4 pixel streams dt-binding series:
+https://lore.kernel.org/all/20250815-dp_mst_bindings-v6-0-e715bbbb5386@oss.qualcomm.com/
+
+and separate eDP PHY binding:
+https://lore.kernel.org/all/20250730072725.1433360-1-quic_yongmou@quicinc.com/
+
+---
+Yongxing Mou (6):
+      dt-bindings: display/msm: Document the DPU for QCS8300
+      dt-bindings: display/msm: dp-controller: document QCS8300 compatible
+      dt-bindings: display/msm: Document MDSS on QCS8300
+      soc: qcom: ubwc: Add QCS8300 UBWC cfg
+      drm/msm: mdss: Add QCS8300 support
+      drm/msm/dp: Add DisplayPort controller for QCS8300
+
+ .../bindings/display/msm/dp-controller.yaml        |  26 +-
+ .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 282 +++++++++++++++++++++
+ .../bindings/display/msm/qcom,sm8650-dpu.yaml      |  15 +-
+ drivers/gpu/drm/msm/dp/dp_display.c                |   1 +
+ drivers/gpu/drm/msm/msm_mdss.c                     |   1 +
+ drivers/soc/qcom/ubwc_config.c                     |   1 +
+ 6 files changed, 316 insertions(+), 10 deletions(-)
+---
+base-commit: 024e09e444bd2b06aee9d1f3fe7b313c7a2df1bb
+change-id: 20250818-qcs8300_mdss-a363f0d0ba0b
+prerequisite-message-id: <20250815-dp_mst_bindings-v6-0-e715bbbb5386@oss.qualcomm.com>
+prerequisite-patch-id: ffeeb0739a4b3d310912f4bb6c0bd17802818879
+prerequisite-patch-id: f0f92109d1bfffa6a1142f2aaecbd72a29b858c0
+prerequisite-patch-id: 9cabb6be69b17e8580a2cffc7aa2709106cc1adf
+prerequisite-patch-id: a389a2e4eca44bf62bb2c861c96596368be7a021
+prerequisite-patch-id: 4f02ab9314f95984ab7dc9b852ba4d6c676746a7
+prerequisite-patch-id: 62d643df7c88d8db2279def1e4b63a605e9145c0
+prerequisite-message-id: <20250730072725.1433360-1-quic_yongmou@quicinc.com>
+prerequisite-patch-id: 2ea89bba3c9c6ba37250ebd947c1d4acedc78a5d
+
+Best regards,
 -- 
-2.43.0
+Yongxing Mou <yongxing.mou@oss.qualcomm.com>
 
 
