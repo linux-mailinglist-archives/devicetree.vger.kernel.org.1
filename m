@@ -1,117 +1,220 @@
-Return-Path: <devicetree+bounces-209012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76B86B342F0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:16:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D78BB34386
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:24:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC1213A6CF8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:15:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAA451A814BC
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 14:23:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2716F2F6591;
-	Mon, 25 Aug 2025 14:15:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EDFF303C8F;
+	Mon, 25 Aug 2025 14:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kegO1Kg7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ghY6Ai+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70B7E2F6572;
-	Mon, 25 Aug 2025 14:15:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD4592FD7A5;
+	Mon, 25 Aug 2025 14:19:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756131338; cv=none; b=CGYRnBMFMkdHoHxtkxyik696qCZRorBYfebMA8CBerWYmPIZ5gl/1x1jn7ZRzurgohs4bg46Na/jJg6w+2WHhxuz8XniYr2yFpIlq2g/XNy941VKcF3LdwfgZI+lpbjUcY9cEoFdIhfyL+jVRhC+XWbG6EJRl7WLsVlEy/NwuTk=
+	t=1756131552; cv=none; b=bFY2x3oiRNeFsrGHrV9cYUOBz1ewJDxaKjVywgHw6L/30g+5xGmdA+VUSBKSzjuTRIDoyz6fCI/QI7oPY68EF2PMGNOPInQSlZFgKipK3DFtryWjMWHzonRYThMHDWsU+jlN1cMPo/HC3R0KJYR/iZzNM63IEZBAHgZvU3xvgQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756131338; c=relaxed/simple;
-	bh=lPbSBg/HZD4mkzSOvmio9GUHRaKTggiGyiEtzltqpl0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JE6h56xMUZqEZyVtHDvHL/D2xs5n31k0+/aM1LFDYX2cpo3rtRWJTRoMqY8/nXNrQgGs09JcQqbq1uoWFhWZ0ssszImmdh0vOVA7CtLdsOOJ7jbsru12trUTSDDJvV8fc8rSuhzlnRDTAViq0kUxXnCyVSZqJpe/LA3RNXDTB1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kegO1Kg7; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-b4c29d2ea05so304401a12.0;
-        Mon, 25 Aug 2025 07:15:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756131336; x=1756736136; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lPbSBg/HZD4mkzSOvmio9GUHRaKTggiGyiEtzltqpl0=;
-        b=kegO1Kg7P44nbbGE6x09NGxE69yhGTyRQuHPq3gJy4rZRwzEuK2l7iK2D/hGPWmspF
-         b+i9CzzkCI/HhA1Ks17ItItMVSBqfbcEl2Onume7BQ4Ofln8s5oMESoal8oMM9UirqyQ
-         KidZ7F+VZz7z+vRWN976vg2elfE5l3h+/eeDul/eA10GWP4i2WENdNyoMrg/Cxc0PDqD
-         6Z+2peYmkxIzLfl3CXjiEiOMOaYPY7O31LHxw3BwJTC4wWMapLCqWgo5P+s2G/JYZObo
-         zMXoWUL4b4IfM1B7LweOM+vVH8L9KOZv1kb/VGAPMXjJ8FhXPZxIRyAfUptibs+h86kJ
-         mSbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756131336; x=1756736136;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lPbSBg/HZD4mkzSOvmio9GUHRaKTggiGyiEtzltqpl0=;
-        b=iqC0Nt11E3AK/88NZwxOyc+LIbLWCtD/QHkN/a6V8P3d9MGoV/oKe1joeYksaMplhG
-         XXMDUC771MC3DVjiKJUpW44Ffj95CvLdEQz+RRIlc2QyTTAHEBayhyQk3fRw5Q1YUyYz
-         fx0JJhzWgkIyjIkwrWozSvgAWrIt/zWoqt1OaxtsKg/QgeK7eGyZsH9QUC08E5NqZ30p
-         FpTt7KJRg654eFp7ej45ibYrgHiNOu4B/nR/ZDtjUP6PrVCPbPixls3lvFTq6/DMZoA+
-         FjPTigeF/RxxSkRUBMmEY2OSFMUc2W1XIlrLeGfLvamfs4B80ej1r2I5AnAMWWtHkfFN
-         AmJg==
-X-Forwarded-Encrypted: i=1; AJvYcCVJABBPwhnQywlG/ESFgvJMtY9dUN+xqLQUsqImNlqlOUKVY7m0F/V9QvbfCo/xkfWlTnhxZ9qk@vger.kernel.org, AJvYcCWiXn8NlCaHyx5Fo/Jqn18F9jB4JryJkFvjABCPq3mM2ZSablhACXO87rg9lIMeQFXAhS7y5KpD2Gj2@vger.kernel.org, AJvYcCXLsQKtYm3ma3Vzcq9zCJjcIrbxLySwI1qYaVZL4TStV9XJW+94pgbyrcNkBZv71M46OoY6Yc+UngnRIshO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUdzLN5O9w2n6JHtH7VoufAFdjR5of2GqlAltTtgeihkrwtaRz
-	2OKHaTNbuGWI7nZKljF/qyM+2qm6rhQ0+0SjJcqRwAGoh1ep05D7D0FzA1ZCfYO6IvkH/zAOtjo
-	FYimof2QC7pkr3G4kv/nPSPLXQCv1WQk=
-X-Gm-Gg: ASbGncvDS1dnu6g/Cu5bf6T9c+QFLRD/imF3Y3J9yGtOcfOxN6pbqsePgXs/sAnSKFZ
-	pAq7IIjUKBTsyWLe34RAtkmOny51AsRWKS2M0Gmedu6mHgR7ICAv4cUBdW3UFZq9ci2gA4dQL02
-	EeieGB0WugvRUaG3zf5yzvjS+5tCOAGA+PZoz6ozdla/5pqL1TmT0Pm2EQELfVmRkRXArUKxBPA
-	BBNhbRb7MFf8h3vPGZHm1vc235Q0v98LcTn0hb0
-X-Google-Smtp-Source: AGHT+IG9xxdJx93iYDQX/6SZ6WjyjVrCHNliEzb/AcDE2CBxa/sVl1b/VT2POs8qj5NrrwdFtcJ93grxcdcul8ysWPc=
-X-Received: by 2002:a17:90b:4a81:b0:314:2cd2:595d with SMTP id
- 98e67ed59e1d1-3251d49713dmr14093421a91.8.1756131335631; Mon, 25 Aug 2025
- 07:15:35 -0700 (PDT)
+	s=arc-20240116; t=1756131552; c=relaxed/simple;
+	bh=C5zZWTWYlh+QNTmHH9Ic/O5Vu74p1ZquZ/RNbhEemyI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=c0JAVCNwCSLDgzzGXTxp5nkFHf2iR/ZNw5CNbsblGTl8SHUDxnRjpA71Klp7IWzxPnspcCelpeKm45BNno3v0QReXRp2a3sh7dN2PXvezBKUb4Cb3B/Z/WkewsLlfJfU9rFX4zhhm/CQSvk8EQLXfmstEgqbV4MlatH0B+XV3Qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ghY6Ai+e; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57PEIoTx825779;
+	Mon, 25 Aug 2025 09:18:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756131530;
+	bh=cKW1+DgNKTcSFWZr2yMsUcLdmMBtGqV9lYdiIEUEmS8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=ghY6Ai+egyXOxyJgqOh1EKEqMeEsvgGv4pdLj++9k4XPJpLC5tf/SIM1FXk8yvB0u
+	 +oNd1haUzQb5TQVWtrrx9zf9Un3ClBMOoAXs1fliZ5cfYNsffhC7LMZb5v3Y3PPyS2
+	 o+k8LBIwZlFtoI1mZcoEKWW0Ni+MiXfV14j12LPY=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57PEIoLM935796
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 25 Aug 2025 09:18:50 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 25
+ Aug 2025 09:18:49 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 25 Aug 2025 09:18:49 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57PEInL93738293;
+	Mon, 25 Aug 2025 09:18:49 -0500
+Message-ID: <edbdcd7c-8c96-4cbd-9740-1e1044fba3b0@ti.com>
+Date: Mon, 25 Aug 2025 09:18:49 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250824005116.2434998-1-mmyangfl@gmail.com> <20250824005116.2434998-4-mmyangfl@gmail.com>
- <ad61c240-eee3-4db4-b03e-de07f3efba12@lunn.ch> <CAAXyoMP-Z8aYTSZwqJpDYRVcYQ9fzEgmDuAbQd=UEGp+o5Fdjg@mail.gmail.com>
- <aKtWej0nymW-baTC@shell.armlinux.org.uk>
-In-Reply-To: <aKtWej0nymW-baTC@shell.armlinux.org.uk>
-From: Yangfl <mmyangfl@gmail.com>
-Date: Mon, 25 Aug 2025 22:14:58 +0800
-X-Gm-Features: Ac12FXxbis4qzSLpapWtF5EldTFXL44GkD5DDrIiURWKiYRn5HHmlminAhIXoBQ
-Message-ID: <CAAXyoMNot+aZ35Xtx=YiTEmGk_c8XT7VGiQ-DUn8T1vPUnO-9Q@mail.gmail.com>
-Subject: Re: [PATCH net-next v6 3/3] net: dsa: yt921x: Add support for
- Motorcomm YT921x
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/33] arm64: dts: ti: k3-j7200: Enable remote
+ processors at board level
+To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250823160901.2177841-1-b-padhi@ti.com>
+ <20250823160901.2177841-2-b-padhi@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250823160901.2177841-2-b-padhi@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Aug 25, 2025 at 2:14=E2=80=AFAM Russell King (Oracle)
-<linux@armlinux.org.uk> wrote:
->
-> On Mon, Aug 25, 2025 at 12:38:20AM +0800, Yangfl wrote:
-> > They are used in phylink_get_caps(), since I don't want to declare a
-> > port which we know it does not exist on some chips. But the info_* set
-> > might be inlined and removed since it is not used elsewhere.
->
-> The problem is... if you have a port in 0..N that DSA thinks should be
-> used, but is neither internal or external, DSA's initialisation of it
-> will fail, because without any caps declared for it, phylink_create()
-> will return an error, causing dsa_port_phylink_create() to fail,
-> dsa_shared_port_phylink_register() or dsa_user_phy_setup(),
-> dsa_shared_port_link_register_of() or dsa_user_create()... etc. It
-> eventually gets propagated up causing the entire switch probe to fail.
->
-> Again... read the code!
+On 8/23/25 11:08 AM, Beleswar Padhi wrote:
+> Remote Processors defined in top-level J7200 SoC dtsi files are
+> incomplete without the memory carveouts and mailbox assignments which
+> are only known at board integration level.
+> 
+> Therefore, disable the remote processors at SoC level and enable them at
+> board level where above information is available.
+> 
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+> ---
 
-What would you expect when you specify Port 0 in DT when only Port 1,
-3, 8 are available on the chip (YT9213NB)? Probe error.
+Small comment on the $subject, these all seem to be specific to the R5F
+cores, the other remote processors are already enabled at the board level.
+Suggest: "Enable R5F remote processors at board level"
+
+Otherwise this looks good to me, same for patches 2-12 in this series
+so feel free to add my ACK to those 12 patches when you spin v3,
+
+Acked-by: Andrew Davis <afd@ti.com>
+
+> v2: Changelog:
+> 1. None
+> 
+> Link to v1:
+> https://lore.kernel.org/all/20250814223839.3256046-2-b-padhi@ti.com/
+> 
+>   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi       | 3 +++
+>   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 3 +++
+>   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi     | 9 +++++++++
+>   3 files changed, 15 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> index 5ce5f0a3d6f5..628ff89dd72f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> @@ -1516,6 +1516,7 @@ main_r5fss0: r5fss@5c00000 {
+>   		ranges = <0x5c00000 0x00 0x5c00000 0x20000>,
+>   			 <0x5d00000 0x00 0x5d00000 0x20000>;
+>   		power-domains = <&k3_pds 243 TI_SCI_PD_EXCLUSIVE>;
+> +		status = "disabled";
+>   
+>   		main_r5fss0_core0: r5f@5c00000 {
+>   			compatible = "ti,j7200-r5f";
+> @@ -1530,6 +1531,7 @@ main_r5fss0_core0: r5f@5c00000 {
+>   			ti,atcm-enable = <1>;
+>   			ti,btcm-enable = <1>;
+>   			ti,loczrama = <1>;
+> +			status = "disabled";
+>   		};
+>   
+>   		main_r5fss0_core1: r5f@5d00000 {
+> @@ -1545,6 +1547,7 @@ main_r5fss0_core1: r5f@5d00000 {
+>   			ti,atcm-enable = <1>;
+>   			ti,btcm-enable = <1>;
+>   			ti,loczrama = <1>;
+> +			status = "disabled";
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> index 56ab144fea07..692c4745040e 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> @@ -612,6 +612,7 @@ mcu_r5fss0: r5fss@41000000 {
+>   		ranges = <0x41000000 0x00 0x41000000 0x20000>,
+>   			 <0x41400000 0x00 0x41400000 0x20000>;
+>   		power-domains = <&k3_pds 249 TI_SCI_PD_EXCLUSIVE>;
+> +		status = "disabled";
+>   
+>   		mcu_r5fss0_core0: r5f@41000000 {
+>   			compatible = "ti,j7200-r5f";
+> @@ -626,6 +627,7 @@ mcu_r5fss0_core0: r5f@41000000 {
+>   			ti,atcm-enable = <1>;
+>   			ti,btcm-enable = <1>;
+>   			ti,loczrama = <1>;
+> +			status = "disabled";
+>   		};
+>   
+>   		mcu_r5fss0_core1: r5f@41400000 {
+> @@ -641,6 +643,7 @@ mcu_r5fss0_core1: r5f@41400000 {
+>   			ti,atcm-enable = <1>;
+>   			ti,btcm-enable = <1>;
+>   			ti,loczrama = <1>;
+> +			status = "disabled";
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> index 291ab9bb414d..90befcdc8d08 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> @@ -254,20 +254,27 @@ mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
+>   	};
+>   };
+>   
+> +&mcu_r5fss0 {
+> +	status = "okay";
+> +};
+> +
+>   &mcu_r5fss0_core0 {
+>   	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
+>   	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
+>   			<&mcu_r5fss0_core0_memory_region>;
+> +	status = "okay";
+>   };
+>   
+>   &mcu_r5fss0_core1 {
+>   	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core1>;
+>   	memory-region = <&mcu_r5fss0_core1_dma_memory_region>,
+>   			<&mcu_r5fss0_core1_memory_region>;
+> +	status = "okay";
+>   };
+>   
+>   &main_r5fss0 {
+>   	ti,cluster-mode = <0>;
+> +	status = "okay";
+>   };
+>   
+>   /* Timers are used by Remoteproc firmware */
+> @@ -287,12 +294,14 @@ &main_r5fss0_core0 {
+>   	mboxes = <&mailbox0_cluster1 &mbox_main_r5fss0_core0>;
+>   	memory-region = <&main_r5fss0_core0_dma_memory_region>,
+>   			<&main_r5fss0_core0_memory_region>;
+> +	status = "okay";
+>   };
+>   
+>   &main_r5fss0_core1 {
+>   	mboxes = <&mailbox0_cluster1 &mbox_main_r5fss0_core1>;
+>   	memory-region = <&main_r5fss0_core1_dma_memory_region>,
+>   			<&main_r5fss0_core1_memory_region>;
+> +	status = "okay";
+>   };
+>   
+>   &main_i2c0 {
+
 
