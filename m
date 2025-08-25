@@ -1,120 +1,160 @@
-Return-Path: <devicetree+bounces-209070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA1F9B346E9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 18:17:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE65B34706
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 18:20:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1D835E47AD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:17:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 956B62A4B60
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6937D3019B8;
-	Mon, 25 Aug 2025 16:11:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PDpWuDtR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B911F2FD1A6;
+	Mon, 25 Aug 2025 16:20:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E15CA3019B3;
-	Mon, 25 Aug 2025 16:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6305C271A9D;
+	Mon, 25 Aug 2025 16:20:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756138283; cv=none; b=jlpXohFeUOSfHWRaIg8Ig4RVA8I8SQxiGN4I1ClWkQbiDTEu3lRrFWUlquSvSwjm181NsdXZ6uxCtneWtF+MYNcWG8gMczua/GdhkOKeGgJ62FswYRtSZi4OzdlN4WicUJYWRQ+p8fpIWzV8aMId6CNOWTWOqQJQsdSSBHvtUhw=
+	t=1756138807; cv=none; b=RjHMAMJJIUr0CXJyPGWpTI4DhMjQm44EFxAZ/gHTlvlGSmq7/LePUrA5NbUcg03VSFjMd93spW9Nu5L/yk4u/6O+cgRNG0GrTTL7Gc8niEhTS/uFIWKYo5Lm0PfS4yH+ZClUzZliE+z/+dzQuBUIrFhN8kaFJz1jSDBikQsGwZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756138283; c=relaxed/simple;
-	bh=5Y8C0T9L6QzzrF4J+0rDNTbZ2BMah0+T50iH5F4/Qsc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jXzzXbUzQmSVDKR8NzURiZ3KFDEYXNxrRahfF7jxBRfXK2pymkkDkRBgRFab8WdnkfKpBOfcRYPPUfbP2XDV+ajDNKpi0LXThSqxXpVpB3e9SLMvuhaF3JghROg15Xa8b0jJBUGW3osFk24lWqdcIYfUFwKOJ4huu4PBqSnVm8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PDpWuDtR; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-32326e2f0b3so3544413a91.2;
-        Mon, 25 Aug 2025 09:11:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756138281; x=1756743081; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=JYA0khIeH/P8+XSTNmugjVjjGIz4bN0sF/6YfGXRFug=;
-        b=PDpWuDtRH1sORGhR2XpWAjiXeTIxX2AcDo+RsQ6TF1d4rU48myBYNoODC0J8+kk+Hl
-         WOmEveC3vsc9Z8bH6A5aCkGthw0JhGgbGAQEklHG63jI6CcIdFkhXckD3znGB1tz+/iN
-         GWL2jOv4BZrBtKb6bDXb4Qasb4aeho06nd6el0FlbjE0/KowbMUR/m7Z7fG74YLSpE34
-         gSaoc60CVLK+jWjqEv6MzxhAvK3m4Xbuqvi1Zdw3XQuBTxFn3GQ2xcsabRPbgbCnC4Ae
-         UpM+lEiCcL4f2Dhtg9LWBGmFbKKDgjj0hrL+MWBU/Za8lCeKbac52mVQ5zzLkHkOHuen
-         nu2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756138281; x=1756743081;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JYA0khIeH/P8+XSTNmugjVjjGIz4bN0sF/6YfGXRFug=;
-        b=B9jNfPGfHSJgJZLzo/y+PjUhw84YwQmy3XxeyxcLNs7tNSWgoOj2Ht/IlZUcdgg1DN
-         ycFbPxzW/Yt+gC6L6AC/63f/ARtka/1eFILiayQV7T2HEfFA4lE6jElYPXjFRa+5XBhv
-         DRSpXcf+QlvYAROxds+gmtY2mQ7h4aNrEEiG9wjMmeLgapegO7gHH8OQrhutCaG2R33o
-         uNJf7gYF4K9c86C26UWGffx0Sf+rVA5sI7YddrrlloHOwjgM16hFProDIhMrnGwQAlNt
-         v558mhMnVJnM+ac8P7F2tuu/S1cCloLWN2Eh5oNh9/B2M66x4jpnrkpKFIUOTcobZDZD
-         SIcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW8DcjGWZPScn9POO+0AhZb1so6hC5CfsyvOxA49alX9PTlhhOk/AK7w0lbaHfnM5HSVhVcgpxz@vger.kernel.org, AJvYcCXMk6fl+PrE5No+rvgaB6w+6LMMMlJMZSfbR1g3A8PqxPhlAh9sFDsDbHDdDJyTd9KHeHoXobGErrRw@vger.kernel.org
-X-Gm-Message-State: AOJu0YznU7SEZuaTcQF/C4PREYIBrrAwU5K5kP4EJAUuD0Zf8zkXfhzj
-	I0LbFAePk3kBaxtFuBOeOe9Dtk/D/ZsiVaSF8zzfn3vGD11KFJBJnQAm
-X-Gm-Gg: ASbGncthSD0t+9EZXRlfgZcauzoZuIzom8bcs7RftCszjckhDrxWatQRrFKsLFltTlF
-	D0WG84eMXpaEVAVjGhelWKtUHY57TKai4EqM4cRw60Whwa4Wvynt/ZeCQ1LT64vWRpp1NwKRTzd
-	5ZCeVZTAj+2iO8rATK4ypOwFjslRfg6pYgbzCQXbd6/pTU06Ek8OvIL+kle7q4V8bJcWCCnPJ0l
-	+jOVnk5ECHW3iKoKkciZ+NHUMNl0BBPHGnVIXPruBNlZCeNDhYpj/QekHClrCT+DLS1KMEEitzK
-	QGnG+25FRcVxrNpCHWVJOMIwk7G4M0mO8uqHPoRuLZM8JEYwE54cCHEpHlTAA84l8+zoYdoyuMs
-	WttE8oF1HKUiMePs8f5pN+bWa3Xl2RcpoPBHf
-X-Google-Smtp-Source: AGHT+IGY14ia2me65kuJ99QlTwzbvVWtjr5P4YvNuETHJzp2CJSaNzYKob69gxUisdYJrZ2C1PD58w==
-X-Received: by 2002:a17:90b:51cd:b0:31e:f193:1822 with SMTP id 98e67ed59e1d1-32517745f63mr16115616a91.28.1756138280973;
-        Mon, 25 Aug 2025 09:11:20 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:c097:8aec:1f55:188e])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3254ae8ab5asm7439494a91.10.2025.08.25.09.11.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Aug 2025 09:11:20 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: krzk@kernel.org
-Cc: mgreer@animalcreek.com,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH] dt-bindings: nfc: ti,trf7970a: Restrict the ti,rx-gain-reduction-db values
-Date: Mon, 25 Aug 2025 13:10:59 -0300
-Message-Id: <20250825161059.496903-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1756138807; c=relaxed/simple;
+	bh=jvP/MoODPqxFznKN/LTG9V/r7b3ws9cfp65aCZZR0fg=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=Xi2kCqe20bFDWEvbLOm525B5gdUxnyljWgr0V67EWtEyN5ARYx24YE5u52nSvYU8aLU5ECeS5aF0jZWG43SWhEvHgrtdjO+cpJI206rlGrYHaEN14PNDRFL+aVAGwSu4evD6zvputSeQ5Pmpte04jtLJbCZl8N15UPQlDyr1OQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from [192.168.110.25] (unknown [118.251.178.216])
+	by APP-05 (Coremail) with SMTP id zQCowADXaVocjaxos6UhDw--.6581S2;
+	Tue, 26 Aug 2025 00:19:42 +0800 (CST)
+Message-ID: <b812bb46-6a26-456a-8210-d02138fb31a6@isrc.iscas.ac.cn>
+Date: Tue, 26 Aug 2025 00:19:40 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+To: inochiama@gmail.com
+Cc: ajones@ventanamicro.com, alex@ghiti.fr, anup@brainfault.org,
+ aou@eecs.berkeley.edu, charlie@rivosinc.com, cleger@rivosinc.com,
+ conor+dt@kernel.org, cuiyunhui@bytedance.com, cyan.yang@sifive.com,
+ devicetree@vger.kernel.org, jesse@rivosinc.com, krzk+dt@kernel.org,
+ kvm-riscv@lists.infradead.org, kvm@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, linux-riscv@lists.infradead.org,
+ mikisabate@gmail.com, namcao@linutronix.de, palmer@dabbelt.com,
+ parri.andrea@gmail.com, paul.walmsley@sifive.com, pbonzini@redhat.com,
+ pincheng.plct@isrc.iscas.ac.cn, robh@kernel.org, samuel.holland@sifive.com,
+ shuah@kernel.org, thomas.weissschuh@linutronix.de, yikming2222@gmail.com,
+ yongxuan.wang@sifive.com
+References: <znik7dcyeipf57xerlm5gwjszcaaeujoukr7g4a7wt7lsfu366@skany6k7agt4>
+Subject: Re: [PATCH v1 RESEND 1/5] dt-bidings: riscv: add Zilsd and Zclsd
+ extension descriptions
+From: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
+In-Reply-To: <znik7dcyeipf57xerlm5gwjszcaaeujoukr7g4a7wt7lsfu366@skany6k7agt4>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:zQCowADXaVocjaxos6UhDw--.6581S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7CF4fKrWkurWxZr18AryUtrb_yoW8Kw4Upa
+	93CF18KFZ8Xw13u3s7tw18Xw45Jr4kKr15AF47t34xKay5Ar10qFWakw1YvF18GF4xCF4I
+	va1Ygw1fZ3ZrAFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvE14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcVAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2kI
+	c2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbV
+	WUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF
+	67kF1VAFwI0_Wrv_Gr1UMIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIx
+	AIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI
+	42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWI
+	evJa73UjIFyTuYvjTRM6wCDUUUU
+X-CM-SenderInfo: pslquxhhqjh1xofwqxxvufhxpvfd2hldfou0/
 
-Instead of stating the supported values for the ti,rx-gain-reduction-db
-property in free text format, add an enum entry that can help validating
-the devicetree files.
+On 2025/8/23 6:34, Inochi Amaoto wrote:
+ > On Thu, Aug 21, 2025 at 10:01:27PM +0800, Pincheng Wang wrote:
+ >> Add descriptions for the Zilsd (Load/Store pair instructions) and
+ >> Zclsd (Compressed Load/Store pair instructions) ISA extensions
+ >> which were ratified in commit f88abf1 ("Integrating load/store
+ >> pair for RV32 with the main manual") of the riscv-isa-manual.
+ >>
+ >> Signed-off-by: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
+ >> ---
+ >>   .../devicetree/bindings/riscv/extensions.yaml | 39 +++++++++++++++++++
+ >>   1 file changed, 39 insertions(+)
+ >>
+ >> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml 
+b/Documentation/devicetree/bindings/riscv/extensions.yaml
+ >> index ede6a58ccf53..d72ffe8f6fa7 100644
+ >> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+ >> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+ >> @@ -366,6 +366,20 @@ properties:
+ >>               guarantee on LR/SC sequences, as ratified in commit 
+b1d806605f87
+ >>               ("Updated to ratified state.") of the riscv profiles 
+specification.
+ >>
+ >> +        - const: zilsd
+ >> +          description:
+ >> +            The standard Zilsd extension which provides support for 
+aligned
+ >> +            register-pair load and store operations in 32-bit 
+instruction
+ >> +            encodings, as ratified in commit f88abf1 ("Integrating
+ >> +            load/store pair for RV32 with the main manual") of 
+riscv-isa-manual.
+ >> +
+ >> +        - const: zclsd
+ >> +          description:
+ >> +            The Zclsd extension implements the compressed (16-bit) 
+version of the
+ >> +            Load/Store Pair for RV32. As with Zilsd, this extension 
+was ratified
+ >> +            in commit f88abf1 ("Integrating load/store pair for 
+RV32 with the
+ >> +            main manual") of riscv-isa-manual.
+ >> +
+ >>           - const: zk
+ >>             description:
+ >>               The standard Zk Standard Scalar cryptography extension 
+as ratified
+ >> @@ -847,6 +861,16 @@ properties:
+ >>               anyOf:
+ >>                 - const: v
+ >>                 - const: zve32x
+ >
+ >> +      # Zclsd depends on Zilsd and Zca
+ >> +      - if:
+ >> +          contains:
+ >> +            anyOf:
+ >> +              - const: zclsd
+ >> +        then:
+ >> +          contains:
+ >> +            anyOf:
+ >> +              - const: zilsd
+ >> +              - const: zca
+ >>
+ >
+ > Should be allOf? I see the comment says "Zclsd" requires both "Zilsd"
+ > and "Zca".
+ >
+ > Regards,
+ > Inochi
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+You're absolutely right, thank you for catching this. Since Zclsd 
+depends on both Zilsd and Zca, the condition should use allOf to 
+correctly enforce the conjunction. I'll fix this in next revision.
 
-diff --git a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
-index 783a85b84893..7e96a625f0cf 100644
---- a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
-+++ b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
-@@ -58,7 +58,8 @@ properties:
-   ti,rx-gain-reduction-db:
-     description: |
-       Specify an RX gain reduction to reduce antenna sensitivity with 5dB per
--      increment, with a maximum of 15dB. Supported values: [0, 5, 10, 15].
-+      increment, with a maximum of 15dB.
-+    enum: [ 0, 5, 10, 15]
- 
- required:
-   - compatible
--- 
-2.34.1
+Best regards,
+Pincheng Wang
 
 
