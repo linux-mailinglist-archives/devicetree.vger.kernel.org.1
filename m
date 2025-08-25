@@ -1,157 +1,185 @@
-Return-Path: <devicetree+bounces-208923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95503B33B40
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 11:39:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D71BB33B58
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 11:42:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CF153B9BA6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 09:39:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD2993A3067
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 09:42:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE97E2C21E8;
-	Mon, 25 Aug 2025 09:38:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JgP5Wkuf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D552C2AA5;
+	Mon, 25 Aug 2025 09:42:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C319726C3BF;
-	Mon, 25 Aug 2025 09:38:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 095DF28850B
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 09:42:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756114737; cv=none; b=bl4jFodYlBhaOB8xYCNlfE4YpRIILXk9lUa357oVkx5itQ/Wm4QgvN+U/jGeT2625vsyXWj9OBsvH21ETG6k2xweEUbmqL+2HQhRq4kfJKk5ANi80/LOKGfbEIbS5H6gJyx00bHlGWCMyh3X6Ys4lvZNsuT0DU8syowgRSTTzyU=
+	t=1756114963; cv=none; b=Qns/ySC55Y2KXZg5IO3TKAUg1RK8Z9o2eiWwTDWJ+ajyTWdgRNrWbWz3cgJ0PCmGGM/H8D/iCqWU5YTK8t/nmnRXqdqA9ws5tHEViWLOjplLjG8xoIJqkPTK0i8pwqCxGgJiXIC6hTOsOIc4UgSzLtUZNXNpZbHC3DdXuBd82qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756114737; c=relaxed/simple;
-	bh=uJgF2RC+DbSwy0YAE6IxGmBI3CvombRV+sHa3B7iq5o=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eOJRFL0YguYLGc9i2nkinChSdCotOrAWu751j2VRdFhxy6RG1AHXOd9fxaSx1aeFnqkFvjLjHN4YrCtouMYjYBZhCFWnwLnGn/7bFdXxiXJQZb4koa/kCcbbnB7Ow81FfwoJbWLbNpM0vJHzMrHNyOI0MyA/gU9Hmm4hRUBtXIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JgP5Wkuf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2DFDC4CEED;
-	Mon, 25 Aug 2025 09:38:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756114737;
-	bh=uJgF2RC+DbSwy0YAE6IxGmBI3CvombRV+sHa3B7iq5o=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=JgP5WkufRu9ChnOV4wsjx7La8k09On9YKV0y/E1OBzoFAzqcIreS1uJW13AXp50pj
-	 KOmWdR/Ss+qqINCwaV9w7Anh6g1w/S3uTTQsC8gXaEX3InPKxALFOUEXwKYbYH0dY6
-	 GQcE4kQzGqFMCHLuEHr2Naq/Q6vKwqQEXN7jrh3Xn0aujgLKWp3sPt+vTrHOeYumo1
-	 oMYrc3BvWtILETvI0rD1+fWrsz2eYXcOn6Qj04M1EDVkJR3hkZBZVnzSg2Rbcf2KMz
-	 0aPVCxeHeJyH55MLZl/Y58GtwOs5LHU/CdpxSfTTVRTMZEGgdq3mhXElQ/JxytYY3Z
-	 kgWVCZ6pmoPbw==
-Date: Mon, 25 Aug 2025 10:38:47 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Ben Collins <bcollins@watter.com>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andrew Hepp <andrew.hepp@ahepp.dev>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Andy Shevchenko <andy@kernel.org>
-Subject: Re: [PATCH v8 0/5] iio: mcp9600: Features and improvements
-Message-ID: <20250825103740.31ed77c8@jic23-huawei>
-In-Reply-To: <20250822-upstream-changes-v8-0-40bb1739e3e2@watter.com>
-References: <20250822-upstream-changes-v8-0-40bb1739e3e2@watter.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1756114963; c=relaxed/simple;
+	bh=3+/JTEg9+GBOONNinTNtovlxE5BUHOyMnR9VshLWROY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ez377ZrWOWVXZfzPMtHrVFATg/SmQnPnabtl0XdxMnFvD1K+hJrYTl+8FTlkMaCrvQuo+tTaG2lFHhhHzyA5bxxFUzKIZtetzE8nYoNlSbMO+9a+O7sRmaNgFzTlPdDrCTaWqak0dN5SyEwB653IeDj/rIUHcsnnRLfqM8fdD7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uqTiU-0002bt-GY; Mon, 25 Aug 2025 11:42:18 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uqTiS-0022ru-2W;
+	Mon, 25 Aug 2025 11:42:16 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uqTiS-000J5K-2C;
+	Mon, 25 Aug 2025 11:42:16 +0200
+Message-ID: <0501e21d1b6c99d18fe7e660f38b9bfafc76de53.camel@pengutronix.de>
+Subject: Re: [PATCH 4/7] phy: allwinner: a523: add USB3/PCIe PHY driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: iuncuim <iuncuim@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu
+ Tsai <wens@csie.org>,  Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>,
+ Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org, 
+	linux-clk@vger.kernel.org, linux-sunxi@lists.linux.dev
+Date: Mon, 25 Aug 2025 11:42:16 +0200
+In-Reply-To: <20250816084700.569524-5-iuncuim@gmail.com>
+References: <20250816084700.569524-1-iuncuim@gmail.com>
+	 <20250816084700.569524-5-iuncuim@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Fri, 22 Aug 2025 09:23:49 -0400
-Ben Collins <bcollins@watter.com> wrote:
-
-Series applied with that unnecessary include that David pointed out dropped.
-
-Applied to the togreg branch of iio.git but initially pushed out as testing
-to give 0-day a few days to poke at it.
-
-Thanks,
-
-Jonathan
-
-
-> ChangeLog:
-> v7 -> v8:
->   - Style changes in dt-bindings example
->   - Simplify some return value checks
->   - Move assignment to where it's checked
->   - Speeling
-> 
-> v6 -> v7:
->   - Separate out the mcp9600 IIR series into its own series as there is
->     a lot of conversation around implementation (removed related
->     comments from this changelog).
-> 
-> v5 -> v6:
->   - Fix accidental typo added in dt-bindings: IRQ_TYPE_EDGE_RISIN
->   - Correct some constraints in dt-bindings
->   - Reverse if/then for mcp9601 vs mcp9600 constraints in dt-bindings
->   - Updates to changelog for patch 2/6 (dt-bindings mcp9600)
->   - Cleanup tabs that were converted to spaces
->   - Split thermocouple-type default to separate patch
-> 
-> v4 -> v5:
->   - None
-> 
-> v3 -> v4:
->   - Based on feedback from David Lechner <dlechner@baylibre.com>
->     * Allow fallback compatible in dt-bindings for mcp9601.
->   - Based on feedback from Jonathan Cameron <jic23@kernel.org>
->     * Be explicit in patch description for fixed width changes.
->     * Check chip_info for NULL to quiet warnings from kernel-test-robot
->     * Remove "and similar" for long description of MCP9600.
->   - Set default 3 for thermocouple in dt-binding
->   - Rework open/short circuit in dt-bindings
-> 
-> v2 -> v3:
->   - Improve changelogs in each patch
->   - Based on feedback from Andy Shevchenko <andy.shevchenko@gmail.com>
->     * Set register offsets to fixed width
->     * Fix typos
->     * Future-proof Kconfig changes
->     * Convert to using chip_info paradigm
->     * Verbiage: dt -> firmware description
->     * Use proper specifiers and drop castings
->     * Fix register offset to be fixed-width
->     * u8 for cfg var
->     * Fix % type for u32 to be %u
->     * Make blank lines consistent between case statements
-> 
-> v1 -> v2:
->   - Break into individual patches
-> 
-> v1:
->   - Initial patch to enable IIR and thermocouple-type
->   - Recognize mcp9601
-> 
-> Signed-off-by: Ben Collins <bcollins@watter.com>
+On Sa, 2025-08-16 at 16:46 +0800, iuncuim wrote:
+> From: Mikhail Kalashnikov <iuncuim@gmail.com>
+>=20
+> The A523 family of processors features a combophy for USB 3.0 and PCIe,
+> developed by Innosilicon. Simultaneous operation of both interfaces is
+> not supported by design.
+> Currently, the driver only adds support for USB 3.0. PCIe support is
+> currently unavailable and will be added later.
+> All data on phy configuration is taken from the manufacturer's BSP driver=
+.
+>=20
+> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
 > ---
-> - Link to v7: https://lore.kernel.org/r/20250819-upstream-changes-v7-0-88a33aa78f6a@watter.com
-> 
-> ---
-> Ben Collins (5):
->       dt-bindings: iio: mcp9600: Set default 3 for thermocouple-type
->       dt-bindings: iio: mcp9600: Add microchip,mcp9601 and add constraints
->       iio: mcp9600: White space and fixed width cleanup
->       iio: mcp9600: Recognize chip id for mcp9601
->       iio: mcp9600: Add support for thermocouple-type
-> 
->  .../iio/temperature/microchip,mcp9600.yaml         |  57 +++++++-
->  drivers/iio/temperature/Kconfig                    |   8 +-
->  drivers/iio/temperature/mcp9600.c                  | 151 +++++++++++++++++----
->  3 files changed, 187 insertions(+), 29 deletions(-)
-> ---
-> base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
-> change-id: 20250819-upstream-changes-c89af86743fa
-> 
-> Best regards,
+>  drivers/phy/allwinner/Kconfig                |   9 +
+>  drivers/phy/allwinner/Makefile               |   1 +
+>  drivers/phy/allwinner/phy-sun55i-usb3-pcie.c | 267 +++++++++++++++++++
+>  3 files changed, 277 insertions(+)
+>  create mode 100644 drivers/phy/allwinner/phy-sun55i-usb3-pcie.c
+>=20
+> diff --git a/drivers/phy/allwinner/Kconfig b/drivers/phy/allwinner/Kconfi=
+g
+> index fb584518b..af2a82e51 100644
+> --- a/drivers/phy/allwinner/Kconfig
+> +++ b/drivers/phy/allwinner/Kconfig
+> @@ -57,3 +57,12 @@ config PHY_SUN50I_USB3
+>  	  part of Allwinner H6 SoC.
+> =20
+>  	  This driver controls each individual USB 2+3 host PHY combo.
+> +
+> +config PHY_SUN55I_USB3_PCIE
+> +	tristate "Allwinner A523 Innosilicon USB3/PCIe Combophy Driver"
+> +	depends on ARCH_SUNXI || COMPILE_TEST
+> +	depends on RESET_CONTROLLER
 
+This dependency is not necessary. The reset controller API is stubbed
+out in case  RESET_CONTROLLER is disabled.
+
+ARCH_SUNXI selects ARCH_HAS_RESET_CONTROLLER, which default-enables
+RESET_CONTROLLER.
+
+> +	select GENERIC_PHY
+> +	help
+> +	  Enable this to support the Allwinner PCIe/USB3.0 combo PHY
+> +	  with Innosilicon IP block founded in A523/A527/H728/T527 SOC
+> diff --git a/drivers/phy/allwinner/Makefile b/drivers/phy/allwinner/Makef=
+ile
+> index bd74901a1..5948a27ef 100644
+> --- a/drivers/phy/allwinner/Makefile
+> +++ b/drivers/phy/allwinner/Makefile
+> @@ -3,3 +3,4 @@ obj-$(CONFIG_PHY_SUN4I_USB)		+=3D phy-sun4i-usb.o
+>  obj-$(CONFIG_PHY_SUN6I_MIPI_DPHY)	+=3D phy-sun6i-mipi-dphy.o
+>  obj-$(CONFIG_PHY_SUN9I_USB)		+=3D phy-sun9i-usb.o
+>  obj-$(CONFIG_PHY_SUN50I_USB3)		+=3D phy-sun50i-usb3.o
+> +obj-$(CONFIG_PHY_SUN55I_USB3_PCIE)		+=3D phy-sun55i-usb3-pcie.o
+> diff --git a/drivers/phy/allwinner/phy-sun55i-usb3-pcie.c b/drivers/phy/a=
+llwinner/phy-sun55i-usb3-pcie.c
+> new file mode 100644
+> index 000000000..905c54a67
+> --- /dev/null
+> +++ b/drivers/phy/allwinner/phy-sun55i-usb3-pcie.c
+> @@ -0,0 +1,267 @@
+[...]
+> +static int sun55i_usb3_pcie_phy_init(struct phy *_phy)
+> +{
+> +	struct sun55i_usb3_pcie_phy *phy =3D phy_get_drvdata(_phy);
+> +
+> +	sun55i_usb3_phy_open(phy);
+
+Given that sun55i_usb3_pcie_phy_exit() asserts the reset and disables
+the clock, why isn't the clock enabled and the reset deasserted here?
+
+As is, it looks like the code in sun55i_usb3_phy_open() could be just
+folded into sun55i_usb3_pcie_phy_init().
+
+> +	return 0;
+> +}
+[...]
+> +static int sun55i_usb3_pcie_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct sun55i_usb3_pcie_phy *phy;
+> +	struct device *dev =3D &pdev->dev;
+> +	struct phy_provider *phy_provider;
+> +	int ret;
+> +
+> +	phy =3D devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+> +	if (!phy)
+> +		return -ENOMEM;
+> +
+> +	phy->dev =3D dev;
+> +	phy->clk =3D devm_clk_get(dev, NULL);
+> +	if (IS_ERR(phy->clk)) {
+> +		if (PTR_ERR(phy->clk) !=3D -EPROBE_DEFER)
+> +			dev_err(dev, "failed to get phy clock\n");
+> +		return PTR_ERR(phy->clk);
+> +	}
+> +
+> +	phy->reset =3D devm_reset_control_get(dev, NULL);
+
+Please use devm_reset_control_get_exclusive() directly.
+
+> +	if (IS_ERR(phy->reset)) {
+> +		dev_err(dev, "failed to get reset control\n");
+
+Consider using dev_err_probe().
+
+regards
+Philipp
 
