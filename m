@@ -1,115 +1,188 @@
-Return-Path: <devicetree+bounces-209103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 583ECB3494E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 19:49:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36FEEB34953
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 19:50:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F72E17F915
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 17:49:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC3387AC18F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 17:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F8F03019CB;
-	Mon, 25 Aug 2025 17:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5187F3019D2;
+	Mon, 25 Aug 2025 17:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HTiyQ5Q8"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TGjglqHA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207C64C83;
-	Mon, 25 Aug 2025 17:49:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0C73009F6;
+	Mon, 25 Aug 2025 17:50:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756144144; cv=none; b=JRnpOoxsKGvR6Fhw8TQApFoy8F4tOfLCwegey5z66++07QA3ZbbzYVb5Wec0AGLaLtgbAbd5nOQ+QP7StIaEpfWBdeA2FAh2rj6EvEp/CpY8B9tCUQ4HoOCpYwjTPnSM0QY+wBJUZuI3Hl7Ut89eJbUMPEER/rWqH33Eqhm+ftc=
+	t=1756144224; cv=none; b=lXbw+wSlXqNG2beROP8rfCmZtd0/hQ+FkPm45Vitrpkx74jBcP3Jbc2UeKAhwTsxF/mp4Em2IbfdGfWYVdCAUzO0pR8cJ3+QhIJfLT+ZcSsZchY3oBlyc+s0tYbMpC2XMDut14w34fc7OZTjtUXCpRVqvuBEJhN3ozwHohUdkLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756144144; c=relaxed/simple;
-	bh=XzHy9DjHZm9PQIObMTotkItM6UM2hrpGtBbLyV4Q+ic=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=bNG5IzIDIbRf0ndQ1f+zLhsH3neHRmf6SondTRv8n2h4HV093Ue5vAUk67ZbUOjY6ItVOV7LRmEfVAo2PDoqMYpZ+CMxLK1kHXkfHC8bpTvXB9cDKp8grJ6D+4mNMBDxKFdAQBxzrLBMdMDjyrgCJlLv4zyg2/EJusEA3uhytKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HTiyQ5Q8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CD9DC4CEED;
-	Mon, 25 Aug 2025 17:49:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756144143;
-	bh=XzHy9DjHZm9PQIObMTotkItM6UM2hrpGtBbLyV4Q+ic=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=HTiyQ5Q8FSr42P9/TgICM3lFboZo2dAHuFQPR5/apAtVpoV/kN+5rDnlfgtZa11BU
-	 20fNb+m/QtTXkUpT6v4nqBRcMP8laWGcq3UdZveORHjcFsLKhmmn/d75ingCXsWfN4
-	 DbmBWHCjm5c2LqXEYf5UzK/MpAcE65GN3N4b627+TX2EloPzZOt9hOpTTimf1xWY8F
-	 4wCy2yoygVRzcbr+QQwMGddiDO2Ukcip68MG7acBsc9fkQAPqSoRfn7Y056R7SggKQ
-	 AXeUOjn3TIh7mBr/rBUK+dxnvxj9wh1gVZhEIvRaL8w51ofQoCdaKqost/E7UeVEy7
-	 5cA0sXWvJPQbw==
-Date: Mon, 25 Aug 2025 12:49:02 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1756144224; c=relaxed/simple;
+	bh=99QxpOa1hWDVJMREI3P/OOtPeeZsrilD0hyvIUZj/ko=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=nJUxCJ3M8dUp332IC3unBpqE8jna5xKU4aJ+7RF+gqQlLGMWyLqYsGjErznBEPzuUFMXA4wVzONwjpjEua9ib3lg/mZbx3WGD7yiBIauR6CkeLlJk6gvGF01gffP55qancLzhn4xt+d2WdEeXdw+S9NJYfg8Y+qaQHkJEFa0+Zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TGjglqHA; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1756144220;
+	bh=99QxpOa1hWDVJMREI3P/OOtPeeZsrilD0hyvIUZj/ko=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=TGjglqHAVky/nLbV8g0zk5XTTg0334cJVMNNqKelf9STnzVr5RRzk0kzX72wVe1q+
+	 8NBE4L1+kXsrKFexwTkVMZo0sjlWZhDnvKQPPDJCQDdYb7E8T7HBLs3zhAI0QWWFvu
+	 ZekyZ3vZINoyjUmX9CkLvTfVDwDYPqlzHimodlaVH1P5BubJA+kAjuge3LeaYx7hMg
+	 tj2gikWglVHr3moG7ZWEFN7P17Wga0mAn1gZbFdnUfGF5FPvB1+LDjcVBNVjs7vD+m
+	 jN/I0dTZINYAIKgYtVFghuBcGvlgV/BriJcaw5xm/a2TGgx723Dljz6ZztjVWbRBQ6
+	 FsU90aE2NNQ6A==
+Received: from [IPv6:2606:6d00:11:5a76::5ac] (unknown [IPv6:2606:6d00:11:5a76::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8942017E05F0;
+	Mon, 25 Aug 2025 19:50:18 +0200 (CEST)
+Message-ID: <01c327e8353bb5b986ef6fb1e7311437659aea4a.camel@collabora.com>
+Subject: Re: [PATCH v7 4/6] media: verisilicon: AV1: Restore IOMMU context
+ before decoding a frame
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>, Benjamin Gaignard
+	 <benjamin.gaignard@collabora.com>
+Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
+ 	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ p.zabel@pengutronix.de, 	mchehab@kernel.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-rockchip@lists.infradead.org,
+ kernel@collabora.com, 	linux-media@vger.kernel.org
+Date: Mon, 25 Aug 2025 13:50:16 -0400
+In-Reply-To: <20250825170531.GA1899851@ziepe.ca>
+References: <20250825153450.150071-1-benjamin.gaignard@collabora.com>
+	 <20250825153450.150071-5-benjamin.gaignard@collabora.com>
+	 <20250825170531.GA1899851@ziepe.ca>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-wovO2wwoxNj2XCpfZEwH"
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-mips@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>, 
- =?utf-8?q?Toke_H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>, 
- linux-wireless@vger.kernel.org
-To: Rosen Penev <rosenp@gmail.com>
-In-Reply-To: <20250825044812.1575524-2-rosenp@gmail.com>
-References: <20250825044812.1575524-1-rosenp@gmail.com>
- <20250825044812.1575524-2-rosenp@gmail.com>
-Message-Id: <175614397908.4140594.10465132869450405336.robh@kernel.org>
-Subject: Re: [PATCHv3 1/3] dt-bindings: net: wireless: ath9k: add led
- bindings
 
 
-On Sun, 24 Aug 2025 21:48:10 -0700, Rosen Penev wrote:
-> The ath9k driver has various pin GPIO numbers for different chipsets
-> which are not always correct for every device.
-> 
-> Add bindings to specify the correct number and if it should be
-> active-low.
-> 
-> Signed-off-by: Rosen Penev <rosenp@gmail.com>
-> ---
->  .../bindings/net/wireless/qca,ath9k.yaml         | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
+--=-wovO2wwoxNj2XCpfZEwH
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Hi Benjmain, Jason,
 
-yamllint warnings/errors:
+Le lundi 25 ao=C3=BBt 2025 =C3=A0 14:05 -0300, Jason Gunthorpe a =C3=A9crit=
+=C2=A0:
+> On Mon, Aug 25, 2025 at 05:34:43PM +0200, Benjamin Gaignard wrote:
+> > diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/medi=
+a/platform/verisilicon/hantro.h
+> > index 81328c63b796..a28a181013b9 100644
+> > --- a/drivers/media/platform/verisilicon/hantro.h
+> > +++ b/drivers/media/platform/verisilicon/hantro.h
+> > @@ -12,6 +12,9 @@
+> > =C2=A0#ifndef HANTRO_H_
+> > =C2=A0#define HANTRO_H_
+> > =C2=A0
+> > +#include <linux/dma-map-ops.h>
+> > +#include <linux/iommu.h>
+> > +#include <linux/iommu-dma.h>
+>=20
+> This is an internal header it should not be included in drivers.
+>=20
+> > +static void rockchip_vpu981_av1_restore_iommu(struct hantro_ctx *ctx)
+> > +{
+> > +	if (ctx->iommu_domain) {
+> > +		iommu_attach_device(ctx->iommu_domain, ctx->dev->v4l2_dev.dev);
+> > +		iommu_detach_device(ctx->iommu_domain, ctx->dev->v4l2_dev.dev);
+> > +	}
+> > +}
+>=20
+> What is this supposed to do? Put it back to the default domain? Who
+> changed it away from the default domain?
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:92.15-25: Warning (reg_format): /example-2/ahb/wifi@180c0000/led:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:91.17-94.15: Warning (unit_address_vs_reg): /example-2/ahb/wifi@180c0000/led: node has a reg or ranges property, but no unit name
-Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:91.17-94.15: Warning (avoid_default_addr_size): /example-2/ahb/wifi@180c0000/led: Relying on default #address-cells value
-Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:91.17-94.15: Warning (avoid_default_addr_size): /example-2/ahb/wifi@180c0000/led: Relying on default #size-cells value
-Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+If you rename the iommu_domain into empty_domain it adds a bit of sense. Wh=
+en
+you attach another domain (this one is empty, but it does not matter) and d=
+etach
+it, the default domain get restored. That effectively forces the reprogramm=
+ing
+(in the VSI case flushing) of the iommu configuration.
 
-doc reference errors (make refcheckdocs):
+>=20
+> Did some other driver change the attached domain (if so that's wild
+> and wrong)? The commit message hints at that but it should be
+> explained alot more.
+>=20
+> This just seems wrong and goofy. Driver shouldn't be changing their
+> iommu domains if they are using the default domain at all. We now have
+> APIs to allow you to allocate wide chunks of IOVA space and manage
+> them directly. Maybe these 'multiple stream's should be doing that
+> instead of mucking with iommu domains?
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250825044812.1575524-2-rosenp@gmail.com
+This is seeking inspiration of what we do in rkvdec [0], the iommu-dma.h sh=
+ould
+not be needed.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Jason, the point is that the iommu and the VPU are not separate devices, wh=
+ich
+comes with side effects. On RKVDec side, the iommu configuration get resets
+whenever a decoding error leads to a VPU "self reset". I can't remember who=
+ from
+the iommu subsystem suggested that, but the empty domain method was agreed =
+to be
+the least invasive way to workaround that issue. I believe Detlev tried mul=
+tiple
+time to add APIs for that before the discussion lead to this path.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Benjamin, please improve the naming, comment and description, I agree with =
+Jason
+its not completely clear. I'm also surprised that you do that every frame, =
+seems
+excessive.
 
-pip3 install dtschema --upgrade
+regards,
+Nicolas
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/comm=
+it/?id=3Dff8c5622f9f7c644e995d013af320b59e4d61b93
 
+--=-wovO2wwoxNj2XCpfZEwH
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaKyiWAAKCRDZQZRRKWBy
+9JL7AP9R1VeW8rNgnuoZz8urKJxxEG6gWu6/kM7ge/SIZxuBcAD/SiNzSms3Po30
+iybuQvLYIS4MMJlWAyYz5eVQbcpO6AU=
+=XYWc
+-----END PGP SIGNATURE-----
+
+--=-wovO2wwoxNj2XCpfZEwH--
 
