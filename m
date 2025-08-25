@@ -1,213 +1,120 @@
-Return-Path: <devicetree+bounces-209069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15AD6B346C6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 18:08:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA1F9B346E9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 18:17:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1EED2A4661
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:08:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1D835E47AD
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:17:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D87F2FF65E;
-	Mon, 25 Aug 2025 16:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6937D3019B8;
+	Mon, 25 Aug 2025 16:11:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="NcRUClF4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PDpWuDtR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7027135965
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 16:08:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E15CA3019B3;
+	Mon, 25 Aug 2025 16:11:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756138130; cv=none; b=eacKMJHhwAI4wFDjkeXpe11naIV9Ef4avJBuU90v1aecEW3lMtPrdfGXTO6ha+q7svJWM0bbE3sfJPWWO+oBETTcQHTPfQgIfqG07xoc2qC8ViIGSeSCY/cyUQxj4FqkjrQXa8xpsnMOAttcPL7GZXq6puIeGtZmUeapSp3mlIg=
+	t=1756138283; cv=none; b=jlpXohFeUOSfHWRaIg8Ig4RVA8I8SQxiGN4I1ClWkQbiDTEu3lRrFWUlquSvSwjm181NsdXZ6uxCtneWtF+MYNcWG8gMczua/GdhkOKeGgJ62FswYRtSZi4OzdlN4WicUJYWRQ+p8fpIWzV8aMId6CNOWTWOqQJQsdSSBHvtUhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756138130; c=relaxed/simple;
-	bh=IRrGnU8GP7ncfbvvMS5DUsPXlS3sX82/pTTFd6SsTjo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zde0+h3srUGrLuqVE1zSkrAccRlxbABF18ggK1uPULDcQ+WQmanEmHSO0EKI66jWceTQOZMg3kur75TBSe/4yRyfDB+K574boOpZ2QsKZzGVbgEXQPx05c1Xz+viFY2gZ3zVpY8FGI70XMyZb6KfW/IW2TVc0rIb/0T+4ne+0bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=NcRUClF4; arc=none smtp.client-ip=209.85.166.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-8844ee2cb61so121558239f.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 09:08:48 -0700 (PDT)
+	s=arc-20240116; t=1756138283; c=relaxed/simple;
+	bh=5Y8C0T9L6QzzrF4J+0rDNTbZ2BMah0+T50iH5F4/Qsc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jXzzXbUzQmSVDKR8NzURiZ3KFDEYXNxrRahfF7jxBRfXK2pymkkDkRBgRFab8WdnkfKpBOfcRYPPUfbP2XDV+ajDNKpi0LXThSqxXpVpB3e9SLMvuhaF3JghROg15Xa8b0jJBUGW3osFk24lWqdcIYfUFwKOJ4huu4PBqSnVm8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PDpWuDtR; arc=none smtp.client-ip=209.85.216.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-32326e2f0b3so3544413a91.2;
+        Mon, 25 Aug 2025 09:11:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1756138127; x=1756742927; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=q0cjzzyWOyZks1nTu1rGjk9KV3egwe1aayyTboNLSe0=;
-        b=NcRUClF4419uY9or4sIjWjpe2GdaATVJjBxK4U7L51C+XrN5OwSTdFTJOvwO7vCWTW
-         UejXSVD1wsvJ8mAsOnBWRRHqMHEpU0JpxXiy5UgVtDTjh3HAg1zi21rTUb44hRBP/JsD
-         oBeZ1J74XRbVay2JBPWn8ycznjRN48VGc6ElCxnJc/pmpKoEqi+UCk0KrBEtkuTRd4ci
-         RiHMfjRwvAHuo8WlYgS/vN0RSYVXdY2iWrh1ABozpTRl/HQ8DKT8++KjBi2U39ucjmQw
-         WqV3hH3+/fb2dZigWqt9a+mzLxQSxa8IqCQukly+IOOd+i4KMVbZ4TkpfbS2YjgGOSrA
-         8yEg==
+        d=gmail.com; s=20230601; t=1756138281; x=1756743081; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JYA0khIeH/P8+XSTNmugjVjjGIz4bN0sF/6YfGXRFug=;
+        b=PDpWuDtRH1sORGhR2XpWAjiXeTIxX2AcDo+RsQ6TF1d4rU48myBYNoODC0J8+kk+Hl
+         WOmEveC3vsc9Z8bH6A5aCkGthw0JhGgbGAQEklHG63jI6CcIdFkhXckD3znGB1tz+/iN
+         GWL2jOv4BZrBtKb6bDXb4Qasb4aeho06nd6el0FlbjE0/KowbMUR/m7Z7fG74YLSpE34
+         gSaoc60CVLK+jWjqEv6MzxhAvK3m4Xbuqvi1Zdw3XQuBTxFn3GQ2xcsabRPbgbCnC4Ae
+         UpM+lEiCcL4f2Dhtg9LWBGmFbKKDgjj0hrL+MWBU/Za8lCeKbac52mVQ5zzLkHkOHuen
+         nu2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756138127; x=1756742927;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q0cjzzyWOyZks1nTu1rGjk9KV3egwe1aayyTboNLSe0=;
-        b=NcY252OUw/s61uKNFZHxZUNJIEZmLL7F0izOanam0THaZXMnRW5Rzbyjg6JTOV7FQY
-         BNbtnbrBF2XLURrOQxZMWN+syDx+AS+UBIX/oFG9ho6MOXGBhWidlG51Xtno9EmN+1Nl
-         uLNtHvGvTrLb13N4ujOdwuMUW2/2kraKcYjkH6847X3Nv6ZxFMXZXHQ5BuueddP6Wzgl
-         qnsZ/y+/9PvAfGSjgeyBwb0mEJjI7GFinSC7Bf/MGNGSsIiOkdKceOQJ0ludQKy/UYn+
-         9xN5AwlqvAgrasD+5RJtsjwQbloo+dWpLZ0B6mPR+/Cp/vi8C9/8GaBBBqs20n9G+aWp
-         vxnw==
-X-Forwarded-Encrypted: i=1; AJvYcCV9f/Lc0aFWJTn1bCKh9UPfn/qfQHHGLLwFZ+GkdTcuNyALdmEeYgdrpdlBncdJbRpMaqNSKfZcfgJa@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRuV5/yzQlSlx23C8rPrPOe8kVHqQ/cMCF0r90DlPRZ8SqGbPy
-	F5ChM7RDO/DLxoB3zISB/yTVYITGmWwx/eoInSsrQ0WafCrQ6JhWC7whwrwhR/SJab4=
-X-Gm-Gg: ASbGnctoO5vdsylpHAnzIt1MmQbvNl5aeZi9Kzp/o4v+dFR7LZaqoA4VvRqVBHU3nnY
-	lY4MmFRRkgfG0G/uMVq+c11WG5c7RDi0VBB9QxyUgmGVbR0VWizov6Q29mW70JGzGhJ82Q/8aYR
-	KmNREPL6GORRNLGgWZDFuaaGoWfmaxmlcaT2K+sCxmZc5A8D97tflchEI8zxrACDQlIYFuMcM11
-	0DgibN3TKNJyv/F5n+z1/aOCaD/7QsBqsHvUPe55kapQLieJZp8WfzJDRQGebhpClyTrkc061Lj
-	IDj+GvkdrQg5EhBMxaowYV0uH0+XDIPo3u/zeS6nRH5XnOSvCLyhg81QdFEksqi6/3ZFoydM7GD
-	2Ww/DlWqw4DiLj3d++EyCgroM13eb0FkgooBWXeuKHbp7MlfezXDLDktjeqH5MQ==
-X-Google-Smtp-Source: AGHT+IEL2QvsFMnDcZXTzmhm/4l1RIr9WfujVlwMQrzr/6F7bd2mjY4YQv7lvRHHyhZ+U5TJ7ij4Pw==
-X-Received: by 2002:a05:6602:2b07:b0:886:c53c:9172 with SMTP id ca18e2360f4ac-886c53c932cmr1606713739f.18.1756138127315;
-        Mon, 25 Aug 2025 09:08:47 -0700 (PDT)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-886c8f0a83esm502245639f.10.2025.08.25.09.08.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Aug 2025 09:08:46 -0700 (PDT)
-Message-ID: <b387ebdd-ae5d-4711-9e10-c61cb06f4b5b@riscstar.com>
-Date: Mon, 25 Aug 2025 11:08:45 -0500
+        d=1e100.net; s=20230601; t=1756138281; x=1756743081;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JYA0khIeH/P8+XSTNmugjVjjGIz4bN0sF/6YfGXRFug=;
+        b=B9jNfPGfHSJgJZLzo/y+PjUhw84YwQmy3XxeyxcLNs7tNSWgoOj2Ht/IlZUcdgg1DN
+         ycFbPxzW/Yt+gC6L6AC/63f/ARtka/1eFILiayQV7T2HEfFA4lE6jElYPXjFRa+5XBhv
+         DRSpXcf+QlvYAROxds+gmtY2mQ7h4aNrEEiG9wjMmeLgapegO7gHH8OQrhutCaG2R33o
+         uNJf7gYF4K9c86C26UWGffx0Sf+rVA5sI7YddrrlloHOwjgM16hFProDIhMrnGwQAlNt
+         v558mhMnVJnM+ac8P7F2tuu/S1cCloLWN2Eh5oNh9/B2M66x4jpnrkpKFIUOTcobZDZD
+         SIcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW8DcjGWZPScn9POO+0AhZb1so6hC5CfsyvOxA49alX9PTlhhOk/AK7w0lbaHfnM5HSVhVcgpxz@vger.kernel.org, AJvYcCXMk6fl+PrE5No+rvgaB6w+6LMMMlJMZSfbR1g3A8PqxPhlAh9sFDsDbHDdDJyTd9KHeHoXobGErrRw@vger.kernel.org
+X-Gm-Message-State: AOJu0YznU7SEZuaTcQF/C4PREYIBrrAwU5K5kP4EJAUuD0Zf8zkXfhzj
+	I0LbFAePk3kBaxtFuBOeOe9Dtk/D/ZsiVaSF8zzfn3vGD11KFJBJnQAm
+X-Gm-Gg: ASbGncthSD0t+9EZXRlfgZcauzoZuIzom8bcs7RftCszjckhDrxWatQRrFKsLFltTlF
+	D0WG84eMXpaEVAVjGhelWKtUHY57TKai4EqM4cRw60Whwa4Wvynt/ZeCQ1LT64vWRpp1NwKRTzd
+	5ZCeVZTAj+2iO8rATK4ypOwFjslRfg6pYgbzCQXbd6/pTU06Ek8OvIL+kle7q4V8bJcWCCnPJ0l
+	+jOVnk5ECHW3iKoKkciZ+NHUMNl0BBPHGnVIXPruBNlZCeNDhYpj/QekHClrCT+DLS1KMEEitzK
+	QGnG+25FRcVxrNpCHWVJOMIwk7G4M0mO8uqHPoRuLZM8JEYwE54cCHEpHlTAA84l8+zoYdoyuMs
+	WttE8oF1HKUiMePs8f5pN+bWa3Xl2RcpoPBHf
+X-Google-Smtp-Source: AGHT+IGY14ia2me65kuJ99QlTwzbvVWtjr5P4YvNuETHJzp2CJSaNzYKob69gxUisdYJrZ2C1PD58w==
+X-Received: by 2002:a17:90b:51cd:b0:31e:f193:1822 with SMTP id 98e67ed59e1d1-32517745f63mr16115616a91.28.1756138280973;
+        Mon, 25 Aug 2025 09:11:20 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:c097:8aec:1f55:188e])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3254ae8ab5asm7439494a91.10.2025.08.25.09.11.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Aug 2025 09:11:20 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: krzk@kernel.org
+Cc: mgreer@animalcreek.com,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH] dt-bindings: nfc: ti,trf7970a: Restrict the ti,rx-gain-reduction-db values
+Date: Mon, 25 Aug 2025 13:10:59 -0300
+Message-Id: <20250825161059.496903-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 2/7] mfd: simple-mfd-i2c: add SpacemiT P1 support
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>, lee@kernel.org,
- lgirdwood@gmail.com, broonie@kernel.org, alexandre.belloni@bootlin.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: mat.jonczyk@o2.pl, dlan@gentoo.org, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- linux.amoon@gmail.com, troymitchell988@gmail.com, guodong@riscstar.com,
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250813024509.2325988-1-elder@riscstar.com>
- <20250813024509.2325988-3-elder@riscstar.com>
- <089D29348F246F2C+aJ6bPgJsp5GjhDs5@LT-Guozexi>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <089D29348F246F2C+aJ6bPgJsp5GjhDs5@LT-Guozexi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 8/14/25 9:28 PM, Troy Mitchell wrote:
-> Hi, Alex,
-> 
-> I did not find any accesses to the P1 shutdown or reboot registers here.
-> Does this mean that the current series does not support reboot or shutdown?
+Instead of stating the supported values for the ti,rx-gain-reduction-db
+property in free text format, add an enum entry that can help validating
+the devicetree files.
 
-Yes, that is correct.
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+ Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-> If so, do you have any plans to support this functionality?
-
-At this time I personally don't have any plans to add this, but
-it could be added later (by anyone).
-
-I actually attempted to do this initially, but gave up.  The PMIC
-is accessed via I2C, and I needed to implement a non-blocking
-version of the I2C register write operation.  I tried that, but
-then found that the shutdown or reboot still did not work reliably.
-As it was, this was more than I originally planned to do, so I just
-implemented the simple RTC operations instead.
-
-					-Alex
-
-> If I have misunderstood, please correct me.
-> 
-> Best regards,
-> Troy
-> 
-> 
-> On Tue, Aug 12, 2025 at 09:45:03PM -0500, Alex Elder wrote:
->> Enable support for the RTC and regulators found in the SpacemiT P1
->> PMIC.  Support is implemented by the simple I2C MFD driver.
->>
->> The P1 PMIC is normally implemented with the SpacemiT K1 SoC.  This
->> PMIC provides 6 buck converters and 12 LDO regulators.  It also
->> implements a switch, watchdog timer, real-time clock, and more.
->> Initially its RTC and regulators are supported.
->>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> ---
->>   drivers/mfd/Kconfig          | 11 +++++++++++
->>   drivers/mfd/simple-mfd-i2c.c | 18 ++++++++++++++++++
->>   2 files changed, 29 insertions(+)
->>
->> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
->> index 425c5fba6cb1e..4d6a5a3a27220 100644
->> --- a/drivers/mfd/Kconfig
->> +++ b/drivers/mfd/Kconfig
->> @@ -1238,6 +1238,17 @@ config MFD_QCOM_RPM
->>   	  Say M here if you want to include support for the Qualcomm RPM as a
->>   	  module. This will build a module called "qcom_rpm".
->>   
->> +config MFD_SPACEMIT_P1
->> +	tristate "SpacemiT P1 PMIC"
->> +	depends on I2C
->> +	select MFD_SIMPLE_MFD_I2C
->> +	help
->> +	  This option supports the I2C-based SpacemiT P1 PMIC, which
->> +	  contains regulators, a power switch, GPIOs, an RTC, and more.
->> +	  This option is selected when any of the supported sub-devices
->> +	  is configured.  The basic functionality is implemented by the
->> +	  simple MFD I2C driver.
->> +
->>   config MFD_SPMI_PMIC
->>   	tristate "Qualcomm SPMI PMICs"
->>   	depends on ARCH_QCOM || COMPILE_TEST
->> diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
->> index 22159913bea03..47ffaac035cae 100644
->> --- a/drivers/mfd/simple-mfd-i2c.c
->> +++ b/drivers/mfd/simple-mfd-i2c.c
->> @@ -93,12 +93,30 @@ static const struct simple_mfd_data maxim_mon_max77705 = {
->>   	.mfd_cell_size = ARRAY_SIZE(max77705_sensor_cells),
->>   };
->>   
->> +
->> +static const struct regmap_config spacemit_p1_regmap_config = {
->> +	.reg_bits = 8,
->> +	.val_bits = 8,
->> +};
->> +
->> +static const struct mfd_cell spacemit_p1_cells[] = {
->> +	{ .name = "spacemit-p1-regulator", },
->> +	{ .name = "spacemit-p1-rtc", },
->> +};
->> +
->> +static const struct simple_mfd_data spacemit_p1 = {
->> +	.regmap_config = &spacemit_p1_regmap_config,
->> +	.mfd_cell = spacemit_p1_cells,
->> +	.mfd_cell_size = ARRAY_SIZE(spacemit_p1_cells),
->> +};
->> +
->>   static const struct of_device_id simple_mfd_i2c_of_match[] = {
->>   	{ .compatible = "kontron,sl28cpld" },
->>   	{ .compatible = "silergy,sy7636a", .data = &silergy_sy7636a},
->>   	{ .compatible = "maxim,max5970", .data = &maxim_max5970},
->>   	{ .compatible = "maxim,max5978", .data = &maxim_max5970},
->>   	{ .compatible = "maxim,max77705-battery", .data = &maxim_mon_max77705},
->> +	{ .compatible = "spacemit,p1", .data = &spacemit_p1, },
->>   	{}
->>   };
->>   MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
->> -- 
->> 2.48.1
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
+diff --git a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+index 783a85b84893..7e96a625f0cf 100644
+--- a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
++++ b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+@@ -58,7 +58,8 @@ properties:
+   ti,rx-gain-reduction-db:
+     description: |
+       Specify an RX gain reduction to reduce antenna sensitivity with 5dB per
+-      increment, with a maximum of 15dB. Supported values: [0, 5, 10, 15].
++      increment, with a maximum of 15dB.
++    enum: [ 0, 5, 10, 15]
+ 
+ required:
+   - compatible
+-- 
+2.34.1
 
 
