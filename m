@@ -1,153 +1,118 @@
-Return-Path: <devicetree+bounces-208838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A16B33679
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 08:30:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 405FDB336B9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 08:50:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA85D3B6CB8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 06:30:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B9467A8C6D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 06:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E521C28312D;
-	Mon, 25 Aug 2025 06:30:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21DE228726A;
+	Mon, 25 Aug 2025 06:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="J/whjBZu";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="j6/LFKZV"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Uz8SK3iK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8121C831A;
-	Mon, 25 Aug 2025 06:30:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6440B2868BD
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 06:49:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756103429; cv=none; b=g38LYhlnOEEg8R70MBhErkVZBSFMryzC7soCsSLngHnARb/MCoOAGvXd3CMqxWp30EMIZyG+7FFPbENswtND9kXlCcrISooj7xQwbe7/13thyU/QjtjlAKBzhYAQVy8fn+vPkDCAUcuDJ4CfLlau+qLh/YRVQ/YF20VBej67xNk=
+	t=1756104586; cv=none; b=Op4y806oUcTgB6rznsaX73vUHODtCWvQCPpEH/xEd+mDyHy4OYs0LjpjZ5a8yiLaVuGHNDfvLyW3+hcQsysszMrroNdM71nKqkgD2ov2jjA2k/DC5CbqWynTlBy+j+s0jF9QU3XIskMWVv7H9Ebmc0cAqSNl2qIznQNbU2I2wW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756103429; c=relaxed/simple;
-	bh=0JpXSBDuq/9S1RKfbejNB6wgFT2GEwW1Y0Oq+7tcl/k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F4+9dk7pTYzCO6m68oYrGts+5ahMj8OVufH5dmn1ho/MrdX1rSkvcv1Xv1T9rlzEBnGxBzp+VqbuWZFpBHxYVuoSzO2Ia3+gmSlOPGEPOFCJdxs31z2dVQa2KPFrw0B/96ZhocP7cscc9gES0vTlviW/v5aesn/WA9gwzRn4xbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=J/whjBZu; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=j6/LFKZV reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1756103426; x=1787639426;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=hVClrZYqVmS8mvDO5nHVAP+mpH/d3telWA6Jj0IEuHM=;
-  b=J/whjBZuGBV/BxFpt3e7SRHqkN1Vu7pErNvlh+fwcbQnIdzmY3rcMp9G
-   FE7Yf70o+tWv+vMdm8w232nY9ckhi1acUk2UrcVQQfXaPQvgUMeoNm/nu
-   mX0na0+8rLzIpoC4l5VAFvqQCfjgFBjwpSRywShkuIAkcZuFdaaX08cIf
-   m34C1KiDmFcFEFCcVQYGvFMtdGEfUY8ATanljAWmEqKcthm+Jr+gHs9Wn
-   D4DV5eD7i2fnYyIhL5J0Hur/oku/wCD6DoytvOHSDYz2YPXNsn559fLZ4
-   yew0645g1AE1wnKYalBKeT+1OYCR4woN6oKURMisfXhA6IKa4ZDtch1Tr
-   w==;
-X-CSE-ConnectionGUID: 6VonDOvySGKuggn1bEsNYw==
-X-CSE-MsgGUID: 7vjS2wWkRxG2z5SHniuKPA==
-X-IronPort-AV: E=Sophos;i="6.17,312,1747692000"; 
-   d="scan'208";a="45884651"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 25 Aug 2025 08:30:22 +0200
-X-CheckPoint: {68AC02FE-1F-820F521C-C7779E56}
-X-MAIL-CPID: BD5D3ABEBB39283A27FFCA9035FF8422_4
-X-Control-Analysis: str=0001.0A002123.68AC0294.00AD,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E325316626E;
-	Mon, 25 Aug 2025 08:30:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1756103418;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=hVClrZYqVmS8mvDO5nHVAP+mpH/d3telWA6Jj0IEuHM=;
-	b=j6/LFKZVNymhmmyzEM42kZsPyDpEoBbmub53LLTzfsqHI5PH1DufScz1JZIyh2Z/cfFFHn
-	Ab3FBnxhDPy//LteoYOno/TM5HysHHRQrrfaDe0c8SWw6C8EjGq0Ndl+Omig7NxSVvXQOK
-	Vxnkzyt71oYgQPOMHK85GepACPF9Rdd3DuKvxwwwIPghUX07fs0EwFXoMehK6TWV2nJyUG
-	23XdJh5neKY99mdg+qRWBUI1uOScsm+6/+xOApnzxkX+LYTVeNeEr+5mPGwOCQx2olWD6/
-	bb9EQFFyVucvoE5BkKsZuJ1CoPfdY3WcndFGuc+9mX2NXcR8tYfsN4eoz1N+fA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- Frank Li <Frank.Li@nxp.com>, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v3 0/4] ARM: dts: clean up most ls1021a CHECK_DTB warning
-Date: Mon, 25 Aug 2025 08:30:17 +0200
-Message-ID: <6192530.lOV4Wx5bFT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250822-ls1021a_dts_warning-v3-0-6b611a2f23a4@nxp.com>
-References: <20250822-ls1021a_dts_warning-v3-0-6b611a2f23a4@nxp.com>
+	s=arc-20240116; t=1756104586; c=relaxed/simple;
+	bh=fGXjVR47xmXCnKHaXH1JnYbajwgQhftGMW1OIzrqk/M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=E65jcHWweIKywJ9j+xvlpsHzDcPpv5/M2jf5namcglWmRe1jLiljyeLOmtOVrtbKd9pudh7psNabrciSdAPeuvoIVGcV8E1s3FWr4/XhDsUxFNXcTIQtcILWGWBJJc0bsIEJlM3BSm+y49JhSvVukYlA14hef1hNMWnf8bri62M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Uz8SK3iK; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250825064935epoutp029ff1a21fd24bc347b26f387602d1c0cc~e786q_oTu0936909369epoutp02Q
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 06:49:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250825064935epoutp029ff1a21fd24bc347b26f387602d1c0cc~e786q_oTu0936909369epoutp02Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1756104575;
+	bh=BvCmax7ffb3cXbAcpyJB3pHTDlaFx7rbmUGg3s54BhU=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=Uz8SK3iKcH3r2j4BEnzA0IjAtagCHegDJNfSIMtrcsiUPHGm7IKSoG5mbdAIY8HQD
+	 7zOikww4xXtW1PpGqwAGgTLICJbTksrYKX+FGHIz5qpzfie0fPNObHpu8Z/H5Ot2GB
+	 OnV7Vhtp1d63OLe8eYU9fEHT+wFEZYTxLrCtPV2c=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250825064934epcas2p3d2a77215f5e4ca5413e5ae1529090e68~e786FGRi72272422724epcas2p3R;
+	Mon, 25 Aug 2025 06:49:34 +0000 (GMT)
+Received: from epcas2p3.samsung.com (unknown [182.195.36.99]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4c9Lxp2fslz6B9mF; Mon, 25 Aug
+	2025 06:49:34 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250825064933epcas2p37665fae32f51b04a43e5395d76759143~e784xdhu70900609006epcas2p3a;
+	Mon, 25 Aug 2025 06:49:33 +0000 (GMT)
+Received: from asswp60 (unknown [10.229.9.60]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250825064933epsmtip128240768c19a2d7ff622f42d9a52d82d~e784qqAbX0875908759epsmtip1f;
+	Mon, 25 Aug 2025 06:49:33 +0000 (GMT)
+From: Shin Son <shin.son@samsung.com>
+To: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
+	<krzk@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano
+	<daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
+	<lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Shin Son <shin.son@samsung.com>, linux-pm@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] Add exynosautov920 thermal support
+Date: Mon, 25 Aug 2025 15:49:26 +0900
+Message-ID: <20250825064929.188101-1-shin.son@samsung.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250825064933epcas2p37665fae32f51b04a43e5395d76759143
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250825064933epcas2p37665fae32f51b04a43e5395d76759143
+References: <CGME20250825064933epcas2p37665fae32f51b04a43e5395d76759143@epcas2p3.samsung.com>
 
-Hi Frank,
-Am Freitag, 22. August 2025, 16:49:57 CEST schrieb Frank Li:
-> clean up most ls1021a CHECK_DTB warning.
->=20
-> Old uboot check esdhc@1560000. The new uboot already switch to check both
-> esdhc@1560000 and mmc@1560000. So we can rename it now.
+This patch series adds support for exynosautov920, automotive-grade
+processor. Although the exynosautov920's TMU hardware differs slightly
+from exisiting platform, its read and calibration logic closely follow
+our legacy TMU interface. To prevent runtime and build time errors,
+it is kept as a single change rather than being split.
 
-Please be aware you are not the only vendor. Do you have a link for
-the corresponding change, so other can easily keep up?
+This change merges the new exynosautov920-specific register definitions and
+timing parameters into the exynos-tmu driver, ensuring consistent behavior
+across all Exynos series. All new code paths have been tested on a
+exynosautov920 board and verified to correctly read temperatures and
+emulate behavior.
 
-Best regards,
-Alexander
+Shin Son (3):
+  dt-bindings: thermal: samsung: Add tmu-name and sensor-index-ranges
+    properties
+  thermal: exynos_tmu: Support new hardware and update TMU interface
+  arm64: dts: exynosautov920: Add tmu hardware binding
 
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Changes in v3:
-> - rebase guoshawn/imx/dt tree. Remove patches that were already merged.
-> - Link to v2: https://lore.kernel.org/r/20250820-ls1021a_dts_warning-v2-0=
-=2D2e39648a32b7@nxp.com
->=20
-> Changes in v2:
-> - squash rename to flash patches
-> - remove duplicate patches already post in
-> https://lore.kernel.org/linux-devicetree/20250725061339.266125-1-alexande=
-r.stein@ew.tq-group.com/
-> - Link to v1: https://lore.kernel.org/r/20250818-ls1021a_dts_warning-v1-0=
-=2D7a79b6b4a0e2@nxp.com
->=20
-> ---
-> Frank Li (4):
->       ARM: dts: ls1021a: Rename node name nor to flash
->       ARM: dts: ls1021a: Rename 'mdio-mux-emi1' to 'mdio-mux@54'
->       ARM: dts: ls1021a: Rename esdhc@1560000 to mmc@1560000
->       ARM: dts: ls1021a-tsn: Remove redundant #address-cells for ethernet=
-=2Dswitch@1
->=20
->  arch/arm/boot/dts/nxp/ls/ls1021a-qds.dts | 8 ++++----
->  arch/arm/boot/dts/nxp/ls/ls1021a-tsn.dts | 2 --
->  arch/arm/boot/dts/nxp/ls/ls1021a-twr.dts | 2 +-
->  arch/arm/boot/dts/nxp/ls/ls1021a.dtsi    | 2 +-
->  4 files changed, 6 insertions(+), 8 deletions(-)
-> ---
-> base-commit: 75ad5f47c58aee30248d294a58c8ee52e079a8e3
-> change-id: 20250818-ls1021a_dts_warning-fff933bd83da
->=20
-> Best regards,
-> --
-> Frank Li <Frank.Li@nxp.com>
->=20
->=20
->=20
+ .../thermal/samsung,exynos-thermal.yaml       |  23 +-
+ .../boot/dts/exynos/exynosautov920-tmu.dtsi   |  92 +++++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  34 ++
+ drivers/thermal/samsung/exynos_tmu.c          | 336 ++++++++++++++++--
+ 4 files changed, 447 insertions(+), 38 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
 
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+-- 
+2.50.1
 
 
