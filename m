@@ -1,143 +1,154 @@
-Return-Path: <devicetree+bounces-208877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2CB9B337C9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 09:28:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1564BB337DA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 09:35:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3737163B64
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 07:28:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1854189F5C9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 07:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DA8828B7DB;
-	Mon, 25 Aug 2025 07:28:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99099295D90;
+	Mon, 25 Aug 2025 07:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hj5sfPcu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kkflcGIJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4DB22B8BD;
-	Mon, 25 Aug 2025 07:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260A2293C4E;
+	Mon, 25 Aug 2025 07:35:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756106921; cv=none; b=e18j9AvxVUFfcdFTs8pYH92c5aIyUTYb/T+WlmpjoRj0ne5TMhJ1d84EqOq06+PeP4BOw8oeE/LQKJCG4iX7D1eNKmjpuaMx1yNhDMKM27h7XAalIQJWtJRsA19+eHyV1NDckivpfwW882xNvFyGnJZylaqeGOPm+IWC6OtSmHk=
+	t=1756107305; cv=none; b=YAGg90CuYBejNVK9cZPtvhh1C6GIK8n+I0R/ZMvpPJ2wVjivZT1f8B9UiMJns5pidTEFqAsJfQi2S/EiBGhSqIzIuO59ZBB/4wvBzRFebYaQO1D2sn57qKB2QMFWD2edRow8f3/fnyvOo820yLwpwCtPA/3UMw8Zpa3BpYTKLdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756106921; c=relaxed/simple;
-	bh=OHl2l7fwcSBs2PnP0cy1ul4eRIrzpQHu81WxmlH2tY8=;
-	h=Content-Type:Date:Message-Id:Cc:From:To:Subject:References:
-	 In-Reply-To; b=r9Lzc736EwNJgav1ldvb2tJW1x3BxK8AsD5J/Bn1AJq9UABWBFDWZhFi6UGuOt7TV8jGBbSC5+4Lfr2G3lE86V1+fyKHMNeJ0w03axSvWpK1kxc1b+5GexAbpFEjyDl+tsi3Xq7ifhxwuE7aeWUTaRkLWdB8sdKaWv1ZoBJmSOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hj5sfPcu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C98EC4CEED;
-	Mon, 25 Aug 2025 07:28:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756106920;
-	bh=OHl2l7fwcSBs2PnP0cy1ul4eRIrzpQHu81WxmlH2tY8=;
-	h=Date:Cc:From:To:Subject:References:In-Reply-To:From;
-	b=Hj5sfPcu+0GZO8ZMxzNtpk2D3hDwuorOx/VaVXaSdlFYUg25YCacBi2RzIKDjLwc9
-	 OSxoJ3BfdjPKlCKrQQA5vb1iWAEobDoaM4vFbHlTGtIrr4o/C903UnkugX2HW65tej
-	 R1e3GzYuyURQoJdYO0llKI6gxDPC8MHc77Xw+AgADdLcO7Hv/RjckYy+t5u8PBuMpq
-	 GVSeBvBT5ikpD6pNNMSamc0FY9j/vF/UgYhUYISaU+2JejMF7xwI2SBZTGOVtybrlv
-	 BUQwQnMyz9fMU/9kCIjr8MZp3j7BZa1HPKMZ++pvva+t+UuIq3w7YPyj95aiJYicbB
-	 qzzCyqE4DRYXA==
-Content-Type: multipart/signed;
- boundary=fd4931382990d6306de8142488bafb3cdc9bb19db8a764e4efedf063a500;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Mon, 25 Aug 2025 09:28:36 +0200
-Message-Id: <DCBBY4827XAZ.11UHI6NWP7RT0@kernel.org>
-Cc: "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo"
- <kristo@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Jean Delvare"
- <jdelvare@suse.com>, "Guenter Roeck" <linux@roeck-us.net>, "Lee Jones"
- <lee@kernel.org>, "Srinivas Kandagatla" <srini@kernel.org>, "Wim Van
- Sebroeck" <wim@linux-watchdog.org>, <linux-arm-kernel@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-hwmon@vger.kernel.org>, <linux-watchdog@vger.kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Nishanth Menon" <nm@ti.com>
-Subject: Re: [PATCH v1 0/7] Initial Kontron SMARC-sAM67 support
-X-Mailer: aerc 0.16.0
-References: <20250822131531.1366437-1-mwalle@kernel.org>
- <20250822152313.vjzjtzik2q5ek5kq@sadly>
-In-Reply-To: <20250822152313.vjzjtzik2q5ek5kq@sadly>
+	s=arc-20240116; t=1756107305; c=relaxed/simple;
+	bh=8n8s0vL0czwCbBZJyb4R3SyME9JrMHVOESs2i7aHrl4=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fWpEF1VGlS9+V83dMEG0jgWF07evKLRdzFi15QLQH3IsrszoYCLlkckqw+cl7/idUyUMlaoFkI1cLtnbAiH9WcZ+UdOXt4pCvUxvu3NtVv6WxBBDyZPillhBUh3FqdUiaY3eky7jGGYrgiFNKHUjGar1IvMROFjGu/7DijcCGXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kkflcGIJ; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-b49d6f8f347so1206562a12.0;
+        Mon, 25 Aug 2025 00:35:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756107303; x=1756712103; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Lvp5MBsT7YhMVkgGMIsz2MCxt+BzXm3dU8zTzzspkLs=;
+        b=kkflcGIJ+cc5E0OOlI/iNYe6horzrNxxwhvxCmfT0TZGV9/ZxlJuZbJ05Gh1AdB8wP
+         4NiQ7oKLzUFdTsGbfnBL+Zd8mJAqKzZX2QJ8Q4EkYJJRdADUrP8PPv01ELYy3G78enEt
+         TGcMQoDSCqoNxzy22My0u8Fxw7KJgVtCq831jxObhePMYuAx2y9uCQkOQ969ICNs6E/d
+         +5JT4zhMev44E1yBd2AgmFH5XucGkTb8/4tAVYRm1kbZJdey/lsWhFNL44ncDK0CThLp
+         gOckbpI20merESoD5rS3LBQc/5aZpvimRekX8debwTCcZ2shRqhpvVmKFqVeT7jQz/L5
+         oBFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756107303; x=1756712103;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Lvp5MBsT7YhMVkgGMIsz2MCxt+BzXm3dU8zTzzspkLs=;
+        b=xJhvDnH91C+4AKNqkGD+veQWvQkruCZ7UBZ98Pai4C0eMaGB/vpmH67y2jFNlJAPbB
+         Ay/Tv3bxWbqsQi0jBrwFLBXBSP2Hbe7Vn433ajO1x7jyAu0WDRI+l2eEh8bxMcpAuHyq
+         MCBcn6RQxyBOtl3NVblUKrQDQVsfAzfVtIt4j2yfKHy6al6QKEjniGshE6z+S74plg/M
+         Xtvvi+JoA3PHD1pylU9MnamMUKHL1irbIJjmAhw8y9+SkifVe9uaTaAmKrFp8Ic9Zxl7
+         ry0eSSGj2oPas4ujOk4CRAlRmIDPeCLhWrySW6BngFRteCskeySqeeGtQDExwg+wjr+s
+         jJZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXQwPTld5h2jbqEX5fnUOu9SgB+vsMBoL1XdW34PkFJiRG29869WCXk8USKhzDKncTt1O2QKxQUiPPLRHTz@vger.kernel.org, AJvYcCXhxDeibSI4bMqFU0ENBBfskc4NfrcaJG3VY8G6W9nBC9F5DN7UNvip9BeQafahVE7Tq+nLh+TjhAzw@vger.kernel.org
+X-Gm-Message-State: AOJu0YxseaDCtz238Z+Tsrwir19H5y9GUiad8RImybqSQpAxU5mPoZSO
+	imPVUTnfWVV2ZFJyIG4hoW2CZFEYbt8kTRuon/ZW2XWjrp1ZwV0WGscV
+X-Gm-Gg: ASbGncutNTPilHJLxKuYe4etWEMMIfkHkLmA5lpnxiDojZkT1gaw0jgOkHyNp6dHND0
+	tXl8SiWhvbDSHpRDTg3nVDE4MCpx3fRCRblR9qeTdDP4Mp2jFKN5sVCq+cKGiefYHiTxG4DRWmY
+	0V8fJLYpO2IX9jfGmbrkbQKdPrC4vvLQGTsAnmx7eSyB/Ct8DXk9u21jl7spwyhzgl5uLCEIMSY
+	uVos5dBpt1UkCfAXp/HzseGPauAZdzttpVN3nM/m8RvFpeEF396OxzU+jOvD/Q4zSiwzqtiK+NE
+	Jc4jdYUHiJcl9WAP/Nk2Acu8P5Oh1sbnXIAyGDxppEDRlL97LOSMHRa8ya2HqdehCfubaZqDGP7
+	lJFN/csLilRTf9kE2jVN35Q==
+X-Google-Smtp-Source: AGHT+IEsuMQF9X71mGIcNScDFx9goLQ7xmHtthjhYeAIT6/QFur1P7fK5isGOF+ZbDuvxs+fIRAQtw==
+X-Received: by 2002:a17:903:238e:b0:240:50ef:2f00 with SMTP id d9443c01a7336-2462eea80fbmr175765105ad.26.1756107303209;
+        Mon, 25 Aug 2025 00:35:03 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-24668880368sm59546745ad.109.2025.08.25.00.35.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Aug 2025 00:35:02 -0700 (PDT)
+Date: Mon, 25 Aug 2025 15:33:57 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Chen Wang <unicornxw@gmail.com>, u.kleine-koenig@baylibre.com, 
+	aou@eecs.berkeley.edu, unicorn_wang@outlook.com, conor+dt@kernel.org, 
+	inochiama@gmail.com, krzk+dt@kernel.org, looong.bin@gmail.com, palmer@dabbelt.com, 
+	paul.walmsley@sifive.com, robh@kernel.org, tglx@linutronix.de, sycamoremoon376@gmail.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	sophgo@lists.linux.dev
+Subject: Re: [PATCH 1/4] irqchip/sg2042-msi: Improve the logic of obtaining
+ msi-ranges parameters
+Message-ID: <n7na4pl6xfhwdk3xq3ulwrxm5d32kdub44otuk7avwjgb32sjz@erqbkyzhohqv>
+References: <cover.1756103516.git.unicorn_wang@outlook.com>
+ <adb383f0f4a3cb588448a5a708fb7a907d5e9403.1756103516.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <adb383f0f4a3cb588448a5a708fb7a907d5e9403.1756103516.git.unicorn_wang@outlook.com>
 
---fd4931382990d6306de8142488bafb3cdc9bb19db8a764e4efedf063a500
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Mon, Aug 25, 2025 at 02:55:03PM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+> 
+> Get the arguments of msi-ranges by specifying nargs directly instead of
+> using nargs_prop. This only takes one step, unlike the previous two
+> steps to get the values of all the arguments.
+> 
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> ---
+>  drivers/irqchip/irq-sg2042-msi.c | 14 +++-----------
+>  1 file changed, 3 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-sg2042-msi.c b/drivers/irqchip/irq-sg2042-msi.c
+> index 3b13dbbfdb51..5249afd93b4a 100644
+> --- a/drivers/irqchip/irq-sg2042-msi.c
+> +++ b/drivers/irqchip/irq-sg2042-msi.c
+> @@ -276,17 +276,9 @@ static int sg2042_msi_probe(struct platform_device *pdev)
+>  	data->doorbell_addr = res->start;
+>  
 
-On Fri Aug 22, 2025 at 5:23 PM CEST, Nishanth Menon wrote:
-> On 15:15-20250822, Michael Walle wrote:
-> > Now that the PMIC support is there, we can finally, upstream the
-> > support for this board. Besides the usual device tree, this
-> > patchset contains the support for the on-board house keeping MCU. It
-> > make extensive reuse of the drivers for the former SMARC-sAL28
-> > board. Besides different hwmon sensors, all the dt binding patches
-> > will just add a board specific compatible (in addition to the old
-> > sl28 compatible) to make any future board specific quirks possible.
-> >=20
-> > I'm aware that there is a patch [1] which moves the sl28cpld MFD
-> > schema to a different directory. Once that patch is merged, I'll
-> > repost this series. But I already want to get some early feedback.
-> >=20
-> > [1] https://lore.kernel.org/r/20250822075712.27314-2-krzysztof.kozlowsk=
-i@linaro.org/
-> >=20
-> > Michael Walle (7):
-> >   dt-bindings: arm: ti: Add bindings for Kontron SMARC-sAM67 module
-> >   dt-bindings: mfd: sl28cpld: add sa67mcu compatible
-> >   dt-bindings: hwmon: sl28cpld: add sa67mcu compatible
-> >   dt-bindings: watchdog: add SMARC-sAM67 support
-> >   dt-bindings: nvmem: sl28cpld: add sa67mcu compatible
-> >   hwmon: sl28cpld: add SMARC-sAM67 support
-> >   arm64: dts: ti: Add support for Kontron SMARC-sAM67
->
-> Since this goes through multiple maintainers, may I suggest the
-> following strategy?
->
-> for this window:
-> * send dts and board binding changes dropping the nodes that are yet to
->  be upstream
-> * send the compatible changes to each of the maintainers
->
-> Next window:
-> * add the nodes based on acceptance of the driver bindings
->
-> This removes multiple maintainers needing to give me immutable tags etc.
->
-> What do you think?
+>  	ret = fwnode_property_get_reference_args(dev_fwnode(dev), "msi-ranges",
+> -						 "#interrupt-cells", 0, 0, &args);
+> +						 NULL, 3, 0, &args);
 
-Not sure, if this needs an IB anyway or if the DTS can be pulled by
-the corresponding SoC subsys and the DT binding can go through
-another tree in the same cycle. If not, I can certainly split the
-device tree (to my knowledge, it was said that it should be a
-complete description :).
+Why using a fixed range here? I see no improvement. I think using #interrupt-cells
+is just OK.
 
-I'd expect that Lee is picking up the first 6 patches after they got
-an ACK. Please correct me if I'm wrong, Lee.
+Regards,
+Inochi
 
-In any case, I'd give this v1 some time to get some feedback on the
-patches.
-
--michael
-
---fd4931382990d6306de8142488bafb3cdc9bb19db8a764e4efedf063a500
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaKwQpRIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/hMEAF/Vhvuizfo2QflfI6C2/jHtRw3dLRPlo28
-HIDgT2LP6cbtUavEPx2nq1ESho4HXf7EAYCPD4RX3DAZ96VoKuiMPWtrhByKmEo8
-LvQhb/8169l6w+5b/5Suq4WzzVE4BArZHes=
-=DIAl
------END PGP SIGNATURE-----
-
---fd4931382990d6306de8142488bafb3cdc9bb19db8a764e4efedf063a500--
+>  	if (ret) {
+> -		dev_err(dev, "Unable to parse MSI vec base\n");
+> -		return ret;
+> -	}
+> -	fwnode_handle_put(args.fwnode);
+> -
+> -	ret = fwnode_property_get_reference_args(dev_fwnode(dev), "msi-ranges", NULL,
+> -						 args.nargs + 1, 0, &args);
+> -	if (ret) {
+> -		dev_err(dev, "Unable to parse MSI vec number\n");
+> +		dev_err(dev, "Unable to parse MSI Ranges\n");
+>  		return ret;
+>  	}
+>  
+> @@ -298,7 +290,7 @@ static int sg2042_msi_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	data->irq_first = (u32)args.args[0];
+> -	data->num_irqs = (u32)args.args[args.nargs - 1];
+> +	data->num_irqs = (u32)args.args[2];
+>  
+>  	mutex_init(&data->msi_map_lock);
+>  
+> -- 
+> 2.34.1
+> 
 
