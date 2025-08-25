@@ -1,69 +1,60 @@
-Return-Path: <devicetree+bounces-209078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E681B34738
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 18:24:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E991B3474B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 18:26:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 167DB5E7381
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:23:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 486C716CC16
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 16:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543673002BE;
-	Mon, 25 Aug 2025 16:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CB72FFDF2;
+	Mon, 25 Aug 2025 16:26:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cuZQedcg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="My3XKBs3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F23111713;
-	Mon, 25 Aug 2025 16:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED3E2FB62A;
+	Mon, 25 Aug 2025 16:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756139023; cv=none; b=fZeN5KU9FQHQdGtKQd4z+41HPsrzinnRfDZTP3aCJnoeIpcdAyXaAyijMfXtQwOwcMIJrxXcQgwU/0f6av5w/9AtlmBjmStRukJfkL+kWblRt0a2CkidDugW/FaxWQERujq1MjxJpSNQfXYS4n0N267ZbL8HW6n3p1cw8eA6nV8=
+	t=1756139159; cv=none; b=dEn8xRQdNoJtsqMA2qp4eVdgMH7b50s9C9nzQAQFCdSKipdiCBDOhv7ETSjKTmXQUERBICXgUYYU8J265sobEQdPhDrpjn4XNlPeL+Z0WNZOTBkNgk3fBxnjKpuwtBPZHC5jfD8qWoHMzaMtKjaW/f4Gb1iwNmUz5zDhk0cC9f8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756139023; c=relaxed/simple;
-	bh=KgpIyi6RAg5MAXdti7zU0f2hj8RJXYvhBuIqG1e+0CE=;
+	s=arc-20240116; t=1756139159; c=relaxed/simple;
+	bh=J2gyzcKTE9GWvybDM3VRwRpqKIbNxUNphgPALDmkhfM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S7qDhJcZIBfVPzXSu/dG60hK0wJ7SLrorqbmvcFiunQkGyNdyCB3EUCvsYvHiXydfj+hjbnhF02Wre3rZrWrWG6GIfZNmvmOwAHN17y1fehoZnYSmarbbKURxkHGm5xB9C4A+Kkflvr6d6eVzQ6/8nvO+THLwoefrQ/SBCVspNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cuZQedcg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09423C4CEED;
-	Mon, 25 Aug 2025 16:23:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tx10QM7H5dILJRVZ8fFu6a4R1jzjsOCSRXxzlKiGHZyfv6YdivWoohkN2d0qhWAFMuyuCZs5bkzZhmkWp/LtVGJRhVORN+zd1SQZVRJJ1rcUFr80Mb8dAqChQBJckE323XeY+OII1OKC5eUMazqviSSRQDfqxkav5UrFIKnKa6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=My3XKBs3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E43AC4CEED;
+	Mon, 25 Aug 2025 16:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756139022;
-	bh=KgpIyi6RAg5MAXdti7zU0f2hj8RJXYvhBuIqG1e+0CE=;
+	s=k20201202; t=1756139159;
+	bh=J2gyzcKTE9GWvybDM3VRwRpqKIbNxUNphgPALDmkhfM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cuZQedcg1Zp25ehlMzicSD+8IdnsfbE4M/4qDW+GBk9ac9z4eDU7QA6R5eTSxBxbe
-	 IFjDzU/5VAjaY7v9KqbVmjsEbZWtdaSccRasiAxWh7JdLtkj+ykHU+0OaB9UTDfEgW
-	 8v3PFGD7ukTKEdGiWSqbat61DdJsQ9rU/FEmZLPNkKxQDhf/heHdagLNykxupDCCSm
-	 3lu7uf5m1eR2ji0UUJezLjeh0pDx9h8qfk1AU2OFNwyw+HTJPTewAnEGi434B1V6Br
-	 p9w1zuysufJvFxZwXfaIKGYzFCI2xiznEsqSR8PVd5faWmyVnMEqXjwtewDrGZOMx5
-	 kCya4XmM0eXwQ==
-Date: Mon, 25 Aug 2025 17:23:34 +0100
+	b=My3XKBs3+VVGigaoBXzAeoDS0/NPwxsVCWrVRF3m6R74kwo1y6l+1LH6Yff58avBS
+	 Ywq9sGjcUaZOcAH1NZ7fwinfnW2lDrmKdHdEOHIz2bWXUZBZa7LJ82KTLATdQwG8aT
+	 Bw+bkBbEG6cOs0WmPZLyvW/o/RDH7xbicdQfcL9EuRqF35FeGkX1ZP74QPyadM7x9t
+	 2cImsZ2PbXfitV5+OOoenb06Ilz2WkbQICp/yqmXEJGh2bZvrywtTOBFe1h2LYB1pG
+	 uBOnjj2g4QfTHS70weAlJTRZ+zQ+UC9RRewqihlj89RiNn602HB7seyKF9o/jVAhZd
+	 LwBgGzfPGWnAA==
+Date: Mon, 25 Aug 2025 17:25:55 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, anup@brainfault.org, pbonzini@redhat.com,
-	shuah@kernel.org, cyan.yang@sifive.com, cleger@rivosinc.com,
-	charlie@rivosinc.com, cuiyunhui@bytedance.com,
-	samuel.holland@sifive.com, namcao@linutronix.de, jesse@rivosinc.com,
-	inochiama@gmail.com, yongxuan.wang@sifive.com,
-	ajones@ventanamicro.com, parri.andrea@gmail.com,
-	mikisabate@gmail.com, yikming2222@gmail.com,
-	thomas.weissschuh@linutronix.de, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v1 RESEND 1/5] dt-bidings: riscv: add Zilsd and Zclsd
- extension descriptions
-Message-ID: <20250825-clang-husband-bcb5defdb5f3@spud>
-References: <20250821140131.225756-1-pincheng.plct@isrc.iscas.ac.cn>
- <20250821140131.225756-2-pincheng.plct@isrc.iscas.ac.cn>
- <20250822-purge-doubling-f38988284db1@spud>
- <a2cc4cbe-82ca-4a89-b623-73721a1f3baf@isrc.iscas.ac.cn>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: E Shattow <e@freeshell.de>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Minda Chen <minda.chen@starfivetech.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: memory-controllers: add StarFive
+ JH7110 SoC DMC
+Message-ID: <20250825-deniable-quizzical-1d829756fff4@spud>
+References: <20250823100159.203925-1-e@freeshell.de>
+ <20250823100159.203925-2-e@freeshell.de>
+ <20250824-new-messy-raccoon-1c26b7@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,136 +62,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="przAQh4lUz2Eomq/"
+	protocol="application/pgp-signature"; boundary="XpSz1rGszf+u1S0O"
 Content-Disposition: inline
-In-Reply-To: <a2cc4cbe-82ca-4a89-b623-73721a1f3baf@isrc.iscas.ac.cn>
+In-Reply-To: <20250824-new-messy-raccoon-1c26b7@kuoka>
 
 
---przAQh4lUz2Eomq/
+--XpSz1rGszf+u1S0O
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 25, 2025 at 11:26:13PM +0800, Pincheng Wang wrote:
-> On 2025/8/23 0:33, Conor Dooley wrote:
-> > On Thu, Aug 21, 2025 at 10:01:27PM +0800, Pincheng Wang wrote:
-> > > Add descriptions for the Zilsd (Load/Store pair instructions) and
-> > > Zclsd (Compressed Load/Store pair instructions) ISA extensions
-> > > which were ratified in commit f88abf1 ("Integrating load/store
-> > > pair for RV32 with the main manual") of the riscv-isa-manual.
-> > >=20
-> > > Signed-off-by: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
-> > > ---
-> > >   .../devicetree/bindings/riscv/extensions.yaml | 39 ++++++++++++++++=
-+++
-> > >   1 file changed, 39 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml =
-b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > index ede6a58ccf53..d72ffe8f6fa7 100644
-> > > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > @@ -366,6 +366,20 @@ properties:
-> > >               guarantee on LR/SC sequences, as ratified in commit b1d=
-806605f87
-> > >               ("Updated to ratified state.") of the riscv profiles sp=
-ecification.
-> > > +        - const: zilsd
-> > > +          description:
-> > > +            The standard Zilsd extension which provides support for =
-aligned
-> > > +            register-pair load and store operations in 32-bit instru=
-ction
-> > > +            encodings, as ratified in commit f88abf1 ("Integrating
-> > > +            load/store pair for RV32 with the main manual") of riscv=
--isa-manual.
-> > > +
-> > > +        - const: zclsd
-> > > +          description:
-> > > +            The Zclsd extension implements the compressed (16-bit) v=
-ersion of the
-> > > +            Load/Store Pair for RV32. As with Zilsd, this extension =
-was ratified
-> > > +            in commit f88abf1 ("Integrating load/store pair for RV32=
- with the
-> > > +            main manual") of riscv-isa-manual.
-> > > +
-> > >           - const: zk
-> > >             description:
-> > >               The standard Zk Standard Scalar cryptography extension =
-as ratified
-> > > @@ -847,6 +861,16 @@ properties:
-> > >               anyOf:
-> > >                 - const: v
-> > >                 - const: zve32x
-> > > +      # Zclsd depends on Zilsd and Zca
-> > > +      - if:
-> > > +          contains:
-> > > +            anyOf:
-> > > +              - const: zclsd
-> > > +        then:
-> > > +          contains:
-> > > +            anyOf:
-> > > +              - const: zilsd
-> > > +              - const: zca
-> > >   allOf:
-> > >     # Zcf extension does not exist on rv64
-> > > @@ -864,6 +888,21 @@ allOf:
-> > >             not:
-> > >               contains:
-> > >                 const: zcf
-> > > +  # Zilsd extension does not exist on rv64
-> > > +  - if:
-> > > +      properties:
+On Sun, Aug 24, 2025 at 11:25:08AM +0200, Krzysztof Kozlowski wrote:
+> On Sat, Aug 23, 2025 at 03:01:41AM -0700, E Shattow wrote:
+> > Describe JH7110 SoC DDR external memory interface.
 > >=20
-> > > +        riscv,isa-extensions:
-> > > +          contains:
-> > > +            const: zilsd
-> >=20
-> > This syntax is odd, it shouldn't be required to have zilsd in here and
-> > in the then. Did you copy this from Zcf or come up with it yourself
-> > because it didn't work otherwise?
-> >=20
+> > Signed-off-by: E Shattow <e@freeshell.de>
+> > ---
+> >  .../starfive,jh7110-dmc.yaml                  | 74 +++++++++++++++++++
+> >  1 file changed, 74 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/memory-controller=
+s/starfive,jh7110-dmc.yaml
 >=20
-> Yes, I did model this after the existing Zcf constraint in the same file.
-> The structure is nearly identical: cheking for presence of the extension =
-and
-> rv64i, then forbidding it in the "then" branch.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >=20
-> I've tested confirmed that removing the "contains: const: zilsd" from the
-> "if" condition still correctly enforces that zilsd must not appear when
-> rv64i is present. The "then" clause with "not: contains" is sufficient.
->=20
-> Given that the validation behavior is equivalent, but the logic is cleaner
-> and less redundant without the extra "contains", would you recommend
-> updating it to the simpler form:
->=20
->     - if:
->         properties:
->           riscv,isa-base:
->             contains:
->               const: rv64i
->       then:
->         properties:
->           riscv,isa-extensions:
->             not:
->               contains:
->                 const: zilsd
->=20
-> If so, I'll update it in the next revision.
+> There is no memory controllers driver change, so I am fine if this goes
+> via SoC/DTS tree.  If you want me to pick it up, please ping on IRC.
 
-Yeah, please reduce it to this form.
+That's cool, I will take it with the dts changes. Thanks.
 
---przAQh4lUz2Eomq/
+--XpSz1rGszf+u1S0O
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKyOBgAKCRB4tDGHoIJi
-0tBmAPwITOW6B962WAfPzymCU4z9xZ51B5BtYVuDFIxypRRcogD/bJcgHnZ/rI15
-6Mdyko1A6Tb+pZvgrrtqkICniCrQogc=
-=3Dwx
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKyOkwAKCRB4tDGHoIJi
+0mVlAQDjFslnNMpDhJCuj60iIG8Y0qWw3himg2L42FsoPtlY8AEAwZ3JJLRx5z9H
+v+mhaUKVytggyS5On5DkHtM7QaQe6Ao=
+=Ff6V
 -----END PGP SIGNATURE-----
 
---przAQh4lUz2Eomq/--
+--XpSz1rGszf+u1S0O--
 
