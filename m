@@ -1,264 +1,174 @@
-Return-Path: <devicetree+bounces-208842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C85CB336C0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 08:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 651ABB336C6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 08:52:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FD1717794D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 06:50:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CCC917865F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 06:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CABCF2877EA;
-	Mon, 25 Aug 2025 06:49:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C096285078;
+	Mon, 25 Aug 2025 06:52:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Rd44spCk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GnBrQKDk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA4E2868B3
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 06:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E35541F19A;
+	Mon, 25 Aug 2025 06:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756104587; cv=none; b=MYTd0lAUC1pB3eJy88w9jU+/atjngTDQ2Ptedk5i2jGKvHUuv6XDTchk/3CjaIGicdyhhQyR9FFZ57jmPcEBL5jYZWU15cwCyNuX3riUgPCdX5CGmx/Bk2Sod9dl6RK2ZM4XtcFb1ShsOW5IdE5PfoHucCC4HT2bGz8yeN+9jWo=
+	t=1756104770; cv=none; b=BDhAkYaBBShRqi0zK1vNQQzQkAnIANrJYW1xHATCq7nc4nAnNIxUB3AAV3Ec2c8OWxSIjPQZ+CbRMdHxUaGDudPq2VAznBVJ7Q+c9Mfsw+6tT3PL5FEfSy0sywNcXmp+3nDFgkEItYeS9LBum2tSyPtITSyuzu/4FQPGloSQFC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756104587; c=relaxed/simple;
-	bh=5irpsby5GozMjd+4UBYCgTbWkSp/nS3TVNsGoSRqTUc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=U38In3Q6Br5l2Nm4P9UEv+uSXHgfoFVChv9Yqrmjfqe2LYIIVlESGnOlqnforz99+gIg4FPmiQ1zO9zYjWn+rMcHF1kCPs9bLFQ9ZTmyoU+RMEAFai2xqeJGIuBZIevjNB5WOJyCJJM5Kqcp8ftml+mlfPEWreKBMQUsPDf/OQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Rd44spCk; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250825064935epoutp03a870125064d7305917ddfe103002f657~e7861HbI42063520635epoutp03Z
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 06:49:35 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250825064935epoutp03a870125064d7305917ddfe103002f657~e7861HbI42063520635epoutp03Z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756104575;
-	bh=4rYafmcxZpihj0V9KbWDaQSBDKY7QVxXAz73yYLOt/o=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Rd44spCkNmgIEgk1nsAcOoQHdxwLJXZ577xFPTRvJuPMwYB0m4vdvo92IRVu3dOZm
-	 IpCbAPYRUjktwWrq6gSXnI5DZO77PfUMnC465Ue8lJS+1Jrv1dJeEVpnQG0GwE4k1g
-	 D7IC46ff/nTRCYCnDQW2sch3TYbdt5503/8SXTlk=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250825064935epcas2p151228bc8741eba946fd87ce0eef9e97a~e786SsPxD0726907269epcas2p1E;
-	Mon, 25 Aug 2025 06:49:35 +0000 (GMT)
-Received: from epcas2p3.samsung.com (unknown [182.195.36.97]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4c9Lxp4HQGz2SSKZ; Mon, 25 Aug
-	2025 06:49:34 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250825064933epcas2p40a7c491366097f90add675bc36822ef9~e785EdrSo2497024970epcas2p4r;
-	Mon, 25 Aug 2025 06:49:33 +0000 (GMT)
-Received: from asswp60 (unknown [10.229.9.60]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250825064933epsmtip1b479a02478b7997e16d4df8e6bf8e5de~e784-8SKK1035610356epsmtip1q;
-	Mon, 25 Aug 2025 06:49:33 +0000 (GMT)
-From: Shin Son <shin.son@samsung.com>
-To: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
-	<krzk@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano
-	<daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
-	<lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Shin Son <shin.son@samsung.com>, linux-pm@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: exynosautov920: Add tmu hardware binding
-Date: Mon, 25 Aug 2025 15:49:29 +0900
-Message-ID: <20250825064929.188101-4-shin.son@samsung.com>
+	s=arc-20240116; t=1756104770; c=relaxed/simple;
+	bh=K2v7R1fnPC1qc+/kMHnDAkvIsRAF1Md1L+qAzrjsaXw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uJ2O0+RK2S8CHs3RiSMTdCesjFlHdoduEBNLK5p4sraLL7sk/m/e2AkzE4m12srjs4Z3nBqAML/P9Pmdw9TG0GBJLYwniRnmWqojYynA8Qwe4Q7whuNjKn6S4RFymK3i7HXSV5Q2sMUveZd+S8gk0SGLCavzHPpHYuqyWYhHNXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GnBrQKDk; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-770305d333aso2302863b3a.0;
+        Sun, 24 Aug 2025 23:52:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756104768; x=1756709568; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nPSWsDoAmy8PQ775XW5/42G5LT1wuElB0TP9BhSo2b4=;
+        b=GnBrQKDknZ4pX5LLI5IOrVowM7sF/cwld99AnIyU/PDTOO61IVozhE6MtJrgqvuHOA
+         0T5H5X2yjuPkUcBXv7rJLv5g6O6GG2gBj+yrZ/F6WZyLDMgEHoM1XQxmVUyqaFe5U4+X
+         ZlJYIayLyNYLbLM/TjFrNnzoxmEAahs0P+zBCaEH5tOTukxoJSccYFf/9QPTVep/ITIY
+         q9Ww1YpdDpd3ijuIlFrn5aDEvYBGzVuc0MGQG6ryjTe0gt/ljGDU8K6foBTN+LQnVF4w
+         ypByChB15Mwzmjao4TuF+URiCMBertVwz6SR4zLFSVSJNdadLAPdPnqzK4z1ZjgvM42d
+         hRQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756104768; x=1756709568;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nPSWsDoAmy8PQ775XW5/42G5LT1wuElB0TP9BhSo2b4=;
+        b=NCJuFylK7gscwSAxUZhUh+FoWQyd/zXxXe0xtmjQB0ykcAwOF3W8YGCLoLlvPLCZUD
+         oq0WM+ujnI901vA/GHbcotAMST5wW3SkZa1NYTmZB1vCOjdejZ8dLcQozrbtDzsEFZiq
+         8SHefvgcNjYKUlRyIRx0XPwiwKyuplo1d4B2a/z22yjsZa3C1rf2FODCTyLKreNssVgS
+         5j6hnLMOdylXdUKCbhKZTHfLV/84nZli3+tVbtPJJjZzWHB/AkDAgwHAHvYav1oDy/RV
+         vRjRM+xTwXS5BGN/Og7d/0ZK3q2vKF24QB/vjjzRs5jV8Jsd3awPpbld95RDduwRZhqV
+         71RQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVnSNIiDS/NjTw8ShPuy8nk3miXsKiUx4R/+MrBymamfINsMg3MMH9Y5IheWslxx2ZRCwugj5Z6uwtageLc@vger.kernel.org, AJvYcCW5MIQeZWFoUbsYoJsxIj6/36lr3QcdIuPUKFox1rsj0TfWZdXnsLa/g4NdSuQqYax4tNEkbZrKsnQw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3R7xMT5oMMZLSxtB/QsNWImcvtmjhFetvuxnVkAesLSo0tXQv
+	WweJsfkAnG/SUXNWbRQmVpDiSXzNSSBPGuG8W4heZeKHGKsirvQrYj6G
+X-Gm-Gg: ASbGncuQ//x5Teue0VLpubmU03n8Q0QzwHqvwKgGY2dPo6lHqSgJZveFDJ4DBBNb3DP
+	BO3f5l2nJzsFBANpa0My08njbjWzsA+JJFYQt1jBJd1hKGHOQ3UGo5M2wR8RZfHAMqFwg8ZO4jO
+	MGJYNEHgPiWO+Rov9254XYRgSB0Az0vGqPh+ZSie0lq7sU4z+1lOHP4M1u3/NVxFKhnQvRFLyeI
+	n4vhvWAVBKRfLF7nDZ7xLBTK/6pYqfqN1RuEvl8gl1Qb4AFuxdowdzdfVIPQXIsA3xdBtkaXR1W
+	r8FgnKpc9pLRxjrtdSOGK7uLkLFpeNUmQE+84Bz4SUlLKZSut8LiePEs90tW1a++kXMcCNmNeTn
+	blqdH2i/chnpIfoA6vFby
+X-Google-Smtp-Source: AGHT+IH0PqNjC6PoFYiYSzlQkFiRl1br9OBwRTA+P1HjLnfy+GnCt9CSGYrubD44ufk3hcYJLcLUDw==
+X-Received: by 2002:a05:6a21:33a0:b0:240:1a3a:d7ed with SMTP id adf61e73a8af0-24340d59ba3mr14443254637.41.1756104768135;
+        Sun, 24 Aug 2025 23:52:48 -0700 (PDT)
+Received: from rockpi-5b ([45.112.0.216])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-770401ecc51sm6604072b3a.75.2025.08.24.23.52.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 24 Aug 2025 23:52:46 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: Anand Moon <linux.amoon@gmail.com>
+Subject: [PATCH v2 00/11] Add cache information to Amlogic SoC
+Date: Mon, 25 Aug 2025 12:21:40 +0530
+Message-ID: <20250825065240.22577-1-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250825064929.188101-1-shin.son@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250825064933epcas2p40a7c491366097f90add675bc36822ef9
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250825064933epcas2p40a7c491366097f90add675bc36822ef9
-References: <20250825064929.188101-1-shin.son@samsung.com>
-	<CGME20250825064933epcas2p40a7c491366097f90add675bc36822ef9@epcas2p4.samsung.com>
 
-Create a new exynosautov920-tmu.dtsi describing new TMU hardware
-and include it from exynosautov920.dtsi.
+Most publicly available Amlogic datasheets mention that the CPU employs
+a architecture, quad-core ARM Cortex-A53 and ARM Cortex A55 and
+Cortex-A73 and Cortex-A53 cluster, sharing a unified L2 cache to enhance
+overall system performance.
 
-The exynosautov920-tmu node uses the misc clock as its source
-and exposes two new DT properties:
+However, these documents typically omit details regarding the sizes of the
+L1 data cache, L1 instruction cache, and L2 cache.
 
-- tmu-name: identifies the TMU variant for sensor skipping
-- sensor-index-ranges: defines valid sensor index ranges for the bitmap
+The patches in question align with the cache specifications provided by
+ARM TRM for the respective CPU cores.
 
-This TMU binding defines six thermal zones with a critical trip point
-at 125 degrees:
+ARM Cortex-A53
+L1: 32KB instruction + 32KB data cache
+L2: Unified 512KB cache
+L1 cache details, L2 cache details
 
-tmu_top : cpucl0-left, cpucl1
-tmu_sub0: cpucl0-right, cpucl2
-tmu_sub1: g3d, npu
+[1] https://developer.arm.com/documentation/ddi0500/j/Level-1-Memory-System/About-the-L1-memory-system?lang=en
+[2] https://developer.arm.com/documentation/ddi0500/j/Level-2-Memory-System/About-the-L2-memory-system?lang=en
 
-Signed-off-by: Shin Son <shin.son@samsung.com>
----
- .../boot/dts/exynos/exynosautov920-tmu.dtsi   | 92 +++++++++++++++++++
- .../arm64/boot/dts/exynos/exynosautov920.dtsi | 34 +++++++
- 2 files changed, 126 insertions(+)
- create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
+ARM Cortex-A55
+Cache sizes are implementation-dependent; refer to ARM documentation for configuration options.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
-new file mode 100644
-index 000000000000..fa88e9bcdfec
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
-@@ -0,0 +1,92 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Samsung's ExynosAuto920 TMU configurations device tree source
-+ *
-+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
-+ *
-+ * Samsung's ExynosAuto920 SoC TMU(Thermal Managemenut Unit) are listed as
-+ * device tree nodes in this file.
-+ */
-+
-+/ {
-+	thermal-zones {
-+		cpucl0left-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmuctrl_top 0>;
-+
-+			trips {
-+				cpucl0_0_critical: cpucl0-0-critical {
-+					temperature = <125000>;	/* millicelsius */
-+					hysteresis = <0>;	/* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+		cpucl0right-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmuctrl_sub0 0>;
-+
-+			trips {
-+				cpucl0_1_critical: cpucl0-1-critical {
-+					temperature = <125000>;	/* millicelsius */
-+					hysteresis = <0>;	/* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+		cpucl1-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmuctrl_top 1>;
-+
-+			trips {
-+				cpucl1_critical: cpucl1-critical {
-+					temperature = <125000>;	/* millicelsius */
-+					hysteresis = <0>;	/* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+		cpucl2-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmuctrl_sub0 1>;
-+
-+			trips {
-+				cpucl2_critical: cpucl2-critical {
-+					temperature = <125000>;	/* millicelsius */
-+					hysteresis = <0>;	/* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+		g3d-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmuctrl_sub1 0>;
-+
-+			trips {
-+				g3d_critical: g3d-critical {
-+					temperature = <125000>; /* millicelsius */
-+					hysteresis = <0>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+		npu-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmuctrl_sub1 1>;
-+
-+			trips {
-+				npu_critical: npu-critical {
-+					temperature = <125000>; /* millicelsius */
-+					hysteresis = <0>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index 0fdf2062930a..a4ff941f8e43 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -330,6 +330,39 @@ watchdog_cl1: watchdog@10070000 {
- 			samsung,cluster-index = <1>;
- 		};
- 
-+		tmuctrl_top: tmutop-thermal@100a0000 {
-+			compatible = "samsung,exynosautov920-tmu";
-+			reg = <0x100A0000 0x1000>;
-+			interrupts = <GIC_SPI 951 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cmu_misc CLK_DOUT_MISC_NOCP>;
-+			clock-names = "tmu_apbif";
-+			#thermal-sensor-cells = <1>;
-+			tmu-name = "TMU_TOP";
-+			sensor-index-ranges = <1 12>;
-+		};
-+
-+		tmuctrl_sub0: tmusub0-thermal@100b0000 {
-+			compatible = "samsung,exynosautov920-tmu";
-+			reg = <0x100B0000 0x1000>;
-+			interrupts = <GIC_SPI 950 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cmu_misc CLK_DOUT_MISC_NOCP>;
-+			clock-names = "tmu_apbif";
-+			#thermal-sensor-cells = <1>;
-+			tmu-name = "TMU_SUB0";
-+			sensor-index-ranges = <3 10>;
-+		};
-+
-+		tmuctrl_sub1: tmusub1-thermal@100c0000 {
-+			compatible = "samsung,exynosautov920-tmu";
-+			reg = <0x100C0000 0x1000>;
-+			interrupts = <GIC_SPI 949 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cmu_misc CLK_DOUT_MISC_NOCP>;
-+			clock-names = "tmu_apbif";
-+			#thermal-sensor-cells = <1>;
-+			tmu-name = "TMU_SUB1";
-+			sensor-index-ranges = <1 7>;
-+		};
-+
- 		gic: interrupt-controller@10400000 {
- 			compatible = "arm,gic-v3";
- 			#interrupt-cells = <3>;
-@@ -1507,3 +1540,4 @@ timer {
- };
- 
- #include "exynosautov920-pinctrl.dtsi"
-+#include "exynosautov920-tmu.dtsi"
+[3] https://developer.arm.com/documentation/100442/0200/Functional-description/Introduction-to-the-Cortex-A55-core/Implementation-options
+
+ARM Cortex-A73 (as used in Amlogic S922X and T7)
+L1: Configurable, typically 64KB instruction + 64KB data
+L2: Unified cache, configurable up to 1MB or more
+L2 cache details,
+4× Cortex-A73 cores (up to 1.8GHz) with 1MB shared L2 cache
+2× Cortex-A53 cores with 256KB shared L2 cache
+
+[4] https://developer.arm.com/documentation/100048/0100/level-1-memory-system/about-the-l1-memory-system?lang=enL2
+[5] https://developer.arm.com/documentation/100048/0100/level-2-memory-system/about-the-l2-memory-system?lang=en
+[6] https://androidpctv.com/comparative-amlogic-s922x/
+
+Changes:
+v2: Modified the commit message and added cache information few more SoC.
+
+v1: https://lists.infradead.org/pipermail/linux-arm-kernel/2024-February/901497.html
+
+Thanks
+-Anand
+
+Anand Moon (11):
+  arm64: dts: amlogic: Add cache information to the Amlogic GXBB and GXL
+    SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic SM1 SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic G12A SoCS
+  arm64: dts: amlogic: Add cache information to the Amlogic AXG SoCS
+  arm64: dts: amlogic: Add cache information to the Amlogic GXM SoCS
+  arm64: dts: amlogic: Add cache information to the Amlogic A1 SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic A4 SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic C3 SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic S7 SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic S922X SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic T7 SoC
+
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 37 +++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 23 +++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi | 36 ++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 74 +++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi   | 15 +++++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 21 ++++++
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 27 ++++++++
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 62 +++++++++++++++--
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 27 ++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi  | 24 +++++++
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi  | 27 ++++++++
+ 11 files changed, 366 insertions(+), 7 deletions(-)
+
+
+base-commit: 1b237f190eb3d36f52dffe07a40b5eb210280e00
 -- 
 2.50.1
 
