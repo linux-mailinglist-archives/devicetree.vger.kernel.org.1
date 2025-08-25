@@ -1,104 +1,77 @@
-Return-Path: <devicetree+bounces-209134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3317EB34EC0
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 00:05:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4D29B34ECF
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 00:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E746616F260
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 22:05:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE8E91A86E8D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 22:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E8C29BDA6;
-	Mon, 25 Aug 2025 22:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 210E22BE02A;
+	Mon, 25 Aug 2025 22:13:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ot/zAgHS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bbVsfzrM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B4F29B233;
-	Mon, 25 Aug 2025 22:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF54D2BDC0A;
+	Mon, 25 Aug 2025 22:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756159536; cv=none; b=eCKSGlAwTfXl9BvbGGgJ77Oa+5TRyQvxMGvsBG9xA9c5kOkLZE4AIv9MWLw/KGZlADKo8hgHe1nqL8y8QVT3yO3IduvO6jZSL+kqb5mEXCew74ARN/zrh4B5p7CADJVxBr9qo7+XIrDSapS39C/4tHSQZasuvWKGzG/XyEEn1Dk=
+	t=1756159989; cv=none; b=gDA7JbSfMJaf7kUm6Z1LNX6apM3CE+y1YIhH8lP3F1x/ew/AojONUgEkNcdgVymGd2wpB1Wezkw5RKknoFUvqsqyIKgP+Xk68sY7fQ3O0rPmI45VZobNBtElyD9y9QSLGkBsf8HEY4u8RrnrD1nTTKtGzqCsrqn/8rQUPFYo8Kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756159536; c=relaxed/simple;
-	bh=9YkXdwlB5GBjp7h+4WxzI00sHRdEZGGpDcn2QNLkTvQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SqFgjxVm0Ugqb83tTOrbqzEWMEmMuii9XJ8aouPfN9WmWpGFuFNmvgh0DK7fEG1OxFS43vLiW9AxskazL5lnezHaKaUVShcQX5sh2/alyPKbu7ELiKb37OHH4k1khuQgTeaXJbwzsOhbHiyjNaNV3Zy7SPzomu8nSEaZS4ju1ZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ot/zAgHS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3303EC4CEED;
-	Mon, 25 Aug 2025 22:05:33 +0000 (UTC)
+	s=arc-20240116; t=1756159989; c=relaxed/simple;
+	bh=axR1PkwP3PCqOGhdZ8Q4aVIFEtqKvQk8HL5Bpa2psbQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VQj69rIFsE7/LSp6+zPgvhkj9swbopU+Ttijo/kbcCEzRAhdixHXi7aCv5Sr0Yjd15R5yA5OjHbP62Iz8gljUxZM2FrdVwRMUJ9Q0cSlWM+wdmdIQehjkewQJQxyqnDC2iBm0b57ZnwPYoznHUer6DdKtwDFRm5wxvJ/7oOztS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bbVsfzrM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9115AC4CEED;
+	Mon, 25 Aug 2025 22:13:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756159536;
-	bh=9YkXdwlB5GBjp7h+4WxzI00sHRdEZGGpDcn2QNLkTvQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ot/zAgHS5LlhOJdqyYklnsyF6dAc2C0UdY9bxCJ3bHtKyvDXvrN6yD0Qupmz0JmGd
-	 /bewWPPDAIMoBqzA111jbQEjYRgalWlvUkE1uFQRWlML60FLf7THi0hmnI7UTQ57N2
-	 Y4UDFdlY8kBgqkJf7iXZ7Knt0/9HBJDovHITZRWEaPfnnOGeqVlhRZ4XtEQ2CBw6Cq
-	 yPD4wEaJ+vqS7EtI2zXH+NMT8V2U8kmoMV/aVTc86xvBOm8qWGMWauUVLhBt/Z58Yh
-	 VbiEy64l3UVLLJcq07ztjmYfVdlBu7FcGRnt2lAjI0uLZRJ7WtqYyeKxAZF579xRYj
-	 qFkFhvUh6DcSA==
-From: Yixun Lan <dlan@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Alex Elder <elder@riscstar.com>,
-	Haylen Chu <heylenay@4d2.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1756159988;
+	bh=axR1PkwP3PCqOGhdZ8Q4aVIFEtqKvQk8HL5Bpa2psbQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bbVsfzrMFuOr+nJXmpVPp9JkyG99YFvsMrUil1SnQWkqErVIxmv4pUaZlOS8R57L3
+	 hUTW3wANCZidwqn+wj6n5D4l9mHKR+K7FTEzhQAe/n7JSeNh4julMkVljOEcqP51FS
+	 ImSvV82sPM6T+1ivGgsXbHspVdcxxcH1nh6OhH+jOLfSYJXe40v/DxPiMUhrgdU7O8
+	 x5v6NIEiy3HC2rv0h0RDdDpZoOTVTSLMqzBAmTmkHmk7xuXPLy2lsxmdZcQ384XsE9
+	 YNOQdSyQ45EhoLMwZBD5mIqY4GWO6VrQO1QJe9wCAe+91SrfU+sF2G99lDqWGGeYSB
+	 UDK9HF00vP5/A==
+Date: Mon, 25 Aug 2025 17:13:07 -0500
+From: Rob Herring <robh@kernel.org>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Yixun Lan <dlan@gentoo.org>,
-	linux-clk@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Yao Zi <ziyao@disroot.org>
-Subject: Re: [PATCH v5 0/2] clk: spacemit: fix sspax_clk
-Date: Tue, 26 Aug 2025 06:05:28 +0800
-Message-ID: <175615931445.19771.17415403956670708422.b4-ty@gentoo.org>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250811-k1-clk-i2s-v5-0-ebadd06e1e91@linux.spacemit.com>
-References: <20250811-k1-clk-i2s-v5-0-ebadd06e1e91@linux.spacemit.com>
+	Conor Dooley <conor+dt@kernel.org>, Keith Busch <kbusch@kernel.org>,
+	Jens Axboe <axboe@kernel.dk>, Christoph Hellwig <hch@lst.de>,
+	Sagi Grimberg <sagi@grimberg.me>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-nvme@lists.infradead.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: nvme: apple,nvme-ans: Add Apple A11
+Message-ID: <20250825221307.GA706481-robh@kernel.org>
+References: <20250825-t8015-nvme-v4-0-6ffc8f891b6e@gmail.com>
+ <20250825-t8015-nvme-v4-1-6ffc8f891b6e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250825-t8015-nvme-v4-1-6ffc8f891b6e@gmail.com>
 
-From: Yixun Lan <dlan@gentoo.org>
-
-
-On Mon, 11 Aug 2025 21:40:32 +0800, Troy Mitchell wrote:
-> In the SpacemiT public document, when the FNCLKSEL field of
-> the APBC_SSPAX_CLK_RST register is 7 (3'b111),
-> which is a reserved value. And BIT3 of the same register is
-> a reserved bit.
+On Mon, Aug 25, 2025 at 05:15:04PM +0800, Nick Chan wrote:
+> Add ANS2 NVMe bindings for Apple A11 SoC.
 > 
-> But the documentation is incorrect. In reality, the value 7 (3'b111)
-> of FNCLKSEL is not reserved. Instead, it indicates that i2s_bclk is
-> selected as the parent clock. Similarly, bit 3 is not reserved either.
-> When FNCLKSEL is set to 7, bit 3 determines whether i2s_bclk is actually
-> enabled as the parent clock.
-> 
-> [...]
+> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
 
-Thanks, Applied to SpacemiT's SoC tree at "k1/clk-for-6.18" branch
-
-[1/2] dt-bindings: clock: spacemit: CLK_SSPA_I2S_BCLK for SSPA
-      https://github.com/spacemit-com/linux/commit/7d50d9bf1cd00d6bab0abf3b01d5d261aa6a2b04
-[2/2] clk: spacemit: fix sspax_clk
-      https://github.com/spacemit-com/linux/commit/c536e00d58dc8db3e1e430a8e6830bc22d2a38e3
-
-Best regards,
--- 
-Yixun Lan
+You forgot Krzysztof's Reviewed-by.
 
 
