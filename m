@@ -1,122 +1,209 @@
-Return-Path: <devicetree+bounces-209002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A516B34056
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 15:06:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2D47B34064
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 15:10:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB4F74851E9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 13:06:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95B1A17BC46
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 13:10:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0EB2045B7;
-	Mon, 25 Aug 2025 13:05:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F74203710;
+	Mon, 25 Aug 2025 13:10:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="pNXzyJlm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E2yD6oq/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B0620102B
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 13:05:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 588621E6DC5;
+	Mon, 25 Aug 2025 13:10:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756127158; cv=none; b=V+yFY4z31u64d11gXm9L39pVQL7LvwWOoK/pp2sMtcvj8HeZKyJ5U74AZ8AJzeeB0JldMB60tV5YBvcnUpN9D1XZJhLvlog7riHJiLTXU1ZPuyCNL6cnU2bmFqssosjUbnd4jKsWVuLhaOeirL6zl37m9THRUFuLeKTnO1Otoz0=
+	t=1756127414; cv=none; b=VdPCg05N4AcWdupXn3vGTuuCKQGL0kLxHbmDAtQLPFKPxtvnNvQGCxx5I76Duqba13r6G5wZuwCqisAX+Q9blyWSqt2VdmwR8oEtRd8kk3dTp+cPTBS13+7iHyLE03voS1WksHPV8XGyFN18haP1x8cbl/B9/Z5DUpcxXvRq8tg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756127158; c=relaxed/simple;
-	bh=0995YYnJAnTIjeYpCGOJk4eW/chxUHWP1YLO7EuU3ls=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=cvoi2uWFZA1yl9fN1Vw+w/CRTe17scDfqD6FVE079bfNDUYBbTJvq8HNNNwO6+bA3Yeoq8oWcI8TgiPPLIwxXXu+9/Ggao68VZJqStfjx3DT093Nhy98PX9xhSQ3qRMpAiqbaZpi9nCc1rO7MMgiGK6sPyYa9lJbrru3ZfYsa1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=pNXzyJlm; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250825130554epoutp01bde48b3557041a071fe45ea13c6606a0~fBFfGa2Je1877518775epoutp01Y
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 13:05:54 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250825130554epoutp01bde48b3557041a071fe45ea13c6606a0~fBFfGa2Je1877518775epoutp01Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756127154;
-	bh=0995YYnJAnTIjeYpCGOJk4eW/chxUHWP1YLO7EuU3ls=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=pNXzyJlmiBU0DKc3lKjNxALMNiodJJDOgD3UbtdopGEJf6bzcmeQWgNNz1Lk9eXNO
-	 Wt9rlxB7IBa4VIR0mrcc5qNUBCpf83wThWFZbDjlYBqWWTEodrNVPYaRzwpMoMO4Xp
-	 fTbuVl9VgcepLUshqo7rV6iNe3urRYxtQB/WtgEc=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250825130553epcas5p10e031531d1ea200953db9b7c4a02085b~fBFeQTGPi0198901989epcas5p10;
-	Mon, 25 Aug 2025 13:05:53 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.88]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4c9WJ06HqZz6B9m6; Mon, 25 Aug
-	2025 13:05:52 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250825130552epcas5p2bae9faf360067377690b741b0b5ed53c~fBFc1uXMc2846128461epcas5p2b;
-	Mon, 25 Aug 2025 13:05:52 +0000 (GMT)
-Received: from FDSFTE196 (unknown [107.116.189.214]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250825130548epsmtip1d0a172254122ea7684cf0024cd158ef4~fBFZDiPSG1232912329epsmtip1B;
-	Mon, 25 Aug 2025 13:05:48 +0000 (GMT)
-From: "Inbaraj E" <inbaraj.e@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <mturquette@baylibre.com>,
-	<sboyd@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <s.nawrocki@samsung.com>, <s.hauer@pengutronix.de>,
-	<shawnguo@kernel.org>, <cw00.choi@samsung.com>, <rmfrfs@gmail.com>,
-	<laurent.pinchart@ideasonboard.com>, <martink@posteo.de>,
-	<mchehab@kernel.org>, <linux-fsd@tesla.com>, <will@kernel.org>,
-	<catalin.marinas@arm.com>, <pankaj.dubey@samsung.com>,
-	<shradha.t@samsung.com>, <ravi.patel@samsung.com>
-Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <alim.akhtar@samsung.com>,
-	<linux-samsung-soc@vger.kernel.org>, <kernel@puri.sm>,
-	<kernel@pengutronix.de>, <festevam@gmail.com>,
-	<linux-media@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <41434afa-fecd-4507-bcca-735d358ac925@kernel.org>
-Subject: RE: [PATCH v2 04/12] arm64: dts: fsd: Add CSI nodes
-Date: Mon, 25 Aug 2025 18:35:46 +0530
-Message-ID: <016401dc15c0$fc0dcfe0$f4296fa0$@samsung.com>
+	s=arc-20240116; t=1756127414; c=relaxed/simple;
+	bh=O7Z6kH1RQbEMeE3eiSyEx19EZcZ/ZKVgcYDzfKEp3mI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ap1eQk2UNyHI/8/WEuCVsOzMvwfCuTp4l6/L8QaukB7tviBNrTd+0rfJRspOhOCf77a/TWftlsjAIonCV2RV9w9Bt4WiVVtVNdc8ZAMPn1kn51LvLJghn/M7u0fBQqraAqWLuRPJxCp/DbGGDhyrRVmZtWxGKzSKUD4M01FJIvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E2yD6oq/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 546FAC4CEED;
+	Mon, 25 Aug 2025 13:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756127414;
+	bh=O7Z6kH1RQbEMeE3eiSyEx19EZcZ/ZKVgcYDzfKEp3mI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=E2yD6oq/fymrgyNovJcnhvOZsA1fty8NFngqr8Ou2b0H5qOWYA/QslY4Gq1gWXFIs
+	 rCYIwO17t0Zw7iXgFdnKlDvTozH8AlrgxWpFTbVVTvimz/5OPwiihE591bjy7SaB5/
+	 4kilDO0WFxN9rUp/rv6uTZit55WWgsE211htDe9s6N+9u/iPXr3u9PPMxx8zXTCFdL
+	 X9pbfuKiyoOt8AU9CBtmYIUUaKr0d2IcvbA3RoqD02bnK+Q9pHQvG9qhl1+IF0Zuds
+	 z/Ex+LSCghdBGhpFOzly1szoP2EouhkPfBtdMe080cHGp4zsqJYYRAQXnLxZ5eSi/a
+	 BEaRuyT+lL8Lw==
+Date: Mon, 25 Aug 2025 14:10:06 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 3/6] dt-bindings: iio: adc: add ade9000
+Message-ID: <20250825141006.4ae0f866@jic23-huawei>
+In-Reply-To: <20250822160157.5092-4-antoniu.miclaus@analog.com>
+References: <20250822160157.5092-1-antoniu.miclaus@analog.com>
+	<20250822160157.5092-4-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQK5oFMD+tt4mLQU5V9KgVyIDaUIUQE9OnCOAxwEstACXXiXxwGMECOMAYbqfFmyafJvQA==
-Content-Language: en-in
-X-CMS-MailID: 20250825130552epcas5p2bae9faf360067377690b741b0b5ed53c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250814141019epcas5p2f957b934d5b60d4649cf9c6abd6969d5
-References: <20250814140943.22531-1-inbaraj.e@samsung.com>
-	<CGME20250814141019epcas5p2f957b934d5b60d4649cf9c6abd6969d5@epcas5p2.samsung.com>
-	<20250814140943.22531-5-inbaraj.e@samsung.com>
-	<1919de68-99ea-47f7-b3d2-cae4611f9c52@kernel.org>
-	<00d101dc136c$aa037020$fe0a5060$@samsung.com>
-	<41434afa-fecd-4507-bcca-735d358ac925@kernel.org>
 
-Hi Krzysztof,
+On Fri, 22 Aug 2025 16:01:52 +0000
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-> >
-> > CSIS stands for Camera Serial Interface Slave.
+> Add devicetree bindings support for ade9000.
 >=20
-> Googling for =22MIPI CSIS=22 gives me 0 results, so I still claim this is=
- not a generic
-> name.
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+one minor thing inline.
 
-I checked other vendors (e.g: freescale), and they are using mipi-csi. I'll=
- adopt for the
-same.
-
+> ---
+> changes in v5:
+>  - remove clock-output-names property (simplified clock output)
+>  - make interrupts, reset-gpios, and interrupt-names optional (removed fr=
+om required list) =20
+>  - improve interrupt-names description to allow any subset of irq0, irq1,=
+ dready
+>  - fix typo in description ("ADE9000 s a" -> "ADE9000 is a")
+>  - fix spacing in description ("analog-to- digital" -> "analog-to-digital=
+")
+>  - uncomment clock example in device tree example
+>  .../bindings/iio/adc/adi,ade9000.yaml         | 97 +++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ade9000=
+.yaml
 >=20
-> >
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml b=
+/Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
+> new file mode 100644
+> index 000000000000..a1513ad41651
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2025 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ade9000.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices ADE9000 High Performance, Polyphase Energy Meterin=
+g driver
+> +
+> +maintainers:
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> +
+> +description: |
+> +  The ADE9000 is a highly accurate, fully integrated, multiphase energy =
+and power
+> +  quality monitoring device. Superior analog performance and a digital s=
+ignal
+> +  processing (DSP) core enable accurate energy monitoring over a wide dy=
+namic
+> +  range. An integrated high end reference ensures low drift over tempera=
+ture
+> +  with a combined drift of less than =C2=B125 ppm/=C2=B0C maximum for th=
+e entire channel
+> +  including a programmable gain amplifier (PGA) and an analog-to-digital
+> +  converter (ADC).
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD=
+E9000.pdf
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ade9000
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 20000000
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    description: Optional interrupt names. Any subset of irq0, irq1, dre=
+ady.
 
-Regards,
-Inbaraj E
+The binding should enforce that list of possible values. Lots of examples i=
+n tree.
+Basically an enum combined with maxItems / minItems to say 1 to 3 of them.
+I'm not sure if that is latest preferred way of doing this though.
+
+> +    maxItems: 3
+> +
+> +  reset-gpios:
+> +    description:
+> +      Must be the device tree identifier of the RESET pin. As the line is
+> +      active low, it should be marked GPIO_ACTIVE_LOW.
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +  vref-supply: true
+> +
+> +  clocks:
+> +    description: External clock source when not using crystal
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: clkin
+> +
+> +  "#clock-cells":
+> +    description:
+> +      ADE9000 can provide clock output via CLKOUT pin with external buff=
+er.
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      adc@0 {
+> +          compatible =3D "adi,ade9000";
+> +          reg =3D <0>;
+> +          spi-max-frequency =3D <7000000>;
+> +
+> +          #clock-cells =3D <0>;
+> +          reset-gpios =3D <&gpio 4 GPIO_ACTIVE_LOW>;
+> +          interrupts =3D <2 IRQ_TYPE_EDGE_FALLING>, <3 IRQ_TYPE_EDGE_FAL=
+LING>, <4 IRQ_TYPE_EDGE_FALLING>;
+> +          interrupt-names =3D "irq0", "irq1", "dready";
+> +          interrupt-parent =3D <&gpio>;
+> +          clocks =3D <&ext_clock_24576khz>;
+> +          clock-names =3D "clkin";
+> +          vdd-supply =3D <&vdd_reg>;
+> +      };
+> +    };
 
 
