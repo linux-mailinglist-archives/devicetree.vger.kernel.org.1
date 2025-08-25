@@ -1,173 +1,174 @@
-Return-Path: <devicetree+bounces-208917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3CFB33A93
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 11:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89776B33A86
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 11:18:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A6091B245FB
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 09:19:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 838431B240E7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 09:18:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E7C2D540B;
-	Mon, 25 Aug 2025 09:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jkk8khYH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 974CF2D3759;
+	Mon, 25 Aug 2025 09:16:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915AB2D23AD;
-	Mon, 25 Aug 2025 09:16:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081CB2D1F5E
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 09:16:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756113388; cv=none; b=AOFMsg1sJmOIWtzDxJVrjpfyIKTPhJX9xUCC86RJDs/HX7t9JOp/HEgehF9+AP1IulfIv/5YYpIdhk6UYyb4ZEJWBhkEoEHLOWoS/+KDKAUYr7h5hoHhV2CcFftZpkbFIxGHth/++LI5kD5SPi8V4Y8DAUpvKbujwtwJUnaTn9I=
+	t=1756113371; cv=none; b=sGSn2255/6uS0XQZySVsAZ0RtHfz3/WEe0u36GI8XfcvhKeMnnfu/MaThY3KbCYzniJJXMjwoaxAfzirBtrhas6mrYbpYe4SQeXQsFL8uw03kul62xIHUOnC1ZDanPNFeyF82ztWKhfHpC73eRG4sa7YTJy3BMRRoruDsVP/eEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756113388; c=relaxed/simple;
-	bh=n0GU3aHOIbzcpxdfkfvKoQ2JdbUFCoeF/xHA7QnVC2k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gJiD5IkNdn5PatZ/Cl2OLSLgDzP0uVl0zii0ijLKQVaqUP3xRK8BWHWAESV3+Kbofr4hlHCJaA0mFensLwrELksalEpDiEpkHxhdLmMPHNlOQxgNM8/0dq7RC821gugpvgKgJrmHYfX/0iyRaYXRI41JqxaG3SCro7z0LXcjJuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jkk8khYH; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-24639fbdd87so19711585ad.1;
-        Mon, 25 Aug 2025 02:16:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756113386; x=1756718186; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CLgKkUt/EORHceeO89abTN08otZovq/goeI6WeVPzj4=;
-        b=jkk8khYHdi0AoLkE0aZ5BP/cswsV137xptcmCvAAXom3fQiUDQXIeFaGH9JDcGG0l1
-         PPNUkwOASevexJlcvYJfWnsmCqA0aehkLKPDFKy5bNHTw9J/0/Fa2RveTykpcnizpQYg
-         TvrUNj1RR8PFdKUwpp8ZPsxi+8eJP5taeb69HeuF0LiAXXbyVGd+SXIbfZR+pAtRrsGb
-         seyC+/3k+yp3ZVLgPHVv/oUbUqAvsWCikHCWnLZFqlvqz19C95cIs/v+J3oGrwr3EmaS
-         cxjTY+8qGWMXcFZ5dRHvV+ZsGKw/wwtfkMtrHAaDcyaEArkVXfZ6g7T8weNdzjNIYLab
-         LX4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756113386; x=1756718186;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CLgKkUt/EORHceeO89abTN08otZovq/goeI6WeVPzj4=;
-        b=VzJjPaLaQkJmKseHR5gxH4lFFtsD0vRrXmGjLq1tczwwiEF75/Fs348EdsXWVylBi7
-         4amcj6PR6SP3YH8ZjSeDnHQJ8CriLJzuoPIFG0YjLOQQKyjkF7UaOEV56+402vLYit5r
-         PVdho+G0OCodCrnUfkpJpXFk37vlTpA3dk0wQd/zp0jtsonEoU8U4VTIcsice9l5d9dy
-         wB+Av25ZAtKSETXbYpbiXuK91UCUkCUgbxTpt5i2IC6nHwg5xy6uvBnkvfUZFFW48rp/
-         3EXLcMqmc6I5kHe7KRgX0hKVXUMlpUtVvwnovYaEuYL3TXGayQf/wTU4M9+bQsFrnBu7
-         9HfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUX07BZBG7oKkqltsFwCdUIVuwPjPDbLDY+6y9sEE4bZESkXnLGbrR2mKhau7Zr4znnNb9viOJijxtXFgJN@vger.kernel.org, AJvYcCVO3b5NDZhU6ylh5bXaEibfahHb+a0RDsuXkRHdJd/naAhEGm5PYGcX/w/+L/OCLaZQ2UMQuI8b0bKG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDjkl4vFWJYuunMSOer6xi41tcrhs4y6YKaaDXLBLoAsSe0sPU
-	/+iR37al2m93XiWsSJChq/y5CDN6dL/8IBwfaPHiMdRVq5FbL56f8g3G
-X-Gm-Gg: ASbGncvQEWK9Y0Y7sgc9K28tAr0KvaP7q837w+mBYrMuXN9tkVu+WbX/IGNx6REkLuT
-	jkbk5YHbtERFElt3OjZH2+0iSwmKOuh6XHv3Rkm1P/LQrk0bVN1ooHDOabxFmCtnj9ga11Kzzj8
-	oH0BzBvAy8sTVgYFRHoBMPMnwO8D8YRpbk4KPES3kFuBxvxjftezVMaHWRSqYU62eVc6I+JoW2g
-	ZqAOEbnQsyQ/kKtUkGamfQnhmKWr0das1jTDdrKNodmm/rQ/Vai0Javzubg0k2wWne2cgl8jyT6
-	alu/wGvZj0ZohoXXDKSWYXMfDg90bRHgWTuL5Qr5tA56ILrNBPQB2Li/CbIhwRCORxYWpvf9WT6
-	jR3Y/BYSPGHePDC2m+86QP69urhk=
-X-Google-Smtp-Source: AGHT+IHgizChUVDS7mx0qvkliQW47KxLTLpcVKppDYz0nFP6cUthwlUhWYvTA6G9L8vEDxCRdxjvFQ==
-X-Received: by 2002:a17:902:e888:b0:240:4d19:8774 with SMTP id d9443c01a7336-24633d6a31amr135180055ad.24.1756113385707;
-        Mon, 25 Aug 2025 02:16:25 -0700 (PDT)
-Received: from [127.0.1.1] ([59.188.211.98])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2466887fc8dsm62873875ad.122.2025.08.25.02.16.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Aug 2025 02:16:25 -0700 (PDT)
-From: Nick Chan <towinchenmi@gmail.com>
-Date: Mon, 25 Aug 2025 17:15:07 +0800
-Subject: [PATCH v4 4/4] arm64: dts: apple: t8015: Add NVMe nodes
+	s=arc-20240116; t=1756113371; c=relaxed/simple;
+	bh=V1hIGlU5bxY/2R7fZ0tRe4Rb+V3B8V54hiGAA7g/ook=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=hUgRvk/5TW0k33f37KntEf8OiAsMVzslMdMwOYRnXbktL1mUTiumHOZJIaVHrLmajwdXByQXLj+PwEwvCvzlEOz78ydXZEmm3vF5zgrH1UNqf+5abtfUTuK13WRo9N5xTKiY2ri297R6aWkAzySZiJYXFVgWmm5jqqaY5SD0ULI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uqTIb-0007lb-JP; Mon, 25 Aug 2025 11:15:33 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uqTIZ-0022kp-0v;
+	Mon, 25 Aug 2025 11:15:31 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uqTIZ-000Hu4-0a;
+	Mon, 25 Aug 2025 11:15:31 +0200
+Message-ID: <e67d5a27fb00040ba87a0b108322747ecca8d05b.camel@pengutronix.de>
+Subject: Re: [PATCH v13 04/11] PCI: stm32: Add PCIe host support for
+ STM32MP25
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Christian Bruel <christian.bruel@foss.st.com>, lpieralisi@kernel.org, 
+ kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
+ bhelgaas@google.com,  krzk+dt@kernel.org, conor+dt@kernel.org,
+ mcoquelin.stm32@gmail.com,  alexandre.torgue@foss.st.com,
+ linus.walleij@linaro.org, corbet@lwn.net,  shradha.t@samsung.com,
+ mayank.rana@oss.qualcomm.com, namcao@linutronix.de, 
+ qiang.yu@oss.qualcomm.com, thippeswamy.havalige@amd.com,
+ inochiama@gmail.com,  quic_schintav@quicinc.com
+Cc: johan+linaro@kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-doc@vger.kernel.org
+Date: Mon, 25 Aug 2025 11:15:31 +0200
+In-Reply-To: <20250820075411.1178729-5-christian.bruel@foss.st.com>
+References: <20250820075411.1178729-1-christian.bruel@foss.st.com>
+	 <20250820075411.1178729-5-christian.bruel@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250825-t8015-nvme-v4-4-6ffc8f891b6e@gmail.com>
-References: <20250825-t8015-nvme-v4-0-6ffc8f891b6e@gmail.com>
-In-Reply-To: <20250825-t8015-nvme-v4-0-6ffc8f891b6e@gmail.com>
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Keith Busch <kbusch@kernel.org>, 
- Jens Axboe <axboe@kernel.dk>, Christoph Hellwig <hch@lst.de>, 
- Sagi Grimberg <sagi@grimberg.me>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-nvme@lists.infradead.org, Nick Chan <towinchenmi@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1720; i=towinchenmi@gmail.com;
- h=from:subject:message-id; bh=n0GU3aHOIbzcpxdfkfvKoQ2JdbUFCoeF/xHA7QnVC2k=;
- b=owEBbQKS/ZANAwAKAQHKCLemxQgkAcsmYgBorCnSx5G1CCbpODc4cRGWNpyxqthUZtzEbbGT/
- r5lqX9uaO2JAjMEAAEKAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCaKwp0gAKCRABygi3psUI
- JD3zEAC08M/q+crYeSCt61tg18W8wh96uLThiPK1oIN8cT6sza82FbzzE5tZz/JAkuOxmeDT1Jr
- /TniRuMWHcR1ABZzQxNSzoTEO4kDKwoVl01F7A9eG3xSG1hMcoBpFOefCD5ZJwKsBJPSkJazMy3
- Uq0MfkxY4vsMHJVTCxXczUZySYl1MGa81GLOqKcR6LsfzsGWbolmfH4Bvlrv63vGBd6i2uKMNSy
- fdK46uREg0LZfa4l+E2LsjiNk1Lvk/Ovb1qje+vjYfqB16/DJDGiUk1IJC1q1J8iLBJouyfYiyI
- upg9pcjsYb3xsOMcPmXcyI7W33LjCjhHYkXcBBaugqQ+7HoAL0CjS4Cuw879KYuOvHDYAnOofXX
- zgHTKr4XwyWQVB2Hd/pHthOiIc0D7OkpdL3314KaflUBRiL4obg5fFz0/bSdKCIiaUM6pLMrvi6
- QI4FyM/whrJYY1u8pstsdOD4XjPronxD/nneGpr2t/2PPPe9M+Mysse3MPo8XTSvv2x+fujb0Pt
- XXqVoAUsgTBLN+3i8QipITSrYbBSLnf71cWLXHNaq7ybKg8dwvWq/861T9M74mlfROH3n1XyuuW
- 0+ijxGn5++G6PNnwvO6tlJDjihhJtLhSTijTfaQiQ4gNYR6XRlruP1e+rSTQUO+CCN9dSvktcMM
- QAlh8/SxgKhfv6Q==
-X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
- fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add nodes for NVMe and associated mailbox and sart for Apple A11 SoC.
+On Mi, 2025-08-20 at 09:54 +0200, Christian Bruel wrote:
+> Add driver for the STM32MP25 SoC PCIe Gen1 2.5 GT/s and Gen2 5GT/s
+> controller based on the DesignWare PCIe core.
+>=20
+> Supports MSI via GICv2m, Single Virtual Channel, Single Function
+>=20
+> Supports WAKE# GPIO.
+>=20
+> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+> ---
+>  drivers/pci/controller/dwc/Kconfig      |  12 +
+>  drivers/pci/controller/dwc/Makefile     |   1 +
+>  drivers/pci/controller/dwc/pcie-stm32.c | 360 ++++++++++++++++++++++++
+>  drivers/pci/controller/dwc/pcie-stm32.h |  15 +
+>  4 files changed, 388 insertions(+)
+>  create mode 100644 drivers/pci/controller/dwc/pcie-stm32.c
+>  create mode 100644 drivers/pci/controller/dwc/pcie-stm32.h
+>=20
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/=
+dwc/Kconfig
+> index deafc512b079..a8174817fd5b 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -423,6 +423,18 @@ config PCIE_SPEAR13XX
+>  	help
+>  	  Say Y here if you want PCIe support on SPEAr13XX SoCs.
+> =20
+> +config PCIE_STM32_HOST
+> +	tristate "STMicroelectronics STM32MP25 PCIe Controller (host mode)"
+> +	depends on ARCH_STM32 || COMPILE_TEST
+> +	depends on PCI_MSI
+> +	select PCIE_DW_HOST
+> +	help
+> +	  Enables Root Complex (RC) support for the DesignWare core based PCIe
+> +	  controller found in STM32MP25 SoC.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called pcie-stm32.
+> +
+>  config PCI_DRA7XX
+>  	tristate
+> =20
+> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller=
+/dwc/Makefile
+> index 6919d27798d1..1307a87b1cf0 100644
+> --- a/drivers/pci/controller/dwc/Makefile
+> +++ b/drivers/pci/controller/dwc/Makefile
+> @@ -31,6 +31,7 @@ obj-$(CONFIG_PCIE_UNIPHIER) +=3D pcie-uniphier.o
+>  obj-$(CONFIG_PCIE_UNIPHIER_EP) +=3D pcie-uniphier-ep.o
+>  obj-$(CONFIG_PCIE_VISCONTI_HOST) +=3D pcie-visconti.o
+>  obj-$(CONFIG_PCIE_RCAR_GEN4) +=3D pcie-rcar-gen4.o
+> +obj-$(CONFIG_PCIE_STM32_HOST) +=3D pcie-stm32.o
+> =20
+>  # The following drivers are for devices that use the generic ACPI
+>  # pci_root.c driver but don't support standard ECAM config access.
+> diff --git a/drivers/pci/controller/dwc/pcie-stm32.c b/drivers/pci/contro=
+ller/dwc/pcie-stm32.c
+> new file mode 100644
+> index 000000000000..964fa6f674c8
+> --- /dev/null
+> +++ b/drivers/pci/controller/dwc/pcie-stm32.c
+> @@ -0,0 +1,360 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * STMicroelectronics STM32MP25 PCIe root complex driver.
+> + *
+> + * Copyright (C) 2025 STMicroelectronics
+> + * Author: Christian Bruel <christian.bruel@foss.st.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/pinctrl/consumer.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/pm_wakeirq.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+> +#include "pcie-designware.h"
+> +#include "pcie-stm32.h"
+> +#include "../../pci.h"
+> +
+> +struct stm32_pcie {
+> +	struct dw_pcie pci;
+> +	struct regmap *regmap;
+> +	struct reset_control *rst;
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
- arch/arm64/boot/dts/apple/t8015.dtsi | 34 ++++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+This could be a local variable in stm32_pcie_probe().
 
-diff --git a/arch/arm64/boot/dts/apple/t8015.dtsi b/arch/arm64/boot/dts/apple/t8015.dtsi
-index 12acf8fc8bc6bcde6b11773cadd97e9ee115f510..84acf2839fb6279dcc956e1f4cee1afa909d2f27 100644
---- a/arch/arm64/boot/dts/apple/t8015.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8015.dtsi
-@@ -402,6 +402,40 @@ pinctrl_smc: pinctrl@236024000 {
- 			 */
- 			status = "disabled";
- 		};
-+
-+		ans_mbox: mbox@257008000 {
-+			compatible = "apple,t8015-asc-mailbox";
-+			reg = <0x2 0x57008000 0x0 0x4000>;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 265 IRQ_TYPE_LEVEL_HIGH>,
-+				<AIC_IRQ 266 IRQ_TYPE_LEVEL_HIGH>,
-+				<AIC_IRQ 267 IRQ_TYPE_LEVEL_HIGH>,
-+				<AIC_IRQ 268 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "send-empty", "send-not-empty",
-+				"recv-empty", "recv-not-empty";
-+			#mbox-cells = <0>;
-+			power-domains = <&ps_ans2>;
-+		};
-+
-+		sart: iommu@259c50000 {
-+			compatible = "apple,t8015-sart";
-+			reg = <0x2 0x59c50000 0x0 0x10000>;
-+			power-domains = <&ps_ans2>;
-+		};
-+
-+		nvme@259cc0000 {
-+			compatible = "apple,t8015-nvme-ans2";
-+			reg = <0x2 0x59cc0000 0x0 0x40000>,
-+				<0x2 0x59d20000 0x0 0x2000>;
-+			reg-names = "nvme", "ans";
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 270 IRQ_TYPE_LEVEL_HIGH>;
-+			mboxes = <&ans_mbox>;
-+			apple,sart = <&sart>;
-+			power-domains = <&ps_ans2>, <&ps_pcie>;
-+			power-domain-names = "ans", "apcie0";
-+			resets = <&ps_ans2>;
-+		};
- 	};
- 
- 	timer {
-
--- 
-2.51.0
-
+regards
+Philipp
 
