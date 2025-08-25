@@ -1,349 +1,123 @@
-Return-Path: <devicetree+bounces-209061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D99EEB3466C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 17:57:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D756B34682
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 17:58:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC663188AEB3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 15:57:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15A5A2A47AE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 15:58:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A15EF2FE065;
-	Mon, 25 Aug 2025 15:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64FCC2FFDF2;
+	Mon, 25 Aug 2025 15:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eSVbWHny"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="E3+JVySO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E802FAC05
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 15:56:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F26F2F4A1B;
+	Mon, 25 Aug 2025 15:58:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756137421; cv=none; b=hkNRH/IGYKryJWX5NHPvB7qS8URamu0M6pBO2fh/iebWwtDWIOamXwh5B1eNflj8xTEZ6onm/JSH+upN9G+BZO6mKRqKBywcXXWJYdyZplKnVXTYYL9tactsaIhKzqSGFWlwfwDDTz+bfVM2ZWWkA443xo67aLUHuXo0MXrkRZk=
+	t=1756137483; cv=none; b=tMgquhpxKQfkkzzuBiPvNlagTYmpauLpAoQNBD51WYnZkwAM3RXtvbg+x4n9FTlc1TvZl2zDIZjHxPsXJmOifMH250czbqgQGDhjhVGkqxm5ZFtg+EA4R8CIb/Nbd1BL+qTgrH9TZ+lW0qbgnhcguz2fERw5e1mMr8kp+DHrv6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756137421; c=relaxed/simple;
-	bh=JC64w3tuSkbajzgasYe6Zh8VlInyWVH1Pll+dy7VGfo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rT5c94r24dlVSS6Lam03LfsK+Kg2CMhbr7ADJiJ/EgWR2TUUHyZCoZR2FCrBu5yuZjc/2SELz4hCGyfB0DWIvhD50snM0qryOTgDoRyKnmlJo3SQc25orTHNcnkuKvB3Ed2UrHjBfzL0BmGDvRSW5IXGEE4aD7GLzgXpZKUMy1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eSVbWHny; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57P8Qqlf026003
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 15:56:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QutffaOQ13Xwk3xH5hQhBka1Be9Thp0ZBqEZpEIMmX4=; b=eSVbWHny/cJccXmn
-	S9JOMBfpnGg6yJJDMgRqDrLtLomR8hUkVFrW2C8iMAVHVja7mHsIdGOQil2rV8es
-	rMo59RJAgl2fR/CYAuMGUWM0y3zoSseb5q5fk6oa8yFzyT4oapyaPlsd0Wt3UXOy
-	fCoRGsYnFxUBrh/JqM1Ybb3+0vdK8CoZ8y8ZziSQ9Q9J1LZu2zd1HNUwuBbXiaTM
-	LOALguo8PDIkmhykfwFvNnaTWYZ8tX61om9T3kxOLK7dL9d9TsK+BL+1wOv5a/Rt
-	ozOnuIXRZfJVwXE6CsCW7OhWR/u0zykML1S57q7CzA1GRJK02UM9IOxiANKgZ0UJ
-	sbfbKQ==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q6x85nuc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 15:56:58 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b47173a00e8so3516441a12.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 08:56:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756137418; x=1756742218;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QutffaOQ13Xwk3xH5hQhBka1Be9Thp0ZBqEZpEIMmX4=;
-        b=etWDCmccHIv0aLcI3fjwx8dEljXGuwtD23UCTkN9+i/ddyGAjspwjJEfAi4a0thbQV
-         czc2yOLFB236QlgOSHwQ+NCfn44Qv6s3k3vylrZ6eXJZLzukuBPMiEsAaLpo2FzwzRbD
-         RZRat42fM+rExa+x8gxD42viULoIVGHKz/dI+uTAtVFfCB/8zs2oVlivHnirv8SRMux3
-         tq34CwisNxrYtfezmMY8i7SzQqHHCxTwQL7bWixVKvSQf3pdbZocKWt0kqfrwDaV5iZS
-         /Z48iIBMfWtoXyOhu/7FIzQ/8HFhkL69QN9yue0sarWhgWl4r7i7NWH+G94JsT1iXYYh
-         B1GQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW81O8gCoJBmKLBFlfFvpXV7QEhx/HR4zIt7qXB+PVzPe0KhGX5Ge6b+wGr9t7Gbxea4xF9i8oJsA1A@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqdXNiS6zuT0dZdX3ngcC91KB8+yKQKyxM/HaqehkpTQQJPeFp
-	X+Fwxy7ZM79RQluwKD/mu2yn8/ISiASPJx9DB6Ftf0l9eAOePNw4/D8aSHXEXmv/CP9RnreSO7v
-	GgS8WxyNK1JSmc/05wIcI2WmHOUfElWyshsimg8xSbZF9Ib29VFFhPGm15+P7xHub
-X-Gm-Gg: ASbGnctir9kddRzqpym5/wEhyoPi+cqpy8bsABFBAvam2N78VpLMuSLY9kFquaThu1z
-	Lg9uuRqCa/uizZIShHzwxHsgtyfbYT606gnfw9zhuPzqVtPPwCU5hKYhEq37fpE7gnwVbJYWN0X
-	jXwgcDVwB2mhVQh6jPYQFQV/jzC3E2Z3CCHkdOQWhf/r64VoPMm5IH0tbKRqcVvAGpIGhjw8aML
-	GqWdk6dlGgxxdfQwKdJTUWy0YljPYvV3+/elcYg/YA5HmEqUixbq0Urk9X6SYXn2rO7Nq5qHDnO
-	Vnx/4bevNhmSnQU97JdWenDoTLLciyFxk4fi/5hye56PF2z0Bb2tEki/5EaDl7dyC4C6ORlCfUK
-	W
-X-Received: by 2002:a17:902:ce87:b0:246:e7ca:3598 with SMTP id d9443c01a7336-246e7ca3766mr35835175ad.38.1756137417904;
-        Mon, 25 Aug 2025 08:56:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHgrzCJcPV9SeMDkGSRfPk/j1dIRe81ecf4/C6a6KOY63K2M2JwS5OVVxjAsuQl2S0Ot4bAiw==
-X-Received: by 2002:a17:902:ce87:b0:246:e7ca:3598 with SMTP id d9443c01a7336-246e7ca3766mr35834875ad.38.1756137417383;
-        Mon, 25 Aug 2025 08:56:57 -0700 (PDT)
-Received: from [192.168.29.113] ([49.43.227.218])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-246e1b6fae5sm27049645ad.140.2025.08.25.08.56.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Aug 2025 08:56:57 -0700 (PDT)
-Message-ID: <919ea7ce-a36a-4eaa-a13a-c693eb9c6c2f@oss.qualcomm.com>
-Date: Mon, 25 Aug 2025 21:26:49 +0530
+	s=arc-20240116; t=1756137483; c=relaxed/simple;
+	bh=J5bupA+heQtL5Wcp4JAPKY1z0JPnUwdB+YBwuYoNau8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=VnRzDFhDFVEkTnb92m6u2JICkc/6zkkCZKHlG7i503lh26WqMkrP9vm9AvX1N7aswl3DhUCHfUTUpppiSlI8WYm6McaCzeoWAgoN0i5U6nioSxI6PcC8YBG0Q56djfwdE49mdHtQhs2UpohIOZ+md5GQedMxdbEAWCQGoIYEVlQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=E3+JVySO; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1756137479;
+	bh=J5bupA+heQtL5Wcp4JAPKY1z0JPnUwdB+YBwuYoNau8=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=E3+JVySOtDo6B73FegZ6Or80M/ila2fRd1xu2TVpmdEKV9Sc/1jbhYN+Iic29PXGo
+	 ImJeCh0eMufQ8BWvZ/gXuqKyQQP79mjfpwEY1P8VUEMsz5UwauFcm7kPxheNobMKec
+	 NyHFDDwFCs1N3p1feTcjEZK+bSrPSbd5gsDYVqJG2Kd9B1o82RnzEAOkJu9j25SwMc
+	 Hiv0f6eatIri3ZDVVflvsaROY9xNzvxaDkvOG5o61OKcKhBPq59cJ2ITFzx8I9Ab66
+	 qWC0Yn5VFl4k+YA9E5p7XZO8m8uF4RD4Al07heeqORCxhtPYonbw2jvJBUAnV2L7aY
+	 ik/bz0vcVCXFQ==
+Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892f2d600C8f85CF092d4AF51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 22E0C17E07FB;
+	Mon, 25 Aug 2025 17:57:58 +0200 (CEST)
+Message-ID: <c3b6c0ff993b7ebc9fb8abd8104b537f0c7f5fb3.camel@collabora.com>
+Subject: Re: [PATCH v2 0/6] MediaTek devicetree/bindings warnings
+ sanitization second round
+From: Julien Massot <julien.massot@collabora.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: kernel@collabora.com, Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Ikjoon Jang <ikjn@chromium.org>,
+  Enric Balletbo i Serra	 <eballetbo@kernel.org>, Chen-Yu Tsai
+ <wenst@chromium.org>, Weiyi Lu	 <weiyi.lu@mediatek.com>, Eugen Hristev
+ <eugen.hristev@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, Julien
+ Massot <jmassot@collabora.com>, Sean Wang	 <sean.wang@kernel.org>, Linus
+ Walleij <linus.walleij@linaro.org>, 	linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-mediatek@lists.infradead.org,
+ linux-sound@vger.kernel.org, 	linux-gpio@vger.kernel.org
+Date: Mon, 25 Aug 2025 17:57:57 +0200
+In-Reply-To: <d02d2a5f-b8d7-4fdb-b3c5-6e6d21127733@sirena.org.uk>
+References: <20250820-mtk-dtb-warnings-v2-0-cf4721e58f4e@collabora.com>
+	 <d02d2a5f-b8d7-4fdb-b3c5-6e6d21127733@sirena.org.uk>
+Organization: Collabora Ltd.
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/7] OPP: Move refcount and key update for readability
- in _opp_table_find_key()
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
-        Viresh Kumar <vireshk@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-References: <20250820-opp_pcie-v4-0-273b8944eed0@oss.qualcomm.com>
- <20250820-opp_pcie-v4-2-273b8944eed0@oss.qualcomm.com>
- <CGME20250825135939eucas1p206b6e2b5ba115f51618c773a1f37939c@eucas1p2.samsung.com>
- <4066c0b4-807f-401e-baaa-25f4891f10ac@samsung.com>
-Content-Language: en-US
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <4066c0b4-807f-401e-baaa-25f4891f10ac@samsung.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: KH12ylDHeJ_ZpGfOQpPuzXAzVYKflX4U
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDA0NCBTYWx0ZWRfX0Nrtu3LeolV3
- JoIBHDlVlm3RxPqOrENAwAaNUjLIdi+Xk3nH4ilYItR+RwJ67CuOUSsSFqjxG4SiWKpOrdYIaTr
- HC3cZEBOuONZbSrAATtLYO3CGfiHq6Tupd7K0savUjrilgiT38pWdrbDWr/6nkU1V95dlUL75Vf
- CMxNDF0LubKRWMfBfMPZN3ub4r1pSsZjqS8ZVeddmzdAkMfp2bXE26kVaH5wr6g15bVpEU4sEkO
- CErIGyQ8vVbjYl70XgrKwkbxEzrrJa7UKQBYlsh40ZqNRA2/LJGreY7q8TdvuAPgPRwAS/lsdMh
- KzsaL3LKpE1R6lG/Fb5iB8EDnx4duNgmsiR2wIQNd32cypzkSJAv+1qUPp+oo/9yaQ7SG22JSTA
- fSD4r3tf
-X-Proofpoint-GUID: KH12ylDHeJ_ZpGfOQpPuzXAzVYKflX4U
-X-Authority-Analysis: v=2.4 cv=Ep/SrTcA c=1 sm=1 tr=0 ts=68ac87ca cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=TWSI64EsO1MY+X2Q/zVH0g==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=Wpt1jf_klKcEcVUAeWIA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-25_07,2025-08-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 spamscore=0 adultscore=0 bulkscore=0 suspectscore=0
- phishscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230044
 
+Hi Mark,
 
+On Wed, 2025-08-20 at 15:21 +0100, Mark Brown wrote:
+> On Wed, Aug 20, 2025 at 03:44:51PM +0200, Julien Massot wrote:
+> > This patch series continues the effort to address Device Tree
+> > validation warnings for MediaTek platforms, with a focus on MT8183. It
+> > follows the initial cleanup series by Angelo
+> > (https://www.spinics.net/lists/kernel/msg5780177.html)
+> >=20
+> > The patches in this set eliminate several of the remaining warnings by
+> > improving or converting DT bindings to YAML, adding missing
+> > properties, and updating device tree files accordingly.
+>=20
+> What's the story with interdepenencies between the patches in this
+> series?
+>=20
+> Please fix your mail client to word wrap within paragraphs at something
+> substantially less than 80 columns.=C2=A0 Doing this makes your messages =
+much
+> easier to read and reply to.
 
-On 8/25/2025 7:29 PM, Marek Szyprowski wrote:
-> On 20.08.2025 10:28, Krishna Chaitanya Chundru wrote:
->> Refactor _opp_table_find_key() to improve readability by moving the
->> reference count increment and key update inside the match condition block.
->>
->> Also make the 'assert' check mandatory instead of treating it as optional.
->>
->> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> 
-> This patch landed in today's linux-next (20250825) as commit
-> b5323835f050 ("OPP: Reorganize _opp_table_find_key()"). In my tests I
-> found that it causes regressions on my test boards. Reverting this
-> change on top of linux-next fixes booting of all the affected boards.
-> 
-> Here are kernel logs with lockdep enabled:
-> 
-> 1. Exynos4412-based Odroid-U3 board (ARM 32bit):
-> 
-> ============================================
-> WARNING: possible recursive locking detected
-> 6.17.0-rc3-next-20250825 #10901 Not tainted
-> --------------------------------------------
-> kworker/u16:0/12 is trying to acquire lock:
-> cf896040 (&devfreq->lock){+.+.}-{3:3}, at: devfreq_notifier_call+0x30/0x124
-> 
-> but task is already holding lock:
-> cf896040 (&devfreq->lock){+.+.}-{3:3}, at: devfreq_monitor+0x1c/0x1a4
-> 
-> other info that might help us debug this:
->    Possible unsafe locking scenario:
-> 
->          CPU0
->          ----
->     lock(&devfreq->lock);
->     lock(&devfreq->lock);
-> 
->    *** DEADLOCK ***
-> 
->    May be due to missing lock nesting notation
-> 
-> 4 locks held by kworker/u16:0/12:
->    #0: c289d0b4 ((wq_completion)devfreq_wq){+.+.}-{0:0}, at:
-> process_one_work+0x1b0/0x70c
->    #1: f0899f18
-> ((work_completion)(&(&devfreq->work)->work)#2){+.+.}-{0:0}, at:
-> process_one_work+0x1dc/0x70c
->    #2: cf896040 (&devfreq->lock){+.+.}-{3:3}, at: devfreq_monitor+0x1c/0x1a4
->    #3: c2e78c4c (&(&opp_table->head)->rwsem){++++}-{3:3}, at:
-> blocking_notifier_call_chain+0x28/0x60
-> 
-> stack backtrace:
-> CPU: 2 UID: 0 PID: 12 Comm: kworker/u16:0 Not tainted
-> 6.17.0-rc3-next-20250825 #10901 PREEMPT
-> Hardware name: Samsung Exynos (Flattened Device Tree)
-> Workqueue: devfreq_wq devfreq_monitor
-> Call trace:
->    unwind_backtrace from show_stack+0x10/0x14
->    show_stack from dump_stack_lvl+0x68/0x88
->    dump_stack_lvl from print_deadlock_bug+0x370/0x380
->    print_deadlock_bug from __lock_acquire+0x1428/0x29ec
->    __lock_acquire from lock_acquire+0x134/0x388
->    lock_acquire from __mutex_lock+0xac/0x10c0
->    __mutex_lock from mutex_lock_nested+0x1c/0x24
->    mutex_lock_nested from devfreq_notifier_call+0x30/0x124
->    devfreq_notifier_call from notifier_call_chain+0x84/0x1d4
->    notifier_call_chain from blocking_notifier_call_chain+0x44/0x60
->    blocking_notifier_call_chain from _opp_kref_release+0x3c/0x5c
->    _opp_kref_release from exynos_bus_target+0x24/0x70
->    exynos_bus_target from devfreq_set_target+0x8c/0x2e8
->    devfreq_set_target from devfreq_update_target+0x9c/0xf8
->    devfreq_update_target from devfreq_monitor+0x28/0x1a4
->    devfreq_monitor from process_one_work+0x24c/0x70c
->    process_one_work from worker_thread+0x1b8/0x3bc
->    worker_thread from kthread+0x13c/0x264
->    kthread from ret_from_fork+0x14/0x28
-> Exception stack(0xf0899fb0 to 0xf0899ff8)
-> 
-> ...
-> 
-> 
-> 2. Exynos5422-based Odroid-XU3 board (ARM 32bit):
-> 
-> 8<--- cut here ---
-> Unable to handle kernel NULL pointer dereference at virtual address
-> 00000000 when read
-> [00000000] *pgd=00000000
-> Internal error: Oops: 5 [#1] SMP ARM
-> Modules linked in:
-> CPU: 7 UID: 0 PID: 68 Comm: kworker/u34:1 Not tainted
-> 6.17.0-rc3-next-20250825 #10901 PREEMPT
-> Hardware name: Samsung Exynos (Flattened Device Tree)
-> Workqueue: devfreq_wq devfreq_monitor
-> PC is at _opp_compare_key+0x30/0xb4
-> LR is at 0xfffffffc
-> pc : [<c09831c4>]    lr : [<fffffffc>]    psr: 20000013
-> sp : f0a89de0  ip : cfb0e94c  fp : c1574880
-> r10: c14095a4  r9 : f0a89e44  r8 : c2a9c010
-> r7 : cfb0ea80  r6 : 00000001  r5 : cfb0e900  r4 : 00000001
-> r3 : 00000000  r2 : cfb0e900  r1 : cfb0ea80  r0 : cfaf5800
-> Flags: nzCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
-> Control: 10c5387d  Table: 4000406a  DAC: 00000051
-> Register r0 information: slab kmalloc-1k start cfaf5800 pointer offset 0
-> size 1024
-> Register r1 information: slab kmalloc-128 start cfb0ea80 pointer offset
-> 0 size 128
-> Register r2 information: slab kmalloc-128 start cfb0e900 pointer offset
-> 0 size 128
-> Register r3 information: NULL pointer
-> Register r4 information: non-paged memory
-> Register r5 information: slab kmalloc-128 start cfb0e900 pointer offset
-> 0 size 128
-> Register r6 information: non-paged memory
-> Register r7 information: slab kmalloc-128 start cfb0ea80 pointer offset
-> 0 size 128
-> Register r8 information: slab kmalloc-1k start c2a9c000 pointer offset
-> 16 size 1024
-> Register r9 information: 2-page vmalloc region starting at 0xf0a88000
-> allocated at kernel_clone+0x58/0x3c4
-> Register r10 information: non-slab/vmalloc memory
-> Register r11 information: non-slab/vmalloc memory
-> Register r12 information: slab kmalloc-128 start cfb0e900 pointer offset
-> 76 size 128
-> Process kworker/u34:1 (pid: 68, stack limit = 0x050eb3d7)
-> Stack: (0xf0a89de0 to 0xf0a8a000)
-> ..
-> Call trace:
->    _opp_compare_key from _set_opp+0x78/0x50c
->    _set_opp from dev_pm_opp_set_rate+0x15c/0x21c
->    dev_pm_opp_set_rate from panfrost_devfreq_target+0x2c/0x3c
->    panfrost_devfreq_target from devfreq_set_target+0x8c/0x2e8
->    devfreq_set_target from devfreq_update_target+0x9c/0xf8
->    devfreq_update_target from devfreq_monitor+0x28/0x1a4
->    devfreq_monitor from process_one_work+0x24c/0x70c
->    process_one_work from worker_thread+0x1b8/0x3bc
->    worker_thread from kthread+0x13c/0x264
->    kthread from ret_from_fork+0x14/0x28
-> Exception stack(0xf0a89fb0 to 0xf0a89ff8)
-> ...
-> ---[ end trace 0000000000000000 ]---
-> 
-> 
-> 3. Qualcomm Technologies, Inc. Robotics RB5(ARM 64bit):
-> 
-> ufshcd-qcom 1d84000.ufshc: freq-table-hz property not specified
-> ufshcd-qcom 1d84000.ufshc: ufshcd_populate_vreg: Unable to find
-> vdd-hba-supply regulator, assuming enabled
-> ufshcd-qcom 1d84000.ufshc: Failed to find OPP for MIN frequency
-> ufshcd-qcom 1d84000.ufshc: ufshcd_pltfrm_init: OPP parse failed -34
-> ufshcd-qcom 1d84000.ufshc: error -ERANGE: ufshcd_pltfrm_init() failed
-> ufshcd-qcom 1d84000.ufshc: probe with driver ufshcd-qcom failed with
-> error -34
-> 
-> 
-> 
->> ---
->>    drivers/opp/core.c | 14 ++++++--------
->>    1 file changed, 6 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
->> index a36c3daac39cd0bdd2a1f7e9bad5b92f0c756153..bf49709b8c39271431772924daf0c003b45eec7f 100644
->> --- a/drivers/opp/core.c
->> +++ b/drivers/opp/core.c
->> @@ -544,24 +544,22 @@ static struct dev_pm_opp *_opp_table_find_key(struct opp_table *opp_table,
->>    	struct dev_pm_opp *temp_opp, *opp = ERR_PTR(-ERANGE);
->>    
->>    	/* Assert that the requirement is met */
->> -	if (assert && !assert(opp_table, index))
->> +	if (!assert(opp_table, index))
->>    		return ERR_PTR(-EINVAL);
->>    
->>    	guard(mutex)(&opp_table->lock);
->>    
->>    	list_for_each_entry(temp_opp, &opp_table->opp_list, node) {
->>    		if (temp_opp->available == available) {
->> -			if (compare(&opp, temp_opp, read(temp_opp, index), *key))
->> +			if (compare(&opp, temp_opp, read(temp_opp, index), *key)) {
->> +				/* Increment the reference count of OPP */
->> +				*key = read(opp, index);
->> +				dev_pm_opp_get(opp);
->>    				break;
->> +			}
->>    		}
->>    	}
->>    
->> -	/* Increment the reference count of OPP */
->> -	if (!IS_ERR(opp)) {
->> -		*key = read(opp, index);
->> -		dev_pm_opp_get(opp);
->> -	}
->> -
->>    	return opp;
->>    }
->>    
->>
-> Best regards
-Thanks Marek for reporting.
+Thanks for the feedback, and apologies for the long lines =E2=80=94 I have =
+fixed
+my mail client for follow-ups.
 
-Viresh,
+Regarding interdependencies in the series:
 
-looks like for compare_floor we need to iterate to the OPP table till
-the OPP key is greater than the target key and return previous OPP.
+  * Patch 1/6 can be picked up independently.
+  * Patch 2/6 is standalone.
+  * Patch 3/6 depends on 2/6.
+  * Patch 4/6 fixes the DTS node name as expected by 3/6.
+  * Patches 5/6 and 6/6 are independent.
 
-In that case the updation of the key and dev_pm_opp_get() should be
-outside as before. We need to remove this part of the patch.
+So the only ordering requirement is that 2/6 should land before 3/6, with
+4/6 included as well to avoid introducing a temporary new DTB warning.
+All others can be applied in any order
 
-Thanks & Regards,
-Krishna Chaitanya.
+Regards,
+Julien
 
