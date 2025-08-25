@@ -1,121 +1,126 @@
-Return-Path: <devicetree+bounces-209124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B0CBB34ACE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 21:14:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14179B34B1D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 21:51:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76BCB7A251A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 19:12:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF19A204C2E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 19:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0FB928136F;
-	Mon, 25 Aug 2025 19:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86E50286420;
+	Mon, 25 Aug 2025 19:51:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=palvencia.se header.i=@palvencia.se header.b="bT/9axJC"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="HaGKZuLE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m101-out-mua-6.websupport.se (m101-out-mua-6.websupport.se [109.235.175.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F3623BCEF;
-	Mon, 25 Aug 2025 19:14:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.235.175.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC1CA1C8630
+	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 19:51:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756149266; cv=none; b=p59mZBKDsGdWFuiuoU3If6iuTGzrhLEsVYGc99Jr//FH0jxapHDoz+KFz9ca59rpZEVQYeEncI3TqHdAPlpxcfOUQsCyGuC1+UvWB4bepy+z2d1ZE5LA+7FLCzad4I7YW0IFB9DpCDKIFguLzOijyxGgv/Xs+CV6UeoOOWNYsCs=
+	t=1756151491; cv=none; b=rdAgY32OAq8fYgcX7TvisQ95TPIMl8pSpiHSJmXAk594cTdVx7ebNYuR0ji3XIuZ1UkNwyqPmUUAV2q4ZvWlg973MUa2K6LfxqgNTtT9+XGQEXfxzrjhUh/4td99k4OupfJcV/iIL6SBbCzi+pMqKB1HcEr6IGKLGuzj8aVrxe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756149266; c=relaxed/simple;
-	bh=k46bUg4VPtvIWCaMHCfix4FLIE4JV0woTpaHdDa3ARI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aD5RuKfzyxbo+h5vJ8POwhUNbFK+DVqd0svBFNVO3L2zOusch8U2VkDmS2R68KKig51OnpBzXYOgcag3i2YjXxhfrHI+7T8owOru0Dqz642R9CDwThDxSk9COCleHUdiBSQgLcBduDDJ9ZyUe9Oo1G5hkgw32nTXblXUOlSqX2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=palvencia.se; spf=pass smtp.mailfrom=palvencia.se; dkim=pass (2048-bit key) header.d=palvencia.se header.i=@palvencia.se header.b=bT/9axJC; arc=none smtp.client-ip=109.235.175.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=palvencia.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=palvencia.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=palvencia.se;
-	s=mail; t=1756148930;
-	bh=ukDsuI8s1UxUlNDIszPLCcP3lTY/1qlseTcq02pRApM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=bT/9axJCPjJTbKMVTb11wCvMv1l78VnOc0K5h5YC/GH/wKbJeUOYc7iI4kiLfkZ1w
-	 Pc/jEzVqdqhShptvbmJ9GIRgWNUJ2o0cxL18cNvG/IeBiW+SqOhAaHlul+yNEpOUmb
-	 retkJo78ztHLYyAJfV+BZDuKBIbPbsVpiP4GK8065BQsZwp9fP5ZNQXDky69gmPXtC
-	 uOsE4txiazVgTXZUBgeRqnNeN9bIQ5M3xIIPwlNTsCJdxLtjLEVrT67ECRhqzI+OCT
-	 0RxQDZF6mz0zGcbe2khxi2eUNxr820/GL5K+Yd6PYXOuPFKOXbRCpf5QFA87H2ZjcY
-	 M0HbqMZ3LbCyQ==
-Received: from m101-u5-ing.websupport.se (unknown [10.30.5.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	by m101-out-mua-6.websupport.se (Postfix) with ESMTPS id 4c9gLp3JKYz1wn0;
-	Mon, 25 Aug 2025 21:08:50 +0200 (CEST)
-X-Authenticated-Sender: per@palvencia.se
-Authentication-Results: m101-u5-ing.websupport.se;
-	auth=pass smtp.auth=per@palvencia.se smtp.mailfrom=per@palvencia.se
-Received: from rpi (unknown [193.180.91.108])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: per@palvencia.se)
-	by m101-u5-ing.websupport.se (Postfix) with ESMTPSA id 4c9gLn434Gztmd;
-	Mon, 25 Aug 2025 21:08:49 +0200 (CEST)
-Date: Mon, 25 Aug 2025 21:08:36 +0200
-From: Per Larsson <per@palvencia.se>
-To: =?UTF-8?B?SmVhbi1GcmFuw6dvaXM=?= Lessard <jefflessard3@gmail.com>
-Cc: Andy Shevchenko <andy@kernel.org>, Geert Uytterhoeven
- <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/6] dt-bindings: auxdisplay: add Titan Micro
- Electronics TM16xx
-Message-ID: <20250825210836.71fb0d0d@rpi>
-In-Reply-To: <20250825033237.60143-3-jefflessard3@gmail.com>
-References: <20250825033237.60143-1-jefflessard3@gmail.com>
-	<20250825033237.60143-3-jefflessard3@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+	s=arc-20240116; t=1756151491; c=relaxed/simple;
+	bh=y79/LUE75+gAdZKPm7Wiii17xZyHOsbF+TjITNREJtA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=N7zWmqdX10OUvBcMvtd6RSsliUB7jnt9CAr3YD27cQ/dGwL6D3/0zvs+25ymA6fDLSpRtMD9VuGEZ0vo4KBO40UGPp0dUWovhCkS2rNroHWkOnpmo+ilBARnvTHJAZpU0+l/qzTPLLa62m8V0xcvJoKnAnK4xEHaWjnpUcpagHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=HaGKZuLE; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-55f474af957so1143612e87.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 12:51:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1756151488; x=1756756288; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y79/LUE75+gAdZKPm7Wiii17xZyHOsbF+TjITNREJtA=;
+        b=HaGKZuLE6ZJf5NweBqUmIuGwifT6BYS2i4BLg5mx+ZgR+ON4KD3FyeG291qmjdDpfJ
+         +RoEEvKdCiiXxd6ubXNVO2mpJWzfELIb9KZAOMAKunk8HTjxaguQ2pyzhtaDrTWU91n4
+         ZswiXHqVFhmkzU+40FgYuatK/oVikkgvdgbL9jh6kuZvumDtxLQUAXwRiokdo5M9ItHA
+         d/SLxabybgDP2HfHgo6lu/P7iyEMaQr5wvx4VOtw3BczFU0LG/NHP0YKpuJwkYF4P3gg
+         uweGCHAom57JbmfDHLpB/xFQLaFR/hRk5IkNdaoxBhAXINddVrPKkf/6U6VqwrmahyqY
+         tdvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756151488; x=1756756288;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y79/LUE75+gAdZKPm7Wiii17xZyHOsbF+TjITNREJtA=;
+        b=Vp0icOmbNaHfBjMQ1pkpg7uF+wzeRObMcLV8X3nu35gBTv4R2hzHSm39ZLgvk0+qPO
+         DPQrGXXsF5CuR6sjUOUp//zyCPhG+XPi4Ij9/74LQh40VRoMbRehnJQ9PVUrW2wULIZp
+         UZGvy51KyPnzOmhWiWXPhCotZx/A14SxLoOIq+Of8UmaqFAGH+vmUtQcMcTnwN35YJ1n
+         Ta4QR6uIPXf/ertP7Xj4cZbethmD/oqYSVxWYuk3UpkQGF53Q3qyJYGTD3Clg6VrFe3J
+         cE/qRAhWUgM87zhJDKSiL9RX2zEVN5bzSpd1H7RhYqUPHCyJGcvMiWLXCIiHOjd2IbIp
+         Zqyg==
+X-Forwarded-Encrypted: i=1; AJvYcCWnfuARqmMbMm4Z6Cz0s+y+tsjip0mR66TNv8LiQpM92nZf7qh1jj5ZOyTqctLV7vOCLZJwOOMFwuSC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpsV4IVtG1jgeueyZL4C6+e75YIXNBzh7fV1lE9rFH5UbWh7M1
+	4rJ5FhaG6w5nyxl6a6B9ShsZcZsoOVKO3gNgItt3PtK8O7ILzqIHjOb+rtuL8PT7mW9GLsGlvVL
+	NtJUq4Cso5DzfBIlmHMwCUxWAOzeMNS7DU/j5l61DRQ==
+X-Gm-Gg: ASbGncvSLGgGmVMGkEqVrl/MhYY30twuQfU0AV6tXJPgE0sWPA2uGmilsXTgXwJHGg+
+	DFPfBoZMafEQn2CnaDFMVQn86FfDZh/Krkx2NUaq37p6T/020ss2YKJn6fH1pSpkoKpkNeQsDFC
+	+N7ihvqgiyBUAzVxLk3ScabZmByMlLd7LD2z2c8ZrSHIjGnBabg36JAwy2ve4EUsh1YiHeR/rXK
+	dEAKC587081ZfQIYdBBqh1DFXLfjQuBEPlr
+X-Google-Smtp-Source: AGHT+IHCixJ3swy46ayk8UZ8ky9sJlMNCw4ccH8gYjaEf6aBpjGfhfoC4qmGYIEYeYDaVuoFN7bhmFqiGNvLwJvOuWM=
+X-Received: by 2002:a05:6512:440e:b0:55f:42ca:cc03 with SMTP id
+ 2adb3069b0e04-55f42cacd56mr2238491e87.56.1756151487746; Mon, 25 Aug 2025
+ 12:51:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20250810-msm8953-cci-v1-0-e83f104cabfc@lucaweiss.eu>
+ <20250810-msm8953-cci-v1-3-e83f104cabfc@lucaweiss.eu> <20250818155103.GA1272375-robh@kernel.org>
+ <d6159eb6-7777-478a-8bb0-298bfa607c06@lucaweiss.eu>
+In-Reply-To: <d6159eb6-7777-478a-8bb0-298bfa607c06@lucaweiss.eu>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 25 Aug 2025 21:51:16 +0200
+X-Gm-Features: Ac12FXzo7Xcs_f8LKjnis--6Fc7OlBNtr01kDZozGbXhIE3-aXJaLXGWXFJlZYg
+Message-ID: <CAMRc=Mf5+3KvKKrVJhx9_CmQ-tN69cahkHgjVgL5M7XCZHuNSg@mail.gmail.com>
+Subject: Re: [PATCH 3/7] dt-bindings: eeprom: at24: Add compatible for Belling BL24S64
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: Rob Herring <robh@kernel.org>, Loic Poulain <loic.poulain@oss.qualcomm.com>, 
+	Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Action: no action
-X-Out-Rspamd-Queue-Id: 4c9gLn434Gztmd
-X-Out-Spamd-Result: default: False [1.90 / 1000.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.10)[text/plain];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	RCVD_COUNT_ZERO(0.00)[0];
-	TAGGED_RCPT(0.00)[dt];
-	ASN(0.00)[asn:35790, ipnet:193.180.91.0/24, country:SE];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	HAS_X_AS(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FROM_EQ_ENVFROM(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	MIME_TRACE(0.00)[0:+]
-X-Out-Rspamd-Server: m101-rspamd-out-4
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate: clean
-X-purgate-size: 353
-X-purgate-ID: 155908::1756148930-06102069-1237CFD0/0/0
 
-On Sun, 24 Aug 2025 23:32:28 -0400
-Jean-Fran=C3=A7ois Lessard <jefflessard3@gmail.com> wrote:
+On Mon, Aug 18, 2025 at 7:46=E2=80=AFPM Luca Weiss <luca@lucaweiss.eu> wrot=
+e:
+>
+> Hi Rob,
+>
+> On 18-08-2025 5:51 p.m., Rob Herring wrote:
+> > On Sun, Aug 10, 2025 at 05:37:54PM +0200, Luca Weiss wrote:
+> >> Add the compatible for an 64Kb EEPROM from Belling.
+> >
+> > It is generally not required to add a compatible here assuming
+> > "atmel,24c64" is enough to identify the specific device (i.e. read the
+> > device's ID registers). If it is not sufficient, then some details here
+> > about why would be useful.
+>
+> I thought DT was meant to describe the hardware, and this specific
+> EEPROM on the device is a Belling BL24S64, and it's software-compatible
+> to this generic atmel compatible.
+> That's why we have compatible =3D "belling,bl24s64", "atmel,24c64";
+>
+> Am I missing something, or misunderstanding how DT is meant to be written=
+?
+>
 
-> +  - Digits use 1-cell addressing with explicit segment mapping
+Right, this is what we've been doing historically which is evident by
+the number of compatibles we have in the schema that are never
+mentioned in the driver C code.
 
-This new digits layout introduced in v3 implies that a
-different segment mapping can be used per digit by a
-single display/controller. Is that really a thing?
-
-Regards
-Per Larsson
+Bartosz
 
