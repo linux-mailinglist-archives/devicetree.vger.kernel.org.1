@@ -1,155 +1,126 @@
-Return-Path: <devicetree+bounces-208875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-208876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44F2FB337C0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 09:26:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67481B337C6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 09:28:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36AAB17BCC0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 07:26:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B5721632D6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Aug 2025 07:28:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2AD9289368;
-	Mon, 25 Aug 2025 07:26:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E266288C8B;
+	Mon, 25 Aug 2025 07:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NBLKiYs0"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Idm4c4//"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05FC52116E9
-	for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 07:26:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756106799; cv=none; b=LNnZZDGlRjx7st3jvMm0iI8JvQG0UL6TFz6qfu0emT3FYhQ1SpwEljtn2JrruwWzb5Mc4avKuocUxc42gfWgYe/wz2DfPgp+4/I2HaP3PS3wdDu7+fD5h0RSbhFXc7qloE5bWnTiFwOlCcBu5Ka8OXyH4dYAPEbMR7dbd6UT8lE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756106799; c=relaxed/simple;
-	bh=M6evD2Qxwqk81MjhmcOZIPv/5+wGW7wA97ZxmnU9KPA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sAFDDqyfU8da44by8LvmjAY0Lb/CwKbvsCqpsH73RmWSpc5H6BOX4zS4BH3Cnlpd5RAr5YMgK91lHsxlRSM0aBfgPefUzA0p5pLnf2aFeUupx7vH2dCbeJedB7fH6GauVZGHLxrv+NKCS6C9lnWLBibESWA6q5etVBROpPSmWTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NBLKiYs0; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-61c22dceb25so4060873a12.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 00:26:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756106796; x=1756711596; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p0rXI81DHDPeimgUQGGujUCeB3VepV9XFgBCotb060w=;
-        b=NBLKiYs0FexQz4acbBU2mIrhkKJVXGGkQly7GTWNS5qd+euGo1A9glqm58CJ9VIp9O
-         3y/ChrbnFhVTVgxuTbGlpkr/Ob7PIVkF/D9wPnxtOQ8E2Ei+1t4U77C8lCzEyZ/l7pwn
-         dvQS3DKRv2VLxYoetMMQxQw25S075XsrALHnWSeiFM9qLJidVq9NmIwy3pbuCRFLKje/
-         Y8UA+E0QyEE1UAEEql83O8LvX7+XujjVMCMdyrmynORZZzK+QXOPLyL0LbtQ1ncfRpMt
-         YqsQIqSVNfUoS6miDfnhlUPgUI+DsI4SPB2O/R3xCl8uCKLP/IXbjQnUw41xTvsFWVrU
-         ziow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756106796; x=1756711596;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p0rXI81DHDPeimgUQGGujUCeB3VepV9XFgBCotb060w=;
-        b=QnQ3nunezCJennnsewkB+TVTKgydRrmFs47+bQpafL2zuYuVU0hrg+P30akDj0VRpi
-         3njBkPfYDS/m9dwtdNRxBGBp5+AlAeKjPELx3cO075OMTgP35FKTCIxuUh7OCEWULySy
-         4FmO3bvVi2CclzIu4DmSXKOD5gD0ZHq+4CRb+lSrvp2uNixSnAAxfvGVgW5Piq6tgw6T
-         r19HIF09QdvXg93Cg+XUbQtttnxUZ0DRSk8hg//xOdOhL5M2hIgxKg5fmt1XMIrZnLdr
-         7S/dz8t92C7vflhBqZWur0IHq/NHx6f5U/t5yAlEraYYQYGzcKx15BbQSN6DNmmoqllz
-         2bNg==
-X-Forwarded-Encrypted: i=1; AJvYcCXQcT4VzSgvdobllU02dK2nja5mVmzcggXrlyJRaiVM3EZ8ZlqvYIULy0G7Lc3K45c7jRygjxK4MelK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyv0c3ICK7TFkrz6sIL6A6btRtMTO+njxg73eWNKjre9LXwwYBu
-	yzDistty9A6sC/iy44fzC3yIBTpjaHybgsWYZM6S1ajhlH1i3H9Cg0xasEZ9i5NGx1MwhGGz36h
-	HYVlcgbxV4WlwZZyYEz7mDQm9uHL2E2E=
-X-Gm-Gg: ASbGncvnhkn3zddrPuPrAApj+Sz5t124d2TUVhlO5zBVBkMVQTBbJ0++BJOGHMXyEZy
-	HneXFDinodq+FbmYGzLhliY7WxKKS5H8ueSVGdz4ukziC8bXpxAuW9rfbL/bWSUdZB2xGcKBdng
-	vNI3dYP5whQABaIDmYUP2/ArYS5eZg8E9UhfTw0V3ZjRllqPW3K3uI8fX3ZvPdgCFo9azu2meGC
-	r9SKvIJvT3FeZOw4CLm
-X-Google-Smtp-Source: AGHT+IEMMavT5lPcHDOmWN6D73yFcbhZ6LlVvdyIDZoFcQ0UkTHvd0fdnieclEyOSRj7wdZZ1vHKCxOSg4bVNUh2lp8=
-X-Received: by 2002:a05:6402:40c9:b0:61c:73f2:4b3a with SMTP id
- 4fb4d7f45d1cf-61c73f24d9amr999037a12.30.1756106796261; Mon, 25 Aug 2025
- 00:26:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6E4215F6C;
+	Mon, 25 Aug 2025 07:27:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756106878; cv=pass; b=jNpD64a4HErschxyxCteKN6I/K3PMg1JqGsFniLvSqDp8tbRN7cVJMzehdAjxY6+Y6MoBQZUUFD+kQ11gZBTIvdwWopvu7ksSVqbPGwl/43TBvUpw6bWgkKYpmxRnYxtLwOWuVWUy+eqxGf+ZQqq8Z9FV4/9n5BrbJQyMBL8f0U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756106878; c=relaxed/simple;
+	bh=fML6cRwp09iRLePqjQLtm24QRVBOlZ/sxCYg557xLP8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YQPcKz5rUiDNAd1FDmcIdrOVE5iKduUZ00jmKmDCb5fhrXnlB/QBBW6gQ+JmTF6u5LoHZePXlZbkyEoxLH4st2ERCDnUDlnPsrbJLTbOQ3v0NW5jmXDBIfnFcihojqYL9eDaG5z//EFVbc0510TVdOAR2mXiml4F7bjYtPWfBl0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=Idm4c4//; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1756106849; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=mEPfe+LalKrrED4ZK5hjFQelQk78dSO66JLcyZz+RAmvLO3g8HM5Pm3SbGFXG4yOXX0/Rm7cmtOYhbujBqyAun+tKkJPoRckkoDxuUeNcbx4nnvdX25nKAu1Cqv2BY9PlDQS+onShisZ3icAiCmCL2EJDB/MDr9s+z0PS3w9Rbs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1756106849; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=M/TwANByS8GbPPy4BtdqH5o/3ijPPSO7Y5K83ExNaD4=; 
+	b=VRMDlxMy6Ow3JvjULJlwASYl3/3F86yEo/usN9SjmdntDVkrDTuXlzJFwEUZ9lGn0SO7+cT/so7iiCRdaouujuyDCRcbCxc/nfptf9efCvtpWnkz7V1i7rdPnFqbcJ7p0lOdv9l4cz5J5qEaLvf7ihGk3PNoooMjpAzHTzZSeps=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1756106849;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:To:To:Cc:Cc:Reply-To;
+	bh=M/TwANByS8GbPPy4BtdqH5o/3ijPPSO7Y5K83ExNaD4=;
+	b=Idm4c4//UOrazztLZtVF9PkLSf/WuAxutdVS1v3bOR/RjiHPa2EHOZffvBd+fMPx
+	My2PtOpzd3oV12TdAHpylBo0CGEjrjW9fawJAi5FzPxPysZ86eABz47sj6Yhhm94Ii7
+	aPDtWeWom/MbM+6bfYIotPgU0XXTx9kPzqPYh+H4=
+Received: by mx.zohomail.com with SMTPS id 175610684796468.22818037101536;
+	Mon, 25 Aug 2025 00:27:27 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Date: Mon, 25 Aug 2025 09:27:08 +0200
+Subject: [PATCH] arm64: dts: rockchip: fix USB on RADXA ROCK 5T
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1755757841.git.zhoubinbin@loongson.cn> <f01986dcb9f16450bd7f38c8fd663df686e6d145.1755757841.git.zhoubinbin@loongson.cn>
- <875xeclodp.fsf@bootlin.com>
-In-Reply-To: <875xeclodp.fsf@bootlin.com>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Mon, 25 Aug 2025 15:26:24 +0800
-X-Gm-Features: Ac12FXyNgFXyJt4UvVNk5DenquiAD_QBeEewphZzs_VIgu82Xp2pbDEb2NAVMxo
-Message-ID: <CAMpQs4JcuCVk6BxB66DrneUv6iw8rzYyLnZX6vrQYp41n+=-vw@mail.gmail.com>
-Subject: Re: [PATCH v3 7/7] mtd: rawnand: loongson: Add Loongson-2K1000 NAND
- controller support
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Huacai Chen <chenhuacai@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-mtd@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250825-rock5t-usb-fix-v1-1-de71954a1bb5@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAEsQrGgC/yWMQQ6CMBAAv9Ls2TVttWj4iuHQllU3BqrbQkwIf
+ 6eB40wys0AmYcrQqgWEZs6cxgrmpCC+/fgi5L4yWG2dvluHkuLHFZxywCf/sQm611ey5MlAjb5
+ CVe/DR3ew0G+q33JICD4TxjQMXFo1N2dzQ4kX6NZ1A18a/nONAAAA
+X-Change-ID: 20250825-rock5t-usb-fix-6b0d04e2eae1
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: FUKAUMI Naoki <naoki@radxa.com>, kernel@collabora.com, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.2
 
-Hi Miquel:
+The RADXA ROCK 5T board uses the same GPIO pin for controlling the USB
+host port regulator. This control pin was mistakenly left out of the
+ROCK 5T device tree.
 
-Thanks for your reply.
+Reported-by: FUKAUMI Naoki <naoki@radxa.com>
+Closes: https://libera.catirclogs.org/linux-rockchip/2025-08-25#38609886;
+Fixes: 0ea651de9b79 ("arm64: dts: rockchip: add ROCK 5T device tree")
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-On Sun, Aug 24, 2025 at 11:40=E2=80=AFPM Miquel Raynal
-<miquel.raynal@bootlin.com> wrote:
->
-> On 21/08/2025 at 14:39:21 +08, Binbin Zhou <zhoubinbin@loongson.cn> wrote=
-:
->
-> > The Loongson-2K1000 NAND controller is also similar to the Loongson-1C.
-> >
-> > It supports a maximum capacity of 16GB FLASH per chip with a maximum
-> > page size of 8KB, and it supports up to 4 chip selects and 4 RDY
-> > signals.
-> >
-> > The key difference from the Loongson-2K0500 is that it requires explici=
-t
-> > configuration of the DMA control route. Typically, it is configured as
-> > APBDMA0.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  .../mtd/nand/raw/loongson-nand-controller.c   | 48 +++++++++++++++++++
-> >  1 file changed, 48 insertions(+)
-> >
-> > diff --git a/drivers/mtd/nand/raw/loongson-nand-controller.c b/drivers/=
-mtd/nand/raw/loongson-nand-controller.c
-> > index 7b331d0ca2f0..6610c239f721 100644
-> > --- a/drivers/mtd/nand/raw/loongson-nand-controller.c
-> > +++ b/drivers/mtd/nand/raw/loongson-nand-controller.c
-> > @@ -73,9 +73,18 @@
-> >  #define LOONGSON_NAND_READ_ID_TIMEOUT_US     5000
-> >
-> >  #define LOONGSON_NAND_64BIT_DMA              BIT(0)
-> > +#define LOONGSON_NAND_DMA_CONFIG     BIT(1)
->
-> You're reusing this flags member, so it's fine, please ignore the
-> previous comment (except the style issue).
->
-> ...
->
-> > +     regs =3D devm_platform_ioremap_resource(pdev, 2);
->
-> Would it be clearer to get the resource by name? (not a strong request)
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
+index 258c7400301d7f77517197ab433946bbfa39cf63..6acc7a8a5a12eee9cd3506910b40235813ec43b1 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
+@@ -95,6 +95,12 @@ hp_detect: hp-detect {
+ 			rockchip,pins = <4 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
++
++	usb {
++		vcc5v0_host_en: vcc5v0-host-en {
++			rockchip,pins = <1 RK_PA1 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
+ };
+ 
+ &vcc3v3_pcie2x1l0 {
+@@ -103,3 +109,10 @@ &vcc3v3_pcie2x1l0 {
+ 	pinctrl-0 = <&pcie2_0_vcc3v3_en>;
+ 	status = "okay";
+ };
++
++&vcc5v0_host {
++	enable-active-high;
++	gpio = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&vcc5v0_host_en>;
++};
 
-It will be replaced by
+---
+base-commit: 89d926fa53d0a6c257c4e8ac1c00c3d9a194ef31
+change-id: 20250825-rock5t-usb-fix-6b0d04e2eae1
 
-devm_platform_ioremap_resource_byname(pdev, "dma-config");
+Best regards,
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
->
-> Thanks
-> Miqu=C3=A8l
-
-
---=20
-Thanks.
-Binbin
 
