@@ -1,90 +1,128 @@
-Return-Path: <devicetree+bounces-209445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40557B37480
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 23:46:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ADEDB374D7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 00:19:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BBB31B26459
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 21:46:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47CDA1B277AD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 22:19:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62DBF1F2382;
-	Tue, 26 Aug 2025 21:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D600252900;
+	Tue, 26 Aug 2025 22:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CRVzx96c"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="EXd25FO/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E5B30CD97;
-	Tue, 26 Aug 2025 21:46:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4070234973
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 22:19:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756244788; cv=none; b=iE73ca/rgZR6piSpsGr3aHo2EsUhuTe9CwiUAIUkFj6FGXUgxEm6j/OHb/ah+3LZ7WTwjUxMj6aBmEiVLSiawriCdNQr/3bWmCLVp7UGtbLMf/xfX49IsMr4yPJQSkgso5VjJvykvik1Jqb1dcDZnHiz6iUBAMvZBcDUAqLFCAs=
+	t=1756246751; cv=none; b=QeL3Jux2yNd1/n+Uchz6MuajeBedk6Raq2dKob6ZvgnV3qHfP51klPMALUjhnv/d/oKLFAvXQ09/vG4cN2Ux4bTyfo7A2LUruvlUAIxKJ/kpCtrP+/XnZRxBZPy8L8Gi9A6Is98IKbvyQltQjzHnzpTctLtE4z0+gjqa8Nv1anQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756244788; c=relaxed/simple;
-	bh=vSBMKA9L+YzJuJM25V0/ghKt9jA4Bvh8WFzzdoSLXyo=;
+	s=arc-20240116; t=1756246751; c=relaxed/simple;
+	bh=dDASlBP0MFIq8lXobKcU0ACkjKAUEd5X5sCs3eQWVxg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TiGf9ioWs3r2tQ5XC+UAZXn/TYXiKwwgocwl3zZcBruDRDzB0NzANN3HLwi4i64OrGc3CF5f27RvrzsqeFhtsAf8ICWLo1B7C9K7UiprfIfLOBDinrTs4sYcW873ydiRTyKEu+lZn/3PJt9q4nSHbVjwiScer3JkzYVkSM1K+Hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CRVzx96c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DBCFC4CEF1;
-	Tue, 26 Aug 2025 21:46:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756244787;
-	bh=vSBMKA9L+YzJuJM25V0/ghKt9jA4Bvh8WFzzdoSLXyo=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=DeNpZI9RwjL6Hbdkyzz4yEEc4b2+2FUPLgto0FFmOCmUffpYZSdQZfUNaDfyd5vxyeC2OsB5IdkaPmtJAcyVOGKgpJkfVli2ipyQnAVoRdTMIrotVZZmsMQG4FuAY0//YPQYBJIqp/Ksh9Cn7jP+Jt3nl8e2g80wN9F92zA4sOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=EXd25FO/; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: by linux.microsoft.com (Postfix, from userid 1152)
+	id 6C8812019D4D; Tue, 26 Aug 2025 15:19:09 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6C8812019D4D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1756246749;
+	bh=8rtcCqNEwRzPi2I5Hkbq7ADSY01CvO5xXBkS7wksSvE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CRVzx96c9JzDI75qper0rXAaximc7QD/wUa4TfD+S3Lm41MWl3XrqiV5qqvsjX/Dh
-	 9d6Px3CEmX70aVHZ2rEGV8sztGvXx/1AxEaSaSJ+Suye3GBCC9QKkr2Jxso1drJSe4
-	 B4EFQg11Ih6+YMu8HWd4QUw06OYyc//TT4aSOFhre/mVnLl0GTcNahIQ/Tp0XT9WmQ
-	 f1UJo2zt1g2BapeF+oMWI6dj/gKCqnOIrJhyZ4Oh+G+b108hhjIjQVKMaAQm8PoHbH
-	 IeegxsRJCPk3S6nQS2VqtrDbRpVS7jrLeR3s8i5F3Hg3M6SSeUY4+cwgd11ysQho5C
-	 q/1CsLtqzYr6w==
-Date: Tue, 26 Aug 2025 16:46:26 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jie Gan <jie.gan@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	James Clark <james.clark@linaro.org>,
-	Mike Leach <mike.leach@linaro.org>,
-	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Mao Jinlong <jinlmao.mao@oss.qualcomm.com>,
-	coresight@lists.linaro.org, devicetree@vger.kernel.org,
-	Tao Zhang <quic_taozha@quicinc.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v1 1/3] dt-bindings: arm: document the static TPDM
- compatible
-Message-ID: <175624478567.528178.9412029558267421159.robh@kernel.org>
-References: <20250822103008.1029-1-jie.gan@oss.qualcomm.com>
- <20250822103008.1029-2-jie.gan@oss.qualcomm.com>
+	b=EXd25FO/CTVn1QSOUQbXEMJ929gVepWWEUf8BzPGH1O47quoc3mUJI794aVUEr9uu
+	 WdMwUuZ4w6tMKjQ0o4OYxTeRjLqYZSem40ZIsqBPVC7iGR5ZVMolKhSMwD/qaNeGiq
+	 +pioNVkMiMZzPQAY70cl2TtQL6bM+1BVZxhP+Tx4=
+Date: Tue, 26 Aug 2025 15:19:09 -0700
+From: Shyam Saini <shyamsaini@linux.microsoft.com>
+To: thierry.reding@gmail.com, robin.murphy@arm.com, robh@kernel.org,
+	jroedel@suse.de
+Cc: jgg@ziepe.ca, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev, will@kernel.org,
+	jacob.pan@linux.microsoft.com, eric.auger@redhat.com,
+	code@tyhicks.com, eahariha@linux.microsoft.com,
+	vijayb@linux.microsoft.com, bboscaccy@linux.microsoft.com,
+	saravanak@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lizhi.hou@amd.com, clement.leger@bootlin.com
+Subject: Re: [PATCH v3 2/3] iommu/of: fix device tree configuration for PCI
+ devices
+Message-ID: <20250826221909.GA3227@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <20250806215539.1240561-1-shyamsaini@linux.microsoft.com>
+ <20250806215539.1240561-3-shyamsaini@linux.microsoft.com>
+ <20250808121515.GE377696@ziepe.ca>
+ <20250814233018.GA31418@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20250815003958.GE599331@ziepe.ca>
+ <20250815023236.GA30997@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20250818155310.GG599331@ziepe.ca>
+ <20250826011557.GA2980@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20250826123653.GC1899851@ziepe.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250822103008.1029-2-jie.gan@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250826123653.GC1899851@ziepe.ca>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
+Hi Thiery, Rob, Robin, and Joerg,
 
-On Fri, 22 Aug 2025 18:30:06 +0800, Jie Gan wrote:
-> The static TPDM device is intended for sources that do not require MMIO
-> mapping. Its compatible string should be documented clearly, along with
-> an example illustrating how to define a static TPDM node in the DT.
+On 26 Aug 2025 09:36, Jason Gunthorpe wrote:
+> On Mon, Aug 25, 2025 at 06:15:57PM -0700, Shyam Saini wrote:
+> > Hi Jason,
+> > 
+> > On Mon, Aug 18, 2025 at 12:53:10PM -0300, Jason Gunthorpe wrote:
+> > > On Thu, Aug 14, 2025 at 07:32:36PM -0700, Shyam Saini wrote:
+> > > > On Thu, Aug 14, 2025 at 09:39:58PM -0300, Jason Gunthorpe wrote:
+> > > > > On Thu, Aug 14, 2025 at 04:30:18PM -0700, Shyam Saini wrote:
+> > > > > > or were you referring to [2]?
+> > > > > > 
+> > > > > > In that case, the PCI child node data needs to be parsed, which is
+> > > > > > currently handled individually by each host controller driver.
+> > > > > 
+> > > > > Yes, this looks like it may be what I was thinking of, the pci@1,0
+> > > > > specifes the BDF effectively
+> > > > 
+> > > > In that case, we'll need to parse the child DTS nodes properly
+> > > > within of_iommu_get_resv_regions(). I'll include this in v4.
+> > > 
+> > > Kinda surprised this isn't happening already? It would be good to
+> > > refer to the original specs and describe how whatetever you propose is
+> > > aligned there.
+> > 
+> > Just to confirm, does the v3 version of this series look good to you?
+> > If so, I’ll go ahead and respin the series with the iommu_set_sw_msi()
+> > change and address the other review comments from Jacob.
+> > 
+> > Otherwise having pci devices nodes in the fdt or dts needs additional
+> > handling, let me know your preference :)
 > 
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
->  .../bindings/arm/qcom,coresight-tpdm.yaml     | 23 ++++++++++++++++---
->  1 file changed, 20 insertions(+), 3 deletions(-)
+> I think you need to consult with the DT/OF owners on these questions..
+> 
+> I've forgotton so many of the details here.
+> 
+> But once you settle on whatever the DT representation is it looks like
+> the right direction to me.
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+The of_iommu driver currently does not correctly handle parsing
+of the memory-region property for individual PCI devices. This
+patch addresses the issue by explicitly setting dev->of_node for
+PCI devices, enabling proper parsing of the memory-region property
+within of_iommu_get_resv_regions().
 
+Could you please share your feedback on this fix?
+
+Thanks,
+Shyam
 
