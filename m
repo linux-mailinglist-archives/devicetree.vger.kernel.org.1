@@ -1,133 +1,122 @@
-Return-Path: <devicetree+bounces-209263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7DDCB35678
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:14:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB868B35683
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:16:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9C8E1B6294C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:14:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6188173B21
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:16:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49E5D2F3C34;
-	Tue, 26 Aug 2025 08:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86A127A11E;
+	Tue, 26 Aug 2025 08:16:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GpfmW+/q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N/x1rqW7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A5A284678;
-	Tue, 26 Aug 2025 08:14:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 954442AE8D;
+	Tue, 26 Aug 2025 08:16:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756196050; cv=none; b=GuxzKwYqzsQUj+fnr4XAiudAdAiLWE0sT/92dDH572TB+WI5sUeBUu4DCAAXKBpRP+H8hnDFo/VFeexZcbfdrtRGLvyZ3msRcCU//iEQzHqi4m9v56d3+UFOUB03vdm7TNEh+Lwq7PmX1hzhZEjXlNprDFI01XKS9vv6UzpeuEg=
+	t=1756196195; cv=none; b=k6/Vxm5kbqTl3G2rbwtxckke8VhRp+lvX1DwXTjTwQBo5eDJEZRmaf2W2XIf49/PiUOddF/nFlitU7nHbqL9V9fRhJpGEnX9fFKAACEiGmj2egduyccOdzU/H9r63KPQ9dhsnObuTjZCq0uBcluvgGOSS1FjnVxa1nbbZDnyCOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756196050; c=relaxed/simple;
-	bh=K5a74MigWwPcCyFreDaIcqML8Y25Lv7ViHW6u82Go60=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=enjz9MZaYdbhHPlpncQpNEhEza+yQoG2LIAEdhNKBN7Ozp2Gcy+TolfqnpdeRS+V9f1icLeGobKPRe7y6Z8fSWQAAZSum/4qWSsPG2L8tiTmNRlsBUdpg6EJ9ujXni3Od6IcPJ1E8BL9ZHPLjU69LVNIEjyh30t/hqD4+MPwVY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GpfmW+/q; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-afcb7347e09so907190766b.0;
-        Tue, 26 Aug 2025 01:14:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756196047; x=1756800847; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c+9cDqbe7/fXz5iaoORlIRYc1spfaZP8SiJ5AmziM+U=;
-        b=GpfmW+/qzSFqjFkNptsmiUujnyioZBQuf9Uq7USMs8YpG2PsJO+e/exVFqAYYeUvvE
-         blAxU7IFidEBwScvrDhFOh8PuWo0K/9mMsr2B85kga/aisxMmtW3lYy2mrSSTiPyo58U
-         EMsuV3noXLrxatDrc/MLg3UVd5VQ2CPo73BO7asE4uWIVzF///+1FuoCfHH6nCqNgf++
-         m/FqWvO+QJIJ15Jfp2aYmzLlVpeNK764u2LN9OgeVn+T0kDtdDHZijj3IGKj670Beq0L
-         VFDCOAtLOnBFaW13/TlGuiwQP4DDKwpQGbGLpBmmhVjwAaHBVN1rvphnLzXadF1ONO81
-         LxNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756196047; x=1756800847;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c+9cDqbe7/fXz5iaoORlIRYc1spfaZP8SiJ5AmziM+U=;
-        b=ARb3KbjdD9Q1is80k4OvfJhgSgiQarHmVkCIrML6lr33/J1khWQOyDasV5oyt5tx2L
-         3KCrbRZPjXCtZhb3AITm+8Yi4m5SyJNCZIksnxOnFVgKGsY3bIhQIgtPMa3P9wAaNQ5z
-         tZVy2MEYi/FyGTcoQOAJYXrfo5tTEPHIXKxZLP5Cg7R0i84R6EojCKE2vl9hlDz2ugi+
-         BEF0zEVeGn28aPRRDL0aFTgb1kK1glurePmFWSKPm9DiQ8Gq3G7RMatoOhvG9rzgNWFY
-         iI/IFa2fgxJp71YY2MC+WHd9ayha1n/HO1On0FmkON5NEFvfS0r5VHAigm8rC9CjCXPl
-         L6IQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVHkXUt+XuCbhhn6E6V2z4AogqHGBCMxTFdOKZC8fzNaePBj/TVP3OGDWmL+bF5VoAsiGOT5ofcnsY+pIhc@vger.kernel.org, AJvYcCW0aqY7uSsjPs8kn1HaV/WfikCxViHj8QSjVoz3lSE7EVQ6N5C5dEPHzsc6hdn5xYltsB0Yg2vrJ2Zj@vger.kernel.org, AJvYcCWInAE/gWtIiMJOoBIAj1jjtd0TZr5eIDSoS7+AHpCDK3d5vVCU+MbKYkuP3vd1QNm1+uD8kHjdKPil@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8dC4R7nuMZOVPi6W8G9NDH25EIMsvHS8e+sxmmIIvodWVN+ql
-	6bzrk8s0Ru6Qyu7YhT2wPZkEl7VXPikjGhartrmriHISK8ZRA+U2OXmNcZ1KiBkwSbVraf1xHGx
-	SVIq0jUOBq6cWUUUouJakM9YXMxwrehHpGRtBqU0=
-X-Gm-Gg: ASbGncsBadU4HwApAB0Uo1/RZdQEzAUxbH5XCJ7xv++w8GX6OGjOKfAsvUFw4gHjT3x
-	LuMwySywhfKgvMldppuSfvSYkSvx86OKU2XMtycdRX4u3QT+mzWN68IuYFkfqzI25dxJhfkgUDQ
-	B0Kv65d47o6w7nrDrUEGZ3fTzz+qRCkfqQWVJUIPsidBeDWiAXrzvgizG2T4S7NkpJNzZI51mwW
-	eL5uvg=
-X-Google-Smtp-Source: AGHT+IG50ET/PhN9ukJyoZNxRs+zEBWaeQQsD1E6eaJ7b55Lbh0MZlW4U80jHXcFYMrLdpZtXZifvaaF8NUeXrUkU7Y=
-X-Received: by 2002:a17:907:c487:b0:afc:aec3:7da4 with SMTP id
- a640c23a62f3a-afe2963b010mr1238928066b.58.1756196046480; Tue, 26 Aug 2025
- 01:14:06 -0700 (PDT)
+	s=arc-20240116; t=1756196195; c=relaxed/simple;
+	bh=h2NxbrgJBQR29RfVk9bwviTzfNZxmQs4Ox8mmcosnwI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VCuAHDcG5+AyfYQv3Tf4XPIMNvFwMoYZ5TUrciwXPFvpNpNc0QaQc6mAdl6KOG085JDYrfp2eoUXmr1gyWZ3YbGv9SCpck/gCMh/eXOtVTWC7kpebzcC0/DKUOQ+vPEgZN4L9Wvsvy1ckCYyfMy3CEqctpB5ISQWETwsFBy5L7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N/x1rqW7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9C52C4CEF1;
+	Tue, 26 Aug 2025 08:16:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756196195;
+	bh=h2NxbrgJBQR29RfVk9bwviTzfNZxmQs4Ox8mmcosnwI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=N/x1rqW7RHpd/kpvUeDtvVcYpM8cVh8HEbvdmXvgpkRUqG4WEP0nA/LO6ZzZDiOqi
+	 wlkj8l5rJsc8e+AP+Z/XzxtXbzrpYSfR47R0FAwaZmwXViXY4w5JTdLPDS//vySIYa
+	 SoXYVoaR/fBllSxOOdqSGQ9PneNEg+SxEfSuYoGvf8YlZt5nFMmUqj75GvXFNAF0AS
+	 zZlRxmW24guTFV7BiwPL390YC/YPcNV6gUdyippYF8AR/a059HM09mR8YKfDMBVWvm
+	 lTLCroZvF8jHACGliTwsCKc2XxvY2Ev9CHAQGm8ZMRg6XRVrgOtahzaYDskfpyBN+g
+	 raTZ3bnaYI08w==
+Message-ID: <d7d56ede-adf2-47f1-8886-0a5969e29eb9@kernel.org>
+Date: Tue, 26 Aug 2025 10:16:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250825-iio-adc-ad7124-proper-clock-support-v2-0-4dcff9db6b35@baylibre.com>
- <20250825-iio-adc-ad7124-proper-clock-support-v2-4-4dcff9db6b35@baylibre.com>
-In-Reply-To: <20250825-iio-adc-ad7124-proper-clock-support-v2-4-4dcff9db6b35@baylibre.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 26 Aug 2025 11:13:30 +0300
-X-Gm-Features: Ac12FXzVmmj-5G2Y2-Ph7vd-m35fceWUBSLrx90B4elHQDFntoLJODJJ9ysQknQ
-Message-ID: <CAHp75VeAMNp8gARndVRnh3EwrTb65MNFXL7pCThR+Ghd_+yHDw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] iio: adc: ad7124: add clock output support
-To: David Lechner <dlechner@baylibre.com>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: nfc: ti,trf7970a: Restrict the
+ ti,rx-gain-reduction-db values
+To: Fabio Estevam <festevam@gmail.com>
+Cc: mgreer@animalcreek.com, robh@kernel.org, conor+dt@kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250825161059.496903-1-festevam@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250825161059.496903-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 26, 2025 at 1:55=E2=80=AFAM David Lechner <dlechner@baylibre.co=
-m> wrote:
->
-> Add support for the AD7124's internal clock output. If the #clock-cells
-> property is present, turn on the internal clock output during probe.
->
-> If both the clocks and #clock-names properties are present (not allowed
-> by devicetree bindings), assume that an external clock is being used so
-> that we don't accidentally have two outputs fighting each other.
+On 25/08/2025 18:10, Fabio Estevam wrote:
+> Instead of stating the supported values for the ti,rx-gain-reduction-db
+> property in free text format, add an enum entry that can help validating
+> the devicetree files.
+> 
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
 
-...
 
->  static const int ad7124_master_clk_freq_hz[3] =3D {
-> -       [AD7124_LOW_POWER] =3D 76800,
-> -       [AD7124_MID_POWER] =3D 153600,
-> -       [AD7124_FULL_POWER] =3D 614400,
-> +       [AD7124_LOW_POWER] =3D AD7124_INT_CLK_HZ / 8,
-> +       [AD7124_MID_POWER] =3D AD7124_INT_CLK_HZ / 4,
-> +       [AD7124_FULL_POWER] =3D AD7124_INT_CLK_HZ,
+This should have net-next subject prefix.
 
-Perhaps / 1 ?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->  };
-
-...
-
-> +               const char *name __free(kfree) =3D kasprintf(GFP_KERNEL, =
-"%s-clk",
-> +                       fwnode_get_name(dev_fwnode(dev)));
-
-What's wrong with the %pfwP specifier?
-
-> +               if (!name)
-> +                       return -ENOMEM;
-
---=20
-With Best Regards,
-Andy Shevchenko
+Best regards,
+Krzysztof
 
