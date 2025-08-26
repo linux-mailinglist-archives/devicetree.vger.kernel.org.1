@@ -1,237 +1,150 @@
-Return-Path: <devicetree+bounces-209351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDCF7B35F22
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 14:30:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54AE1B35F38
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 14:37:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8162F366AC3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 12:30:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10F1F3AEA06
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 12:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C912432A3C8;
-	Tue, 26 Aug 2025 12:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADBA8307484;
+	Tue, 26 Aug 2025 12:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eUJDouHc"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="a8pRHUZS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84C31C1F0C
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 12:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273E62C0267
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 12:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756211449; cv=none; b=FlojdrrgbLuQKuPqN4sl8AWby64jJoSu0B7KemXGsosRpMvrRWVwvXxoVkBLcAatrZSlHK+lAfFkNZLmCPiso1pvO+fUMeZW1f+pd6oeXERmA+rkgPpXnOaYJTmA3thbuRG5n+h1Sh16CG9uBVDjfKGTZSWdvJuIc3deX1p2Gyw=
+	t=1756211817; cv=none; b=BEwp6BWVIuvYzxvPUkrdrjmGZBTHFuAYBiTfoWrmjY+0Y9rB4/v1th08DxU41yq3Aa6TFWEqhoGupOW2Tfj0OxuuJJuV8fVzp//Y4Nj9bvD66plO+yXsrm0bsgDsraL/QpTtc6xwZZZ3HisvSZfwbCjN7YHfwrqz0q2Qohyx6u0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756211449; c=relaxed/simple;
-	bh=ma5t6YXeVJpIipfm5/CG8lKCSELEwhRTnwbTvkULl+I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bAqi0pUqMfnx/QuCJ+dB9o9O4RUNpvsJHJmXSM0nsdXpcmfmlcrX8Sk093bCIBjLTSLTcPXjjlgZqwEwB37pgU0DKnqkT+H/YWI2CUDA14OOJnBYWTfjaXWnr4QsQbAvt14FZtOu8hZp/vhPXGmwnoiMScrDym2CmIoyvKt/1wQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eUJDouHc; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-61c26f3cf6fso7929216a12.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 05:30:46 -0700 (PDT)
+	s=arc-20240116; t=1756211817; c=relaxed/simple;
+	bh=D8LK1h52u7FTE7jNOV0kzrk9gkDffkqaUwmZGkhUfm8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tvprGnks1DN0U0V6d+OtALW0/pHFWNRBIy9at6iXAs22Anb323TINNCOd43cM9kpHsb0KgAa8ibtlzKCK1xzKZN5qdW41xNGnOTXqhWZjyZySK38ny0oMLQq5AJiUQUlcMSalmdhxLQb1jJFyzZWGJNdY795caCqw3Sj5CdFC9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=a8pRHUZS; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-76e4f2e4c40so4857534b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 05:36:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756211445; x=1756816245; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pkoS1mgQUsuKKrSkoR2eKBjtP1PvOwI34/oZkFfI/4w=;
-        b=eUJDouHc+6pKfunKmb2yl59eCyT5uiPyLf10a8OP59YkRIz5YsPcDq8ijoVD34+UNA
-         iOz4HP5YwiVxCVltnDLrUwIPgr++iogxRWNcgGSAaKT6GRtq7t/Q1PcNXtrTS5q3E08A
-         pI6qo9UhBpTrZ1NNt3Cks7MLqQuSp+jWa1vx3huxgfp7gasrKP07VuAZbfVII5hqC6OJ
-         lzatrkgirbOx9nvF8t7orj8LhKTrq2BylRP5wG9zYNfpRx4sQlCvgE6Wki44PBgb43+s
-         8BMfmSYMYPfY8ltThU5/j2rZZBa5HS9A3VeEQAEfU3x6FM4t8xg5aA8jWGb/Md0WiVhV
-         3Y2Q==
+        d=ziepe.ca; s=google; t=1756211815; x=1756816615; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mFuBdDpmjTxJPIC+jvTVeeAVDsVAAyhX1fX5Qkry/n4=;
+        b=a8pRHUZS3v7QpuZmqEtZNqK71FGidFNpEieU5LKFuVz2GbXVP5nzJWxl/hh13tZU1q
+         HHYRKtM4x6/83mSk/0kJRSQQ3M1snywX48yBZjdXTHrFzXmuslVzRQqUaI1KUnH31MjD
+         yFmdjlGUjmu6DnZRev68ZdASTqobBDHsFiXuu4zcz6ZaCnTA1cUH+du/rp3B5JyNw2tU
+         D5P26cAue6tVJLG7zqX2UKT257QlQFB6sbviDf374kwanE4DFSVO2gAnLXl/oS5SXC43
+         ErnP30vX02UO4qh9LDNMmRhSwXnYrMHNyiY5JqrgG/NVp0fZs1D16I4lI+E7j5RUqwJ7
+         o8tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756211445; x=1756816245;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1756211815; x=1756816615;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pkoS1mgQUsuKKrSkoR2eKBjtP1PvOwI34/oZkFfI/4w=;
-        b=vdpiB6QQZRPoIhx2tRj0bIz0G2P60xAi7Wzhf6AhZooB7e4B2PcMMsiZx77PM4PYAc
-         RqvBO9pdaPgh/Sx3rff9BNguDVv+yoCRPaEpRcqGa/zo7rA6XPiFsL2855kg6l6V8uq4
-         efi5zdu79x/RTN/DyVyCdiqKAtgXn7IObPD+bOMYQAX/1mGG5v7ij7oVCPv2ZaimCRWC
-         JobwLk0dV3jT9vh9MHmgd+tKLj1PSorPSVpRA4ZYr2/gAVK89KXbPgonGPHCBTEy9Kzg
-         H3YsDM0MLD0SdRuCOMsu4TyZgyIhMgwIueKj0fZ5RSKQszzpRvQzGYdxBSCx4LfRBNxX
-         gwBA==
-X-Forwarded-Encrypted: i=1; AJvYcCUrRcdu7prhAPKkM+5O/YlEQ3WcYZGVjxuFT6ZSLTbMonaN94zrmdMO0UDGfP80mhuFqs02uAKv9uOb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwkPR0oOsiaBTRDhitJ1LvsK6alhYZTWf5B491guG5Zfl+UPTN
-	e7kxa9+Hu2OdGRCZ1/N3BW/MklhxZD7gr/YLDx3pbX1TEDnDZxWPdTNccICQbtb89mA=
-X-Gm-Gg: ASbGncvuHD57PvfqJN4aPsV47tWct6XdNPNKiJNg8h+VjBcd3bkA9mMrolf+zlI/eGg
-	Y0XeL3y/DG1MCTjcbAbtfRvBtRqfGU9Zx4dSyJ51HNDpw9rpJeMOmm7WhTfAhu494VzBBGOvjQJ
-	LkDbnXJ+z5O+R8rX4bza3nLsQx4gGonWCeHlT5qvXWJs6sSKJ9jiFvcJd+zoT9cdlYQGTfwzuHr
-	sgg1lZmj6ON/SkKFWYQpJDEfHM6b8MdY2XEeUIceArPX2SVuylvjI69kKVZWoWF49Yc1RTRz0q4
-	pTtvF4a9aqGlIwUVJ0iWdQ4L1dI5YREk0IelH13NQ5l0tTvw+o9YZisw96P7x2SXWyPhRaexggk
-	3a9fBlCUyEAGAxPUP5ZnhBkugDLKx2aKfdZa/eOUbvdAFGsDDFPj9J500NBXGiS0JyU1lLKo588
-	XmvjCJv5IjCVKtuDAWYN+DGlgVA4PJFBirviO59vUCUQ==
-X-Google-Smtp-Source: AGHT+IFoNo4sUuPVz97d4PkLZSbI/f1UFt/iMJnmEAyKXCStBHMmMzr2bqFoTjxJ9/MLfPPKQLWMCg==
-X-Received: by 2002:a05:6402:40c4:b0:61c:9cd7:e5b3 with SMTP id 4fb4d7f45d1cf-61c9cd7e885mr392714a12.28.1756211444652;
-        Tue, 26 Aug 2025 05:30:44 -0700 (PDT)
-Received: from [172.31.14.217] (static-243-216-117-93.thenetworkfactory.nl. [93.117.216.243])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61c3172ef02sm7148078a12.39.2025.08.26.05.30.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Aug 2025 05:30:44 -0700 (PDT)
-Message-ID: <d828855f-1371-4a0d-a636-b04de47376a7@linaro.org>
-Date: Tue, 26 Aug 2025 14:30:42 +0200
+        bh=mFuBdDpmjTxJPIC+jvTVeeAVDsVAAyhX1fX5Qkry/n4=;
+        b=I40sFgP7kxzdnY60n9CPypFL9dTsnXc9fb4HaWX+8Z99UEUs/2Jan/qU0J1u4DfARJ
+         JyfBNRKazFlGjYdnHICPcaIipf48moU0aVx9WUKMTniWD8mUOXDNKUtJB9ciM13urbZl
+         /SKdoQdioAdK1yHSvnBuEHUZwC54mu0HjNm6pljZkoA4gLsZuC6vhh3X7PEvYT/k5DKK
+         k+IBQEA4fqJiNkgGjpfZjDoJdZWVKWmXwuyoSrzkCcYWDMTk49ad5KxHrQZW3fTgyBIM
+         TlbhioRTNLh8zaEZ62JyWR34Erji/H6Pp9BEEMwoa4gk9CeUxMXXR8LFr5IX2FrvGcJd
+         kEtg==
+X-Forwarded-Encrypted: i=1; AJvYcCUnaN/ywYuqT9c1UYt54WHTy05K3Tt2BFsg3frX2jrogar4UgOW7oTs5ocbRg5DKS8GFLM5coyw2B4W@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkWUTTQJvQ6Ct+zK9L7h/3FWsA04UuT9LoBNxhtSLSqUXpnUFO
+	QXtUCRBcMTo49e1fYC/yJmXRJJ6bUI+Osg8qw880LADJm5EgEhaLVKs82KKCRLFWTlU=
+X-Gm-Gg: ASbGncsR80HnZ5AyhIRYDW03tYtZBD6SBOJb5Fuom1Guyivgxn0QR1HZnHO+JZlrL4l
+	WN1wOubEDIAMksbBho5G/2eNVxqRHl5LGdPs/6qVaI2E22eQT8TJUGkLHnhYdaEl7eM51GOqiCD
+	wW5HLmvSWxpYZQvv/GwQSFxOyqzGNkvbRZTIAGD6iK2ehJp5niV2fWd+xD5EDYyx9pQBMXHB7rj
+	F1bBimQf6WfNIvhcYujaGS16t5RGClCBeoJbOa+npJSnRh1lcknzEfUAjsHbTntEcOrWDXAEibY
+	xupKvNUa21H1v1ZkXiFVTiU5/g9UUmYDViucnbsV48boqTjtNQsLCiD+15xW4vjaNRSekaYZsSg
+	3I6OEwLA=
+X-Google-Smtp-Source: AGHT+IHTh1g6nVXxG5B7xS4T7Fnw4NLjAQ3OfTl5DHXo//wtjXBmCj82vaaqojPvv0EPFyup1w2yOw==
+X-Received: by 2002:a05:6a20:1588:b0:204:432e:5fa4 with SMTP id adf61e73a8af0-24340b5b6ddmr22663293637.23.1756211815043;
+        Tue, 26 Aug 2025 05:36:55 -0700 (PDT)
+Received: from ziepe.ca ([130.41.10.202])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3275933d6a2sm567538a91.23.2025.08.26.05.36.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Aug 2025 05:36:54 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1uqsuz-00000008tQD-0mP5;
+	Tue, 26 Aug 2025 09:36:53 -0300
+Date: Tue, 26 Aug 2025 09:36:53 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Shyam Saini <shyamsaini@linux.microsoft.com>
+Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, virtualization@lists.linux.dev,
+	will@kernel.org, jacob.pan@linux.microsoft.com,
+	eric.auger@redhat.com, code@tyhicks.com,
+	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
+	bboscaccy@linux.microsoft.com, robh@kernel.org,
+	saravanak@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lizhi.hou@amd.com, clement.leger@bootlin.com
+Subject: Re: [PATCH v3 2/3] iommu/of: fix device tree configuration for PCI
+ devices
+Message-ID: <20250826123653.GC1899851@ziepe.ca>
+References: <20250806215539.1240561-1-shyamsaini@linux.microsoft.com>
+ <20250806215539.1240561-3-shyamsaini@linux.microsoft.com>
+ <20250808121515.GE377696@ziepe.ca>
+ <20250814233018.GA31418@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20250815003958.GE599331@ziepe.ca>
+ <20250815023236.GA30997@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20250818155310.GG599331@ziepe.ca>
+ <20250826011557.GA2980@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 7/8] serial: qcom-geni: Enable PM runtime for serial
- driver
-To: Praveen Talari <quic_ptalari@quicinc.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Alexey Klimov <alexey.klimov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-serial@vger.kernel.org, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- dmitry.baryshkov@oss.qualcomm.com, psodagud@quicinc.com, djaggi@quicinc.com,
- quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
- quic_arandive@quicinc.com, quic_cchiluve@quicinc.com,
- quic_shazhuss@quicinc.com, Jiri Slaby <jirislaby@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- neil.armstrong@linaro.org, srini@kernel.org
-References: <20250721174532.14022-1-quic_ptalari@quicinc.com>
- <20250721174532.14022-8-quic_ptalari@quicinc.com>
- <DC0D53ZTNOBU.E8LSD5E5Z8TX@linaro.org>
- <577d05d4-789b-4556-a2d2-d0ad15b2c213@quicinc.com>
- <dcad137d-8ac9-4a0b-9b64-de799536fd32@kernel.org>
- <DCC8WLEKNS8W.9GAJHQGYPZIY@linaro.org>
- <8689a8b4-75cb-4f01-ad6c-0a8367851257@kernel.org>
- <DCC9B5C7SSU2.GRI1UY0VUDHF@linaro.org>
- <890ede8a-c049-4332-8f62-5dce2fa0f77b@kernel.org>
- <5ae730f4-5337-49f8-8bec-8605a2495f37@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <5ae730f4-5337-49f8-8bec-8605a2495f37@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250826011557.GA2980@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
 
-On 26/08/2025 11:29, Praveen Talari wrote:
-> Hi Alexey/Krzysztof,
+On Mon, Aug 25, 2025 at 06:15:57PM -0700, Shyam Saini wrote:
+> Hi Jason,
 > 
+> On Mon, Aug 18, 2025 at 12:53:10PM -0300, Jason Gunthorpe wrote:
+> > On Thu, Aug 14, 2025 at 07:32:36PM -0700, Shyam Saini wrote:
+> > > On Thu, Aug 14, 2025 at 09:39:58PM -0300, Jason Gunthorpe wrote:
+> > > > On Thu, Aug 14, 2025 at 04:30:18PM -0700, Shyam Saini wrote:
+> > > > > or were you referring to [2]?
+> > > > > 
+> > > > > In that case, the PCI child node data needs to be parsed, which is
+> > > > > currently handled individually by each host controller driver.
+> > > > 
+> > > > Yes, this looks like it may be what I was thinking of, the pci@1,0
+> > > > specifes the BDF effectively
+> > > 
+> > > In that case, we'll need to parse the child DTS nodes properly
+> > > within of_iommu_get_resv_regions(). I'll include this in v4.
+> > 
+> > Kinda surprised this isn't happening already? It would be good to
+> > refer to the original specs and describe how whatetever you propose is
+> > aligned there.
 > 
-> On 8/26/2025 3:36 PM, Krzysztof Kozlowski wrote:
->> On 26/08/2025 11:37, Alexey Klimov wrote:
->>> On Tue Aug 26, 2025 at 10:21 AM BST, Krzysztof Kozlowski wrote:
->>>> On 26/08/2025 11:18, Alexey Klimov wrote:
->>>>>>> May i know what is testcase which you are running on target?
->>>>>>
->>>>>> Boot the board?
->>>>>>
->>>>>>> what is target?
->>>>>>
->>>>>> It is written in original report. Did you even read it?
->>>>>>
->>>>>>> Which usecase is this issue occurring in?
->>>>>>
->>>>>> Boot?
->>>>>
->>>>> FWIW, what said above by Krzysztof is correct, there is no usecase, 
->>>>> just booting the board.
->>>>>
->>>> 12 days and nothing improved, right? if this was not dropped now,
->>>> Alexey, can you send a revert? Author clearly approches stability 
->>>> with a
->>>> very relaxed way and is just happy that patch was thrown over the wall
->>>> and job is done.
->>>>
->>>>
->>>> If you do not want to send revert, let me know, I will do it.
->>>
->>> I am okay with sending revert, just trying to see if there is any 
->>> interest
->>> in fixing this.
->>
->> Any interest should have happened after 1 day of reporting linux-next
->> breakage. It has been like what? 12 days?
->>
->> That's typical throw the patch over the wall. Revert.
+> Just to confirm, does the v3 version of this series look good to you?
+> If so, I’ll go ahead and respin the series with the iommu_set_sw_msi()
+> change and address the other review comments from Jacob.
 > 
-> Really sorry for the delay.
-> 
-> I forgot to mention earlier that I’ve been actively investigating this
-> issue across different platform SoCs. I was able to reproduce the
-> problem on the SC7280.
-> 
-> Here’s a summary of the observed behavior:
-> 
-> The issue appears to originate from the qcom_geni_serial driver during
-> device runtime resume. It results in a blocked IRQ thread, which in turn
-> causes system instability.
-> 
-> The call trace suggests a deadlock scenario where the IRQ
-> thread—responsible for handling wake-up events—becomes unresponsive
-> while interacting with the pinctrl subsystem.
-> 
-> Specifically, the msm_pinmux_set_mux function attempts to invoke
-> disable_irq, which is problematic when called from an IRQ thread context.
-> Since the IRQ itself is a wake-up source, this leads to contention or a
-> self-deadlock situation.
-> 
-> I have verified below diff and about to post it
-> 
-> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/ 
-> qcom_geni_serial.c
-> index c9c52c52a98d..cb3b4febd8c2 100644
-> --- a/drivers/tty/serial/qcom_geni_serial.c
-> +++ b/drivers/tty/serial/qcom_geni_serial.c
-> @@ -1848,16 +1848,36 @@ static int __maybe_unused 
-> qcom_geni_serial_runtime_suspend(struct device *dev)
->   {
->          struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
->          struct uart_port *uport = &port->uport;
-> +       int ret;
-> +
-> +       ret = geni_serial_resources_off(uport);
-> +       if(ret) {
-> +               if (device_may_wakeup(dev))
-> +                       disable_irq_wake(port->wakeup_irq);
-> +       }
-> 
-> -       return geni_serial_resources_off(uport);
-> +       if (device_may_wakeup(dev))
-> +               enable_irq_wake(port->wakeup_irq);
-> +
-> +       return ret;
->   }
-> 
->   static int __maybe_unused qcom_geni_serial_runtime_resume(struct 
-> device *dev)
->   {
->          struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
->          struct uart_port *uport = &port->uport;
-> +       int ret;
-> +
-> +       if (device_may_wakeup(dev))
-> +               disable_irq_wake(port->wakeup_irq);
-> 
-> -       return geni_serial_resources_on(uport);
-> +       ret = geni_serial_resources_on(uport);
-> +       if(ret) {
-> +               if (device_may_wakeup(dev))
-> +                       enable_irq_wake(port->wakeup_irq);
-> +       }
-> +
-> +       return ret;
->   }
-> 
-> Thanks,
-> Praveen Talari
-> 
->> Best regards,
->> Krzysztof
+> Otherwise having pci devices nodes in the fdt or dts needs additional
+> handling, let me know your preference :)
 
-Don't forget to include a Fixes: tag for this change.
+I think you need to consult with the DT/OF owners on these questions..
 
----
-bod
+I've forgotton so many of the details here.
+
+But once you settle on whatever the DT representation is it looks like
+the right direction to me.
+
+Jason
 
