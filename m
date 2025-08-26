@@ -1,189 +1,235 @@
-Return-Path: <devicetree+bounces-209230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20638B35481
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:25:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83AEEB354AD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:37:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02A476878BA
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 06:24:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AED01B60268
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 06:38:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CB82F5336;
-	Tue, 26 Aug 2025 06:24:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249F12F531C;
+	Tue, 26 Aug 2025 06:37:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FufYbW21"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="NwpRV8dp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 033DB2F1FD8
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 06:24:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E20652641E3
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 06:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756189453; cv=none; b=Br4D2mQhLa6lPJ4cN56LhlmPUQWS5gzoFkMBYG9k1U4/nVyyGrvhYisp4fAmuRN2gGx4CPb4B4fI5czs1/LVBSwRDAKLbyqqzacCyTgNrjQENZlmdqoL798wmUUXFB1KW5aeRLrA9qoB072IfJNgq5HMbGasKPkNeNvhDwSJicw=
+	t=1756190258; cv=none; b=nzYH6cp8BcexsOWtUWSgtKL489g5GnQEtMJrJF9k9zXXs+G9znXdZxHeLIlEO4qLP/gjavyd1SPDdesj5q2aJon7SRJ0AHBx8MnmBOwYC0rWqrisQomXqvXH1XQigSfYsXammbgvDsqoWxGO88tnjjzOTVrBL8LREeOYfGkLfvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756189453; c=relaxed/simple;
-	bh=ul90Ca6MD3k2RmH1jBXkn9THRXThzKvep5Dh7WNSVXo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hiO2jdjMNClmv9uqNk0CXIYKxU3rcZbNRh6J6LaxDhL+c0yzLjnNN4orTh21T83iIRcGhF0sRSTERV+dLd9L15pUklZKivPhHcgN8mgS8K9LpNbNEY9OkgaGbiwwI1mLj4S3lfoYAM8QJ7lG3U4zL+utacSiRzViqFd82am7ITk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FufYbW21; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57Q0rr7B002835
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 06:24:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aP57du5hI5dY/ksSUGXf2FChqaV+/pIdZ8ikNR5OOB4=; b=FufYbW21/Z4Nxji7
-	s7cmCrjLiJ3DMReKZ9VFLLWTkvEcUuPPAFCj/JNLILg70oAgWKnwrsEqQzPgPAsb
-	X5tmvr/D39rsUP3kJjnybP+xIzalZKyxxsOrolzwVA8gfiKKpH6JayWVPtzcNqbh
-	u52IKh3dbNTe9Ub/MgLF4OKbIYEUNy/14xlerCZLvZbvngMAYw+foYTbbExKJQvi
-	qv0Jx1rD4QhdhqQTDowmPLuKKO4OaDWytjcD6nUKVpE/W/ope0TyZajXyds/hSk5
-	3fEHkJXj5ee7PhqANeqsqyuWG7QmNvXiuKrpWbUCFGqDD6BQ9N6HVVlCR/Ru5Wl3
-	rAxkig==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48rtpet1mk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 06:24:10 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-325e31cecd8so1339882a91.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Aug 2025 23:24:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756189449; x=1756794249;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aP57du5hI5dY/ksSUGXf2FChqaV+/pIdZ8ikNR5OOB4=;
-        b=jKrtU9tdE7GopE+YD25Bvf368568TIUO3SQaEZYTfiPZf3dz95SYpPNTfuZ+N7gBMs
-         z4U8u79T7Edojo0627S7f3asA/wwfIpiZnXOx2rC6F2zJx2Jlnnq4i3HK7+pRbd/JjHq
-         m6Pm4LUm8TPBRINJDS6a8bu7daF8FoKXQPB2lLUszX6cKhBgvq+9rOhRd1JP0FtSxLAE
-         kXL4aGu0I53lJh8GkT0YecL3f9cdU/0X8M/3LGdzJMjuTM7T54l7Zkh6yu5kI1oViCC5
-         mRADiPLgMnIZGggOEqJzrKmgbJz8l4MUz+aiLSVbfHB5/tfGRA9zmpXljjC6DTD6nlbv
-         0jag==
-X-Forwarded-Encrypted: i=1; AJvYcCVOPs53RP0PJVQbQsjFvQDD2xvTkVqYWjhsbMIH1svH1DVO0DRH0qLTF2xxxIS3jZeHSbwurAydzSyu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmW80boiytByZlrpyAKUmU3qJ330E82K33yofSiceD7L1XctY8
-	3+rTnomSjdHdGVo4zVPaCuO7bkMB00CbXqm/JcUm2TU2CCOvEHgOgRe3ro4ppyDUnmTSWtFIFyM
-	/9OKjg34FL6MKh7SFYLMr5oRN6HPXz5YSXPcJ0f5IDk1/GEfwDigJ2RSNdci6rM5hntxnkQLS
-X-Gm-Gg: ASbGnctGalTfnHZdvVB7nK9fog0g0IQGnVQ6JtsGhaufrSgySdz4BYaEaBhOFNI5fN0
-	xHUNfaKROoQ/MxkTgD4NlS1fTUJ0sZshCXxdq/HRNuo1hE0ICMPxdwosDIE1uviuvw2+NmbteIK
-	Y878lgzMw4RFNf0mGTIrNnF5vf7UZp+Jzru5qWwuIswAewmQJczt1nelYwNTvaa2o+euSs6trXE
-	dMpdtKKNoMQ3CXzJvQ6WgmIAm+iHoz+mSKk5HOeBOKcXJIvIbFRABwJlhSjiVTl767GZYOpmKrC
-	0coiwpvAhxEw6kDfflJh0/dc3/JWnshMwelgFOLo7cNCI/faFE9XW/DWLByjvN1q4jnM/hVq
-X-Received: by 2002:a17:90b:2f47:b0:321:87fa:e1ec with SMTP id 98e67ed59e1d1-32515ef197cmr18057508a91.34.1756189449196;
-        Mon, 25 Aug 2025 23:24:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG7DCRIKcIriYxv1vDQ4/mgZOlve2e/tBHGMXP/jORooseUlG1Jd2+iZHB/A+lalVnxpwBTHA==
-X-Received: by 2002:a17:90b:2f47:b0:321:87fa:e1ec with SMTP id 98e67ed59e1d1-32515ef197cmr18057469a91.34.1756189448603;
-        Mon, 25 Aug 2025 23:24:08 -0700 (PDT)
-Received: from [10.92.199.10] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3254ae761casm8785891a91.1.2025.08.25.23.24.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Aug 2025 23:24:08 -0700 (PDT)
-Message-ID: <65755189-09e0-44f3-98d6-94e44e9b1dca@oss.qualcomm.com>
-Date: Tue, 26 Aug 2025 11:54:00 +0530
+	s=arc-20240116; t=1756190258; c=relaxed/simple;
+	bh=TmYm7jc4DZVZePqCTvreVPUYaxd2jW7O2/HQPN0NYVM=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=fZOdbp9S5wvd4auffC+Jjdk5VaAjua/YnpgQ9NO1S18AS6QKnPBORKby9aLuCYYFFxw4Tw91eh9Q9p3b0EW5dOfTXYPeMhm94F+2fNH0i48fAL+E7kQGWnTaJBL8blNjmbdXPsahJ9SX41MEXVSpUBOsX1qNwuoL8u7Y1httq+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=NwpRV8dp; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250826063729epoutp026d1774acc3d4c43f9eacfb34f4a472fa~fPbo7GL2R1743417434epoutp02l
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 06:37:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250826063729epoutp026d1774acc3d4c43f9eacfb34f4a472fa~fPbo7GL2R1743417434epoutp02l
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1756190249;
+	bh=WmUdeog4n43JlLPwLzabcivOP3kzq6u9GqxXjjFJfy4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=NwpRV8dpQsXrqhS60KikOY7MaGduMakQQ8G758Cf91IqQBwawro5WSiQV3XUXOZf6
+	 GqgMDm/pStaDHR9tmWMjcNHJFiV4euJAk6f0xaeV6JIfPTxnRHh1bzOROBGeV8LGIG
+	 Vg27PkGrpBYUCMJ9UhXcHhzbXQdtc0BTMdLfj3Ms=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250826063728epcas5p35aa5aa8be589c61f897a378fe0a9d6f7~fPboM9AQb0070300703epcas5p3T;
+	Tue, 26 Aug 2025 06:37:28 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.94]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4c9ydM5YS8z2SSKf; Tue, 26 Aug
+	2025 06:37:27 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250826063727epcas5p27b42d9103a77296440ed5f47a9dc9b6c~fPbmaKZFJ0989209892epcas5p2_;
+	Tue, 26 Aug 2025 06:37:27 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250826063723epsmtip2624718a1eacb328a03895f36f45a703d~fPbjWQ0-82085020850epsmtip2R;
+	Tue, 26 Aug 2025 06:37:23 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
+Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<igor.belwon@mentallysanemainliners.org>, <johan@kernel.org>,
+	<m.szyprowski@samsung.com>, <s.nawrocki@samsung.com>,
+	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
+	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <20250824-rough-fresh-orangutan-eecb2f@kuoka>
+Subject: RE: [PATCH v7 5/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 combo ssphy
+Date: Tue, 26 Aug 2025 12:07:22 +0530
+Message-ID: <007501dc1653$e36c3b50$aa44b1f0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] PCI: qcom: Restrict port parsing only to pci child
- nodes
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com
-References: <20250826-pakala-v2-0-74f1f60676c6@oss.qualcomm.com>
- <20250826-pakala-v2-3-74f1f60676c6@oss.qualcomm.com>
- <rurdrz3buvb7paqgjjr7ethzvaeyvylezexcwshpj73xf7yeec@i52bla6r5tx7>
-Content-Language: en-US
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <rurdrz3buvb7paqgjjr7ethzvaeyvylezexcwshpj73xf7yeec@i52bla6r5tx7>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: Bdx1eOfAwWnaFVguLsK-0FgX8ypE9VLd
-X-Proofpoint-ORIG-GUID: Bdx1eOfAwWnaFVguLsK-0FgX8ypE9VLd
-X-Authority-Analysis: v=2.4 cv=Hd8UTjE8 c=1 sm=1 tr=0 ts=68ad530a cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=P-IC7800AAAA:8 a=EUspDBNiAAAA:8
- a=Mpemr54xhKQ9MbVj_C0A:9 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
- a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI1MDE0MiBTYWx0ZWRfX+7bDFx90hM2Q
- LUPFujXDbkoBSfOq8QCKJmES/1w4HPg3Q+dDDNtdcAWSta56jw0gRoJYoOzHB6PcI6LS47NZ3Wm
- jbAo20aIT7EpWGQn6VflXX2p3FGtlx72Ktd1sOHko+6tZ2zc4WOxb4S6EGE0bGFmF0JsqeAvw06
- cfqECDOOFOv10PhEE5rTZ0TxgolrLRWy1u/uOrB7vFq+c9xqwFBZ9r25x2L3rDG4y51a1BfgC7S
- ber8Sm8e52u8nX1ZCQiODyYIWGN/UUfEroDn9Mv3CJP7AyuEiAyRaUD5HolCMnkqEglx1sjTuOF
- y9mLr34WUVG9wwj7JSuq8993yngDut5xYbkIOZm5KmYj/eNX05nDdrNBhn9Nz7/knxtP6yZjVsz
- s71xjPSB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-26_01,2025-08-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
- adultscore=0 clxscore=1015 impostorscore=0 spamscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508250142
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGSd8blfqR9gZc/NH28iGAFaSn12QHbdVSHAGa/K48CXY/t+7Tit6wg
+Content-Language: en-in
+X-CMS-MailID: 20250826063727epcas5p27b42d9103a77296440ed5f47a9dc9b6c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250822093022epcas5p42d8c16c851769dab0e1da9d45743ab1f
+References: <20250822093845.1179395-1-pritam.sutar@samsung.com>
+	<CGME20250822093022epcas5p42d8c16c851769dab0e1da9d45743ab1f@epcas5p4.samsung.com>
+	<20250822093845.1179395-6-pritam.sutar@samsung.com>
+	<20250824-rough-fresh-orangutan-eecb2f@kuoka>
+
+Hi Krzysztof,=20
+
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 24 August 2025 02:26 PM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
+> andre.draszik=40linaro.org; peter.griffin=40linaro.org; kauschluss=40disr=
+oot.org;
+> ivo.ivanov.ivanov1=40gmail.com; igor.belwon=40mentallysanemainliners.org;
+> johan=40kernel.org; m.szyprowski=40samsung.com; s.nawrocki=40samsung.com;
+> linux-phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
+amsung-
+> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
+> selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH v7 5/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
+dd
+> ExynosAutov920 combo ssphy
+>=20
+> On Fri, Aug 22, 2025 at 03:08:44PM +0530, Pritam Manohar Sutar wrote:
+> > This phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
+> > compatible to the USB3.0 SS(5Gbps). It requires two clocks, named
+> > =22phy=22 and =22ref=22. The required supplies for USB3.1 are named as
+> > vdd075_usb30(0.75v), vdd18_usb30(1.8v).
+>=20
+> Please do not describe the schema, but hardware. This sentence does not h=
+elp
+> me in my question further.
+
+This is a combo phy having Synopsys usb20 and usb30 phys (these 2 phys are =
+totally different).=20
+One PHY only supports usb2.0 and data rates whereas another one does usb3.1=
+ ssp+ and usb3.1 ssp
+=09
+This patch only explains about usb30 (since these are two different phys) p=
+hy and omitted inclusion of usb20 reference (added separate patch for this =
+patch no 3).=20
+=09
+Hope this is clear.
+
+>=20
+> >
+> > Add schemas for combo ssphy found on this SoC.
+> >
+> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> > ---
+> >  .../bindings/phy/samsung,usb3-drd-phy.yaml    =7C 23 +++++++++++++++++=
+++
+> >  1 file changed, 23 insertions(+)
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+> > b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+> > index f0cfca5736b8..96e5bbb2e42c 100644
+> > --- a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+> > =40=40 -34,6 +34,7 =40=40 properties:
+> >        - samsung,exynos7870-usbdrd-phy
+> >        - samsung,exynos850-usbdrd-phy
+> >        - samsung,exynos990-usbdrd-phy
+> > +      - samsung,exynosautov920-usb31drd-combo-ssphy
+> >        - samsung,exynosautov920-usbdrd-combo-hsphy
+> >        - samsung,exynosautov920-usbdrd-phy
+> >
+> > =40=40 -118,6 +119,12 =40=40 properties:
+> >    vdd18-usb20-supply:
+> >      description: 1.8V power supply for the USB 2.0 phy.
+> >
+> > +  dvdd075-usb30-supply:
+> > +    description: 0.75V power supply for the USB 3.0 phy.
+> > +
+> > +  vdd18-usb30-supply:
+> > +    description: 1.8V power supply for the USB 3.0 phy.
+> > +
+> >  required:
+> >    - compatible
+> >    - clocks
+> > =40=40 -227,6 +234,7 =40=40 allOf:
+> >                - samsung,exynos7870-usbdrd-phy
+> >                - samsung,exynos850-usbdrd-phy
+> >                - samsung,exynos990-usbdrd-phy
+> > +              - samsung,exynosautov920-usb31drd-combo-ssphy
+> >                - samsung,exynosautov920-usbdrd-combo-hsphy
+> >                - samsung,exynosautov920-usbdrd-phy
+> >      then:
+> > =40=40 -262,6 +270,21 =40=40 allOf:
+> >        properties:
+> >          dvdd075-usb20-supply: false
+> >          vdd18-usb20-supply: false
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - samsung,exynosautov920-usb31drd-combo-ssphy
+> > +    then:
+> > +      required:
+> > +        - dvdd075-usb30-supply
+> > +        - vdd18-usb30-supply
+>=20
+> Why are you adding usb20 and usb30 suffixes to the supplies? These are
+> separate devices, so they do not have both variants at the same time.
+
+This is a combo phy consisting of usb2 and usb3 phys combined.=20
+To drive these separate phys, added suffixes for these supplies respectivel=
+y.
+
+Moreover, gs101 is also using similar convention for its usb20 and dp suppl=
+ies.=20
+Added suffix for usb2 and usb3 as per our last communication https://lore.k=
+ernel.org/linux-phy/6e1c67d2-9bfa-442a-9d53-8c5970a2a9ef=40kernel.org/
+
+>=20
+> From this device point of view, the supply is called dvdd075 or vdd18.
+> If you open device datasheet (not SoC datasheet), that's how it will be c=
+alled,
+> most likely.
+
+Yes, Agree. In device datasheet, suffixes are not mentioned, but in our boa=
+rd schematic it is mentioned.=20
+Let me know your suggestion about adding suffixes?
+
+>=20
+> Best regards,
+> Krzysztof
 
 
+Thank you.
 
-On 8/26/2025 11:47 AM, Manivannan Sadhasivam wrote:
-> On Tue, Aug 26, 2025 at 10:48:19AM GMT, Krishna Chaitanya Chundru wrote:
->> The qcom_pcie_parse_ports() function currently iterates over all available
->> child nodes of the PCIe controller's device tree node. This can lead to
->> attempts to parse unrelated nodes like OPP nodes, resulting in unnecessary
->> errors or misconfiguration.
->>
-> 
-> What errors? Errors you are seeing on your setup or you envision?
-we see driver is searching for reset in OPP node as it is not able to
-find it is falling to legacy way. where there is no phy nodes defined in
-the controller node probe is failling. I will add this in commit text.
-> 
->> Restrict the parsing logic to only consider child nodes named "pcie" or
->> "pci", which are the expected node names for PCIe ports.
->>
->> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> 
-> Since this is a fix, 'Fixes' tag is needed.
-> 
-ack.
->> ---
->>   drivers/pci/controller/dwc/pcie-qcom.c | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
->> index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..5dbdb69fbdd1b9b78a3ebba3cd50d78168f2d595 100644
->> --- a/drivers/pci/controller/dwc/pcie-qcom.c
->> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
->> @@ -1740,6 +1740,8 @@ static int qcom_pcie_parse_ports(struct qcom_pcie *pcie)
->>   	int ret = -ENOENT;
->>   
->>   	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
->> +		if (!(of_node_name_eq(of_port, "pcie") || of_node_name_eq(of_port, "pci")))
-> 
-> May I know which platform has 'pci' as the node name for the bridge node? AFAIK,
-> all platforms defining bridge nodes have 'pcie' as the node name.
->
-I see most of the qcom platforms are using pci only. for reference i see
-it  in sm8650[1] & sm8550.
+Regards,
+Pritam
 
-[1] 
-https://elixir.bootlin.com/linux/v6.16.3/source/arch/arm64/boot/dts/qcom/sm8650.dtsi#L3699
-
-- Krishna Chaitanya.
-> - Mani
-> 
 
