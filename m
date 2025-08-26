@@ -1,48 +1,65 @@
-Return-Path: <devicetree+bounces-209310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A55EB358AF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 11:21:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9B5CB358C5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 11:25:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E12A47A1909
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:20:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94B4B3AB16F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8CA02C21E8;
-	Tue, 26 Aug 2025 09:21:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D7A2FCBE1;
+	Tue, 26 Aug 2025 09:25:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CHmM8nrE"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="1YItvuir"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854D124466D;
-	Tue, 26 Aug 2025 09:21:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE00343ABC;
+	Tue, 26 Aug 2025 09:25:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756200105; cv=none; b=V2FYj1YtLQ97dROToXLbGt/upUDykDII2VH/wqgS6q2RUy9Tgxp3YaDa3kBbDWR8vTRt7IlpSlA0G7lPX9Nnr1yL3iVwy1ObcKwJ3dhcicXfGG+ueK9qGmxowFYzoqhU/hxHb7wlgPWfgsVK5CyL8mePY9qULvrvsSGldZ5H9K0=
+	t=1756200331; cv=none; b=IxtWelvaXcZqRgqF59dIgEIeuNh/rz8HgIo3A3CB1ZokUalycyxZk3MzFvsdTnFMni9CPSkrS/ovgWOP/oKb1fiN4ilmS9k+Dkdwo6iqdAzkVZYWzNdS3EPN4tv//cXq9nlvhEs4bFpaMVhknd+WUShfo7p8na6sQu7vQC1M4eI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756200105; c=relaxed/simple;
-	bh=fgYxCcQtnrWie6H6f2KNxWhqHd60YRbjrj3O8mjjjHU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mWrf43ewWbGLPqEB2HEmdN7BlCzAQtaev1hVCF6pgWG1wRMhAF4lSSqMewQHtJ1CiOh2daNOFv6ZHsqo5b1xTVcnFq03+Hp0zHiMKFetrY2rF6ziDcI9Ic9E4udv6PdJQlsMqpG4DBU899wllWq7t4/WeHxRvgtrT+kA1YpXnoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CHmM8nrE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C15D8C4CEF1;
-	Tue, 26 Aug 2025 09:21:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756200105;
-	bh=fgYxCcQtnrWie6H6f2KNxWhqHd60YRbjrj3O8mjjjHU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CHmM8nrEym2ezc0RrzBuNIWsk401p53jCViZT1CPNm+yQZWHbewqJjUEFtoplXY+D
-	 OGcC4/tMys67WWHqODmXI0G6XQkDxNtSvBxPBPpzPuukIWAqmf8YRN/SaO/erj9pIQ
-	 94fB5hKJlVSdN21gDtKiFkZFiJF4N97ep8O5T7Hrcq/cQ8g6IylExRBnMV9VLoMIvh
-	 AZroA/DulOdnulFESDzcttehhiCzHDHTBgtTIWvCuuGRkByHWq2Oz1lRTjXyepDNTv
-	 IIIJD/uo8RviTBgpgiQYzuAJYVjjr4gVK/IkTFTvfQFJ9jisgMasLeV7qcLo6HIOcl
-	 7ea24Jl5ahL+g==
-Message-ID: <8689a8b4-75cb-4f01-ad6c-0a8367851257@kernel.org>
-Date: Tue, 26 Aug 2025 11:21:39 +0200
+	s=arc-20240116; t=1756200331; c=relaxed/simple;
+	bh=eTQSxVUZfLnGrs829cA+G65lyTgq6NtmbhWpgOfLX9M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=i+oUByDcJO/TGDsjB6rgyt6tMDAOgC4k8QwG9AR8V3QV4JqBdmclUrG63fR8E4qW/PU5o22VWVcpHgM1c6UCcjmh8UG45PdaqsWdqfD446KrDGkm7QhwU42dq+T4POaGZp/4b/EjP/Ni38gWEXJeFSgQMPYQ+6rgn0dkmQtPp8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1YItvuir; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1756200329; x=1787736329;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=eTQSxVUZfLnGrs829cA+G65lyTgq6NtmbhWpgOfLX9M=;
+  b=1YItvuiroz5uX50jDm33LTnhgZyfv354yHjmVtMkbQeQZsiRly8DZqmW
+   lUsuaWOlHQwZs/tQmKygwfsuBDQTdOwsqsBELvpg5bvyKvM7Q2z1nOu36
+   wXrwYYJMlpKNLm/at4IZn3UzgipeE6w+nUOhlTqErnTlLoBbKrzwBmvs9
+   xkIim/H/7cXs+XUh2xmtTlD0+RixBe5Be5lNsBAYjBvPPJ63ooobyEnrM
+   hhBbd9eCGFZ+nr4dx07ckOTYGWUZTXyYt2XEwUVow9AIjixdP23f9VnWx
+   tEvuTWskUAB8tqUXG/MnMxy/mqmIeFycQ/Y+sY/dy+W6jVigjspaZma9D
+   w==;
+X-CSE-ConnectionGUID: 6F7sYklcQWOyW3hhhwVltA==
+X-CSE-MsgGUID: JTtTiAjcT+C2qy17lJCVZg==
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
+   d="scan'208";a="51280142"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Aug 2025 02:25:28 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 26 Aug 2025 02:25:20 -0700
+Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Tue, 26 Aug 2025 02:25:16 -0700
+Message-ID: <cd732d1e-a5e3-4fcd-bfaa-7420803d83e6@microchip.com>
+Date: Tue, 26 Aug 2025 11:25:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,100 +67,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 7/8] serial: qcom-geni: Enable PM runtime for serial
- driver
-To: Alexey Klimov <alexey.klimov@linaro.org>,
- Praveen Talari <quic_ptalari@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-serial@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com,
- psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
- quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
- quic_cchiluve@quicinc.com, quic_shazhuss@quicinc.com,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- bryan.odonoghue@linaro.org, neil.armstrong@linaro.org, srini@kernel.org
-References: <20250721174532.14022-1-quic_ptalari@quicinc.com>
- <20250721174532.14022-8-quic_ptalari@quicinc.com>
- <DC0D53ZTNOBU.E8LSD5E5Z8TX@linaro.org>
- <577d05d4-789b-4556-a2d2-d0ad15b2c213@quicinc.com>
- <dcad137d-8ac9-4a0b-9b64-de799536fd32@kernel.org>
- <DCC8WLEKNS8W.9GAJHQGYPZIY@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <DCC8WLEKNS8W.9GAJHQGYPZIY@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH net v4 1/5] dt-bindings: net: cdns,macb: allow tsu_clk
+ without tx_clk
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, Andrew Lunn
+	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, Geert Uytterhoeven <geert@linux-m68k.org>, Harini
+ Katakam <harini.katakam@xilinx.com>, Richard Cochran
+	<richardcochran@gmail.com>, Russell King <linux@armlinux.org.uk>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Thomas Petazzoni
+	<thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250820-macb-fixes-v4-0-23c399429164@bootlin.com>
+ <20250820-macb-fixes-v4-1-23c399429164@bootlin.com>
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Content-Language: en-US, fr
+Organization: microchip
+In-Reply-To: <20250820-macb-fixes-v4-1-23c399429164@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 26/08/2025 11:18, Alexey Klimov wrote:
->>> May i know what is testcase which you are running on target?
->>
->> Boot the board?
->>
->>> what is target?
->>
->> It is written in original report. Did you even read it?
->>
->>> Which usecase is this issue occurring in?
->>
->> Boot?
+On 20/08/2025 at 16:55, Théo Lebrun wrote:
+> Allow providing tsu_clk without a tx_clk as both are optional.
 > 
-> FWIW, what said above by Krzysztof is correct, there is no usecase, just booting the board.
+> This is about relaxing unneeded constraints. It so happened that in the
+> past HW that needed a tsu_clk always needed a tx_clk.
 > 
-12 days and nothing improved, right? if this was not dropped now,
-Alexey, can you send a revert? Author clearly approches stability with a
-very relaxed way and is just happy that patch was thrown over the wall
-and job is done.
+> Fixes: 4e5b6de1f46d ("dt-bindings: net: cdns,macb: Convert to json-schema")
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-If you do not want to send revert, let me know, I will do it.
+> ---
+>   Documentation/devicetree/bindings/net/cdns,macb.yaml | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> index 559d0f733e7e7ac2909b87ab759be51d59be51c2..6e20d67e7628cd9dcef6e430b2a49eeedd0991a7 100644
+> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> @@ -85,7 +85,7 @@ properties:
+>       items:
+>         - enum: [ ether_clk, hclk, pclk ]
+>         - enum: [ hclk, pclk ]
+> -      - const: tx_clk
+> +      - enum: [ tx_clk, tsu_clk ]
+>         - enum: [ rx_clk, tsu_clk ]
+>         - const: tsu_clk
+> 
+> 
+> --
+> 2.50.1
+> 
 
-Best regards,
-Krzysztof
 
