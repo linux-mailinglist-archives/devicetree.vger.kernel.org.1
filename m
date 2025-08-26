@@ -1,135 +1,121 @@
-Return-Path: <devicetree+bounces-209162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71AE1B350D5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 03:10:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DB00B350E5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 03:16:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4F827A9DFC
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 01:09:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27EE21B22097
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 01:16:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36E1285C83;
-	Tue, 26 Aug 2025 01:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D47221D618E;
+	Tue, 26 Aug 2025 01:15:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TfvwAeti"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="SCOaDPbr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F741D416C;
-	Tue, 26 Aug 2025 01:10:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7771B0437
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 01:15:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756170621; cv=none; b=t9ziuvKsFJRk8kOQRBdwY3J89DH3UzZ0O5q9x4WPagE7PhBUjTN7MUmZt8lRq6E1rFS75N83mzcT7Ih086QBeI75RAj6FRlpfo3mPe+FXcc8j3W+KSBsGx3Y3SVq3lgbU7RMcB62H2znUJ2g5+CKDN0hALBhVTAGo/mjXRX6sQ8=
+	t=1756170959; cv=none; b=Z+dM1il93+jhHrfGza9fgnHxVR9lx09Wa1Dl1K3ZMFT08PH08mEfA97zPiLRNOYj4+6VSdMhj6v/rDM2kMZS+QMrrV1E8oOFDJ+2FuhhWEnxS/yLp6pViAX5xop+ogefrg+x8X1kEhh0ylnpzS18uGnLgxJ5oVQzYgOGw0dXa5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756170621; c=relaxed/simple;
-	bh=BhPG4H+I7zDs8dwab76+BoAR+ozvEKZSdpitJSyJUkw=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=WRlFLobthaiCEBOAOtGvjuJ5jqLnUHKz3iaGL27w7Oedj4WCPVT8h6seMqrv6QmYlS+kNIHQd11Z0hjRaGobCF3sPtz6cxC7h7F2As3Asuq0R0tBMkGZwITHqkcb24L80KiXb24HCbL/976M7XNtDh5n5Ps9XjeiRQAq+bn9yEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TfvwAeti; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-435de5b2f29so1537050b6e.0;
-        Mon, 25 Aug 2025 18:10:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756170618; x=1756775418; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6/Iq+sl3J+lnpf+wc6OQRiTYktTo8qUO7r+bK6zwUBU=;
-        b=TfvwAetiN+TikIiBko5Y1DvrFnFukd4ZGXSuFhw4iOCquFBgay1NmG47AXzBYadcOE
-         4kVqKp+hH+p0XXYuU11BInKOb6+UuE8K8hSn7fbLsBEaRTuuRwx8OyCOlGpSMU/3GFyi
-         OW0DkF7UfnF+KN0NGjMu8AvVfeJVQLJaS4h3QwE2LeP0x94o4eQA35sjQ87v5xR3Sg0c
-         pwDDkBcc1mHszcqihZbvlujqAbYpkbhSSnLxi2I36ylyMoXwQisuDGPDq0MLO7AkwPua
-         BpzeUaOVhOl0TD2dUaHLerjakeHq4CTt9UhhxYtBUBF7JrW+M7OfbPAIRy2JjmcUSgdz
-         Qb8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756170618; x=1756775418;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6/Iq+sl3J+lnpf+wc6OQRiTYktTo8qUO7r+bK6zwUBU=;
-        b=WyX9Hg87Orce8VcPQTnZnKtJBbEdxbdXmbSCTJNlun2nmyaRVVqEulzumdxskkoKx0
-         brW4FND95Y01klQclfq57APN8J+pH1RjDXAFwpy93Cw0ofxI5RPwPpozqrGzPykVtAIt
-         V9C3ESHyQUmSmDhIY+xgU8gXvoiUBWYqlcvdxQK5L+SvTI3n6uoRtK7VoXrBqXMStPG2
-         RYQsywdviEJVpyhYf1zGvglOvxhkO523JSYkXsHIuU+yqaZTmnb+d2MDsllfeWTmuDHX
-         wskwDJl31aYxjwVlXGdBnOTyQnCifvuqfNa+/S1+ky4LjjUnWfbf38hiSmUKmUtMNMJL
-         zFPw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOY25RfB8AyyGuSsagoZvxbVhG8ncJ6szQvT1RExeHTuUlL1DFfB/YxL5IuaOjA3+/867+YerFsLJC0WPM@vger.kernel.org, AJvYcCWukYx4veSpzuX1xGTZCtfWeTWUZ3WvEPuBHtpAS2GmJTg6YfUkxW6Kw0di9AvvsDRhMCg0OB6hGZgj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwV/BfwoztDoM2sPB7KTcRkmjRVpV9y5+yFZrub81QRZBOqKhj/
-	BEXWGq3jlXdfriqHMxn1yeR1oJlzl5zrACHTzP5bYSkKzV0clMnn9str
-X-Gm-Gg: ASbGncsA5VNbch9pVAaxojmVDb46Y4rbLTl21u+GO6VZmSfRZLZBs/aS978s3xFTm49
-	EVdLxx9hi23zoHLbNrI+QI2un9+kvDz8UAfAGjVS5DKo1KiYWmIBpnnNKpaywFNdle7z7Wi7uLb
-	PDJzTbWRmQ9J96DKeuZAHwtyXG72fyB0ZtCOncd2Jk/NfPHsZzj7NNrxOnpvx394CIcjU/5Meuq
-	cOX27BnqE3ywY6lUbk1Lhh7KZJGgEnTkEAPSuiux7iLZxNsl4ueVAnw+Is/zgH0V1/HGIiht1o/
-	4NcTh01LHLIXyB0ogE2BdT7TwVMd9Gp5cLe3WYlHJ4GYm45OpxEgzNS2IZsl3BxLd3HRCZjr7Ka
-	ntui9ryiKkzLvVQp8ByM+icJxs3O7sA2x
-X-Google-Smtp-Source: AGHT+IElnibKn0kJO+4EjW9DXM+SobqgRQIgDWBiXTLfJjdn8m2ppBqLQoVrT6kVdtQvj76aRcVJlg==
-X-Received: by 2002:a05:6808:179a:b0:437:761b:dcd with SMTP id 5614622812f47-437852ad33fmr7337517b6e.44.1756170617942;
-        Mon, 25 Aug 2025 18:10:17 -0700 (PDT)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-437963db10bsm1352616b6e.0.2025.08.25.18.10.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Aug 2025 18:10:17 -0700 (PDT)
-From: Chen Wang <unicornxw@gmail.com>
-To: u.kleine-koenig@baylibre.com,
-	aou@eecs.berkeley.edu,
-	unicorn_wang@outlook.com,
-	conor+dt@kernel.org,
-	inochiama@gmail.com,
-	krzk+dt@kernel.org,
-	looong.bin@gmail.com,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	robh@kernel.org,
-	tglx@linutronix.de,
-	sycamoremoon376@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	sophgo@lists.linux.dev
-Subject: [PATCH v2 3/3] riscv: sophgo: dts: sg2044: change msi irq type to IRQ_TYPE_EDGE_RISING
-Date: Tue, 26 Aug 2025 09:10:10 +0800
-Message-Id: <579f5bc7d060701cbab1046c3b55ca0bec15eff5.1756169460.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1756169460.git.unicorn_wang@outlook.com>
-References: <cover.1756169460.git.unicorn_wang@outlook.com>
+	s=arc-20240116; t=1756170959; c=relaxed/simple;
+	bh=kwE9T2napWDQIi8ICaB3dOVpNakmaY8PwBjAto4q6z4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KTx7R+N8qeQQ/hH2GIHvsMqSM95llg5MkGksJZT6J/Aj74Z6fPJJdSbwabEqmp3tquGcic4gZcATn81DWqc/smYfA7vyw7uResrfNjyC9rFez/zPatS8dWdDTQ2nv1zrNmbZ99p5l61soj97wZfZjXCA4mkGXgkU0FLMIQPx7XQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=SCOaDPbr; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: by linux.microsoft.com (Postfix, from userid 1152)
+	id EC06C211829B; Mon, 25 Aug 2025 18:15:57 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com EC06C211829B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1756170957;
+	bh=BDhBrrex6g5QaN9laTXmAgCa/05IrHo33281B3Hc3OE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SCOaDPbrhTWDx26NAZDc9zk+UaPWJQFOnMx5s6aDmbJWEJtnk+D0lvohw3+XojSPK
+	 Qv3pWi6wrhkhJMYhP0mVuPXz/iBl6yuihWoQs/Zmwfrsd+rddgzfRP3dWr8jAaSeUM
+	 F+DYnYoRI+Wyl5NUEWaHe385v3/AAG5+kS1Nf69M=
+Date: Mon, 25 Aug 2025 18:15:57 -0700
+From: Shyam Saini <shyamsaini@linux.microsoft.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, virtualization@lists.linux.dev,
+	will@kernel.org, jacob.pan@linux.microsoft.com,
+	eric.auger@redhat.com, code@tyhicks.com,
+	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
+	bboscaccy@linux.microsoft.com, robh@kernel.org,
+	saravanak@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lizhi.hou@amd.com, clement.leger@bootlin.com
+Subject: Re: [PATCH v3 2/3] iommu/of: fix device tree configuration for PCI
+ devices
+Message-ID: <20250826011557.GA2980@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <20250806215539.1240561-1-shyamsaini@linux.microsoft.com>
+ <20250806215539.1240561-3-shyamsaini@linux.microsoft.com>
+ <20250808121515.GE377696@ziepe.ca>
+ <20250814233018.GA31418@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20250815003958.GE599331@ziepe.ca>
+ <20250815023236.GA30997@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20250818155310.GG599331@ziepe.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250818155310.GG599331@ziepe.ca>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-From: Chen Wang <unicorn_wang@outlook.com>
+Hi Jason,
 
-The latest MSI driver will read the DTS configuration to set the IRQ type,
-so correct the IRQ type in the DTS to the correct value.
+On Mon, Aug 18, 2025 at 12:53:10PM -0300, Jason Gunthorpe wrote:
+> On Thu, Aug 14, 2025 at 07:32:36PM -0700, Shyam Saini wrote:
+> > On Thu, Aug 14, 2025 at 09:39:58PM -0300, Jason Gunthorpe wrote:
+> > > On Thu, Aug 14, 2025 at 04:30:18PM -0700, Shyam Saini wrote:
+> > > > or were you referring to [2]?
+> > > > 
+> > > > In that case, the PCI child node data needs to be parsed, which is
+> > > > currently handled individually by each host controller driver.
+> > > 
+> > > Yes, this looks like it may be what I was thinking of, the pci@1,0
+> > > specifes the BDF effectively
+> > 
+> > In that case, we'll need to parse the child DTS nodes properly
+> > within of_iommu_get_resv_regions(). I'll include this in v4.
+> 
+> Kinda surprised this isn't happening already? It would be good to
+> refer to the original specs and describe how whatetever you propose is
+> aligned there.
 
-This field in the DTS was not used before.
+Just to confirm, does the v3 version of this series look good to you?
+If so, I’ll go ahead and respin the series with the iommu_set_sw_msi()
+change and address the other review comments from Jacob.
 
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
----
- arch/riscv/boot/dts/sophgo/sg2044.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Otherwise having pci devices nodes in the fdt or dts needs additional
+handling, let me know your preference :)
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2044.dtsi b/arch/riscv/boot/dts/sophgo/sg2044.dtsi
-index 6ec955744b0c..320c4d1d08e6 100644
---- a/arch/riscv/boot/dts/sophgo/sg2044.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2044.dtsi
-@@ -214,7 +214,7 @@ msi: msi-controller@6d50000000 {
- 			reg-names = "clr", "doorbell";
- 			#msi-cells = <0>;
- 			msi-controller;
--			msi-ranges = <&intc 352 IRQ_TYPE_LEVEL_HIGH 512>;
-+			msi-ranges = <&intc 352 IRQ_TYPE_EDGE_RISING 512>;
- 			status = "disabled";
- 		};
+> 
+> > > Presumably this is a fixed issue of the platform. You never did
+> > > explain how your system has such werdio behavior, or how something
+> > > like iommu=pt can function on it...
+> > Yes, this issue is platform-specific. On this platform, the default MSI IOVA
+> > range overlaps with an address region that is reserved for another purpose,
+> > Other than that we haven't observed any obvious issues for DMA operations
+> 
+> Usually DRAM is at the default MSI IOVA address, so if you run
+> iommu=pt then presumably your DRAM map has a nice hole in it.. But
+> maybe the memory map told the OS about that.
+>
  
--- 
-2.34.1
+our DRAM for this platform starts at higher offset, way beyond MSI_IOVA.
 
+
+Thanks,
+Shyam 
 
