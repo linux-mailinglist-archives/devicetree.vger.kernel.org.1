@@ -1,105 +1,123 @@
-Return-Path: <devicetree+bounces-209370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE422B367BF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 16:09:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C61EB36699
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 15:58:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 759168E8408
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 14:00:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 787FD8A80B8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 13:47:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3342F35209C;
-	Tue, 26 Aug 2025 13:58:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647E9350D40;
+	Tue, 26 Aug 2025 13:46:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bcc.bai.ne.jp header.i=@bcc.bai.ne.jp header.b="LmixlWzC"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="zbSI7+ng"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rmx-c.mailgw.jp (smx-c.mailgw.jp [210.171.6.217])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC2541E7C08;
-	Tue, 26 Aug 2025 13:58:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.171.6.217
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B0F7350845
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 13:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756216713; cv=none; b=JmnC56n4uDgZsNdtunjXBCR3ss/Wi6WtmEcN+skZBxlgSIIJwyCBNMHTSJ3yrchcF3CEOWvQJWygDWsTmRP3LweljckBXpLaCC629uIYEL4lqF1IrsVbtfG/JWPC3fFt0Qc/W6mzvntfh43vus3CuK8QvnhO93DTiDtQtw3B+h8=
+	t=1756216012; cv=none; b=rHJGc+mPmL/t5toayqdaLT5WkHLIOBV7TbJMOxeADm5JyHDnKYVWzQkZm3A2f5JB1SDIGk97axpV8Wv+nmSzVRomLWnFPvpffbOxOEpZnfZ9K6xm6cqIY9m1oEqZsfkZXT+2+f3TXXmDBhfwg1M/9nGHMP8hmVnnYqkr/Uvw4xg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756216713; c=relaxed/simple;
-	bh=HfAyxLmtvudUzpYt25poT0KRL89hapJ69x3yWpzOYIQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZjWMadjjYXR0tUmNgfc0CE81aSgpA+8Md3l+8GRL3Vu4a55ZkuEWsIVEyDX4FIuDQmklT77rG51/OFLkY36iqFRJ/g/+hC2ekqh+KFajmGHNkY22Sfh4qzKrEa4lxH+yhLFhS8jw5N1d2jrfpCQqDf7vRBcpNyp1TFaZwMY0nf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bcc.bai.ne.jp; spf=pass smtp.mailfrom=bcc.bai.ne.jp; dkim=pass (2048-bit key) header.d=bcc.bai.ne.jp header.i=@bcc.bai.ne.jp header.b=LmixlWzC; arc=none smtp.client-ip=210.171.6.217
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bcc.bai.ne.jp
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bcc.bai.ne.jp
-Received: from bccml.bai.ne.jp (bccml-a.bai.ne.jp [210.171.3.161])
-	by rmx-c.mailgw.jp  with ESMTP id 57QDlnMh024478-57QDlnMi024478;
-	Tue, 26 Aug 2025 22:47:49 +0900
-Received: from subuntu-desktop.bai.ne.jp (bai859bcd79.bai.ne.jp [133.155.205.121])
-	by bccml.bai.ne.jp (Postfix) with ESMTPA id 758818177B;
-	Tue, 26 Aug 2025 22:47:48 +0900 (JST)
-From: Hide Hako <opi5plus@bcc.bai.ne.jp>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1756216012; c=relaxed/simple;
+	bh=jJUBEbotMJc4/7tNagC7dFAxP/nGnFXGjRAa45Uyr30=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PX+Tw3icoh0Fe3PJbgLZneynuWc9S7B/Yl0SQPimzlgedXXp+NsggcsMmAF8axlfQ3kix0ry8NrZnb0OMLl5VHJiw5YrOGwS0rNptq3q5a6tpsXEd+dAyZ84NV0JRPJdeGEobcPGmI7FUE2m05CR0u3vdwAa4Mu9jPnks7GyfxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=zbSI7+ng; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45a1b00797dso45766935e9.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 06:46:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1756216009; x=1756820809; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0bgIZihST00M2CtyLVGqxcGCSa4PCOhuFDLrOFCRzds=;
+        b=zbSI7+ngDgAeufBxY0YA69pZH64+vtruMVXY0fyqR9bzvirWkCfc8fpqQYgktIN6oL
+         TCzAuzfYTPECbMcualgYwgOna458I1w9IE2MbLNL40qUMFv81WHluAs9VNLNP/ChKn5Y
+         cFo0dQjuvvwYYa3C0zitcJgq0yQG2YTihrGUxkVrUert1jGoPehvr+JsE7w/TUi7Veg6
+         zxxWKj2+/yhJ5jh5Qi9Y3x2l+ETTRFgjwLt4ZBNOEbXWHOB3lZUV1VideovXGTB+jowx
+         /ExQANvRuoH3qrqrLCnD+UINhA3k5UMmLU1q7HAjsUPH9Dg7D3gDElg3hgrGpumwxT/L
+         8maQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756216009; x=1756820809;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0bgIZihST00M2CtyLVGqxcGCSa4PCOhuFDLrOFCRzds=;
+        b=PYB00EgPrcdFWO2e3SSk1lh/dcvRZ4gbd14aSV0zgmX1Vf+ZvITxL3Wkeo60CFLF/v
+         PFajo6SUdRwc1sNccyi0EYS1FNTGI0mxXMleUDX+ryTQwbTbjHute/WieFWpWYGebQ3b
+         CxJc2Wh0M6WKT86xEW0aWLZqutbLgHcqlIZ/9gLED3MFnX9T5OsLQTKPc5BgV3wdjLa0
+         vm9eYPC2hzT7YElMmxFYW2gMavv25Nbt4SmVtIzfftE9FvcNSFHpg238nQfBjATkodwD
+         OZCK6qbkcNdr7RzlULRAgig/r1TeSRaX4ZBywjVgz2TScCHuS6cGvU1DRbj6zSGfplqd
+         iFhg==
+X-Forwarded-Encrypted: i=1; AJvYcCXKOFSeS6q9ZnIlqPBvYC5PsiJPITotIlS/TA15L4pXQjcydYmuVyznM1Q66Cj6PbaRY26ga1Bqi9+L@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsIFzzOfloLH8JFOll2mwVZydvkUiyx5nmhxgi3WiwBQivwELH
+	x8dnYAP6ybbCxfvOU70sBAbFok8w7R4omMb3ChF4P6O0l2QA9MOcreO/iQDRWr17MMU=
+X-Gm-Gg: ASbGncv1Z/T62a8A3B/XCY4afzKifnbl1eEjgGT+dPNh9nxGT6tZ3i9pZsxIAl+dyOK
+	iPYOP09G4wvk+F+ehM4ojda0gsR2HIX7bDJBchXvocJy1i2MZtSYvQJZ9+rCNaLjVrV4oX9QUnX
+	WB9ZhSMCsxpK7EzP7R1ggZh+ymHjlpgvududVZDfoIb6JKcUvgAcvg4gDavs7FFJ5PxmUhX2AMc
+	rVRC3mzK5L3bPQpO+2D3GY7DdmcRsT8a6YT0+Y57Eosxmy8GQPTgEJpTBMMYyB7qyMgr5XKwAp0
+	Mv/U3b7zv6X+fVDPJNmtkbDSZqp7jK7Cr1QdbYK5h9eFLKRNEdZeVU/wpen5M8m1pAhQmAmM0mm
+	3mWCIuX4UYx59lh6kxkmJ+Mog
+X-Google-Smtp-Source: AGHT+IH/vtben+jS8p+rxXWOqr702i8ga9ZchZdA6ANpXGCersQKl3QS+kocMs00UNNWRezs+Fzb3w==
+X-Received: by 2002:a05:600c:190e:b0:459:e3f8:9308 with SMTP id 5b1f17b1804b1-45b517ad4bbmr141075015e9.11.1756216008734;
+        Tue, 26 Aug 2025 06:46:48 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:fed4:79fc:9440:6629])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c7117d5b10sm16231162f8f.47.2025.08.26.06.46.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Aug 2025 06:46:48 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Lukas Wunner <lukas@wunner.de>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Hide Hako <opi5plus@bcc.bai.ne.jp>
-Subject: [PATCH v2] arm64: dts: rockchip: Enables sound output from the audio jack on OrangePI5 Plus
-Date: Tue, 26 Aug 2025 22:44:57 +0900
-Message-ID: <20250826134456.9636-2-opi5plus@bcc.bai.ne.jp>
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: gpio: Minor whitespace cleanup in example
+Date: Tue, 26 Aug 2025 15:46:46 +0200
+Message-ID: <175621600512.33327.13991412012918423626.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250821083213.46642-2-krzysztof.kozlowski@linaro.org>
+References: <20250821083213.46642-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-FE-Last-Public-Client-IP: 210.171.3.161
-X-FE-Envelope-From: opi5plus@bcc.bai.ne.jp
-X-FE-Policy-ID: 3:1:23:SYSTEM, 3:1:2:SYSTEM
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=bcc.bai.ne.jp; s=20240516; c=relaxed/relaxed;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=suYwX1lPYNA6J6Ueqpvg+LFYiHTraJArpH2l0vR/ubY=;
- b=LmixlWzCVDA81Kf9yqqXQ7bEBimnLAJZxN/07d1we8P282n2P7cgUGDqJIw1ikGE9YeiynriSRxK
-	fXARS9Yxmor5LScCKSbvQbL69nIm50edBH530vFGUVbRwbAXOT8DZ4J/P7lyDr0putmCdmZqAV+z
-	pSSsG9rquMDXuxTgshitDl3NTum3P5ghimnObeZVySAHLbzDEfXFk5B5U2U5Kt9vlIksxSGWNEzs
-	/Yzmg8DICkkgE5mhQ2ileCjOuMkKqaF7C+PNOQhKczgNSkq1gAxkq1AbZmwvGTSM/4kya16mbzMI
-	BKnpAbuIuQmbGYlxZOwGY40rDWWRDavFgNWAog==
 
-Currently, analog sound is not output from the audio jack.
-This patch allows you to select analog headphones in alsamixer.
-Works with kernel 6.16.1, but not 6.17-rc1.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Points of concern:
-6.16.1 kernel with ubuntu 25.04 Setting -> Sound -> Output Device
- I select Speakers Built-in Audio, the sound will be output from the audio jack.
 
-Changes since v1:
-- As pointed out by Jimmy, the file to be modified has been changed
-  from rk3588-orangepi-5.dtsi to rk3588-orangepi-5-plus.dts.
+On Thu, 21 Aug 2025 10:32:14 +0200, Krzysztof Kozlowski wrote:
+> The DTS code coding style expects exactly one space around '='
+> character.
+> 
+> 
 
-Signed-off-by: Hide Hako <opi5plus@bcc.bai.ne.jp>
----
- arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 1 +
- 1 file changed, 1 insertion(+)
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-index 121e4d1c3..44bb15951 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-@@ -78,6 +78,7 @@ &analog_sound {
- 	pinctrl-0 = <&hp_detect>;
- 	simple-audio-card,aux-devs = <&speaker_amp>, <&headphone_amp>;
- 	simple-audio-card,hp-det-gpios = <&gpio1 RK_PD3 GPIO_ACTIVE_LOW>;
-+	simple-audio-card,pin-switches = "Speaker", "Headphones";
- 	simple-audio-card,widgets =
- 		"Microphone", "Onboard Microphone",
- 		"Microphone", "Microphone Jack",
+[1/1] dt-bindings: gpio: Minor whitespace cleanup in example
+      https://git.kernel.org/brgl/linux/c/604642fc148b5d98fbe5f55e4c2688f9ee0b5868
+
+Best regards,
 -- 
-2.48.1
-
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
