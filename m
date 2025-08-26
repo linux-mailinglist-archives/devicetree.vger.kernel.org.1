@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-209323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00540B359D3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 12:08:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E3ABB359CE
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 12:06:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC9DD7BA607
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:04:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D05F1736BD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE4532143A;
-	Tue, 26 Aug 2025 10:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E30C33437B;
+	Tue, 26 Aug 2025 10:06:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dCzLxgn2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jm8S4ZqK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4F43090CA;
-	Tue, 26 Aug 2025 10:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF9A334371;
+	Tue, 26 Aug 2025 10:06:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756202737; cv=none; b=YiXKY8SNsob8pUfW0qbCfzUCwnomLZq9vW30oOcvXMsH+Ke/PxowG04ZicQGlYaOGG1k9ElA3tjxByqFwfm+r1UNyNM/oCQBLSVBSNcDpeWTKnJHu6iXSEUczT62KhbzDwSjaWUcQ2FTaeyEgLX0cqSKCO3WADJqB5GGATlMjak=
+	t=1756202785; cv=none; b=V0gwhIk8dXwSXGFwlJxVs5N3exzhF0Ne0eH5Txy1Ge/rLLMJAjnV2J6bduN7VXNsAI3aHnSY0W+MxjX1puW5nIC9gVnnkLR464hZCv1bRf0LKZyA9YUdDvMaG89ZyBx5+RQH7IQPc2oh2PYp0UNmJ9NTTFmBHXNqIUEv/1pgs4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756202737; c=relaxed/simple;
-	bh=mYLnWHlhQFejDSsUbun29/kde6A77ueayl3KM2DRYfA=;
+	s=arc-20240116; t=1756202785; c=relaxed/simple;
+	bh=KjBz8eZZveVAWI6/nBMSthsMwIWSi99UaJB2U/LJYl4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jDAfUG6PE/7+pekc+jJuCEnUnyMsFgetUq0hEb2TkwVGrjUbgltAAfzOyF8NNBp3Y6p0HudOivnbtpcfbk9JcYOP7zzTKZ/Mjgddo9oHtf2R7IlIp4+kVyFjNkTdSo2frnW1E/JO9E4JO5Ye3UOIqzZmoLvW3kBkNZb3e76s8KY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dCzLxgn2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ED49C4CEF1;
-	Tue, 26 Aug 2025 10:05:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EfPYdhPigFtSe+0dB9hfJ8f/G8UROkuFVY4zbk25U/vgBcBMIOuQT9xUshA1wW2Pus+qt6tmffsYmHBK2DtLZnC1T3h2wlHIdTv1zyQa/CyrvfkLU+K4FBb6QlGT3KB+kpACcx+iJWmmgqduQs45Cl50ZGHJ8HyheRJ13FTmiTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jm8S4ZqK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AC4BC4CEF1;
+	Tue, 26 Aug 2025 10:06:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756202735;
-	bh=mYLnWHlhQFejDSsUbun29/kde6A77ueayl3KM2DRYfA=;
+	s=k20201202; t=1756202784;
+	bh=KjBz8eZZveVAWI6/nBMSthsMwIWSi99UaJB2U/LJYl4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dCzLxgn2ZsjFCpgtIwNMkuOw9PpwXxUFx0vZ42eyR+Uu9jZA9g+0K054h/gL9MzOC
-	 P6B1Sjo9Qcs1dOTmY7wSWpB7XvQFKZli5Rw2MFFFnk7j7Itf9XvbUxUJDyJBG+2uWV
-	 wQR51EYuEWYSC/xS7G2LyAOSGNxV5OFSjAPavssnkki+PDUnBMjA8ndNZa1h8bNiDb
-	 JZCWqaLaT9wCpq+ivJhKl7XXK+mShe+seWbfBvrB5o2EfPX47olEnlBJ0r+0MlAFqw
-	 ABVTjEC9RiNo2s3WSVQ9lBqXuOs9RLuvqzUJXpLmZK1OAx9KlJ0oLBcD5TA7lP92lq
-	 YqvZbEz2VR+SQ==
-Message-ID: <45f0e4d0-b298-4025-bf12-aebbd68cfc8f@kernel.org>
-Date: Tue, 26 Aug 2025 12:05:28 +0200
+	b=Jm8S4ZqKuBRTD3dlCGaywYxzVWWdp7rseuKmR6FB+AruCUdxr3wuihkQtgQviL7UM
+	 GWjF0OfzSu0piD/fhGNHtgxfmHs7ZW7oCWyxDkStr7PCSUWgwJpBWGokh2Yi96KV0F
+	 i63EcFz0XeKPx8NIwN9rFreOsJArpXYQReYeEI1xHc+kKjeo/fHvZoY4CJt2P4w7JP
+	 f8ehg2mHgKv+iLgCgADphB9xPcyrb9nIkD9WX2eF4hiKVdAd2JSA2+yXGVKIknqYU2
+	 Kha95yuYA0Gpp/QBLO2mg2RxGlXdYSZWT2dTjuQ+0pIuDURgS5lHl8Qk0pxtIuyqRy
+	 AxWfJk8PSpB2g==
+Message-ID: <890ede8a-c049-4332-8f62-5dce2fa0f77b@kernel.org>
+Date: Tue, 26 Aug 2025 12:06:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 6/6] arm64: defconfig: enable Verisilicon IOMMU
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>, joro@8bytes.org,
- will@kernel.org, robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de, nicolas.dufresne@collabora.com,
- jgg@ziepe.ca, p.zabel@pengutronix.de, mchehab@kernel.org
-Cc: iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com,
- linux-media@vger.kernel.org
-References: <20250825153450.150071-1-benjamin.gaignard@collabora.com>
- <20250825153450.150071-7-benjamin.gaignard@collabora.com>
- <b7869ddb-f44b-4d1f-a6c3-393a28d3cb00@kernel.org>
- <002f164b-4296-428b-95ec-1ca10b979070@collabora.com>
+Subject: Re: [PATCH v7 7/8] serial: qcom-geni: Enable PM runtime for serial
+ driver
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: Praveen Talari <quic_ptalari@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-serial@vger.kernel.org, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
+ dmitry.baryshkov@oss.qualcomm.com, psodagud@quicinc.com, djaggi@quicinc.com,
+ quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
+ quic_arandive@quicinc.com, quic_cchiluve@quicinc.com,
+ quic_shazhuss@quicinc.com, Jiri Slaby <jirislaby@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ bryan.odonoghue@linaro.org, neil.armstrong@linaro.org, srini@kernel.org
+References: <20250721174532.14022-1-quic_ptalari@quicinc.com>
+ <20250721174532.14022-8-quic_ptalari@quicinc.com>
+ <DC0D53ZTNOBU.E8LSD5E5Z8TX@linaro.org>
+ <577d05d4-789b-4556-a2d2-d0ad15b2c213@quicinc.com>
+ <dcad137d-8ac9-4a0b-9b64-de799536fd32@kernel.org>
+ <DCC8WLEKNS8W.9GAJHQGYPZIY@linaro.org>
+ <8689a8b4-75cb-4f01-ad6c-0a8367851257@kernel.org>
+ <DCC9B5C7SSU2.GRI1UY0VUDHF@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,23 +118,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <002f164b-4296-428b-95ec-1ca10b979070@collabora.com>
+In-Reply-To: <DCC9B5C7SSU2.GRI1UY0VUDHF@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 26/08/2025 11:53, Benjamin Gaignard wrote:
+On 26/08/2025 11:37, Alexey Klimov wrote:
+> On Tue Aug 26, 2025 at 10:21 AM BST, Krzysztof Kozlowski wrote:
+>> On 26/08/2025 11:18, Alexey Klimov wrote:
+>>>>> May i know what is testcase which you are running on target?
+>>>>
+>>>> Boot the board?
+>>>>
+>>>>> what is target?
+>>>>
+>>>> It is written in original report. Did you even read it?
+>>>>
+>>>>> Which usecase is this issue occurring in?
+>>>>
+>>>> Boot?
+>>>
+>>> FWIW, what said above by Krzysztof is correct, there is no usecase, just booting the board.
+>>>
+>> 12 days and nothing improved, right? if this was not dropped now,
+>> Alexey, can you send a revert? Author clearly approches stability with a
+>> very relaxed way and is just happy that patch was thrown over the wall
+>> and job is done.
+>>
+>>
+>> If you do not want to send revert, let me know, I will do it.
 > 
-> Le 26/08/2025 à 10:25, Krzysztof Kozlowski a écrit :
->> On 25/08/2025 17:34, Benjamin Gaignard wrote:
->>> Enable Verisilicon IOMMU used by RK3588 AV1 hardware codec.
->> Qualcomm RK3588? This is defconfig for all platforms, so be specific
->> which board uses it.
-> 
-> It is for rockchip rk3588 SoC.
+> I am okay with sending revert, just trying to see if there is any interest
+> in fixing this.
 
-I guessed that, please mention it in the commit msg if there is going to
-be v8. Also mention name of any board upstream having this.
+Any interest should have happened after 1 day of reporting linux-next
+breakage. It has been like what? 12 days?
 
+That's typical throw the patch over the wall. Revert.
 Best regards,
 Krzysztof
 
