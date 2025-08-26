@@ -1,135 +1,237 @@
-Return-Path: <devicetree+bounces-209439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B094FB372D7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 21:07:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD6DBB37373
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 21:54:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 654085E5016
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 19:07:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5853E1894017
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 19:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B838A368092;
-	Tue, 26 Aug 2025 19:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEBE3164B0;
+	Tue, 26 Aug 2025 19:54:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bH6gl+pR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kVo2jcyH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CFD1F2380;
-	Tue, 26 Aug 2025 19:07:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07B092DF6EA
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 19:54:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756235244; cv=none; b=dX8WlMHMJlzdHPoRdS905D1R9fiQ7rN2+VDkn+AaoM5TuGN/DaccjCGEyn5XxsFKR6e/klGzJ9HZ67qq5tP8qoH8vPejP6xmvojcj0IFi9vGU2xR3Vb6QxTtgzLzeH9dCsL2zx1uVzGp6cFJPKoBXzMaJ95R6m27QA3EUl0ncuE=
+	t=1756238083; cv=none; b=JSnUqbcsC482bjS7yfcaiM2MwBsioTay4p9FH/pwpHKSixhQY5s0Kuh44p2sa5a7LPaY4t6zfHPC9vpBC48RRCwlDkRFeQ2XTOqgODRtrrt7ih4bBphkJyLRVaZMy7rcX2+hxQM8Dvf5Mn3DFfFEgdjDUtK3hxVC/CMoukWyWhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756235244; c=relaxed/simple;
-	bh=dzXDeml6LhaeVEW/Cm7+AKped8Y7Fz4TmxTIOd9241g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CQpebswYMhe/DcYBzUM6jBoFZuMWeFtAbILWxnHix8naBR7JrnyYFTvHO/o+55NvxASw/vWb9akgH/Bd0sdnsa3e2TFqnHPcvSg6UsitoNPANyDbulXby+1Maa9dZmk6ANRWUE3+qNMjknY0hYO4vjf5o0Lu4lpzGVx+m09ikAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bH6gl+pR; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afe7f50b605so41069466b.0;
-        Tue, 26 Aug 2025 12:07:22 -0700 (PDT)
+	s=arc-20240116; t=1756238083; c=relaxed/simple;
+	bh=nHV+MoADmuu9Flb/SEZp6v3PcnQ8ZAvPvJ2YlUDEGqg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=Ta7hN1ac9GTjOsvJ0RaqMRwTpoHK5aEPph3MNQ0gJN65/BMAycmyoVvkAMbcQ6wiLEtG6iC2Ru9k6o3rMP0LWe7qWTgeeNHT5jA5Dz56YGSWFAOF9UUcx9qOAVRJO3r2owVVokrmarbry/MijTUYXD+j4ltyyTiE+oFgIBDxB5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kVo2jcyH; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45b4d892175so30480005e9.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 12:54:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756235241; x=1756840041; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gzIB/UF+2pna+ufI5/Fze+18H1TaH1WQC6eyvlwlp4o=;
-        b=bH6gl+pRr82O17aee7KH2ype2qn3wWLP8S+Uk2yh9fdTThGEaAs+zj3TtGsbA+OxNd
-         vNSsV+KrxOVLeC2wwjdS94GbaIZ9UkZPtUHKKgJkF5uJd8QK4J0H03LPWd2VnX/FNtwk
-         jfaSouUqlypcxh4Jhr6QwFCW5w7tHf3dB+gSBDibxgrOq1snQ910ywu9tPSeL/VTO2D3
-         CeziIjX/cFjmjmSeykgrpbzj5g0+HtLw4DhO7HJ2Ih9bzJjLG0ia+BK9zc+vsv0hptdv
-         IE7J/DKGUd48JQrZv2RdLYUXXzDrRmKO0CtvXsz3cLhultyxkhdh41ZpcbT9DnFWJLF5
-         IjNQ==
+        d=linaro.org; s=google; t=1756238080; x=1756842880; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p5ZZNfqznY43NdEJ8oweClpq/lUKtG6cvHvhI0eKnkw=;
+        b=kVo2jcyHjhJQIYTuA3M/9+RzN7Ft3MDQgkVwqOJKJKQiv03+ApkeCbQKaYGAYs7A6V
+         qhth2u8o2bj53Y48lTwskvQc38tQS/kYI5BMMu5Wh+CluwBu8QhVnT8sTES9/m30ng5k
+         vp7vsTJM+kKboSPZzqQB3WP5ljXCGedd0e6KWNPzC7hYvW5JhTnncYxhOxLVMr+CcCEx
+         DuwfBW3jaCMjtDPYf7uS3VfkuHnUynMGg28QvTNXBTbNeYBrNce1sp1MwfsR0IrBBVKC
+         BiOjFNHDF4IpM62a56M9gGoUa2AVgSM6YiV8OcG4CvKGl9/PS4X4zyeFMfZi9QH0jAbO
+         F8VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756235241; x=1756840041;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gzIB/UF+2pna+ufI5/Fze+18H1TaH1WQC6eyvlwlp4o=;
-        b=E8u6ahXpO5D9d3YNd472OtGS8RnsKHjx/F8EKTD/R52FvkwzqM0Wyd4w9tJ7Sf6w54
-         HChvWBhIrKEeKFqw3p75TzQmDL32vnIRK5imxW5ttrrMEIgJ2i0ETlSIfX4VHfOlBPZs
-         PYZD6LNNbeve+8dVnaUfBWohOSPNpcfpPLCTSPBwYDrpc0sUMbp8s25xAx2bYPd6iFhI
-         jjBD6oEOQBoeE+mHgihy0sbIobRkgEJR3BvWkT0Ufu9uEYHwK4amsJ9PzOPiBbaBBapL
-         os4qx01H0Y7InnAKMRmCO3Ww06fgAArVIwB5JnQAMZx6dlCtmES1M1a3YtzzUX8dyNTY
-         uuWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUJ9dnkMK3jiw46FXX8cukwWYl5nH1BaVnOJT4FMe1mY09LM7ZmfgxPSB1CE1uW6Xw248fwTBmQ@vger.kernel.org, AJvYcCUYmRkQITgtAoXhO+wVWaz1PCBQ68Ke94fApSMxgLtpIVQMzzrMrrSCvyO1uZpkrRu+XIyJ/Jnq9Trn@vger.kernel.org, AJvYcCXvAE5wBNp1thIXkCPsbm0LY7ygHwYRJ8emXgdna7KYaeHwNjHC9hRzjki0Bh4JaGLcr2EhTNc59P8II5b8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZUnXNi4JUPF4REi4FT8iLjsWBlSujtKENwP+t5uY9kjiAc3gH
-	Tj6LogCwFjSL4UhAk76GowxR0UrjZg8gDdf7aAaicmC6P+PyrtipXIvQ
-X-Gm-Gg: ASbGncscaiwShyAA8rpynRZvClFG9Yt/P/TdyLEvZh4PH0bYAUXNTqsN4Hvd2nnrcpM
-	yRjl7GLlD9T8DcKpsD4JK/SleG6akKrGicHCHzZ7lnio6I3ZusgSlcrh+AJiSN7bCu/0p2Zp7pP
-	KxICBadqTZw3tRtwRvLocowFlGSVCtfXfZXNG+LYyMBrTpc3Opk5o9UUGuuhN/BHfQqJiBUcKWv
-	JejC2jojVveASo8rwr9Q50aepdWdCyGht5LWzhT6wHkLPqtE+uEgXVgy+9MOxopfdL3qRMXhBx1
-	EGsyNb+IiYxon4lcG8JqG2S/DiCumoXZmTuNYgmwVNGFn4DQrMWJlZGjggfwtK+ILPhrUUqtKzL
-	wi2x0DCEWv+Ym2Ys4gSvJPHw1xw==
-X-Google-Smtp-Source: AGHT+IHAtJyoC6LCpsX+9ixvxn5yPrzcVcxGfg2wMfyxcBXmm1gz09+B0+1LESU0l7oQqz0ECcArmw==
-X-Received: by 2002:a17:907:6d16:b0:af9:3d0a:f379 with SMTP id a640c23a62f3a-afe2875d2f7mr889917866b.0.1756235241024;
-        Tue, 26 Aug 2025 12:07:21 -0700 (PDT)
-Received: from skbuf ([2a02:2f04:d005:3b00:a59a:f42b:5034:e072])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afe89bd7acesm417348066b.73.2025.08.26.12.07.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Aug 2025 12:07:20 -0700 (PDT)
-Date: Tue, 26 Aug 2025 22:07:17 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Yangfl <mmyangfl@gmail.com>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v6 3/3] net: dsa: yt921x: Add support for
- Motorcomm YT921x
-Message-ID: <20250826190717.fkhj3qowvljsuvj6@skbuf>
-References: <20250824005116.2434998-1-mmyangfl@gmail.com>
- <20250824005116.2434998-4-mmyangfl@gmail.com>
- <ad61c240-eee3-4db4-b03e-de07f3efba12@lunn.ch>
- <CAAXyoMP-Z8aYTSZwqJpDYRVcYQ9fzEgmDuAbQd=UEGp+o5Fdjg@mail.gmail.com>
- <aKtWej0nymW-baTC@shell.armlinux.org.uk>
- <CAAXyoMNot+aZ35Xtx=YiTEmGk_c8XT7VGiQ-DUn8T1vPUnO-9Q@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1756238080; x=1756842880;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=p5ZZNfqznY43NdEJ8oweClpq/lUKtG6cvHvhI0eKnkw=;
+        b=QZZaAga2r7ua7AoWlEgDH59ElH1sv+wa0nmRRkbHjLb+rJ+WaBfl1gCdCHTRRCeAJ9
+         bFpwykOC7kxoqQKHjUQXvWQ3eTErbk32mojgC2Dlg5H5MXY81fUVN9m5c0XXlKhAKL8g
+         P6OSkUmHSTJ5VI+svr7+uu4xr85qjPoitYcZs8MItJhemWfTfVot5B/IxPH4ZRFs4syF
+         XSV0yCDGinRacQCOT3CdH872/A8DXjR5/6v/ckXNbp0dwNbWf8ElfzCalNcmoVAUMkso
+         QiQ/NOjtwqYDJRLRforMBdz6ewJYk6rRnM10QML6Y4FkFnwJ+OONayapOzcUGnsYqKoF
+         Dgdg==
+X-Forwarded-Encrypted: i=1; AJvYcCWkQIefXzkBKxR2RzR50AoqTRh/Eyw8h+INJ0GjyMGCpYgmMGWnFng9eHWzHNRd1MeROFoUa8nbb17m@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjgCAEFIGYXCtE9pdyX8iZUOHlWNQdQYEOu0L7gEkZI5xzMerh
+	Dd5kvndjwrACU/NAyvfF10RbDrIYl3d7zNgpAR36RMQiLq5I1L0S2DX/vVNNKFvnGR4=
+X-Gm-Gg: ASbGnctBQYXp0FD1ZLci1Lh8BGRNcKlp9OnAIvEuk3ZAPZ4HHElKfXI7WLfLSWmfKMj
+	idamItzyDMSUWqqRBYynyDv0ofjZ79WmBC/iItzTLVgXKPeHzwEzN7cSSWJcg6ZukUDP3P4KZS6
+	2i0Vc0JVYbHmEF5CDV+cJa0+IHYXXrEFJPz/rt1+fwFheKOiZv7fj5rr7i4o4fN6esHBH+ZAkRf
+	OJOKaV/FsiFtaDaVGYbpzw5OH/JIiXQZsV+S53dnDqm1zy6T0o9Qmha7lABjea4JEbPHuATlnQ0
+	qo5WgAoNTEG8B+NpSTDUWIbMORS/v+kEUAJdwIAqZjc74SACwW6R2QkNQYD0hF15635X3taEUzn
+	wjtpWccCipgNk+8xxKOsJXZhJUik=
+X-Google-Smtp-Source: AGHT+IGHAaQcE5nk8+2l2gN+bgEDgLzg5nPrVxn2sZgSHR1KIyMJyR1EB3qvooivM+uG4c5VtH8DHw==
+X-Received: by 2002:a05:600c:1392:b0:453:5a04:b60e with SMTP id 5b1f17b1804b1-45b517d4e23mr135380295e9.26.1756238080215;
+        Tue, 26 Aug 2025 12:54:40 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7259:a00:e633:2c7e:2d3c:f5ec])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b6f0f320esm23865e9.16.2025.08.26.12.54.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Aug 2025 12:54:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAAXyoMNot+aZ35Xtx=YiTEmGk_c8XT7VGiQ-DUn8T1vPUnO-9Q@mail.gmail.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 26 Aug 2025 20:54:38 +0100
+Message-Id: <DCCMFVC0DW1I.GXZVG2BQEFX7@linaro.org>
+Subject: Re: [PATCH v7 7/8] serial: qcom-geni: Enable PM runtime for serial
+ driver
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Praveen Talari" <quic_ptalari@quicinc.com>, "Krzysztof Kozlowski"
+ <krzk@kernel.org>
+Cc: "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-serial@vger.kernel.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
+ <dmitry.baryshkov@oss.qualcomm.com>, <psodagud@quicinc.com>,
+ <djaggi@quicinc.com>, <quic_msavaliy@quicinc.com>,
+ <quic_vtanuku@quicinc.com>, <quic_arandive@quicinc.com>,
+ <quic_cchiluve@quicinc.com>, <quic_shazhuss@quicinc.com>, "Jiri Slaby"
+ <jirislaby@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ <devicetree@vger.kernel.org>, <bryan.odonoghue@linaro.org>,
+ <neil.armstrong@linaro.org>, <srini@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250721174532.14022-1-quic_ptalari@quicinc.com>
+ <20250721174532.14022-8-quic_ptalari@quicinc.com>
+ <DC0D53ZTNOBU.E8LSD5E5Z8TX@linaro.org>
+ <577d05d4-789b-4556-a2d2-d0ad15b2c213@quicinc.com>
+ <dcad137d-8ac9-4a0b-9b64-de799536fd32@kernel.org>
+ <DCC8WLEKNS8W.9GAJHQGYPZIY@linaro.org>
+ <8689a8b4-75cb-4f01-ad6c-0a8367851257@kernel.org>
+ <DCC9B5C7SSU2.GRI1UY0VUDHF@linaro.org>
+ <890ede8a-c049-4332-8f62-5dce2fa0f77b@kernel.org>
+ <5ae730f4-5337-49f8-8bec-8605a2495f37@quicinc.com>
+In-Reply-To: <5ae730f4-5337-49f8-8bec-8605a2495f37@quicinc.com>
 
-On Mon, Aug 25, 2025 at 10:14:58PM +0800, Yangfl wrote:
-> On Mon, Aug 25, 2025 at 2:14 AM Russell King (Oracle)
-> <linux@armlinux.org.uk> wrote:
-> >
-> > On Mon, Aug 25, 2025 at 12:38:20AM +0800, Yangfl wrote:
-> > > They are used in phylink_get_caps(), since I don't want to declare a
-> > > port which we know it does not exist on some chips. But the info_* set
-> > > might be inlined and removed since it is not used elsewhere.
-> >
-> > The problem is... if you have a port in 0..N that DSA thinks should be
-> > used, but is neither internal or external, DSA's initialisation of it
-> > will fail, because without any caps declared for it, phylink_create()
-> > will return an error, causing dsa_port_phylink_create() to fail,
-> > dsa_shared_port_phylink_register() or dsa_user_phy_setup(),
-> > dsa_shared_port_link_register_of() or dsa_user_create()... etc. It
-> > eventually gets propagated up causing the entire switch probe to fail.
-> >
-> > Again... read the code!
-> 
-> What would you expect when you specify Port 0 in DT when only Port 1,
-> 3, 8 are available on the chip (YT9213NB)? Probe error.
+On Tue Aug 26, 2025 at 11:29 AM BST, Praveen Talari wrote:
+> Hi Alexey/Krzysztof,
+>
+>
+> On 8/26/2025 3:36 PM, Krzysztof Kozlowski wrote:
+>> On 26/08/2025 11:37, Alexey Klimov wrote:
+>>> On Tue Aug 26, 2025 at 10:21 AM BST, Krzysztof Kozlowski wrote:
+>>>> On 26/08/2025 11:18, Alexey Klimov wrote:
+>>>>>>> May i know what is testcase which you are running on target?
+>>>>>>
+>>>>>> Boot the board?
+>>>>>>
+>>>>>>> what is target?
+>>>>>>
+>>>>>> It is written in original report. Did you even read it?
+>>>>>>
+>>>>>>> Which usecase is this issue occurring in?
+>>>>>>
+>>>>>> Boot?
+>>>>>
+>>>>> FWIW, what said above by Krzysztof is correct, there is no usecase, j=
+ust booting the board.
+>>>>>
+>>>> 12 days and nothing improved, right? if this was not dropped now,
+>>>> Alexey, can you send a revert? Author clearly approches stability with=
+ a
+>>>> very relaxed way and is just happy that patch was thrown over the wall
+>>>> and job is done.
+>>>>
+>>>>
+>>>> If you do not want to send revert, let me know, I will do it.
+>>>
+>>> I am okay with sending revert, just trying to see if there is any inter=
+est
+>>> in fixing this.
+>>=20
+>> Any interest should have happened after 1 day of reporting linux-next
+>> breakage. It has been like what? 12 days?
+>>=20
+>> That's typical throw the patch over the wall. Revert.
+>
+> Really sorry for the delay.
+>
+> I forgot to mention earlier that I=E2=80=99ve been actively investigating=
+ this
+> issue across different platform SoCs. I was able to reproduce the
+> problem on the SC7280.
+>
+> Here=E2=80=99s a summary of the observed behavior:
+>
+> The issue appears to originate from the qcom_geni_serial driver during
+> device runtime resume. It results in a blocked IRQ thread, which in turn
+> causes system instability.
+>
+> The call trace suggests a deadlock scenario where the IRQ
+> thread=E2=80=94responsible for handling wake-up events=E2=80=94becomes un=
+responsive
+> while interacting with the pinctrl subsystem.
+>
+> Specifically, the msm_pinmux_set_mux function attempts to invoke
+> disable_irq, which is problematic when called from an IRQ thread context.
+> Since the IRQ itself is a wake-up source, this leads to contention or a
+> self-deadlock situation.
+>
+> I have verified below diff and about to post it
 
-It depends. Unless the driver has logic which behaves otherwise, the
-setup of user ports can fail and DSA will just skip them and bring up
-the rest. See commit 86f8b1c01a0a ("net: dsa: Do not make user port
-errors fatal"). The shared ports are more important and their setup
-failures do lead to a switch setup abort though.
+Was the original patch, that introduced the regression, also created by AI =
+tools?
+Just trying to understand how we ended up with untested commit in -master.
+
+Did you test the change below on real hardware?
+
+
+> diff --git a/drivers/tty/serial/qcom_geni_serial.c=20
+> b/drivers/tty/serial/qcom_geni_serial.c
+> index c9c52c52a98d..cb3b4febd8c2 100644
+> --- a/drivers/tty/serial/qcom_geni_serial.c
+> +++ b/drivers/tty/serial/qcom_geni_serial.c
+> @@ -1848,16 +1848,36 @@ static int __maybe_unused=20
+> qcom_geni_serial_runtime_suspend(struct device *dev)
+>   {
+>          struct qcom_geni_serial_port *port =3D dev_get_drvdata(dev);
+>          struct uart_port *uport =3D &port->uport;
+> +       int ret;
+> +
+> +       ret =3D geni_serial_resources_off(uport);
+> +       if(ret) {
+> +               if (device_may_wakeup(dev))
+> +                       disable_irq_wake(port->wakeup_irq);
+> +       }
+>
+> -       return geni_serial_resources_off(uport);
+> +       if (device_may_wakeup(dev))
+> +               enable_irq_wake(port->wakeup_irq);
+> +
+> +       return ret;
+>   }
+>
+>   static int __maybe_unused qcom_geni_serial_runtime_resume(struct=20
+> device *dev)
+>   {
+>          struct qcom_geni_serial_port *port =3D dev_get_drvdata(dev);
+>          struct uart_port *uport =3D &port->uport;
+> +       int ret;
+> +
+> +       if (device_may_wakeup(dev))
+> +               disable_irq_wake(port->wakeup_irq);
+>
+> -       return geni_serial_resources_on(uport);
+> +       ret =3D geni_serial_resources_on(uport);
+> +       if(ret) {
+> +               if (device_may_wakeup(dev))
+> +                       enable_irq_wake(port->wakeup_irq);
+> +       }
+> +
+> +       return ret;
+>   }
+
+Best regards,
+Alexey
+
 
