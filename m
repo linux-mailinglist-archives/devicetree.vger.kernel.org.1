@@ -1,64 +1,67 @@
-Return-Path: <devicetree+bounces-209424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9689B371A4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 19:46:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA103B371A8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 19:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B2A07A74EA
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 17:45:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61C4916EAEC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 17:47:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6F9275108;
-	Tue, 26 Aug 2025 17:46:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5C4299AA3;
+	Tue, 26 Aug 2025 17:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gJ2kUkx1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q2XFkEO5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E366623BD04;
-	Tue, 26 Aug 2025 17:46:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2227D28135B;
+	Tue, 26 Aug 2025 17:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756230409; cv=none; b=PmxRvpn5KY/fI6XaZ0MxPKRMSxI7HKdvBmxaN1NXpI2i2QR2lRPIafn1yRvhRAJAj+Jd4EkrLGL0mgCmFCZs4aBtqy8TQKy76lN0h4Uil+VROtL8CRb4MQxqUNRcdt/3xJINLeQlLKGwDV2REIqxlIceEF66l/wWwZYaB2vNjGE=
+	t=1756230444; cv=none; b=rleIoUoe9QSGDIVG6ad7MuboHjMK/YTd1cdWhQlp9R6McAyd+kcuJEzftJoANJxoTGvXpzJc7p1JTWD1tkZKtFZqwbT1jjC6fcpv2/njnZSVzHylBDcngO/x/qxH4BfXmy9j+1DUsFz9tlGaem0iAUjrc7HMrvOCvJ+Z2xfOpHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756230409; c=relaxed/simple;
-	bh=3KcALkgM0uKITZAzs7T82minUod41zAeZiPW4uBaeiw=;
+	s=arc-20240116; t=1756230444; c=relaxed/simple;
+	bh=QdhdgGupXvzMsxi3UpqcbF6p+Oq4kYam9Hl4IiM7fG0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LbGU/fveQAsIFnSRMtMzQYSart7zKusw77Zp7CSXuPzchOCukwD3bq79qPAewG0YscWgLl7EjA828WAIxvmZfh0G420TL9lro7j6jMmE3DHTi+XrjCbhYNvHEnCEgMZ9NMIs6OhZw2LtyJUNKrYnnVk7ZKlgm5qwPz/Yj7e01mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJ2kUkx1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5F8FC4CEF1;
-	Tue, 26 Aug 2025 17:46:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hcH3t2ZkJ9vXElVp/SYLfrxPcuV96ECJ68cvNALYjB7p27e9bXe+Mbjoo4q2X0m/Ml1/+fn7eaG/Pelzh3z7GmCBHqqTgMyXdEHyty0+aPr5bATRoQpwsuGDcUukk5U9ChvtFtUlasfl9DNOeSmYX42YOZO/BTbcwxF/sy6n6v0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q2XFkEO5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A1C6C4CEF1;
+	Tue, 26 Aug 2025 17:47:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756230408;
-	bh=3KcALkgM0uKITZAzs7T82minUod41zAeZiPW4uBaeiw=;
+	s=k20201202; t=1756230443;
+	bh=QdhdgGupXvzMsxi3UpqcbF6p+Oq4kYam9Hl4IiM7fG0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gJ2kUkx1SdJMLsKsoxOnRVYB/71Ruk9EqCYq4aq1lL2OXaKCcSiMkfCQtDCOizUHc
-	 BWmD+Cqvd2I2/R10OjQvpJpRn6RiU3FVwbyX52225gJekEvcxnTiqjMygUgqe/a320
-	 xUtvEbsN8Y/nflVjP8szGelLRqDh6+s2awthAAGxL8Rx9WB083fOUG6K2XAiacbvYG
-	 523ZcLSJnX/TKrPaBWFaxGtWQLu7HJf3FQBiGtlkVOYrKzwjRKbVdYddpMRjFEdRJs
-	 m6k4dFoPEdBLX4gc2jyw4TK3NpX6EiIo8H7AyCvSZFkF/qqQKr2BWEgSxK33mxfpmU
-	 VL6QzG50v6A0A==
-Date: Tue, 26 Aug 2025 18:46:43 +0100
+	b=Q2XFkEO5hy3tZUNuy04P05Aej+NwMNzR1V1UUeGsA/fYKNOeEEhmbJcM5+vZ8ng7b
+	 rx7xMK0sab0xgNWwV/j0jDXaGoAEcg/LkNW31RQVhyXVr2hoBBh4wTI2dx0gOjmoDG
+	 QB5kLtfemgBrb79VykIFQHNzIEIz5nFVjEsS4RVJoUPG0yMmzFXvjf/2flk1s7ccBk
+	 pIWbKD5uIpYgoOyTp3VG4sGVRtXQI0CpFhPjp7dFr/pZGlJfychkpuXYewWdrNhgyz
+	 wjt2dO+pj1Mj9oyQHoQzi6e76GYtZcb7WCFH0fYUa62OCUExt4FoTWVjzE5Ea9mRuu
+	 Cux9TYhmvn/8A==
+Date: Tue, 26 Aug 2025 18:47:18 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Schiffer <matthias.schiffer@tq-group.com>,
-	linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux@ew.tq-group.com
-Subject: Re: [PATCH 1/4] dt-bindings: omap: add AM335x-based TQMa335x SOM and
- MBa335x board
-Message-ID: <20250826-sage-tinsmith-3f39cf4428ce@spud>
-References: <20250826140853.2570528-1-alexander.stein@ew.tq-group.com>
- <20250826140853.2570528-2-alexander.stein@ew.tq-group.com>
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: panel: lvds: Append
+ ampire,amp19201200b5tzqw-t03 in panel-lvds
+Message-ID: <20250826-fragility-darkish-715589203b6c@spud>
+References: <20250826-drm-misc-next-v1-1-980d0a0592b9@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,27 +69,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OpUx3LZqjKjS37ix"
+	protocol="application/pgp-signature"; boundary="9HnhkVHANMCSoXTS"
 Content-Disposition: inline
-In-Reply-To: <20250826140853.2570528-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20250826-drm-misc-next-v1-1-980d0a0592b9@foss.st.com>
 
 
---OpUx3LZqjKjS37ix
+--9HnhkVHANMCSoXTS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---OpUx3LZqjKjS37ix
+--9HnhkVHANMCSoXTS
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaK3zAwAKCRB4tDGHoIJi
-0nckAQDXBIRM+YWOeoanzxGFDdwpLFKQcTKyiQegoUiHXhSMLAEAgpbnbD2pWsyz
-MfdC+slgOCfriwX0i6d36j0JyLzwAAk=
-=Os2L
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaK3zJQAKCRB4tDGHoIJi
+0mGVAP9Zv6hXywWIK1K/hJyxUZD1xROsO1NNAjaR7gjBzzzg8QD/TGGd8P9i7J6r
+x3M30PfiUvg1IznscukX12dypHsvAAs=
+=fpYc
 -----END PGP SIGNATURE-----
 
---OpUx3LZqjKjS37ix--
+--9HnhkVHANMCSoXTS--
 
