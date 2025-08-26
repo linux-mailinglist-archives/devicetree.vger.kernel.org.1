@@ -1,126 +1,144 @@
-Return-Path: <devicetree+bounces-209360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C01FB36294
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 15:20:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 241D5B3628F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 15:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5C068A633D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 13:14:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E210818868D9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 13:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19EFB26FDBF;
-	Tue, 26 Aug 2025 13:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D20345730;
+	Tue, 26 Aug 2025 13:15:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WSOiBNlX"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="Vn5AcRhu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75B8238C07;
-	Tue, 26 Aug 2025 13:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756213987; cv=none; b=U5N+Xf3mL0CgsA/fX9yNPrvj3uT2HUeXI+xZlN45aVfNohGPjBp28r4WlpJcilKkRgHZpQpB0EuEbMj0OQTEGwFshgTCHUySrd8JRd7oLld1T3PfOvgW+adYrl2B3AhFaUTgaO9IxcMDWEFS6jnb2rvL1WnJHHfS6/OgqPBYmPU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756213987; c=relaxed/simple;
-	bh=8Rs/KzG7jvMwItcdJJ435ArPOcL2peqcV5PN2CbYxgk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fV6iO4x7bpKJksNSL1IbjH22VBfiETUya/00EEI7mLYE12Xydxhz5RHJ50qXRnIXyg1IhbaxVfjThoBAl/hfDVhnLeM1L53KPC0qD0OmbgI6swKnuXw0Za1Rzs6mATJXQGC75wwl8+DKoCDfxbx4kfRIDTMs91ZaWn6JoaXRt8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WSOiBNlX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DBBDC116B1;
-	Tue, 26 Aug 2025 13:13:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756213986;
-	bh=8Rs/KzG7jvMwItcdJJ435ArPOcL2peqcV5PN2CbYxgk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=WSOiBNlXpfNmbPywKaLsen/Ln/zE8ONmRBy0PtiQ4zh0R6guZtV7c4sdr0cCaP4p9
-	 VPHR3oDdCNFCo6AuQKm4mIUg435tWL2+/MXXtiHxmx9pKvBApGO8mexxEi5MN/mgtK
-	 GsCktvGa8zmPcqlvUwQLANujXJuwGWUTvhNlwuegUeK/2AWaMOvLau+yO/TiADFhh2
-	 2w5pLkBcMw2v5j8URfSNPbxKm8iUPvCStz364vDBrNcNDsYriNCUp6mbjQ+hYbn5YQ
-	 z1gI31TDmc4SahracFGzdAnf6OwZ1exX0HCwkfCv5DN+Vyf2BOarPgA5Bpmo4HW/zl
-	 193NvIAIIYPPA==
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-afcb7ae6ed0so752851166b.3;
-        Tue, 26 Aug 2025 06:13:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVCWE59ZZYAdDc4a1G2rTyyiTkErnN6Uoh4dRkIj0lMqlZuOAyzeQYivMxxg+UeB4sdXqACrGvMXRAQ@vger.kernel.org, AJvYcCVSC4RvvQSj6FJ46WHMdoT7cmhxogntOu/3zIiADdGAUcI2eib6O/kWj3wHPJLS7CbFm/zm0LvBru/4wCMbZA==@vger.kernel.org, AJvYcCWOVs8IlLQvzkk/QvmZXkYA2JPQpaBSjfeQE0pqJmRdPfGrYMpIb4BjqsewJDhX5B2uxSGwN+Oq/T5WRAlG@vger.kernel.org, AJvYcCWvda/rNxmG3pp15kYVIVgryD+EdiN7hrMJbzad2Jo6TMgorQAIZ2lfMZ1/RhSvuG/MDKLYfX8NS6kH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyaGEyuhenI1V5z5WMYY8boWOEJ9sTHfz2rZHsA/j9udkIG30Sm
-	OQWFrGC+jbg9Ox3jXNM/BrRJk3QBOhAN2FKpGmoghixXf/G4ZuEjGmeqT5YTN5KZPfRmBYLwpzz
-	7KSdQYg893TXZYBiOaiC/fiw1UVRRqw==
-X-Google-Smtp-Source: AGHT+IEG2XbEkRO5xnZYxC56oap2ApeXeEn+LTG8K4z8muNIvEWp3ReM3dmSHzLIW6gJLBWm5QfqGvxzSUrQ+JA/O+Y=
-X-Received: by 2002:a17:907:6e8e:b0:af1:f259:254d with SMTP id
- a640c23a62f3a-afe28ec450fmr1281173366b.8.1756213985031; Tue, 26 Aug 2025
- 06:13:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB46D343D9B;
+	Tue, 26 Aug 2025 13:15:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756214108; cv=pass; b=aex+zRaTkr5w+zIITfs8VnbX+t7yw0qNqUlpAHYDSIJIcqu3GOdLMplIMazkcmQm/R1NrZgZYQ0+YsLzLLBLo/2ETGyemSdf7LyCBm3+ho/FO3cWJyynv6RDs+DJ3O65xwB6qx1+W7OKjeE+gkhwsfjdPCo8yTT7b6G2aJhTA38=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756214108; c=relaxed/simple;
+	bh=4L/5/IzzgVuHCII7Kzbc+julZ9J9jxBCB23SMl/aB8k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S31DK4etBhYvMN0KYQazUujlXvNxGJ4wKub5TkMr1qa04/RmaQFy6fpXcNUC18Z8dOMAFWvzIq9Cbklmi09WF9LZ9qztrjGsE54U3HtW3E6nUDC3V1/9bxk3PiAuAbR2kgbRYRE9/M0YTdjewK+BGL5bcYEM0io0y2wVPibB+/A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=Vn5AcRhu; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1756214076; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=SzFR1y2hQifrr1QcPR5WzrWPvb1o9u/qCP/XFXoSQ0eixqkF4WfPknRj4noSB+VIYxrwBu/+gAQLGHH3d5enRKgIEcYRWmoDBQtMkzwLYsSACjPRzAc3nwvfPio7lXuCRjDefXNdwAxE6lp1oE7yVo0iI7lQx/lnsYIdCgLabPw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1756214076; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=WNuw2smkSUbseMqhQYhMnAKOM3W6MRvMOpj1QgvkS8w=; 
+	b=JnPShJ/oLY3hwO01CreDYBXMbChk11ZYRhdeoShjQAd+WV2IRdfwZsiwVJphqMa068f5Np9AkgkAiE3sfs60mSLNHkG8PXLSJc9JA9ADF48ohhiRciWn2WnALv4x7s1bJmrLEdAc0k/CbDIXOJoqpUlLbTulWz1CLagQAYRtlk0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1756214076;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=WNuw2smkSUbseMqhQYhMnAKOM3W6MRvMOpj1QgvkS8w=;
+	b=Vn5AcRhuGSt2DFamCzGpSUHNC/sEkT8T+X90OV2ajvTRiXEQZlJ2uBTzMl1cZLkY
+	8REbeo8r1FHpwGjvvKUw7Ibd/uoePOjBTwfTSB6YfpMVT2m8VKXcETlUALaUlHcuRRD
+	NDdFupVdVqUxPssNPoMBayroq0UMTgLmtRVwFX2o=
+Received: by mx.zohomail.com with SMTPS id 1756214074471159.25951317157126;
+	Tue, 26 Aug 2025 06:14:34 -0700 (PDT)
+Message-ID: <f2f09c95-1d08-43db-aee0-25cdaaf8dbca@collabora.com>
+Date: Tue, 26 Aug 2025 15:14:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250819-pci-pwrctrl-perst-v1-0-4b74978d2007@oss.qualcomm.com>
- <20250819-pci-pwrctrl-perst-v1-4-4b74978d2007@oss.qualcomm.com>
- <20250822135147.GA3480664-robh@kernel.org> <nphfnyl4ps7y76ra4bvlyhl2rwcaal42zyrspzlmeqqksqa5bi@zzpiolboiomp>
- <20250825224315.GA771834-robh@kernel.org> <jqgvw3u6lkewaz2ycjkozcfqrmdln5gacgrog4lhioazhvk5yz@3ph2z25zwqvj>
-In-Reply-To: <jqgvw3u6lkewaz2ycjkozcfqrmdln5gacgrog4lhioazhvk5yz@3ph2z25zwqvj>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 26 Aug 2025 08:12:53 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+66jVM33oBCbCFjcZdd+veA-QKQRtG9iD6PP+8Bq7-Ug@mail.gmail.com>
-X-Gm-Features: Ac12FXyxotUWYc0bYXHsCja7WJm4ZP4Tm5g0ZrX-FWoxMbdfgQ46x7AXHUeWNgE
-Message-ID: <CAL_Jsq+66jVM33oBCbCFjcZdd+veA-QKQRtG9iD6PP+8Bq7-Ug@mail.gmail.com>
-Subject: Re: [PATCH 4/6] PCI: of: Add an API to get the BDF for the device node
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Brian Norris <briannorris@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/6] media: verisilicon: AV1: Restore IOMMU context
+ before decoding a frame
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>, joro@8bytes.org,
+ will@kernel.org, robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, heiko@sntech.de, p.zabel@pengutronix.de,
+ mchehab@kernel.org, iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com,
+ linux-media@vger.kernel.org
+References: <20250825153450.150071-1-benjamin.gaignard@collabora.com>
+ <20250825153450.150071-5-benjamin.gaignard@collabora.com>
+ <20250825170531.GA1899851@ziepe.ca>
+ <01c327e8353bb5b986ef6fb1e7311437659aea4a.camel@collabora.com>
+ <20250825183122.GB1899851@ziepe.ca>
+ <441df5ff-8ed4-45ed-8a52-b542c6e7d38c@collabora.com>
+ <20250826124155.GD1899851@ziepe.ca>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <20250826124155.GD1899851@ziepe.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Aug 26, 2025 at 2:15=E2=80=AFAM Manivannan Sadhasivam <mani@kernel.=
-org> wrote:
->
-> On Mon, Aug 25, 2025 at 05:43:15PM GMT, Rob Herring wrote:
-> > On Fri, Aug 22, 2025 at 07:57:41PM +0530, Manivannan Sadhasivam wrote:
-> > > On Fri, Aug 22, 2025 at 08:51:47AM GMT, Rob Herring wrote:
-> > > > On Tue, Aug 19, 2025 at 12:44:53PM +0530, Manivannan Sadhasivam wro=
-te:
-> > > > > Bus:Device:Function (BDF) numbers are used to uniquely identify a
-> > > > > device/function on a PCI bus. Hence, add an API to get the BDF fr=
-om the
-> > > > > devicetree node of a device.
-> > > >
-> > > > For FDT, the bus should always be 0. It doesn't make sense for FDT.=
- The
-> > > > bus number in DT reflects how firmware configured the PCI buses, bu=
-t
-> > > > there's no firmware configuration of PCI for FDT.
-> > >
-> > > This API is targeted for DT platforms only, where it is used to uniqu=
-ely
-> > > identify a devfn. What should I do to make it DT specific and not FDT=
-?
-> >
-> > I don't understand. There are FDT and OF (actual OpenFirmware)
-> > platforms. I'm pretty sure you don't care about the latter.
-> >
->
-> Sorry, I mixed the terminologies. Yes, I did refer the platforms making u=
-se of
-> the FDT binary and not OF platforms.
->
-> In the DTS, we do use bus number to differentiate between devices, not ju=
-st
-> devfn. But I get your point, bus no other than 0 are not fixed and alloca=
-ted by
-> the OS during runtime or by the firmware.
->
-> So how should we uniquely identify a PCIe node here, if not by BDF?
 
-By path. Which is consistent since there is also no bus num in the unit-add=
-ress.
+Le 26/08/2025 à 14:41, Jason Gunthorpe a écrit :
+> On Tue, Aug 26, 2025 at 11:52:37AM +0200, Benjamin Gaignard wrote:
+>> Le 25/08/2025 à 20:31, Jason Gunthorpe a écrit :
+>>> On Mon, Aug 25, 2025 at 01:50:16PM -0400, Nicolas Dufresne wrote:
+>>>
+>>>> Jason, the point is that the iommu and the VPU are not separate devices, which
+>>>> comes with side effects. On RKVDec side, the iommu configuration get resets
+>>>> whenever a decoding error leads to a VPU "self reset". I can't remember who from
+>>>> the iommu subsystem suggested that, but the empty domain method was agreed to be
+>>> IDK, that seems really goofy too me an defiantly needs to be
+>>> extensively documented this is restoring the default with some lore
+>>> link of the original suggestion.
+>>>
+>>>> the least invasive way to workaround that issue. I believe Detlev tried multiple
+>>>> time to add APIs for that before the discussion lead to this path.
+>>> You mean this:
+>>>
+>>> https://lore.kernel.org/linux-iommu/20250318152049.14781-1-detlev.casanova@collabora.com/
+>>>
+>>> Which came back with the same remark I would give:
+>>>
+>>>    Please have some kind of proper reset notifier mechanism - in fact
+>>>    with runtime PM could you not already invoke a suspend/resume cycle
+>>>    via the device links?
+>> when doing parallel decode suspend/resume are not invoked.
+> It was a proposal for an error recovery path.
+>
+>>> Or another reasonable option:
+>>>
+>>>     Or at worst just export a public interface for the other driver to
+>>>     invoke rk_iommu_resume() directly.
+>>>
+>>> Sigh.
+>> An other solution which is working is to call iommu_flush_iotlb_all()
+>> before decoding each frame.
+> That was already proposed and shot down, it makes no sense at all use
+> to use flushing to reset the registers because the HW weirdly lost
+> them, and flushing should never happen outside mapping contexts.
+>
+> If the HW is really resetting the iommu registers after every frame
+> that is really just painfully broken, and makes me wonder if it really
+> should be an iommu subsystem driver at all if it is so tightly coupled
+> to the computing HW. :\
+>
+> Like we wouldn't try to put a GPU MMU into the iommu subsystem though
+> they do fairly similar things.
 
-Rob
+I will add vsi_iommu_restore_ctx() function where all locks will be
+managed and call vsi_iommu_enable(). Decoder driver will call this function
+before each frame.
+I think it similar to some omap iommu code I have found.
+
+Regards,
+Benjamin
+
+> Jason
+>
 
