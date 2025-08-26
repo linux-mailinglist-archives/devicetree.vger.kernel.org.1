@@ -1,72 +1,66 @@
-Return-Path: <devicetree+bounces-209441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3ED7B3737D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 21:57:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C910AB3739F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 22:09:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0628F1B2156D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 19:58:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 571FA683F47
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 20:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AB7B35206D;
-	Tue, 26 Aug 2025 19:57:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A33FF371EA3;
+	Tue, 26 Aug 2025 20:09:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="haM0ExZY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rsze/N9t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 615D030CD8E;
-	Tue, 26 Aug 2025 19:57:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729C5211C;
+	Tue, 26 Aug 2025 20:09:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756238260; cv=none; b=ga2gkjD0pt5HTpOlYL7QWaaPQCUVJ75SOabP8SaN6fZo1axwnUk3S431ia98oGtZsHzcJIngg7QVDH41i7wv5eFyNKqhQkkm8jDIjRyuvHjJr02WymrLddNtnzYWkgfY0RMQoh107XAh5rQR/rni56/7nqRZ4SfXX8+R4nHqPhA=
+	t=1756238946; cv=none; b=Xw7IMkmTwz0zrGPyv7s5ng1ksxudCCbwySX98qp8u7kQX8icK0gTroZ2D5clff26dvNH4ZpdFekJT2rstwfIgYIepR2UgqUOH/uHYsYeYtmKWz+1/CCtIMQd2qZo+W6A4hPCgub9Uw+XnmrzouWo2gopHBQZfIl/pmOHjoatETE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756238260; c=relaxed/simple;
-	bh=PfGpNnSfzrRB5yk7v6MA0cOlYzyufLWVDl3AitbdL+U=;
+	s=arc-20240116; t=1756238946; c=relaxed/simple;
+	bh=De6tXlh/83GdnOt9bMTPx+Vmn3L3ISZ/uryMZcIrB5w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ou27IfgSGdpdQN7PqALkmczMvni3/L3V7dKuprgI8I0dYULRHs5BuFTwMmMDGe3LJ4ZVbCK2M3+TW7hNbYRN3F+Y90xWfMgkpdwnrOf6nsZiXhIIl03r1zKbRVWrFohUubO6vopnlm14lftdlf7NRPU/tDTNEdT/pIHYRZGWIYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=haM0ExZY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 893E8C4CEF1;
-	Tue, 26 Aug 2025 19:57:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WBEGLMRc1N/IptR+Hfq9kvKb+0KvAIRGhH49Ti338nsavxok8tmPJ6yjhdLLhgEUe9VtBDJz4QLMG39lv/BpsJw56dCQkewjH414Hh1iCHsdG+yHmWfuXs2nWHYzcS20oum1XbdcJEN/vVP0pgjLohsg8qG5YVFaJCrLyKg/hDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rsze/N9t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BA1AC4CEF1;
+	Tue, 26 Aug 2025 20:09:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756238259;
-	bh=PfGpNnSfzrRB5yk7v6MA0cOlYzyufLWVDl3AitbdL+U=;
+	s=k20201202; t=1756238945;
+	bh=De6tXlh/83GdnOt9bMTPx+Vmn3L3ISZ/uryMZcIrB5w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=haM0ExZYVTBYYmBTE971s991OEWhOJlPyK/JTrK9+nRHHQ056CNNfeMX7p8bsAvWU
-	 Ww5A+PmsDPZpNN+9wmmN5sxOMr3WbF9KLsdexP4FNYNYtAbPe40kehVKiRwIXkRjAq
-	 pKUG/VsyWevXj7d9ZeZlPyBaOJe5cjzPrTVSHe+qEXpNVVseel+eyqqZE3CEkj7gxF
-	 AIOtoZbS523TGZmA+vvNSWMIGhohdBbygU3ZsM9uVK4qSHBWf1CU65V+5hKmbzpLNI
-	 O6OPZ1cf1yW8KG55Onq1xBhdzQcwrIn9/wCOhvwHtn52QNv0lvGcte8Vz4GzoxBZfh
-	 PuhFlfSzscjLw==
-Date: Tue, 26 Aug 2025 14:57:38 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Julien Massot <julien.massot@collabora.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Eugen Hristev <eugen.hristev@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>, kernel@collabora.com,
-	Mark Brown <broonie@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Julien Massot <jmassot@collabora.com>, linux-gpio@vger.kernel.org,
-	Enric Balletbo i Serra <eballetbo@kernel.org>,
-	Ikjoon Jang <ikjn@chromium.org>, Chen-Yu Tsai <wenst@chromium.org>,
+	b=Rsze/N9tQPzXjNLqiKo/xJtWAqCNAVk3sr4XHPf755WUo82wNXx9PTkEMrWRq1uBI
+	 8UNuaJdpCWxB/fpnvFIJW5YM2VVLdH7nXkRSXRHTeyRhCGRQAlFfrP0684iNyWY3pz
+	 zK+RDB3Q6k1xR3nyG37s5imD22axHTdFaqAdpoXrtQaugje8iVFo1lFp4nAEAOs9cT
+	 2egbEcuTbBBU6WfsKkFhBlLL130t/V3VqFEnCqhNWhnG8WrTkuqoYCK5YbN7WsD60b
+	 jxS/3iDWzefeMq6U4Fr/AdEmLEeEruKsW2AGRbPzMsIY2WKvEY4F/xqoTAOAplHEIp
+	 dXBKIEF0FCieg==
+Date: Tue, 26 Aug 2025 15:09:04 -0500
+From: Rob Herring <robh@kernel.org>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
 	Linus Walleij <linus.walleij@linaro.org>,
-	linux-kernel@vger.kernel.org, Sean Wang <sean.wang@kernel.org>,
-	linux-sound@vger.kernel.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-mediatek@lists.infradead.org,
-	Weiyi Lu <weiyi.lu@mediatek.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: clock: mediatek: Add power-domains
- property
-Message-ID: <175623822456.370694.11801087152503772115.robh@kernel.org>
-References: <20250826-mtk-dtb-warnings-v3-0-20e89886a20e@collabora.com>
- <20250826-mtk-dtb-warnings-v3-1-20e89886a20e@collabora.com>
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: Re: [PATCH 1/4] dt-bindings: remoteproc: imx_rproc: Add "rpmsg"
+ subnode support
+Message-ID: <20250826200904.GA375876-robh@kernel.org>
+References: <20250818204420.794554-1-shenwei.wang@nxp.com>
+ <20250818204420.794554-2-shenwei.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,33 +69,174 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250826-mtk-dtb-warnings-v3-1-20e89886a20e@collabora.com>
+In-Reply-To: <20250818204420.794554-2-shenwei.wang@nxp.com>
 
-
-On Tue, 26 Aug 2025 09:39:34 +0200, Julien Massot wrote:
-> The mt8183-mfgcfg node uses a power domain in its device tree node.
-> To prevent schema validation warnings, add the optional `power-domains`
-> property to the binding schema for mediatek syscon clocks.
+On Mon, Aug 18, 2025 at 03:44:17PM -0500, Shenwei Wang wrote:
+> Remote processors may announce multiple devices (e.g., I2C, GPIO) over
+> an RPMSG channel. These devices may require corresponding device tree
+> nodes, especially when acting as providers, to supply phandles for their
+> consumers.
 > 
-> Fixes: 1781f2c46180 ("arm64: dts: mediatek: mt8183: Add power-domains properity to mfgcfg")
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> Define an RPMSG node to work as a container for a group of RPMSG channels
+> under the imx_rproc node.
+> 
+> Each subnode within "rpmsg" represents an individual RPMSG channel. The
+> name of each subnode corresponds to the channel name as defined by the
+> remote processor.
+> 
+> All remote devices associated with a given channel are defined as child
+> nodes under the corresponding channel node.
+
+How is each channel addressed? Are they really grouped by type first 
+(i2c, gpio, etc.) then an address within the group? Or is there some 
+flat channel numbering? If the latter, then the addresses in the DT 
+shoulc match the channel number.
+
+> 
+> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
 > ---
->  .../devicetree/bindings/clock/mediatek,syscon.yaml        | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 117 ++++++++++++++++++
+>  1 file changed, 117 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> index 57d75acb0b5e..a105aac798d0 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> @@ -84,6 +84,86 @@ properties:
+>        This property is to specify the resource id of the remote processor in SoC
+>        which supports SCFW
+>  
+> +  rpmsg:
+> +    type: object
+> +    additionalProperties: false
+> +    description:
+> +      Present a group of RPMSG channel devices.
+> +
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+> +      rpmsg-io-channel:
+> +        type: object
+> +        unevaluatedProperties: false
+> +        properties:
+> +          '#address-cells':
+> +            const: 1
+> +
+> +          '#size-cells':
+> +            const: 0
+> +
+> +        patternProperties:
+> +          "gpio@[0-9a-f]+$":
+> +            type: object
+> +            unevaluatedProperties: false
+> +            properties:
+> +              compatible:
+> +                enum:
+> +                  - fsl,imx-rpmsg-gpio
+> +
+> +              reg:
+> +                maxItems: 1
+> +
+> +            required:
+> +              - compatible
+> +              - reg
+> +
+> +            allOf:
+> +              - $ref: /schemas/gpio/gpio.yaml#
+> +              - $ref: /schemas/interrupt-controller.yaml#
 
+This is not needed nor sufficient. You need to define the cell sizes for 
+gpio and interrupt cells.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
-Missing tags:
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
-
-
+> +
+> +        required:
+> +          - '#address-cells'
+> +          - '#size-cells'
+> +
+> +      rpmsg-i2c-channel:
+> +        type: object
+> +        unevaluatedProperties: false
+> +        properties:
+> +          '#address-cells':
+> +            const: 1
+> +
+> +          '#size-cells':
+> +            const: 0
+> +
+> +        patternProperties:
+> +          "i2c@[0-9a-f]+$":
+> +            type: object
+> +            unevaluatedProperties: false
+> +            properties:
+> +              compatible:
+> +                enum:
+> +                  - fsl,imx-rpmsg-i2c
+> +
+> +              reg:
+> +                maxItems: 1
+> +
+> +            required:
+> +              - compatible
+> +              - reg
+> +
+> +            allOf:
+> +              - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +        required:
+> +          - '#address-cells'
+> +          - '#size-cells'
+> +
+>  required:
+>    - compatible
+>  
+> @@ -146,5 +226,42 @@ examples:
+>                  &mu 3 1>;
+>        memory-region = <&vdev0buffer>, <&vdev0vring0>, <&vdev0vring1>, <&rsc_table>;
+>        syscon = <&src>;
+> +
+> +      rpmsg {
+> +        rpmsg-io-channel {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          gpio@0 {
+> +            compatible = "fsl,imx-rpmsg-gpio";
+> +            reg = <0>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            #interrupt-cells = <2>;
+> +            interrupt-controller;
+> +            interrupt-parent = <&rpmsg_gpioa>;
+> +          };
+> +
+> +          gpio@1 {
+> +            compatible = "fsl,imx-rpmsg-gpio";
+> +            reg = <1>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            #interrupt-cells = <2>;
+> +            interrupt-controller;
+> +            interrupt-parent = <&rpmsg_gpiob>;
+> +          };
+> +        };
+> +
+> +        rpmsg-i2c-channel {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          i2c@0 {
+> +            compatible = "fsl,imx-rpmsg-i2c";
+> +            reg = <0>;
+> +          };
+> +        };
+> +      };
+>      };
+>  ...
+> -- 
+> 2.43.0
+> 
 
