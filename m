@@ -1,85 +1,239 @@
-Return-Path: <devicetree+bounces-209198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2183CB35235
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 05:24:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF98B35270
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 06:02:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D89042451A5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 03:24:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC317685CE7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 04:02:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43C52D0C76;
-	Tue, 26 Aug 2025 03:24:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB617217705;
+	Tue, 26 Aug 2025 04:02:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TUyrKfyL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sgoci-sdnproxy-4.icoremail.net (sgoci-sdnproxy-4.icoremail.net [129.150.39.64])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BDB5393DD1;
-	Tue, 26 Aug 2025 03:24:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.150.39.64
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 080283D984;
+	Tue, 26 Aug 2025 04:01:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756178655; cv=none; b=RwwtoJGQY6m0UICOxU3d18YznMNI2b+dQAVu0ADGQVsbbDCfzFJrw+XeXUfq403TSvT+T19Lqxlz1F3k+pdkvYheL/1nSkffMSgOmTuV19PW4U3pkXpTmzb0IBAjb9mzQ/KAdud3Kb2Ojzw564CLZamiEaqn+/yNNHkz0qTg9mY=
+	t=1756180920; cv=none; b=Xjkt4JoJTN9gB30Ea+SF5Fs+FZm3vL3ZuHtaGx6f/N01Veyt7/WLKfY2fCJbz9g1LrXofcP0EJv2g4PGANUTHagOiWHqbx13H4wADdx/wSDu0K36+7JHXv4bzgixvTHjuffNTq43BsmpVWn1Vcj8g21hZxpAo815Urx74jUK2RA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756178655; c=relaxed/simple;
-	bh=aXzpDQbc0d3NKnBRl7lRsprIHKBsoXUaHwCtoysIoIU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=iMknVbblep8SIeflGHV1HWc1qWCGh8oTXV5EkDaOgShbVE7fxl1R34Us4pDuaJQykBqI475/pL0dHD18HXZDCGA6APPiuyaQ9CuDTpuYMtlvfjZtXIKfodmdkznheBbrcmBDjk5/H5gh9Gk/rGtJlMkIY4QsgmlXAzTCtQxfTiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=129.150.39.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from luyulin$eswincomputing.com ( [10.12.96.77] ) by
- ajax-webmail-app2 (Coremail) ; Tue, 26 Aug 2025 11:23:57 +0800 (GMT+08:00)
-Date: Tue, 26 Aug 2025 11:23:57 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: luyulin@eswincomputing.com
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-Cc: dlemoal@kernel.org, cassel@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	vkoul@kernel.org, kishon@kernel.org, linux-phy@lists.infradead.org,
-	ningyu@eswincomputing.com, zhengyu@eswincomputing.com,
-	linmin@eswincomputing.com, huangyifeng@eswincomputing.com,
-	fenglin@eswincomputing.com, lianghujun@eswincomputing.com
-Subject: Re: Re: [PATCH v2 2/3] dt-bindings: phy: eswin: Document for
- EIC7700 SoC SATA PHY
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <20250821-precise-delightful-lyrebird-6b4275@kuoka>
-References: <20250819134722.220-1-luyulin@eswincomputing.com>
- <20250820092758.803-1-luyulin@eswincomputing.com>
- <20250821-precise-delightful-lyrebird-6b4275@kuoka>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1756180920; c=relaxed/simple;
+	bh=3538VbyHo5E4XYOowQRklx9J7HdiZmeSTpOCbULUdwg=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=ZBxl7lYOaB/4iAthMPY8MFRT2kmpwFJW0Xg65xe88Fc31CN93SSQo8BRzGGkKLrQaf9Ps2OQALQwcGWSXwzDSoTwAx8bKnAEbbOX1Z1qxViUvlPyymgcmXZhUFyf+qFNiS44LoIIAfVWb9fiG+UUviWDTax11/vnhOkOxUaOMNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TUyrKfyL; arc=none smtp.client-ip=209.85.222.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7e870316b79so575735285a.0;
+        Mon, 25 Aug 2025 21:01:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756180918; x=1756785718; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=DYZtfOu2sTzFKmnnCvFst2n3HDgx1eNSREKAoaoeA/M=;
+        b=TUyrKfyLoB57kJ15tn3JlUvnX6GUKH+FThFIJgqmDS5024P2YQNQaP6ywd/EY7ZLmN
+         xQHkUPw0OcA2pW0IX0T+2ebRaTE4KBGsbPdEIl3HHQNP4aU0/c/saI8n6I6brJZfjP3O
+         QLApFujMtDFILuyG+/Fz8RT6yw5yUzwkr1ASz8gvKYw0BqfsUpndXjv48i1zmU1JUwyA
+         nmRjO15+spCkAuQyW2rWWUL4C9LzJFr/MQUBGvMnBiPlbxE/0hF85AbCj3pUeI0Fhz2M
+         2PR4AeOppEmi8bF2yrDQuVa9dadmTE0DzUqocIEXu4c8bygvWRXFJzy0cr0teVVay0x7
+         jInw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756180918; x=1756785718;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DYZtfOu2sTzFKmnnCvFst2n3HDgx1eNSREKAoaoeA/M=;
+        b=OwNdMe8SOieMQXbH+PkW7d5BiNgxJjy0fPoG50gMmQ7AAlCfY8jRo26cXMpeLP3Ojm
+         ZcUn/VUx4z62vyr8WZRJBIaTEdZXga2+ABb6IoK0onfkj82fjjBChky2dsSNmRtc15YI
+         XJRks32aDedlTGYa/Lqz0w6zAxR1OHxXnslCM5rFjIF3ATejB3YFWDhgu01sZy7LfvdB
+         YjwMLi9HjefeEZ7Ro1c3P8PCFUreToiSbcmzjbZ3QUelUBKqkUa/sOPtaqYGwFc3r7yP
+         4KMZjODvX52LsIwm1QrOtabRtPahMiAkVHG2cCAroTbqF+hQU4rP1mXL+9krVPoTRgOc
+         xo4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUeHRhocENx28FB/jvXxshIXvnfmh7rsq4xe3NGPvS1JvOpfbtqhxxKsr4Yvfhd9otUXrANDNTfwra7@vger.kernel.org, AJvYcCUnBrRtRYta/hQsdBhUwwg+/FSAIAmSPWL60fuXRVlkcZU1gjG+nqAeuNbisJCugquDA6U5laG6rUIGXg==@vger.kernel.org, AJvYcCVfnCfTkoZ8oI7p3XSPAZwyTVUYDiS+uwNFEhN7xI66uYeEjAlvMraQLnDxzCMwQ9D9SCjaD3oa5uxJyXWQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwN4AQWzaCGeZtTmaeSU0SAo/1lfmnrcfrDwPTqd7e5y69dA91X
+	P7JvrvFpINvJA8yajnhLBp+fRTXa9XGdI0AB4pTGmIMgqSapAsGgxJBO
+X-Gm-Gg: ASbGncvHL+c3+cotFivY5N0jcOhMsDdWYfw22LE4zKpAVQa5FujOvpdf8A7txidvzWG
+	pPJyLE+VDMDDJRAu9nUBTvuFimx3777Ho4PWqMfdAgTDs/JvKuyimMtf0jVVlPbcl1BiYo/hA0X
+	wo34hns4HZl4MZEJqd5A5sohYN63jBT1E7DKVBCSkSufmpA4GshXXWzKWKhAc/Lb6FKs9/I8LxY
+	mG7QEtfohPiJzop0tuX0r+YKnWIWXr27iKDKMC5SHdQlY4BTDMtGdgMYfNbFjbT09OWYTKoTJl6
+	Nf/H15Bt968g3kDRh/c0f7LKYGR+8IIf0A2qip/jK8jd4TehKI2Hz0xHQgV+Yfsv36Tw2uySRuo
+	2rQXn8BMFomh8OjSbsajzdrfYLHyDxEcyam3QvyTiyigwmKQAPg3VFPq4tthl6FzcW7Lo+A==
+X-Google-Smtp-Source: AGHT+IHz0zRWKU0+TYMO3TgA14QejdX10VcvwfSLmPslVWxbWq1Uu2s+60QYu/AIkei9UIVnG1owcQ==
+X-Received: by 2002:a05:620a:ab18:b0:7ec:4971:398 with SMTP id af79cd13be357-7ec498f8be6mr1068970385a.11.1756180917562;
+        Mon, 25 Aug 2025 21:01:57 -0700 (PDT)
+Received: from [127.0.0.1] (modemcable197.17-162-184.mc.videotron.ca. [184.162.17.197])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ebe6069a17sm618211585a.0.2025.08.25.21.01.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Aug 2025 21:01:57 -0700 (PDT)
+Date: Tue, 26 Aug 2025 00:01:57 -0400
+From: =?ISO-8859-1?Q?Jean-Fran=E7ois_Lessard?= <jefflessard3@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+CC: Andy Shevchenko <andy@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_5/6=5D_auxdisplay=3A_TM16xx=3A?=
+ =?US-ASCII?Q?_Add_support_for_I2C-based_controllers?=
+User-Agent: Thunderbird for Android
+In-Reply-To: <aKx-w0QOOQPyy9pW@smile.fi.intel.com>
+References: <20250825033237.60143-1-jefflessard3@gmail.com> <20250825033237.60143-6-jefflessard3@gmail.com> <aKx-w0QOOQPyy9pW@smile.fi.intel.com>
+Message-ID: <951E84EF-4ED7-4882-A5E2-6E3CD63E1E07@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <3fd6740d.6d3.198e4676278.Coremail.luyulin@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgDHZpXNKK1oArvDAA--.23274W
-X-CM-SenderInfo: pox13z1lq6v25zlqu0xpsx3x1qjou0bp/1tbiAQEGA2isj-USPQAA
-	sU
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-SGksCktyenlzenRvZgoKSSBhcG9sb2dpemUgZm9yIGluY29ycmVjdGx5IGZpbGxpbmcgaW4gdGhl
-ICJJbi1SZXBseS1UbyIgZmllbGQKd2hlbiBJIGZpcnN0IHNlbnQgdGhpcyBwYXRjaCwgd2hpY2gg
-Y2F1c2VkIGl0IHRvIGxvc2UgYXNzb2NpYXRpb24Kd2l0aCB0aGUgb3RoZXIgcGF0Y2hlcy4KQXMg
-YSByZXN1bHQsIEkgaGF2ZSByZXNlbnQgdGhpcyBwYXRjaC4KQ291bGQgeW91IHBsZWFzZSBoZWxw
-IHJldmlldyB0aGUgb3RoZXIgcGF0Y2hlcyBpbiB0aGlzIHBhdGNoIHNlcmllcyBhZ2Fpbj8KVGhl
-IGxpbmsgdG8gdGhlIGNvdmVyIGxldHRlciBmb3IgdGhpcyBwYXRjaCBzZXJpZXMgaXM6Cmh0dHBz
-Oi8vbG9yZS5rZXJuZWwub3JnL2xrbWwvMjAyNTA4MTkxMzQ3MjIuMjIwLTEtbHV5dWxpbkBlc3dp
-bmNvbXB1dGluZy5jb20vClRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgcmV2aWV3IHN1Z2dl
-c3Rpb25zIQo+IAo+IE9uIFdlZCwgQXVnIDIwLCAyMDI1IGF0IDA1OjI3OjU4UE0gKzA4MDAsIFl1
-bGluIEx1IHdyb3RlOgo+ID4gQWRkIGRvY3VtZW50IGZvciB0aGUgU0FUQSBwaHkgb24gdGhlIEVJ
-Qzc3MDAgU29DIHBsYXRmb3JtLAo+ID4gZGVzY3JpYmluZyBpdHMgdXNhZ2UuCj4gPiAKPiA+IFNp
-Z25lZC1vZmYtYnk6IFl1bGluIEx1IDxsdXl1bGluQGVzd2luY29tcHV0aW5nLmNvbT4KPiAKPiBZ
-b3UgYWxyZWFkeSBzZW50IHRoaXMgcGF0Y2ggc2VwYXJhdGVseSAoISEhKSBhbmQgcmVjZWl2ZWQg
-cmV2aWV3Lgo+IAo+IEJlc3QgcmVnYXJkcywKPiBLcnp5c3p0b2YKCkJlc3QgcmVnYXJkcywKWXVs
-aW4K
+Le 25 ao=C3=BBt 2025 11 h 18 min 27 s HAE, Andy Shevchenko <andriy=2Eshevch=
+enko@intel=2Ecom> a =C3=A9crit=C2=A0:
+>On Sun, Aug 24, 2025 at 11:32:31PM -0400, Jean-Fran=C3=A7ois Lessard wrot=
+e:
+>> Add support for TM16xx-compatible auxiliary display controllers connect=
+ed
+>> via the I2C bus=2E
+>>=20
+>> The implementation includes:
+>> - I2C driver registration and initialization
+>> - Probe/remove logic for I2C devices
+>> - Controller-specific handling and communication sequences
+>> - Integration with the TM16xx core driver for common functionality
+>>=20
+>> This allows platforms using TM16xx or compatible controllers over I2C t=
+o be
+>> managed by the TM16xx driver infrastructure=2E
+>
+>=2E=2E=2E
+>
+>> +#include <linux/i2c=2Eh>
+>> +#include <linux/mod_devicetable=2Eh>
+>
+>IWYU everywhere, too little header inclusions, you use much more=2E
+>
+
+I'll explicitly include all required headers in each source file
+instead of relying on transitive includes from the header=2E
+
+>> +static int tm16xx_i2c_write(struct tm16xx_display *display, u8 *data, =
+size_t len)
+>> +{
+>
+>> +	dev_dbg(display->dev, "i2c_write %*ph", (char)len, data);
+>
+>Noise=2E
+>
+
+Understood, I'll remove the debug noise=2E
+
+>> +	/* expected sequence: S Command [A] Data [A] P */
+>> +	struct i2c_msg msg =3D {
+>> +		=2Eaddr =3D data[0] >> 1,
+>> +		=2Eflags =3D 0,
+>> +		=2Elen =3D len - 1,
+>> +		=2Ebuf =3D &data[1],
+>> +	};
+>> +	int ret;
+>> +
+>> +	ret =3D i2c_transfer(display->client=2Ei2c->adapter, &msg, 1);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	return (ret =3D=3D 1) ? 0 : -EIO;
+>
+>Can we use regmap for all parts of the driver? Why not?
+>
+
+These controllers implement custom 2-wire/3-wire protocols that share
+sufficient commonalities with I2C/SPI to leverage those subsystems, but ar=
+e not
+fully compliant with standard register-based access patterns=2E
+
+Specific regmap incompatibilities:
+
+I2C protocol:
+- Dynamic addressing: slave address embedded in command byte (data[0] >> 1=
+)
+- Custom message flags: requires I2C_M_NO_RD_ACK for reads
+
+SPI protocol:
+- Inter-transfer timing: mandatory TM16XX_SPI_TWAIT_US delay between
+command/data
+- CS control: requires cs_change =3D 0 to maintain assertion across phases
+
+Regmap's I2C/SPI bus implementations use fixed addressing and standard tra=
+nsfer
+patterns without support for these protocol-specific requirements=2E A cus=
+tom
+regmap bus would internally call these same helper functions without provi=
+ding
+practical benefit=2E
+
+The explicit transfer approach better reflects the actual hardware protoco=
+l
+requirements=2E
+
+>> +}
+>
+>=2E=2E=2E
+>
+>> +static const struct tm16xx_controller fd6551_controller =3D {
+>> +	=2Emax_grids =3D 5,
+>> +	=2Emax_segments =3D 7,
+>> +	=2Emax_brightness =3D 8,
+>> +	=2Emax_key_rows =3D 0,
+>> +	=2Emax_key_cols =3D 0,
+>> +	=2Einit =3D fd6551_init,
+>> +	=2Edata =3D fd655_data,
+>
+>> +	=2Ekeys =3D NULL,
+>
+>Redundant initialiser=2E
+>
+
+Acknowledged=2E Will remove=2E
+
+>> +};
+>
+>=2E=2E=2E
+>
+>> +#if IS_ENABLED(CONFIG_OF)
+>
+>No, please remove all these ugly ifdefferies=2E
+>
+
+Acknowledged=2E Will remove=2E
+
+>> +static const struct of_device_id tm16xx_i2c_of_match[] =3D {
+>> +	{ =2Ecompatible =3D "titanmec,tm1650", =2Edata =3D &tm1650_controller=
+ },
+>> +	{ =2Ecompatible =3D "fdhisi,fd6551",   =2Edata =3D &fd6551_controller=
+ },
+>> +	{ =2Ecompatible =3D "fdhisi,fd655",    =2Edata =3D &fd655_controller =
+ },
+>> +	{ =2Ecompatible =3D "winrise,hbs658",  =2Edata =3D &hbs658_controller=
+ },
+>> +	{ /* sentinel */ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, tm16xx_i2c_of_match);
+>> +#endif
+>
+>=2E=2E=2E
+>
+>> +		=2Eof_match_table =3D of_match_ptr(tm16xx_i2c_of_match),
+>
+>Definitely no to of_match_ptr()=2E Must be not used in a new code=2E
+>
+
+Well received=2E Will ban usage of of_match_ptr=2E
 
