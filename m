@@ -1,137 +1,137 @@
-Return-Path: <devicetree+bounces-209325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 670D0B359D7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 12:08:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26424B359FE
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 12:20:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D88E3AF032
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:08:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB93E2A6D12
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB14D327790;
-	Tue, 26 Aug 2025 10:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0F92BCF51;
+	Tue, 26 Aug 2025 10:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="r7NlZ/4t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PXbW7b99"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8761B31813A
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 10:08:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5757729D283;
+	Tue, 26 Aug 2025 10:20:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756202918; cv=none; b=Y+/8nFY0JOuMX3+JFXdUgBGlDSt8O4Ix9B+MffpOuR983iyDS1ly304ktP2oLQkn0M/hHlbCAJZOQRjvxY7PFD+rb0t+cpOzjNIPwOnUV8CLg9++am80UWFhwdAQJglo+MNuAT+qWHZYNeVJ66urCFn0ksrtHYmmxBbDGckO/Fo=
+	t=1756203623; cv=none; b=BAcEllD7G7ZTL4hCj1Xa5beKRS+vwtHVkDtBy3JeBAiI6+MgKhV2OarH6c+jg7ctNRaEXmxTICIAGBFmnk9wWZe4V+DtGfXBL6OJnezxD0H7xes+JYA5PLff7azDexv0tubgC+0S31PdRVdOg5fnDnR8s+Wr2YvtRWvbbt4RWnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756202918; c=relaxed/simple;
-	bh=gygMN3gMSxZ6Evr4Nrnpma342Igh7n4myrgw/1fPWg4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=W9NpuSk6OBSt2WkHDztfIUWddqD9XlvWW0MzC4mlL1yjaQbGKVFgSV3iTWKQlX7QubC9BDHfpfW6lVk04gMuDr3BDhT6JQyax4VZEhIN3KcvQGH4H9VXxWDqEoEd+mDmlYOMtdyUp5OUOTC/EdNp1x9GLKThPjP2r7r0TGDbMJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=r7NlZ/4t; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250826100829epoutp04e5d2bd9976d52bdbfc7a980736c73b57~fST22Kd4n2622126221epoutp04H
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 10:08:29 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250826100829epoutp04e5d2bd9976d52bdbfc7a980736c73b57~fST22Kd4n2622126221epoutp04H
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756202909;
-	bh=gygMN3gMSxZ6Evr4Nrnpma342Igh7n4myrgw/1fPWg4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=r7NlZ/4tAu+9H/3P7ZWUKTeFXtGPrnNGXPVGjg+FnDizdhhY2CcucA6jZY56cem/W
-	 +67efryuTeLX78KEo8RXX7wyJn+cGCSiHzt5hSkaHeJF9GbnTAncXUgfih65s/Ru86
-	 AnYJnsVxc+pynbElLONt0wHfZZL3yl6125+xZmlE=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250826100827epcas5p1193525accefc68efcd36c224d01ca9fc~fST10omlf3119231192epcas5p1b;
-	Tue, 26 Aug 2025 10:08:27 +0000 (GMT)
-Received: from epcas5p2.samsung.com (unknown [182.195.38.91]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4cB3Jq08MPz6B9mF; Tue, 26 Aug
-	2025 10:08:27 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250826100826epcas5p24abdd08b355b1a7c1064b086bb9c11ac~fST0MRrip0241602416epcas5p2f;
-	Tue, 26 Aug 2025 10:08:26 +0000 (GMT)
-Received: from FDSFTE196 (unknown [107.116.189.214]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250826100822epsmtip1d21b4e23ad85bcf46748f0d59cda39b5~fSTwTkU862841628416epsmtip1X;
-	Tue, 26 Aug 2025 10:08:21 +0000 (GMT)
-From: "Inbaraj E" <inbaraj.e@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <mturquette@baylibre.com>,
-	<sboyd@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <s.nawrocki@samsung.com>, <s.hauer@pengutronix.de>,
-	<shawnguo@kernel.org>, <cw00.choi@samsung.com>, <rmfrfs@gmail.com>,
-	<laurent.pinchart@ideasonboard.com>, <martink@posteo.de>,
-	<mchehab@kernel.org>, <linux-fsd@tesla.com>, <will@kernel.org>,
-	<catalin.marinas@arm.com>, <pankaj.dubey@samsung.com>,
-	<shradha.t@samsung.com>, <ravi.patel@samsung.com>
-Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <alim.akhtar@samsung.com>,
-	<linux-samsung-soc@vger.kernel.org>, <kernel@puri.sm>,
-	<kernel@pengutronix.de>, <festevam@gmail.com>,
-	<linux-media@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <1dfaedc8-88e6-4749-8726-e8f66878e57e@kernel.org>
-Subject: RE: [PATCH v2 04/12] arm64: dts: fsd: Add CSI nodes
-Date: Tue, 26 Aug 2025 15:38:19 +0530
-Message-ID: <019c01dc1671$5c8f6850$15ae38f0$@samsung.com>
+	s=arc-20240116; t=1756203623; c=relaxed/simple;
+	bh=SQj19bRsv81q+ZnWFUSYxGQesSOr+XBdXk7u/2A7UuM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DWbP3v1Fm7S7XBwB5RQ38wlsINIT2zUcETe+nmnP13auQPPYRgPoayY+17hZ5k/lUsnI6UjVG/6ie6iQykhyHewfGLk0Eyk5ziApq63+RtgPy/qZRYjynmuaxeFjbQXyVlGwfKSL32VUkEfF7sE7HrEZftpVQfvaeW9moMAqbWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PXbW7b99; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21DEEC4CEF1;
+	Tue, 26 Aug 2025 10:20:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756203622;
+	bh=SQj19bRsv81q+ZnWFUSYxGQesSOr+XBdXk7u/2A7UuM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PXbW7b99egZTEWGT1MOnJm6owvmmBX7wjKJ68UPHQ4t+T88ZRP3BYOsTChItPpnv6
+	 Xd322TOoLmSp5R3HCzBO0hjvAl9YH3eJzCt4+qzYyIbzAwMRc7VgtjggQPqQ+LbGJ3
+	 cW/GWOM40AhYiyVNllhWNaNPIGXm6pbe1LNtLnt8fBo5jEpXNpGk4D9PezQ5IUGIw3
+	 BWyUhnubNlPqpVIq7wPpcPas5Wv9dnZKqcXY0D5kxBUERYBfr1D0FtUq4aGQr2oH7c
+	 PXMrlac5qeGwmiS+llwIWBzryBN9+sX3oQGHgthnLMEmAnM+Vvrz8ENzV9gObaSFSA
+	 DPR/cWj27bSiA==
+Date: Tue, 26 Aug 2025 15:50:07 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, 
+	quic_mrana@quicinc.com
+Subject: Re: [PATCH v2 3/3] PCI: qcom: Restrict port parsing only to pci
+ child nodes
+Message-ID: <ei7qtgj7jegwaafrjdccoaz3tg7klnms4dyiqdumwxdvnucp4c@euose4y6vkqg>
+References: <20250826-pakala-v2-0-74f1f60676c6@oss.qualcomm.com>
+ <20250826-pakala-v2-3-74f1f60676c6@oss.qualcomm.com>
+ <rurdrz3buvb7paqgjjr7ethzvaeyvylezexcwshpj73xf7yeec@i52bla6r5tx7>
+ <b7529529-9677-4713-920f-bf36863459ca@kernel.org>
+ <p6yacm6hkhp4rgtl2xn677kek24ksczvtuersxnou4kmxmp7go@tmoy7gn4hrhx>
+ <dfd9cc8b-8103-4fa9-8b3b-c31ae7c4970a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQK5oFMD+tt4mLQU5V9KgVyIDaUIUQE9OnCOAxwEstACXXiXxwGMECOMAYbqfFkCHlK3ygEZONEMslGN25A=
-Content-Language: en-in
-X-CMS-MailID: 20250826100826epcas5p24abdd08b355b1a7c1064b086bb9c11ac
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250814141019epcas5p2f957b934d5b60d4649cf9c6abd6969d5
-References: <20250814140943.22531-1-inbaraj.e@samsung.com>
-	<CGME20250814141019epcas5p2f957b934d5b60d4649cf9c6abd6969d5@epcas5p2.samsung.com>
-	<20250814140943.22531-5-inbaraj.e@samsung.com>
-	<1919de68-99ea-47f7-b3d2-cae4611f9c52@kernel.org>
-	<00d101dc136c$aa037020$fe0a5060$@samsung.com>
-	<41434afa-fecd-4507-bcca-735d358ac925@kernel.org>
-	<016401dc15c0$fc0dcfe0$f4296fa0$@samsung.com>
-	<1dfaedc8-88e6-4749-8726-e8f66878e57e@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dfd9cc8b-8103-4fa9-8b3b-c31ae7c4970a@kernel.org>
 
-Hi Krzysztof,
+On Tue, Aug 26, 2025 at 11:29:37AM GMT, Krzysztof Kozlowski wrote:
+> On 26/08/2025 11:26, Manivannan Sadhasivam wrote:
+> > On Tue, Aug 26, 2025 at 10:28:51AM GMT, Krzysztof Kozlowski wrote:
+> >> On 26/08/2025 08:17, Manivannan Sadhasivam wrote:
+> >>> On Tue, Aug 26, 2025 at 10:48:19AM GMT, Krishna Chaitanya Chundru wrote:
+> >>>> The qcom_pcie_parse_ports() function currently iterates over all available
+> >>>> child nodes of the PCIe controller's device tree node. This can lead to
+> >>>> attempts to parse unrelated nodes like OPP nodes, resulting in unnecessary
+> >>>> errors or misconfiguration.
+> >>>>
+> >>>
+> >>> What errors? Errors you are seeing on your setup or you envision?
+> >>>
+> >>>> Restrict the parsing logic to only consider child nodes named "pcie" or
+> >>>> "pci", which are the expected node names for PCIe ports.
+> >>>>
+> >>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> >>>
+> >>> Since this is a fix, 'Fixes' tag is needed.
+> >>>
+> >>>> ---
+> >>>>  drivers/pci/controller/dwc/pcie-qcom.c | 2 ++
+> >>>>  1 file changed, 2 insertions(+)
+> >>>>
+> >>>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> >>>> index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..5dbdb69fbdd1b9b78a3ebba3cd50d78168f2d595 100644
+> >>>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> >>>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> >>>> @@ -1740,6 +1740,8 @@ static int qcom_pcie_parse_ports(struct qcom_pcie *pcie)
+> >>>>  	int ret = -ENOENT;
+> >>>>  
+> >>>>  	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+> >>>> +		if (!(of_node_name_eq(of_port, "pcie") || of_node_name_eq(of_port, "pci")))
+> >>>
+> >>> May I know which platform has 'pci' as the node name for the bridge node? AFAIK,
+> >>> all platforms defining bridge nodes have 'pcie' as the node name.
+> >>
+> >> It does not matter. If I name my node name as "pc" it stops working?
+> >>
+> >> No, Qualcomm cannot introduce such hidden ABI.
+> > 
+> > There is no hidden ABI that Qcom is introducing. We are just trying to reuse the
+> > standard node names documented in the devicetree spec. So you are saying that
+> > we should not rely on it even though it is documented? Maybe because, the dt
+> > tooling is not yet screaming if people put non-standard names in DT?
+> > 
+> 
+> If it is documented, you can use it, but I doubted first the author even
+> checked that. Otherwise commit message would say that.
+> 
+> As I mentioned in other response, I still find it discouraged pattern if
+> you have (and you do have!) compatibles.
+> 
 
+Compatibles for the PCI bridges are not mandatory, so we cannot use it. But
+'device_type' is and Krishna is going to use that instead.
 
- >> Googling for =22MIPI CSIS=22 gives me 0 results, so I still claim this =
-is
-> >> not a generic name.
-> >
-> > I checked other vendors (e.g: freescale), and they are using mipi-csi.
-> > I'll adopt for the same.
-> >
-> >
->=20
-> Then it is just =22csi=22?=20
+- Mani
 
-For the CSIS MIPI CSI-2 Rx handled by imx-mipi-csis driver, I'll keep node =
-name as =22csi=22
-
->Except that you have some other different nodes called
-> =22csi=22 as well, so two different devices are =22csi=22?
-
-For CSIS video capture interface which is handled by fsd-csis driver I'll k=
-eep node
-name as =22csis=22.
- If =22csis =22 and =22csi=22 is kind of confusing in the same dt, then I'l=
-l keep
-as =22video=22.
-
-is it fine?
-
-Regards,
-Inbaraj E
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
