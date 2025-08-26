@@ -1,130 +1,139 @@
-Return-Path: <devicetree+bounces-209186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9791B351EC
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 04:53:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79778B351F7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 04:58:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1387B7B4216
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 02:51:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2AA97B4E63
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 02:56:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1277D29B8CE;
-	Tue, 26 Aug 2025 02:53:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F79B2BD01A;
+	Tue, 26 Aug 2025 02:57:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="agN/Qt5e"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SCMhViO6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9D51BD9F0;
-	Tue, 26 Aug 2025 02:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7336029CB2D;
+	Tue, 26 Aug 2025 02:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756176785; cv=none; b=qa1uy7LsLXzR14dJqCM/RXBVSd5/iPpVWA6TSkd4CiWwcZrKANHrmfd8Pvk9KwruUPyz78/x9g4xUvN9Wz/6vJTvD26OMz0bstiToGtjyNdgcdvKI53b7vEgI3eUZSPhrYmbehqGJO99Rf20QW3BXsTrbn9NXCfevZrQFOzbO9U=
+	t=1756177077; cv=none; b=GFq8Z4ZVJSNAhQt8Ga6oU7SA2nkD6kKVlxl+HE84gd1uo5q/e8gJLBbK3NBd6M2vuWEksOtgQKMw/3u+18oJwLNRP5DVPInlgltrvaEteWfBhaGEbYzJ4PZM5ivKOcCisF7aeWq8vSEzXNVZlLTdGUWP5ezjAxaYonQ3WzZwbW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756176785; c=relaxed/simple;
-	bh=jIKwXCuyetH00kw8QDzM9LpC7E0LAPwl76vifYGzwbs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nj2HnNCtI1PTs7NarIwggJZcfhebig0n6CCPE72h2i2HQ63ESNEeRJmkoh1Rz9uBYktZigslxeuXiINhgjq9kj2LBcnttNftpfBBMulAM36jMfuAU7nZHMiI/pH2kcR8wrdnWHzdIf/EBD/Gtun8I7De+BpwY85uTOZ1tVNTQVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=agN/Qt5e; arc=none smtp.client-ip=209.85.161.46
+	s=arc-20240116; t=1756177077; c=relaxed/simple;
+	bh=xMx0Id4rv1yLlQ9CuK02yc7ArZoLdXrgx6DQ1v2q8fM=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=LSV66T3rQkFVjWQ6/E1huTjbB0or+0jnlJ9Pk2SlO9xKtZxaZo8pbrQmP+aQwiEdwv7tXnaWwquQbOSPnSlNUqM7jCWfnapF/KRvws3Is5UeqHA11yVMzbc+yWKzOJfOO3Rrdev/es11YNCPL6WEWC6BIySeWz3VI2vpyToyoaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SCMhViO6; arc=none smtp.client-ip=209.85.160.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-61bc52fd7a4so3528798eaf.0;
-        Mon, 25 Aug 2025 19:53:03 -0700 (PDT)
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4b2cf656e4fso18357391cf.0;
+        Mon, 25 Aug 2025 19:57:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756176782; x=1756781582; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7wiU3FfQ1ao4ae7gTdcb97fPlhi1QmyJ3mzBpnSI75k=;
-        b=agN/Qt5esjuIXaWsHgzEguVak8lChVWYnMsiUqvs25bwHj2FG0ZhXRhIdYicLIWTNR
-         0IcRAZrQ2f0KdCN895u1tN3RGoSAMhCtenYQyPvFKKRwe3kpc3jGoKSxOk0lX3v0y2KG
-         5VjM6OYa9HpkK9F6XwkQhOQ+y/mTCLtpRI6K7Q3fAM2NmiicMayop1vwmy3ukUrPqd1x
-         ncO7pE14bOTwM26uN3iq+/FcLHIjZYmGVrSZqS+Atk/jdVR4tktb1Q8xh9cISGIspKAS
-         wKO5+TT90QcHfn6YHpSzJmaGyN0aLlvZYLWgEbr+KiW47D8+IMhsTTwqInV8cQIfICR+
-         Tuww==
+        d=gmail.com; s=20230601; t=1756177073; x=1756781873; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=xMx0Id4rv1yLlQ9CuK02yc7ArZoLdXrgx6DQ1v2q8fM=;
+        b=SCMhViO6evlp86zWT3ewrx7NOkCtQsqSj2rBSpdZcEBehKLkTCHsI9I+5qOIcd6Mhd
+         5Qbc4cnteo9LFRsuCTOxgmqF/6Hv21Zyg5WnHhjKZy2bmwmDO5m9ocayzhTKzS/vv3k6
+         iP2+Lf+CfAxF2QRRSw2jc+HVW+iQmoebOZaHOFTEl+0HvCaVswRudST6Wr907+Xx2Wjs
+         h3lW5S14mlg2X1rcqy79frAS0igpQwJ9aJmOOTbriCuFestEa/Cbc9BDbsRgibMM4cMx
+         yECCQgMpo3qXs4C+VF645TxxqkzVhcV7iNP+5RjEpaeDrZcjvy2k6Vop+sQ1mMw4wmXc
+         vGqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756176782; x=1756781582;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7wiU3FfQ1ao4ae7gTdcb97fPlhi1QmyJ3mzBpnSI75k=;
-        b=NPzt1A1NOxqZRLZo1nrODKp+US2okFTxNMun/qLLrprJj93LTEXOmU823IMeab+bny
-         8EbAD08uvmjwpys08JYtoi0Hj1EXiBYhR5FiLLVVPvwsQwkcaUZWokQn1D7mhMB4Sp2O
-         Z1RsAuAKR+x6kyWYczuRUutq6BJyGvyHzIJfKtTVj5TD+OsgsCOBc1b7+tj3xzil7BLV
-         UAeUN8ZorpC7Ooitd9i93/ViFzCO/LU0x7ZzIfzsCY8o62gonOFXjA7xL98KfrjLTMZQ
-         w4JBRtjXVR65zXCqnoUSCk906AqnnVthgh3MPOs8ZJU70+23fZgHy3yv+lF2eyE2Ka3G
-         Y8Uw==
-X-Forwarded-Encrypted: i=1; AJvYcCVJnVFO4P4Mj3f730/IYhja/vhXQdKfzMdghNRhp03TBUP20UZnzwVEtMDIKzQ9stChix9poa73ydlk@vger.kernel.org, AJvYcCWcOPNk++M0g7znkhg9GS7oWg+Pxunn7H0/la8Bv/0a0IjSttI1TirAScqw3wAlcL+9GU/slEjHa18NvJ7n@vger.kernel.org, AJvYcCXCGwlFjD9K86sAjQ2ouKr9777xbaA3yJP3cLcjk+bzO1x1REbE3895AM7RhY976qbdtngToOxrwn/W@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2M5UFM6cwUqLmnGpgfR5+/57A2LFPgMDsSY+wFli9xOmv+YxN
-	cvqVgYZCk1dCvvlhaEZ4/pjgI0ZHqT7xyjmbA/TYRZ3xm8hOrdEaGNmew9hhr2v893DYL1OIs0m
-	zG+GHdmvvF6fZ+6m8+rE22rQhOhWT4R8=
-X-Gm-Gg: ASbGncsbq2ryoybsO3Uu5Wb1uKM6R5bB2T+1kH9IzIp7a2AJ4cmAPfMshEpqgeuCVdI
-	iz8JPe0po2FoQtzDzeTdWVwlkBYn6pHaDUDvXEHBlQasjYZGgQrrc9q8qOftVnffGAn0O51bWMh
-	86lY/KJ9y3c9wPGjEsqzdWPrPBlqIj7V2Qat36S+5YPzolek8YearPSZIouedQjwQ3G1cTVLiQS
-	qy5I/QXbWC1+NJ67hQor/Sh5NJJx1y5NYVqFqa2MA==
-X-Google-Smtp-Source: AGHT+IGO9u5xmjKFwVj2+DEw6IkIDeQabtz+UPKNGARUbp7G6/6nHgULH1RPqxPQYH/lc3vlw+v8T4vUHEbVjBHCso0=
-X-Received: by 2002:a05:6808:6807:b0:437:75ea:6c7b with SMTP id
- 5614622812f47-437be07c682mr1181796b6e.24.1756176782462; Mon, 25 Aug 2025
- 19:53:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756177073; x=1756781873;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xMx0Id4rv1yLlQ9CuK02yc7ArZoLdXrgx6DQ1v2q8fM=;
+        b=RqenpFWsmuWHG6wAyDwkYnz5DSP2lDJR+M9D31TRUUnnuDN7wWsqu5qbTTs8k4jNPa
+         C/8KsYj6W+TNMqhXbbks6mjRwi+ixxtxc5vp4YnFnLTxjag74pWaTAsTaulcY/dJH0sU
+         Mjh0Qz/3+2BZcNNuzyj2Sxml8T5marGemRaqhFn6j1RNTpn3/aGMqBSFJxCF+Na5Omri
+         IYH+/0P47NPcWSJP/wqj/TNiCHAPSbWT7YHwP2gqqSBnjNclhLHxIxnus+9oq/fM7IoP
+         HEPey9Rco6y2vT7i5xuMN0lEPAtGpvP+5gq6fYm9+5d0Mt2X/SFJkpPS+oiPykDpyxEK
+         rPdg==
+X-Forwarded-Encrypted: i=1; AJvYcCUtmJU2F+p5nNk5osk3O8cy+amEcZdVTj0RevAHHhBvCHpD2lZy1NB07bHnGQ5qQrpPLHxHWdN5v8Mm@vger.kernel.org, AJvYcCVVS158cvb/4QXhVRrVWvs28tuwH0U1UfOg58M9PQhjQicnAyT9I8OA6aIrsJO+qbw0hQqDOltF9UI0kk+Q@vger.kernel.org, AJvYcCVlkORBttYUKQSpzJ1/bOnJlvG+CcRXttMXIbSFALcALa3hMEUJvSJgbDessE2T4liwhkJCj5N21uJZ5Q==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLDvLF/142BuAQaCayczkstDwVH0jod7BlEzNyrmVsickA/Psw
+	tgiUfZMSAcD7bi1OJ1Uv2pal1akXvStNtTsX1Ykqm+UpSAcGELMfj5WS
+X-Gm-Gg: ASbGncv/JX3erSCID6cMGONsitZefbcWFlmkeY4c4ghEkAaTmXjfmTJWQaNDynl0C1S
+	E+yf60SHxwOMNbJYPFQG3l2JP3LFZA/3fpP6ZJ4QDDkKxIX4AO/yXIIiuSf7uQ5g3Spgvd6QEZr
+	N0cAzHHbeMJW2kFe4ByzskRnqSE00JQYPyl5xlJX+bGs3AQomXjCyZ17F95faaaPF/sRKx6DYD0
+	8KNKh0k/ttZOQIHkLLGSTq//rWsK8DXJRZBHaLBIuCOEIGYM3gQY1OeCdwzzUC5AtMyY/qiL5oJ
+	iwuRoEYC6L4Ka7rBumxD0MeWczl2NEJu3Q4BSNmhnywl0a5MPS9UJ4uRoS0N41TBUZdBOPQo0Za
+	a95sezbuc4OSAvPESFLgPDeLJ88TCNAse3mV3uwoY7b4S+YSNKFWm6miI44l/HUpqhId53A==
+X-Google-Smtp-Source: AGHT+IFSL1BU14escbQl5XZwWz93ijRjNvJS5a/oKopT8JoqYxc5CsMDiOw3dlE6ZXiime4ghGEOmw==
+X-Received: by 2002:a05:622a:1114:b0:4af:202e:8089 with SMTP id d75a77b69052e-4b2e3c0deb6mr8075061cf.20.1756177073129;
+        Mon, 25 Aug 2025 19:57:53 -0700 (PDT)
+Received: from [127.0.0.1] (modemcable197.17-162-184.mc.videotron.ca. [184.162.17.197])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ebed79a712sm600006885a.17.2025.08.25.19.57.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Aug 2025 19:57:52 -0700 (PDT)
+Date: Mon, 25 Aug 2025 22:57:53 -0400
+From: =?ISO-8859-1?Q?Jean-Fran=E7ois_Lessard?= <jefflessard3@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+CC: Andy Shevchenko <andy@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ =?ISO-8859-1?Q?Andreas_F=E4rber?= <afaerber@suse.de>,
+ Conor Dooley <conor.dooley@microchip.com>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_1/6=5D_dt-bindings=3A_vendor-prefixes=3A_?=
+ =?US-ASCII?Q?Add_fdhisi=2C_titanmec=2C_princeton=2C_winrise=2C_wxicore?=
+User-Agent: Thunderbird for Android
+In-Reply-To: <aKxq4ngaMDxBdMh7@smile.fi.intel.com>
+References: <20250825033237.60143-1-jefflessard3@gmail.com> <20250825033237.60143-2-jefflessard3@gmail.com> <aKxq4ngaMDxBdMh7@smile.fi.intel.com>
+Message-ID: <4250A35F-C778-4213-AC21-D1B1D145AD62@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
- <20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
- <aKXW5pGiN18DyIZ7@smile.fi.intel.com> <aKaMPMnGRyvKqTny@dixit>
- <CAHp75Vdw5X1Y057fpGjdvVGwKq0x0UBdm8py+m+55RbzXi1PJw@mail.gmail.com>
- <aKfYlP-yWdQi34db@dixit> <CAFmh=S0gAB93Gqnrt9NdtLA=cjOcYwy6+ECnwH-j9sN_sZYjZw@mail.gmail.com>
- <20250825105032.45f33b12@jic23-huawei>
-In-Reply-To: <20250825105032.45f33b12@jic23-huawei>
-From: Dixit Parmar <dixitparmar19@gmail.com>
-Date: Tue, 26 Aug 2025 08:22:47 +0530
-X-Gm-Features: Ac12FXx9WxjdZAKTizoXrZkyNmq2ndi8tUUkkuWHCkB0726aB5x6PzxNuf8VLqA
-Message-ID: <CAFmh=S1hdCMnWYzHsvTDb4C1vvinMCeG_=1m-N+psw5tp4nm7A@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
- TLV493D 3D Magentic sensor
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Andy Shevchenko <andy.shevchenko@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-> > > > > > >  st_magn-$(CONFIG_IIO_BUFFER) += st_magn_buffer.o
-> > > > > > >  obj-$(CONFIG_IIO_ST_MAGN_I2C_3AXIS) += st_magn_i2c.o
-> > > > > > >  obj-$(CONFIG_IIO_ST_MAGN_SPI_3AXIS) += st_magn_spi.o
-> > > > > > >
-> > > > > > > +obj-$(CONFIG_INFINEON_TLV493D)             += tlv493d.o
-> > > > > > > +
-> > > > > > >  obj-$(CONFIG_SENSORS_HMC5843)              += hmc5843_core.o
-> > > > > > >  obj-$(CONFIG_SENSORS_HMC5843_I2C)  += hmc5843_i2c.o
-> > > > > > >  obj-$(CONFIG_SENSORS_HMC5843_SPI)  += hmc5843_spi.o
-> > > > > >
-> > > > > > I haven't got the ordering rules here and in Kconfig. Can it be alphabetical?
-> > > > > From what I can see, the order is alphabetical based on the CONFIG option in the
-> > > > > Makefile and Kconfig, and I kept CONFIG_INFINEO_TLV493D after CONFIG_IIO_ST*.
-> > > > > Isn't it in correct order? or my understanding is incorrect?
-> > > >
-> > > > I dunno, The file name there is with the vendor prefix, in many cases
-> > > > the configuration option is with vendor prefix as well, but the file.
-> > > Hi Jonathan, Can you please suggest best possible way here?
-> > Hi Jonathan, When you get a chance, please share your thoughts on this.
+Le 25 ao=C3=BBt 2025 09 h 53 min 38 s HAE, Andy Shevchenko <andriy=2Eshevch=
+enko@intel=2Ecom> a =C3=A9crit=C2=A0:
+>On Sun, Aug 24, 2025 at 11:32:27PM -0400, Jean-Fran=C3=A7ois Lessard wrot=
+e:
+>> Add vendor prefixes of chip manufacturers supported by the TM16xx 7-seg=
+ment
+>> LED matrix display controllers driver:
+>> - fdhisi: Fuzhou Fuda Hisi Microelectronics Co=2E, Ltd=2E
+>> - titanmec: Shenzhen Titan Micro Electronics Co=2E, Ltd=2E
+>> - princeton: Princeton Technology Corp=2E
+>> - winrise: Shenzhen Winrise Technology Co=2E, Ltd=2E
+>> - wxicore: Wuxi i-Core Electronics Co=2E, Ltd=2E
+>>=20
+>> The titanmec prefix is based on the company's domain name titanmec=2Eco=
+m=2E
+>> The remaining prefixes are based on company names, as these manufacture=
+rs
+>> either lack active =2Ecom domains or their =2Ecom domains are occupied =
+by
+>> unrelated businesses=2E
+>>=20
+>> The fdhisi and titanmec prefixes were originally identified by
+>> Andreas F=C3=A4rber=2E
 >
-> No hard rules on this.  We should probably make some but don't have
-> them yet, so try to go with what seems most common in the particular file.
+>=2E=2E=2E
 >
-> Jonathan
-Okay. I believe we are good considering most of the drivers are having
-vendor prefix,
-so does this driver too, and its currently in correct alphabetical
-order. Considering
-the alphabetical order followed is for CONFIG options.
-Thanks,
-Dixit
+>> CC: Andreas F=C3=A4rber <afaerber@suse=2Ede>
+>
+>Not a big issue in _this_ case, but I would suggest to keep the Cc: list =
+after
+>the '---' line=2E This will have same effect except being removed from th=
+e commit
+>messages where it would be an unneeded noise=2E The actual list will be a=
+vailable
+>via lore archive in emails=2E
+>
+
+Acknowledged=2E Will move to the notes section on the next submission=2E
 
