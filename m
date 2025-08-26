@@ -1,127 +1,122 @@
-Return-Path: <devicetree+bounces-209312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9B5CB358C5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 11:25:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E6B1B358D0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 11:26:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94B4B3AB16F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:25:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C522167D20
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:26:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D7A2FCBE1;
-	Tue, 26 Aug 2025 09:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8CE230748C;
+	Tue, 26 Aug 2025 09:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="1YItvuir"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hyoB2UhG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE00343ABC;
-	Tue, 26 Aug 2025 09:25:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED603074AA;
+	Tue, 26 Aug 2025 09:26:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756200331; cv=none; b=IxtWelvaXcZqRgqF59dIgEIeuNh/rz8HgIo3A3CB1ZokUalycyxZk3MzFvsdTnFMni9CPSkrS/ovgWOP/oKb1fiN4ilmS9k+Dkdwo6iqdAzkVZYWzNdS3EPN4tv//cXq9nlvhEs4bFpaMVhknd+WUShfo7p8na6sQu7vQC1M4eI=
+	t=1756200381; cv=none; b=FPFMSR55J7gQMy1hL5CebwbszV4hlQKvkiP2vPN8s74a3IfxQR5CgsS6o5Qy+dxXLhP2o/rJE2/QEYjNU/0z62JXnppeJOJPqC2ggcXGkSETj9KhK360uren+luYaNrnE6RlhbeT58v7ABGgUQJAjDcXnfVpx6GYyzeyDgAyNV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756200331; c=relaxed/simple;
-	bh=eTQSxVUZfLnGrs829cA+G65lyTgq6NtmbhWpgOfLX9M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=i+oUByDcJO/TGDsjB6rgyt6tMDAOgC4k8QwG9AR8V3QV4JqBdmclUrG63fR8E4qW/PU5o22VWVcpHgM1c6UCcjmh8UG45PdaqsWdqfD446KrDGkm7QhwU42dq+T4POaGZp/4b/EjP/Ni38gWEXJeFSgQMPYQ+6rgn0dkmQtPp8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1YItvuir; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1756200329; x=1787736329;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=eTQSxVUZfLnGrs829cA+G65lyTgq6NtmbhWpgOfLX9M=;
-  b=1YItvuiroz5uX50jDm33LTnhgZyfv354yHjmVtMkbQeQZsiRly8DZqmW
-   lUsuaWOlHQwZs/tQmKygwfsuBDQTdOwsqsBELvpg5bvyKvM7Q2z1nOu36
-   wXrwYYJMlpKNLm/at4IZn3UzgipeE6w+nUOhlTqErnTlLoBbKrzwBmvs9
-   xkIim/H/7cXs+XUh2xmtTlD0+RixBe5Be5lNsBAYjBvPPJ63ooobyEnrM
-   hhBbd9eCGFZ+nr4dx07ckOTYGWUZTXyYt2XEwUVow9AIjixdP23f9VnWx
-   tEvuTWskUAB8tqUXG/MnMxy/mqmIeFycQ/Y+sY/dy+W6jVigjspaZma9D
-   w==;
-X-CSE-ConnectionGUID: 6F7sYklcQWOyW3hhhwVltA==
-X-CSE-MsgGUID: JTtTiAjcT+C2qy17lJCVZg==
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
-   d="scan'208";a="51280142"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Aug 2025 02:25:28 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 26 Aug 2025 02:25:20 -0700
-Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
- Transport; Tue, 26 Aug 2025 02:25:16 -0700
-Message-ID: <cd732d1e-a5e3-4fcd-bfaa-7420803d83e6@microchip.com>
-Date: Tue, 26 Aug 2025 11:25:16 +0200
+	s=arc-20240116; t=1756200381; c=relaxed/simple;
+	bh=ZDQPouyh0tXwE4FaqtVS1nMSLMBuymRC8yoZpy2COSs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cP/56rzwjwdOZ1zEvvL5rguxChkFSX9DNVxmoECPum+D4KjEc24wgCHQD0ovnN/B1RU0Ibh9bxBs4OTxNnOw+eazJBOfFdJWbefx46OCY8OtrSJyVeig6z58D5YSlhZREdRsRtAUdEvWhZ+cT/T+a7hQS0iR3EhS0V3UFFmN9EM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hyoB2UhG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1978C4CEF1;
+	Tue, 26 Aug 2025 09:26:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756200379;
+	bh=ZDQPouyh0tXwE4FaqtVS1nMSLMBuymRC8yoZpy2COSs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hyoB2UhGzy+dXwciBnB51SUQYNWvcreEx7fJTGIDC4YYg6hUa7VBnSBqw+8bPkgL2
+	 8jgtfUJ2pB9dDBGDVgY3nsoqtHvWGTkvGMO+LWTGkTNZ0rh8nTD8KGxccr+m3cqMYD
+	 vsLD4jl5j7S4UDN4UY9o04Z1YjXXapJizgnDXWc/Vq1VeNh+1o+s2aV+7hy9dwc0T+
+	 RwHf6MuLwRLhwUmswAGeCkX3Yeb3aG8WTPqVhTMA1btcs97tZ7VJbwoEWgx1JpHkxB
+	 EsL34mPq/WAvdEnGA2kktNICHam7zmNy5cqqP4tjynOXFNADFVPCAX0lBlrtUqTDEQ
+	 9+gzhcMb5tERQ==
+Date: Tue, 26 Aug 2025 14:56:03 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, 
+	quic_mrana@quicinc.com
+Subject: Re: [PATCH v2 3/3] PCI: qcom: Restrict port parsing only to pci
+ child nodes
+Message-ID: <p6yacm6hkhp4rgtl2xn677kek24ksczvtuersxnou4kmxmp7go@tmoy7gn4hrhx>
+References: <20250826-pakala-v2-0-74f1f60676c6@oss.qualcomm.com>
+ <20250826-pakala-v2-3-74f1f60676c6@oss.qualcomm.com>
+ <rurdrz3buvb7paqgjjr7ethzvaeyvylezexcwshpj73xf7yeec@i52bla6r5tx7>
+ <b7529529-9677-4713-920f-bf36863459ca@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net v4 1/5] dt-bindings: net: cdns,macb: allow tsu_clk
- without tx_clk
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, Andrew Lunn
-	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, Geert Uytterhoeven <geert@linux-m68k.org>, Harini
- Katakam <harini.katakam@xilinx.com>, Richard Cochran
-	<richardcochran@gmail.com>, Russell King <linux@armlinux.org.uk>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Thomas Petazzoni
-	<thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250820-macb-fixes-v4-0-23c399429164@bootlin.com>
- <20250820-macb-fixes-v4-1-23c399429164@bootlin.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Content-Language: en-US, fr
-Organization: microchip
-In-Reply-To: <20250820-macb-fixes-v4-1-23c399429164@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <b7529529-9677-4713-920f-bf36863459ca@kernel.org>
 
-On 20/08/2025 at 16:55, Théo Lebrun wrote:
-> Allow providing tsu_clk without a tx_clk as both are optional.
+On Tue, Aug 26, 2025 at 10:28:51AM GMT, Krzysztof Kozlowski wrote:
+> On 26/08/2025 08:17, Manivannan Sadhasivam wrote:
+> > On Tue, Aug 26, 2025 at 10:48:19AM GMT, Krishna Chaitanya Chundru wrote:
+> >> The qcom_pcie_parse_ports() function currently iterates over all available
+> >> child nodes of the PCIe controller's device tree node. This can lead to
+> >> attempts to parse unrelated nodes like OPP nodes, resulting in unnecessary
+> >> errors or misconfiguration.
+> >>
+> > 
+> > What errors? Errors you are seeing on your setup or you envision?
+> > 
+> >> Restrict the parsing logic to only consider child nodes named "pcie" or
+> >> "pci", which are the expected node names for PCIe ports.
+> >>
+> >> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> > 
+> > Since this is a fix, 'Fixes' tag is needed.
+> > 
+> >> ---
+> >>  drivers/pci/controller/dwc/pcie-qcom.c | 2 ++
+> >>  1 file changed, 2 insertions(+)
+> >>
+> >> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> >> index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..5dbdb69fbdd1b9b78a3ebba3cd50d78168f2d595 100644
+> >> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> >> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> >> @@ -1740,6 +1740,8 @@ static int qcom_pcie_parse_ports(struct qcom_pcie *pcie)
+> >>  	int ret = -ENOENT;
+> >>  
+> >>  	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+> >> +		if (!(of_node_name_eq(of_port, "pcie") || of_node_name_eq(of_port, "pci")))
+> > 
+> > May I know which platform has 'pci' as the node name for the bridge node? AFAIK,
+> > all platforms defining bridge nodes have 'pcie' as the node name.
 > 
-> This is about relaxing unneeded constraints. It so happened that in the
-> past HW that needed a tsu_clk always needed a tx_clk.
+> It does not matter. If I name my node name as "pc" it stops working?
 > 
-> Fixes: 4e5b6de1f46d ("dt-bindings: net: cdns,macb: Convert to json-schema")
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> No, Qualcomm cannot introduce such hidden ABI.
 
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+There is no hidden ABI that Qcom is introducing. We are just trying to reuse the
+standard node names documented in the devicetree spec. So you are saying that
+we should not rely on it even though it is documented? Maybe because, the dt
+tooling is not yet screaming if people put non-standard names in DT?
 
-> ---
->   Documentation/devicetree/bindings/net/cdns,macb.yaml | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> index 559d0f733e7e7ac2909b87ab759be51d59be51c2..6e20d67e7628cd9dcef6e430b2a49eeedd0991a7 100644
-> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> @@ -85,7 +85,7 @@ properties:
->       items:
->         - enum: [ ether_clk, hclk, pclk ]
->         - enum: [ hclk, pclk ]
-> -      - const: tx_clk
-> +      - enum: [ tx_clk, tsu_clk ]
->         - enum: [ rx_clk, tsu_clk ]
->         - const: tsu_clk
-> 
-> 
-> --
-> 2.50.1
-> 
+- Mani
 
+-- 
+மணிவண்ணன் சதாசிவம்
 
