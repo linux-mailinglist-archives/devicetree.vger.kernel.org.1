@@ -1,173 +1,112 @@
-Return-Path: <devicetree+bounces-209189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADCA5B35202
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 05:02:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FE2BB35212
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 05:11:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A47F81A81368
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 03:02:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88E421A833A1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 03:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94A0429CB2D;
-	Tue, 26 Aug 2025 03:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t+tAGav8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BD282D061C;
+	Tue, 26 Aug 2025 03:10:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645C161FCE;
-	Tue, 26 Aug 2025 03:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B81163;
+	Tue, 26 Aug 2025 03:10:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756177351; cv=none; b=pIHqiVjycqP+BBlyL/fLLYcD7VzSxpa0cahdD83Pc9DBVsQKqETNk6uhoPGXpIp6Aa/8/izrQ7Iu2fn/2HP/7RK7R3aagY3sMqXPQJ7DfZwq3/dJXhpUBrQ9OXFjIOG8Yp46bEmHr2E6VYWMuSzlJvX4olXca8wBZVw6fGyi0us=
+	t=1756177858; cv=none; b=QbHiUrRa/vWB3neVH1iZ/OqtTSpnKzwVbPeAwAW7mZNxh13/o+Qc4siN1It3f93H1Zk/bzWaamojL/DCQ6Tl+xrBqP3zfNFQ/m+WZNiyN05q5+beS4P+tX8ZAG2kpm42R/3ur2UgRhWJtx5tUZP7NPBe1ZEJ1GbR54szgqZUaEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756177351; c=relaxed/simple;
-	bh=TnY1fBnPo4jHkpmvDnQPDGPvrviKvfEgR6fDF7bnW8g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cJvDiO8P/ZbRkyvdKDhrcCfpUBqm/3EAUt/hMi8cya6fqM/Z6pPRBEOV6ndBWm0shiXoVJeN1APXbR/ahZrmphRCqN+VJ3w3Gi2o1v0zs0m7IrMGIy71dKEumT9A1nhOR+/yGQ65yHiJ+TyDjYs4fYDZ9+6fV9XdL9J/fAMj8xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t+tAGav8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20057C4CEED;
-	Tue, 26 Aug 2025 03:02:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756177350;
-	bh=TnY1fBnPo4jHkpmvDnQPDGPvrviKvfEgR6fDF7bnW8g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t+tAGav8KRxD2Vhc0vVQGLUeMASIjTn5t7vg569071GFar80qwvi5gQzBS/el0jcf
-	 /0F3c8PHo30cX7Vh6nJZsj3ZM5NYFb8PAi4GfRmZvizqDbvkYadYFkojDwBMG4YL1P
-	 dN46mJCl5yxVUlIAutAIA42ckLrteJgsIBEWPPdmJCKXKuH9LMPOxAk+5jshJ28qeA
-	 5hmbsaDblckfjGKN/A6UxCL1y6vF3/HQtBmoTeI4AJ0eXySlim1AT92b2y8eYla86M
-	 VHAE/8Rj5iup7mRET6hk4kDcIQgSgI0Ql0BFhLA+beZWt4vss+bJ1yoU3F44XroNOh
-	 d/QCv+HiPUBAw==
-Date: Mon, 25 Aug 2025 22:02:28 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: setotau@yandex.ru
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht, Richard Acayan <mailingradian@gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: pinctrl: qcom: Add SDM660 LPI pinctrl
-Message-ID: <n2t3qdlo2xf325fms3gwfqqkmjvwgxzauzzgdjqew6cebrnm5h@5w4jwjbid4ih>
-References: <20250825-sdm660-lpass-lpi-v3-0-65d4a4db298e@yandex.ru>
- <20250825-sdm660-lpass-lpi-v3-2-65d4a4db298e@yandex.ru>
+	s=arc-20240116; t=1756177858; c=relaxed/simple;
+	bh=AHElAJ7fo4dGD2XmxNk8k0lFHI9YlUs91t0/V4rTw7s=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hoX8D8mtd2fy2w9CxX5/91OCPJQ9/B/IcymZHJgG/fc4iXFbEOc4PUgkANEaHqiZSj6fEiMsPv4q8CVD4XLOkXogSw2o2X3hahrFHBTziHvNZigQDT4M8UcDNvpCGM9gROoIgEsFwxnMaTjmKNt4Hg3N/wh+zietiieqCyPSNiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn; spf=pass smtp.mailfrom=chainsx.cn; arc=none smtp.client-ip=54.204.34.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chainsx.cn
+X-QQ-mid: zesmtpip4t1756177704t2fb025d3
+X-QQ-Originating-IP: kXz62wQIAgQ5fDoxb092TxXaej+6UJKZlmADOPHVy6k=
+Received: from chainsx-ubuntu-server.lan ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 26 Aug 2025 11:08:22 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 15050431008221731089
+EX-QQ-RecipientCnt: 11
+From: Hsun Lai <i@chainsx.cn>
+To: Fred Bloggs <f.blogs@napier.co.nz>
+Cc: Hsun Lai <i@chainsx.cn>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v2 0/2] Add support for 100ASK DShanPi A1
+Date: Tue, 26 Aug 2025 11:08:15 +0800
+Message-Id: <20250826030818.3485927-1-i@chainsx.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250825-sdm660-lpass-lpi-v3-2-65d4a4db298e@yandex.ru>
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:chainsx.cn:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: NSTsyPg8kQQYEWo4wIjbJseHhQwT0UXY7NtBwCn1y7wOdMfP2wp9QtJT
+	VW9udeaOBGlStOqxHWfmUaMi1W5AhERlNoEz46AMYu1b2+8Xh/Hs5jJ5fl2mhbdqESOHxad
+	/aJga6v6P2K1OdxkJAmMN587nVc7CPqpfAkWKgUjnJyeES+xyMTW2J3fcq7ZHWH82nfUSaT
+	Kwv+aNmxUsyNwouYMmqvFDh2JNQnaH90iEit+ygSnv6EE7xzHwiyVyVfUewii77SiGcqZd+
+	LuJW3YI6ih7RJKE1+XzQT834QLt+j0bJW79CdgM2Tx7uk125GrTv+pXtVd2kENJWz0lzQpo
+	GLcJfH3K6rKfLd76clGpF0pfqMh7mr5b944iulTPvnahX4mf69hg2q/fEiCIJ716SxVUUUG
+	hNUEMD+JGRGYMeLRwkPIslnEqlIz1ZpUaJkfZWDpNBiFFj6K9+Y8DTFmAOwUcBDqVlCjW6L
+	cDzi+70+4nlXJ0aSCv0F657uzg9HBFXaUNmnJPXBsuJANHsP9xi/CMfTElEPDTrEEpih1t4
+	eSM7ZRxzabP6cF6SQgxOMBUzhM8FG+ioqSGc4tFaBWU3MoWCEgJ6A41vX5BErzdUZNJYYl4
+	0KlEz1OIhpZhQFjykICZ6Fbh3ws7TX4AXuqI2bVGmWeIxa2yziQKdWvKUT52XC4dbzUa56t
+	fJ0CC2jV7IyWLhnt4Ph92En8xyQ+rGqc5W6uIkY3WtLWcNYaibEAUBpJxYd7oEN1ak+L4DQ
+	AbDnF7E45/7ZLTRdPi2n/PuHTkh4lyiA5w0NwA7twSdNysE36dA1JBfs2mhc04QUW7AUCOZ
+	iTQrHcLaBqfu2bBspVLLC9uc1ZkV4ZMwEgirk5LBIJWUVVrq7qB7CG/rbBoEFEkm44icZ6i
+	M9fRRi9TEJeCvHMRPMpjP5Sh34ixghP+K50Zc49r1btQtObTyoaPtwCo39sPQHRufQw6pi4
+	g+cDPk/G/L8JhTscZWxEoNhfjf4o/FWSzeGUnNYdk21fBpw5T+IhWaXntMAvZnxlqQ9RCjV
+	ZRa8S658WhsXJoFyMaz5hDxR3/NiWVJIW9VIC2exd45rEnVHcB
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
+X-QQ-RECHKSPAM: 0
 
-On Mon, Aug 25, 2025 at 03:32:29PM +0300, Nickolay Goppen via B4 Relay wrote:
-> From: Nickolay Goppen <setotau@yandex.ru>
-> 
-> Add bindings for pin controller in SDM660 Low Power Audio SubSystem
-> (LPASS).
-> 
-> Co-developed-by: Richard Acayan <mailingradian@gmail.com>
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> Signed-off-by: Nickolay Goppen <setotau@yandex.ru>
-> ---
->  .../pinctrl/qcom,sdm660-lpass-lpi-pinctrl.yaml     | 74 ++++++++++++++++++++++
->  1 file changed, 74 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdm660-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdm660-lpass-lpi-pinctrl.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..6b930a5b914bc79a00dbaead41189efc525c2eb2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdm660-lpass-lpi-pinctrl.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,sdm660-lpass-lpi-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SDM660 SoC LPASS LPI TLMM
-> +
-> +maintainers:
-> +  - Nickolay Goppen <setotau@yandex.ru>
-> +
-> +description:
-> +  Top Level Mode Multiplexer pin controller in the Low Power Audio SubSystem
-> +  (LPASS) Low Power Island (LPI) of Qualcomm SDM660 SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sdm660-lpass-lpi-pinctrl
-> +
-> +  reg:
-> +    items:
-> +      - description: LPASS LPI TLMM Control and Status registers
-> +
-> +patternProperties:
-> +  "-state$":
-> +    oneOf:
-> +      - $ref: "#/$defs/qcom-sdm660-lpass-state"
-> +      - patternProperties:
-> +          "-pins$":
-> +            $ref: "#/$defs/qcom-sdm660-lpass-state"
-> +        additionalProperties: false
-> +
-> +$defs:
-> +  qcom-sdm660-lpass-state:
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          pattern: "^gpio([0-9]|1[0-9]|2[0-6])$"
+This series add support for 100ASK DShanPi A1.
 
-Unless I'm parsing the implementation incorrectly, this needs to allow
-gpio0 through gpio31.
+Info of device can be found at:
+https://wiki.dshanpi.org/en/docs/DshanPi-A1/intro/
 
-I.e. it should be: "^gpio([0-9]|[1-2][0-9]|3[0-1])$"
+Changes in v2:
+- Delete the pwm include file (Chukun Pan, v1)
+- Fix vcc3v3_pcie gpios (Chukun Pan, v1)
+- Adjust the order of some nodes (Chukun Pan, v1)
+- Fix sdmmc (Chukun Pan, v1)
+- Add phy-supply for u2phy0_otg (Chukun Pan, v1)
 
-Regards,
-Bjorn
+Changes in v1:
+- Add support for 100ASK DShanPi A1
 
-> +
-> +      function:
-> +        enum: [ gpio, comp_rx, dmic12, dmic34, mclk0, pdm_2_gpios,
-> +                pdm_clk, pdm_rx, pdm_sync ]
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
-> +
-> +allOf:
-> +  - $ref: qcom,lpass-lpi-common.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    lpi_tlmm: pinctrl@15070000 {
-> +        compatible = "qcom,sdm660-lpass-lpi-pinctrl";
-> +        reg = <0x15070000 0x20000>;
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        gpio-ranges = <&lpi_tlmm 0 0 32>;
-> +    };
-> 
-> -- 
-> 2.51.0
-> 
-> 
+Hsun Lai (2):
+  dt-bindings: arm: rockchip: Add 100ASK DShanPi A1
+  arm64: dts: rockchip: add DTs for 100ASK DShanPi A1
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3576-100ask-dshanpi-a1.dts | 838 ++++++++++++++++++
+ 3 files changed, 844 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-a1.dts
+
+-- 
+2.34.1
+
 
