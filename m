@@ -1,183 +1,199 @@
-Return-Path: <devicetree+bounces-209296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E1BBB35796
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:50:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE724B357B6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:55:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2FC516BE6F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:50:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A03093AC228
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:55:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB3A2F6597;
-	Tue, 26 Aug 2025 08:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VrlNHF/Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13E7028371;
+	Tue, 26 Aug 2025 08:55:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03D5129ACCD;
-	Tue, 26 Aug 2025 08:50:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 549902FDC24
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 08:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756198236; cv=none; b=DQyBeA+1nus3+OMjnPDIp3aLsY+zYOYLvwc7HYD+d+MFvOkCdNUECOtpJHGxsOwrDIxPbMZnoLhqSJgjHGUeQD3AUKSqJBS3ZY76uNDXoRB7B/EufjwkvBtuO5jUh/aXUQnTg1m5SPzQqDt1jgnUUZ6qBQBjQmAS7XJuEygdD1Y=
+	t=1756198514; cv=none; b=NJug9jJ2FAJPGFf4tIDuY1yFGoYHyvTWEoMF2pgwimzNJhkNvosrDK8mqTlxgqvBWbVX/pKHwn7ydt9Psr92br1OO/CUX2v/y/Fe6UfnqI36ZSSGBGRJOh+zcVLheJIDej1Ii9jMgVKNSh7TA5nVxI1IYuAjOD7jljD9jYXdhiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756198236; c=relaxed/simple;
-	bh=6NCjTTLQ8IS1fnIuWH723X5fwFZYB5chP9QXlwXt50Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=W6jDH1e/Buu+tWPDjwyTkoSP9nMAhJXD13QkfQeykEKMLco4zBJYWDN1gPfztmo+cSAhrogJNQ58IlJ5dqHyL3BKZp8hqk/zrMq8QcTQPW48RDLmzijaYQYTdLQm/4wBEnmys/s2aC0udNPvLH/EhxU1xWpfwHPcc9MJhRPUt3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VrlNHF/Q; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57Q8o8xO1495853;
-	Tue, 26 Aug 2025 03:50:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756198208;
-	bh=PtlWd1f4QUk/q9tiYzSXCRAuxQq8+9vZ8gqlgXf6znc=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=VrlNHF/QXyWUAw6cin7+412iuqD//LNrxFYQIaU1U5tq+gc1sJyu/JpqQHVxErlf9
-	 evXt5zCBk+izDndKmqr8ROQxXaq8LYGLFvAuw6gM6d4nrundzafzkB0B5fcQ0fYs90
-	 2f2pBp+kWoL3o1kwPRe3zYizD+nMkry2MznZC9ek=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57Q8o5mk1556543
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 26 Aug 2025 03:50:05 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 26
- Aug 2025 03:50:05 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 26 Aug 2025 03:50:05 -0500
-Received: from [10.24.68.198] (abhilash-hp.dhcp.ti.com [10.24.68.198])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57Q8nwfm1163034;
-	Tue, 26 Aug 2025 03:49:58 -0500
-Message-ID: <3bdc9ef0-d5a6-4836-b3b1-c0114aa330f6@ti.com>
-Date: Tue, 26 Aug 2025 14:19:57 +0530
+	s=arc-20240116; t=1756198514; c=relaxed/simple;
+	bh=d+h2PRJM2l08TaXnGzcsmwZ3+8ua03+lAD5/yxQMu+4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Ik56e4Hik/IfqHUETqPltLRP0znQ+HjMwy9dSpGOqS7DWbk+oLchvzaEUaVtriJ2qoV6CB8Vl7mmOdlPHLJujjTmUGfculODqf+Z/vz/SYfJXOdNbNr5UEugmvTDVNFwmbpltzhRcMXxRa0ZGJ5dKrcFyJNULmRv6VNNUlvKjLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uqpRq-0003j9-Qa; Tue, 26 Aug 2025 10:54:34 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uqpRn-002Cb2-1w;
+	Tue, 26 Aug 2025 10:54:31 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uqpRn-0005k0-1e;
+	Tue, 26 Aug 2025 10:54:31 +0200
+Message-ID: <eb127fd167cfbd885099a7c4c962eb1135a5a8a0.camel@pengutronix.de>
+Subject: Re: [PATCH net-next v7 2/5] net: spacemit: Add K1 Ethernet MAC
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Vivian Wang <wangruikang@iscas.ac.cn>, Andrew Lunn
+ <andrew+netdev@lunn.ch>,  Jakub Kicinski <kuba@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
+ Ghiti <alex@ghiti.fr>
+Cc: Vivian Wang <uwu@dram.page>, Vadim Fedorenko
+ <vadim.fedorenko@linux.dev>,  Junhui Liu <junhui.liu@pigmoral.tech>, Simon
+ Horman <horms@kernel.org>, Maxime Chevallier
+ <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Date: Tue, 26 Aug 2025 10:54:31 +0200
+In-Reply-To: <20250826-net-k1-emac-v7-2-5bc158d086ae@iscas.ac.cn>
+References: <20250826-net-k1-emac-v7-0-5bc158d086ae@iscas.ac.cn>
+	 <20250826-net-k1-emac-v7-2-5bc158d086ae@iscas.ac.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 0/4] Add support for VIP
-To: Hans Verkuil <hverkuil+cisco@kernel.org>, <mchehab@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux@armlinux.org.uk>, <ardb@kernel.org>, <ebiggers@kernel.org>,
-        <geert+renesas@glider.be>, <claudiu.beznea@tuxon.dev>,
-        <bparrot@ti.com>, <andre.draszik@linaro.org>,
-        <kuninori.morimoto.gx@renesas.com>,
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        <heikki.krogerus@linux.intel.com>, <kory.maincent@bootlin.com>,
-        <florian.fainelli@broadcom.com>, <lumag@kernel.org>,
-        <dale@farnsworth.org>, <sbellary@baylibre.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <dagriego@biglakesoftware.com>, <u-kumar1@ti.com>
-References: <20250716111912.235157-1-y-abhilashchandra@ti.com>
- <ea673976-49a6-44f6-8e6c-8d11abe46620@kernel.org>
-Content-Language: en-US
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-In-Reply-To: <ea673976-49a6-44f6-8e6c-8d11abe46620@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Hans,
-Thanks for the review.
+On Di, 2025-08-26 at 14:23 +0800, Vivian Wang wrote:
+> The Ethernet MACs found on SpacemiT K1 appears to be a custom design
+> that only superficially resembles some other embedded MACs. SpacemiT
+> refers to them as "EMAC", so let's just call the driver "k1_emac".
+>=20
+> Supports RGMII and RMII interfaces. Includes support for MAC hardware
+> statistics counters. PTP support is not implemented.
+>=20
+> Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>
+> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Reviewed-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+> ---
+>  drivers/net/ethernet/Kconfig            |    1 +
+>  drivers/net/ethernet/Makefile           |    1 +
+>  drivers/net/ethernet/spacemit/Kconfig   |   29 +
+>  drivers/net/ethernet/spacemit/Makefile  |    6 +
+>  drivers/net/ethernet/spacemit/k1_emac.c | 2193 +++++++++++++++++++++++++=
+++++++
+>  drivers/net/ethernet/spacemit/k1_emac.h |  426 ++++++
+>  6 files changed, 2656 insertions(+)
+>=20
+[...]
+> diff --git a/drivers/net/ethernet/spacemit/k1_emac.c b/drivers/net/ethern=
+et/spacemit/k1_emac.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..9e558d5893cfbbda0baa7ad21=
+a7209dadda9487e
+> --- /dev/null
+> +++ b/drivers/net/ethernet/spacemit/k1_emac.c
+> @@ -0,0 +1,2193 @@
+[...]
+> +static int emac_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct reset_control *reset;
+> +	struct net_device *ndev;
+> +	struct emac_priv *priv;
+> +	int ret;
+> +
+> +	ndev =3D devm_alloc_etherdev(dev, sizeof(struct emac_priv));
+> +	if (!ndev)
+> +		return -ENOMEM;
+> +
+> +	ndev->hw_features =3D NETIF_F_SG;
+> +	ndev->features |=3D ndev->hw_features;
+> +
+> +	ndev->max_mtu =3D EMAC_RX_BUF_4K - (ETH_HLEN + ETH_FCS_LEN);
+> +
+> +	priv =3D netdev_priv(ndev);
+> +	priv->ndev =3D ndev;
+> +	priv->pdev =3D pdev;
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	ret =3D emac_config_dt(pdev, priv);
+> +	if (ret < 0) {
+> +		dev_err_probe(dev, ret, "Configuration failed\n");
+> +		goto err;
 
-On 25/08/25 20:04, Hans Verkuil wrote:
-> Hi Yemike,
-> 
-> On 16/07/2025 13:19, Yemike Abhilash Chandra wrote:
->> This patch series add support for the TI VIP video capture engine.
->> VIP stands for Video Input Port, it can be found on devices such as
->> DRA7xx and provides a parallel interface to a video source such as
->> a sensor or TV decoder.
->>
->> Each VIP can support two inputs (slices) and a SoC can be configured
->> with a variable number of VIP's. Each slice can support two ports
->> each connected to its own sub-device.
->>
->> The first patch in this series updates the outdated MAINTAINERS entry
->> for the TI VPE and CAL drivers. The subsequent three patches introduce
->> support for the TI VIP (Video Input Port) driver.
-> 
-> I'll pick up the MAINTAINERS patch, but the others need more work, so
-> v3 is needed for that.
-> 
+I'd just
+		return dev_err_probe(...);
+here.
 
-Thanks, I am working on v3. I plan to incorporate the additional
-feedback you provided on the driver before submitting the v3.
+> +	}
+> +
+> +	ndev->watchdog_timeo =3D 5 * HZ;
+> +	ndev->base_addr =3D (unsigned long)priv->iobase;
+> +	ndev->irq =3D priv->irq;
+> +
+> +	ndev->ethtool_ops =3D &emac_ethtool_ops;
+> +	ndev->netdev_ops =3D &emac_netdev_ops;
+> +
+> +	devm_pm_runtime_enable(&pdev->dev);
+> +
+> +	priv->bus_clk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+> +	if (IS_ERR(priv->bus_clk)) {
+> +		ret =3D dev_err_probe(dev, PTR_ERR(priv->bus_clk),
+> +				    "Failed to get clock\n");
+> +		goto err;
 
->>
->> Link for v1: https://lore.kernel.org/all/20200522225412.29440-1-bparrot@ti.com/
->> The v1 patch series was posted in the year 2020. This v2 series resumes the
->> effort to upstream VIP support by addressing all previous review comments
->>
->> Changelog:
->> Changes in v2:
->> - Remove array and just use hsync: true in bindings (Patch 3/5)
->> - Remove array and use enum for bus width in bindings (Patch 3/5)
->> - Use pattern properties since properties across ports are same (Patch 3/5)
->> - Remove vip_dbg, vip_info, vip_err aliases and just use v4l2_dbg, v4l2_info
->>    and v4l2_err instead (Patch 4/5)
->> - Remove color space information from vip_formats struct (Patch 4/5)
->> - Use g_std instead of g_std_output (Patch 4/5)
->> - Do not touch pix.priv (Patch 4/5)
->> - Remove all comments with just register values (Patch 4/5)
->> - Remove support for vidioc_default ioctl (Patch 4/5)
->> - In case of any error while streaming, push all pending buffers to vb2 (Patch 4/5)
->> - Address some minor comments made by Hans throughout the driver (Patch 4/5)
->> - Update copyright year at various places
->>
->> v4l2-compliance output: https://gist.github.com/Yemike-Abhilash-Chandra/b0791cb465fadc11d4c995197cb22f29
-> 
-> Also run v4l2-compliance with the -s option to check compliance while streaming.
-> 
+Same here.
 
-Thanks for pointing this out. Will run as part of v3.
+> +	}
+> +
+> +	reset =3D devm_reset_control_get_optional_exclusive_deasserted(&pdev->d=
+ev,
+> +								     NULL);
+> +	if (IS_ERR(reset)) {
+> +		ret =3D dev_err_probe(dev, PTR_ERR(reset),
+> +				    "Failed to get reset\n");
+> +		goto err;
 
-Thanks and Regards,
-Yemike Abhilash Chandra
+And here.
 
-> Regards,
-> 
-> 	Hans
-> 
->>
->> v4l2-compliance cropping and composing tests are failing likely
->> due to OV10635 sensor supporting several discrete frame sizes,
->> fail: v4l2-test-formats.cpp(1560): node->frmsizes_count[pixfmt] > 1
->>
->> Test logs: https://gist.github.com/Yemike-Abhilash-Chandra/98504ab56416aef38b851036aef5eeb1
->>
->> Dale Farnsworth (2):
->>    dt-bindings: media: ti: vpe: Add bindings for Video Input Port
->>    media: ti-vpe: Add the VIP driver
->>
->> Yemike Abhilash Chandra (2):
->>    MAINTAINERS: Update maintainers of TI VPE and CAL
->>    Revert "media: platform: ti: Remove unused vpdma_update_dma_addr"
->>
->>   .../devicetree/bindings/media/ti,vip.yaml     |  211 +
->>   MAINTAINERS                                   |    3 +-
->>   drivers/media/platform/ti/Kconfig             |   13 +
->>   drivers/media/platform/ti/vpe/Makefile        |    2 +
->>   drivers/media/platform/ti/vpe/vip.c           | 3824 +++++++++++++++++
->>   drivers/media/platform/ti/vpe/vip.h           |  719 ++++
->>   drivers/media/platform/ti/vpe/vpdma.c         |   32 +
->>   drivers/media/platform/ti/vpe/vpdma.h         |    3 +
->>   8 files changed, 4806 insertions(+), 1 deletion(-)
->>   create mode 100644 Documentation/devicetree/bindings/media/ti,vip.yaml
->>   create mode 100644 drivers/media/platform/ti/vpe/vip.c
->>   create mode 100644 drivers/media/platform/ti/vpe/vip.h
->>
-> 
+> +	}
+> +
+> +	emac_sw_init(priv);
+> +
+> +	if (of_phy_is_fixed_link(dev->of_node)) {
+> +		ret =3D of_phy_register_fixed_link(dev->of_node);
+> +		if (ret) {
+> +			dev_err_probe(dev, ret,
+> +				      "Failed to register fixed-link");
+> +			goto err_timer_delete;
 
+If you can move this section before emac_sw_init(), this could also
+just return.
+
+> +		}
+
+Then here a function calling of_phy_deregister_fixed_link() could be
+registered with devm_add_action_or_reset(), to avoid duplicated cleanup
+in the error path and in emac_remove().
+
+
+regards
+Philipp
 
