@@ -1,184 +1,217 @@
-Return-Path: <devicetree+bounces-209157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A971B34FEE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 02:06:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B38CDB350B5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 03:04:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBAF7169AD7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 00:06:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E4A3244B9D
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 01:04:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C5D1CD0C;
-	Tue, 26 Aug 2025 00:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4356C21FF4A;
+	Tue, 26 Aug 2025 01:04:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="LdPcC34J"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="NJIULm2I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010029.outbound.protection.outlook.com [52.101.228.29])
+Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5599A59;
-	Tue, 26 Aug 2025 00:06:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.29
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756166786; cv=fail; b=U9b/NAOUrfD+EkTKLqyFVpKKo5469CU483Q5D9V+Uiz4ZUvxGeyOa5AZvFXYOKgGbNiXS7ZxHB5CKRaSPqUPZQ8dQSSZVCsgk6I+9BOw2oOju4ezN+pYNFKPC4Cl//wb9JRufEndKqO3TDeBfIwtEqzXRCs8kB4rYdlvd0W6T8M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756166786; c=relaxed/simple;
-	bh=J81fjsaIYZ5r5dAaxYBge4xg3WtDQ2WZ1kSm8AA8dGA=;
-	h=Message-ID:From:Subject:To:Cc:Content-Type:Date:MIME-Version; b=V+ITIf7gKibYZ0F38PFmBRUpj/qMEoJ6fqQ1LrQNti68JLsnZxN3Y0Q6Fgw4NIOLBHeTj5DWW9LOcmr5pG22t+DbDF7HkZdOb0Jr8nFe293IiNEk5PFlkjk3qJPtY/7LpJfHYd/pAQIXPdtnY2NJlsiUBqcFQL9qpg6hURdQHiw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=LdPcC34J; arc=fail smtp.client-ip=52.101.228.29
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JIQBvCniMQOV7N8rfrR8033AZk1KefH1C1ctCeR4JNaXKkK+upNB832cMgvXS4lGXKIoysB6zC1leL1nxb+TGDYVro7LBZ7oV8e95fVEDydxqlAfyGj7DXdTGbiGey5QGMhmpczjNqW1AZRqXV405ImOJSx+mKdLh09OyTVlVC5m8bugrYhTFVavrUY/7mOtOlY8AYQvpDQJeA4hEkianVKPQTESFD09nFZ5Ik2tK+B2z27jQcVPQXTRD9Kb9w1c5nuwcf1kwofLJ0ZbckdI7RZILoVjGBgJgDTmgK3CyfO7N7i78nd3YIblvjpTHnt/uezFMcQgSk88UJV3WMCJNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q9bIGiJ/SGx0vmSEMitX8nFn5r3u9dkNhRBnbbU38/s=;
- b=Bwml2oYdraNOekStu9PHibz4LumqOxC9Q8AGb6hZCt8RM0Pa6IRfiTADF7jL/Enh2TND54C9lwWmOupyhB5OytAwuG20TiAGDoYIxUL0nq12M7hYsyJ3+h4aDiVjUJ4R23GX/C8JSAtQ4udTpQebeUK68hhvSRZrJfBoP1qtkocxY5OZcAX4u+7ZSXoDItekWdlika84rXCjMx1+7LtG7bPVapODlWLM0FVc+zetZ7NOTHlryG3xEIErsRIrIz6Df8LbCljk/jHurmjLoRelGt16wyjPt2PLbvNDJR6ALdR2dGN96tXUzX33DiDjSi0M46oPAM2BFixnh6cPRkowfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q9bIGiJ/SGx0vmSEMitX8nFn5r3u9dkNhRBnbbU38/s=;
- b=LdPcC34JTbMhHcMut/FGA2Yuvg84qooJECcZlAHNo23JkaafbXfR8ON62htiyuVN3HHGyzJg96i3wK2SviLwW7uPu5bsSwTEgh8T+wa7vw0Pl8lic+o6MzXTovalXXbGF+Rm9CEiJE9urjHNqwJelG4ZIPaSU4aXwBRVe/HBLuA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TYYPR01MB8072.jpnprd01.prod.outlook.com
- (2603:1096:400:fb::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.22; Tue, 26 Aug
- 2025 00:06:19 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%4]) with mapi id 15.20.9052.019; Tue, 26 Aug 2025
- 00:06:19 +0000
-Message-ID: <87cy8jx7yd.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH] dt-bindings: soc: renesas: Document R-Car X5H
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-To: Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset=US-ASCII
-Date: Tue, 26 Aug 2025 00:06:18 +0000
-X-ClientProxiedBy: TYCP286CA0373.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:405:79::15) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 663B31BD9F0;
+	Tue, 26 Aug 2025 01:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756170274; cv=none; b=qcz2bMoAgL32cR13cepnJHOcreK04DlQyDROXUe7HIISyACSsIuq2z2SYv5xDVLxU3bKX8PlnEGs0Viwu6SU/0Tq4OKELQte6KsxVpRjnj1URibxswKNwcXIad0uk3xueEqPEg7lw5n/61qdt0v7TsAbFK9UyXjDM6bXmMrNVug=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756170274; c=relaxed/simple;
+	bh=tB6fppnw+UcRDBN5lEThQWkSnIFpbnjuO084/tD3bU8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YsQzjMmPbEsJ8s0qJVYwqk0ZKe0wGQkqLrgmO/uMG0RBLJIpIsCjNDNtGIr5ZGmeWv30eYVWxsFD6C3RF2WCqCzZ20zSKngRnuofjz8mYziS0I26R+9kZcdLGMFAIzmJTbJ6bI0OZ7JCplgKVVdY5Ct7jUS4sFG1fAOPxSptGEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=NJIULm2I; arc=none smtp.client-ip=52.59.177.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1756170260;
+	bh=YFNm4O+HT++w/XhGn19PpWttVXNF4FCXA5kWvgTYm9Y=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=NJIULm2ITw00OlVySf0zjkJbhgXaJ7GfGuEYcZmo4LgA80CpXz+50mmE34KHqy6rp
+	 fBf7RQH6ANXyy2zZIULBEkJ3aAIVHiJQ4ZN1TBDJ6K8wVgPVlroNtlGKXj1Is0+gGx
+	 T3Pp0orsc1ZgJADzSx8nYsZLCmOvuvLjpUhOopks=
+X-QQ-mid: zesmtpsz5t1756170257t506bec28
+X-QQ-Originating-IP: Z9Hix52xyLw0E0FxPAVbErXQgqX6aadOjoYB/9fqoi4=
+Received: from = ( [14.123.253.26])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 26 Aug 2025 09:04:15 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 6597786748243803849
+EX-QQ-RecipientCnt: 23
+Date: Tue, 26 Aug 2025 09:04:15 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Alex Elder <elder@riscstar.com>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>, lee@kernel.org,
+	lgirdwood@gmail.com, broonie@kernel.org,
+	alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: mat.jonczyk@o2.pl, dlan@gentoo.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	linux.amoon@gmail.com, troymitchell988@gmail.com,
+	guodong@riscstar.com, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v12 2/7] mfd: simple-mfd-i2c: add SpacemiT P1 support
+Message-ID: <A90BFF97E4869C5B+aK0ID3oyoCtco3m5@LT-Guozexi>
+References: <20250813024509.2325988-1-elder@riscstar.com>
+ <20250813024509.2325988-3-elder@riscstar.com>
+ <089D29348F246F2C+aJ6bPgJsp5GjhDs5@LT-Guozexi>
+ <b387ebdd-ae5d-4711-9e10-c61cb06f4b5b@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYYPR01MB8072:EE_
-X-MS-Office365-Filtering-Correlation-Id: ea43e848-70a8-461b-ca9d-08dde43461dd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|376014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?JZvMU2lkxx387DFSBMVmGqbf8V1KvM+srsfDFpO0jgevKTP/3A6E4h1yUBAW?=
- =?us-ascii?Q?EvYOAMs1fPNOWZ2mJNOzToVLN3sSwntJHn+atlfHbVwQPQhzn0alU1Btj/Bw?=
- =?us-ascii?Q?cOGnXgC1dYiKK23HNHJYSAxDAbIj4mPJnaCdrsxBadtMd88iRQwkvKNqsh9w?=
- =?us-ascii?Q?0cGAwBlCkXHePYTeAHsWLxElwH5RJFXVKcdFJeEGEHCQF0xtZ0wwWb2MZF4O?=
- =?us-ascii?Q?ooTRVXspjoqGweabMzNGfbxrHH77pfiNbENakehC0imPImLl3pGFzqLFzoRx?=
- =?us-ascii?Q?sNf8d8QeGh3TydVwFenFyQ/SbAiD0Wgv3SO8MYuyEq/FDeYZUnA8T8U72+o4?=
- =?us-ascii?Q?Rvo/tSzH/5XECg+GX2uzXl08dmQK+wmtsNev6j47eJhHvrX5nblDwkl5Ofgq?=
- =?us-ascii?Q?NijtvJe9/EB68Uy1VYZVGARAwAvq3ZexIGKS0LcIYSfWlQC4E2/NA8y5wUQT?=
- =?us-ascii?Q?/F6bPdH96WPUdI48UbbGC7hIdWzx8aOPTwkz3TJX/ctTErMGZV3e3FNlOSq/?=
- =?us-ascii?Q?cArJ7RqKq4lk6+DW2SjDEi6qA1/tGngL3FtW7EUpAbF3gnq9H88sCNk+ntQt?=
- =?us-ascii?Q?4Zfu+4/aSXnqzOX6Gvdmh5SoGG3Km//vdx9uqPPNAAYlmjLGplGjmRUXV77i?=
- =?us-ascii?Q?9St9gt9mtBlRopu6vNOP0g3GBhEiVCWMEcatW5vF5rziEJ+w30SrbMdCSBvf?=
- =?us-ascii?Q?VtqqfKFO7MhuZye6XBFYofQY3pNkmPx73S/dhTfi2Cmpy08QKAvKCL+1QFpT?=
- =?us-ascii?Q?XDR1ijo/XjLsGPSJKTeGtDpP66KpB3QnFllqyIQB4lWaxERlNHSR7pgw6mxd?=
- =?us-ascii?Q?hxJ5wGNFvh8SHzyMr9trNJ7ObD48t9z1lpIuDkS1gUwasAEGYJMF9hr7QjUy?=
- =?us-ascii?Q?aIaW99ZndaNULdfQVkQXUIjfwWZFtFeg9HM5wq1Szf5VCy/2KmnX+tRIDA5y?=
- =?us-ascii?Q?7UWLae5WSRXtP5V+YSC+Sfx0NAm7JsVw1Q4XiM2n3aw1rTJleFPR76j4180b?=
- =?us-ascii?Q?SSrP6AW3J1UlBqY00mF21iOsa/dPGPfufS9hUKOPe7kIBfsCBH5cDZnjS9CZ?=
- =?us-ascii?Q?sjDVmleOC4+2BUxM0J8P8ub4EiXIcKc3yrBqRS/bPs4rZYCZEjf10ST4j45Q?=
- =?us-ascii?Q?mj2xzn/AUXB9+sCfh1hcy2bNSCAmit0KSJgYIvWGGeROaXB1bCNpGRVhAZmr?=
- =?us-ascii?Q?qx9TggLfFx8a9/SBTnvy8/jrjcxR1WNbEPy+REX+MaqspMWneLf8TD38KxZP?=
- =?us-ascii?Q?LPHYBzMh5dNJiIJeco8PuKi9IQu7U/JwhcFuCDi/f7UTgmDKMRtH+ZllIxIy?=
- =?us-ascii?Q?+lsmayuRlGgtHM7yf+gha1orjazq9DX+XREs2ZWnBhK5mfBq89TCwfb2jraa?=
- =?us-ascii?Q?PZsLzij0nMfSJ6L6VVkOtKml8jueDY+w49aOd5SNd9uyWSuMCu7dmQSFOFML?=
- =?us-ascii?Q?Ii9ilsNBR/R3VB9Y6ELjB+PtuaeXjWu50H73ahW3z/bXbOV6L0gr3Q=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?vLkuu054AOt4nBKDX9dOi4YkeaDla6DixKe/uwIBWlFsZ4uC8KE+5r3dPhmE?=
- =?us-ascii?Q?ssE6i9+C0Wa5iudTXPBmRQF7FcSz/9C7ow5WLvQhkEMtERWQiLhYlgmTiINX?=
- =?us-ascii?Q?udnTEGQgyHrBY9pIavpVI8LJZ3fZMStauRJXaLnp8xi0d+whTPr519nd/RkR?=
- =?us-ascii?Q?j8u707x+8U2NC+pCy8LUnedTho9KEKyBPwgyyUJRIfdSje5AJp7IXPGxXA0L?=
- =?us-ascii?Q?tl0I+hgNhCD/jqKr0+2WR4ivwi9oP8RlonUcsnMsXjlrO+H6CacNXSOJPBQ4?=
- =?us-ascii?Q?HoBVvvFRCY2PG9IGB5UfXrEUj0/iBY9VlBMJYQiUOHvr6ynbxYf4yAmvFjfm?=
- =?us-ascii?Q?9PajVs0lXeX2HwcOOiGI50pT1d82ksx5g7Vfd7ALMmvaTNFUuvn8OjFXcPps?=
- =?us-ascii?Q?/Kr6oXS1R//yepUSRBic613ROSVyDn8vey/opVLRfVo9gyImDN7rnZXg7Xaf?=
- =?us-ascii?Q?NlpuwPPvqcQwd4gwh+Aaiioa4WKGGonZTUiAit8wvSKteVwik8d0R/efUhLT?=
- =?us-ascii?Q?BXe4+O5jTJck0ht0FuIUtWqtD7DeuYntLJkDQIZ8mkjlrMBHmfDC+48Ppzkc?=
- =?us-ascii?Q?/dUhtyalh7rD0iDCPTwiNkMYz3CNjdMRqHpPSjFCdmZ/lYEMKfqV3hj9Z/Z4?=
- =?us-ascii?Q?KRjlFlCrvxQIyv+twLQMpKuoKa/WH76VS+7+g2C0fhZ76HnjwyGZxcdz6HUB?=
- =?us-ascii?Q?C+Lxtrzpf3n7fsZ04uLZekJd7eOq2zKfg0qkIy2QTqGfAJCmaGIWxrPQgLRi?=
- =?us-ascii?Q?CiUwn7PgryC7FKWET2g6l0IASpG1Qw8zY5OSdypGUNyLlymv0wCy2xit0V6m?=
- =?us-ascii?Q?dXp3okqb7VwwjeSOCGf+g154kMB9iymQqNvYlVTwphzgv9NM3TMv/Wav0Q2+?=
- =?us-ascii?Q?+glvNqWRUEYE61n+4p2m9rVZJr2i1coYFVxDsk4+8Ut50UedGghoDIw4zi//?=
- =?us-ascii?Q?SSHKLLxBAHOuZga+h3HkMnMycbvjjk3oHXC4YD5UBxKgd6KSyJeoKSZ9zV3z?=
- =?us-ascii?Q?FrANNthRZGf/6nuZC2YanDHrs0LMzpceeBpeA61glDEGB+p8tiIS5VzDYTwe?=
- =?us-ascii?Q?zT2Es77XrtRZFwQaj8WLDitUs7gOpV84wpOxSFR4rmHy05yLuOuGTkc7ppTh?=
- =?us-ascii?Q?vcfNYNevBRWTtY4QDlrcC+r6S5YO63TgGlLAnFHYH6T6Z+UJp5o6ub3V/wXJ?=
- =?us-ascii?Q?QuisufGG5GeAccDOrpoHeUze9sV0TOlEO5ZUCjtwsOOmBFQ6mFWnSFl+DfHb?=
- =?us-ascii?Q?OP8d5snl6Mw3ZzPS8J88swqpBJbClQVO+RdlibTZywdQ9KgXHHw/ioNiNee0?=
- =?us-ascii?Q?MHfffvS/q7YPnxFYxbEaGd7x+clxokbcMEPbti/WUb89rtHHxw7BcbeSgB3H?=
- =?us-ascii?Q?kcIPbv81hDAhvT1xdWnKd/bBHjmkEq3oroHIfaroTbhQ873WYqrSLbZ1CcF6?=
- =?us-ascii?Q?8f4L/zRezNfp1cScdrZ5nceALz+ukQ23JreoNo9SLFCtiAHCo+K+IC7G2E6+?=
- =?us-ascii?Q?oHBseBJO7WnirWE8sM4Ee/TMjsN4uqYCHUqqYPEIR0Zr2TRy5fgXnyTtVbtj?=
- =?us-ascii?Q?CG6qv7X0+qqOiAeZiVxxhaCJy7CfJh+5glb8vmjJgoZ2KKHjZNbXxxH4hbQH?=
- =?us-ascii?Q?57uacBw4vhsOIots3lZmiz4=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea43e848-70a8-461b-ca9d-08dde43461dd
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2025 00:06:18.9499
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MD39Yr/wQTjLp7bNsvpQWucETpC/IYWT3zqk+ZkPxmbDvDiE8M+pibiVUfAOF2ARmSDdzygMShpdkm84qkLDjepcAMCqMAfKQk3VQ13adajZvZI6E09cffkSNbr1QXgD
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB8072
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b387ebdd-ae5d-4711-9e10-c61cb06f4b5b@riscstar.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: M9Bxf819/8YCxgr5E0eCTLJr0bZlmzJWwDmRH2FZekU0xn6PD6v6rNoe
+	dP3FI+l5Y2TabLIuZ+pXMq7AqSls/Kb0pqyd/2lP12ecRF5IFegdolFYmdAFGAL5cC7pYtm
+	unYTaEl3D9lb0pvw/2e0yoIvivn8EtqMJivGWgMLbERMQMWAPOX2tJF3FnvzI+dOuhGGVSe
+	FFIKrApyUSVtGNuW+vfBx4GbdryHB4xbh3zbfAskp0+bI/r6lfhzvip9ax1wIPO3EHYa5An
+	cQ/TN3v+wTVK82+Ue5a8wus6wWEXd9y3LU3YmvvCbclID3qa/shf0oF2qd/CeUNez7Tc0cR
+	2bgE55pXaKoFFdcQnMbFURCCoQl4nnNIyF4whrRjnrtjzo14ht2sXoS0MEyn3AfJD8IvZ7T
+	7/GYrSzY75y3IileD8IexRT1UhWqgZs8/7Sb/PLw2K1NZIrMXSrj7+wlXZs//ghHZn8hE5J
+	JU0xiLzXvku3iXb3cOoK06ZYOLhXDl8uNoN45UiJicDXx2a/zMI5HKkRVnqE0yz+VxOb04H
+	nZtAUuTb7Z0lExVKjUPbbvRfZwwc0W3NUDWo1pUvikqZM95ska4ny2w9Qry2/kzt+GBAL23
+	EwSvxYdDp2dZr0E8WopDPOQxqoDu/bQoXpdk5V5PX22VELzEnhDYuY+fM2EQdFOPKDaoA08
+	xQcyiBEfWBpcVJy23BguuauVJNUmUfIbTW2wd0CTtM9RCQKzN/HUPSdv0dSJGDcXkJH0v+D
+	ENtaTttTz/h1RsNYoKQo+PsO/dtZs4wmCFtpfMAgveBSUCdyOq1TGMHKJTmCcHUKR7Ju2f+
+	2Y8C6JHoIerlxI+IH4p8X2VAh4oroH7PHkCDSB4rmDv+b5RMRUtBzH0CIen2DVZZHq7pAes
+	Dhed/+pMY+otrlh/bmSynVv3qpNbqGW6ZI/x8TOvQ/VEDReJUmayesfytyAStECNklmSQd/
+	nF6Z3hNBmH1MZkDjw7PEBAfbsnBybB0e7MwrljOLvmZA4HiGBbbPU+sMzPxLJcGxfr70HYU
+	RwHxLeTDqapmWrajBZ9Xx7JvLV/R7idTrBGlKoY40C8Xw8nsMDvXIpCpV2byc4ZUkKR5roI
+	fObJKo2BPe7i0xC8CsWnmRKvBOLbqqE+g==
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
+X-QQ-RECHKSPAM: 0
 
-Document the compatible values for the Renesas R-Car X5H (R8A78000) SoC
+On Mon, Aug 25, 2025 at 11:08:45AM -0500, Alex Elder wrote:
+> On 8/14/25 9:28 PM, Troy Mitchell wrote:
+> > Hi, Alex,
+> > 
+> > I did not find any accesses to the P1 shutdown or reboot registers here.
+> > Does this mean that the current series does not support reboot or shutdown?
+> 
+> Yes, that is correct.
+> 
+> > If so, do you have any plans to support this functionality?
+> 
+> At this time I personally don't have any plans to add this, but
+> it could be added later (by anyone).
+> 
+> I actually attempted to do this initially, but gave up.  The PMIC
+> is accessed via I2C, and I needed to implement a non-blocking
+> version of the I2C register write operation.  I tried that,
+You tried that? so that means you have implemented a non-blocking version
+of the I2C?
+If so, can you give me a source tree to test it?
+> but
+> then found that the shutdown or reboot still did not work reliably.
+ditto.
 
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
----
-Hi Geert
+                - Troy
 
-I have been mentioned that I will post DT-Doc when I post board
-support patch, but I think it will be postponeed.
-So I will post SoC part now.
-
- Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-index 5f9d541d177a4..6838070369791 100644
---- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-+++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-@@ -473,6 +473,10 @@ properties:
-           - const: renesas,r8a779mb
-           - const: renesas,r8a7795
- 
-+      - description: R-Car X5H (R8A78000)
-+        items:
-+          - const: renesas,r8a78000
-+
-       - description: RZ/N1D (R9A06G032)
-         items:
-           - enum:
--- 
-2.43.0
-
+> As it was, this was more than I originally planned to do, so I just
+> implemented the simple RTC operations instead.
+> 
+> 					-Alex
+> 
+> > If I have misunderstood, please correct me.
+> > 
+> > Best regards,
+> > Troy
+> > 
+> > 
+> > On Tue, Aug 12, 2025 at 09:45:03PM -0500, Alex Elder wrote:
+> > > Enable support for the RTC and regulators found in the SpacemiT P1
+> > > PMIC.  Support is implemented by the simple I2C MFD driver.
+> > > 
+> > > The P1 PMIC is normally implemented with the SpacemiT K1 SoC.  This
+> > > PMIC provides 6 buck converters and 12 LDO regulators.  It also
+> > > implements a switch, watchdog timer, real-time clock, and more.
+> > > Initially its RTC and regulators are supported.
+> > > 
+> > > Signed-off-by: Alex Elder <elder@riscstar.com>
+> > > ---
+> > >   drivers/mfd/Kconfig          | 11 +++++++++++
+> > >   drivers/mfd/simple-mfd-i2c.c | 18 ++++++++++++++++++
+> > >   2 files changed, 29 insertions(+)
+> > > 
+> > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > > index 425c5fba6cb1e..4d6a5a3a27220 100644
+> > > --- a/drivers/mfd/Kconfig
+> > > +++ b/drivers/mfd/Kconfig
+> > > @@ -1238,6 +1238,17 @@ config MFD_QCOM_RPM
+> > >   	  Say M here if you want to include support for the Qualcomm RPM as a
+> > >   	  module. This will build a module called "qcom_rpm".
+> > > +config MFD_SPACEMIT_P1
+> > > +	tristate "SpacemiT P1 PMIC"
+> > > +	depends on I2C
+> > > +	select MFD_SIMPLE_MFD_I2C
+> > > +	help
+> > > +	  This option supports the I2C-based SpacemiT P1 PMIC, which
+> > > +	  contains regulators, a power switch, GPIOs, an RTC, and more.
+> > > +	  This option is selected when any of the supported sub-devices
+> > > +	  is configured.  The basic functionality is implemented by the
+> > > +	  simple MFD I2C driver.
+> > > +
+> > >   config MFD_SPMI_PMIC
+> > >   	tristate "Qualcomm SPMI PMICs"
+> > >   	depends on ARCH_QCOM || COMPILE_TEST
+> > > diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+> > > index 22159913bea03..47ffaac035cae 100644
+> > > --- a/drivers/mfd/simple-mfd-i2c.c
+> > > +++ b/drivers/mfd/simple-mfd-i2c.c
+> > > @@ -93,12 +93,30 @@ static const struct simple_mfd_data maxim_mon_max77705 = {
+> > >   	.mfd_cell_size = ARRAY_SIZE(max77705_sensor_cells),
+> > >   };
+> > > +
+> > > +static const struct regmap_config spacemit_p1_regmap_config = {
+> > > +	.reg_bits = 8,
+> > > +	.val_bits = 8,
+> > > +};
+> > > +
+> > > +static const struct mfd_cell spacemit_p1_cells[] = {
+> > > +	{ .name = "spacemit-p1-regulator", },
+> > > +	{ .name = "spacemit-p1-rtc", },
+> > > +};
+> > > +
+> > > +static const struct simple_mfd_data spacemit_p1 = {
+> > > +	.regmap_config = &spacemit_p1_regmap_config,
+> > > +	.mfd_cell = spacemit_p1_cells,
+> > > +	.mfd_cell_size = ARRAY_SIZE(spacemit_p1_cells),
+> > > +};
+> > > +
+> > >   static const struct of_device_id simple_mfd_i2c_of_match[] = {
+> > >   	{ .compatible = "kontron,sl28cpld" },
+> > >   	{ .compatible = "silergy,sy7636a", .data = &silergy_sy7636a},
+> > >   	{ .compatible = "maxim,max5970", .data = &maxim_max5970},
+> > >   	{ .compatible = "maxim,max5978", .data = &maxim_max5970},
+> > >   	{ .compatible = "maxim,max77705-battery", .data = &maxim_mon_max77705},
+> > > +	{ .compatible = "spacemit,p1", .data = &spacemit_p1, },
+> > >   	{}
+> > >   };
+> > >   MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
+> > > -- 
+> > > 2.48.1
+> > > 
+> > > 
+> > > _______________________________________________
+> > > linux-riscv mailing list
+> > > linux-riscv@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
+> 
 
