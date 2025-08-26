@@ -1,235 +1,104 @@
-Return-Path: <devicetree+bounces-209237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83AEEB354AD
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:37:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC19B35516
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:15:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AED01B60268
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 06:38:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E4B21B64AE5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 07:15:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249F12F531C;
-	Tue, 26 Aug 2025 06:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200122D061E;
+	Tue, 26 Aug 2025 07:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="NwpRV8dp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X1A0r4b0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E20652641E3
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 06:37:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE02927EFFE;
+	Tue, 26 Aug 2025 07:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756190258; cv=none; b=nzYH6cp8BcexsOWtUWSgtKL489g5GnQEtMJrJF9k9zXXs+G9znXdZxHeLIlEO4qLP/gjavyd1SPDdesj5q2aJon7SRJ0AHBx8MnmBOwYC0rWqrisQomXqvXH1XQigSfYsXammbgvDsqoWxGO88tnjjzOTVrBL8LREeOYfGkLfvo=
+	t=1756192518; cv=none; b=r1HiWD/MHrR9DAzfOqeogM/95mo5TxrmOJR7gXhJyQkI8zPVlL8osA+06JuIyhkuZz3B7inuQl/+cqrYB1Es2LwHVDbxI8Hb/sL9fO37g11CVXCism0m4kT/tMPzdtub6vl2HeE9yKkh4u0arqFmBUorSHq6s32Z5dys9T+QJx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756190258; c=relaxed/simple;
-	bh=TmYm7jc4DZVZePqCTvreVPUYaxd2jW7O2/HQPN0NYVM=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=fZOdbp9S5wvd4auffC+Jjdk5VaAjua/YnpgQ9NO1S18AS6QKnPBORKby9aLuCYYFFxw4Tw91eh9Q9p3b0EW5dOfTXYPeMhm94F+2fNH0i48fAL+E7kQGWnTaJBL8blNjmbdXPsahJ9SX41MEXVSpUBOsX1qNwuoL8u7Y1httq+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=NwpRV8dp; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250826063729epoutp026d1774acc3d4c43f9eacfb34f4a472fa~fPbo7GL2R1743417434epoutp02l
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 06:37:29 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250826063729epoutp026d1774acc3d4c43f9eacfb34f4a472fa~fPbo7GL2R1743417434epoutp02l
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756190249;
-	bh=WmUdeog4n43JlLPwLzabcivOP3kzq6u9GqxXjjFJfy4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=NwpRV8dpQsXrqhS60KikOY7MaGduMakQQ8G758Cf91IqQBwawro5WSiQV3XUXOZf6
-	 GqgMDm/pStaDHR9tmWMjcNHJFiV4euJAk6f0xaeV6JIfPTxnRHh1bzOROBGeV8LGIG
-	 Vg27PkGrpBYUCMJ9UhXcHhzbXQdtc0BTMdLfj3Ms=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250826063728epcas5p35aa5aa8be589c61f897a378fe0a9d6f7~fPboM9AQb0070300703epcas5p3T;
-	Tue, 26 Aug 2025 06:37:28 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.94]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4c9ydM5YS8z2SSKf; Tue, 26 Aug
-	2025 06:37:27 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250826063727epcas5p27b42d9103a77296440ed5f47a9dc9b6c~fPbmaKZFJ0989209892epcas5p2_;
-	Tue, 26 Aug 2025 06:37:27 +0000 (GMT)
-Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250826063723epsmtip2624718a1eacb328a03895f36f45a703d~fPbjWQ0-82085020850epsmtip2R;
-	Tue, 26 Aug 2025 06:37:23 +0000 (GMT)
-From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
-Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
-	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
-	<igor.belwon@mentallysanemainliners.org>, <johan@kernel.org>,
-	<m.szyprowski@samsung.com>, <s.nawrocki@samsung.com>,
-	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
-	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <20250824-rough-fresh-orangutan-eecb2f@kuoka>
-Subject: RE: [PATCH v7 5/6] dt-bindings: phy: samsung,usb3-drd-phy: add
- ExynosAutov920 combo ssphy
-Date: Tue, 26 Aug 2025 12:07:22 +0530
-Message-ID: <007501dc1653$e36c3b50$aa44b1f0$@samsung.com>
+	s=arc-20240116; t=1756192518; c=relaxed/simple;
+	bh=aYIVm+aKRLtltfxrMsj38OhXw3B6ZTzRaFrq3NQzEIY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jz5puSip5YqG2AcQ7VM2YOlBgHByAMHFplkeOg661WraJ2fi+QXilhl8Nr59Z6SuuNumeWcKsaJ9LtUKrHivqTCO02DPpjVuGtbSz7i8BtxLpPctIYpEIitDxnzFEJHzZnIvlcu2Mrk2cK+ZIBU+zGu33tYKlELsWFVN9xLOxtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X1A0r4b0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B064C4CEF1;
+	Tue, 26 Aug 2025 07:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756192517;
+	bh=aYIVm+aKRLtltfxrMsj38OhXw3B6ZTzRaFrq3NQzEIY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X1A0r4b0I+6n4uHTHmN33PPcN7L5aYBEDvRXzT8XnmI/npegDJXUUigz7LeUBLHsJ
+	 hDRMf0fefK23a2r4GBcTOVRCtUewX4llg5ocpVwB3CAtV8t8ELmpVwnAg8se1xj+mV
+	 PUAB6GAnaGHLye/UFCcydpZo65ZtQb9/9Wc5vrkaQ0WOuyf5rl5G4nDAFvQhHR7NB+
+	 F8/cfgR2IxPZHk/1/I2AmI+sWEvi/CkNVFllayOtYcClDLc0UT9QFNVe6XNk0M8dOo
+	 XroksPuMgDwyU+Hl03PiXe79AGYVX/oN4Pv/iLnbqWS4GBy+y+XrGNVt0g5hpB3Jss
+	 X7zfhbyXG6XsA==
+Date: Tue, 26 Aug 2025 12:45:03 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Brian Norris <briannorris@chromium.org>
+Subject: Re: [PATCH 4/6] PCI: of: Add an API to get the BDF for the device
+ node
+Message-ID: <jqgvw3u6lkewaz2ycjkozcfqrmdln5gacgrog4lhioazhvk5yz@3ph2z25zwqvj>
+References: <20250819-pci-pwrctrl-perst-v1-0-4b74978d2007@oss.qualcomm.com>
+ <20250819-pci-pwrctrl-perst-v1-4-4b74978d2007@oss.qualcomm.com>
+ <20250822135147.GA3480664-robh@kernel.org>
+ <nphfnyl4ps7y76ra4bvlyhl2rwcaal42zyrspzlmeqqksqa5bi@zzpiolboiomp>
+ <20250825224315.GA771834-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGSd8blfqR9gZc/NH28iGAFaSn12QHbdVSHAGa/K48CXY/t+7Tit6wg
-Content-Language: en-in
-X-CMS-MailID: 20250826063727epcas5p27b42d9103a77296440ed5f47a9dc9b6c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250822093022epcas5p42d8c16c851769dab0e1da9d45743ab1f
-References: <20250822093845.1179395-1-pritam.sutar@samsung.com>
-	<CGME20250822093022epcas5p42d8c16c851769dab0e1da9d45743ab1f@epcas5p4.samsung.com>
-	<20250822093845.1179395-6-pritam.sutar@samsung.com>
-	<20250824-rough-fresh-orangutan-eecb2f@kuoka>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250825224315.GA771834-robh@kernel.org>
 
-Hi Krzysztof,=20
+On Mon, Aug 25, 2025 at 05:43:15PM GMT, Rob Herring wrote:
+> On Fri, Aug 22, 2025 at 07:57:41PM +0530, Manivannan Sadhasivam wrote:
+> > On Fri, Aug 22, 2025 at 08:51:47AM GMT, Rob Herring wrote:
+> > > On Tue, Aug 19, 2025 at 12:44:53PM +0530, Manivannan Sadhasivam wrote:
+> > > > Bus:Device:Function (BDF) numbers are used to uniquely identify a
+> > > > device/function on a PCI bus. Hence, add an API to get the BDF from the
+> > > > devicetree node of a device.
+> > > 
+> > > For FDT, the bus should always be 0. It doesn't make sense for FDT. The 
+> > > bus number in DT reflects how firmware configured the PCI buses, but 
+> > > there's no firmware configuration of PCI for FDT.
+> > 
+> > This API is targeted for DT platforms only, where it is used to uniquely
+> > identify a devfn. What should I do to make it DT specific and not FDT?
+> 
+> I don't understand. There are FDT and OF (actual OpenFirmware) 
+> platforms. I'm pretty sure you don't care about the latter.
+> 
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: 24 August 2025 02:26 PM
-> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
-> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
-> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
-> andre.draszik=40linaro.org; peter.griffin=40linaro.org; kauschluss=40disr=
-oot.org;
-> ivo.ivanov.ivanov1=40gmail.com; igor.belwon=40mentallysanemainliners.org;
-> johan=40kernel.org; m.szyprowski=40samsung.com; s.nawrocki=40samsung.com;
-> linux-phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
-amsung-
-> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
-> selvarasu.g=40samsung.com
-> Subject: Re: =5BPATCH v7 5/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
-dd
-> ExynosAutov920 combo ssphy
->=20
-> On Fri, Aug 22, 2025 at 03:08:44PM +0530, Pritam Manohar Sutar wrote:
-> > This phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
-> > compatible to the USB3.0 SS(5Gbps). It requires two clocks, named
-> > =22phy=22 and =22ref=22. The required supplies for USB3.1 are named as
-> > vdd075_usb30(0.75v), vdd18_usb30(1.8v).
->=20
-> Please do not describe the schema, but hardware. This sentence does not h=
-elp
-> me in my question further.
+Sorry, I mixed the terminologies. Yes, I did refer the platforms making use of
+the FDT binary and not OF platforms.
 
-This is a combo phy having Synopsys usb20 and usb30 phys (these 2 phys are =
-totally different).=20
-One PHY only supports usb2.0 and data rates whereas another one does usb3.1=
- ssp+ and usb3.1 ssp
-=09
-This patch only explains about usb30 (since these are two different phys) p=
-hy and omitted inclusion of usb20 reference (added separate patch for this =
-patch no 3).=20
-=09
-Hope this is clear.
+In the DTS, we do use bus number to differentiate between devices, not just
+devfn. But I get your point, bus no other than 0 are not fixed and allocated by
+the OS during runtime or by the firmware.
 
->=20
-> >
-> > Add schemas for combo ssphy found on this SoC.
-> >
-> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
-> > ---
-> >  .../bindings/phy/samsung,usb3-drd-phy.yaml    =7C 23 +++++++++++++++++=
-++
-> >  1 file changed, 23 insertions(+)
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
-> > b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
-> > index f0cfca5736b8..96e5bbb2e42c 100644
-> > --- a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
-> > =40=40 -34,6 +34,7 =40=40 properties:
-> >        - samsung,exynos7870-usbdrd-phy
-> >        - samsung,exynos850-usbdrd-phy
-> >        - samsung,exynos990-usbdrd-phy
-> > +      - samsung,exynosautov920-usb31drd-combo-ssphy
-> >        - samsung,exynosautov920-usbdrd-combo-hsphy
-> >        - samsung,exynosautov920-usbdrd-phy
-> >
-> > =40=40 -118,6 +119,12 =40=40 properties:
-> >    vdd18-usb20-supply:
-> >      description: 1.8V power supply for the USB 2.0 phy.
-> >
-> > +  dvdd075-usb30-supply:
-> > +    description: 0.75V power supply for the USB 3.0 phy.
-> > +
-> > +  vdd18-usb30-supply:
-> > +    description: 1.8V power supply for the USB 3.0 phy.
-> > +
-> >  required:
-> >    - compatible
-> >    - clocks
-> > =40=40 -227,6 +234,7 =40=40 allOf:
-> >                - samsung,exynos7870-usbdrd-phy
-> >                - samsung,exynos850-usbdrd-phy
-> >                - samsung,exynos990-usbdrd-phy
-> > +              - samsung,exynosautov920-usb31drd-combo-ssphy
-> >                - samsung,exynosautov920-usbdrd-combo-hsphy
-> >                - samsung,exynosautov920-usbdrd-phy
-> >      then:
-> > =40=40 -262,6 +270,21 =40=40 allOf:
-> >        properties:
-> >          dvdd075-usb20-supply: false
-> >          vdd18-usb20-supply: false
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - samsung,exynosautov920-usb31drd-combo-ssphy
-> > +    then:
-> > +      required:
-> > +        - dvdd075-usb30-supply
-> > +        - vdd18-usb30-supply
->=20
-> Why are you adding usb20 and usb30 suffixes to the supplies? These are
-> separate devices, so they do not have both variants at the same time.
+So how should we uniquely identify a PCIe node here, if not by BDF?
 
-This is a combo phy consisting of usb2 and usb3 phys combined.=20
-To drive these separate phys, added suffixes for these supplies respectivel=
-y.
+- Mani
 
-Moreover, gs101 is also using similar convention for its usb20 and dp suppl=
-ies.=20
-Added suffix for usb2 and usb3 as per our last communication https://lore.k=
-ernel.org/linux-phy/6e1c67d2-9bfa-442a-9d53-8c5970a2a9ef=40kernel.org/
-
->=20
-> From this device point of view, the supply is called dvdd075 or vdd18.
-> If you open device datasheet (not SoC datasheet), that's how it will be c=
-alled,
-> most likely.
-
-Yes, Agree. In device datasheet, suffixes are not mentioned, but in our boa=
-rd schematic it is mentioned.=20
-Let me know your suggestion about adding suffixes?
-
->=20
-> Best regards,
-> Krzysztof
-
-
-Thank you.
-
-Regards,
-Pritam
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
