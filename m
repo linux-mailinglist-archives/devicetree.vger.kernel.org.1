@@ -1,272 +1,273 @@
-Return-Path: <devicetree+bounces-209399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C85B36DA1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 17:23:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5731EB36DA7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 17:24:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFD7A16FF98
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 15:23:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C06EC16F176
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 15:24:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A424322B586;
-	Tue, 26 Aug 2025 15:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 125C1274B22;
+	Tue, 26 Aug 2025 15:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DUMZmKiU"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="pV7Kxrwi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB02023875D;
-	Tue, 26 Aug 2025 15:23:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B602701B1;
+	Tue, 26 Aug 2025 15:24:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756221785; cv=none; b=GeMteeAWMr0D1tjKOduHjjZrZOYQtBz+cNr6H9c5eydFN2SkJHyqL8M9Y6AXOslCIQ8aGa1KgVdeOQtZztZf36PPnrXUWyKz+ckQWoVV/ar8FQXMVhKW42XaezfLmv+QBXQj6SeA7iJT0NHcJhMUY9iEjQXN2DJR6dooHsKK2Gc=
+	t=1756221866; cv=none; b=m4aOSZje+kBW1xBjRltW1Q6G6B4+EyVDkiS2EeZObRQDDT+NHsXKabDF7XGVZhPzW5DhoOBOK7uADs4uzBOY+JuoXgwh3XvbV9iTORS0IuvmaVGznbDtX+iqBLMdSbub1kwh/kjo/UGWzAKnP0PLqnLxYUMjyqVFUFB9LdSCXfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756221785; c=relaxed/simple;
-	bh=BZuK+TBMT4BMUx4VSTl6olbTXsQYlv9hDSt/enMKmCA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gn00zJZ8R3pdPvBk/kkw4Keo/11mHUWQQ2Twa14u9k9FaxMD3GAb/s0p2NdPzn9Riq1CHO8iqzTEc89X5tIUAVRXpBBiBpLV3qybSY2gkbPixV1K47Wol4e7UMLijsFA20zO7TqwDFCQJTMDkFDPJfdKaHvjDhEDAlbkU4Yt2dA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DUMZmKiU; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+	s=arc-20240116; t=1756221866; c=relaxed/simple;
+	bh=4q/Ro7ZgXCV5mMoZl1m9B3B75aym6pb7Rqjp32Hj+aQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=DZge6tqw/U1csvUQ4N72xLej0JcgkJt+Srq8ROd9H5924Qd6O2Y64oTPP3F+Z9gcjmEfOcYImG263f7TCNcXm5tiB8/C8vGQZctJjQmUPzAu3IN4aM7byTUooL0ru9a6cgOxgKK93Qqdesm1/vOQKI74RDdsodV0cm9ZK7NiIb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=pV7Kxrwi; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756221783; x=1787757783;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=BZuK+TBMT4BMUx4VSTl6olbTXsQYlv9hDSt/enMKmCA=;
-  b=DUMZmKiUleAJLKo5k22//qbLBkyioXixWpCUX2N/c0gniS0RlEb9Ys/q
-   o4GXBEGliRETwZNJ800Z90ADESS/dnkGWicufQ2i18vgtqVp2+BuyNjwR
-   R7lYDKeCEWB+oGC5jtHl6h0gtu+Xglh0Xs6RRXDV8X4zFNbXZAMGuYtXc
-   bIdi1tgBAnfix7+Lz5b9p+c+hH+pLohp26zFlCA9VkCqZbBdb8KyQpSLy
-   Qdg7pN2qIxupFbYYjwtTQfU1jPXNAdXFTVCgmAcoZwVEAOvgwCKDToSZ5
-   9H7txedr1xlPZdBgd7Wm7B0BPUY5UdHeBp+L5UzmY5IyCrz6Qa3yPBrXE
-   w==;
-X-CSE-ConnectionGUID: 7BW5ajiRQ4+/ThRQ8cfw1g==
-X-CSE-MsgGUID: bq6KyoHrQeaqzSUmi4/KXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11534"; a="69899005"
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1756221864; x=1787757864;
+  h=message-id:date:mime-version:from:subject:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=4q/Ro7ZgXCV5mMoZl1m9B3B75aym6pb7Rqjp32Hj+aQ=;
+  b=pV7Kxrwi4jLQkDGkXJ6//EY+WNg7hFisOCPngX62TY1zOalu/QNYupYC
+   mCDs+RgNuv90xh2wir4pt2SPfv4xu8S/TmhtPdjdQHBYkz+HoN9i3BaID
+   ZZFRrwk6CH5AkvImPQPtYaO5FO7eCAg6ugPjwxQDnlb0nVfSMGn+46MUW
+   n+Td4a/HlzkoG210wVTmtGKO8xT1weOiceqzbuoSO3PbwLNMbhWqsH3fC
+   fgkgUHuWt2k0STUmMIOmj+9gsCIAENuLcsTxwcItH3p1HL9Zb34AkvgAX
+   VL8M3rv7P15kMQ2ly3zLoPMekCC267atHbzGB2M+hO7V5lg/c5hxJFfgA
+   Q==;
+X-CSE-ConnectionGUID: cqTEly2STb6W85yqGPE9tw==
+X-CSE-MsgGUID: 69vNB5feRI6VqwsfNf06ng==
 X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
-   d="scan'208";a="69899005"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2025 08:23:03 -0700
-X-CSE-ConnectionGUID: na3KtayEQWGbtC/OX3RNfQ==
-X-CSE-MsgGUID: /LK6KlhJSySEWagjiYYI6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
-   d="scan'208";a="200545338"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2025 08:23:00 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uqvVh-00000008oUb-0Mng;
-	Tue, 26 Aug 2025 18:22:57 +0300
-Date: Tue, 26 Aug 2025 18:22:56 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: =?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>
-Cc: Andy Shevchenko <andy@kernel.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	Paolo Sabatino <paolo.sabatino@gmail.com>,
-	Christian Hewitt <christianshewitt@gmail.com>,
-	Boris Gjenero <boris.gjenero@gmail.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v4 3/6] auxdisplay: Add TM16xx 7-segment LED matrix
- display controllers driver
-Message-ID: <aK3RUIt0O-uzEo4-@smile.fi.intel.com>
-References: <20250825033237.60143-1-jefflessard3@gmail.com>
- <20250825033237.60143-4-jefflessard3@gmail.com>
- <aKx9zQNppjNNMJEt@smile.fi.intel.com>
- <3E7CE725-4C10-41C9-9B44-58E7EC6B5F4F@gmail.com>
+   d="scan'208";a="51293750"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Aug 2025 08:24:22 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 26 Aug 2025 08:23:52 -0700
+Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Tue, 26 Aug 2025 08:23:49 -0700
+Message-ID: <010e0551-58b8-4b61-8ad7-2f03ecc6baa3@microchip.com>
+Date: Tue, 26 Aug 2025 17:23:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Subject: Re: [PATCH net v4 4/5] net: macb: single dma_alloc_coherent() for DMA
+ descriptors
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, Andrew Lunn
+	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, Geert Uytterhoeven <geert@linux-m68k.org>, Harini
+ Katakam <harini.katakam@xilinx.com>, Richard Cochran
+	<richardcochran@gmail.com>, Russell King <linux@armlinux.org.uk>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Thomas Petazzoni
+	<thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Sean Anderson <sean.anderson@linux.dev>
+References: <20250820-macb-fixes-v4-0-23c399429164@bootlin.com>
+ <20250820-macb-fixes-v4-4-23c399429164@bootlin.com>
+Content-Language: en-US, fr
+Organization: microchip
+In-Reply-To: <20250820-macb-fixes-v4-4-23c399429164@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3E7CE725-4C10-41C9-9B44-58E7EC6B5F4F@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Mon, Aug 25, 2025 at 01:48:45PM -0400, Jean-François Lessard wrote:
-> Le 25 août 2025 11 h 14 min 21 s HAE, Andy Shevchenko <andriy.shevchenko@intel.com> a écrit :
-> >On Sun, Aug 24, 2025 at 11:32:29PM -0400, Jean-François Lessard wrote:
-
-...
-
-> >> +Date:		August 2025
-> >> +KernelVersion:	6.17
-> >
-> >The Date should be approximate date of the kernel release (alternatively, -rc1
-> >of that). The version is estimated version where ABI can be found first.
-
-> >Both of these need to be changed.
+On 20/08/2025 at 16:55, ThÃ©o Lebrun wrote:
+> Move from 2*NUM_QUEUES dma_alloc_coherent() for DMA descriptor rings to
+> 2 calls overall.
 > 
-> Given that 6.17-rc3 was just released, should I target 6.18 for the kernel
-> version and use a March 2025 date for the estimated release timeframe?
-
-6.18
-The date is not in the past, obviously. You can consult with this site:
-https://hansen.beer/~dave/phb/
-
-...
-
-> >So, the driver is under auxdisplay, but at the same time it completely relies
-> >on LED subsystem... What's going on here?
+> Issue is with how all queues share the same register for configuring the
+> upper 32-bits of Tx/Rx descriptor rings. Taking Tx, notice how TBQPH
+> does *not* depend on the queue index:
 > 
-> The design integrates with the LED subsystem for two main reasons:
+>          #define GEM_TBQP(hw_q)          (0x0440 + ((hw_q) << 2))
+>          #define GEM_TBQPH(hw_q)         (0x04C8)
 > 
-> 1. Brightness control:
-> The entire display brightness is controlled at the display level
-> (individual LED icons can only be on/off via their brightness attributes).
-> The LED subsystem provides established mechanisms for this.
+>          queue_writel(queue, TBQP, lower_32_bits(queue->tx_ring_dma));
+>          #ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
+>          if (bp->hw_dma_cap & HW_DMA_CAP_64B)
+>                  queue_writel(queue, TBQPH, upper_32_bits(queue->tx_ring_dma));
+>          #endif
 > 
-> 2. Coherent sysfs interface:
-> This provides consistent /sys/class/leds/display for display-level controls
-> and /sys/class/leds/display::{function} for individual icons.
+> To maximise our chances of getting valid DMA addresses, we do a single
+> dma_alloc_coherent() across queues. This improves the odds because
+> alloc_pages() guarantees natural alignment. Other codepaths (IOMMU or
+> dev/arch dma_map_ops) don't give high enough guarantees
+> (even page-aligned isn't enough).
 > 
-> I'm seeking your guidance on the best design for the auxdisplay subsystem.
+> Two consideration:
 > 
-> >Btw, have you seen
-> >https://lore.kernel.org/linux-leds/20231011190017.1230898-1-wse@tuxedocomputers.com/
-> >? And  if so, what're your takeaways? (Yes, I know that's about different HW)
+>   - dma_alloc_coherent() gives us page alignment. Here we remove this
+>     constraint meaning each queue's ring won't be page-aligned anymore.
+
+However... We must guarantee alignement depending on the controller's 
+bus width (32 or 64 bits)... but being page aligned and having 
+descriptors multiple of 64 bits anyway, we're good for each descriptor 
+(might be worth explicitly adding).
+
 > 
-> I've read the thread but I'm not clear on the specific point you're making.
-> Could you clarify what aspect I should focus on?
-
-If you have a LED matrix, perhaps we can consider different approaches as well.
-(It's all about the current HW, is it a 7-segment or arbitrary display, if the
- former, that discussion is unrelated)
-
-> (Though, my personal opinion is that using auxdisplay for keyboard LEDs
-> doesn't really make sense. I think it would be better to properly implement
-> it the required mechanism into input subsystem, with maybe some
-> integration with the leds subsystem. Just a quick opinion, I do not
-> master all aspects of this question at all.)
-
-...
-
-> >> + * Copyright (C) 2024 Jean-François Lessard
-> >
-> >My calendar shows something different.
+>   - This can save some tiny amounts of memory. Fewer allocations means
+>     (1) less overhead (constant cost per alloc) and (2) less wasted bytes
+>     due to alignment constraints.
 > 
-> The original code was developed in 2024, though it's being submitted in 2025.
-
-But haven't you changed it in 2025?
-
-...
-
-> >> +#include <linux/bitmap.h>
-> >
-> >Is this used?
+>     Example for (2): 4 queues, default ring size (512), 64-bit DMA
+>     descriptors, 16K pages:
+>      - Before: 8 allocs of 8K, each rounded to 16K => 64K wasted.
+>      - After:  2 allocs of 32K => 0K wasted.
 > 
-> Yes, display->state is a bitmap. I'll move this include to tm16xx_core.c
-> since it's not used in the header itself.
+> Fixes: 02c958dd3446 ("net/macb: add TX multiqueue support for gem")
+> Reviewed-by: Sean Anderson <sean.anderson@linux.dev>
+> Signed-off-by: ThÃ©o Lebrun <theo.lebrun@bootlin.com>
 
-Yes, that's what I meant "used by this header file".
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Tested-by: Nicolas Ferre <nicolas.ferre@microchip.com> # on sam9x75
 
-...
 
-> >> +	union {
-> >> +		struct i2c_client *i2c;
-> >> +		struct spi_device *spi;
-> >> +	} client;
-> >
-> >Why? Just drop it. struct device *dev is enough and I can't see the need
-> >in this at all.
+> ---
+>   drivers/net/ethernet/cadence/macb_main.c | 80 ++++++++++++++++----------------
+>   1 file changed, 41 insertions(+), 39 deletions(-)
 > 
-> I'll remove this union and use container_of(dev, struct i2c_client, dev)
-> or container_of(dev, struct spi_device, dev) where the specific client type
-> is needed.
-
-This is in correlation with the regmap proposal.
-
-...
-
-> >> +static ssize_t tm16xx_map_seg7_show(struct device *dev,
-> >> +				    struct device_attribute *attr, char *buf)
-> >> +{
-> >> +	memcpy(buf, &map_seg7, sizeof(map_seg7));
-> >> +	return sizeof(map_seg7);
-> >> +}
-> >
-> >Can we use LINEDISP library?
+> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+> index d413e8bd4977187fd73f7cc48268baf933aab051..7f31f264a6d342ea01e2f61944b12c9b9a3fe66e 100644
+> --- a/drivers/net/ethernet/cadence/macb_main.c
+> +++ b/drivers/net/ethernet/cadence/macb_main.c
+> @@ -2474,32 +2474,30 @@ static unsigned int macb_rx_ring_size_per_queue(struct macb *bp)
 > 
-> I considered this but have two concerns:
+>   static void macb_free_consistent(struct macb *bp)
+>   {
+> +       struct device *dev = &bp->pdev->dev;
+>          struct macb_queue *queue;
+>          unsigned int q;
+> +       size_t size;
 > 
-> 1. It creates attributes under a virtual "linedisp.{n}" device,
-> which conflicts with the coherent LED sysfs design
-
-It creates the specific attributes for the 7-segment HW, So look at it
-from this angle. We have well established library and we expect 7-seg
-drivers will use it to make sure that user space may be written in uniform
-way.
-
-> 2. Messages scroll indefinitely. There should be control for single-pass scrolling
-
-If we miss that, add it to linedisp. I wouldn't mind, actually I will be in
-favour of the development of that library.
-
-> I'm willing to contribute improvements to line-display if needed,
-> but this depends on resolving the main LED design question above.
-
-...
-
-> >> +		display->num_digits = 0;
-> >> +		fwnode_for_each_child_node(digits_node, child)
-> >> +			display->num_digits++;
-> >
-> >Don't we have a _count API for this?
+>          if (bp->rx_ring_tieoff) {
+> -               dma_free_coherent(&bp->pdev->dev, macb_dma_desc_get_size(bp),
+> +               dma_free_coherent(dev, macb_dma_desc_get_size(bp),
+>                                    bp->rx_ring_tieoff, bp->rx_ring_tieoff_dma);
+>                  bp->rx_ring_tieoff = NULL;
+>          }
 > 
-> I'll use device_get_child_node_count() instead of manual counting loops.
-
-fwnode_get_child_node_count() I assume you meant.
-
-...
-
-> >> +	dev_dbg(dev, "Number of grids: %u\n", display->num_grids);
-> >> +	dev_dbg(dev, "Number of segments: %u\n", display->num_segments);
-> >
-> >I didn't get this. You mean that they are not strictly 7-segment ones?
+>          bp->macbgem_ops.mog_free_rx_buffers(bp);
 > 
-> The terminology is confusing - "segment" is used both for 7-segment digits
-> (which are indeed 7-segment) and for controller matrix coordinates
-> (grid,segment) from datasheets. Controllers support varying numbers of segments
-> For individual LED icons, not necessarily related to 7-segment displays.
-> I'll add a comment to clarify this distinction.
-
-Hmm... Maybe try to rename these 'segments' to something else, like 'hwseg'
-(find a better name).
-
-...
-
-> >> +	/* Initialize main LED properties */
-> >> +	if (dev->of_node)
-> >> +		main->name = dev->of_node->name;
-> >> +	if (!main->name)
-> >> +		main->name = "display";
-> >> +	device_property_read_string(dev, "label", &main->name);
-> >
-> >My gosh. This is done in the LED core if we even need this...
+> +       size = bp->num_queues * macb_tx_ring_size_per_queue(bp);
+> +       dma_free_coherent(dev, size, bp->queues[0].tx_ring, bp->queues[0].tx_ring_dma);
+> +
+> +       size = bp->num_queues * macb_rx_ring_size_per_queue(bp);
+> +       dma_free_coherent(dev, size, bp->queues[0].rx_ring, bp->queues[0].rx_ring_dma);
+> +
+>          for (q = 0, queue = bp->queues; q < bp->num_queues; ++q, ++queue) {
+>                  kfree(queue->tx_skb);
+>                  queue->tx_skb = NULL;
+> -               if (queue->tx_ring) {
+> -                       dma_free_coherent(&bp->pdev->dev,
+> -                                         macb_tx_ring_size_per_queue(bp),
+> -                                         queue->tx_ring, queue->tx_ring_dma);
+> -                       queue->tx_ring = NULL;
+> -               }
+> -               if (queue->rx_ring) {
+> -                       dma_free_coherent(&bp->pdev->dev,
+> -                                         macb_rx_ring_size_per_queue(bp),
+> -                                         queue->rx_ring, queue->rx_ring_dma);
+> -                       queue->rx_ring = NULL;
+> -               }
+> +               queue->tx_ring = NULL;
+> +               queue->rx_ring = NULL;
+>          }
+>   }
 > 
-> This relates to the LED subsystem integration question. If my design approach
-> is acceptable, I'll review the LED core implementation to avoid duplicating
-> this logic if possible.
-
-I think if you integrate LED for special LED icons and linedisp for 7-segment
-into a single driver, it's fine. I just can't speak about LED icons case.
-The 7-seg LGTM (assuming linedisp and other existing APIs/ABIs to use, if required).
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> @@ -2541,41 +2539,45 @@ static int macb_alloc_rx_buffers(struct macb *bp)
+> 
+>   static int macb_alloc_consistent(struct macb *bp)
+>   {
+> +       struct device *dev = &bp->pdev->dev;
+> +       dma_addr_t tx_dma, rx_dma;
+>          struct macb_queue *queue;
+>          unsigned int q;
+> -       u32 upper;
+> -       int size;
+> +       void *tx, *rx;
+> +       size_t size;
+> +
+> +       /*
+> +        * Upper 32-bits of Tx/Rx DMA descriptor for each queues much match!
+> +        * We cannot enforce this guarantee, the best we can do is do a single
+> +        * allocation and hope it will land into alloc_pages() that guarantees
+> +        * natural alignment of physical addresses.
+> +        */
+> +
+> +       size = bp->num_queues * macb_tx_ring_size_per_queue(bp);
+> +       tx = dma_alloc_coherent(dev, size, &tx_dma, GFP_KERNEL);
+> +       if (!tx || upper_32_bits(tx_dma) != upper_32_bits(tx_dma + size - 1))
+> +               goto out_err;
+> +       netdev_dbg(bp->dev, "Allocated %zu bytes for %u TX rings at %08lx (mapped %p)\n",
+> +                  size, bp->num_queues, (unsigned long)tx_dma, tx);
+> +
+> +       size = bp->num_queues * macb_rx_ring_size_per_queue(bp);
+> +       rx = dma_alloc_coherent(dev, size, &rx_dma, GFP_KERNEL);
+> +       if (!rx || upper_32_bits(rx_dma) != upper_32_bits(rx_dma + size - 1))
+> +               goto out_err;
+> +       netdev_dbg(bp->dev, "Allocated %zu bytes for %u RX rings at %08lx (mapped %p)\n",
+> +                  size, bp->num_queues, (unsigned long)rx_dma, rx);
+> 
+>          for (q = 0, queue = bp->queues; q < bp->num_queues; ++q, ++queue) {
+> -               size = macb_tx_ring_size_per_queue(bp);
+> -               queue->tx_ring = dma_alloc_coherent(&bp->pdev->dev, size,
+> -                                                   &queue->tx_ring_dma,
+> -                                                   GFP_KERNEL);
+> -               upper = upper_32_bits(queue->tx_ring_dma);
+> -               if (!queue->tx_ring ||
+> -                   upper != upper_32_bits(bp->queues[0].tx_ring_dma))
+> -                       goto out_err;
+> -               netdev_dbg(bp->dev,
+> -                          "Allocated TX ring for queue %u of %d bytes at %08lx (mapped %p)\n",
+> -                          q, size, (unsigned long)queue->tx_ring_dma,
+> -                          queue->tx_ring);
+> +               queue->tx_ring = tx + macb_tx_ring_size_per_queue(bp) * q;
+> +               queue->tx_ring_dma = tx_dma + macb_tx_ring_size_per_queue(bp) * q;
+> +
+> +               queue->rx_ring = rx + macb_rx_ring_size_per_queue(bp) * q;
+> +               queue->rx_ring_dma = rx_dma + macb_rx_ring_size_per_queue(bp) * q;
+> 
+>                  size = bp->tx_ring_size * sizeof(struct macb_tx_skb);
+>                  queue->tx_skb = kmalloc(size, GFP_KERNEL);
+>                  if (!queue->tx_skb)
+>                          goto out_err;
+> -
+> -               size = macb_rx_ring_size_per_queue(bp);
+> -               queue->rx_ring = dma_alloc_coherent(&bp->pdev->dev, size,
+> -                                                   &queue->rx_ring_dma,
+> -                                                   GFP_KERNEL);
+> -               upper = upper_32_bits(queue->rx_ring_dma);
+> -               if (!queue->rx_ring ||
+> -                   upper != upper_32_bits(bp->queues[0].rx_ring_dma))
+> -                       goto out_err;
+> -               netdev_dbg(bp->dev,
+> -                          "Allocated RX ring of %d bytes at %08lx (mapped %p)\n",
+> -                          size, (unsigned long)queue->rx_ring_dma, queue->rx_ring);
+>          }
+>          if (bp->macbgem_ops.mog_alloc_rx_buffers(bp))
+>                  goto out_err;
+> 
+> --
+> 2.50.1
+> 
 
 
