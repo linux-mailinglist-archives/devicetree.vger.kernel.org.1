@@ -1,221 +1,135 @@
-Return-Path: <devicetree+bounces-209438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9660B37239
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 20:27:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B094FB372D7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 21:07:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CEFB366693
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 18:27:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 654085E5016
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 19:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1CD36C071;
-	Tue, 26 Aug 2025 18:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B838A368092;
+	Tue, 26 Aug 2025 19:07:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DmShNBCh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bH6gl+pR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC1C276025;
-	Tue, 26 Aug 2025 18:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CFD1F2380;
+	Tue, 26 Aug 2025 19:07:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756232838; cv=none; b=R0+Yq1FlCSVeg/bVKF4hRdrngD7X7W1UHCW9/t8ylmxhyXEf8lQVgTF4SY0be0yjzv49wCnLHAoE7nIOirlyzfgepvMcC4QqXEN4UtWAzLGqkMilORtt63eu4ehXyVnc+Q0avvLGSQvqpZQF1iFqOjlMRtoiBSzZPGo4DOvqu3Q=
+	t=1756235244; cv=none; b=dX8WlMHMJlzdHPoRdS905D1R9fiQ7rN2+VDkn+AaoM5TuGN/DaccjCGEyn5XxsFKR6e/klGzJ9HZ67qq5tP8qoH8vPejP6xmvojcj0IFi9vGU2xR3Vb6QxTtgzLzeH9dCsL2zx1uVzGp6cFJPKoBXzMaJ95R6m27QA3EUl0ncuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756232838; c=relaxed/simple;
-	bh=E789PJXmBgx1iMW6wqgstAHKJ0XRd4eGMlebjy5fP2Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TW9ITxPEsPMm+j7urraaBwio1RWtXEm1fI75Jc2gtjn2BdIzWD45Dw8i2Q0SgiFTj2I3BY7/v6LHXmh03mfhN9dejDMwnI0UcOFiZUpnJshbZflhSi+TWG0glsDTtGYo+rCO3/3L4RlmAhGQSuMH/sUbpR3t6WivQN/cpX+uf5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DmShNBCh; arc=none smtp.client-ip=209.85.218.52
+	s=arc-20240116; t=1756235244; c=relaxed/simple;
+	bh=dzXDeml6LhaeVEW/Cm7+AKped8Y7Fz4TmxTIOd9241g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CQpebswYMhe/DcYBzUM6jBoFZuMWeFtAbILWxnHix8naBR7JrnyYFTvHO/o+55NvxASw/vWb9akgH/Bd0sdnsa3e2TFqnHPcvSg6UsitoNPANyDbulXby+1Maa9dZmk6ANRWUE3+qNMjknY0hYO4vjf5o0Lu4lpzGVx+m09ikAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bH6gl+pR; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-afcb7aea37cso787082166b.3;
-        Tue, 26 Aug 2025 11:27:15 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afe7f50b605so41069466b.0;
+        Tue, 26 Aug 2025 12:07:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756232834; x=1756837634; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E789PJXmBgx1iMW6wqgstAHKJ0XRd4eGMlebjy5fP2Q=;
-        b=DmShNBChWoGXxcG2iegaQ6D5EzWNEvzmH4l4hkHIdke/4KuHrbVILXAP/HewEmVN6d
-         4wJpkc5VJ2f5fEpDBai+KqTaul1G096oAqt1dY9F7U/pQqXNa8eOw+DP/esSMZqb79k7
-         x5RnO/W4qbS/ZRlzE1i0QAu2xNB54ynKaKEXnKLVrXuHUYkJkDN74h/M++8+hdMazR0O
-         qnV8SaQ3BxTayh8yVZ7H386CJ25lWodVwEjcNsgjCb0w6IN6oaCjukE4mKvVe+HRIDqj
-         J1sq1GX2R0kAICCK+DKmwlQoxTEaQR5Dlpk9eNIeq8a67SNDh/T83qnr4uVWPHb0zLfG
-         zdfw==
+        d=gmail.com; s=20230601; t=1756235241; x=1756840041; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gzIB/UF+2pna+ufI5/Fze+18H1TaH1WQC6eyvlwlp4o=;
+        b=bH6gl+pRr82O17aee7KH2ype2qn3wWLP8S+Uk2yh9fdTThGEaAs+zj3TtGsbA+OxNd
+         vNSsV+KrxOVLeC2wwjdS94GbaIZ9UkZPtUHKKgJkF5uJd8QK4J0H03LPWd2VnX/FNtwk
+         jfaSouUqlypcxh4Jhr6QwFCW5w7tHf3dB+gSBDibxgrOq1snQ910ywu9tPSeL/VTO2D3
+         CeziIjX/cFjmjmSeykgrpbzj5g0+HtLw4DhO7HJ2Ih9bzJjLG0ia+BK9zc+vsv0hptdv
+         IE7J/DKGUd48JQrZv2RdLYUXXzDrRmKO0CtvXsz3cLhultyxkhdh41ZpcbT9DnFWJLF5
+         IjNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756232834; x=1756837634;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E789PJXmBgx1iMW6wqgstAHKJ0XRd4eGMlebjy5fP2Q=;
-        b=Mi+yQRV0+fpOvsP9Ugccu6lVPkPFUKBmXsENCHeqwpcnrAmmCmb+kTdY8FegVj0RBz
-         8ZC4ZMKkYwP61s2tmR9SCTJGeHKUThhisJ/ZdKsu9F6qlVCl+yb8G0rhFd7cXRrjqmij
-         M4hNI7qk457RKVh2nm9DlshoXPPRZ75lB5rx8xLRlbQ6Ih37B790iHQQFMHXWBkxj8NX
-         BT4+y11Q5BsdoNGdiqwRpgGNvy2Ams8ioYceQ8Ed9Q+iz2MkhZ84zaREdp0iDdeo9iRJ
-         d/Dc4DwxED8pu0PV058aW06nNTEeOCopqLwBEmhZiIfe/KQlHeVu2rynl3fGvxyWK83J
-         zHUw==
-X-Forwarded-Encrypted: i=1; AJvYcCUKgrBv+C9xrrQ6WR6x4x1TL0Wb16zXzksXYddFOpqKK9MU/Kn0pzYWF0JuSgiH9qONkkUQUWYg9nTrGQ==@vger.kernel.org, AJvYcCWpagcO3eqMJF94QKxncMMRK90D2JCbvXWBiEsf6Zok0eRBdW2pDll0Tl7Jm7EByfUdkyelLPVDZNs1@vger.kernel.org, AJvYcCXeguksOhyCOXX6tyVq2gjEiH4LMrNYp5su/LJJ/sef7g/bpMP5sl0zXfwxPSA1O71MIFk1xe0Vcb1icA14@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzQSYXe/vimWFCv42i5kE3YJl8/afM8hM8LOxUIufNpRxcfTrZ
-	E2VWlno//WLRw/RkpcONSlVfbE1yRfgsI41Gj6k4pmjRCJ1N19hAgDD4hw4QzKTLw+MdGRZwkFY
-	LxTZf2Lz4JvwFmzKjYMgLlJDXov2u/x8=
-X-Gm-Gg: ASbGncu68tlaZBXX/DhBULcFd464X+a/tkyfW4ZqLco3ZrljYcAxr1bR/AEO9vQH2fz
-	jLuIrJbrCzZeoN1A8WpfDbuQJ8BZHPJNZLPWWTZQ87MQf74KgorN0Nssuzj/YnwW4RCTY+Qz8/1
-	XQRdDfC8GVQXpUijQTHlvwVWxMYMLgCyiu/hSzcHUuhDkrxrEpje95f8NfhtDM4rqhBgPTQ03Ew
-	NVt2wE=
-X-Google-Smtp-Source: AGHT+IHDvmUrJMHqEARruzlIdjBBChsbG3J4CXo9pSCpJkcLT89+DCf/fRwXFMMmxAKHdgn/+LIgFJFkwdhntgXlvL4=
-X-Received: by 2002:a17:907:fd15:b0:af9:68d5:118d with SMTP id
- a640c23a62f3a-afe296ec584mr1580781266b.58.1756232833675; Tue, 26 Aug 2025
- 11:27:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756235241; x=1756840041;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gzIB/UF+2pna+ufI5/Fze+18H1TaH1WQC6eyvlwlp4o=;
+        b=E8u6ahXpO5D9d3YNd472OtGS8RnsKHjx/F8EKTD/R52FvkwzqM0Wyd4w9tJ7Sf6w54
+         HChvWBhIrKEeKFqw3p75TzQmDL32vnIRK5imxW5ttrrMEIgJ2i0ETlSIfX4VHfOlBPZs
+         PYZD6LNNbeve+8dVnaUfBWohOSPNpcfpPLCTSPBwYDrpc0sUMbp8s25xAx2bYPd6iFhI
+         jjBD6oEOQBoeE+mHgihy0sbIobRkgEJR3BvWkT0Ufu9uEYHwK4amsJ9PzOPiBbaBBapL
+         os4qx01H0Y7InnAKMRmCO3Ww06fgAArVIwB5JnQAMZx6dlCtmES1M1a3YtzzUX8dyNTY
+         uuWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUJ9dnkMK3jiw46FXX8cukwWYl5nH1BaVnOJT4FMe1mY09LM7ZmfgxPSB1CE1uW6Xw248fwTBmQ@vger.kernel.org, AJvYcCUYmRkQITgtAoXhO+wVWaz1PCBQ68Ke94fApSMxgLtpIVQMzzrMrrSCvyO1uZpkrRu+XIyJ/Jnq9Trn@vger.kernel.org, AJvYcCXvAE5wBNp1thIXkCPsbm0LY7ygHwYRJ8emXgdna7KYaeHwNjHC9hRzjki0Bh4JaGLcr2EhTNc59P8II5b8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZUnXNi4JUPF4REi4FT8iLjsWBlSujtKENwP+t5uY9kjiAc3gH
+	Tj6LogCwFjSL4UhAk76GowxR0UrjZg8gDdf7aAaicmC6P+PyrtipXIvQ
+X-Gm-Gg: ASbGncscaiwShyAA8rpynRZvClFG9Yt/P/TdyLEvZh4PH0bYAUXNTqsN4Hvd2nnrcpM
+	yRjl7GLlD9T8DcKpsD4JK/SleG6akKrGicHCHzZ7lnio6I3ZusgSlcrh+AJiSN7bCu/0p2Zp7pP
+	KxICBadqTZw3tRtwRvLocowFlGSVCtfXfZXNG+LYyMBrTpc3Opk5o9UUGuuhN/BHfQqJiBUcKWv
+	JejC2jojVveASo8rwr9Q50aepdWdCyGht5LWzhT6wHkLPqtE+uEgXVgy+9MOxopfdL3qRMXhBx1
+	EGsyNb+IiYxon4lcG8JqG2S/DiCumoXZmTuNYgmwVNGFn4DQrMWJlZGjggfwtK+ILPhrUUqtKzL
+	wi2x0DCEWv+Ym2Ys4gSvJPHw1xw==
+X-Google-Smtp-Source: AGHT+IHAtJyoC6LCpsX+9ixvxn5yPrzcVcxGfg2wMfyxcBXmm1gz09+B0+1LESU0l7oQqz0ECcArmw==
+X-Received: by 2002:a17:907:6d16:b0:af9:3d0a:f379 with SMTP id a640c23a62f3a-afe2875d2f7mr889917866b.0.1756235241024;
+        Tue, 26 Aug 2025 12:07:21 -0700 (PDT)
+Received: from skbuf ([2a02:2f04:d005:3b00:a59a:f42b:5034:e072])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afe89bd7acesm417348066b.73.2025.08.26.12.07.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Aug 2025 12:07:20 -0700 (PDT)
+Date: Tue, 26 Aug 2025 22:07:17 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Yangfl <mmyangfl@gmail.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v6 3/3] net: dsa: yt921x: Add support for
+ Motorcomm YT921x
+Message-ID: <20250826190717.fkhj3qowvljsuvj6@skbuf>
+References: <20250824005116.2434998-1-mmyangfl@gmail.com>
+ <20250824005116.2434998-4-mmyangfl@gmail.com>
+ <ad61c240-eee3-4db4-b03e-de07f3efba12@lunn.ch>
+ <CAAXyoMP-Z8aYTSZwqJpDYRVcYQ9fzEgmDuAbQd=UEGp+o5Fdjg@mail.gmail.com>
+ <aKtWej0nymW-baTC@shell.armlinux.org.uk>
+ <CAAXyoMNot+aZ35Xtx=YiTEmGk_c8XT7VGiQ-DUn8T1vPUnO-9Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250825033237.60143-1-jefflessard3@gmail.com>
- <20250825033237.60143-6-jefflessard3@gmail.com> <aKx-w0QOOQPyy9pW@smile.fi.intel.com>
- <951E84EF-4ED7-4882-A5E2-6E3CD63E1E07@gmail.com> <aK3TIVbmFgv1ZiYs@smile.fi.intel.com>
- <A045103F-1F73-4AC7-9316-1AF906ECDC9E@gmail.com>
-In-Reply-To: <A045103F-1F73-4AC7-9316-1AF906ECDC9E@gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 26 Aug 2025 21:26:37 +0300
-X-Gm-Features: Ac12FXwsXMmalff8QiCMJGwIjweoZtHiL4WOjJI9phDTGAQQsKxuBEV6b6ZtS8Y
-Message-ID: <CAHp75Veb_tQ3QYybDqYvNDrfX36Ft_RM6LwwCie2qYdoZGZOQw@mail.gmail.com>
-Subject: Re: [PATCH v4 5/6] auxdisplay: TM16xx: Add support for I2C-based controllers
-To: =?UTF-8?Q?Jean=2DFran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Andy Shevchenko <andy@kernel.org>, 
-	Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAXyoMNot+aZ35Xtx=YiTEmGk_c8XT7VGiQ-DUn8T1vPUnO-9Q@mail.gmail.com>
 
-On Tue, Aug 26, 2025 at 8:38=E2=80=AFPM Jean-Fran=C3=A7ois Lessard
-<jefflessard3@gmail.com> wrote:
-> Le 26 ao=C3=BBt 2025 11 h 30 min 41 s HAE, Andy Shevchenko <andriy.shevch=
-enko@intel.com> a =C3=A9crit :
-> >On Tue, Aug 26, 2025 at 12:01:57AM -0400, Jean-Fran=C3=A7ois Lessard wro=
-te:
-> >> Le 25 ao=C3=BBt 2025 11 h 18 min 27 s HAE, Andy Shevchenko <andriy.she=
-vchenko@intel.com> a =C3=A9crit :
-> >> >On Sun, Aug 24, 2025 at 11:32:31PM -0400, Jean-Fran=C3=A7ois Lessard =
-wrote:
-
-...
-
-> >> >Can we use regmap for all parts of the driver? Why not?
-> >>
-> >> These controllers implement custom 2-wire/3-wire protocols that share
-> >> sufficient commonalities with I2C/SPI to leverage those subsystems, bu=
-t are not
-> >> fully compliant with standard register-based access patterns.
-> >>
-> >> Specific regmap incompatibilities:
-> >>
-> >> I2C protocol:
-> >> - Dynamic addressing: slave address embedded in command byte (data[0] =
->> 1)
+On Mon, Aug 25, 2025 at 10:14:58PM +0800, Yangfl wrote:
+> On Mon, Aug 25, 2025 at 2:14 AM Russell King (Oracle)
+> <linux@armlinux.org.uk> wrote:
 > >
-> >Isn't this called paging? Or actually we have also non-standard
-> >(non-power-of-2) regmap implementations, perhaps one of them
-> >(7 + 9) if exists is what you need?
+> > On Mon, Aug 25, 2025 at 12:38:20AM +0800, Yangfl wrote:
+> > > They are used in phylink_get_caps(), since I don't want to declare a
+> > > port which we know it does not exist on some chips. But the info_* set
+> > > might be inlined and removed since it is not used elsewhere.
 > >
-> >> - Custom message flags: requires I2C_M_NO_RD_ACK for reads
+> > The problem is... if you have a port in 0..N that DSA thinks should be
+> > used, but is neither internal or external, DSA's initialisation of it
+> > will fail, because without any caps declared for it, phylink_create()
+> > will return an error, causing dsa_port_phylink_create() to fail,
+> > dsa_shared_port_phylink_register() or dsa_user_phy_setup(),
+> > dsa_shared_port_link_register_of() or dsa_user_create()... etc. It
+> > eventually gets propagated up causing the entire switch probe to fail.
 > >
-> >Hmm... If we have more than one device like this, we might implement the
-> >support in regmap. Or, perhaps, the custom regmap IO accessors can solve=
- this.
-> >
-> >> SPI protocol:
-> >> - Inter-transfer timing: mandatory TM16XX_SPI_TWAIT_US delay between
-> >> command/data
-> >
-> >One may implement custom regmap IO accessors.
-> >
-> >> - CS control: requires cs_change =3D 0 to maintain assertion across ph=
-ases
-> >>
-> >> Regmap's I2C/SPI bus implementations use fixed addressing and standard=
- transfer
-> >> patterns without support for these protocol-specific requirements. A c=
-ustom
-> >> regmap bus would internally call these same helper functions without p=
-roviding
-> >> practical benefit.
-> >
-> >regmap provides a few benefits on top of the raw implementations. First =
-of all,
-> >it takes care about synchronisation (and as a side effect enables
-> >configurations of the multi-functional HW, if ever needed in this case).=
- It also
-> >gives a debugfs implementation, and paging support (if it's what we need=
-).
-> >And many more...
-> >
-> >> The explicit transfer approach better reflects the actual hardware pro=
-tocol
-> >> requirements.
-> >
-> >That said, please, try to look into it closer.
-> >
->
-> I investigated your regmap suggestions thoroughly:
->
-> Custom IO accessors:
-> While technically possible, TM16xx protocols create significant implement=
-ation
-> challenges:
->
-> - TM1650: Commands 0x48 (control) and 0x4F (key read) appear as I2C addre=
-sses
-> but represent completely different operations with different data structu=
-res.
-> Custom accessors would need complex command routing logic.
+> > Again... read the code!
+> 
+> What would you expect when you specify Port 0 in DT when only Port 1,
+> 3, 8 are available on the chip (YT9213NB)? Probe error.
 
-So, to me it sounds like mutli-functional I=C2=B2C device with two clients,
-hence would be two drivers under the same umbrella.
-
-> - TM1628: Requires coordinated command sequences (mode -> write command -=
->
-> control command -> data transfers). A single regmap_write() call can't ex=
-press
-> this multi-step initialization.
-
-I believe we have something like that done in a few cases in the
-kernel, but I don't remember for sure.
-
-> Paging/non-standard addressing:
-> TM1650's 0x68-0x6E digit commands could theoretically map to regmap pages=
-, but
-> the 0x48/0x4F control/read commands break the model since they're fundame=
-ntally
-> different operations, not register variants.
-
-Paging can be partial.
-
-> You're correct that regmap provides valuable synchronization, debugfs, an=
-d
-> abstraction benefits. However, implementing custom accessors for TM16xx w=
-ould
-> essentially recreate the existing controller functions while forcing them=
- into
-> register semantics they don't naturally fit.
->
-> Custom regmap implementation is possible but would add significant comple=
-xity
-> to achieve register abstraction over inherently command-based protocols, =
-while
-> the current approach directly expresses the hardware's actual command str=
-ucture.
-
-Okay, if you still think regmap doesn't fit this case, please provide
-a summary in the cover letter to describe all your discoveries and
-thoughts.
-
---=20
-With Best Regards,
-Andy Shevchenko
+It depends. Unless the driver has logic which behaves otherwise, the
+setup of user ports can fail and DSA will just skip them and bring up
+the rest. See commit 86f8b1c01a0a ("net: dsa: Do not make user port
+errors fatal"). The shared ports are more important and their setup
+failures do lead to a switch setup abort though.
 
