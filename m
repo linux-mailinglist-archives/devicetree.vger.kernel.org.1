@@ -1,144 +1,130 @@
-Return-Path: <devicetree+bounces-209185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3308AB351DB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 04:47:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9791B351EC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 04:53:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE596206B5E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 02:47:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1387B7B4216
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 02:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55153274B4A;
-	Tue, 26 Aug 2025 02:47:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1277D29B8CE;
+	Tue, 26 Aug 2025 02:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="D98vDBHd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="agN/Qt5e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBEBB1C8610;
-	Tue, 26 Aug 2025 02:47:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9D51BD9F0;
+	Tue, 26 Aug 2025 02:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756176460; cv=none; b=TBtE9eIEtEnuwUaee1MOlejJ8yzVK9mJsqsEGjEhBmwjDf2LP+G+sLjUAWZGwf6w/g7m2c37DZy7oK/+EsEQWf6Q72PbzHbD5sn+1TDxh0L3+iTgWMrTdqDNnD1oCBsPzNFcklw9eXmfKV1ZMRBlU5vHA3ev0sFTjPjtgFJCcLE=
+	t=1756176785; cv=none; b=qa1uy7LsLXzR14dJqCM/RXBVSd5/iPpVWA6TSkd4CiWwcZrKANHrmfd8Pvk9KwruUPyz78/x9g4xUvN9Wz/6vJTvD26OMz0bstiToGtjyNdgcdvKI53b7vEgI3eUZSPhrYmbehqGJO99Rf20QW3BXsTrbn9NXCfevZrQFOzbO9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756176460; c=relaxed/simple;
-	bh=Wm/2S21Pg6Nmoyskp843r48HknqB72yRjYDtSbAC9eI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OFGNIuHr5E+0ekOUOIx7m3EEkLhT7MZULYkQp3ymQA3w/xz/6wYVaKhVsmZPs8J07Yc1wiJDlMEd/ubuF+qUp3WrZVaNuiDkzyjC5WWfZaiN14OcDyqRG9AvdsQ48tP3aN4ZJdBPmj0Wz1RX3DrJy/1HFvOe6kd9yGgb9l8KdVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=D98vDBHd; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756176458; x=1787712458;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Wm/2S21Pg6Nmoyskp843r48HknqB72yRjYDtSbAC9eI=;
-  b=D98vDBHdVQiSsAWdYqa8G9n9+g2+p+qrSIAMoIQR+MDNj8uREv5nzUri
-   wi6qtgINiynikjMY638u2U1uz76pJY8qMHiSZ4jzVN7/m0sKaMpivEd1w
-   Dv9c7yeA9IsvU4Bi8gZ8kARpN8l3/CFPbuNvedc9gh01wgtc38ukSiwG/
-   dx2+q6GYT69tst8fAOBV3nWOB/O4wCdfPcTv+1qKGsgA59O2tXqa7oILo
-   MfeK5VxxaOLNKobEn+6BmCEr0yOsma4vTd92HLAtXbChTEH7AVWsaK10F
-   mlqU2RgC3Us3MPJvI8kneNOygajSo7frSLAdZnO7yRUozKG/oAm3Kgnxj
-   g==;
-X-CSE-ConnectionGUID: VrOeYicPSWm+O9I8dpiacA==
-X-CSE-MsgGUID: 0HV8kHJQTvielMcDZqsvcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="58467741"
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
-   d="scan'208";a="58467741"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Aug 2025 19:47:37 -0700
-X-CSE-ConnectionGUID: olyZ81apQuaoegO1K0ddNw==
-X-CSE-MsgGUID: gZmNKNo5SPmhtImu+Ik1wg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
-   d="scan'208";a="173760513"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by fmviesa005.fm.intel.com with ESMTP; 25 Aug 2025 19:47:32 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uqjic-000OB9-1g;
-	Tue, 26 Aug 2025 02:47:30 +0000
-Date: Tue, 26 Aug 2025 10:47:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Darren.Ye" <darren.ye@mediatek.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: oe-kbuild-all@lists.linux.dev, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	Darren Ye <darren.ye@mediatek.com>
-Subject: Re: [PATCH v7 09/10] ASoC: mediatek: mt8196: add machine driver with
- nau8825
-Message-ID: <202508261004.7adPXk4m-lkp@intel.com>
-References: <20250822125301.12333-10-darren.ye@mediatek.com>
+	s=arc-20240116; t=1756176785; c=relaxed/simple;
+	bh=jIKwXCuyetH00kw8QDzM9LpC7E0LAPwl76vifYGzwbs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nj2HnNCtI1PTs7NarIwggJZcfhebig0n6CCPE72h2i2HQ63ESNEeRJmkoh1Rz9uBYktZigslxeuXiINhgjq9kj2LBcnttNftpfBBMulAM36jMfuAU7nZHMiI/pH2kcR8wrdnWHzdIf/EBD/Gtun8I7De+BpwY85uTOZ1tVNTQVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=agN/Qt5e; arc=none smtp.client-ip=209.85.161.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-61bc52fd7a4so3528798eaf.0;
+        Mon, 25 Aug 2025 19:53:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756176782; x=1756781582; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7wiU3FfQ1ao4ae7gTdcb97fPlhi1QmyJ3mzBpnSI75k=;
+        b=agN/Qt5esjuIXaWsHgzEguVak8lChVWYnMsiUqvs25bwHj2FG0ZhXRhIdYicLIWTNR
+         0IcRAZrQ2f0KdCN895u1tN3RGoSAMhCtenYQyPvFKKRwe3kpc3jGoKSxOk0lX3v0y2KG
+         5VjM6OYa9HpkK9F6XwkQhOQ+y/mTCLtpRI6K7Q3fAM2NmiicMayop1vwmy3ukUrPqd1x
+         ncO7pE14bOTwM26uN3iq+/FcLHIjZYmGVrSZqS+Atk/jdVR4tktb1Q8xh9cISGIspKAS
+         wKO5+TT90QcHfn6YHpSzJmaGyN0aLlvZYLWgEbr+KiW47D8+IMhsTTwqInV8cQIfICR+
+         Tuww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756176782; x=1756781582;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7wiU3FfQ1ao4ae7gTdcb97fPlhi1QmyJ3mzBpnSI75k=;
+        b=NPzt1A1NOxqZRLZo1nrODKp+US2okFTxNMun/qLLrprJj93LTEXOmU823IMeab+bny
+         8EbAD08uvmjwpys08JYtoi0Hj1EXiBYhR5FiLLVVPvwsQwkcaUZWokQn1D7mhMB4Sp2O
+         Z1RsAuAKR+x6kyWYczuRUutq6BJyGvyHzIJfKtTVj5TD+OsgsCOBc1b7+tj3xzil7BLV
+         UAeUN8ZorpC7Ooitd9i93/ViFzCO/LU0x7ZzIfzsCY8o62gonOFXjA7xL98KfrjLTMZQ
+         w4JBRtjXVR65zXCqnoUSCk906AqnnVthgh3MPOs8ZJU70+23fZgHy3yv+lF2eyE2Ka3G
+         Y8Uw==
+X-Forwarded-Encrypted: i=1; AJvYcCVJnVFO4P4Mj3f730/IYhja/vhXQdKfzMdghNRhp03TBUP20UZnzwVEtMDIKzQ9stChix9poa73ydlk@vger.kernel.org, AJvYcCWcOPNk++M0g7znkhg9GS7oWg+Pxunn7H0/la8Bv/0a0IjSttI1TirAScqw3wAlcL+9GU/slEjHa18NvJ7n@vger.kernel.org, AJvYcCXCGwlFjD9K86sAjQ2ouKr9777xbaA3yJP3cLcjk+bzO1x1REbE3895AM7RhY976qbdtngToOxrwn/W@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2M5UFM6cwUqLmnGpgfR5+/57A2LFPgMDsSY+wFli9xOmv+YxN
+	cvqVgYZCk1dCvvlhaEZ4/pjgI0ZHqT7xyjmbA/TYRZ3xm8hOrdEaGNmew9hhr2v893DYL1OIs0m
+	zG+GHdmvvF6fZ+6m8+rE22rQhOhWT4R8=
+X-Gm-Gg: ASbGncsbq2ryoybsO3Uu5Wb1uKM6R5bB2T+1kH9IzIp7a2AJ4cmAPfMshEpqgeuCVdI
+	iz8JPe0po2FoQtzDzeTdWVwlkBYn6pHaDUDvXEHBlQasjYZGgQrrc9q8qOftVnffGAn0O51bWMh
+	86lY/KJ9y3c9wPGjEsqzdWPrPBlqIj7V2Qat36S+5YPzolek8YearPSZIouedQjwQ3G1cTVLiQS
+	qy5I/QXbWC1+NJ67hQor/Sh5NJJx1y5NYVqFqa2MA==
+X-Google-Smtp-Source: AGHT+IGO9u5xmjKFwVj2+DEw6IkIDeQabtz+UPKNGARUbp7G6/6nHgULH1RPqxPQYH/lc3vlw+v8T4vUHEbVjBHCso0=
+X-Received: by 2002:a05:6808:6807:b0:437:75ea:6c7b with SMTP id
+ 5614622812f47-437be07c682mr1181796b6e.24.1756176782462; Mon, 25 Aug 2025
+ 19:53:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250822125301.12333-10-darren.ye@mediatek.com>
+References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
+ <20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
+ <aKXW5pGiN18DyIZ7@smile.fi.intel.com> <aKaMPMnGRyvKqTny@dixit>
+ <CAHp75Vdw5X1Y057fpGjdvVGwKq0x0UBdm8py+m+55RbzXi1PJw@mail.gmail.com>
+ <aKfYlP-yWdQi34db@dixit> <CAFmh=S0gAB93Gqnrt9NdtLA=cjOcYwy6+ECnwH-j9sN_sZYjZw@mail.gmail.com>
+ <20250825105032.45f33b12@jic23-huawei>
+In-Reply-To: <20250825105032.45f33b12@jic23-huawei>
+From: Dixit Parmar <dixitparmar19@gmail.com>
+Date: Tue, 26 Aug 2025 08:22:47 +0530
+X-Gm-Features: Ac12FXx9WxjdZAKTizoXrZkyNmq2ndi8tUUkkuWHCkB0726aB5x6PzxNuf8VLqA
+Message-ID: <CAFmh=S1hdCMnWYzHsvTDb4C1vvinMCeG_=1m-N+psw5tp4nm7A@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
+ TLV493D 3D Magentic sensor
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Andy Shevchenko <andy.shevchenko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Darren.Ye,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on broonie-spi/for-next robh/for-next linus/master v6.17-rc3 next-20250825]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Darren-Ye/ASoC-mediatek-common-modify-mtk-afe-platform-driver-for-mt8196/20250822-210108
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20250822125301.12333-10-darren.ye%40mediatek.com
-patch subject: [PATCH v7 09/10] ASoC: mediatek: mt8196: add machine driver with nau8825
-config: arm64-randconfig-r131-20250826 (https://download.01.org/0day-ci/archive/20250826/202508261004.7adPXk4m-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project d26ea02060b1c9db751d188b2edb0059a9eb273d)
-reproduce: (https://download.01.org/0day-ci/archive/20250826/202508261004.7adPXk4m-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508261004.7adPXk4m-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> sound/soc/mediatek/mt8196/mt8196-nau8825.c:183:33: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected unsigned int to @@     got restricted snd_pcm_format_t [usertype] @@
-   sound/soc/mediatek/mt8196/mt8196-nau8825.c:183:33: sparse:     expected unsigned int to
-   sound/soc/mediatek/mt8196/mt8196-nau8825.c:183:33: sparse:     got restricted snd_pcm_format_t [usertype]
-
-vim +183 sound/soc/mediatek/mt8196/mt8196-nau8825.c
-
-   175	
-   176	static int mt8196_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
-   177					  struct snd_pcm_hw_params *params)
-   178	{
-   179		dev_info(rtd->dev, "fix format to 32bit\n");
-   180	
-   181		/* fix BE i2s format to 32bit, clean param mask first */
-   182		snd_mask_reset_range(hw_param_mask(params, SNDRV_PCM_HW_PARAM_FORMAT),
- > 183				     0, SNDRV_PCM_FORMAT_LAST);
-   184	
-   185		params_set_format(params, SNDRV_PCM_FORMAT_S32_LE);
-   186		return 0;
-   187	}
-   188	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> > > > > > >  st_magn-$(CONFIG_IIO_BUFFER) += st_magn_buffer.o
+> > > > > > >  obj-$(CONFIG_IIO_ST_MAGN_I2C_3AXIS) += st_magn_i2c.o
+> > > > > > >  obj-$(CONFIG_IIO_ST_MAGN_SPI_3AXIS) += st_magn_spi.o
+> > > > > > >
+> > > > > > > +obj-$(CONFIG_INFINEON_TLV493D)             += tlv493d.o
+> > > > > > > +
+> > > > > > >  obj-$(CONFIG_SENSORS_HMC5843)              += hmc5843_core.o
+> > > > > > >  obj-$(CONFIG_SENSORS_HMC5843_I2C)  += hmc5843_i2c.o
+> > > > > > >  obj-$(CONFIG_SENSORS_HMC5843_SPI)  += hmc5843_spi.o
+> > > > > >
+> > > > > > I haven't got the ordering rules here and in Kconfig. Can it be alphabetical?
+> > > > > From what I can see, the order is alphabetical based on the CONFIG option in the
+> > > > > Makefile and Kconfig, and I kept CONFIG_INFINEO_TLV493D after CONFIG_IIO_ST*.
+> > > > > Isn't it in correct order? or my understanding is incorrect?
+> > > >
+> > > > I dunno, The file name there is with the vendor prefix, in many cases
+> > > > the configuration option is with vendor prefix as well, but the file.
+> > > Hi Jonathan, Can you please suggest best possible way here?
+> > Hi Jonathan, When you get a chance, please share your thoughts on this.
+>
+> No hard rules on this.  We should probably make some but don't have
+> them yet, so try to go with what seems most common in the particular file.
+>
+> Jonathan
+Okay. I believe we are good considering most of the drivers are having
+vendor prefix,
+so does this driver too, and its currently in correct alphabetical
+order. Considering
+the alphabetical order followed is for CONFIG options.
+Thanks,
+Dixit
 
