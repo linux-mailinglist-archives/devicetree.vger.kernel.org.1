@@ -1,142 +1,138 @@
-Return-Path: <devicetree+bounces-209261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 976D1B3566F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:09:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B1D6B35672
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:11:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8ACB0189F6FF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:09:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9E1B164117
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC397286D4E;
-	Tue, 26 Aug 2025 08:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B88B2E9ED7;
+	Tue, 26 Aug 2025 08:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="axxKgrpi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UyWqIOHq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A582820DC;
-	Tue, 26 Aug 2025 08:09:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756195754; cv=pass; b=DgscUYm43V4Iotv2MFOo8MnF9lpDZaP8D5EEOS+daEr4sg8yxllvGkkzaCcoOQZz3LHPRodDC1plWqXOX2qO5h0OIvRHy/1cyvOKv10zZZ4koqkdApB30Gyqase4KBAb4+7khU3kYvXHI6SIVL9fiwdfcXLa+xBomf2Z/u5Q+yM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756195754; c=relaxed/simple;
-	bh=pS0giqbxEtwfcfpUpDjAvN9dQBh7w0iJSZvbZZgwE8k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=GpDKsq4S7r7tuKFbpq6Ptv4/Z2YRo8clz7NM54Bt0Ok9FUY4qTXSkkNU32pm9Q2efn6oV677AmJm/mkOd7BmsnLEHSMcbbIEkxUv0Icopai1dR6vtaLNt88iecWQkVnA985rUKIQOkLLSHuHtGZ1qlDboK84oZyjLRSDoh9WH0A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=axxKgrpi; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1756195730; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=HQT7tDXC/yWwR8w6bz2TMYXR6rQDcAJexCzbhZsVebCfj85wkK5c3mZ3rbJEX/FjfBwowuPO3wIxnTdPhamDRigWpije91EZViPco6iyGcgOxowyy4QGkvm1jQ4nB4xgm/zeqrPJnBd6UMWJaZA+szvgV9N8iNMuPdvfDaAz0DA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1756195730; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=PjionKT6OwbRK0J6AUKOW0mIzZnze/DXEyeszRo0i8U=; 
-	b=HzmJv0eSVmM8YX/NhQ9J9hvL8MyPfepRjKpKhV991yQsSbMAkyYsOS2jabB9Vkj4CvUgFU7EG11brpvOrZMQY/XQF3NX0frTyK0RO51sQo6LKRV5rX+KqOeBO/6DKlAQaNvzcrizUUEmIHD0H+VCKzFYM5ijKI6Iw1oV245Jx0Y=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1756195730;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:To:To:Cc:Cc:Reply-To;
-	bh=PjionKT6OwbRK0J6AUKOW0mIzZnze/DXEyeszRo0i8U=;
-	b=axxKgrpiEQTwmD048MbUk1jSWzdYLEB2NtX7ls5Q/aX8gtKFMR8+ffhqKkkKkhsy
-	D2YiMEz0zgRDEWilKSx6Rr6/0paNgItNWJ8Rg2o4YZ8QEqyTUA6pUlCx8ILpAuVhEdd
-	rsDVBcgr1BH5CIgHEp0MstCmtxzHj7dCshUAU+/g=
-Received: by mx.zohomail.com with SMTPS id 1756195727126157.99311646141769;
-	Tue, 26 Aug 2025 01:08:47 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Tue, 26 Aug 2025 10:08:36 +0200
-Subject: [PATCH] arm64: dts: rockchip: fix second M.2 slot on ROCK 5T
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E449B18A6AD;
+	Tue, 26 Aug 2025 08:11:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756195870; cv=none; b=qg2qdYXX7Z4PRBhxS4JYw6byA2wsNuwzlmS/JkXz0asPrG/sZAxF4c5zOytBisRIe/cUBfvkTq39ZJnYYPGepIA0TPSxJkRUdc4gtccSnIQghoqPs2+0RuLVLW4IBpJvXcPx0Ar2DywqLD3mekNo8XvPAFfvpyKRGrP8PlGaLUM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756195870; c=relaxed/simple;
+	bh=KsddloKoUCQZm0lpBEkjLyAKdvQi4ATkyfiWQKdGr5o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ECpeepw+qYn13GCm9mRrX+p3SxjnV3wK+0j7RFXa9out6e7QiI6EuobvcxmUzzoQ8H5wjRieg8fC4ARPiT2Jh9ZCBdiiSWUKoGeyD8WyR7XvAoPKwkX9eRky6UfwAip80bRB0YJ2il4yhV2Ua2f1FxAivr9eVCfrDSR0AacQPjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UyWqIOHq; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-afcb72d51dcso723092566b.0;
+        Tue, 26 Aug 2025 01:11:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756195867; x=1756800667; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4aX7FenfyrBV1mKFKmXZQBk55IyzLqtyKU5LAZ0/lVg=;
+        b=UyWqIOHq2fEKP7bJLNPNdR2oEy8//sECThBxVuN33OANXX3HhGv6nBFTAN3ADzJwAq
+         ZwiY7+fNzA76w0VDhUDoaS9d1V/aPgGJrO3qvndFbAQ+bJf/U0uAjXrXqSf/na+kJhpm
+         lzujA6dGaGBKGdL8QV7gkNJ1lTRBNWVTrcYP/KrCzqJaW4fRFUlF4SWGYTxsVlNNNqHo
+         a79xo/uw2BU3LB8klUeObbdaHJ9ugxy7zQOwNF/RAaLk+K00S8WR7/TGONLOhE8T7pZC
+         ORdV6ZF+GvlqEjVlrCf9P4uOqh06McdKRup7xrU8q5kNNJcXUFSjnwUBfPjrpXwBwMoU
+         g1BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756195867; x=1756800667;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4aX7FenfyrBV1mKFKmXZQBk55IyzLqtyKU5LAZ0/lVg=;
+        b=wot4oPzGSuH8XZexxaIzuytk2bp4tA8HodlEWY+wfruifzzc6hTZlZDkDKgkfq1/YL
+         4+Et3IaqQrd5cbYH2zF8Yfgm+6x481bGYeM8hARKfkUoKGtXTnRukIEPl0mX+4g5Nxwa
+         XUkAC7QRfi6fGtXq5WR1kx9NOiCEi60RlCQsz0lB1z7teScfHJuFPwhC6DsCNY2/YSFC
+         iY0jcl6ejD85M1NfML8AZNvVHzXcjRMN/IfK9UTNoVnogeg13VJUojR9PZNJUC71NUCz
+         53f9DUkN45XicArd5k65hsIv9ppj9BMEkbDwCPQkj7/QvWwTbxqM5bpMRptaVh1j0zal
+         oMRA==
+X-Forwarded-Encrypted: i=1; AJvYcCUIY36aXjpFM7r/hXB8gxlRrDYoMaa7VcCKfUMN3Pl3evdb7vG3RgSJqzFdLlv55oYTZUZ1L/2N6zGXRx0U@vger.kernel.org, AJvYcCW1lwrVzy/iLxVm/K5b9OL+jbSUq8iX191GqFtLpL+CPpmkuzOjIUpE8essbXzwT9IY7fZn37LuQRa+@vger.kernel.org, AJvYcCXOjp5e4UcSnLhUrdoOLF9mJk6KZJVrGTQnPY4v0p21sSWezP+r35TFYeJQK+oj5zHZqDAnDjLQlQ4d@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWbMe4uN4L0aUz0ubciFypWeNvms9gyxikaknH0JlMx1V05GCP
+	hxDrMyG+mKWxRWKSYCvi2NaqIbVKuTTLSA0fGbfjLk5NctsJJ2dsLI6mTot36OFKeymT2K7UzIr
+	jUuS2yPbUOw2b/G6iMzdNF1IlMJEbfqaLSByso7w=
+X-Gm-Gg: ASbGnct7lqi6dddkNITVqSQwBS952CGXNRfK4ycM9NW0Ry7Zl95/bKsZXlZJx+Nwsp0
+	aLOjHQwOQ/MTcTSEIe/que4e5WGbDcN3xyDozCbMit9ClVR54m5UhNJxQ4lJHAbamrjvIWbyExA
+	aes/HACZ/BJSD1+9L721VGjxJDKirM7YEG7R+0vM3QWYvAf9fZzAKoOXBuBKLl4THcGpmnSh1DC
+	E+nt/Q=
+X-Google-Smtp-Source: AGHT+IGEd1eZnHcmzpvXANGzhr1yd+oGriamqJKZ0s2iB8R/aw4f3dtalaUKYgCOlOt4g+XTgdfhCNITfaZ4EhFXlkk=
+X-Received: by 2002:a17:907:1de5:b0:afe:8d25:771e with SMTP id
+ a640c23a62f3a-afe8d258216mr372706966b.54.1756195867146; Tue, 26 Aug 2025
+ 01:11:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250826-rock5t-second-m2-fix-v1-1-8252124f9cc8@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAINrrWgC/yWMQQrDIBAAvyJ77ha12Eq+UnJIdG2XorZqQiHk7
- 5XmOAMzG1QqTBUGsUGhlSvn1EGdBLjnlB6E7DuDltpIqw2W7F6mYSWXk8eoMfAXVSDjzGyD9RJ
- 6+i7U9X97Hw8u9Fn6vR0S5qkSuhwjt0Gs17O6YXEXGPf9B1vV+J6TAAAA
-X-Change-ID: 20250825-rock5t-second-m2-fix-1fe5c5b8f8d0
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: kernel@collabora.com, FUKAUMI Naoki <naoki@radxa.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.2
+References: <20250825-iio-adc-ad7124-proper-clock-support-v2-0-4dcff9db6b35@baylibre.com>
+ <20250825-iio-adc-ad7124-proper-clock-support-v2-3-4dcff9db6b35@baylibre.com>
+In-Reply-To: <20250825-iio-adc-ad7124-proper-clock-support-v2-3-4dcff9db6b35@baylibre.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 26 Aug 2025 11:10:30 +0300
+X-Gm-Features: Ac12FXyHRa3HqDklPqwL16eed7EcWQFU3zytsF-1uM7QmzKO3PNRAwfy77ztEGM
+Message-ID: <CAHp75VfBEQAettOACoSix748pu0T2D+ihie0VjNW7U1_AuuB=g@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] iio: adc: ad7124: add external clock support
+To: David Lechner <dlechner@baylibre.com>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The Radxa ROCK 5T has two M.2 slots, much like the Radxa Rock 5B+. As it
-stands, the board won't be able to use PCIe3 if the second M.2 slot is
-in use.
+On Tue, Aug 26, 2025 at 1:55=E2=80=AFAM David Lechner <dlechner@baylibre.co=
+m> wrote:
+>
+> Add support for an external clock source to the AD7124 ADC driver.
+>
+> Previously, the driver only supported using the internal clock and had
+> bad devicetree bindings that used a fake clock to essentially select
+> the power mode. This is preserved for backwards compatibility.
+>
+> If the clock is not named "mclk", then we know that the devicetree is
+> using the correct bindings and we can configure the chip to use an
+> external clock source rather than internal.
+>
+> Also drop a redundant comment when configuring the register fields
+> instead of adding more.
 
-Fix this by adding the necessary node enablement and data-lanes property
-to the ROCK 5T device tree, mirroring what's in the ROCK 5B+ device
-tree.
+...
 
-Reported-by: FUKAUMI Naoki <naoki@radxa.com>
-Closes: https://libera.catirclogs.org/linux-rockchip/2025-08-25#38610630;
-Fixes: 0ea651de9b79 ("arm64: dts: rockchip: add ROCK 5T device tree")
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+> +                       /*
+> +                        * The external clock may be 4x the nominal clock=
+ rate,
+> +                        * in which case the ADC needs to be configured t=
+o
+> +                        * divide it by 4. Using MEGA is a bit arbitrary,=
+ but
+> +                        * the expected clock rates are either 614.4 kHz =
+or
+> +                        * 2.4576 MHz, so this should work.
+> +                        */
+> +                       if (clk_hz > MEGA)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-index 258c7400301d7f77517197ab433946bbfa39cf63..d061fbc897552401df1a73da12fc0614d7edc2d3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-@@ -68,6 +68,22 @@ &pcie2x1l1 {
- 	status = "okay";
- };
- 
-+&pcie30phy {
-+	data-lanes = <1 1 2 2>;
-+};
-+
-+&pcie3x2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie3x2_rst>;
-+	reset-gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_pcie30>;
-+	status = "okay";
-+};
-+
-+&pcie3x4 {
-+	num-lanes = <2>;
-+};
-+
- &pinctrl {
- 	hdmirx {
- 		hdmirx_hpd: hdmirx-5v-detection {
-@@ -90,6 +106,12 @@ pcie2_0_vcc3v3_en: pcie2-0-vcc-en {
- 		};
- 	};
- 
-+	pcie3 {
-+		pcie3x2_rst: pcie3x2-rst {
-+			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	sound {
- 		hp_detect: hp-detect {
- 			rockchip,pins = <4 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>;
+This is (1 * HZ_PER_MHZ), but as the comment says, this arbitrary
+check may be improved by using the exact values.
 
----
-base-commit: 89d926fa53d0a6c257c4e8ac1c00c3d9a194ef31
-change-id: 20250825-rock5t-second-m2-fix-1fe5c5b8f8d0
+> +                               clk_sel =3D AD7124_ADC_CONTROL_CLK_SEL_EX=
+T_DIV4;
+> +                       else
+> +                               clk_sel =3D AD7124_ADC_CONTROL_CLK_SEL_EX=
+T;
 
-Best regards,
--- 
-Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
