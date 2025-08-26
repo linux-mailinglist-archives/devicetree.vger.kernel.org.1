@@ -1,123 +1,156 @@
-Return-Path: <devicetree+bounces-209168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C5D0B3513F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 03:53:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69690B35147
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 03:58:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CF991895429
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 01:54:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 692051A87598
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 01:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A621EEA5D;
-	Tue, 26 Aug 2025 01:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7FD91FBCAF;
+	Tue, 26 Aug 2025 01:57:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TQ2YqKZM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TzKbUsYx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51B2E1DA55;
-	Tue, 26 Aug 2025 01:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 451F2BA34;
+	Tue, 26 Aug 2025 01:57:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756173225; cv=none; b=dOe3CfzYD5KS30Gfk+I3jfkVWCC4K0u3WeaAlvni+hFtTheTjo8yf+4aT3c4lBI5Pe+SA0Z5GOjOR5gZpmqueg/nLeK1KhQzlQC21vTfbVxDn+ZiWjpA2tJyd60U3mruuWnS/ABP08E1GGmnG7I5N7vir8r9FCLL4fqIPQhJUe0=
+	t=1756173478; cv=none; b=Xw4/AiNVXDEKjkPKaVzKBm5A0Or/FBFOoU7tvSuqDbN788nUsy0WmIm4vEOjyonUH8wqb/aSAvQhkPRhvxNLkspF+ucFbGI/BFmgrrAfEk3sn3KaseW15jrowZeMb4bY3cZAKImj7drVr2H7nSW14FJem1Vp+c4CHarexSpztfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756173225; c=relaxed/simple;
-	bh=51wTGsY/9vGT8UdadYFMSJo5KAiyOvnPp7Uqh4lE4Wk=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=JWGtm/TcJheGybV9lI6lHt8EU8Irzp71MbgfPFaFdFQkVsLhMA2giDtdL4eCtBBD+9iIZ9sUQ3ORnjhSUm0c8Uoq0Sw3XlYWj1q6rwgXYmj0LYLzhQe69IsS+L0/s5omywr6d02rJz71+tnfK1gPSDm6RXKFi9iXdrAIHZCo2XY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TQ2YqKZM; arc=none smtp.client-ip=209.85.160.172
+	s=arc-20240116; t=1756173478; c=relaxed/simple;
+	bh=KOSGvM2wr2KyAD8w0lLgrFelRa0BX8NcqdyrgZ4XNjs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rLNvY6nfXsRW/ucLw4kc0vDeYaBzNAF0+TOZpV6APO0xiGXM4U16LzDs/YdfcZAatsPgQW7Zi02PiJXvVlLOr4DMvbXFBEFpmiUrHKy7Qcnz71bSVHvd3DKV6+PxBzRI6qquzZ+HuwGst3BChTDI3jSHYBU6A/vCWttx3fav7DE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TzKbUsYx; arc=none smtp.client-ip=209.85.219.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4b1098f9ed9so37747201cf.0;
-        Mon, 25 Aug 2025 18:53:44 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e96c77b8dc1so1194695276.1;
+        Mon, 25 Aug 2025 18:57:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756173223; x=1756778023; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+Re0dfJaJNiHta7ORGnneGiLSwhvnswPXnnAgtyuJOw=;
-        b=TQ2YqKZM3/5bTiVQa7UqmVqwjFRsaHW7sGUlpBxufjAaMCqHAGBJWlZbvxDHQHaBL/
-         c3aq/p3Nujp8EyiJkLly1ZjMUWGcfD+hKF9Cj3s0yK1+MMOG+ey8/wriHsAEK1Vwc/SO
-         5D+/swugRfpo6atoZt2YxNNypFJ0w8n/OscXNqXaclev+EH23nlCKeI2vVfrP8ttrwJk
-         hcRWw4qlCpOOxJk7eSYhXwM54qjny/AXO5ZD1ROPM8ZsLLM0IMQL/y3eYPHS7fD/E4IQ
-         1k4kfe7BfQcFveYoey0GTloaUeXqoJtLoxJY44fPj3Vq6eV1oH2H50Y5eQsxdXbClnLy
-         33XQ==
+        d=gmail.com; s=20230601; t=1756173476; x=1756778276; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WGzUuOtgiIDZGYqyc4niKfZa1KTffiDbn6vc4yrAiuI=;
+        b=TzKbUsYxt/rSc/TjsMcJDD4zjheF0q+Xmhiw9GpDUeIyiRDkFAvg2ZUOPeh0980QvR
+         2ZXBLGfPtbioil6eVNvT1T9LMAm41aJ0gpRfu8gcMAqLlI2CpODHGnds6211rtr7pLzp
+         KtVa5qR4UA4mbrkywdv7NMEfmHkkV/VABEuTyTjAsNC2gWIVZvI/kIa6htGvU+d7ryhX
+         ROv2vYpg8q41oLvyzXwdPH8qUH7Y+W2uN9AIeCiZTkjR8m1wItcledvSS75LUnMR5UAV
+         dsItDqWdRdJppRucbd9ERPzSPVC/TSz2DgCMr5v+UGlX2ZAxoOFYvcslfU88cCHDSKzD
+         sZpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756173223; x=1756778023;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+Re0dfJaJNiHta7ORGnneGiLSwhvnswPXnnAgtyuJOw=;
-        b=M05NbXIBVHZT4aDbK6L5oeUDPmVewaRsDCcUJzjjdAW7x1W65hxpLAsToxtodH4RGw
-         KrywyJDbxz6T90NiX8Ejk7IbZwTmTfGNyZOAmwrYpfE/MKCNzICfvzuzoN2Ua0XhQCUa
-         5WtwUjelwad3WkDKeVmqXFqTXgKzUtFtq7fZqNlbtBTLgJCMMly7uWKqCoNNaVZ6Smpg
-         fBNQLl0KABgEbcueGNFYIg0fEbDSjojlbYqaQcf9jUxCFp1ZDSm6fmHYzVcmV+OD9tix
-         t3/q3DJ2lLKlHoWX7hjWre0l156o5ATAukpkHWz15CgypJx41MJSiud7ik5+g0XgEpR7
-         SEEg==
-X-Forwarded-Encrypted: i=1; AJvYcCU+9WGb1W0xV4VFIx0/FLuWdqDkKDyf6Gh6AiEgJy95NJmw0U6wTTDqToKKy7/ze3lJHVveBr1KaF2mpg==@vger.kernel.org, AJvYcCUXFdk1pbQx1wLcVFjGpoqG2puLqWLCWojSqp/iBDG0ud9hozMEEUyvVJi1geBYZt1PYZ0C+GF5G3KNgMk6@vger.kernel.org, AJvYcCWBxDQhJ9G0G0sTZnCbIcrQSQPOQQnBzeK5A5htdXc+gGTnW2orYFiB0LzqHxLI9nZ/GSNH46RMYptj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPEyPTO4nP4VtrXR8khHygJSGPmEUmNU5zRa4Z8hgIo23qMD6M
-	H+ClspT1kcoVRLDfSAMLIzTt/dd+GdlZ9DWLLIG7/8U5f60UiZN3s9lQPgSfQd+f
-X-Gm-Gg: ASbGncuPdoR+uLtJzE1hN4yfNc8tQIRFf581/ogOLvsR4FO/cy4GRpa4ZtSgEgLbHVQ
-	ZI5xKacGE5RAKyITxH80F9/IqicYzxhqY//pj1GEm9L27uNIqh2eHawI1+R1ulf9v07EzHaGB6K
-	N5BRj5/zDkwNg5/4Xm5E3JO7vPo40iBJbI9d6c/XTCjbqV/jSjdXfdi8DwjHJgCFOfRnEXc2yUB
-	gJQ/6HagywL5UE2h7K0wWZE8+3CnsgL/S4m2DxHiRv5Cj1W2wuOcd/iPvkHIr+E13NApKGfLLwU
-	tS7hsT27NJ5gBA5PTNRg1n3rrAQvvAWwLO0RmSgkN1S+2WJPw9EnwlvSSGXEnTrrGTFpOgfYAZV
-	9Alr7rhrwt80XDAbDnGaVv0PloIGUEWrHMZ0J1YdRqOaZypJqsiNWmndahSw5xY89Q8YzaQ==
-X-Google-Smtp-Source: AGHT+IH4XjSi6yyoGMKBUjhavQKmCxMdFB1PslcgxcUyHDGfAIwjahX67UxrFjo/Q2LgEMQ8V/x1cQ==
-X-Received: by 2002:a05:622a:1a12:b0:4b0:d8b9:22f3 with SMTP id d75a77b69052e-4b2aab20c15mr165740911cf.53.1756173223003;
-        Mon, 25 Aug 2025 18:53:43 -0700 (PDT)
-Received: from [127.0.0.1] (modemcable197.17-162-184.mc.videotron.ca. [184.162.17.197])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ebed8902fcsm601252985a.20.2025.08.25.18.53.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Aug 2025 18:53:42 -0700 (PDT)
-Date: Mon, 25 Aug 2025 21:53:42 -0400
-From: =?ISO-8859-1?Q?Jean-Fran=E7ois_Lessard?= <jefflessard3@gmail.com>
-To: Per Larsson <per@palvencia.se>
-CC: Andy Shevchenko <andy@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_2/6=5D_dt-bindings=3A_auxdisp?=
- =?US-ASCII?Q?lay=3A_add_Titan_Micro_Electronics_TM16xx?=
-User-Agent: Thunderbird for Android
-In-Reply-To: <20250825210836.71fb0d0d@rpi>
-References: <20250825033237.60143-1-jefflessard3@gmail.com> <20250825033237.60143-3-jefflessard3@gmail.com> <20250825210836.71fb0d0d@rpi>
-Message-ID: <73A1F250-CBB4-4415-85F9-72599366E271@gmail.com>
+        d=1e100.net; s=20230601; t=1756173476; x=1756778276;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WGzUuOtgiIDZGYqyc4niKfZa1KTffiDbn6vc4yrAiuI=;
+        b=jD8Q9P+veIGN1xwrw+P+knkuHmKO+dHQs2+mWjSM4gvYaRT29xY1MyWBLdwRpKGrUE
+         DLg4FxMPzXIsZwvpek88MxepC/MclE6T3bpCe//B0y2ENUYNNN/Thnh6KuNLjaBkz8DJ
+         x42fkjDh7mnU9yO+9289sCiaJ4HTn/kP+OraLhbzjWuxKi/W7g4k7S6qt/Utdm7Kh8wX
+         yZ6P7z1q2rMy3P4SZA7YHkC9j1+1MXB+6OVzoUXAxwULRljV8sPwdXINRJPiiEuNv0+r
+         A71QVtLWXEmEt8+5L2qzqxLYLLCpcUUrh7VYvZnCCWi3bRWVfxcgHGOn8aZfh1hjGzd8
+         hpnA==
+X-Forwarded-Encrypted: i=1; AJvYcCWDIAiDHd95k8UuaN8mGq6UGWdlahCCxIIX4wXEoFioUwABsU9/oWHI7BVCC3UQrMchasIlVw7bci63SiPZ@vger.kernel.org, AJvYcCWP49lS6IesarWV3friy/dInzvsMJFDfZjCDDaZYE6vye3tNu3K2FeuDkhpzOaI9H5RxZZ3Bn2g38RJcA==@vger.kernel.org, AJvYcCXWOjU1NGTDIXpSyy22jY1luaBW+3NbEmRHOhb3k0X0yNz6PrFGQmNaBuW2R8dJif57pgAyvjWUBMgF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0sqyGYUcNpCGhP4Ob97HPAlIksgUxh5j2fl91TWJLQSqNZNu7
+	+6lkvR+k/oFxxCE9nazezJVwrASktvGGDKwLpy562UGdUY6cn8jWm3LX/w928ghzBOwJ3hrO015
+	0Gk5P8vFqd7EXdGCXKLaBLtKD7v9no3hVWg==
+X-Gm-Gg: ASbGncvqWA6nSRGke12DQdF1aBQfo/f1LXtQurRLFOgfWeOTbICxf2Sa0e/K7uWkNAZ
+	F9UjaHUaCa+I31aqRIs5RiaTOG41HoMbhpruwPa3kIPVNOVe6LJKQfYfcNoDyX/4zOfF0tuxC4V
+	JAM7nCx67WhTsp5soACJJisnn3YN1A9ZO+rxkIEKVcrqYVi1Cw1OBLSg8kz7F/fSBKHsWcz2nGL
+	UolNyxyvG4Hmwi3ZPbUzvDfSOLFU2/ENbc51bXJ++qFNcV4CKYxCppqQtm2F2cNhVZhonI19EZ/
+	4Aeisg==
+X-Google-Smtp-Source: AGHT+IFfyuSfKOrinrXKhXAscdQLNk2jhywIHMg8w6Be6P0uEmW6nfWxCJ0lVEYWuVzh3vDojbOberGKMV91mQSrLXo=
+X-Received: by 2002:a05:6902:600b:b0:e95:2d88:513a with SMTP id
+ 3f1490d57ef6-e952d8852fcmr9666163276.36.1756173476124; Mon, 25 Aug 2025
+ 18:57:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+References: <20250825044812.1575524-1-rosenp@gmail.com> <20250825044812.1575524-2-rosenp@gmail.com>
+ <20250825-clobber-disdain-9e50d85ab1df@spud>
+In-Reply-To: <20250825-clobber-disdain-9e50d85ab1df@spud>
+From: Rosen Penev <rosenp@gmail.com>
+Date: Mon, 25 Aug 2025 18:57:38 -0700
+X-Gm-Features: Ac12FXyRhTW5a8l2A5nZHymS4qhy8hJOYEjTo51J0bZ-dMOqKSbdtxy2kV2Vc_o
+Message-ID: <CAKxU2N9y-2eG2nz-ng9afuv-rT=agBt3rE7P3dFfybcHzhndWQ@mail.gmail.com>
+Subject: Re: [PATCHv3 1/3] dt-bindings: net: wireless: ath9k: add led bindings
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-wireless@vger.kernel.org, =?UTF-8?B?VG9rZSBIw7hpbGFuZC1Kw7hyZ2Vuc2Vu?= <toke@toke.dk>, 
+	Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	"open list:MIPS" <linux-mips@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Le 25 ao=C3=BBt 2025 15 h 08 min 36 s HAE, Per Larsson <per@palvencia=2Ese>=
- a =C3=A9crit=C2=A0:
->On Sun, 24 Aug 2025 23:32:28 -0400
->Jean-Fran=C3=A7ois Lessard <jefflessard3@gmail=2Ecom> wrote:
+On Mon, Aug 25, 2025 at 9:38=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
 >
->> +  - Digits use 1-cell addressing with explicit segment mapping
+> On Sun, Aug 24, 2025 at 09:48:10PM -0700, Rosen Penev wrote:
+> > The ath9k driver has various pin GPIO numbers for different chipsets
+> > which are not always correct for every device.
+> >
+> > Add bindings to specify the correct number and if it should be
+> > active-low.
+> >
+> > Signed-off-by: Rosen Penev <rosenp@gmail.com>
+> > ---
+> >  .../bindings/net/wireless/qca,ath9k.yaml         | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/wireless/qca,ath9k.y=
+aml b/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
+> > index d16ca8e0a25d..bbac017d34d0 100644
+> > --- a/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
+> > +++ b/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
+> > @@ -50,6 +50,18 @@ properties:
+> >
+> >    ieee80211-freq-limit: true
+> >
+> > +  led:
+> > +    type: object
+> > +    additionalProperties: false
+> > +    properties:
+> > +      reg:
+> > +        maxItems: 1
+> > +
+> > +      led-active-low:
 >
->This new digits layout introduced in v3 implies that a
->different segment mapping can be used per digit by a
->single display/controller=2E Is that really a thing?
+> How come you are not including leds/common.yaml and making use of the
+> active-low property defined there? Seems to be in use by mediatek,mt76.ya=
+ml
+Probably makes more sense to use active-high instead. Will do so in next se=
+ries.
 >
-
-Board manufacturers typically use consistent patterns across digits, but s=
-ome
-use matrix-transposed layouts where grid/segment relationships are swapped
-system-wide=2E The explicit coordinate mapping handles both standard and
-transposed configurations=2E
-
-Bottom line: I am not aware of different per digit 7-segment mappings on a
-single display board=2E
-
-Best Regards
-Jean-Fran=C3=A7ois Lessard
-
+> > +        description:
+> > +          LED is enabled with ground signal.
+> > +        type: boolean
+> > +
+> >    qca,no-eeprom:
+> >      $ref: /schemas/types.yaml#/definitions/flag
+> >      description:
+> > @@ -102,5 +114,9 @@ examples:
+> >          compatible =3D "qca,ar9130-wifi";
+> >          reg =3D <0x180c0000 0x230000>;
+> >          interrupts =3D <2>;
+> > +        led {
+> > +          reg =3D <0>;
+> > +          led-active-low;
+> > +        };
+> >        };
+> >      };
+> > --
+> > 2.50.1
+> >
 
