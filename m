@@ -1,133 +1,144 @@
-Return-Path: <devicetree+bounces-209251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E93A7B3559C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:27:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB80DB355B6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:36:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0EFA189CAE1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 07:27:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A089024116C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 07:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090642F60A2;
-	Tue, 26 Aug 2025 07:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28073280A5C;
+	Tue, 26 Aug 2025 07:36:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Vmk/4byl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IwLyHx4x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0C52F49E6
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 07:26:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E79AB17A2E1;
+	Tue, 26 Aug 2025 07:36:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756193174; cv=none; b=SZ+LmzCAi3Dat+/7fvVYk57DysngXdI/Y5c8/wUX7gS8BlSucSEEB/+hVDr+i1cZxjW6NntKPzyUjX2id/g4wGfzd208Wd7KcsWTZdcUqpPqsMmE5v3tkFAPo2xypxXFaAB9LKSC+50CUtS0kHhsR1R/kmBo5nUsX2buSK9Get8=
+	t=1756193764; cv=none; b=iuiaZ2qDFJxYzwFgloL7V8JlC0TA5NZLKCHJBuKSGT3jdm9zl2NUPZeFzN2xG3VOgX72d9fVDrw4laUcD6OEzzZ0CNgUHI+3CjbZZgBDXAE0D4+UoSZDGwnC4fGMWzS8VP1pzPM4q+/YDfl0FnrGBYCAujFCSYZb2mCxI14QglQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756193174; c=relaxed/simple;
-	bh=DcMpv+3mgF8aZDoDXRSQ/IQVeWP92JqyekiKkdCx2mQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=Cd0Zme9oyMSzPGzZnBHvHj2OUJSCd/QcHMPNo4uu6JMOOD3Pm4PSSYbZKD1PXcJNmv+HxmO1Uzjmo7ljjzQvBLjnzcC/P8HUN6eIYzP2qHJo+BRmGOjsYrF47JGaFLvAUJTRRGGXoy33pnp0wh9OZtVpaJb7jsYWaClXTQZ5o6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Vmk/4byl; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250826072610euoutp020aebbc9a1b832bafe0c00991767a2e7d~fQGInKMJu1732917329euoutp02E
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 07:26:10 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250826072610euoutp020aebbc9a1b832bafe0c00991767a2e7d~fQGInKMJu1732917329euoutp02E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756193170;
-	bh=9i5p2LxvgZLund35hCqkpCnzys4/u1z+zSXgl9PoA5s=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=Vmk/4bylMbV/wtYHG7M1xjRGAt+Lhv3D9zWse1vOVtbeAo5MtxIFj5y/MhBMRbGHg
-	 mC8qDI9JSMhI5zC5p9Xrv0fQidPif8c+fXYbBR2ttKUgtGKmlvRfxJyBWu5gtjHnBV
-	 hVP4BkVJFcvdaK/K2gKsWUaP0Vax20+8zYs8aHoU=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250826072609eucas1p184dfb0642e07f6b843172d9974f16b7f~fQGII8nK-2890728907eucas1p1Z;
-	Tue, 26 Aug 2025 07:26:09 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250826072607eusmtip1479a4e682590dd94ab45dd1f1689d810~fQGGRvVEr1983919839eusmtip12;
-	Tue, 26 Aug 2025 07:26:07 +0000 (GMT)
-Message-ID: <d8599b11-66dd-486b-89e4-52b82d90f04e@samsung.com>
-Date: Tue, 26 Aug 2025 09:26:07 +0200
+	s=arc-20240116; t=1756193764; c=relaxed/simple;
+	bh=o2KO6qM5slp43TEhCjAXRmlGzXDBAfE+BYRggH70ykM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UzFaMxn1J+4i6jpBsAnNwhDarU6OB1ox8YmkBoYUwTY3SyJaUIhWTqZaFBdPYV9gZ7yywjUswPtAnMo4VV2Dn1XjYaXFVdkt7HAiSBJte81iYULEbESnAvAaMQvKiXWrZlCapdGrzr8RxHZT4aXMlZdHMTfvWS/6WLROshTyw5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IwLyHx4x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF085C4CEF1;
+	Tue, 26 Aug 2025 07:36:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756193763;
+	bh=o2KO6qM5slp43TEhCjAXRmlGzXDBAfE+BYRggH70ykM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IwLyHx4xIpVgFZzymAoXflbPhyJvUzihZIjgw/T6WCeTmaoxD61qGu6MZvLapOeI9
+	 bl8s0QDAvD6TOEY9kGm30dih8kiDOyd5gTEDmGeMTZgDAjj4+d9HfG9P7nA6O9Ly3A
+	 nSJUI9utAtsqNoHlTOFv7ZrpZvCD/FBy+4dhGWEzncCtuL/NcZ7aAN07suchL6LNnr
+	 Q5EVJ0PU9ATpWNbTYf9MAl9SBa/gNibE7VlH28ajRHdC7uChifOFDLI1VlwIBTQQO6
+	 taFuOqZSd/71gnkOQT1uN0qxFfErhmUlRgtFCqkfwq3B1W6w6nUYEcPbQQzEMTBEEi
+	 rsluRS21+VSyg==
+Date: Tue, 26 Aug 2025 09:36:00 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
+	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Jonathan Corbet <corbet@lwn.net>
+Cc: Andrew Davis <afd@ti.com>, Jared Kangas <jkangas@redhat.com>, 
+	Mattijs Korpershoek <mkorpershoek@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+	iommu@lists.linux.dev, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v7 0/5] dma-buf: heaps: Create a CMA heap for each CMA
+ reserved region
+Message-ID: <20250826-vagabond-catfish-of-courtesy-cbfa76@houat>
+References: <20250721-dma-buf-ecc-heap-v7-0-031836e1a942@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: Re: [PATCH v4 2/7] OPP: Move refcount and key update for
- readability in _opp_table_find_key()
-To: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Viresh
-	Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd
-	<sboyd@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Manivannan
-	Sadhasivam <mani@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring
-	<robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson
-	<andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Krzysztof
-	Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20250826060647.7eerg5blx3xho27p@vireshk-i7>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250826072609eucas1p184dfb0642e07f6b843172d9974f16b7f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250825135939eucas1p206b6e2b5ba115f51618c773a1f37939c
-X-EPHeader: CA
-X-CMS-RootMailID: 20250825135939eucas1p206b6e2b5ba115f51618c773a1f37939c
-References: <20250820-opp_pcie-v4-0-273b8944eed0@oss.qualcomm.com>
-	<20250820-opp_pcie-v4-2-273b8944eed0@oss.qualcomm.com>
-	<CGME20250825135939eucas1p206b6e2b5ba115f51618c773a1f37939c@eucas1p2.samsung.com>
-	<4066c0b4-807f-401e-baaa-25f4891f10ac@samsung.com>
-	<20250826060647.7eerg5blx3xho27p@vireshk-i7>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="62kahmzwo3bq6vd4"
+Content-Disposition: inline
+In-Reply-To: <20250721-dma-buf-ecc-heap-v7-0-031836e1a942@kernel.org>
 
-On 26.08.2025 08:06, Viresh Kumar wrote:
-> Marek,
->
-> Thanks for the detailed logs. I would need a little more help from
-> you.
->
-> Can you give this a try over your failing branch (I have already
-> dropped the patch from my tree for now):
->
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index 81fb7dd7f323..5b24255733b5 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -554,10 +554,10 @@ static struct dev_pm_opp *_opp_table_find_key(struct opp_table *opp_table,
->          list_for_each_entry(temp_opp, &opp_table->opp_list, node) {
->                  if (temp_opp->available == available) {
->                          if (compare(&opp, temp_opp, read(temp_opp, index), *key)) {
-> -                               *key = read(opp, index);
-> -
-> -                               /* Increment the reference count of OPP */
-> -                               dev_pm_opp_get(opp);
-> +                               if (!IS_ERR(opp)) {
-> +                                       *key = read(opp, index);
-> +                                       dev_pm_opp_get(opp);
-> +                               }
->                                  break;
->                          }
->                  }
 
-This doesn't help. I've stared a bit at that code and did some tests 
-and it looks that the issue is caused by _opp_table_find_key() returning 
-the last opp from opp_list without updating the *key and calling 
-opp_get() for it (happens when compare() returns false).
+--62kahmzwo3bq6vd4
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v7 0/5] dma-buf: heaps: Create a CMA heap for each CMA
+ reserved region
+MIME-Version: 1.0
 
-> ...
+Hi,
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+On Mon, Jul 21, 2025 at 01:17:29PM +0200, Maxime Ripard wrote:
+> Here's another attempt at supporting user-space allocations from a
+> specific carved-out reserved memory region.
+>=20
+> The initial problem we were discussing was that I'm currently working on
+> a platform which has a memory layout with ECC enabled. However, enabling
+> the ECC has a number of drawbacks on that platform: lower performance,
+> increased memory usage, etc. So for things like framebuffers, the
+> trade-off isn't great and thus there's a memory region with ECC disabled
+> to allocate from for such use cases.
+>=20
+> After a suggestion from John, I chose to first start using heap
+> allocations flags to allow for userspace to ask for a particular ECC
+> setup. This is then backed by a new heap type that runs from reserved
+> memory chunks flagged as such, and the existing DT properties to specify
+> the ECC properties.
+>=20
+> After further discussion, it was considered that flags were not the
+> right solution, and relying on the names of the heaps would be enough to
+> let userspace know the kind of buffer it deals with.
+>=20
+> Thus, even though the uAPI part of it had been dropped in this second
+> version, we still needed a driver to create heaps out of carved-out memory
+> regions. In addition to the original usecase, a similar driver can be
+> found in BSPs from most vendors, so I believe it would be a useful
+> addition to the kernel.
+>=20
+> Some extra discussion with Rob Herring [1] came to the conclusion that
+> some specific compatible for this is not great either, and as such an
+> new driver probably isn't called for either.
+>=20
+> Some other discussions we had with John [2] also dropped some hints that
+> multiple CMA heaps might be a good idea, and some vendors seem to do
+> that too.
+>=20
+> So here's another attempt that doesn't affect the device tree at all and
+> will just create a heap for every CMA reserved memory region.
+>=20
+> It also falls nicely into the current plan we have to support cgroups in
+> DRM/KMS and v4l2, which is an additional benefit.
+>=20
+> Let me know what you think,
+> Maxime
 
+Any chance we can get this merged?
+
+Maxime
+
+--62kahmzwo3bq6vd4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaK1j3AAKCRAnX84Zoj2+
+dr8DAYC4w3b6+vJlwvEBOn1/7a0Jj2WkYdqmZ4/CPbeW+2IoICJxW7R3Tce/Y5Uy
+cZTj2C4Bf1SQZXT5Lb+3MVCxCe/EWi1p8JCpJTUjOmK7iEV5xtxrSPhEA3MoFvQz
+icz9OSLPbA==
+=Xhl4
+-----END PGP SIGNATURE-----
+
+--62kahmzwo3bq6vd4--
 
