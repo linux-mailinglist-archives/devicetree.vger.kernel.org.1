@@ -1,196 +1,141 @@
-Return-Path: <devicetree+bounces-209451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42F24B3753C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 01:08:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9954DB3756F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 01:19:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 030F18E0135
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 23:08:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADEB47AE152
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 23:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4172D2F60CD;
-	Tue, 26 Aug 2025 23:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 518952D2496;
+	Tue, 26 Aug 2025 23:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dhPcIGWT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WyJRIJAl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1348B30CD8A;
-	Tue, 26 Aug 2025 23:08:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2385E2264CE;
+	Tue, 26 Aug 2025 23:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756249730; cv=none; b=spIPrTFseHDf8LTkPB2ofjHDzp0pk1SbkwR1+w8sGPr48yR8+J9dInPDWcUwxd32C79BdvIYfcvs1vhrW1BP5jL2KtHIFMtvjrwutc1LH4NHUykkMMMhxWgVbiq79fq8O7jWVZ6YFUr4J8k0h71BBaJpJ+F5kZID5gHhLdko5bA=
+	t=1756250386; cv=none; b=M4U4ZiuL9GvKrvdc9D0W1Lqe3A+ZRFixN8H6RN5vmCYSHCM2/f6ng5P2w3iYsa8VKAvYyu9Mkq5M8Ral2ntSlM79wkYEpBtLW63ZUx33V9zfAb782VPsVxZR8e7J/QAsABU1Y8AN2sMldTmgYl+moKiNs+4dZrAtcY2FHweYpdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756249730; c=relaxed/simple;
-	bh=/7Es7k8q/TTf9xlUC/4mFl33babD/JA1SjkLwjg4rTE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SnmAe2jQjSfB2NZPBFOZj0kRm0W8QqyEfH0oZxasQkApiIC/x2e/6UHzSczxltBxuN9W1WuzpI5FzbxziJ7AaLjk3ijllcd2T4+ihvkcX8uHUN+SQvQ0YP84PJh05umVsF272oht+EJMYe5pIgHMGwTlZvzH0Aql/to6h1QZ7cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dhPcIGWT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AD2DC4CEF1;
-	Tue, 26 Aug 2025 23:08:49 +0000 (UTC)
+	s=arc-20240116; t=1756250386; c=relaxed/simple;
+	bh=V5+/7XEH4hLHcMPBz+Zh+CzV2IBqlOxEt53xo3DTfZE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=kc2UxtnwuEm7T8K2aXXSsNVfop12thJC8q1obxK9GD4WO2TuyHjwUL7aMQq1Vr8BoACKEcFbdSB57a8ydy4SGaFSAcdeR0Xd4lxyjBhopHhUK1MxSLzePMGL1FNQbd3C/nydVwoRcd+wU4iXjr0gcC/CvnIN+D7HuOt6JAuDIF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WyJRIJAl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DB81C4CEF1;
+	Tue, 26 Aug 2025 23:19:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756249729;
-	bh=/7Es7k8q/TTf9xlUC/4mFl33babD/JA1SjkLwjg4rTE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dhPcIGWTqJsOkpMvAzECoTboPc/5frmdKHtyUHs8Iu6JIE73XuIuf7apZdJbtr0eJ
-	 f1stvjjgZ52zQl6nY7vM8ur4XMO4JAQQO6IWuxBRLUoiXr9/KayU4nIs95kAUwxlDK
-	 S/pz2mG6R5m23cjtEL9I7r3rWcZ7McKv9kVd7pJiSer+gdiC5tmxgCHvyHTNYRenDx
-	 B335XQliwPHesADGIcuTdHav4j+u2QVv4CXD0IeKd93ZyBQdRhUxHzkgs85BfbpZc9
-	 rXhyGCCF7FjoomEIgc92Ud8JUzut8QOFKoq6XeR1S/DSpkXbbUPkVQDklskqFt98ec
-	 ZvgMDY4rUn/iQ==
-Date: Tue, 26 Aug 2025 18:08:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: Alexander Kurz <akurz@blala.de>
-Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Dzmitry Sankouski <dsankouski@gmail.com>,
-	"Dr. David Alan Gilbert" <linux@treblig.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/9] dt-bindings: mfd: fsl,mc13xxx: add buttons node
-Message-ID: <20250826230848.GA685049-robh@kernel.org>
-References: <20250823144441.12654-1-akurz@blala.de>
- <20250823144441.12654-7-akurz@blala.de>
+	s=k20201202; t=1756250385;
+	bh=V5+/7XEH4hLHcMPBz+Zh+CzV2IBqlOxEt53xo3DTfZE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=WyJRIJAltpcqF4H0kfN2dPHSy1g5gDlTD30riJD+bz0LI5HIkCp4PG6eLEylKLH+V
+	 tQRMZ6ZAdMUBI7scoEmhOIR5r+fwcaTXC+6q0QuwCToO+fcmXzQ4d/dQsxdC35/OQm
+	 nq2LMCYX39HlzrLUi3LVFmYjI0lMNjWZ4RRsXcHn4tai1BuNcHzjRwnQy6be9E/eKk
+	 t4JQiV8YryEQfejroFA1Q4svIPRrhghBYXBqLCU0yIT/cFHtfI3Wkkh90lYIzqdbjZ
+	 J0mkPpkPbx2qw93wdICGX6hWPI0RqE1ZAtD+SPyCID59a/YSI3RfnPIrtIysTNS/xd
+	 Yk7PmgGd5ZDEQ==
+Date: Tue, 26 Aug 2025 18:19:44 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250823144441.12654-7-akurz@blala.de>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Tony Lindgren <tony@atomide.com>, linux-kernel@vger.kernel.org, 
+ linux-omap@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+In-Reply-To: <20250826134259.2564191-1-alexander.stein@ew.tq-group.com>
+References: <20250826134259.2564191-1-alexander.stein@ew.tq-group.com>
+Message-Id: <175625023024.716358.4095639193170110202.robh@kernel.org>
+Subject: Re: [PATCH 1/2] ARM: dts: tps65910: Add gpio & interrupt
+ properties
 
-On Sat, Aug 23, 2025 at 02:44:38PM +0000, Alexander Kurz wrote:
-> Add a buttons node and properties describing the "ONOFD" (MC13783) and
-> "PWRON" (MC13892/MC34708) buttons available in the fsl,mc13xxx PMIC ICs.
+
+On Tue, 26 Aug 2025 15:42:57 +0200, Alexander Stein wrote:
+> The binding document ti,tps65910.yaml requires the controller and
+> cells properties for both gpio and interrupts. As they have const and
+> fixed values a default can be provided for all users.
 > 
-> Signed-off-by: Alexander Kurz <akurz@blala.de>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
->  .../devicetree/bindings/mfd/fsl,mc13xxx.yaml  | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
+>  arch/arm/boot/dts/tps65910.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml b/Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml
-> index 94e2f6557376..761267b42c85 100644
-> --- a/Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml
-> @@ -39,6 +39,41 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  buttons:
-> +    type: object
-> +    $ref: /schemas/input/input.yaml#
 
-       unevaluatedProperties: false
 
-(And then fix the errors in the example)
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-> +    description: Buttons
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Drop.
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-> +    properties:
-> +      reg:
-> +        description: |
-> +          One of
-> +          MC13783 BUTTON IDs:
-> +            0: ONOFD1
-> +            1: ONOFD2
-> +            2: ONOFD3
-> +          MC13892 BUTTON IDs:
-> +            0: PWRON1
-> +            1: PWRON2
-> +            2: PWRON3
-> +          MC34708 BUTTON IDs:
-> +            0: PWRON1
-> +            1: PWRON2
+  pip3 install dtschema --upgrade
 
-'maximum: 2' here and then only need 'maximum: 1' in one spot below.
 
-> +
-> +      debounce-delay-ms:
-> +        enum: [0, 30, 150, 750]
-> +        default: 30
-> +        description: |
-> +          Sets the debouncing delay in milliseconds.
-> +          Valid values: 0, 30, 150 and 750ms.
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250825 (exact match)
 
-Don't repeat schema constraints in free-form text.
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
 
-> +
-> +      active-low:
-> +        description: Set active when pin is pulled low.
-> +
-> +      fsl,enable-reset:
-> +        description: |
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/ti/' for 20250826134259.2564191-1-alexander.stein@ew.tq-group.com:
 
-Don't need '|'.
+arch/arm/boot/dts/ti/omap/am335x-pdu001.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-base0033.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-baltos-ir5221.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-regor-rdk.dtb: pmic@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-netcom-plus-8xx.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-evm.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-evmsk.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/omap3-echo.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-moxa-uc-8100-me-t.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-icev2.dtb: power-controller@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-phycore-rdk.dtb: pmic@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am3517-craneboard.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-netcom-plus-2xx.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-netcan-plus-1xx.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-baltos-ir3220.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-wega-rdk.dtb: pmic@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-baltos-ir2110.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+arch/arm/boot/dts/ti/omap/am335x-lxm.dtb: tps@2d (ti,tps65910): #interrupt-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
 
-> +          Setting of the global reset option.
-> +        type: boolean
-> +
->    leds:
->      type: object
->      $ref: /schemas/leds/common.yaml#
-> @@ -119,6 +154,10 @@ allOf:
->              const: fsl,mc13783
->      then:
->        properties:
-> +        buttons:
-> +          properties:
-> +            reg:
-> +              enum: [0, 1, 2]
->          leds:
->            properties:
->              fsl,led-control:
-> @@ -137,6 +176,10 @@ allOf:
->              const: fsl,mc13892
->      then:
->        properties:
-> +        buttons:
-> +          properties:
-> +            reg:
-> +              enum: [0, 1, 2]
->          leds:
->            properties:
->              fsl,led-control:
-> @@ -155,6 +198,10 @@ allOf:
->              const: fsl,mc34708
->      then:
->        properties:
-> +        buttons:
-> +          properties:
-> +            reg:
-> +              enum: [0, 1]
->          leds:
->            properties:
->              fsl,led-control:
-> @@ -183,6 +230,17 @@ examples:
->              fsl,mc13xxx-uses-rtc;
->              fsl,mc13xxx-uses-adc;
->  
-> +            buttons {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                onkey1@0 {
-> +                    reg = <0>;
-> +                    debounce-delay-ms = <30>;
-> +                    active-low;
-> +                    fsl,enable-reset;
-> +                };
-> +            };
-> +
->              leds {
->                  #address-cells = <1>;
->                  #size-cells = <0>;
-> -- 
-> 2.39.5
-> 
+
+
+
+
 
