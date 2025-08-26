@@ -1,293 +1,126 @@
-Return-Path: <devicetree+bounces-209314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 888BBB358D9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 11:28:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD6E9B358E2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 11:28:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DF0F3A8806
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:28:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DBEB3A6185
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 213212FD1D6;
-	Tue, 26 Aug 2025 09:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14ED2FAC05;
+	Tue, 26 Aug 2025 09:28:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="l8+OreqH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CqDrtAyO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A0629ACDB;
-	Tue, 26 Aug 2025 09:27:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C217229ACDB;
+	Tue, 26 Aug 2025 09:28:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756200481; cv=none; b=CUpSmBiuw1HJIQtb8yqWsM7prNR9VG5aZkfiedU8k60aZBnR4DOHSz17tqOeiVXiueUosT/w8id+/1AipwjM9eTHK0k5oEpnymrXv8DYX9bP8JdgSt5PKrEUE746kVSiBgai9CBmkZb/vq/mUqnMRa/HJu3SgXlf43D4dTTTYuU=
+	t=1756200527; cv=none; b=nvHR6NyUgfuadkO1p8GEvtqlJUGCXKVEILpps0yKAhnBC4y053Pc8Pjt7T2DWVAjeopTOB2GQ/5x/pq1y+WvebEuUpM50ZJxpxJ4Y0S/r3+W69Dk6Vlc6SAYgZ7trwv1EeSZ2BLBoHBvCuIDur5S2n0Mqmv2b/oDyL+qM6DBeB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756200481; c=relaxed/simple;
-	bh=I2yhGHVhERBe7uNdR16HUj2j56kAwXIRLmWhj3vFdYM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kM7z4Cl70N+y3h/09NQU9lcoUE5rur0Jzf4mtj0xk6dl6bo2p6gX02oMHUvZK4SWWTEGqvRQ6/PkWFh/zHpg3phaAc54BfoNseK5+S+O3Dsqpv1xwdwzR4sthk1t+djy4Bm3ZXnocVBCIiwqU7f0tHkBZgG2hPWGmPePOqU2gDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=l8+OreqH; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1756200479; x=1787736479;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=I2yhGHVhERBe7uNdR16HUj2j56kAwXIRLmWhj3vFdYM=;
-  b=l8+OreqHkLxHnnkkW07uKEBRgcgd/01a8hoLpckCZmlsgKU60HdhFhqO
-   p2sjap9UQ+NqrRXjJetrhzeV4XdrHgroNPa0Kp2cWu2wafd4zaHmzTaeO
-   kHK6foRp3oBmkrtdpArASaNYWaIBwmpFiVQfn3XRAuU0URBsbIPsQQpzB
-   xsBncwcTt/Kmd3D42JGsoc/7RqjyVU79mCayxSWaPDY7iM83lQxEme9KJ
-   CUCB7I3NIBYmATd46L7kjwMaLBuDyQJZSQv3aPGupYCINza6kveX7NI54
-   WdCPz5pEV/ckfd8ePK5QohyWMfYvH1ynSqrdPzjzHZvGNtxUMJeWx8h0T
-   w==;
-X-CSE-ConnectionGUID: HPcLko+0T12Lr7BpqvofZA==
-X-CSE-MsgGUID: FHJWgdLpQe2L+nuMAQg2QA==
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
-   d="scan'208";a="45654231"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Aug 2025 02:27:58 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 26 Aug 2025 02:27:26 -0700
-Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
- Transport; Tue, 26 Aug 2025 02:27:23 -0700
-Message-ID: <8a97b5a0-d21e-431b-9b4e-5f73960becdb@microchip.com>
-Date: Tue, 26 Aug 2025 11:27:22 +0200
+	s=arc-20240116; t=1756200527; c=relaxed/simple;
+	bh=FRhK9KHMFCQsZHQ2MZAeoYpx+OUA1J13ZSCRsY94yLs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=km9kwUi8Fv8vn9bvGWONrksIRSH/prJTqRonQXxkaLirA0tP5wGf66j86Okky9u9VUjMJEvcqf6oiBdtYd7gWqUGAmlt/3oraMbTBFeUUv8ha4gG8uDTF6U9yXFZDErlKRJaTE20BqEZFLuznR1hqe9zIZyHjVKP7Xs/Skrll1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CqDrtAyO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F58BC4CEF1;
+	Tue, 26 Aug 2025 09:28:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756200527;
+	bh=FRhK9KHMFCQsZHQ2MZAeoYpx+OUA1J13ZSCRsY94yLs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CqDrtAyOHb75rEdv5GCVbEcMswoAkY9VQEWETHD+EjNqsmh5AgdSon4mMMJmYd3iM
+	 trpMaxc9MCelOlEoK9gjHdcpC+QTbfuHpfbko1ZgVxoJ237neUqcQpxQWikost49Hw
+	 +ar6K+JnCPe4YVF5BjTnstmEa1ZDB8RodczgXbfXlW1IzeFXLiMg2/uzsFQLykHvtc
+	 RATgoDC2dElCARBEYOdX68lzyFx104NYt6PF5VQcolgpM+1CQ67VHbywL3frgAp6a5
+	 jeRsDn4hKL4P9CInyWELCNYimtvPBLHgJig4tX76VrUH03lH4gMGZtGo0pgmBXSC9m
+	 n7+Afr5+W8rpA==
+Date: Tue, 26 Aug 2025 14:58:31 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	quic_vbadigan@quicinc.com, quic_mrana@quicinc.com
+Subject: Re: [PATCH v2 3/3] PCI: qcom: Restrict port parsing only to pci
+ child nodes
+Message-ID: <3ah45g7o3vaswanur7id3ypii3773scg3x46wrkxet3jywnyhi@l2za3z3su624>
+References: <20250826-pakala-v2-0-74f1f60676c6@oss.qualcomm.com>
+ <20250826-pakala-v2-3-74f1f60676c6@oss.qualcomm.com>
+ <4583bf66-737d-4029-8f14-ce6d6a75def6@kernel.org>
+ <0c732ac6-2d1a-4341-94d4-dc6734bfb959@kernel.org>
+ <e2d23d22-de22-47ee-b715-e7b6c36976b1@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net v4 2/5] net: macb: remove illusion about TBQPH/RBQPH
- being per-queue
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, Andrew Lunn
-	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, Geert Uytterhoeven <geert@linux-m68k.org>, Harini
- Katakam <harini.katakam@xilinx.com>, Richard Cochran
-	<richardcochran@gmail.com>, Russell King <linux@armlinux.org.uk>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Thomas Petazzoni
-	<thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Sean Anderson <sean.anderson@linux.dev>
-References: <20250820-macb-fixes-v4-0-23c399429164@bootlin.com>
- <20250820-macb-fixes-v4-2-23c399429164@bootlin.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Content-Language: en-US, fr
-Organization: microchip
-In-Reply-To: <20250820-macb-fixes-v4-2-23c399429164@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <e2d23d22-de22-47ee-b715-e7b6c36976b1@oss.qualcomm.com>
 
-On 20/08/2025 at 16:55, Théo Lebrun wrote:
-> The MACB driver acts as if TBQPH/RBQPH are configurable on a per queue
-> basis; this is a lie. A single register configures the upper 32 bits of
-> each DMA descriptor buffers for all queues.
+On Tue, Aug 26, 2025 at 02:33:44PM GMT, Krishna Chaitanya Chundru wrote:
 > 
-> Concrete actions:
 > 
->   - Drop GEM_TBQPH/GEM_RBQPH macros which have a queue index argument.
->     Only use MACB_TBQPH/MACB_RBQPH constants.
+> On 8/26/2025 2:02 PM, Krzysztof Kozlowski wrote:
+> > On 26/08/2025 10:27, Krzysztof Kozlowski wrote:
+> > > On 26/08/2025 07:18, Krishna Chaitanya Chundru wrote:
+> > > > The qcom_pcie_parse_ports() function currently iterates over all available
+> > > > child nodes of the PCIe controller's device tree node. This can lead to
+> > > > attempts to parse unrelated nodes like OPP nodes, resulting in unnecessary
+> > > > errors or misconfiguration.
+> > > > 
+> > > > Restrict the parsing logic to only consider child nodes named "pcie" or
+> > > > "pci", which are the expected node names for PCIe ports.
+> > > > 
+> > > > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> > > > ---
+> > > >   drivers/pci/controller/dwc/pcie-qcom.c | 2 ++
+> > > >   1 file changed, 2 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > > index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..5dbdb69fbdd1b9b78a3ebba3cd50d78168f2d595 100644
+> > > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > > @@ -1740,6 +1740,8 @@ static int qcom_pcie_parse_ports(struct qcom_pcie *pcie)
+> > > >   	int ret = -ENOENT;
+> > > >   	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+> > > > +		if (!(of_node_name_eq(of_port, "pcie") || of_node_name_eq(of_port, "pci")))
+> > > 
+> > > 
+> > > Huh? Where is this ABI documented?
+> > 
+> > I see it actually might be documented, but you did not mention it at
+> > all. I doubt you even checked.
+> > 
+> > Please reference exactly where is the ABI, so reviewing will be easier.
+> > 
+> > I still think though that it is wrong - we don't want device node names
+> > to be the ABI if we already have compatibles and the children here
+> > should have them, right?
+> I intended to check for device_type to be pci, my mistake I went with
+> the node name, I will update the patch with this logic
 > 
->   - Drop struct macb_queue->TBQPH/RBQPH fields.
-> 
->   - In macb_init_buffers(): do a single write to TBQPH and RBQPH for all
->     queues instead of a write per queue.
-> 
->   - In macb_tx_error_task(): drop the write to TBQPH.
-> 
->   - In macb_alloc_consistent(): if allocations give different upper
->     32-bits, fail. Previously, it would have lead to silent memory
->     corruption as queues would have used the upper 32 bits of the alloc
->     from queue 0 and their own low 32 bits.
-> 
->   - In macb_suspend(): if we use the tie off descriptor for suspend, do
->     the write once for all queues instead of once per queue.
-
-Indeed, agreed.
-
-> Fixes: fff8019a08b6 ("net: macb: Add 64 bit addressing support for GEM")
-> Fixes: ae1f2a56d273 ("net: macb: Added support for many RX queues")
-> Reviewed-by: Sean Anderson <sean.anderson@linux.dev>
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-
-Thanks Théo, best regards,
-   Nicolas
-
-> ---
->   drivers/net/ethernet/cadence/macb.h      |  4 ---
->   drivers/net/ethernet/cadence/macb_main.c | 57 ++++++++++++++------------------
->   2 files changed, 24 insertions(+), 37 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
-> index c9a5c8beb2fa8166195d1d83f187d2d0c62668a8..a7e845fee4b3a2e3d14abb49abdbaf3e8e6ea02b 100644
-> --- a/drivers/net/ethernet/cadence/macb.h
-> +++ b/drivers/net/ethernet/cadence/macb.h
-> @@ -213,10 +213,8 @@
-> 
->   #define GEM_ISR(hw_q)          (0x0400 + ((hw_q) << 2))
->   #define GEM_TBQP(hw_q)         (0x0440 + ((hw_q) << 2))
-> -#define GEM_TBQPH(hw_q)                (0x04C8)
->   #define GEM_RBQP(hw_q)         (0x0480 + ((hw_q) << 2))
->   #define GEM_RBQS(hw_q)         (0x04A0 + ((hw_q) << 2))
-> -#define GEM_RBQPH(hw_q)                (0x04D4)
->   #define GEM_IER(hw_q)          (0x0600 + ((hw_q) << 2))
->   #define GEM_IDR(hw_q)          (0x0620 + ((hw_q) << 2))
->   #define GEM_IMR(hw_q)          (0x0640 + ((hw_q) << 2))
-> @@ -1214,10 +1212,8 @@ struct macb_queue {
->          unsigned int            IDR;
->          unsigned int            IMR;
->          unsigned int            TBQP;
-> -       unsigned int            TBQPH;
->          unsigned int            RBQS;
->          unsigned int            RBQP;
-> -       unsigned int            RBQPH;
-> 
->          /* Lock to protect tx_head and tx_tail */
->          spinlock_t              tx_ptr_lock;
-> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-> index ce95fad8cedd7331d4818ba9f73fb6970249e85c..69325665c766927797ca2e1eb1384105bcde3cb5 100644
-> --- a/drivers/net/ethernet/cadence/macb_main.c
-> +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -495,19 +495,19 @@ static void macb_init_buffers(struct macb *bp)
->          struct macb_queue *queue;
->          unsigned int q;
-> 
-> +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> +       /* Single register for all queues' high 32 bits. */
-> +       if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
-> +               macb_writel(bp, RBQPH,
-> +                           upper_32_bits(bp->queues[0].rx_ring_dma));
-> +               macb_writel(bp, TBQPH,
-> +                           upper_32_bits(bp->queues[0].tx_ring_dma));
-> +       }
-> +#endif
-> +
->          for (q = 0, queue = bp->queues; q < bp->num_queues; ++q, ++queue) {
->                  queue_writel(queue, RBQP, lower_32_bits(queue->rx_ring_dma));
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -               if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> -                       queue_writel(queue, RBQPH,
-> -                                    upper_32_bits(queue->rx_ring_dma));
-> -#endif
->                  queue_writel(queue, TBQP, lower_32_bits(queue->tx_ring_dma));
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -               if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> -                       queue_writel(queue, TBQPH,
-> -                                    upper_32_bits(queue->tx_ring_dma));
-> -#endif
->          }
->   }
-> 
-> @@ -1166,10 +1166,6 @@ static void macb_tx_error_task(struct work_struct *work)
-> 
->          /* Reinitialize the TX desc queue */
->          queue_writel(queue, TBQP, lower_32_bits(queue->tx_ring_dma));
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -       if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> -               queue_writel(queue, TBQPH, upper_32_bits(queue->tx_ring_dma));
-> -#endif
->          /* Make TX ring reflect state of hardware */
->          queue->tx_head = 0;
->          queue->tx_tail = 0;
-> @@ -2542,6 +2538,7 @@ static int macb_alloc_consistent(struct macb *bp)
->   {
->          struct macb_queue *queue;
->          unsigned int q;
-> +       u32 upper;
->          int size;
-> 
->          for (q = 0, queue = bp->queues; q < bp->num_queues; ++q, ++queue) {
-> @@ -2549,7 +2546,9 @@ static int macb_alloc_consistent(struct macb *bp)
->                  queue->tx_ring = dma_alloc_coherent(&bp->pdev->dev, size,
->                                                      &queue->tx_ring_dma,
->                                                      GFP_KERNEL);
-> -               if (!queue->tx_ring)
-> +               upper = upper_32_bits(queue->tx_ring_dma);
-> +               if (!queue->tx_ring ||
-> +                   upper != upper_32_bits(bp->queues[0].tx_ring_dma))
->                          goto out_err;
->                  netdev_dbg(bp->dev,
->                             "Allocated TX ring for queue %u of %d bytes at %08lx (mapped %p)\n",
-> @@ -2563,8 +2562,11 @@ static int macb_alloc_consistent(struct macb *bp)
-> 
->                  size = RX_RING_BYTES(bp) + bp->rx_bd_rd_prefetch;
->                  queue->rx_ring = dma_alloc_coherent(&bp->pdev->dev, size,
-> -                                                &queue->rx_ring_dma, GFP_KERNEL);
-> -               if (!queue->rx_ring)
-> +                                                   &queue->rx_ring_dma,
-> +                                                   GFP_KERNEL);
-> +               upper = upper_32_bits(queue->rx_ring_dma);
-> +               if (!queue->rx_ring ||
-> +                   upper != upper_32_bits(bp->queues[0].rx_ring_dma))
->                          goto out_err;
->                  netdev_dbg(bp->dev,
->                             "Allocated RX ring of %d bytes at %08lx (mapped %p)\n",
-> @@ -4305,12 +4307,6 @@ static int macb_init(struct platform_device *pdev)
->                          queue->TBQP = GEM_TBQP(hw_q - 1);
->                          queue->RBQP = GEM_RBQP(hw_q - 1);
->                          queue->RBQS = GEM_RBQS(hw_q - 1);
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -                       if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
-> -                               queue->TBQPH = GEM_TBQPH(hw_q - 1);
-> -                               queue->RBQPH = GEM_RBQPH(hw_q - 1);
-> -                       }
-> -#endif
->                  } else {
->                          /* queue0 uses legacy registers */
->                          queue->ISR  = MACB_ISR;
-> @@ -4319,12 +4315,6 @@ static int macb_init(struct platform_device *pdev)
->                          queue->IMR  = MACB_IMR;
->                          queue->TBQP = MACB_TBQP;
->                          queue->RBQP = MACB_RBQP;
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -                       if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
-> -                               queue->TBQPH = MACB_TBQPH;
-> -                               queue->RBQPH = MACB_RBQPH;
-> -                       }
-> -#endif
->                  }
-> 
->                  /* get irq: here we use the linux queue index, not the hardware
-> @@ -5450,6 +5440,11 @@ static int __maybe_unused macb_suspend(struct device *dev)
->                   */
->                  tmp = macb_readl(bp, NCR);
->                  macb_writel(bp, NCR, tmp & ~(MACB_BIT(TE) | MACB_BIT(RE)));
-> +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> +               if (!(bp->caps & MACB_CAPS_QUEUE_DISABLE))
-> +                       macb_writel(bp, RBQPH,
-> +                                   upper_32_bits(bp->rx_ring_tieoff_dma));
-> +#endif
->                  for (q = 0, queue = bp->queues; q < bp->num_queues;
->                       ++q, ++queue) {
->                          /* Disable RX queues */
-> @@ -5459,10 +5454,6 @@ static int __maybe_unused macb_suspend(struct device *dev)
->                                  /* Tie off RX queues */
->                                  queue_writel(queue, RBQP,
->                                               lower_32_bits(bp->rx_ring_tieoff_dma));
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -                               queue_writel(queue, RBQPH,
-> -                                            upper_32_bits(bp->rx_ring_tieoff_dma));
-> -#endif
->                          }
->                          /* Disable all interrupts */
->                          queue_writel(queue, IDR, -1);
-> 
-> --
-> 2.50.1
+> if (!of_node_is_type(np, "pci"))
+> 	continue
 > 
 
+Yes, we can rely on it as it is a required property for PCI bridge nodes.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
