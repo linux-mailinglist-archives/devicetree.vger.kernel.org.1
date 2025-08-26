@@ -1,179 +1,191 @@
-Return-Path: <devicetree+bounces-209335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 368C5B35AA5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 13:04:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7848B35AB7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 13:06:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37B107B7150
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 11:02:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DFE23AAB0F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 11:06:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248A3327797;
-	Tue, 26 Aug 2025 11:03:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jahjgjn/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB5A227599;
+	Tue, 26 Aug 2025 11:06:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA07C321F5C
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 11:03:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.142.27])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59FBD25F99F;
+	Tue, 26 Aug 2025 11:06:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.142.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756206202; cv=none; b=PT2BkPa86D0I+SlU+TAyvxApHan8uV9Sy0Ud293CcUfPsCKq4XE7IgV/vh/uXP5Fw0T36VzyIIvP5AFrNyq5ZpRltfK4Xe45GnCY4gwV9kk8AF4wQQ5erBLdpxd9gyR1CFhCmOXMMwHDS/kO4Xoen3++sU2X1f5Z9R+hAd9ghZM=
+	t=1756206403; cv=none; b=LaejObPYbdYChV57Nqf+R2dOBS4DD/Kgvcb/6SbCb7ijWIFDeR7n7U8dMIpWuJy24wbSA6nM/Y0ypODV5BGnhrb/nHWa2iI64dgG24lc21J0YhY0kHK5//gfvdkPGXzCTGZNfeNm1DSkoTNpVUHNMYFVtN2QYLExq1C9I9Bw9aQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756206202; c=relaxed/simple;
-	bh=wjx9GMHTJv+sVXCnnpOXOAGgSyeX0KAgl8FPgsVCss8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mxo0OUObnAhJPN1aWERhkVrbykc1QtYXMtSFTh+Z+1LzWVIqxDzGEm9bjG44uhxipnXMQqbOSuAYVIrpSJZveuttOypnHIHSg433yR3d+SjTbGcGuuuidg1Hin4kcECw+kYASa7QDamxrVF02yio25BiziEl9SJNhlRf6hnlAmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jahjgjn/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57Q7tmRh029774
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 11:03:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+DPSOTrO4cYwZj0R18ru4Kcr+olXie/WQj6w6L3l2ss=; b=jahjgjn/kxh6JZTo
-	n78k0lULURc8IHG/Robbj7CS9D6Ss9qepDv0yicP4w9Q1ahpv9UlZNb54wuGrtqu
-	QUd0dBqXPJvHfP5MZTWZZIh6yisFRFZKXoSKQ153mLYOdPNHaM4Kfn0IMDZuOe9t
-	idCvDWytRnisTRH+IhQJMG8a3IgYDmMvA9CbpCItsGw6vrtdAKsGUer210NkF/IF
-	5sDZQxyL+tyN4Vu6k5OyBOeKBLER5C6KsbqO1zdA6vQeuygF9g2LZ2rfroTY/iAg
-	j5SRGZIt/Q990yNdOHnxW1G+lWjEtGConyEJbv/r/WKjt0lect2qmm2rcA239SQ8
-	bBFItw==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q5we0bvg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 11:03:17 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2465bc6da05so48378855ad.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 04:03:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756206196; x=1756810996;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+DPSOTrO4cYwZj0R18ru4Kcr+olXie/WQj6w6L3l2ss=;
-        b=FrgjL1IsYDm34KoZb2vPUGTDFlvjER6p/xXK2vRdkdAaNbjuF9dce41Nl2Wk5GoMnr
-         nqsfZChaeM5mgczIYo7EKGY3kR3NY1heTb0llRwwHIJJ+N7Rmkpj/0muwMVlGeLbrPKB
-         /aDuSqtqZqwVZcfnoSeBUeJkp23Rtexu613RkIZfzZhyjLVRRN2x3EJAZeeNF+WKh/g1
-         rV1q+LElllLS38O9WUHczvkHX8Idzejj9tWP1l/mYXwH45KqoRq+HSSEttgXA8HvjRkO
-         HhuaCUgm88jlyGU0W5ogO4Gv6hXywoDL0YuZkXIKdP5OsPBEqvYHA+ReSCBvmC6YoYka
-         D95w==
-X-Forwarded-Encrypted: i=1; AJvYcCX8kENtE3ac/Gmrx/t3Z4ECK8c7/ZMBeZlxkJZtZkrgzfxPzvxgE3KOPvmBIWJsnAoSoinLL7apOwHE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx65P6kSjoomruzu5bjhpBkxJlggYKqSGXEXllKER2Ztd9ZCDa/
-	plkdxQd5RUwv0Sazokp0ubBnTDiIlMFj+ts6jPfQb64LXlxjSYXwlEUQ/PvF9TnYI3FrmbWeHjw
-	ZC9KRUangt/HpJRJcYqdTXi7/cnB2iTa8EDQtHcV+EcuglreWBJnoWNIY+vgfG5kF
-X-Gm-Gg: ASbGncveA+MgxxRIXeMHKpy5MTJpnnRxBLvAohMrsTY+H1/XIkWvj5oRYhA/vw3mmNg
-	lq0HOYrR3nt/jXtCLzzKv5KIPDWn/QoBrNPq2d3RmRkhCm08g4EvAkJV8jRqzmxpeLfKSkCa1qF
-	bu0RQF4nDQ6178kaYbNOmgbsQjDabCra0+XVe2sYXikr/7/nFo+dlxSMO1hP/Rn53pLSlzig6It
-	dC7xbJsTtumqopomZBEVum6eUofPUaw7Qx7dcdSu+gVml+ValpmXBS72HqJWqO36phOxceDEb1T
-	GWMGcR3C5i1H0c8j9Vht0DIRhaq77EpBOyNm/6nnwr5Vx8DsF+DCeesQu81IQxtwKD/njiNgzfI
-	=
-X-Received: by 2002:a17:902:cec2:b0:246:61e:b564 with SMTP id d9443c01a7336-2462f1d82c4mr184212185ad.61.1756206196217;
-        Tue, 26 Aug 2025 04:03:16 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFb/AZx3XW6vrNMBVNQNlwghugBEj5Jl+a3IPk5UUCn6++1jKG/5K7QzZFQ/5XN3S+gDRMYRg==
-X-Received: by 2002:a17:902:cec2:b0:246:61e:b564 with SMTP id d9443c01a7336-2462f1d82c4mr184211365ad.61.1756206195528;
-        Tue, 26 Aug 2025 04:03:15 -0700 (PDT)
-Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-246688a5e5esm93207955ad.161.2025.08.26.04.03.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Aug 2025 04:03:15 -0700 (PDT)
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Tue, 26 Aug 2025 16:32:55 +0530
-Subject: [PATCH v3 3/3] PCI: qcom: Restrict port parsing only to pci child
- nodes
+	s=arc-20240116; t=1756206403; c=relaxed/simple;
+	bh=0DD07lInfMmXbGN+5tYxPVIh0qblkS1vxdwi59jO87s=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PPSqdOU4rLebWmD/eGCpg/FZSaW+DwAYS74CkBjIwT9ippSCkOKqCWqnKjcC3uGOl6QIE3TvUVzY/cH9s0VFkuLl6iM4P0Et+e9sbJ+fspB5DLZZf4KX62jhv4zzVmyWUxiN21kqpDrkzf3c7hQOFAH4UdXHJYL6yXyIy/QJJVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.142.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app1 (Coremail) with SMTP id TAJkCgC3zg8sla1o3ObDAA--.48651S2;
+	Tue, 26 Aug 2025 19:06:23 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: p.zabel@pengutronix.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v6 0/2] Add driver support for ESWIN eic7700 SoC reset controller
+Date: Tue, 26 Aug 2025 19:06:10 +0800
+Message-Id: <20250826110610.1338-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250826-pakala-v3-3-721627bd5bb0@oss.qualcomm.com>
-References: <20250826-pakala-v3-0-721627bd5bb0@oss.qualcomm.com>
-In-Reply-To: <20250826-pakala-v3-0-721627bd5bb0@oss.qualcomm.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
-        quic_mrana@quicinc.com,
-        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756206175; l=1564;
- i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=wjx9GMHTJv+sVXCnnpOXOAGgSyeX0KAgl8FPgsVCss8=;
- b=C0xBQUzGHEvIUVnt+TDkqiJDzJlJ3dBZwRdN3YqQCt7Cp8x8kuf2+DS17yh6DcNQNE0FJYI5o
- XBtet90TSDPCSMC2G8ETJoAda/ei6+0M0XJb054TozCWTN7TI3xe++D
-X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-GUID: ccDc8ed1zpXBJtaaUildyaQvVjCwNxg4
-X-Proofpoint-ORIG-GUID: ccDc8ed1zpXBJtaaUildyaQvVjCwNxg4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzMyBTYWx0ZWRfX2RGkzpfSUraq
- R5ATNqfEtm7c6GDbh7fV3bb2S8MJzj83JO65CZISkUMeHV+54xfz6rDO3g5lG5Os99mZsC3ZEhD
- xyEioN2vfRbGTAE6CR+I2tCfbRJ/z6168P/FZ1g4E9qT7PlL+K+TatwU52EtjQgJIjYshwD5Ply
- wgxgPT4sX+LjGrHVddPtaTQ3bRrO4H0xi541VOD7KLRm1fVxtUOEnbQdLpOeXAfwo9ACW2+0t4X
- 5gO87cTTqVgJNEz6YvA3+lP62qedwFam5oQCEtnCkyosb3IHUakjjTTqnxoFKYwmCHZEfr5z5Qu
- 7d6rjPtMKNL/sOYCxyz/Ags5SFMXxYcvb8Zr1c8VzHogON0EQAJ37ZBfC+T623QJuK+xQIeQZGG
- eQkwy7EI
-X-Authority-Analysis: v=2.4 cv=BJazrEQG c=1 sm=1 tr=0 ts=68ad9475 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=Py5lcOcq67Lbq8UMOfUA:9
- a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-26_02,2025-08-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 priorityscore=1501 clxscore=1015 impostorscore=0
- bulkscore=0 phishscore=0 suspectscore=0 spamscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508230033
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgC3zg8sla1o3ObDAA--.48651S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxtF15WFyrXF1kJFWktr4UCFg_yoW7ArWUpF
+	WUCry7Gr15Xr4xXa93ta1F93WSqanxtr15Gr47Jw47uan8Aa4UJrWrtF45AFyDAr97Xryf
+	XF13uayF9FyjvFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUmjgxUUUUU=
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
 
-The qcom_pcie_parse_ports() function currently iterates over all available
-child nodes of the PCIe controller's device tree node. This includes
-unrelated nodes such as OPP (Operating Performance Points) nodes, which do
-not contain the expected 'reset' and 'phy' properties. As a result, parsing
-fails and the driver falls back to the legacy method of parsing the
-controller node directly. However, this fallback also fails when properties
-are shifted to the root port, leading to probe failure.
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-Fix this by restricting the parsing logic to only consider child nodes with
-device_type = "pci", which is the expected and required property for PCIe
-ports as defined in pci-bus-common.yaml.
+This series depends on the vendor prefix [1] and config option patch [2].
 
-Fixes: a2fbecdbbb9d ("PCI: qcom: Add support for parsing the new Root Port binding")
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 2 ++
- 1 file changed, 2 insertions(+)
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20250825&id=ac29e4487aa20a21b7c3facbd1f14f5093835dc9
+[2] https://lore.kernel.org/all/20250825132427.1618089-3-pinkesh.vaghela@einfochips.com/
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..fbed7130d7475aafb0d8adf07427c3495921152f 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -1740,6 +1740,8 @@ static int qcom_pcie_parse_ports(struct qcom_pcie *pcie)
- 	int ret = -ENOENT;
- 
- 	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
-+		if (!of_node_is_type(of_port, "pci"))
-+			continue;
- 		ret = qcom_pcie_parse_port(pcie, of_port);
- 		if (ret)
- 			goto err_port_del;
+Updates:
 
--- 
-2.34.1
+  dt-bindings: reset: eswin: Documentation for eic7700 SoC
+  v5 -> v6:
+    Add dependencies of vendor prefix and config option patch in cover-letter.
+    Link to v5: https://lore.kernel.org/all/20250725093249.669-1-dongxuyang@eswincomputing.com/
+
+  v4 -> v5:
+    1. Dropped EIC7700_RESET_MAX from bindings.
+    2. Add "Reviewed-by" tag of "Krzysztof Kozlowski" for Patch 1.
+    3. Corrected the link to previous versions.
+    Link to v4: https://lore.kernel.org/all/20250715121427.1466-1-dongxuyang@eswincomputing.com/
+
+  v3 -> v4:
+    1. Remove register offsets in dt-bindings.
+    2. The const value of "#reset-cell" was changed from 2 to 1.
+       Because the offsets were removed from dt-bindings. There are
+       only IDs. And removed the description of it.
+    3. Modify copyright year from 2024 to 2025.
+    4. Redefined the IDs in the dt-bindings and used these to build a
+       reset array in reset driver. Ensure that the reset register and
+       reset value corresponding to the IDs are correct.
+    Link to v3: https://lore.kernel.org/all/20250619075811.1230-1-dongxuyang@eswincomputing.com/
+
+  v2 -> v3:
+    1. Drop syscon and simple-mfd from yaml and code, because these are
+       not necessary.
+    2. Update description to introduce reset controller.
+    3. Add reset control indices for dt-bindings.
+    4. Keep the register offsets in dt-bindings.
+    Link to v2: https://lore.kernel.org/all/20250619075811.1230-1-dongxuyang@eswincomputing.com/
+
+  v1 -> v2:
+    1. Clear warnings/errors for using "make dt_binding_check".
+    2. Update example, change parent node from sys-crg to reset-controller
+       for reset yaml.
+    3. Drop the child node and add '#reset-cells' to the parent node.
+    4. Drop the description, because sys-crg block is changed to reset-
+       controller.
+    5. Change hex numbers to decimal numbers going from 0, and drop the
+       not needed hardware numbers.
+    Link to v1: https://lore.kernel.org/all/20250619075811.1230-1-dongxuyang@eswincomputing.com/
+
+  reset: eswin: Add eic7700 reset driver
+  v5 -> v6:
+    1. Removed platform_set_drvdata() function.
+    2. In probe function, defined struct device *dev = &pdev->dev.
+       Modified &pdev->dev to dev.
+    Link to v5: https://lore.kernel.org/all/20250725093249.669-1-dongxuyang@eswincomputing.com/
+
+  v4 -> v5:
+    1. The value of .max_register is 0x7fffc.
+    2. Converted "to_eswin_reset_data" from macro to inline function.
+    3. Modified EIC7700_RESET_OFFSET to EIC7700_RESET and eic7700_
+       register_offset to eic7700_reset.
+    4. Since EIC7700_RESET_MAX is dropped, used eic7700_reset[] without
+       EIC7700_RESET_MAX.
+    5. Removed function eswin_reset_set, and put regmap_clear_bits in
+       eswin_reset_assert and regmap_set_bits in eswin_reset_deassert.
+    6. Added usleep_range in function eswin_reset_reset which was missed.
+    7. Used ARRAY_SIZE(eic7700_reset) for data->rcdev.nr_resets.
+    8. Use builtin_platform_driver, because reset driver is a reset
+       controller for SoC. Removed eswin_reset_init function.
+    9. Modified eswin_reset_* to eic7700_reset_*.
+    Link to v4: https://lore.kernel.org/all/20250715121427.1466-1-dongxuyang@eswincomputing.com/
+
+  v3 -> v4:
+    1. Add 'const' for the definition. It is 'const struct of_phandle_
+       args *reset_spec = data;'.
+    2. Modify copyright year from 2024 to 2025.
+    3. Included "eswin,eic7700-reset.h" in reset driver.
+    4. Added mapping table for reset IDs.
+    5. Removed of_xlate and idr functions as we are using IDs from DTS.
+    6. Removed .remove function.
+    Link to v3: https://lore.kernel.org/all/20250619075811.1230-1-dongxuyang@eswincomputing.com/
+
+  v2 -> v3:
+    1. Change syscon_node_to_regmap() to MMIO regmap functions, because
+       dropped syscon.
+    2. Add BIT() in function eswin_reset_set() to shift the reset
+       control indices.
+    3. Remove forced type conversions from function eswin_reset_of_
+       xlate_lookup_id().
+    Link to v2: https://lore.kernel.org/all/20250619075811.1230-1-dongxuyang@eswincomputing.com/
+
+  v1 -> v2:
+    1. Modify the code according to the suggestions.
+    2. Use eswin_reset_assert() and eswin_reset_deassert in function
+       eswin_reset_reset().
+    3. Place RESET_EIC7700 in Kconfig and Makefile in order.
+    4. Use dev_err_probe() in probe function.
+    Link to v1: https://lore.kernel.org/all/20250619075811.1230-1-dongxuyang@eswincomputing.com/
+
+Xuyang Dong (2):
+  dt-bindings: reset: eswin: Documentation for eic7700 SoC
+  reset: eswin: Add eic7700 reset driver
+
+ .../bindings/reset/eswin,eic7700-reset.yaml   |  42 ++
+ drivers/reset/Kconfig                         |  10 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-eic7700.c                 | 428 ++++++++++++++++++
+ .../dt-bindings/reset/eswin,eic7700-reset.h   | 298 ++++++++++++
+ 5 files changed, 779 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/eswin,eic7700-reset.yaml
+ create mode 100644 drivers/reset/reset-eic7700.c
+ create mode 100644 include/dt-bindings/reset/eswin,eic7700-reset.h
+
+--
+2.17.1
 
 
