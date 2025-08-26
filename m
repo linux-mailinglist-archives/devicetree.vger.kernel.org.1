@@ -1,79 +1,125 @@
-Return-Path: <devicetree+bounces-209172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 269BCB35159
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 04:02:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C2B2B35167
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 04:10:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1EDE47AF2F5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 02:01:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02DA03BE71C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 02:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C5A220CCE4;
-	Tue, 26 Aug 2025 02:02:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A20220F49;
+	Tue, 26 Aug 2025 02:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A1oqFSSZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fZuOUcx2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1357D1FBEBE;
-	Tue, 26 Aug 2025 02:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 104F91EF091;
+	Tue, 26 Aug 2025 02:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756173759; cv=none; b=ZyKhHM77LP1nXJla0Rn2qtQEOQQrz7isSMee6VeyD8hR3QLfyHqT0FxGjwogheWmOezBJ0gUcycbzxtF2MrVY8Z6ZQh3GYMOKT1WZHBv2n2YSr/MnObfnW7fbfi11DFunAxTN5i6O4MFYmPgvnjSq1EqWf8Z09bHJbyi0ENkgUI=
+	t=1756174212; cv=none; b=pCHs1PI4x0ZaD3sOeKVPZU/8Ac52JAJJHsy5SVlNMm2EAp/ku5b0lIZ9Y06hb5tDqNeLbYh52YONvjyVYyPhCrZ+YVEA3meqNg7pjf4vYmWjLPm1ZA1ca1FFWqELSykvwms5SlbQW+dSMfJt6Ku0bAYSPbLQYRljgygpFHT07TY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756173759; c=relaxed/simple;
-	bh=muXgQEpsb6bw/DTcaEzgoJ4ui6A05ZjVvpHHGLJV4Bk=;
-	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=DcMraWG5lMnSMGDIQAeCuxG/pRSHdLIhe7ypCwDOqRCKMXb+iEBdvhbYtjvi8QJlOl7KIaIoIqNLD6Ro+DMQjFs83tUhh2v7em3Jedib8lu0/ZCeb1ljyGWpoHJ+ph+mUcBFbTaqgS1dO2bEScmPh1T5Ca6xE1ldSF0XLKAqLCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A1oqFSSZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97D62C4CEF1;
-	Tue, 26 Aug 2025 02:02:38 +0000 (UTC)
+	s=arc-20240116; t=1756174212; c=relaxed/simple;
+	bh=0ZhDCvNeyZHdraVAF+JAqgTlwwrIyBAkGodg6u0wvUA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cKA1ZTCzPghpvihgl1RHcH/NQgoihdP63TlfE9hTT29aABveWfMi7PVOdEBnhDgda243W6I/Qe6ZKyCLYwH4nR7W+nR6Utpf2vN5a4l19eik3N14zW8EFfMJCRYKEHaw06GM1U3QlcXsnphzjdRIdIIRdr9XMRzTuXQqOkODp+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fZuOUcx2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 85782C4CEED;
+	Tue, 26 Aug 2025 02:10:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756173758;
-	bh=muXgQEpsb6bw/DTcaEzgoJ4ui6A05ZjVvpHHGLJV4Bk=;
-	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-	b=A1oqFSSZ712nwSngpOSXgql5FscEbkkm3Ol+QvMEKpg4Sw+ByThWsFWIE0N9bkAMI
-	 K+NJTk/kn9oI4F1aKZmYyGaK1tMBeswhlKyCh2gbkiNacYwqXhQPPBonX8LT5FYwMB
-	 A/eCn6COCZBhtoifrLGmkXMwu2JyDHGLzcOhJwc9A5n9IYBupJiYM9n+zHw4xAnVq0
-	 GXBB67VNO66Qlvk+tJne7XCoOubj257Uu6tHOl5RjkKPf6lGx7FkEfojxZ8/AfdKCu
-	 lspMmkUlY1DolLVhDadUgtoKyvwNKs/fgiOxWi+ZBGN0rtrfx4p5dI5TEs4hNVXjLM
-	 jc7st1ObODSwA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADF56383BF70;
-	Tue, 26 Aug 2025 02:02:47 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v6.17, part 1
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20250825203521.GA399593-robh@kernel.org>
-References: <20250825203521.GA399593-robh@kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20250825203521.GA399593-robh@kernel.org>
-X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.17-1
-X-PR-Tracked-Commit-Id: 80af3745ca465c6c47e833c1902004a7fa944f37
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: fab1beda7597fac1cecc01707d55eadb6bbe773c
-Message-Id: <175617376629.3625474.2877908258292778978.pr-tracker-bot@kernel.org>
-Date: Tue, 26 Aug 2025 02:02:46 +0000
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+	s=k20201202; t=1756174211;
+	bh=0ZhDCvNeyZHdraVAF+JAqgTlwwrIyBAkGodg6u0wvUA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=fZuOUcx2q6h1iCxzrNMUQL0lonRgF5qYCxzdeIRXOejR2NdRobcnlA1tuFpbtDP2F
+	 PR28vfT64msDEu8XPkG4RwMq4D/YG7q3lsVQ4x3ekOg/lJNZ1nNAj8YyCdFNI5ikri
+	 5n1T0O3zRCUneXhdyoL19MDpVS07fzdqp8MHyLuQ/rDDmjqu4IdUOuOTBmecVSa8KA
+	 LapmeK5+4ypLxeyeiKyURUn5vDZsBkzkl6h4jAVyT6gv6/D1EX7ysCjnmz4YrC5CWM
+	 97Ea1Tl3IousamtPsYVcIg0un+rTKpgK7PXIhFkmSG4HUfq178FswQuO0lQLDodLKQ
+	 8bwDf/6D1/nWA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B4F9CA0EFA;
+	Tue, 26 Aug 2025 02:10:11 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/3] support for Amlogic SPI Flash Controller IP
+Date: Tue, 26 Aug 2025 10:10:08 +0800
+Message-Id: <20250826-spifc-v3-0-7e926041d7f6@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIAXrWgC/1WMwQ6CMBAFf4Xs2Zq20Aqe/A/jgdYtbCKUtKbRE
+ P7dQiTR47y8mRkiBsII52KGgIki+TFDeSjA9u3YIaN7ZpBcKl7zisWJnGXqpAWWyhkUDvJ3Cuj
+ otXWut8w9xacP7y2bxLruhfpbSIJx5lyFJUepW20u7fDwHdmj9QOsjSR/PCl2T2bPCNE4XRlle
+ fPvLcvyAbqGCwjUAAAA
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756174209; l=1621;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=0ZhDCvNeyZHdraVAF+JAqgTlwwrIyBAkGodg6u0wvUA=;
+ b=WqzjJ1o4w2CJM/Xelv4MpMLD0YDe780ru8Sk78CgDKc/OJSmr4X3uP8OFjAy/nGkOkc+cP27Q
+ kSr91M6OrF/Ac9tKU2W0ZsOYUYoXaQpQshLXCoNSl/7FRwRNoDFtzyR
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-The pull request you sent on Mon, 25 Aug 2025 15:35:21 -0500:
+This Flash Controller is derived by adding an SPI path to the original
+raw NAND controller. This controller supports two modes: raw mode and
+SPI mode. The raw mode has already been implemented in the community
+(drivers/mtd/nand/raw/meson_nand.c).
+This submission supports the SPI mode.
 
-> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.17-1
+Add the drivers and bindings corresponding to the SPI Flash Controller.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/fab1beda7597fac1cecc01707d55eadb6bbe773c
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v3:
+- Restore message description and modify subject [1/3] that was omitted in v2. 
+- Link to v2: https://lore.kernel.org/r/20250821-spifc-v2-0-b119f64b5c09@amlogic.com
 
-Thank you!
+Changes in v2:
+- Remove clock reg descriptor and get clock from common clk.
+- Remove ecc and ramdom descriptor in bindings.
+- Modify the format and message description.
+- Link to v1: https://lore.kernel.org/r/20250808-spifc-v1-0-ff4e30e26a6b@amlogic.com
 
+---
+Feng Chen (2):
+      spi: dt-bindings: add Amlogic A113L2 SFC
+      spi: amlogic: add driver for Amlogic SPI Flash Controller
+
+Xianwei Zhao (1):
+      MAINTAINERS: Add an entry for Amlogic spifc driver
+
+ .../devicetree/bindings/spi/amlogic,a4-spifc.yaml  |   82 ++
+ MAINTAINERS                                        |   10 +
+ drivers/spi/Kconfig                                |   10 +
+ drivers/spi/Makefile                               |    1 +
+ drivers/spi/spi-amlogic-spifc-a4.c                 | 1224 ++++++++++++++++++++
+ 5 files changed, 1327 insertions(+)
+---
+base-commit: f8b3f0d7b2a91ba84d06343c3ca4522e35a65f56
+change-id: 20250804-spifc-5761e35fbe1f
+
+Best regards,
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
