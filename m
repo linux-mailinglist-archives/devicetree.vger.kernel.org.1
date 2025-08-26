@@ -1,99 +1,122 @@
-Return-Path: <devicetree+bounces-209320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 700A7B3596D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 11:53:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6977BB359A4
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 11:58:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82E7B1896E67
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:54:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24A407C26C7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 09:58:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DEAB31985F;
-	Tue, 26 Aug 2025 09:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD9C318156;
+	Tue, 26 Aug 2025 09:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="fTL3GjBl"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Pu8tE7UN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9340B2F3624;
-	Tue, 26 Aug 2025 09:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756202024; cv=pass; b=AsgMFbBkbkaaRJg82RJqhCrs7q6zVEXJ0ruA6GFwgwYnOk4uqXiXNZrbcwueFe/pAWh6UYSZE71SXd0YRWTjnJokLHfcyaD/gzth4vzfJyBNKNldspS7psXHkk9P1LRCFzidql7oHRTYrvIMjYE60BFd48JUYNkWpBmXvtJLQfI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756202024; c=relaxed/simple;
-	bh=Dn3Jicl8olp9EaV0TqV4EBh3aYu+CRSHNFNRqLFHCz8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a2yXrkqi18s01NuYBDLhkIIcy6ve8LKp/B56NXEdEKpPUfeU/SQosdZiEOyXRxom6emO+yjc39s0gVml2iL5RFTtd9RMaMO5SO72e4rrwZrCr1/drVHbd6c5Kec4o1Ei/yHB+rllLMvGC9wIkQYSGTEtYka7TlYiE2CC1x+cX5k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=fTL3GjBl; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1756201998; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=X3ygrqwUSuwx6dHiIGUQtLF1gLG8fJGjuWMLZdLv54TwSfNdJyatQRzdOHwg8IQikXjAJdmXu2WqkEn1IZA+JnLYycuq0OynB3qzLDRc/t+X2pFpIXOAoF83H/2ieIJGXBdX72EbHm5guOqMpviXNO6BK2zU/9ELbPeEe1pyi8g=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1756201998; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Dn3Jicl8olp9EaV0TqV4EBh3aYu+CRSHNFNRqLFHCz8=; 
-	b=NNnul6sK8D5SZXlwiOdk2Vo/2XiikXGdpMcK9jsQfThAUe78IoXcAFVswPcuX+vbd0O9b8k1xcXw9CWCkqJJOToJEBtxKviFge/LuvSpwCiMFXLX/qyCGA197jrsGey/MA0nAlXGlfdUpkFyJZl4oIsTvELgk4TJxsQ0gL4zcO0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
-	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1756201998;
-	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=Dn3Jicl8olp9EaV0TqV4EBh3aYu+CRSHNFNRqLFHCz8=;
-	b=fTL3GjBlvFAwIZNuysAvG47xhYwqyFQ1DdN7snGwnhGRKREejSWnp4NRUPxtrwC6
-	7KTnFtpqBWhvVmVvz9hhmlF9hthuyMPDQnpDX8hY9cHYPtjGfr/N9OtCOEWjRm7ofmj
-	0uUOyEhks8tNqzhWrXXScbIoOhM0h8Z4Ci6OCW18=
-Received: by mx.zohomail.com with SMTPS id 1756201996213653.2470978174058;
-	Tue, 26 Aug 2025 02:53:16 -0700 (PDT)
-Message-ID: <002f164b-4296-428b-95ec-1ca10b979070@collabora.com>
-Date: Tue, 26 Aug 2025 11:53:11 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541E22FAC0A
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 09:58:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756202282; cv=none; b=Mmr5ieRQ5szrvD2LzenSFCTsbNE87ScA23ShTHz0w/n4q95ouR2f0NyGvHsCtwAA0F6O121Wl8TfMQzoeyXtwnEMyHqcdRhTjcfdnk9NSef5Zhc5uauEbFiw+KSDIZxkDjtemMlwyxyl96eRb1QdcnY2nIuf+giTvOKEFvEBHjU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756202282; c=relaxed/simple;
+	bh=Rt1wBuOibWYMf11azApMmPxWPuGaXVXsAWpTctmwPog=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LHhaEGsHRHihDrw+OeQEK0xflOPjAXc3ck5A2QiqxcGAV2iW1Bhc67qDV/97mYx0oPjcWCQlwDpSfYeI8HWakNZxS6lPFWA8CKZF4eWE8atQusbydIdXVlvNETdqE8IRmgWIbBeNQFbont0PePTP6uh/duWCiGp5QAXU1povKCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Pu8tE7UN; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-55f49f96f42so1629304e87.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 02:58:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1756202279; x=1756807079; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uOUXkb1uF8zQdB/sKiLIuRwWdep4Dp9YFQhPpYg7e7o=;
+        b=Pu8tE7UNSPb/mSu8D8XVNJ1m+w/gr9winhNLMNf5oNNhDIbwDbeoNasGh3h562/Z8G
+         mCXFe1I8ZZxoJtKns/bQCKXoSXmIVoJtI5E19heex3sjrcGxaQU2kfr9wHdob98rL0Jn
+         ly8fbX+5vAcNPWrQMMpcRo7UtVYluLIUCe3bwgfEp8uui5ohvG8u/Pe8Aq4aY9/+AuDM
+         iVaw2BMpWe7M6WpsyOqJyY10Mo9VshFCDvsccyDqpIXKA43ZTVsStftFBfiRih1ZaMsw
+         jGaf0yyIbgu+iiiE0pxmkgHTqTXZmDOFZ98vubSvsTAtcZf13nFmFU/HgXzYBVwJEear
+         JFPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756202279; x=1756807079;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uOUXkb1uF8zQdB/sKiLIuRwWdep4Dp9YFQhPpYg7e7o=;
+        b=flhBP2lf32LWWhAXkzSrvbPFhu0GG9Sa8OkmYYivlcLy+AayKC9HyVthcgTVjzGp4A
+         /vEMokjVDs9u5XN7F80zOT1NnnjsQgFRJ5eFKvGhDidX+zkR1EVs0+vbIX91b1e/ueHr
+         ySZ0mG76eWRltMrchB9Z8XWn+ErEmOsAwb5UVn+JS7AJ8oa1QUjMy+TtG5bTrbbUHblF
+         aJ4dSunVpe0BiJTXXM23soUCEhb7bPRwReW9oGL4vvAFsImaQkuoXW7yuk1ZyTqd3DMo
+         RaFEMoAJ6gxjMMfL0bjAQLhu6qcSuUZ0bx2lVP/b3NrSwKPFuaRTi781ahLaEaQgWDaV
+         jSzg==
+X-Forwarded-Encrypted: i=1; AJvYcCVm0mA1on3H2aD6Qp3aMY7MP/ATHgOQdBun7LAg2YwwETsiZ/Tlxv4AFI9msLthxP7u9lrljowF5jWT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz89h4eDt348BrzCpudOA+x6ADR5UB2KQZvjtzQ2HnwUnUW+A0F
+	Lmg0L/OhEMwsdQ7UtAcdMa7JywCw69vRiLffiGoLw4fKCQKtpYP/5K0PFEK2vvAqCXXFSGG+FrV
+	WissEANe+dtZXeWdVZ+twLaHtuJC6YQU8RQ7fgpxOyw==
+X-Gm-Gg: ASbGnctllZfAgWgZokeIJf5oxOYo9eYDI4ez9zPqNmkhUAijlLy0N9jo8thxHHqCjNV
+	YI1aBHopOCEsw67PXmcRPA9uDvv5wnNDF1ygZrjYTJ6CWDY2gDlfuZUBdJgxWGbdoh4TG6tFFd0
+	9/ibDomdSaWWFc3zQ9gt27WZ73MQ6qsir0vi56ineWu8IcxGbWy2D/sGJl2/OeoF+92wLhQQi6D
+	jzB0X7q9nzlBMTAxepd+Hj+BXRaEMqObBmw3cUuLzi5KSoEeg==
+X-Google-Smtp-Source: AGHT+IHZlig7uTIvb1Hm0+VQCqd18Uy1yI/ilX78XfwZSj12J+ieVVBnbFx5cn43CrziQFS1Bp5XyB1Kt9NlfkCCxzM=
+X-Received: by 2002:a05:6512:440e:b0:55f:42ca:cc03 with SMTP id
+ 2adb3069b0e04-55f42cacd56mr3019395e87.56.1756202279297; Tue, 26 Aug 2025
+ 02:57:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 6/6] arm64: defconfig: enable Verisilicon IOMMU
-To: Krzysztof Kozlowski <krzk@kernel.org>, joro@8bytes.org, will@kernel.org,
- robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de, nicolas.dufresne@collabora.com,
- jgg@ziepe.ca, p.zabel@pengutronix.de, mchehab@kernel.org
-Cc: iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com,
- linux-media@vger.kernel.org
-References: <20250825153450.150071-1-benjamin.gaignard@collabora.com>
- <20250825153450.150071-7-benjamin.gaignard@collabora.com>
- <b7869ddb-f44b-4d1f-a6c3-393a28d3cb00@kernel.org>
-Content-Language: en-US
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <b7869ddb-f44b-4d1f-a6c3-393a28d3cb00@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <372550a2633586d2f98b077d3f520f3262ca0e2a.1756104334.git.christophe.leroy@csgroup.eu>
+ <ac7c79b3491cb48ef7c193420b9a9e4614b88436.1756197502.git.christophe.leroy@csgroup.eu>
+In-Reply-To: <ac7c79b3491cb48ef7c193420b9a9e4614b88436.1756197502.git.christophe.leroy@csgroup.eu>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Tue, 26 Aug 2025 11:57:47 +0200
+X-Gm-Features: Ac12FXy4Ibm7fbO9KiNfYE73-dyWntHoWbLgchN6hbkj2Va2bGEIGeT9v8x9Fxc
+Message-ID: <CAMRc=MchS5d3RHjtpc-fAVzKyhMchdUhvZCgTNsJ94u5Cc5FWw@mail.gmail.com>
+Subject: Re: [PATCH v4] soc: fsl: qe: Add support of IRQ in QE GPIO
+To: Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: Qiang Zhao <qiang.zhao@nxp.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-Le 26/08/2025 à 10:25, Krzysztof Kozlowski a écrit :
-> On 25/08/2025 17:34, Benjamin Gaignard wrote:
->> Enable Verisilicon IOMMU used by RK3588 AV1 hardware codec.
-> Qualcomm RK3588? This is defconfig for all platforms, so be specific
-> which board uses it.
-
-It is for rockchip rk3588 SoC.
-
-Regards,
-Benjamin
-
+On Tue, Aug 26, 2025 at 10:41=E2=80=AFAM Christophe Leroy
+<christophe.leroy@csgroup.eu> wrote:
 >
+> In the QE, a few GPIOs are IRQ capable. Similarly to
+> commit 726bd223105c ("powerpc/8xx: Adding support of IRQ in MPC8xx
+> GPIO"), add IRQ support to QE GPIO.
 >
+> Add property 'fsl,qe-gpio-irq-mask' similar to
+> 'fsl,cpm1-gpio-irq-mask' that define which of the GPIOs have IRQs.
 >
-> Best regards,
-> Krzysztof
+> Here is an exemple for port B of mpc8323 which has IRQs for
+> GPIOs PB7, PB9, PB25 and PB27.
 >
+>         qe_pio_b: gpio-controller@1418 {
+>                 compatible =3D "fsl,mpc8323-qe-pario-bank";
+>                 reg =3D <0x1418 0x18>;
+>                 interrupts =3D <4 5 6 7>;
+>                 interrupt-parent =3D <&qepic>;
+>                 gpio-controller;
+>                 #gpio-cells =3D <2>;
+>                 fsl,qe-gpio-irq-mask =3D <0x01400050>;
+>         };
+>
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> ---
+
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
