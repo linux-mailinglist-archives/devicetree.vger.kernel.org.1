@@ -1,63 +1,56 @@
-Return-Path: <devicetree+bounces-209272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE7C8B356E6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:30:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AB4AB35773
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 10:42:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F0BE167925
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:30:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08ED43A5374
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 08:42:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B97CF2F83B2;
-	Tue, 26 Aug 2025 08:30:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BE1A27D77B;
+	Tue, 26 Aug 2025 08:42:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RNXZ4RDQ"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="CwuiO2SD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1C5822E004;
-	Tue, 26 Aug 2025 08:30:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92DA51E8322
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 08:42:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756197033; cv=none; b=smva25Y0ejggVjiR7VZPgOPqKJGdccPkIustq85Ii2Ej3ch0/VVWT5YaN041CBWyyooLXAOkIwU+RGnfXzN4EGiBm0z6901kumS9fl/NLWzwa53ho26UVXV26DNZF0Kze800rxv7s9nUBBI1HCcDhbjN5AXfurK85Skxr6WpOe4=
+	t=1756197739; cv=none; b=e+qu6b3CbFGJ3HOeGSzvjnOiD9L0p7dCRFXLaggcxbKQInl9WRdSexZS/6/VktIe3BQockllW4BzgX95Z6UDVME50wUFeHPj55suMlKxsCV4AQykBREpCw0ACcPuHtu9qVTcjJ9X7QpsfgWHfDsFDmb7U0SiplrrlsqshzFCUxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756197033; c=relaxed/simple;
-	bh=VNgkWQvunszqiwa2iCQGKFHn2EIFZXNxa26eYSuIAmM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JOkoayCHv11YH3Fuv9qrA9k8brqI0wl3C2Ev0nLRjBuY6ZBTjebTurN19u4Rb54/LVfSxgj2Uws60gW4GIwshUFTVh+CEtShFN1tIbbI+tKokBTftce80V0REV5VSRlbr1tVey1StxmVD94EmXWvvtdmE8zd0r0x2NDjxfEFbHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RNXZ4RDQ; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57Q8TpuD1474791;
-	Tue, 26 Aug 2025 03:29:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756196991;
-	bh=qA4QtszB3lhYVxil4FY85NorKM9gDEhmhJP9fmqDZM0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=RNXZ4RDQOHKqg91jIce38BPyes6xfCyL41zxjE5Fxuronah7zNCrbTzB9WI8J4FBq
-	 6qEH2XOFxkaoa1kIlykoBp/G4OpGIjfZYRjsa0Fo59pkc2Z2fwOIV793HHwW2DJsZl
-	 qH/s0rpWYp1eSTxm6oSnOj7zn+JLxeDZo9WQDTLA=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57Q8ToHr2261537
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 26 Aug 2025 03:29:50 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 26
- Aug 2025 03:29:50 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 26 Aug 2025 03:29:49 -0500
-Received: from [10.24.68.198] (abhilash-hp.dhcp.ti.com [10.24.68.198])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57Q8Thoe1135709;
-	Tue, 26 Aug 2025 03:29:43 -0500
-Message-ID: <dcaaf0ee-2cfc-419e-8c4a-8834372f1948@ti.com>
-Date: Tue, 26 Aug 2025 13:59:42 +0530
+	s=arc-20240116; t=1756197739; c=relaxed/simple;
+	bh=sj5II3NDwzGyfXJocuRqNFJKdV0WdxRFDHWe6/SGV5U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h6eA0LonFf9TSoZHufUj7AvBWZBJPOw81ZibJ6kQn/41AN/45lIeTRRCmhpbPOiiFZrSodqb/fjz6ykvAhncnKelR86nIgvYvvfv+c4ndSj9xxTBrDnEYWQgZuJQnSdFmRBryxAFsfZDPf2INwpNUe5hZ8/LkAjG+C9y8tD5kYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=CwuiO2SD; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1756197731;
+ bh=jA8sOFGvh2/p8iE2G4NAwGkJrUNoYidwOKdr2bvzY+s=;
+ b=CwuiO2SDHqa/G6IJTn+Qm3d3M1fQc+QaVXejAjKGBziX696DVDtNdZvkgKIk6IexPo4lF7JON
+ Zuopp7cJdH7jjslyOYbt633Jli04bZJWq53crxyYZBeoYoRnrDpK2kpXE3oExwr1w7qmQELDYc6
+ k6zlrYPXrw6m9SsjetaiiPMgWyhyujB74br6kzOQZrq+EPtZp/d4QbsA36TnIklAAb1/62Nku80
+ 2tNWOE7IobFfosr62dmfHIfriKm/qdZ4iN7Dr7A0gkymy/Vrtv4LTLS9Ppo3lUNUWpARQeR2JFx
+ /EA0CQdh/+QK3+A66vxdmNlDQhX3EnF1WZ4Yp0dZMthA==
+X-Forward-Email-ID: 68ad70d0b1fda674b9411dcb
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.2.9
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <6cf1cf2d-50cb-413d-93c6-79ecd6b0788e@kwiboo.se>
+Date: Tue, 26 Aug 2025 10:31:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,217 +58,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 4/4] media: ti-vpe: Add the VIP driver
-To: Krzysztof Kozlowski <krzk@kernel.org>, <mchehab@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux@armlinux.org.uk>, <ardb@kernel.org>, <ebiggers@kernel.org>,
-        <geert+renesas@glider.be>, <claudiu.beznea@tuxon.dev>,
-        <bparrot@ti.com>, <andre.draszik@linaro.org>,
-        <kuninori.morimoto.gx@renesas.com>,
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        <heikki.krogerus@linux.intel.com>, <kory.maincent@bootlin.com>,
-        <florian.fainelli@broadcom.com>, <lumag@kernel.org>,
-        <dale@farnsworth.org>, <sbellary@baylibre.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <dagriego@biglakesoftware.com>, <u-kumar1@ti.com>
-References: <20250716111912.235157-1-y-abhilashchandra@ti.com>
- <20250716111912.235157-5-y-abhilashchandra@ti.com>
- <b8149d7d-65ca-47c1-9338-45a0db614e77@kernel.org>
+Subject: Re: [PATCH v4 0/6] arm64: dts: rockchip: Add ROCK 2A/2F, Sige1 and
+ NanoPi Zero2
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250717103720.2853031-1-jonas@kwiboo.se>
 Content-Language: en-US
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-In-Reply-To: <b8149d7d-65ca-47c1-9338-45a0db614e77@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250717103720.2853031-1-jonas@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Krzysztof,
-Thanks for the review.
+Hi Heiko,
 
-On 16/07/25 19:39, Krzysztof Kozlowski wrote:
-> On 16/07/2025 13:19, Yemike Abhilash Chandra wrote:
+On 7/17/2025 12:37 PM, Jonas Karlman wrote:
+> This series adds dt-bindings and initial device tree for the following
+> Rockchip RK3528A boards:
+> - Radxa ROCK 2A/2F
+> - ArmSoM Sige1
+> - FriendlyElec NanoPi Zero2
 > 
->> +static int vip_probe_complete(struct platform_device *pdev)
->> +{
->> +	struct vip_shared *shared = platform_get_drvdata(pdev);
->> +	struct regmap *syscon_pol = NULL;
->> +	u32 syscon_pol_offset = 0;
->> +	struct vip_port *port;
->> +	struct vip_dev *dev;
->> +	struct device_node *parent = pdev->dev.of_node;
->> +	struct fwnode_handle *ep = NULL;
->> +	int ret, slice_id, port_id, p;
->> +
->> +	if (parent && of_property_read_bool(parent, "ti,vip-clk-polarity")) {
->> +		syscon_pol = syscon_regmap_lookup_by_phandle(parent,
->> +							     "ti,vip-clk-polarity");
->> +		if (IS_ERR(syscon_pol)) {
->> +			dev_err(&pdev->dev, "failed to get ti,vip-clk-polarity regmap\n");
->> +			return PTR_ERR(syscon_pol);
+> The bt/wifi_reg_on pins are described in the device tree using
+> rfkill-gpio nodes.
 > 
-> Syntax is return dev_err_probe. If this is not probe path, then this has
-> to be fixed.
+> Changes in v4:
+> - Remove disable-wp prop from sdio0
+> - Collect r-b and t-b tags
 > 
+> Changes in v3:
+> - Rename led nodes to led-0/led-1
+> - Remove pinctrl* props from sdio0
+> - Collect a-b tags
+> 
+> Changes in v2:
+> - Limit sdmmc max-frequency to 100 MHz on ROCK 2A/2F
+> - Drop clock-output-names prop from rtc node on Sige1 and NanoPi Zero2
+> - Drop regulator-boot-on from usb 2.0 host regulators on Sige1
+> - Add bluetooth and wifi nodes on Sige1
+> - Collect t-b tag for NanoPi Zero2
+> 
+> These boards can be booted from emmc or sd-card using the U-Boot 2025.07
+> generic-rk3528 target or work-in-progress patches for these boards [1].
+> 
+> For working bluetooth on ArmSoM Sige1 the patch "arm64: dts: rockchip:
+> Fix UART DMA support for RK3528" [2] is required.
+> 
+> [1] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/rk3528
+> [2] https://lore.kernel.org/r/20250709210831.3170458-1-jonas@kwiboo.se
+> 
+> Jonas Karlman (6):
+>   dt-bindings: arm: rockchip: Add Radxa ROCK 2A/2F
+>   arm64: dts: rockchip: Add Radxa ROCK 2A/2F
+>   dt-bindings: arm: rockchip: Add ArmSoM Sige1
+>   arm64: dts: rockchip: Add ArmSoM Sige1
+>   dt-bindings: arm: rockchip: Add FriendlyElec NanoPi Zero2
+>   arm64: dts: rockchip: Add FriendlyElec NanoPi Zero2
+> 
+>  .../devicetree/bindings/arm/rockchip.yaml     |  17 +
+>  arch/arm64/boot/dts/rockchip/Makefile         |   4 +
+>  .../boot/dts/rockchip/rk3528-armsom-sige1.dts | 464 ++++++++++++++++++
+>  .../boot/dts/rockchip/rk3528-nanopi-zero2.dts | 340 +++++++++++++
+>  .../boot/dts/rockchip/rk3528-rock-2.dtsi      | 293 +++++++++++
+>  .../boot/dts/rockchip/rk3528-rock-2a.dts      |  82 ++++
+>  .../boot/dts/rockchip/rk3528-rock-2f.dts      |  10 +
+>  7 files changed, 1210 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-nanopi-zero2.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dts
 
-I will fix this in v3.
+Any thoughts on this series? Rebased patches for a possible re-send v5
+contained no changes compared to this v4.
 
->> +		}
->> +
->> +		if (of_property_read_u32_index(parent, "ti,vip-clk-polarity",
->> +					       1, &syscon_pol_offset)) {
->> +			dev_err(&pdev->dev, "failed to get ti,vip-clk-polarity offset\n");
->> +			return -EINVAL;
->> +		}
->> +	}
->> +
->> +	for (p = 0; p < (VIP_NUM_PORTS * VIP_NUM_SLICES); p++) {
->> +		ep = fwnode_graph_get_next_endpoint_by_regs(of_fwnode_handle(parent),
->> +							    p, 0);
->> +		if (!ep)
->> +			continue;
->> +
->> +		switch (p) {
->> +		case 0:
->> +			slice_id = VIP_SLICE1;	port_id = VIP_PORTA;
->> +			break;
->> +		case 1:
->> +			slice_id = VIP_SLICE2;	port_id = VIP_PORTA;
->> +			break;
->> +		case 2:
->> +			slice_id = VIP_SLICE1;	port_id = VIP_PORTB;
->> +			break;
->> +		case 3:
->> +			slice_id = VIP_SLICE2;	port_id = VIP_PORTB;
->> +			break;
->> +		default:
->> +			dev_err(&pdev->dev, "Unknown port reg=<%d>\n", p);
->> +			continue;
->> +		}
->> +
->> +		ret = alloc_port(shared->devs[slice_id], port_id);
->> +		if (ret < 0)
->> +			continue;
->> +
->> +		dev = shared->devs[slice_id];
->> +		dev->syscon_pol = syscon_pol;
->> +		dev->syscon_pol_offset = syscon_pol_offset;
->> +		port = dev->ports[port_id];
->> +
->> +		vip_register_subdev_notif(port, ep);
->> +		fwnode_handle_put(ep);
->> +	}
->> +	return 0;
->> +}
->> +
->> +static int vip_probe_slice(struct platform_device *pdev, int slice, int instance_id)
->> +{
->> +	struct vip_shared *shared = platform_get_drvdata(pdev);
->> +	struct vip_dev *dev;
->> +	struct vip_parser_data *parser;
->> +	u32 vin_id;
->> +	int ret;
->> +
->> +	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
->> +	if (!dev)
->> +		return -ENOMEM;
->> +
->> +	dev->instance_id = instance_id;
->> +	vin_id = 1 + ((dev->instance_id - 1) * 2) + slice;
->> +	snprintf(dev->name, sizeof(dev->name), "vin%d", vin_id);
->> +
->> +	dev->irq = platform_get_irq(pdev, slice);
->> +	if (dev->irq < 0)
->> +		return dev->irq;
->> +
->> +	ret = devm_request_irq(&pdev->dev, dev->irq, vip_irq,
->> +			       0, dev->name, dev);
->> +	if (ret < 0)
->> +		return -ENOMEM;
->> +
->> +	spin_lock_init(&dev->slock);
->> +	mutex_init(&dev->mutex);
->> +
->> +	dev->slice_id = slice;
->> +	dev->pdev = pdev;
->> +	dev->res = shared->res;
->> +	dev->base = shared->base;
->> +	dev->v4l2_dev = &shared->v4l2_dev;
->> +
->> +	dev->shared = shared;
->> +	shared->devs[slice] = dev;
->> +
->> +	vip_top_reset(dev);
->> +	vip_set_slice_path(dev, VIP_MULTI_CHANNEL_DATA_SELECT, 1);
->> +
->> +	parser = devm_kzalloc(&pdev->dev, sizeof(*dev->parser), GFP_KERNEL);
->> +	if (!parser)
->> +		return PTR_ERR(parser);
->> +
->> +	parser->res = platform_get_resource_byname(pdev,
->> +						   IORESOURCE_MEM,
->> +						   (slice == 0) ?
->> +						   "parser0" :
->> +						   "parser1");
->> +	parser->base = devm_ioremap_resource(&pdev->dev, parser->res);
->> +	if (IS_ERR(parser->base))
->> +		return PTR_ERR(parser->base);
->> +
->> +	parser->pdev = pdev;
->> +	dev->parser = parser;
->> +
->> +	dev->sc_assigned = VIP_NOT_ASSIGNED;
->> +	dev->sc = sc_create(pdev, (slice == 0) ? "sc0" : "sc1");
->> +	if (IS_ERR(dev->sc))
->> +		return PTR_ERR(dev->sc);
->> +
->> +	dev->csc_assigned = VIP_NOT_ASSIGNED;
->> +	dev->csc = csc_create(pdev, (slice == 0) ? "csc0" : "csc1");
->> +	if (IS_ERR(dev->sc))
->> +		return PTR_ERR(dev->sc);
->> +
->> +	return 0;
->> +}
->> +
->> +static int vip_probe(struct platform_device *pdev)
->> +{
->> +	struct vip_shared *shared;
->> +	struct pinctrl *pinctrl;
->> +	int ret, slice = VIP_SLICE1;
->> +	int instance_id;
->> +	u32 tmp, pid;
->> +	const char *label;
->> +
->> +	if (!of_property_read_string(pdev->dev.of_node, "label", &label)) {
->> +		if (strcmp(label, "vip1") == 0)
->> +			instance_id = 1;
->> +		else if (strcmp(label, "vip2") == 0)
->> +			instance_id = 2;
->> +		else if (strcmp(label, "vip3") == 0)
-> 
-> 
-> Heh, nice try. You cannot encode instance ID as different property (and
-> instance ID is not allowed, see writing bindings in next).
-> 
-> And how does it work with label called "krzk"? Your binding said that
-> "krzk" is a perfectly correct label.
-> 
-> You need to think about such cases.
-> 
-> 
->> +			instance_id = 3;
-> 
-> And past here you use uninitialized instance_id, because you did not
-> consider "krzk".
-> 
+I would like to send a v2 on the follow up "rockchip: Add USB 2.0
+support for RK3528" [3] series and was unsure about the state of this
+series before sending that.
 
-Understood. I will avoid this in v3
+[3] https://lore.kernel.org/r/20250723122323.2344916-1-jonas@kwiboo.se
 
-Thanks and Regards,
-Yemike Abhilash Chandra
-
-> 
-> 
-> Best regards,
-> Krzysztof
-
+Regards,
+Jonas
 
