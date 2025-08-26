@@ -1,153 +1,156 @@
-Return-Path: <devicetree+bounces-209409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 460C2B37028
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 18:25:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E99B37048
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 18:30:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D2D31889E0C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 16:25:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDA75363AF0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 16:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A022D2D7DE5;
-	Tue, 26 Aug 2025 16:24:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WTkNeWAu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8319521CA1C;
+	Tue, 26 Aug 2025 16:30:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE6F2C11FC
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 16:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB49B2B9A7;
+	Tue, 26 Aug 2025 16:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756225471; cv=none; b=YKkOQxjrCgm/C807P9vZ7jJh9aYr8FcFIBJrCtaaUwDaoEB1am/JOyZ1bsOIKGckk+RMa5l05qnZSHcXTFSICl9GNkr458lX8VG4m2YEN0otB3ZNB2oloEOLNxHuz5Wmc5FHbj4elN/B6oxD7WHTF6lzcLuPQtpKbQTnBNGCzmM=
+	t=1756225836; cv=none; b=M3L7Obo1s6+OrSxldYxleDXI0VJX9Oe1oA7N8iZixLP3dn+kYrfgKq+vabJMItjYEAuXKBIk/w0lT4JjUgTkzaRfaWIpQGhiH+KTlAtGV90lLO1OYiOnceVQmoQyz19dGBCquKk8eNqlw8IKnfpulPFmEFqo6IjLrzu0R5FS6Aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756225471; c=relaxed/simple;
-	bh=i0oEbDi2g1jzL5Dyxh76ow3SjoJVdIVZt3jL05gI6cc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=BF4/3JRkxeqJRT8wxA1bDZQGgB3A9OHBB3eBmyQDqzR2njOmK51NLarRzIi+0u9MOYLqDqUgkSKIwxNNv6H850iK8Pde9iCIYeQKjybQPPzLlgPOeNKUBcmOXBvHLEIipvq9PUC4R5L70RuQ4IpJiz1a0v6+MNn0UbM39ZjQqeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WTkNeWAu; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-743749537caso50411a34.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 09:24:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756225468; x=1756830268; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=OxCALq8DDHHpB2BZLfew8o4so3+GwVKkNdqD7LtBjyc=;
-        b=WTkNeWAuvzOLTKhyKT4148aJ5nmrEyBYHIQgC5EsaaMevUjtapdP31mC33L3BQThAb
-         lrKguPcH+XLcZUNdll2WB46wmqFnlttTHafg3CAx8lfyEnQYUZIi1HSmNW0CwKe2Ww0P
-         pw6qp6VDhDUC87zBnEly0VM9y8lagZKUecpFlhcOSKpzhKojsblVI20R2GeDnjshlhjw
-         aiHEzN4cU2x5KRpWf5xuzhVKCOWEEzderDtcrPgp2x6FgUYzYoQf/uCOOlkjG2tNaekv
-         VtMh4qFbgnSlaKkoN2VLUf3Hp8igQOj6C4f4yTrJiGuZLOa1MNjOH3fmNukWdgEfQvGo
-         jDFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756225468; x=1756830268;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OxCALq8DDHHpB2BZLfew8o4so3+GwVKkNdqD7LtBjyc=;
-        b=sLIONBktye7hvODO+NZ/iSFUJ7qmUwzzLdchhv9HkpJrQYcJRsvwX5eJ4tGXIyhFRi
-         ga2/veiFbelOuHjrAZtDY9bz/alg5Zwf/5a9hajzuKf1cqcJS6HDaXegCG1PH7g8fE1s
-         NBqyBTwc4zTtIxqAL2KuooUP4ZzmKtuiCF9tN0T0Ta894M5nbN5RWRJozVpD8J93Gfhp
-         4kmmeXjSUNBMyvDbueb/zL4UNoEzYoO7nP8sf1IAdibfwygjElE/ZXwBRmaElgcixVRw
-         6vCo5cibnPQ1w4IuoEygCYL48ITYdTWY8tGb97cy+qxcUU8uVq1wuRaUZnKYIMQ1VIvL
-         sHUg==
-X-Forwarded-Encrypted: i=1; AJvYcCVYjvKqH+2YSpV9Tk/43ojdfkc1A6YClRWCOw2qwMPZEbNfNZj5DXGr88Gl4xEVDSjUOlnTUenFX0cZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyz6HjiNB486m8TfmWGBXSc76Wv0RxaJflsOWlpYPgHZtbDsDOj
-	omxhF1KgXxBz7c8b23Oe/l4f8eYcSPVEjtLkj7UKTsRBAf/w5uEoA2PboZDmU+rdCiY=
-X-Gm-Gg: ASbGncvftzvXeiCLoLJcV61L19MepJDoQSGiEQ0UfmJohirz36A95PTfsGCtkHYlLlP
-	kCm1YonVF3EIlMReEfZeoO1O+YvAuyDzlpkYoUtO7BmyT6BXa0zi6qhQ2q1BRnc5voRYX02nzHV
-	bcawCPfD97V8DoT5nXOhKNKFyqsOFRTs18tnPGaSpofhHl96LYMx+qo72ntnU9pGep2NYR1Yp8v
-	hFsw4nZ5d/b2DdHOyB/yOwnBpIKAiNz3bsos6eRvbeHzQFZpbZnenE3HozMNXBSemFutgBq0oKx
-	5F+H2xjkxQ2Jv5r854Ck/ll9GIEZDhAUOUrYuU3kEf4MAVaJqqoUKp6A0odyGm7/yHNk/8lApvw
-	cSKtIoX5L96fKQCz5KXfOtIDwRG4i0boNXqIPSjZbvlCTMb0TFhcmK9fQT0+ZrrbIhhuY4knDP7
-	po/3+v24J1Fw==
-X-Google-Smtp-Source: AGHT+IFfYRdanH4lMvOeslIkzUAsoFW9mKtvAJqYjbyEdJMFQ5DbdT6baaJfteOsGNPMe3IVB9CJtw==
-X-Received: by 2002:a05:6830:258c:b0:741:bf2f:ee87 with SMTP id 46e09a7af769-74535b1935fmr900221a34.0.1756225468382;
-        Tue, 26 Aug 2025 09:24:28 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:aa9f:f4cd:76b1:fecb? ([2600:8803:e7e4:1d00:aa9f:f4cd:76b1:fecb])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7450e2690f3sm2409801a34.8.2025.08.26.09.24.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Aug 2025 09:24:27 -0700 (PDT)
-Message-ID: <82a21a66-409f-4ec8-9351-365031b8646b@baylibre.com>
-Date: Tue, 26 Aug 2025 11:24:26 -0500
+	s=arc-20240116; t=1756225836; c=relaxed/simple;
+	bh=yMwNl4e0l3TtPcySpAL6rbOFnmB2yIOLSJ7vpcZI0ws=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=aOTLb0W4XnqeGlDddDdO4JnLsspso6vH4CAZlsvsCbZ5Zd1ztCFwPnt/RlKcie4hLxYoiBtEI1w287ocIlDrjEe2FS4EPCkdgRRkg6oguMOZTEChKf4PZMa1ZGOAkFHIqM6hSiBbLrz/Tz+CVoVGulZnnF63ZEkyii2yE4GDt+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from ROG.lan (unknown [118.251.176.199])
+	by APP-03 (Coremail) with SMTP id rQCowAD3jX8L4a1oBKJmDw--.6398S2;
+	Wed, 27 Aug 2025 00:30:05 +0800 (CST)
+From: Pincheng Wang <pincheng.plct@isrc.iscas.ac.cn>
+To: paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	anup@brainfault.org,
+	pbonzini@redhat.com,
+	shuah@kernel.org,
+	cyan.yang@sifive.com,
+	cleger@rivosinc.com,
+	charlie@rivosinc.com,
+	cuiyunhui@bytedance.com,
+	samuel.holland@sifive.com,
+	namcao@linutronix.de,
+	jesse@rivosinc.com,
+	inochiama@gmail.com,
+	yongxuan.wang@sifive.com,
+	ajones@ventanamicro.com,
+	parri.andrea@gmail.com,
+	mikisabate@gmail.com,
+	yikming2222@gmail.com,
+	thomas.weissschuh@linutronix.de
+Cc: linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org,
+	linux-kselftest@vger.kernel.org,
+	pincheng.plct@isrc.iscas.ac.cn
+Subject: [PATCH v2 0/5] Add Zilsd/Zclsd support in hwprobe and KVM
+Date: Wed, 27 Aug 2025 00:29:34 +0800
+Message-Id: <20250826162939.1494021-1-pincheng.plct@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/4] Add IIO backend support for AD7779
-To: Ioana Risteiu <Ioana.Risteiu@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Ramona Nechita <ramona.nechita@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250825221355.6214-1-Ioana.Risteiu@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250825221355.6214-1-Ioana.Risteiu@analog.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowAD3jX8L4a1oBKJmDw--.6398S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7tFyftr1UXr48Cr1DJrW5Jrb_yoW8KrW5pF
+	s5GwnI9r1kJw13CF1fAr48ur1rKan5uws3tF9xtw18WayayFyrZr10k3ZxZF1kAFZ29FyD
+	Z3WrWryI9wnrAaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_Wrv_Gr1UMIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
+	4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
+	CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
+	nIWIevJa73UjIFyTuYvjTRM6wCDUUUU
+X-CM-SenderInfo: pslquxhhqjh1xofwqxxvufhxpvfd2hldfou0/
 
-On 8/25/25 5:13 PM, Ioana Risteiu wrote:
->   - Add axi_adc_num_lanes_set in the adi_axi_adc_ops structure to support
->   setting number of lanes used by AXI ADC.
->   - Add the generic io-backends property to the AD7779 binding to enable
->   support for the IIO backend framework.
->   - Add the adi,num-lanes property to set the number of lanes used by
->   AD7779.
->   - Move the initialization specific to communication without iio-backend
->   into a separate setup function.
->   - Add a new functionality to ad7779 driver that streams data through data
->   output interface using IIO backend interface.
+Hi all,
 
-It is more helpful for the cover letter to contain a high-level
-overview of why you want this series included in the kernel. We
-can look at the individual patches to see what they are about, so
-repeating that here isn't especially helpful.
+This is v2 of a short series that adds kernel support for the ratified
+Zilsd (Load/Store pair) and Zclsd (Compressed Load/Store pair) RISC-V
+ISA extensions. The series enables kernel-side exposure so user-space
+(for example glibc) can detect and use these extensions via hwprobe and
+runtime checks.
 
-For example, I would write the cover letter for this series like this:
+Patches:
+- Patch 1：Add device tree bindings documentation for Zilsd and Zclsd.
+- Patch 2: Extend RISC-V ISA extension string parsing to recognize them.
+- Patch 3: Export Zilsd and Zclsd via riscv_hwprobe.
+- Patch 4: Allow KVM guests to use them.
+- Patch 5: Add KVM selftests.
 
-The AD7779 ADC chip has a secondary data bus for high-speed data
-transfers. To make use of this bus, it is connected to an FPGA IP
-core [1] which is handled using the IIO backend framework. This IP
-core connects to the data bus lines as well as the data ready signal
-on the ADC. This interface can use 1, 2 or 4 lanes at a time.
+Changes in v2:
+- Device-tree schema: simplified the rv64 validation for Zilsd by
+  removing a redundant `contais: const: zilsd` in the `if` clause; the
+  simpler `if (riscv, isa-base contains rv64i) then (riscv,
+  isa-extension not contains zilsd)` form is used instead. Behaviour is
+  unchanged, and the logic is cleaner.
+- Device-tree schema: corrected Zclsd dependency to require both Zilsd
+  and Zca (previous `anyOf` was incorrect; now both are enforced).
+- Commit message typo fixed: "dt-bidings" -> "dt-bindings" in the Patch
+  1 commit subject.
 
-This series extends the devicetree bindings to describe these wiring
-configuration, extends the IIO backend framework to allow setting the
-number of lanes that are being used, and extends the ad7779 driver to
-allow using such a backend for reading data in buffered reads.
+The v2 changes are documentation/schema corrections in extensions.yaml.
+No functional changes were made to ISA parsing, hwprobe syscall, KVM
+guest support or the selftests beyond ensuring the binding correctly
+documents and validates the extension relationships.
 
-[1]: https://analogdevicesinc.github.io/hdl/projects/ad777x_fmcz/index.html
+Please review v2 and advise if futher changes are needed.
 
-> 
-> Ioana Risteiu (4):
->   iio: adc: adi-axi-adc: add axi_adc_num_lanes_set
->   dt-bindings: iio: adc: add IIO backend support
->   iio: adc: extract setup function without backend
->   iio: adc: update ad7779 to use IIO backend
-> 
->  .../bindings/iio/adc/adi,ad7779.yaml          |  44 +++-
->  drivers/iio/adc/ad7779.c                      | 192 ++++++++++++++----
->  drivers/iio/adc/adi-axi-adc.c                 |   1 +
->  3 files changed, 196 insertions(+), 41 deletions(-)
-> 
+Thanks,
+Pincheng Wang 
 
-Please include a changelog of what was changed in each revision of
-the series along with links to the previous revisions. Tools like
-b4 can help automate this.
+Pincheng Wang (5):
+  dt-bindings: riscv: add Zilsd and Zclsd extension descriptions
+  riscv: add ISA extension parsing for Zilsd and Zclsd
+  riscv: hwprobe: export Zilsd and Zclsd ISA extensions
+  riscv: KVM: allow Zilsd and Zclsd extensions for Guest/VM
+  KVM: riscv: selftests: add Zilsd and Zclsd extension to get-reg-list
+    test
 
-https://docs.kernel.org/6.16/process/submitting-patches.html
+ Documentation/arch/riscv/hwprobe.rst          |  8 +++++
+ .../devicetree/bindings/riscv/extensions.yaml | 36 +++++++++++++++++++
+ arch/riscv/include/asm/hwcap.h                |  2 ++
+ arch/riscv/include/uapi/asm/hwprobe.h         |  2 ++
+ arch/riscv/include/uapi/asm/kvm.h             |  2 ++
+ arch/riscv/kernel/cpufeature.c                | 24 +++++++++++++
+ arch/riscv/kernel/sys_hwprobe.c               |  2 ++
+ arch/riscv/kvm/vcpu_onereg.c                  |  2 ++
+ .../selftests/kvm/riscv/get-reg-list.c        |  6 ++++
+ 9 files changed, 84 insertions(+)
+
+-- 
+2.39.5
+
 
