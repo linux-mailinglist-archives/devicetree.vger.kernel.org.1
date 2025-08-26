@@ -1,148 +1,134 @@
-Return-Path: <devicetree+bounces-209374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16F60B368E6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 16:20:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA154B367A7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 16:08:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB68B984510
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 14:03:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D182B62E33
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 14:04:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1FC35334E;
-	Tue, 26 Aug 2025 14:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778143568F5;
+	Tue, 26 Aug 2025 14:03:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WIYB6cX4"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="LG8WFeHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5665334DCF6;
-	Tue, 26 Aug 2025 14:01:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1E8235336E
+	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 14:03:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756216920; cv=none; b=t1hDpcrtKHBlcJ5FnJRx/+Wnwo2tjKIWbzJJvxthWMuBgxIIrPTRS1pDAL/jLCM2cw2r5VG9rh/eb6qWfYKsVG6GsrCO9vhufdbbUkL66CyniPh6OYuN2qqjNeXN5M87Fad5gFE/TZBuvwAU9LQeuVEkvCb70PEG0rPHrTABjVE=
+	t=1756217037; cv=none; b=PdPEhETWu6D1iWE44ofpQ8UCblDETIi6z2dvPn76S2LJfiP/c1kYUjaXUP4U7yaGR6Q4qYkJm6lwKagaYcV8I3MtBlEh2zotRYyLHZWezFUA5gjPUPrBtDD8p8iHpLcvQXUJ+kbOoCHpSUoBKL6Rn4n1qNS0laGKk+oI4HoA5UU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756216920; c=relaxed/simple;
-	bh=1orjOVOBQPF16N4NkcngIDGSPWhXZVsgtixMp4piRVc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qg5MVAo6ofwp3XpCLwajtBOoRCdBquhJVYov+Go8LBz1qnf03hFuP1AqhsEOwddY6rxJRktljKu3MJayK2xtBj/gQxDjbKnKoOT+BO2GecG7NCZzL74rB3z7rwaeoEMJVlpzZ6RWxzz3duVRgEyRzhU+4OH7t+MQRsDXCEzg2uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WIYB6cX4; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1756216916;
-	bh=1orjOVOBQPF16N4NkcngIDGSPWhXZVsgtixMp4piRVc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=WIYB6cX4ZURN1Z8+3WvjWgaAcP0G0sSFewET80YNTMTNDEodE9YPbmacm013xGVwD
-	 Wu4dWex+I1eKg6q/s9SaiND/BAVXxSkTxBqwBcnXJRpAdJILEDCyzlSilLDAzc9k2r
-	 xmOauOKfgJDDPmTCFe0KBk5pf9ZCQyXtQ+LN8mpRvFdEvR7UEoh2Lha8yTpFcknaia
-	 k9MsO3PmYsLWPn9Db9PTEIEk/SNnrsfE0XpIVgtdP2P5g7S0MQLJuMUdn5Q72G+dqe
-	 MBLeoPsNf/77dqM7Wgsv0HSTw2Dg+DatxUsy5z0i3I2ou+xNlekwQB6blwfK3I5CUj
-	 naPVwQJ+Wam4A==
-Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892f2d600c8f85cF092d4af51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0E70C17E0C21;
-	Tue, 26 Aug 2025 16:01:56 +0200 (CEST)
-From: Julien Massot <julien.massot@collabora.com>
-Date: Tue, 26 Aug 2025 16:01:54 +0200
-Subject: [PATCH v2 3/3] arm64: dts: mediatek: mt8395-nio-12l: add support
- for blue and red LEDs
+	s=arc-20240116; t=1756217037; c=relaxed/simple;
+	bh=vmiGt2oLOAQ2EkJCMQq5eKKZ2YXVoazQmkjqPo7+1v4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RBHdBRbH35Ib+nw0y4cYodcKA2K48adz40gX5g7G5AiyIW9JqiQcwY1nW6ZZeHUNmzvdU7zAlhvaqGCUPST/PtKhdB2HMcWh+YMr3SG80j/mEE39Z/NCfYzDivO2VkcKTJ33OwaUM9TqFJ+TXyuYIdkPq32xNX8nApBC5yJPmYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=LG8WFeHg; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=Hsxc
+	dOmDTitwBV/EN/G/esK9+ojaaBogHKD6Pzvdqss=; b=LG8WFeHgduxVVdY1NzBg
+	gL+xEAx4GOoJo1gcSq7y731UQFstFAPmfaEnNlMUdynChh8Hga+nAxQLDax8OiIj
+	SYlvPa2jtcHxKTi0hkcFN9aVJE42Cg+0MMEo+IbfnRrgNzc32HMB0LYK1N2+Jv+N
+	v/exCgTgiMbWDKVdq5fHZPqB9m3AmT+cWjOEk1y1946p97Ijj6Rsh7QE+xLk4Usf
+	uM27vRYSkE/CnaseIX42ZlG3j0MlJeha90GKggx5klDKIaptTRw4zjmqO0BLgxmP
+	yebIkqXCdj9mDlC/WGgsD2jwKjqj5xNq1HzMN57KL7FXje5YwqGPA6keLJW7w++j
+	oQ==
+Received: (qmail 293092 invoked from network); 26 Aug 2025 16:03:45 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Aug 2025 16:03:45 +0200
+X-UD-Smtp-Session: l3s3148p1@ggr2I0U9bssgAwDPXw2iAG43AYdOknD3
+Date: Tue, 26 Aug 2025 16:03:45 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Ayush Singh <ayush@beagleboard.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree-spec@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 1/1] schemas: i2c: Introduce I2C bus extensions
+Message-ID: <aK2-we94b-x2fgW_@shikoro>
+References: <20250618082313.549140-1-herve.codina@bootlin.com>
+ <20250618082313.549140-2-herve.codina@bootlin.com>
+ <CAL_JsqJ=jmXVwjtNCjRpUKj02dnJEz4GHMX2wMRaWw=M+sZQ0w@mail.gmail.com>
+ <20250808180746.6fa6a6f9@booty>
+ <CAL_JsqLxsfpaaCvV3AcniMYxAYVir7ddL4umCNY3u-ggVTiZcg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250826-radxa-nio-12-l-gpio-v2-3-7f18fa3fbfc8@collabora.com>
-References: <20250826-radxa-nio-12-l-gpio-v2-0-7f18fa3fbfc8@collabora.com>
-In-Reply-To: <20250826-radxa-nio-12-l-gpio-v2-0-7f18fa3fbfc8@collabora.com>
-To: kernel@collabora.com, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, Julien Massot <julien.massot@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="TljrWgeWi1hzBORA"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLxsfpaaCvV3AcniMYxAYVir7ddL4umCNY3u-ggVTiZcg@mail.gmail.com>
 
-The Radxa NIO 12L board has an RGB LED, of which only red and blue
-are controllable.
 
-Red and blue LEDs: no need to choose, both are enabled.
+--TljrWgeWi1hzBORA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Julien Massot <julien.massot@collabora.com>
----
- .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts     | 31 ++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-index fd596e2298285361ad7c2fb828feec598d75a73e..12288ad4d2932b7f78c96c0efe366a046721f919 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-@@ -10,6 +10,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
- #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
- #include <dt-bindings/spmi/spmi.h>
-@@ -73,6 +74,28 @@ button-volume-up {
- 		};
- 	};
- 
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&gpio_leds_pins>;
-+		pinctrl-names = "default";
-+
-+		/*
-+		 * This board has a RGB LED, of which only R and B
-+		 * are controllable.
-+		 */
-+		led-0 {
-+			label = "rgb-blue";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			label = "rgb-red";
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&pio 7 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
- 	wifi_vreg: regulator-wifi-3v3-en {
- 		compatible = "regulator-fixed";
- 		regulator-name = "wifi_3v3_en";
-@@ -647,6 +670,14 @@ pins {
- 		};
- 	};
- 
-+	gpio_leds_pins: gpio-leds-pins {
-+		pins {
-+			pinmux = <PINMUX_GPIO6__FUNC_GPIO6>,
-+				 <PINMUX_GPIO7__FUNC_GPIO7>;
-+			output-low;
-+		};
-+	};
-+
- 	i2c2_pins: i2c2-pins {
- 		pins-bus {
- 			pinmux = <PINMUX_GPIO12__FUNC_SDA2>,
+> > A different option is to only have the "i2c-parent" phandle in the
+> > extension node and nothing else in DT (no bidirectional link, no
+> > compatible string), without any full-tree searches.
+> >
+> > On the implementation side, the connector driver when probing would
+> > register the extension nodes at the I2C core, which would maintain a
+> > list of extension nodes. This is important when the connector probes
+> > first. Then when any adapter probes the core would iterate over the
+> > list to check whether the newly-probed adapter is pointed to by one of
+> > the registered bus extensions, and then start populating the devices on
+> > the matching bus extension(s).
+> >
+> > A lot of care would have to be put in the disconnection path and while
+> > removing any bus extension from the global list, which could race with
+> > the I2C core using the list itself. The drive core wouldn't do it for
+> > us for free.
+>=20
+> I'll defer to Wolfram on I2C core implementation...
 
--- 
-2.50.1
+One input already before we dive into the unconference. I don't want to
+maintain the above solution, i.e. handling lists with sublte race issues
+which could be (and should be IMO) handled by the driver core anyhow.
 
+See you soon, may the A/V-setup be with us,
+
+   Wolfram
+
+
+--TljrWgeWi1hzBORA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmitvr0ACgkQFA3kzBSg
+KbY+kBAArEuWI/gI2tH728hajgwE6SaBTsw2N1wDmZ/n/Rqgppd8KoLNWQgbp+YR
+6Q5M2URiRfvo7N+7aqH5cZBw5b301nYpfROzIQ1WOzqG7gIMiHeJItXzpBh/8Xo4
+7fpYuysJnq1HoCgagKiVeskZYLFhp0F9MsoDwt50i6xdh33OnGgCTKMWo1588tYj
+JSYo+dtMoemChXpFUpmwkUTpH/3rxgNiCIzbc+Yj7FgpWeRm5yRb54v6IMnVv1Fq
+MWWOVhSYfH2AVAegI4kbclyt7Um5Mu2GzGSHzNtIj7wO8SEJd9yonjCVDIL/sOg4
+1JYAxPBsJuI/hqfcwO7ZFg2WRNtfmyyt4Er6kW2MxJKbDOYcLK30xteRzBb6+aEM
+QW3Putx7tsDsuPMKPkc1M8o1wY8Ingv2nIZS570XvmriEJxYKb8iIAYzeECdLdIf
+lW3xt6l7RAIaCCoDetXK3jTxgGFRNCUVPTOmEHb2OFUms3sca2xE+KHe97UQcMg8
+T83bO+nK30a9d8t9xfkIkvsPuXwCcXd9RdPA3LdciDxyHhtp/HGCMCsku2y0kEhJ
+xXj2TlYHdZtLVVjR+rSkn4QJRzHKhVej/+/9dD4tfyA1KTwBSw8SBxyPJ/aE1Pqt
+JSQoJv5md1SOHBFJpOfmGqxIhc/ry+kkQ0xMc2LlCCQzNSJN/hE=
+=Xz3E
+-----END PGP SIGNATURE-----
+
+--TljrWgeWi1hzBORA--
 
