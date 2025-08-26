@@ -1,56 +1,61 @@
-Return-Path: <devicetree+bounces-209427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FAE6B371BE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 19:52:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12AB7B371CD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 19:55:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29AC2205E13
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 17:52:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D45B72A39C6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 17:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C038129DB88;
-	Tue, 26 Aug 2025 17:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369322F2910;
+	Tue, 26 Aug 2025 17:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CQkC/elY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HN+I9L/F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D1C267B12;
-	Tue, 26 Aug 2025 17:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0102F1FF3;
+	Tue, 26 Aug 2025 17:55:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756230759; cv=none; b=u6+82JKhXr8XkYyjEHq5YYvJmTO1yva/Ny7uAGhxt9dIa+FByxLldCUUdpHOcN7puREQLJi+XMA7hv1ORb9LILQTdNdDj4mZBOLT6IVlYXhDVqa0KD9IdUEBEl0CzvHdYirz/7odLsKGd1UKrzONPXBUBjsFcCLUxFRpM5EpL6g=
+	t=1756230937; cv=none; b=TJWIsT6eBYZRMyI3PctdtpQRHWtKdR7/FvagKn/98K/OqGopddt7Tbsg8OyUsGdB2whNYm4zx+Q16pi9KzmX67s3G9D8duD8k2G8T6KnH8hzqQYxneGPodcQA5bXcD1ooIIcTh3m39Q0pgrjbYasL6kWpto8PksrNbCH/3ksFk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756230759; c=relaxed/simple;
-	bh=oizSEEq/z+YVTXVEzLfBBRowKU+lLpUg/uomNVtoSWc=;
+	s=arc-20240116; t=1756230937; c=relaxed/simple;
+	bh=vK1ZgxN00M0SncLhVW+63U28AI64oXU2/lB66eqm49A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mylKxbWT1oJ4wJkx2gYAUS4zYHxU6fGq6jfk6HO0QAOueg65s/nkdjyG0qdN1OkBZsKiUpnrOt8ZX5sV0r1sSjqWGTSGvNnTko2pFnWmIfLah7g3s5FYAVRBcYREh20g1U/JuEF8hHirNZx32WjK0q0e2H27oVaGJyl28wjX298=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CQkC/elY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B250DC4CEF1;
-	Tue, 26 Aug 2025 17:52:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mCTcNVNMauD7g7u1boAyEG31rIEUalnLBKen6bIDRVfGatrMjXbeEVXAOpWY0gPUX2kHWlclyXT1PL+2PGDWdH98YXJaZ/47JBMLYGrq/0i5pyab8j7xl5HFNMvuZldBsLs7VksDNIklDKjUnhvicPQEFCvjrAa/VdOlLsHGUaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HN+I9L/F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8A0CC116D0;
+	Tue, 26 Aug 2025 17:55:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756230759;
-	bh=oizSEEq/z+YVTXVEzLfBBRowKU+lLpUg/uomNVtoSWc=;
+	s=k20201202; t=1756230936;
+	bh=vK1ZgxN00M0SncLhVW+63U28AI64oXU2/lB66eqm49A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CQkC/elY2ev8wajchnqboeJ7vgpaUB2PEb7sx78CJQ/Jp+E5MldHOwsM6fvRnQEP8
-	 mNuJ6jTjT6xo/A+BnCvlJFtCsChPcAJJV/oSDaHyUM3dy21Vpp/Wmbx9dMHYGFR8/6
-	 cWvmIRNrsqct5THX2aF8jr893qF5x8mp84Xr5sPKEPbmT0bG75O6/7EfkVLFyUl/Sz
-	 pIwxyXv7tQpBtm5NoicxGgnKtM132kmy2v9FTTXbidqZSL9obZx/+RKqI9ftIXBJvL
-	 kt0CfH3jE5p2JR/TYw+nprmoKKvCtol0DZUjv6blVHhWvBnLhjLSccTCvzI0H4eOdR
-	 K+C9IAr7MPYMA==
-Date: Tue, 26 Aug 2025 18:52:35 +0100
+	b=HN+I9L/Fgfq1j7NfCR/LCuStr2ueTUrb9pxJ/Su4T2eDGF3Nc3X+URPmusyueGvbt
+	 icsYmqnHoHUUG0Tu1lU+vBPw4z5A89TkRlTIW1YUGnyF68IlQIybAEF4NEnTnmJrRD
+	 jeaLOkjNTYmBtHX1coHb+2goqgajakySDad7XkHdMDNRaZQ+kvX7NHRyw/mStpb2nv
+	 qkgJHGOJKmqh9D1QfptPwhEReTUWrwXvHREeMrOsQQg7OrPX0oI/bmdASvee6aez1n
+	 qunnL0Xji9LVd2taiUGGx4iZgt/7LojTNdS3vgGhA/XHBqN1Jyblb+P0ICcbWzrEbi
+	 qkv8su0/yK/yw==
+Date: Tue, 26 Aug 2025 18:55:31 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: renesas: Document R-Car X5H
-Message-ID: <20250826-pelican-facing-971a7bac1cf1@spud>
-References: <87cy8jx7yd.wl-kuninori.morimoto.gx@renesas.com>
+To: Abhinav Jain <jain.abhinav177@gmail.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, lars@metafoo.de,
+	Michael.Hennerich@analog.com, alexandru.ardelean@analog.com,
+	jic23@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	Marcelo.Schmitt@analog.com, dumitru.ceclan@analog.com,
+	Jonathan.Santos@analog.com, dragos.bogdan@analog.com
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: Add device tree binding
+ for MAX22531 ADC
+Message-ID: <20250826-senator-profusely-219c4afdbe0d@spud>
+References: <cover.1756115378.git.jain.abhinav177@gmail.com>
+ <ba7c09277c71cd8bc84736429a7fdc66914fd322.1756115378.git.jain.abhinav177@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,65 +63,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="/jvQFSyTk2/xUZbq"
+	protocol="application/pgp-signature"; boundary="xqLaiIP2d7P44eBQ"
 Content-Disposition: inline
-In-Reply-To: <87cy8jx7yd.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <ba7c09277c71cd8bc84736429a7fdc66914fd322.1756115378.git.jain.abhinav177@gmail.com>
 
 
---/jvQFSyTk2/xUZbq
-Content-Type: text/plain; charset=us-ascii
+--xqLaiIP2d7P44eBQ
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 26, 2025 at 12:06:18AM +0000, Kuninori Morimoto wrote:
-> Document the compatible values for the Renesas R-Car X5H (R8A78000) SoC
+On Tue, Aug 26, 2025 at 02:55:24AM +0530, Abhinav Jain wrote:
+> Add device tree documentation for MAX22530-MAX22532 family of ADCs.
+> The MAX22530=E2=80=93MAX22532 are galvanically isolated, 4-channel, multi=
+plexed,
+> 12-bit, analog-to-digital converters (ADC) in the MAXSafe=E2=84=A2 family=
+ product
+> line. An integrated, isolated, DC-DC converter powers all fieldside
+> circuitry, and this allows field-side diagnostics even when no input
+> signal is present.
 >=20
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Signed-off-by: Abhinav Jain <jain.abhinav177@gmail.com>
 > ---
-> Hi Geert
+>  .../bindings/iio/adc/adi,max22531.yaml        | 75 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 ++
+>  2 files changed, 82 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max2253=
+1.yaml
 >=20
-> I have been mentioned that I will post DT-Doc when I post board
-> support patch, but I think it will be postponeed.
-> So I will post SoC part now.
-
-What's the value in posting it alone, if it requires a board to be
-actually used?
-
->=20
->  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b=
-/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> index 5f9d541d177a4..6838070369791 100644
-> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> @@ -473,6 +473,10 @@ properties:
->            - const: renesas,r8a779mb
->            - const: renesas,r8a7795
-> =20
-> +      - description: R-Car X5H (R8A78000)
-> +        items:
-> +          - const: renesas,r8a78000
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max22531.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,max22531.yaml
+> new file mode 100644
+> index 000000000000..16bf4a1d0926
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,max22531.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2025 Abhinav Jain
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,max22531.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->        - description: RZ/N1D (R9A06G032)
->          items:
->            - enum:
-> --=20
-> 2.43.0
->=20
->=20
+> +title: Analog Devices MAX22530-MAX22532 12-bit Field Isolated ADCs
+> +
+> +maintainers:
+> +  - Abhinav Jain <jain.abhinav177@gmail.com>
+> +
+> +description:
+> +  Bindings for the Analog Devices Max22530-MAX22532 Field-Side Self-Powe=
+red,
+> +  4-Channel, 12-bit, Isolated ADCs.
+> +
+> +  Datasheet can be found here
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+max22530-max22532.pdf
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max22530
+> +      - adi,max22531
+> +      - adi,max22532
 
---/jvQFSyTk2/xUZbq
+Generally this looks okay to me, but I would like you to mention what it
+is that makes a fallback between these impossible in your commit
+message.=20
+
+--xqLaiIP2d7P44eBQ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaK30YwAKCRB4tDGHoIJi
-0mcdAP4gFMPXkOwciNPU/BNFNxJ05Vk7/Yqb7VOGh0i4+TPCswEA32yKOFw8NE/a
-sshZMJ4Z8U+cnao13ajv6TtCH/8/SwQ=
-=ghbs
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaK31EwAKCRB4tDGHoIJi
+0iC0AQDr8p9s43qr2Tx29kG0NjaBhYAYEiQIl90KDYaf2dYsygEApoPNAHiXRiS1
+WgWv75A+IV0u2O7t7hYT1qhMTC0JrwM=
+=NISr
 -----END PGP SIGNATURE-----
 
---/jvQFSyTk2/xUZbq--
+--xqLaiIP2d7P44eBQ--
 
