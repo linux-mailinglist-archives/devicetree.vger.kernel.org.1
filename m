@@ -1,104 +1,83 @@
-Return-Path: <devicetree+bounces-209357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2169B36158
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 15:08:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53AC4B36212
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 15:15:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBB171BA6C10
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 13:05:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F5952A85C0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 13:10:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82EF323F439;
-	Tue, 26 Aug 2025 13:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374E9319867;
+	Tue, 26 Aug 2025 13:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqITwN81"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ksJKezMk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5725B211491;
-	Tue, 26 Aug 2025 13:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7DA2BE032;
+	Tue, 26 Aug 2025 13:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756213511; cv=none; b=ICUK0V7iPwmuQp0dXTD6t0CwZP0Zv4ONneYVYhlOgOZDfc0+B/P2gLv88gc9sYP/nzlAQoDa5ni/8ffzA3K7xb4eCwRIi8R7zzGvNzmSTyczlI8E+IJsLXWAp0LDHxNMsOxqx12pRWBXOPgy3TwQ4FF5N4JjgAE+jiW1RPwbov4=
+	t=1756213761; cv=none; b=aftocYwlrGYt1ssNvn9cFXk3DoutQ9183hElqsHqSFG00UZHulbVcO3NEkNwdPB9myv9WHw2iy3M2uGXWMfU/lIWrDxAB0GECwyIn2FK7s2sK9bnl5UJ3pYYTrRR8dKdGpXU2s/Awih+llqB/bPrL8IH/rGjKKxWXKKn6MA5FV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756213511; c=relaxed/simple;
-	bh=oVWUaTb9JTJ6VCjQWJr2JJZLQXbpB2cQ8kVN0SOUbIQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=GdGX+VkoWB2m/3IOna0MpX7JUOabsUGJ0IzcB2oDfjcXuXeEC3CT1Z2uzJd6Bfow5+1MTcG3SqSGN5uGsFf+M4EZ6mB16Ni/hZ75yUIITbbFHIUM3JiVote3gOGXtWCkcwVy5gDkyZ3uXnuzjAs00Cx7cyFsgMQiDrnXu44qPms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqITwN81; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0B2CC4CEF1;
-	Tue, 26 Aug 2025 13:05:10 +0000 (UTC)
+	s=arc-20240116; t=1756213761; c=relaxed/simple;
+	bh=6dZlsnWsf374WhkOcVkKUPAlAKa77gNokg7mV4fgGNM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hjD/7c3th8/M3GOh7dT/Q4IZKRiwPQ6l7oWOzmzK53hm6+jhaOZD5A7PzO6qgeWtSHw6jA2UXlnwHTHvMmVLgmFYC3MWwlMpxPInD+AnLD2tDJI47AYlBswVSVBVlC/+OtlvFGSuV3qOhqHrJO0KjOgmtKB6fKTbMb4ZThZ6TuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ksJKezMk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50A2FC4CEF1;
+	Tue, 26 Aug 2025 13:09:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756213511;
-	bh=oVWUaTb9JTJ6VCjQWJr2JJZLQXbpB2cQ8kVN0SOUbIQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=YqITwN81aCSIAjjlRKtqxxMDT3OwGtG79wvALWYqfA+M5IqocJpi05LSUm0H8PbgG
-	 8sQwtQYClfF/XTptMACHPrWYEysboEIWprljjQAe/oVj8KqmS+Dg44gDpDPopsEp+m
-	 WeZwK2Evi5/FcHJTxaFaFr/ViRI0l4tzYFFRkOAm0p1eIQKHq4+B79cJNYTHE/701/
-	 KqXZHEwZS15xV5ZD2MmywNhVa8HJ7w6D+V16nyRuTH53wA8L33Uhmwy+8t83DzgVTy
-	 VHWxUCVdk4t4P7YzyMtipTKATGkl+apXLzlJzY6NInaTSBiw6iwDjq88iN4NO3xspy
-	 mjwNqtK5RKutA==
-Date: Tue, 26 Aug 2025 08:05:09 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1756213759;
+	bh=6dZlsnWsf374WhkOcVkKUPAlAKa77gNokg7mV4fgGNM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ksJKezMkGVns7hqhMdj/QheZBOZa97izPOEoDTnm+e672wOcXLxQb4YzbUXx1rgRl
+	 lNX56B6coAbi8jrzLWH4Dt2lZ/7Zf8Zv+RjZd+074bnVV49AsxWe0QRzoNHGyn/7/s
+	 QtTWDDvXxh+4ju77r++gP88SLHUQSDbM/iPi6r1m9TLW0Hxdnh4TbrdIB8bd8allc7
+	 bVN30MPIYfMC99SC5E06he2mQFTUgiTGh20fAF50NIUx8Ve6hmsyukpwGB5FhDlrg1
+	 ltrqPY9WHeUjUl4mvnRQqMl8ZzS/nzCFl7ngQEbUpLmW6VL4EOtFY2VboKEb9U+SqQ
+	 aexjHKrBLEHkg==
+Date: Tue, 26 Aug 2025 06:09:18 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Jack Ping CHNG <jchng@maxlinear.com>
+Cc: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <davem@davemloft.net>, <andrew+netdev@lunn.ch>, <edumazet@google.com>,
+ <pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <yzhu@maxlinear.com>, <sureshnagaraj@maxlinear.com>
+Subject: Re: [PATCH net-next v2 2/2] net: maxlinear: Add support for MxL LGM
+ SoC
+Message-ID: <20250826060918.1f6ffa3e@kernel.org>
+In-Reply-To: <20250826031044.563778-3-jchng@maxlinear.com>
+References: <20250826031044.563778-1-jchng@maxlinear.com>
+	<20250826031044.563778-3-jchng@maxlinear.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: davem@davemloft.net, pabeni@redhat.com, conor+dt@kernel.org, 
- sureshnagaraj@maxlinear.com, edumazet@google.com, 
- devicetree@vger.kernel.org, andrew+netdev@lunn.ch, kuba@kernel.org, 
- krzk+dt@kernel.org, yzhu@maxlinear.com, netdev@vger.kernel.org
-To: Jack Ping CHNG <jchng@maxlinear.com>
-In-Reply-To: <20250826031044.563778-2-jchng@maxlinear.com>
-References: <20250826031044.563778-1-jchng@maxlinear.com>
- <20250826031044.563778-2-jchng@maxlinear.com>
-Message-Id: <175621343176.4659.6580069253445672718.robh@kernel.org>
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: mxl: Add MxL LGM
- Network Processor SoC
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Tue, 26 Aug 2025 11:10:44 +0800 Jack Ping CHNG wrote:
+> +	for_each_available_child_of_node(pdev->dev.of_node, np) {
+> +		if (!of_device_is_compatible(np, "mxl,eth-mac"))
+> +			continue;
+> +
+> +		ret = mxl_eth_create_ndev(pdev, np, &ndev);
+> +		if (ret)
+> +			goto err_cleanup;
+> +
+> +		drvdata->ndevs[i++] = ndev;
+> +		if (i >= MXL_NUM_PORT)
+> +			break;
+> +	}
 
-On Tue, 26 Aug 2025 11:10:43 +0800, Jack Ping CHNG wrote:
-> Introduce device-tree binding documentation for MaxLinear LGM Network
-> Processor
-> 
-> Signed-off-by: Jack Ping CHNG <jchng@maxlinear.com>
-> ---
->  .../devicetree/bindings/net/mxl,lgm-eth.yaml  | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/mxl,lgm-eth.yaml
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mxl,lgm-eth.example.dtb: eth (mxl,lgm-eth): interface@1:compatible:0: 'mxl,lgm-mac' was expected
-	from schema $id: http://devicetree.org/schemas/net/mxl,lgm-eth.yaml#
-Documentation/devicetree/bindings/net/mxl,lgm-eth.example.dtb: /example-0/eth/interface@1: failed to match any schema with compatible: ['mxl,eth-mac']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250826031044.563778-2-jchng@maxlinear.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+You need a of_node_put(np) before the goto and the break;
+-- 
+pw-bot: cr
 
