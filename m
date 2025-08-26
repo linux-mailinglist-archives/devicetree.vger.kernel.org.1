@@ -1,162 +1,157 @@
-Return-Path: <devicetree+bounces-209389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9971B36CF8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 17:04:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9565B36D16
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 17:07:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C25032A6E3E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 14:54:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9DC11C43D43
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 14:58:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75B117C91;
-	Tue, 26 Aug 2025 14:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD39024DCE5;
+	Tue, 26 Aug 2025 14:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VYeg6DiZ"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="D2XHvLjj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17F654673;
-	Tue, 26 Aug 2025 14:54:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9452F237165;
+	Tue, 26 Aug 2025 14:57:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756220070; cv=none; b=mlzCjxAd5mIQXBR/Dm1FXoaFlhzXMMdssG4eliCAA524CeyFAKV2GXRZ/oGC9PgdJe4hbj0OrAz8zSKyg4YiLMZO9SNbnjz1SDXpb1nNManMZfaU2NazXc0Fbd60KDNf+QNCZymSXpMTxpTf98xwN45W89cR9yBl8UkPxAYMBRk=
+	t=1756220283; cv=none; b=K6vLivPQki8xxiRsKQyaQuz8Dp/v5B1feLXwiHEseXwqHUGepq/zy5/n7LvBM7yakYDXCvgK7dP48FaTMsVLwOkMEvWjU77U7T7xlJWWUyDPunsvmcybr3ZUmZ4zd6b2pUrVn2Y9b+p4uHyLDpUcfAccDQD/jVHVad4FM64ZhKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756220070; c=relaxed/simple;
-	bh=AvTkTEsUS4atiHfPFe9HkSoYzdHhduZ4akizPJoUm3E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pckjiTwBg8XP11Ben1J++jeJdh/3F+FaCRYhK3MMqa9YdWcEEPFV7exkS4jQ7ED7DoJ7Il7dUC2/P5liy1Ng/LInaCELJXmKY1wyrNO4PUS/YJJfCAK65sGnMop3cZiAcSj4kZkNdVUwdPE3DBeY6dTHNQz3l7CF/5YKrSXN7lI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VYeg6DiZ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57QC41ot005706;
-	Tue, 26 Aug 2025 14:54:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	znZtrvetIyq+Q6s4F4lq+XGO6d7jwBorMr9nvs8JST8=; b=VYeg6DiZ4X7CCTYm
-	CJATlAUF/UDFB4cZZcF4mnXyC+9vdnnbosWNt0IAkk0w9j3Aue7MW/a40PAHbEYC
-	gHmrHEObSJiqJWbUFftHTzxT9AtSrV8RizIVm3Uj0LDPTGHNvcYDBfK9RHN0T3nw
-	jgTMRGTkJjVAQoJP3H8tNyNMfTGgfi3X5xn10ttaMTLETouR7CvLRvwABJPq5ZFc
-	qcQs11uc7kdv6s+VVrvVYjJa78gMfS2rc7nRwcUveipNw/aVgYrzHREULQApQhjt
-	ruCanWINscZU7nC0aNjK7eZgV8i9ikMSPxrHc4pQNDm5U5zBCf67yU9tUAMU70d/
-	uY5J3Q==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48rtpeujuj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Aug 2025 14:54:06 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57QEs50x032706
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Aug 2025 14:54:05 GMT
-Received: from [10.218.4.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Tue, 26 Aug
- 2025 07:54:00 -0700
-Message-ID: <df2aa27f-0130-4b03-8a9b-e21067ea4f92@quicinc.com>
-Date: Tue, 26 Aug 2025 20:23:45 +0530
+	s=arc-20240116; t=1756220283; c=relaxed/simple;
+	bh=aQA0CmFCT8tixLjVwmeK1GH7nsZwmFyUrLjk71BX4DU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rZtuCKbojBZsO8/MsuYm0JOBe/JmjY7cnYTWY8CwYQYRVTJc4vmfNx8kU/VwG6kxzhwKyT/fyGZhDQbo0FtJEfanaxq6pWnFxg2/vWGo5BZzRu8YfGvHwjwu02OfaR01miwEJTcJE5l92YWaHFlA0/aA1pyPXuc3nUd6SfUFtTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=D2XHvLjj; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=iTrfIIo2NpXSs0VUQcS4tLNwuwhXMeQFQWFcRoLCwVY=; b=D2XHvLjjqX3PhhxJH6SySYYqgB
+	1O9/+hsF1mXfum+scpQEW7fkvGngUSNtC2AEmRJiYeC+WkkdQF/J7Ju63n5qKhNqHRtj/b16BGD5P
+	7B0427PHgn6FBjyUm43hrKpg9xaPP5nj26FNASxX1bI8hG+SKRfprtXLUJ+SmytMLdUlYV/hmMCkX
+	UfESNgDDTa/reqn3EDauXyxzV6Iv7xUqbKnzpfN9ol/OR7LyeciRfLzh3XUxhfLj9iOoWy6viAd5w
+	G4jnOyHlSvK5YiNw3aoPPKr7bNmUtRzjauWPtBP+WEnF/zk1Y5+oFAb4dWB9SNoCiXJ1tRAPTErGt
+	qvk0NCpQ==;
+Received: from [213.244.170.152] (helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uqv7C-0000eD-0n; Tue, 26 Aug 2025 16:57:38 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Hsun Lai <i@chainsx.cn>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Stephen Rothwell <sfr@canb.auug.org.au>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Fred Bloggs <f.blogs@napier.co.nz>,
+ linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 0/2] Add support for 100ASK DShanPi A1
+Date: Tue, 26 Aug 2025 16:57:37 +0200
+Message-ID: <12479023.CDJkKcVGEf@phil>
+In-Reply-To: <175621649670.159455.15557432322730951360.robh@kernel.org>
+References:
+ <20250826030818.3485927-1-i@chainsx.cn>
+ <175621649670.159455.15557432322730951360.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/4] ufs: dt-bindings: Document gear and rate limit
- properties
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <mani@kernel.org>, <alim.akhtar@samsung.com>, <avri.altman@wdc.com>,
-        <bvanassche@acm.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <agross@kernel.org>,
-        <James.Bottomley@hansenpartnership.com>, <martin.petersen@oracle.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250821101609.20235-1-quic_rdwivedi@quicinc.com>
- <20250821101609.20235-2-quic_rdwivedi@quicinc.com>
- <20250824-elated-granite-leopard-5633c7@kuoka>
-Content-Language: en-US
-From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-In-Reply-To: <20250824-elated-granite-leopard-5633c7@kuoka>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: e5fNgGd2uNj12_ruvldzzz2E-kG2jDDa
-X-Proofpoint-ORIG-GUID: e5fNgGd2uNj12_ruvldzzz2E-kG2jDDa
-X-Authority-Analysis: v=2.4 cv=Hd8UTjE8 c=1 sm=1 tr=0 ts=68adca8f cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10
- a=4-s1saB21lP-Jc6nyYAA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI1MDE0MiBTYWx0ZWRfX27E76dB0Ucvk
- Uh6HFbRFzJdBNxDI9FWU1sNDoBtpfR37KFqsCo7XWClzmC0bKT6BaPmHpSvOuouuGI+NMzd1i5s
- qPS2Zl1Bx2P20FjteZUAJGeauYR73J5HY/7iOFNXc67iwl5KB0wSeTMYU5c4wu/r7/HwGkv2XAA
- cbc+m9Ur8oLSE1o1/gHQ+J1dXxUJ9d0D+dnOyOMm5nIThtPnKKY8MKWVB2Bmxw6ish68KEy88yq
- Yx1r/RIUI1zb6pVB969nydd/a6L2uIgctQH+I/OwWepXT0zcfSWOeE/Sg/3BOG5x5WbscpeNM9D
- /49owC+k4rnfWnss7IclheDIG/3bQRjxmmex0llUj8tXoHCJ2goB+0hR543lRKH0qhVMVigabyk
- 6hV53Z/s
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-26_02,2025-08-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
- adultscore=0 clxscore=1015 impostorscore=0 spamscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508250142
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+Am Dienstag, 26. August 2025, 15:56:43 Mitteleurop=C3=A4ische Sommerzeit sc=
+hrieb Rob Herring (Arm):
+>=20
+> On Tue, 26 Aug 2025 11:08:15 +0800, Hsun Lai wrote:
+> > This series add support for 100ASK DShanPi A1.
+> >=20
+> > Info of device can be found at:
+> > https://wiki.dshanpi.org/en/docs/DshanPi-A1/intro/
+> >=20
+> > Changes in v2:
+> > - Delete the pwm include file (Chukun Pan, v1)
+> > - Fix vcc3v3_pcie gpios (Chukun Pan, v1)
+> > - Adjust the order of some nodes (Chukun Pan, v1)
+> > - Fix sdmmc (Chukun Pan, v1)
+> > - Add phy-supply for u2phy0_otg (Chukun Pan, v1)
+> >=20
+> > Changes in v1:
+> > - Add support for 100ASK DShanPi A1
+> >=20
+> > Hsun Lai (2):
+> >   dt-bindings: arm: rockchip: Add 100ASK DShanPi A1
+> >   arm64: dts: rockchip: add DTs for 100ASK DShanPi A1
+> >=20
+> >  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> >  .../dts/rockchip/rk3576-100ask-dshanpi-a1.dts | 838 ++++++++++++++++++
+> >  3 files changed, 844 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-=
+a1.dts
+> >=20
+> > --
+> > 2.34.1
+> >=20
+> >=20
+> >=20
+>=20
+>=20
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>=20
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>=20
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>=20
+>   pip3 install dtschema --upgrade
+>=20
+>=20
+> This patch series was applied (using b4) to base:
+>  Base: attempting to guess base-commit...
+>  Base: tags/v6.17-rc1-22-g7d11b8c260ea (exact match)
+>=20
+> If this is not the correct base, please add 'base-commit' tag
+> (or use b4 which does this automatically)
+>=20
+> New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/rockchi=
+p/' for 20250826030818.3485927-1-i@chainsx.cn:
+
+both warnings are not the fault of this board addition, but instead
+come from "unrelated" sources in the main rk3576 dtsi:
 
 
+> arch/arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-a1.dtb: syscon@2603400=
+0 (rockchip,rk3576-dcphy-grf): clocks: False schema does not allow [[21, 49=
+2]]
+> 	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
 
-On 24-Aug-25 2:59 PM, Krzysztof Kozlowski wrote:
-> On Thu, Aug 21, 2025 at 03:46:06PM +0530, Ram Kumar Dwivedi wrote:
->> +  limit-hs-gear:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 1
->> +    maximum: 5
-> 
-> default:
-
-Hi Krzysztof,
-
-I will add it in next patchset
-
-Thanks,
-Ram.
-
-> 
->> +    description:
->> +      Restricts the maximum HS gear used in both TX and RX directions,
->> +      typically for hardware or power constraints in automotive use cases.
->> +
->> +  limit-rate:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [1, 2]
-> 
-> default:
-
-I will add it in next patchset
-
-Thanks,
-Ram.> 
->> +    description:
->> +      Restricts the UFS controller to Rate A (1) or Rate B (2) for both
-> 
-> Is 1 and 2 known in UFS spec? Feels like you wanted here string for 'a'
-> and 'b'.
+I messed up and forgot to add the new syscon to the clocks-required list.
+Will fix that shortly.
 
 
-Yes, 1 and 2 is mentioned in MIPI Unipro(UFS Interconnect layer) spec.
+> arch/arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-a1.dtb: /soc/dsi@27d80=
+000: failed to match any schema with compatible: ['rockchip,rk3576-mipi-dsi=
+2']
 
-Thanks,
-Ram.
+the rk3576 dsi compatible is in drm-misc-next [0], so should
+hit linux-next shortly.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+
+[0] https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/f05530bdaf42aa0=
+e6bb4cde76ba6a081cf473d44
+
 
 
