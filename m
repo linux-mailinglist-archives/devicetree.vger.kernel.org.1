@@ -1,260 +1,221 @@
-Return-Path: <devicetree+bounces-209437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 715E9B3722F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 20:23:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9660B37239
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 20:27:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 582504E2415
-	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 18:23:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CEFB366693
+	for <lists+devicetree@lfdr.de>; Tue, 26 Aug 2025 18:27:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E133728B4;
-	Tue, 26 Aug 2025 18:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1CD36C071;
+	Tue, 26 Aug 2025 18:27:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ef7EOomc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DmShNBCh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5103728A7
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 18:21:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC1C276025;
+	Tue, 26 Aug 2025 18:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756232512; cv=none; b=J4CYneGlQ+jLfp4VcepLVGz3ovJmXtouSdcRJUqzWC0i+itkKf+wm2tAuphgfPWeT4xvRSAoKIgye3oded+Hs/SQzUzbXl6Du8MkUmxgsSn+Z78iNW4cQw3b6fhqQAO6ZIJORyFTxgoPwba2Al34ra3DQrQ4aW67Eqc4zODdpds=
+	t=1756232838; cv=none; b=R0+Yq1FlCSVeg/bVKF4hRdrngD7X7W1UHCW9/t8ylmxhyXEf8lQVgTF4SY0be0yjzv49wCnLHAoE7nIOirlyzfgepvMcC4QqXEN4UtWAzLGqkMilORtt63eu4ehXyVnc+Q0avvLGSQvqpZQF1iFqOjlMRtoiBSzZPGo4DOvqu3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756232512; c=relaxed/simple;
-	bh=611L3O+47ctGIN5esrQ9A5H4Oub7w7q3hEDu5ciaR7M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=R7xzxofzpNWBrfkSuMSsdXhjtA1bD4D6+pLu64EviT55Rx4luke6GgGpvqApEIe3+WvvvbjWoUAq+oIj/Fi3Q8ECKDsAtn4JA63NZzlzqb8dyyeaa8kUlvkJUSw724JEx/l3i/I9la5xB1xrKZ1VxNZN2oouA66O7ngL9Yyrp3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ef7EOomc; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57QD8EXR014221
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 18:21:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uHo1gjefBDo7Rz4UcCwYzZ4ege4oDD7nzc30CiMEuYw=; b=Ef7EOomclIE0NqMt
-	u2pygFc2Tnw1cYmgZdOprkOU+vhXdWC+ovShZFd8GHsw0K6Ag3v1HVAGEi3GvkB1
-	E+PVgfXslUljEFoRsob1Vx2jmYw9/zj3pxwevIJniqO1uDE4yOHJRI/xYBzHlH7W
-	/EBXbM7rJRja34lc1PwIPF2PXlqK50lWdLfTxBejuHFvCisA84ekzAdNIDZMwLY8
-	o+PRIh7NK10gKVKV47kauwLpyroXDOzXPkWUWvsuMU2K8PQqM0U/8vZ+/t8GHrYz
-	UY5+kXE6+WJXCcyb63SYzJTumyviYibu1UoGgpjfhE3A28gJ2L62Uh+YJK39u+fB
-	afuT9A==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q5y5htem-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 18:21:49 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b4c229e2a42so1633278a12.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 11:21:49 -0700 (PDT)
+	s=arc-20240116; t=1756232838; c=relaxed/simple;
+	bh=E789PJXmBgx1iMW6wqgstAHKJ0XRd4eGMlebjy5fP2Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TW9ITxPEsPMm+j7urraaBwio1RWtXEm1fI75Jc2gtjn2BdIzWD45Dw8i2Q0SgiFTj2I3BY7/v6LHXmh03mfhN9dejDMwnI0UcOFiZUpnJshbZflhSi+TWG0glsDTtGYo+rCO3/3L4RlmAhGQSuMH/sUbpR3t6WivQN/cpX+uf5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DmShNBCh; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-afcb7aea37cso787082166b.3;
+        Tue, 26 Aug 2025 11:27:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756232834; x=1756837634; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E789PJXmBgx1iMW6wqgstAHKJ0XRd4eGMlebjy5fP2Q=;
+        b=DmShNBChWoGXxcG2iegaQ6D5EzWNEvzmH4l4hkHIdke/4KuHrbVILXAP/HewEmVN6d
+         4wJpkc5VJ2f5fEpDBai+KqTaul1G096oAqt1dY9F7U/pQqXNa8eOw+DP/esSMZqb79k7
+         x5RnO/W4qbS/ZRlzE1i0QAu2xNB54ynKaKEXnKLVrXuHUYkJkDN74h/M++8+hdMazR0O
+         qnV8SaQ3BxTayh8yVZ7H386CJ25lWodVwEjcNsgjCb0w6IN6oaCjukE4mKvVe+HRIDqj
+         J1sq1GX2R0kAICCK+DKmwlQoxTEaQR5Dlpk9eNIeq8a67SNDh/T83qnr4uVWPHb0zLfG
+         zdfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756232508; x=1756837308;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1756232834; x=1756837634;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uHo1gjefBDo7Rz4UcCwYzZ4ege4oDD7nzc30CiMEuYw=;
-        b=rAksqmIgP9z59FW+cj6Dx4gcToj+dsPPuGZG+eusJtnKc5K6INq4hpgc5s7DBrCSOS
-         pjVHGAEvH7mtqlUaohTyl8Dngc9fBaXfREHm7YNif7jS0lrcDDpXdPvswkZICwMaWCfh
-         xQaz1UzzOV1WIn8Y3CgDxTA50PDwH3krLLCiiyVMKO2xuihwZN+fCWHyYguw+NICyZ1j
-         /jWjAta8U380Qbxx3JTMdljZa5ETLhNjm4PvP7a4oPLXao78yBI7tZ09wtlmCWr9nB9r
-         mOSyOKQrm7yXhLI0bzYvpnP/7A7CUwf/ShAuERF9ubnTMoitWt1VlClxLXbtNNUIfg1x
-         PDaw==
-X-Forwarded-Encrypted: i=1; AJvYcCVQsGUirll0EHzJt5bptYrOJKU/7lr1t/10O3h1RO9Coahj88c/xtCka0Ckm27ncCmqoHRbAvVHCAJt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkRVPnhTz5SXhysrYM2S5u5yRXYRngxNh1d5PiXdHQbVrZYGS3
-	Zxnwk85RXnZGy4TTlt/XKHOG6P1qPJEFO1tdLDIMSszfVFUJNmKuHvW+VEm+G+twhoYLyjbM55C
-	bN1Dr5BgYBSXNfc495GVYkkirp12p4hVY1UUkD9raUp7aaDDDqESSvsRulW13gb2J
-X-Gm-Gg: ASbGncvM2H2pt9DZKylzHj+/vb2P3I9tIZi79EPDS4f27tZcJvG/WoCucYaeVaT3oE1
-	cSPPit9445vBQA9Viz7Fv+fnjXcSLQZZ8uYh5OU8CzqzF4IbboJo7W2va16J8gzfo3Zsvkv0Gl0
-	52wvTnWx8MnbRLzBOvvgI4ZAnI9Vz4Om5CEQUizUzQ0s8fTJ1DuoovbzTYkjAg5w+mulri/FY1x
-	Pk1NoZm+QmcDecV7YY+SZepm8vgzEf7W1RlXNOMtHrJjWYbzUBP9/4JP18/P8pt3zPXat71jJqO
-	Lnl3qBUy7qvuyxre+Y87zxs8DoxZhFk3fxonBk976LYhZpsor4PmCLrlc9DPvhkE0ji+
-X-Received: by 2002:a05:6a20:a10c:b0:23d:54cb:2df6 with SMTP id adf61e73a8af0-24340ad1f86mr25124333637.3.1756232508565;
-        Tue, 26 Aug 2025 11:21:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG7ijJ29Va7yrV4zp5p8NjWdZ782LaBYYQF/4cU8PsHszSgbxWHP1GGb2H0frlcDXBmyhlLlA==
-X-Received: by 2002:a05:6a20:a10c:b0:23d:54cb:2df6 with SMTP id adf61e73a8af0-24340ad1f86mr25124289637.3.1756232508052;
-        Tue, 26 Aug 2025 11:21:48 -0700 (PDT)
-Received: from hu-wasimn-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77048989fe6sm9881803b3a.51.2025.08.26.11.21.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Aug 2025 11:21:47 -0700 (PDT)
-From: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-Date: Tue, 26 Aug 2025 23:51:04 +0530
-Subject: [PATCH 5/5] arm64: dts: qcom: lemans-evk: Add sound card
+        bh=E789PJXmBgx1iMW6wqgstAHKJ0XRd4eGMlebjy5fP2Q=;
+        b=Mi+yQRV0+fpOvsP9Ugccu6lVPkPFUKBmXsENCHeqwpcnrAmmCmb+kTdY8FegVj0RBz
+         8ZC4ZMKkYwP61s2tmR9SCTJGeHKUThhisJ/ZdKsu9F6qlVCl+yb8G0rhFd7cXRrjqmij
+         M4hNI7qk457RKVh2nm9DlshoXPPRZ75lB5rx8xLRlbQ6Ih37B790iHQQFMHXWBkxj8NX
+         BT4+y11Q5BsdoNGdiqwRpgGNvy2Ams8ioYceQ8Ed9Q+iz2MkhZ84zaREdp0iDdeo9iRJ
+         d/Dc4DwxED8pu0PV058aW06nNTEeOCopqLwBEmhZiIfe/KQlHeVu2rynl3fGvxyWK83J
+         zHUw==
+X-Forwarded-Encrypted: i=1; AJvYcCUKgrBv+C9xrrQ6WR6x4x1TL0Wb16zXzksXYddFOpqKK9MU/Kn0pzYWF0JuSgiH9qONkkUQUWYg9nTrGQ==@vger.kernel.org, AJvYcCWpagcO3eqMJF94QKxncMMRK90D2JCbvXWBiEsf6Zok0eRBdW2pDll0Tl7Jm7EByfUdkyelLPVDZNs1@vger.kernel.org, AJvYcCXeguksOhyCOXX6tyVq2gjEiH4LMrNYp5su/LJJ/sef7g/bpMP5sl0zXfwxPSA1O71MIFk1xe0Vcb1icA14@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzQSYXe/vimWFCv42i5kE3YJl8/afM8hM8LOxUIufNpRxcfTrZ
+	E2VWlno//WLRw/RkpcONSlVfbE1yRfgsI41Gj6k4pmjRCJ1N19hAgDD4hw4QzKTLw+MdGRZwkFY
+	LxTZf2Lz4JvwFmzKjYMgLlJDXov2u/x8=
+X-Gm-Gg: ASbGncu68tlaZBXX/DhBULcFd464X+a/tkyfW4ZqLco3ZrljYcAxr1bR/AEO9vQH2fz
+	jLuIrJbrCzZeoN1A8WpfDbuQJ8BZHPJNZLPWWTZQ87MQf74KgorN0Nssuzj/YnwW4RCTY+Qz8/1
+	XQRdDfC8GVQXpUijQTHlvwVWxMYMLgCyiu/hSzcHUuhDkrxrEpje95f8NfhtDM4rqhBgPTQ03Ew
+	NVt2wE=
+X-Google-Smtp-Source: AGHT+IHDvmUrJMHqEARruzlIdjBBChsbG3J4CXo9pSCpJkcLT89+DCf/fRwXFMMmxAKHdgn/+LIgFJFkwdhntgXlvL4=
+X-Received: by 2002:a17:907:fd15:b0:af9:68d5:118d with SMTP id
+ a640c23a62f3a-afe296ec584mr1580781266b.58.1756232833675; Tue, 26 Aug 2025
+ 11:27:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250826-lemans-evk-bu-v1-5-08016e0d3ce5@oss.qualcomm.com>
-References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
-In-Reply-To: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>
-Cc: kernel@oss.qualcomm.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
-        Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-e44bb
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756232476; l=3032;
- i=wasim.nazir@oss.qualcomm.com; s=20250807; h=from:subject:message-id;
- bh=UMnWnX+QTp0SrMk1v6WQGdCaQDzxYKHt7lrDS4z1rOc=;
- b=vvOwPlUHfYZYBlh0B2Im01YpZHJDFfRJ5ZkGHfDe3nN4FX3P1X2ntIbChYdre22CGaot++nfI
- /ezJDoCRq3uCO9DepaefrgxOKiQuc5ngAhs497ny0q5LZGpYX95mE1y
-X-Developer-Key: i=wasim.nazir@oss.qualcomm.com; a=ed25519;
- pk=4ymqwKogZUOQnbcvSUHyO19kcEVTLEk3Qc4u795hiZM=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzMyBTYWx0ZWRfX7Debx888+fR0
- LX1YC5Xj3i3QR/2q5lRsxGRvv3b/Y/+5egNPQSX9oFJClRqVKtN/BBBX0ynUCSph5j82HV6ceJy
- Fd+tA2Mv7kjOEXzfqS++adcxrV9z5owTbBqjxxQuSlVBUfm/Z5Z5/X8vV9pAOOicMEs7Vz5Q4H9
- 6TqrtBv+tFEJajwduB4WQyI3RY20nNo1J/bQlo6vvfSdQ+/Nswp5kEtw1o3WS7rYh2vHrhEil7+
- oe+CmYdhdOse6sWg+7ggHHTBWgT8VrRlWvymyimiSJoQzzJWbyuX4iXUn0Qyax+Tl4aPMN1j5Au
- s6JY2qlEP989ShX45UklpijuKhut0FQGNmIDNV2TpN4pooWdlU2aOIqMk+LziVjc06rE1xx5zPi
- uGHgZ2Qj
-X-Authority-Analysis: v=2.4 cv=Lco86ifi c=1 sm=1 tr=0 ts=68adfb3d cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=gcRert6Kt2c8YO7gZrEA:9
- a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-GUID: iMIdBmKeCNkgW-0m9kVg4GkX3RqF8y8k
-X-Proofpoint-ORIG-GUID: iMIdBmKeCNkgW-0m9kVg4GkX3RqF8y8k
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-26_02,2025-08-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 adultscore=0 clxscore=1015 malwarescore=0 spamscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230033
+References: <20250825033237.60143-1-jefflessard3@gmail.com>
+ <20250825033237.60143-6-jefflessard3@gmail.com> <aKx-w0QOOQPyy9pW@smile.fi.intel.com>
+ <951E84EF-4ED7-4882-A5E2-6E3CD63E1E07@gmail.com> <aK3TIVbmFgv1ZiYs@smile.fi.intel.com>
+ <A045103F-1F73-4AC7-9316-1AF906ECDC9E@gmail.com>
+In-Reply-To: <A045103F-1F73-4AC7-9316-1AF906ECDC9E@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 26 Aug 2025 21:26:37 +0300
+X-Gm-Features: Ac12FXwsXMmalff8QiCMJGwIjweoZtHiL4WOjJI9phDTGAQQsKxuBEV6b6ZtS8Y
+Message-ID: <CAHp75Veb_tQ3QYybDqYvNDrfX36Ft_RM6LwwCie2qYdoZGZOQw@mail.gmail.com>
+Subject: Re: [PATCH v4 5/6] auxdisplay: TM16xx: Add support for I2C-based controllers
+To: =?UTF-8?Q?Jean=2DFran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Andy Shevchenko <andy@kernel.org>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+On Tue, Aug 26, 2025 at 8:38=E2=80=AFPM Jean-Fran=C3=A7ois Lessard
+<jefflessard3@gmail.com> wrote:
+> Le 26 ao=C3=BBt 2025 11 h 30 min 41 s HAE, Andy Shevchenko <andriy.shevch=
+enko@intel.com> a =C3=A9crit :
+> >On Tue, Aug 26, 2025 at 12:01:57AM -0400, Jean-Fran=C3=A7ois Lessard wro=
+te:
+> >> Le 25 ao=C3=BBt 2025 11 h 18 min 27 s HAE, Andy Shevchenko <andriy.she=
+vchenko@intel.com> a =C3=A9crit :
+> >> >On Sun, Aug 24, 2025 at 11:32:31PM -0400, Jean-Fran=C3=A7ois Lessard =
+wrote:
 
-Add the sound card node with tested playback over max98357a
-I2S speakers amplifier and I2S mic.
+...
 
-Introduce HS (High-Speed) MI2S pin control support.
-The I2S max98357a speaker amplifier is connected via HS0 and I2S
-microphones utilize the HS2 interface.
+> >> >Can we use regmap for all parts of the driver? Why not?
+> >>
+> >> These controllers implement custom 2-wire/3-wire protocols that share
+> >> sufficient commonalities with I2C/SPI to leverage those subsystems, bu=
+t are not
+> >> fully compliant with standard register-based access patterns.
+> >>
+> >> Specific regmap incompatibilities:
+> >>
+> >> I2C protocol:
+> >> - Dynamic addressing: slave address embedded in command byte (data[0] =
+>> 1)
+> >
+> >Isn't this called paging? Or actually we have also non-standard
+> >(non-power-of-2) regmap implementations, perhaps one of them
+> >(7 + 9) if exists is what you need?
+> >
+> >> - Custom message flags: requires I2C_M_NO_RD_ACK for reads
+> >
+> >Hmm... If we have more than one device like this, we might implement the
+> >support in regmap. Or, perhaps, the custom regmap IO accessors can solve=
+ this.
+> >
+> >> SPI protocol:
+> >> - Inter-transfer timing: mandatory TM16XX_SPI_TWAIT_US delay between
+> >> command/data
+> >
+> >One may implement custom regmap IO accessors.
+> >
+> >> - CS control: requires cs_change =3D 0 to maintain assertion across ph=
+ases
+> >>
+> >> Regmap's I2C/SPI bus implementations use fixed addressing and standard=
+ transfer
+> >> patterns without support for these protocol-specific requirements. A c=
+ustom
+> >> regmap bus would internally call these same helper functions without p=
+roviding
+> >> practical benefit.
+> >
+> >regmap provides a few benefits on top of the raw implementations. First =
+of all,
+> >it takes care about synchronisation (and as a side effect enables
+> >configurations of the multi-functional HW, if ever needed in this case).=
+ It also
+> >gives a debugfs implementation, and paging support (if it's what we need=
+).
+> >And many more...
+> >
+> >> The explicit transfer approach better reflects the actual hardware pro=
+tocol
+> >> requirements.
+> >
+> >That said, please, try to look into it closer.
+> >
+>
+> I investigated your regmap suggestions thoroughly:
+>
+> Custom IO accessors:
+> While technically possible, TM16xx protocols create significant implement=
+ation
+> challenges:
+>
+> - TM1650: Commands 0x48 (control) and 0x4F (key read) appear as I2C addre=
+sses
+> but represent completely different operations with different data structu=
+res.
+> Custom accessors would need complex command routing logic.
 
-Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/lemans-evk.dts | 52 +++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/lemans.dtsi    | 14 +++++++++
- 2 files changed, 66 insertions(+)
+So, to me it sounds like mutli-functional I=C2=B2C device with two clients,
+hence would be two drivers under the same umbrella.
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-index 642b66c4ad1e..4adf0f956580 100644
---- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/sound/qcom,q6afe.h>
- 
- #include "lemans.dtsi"
- #include "lemans-pmics.dtsi"
-@@ -26,6 +27,17 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	dmic: audio-codec-0 {
-+		compatible = "dmic-codec";
-+		#sound-dai-cells = <0>;
-+		num-channels = <1>;
-+	};
-+
-+	max98357a: audio-codec-1 {
-+		compatible = "maxim,max98357a";
-+		#sound-dai-cells = <0>;
-+	};
-+
- 	edp0-connector {
- 		compatible = "dp-connector";
- 		label = "EDP0";
-@@ -73,6 +85,46 @@ vreg_sdc: regulator-vreg-sdc {
- 		states = <1800000 0x1
- 			  2950000 0x0>;
- 	};
-+
-+	sound {
-+		compatible = "qcom,qcs9100-sndcard";
-+		model = "LEMANS-EVK";
-+
-+		pinctrl-0 = <&hs0_mi2s_active>, <&hs2_mi2s_active>;
-+		pinctrl-names = "default";
-+
-+		hs0-mi2s-playback-dai-link {
-+			link-name = "HS0 MI2S Playback";
-+
-+			codec {
-+				sound-dai = <&max98357a>;
-+			};
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai PRIMARY_MI2S_RX>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+
-+		hs2-mi2s-capture-dai-link {
-+			link-name = "HS2 MI2S Capture";
-+
-+			codec {
-+				sound-dai = <&dmic>;
-+			};
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai TERTIARY_MI2S_TX>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
-index 28f0976ab526..c8e6246b6062 100644
---- a/arch/arm64/boot/dts/qcom/lemans.dtsi
-+++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
-@@ -5047,6 +5047,20 @@ dp1_hot_plug_det: dp1-hot-plug-det-state {
- 				bias-disable;
- 			};
- 
-+			hs0_mi2s_active: hs0-mi2s-active-state {
-+				pins = "gpio114", "gpio115", "gpio116", "gpio117";
-+				function = "hs0_mi2s";
-+				drive-strength = <8>;
-+				bias-disable;
-+			};
-+
-+			hs2_mi2s_active: hs2-mi2s-active-state {
-+				pins = "gpio122", "gpio123", "gpio124", "gpio125";
-+				function = "hs2_mi2s";
-+				drive-strength = <8>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c0_default: qup-i2c0-state {
- 				pins = "gpio20", "gpio21";
- 				function = "qup0_se0";
+> - TM1628: Requires coordinated command sequences (mode -> write command -=
+>
+> control command -> data transfers). A single regmap_write() call can't ex=
+press
+> this multi-step initialization.
 
--- 
-2.51.0
+I believe we have something like that done in a few cases in the
+kernel, but I don't remember for sure.
 
+> Paging/non-standard addressing:
+> TM1650's 0x68-0x6E digit commands could theoretically map to regmap pages=
+, but
+> the 0x48/0x4F control/read commands break the model since they're fundame=
+ntally
+> different operations, not register variants.
+
+Paging can be partial.
+
+> You're correct that regmap provides valuable synchronization, debugfs, an=
+d
+> abstraction benefits. However, implementing custom accessors for TM16xx w=
+ould
+> essentially recreate the existing controller functions while forcing them=
+ into
+> register semantics they don't naturally fit.
+>
+> Custom regmap implementation is possible but would add significant comple=
+xity
+> to achieve register abstraction over inherently command-based protocols, =
+while
+> the current approach directly expresses the hardware's actual command str=
+ucture.
+
+Okay, if you still think regmap doesn't fit this case, please provide
+a summary in the cover letter to describe all your discoveries and
+thoughts.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
