@@ -1,200 +1,207 @@
-Return-Path: <devicetree+bounces-209563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872DCB3800E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 12:41:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F01D1B38029
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 12:45:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BAFB5E059E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:41:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED17C1BA2872
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9702F83B6;
-	Wed, 27 Aug 2025 10:41:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AD128D8E8;
+	Wed, 27 Aug 2025 10:45:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=maxlinear.com header.i=@maxlinear.com header.b="T4uzSmTo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="echDGeEf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2045.outbound.protection.outlook.com [40.107.223.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F582E7BC2;
-	Wed, 27 Aug 2025 10:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756291281; cv=fail; b=BfxSBNf/V5W5UfkVjmCAjBsGOigecbSAYRgYuTonVU4flGr+3ENohCX/nQFHBAg4eZ5Hbf8BCX2ONgdm6zylDZfMzhiTUWAT7yw1/wBbTUXgha60MG5CevMfDnAOzlYj5dIwJycsaL+cBDjP0qJwq0y5Tms5knwypmHQI7D6gys=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756291281; c=relaxed/simple;
-	bh=Nus2mIpWZvaKUFVgH7/gEoMb5vigne2/U77kFurXmh0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=arS1IUDAuVSmlrFssRghLx+jNFQ7ATLXtmlvDUkmOswPS9jzZhA4al+6Tj7pL0A6JmCV9FIl6jbkUT7qr++bEaljT2szqCsDLj73brhikSCIyN/AxjxRgdxxrknsPBZNDOACpe3iMTe0qfkOAkHgDxMElsBc7sOMXruWFeWH1cg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=maxlinear.com; spf=pass smtp.mailfrom=maxlinear.com; dkim=pass (2048-bit key) header.d=maxlinear.com header.i=@maxlinear.com header.b=T4uzSmTo; arc=fail smtp.client-ip=40.107.223.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=maxlinear.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=maxlinear.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IZr+J/4FoC3Wsfc0mhjDYFb4ARYeiiTBOByeL10sZWTyOJE9TbSdXFxHv6PHij/6FzNOx7Dnjbrxd6rugvnZq7FyrZKomfwTcHc/n0yG1LtgnBhexa0kvmHmraSqj7Eq1e2CgU+0zL4ho0mST2Jg0SQ6QmiTSf1PmtnD+VLEcuGd/qCnLH3ApMKKab/NhaFZZs6znCWmRLhxJnwx3CkhkU49oxRG1HYXHPeUUGrJGFjOqR39fJKmXvnnmCRL1jDiEqCWtMmUdU4T5CRusG3/GBJElWncmwGxFivFpXswn7CDf59Xy+0+i1aux4jaQ/wDcfFlpmzjy5xkg78Y3+D3xQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nq3dw65/cPQ0woFdgKMOyD9yQsj3HKxlkduBYxe98gI=;
- b=LpOgjTuDbtV0WjxY8ixHp3dwXS2nBgcNOlb+F+lwPvV161K+PH+6nT8AbNErcNSgYZKeZxmhhTkuYLJennnYZIkm7SoH/q71ZsAO4bRtpSM9cBkSSuElpvXYZyncvKlEVPI2njEKwoOQrExGK/PtA6VAH8OQyvxqF+jMcRQg1VwLdZdgQuT0ddOOsOuBO5ssPjK+P3+aT65Iak8FTQH0p0UNHETkuu0/z4D6BAudzrMU15ZrG6mnhr9n1LzGgvFi//vVgXQY/CWnKJqYKbmmrlWIoeexx54d+fqTNmyKAhMs2nUftTUVl6Aw+ddpGT9Yhkc6bT8rE8xBI19WVayAIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=maxlinear.com; dmarc=pass action=none
- header.from=maxlinear.com; dkim=pass header.d=maxlinear.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maxlinear.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nq3dw65/cPQ0woFdgKMOyD9yQsj3HKxlkduBYxe98gI=;
- b=T4uzSmToBWCbmq6a2sg8hYiDxJ7TOv+d3tD5bsm46Z4+tUmGU5PpsOQIlCgna3ghkWcPDW9LdbuvmjIY2Yh/2jl+smKv0/93gPbckjNn0JsV0//AD7SLqLoIVEOGzrYiprc4ajH7yZ5mEYiiTvhfsMNOMaUEx7S7B7nDYQTELHkNiXNi3lLhGwpL/VCyhcs2HmcuD0psEa2h/pMk1ABrigXgHIa7htlFVryx634sGRLIuIrT19sYJxicK9eLGOPN/ryfkM4N1ZB4Nt1KlCvKpIWZqM3p537Wmm9APXizTGTJCWQNp4vOThlOxIrObHSJCWE1WFeZnl4xQ/DWAQE7wQ==
-Received: from PH7PR19MB5636.namprd19.prod.outlook.com (2603:10b6:510:13f::17)
- by SJ4PPFB04496E67.namprd19.prod.outlook.com (2603:10b6:a0f:fc02::a44) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.19; Wed, 27 Aug
- 2025 10:41:15 +0000
-Received: from PH7PR19MB5636.namprd19.prod.outlook.com
- ([fe80::1ed6:e61a:e0e1:5d02]) by PH7PR19MB5636.namprd19.prod.outlook.com
- ([fe80::1ed6:e61a:e0e1:5d02%7]) with mapi id 15.20.9052.019; Wed, 27 Aug 2025
- 10:41:14 +0000
-From: Jack Ping Chng <jchng@maxlinear.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>, "andrew+netdev@lunn.ch"
-	<andrew+netdev@lunn.ch>, "edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Yi xin Zhu
-	<yzhu@maxlinear.com>, Suresh Nagaraj <sureshnagaraj@maxlinear.com>
-Subject: RE: [PATCH net-next v2 2/2] net: maxlinear: Add support for MxL LGM
- SoC
-Thread-Topic: [PATCH net-next v2 2/2] net: maxlinear: Add support for MxL LGM
- SoC
-Thread-Index: AQHcFjcUqM/WV1D1mEmYPi61TjxC27R05xsAgAFkXFA=
-Date: Wed, 27 Aug 2025 10:41:14 +0000
-Message-ID:
- <PH7PR19MB563654EF8D30DFE723775340B438A@PH7PR19MB5636.namprd19.prod.outlook.com>
-References: <20250826031044.563778-1-jchng@maxlinear.com>
- <20250826031044.563778-3-jchng@maxlinear.com>
- <4a3c0158-eda0-42bc-acfe-daddf8332bf3@lunn.ch>
-In-Reply-To: <4a3c0158-eda0-42bc-acfe-daddf8332bf3@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=maxlinear.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR19MB5636:EE_|SJ4PPFB04496E67:EE_
-x-ms-office365-filtering-correlation-id: 3db1246b-9979-4de7-3c10-08dde5563f5e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?2N0cUlBGZTqVdcOiqB0KBXECyU5m0l1zk0sQNMdKCeDWTK3PwCEKRXDnNP89?=
- =?us-ascii?Q?CgaH4sxwXRmc5eZY065nCWDXGJoAwrVFMkHlW6Wp9a6BmO1vmU8fSREhCXfh?=
- =?us-ascii?Q?TfgO/kfhUNrCDJcr/eabu2F60Dc+yhy/9vttYgkkeldMw9sIwPDnIYUTiTht?=
- =?us-ascii?Q?LIYVEsw6WVCfN2Vz23LH6JmZmigfhej2qbM0/UPPOCIVULxGkpMhwE6vS6MK?=
- =?us-ascii?Q?QwrxpKRZaTjCJH9Ov16rejWmuPxAWpNTIAJB4umlISwlN0IJa1nfwzpsJqsZ?=
- =?us-ascii?Q?AurE0BBY+UUQXEOR/L1Cv8A+yeamMjBLJ6TlYC1f9N4lnyXM1HccCwC/hl5x?=
- =?us-ascii?Q?Xh25z6JK+70Elg232hXwEmFU62BFlUNgF85j8B2ojl8dFQ8CTLiPkqX0PUAy?=
- =?us-ascii?Q?PFBulX7JzJUc4W0/x3HSOZjsDPXBBn/qA4OcUHzi4GUWg0vAizzAxT6TCVuc?=
- =?us-ascii?Q?9sY8Nqkn6wdqmJeG7XMta1VWu+O8dTf9v1Erp0PioKUJPg+2it1xqCweyVZg?=
- =?us-ascii?Q?JK3Xp9vAw9qgedoGj8jfVUoePCdgL9ElzFNvn3NnSt9DwjX88BxXcOAT/ikd?=
- =?us-ascii?Q?YYsxNzzS7kq8UPQ6C9PIXZhtU3xl0IdPRgjbOJ94Uc9/MJo5+4/eliHmAyAn?=
- =?us-ascii?Q?h4vg/Nh6MTXCsRi7voWp7EP+4p9rv7l9YQBSfyx7xIlAOOSxMBHVGU4br6i9?=
- =?us-ascii?Q?uEOUnOf4VECi4WORkkYdySpXozBTH9GMplwRLmzcE/Dfw6gqh7qRhRxd9Wew?=
- =?us-ascii?Q?IcznnrHvgq3H46VkSeuXE/DoA7BYZPEm8P/JojtiCz28yMA++Dgz+rXW7QuL?=
- =?us-ascii?Q?WtYhu7fzM8vJHNuLrSb2eAxoTlWlwgEwpzScaXV9jTm7V5mFq6iqr8VYEBn4?=
- =?us-ascii?Q?CAJHZ0OE9saAzJumSwd6+dWa51Cdg5quVRPFYfLLq7Bi042HniK0U8d83jww?=
- =?us-ascii?Q?ZKvaId3bwNhNRnJqPR6RTn3+eHTTlv5HAaFARX9i/6pW6dwLWaNXl9jl1zxG?=
- =?us-ascii?Q?ZTpf0ekvqgBykJ6iYET+obfPxy8TOsCVeG4nh3NPIBbfiZjDsKqSZK+33XjP?=
- =?us-ascii?Q?JrOMKNrengkylq4V3UuRFRw860uOdi5unNimjN9fiz7KuSX9HAzKp7kmAZTo?=
- =?us-ascii?Q?DFR85WmMZPxFX7Qt7gF0r3cGIjqvUhhNKblvOVvPD4SIgsNGEIZjV4rEOmcK?=
- =?us-ascii?Q?d2zgxi3B7Wqoj5i6FktP53HgkEdRiPY9Gp0AkqN9OmWI01BvtdiRrDad36Hp?=
- =?us-ascii?Q?VuvUsXDyXYbHZo12QFps+Mx0B4o4U2Mnj1kxSsTCcL+O61Y6IIyO4mnO7FcV?=
- =?us-ascii?Q?+2llyc8JzkMCwj8ZdWF+MaPQksdUg2IYqyuKBR6NMQRfPCSyg6GGSZ3aP7rJ?=
- =?us-ascii?Q?dmA7lmUqpnJID89VfxUIfWK4m2uxIOfPpNfrbCV3SRyNosFRWNzRDfec3Vyi?=
- =?us-ascii?Q?vr36FblJqAGwB47qNtI0Miq3HFJ8tKcJdrVoHwv/5UVijo3ikAeDeA=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR19MB5636.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?rSv0ZmKFL2ZGyXSm0qzuKuRjMBeAfjKwRllXokZKtg57TWqt04DRonqwRmYs?=
- =?us-ascii?Q?eLsc3V7QYCQQxoVvOvvAWtnSs0Os2EAFyYx1e+bKSLmJrW/ocR0aLFR7l8XI?=
- =?us-ascii?Q?tBIovRhNaDTBwfimelE1tdM8XIzc1duJm6lbdftT3Vnd54Q3u03ff8d5pB7o?=
- =?us-ascii?Q?wxBEflp44Bk5eewq3lTBfdXPqW9tWPi89oq2tzmAhvJh2MdG+a/So/wLsR1Z?=
- =?us-ascii?Q?etqkd1IrR/eRtxf5/FYv9Nk+5+JJ7cxfMRCkpjG7yDF4YCul0KVr4gTxWOx4?=
- =?us-ascii?Q?tEKIlMRw/Zt9YfbPm77I+SIqyrMyWIX8eAsk6Vim3BGFR1FSVGM9QVF6e08E?=
- =?us-ascii?Q?KeK4O4veMrghuM0Xlm30LNqhDfuL7zKpoZolLyi/kgEVz/h5XuXxteT1vQQB?=
- =?us-ascii?Q?rpHLCReiiU34Sc/x2T72M5Kze1IxhJRHVhCvOkqtlg6lCZtVqSe0U4unAp9X?=
- =?us-ascii?Q?saZkofUnuPYM2AJw4bHsLl1gpsncac3mmZmY9L4uE+h0/1jTfLiX7wWHMOKR?=
- =?us-ascii?Q?8QD4B47BmrgHlegExohF4xtqAcP264qBrFiTxtIRaSVBGmqmv+LVycEGbeuA?=
- =?us-ascii?Q?67RzVTRjk4sT6iiUAsjXTNtvcy8+x+CsCP5jxdBVdFJbVhq7TmsHIPBmsw+b?=
- =?us-ascii?Q?ryGe61iWYbyy4S6NxezznQfokVhN3hf8anZ/pCFkKNbtPurbA/fp9IG8mmFw?=
- =?us-ascii?Q?7T4Ty2OjVMwCzPbncM1CV6SsKzMdSTrNjgp8GYuS5+eiZzSR1fNWBAWrqrgH?=
- =?us-ascii?Q?zIK+Dk7BT0T5pWdXHDIxhqKwPuHobumkrXb6aXKUXzr5ECJgPS3KvYuFiEW4?=
- =?us-ascii?Q?lD06S2aP32h2lrlpooqM72aXbhzFMu6kKaCkVXCjHqHukbWCugAVuIq2Hz3+?=
- =?us-ascii?Q?rFL+KgduOSrfCmKaMb+mFslbtJ7HeI0nXCkCwJyFiKJ0EinSmEXQn4oCZODX?=
- =?us-ascii?Q?05qiV23KQSCLN01ucU7BnFZXgp1vP+uCkLXWrSvvbck929kO8MFdaelAovrU?=
- =?us-ascii?Q?kTlPRw+y5qcOdXz2vERzEzSk1WgpMDBitWL6Mh861DEzUiXOvunDfUViFLVa?=
- =?us-ascii?Q?rxVUPxcAgT3kbNAkdnL94Mx4WmP/hJrt9zy++e4A1w3N0lTlsuGVRXBAlVoR?=
- =?us-ascii?Q?llsdZkP1Ofs9loTKPB1Dlpe6XzygjhBv0ptBduHk3aau0IvpHCzrUi2WIZV/?=
- =?us-ascii?Q?UbGjDVddLR7nKkm/MFxIGzOLKaT2c4xwN/fi/BiUL7ansI2SSr8JRWAayMSh?=
- =?us-ascii?Q?4Kn7YIQX72hC8r46lm6UkzuOQhhXqvTjZKo5XOwNE3/fdzYX3Ve8hWTyvOB/?=
- =?us-ascii?Q?pOh/o/YzOnYsbBP04gkGYcoRX50h1+ZUSIme8puusj/YYDtkGZ+baSk7etIF?=
- =?us-ascii?Q?iLLTMnw/bMq1TmZFBDne6oSWhiC0B9Np5q3NT973scv8xpvRrUzykUnhE9An?=
- =?us-ascii?Q?rgPDIKxB8mKNvgNf6IEbhiWdeE1ch2qMPMvTa4aAdiA0sZBcScj9E2QJVb4o?=
- =?us-ascii?Q?uqrHtM0E32CYnsAxbw9iOJEHL2Bnkvc5OLxkuMC4/+8wX4+T3sbDmzZhi5IS?=
- =?us-ascii?Q?jgwWltBrFl5WnrXg+Uw46a2nyuDu5pcRdbQs+Il/?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E07E41C71;
+	Wed, 27 Aug 2025 10:45:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756291543; cv=none; b=KulB6DuikwMjOF49RQYsd6tKXlVUMAmkinf+nA5YcjRnYabbZlnkhdcdzpYlakWgznSAKbUMoLObh+Q0qZrIpvxJ1dqQO8mzXwQr/5CqRpgm9JP9UQwl+ak6Ki+n0z88zMeFPmZCbwOeMw9nazKBny8doDo33U9yPueNS9O1aKM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756291543; c=relaxed/simple;
+	bh=ZpGh8FURfNBFRxpWoGhtdsBg8oR3Yo8/IMlZBZL39CQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X7350c2gr3EgHenQCxbvBKYCmxRrlVkyYugYckxdP7RklUeCL9rGhaFO3vau6+QVI7LlN5Y7lkD3ACz8bwOfjbUSqo9tukvOm9EUcFoFAuLJ1oC/7Iv+vMX1oMfYnRsYm3f+cLmOtqmQqqiynjV9NEGDY1WIbyDMxoT/HD/l8cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=echDGeEf; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3c79f0a5b8bso3316378f8f.1;
+        Wed, 27 Aug 2025 03:45:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756291540; x=1756896340; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ywFtIUPgkefEyFmx2NKt2azET6uVxnWh9aDDLWNj8mM=;
+        b=echDGeEfEiHzanGwBopfSoeQNt7aKpyKB/Tb7MacNqq90Xorl+9K0qiZMEsF4XHtPn
+         RhYXwL2SODbFLdqXxbVk2sM5yh4uJfn1uiS3lejWqqYO7CyMZpd/SyBMHUfmv3u5+ja+
+         5ct0Nv1wOrOSdVmZupkGr0XXEVKByVLSshUCRVwKM+NBefklUSw1CxeJ1uuT5JJRbs5W
+         3z9vxtL5GnBbPXDaSuZ5lJJG5QN4AzxnJ6SqYE1aJBJeudBjrJSJsexjHkfhpmWMtuIn
+         pymPHLCEjpvSVz2jtIVRK3+bDrdmAKkQpJBW9oa61S+kXVCESAw9S2ED+bHCn8U1mDDC
+         w/og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756291540; x=1756896340;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ywFtIUPgkefEyFmx2NKt2azET6uVxnWh9aDDLWNj8mM=;
+        b=hv1dekpn0jQw1/5UCkvQQx6w9GH8+jbw4cbi1wsNz07OGkxOaS8Y7/sHn8ia65d/ml
+         CG/ZHzFd+EXoJ/LGpD7ZUkah7jMjn0lLMdCapGgvXbAK5am+4btT6J0Bm4g0v9UoQeLU
+         ERGRzngtGpml84Rigi1CevZuRSg4LDR1mwEAJhmrU/lT3WY9Xj/hYbR2KDQ4yZ6SMC6/
+         NBhBJmC003rYJLm5jY/aCNNrtWT64/+z+YxjpBako5R37m3STICmSAm6Lj0X3vxZpmqJ
+         ynbyX1j8Lm0Y+oaqKgaRqoh/hNoV0F8m4t2MxBt/OqTjfGWwzzN5KckV1SD3oHFWmvTO
+         KBqA==
+X-Forwarded-Encrypted: i=1; AJvYcCUHIT8WM53RmcfZ6A4sx7FKN+WIuKp3aWvnaMq8+x6x4n5YgzDuaZGIwxffTXIEDDmS84HK2iBBTi0jhQki@vger.kernel.org, AJvYcCUwpNLDFyoRsZrDtamLIHrMhnjO7OBoVKF42ix0adUYoSNtThQWapNhM6m7UCZi9TwHO8R6W06Io5c5f3U=@vger.kernel.org, AJvYcCV+spoupZZh8y9JbmdsYVYiOwelCVbaE0GZFI6cFe1PaJEwne1YSmpNaYSnYMvR4AJlEAC+GPaBAcgV@vger.kernel.org, AJvYcCW5+pkZS80Ylxc99N2mxm8t/ZsD+4604DEmtyT14X1NwaycfAqV5FK4sK+kXmA6J/Z8/VWfJ1dJSdZ+@vger.kernel.org, AJvYcCXLU7psdqJP38ML90wOjojfM6fT+RSgu+OP1EQ10QafFh+C8OiqeUNKuJzvh1ireAB+H0djMV6jCIPl1KM=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy66X0w5M7pSVrI3cJd+kekLTvarYBf+IzxPMJuiD/JtSor3aKx
+	Vb1MDVjQdfl94f/aXUh2KiuNlBg2WMhL6Aq/zJ2bycTqGhz8BaooCXi8PeCgXmlBK0lPPCreI4o
+	P3rsnMQeKiAtbyV1CN6Uw249/5m04fDo=
+X-Gm-Gg: ASbGnctJaptnxf26AuN1VTjHSItRElnVjPuRbwAa/GxpvlKB/4p45BcjflvvmsCeuXq
+	F8H7LWOaa2UhrtdjGfOPo7i4e/BDN2UA1EXwzllz9VZ9qO5MPgBPz4FxTfnkUn1R20vdWholSHJ
+	7/PaNVUdLmjAS/71Nst/Z74UpZ98NBIHej//37lUU6ZdEktLacLvsEs6Ed1OeUmolWokcLsdDB7
+	P7QCRd1z6eMiSFStEI=
+X-Google-Smtp-Source: AGHT+IHJqbTQlZxQrSzgsn7uAhDMaT3ieXLEx/3wOIxur6z+DYM0qqrydbeR13Y1wCHEumVIHPbjQZcDuzqpaIwgUiU=
+X-Received: by 2002:a05:6000:2407:b0:3c8:9cfa:c178 with SMTP id
+ ffacd0b85a97d-3c89cfac400mr11428571f8f.25.1756291539709; Wed, 27 Aug 2025
+ 03:45:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: maxlinear.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR19MB5636.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3db1246b-9979-4de7-3c10-08dde5563f5e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2025 10:41:14.9012
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: dac28005-13e0-41b8-8280-7663835f2b1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7+n+2SA0TM1nQ+uCjcMBwXGWdQp5r/YD+hw9Sj59nIDUPff+mv2AzPBb2SJPvef/xYVuffP5pEjxh9rUPZ8hOw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ4PPFB04496E67
+References: <20250819121631.84280-1-clamor95@gmail.com> <1909286.atdPhlSkOF@senjougahara>
+ <76B1EB6D-B149-43C2-AA56-A15C9DCCA3AF@gmail.com> <14287352.RDIVbhacDa@senjougahara>
+In-Reply-To: <14287352.RDIVbhacDa@senjougahara>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Wed, 27 Aug 2025 13:45:28 +0300
+X-Gm-Features: Ac12FXzDJMFwSyCznjWDvhfBWLuEGGUDton2Z3d8Y-Yt9F2wgfNpu5x2X_82XmI
+Message-ID: <CAPVz0n0kCBAh7W0R766A_dXbcM3E=EoSXemuc0_rOm+Qch-a+Q@mail.gmail.com>
+Subject: Re: [PATCH v1 01/19] clk: tegra: init CSUS clock for Tegra20 and Tegra30
+To: Mikko Perttunen <mperttunen@nvidia.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni <skomatineni@nvidia.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter De Schrijver <pdeschrijver@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
+	linux-media@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-staging@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andrew,
+=D1=81=D1=80, 27 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 13:3=
+6 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Wednesday, August 27, 2025 1:32=E2=80=AFPM Svyatoslav wrote:
+> > 27 =D1=81=D0=B5=D1=80=D0=BF=D0=BD=D1=8F 2025=E2=80=AF=D1=80. 07:09:45 G=
+MT+03:00, Mikko Perttunen
+> <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> > >On Tuesday, August 19, 2025 9:16=E2=80=AFPM Svyatoslav Ryhel wrote:
+> > >> CSUS clock is required to be enabled on camera device configuration =
+or
+> > >> else camera module refuses to initiate properly.
+> > >>
+> > >> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > >> ---
+> > >>
+> > >>  drivers/clk/tegra/clk-tegra20.c | 1 +
+> > >>  drivers/clk/tegra/clk-tegra30.c | 1 +
+> > >>  2 files changed, 2 insertions(+)
+> > >>
+> > >> diff --git a/drivers/clk/tegra/clk-tegra20.c
+> > >> b/drivers/clk/tegra/clk-tegra20.c index 551ef0cf0c9a..42f8150c6110 1=
+00644
+> > >> --- a/drivers/clk/tegra/clk-tegra20.c
+> > >> +++ b/drivers/clk/tegra/clk-tegra20.c
+> > >> @@ -1043,6 +1043,7 @@ static struct tegra_clk_init_table init_table[=
+] =3D {
+> > >>
+> > >>    { TEGRA20_CLK_GR3D, TEGRA20_CLK_PLL_C, 300000000, 0 },
+> > >>    { TEGRA20_CLK_VDE, TEGRA20_CLK_PLL_C, 300000000, 0 },
+> > >>    { TEGRA20_CLK_PWM, TEGRA20_CLK_PLL_P, 48000000, 0 },
+> > >>
+> > >> +  { TEGRA20_CLK_CSUS, TEGRA20_CLK_CLK_MAX, 6000000, 1 },
+> > >>
+> > >>    /* must be the last entry */
+> > >>    { TEGRA20_CLK_CLK_MAX, TEGRA20_CLK_CLK_MAX, 0, 0 },
+> > >>
+> > >>  };
+> > >>
+> > >> diff --git a/drivers/clk/tegra/clk-tegra30.c
+> > >> b/drivers/clk/tegra/clk-tegra30.c index 82a8cb9545eb..70e85e2949e0 1=
+00644
+> > >> --- a/drivers/clk/tegra/clk-tegra30.c
+> > >> +++ b/drivers/clk/tegra/clk-tegra30.c
+> > >> @@ -1237,6 +1237,7 @@ static struct tegra_clk_init_table init_table[=
+] =3D {
+> > >>
+> > >>    { TEGRA30_CLK_HDA, TEGRA30_CLK_PLL_P, 102000000, 0 },
+> > >>    { TEGRA30_CLK_HDA2CODEC_2X, TEGRA30_CLK_PLL_P, 48000000, 0 },
+> > >>    { TEGRA30_CLK_PWM, TEGRA30_CLK_PLL_P, 48000000, 0 },
+> > >>
+> > >> +  { TEGRA30_CLK_CSUS, TEGRA30_CLK_CLK_MAX, 6000000, 1 },
+> > >>
+> > >>    /* must be the last entry */
+> > >>    { TEGRA30_CLK_CLK_MAX, TEGRA30_CLK_CLK_MAX, 0, 0 },
+> > >>
+> > >>  };
+> > >
+> > >I looked into what this clock does and it seems to be a gate for the C=
+SUS
+> > >pin, which provides an output clock for camera sensors (VI MCLK). Defa=
+ult
+> > >source seems to be PLLC_OUT1. It would be good to note that on the com=
+mit
+> > >message, as I can't find any documentation about the CSUS clock elsewh=
+ere.
+> > >
+> > >What is the 6MHz rate based on?
+> >
+> > 6mhz is the statistic value which I was not able to alter while testing=
+. I
+> > have tried 12mhz and 24mhz too but it remained 6mhz, so I left it 6mhz.
+> > >Since this seems to be a clock consumed by the sensor, it seems to me =
+that
+> > >rather than making it always on, we could point to it in the sensor's
+> > >device tree entry.
+> >
+> > Sensor device tree uses vi_sensor as clocks source and sensor drivers d=
+on't
+> > support multiple linked clocks.
+>
+> AIUI vi_sensor is an internal clock so the sensor cannot be receiving it
+> directly. Perhaps the sensor is actually connected to csus, and the reaso=
+n we
+> need to enable it is to allow the vi_sensor clock to pass through the csu=
+s
+> gate?
+>
+> That leaves the question of why the csus pad would be muxed to vi_sensor =
+by
+> default, but perhaps there's an explanation for that.
+>
 
-On Tue, 26 Aug 2025 15:03:08 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
+From downstream T30 sources csus and vi_sensor are always called in
+pair (6MHz csus and 24MHz for vi_sensor), naturally I assumed that
+latter is used as camera reference clock since most sensors has
+reference clock around 24 MHz
 
-> > +     rst =3D devm_reset_control_get_optional(&pdev->dev, NULL);
->=20
-> Why is this optional? Are there some variants which don't have a
-> reset?
-
-Thanks for the review.
-Will change to devm_reset_control_get()
-
-> > +     i =3D 0;
-> > +     for_each_available_child_of_node(pdev->dev.of_node, np) {
-> > +             if (!of_device_is_compatible(np, "mxl,eth-mac"))
-> > +                     continue;
->=20
-> Are there going to be other devices here, with different compatibles?
-
-Yes, other devices will be added in the next patch series.
-
-> > +
-> > +             ret =3D mxl_eth_create_ndev(pdev, np, &ndev);
->=20
-> Shouldn't you validate reg before creating the device?
-
-Will add of_address_to_resource()
-
-Jack
+> > >Cheers,
+> > >Mikko
+>
+>
+>
+>
 
