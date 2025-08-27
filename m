@@ -1,74 +1,91 @@
-Return-Path: <devicetree+bounces-209587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1B00B38101
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 13:26:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E237B38139
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 13:38:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACA423BE823
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 11:26:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72A117A5D40
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 11:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7CB34F499;
-	Wed, 27 Aug 2025 11:25:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25992D6625;
+	Wed, 27 Aug 2025 11:37:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SYs+iG/H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GL7w5nlP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48B88342C92
-	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 11:25:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E470520B7EE;
+	Wed, 27 Aug 2025 11:37:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756293959; cv=none; b=vFwS8uOzCe3fMG11IqGEGWh7Q0+Gdac58BFej0IgC/pwyGWaIS2ywoj+o0gMz5KvqWqLIGiJbBi9zE9LNbMolrA8oK57p/szyqza85a6jSKREoVSH5McU44lJ0x35vzbhddUyt4nFLoroDPtGSjjkU20sby0kejzlgVBkm9iVA8=
+	t=1756294675; cv=none; b=YXYjCFkg3nW8x6LlkmE7ELE8rhCpbOfhaEVMPR07UawxGtZQVbYQ1Qe+PHgoAEyKvOthxyiZqkp7AdMJAZgDA/+FUD6cSUv6ppkXm1TY448aw1dniXQl8/69AphoSLO3Sa3EMK7/oZuajnD4G9NTxolDktZAK0RQdLcfJsXR4Xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756293959; c=relaxed/simple;
-	bh=/d0dNBlSzDi5R50SMefamQumsMGwQ4n7KeT1qVKXm0M=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=M/ynNqvevtaqnwycS5bXxbB2BZyjD3tczXSQKIVJvJ94ZTsQdGKf1VHZMmazVIpf+xmH5fWj7X3fBnrvCgEWyNa6571CAFDaGaQkrcuSoEnc8ZeRorihumf9supgfDSOVVZ7K+/fWF9cL5Z55O0IRSdjc3fpi2WqM7/STkGPtKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SYs+iG/H; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57RBPiNI1268705;
-	Wed, 27 Aug 2025 06:25:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756293944;
-	bh=67d1xSHgvTczyND6wpoY8zEcVZHuf8z3HXN6q3PA9oI=;
-	h=From:To:Subject:Date;
-	b=SYs+iG/Hfj7/8g2qrhGY+rXsDDkNdwbUr//N9Puhhwq1iGKZ2syRh34shPHNixbbb
-	 uWoczHwzqZSPLXYidqTbTmaOkub1b2Pjnv1nAM53rBJCU9H6sIIbFCZQTkne8zcSKw
-	 j4DwWQH+bjLWlAW4CobV66glI6jDsB57czQpRbXI=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57RBPhPh2102283
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 27 Aug 2025 06:25:43 -0500
-Received: from DLEE210.ent.ti.com (157.170.170.112) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 27
- Aug 2025 06:25:43 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE210.ent.ti.com
- (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.2.2562.20; Wed, 27 Aug
- 2025 06:25:43 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 27 Aug 2025 06:25:43 -0500
-Received: from hkshenoy.dhcp.ti.com (hkshenoy.dhcp.ti.com [172.24.235.208])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57RBPd6G3016433;
-	Wed, 27 Aug 2025 06:25:40 -0500
-From: Harikrishna Shenoy <h-shenoy@ti.com>
-To: <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linus.walleij@linaro.org>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v2] dt-bindings: display: dsi-controller: add bridge to patternProperties
-Date: Wed, 27 Aug 2025 16:55:39 +0530
-Message-ID: <20250827112539.4001513-1-h-shenoy@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1756294675; c=relaxed/simple;
+	bh=TI1ysOXPP4hVMHn60o6TUG3RYzs3fDZDuOhKElmj1NM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G88QSRJRMtFlFMNGzZTmoJCRdELQJR3dHJHnlVXdSd9JEiOh3bum8kO14RuWbkaLUef6RURz8npKtPNikVob17pTrWK7dLjmWXUshz9Q5PayyB7yvBgk3swQk1c+yL+8IOLMd+5L+V6ASxcOKORS+2GdtrH6EIy+S/5Prd/fG2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GL7w5nlP; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-afcb78ead12so937392066b.1;
+        Wed, 27 Aug 2025 04:37:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756294672; x=1756899472; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e0TL/ekeJOQg26wztgmTDgEuvDo0zmkivmyNIAbPqQQ=;
+        b=GL7w5nlPUIdbA8H4Z9LvljoS05tAmolNg9FdLTQb5LUMcCPno5uq1Q6cLkrzTlsKCA
+         27wIYt4wmapobS5a0riCF+vqRS4VAGrF7KMStix/Yd1eQLPz8za8Es02GVuLpbN/f5Ex
+         H4iy1XBPjyLn0vYbJa1Mz59nkEEPcWSIIy+hOLPZ1SypsDBC825/P5FJlKoEGkUcsUdj
+         jrnomwyzX4bmpD3SioD8MY+NP7zjZAFzrdOEBhE9MKcNuc+qVP2NmG3h3+EYG0WXa5QF
+         kR+erzbaniWgVRDIIx1up8+Y8SDjwL/y61/Du/TFgk+TUz0Nu8WGjV6rhZhllSj2jgtV
+         gt6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756294672; x=1756899472;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e0TL/ekeJOQg26wztgmTDgEuvDo0zmkivmyNIAbPqQQ=;
+        b=qvIAp0YimWE/al0L9l08nVGUuuNQvEJ6WLQadjFPQALIloHHom8xs+9WVDgF+IM8V6
+         N+DB9Et92ehpgI0MJy//s7DKQhb0B4/NhvN5anPzTXQ/oPR1I+Demcj+YG/yl5+nvjPo
+         T1GhIwJEZxbzqxYSnHQ6dA1qEEvLND2FvV6aYKzkw1GVb3Q3CHgI1XMKV0n25y1DX/I7
+         l/NlzrCfE5bP3C+ahc8uisD7U0T30nNITGGU+Y/Zvv11nwEpiMwAlFq+B9hGGOkmD3R2
+         DXt3BY/B32aRRS4Za1tCWgl5edwIjvFs3FMHQsrnXH+Eg799Gl2hNuTV0lpeozpAiXIA
+         B+FQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUWWsrHVRjSnx2tSKDXjUuhnL+yy9c2Z/xU+aM4YPaa8on5SGVOPUYudSmNSS4r/+1gHrXIQ0dV1ezWADA=@vger.kernel.org, AJvYcCWU51tX8JeEx34nhGM2rdftAaq6ENTU3brrFg26IV8uoGOSJFTtXXWjxGrWlIn7OVkcmj07EIq0S6KqaBM=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0Gdh8Zoyvs57em/VBL/V3RonoE7qu9oTimbdCfC/ldA6uD9iE
+	pbFsJKmk/BOMb1Qy/y0JWEFyHp/bCGpHJTH9sl5ThD+mAMIKM6E10HL4
+X-Gm-Gg: ASbGnctqV0sZyQDRHtLAHHobW1aEkFKrX7oQl1t05XRJDUrbNIcFCGpo5KRwCQu8QKE
+	a25jZKaw50lCeqw+5gmWCel687nY/XLEIikRyNlZ217chu1EgoAjsP0xsyO0wHrpB+IK7oibQ59
+	w47MNDxUzxPXUsqO1kaskChjiKxHnmSXfX83V7+6IZ/u59k410WXkeNWsIZOyDe99zwDixgS3FI
+	My/brl/mf2vf5lUkYfwZJOBTWI8sVLfwt43WTMpTMHBMP+8YzewMJ3NMPGB6ef7xnd/2o+cCwSX
+	fsd3MBqOVG3DNVjVEPi+XvsyqErK5JmuaKk6Va2CXc+6sQcgKY524UXBaTzv2hlGfLwF/Ejbw2Z
+	HpgslGEgp582p4lle/glCvo/ngk+yeuGqAxc=
+X-Google-Smtp-Source: AGHT+IEHKp7wptHFcLrBt3UnI/jHvsdzwxscNBgxQZxapqmiUONBatuiJfqrhX7xGiGufIrkshgtCw==
+X-Received: by 2002:a17:906:f5a7:b0:afe:ad45:acf5 with SMTP id a640c23a62f3a-afead45ad78mr436922466b.34.1756294671995;
+        Wed, 27 Aug 2025 04:37:51 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afe7aad5d61sm675607866b.105.2025.08.27.04.37.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Aug 2025 04:37:51 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <treding@nvidia.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/4] ARM: tegra: complete Tegra 4 and Tegra K1 device trees
+Date: Wed, 27 Aug 2025 14:37:30 +0300
+Message-ID: <20250827113734.52162-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,36 +93,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Extend the DSI controller schema to allow bridge child nodes.
-This makes it possible to describe external bridge devices directly
-connected as DSI peripherals.
+Complete T114 and T124 device trees.
 
-Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
 ---
-Changelog v1 --> v2:
-- Updated patternProperties regex.
-- Improved commit message.
+Changes in v5:
+- dropped clock and reset names from TSEC schema
+- removed clock and reset names from device nodes
 
- Documentation/devicetree/bindings/display/dsi-controller.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v4:
+- configured tsec schema to cover Tegra210 TSEC as well
+- added required to tsec schema
+- reset-names preserved for consistency with other host1x devices and align with T210
+- added clock-names to align with T210
+- operating-points-v2 check https://lore.kernel.org/lkml/20230119131033.117324-1-krzysztof.kozlowski@linaro.org/
 
-diff --git a/Documentation/devicetree/bindings/display/dsi-controller.yaml b/Documentation/devicetree/bindings/display/dsi-controller.yaml
-index 67ce10307ee0..bb4d6e9e7d0c 100644
---- a/Documentation/devicetree/bindings/display/dsi-controller.yaml
-+++ b/Documentation/devicetree/bindings/display/dsi-controller.yaml
-@@ -46,7 +46,7 @@ properties:
-     const: 0
- 
- patternProperties:
--  "^panel@[0-3]$":
-+  "^(panel|bridge)@[0-3]$":
-     description: Panels connected to the DSI link
-     type: object
- 
+Changes in v3:
+- added tsec description
+- swapped compatible back to use enum
+- clock and reset description dropped, added maxItems: 1
+- reset-names preserved for consistency with other host1x devices
+- dropped interconnects and interconnect-names
+- dropped isp nodename
+- dropped multiple rest names for mpe/msenc
+- dropped tegra114 msenc example
+- fixed reset name in second isp in t124 dtsi
+
+Changes in v2:
+- dropped accepted commits
+- added EPP, MPE and ISP compatibility for T114 and T124
+- added TSEC schema
+---
+
+Svyatoslav Ryhel (4):
+  dt-bindings: display: tegra: document EPP, ISP, MPE and TSEC for
+    Tegra114+
+  ARM: tegra114: add missing HOST1X device nodes
+  ARM: tegra124: add missing HOST1X device nodes
+  arm64: tegra210: drop redundant clock and reset names from TSEC node
+
+ .../display/tegra/nvidia,tegra114-tsec.yaml   | 68 +++++++++++++++++++
+ .../display/tegra/nvidia,tegra20-epp.yaml     | 14 ++--
+ .../display/tegra/nvidia,tegra20-isp.yaml     | 15 ++--
+ .../display/tegra/nvidia,tegra20-mpe.yaml     | 18 +++--
+ arch/arm/boot/dts/nvidia/tegra114.dtsi        | 64 +++++++++++++++++
+ arch/arm/boot/dts/nvidia/tegra124.dtsi        | 64 +++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  2 -
+ 7 files changed, 230 insertions(+), 15 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
+
 -- 
-2.34.1
+2.48.1
 
 
