@@ -1,204 +1,174 @@
-Return-Path: <devicetree+bounces-209528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0794B37CD9
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC46CB37CFA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:08:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3F0220344D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:05:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CBA6362CB3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:08:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5DD832C31B;
-	Wed, 27 Aug 2025 08:04:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fDMVk27s"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3514D32276F;
+	Wed, 27 Aug 2025 08:07:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE33D32A3F0
-	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 08:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.205.26])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746B732145D;
+	Wed, 27 Aug 2025 08:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.205.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756281898; cv=none; b=p80lwK23s/IZBfbo6vE01/ZasWyiBGVt7vA9B2cVMKmZVSni2gxSgxAoXxkQLB/DlCx47XP9+HLEjFxMJJt+O94HLECwqIdsSYQurresejg1J0PLq6RIvOnUcYpWV0IBa40O1+nj4bDO0P5CibXmUl4pxQXhZ7jyBB0oG87GU3k=
+	t=1756282071; cv=none; b=f8xydfktZwmkWZ740J5O1hKbUlmQ/hZitf0qS8kSpiiiQKD8kdKaQQDw2Hv58b0MYelabs4Hgwn/YH6AEB6x+3IHC1XNla9iutzHtngv0RKn0RuMXtz/XC117apmJ6L4jN6B1OnI3DYK+pZTlZC/VYZh8dhnVXka5mV0VLZ7CYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756281898; c=relaxed/simple;
-	bh=g+KW9TEeVGqYphEisf/ETPbXzv+fd0lBq6e6n0plR/M=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=etuewo+0wf/gTft27LUWokxw7yijRMEDhs66qArTAA8THg9Xxnk13d9pLkPxaXqHvqzBOEIEhdVU3yqLAhT1PZAEV+6MqfWiOjkb31FvLmcntx5u42F8imoTKJ3TmUcTGot9+hlDEOENj4++7HshFFqaoH2b8lnJWkJUo2Ojp0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fDMVk27s; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-afe84202bc2so431169066b.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 01:04:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756281893; x=1756886693; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=o38urx3Y5liCjRZycGC30h3AxkEKhcqPAFepRrs3ec0=;
-        b=fDMVk27sioxSQfUj+NERtZPfo0GlsETGlORLyy3ZT+lzjJ+z7XeF8r4tSxc0W5mxVb
-         bR1216Db1cFXjPU5M+QfdPo42l5ADMzwKKtiJSdV6Fzzs7dsUwQ2krYvIYga30Mke6pJ
-         g/Ua8WLE5hc34IjEPCvocqcCgC0bkFTVsmDc65dVV3mPsBGaT+9RvfqapaXrOncOp27b
-         HtG1x7KsEuupa8heo31rfFHSHwaCO4TXQAHNi3x7A0UQYPGE2cXCGG6xDS51QUFul2yn
-         T+zhWRtcrR5mDXVvKWIl9r0pVwu9/G2MdYTgH/5kGxriNy196EG+AssHwdv9TkZkmC1v
-         JeKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756281893; x=1756886693;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o38urx3Y5liCjRZycGC30h3AxkEKhcqPAFepRrs3ec0=;
-        b=mZ25w30ybjZ6l3aLvQ0DPARJkusIUbMmESuwU0U1F+DBA9G1zP8MMyOy0o+UGGs6Id
-         /bGU+3aFTWciN5R8VkcvZrLle58rli/zpxeeKIG++cti9Eqc3cH+FMT9DbVDaC+YsIxV
-         rn6FHcbI1W/rq1okplysV2vtX1iXiZeEHQnSZl6a6WD5cDuiTyt9zAtvoeW3d+piJNWk
-         UlrqZHatwh7aO9+I4SLTd6FAtvb0ah7sKn+0UWYm1kXKg0kzNkf9ZK7TKs7nxVCSZBM8
-         Rh+dbCDoY13A49LRJKu51O8IkBVKavVJeex9rPjAdMiqCvk9ZG6biK0Dc7UvkoJpt8YC
-         OzWw==
-X-Forwarded-Encrypted: i=1; AJvYcCUmOSjicA2GwVkBexEXwcGWifKeFvWlIpAZ1Kwz7H0KSgatb9ZtS+v4CUuXFC6EsZ/9J9hjK6MVCyOo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNDoP4pT+LO01vQRUrgfCWCGdDZoVxwpft+Skj1rGQnIeyX66W
-	r3/d2OsxcGO9DajBan1mk6RNljmGWbn28PGlopmowNgqyoPN7wlEcmG1yjaCQUhiVVs=
-X-Gm-Gg: ASbGncvhfANvbTnAlqt81o9zI1HhC4ljt9S8wYmFmEZqKdC8DyodGx9BdLoby+Rv4a1
-	P9nXeFuCrfmDxlGvPXfpltT+u+NQr4eAXtPc2/Rx+2gqs/ijBfjbWJbZbFRcMsiW7NfpGVhLoLa
-	YXGQ4bZ4GyuvjN1V/ptqunkDSDsivDIo6llN1GeuS/Ftmi5XBlJFmb7buQhrc/GS8Yt0cIuZ5H4
-	tcLIGqBV4iS45u6VIMnBpBxEVAhOzORkp1+IDuDMA3HOATMZyHniKAoS6B3JXp5Qe14Fiq5LnDD
-	veKrvXw6CtQsvkkSdSORYT/XDIpGAO3niKPtaYGNwI1uS4B7VhSFQAXEOVjv4lJ6akfSzud70N3
-	ay4E2HOxfDq+417BPXosh7kYMiu0q+mNZ7kagk4GzXpl0x91i
-X-Google-Smtp-Source: AGHT+IHAZruNO8PxiQDS6YA+oxemi3oPab4ygrNWQ7snhZ/72+NK1dE4fWGZyqEZWKw8iTnURGRP8A==
-X-Received: by 2002:a17:907:6096:b0:afe:7d3b:8463 with SMTP id a640c23a62f3a-afe7d4ace6fmr1003276666b.62.1756281892878;
-        Wed, 27 Aug 2025 01:04:52 -0700 (PDT)
-Received: from localhost (83-97-14-186.biz.kpn.net. [83.97.14.186])
-        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-afeaf41dc6fsm283102066b.18.2025.08.27.01.04.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Aug 2025 01:04:52 -0700 (PDT)
+	s=arc-20240116; t=1756282071; c=relaxed/simple;
+	bh=S10p5oJ1vOgAf133KAS6dIu4FJAtSJ0XPMDQknmY9Us=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LcfW9mR2G1xfId3VCbmyBLvY/ZuifmYwynbjoe/CuivhtnI6bdC9HmiviTXsaRFsyitWB4okgbabGWbifPpys4mDojgJWpimRo3knr1kFjm3kzAg5+5jbTNt3bGhIsBir5FGMu0UKfcIAXukahUDyS9uPOcnjCDhPcSkmnAVNbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.205.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005182LT.eswin.cn (unknown [10.12.96.155])
+	by app1 (Coremail) with SMTP id TAJkCgBHXg+wvK5o_zPEAA--.17071S2;
+	Wed, 27 Aug 2025 16:07:14 +0800 (CST)
+From: weishangjuan@eswincomputing.com
+To: devicetree@vger.kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	yong.liang.choong@linux.intel.com,
+	vladimir.oltean@nxp.com,
+	rmk+kernel@armlinux.org.uk,
+	faizal.abdul.rahim@linux.intel.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	inochiama@gmail.com,
+	jan.petrous@oss.nxp.com,
+	jszhang@kernel.org,
+	p.zabel@pengutronix.de,
+	boon.khai.ng@altera.com,
+	0x1207@gmail.com,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	lizhi2@eswincomputing.com,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>
+Subject: [PATCH v4 0/2] Add driver support for Eswin eic7700 SoC ethernet controller
+Date: Wed, 27 Aug 2025 16:07:03 +0800
+Message-Id: <20250827080703.2180-1-weishangjuan@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=41c8a4c6eaeda649630e38b4e0028da409cd67aaf3a4c32373d96e5bca68;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Wed, 27 Aug 2025 10:04:32 +0200
-Message-Id: <DCD1YPX4T779.ADK4JCGW1MU7@baylibre.com>
-From: "Markus Schneider-Pargmann" <msp@baylibre.com>
-To: "Rob Herring" <robh@kernel.org>
-Cc: "Chandrasekar Ramakrishnan" <rcsekar@samsung.com>, "Marc Kleine-Budde"
- <mkl@pengutronix.de>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Vishal Mahaveer" <vishalm@ti.com>, "Kevin
- Hilman" <khilman@baylibre.com>, "Dhruva Gole" <d-gole@ti.com>, "Sebin
- Francis" <sebin.francis@ti.com>, "Kendall Willis" <k-willis@ti.com>,
- "Akashdeep Kaur" <a-kaur@ti.com>, "Simon Horman" <horms@kernel.org>,
- "Vincent MAILHOL" <mailhol.vincent@wanadoo.fr>,
- <linux-can@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v9 1/4] dt-bindings: can: m_can: Add wakeup properties
-X-Mailer: aerc 0.20.1
-References: <20250820-topic-mcan-wakeup-source-v6-12-v9-0-0ac13f2ddd67@baylibre.com> <20250820-topic-mcan-wakeup-source-v6-12-v9-1-0ac13f2ddd67@baylibre.com> <20250822143549.GA3664230-robh@kernel.org>
-In-Reply-To: <20250822143549.GA3664230-robh@kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgBHXg+wvK5o_zPEAA--.17071S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxAw17GF47JF4DAryDGF15Jwb_yoW5KFy3pF
+	W8Cry5Wwn8AryxX3ySyw10kFyfJan7Xr1akr1Iqw1fXan0va90qr4aka4YgFy7Cr4UZryY
+	gay3ZF47Ca4ay3DanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUmSb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwV
+	C2z280aVCY1x0267AKxVW0oVCq3wAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAa
+	Y2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4
+	A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F
+	5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMx
+	kF7I0En4kS14v26rWY6Fy7MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE
+	7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI
+	8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWU
+	CwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r
+	1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBI
+	daVFxhVjvjDU0xZFpf9x07j5EfrUUUUU=
+X-CM-SenderInfo: pzhl2xxdqjy31dq6v25zlqu0xpsx3x1qjou0bp/
 
---41c8a4c6eaeda649630e38b4e0028da409cd67aaf3a4c32373d96e5bca68
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+From: Shangjuan Wei <weishangjuan@eswincomputing.com>
 
-Hi Rob,
+This patch depends on the vendor prefix patch:
+https://lore.kernel.org/all/20250616112316.3833343-4-pinkesh.vaghela@einfochips.com/
 
-On Fri Aug 22, 2025 at 4:35 PM CEST, Rob Herring wrote:
-> On Wed, Aug 20, 2025 at 02:42:25PM +0200, Markus Schneider-Pargmann wrote=
-:
->> The pins associated with m_can have to have a special configuration to
->> be able to wakeup the SoC from some system states. This configuration is
->> described in the wakeup pinctrl state while the default state describes
->> the default configuration. Also add the sleep state which is already in
->> use by some devicetrees.
->>=20
->> Also m_can can be a wakeup-source if capable of wakeup.
->>=20
->> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
->> ---
->>  .../devicetree/bindings/net/can/bosch,m_can.yaml   | 25 +++++++++++++++=
-+++++++
->>  1 file changed, 25 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml =
-b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
->> index c4887522e8fe97c3947357b4dbd4ecf20ee8100a..0e00be18a8be681634f25378=
-bb2cdef034dc4e6b 100644
->> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
->> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
->> @@ -106,6 +106,26 @@ properties:
->>          maximum: 32
->>      minItems: 1
->> =20
->> +  pinctrl-0:
->> +    description: Default pinctrl state
->> +
->> +  pinctrl-1:
->> +    description: Can be Sleep or Wakeup pinctrl state
->> +
->> +  pinctrl-2:
->> +    description: Can be Sleep or Wakeup pinctrl state
->> +
->> +  pinctrl-names:
->> +    description:
->> +      When present should contain at least "default" describing the def=
-ault pin
->> +      states. Other states are "sleep" which describes the pinstate whe=
-n
->> +      sleeping and "wakeup" describing the pins if wakeup is enabled.
->> +    minItems: 1
->> +    items:
->> +      - const: default
->> +      - const: sleep
->> +      - const: wakeup
->
-> This doesn't allow '"default", "wakeup"' which I think you want.
->
-> "sleep" and "wakeup" seem mutually exclusive and really are just the=20
-> same thing. Both apply to the same mode/state. Whether you can wake from=
-=20
-> it is just an additional property (of the state).=20
->
-> So I think you want:
->
-> items:
->   - const: default
->   - enum: [ sleep, wakeup ]
->
->
-> Or you should just drop 'wakeup' and just support wakeup with 'sleep'=20
-> when 'wakeup-source' is present.
+Updates:
 
-Thanks for your feedback. I see they seem to be mutually exclusive, but
-I think they serve different purposes. The sleep state describes the
-pins when sleeping with wakeup disabled. The wakeup state describes the
-pins when sleeping or off and wakeup is enabled.
+  Changes in v4:
+  - Updated eswin,eic7700-eth.yaml
+    - Modify reg:minItems:1 to reg:maxItems: 1
+    - Delete minItems and maxItems of clock and clock-names
+    - Delete phy-mode and phy-handle properties
+    - Add description for clock
+    - Add types of clock-names
+    - Delete descriptions for rx-internal-delay-ps and tx-internal-delay-ps
+    - Add enum value for rx-internal-delay-ps and tx-internal-delay-ps
+    - Modify description for eswin,hsp-sp-csr property
+    - Delete eswin,syscrg-csr and eswin,dly-hsp-reg properties
+    - Modify phy-mode="rgmii" to phy-mode="rgmii-id"
+  - Updated dwmac-eic7700.c
+    - Remove fix_mac_speed and configure different delays for different rates
+    - Merge the offset of the dly register into the eswin, hsp sp csr attributes
+      for unified management
+    - Add missing Author and optimize the number of characters per
+      line to within 80
+    - Support default delay configuration and add the handling of vendor delay 
+      configuration
+    - Add clks_config for pm_runtime
+    - Modify the attribute format, such as eswin,hsp_sp_csr to eswin,hsp-sp-csr
+  - Link to v3: https://lore.kernel.org/all/20250703091808.1092-1-weishangjuan@eswincomputing.com/
 
-Only allowing one of the two states or only using the sleep state will
-enable or disable wakeup statically, there is no way to choose one or
-the other.
+  Changes in v3:
+  - Updated eswin,eic7700-eth.yaml
+    - Modify snps,dwmac to snps,dwmac-5.20
+    - Remove the description of reg
+    - Modify the value of clock minItems and maxItems
+    - Modify the value of clock-names minItems and maxItems
+    - Add descriptions of snps,write-questions, snps,read-questions
+    - Add rx-internal-delay-ps and tx-internal-delay-ps properties
+    - Modify descriptions for custom properties, such as eswin,hsp-sp-csr
+    - Delete snps,axi-config property
+    - Add snps,fixed-burst snps,aal snps,tso properties
+    - Delete snps,lpi_en property
+    - Modify format of custom properties
+  - Updated dwmac-eic7700.c
+    - Simplify drivers and remove unnecessary API and DTS attribute configurations
+    - Increase the mapping from tx/rx_delay_ps to private dly
+  - Link to v2: https://lore.kernel.org/all/aDad+8YHEFdOIs38@mev-dev.igk.intel.com/
 
-For my specific setup, the name of a sleep state is also kind of
-misleading. The SoC is in a poweroff state and sensitive to activity on
-the pins configured for wakeup. It is not just sleeping, it will do a
-fresh boot once woken up.=20
+  Changes in v2:
+  - Updated eswin,eic7700-eth.yaml
+    - Add snps,dwmac in binding file
+    - Modify the description of reg
+    - Modify the number of clock-names
+    - Changed the names of reset-names and phy-mode
+    - Add description for custom properties, such as eswin,hsp_sp_csr
+    - Delete snps,blen snps,rd_osr_lmt snps,wr_osr_lmt properties
+  - Updated dwmac-eic7700.c
+    - Remove the code related to PHY LED configuration from the MAC driver
+    - Adjust the code format and driver interfaces, such as replacing kzalloc
+      with devm_kzalloc, etc.
+    - Use phylib instead of the GPIO API in the driver to implement the PHY
+      reset function
+  - Link to v1: https://lore.kernel.org/all/20250516010849.784-1-weishangjuan@eswincomputing.com/
 
-Best
-Markus
+Shangjuan Wei (2):
+  dt-bindings: ethernet: eswin: Document for EIC7700 SoC
+  ethernet: eswin: Add eic7700 ethernet driver
 
---41c8a4c6eaeda649630e38b4e0028da409cd67aaf3a4c32373d96e5bca68
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/net/eswin,eic7700-eth.yaml       | 130 +++++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-eic7700.c   | 270 ++++++++++++++++++
+ 4 files changed, 412 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
 
------BEGIN PGP SIGNATURE-----
+--
+2.17.1
 
-iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaK68EhsUgAAAAAAEAA5t
-YW51MiwyLjUrMS4xMSwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlN4
-dwEAmJszUShVvXfS2LCmLmEu7BZUsJ2zzz7SGnnInFEs3FEBAOcxPEuvnj7hWYdH
-3c/Loa6iaWxbVEoBV2+H35Z3algJ
-=jiEZ
------END PGP SIGNATURE-----
-
---41c8a4c6eaeda649630e38b4e0028da409cd67aaf3a4c32373d96e5bca68--
 
