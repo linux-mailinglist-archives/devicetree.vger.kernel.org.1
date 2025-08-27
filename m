@@ -1,194 +1,171 @@
-Return-Path: <devicetree+bounces-209462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D27AB3765B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 02:58:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59314B376BE
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 03:19:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E8BF7B4D86
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 00:56:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BA242A652D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 01:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A4E212B3D;
-	Wed, 27 Aug 2025 00:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D2713959D;
+	Wed, 27 Aug 2025 01:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TxdeAdor"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ogvv1BvZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A9820ADF8;
-	Wed, 27 Aug 2025 00:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73CAC3597C
+	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 01:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756256234; cv=none; b=OoOCnGBz1OZo6PZx4zB40biCVw/oAOrvA3ocmGJNXMmhIcrf1Vzq0YlhwJpK8ygWAQqVmuL1+C6ie791NGPqVVVF33OSYoahCZysHPFn9Jslt8dr1ZJ9PH9bmUcp6W1uqdY/YAEtz9Vv9+D3dN0ftNflMQ2WYMNaaOShLZvHtzY=
+	t=1756257580; cv=none; b=bSae7krkq5u7NVVykUBGgRtYziuhDpp2SEP6uvS8Kie3lxtVrYxu8gFDGnqDpThvITRFMOZ52p5wLcr6pXsScl+XoOL0ZV15h+EIwIiKhg0gJrSNTP302xHKObQ/tuWTw2YMubhQNHtvgMUhp1T2R23XI6c+KXsMZsGSXac/I5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756256234; c=relaxed/simple;
-	bh=aSiHJJ9WXzlVv9knT6/I6iHouh299Sae5FDjQsAQAKY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KaXusKdqbbyQ+PPdnAhhU9+cboaW2SbEFaDU7TxMFXonpH2Dcr4AbO+0gw9VBOU+Tkg4uh7RWRIT7O8+EnQ/h/nUJg4HZt6nWTi7MHLFQccO7h6Wn3ZoLoEiAJzaxci0k+vwsLM2f1kYBFROrc2j0hFK0Tab3N/hhoHzbnwFpiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxdeAdor; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-771e4378263so2432287b3a.0;
-        Tue, 26 Aug 2025 17:57:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756256232; x=1756861032; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e+mQsn5nOVfRc5NpRhiJTO0agCV0nYMAh0ExZWY5vJw=;
-        b=TxdeAdorlzs7XLcdGjkIfdbQKOGmOCAUYBapv78lG1ded6ZJUkDwrvIkHJ1X0rw2W0
-         XqMC6JwMZw/XqSuc/5rXmYhBolBztYIonshJLMPmMBeAg+D9fTXBeDwuMgltZ1Znf5C4
-         lkaGmzbEhbAfQN0J5bpjqXnpjuWDFNAm9AVriTdOfsxfVZaaRVV3h0fJVdUjscIShIUb
-         vJKkC763E3aflz34zUNlz7XxSLYX7EdzJgKQi7yEicMirALZACs8or6zW1bOnTu/g5km
-         5qad9ucbdu/7t+1z8VNQVwUENeAvS6RM7C7HyOSLrbsD+ZsBt+0SCwsHzClYp3S1Rcik
-         2zYQ==
+	s=arc-20240116; t=1756257580; c=relaxed/simple;
+	bh=IGCfstwo4XOc0xf+hWEIuk9cHwoPJ0osldUwqBU4B/0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C258biM/x3alACFy5Xd5Ys6ex+47PV9XGRg84pI/40j3VGDiSmZjJ1T6YUIRreax1GkVnpqjEQSOwd4ZCYmyANwBbOiLZW3NitoK1hrzTlNz61jejH8Zv20rFW6CGycNCHjT0CQYj1a/CQVlSxVi3Q1blbFYtXAkd/r0n/x8Z90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ogvv1BvZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57QHLV9c028938
+	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 01:19:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=xsfaAguD70cRUExIu/eQLUJc
+	3R3/gmniu/91/era61k=; b=Ogvv1BvZzZ7kyjcMnQBqHm6GBk9L1iBxRpAU3B3i
+	BPnKoef9dbBIOpHVNMHgwEHZVjAw4axS1zhgy5hcnhPpcp2Z0mEnfr5n13886/A7
+	3oVF/8PwMXFOK2U43a0X0+UkkwhKNaCbClHRCGHEvI1wyT40DnOZ2p/vNJIvFvd7
+	VC64J4KjVPQkDmjURXuFPvAxk0bm/dWTU5JxrK6GwPnx66uP7jEhi6KbvefBJg3D
+	yKItGNJ9wHyPQhUrVpgXfZnSakjDMiumy1rE+FPfsn3i43NTL65zPHH60ZD3HVUv
+	SXw5WZmK4CTDqFDkDiqNT9cw8kreDBnzOw7D/WYpYORtOw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48sh8ah4a3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 01:19:37 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b2dab82f70so61757721cf.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Aug 2025 18:19:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756256232; x=1756861032;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e+mQsn5nOVfRc5NpRhiJTO0agCV0nYMAh0ExZWY5vJw=;
-        b=t3Im2grPvcb6dk43G8QvYWxpQgwYObDCIXM17JbkKnrEfFyPlKrpB5MsoaqDvIxLOU
-         BQG+ZOZGSVB4g9hOF05txy9Mc7+U0637rqM/KolCEhA6UcW54gqdelI2pBM85meLy9BV
-         ejnndhnCVg8xriuQZvojn5AIvocikRfYLoFSs7Ik381COYEFA8j0Du3lPBa9gU4nfm8F
-         tl1h05mL9IBwiifl7zAvMlqJBxpyNtLWPdn80tmLQbgywWosxL6cBKs0pYSI43Z33DhF
-         6iwt/jji5/2CA3xQpDjIlkJjnavxhPIkJae/hac5rJ009R2W7VznzlFdd61HO4TJlfxS
-         5XmA==
-X-Forwarded-Encrypted: i=1; AJvYcCUyIjIxn4FvTP5AZ+g4ffE2gqCDu4N1tqA2uBW4tCu+P/voOXDuzLyFjTf4ts1z0NRbjhnwDmfF1rmtfA==@vger.kernel.org, AJvYcCWp9/OqCty3NgbN7pygN3MTGCt2N7LiCqTKFMcTOG+9DCvNq5X6psbadiW1Z2qvkdWIp1CIJtbNZ8Yd7yOq@vger.kernel.org, AJvYcCXcbjKeJ+1ueQPWW2GyYsJa7wcMojPGKwwTCdJCt52iJVRaYscl2IwHdQUJ6kJg3ZaElsIsAjLQ09ej@vger.kernel.org
-X-Gm-Message-State: AOJu0YzN/WBRmLs9TCjVbL/YhRklnyz4RgX9Pqq3D6gGopA74zoCp2vi
-	yS+Ta5JRMz51/rJcqGNKPDSlfSyrehRDBt2+gxBkXsNcUk4k65KAlAEP4OFVBQ==
-X-Gm-Gg: ASbGnctORtzEBvpmfKlqm+xDFg6RM3WEEnNAyUN1EFpBNGtxUw6gkUL7wMIp8ThX9UB
-	pHQ5ze2EXjOqGOjBAhmR9LTpyb75zvlCQiC6HEtEJ/75VD8Gv3IMvnIsRTdshikX5ac4mHwowf0
-	DY9AjurTyMHniXEfS7jhztsgbC2XrlN9zmzY6z6zTcjg9jRk1ZtaE62y4+CEOvyDeMtBmoi946F
-	Oc7oPdGti7uaIA+SftpQn9OGgKaFhUgbJ3YR/DfoNNJKKH9c9o7FWbfM5M0/dkWNHbDOF6DObaR
-	XZeKmOFb5VmrhyUZxO47RSoha5ML90eoRvsumVOQK/EnXBnKqpK05vevMTs7L0+hIgae9yf0dyn
-	hXp1TkqCsDi1H34L/YkVa0ZuQ39PVCIRxjk0TyPQfPlSIF9vlbS0k4BoNIxlhMI37qg==
-X-Google-Smtp-Source: AGHT+IH9ISDmR2/0VTrTeaTdohaSBjoHB1/bbyP2/lhVXGYdlZJrIcYDkB7uxf31eltgLCrGZP+UDw==
-X-Received: by 2002:a05:6a00:2189:b0:76e:885a:c332 with SMTP id d2e1a72fcca58-7702fc8b7d5mr24500402b3a.32.1756256231552;
-        Tue, 26 Aug 2025 17:57:11 -0700 (PDT)
-Received: from archlinux.lan ([2601:644:8200:acc7::1f6])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77057368ca0sm8382515b3a.58.2025.08.26.17.57.10
+        d=1e100.net; s=20230601; t=1756257576; x=1756862376;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xsfaAguD70cRUExIu/eQLUJc3R3/gmniu/91/era61k=;
+        b=N30KK0LtCwj4BE3XfVM1Mm9jW692N8OOpFxT9X/KIGsL4pea+dVlBDl6HZBj32yI0f
+         CpmpUWXfd8F6u22K7Qpq8zSBd0tfY/I5FdlVBwayZmU2F3AccTvf6iwpZz02TulNofXq
+         wiZQBvtNBVt+FrPraF9dg+Vn5DiEm1KHxHiphBWnneFFX1tVskyPbCBX0kNGu6Rlormc
+         qOp1CTzBKskv62V6PBp8ZI0Q/nAgAwPEEnCkc6TEttkuOr52Dqp8TtMYTjNhTOtNVGna
+         XC8TPMNvBrHBq4g4BJAyGmKKd/lSHqIUh0Pw86orkjzhzdsziBbUpmA8NLdFAetL5sDj
+         emPw==
+X-Forwarded-Encrypted: i=1; AJvYcCXOueE4bCNCK1v/M6N00uW0863wLvX9i5G1HLzrbmu+VV3eWMD7V0wFkFxqWREMhZWA0naVTI7I5ctb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0gugpZIX5jDeMPe6qv0ewUEOpijMH7hgnlOewgR7cMrOQ/SmW
+	Y1Wl4I+Bbv54cByYtDo4mmzkjWQgWVJjaD9F3kq0lnzH288XAb95IgsWqt+QBThyqdHVq44V7nK
+	iHvnQYKnqAbU1IFEFuGtpNun/ssFv1nuGtpB7jT83neSP/E3DTQxr9IlkROQqOJgT
+X-Gm-Gg: ASbGncv7vGN1tSZJgzQPSCSfle3EEaczYrqBigEZpUpW/dnoYtQCnzNeR4ICdYPAcyf
+	hzKKPP7hvztCKtTeEkuji4OpClX0ZmUmpzjsjL4wyC4mI+eIYXlMtjASBorrcrwj6diWIJtct/a
+	vGUHnL36NaSYs6OJ1i3E+fnrAW54VNJAQmcXqE/t49c8WnMicVJaLhxoqHPp2BaCCAiu5yTDthY
+	xUCao0eFLtAIO1Sg9O5Ffco3p1Lbv0BbPokIGhvch1LGVF5X/m0xCxllCCjkq8cNpMeVzzBtrqa
+	PopgwR2Do86F2OiYzRXarn2JzwbVIILSoKZZdFAqifgRFQVmXMRbu3Vqe54Pdx2AiVlcQxmXLjg
+	gTq3eIgXkqvijJRZsBnmCMaKyL+Cz5XBjUyroSHxQSyUI713LUPOZ
+X-Received: by 2002:ac8:5942:0:b0:4b2:9603:a4bd with SMTP id d75a77b69052e-4b2aaacf398mr219214671cf.45.1756257576205;
+        Tue, 26 Aug 2025 18:19:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFBIJX90L8EObhiLkdvR77pF3EwleHjpNvQLWAxyOYReDyxz2hOIAWEk7V784kNonw+M03DGQ==
+X-Received: by 2002:ac8:5942:0:b0:4b2:9603:a4bd with SMTP id d75a77b69052e-4b2aaacf398mr219214431cf.45.1756257575696;
+        Tue, 26 Aug 2025 18:19:35 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55f35c02229sm2578423e87.24.2025.08.26.18.19.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Aug 2025 17:57:10 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: linux-wireless@vger.kernel.org
-Cc: =?UTF-8?q?Toke=20H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list),
-	linux-mips@vger.kernel.org (open list:MIPS)
-Subject: [PATCHv4 3/3] mips: qca: specify WMAC LED directly
-Date: Tue, 26 Aug 2025 17:56:58 -0700
-Message-ID: <20250827005658.3464-4-rosenp@gmail.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250827005658.3464-1-rosenp@gmail.com>
-References: <20250827005658.3464-1-rosenp@gmail.com>
+        Tue, 26 Aug 2025 18:19:34 -0700 (PDT)
+Date: Wed, 27 Aug 2025 04:19:33 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, Monish Chunara <quic_mchunara@quicinc.com>
+Subject: Re: [PATCH 1/5] dt-bindings: mmc: sdhci-msm: Document the Lemans
+ compatible
+Message-ID: <lxcbfiiw5ierl7r6wmrmkhkyavhysddfb2ndg6ydawb32xs6ju@aq2jkmx4irrq>
+References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
+ <20250826-lemans-evk-bu-v1-1-08016e0d3ce5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250826-lemans-evk-bu-v1-1-08016e0d3ce5@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=cLDgskeN c=1 sm=1 tr=0 ts=68ae5d29 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=EhCOwLgeIwc9STI1HsMA:9
+ a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI2MDE1MyBTYWx0ZWRfX17/o9+yC++fz
+ dQ7Na+S40hSeLRxiO8zb0BfYvxZSqOYSTufgNFR46wG0nQoVags2tDtyA3CNz0BucVujNHWADaU
+ j4ZMTyH27XKvmhl9XzYOD7y1lCFMX1G7ooO+tPKNNQDFdlG7lPpc7IMXai5d3WMkc5aKdT7kcWm
+ Eap+3edLl4gWPzJU7NIqKJfEX8GIz+cLbvNY2CiEAKh8aC55CvnTgcpEoyhiiynhJbE3pUImenW
+ DH1I0jmEkadn0cYn313AzXYlxfcxWmcDCiT57b7RZYGmqHQFA6CZr+OU0aHpP+XaMjXNjr+tpFY
+ QDt0lw+nRAi5Qi9LwV51HoDklXgA50p9bwqmWVynYdpSomFJXo6KCyhM2tnSuZ3oek0t1Xvlz3+
+ Fl0lhQe9
+X-Proofpoint-GUID: jhu-qE0-A-8FbbCBWO7Ipg72YwGmHeBx
+X-Proofpoint-ORIG-GUID: jhu-qE0-A-8FbbCBWO7Ipg72YwGmHeBx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-26_02,2025-08-26_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
+ impostorscore=0 suspectscore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508260153
 
-The ath9k driver creates an LED unconditionally being driven with
-sometimes the wrong pin. Not only that, the current dts definitions have
-LEDs for the WMAC that do not behave in response to it. Fix both issues.
+On Tue, Aug 26, 2025 at 11:51:00PM +0530, Wasim Nazir wrote:
+> From: Monish Chunara <quic_mchunara@quicinc.com>
+> 
+> Add the MSM SDHCI compatible name to support both eMMC and SD card for
+> Lemans, which uses 'sa8775p' as the fallback SoC. Ensure the new
+> compatible string matches existing Lemans-compatible formats without
+> introducing a new naming convention.
+> 
+> The SDHCI controller on Lemans is based on MSM SDHCI v5 IP. Hence,
+> document the compatible with "qcom,sdhci-msm-v5" as the fallback.
+> 
+> Signed-off-by: Monish Chunara <quic_mchunara@quicinc.com>
+> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index 22d1f50c3fd1..fac5d21abb94 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -49,6 +49,7 @@ properties:
+>                - qcom,qcs8300-sdhci
+>                - qcom,qdu1000-sdhci
+>                - qcom,sar2130p-sdhci
+> +              - qcom,sa8775p-sdhci
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- arch/mips/boot/dts/qca/ar9132_tl_wr1043nd_v1.dts |  9 ++++-----
- arch/mips/boot/dts/qca/ar9331_dragino_ms14.dts   | 11 +++++------
- arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts      | 11 +++++------
- 3 files changed, 14 insertions(+), 17 deletions(-)
+8 < 'r'
 
-diff --git a/arch/mips/boot/dts/qca/ar9132_tl_wr1043nd_v1.dts b/arch/mips/boot/dts/qca/ar9132_tl_wr1043nd_v1.dts
-index a7901bb040ce..0e813c38c31c 100644
---- a/arch/mips/boot/dts/qca/ar9132_tl_wr1043nd_v1.dts
-+++ b/arch/mips/boot/dts/qca/ar9132_tl_wr1043nd_v1.dts
-@@ -56,11 +56,6 @@ led-2 {
- 			label = "tp-link:green:qss";
- 			gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
- 		};
--
--		led-3 {
--			label = "tp-link:green:wlan";
--			gpios = <&gpio 9 GPIO_ACTIVE_LOW>;
--		};
- 	};
- };
- 
-@@ -111,4 +106,8 @@ partition@2 {
- 
- &wifi {
- 	status = "okay";
-+
-+	led {
-+		reg = <9>;
-+	};
- };
-diff --git a/arch/mips/boot/dts/qca/ar9331_dragino_ms14.dts b/arch/mips/boot/dts/qca/ar9331_dragino_ms14.dts
-index 37a74aabe4b4..19d72a0fdd8d 100644
---- a/arch/mips/boot/dts/qca/ar9331_dragino_ms14.dts
-+++ b/arch/mips/boot/dts/qca/ar9331_dragino_ms14.dts
-@@ -22,12 +22,6 @@ memory@0 {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		led-wlan {
--			label = "dragino2:red:wlan";
--			gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
--			default-state = "off";
--		};
--
- 		led-lan {
- 			label = "dragino2:red:lan";
- 			gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
-@@ -101,4 +95,9 @@ spiflash: w25q128@0 {
- 
- &wifi {
- 	status = "okay";
-+
-+	led {
-+		reg = <0>;
-+		led-active-high;
-+	};
- };
-diff --git a/arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts b/arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts
-index a7108c803eb3..c12dd4a72772 100644
---- a/arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts
-+++ b/arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts
-@@ -22,12 +22,6 @@ memory@0 {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		led-wlan {
--			label = "tp-link:green:wlan";
--			gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
--			default-state = "off";
--		};
--
- 		led-lan {
- 			label = "tp-link:green:lan";
- 			gpios = <&gpio 17 GPIO_ACTIVE_LOW>;
-@@ -117,4 +111,9 @@ spiflash: s25sl032p@0 {
- 
- &wifi {
- 	status = "okay";
-+
-+	led {
-+		reg = <0>;
-+		led-active-high;
-+	};
- };
+>                - qcom,sc7180-sdhci
+>                - qcom,sc7280-sdhci
+>                - qcom,sc8280xp-sdhci
+> 
+> -- 
+> 2.51.0
+> 
+
 -- 
-2.50.1
-
+With best wishes
+Dmitry
 
