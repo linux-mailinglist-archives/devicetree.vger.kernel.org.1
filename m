@@ -1,134 +1,151 @@
-Return-Path: <devicetree+bounces-209539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E04C9B37E22
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:53:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C818B37E48
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 11:04:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9897A6879C9
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:53:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 159933B1C5B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 09:04:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 331D033CE9F;
-	Wed, 27 Aug 2025 08:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55F90341AD9;
+	Wed, 27 Aug 2025 09:04:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BYm4kJGY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30152335BC1;
-	Wed, 27 Aug 2025 08:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D02B341AB7;
+	Wed, 27 Aug 2025 09:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756284835; cv=none; b=NJZlHVf2m8PjGOz2eIuEidUpXVC29n5Sl37XBobZ2tRTxZjQxRu2A6h2jgsS0Xjjz4V0xfl83OvwPsbH0CaitApkMmTinb65f0uT1lBrm6po25W4wGF3WpANsoMckSuIWc8Og1lk3AK8D+LZDJ1URqJinfyw9fPPOQRiwvtzfwk=
+	t=1756285466; cv=none; b=hInH+0jVYkSh+q8YoSzGrWfuzUIJHn94YYiLS2S7bMSpYYu8Np3Ecr5Kt1Nhe9bRy+a1x0vZ9JieMtQKwZULzRKD9yyhwHlDjSNzkhlhdWKjAjZ2dZcmmHA6Ls42Ugn5qIaZvs5FiBlSjbX6q09uf8Xvrisb+fKUjCJFeBJoHhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756284835; c=relaxed/simple;
-	bh=P38O43fMuBeGBKDmS2PF3LrHlp668kFtyl36Iw5bUrI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i+SHBp7lNJ4IpIioW0KsbY6irCArybLIue7jpoOirirbjByJ/92PKxptRPBXNP0RHM8MYCukPcbF9vwBKgVUTTwpBmGNTQmtwb61sRu+EUhkpt+yQwMVvyybJp+G7DF+RHMesV56yO2F9Yktq4PufpSxcYHqzrlDLCMlDqulPB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 159921655;
-	Wed, 27 Aug 2025 01:53:44 -0700 (PDT)
-Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3EE013F738;
-	Wed, 27 Aug 2025 01:53:47 -0700 (PDT)
-Message-ID: <0c8a6a7c-3d0d-4093-8bc5-3a04f70b00fa@arm.com>
-Date: Wed, 27 Aug 2025 09:53:45 +0100
+	s=arc-20240116; t=1756285466; c=relaxed/simple;
+	bh=+RpJe2xt313pvzyWmm1FpG9QmaJsYu4M/l2cej6ESFQ=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ByPEKIdLiwpq59kcGm16OP26yNcJbZUz0BloywzQAgyT97MpFjC7PWxHpDUm/CwEvdiiyHwNhXyQGQjfXPvayE6SbikY16GSvL8pCpn+r5QDzdSeO8tNLc0/ZbgRLICT3wfwizitQ2D+ixuIJ18b67/Femm0zah2KajeUvwZGqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BYm4kJGY; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1756285462;
+	bh=+RpJe2xt313pvzyWmm1FpG9QmaJsYu4M/l2cej6ESFQ=;
+	h=Subject:From:To:Date:In-Reply-To:References:From;
+	b=BYm4kJGYABV9d0yv5RsVER1mkHTkqzdDJMBn5MibYf4CqzzMMNTwJ2TDcKxkUSBpE
+	 Vv9//c8jVzXKNxCN1LWQVju6BWkiMIaxIwy+0NC5RWrCkW4QlwYNxxphTXOJ22ELsm
+	 fB1qs7gwU0S5ZLfQTaYx7fF+5z4wQ0sls8HvbEzDR51btkyoqKx45JaR3ka3D8clc5
+	 CU/5LCboWVyHEbRqUq/PShhhBEqBvL1vWi6xVtZAJK0JchhjyxR5+bt+3losqxisWm
+	 zQzOFhPL6e3DIrUz6u1TIZAQz9SvHFTmCEtntcw2PuRUtv1wVSoS7mpMNStrIadIB1
+	 oAlF6H3fE3ACg==
+Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892F2D600C8F85cf092D4Af51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7513D17E0676;
+	Wed, 27 Aug 2025 11:04:21 +0200 (CEST)
+Message-ID: <3e0d30b1d717c8788aa95eb045a034c18e33c88e.camel@collabora.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: mediatek: mt8395-nio-12l: add
+ support for blue and red LEDs
+From: Julien Massot <julien.massot@collabora.com>
+To: kernel@collabora.com, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>,  Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Louis-Alexis Eyraud
+ <louisalexis.eyraud@collabora.com>, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, 	devicetree@vger.kernel.org
+Date: Wed, 27 Aug 2025 11:04:20 +0200
+In-Reply-To: <20250827-psychic-exclusive-be9758124693@thorsis.com>
+References: <20250826-radxa-nio-12-l-gpio-v2-0-7f18fa3fbfc8@collabora.com>
+	 <20250826-radxa-nio-12-l-gpio-v2-3-7f18fa3fbfc8@collabora.com>
+	 <20250827-psychic-exclusive-be9758124693@thorsis.com>
+Organization: Collabora Ltd.
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/33] arm64: kconfig: Add Kconfig entry for MPAM
-To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: shameerali.kolothum.thodi@huawei.com,
- D Scott Phillips OS <scott@os.amperecomputing.com>,
- carl@os.amperecomputing.com, lcherian@marvell.com,
- bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
- baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
- Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
- dfustini@baylibre.com, amitsinght@marvell.com,
- David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
- Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
- Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
- baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
- Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-8-james.morse@arm.com>
-From: Ben Horgan <ben.horgan@arm.com>
-Content-Language: en-US
-In-Reply-To: <20250822153048.2287-8-james.morse@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-Hi James,
+Hi Alexander,
 
-On 8/22/25 16:29, James Morse wrote:
-> The bulk of the MPAM driver lives outside the arch code because it
-> largely manages MMIO devices that generate interrupts. The driver
-> needs a Kconfig symbol to enable it, as MPAM is only found on arm64
-> platforms, that is where the Kconfig option makes the most sense.
-> 
-> This Kconfig option will later be used by the arch code to enable
-> or disable the MPAM context-switch code, and registering the CPUs
-> properties with the MPAM driver.
-> 
-> Signed-off-by: James Morse <james.morse@arm.com>
-> Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
-> ---
->  arch/arm64/Kconfig | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-> index e9bbfacc35a6..658e47fc0c5a 100644
-> --- a/arch/arm64/Kconfig
-> +++ b/arch/arm64/Kconfig
-> @@ -2060,6 +2060,23 @@ config ARM64_TLB_RANGE
->  	  ARMv8.4-TLBI provides TLBI invalidation instruction that apply to a
->  	  range of input addresses.
->  
-> +config ARM64_MPAM
-> +	bool "Enable support for MPAM"
-> +	help
-> +	  Memory Partitioning and Monitoring is an optional extension
-> +	  that allows the CPUs to mark load and store transactions with
-> +	  labels for partition-id and performance-monitoring-group.
-> +	  System components, such as the caches, can use the partition-id
-> +	  to apply a performance policy. MPAM monitors can use the
-> +	  partition-id and performance-monitoring-group to measure the
-> +	  cache occupancy or data throughput.
-> +
-> +	  Use of this extension requires CPU support, support in the
-> +	  memory system components (MSC), and a description from firmware
-> +	  of where the MSC are in the address space.
-> +
-> +	  MPAM is exposed to user-space via the resctrl pseudo filesystem.
-> +
->  endmenu # "ARMv8.4 architectural features"
+On Wed, 2025-08-27 at 09:40 +0200, Alexander Dahl wrote:
+> Hello Julien,
+>=20
+> Am Tue, Aug 26, 2025 at 04:01:54PM +0200 schrieb Julien Massot:
+> > The Radxa NIO 12L board has an RGB LED, of which only red and blue
+> > are controllable.
+> >=20
+> > Red and blue LEDs: no need to choose, both are enabled.
+> >=20
+> > Reviewed-by: AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com>
+> > Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> > ---
+> > =C2=A0.../boot/dts/mediatek/mt8395-radxa-nio-12l.dts=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 31
+> > ++++++++++++++++++++++
+> > =C2=A01 file changed, 31 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
+> > b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
+> > index
+> > fd596e2298285361ad7c2fb828feec598d75a73e..12288ad4d2932b7f78c96c0efe36
+> > 6a046721f919 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
+> > @@ -10,6 +10,7 @@
+> > =C2=A0#include <dt-bindings/gpio/gpio.h>
+> > =C2=A0#include <dt-bindings/input/input.h>
+> > =C2=A0#include <dt-bindings/interrupt-controller/irq.h>
+> > +#include <dt-bindings/leds/common.h>
+> > =C2=A0#include <dt-bindings/pinctrl/mt8195-pinfunc.h>
+> > =C2=A0#include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
+> > =C2=A0#include <dt-bindings/spmi/spmi.h>
+> > @@ -73,6 +74,28 @@ button-volume-up {
+> > =C2=A0		};
+> > =C2=A0	};
+> > =C2=A0
+> > +	gpio-leds {
+> > +		compatible =3D "gpio-leds";
+> > +		pinctrl-0 =3D <&gpio_leds_pins>;
+> > +		pinctrl-names =3D "default";
+> > +
+> > +		/*
+> > +		 * This board has a RGB LED, of which only R and B
+> > +		 * are controllable.
+> > +		 */
+> > +		led-0 {
+> > +			label =3D "rgb-blue";
+> > +			color =3D <LED_COLOR_ID_BLUE>;
+> > +			gpios =3D <&pio 6 GPIO_ACTIVE_HIGH>;
+> > +		};
+> > +
+> > +		led-1 {
+> > +			label =3D "rgb-red";
+> > +			color =3D <LED_COLOR_ID_RED>;
+> > +			gpios =3D <&pio 7 GPIO_ACTIVE_HIGH>;
+> > +		};
+>=20
+> The label property is deprecated, and if I'm not mistaken not
+> recommended for new boards.=C2=A0 Do you have a reason to set it?
+> If so, it might be worth adding in the commit message.
 
-Should this be moved to "ARMv8.2 architectural features" rather than the
-8.4 menu? In the arm reference manual, version L.b, I see FEAT_MPAM
-listed in the section A2.2.3.1 Features added to the Armv8.2 extension
-in later releases.
+No, I just wasn=E2=80=99t aware of the deprecation, but I can now see
+it in the common LED binding.
+I=E2=80=99ll wait a bit for any other potential reviews and then resend
+the patch without the label. The LED will then appear as 'blue'
+instead of 'rgb-blue' in sysfs.
 
->  
->  menu "ARMv8.5 architectural features"
-
-Thanks,
-
-Ben
-
+Regards,
+Julien
 
