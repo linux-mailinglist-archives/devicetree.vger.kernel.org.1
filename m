@@ -1,137 +1,144 @@
-Return-Path: <devicetree+bounces-209748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45DEDB38B57
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 23:29:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79411B38B83
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 23:35:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 15DE34E0485
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 21:29:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36C035E41F6
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 21:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 868BB30C63E;
-	Wed, 27 Aug 2025 21:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74EB32F3C1A;
+	Wed, 27 Aug 2025 21:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="In/RzUcs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A3Jb8/Uk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043562EBDC2
-	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 21:29:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E561A073F;
+	Wed, 27 Aug 2025 21:34:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756330184; cv=none; b=W81oLl20XT/57l8w+gdmpoE3mAqPCgfOs0Bw17x41ciNjAzokbS4KSUrJEAo23/2wnezh4jJt1Hm1tzH4pQoh7Eh7rrgzQr0kgtHKapoLcLcA05tNLEyAv+75PMoq/AO4Tcyie+ttlDEKKcyeoYUU1BBTYczKwvdJoF7QbUJaRQ=
+	t=1756330496; cv=none; b=mukG8EpWJBbFRfBowynRDMXWx+hOHiF0L7vu2joDwm4kZvwVKuGJz9TOhwY1XI24kw/h2PNGkRk0hFUZL5DxL9g3nSzDNDhRSB1esLvnJb5ee7x7SDigb+5Lc9sRIQubsXuW4p0EccpopVurJlQnhXbX0vBgYhferShYTFYbouU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756330184; c=relaxed/simple;
-	bh=XDtCFwvvNMey6wTqiIrDKsQ/oOJGKJKxwF7UGO21WcU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S+HuYM/khCBEWetzohzmzQGdfKhYSBKf5nNQXVIyQt52dm0oOdlS1N8Mz6XD0JyCjH1Ty6twCbom53/+2wX9ZZ3x5jFnPAcqQiK0qbxP/On0iXxieqyN817TGTqrOrklO+UUvgnIU2Ooo66rGUEhod+vBOeJrYkRH35f4QKN1Fg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=In/RzUcs; arc=none smtp.client-ip=91.218.175.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Wed, 27 Aug 2025 15:29:33 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1756330179;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5MioykTIfASSWtcO1+DcZuIhvR3bjW8+wvoMlo7QyT8=;
-	b=In/RzUcskcU+3iiJUnvCmHJ9fG88xhn7ZWye5DiepQDaWju+HkOwkZdwblaHre2kdKi+jE
-	iMcwnCDrbe+hGoUwHmPhP8MpmVwMazE+A3p1/qzzisqCx4s47tfzYEGgFcxPQ7GRfJBZtx
-	/k74OOqkOQvHTnjFpTM/2c2jmR3AagY=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Russ Weight <russ.weight@linux.dev>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kamel Bouhara <kamel.bouhara@bootlin.com>, 
-	Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>, 
-	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-input@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] firmware_loader: expand firmware error codes with
- up-to-date error
-Message-ID: <ifdhjgo6wchlsztqvgkaawpbnh3zahb76vmyzlomokfrqt6tjp@qjcdvcdqviag>
-References: <20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de>
- <20250821-v6-10-topic-touchscreen-axiom-v3-1-940ccee6dba3@pengutronix.de>
+	s=arc-20240116; t=1756330496; c=relaxed/simple;
+	bh=ocs4EQ76GlEPr3yAQv3FQf9LAX2b/AlcV9MuFmVhPAk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EpfnHbyg6cIML1cyWyx4WAtaf7g28ZCKE8SU3hvqzY9zQ/MS27PmSSxOSTeGlbB2jgjRjeYfa5Vjsc34Pt8lGvCrHK9BilsqSR+Qqxliwq+xTljg4Yx2FNyi8tJIS77nhpraBrKqJGDgU+wco+JTcntqmzaPe7B6tsJ/dZsFwWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A3Jb8/Uk; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-327a27e0d6eso350241a91.1;
+        Wed, 27 Aug 2025 14:34:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756330494; x=1756935294; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dqo+6lIPjlAvcSz8C9O1Kyz/i4EBXtrAu/454vmVrN4=;
+        b=A3Jb8/UkFO0NZBj8vUiJrXDIIKaiPb1U6paRHjd7ZrBiZNRtPXOUrLExtBd+ZHoI1F
+         THuCMjE0o03HMkSeyoSQ6SERe0N5uSOeIe1GL0NSFFWHxHgZtZ/Ejiqxlmmz+nvlhO7m
+         8j4hQd3TUy9K7ETmEgOckzOS49vZFM/N5lx1pMZjdkQLQdxq/c7f9Ik4PFD0DfDGg3G1
+         VoUDM/J5L8/hM9WX0h7yOT6OOX66BiUO+dIHfHPuKmyVMKczqVGQtpOM06K8+oLyt6vm
+         NlU4lhmKgEWhGkH9Yo3vlOvNcA6Q0m7L+AeThHdUzR2hU0DSKsBdkxCWdHn6L+aMGwhA
+         lEQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756330494; x=1756935294;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Dqo+6lIPjlAvcSz8C9O1Kyz/i4EBXtrAu/454vmVrN4=;
+        b=pc42py2CCwwVi2vuo6hx4638ZDlN20pxmFWy9j/WV3imha/4k5eWec0FPDfJmV8nXB
+         W9uZuRHsQAd2n9HY5xBgGaL6nEVp0zLxpsh0oc6bX3j6WfhjLgD70E8X+cUZDFg8ZOVx
+         rfNo1o1/85FcZY6PWRXqb5q1RKlTiU3YOhPfkaopq0MtcwcTUwhj4kKuXB0VPdz3rbfd
+         SO4DrgYtI19q4/j6MaGKR1eJUZkgiLz0KbjYtXLwLJj6oNcLaX3ULTLOS3Fe5uBYuujT
+         Hp/OR4FD8S8+GtK43rXLF+2ukNLewv9NGl1OcbCKcSVt/XCAhswBd5ItBjkmIj0IRScG
+         nYUg==
+X-Forwarded-Encrypted: i=1; AJvYcCW2BcktMWGEFErEnw8JWvj79nTzA8hT05Hd62LNKwrdF3NS2RzYChIfqnCQRzRKXTWdzImA4i/L8OX8AAPn@vger.kernel.org, AJvYcCWLT+YGnvu5HTm/3VHzBopF9dyfe9m2fY9Pg2TTOROUzI5DQHW6MIRlTB/QN0kN90TrackWToP1u5Uj@vger.kernel.org
+X-Gm-Message-State: AOJu0YygnvPMuxVE+rM7cG5eDnRRczgpmpK+G3F6/Xy0N+JVvuO5lGa4
+	GDLKpiMZ1HMH9h5UIgTfHgCgBQ1/WuWW+QUkrYYqHyyRo06nRhT2AfnQU5vwIkz00PU=
+X-Gm-Gg: ASbGnctLet3xSfVLvEdyCF5ek/6RkWFPVnuiMULCRsLnzFxD+6ebbfQ/Vq8LHOLix87
+	USi7FoCXoqohASZ82D3OCrJbzICObHtpwVB8+asaAFloo6uJrZxwZ6TaU3Rf6cCzf6K2WT62Ou4
+	Xdpz8R5FXq9r95nhDrF8PhUYUiz6k8NjXZF/ePsGrjeFnZ0tLklS8xSmG1In4p5kVIHd1Rm2awc
+	M3h3phSvr/QcXmiiBT3ouddv0x3arrsCtBw3kSCK0DPQZ47sVnHkE1txS9SERFWilLOB6VIS9bt
+	blKi+bEn1eNozxuzYiRz1rGcmjJUrem1lwIi6f+KDOeiWBnG0MgIsIXmaAbUkfq4HsIo8XT9Q8y
+	JBm3sOJdJlwmZbLyOiIix83psMBut0vTR
+X-Google-Smtp-Source: AGHT+IEGu6wMER+8lr7HpVJfOs5fMRIFtEug1FMunpqW/Wlr54fAGq0WChsPZFp88Zg0CReh0PDpJQ==
+X-Received: by 2002:a17:90b:1a8e:b0:327:8bb0:4338 with SMTP id 98e67ed59e1d1-3278bb04446mr3109913a91.2.1756330494173;
+        Wed, 27 Aug 2025 14:34:54 -0700 (PDT)
+Received: from archlinux ([179.110.125.177])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-327ab0dbe86sm193016a91.21.2025.08.27.14.34.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Aug 2025 14:34:53 -0700 (PDT)
+From: =?UTF-8?q?Eric=20Gon=C3=A7alves?= <ghatto404@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Eric=20Gon=C3=A7alves?= <ghatto404@gmail.com>
+Subject: [PATCH v8 0/1] arm64: dts: qcom: add initial support for Samsung Galaxy S22
+Date: Wed, 27 Aug 2025 21:34:07 +0000
+Message-ID: <20250827213414.43033-1-ghatto404@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250821-v6-10-topic-touchscreen-axiom-v3-1-940ccee6dba3@pengutronix.de>
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Changes in v8:
+- Rebase on 'arm64: dts: qcom: sm8450: Flatten usb controller node'
+- Use real name for sign-offs
+- Remove device tree binding patch as it's already in the tree, merged by
+ Bjorn
 
-On Thu, Aug 21, 2025 at 07:26:36PM +0200, Marco Felsch wrote:
-> Add FW_UPLOAD_ERR_DUPLICATE to allow drivers to inform the firmware_loader
-> framework that the update is not required. This can be the case if the
-> user provided firmware matches the current running firmware.
-> 
-> Sync lib/test_firmware.c accordingly.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+Changes in v7:
+- Document the reserved GPIO pins, remove pin 50 as it does not
+ need to be reserved
+- Clarify the phone isn't limited to USB 2.0 but rather USB 3.0
+ isn't implemented yet
+- Add a newline before every 'status' node
 
-Reviewed-by: Russ Weight <russ.weight@linux.dev>
+Changes in v6:
+- Remove debug features (bootargs, etc) that slipped in the v5 DTS
+- Format and organize nodes correctly based on existing DTS, 
+ move "status = "okay";" to the bottom always
+- Solve "ddr_device_type" and "qcom,rmtfs-mem" warnings, the rest are
+ from existing SoC .dtsi
+- Disable buttons, ufs and other features for later revision
 
-> ---
->  drivers/base/firmware_loader/sysfs_upload.c | 1 +
->  include/linux/firmware.h                    | 2 ++
->  lib/test_firmware.c                         | 1 +
->  3 files changed, 4 insertions(+)
-> 
-> diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
-> index 829270067d1632f92656859fb9143e3fa9635670..0a583a1b3f4fde563257566426d523fbf839b13f 100644
-> --- a/drivers/base/firmware_loader/sysfs_upload.c
-> +++ b/drivers/base/firmware_loader/sysfs_upload.c
-> @@ -28,6 +28,7 @@ static const char * const fw_upload_err_str[] = {
->  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
->  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
->  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
-> +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
->  };
->  
->  static const char *fw_upload_progress(struct device *dev,
-> diff --git a/include/linux/firmware.h b/include/linux/firmware.h
-> index aae1b85ffc10e20e9c3c9b6009d26b83efd8cb24..fe7797be4c08cd62cdad9617b8f70095d5e0af2f 100644
-> --- a/include/linux/firmware.h
-> +++ b/include/linux/firmware.h
-> @@ -29,6 +29,7 @@ struct firmware {
->   * @FW_UPLOAD_ERR_RW_ERROR: read or write to HW failed, see kernel log
->   * @FW_UPLOAD_ERR_WEAROUT: FLASH device is approaching wear-out, wait & retry
->   * @FW_UPLOAD_ERR_FW_INVALID: invalid firmware file
-> + * @FW_UPLOAD_ERR_DUPLICATE: firmware is already up to date (duplicate)
->   * @FW_UPLOAD_ERR_MAX: Maximum error code marker
->   */
->  enum fw_upload_err {
-> @@ -41,6 +42,7 @@ enum fw_upload_err {
->  	FW_UPLOAD_ERR_RW_ERROR,
->  	FW_UPLOAD_ERR_WEAROUT,
->  	FW_UPLOAD_ERR_FW_INVALID,
-> +	FW_UPLOAD_ERR_DUPLICATE,
->  	FW_UPLOAD_ERR_MAX
->  };
->  
-> diff --git a/lib/test_firmware.c b/lib/test_firmware.c
-> index 211222e63328f970228920f5662ee80cc7f51215..603c3a4b385c849944a695849a1894693234b5eb 100644
-> --- a/lib/test_firmware.c
-> +++ b/lib/test_firmware.c
-> @@ -1133,6 +1133,7 @@ static const char * const fw_upload_err_str[] = {
->  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
->  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
->  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
-> +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
->  };
->  
->  static void upload_err_inject_error(struct test_firmware_upload *tst,
-> 
-> -- 
-> 2.39.5
-> 
+Changes in v5:
+- Properly format the thread
+
+Changes in v4:
+- Try to properly format the thread
+
+Changes in v3:
+- Removed unnecessary initrd start and end addresses
+- Make sure r0q is in right order on Makefile
+- Properly format memory addresses
+- Set r0q to the correct, alphabetical order in documents
+
+Changes in v2:
+- Attempt to format the patchset thread correctly
+
+Eric Gonçalves (1):
+  arm64: dts: qcom: add initial support for Samsung Galaxy S22
+
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 145 ++++++++++++++++++
+ 2 files changed, 146 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+
+-- 
+2.50.1
+
 
