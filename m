@@ -1,149 +1,225 @@
-Return-Path: <devicetree+bounces-209537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C380B37DFE
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:41:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD6B6B37E07
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:42:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFF761BA424F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:41:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A0F516E7B9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D77F033CEAF;
-	Wed, 27 Aug 2025 08:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4716133CE94;
+	Wed, 27 Aug 2025 08:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="Du9Wx1fj"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="eEc25c3x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com [209.85.208.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD12F33A00E;
-	Wed, 27 Aug 2025 08:40:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E9733A00E
+	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 08:42:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756284054; cv=none; b=btq262pOjSIkyFz4FWdmm7qXAXKz77oARGgK8ayw2TSoVEvTFMOI3FzuYajw0N/1DAp3ddS5buGW8e9xTuc6skZjO/nazDqrjWYt4rMVw8qNmobNTxYT9Ks4YYTlohETnhQP4xo0D+oQXXEeLnd4y/9eEpTberwzVm27MBInjjM=
+	t=1756284141; cv=none; b=DGNL1zzy5PbG8z5EW644SZTfwNy7urzZhl8TNiQsK/dzochjfjDQv1x67YlvsIqnmWgN+J5AAePfqFt5P40DIhe3A5ZauzLpyCePFpalnHX2x0lHDBPojbICDH4sfC5+yY4Nh9rjcMSSTP3vQaWs0VTN1czpw3DNfuKz1oX6JWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756284054; c=relaxed/simple;
-	bh=ZmHBWK5BuQNJ31LUGpY4RJ3Mq7uS2nqP8QqNP4OwfuY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eJ/U7UfSuIgBhzBfKDhSp6kAw2WhPeGQ/A+JN3nHeZJ+i+KSSgqAUw/aRr0JhQXclZZ2c5nSPIq2GKZTPkFc4Er58lL+1NFUpmWEpjGIT4eRk9vnnbnEKjZSo/68raEuAEXl97e8sNS3EiGzH80Zeaq0qw0HVJvcaQ4sKqkOvOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=Du9Wx1fj; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 55AF540E00DA;
-	Wed, 27 Aug 2025 08:40:50 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id uTmocuXlYplB; Wed, 27 Aug 2025 08:40:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1756284046; bh=BCWF0C0SKwfKYfZP1aAsMkpWwiMtI1Y8p6BoA/+fiug=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Du9Wx1fjBCOil6REbvzTOnu3Z6pIg5wTVUBsZdg7KR4Zq+m3UTP+H274k0HVAG7wE
-	 /Kz7/wRN0uvN0KcTOD5hYPG/Gdj0rt4vWJg9Rx1K8SKpI0wJB+6/AGGhbVSznh32yl
-	 7N9MS7X+8S4IZ3AtQOxfhavsmXJ5WQ8aUow9iwg0yqFm4kKvnCoHDq1l8ctEVuY2at
-	 0NPFTZy4p08smEQrFXaYZiSIIv9SqXkMDna2OEjz8UpTGFtJpLyR1qorIAnJqjAdxX
-	 iERgwN0s+4ZECUN3foQ2KVy6u89DSasdiXYkDuWtvZVmvr0OPQ2+teRA4es0upsIG4
-	 V5O1BMl2lv3OtjKm/Za8rleo9CqdsqK3VSeBSeRrYcAlNp52z2gWeVObFZwDqoXBWW
-	 +egUjNlnknTXlvlH4qFiNFFj1TWdRzFrepIBoeZT+YUDIpgeE8mzzx7a+CKL9Umfrf
-	 zjsUSvwurmBnCB+TmIK9MEY4xfqSWdr2NdKNNCcHJDAEJCoILxvu3clTXh8HaBZokL
-	 Uioua3mTJ3MiW4yKYYkDGXm8rfvYkFKS4napA8xeWjsi6KFZFUzVBV9FPjteSezyBd
-	 aDT09a2/39d28sVrlQMePmaDwtYv18B0WC9NtDYNU0hpBCl5zpBKpp1yxvsZGE2JI8
-	 uVfg/6p+DBo514dDUe8/9i+Q=
-Received: from zn.tnic (pd953092e.dip0.t-ipconnect.de [217.83.9.46])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 016D340E019C;
-	Wed, 27 Aug 2025 08:40:28 +0000 (UTC)
-Date: Wed, 27 Aug 2025 10:40:28 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-edac@vger.kernel.org, git@amd.com, ptsm@linux.microsoft.com,
-	srivatsa@csail.mit.edu, shubhrajyoti.datta@gmail.com,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Tony Luck <tony.luck@intel.com>, James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>, Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>
-Subject: Re: [PATCH v8 1/5] cdx: add the headers to include/linux
-Message-ID: <20250827084028.GGaK7EfGLBLeQ-WteX@fat_crate.local>
-References: <20250826052914.2066884-1-shubhrajyoti.datta@amd.com>
- <20250826052914.2066884-2-shubhrajyoti.datta@amd.com>
+	s=arc-20240116; t=1756284141; c=relaxed/simple;
+	bh=C3J5F98SUq/XbJdI5mkH/BowXWLNgIYkLopDpGLXpXI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=NMhmR2RR858x7R9bgwQOLO2ic2hf7mwJCzoVwmu2A9hAl1M2UIuMfCEIq9JH7zwumQiMbMUVolUo+01J40jdpfcreqodUT1G7yV8Vbggb4v9p5ORwKS4GoI5knr4rPPc6Lm+D7w96br/lamqYrBK6CHbV/N30HGkkdy89ZzZblE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=eEc25c3x; arc=none smtp.client-ip=209.85.208.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f67.google.com with SMTP id 4fb4d7f45d1cf-61c325a4d18so7176006a12.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 01:42:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1756284138; x=1756888938; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ru399StOWX0y3ow8u4rjjmb8WPAPqnIEt4F7fasIcxE=;
+        b=eEc25c3x5PXcT1AHnb/dd/pK0kjfUbP9sm+mbeau8SUzBSmQAFsDjgICcXFHWkCasF
+         CEJRrex62BkT3As7pW65RpznQk6trJexK/QcyJPPoaxomyHKKkjI/PNbOVGnmpfIb8BH
+         auofQ2V/WJi55gqWSb06bITRix7V0pbcrxchJES+jYAlAMh7kqyspAC73bam1RKcYucG
+         w2IoXhXz6KB27jTSfHXmQjFsBR7lfDjWp+Rgr3EPkrPa1QzLnoYo0DRGdV1Pke367wS9
+         VYUFYGGOudjo4onhgVI1wDgcO3esXjZMRoVbSaszfYkj2zM+nQvbOdgN2nGDIl0cavoK
+         KEOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756284138; x=1756888938;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Ru399StOWX0y3ow8u4rjjmb8WPAPqnIEt4F7fasIcxE=;
+        b=IxYJXrb+Pwg15wKte6FQoZaX5CJDQhXuoPxLf5i/uSLUrySHreHFwDl1xRJgc+yNDO
+         P1mFTLQ7Ttj237y+7iRTowXj17OOzpuxrhUJa9KkBOy8ucMPk8/GWP5zdhBlf0Ezcrt8
+         g31PjIt4R/0Sc3mHDaFZ1KIxjgAXoMYlBWDpJgfy8KwA8J1EyWQg9Ad7sUAijIvxZMz/
+         Z7qrIGfDUHXX9TkjpEgNrUNaxZLDozMlP1fLVpbEunOaVr6tMZwXZNr/qfBEdHleqQ4U
+         PoWk/8sJA53vyBN68CBg2G9E+B3ODi2q3qWfBPxhr2dOkzerp3ka4WCIz/OfffzZDQen
+         S9Uw==
+X-Forwarded-Encrypted: i=1; AJvYcCXOk+NRxDw44B44nnRp2ot5wnGYG2skIW9Y3p08KqNF6RUPAojo80Xb1cidgDeuzAz2Yf5g7xvu45y4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5ROOlars4LstdBak05HQa+p4qQy9vT0CHDpK0Z+E4D7selEeQ
+	Colp1fwhZ4XrRtbWCXEH/b8dJUP/dfc2QDFT8mkCZYlIlsYokiKxDh50LbbxmL7NXII=
+X-Gm-Gg: ASbGnctzIq8TecQv8Wfeswiqy3y9nF0JMdVJxE6Gkv9Lu2tx1aGrdArs4Fum9WDEfxL
+	es1x+TCFGOEV7jrWRXWXI5XlQsm52eeoDOVyj6tAfPmfUAV5nOp37nL9GPTyuxKDrqIF0ccEyFr
+	T7xicN5H7mM655X9W++gh/KZDnBMAOKnraXM+EbfjMbbKrXSS8OKoOLIhwED5YtodUQdwruiCqT
+	GwO7zqa7zHAocqCm2iAXFSQ6vACQP/VErIhCVfaJvfW56Ym0zZbE8Sx9+j7oOmzoWQBy7bbq8Ua
+	WVSULRhwwkEy2N2F2oqjdrqBtdbqh1O9E2qAfFmubAEnsE1g4n/PjUFwZPiEmV0p6NN1tgA5Bhx
+	UjsxXo3X/DLjHJmZXskOAhUMreqOh6jHsnCLaGIuJm47z0mnG4AxgsZLDgyQ=
+X-Google-Smtp-Source: AGHT+IE7qHCUmyrseOQu74QlBZCIEPNa9QZI/28Loh0vgbPoaePjhaimKbaEW3VRUGcYdoYW86lRtw==
+X-Received: by 2002:a05:6402:2554:b0:61c:5d76:3a8b with SMTP id 4fb4d7f45d1cf-61c5d7640b7mr8937360a12.32.1756284137573;
+        Wed, 27 Aug 2025 01:42:17 -0700 (PDT)
+Received: from localhost ([213.244.170.152])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61caeb5e77bsm1411780a12.35.2025.08.27.01.42.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Aug 2025 01:42:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250826052914.2066884-2-shubhrajyoti.datta@amd.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 27 Aug 2025 10:42:16 +0200
+Message-Id: <DCD2RLZO62P6.MNAOWRUWVFHK@fairphone.com>
+Subject: Re: [PATCH v2 3/5] drm/sysfb: simpledrm: Add support for
+ interconnect paths
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Javier Martinez Canillas" <javierm@redhat.com>, "Hans de Goede"
+ <hdegoede@redhat.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Helge Deller" <deller@gmx.de>
+Cc: <linux-fbdev@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
+ <20250623-simple-drm-fb-icc-v2-3-f69b86cd3d7d@fairphone.com>
+ <87qzz5d3le.fsf@minerva.mail-host-address-is-not-set>
+ <DB9237QHOXRU.JRJB8SPUX8RO@fairphone.com>
+ <874ivjf5gn.fsf@minerva.mail-host-address-is-not-set>
+In-Reply-To: <874ivjf5gn.fsf@minerva.mail-host-address-is-not-set>
 
-On Tue, Aug 26, 2025 at 10:59:10AM +0530, Shubhrajyoti Datta wrote:
-> Subject: Re: [PATCH v8 1/5] cdx: add the headers to include/linux
+Hi Javier,
 
-Make that title more specific:
+On Fri Jul 11, 2025 at 11:21 AM CEST, Javier Martinez Canillas wrote:
+> "Luca Weiss" <luca.weiss@fairphone.com> writes:
+>
+> Hello Luca,
+>
+>> Hi Javier,
+>>
+>> On Fri Jun 27, 2025 at 9:51 AM CEST, Javier Martinez Canillas wrote:
+>
+> [...]
+>
+>>>> +static int simpledrm_device_attach_icc(struct simpledrm_device *sdev)
+>>>> +{
+>>>> +	struct device *dev =3D sdev->sysfb.dev.dev;
+>>>> +	int ret, count, i;
+>>>> +
+>>>> +	count =3D of_count_phandle_with_args(dev->of_node, "interconnects",
+>>>> +							 "#interconnect-cells");
+>>>> +	if (count < 0)
+>>>> +		return 0;
+>>>> +
+>
+> You are already checking here the number of interconnects phandlers. IIUC
+> this should return -ENOENT if there's no "interconects" property and your
+> logic returns success in that case.
 
-"cdx: Split mcdi.h and reorganize headers"
+We shouldn't error out in case there's no interconnects defined for this
+simple-framebuffer though? That'd break all other usages of it?
 
-or so.
+>
+> [...]
+>
+>>>
+>>> You could use dev_err_probe() instead that already handles the -EPROBE_=
+DEFER
+>>> case and also will get this message in the /sys/kernel/debug/devices_de=
+ferred
+>>> debugfs entry, as the reason why the probe deferral happened.
+>>
+>> Not quite sure how to implement dev_err_probe, but I think this should
+>> be quite okay?
+>>
+>
+> And of_icc_get_by_index() should only return NULL if CONFIG_INTERCONNECT
+> is disabled but you have ifdef guards already for this so it should not
+> happen.
+>
+>> 		if (IS_ERR_OR_NULL(sdev->icc_paths[i])) {
+>
+> Then here you could just do a IS_ERR() check and not care about being NUL=
+L.
 
-> Move `bitfield.h` from the CDX controller directory to
-> `include/linux/cdx` to make them accessible to other drivers.
-> 
-> As part of this refactoring, `mcdi.h` has been split into two headers:
-> - `mcdi.h`: retains interface-level declarations
-> - `mcdid.h`: contains internal definitions and macros
-> 
-> This is in preparation for VersalNET EDAC
-> driver that relies on it.
-> 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> ---
-> 
-> Changes in v8:
-> - Split `mcdi.h` into `mcdi.h` and `mcdid.h`
-> - Removed common code from CDX headers
-> - Used refactored versions from shared location
-> 
-> Changes in v7:
-> - add a minimal header instead moving them
-> 
-> Changes in v6:
->  - Patch added
-> 
->  drivers/cdx/controller/cdx_controller.c       |  2 +-
->  drivers/cdx/controller/cdx_rpmsg.c            |  2 +-
->  drivers/cdx/controller/mcdi.c                 |  5 +-
->  drivers/cdx/controller/mcdi_functions.c       |  1 -
->  drivers/cdx/controller/mcdi_functions.h       |  3 +-
->  drivers/cdx/controller/mcdid.h                | 65 +++++++++++++++++++
->  .../linux/cdx}/bitfield.h                     |  0
->  .../controller => include/linux/cdx}/mcdi.h   | 52 +--------------
->  8 files changed, 73 insertions(+), 57 deletions(-)
->  create mode 100644 drivers/cdx/controller/mcdid.h
->  rename {drivers/cdx/controller => include/linux/cdx}/bitfield.h (100%)
->  rename {drivers/cdx/controller => include/linux/cdx}/mcdi.h (74%)
+But checking also for NULL shouldn't hurt either, in case the compile
+guards get removed in the future or something?
 
-I'd need an Ack from these gents:
+Quote:
+> * Return: icc_path pointer on success or ERR_PTR() on error. NULL is retu=
+rned
+> * when the API is disabled or the "interconnects" DT property is missing.
 
-Nipun Gupta <nipun.gupta@amd.com> (maintainer:AMD CDX BUS DRIVER)
-Nikhil Agarwal <nikhil.agarwal@amd.com> (maintainer:AMD CDX BUS DRIVER,commit_signer:4/6=67%)
 
-if this is going to go through the EDAC tree.
 
-Thx.
+>
+>> 			ret =3D dev_err_probe(dev, PTR_ERR(sdev->icc_paths[i]),
+>> 				      "failed to get interconnect path %u\n", i);
+>> 			if (ret =3D=3D -EPROBE_DEFER)
+>> 				goto err;
+>
+> Why you only want to put the icc_paths get for the probe deferral case? I
+> think that you want to do it for any error?
 
--- 
-Regards/Gruss,
-    Boris.
+This is the same logic as e.g. for the regulator code in simpledrm. The
+idea seems to be that in case some regulator (or here interconnect)
+doesn't probe correctly, we still try anyways. Just for EPROBE_DEFER we
+defer and wait until the supplier is available.
 
-https://people.kernel.org/tglx/notes-about-netiquette
+So defer -> defer simpledrm probe
+So error -> ignore error and continue probe
+
+>
+>> 			continue;
+>
+> I'm not sure why you need this?
+
+For the above behavior.
+
+I guess there were some original design decisions behind handling it
+this way, so I don't see a reason to handle it differently for
+interconnects.
+
+>
+>> 		}
+>>
+>> That would still keep the current behavior for defer vs permanent error
+>> while printing when necessary and having it for devices_deferred for the
+>> defer case.
+>>
+>
+> As mentioned I still don't understand why you want the error path to only
+> be called for probe deferral. I would had thought that any failure to get
+> an interconnect would led to an error and cleanup.
+
+See above.
+
+Regards
+Luca
+
+>
+>> Not sure what the difference between drm_err and dev_err are, but I
+>> trust you on that.
+>>
+>
+> The drm_err() adds DRM specific info but IMO the dev_err_probe() is bette=
+r
+> to avoid printing errors in case of probe deferral and also to have it in
+> the devices_deferred debugfs entry.
+
 
