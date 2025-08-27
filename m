@@ -1,180 +1,233 @@
-Return-Path: <devicetree+bounces-209713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25AFCB387C6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 18:32:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2E3B387CA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 18:32:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0ADFC4E1058
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 16:32:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94EEF16F445
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 16:32:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00FC820A5EA;
-	Wed, 27 Aug 2025 16:32:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4852D0274;
+	Wed, 27 Aug 2025 16:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="eLPfFlmk"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="gg6p/4E5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f227.google.com (mail-qk1-f227.google.com [209.85.222.227])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E2EA1A3172
-	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 16:32:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.227
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94D620A5EA
+	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 16:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756312341; cv=none; b=bVSuvhnem8YXOQFg+MemSDijnzDlbJK9Ur6HMBZ+fEs3gFvc8JuZxb1uX2Bqf5aZlqaDSIUKQ2NZbH6w9L530/Jiv4Ks0D3KLtdX48y9nnMJ7/D4e0TgZB3jR1T1EpKUrlnZ6n0Mdszvl5AcKOylOSXyJHbU86fEYSVgbRzQtUs=
+	t=1756312366; cv=none; b=rqdsSW4MZePhH8/6iPcLI8FOwiZfkP6Iqla49mgdU9Tfrw/JbIGuQ88XFNoKoF79PPE44YsFaxpZvzJno5GQs6Fo6MwM52D3bjisTpkLZlSUdC1JXvE4T3T+IzsXiMceLI+nqDsHwYoouSlOu5/u4oAYgFtIF3gtb3BPLOFzIaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756312341; c=relaxed/simple;
-	bh=mLpKPATLAipscdT0O9B+4JaAX0nCwFq/LatPYj6QMy0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KRaUntWz+IA0ol/fjg+6/crZ0ZkI6KHdr8utkYEw0k3YZwhJ1Kc3O6/4Dr1GnGaSkCpFOCu6iAN7JW7qAt4WP7V+rcVVh3KOGUsWlVlACJXXuRGIMY5891bR2TABspEUPRqVp+ET4y2HGATFst7l0cIh4KejuPRivp8AIJ/GDao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=eLPfFlmk; arc=none smtp.client-ip=209.85.222.227
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qk1-f227.google.com with SMTP id af79cd13be357-7f722cb35c6so9458285a.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 09:32:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756312339; x=1756917139;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:dkim-signature:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p8dktpCBHOsNkqxhCr4VDQbXXVvhYTbllt04Kcihkl8=;
-        b=Keo/WvA8aBGnrvzVgJmGhOuF2O5NSi4am3kyKQdTHWkKowb699Rd/pAH2DYxl1B210
-         Dlyp4hSzMM5yvA8lLB1JOmc4kIVFYuSTRWNQQ7651O1jiGVLOsCQx1xTE6mn1vrrmuhx
-         +ZSENHep/nkzwQ6bPzq3cO5zOAAoGWi7GfEOjIlrql2GyMBWqRCQPMbWAVkEBws/yL8z
-         T+6nfrEBcDRIAMTnhRDaQoDhuPiDY6m80JDsj3mLCo4PgC1lwqRlmFTKqFtseEwIfTw3
-         r+YqlQdTtQhOOhdIXvZx+8TQ2OH9PMcTgGnlhzPm+afy/P2O4lFgyQKOlU+LLR/fKmij
-         LtmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXLM0rRAgcH8JEqDIKSdvTFWBxJuPOHrVk+5ZIahvfrXCTkUTL6H5yRHixPdjvB27v06UVwN3IxI5Cy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7/j3iLwLWxBLeyzjnbszplhJ3S/PU1eJjI0qCmMM+2zMRpR3Z
-	Tgw/3Nh9BNfKPlQbICWRClGSgl75if8T0y0ftgVMB8B2GrJwFDzdsS4gMmv4Vjos1ru6jFfzf3H
-	LhWzbpnNK4NZjKTV06hRMU+jBpxaVEpWhjLH4pZv5Hr7tRKPuYEr46FMjB9BpEAQ+zumHhXleB/
-	f+O2IX1F53ImscoKuGM3Qvh/CDQfXtGnVMgVFtJW1gPdTfk8hfV84KK6qT623mLfXE78WXSNyZI
-	vtpEWGIMuxI/mQ4/+C1yA==
-X-Gm-Gg: ASbGnctsJgoHYMO9vUJaOKiOZA3rnz6f3IAyOlpwEbVLHwAhmXT8qv2Je7+8ItkZcnU
-	a521oTUuYPAfjJiTPWvaKyNXYPfEg0RWC9w1N+8T3hJG+BQhxsBB2Z/raoG+CLMZ7gErnyk894s
-	7GmZJmsNNAY4uiawPT2VbXVtJUEd1XC6iX4pkayOGCvuWnhlssj6DANDt6k4SIgxuK/K9wbRsQ1
-	6giHjaC+j2mdOrZctKMKHPiSbyIGdZ+3WONybvboB0cucqUm9vGBlxR0pRO2L3tI6vdwvi2y3i0
-	3chKfQMGWWUzW5nIUznFOeM3+SgVkmJH5FkB6BSkXAmD9ZZefMS7ljsOd++/FZMwjThEHa/DYpQ
-	ezwQdswk1T665m/tTTtG1kLKr9crj+KJuJrQy5p3K9gFHQ8rr/TAcHyB36hpz3FAQdygBtj2fPG
-	zws6Nw14w=
-X-Google-Smtp-Source: AGHT+IEreW5rZLGi0luqw433ycshDA+N+OL/7F1eXI9cIRc+XH4pbPw4Sj69P0Kur3pHml8H3wLxJnykV7wb
-X-Received: by 2002:a05:620a:4725:b0:7e8:bf8:abf7 with SMTP id af79cd13be357-7ea10f72270mr2119516985a.20.1756312339161;
-        Wed, 27 Aug 2025 09:32:19 -0700 (PDT)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-101.dlp.protect.broadcom.com. [144.49.247.101])
-        by smtp-relay.gmail.com with ESMTPS id 6a1803df08f44-70da725e6b3sm9886816d6.47.2025.08.27.09.32.18
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 27 Aug 2025 09:32:19 -0700 (PDT)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-70d93f57a7bso2162526d6.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 09:32:18 -0700 (PDT)
+	s=arc-20240116; t=1756312366; c=relaxed/simple;
+	bh=sokmmttEF6WQPkFswGePVZ5nkysqROOmFeWowMPSpUo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=p5mgAXZyipAVyLv/5yOB8u3RtqXFLWFNKmHYTlaIqIiGLVpmgJ2p+8J0KWRgdEw1TlYYXjWFONtMgj6UNOAJroAeKKnyZvEOFxaE5mxYSHAvsGV43Q9fWL3A6yq5fQnx7nQjrqfDEM9fLCYOI16zXVWqMzZAqTdKxLCm6sZsWz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=gg6p/4E5; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-55f53ed18f4so54559e87.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 09:32:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1756312338; x=1756917138; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=p8dktpCBHOsNkqxhCr4VDQbXXVvhYTbllt04Kcihkl8=;
-        b=eLPfFlmkuxDYmvBSvM8GA95l8BTZdmF/azbCV25KbY5wKziLlm1T6r5yNxegwqK5pb
-         MfPhh2qFAmianlf2NmvrFi7GZNfv2FJfNLuZUyMWMpgQEjmD1rA4RncPtNqIdNs7nMMd
-         sWkbpl/FF/DZj99BUU+AgYKmvkZZW1zWbpJyo=
-X-Forwarded-Encrypted: i=1; AJvYcCUY8yYzllLmYHk6UX4/gFbwUxYLnC3wEK8yc77GZXOnbFUpLnuy8pD9R+rKSF9roPFZeRpYvLeUfNHB@vger.kernel.org
-X-Received: by 2002:a05:6214:5344:b0:70d:9819:879a with SMTP id 6a1803df08f44-70d98198d82mr255971696d6.58.1756312338263;
-        Wed, 27 Aug 2025 09:32:18 -0700 (PDT)
-X-Received: by 2002:a05:6214:5344:b0:70d:9819:879a with SMTP id 6a1803df08f44-70d98198d82mr255971066d6.58.1756312337610;
-        Wed, 27 Aug 2025 09:32:17 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-70dc969f011sm44700806d6.22.2025.08.27.09.32.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Aug 2025 09:32:16 -0700 (PDT)
-Message-ID: <2ff3ec4e-4824-4d03-bab2-a69229764692@broadcom.com>
-Date: Wed, 27 Aug 2025 09:32:11 -0700
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1756312362; x=1756917162; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uA1HrGWTiFMd6/17t962MubCXtdKe85dul62wLkDnTc=;
+        b=gg6p/4E5aHVjH2uXxUZQmHFeMlCI6dMmMHKdqeWL05IuMASeI8AzbS0b5vbm14JQSc
+         Vl1hta3TK28UU5Cmfixr0mIj1j4u+27ey6lTR3ItGQYtGlFPslHa3dePuw+oszlpum54
+         pkE8qYAIp2Xdniv9uBYfZZMUYLIBFoGBEHqb1uDoEsXa4UyC2IBbdLzjnQ5WgY6FwoWA
+         RigQ/8/HWXRfJ5M4w9iFlYznxoMEcmvYZjOXaegue2qEEil2Jpt3KRQD4fam6q5T/CQu
+         w+hZqa/tQuFAny2PpcJg3w577VtVqDtfaaU9RnxtxAyVk2cqFtbldLGsEuGbSWh10b5k
+         KMsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756312362; x=1756917162;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uA1HrGWTiFMd6/17t962MubCXtdKe85dul62wLkDnTc=;
+        b=rxVejQlCLivLpnpwibdn2gI5Lhlp1Z4mIQe3Y3uCSBvhVOPLuZEA54qSWO/8Aa+7FU
+         +xS6cpk/tEnVZtmOsQiswKmaTM7Gzku+nDuOkHIaZDdDwXa/H47kOsKBXcttOlXpIuei
+         Y3v+XZDnFfDnmUO/cPsyNZK+INtFFvNb2SURLze0rJVnBlGNDNKuYLUn1lfphy363g0j
+         RVAPh1nUyE9l7HTnSRxyMVgNPgzdGYziFyXA7TC2nFiMAISwbp6OFhWyGlRsgSZhC2GH
+         jblr5xN84YsaHGMBjhRojZC2VtQHky9VtkCLQN9ZuHYiS888+KA9HftnZXyswmB/FX3J
+         VQCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWyW38ybniAo3HBC4yrS/1xgscrLQW/FMGGwgc9RP6x4UqAw9/B6sQp7IyKLybp9U2XblJm1W/k4vUS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxji6pt+MJ/RYthHgvrBM63KX0h2vhvhvKYRU9bGR8ltNEgsOhk
+	PwbcsS+CHzqVYQyH7WgzY4LkIzy+KwARIGEee3HWrdnehxjSHBq9ZvDbrZi6589gdCmsXHI7nOs
+	fsavBrZeoQUwKrxN4AOBcivS6N4hkQg7Ne5T+PXV32w==
+X-Gm-Gg: ASbGnct5mJ9FliA69G4LGwSZQ6yLzyxGzcEIetzYq+pfV1b6Ml3qpLlnnrRGR6IL81L
+	cFWQ2AsLpeVZBsTc/3YWPbSg2fLVmqALAIM0PIWROHbNx0ZwI8z7Pr9OWJJrHT72f6Atw26asPv
+	wEEI+5Z+klLQvs/RR6MGergjtpSAPHCNCK9dVeYQBrDTxxAQnzQs14R4va0A584fu0o+9ncMVED
+	p5WBNkGHV/qID19DliKeFhDrvIEbiJQ3uH2VlO07cB1WPQLtg==
+X-Google-Smtp-Source: AGHT+IGmaVgA4GxBThOJulhfd/FOmckKPWhf4GB/qcPY+ghPacNlqJYq74uWQJwg/9d4AeS4NhA5YVY0Wv+MelGFJfg=
+X-Received: by 2002:a05:6512:2903:b0:55f:4760:ffc4 with SMTP id
+ 2adb3069b0e04-55f47610278mr2391780e87.29.1756312361741; Wed, 27 Aug 2025
+ 09:32:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] pinctrl: bcm: Add STB family pin controller driver
-To: Andrea della Porta <andrea.porta@suse.com>,
- Stefan Wahren <wahrenst@gmx.net>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- iivanov@suse.de, svarbanov@suse.de, mbrugger@suse.com,
- Jonathan Bell <jonathan@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>
-References: <cover.1754922935.git.andrea.porta@suse.com>
- <bb746d2fd50ecbb9963438fae8601c2e4901a126.1754922935.git.andrea.porta@suse.com>
- <6d812c08-341f-4f7f-a9ed-4545217cb8a8@gmx.net> <aKc9G9owEfYD-_qM@apocalypse>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <aKc9G9owEfYD-_qM@apocalypse>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+References: <20250819-pci-pwrctrl-perst-v1-0-4b74978d2007@oss.qualcomm.com> <20250819-pci-pwrctrl-perst-v1-3-4b74978d2007@oss.qualcomm.com>
+In-Reply-To: <20250819-pci-pwrctrl-perst-v1-3-4b74978d2007@oss.qualcomm.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 27 Aug 2025 18:32:30 +0200
+X-Gm-Features: Ac12FXz1RS70--AFk1fE2akY5GEXMKvlLbcKfDDlrSH8dzP6VB_vbFzt6mioyQE
+Message-ID: <CAMRc=Me2P9r9w-UPtjMAEvuQ_oNtibzPBg6tE7s1wdKkLmQgcQ@mail.gmail.com>
+Subject: Re: [PATCH 3/6] PCI/pwrctrl: Add support for toggling PERST#
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Manivannan Sadhasivam <mani@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Brian Norris <briannorris@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 8/21/25 08:36, Andrea della Porta wrote:
-> Hi Stefan,
-> 
-> On 11:18 Tue 19 Aug     , Stefan Wahren wrote:
->> Hi Andrea,
->>
->> Am 11.08.25 um 16:46 schrieb Andrea della Porta:
->>> From: "Ivan T. Ivanov" <iivanov@suse.de>
->>>
->>> This driver provide pin muxing and configuration functionality
->>> for BCM2712 SoC used by RPi5. According to [1] this chip is an
->>> instance of the one used in Broadcom STB  product line.
->> i'm not sure about the whole driver naming. The cover letter describe it as
->> "pin control driver for BCM2712 SoC", but this patch is described as "STB
->> family pin controller driver". So as a reviewer, I'm a little bit confused
->> of the domain of this driver. Is it for a single SoC or really for a whole
->> family of many SoCs?
-> 
-> It seems that this is indeed a whole family of which BCM2712 is the (first?)
-> incarnation. I'm not really aware whether there exist other physical
-> implementations but I'll amend the comment accordingly.
-> Please also see:
-> https://lore.kernel.org/lkml/d6ab66cf-09ac-4f53-9102-11f207d16db5@broadcom.com/
+On Tue, Aug 19, 2025 at 9:15=E2=80=AFAM Manivannan Sadhasivam via B4 Relay
+<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> wrote:
+>
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+>
+> As per PCIe spec r6.0, sec 6.6.1, PERST# is an auxiliary signal provided =
+by
+> the system to a component as a Fundamental Reset. This signal if availabl=
+e,
+> should conform to the rules defined by the electromechanical form factor
+> specifications like PCIe CEM spec r4.0, sec 2.2.
+>
+> Since pwrctrl driver is meant to control the power supplies, it should al=
+so
+> control the PERST# signal if available. But traditionally, the host bridg=
+e
+> (controller) drivers are the ones parsing and controlling the PERST#
+> signal. They also sometimes need to assert PERST# during their own hardwa=
+re
+> initialization. So it is not possible to move the PERST# control away fro=
+m
+> the controller drivers and it must be shared logically.
+>
+> Hence, add a new callback 'pci_host_bridge::toggle_perst', that allows th=
+e
+> pwrctrl core to toggle PERST# with the help of the controller drivers. Bu=
+t
+> care must be taken care by the controller drivers to not deassert the
+> PERST# signal if this callback is populated.
+>
+> This callback if available, will be called by the pwrctrl core during the
+> device power up and power down scenarios. Controller drivers should
+> identify the device using the 'struct device_node' passed during the
+> callback and toggle PERST# accordingly.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.=
+com>
+> ---
+>  drivers/pci/pwrctrl/core.c | 27 +++++++++++++++++++++++++++
+>  include/linux/pci.h        |  1 +
+>  2 files changed, 28 insertions(+)
+>
+> diff --git a/drivers/pci/pwrctrl/core.c b/drivers/pci/pwrctrl/core.c
+> index 6bdbfed584d6d79ce28ba9e384a596b065ca69a4..8a26f432436d064acb7ebbbc9=
+ce8fc339909fbe9 100644
+> --- a/drivers/pci/pwrctrl/core.c
+> +++ b/drivers/pci/pwrctrl/core.c
+> @@ -6,6 +6,7 @@
+>  #include <linux/device.h>
+>  #include <linux/export.h>
+>  #include <linux/kernel.h>
+> +#include <linux/of.h>
+>  #include <linux/pci.h>
+>  #include <linux/pci-pwrctrl.h>
+>  #include <linux/property.h>
+> @@ -61,6 +62,28 @@ void pci_pwrctrl_init(struct pci_pwrctrl *pwrctrl, str=
+uct device *dev)
+>  }
+>  EXPORT_SYMBOL_GPL(pci_pwrctrl_init);
+>
+> +static void pci_pwrctrl_perst_deassert(struct pci_pwrctrl *pwrctrl)
+> +{
+> +       struct pci_host_bridge *host_bridge =3D to_pci_host_bridge(pwrctr=
+l->dev->parent);
+> +       struct device_node *np =3D dev_of_node(pwrctrl->dev);
+> +
+> +       if (!host_bridge->toggle_perst)
+> +               return;
+> +
+> +       host_bridge->toggle_perst(host_bridge, np, false);
+> +}
+> +
+> +static void pci_pwrctrl_perst_assert(struct pci_pwrctrl *pwrctrl)
+> +{
+> +       struct pci_host_bridge *host_bridge =3D to_pci_host_bridge(pwrctr=
+l->dev->parent);
+> +       struct device_node *np =3D dev_of_node(pwrctrl->dev);
+> +
+> +       if (!host_bridge->toggle_perst)
+> +               return;
+> +
+> +       host_bridge->toggle_perst(host_bridge, np, true);
+> +}
+> +
+>  /**
+>   * pci_pwrctrl_device_set_ready() - Notify the pwrctrl subsystem that th=
+e PCI
+>   * device is powered-up and ready to be detected.
+> @@ -82,6 +105,8 @@ int pci_pwrctrl_device_set_ready(struct pci_pwrctrl *p=
+wrctrl)
+>         if (!pwrctrl->dev)
+>                 return -ENODEV;
+>
+> +       pci_pwrctrl_perst_deassert(pwrctrl);
+> +
+>         pwrctrl->nb.notifier_call =3D pci_pwrctrl_notify;
+>         ret =3D bus_register_notifier(&pci_bus_type, &pwrctrl->nb);
+>         if (ret)
+> @@ -103,6 +128,8 @@ void pci_pwrctrl_device_unset_ready(struct pci_pwrctr=
+l *pwrctrl)
+>  {
+>         cancel_work_sync(&pwrctrl->work);
+>
+> +       pci_pwrctrl_perst_assert(pwrctrl);
+> +
+>         /*
+>          * We don't have to delete the link here. Typically, this functio=
+n
+>          * is only called when the power control device is being detached=
+. If
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index 59876de13860dbe50ee6c207cd57e54f51a11079..9eeee84d550bb9f15a90b5db9=
+da03fccef8097ee 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -605,6 +605,7 @@ struct pci_host_bridge {
+>         void (*release_fn)(struct pci_host_bridge *);
+>         int (*enable_device)(struct pci_host_bridge *bridge, struct pci_d=
+ev *dev);
+>         void (*disable_device)(struct pci_host_bridge *bridge, struct pci=
+_dev *dev);
+> +       void (*toggle_perst)(struct pci_host_bridge *bridge, struct devic=
+e_node *np, bool assert);
 
-It's not the first, far from it, that pinctrl/pinmux design dates back 
-to the first Broadcom STB SoC (BCM7038).
--- 
-Florian
+Shouldn't this be wrapped in an #if IS_ENABLED(PCI_PWRCTL)?
+
+Bart
+
+>         void            *release_data;
+>         unsigned int    ignore_reset_delay:1;   /* For entire hierarchy *=
+/
+>         unsigned int    no_ext_tags:1;          /* No Extended Tags */
+>
+> --
+> 2.45.2
+>
+>
 
