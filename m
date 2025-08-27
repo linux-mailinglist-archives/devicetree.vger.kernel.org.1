@@ -1,202 +1,241 @@
-Return-Path: <devicetree+bounces-209740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C53BB38ACC
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 22:24:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D79F0B38B18
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 22:44:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6A9020445C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 20:24:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4F391C20371
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 20:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BF932F067E;
-	Wed, 27 Aug 2025 20:24:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89F192F3C03;
+	Wed, 27 Aug 2025 20:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PJUwSYzx"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Egv8i4FB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013012.outbound.protection.outlook.com [40.107.159.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855CC2EAB6D;
-	Wed, 27 Aug 2025 20:24:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756326250; cv=none; b=pIP1ftr16vD49wqg7FdM+r1q+itpDbVf+GdsNz+L6XF8JBQXupOqeFciN4FCCPKs6yQWqq5QxAzN0BS3DjMznlDawMf39QYkEoMQTz1j4Yrsjfmk7dzqBhhzq/UX1Kh04UIltS8amGSk7D3XuWZq2NmCCOdXzcUlXMpQYnOeXgg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756326250; c=relaxed/simple;
-	bh=C6PmEza3l0nG7shFPk7ihwWxDS27su3MGXCvTXtREkA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BDHWncTygGqrB2vFE8+nY1pEwS9wrfY+n0TazW23Z2oFIT0Nnb8DTHy1f9NCEFgSoETKYxTJr2ySfFxaXC1t0B5uJhjdcVKoD/8OHX41PoEm2H5uDOC9d5TtWmd1HyR3GQ9lYueyAfiXxb3ueXVSeCu6i8OCJr1MrUPBkZI0AsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PJUwSYzx; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57RKNwL21358626;
-	Wed, 27 Aug 2025 15:23:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756326238;
-	bh=OhZvUGNzkKwJBBWt0fGwrgmGI6bNK3nytiaCkySyJVA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=PJUwSYzx1lbtcFqYNcR6pLPEdje2W44HF4UxxV1+fmP1pN5LWjPlD4B0Ix8MM5Y+Y
-	 7OxjyyJRPLEUWsRpmwDyAKG+X1J3Yrc2kRCM185X37Wuar5k5hKjAe1gOVecLFJOAq
-	 gYbOJss5rf7qnqUwLyHEsR349QNAqk7mZggvxOvY=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57RKNwmt2950688
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 27 Aug 2025 15:23:58 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 27
- Aug 2025 15:23:57 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 27 Aug 2025 15:23:57 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57RKNvZE3367094;
-	Wed, 27 Aug 2025 15:23:57 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, David Airlie
-	<airlied@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Jason Kridner <jkridner@beagleboard.org>, <afd@ti.com>,
-        <tomi.valkeinen@ideasonboard.com>, <devarsht@ti.com>,
-        <dmitry.baryshkov@oss.qualcomm.com>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH V5 5/5] drm/bridge: it66121: Add minimal it66122 support
-Date: Wed, 27 Aug 2025 15:23:54 -0500
-Message-ID: <20250827202354.2017972-6-nm@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250827202354.2017972-1-nm@ti.com>
-References: <20250827202354.2017972-1-nm@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265D722F74D;
+	Wed, 27 Aug 2025 20:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756327463; cv=fail; b=nsv9D/gVkBtzcqpQUBg8zUkTeGNv1yYtv0pozNKyd/N3utsbP5gh6mdIJOte2y/dnVns/1x/YvNJ9Y6lBB9Ds49qAKy1JVBvDDRODkB3HQf7NrmB/KKYKx/GJ2dgwW6lxubJmXuW2420zLW4RQvLKKBUz0aBgvQwbjxum1uu1vY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756327463; c=relaxed/simple;
+	bh=rmSQygkaNp+0ZIcua77BrvRI7QduIqOk6tM4rTkD7kI=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=njrmx6Yjd2lE72faEixBYpqkNjbZCSYCpMdrbJVgtGnMo10wzx0tZ3GMN+jfY5INnKzfoFaWuJ74Jl/ZueHOut1uB9oC1lXTTijWCgFrogL2QIkQB19C2sSi7fvFcWOufKGhHcdrmzhxWzDKcSviU4bDOYoRHERtoMfuWzYDReM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Egv8i4FB; arc=fail smtp.client-ip=40.107.159.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ymfD0FNmSdnTE77uhmSFV49wzfAuwC8A61d/j2f/XCMwkpcysRT/gg2xQm2h+TB9JhpEpEmP0xfrFapR3t1GwwAtJbMnO1u2tUdp+nU93MVmozsVZ+y6zwce6gSe4/KGvZbOswJdsx4w/5c6UtQm1D/SbWO75HgynyWQsGsUMR3/3VpwjtndWUafBXAyBZa5zisAJT0QUDBsK47RgWP40vCU4owwVXlX9s1a3DfMU/LmyoCkQ+x+iZnPdvoWks/u81q/+Q9u9mgrgMsrmC9ixXec9Qj5gjpgItvdkfI5x/2P5vN0k4fFSLvxLF/kUYsmAuxLQ3b5ld+uwPicii+33A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9RgE71hOcQjAr6myOvV8T2RqMhT0YJW7WNaOOc7DDTk=;
+ b=Yswy6vBYEZjPwTTMYG9X09F4otTP/Kyfu3IRG44AoyEwc560LnyIPd671QMtipr98d1cxiqFgUYiBjx8Uvuy+V6fgLd6tRMYfe7K5kU2hsG7+aK0fizlXTayaA8KaIdkiI8/8PVd9qtXp7CDAzadP1rpguVc96mw0/af7q6QygkVkORCa86w6rCMA0nOphJQxzobeqcnwqM+SiPVzJbKYQ9aigxFaoA6aFirmSF+zJ7qfdh222ZPxYRtgdSXHXL1j0EBp9ZuTCT2aqQLpb/P6RbbuFjUnoP8PJ3540qOs5+Svt2t17c400RfUfzCF0afCv86JzGZw96dotczU0Gr3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9RgE71hOcQjAr6myOvV8T2RqMhT0YJW7WNaOOc7DDTk=;
+ b=Egv8i4FB0Rj6j2fuu3O/PrapGVASKj43c5dI//Vvm4tfxpmHRzjoN2aiFWfojqwbb8m5H0FyWLNbbQqaJWyIdwoRMF4rDawYfKF3NP+Udn+/G/dA9M2NcgKK3i2qlpASIyZHKZ9T2tYFaPbCp5t9Z5xnizyJnUUntOp4iLC7ZPqnW3UQOWqo0lcOkTG+wiVKGLleeqRAjLVPGEc1DLVsjjopqo+xq8AzQlnM71BmTGqCT90uKiPKHdbuB/p/EqfFIwgXvI3GCap09IBT9wjIKVNHD5Uumz9Ycbx4CmpY08CbsYf+5U0Zj7cN3lOl3C/DQ8VBztdHdT4UHLRqLmaYEQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by AM8PR04MB7729.eurprd04.prod.outlook.com (2603:10a6:20b:24c::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.15; Wed, 27 Aug
+ 2025 20:44:17 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d%5]) with mapi id 15.20.9073.009; Wed, 27 Aug 2025
+ 20:44:17 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-pm@vger.kernel.org (open list:CPU FREQUENCY SCALING FRAMEWORK),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: cpufreq-dt: Remove redundant cpufreq-dt.txt
+Date: Wed, 27 Aug 2025 16:44:01 -0400
+Message-Id: <20250827204401.87942-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY5PR20CA0035.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::48) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|AM8PR04MB7729:EE_
+X-MS-Office365-Filtering-Correlation-Id: 57aaf7ea-1f52-478b-d39a-08dde5aa7d81
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|1800799024|376014|366016|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?zgHAfk7r0EeiEwddYYHfxPVikXZDl1Q7iPUaGKHbqHTFBo9Q4CtDAZOX2KBu?=
+ =?us-ascii?Q?IUMGjXNEH8r4ZNOpbZgON1gdqIbK7JGHKdqFucDAiolCy95YQOe8eZRg9bqC?=
+ =?us-ascii?Q?i/Wl9JzDaEWt9xpKlF4CSuKG233qYmh3rQDncupu19WJxJ1M7PFHBAyPg6JZ?=
+ =?us-ascii?Q?YhVII71pDCpr784JQX3z11zW+4Mq3cl5f9rbO9lyqQe399kYbUgYrwxYlhZt?=
+ =?us-ascii?Q?blImyq/YV3RraShWBppDKJM5FlORmcf5qy2xiGicboWdZDU+cizWUK0kVVIy?=
+ =?us-ascii?Q?Nu/nzAyZ7mTK4KLt7QjFbyHtz1xgpR6sVN6cHtwDXDArH8KWR3UvDGdk/LMI?=
+ =?us-ascii?Q?lYWkALfnmId5aGF5/vIpCFEbYGYEq1Wu25Rb2F//b5WrkM6p0P6TDehjjmUl?=
+ =?us-ascii?Q?G9CjJQ22/u1y0FBir3ICAHVP3BzSERJkQgIt8AFJNko2y3omlHTrdrkZY9Bf?=
+ =?us-ascii?Q?0EQuS8d0UXomPu0hHiTZsGxgXOjANAOahyCqEhKN2fM7RKSYZQRPPYOgwRaK?=
+ =?us-ascii?Q?dBMryk8b+kPOScTlZVM4KcMjum7fZOoTGmlYzSmtDelzsZfFwvhfbhMU+NjI?=
+ =?us-ascii?Q?jm6clspbBDgGl0RDl0gatgv1zCzUFjH5XwJJbIdtUpackFxVY+ZUr2yKbyFE?=
+ =?us-ascii?Q?HU8ezyC9KT5xXeEfrZipa2rV0GZfvMyUv/EwD6JJqutv5e3aS6J8W/XDhh22?=
+ =?us-ascii?Q?xB0gP+zUvccfaD9EtS5Da6Y3THM7STWsZaDaRPP1xBznLPJJ9paNgUnrOcCx?=
+ =?us-ascii?Q?cu1zyasmWfIrIKkODLcj8NG7yvLEHORG21LcyG5W6tkUx/J+ykF0YTLE1CVd?=
+ =?us-ascii?Q?BW8vmz0xynpmF5qYpb3QBTqLsKp55NmIbwxv9vc9mBnMyF5jI+ydw8tJlHUO?=
+ =?us-ascii?Q?NxTqlefNbJw4ilpbnzBAzCQCSV990MFNBpB7IWfDorlvHdSFL18+G2s66Z+9?=
+ =?us-ascii?Q?TlISNZ/2zHJh+g8JWeS6AWS9UfKRa7oTNUuTIqgbF0pX4zqO43QYUJ2c4n2j?=
+ =?us-ascii?Q?ujA76Q1fcZ1jW6+L+BVWc5DsNtSLiU0noci+b88pkhqEqYuu7qDwIdkI4ylz?=
+ =?us-ascii?Q?JW8HEbwcmwRLE+GfZvuDt9saBrli0I90vmjvRqWmW0baym6USKziJQPAli7u?=
+ =?us-ascii?Q?nk7eXwWpw6F7j0y+qCI51mMWLDdU0w3AKC1ATjkTqMx/OwaCFvIUT5EJponH?=
+ =?us-ascii?Q?0j8SvFf+KHINUrm6eWRR5TjRn1ML59/j/ZdnB7AUylneKgm4i/xzwFrC8bHx?=
+ =?us-ascii?Q?rVFQnz+8Q+pU8lpz3i/E/YmakmNU5SLDnzXCMGHzdXZJhGi5S/CsqfLsvmRU?=
+ =?us-ascii?Q?qJwQBOUrMHGBb35YvXoSy7AV2YCyO6VpSneWPtcBxhaUJlQjBqWNC0a0db1K?=
+ =?us-ascii?Q?6NgHUWD0k5BrlwOjGbQe/UgWQ3SzT0dgy/MxlMps4Mx0krI/RkaysKrmC8tj?=
+ =?us-ascii?Q?SbWusDZzlj4m91VfsylT+3aczXD6ksYp8j9WDYHTjI99JFrbWWkmyA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(376014)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?VZaKifmGyaSeHJvu+lUYmkwkfFuMy7WV0LPbVt4JGu65hqAiykTzN/QGiHwW?=
+ =?us-ascii?Q?OKSl+p1z5cOLjEpy7lXSKWe5dzWUHFnsKXqA5TwaXg1M7ipR1A1KAPdAvZpV?=
+ =?us-ascii?Q?lfEmNFhKBKfEZM5D50MWbtEEwiOLwGbwsyukCz+wxwlVN9+K54cU+Di1PxQw?=
+ =?us-ascii?Q?9N/04nisabmmNGEutKV9ODB81a7qxMc/PgCnOnIKccRt/5aUXeipxKpdXhsR?=
+ =?us-ascii?Q?KGQE7taQnZ/AF5fNOdcOZqaMm8rpWRQ1NSeETKACXgauIKvGwrjfbvGIarW5?=
+ =?us-ascii?Q?QwKDZ73LgnlD/N3I12L68gUvCFW5hvBTGtcU27zBxQgSUxIPWYTj21lgJaxQ?=
+ =?us-ascii?Q?nJqwl5yzyGh5RRoU2moTstt6o3liDXppgB9lEyaTj342ZyK49I2zSCOJdeVK?=
+ =?us-ascii?Q?QyIQH+WAQQ/kBc0DfOQWtmW4gMKid3UyDEqcVk4SzMFHoNAYlDOiLCgpb4oG?=
+ =?us-ascii?Q?0EA+LMvWwSDqbb4vKtKFmxEMmN4fAC5IniJ8HIofXSN+TQFJBMO0tvAjeqPk?=
+ =?us-ascii?Q?m1E3iKaMswfsz0Pe4g9Y8CZtgd8ELk+eUWWFqnK7+Fcc/QfXS286mkbz0hXn?=
+ =?us-ascii?Q?hKWm5n4JhuYiJOQ8ew6zqfs/g7KOthaulHRRtVu6cu77773MR0jAcQheT5Dw?=
+ =?us-ascii?Q?yIDVsZ3k5d7W4Eh/dnHPGRNhfgj8XD6v2Bx56Tpr/kfQoZ5xgUWMw/flcnBf?=
+ =?us-ascii?Q?KKOq9jso9MyAMbZJtT9XfAuLwJ0DvFZOKGC+KBrTCchSPkZPcKgCQm39n2oK?=
+ =?us-ascii?Q?D4xg0VW2wQEEhYOoImuaLXZQmKsSDF64PduSjnBHajyHtlzsWXQKq91w8DTE?=
+ =?us-ascii?Q?pZzBw1ASBEo+AtuL0SrVMq9h4TE9wsOvCEdN+S8tDM9ken8s2iTzgU5pXg01?=
+ =?us-ascii?Q?A6QNH3ocj58NBHEN1sEcfp4WsMHiQl1irFGLNgjFx4uipsB7izQbtj1iLbYh?=
+ =?us-ascii?Q?H9L7lflblJxnWBR3yYTQoPT9fmD+ed4aRPEEwaJxv7Zz/OoqiqdJbGp1NLBB?=
+ =?us-ascii?Q?s+KVkPPE9nT6SGmiXp6A71UG+gUpdjCZXKzE2rMdqgxsoo+cKF54gMMd2Jar?=
+ =?us-ascii?Q?VHArY28uqvB9VsKQaac6bYXM2SDDckiGTvr1LSLNp5+kQudv8EMBi4BBCa90?=
+ =?us-ascii?Q?dh6SoJH9FMI8f1NQu1eTG0R6xIxMtqlSN0BIW9sWEHrHbc6xoSzi5c5LZ3uS?=
+ =?us-ascii?Q?el5pGsQGy8Bwc5ZV28Bri6eTomgQqVt/osYImPKj5aBvM/Zqn59/wDagig8y?=
+ =?us-ascii?Q?P/GGtgRQvQdivXInMT+ngjmWUXBREgEdmbAUCYwLyP18f0sBkNRNkr4xZB4a?=
+ =?us-ascii?Q?i3g5il3kHe2NIGgA3GJt+Gf49SFLHKYaHUGBOtRdwgk8zWT2cmGwP5xf82jm?=
+ =?us-ascii?Q?uQa1Z7xE+6kcAhOn5gQ3nJ20tNsnTseJ8E4F+L6tcFHRNoz1w/Drl3wyIIZR?=
+ =?us-ascii?Q?gUPPqmnG6YgTTLjZO/A/PyIp1DluKBZgjvz8PkCSrccaTetg5UtP7KjdGh++?=
+ =?us-ascii?Q?1sNL2ydxnSy9l4Khs0nDvgNCd9MRf6TfK4OaUOiyaijIGpw6J3nZIfd7fOfY?=
+ =?us-ascii?Q?NpGVYIGtPjwKI4Kwhm+dzrDqn8vkD3wxAmBobjFx?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57aaf7ea-1f52-478b-d39a-08dde5aa7d81
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 20:44:17.1503
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tr9rULwcP9eofX0sgZaY6qfR0puivQaW6AoXmt32vF59NYxWq7+FAMC3ooSqcGeyY+NVET5OMmzKcM6c8hrnIg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7729
 
-The IT66122 is a pin compatible replacement for the IT66122. Based on
-empirical testing, the new device looks to be compatible with IT66121.
-However due to a lack of public data sheet at this time beyond overall
-feature list[1] (which seems to add additional features vs ITT66121),
-it is hard to determine that additional register operations required
-to enable additional features.
+The information is already documented in
+Documentation/devicetree/bindings/arm/cpus.yaml.
+Documentation/devicetree/bindings/opp/opp-v1.yaml
 
-So, introduce the device as a new compatible that we will detect based
-on vid/pid match, with explicit id that can be used to extend the
-driver capability as information becomes available later on.
+Remove the redundant file.
 
-[1] https://www.ite.com.tw/en/product/cate1/IT66122
-
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Reviewed-by: Andrew Davis <afd@ti.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
-Changes since V4:
-None.
+ .../bindings/cpufreq/cpufreq-dt.txt           | 61 -------------------
+ 1 file changed, 61 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-dt.txt
 
-V4: https://lore.kernel.org/all/20250819130807.3322536-6-nm@ti.com/
-V3: https://lore.kernel.org/all/20250815034105.1276548-5-nm@ti.com/
-V2: https://lore.kernel.org/all/20250813204106.580141-4-nm@ti.com/
-
- drivers/gpu/drm/bridge/ite-it66121.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-index 1b2ef774c770..0185f61e6e59 100644
---- a/drivers/gpu/drm/bridge/ite-it66121.c
-+++ b/drivers/gpu/drm/bridge/ite-it66121.c
-@@ -287,6 +287,7 @@
- enum chip_id {
- 	ID_IT6610,
- 	ID_IT66121,
-+	ID_IT66122,
- };
- 
- struct it66121_chip_info {
-@@ -402,7 +403,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
- 		if (ret)
- 			return ret;
- 
--		if (ctx->id == ID_IT66121) {
-+		if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
- 						IT66121_AFE_IP_EC1, 0);
- 			if (ret)
-@@ -428,7 +429,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
- 		if (ret)
- 			return ret;
- 
--		if (ctx->id == ID_IT66121) {
-+		if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
- 						IT66121_AFE_IP_EC1,
- 						IT66121_AFE_IP_EC1);
-@@ -599,7 +600,7 @@ static int it66121_bridge_attach(struct drm_bridge *bridge,
- 	if (ret)
- 		return ret;
- 
--	if (ctx->id == ID_IT66121) {
-+	if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 		ret = regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 					IT66121_CLK_BANK_PWROFF_RCLK, 0);
- 		if (ret)
-@@ -802,7 +803,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
- 	if (regmap_write(ctx->regmap, IT66121_HDMI_MODE_REG, IT66121_HDMI_MODE_HDMI))
- 		goto unlock;
- 
--	if (ctx->id == ID_IT66121 &&
-+	if ((ctx->id == ID_IT66121 || ctx->id == ID_IT66122) &&
- 	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK)) {
-@@ -815,7 +816,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
- 	if (it66121_configure_afe(ctx, adjusted_mode))
- 		goto unlock;
- 
--	if (ctx->id == ID_IT66121 &&
-+	if ((ctx->id == ID_IT66121 || ctx->id == ID_IT66122) &&
- 	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK, 0)) {
- 		goto unlock;
-@@ -1501,6 +1502,7 @@ static const char * const it66121_supplies[] = {
- static const struct it66121_chip_info it66xx_chip_info[] = {
- 	{.id = ID_IT6610, .vid = 0xca00, .pid = 0x0611 },
- 	{.id = ID_IT66121, .vid = 0x4954, .pid = 0x0612 },
-+	{.id = ID_IT66122, .vid = 0x4954, .pid = 0x0622 },
- };
- 
- static int it66121_probe(struct i2c_client *client)
-@@ -1621,6 +1623,7 @@ static void it66121_remove(struct i2c_client *client)
- static const struct of_device_id it66121_dt_match[] = {
- 	{ .compatible = "ite,it6610" },
- 	{ .compatible = "ite,it66121" },
-+	{ .compatible = "ite,it66122" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, it66121_dt_match);
-@@ -1628,6 +1631,7 @@ MODULE_DEVICE_TABLE(of, it66121_dt_match);
- static const struct i2c_device_id it66121_id[] = {
- 	{ .name = "it6610" },
- 	{ .name = "it66121" },
-+	{ .name = "it66122" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, it66121_id);
+diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-dt.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-dt.txt
+deleted file mode 100644
+index 1d7e49167666e..0000000000000
+--- a/Documentation/devicetree/bindings/cpufreq/cpufreq-dt.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-Generic cpufreq driver
+-
+-It is a generic DT based cpufreq driver for frequency management.  It supports
+-both uniprocessor (UP) and symmetric multiprocessor (SMP) systems which share
+-clock and voltage across all CPUs.
+-
+-Both required and optional properties listed below must be defined
+-under node /cpus/cpu@0.
+-
+-Required properties:
+-- None
+-
+-Optional properties:
+-- operating-points: Refer to Documentation/devicetree/bindings/opp/opp-v1.yaml for
+-  details. OPPs *must* be supplied either via DT, i.e. this property, or
+-  populated at runtime.
+-- clock-latency: Specify the possible maximum transition latency for clock,
+-  in unit of nanoseconds.
+-- voltage-tolerance: Specify the CPU voltage tolerance in percentage.
+-- #cooling-cells:
+-     Please refer to
+-     Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml.
+-
+-Examples:
+-
+-cpus {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	cpu@0 {
+-		compatible = "arm,cortex-a9";
+-		reg = <0>;
+-		next-level-cache = <&L2>;
+-		operating-points = <
+-			/* kHz    uV */
+-			792000  1100000
+-			396000  950000
+-			198000  850000
+-		>;
+-		clock-latency = <61036>; /* two CLK32 periods */
+-		#cooling-cells = <2>;
+-	};
+-
+-	cpu@1 {
+-		compatible = "arm,cortex-a9";
+-		reg = <1>;
+-		next-level-cache = <&L2>;
+-	};
+-
+-	cpu@2 {
+-		compatible = "arm,cortex-a9";
+-		reg = <2>;
+-		next-level-cache = <&L2>;
+-	};
+-
+-	cpu@3 {
+-		compatible = "arm,cortex-a9";
+-		reg = <3>;
+-		next-level-cache = <&L2>;
+-	};
+-};
 -- 
-2.47.0
+2.34.1
 
 
