@@ -1,113 +1,205 @@
-Return-Path: <devicetree+bounces-209654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F714B38365
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 15:10:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45382B38393
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 15:18:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7C9C3B092F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 13:10:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01476462E56
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 13:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF3A34A30A;
-	Wed, 27 Aug 2025 13:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8239127B50F;
+	Wed, 27 Aug 2025 13:18:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A2833F9;
-	Wed, 27 Aug 2025 13:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F5D1BCA07;
+	Wed, 27 Aug 2025 13:18:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756300197; cv=none; b=UbD3FHhLom6zVjlm9wnRYRrzRDJm9jjkv3WUwbA/m79f/Jr5SHYKlRKcQoaWbB9oB4+vKwREstPpVYKeb7EJOhagS6SxQVMITXp9DTX9RdNR2jCY7/ujnGsmwCyS/kvEtme8zYH8WKDqEyA/Ph2QvqJhFYj7lD19q5nomjUYHrU=
+	t=1756300692; cv=none; b=jtyDOedFcaIunrfPEke4QCGaoRcnNdLtNJGbP35gYR1fH3iuSGMCKPCmEzBge10CTh2rp5XmxWnFjddn2jrYcFmsKqbhQMHWMx2f2Ned9fJpW83clxCnDmrb1PQrsCDKuFqYtkRsv3zktPZavBrHmjTg4pa8oe1KrqzaIrvPm6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756300197; c=relaxed/simple;
-	bh=D3+PuIC2hj+Z79JjrDH0FHlZ91TH9OUwHrcIMtATjIo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gzCq9j55BJCjMurgGaG/Lh+Qw6lTp9um/5R+RXSbBrw5xRts1YkgiFNtq1jkVYpYH5f/hSMfgagFnylG+5QG5sS7/5XGWgWX0p9d44rfD6/AMl+yHL3lRHpr+w0Puzd9KdDsv6m8ZrVdYy2qx82j/XTrkxGDPTRdVQBggyymSn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2DF141688;
-	Wed, 27 Aug 2025 06:09:47 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 119673F694;
-	Wed, 27 Aug 2025 06:09:53 -0700 (PDT)
-Date: Wed, 27 Aug 2025 14:09:38 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej@kernel.org>, Samuel
- Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Mikhail Kalashnikov <iuncuim@gmail.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: t527: orangepi-4a: Limit eMMC
- clock to 75 MHz
-Message-ID: <20250827140924.1340417f@donnerap.manchester.arm.com>
-In-Reply-To: <20250821132935.2070398-1-wens@kernel.org>
-References: <20250821132935.2070398-1-wens@kernel.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1756300692; c=relaxed/simple;
+	bh=cheHazgTGDhKXw7vq6atCi2XUFv5oxx6gGI7RH7+KeA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FMWjyWXrFa4WuslZ41F73cmhEN++VtFGDP87y3f80QqrQo+13nBX5A2xBHHNJHEmZ/ZHU25vMns0mwS8ASObNhY9mqs6HKa692065Qv0G0O0dkZdfIl8nrvAc3h63L+wq/YQCGeCaXrD1piLb7+gojXKM+Slu8vYjQIiFuJWUPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.102] (unknown [114.241.87.235])
+	by APP-05 (Coremail) with SMTP id zQCowAC3SFljBa9oUlCJDw--.28806S2;
+	Wed, 27 Aug 2025 21:17:24 +0800 (CST)
+Message-ID: <9b83e78a-0456-4b43-9380-0e2b83933246@iscas.ac.cn>
+Date: Wed, 27 Aug 2025 21:17:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v7 2/5] net: spacemit: Add K1 Ethernet MAC
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Vivian Wang <uwu@dram.page>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250826-net-k1-emac-v7-0-5bc158d086ae@iscas.ac.cn>
+ <20250826-net-k1-emac-v7-2-5bc158d086ae@iscas.ac.cn>
+ <eb127fd167cfbd885099a7c4c962eb1135a5a8a0.camel@pengutronix.de>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <eb127fd167cfbd885099a7c4c962eb1135a5a8a0.camel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-CM-TRANSID:zQCowAC3SFljBa9oUlCJDw--.28806S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxXrWUZF43Jw1kKr4rArWrZrb_yoWrJFy8pa
+	ykJF9IkF4xAr17Kws3Xr4UAF93Xw4IyFyUCrySyw4rXwnFyr1fGry8KrWYkw1vyrZ8CryY
+	va1UZa4I9Fs8u3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvqb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
+	w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMc
+	vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xKxwCY
+	1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
+	C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
+	wI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjx
+	v20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2
+	jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0x
+	ZFpf9x07bIBTOUUUUU=
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-On Thu, 21 Aug 2025 21:29:35 +0800
-Chen-Yu Tsai <wens@kernel.org> wrote:
+Hi=C2=A0Philipp,
 
-Hi Chen-Yu,
+Thanks for your review.
 
-> From: Chen-Yu Tsai <wens@csie.org>
-> 
-> The eMMC on the Orange Pi 4A doesn't function correctly at full speed
-> of 150 MHz under HS200 mode. Either the traces on the board or module
-> aren't great, or the SoC's internal delays are incorrect. Tuning the
-> pin drive strength did not help.
-> 
-> After some experimenting, 75 MHz was found to be stable enough. Use this
-> as the maximum frequency for now.
-> 
-> Fixes: de713ccb9934 ("arm64: dts: allwinner: t527: Add OrangePi 4A board")
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
->  arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-> index c52d09cf0888..fb5311a46c2e 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-> @@ -160,6 +160,7 @@ &mmc2 {
->  	mmc-ddr-1_8v;
->  	mmc-hs200-1_8v;
->  	non-removable;
-> +	max-frequency = <75000000>;
+On 8/26/25 16:54, Philipp Zabel wrote:
+> On Di, 2025-08-26 at 14:23 +0800, Vivian Wang wrote:
+>> The Ethernet MACs found on SpacemiT K1 appears to be a custom design
+>> that only superficially resembles some other embedded MACs. SpacemiT
+>> refers to them as "EMAC", so let's just call the driver "k1_emac".
+>>
+>> Supports RGMII and RMII interfaces. Includes support for MAC hardware
+>> statistics counters. PTP support is not implemented.
+>>
+>> Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>
+>> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+>> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> Reviewed-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+>> ---
+>>  drivers/net/ethernet/Kconfig            |    1 +
+>>  drivers/net/ethernet/Makefile           |    1 +
+>>  drivers/net/ethernet/spacemit/Kconfig   |   29 +
+>>  drivers/net/ethernet/spacemit/Makefile  |    6 +
+>>  drivers/net/ethernet/spacemit/k1_emac.c | 2193 ++++++++++++++++++++++=
++++++++++
+>>  drivers/net/ethernet/spacemit/k1_emac.h |  426 ++++++
+>>  6 files changed, 2656 insertions(+)
+>>
+> [...]
+>> diff --git a/drivers/net/ethernet/spacemit/k1_emac.c b/drivers/net/eth=
+ernet/spacemit/k1_emac.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..9e558d5893cfbbda0baa7a=
+d21a7209dadda9487e
+>> --- /dev/null
+>> +++ b/drivers/net/ethernet/spacemit/k1_emac.c
+>> @@ -0,0 +1,2193 @@
+> [...]
+>> +static int emac_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev =3D &pdev->dev;
+>> +	struct reset_control *reset;
+>> +	struct net_device *ndev;
+>> +	struct emac_priv *priv;
+>> +	int ret;
+>> +
+>> +	ndev =3D devm_alloc_etherdev(dev, sizeof(struct emac_priv));
+>> +	if (!ndev)
+>> +		return -ENOMEM;
+>> +
+>> +	ndev->hw_features =3D NETIF_F_SG;
+>> +	ndev->features |=3D ndev->hw_features;
+>> +
+>> +	ndev->max_mtu =3D EMAC_RX_BUF_4K - (ETH_HLEN + ETH_FCS_LEN);
+>> +
+>> +	priv =3D netdev_priv(ndev);
+>> +	priv->ndev =3D ndev;
+>> +	priv->pdev =3D pdev;
+>> +	platform_set_drvdata(pdev, priv);
+>> +
+>> +	ret =3D emac_config_dt(pdev, priv);
+>> +	if (ret < 0) {
+>> +		dev_err_probe(dev, ret, "Configuration failed\n");
+>> +		goto err;
+> I'd just
+> 		return dev_err_probe(...);
+> here.
+>
+>> +	}
+>> +
+>> +	ndev->watchdog_timeo =3D 5 * HZ;
+>> +	ndev->base_addr =3D (unsigned long)priv->iobase;
+>> +	ndev->irq =3D priv->irq;
+>> +
+>> +	ndev->ethtool_ops =3D &emac_ethtool_ops;
+>> +	ndev->netdev_ops =3D &emac_netdev_ops;
+>> +
+>> +	devm_pm_runtime_enable(&pdev->dev);
+>> +
+>> +	priv->bus_clk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+>> +	if (IS_ERR(priv->bus_clk)) {
+>> +		ret =3D dev_err_probe(dev, PTR_ERR(priv->bus_clk),
+>> +				    "Failed to get clock\n");
+>> +		goto err;
+> Same here.
+>
+>> +	}
+>> +
+>> +	reset =3D devm_reset_control_get_optional_exclusive_deasserted(&pdev=
+->dev,
+>> +								     NULL);
+>> +	if (IS_ERR(reset)) {
+>> +		ret =3D dev_err_probe(dev, PTR_ERR(reset),
+>> +				    "Failed to get reset\n");
+>> +		goto err;
+> And here.
+>
+>> +	}
+>> +
+>> +	emac_sw_init(priv);
+>> +
+>> +	if (of_phy_is_fixed_link(dev->of_node)) {
+>> +		ret =3D of_phy_register_fixed_link(dev->of_node);
+>> +		if (ret) {
+>> +			dev_err_probe(dev, ret,
+>> +				      "Failed to register fixed-link");
+>> +			goto err_timer_delete;
+> If you can move this section before emac_sw_init(), this could also
+> just return.
+I'll take a look on these and clean up in next version, thanks.
+>> +		}
+> Then here a function calling of_phy_deregister_fixed_link() could be
+> registered with devm_add_action_or_reset(), to avoid duplicated cleanup=
 
-I am not a big fan of this change, as it looks like we are papering over
-something. I think the BSP runs it as a higher frequency just fine, can
-you check that? Traditionally the BSP uses HS400, IIRC, maybe we should
-finally bite the bullet and enable that?
+> in the error path and in emac_remove().
 
-Mikhail has some other assorted changes to beat his WalnutPi into
-submission, among others a slight increase of the voltage, both I/O (1.9V)
-and supply (3.4V). Also he increased the pins driving capability to 40mA,
-did you try that?
+I'll deal with this. This should be fine, as it's probe-time only.
 
-On my boards I tried to lower the frequency as well, but didn't get
-consistent results, though there was *some* improvement (at least probed
-the block device and read the partition table). And I needed to go much
-lower (40 MHz), so I wonder if this is all related to some bigger
-underlying issue.
-
-Cheers,
-Andre
-
->  	vmmc-supply = <&reg_cldo3>;
->  	vqmmc-supply = <&reg_cldo1>;
->  	status = "okay";
+Thanks,
+Vivian "dramforever" Wang
 
 
