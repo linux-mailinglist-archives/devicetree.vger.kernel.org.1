@@ -1,257 +1,299 @@
-Return-Path: <devicetree+bounces-209670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88291B3843B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 15:59:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D586B38439
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 15:59:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 171CB5E4132
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 13:59:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8B7E36607B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 13:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79B47356900;
-	Wed, 27 Aug 2025 13:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6B53570A0;
+	Wed, 27 Aug 2025 13:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YptpW1Nr"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="FRU2aUbN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C4E2BD5B0
-	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 13:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 157FE356900
+	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 13:58:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756303172; cv=none; b=rV5z+OTr0J1N4AHxpnKNzzJor+K8FPddfYU3T10cHdtBe0brDSK5ctLcLb9Uv/isz3vrIcsKMoQl+Zi4gdL43QXPicjToHbuse3Ey/mkvT81BqHXslVxLSE2X23VI7ILqpmpti/KUJm7s8khS43r0Ju3DzT3fQ9lZT//Z/CJfgA=
+	t=1756303141; cv=none; b=f0pVpUUfANFGwgsshY7+Mr/ouhcJpVyG0TpymRy048sVLAyNKBIm2KA14hgfT8QFWzzTqRRAFCD6OFMANPZ3S2vGbkMCSUOP7dDE1pvSeXfnrINyVaHvXnbGmyQRgFlTO/tjIU646UQH8m5+1j+7Ae0YspMCRj0aStlVv0jUzSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756303172; c=relaxed/simple;
-	bh=IpRMFO2MeMkQytb9AR0N8Z1FemuJAxPT/DZPEjNV+I0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ki3O/ORan69rzzktPt0lrzxg2X/xIdt2ewKxDaMi732U9kz3thkpQdfSpADwTuUmMbMz2lxn+odBbxJJFjvCc4I3dfQ4IOZmPWY7MNK9MlCM2ysYJJ7xEZOJq0ZLR5jcBBSL0WbnB2D6F9yHwfnwlduVMnTocIBXI0BbGEUDeiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YptpW1Nr; arc=none smtp.client-ip=209.85.210.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7452b3a0b31so763817a34.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 06:59:30 -0700 (PDT)
+	s=arc-20240116; t=1756303141; c=relaxed/simple;
+	bh=qxcTYmKJHv4ByCyIFFgFbatmeR6cwgdb5Z68rlcGFxc=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tqc30XSur/iMfLZUfAz65y8RLf7xOU9AU/qEAsJZyHOOJHyITdRF/UNp98uI3qDyIQkdG/BVFCdCSjPBUBFeyHTW2eyEoOgRcvETM7AxySTPbQ6ro5bAFvdD9ok3EPtSu/NuIXildP5JC/im6prT2S9/QJ+kgrlDQeHTZG4go6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=FRU2aUbN; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-6188b7550c0so9270488a12.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 06:58:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756303169; x=1756907969; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3DEQfVOF90gg0nQ2w58ay9TgS+NK/WWzZloFFYDQxeI=;
-        b=YptpW1NrPYQJUtxCJxZlAK41GASCaGI4T10wdA5OdawvHzTMqRmt7uiQjYF8J304o9
-         mabZ2XbXzBbEWnpbb+zDacrcII40gVXfhuen1Gf5ldgZlce2154Bx2G6XWlYC9t7JIrO
-         O513s0gDl53nAk3Tb38MmHFZmCdMd+gzOYiTVUX3k2PpaiiZOcvO0aHamUsZgr6+ncAc
-         RIMQwABckeBrY7pwYLhy3PESwrXI5M2GMQVww+kFDIqw8Q1SZLRAbklJXAN0v+pSFGoz
-         dEzdIWevFM7Cqg1UX5RE3MSFfVXUocnfAHyUrwrsU7FHZL1LJPFNwQW2/kClsnKWTANk
-         cpNQ==
+        d=suse.com; s=google; t=1756303137; x=1756907937; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9CWSteu4ueuV0aIApfiAJbNQgjn5Egg3v9K0wNLPvCE=;
+        b=FRU2aUbNAUF9jCdDsGbFP2xk6aemEDWaz4mN7cgG/eA88msOFwOomMxaRI+dmB4HoV
+         p8pDi/ufcDMtUqPxlDYmI9aYe4JEIdT1r+Mj4f8NWdyCCReQenODwOGrawEckQTxfVde
+         vkuyFUvnJWEwqBGFxpWhV/DliFZEWWt3eWxAuiIpqFA9z2RdSXaSGrB8A4m/8DPtVv3h
+         RFSI5lDvSwWXp7uoSoIBTB0347cm/ZUDWR507UG0LyVEmb87WZkaCsTL+6R28yUdh3yS
+         s3qxmD3x+LrkCiDNQdgF7LYL+SeeWhMi7e49Bw2EMTRXH90fO3vclhngr93ybTwl7W3r
+         R7EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756303169; x=1756907969;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3DEQfVOF90gg0nQ2w58ay9TgS+NK/WWzZloFFYDQxeI=;
-        b=rJx+XN/EFgoxQ94MD27s9IAAVDvaC0T+VhzDNQhPEDvMnL0qfd73fAURlnT84YBv4b
-         mZVhgFriiRmbhl6gPhlFOUHAhvLsu0q952hz9NfAYV8iHDLEP8vbPimsJhLgFfKWUKxT
-         gwcCYjGEl2bBTGL32sI7NYXK9mNVq9QRo5JKb3egvt2WmXG6Pv1CcqbRJqq9WudmDxZR
-         PFxbQ5uxWNZC2sMhX2ZcpI/a/Fs7jFw0bvs61NRPe5Uq98iKbOayU6tOgA86j5pKgx3G
-         Uyrd7S7DnY+x4TzI4+r0sR5J+qY/3O1NK1wRM36XWVTC2PXyOi31fVZSyfpC1YbBR2N1
-         3B+A==
-X-Forwarded-Encrypted: i=1; AJvYcCVGkflAhbvQDj6ohwlx5HNB4w2PGqxY8pGwvWqcNMOXRqYLO77DXUO2y8IqNpWKbw4d2W9CetJ2rKjo@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJYOPhkNlS7deMcIb22lzNyxKV3wvq2nzAm3Gz0r6jkA31MNqv
-	5VS42Enya9XC7HXN39mreCL/w04jHb2Ro4W9FYQ7YXryYIJJuifHzuFkNkFXrwVb/yY=
-X-Gm-Gg: ASbGncuwsOjpdD9RkAPpeVZiab2BNIjBI1sWTrcXe1qVzSkuRo32r2MgZ1JPArV+3Mk
-	xQdYVWa3rLmy3rxx+rjeoIzZYC+JV6/xVLjeOI3Ka3JmhjSVV/NH+YUlSMkW7GotGhyiqCmiG3G
-	sC8I7WM+HgJntesVyGoVv1UAV9MwZtKQAG3b5ewwwHqKCZPGciz3zcyJ7Q/nE93GRNYzJ2bFTo8
-	fpESH1BmgyuNrH8bn6vnw5Ll5PMEKyZy6D8XVCzWWkx7b7Cs8+VWO9+dbxS4KKD3EnTkll6wZ3L
-	SNCYi6twuWWbs5f6YkZ8/t7cm4K9GXMINf50uaC1bSgMVBqVIjk/zEJ2nnF9d5c9jdvtiEr/hZN
-	lv/Uli5f8DzO9yAWieazjJUhQ1fJxsyEg9Zh/t+CNOPheqcdRo13fYnOrUhHwvziPNHm0kjGpvn
-	fACKrOeMkMSA==
-X-Google-Smtp-Source: AGHT+IHSftKprg4A6uiJZsbpSHa4sPR9ZXxfCmFTDjOuRBFTS34c1PezHWubSzt7gTo1cYwVIRJIbw==
-X-Received: by 2002:a05:6830:2b07:b0:72b:992b:e41 with SMTP id 46e09a7af769-74500a5c79amr8967488a34.23.1756303169172;
-        Wed, 27 Aug 2025 06:59:29 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:aa9f:f4cd:76b1:fecb? ([2600:8803:e7e4:1d00:aa9f:f4cd:76b1:fecb])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7450e474c76sm3019432a34.24.2025.08.27.06.59.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Aug 2025 06:59:28 -0700 (PDT)
-Message-ID: <ca078446-7cdf-4922-b550-6dd671d39589@baylibre.com>
-Date: Wed, 27 Aug 2025 08:59:27 -0500
+        d=1e100.net; s=20230601; t=1756303137; x=1756907937;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9CWSteu4ueuV0aIApfiAJbNQgjn5Egg3v9K0wNLPvCE=;
+        b=JjNKNz20d3VHy082GSPEhPboG51Xzd1CP/MJCqgkdScZ68CooiyxMTwIejNHXmkQxx
+         Ga7EWeGklgtpkUXpyjrxfPI+PVfbRW74YDN4f8arep2b4Jsx0GTOeemlai9ahO8BqMsl
+         fp6Y/Nwt4FrpyrWBaImQLQOiBcFO6/ItArYV3bPnweaT65EaqOTYfhKqya73PB6DypeM
+         xhxByJa9IDiAtiv+ZyR4AmaePVy2e2ck1zFaR05BP/fxKWvCcBDhvSzqMPnfDBIocl45
+         u4d0UCcKRB/iEtpillnYs4eAbh8WdJnLVkwxxRG920nij9MEMP6vVN2GyeJj54pAHMNf
+         9yHA==
+X-Forwarded-Encrypted: i=1; AJvYcCUu5YF00p8+TVvMhCIo8CQpjJ0yG1zfkbd/pxRS5vSD4W3mV+/apFGKqWe/2FGdcXp40ALJIQmsib+M@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrLUOZzD6QfqylSP9zo6lugVZNroj9Yn/S2/kopJFX2xN1wLpP
+	4E0MWh/tNp4E67LGVPpUtAsc+cLrKxAo3M3pua/A9nXdoqZvH2pTjFOjd8NudkmLCqk=
+X-Gm-Gg: ASbGncuVbnZ+Vna0i0aiY/H0gbQUIaDUYk41bWradpsXvz0tGbxMFZhnfJGNLqGd7A7
+	8484sKL9YsAmQOoWmQEgiRm0fE6Tky7T0vLocn1wVNR+QcaAIijJS2jQuTzoliW1nO2JzQw5HdO
+	YCKl37sgVHTCXB1fzTEFDUktk14xpNK4GFIdbvAXCtGOuBtuG+2WURy3kPx+4YG7iCiwEPidl4B
+	cjL/nYevEpWRDqJZAD8kIW5jqrfuv0sIInh+DtrV35fXFyFnm694hKZDYxcKKGrCyjSIYdB/EiF
+	XIeV55BUBtq2MTD2zeThPrn42oQJWtoWO4PvjDc7/eBHHe+C5SJVvUxCuoheFEkyi6t/bJyar+G
+	7A6QhvDBU3uDuRdWtuBhbxSlLTTyHG+9i4nZSLTTr1XIm5ow84XSnLLPzyXqkSAsGGOMImtad8d
+	4YAnAo3D1fS/9Pv7CC
+X-Google-Smtp-Source: AGHT+IGGtd6YYOMCijKCql/Dy2HeWOPmF4F9YoTLQ2VQc4J0uyvBHN+XraLb2sKAIVxVgCjlHyK+TQ==
+X-Received: by 2002:a05:6402:4312:b0:61c:7a9b:21d4 with SMTP id 4fb4d7f45d1cf-61c7aaa67e8mr6702103a12.18.1756303137280;
+        Wed, 27 Aug 2025 06:58:57 -0700 (PDT)
+Received: from localhost (host-79-36-0-44.retail.telecomitalia.it. [79.36.0.44])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61caae5fc3fsm2016468a12.51.2025.08.27.06.58.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Aug 2025 06:58:56 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Wed, 27 Aug 2025 16:00:50 +0200
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Andrea della Porta <andrea.porta@suse.com>, linus.walleij@linaro.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	florian.fainelli@broadcom.com, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, iivanov@suse.de, svarbanov@suse.de,
+	mbrugger@suse.com, Jonathan Bell <jonathan@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH v3 2/3] pinctrl: bcm: Add STB family pin controller driver
+Message-ID: <aK8PkgiU0yRO-c6f@apocalypse>
+References: <cover.1754922935.git.andrea.porta@suse.com>
+ <bb746d2fd50ecbb9963438fae8601c2e4901a126.1754922935.git.andrea.porta@suse.com>
+ <83d0f449-be3a-44ca-9722-d747969d96c9@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: Add NXP P3T175x
- support
-To: Lakshay Piplani <lakshay.piplani@nxp.com>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, jic23@kernel.org, nuno.sa@analog.com,
- andy@kernel.org, marcelo.schmitt1@gmail.com, gregkh@linuxfoundation.org,
- viro@zeniv.linux.org.uk, peterz@infradead.org, jstephan@baylibre.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, ilpo.jarvinen@linux.intel.com,
- jonathan.cameron@huawei.com, akpm@linux-foundation.org, chao@kernel.org,
- jaegeuk@kernel.org
-Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com,
- shashank.rebbapragada@nxp.com, Frank.Li@nxp.com
-References: <20250827103105.2472328-1-lakshay.piplani@nxp.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250827103105.2472328-1-lakshay.piplani@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <83d0f449-be3a-44ca-9722-d747969d96c9@gmx.net>
 
-On 8/27/25 5:31 AM, Lakshay Piplani wrote:
-> Add bindings for the NXP P3T175x (P3T1750/P3T1755) temperature
-> sensor, supporting both I2C & I3C interfaces.
+Hi Stefan,
+
+On 11:57 Sun 24 Aug     , Stefan Wahren wrote:
+> Hi Andrea,
 > 
-> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
-> ---
-> Changes in v2 (addressed review comments from Krzysztof Kozlowski):
->  - Dropped nxp,alert-active-high: unnecessary as polarity handling is implicit in driver.
+> Am 11.08.25 um 16:46 schrieb Andrea della Porta:
+> > From: "Ivan T. Ivanov" <iivanov@suse.de>
+> > 
+> > This driver provide pin muxing and configuration functionality
+> > for BCM2712 SoC used by RPi5. According to [1] this chip is an
+> > instance of the one used in Broadcom STB  product line.
 
->  - Retained nxp,interrupt-mode: required to program TM(thermostat mode) bit; enables interrupt
->    (latched) mode. If not present in DT entry comparator mode is set as default.
->  - Retained nxp,fault-queue: This needs to be configured during device initialization.
->    This property configures the hardware fault queue length. Defines how many consecutive faults
->    are required before ALERT/IBI is asserted, preventing false triggers in noisy environments.
+[...]
 
-These are not very convincing reasons that these to properties should
-be in the devicetree. The devicetree describes how things are wired
-up, not how they are used in the driver. For the first one, we already
-have the parent node to tell us if we are using I2C or I3C, so the
-property is redundant. For the second one, the whole system could be
-moved from a less noisy to a more noisy environment and we should not
-have to change the devicetree to handle that.
-
->  - The `reg` property remains required to satisfy `dt_binding_check`.
->  - Fixed YAML formatting, line wrapping, and examples.
->  - Changed compatibles from nxp,p3t1755 to nxp,p3t1755-iio and nxp,p3t1750 to nxp,p3t1750-iio
->    as reported by kernel test robot.
+> > +#define AGPIO_PIN(n)		PINCTRL_PIN(n, "aon_gpio" #n)
+> > +#define SGPIO_PIN(n)		PINCTRL_PIN((n) + 32, "aon_sgpio" #n)
+> It would be great, if there is comment explaining the difference between a
+> AGPIO_PIN and a SGPIO_PIN?
 > 
->  .../bindings/iio/temperature/nxp,p3t1755.yaml | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
+> In case AGPIO_PIN stands for AON_GPIO_PIN, i would prefer the latter.
+
+I need to dig more on the SGPIO type, more on that as soon as I'll
+find some more details. No problem in using more explanatory label,
+of_course.
+
+> > +
+> > +struct pin_regs {
+> > +	u16 mux_bit;
+> > +	u16 pad_bit;
+> > +};
+> > +
+
+[...]
+
+> > +enum brcmstb_funcs {
+> > +	func_gpio,
+> > +	func_alt1,
+> > +	func_alt2,
+> > +	func_alt3,
+> > +	func_alt4,
+> > +	func_alt5,
+> > +	func_alt6,
+> > +	func_alt7,
+> > +	func_alt8,
+> > +	func_aon_cpu_standbyb,
+> > +	func_aon_fp_4sec_resetb,
+> > +	func_aon_gpclk,
+> > +	func_aon_pwm,
+> > +	func_arm_jtag,
+> > +	func_aud_fs_clk0,
+> > +	func_avs_pmu_bsc,
+> > +	func_bsc_m0,
+> > +	func_bsc_m1,
+> > +	func_bsc_m2,
+> > +	func_bsc_m3,
+> > +	func_clk_observe,
+> > +	func_ctl_hdmi_5v,
+> > +	func_enet0,
+> > +	func_enet0_mii,
+> > +	func_enet0_rgmii,
+> > +	func_ext_sc_clk,
+> > +	func_fl0,
+> > +	func_fl1,
+> > +	func_gpclk0,
+> > +	func_gpclk1,
+> > +	func_gpclk2,
+> > +	func_hdmi_tx0_auto_i2c,
+> > +	func_hdmi_tx0_bsc,
+> > +	func_hdmi_tx1_auto_i2c,
+> > +	func_hdmi_tx1_bsc,
+> > +	func_i2s_in,
+> > +	func_i2s_out,
+> > +	func_ir_in,
+> > +	func_mtsif,
+> > +	func_mtsif_alt,
+> > +	func_mtsif_alt1,
+> > +	func_pdm,
+> > +	func_pkt,
+> > +	func_pm_led_out,
+> > +	func_sc0,
+> > +	func_sd0,
+> > +	func_sd2,
+> > +	func_sd_card_a,
+> > +	func_sd_card_b,
+> > +	func_sd_card_c,
+> > +	func_sd_card_d,
+> > +	func_sd_card_e,
+> > +	func_sd_card_f,
+> > +	func_sd_card_g,
+> > +	func_spdif_out,
+> > +	func_spi_m,
+> > +	func_spi_s,
+> > +	func_sr_edm_sense,
+> > +	func_te0,
+> > +	func_te1,
+> > +	func_tsio,
+> > +	func_uart0,
+> > +	func_uart1,
+> > +	func_uart2,
+> > +	func_usb_pwr,
+> > +	func_usb_vbus,
+> > +	func_uui,
+> > +	func_vc_i2c0,
+> > +	func_vc_i2c3,
+> > +	func_vc_i2c4,
+> > +	func_vc_i2c5,
+> > +	func_vc_i2csl,
+> > +	func_vc_pcm,
+> > +	func_vc_pwm0,
+> > +	func_vc_pwm1,
+> > +	func_vc_spi0,
+> > +	func_vc_spi3,
+> > +	func_vc_spi4,
+> > +	func_vc_spi5,
+> > +	func_vc_uart0,
+> > +	func_vc_uart2,
+> > +	func_vc_uart3,
+> > +	func_vc_uart4,
+> > +	func__,
+> > +	func_count = func__
+> > +};
+> I'm very sceptical that this enum is generic. I would tend use to
+> bcm2712_funcs here.
+
+Ack.
+
+> > +
+> > +static const struct pin_regs bcm2712_c0_gpio_pin_regs[] = {
+> > +	GPIO_REGS(0, 0, 0, 7, 7),
+> > +	GPIO_REGS(1, 0, 1, 7, 8),
+> > +	GPIO_REGS(2, 0, 2, 7, 9),
+
+[...]
+
+> > +static const struct brcmstb_pin_funcs bcm2712_c0_aon_gpio_pin_funcs[] = {
+> > +	PIN(0, ir_in, vc_spi0, vc_uart3, vc_i2c3, te0, vc_i2c0, _, _),
+> > +	PIN(1, vc_pwm0, vc_spi0, vc_uart3, vc_i2c3, te1, aon_pwm, vc_i2c0, vc_pwm1),
+> > +	PIN(2, vc_pwm0, vc_spi0, vc_uart3, ctl_hdmi_5v, fl0, aon_pwm, ir_in, vc_pwm1),
+> > +	PIN(3, ir_in, vc_spi0, vc_uart3, aon_fp_4sec_resetb, fl1, sd_card_g, aon_gpclk, _),
+> > +	PIN(4, gpclk0, vc_spi0, vc_i2csl, aon_gpclk, pm_led_out, aon_pwm, sd_card_g, vc_pwm0),
+> > +	PIN(5, gpclk1, ir_in, vc_i2csl, clk_observe, aon_pwm, sd_card_g, vc_pwm0, _),
+> > +	PIN(6, uart1, vc_uart4, gpclk2, ctl_hdmi_5v, vc_uart0, vc_spi3, _, _),
+> > +	PIN(7, uart1, vc_uart4, gpclk0, aon_pwm, vc_uart0, vc_spi3, _, _),
+> > +	PIN(8, uart1, vc_uart4, vc_i2csl, ctl_hdmi_5v, vc_uart0, vc_spi3, _, _),
+> > +	PIN(9, uart1, vc_uart4, vc_i2csl, aon_pwm, vc_uart0, vc_spi3, _, _),
+> > +	PIN(10, tsio, ctl_hdmi_5v, sc0, spdif_out, vc_spi5, usb_pwr, aon_gpclk, sd_card_f),
+> > +	PIN(11, tsio, uart0, sc0, aud_fs_clk0, vc_spi5, usb_vbus, vc_uart2, sd_card_f),
+> > +	PIN(12, tsio, uart0, vc_uart0, tsio, vc_spi5, usb_pwr, vc_uart2, sd_card_f),
+> > +	PIN(13, bsc_m1, uart0, vc_uart0, uui, vc_spi5, arm_jtag, vc_uart2, vc_i2c3),
+> > +	PIN(14, bsc_m1, uart0, vc_uart0, uui, vc_spi5, arm_jtag, vc_uart2, vc_i2c3),
+> > +	PIN(15, ir_in, aon_fp_4sec_resetb, vc_uart0, pm_led_out, ctl_hdmi_5v, aon_pwm, aon_gpclk,
+> > +	    _),
+> > +	PIN(16, aon_cpu_standbyb, gpclk0, pm_led_out, ctl_hdmi_5v, vc_pwm0, usb_pwr, aud_fs_clk0,
+> > +	    _),
+> I think it's okay to violate the 80 char limit in these both cases to
+> improve readability.
+
+Ack.
+
+> > +};
+> > +
+> ...
+> > +
+> > +static int brcmstb_pinconf_get(struct pinctrl_dev *pctldev, unsigned int pin,
+> > +			       unsigned long *config)
+> > +{
+> > +	struct brcmstb_pinctrl *pc = pinctrl_dev_get_drvdata(pctldev);
+> > +	enum pin_config_param param = pinconf_to_config_param(*config);
+> > +	u32 arg;
+> > +
+> > +	switch (param) {
+> > +	case PIN_CONFIG_BIAS_DISABLE:
+> > +		arg = (brcmstb_pull_config_get(pc, pin) == BRCMSTB_PULL_NONE);
+> > +		break;
+> > +	case PIN_CONFIG_BIAS_PULL_DOWN:
+> > +		arg = (brcmstb_pull_config_get(pc, pin) == BRCMSTB_PULL_DOWN);
+> > +		break;
+> > +	case PIN_CONFIG_BIAS_PULL_UP:
+> > +		arg = (brcmstb_pull_config_get(pc, pin) == BRCMSTB_PULL_UP);
+> I'm not sure this is correct. I would expect that "arg" contains the
+> resistance in Ohm for PULL_DOWN & PULL_UP.
+
+In this case I don't have insight about the current impedance value. Since
+this is easily something that changes between different implementations, I
+would leave it as it is as it's more general, i.e. 0 for disabled and 1 for
+pull up/down enabled (which seems to be the most common behaviour for pinconf
+drivers anyway).
+
+Once we know more details about the Ohm values or a new STB implementation
+arises, we can quickly add the relevant data in the specific driver code.
+
+Many thanks,
+Andrea
+
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml b/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
-> new file mode 100644
-> index 000000000000..4eb6fc5cb247
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/nxp,p3t1755.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP P3T175x Temperature Sensor
-> +
-> +maintainers:
-> +  - Lakshay Piplani <lakshay.piplani@nxp.com>
-> +
-> +description: |
-> +  Datasheet: https://www.nxp.com/docs/en/data-sheet/P3T1755.pdf
-> +
-> +  P3T175x (P3T1750/P3T1755) is a digital temperature sensor with a range of -40°C to
-> +  +125°C and a 12-bit resolution. It supports communication over
-> +  both I2C and I3C interfaces.
-> +
-> +  The I2C interface supports up to 32 static addresses and provides
-> +  an ALERT output to signal when temperature thresholds are crossed.
-> +
-> +  The I3C interface supports In-Band interrupts (IBI) in interrupt mode,
-> +  allowing the device to notify the controller of threshold events without
-> +  dedicated alert pin.
-> +
-> +  The device supports configurable thermostat modes (interrupt or comparator),
-> +  fault queue length etc.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,p3t1750-iio
-> +      - nxp,p3t1755-iio
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: |
-> +      In I2C mode, the device supports up to 32 static addresses.
-> +      In I3C mode, the 'reg' property encodes a triplet of
-> +      <static-address BCR PID> used for device matching.
-> +      Static address is optional if matching is done via PID.
-> +
-> +  nxp,interrupt-mode:
-> +    type: boolean
-> +    description: |
-> +      Enables interrupt mode (TM = 1), where alerts are latched until
-> +      cleared by a register read.
-
-As mentioned above, the driver should know best which mode makes the
-most sense without having a property to restrict it.
-
-> +      Required for IBI support over I3C. On I2C, both interrupt and
-> +      comparator mode support events.
-> +
-> +  nxp,fault-queue:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4, 6]
-> +    description: |
-> +      Number of consecutive temperature limit
-> +      violations required before an alert is triggered.
-> +      valid values:- 1, 2, 4 or 6.
-> +      If unspecified, hardware default (2) is used.
-
-If we kept this, it should have `default: 2`. But as mentioned above,
-this doesn't seem like something that would be known when writing
-the device tree since it could depend on variable environmental
-conditions.
-
-We already have IIO_EV_INFO_RUNNING_COUNT that sounds similar to this
-type of control that would allow it to be set at runtime instead.
-
-> +
-> +  assigned-address:
-> +    true
-> +
-
-Missing `vcc-supply: true`, which should also be required.
-
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        temp-sensor@48 {
-> +            compatible = "nxp,p3t1755-iio";
-> +            reg = <0x48>;
-> +            nxp,interrupt-mode;
-> +            nxp,fault-queue = <6>;
-> +            interrupt-parent = <&gpio2>;
-> +            interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-> +        };
-> +    };
-> +
-> +  - |
-> +    i3c {
-> +      #address-cells = <3>;
-> +      #size-cells = <0>;
-> +      temp-sensor@48,236152a00 {
-> +        reg = <0x48 0x236 0x152a00>;
-> +        assigned-address = <0x50>;
-> +      };
-> +    };
-
+> Best regards
 
