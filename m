@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-209529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC46CB37CFA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:08:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 695C9B37D3C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:12:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CBA6362CB3
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:08:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B75A91BA1176
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:12:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3514D32276F;
-	Wed, 27 Aug 2025 08:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B12B32BF21;
+	Wed, 27 Aug 2025 08:12:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.205.26])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746B732145D;
-	Wed, 27 Aug 2025 08:07:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.205.26
+Received: from zg8tmja2lje4os43os4xodqa.icoremail.net (zg8tmja2lje4os43os4xodqa.icoremail.net [206.189.79.184])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23771322774;
+	Wed, 27 Aug 2025 08:12:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.79.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756282071; cv=none; b=f8xydfktZwmkWZ740J5O1hKbUlmQ/hZitf0qS8kSpiiiQKD8kdKaQQDw2Hv58b0MYelabs4Hgwn/YH6AEB6x+3IHC1XNla9iutzHtngv0RKn0RuMXtz/XC117apmJ6L4jN6B1OnI3DYK+pZTlZC/VYZh8dhnVXka5mV0VLZ7CYo=
+	t=1756282328; cv=none; b=bGil1k5fm9IGHwt5+eXITCtec6eyL/5xHtRzWtDRaBk7ma9TG9hIH0zC8kiDq4zCk0rDmN7Rwgcjxovf1+Z3/7RPG4gcOMxHFp0bLcaKK3X2hG3ig8VsZXROZSlDu9U5fuYNhpfAPTvOhCmqNEHJkyD6p/7oqRRxY0Pur2HQwww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756282071; c=relaxed/simple;
-	bh=S10p5oJ1vOgAf133KAS6dIu4FJAtSJ0XPMDQknmY9Us=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LcfW9mR2G1xfId3VCbmyBLvY/ZuifmYwynbjoe/CuivhtnI6bdC9HmiviTXsaRFsyitWB4okgbabGWbifPpys4mDojgJWpimRo3knr1kFjm3kzAg5+5jbTNt3bGhIsBir5FGMu0UKfcIAXukahUDyS9uPOcnjCDhPcSkmnAVNbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.205.26
+	s=arc-20240116; t=1756282328; c=relaxed/simple;
+	bh=1Pzns2qvG64vOKuRvgtz/ctuggrku83t0/gBpcOPr8U=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=F73CqyQeEVIndbBw1Avb/uqyhNT9Bfnne+sOAjYVERtSMPps+Krw1v0Cr5tvuszP5skOaYQMNc3LjYcW4lY6IdQVoKK8owyLKq2TPSsbGf9TW45forM2kYJ3NlpkzhDLwYVH2G9znBT/Iz3/I9oLkprkbYdeNxZ4EVk0XSCwjR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.79.184
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
 Received: from E0005182LT.eswin.cn (unknown [10.12.96.155])
-	by app1 (Coremail) with SMTP id TAJkCgBHXg+wvK5o_zPEAA--.17071S2;
-	Wed, 27 Aug 2025 16:07:14 +0800 (CST)
+	by app1 (Coremail) with SMTP id TAJkCgC32xG5va5ofjTEAA--.25212S2;
+	Wed, 27 Aug 2025 16:11:40 +0800 (CST)
 From: weishangjuan@eswincomputing.com
 To: devicetree@vger.kernel.org,
 	andrew+netdev@lunn.ch,
@@ -61,8 +61,8 @@ Cc: ningyu@eswincomputing.com,
 	lizhi2@eswincomputing.com,
 	Shangjuan Wei <weishangjuan@eswincomputing.com>
 Subject: [PATCH v4 0/2] Add driver support for Eswin eic7700 SoC ethernet controller
-Date: Wed, 27 Aug 2025 16:07:03 +0800
-Message-Id: <20250827080703.2180-1-weishangjuan@eswincomputing.com>
+Date: Wed, 27 Aug 2025 16:11:35 +0800
+Message-Id: <20250827081135.2243-1-weishangjuan@eswincomputing.com>
 X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -71,30 +71,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgBHXg+wvK5o_zPEAA--.17071S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxAw17GF47JF4DAryDGF15Jwb_yoW5KFy3pF
-	W8Cry5Wwn8AryxX3ySyw10kFyfJan7Xr1akr1Iqw1fXan0va90qr4aka4YgFy7Cr4UZryY
-	gay3ZF47Ca4ay3DanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmSb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwV
-	C2z280aVCY1x0267AKxVW0oVCq3wAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAa
-	Y2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4
-	A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F
-	5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMx
-	kF7I0En4kS14v26rWY6Fy7MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE
-	7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI
-	8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWU
-	CwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r
-	1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBI
-	daVFxhVjvjDU0xZFpf9x07j5EfrUUUUU=
+X-CM-TRANSID:TAJkCgC32xG5va5ofjTEAA--.25212S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxGw4Duw4ftr1xZFW8ArW3trb_yoWrGrykpF
+	Wjkry5Wwn8JryxXa9ayw10kFyfJan3Xr1akr1Iqw1fXws0va90qr4a9w1YgFy7Cr4DZ34Y
+	gay3uF47Ca4ay3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUPG14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC2
+	0s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI
+	0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv2
+	0xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87
+	Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIF
+	yTuYvjTRMrWrDUUUU
 X-CM-SenderInfo: pzhl2xxdqjy31dq6v25zlqu0xpsx3x1qjou0bp/
 
 From: Shangjuan Wei <weishangjuan@eswincomputing.com>
 
-This patch depends on the vendor prefix patch:
-https://lore.kernel.org/all/20250616112316.3833343-4-pinkesh.vaghela@einfochips.com/
+This series depends on the vendor prefix [1] and config option patch [2].
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20250825&id=ac29e4487aa20a21b7c3facbd1f14f5093835dc9
+[2] https://lore.kernel.org/all/20250825132427.1618089-3-pinkesh.vaghela@einfochips.com/
 
 Updates:
 
