@@ -1,182 +1,118 @@
-Return-Path: <devicetree+bounces-209629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52026B38281
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 14:36:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2547B38287
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 14:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E97917E417
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 12:36:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E49127B38EA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 12:36:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72D352D0C7E;
-	Wed, 27 Aug 2025 12:36:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B19DB3176E8;
+	Wed, 27 Aug 2025 12:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HP6Pd2lg"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="VcffjXPw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03FBE303C88
-	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 12:36:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9FB7145B3F;
+	Wed, 27 Aug 2025 12:37:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756298163; cv=none; b=YiF19Cshur5nZqLZYZXvowkBqp4OxsrAclu0b5dwYs5b/R6ZJZXVGU1Z+8Bag5UFzQZGjUW6AAztf1nai1auAchspuSakpC0RWOCzToS/LlGCsUp0uCqHnHEDCsdscl2gkLdPFUYmeNFe+ZOs7/0fS3k7wZQVX2LvfncoMSqenU=
+	t=1756298260; cv=none; b=uhsqB/SrsDFReHPFQKIA4xX6SW4atknyZEUv/uTnQzbE54EVR21K3ak3nVPI0pyWGGliyRhGO16jiU7mX8mWcSMiuXLN9ElqTNeMz70iJCuZZ8mnUh2MIx1gtu2mu7nvOuof8ESUx4DvrHrLY3WmQQB6KiT2luhh1QItCIZZSQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756298163; c=relaxed/simple;
-	bh=OtfwXx5I64xIHGxuZSb4288v4TGZmcJgnGcUoChVAhQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lH42662T+VPh14GX7IHg0veMp4d1X+sCYkerBsLLqF9YdFZPOiHVZclqE6ECapoIrCo1CtUPeb1KPTvXgVvEGHI9sd1P157MQ5yckjYx1kOfOMaeUWM6QINwtxN1SRrQTxONN8x+DYmviXvbmWikspJrHZ/NQEFFzPw3cR7+Fog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HP6Pd2lg; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57R6kHTA008289
-	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 12:36:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aE8zBC2r3Q0RIEhAPiMKgJEgO09ak2j9Srq2WGlHICA=; b=HP6Pd2lgIf3+Ff91
-	zdA15rB7L979ZlVWxyvt9V+gX7l8lhk/YtxeUULsYWP+dZWXurOIURgs04oH4KNS
-	Z/bgwUxV6lP20vVPOCcyPix+DqDw1Ox8eNXjp8japbIeEbJAqF1m5yaEtb6t0pFq
-	fLCElBTU0sSvJTulxTPPQFvFPl1AHiiJ+FntF7mfCQ19RAeDtrdAaTniSVlS9Cnq
-	66JB+bFkO4VQmM28jkAjxofCz6ha4w3eI1nXmdkrVPrxpjZw/Kv/scqkwPqZ1n2W
-	gSild69dNrPSBcFjVEieZb6WT0hQ7IyrUWWLvmtqWNTMcfjWjZ/W8Ynk3LGGEApY
-	ehvgsg==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48sh8ajuug-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 12:36:01 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-244582e9d17so18813295ad.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 05:36:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756298160; x=1756902960;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aE8zBC2r3Q0RIEhAPiMKgJEgO09ak2j9Srq2WGlHICA=;
-        b=AiYouDy2Y68yCBHgVeufJ7PkoJulsIWVd//VSfkVJj3/dASsda5MToUi5CsfgBPhiO
-         ICJ1n++BZEro34Dx/DjGZtt0ptvGbNwS2jGjFsWuUEzPnx2/Rl3R6pig9t7XXBzg3sv2
-         68v7mXhpz1SZ2KJsKByYw9uj7WeOYXsWRhqBKUp4akb4ceJuJ5FYhE4yaZ8gf3AlPiJM
-         /OEdDyXp5W0ERIT7R/J4g5CQi/X+qUoJlHNVWUjUiji5LkQ20PmWND2GRGUJknAe+2Z8
-         77jJ815hqHPfMqzclMBVLjuruoUNZ9fx0w2q4/tY6FU+cmmnof/soZ6Xvbibmv2T+qIA
-         gzEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU9Ccvb/6oVD7AA7yj/gz6v7jIOkGB31aKwEJmdUQAqHRZIXz1g9vB/Nchcc/Ec2J79z2NJG96iVSjH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyE7B1cHQqxKie3QCssvcHxIY62v9Yjf/vmWtZfnmfkD2GTxiVO
-	i9Df5tg6DRpjkzWWTfGx+XCcZuFZQwwUesOVkZKFqcyLnTu4ZS+kJh2MHDjfKDtebCx7cAzPrSv
-	h1IgYwr6aqBKKFmV7BL/hQH2Jpk9MAHyWBx2WVgmnafkfe3KqPWjYKG3PU3rMJlO+
-X-Gm-Gg: ASbGncvTJD/EphyhfB27JRRUxXx+ZRKC8t+GR7fLzijmr0Ck5/Q4SS7JJb2tdzw04/h
-	MI+6ZwynhxqGgvf9L2pMtWIIWQGrz5rLf2OXeKOZ3HBkAr49YsZZjTC3NBpcY958PVePyErhY2x
-	j5tSa2f2EWbQtFYcCamlzs1HERQs6XV3KeBG26kIwQObZ9XD367JNzFw2RId735H6B7AUiZUIld
-	XT6P5l8rVNJoyV66R80zx4fqgCgCqHluR4EZ1CS0DOmSGIxT9dlkZnJFLMiIrj3+MRAKqI1+Gdz
-	QncmDEo6fZ0a1E/+CHfaEgKDx/MxoKij+Z8rdP3mvH2v9oeA7AaplcP8pux0uGLe7LphZMK4GsK
-	REVYmlDD55WGmPIvjiYHAMdc1ZQpS9w==
-X-Received: by 2002:a17:902:c951:b0:248:9afa:7bc3 with SMTP id d9443c01a7336-2489b09c5damr16498665ad.8.1756298160285;
-        Wed, 27 Aug 2025 05:36:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEYZ+xD3z7w+wdaYRdOi1NqLqGkN8knb7naudF58SoA0hWReYupg5b3LgtyFq8V+9Sa/QcFuQ==
-X-Received: by 2002:a17:902:c951:b0:248:9afa:7bc3 with SMTP id d9443c01a7336-2489b09c5damr16498445ad.8.1756298159732;
-        Wed, 27 Aug 2025 05:35:59 -0700 (PDT)
-Received: from [10.133.33.166] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-248787e1bb2sm37647865ad.96.2025.08.27.05.35.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Aug 2025 05:35:59 -0700 (PDT)
-Message-ID: <521fc2c7-d58f-4051-89b4-4c5a5a29d798@oss.qualcomm.com>
-Date: Wed, 27 Aug 2025 20:35:51 +0800
+	s=arc-20240116; t=1756298260; c=relaxed/simple;
+	bh=T7M7sQJLjtX5ZHdDwKIWu6fWkx9lTXM1Mw4QurTKHSk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RC250dTElEeL9v/ipElNz6z6vEjJqbJwG7cFyZXuGz3E/qTSFbj/dsGV3go+LXkF/a/A+QRhPPVRyGwMBM5FezPs9VC0SoU0yycqNXptOOqG8C3VT7nbw/oBgvqdd4nDBgtkiq/b0muplukdY3+VjjRbChr3Ex2n3l6mTfIlPus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=VcffjXPw; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=isKWibVXBVycwFd7et1plNZH4fEqTmzHgURf/OQqBDA=; b=VcffjXPw/PgTwsJcBxPKr8x0LS
+	NH45jESGr/WF2lfebtS7qCLpXzLVlklMtyUMwkREO7QafooG/b+hsQM7MgiPiUSsBPM//htmY+uZG
+	e1Jj3nkF2Ba09x325c05fpfre772d0m1b8s5CY5NIun5+u21ibGFPEHKtd3sNcO3KLlY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1urFOs-006D0t-7x; Wed, 27 Aug 2025 14:37:14 +0200
+Date: Wed, 27 Aug 2025 14:37:14 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: weishangjuan@eswincomputing.com
+Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, yong.liang.choong@linux.intel.com,
+	vladimir.oltean@nxp.com, rmk+kernel@armlinux.org.uk,
+	faizal.abdul.rahim@linux.intel.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, inochiama@gmail.com,
+	jan.petrous@oss.nxp.com, jszhang@kernel.org, p.zabel@pengutronix.de,
+	boon.khai.ng@altera.com, 0x1207@gmail.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, lizhi2@eswincomputing.com
+Subject: Re: [PATCH v4 2/2] ethernet: eswin: Add eic7700 ethernet driver
+Message-ID: <7a39a658-0a83-4998-ae43-344025996c7b@lunn.ch>
+References: <20250827081135.2243-1-weishangjuan@eswincomputing.com>
+ <20250827081418.2347-1-weishangjuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 14/14] drm/msm/dp: Add support for lane mapping
- configuration
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, fange.zhang@oss.qualcomm.com,
-        yongxing.mou@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, quic_lliu6@quicinc.com
-References: <20250820-add-displayport-support-for-qcs615-platform-v3-0-a43bd25ec39c@oss.qualcomm.com>
- <20250820-add-displayport-support-for-qcs615-platform-v3-14-a43bd25ec39c@oss.qualcomm.com>
- <wwn24kjpwexl66hd3wufa53lkqojb2bkpdogtxwr3uqotjpf3u@hclfgsv64ajn>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <wwn24kjpwexl66hd3wufa53lkqojb2bkpdogtxwr3uqotjpf3u@hclfgsv64ajn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=cLDgskeN c=1 sm=1 tr=0 ts=68aefbb1 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=o8qHn1sYNikkEtO5ub0A:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI2MDE1MyBTYWx0ZWRfX08DLPwz6C2uN
- NG+ocU6hqxCoD9ZOKgdpGx0Njg20ICGPEqVS91+3EpbKILncn/xDnxtr/HCzb5RxrHw8ULm+mZ+
- QuAak2fC1f9F6rQOjQvM6TH5Nx6qUVVkkEd1wqFt2xEZkZ7qUcAw5/Dk/dbGXh+UAG096Vrr+A8
- FklB+JolagOC3vIrextbn8XzMDh/TR5Hmv0m+Hyq/1YkA8O8r54SWHx61O29CCMmX6AoIh/SuCf
- Z24XLDnDO7/xhHJR7emHNESvwHXq14O7o4FQWeBlREd3OF3F9y+R6uKZgxp31P8OlEGeaT8o843
- UcOvUjKh/eAx3uyg+DuZOkdnfId5XSu8F7pDzPJNvdtAS1Vm73tIIzrYnDxtf+06nCMxhfgKv7g
- ZvYckVwq
-X-Proofpoint-GUID: shtK9fUBAc3d4TqTlHUpCx1yyr0kve1P
-X-Proofpoint-ORIG-GUID: shtK9fUBAc3d4TqTlHUpCx1yyr0kve1P
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-27_03,2025-08-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
- impostorscore=0 suspectscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508260153
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250827081418.2347-1-weishangjuan@eswincomputing.com>
+
+> +/**
+> + * eic7700_apply_delay - Update TX or RX delay bits in delay parameter value.
+> + * @delay_ps: Delay in picoseconds (capped at 12.7ns).
+> + * @reg:      Pointer to register value to modify.
+> + * @is_rx:    True for RX delay (bits 30:24), false for TX delay (bits 14:8).
+> + *
+> + * Converts delay to 0.1ns units, caps at 0x7F, and sets appropriate bits.
+> + * Only RX or TX bits are updated; other bits remain unchanged.
+> + */
+> +static inline void eic7700_apply_delay(u32 delay_ps, u32 *reg, bool is_rx)
+> +{
+> +	if (!reg)
+> +		return;
+> +
+
+Please don't use inline functions in .c files. Leave the compile to
+decide.
 
 
-On 8/20/2025 7:49 PM, Dmitry Baryshkov wrote:
-> On Wed, Aug 20, 2025 at 05:34:56PM +0800, Xiangxu Yin wrote:
->> Since max_dp_lanes and max_dp_link_rate are link-specific parameters,
->> move their parsing from dp_panel to dp_link for better separation
->> of concerns.
->>
->> Add lane mapping configuration for the DisplayPort (DP) controller on
->> the QCS615 platform.
-> Separate patch
+> +	/* Read rx-internal-delay-ps and update rx_clk delay */
+> +	if (!of_property_read_u32(pdev->dev.of_node,
+> +				  "rx-internal-delay-ps",
+> +				  &dwc_priv->rx_delay_ps)) {
+> +		eic7700_apply_delay(dwc_priv->rx_delay_ps,
+> +				    &eth_dly_param, true);
+> +	} else {
+> +		dev_warn(&pdev->dev, "can't get rx-internal-delay-ps\n");
+> +	}
+> +
+> +	/* Read tx-internal-delay-ps and update tx_clk delay */
+> +	if (!of_property_read_u32(pdev->dev.of_node,
+> +				  "tx-internal-delay-ps",
+> +				  &dwc_priv->tx_delay_ps)) {
+> +		eic7700_apply_delay(dwc_priv->tx_delay_ps,
+> +				    &eth_dly_param, false);
 
+Given this code, why does eic7700_apply_delay() test for reg?  Don't
+use defensive code, read your own code and make sure it cannot happen.
 
-Ok. will separate in next patch.
+    Andrew
 
-
->> QCS615 platform requires non-default logical-to-physical lane mapping
->> due to its unique hardware routing. Unlike the standard mapping sequence
->> <0 1 2 3>, QCS615 uses <3 2 0 1>, which necessitates explicit
->> configuration via the data-lanes property in the device tree. This
->> ensures correct signal routing between the DP controller and PHY.
->>
->> The DP PHY supports polarity inversion (PN swap) but does not support
->> lane swapping. Therefore, lane mapping should be handled in the DP
->> controller domain using REG_DP_LOGICAL2PHYSICAL_LANE_MAPPING.
->>
->> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->> ---
->>  drivers/gpu/drm/msm/dp/dp_ctrl.c  | 10 ++---
->>  drivers/gpu/drm/msm/dp/dp_link.c  | 71 +++++++++++++++++++++++++++++++++++
->>  drivers/gpu/drm/msm/dp/dp_link.h  |  5 +++
->>  drivers/gpu/drm/msm/dp/dp_panel.c | 78 +++++----------------------------------
->>  drivers/gpu/drm/msm/dp/dp_panel.h |  3 --
->>  5 files changed, 90 insertions(+), 77 deletions(-)
->>
+---
+pw-bot: cr
 
