@@ -1,129 +1,159 @@
-Return-Path: <devicetree+bounces-209752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5459B38D58
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 00:13:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6D77B38E2E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 00:22:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1AF4465546
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 22:12:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6A2C200AD3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 22:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B03314A9A;
-	Wed, 27 Aug 2025 22:08:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A6430FC3A;
+	Wed, 27 Aug 2025 22:15:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bRX+tNGW"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="EkAZ3ZYg";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="VBgPeuom"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-b8-smtp.messagingengine.com (fhigh-b8-smtp.messagingengine.com [202.12.124.159])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D43BB314A86;
-	Wed, 27 Aug 2025 22:08:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F27D30F956;
+	Wed, 27 Aug 2025 22:14:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756332484; cv=none; b=rh7NkClOPyKmyED8QzkAqB8nlKN4/jx0wV+xe9tRD1qjE4/vgJfjQgyjF0LIfd8L2lQwUcU0u7MERjEbVa6jnKmys84kpq6ddsWWlvV1HwavyBwjQxPb/428RZl0NPXLdJkMtL13iayZ0Whk1Tv6zcGahhokoEuZiX/yQ2MryvE=
+	t=1756332902; cv=none; b=IQKjByXf9e8AvDZrLgNrNTd8e924GbvFOxTPEXJ5y6/AsBK6KAvds5MxKXO3ky+x8buErbRCe1AFgNs7G2CqlSxNGMsnM1h1/Hkg8IVPvt6TqMZwkyKOuAuyb650jl52yLSjjfvWo4LOIW1mc1ePTCXfmZy1r/13IF56WmD6x/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756332484; c=relaxed/simple;
-	bh=zzgfsYDCFmRhdoMZwZ++3Els9HxkLOsb+5Uew5Yhl6I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VVAjmmZRH2n0HKFhF7+DZbzgQHb2o9yGBT7e9Nl9qsKnYfJcjuudV2lyFQFJPvVyeBV77kQ7mMAU6h3uOytVyDZjXQ2j3VzP6ExIyq9V7Nv+Y89rIb5aCoCGNjaVWulC17/2WxNqvBlyI6DKJKGEgBnXn9idmezbyp9G4KM19Nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bRX+tNGW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EECAEC4CEEB;
-	Wed, 27 Aug 2025 22:08:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756332483;
-	bh=zzgfsYDCFmRhdoMZwZ++3Els9HxkLOsb+5Uew5Yhl6I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bRX+tNGWVTUIuuRWXCG5ONBpUuQUHP/wyei8Yn+SJQPZSdxqbskV+o+bN48kMj2LB
-	 4LR1hBAGzxuKLAJWZNXy2LqiiK4grBJTMBnIjHo0RwE4YUqcPtybj6NCyu5EeXcjNd
-	 n0UcO9BkDLs6IzjiMW2jrqIMMVulxJo5Do3KhN4j9Hvj+V51zj+8jFAFccSUx9DHvR
-	 /2IKuBbcutfJoszc+0hXc++CluMVTe/YUadwI9Jqk2eOGsxfQeX5CdH02aoJyE9ygy
-	 k3Zy+tyzneCTzQN6/F9NY9/LcqCQjrY9f2UV7/xR2BsYufOXpBoDEbFPfmTFIJ7lsY
-	 9CC5fg9wyhsdg==
-Date: Wed, 27 Aug 2025 15:08:01 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Matt Coster <matt.coster@imgtec.com>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>,
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	s=arc-20240116; t=1756332902; c=relaxed/simple;
+	bh=ivsbKQBh8RLLT4Cus1G5aXePlD0oj9exdgeSIL6OQBs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nmHSphm6dx1PjYdO6QGyFR2PVH0F39CyonqlrkpJFxbi3+bfsT4a4P8s35iemQPWYDmq9y29n4QT7e7s4Nl4FOyF/2Fvk5u6KW9vAyZDtwZttnHVhu4S/RSkW7bT7hgkucpMulqotNc8eTvSjZaUHHrEceG2DgVHvqRHVjH82go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=EkAZ3ZYg; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=VBgPeuom; arc=none smtp.client-ip=202.12.124.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 49C0E7A01BE;
+	Wed, 27 Aug 2025 18:14:58 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-06.internal (MEProxy); Wed, 27 Aug 2025 18:14:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm3; t=1756332898; x=1756419298; bh=WM
+	faFZZgYvtLLgw3k0SV7cOVi4XNMlOsrKyaxIr5M0k=; b=EkAZ3ZYgHETZo8dUpg
+	CRwKKsvERk3uAdCNKrbWP1nyE2CdCHckLhqPtx5ZIf4LDIlmc2kig50QJhf1COd6
+	y2kubUxgLXFCSJ51R6D6z1qyPDWBoePwThwjLJkG/0vk+nlocHuodSXhLCDoOTVe
+	SFV37Z47W/QGPttILLZLftS4+uul0Z2uGKBpLggn80bMz90yEWAOEpV09s1jb66z
+	rRIl4AuVWsGaQQA3vZCWfkBSv7IWMpYxP9uQwBn/MXhlzSpWRf1orh9gdRIKGjgb
+	79BdWqURelcXlofrNkvlHDBuzrlmXWpl7yMe4p8ZJziyjMbvWQd4VbQlIf60Lw5e
+	YRUw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1756332898; x=1756419298; bh=WMfaFZZgYvtLLgw3k0SV7cOVi4XN
+	MlOsrKyaxIr5M0k=; b=VBgPeuomO76mEXO1PV6t5FLAANcjUiOoFjhqMcewcXPQ
+	46XHnLc/4VDGmUnEU3gCt4q0F+k7HgwcXS8cPqWsjy6T9gOtHEHz0mRFbxlkwUTH
+	8FHcsaxP2h3HLJsnIHK0bVlho4joJ9Z/bpOWY1uKk8IgOVBvJ8NogbIzj4onm2zS
+	DBb0hV/JahbR1FaImFyPN6hx5yo0frmtB3hC4mdUdOrcdkY0+EgHb7g2/MbZ/f+a
+	ZMz0CoBT4dHuSvHqhn9sd+A3IJQhKu8YUNLtNlo83hP+djm/URCwIvNE1/lbyfKa
+	bYyTZYvq4Fqvij/HYMbrUsPtW6JMLVvvjp3XZeRg0w==
+X-ME-Sender: <xms:YYOvaJX_SGNVJ3WWhD9IuXymDzIdj0fjLVtoYLUBy1YjMMyZfmNgIg>
+    <xme:YYOvaEPgkDDBSupQiWFe6tFBWylMvlISjNqfvS69cxj5N0S3xAQuziFc7GheuOLyh
+    47TjzEAhiYXJb3lXdE>
+X-ME-Received: <xmr:YYOvaLZkkcB4nCkvfo5-VTdVQe_oBJZzsyixYCtUzsir14zygDwtQ9Ggjdr1ScO9MwbsnpoVy8sy9xapUsGKRjjd7A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddujeelfeefucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhephffvvefufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpefpihhklhgrshcu
+    ufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrsh
+    esrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeehudelteetkefgffef
+    udefuedvjeeivdekhfevieefgeffheeltddvvefhfeetgeenucevlhhushhtvghrufhiii
+    gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhluhhn
+    ugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtthhopeelpdhmohguvgepshhmth
+    hpohhuthdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghssehglhhiuggvrhdrsggv
+    pdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikh
+    doughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhn
+    vghlrdhorhhgpdhrtghpthhtohepmhgrrhgvkhdrvhgrshhuthdorhgvnhgvshgrshesmh
+    grihhlsghogidrohhrghdprhgtphhtthhopehlrghurhgvnhhtrdhpihhntghhrghrthes
+    ihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtoheplhhinhhugidqrhgvnhgvsh
+    grshdqshhotgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgt
+    vghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehnihhklhgrsh
+    drshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:YYOvaL9hMhPrllz7yc7JmNU46egPjdOwpxz3NMyHcs_Zh8ppH7ncSg>
+    <xmx:YYOvaEQfJaZWJ8ioX_VAvGKq9XFp_7zugiBjJQVSzo1tlB74afuIMw>
+    <xmx:YYOvaNegO1Z2Lvs3jQvK04zhzMo7elp5f8zMGBCyYfB5y0tX8fhiKg>
+    <xmx:YYOvaOSmjTLR2zCULv25fcsgDicwp08fvtC8-eEdiGfB-oOhfgWlrw>
+    <xmx:YoOvaLMa0PUk75VY1mOwJRIWnbA7uCDk00V1byo564J-TLjfYnwJ71Jf>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 27 Aug 2025 18:14:56 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v13 3/4] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU
- node
-Message-ID: <aK-BwY8c-OR_WqNk@thelio>
-References: <20250822-apr_14_for_sending-v13-0-af656f7cc6c3@samsung.com>
- <CGME20250821222023eucas1p1805feda41e485de76c2981beb8b9102d@eucas1p1.samsung.com>
- <20250822-apr_14_for_sending-v13-3-af656f7cc6c3@samsung.com>
- <aKjWiU4fQw3k77GR@x1>
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v4 0/4] arm64: dts: renesas: sparrow-hawk: Add overlays for camera sensors
+Date: Thu, 28 Aug 2025 00:14:20 +0200
+Message-ID: <20250827221424.640770-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aKjWiU4fQw3k77GR@x1>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 22, 2025 at 01:43:53PM -0700, Drew Fustini wrote:
-> On Fri, Aug 22, 2025 at 12:20:17AM +0200, Michal Wilczynski wrote:
-> > Add a device tree node for the IMG BXM-4-64 GPU present in the T-HEAD
-> > TH1520 SoC used by the Lichee Pi 4A board. This node enables support for
-> > the GPU using the drm/imagination driver.
-> > 
-> > By adding this node, the kernel can recognize and initialize the GPU,
-> > providing graphics acceleration capabilities on the Lichee Pi 4A and
-> > other boards based on the TH1520 SoC.
-> > 
-> > Add fixed clock gpu_mem_clk, as the MEM clock on the T-HEAD SoC can't be
-> > controlled programatically.
-> > 
-> > Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > Reviewed-by: Drew Fustini <drew@pdp7.com>
-> > Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > Acked-by: Matt Coster <matt.coster@imgtec.com>
-> > Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> > ---
-> >  arch/riscv/boot/dts/thead/th1520.dtsi | 21 +++++++++++++++++++++
-> >  1 file changed, 21 insertions(+)
-> 
-> I've applied this to thead-dt-for-next [1]:
-> 
-> 0f78e44fb857 ("riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU node")
-> 
-> Thanks,
-> Drew
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=thead-dt-for-next
+Hello,
 
-Hi Matt,
+This series adds a couple of overlays to verify the two CSI-2 busses
+exposed on the V4H Sparrow Hawk board. The two busses are exposed on two
+connectors labeled J1 and J2 on the board.
 
-Do you know when the dt binding patch will be applied to
-the drm-misc/for-linux-next tree?
+The first set adds overlays for the IMX219 camera sensor, one for each
+connector (patch 1/4 and 2/4). A Raspberry Pi Camera Module 2 have been
+used to verify the proper operation of the overlays.
 
-I applied the dts patch but it is creating a warning in next right now.
-If the binding won't show up soon in drm-misc, then I'll remove this dts
-patch from next as dtbs_check is now failing in next. I can add it back
-once the binding makes it to next.
+The second sets adds overlays for the IMX462 camera sensors, also one
+for each connector (patch 4/5 and 4/4). A DFM 36SX462-ML camera module
+have been used to verify the proper operation of the overlays.
 
-Thanks,
-Drew
+The reason two sets of overlays are needed is that the IMX219 uses
+2-lanes CSI-2 D-PHY bus, while the IMX462 uses a 4-lane CSI-2 D-PHY bus.
+To be able to properly test both situations on the board each sensor
+needs to be able to connected to each of the two external busses.
+
+Obviously only one sensor can be connected to J1, and one to J2 at any
+given time.
+
+See individual patches for changelog.
+
+Niklas Söderlund (4):
+  arm64: dts: renesas: sparrow-hawk: Add overlay for IMX219 on J1
+  arm64: dts: renesas: sparrow-hawk: Add overlay for IMX219 on J2
+  arm64: dts: renesas: sparrow-hawk: Add overlay for IMX462 on J1
+  arm64: dts: renesas: sparrow-hawk: Add overlay for IMX462 on J2
+
+ arch/arm64/boot/dts/renesas/Makefile          |  12 ++
+ ...8a779g3-sparrow-hawk-camera-j1-imx219.dtso | 116 +++++++++++++++++
+ ...8a779g3-sparrow-hawk-camera-j1-imx462.dtso | 117 ++++++++++++++++++
+ ...8a779g3-sparrow-hawk-camera-j2-imx219.dtso | 116 +++++++++++++++++
+ ...8a779g3-sparrow-hawk-camera-j2-imx462.dtso | 117 ++++++++++++++++++
+ 5 files changed, 478 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx219.dtso
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx462.dtso
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j2-imx219.dtso
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j2-imx462.dtso
+
+-- 
+2.51.0
+
 
