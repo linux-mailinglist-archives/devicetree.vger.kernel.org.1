@@ -1,130 +1,257 @@
-Return-Path: <devicetree+bounces-209668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11197B38436
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 15:58:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88291B3843B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 15:59:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E170365E2D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 13:58:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 171CB5E4132
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 13:59:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78635356903;
-	Wed, 27 Aug 2025 13:58:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79B47356900;
+	Wed, 27 Aug 2025 13:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dZWrZIyf"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YptpW1Nr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FD40350D6E;
-	Wed, 27 Aug 2025 13:58:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C4E2BD5B0
+	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 13:59:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756303126; cv=none; b=pe16pjojeUjoyJdFULLoxcOGSW1fM7qpGogNuDsSfaVxh0BrVCKRz0q7Ahq9aabibHVizJsOUWvwjDw+4k82+oXxJjd4oybow3OvQFEbxTU46NEKMTeEaEBPOLIf246QDnZROKCVyWg6azQKbauAINxXMi48X5wkv3H/PITEcXI=
+	t=1756303172; cv=none; b=rV5z+OTr0J1N4AHxpnKNzzJor+K8FPddfYU3T10cHdtBe0brDSK5ctLcLb9Uv/isz3vrIcsKMoQl+Zi4gdL43QXPicjToHbuse3Ey/mkvT81BqHXslVxLSE2X23VI7ILqpmpti/KUJm7s8khS43r0Ju3DzT3fQ9lZT//Z/CJfgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756303126; c=relaxed/simple;
-	bh=UPsDLa+npxQf/r4sAPI8AxVrqWdXD+BKRi0Iv7NwMuU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iPsTAmxaQzMGzPEcbG3pZadfZxw65qjapL2RbMiCMV8Hxd8j7ldO83J6leaxr9/ZMHznJn1wbTUVpJ7Xa0IRXb6zD9JEVIeLus4dDnBh+qkivOCgIhSgkaK/vvHR8ScuJSXF07pY1lpfuAdpNs4WQewfVHSs8p12TIB6GFBh62w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dZWrZIyf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D40ADC4CEEB;
-	Wed, 27 Aug 2025 13:58:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756303125;
-	bh=UPsDLa+npxQf/r4sAPI8AxVrqWdXD+BKRi0Iv7NwMuU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dZWrZIyfUPGloGm2D5K/2w+Qw5nKlsALT7JUMbr8uprJJVv7RrEswAJD+4hzRS5Kg
-	 fjhEcKFwTju15W2H2qzd/n2a83z+R+sesa2d5dovBknc+30TAI7XXKSyaYlLdfc9iv
-	 XsXTYAK5gCW+KDtFq+v41z67emYARGVHAJmHAoCYxnEAln9QcsXW6kO6cYW4zqIkr5
-	 WynVNmR0JqtAE0Z7G2RNwOoFoSDPNPUq/xHiS7/u+at0/aF1UD0ynJp9gBVk2bEE4s
-	 cXkq08ugdyBMFtEkfEW8G/OzrlSR0hBmqRyS8JJIi6T0lawvEdHis13sC+hJ+qGOEA
-	 P4mphxLcR8uhw==
-Date: Wed, 27 Aug 2025 19:28:36 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Helgaas <bhelgaas@google.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, quic_mrana@quicinc.com, 
-	sherry.sun@nxp.com, linux-pm@vger.kernel.org, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v4 0/3] PCI: Add support for PCIe WAKE# interrupt
-Message-ID: <rybngetujsbwx7j7ibnqpkyqdhat3gkqjzephrmluirxtgartb@753pwgb3xmvq>
-References: <b6b4tzs73n63d565k52pqbep4bqhctibjv5gzm2wenbf2ji45b@npgoqscnbbpn>
- <20250804155023.GA3627102@bhelgaas>
+	s=arc-20240116; t=1756303172; c=relaxed/simple;
+	bh=IpRMFO2MeMkQytb9AR0N8Z1FemuJAxPT/DZPEjNV+I0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ki3O/ORan69rzzktPt0lrzxg2X/xIdt2ewKxDaMi732U9kz3thkpQdfSpADwTuUmMbMz2lxn+odBbxJJFjvCc4I3dfQ4IOZmPWY7MNK9MlCM2ysYJJ7xEZOJq0ZLR5jcBBSL0WbnB2D6F9yHwfnwlduVMnTocIBXI0BbGEUDeiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YptpW1Nr; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7452b3a0b31so763817a34.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 06:59:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756303169; x=1756907969; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3DEQfVOF90gg0nQ2w58ay9TgS+NK/WWzZloFFYDQxeI=;
+        b=YptpW1NrPYQJUtxCJxZlAK41GASCaGI4T10wdA5OdawvHzTMqRmt7uiQjYF8J304o9
+         mabZ2XbXzBbEWnpbb+zDacrcII40gVXfhuen1Gf5ldgZlce2154Bx2G6XWlYC9t7JIrO
+         O513s0gDl53nAk3Tb38MmHFZmCdMd+gzOYiTVUX3k2PpaiiZOcvO0aHamUsZgr6+ncAc
+         RIMQwABckeBrY7pwYLhy3PESwrXI5M2GMQVww+kFDIqw8Q1SZLRAbklJXAN0v+pSFGoz
+         dEzdIWevFM7Cqg1UX5RE3MSFfVXUocnfAHyUrwrsU7FHZL1LJPFNwQW2/kClsnKWTANk
+         cpNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756303169; x=1756907969;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3DEQfVOF90gg0nQ2w58ay9TgS+NK/WWzZloFFYDQxeI=;
+        b=rJx+XN/EFgoxQ94MD27s9IAAVDvaC0T+VhzDNQhPEDvMnL0qfd73fAURlnT84YBv4b
+         mZVhgFriiRmbhl6gPhlFOUHAhvLsu0q952hz9NfAYV8iHDLEP8vbPimsJhLgFfKWUKxT
+         gwcCYjGEl2bBTGL32sI7NYXK9mNVq9QRo5JKb3egvt2WmXG6Pv1CcqbRJqq9WudmDxZR
+         PFxbQ5uxWNZC2sMhX2ZcpI/a/Fs7jFw0bvs61NRPe5Uq98iKbOayU6tOgA86j5pKgx3G
+         Uyrd7S7DnY+x4TzI4+r0sR5J+qY/3O1NK1wRM36XWVTC2PXyOi31fVZSyfpC1YbBR2N1
+         3B+A==
+X-Forwarded-Encrypted: i=1; AJvYcCVGkflAhbvQDj6ohwlx5HNB4w2PGqxY8pGwvWqcNMOXRqYLO77DXUO2y8IqNpWKbw4d2W9CetJ2rKjo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJYOPhkNlS7deMcIb22lzNyxKV3wvq2nzAm3Gz0r6jkA31MNqv
+	5VS42Enya9XC7HXN39mreCL/w04jHb2Ro4W9FYQ7YXryYIJJuifHzuFkNkFXrwVb/yY=
+X-Gm-Gg: ASbGncuwsOjpdD9RkAPpeVZiab2BNIjBI1sWTrcXe1qVzSkuRo32r2MgZ1JPArV+3Mk
+	xQdYVWa3rLmy3rxx+rjeoIzZYC+JV6/xVLjeOI3Ka3JmhjSVV/NH+YUlSMkW7GotGhyiqCmiG3G
+	sC8I7WM+HgJntesVyGoVv1UAV9MwZtKQAG3b5ewwwHqKCZPGciz3zcyJ7Q/nE93GRNYzJ2bFTo8
+	fpESH1BmgyuNrH8bn6vnw5Ll5PMEKyZy6D8XVCzWWkx7b7Cs8+VWO9+dbxS4KKD3EnTkll6wZ3L
+	SNCYi6twuWWbs5f6YkZ8/t7cm4K9GXMINf50uaC1bSgMVBqVIjk/zEJ2nnF9d5c9jdvtiEr/hZN
+	lv/Uli5f8DzO9yAWieazjJUhQ1fJxsyEg9Zh/t+CNOPheqcdRo13fYnOrUhHwvziPNHm0kjGpvn
+	fACKrOeMkMSA==
+X-Google-Smtp-Source: AGHT+IHSftKprg4A6uiJZsbpSHa4sPR9ZXxfCmFTDjOuRBFTS34c1PezHWubSzt7gTo1cYwVIRJIbw==
+X-Received: by 2002:a05:6830:2b07:b0:72b:992b:e41 with SMTP id 46e09a7af769-74500a5c79amr8967488a34.23.1756303169172;
+        Wed, 27 Aug 2025 06:59:29 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:aa9f:f4cd:76b1:fecb? ([2600:8803:e7e4:1d00:aa9f:f4cd:76b1:fecb])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7450e474c76sm3019432a34.24.2025.08.27.06.59.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Aug 2025 06:59:28 -0700 (PDT)
+Message-ID: <ca078446-7cdf-4922-b550-6dd671d39589@baylibre.com>
+Date: Wed, 27 Aug 2025 08:59:27 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: Add NXP P3T175x
+ support
+To: Lakshay Piplani <lakshay.piplani@nxp.com>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, jic23@kernel.org, nuno.sa@analog.com,
+ andy@kernel.org, marcelo.schmitt1@gmail.com, gregkh@linuxfoundation.org,
+ viro@zeniv.linux.org.uk, peterz@infradead.org, jstephan@baylibre.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, ilpo.jarvinen@linux.intel.com,
+ jonathan.cameron@huawei.com, akpm@linux-foundation.org, chao@kernel.org,
+ jaegeuk@kernel.org
+Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com,
+ shashank.rebbapragada@nxp.com, Frank.Li@nxp.com
+References: <20250827103105.2472328-1-lakshay.piplani@nxp.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250827103105.2472328-1-lakshay.piplani@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250804155023.GA3627102@bhelgaas>
 
-On Mon, Aug 04, 2025 at 10:50:23AM GMT, Bjorn Helgaas wrote:
-> On Mon, Aug 04, 2025 at 03:45:05PM +0530, Manivannan Sadhasivam wrote:
-> > On Fri, Aug 01, 2025 at 04:29:41PM GMT, Krishna Chaitanya Chundru wrote:
-> > > PCIe WAKE# interrupt is needed for bringing back PCIe device state
-> > > from D3cold to D0.
-> > > 
-> > > This is pending from long time, there was two attempts done
-> > > previously to add WAKE# support[1], [2]. Those series tried to add
-> > > support for legacy interrupts along with WAKE#. Legacy interrupts
-> > > are already available in the latest kernel and we can ignore them.
-> > > For the wake IRQ the series is trying to use interrupts property
-> > > define in the device tree.
-> > > 
-> > > This series is using gpio property instead of interrupts, from
-> > > gpio desc driver will allocate the dedicate IRQ.
-> > > 
-> > > According to the PCIe specification 6, sec 5.3.3.2, there are two
-> > > defined wakeup mechanisms: Beacon and WAKE# for the Link wakeup
-> > > mechanisms to provide a means of signaling the platform to
-> > > re-establish power and reference clocks to the components within
-> > > its domain. Adding WAKE# support in PCI framework.
-> > > 
-> > > According to the PCIe specification, multiple WAKE# signals can
-> > > exist in a system. In configurations involving a PCIe switch, each
-> > > downstream port (DSP) of the switch may be connected to a separate
-> > > WAKE# line, allowing each endpoint to signal WAKE# independently.
-> > > To support this, the WAKE# should be described in the device tree
-> > > node of the upstream bridge to which the endpoint is connected.
-> > > For example, in a switch-based topology, the WAKE# GPIO can be
-> > > defined in the DSP of the switch. In a direct connection scenario,
-> > > the WAKE# can be defined in the root port. If all endpoints share
-> > > a single WAKE# line, the GPIO should be defined in the root port.
-> > 
-> > I think you should stop saying 'endpoint' here and switch to 'slot'
-> > as that's the terminology the PCIe spec uses while defining WAKE#.
+On 8/27/25 5:31 AM, Lakshay Piplani wrote:
+> Add bindings for the NXP P3T175x (P3T1750/P3T1755) temperature
+> sensor, supporting both I2C & I3C interfaces.
 > 
-> I think the main question is where WAKE# is terminated.  It's asserted
-> by an "add-in card" (PCIe CEM r6.0, sec 2.3) or a "component" or
-> "Function" (PCIe Base r7.0, sec 5.3.3.2).  A slot can provide a WAKE#
-> wire, and we need to know what the other end is connected to.
-> 
-> AFAICS, WAKE# routing is unrelated to the PCIe topology *except* that
-> in "applications where Beacon is used on some Ports of the Switch and
-> WAKE# is used for other Ports," WAKE# must be connected to the Switch
-> so it can translate it to Beacon (PCIe r7.0, sec 5.3.3.2).
-> 
-> So we can't assume WAKE# is connected to the Port leading to the
-> component that asserts WAKE#.
-> 
+> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+> ---
+> Changes in v2 (addressed review comments from Krzysztof Kozlowski):
+>  - Dropped nxp,alert-active-high: unnecessary as polarity handling is implicit in driver.
 
-I've submitted a PR to add wake-gpios to the endpoint node:
-https://github.com/devicetree-org/dt-schema/pull/170
+>  - Retained nxp,interrupt-mode: required to program TM(thermostat mode) bit; enables interrupt
+>    (latched) mode. If not present in DT entry comparator mode is set as default.
+>  - Retained nxp,fault-queue: This needs to be configured during device initialization.
+>    This property configures the hardware fault queue length. Defines how many consecutive faults
+>    are required before ALERT/IBI is asserted, preventing false triggers in noisy environments.
 
-- Mani
+These are not very convincing reasons that these to properties should
+be in the devicetree. The devicetree describes how things are wired
+up, not how they are used in the driver. For the first one, we already
+have the parent node to tell us if we are using I2C or I3C, so the
+property is redundant. For the second one, the whole system could be
+moved from a less noisy to a more noisy environment and we should not
+have to change the devicetree to handle that.
 
--- 
-மணிவண்ணன் சதாசிவம்
+>  - The `reg` property remains required to satisfy `dt_binding_check`.
+>  - Fixed YAML formatting, line wrapping, and examples.
+>  - Changed compatibles from nxp,p3t1755 to nxp,p3t1755-iio and nxp,p3t1750 to nxp,p3t1750-iio
+>    as reported by kernel test robot.
+> 
+>  .../bindings/iio/temperature/nxp,p3t1755.yaml | 97 +++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml b/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
+> new file mode 100644
+> index 000000000000..4eb6fc5cb247
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/temperature/nxp,p3t1755.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP P3T175x Temperature Sensor
+> +
+> +maintainers:
+> +  - Lakshay Piplani <lakshay.piplani@nxp.com>
+> +
+> +description: |
+> +  Datasheet: https://www.nxp.com/docs/en/data-sheet/P3T1755.pdf
+> +
+> +  P3T175x (P3T1750/P3T1755) is a digital temperature sensor with a range of -40°C to
+> +  +125°C and a 12-bit resolution. It supports communication over
+> +  both I2C and I3C interfaces.
+> +
+> +  The I2C interface supports up to 32 static addresses and provides
+> +  an ALERT output to signal when temperature thresholds are crossed.
+> +
+> +  The I3C interface supports In-Band interrupts (IBI) in interrupt mode,
+> +  allowing the device to notify the controller of threshold events without
+> +  dedicated alert pin.
+> +
+> +  The device supports configurable thermostat modes (interrupt or comparator),
+> +  fault queue length etc.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,p3t1750-iio
+> +      - nxp,p3t1755-iio
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: |
+> +      In I2C mode, the device supports up to 32 static addresses.
+> +      In I3C mode, the 'reg' property encodes a triplet of
+> +      <static-address BCR PID> used for device matching.
+> +      Static address is optional if matching is done via PID.
+> +
+> +  nxp,interrupt-mode:
+> +    type: boolean
+> +    description: |
+> +      Enables interrupt mode (TM = 1), where alerts are latched until
+> +      cleared by a register read.
+
+As mentioned above, the driver should know best which mode makes the
+most sense without having a property to restrict it.
+
+> +      Required for IBI support over I3C. On I2C, both interrupt and
+> +      comparator mode support events.
+> +
+> +  nxp,fault-queue:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4, 6]
+> +    description: |
+> +      Number of consecutive temperature limit
+> +      violations required before an alert is triggered.
+> +      valid values:- 1, 2, 4 or 6.
+> +      If unspecified, hardware default (2) is used.
+
+If we kept this, it should have `default: 2`. But as mentioned above,
+this doesn't seem like something that would be known when writing
+the device tree since it could depend on variable environmental
+conditions.
+
+We already have IIO_EV_INFO_RUNNING_COUNT that sounds similar to this
+type of control that would allow it to be set at runtime instead.
+
+> +
+> +  assigned-address:
+> +    true
+> +
+
+Missing `vcc-supply: true`, which should also be required.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        temp-sensor@48 {
+> +            compatible = "nxp,p3t1755-iio";
+> +            reg = <0x48>;
+> +            nxp,interrupt-mode;
+> +            nxp,fault-queue = <6>;
+> +            interrupt-parent = <&gpio2>;
+> +            interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
+> +        };
+> +    };
+> +
+> +  - |
+> +    i3c {
+> +      #address-cells = <3>;
+> +      #size-cells = <0>;
+> +      temp-sensor@48,236152a00 {
+> +        reg = <0x48 0x236 0x152a00>;
+> +        assigned-address = <0x50>;
+> +      };
+> +    };
+
 
