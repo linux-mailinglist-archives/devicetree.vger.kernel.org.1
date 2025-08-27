@@ -1,245 +1,214 @@
-Return-Path: <devicetree+bounces-209496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA749B3793D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 06:47:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76262B379E5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 07:33:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D9E6365612
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 04:47:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79F6B1B6142B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 05:34:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94F98257825;
-	Wed, 27 Aug 2025 04:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F6328725F;
+	Wed, 27 Aug 2025 05:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f/pZ4G7i"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K0lqS2o9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B732C1E260A;
-	Wed, 27 Aug 2025 04:47:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D582F38DEC;
+	Wed, 27 Aug 2025 05:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756270055; cv=none; b=tMo67o41kKRG4ICM9Xx/LdWJPCsEzJlUkAsNsbwduHjG24H6uy8ajGuteS7XnKRwHb6hSXbp6KrfTEYTBKIfXVNt5WMBgo35Qlq+TZif5k5zG6B7EHhEM6wiomsSIMNmVv4veMc0n8ifbksfxIL/uAA8OPjZvve3+l9PtdB2bfs=
+	t=1756272834; cv=none; b=Q8M/XM8oRBnmfNXiw6AzvBV2P48ISSWZJUQfUBM/LTf3JwShmOrTfAlKWqkkdU3WLt6lIf07HbsC/53TBaa6b7AAtnSinFRqsZLTUEqLSMpjelGZgFrI/Dy4DpWuwvHjOxsKSLi1mFGgBIgEZBAHX6ERgqdj7xWvjXz6IGXqwgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756270055; c=relaxed/simple;
-	bh=FH79sR3wwQwKOwJz4iMC16W4fPbO9VVTpyHth1+ZjzM=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=eUJVBN4phxCxKVtxej6wsNLEVtTyR965TmefXXIQhQM2hLvSZcLDQB9PzUbDVZ9XZgil+0araU2EuoyA0auPJHbmaSPlFU2AXjMn8v0xKKODWv1hED4bh0cjJIERSo1v1O4zM5rZBJbLRGXhdAFAyHufuyNIQYkhO2q1sojfiOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f/pZ4G7i; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-61c325a4d18so6873287a12.0;
-        Tue, 26 Aug 2025 21:47:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756270052; x=1756874852; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=8TCMaff2/OOBuiGXhxSyW4vUb1EhEINJOzc43HDpiqA=;
-        b=f/pZ4G7ihgGrs8QRe50LTu7+MNAo3IZiZyCH0Ay5BnG9fLql38HrUv4R0p8/54NYku
-         f+dAKyQ8DJ8DcUIeOE4QiwwSuSe3DGHMte6OhlAYNxPvY1SheYGo6SWWmbynMmzdcrmV
-         51HRtriv1lhEOrqIHgikgnmjw+WwiBZBlcMV08dPW6dq0kab3IQWDTPRvE7qcHdsbiZa
-         HCXb95NNLxB9xWpM7i7RtvWoSXtkI3rO9/Rj95+kF4Ja8vnluZA5D7v4VWZYr2oIIU6F
-         WxkdWKsPEYLhoXh5XjJdtS0BYCaZIQCjVfGtNbQy6wnEN9YXLbTODs49nAX6VBVP0/Ms
-         03ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756270052; x=1756874852;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8TCMaff2/OOBuiGXhxSyW4vUb1EhEINJOzc43HDpiqA=;
-        b=CAs2ynzaBHIaJIitls0K3a/VF8QzSr5YEbijOV8CF3esX5eMSc0tfEeypl8M5Q9R3O
-         +Ii4nyyfhVXXS/cd1Tz86f12+KCHXJ/IUljPdjre+34a5F3a0RKz92e0grHo/IpdKJi3
-         mJjvVSVQvga4eZq7jesH/LIOqZ8YnZ2fwTSfHPvWJVF5YLyACxBoXT5ijq/gLHEef9FW
-         NBej4dhWvACp4Ef2Y7pKFubZqLL0xQjycdNjUuh5KFkS3tVNOv6X8k9UbF+OEDFBf4cv
-         MFsj8miFJ4u/stv7blGTCKE3mwagkKg3OH3IT1VMScBMrQvdLA4MX1Mf1iiIyBDjmewp
-         Rl/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU4X2+hOoXu8VH/+IAtxYe4UldWnFB7R/2G+YFlR9Rgy60qxP+N5+5dC87UKmay4KqH5u/qirJNDe8g@vger.kernel.org, AJvYcCU7yipZjCcyYls+F+RlQRw9x6mo07S5WPPZ6MHGkkFx3pD9n8TEYWGQT9STAeB22AZuLCK/Jmr8QPa5qU9/@vger.kernel.org, AJvYcCVOQyD6I6DUHDqPMvkuqe+3Xm9xwNWmOZydQjH5aC3FXNw5Xw7VcNNXeNtxwYp/jdSHTVDn9ggjGDik@vger.kernel.org, AJvYcCX4TBigD90ptHRcIbyIKcMPlF7f9vNSO9nRiePjlAr/Y9HCv9Ux4yx3wHCnF+hVI/cY9r5ImtTpWT21x3o=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6jW8cvsZYWha1hMKaoCHaS/tDo9yqbBS23m1AIlxbbORw8cd3
-	4LZjblkXUnxvJBF2zyOvYG21pNZi8brDKm1/c+dvb9lyZ3O0aN+CLPAg
-X-Gm-Gg: ASbGncvDoMK95UpPk4vmy7G6+9QFFSNCk6INeB5m3BgOJ/qcezg84oeU06GYmb3m7FQ
-	N5raJ2cDYPi12Nbw+fAli+CX+kDzdgmy59ia+InehUR7vJFi33hN56AQzX35JLFo0Z6/hWR40ij
-	KhC8cljJRbbu4aaHyt2G7wzrZiNrQ37PnsuU+jXvgkMWQXbT24JHtEByIO39v4GGaMc8uMQg1Vk
-	HE6nrGNrT/duGU0h1b69kfduosI8WqcQ9l/bES6utBSiaM4xYpXw339e79uhJkcaOlAr8/A35O3
-	hAHF1BGuuZG0aD9qjFWg7suzERUEGJk4/O0vq6pI5C07bxflXZZAxZDo39UeCYcmNW14w1AU/Bf
-	IsCAhexAJPmfPb1NBdUozgiv5
-X-Google-Smtp-Source: AGHT+IG9JdOvxAI0JpZC7UN53cppIId0lE2cbYaF9wAYpBd5bYrwqo7A7y/TJvWUTacmrbOk5BBATg==
-X-Received: by 2002:a05:6402:44d2:b0:618:fe3:f4c with SMTP id 4fb4d7f45d1cf-61c1b6f1fbemr12637501a12.29.1756270051831;
-        Tue, 26 Aug 2025 21:47:31 -0700 (PDT)
-Received: from [127.0.0.1] ([5.248.55.4])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61c90ffd677sm2710258a12.46.2025.08.26.21.47.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Aug 2025 21:47:31 -0700 (PDT)
-Date: Wed, 27 Aug 2025 07:47:29 +0300
-From: Svyatoslav <clamor95@gmail.com>
-To: Mikko Perttunen <mperttunen@nvidia.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Sowjanya Komatineni <skomatineni@nvidia.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Peter De Schrijver <pdeschrijver@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Osipenko <digetx@gmail.com>,
- Charan Pedumuru <charan.pedumuru@gmail.com>
-CC: linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-staging@lists.linux.dev
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v1_05/19=5D_staging=3A_media=3A_tegra-?=
- =?US-ASCII?Q?video=3A_expand_VI_and_VIP_support_to_Tegra30?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <2271797.NgBsaNRSFp@senjougahara>
-References: <20250819121631.84280-1-clamor95@gmail.com> <20250819121631.84280-6-clamor95@gmail.com> <2271797.NgBsaNRSFp@senjougahara>
-Message-ID: <4BD9010B-3F5B-4EE3-B57C-A20DFAEC5276@gmail.com>
+	s=arc-20240116; t=1756272834; c=relaxed/simple;
+	bh=5VFDz0Vkj2/2uTvvseBKlXbtMaFHG29kxehO+uaaK5c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s9pLRni2LPm2KEQPUlhm2QKMsgtMyKV2QZ36M2vaHSIx6C37WYEUhIsCalXy7hJ3jhSQMvY4zfpuM6lJJeh6MEmBH15EHNEfVHsHF3h70T4SzNoAvO8yLi/9T+Nwt2aQgMQQHOkThcvQJlpb/jjDq4PLMY7JfQyWNJyOYWAIBPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K0lqS2o9; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756272832; x=1787808832;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=5VFDz0Vkj2/2uTvvseBKlXbtMaFHG29kxehO+uaaK5c=;
+  b=K0lqS2o9wO+MeoMe5IGOEDgu0NwpsQVDpAgjOY3aRZgfM1EFPQcoLy4f
+   Z0wdGkD8kG4YVwVUqmFoqmNEJS3R36OIv9WLhuf6SeVe+sHTFVBacHxv3
+   D7QkvTosVsrBS9l+EgBAhjnAFcvEAxLTyAo0r48P2mz9g/W30tMlbaZPt
+   dXt897IZwj+YkIMS4NWvGX2G4wTI78nLGyrlTSZk8AYCpz2YVG1lGTcvn
+   R/mnmFLTD/raj5msFpNEd7ILHECrAdw9N32yuzbDLyn982UQdRGLcLPNC
+   HUjhR5fxBn34UBk4BN20CkFELCd16MJ3ygEbfu4lXtJV9qoD6UiSoAiW9
+   Q==;
+X-CSE-ConnectionGUID: g5G9wxlVRgaikpPlLMJRaQ==
+X-CSE-MsgGUID: YxDyeDIsTuqMlk6PjJ4sNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11534"; a="69889805"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
+   d="scan'208";a="69889805"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2025 22:33:51 -0700
+X-CSE-ConnectionGUID: vodw3LM7TjuitAkIRHSMpw==
+X-CSE-MsgGUID: X0IBI55iQW+IF5BFOsX7aQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; 
+   d="scan'208";a="169000028"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa006.jf.intel.com with ESMTP; 26 Aug 2025 22:33:47 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ur8mo-000Shv-2m;
+	Wed, 27 Aug 2025 05:33:40 +0000
+Date: Wed, 27 Aug 2025 13:32:42 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+	Boris Gjenero <boris.gjenero@gmail.com>,
+	Christian Hewitt <christianshewitt@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Paolo Sabatino <paolo.sabatino@gmail.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v3 3/4] auxdisplay: Add TM16xx 7-segment LED matrix
+ display controllers driver
+Message-ID: <202508271344.WqQr2aa7-lkp@intel.com>
+References: <20250820163120.24997-4-jefflessard3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250820163120.24997-4-jefflessard3@gmail.com>
+
+Hi Jean-François,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.17-rc3 next-20250826]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jean-Fran-ois-Lessard/dt-bindings-vendor-prefixes-Add-fdhisi-titanmec-princeton-winrise-wxicore/20250821-003451
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250820163120.24997-4-jefflessard3%40gmail.com
+patch subject: [PATCH v3 3/4] auxdisplay: Add TM16xx 7-segment LED matrix display controllers driver
+config: x86_64-randconfig-r112-20250827 (https://download.01.org/0day-ci/archive/20250827/202508271344.WqQr2aa7-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14+deb12u1) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250827/202508271344.WqQr2aa7-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508271344.WqQr2aa7-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   ld: vmlinux.o: in function `tm16xx_i2c_write':
+>> drivers/auxdisplay/tm16xx.c:1469: undefined reference to `i2c_transfer'
+   ld: vmlinux.o: in function `tm16xx_i2c_read':
+   drivers/auxdisplay/tm16xx.c:1497: undefined reference to `i2c_transfer'
+   ld: vmlinux.o: in function `tm16xx_i2c_probe':
+>> drivers/auxdisplay/tm16xx.c:1416: undefined reference to `i2c_get_match_data'
+   ld: vmlinux.o: in function `tm16xx_i2c_register':
+>> drivers/auxdisplay/tm16xx.c:1727: undefined reference to `i2c_register_driver'
+   ld: vmlinux.o: in function `tm16xx_i2c_unregister':
+>> drivers/auxdisplay/tm16xx.c:1732: undefined reference to `i2c_del_driver'
 
 
+vim +1469 drivers/auxdisplay/tm16xx.c
 
-27 =D1=81=D0=B5=D1=80=D0=BF=D0=BD=D1=8F 2025=E2=80=AF=D1=80=2E 07:29:40 GM=
-T+03:00, Mikko Perttunen <mperttunen@nvidia=2Ecom> =D0=BF=D0=B8=D1=88=D0=B5=
-:
->On Tuesday, August 19, 2025 9:16=E2=80=AFPM Svyatoslav Ryhel wrote:
->> Exisitng VI and VIP implementation for Tegra20 is fully compatible with
->> Tegra30=2E
->>=20
->> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail=2Ecom>
->> ---
->>  drivers/staging/media/tegra-video/Makefile | 1 +
->>  drivers/staging/media/tegra-video/vi=2Ec     | 3 +++
->>  drivers/staging/media/tegra-video/vi=2Eh     | 2 +-
->>  drivers/staging/media/tegra-video/video=2Ec  | 4 ++++
->>  drivers/staging/media/tegra-video/vip=2Ec    | 5 ++++-
->>  5 files changed, 13 insertions(+), 2 deletions(-)
->>=20
->> diff --git a/drivers/staging/media/tegra-video/Makefile
->> b/drivers/staging/media/tegra-video/Makefile index
->> 6c7552e05109=2E=2E96380b5dbd8b 100644
->> --- a/drivers/staging/media/tegra-video/Makefile
->> +++ b/drivers/staging/media/tegra-video/Makefile
->> @@ -6,5 +6,6 @@ tegra-video-objs :=3D \
->>  		csi=2Eo
->>=20
->>  tegra-video-$(CONFIG_ARCH_TEGRA_2x_SOC)  +=3D tegra20=2Eo
->> +tegra-video-$(CONFIG_ARCH_TEGRA_3x_SOC)  +=3D tegra20=2Eo
->>  tegra-video-$(CONFIG_ARCH_TEGRA_210_SOC) +=3D tegra210=2Eo
->>  obj-$(CONFIG_VIDEO_TEGRA) +=3D tegra-video=2Eo
->> diff --git a/drivers/staging/media/tegra-video/vi=2Ec
->> b/drivers/staging/media/tegra-video/vi=2Ec index c9276ff76157=2E=2E71be=
-205cacb5
->> 100644
->> --- a/drivers/staging/media/tegra-video/vi=2Ec
->> +++ b/drivers/staging/media/tegra-video/vi=2Ec
->> @@ -1959,6 +1959,9 @@ static const struct of_device_id
->> tegra_vi_of_id_table[] =3D { #if defined(CONFIG_ARCH_TEGRA_2x_SOC)
->>  	{ =2Ecompatible =3D "nvidia,tegra20-vi",  =2Edata =3D &tegra20_vi_soc=
- },
->>  #endif
->> +#if defined(CONFIG_ARCH_TEGRA_3x_SOC)
->> +	{ =2Ecompatible =3D "nvidia,tegra30-vi",  =2Edata =3D &tegra20_vi_soc=
- },
->> +#endif
->>  #if defined(CONFIG_ARCH_TEGRA_210_SOC)
->>  	{ =2Ecompatible =3D "nvidia,tegra210-vi", =2Edata =3D &tegra210_vi_so=
-c },
->>  #endif
->> diff --git a/drivers/staging/media/tegra-video/vi=2Eh
->> b/drivers/staging/media/tegra-video/vi=2Eh index 1e6a5caa7082=2E=2Ecac0=
-c0d0e225
->> 100644
->> --- a/drivers/staging/media/tegra-video/vi=2Eh
->> +++ b/drivers/staging/media/tegra-video/vi=2Eh
->> @@ -296,7 +296,7 @@ struct tegra_video_format {
->>  	u32 fourcc;
->>  };
->>=20
->> -#if defined(CONFIG_ARCH_TEGRA_2x_SOC)
->> +#if defined(CONFIG_ARCH_TEGRA_2x_SOC) || defined(CONFIG_ARCH_TEGRA_3x_=
-SOC)
->>  extern const struct tegra_vi_soc tegra20_vi_soc;
->>  #endif
->>  #if defined(CONFIG_ARCH_TEGRA_210_SOC)
->> diff --git a/drivers/staging/media/tegra-video/video=2Ec
->> b/drivers/staging/media/tegra-video/video=2Ec index
->> 074ad0dc56ca=2E=2Ea25885f93cd7 100644
->> --- a/drivers/staging/media/tegra-video/video=2Ec
->> +++ b/drivers/staging/media/tegra-video/video=2Ec
->> @@ -127,6 +127,10 @@ static const struct of_device_id host1x_video_subd=
-evs[]
->> =3D { { =2Ecompatible =3D "nvidia,tegra20-vip", },
->>  	{ =2Ecompatible =3D "nvidia,tegra20-vi", },
->>  #endif
->> +#if defined(CONFIG_ARCH_TEGRA_3x_SOC)
->> +	{ =2Ecompatible =3D "nvidia,tegra30-vip", },
->> +	{ =2Ecompatible =3D "nvidia,tegra30-vi", },
->> +#endif
->>  #if defined(CONFIG_ARCH_TEGRA_210_SOC)
->>  	{ =2Ecompatible =3D "nvidia,tegra210-csi", },
->>  	{ =2Ecompatible =3D "nvidia,tegra210-vi", },
->> diff --git a/drivers/staging/media/tegra-video/vip=2Ec
->> b/drivers/staging/media/tegra-video/vip=2Ec index 5ec717f3afd5=2E=2E00e=
-08a9971d5
->> 100644
->> --- a/drivers/staging/media/tegra-video/vip=2Ec
->> +++ b/drivers/staging/media/tegra-video/vip=2Ec
->> @@ -263,13 +263,16 @@ static void tegra_vip_remove(struct platform_devi=
-ce
->> *pdev) pm_runtime_disable(&pdev->dev);
->>  }
->>=20
->> -#if defined(CONFIG_ARCH_TEGRA_2x_SOC)
->> +#if defined(CONFIG_ARCH_TEGRA_2x_SOC) || defined(CONFIG_ARCH_TEGRA_3x_=
-SOC)
->>  extern const struct tegra_vip_soc tegra20_vip_soc;
->>  #endif
->>=20
->>  static const struct of_device_id tegra_vip_of_id_table[] =3D {
->>  #if defined(CONFIG_ARCH_TEGRA_2x_SOC)
->>  	{ =2Ecompatible =3D "nvidia,tegra20-vip", =2Edata =3D &tegra20_vip_so=
-c },
->> +#endif
->> +#if defined(CONFIG_ARCH_TEGRA_3x_SOC)
->> +	{ =2Ecompatible =3D "nvidia,tegra30-vip", =2Edata =3D &tegra20_vip_so=
-c },
->>  #endif
->>  	{ }
->>  };
->
->If tegra30-vip is compatible with tegra20-vip, we don't need to add the=
-=20
->compatible string into the driver=2E Just mark it as 'compatible =3D=20
->"nvidia,tegra30-vip", "nvidia,tegra20-vip";' in the device tree (and as R=
-ob=20
->alluded, have this compat string pair as an option in the device tree sch=
-ema)=2E
->
+  1401	
+  1402	/* I2C specific code */
+  1403	#if IS_ENABLED(CONFIG_I2C)
+  1404	/**
+  1405	 * tm16xx_i2c_probe() - Probe callback for I2C-attached controllers
+  1406	 * @client: pointer to i2c_client
+  1407	 *
+  1408	 * Return: 0 on success, negative error code on failure
+  1409	 */
+  1410	static int tm16xx_i2c_probe(struct i2c_client *client)
+  1411	{
+  1412		const struct tm16xx_controller *controller;
+  1413		struct tm16xx_display *display;
+  1414		int ret;
+  1415	
+> 1416		controller = i2c_get_match_data(client);
+  1417		if (!controller)
+  1418			return -EINVAL;
+  1419	
+  1420		display = devm_kzalloc(&client->dev, sizeof(*display), GFP_KERNEL);
+  1421		if (!display)
+  1422			return -ENOMEM;
+  1423	
+  1424		display->client.i2c = client;
+  1425		display->dev = &client->dev;
+  1426		display->controller = controller;
+  1427	
+  1428		i2c_set_clientdata(client, display);
+  1429	
+  1430		ret = tm16xx_probe(display);
+  1431		if (ret)
+  1432			return ret;
+  1433	
+  1434		return 0;
+  1435	}
+  1436	
+  1437	/**
+  1438	 * tm16xx_i2c_remove() - Remove callback for I2C-attached controllers
+  1439	 * @client: pointer to i2c_client
+  1440	 */
+  1441	static void tm16xx_i2c_remove(struct i2c_client *client)
+  1442	{
+  1443		struct tm16xx_display *display = i2c_get_clientdata(client);
+  1444	
+  1445		tm16xx_display_remove(display);
+  1446	}
+  1447	
+  1448	/**
+  1449	 * tm16xx_i2c_write() - I2C write helper for controller
+  1450	 * @display: pointer to tm16xx_display structure
+  1451	 * @data: command and data bytes to send
+  1452	 * @len: number of bytes in @data
+  1453	 *
+  1454	 * Return: 0 on success, negative error code on failure
+  1455	 */
+  1456	static int tm16xx_i2c_write(struct tm16xx_display *display, u8 *data, size_t len)
+  1457	{
+  1458		dev_dbg(display->dev, "i2c_write %*ph", (char)len, data);
+  1459	
+  1460		/* expected sequence: S Command [A] Data [A] P */
+  1461		struct i2c_msg msg = {
+  1462			.addr = data[0] >> 1,
+  1463			.flags = 0,
+  1464			.len = len - 1,
+  1465			.buf = &data[1],
+  1466		};
+  1467		int ret;
+  1468	
+> 1469		ret = i2c_transfer(display->client.i2c->adapter, &msg, 1);
+  1470		if (ret < 0)
+  1471			return ret;
+  1472	
+  1473		return (ret == 1) ? 0 : -EIO;
+  1474	}
+  1475	
 
-While I am fine with using fallback but it may be a good idea to have a se=
-parate compatible so in case tegra30 would need a specific set of ops (tegr=
-a20 and tegra30 VIs are not exact match) no additional changes into schema =
-would be required=2E
-
->Cheers,
->Mikko
->
->
->
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
