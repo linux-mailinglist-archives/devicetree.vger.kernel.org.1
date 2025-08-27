@@ -1,53 +1,92 @@
-Return-Path: <devicetree+bounces-209680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3271EB38517
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 16:35:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66AACB384FC
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 16:31:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F3673ACCA2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 14:35:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6EC97B0B72
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 14:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E7A1E51FB;
-	Wed, 27 Aug 2025 14:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 537EC1DE4CD;
+	Wed, 27 Aug 2025 14:30:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZhmAznIt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A920E1B4F1F;
-	Wed, 27 Aug 2025 14:35:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6E113D521
+	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 14:30:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756305327; cv=none; b=ZqPiO+JrDogW38V1b+e+UXA8p6ktzHgrQ/Pk1cL/A0IZDdOfU2nJ4N9v5dPHl5tJYr1yH6VE5gyV2XYgjy3H2O6vhERHJgaZ42jxI51+/Yvbar29We8Dj1FogajSb8pGcSyKnnw7kyz+h+xsl46yX8KAhEHf/u4dVH8hrTE3WjE=
+	t=1756305049; cv=none; b=sMC7onxfxOMleusTkFHocwo7ZI1L+leUNAguPWTncC2fmDBtnt7Bg4z6wsur7NXV9UdPMsibrfVZkVf7lc6QYq/DgjFmbtzOSo6IpHopKoVoQYNDiFVzezXoMsLatyok8tLq0hG5Oc9ggMJOhGzmRRW1r2S68btN0yQ3OCnzWVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756305327; c=relaxed/simple;
-	bh=PecF4UO1LlgpEqiKtANTp/rHL1SU6W6O3gnIXaIbjZs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ULH62k7BtZkbJTjTt+NW1kzXt747Up1tE/41mcM6E2SIapyqGD4u/naFZlkXZeReangugbkoipDJqmxruvqXVJBjZoTjQG9HPFilqARbrNIyNOPxkG06Dw0GBN5oR+tq+6QyPpdHfMcQqZowI3Cj7Y3h1/gLJo2iINFUQr7IN4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.212.9])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 20cf0b9eb;
-	Wed, 27 Aug 2025 22:30:12 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: i@chainsx.cn
-Cc: conor+dt@kernel.org,
+	s=arc-20240116; t=1756305049; c=relaxed/simple;
+	bh=eI/ul2rAM+x0RT9Cki7AfwtqG5Z2d6SyY0TQkKjuxKA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=k+PzShQ1U5uTX25fMGQOFBu5cEFoKe88OlLknrrLLWjozLJcS+7V2nzzo1ilFFaMQcQVPZPOZ9fTvgpgGwgNHvnw8sA1nQ+l4wGT131iqSsnQdCbza9K9xSpRFtHUSNBKJmFBztUYzlXEh8/ZhKL7zPOmX5XhcKIIGXMksY5/G4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZhmAznIt; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-45a1b0bd237so52166285e9.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 07:30:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756305046; x=1756909846; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mKoGceCmZdjqtVEaWnOyGysDqJrMVQCO6tFjFTxYS8I=;
+        b=ZhmAznIt+o1DVJ60cbR6MUinjl43QoFvYSJYojkLTzGNB30yguOl2Abo4ACbS98Ms2
+         50P7GTPbAVIaQN9Ee6t3w2ryDHm/AO47CRp32xodRfwvQlPXSbOnHIKbeA69tDtR43OB
+         AQDqsjyTQTRHwqAMoHiunhhYOn0Xynl6FU7AXziI6kVHsVUsK66pK44k/G+/lIp82cUl
+         OeZboOYOnujRT4I4lG+TtNoaprjpmKNnsT3W8jgi7C9DJcdcE5rTLd4UVw3dKtZXCEjp
+         lx3toaMl+TJZcceVMaCAF8HzHBSUJZ1V3rdW7m721QP6ZsK2s7vhcDLbmk54YXyqjEHt
+         P8IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756305046; x=1756909846;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mKoGceCmZdjqtVEaWnOyGysDqJrMVQCO6tFjFTxYS8I=;
+        b=dUXpfMGWj6Mq6Q5UV0wCmyII+1Biad9FWVkoDwtQ2hIJ2futgup8YhGHY0oakG60RC
+         HfmMVLCU5AYC1cOv8t1wu2MMSu5aOk0SIAi2+mz7Bb9UHQRNCW3L9POt0GZLADVvY/jD
+         Dg9wxQMby2rLleF0ceVCDFwovdFJM0mRSuoKbmNFPMb+QCIJnGblQM1Uy/bbC5cjXCFI
+         lze9ORMEjbdaq8vm0j10iEThFURB/WDzKOsseJnc47mAdk+5bOiOGWY180u5by7TNl5p
+         CBNjZP/PNFy1CSRN0bThO5wh/fs77z4sX343KwJh5aDagxRU2EVDPcoXuWKhswfQTnXG
+         5NcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXuVk5VjgShZBmk6x1hMWhx9A1eELnGgANJV3MhT0/nmJszCj/HlUdPae76vUztLqaZ09/JgBD+790C@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrT0V04ttQmhzRlHYApnn/uKJMPACBgrv8ooFz4vPvRqerbwg0
+	xLT9mUanTyKbD7bfD1LC/JL3+U4KiqHzWYgPQGTDjPzMcApydZCn700G
+X-Gm-Gg: ASbGncuNP6G/EPaG2VZBeVHrdmwhY2x2ZEt4teIb56mEaQHgpzBc+Xm1yLciJM02uQm
+	w4baydorN02cIFHeKynyH9r1hHpdl+DIKGu1tjye8SaAqOSQqEgiqPuPLQWosGPxotKfE6QDZRD
+	aoKEtc63j2b18IARSjYgaQ273aw1D2Ll6/9Eq36pBCm0IXHvl3H4iwRcW8gkYf9RWJbZgmMqFFx
+	ZCTHq7rAN0Bh+7f/AOyTbGXnhpeRgSF5t+DnNTaCqtxChO4c6m9hnBaLzmJqwBeb6Bg7BzrJqFO
+	0Vu0IgPQcYedklH910lFi7Td2JzpVoI1mvMd5T2A1EsAbA9C0gNSScFbK8jlSj9qfPlyZFTa2n2
+	7HW+GsIBgT4uu0AZfc0gviN5wcE/moPLFiYBvrdutwZmlFQ7EzymrzUzoNBDMhYdzN0EGf9+tZy
+	IVdQ23hfRs8n2wJbySv3mxOwRduIjznSRy5wc2vMYVdumSmWOoadoSPPnmohlsi6c=
+X-Google-Smtp-Source: AGHT+IGNhmnIOlvZDXgwDv5jAIG433hsvRYz0Ropb3hEl0pCqcmWeivCqt/d0LGNJ8lPoTcbNrh8og==
+X-Received: by 2002:a05:600c:46d3:b0:459:dde3:1a56 with SMTP id 5b1f17b1804b1-45b517d2ab6mr163378945e9.28.1756305045443;
+        Wed, 27 Aug 2025 07:30:45 -0700 (PDT)
+Received: from cypher.home.roving-it.com (7.9.7.f.b.1.3.0.b.8.f.0.9.e.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681:e9:f8b:31b:f797])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3cbc6a5da6dsm6421531f8f.63.2025.08.27.07.30.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Aug 2025 07:30:45 -0700 (PDT)
+From: Peter Robinson <pbrobinson@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
 	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: add DTs for 100ASK DShanPi A1
-Date: Wed, 27 Aug 2025 22:30:06 +0800
-Message-Id: <20250827143006.1001952-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250826030818.3485927-3-i@chainsx.cn>
-References: <20250826030818.3485927-3-i@chainsx.cn>
+	Diederik de Haas <didi.debian@cknow.org>,
+	dsimic@manjaro.org
+Cc: Peter Robinson <pbrobinson@gmail.com>
+Subject: [PATCH v2] arm64: dts: rockchip: Further describe the WiFi for the Pinebook Pro
+Date: Wed, 27 Aug 2025 15:30:37 +0100
+Message-ID: <20250827143040.1644867-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,98 +94,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a98ebefb66a03a2kunm352c1d009efdf
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDS05OVkhKGhkZSUtOSkNKSVYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVCWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09LVUpLS1VLWQ
-	Y+
 
-Hi,
+Update the wake-up pin and associated interupt details for the
+Pinebook Pro WiFi module.
 
-> +	vcc_12v0_dcin: regulator-vcc-12v0-dcin {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_12v0_dcin";
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+---
 
-From the schematic [1], it should be called vcc_in?
+v2:
+- Drop alias
+- Tweak commit details
 
-> +	vcc3v3_pcie: regulator-vcc3v3-pcie {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpios = <&gpio1 RK_PB7 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pcie_pwren_h>;
+ .../boot/dts/rockchip/rk3399-pinebook-pro.dts  | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-Schematic: "PCIE0_PERSTn"
-It seems that it should be the reset gpio of pcie
-instead of the enable of regulator.
-
-> +		regulator-name = "vcc3v3_pcie";
-> +		vin-supply = <&vcc_12v0_dcin>;
-
-From the schematic, it should be called vcc3v3_m2?
-VCC5V0_SYS -> VCC3V3_M2
-
-> +	vcc_5v0_sys: regulator-vcc-5v0-sys {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_5v0_sys";
-
-Schematic: "VCC5V0_SYS_S5" / "VCC5V0_SYS"
-
-> +	vcc_5v0_typec0: regulator-vcc-5v0-typec0 {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_otg0_pwren>;
-
-Schematic: "TYPEC5V_PWREN_H"
-
-> +		regulator-name = "vcc_5v0_typec0";
-> +		vin-supply = <&vcc_5v0_device>;
-
-Schematic: "VBUS5V0_TYPEC"
-VCC5V0_SYS -> VBUS5V0_TYPEC
-
-> +	vcc_5v0_usbhost: regulator-vcc-5v0-usbhost {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpios = <&gpio0 RK_PC7 GPIO_ACTIVE_HIGH>;
-
-Does this regulator really exist?
-GPIO0_C7_d -> ETH1_INTn
-
-The power supply of USB3 host comes from
-USB1_P1_PWR/USB1_P2_PWR - VCC5V0_SYS
-
-> +	vcc_3v3_ufs_s0: regulator-vcc-ufs-s0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_3v3_ufs_s0";
-> +		regulator-boot-on;
-> +		regulator-always-on;
-
-The order of properties should be consistent:
-```
-		regulator-always-on;
-		regulator-boot-on;
-```
-
-> +&i2c2 {
-> +	status = "okay";
-> +
-> +	hym8563: rtc@51 {
-> +		compatible = "haoyu,hym8563";
-> +		reg = <0x51>;
-> +		clock-output-names = "hym8563";
-> +		interrupt-parent = <&gpio0>;
-> +		interrupts = <RK_PA0 IRQ_TYPE_LEVEL_LOW>;
-
-GPIO0_A0 is connected to the button in the schematic [1]
-
-[1] https://dl.100ask.net/Hardware/MPU/RK3576-DshanPi-A1/DshanPi-A1-RK3576-SCH_V1.0.pdf
-
---
-2.25.1
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index b33a1509a8e93..2ab416f930274 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -883,6 +883,12 @@ vcc5v0_host_en_pin: vcc5v0-host-en-pin {
+ 		};
+ 	};
+ 
++	wifi {
++		wifi_host_wake_l: wifi-host-wake-l {
++			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	wireless-bluetooth {
+ 		bt_wake_pin: bt-wake-pin {
+ 			rockchip,pins = <2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
+@@ -940,7 +946,19 @@ &sdio0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
+ 	sd-uhs-sdr104;
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
++
++	brcmf: wifi@1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "host-wake";
++		pinctrl-names = "default";
++		pinctrl-0 = <&wifi_host_wake_l>;
++	};
+ };
+ 
+ &sdhci {
+-- 
+2.51.0
 
 
