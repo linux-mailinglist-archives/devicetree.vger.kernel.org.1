@@ -1,122 +1,123 @@
-Return-Path: <devicetree+bounces-209732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 780DEB389F6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 20:58:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E7A1B38A1B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 21:15:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 422A817D789
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 18:58:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 197A05E5C20
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 19:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4656C2E7F22;
-	Wed, 27 Aug 2025 18:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966CF2D97A1;
+	Wed, 27 Aug 2025 19:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/A4hCuX"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ABaJO41g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10A0C23C4F1;
-	Wed, 27 Aug 2025 18:58:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5099EDF58;
+	Wed, 27 Aug 2025 19:14:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756321107; cv=none; b=AExw2Bnq7+ceWs8nMS5sAyYuwAZV3KuNdLv2kR2c2ZNdHFC+/WUl3M+jwjL9nfyzbYK4RMWpK+/Z0xo7jBz3PRt+hztNJwxqqt4YMSeaE1OvZ7zSP8mn6NBABNjispAfnT//Xhqk9W4UaU2CrrcUUKlLOqvJ3yQl3A+1OsMNioI=
+	t=1756322099; cv=none; b=IziStnTW5yDhr1EaImWSa/SQZu+f24iBRRlF9LUgsoUpveLo+acMp2nR77SivGFIMa8vvYIwk59Nq2QJCmP3fhwdXxTrGHKekB0hSp25awRzFkzKcDOHwR2/7hve+BfGM1B2V3Hv2VonLVRrT/lyeBL1mb3i10IOcMLU63mB1+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756321107; c=relaxed/simple;
-	bh=k/tPNcfJ/qdnWRcsE6nXClRCEZmBAkB4S98CVmbWffE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=JtGnJck9IV9bpJSrfzKsLhLYq6Xcgqhi7XgSBCF4SHBYdlJ3PuI7oWUmyhIwcxXVkuBo9KZ5SFprjPPJolLqvb8zfJhs+wz0QTsN9bIdCzxJ6+K4LY+nahUcTyh6YXkKQrQ3WK5OpgITag/5/RESRuJ17/VqeujeidZQYbo889A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p/A4hCuX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8403C4CEEB;
-	Wed, 27 Aug 2025 18:58:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756321106;
-	bh=k/tPNcfJ/qdnWRcsE6nXClRCEZmBAkB4S98CVmbWffE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=p/A4hCuXnw78K2/C7/7U2ep3c3mB0WH5FKsFfvMkA9XgZ3H7LOX8UCUSWJNoafOwu
-	 VJwzEpoV0FLpzBZU2Gw77yR4FhTSim9ud/WuydhPXNXtF/rGRXGfd+YK3F5on9j3m1
-	 BS5UCJTAZLWfEiDJLhUiXABrbbSP1hTFOC4xOKq0sIZR+fCLsoqZpQlzLmgFotwXwP
-	 JttlA+091dVHUkpQgd8HOqDX2sV3jjLpIwqXnPEyTY1NeHt8YuYy8Rg6HWDtPSKuuJ
-	 jW3ADEJW9Z1TzPtmOWkaj5LY0S4P5ZnFSbOb2JCD/SeOL3yUWwPQSTKjtiQSTch1dj
-	 WebNWWgPMD0CA==
-Date: Wed, 27 Aug 2025 13:58:25 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, linus.walleij@linaro.org,
-	corbet@lwn.net, p.zabel@pengutronix.de, shradha.t@samsung.com,
-	mayank.rana@oss.qualcomm.com, namcao@linutronix.de,
-	qiang.yu@oss.qualcomm.com, thippeswamy.havalige@amd.com,
-	inochiama@gmail.com, quic_schintav@quicinc.com,
-	johan+linaro@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v13 06/11] PCI: stm32: Add PCIe Endpoint support for
- STM32MP25
-Message-ID: <20250827185825.GA894342@bhelgaas>
+	s=arc-20240116; t=1756322099; c=relaxed/simple;
+	bh=2h4vav2QC9xjdDUIwmEajkSGvXHfsNyDqevmRMvPkVk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DM7/+HPIEn2U1JybQqB2jI9tmApHdXXV1GLyBUmLnUrCVqE4rvQOwez4z3wzf849lNE7XSWBh1SVpRHRSLqMMxArmWlqsXGRCzKbTBjlaw5EjwU3YvYb9CdfWOceLG+lsSDrmSWKxOQ2N25JXlcuS7iR9P4klGCtwcrUTHjABeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ABaJO41g; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57RJEfbm1837415;
+	Wed, 27 Aug 2025 14:14:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756322082;
+	bh=YNq7FAgo4z92pYyBMMzR/Nsu4N6hHZWc/4w7c520tTQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=ABaJO41gCUL5gKb7nixcy0Fq5p22ycOIyf0mY6a/RnwOEz+b+Bj6joJZEGJ5akgeS
+	 TGe3U2KZJNqjDgb3Bew0xgr4ng1ThDgsZT9yxkp2foKg79RY07lrkl8+B8bldY/e6G
+	 WpPmdKHUFtxyIUsfSb7lF3KOps+XLn90ohJAPpqo=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57RJEfai3385684
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 27 Aug 2025 14:14:41 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 27
+ Aug 2025 14:14:41 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 27 Aug 2025 14:14:41 -0500
+Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57RJEfHf3567231;
+	Wed, 27 Aug 2025 14:14:41 -0500
+Message-ID: <18fb75ad-aab8-455c-91a7-f8741289191c@ti.com>
+Date: Wed, 27 Aug 2025 14:14:41 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250820075411.1178729-7-christian.bruel@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/7] arm64: dts: ti: k3-pinctrl: Add WKUP_EN flag
+To: Markus Schneider-Pargmann <msp@baylibre.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vishal Mahaveer <vishalm@ti.com>,
+        Kevin
+ Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
+        Sebin Francis
+	<sebin.francis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>
+References: <20250812-topic-am62-dt-partialio-v6-15-v2-0-25352364a0ac@baylibre.com>
+ <20250812-topic-am62-dt-partialio-v6-15-v2-1-25352364a0ac@baylibre.com>
+Content-Language: en-US
+From: Kendall Willis <k-willis@ti.com>
+In-Reply-To: <20250812-topic-am62-dt-partialio-v6-15-v2-1-25352364a0ac@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Wed, Aug 20, 2025 at 09:54:06AM +0200, Christian Bruel wrote:
-> Add driver to configure the STM32MP25 SoC PCIe Gen1 2.5GT/s or Gen2 5GT/s
-> controller based on the DesignWare PCIe core in endpoint mode.
+On 8/12/25 04:15, Markus Schneider-Pargmann wrote:
+> WKUP_EN is a flag to enable pin wakeup. Any activity will wakeup the SoC
+> in that case.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-pinctrl.h | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> index c0f09be8d3f94a70812b66c3f91626aac35f4026..d3b0ecdf1a4a4de25ee6121ec9e62d1c7df26eb9 100644
+> --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> @@ -19,6 +19,7 @@
+>   #define DS_OUT_VAL_SHIFT	(26)
+>   #define DS_PULLUD_EN_SHIFT	(27)
+>   #define DS_PULLTYPE_SEL_SHIFT	(28)
+> +#define WKUP_EN_SHIFT		(29)
+>   
+>   /* Schmitt trigger configuration */
+>   #define ST_DISABLE		(0 << ST_EN_SHIFT)
+> @@ -65,6 +66,7 @@
+>   #define PIN_DS_PULLUD_DISABLE		(1 << DS_PULLUD_EN_SHIFT)
+>   #define PIN_DS_PULL_DOWN		(0 << DS_PULLTYPE_SEL_SHIFT)
+>   #define PIN_DS_PULL_UP			(1 << DS_PULLTYPE_SEL_SHIFT)
+> +#define WKUP_EN				(1 << WKUP_EN_SHIFT)
+>   
+>   /* Default mux configuration for gpio-ranges to use with pinctrl */
+>   #define PIN_GPIO_RANGE_IOPAD	(PIN_INPUT | 7)
+> 
 
-> +static void stm32_pcie_perst_deassert(struct dw_pcie *pci)
-> +{
-> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-> +	struct device *dev = pci->dev;
-> +	struct dw_pcie_ep *ep = &pci->ep;
-> +	int ret;
-> +
-> +	dev_dbg(dev, "PERST de-asserted by host\n");
-> +
-> +	ret = pm_runtime_resume_and_get(dev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to resume runtime PM: %d\n", ret);
-> +		return;
-> +	}
-> +
-> +	ret = stm32_pcie_enable_resources(stm32_pcie);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to enable resources: %d\n", ret);
-> +		goto err_pm_put_sync;
-> +	}
-> +
-> +	/*
-> +	 * Need to reprogram the configuration space registers here because the
-> +	 * DBI registers were incorrectly reset by the PHY RCC during phy_init().
-
-Is this incorrect reset of DBI registers a software issue or some kind
-of hardware erratum that might be fixed someday?  Or maybe it's just a
-characteristic of the hardware and thus not really "incorrect"?
-
-I do see that qcom_pcie_perst_deassert() in pcie-qcom-ep.c also calls
-dw_pcie_ep_init_registers() in the qcom_pcie_ep_perst_irq_thread()
-path.
-
-So does pex_ep_event_pex_rst_deassert() (pcie-tegra194.c) in the
-tegra_pcie_ep_pex_rst_irq() path.
-
-But as far as I can tell, none of the other dwc drivers need this, so
-maybe it's something to do with the glue around the DWC core?
-
-> +	 */
-> +	ret = dw_pcie_ep_init_registers(ep);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to complete initialization: %d\n", ret);
-> +		goto err_disable_resources;
-> +	}
+Reviewed-by: Kendall Willis <k-willis@ti.com>
 
