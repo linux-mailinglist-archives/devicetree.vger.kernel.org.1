@@ -1,132 +1,141 @@
-Return-Path: <devicetree+bounces-209503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 710B2B37A20
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:05:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC81B37A59
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:30:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 780547AFD06
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 06:04:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B4B13603A7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 06:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B30A1275AED;
-	Wed, 27 Aug 2025 06:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D18982E9EA0;
+	Wed, 27 Aug 2025 06:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="KVP4mbjA";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="AWlqQm+C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ixT6YZGg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCCA229B02;
-	Wed, 27 Aug 2025 06:05:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A125C2BE05B;
+	Wed, 27 Aug 2025 06:30:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756274734; cv=none; b=gqrvCvbrZy2Iws29/spbDtdwOCnjkw0V2EkElFOOQ5OHWudtPVUs3pl0RZQu+z05ezyhXLO47iscXzskZWxoWOc/OUVgCOkQvFc6VU+lB+Ib9C6SX0yR50csf2lzEoIyjHaR9uldq2WxJgpzGUSquzpX8wQek445s8Lme0i0zVU=
+	t=1756276228; cv=none; b=GarPrdsjJk85FBAUxM35gQ7RhPQ+TQoyH3WYkNhlDbm+d7Lcbbmzu0Fx1DZ8Cemou7B8L5zUFVNmmb5PQ06Z1lL1oxPHFVDzg2h+xoOvGljjpQcowHXfSw16X4q/dzGrutHkTAQFkGPe1hKHamJ3mQkPt1KSqMrVEb80Um0X0QU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756274734; c=relaxed/simple;
-	bh=X/XL5E08GrftlL+vyyezmGTt2F2l9gPi40UF6aXVRlE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=paE4YEyd9oo83XfFYTGEx+MpYx7fNNHzayH/zCYWGuiYkI/ke7M0mML3esFvXVpul6Ey1JbQGcbDPl3O/JuW5yiyHqWU43vuskP6SOev4R6z4G5qrKCPzf+fedw9Ah1W8RdUKcBJqZ7SXupdm1k5R9FGDRGRAXJexXIHNNT/slA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=KVP4mbjA; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=AWlqQm+C reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1756274731; x=1787810731;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=SraBzl14dwdbvHczbRUzFku/OVp3S46NSQS1cFchqxs=;
-  b=KVP4mbjA0magKnYLf3fmeKCiEVEdvB47VIfJXUgp6MCzU9xnOrsS58l2
-   m3lYVydooD7yU5ivpi3VoRrKI4MtOw+Pe8Fb18TwZWcsfCWbAEB+p2mto
-   6c06iJBlrx7aoVEIwvDBgTIgSElPgorNAjT8pkyYkbr9hjBzdL807TN90
-   5kGzhW9fCCLYIBdbD1N682fblXFTkbuCrzEwWg0JLgRThGdRkfyVGpPSw
-   ypKmpOisQR84+vyM5yQLLBaImdCBMbMNNX8lx++/5yoEov1SCSmsuFqBE
-   TclhAiBaejF4pUbN2Sq0t1gL1Yag8siqKoCnf6h4U9vE6HSsfJqnbaZWj
-   g==;
-X-CSE-ConnectionGUID: SDgzamR3RQmgXXCz5aX2Qg==
-X-CSE-MsgGUID: MrdUEKDRRQKnJpKpqV61Qw==
-X-IronPort-AV: E=Sophos;i="6.18,214,1751234400"; 
-   d="scan'208";a="45925398"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 27 Aug 2025 08:05:27 +0200
-X-CheckPoint: {68AEA026-5A-20CAA7DA-EC9DC758}
-X-MAIL-CPID: 6C356AE48836A2E580B12F91A4067FD5_0
-X-Control-Analysis: str=0001.0A00210C.68AE9FE5.0046,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 41C3A1683F7;
-	Wed, 27 Aug 2025 08:05:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1756274722;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=SraBzl14dwdbvHczbRUzFku/OVp3S46NSQS1cFchqxs=;
-	b=AWlqQm+CFJeSYIsWKAJIQm61kglEr+AKrBrogd2SjDn8vzSHAo4g4oP8WjHwdSvPfXqDBw
-	d63N7AhrCfAsuUhshYC8cr3ytWeYnO6OBykHL+FpcKFxLdqpwohQ4u+tzwe9EkkXw/kN3Q
-	D++iSd9ILRXjWFqJtRVit5kT/4AxFWJf2HIKgAJWqMpZF+6lr+2KEIAdS1j38nKt/ZxDW3
-	vjcE2udcegM7hINzEmiu6z08HCeMaEtLCJo1LunQe8X4QLuzg6fX1onFMMq6VCqK+DkXeS
-	29gQE4jBbhgtuGhVZP0PR4bRJbK3mfHkqpnac7bqvA3C5ekSD2JpES8x1ujxwA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ARM: dts: tps65910: Add gpio & interrupt properties
-Date: Wed, 27 Aug 2025 08:05:21 +0200
-Message-ID: <3011247.e9J7NaK4W3@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250826134259.2564191-1-alexander.stein@ew.tq-group.com>
-References: <20250826134259.2564191-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1756276228; c=relaxed/simple;
+	bh=tI4PhkEItaDUc859uaBnkI5RDHS5dlXqXvDOceNK4uA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cGyEB24zQPysHCMOIctVYedJdzUHVQI0o+84pmHTW27ipcp/yDI8zmi6sdChtPyeAN1g1AbkJll0cQMzY4krS1ysRh0GrYvE1r9NnjpXQ8E6DVC8UeS22tI30fuJtr75M1nsknrknAbNOmxjKnfKQcH/eq0p/mG6rvpXfEgSd4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ixT6YZGg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 825B3C4CEEB;
+	Wed, 27 Aug 2025 06:30:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756276228;
+	bh=tI4PhkEItaDUc859uaBnkI5RDHS5dlXqXvDOceNK4uA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ixT6YZGgBoUAwcSpCnCCoa5a8V29I+qn6pPvtO9H3nB+l9njf7UccQLiZf73fF8VJ
+	 sdC9+0fc59fzLfYrHvU0k7WQ95hsRymxcxiGVhKmFFY2lL1cEi0wkpgmisp1116Tzw
+	 5PXNWXpP2YRz1e5byAkjSXcyE9nrvA6VZ6dzfHZWSHYZnNdxK2kWn5XhOVG5PBepKO
+	 pFo6S7I0nuc7ORfa9xl/2YFk14vGI+CaRV6wtEmcNsSNYpVPO8e2ztGuVkt8vl+Ybp
+	 EN9pqer8st4mqH4+PIgJmhcSGYITv4sA2gz5LiQ6qjWkqdfco+HzsJTb3bgL0/ZJiz
+	 4fH2C+RxH+VQw==
+Message-ID: <3b72ba2c-707a-4f38-8d8d-548efb358e9b@kernel.org>
+Date: Wed, 27 Aug 2025 08:30:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: soc: samsung: scaler: exynos: Add
+ ExynosAutov920 compatible
+To: Kisung Lee <kiisung.lee@samsung.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Inki Dae <inki.dae@samsung.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-media@vger.kernel.org
+References: <20250827044720.3751272-1-kiisung.lee@samsung.com>
+ <CGME20250827045905epcas2p4b2cbd4b881af1c1be4b345861d1a635b@epcas2p4.samsung.com>
+ <20250827044720.3751272-2-kiisung.lee@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250827044720.3751272-2-kiisung.lee@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Am Dienstag, 26. August 2025, 15:42:57 CEST schrieb Alexander Stein:
-> The binding document ti,tps65910.yaml requires the controller and
-> cells properties for both gpio and interrupts. As they have const and
-> fixed values a default can be provided for all users.
->=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+On 27/08/2025 06:47, Kisung Lee wrote:
+> Add samsung,exynos5-scaler compatible for ExynosAutov920 SoC.
+> 
+> Signed-off-by: Kisung Lee <kiisung.lee@samsung.com>
 > ---
->  arch/arm/boot/dts/tps65910.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/tps65910.dtsi b/arch/arm/boot/dts/tps65910=
-=2Edtsi
-> index a941d1e623280..161ce31085d1e 100644
-> --- a/arch/arm/boot/dts/tps65910.dtsi
-> +++ b/arch/arm/boot/dts/tps65910.dtsi
-> @@ -10,6 +10,10 @@
-> =20
->  &tps {
->  	compatible =3D "ti,tps65910";
-> +	interrupt-controller;
-> +	#interrupt-cells =3D <1>;
+>  Documentation/devicetree/bindings/gpu/samsung-scaler.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml b/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
+> index 9fb530e65d0e..5a472e29dc8a 100644
+> --- a/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
+> @@ -14,6 +14,7 @@ properties:
+>      enum:
+>        - samsung,exynos5420-scaler
+>        - samsung,exynos5433-scaler
+> +      - samsung,exynos5-scaler
 
-Meh, this should obviously be <2>. Will fix in v2.
+Uh, no, 5 != 920.
+
+Please follow writing bindings or check my talk from yesterday at OSSE25.
 
 Best regards,
-Alexander
-
-> +	gpio-controller;
-> +	#gpio-cells =3D <2>;
-> =20
->  	regulators {
->  		#address-cells =3D <1>;
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+Krzysztof
 
