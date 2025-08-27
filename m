@@ -1,225 +1,134 @@
-Return-Path: <devicetree+bounces-209538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD6B6B37E07
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:42:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E04C9B37E22
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 10:53:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A0F516E7B9
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:42:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9897A6879C9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 08:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4716133CE94;
-	Wed, 27 Aug 2025 08:42:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="eEc25c3x"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 331D033CE9F;
+	Wed, 27 Aug 2025 08:53:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com [209.85.208.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E9733A00E
-	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 08:42:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.67
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30152335BC1;
+	Wed, 27 Aug 2025 08:53:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756284141; cv=none; b=DGNL1zzy5PbG8z5EW644SZTfwNy7urzZhl8TNiQsK/dzochjfjDQv1x67YlvsIqnmWgN+J5AAePfqFt5P40DIhe3A5ZauzLpyCePFpalnHX2x0lHDBPojbICDH4sfC5+yY4Nh9rjcMSSTP3vQaWs0VTN1czpw3DNfuKz1oX6JWg=
+	t=1756284835; cv=none; b=NJZlHVf2m8PjGOz2eIuEidUpXVC29n5Sl37XBobZ2tRTxZjQxRu2A6h2jgsS0Xjjz4V0xfl83OvwPsbH0CaitApkMmTinb65f0uT1lBrm6po25W4wGF3WpANsoMckSuIWc8Og1lk3AK8D+LZDJ1URqJinfyw9fPPOQRiwvtzfwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756284141; c=relaxed/simple;
-	bh=C3J5F98SUq/XbJdI5mkH/BowXWLNgIYkLopDpGLXpXI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=NMhmR2RR858x7R9bgwQOLO2ic2hf7mwJCzoVwmu2A9hAl1M2UIuMfCEIq9JH7zwumQiMbMUVolUo+01J40jdpfcreqodUT1G7yV8Vbggb4v9p5ORwKS4GoI5knr4rPPc6Lm+D7w96br/lamqYrBK6CHbV/N30HGkkdy89ZzZblE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=eEc25c3x; arc=none smtp.client-ip=209.85.208.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f67.google.com with SMTP id 4fb4d7f45d1cf-61c325a4d18so7176006a12.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 01:42:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1756284138; x=1756888938; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ru399StOWX0y3ow8u4rjjmb8WPAPqnIEt4F7fasIcxE=;
-        b=eEc25c3x5PXcT1AHnb/dd/pK0kjfUbP9sm+mbeau8SUzBSmQAFsDjgICcXFHWkCasF
-         CEJRrex62BkT3As7pW65RpznQk6trJexK/QcyJPPoaxomyHKKkjI/PNbOVGnmpfIb8BH
-         auofQ2V/WJi55gqWSb06bITRix7V0pbcrxchJES+jYAlAMh7kqyspAC73bam1RKcYucG
-         w2IoXhXz6KB27jTSfHXmQjFsBR7lfDjWp+Rgr3EPkrPa1QzLnoYo0DRGdV1Pke367wS9
-         VYUFYGGOudjo4onhgVI1wDgcO3esXjZMRoVbSaszfYkj2zM+nQvbOdgN2nGDIl0cavoK
-         KEOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756284138; x=1756888938;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Ru399StOWX0y3ow8u4rjjmb8WPAPqnIEt4F7fasIcxE=;
-        b=IxYJXrb+Pwg15wKte6FQoZaX5CJDQhXuoPxLf5i/uSLUrySHreHFwDl1xRJgc+yNDO
-         P1mFTLQ7Ttj237y+7iRTowXj17OOzpuxrhUJa9KkBOy8ucMPk8/GWP5zdhBlf0Ezcrt8
-         g31PjIt4R/0Sc3mHDaFZ1KIxjgAXoMYlBWDpJgfy8KwA8J1EyWQg9Ad7sUAijIvxZMz/
-         Z7qrIGfDUHXX9TkjpEgNrUNaxZLDozMlP1fLVpbEunOaVr6tMZwXZNr/qfBEdHleqQ4U
-         PoWk/8sJA53vyBN68CBg2G9E+B3ODi2q3qWfBPxhr2dOkzerp3ka4WCIz/OfffzZDQen
-         S9Uw==
-X-Forwarded-Encrypted: i=1; AJvYcCXOk+NRxDw44B44nnRp2ot5wnGYG2skIW9Y3p08KqNF6RUPAojo80Xb1cidgDeuzAz2Yf5g7xvu45y4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5ROOlars4LstdBak05HQa+p4qQy9vT0CHDpK0Z+E4D7selEeQ
-	Colp1fwhZ4XrRtbWCXEH/b8dJUP/dfc2QDFT8mkCZYlIlsYokiKxDh50LbbxmL7NXII=
-X-Gm-Gg: ASbGnctzIq8TecQv8Wfeswiqy3y9nF0JMdVJxE6Gkv9Lu2tx1aGrdArs4Fum9WDEfxL
-	es1x+TCFGOEV7jrWRXWXI5XlQsm52eeoDOVyj6tAfPmfUAV5nOp37nL9GPTyuxKDrqIF0ccEyFr
-	T7xicN5H7mM655X9W++gh/KZDnBMAOKnraXM+EbfjMbbKrXSS8OKoOLIhwED5YtodUQdwruiCqT
-	GwO7zqa7zHAocqCm2iAXFSQ6vACQP/VErIhCVfaJvfW56Ym0zZbE8Sx9+j7oOmzoWQBy7bbq8Ua
-	WVSULRhwwkEy2N2F2oqjdrqBtdbqh1O9E2qAfFmubAEnsE1g4n/PjUFwZPiEmV0p6NN1tgA5Bhx
-	UjsxXo3X/DLjHJmZXskOAhUMreqOh6jHsnCLaGIuJm47z0mnG4AxgsZLDgyQ=
-X-Google-Smtp-Source: AGHT+IE7qHCUmyrseOQu74QlBZCIEPNa9QZI/28Loh0vgbPoaePjhaimKbaEW3VRUGcYdoYW86lRtw==
-X-Received: by 2002:a05:6402:2554:b0:61c:5d76:3a8b with SMTP id 4fb4d7f45d1cf-61c5d7640b7mr8937360a12.32.1756284137573;
-        Wed, 27 Aug 2025 01:42:17 -0700 (PDT)
-Received: from localhost ([213.244.170.152])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61caeb5e77bsm1411780a12.35.2025.08.27.01.42.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Aug 2025 01:42:17 -0700 (PDT)
+	s=arc-20240116; t=1756284835; c=relaxed/simple;
+	bh=P38O43fMuBeGBKDmS2PF3LrHlp668kFtyl36Iw5bUrI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i+SHBp7lNJ4IpIioW0KsbY6irCArybLIue7jpoOirirbjByJ/92PKxptRPBXNP0RHM8MYCukPcbF9vwBKgVUTTwpBmGNTQmtwb61sRu+EUhkpt+yQwMVvyybJp+G7DF+RHMesV56yO2F9Yktq4PufpSxcYHqzrlDLCMlDqulPB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 159921655;
+	Wed, 27 Aug 2025 01:53:44 -0700 (PDT)
+Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3EE013F738;
+	Wed, 27 Aug 2025 01:53:47 -0700 (PDT)
+Message-ID: <0c8a6a7c-3d0d-4093-8bc5-3a04f70b00fa@arm.com>
+Date: Wed, 27 Aug 2025 09:53:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/33] arm64: kconfig: Add Kconfig entry for MPAM
+To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: shameerali.kolothum.thodi@huawei.com,
+ D Scott Phillips OS <scott@os.amperecomputing.com>,
+ carl@os.amperecomputing.com, lcherian@marvell.com,
+ bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+ baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+ Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+ dfustini@baylibre.com, amitsinght@marvell.com,
+ David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
+ Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
+ Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+ baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+ Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-8-james.morse@arm.com>
+From: Ben Horgan <ben.horgan@arm.com>
+Content-Language: en-US
+In-Reply-To: <20250822153048.2287-8-james.morse@arm.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 27 Aug 2025 10:42:16 +0200
-Message-Id: <DCD2RLZO62P6.MNAOWRUWVFHK@fairphone.com>
-Subject: Re: [PATCH v2 3/5] drm/sysfb: simpledrm: Add support for
- interconnect paths
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Javier Martinez Canillas" <javierm@redhat.com>, "Hans de Goede"
- <hdegoede@redhat.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Helge Deller" <deller@gmx.de>
-Cc: <linux-fbdev@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
- <20250623-simple-drm-fb-icc-v2-3-f69b86cd3d7d@fairphone.com>
- <87qzz5d3le.fsf@minerva.mail-host-address-is-not-set>
- <DB9237QHOXRU.JRJB8SPUX8RO@fairphone.com>
- <874ivjf5gn.fsf@minerva.mail-host-address-is-not-set>
-In-Reply-To: <874ivjf5gn.fsf@minerva.mail-host-address-is-not-set>
+Content-Transfer-Encoding: 7bit
 
-Hi Javier,
+Hi James,
 
-On Fri Jul 11, 2025 at 11:21 AM CEST, Javier Martinez Canillas wrote:
-> "Luca Weiss" <luca.weiss@fairphone.com> writes:
->
-> Hello Luca,
->
->> Hi Javier,
->>
->> On Fri Jun 27, 2025 at 9:51 AM CEST, Javier Martinez Canillas wrote:
->
-> [...]
->
->>>> +static int simpledrm_device_attach_icc(struct simpledrm_device *sdev)
->>>> +{
->>>> +	struct device *dev =3D sdev->sysfb.dev.dev;
->>>> +	int ret, count, i;
->>>> +
->>>> +	count =3D of_count_phandle_with_args(dev->of_node, "interconnects",
->>>> +							 "#interconnect-cells");
->>>> +	if (count < 0)
->>>> +		return 0;
->>>> +
->
-> You are already checking here the number of interconnects phandlers. IIUC
-> this should return -ENOENT if there's no "interconects" property and your
-> logic returns success in that case.
+On 8/22/25 16:29, James Morse wrote:
+> The bulk of the MPAM driver lives outside the arch code because it
+> largely manages MMIO devices that generate interrupts. The driver
+> needs a Kconfig symbol to enable it, as MPAM is only found on arm64
+> platforms, that is where the Kconfig option makes the most sense.
+> 
+> This Kconfig option will later be used by the arch code to enable
+> or disable the MPAM context-switch code, and registering the CPUs
+> properties with the MPAM driver.
+> 
+> Signed-off-by: James Morse <james.morse@arm.com>
+> Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+> ---
+>  arch/arm64/Kconfig | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+> index e9bbfacc35a6..658e47fc0c5a 100644
+> --- a/arch/arm64/Kconfig
+> +++ b/arch/arm64/Kconfig
+> @@ -2060,6 +2060,23 @@ config ARM64_TLB_RANGE
+>  	  ARMv8.4-TLBI provides TLBI invalidation instruction that apply to a
+>  	  range of input addresses.
+>  
+> +config ARM64_MPAM
+> +	bool "Enable support for MPAM"
+> +	help
+> +	  Memory Partitioning and Monitoring is an optional extension
+> +	  that allows the CPUs to mark load and store transactions with
+> +	  labels for partition-id and performance-monitoring-group.
+> +	  System components, such as the caches, can use the partition-id
+> +	  to apply a performance policy. MPAM monitors can use the
+> +	  partition-id and performance-monitoring-group to measure the
+> +	  cache occupancy or data throughput.
+> +
+> +	  Use of this extension requires CPU support, support in the
+> +	  memory system components (MSC), and a description from firmware
+> +	  of where the MSC are in the address space.
+> +
+> +	  MPAM is exposed to user-space via the resctrl pseudo filesystem.
+> +
+>  endmenu # "ARMv8.4 architectural features"
 
-We shouldn't error out in case there's no interconnects defined for this
-simple-framebuffer though? That'd break all other usages of it?
+Should this be moved to "ARMv8.2 architectural features" rather than the
+8.4 menu? In the arm reference manual, version L.b, I see FEAT_MPAM
+listed in the section A2.2.3.1 Features added to the Armv8.2 extension
+in later releases.
 
->
-> [...]
->
->>>
->>> You could use dev_err_probe() instead that already handles the -EPROBE_=
-DEFER
->>> case and also will get this message in the /sys/kernel/debug/devices_de=
-ferred
->>> debugfs entry, as the reason why the probe deferral happened.
->>
->> Not quite sure how to implement dev_err_probe, but I think this should
->> be quite okay?
->>
->
-> And of_icc_get_by_index() should only return NULL if CONFIG_INTERCONNECT
-> is disabled but you have ifdef guards already for this so it should not
-> happen.
->
->> 		if (IS_ERR_OR_NULL(sdev->icc_paths[i])) {
->
-> Then here you could just do a IS_ERR() check and not care about being NUL=
-L.
+>  
+>  menu "ARMv8.5 architectural features"
 
-But checking also for NULL shouldn't hurt either, in case the compile
-guards get removed in the future or something?
+Thanks,
 
-Quote:
-> * Return: icc_path pointer on success or ERR_PTR() on error. NULL is retu=
-rned
-> * when the API is disabled or the "interconnects" DT property is missing.
-
-
-
->
->> 			ret =3D dev_err_probe(dev, PTR_ERR(sdev->icc_paths[i]),
->> 				      "failed to get interconnect path %u\n", i);
->> 			if (ret =3D=3D -EPROBE_DEFER)
->> 				goto err;
->
-> Why you only want to put the icc_paths get for the probe deferral case? I
-> think that you want to do it for any error?
-
-This is the same logic as e.g. for the regulator code in simpledrm. The
-idea seems to be that in case some regulator (or here interconnect)
-doesn't probe correctly, we still try anyways. Just for EPROBE_DEFER we
-defer and wait until the supplier is available.
-
-So defer -> defer simpledrm probe
-So error -> ignore error and continue probe
-
->
->> 			continue;
->
-> I'm not sure why you need this?
-
-For the above behavior.
-
-I guess there were some original design decisions behind handling it
-this way, so I don't see a reason to handle it differently for
-interconnects.
-
->
->> 		}
->>
->> That would still keep the current behavior for defer vs permanent error
->> while printing when necessary and having it for devices_deferred for the
->> defer case.
->>
->
-> As mentioned I still don't understand why you want the error path to only
-> be called for probe deferral. I would had thought that any failure to get
-> an interconnect would led to an error and cleanup.
-
-See above.
-
-Regards
-Luca
-
->
->> Not sure what the difference between drm_err and dev_err are, but I
->> trust you on that.
->>
->
-> The drm_err() adds DRM specific info but IMO the dev_err_probe() is bette=
-r
-> to avoid printing errors in case of probe deferral and also to have it in
-> the devices_deferred debugfs entry.
+Ben
 
 
