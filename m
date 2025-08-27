@@ -1,342 +1,161 @@
-Return-Path: <devicetree+bounces-209716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12EBB387D3
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 18:35:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 809AAB3884D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 19:11:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 389D17A3FC5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 16:33:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1DE73B7233
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 17:11:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0A12BFC8F;
-	Wed, 27 Aug 2025 16:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="mzNGsLP+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52824304969;
+	Wed, 27 Aug 2025 17:11:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B812BE04D
-	for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 16:34:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA1A2FABE9;
+	Wed, 27 Aug 2025 17:11:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756312493; cv=none; b=kF3DImCecKDkt5q0hn0eBKyIkmqMGwkCapFwvl0AmIULiA8aihrqdnBm2dL5SJ0jtlKOEN4GuVE9SS2j6eh0ssKbK8HR8ofFM84EgeUMcuabUD92k5LowzI3BtUQbcAtIAhiCVhADpxsdkST7LDq0obiJqa9g12aYzkx1RKis18=
+	t=1756314699; cv=none; b=BxfUwlZrpmmCVUmnG+BpwPyRCvFF2/s9ffZ59ed+r1Nj3uTcncE3hBvTg3RGUagh9rrGSpjXaPS1cVp9dr9s6nEoFqLz113n2YtPZZlD33GuHCiWp6OSXI9YPnI/oNhPsxChDN7QbFlbZQ7RnDwchWvW4al10mPr2wOVn/dfELI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756312493; c=relaxed/simple;
-	bh=hIdOxF0V/GWmdAeRpodpW7JqSq9MrMJaTYcZSngLWgI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dwzSMTSlPWeufo3uJteggmmugB++2Iw9wmIQMF6f8vgn5y2v7U65Kle9lH5X4FcTgyxiM02jc9w6QSYw3Pi7pgeZUFsYzZ2lqDpMcXKRVSX0UKKe0c61WHhyW+mXleT8UBJJZ99uZPOl69TDt742ueL35FuADuMHoQQY8JDGzMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=mzNGsLP+; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-333f901b2d2so113951fa.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Aug 2025 09:34:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1756312490; x=1756917290; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dYJFvxznS9qH/KLo9mNWDlA9h7eslmU7zn/DFqWipOo=;
-        b=mzNGsLP+DwTz6zz4mOzVbPvmkTkwaOFWU6JNu0li39PchAkuq2dQwvNisfN8xl6gpr
-         6rATK/eTLMpEmEK69WT8/2M+/HK9b4oIblbei2o/POnOBeHcfD+vAa9oR8PKdYEis8PG
-         hQvpsQQMasAEU2GPrilzjnbhmgEqb9M+SS9yb4y7pGKOawjtIKuevc39tIVuIP2Cg0PY
-         +9pBgOrLYpZ8YCc/yAqDM7lqiLiY3C2+HmXSlWPgYWe9adj9rFRj9Gql+KZ2QFTDe5oi
-         Df2c/ZxbjmRRakv1v5/NOzM4inzP9S6vbj6eoqdjEO0oF0WknGPIt7ljLNZZJa5uPUqB
-         fQEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756312490; x=1756917290;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dYJFvxznS9qH/KLo9mNWDlA9h7eslmU7zn/DFqWipOo=;
-        b=w8ePHoab/s5NIuRUPAnctW4sln3YCSuYD2gJ3ULAjrBb0Or4jt5WrI/tfFe36sod9C
-         nsRIQrUNINwjpFMH++fwIZq5LonJWZ6Cok8xnG+7FwgNpU5WcYO/AWN2H6jBFCuoedoM
-         d5qTbzIPyI0tMdcz/+R5nOPEKTl4dYdcMLQ+Av7Yhc/N4CU+yOnmt+/jLBl86e9xKzFs
-         9DT91Nl25W2jT8aZUoMSEi3Kvtevgcq6+inVkdsx7Ij22Ciq/Ue4DHj6lBTGmCEifUi7
-         mhPK4twC4smsP0EkjAKJrtM8+1VG4r8/PCFAFXDm57LJ4/DzKkn4wfEdgYvUSXVfei3W
-         yRFA==
-X-Forwarded-Encrypted: i=1; AJvYcCViPidKMVDPqc6BuBTpMexiUKGPOqUbBdw/uGXEfpo+yn4RYK37Sc3zxu90WqD2eMjYSGPdGbQcxM2n@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4iW8orRN717bnWDgjYo9pbXPHsn6kdZx1KJG5xUskmrW5KbEc
-	g8ab+IXJ1EUSWeiOsKYK3yqlLOiKdIEFquWgnSqJhSXEaGsMadA9kMt8PPrpZVayjkPR5wbdSkR
-	wgYFfdwLgSfFkkxBqb9jvJQQyaIeDAzHwUIHRsR2Gjev/4p1xe9ATgRc=
-X-Gm-Gg: ASbGnctFZUsZY5n1sypuzPdI2bucto4kE0ctAb3NbiqJ0nNgOcE8z+TY5zk7RWOiMsn
-	VmkF0b2iUnh2UQehV6eBuwc7T4nDWo8V25szXGHHcXr9VfwV9rUDrjyf6qPbf7G3aZAbPCMVmvm
-	e/SaNjwjz+hUeWupVBgkq6ixtBCFHDyGrETZp9cmwMSzMEUa105BuEsSE0XTJkbONpDS0v139bC
-	hCQ01pqkakDSPGroRP8ANDkZSOJtV1iJxgniVc=
-X-Google-Smtp-Source: AGHT+IEYAM6G7jrQwiVwruO6yosvrhxlh0HPcGpJQY4iz4Lhz2MgtOaLooKmiHE3wnTbkxrjwI2ai0VEsGMyeCbbJ/o=
-X-Received: by 2002:a2e:be1c:0:b0:336:7b66:13a1 with SMTP id
- 38308e7fff4ca-3367b662564mr27772081fa.0.1756312489551; Wed, 27 Aug 2025
- 09:34:49 -0700 (PDT)
+	s=arc-20240116; t=1756314699; c=relaxed/simple;
+	bh=PhPr6Cz0D9basNtnoVPIicKjK8nEabA5LfzUNHK7BlE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m9E36sKoZM+qREhBh45TnDUV2/baMmDB27P9NdL/EKdQYo13DxaoteZWsvKFGwVB41LDppuXM+5uNpgcK4sIOCpYo5aTYikfsJDoSN85XbcWsUoHO2Mga3IHtDMisSh+0XjgbDhOUL9KZxBiD6yY7A4dSqWWM2Y/JLsXqi9coOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AB08115A1;
+	Wed, 27 Aug 2025 10:11:27 -0700 (PDT)
+Received: from [10.1.196.42] (eglon.cambridge.arm.com [10.1.196.42])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0FE913F694;
+	Wed, 27 Aug 2025 10:11:27 -0700 (PDT)
+Message-ID: <17675117-79ef-42e3-9c21-4bc46e73d6b1@arm.com>
+Date: Wed, 27 Aug 2025 18:11:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250819-pci-pwrctrl-perst-v1-0-4b74978d2007@oss.qualcomm.com> <20250819-pci-pwrctrl-perst-v1-5-4b74978d2007@oss.qualcomm.com>
-In-Reply-To: <20250819-pci-pwrctrl-perst-v1-5-4b74978d2007@oss.qualcomm.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 27 Aug 2025 18:34:38 +0200
-X-Gm-Features: Ac12FXyDhSf2ewNZkMyp76yle-wH_-s-bfKPLfIcpdEFx6e8RooRgknLS6PhU94
-Message-ID: <CAMRc=MdyTOYyeMJa_HBgJVo=ZNxsgdTsw6rhOUmGtNYeSrXLCw@mail.gmail.com>
-Subject: Re: [PATCH 5/6] PCI: qcom: Parse PERST# from all PCIe bridge nodes
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Manivannan Sadhasivam <mani@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Brian Norris <briannorris@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/33] cacheinfo: Expose the code to generate a cache-id
+ from a device_node
+To: Dave Martin <Dave.Martin@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+ shameerali.kolothum.thodi@huawei.com,
+ D Scott Phillips OS <scott@os.amperecomputing.com>,
+ carl@os.amperecomputing.com, lcherian@marvell.com,
+ bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+ baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+ Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+ dfustini@baylibre.com, amitsinght@marvell.com,
+ David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
+ Koba Ko <kobak@nvidia.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ fenghuay@nvidia.com, baisheng.gao@unisoc.com,
+ Jonathan Cameron <jonathan.cameron@huawei.com>, Rob Herring
+ <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+ Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-2-james.morse@arm.com>
+ <aK7h6seHNWs5rO9Q@e133380.arm.com>
+Content-Language: en-GB
+From: James Morse <james.morse@arm.com>
+In-Reply-To: <aK7h6seHNWs5rO9Q@e133380.arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 19, 2025 at 9:15=E2=80=AFAM Manivannan Sadhasivam via B4 Relay
-<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> wrote:
->
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
->
-> Devicetree schema allows the PERST# GPIO to be present in all PCIe bridge
-> nodes, not just in Root Port node. But the current logic parses PERST# on=
-ly
-> from the Root Port node. Though it is not causing any issue on the curren=
-t
-> platforms, the upcoming platforms will have PERST# in PCIe switch
-> downstream ports also. So this requires parsing all the PCIe bridge nodes
-> for the PERST# GPIO.
->
-> Hence, rework the parsing logic to extend to all PCIe bridge nodes starti=
-ng
-> from Root Port node. If the 'reset-gpios' property is found for a node, t=
-he
-> GPIO descriptor will be stored in IDR structure with node BDF as the ID.
->
-> It should be noted that if more than one bridge node has the same GPIO fo=
-r
-> PERST# (shared PERST#), the driver will error out. This is due to the
-> limitation in the GPIOLIB subsystem that allows only exclusive (non-share=
-d)
-> access to GPIOs from consumers. But this is soon going to get fixed. Once
-> that happens, it will get incorporated in this driver.
->
-> So for now, PERST# sharing is not supported.
->
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.=
-com>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 90 +++++++++++++++++++++++++++-=
-------
->  1 file changed, 73 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/control=
-ler/dwc/pcie-qcom.c
-> index bcd080315d70e64eafdefd852740fe07df3dbe75..5d73c46095af3219687ff77e5=
-922f08bb41e43a9 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -19,6 +19,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/kernel.h>
->  #include <linux/limits.h>
-> +#include <linux/idr.h>
->  #include <linux/init.h>
->  #include <linux/of.h>
->  #include <linux/of_pci.h>
-> @@ -286,6 +287,7 @@ struct qcom_pcie {
->         const struct qcom_pcie_cfg *cfg;
->         struct dentry *debugfs;
->         struct list_head ports;
-> +       struct idr perst;
->         bool suspended;
->         bool use_pm_opp;
->  };
-> @@ -294,14 +296,15 @@ struct qcom_pcie {
->
->  static void qcom_perst_assert(struct qcom_pcie *pcie, bool assert)
->  {
-> -       struct qcom_pcie_port *port;
->         int val =3D assert ? 1 : 0;
-> +       struct gpio_desc *perst;
-> +       int bdf;
->
-> -       if (list_empty(&pcie->ports))
-> +       if (idr_is_empty(&pcie->perst))
->                 gpiod_set_value_cansleep(pcie->reset, val);
-> -       else
-> -               list_for_each_entry(port, &pcie->ports, list)
-> -                       gpiod_set_value_cansleep(port->reset, val);
-> +
-> +       idr_for_each_entry(&pcie->perst, perst, bdf)
-> +               gpiod_set_value_cansleep(perst, val);
->  }
->
->  static void qcom_ep_reset_assert(struct qcom_pcie *pcie)
-> @@ -1702,20 +1705,58 @@ static const struct pci_ecam_ops pci_qcom_ecam_op=
-s =3D {
->         }
->  };
->
-> -static int qcom_pcie_parse_port(struct qcom_pcie *pcie, struct device_no=
-de *node)
-> +/* Parse PERST# from all nodes in depth first manner starting from @np *=
-/
-> +static int qcom_pcie_parse_perst(struct qcom_pcie *pcie,
-> +                                struct device_node *np)
->  {
->         struct device *dev =3D pcie->pci->dev;
-> -       struct qcom_pcie_port *port;
->         struct gpio_desc *reset;
-> -       struct phy *phy;
->         int ret;
->
-> -       reset =3D devm_fwnode_gpiod_get(dev, of_fwnode_handle(node),
-> -                                     "reset", GPIOD_OUT_HIGH, "PERST#");
-> -       if (IS_ERR(reset))
-> +       if (!of_find_property(np, "reset-gpios", NULL))
-> +               goto parse_child_node;
-> +
-> +       ret =3D of_pci_get_bdf(np);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       reset =3D devm_fwnode_gpiod_get(dev, of_fwnode_handle(np), "reset=
-",
-> +                                     GPIOD_OUT_HIGH, "PERST#");
-> +       if (IS_ERR(reset)) {
-> +               /*
-> +                * FIXME: GPIOLIB currently supports exclusive GPIO acces=
-s only.
-> +                * Non exclusive access is broken. But shared PERST# requ=
-ires
-> +                * non-exclusive access. So once GPIOLIB properly support=
-s it,
-> +                * implement it here.
-> +                */
-> +               if (PTR_ERR(reset) =3D=3D -EBUSY)
-> +                       dev_err(dev, "Shared PERST# is not supported\n");
+Hi Dave,
 
-Then maybe just use the GPIOD_FLAGS_BIT_NONEXCLUSIVE flag for now and
-don't bail-out - it will make it easier to spot it when converting to
-the new solution?
+On 27/08/2025 11:46, Dave Martin wrote:
+> On Fri, Aug 22, 2025 at 03:29:42PM +0000, James Morse wrote:
+>> The MPAM driver identifies caches by id for use with resctrl. It
+>> needs to know the cache-id when probe-ing, but the value isn't set
+>> in cacheinfo until device_initcall().
+>>
+>> Expose the code that generates the cache-id. The parts of the MPAM
+>> driver that run early can use this to set up the resctrl structures
+>> before cacheinfo is ready in device_initcall().
 
-Bart
+> Why can't the MPAM driver just consume the precomputed cache-id
+> information?
 
-> +
->                 return PTR_ERR(reset);
-> +       }
-> +
-> +       ret =3D idr_alloc(&pcie->perst, reset, ret, 0, GFP_KERNEL);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +parse_child_node:
-> +       for_each_available_child_of_node_scoped(np, child) {
-> +               ret =3D qcom_pcie_parse_perst(pcie, child);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       return 0;
-> +}
->
-> -       phy =3D devm_of_phy_get(dev, node, NULL);
-> +static int qcom_pcie_parse_port(struct qcom_pcie *pcie, struct device_no=
-de *np)
-> +{
-> +       struct device *dev =3D pcie->pci->dev;
-> +       struct qcom_pcie_port *port;
-> +       struct phy *phy;
-> +       int ret;
-> +
-> +       phy =3D devm_of_phy_get(dev, np, NULL);
->         if (IS_ERR(phy))
->                 return PTR_ERR(phy);
->
-> @@ -1727,7 +1768,10 @@ static int qcom_pcie_parse_port(struct qcom_pcie *=
-pcie, struct device_node *node
->         if (ret)
->                 return ret;
->
-> -       port->reset =3D reset;
-> +       ret =3D qcom_pcie_parse_perst(pcie, np);
-> +       if (ret)
-> +               return ret;
-> +
->         port->phy =3D phy;
->         INIT_LIST_HEAD(&port->list);
->         list_add_tail(&port->list, &pcie->ports);
-> @@ -1739,7 +1783,11 @@ static int qcom_pcie_parse_ports(struct qcom_pcie =
-*pcie)
->  {
->         struct device *dev =3D pcie->pci->dev;
->         struct qcom_pcie_port *port, *tmp;
-> -       int ret =3D -ENOENT;
-> +       struct gpio_desc *perst;
-> +       int ret =3D -ENODEV;
-> +       int bdf;
-> +
-> +       idr_init(&pcie->perst);
->
->         for_each_available_child_of_node_scoped(dev->of_node, of_port) {
->                 ret =3D qcom_pcie_parse_port(pcie, of_port);
-> @@ -1750,8 +1798,13 @@ static int qcom_pcie_parse_ports(struct qcom_pcie =
-*pcie)
->         return ret;
->
->  err_port_del:
-> -       list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-> +       list_for_each_entry_safe(port, tmp, &pcie->ports, list) {
-> +               phy_exit(port->phy);
->                 list_del(&port->list);
-> +       }
-> +
-> +       idr_for_each_entry(&pcie->perst, perst, bdf)
-> +               idr_remove(&pcie->perst, bdf);
->
->         return ret;
->  }
-> @@ -1782,12 +1835,13 @@ static int qcom_pcie_probe(struct platform_device=
- *pdev)
->         unsigned long max_freq =3D ULONG_MAX;
->         struct qcom_pcie_port *port, *tmp;
->         struct device *dev =3D &pdev->dev;
-> +       struct gpio_desc *perst;
->         struct dev_pm_opp *opp;
->         struct qcom_pcie *pcie;
->         struct dw_pcie_rp *pp;
->         struct resource *res;
->         struct dw_pcie *pci;
-> -       int ret, irq;
-> +       int ret, irq, bdf;
->         char *name;
->
->         pcie_cfg =3D of_device_get_match_data(dev);
-> @@ -1927,7 +1981,7 @@ static int qcom_pcie_probe(struct platform_device *=
-pdev)
->
->         ret =3D qcom_pcie_parse_ports(pcie);
->         if (ret) {
-> -               if (ret !=3D -ENOENT) {
-> +               if (ret !=3D -ENODEV) {
->                         dev_err_probe(pci->dev, ret,
->                                       "Failed to parse Root Port: %d\n", =
-ret);
->                         goto err_pm_runtime_put;
-> @@ -1989,6 +2043,8 @@ static int qcom_pcie_probe(struct platform_device *=
-pdev)
->         qcom_pcie_phy_exit(pcie);
->         list_for_each_entry_safe(port, tmp, &pcie->ports, list)
->                 list_del(&port->list);
-> +       idr_for_each_entry(&pcie->perst, perst, bdf)
-> +               idr_remove(&pcie->perst, bdf);
->  err_pm_runtime_put:
->         pm_runtime_put(dev);
->         pm_runtime_disable(dev);
->
-> --
-> 2.45.2
->
->
+Because it would need to wait until cacheinfo was ready, and it would still
+need a way of getting the cache-id for caches where all the CPUs are offline.
+
+The resctrl glue code has a waitqueue to wait for device_initcall_sync(), but that is
+asynchronous to driver probing, its triggered by the schedule_work() from the cpuhp
+callbacks. This bit is about the driver's use, which just gets probed whenever the core
+code feels like it.
+
+I toyed with always using cacheinfo for everything, and just waiting - but the MPAM driver
+already has to parse the PPTT to find the information it needs on ACPI platforms, so the
+wait would only happen on DT.
+
+It seemed simpler to grab what the value would be, instead of waiting (or probe defer) -
+especially as this is also needed for caches where all the CPUs are offline.
+
+(I'll add the offline-cpus angle to the commit message)
+
+
+> Possible reasons are that the MPAM driver probes too early,
+
+yup,
+
+> or that it
+> must parse the PPTT directly (which is true) and needs to label caches
+> consistently with the way the kernel does it.
+
+It needs to match what will be exposed to user-space from cacheinfo.
+This isn't about the PPTT, its the value that is generated for DT systems.
+The driver has to know if its ACPI or DT to call the appropriate thing to get cache-ids
+before cacheinfo is ready.
+
+
+>> diff --git a/drivers/base/cacheinfo.c b/drivers/base/cacheinfo.c
+>> index 613410705a47..f6289d142ba9 100644
+>> --- a/drivers/base/cacheinfo.c
+>> +++ b/drivers/base/cacheinfo.c
+>> @@ -207,11 +207,10 @@ static bool match_cache_node(struct device_node *cpu,
+>>  #define arch_compact_of_hwid(_x)	(_x)
+>>  #endif
+>>  
+>> -static void cache_of_set_id(struct cacheinfo *this_leaf,
+>> -			    struct device_node *cache_node)
+>> +unsigned long cache_of_calculate_id(struct device_node *cache_node)
+>>  {
+>>  	struct device_node *cpu;
+>> -	u32 min_id = ~0;
+>> +	unsigned long min_id = ~0UL;
+
+> Why the change of type here?
+
+This is a hang over from Rob's approach of making the cache-id 64 bit.
+
+
+> This does mean that 0xffffffff can now be generated as a valid cache-id,
+> but if that is necessary then this patch is also fixing a bug in the
+> code -- but the commit message doesn't say anything about that.
+> 
+> For a patch that is just exposing an internal result, it may be
+> better to keep the original type.  ~(u32)0 is already used as an
+> exceptional value.
+
+Yup, I'll fix that.
+
+
+Thanks!
+
+James
 
