@@ -1,105 +1,95 @@
-Return-Path: <devicetree+bounces-209697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7533CB38722
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 17:56:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 876F3B3872E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 17:58:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BE7A7B4BF3
-	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 15:54:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 375C71896C85
+	for <lists+devicetree@lfdr.de>; Wed, 27 Aug 2025 15:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 297902F8BC4;
-	Wed, 27 Aug 2025 15:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A67D2D0606;
+	Wed, 27 Aug 2025 15:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mOsJzOlp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u7B4H2l1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B171DB12E;
-	Wed, 27 Aug 2025 15:54:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54227218ADD;
+	Wed, 27 Aug 2025 15:56:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756310099; cv=none; b=UkCqQjdVxs13YSaH2Hpgca1mRPLmzmUsDz2QuysE38wTIddovggMCJSskP26fACNmOy/LBBjQGPcDTIpAKV7VWF0LGgkelF96ONvqnToT0VDp2u6Yr4LDyPA4vzn9u85/ImzgPMqrvk1h5pKgZpPU6TfUFXVLujEfTMMB+9ND4U=
+	t=1756310200; cv=none; b=TsNWnVpDp0TvU51NMZch9L+lkEQrGi5HLBOedWpK6yA97lgKEe0bl9IlUVUhbS94ZlLydT6dRaurp/iut/Cy7xEghqjwlLZ05VrGjMByLJTFzk7RutjvSkapMNPFT43tS9TRTVYQCan8Rh0sAIT7hanpWr/fCsSk102jYvRNo3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756310099; c=relaxed/simple;
-	bh=slAwgtuBPuAS5plLF85pexQqBs2rd0+QlT8X4nd7zuk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=heGjscLbZXc7BrSmMeFyH2EDtwOjbaqxaRGlSoPVPzkRcocIBCK+Zv2FyCsz+PlQnkp0mJwWS+Absv7DMFXZK3TwNY0jbStCeCJaXyELlJ/AZBk0lNthmybb75KL0QQtnQ8eVMvXAtBmYhD69u/GSxhsEi6TONpT7cWpJy6mDdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mOsJzOlp; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-324fb2bb099so2491a91.3;
-        Wed, 27 Aug 2025 08:54:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756310097; x=1756914897; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=62GisA5rnC+wo5UZXwYeDpKJheGjASkJMjHpvtPAWh8=;
-        b=mOsJzOlpFy7oC5KEA4XfaExyCvMvkoGoaT6bGwrASXrfXSbfRISiqd2VPsHU+BqqWy
-         DlMqOO7AqKshvBLN85/izHnXvLbugSAJpj1d0lryVI6zfKYle0LKOUm5tvUHAtXFqFP+
-         5qV1X3uJOZZMHu0vYOoTNaZzt8J65+JCcxff1/STe8VAtSiiOnCedocYDCdHMtb82EY9
-         YwraB5zqcYzJHVjOSmDx1/8Wun4fW5H7yM+wVWhz4cZslWtO1zYcE41oX/mpRaMEqJnb
-         JjeI/FBxWsEWl8wNBbJCM8dVZTcJmuztbcuKZW+3uXMvWTlkiM21ZhwBvhlkcjYpuggv
-         G7XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756310097; x=1756914897;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=62GisA5rnC+wo5UZXwYeDpKJheGjASkJMjHpvtPAWh8=;
-        b=KfAAdNS5pOdQU6v3j1qX2d7JL3Z3XzmQErGaXFZOxDVk1UaSR9OSbN+PAKynww1/iQ
-         +aPUjXEuPVO6tI3uZE7cu55sZ2LMZEa3eEqUrw+bPC2hV8bGOv2ACCCAEGo8VlExbqhX
-         KqhKFxSZtcpTrg+RfUEnY5nup2tJZrDxxU6Y3ITAYQ/ML+T6K1BJC+vQSix8Ai+RV+dX
-         bLLTsndHvqzWWUnbn/4grwsDCORUSnrYxZSIwOZ1olqUrbfwKbJdZChpSymsyGuf6Pck
-         tugryHKsEY/1bGOmwBcUDAdtQyHUj+Ov/z0nkWV0A0NnoYYjfCjDGkSih0V/kcoRJQp5
-         BLwg==
-X-Forwarded-Encrypted: i=1; AJvYcCV6v2PVMpDCIV4IhQr4EUvu1gB6I4UeVxJES+PX7BppGkmkzvw463QyKEZQNjh1dHNVKFyk72/EhZJg/+rB@vger.kernel.org, AJvYcCVikOCuSmgP+ymtEKeCXeY+eGMnQaukh1VSc8a6cH6gA5hzIqRwh4wrDiFMUFr6Q3qF/S8Cy1+Gq50ox90=@vger.kernel.org, AJvYcCWFZkfq+hp6I+NgyNw26e+2oiUNvDBXKbzi2u9XCeFEisHKgrgBjmRR9j2tll1EE/YpGXUGXfiXBnQv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjasdSyLMTQEZwrhwtlMF4G4vLl68dlbAVdg3Q1kj/aDRaHDRe
-	ON4eGbsfe17SMvzbPJg/GwneIBeA2duGwvEeQAaxKonSYYxiNc5uji4F
-X-Gm-Gg: ASbGncvXJn8YpwIqUm9TtWPFuZB5FmZEup0ZAey5flkv3B/2+TuVwRavpt2vNxtuqnQ
-	jADOqofFJe6lqPY0iVdP+YspIx9vkFSFRNG/mt1b1Dqd6JwYkgezu1oWHyXo49PRHHTUMrOTLgb
-	uwWxrQmumkt56Qye0vXIFfnUsXuCzH7JmmOUHMVM8Av5j9fIFRVlyW3L4/iu8boBvP7PNgW3D9G
-	MmdnoT3nor/Gy9TFENSn2tZFnAQE+ITJ598smQA0BQcx4qdh7/WeWoK0RkEIP8P1s7ntqODj/ys
-	RcNJhbjSD9f0NMrFvsvNv1pt7ae6VkIjHUwJqvjQXNPXoFEjkGk/D0ujJhqzhbJmUKls6C7BLwQ
-	o8HS7OS7WoAZzxxkvAyPhO7+SIfdU+v4/N3Rh/kgICFAXiA==
-X-Google-Smtp-Source: AGHT+IFw+aQ5CkX4zstTGzHwNVZ5Jtmgo7gAK5olfawHxegAAus0hAhlyIQ1D7ufJxYXwtO7QYsV5Q==
-X-Received: by 2002:a17:90b:554f:b0:321:27d5:623e with SMTP id 98e67ed59e1d1-3251744bd6fmr24808070a91.23.1756310096958;
-        Wed, 27 Aug 2025 08:54:56 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3276f8a452bsm2339858a91.17.2025.08.27.08.54.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Aug 2025 08:54:56 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 27 Aug 2025 08:54:55 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: jdelvare@suse.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, fe@dev.tdt.de, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: hwmon: convert lantiq-cputemp to yaml
-Message-ID: <b9c704c3-36c9-4d30-8c7f-06c60359d2ea@roeck-us.net>
-References: <20250814080708.3054732-1-olek2@wp.pl>
+	s=arc-20240116; t=1756310200; c=relaxed/simple;
+	bh=ziop8ByzeP3o/TkE8zYyoxz54jgtYl6UGalrslsR+Lg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q1k6TzJiDXNPfStGlFDQJ5nmQUEXhLRTDJW37Q/bQekz4cCpRuWiUyoMEEEOSyWrcGXUBkBHVJxBmkjPikWke/Mm2KyolN/Io85OYLfdi4oDGySt8tfLZkwOSfvN+SkHHCTO2pD4pwdGmi9h+OtrxTYKwU/8UFVscp9/rWliLCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u7B4H2l1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 764D2C4CEEB;
+	Wed, 27 Aug 2025 15:56:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756310199;
+	bh=ziop8ByzeP3o/TkE8zYyoxz54jgtYl6UGalrslsR+Lg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=u7B4H2l1ccA+a6oBnVc0pqC9CMtUhz8m3wz7OB4PtcTdzBGzdGjBE/InkWWODNl7B
+	 D6Q7dn8aiVnb7zNZbDh70IJObDZp9ggWwybDjVDB6AvKqQm+zkd5foCjrhUkKSG3IA
+	 Ahf42c7zABg+lhaW1+TFpk+wJmGlUNpEPOUDtfdGkgzyUHbLoREUzxzlLOkIHwOZ7D
+	 Rlys2izNtCTsyI9sAJPvRQAogj2N7t/WEJH6yXPFjx3Amqsm93rvRKLA1hJVj6/Ox8
+	 qRDAzEQNquR1KXFAl3NsqVkvy4uMokYpIGYTnfe6lAiYK4qq6w7y8Bmc0kk8FKk2Ak
+	 oHvO+Ha3Yabnw==
+Message-ID: <89251134-9685-439e-b220-92717663f038@kernel.org>
+Date: Wed, 27 Aug 2025 17:56:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250814080708.3054732-1-olek2@wp.pl>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 7/9] nvme: apple: Add Apple A11 support
+To: Christoph Hellwig <hch@lst.de>, Nick Chan <towinchenmi@gmail.com>
+Cc: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Neal Gompa <neal@gompa.dev>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Keith Busch <kbusch@kernel.org>,
+ Jens Axboe <axboe@kernel.dk>, Sagi Grimberg <sagi@grimberg.me>,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ iommu@lists.linux.dev, linux-nvme@lists.infradead.org
+References: <20250821-t8015-nvme-v3-0-14a4178adf68@gmail.com>
+ <20250821-t8015-nvme-v3-7-14a4178adf68@gmail.com>
+ <20250825080710.GA23193@lst.de>
+Content-Language: en-US
+From: Sven Peter <sven@kernel.org>
+In-Reply-To: <20250825080710.GA23193@lst.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 14, 2025 at 10:04:41AM +0200, Aleksander Jan Bajkowski wrote:
-> Convert the Lantiq cpu temperature sensor bindings to yaml format.
+On 25.08.25 10:07, Christoph Hellwig wrote:
+> On Thu, Aug 21, 2025 at 11:56:44PM +0800, Nick Chan wrote:
+>> +		writel(anv->hw->max_queue_depth | (anv->hw->max_queue_depth << 16),
 > 
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> One long line left here.
+> 
+> Otherwise this looks fine to me.
+> 
+> Do you want to merge this through the apple SOC tree?  If so:
+> 
+> Acked-by: Christoph Hellwig <hch@lst.de>
+> 
+> 
 
-Applied.
+I don't think that's necessary since there are no build time 
+dependencies but if you want to I can take it through there.
 
-Guenter
+
+
+Sven
+
 
