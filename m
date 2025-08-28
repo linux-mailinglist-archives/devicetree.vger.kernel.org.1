@@ -1,382 +1,227 @@
-Return-Path: <devicetree+bounces-210035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2616B39F47
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:44:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F5E8B39F56
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:49:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D59CD189F39C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:45:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52A261C23131
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:49:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3893310636;
-	Thu, 28 Aug 2025 13:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56621CDFD5;
+	Thu, 28 Aug 2025 13:49:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YT3IM3+f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F951A5B8B;
-	Thu, 28 Aug 2025 13:44:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAAEF3A1D2;
+	Thu, 28 Aug 2025 13:49:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756388691; cv=none; b=OptVjlZfzVr/SHC2MswmrlprWPru9w0t9Jaboic4MB0PPrJj/77d/2ULpL9R71rFm7Vsv4VDPhe+bpbqyhBWDQlJz3lPqa5bMJ9rDV/IkX4JzZQwu7e1H1jteGvboNXVtX+Gku2MYAS024R2J7gA2yrCmhCQD9kXcBg9ZuWFFUE=
+	t=1756388973; cv=none; b=SMf+GrQklt61LmFu4PTJ0OCa6jdZqqoSLHM5TTJqtQlPwBqo/MXPYywNQae5rKUK7IddEsdhBFPdiGQdzDq+mK+dPaYEqfB82A8l6PQPRcPy7/ruCy59oMkpsCQmMDt6+5o/ZahKeyP3cdhGn7N3Gy7SdWalGhGFHWhsXfFVfPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756388691; c=relaxed/simple;
-	bh=0e1wl8KD9W2dJNhMmZD7OWJHIVn1H54k14Oc7BBtOto=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aGJU8sjxwwxAKc2XnsitekiDJqDcC3VjOFP6aT3hOJ9lEd2jzT2gdyItyMGDdA156618yxmVcSDKcZQzpjWqCaKF918msEyKdbgMnXkKBCo6tfgZvoigwmVYVxmFl9WVU6ousCxO3VrTMKuxt08pOindDQrowGVGsOlZl8yihq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 147011688;
-	Thu, 28 Aug 2025 06:44:40 -0700 (PDT)
-Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9B9523F738;
-	Thu, 28 Aug 2025 06:44:42 -0700 (PDT)
-Message-ID: <17f4507c-c244-42ee-bea0-57ed22e0a05f@arm.com>
-Date: Thu, 28 Aug 2025 14:44:40 +0100
+	s=arc-20240116; t=1756388973; c=relaxed/simple;
+	bh=ts3lX4sVajkpWMjKZR+jz9N6FmaajEQQONmx4tUzQbg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=VM5xZXYkKH6CtfUmJLOgYC+CZrKwvv4D8712XK0oggK7lF/GFlkv4aGA77u3A3ABWin7Z+TotY6zwJclJLuTmgPVbXrMS/UnbqFH8tmtW82f15x5tgij4zU4p3/+R6PEQ75EjSvxF/6si0FuKYbEvZWbqbPC1Al4OYFSRrF16UI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YT3IM3+f; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57S60nUu008186;
+	Thu, 28 Aug 2025 13:49:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ScOdmCeZxWFAml3E7y2GsOfgjlvOHFEckFHlTVSaPjU=; b=YT3IM3+fnaAhtCjS
+	z55y5rsTKa49PrOwsQ24niBtkqkNLEcjCyEyqhk+2W5jjNrIC8sH2SkS3RMipaQY
+	VUhjO5uPaQZy/eC1fV/99C75XNmCyGUMC/lyIFvt6twnB9Fzm2OFu7BaihsfhWdX
+	CqKJL0ag+xhQQhrcMwokde8eIsnNo3KR0fUxfjs60K2RVeizAtrjgX95Hjsc3q2G
+	PAiqVpghC1kMEYsaVlASlLMZ+nyLR0DWgALePyooZQ5HFZUWZqFmZqEZvVk+KbiO
+	m4I4PagqvyhpFATTWd2eBrsfFZkQCI9Ww00BmS7G3VLPnTIzbgbKYOIu+++XrmUY
+	10aNIg==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48sh8apnn4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Aug 2025 13:49:26 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57SDnP5f008699
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Aug 2025 13:49:25 GMT
+Received: from [10.216.32.160] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Thu, 28 Aug
+ 2025 06:49:21 -0700
+Message-ID: <05d40a3b-cc13-b704-cac7-0ecbeea0e59d@quicinc.com>
+Date: Thu, 28 Aug 2025 19:19:18 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 17/33] arm_mpam: Probe the hardware features resctrl
- supports
-To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: shameerali.kolothum.thodi@huawei.com,
- D Scott Phillips OS <scott@os.amperecomputing.com>,
- carl@os.amperecomputing.com, lcherian@marvell.com,
- bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
- baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
- Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
- dfustini@baylibre.com, amitsinght@marvell.com,
- David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
- Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
- Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
- baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
- Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-18-james.morse@arm.com>
-From: Ben Horgan <ben.horgan@arm.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH] media: dt-bindings: qcom,sm8550-iris: Do not reference
+ legacy venus properties
 Content-Language: en-US
-In-Reply-To: <20250822153048.2287-18-james.morse@arm.com>
-Content-Type: text/plain; charset=UTF-8
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mukesh Ojha
+	<mukesh.ojha@oss.qualcomm.com>
+CC: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Abhinav Kumar
+	<abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250823155349.22344-2-krzysztof.kozlowski@linaro.org>
+ <20250825113734.iekrgyvctamhb5y7@hu-mojha-hyd.qualcomm.com>
+ <a3325bf1-2a3f-416a-ba2a-4fb1e9f85e61@linaro.org>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <a3325bf1-2a3f-416a-ba2a-4fb1e9f85e61@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=cLDgskeN c=1 sm=1 tr=0 ts=68b05e66 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
+ a=KKAkSRfTAAAA:8 a=A2wnt1OYZSGF17uXe9IA:9 a=QEXdDO2ut3YA:10 a=nI803oanCcYA:10
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI2MDE1MyBTYWx0ZWRfX0URI7wxdL1O2
+ 2JUx40tLVtIRBN8pbq5x/nBHzOU8DGCqFb4qNvi90Qso6z+y6Fw5nKM5XgO+ZjMaHACf50JIUwh
+ 3cATaJo0FAY9GycFqHI8qkQL5BB6t9QtuWzTSxx8IOBzlRIY/o0SS21HEz7nUVbrEI+HvI1i9Wj
+ 4WD4xjDKFm0mFPLQ73fRgu9Tpdc7lYYTAotbwqP4VtpTdL9ldWR1bdX543uqodJ432oCZZ6g+C8
+ UlsyGoKDhkcqBQM9wYlEXYDZwoZtivEhUIhjbBLGya7iZWMSeui1Crug1Uuxpxh+9oX3dEb9evf
+ yLNH5eTZxTXJH7+CUZwkrWJ629XmB20QRnWk7Yx2cH2idX7+SmHTBSR6hmOxbujlkn84wLGTrV0
+ Dc8KgSjr
+X-Proofpoint-GUID: M_iC15BxkkHxME8G0OIOxWBxYV_AP3K6
+X-Proofpoint-ORIG-GUID: M_iC15BxkkHxME8G0OIOxWBxYV_AP3K6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-28_04,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
+ impostorscore=0 suspectscore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508260153
 
-Hi James,
 
-On 8/22/25 16:29, James Morse wrote:
-> Expand the probing support with the control and monitor types
-> we can use with resctrl.
+On 8/25/2025 5:32 PM, Krzysztof Kozlowski wrote:
+> On 25/08/2025 13:37, Mukesh Ojha wrote:
+>> On Sat, Aug 23, 2025 at 05:53:50PM +0200, Krzysztof Kozlowski wrote:
+>>> The Qualcomm SoC Iris video codec is an evolution of previous Venus and
+>>> it comes with its own Iris Linux drivers.  These new drivers were
+>>> accepted under condition they actually improve state of afairs, instead
+>>> of duplicating old, legacy solutions.
+>>>
+>>> Unfortunately binding still references common parts of Venus without
+>>> actual need and benefit.  For example Iris does not use fake
+>>> "video-firmware" device node (fake because there is no actual device
+>>> underlying it and it was added only to work around some Linux issues
+>>> with IOMMU mappings).
+>>>
+>>> Stop referencing venus-common schema in the new Qualcomm Iris bindings
+>>> and move all necessary properties, except unused "video-firmware" (no
+>>> driver usage, no DTS).
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> ---
+>>>  .../devicetree/bindings/media/qcom,sm8550-iris.yaml | 13 ++++++++++++-
+>>>  1 file changed, 12 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+>>> index c79bf2101812..320227f437a1 100644
+>>> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+>>> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+>>> @@ -26,6 +26,9 @@ properties:
+>>>            - qcom,sm8550-iris
+>>>            - qcom,sm8650-iris
+>>>  
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>>    power-domains:
+>>>      maxItems: 4
+>>>  
+>>> @@ -45,6 +48,12 @@ properties:
+>>>        - const: core
+>>>        - const: vcodec0_core
+>>>  
+>>> +  firmware-name:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>>    interconnects:
+>>>      maxItems: 2
+>>>  
+>>> @@ -69,6 +78,9 @@ properties:
+>>>  
+>>>    dma-coherent: true
+>>>  
+>>> +  memory-region:
+>>> +    maxItems: 1
+>>> +
+>>>    operating-points-v2: true
+>>>  
+>>>    opp-table:
+>>> @@ -85,7 +97,6 @@ required:
+>>>    - dma-coherent
+>>>  
+>>>  allOf:
+>>> -  - $ref: qcom,venus-common.yaml#
+>>>    - if:
+>>
+>> Saw your reply on 
+>> https://lore.kernel.org/lkml/59951c47-1015-4598-a885-25f8f1a27c64@kernel.org/
+>>
+>> Just trying to understand ABI here, how all of a sudden we remove a binding
+>> for a hardware just because it did not get noticed until yet that as it is
+>> not a real device and we always say device tree binding should not depend on
+>> drivers but the device but we are saying Iris does not use fake "video-firmware"
+>> device node for removal. I am a bit confused.
 > 
-> CC: Dave Martin <Dave.Martin@arm.com>
-> Signed-off-by: James Morse <james.morse@arm.com>
-> ---
-> Changes since RFC:
->  * Made mpam_ris_hw_probe_hw_nrdy() more in C.
->  * Added static assert on features bitmap size.
-> ---
->  drivers/resctrl/mpam_devices.c  | 156 +++++++++++++++++++++++++++++++-
->  drivers/resctrl/mpam_internal.h |  54 +++++++++++
->  2 files changed, 209 insertions(+), 1 deletion(-)
+> About what? What is unclear in standard DT ABI rules?
 > 
-> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-> index 012e09e80300..290a04f8654f 100644
-> --- a/drivers/resctrl/mpam_devices.c
-> +++ b/drivers/resctrl/mpam_devices.c
-> @@ -102,7 +102,7 @@ static LLIST_HEAD(mpam_garbage);
->  
->  static u32 __mpam_read_reg(struct mpam_msc *msc, u16 reg)
->  {
-> -	WARN_ON_ONCE(reg > msc->mapped_hwpage_sz);
-> +	WARN_ON_ONCE(reg + sizeof(u32) > msc->mapped_hwpage_sz);
-Update in the patch that introduced this line.
+>>
+>> Whether removing will not break any ABI as initial binding enables the IRIS
+>> related code to use video-firmware, now we are removing it.
+>> I believe, removing binding always break ABI ? or is it depend on driver
+>> code not using it ?
+> 
+> There is no single user of this, out of tree (I briefly checked) and
+> in-tree, so there is no ABI impact. I am changing the documentation of
+> the ABI, but there is no actual ABI break because impact is 0.
+> 
 
->  	WARN_ON_ONCE(!cpumask_test_cpu(smp_processor_id(), &msc->accessibility));
->  
->  	return readl_relaxed(msc->mapped_hwpage + reg);
-> @@ -131,6 +131,20 @@ static inline void _mpam_write_partsel_reg(struct mpam_msc *msc, u16 reg, u32 va
->  }
->  #define mpam_write_partsel_reg(msc, reg, val)  _mpam_write_partsel_reg(msc, MPAMCFG_##reg, val)
->  
-> +static inline u32 _mpam_read_monsel_reg(struct mpam_msc *msc, u16 reg)
-> +{
-> +	mpam_mon_sel_lock_held(msc);
-> +	return __mpam_read_reg(msc, reg);
-> +}
-> +#define mpam_read_monsel_reg(msc, reg) _mpam_read_monsel_reg(msc, MSMON_##reg)
-> +
-> +static inline void _mpam_write_monsel_reg(struct mpam_msc *msc, u16 reg, u32 val)
-> +{
-> +	mpam_mon_sel_lock_held(msc);
-> +	__mpam_write_reg(msc, reg, val);
-> +}
-> +#define mpam_write_monsel_reg(msc, reg, val)   _mpam_write_monsel_reg(msc, MSMON_##reg, val)
-> +
->  static u64 mpam_msc_read_idr(struct mpam_msc *msc)
->  {
->  	u64 idr_high = 0, idr_low;
-> @@ -643,6 +657,139 @@ static struct mpam_msc_ris *mpam_get_or_create_ris(struct mpam_msc *msc,
->  	return found;
->  }
->  
-> +/*
-> + * IHI009A.a has this nugget: "If a monitor does not support automatic behaviour
-> + * of NRDY, software can use this bit for any purpose" - so hardware might not
-> + * implement this - but it isn't RES0.
-> + *
-> + * Try and see what values stick in this bit. If we can write either value,
-> + * its probably not implemented by hardware.
-> + */
-> +static bool _mpam_ris_hw_probe_hw_nrdy(struct mpam_msc_ris * ris, u32 mon_reg)
-> +{
-> +	u32 now;
-> +	u64 mon_sel;
-> +	bool can_set, can_clear;
-> +	struct mpam_msc *msc = ris->vmsc->msc;
-> +
-> +	if (WARN_ON_ONCE(!mpam_mon_sel_inner_lock(msc)))
-> +		return false;
-> +
-> +	mon_sel = FIELD_PREP(MSMON_CFG_MON_SEL_MON_SEL, 0) |
-> +		  FIELD_PREP(MSMON_CFG_MON_SEL_RIS, ris->ris_idx);
-> +	_mpam_write_monsel_reg(msc, mon_reg, mon_sel);
-> +
-> +	_mpam_write_monsel_reg(msc, mon_reg, MSMON___NRDY);
-> +	now = _mpam_read_monsel_reg(msc, mon_reg);
-> +	can_set = now & MSMON___NRDY;
-> +
-> +	_mpam_write_monsel_reg(msc, mon_reg, 0);
-> +	now = _mpam_read_monsel_reg(msc, mon_reg);
-> +	can_clear = !(now & MSMON___NRDY);
-> +	mpam_mon_sel_inner_unlock(msc);
-> +
-> +	return (!can_set || !can_clear);
-> +}
-> +
-> +#define mpam_ris_hw_probe_hw_nrdy(_ris, _mon_reg)			\
-> +        _mpam_ris_hw_probe_hw_nrdy(_ris, MSMON_##_mon_reg)
-> +
-> +static void mpam_ris_hw_probe(struct mpam_msc_ris *ris)
-> +{
-> +	int err;
-> +	struct mpam_msc *msc = ris->vmsc->msc;
-> +	struct mpam_props *props = &ris->props;
-> +
-> +	lockdep_assert_held(&msc->probe_lock);
-> +	lockdep_assert_held(&msc->part_sel_lock);
-> +
-> +	/* Cache Portion partitioning */
-> +	if (FIELD_GET(MPAMF_IDR_HAS_CPOR_PART, ris->idr)) {
-> +		u32 cpor_features = mpam_read_partsel_reg(msc, CPOR_IDR);
-> +
-> +		props->cpbm_wd = FIELD_GET(MPAMF_CPOR_IDR_CPBM_WD, cpor_features);
-> +		if (props->cpbm_wd)
-> +			mpam_set_feature(mpam_feat_cpor_part, props);
-> +	}
-> +
-> +	/* Memory bandwidth partitioning */
-> +	if (FIELD_GET(MPAMF_IDR_HAS_MBW_PART, ris->idr)) {
-> +		u32 mbw_features = mpam_read_partsel_reg(msc, MBW_IDR);
-> +
-> +		/* portion bitmap resolution */
-> +		props->mbw_pbm_bits = FIELD_GET(MPAMF_MBW_IDR_BWPBM_WD, mbw_features);
-> +		if (props->mbw_pbm_bits &&
-> +		    FIELD_GET(MPAMF_MBW_IDR_HAS_PBM, mbw_features))
-> +			mpam_set_feature(mpam_feat_mbw_part, props);
-> +
-> +		props->bwa_wd = FIELD_GET(MPAMF_MBW_IDR_BWA_WD, mbw_features);
-> +		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_MAX, mbw_features))
-> +			mpam_set_feature(mpam_feat_mbw_max, props);
-> +	}
-> +
-> +	/* Performance Monitoring */
-> +	if (FIELD_GET(MPAMF_IDR_HAS_MSMON, ris->idr)) {
-> +		u32 msmon_features = mpam_read_partsel_reg(msc, MSMON_IDR);
-> +
-> +		/*
-> +		 * If the firmware max-nrdy-us property is missing, the
-> +		 * CSU counters can't be used. Should we wait forever?
-> +		 */
-> +		err = device_property_read_u32(&msc->pdev->dev,
-> +					       "arm,not-ready-us",
-> +					       &msc->nrdy_usec);
-> +
-> +		if (FIELD_GET(MPAMF_MSMON_IDR_MSMON_CSU, msmon_features)) {
-> +			u32 csumonidr;
-> +
-> +			csumonidr = mpam_read_partsel_reg(msc, CSUMON_IDR);
-> +			props->num_csu_mon = FIELD_GET(MPAMF_CSUMON_IDR_NUM_MON, csumonidr);
-> +			if (props->num_csu_mon) {
-> +				bool hw_managed;
-> +
-> +				mpam_set_feature(mpam_feat_msmon_csu, props);
-> +
-> +				/* Is NRDY hardware managed? */
-> +				mpam_mon_sel_outer_lock(msc);
-> +				hw_managed = mpam_ris_hw_probe_hw_nrdy(ris, CSU);
-> +				mpam_mon_sel_outer_unlock(msc);
-> +				if (hw_managed)
-> +					mpam_set_feature(mpam_feat_msmon_csu_hw_nrdy, props);
-> +			}
-> +
-> +			/*
-> +			 * Accept the missing firmware property if NRDY appears
-> +			 * un-implemented.
-> +			 */
-> +			if (err && mpam_has_feature(mpam_feat_msmon_csu_hw_nrdy, props))
-> +				pr_err_once("Counters are not usable because not-ready timeout was not provided by firmware.");
-> +		}
-> +		if (FIELD_GET(MPAMF_MSMON_IDR_MSMON_MBWU, msmon_features)) {
-> +			bool hw_managed;
-> +			u32 mbwumonidr = mpam_read_partsel_reg(msc, MBWUMON_IDR);
-> +
-> +			props->num_mbwu_mon = FIELD_GET(MPAMF_MBWUMON_IDR_NUM_MON, mbwumonidr);
-> +			if (props->num_mbwu_mon)
-> +				mpam_set_feature(mpam_feat_msmon_mbwu, props);
-> +
-> +			if (FIELD_GET(MPAMF_MBWUMON_IDR_HAS_RWBW, mbwumonidr))
-> +				mpam_set_feature(mpam_feat_msmon_mbwu_rwbw, props);
-> +
-> +			/* Is NRDY hardware managed? */
-> +			mpam_mon_sel_outer_lock(msc);
-> +			hw_managed = mpam_ris_hw_probe_hw_nrdy(ris, MBWU);
-> +			mpam_mon_sel_outer_unlock(msc);
-> +			if (hw_managed)
-> +				mpam_set_feature(mpam_feat_msmon_mbwu_hw_nrdy, props);
-> +
-> +			/*
-> +			 * Don't warn about any missing firmware property for
-> +			 * MBWU NRDY - it doesn't make any sense!
-> +			 */
-> +		}
-> +	}
-> +}
-> +
->  static int mpam_msc_hw_probe(struct mpam_msc *msc)
->  {
->  	u64 idr;
-> @@ -663,6 +810,7 @@ static int mpam_msc_hw_probe(struct mpam_msc *msc)
->  
->  	idr = mpam_msc_read_idr(msc);
->  	mutex_unlock(&msc->part_sel_lock);
-> +
->  	msc->ris_max = FIELD_GET(MPAMF_IDR_RIS_MAX, idr);
->  
->  	/* Use these values so partid/pmg always starts with a valid value */
-> @@ -683,6 +831,12 @@ static int mpam_msc_hw_probe(struct mpam_msc *msc)
->  		ris = mpam_get_or_create_ris(msc, ris_idx);
->  		if (IS_ERR(ris))
->  			return PTR_ERR(ris);
-> +		ris->idr = idr;
-> +
-> +		mutex_lock(&msc->part_sel_lock);
-> +		__mpam_part_sel(ris_idx, 0, msc);
-> +		mpam_ris_hw_probe(ris);
-> +		mutex_unlock(&msc->part_sel_lock);
->  	}
->  
->  	spin_lock(&partid_max_lock);
-> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
-> index c6f087f9fa7d..9f6cd4a68cce 100644
-> --- a/drivers/resctrl/mpam_internal.h
-> +++ b/drivers/resctrl/mpam_internal.h
-> @@ -136,6 +136,56 @@ static inline void mpam_mon_sel_lock_held(struct mpam_msc *msc)
->  		lockdep_assert_preemption_enabled();
->  }
->  
-> +/*
-> + * When we compact the supported features, we don't care what they are.
-> + * Storing them as a bitmap makes life easy.
-> + */
-> +typedef u16 mpam_features_t;
-> +
-> +/* Bits for mpam_features_t */
-> +enum mpam_device_features {
-> +	mpam_feat_ccap_part = 0,
-> +	mpam_feat_cpor_part,
-> +	mpam_feat_mbw_part,
-> +	mpam_feat_mbw_min,
-> +	mpam_feat_mbw_max,
-> +	mpam_feat_mbw_prop,
-> +	mpam_feat_msmon,
-> +	mpam_feat_msmon_csu,
-> +	mpam_feat_msmon_csu_capture,
-> +	mpam_feat_msmon_csu_hw_nrdy,
-> +	mpam_feat_msmon_mbwu,
-> +	mpam_feat_msmon_mbwu_capture,
-> +	mpam_feat_msmon_mbwu_rwbw,
-> +	mpam_feat_msmon_mbwu_hw_nrdy,
-> +	mpam_feat_msmon_capt,
-> +	MPAM_FEATURE_LAST,
+My understanding here is that the interface "video-firmware" is already defined
+in the binding. There could be possible out-of-tree users of it, might not be
+possible for us to look into all of those out=of-tree users.
+I support such cleanups, but also need to understand how this is not an ABI
+break, just that there are no in-tree DTS user means no ABI break ?
+Would appreciate if you could point to any guidelines if my understanding is not
+correct, i am currently referring to [1]
 
-This isn't all the features or just the features supported by resctrl.
-Just add them all in this patch?
+[1]https://docs.kernel.org/devicetree/bindings/ABI.html
 
-> +};
-> +static_assert(BITS_PER_TYPE(mpam_features_t) >= MPAM_FEATURE_LAST);
-> +#define MPAM_ALL_FEATURES      ((1 << MPAM_FEATURE_LAST) - 1)
-Unused?
+Regards,
+Vikash
 
-> +
-> +struct mpam_props {
-> +	mpam_features_t		features;
-> +
-> +	u16			cpbm_wd;
-> +	u16			mbw_pbm_bits;
-> +	u16			bwa_wd;
-> +	u16			num_csu_mon;
-> +	u16			num_mbwu_mon;
-> +};
-> +
-> +static inline bool mpam_has_feature(enum mpam_device_features feat,
-> +				    struct mpam_props *props)
-> +{
-> +	return (1 << feat) & props->features;
-> +}
-> +
-> +static inline void mpam_set_feature(enum mpam_device_features feat,
-> +				    struct mpam_props *props)
-> +{
-> +	props->features |= (1 << feat);
-> +}
-> +
->  struct mpam_class {
->  	/* mpam_components in this class */
->  	struct list_head	components;
-> @@ -175,6 +225,8 @@ struct mpam_vmsc {
->  	/* mpam_msc_ris in this vmsc */
->  	struct list_head	ris;
->  
-> +	struct mpam_props	props;
-> +
->  	/* All RIS in this vMSC are members of this MSC */
->  	struct mpam_msc		*msc;
->  
-> @@ -186,6 +238,8 @@ struct mpam_vmsc {
->  
->  struct mpam_msc_ris {
->  	u8			ris_idx;
-> +	u64			idr;
-> +	struct mpam_props	props;
->  
->  	cpumask_t		affinity;
->  
-
-Thanks,
-
-Ben
-
+> I am really sorry but it seems you ask about basics of DT, so please
+> first get into docs and other existing discussions.
+> 
+> Best regards,
+> Krzysztof
 
