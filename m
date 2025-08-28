@@ -1,133 +1,186 @@
-Return-Path: <devicetree+bounces-210121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DCABB3A515
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 17:58:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AD43B3A58C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:06:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DA1D56646A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:58:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECD9F189FD41
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 693F7258EDF;
-	Thu, 28 Aug 2025 15:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF4B2F2903;
+	Thu, 28 Aug 2025 16:01:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="I0vds5M2";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="UQwmO8gI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 284CA257852;
-	Thu, 28 Aug 2025 15:58:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from flow-a8-smtp.messagingengine.com (flow-a8-smtp.messagingengine.com [103.168.172.143])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCB852E7F2F;
+	Thu, 28 Aug 2025 16:01:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.143
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756396722; cv=none; b=oMn29bgEaLQ+fiNjICsETBYGeFszTdUVOVE1z8xcYgLSKUTpd7LYXoVk1XWNfIwyxpc1PQ488d9wc8ZJNn65i6ddcZYaM6kGydJ2LLk+h6taf6TLmkuqB00acBcQGdKLnNtJG/LcVD8Ir2f35cOb88uuhnrOXKGUeGpJUfzsa7o=
+	t=1756396865; cv=none; b=H6huqOoL13zmqgJ5FI9ZAlOYVJ3HVG0OFTdqgP2xz3ipRW/ZkmqF78U7PeQcCiC+MVWarEM/dJaiDvu8IJghaY4XtxUc/szJ8NWNCkSXD4Q4w7ofjK8r8lecTAtRSY0jweRAuBHjQRJtG5LU7PVixX5S56+Tp6nuSfxWyhN2ENk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756396722; c=relaxed/simple;
-	bh=L6c6sYKZ2Bo7HkfwuY5ExJZmk8rqe6Wfutw8lY2CxwQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oW5zIXwQZktRtDWTjJnEHduxGAfcys4NYVHCZKbgxFGiv+SP3LQ2Ir6RCgPQo2k+agelCQZlLdQlCMM8pPi855lYNMzLtyDlemqopeQ4yeKC9EzqocVmUbUy2TI/4x+XVfz33WKqR7a7ipUJ6rWvuvsN1Zcgfkx9qt5pPeJnSQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A6912C40;
-	Thu, 28 Aug 2025 08:58:28 -0700 (PDT)
-Received: from [10.1.196.42] (eglon.cambridge.arm.com [10.1.196.42])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 322993F694;
-	Thu, 28 Aug 2025 08:58:27 -0700 (PDT)
-Message-ID: <fb8731ac-49ef-4a1a-91f2-daa1531c9ea7@arm.com>
-Date: Thu, 28 Aug 2025 16:58:26 +0100
+	s=arc-20240116; t=1756396865; c=relaxed/simple;
+	bh=IhCwyVSLQaDPC1ItyuW0KFgIev1MsX9imMYlVGODsGI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FV8HP3CR03JoqlKw16ttJ/WOlpuziHLmi1hp90NPLasaFML0bIi/NQj98rvtvoCSPkSeU+FQK/v6le/T7Dy+JTzjfL+mpNmm8Uakw+IG5jnMl5jqlT7qsLbHJgWRfuPukSZOFd4XSm+PJ7sFQT9peegAuk+2zhhZvH8bLeTlU+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=I0vds5M2; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=UQwmO8gI; arc=none smtp.client-ip=103.168.172.143
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-09.internal (phl-compute-09.internal [10.202.2.49])
+	by mailflow.phl.internal (Postfix) with ESMTP id CFDC31380BD6;
+	Thu, 28 Aug 2025 12:01:01 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-09.internal (MEProxy); Thu, 28 Aug 2025 12:01:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1756396861;
+	 x=1756404061; bh=X0y5RQTmfwxUObhRto5XKdRlcInx4/Tzp/ibu8iObz8=; b=
+	I0vds5M2ZwZ/2oQ5PNgXiYYN+e9KqQ+21lQKMj2rlUB7qGtjIwE2S1czCT6Kj3mO
+	B3rCT4TSXFmrs2KqxhrTjjzcNHj1PKES0qeM4gAIqognX5qNWUmCKwEySizle3oV
+	FgJPiOVf6COGjfksPddIITc3Qi40GWDNi5ySxPvgf4+rryLSti++rzyclUXCPExt
+	VmvDLkEzuRoUPIKITRnFr9T1C4s5yQx6WpmkX9ZaT6d0jXKS/3t6T6q0YOtf5HPo
+	5wSdBfPjOhtvp+2Lx8cCFC4itL5YsBqXSHvMJR/FJGGCCi34aO63jYfdIJqpRqhi
+	HtoEsRbYXoY5Dfxl4Uv6Bg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1756396861; x=
+	1756404061; bh=X0y5RQTmfwxUObhRto5XKdRlcInx4/Tzp/ibu8iObz8=; b=U
+	QwmO8gISdU25Fs3HSYuPhjs9y7oII5xEQZmiGUN6AynJMwVcwv1yPJOzlr3OGowA
+	J3kw2w52WOa7u2NUKOxzlAjTtjdUEa+UjUu1AyeUiMeIXa7nyD0ZxJLsl471kUzN
+	z38wDdRjfnKe9fx8F7dnq0FaG8NMvEuvWT7Xxxcjt0dGSF7AQ2ZLHNLOwqQq+JKp
+	vtyv6t4WFCa5A18ZKdeQn2Ao2X5/tij28k21rRW7LYGsjO+SkUvRJaTcv+VcN2aa
+	u3Zf/oqcuHBmRF/LknGTuZWN6sIntoqw+fb+j1GMTj1Fal4hRXQnCNpMSK+KYWTe
+	gDBSKWi41Ng7rYALGBwBg==
+X-ME-Sender: <xms:On2waIxJlexuPzypFfc2uxTpdNwLE_OHXPTlfTfwFUFslgrePoufjg>
+    <xme:On2waDv810MwADrY_nRVH_KwjmB3F0NMW_ws2Wrj-VWfWFKq08Xz6Zbgvzk7-JulL
+    XJbkV8aOPj6CAlPclM>
+X-ME-Received: <xmr:On2waDRzvvGywk6DwPkLvk9uBcG00uECS6wd59vVf4ke3ZxWDi0fSZhxMPoY9B8Qh9uJIEolZzSsKsd-tT30ZdyMq_qYM5dJRrk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddukedugeehucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpeflrghnnhgv
+    ucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepve
+    efkeeuudettddvffevhfevvdekhffgveehfefhffehfeetgfetffeugfevfefhnecuvehl
+    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrg
+    hurdhnvghtpdhnsggprhgtphhtthhopeeigedpmhhouggvpehsmhhtphhouhhtpdhrtghp
+    thhtohepthhofihinhgthhgvnhhmihesghhmrghilhdrtghomhdprhgtphhtthhopehsvh
+    gvnheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlhihsshgrsehrohhsvghniiif
+    vghighdrihhopdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtoh
+    eprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghr
+    nhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpd
+    hrtghpthhtohepmhgrrhgtrghnsehmrghrtggrnhdrshhtpdhrtghpthhtoheprhgrfhgr
+    vghlsehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:On2waBdAe8K_bVqvNlQR0j5V1DKUm0Ra1Gjf1ktaipolDUs-krUtjQ>
+    <xmx:On2waJRmnZC6YgZWEQVw_LwCMcqtoCD8bnwuizrYGROWUpfHSKqzHQ>
+    <xmx:On2waJnA2UkyifRmB3uklG3XznqZxfoMS-lY1Z4ov7UTS6RuoDIXUg>
+    <xmx:On2waDHqNwU0uR-xpYaUzht54A7lAkmGOQO7gUi2D5fEP12ITgI9gw>
+    <xmx:PX2waMoTJjhez4WANByCdWAkFMP5JaWhXJAkwB8SD_dJwvTzPB-wYtf2>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 28 Aug 2025 12:00:57 -0400 (EDT)
+Date: Thu, 28 Aug 2025 18:00:55 +0200
+From: Janne Grunau <j@jannau.net>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,	Hector Martin <marcan@marcan.st>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,	Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>,	Robin Murphy <robin.murphy@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Mark Kettenis <kettenis@openbsd.org>,	Andi Shyti <andi.shyti@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Sasha Finkelstein <fnkl.kernel@gmail.com>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Johannes Berg <johannes@sipsolutions.net>,
+	van Spriel <arend@broadcom.com>, Lee Jones <lee@kernel.org>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	Vinod Koul <vkoul@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,	Keith Busch <kbusch@kernel.org>,
+ Jens Axboe <axboe@kernel.dk>,	Christoph Hellwig <hch@lst.de>,
+ Sagi Grimberg <sagi@grimberg.me>,	Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>,	asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,	linux-pm@vger.kernel.org,
+ iommu@lists.linux.dev,	linux-gpio@vger.kernel.org,
+ linux-i2c@vger.kernel.org,	dri-devel@lists.freedesktop.org,
+ linux-bluetooth@vger.kernel.org,	linux-wireless@vger.kernel.org,
+ linux-pwm@vger.kernel.org,	linux-watchdog@vger.kernel.org,
+ linux-clk@vger.kernel.org,	dmaengine@vger.kernel.org,
+ linux-sound@vger.kernel.org,	linux-spi@vger.kernel.org,
+ linux-nvme@lists.infradead.org
+Subject: Re: [PATCH 34/37] arm64: dts: apple: Add initial t6020/t6021/t6022
+ DTs
+Message-ID: <20250828160055.GB204299@robin.jannau.net>
+References: <20250828-dt-apple-t6020-v1-0-bb8e1b87edef@jannau.net>
+ <20250828-dt-apple-t6020-v1-34-bb8e1b87edef@jannau.net>
+ <5e0e51db-17ae-483a-bb96-8ab88ad2fbad@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/33] arm64: kconfig: Add Kconfig entry for MPAM
-To: Ben Horgan <ben.horgan@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: shameerali.kolothum.thodi@huawei.com,
- D Scott Phillips OS <scott@os.amperecomputing.com>,
- carl@os.amperecomputing.com, lcherian@marvell.com,
- bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
- baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
- Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
- dfustini@baylibre.com, amitsinght@marvell.com,
- David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
- Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
- Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
- baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
- Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-8-james.morse@arm.com>
- <0c8a6a7c-3d0d-4093-8bc5-3a04f70b00fa@arm.com>
-Content-Language: en-GB
-From: James Morse <james.morse@arm.com>
-In-Reply-To: <0c8a6a7c-3d0d-4093-8bc5-3a04f70b00fa@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5e0e51db-17ae-483a-bb96-8ab88ad2fbad@gmail.com>
 
-Hi Ben,
+On Thu, Aug 28, 2025 at 11:37:08PM +0800, Nick Chan wrote:
+> 
+> Janne Grunau 於 2025/8/28 夜晚10:52 寫道:
+> > From: Hector Martin <marcan@marcan.st>
+> >
+> > These SoCs are found in Apple devices with M2 Pro (t6020), M2 Max
+> > (t6021) and M2 Ultra (t6022) and follow the pattern of their M1
+> > counterparts.
+> >
+> > t6020 is a cut-down version of t6021, so the former just includes the
+> > latter and disables the missing bits (This is currently just one PMGR
+> > node and all of its domains.
+> >
+> > t6022 is two connected t6021 dies. The implementation seems to use
+> > t6021 with blocks disabled (mostly on the second die). MMIO addresses on
+> > the second die have a constant offset. The interrupt controller is
+> > multi-die aware. This setup can be represented in the device tree with
+> > two top level "soc" nodes. The MMIO offset is applied via "ranges" and
+> > devices are included with preproceesor macros to make the node labels
+> > unique and to specify the die number for the interrupt definition.
+> >
+> > Device nodes are distributed over dtsi files based on whether they are
+> > present on both dies or just on the first die. The only exception is the
+> > NVMe controller which resides on the second die. Its nodes are in a
+> > separate file.
+> 
+> There are some outdated / copy pasted from M1-series parts.
 
-On 27/08/2025 09:53, Ben Horgan wrote:
-> On 8/22/25 16:29, James Morse wrote:
->> The bulk of the MPAM driver lives outside the arch code because it
->> largely manages MMIO devices that generate interrupts. The driver
->> needs a Kconfig symbol to enable it, as MPAM is only found on arm64
->> platforms, that is where the Kconfig option makes the most sense.
->>
->> This Kconfig option will later be used by the arch code to enable
->> or disable the MPAM context-switch code, and registering the CPUs
->> properties with the MPAM driver.
+All fixed locally. I also removed an outdated "hypothetical T6022 (M2
+Ultra)" from t602x-dieX.dtsi.
 
->> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
->> index e9bbfacc35a6..658e47fc0c5a 100644
->> --- a/arch/arm64/Kconfig
->> +++ b/arch/arm64/Kconfig
->> @@ -2060,6 +2060,23 @@ config ARM64_TLB_RANGE
->>  	  ARMv8.4-TLBI provides TLBI invalidation instruction that apply to a
->>  	  range of input addresses.
->>  
->> +config ARM64_MPAM
->> +	bool "Enable support for MPAM"
->> +	help
->> +	  Memory Partitioning and Monitoring is an optional extension
->> +	  that allows the CPUs to mark load and store transactions with
->> +	  labels for partition-id and performance-monitoring-group.
->> +	  System components, such as the caches, can use the partition-id
->> +	  to apply a performance policy. MPAM monitors can use the
->> +	  partition-id and performance-monitoring-group to measure the
->> +	  cache occupancy or data throughput.
->> +
->> +	  Use of this extension requires CPU support, support in the
->> +	  memory system components (MSC), and a description from firmware
->> +	  of where the MSC are in the address space.
->> +
->> +	  MPAM is exposed to user-space via the resctrl pseudo filesystem.
->> +
->>  endmenu # "ARMv8.4 architectural features"
+thanks for spotting these,
 
-> Should this be moved to "ARMv8.2 architectural features" rather than the
-> 8.4 menu? In the arm reference manual, version L.b, I see FEAT_MPAM
-> listed in the section A2.2.3.1 Features added to the Armv8.2 extension
-> in later releases.
-
-Hmmm, I don't think we've done that anywhere else. I'm only aware of one v8.2 platform
-that had it, and those are not widely available. As it was a headline v8.4 feature I'd
-prefer to keep it there.
-
-I think its more confusing to put it under v8.2!
-
-
-Thanks,
-
-James
+Janne
 
