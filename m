@@ -1,160 +1,347 @@
-Return-Path: <devicetree+bounces-210187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C09DB3AB00
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 21:36:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A474AB3AB46
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 22:06:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0B6F685849
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 19:36:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20369200B3B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 20:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19080270569;
-	Thu, 28 Aug 2025 19:36:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB652571DD;
+	Thu, 28 Aug 2025 20:06:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6xyCKSo"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="owmaGhNg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D54A02356B9;
-	Thu, 28 Aug 2025 19:36:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DEC24DD11
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 20:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756409768; cv=none; b=N8yR0gB+H8x5TeSkIDd8F+hqrLc0bbyKCQWojeYNnPZ3zyrabP3sqnLmlgKxc/3uGlsa3w+OUnm03VFr74tIahWBHbUb+7g/oY8JnBPV62cCCtBjId3tR0w0uiNOSs9Hqy5nO42WkdQRjp6eXgTBsoi9VtgE/Bp4cJ8nLiKJktY=
+	t=1756411605; cv=none; b=gZtDqPrSPZdLVEUs0JkIufiTxinQH2P/ftKSq+BSxXLGi4Ya2kEF5G8uv9038SzRReuKEm9/B9yXaBRha8C+WXaf6E17K8GJbn6rr01e+YKdCcvagKQaxKohXPXn78M08DspA3eXGSOJ/0NmsSj3RzfM4Zmk9j9z8uEI5S38UgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756409768; c=relaxed/simple;
-	bh=OsoMClZ8zewBYWl+159+qqnGdVkEoyGDB7GLoGNd/TE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=m2r7QvNTiEteUoURP3CqRLCHajsE3fU1WkI/YXXqNyI9ttDdXVmBBUIG9atBDxuRdX8pyzqbq1ExsknV4T6jlpFooV58okk1iXEoU67GmAaBDS+sQNZa+VTBHWq/l0jgn4qZvT0aP5skJ+vsYFQYp7JeEPF51qymbHKGGxs9SGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6xyCKSo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28BAFC4CEEB;
-	Thu, 28 Aug 2025 19:36:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756409767;
-	bh=OsoMClZ8zewBYWl+159+qqnGdVkEoyGDB7GLoGNd/TE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=k6xyCKSoZHCUN/xb2z1hgFOpvBNITDPTdgB/yNo+zgp+wzg0/iCiJo313C+gRx6h0
-	 HcQRVMWJv+p7GyZcF4lkNyo1IhHCryoTndR8pxNezLRB6xdp0BxXIBdug9ximJv9op
-	 veZe0kDGL2U/PXwytNoTGTTgrk9IjbRW8dbi7d3jO6uJdxcQkgVi4dYV41k1Lc6/Qb
-	 MMyCWu4LHphr6dE/ylm5ADQgfCm4S3q7xdbPVif24gg9urwiyLJn2YzVbPotpgf5OG
-	 tvI+G1KlGDdQgp+C3poxlb9FCsK1f54ZjN+/oTWLayzytev8Vg6rdzUWSQGEDoz69W
-	 hQ7LVKCq3Sllw==
-Date: Thu, 28 Aug 2025 14:36:05 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
-	catalin.marinas@arm.com, will@kernel.org, mturquette@baylibre.com,
-	sboyd@kernel.org, p.zabel@pengutronix.de, lizhi.hou@amd.com,
-	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH v3 4/9] dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add
- documentation for the PCIe IP on Renesas RZ/G3S
-Message-ID: <20250828193605.GA957994@bhelgaas>
+	s=arc-20240116; t=1756411605; c=relaxed/simple;
+	bh=u9TsNJz5Cli+hy1QKsrKbomaP8wVYfx+FZl2Clzk1tg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=Z/YwS1oC1TacfM1utW1QqR46iigalVDIh84L/qHzB18TwtfDM74kVFve6PdpdcRP8LwESlsTiD43bl8ylm1FXmw8OuAfBdgk4CuiPQ6RkUKHF8yhBefMuZioQv05/Xa2Nw9iUOr6etXiL73bzEpV17YRYOS1C6VH5zdzjldsb6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=owmaGhNg; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+DKIM-Signature: a=rsa-sha256; b=owmaGhNgfaOD+znx/GojLIb2t38ZD4Jrl1iYxrYo6B4VOkxVOFhOEi2oNv/m5+yW0lF+EFo0TPpX4Dd6FXITgreGaiI4YED3URfoCsWXgJIj8A44OSMG+RM+DKNhOlaTsNlycsYNxF2Z7SiV0zs3Anhw+610gir2iyFKo2zASmCC1s8pRHV9E8tQUvFqfNLGej99GLBac1nJJ3GHeLuanuAx75JhlT31ounVZQ+kJNPlxJwx/tZGMTqdlrhfZG3L/P312jy6vpYonIx2v8CEs57KmC4X/jpCeNcuJ0TFRbaTeuLi3XLWWp+W3lMcNSEOhEt0GR3iRXYGZSXGRk1Gsg==; s=purelymail1; d=purelymail.com; v=1; bh=u9TsNJz5Cli+hy1QKsrKbomaP8wVYfx+FZl2Clzk1tg=; h=Feedback-ID:Received:Date:To:Subject:From;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 1961342606;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Thu, 28 Aug 2025 20:06:27 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fe7afeb5-e009-4f68-a3a8-58ff967d3780@tuxon.dev>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 28 Aug 2025 22:06:25 +0200
+Message-Id: <DCEBXZ0J8PYY.1D1SFSURUN457@mentallysanemainliners.org>
+To: "Arseniy Velikanov" <me@adomerle.pw>
+Cc: <linux-arm-kernel@lists.infradead.org>,
+ <linux-mediatek@lists.infradead.org>, <linux-phy@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>
+Subject: Re: [PATCH v1 2/2] phy: mediatek: tphy: Add software role switching
+From: "Igor Belwon" <igor.belwon@mentallysanemainliners.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250814234825.810-1-me@adomerle.pw>
+ <20250814234825.810-2-me@adomerle.pw>
+In-Reply-To: <20250814234825.810-2-me@adomerle.pw>
 
-On Thu, Aug 28, 2025 at 10:11:55PM +0300, claudiu beznea wrote:
-> On 8/8/25 14:25, Claudiu Beznea wrote:
-> > On 08.07.2025 19:34, Bjorn Helgaas wrote:
-> > > On Fri, Jul 04, 2025 at 07:14:04PM +0300, Claudiu wrote:
-> > > > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > > > 
-> > > > The PCIe IP available on the Renesas RZ/G3S complies with the PCI Express
-> > > > Base Specification 4.0. It is designed for root complex applications and
-> > > > features a single-lane (x1) implementation. Add documentation for it.
-> ...
+Hi Arseniy,
 
-> Renesas HW team replied to me that there are no clock, reset, or interrupt
-> signals dedicated specifically to the Root Port. All these signals are
-> shared across the PCIe system.
-> 
-> Taking this and your suggestions into account, I have prepared the following
-> device tree:
-> 
-> pcie: pcie@11e40000 {
-> 	compatible = "renesas,r9a08g045-pcie";
-> 	reg = <0 0x11e40000 0 0x10000>;
-> 	ranges = <0x02000000 0 0x30000000 0 0x30000000 0 0x8000000>;
-> 	/* Map all possible DRAM ranges (4 GB). */
-> 	dma-ranges = <0x42000000 0 0x40000000 0 0x40000000 0x1 0x0>;
-> 	bus-range = <0x0 0xff>;
-> 	interrupts = <GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 405 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>,
-> 		     <GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>;
-> 	interrupt-names = "serr", "serr_cor", "serr_nonfatal",
-> 			  "serr_fatal", "axi_err", "inta",
-> 			  "intb", "intc", "intd", "msi",
-> 			  "link_bandwidth", "pm_pme", "dma",
-> 			  "pcie_evt", "msg", "all";
-> 	#interrupt-cells = <1>;
-> 	interrupt-controller;
-> 	interrupt-map-mask = <0 0 0 7>;
-> 	interrupt-map = <0 0 0 1 &pcie 0 0 0 0>, /* INTA */
-> 			<0 0 0 2 &pcie 0 0 0 1>, /* INTB */
-> 			<0 0 0 3 &pcie 0 0 0 2>, /* INTC */
-> 			<0 0 0 4 &pcie 0 0 0 3>; /* INTD */
-> 	clocks = <&cpg CPG_MOD R9A08G045_PCI_ACLK>,
-> 		 <&cpg CPG_MOD R9A08G045_PCI_CLKL1PM>;
-> 	clock-names = "aclk", "pm";
-> 	resets = <&cpg R9A08G045_PCI_ARESETN>,
-> 		 <&cpg R9A08G045_PCI_RST_B>,
-> 		 <&cpg R9A08G045_PCI_RST_GP_B>,
-> 		 <&cpg R9A08G045_PCI_RST_PS_B>,
-> 		 <&cpg R9A08G045_PCI_RST_RSM_B>,
-> 		 <&cpg R9A08G045_PCI_RST_CFG_B>,
-> 		 <&cpg R9A08G045_PCI_RST_LOAD_B>;
-> 	reset-names = "aresetn", "rst_b", "rst_gp_b", "rst_ps_b",
-> 		      "rst_rsm_b", "rst_cfg_b", "rst_load_b";
-> 	power-domains = <&cpg>;
-> 	device_type = "pci";
-> 	#address-cells = <3>;
-> 	#size-cells = <2>;
-> 	renesas,sysc = <&sysc>;
-> 	status = "disabled";
-> 
-> 	pcie_port0: pcie@0,0 {
-> 		reg = <0x0 0x0 0x0 0x0 0x0>;
-> 		ranges;
-> 		clocks = <&versa3 5>;
-> 		clock-names = "ref";
-> 		device_type = "pci";
-> 		vendor-id = <0x1912>;
-> 		device-id = <0x0033>;
-> 		bus-range = <0x1 0xff>;
+On Fri Aug 15, 2025 at 1:48 AM CEST, Arseniy Velikanov wrote:
+> MediaTek USB T-PHY has broken role switching on (likely) all mobile SoCs.
+> Known affected socs are: MT6735, MT6757, MT6761, MT6765, MT6768, MT6771,
+> MT6785, MT6789.
+>
+> The downstream kernel manually controls the PHY mode by writing
+> "test mode" FORCE regs. Setting all these regs fixes device/host modes, b=
+ut
+> breaks dual-role functionality. As a workaround we use workqueue that
+> periodically checks the USB role and changes the PHY mode accordingly.
+>
+> To address this issue only on affected SoCs, we introduce a new
+> device-tree property `mediatek,software-role-switch`. This ensures
+> the workaround is applied only to broken hardware while leaving unaffecte=
+d
+> devices (like Chromebooks) untouched.
+>
+> Signed-off-by: Arseniy Velikanov <me@adomerle.pw>
+> ---
+>  drivers/phy/mediatek/phy-mtk-tphy.c | 148 ++++++++++++++++++++++++++++
+>  1 file changed, 148 insertions(+)
+>
+> diff --git a/drivers/phy/mediatek/phy-mtk-tphy.c b/drivers/phy/mediatek/p=
+hy-mtk-tphy.c
+> index f6504e0ecd1a..472859ec929c 100644
+> --- a/drivers/phy/mediatek/phy-mtk-tphy.c
+> +++ b/drivers/phy/mediatek/phy-mtk-tphy.c
+> @@ -18,6 +18,9 @@
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> +#include <linux/usb/role.h>
+> +#include <linux/usb/otg.h>
+> +#include <linux/workqueue.h>
+> =20
+>  #include "phy-mtk-io.h"
+> =20
+> @@ -111,11 +114,18 @@
+> =20
+>  #define U3P_U2PHYDTM1		0x06C
+>  #define P2C_RG_UART_EN			BIT(16)
+> +#define P2C_FORCE_IDPULLUP	BIT(8)
+>  #define P2C_FORCE_IDDIG		BIT(9)
+> +#define P2C_FORCE_AVALID	BIT(10)
+> +#define P2C_FORCE_SESSEND	BIT(12)
+> +#define P2C_FORCE_VBUSVALID	BIT(13)
+> +
+>  #define P2C_RG_VBUSVALID		BIT(5)
+>  #define P2C_RG_SESSEND			BIT(4)
+> +#define P2C_RG_BVALID			BIT(3)
+>  #define P2C_RG_AVALID			BIT(2)
+>  #define P2C_RG_IDDIG			BIT(1)
+> +#define P2C_RG_IDPULLUP			BIT(0)
+> =20
+>  #define U3P_U2PHYBC12C		0x080
+>  #define P2C_RG_CHGDT_EN		BIT(0)
+> @@ -317,6 +327,8 @@ struct mtk_phy_instance {
+>  		struct u3phy_banks u3_banks;
+>  	};
+>  	struct clk_bulk_data clks[TPHY_CLKS_CNT];
+> +	struct delayed_work dr_work;
+> +	struct usb_role_switch *role_switch;
+>  	u32 index;
+>  	u32 type;
+>  	struct regmap *type_sw;
+> @@ -326,14 +338,17 @@ struct mtk_phy_instance {
+>  	u32 efuse_intr;
+>  	u32 efuse_tx_imp;
+>  	u32 efuse_rx_imp;
+> +	int current_role;
+>  	int eye_src;
+>  	int eye_vrt;
+>  	int eye_term;
+>  	int intr;
+>  	int discth;
+>  	int pre_emphasis;
+> +	int sw_get_retries;
+>  	bool bc12_en;
+>  	bool type_force_mode;
+> +	bool software_role_switch;
+>  };
+> =20
+>  struct mtk_tphy {
+> @@ -818,12 +833,118 @@ static void u2_phy_pll_26m_set(struct mtk_tphy *tp=
+hy,
+>  			 P2R_RG_U2PLL_FRA_EN | P2R_RG_U2PLL_REFCLK_SEL);
+>  }
+> =20
+> +static void u2_phy_instance_role_set(struct mtk_phy_instance *instance,
+> +				     int role)
+> +{
+> +	struct u2phy_banks *u2_banks =3D &instance->u2_banks;
+> +	void __iomem *com =3D u2_banks->com;
+> +
+> +	instance->current_role =3D role;
+> +
+> +	/* end session before role switch */
+> +	mtk_phy_set_bits(com + U3P_U2PHYDTM1, P2C_RG_SESSEND);
+> +	mdelay(5);
+> +	mtk_phy_clear_bits(com + U3P_U2PHYDTM1, P2C_RG_SESSEND);
+> +
+> +	switch (role) {
+> +	case USB_ROLE_DEVICE:
+> +		dev_dbg(&instance->phy->dev, "set device role\n");
+> +		mtk_phy_set_bits(com + U3P_U2PHYDTM1, P2C_RG_IDDIG);
+> +		break;
+> +	case USB_ROLE_HOST:
+> +		dev_dbg(&instance->phy->dev, "set host role\n");
+> +		mtk_phy_clear_bits(com + U3P_U2PHYDTM1, P2C_RG_IDDIG);
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +}
+> +
+> +static void u2_phy_role_switch_work(struct work_struct *work)
+> +{
+> +	struct mtk_phy_instance *instance =3D
+> +		container_of(work, struct mtk_phy_instance, dr_work.work);
+> +	int role;
+> +
+> +	if (IS_ERR_OR_NULL(instance->role_switch))
+> +		instance->role_switch =3D usb_role_switch_get(&instance->phy->dev);
+> +
+> +	if (IS_ERR_OR_NULL(instance->role_switch)) {
+> +		if (instance->sw_get_retries >=3D 10) {
+> +			dev_warn(&instance->phy->dev, "failed to get role switch\n");
+> +			return;
+> +		}
+> +
+> +		instance->sw_get_retries +=3D 1;
+> +		schedule_delayed_work(&instance->dr_work, msecs_to_jiffies(500));
+> +	}
+> +
+> +	role =3D usb_role_switch_get_role(instance->role_switch);
+> +
+> +	if (instance->current_role =3D=3D role)
+> +		goto reschedule_work;
+> +
+> +	u2_phy_instance_role_set(instance, role);
+> +
+> +reschedule_work:
+> +	schedule_delayed_work(&instance->dr_work, msecs_to_jiffies(100));
+> +}
+> +
+> +static int u2_phy_software_role_switch_init(struct mtk_phy_instance *ins=
+tance)
+> +{
+> +	struct fwnode_handle *ep, *remote_ep, *usb_fwnode;
+> +	struct device *usb_dev;
+> +	int mode;
+> +
+> +	instance->sw_get_retries =3D 0;
+> +
+> +	ep =3D fwnode_graph_get_endpoint_by_id(dev_fwnode(&instance->phy->dev),
+> +					     0,
+> +					     0,
+> +					     FWNODE_GRAPH_ENDPOINT_NEXT);
+> +	if (!ep)
+> +		return -ENODEV;
+> +
+> +	remote_ep =3D fwnode_graph_get_remote_endpoint(ep);
+> +	fwnode_handle_put(ep);
+> +	if (!remote_ep)
+> +		return -ENODEV;
+> +
+> +	usb_fwnode =3D fwnode_graph_get_port_parent(remote_ep);
+> +	fwnode_handle_put(remote_ep);
+> +
+> +	if (!usb_fwnode)
+> +		return -ENODEV;
+> +
+> +	usb_dev =3D bus_find_device_by_fwnode(&platform_bus_type, usb_fwnode);
+> +	fwnode_handle_put(usb_fwnode);
+> +	if (!usb_dev)
+> +		return -ENODEV;
+> +
+> +	mode =3D usb_get_role_switch_default_mode(usb_dev);
+> +	if (mode =3D=3D USB_DR_MODE_HOST)
+> +		u2_phy_instance_role_set(instance, USB_ROLE_HOST);
+> +	else
+> +		u2_phy_instance_role_set(instance, USB_ROLE_DEVICE);
+> +
+> +	INIT_DELAYED_WORK(&instance->dr_work, u2_phy_role_switch_work);
+> +
+> +	return 0;
+> +}
+> +
+>  static void u2_phy_instance_init(struct mtk_tphy *tphy,
+>  	struct mtk_phy_instance *instance)
+>  {
+>  	struct u2phy_banks *u2_banks =3D &instance->u2_banks;
+>  	void __iomem *com =3D u2_banks->com;
+>  	u32 index =3D instance->index;
+> +	int ret;
+> +
+> +	if (instance->software_role_switch) {
+> +		ret =3D u2_phy_software_role_switch_init(instance);
+> +		if (ret)
+> +			dev_warn(&instance->phy->dev, "failed to initialize role switching\n"=
+);
+> +	}
+> =20
+>  	/* switch to USB function, and enable usb pll */
+>  	mtk_phy_clear_bits(com + U3P_U2PHYDTM0, P2C_FORCE_UART_EN | P2C_FORCE_S=
+USPENDM);
+> @@ -883,6 +1004,18 @@ static void u2_phy_instance_power_on(struct mtk_tph=
+y *tphy,
+> =20
+>  		mtk_phy_set_bits(com + U3P_U2PHYDTM0, P2C_RG_SUSPENDM | P2C_FORCE_SUSP=
+ENDM);
+>  	}
+> +
+> +	if (instance->software_role_switch) {
+> +		/* Set FORCE modes for manual role switching */
+> +		mtk_phy_set_bits(com + U3P_U2PHYDTM1, P2C_FORCE_IDPULLUP
+> +			| P2C_FORCE_IDDIG | P2C_FORCE_AVALID | P2C_FORCE_VBUSVALID
+> +			| P2C_FORCE_SESSEND);
+> +		mtk_phy_set_bits(com + U3P_U2PHYDTM1, P2C_RG_IDPULLUP | P2C_RG_BVALID)=
+;
+> +
+> +		if (!instance->role_switch)
+> +			schedule_delayed_work(&instance->dr_work, msecs_to_jiffies(100));
+> +	}
+> +
+>  	dev_dbg(tphy->dev, "%s(%d)\n", __func__, index);
+>  }
+> =20
+> @@ -906,6 +1039,9 @@ static void u2_phy_instance_power_off(struct mtk_tph=
+y *tphy,
+>  		mtk_phy_clear_bits(com + U3D_U2PHYDCR0, P2C_RG_SIF_U2PLL_FORCE_ON);
+>  	}
+> =20
+> +	if (instance->role_switch)
+> +		cancel_delayed_work_sync(&instance->dr_work);
+> +
+>  	dev_dbg(tphy->dev, "%s(%d)\n", __func__, index);
+>  }
+> =20
+> @@ -940,6 +1076,9 @@ static void u2_phy_instance_set_mode(struct mtk_tphy=
+ *tphy,
+>  		tmp &=3D ~P2C_RG_IDDIG;
+>  		break;
+>  	case PHY_MODE_USB_OTG:
+> +		/* We are managing role in workqueue */
+> +		if (instance->software_role_switch)
+> +			return;
+>  		tmp &=3D ~(P2C_FORCE_IDDIG | P2C_RG_IDDIG);
+>  		break;
+>  	default:
+> @@ -1129,6 +1268,11 @@ static void phy_parse_property(struct mtk_tphy *tp=
+hy,
+>  	if (instance->type =3D=3D PHY_TYPE_USB3)
+>  		instance->type_force_mode =3D device_property_read_bool(dev, "mediatek=
+,force-mode");
+> =20
+> +	instance->software_role_switch =3D
+> +		device_property_read_bool(dev, "mediatek,software-role-switch");
+> +	if (instance->software_role_switch)
+> +		dev_info(dev, "software role switch enabled\n");
+> +
+>  	if (instance->type !=3D PHY_TYPE_USB2)
+>  		return;
+> =20
+> @@ -1618,6 +1762,10 @@ static int mtk_tphy_probe(struct platform_device *=
+pdev)
+>  		struct phy *phy;
+>  		int retval;
+> =20
+> +		/* filter non-phy nodes (e.g. graphs) */
+> +		if (!of_find_property(child_np, "reg", NULL))
+> +			continue;
+> +
+>  		instance =3D devm_kzalloc(dev, sizeof(*instance), GFP_KERNEL);
+>  		if (!instance)
+>  			return -ENOMEM;
 
-I don't think you need this bus-range.  The bus range for the
-hierarchy below a Root Port is discoverable and configurable via
-config space.
+This patch made USB role-switching work on the MT6878 SoC. As such:
 
-> 		#address-cells = <3>;
-> 		#size-cells = <2>;
-> 	};
-> };
+Tested-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+
+Kind regards,
+Igor
 
