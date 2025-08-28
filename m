@@ -1,197 +1,169 @@
-Return-Path: <devicetree+bounces-210207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91499B3AD02
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 23:52:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2DA2B3AD0B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 23:55:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F04E57B6C47
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 21:50:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82455567EC1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 21:55:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C39028C84C;
-	Thu, 28 Aug 2025 21:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 688F42BE7C3;
+	Thu, 28 Aug 2025 21:55:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lygXWnWt"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XdrKrUeC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBABB7404E;
-	Thu, 28 Aug 2025 21:52:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDED6284880
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 21:55:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756417947; cv=none; b=BUhJB1YbTeDLEkso4+qEACumBjgv6KBeEOeZmIbn9N++Z4ZOMRk4gbY9MHZXCE1E+hKyP6xkHgIfh1lBQ4lzDtl5+zWv4S15LUhkpjHjebSih55GaqTDzDn3Hqnc0B9xN7E7KiP19D/AoYN+sc6G/AT/tgVbfQWsReSDuopeN5k=
+	t=1756418133; cv=none; b=I9VLBTe7sheyKkVegGnQZ+Pzka6FSYF/S+BC2vWGXV1FWSC4BPqePUt8BGWLohL8yW3i/EPwpeBtwmc54kmlneSVzAjZQrVyNGWJBh4UFdU4va4dEx1JRbbZM1cUOIyzU86NFfHT0//5mPGXW1z83tsgtvmwp420fpUGtX/a1dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756417947; c=relaxed/simple;
-	bh=W/WeEMsj0kEsXGjC4MQcZ4o8AZvufxrrmpNw8TSl5+I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vn1B3FiqBN1SSZZKZ8PLvgAdZvMHRlVbEIgd1VMt5xZ8T8l7vgufQRSkYGvOeAF9wrwo5ydVcWIPpuE4wYCwhGC6SWClZITrBKpJWjEiq1lhJC3FiGGcswSJcGDv5hC7D6z4FiEigyxwvhYIf8x03gc7s25YLQyuFh0+f3Vn6z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lygXWnWt; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7721b8214d4so1168430b3a.2;
-        Thu, 28 Aug 2025 14:52:25 -0700 (PDT)
+	s=arc-20240116; t=1756418133; c=relaxed/simple;
+	bh=nxi+An4/A0ZCcQ5dW8sc/ikKMdLvt7njVMGP00aQVeQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dNnD8KEBPVJlem2oIjgYevV9wTRMUOFmAZqjz6mKw/vxrmXB0KUyBXVnssRZTomK8gKWYorRctqMfAHe822QER+wmMor+1cqyOlVbdVZkfKzxu64iudiJcUov79XnuP47IbErMjWKA0LkfyN4vn6WIKgXSNKr/Qq9RWb3F2o6Fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XdrKrUeC; arc=none smtp.client-ip=209.85.161.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-61bd4ad64c7so523229eaf.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 14:55:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756417945; x=1757022745; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=dV6XS/YvxNWNl1GO5NrzhWyJOeOG6F4gSdyBueTSGKs=;
-        b=lygXWnWtfrjXkDb5VVutlKX4CSv19uZ9IKEgnNeLBU566WQEXla3RW42MsBlr7HUC0
-         9q9f4WztJDLR7Tm62uGu8E0RUXr1aLu6nImY02jSBAm3YkZ9CpLMbxPuoSbqGB04N3pN
-         7DTaLhEdq4K0cU6tcTCV+GSwFIX1mrPFhGTSdPRHXG+xwhJa05dPEk4mU3wfRfI18kaq
-         b8w1MJWgWbwL2XUmaqVbaa+Q4EH3Nm5Znr21FL5NV/tC2O0G6P646aWV5xXmkAxYVg7y
-         e1g8IgQwsZUk4EbAUESk+cO0nlSTcTYoArPY8Vcn424cn9lENGJPAH8ZXI3lFtzHSTA1
-         qDrw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756418130; x=1757022930; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hcr4BkxRn85jyEUc38hv805cvGNHKaquY+c7WmCuf9Q=;
+        b=XdrKrUeCReXiAJn5WEYn9VNJoW1IY0UOP4KBbO2bHzs8t7KtdvVX5yBImm8MyRre4w
+         77/RVgnauIw8TBeMyDDefECEAwCokKMn/Y0sju8m8roMuPp+BNRGo86J08eS0VLTlwls
+         8JUNnDuVPqQLKOwa8T0jH4gd+3Jdea9O7r0j1WWlHHpKhk3XxSMIp7eCAcnGe/KowDbL
+         KbSSxO+BwTJo7KEj5B//H/aMnYDmqNs4MboyPboTFvqXSqHJCvmDFjZLX045FAa5izS5
+         Kc8kffmWGDpeTHDEqOOnxf1LlsmdbBnWcGaNjwBie7wMxG624CSFGd74HdOeauOixleQ
+         flIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756417945; x=1757022745;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dV6XS/YvxNWNl1GO5NrzhWyJOeOG6F4gSdyBueTSGKs=;
-        b=eNkL9WJd4BpmdXgczJ6m79O7iC9az6B8XkEtkOt+YXNboonhqHZBlwl7U0i7tHwnq2
-         N7ZjcIkJM91ydJI26D9OWd4lVkFdAjuInNegsoa2KMnhbs65DnEEYECnp4Zv2REJtVQf
-         A3/gztz1vlsl+xTnMBiePy+sc+kxTXId3LGxRSFumOT7BLVaxnjLGjGQ+h0zZbP9szqv
-         Tfc+yvW3UArcg6zz6SuCTxjfMtkt2tEIOzB/3I4YIvUfxkmU/+JkXZDPzWPSB2UsPLHf
-         O7dRINilEWCRuK+/qAXdTeSbZH4QMGLWSKSwtl/gM3iuT/fHdlNApWEOdulwLqrDnqB4
-         fAug==
-X-Forwarded-Encrypted: i=1; AJvYcCUPANeVWOnJeYXVBP8w8BLW3QbM4yTiSQO2DgJmp6FCM6JO/El85H40cv/6/4ozs6aIHdN2RSe0BzVB@vger.kernel.org, AJvYcCWE2xvP+/0oPL/b+abgwKSezloM5jV1mQAcpM639zcG9t0EqUtH3nOOhl5YXlmfDAJi11qnn5GnFB2GOR2M@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxz/nmtcLV0H2e2uO0EWrrUMCFNKhVXRBweqUzHYZLRaB1F3124
-	aFseT0mIEFL7zSvzYBjHWhlLS/HlRDDi/44f5Cbd1ush+rs3JL87aaHJ
-X-Gm-Gg: ASbGncusir/EIPtp4idiv51sdU3yEvKDBq+ffb8E5VKPz0e3tptk4Uz3EAqX7//CqBf
-	gId88V4qG1RsW3Aawljt1fRfquLo1iA/xvLmIeYeNug/XXtdwm0dlsXZy6ZpfITXvADSLkGS3ue
-	zUuY5FUhL1KGy6pnWBwoB/u39/0du0DBvAVcZ7BjZ2GhL+wXPoduinFLZGaDs/ZhCxYCNTgLbky
-	o8EWUwwyuEN9E/pUuGaqGJKXiaCZE6VLiXuusLEFLn2SZOQ3HWBghvdb+JP4l9audhKMdx+/zhp
-	dUr6ouyoF3C2AorgqVw6Bq/PIJw0YLDtF+nBIj8Iu7rdGjK5lP38AxiiGfJoETjW9QGRcZYObhI
-	JUWsGgJhd1zv9He+LIHhXRUcUEcE6mCZXfiV5Ly4Swv2kDkWuVpOx5Z1fZJzKPUeXkqAA4eUyMR
-	l/+rFK30kN2JyECDDB
-X-Google-Smtp-Source: AGHT+IFRRH9qkLwCyXNeElRa9Q7EA7zo2ntdVXtntSTpTdWi9B3EdswTYIjnDDrTpTePM/GNXXDTOg==
-X-Received: by 2002:a05:6a20:3d86:b0:243:6f4e:fbab with SMTP id adf61e73a8af0-2436f4efe15mr25221703637.40.1756417945009;
-        Thu, 28 Aug 2025 14:52:25 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32787c455b8sm2706458a91.1.2025.08.28.14.52.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Aug 2025 14:52:24 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <af0f9569-6d27-415e-b11d-8a66a9d05c78@roeck-us.net>
-Date: Thu, 28 Aug 2025 14:52:23 -0700
+        d=1e100.net; s=20230601; t=1756418130; x=1757022930;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hcr4BkxRn85jyEUc38hv805cvGNHKaquY+c7WmCuf9Q=;
+        b=mW3o0V84NbH+nld5vu3153NRVL6sNBU2OVQdX4abdP7/XVWyw4fHeQ6slaMdW0prsw
+         S7jarK6HmVBTxkduvy3LSurUPiuQfyNT6Hq6hbQCIGszFaxZS/8Mba4r7py5Qo8zo/jy
+         itXgUpWooSf5EkLkhK6W4mrqBo6ncOp3X7lHBcWKRVBLFCkHhxTWNbYOnDNWNdzyvbQ2
+         Jmoq4y5WP8WneIWCTfCjd+Ko1jLmZU5NQEjdyp9/U85/2fc2IUoD9rHVNAqqDShApzAn
+         kMBHyWLy2Y2ZqIKl8TuqgqqPdGUvMoKRGbCQzZSvwxbohwLcGq2GZAJto8igo50wcOc+
+         hnwg==
+X-Forwarded-Encrypted: i=1; AJvYcCX9SWNPT+gIvadnz5MH8DrUUGFtidwXeLFkzaqObqUUQKmo+fsHKCVxYI8fdx+NlmXkQNFrLHS5eebA@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywahvg0ekA3wg1fGlRZcyFZRKsfn/TeqoWBxGR0j0o+hhjpfhuJ
+	2N/Pm+SNBHpd1SzIHdnu+/DWW12t2CgglPJkHHt9XBinBcdSKtFtiezSPayUmmdL/5U=
+X-Gm-Gg: ASbGnctcWtknzXG27yyj2oI5osHpdLaEMfvB9f4TS7ebxueHD8OLldcb7nL8lOLyNMH
+	oHpAo1L+Wo/ISDpPnY8qA5ueZA9jG66/wzbhcT63Kb30WDrzUGjBdFrhiN2KJ3T7yR53+x4hAVR
+	Q983Kz0iC2QJqGNuN7xBqec83/oxkMmoijrdnDKMXheQ7K+A3hSGmtscfsl0rdEdBEB8aTVbKen
+	vVtC32c5hQR5mHEMheYX5Mit+ui2m8odNWTXcrs5A+obsLTn6Nmet/Olm2fie+5YxU4Hd0g28Vg
+	ChrCUW3cL3+vzKOAo+oQHMvp7wcjMNy2K3DxrKLYAcdO1GORK8Ifp+1pJ3IVmwFQvKkOU92ZaZi
+	ciinJJUruAvhq6lsYzTt+94+ak9xzb4OboxK2qVk=
+X-Google-Smtp-Source: AGHT+IFFjAU7kjcywaAzZknUOjVBjmrsfsAXnB28DcB8oKezuCy+v8KNFFfoJWLYYikzUmfGOB6QiQ==
+X-Received: by 2002:a05:6870:9725:b0:30b:b90a:6b20 with SMTP id 586e51a60fabf-314dcd219c1mr12803248fac.23.1756418129684;
+        Thu, 28 Aug 2025 14:55:29 -0700 (PDT)
+Received: from [127.0.1.1] ([2600:8803:e7e4:1d00:aa84:2d2c:f28c:4102])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7455853804asm136084a34.33.2025.08.28.14.55.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Aug 2025 14:55:29 -0700 (PDT)
+From: David Lechner <dlechner@baylibre.com>
+Subject: [PATCH v3 0/4] iio: adc: ad7124: proper clock support
+Date: Thu, 28 Aug 2025 16:54:51 -0500
+Message-Id: <20250828-iio-adc-ad7124-proper-clock-support-v3-0-0b317b4605e5@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] hwmon: (ina238) Add support for INA780
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
- "jdelvare@suse.com" <jdelvare@suse.com>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250808030510.552724-1-chris.packham@alliedtelesis.co.nz>
- <20250808030510.552724-3-chris.packham@alliedtelesis.co.nz>
- <6e51d4b9-23fd-401b-afb1-2df943f85c3c@roeck-us.net>
- <d5725c87-ff96-4a25-995a-d4c3cbcc13a9@alliedtelesis.co.nz>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAmgrMyQFCSbODQkACgkQyx8mb86fmYGcWRAA
- oRwrk7V8fULqnGGpBIjp7pvR187Yzx+lhMGUHuM5H56TFEqeVwCMLWB2x1YRolYbY4MEFlQg
- VUFcfeW0OknSr1s6wtrtQm0gdkolM8OcCL9ptTHOg1mmXa4YpW8QJiL0AVtbpE9BroeWGl9v
- 2TGILPm9mVp+GmMQgkNeCS7Jonq5f5pDUGumAMguWzMFEg+Imt9wr2YA7aGen7KPSqJeQPpj
- onPKhu7O/KJKkuC50ylxizHzmGx+IUSmOZxN950pZUFvVZH9CwhAAl+NYUtcF5ry/uSYG2U7
- DCvpzqOryJRemKN63qt1bjF6cltsXwxjKOw6CvdjJYA3n6xCWLuJ6yk6CAy1Ukh545NhgBAs
- rGGVkl6TUBi0ixL3EF3RWLa9IMDcHN32r7OBhw6vbul8HqyTFZWY2ksTvlTl+qG3zV6AJuzT
- WdXmbcKN+TdhO5XlxVlbZoCm7ViBj1+PvIFQZCnLAhqSd/DJlhaq8fFXx1dCUPgQDcD+wo65
- qulV/NijfU8bzFfEPgYP/3LP+BSAyFs33y/mdP8kbMxSCjnLEhimQMrSSo/To1Gxp5C97fw5
- 3m1CaMILGKCmfI1B8iA8zd8ib7t1Rg0qCwcAnvsM36SkrID32GfFbv873bNskJCHAISK3Xkz
- qo7IYZmjk/IJGbsiGzxUhvicwkgKE9r7a1rOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAmgrMyQFCSbODQkACgkQyx8mb86fmYHlgg/9
- H5JeDmB4jsreE9Bn621wZk7NMzxy9STxiVKSh8Mq4pb+IDu1RU2iLyetCY1TiJlcxnE362kj
- njrfAdqyPteHM+LU59NtEbGwrfcXdQoh4XdMuPA5ADetPLma3YiRa3VsVkLwpnR7ilgwQw6u
- dycEaOxQ7LUXCs0JaGVVP25Z2hMkHBwx6BlW6EZLNgzGI2rswSZ7SKcsBd1IRHVf0miwIFYy
- j/UEfAFNW+tbtKPNn3xZTLs3quQN7GdYLh+J0XxITpBZaFOpwEKV+VS36pSLnNl0T5wm0E/y
- scPJ0OVY7ly5Vm1nnoH4licaU5Y1nSkFR/j2douI5P7Cj687WuNMC6CcFd6j72kRfxklOqXw
- zvy+2NEcXyziiLXp84130yxAKXfluax9sZhhrhKT6VrD45S6N3HxJpXQ/RY/EX35neH2/F7B
- RgSloce2+zWfpELyS1qRkCUTt1tlGV2p+y2BPfXzrHn2vxvbhEn1QpQ6t+85FKN8YEhJEygJ
- F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
- FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <d5725c87-ff96-4a25-995a-d4c3cbcc13a9@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACvQsGgC/42Q3W7CMAyFX6XK9bK2Tru2XO09Ji7y44A12oQkV
+ CDEu8+Apkm74sKyji1/R8dXkTERZrGpriLhSpnCwkK9VcLu9bJDSY61gAb6ZgAliYLUznINLXQ
+ yphAxSXsI9lvmU4whFTlANzUAelDdJJgUE3o6P1y+tqz3lEtIl4fp2t6nv/zuJf7aykaOo1e9M
+ +Ct9p9GXw5kEr7bMIu7xQp/2BH617DA2M5Z7ydnPozq/2FvzygJjyf+U3nmEUZnlLyfqWwqDpr
+ rhHPgbc2eNfdCy46Pbz/9dOfHbAEAAA==
+X-Change-ID: 20250723-iio-adc-ad7124-proper-clock-support-7249022a7349
+To: Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2482; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=nxi+An4/A0ZCcQ5dW8sc/ikKMdLvt7njVMGP00aQVeQ=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBosNAvSQzFBqoOIaJtXUcHQPXzwTilekXbLU4di
+ SXMQrQNDtOJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaLDQLwAKCRDCzCAB/wGP
+ wLYyB/44txB1NWBfotRPjY+FW7l3OS/1/7pdpa+oTR4hMK1mBYielGMAAWUr3AiHn2bQFLsDPAs
+ +uQ4eAuLslswcvrhNRDXbRvImcqohysjptDx2nk6eJqllc5myJ8mUfwRcIX/unqW71M+1a9KAcJ
+ 8v6kEHmIXvsCu8ua0yj7lnc5X1Pgfo9O1HIZiWkvfHYjfTQc0eNFsvUJuHCAMCSIQDHHE9SBfv9
+ PmPLXA086U36vzqghUHv8pA3dGZUBjoWT7Uh05dUOsRCvqt70I2tRO4jBE4hJWUGFMJIpwZlAbT
+ kZoAYiMjeqzzDyyHVLQ6iz0hJ9Gwd2ERnQ85gpn2S0m0+V4T
+X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
+ fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-On 8/28/25 14:22, Chris Packham wrote:
-> 
-> On 29/08/2025 00:09, Guenter Roeck wrote:
->> On 8/7/25 20:05, Chris Packham wrote:
->>> Add support for the TI INA780 Digital Power Monitor. The INA780 uses
->>> EZShunt(tm) technology, which means there are fixed LSB conversions for
->>> a number of fields rather than needing to be calibrated.
->>>
->>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->>
->> Your patch does not apply, and I can't figure out its baseline. Please
->> reparent on top of the current mainline and resubmit.
-> Sure no problem. The ina238 changes were done on top of my initial
-> ina780 stuff so the sha1 recorded in the patch will be a local sha1 that
-> you don't have. I'll clean things up on top of master without any local
-> junk.
->>
->> To simplify review, the patch should be split into preparation patches
->> (such as adding .has_shunt and .temp_max options), followed by the actual
->> added chip support.
-> Sure.
->>
->> Other (not a complete review):
->>
->> I don't see the value of adding INA780_COL and INA780_CUL defines;
->> those are really the same as the shunt voltage limits. Actually,
->> the current limits _are_ available for existing chips, only they
->> are expressed as voltage limits on the shunt voltages.
-> 
-> My main motivation was trying to match the terms used in the INA780
-> datasheet. INA780 uses COL/CUL, INA238 uses SOVL/SUVL. I can kind of
+I started looking at adding some new features to the AD7124 driver and
+noticed that the clock support was not quite right. The devicetree
+bindings had a required "mclk" clock. MCLK is actually the name of an
+internal counter in the ADC and also the name of the external clock
+connection on the evaluation boards, so I guess it came from one or the
+other of those. However, what the hardware actually has is a CLK pin
+that can be wired up in one of three ways: not connected, input or
+output. So the existing bindings making the clock required don't make
+sense.
 
-Yeah, only those change all the time. Just try to match register names
-(or pin names, for that matter) for the chips supported by the lm90 driver.
-I'd rather just add a note explaining the differences in cases like this one,
-where it isn't entirely obvious.
+Furthermore, when looking at how this clock was being used in the
+driver, I found that essentially this was being used as a way to
+select the power mode of the ADC which is not at all how devicetree
+bindings are supposed to work. The clock rate is fixed and the power
+mode can change no matter what type of clock is being used. Again,
+this just doesn't make sense.
 
-> squint and see how they are similar the INA238 is just more complicated
-> because of the external shunt. I did kind of think it must be possible
-> to express the INA780 behaviour with some fixed values but my math
-> skills failed me.
-> 
+So here is a series to fix the devicetree bindings and actually
+implement proper clock support in the driver.
 
-That is why I ordered those evaluation boards. Forget the math, just look
-at the registers. Fortunately the TI evaluation boards are not that expensive.
+---
+Changes in v3:
+- Use %pfwP instead of %s.
+- Add compile conditional to fix compiling when CONFIG_COMMON_CLK is not
+  set.
+- Fix conditional for enabling clock output.
+- Include cleanup.h for __free().
+- Add st->clk_hz and ad7124_get_fclk_hz() to handle external clock with
+  rate not exactly the same as internal clock.
+- Link to v2: https://lore.kernel.org/r/20250825-iio-adc-ad7124-proper-clock-support-v2-0-4dcff9db6b35@baylibre.com
 
-Guenter
+Changes in v2:
+- Picked up review tag.
+- Wrap some long lines and tweaked some other odd line wrapping.
+- Dropped mention of "hack" from comments.
+- Use __free() instead of devm_ to free temporary name variable earlier.
+- Link to v1: https://lore.kernel.org/r/20250724-iio-adc-ad7124-proper-clock-support-v1-0-88f35db2fcaf@baylibre.com
+
+---
+David Lechner (4):
+      dt-bindings: iio: adc: adi,ad7124: fix clocks properties
+      iio: adc: ad7124: do not require mclk
+      iio: adc: ad7124: add external clock support
+      iio: adc: ad7124: add clock output support
+
+ .../devicetree/bindings/iio/adc/adi,ad7124.yaml    |  21 ++-
+ drivers/iio/adc/ad7124.c                           | 170 ++++++++++++++++++---
+ 2 files changed, 165 insertions(+), 26 deletions(-)
+---
+base-commit: 91812d3843409c235f336f32f1c37ddc790f1e03
+change-id: 20250723-iio-adc-ad7124-proper-clock-support-7249022a7349
+
+Best regards,
+-- 
+David Lechner <dlechner@baylibre.com>
 
 
