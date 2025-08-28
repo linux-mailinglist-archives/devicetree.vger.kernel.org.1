@@ -1,279 +1,349 @@
-Return-Path: <devicetree+bounces-209968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06FF6B39B3F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:14:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 596BEB39B49
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:16:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C0A924E422E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 11:14:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 134F9684EB2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 11:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39EE430DEAF;
-	Thu, 28 Aug 2025 11:13:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D527A30DD30;
+	Thu, 28 Aug 2025 11:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="u2RJJowG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="euIsnO5m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E20DC279798;
-	Thu, 28 Aug 2025 11:13:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52BA0263889
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 11:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756379636; cv=none; b=EEZeR8zUDQ95hs2QH420URQNHkyrBNiDLKFcIADWtqbWLr92GNMdCU2hcoN4XuOey6kPmOVR5761tgGRcuwGGvrPcDWhSJd/sh6XRGvXHJ46NjvLmyzlBm7Dt59IYb+ZJCJHL7DsZjY3G3fSJQWq5qYxnoZ1isiXa1U25j/cAlU=
+	t=1756379753; cv=none; b=t4EONm6CgZXhfZuiLcsux8ozful4Bl8wMVfFw3rrpyS9UdyUW08TRmlNWfGUHXdUaRy9qj2Ku7LO2Y34jQGdpV2WBynYXdjq2kSq7C3SZxVBdlQOMQAlW56++uKTxZYywsN3Hc34gYDBpXS0L7UuX0Flja1BZMj2b1bEZBTzRac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756379636; c=relaxed/simple;
-	bh=ZlMzfEU+OdSa0mkz6+PAzGz67knIN4MmLEFxeKzh3xc=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=E9iIUKQmEbV8Wur4hOW4hldN5LHQU7aRBb7U9eYkf3a+9GKZxoyyB4F5rlsZq8+HrdpQZs+/ATtBILPyRJ86+1QujYzPfwslsBtYwRMqHA0oJQpBUZwoZemMb+q3mv4ZX5kWDfkIMZK6W07muldOUoMA+9zcQW4nUcbwnSsvzH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=u2RJJowG; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c69:1331:996f:e361:948:c527])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2274E20EE;
-	Thu, 28 Aug 2025 13:12:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1756379567;
-	bh=ZlMzfEU+OdSa0mkz6+PAzGz67knIN4MmLEFxeKzh3xc=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=u2RJJowGeffhqffaqSWXSUCBieb3uLWVA/X/Tl9CDfHxAmTXjrv4Aw8HMO+H1nM7j
-	 Txv+u/oFjefI3RcOZEsW8j2V1WiXZE8nXfcEROGUPiOQQpvXlRJNQUTq2LaLyWucYp
-	 48KjVImf8hBxyMe62J2fMS+/dk/boQMT2PZ7rsOI=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1756379753; c=relaxed/simple;
+	bh=Erw0Zf5hiM6l3I9UY8d2WIa04sjb+pn9ISqGFBazVuc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BOELVTRekd4vBfq9ZU+UGJw3dnAfrdid4XJSQdbr0un0jMXdPtn2jj51gqCqr8KUEADhlZ2GL+bb+TWF+VD52IewvPiiSW69qPKcIUfFKv82ysHiTkDdIVLRaRM0gOzE2V35Fh/rdrd4rxxEv472ZO6+qJWL81ZtUH+iYj7utQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=euIsnO5m; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57S5Nqdq029178
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 11:15:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=bskH2lX0CKt25YPYuNFvtUmU
+	RIgxsqpxQSWfGiy2I00=; b=euIsnO5mVFneMGtMApTR0zl2y0MNWfdrM5ekAscH
+	S8vtB4DcyCMi9yodY+kTlonIbTkd/TRJ07UsWrgCoVnr3RxHpdz/15n/Uf/bt5Bi
+	I02uVaNZnCqQzZ+SL3B1sniMf8rwH5vX25t4DMukf/MFF20Qm2DRza57LLhi0j2y
+	+1yByUKyMDy1CWN4j8DFT0GEzH0EN6Qa446dgbUYQcMNITPc0c7idRfhzkRAekng
+	hwhKWYNGqj7iFx56VBiXfR76Et8OsE8DBbaN88AezBovqTDACnwFsFRm7Fb220+t
+	kH/FMFl21KYDMHxsfAfI0KqBH0PpALbjg3lixNz16bq5cA==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q5umg5g3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 11:15:51 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-70dfcc58976so2112356d6.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 04:15:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756379750; x=1756984550;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bskH2lX0CKt25YPYuNFvtUmURIgxsqpxQSWfGiy2I00=;
+        b=gvmEQyAD+Ad/t8TKlS5vj8ncI/6jy4kge30u+Snt6WGispBvP3HL0ZPFgoLBl0aOZv
+         vbvCjoNT3SoZkMerkpXyNSA8hngJIrJ7ZzkWqAvkQUuewSbG4I/kflM925J9uWgmHCGY
+         Yx3HimWztB+jPEHozs1oNX3toHYxK6s3WMn5QN80YbB0tVzg0F7yEHcwPod5Ue9JWP03
+         UtgrNapd8XaHbQ2tMocr22lE9r9GbRR01KW+Vfl9RJ7t0huVXgG2750U0nZIKUwlhmnH
+         I5I35Us5VDp+qyVQ+5njAOELCT5Idw715nERQurEUinto3bTUvT2Nf0o1AyGMyO6wlP3
+         Ypuw==
+X-Forwarded-Encrypted: i=1; AJvYcCVS5j/9msntdg1gXExngpu55L6xVcJTskPzgpe8w7GIamN8ti8NyF2K2ciTNgyQeaLAQgRcWXXE0rZP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxBbkyXmSnjkPPeEp0wC6e6OZbRrDVwY9j2h5UEz1FSkXxWvWp
+	V21sK/K4CEmCXFFq/rpxC6UKdE5BYy5ZKgq/awaXLcuWYRIkvdZ/T+9mv30IOb4hak4zAkr/25W
+	roLa6kmd5lmbJX7GFN9KQYKxuA9VKOQwLuo3HSBv7GkZYlnwuoBcmPNlfTAK3yd6C+uns1TDR3H
+	E=
+X-Gm-Gg: ASbGncvljqfzOT9xuhGi4bfKt002OQIcTdmwQti9+fGmlHunVkL8bRXj9Qd/pvFfDTP
+	5Zw5WxWKm+Ola8nq4a0jbv4KxxDyV9oAZ9bhfrMGoB6/jrDKIHWteHdDWYfkNjeulbrOZZytk9M
+	Sqi3JdhOkECTaNaQhZB97YEnnKJMCeSNEdVEM4wVS9uu5YbrU7Di9t+wjsi3tq+lR0QENfaVlX3
+	PBseAFfTVZCOYZPkUVzGxxB/km9A9VT/2WOTwyAdB7irgjSi+IuhpsaoDeZoEPqCBDQXdU+P4zI
+	HeCxJKIlNvwt7wFa2sqqc/NYBB9Bd1/3sPYdRpM1zhWm/IUi7gRhF4p0Ez/42OOEwiimHblqCsK
+	1VkV68BpAgNqP2pKlm5Ets2V9VEda3j53Y3O1XjJeQETxr+QejEFJ
+X-Received: by 2002:a05:6214:d48:b0:70d:c49e:2583 with SMTP id 6a1803df08f44-70dc49e26bfmr163670906d6.67.1756379749568;
+        Thu, 28 Aug 2025 04:15:49 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHR/I0kG9+z/qZVHlLX8H/kcR/onSu4ccUbMJ7Yzq0rYwxLFRv3gZslN4tolgLltQntNbol+g==
+X-Received: by 2002:a05:6214:d48:b0:70d:c49e:2583 with SMTP id 6a1803df08f44-70dc49e26bfmr163670466d6.67.1756379749031;
+        Thu, 28 Aug 2025 04:15:49 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3365e20dad4sm31331811fa.9.2025.08.28.04.15.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Aug 2025 04:15:48 -0700 (PDT)
+Date: Thu, 28 Aug 2025 14:15:46 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/3] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
+Message-ID: <hbvc72fy2bnx5ggmmcpbrgy5jkhrlvewfv3ofh7z6blnj5l27e@4m2js7nf3g6b>
+References: <20250828-hamoa_initial-v8-0-c9d173072a5c@oss.qualcomm.com>
+ <20250828-hamoa_initial-v8-3-c9d173072a5c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250825142522.1826188-10-r-donadkar@ti.com>
-References: <20250825142522.1826188-1-r-donadkar@ti.com> <20250825142522.1826188-10-r-donadkar@ti.com>
-Subject: Re: [PATCH v5 09/14] media: ti: j721e-csi2rx: add support for processing virtual channels
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: r-donadkar@ti.com, y-abhilashchandra@ti.com, devarsht@ti.com, vaishnav.a@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, tomi.valkeinen@ideasonboard.com, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
-To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
-Date: Thu, 28 Aug 2025 16:43:46 +0530
-Message-ID: <175637962616.1633224.4699307874299488136@freya>
-User-Agent: alot/0.12.dev28+gd2c823fe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250828-hamoa_initial-v8-3-c9d173072a5c@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=VtIjA/2n c=1 sm=1 tr=0 ts=68b03a67 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=m4PJ2_s-LGQMiO66xH0A:9
+ a=CjuIK1q_8ugA:10 a=1HOtulTD9v-eNWfpl4qZ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzMiBTYWx0ZWRfXwdL0pOBTCwdg
+ G0++GpuPttlGE6Z9m8ZeMFUgwjlCZfYQlALA128X4Z3J6/LYrjBfZze7uULKmicNwYQ7CHcApnT
+ henS9Eu/T/QWTAq9xMYHjpy+aGHYfLWsRp6iYjPgdxqDPye5oQsRu3Avu/6xJarMGtaJLgibu4W
+ hmNvtwsmmOV+4lfjczIWSWM2eT1QfG34p85sUW45/zyI1BxhVV4qCpc9CUILik+dIjo2Ht2cLdy
+ YU/n1P17Lx7rehvPGtYps4/ifiRl6UVDJf+JKwnKRMXN7xm/RgXmujUPfxSfW4Zi2O3aFF+ox6X
+ 7wPYGQ5m8ps+21ncpjjM0/8G+wzC0MyPNj95BHTVo6Bwd/x7Dhd7jgzoUhxSws0SbzAtgjc5RMi
+ z8oduRX5
+X-Proofpoint-GUID: ImGawm09jykoC43IX6nZWw1v2pRuku7K
+X-Proofpoint-ORIG-GUID: ImGawm09jykoC43IX6nZWw1v2pRuku7K
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-28_03,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
+ suspectscore=0 malwarescore=0 adultscore=0 spamscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508230032
 
-Quoting Rishikesh Donadkar (2025-08-25 19:55:17)
-> From: Jai Luthra <j-luthra@ti.com>
->=20
-> Use get_frame_desc() to get the frame desc from the connected source,
-> and use the provided virtual channel instead of hardcoded one.
->=20
-> get_frame_desc() returns the same information when called on each stream
-> start, so instead get the VCs for all the routed stream at first
-> stream start and cache this information in the driver.
->=20
-> get_frame_desc() works per stream, but as we don't support multiple
-> streams yet, we will just always use stream 0. If the source doesn't
-> support get_frame_desc(), fall back to the previous method of always
-> capturing virtual channel 0.
->=20
-> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+On Thu, Aug 28, 2025 at 12:48:47PM +0800, Yijie Yang wrote:
+> The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
+> the Hamoa IoT SoM and a carrier board. Together, they form a complete
+> embedded system capable of booting to UART.
+> 
+> This change enables the following peripherals on the carrier board:
+> - UART
+> - On-board regulators
+> - USB Type-C mux
+> - Pinctrl
+> - Embedded USB (EUSB) repeaters
+> - NVMe
+> - pmic-glink
+> - USB DisplayPorts
+> - Bluetooth
+> - Graphic
+> - Audio
+> 
+> Written in collaboration with Quill Qi (Audio) <le.qi@oss.qualcomm.com>,
+> Jie Zhang (Graphics) <quic_jiezh@quicinc.com>, Shuai Zhang (Bluetooth)
+> <quic_shuaz@quicinc.com>, and Yongxing Mou (USB DisplayPorts)
+> <quic_yongmou@quicinc.com>.
+> 
+> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
 > ---
->  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 108 ++++++++++++++++++
->  1 file changed, 108 insertions(+)
->=20
-> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/driv=
-ers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> index 6cab7642aa10..45e9001fa35b 100644
-> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> @@ -32,6 +32,7 @@
->  #define SHIM_DMACNTX_YUV422            GENMASK(27, 26)
->  #define SHIM_DMACNTX_DUAL_PCK_CFG      BIT(24)
->  #define SHIM_DMACNTX_SIZE              GENMASK(21, 20)
-> +#define SHIM_DMACNTX_VC                        GENMASK(9, 6)
->  #define SHIM_DMACNTX_FMT               GENMASK(5, 0)
->  #define SHIM_DMACNTX_YUV422_MODE_11    3
->  #define SHIM_DMACNTX_SIZE_8            0
-> @@ -103,6 +104,7 @@ struct ti_csi2rx_dev;
-> =20
->  struct ti_csi2rx_ctx {
->         struct ti_csi2rx_dev            *csi;
-> +       struct v4l2_subdev_route        *route;
->         struct video_device             vdev;
->         struct vb2_queue                vidq;
->         struct mutex                    mutex; /* To serialize ioctls. */
-> @@ -111,6 +113,8 @@ struct ti_csi2rx_ctx {
->         struct media_pad                pad;
->         u32                             sequence;
->         u32                             idx;
-> +       u32                             vc;
-> +       u32                             stream;
->  };
-> =20
->  struct ti_csi2rx_dev {
-> @@ -134,6 +138,7 @@ struct ti_csi2rx_dev {
->                 dma_addr_t              paddr;
->                 size_t                  len;
->         } drain;
-> +       bool                            vc_cached;
->  };
-> =20
->  static inline struct ti_csi2rx_dev *to_csi2rx_dev(struct v4l2_subdev *sd)
-> @@ -614,6 +619,7 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx=
- *ctx)
->         }
-> =20
->         reg |=3D FIELD_PREP(SHIM_DMACNTX_SIZE, fmt->size);
-> +       reg |=3D FIELD_PREP(SHIM_DMACNTX_VC, ctx->vc);
-> =20
->         writel(reg, csi->shim + SHIM_DMACNTX(ctx->idx));
-> =20
-> @@ -887,6 +893,83 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer=
- *vb)
->         }
->  }
-> =20
-> +static int ti_csi2rx_get_route(struct ti_csi2rx_ctx *ctx)
-> +{
-> +       struct ti_csi2rx_dev *csi =3D ctx->csi;
-> +       struct media_pad *pad;
-> +       struct v4l2_subdev_state *state;
-> +       struct v4l2_subdev_route *r;
+>  arch/arm64/boot/dts/qcom/Makefile          |    1 +
+>  arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 1247 ++++++++++++++++++++++++++++
+>  2 files changed, 1248 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 94a84770b080..5e19535ad63d 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= hamoa-iot-evk.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-tplink-archer-ax55-v1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp441.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+> new file mode 100644
+> index 000000000000..b1a8380d6639
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+> @@ -0,0 +1,1247 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
 > +
-> +       /* Get the source pad connected to this ctx */
-> +       pad =3D media_entity_remote_source_pad_unique(ctx->pad.entity);
-> +       if (!pad) {
-> +               dev_err(csi->dev, "No pad connected to ctx %d\n", ctx->id=
-x);
-> +               v4l2_subdev_unlock_state(state);
+> +/dts-v1/;
+> +
+> +#include "hamoa-iot-som.dtsi"
+> +
+> +/ {
+> +	model = "Qualcomm Technologies, Inc. Hamoa IoT EVK";
+> +	compatible = "qcom,hamoa-iot-evk", "qcom,hamoa-iot-som", "qcom,x1e80100";
+> +	chassis-type = "embedded";
+> +
+> +	aliases {
+> +		serial0 = &uart21;
+> +		serial1 = &uart14;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	pmic-glink {
+> +		compatible = "qcom,x1e80100-pmic-glink",
+> +			     "qcom,sm8550-pmic-glink",
+> +			     "qcom,pmic-glink";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
+> +				    <&tlmm 123 GPIO_ACTIVE_HIGH>,
+> +				    <&tlmm 125 GPIO_ACTIVE_HIGH>;
+> +
+> +		connector@0 {
+> +			compatible = "usb-c-connector";
+> +			reg = <0>;
+> +			power-role = "dual";
+> +			data-role = "dual";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					pmic_glink_ss0_hs_in: endpoint {
+> +						remote-endpoint = <&usb_1_ss0_dwc3_hs>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					pmic_glink_ss0_ss_in: endpoint {
+> +						remote-endpoint = <&usb_1_ss0_qmpphy_out>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +
+> +					pmic_glink_ss0_sbu: endpoint {
+> +						remote-endpoint = <&usb_1_ss0_sbu_mux>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		connector@1 {
+> +			compatible = "usb-c-connector";
+> +			reg = <1>;
+> +			power-role = "dual";
+> +			data-role = "dual";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					pmic_glink_ss1_hs_in: endpoint {
+> +						remote-endpoint = <&usb_1_ss1_dwc3_hs>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					pmic_glink_ss1_ss_in: endpoint {
+> +						remote-endpoint = <&retimer_ss1_ss_out>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +
+> +					pmic_glink_ss1_con_sbu_in: endpoint {
+> +						remote-endpoint = <&retimer_ss1_con_sbu_out>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		connector@2 {
+> +			compatible = "usb-c-connector";
+> +			reg = <2>;
+> +			power-role = "dual";
+> +			data-role = "dual";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					pmic_glink_ss2_hs_in: endpoint {
+> +						remote-endpoint = <&usb_1_ss2_dwc3_hs>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					pmic_glink_ss2_ss_in: endpoint {
+> +						remote-endpoint = <&retimer_ss2_ss_out>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +
+> +					pmic_glink_ss2_con_sbu_in: endpoint {
+> +						remote-endpoint = <&retimer_ss2_con_sbu_out>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	vreg_edp_3p3: regulator-edp-3p3 {
 
-Here the state =3D=3D NULL.
+Here is a list of the top-level nodes defined in this DT. Does it look
+sorted?
 
-I think this is broken since v4. Please fix in the next one.
+	aliases
+	chosen
+	pmic-glink
+	regulator-edp-3p3
+	sound
+	regulator-vph-pwr
+	regulator-nvme
+	regulator-rtmr0-1p15
+	regulator-rtmr0-1p8
+	regulator-rtmr0-3p3
+	regulator-rtmr1-1p15
+	regulator-rtmr1-1p8
+	regulator-rtmr1-3p3
+	regulator-rtmr2-1p15
+	regulator-rtmr2-1p8
+	regulator-rtmr2-3p3
+	regulator-wcn-3p3
+	usb-1-ss0-sbu-mux
+	regulator-wcn-0p95
+	regulator-wcn-1p9
+	regulator-wwan
+	audio-codec
+	wcn7850-pmu
 
-> +               return -ENODEV;
-> +       }
-> +
-> +       state =3D v4l2_subdev_lock_and_get_active_state(&csi->subdev);
-> +
-> +       for_each_active_route(&state->routing, r) {
-> +               if (!(r->flags & V4L2_SUBDEV_ROUTE_FL_ACTIVE))
-> +                       continue;
-> +               if (r->source_pad !=3D pad->index)
-> +                       continue;
-> +
-> +               ctx->route =3D r;
-> +       }
-> +
-> +       v4l2_subdev_unlock_state(state);
-> +
-> +       if (!ctx->route)
-> +               return -ENODEV;
-> +
-> +       return 0;
-> +}
-> +
-> +static int ti_csi2rx_get_vc(struct ti_csi2rx_ctx *ctx)
-> +{
-> +       struct ti_csi2rx_dev *csi =3D ctx->csi;
-> +       struct ti_csi2rx_ctx *curr_ctx;
-> +       struct v4l2_mbus_frame_desc fd;
-> +       struct media_pad *source_pad;
-> +       struct v4l2_subdev_route *curr_route;
-> +       int ret;
-> +       unsigned int i, j;
-> +
-> +       /* Get the frame desc form source */
-> +       source_pad =3D media_entity_remote_pad_unique(&csi->subdev.entity=
-, MEDIA_PAD_FL_SOURCE);
-> +       if (!source_pad)
-> +               return -ENODEV;
-> +
-> +       ret =3D v4l2_subdev_call(csi->source, pad, get_frame_desc, source=
-_pad->index, &fd);
-> +       if (ret)
-> +               return ret;
-> +
-> +       if (fd.type !=3D V4L2_MBUS_FRAME_DESC_TYPE_CSI2)
-> +               return -EINVAL;
-> +
-> +       for (i =3D 0; i < csi->num_ctx; i++) {
-> +               curr_ctx =3D &csi->ctx[i];
-> +
-> +               /* Capture VC 0 by default */
-> +               curr_ctx->vc =3D 0;
-> +
-> +               ret =3D ti_csi2rx_get_route(curr_ctx);
-> +               if (ret)
-> +                       continue;
-> +
-> +               curr_route =3D curr_ctx->route;
-> +               curr_ctx->stream =3D curr_route->sink_stream;
-> +
-> +               for (j =3D 0; j < fd.num_entries; j++)
-> +                       if (curr_ctx->stream =3D=3D fd.entry[j].stream)
-> +                               curr_ctx->vc =3D fd.entry[j].bus.csi2.vc;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
->  static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int =
-count)
->  {
->         struct ti_csi2rx_ctx *ctx =3D vb2_get_drv_priv(vq);
-> @@ -907,6 +990,25 @@ static int ti_csi2rx_start_streaming(struct vb2_queu=
-e *vq, unsigned int count)
->         if (ret)
->                 goto err;
-> =20
-> +       /* If no stream is routed to this ctx, exit early */
-> +       ret =3D ti_csi2rx_get_route(ctx);
-> +       if (ret)
-> +               goto err;
-> +
-> +       /* Get the VC for all enabled ctx on first stream start */
-> +       mutex_lock(&csi->mutex);
-> +       if (!csi->vc_cached) {
-> +               ret =3D ti_csi2rx_get_vc(ctx);
-> +               if (ret =3D=3D -ENOIOCTLCMD) {
-> +                       ctx->vc =3D 0;
-> +               } else if (ret < 0) {
-> +                       mutex_unlock(&csi->mutex);
-> +                       goto err;
-> +               }
-> +               csi->vc_cached =3D true;
-> +       }
-> +       mutex_unlock(&csi->mutex);
-> +
->         ti_csi2rx_setup_shim(ctx);
-> =20
->         ctx->sequence =3D 0;
-> @@ -953,6 +1055,10 @@ static void ti_csi2rx_stop_streaming(struct vb2_que=
-ue *vq)
->         writel(0, csi->shim + SHIM_CNTL);
->         writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
-> =20
-> +       mutex_lock(&csi->mutex);
-> +       csi->vc_cached =3D false;
-> +       mutex_unlock(&csi->mutex);
-> +
->         ret =3D v4l2_subdev_call(&csi->subdev, video, s_stream, 0);
->         if (ret)
->                 dev_err(csi->dev, "Failed to stop subdev stream\n");
-> @@ -1306,6 +1412,8 @@ static int ti_csi2rx_init_ctx(struct ti_csi2rx_ctx =
-*ctx)
-> =20
->         ti_csi2rx_fill_fmt(fmt, &ctx->v_fmt);
-> =20
-> +       ctx->route =3D NULL;
-> +
->         ctx->pad.flags =3D MEDIA_PAD_FL_SINK;
->         vdev->entity.ops =3D &ti_csi2rx_video_entity_ops;
->         ret =3D media_entity_pads_init(&ctx->vdev.entity, 1, &ctx->pad);
-> --=20
-> 2.34.1
->
+
+-- 
+With best wishes
+Dmitry
 
