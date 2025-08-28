@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-209836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F320B3943E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 08:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64D5EB39444
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 08:54:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E59517FC2B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 06:52:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DB24200572
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 06:54:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B4EE27B333;
-	Thu, 28 Aug 2025 06:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4068E299AAA;
+	Thu, 28 Aug 2025 06:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cw+BzZQN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jn7yFfkh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E58013957E;
-	Thu, 28 Aug 2025 06:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B9FC293C44;
+	Thu, 28 Aug 2025 06:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756363929; cv=none; b=EFPoIhLXJ87XbKn3VVk4Qpp9yycUmMRLqFEAoQq31+Zr3/oJ/oH05AnRCf4AigSy8X7zfkWFZ1xxZPbi0TS/WFaPXpELbBUWnb8mfwGARZ0LbqP0bePs2APz3hg892swikxcswHeU2/I53sMf3mEEXcwOYeq1dUP0FcHlLFxLPM=
+	t=1756364065; cv=none; b=s/ees6UxClTpPdQ1kKyTimAShBLgulZZLweFQx1ZgUsOWuFyR3OzSGbrYR4DYZK/am9IzkBIUVsGrLKAqoqWzO/H75JWYaNuM1I5DneO+0S9kInOcVTPzjOL1KscB6iycd+mv0W/kTOWL66ywO5/tuoMyzIbuEY1ikRNgYFyN40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756363929; c=relaxed/simple;
-	bh=g+2IAKRHWkhW5+oBu7TPz7qnCDH/IgzhPmrzzuSW8Go=;
+	s=arc-20240116; t=1756364065; c=relaxed/simple;
+	bh=/oR092HKV45JV2FK9wkNxV9iN8AAPJogbzc0CL8maV8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oGOZwjdiaCvr8qlJdaI6qxo20Njywm0Bzn2XZcRnvvUrFO8I7+vUiXmebpIkPbGuub3GIJ/WVb4XEH7ZVtbyb/ueZUJomYw0O7JezMX4GJSxwQj6OFivISKjcp517rvx4kXAIqfno5p7gpqiNvWO7AJ0K4XtHxQNzoSobKWEBH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cw+BzZQN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CA2BC4CEED;
-	Thu, 28 Aug 2025 06:52:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZHnW/7/vpLm3M4hYect/fILiLI/yRC5TBBMY0zkEbslXw68hJceKO5JMfYpfWBacQ73zbI+iE2uI5LZg65WXtU/TD5MQ1E19oqcTjOz7lCrNyga/rviZr2m4F6NnzDtCcvhpipiplhSMj6M15pncaATSPVSx6V39vvSkRyxhKw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jn7yFfkh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59698C4CEEB;
+	Thu, 28 Aug 2025 06:54:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756363929;
-	bh=g+2IAKRHWkhW5+oBu7TPz7qnCDH/IgzhPmrzzuSW8Go=;
+	s=k20201202; t=1756364064;
+	bh=/oR092HKV45JV2FK9wkNxV9iN8AAPJogbzc0CL8maV8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cw+BzZQNOFcvNdCBZwNsEx+hoJJXrEvLWuzAd7t45LvE6EzlpbOXlaNhgzCU9ATQP
-	 o2RdKXmmHkSCz3zaaszgB9NJV2XkwTDPlcUUXP5g2OEK81BKb62O7kFdW1TyMpdvtP
-	 wZpIdA5xQeqMT3GVYtDsQTgWrWzFLbnU8eEU8aDqIACNX49Hs4hnpvrCB8Rg5JsKwH
-	 J2q7LDhdg0osETouSyAPtch8+2ocSbvp5CB50MTYxgaqjSHsjAMEbnMchzBxx5dwmL
-	 eI7YbLk0p+UrnFUcERbailD7aH3kj3NS9DONFD9hz/4/wwWcgWxqL0cgJa/lCarKTw
-	 3DD37X7LW/ezw==
-Message-ID: <25283b66-4cbb-4db9-9b1e-7a4e6e3db2a1@kernel.org>
-Date: Thu, 28 Aug 2025 08:52:05 +0200
+	b=jn7yFfkhi0Q8T7wqXMOiT0KhKNDqQFrGSEMGmmwR/aNB+HgUaQErcXTxb9Vfyy3HQ
+	 6PA3K1hXikCoVYicStbFZP7Wpg4dH/WR4WWZlwFXd0imGtK2cJBtqOHpYfmgR0EIxn
+	 AhXhY3FkAShf80nMvjoavL6uyznZk9PCY1IdcRoPTiVp+uwMU/H5YsBb3FMcw0cJr2
+	 hHaED8zRMnYQYYfhGtFDP9XS4QNZ7QESXA0vX/xuQIyjPkHl6ddNwZVz8N3ujwyUUb
+	 g6hVOL+TlJuKy7TP+xwUQKvqcNrc+Vg+jluTa5oW3E4/A3pLJ6ys9CWTWi1L4rlTvQ
+	 GZuHg7kd6sKvg==
+Message-ID: <e8934b5b-ef75-4ee0-b1e3-cc5db72b99ec@kernel.org>
+Date: Thu, 28 Aug 2025 08:54:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIDIvM10gZHQtYmluZGluZ3M6IHBpbmN0?=
- =?UTF-8?Q?rl=3A_Add_cix=2Csky1-pinctrl?=
-To: Gary Yang <gary.yang@cixtech.com>,
- "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-References: <20250827024222.588082-1-gary.yang@cixtech.com>
- <20250827024222.588082-3-gary.yang@cixtech.com>
- <0fa7e2cb-fa0b-4f9e-84d6-a4b2b3d8a4cf@kernel.org>
- <PUZPR06MB5887D9A879D16DC6A8C8ED58EF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+Subject: Re: [PATCH RFC 01/22] dt-bindings: usb: snps,dwc3: Allow multiple
+ iommus
+To: Sven Peter <sven@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+ Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-phy@lists.infradead.org
+References: <20250821-atcphy-6-17-v1-0-172beda182b8@kernel.org>
+ <20250821-atcphy-6-17-v1-1-172beda182b8@kernel.org>
+ <20250822-skinny-clay-harrier-64dc58@kuoka>
+ <e4c730d2-6ee1-46d7-850b-8ebbe0a1bfcd@kernel.org>
+ <a89ba427-b174-42c3-b3b4-5e4079942c3c@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,145 +115,54 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <PUZPR06MB5887D9A879D16DC6A8C8ED58EF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+In-Reply-To: <a89ba427-b174-42c3-b3b4-5e4079942c3c@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/08/2025 07:37, Gary Yang wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your comments
-> 
->>
->> On 27/08/2025 04:42, Gary Yang wrote:
->>> Add dt-bindings docs
->>
->> For what? Describe the hardware here in one, two sentences.
->>
-> 
-> OK, we will add some description for it next version
-> 
+On 27/08/2025 18:07, Sven Peter wrote:
+> On 24.08.25 10:31, Krzysztof Kozlowski wrote:
+>> On 22/08/2025 09:22, Krzysztof Kozlowski wrote:
+>>> On Thu, Aug 21, 2025 at 03:38:53PM +0000, Sven Peter wrote:
+>>>> Apple's dwc3 variant requires two iommus.
+>>>>
+>>>> Signed-off-by: Sven Peter <sven@kernel.org>
+>>>> ---
+>>>>   Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 +-
+>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>>>> index 4380bb6fa2f08a475b557e80467abc2861f622e2..6d35dcc605c01977f4fc6fdb6f12976f1cef2b9e 100644
+>>>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>>>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>>>> @@ -60,7 +60,7 @@ properties:
+>>>>     dma-coherent: true
+>>>>   
+>>>>     iommus:
+>>>> -    maxItems: 1
+>>>> +    maxItems: 2
 >>>
->>> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
->>> ---
->>>  .../bindings/pinctrl/cix,sky1-pinctrl.yaml    |  77 +++
->>>  include/dt-bindings/pinctrl/pads-sky1.h       | 592
->> ++++++++++++++++++
->>>  2 files changed, 669 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
->>>  create mode 100644 include/dt-bindings/pinctrl/pads-sky1.h
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
->>> b/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
->>> new file mode 100644
->>> index 000000000000..10a4a292188e
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
->>> @@ -0,0 +1,77 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/pinctrl/cix,sky1-pinctrl.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Cix Sky1 Pin Controller
->>> +
->>> +maintainers:
->>> +  - Gary Yang <gary.yang@cixtech.com>
->>> +
->>> +description:
->>> +  Please refer to pinctrl-bindings.txt in this directory for common
->>> +  binding part and usage.
->>
->> Drop description, not desired really.
->>
+>>> Never tested. You anyway need specific constraints.
+>> I realized that's pretty vague, so clarifying: you changed all bindings
+>> to have two iommus and that's unexpected. All other devices have only
+>> one IOMMU mapping here, so they need to stay like that. If these IOMMUs
+>> differ, you should also list them, but probably that's not the case here.
 > 
-> Ok, this yaml file comes from other yaml file. If not needed, we remove it next version
+> Makes sense, thanks for the detailed explanation.
 > 
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - cix,sky1-iomuxc
->>> +      - cix,sky1-iomuxc-s5
->>
->> Whats the difference between? You have entire description field to explain this
->> but instead you said something obvious there.
->>
-> Cix sky1 has three power states. S0 means work state. S3 means STR state. S5 means SD state.
-> 
-> The pin-controller on sky1 has two power states. They are S0 and S5.
+> I don't quite understand why this controller needs two iommus but they 
+> must essentially be programmed to the same mapping for xhci to work.
 
+That's fine.
 
-State != device. Please create bindings for devices, not states.
+> All of device mode goes through one of them and xhci buffers are split 
+> between the two iommus (iirc I saw the command ring using the first one 
+> and the event ring the second one and then just decided to program them 
+> the same since anything else would result in a big mess).
 
-> 
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +# Client device subnode's properties
->>> +patternProperties:
->>> +  '-pins$':
->>> +    type: object
->>> +    description:
->>> +      Pinctrl node's client devices use subnodes for desired pin
->> configuration.
->>> +      Client device subnodes use below standard properties.
->>> +
->>> +    properties:
->>> +      cix,pins:
->>
->> No, use generic properties from pinmux schema.
->>
->> You should also reference it.
-> 
-> Did you suggest us to refer to Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml?
-> 
-> Make us support drive-strength, bias-pull-down properties?
+Sure. But if you change existing bindings (existing devices) allowing
+them to have two IOMMUs, this must be explicitly mentioned in commit msg
+with some sort of rationale (even if rationale was "we just missed that").
 
-and pinmux. There is a standard pins property.
-
-
-...
-
->>> diff --git a/include/dt-bindings/pinctrl/pads-sky1.h
->>> b/include/dt-bindings/pinctrl/pads-sky1.h
->>> new file mode 100644
->>> index 000000000000..44550e4105b3
->>> --- /dev/null
->>> +++ b/include/dt-bindings/pinctrl/pads-sky1.h
->>
->> Bindings follow compatible naming. See writing bindings.
->>
-> 
-> Did you suggest rename it to pinctrl-sky1.h ?
-
-No. I suggest to be named EXACTLY like compatible.
-
-> 
->>> @@ -0,0 +1,592 @@
->>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->>> +/*
->>> + * Copyright 2024-2025 Cix Technology Group Co., Ltd.
->>> + */
->>> +
->>> +#ifndef __SKY1_PADS_H
->>> +#define __SKY1_PADS_H
->>> +
->>> +#define CIX_PAD_GPIO001_OFFSET                       0x0
->>> +#define CIX_PAD_GPIO002_OFFSET                       0x4
->>
->> Not bindings. Drop all this.
->>
-> 
-> Do you mean those macros not used need to delete?
-
-Really, what is unlcear in "drop all this"? Drop means to remove.
-
-You ask for confirmation for some really obvious comments.
-
-BTW, if you disagree provide arguments (in terms of bindings) why these
-are bindings.
+Best regards,
+Krzysztof
 
