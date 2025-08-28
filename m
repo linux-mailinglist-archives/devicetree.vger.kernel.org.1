@@ -1,151 +1,160 @@
-Return-Path: <devicetree+bounces-210137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C42B3A6B6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E5BB3A6C7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:45:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 596B0188B7F8
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:43:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81C7B1889DC4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF773322DBB;
-	Thu, 28 Aug 2025 16:43:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B842221543;
+	Thu, 28 Aug 2025 16:45:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fPRMtuCD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Gp3eUQDr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321F4322C7A;
-	Thu, 28 Aug 2025 16:43:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B880C22A4D5;
+	Thu, 28 Aug 2025 16:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756399387; cv=none; b=aBVIpWHbWcoOIRjRAkLQnPuES5iMWSQx80TvxRHJadxqmveenUr/VFtPRf2VPz/rrETwmv0xRaTyVRPOt6pe85tXHdfKtjGpCBW9/xbbsbKa0yRSw1eTvOtmgMqInoK3kJf4wYHLFm6HD9uWJNFIlkwElwhJCM3eyrT/zEk8/zo=
+	t=1756399533; cv=none; b=HckIpRBDeU9+PS9FPDyqFCwE/q/YOOoxLJBOnWC6bLRANp7BVXB0rOihVdVR8Uzrkolb3Kuhp7Xk4aZxRxYhwiRJXavX2KiZmDzCKa5F11t+671rwqbXJyhbQxMgJtZkIxEXoduYqnb0RCNIO5ucw0FSJREE5L7UsrAtFCe8n4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756399387; c=relaxed/simple;
-	bh=WKQ/xtRS/9A7ZGftlrzoXfl01ZUnmFCsUW8TVKUVE78=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=g8GUg+SVVXIMLvBJckgOJD6WdUmuB6jVmc3S0rhJBaPQvRW2za3y1o/bklrQaBQP9KMRx66UOzhhpF4Qm5AoM1q0qRu55cS4gUS7iU+RS9ONid6QS1u/+TCgyKDVTU/j+t4fYmZkRzO32NGaB00vfCI3J/UrHA0IWXUf9l3Y7mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fPRMtuCD; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3c7edd71bbfso842726f8f.0;
-        Thu, 28 Aug 2025 09:43:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756399384; x=1757004184; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kmiVUhRavRhbmTQQVKaXaG+VoM+x59cj+sqorjef2E0=;
-        b=fPRMtuCDXPsXAD6cEMmUttMycJNe1zYQuyoK+xVvgtlqptjMleOP1iuRhga456XPaA
-         IAinFZNyGgU25dhmVh8euVk59gwt3Bry39h+pgji+lMhVTABmwZ3g1KHZJ16iZD0Pnf4
-         nZ2X9VmrhJfDrejT0ogDAgrnARHPfZSJirJdvX9NApcwYplxpwbdPV7VSlPLODKOzrJs
-         0llmF74b4WR8k4hECYYV6zdEz/PRm0ehFpV2xOdbMzHDcrdmBWrpvuorMFjjtrOwtZWN
-         zQjyeIrpqX2VzsmoOBjaKuhQvFkkys04hPi1CD/WPplkHhvBWNvbFKfjpBMKLkNqYYyC
-         hLCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756399384; x=1757004184;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kmiVUhRavRhbmTQQVKaXaG+VoM+x59cj+sqorjef2E0=;
-        b=ILhKJwyAKCybiNNVsJuXem5Vl9G1MnHnZZIf5oDXMbv4d2rOP3AcaJNTchVXwG6Hdq
-         dL5stT65yu5tFHcPy0ezJtuYSAU5kVb8231cn0xfsu7U2mB/dc6OyenvV+1uh9MRUsgi
-         coqAnC1ms0ApAf6A3kiwGdgI/G7f8OG24wTlVM+g+keJrAoUkbs7BYPFoPzyMpUlCkes
-         lDZGAmCI/qcptoeDsqV2lgBWyjjVSSF6dLf4+8t5sw8vNBNcAUC+lNPZEZSbx5An6YBE
-         /jF3/GHn4gwbBVeWPF/tSfdyKm3bykBTL/0M+j3f8j4IccyGlaohxwHMA4oC5RhtlPqF
-         Jv3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUyjVquIo08RELdW9njbLafHGsqiD9EMUNYV4whlM1rX2MADxhUUN/sFLX54LBaTQfOKWrydio3lNYR@vger.kernel.org, AJvYcCWzFmWS7vzAvwUao0sQEMs927j2jO9atlYTI94s0tVgZsnt9IGHFyXIkSK7j3TooFsdtO3b3z7K4E3w7PUa@vger.kernel.org
-X-Gm-Message-State: AOJu0YzX26Athk/3yVmY7ucE85Zn911a3XefAw+AOKwe7mzX4TnSLN+c
-	T3fcGOAHDJ+cPvBn7D8noLCjaAMNfQS5oBvvW0tKd260U/hNJkFcL6+M
-X-Gm-Gg: ASbGnctX4aTfhoFn3UYktqHkbs569B3jSPVWrSs6siBUyDYhwTcLuM2PWT4qufCUZB8
-	BMlKx+9BYqy0rqNqiCQEk8zd7rDpFJbn3EWcm/HiXTjqM7phwusaRMSZhFC8gTJT6xaKfHKfJot
-	+2MtETbnBvE/KjTqHJRgPNf0ZmYjfhURU2l1SPZDj30qqRXgzwqnjWYAdMRRbwGsVaH/ZI9PSev
-	ylA7LA0lU9dHUoBYEGLCwzHcyDqWs7dT+0aCdzeyrPbUVveFkNs+YR5C2svsWuzlCLhC5qrzjfq
-	zcBJFPZfUSiRVC3YoDjbs7TbRo7K5Y3SZvE/eqfN/bfHxHr72P0/HsM59Knx3sDVny3IlEXejjP
-	Wr4TyaUClZGs0AJAOEMwKno6sTV+DRkkATIh7Pw==
-X-Google-Smtp-Source: AGHT+IGZ1oHvbw7/WV61DeDUCKQxNQm0uGXVNfsfYJqhufPLLEDZwzYCkoecNuE41vbu/p9STOdVJQ==
-X-Received: by 2002:a05:6000:18a6:b0:3c8:63bf:4681 with SMTP id ffacd0b85a97d-3c863bf489fmr14282744f8f.54.1756399384355;
-        Thu, 28 Aug 2025 09:43:04 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c711211cabsm26033204f8f.32.2025.08.28.09.43.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Aug 2025 09:43:03 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: add SPDIF audio to Beelink A1
-Date: Thu, 28 Aug 2025 16:43:00 +0000
-Message-Id: <20250828164300.3829488-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1756399533; c=relaxed/simple;
+	bh=ybJ1f8sBP5axyBxUa6IjKhhSOFJ+7mVTnYkNAwqNI6U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tEQdO4yK/6AY30swd0xTT9ydv1PKHOOa4IVgrStIst5nUIfIu0o7qnr6ztxsMKX7ZnV0y8n3Fat6912fFQshSXVPepNLZ6Ldua2g0IP3OElHCs6J84sleg1/jE6j4nr+zEPAHK87dJ+/AzZxcCdcOeNSwlCpqZG44ASWmkkoL/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Gp3eUQDr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57SEOjrX030104;
+	Thu, 28 Aug 2025 16:45:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	G+zrw1XxE5Jzdovbrl0Kr12pWeJHN+sdic6+TdiAkcY=; b=Gp3eUQDry5LNXElk
+	LialPHIcKeDtxqa2HTryv9BzHLxg2bV7kQ0+sLhBNdCANkwggG5AIPKhfbZowaLt
+	voC+xXnA+EXrj0e8XkQcSZhm54erjX+m+Qb4JcM4kBoxHr+oMBO/xE3wrFYrldfg
+	rhWQLMSmiP69wXJYteLmkqvmAzxnoEgUGVeWsh6GKW8CcXQ+IZhOdiF2zFe/H5cq
+	oTKLJVo954iIuGwrS875hgfAc2AeGtGR8hBcp/obvILD00N9gYgkLVKg5AjZTez7
+	CM1HOeEP/LWlEQPAPjbvo7Xwr8BmyLZL2WRtu+hFEYL9w7JVqiBxSkfNAwqKM9Fo
+	ywxf9g==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q5up0tbq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Aug 2025 16:45:19 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57SGjHwY030600
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Aug 2025 16:45:18 GMT
+Received: from [10.218.4.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Thu, 28 Aug
+ 2025 09:45:13 -0700
+Message-ID: <8d705694-498a-4592-b93a-7df6a1dd5211@quicinc.com>
+Date: Thu, 28 Aug 2025 22:15:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 1/4] ufs: dt-bindings: Document gear and rate limit
+ properties
+To: Bart Van Assche <bvanassche@acm.org>, <alim.akhtar@samsung.com>,
+        <avri.altman@wdc.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mani@kernel.org>,
+        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>
+CC: <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20250826150855.7725-1-quic_rdwivedi@quicinc.com>
+ <20250826150855.7725-2-quic_rdwivedi@quicinc.com>
+ <9944c595-da68-43c0-8364-6a8665a0fc3f@acm.org>
+Content-Language: en-US
+From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+In-Reply-To: <9944c595-da68-43c0-8364-6a8665a0fc3f@acm.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: OIZbKr9G7_QKE2ZRxphkiSdihz1WdmEw
+X-Proofpoint-ORIG-GUID: OIZbKr9G7_QKE2ZRxphkiSdihz1WdmEw
+X-Authority-Analysis: v=2.4 cv=JJo7s9Kb c=1 sm=1 tr=0 ts=68b0879f cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10
+ a=1l4myg9UuvIpqwvpMjoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzMSBTYWx0ZWRfX9bjh0rHnDqbH
+ CTKRTtbPPV3MLRG+bO747gUjE9Cl8bfKAFK32jbRkmxk6frppPoH1mC/as31a5uVQMGyfynlkpf
+ C16WF205BOKDTOKfNMT4vVe/nxQjIdqJIq0Xwt92/1fXwz3b7MmDgdqYYITZIHgVVW7/VIEf7pE
+ McgDLJrPpI+Qrte78KAuBmFI144BW89649rvRltcBCEA5VT8bmWTJ6+ccb7qNHUM/lBC8v6Cte6
+ p5XaLbeyAUfI3bxq9pP1t+vdNqMMUMhfHbAhRtoHeM4wCtyMQUWqrMj1vftzZeXV3d31LMPXIXY
+ x+ifwv2dlWK/sbltGashPoPo/GffC+NxesPhEKQjWBWzWJIiV6oxY0z5iFe/QGqsCV7PZPzo9Gj
+ qCooHLb7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-28_04,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ malwarescore=0 clxscore=1015 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230031
 
-From: Alex Bee <knaerzche@gmail.com>
 
-Add the required nodes to enable SPDIF audio output on
-the Beelink A1 set-top-box.
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3328-a1.dts | 23 ++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+On 26-Aug-25 9:05 PM, Bart Van Assche wrote:
+> On 8/26/25 8:08 AM, Ram Kumar Dwivedi wrote:
+>> +  limit-hs-gear:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 1
+>> +    maximum: 5
+>> +    default: 5
+>> +    description:
+>> +      Restricts the maximum HS gear used in both TX and RX directions,
+>> +      typically for hardware or power constraints in automotive use cases.
+> 
+> The UFSHCI 5.0 spec will add gear 6 soon. So why to restrict the maximum
+> gear to 5?
+> 
+>> +  limit-rate:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [1, 2]
+>> +    default: 2
+>> +    description:
+>> +      Restricts the UFS controller to Rate A (1) or Rate B (2) for both
+>> +      TX and RX directions, often required in automotive environments due
+>> +      to hardware limitations.
+> 
+> As far as I know no numeric values are associated with these rates in
+> the UFSHCI 4.1 standard nor in any of the previous versions of this
+> standard. Does the .yaml syntax support something like "enum: [A, B]"?
+Hi Bart,
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
-index f7c4578865c5..b276a29bdd85 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
-@@ -58,6 +58,24 @@ ir-receiver {
- 		gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;
- 		linux,rc-map-name = "rc-beelink-gs1";
- 	};
-+
-+	spdif_sound: spdif-sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "SPDIF";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&spdif>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&spdif_dit>;
-+		};
-+	};
-+
-+	spdif_dit: spdif-dit {
-+		compatible = "linux,spdif-dit";
-+		#sound-dai-cells = <0>;
-+	};
- };
- 
- &analog_sound {
-@@ -325,6 +343,11 @@ &sdmmc {
- 	status = "okay";
- };
- 
-+&spdif {
-+	pinctrl-0 = <&spdifm0_tx>;
-+	status = "okay";
-+};
-+
- &tsadc {
- 	rockchip,hw-tshut-mode = <0>;
- 	rockchip,hw-tshut-polarity = <0>;
--- 
-2.34.1
+As per the MIPI UniPro spec:
+
+In Section 5.7.12.3.2, the hs_series is defined as:
+hs_series = Flags[3] + 1;
+
+In Section 5.7.7.1, Flags[3] is described as:
+Set to ‘0’ for Series A and ‘1’ for Series B (PA_HSSeries).
+
+While issuing the DME command from the UFS driver to set the rate,
+the values 1 and 2 are passed as arguments for Rate A and Rate B
+respectively. Additionally, the hs_rate variable is of type u32.
+
+Thanks,
+Ram
+
+> 
+> Thanks,
+> 
+> Bart.
 
 
