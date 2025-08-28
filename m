@@ -1,184 +1,151 @@
-Return-Path: <devicetree+bounces-210074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2237B3A107
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:18:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A20B5B3A175
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:24:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E87D1C84CAF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:18:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11A58B60A8C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738D121ADAE;
-	Thu, 28 Aug 2025 14:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398AF313526;
+	Thu, 28 Aug 2025 14:07:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pQEG9M4h"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="mbPJ1Yx+";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="PBc8L4n2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FD41E32D6
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 14:05:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4503030DECC;
+	Thu, 28 Aug 2025 14:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756389907; cv=none; b=NQBTczG7+eaMT4kjba1veU/lZOBw3jMudE4moBda5igIkwN3fnIYuV8YtqvNsZUqBNc5pqm0CMa/ZI0Jiniv4Uq5WmIURJ/yBmLPD3bU6EIgJX0Jqy7VBLzjN16BDZV5JkE6wPVCaKox3PfqRoxCJWA1HpjDs4Qe5JBARsGhP6g=
+	t=1756390058; cv=none; b=VtYZ75/+9zBfcoC4yoAvmb05Lc4xRKb8VU8UifQiqDAXafD2i0OORYVW2iOlp4OVzyUaFVQa+TYUWEJg1lVmPv05b0tx3L1NZOft6n7PAaxb7ZRuYK4tZbtX3XKPznxzO4tG30a+nGjhDsuUn3p7wrKjFE4Y4dvLiJWZ95EikRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756389907; c=relaxed/simple;
-	bh=Ob7cgHawVeLlSxaNzv2Xwps0oc1eFzlVl25O0Cn6+AA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=qFheHO9lUgsPPM+XQMC+H+T0duh/73Ey8v7KCifaL3ZWOD1Xi6m+572f3WlkaHMEe1PqFGXftd8Uq4mFvqA4B7WBHZlfmiMuLxkQFDsFgLzSY5+Pxabo8C9Bt98jnt7kWyk/qlubXJw4zwPptqc0Ryd6o2EQqY4uVF2g4OTC3vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pQEG9M4h; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-afe7f50b605so16833566b.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 07:05:05 -0700 (PDT)
+	s=arc-20240116; t=1756390058; c=relaxed/simple;
+	bh=0TLMJRiI/UBNgFNnLAwEExo5cJU9wBAQPRJq7dbl3Rc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FgfkKHBUv0GS8m5S2ikNs7fTrkRJ+MvFSSvcUfWOZCcD9RN2QVBFQ3uRHfv7gnjd2Kyr2R9gLzLGW1MBMvop0xmkIcWeeeUELAheMF+stcEdqcb/AESZCMyAgfuzx+PB5jDS9EFiAFB8e5i/ddc7wtkAyaUzhUPlK9juRzwGYQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=mbPJ1Yx+; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=PBc8L4n2 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756389904; x=1756994704; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=++SnKNfJZI3i5RdiciJJxrgEPYiRHAHp5qRoKyT5o8E=;
-        b=pQEG9M4hqqQGJCs2bUKk5V3tFcfWnORfqPGVyclOGkL+9uW4KzFmx+782Si31RW/io
-         gcIdsi3Fo/H2jpaV0YinRuSG7Tz8nuO4wGscHFmAENHjdHtoV/gzqtMg0IxDKkQ2c6OF
-         GehW0qLfv3n3XHnVdGjDAg5906gniNsjB5oa3srnT6skPseX3Dv+57cOgzVlwUntJDtS
-         WwmP4/8LHAL9adn0tM3qOpVVjO8cQpKfaR3CKDeTV4XPKa52exIAckIiv8NZ+lqNuzdX
-         YW7XVpO5DC0mBUxmagmelTwoWE3FoUlKLc8QwFwvQGkgaL5+VK4E/RqkpCun+id4JD81
-         ZtcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756389904; x=1756994704;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=++SnKNfJZI3i5RdiciJJxrgEPYiRHAHp5qRoKyT5o8E=;
-        b=pzDLPovkNRFjdS4+dr4Ne1vXKHIYnuBbteIGNtdoaZRg9Nj+5bLniR05ltHYHph0UZ
-         IX9ywyaugwOQWSLA3e3pl2PB8yiYtAc/w9fpcWyrj3C2J/Pl93hky86vjs2rDJn73nPX
-         LLeeFwx0haiFLFSsK0V2RvBBA2IpE0pBWw+daolGXc0Je4lo7NRqMrBw0yd9WVAn5yEl
-         CIubLMPJ/8qma+/9dxpl+riwd+3MTxLMq0LZJokQij2wBs6RH85jgd+8xNinRYdE9YZ/
-         qp2Gnuufl6eEZbUb5WpFEIBmjiAYoQY5+w0C+65U1WWqZf8e25OQwzWL1MqJvrw5EWmf
-         LeLg==
-X-Forwarded-Encrypted: i=1; AJvYcCUzZ7tzOAXuUOMQvWG02/mIsSaHw0KUGTffAMmOyUA+mZvSolIuUIo4aZkDhixq3VSXIdwOcyHWWXnr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvGzvFDBSKI29lY1bVHRqcSUKebCIvs0nx6GzMIKdMp3XMTVh6
-	RuzZhaLB0l46ZubKGYb2wLKwclOAMIQErh2JLmr4+y1e0OZeP0DTs++xNgx9eLVSzGI=
-X-Gm-Gg: ASbGncsXVZBWcTqSyyqCDg6Evt/v00wzMeYr61FmLtbxo2AIxufjO+01qymPwk0BzPC
-	nFDjQOdeN0TbN5SwI5sY83NZOGfMM8Y4OSbVIZdw5rt65rP1sCsvI4+fT7Q7WYK63hfXAxO5n7n
-	1ZnDlKWRw6iPqpL+/sGzQwOkcXblQvitQbGB3b9w4PNWQEILRjOZAajadxt8ohhWXzIoD2KFrGC
-	KdwndyxAr9m7/bMxzfKVLJm6TzAcWCJKyBe+V0XgCUte/kexOqeCbARJMTzprw/dzVHjpMiRrpx
-	KjnoNaIdl8DNN6t24CoKggeKJcLgqnoEsFlkpgEYpzyCR84u2mCmtoxBMfzPMN2RZ0FTJ1RyWhB
-	56senQ+LVkuHZxXlQ6Hk0d77zXnFm4mvQb2PjyXnt4MI=
-X-Google-Smtp-Source: AGHT+IFxvA08aKiKdOb9kyhRP2mCTNEB2/2jCXheNlBU+IV/WvVYUmeMH1RDS8++YDDexc5DMEhdVQ==
-X-Received: by 2002:a17:906:8f8a:b0:afe:c2e7:3707 with SMTP id a640c23a62f3a-afec2e74279mr315983966b.4.1756389904023;
-        Thu, 28 Aug 2025 07:05:04 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afe7d5553c3sm911915066b.76.2025.08.28.07.05.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Aug 2025 07:05:03 -0700 (PDT)
-Message-ID: <ad128aee-c9d3-4b2c-84bc-65c1c8d9300c@linaro.org>
-Date: Thu, 28 Aug 2025 16:05:02 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1756390054; x=1787926054;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=1V2dgEATYXD7sLHkpBfeFtMXcoUFuQpVI/5dmTO6fOI=;
+  b=mbPJ1Yx++nAwWLWtwwGo6FprX0O0n72ANLWIS8FRBInzYM4he2Jb9+Nh
+   V+CY+gzL9u9gvUN8SARsmBspjDMztUFHbDstKtZVBHlu/wfhQhEnIQOya
+   Nxjv6ApacQyenkUUaDWKGjDV43nxMwlKALxBDNGSzF2Ok+VCAT7jD0pgk
+   Ma3iZvAabWSGeMxkpoVqNlCN6quE2jf1+a+0sEG7b43eXqGcxd3yz7Ibr
+   LfSrOeOjYnKJgeER/eIqtNO4xSZfdmr1fCjO9rHmHC3z435rXCcscK56p
+   /OAcgoQmWAu84BMzPOzI5EeSAvpm1khjDRwnEAzkmjE/cI3t4Va3DaiYx
+   Q==;
+X-CSE-ConnectionGUID: pHIbrKnbSsKPwmnNNZy+LA==
+X-CSE-MsgGUID: +kq5miZWSmG0hV68Kjnfvw==
+X-IronPort-AV: E=Sophos;i="6.18,217,1751234400"; 
+   d="scan'208";a="45959276"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 28 Aug 2025 16:07:27 +0200
+X-CheckPoint: {68B0629F-1-299FBAB0-EF52EDE7}
+X-MAIL-CPID: D8BC9AACF274DEF507CE904D865E66A7_5
+X-Control-Analysis: str=0001.0A002112.68B0629F.0093,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 239DA16140B;
+	Thu, 28 Aug 2025 16:07:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1756390042;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=1V2dgEATYXD7sLHkpBfeFtMXcoUFuQpVI/5dmTO6fOI=;
+	b=PBc8L4n2+UqzRt0GCBaXASsqPkdRKWAw1BS9bjZHK8maHprA+naG8rD4liFKZN3LoVQ8e4
+	2W9JkWdY3ebNt5VCFFAoS/MhKYNwlRnWe8nd+0UkmP1AI+XAJEIqYb+XCVLXgfNkOFQpV6
+	dIBulO6lUgH0LT1kDMr2cSzBvPnW9KHr6N9F5fB1vR9kUuzaS9lY/hj3pnFKm7AxV/GYWG
+	YAcdNWEzdz/WZPYn9xdqCnOAXdmeDcZAxKqU+TDFZ/p7w/xjmQN5wPL6HohuTziKIUnWS1
+	83AHlTctXZMjB1UbDSYo/mZTxPgDZTQ3DIOT2wrozk8JL9Awfeh7+dRxKSAQ4A==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ Frank Li <Frank.Li@nxp.com>, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v3 0/4] ARM: dts: clean up most ls1021a CHECK_DTB warning
+Date: Thu, 28 Aug 2025 16:07:20 +0200
+Message-ID: <3571725.QJadu78ljV@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250822-ls1021a_dts_warning-v3-0-6b611a2f23a4@nxp.com>
+References: <20250822-ls1021a_dts_warning-v3-0-6b611a2f23a4@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: qcom,sm8550-iris: Do not reference
- legacy venus properties
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250823155349.22344-2-krzysztof.kozlowski@linaro.org>
- <20250825113734.iekrgyvctamhb5y7@hu-mojha-hyd.qualcomm.com>
- <a3325bf1-2a3f-416a-ba2a-4fb1e9f85e61@linaro.org>
- <05d40a3b-cc13-b704-cac7-0ecbeea0e59d@quicinc.com>
- <46f5d11d-8bed-4d01-9151-35a24cdacfa5@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <46f5d11d-8bed-4d01-9151-35a24cdacfa5@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 28/08/2025 15:57, Krzysztof Kozlowski wrote:
-> 
->> break, just that there are no in-tree DTS user means no ABI break ?
->> Would appreciate if you could point to any guidelines if my understanding is not
->> correct, i am currently referring to [1]
-> 
-> There are hundreds of discussions describing this and I am not going to
-> do your homework.
-> 
-> In none of other qcom media camss/iris/venus patches affecting ABI you
+Hi,
+
+Am Freitag, 22. August 2025, 16:49:57 CEST schrieb Frank Li:
+> clean up most ls1021a CHECK_DTB warning.
+>=20
+> Old uboot check esdhc@1560000. The new uboot already switch to check both
+> esdhc@1560000 and mmc@1560000. So we can rename it now.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+
+=46or the whole series:
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+> ---
+> Changes in v3:
+> - rebase guoshawn/imx/dt tree. Remove patches that were already merged.
+> - Link to v2: https://lore.kernel.org/r/20250820-ls1021a_dts_warning-v2-0=
+=2D2e39648a32b7@nxp.com
+>=20
+> Changes in v2:
+> - squash rename to flash patches
+> - remove duplicate patches already post in
+> https://lore.kernel.org/linux-devicetree/20250725061339.266125-1-alexande=
+r.stein@ew.tq-group.com/
+> - Link to v1: https://lore.kernel.org/r/20250818-ls1021a_dts_warning-v1-0=
+=2D7a79b6b4a0e2@nxp.com
+>=20
+> ---
+> Frank Li (4):
+>       ARM: dts: ls1021a: Rename node name nor to flash
+>       ARM: dts: ls1021a: Rename 'mdio-mux-emi1' to 'mdio-mux@54'
+>       ARM: dts: ls1021a: Rename esdhc@1560000 to mmc@1560000
+>       ARM: dts: ls1021a-tsn: Remove redundant #address-cells for ethernet=
+=2Dswitch@1
+>=20
+>  arch/arm/boot/dts/nxp/ls/ls1021a-qds.dts | 8 ++++----
+>  arch/arm/boot/dts/nxp/ls/ls1021a-tsn.dts | 2 --
+>  arch/arm/boot/dts/nxp/ls/ls1021a-twr.dts | 2 +-
+>  arch/arm/boot/dts/nxp/ls/ls1021a.dtsi    | 2 +-
+>  4 files changed, 6 insertions(+), 8 deletions(-)
+> ---
+> base-commit: 75ad5f47c58aee30248d294a58c8ee52e079a8e3
+> change-id: 20250818-ls1021a_dts_warning-fff933bd83da
+>=20
+> Best regards,
+> --
+> Frank Li <Frank.Li@nxp.com>
+>=20
+>=20
+>=20
 
 
-And the proof that you talk about ABI only when it is convenient for you
-- where are any comments from you in these threads affecting ABI:
-
-https://lore.kernel.org/all/20250121120901.1841142-2-quic_vikramsa@quicinc.com/
-
-v1-v6:
-https://lore.kernel.org/all/20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-3-ef7e5f85f302@linaro.org/
-
-https://lore.kernel.org/all/20211206151811.39271-3-robert.foss@linaro.org/
-
-https://lore.kernel.org/all/20250426-b4-media-committers-25-04-25-camss-supplies-v3-1-19e5e72ffc3e@linaro.org/
-
-> raised that problem. Even remotely, so I cannot understand these
-> questions here differently than just spreading some sort of FUD over
-> this patch just to keep that broken video-firmware design for future users.
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
-Best regards,
-Krzysztof
 
