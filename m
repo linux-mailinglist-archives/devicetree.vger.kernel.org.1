@@ -1,296 +1,216 @@
-Return-Path: <devicetree+bounces-209867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04AD2B39628
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 10:06:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E58B3965E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 10:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1151C1BA8180
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 08:06:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35E6B7AAAA9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 08:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08A882D838B;
-	Thu, 28 Aug 2025 08:05:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 308052E5B32;
+	Thu, 28 Aug 2025 08:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bqBtRgNb"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="P739h/2e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C692D73A7
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 08:05:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738362D9786;
+	Thu, 28 Aug 2025 08:09:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756368352; cv=none; b=LXOCY0FhVZ2FnI+k96zQZC9GRGZINJpa9GIhnDJa2bwuu8cjGyNa1ztmrPE3MX5WqbmbIuc2WZbSLMfddS+1BlMuEeo5S9MI9K9HEFM6O3TbdGDiTVRS8LXljiDH2Pz34EvrFj2ghhUaYTgNIedHpy5xxr80NLlHxyLRcATvQlI=
+	t=1756368558; cv=none; b=uUQU0wTOIelLhhip0UTIp09DsgdxMJijWdM0IRpXMGVoWHUOCcDwEVg5NW4jZ1gW2jAm+0S361zpi3I9gy5upO857lPlO/lUofZENVy0dugwYb2qXSqRXF5eQNHdNeYFW2b89xliOSUHPnou4mVclD/rZlY43tnTNTJ6AIopsTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756368352; c=relaxed/simple;
-	bh=0v3VTSDnoKSJ11aMKmMrmANPBeZqszSRoleoKqFZowM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QFUxwPiuVpSRa5DIi6zgEIclxH0X8Lp1ZnBSlQFLw+kQE3Tt11cz6sTWcRxLiwhQozMUFGC+6EBHknHROl3eHIXGcZR6zv0hPFkESVzYXkoiziDKNyWvnUOWhiqBsRPocR6E3eCQX2IviZXBjIom1ugdSbdr1XsJCGWKffCvTGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bqBtRgNb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57S5vtm6031279
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 08:05:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vY1V0UwZ8s0vX29+NR8gyAX4j41CCT/In5zMDAylqeI=; b=bqBtRgNbYkRka2Fq
-	k0XVKjGHYQc6rqp3e06EaJvNitZZhwSCeMMVubZ8hX2LttTGNC4njobZ08q57XgD
-	fU8PozMPtE2b4qsd8xrju+oJSHPFr6zS+fIkzAR8feiTdvbVDXedEmvwEnhEbDPm
-	WCHWAAqxW9v0/UZOgN9umCLP9nyZ5mKP4sxfInch8BHQOLATGE24bLkk8zTOHzn2
-	CSObKgF2FCzRLUhSvk+OI5ZYlWnDdqI9upCRMs3Lj0ZIsD4gAQ7qzq7IevdRFl7U
-	LxN0bacd5fG176iVasZ1o3wLkUMwAo4OgXC8tHKV7e4ESHfO1MLBsfjpjvw1kPsp
-	lCOUaQ==
-Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q615qc35-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 08:05:48 +0000 (GMT)
-Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b4716fc56a9so1085449a12.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 01:05:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756368347; x=1756973147;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vY1V0UwZ8s0vX29+NR8gyAX4j41CCT/In5zMDAylqeI=;
-        b=ay3XlqRmPqdUreGwiG7U0IFJdW/OAYjtIgRHDuLf6e3eebPmimJU30OauQuZlKJ3i8
-         iTWv5/xIZeWGdj1+O1c7LeZ6E1eXHj7fRe8J5vvqSJKLzFwchaS3T9Gssg4AtAY8lHOt
-         WisqUHF/PNEnZNPBGkOB5yj2Z3JL7+lloYk3o3uJTDJlGc37pIwxqF5crgRtQuXp4vGL
-         ZdbXmv9BfCvcK9bRSSMzydosQ/7Dv8tqD9aYYrYSLpPoVIizFKqgZc32c8dHXDEFMF5+
-         Wc4KfG8+cTpuQWezX3mGGDvMtPLgAFeEReFOGu0evmz2guS3hVIDPHHvGPtOq/uDqidg
-         hMZw==
-X-Forwarded-Encrypted: i=1; AJvYcCVWiy7VkrevyR2WycgT1sOCOuvLYQSspyM0kufhlKJErR58z35u8Pg5FkHiJ+li7rpnDzc3XMqeClRA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyY7hdrSuMDfbXHBziP9rTE9yoebqn3F3nLZaCP1/mli+XWTtnA
-	/KbSVpAt3MO5CKQz7aIPVFIiiPhGTT/+Mo0Y/zOFUiwuu69MwzVkIhE+H1KbziP+eZhRhAm8T6I
-	b1e76g5FNhyur1zDdQ6I0tuDIw+NdDpGvGWrhdELhor4Goeq51PUE3whgzWKC7ZUq
-X-Gm-Gg: ASbGnctvBJ0AaEw/99RHREgmXW4Kz76Snq0k2bokMh7TypttrfgXi6E2T1V/SiExWr6
-	1kJkX9OGnaRkA1bI9E9zI4fIkpgD2oNNkQZr8nq6nDHuircycT9k8jFYZobgv6rLFOViaI7hhc1
-	Tz9rSUNAnOt8jODb8cMBuqFdWFmaSnZVIxNXywEb+xEbCLqdhzKPWfBUnF2FW7yM481lxSFVFCa
-	n8QSasGoSXqgoaGQATilpEq1ShjKG+IjpHnmm4mA5cTvTHrlfFaPU0Xuazaa23mlOl4YTRSJeQu
-	5v/nul+RdMmhDYkXz5UyhAKtWxndrP4f+3aFEGer5Nx8DfDUF9xALgvuWVn+mNCH273PtwVt6ae
-	4P10pSmRr
-X-Received: by 2002:a05:6a20:6a28:b0:23f:fec8:9ab0 with SMTP id adf61e73a8af0-24340b59c44mr32754346637.25.1756368347084;
-        Thu, 28 Aug 2025 01:05:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHyRlqZnSkO2dMdTgeoV1jxASU3ZmYnT0g0dq+toleinjjWrSpO9LT86flFSlKz/iy9C2rMrw==
-X-Received: by 2002:a05:6a20:6a28:b0:23f:fec8:9ab0 with SMTP id adf61e73a8af0-24340b59c44mr32754293637.25.1756368346509;
-        Thu, 28 Aug 2025 01:05:46 -0700 (PDT)
-Received: from [10.151.37.217] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-327ab0f20c7sm1600294a91.26.2025.08.28.01.05.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Aug 2025 01:05:45 -0700 (PDT)
-Message-ID: <b08aa8f4-7283-40d5-9f5e-ed8697f882a9@oss.qualcomm.com>
-Date: Thu, 28 Aug 2025 13:35:35 +0530
+	s=arc-20240116; t=1756368558; c=relaxed/simple;
+	bh=sinpNIkJWKJFG11bnd8rCFaDFgj87v9xnGeqVhPqDT0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jopcSjMhf4GIO27GAHEkH8NH4FLPU7sy+xMT7pEfiTFKq7ItmUvJgcWia/jljoOxSjV2Lzep8Yvj8rI+ZHDYZSpW9BMR9jnWufg2FV4NPNcUUNTt2inuzGQtf07Ag63B2Y0SURPMQuTRLk5P2QOhg1japZI3B4EZKXUjjXCBizo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=P739h/2e; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 43c9b05483e611f0b33aeb1e7f16c2b6-20250828
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=+650otIaLzyUp5/Ps4TfZ8nTIEmkXXQq3SPw7W37GNU=;
+	b=P739h/2e1FlQ5teJy1WUCFNOSk87LWyOb6ELrVLBKn1fjrIMAf9DvJbjpGRYU5TpwNVx0G45755LajLE3C+je+kDgQfkLj4sesjsWxmtsBzge6jwg9/Hri2vK6t9oZ+/d/kvyX62Y/snbIk8IFWzkTFLX73Dn2TmVBY7iTM1eEs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.3,REQID:c0a9a143-10bd-4adc-9dbc-bfef3f650672,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:f1326cf,CLOUDID:fd0a9920-786d-4870-a017-e7b4f3839b3f,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:-5,Content:0|15|50,EDM:-3,IP:
+	nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
+	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 43c9b05483e611f0b33aeb1e7f16c2b6-20250828
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+	(envelope-from <paul-pl.chen@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 626211355; Thu, 28 Aug 2025 16:09:05 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Thu, 28 Aug 2025 16:09:03 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Thu, 28 Aug 2025 16:09:03 +0800
+From: Paul Chen <paul-pl.chen@mediatek.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<chunkuang.hu@kernel.org>, <angelogioacchino.delregno@collabora.com>
+CC: <matthias.bgg@gmail.com>, <p.zabel@pengutronix.de>,
+	<jason-jh.lin@mediatek.com>, <nancy.lin@mediatek.com>,
+	<singo.chang@mediatek.com>, <xiandong.wang@mediatek.com>,
+	<sirius.wang@mediatek.com>, <paul-pl.chen@mediatek.com>,
+	<sunny.shen@mediatek.com>, <fshao@chromium.org>, <treapking@chromium.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v4 00/19] Add MediaTek SoC DRM support for MT8196
+Date: Thu, 28 Aug 2025 16:06:55 +0800
+Message-ID: <20250828080855.3502514-1-paul-pl.chen@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 00/10] Implement vendor resets for PSCI SYSTEM_RESET2
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andre Draszik
- <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Elliot Berman <elliot.berman@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250815-arm-psci-system_reset2-vendor-reboots-v14-0-37d29f59ac9a@oss.qualcomm.com>
-Content-Language: en-US
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-In-Reply-To: <20250815-arm-psci-system_reset2-vendor-reboots-v14-0-37d29f59ac9a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzNCBTYWx0ZWRfX6cnf1x18oGpG
- uFk4itwd1SFUodHIo5MLRhgpJV9OkYqZU3tNsIPpUd+GsgrA8sjrg8jj03ixdN/YEsVymXcNCYu
- 4CRtXnqV7M09fZT2rroOVA6vwdIYdYsx+S/UBDfBCqMRhGllQxCWV50Qe3CSptlYpNTWGO+o8AE
- mqa0kkhJT1K14+MJoxWabhbOtd2VUQ8tgjA2EHpzzqfn/G5/k8qRUwvIoTYSNfMGjFkqynTlW4z
- yhOJ1+V4erNa2uQg7YAas6/HySd0C0VAb/VOfsQUx53j8OTlYMcSz/UGgIvYbWctAldAJDLMv1K
- /YBTiYQ/NhfiKcYinb+u+4qBA5wPp/KVcP+pBWJ6PzvEzvlgjajii2Vzrs11i4G+qNfnuacDBD8
- tQ6lvI1U
-X-Proofpoint-GUID: Lphri1NHAkSt2JCAAIUehT-_chthsLoe
-X-Authority-Analysis: v=2.4 cv=K+AiHzWI c=1 sm=1 tr=0 ts=68b00ddc cx=c_pps
- a=rz3CxIlbcmazkYymdCej/Q==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
- a=EUspDBNiAAAA:8 a=YvEvsVr50XASBo1Q0dIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=bFCP_H2QrGi7Okbo017w:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: Lphri1NHAkSt2JCAAIUehT-_chthsLoe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-28_02,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 bulkscore=0 clxscore=1015 adultscore=0
- impostorscore=0 priorityscore=1501 phishscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230034
+Content-Type: text/plain
 
+From: Paul-pl Chen <paul-pl.chen@mediatek.com>
 
-On 8/15/2025 8:05 PM, Shivendra Pratap wrote:
-> The PSCI SYSTEM_RESET2 call allows vendor firmware to define
-> additional reset types which could be mapped to the reboot
-> argument.
->
-> User-space should be able to reboot a device into different
-> operational boot-states supported by underlying bootloader and
-> firmware. Generally, some HW registers need to be written, based
-> on which the bootloader and firmware decide the next boot state
-> of device, after the reset. For example, a requirement on
-> Qualcomm platforms may state that reboot with "bootloader"
-> command, should reboot the device into bootloader flashing mode
-> and reboot with “edl” command, should reboot the device into an
-> Emergency flashing mode.  Setting up such reboots on Qualcomm
-> devices can be inconsistent across SoC platforms and may require
-> setting different HW registers, where some of these registers may
-> not be accessible to HLOS. These knobs evolve over product
-> generations and require more drivers.  PSCI defines a
-> vendor-specific reset in SYSTEM_RESET2 spec, which enables the
-> firmware to take care of underlying setting for any such
-> supported vendor-specific reboot. Qualcomm firmwares are
-> beginning to support and expose PSCI SYSTEM_RESET2
-> vendor-specific reset types to simplify driver requirements from
-> Linux. With such support added in the firmware, we now need a
-> Linux interface which can make use of the firmware calls for PSCI
-> vendor-specific resets. This will align such reboot requirement
-> across platforms and vendors.
->
-> The current psci driver supports two types of resets –
-> SYSTEM_RESET2 Arch warm-reset and SYSTEM_RESET cold-reset. The
-> patchset introduces the PSCI SYSTEM_RESET2 vendor-specific reset
-> into the reset path of the psci driver and aligns it to work with
-> reboot system call - LINUX_REBOOT_CMD_RESTART2, when used along
-> with a supported string-based command in “*arg”.
->
-> The patchset uses reboot-mode based commands, to define the
-> supported vendor reset-types commands in psci device tree node
-> and registers these commands with the reboot-mode framework.
->
-> The PSCI vendor-specific reset takes two arguments, being,
-> reset_type and cookie as defined by the spec. To accommodate this
-> requirement, enhance the reboot-mode framework to support two
-> 32-bit arguments by switching to 64-bit magic values.
->
-> Along this line, the patchset also extends the reboot-mode
-> framework to add a non-device-based registration function, which
-> will allow drivers to register using device tree node, while
-> keeping backward compatibility for existing users of reboot-mode.
-> This will enable psci driver to register for reboot-mode and
-> implement a write function, which will save the magic and then
-> use it in psci reset path to make a vendor-specific reset call
-> into the firmware. In addition, the patchset will expose a sysfs
-> entry interface within reboot-mode which can be used by userspace
-> to view the supported reboot-mode commands.
->
-> The list of vendor-specific reset commands remains open due to
-> divergent requirements across vendors, but this can be
-> streamlined and standardized through dedicated device tree
-> bindings.
->
-> Currently three drivers register with reboot-mode framework -
-> syscon-reboot-mode, nvmem-reboot-mode and qcom-pon. Consolidated
-> list of commands currently added across various vendor DTs:
->   mode-loader
->   mode-normal
->   mode-bootloader
->   mode-charge
->   mode-fastboot
->   mode-reboot-ab-update
->   mode-recovery
->   mode-rescue
->   mode-shutdown-thermal
->   mode-shutdown-thermal-battery
->
-> On gs101 we also pass kernel-generated modes from kernel_restart()
-> or panic(), specifically DM verity's 'dm-verity device corrupted':
-> 	mode-dm-verity-device-corrupted = <0x50>;
->
-> - thanks Andre' for providing this.
->
-> Detailed list of commands being used by syscon-reboot-mode:
->      arm64/boot/dts/exynos/exynosautov9.dtsi:
-> 	mode-bootloader = <EXYNOSAUTOV9_BOOT_BOOTLOADER>;
-> 	mode-fastboot = <EXYNOSAUTOV9_BOOT_FASTBOOT>;
-> 	mode-recovery = <EXYNOSAUTOV9_BOOT_RECOVERY>;
->
->      arm64/boot/dts/exynos/google/gs101.dtsi:
->      	mode-bootloader = <0xfc>;
->      	mode-charge = <0x0a>;
->      	mode-fastboot = <0xfa>;
->      	mode-reboot-ab-update = <0x52>;
->      	mode-recovery = <0xff>;
->      	mode-rescue = <0xf9>;
->      	mode-shutdown-thermal = <0x51>;
->      	mode-shutdown-thermal-battery = <0x51>;
->
->      arm64/boot/dts/hisilicon/hi3660-hikey960.dts:
->      	mode-normal = <0x77665501>;
->      	mode-bootloader = <0x77665500>;
->      	mode-recovery = <0x77665502>;
->
->      arm64/boot/dts/hisilicon/hi6220-hikey.dts:
->      	mode-normal = <0x77665501>;
->      	mode-bootloader = <0x77665500>;
->      	mode-recovery = <0x77665502>;
->
->      arm64/boot/dts/rockchip/px30.dtsi:
->      	mode-bootloader = <BOOT_BL_DOWNLOAD>;
->      	mode-fastboot = <BOOT_FASTBOOT>;
->      	mode-loader = <BOOT_BL_DOWNLOAD>;
->      	mode-normal = <BOOT_NORMAL>;
->      	mode-recovery = <BOOT_RECOVERY>;
->
->      arm64/boot/dts/rockchip/rk3308.dtsi:
->      	mode-bootloader = <BOOT_BL_DOWNLOAD>;
->      	mode-loader = <BOOT_BL_DOWNLOAD>;
->      	mode-normal = <BOOT_NORMAL>;
->      	mode-recovery = <BOOT_RECOVERY>;
->      	mode-fastboot = <BOOT_FASTBOOT>;
->
->      arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dts:
->      	mode-normal = <BOOT_NORMAL>;
->      	mode-loader = <BOOT_BL_DOWNLOAD>;
-> 			mode-recovery = <BOOT_RECOVERY>;
-> 			mode-bootloader = <BOOT_FASTBOOT>;
->
-> Detailed list of commands being used by nvmem-reboot-mode:
->      arm64/boot/dts/qcom/pmXXXX.dtsi:(multiple qcom DTs)
-> 			mode-recovery = <0x01>;
-> 			mode-bootloader = <0x02>;
->
-> Previous discussions around SYSTEM_RESET2:
-> -https://lore.kernel.org/lkml/20230724223057.1208122-2-quic_eberman@quicinc.com/T/
-> -https://lore.kernel.org/all/4a679542-b48d-7e11-f33a-63535a5c68cb@quicinc.com/
->
-> Signed-off-by: Elliot Berman<quic_eberman@quicinc.com>
-> Signed-off-by: Shivendra Pratap<shivendra.pratap@oss.qualcomm.com>
+Changes in v4:
+- [PATCH v4 11/19]
+  Add New commit to refactor the naming of OVL Fornat.
+- [PATCH v4 12/19]
+  Refactor ovl_blend_mode fucntion
+- [PATCH v4 13/19]
+  Move mtk_ovl_get_blend_mode to this commit to align with driver.
+- [PATCH v4 14/19]
+  Remove the unused paramter cmdq
+  Remove the reapet of pitch setting
+- [PATCH v4 15/19]
+  Remove the unused paramter cmdq
+  Remove the useless parametrt of func():mtk_disp_blender_config
+- [PATCH v4 16/19] 
+  Simplified the driiver code to improve readability 
+- [PATCH v4 17/19]
+  Refine mtk_ovlsys_adaptor_layer_config's layer config checking. 
+  Refine mtk_ovlsys_adaptor_config's logic
+  Fix func()'s mtk_ovlsys_adaptor_stop settting
+  Refine mtk_ovlsys_adaptor_clk_enbale to repaet NULL checking
+- [PATCH v4 18/19]
+  Fix the system report's syntext error
 
+Changes in v3:
+- [PATCH v3 06/17] 
+  Refine runtime PM, top clocks and async controls for MMSYS 
+- [PATCH v3 08/17]
+  Refactor SOF settings by adding mtk_mutex_get_output_comp_sof() and
+  extracting SOF logic from mtk_mutex_add_comp() 
+  and mtk_mutex_remove_comp()
+- [PATCH v3 10/17]
+  Export OVL format definitions and format 
+  conversion API
+- [PATCH v3 11/17]
+  Export OVL ignore pixel alpha logic
+- [PATCH v3 12/17] 
+  Refactor exdma_config setup to reduce complexity 
+  and consolidate duplicate settings in exdma_layer_config()
+- [PATCH v3 13/17]
+  Refine blender's layer_config driver for improved efficiency
+- [PATCH v3 14/17] Refine outproc driver: use readl() and writel() to 
+  replace mtk_ddp_write_mask() for normal mode settings
+- [PATCH v3 15/17]
+  Refine ovlsys_adaptor driver:Use path instead of ovl_adaptor_comp for 
+  searching component type. Improve efficiency of config, start, stop, 
+  and layer_config functions
+- [PATCH v3 16/17] 
+  Refine mtk_find_possible_crtcs() function
 
-With this series, 'edl' mode is working fine in QCOM's IPQ5424 SoC. So
+Changes in v2:
+- add support for MT8196's new hardware components (EXDMA, BLENDER, 
+  OUTPROC) following the previous MTK OVL software architecture.
+- reuse mtk_ovl drivers in MediaTek DRM display to support the new 
+  MT8196 SoC.
+- implement support for multiple mmsys instances within a single 
+  mediatek-drm driver, improving flexibility and scalability.
+- refactor existing components (mutex, OVL) to accommodate the new 
+  architecture and improve code reusability.
+- update component matching, binding log
 
-Tested-by: Kathiravan Thirumoorthy 
-<kathiravan.thirumoorthy@oss.qualcomm.com> # IPQ5424-RDP466
+Nancy Lin (12):
+  dt-bindings: arm: mediatek: mmsys: add compatible for MT8196
+  dt-bindings: soc: mediatek: add mutex yaml for MT8196
+  soc: mediatek: Add runtime PM and top clocks and async controls for
+    MMSYS
+  soc: mediatek: add mmsys support for MT8196
+  soc: mediatek: mutex: add mutex support for MT8196
+  drm/mediatek: Export OVL formats definitions and format conversion API
+  drm/mediatek: add EXDMA support for MT8196
+  drm/mediatek: add BLENDER support for MT8196
+  drm/mediatek: add OUTPROC support for MT8196
+  drm/mediatek: add ovlsys_adaptor support for MT8196
+  drm/mediatek: Add support for multiple mmsys in the one mediatek-drm
+    driver
+  drm/mediatek: Add support for MT8196 multiple mmsys
+
+Paul-pl Chen (7):
+  dt-bindings: display: mediatek: add EXDMA yaml for MT8196
+  dt-bindings: display: mediatek: add BLENDER yaml for MT8196
+  dt-bindings: display: mediatek: add OUTPROC yaml for MT8196
+  soc: mediatek: mutex: Reused the switch case for SOF ID
+  soc: mediatek: mutex: refactor SOF settings for output components
+  drm/mediatek: Rename OVL format naming
+  drm/mediatek: Export OVL Blend function
+
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml |   5 +
+ .../display/mediatek/mediatek,blender.yaml    |  47 ++
+ .../display/mediatek/mediatek,outproc.yaml    |  54 ++
+ .../bindings/dma/mediatek,exdma.yaml          |  68 ++
+ .../bindings/soc/mediatek/mediatek,mutex.yaml |   2 +
+ drivers/gpu/drm/mediatek/Makefile             |   4 +
+ drivers/gpu/drm/mediatek/mtk_crtc.c           | 342 +++++++--
+ drivers/gpu/drm/mediatek/mtk_crtc.h           |   6 +-
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.c       | 136 +++-
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.h       |   6 +
+ drivers/gpu/drm/mediatek/mtk_disp_blender.c   | 274 +++++++
+ drivers/gpu/drm/mediatek/mtk_disp_blender.h   |  10 +
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h       |  66 ++
+ drivers/gpu/drm/mediatek/mtk_disp_exdma.c     | 359 +++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_outproc.c   | 235 ++++++
+ drivers/gpu/drm/mediatek/mtk_disp_outproc.h   |  22 +
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c       | 229 ++++--
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.h       |  29 +
+ .../drm/mediatek/mtk_disp_ovlsys_adaptor.c    | 717 ++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 276 +++++--
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h        |  27 +-
+ drivers/soc/mediatek/mt8196-mmsys.h           | 396 ++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c              | 206 ++++-
+ drivers/soc/mediatek/mtk-mmsys.h              |  18 +
+ drivers/soc/mediatek/mtk-mutex.c              | 288 +++++--
+ include/linux/soc/mediatek/mtk-mmsys.h        |  60 ++
+ include/linux/soc/mediatek/mtk-mutex.h        |   4 +
+ 27 files changed, 3593 insertions(+), 293 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,blender.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,outproc.yaml
+ create mode 100644 Documentation/devicetree/bindings/dma/mediatek,exdma.yaml
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_blender.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_blender.h
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_exdma.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_outproc.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_outproc.h
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_ovl.h
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_ovlsys_adaptor.c
+ create mode 100644 drivers/soc/mediatek/mt8196-mmsys.h
+
+-- 
+2.45.2
 
 
