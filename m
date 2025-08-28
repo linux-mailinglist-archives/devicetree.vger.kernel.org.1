@@ -1,194 +1,150 @@
-Return-Path: <devicetree+bounces-210169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5774DB3A9C3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 20:19:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39812B3A9DA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 20:20:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 166E217E177
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:19:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DAB21B282E7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:21:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD9D2701CB;
-	Thu, 28 Aug 2025 18:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A276B27144F;
+	Thu, 28 Aug 2025 18:20:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sV3S9goY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="De1l45m/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439FE26CE26
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 18:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7080D261B71;
+	Thu, 28 Aug 2025 18:20:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756405163; cv=none; b=DwvVCfskMIS9CstxvT/SIps6GVowS+AxcPm4G23gZtDZO7pDPEQvzlOf89Jl0wF/7GSWTp/wWWXkVsUj9V7Jg1mHMUl1UeCsHuQaBGmsuruo3op24fALcW5/Tw9kbx8fb/jhQmZek/3USY83qRsYmHRA1IoLCwzjcp8vRLYM4No=
+	t=1756405242; cv=none; b=j1oqGMGkZ1p4Wsz4A5xz8nVCo9F16Yh4fkMfenzJUl6EKUHORYIE4lBHHqGYH11CRGSTAIFidHkYyBBGjGAtzX0r47j5RhWBvYarn5bbiitGFLjqLu1oFZCPXnVQRWOxBknG6MB5oehJ9/55tlunX8Bpj5P+fEkQEvTaPPQ9vTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756405163; c=relaxed/simple;
-	bh=jSRAPGlaacLCN8IweNZh4ovq/ER2fHwcytIyHUy6LpI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pElgJaz8DNDDW+ItpOvLYIU0v46O3glBIpyMr+pFxCKAZrF8sk71rL9erHn8hr3RUEejCzY3MhfLXRtEmqMenV4EUWkLDbJJ7spETse4oH/xzF76BvD/iuM6fltfSjDU5N/d/esrGAFB0cTPrL51V7PdYCl4Gy8BObNTmMlXP2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sV3S9goY; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3366f102680so10805881fa.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 11:19:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756405158; x=1757009958; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z8WCzP5XruJZcY+aCROX20DDrThlC8LXbUjIf1UiM2s=;
-        b=sV3S9goY3NPAf5ctpK7jz0PvMJ5CZF+mdIgh/lZbNZTdmuxyIjxQWmKkd6mH2z48bh
-         8t4LlF2hKGblupZPWyhKD5ZB00sDHXHWvLkt5kT1IODEB4wBC4mOThflyKB0SRQhjquQ
-         JO9iwRWImL7WdLxae73B+vTYVVz2HI0rN7L7tVyuzQXCgDy1mOGhrBkaXHlJBMPrLrVn
-         zTHuY3nnSfUfIPPSMTkJxNnVXwgt8PhwihTeoGwNd70zJJjWoE4E3B/o4cLNuoj8pCJw
-         8EZgp4ZoioWvjcwmIkEpPXW9mTFSC49IJO5QVSX80wVn8dva9fAVBGV6GD0f6nPX7XXL
-         eCSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756405158; x=1757009958;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z8WCzP5XruJZcY+aCROX20DDrThlC8LXbUjIf1UiM2s=;
-        b=dUyoz1qpAk0GSNH3ZWl50/gf+fz19/ohQ2CiMQFlB+/u5PGEA6iGpZqvOBwCzpf4/X
-         jUREuE7pJ7FaPE9lqTiQ0StwTdK1cErA8h9K5L+lGQsRmtjIVFI1dpD9DVP4N/Vsb40v
-         I9s4qf/0JDssOMPnb7ifz6hhr+kxKRNM6sgyrtiF2umCrCkIKOLpZzovTLw2GdCqSC8h
-         BCsQPei98VhBkiM6Qao6fqB++8impGDp3eDFJGQBC0SdfxDFz8ah+5Nk1LEpnOL3JRxg
-         pUnUjFYuMfpchavrMNhNNeDP+3B9GUUidB60mFyQLJ2HnrVnQZorIxozpkrS1OKHF21t
-         JJ5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWs3DCekpaB/kcZoHP8QN8payck9ySxbYnsgoeszc6j/LHn7nrv4G+YLDoLmeM3A0zVuln4IOwJtkxJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNOQrUyDdiDbG04CuFzwJfZF52V/lSAUx2yfnoWVwNCG4KDTiq
-	hyDIWlFy7Bl6lIo3LNQj+4PyDS8fj+oV3VRJnyBkP1ss3vie41SFA+/WRgIPu8gn2Qjjer8miXs
-	q6A/u682CJTdFYl1x3jhW4ePMs/74by9PKkDTso4ZQg==
-X-Gm-Gg: ASbGncu2mNDohDXBoJjVOrN7M30BGGSWVLZTrhIiB8QZJga0OF3BSF/ABbx+HpURLqx
-	L6jzwxhk1CcPQZjTiis2qgn9se1U+B559wJsrWTXbTe31rQ5zFrVO2ue1kQ9DF7vIET9lIEmX4W
-	ac0fRDDpjB5at4rNxgSKCfMcIdctZ14h62CUROyQ8uIn7wqQrR3/XWhFMH7LDf+EgTxD57zw2gf
-	w29fn0=
-X-Google-Smtp-Source: AGHT+IH1DSJZGXknSzW6wH3w+Axy81DzZxfZ0orRS3bzF7NdL/MqGTEERDxVjp0WltcO4vKqnpq+IlyPKB7YEvEtM8Q=
-X-Received: by 2002:a05:651c:f04:b0:332:4528:c0e0 with SMTP id
- 38308e7fff4ca-33650f40230mr73400651fa.32.1756405158218; Thu, 28 Aug 2025
- 11:19:18 -0700 (PDT)
+	s=arc-20240116; t=1756405242; c=relaxed/simple;
+	bh=iz9VV1gAzMPnQ0XpoI9gTK9UiHAtuUmqKjOZ0ybeOYM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sMDEBvFQFRlneTJc32reYXF0IyRwYK482xGhB9NDquZeD/KJoL4OHkotg4njbEg2K3pbj75Ns1rgGKrcY6LIG8du33L1KANaBDUgQpSAOch50SQ3kt4gAVtvwd+MK0QUZ0Qlgnz4l7FI9fm/EQqrk7kKsRgPYY7+EczA4oKc38c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=De1l45m/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F9D4C4CEEB;
+	Thu, 28 Aug 2025 18:20:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756405241;
+	bh=iz9VV1gAzMPnQ0XpoI9gTK9UiHAtuUmqKjOZ0ybeOYM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=De1l45m/5M7KVIcp9kBmKtk6XcrnGIsciFRyfrVtt9usB/CG4G8oaVGHFNaLxjWLj
+	 tipblpCW2/KQZOEAKfJcG48KKypRPosjCFzswoKMAe6OL08PeM/W8oJj7mwmbMMd0e
+	 8/ihqW/fsspt1Ksv2+H7mCZTdE75kLxDoLtmWfaFDHPcFAAyC4gwCp6/wXR6WhBymU
+	 XFjUFYBJeVk0RfOShMZAJZ8e8wBnnj768+hmCTWSRbM5/rAwb/lKDy5vnTKTOD3zGq
+	 VU08WzRikoi9Z5wsIRN8vuXhdthQ1WOE8FpXDB34tX2uQsgubHWC8hG2hr/Eh66g7R
+	 Swq/oiE4a3ldA==
+Message-ID: <6e036d6a-f2d1-43d6-bb35-54467edd7ec9@kernel.org>
+Date: Thu, 28 Aug 2025 20:20:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250827024222.588082-1-gary.yang@cixtech.com>
- <20250827024222.588082-3-gary.yang@cixtech.com> <0fa7e2cb-fa0b-4f9e-84d6-a4b2b3d8a4cf@kernel.org>
- <PUZPR06MB5887D9A879D16DC6A8C8ED58EF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
- <25283b66-4cbb-4db9-9b1e-7a4e6e3db2a1@kernel.org> <PUZPR06MB5887887C93BFF42BC8417D96EF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
-In-Reply-To: <PUZPR06MB5887887C93BFF42BC8417D96EF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 28 Aug 2025 20:19:07 +0200
-X-Gm-Features: Ac12FXwRlxWLxClpU7dqWEVAoO6fz9nruFt5m8l0uHGvpyxmXFRxpd6jlKHnWxY
-Message-ID: <CACRpkdYC-3qybKW7VH5MVfBc3oqSrOa2RTt1Q=p=HHsi5drGOQ@mail.gmail.com>
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIDIvM10gZHQtYmluZGluZ3M6IHBpbmN0cmw6IEFkZCBjaQ==?=
-	=?UTF-8?B?eCxza3kxLXBpbmN0cmw=?=
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: add clocks property to
+ enable QoS on sa8775p
+To: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Mike Tipton <mike.tipton@oss.qualcomm.com>
+References: <20250808140300.14784-1-odelu.kukatla@oss.qualcomm.com>
+ <20250808140300.14784-2-odelu.kukatla@oss.qualcomm.com>
+ <90b51e31-3217-4483-bb5b-ec328665a723@kernel.org>
+ <28b97952-1b67-411f-a7fb-ddd558739839@oss.qualcomm.com>
+ <ac83c453-c24d-4c4d-83bc-9ed13f2f9d1e@kernel.org>
+ <7d3e5cf7-4167-4005-ba4b-c1915c254705@oss.qualcomm.com>
+ <00f50d92-e4ea-4805-b771-147fa5f5ebe4@kernel.org>
+ <249f8109-31b1-4cb8-a5a4-b30c27b2e987@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <249f8109-31b1-4cb8-a5a4-b30c27b2e987@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Gary,
+On 28/08/2025 20:16, Odelu Kukatla wrote:
+> 
+>>> QoS configuration is essential for managing latency and bandwidth across
+>>> subsystems such as CPU, GPU, and multimedia engines. Without it, the
+>>> system may experience performance degradation, especially under
+>>
+>> So how was it working for the last 2 years?
+>>
+> The system may function normally without this feature. However, enabling
 
-thanks for your patch!
 
-On Thu, Aug 28, 2025 at 10:58=E2=80=AFAM Gary Yang <gary.yang@cixtech.com> =
-wrote:
-> > On 28/08/2025 07:37, Gary Yang wrote:
+Huh? So you agree but keep continuing the discussion?
 
-> > >> Whats the difference between? You have entire description field to
-> > >> explain this but instead you said something obvious there.
-> > >>
-> > > Cix sky1 has three power states. S0 means work state. S3 means STR st=
-ate.
-> > S5 means SD state.
-> > >
-> > > The pin-controller on sky1 has two power states. They are S0 and S5.
-> >
-> >
-> > State !=3D device. Please create bindings for devices, not states.
-> >
->
-> Sorry, maybe I didn't explain it correctly before, and then make you misu=
-nderstand
->
-> There are two pin-controller on sky1. One is used under s0 state, other i=
-s used under s5 state.
->
-> They are two devices
+I don't understand what we are discussing in such case, but just to
+close the topic from my side and be explicit: based on above you cannot
+break the ABI.
 
-Just explain this in the description: and everyone will understand what
-is going on. Since "S0" and "S5" can be easy to confuse for "states"
-it is extra helpful with some extended descriptions.
 
-> > >>> +    properties:
-> > >>> +      cix,pins:
-> > >>
-> > >> No, use generic properties from pinmux schema.
-> > >>
-> > >> You should also reference it.
-> > >
-> > > Did you suggest us to refer to
-> > Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml?
-> > >
-> > > Make us support drive-strength, bias-pull-down properties?
-> >
-> > and pinmux. There is a standard pins property.
->
-> Ok, I see, try our best to support standard
+> QoS helps optimize latency and bandwidth across subsystems like CPU,
+> GPU, and multimedia engines, which becomes important in high-throughput
+> scenarios.
 
-Unfortunately many pin controllers have forged ahead
-with custom foo,pins =3D <....>; settings where they set up
-mux and electrical config by OR:in together different bits,
-and then they just poke this into some registers.
+No one discussed that.
 
-This isn't very helpful for users.
 
-I initially wanted all functions and groups to be strings
-and then to associate groups with functions using
-strings in the device tree.
-
-But I have realized (though much pain) that many developers
-don't like this. They want a magic number to write to
-a register to configure a pin, because their hardware
-has one (or several) register for each pin.
-
-So nowadays the most common is to use a compromise.
-
-A magic number in the pinmux property to set up the muxing.
-
-For example:
-
-arch/arm/boot/dts/mediatek/mt7623.dtsi:
-pinmux =3D <MT7623_PIN_75_SDA0_FUNC_SDA0>,
-               <MT7623_PIN_76_SCL0_FUNC_SCL0>;
-
-Then the electric properties like bias-pull-down; to set
-these on the state:
-
-        i2c0_pins_a: i2c0-default {
-                pins-i2c0 {
-                        pinmux =3D <MT7623_PIN_75_SDA0_FUNC_SDA0>,
-                                 <MT7623_PIN_76_SCL0_FUNC_SCL0>;
-                        bias-disable;
-                };
-        };
-
-This is a good compromis becaus it looks similar on all
-SoCs and you see immediately what is going on: we enable
-SDA0 And SCL0 and disable bias, so there must be external
-pull-up resistors on this bus since I2C is open drain. Very
-easy for an electronics engineer to grasp, they don't need
-to be computer engineers or device tree experts.
-
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
 
