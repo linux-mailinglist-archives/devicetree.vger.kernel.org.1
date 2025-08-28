@@ -1,171 +1,161 @@
-Return-Path: <devicetree+bounces-210082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 080C9B3A1ED
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:32:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B8CB3A1F8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:34:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E18A2460BA6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:24:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 868F35833D2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:26:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6FD021B9F1;
-	Thu, 28 Aug 2025 14:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 283BA226D18;
+	Thu, 28 Aug 2025 14:26:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lqlIZZOH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n7tzR99K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D065F2063E7
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 14:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECEB621B9F1;
+	Thu, 28 Aug 2025 14:26:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756391084; cv=none; b=D3ESKZ30fsSWO20AXo6OXIclMeQmVW2ELN5Ww/tkl9Mjs1M+5A7e+alVq1IpLEHraKiow9Xre020pc4/95KhO2/8OSK13qQpDuCD+ONfWHY6bYKLhbq88JpT3BDcbkX6jIF0EXq4lH7AlfQ2dIiDqWMDGpmh7+UVDDCdman3g6w=
+	t=1756391200; cv=none; b=FrR0qB/r8tgIYkICe4LZEiu8rPJYypKMkfaAieq2XAQHlf1QI3dbQCqwPikYwppPKETULJLcG9S7Gi7awq0i0MuQ1Ao4OydYyJSNrhR/NQVTW/UrKF06qhKmBvOHdQYxEQmC2GWhEQq/AyJ8+Oo6OQEkPau46ea+XW9yNbmOLGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756391084; c=relaxed/simple;
-	bh=/FUZ3GPbSoHCMLnSSqyt2z+YmIiFI7VibbClJvvxduQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=QdBA8EPRgFMGizzsYCp4kI180kUyZMMpi8gkf5f2LBNQ1IrFlAOzd7P4lWCSZWO61zMHNGyr5k6YXavyzO2XUETzzxvTk/X8OALK1Z7/svo4SFqMATOduFOOMNBgnYKJMF6sNYfYkF2qrUFytzP6Nal6p5HKsC5WfT2GDoPbvf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lqlIZZOH; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-afcb72d51dcso142520266b.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 07:24:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756391081; x=1756995881; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8zQUneuXaOfUh+xTN94Xip4u0CuKfuimGc68GwyO7co=;
-        b=lqlIZZOHTZZ4xnW5Jelr/XU2Km2WfJUvHfQi0emQxM1RN8qSYHX5ZJSsMLfCqfDnwf
-         UOMod4sjvwZpd81O/N2etmRRYaOpLPDP1SSMj2g3y82T5ufgvFnDpO7Q53z8DuKtvHI4
-         h0o2CGP+gQvZGFUgDG4JI5OEjGKt8knAARZ+NDXoIVQO1vFFb3H122Wx1o5VACwITD8y
-         txfvi2kbwdHxwJo2trD2ImvIK+G/2zkmzYfnvsJihtTkjtDT7l7Cc2tda7TcGzvh8TAv
-         TZXzzl+bRqR67i3SWJt/pbYx+4eLAMC02yPWqXuAjOs0yC1tfkGOajbCHoYP1EOAYU+/
-         RNjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756391081; x=1756995881;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8zQUneuXaOfUh+xTN94Xip4u0CuKfuimGc68GwyO7co=;
-        b=oE1P+3z1U1hCPdCCwHs7SWg4lSTPQLUvb3TganqC3QdbE/V1PtMvfzFbQuIUCQ7Lpo
-         WWMgf2/FFaOqOpVZWRPOqQefkmCrpzmKJalCzzyfHaB3blo6oZF5tDfzZ5WFQf/SlkbH
-         voL3tJvIce5aWYlxoozvTr5dYjTrsJWQnlBRQc7fjXvkwUhxYlaqhEqY7GX7f9qvx9iO
-         /QIRwka5t1U9uwTZDFcqusF3KDFlMqz3sxCnRA5F42yi9SnjcikXhM9LaKrvBIO6GuSC
-         dKw4+ToDA87ccIWe1xM8oeWo/M5U+4i0prfJTCXfEdfmu+FA0HurkgUV6AqiHDt31RgW
-         dNnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV477RcMS6tnh+/fQJlEfGkKmWAIzxkWyDbF7a9mYHZHspYjWX0qcsT8vbV2srlM5YK6qU3EMxaNWN1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxww/OPw5Uj0isDcsVgxN8cXW8R4OFBf3DW5JZRUkGhFheidudb
-	wEJQIrmWd5PTL//cBQnootoQQ22lebR/I8O44OOl+euvoXn85Wb7Jqe734djCopViTc=
-X-Gm-Gg: ASbGncs+BMUqZhVQUhOQGh5wU7jDfeJW3mFOkMKEk7/pzcZLQhbn3uJLyaxKijQZ05N
-	xf1M8In8wON6MjyavY9CynVvKJt+oKtr1h0cdSsbxnEl8kpmTm6diH6OL6J8+q9rsJMLiPzETqr
-	qeH8AEks+c4a3wI+Ys44b8FGUPzWYphpqiLNAG6QbfA6N6u/OVsc7J8I1p01LArwT67YnHtT13D
-	4NISBYUb9Xzo8uWI34yULFD26uoBuiSLJhleJNxGCAAaefvATPMqruRc+TlxN75vLWH12PYtq0v
-	Q29mNWgIlpBQbf7QMgvOfmmc36HUPLw4ty3welT4lWxD5cxXildj2OWvCev6m/7bJ0RefuR/EMo
-	6Cb1A65jVx2kQULifnGqENatzpN9X1+cZwgnwbPKtnIoK5DJnE9G6vyEkb04BWrRvWCSKi2x3j5
-	DAYQ==
-X-Google-Smtp-Source: AGHT+IF1vN7HT36zey49ZEbRrWO4fa06Ex/wR33zWhhQXlp86FpsFXiY/mB0hsHLpGg2OthL7HWsng==
-X-Received: by 2002:a17:906:478f:b0:af9:8d61:2651 with SMTP id a640c23a62f3a-afe28ec535emr1937046766b.9.1756391081186;
-        Thu, 28 Aug 2025 07:24:41 -0700 (PDT)
-Received: from [10.41.150.230] ([77.241.232.9])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afef7489f8asm44327966b.69.2025.08.28.07.24.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Aug 2025 07:24:40 -0700 (PDT)
-Message-ID: <a9c40b7d-d70d-48fb-b4a0-deb773969936@linaro.org>
-Date: Thu, 28 Aug 2025 16:24:39 +0200
+	s=arc-20240116; t=1756391200; c=relaxed/simple;
+	bh=eJLj6KGnW/fcNI9Ld99rs+rSvaWSeJCbGunuVMEqCVY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Dd/6TFgeCCdkzeic+x03ioQHbLIl47vhvqaxCPNUhsdvy78DeHgZVAlinIfwrALJlSyj7aay2ertBLCkXf8nmL38Qn4TTfIVF1KoDZd3K+hbbLD3J/C8c0wXGKi9hZDGK+M3pyejrTYjuOiqAqAcU5sSwopTjn8zanFdcoqLJIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n7tzR99K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7085FC4CEED;
+	Thu, 28 Aug 2025 14:26:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756391199;
+	bh=eJLj6KGnW/fcNI9Ld99rs+rSvaWSeJCbGunuVMEqCVY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=n7tzR99KRMQSjLfO82sNklVWv3+11sgpF3dpnMZZzMG7QnfA0eMjkbhJhU9GbKUmz
+	 G3YHGZ8cHlKjowIOz2ScbElYUFyCEaIkd76j/ETGLZ5p7yxtYPdeUh4K6NAVlOz/1X
+	 EHmtoAWYjPHP1Asfx7E2KeEnNpWHWcSkml1uwXrtCD096KM7mz/NxJuFW0M7+JV2b9
+	 zt7n2cRFNYJ72v96/EIZJYty0/JFqk2KfrUIxTEvndJNofkMGBvY+eCN9Kqav2Qfyx
+	 GJju+Rq1WfS2AEUjU3QPgagmqT65hecBrA7O9hVon4sfXRadstCJm1tsll2eoA3d1s
+	 OpFr53KHhyiTQ==
+Date: Thu, 28 Aug 2025 09:26:32 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: qcom,sm8550-iris: Do not reference
- legacy venus properties
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250823155349.22344-2-krzysztof.kozlowski@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20250823155349.22344-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-tegra@vger.kernel.org, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Thierry Reding <treding@nvidia.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Prashant Gaikwad <pgaikwad@nvidia.com>, 
+ Thierry Reding <thierry.reding@gmail.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+In-Reply-To: <20250828054403.7112-1-clamor95@gmail.com>
+References: <20250828054403.7112-1-clamor95@gmail.com>
+Message-Id: <175639108933.1621673.15061755256457797674.robh@kernel.org>
+Subject: Re: [PATCH v4 0/4] clk: tegra: add DFLL support for Tegra114
 
-On 23/08/2025 17:53, Krzysztof Kozlowski wrote:
-> The Qualcomm SoC Iris video codec is an evolution of previous Venus and
-> it comes with its own Iris Linux drivers.  These new drivers were
-> accepted under condition they actually improve state of afairs, instead
-> of duplicating old, legacy solutions.
+
+On Thu, 28 Aug 2025 08:43:59 +0300, Svyatoslav Ryhel wrote:
+> DFLL is a dedicated clock source for the Fast CPU. The DFLL is based on
+> a ring oscillator and translates voltage changes into frequency
+> compensation changes needed to prevent the CPU from failing and is
+> essential for correct CPU frequency scaling.
 > 
-> Unfortunately binding still references common parts of Venus without
-> actual need and benefit.  For example Iris does not use fake
-> "video-firmware" device node (fake because there is no actual device
-> underlying it and it was added only to work around some Linux issues
-> with IOMMU mappings).
-> 
-> Stop referencing venus-common schema in the new Qualcomm Iris bindings
-> and move all necessary properties, except unused "video-firmware" (no
-> driver usage, no DTS).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   .../devicetree/bindings/media/qcom,sm8550-iris.yaml | 13 ++++++++++++-
->   1 file changed, 12 insertions(+), 1 deletion(-)
+> Changes in v2:
+> - dropped 'drivers:' from commit title
+> - aligned naming to Tegra114
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> index c79bf2101812..320227f437a1 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> @@ -26,6 +26,9 @@ properties:
->             - qcom,sm8550-iris
->             - qcom,sm8650-iris
->   
-> +  reg:
-> +    maxItems: 1
-> +
->     power-domains:
->       maxItems: 4
->   
-> @@ -45,6 +48,12 @@ properties:
->         - const: core
->         - const: vcodec0_core
->   
-> +  firmware-name:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
->     interconnects:
->       maxItems: 2
->   
-> @@ -69,6 +78,9 @@ properties:
->   
->     dma-coherent: true
->   
-> +  memory-region:
-> +    maxItems: 1
-> +
->     operating-points-v2: true
->   
->     opp-table:
-> @@ -85,7 +97,6 @@ required:
->     - dma-coherent
->   
->   allOf:
-> -  - $ref: qcom,venus-common.yaml#
->     - if:
->         properties:
->           compatible:
-Reviewed-by: Bryan O'Donoghue <bod@kernel.org>
+> Changes in v3:
+> - add DFLL support for Tegra 114 was split into dt header addition,
+>   DFLL reset configuration and CVB tables implementation.
+> - added cleaner commit message to dt header commit
+> - added T210_ prefixes to Tegra210 CVB table macros
+> 
+> Changes in v4:
+> - expanded commit message of car header adding commit
+> ---
+> 
+> Svyatoslav Ryhel (4):
+>   dt-bindings: reset: add Tegra114 car header
+>   clk: tegra: add DFLL DVCO reset control for Tegra114
+>   clk: tegra: dfll: add CVB tables for Tegra114
+>   ARM: tegra: Add DFLL clock support for Tegra114
+> 
+>  arch/arm/boot/dts/nvidia/tegra114.dtsi     |  33 +++++
+>  drivers/clk/tegra/Kconfig                  |   2 +-
+>  drivers/clk/tegra/clk-tegra114.c           |  30 +++-
+>  drivers/clk/tegra/clk-tegra124-dfll-fcpu.c | 158 +++++++++++++++++----
+>  drivers/clk/tegra/clk.h                    |   2 -
+>  include/dt-bindings/reset/tegra114-car.h   |  13 ++
+>  6 files changed, 204 insertions(+), 34 deletions(-)
+>  create mode 100644 include/dt-bindings/reset/tegra114-car.h
+> 
+> --
+> 2.48.1
+> 
+> 
+> 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250825 (best guess, 3/5 blobs matched)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/nvidia/' for 20250828054403.7112-1-clamor95@gmail.com:
+
+arch/arm/boot/dts/nvidia/tegra114-tn7.dtb: /clock@70110000: failed to match any schema with compatible: ['nvidia,tegra114-dfll']
+arch/arm/boot/dts/nvidia/tegra114-tn7.dtb: cpu@0 (arm,cortex-a15): 'operating-points' is a dependency of 'clock-latency'
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm/boot/dts/nvidia/tegra114-tn7.dtb: cpu@0 (arm,cortex-a15): Unevaluated properties are not allowed ('clock-latency' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm/boot/dts/nvidia/tegra114-roth.dtb: /clock@70110000: failed to match any schema with compatible: ['nvidia,tegra114-dfll']
+arch/arm/boot/dts/nvidia/tegra114-roth.dtb: cpu@0 (arm,cortex-a15): 'operating-points' is a dependency of 'clock-latency'
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm/boot/dts/nvidia/tegra114-roth.dtb: cpu@0 (arm,cortex-a15): Unevaluated properties are not allowed ('clock-latency' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm/boot/dts/nvidia/tegra114-dalmore.dtb: /clock@70110000: failed to match any schema with compatible: ['nvidia,tegra114-dfll']
+arch/arm/boot/dts/nvidia/tegra114-dalmore.dtb: cpu@0 (arm,cortex-a15): 'operating-points' is a dependency of 'clock-latency'
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm/boot/dts/nvidia/tegra114-dalmore.dtb: cpu@0 (arm,cortex-a15): Unevaluated properties are not allowed ('clock-latency' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: /clock@70110000: failed to match any schema with compatible: ['nvidia,tegra114-dfll']
+arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: cpu@0 (arm,cortex-a15): 'operating-points' is a dependency of 'clock-latency'
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: cpu@0 (arm,cortex-a15): Unevaluated properties are not allowed ('clock-latency' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+
+
+
+
+
 
