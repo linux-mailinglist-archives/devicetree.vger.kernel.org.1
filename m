@@ -1,167 +1,133 @@
-Return-Path: <devicetree+bounces-209961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D353B39A46
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 12:38:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59580B39A92
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 12:44:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1271016C2CF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 10:37:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 261C716DBB4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 10:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 178AF310630;
-	Thu, 28 Aug 2025 10:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF0927FD6B;
+	Thu, 28 Aug 2025 10:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ooZnDxoY"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="MspmvlIY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698993101DC;
-	Thu, 28 Aug 2025 10:34:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF80230BF6
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 10:44:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756377292; cv=none; b=XVDYrJTSwznpbIrx/Fe2rvS/rGHYCOzP6AH+42kCoAM35kAc/pDp5g/9M21RaRlhQ07LnTbgsOquOxHrsAqXprhnBKQbsIVRNbpisFKre9BRzakwxtKx98Fk0kqNXPk7LLwowlTmv4aieSorQecwFg0hWTYfjba9Sm7GxG242+w=
+	t=1756377893; cv=none; b=WOxhRhX9JsjZKVJ3z+McmtvYVK9exGWqJdQfTpfNRCjYA0s8PSCWAjU6BekVOQmmQFy8kpgueoXQloRTApSRljj/AWsGu/cxI9iuea/L650v95RlL99YYveSRVUAtEvgh3WYMLvzxmKqpjjzfbphtGpZUayyd0uY3OyGI12VNx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756377292; c=relaxed/simple;
-	bh=fnZWzDDTTDEeBhEL/SWi3sXl1ujwKnlewazpL/KxiIY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=khufGenTrsuu/NzQdiUymrvk6pxRn3Pxbk3+3WRh745Nv0NXw01qur/RToaN7VG+KY8g4fhGFcTq4dJh6RSork7TFiNrr2XFHhc1G//kUOBr4E8Ln1mi9QLquZYfNQ6dviY2y0zWkGc3H1SXVfEfEunREgn9J9Ndt9/MZMA9Gno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ooZnDxoY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57S61Y0R030523;
-	Thu, 28 Aug 2025 10:34:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Y1yWgRltFJNThhSeNnr24vonmIf66fXtjWEcKmCdkMs=; b=ooZnDxoYtsFEDTc/
-	ZKNklLem5AgMSdydlYa3TW/QsvEHYADpYnP1FV5fVQK8zmV1zEVxzHMhB7nw2F8k
-	KVPH7s8qR7UzIW4JiUohCzez+nP04Hk/plwByoxANpODCXH+KD+n71MPgpVBMVSM
-	EfWf5rWXdQErtMaVOSo/b1oaIIlN0wNUhw2cfMW6nISyJ8EhaLqMUf2HqkLa/XLH
-	UsQN8ItVvXXqlao2L07LWRV7Vt7mNDBjU4E3CNE0vyqoEVLjzJ/QzVxR4i2QvJMe
-	oayMXrplBKjdczarTX5XNzmAuiRRalohg3DbufoO0Ut/xMx/DdrMUiLSKpjWeAwt
-	x1xFgQ==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q5unyqx8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Aug 2025 10:34:37 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57SAYaIX009292
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Aug 2025 10:34:36 GMT
-Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.24; Thu, 28 Aug 2025 03:34:30 -0700
-From: Luo Jie <quic_luoj@quicinc.com>
-Date: Thu, 28 Aug 2025 18:32:23 +0800
-Subject: [PATCH v4 10/10] arm64: defconfig: Build NSS clock controller
- driver for IPQ5424
+	s=arc-20240116; t=1756377893; c=relaxed/simple;
+	bh=vxUXFMXRQhY+qssMWwIMNlGOo6A7Xk4teYSKAJNdFus=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=cLJ4vhohkg4+m5Q0oRxSUU0YAHPkQIaH0EjEqyOPoz8gy1QceZAG9tB4RXIiajq9BF/jyven4TICtj1fsdKnFjVeSYqT5QjVsgevqxVbMVsk2NE9HQEPlS2ZMRJ4Sa8HqQBzZ3RyMiiq59/S2fGIod2LVBq0pLmLvf3pbisAj1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=MspmvlIY; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:mime-version:content-type; s=k1; bh=V6/6PA9gnZwf5PD17gz4dt9Dlnf
+	3XxoXBeUDvES7GC4=; b=MspmvlIYxEL+J4KQx6DUGJga9ja2TC3elpOXGVTr6pO
+	jIgnvZzlTWVhU70B4ibRfvCvcS+vOGWcHtv4bwPc19Mu8OJUlf+h7zmjAaKkgAhQ
+	gYBojtwTkMX+5apbpFdvfGBA8ibbD+KvokEULPdu9Uaszknt9WmtCitq50cIg1bZ
+	aHVjSb5n+k4URWsW6OfO48xeEE8Yvzui0WI8ntswYYiOD4DvzFdeE0GRSCGhM7T7
+	q8E5OxZHEHckIF3u4AChxQ/0diHHZnqsv2APsy6yqtvZl1leb88tmek5ApGZM6Dw
+	TQOuUIZhsYXGAbt2VscNiO+huK84AFA6LjVmugeaFgQ==
+Received: (qmail 977142 invoked from network); 28 Aug 2025 12:44:48 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 Aug 2025 12:44:48 +0200
+X-UD-Smtp-Session: l3s3148p1@owcamGo9xIYujns8
+Date: Thu, 28 Aug 2025 12:44:47 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-soc@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Subject: [PULL REQUEST] i2c-gpio-fixes-for-6.18
+Message-ID: <aLAzH6QtnDJrX8fN@ninjato>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250828-qcom_ipq5424_nsscc-v4-10-cb913b205bcb@quicinc.com>
-References: <20250828-qcom_ipq5424_nsscc-v4-0-cb913b205bcb@quicinc.com>
-In-Reply-To: <20250828-qcom_ipq5424_nsscc-v4-0-cb913b205bcb@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Varadarajan
- Narayanan" <quic_varada@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>, "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Anusha Rao <quic_anusha@quicinc.com>,
-        "Manikanta Mylavarapu" <quic_mmanikan@quicinc.com>,
-        Devi Priya
-	<quic_devipriy@quicinc.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Richard
- Cochran" <richardcochran@gmail.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <quic_leiwei@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_suruchia@quicinc.com>, Luo Jie
-	<quic_luoj@quicinc.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756377205; l=836;
- i=quic_luoj@quicinc.com; s=20250209; h=from:subject:message-id;
- bh=fnZWzDDTTDEeBhEL/SWi3sXl1ujwKnlewazpL/KxiIY=;
- b=QqoRsoE3aSZB7IMCaaRQ+SWfy9305NzoUFxWZ9tv5hjB5SCuPWKG5x65dkSX0FW22K/DmjHYU
- c1BXiLMU5RIAYNVwABYjP7LV8p3eVNg2gfAVBitbwLg7K4Q0fnSnIKN
-X-Developer-Key: i=quic_luoj@quicinc.com; a=ed25519;
- pk=pzwy8bU5tJZ5UKGTv28n+QOuktaWuriznGmriA9Qkfc=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Jaa7YkFiUQJ3JfNIWHgZEilIZTpZOk2M
-X-Proofpoint-ORIG-GUID: Jaa7YkFiUQJ3JfNIWHgZEilIZTpZOk2M
-X-Authority-Analysis: v=2.4 cv=JJo7s9Kb c=1 sm=1 tr=0 ts=68b030bd cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=KKAkSRfTAAAA:8
- a=COk6AnOGAAAA:8 a=ikIlBLl75NxfxiEf-eQA:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzMSBTYWx0ZWRfX5sqGnZ3NCw8g
- nIjG1uRXk46rA0m9oYCnzlKnEIMt81+H7Jjf2CG6CwrbQ2zoGoRCgJXWsrVDSbYnywQzy59R9qh
- 289eNnIMWILoie0r44+zNbYDd8MOM5pvI2XvcOY8oIgOlkEj2raCVxnKEl3XSG6eACB0Kqgk1Xh
- DqjQLm5VYyzrL8Dn+43qgbZGpwa4zxgc4G9y3gRzKy6VxNr7PNk0eVMojEV2QqBZXEvQ2eO7BPb
- QnDfXFmcP6Uh0GIiIr5roS0NSLwqNHwrWhnE2r0EQ8/hSPon0dm2Y5gdG8L3ldnzpqowulSBzAa
- XxzmyoVhaz6txmOVGAdaZ+Zv6zTqgX6UOa71+XQOo0kpmiSHLEEyVW76s9qD2mxTLrarcMiRZg0
- qabs+CtA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-28_03,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 bulkscore=0 spamscore=0 impostorscore=0
- malwarescore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230031
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7aWwOLTt3YsiDlMz"
+Content-Disposition: inline
 
-NSS clock controller is needed for supplying clocks and resets to the
-networking blocks for the Ethernet functions on the IPQ5424 platforms.
 
-All boards based on the IPQ5424 SoC will require this driver to be enabled.
+--7aWwOLTt3YsiDlMz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Hi,
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index acb6807d3461..013325255119 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1379,6 +1379,7 @@ CONFIG_IPQ_GCC_5424=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
- CONFIG_IPQ_GCC_9574=y
-+CONFIG_IPQ_NSSCC_5424=m
- CONFIG_IPQ_NSSCC_9574=m
- CONFIG_MSM_GCC_8916=y
- CONFIG_MSM_MMCC_8994=m
+these patches were dangling for a while. Linus suggested that I send
+them as a pull request to linux-soc. But maybe DT people want it? I
+don't mind. Would just be nice to see the warnings go away.
 
--- 
-2.34.1
+Happy hacking,
 
+   Wolfram
+
+
+The following changes since commit 1b237f190eb3d36f52dffe07a40b5eb210280e00:
+
+  Linux 6.17-rc3 (2025-08-24 12:04:12 -0400)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git tags/i2c-gpio-fixes-for-6.18
+
+for you to fetch changes up to ed8c952aee4183ac866a83397e12ceb99493c6ad:
+
+  ARM: dts: stm32: use recent scl/sda gpio bindings (2025-08-28 12:33:26 +0200)
+
+----------------------------------------------------------------
+i2c-gpio-fixes-for-6.18
+
+We have dedictaded bindings for scl/sda nowadays. Switch away from the
+deprecated plain 'gpios' property.
+
+----------------------------------------------------------------
+Wolfram Sang (2):
+      ARM: dts: cirrus: ep7211: use recent scl/sda gpio bindings
+      ARM: dts: stm32: use recent scl/sda gpio bindings
+
+
+with much appreciated quality assurance from
+----------------------------------------------------------------
+Linus Walleij (2):
+      (Rev.) ARM: dts: stm32: use recent scl/sda gpio bindings
+      (Rev.) ARM: dts: cirrus: ep7211: use recent scl/sda gpio bindings
+
+ arch/arm/boot/dts/cirrus/ep7211-edb7211.dts | 4 ++--
+ arch/arm/boot/dts/st/ste-nomadik-s8815.dts  | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+--7aWwOLTt3YsiDlMz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmiwMx8ACgkQFA3kzBSg
+KbZfvA/9HxYpDf+7k+rdVs3C7Fw5r6ryFUbjUcuHLseA//OuAvX25kmFCelUgNc2
+orzIHutuAinGtBiiuSazJ3IMvuqKFoOj0zfqgVEGKaOEjkEYDZQgrW5Y2XWhWI5n
+RftR0uiESamrigqKcBPtfHvLMUUn30wLCZCw1CJJw2/gtWr/RcGPnBlz9z5DpDOd
+66iWwUzoaOUboISKfnaunz1Tc19NVZ3Th4p4M4fH011IulsBlMRVnZKV/4DThECX
+bZVYaVaiRDx2d62IKKOMLCNrP2d3ve8BFvpTCYIHF7ddvTHgENXoNSLO6YJChNiL
+/lpX/hM/M918uvqltx5mDDE7vhX09uW6IEC6Vu6kXFuwZsWb1e3pNSYnMP65S2UN
+lMaqmQMivXBR+leHIR3AjipLgQr08y+K6EY8QneO810q4AVGpEY7eldCbQeducqf
+HsdnOpLO0eGlvls0FwM05AJgjDW6/ufjsMiWnbTLhtmR3r6j4DAa2TTB/9r4uq9s
+ZV7E1ouKY8Gkfn5LbjKO6GKh6deHeHom3kuvVqG3DFUmj++XX02hPT92iZPXekAc
+dir9fLs+8VtoYqRPPzVuoqyAFIZrVuYpLDL4WB3eKqohfU25zf3a3twlzCBpxTqH
+RGlmtVckzdc+MDLCymDkYZfO9GvRlxWALXyXl6zC8h/19rqWbOM=
+=A7RR
+-----END PGP SIGNATURE-----
+
+--7aWwOLTt3YsiDlMz--
 
