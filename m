@@ -1,202 +1,252 @@
-Return-Path: <devicetree+bounces-209966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBF18B39AFB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:05:44 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3482B39B1E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:11:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98D803BCE7A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 11:05:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8C9D04E2AAA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 11:11:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB8730E0DF;
-	Thu, 28 Aug 2025 11:05:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A66430DD29;
+	Thu, 28 Aug 2025 11:11:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dkzNktIe"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kU3lCAWd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF7D730E0C8
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 11:05:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7BAA2F39DD;
+	Thu, 28 Aug 2025 11:11:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756379124; cv=none; b=nYHK5CRT9HS6aYvLHt4RiNwZpUVsg6byeeQ3t33gvwXoKinZTePW25Te/UPkbeH5pXdmM7eYtxgwmDOlKoDRpcjwya/nw2hQThd75baS7Buf5atZp+1Ya4nQR07rGZal0wl942CwCzndWH3mRsUOhnFWNxOTC5i5WYGUlDzCYPU=
+	t=1756379480; cv=none; b=d11Nx5XkazE5Bn0s5leEdPhDTZ5LhyGXy+2wxmAW8JCRKlaeEf8iKcGiXgjsVJK5ZK9cIGH1xkW9alctv8dIg0n1cCeNUXmGfO7HjwH7zEHT1A1fny9OQDS6EW/OALhz7valDZHnDjcG/kfWgNzbHA+MvTBdmkLGc039JDWjx2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756379124; c=relaxed/simple;
-	bh=e03dVCkvTvpanWPDwCJj9vnAVCkN3SPLyZbfuEJYznY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UeZlv51ReIGFkjLewRxWnczn1txPHVDGySigvMh9+rG7XtN6xcKcNzceOmrsQVBBMhaJOwK0VDw7WSU8DFgYyGmjKGL+H0VdDo+/L06RRh0XDzhXwI1L6RCXH98puP+4hK7jTm0Gvoen7tR5un4hD1sVETgRsd9wkna77eLL5no=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dkzNktIe; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57S6DMOb027503
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 11:05:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GWz4EmxyWXf7dXG5o/SW5rNMyyXGmYaGBN9NZMKjXjw=; b=dkzNktIes08QLczO
-	hlxo3ShN3hIS6b4EPWNK7XpY0ycS08KtG+q8doSF83aKpqd8BIjg9xWQfREPwSgH
-	MQNIkYh6KYv64gvNZgoCoJKybu/BjmFW3o+p7V0K78upoKCyHZ2Bw2f6Ak14MLdK
-	HGUgeeSx5sYiI6+kuCH31IWr/5fNHnVVi4iPifl//6dCEHs2spk8IfxR3r96dODv
-	jfXHjwiWOdPTWCYQT7zTp+2bCJqHQQ8Xs1ZProWWlP3TLDlGCvVlz7COfXqLDPhD
-	2gtdzc08CYCrgXLmuh8p25hghTl8KsKLuHAfPfMY1dahPyKzPoDYFu7Jqxb5PZrK
-	EVWzdw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48se16y080-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 11:05:17 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-70dd6d25609so23482576d6.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 04:05:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756379114; x=1756983914;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GWz4EmxyWXf7dXG5o/SW5rNMyyXGmYaGBN9NZMKjXjw=;
-        b=pGBu6A19Zh4G2iUJvVnAhRFYVoIIul9KDLv/j20PEOszJN6JPhI5O+EU0UyiEPEpby
-         ApOOaT/SHmyNNAF0OHQ2M/BpoQV6QKRn4y9x25SH9Pz8Q4J7H5oY3ygTY3wEomcvX4x4
-         JFdYvZGB4DvxocUOgNt1GfqfJmp+cYIKRPOlZqJCb5cnSeKwCWK89Yu7lCF47M7fLRQ+
-         Dg28LKkt9fb3Rh41q29Los+ZwUA+DlIVx4Oay9sx5kRE68Ko1jBiphVH1viOuShr1eGM
-         /AxpY0NMZShPC42i9XLMFQGaYJJ9bURn30RxiALMHzhHpF9VGJkFPJPNHdIVcjZH/CB9
-         Mg/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWCDjtfaDcQemRQy+qW6hZ5E6JWUDpE9PynZmTgOnyndVmf5LhGG5WljEq+RJqf4nFkLJ5RFmAIr910@vger.kernel.org
-X-Gm-Message-State: AOJu0Yznq5D1UEq70v74q0EZD6FT/qce61dLWPRlKr325+teLUwGXyMa
-	NucT5rmyUr21hwENPQwnZY41TuF/1/wUfZI0li55gtYUKR66MyqZ2WbwgR1ctRAIrYSVVJI4ztF
-	WAB04nl1Bf99w3Ukchn632uZ2W061QknY/FDbjhYfx65P2+GH5RUqw+k9n6Az8fou
-X-Gm-Gg: ASbGncvU66q1Il0C78rBBTJ40/ViTUSc2cQ1asyGLGv72KarK0KcwjDH51lWtYeq6v1
-	aKGoqf4XxyjBh2p09Jumu88zfk3DUhhdTkR+uiLJLTOU5xDwT5KHYaDSnlK1dN+p03W0eSY3Kup
-	1uATXRtHuiIVqG5ej0vNlNeB95Hx8MF8QsOAps0eNI9S4E8rJWVNS3EKtxcfe3tVMjWSqi3l0Qk
-	3M//YkHp945RsJkZgLuYf6YuMwaeswpbLUbIE+FBzS0BTtuXQ69K1R76ePPLmGAuGSF6GPnv6XS
-	Y0GbJPHq5xezP9Hg8BY+Lebevlscqs+4Wai58JoW82Pk8/G9+8D40EawjuhGt2Qj8ufnu6FEnlA
-	2zk9r5KM7XkS3Q1WwgW4mTDSBmnT8YfXD9zMhZiDJFic=
-X-Received: by 2002:a05:6214:1312:b0:70d:9291:bdd8 with SMTP id 6a1803df08f44-70d97109866mr271525966d6.30.1756379113414;
-        Thu, 28 Aug 2025 04:05:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGLnBHAxYeOFUCjvzXXjJoPfriPl5kZ9soekFn2bdbrOltVRygzUC2PVtjW1wYnOgDWaHGQnQ==
-X-Received: by 2002:a05:6214:1312:b0:70d:9291:bdd8 with SMTP id 6a1803df08f44-70d97109866mr271524786d6.30.1756379112368;
-        Thu, 28 Aug 2025 04:05:12 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0c3:3a00::4c9? (2001-14ba-a0c3-3a00--4c9.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::4c9])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3365e5da244sm30163331fa.58.2025.08.28.04.05.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Aug 2025 04:05:10 -0700 (PDT)
-Message-ID: <28b33851-24eb-428f-b046-b145342fd982@oss.qualcomm.com>
-Date: Thu, 28 Aug 2025 14:05:09 +0300
+	s=arc-20240116; t=1756379480; c=relaxed/simple;
+	bh=RgsKuFALNXze+uheWEehna21G8m95dXSHQ+Ws/HfTd8=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=YChGR0er9voa0bGTj+fG33+eOzs0XX1GDT1sStJw4f+9u8nsn/gUmaNg1eZrVkAbGZA11rofzT9zYmUYDMlNHnXcedYHPIOfonUA5LC84Kif8aq3g0Zj3ppI/iYFeLhOYtmVPszpkN2diovcGIf5ed31DKTD9pcOFHjBZMbKo7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kU3lCAWd; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c69:1331:996f:e361:948:c527])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9BEDE20EE;
+	Thu, 28 Aug 2025 13:10:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1756379405;
+	bh=RgsKuFALNXze+uheWEehna21G8m95dXSHQ+Ws/HfTd8=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=kU3lCAWdR/47kPIV88oiekKv3yLNpYofomh9Ei7Gi1/9Tw4dDsVf+UVPVzLWFKT44
+	 kil+RJzdrEf+8jpqNOXJLPE6tKhOib57/brVfvaPT+b5u2fof+TMXzWwe3FqDy8AR6
+	 ugYjMTqWA05176AF7utVNgYHj+Hn9TyuLfDlfXyo=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/14] dt-bindings: display/msm: dp-controller: Add
- sm6150
-To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, fange.zhang@oss.qualcomm.com,
-        yongxing.mou@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, quic_lliu6@quicinc.com
-References: <20250820-add-displayport-support-for-qcs615-platform-v3-0-a43bd25ec39c@oss.qualcomm.com>
- <20250820-add-displayport-support-for-qcs615-platform-v3-1-a43bd25ec39c@oss.qualcomm.com>
- <75ra2ofecqu6tid6kr4hnyuztpl6jjaq2ksyquafyajhq2sa4d@4tkggrdqky7y>
- <8918feef-219e-4e69-8901-367189f5066d@oss.qualcomm.com>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <8918feef-219e-4e69-8901-367189f5066d@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: XFec00aJEZq9LDO9BxKaXV73RT5_tVQu
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI2MDEyMCBTYWx0ZWRfX9AdSS/QCR4k1
- 0yydj5LkQOPT0LBUbz3nLJQtF++5ZpfX7vC78c3wwLVmY08W4Ufi9WdtKaIsau7X3PjSNDx5oG4
- X8PaovFxd5GXshC1/X7f7JiCDiWlkeCOfCTiq8QRso1lGsAHDU4kbgVwGcVEjS/QDSHZI6Lt92V
- b0Sv7gAaV3LI+JdhjJAo9QcgJiDaySbPQfz/xlaROiZNZECIG5TyHv778pQeWA26inPhNmPwQWS
- xg9ByzG1fQ1GtttAU5bpxvlnf8JaG9i9MUf1ZNPvij572yL1yuAAlqOmu5uhx/BAx0jZDAOvA6R
- 7lYbHmcQumuvfPYAJ4cUh+CrBQ6KEJRiSZ3H5caUdDtQtKGHLjoH3/HiyMKprf22GWfgsHAFhqO
- CHf4GJ6m
-X-Proofpoint-ORIG-GUID: XFec00aJEZq9LDO9BxKaXV73RT5_tVQu
-X-Authority-Analysis: v=2.4 cv=CNYqXQrD c=1 sm=1 tr=0 ts=68b037f0 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=KSO3TaR41uafEWVwNF4A:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-28_03,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 priorityscore=1501 adultscore=0 spamscore=0
- phishscore=0 suspectscore=0 bulkscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508260120
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250825142522.1826188-8-r-donadkar@ti.com>
+References: <20250825142522.1826188-1-r-donadkar@ti.com> <20250825142522.1826188-8-r-donadkar@ti.com>
+Subject: Re: [PATCH v5 07/14] media: ti: j721e-csi2rx: get number of contexts from device tree
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: r-donadkar@ti.com, y-abhilashchandra@ti.com, devarsht@ti.com, vaishnav.a@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, tomi.valkeinen@ideasonboard.com, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
+To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
+Date: Thu, 28 Aug 2025 16:41:04 +0530
+Message-ID: <175637946417.1633224.8030756212311298506@freya>
+User-Agent: alot/0.12.dev28+gd2c823fe
 
-On 28/08/2025 07:51, Xiangxu Yin wrote:
-> 
-> On 8/20/2025 6:18 PM, Dmitry Baryshkov wrote:
->> On Wed, Aug 20, 2025 at 05:34:43PM +0800, Xiangxu Yin wrote:
->>> Add DisplayPort controller for Qualcomm SM6150 SoC.
->>> While SM6150 currently shares the same configuration as SC7180,
->>> its hardware capabilities differ. Explicitly listing it ensures clarity
->>> and avoids potential issues if SC7180 support evolves in the future.
->> I assume, it has no MST support. Am I right?
-> 
-> 
->  From sm6150 ipcat, I found MST-related registers and pixel1 clk definition.
+Hi Rishikesh,
 
-Then please describe MST as the main difference between SM6150 and 
-SC7180 (which doesn't have MST).
+Quoting Rishikesh Donadkar (2025-08-25 19:55:15)
+> From: Pratyush Yadav <p.yadav@ti.com>
+>=20
+> Different platforms that use this driver might have different number of
+> DMA channels allocated for CSI. So only as many DMA contexts can be used
+> as the number of DMA channels available. Get the number of channels
+> provided via device tree and only configure that many contexts, and
+> hence only that many pads.
+>=20
+> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Co-developed-by: Jai Luthra <j-luthra@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> ---
+>  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 42 ++++++++++++++-----
+>  1 file changed, 31 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/driv=
+ers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index 4e1c9db0dcf5..6cab7642aa10 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -44,7 +44,7 @@
+> =20
+>  #define TI_CSI2RX_MAX_PIX_PER_CLK      4
+>  #define PSIL_WORD_SIZE_BYTES           16
+> -#define TI_CSI2RX_NUM_CTX              1
+> +#define TI_CSI2RX_MAX_CTX              32
+> =20
+>  /*
+>   * There are no hard limits on the width or height. The DMA engine can h=
+andle
+> @@ -57,8 +57,8 @@
+> =20
+>  #define TI_CSI2RX_PAD_SINK             0
+>  #define TI_CSI2RX_PAD_FIRST_SOURCE     1
+> -#define TI_CSI2RX_NUM_SOURCE_PADS      1
+> -#define TI_CSI2RX_NUM_PADS             (1 + TI_CSI2RX_NUM_SOURCE_PADS)
+> +#define TI_CSI2RX_MAX_SOURCE_PADS      TI_CSI2RX_MAX_CTX
+> +#define TI_CSI2RX_MAX_PADS             (1 + TI_CSI2RX_MAX_SOURCE_PADS)
+> =20
+>  #define DRAIN_TIMEOUT_MS               50
+>  #define DRAIN_BUFFER_SIZE              SZ_32K
+> @@ -118,14 +118,15 @@ struct ti_csi2rx_dev {
+>         void __iomem                    *shim;
+>         struct mutex                    mutex; /* To serialize ioctls. */
+>         unsigned int                    enable_count;
+> +       unsigned int                    num_ctx;
+>         struct v4l2_device              v4l2_dev;
+>         struct media_device             mdev;
+>         struct media_pipeline           pipe;
+> -       struct media_pad                pads[TI_CSI2RX_NUM_PADS];
+> +       struct media_pad                pads[TI_CSI2RX_MAX_PADS];
+>         struct v4l2_async_notifier      notifier;
+>         struct v4l2_subdev              *source;
+>         struct v4l2_subdev              subdev;
+> -       struct ti_csi2rx_ctx            ctx[TI_CSI2RX_NUM_CTX];
+> +       struct ti_csi2rx_ctx            ctx[TI_CSI2RX_MAX_CTX];
+>         u8                              pix_per_clk;
+>         /* Buffer to drain stale data from PSI-L endpoint */
+>         struct {
+> @@ -463,7 +464,7 @@ static int csi_async_notifier_complete(struct v4l2_as=
+ync_notifier *notifier)
+>                 return ret;
+> =20
+>         /* Create and link video nodes for all DMA contexts */
+> -       for (i =3D 0; i < TI_CSI2RX_NUM_CTX; i++) {
+> +       for (i =3D 0; i < csi->num_ctx; i++) {
+>                 struct ti_csi2rx_ctx *ctx =3D &csi->ctx[i];
+>                 struct video_device *vdev =3D &ctx->vdev;
+> =20
+> @@ -1250,10 +1251,11 @@ static int ti_csi2rx_v4l2_init(struct ti_csi2rx_d=
+ev *csi)
+>         csi->pads[TI_CSI2RX_PAD_SINK].flags =3D MEDIA_PAD_FL_SINK;
+> =20
+>         for (unsigned int i =3D TI_CSI2RX_PAD_FIRST_SOURCE;
+> -            i < TI_CSI2RX_NUM_PADS; i++)
+> +            i < TI_CSI2RX_PAD_FIRST_SOURCE + csi->num_ctx; i++)
+>                 csi->pads[i].flags =3D MEDIA_PAD_FL_SOURCE;
+> =20
+> -       ret =3D media_entity_pads_init(&sd->entity, ARRAY_SIZE(csi->pads),
+> +       ret =3D media_entity_pads_init(&sd->entity,
+> +                                    TI_CSI2RX_PAD_FIRST_SOURCE + csi->nu=
+m_ctx,
+>                                      csi->pads);
+>         if (ret)
+>                 goto unregister_media;
+> @@ -1344,8 +1346,9 @@ static int ti_csi2rx_init_ctx(struct ti_csi2rx_ctx =
+*ctx)
+> =20
+>  static int ti_csi2rx_probe(struct platform_device *pdev)
+>  {
+> +       struct device_node *np =3D pdev->dev.of_node;
+>         struct ti_csi2rx_dev *csi;
+> -       int ret, i;
+> +       int ret, i, count;
+> =20
+>         csi =3D devm_kzalloc(&pdev->dev, sizeof(*csi), GFP_KERNEL);
+>         if (!csi)
+> @@ -1367,13 +1370,29 @@ static int ti_csi2rx_probe(struct platform_device=
+ *pdev)
+>         if (!csi->drain.vaddr)
+>                 return -ENOMEM;
+> =20
+> +       /* Only use as many contexts as the number of DMA channels alloca=
+ted. */
+> +       count =3D of_property_count_strings(np, "dma-names");
+> +       if (count < 0) {
+> +               dev_err(csi->dev, "Failed to get DMA channel count: %d\n"=
+, count);
+> +               ret =3D count;
+> +               goto err_dma_chan;
+> +       }
+> +
+> +       csi->num_ctx =3D count;
+> +       if (csi->num_ctx > TI_CSI2RX_MAX_CTX) {
+> +               dev_err(csi->dev,
+> +                       "%u DMA channels passed. Maximum is %u.\n",
+> +                       csi->num_ctx, TI_CSI2RX_MAX_CTX);
+> +               goto err_dma_chan;
+> +       }
+> +
 
-Also this needs to be rebased on top of the MST bindings. I've picked up 
-the latest posted revision, but basing on the on-list discussion I might 
-need to drop it and post another iteration.
+I get the following errors while compiling:
 
-> 
-> According to the hardware spec, MST is supported, but due to limitations in clock and pipe resources,
-> 
-> the maximum concurrency capability is restricted to 1920x1200@60 + 1280x720@60.
-> 
-> 
->>> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>> ---
->>>   Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 1 +
->>>   1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>> index 9923b065323bbab99de5079b674a0317f3074373..996d0132e084d401db85014a1a4e445d00d62ed8 100644
->>> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>> @@ -27,6 +27,7 @@ properties:
->>>             - qcom,sc8280xp-dp
->>>             - qcom,sc8280xp-edp
->>>             - qcom,sdm845-dp
->>> +          - qcom,sm6150-dp
->>>             - qcom,sm8350-dp
->>>             - qcom,sm8650-dp
->>>         - items:
->>>
->>> -- 
->>> 2.34.1
->>>
+../drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:1582:6: warning: v=
+ariable 'ret' is used uninitialized whenever 'if' condition is true [-Wsome=
+times-uninitialized]
+ 1582 |         if (csi->num_ctx > TI_CSI2RX_MAX_CTX) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:1627:9: note: unin=
+itialized use occurs here
+ 1627 |         return ret;
+      |                ^~~
+../drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:1582:2: note: remo=
+ve the 'if' if its condition is always false
+ 1582 |         if (csi->num_ctx > TI_CSI2RX_MAX_CTX) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1583 |                 dev_err(csi->dev,
+      |                 ~~~~~~~~~~~~~~~~~
+ 1584 |                         "%u DMA channels passed. Maximum is %u.\n",
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1585 |                         csi->num_ctx, TI_CSI2RX_MAX_CTX);
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1586 |                 goto err_dma_chan;
+      |                 ~~~~~~~~~~~~~~~~~~
+ 1587 |         }
+      |         ~
+../drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c:1551:9: note: init=
+ialize the variable 'ret' to silence this warning
+ 1551 |         int ret, i, count;
+      |                ^
+      |                 =3D 0
 
-
--- 
-With best wishes
-Dmitry
+>         mutex_init(&csi->mutex);
+> =20
+>         ret =3D ti_csi2rx_v4l2_init(csi);
+>         if (ret)
+>                 goto err_v4l2;
+> =20
+> -       for (i =3D 0; i < TI_CSI2RX_NUM_CTX; i++) {
+> +       for (i =3D 0; i < csi->num_ctx; i++) {
+>                 csi->ctx[i].idx =3D i;
+>                 csi->ctx[i].csi =3D csi;
+>                 ret =3D ti_csi2rx_init_ctx(&csi->ctx[i]);
+> @@ -1402,6 +1421,7 @@ static int ti_csi2rx_probe(struct platform_device *=
+pdev)
+>         ti_csi2rx_cleanup_v4l2(csi);
+>  err_v4l2:
+>         mutex_destroy(&csi->mutex);
+> +err_dma_chan:
+>         dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
+>                           csi->drain.paddr);
+>         return ret;
+> @@ -1412,7 +1432,7 @@ static void ti_csi2rx_remove(struct platform_device=
+ *pdev)
+>         struct ti_csi2rx_dev *csi =3D platform_get_drvdata(pdev);
+>         unsigned int i;
+> =20
+> -       for (i =3D 0; i < TI_CSI2RX_NUM_CTX; i++)
+> +       for (i =3D 0; i < csi->num_ctx; i++)
+>                 ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
+> =20
+>         ti_csi2rx_cleanup_notifier(csi);
+> --=20
+> 2.34.1
+>
 
