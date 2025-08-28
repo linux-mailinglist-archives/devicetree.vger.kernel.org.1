@@ -1,160 +1,184 @@
-Return-Path: <devicetree+bounces-210138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E5BB3A6C7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:45:42 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA786B3A6E6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:50:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81C7B1889DC4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:45:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8A9274E1518
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:50:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B842221543;
-	Thu, 28 Aug 2025 16:45:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FC032BF35;
+	Thu, 28 Aug 2025 16:50:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Gp3eUQDr"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="mv9+17Kg";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="IyWfsEtv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from flow-a1-smtp.messagingengine.com (flow-a1-smtp.messagingengine.com [103.168.172.136])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B880C22A4D5;
-	Thu, 28 Aug 2025 16:45:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E382225FA05;
+	Thu, 28 Aug 2025 16:50:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.136
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756399533; cv=none; b=HckIpRBDeU9+PS9FPDyqFCwE/q/YOOoxLJBOnWC6bLRANp7BVXB0rOihVdVR8Uzrkolb3Kuhp7Xk4aZxRxYhwiRJXavX2KiZmDzCKa5F11t+671rwqbXJyhbQxMgJtZkIxEXoduYqnb0RCNIO5ucw0FSJREE5L7UsrAtFCe8n4g=
+	t=1756399820; cv=none; b=Zj44UL4bekv1FqANXM3ItE0CnwJder+tjtj+rygrry+z6eWwx9eSjLRtCTHfducDuRnHg5osGhErL4w8IhG2ZI+Q0GYuJ3HRZhwLdBuMRUeENjejxYScTeMGuL8AcBZCpTcsS3ivTE7MlsdeMamyDC0BXRFJDRr9rIjbhc3yeRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756399533; c=relaxed/simple;
-	bh=ybJ1f8sBP5axyBxUa6IjKhhSOFJ+7mVTnYkNAwqNI6U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tEQdO4yK/6AY30swd0xTT9ydv1PKHOOa4IVgrStIst5nUIfIu0o7qnr6ztxsMKX7ZnV0y8n3Fat6912fFQshSXVPepNLZ6Ldua2g0IP3OElHCs6J84sleg1/jE6j4nr+zEPAHK87dJ+/AzZxcCdcOeNSwlCpqZG44ASWmkkoL/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Gp3eUQDr; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57SEOjrX030104;
-	Thu, 28 Aug 2025 16:45:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	G+zrw1XxE5Jzdovbrl0Kr12pWeJHN+sdic6+TdiAkcY=; b=Gp3eUQDry5LNXElk
-	LialPHIcKeDtxqa2HTryv9BzHLxg2bV7kQ0+sLhBNdCANkwggG5AIPKhfbZowaLt
-	voC+xXnA+EXrj0e8XkQcSZhm54erjX+m+Qb4JcM4kBoxHr+oMBO/xE3wrFYrldfg
-	rhWQLMSmiP69wXJYteLmkqvmAzxnoEgUGVeWsh6GKW8CcXQ+IZhOdiF2zFe/H5cq
-	oTKLJVo954iIuGwrS875hgfAc2AeGtGR8hBcp/obvILD00N9gYgkLVKg5AjZTez7
-	CM1HOeEP/LWlEQPAPjbvo7Xwr8BmyLZL2WRtu+hFEYL9w7JVqiBxSkfNAwqKM9Fo
-	ywxf9g==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q5up0tbq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Aug 2025 16:45:19 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57SGjHwY030600
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Aug 2025 16:45:18 GMT
-Received: from [10.218.4.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Thu, 28 Aug
- 2025 09:45:13 -0700
-Message-ID: <8d705694-498a-4592-b93a-7df6a1dd5211@quicinc.com>
-Date: Thu, 28 Aug 2025 22:15:10 +0530
+	s=arc-20240116; t=1756399820; c=relaxed/simple;
+	bh=WHSQv1KYA+XyxHFfAXjPG2gWg6DDUwApOFqEq9D3d1E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OhCJogixiQSxto2VwqK7zi21sKchCu7KPfNadSloAimmIgEFi5+6clULAOUIscFtLj/alwEGmsliH0DI5IUEFp+kUFtMbYLR6O83qmnnv2eTrJf4T8WO7azHA3V/PtQVWZ/4m5YZ/3BLEmA1a0mUfPDd2Af4hHJWRVR1CvXiZ0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=mv9+17Kg; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=IyWfsEtv; arc=none smtp.client-ip=103.168.172.136
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
+	by mailflow.phl.internal (Postfix) with ESMTP id E3DD31380CD9;
+	Thu, 28 Aug 2025 12:50:17 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-03.internal (MEProxy); Thu, 28 Aug 2025 12:50:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1756399817;
+	 x=1756407017; bh=0NVIgLeywlcdQ7Q96WR+bM0acpRT6H98AkXzmXrivW0=; b=
+	mv9+17KgF+5GxOl9vLcdUtzFnoGfgshEXGSdE9REgEQZq3GUbd6cGMl+1XHjHaGn
+	gRn5J3tBrLwKGOLArwU+SwnGxXBrO+6XMrQMC9uhnBHq4N7p4rC7aYyfMR/x7+VH
+	Kr1yZrgBgm4iZmu8nkX4VwnTVuEvm67D/eKs/7ybS2UNFANfW290F7mPGfTI/Dm3
+	5H0qXfPBjnhZzDwVXAiYOykUCMM0Z//BS8hMucloljBJmasWT9rSaZedbFDVhESx
+	Os9ak1XmWvhp8pecHT+xvsYiP9YA86zvkqt0LcDKtGaAX/lpBJqSVaybMEnv7kJz
+	fbmEr3UZ1qv3GSlhUph4IQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1756399817; x=
+	1756407017; bh=0NVIgLeywlcdQ7Q96WR+bM0acpRT6H98AkXzmXrivW0=; b=I
+	yWfsEtvH5pa0deFWH5y+3Wv8iC++fyUJzaKl0zTLlHTFsrFBKltzqsCKNE2bpW7H
+	WZEdNUyqlCWPJ1gDLWtRpoUDSa9fNg+b8PAqdSspStFRXQR0qIjJasbTc5VXnDJY
+	LV0vY26Or4luziTABSgI82H/8Ov1+fhNzsxpTCEmcopAYLQhNfqfTcox4lobPbO8
+	tI9jNPtHd+bBhTSMwAAVyVUmvBXJiIGDe0RdmYT94+GNLj6uC0NVka3y5otetQ7K
+	jjfzsE5+DRrT+7N9usH8oy60yQi0nSoP46sUUZ+s/W9b0RCt9d99oXcOTu7zze7y
+	WBgtUjFRANmVIPI+elMlg==
+X-ME-Sender: <xms:xoiwaIbwiPlONZyvvi3nrwonaYX0GPTt0j98poxImmWpqps68_1DbQ>
+    <xme:xoiwaK2wEmopWAvQU09c0ZiTiWKcZT5jfQSOlyZunfuU5U7zsvsT6xpQcPiFu5btz
+    VzOLCZ9pvfsENega0I>
+X-ME-Received: <xmr:xoiwaL6z8yuoEP9fblhgra2VNvMI-jh6RKnJtliUwx53eQO20tt6-2dicZxHzpQoO5lU9j9tP1u5Te1bCfbmfw321V6aP0TULq8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddukeduheefucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpeflrghnnhgv
+    ucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepve
+    efkeeuudettddvffevhfevvdekhffgveehfefhffehfeetgfetffeugfevfefhnecuvehl
+    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrg
+    hurdhnvghtpdhnsggprhgtphhtthhopeeigedpmhhouggvpehsmhhtphhouhhtpdhrtghp
+    thhtohepthhofihinhgthhgvnhhmihesghhmrghilhdrtghomhdprhgtphhtthhopehsvh
+    gvnheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlhihsshgrsehrohhsvghniiif
+    vghighdrihhopdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtoh
+    eprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghr
+    nhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpd
+    hrtghpthhtohepmhgrrhgtrghnsehmrghrtggrnhdrshhtpdhrtghpthhtoheprhgrfhgr
+    vghlsehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:xoiwaNm2W47ghLtWIAD_pLahxBhBVbtlB0HjuziPYBUZSeeRVEXQTA>
+    <xmx:xoiwaC5DusAdyl5Pk1di6jyPCo5sIoppiKD0TupQW-3eWXylCA373w>
+    <xmx:xoiwaCsKTp4DaYaYaIDjWLqlvlKWjo035Lklt_v6NWHAVsNG6jOhjg>
+    <xmx:xoiwaFtpbONR3sJOiA3GJesirPwRAbsZWp3JhVVJESjdloGO55-IPQ>
+    <xmx:yYiwaGZUykDrx6nBmdQEI6U-4WzN_i3nfk1N2dRMiDOlhpPNNeGnuj8c>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 28 Aug 2025 12:50:13 -0400 (EDT)
+Date: Thu, 28 Aug 2025 18:50:12 +0200
+From: Janne Grunau <j@jannau.net>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,	Hector Martin <marcan@marcan.st>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,	Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>,	Robin Murphy <robin.murphy@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Mark Kettenis <kettenis@openbsd.org>,	Andi Shyti <andi.shyti@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Sasha Finkelstein <fnkl.kernel@gmail.com>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Johannes Berg <johannes@sipsolutions.net>,
+	van Spriel <arend@broadcom.com>, Lee Jones <lee@kernel.org>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	Vinod Koul <vkoul@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,	Keith Busch <kbusch@kernel.org>,
+ Jens Axboe <axboe@kernel.dk>,	Christoph Hellwig <hch@lst.de>,
+ Sagi Grimberg <sagi@grimberg.me>,	Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>,	asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,	linux-pm@vger.kernel.org,
+ iommu@lists.linux.dev,	linux-gpio@vger.kernel.org,
+ linux-i2c@vger.kernel.org,	dri-devel@lists.freedesktop.org,
+ linux-bluetooth@vger.kernel.org,	linux-wireless@vger.kernel.org,
+ linux-pwm@vger.kernel.org,	linux-watchdog@vger.kernel.org,
+ linux-clk@vger.kernel.org,	dmaengine@vger.kernel.org,
+ linux-sound@vger.kernel.org,	linux-spi@vger.kernel.org,
+ linux-nvme@lists.infradead.org
+Subject: Re: [PATCH 00/37] arm64: Add initial device trees for Apple M2
+ Pro/Max/Ultra devices
+Message-ID: <20250828165012.GC204299@robin.jannau.net>
+References: <20250828-dt-apple-t6020-v1-0-507ba4c4b98e@jannau.net>
+ <932e0085-c901-40f8-b0d5-67f8f0b934e6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/4] ufs: dt-bindings: Document gear and rate limit
- properties
-To: Bart Van Assche <bvanassche@acm.org>, <alim.akhtar@samsung.com>,
-        <avri.altman@wdc.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <mani@kernel.org>,
-        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>
-CC: <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20250826150855.7725-1-quic_rdwivedi@quicinc.com>
- <20250826150855.7725-2-quic_rdwivedi@quicinc.com>
- <9944c595-da68-43c0-8364-6a8665a0fc3f@acm.org>
-Content-Language: en-US
-From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-In-Reply-To: <9944c595-da68-43c0-8364-6a8665a0fc3f@acm.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: OIZbKr9G7_QKE2ZRxphkiSdihz1WdmEw
-X-Proofpoint-ORIG-GUID: OIZbKr9G7_QKE2ZRxphkiSdihz1WdmEw
-X-Authority-Analysis: v=2.4 cv=JJo7s9Kb c=1 sm=1 tr=0 ts=68b0879f cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10
- a=1l4myg9UuvIpqwvpMjoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzMSBTYWx0ZWRfX9bjh0rHnDqbH
- CTKRTtbPPV3MLRG+bO747gUjE9Cl8bfKAFK32jbRkmxk6frppPoH1mC/as31a5uVQMGyfynlkpf
- C16WF205BOKDTOKfNMT4vVe/nxQjIdqJIq0Xwt92/1fXwz3b7MmDgdqYYITZIHgVVW7/VIEf7pE
- McgDLJrPpI+Qrte78KAuBmFI144BW89649rvRltcBCEA5VT8bmWTJ6+ccb7qNHUM/lBC8v6Cte6
- p5XaLbeyAUfI3bxq9pP1t+vdNqMMUMhfHbAhRtoHeM4wCtyMQUWqrMj1vftzZeXV3d31LMPXIXY
- x+ifwv2dlWK/sbltGashPoPo/GffC+NxesPhEKQjWBWzWJIiV6oxY0z5iFe/QGqsCV7PZPzo9Gj
- qCooHLb7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-28_04,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 bulkscore=0 spamscore=0 impostorscore=0
- malwarescore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230031
+In-Reply-To: <932e0085-c901-40f8-b0d5-67f8f0b934e6@gmail.com>
 
-
-
-On 26-Aug-25 9:05 PM, Bart Van Assche wrote:
-> On 8/26/25 8:08 AM, Ram Kumar Dwivedi wrote:
->> +  limit-hs-gear:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 1
->> +    maximum: 5
->> +    default: 5
->> +    description:
->> +      Restricts the maximum HS gear used in both TX and RX directions,
->> +      typically for hardware or power constraints in automotive use cases.
+On Fri, Aug 29, 2025 at 12:11:40AM +0800, Nick Chan wrote:
 > 
-> The UFSHCI 5.0 spec will add gear 6 soon. So why to restrict the maximum
-> gear to 5?
+> Janne Grunau 於 2025/8/28 晚上10:01 寫道:
+> > This series adds device trees for Apple's M2 Pro, Max and Ultra based
+> > devices. The M2 Pro (t6020), M2 Max (t6021) and M2 Ultra (t6022) SoCs
+> > follow design of the t600x family so copy the structure of SoC *.dtsi
+> > files.
+> [...]
+> > After discussion with the devicetree maintainers we agreed to not extend
+> > lists with the generic compatibles anymore [1]. Instead either the first
+> > compatible SoC or t8103 is used as fallback compatible supported by the
+> > drivers. t8103 is used as default since most drivers and bindings were
+> > initially written for M1 based devices.
+> >
+> > The series adds those fallback compatibles to drivers where necessary,
+> > annotates the SoC lists for generic compatibles as "do not extend" and
+> > adds t6020 per-SoC compatibles.
 > 
->> +  limit-rate:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [1, 2]
->> +    default: 2
->> +    description:
->> +      Restricts the UFS controller to Rate A (1) or Rate B (2) for both
->> +      TX and RX directions, often required in automotive environments due
->> +      to hardware limitations.
+> The series is inconsistent about the use of generic fallback compatibles.
 > 
-> As far as I know no numeric values are associated with these rates in
-> the UFSHCI 4.1 standard nor in any of the previous versions of this
-> standard. Does the .yaml syntax support something like "enum: [A, B]"?
-Hi Bart,
+> "apple,aic2", "apple,s5l-fpwm", "apple,asc-mailbox-v4" is still used.
 
-As per the MIPI UniPro spec:
+Those are less generic than say "apple,spi". For "apple,aic2" especially
+it's clear which SoCs use it and the set is closed (ignoring iphone SoCs
+which very likely will never run linux). For the interrupt controller
+the fallout of not using the "apple,aic2" is larger since even m1n1
+expect that. irq driver is special in so far as it requires more than
+adding a compatible.
+I think "apple,s5l-fpwm" and "apple,asc-mailbox-v4" are specific enough
+and describe simple hardware so the will not cause issues unlike the
+complex firmware based "apple,nvme-ans2".
 
-In Section 5.7.12.3.2, the hs_series is defined as:
-hs_series = Flags[3] + 1;
-
-In Section 5.7.7.1, Flags[3] is described as:
-Set to ‘0’ for Series A and ‘1’ for Series B (PA_HSSeries).
-
-While issuing the DME command from the UFS driver to set the rate,
-the values 1 and 2 are passed as arguments for Rate A and Rate B
-respectively. Additionally, the hs_rate variable is of type u32.
-
-Thanks,
-Ram
-
-> 
-> Thanks,
-> 
-> Bart.
-
+Janne
 
