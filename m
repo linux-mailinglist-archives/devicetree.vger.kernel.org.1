@@ -1,130 +1,151 @@
-Return-Path: <devicetree+bounces-210136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075A8B3A69E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:41:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C42B3A6B6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:43:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7D6AA00366
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:41:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 596B0188B7F8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:43:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C841D26E161;
-	Thu, 28 Aug 2025 16:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF773322DBB;
+	Thu, 28 Aug 2025 16:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EqOWYKbc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fPRMtuCD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DCDC3148C1;
-	Thu, 28 Aug 2025 16:41:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321F4322C7A;
+	Thu, 28 Aug 2025 16:43:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756399273; cv=none; b=fMEBrTtk2sKhxKkqBLUUIp7X1dRLpprr6FA6MShbAraScpqy02LWMfacaY/mIgh/2JhFWIQWrQajZF+yzqQQNQnC0x9xa6iY6iczvoWAwuQ51otlcGc8GPjiCuZ653kI/iNuZnH0vdCRRdBamgsx/uym+fP2CIHB08sDWUSIYQ8=
+	t=1756399387; cv=none; b=aBVIpWHbWcoOIRjRAkLQnPuES5iMWSQx80TvxRHJadxqmveenUr/VFtPRf2VPz/rrETwmv0xRaTyVRPOt6pe85tXHdfKtjGpCBW9/xbbsbKa0yRSw1eTvOtmgMqInoK3kJf4wYHLFm6HD9uWJNFIlkwElwhJCM3eyrT/zEk8/zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756399273; c=relaxed/simple;
-	bh=O5WGilvJjn98UwZmdL7/0cFkZ2MvpINIIDYO3zyCnJ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gAhbW6wKVrMJHDJX0ocWiZO8fUqSR4d/FDZX8xc5UtE7EhA0vqVRCZpQiOlauu1SerC+XPU0LGsk4en2hZsdVaC1JDMg/W8hIFyruauTOM+w7OLM3kGYsOWVnR/6nGHwTqnXdMDtgGZagtmtlLn1l0NNfKZQCrC8907DIKnqlDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EqOWYKbc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA3B7C4CEEB;
-	Thu, 28 Aug 2025 16:41:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756399273;
-	bh=O5WGilvJjn98UwZmdL7/0cFkZ2MvpINIIDYO3zyCnJ8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EqOWYKbcXoM8srDe6+iGs3WRik2ouU0WYh4TRBgpE0bM+mCS8CgFL6nCpN3wAieyv
-	 4Pcmq6n1ehzOS9ZZG6JrrPfz2owy1NUzxJGeqIN0gS42Mg4UWWjB4Yo3EHaKGWs27S
-	 EpUtlYN6a/1nKOtN8jdZloxVHs7iSdtQblrQnNctH5GdHLYRHsCWjnZr3SmAkB+Yil
-	 lW9mU6rV3fHfvz8w1wZ2yQuzs68zmzJ+i2XAZIZEf7upEybJzOdsEnLBWbmuJMhb/s
-	 W2sQWgEA/jF3jAJv2sayOJG8i0wnAxHi6Y6kWTR1d0gkhQTbEcyKVlZwtfFkS2jzCT
-	 ovV0HroKWt9gw==
-Date: Thu, 28 Aug 2025 17:41:09 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1756399387; c=relaxed/simple;
+	bh=WKQ/xtRS/9A7ZGftlrzoXfl01ZUnmFCsUW8TVKUVE78=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=g8GUg+SVVXIMLvBJckgOJD6WdUmuB6jVmc3S0rhJBaPQvRW2za3y1o/bklrQaBQP9KMRx66UOzhhpF4Qm5AoM1q0qRu55cS4gUS7iU+RS9ONid6QS1u/+TCgyKDVTU/j+t4fYmZkRzO32NGaB00vfCI3J/UrHA0IWXUf9l3Y7mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fPRMtuCD; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3c7edd71bbfso842726f8f.0;
+        Thu, 28 Aug 2025 09:43:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756399384; x=1757004184; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kmiVUhRavRhbmTQQVKaXaG+VoM+x59cj+sqorjef2E0=;
+        b=fPRMtuCDXPsXAD6cEMmUttMycJNe1zYQuyoK+xVvgtlqptjMleOP1iuRhga456XPaA
+         IAinFZNyGgU25dhmVh8euVk59gwt3Bry39h+pgji+lMhVTABmwZ3g1KHZJ16iZD0Pnf4
+         nZ2X9VmrhJfDrejT0ogDAgrnARHPfZSJirJdvX9NApcwYplxpwbdPV7VSlPLODKOzrJs
+         0llmF74b4WR8k4hECYYV6zdEz/PRm0ehFpV2xOdbMzHDcrdmBWrpvuorMFjjtrOwtZWN
+         zQjyeIrpqX2VzsmoOBjaKuhQvFkkys04hPi1CD/WPplkHhvBWNvbFKfjpBMKLkNqYYyC
+         hLCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756399384; x=1757004184;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kmiVUhRavRhbmTQQVKaXaG+VoM+x59cj+sqorjef2E0=;
+        b=ILhKJwyAKCybiNNVsJuXem5Vl9G1MnHnZZIf5oDXMbv4d2rOP3AcaJNTchVXwG6Hdq
+         dL5stT65yu5tFHcPy0ezJtuYSAU5kVb8231cn0xfsu7U2mB/dc6OyenvV+1uh9MRUsgi
+         coqAnC1ms0ApAf6A3kiwGdgI/G7f8OG24wTlVM+g+keJrAoUkbs7BYPFoPzyMpUlCkes
+         lDZGAmCI/qcptoeDsqV2lgBWyjjVSSF6dLf4+8t5sw8vNBNcAUC+lNPZEZSbx5An6YBE
+         /jF3/GHn4gwbBVeWPF/tSfdyKm3bykBTL/0M+j3f8j4IccyGlaohxwHMA4oC5RhtlPqF
+         Jv3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUyjVquIo08RELdW9njbLafHGsqiD9EMUNYV4whlM1rX2MADxhUUN/sFLX54LBaTQfOKWrydio3lNYR@vger.kernel.org, AJvYcCWzFmWS7vzAvwUao0sQEMs927j2jO9atlYTI94s0tVgZsnt9IGHFyXIkSK7j3TooFsdtO3b3z7K4E3w7PUa@vger.kernel.org
+X-Gm-Message-State: AOJu0YzX26Athk/3yVmY7ucE85Zn911a3XefAw+AOKwe7mzX4TnSLN+c
+	T3fcGOAHDJ+cPvBn7D8noLCjaAMNfQS5oBvvW0tKd260U/hNJkFcL6+M
+X-Gm-Gg: ASbGnctX4aTfhoFn3UYktqHkbs569B3jSPVWrSs6siBUyDYhwTcLuM2PWT4qufCUZB8
+	BMlKx+9BYqy0rqNqiCQEk8zd7rDpFJbn3EWcm/HiXTjqM7phwusaRMSZhFC8gTJT6xaKfHKfJot
+	+2MtETbnBvE/KjTqHJRgPNf0ZmYjfhURU2l1SPZDj30qqRXgzwqnjWYAdMRRbwGsVaH/ZI9PSev
+	ylA7LA0lU9dHUoBYEGLCwzHcyDqWs7dT+0aCdzeyrPbUVveFkNs+YR5C2svsWuzlCLhC5qrzjfq
+	zcBJFPZfUSiRVC3YoDjbs7TbRo7K5Y3SZvE/eqfN/bfHxHr72P0/HsM59Knx3sDVny3IlEXejjP
+	Wr4TyaUClZGs0AJAOEMwKno6sTV+DRkkATIh7Pw==
+X-Google-Smtp-Source: AGHT+IGZ1oHvbw7/WV61DeDUCKQxNQm0uGXVNfsfYJqhufPLLEDZwzYCkoecNuE41vbu/p9STOdVJQ==
+X-Received: by 2002:a05:6000:18a6:b0:3c8:63bf:4681 with SMTP id ffacd0b85a97d-3c863bf489fmr14282744f8f.54.1756399384355;
+        Thu, 28 Aug 2025 09:43:04 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3c711211cabsm26033204f8f.32.2025.08.28.09.43.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Aug 2025 09:43:03 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: soc: renesas: Document R-Car X5H
-Message-ID: <20250828-platform-counting-6578d06e3526@spud>
-References: <87ldn4uyof.wl-kuninori.morimoto.gx@renesas.com>
- <20250828-esoteric-vivid-raccoon-a86c9a@kuoka>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Alex Bee <knaerzche@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: add SPDIF audio to Beelink A1
+Date: Thu, 28 Aug 2025 16:43:00 +0000
+Message-Id: <20250828164300.3829488-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="z0zlR1hZGpsRTJZB"
-Content-Disposition: inline
-In-Reply-To: <20250828-esoteric-vivid-raccoon-a86c9a@kuoka>
+Content-Transfer-Encoding: 8bit
 
+From: Alex Bee <knaerzche@gmail.com>
 
---z0zlR1hZGpsRTJZB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add the required nodes to enable SPDIF audio output on
+the Beelink A1 set-top-box.
 
-On Thu, Aug 28, 2025 at 09:27:19AM +0200, Krzysztof Kozlowski wrote:
-> On Wed, Aug 27, 2025 at 11:34:09PM +0000, Kuninori Morimoto wrote:
-> > Document the compatible values for the Renesas R-Car X5H (R8A78000) SoC
-> >=20
-> > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > ---
-> > v1 -> v2
-> > 	- add empty enum to avoid allowing invalid use.
->=20
-> I don't understand why do you need this. Where is any user of it? There
-> is no such in this patchset, so this must be explicitly explained in the
-> commit msg.
->=20
-> >=20
-> >  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml=
- b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > index 5f9d541d177a..e2fec2afbc6d 100644
-> > --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > @@ -473,6 +473,12 @@ properties:
-> >            - const: renesas,r8a779mb
-> >            - const: renesas,r8a7795
-> > =20
-> > +      - description: R-Car X5H (R8A78000)
-> > +        items:
-> > +          - enum:
-> > +              - {}               # avoid allowing invalid use. will be=
- replaced to actual board name
->=20
-> We don't allow such cases because it is pointless.
->=20
-> Otherwise explain in the commit msg why this is needed, why exception is
-> justified.
->=20
-> You have entire commit msg to explain anything unusual and if you look
-> at source code you will not notice such syntax for boards, so clearly
-> this is unusual.
+Signed-off-by: Alex Bee <knaerzche@gmail.com>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-a1.dts | 23 ++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-They have a soc driver that binds to the compatible, which is why I
-suggested this rather than refusing the patch. I do agree it should be
-mentioned though.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+index f7c4578865c5..b276a29bdd85 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+@@ -58,6 +58,24 @@ ir-receiver {
+ 		gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;
+ 		linux,rc-map-name = "rc-beelink-gs1";
+ 	};
++
++	spdif_sound: spdif-sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "SPDIF";
++
++		simple-audio-card,cpu {
++			sound-dai = <&spdif>;
++		};
++
++		simple-audio-card,codec {
++			sound-dai = <&spdif_dit>;
++		};
++	};
++
++	spdif_dit: spdif-dit {
++		compatible = "linux,spdif-dit";
++		#sound-dai-cells = <0>;
++	};
+ };
+ 
+ &analog_sound {
+@@ -325,6 +343,11 @@ &sdmmc {
+ 	status = "okay";
+ };
+ 
++&spdif {
++	pinctrl-0 = <&spdifm0_tx>;
++	status = "okay";
++};
++
+ &tsadc {
+ 	rockchip,hw-tshut-mode = <0>;
+ 	rockchip,hw-tshut-polarity = <0>;
+-- 
+2.34.1
 
---z0zlR1hZGpsRTJZB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLCGpQAKCRB4tDGHoIJi
-0l+eAQCmwZHZN1FP89RnOkKGhXv7LLa3ems4DN/7vYFc1uMr9gD8CzhRYbfDRTf3
-YwnJrw/lU8Ig6QGOPutJynJfuMjjAgQ=
-=OeLm
------END PGP SIGNATURE-----
-
---z0zlR1hZGpsRTJZB--
 
