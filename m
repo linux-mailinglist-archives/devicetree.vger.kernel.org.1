@@ -1,124 +1,125 @@
-Return-Path: <devicetree+bounces-209923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A278B39858
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 11:34:39 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50E22B398B8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 11:48:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 417F41C26D48
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 09:34:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EF3694E3E55
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 09:48:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AFBC27E05A;
-	Thu, 28 Aug 2025 09:34:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE5C426E6F2;
+	Thu, 28 Aug 2025 09:48:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HZ1Mdz6O"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Kqz5WfXi";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="WJnDbO2Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5581DEFF5;
-	Thu, 28 Aug 2025 09:34:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5FB2E1C6B;
+	Thu, 28 Aug 2025 09:47:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756373673; cv=none; b=MUVRgiB7jFgAxZ+He0j1j2ydV78A/pxbTyg+ZVFAk/A6pNCpTzap9PkvZyY/dKnk7AaSo46CZ15xUrT4vFuyN9YOtKFGvAuFtRWh6zJ8/4dItieJjftQf4wdDSfFtE9afH3Hso0S1ylFEKScb7sYBM1hnpVe7mVb5i5KPj72BiY=
+	t=1756374480; cv=none; b=Riwlrxjmrd5sIStUqjBPEUp2eBq3H3u0dgZB4qbGYbbylCwjiRygfnhN9xNbntfEP0uftZp/bxGGZnvRUuuW3cRaP6ej2v0OIdzCS5NA+abuZ61S7d4MvgK7mUdntxw+9k4s/+g2CidDjayP1nV/1Ub7ZJ6Wo3VsN3dqyAjNCec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756373673; c=relaxed/simple;
-	bh=yuynSKYGfxPDARXbNkOVcirGGnm9MJdjYgpoYNnyvqk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pj7cnJnBmNhRwRXYDlYEWE77dTf9Aay+gpz1AYDqm7m36rnmQq/gV0fzCl241lXPnidK4xchehgni4DeAvnmwfp+QPydyRoFHbYRjs7u+sRxE3v+zrHZ927l/ywkOLL4i0qrbjvkT5E5ZvIRx77TuPPN3f8ix5wh4TAEawKKASY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HZ1Mdz6O; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756373672; x=1787909672;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yuynSKYGfxPDARXbNkOVcirGGnm9MJdjYgpoYNnyvqk=;
-  b=HZ1Mdz6OFFA8/lzdG0aL4m0xFGMIpSf8wZRD4PxHF0NbY8Y0ktjo8RNs
-   Uex8rCJkuUA+1rhmESloQlKPqM9lZIbo6SHhyUYUpsNbU+gnkUpEB1UJJ
-   Pkpl1cGPI26RQBbMzH4eH/ttUVHnaOg5YluLoWoZDEPJk4my0mDObr2na
-   IUuETNUph1ZwsFkzTkJqGzX4Ye845UwsFSVfX+5kGh2KSKxD/6N+pUKOT
-   vhI/x2oEn0zNOXZ9TdlfiqejnHo2u3petb4diyFgTNPneAqIuSvm8Q0CO
-   ZZpCsLZQX3A6x2IaWojIAvxnpuspA53oJ//Ax3W3WC0rKWIIA66rgMj3G
-   g==;
-X-CSE-ConnectionGUID: vg4Qi5rMQW2Mu6yBtHBIcg==
-X-CSE-MsgGUID: 08H2IFlgS/iYTFG/10Oy3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58787359"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; 
-   d="scan'208";a="58787359"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2025 02:34:31 -0700
-X-CSE-ConnectionGUID: 3oW4vjZ0SqCDl3Ptz+McUg==
-X-CSE-MsgGUID: M5KpuRq8SLWF14awLIFgLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; 
-   d="scan'208";a="170462631"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by fmviesa009.fm.intel.com with ESMTP; 28 Aug 2025 02:34:26 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1urZ0v-000Tbr-1n;
-	Thu, 28 Aug 2025 09:33:57 +0000
-Date: Thu, 28 Aug 2025 17:32:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1756374480; c=relaxed/simple;
+	bh=s+VkfcYq0dyXtAWi6tWSiU14NTiOmlsqgXkt52AbAIQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fvfp4JeaUkA+KvcP3wSAKabBlxf72jnqr4cJTSMgDixZMGXq0PzSmjX3JtYUSXx14Nd0wQ4krLKYO4Ny8FFxyYGBgCpPLI6Roa7tWqxlvDTynUleptssQNXfo6dRoJm33GyvQMLBa0jaLe7B3V9k915nSpOzip9/fcZZ1z3S/WA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Kqz5WfXi; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=WJnDbO2Z reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1756374477; x=1787910477;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=J1QSK2ULqq2r1vYO2KfcbQsiEjNnS0EBsknMN+1oquE=;
+  b=Kqz5WfXivaIir1RXbAnb6cPWOnruFBP8VZfJK0bORvoR/EBWI0fEzqQk
+   z0H5s1QSgZTzUcGzJN2lBHl6rY5+xPaPQrtmC0mWj2e6ThyQA2kVo5GZ7
+   sKdyKcFS2nuwFpvAz0Gi15FS57ITRlJ1zGllhkNAveonZS+pntfwMslzH
+   oB3KOPfxmMhw7RZW+aG3BjzYd7RKf7gW+g2H6M//hGyMPi9FT2SGdAW0B
+   avJ8A4dprpUIjRpDweqSy/2tnsnQrkitTWLsSlva4KUa/9bPTmHw+zOwm
+   qJUyCN18ZiuTb4eBJAWROofxlPqVaNF3VN7RiDfiKFUGLFoudWTre+d7h
+   w==;
+X-CSE-ConnectionGUID: 7lUzfuzXTAqqlHLic1NFYw==
+X-CSE-MsgGUID: 2AtPNRG6QMy7snIQECxo9Q==
+X-IronPort-AV: E=Sophos;i="6.18,217,1751234400"; 
+   d="scan'208";a="45953046"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 28 Aug 2025 11:47:53 +0200
+X-CheckPoint: {68B025C9-1-410E8DD8-CEA8F0F8}
+X-MAIL-CPID: 97701C9BF41BDC5479A47DE668FBFA7D_3
+X-Control-Analysis: str=0001.0A00210F.68B02518.0003,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 10058164884;
+	Thu, 28 Aug 2025 11:47:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1756374468; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=J1QSK2ULqq2r1vYO2KfcbQsiEjNnS0EBsknMN+1oquE=;
+	b=WJnDbO2Zhu5hbOSQwvLbPAiAxSOrRUXiMz7VEcxfmq4mAmM99j2Z5nTBsUre6gxiGGyhAp
+	pkPTfXrmY+r+f7Z3oOy4wslbQy3r2s96gcjKgVb+8ZPDnnih85ivYz2NiLpyy1vYoW0vrL
+	lrUVm+kryWrYUxlglZkw1rKS8PXN/gmCBd0ZTkJvAT8/j0EtJU06MW2eptPWNvZZIMkMmW
+	bUdE0KfSbv5V3xQOh0cSAudasDvbQL99YOVzxprU8Do/uBhfZ+RV2i2RSAQffxCE6WNyut
+	pCzVCROF99egK/x750QcETbxsqM61KcpfUEaf9MlrF3nNmiO9Jh6d+zFQXtlrA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	devicetree@vger.kernel.org,
-	Gatien Chevallier <gatien.chevallier@foss.st.com>
-Subject: Re: [PATCH net-next v3 1/2] drivers: net: stmmac: handle start time
- set in the past for flexible PPS
-Message-ID: <202508281615.ExryCwiA-lkp@intel.com>
-References: <20250827-relative_flex_pps-v3-1-673e77978ba2@foss.st.com>
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com
+Subject: [PATCH 0/2] TQMa91xx support
+Date: Thu, 28 Aug 2025 11:47:41 +0200
+Message-ID: <20250828094745.3733533-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250827-relative_flex_pps-v3-1-673e77978ba2@foss.st.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Gatien,
+Hi,
 
-kernel test robot noticed the following build errors:
+this series supports i.MX91 based module series TQMa91xx. It is available
+in a socketable variant (CA [1]) and as an LGA variant (LA [2]). Both
+are covered by the same device tree file.
+The hardware is identical to their TQMa93xx counterparts, just a different SoC.
 
-[auto build test ERROR on 242041164339594ca019481d54b4f68a7aaff64e]
+This series depends on the i.MX91 SoC support [3].
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Gatien-Chevallier/drivers-net-stmmac-handle-start-time-set-in-the-past-for-flexible-PPS/20250827-190905
-base:   242041164339594ca019481d54b4f68a7aaff64e
-patch link:    https://lore.kernel.org/r/20250827-relative_flex_pps-v3-1-673e77978ba2%40foss.st.com
-patch subject: [PATCH net-next v3 1/2] drivers: net: stmmac: handle start time set in the past for flexible PPS
-config: x86_64-rhel-9.4-rust (https://download.01.org/0day-ci/archive/20250828/202508281615.ExryCwiA-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-rustc: rustc 1.88.0 (6b00bc388 2025-06-23)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250828/202508281615.ExryCwiA-lkp@intel.com/reproduce)
+Best regards
+Alexander Stein
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508281615.ExryCwiA-lkp@intel.com/
+[1] https://www.tq-group.com/en/products/tq-embedded/arm-architecture/tqma91xxca/
+[2] https://www.tq-group.com/en/products/tq-embedded/arm-architecture/tqma91xxla/
+[3] https://lore.kernel.org/all/20250825091223.1378137-1-joy.zou@nxp.com/
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+Alexander Stein (2):
+  dt-bindings: arm: fsl: add TQMa91xxLA SOM
+  arm64: dts: freescale: add initial device tree for
+    TQMa91xxCA/MBa91xxCA
 
->> ERROR: modpost: "timespec64_add_safe" [drivers/net/ethernet/stmicro/stmmac/stmmac.ko] undefined!
+ .../devicetree/bindings/arm/fsl.yaml          |  18 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../freescale/imx91-tqma9131-mba91xxca.dts    | 737 ++++++++++++++++++
+ .../boot/dts/freescale/imx91-tqma9131.dtsi    | 295 +++++++
+ 4 files changed, 1051 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx91-tqma9131-mba91xxca.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx91-tqma9131.dtsi
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
