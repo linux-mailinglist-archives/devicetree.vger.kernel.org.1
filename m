@@ -1,86 +1,123 @@
-Return-Path: <devicetree+bounces-209855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08B96B395A1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 09:41:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 058A2B395E5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 09:50:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B28C71C27483
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 07:41:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C13A1361B96
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 07:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DEEE2D94B6;
-	Thu, 28 Aug 2025 07:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2636A276033;
+	Thu, 28 Aug 2025 07:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pFmOV0HX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FB2nH5Nb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521B32D6E59;
-	Thu, 28 Aug 2025 07:37:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B929F274FF2;
+	Thu, 28 Aug 2025 07:50:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756366674; cv=none; b=jo8mSfoE7QB87b2DUzoVDQTyDUA3WXruVnEDNLbddcUR1flzykSyL8XFAl0XWj5fvDs3uiYP0XdvNnUkMOZI7lTzPRfmefxJh/8VNIKE8CMnHTnMBINvaS7GBasj5Ry8By3qsWIQk5TpEXWF68VqSVDRkEQkuzKxzZEqyC2eM3Y=
+	t=1756367404; cv=none; b=GxKo1CIpUolosbMxDQjrmm4ZHYlQZqy6Zf1uxpWJJezD+LWMCNpmJ2F4gmhiYQejiAdv+5BlUahJhT7C5Ca4Tbks1VMRr2+aYWS5aVkl9UQCh/I28qYActMkYVErf0ru3yvRIKL0bV6HDl8fy5U5cPt9G9lOlF0ku9z+XNqevQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756366674; c=relaxed/simple;
-	bh=ypUAy8NWcIBt+dmd+5qONQkZWcuP0uYcJ+1JecEEurg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XRhY5DxTH3bHR70t5mKQczyjmnn5wAebCwuJ6pxQLDX2X8WoEKH2vIpwFgH2afPBYnj12oC89nYrHT3MR02JVbJblzLTWxI/ljZmLhuezUnmqBlUObCJQn1nINNA5BC0Ta6dfiegWviNqE5SPKUGyn9H9GnZMUoynGkJgyUhsHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pFmOV0HX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7312EC4CEEB;
-	Thu, 28 Aug 2025 07:37:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756366672;
-	bh=ypUAy8NWcIBt+dmd+5qONQkZWcuP0uYcJ+1JecEEurg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pFmOV0HXtE9bk1DeT5Zjf6xKCscjuFmRqQR9wY0w7KGhL2czwCMdSN4ckwx2Yo/wD
-	 dou9jJcMq8/ky5FZv0HRuO1M/5a4n45j/sccokcHmlbCD4y85Vq7fBFuTr8VQAQBlI
-	 VRavAe20vsQ6TtOdz3sr/B+P+/U74obzJZbOLfpTNesz4q+eVOVoJlYPDjI8qwEUrN
-	 ZxkTaR2PVNKd3eVCsRvP3dApr6wRJRJ1kB16Pyg+pHNxr1pnsY5HgK12mj4a3//oF5
-	 2sm0kqk1gaEwZ9STjOdoUCu9mBleeyEaTgOrtnd+aG4xKC2nIYTD1a+YaWwqgwWa1Y
-	 hdPvNeBMACj7Q==
-Date: Thu, 28 Aug 2025 09:37:50 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, 
-	Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 3/6] dt-bindings: display/msm: Document MDSS on QCS8300
-Message-ID: <20250828-glossy-pheasant-of-energy-bae4dd@kuoka>
-References: <20250825-qcs8300_mdss-v9-0-ebda1de80ca0@oss.qualcomm.com>
- <20250825-qcs8300_mdss-v9-3-ebda1de80ca0@oss.qualcomm.com>
+	s=arc-20240116; t=1756367404; c=relaxed/simple;
+	bh=3wVV6hBVMMEFQ257ekEynNzXAAyie2/L9MmDfS6aVNo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=ObjLUfsI2sOySiVPcNzt5AMnW2pMFxlKaNKERW4YauV/Abz+HV2n6X6IZZk1VEANAThELtvSYkJPQVcYfckS3Yf35c7/7weAo7epftHXuFELmtNZsZRT2620tlPiJ2T2teyuxKX/3HOig5quI9o5Dsczo3T5HMhNDV2tWgcHIzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FB2nH5Nb; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b4717543ed9so491918a12.3;
+        Thu, 28 Aug 2025 00:50:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756367401; x=1756972201; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NjHOGNG4+d7HZdoD4W/KYIfSNIi2J/bMo0iyGxOFrQg=;
+        b=FB2nH5NbYjctGaxShRV8oN4e2jigIJBKqZSIPHyBG8iWwQz8oMwag1x/jJiq45n/mn
+         Ho/xuOfmAOYADDD24Q90i8csA2pTwaRpy4wgBxWU7cXrs3/kO+Enw84MJyQym5QS3RVf
+         dlidSI7pXprBOp58ts/h621uH6M/0J0SpWyL86KdnPlYsUYRdaTLccBcwWfVymPkAA3c
+         eKjVNdNvTCHMuosfn18SYyCFwaHMlA8IwETFZBRLUxhcq1GxSIOf5TglXneh9pIwqwMj
+         FUPBYQHLTc0290ygA8FU7Pp9kCmEcVJ0zNjdp4EkOPum55jv9UBhkh1i8TQQzChYd7aP
+         UV1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756367401; x=1756972201;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NjHOGNG4+d7HZdoD4W/KYIfSNIi2J/bMo0iyGxOFrQg=;
+        b=b5FsoSacRbIt58uYjos7GPXoB/pIrCNhs7osaXrOoLR9mQ2qnoy+KfcYthc7psL6Pl
+         Regtb7XNMV1pCj5lNz/2Poxc4Tahjt9ALhtgLlb0+r7kIgrBymhKiy2nB8ejUcQYvMmc
+         hRyKFjg6lvEdvqES9lziRFYWQCT+YWJKer6DQNiWJpxNKH3DtVKXEnhAU0LY+al838Rh
+         3NEE7qz8IzQ/GTAYOvWgD5vQXUt6dG0bJi1W/OYUAfTd8kH0B1sDVrzTzW+7YbABcCdc
+         7Fl7q9MVKNPFmq16abTEU5DneMe/O3T3JxxoJ6FP+99DHsBUJYEyDvxVubcWurWROkFB
+         C/7w==
+X-Forwarded-Encrypted: i=1; AJvYcCX5pEy+hvRXvnYbIDXo81totyuWdz5XfgvhHhrgIirAlgho3s1wvwds3EvdMTKartP+7A239RrPypDx3p74@vger.kernel.org, AJvYcCXXNTj9yrRQXHYLpzc1kyuhTsUQ4W0EquOY6YfnRs+de44BnNiQMFaKvxWoU4PXPYh7w00NAOqo1kqh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7uhOo42CddT0kDY1Yy6vGPMpxAnStllMx8Q721f2CpJYDbrdq
+	5URAAJ44DW3oUizDZwEPFrgsJt4zbglkumlfzeMq+agq91A0VYJetZKi7d8Krw==
+X-Gm-Gg: ASbGncseq7WPZf/ghIFS04nXrC/hyDMLyL7z+p0QUnALBRXAKCd2BbmPc5tC+y95Dlk
+	eziXgeLouPUrnbDhSjXBpIrWVkKM9eSNOB9PfmdJ2iDuAeEinzdoK3KjnjnMqiiUHs361B1NWlF
+	Xy2+Bldk/HZOVJ4dh5PAYF72RX/sZGXepCsy8i8rvEE3+6dVZV1FC2WQxVOToZBI14gOFLRsXtO
+	xat723Fcl6+1lnpjODYN2TMKA8fQHhGgC1O4NXCCdNj7PMXKK/tW6JGX3ycK1DZttcmkkOZPhFz
+	6Y4Egmxg+aACgcTVkkwvcBPM+A3cCAOovO4B8qZTPkIMPbnm6H5es4H1kCrbZlXfMf8bLTyGutS
+	RHnMiYOFfVylqCrPTulYyXQulCICY6mFUzFzBeJl31X4ZITRcFFUTTBFAau9p+4JTc9DuiMoHji
+	B4CSdLxZkQ1wFzNC9aBbL3Km1iW8RxpTmmTj4LD8g=
+X-Google-Smtp-Source: AGHT+IH5WPqqBozEMKrHMq/PF8PPjFfc9CCGsxQOZ5GAqhbwcMu0aIAwPYCwwEm/tWUHMLGYhvRR/g==
+X-Received: by 2002:a05:6a20:8093:b0:243:a0c3:49ea with SMTP id adf61e73a8af0-243a0c34c2amr6067769637.36.1756367400761;
+        Thu, 28 Aug 2025 00:50:00 -0700 (PDT)
+Received: from peter-bmc.. (2001-b400-e35e-4238-7ad6-5c9d-99c8-92d0.emome-ip6.hinet.net. [2001:b400:e35e:4238:7ad6:5c9d:99c8:92d0])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b49cbb9d226sm13272038a12.41.2025.08.28.00.49.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Aug 2025 00:50:00 -0700 (PDT)
+From: Peter Yin <peteryin.openbmc@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] Revise Meta(Facebook) Harma BMC(AST2600)
+Date: Thu, 28 Aug 2025 15:49:50 +0800
+Message-ID: <20250828074955.542711-1-peteryin.openbmc@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250825-qcs8300_mdss-v9-3-ebda1de80ca0@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Aug 25, 2025 at 11:34:22AM +0800, Yongxing Mou wrote:
-> Document the MDSS hardware found on the Qualcomm QCS8300 platform.
-> 
-> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> ---
->  .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 282 +++++++++++++++++++++
->  1 file changed, 282 insertions(+)
-> 
+Summary:
+Revise linux device tree entry related to Meta(Facebook) Harma
+specific devices connected to BMC(AST2600) SoC.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+v2 -> v3
+  - Patch 0003 - add HSC mp5990
 
-Best regards,
-Krzysztof
+v1 -> v2
+  - Patch 0002 - add power-12v-memory-good
+
+v1
+  - Patch 0001 - add power monitor support
+  - Patch 0002 - revise gpio name
+
+Base: tags/v6.17-rc3-39-g07d9df80082b
+
+Peter Yin (3):
+  ARM: dts: aspeed: harma: add power monitor support
+  ARM: dts: aspeed: harma: revise gpio name
+  ARM: dts: aspeed: harma: add mp5990
+
+ .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 31 +++++++++++++------
+ 1 file changed, 22 insertions(+), 9 deletions(-)
+
+-- 
+2.43.0
 
 
