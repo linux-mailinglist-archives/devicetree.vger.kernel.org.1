@@ -1,87 +1,88 @@
-Return-Path: <devicetree+bounces-210197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 859F9B3AC22
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 22:59:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C87B3AC2B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 23:00:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6070E18893AC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 21:00:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 576FD5806FA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 21:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A7929E10B;
-	Thu, 28 Aug 2025 20:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D1302C236E;
+	Thu, 28 Aug 2025 20:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ma0UHEbi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dC1uDxHL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238FA29A322
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 20:59:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4A329BD82
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 20:59:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756414777; cv=none; b=N9XgmT2LQsLZQwYHf+3NiUkKpOTlCZpy4pOJQaDc+HCrD9PTdYnhPL/13LfR59bFCMvg9VxDJJMLmhMP8pv0uXBZTuwWE1NXLS9XUjA/4J+WMHRjGm3tEmShIHRGBqiRuTkbr1yAq7pGSLuBUbocM2MdvFqlgCIfTpPYgJGHvBQ=
+	t=1756414797; cv=none; b=cREdIqAamOFHCUGad6HA3kN9TLviV+VTE2ZhlUBLlQ+fphueyC+NDe2kVLbcrXj95frW9vyZVqqY95PetEPyZG+CCGA6uUEpsS4mmnS2+m6Idw2Ua2viJRh88HmJxLU4N60mH8n5zcuSCE9s0dR8xES7D6X1/+xRDphCbcGJy9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756414777; c=relaxed/simple;
-	bh=nhUyagpznBFRZ9pdGyujL8snMtRV7AxzIDv/2iWCkkM=;
+	s=arc-20240116; t=1756414797; c=relaxed/simple;
+	bh=vcH+lJXlXkzbWh1s+giYmvp9r3m+hUxJ894v+cf3nQo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rNsZUXYhuihbAsaWTWI7ubEIOXG6hBgH7qtrtaD4Tm5MuBkFb15Cv8VV5uJWGxobzFugNTzq/ZtgUHi3UdN8j5bJoxHnSDpA+YkgtV75DEXCUcPk8o0LP++sUg1qUIJTPoeJq9G7eBsYDOr8KZIcTSMFFi0ZbdK4I4Z20ZbZACI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ma0UHEbi; arc=none smtp.client-ip=209.85.167.43
+	 To:Cc:Content-Type; b=a5JNA7FNWVXu/kfPvebAyCGbKXN1kGNKCwDXZqK8oDFszL1Td/+opPPbEjOdvS6RrbeF1YZGIO5WVSIdQ1s1njxlYeNgo7m47FgRXJfDQP9Winn4zbTndk1Ymxgws/o9Hn7xNG+JOUTpCuoF9br7KR5BZv1Uh25nFoRkgjvPAig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dC1uDxHL; arc=none smtp.client-ip=209.85.208.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-55f646b1db8so947461e87.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 13:59:34 -0700 (PDT)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3366ce6889bso9965531fa.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 13:59:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756414773; x=1757019573; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1756414792; x=1757019592; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nhUyagpznBFRZ9pdGyujL8snMtRV7AxzIDv/2iWCkkM=;
-        b=ma0UHEbiqECEh1ErdOJKkoTyNFYpeCWAacmYShnvRQtRoLZw0bgzRlsCjg9W4G05n9
-         +tZq90pA8y2W96oo9gJz3DFMyIbReffSe0GCsxR7W4QNpvMQMajQS11gI9WjHmlS5/Mc
-         PVErZ3LQQg0yK71YfAMF89IX6GMDptM56tP2AKp+h7SkBnQ1TWOPdQw9Sv7C0qcWdwEi
-         45VtKF2ccAVKTJMbuQSGsqXuKZLPWwCdxAxB742/7pA7mmvOtBPkvL4cTNMwOKQRVi+z
-         1x0asfo3p0mDwZxQTQa+qVxw1A+GwnJGx7QDVH9uk/k80sBixcSfQgo1INWRs/KflI72
-         hnGw==
+        bh=vcH+lJXlXkzbWh1s+giYmvp9r3m+hUxJ894v+cf3nQo=;
+        b=dC1uDxHLdzR89Uj56ebMGaoDeRvegTy02rmD4lDoUGNwIlNRsYa+MDnEwUwxYsuVya
+         Y8brW/f7t8jPxSO+kvkkj5EpDjPec/e6TYHDcu5+BEGKhiYpSHNcgh4PjIPQTjSrFuGv
+         29bmDkLl6eQ4isdMBsaJKvQxTXRA97n+Owzb0UaOKn2DK5J6NDKruHPhNyLdj28A6f1U
+         xa7AB1eEBovGXqonRimswFIIH/UBqn7V2U2Bz07sKbRA7ciRp74+aSbBdni3PZz/n9wh
+         ArMCqsNRws0dRWKWBV/F+8m8qKVhCtZunjvcaF8fk8oIzDZryq51BDa8XZkckv0/glo7
+         4tVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756414773; x=1757019573;
+        d=1e100.net; s=20230601; t=1756414792; x=1757019592;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nhUyagpznBFRZ9pdGyujL8snMtRV7AxzIDv/2iWCkkM=;
-        b=YytG7D2HDDtq9qfb8wO8JW672dTH0nMcW/KQ3WpLlwlNv3EisENBxJyAxa1wpRz+Ya
-         VG196x+3kOaKIBaE462WiFVgw996CFU5VlFw3uA7anUpAGRVHzg0wL/VITcnJfhL8OV6
-         ri/fuEEg4ovSBiuwJT5vS4M/dcQEhPxtxZMRB8gULgyPIRvwL+jnXrKJYnnlLBLTk6P+
-         iB0K1EsDAXD0B+qqQQbyb25mSBDZdhxD0UDgP4E6G8bVp6Eup4oi3rzmxynz5I2qBbvj
-         8jhS5nUEDwsqd2ijRnI6RdUek4mdhb0LF5XMHC+knll66INe3NLkvqdwE+yIL2D58+ow
-         X2ug==
-X-Forwarded-Encrypted: i=1; AJvYcCVlXamfLArWMErft7ayRFp+cWRj7gv3rmJaFuXMbVijWrH/Hfa6yKR8H/XTtrvFd0BgH6JAa9c9o2Wa@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRbbylpZtnDjdX5zAXW83L/KZidp2F1xnBY8WBmZZXbPbsaGCz
-	izuHw2qrVwWoyIHi/d0ZWL4ZJ2h4frRuDQiNqsyvzKNwGPStMpKYygUtwfaH0Fj4WUJuhOHW2hd
-	9vwVTKMCLW05oc8gSIC2pZG6fNVXB49Gh9dBHeDK64w==
-X-Gm-Gg: ASbGncthryA0vCDJALN0YtSPCIDEgCU4DkXWVpY2AVWzn/S/MBSGUzj9zzy2RikPjM0
-	AVQdinW1X5i0Z18OdhrpOrHsplvCDvyw/xhpB6Qp4daD4b/Ib5IuMKOnAGMBJ7/d4fX+Vp/ivlK
-	9+i6fxnZH/kgZJIqUAeSI7ciqtwLHLlf1Fu4O4PqXKWPDp09SpHxYLU83cNi/iyJMsd87a0vh6W
-	BS65jk=
-X-Google-Smtp-Source: AGHT+IGkAeRfSepttrAWspST3WxeFhzvmsQkOJn8zGWgyydoFU7mfe7dFpmDKHnPoU/jmN1MyfkA6699WvyfKPSV4Ms=
-X-Received: by 2002:a05:6512:6301:b0:55f:503c:d322 with SMTP id
- 2adb3069b0e04-55f503cd585mr2344975e87.40.1756414773211; Thu, 28 Aug 2025
- 13:59:33 -0700 (PDT)
+        bh=vcH+lJXlXkzbWh1s+giYmvp9r3m+hUxJ894v+cf3nQo=;
+        b=n8+ArRN7wTJwhDnVO8CmkdEg1xNooG8Z3fUs05RkcaG/kb4iEqj5zWybzWzcBID3E3
+         EeZdwu4civXlxMh40nwUM5VyOt+DTbHXu1demeYvAhcoHOe3dqS6XBXILOZpS/GYWaTq
+         PCtvZKWDIXhCkel6y/PQoOHuWV/rIeCSFbr1cWSRlgGfTLH9oA4cl84L/81qQO+mn/+4
+         3kXKDT+j+9cjfhPXegKEgBeB0n8aUX6ZYyPhZdHOuVsCLOO5iU24W9fArDTvJbI1kS6f
+         5vX8pbn7HmkALjBxR9V8BgWEkwoWp/Yi8vIoGGY7O5FnkzRNwluCR5t/rh5dx0LVQjil
+         /AlA==
+X-Forwarded-Encrypted: i=1; AJvYcCVuDfAvqrTrj1l2cW3fqcDZDx8ONYOAXj/rQ4WZ2S5iQ7TJAwcg9sExZXPIawM6H8wdsMq0HUA0qgsL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRE6yk8cpN+P++hjUaEBrIDzAbLYloE4XC81ytTJQPBFYYm5ob
+	GptrqxcW5SvqkcAi/Rqixecjkc7b9QfKuNoN7FKlkpSYl/H7VwNqHQ5wLKs7now7mmPgTOhJ26X
+	fGQVnzSH09YfYq0Di9CxjiT/Df5eyQgwXcyTijuabLg==
+X-Gm-Gg: ASbGncsZBMvFwGM0OUm/JcX1QIvLZmqbocOZamWOqa5OZ4p4JRZSCB5AiDtlLnVOYk3
+	GZjiKmLO0jlPX93toj/3F3i5q2Q8+7ZOdN000Zcz9XDxkyhL/LuFbxz9KmHSlnfMb8ds0LAy5F6
+	4F2a3oQEPCq4lR628nLm6jE3WFJXEAEQ6Y0WU4Fjf85soFNXKsEw2KjyogByLljs1l91UGthA96
+	8HqGhc=
+X-Google-Smtp-Source: AGHT+IEvCK27Dx3T+NwB4QTV9UIlsAab63smCZ6D7uUks2NtQZowbM82iFbh3N6kvr8t1WPK8CdOU0xtB51L+4ds/dQ=
+X-Received: by 2002:a05:651c:3256:10b0:332:3fd0:15fb with SMTP id
+ 38308e7fff4ca-33650ba8612mr48592831fa.0.1756414792241; Thu, 28 Aug 2025
+ 13:59:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250828-dt-apple-t6020-v1-0-507ba4c4b98e@jannau.net> <20250828-dt-apple-t6020-v1-8-507ba4c4b98e@jannau.net>
-In-Reply-To: <20250828-dt-apple-t6020-v1-8-507ba4c4b98e@jannau.net>
+References: <20250828-dt-apple-t6020-v1-0-507ba4c4b98e@jannau.net> <20250828-dt-apple-t6020-v1-9-507ba4c4b98e@jannau.net>
+In-Reply-To: <20250828-dt-apple-t6020-v1-9-507ba4c4b98e@jannau.net>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 28 Aug 2025 22:59:22 +0200
-X-Gm-Features: Ac12FXwdi56r5WxKQlnuWh0e5CWqxbReZCdYkWbkMywpfjpFF5zgYMlMEAzYzgg
-Message-ID: <CACRpkdbvLhTQ8EujGg9QMbuGVRDnH9ApVxVt1NdmSmPw77QXdA@mail.gmail.com>
-Subject: Re: [PATCH 08/37] pinctrl: apple: Add "apple,t8103-pinctrl" as compatible
+Date: Thu, 28 Aug 2025 22:59:41 +0200
+X-Gm-Features: Ac12FXyoYnYKNXDomZzl4EdS0dXvIhCV2tkZJGb1B6Y1kaQgUA-l_NpqH411N_c
+Message-ID: <CACRpkdbg8KYcDpqDKn9fqs+rL9hLK9mGCj0PTXPBGDW7A_AZbw@mail.gmail.com>
+Subject: Re: [PATCH 09/37] dt-bindings: pinctrl: apple,pinctrl: Add
+ apple,t6020-pinctrl compatible
 To: Janne Grunau <j@jannau.net>
 Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -120,6 +121,9 @@ On Thu, Aug 28, 2025 at 4:02=E2=80=AFPM Janne Grunau <j@jannau.net> wrote:
 > lists with the generic compatible "apple,pinctrl" anymore [1]. Use
 > "apple,t8103-pinctrl" as fallback compatible as it is the SoC the driver
 > and bindings were written for.
+>
+> The M2 Pro/Max/Ultra SoCs use the same pinctrl hardware, so just add its
+> per-SoC compatible using the new base as fallback.
 >
 > [1]: https://lore.kernel.org/asahi/12ab93b7-1fc2-4ce0-926e-c8141cfe81bf@k=
 ernel.org/
