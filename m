@@ -1,136 +1,435 @@
-Return-Path: <devicetree+bounces-209832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ECFAB393DC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 08:34:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99CB0B393E0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 08:35:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AE8C1BA3DF7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 06:34:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 559DF68704A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 06:35:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D3C02494FE;
-	Thu, 28 Aug 2025 06:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0DA524679C;
+	Thu, 28 Aug 2025 06:35:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="f6JqcjoN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="juskHd96"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6C117B425;
-	Thu, 28 Aug 2025 06:34:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A7F2557A;
+	Thu, 28 Aug 2025 06:35:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756362853; cv=none; b=YEN9jVYFrgZN1oGJrlBNqcB1K4s5z0COMZmvauC2Z9t1WIUm3NFUnWaspk1KSfQ9A6esUk/8JZsSeQu0Ua877zEwA197YFXssUH8PK96PRPP7nmvX8u3dC7Z2pfwDKFo+n/HbUZq6VTQdq65Jqv2I0O05bTlTrYFjGTlj8mfveI=
+	t=1756362940; cv=none; b=lIoMpxU7xOLk0ZlPlpDZGrXPo0CRtTsMU+NhJ+YWvoMuo1Gnbc8CvxjCHtucacnUIUvYbb07TGBZF6eaBIqTiX5djq/mWOgtxIbEXV1WYCQ/TgTil/6RoTstWyq9bzzH/O+9w9gW4EwgwlcCrJvdEJbbxku4DpM9R3plrJnB3OE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756362853; c=relaxed/simple;
-	bh=XXs7jk6xzSEBZU958NV6zlmgJxBqMpIrd5rXCKYwiQ8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cwGs+OeIQ1WVhzrUkRyPwDzde4cEecz2HbRSoNac0W5xI8Gh2ULTRRJYiZOJ5HrtV5sl8yJimbm6Esm+3o7Hk6d6MvEjchkcZ3z3OMcXCGvOl72QqLJELYbG4ZyTh9Sanu2PuQ08QFLvRxDCKqIjTAmm9AOJtevEjeONBtsmX4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=f6JqcjoN; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: f8495da883d811f0b33aeb1e7f16c2b6-20250828
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=ULhWCMRnfloXSUOUb5D++K1tzuZ3+YXJYVeiwkdjmeI=;
-	b=f6JqcjoN6QKY3SrBy1St1yNmmlv8yJpC8apS75UVln/BaoZ2EKqBgYv0j6k1NA4opNEDt/HwCVagFd3+vsZ/38RrVJvWX16rdNtzuqR2OxTqO7oWuVjAcB0H5qJA0f38TCHmqqAD9KucZD5NxMDgn5CGkjoUmFziV1fp6JsBBuY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.3,REQID:5d86f7b4-7348-4f7e-be94-79e9417123f9,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:f1326cf,CLOUDID:f777b26d-c2f4-47a6-876f-59a53e9ecc6e,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:-5,Content:0|15|50,EDM:-3,IP:
-	nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
-	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: f8495da883d811f0b33aeb1e7f16c2b6-20250828
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
-	(envelope-from <paul-pl.chen@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1737505082; Thu, 28 Aug 2025 14:33:55 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Thu, 28 Aug 2025 14:33:53 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Thu, 28 Aug 2025 14:33:53 +0800
-From: Paul Chen <paul-pl.chen@mediatek.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<chunkuang.hu@kernel.org>, <angelogioacchino.delregno@collabora.com>
-CC: <matthias.bgg@gmail.com>, <p.zabel@pengutronix.de>,
-	<jason-jh.lin@mediatek.com>, <nancy.lin@mediatek.com>,
-	<singo.chang@mediatek.com>, <xiandong.wang@mediatek.com>,
-	<sirius.wang@mediatek.com>, <paul-pl.chen@mediatek.com>,
-	<sunny.shen@mediatek.com>, <fshao@chromium.org>, <treapking@chromium.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 01/19] dt-bindings: arm: mediatek: mmsys: add compatible for MT8196
-Date: Thu, 28 Aug 2025 14:31:52 +0800
-Message-ID: <20250828063327.3475747-1-paul-pl.chen@mediatek.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1756362940; c=relaxed/simple;
+	bh=D7Wsx+YmElZk2nSTwxSXIyDTgyzPKmxATkQYpF/FD5E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rQGwUcsOQMttxtk1kqmoF8ZUjXgY6Tvw2LyuA4jG6Mh6SbQw8WaDh7ahz5qmzdl+4CyGAzM6tdT5IG0PqNtpluypEqyoV17WlbIbzF0InZ8qPeWrkG1kcVZfLLVQK+5OQGY2JXrtefeA88hRJSvDp3cbsdLW40P20CX8PAq1JT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=juskHd96; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57RNR329005840;
+	Thu, 28 Aug 2025 06:35:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	AmP5/BXSlc7TfPFm8n2LKx+TMYlFAAXd8EtzdB20D7k=; b=juskHd96uo7Ndkf/
+	5ovOseu1AlpknGRAVBds1Ld6xiZBH6vZiHrE5whcWyhIpTM0goDZ4xEmPttv4vwO
+	8REYXVglrqeUas4pLIUctUwAV1yoP9caBO7Fziak+8g/32A07F1p4mD1akVD4z8/
+	5EjuNj5AJrRZyh+SayvlKa2owmpQDHn+Sk4aPjaNElRTSYO931cy76KyIrlOK2Nr
+	5D0vpsO+VQXco/EVd4n4YRKTw0qVMou5YD+tiSlkEu35i6uYSkVTN03/F4FA5xCF
+	ylO3OvvJWVWZWXK+Ngp+rsDdQIoDnSrrMQQW3yHen651qB0R+8uC8oqXBuIMu9ES
+	lMgq4Q==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48tbpggxd0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Aug 2025 06:35:32 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57S6ZV8e010922
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Aug 2025 06:35:31 GMT
+Received: from [10.218.18.194] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 27 Aug
+ 2025 23:35:24 -0700
+Message-ID: <25ea5786-1005-43e0-8985-04182d018aa0@quicinc.com>
+Date: Thu, 28 Aug 2025 12:05:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: lemans-evk: Extend peripheral and
+ subsystem support
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Wasim Nazir
+	<wasim.nazir@oss.qualcomm.com>
+CC: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, <kernel@oss.qualcomm.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <netdev@vger.kernel.org>,
+        Viken Dadhaniya
+	<viken.dadhaniya@oss.qualcomm.com>,
+        Nirmesh Kumar Singh
+	<quic_nkumarsi@quicinc.com>,
+        Krishna Kurapati
+	<krishna.kurapati@oss.qualcomm.com>,
+        Mohd Ayaan Anwar
+	<quic_mohdayaa@quicinc.com>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Monish Chunara <quic_mchunara@quicinc.com>,
+        Vishal Kumar Pal
+	<quic_vispal@quicinc.com>,
+        <krishna.chundru@oss.qualcomm.com>
+References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
+ <20250826-lemans-evk-bu-v1-3-08016e0d3ce5@oss.qualcomm.com>
+ <kycmxk3qag7uigoiitzcxcak22cewdv253fazgaidjcnzgzlkz@htrh22msxteq>
+Content-Language: en-US
+From: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+In-Reply-To: <kycmxk3qag7uigoiitzcxcak22cewdv253fazgaidjcnzgzlkz@htrh22msxteq>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lAOC_ct_E1SmZ15DT20wAkdshIBbrsR5
+X-Proofpoint-ORIG-GUID: lAOC_ct_E1SmZ15DT20wAkdshIBbrsR5
+X-Authority-Analysis: v=2.4 cv=G7gcE8k5 c=1 sm=1 tr=0 ts=68aff8b5 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=rEvOE1C9dwyv97nfEU0A:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI3MDE5OSBTYWx0ZWRfX0wMgkEpBAOXU
+ fqL/yr6KletEM2IovlsIDP1jdLMuCeODPY+PMyKOW2ssJG/S+RAEpN7allBP8v7gu3X5ThBJ4x4
+ 8MvKGs5H7egThyqmUHrsfwEJk4qN3hnzAXC01XZ9iayrv83O6fPuf1hqZvKAqa7huNswG6bazsQ
+ gnsV/ONIffrzVDWhekDSYgqUCYu1FgthPc3YH11g+tsBWmZ1uHtlU6OGhaYz+z1NEtQGLyFA6tO
+ SGhRg3zBKmTYHvAQA972KGaQndlnsDNt38u7mKv92UKncmSU4NbNQhIKWXammQjheiomXDDJTMd
+ uSsSER/ALR9GpOTZML84iINH+2ctwrc84EQWBYXq3yCmO6wu0Y0DPKCvFQHa1xz+a99pyfTqx8E
+ rpH+lsZw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-28_01,2025-08-26_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 priorityscore=1501 adultscore=0 impostorscore=0
+ bulkscore=0 suspectscore=0 clxscore=1011 spamscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508270199
 
-From: Nancy Lin <nancy.lin@mediatek.com>
 
-In previous SoCs, a single HW pipeline was an independent mmsys,
-which included the OVL module, PQ module, and display interface
-module.
+On 8/27/2025 7:05 AM, Dmitry Baryshkov wrote:
+> On Tue, Aug 26, 2025 at 11:51:02PM +0530, Wasim Nazir wrote:
+>> Enhance the Qualcomm Lemans EVK board file to support essential
+>> peripherals and improve overall hardware capabilities, as
+>> outlined below:
+>>    - Enable GPI (Generic Peripheral Interface) DMA-0/1/2 and QUPv3-0/2
+>>      controllers to facilitate DMA and peripheral communication.
+>>    - Add support for PCIe-0/1, including required regulators and PHYs,
+>>      to enable high-speed external device connectivity.
+>>    - Integrate the TCA9534 I/O expander via I2C to provide 8 additional
+>>      GPIO lines for extended I/O functionality.
+>>    - Enable the USB0 controller in device mode to support USB peripheral
+>>      operations.
+>>    - Activate remoteproc subsystems for supported DSPs such as Audio DSP,
+>>      Compute DSP-0/1 and Generic DSP-0/1, along with their corresponding
+>>      firmware.
+>>    - Configure nvmem-layout on the I2C EEPROM to store data for Ethernet
+>>      and other consumers.
+>>    - Enable the QCA8081 2.5G Ethernet PHY on port-0 and expose the
+>>      Ethernet MAC address via nvmem for network configuration.
+>>      It depends on CONFIG_QCA808X_PHY to use QCA8081 PHY.
+>>    - Add support for the Iris video decoder, including the required
+>>      firmware, to enable video decoding capabilities.
+>>    - Enable SD-card slot on SDHC.
+>>
+>> Co-developed-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+>> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+>> Co-developed-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+>> Signed-off-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+>> Co-developed-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
+>> Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
+>> Co-developed-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+>> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+>> Co-developed-by: Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>
+>> Signed-off-by: Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>
+>> Co-developed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+>> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+>> Co-developed-by: Monish Chunara <quic_mchunara@quicinc.com>
+>> Signed-off-by: Monish Chunara <quic_mchunara@quicinc.com>
+>> Co-developed-by: Vishal Kumar Pal <quic_vispal@quicinc.com>
+>> Signed-off-by: Vishal Kumar Pal <quic_vispal@quicinc.com>
+>> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/lemans-evk.dts | 387 ++++++++++++++++++++++++++++++++
+>>   1 file changed, 387 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+>> index 9e415012140b..642b66c4ad1e 100644
+>> --- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
+>> +++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+>> @@ -16,7 +16,10 @@ / {
+>>   	compatible = "qcom,lemans-evk", "qcom,qcs9100", "qcom,sa8775p";
+>>   
+>>   	aliases {
+>> +		ethernet0 = &ethernet0;
+>> +		mmc1 = &sdhc;
+>>   		serial0 = &uart10;
+>> +		serial1 = &uart17;
+>>   	};
+>>   
+>>   	chosen {
+>> @@ -46,6 +49,30 @@ edp1_connector_in: endpoint {
+>>   			};
+>>   		};
+>>   	};
+>> +
+>> +	vmmc_sdc: regulator-vmmc-sdc {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vmmc_sdc";
+> Non-switchable, always enabled?
+>
+>> +
+>> +		regulator-min-microvolt = <2950000>;
+>> +		regulator-max-microvolt = <2950000>;
+>> +	};
+>> +
+>> +	vreg_sdc: regulator-vreg-sdc {
+>> +		compatible = "regulator-gpio";
+>> +
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <2950000>;
+>> +		regulator-name = "vreg_sdc";
+>> +		regulator-type = "voltage";
+> This one also can not be disabled?
+>
+>> +
+>> +		startup-delay-us = <100>;
+>> +
+>> +		gpios = <&expander1 7 GPIO_ACTIVE_HIGH>;
+>> +
+>> +		states = <1800000 0x1
+>> +			  2950000 0x0>;
+>> +	};
+>>   };
+>>   
+>>   &apps_rsc {
+>> @@ -277,6 +304,161 @@ vreg_l8e: ldo8 {
+>>   	};
+>>   };
+>>   
+>> +&ethernet0 {
+>> +	phy-handle = <&hsgmii_phy0>;
+>> +	phy-mode = "2500base-x";
+>> +
+>> +	pinctrl-0 = <&ethernet0_default>;
+>> +	pinctrl-names = "default";
+>> +
+>> +	snps,mtl-rx-config = <&mtl_rx_setup>;
+>> +	snps,mtl-tx-config = <&mtl_tx_setup>;
+>> +	snps,ps-speed = <1000>;
+>> +
+>> +	nvmem-cells = <&mac_addr0>;
+>> +	nvmem-cell-names = "mac-address";
+>> +
+>> +	status = "okay";
+>> +
+>> +	mdio {
+>> +		compatible = "snps,dwmac-mdio";
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		hsgmii_phy0: ethernet-phy@1c {
+>> +			compatible = "ethernet-phy-id004d.d101";
+>> +			reg = <0x1c>;
+>> +			reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
+>> +			reset-assert-us = <11000>;
+>> +			reset-deassert-us = <70000>;
+>> +		};
+>> +	};
+>> +
+>> +	mtl_rx_setup: rx-queues-config {
+>> +		snps,rx-queues-to-use = <4>;
+>> +		snps,rx-sched-sp;
+>> +
+>> +		queue0 {
+>> +			snps,dcb-algorithm;
+>> +			snps,map-to-dma-channel = <0x0>;
+>> +			snps,route-up;
+>> +			snps,priority = <0x1>;
+>> +		};
+>> +
+>> +		queue1 {
+>> +			snps,dcb-algorithm;
+>> +			snps,map-to-dma-channel = <0x1>;
+>> +			snps,route-ptp;
+>> +		};
+>> +
+>> +		queue2 {
+>> +			snps,avb-algorithm;
+>> +			snps,map-to-dma-channel = <0x2>;
+>> +			snps,route-avcp;
+>> +		};
+>> +
+>> +		queue3 {
+>> +			snps,avb-algorithm;
+>> +			snps,map-to-dma-channel = <0x3>;
+>> +			snps,priority = <0xc>;
+>> +		};
+>> +	};
+>> +
+>> +	mtl_tx_setup: tx-queues-config {
+>> +		snps,tx-queues-to-use = <4>;
+>> +
+>> +		queue0 {
+>> +			snps,dcb-algorithm;
+>> +		};
+>> +
+>> +		queue1 {
+>> +			snps,dcb-algorithm;
+>> +		};
+>> +
+>> +		queue2 {
+>> +			snps,avb-algorithm;
+>> +			snps,send_slope = <0x1000>;
+>> +			snps,idle_slope = <0x1000>;
+>> +			snps,high_credit = <0x3e800>;
+>> +			snps,low_credit = <0xffc18000>;
+>> +		};
+>> +
+>> +		queue3 {
+>> +			snps,avb-algorithm;
+>> +			snps,send_slope = <0x1000>;
+>> +			snps,idle_slope = <0x1000>;
+>> +			snps,high_credit = <0x3e800>;
+>> +			snps,low_credit = <0xffc18000>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&gpi_dma0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&gpi_dma1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&gpi_dma2 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&i2c18 {
+>> +	status = "okay";
+>> +
+>> +	expander0: pca953x@38 {
+>> +		compatible = "ti,tca9538";
+>> +		#gpio-cells = <2>;
+>> +		gpio-controller;
+>> +		reg = <0x38>;
+>> +	};
+>> +
+>> +	expander1: pca953x@39 {
+>> +		compatible = "ti,tca9538";
+>> +		#gpio-cells = <2>;
+>> +		gpio-controller;
+>> +		reg = <0x39>;
+>> +	};
+>> +
+>> +	expander2: pca953x@3a {
+>> +		compatible = "ti,tca9538";
+>> +		#gpio-cells = <2>;
+>> +		gpio-controller;
+>> +		reg = <0x3a>;
+>> +	};
+>> +
+>> +	expander3: pca953x@3b {
+>> +		compatible = "ti,tca9538";
+>> +		#gpio-cells = <2>;
+>> +		gpio-controller;
+>> +		reg = <0x3b>;
+>> +	};
+>> +
+>> +	eeprom@50 {
+>> +		compatible = "atmel,24c256";
+>> +		reg = <0x50>;
+>> +		pagesize = <64>;
+>> +
+>> +		nvmem-layout {
+>> +			compatible = "fixed-layout";
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+>> +
+>> +			mac_addr0: mac-addr@0 {
+>> +				reg = <0x0 0x6>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&iris {
+>> +	firmware-name = "qcom/vpu/vpu30_p4_s6.mbn";
+> Should it be just _s6.mbn or _s6_16mb.mbn?
+>
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>>   &mdss0 {
+>>   	status = "okay";
+>>   };
+>> @@ -323,14 +505,196 @@ &mdss0_dp1_phy {
+>>   	status = "okay";
+>>   };
+>>   
+>> +&pcie0 {
+>> +	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>> +	wake-gpios = <&tlmm 0 GPIO_ACTIVE_HIGH>;
+> I think Mani has been asking lately to define these GPIOs inside the
+> port rather than in the host controller.
 
-In the 8196, to increase the flexibility of pipeline connection
-and control, the OVL module on a single HW pipeline was separated
-into two mmsys, namely ovlsys0 and ovlsys1. The PQ module was also
-separated into a dispsys0, and the display interface module was
-separated into a dispsys1. Additionally, display power-related
-settings are controlled through vdiso-ao.
+Hi Dmitry,
 
-For example:
-The primary path and external path of the display both use
-ovlsys0 -> dispsys0 -> dispsys1, forming a pipeline.
+For moving these to the port requires changes in the sa8775p.dtsi to change
+phys property from controller node to port node.
 
-The third path of the display uses ovlsys1 -> dispsys0 -> dispsys1,
-forming another pipeline.
+Mani is asking to add these for newer platforms like QCS8300 not for 
+existing one's.
 
-Therefore, the 8196 needs to add 5 compatible string to support
-mmsys for MT8196.
+- Sushrut
 
-Signed-off-by: Nancy Lin <nancy.lin@mediatek.com>
-Signed-off-by: Paul-pl Chen <paul-pl.chen@mediatek.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml     | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-index 3f4262e93c78..5f244a8f6a47 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-@@ -39,6 +39,11 @@ properties:
-               - mediatek,mt8195-vdosys1
-               - mediatek,mt8195-vppsys0
-               - mediatek,mt8195-vppsys1
-+              - mediatek,mt8196-dispsys0
-+              - mediatek,mt8196-dispsys1
-+              - mediatek,mt8196-ovlsys0
-+              - mediatek,mt8196-ovlsys1
-+              - mediatek,mt8196-vdisp-ao
-               - mediatek,mt8365-mmsys
-           - const: syscon
- 
--- 
-2.45.2
-
+>> +
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pcie0_default_state>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+> [...]
+>
+>> @@ -356,6 +720,29 @@ &ufs_mem_phy {
+>>   	status = "okay";
+>>   };
+>>   
+>> +&usb_0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_0_dwc3 {
+>> +	dr_mode = "peripheral";
+> Is it actually peripheral-only?
+>
+>> +};
+>> +
 
