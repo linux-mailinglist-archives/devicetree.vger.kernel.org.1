@@ -1,417 +1,215 @@
-Return-Path: <devicetree+bounces-210217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2030B3AD85
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 00:30:39 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF63CB3AD95
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 00:36:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE3471C24BBF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 22:30:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8E00A4E2646
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 22:36:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978E32264A3;
-	Thu, 28 Aug 2025 22:30:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADABF26F2BE;
+	Thu, 28 Aug 2025 22:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fIwdGivq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="H5RbBKcA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F4BF347C3;
-	Thu, 28 Aug 2025 22:30:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0376626B77B
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 22:36:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756420234; cv=none; b=PPzFz2AW0BHikeHB8LK+Un61Wkbi/aNyLX0OnPHf/Sv6LJX/kCGwqHOz/WfpSRzQXxxgPuNsWTqt0UG2C0exIWbG2BNhIb0ImahOG0Zlys28Y7qA0O7cEVwUkPGzxHb5yZWHk+OGBH4tbVlKVDJAEZ56cr53tpFRZ9MgM8HbqMw=
+	t=1756420574; cv=none; b=ZNcElWDvBuE5MKqAec5dug615XGiQI/opfO5lb8mydGeBZ8z/xmI2hqn9THs9oFookUtb3T3Eg5Rg6lLMXgSxuX2vl4iqfmE2GgAk/c2Y1mJJ8cLO1kTcZ0sVIBcOIPWVeG2tTXKydenoYMjDSe+jPRdTiyWFVsNs02VtSLnj64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756420234; c=relaxed/simple;
-	bh=mUumE1SeF0jvWl4o41tu71i7s0T2juB++irBrMpJ/i4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=du6n3AlFPF0YVV5nOXY3jZVSCDd/HTlexBXjYOLDXLe8Ztl11+WOzG14Nbyv8jHhJX+LpHkyOgrrXC1EVnsts3nzWmHzuP6l7+TcYOPOenPagpaXtzjy4y8qXtp4C2I29FtI99yzssx0b8sOApV8RRaJ882hZbwE1AQjlUqsG0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fIwdGivq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF415C4CEEB;
-	Thu, 28 Aug 2025 22:30:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756420234;
-	bh=mUumE1SeF0jvWl4o41tu71i7s0T2juB++irBrMpJ/i4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=fIwdGivqPneVH13tyyy9atndpWIbtC6c5GjkW1LTQSQQJALU/Ya2k4RUseHcsw2vK
-	 xJXlwTmDI9w1EJlCjVb+D8pgsOxAk8V6rZrkJOZWF/Dnr8pLxKaxolydMcYq6ynL7Z
-	 TU/xVpgyXXmJlrI0aAs3Re7fAhOnme/HT1Br6bztdocFgxo90VyZ3kkYodD2DDZco8
-	 PilJwlmTHRkPGZYxwznklovShC+G1OJ176jo48szHekGMyWoXf9QyhYsPjqfC90dSY
-	 kAfGT3uFO80JTV/wqg40Kl4LM2rS7phDvZcO5IRSahv3KNjfHlB7fq8u6jONRwtAsP
-	 EpOWoWfKD3ELw==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Khuong Dinh <khuong@os.amperecomputing.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: edac: Convert apm,xgene-edac to DT schema
-Date: Thu, 28 Aug 2025 17:30:21 -0500
-Message-ID: <20250828223023.2409337-1-robh@kernel.org>
-X-Mailer: git-send-email 2.50.1
+	s=arc-20240116; t=1756420574; c=relaxed/simple;
+	bh=WKDOcnId/fYiJ4MUHlzvu++y6Wq1vaCFpfHFQlstfI4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ngDDy+fFZaKiaqVFm3kDcFKIAz9BscoOyhqgzjfjR9Shesgt7N/9lFAI/uHSQrDzOAk3kNq7pLVOl1ZZHmIj9FZ5t8YbEPaFdc1zefhyPbBvx8ZDqQwffwgDhW4WICbIExHlUuWptiX7aBSfT1oNu2xje9aMj/8uf+VdOW6Jk6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=H5RbBKcA; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57SLWcWn031290
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 22:36:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	y7VHqRENNJebegQN/o6tbEoCvsmRk6JgWzlghb8aS8g=; b=H5RbBKcA8dwgu68G
+	Qd7Ho/1SX7BctuQEsXJOWYwxeWvB7zK0Sp0mdUlJCpzGCGouyd27GTXy4cuJzeyO
+	e5NaQhU3tjj28KvUG2Tw1YvuChcS0zePh67E16QnE9ypcJNfFBX9aiJlR2fcJ9cf
+	gnT0PhMCk/Ii8RoLeYjwghxS+SAHt6E3UCPGhQ8mApskpJGUU6VIeEg6bPzK9AOf
+	y5a6DMt4/KZdLG2AGT6IkXL975rjHNQJUC2F8J6Pjy3r/9CzmSoJemJNpok2tXHC
+	hkDWadfFQ04eUI74vjXNYYAWvINl7tY1vENAPsawqKW6zFquF2hQAEskWhLFyKNb
+	yPhb0A==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48tn67j4gy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 22:36:12 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b302991816so21512441cf.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 15:36:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756420571; x=1757025371;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y7VHqRENNJebegQN/o6tbEoCvsmRk6JgWzlghb8aS8g=;
+        b=F3pG/0DV+2RRiQVmM0KsJAGmWhhpmklIxV6Iy0IbRebg/WSrROlkbtL5kUF6XcvfNj
+         EPqTVUbIfqQT7o1RJZ0ptQDrt7DKMP3basN/+BhYvnN+oEknMZUIm2RZG05Rf6thPp7x
+         ti4TJaZGO1TPlO6mbI3itL/Br+Z2f5YnFfL+sQ28l7wozRzCMmAeE1KH365uwh6pCVqG
+         TS48cXInVsjSs3mf0RqBWd74M6YRXXqAQZFfq1eUNXqqCKOOXXNjKkVQHFEFNn0HdhXP
+         AHrfEc+aeoH1RTq3jpxszwirsrXZQcnESUJPkUF+1rC4sFVC2VRlfyFnY7lexJYLVV+W
+         I5IQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVdn2i2+ROqWlzKGrtB4iQ7edABpaTG3ZUbxmMOrVLY6bUOaTgPlizQmWz7mUoHRk35emS08zZLhFN2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2lZh95eEg58TxIXzN2+ALK7j1jUAbkiQsTlryJsrPBLs9TSVr
+	cG3S+xIV7IgBoYJHnlSoEbY5N58L6Lpm/KYxscURbAC8bbajBqyGDlGVjolYrHLLn0Lt28R1V5Y
+	Ro0j6sZd2oNYv40Ilw2N3BNxjJzC+eKp6zrYTIBra1veVBTwPic+oMY3ZuTRzeX2I
+X-Gm-Gg: ASbGncs/37Db0MIEGdiF+M4Y0TRbJNmvBBon4csqpZzL84fgRus9xIp6gOQLntJpVTe
+	OQ2TREOQm4BTlTBJpI8hMJxgNCx0eRK0B45TITgyYc5Z8k9eZ8PZz+8hdrQs8DZYa5rMPcuZgZ2
+	Jbs2MmHJwTomNdrW9c2Rx56Yx0AAV3vR+eNOzJ6LoAlWTgiP6ZThVX0XY3TpT5mKYf/No73ICHv
+	pqiGDwBHN3RtqFCQimWiHt4zsImeSAJSgQf7ZEORYedkKAjHirS1FxurFFMW2awZXX85Z4gt59x
+	19xBs6UyNZTeOxhckkT5GbPZE9myFOheExOTRThqdcewkgPVM8E1CYxgpToAIp4I7wIfIO27yUa
+	Ea56WdF61Gv+Uf7cT+gY4L4ghGRl6FJBoXmq+O2jy1No=
+X-Received: by 2002:a05:622a:4119:b0:4b3:81b:c5ad with SMTP id d75a77b69052e-4b3081bcfdbmr33563001cf.80.1756420570694;
+        Thu, 28 Aug 2025 15:36:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFgrEZRc/uiXvTH7Z0zYEjpMYvq3lZXxGw7EpCSWLs1tGYbdD4Ja4C6+txkoDZ9SwLFf/s6PQ==
+X-Received: by 2002:a05:622a:4119:b0:4b3:81b:c5ad with SMTP id d75a77b69052e-4b3081bcfdbmr33562751cf.80.1756420570196;
+        Thu, 28 Aug 2025 15:36:10 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0c3:3a00::4c9? (2001-14ba-a0c3-3a00--4c9.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::4c9])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55f67852eeasm135474e87.100.2025.08.28.15.36.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Aug 2025 15:36:09 -0700 (PDT)
+Message-ID: <fdbcb092-a6bc-4da4-b7ea-1954b56f5d74@oss.qualcomm.com>
+Date: Fri, 29 Aug 2025 01:36:08 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: add clocks property to
+ enable QoS on sa8775p
+To: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mike Tipton <mike.tipton@oss.qualcomm.com>
+References: <20250808140300.14784-1-odelu.kukatla@oss.qualcomm.com>
+ <20250808140300.14784-2-odelu.kukatla@oss.qualcomm.com>
+ <90b51e31-3217-4483-bb5b-ec328665a723@kernel.org>
+ <28b97952-1b67-411f-a7fb-ddd558739839@oss.qualcomm.com>
+ <ac83c453-c24d-4c4d-83bc-9ed13f2f9d1e@kernel.org>
+ <7d3e5cf7-4167-4005-ba4b-c1915c254705@oss.qualcomm.com>
+ <00f50d92-e4ea-4805-b771-147fa5f5ebe4@kernel.org>
+ <249f8109-31b1-4cb8-a5a4-b30c27b2e987@oss.qualcomm.com>
+Content-Language: en-US
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <249f8109-31b1-4cb8-a5a4-b30c27b2e987@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI4MDA4NSBTYWx0ZWRfX9HlQH3NFqUKl
+ jVCpdzf4vNSv6GFIsBRwACSDswrzR6eCeNYZ7FMYEujVgGPdVZ8UC210k8uylxKW6S4TrvN+eNp
+ IuRr9kHdaRHB5YW42YqVBNptSqTXmAFsZytJjnZZzZjHScewcsueUaTodVj3KkCpuepEKjCFNQC
+ kpb9qFd/+szCSrmQ+ju+szvtmbPflU+8wwyIfa3n0cNKVuNQ7VRO9wRrGUiScs0Iv2Ln0VH/ukL
+ geuEdFl7TTkL+hPdg7/9fQh9Ngq0R/8JMpikDkD1WHfFECe/tYZvkovgBpq83WidNpvblZjCpxM
+ SGYEY9zMnQVsqzp6GXpTxoD2Jj0qfn+poKFnU9Y6t1L0imn96FTVXNaS6G//mIZE6KgE9KsXaHe
+ xNSs87I0
+X-Proofpoint-GUID: -1SrBEDG6HgLOWly6dApZsJelSx6hF_W
+X-Proofpoint-ORIG-GUID: -1SrBEDG6HgLOWly6dApZsJelSx6hF_W
+X-Authority-Analysis: v=2.4 cv=P7c6hjAu c=1 sm=1 tr=0 ts=68b0d9dc cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=tJ9fhpcgm4yphQaQ0K8A:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-28_04,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 clxscore=1015 impostorscore=0 priorityscore=1501
+ adultscore=0 phishscore=0 malwarescore=0 spamscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508280085
 
-Convert the APM XGene EDAC binding to DT schema. Add the missing
-"apm,xgene-edac-soc" compatible, and drop the unused
-"apm,xgene-edac-pmd-v2" compatible.
+On 28/08/2025 21:16, Odelu Kukatla wrote:
+> 
+> 
+> On 8/24/2025 2:38 PM, Krzysztof Kozlowski wrote:
+>> On 20/08/2025 10:51, Odelu Kukatla wrote:
+>>>
+>>>
+>>> On 8/13/2025 11:32 AM, Krzysztof Kozlowski wrote:
+>>>> On 13/08/2025 07:55, Odelu Kukatla wrote:
+>>>>>
+>>>>>
+>>>>> On 8/12/2025 3:47 PM, Krzysztof Kozlowski wrote:
+>>>>>> On 08/08/2025 16:02, Odelu Kukatla wrote:
+>>>>>>> Add reg and clocks properties to enable the clocks required
+>>>>>>> for accessing QoS configuration.
+>>>>>>
+>>>>>>
+>>>>>> Nothing here explains why EXISTING hardware is being changed. I also
+>>>>>> remember big discussions and big confusing patches regarding sa8775p
+>>>>>> (its rename, dropping/changing all providers), and this patch feels like
+>>>>>> pieces of it without proper justification.
+>>>>>>
+>>>>> Thanks for the review.
+>>>>> I have added description in cover letter, i will add here as well in next revision.> And this is hidden ABI break, no justification, no mentioning either.
+>>>>>> Again we are discussing basics of ABI breaking patches?
+>>>>>>
+>>>>> If you are talking ABI break if we load old DT which may lead to crash, we have .qos_requires_clocks flag which takes care of skipping QoS if required clocks are not enabled.we have addressed this issue through https://lore.kernel.org/all/20240704125515.22194-1-quic_okukatla@quicinc.com/
+>>>>
+>>>> Format your emails correctly, it's difficult to read.
+>>>>
+>>>> Your binding did not require reg and clocks. Now it requires reg and
+>>>> clocks. This is called ABI break.
+>>>>
+>>>> Please follow Qualcomm extensive upstreaming guide, it explains this,
+>>>> doesn't it? Or follow writing bindings...
+>>>>
+>>>
+>>> Thanks for your review and guidance.
+>>>
+>>> I agree that adding reg and clocks properties to existing bindings is an
+>>> ABI break. The sa8775p is a relatively older platform, and when the
+>>> interconnect provider driver was initially upstreamed, QoS configuration
+>>> support was not available in the framework. As a result, QoS was not
+>>> enabled at that time.
+>>
+>>
+>> That's irrelevant reason. Writing bindings since long time ask pretty
+>> clearly to describe hardware completely, regardless whether Linux
+>> supports this or not.
+>>
+>> It does not matter if you enable QoS or not.
+>>
+> I agree with you. Ideally, the bindings should have described the
+> hardware fully from the beginning. However, this was not done at the
+> time of initial upstreaming, and the driver was contributed by someone
+> from the community. I’m working now to improve the binding by adding the
+> missing pieces to support QoS configuration.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/edac/apm,xgene-edac.yaml         | 203 ++++++++++++++++++
- .../bindings/edac/apm-xgene-edac.txt          | 112 ----------
- MAINTAINERS                                   |   2 +-
- 3 files changed, 204 insertions(+), 113 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/edac/apm,xgene-edac.yaml
- delete mode 100644 Documentation/devicetree/bindings/edac/apm-xgene-edac.txt
 
-diff --git a/Documentation/devicetree/bindings/edac/apm,xgene-edac.yaml b/Documentation/devicetree/bindings/edac/apm,xgene-edac.yaml
-new file mode 100644
-index 000000000000..9afc78254cc0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/edac/apm,xgene-edac.yaml
-@@ -0,0 +1,203 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/edac/apm,xgene-edac.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: APM X-Gene SoC EDAC
-+
-+maintainers:
-+  - Khuong Dinh <khuong@os.amperecomputing.com>
-+
-+description: >
-+  EDAC node is defined to describe on-chip error detection and correction.
-+
-+  The following error types are supported:
-+
-+    memory controller  - Memory controller
-+    PMD (L1/L2)        - Processor module unit (PMD) L1/L2 cache
-+    L3                 - L3 cache controller
-+    SoC                - SoC IPs such as Ethernet, SATA, etc
-+
-+properties:
-+  compatible:
-+    const: apm,xgene-edac
-+
-+  reg:
-+    items:
-+      - description: CPU bus (PCP) resource
-+
-+  '#address-cells':
-+    const: 2
-+
-+  '#size-cells':
-+    const: 2
-+
-+  ranges: true
-+
-+  interrupts:
-+    description: Interrupt-specifier for MCU, PMD, L3, or SoC error IRQ(s).
-+    items:
-+      - description: MCU error IRQ
-+      - description: PMD error IRQ
-+      - description: L3 error IRQ
-+      - description: SoC error IRQ
-+    minItems: 1
-+
-+  regmap-csw:
-+    description: Regmap of the CPU switch fabric (CSW) resource.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  regmap-mcba:
-+    description: Regmap of the MCB-A (memory bridge) resource.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  regmap-mcbb:
-+    description: Regmap of the MCB-B (memory bridge) resource.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  regmap-efuse:
-+    description: Regmap of the PMD efuse resource.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  regmap-rb:
-+    description: Regmap of the register bus resource (optional for compatibility).
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - compatible
-+  - regmap-csw
-+  - regmap-mcba
-+  - regmap-mcbb
-+  - regmap-efuse
-+  - reg
-+  - interrupts
-+
-+# Child-node bindings
-+patternProperties:
-+  '^edacmc@':
-+    description: Memory controller subnode
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        const: apm,xgene-edac-mc
-+
-+      reg:
-+        maxItems: 1
-+
-+      memory-controller:
-+        description: Instance number of the memory controller.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        maximum: 3
-+
-+    required:
-+      - compatible
-+      - reg
-+      - memory-controller
-+
-+
-+  '^edacpmd@':
-+    description: PMD subnode
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        const: apm,xgene-edac-pmd
-+
-+      reg:
-+        maxItems: 1
-+
-+      pmd-controller:
-+        description: Instance number of the PMD controller.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        maximum: 3
-+
-+    required:
-+      - compatible
-+      - reg
-+      - pmd-controller
-+
-+  '^edacl3@':
-+    description: L3 subnode
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        enum:
-+          - apm,xgene-edac-l3
-+          - apm,xgene-edac-l3-v2
-+
-+      reg:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - reg
-+
-+  '^edacsoc@':
-+    description: SoC subnode
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        enum:
-+          - apm,xgene-edac-soc
-+          - apm,xgene-edac-soc-v1
-+
-+      reg:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        edac@78800000 {
-+            compatible = "apm,xgene-edac";
-+            reg = <0x0 0x78800000 0x0 0x100>;
-+            #address-cells = <2>;
-+            #size-cells = <2>;
-+            ranges;
-+            interrupts = <0x0 0x20 0x4>, <0x0 0x21 0x4>, <0x0 0x27 0x4>;
-+
-+            regmap-csw = <&csw>;
-+            regmap-mcba = <&mcba>;
-+            regmap-mcbb = <&mcbb>;
-+            regmap-efuse = <&efuse>;
-+            regmap-rb = <&rb>;
-+
-+            edacmc@7e800000 {
-+                compatible = "apm,xgene-edac-mc";
-+                reg = <0x0 0x7e800000 0x0 0x1000>;
-+                memory-controller = <0>;
-+            };
-+
-+            edacpmd@7c000000 {
-+                compatible = "apm,xgene-edac-pmd";
-+                reg = <0x0 0x7c000000 0x0 0x200000>;
-+                pmd-controller = <0>;
-+            };
-+
-+            edacl3@7e600000 {
-+                compatible = "apm,xgene-edac-l3";
-+                reg = <0x0 0x7e600000 0x0 0x1000>;
-+            };
-+
-+            edacsoc@7e930000 {
-+                compatible = "apm,xgene-edac-soc-v1";
-+                reg = <0x0 0x7e930000 0x0 0x1000>;
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/edac/apm-xgene-edac.txt b/Documentation/devicetree/bindings/edac/apm-xgene-edac.txt
-deleted file mode 100644
-index 1006b0489464..000000000000
---- a/Documentation/devicetree/bindings/edac/apm-xgene-edac.txt
-+++ /dev/null
-@@ -1,112 +0,0 @@
--* APM X-Gene SoC EDAC node
--
--EDAC node is defined to describe on-chip error detection and correction.
--The follow error types are supported:
--
--  memory controller	- Memory controller
--  PMD (L1/L2)		- Processor module unit (PMD) L1/L2 cache
--  L3			- L3 cache controller
--  SoC			- SoC IP's such as Ethernet, SATA, and etc
--
--The following section describes the EDAC DT node binding.
--
--Required properties:
--- compatible		: Shall be "apm,xgene-edac".
--- regmap-csw		: Regmap of the CPU switch fabric (CSW) resource.
--- regmap-mcba		: Regmap of the MCB-A (memory bridge) resource.
--- regmap-mcbb		: Regmap of the MCB-B (memory bridge) resource.
--- regmap-efuse		: Regmap of the PMD efuse resource.
--- regmap-rb		: Regmap of the register bus resource. This property
--			  is optional only for compatibility. If the RB
--			  error conditions are not cleared, it will
--			  continuously generate interrupt.
--- reg			: First resource shall be the CPU bus (PCP) resource.
--- interrupts            : Interrupt-specifier for MCU, PMD, L3, or SoC error
--			  IRQ(s).
--
--Required properties for memory controller subnode:
--- compatible		: Shall be "apm,xgene-edac-mc".
--- reg			: First resource shall be the memory controller unit
--                          (MCU) resource.
--- memory-controller	: Instance number of the memory controller.
--
--Required properties for PMD subnode:
--- compatible		: Shall be "apm,xgene-edac-pmd" or
--                          "apm,xgene-edac-pmd-v2".
--- reg			: First resource shall be the PMD resource.
--- pmd-controller	: Instance number of the PMD controller.
--
--Required properties for L3 subnode:
--- compatible		: Shall be "apm,xgene-edac-l3" or
--                          "apm,xgene-edac-l3-v2".
--- reg			: First resource shall be the L3 EDAC resource.
--
--Required properties for SoC subnode:
--- compatible		: Shall be "apm,xgene-edac-soc-v1" for revision 1 or
--                          "apm,xgene-edac-l3-soc" for general value reporting
--                          only.
--- reg			: First resource shall be the SoC EDAC resource.
--
--Example:
--	csw: csw@7e200000 {
--		compatible = "apm,xgene-csw", "syscon";
--		reg = <0x0 0x7e200000 0x0 0x1000>;
--	};
--
--	mcba: mcba@7e700000 {
--		compatible = "apm,xgene-mcb", "syscon";
--		reg = <0x0 0x7e700000 0x0 0x1000>;
--	};
--
--	mcbb: mcbb@7e720000 {
--		compatible = "apm,xgene-mcb", "syscon";
--		reg = <0x0 0x7e720000 0x0 0x1000>;
--	};
--
--	efuse: efuse@1054a000 {
--		compatible = "apm,xgene-efuse", "syscon";
--		reg = <0x0 0x1054a000 0x0 0x20>;
--	};
--
--	rb: rb@7e000000 {
--		compatible = "apm,xgene-rb", "syscon";
--		reg = <0x0 0x7e000000 0x0 0x10>;
--	};
--
--	edac@78800000 {
--		compatible = "apm,xgene-edac";
--		#address-cells = <2>;
--		#size-cells = <2>;
--		ranges;
--		regmap-csw = <&csw>;
--		regmap-mcba = <&mcba>;
--		regmap-mcbb = <&mcbb>;
--		regmap-efuse = <&efuse>;
--		regmap-rb = <&rb>;
--		reg = <0x0 0x78800000 0x0 0x100>;
--		interrupts = <0x0 0x20 0x4>,
--			     <0x0 0x21 0x4>,
--			     <0x0 0x27 0x4>;
--
--		edacmc@7e800000 {
--			compatible = "apm,xgene-edac-mc";
--			reg = <0x0 0x7e800000 0x0 0x1000>;
--			memory-controller = <0>;
--		};
--
--		edacpmd@7c000000 {
--			compatible = "apm,xgene-edac-pmd";
--			reg = <0x0 0x7c000000 0x0 0x200000>;
--			pmd-controller = <0>;
--		};
--
--		edacl3@7e600000 {
--			compatible = "apm,xgene-edac-l3";
--			reg = <0x0 0x7e600000 0x0 0x1000>;
--		};
--
--		edacsoc@7e930000 {
--			compatible = "apm,xgene-edac-soc-v1";
--			reg = <0x0 0x7e930000 0x0 0x1000>;
--		};
--	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0428593ce489..9dd234ca0e89 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1878,7 +1878,7 @@ F:	arch/arm64/boot/dts/apm/
- APPLIED MICRO (APM) X-GENE SOC EDAC
- M:	Khuong Dinh <khuong@os.amperecomputing.com>
- S:	Supported
--F:	Documentation/devicetree/bindings/edac/apm-xgene-edac.txt
-+F:	Documentation/devicetree/bindings/edac/apm,xgene-edac.yaml
- F:	drivers/edac/xgene_edac.c
- 
- APPLIED MICRO (APM) X-GENE SOC ETHERNET (V2) DRIVER
+Well, no. The driver was crontributed by:
+
+commit 3655a63f9661b1fff313d8795200ff420282a87b
+Author: Shazad Hussain <quic_shazhuss@quicinc.com>
+Date:   Wed Jan 18 15:08:25 2023 +0100
+
+     interconnect: qcom: add a driver for sa8775p
+
+That's definitely not 'someone from the community'.
+
 -- 
-2.50.1
-
+With best wishes
+Dmitry
 
