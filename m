@@ -1,81 +1,65 @@
-Return-Path: <devicetree+bounces-210179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8313B3AA67
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 20:53:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF9F7B3AA9C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 21:09:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85A9EA00E3D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:53:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77CF55634B4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 19:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E82362F0C4D;
-	Thu, 28 Aug 2025 18:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A012A326D50;
+	Thu, 28 Aug 2025 19:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="QOZcbAzl"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="RhFTCNal"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304552C11F3
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 18:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE48270EDF;
+	Thu, 28 Aug 2025 19:09:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756407224; cv=none; b=TcWsWPcENHu+WT6GW5X5idYHygFjBtnf+Li3gYW/yAya+mJdT2hawWOQuRSnGX89zkFfe6cg9fSpn9qF1Jf6eRPv1/smE3kvx11PKPpjoJNoKBt3iXIVXiUumqD2z2134uKmeu/GHPMyipeHYRoC8pbZxuayIx575UmZxisuwuo=
+	t=1756408188; cv=none; b=Q1oQMe0FuT4Zn0bC2J153AO8m8ij0d3orGUlVjXoUW6JssQx1HmXJa2lsLTGy5zPU5wgyvAJOORUYKmkse0+jzhbakQ9qeiRAe/YWbqkBZCEMVLFkPgkPRd8Xy8/JC4P0kp2smjGHpjpA/aKvpwNTyS0YrARTG/xOZYg/7OvYB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756407224; c=relaxed/simple;
-	bh=FQ1rdKGi9R94HCP+YGbh7p78J9PEq/G/b/AdDFMY+jY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Lcw06ibV+WtWNNNYEyQVJH29X8RxXck7gKaFw89g/dHv05HtrA94wrHLFhA9SRp10qhR5l36gv9O83pwjo3H/z65LfE7nRHRJRoWKUBG2HaaEP+6LnU3p66XC6yZ4AI5wYGZvdL7GcTEe1SjWTaUol3nnj4BTS7/1CInUtIyPMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=QOZcbAzl; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45b7e69570bso1385635e9.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 11:53:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1756407221; x=1757012021; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KQxssGI+raI+XkRI8ea9mGLdtxL/7Ytn0lgOA6dMPAE=;
-        b=QOZcbAzlqtiDVq0p0SK2wIYjMIrVjLkDoxQG9YQq0g3CVrOpaPI2SAOa8YMr/u5uSx
-         qoXS7ucnnv4z7nBLgs05zJ2+o8cggQXg0mWMCV3bV/UbqPIuiz8/+sEHQUMFdNZhxCPu
-         NTfriGwrOQ7TmTthVIA2jz0BEKyCWT7QF+wIwziliqiDFhHKQlE2/kYSaK7TEL5nfSZV
-         6GEArmB32Q4qiuOk5I5keQqcEjcmeCemI+XbvM54DtUDzRvcvqAUS417eQkX4frwmCM7
-         JP+ZZBqVLq2JyEH4MS242ODQQ+1QPjEtYMpX5TygGzdcbs80AkNkx9dtIhdDkwBFDNC4
-         5T5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756407221; x=1757012021;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KQxssGI+raI+XkRI8ea9mGLdtxL/7Ytn0lgOA6dMPAE=;
-        b=bH/ILK6HhJ+a7/b+jjWJ8uYmtwMRP26vVumS+9/ANctWKNk4q5jRA8Fkuh8bpM4bQu
-         Drww3UOEt2m7KWHpDNHj+ZMJyExeQjcmiRORUyt9+gWUkCh7Qrr5ihqbKF/WBB+9FkDg
-         nX1lhc08YB908O/4L1A8F2WZNtwCPqz7p2+UG0Ikynh1jvPun76j8m8z4gKJZWLQlbQx
-         X5VAp7Op5vYvSDSl879QJkW2bM56l1E91b59kNRJ/RlMdA3ktYexbPH6l7KoOiibSN1B
-         mIIRfMsqesUU3t/l6v82e4UFSimWTsXpQJNHSFj2x/TjSd+6G5Zflfmgwl3TRuAKmFh6
-         iSYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWdgv6gsw55KKJP9OG8wNc/wYhqm/wYUwTz7T1TLG6vOeRZIJgrudPFHknnV0BM8iV/RdtZ3VXDbIhK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw32WpIJYvUPGmp6suvcm6Txf742v6rplubF6GEyVd0P0BE6uSi
-	FZinUQ8RIOqo2J1JUrnsWaFbhAHd/l2i9KjtcXRzqxyM2xb2UFx/AstJXrs9y8/umO4=
-X-Gm-Gg: ASbGnct1pdBaEvTWpnfNe0VnSkq0XHqSjdpatvenXL7qZkiG14ir3CHKHE2qJWxvSO6
-	fi53gH77U/fp0pwLBQ1NYWKBRLS+WhJkNROFnLg+65rI19Tqvw/NbdgO3Bk/73bpwHQU4SOFn24
-	HLTSY4CQNr0iYznOaNAo3yCX9I9WvuBk9ObxvZ1oBqWIs2muVz5USRSMTGj10prvsTMsp97GsPq
-	oacLewEr50xQXKEtiEzRmdmDJCKp534SIv78YGbwfvJIQTLhMU7OYFc+8j7VBCU2BLTvRPDgJK6
-	aiDkjpTyyj58kivlZ0oLpez1bjZ/qHAPRGfhBgcSPQ8u22Ei7pgoYYhr9rj8O7B3jeL+SJcK+K/
-	MqipsNa+j4dx3SAaeICt9AsH3zBshnHNgkpKxAJD8vRp5BJsaL05mKDatxZfaPP+pg/PhF5YK7B
-	A5eg==
-X-Google-Smtp-Source: AGHT+IEsQ4LuJqJJ8bLH2sEiTn/a4xu8JBjHjhH5JH9gsrlNMbO4Yfh55Kjm7XpwgoiSOdsGhAur2g==
-X-Received: by 2002:a05:600c:46ca:b0:45b:7c54:7518 with SMTP id 5b1f17b1804b1-45b7c5475a5mr21923185e9.13.1756407221350;
-        Thu, 28 Aug 2025 11:53:41 -0700 (PDT)
-Received: from ?IPV6:2a02:2f04:6103:4200:a4c6:4e84:e72c:19fd? ([2a02:2f04:6103:4200:a4c6:4e84:e72c:19fd])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b6f306c93sm85978075e9.14.2025.08.28.11.53.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Aug 2025 11:53:40 -0700 (PDT)
-Message-ID: <a27c5e51-14ab-4f6c-8da7-3733c1c89abb@tuxon.dev>
-Date: Thu, 28 Aug 2025 21:53:39 +0300
+	s=arc-20240116; t=1756408188; c=relaxed/simple;
+	bh=gavNgOkKhfNDiKl/9ak68KmaoC3d7rurjPpAvEBhBm4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=owHZpbFILt6Qh0utJ0QflOE1ZNw/6qwxUNSQkzCpcbk8Tl3El64qqiiTQHkmF2FulVLi43+tf9zYmpDnmadyYX8qW3V1e/ZVVovnnipK0EJ5g7AxX52MXtTylrealI2LAusTuB86U97f2/u7efwDA8jEBQNI/M0RU/yDlkPCPPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=RhFTCNal; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57SHMa4r004299;
+	Thu, 28 Aug 2025 21:09:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	DLM5AUfns2hb2my8bJBgZg9LR+O4etaj8IVbPYQY7Rc=; b=RhFTCNalC7NV3IWu
+	xQpiT6P0FVLKeJXQW9GiLN0GG7LUh43kdqmlK4HiSLD9Ae0g/UkOuYn4cJ1KfzjX
+	tJKXsbZtvrENSZV839CiopyHlwa3oekKuRBQYKlN+u+Kjik9ozXO08L97ESHwP+N
+	4Q81SSH3sn7Aksh95UvJhGhPY0TVjHiuf2nAuONNPigFPhasS1vMFR/0HSX5cLLp
+	SIQkooY9sAOgWTHTkkct52TZ25OLklFDZauAL8wZ0+xrOEzCktEHHidqR5XSLkZd
+	dTXpT/3vXdRw4wJNFWHGFvaxDYglybIxKSZT87+JNZQ2UBMV2LL8OEC2oa1M1OZa
+	svWbAw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48qrkmuggq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Aug 2025 21:09:17 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1ADA04002D;
+	Thu, 28 Aug 2025 21:07:34 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9DE2276BE64;
+	Thu, 28 Aug 2025 21:06:37 +0200 (CEST)
+Received: from [10.130.77.120] (10.130.77.120) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 28 Aug
+ 2025 21:06:35 +0200
+Message-ID: <0fbf4be0-af6e-4119-a838-e3fc9ab1fc9d@foss.st.com>
+Date: Thu, 28 Aug 2025 21:06:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,47 +67,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/4] thermal: renesas: Add support for RZ/G3S
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
- lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
- p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- niklas.soderlund@ragnatech.se,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250810122125.792966-1-claudiu.beznea.uj@bp.renesas.com>
- <aLAWLZBenSWWqqkK@shikoro>
+Subject: Re: [PATCH v13 06/11] PCI: stm32: Add PCIe Endpoint support for
+ STM32MP25
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: <lpieralisi@kernel.org>, <kwilczynski@kernel.org>, <mani@kernel.org>,
+        <robh@kernel.org>, <bhelgaas@google.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@foss.st.com>, <linus.walleij@linaro.org>,
+        <corbet@lwn.net>, <p.zabel@pengutronix.de>, <shradha.t@samsung.com>,
+        <mayank.rana@oss.qualcomm.com>, <namcao@linutronix.de>,
+        <qiang.yu@oss.qualcomm.com>, <thippeswamy.havalige@amd.com>,
+        <inochiama@gmail.com>, <quic_schintav@quicinc.com>,
+        <johan+linaro@kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20250828172253.GA949714@bhelgaas>
+From: Christian Bruel <christian.bruel@foss.st.com>
 Content-Language: en-US
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <aLAWLZBenSWWqqkK@shikoro>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <20250828172253.GA949714@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-28_04,2025-08-28_01,2025-03-28_01
 
-Hi, Wolfram,
 
-On 8/28/25 11:41, Wolfram Sang wrote:
-> On Sun, Aug 10, 2025 at 03:21:21PM +0300, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> Hi,
->>
->> This series adds thermal support for the Renesas RZ/G3S SoC.
->>
->> Series is organized as follows:
->> - patches 1-2/4:	add thermal support for RZ/G3S
->> - patches 3-4/5:	add device tree support
->>
->> Merge strategy, if any:
->> - patches 1-2/4 can go through the thermal tree
->> - patches 3-4/4 can go through the Renesas tree
+
+On 8/28/25 19:22, Bjorn Helgaas wrote:
+> On Wed, Aug 20, 2025 at 09:54:06AM +0200, Christian Bruel wrote:
+>> Add driver to configure the STM32MP25 SoC PCIe Gen1 2.5GT/s or Gen2 5GT/s
+>> controller based on the DesignWare PCIe core in endpoint mode.
+>> ...
 > 
-> Series applies fine; I can read the temp (36°) which increases
-> reasonably over time (40°).
+>> +static int stm32_pcie_start_link(struct dw_pcie *pci)
+>> +{
+>> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+>> +	int ret;
+>> +
+>> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
+>> +		dev_dbg(pci->dev, "Link is already enabled\n");
+>> +		return 0;
+>> +	}
 > 
-> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> While looking at the "incorrectly reset" comment, I noticed
+> stm32_pcie->link_status and wondered why it exists.  It looks like
+> it's only used in stm32_pcie_start_link() and stm32_pcie_stop_link(),
+> and I don't see similar tracking in other drivers.
+> 
+> It feels a little racy because the link might go down for reasons
+> other than calling stm32_pcie_stop_link().
 
-Thank you for checking it,
-Claudiu
+I think that as an excess of paranoid that was meant to protect against 
+a driver unbind when the link hasn’t started yet. In that case, 
+stm32_pcie_remove() would disable a link that’s already disabled.
+
+But that shouldn’t be a problem to disable twice the ltssm enable bit, 
+as well as the perst irq. I’ll look into removing it. Is it okay if I do 
+this with a fixup patch?
+
+thank you
+Christian
+
+
+> 
+>> +	dev_dbg(pci->dev, "Enable link\n");
+>> +
+>> +	ret = stm32_pcie_enable_link(pci);
+>> +	if (ret) {
+>> +		dev_err(pci->dev, "PCIe cannot establish link: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	enable_irq(stm32_pcie->perst_irq);
+>> +
+>> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_ENABLED;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void stm32_pcie_stop_link(struct dw_pcie *pci)
+>> +{
+>> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+>> +
+>> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_DISABLED) {
+>> +		dev_dbg(pci->dev, "Link is already disabled\n");
+>> +		return;
+>> +	}
+>> +
+>> +	dev_dbg(pci->dev, "Disable link\n");
+>> +
+>> +	disable_irq(stm32_pcie->perst_irq);
+>> +
+>> +	stm32_pcie_disable_link(pci);
+>> +
+>> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_DISABLED;
+>> +}
+
 
