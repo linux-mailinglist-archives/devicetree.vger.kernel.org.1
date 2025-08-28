@@ -1,186 +1,112 @@
-Return-Path: <devicetree+bounces-210122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD43B3A58C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:06:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D50B3A5A4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:08:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECD9F189FD41
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:05:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96FCA3B1B88
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:08:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF4B2F2903;
-	Thu, 28 Aug 2025 16:01:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51CF52877C1;
+	Thu, 28 Aug 2025 16:08:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="I0vds5M2";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="UQwmO8gI"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gAJdjTK2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from flow-a8-smtp.messagingengine.com (flow-a8-smtp.messagingengine.com [103.168.172.143])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCB852E7F2F;
-	Thu, 28 Aug 2025 16:01:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.143
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EB89285065;
+	Thu, 28 Aug 2025 16:08:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756396865; cv=none; b=H6huqOoL13zmqgJ5FI9ZAlOYVJ3HVG0OFTdqgP2xz3ipRW/ZkmqF78U7PeQcCiC+MVWarEM/dJaiDvu8IJghaY4XtxUc/szJ8NWNCkSXD4Q4w7ofjK8r8lecTAtRSY0jweRAuBHjQRJtG5LU7PVixX5S56+Tp6nuSfxWyhN2ENk=
+	t=1756397298; cv=none; b=GaL5WQ5IUtYB0myCIoSvjXbH8sGvd+2tc+lWGA7l2QNWVTKpOMVgrLYa6SQdyPrQi527xxpygoqPJsW9dlgkTnjlYDqby7daltFe3fIGWPzuz6PlDtVL/Pp0+In2kr3UAyXuFtTS1LXXacomHZEXqv+9w97lit4V0yk8U701veo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756396865; c=relaxed/simple;
-	bh=IhCwyVSLQaDPC1ItyuW0KFgIev1MsX9imMYlVGODsGI=;
+	s=arc-20240116; t=1756397298; c=relaxed/simple;
+	bh=chl2pglmKuX5THNV4UczW2DfJ8GWxqeVOVktQ94bii0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FV8HP3CR03JoqlKw16ttJ/WOlpuziHLmi1hp90NPLasaFML0bIi/NQj98rvtvoCSPkSeU+FQK/v6le/T7Dy+JTzjfL+mpNmm8Uakw+IG5jnMl5jqlT7qsLbHJgWRfuPukSZOFd4XSm+PJ7sFQT9peegAuk+2zhhZvH8bLeTlU+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=I0vds5M2; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=UQwmO8gI; arc=none smtp.client-ip=103.168.172.143
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-09.internal (phl-compute-09.internal [10.202.2.49])
-	by mailflow.phl.internal (Postfix) with ESMTP id CFDC31380BD6;
-	Thu, 28 Aug 2025 12:01:01 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-09.internal (MEProxy); Thu, 28 Aug 2025 12:01:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1756396861;
-	 x=1756404061; bh=X0y5RQTmfwxUObhRto5XKdRlcInx4/Tzp/ibu8iObz8=; b=
-	I0vds5M2ZwZ/2oQ5PNgXiYYN+e9KqQ+21lQKMj2rlUB7qGtjIwE2S1czCT6Kj3mO
-	B3rCT4TSXFmrs2KqxhrTjjzcNHj1PKES0qeM4gAIqognX5qNWUmCKwEySizle3oV
-	FgJPiOVf6COGjfksPddIITc3Qi40GWDNi5ySxPvgf4+rryLSti++rzyclUXCPExt
-	VmvDLkEzuRoUPIKITRnFr9T1C4s5yQx6WpmkX9ZaT6d0jXKS/3t6T6q0YOtf5HPo
-	5wSdBfPjOhtvp+2Lx8cCFC4itL5YsBqXSHvMJR/FJGGCCi34aO63jYfdIJqpRqhi
-	HtoEsRbYXoY5Dfxl4Uv6Bg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1756396861; x=
-	1756404061; bh=X0y5RQTmfwxUObhRto5XKdRlcInx4/Tzp/ibu8iObz8=; b=U
-	QwmO8gISdU25Fs3HSYuPhjs9y7oII5xEQZmiGUN6AynJMwVcwv1yPJOzlr3OGowA
-	J3kw2w52WOa7u2NUKOxzlAjTtjdUEa+UjUu1AyeUiMeIXa7nyD0ZxJLsl471kUzN
-	z38wDdRjfnKe9fx8F7dnq0FaG8NMvEuvWT7Xxxcjt0dGSF7AQ2ZLHNLOwqQq+JKp
-	vtyv6t4WFCa5A18ZKdeQn2Ao2X5/tij28k21rRW7LYGsjO+SkUvRJaTcv+VcN2aa
-	u3Zf/oqcuHBmRF/LknGTuZWN6sIntoqw+fb+j1GMTj1Fal4hRXQnCNpMSK+KYWTe
-	gDBSKWi41Ng7rYALGBwBg==
-X-ME-Sender: <xms:On2waIxJlexuPzypFfc2uxTpdNwLE_OHXPTlfTfwFUFslgrePoufjg>
-    <xme:On2waDv810MwADrY_nRVH_KwjmB3F0NMW_ws2Wrj-VWfWFKq08Xz6Zbgvzk7-JulL
-    XJbkV8aOPj6CAlPclM>
-X-ME-Received: <xmr:On2waDRzvvGywk6DwPkLvk9uBcG00uECS6wd59vVf4ke3ZxWDi0fSZhxMPoY9B8Qh9uJIEolZzSsKsd-tT30ZdyMq_qYM5dJRrk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddukedugeehucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpeflrghnnhgv
-    ucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepve
-    efkeeuudettddvffevhfevvdekhffgveehfefhffehfeetgfetffeugfevfefhnecuvehl
-    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrg
-    hurdhnvghtpdhnsggprhgtphhtthhopeeigedpmhhouggvpehsmhhtphhouhhtpdhrtghp
-    thhtohepthhofihinhgthhgvnhhmihesghhmrghilhdrtghomhdprhgtphhtthhopehsvh
-    gvnheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlhihsshgrsehrohhsvghniiif
-    vghighdrihhopdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtoh
-    eprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghr
-    nhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpd
-    hrtghpthhtohepmhgrrhgtrghnsehmrghrtggrnhdrshhtpdhrtghpthhtoheprhgrfhgr
-    vghlsehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:On2waBdAe8K_bVqvNlQR0j5V1DKUm0Ra1Gjf1ktaipolDUs-krUtjQ>
-    <xmx:On2waJRmnZC6YgZWEQVw_LwCMcqtoCD8bnwuizrYGROWUpfHSKqzHQ>
-    <xmx:On2waJnA2UkyifRmB3uklG3XznqZxfoMS-lY1Z4ov7UTS6RuoDIXUg>
-    <xmx:On2waDHqNwU0uR-xpYaUzht54A7lAkmGOQO7gUi2D5fEP12ITgI9gw>
-    <xmx:PX2waMoTJjhez4WANByCdWAkFMP5JaWhXJAkwB8SD_dJwvTzPB-wYtf2>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 28 Aug 2025 12:00:57 -0400 (EDT)
-Date: Thu, 28 Aug 2025 18:00:55 +0200
-From: Janne Grunau <j@jannau.net>
-To: Nick Chan <towinchenmi@gmail.com>
-Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=VQ0iPO2urATIExs855kEOTD9zwSXSsLJle8XRxFdrgWRsGJpzB+JLUVZzcKAj7k8tgs7AaB8chpWyl2816H3is3dsVUmAju+3Bxvv3z4F8jH0IB6UkZdONEpAu00MwmXP4gWs8YDHAk18kFW9grbsB6AUMgtR5iHCZWtvLBs+78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gAJdjTK2; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756397297; x=1787933297;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=chl2pglmKuX5THNV4UczW2DfJ8GWxqeVOVktQ94bii0=;
+  b=gAJdjTK2tyJp6Kma2k1Gwzx4+iEoaX0M/3jdWjpdQMnMqubZ4p5sh787
+   0VrCZPUdTjTy4wCxJjdnxFUB7nydPkaYcW6LnJVJCsFJUJqgUcIH6c4Jh
+   B3tct9fp7EbQpPuhdc9UjML68BgqpGQTBqy7O8SMvUWlqe/WW7XAd9Sdn
+   47rGfOQ7QH0LASk6pQ19nlR5FW0nGOEHAfwANf9Z8iIYBmqglX0ch5o4h
+   5y7kfa1UPL0uLVq6ffzkiFNRtjeLVn+1BzGR5Ffyfphlbm0nnoo8pcgvH
+   APY69hKJOxb4JIFOJ5CKgF7kSEkAB7LlKd7bFYVH68l/kb2hIgG2qMacZ
+   g==;
+X-CSE-ConnectionGUID: wQklFKzrR1ulYeD3orhqjg==
+X-CSE-MsgGUID: C7YqnZdMRWaslGcvh+dypA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="61306461"
+X-IronPort-AV: E=Sophos;i="6.18,220,1751266800"; 
+   d="scan'208";a="61306461"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2025 09:08:16 -0700
+X-CSE-ConnectionGUID: 6NXhRMzqTDaxYPKfnPew0g==
+X-CSE-MsgGUID: d3UIs7vBS2q49mxX4Zsurg==
+X-ExtLoop1: 1
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.135])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2025 09:08:11 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id ABFA411F9D4;
+	Thu, 28 Aug 2025 19:08:08 +0300 (EEST)
+Date: Thu, 28 Aug 2025 19:08:08 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+Cc: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,	Hector Martin <marcan@marcan.st>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,	Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>,	Robin Murphy <robin.murphy@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Mark Kettenis <kettenis@openbsd.org>,	Andi Shyti <andi.shyti@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Sasha Finkelstein <fnkl.kernel@gmail.com>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	van Spriel <arend@broadcom.com>, Lee Jones <lee@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	Vinod Koul <vkoul@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Marc Zyngier <maz@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,	Keith Busch <kbusch@kernel.org>,
- Jens Axboe <axboe@kernel.dk>,	Christoph Hellwig <hch@lst.de>,
- Sagi Grimberg <sagi@grimberg.me>,	Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>,	asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org,	devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,	linux-pm@vger.kernel.org,
- iommu@lists.linux.dev,	linux-gpio@vger.kernel.org,
- linux-i2c@vger.kernel.org,	dri-devel@lists.freedesktop.org,
- linux-bluetooth@vger.kernel.org,	linux-wireless@vger.kernel.org,
- linux-pwm@vger.kernel.org,	linux-watchdog@vger.kernel.org,
- linux-clk@vger.kernel.org,	dmaengine@vger.kernel.org,
- linux-sound@vger.kernel.org,	linux-spi@vger.kernel.org,
- linux-nvme@lists.infradead.org
-Subject: Re: [PATCH 34/37] arm64: dts: apple: Add initial t6020/t6021/t6022
- DTs
-Message-ID: <20250828160055.GB204299@robin.jannau.net>
-References: <20250828-dt-apple-t6020-v1-0-bb8e1b87edef@jannau.net>
- <20250828-dt-apple-t6020-v1-34-bb8e1b87edef@jannau.net>
- <5e0e51db-17ae-483a-bb96-8ab88ad2fbad@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Matthias Fend <matthias.fend@emfend.at>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 0/2] media: i2c: Add ov2735 camera sensor driver
+Message-ID: <aLB-6GsY-OiCZi9I@kekkonen.localdomain>
+References: <20250821143126.319470-1-hardevsinh.palaniya@siliconsignals.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5e0e51db-17ae-483a-bb96-8ab88ad2fbad@gmail.com>
+In-Reply-To: <20250821143126.319470-1-hardevsinh.palaniya@siliconsignals.io>
 
-On Thu, Aug 28, 2025 at 11:37:08PM +0800, Nick Chan wrote:
-> 
-> Janne Grunau 於 2025/8/28 夜晚10:52 寫道:
-> > From: Hector Martin <marcan@marcan.st>
-> >
-> > These SoCs are found in Apple devices with M2 Pro (t6020), M2 Max
-> > (t6021) and M2 Ultra (t6022) and follow the pattern of their M1
-> > counterparts.
-> >
-> > t6020 is a cut-down version of t6021, so the former just includes the
-> > latter and disables the missing bits (This is currently just one PMGR
-> > node and all of its domains.
-> >
-> > t6022 is two connected t6021 dies. The implementation seems to use
-> > t6021 with blocks disabled (mostly on the second die). MMIO addresses on
-> > the second die have a constant offset. The interrupt controller is
-> > multi-die aware. This setup can be represented in the device tree with
-> > two top level "soc" nodes. The MMIO offset is applied via "ranges" and
-> > devices are included with preproceesor macros to make the node labels
-> > unique and to specify the die number for the interrupt definition.
-> >
-> > Device nodes are distributed over dtsi files based on whether they are
-> > present on both dies or just on the first die. The only exception is the
-> > NVMe controller which resides on the second die. Its nodes are in a
-> > separate file.
-> 
-> There are some outdated / copy pasted from M1-series parts.
+Hi Hardev,
 
-All fixed locally. I also removed an outdated "hypothetical T6022 (M2
-Ultra)" from t602x-dieX.dtsi.
+On Thu, Aug 21, 2025 at 08:01:11PM +0530, Hardevsinh Palaniya wrote:
+> The Omnivision OV2735 is a 1/2.7-Inch CMOS image sensor with an                 
+> active array size of 1920 x 1080.                                               
 
-thanks for spotting these,
+Have you run v4l2-compliance on this? Could you do so and provide the
+report, please?
 
-Janne
+-- 
+Kind regards,
+
+Sakari Ailus
 
