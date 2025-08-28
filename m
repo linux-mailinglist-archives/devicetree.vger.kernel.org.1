@@ -1,135 +1,200 @@
-Return-Path: <devicetree+bounces-210041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B1E0B39F71
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AECACB39F76
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:57:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDBA7163A39
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:56:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 671DE17D578
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B306221294;
-	Thu, 28 Aug 2025 13:56:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FF630F952;
+	Thu, 28 Aug 2025 13:57:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="mKNgIkdj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ub6EQEAz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06A5A1CDFD5;
-	Thu, 28 Aug 2025 13:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7D630F54E
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 13:57:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756389370; cv=none; b=JqwP8XI+NOqt746p8rjXFCFIF2BgwRdYyBKt3AI+DlV0jvTQgq9OmRrk5FLWs4g9Dzx+ris+jvBhPB29uSt/qiwf+4Jn0cVO8AS4Egw73aBhAAKNh/CshvWUvLcZgrOCfex8tPouPLZXM43pcUxp/Kj/+Vk8Rb5iDO1hBmcw7oc=
+	t=1756389451; cv=none; b=XtA074lwusjLnItdTnYsjvoCei9oly+otQplF/ePvsc3VWegya+ZC0SyuTildSCikDzWWF+aN0trVTQ2gf90Q/rnWXnpUt6J9sCKdXASrHurvLkWiXbiECbazysipGAvF/ZbxsKu67gNYirP1VEn2+dYP+91EG3ZL+UHcV2dvtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756389370; c=relaxed/simple;
-	bh=0PDrSyOFgv4F8LxFwE/7WQbJIFLQJ/sG9Zrg1Q9PUoQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mPNkDKh+FFNpreSzhKC21ex5lynucOHbzDqB3Y7sY2xugVmSB4cxkSX8mW3U9W1Z2cwXWyjd/tJFzfu/19iYB0DueXM696hzyIEAHaeUtIaQQiS3Hd8g/gArkzwXphPeZ1R/kPzp/dPfvKhHL8WwtDdgqSIfMuMNETkKeeLo0Ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=mKNgIkdj; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57SBnI4b026021;
-	Thu, 28 Aug 2025 15:55:49 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	Dm6i+EpyE8QWt4iCU85NedWZbbxEmH/7ZoLUzNKJkZY=; b=mKNgIkdjnJ69Uacm
-	r1W22+vpUjzgOSBN+1ZubxX1Ff+Hd6brat1mwbIqER2QKsFc+VNNWLo9+iXZV1bx
-	U9H06JDsYUVEZ/9CuY7YIjkwCPxv22cS++8EoCsoR3pHH6t0PKnUjcWINPZh7EI5
-	EE6T73pCi+hoN1otSsxtrBl6y6i/zpkg8MY4YeUR76corYBIf5WZfOhi60sSpdYL
-	rwCi76BlFvV6M7aAnKeeXZUC16zoj8mpKX0CCFBBUb9/5FB5WJGH+lHfVpPvYqVt
-	ID6zdZjWPrSW84SmsgU5asZAsfttFgXXl6CJjd3NCsNg7OT4s33TaTmK6iVZnIwk
-	/ElwSg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48q626vktc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Aug 2025 15:55:49 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3ABAA40048;
-	Thu, 28 Aug 2025 15:54:25 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7C14A74F6C6;
-	Thu, 28 Aug 2025 15:53:27 +0200 (CEST)
-Received: from [10.48.86.145] (10.48.86.145) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Thu, 28 Aug
- 2025 15:53:26 +0200
-Message-ID: <676469fd-b957-79f5-9483-749c66bdf270@foss.st.com>
-Date: Thu, 28 Aug 2025 15:53:25 +0200
+	s=arc-20240116; t=1756389451; c=relaxed/simple;
+	bh=Lga8eUmvTypnU+N8xf2bcKYX2aN4L/PZ63SC9x2UnKY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qOCUKFKrRyKSy6WLZP7OKHo0OJcDgFt+1xWuYsItqeErvQ9T6+Ep7I+M/H0tLivB3EJC55IZfkBMqo5paJYL6i8T050znF9QJL3Z5fJ8m42rRrym2ksmeEZrZzYwPtXjBikfHWsY5bgid1aoTKtISTK9krQ6lDaSpezDIEdzDJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ub6EQEAz; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-61cbfa32ebdso135557a12.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 06:57:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756389448; x=1756994248; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ry5BAM4eGzyoMNqwVqMz8Kcq7nPsJJxRcXsSOxb+jRw=;
+        b=ub6EQEAzzVnFNhEamrg2lwBo88xZ1Go6BTbeMa5P0dscbLvkyBGtFS8tPxJ9KbUPHp
+         JynDVZ2O1+txIR95tgzM1mrN9MqzChRBLGw9fphSQ1+R9tCLvPNlDcvNaoAsddbaMnoG
+         M64WT79jiXyrsAP+oRmqZ6SoKRdxYqPlMgMGsNpJMYVJ9aALHw7a9KXVRXIDp66tcxCF
+         x7+uC7Vz8HgG5Yl4eiDyJzyJt4V5fTO2mHhEORRxficWT2ikPXL+aSVKni+FT0GOQF7L
+         9HmHOn6i6aYNSkTTTz+SmslJZhbNTM4wDo2IW2s+7kDt+UymQi3p7N0JLZoPeZMhBKvY
+         xrOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756389448; x=1756994248;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ry5BAM4eGzyoMNqwVqMz8Kcq7nPsJJxRcXsSOxb+jRw=;
+        b=dhC1tQRW/8VRjP3usDXM7W6YvZI/70iMLTnPKh7eaL7JtFvCarWPG4T3NQ0Oji2ou2
+         2a5f6zsuORFVytdRfGhkZUIv5W6Cixx3dwBOpNMWwr/zqc1Zb9apoB8S2j3H80rL80ro
+         t4c7DiP3WXr1HLLx6ReWClgHFXgvVRPNjuWLLSzlQUmCs1pJoYYyqaXbxbo1ZCq+0XHa
+         9MGk8ZZ2/iAOOErRdKhW+Gylga2XFP76ff3pI09YTxc4STthkcJ8D0GrIfQiyitXFt8n
+         fnK13Uoq6ib8JL6uxAnCH7g/KnF7t2gbDX534UnaT96h3DymAjU3lIGGSFj7UD1BReEn
+         jDgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV0dyjBJfIB93P0LPfGZ7kfwELdAk8FC31I7gDCHaJTK5kA1XMbpOCSzoYwIDvcTMeFjpqQzYcZyE2N@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfH9sKwjjp84P0KBb7rDPBvR/kwPFDVl+Wn8steLNRtxDjZz9X
+	16Lq4tLvwYj0iYdUmINpcrfgwRruIHZwSrxWrJClZT8XX3zrq/v7qoqxJAom4n+B2TA=
+X-Gm-Gg: ASbGncuM0vUs6DMwvmpfnnLgzZz1U5v29KJQjI9r+HIuf5DrS+eAfYd2BdZCuITEA+U
+	hyXjq+L2Sucvw4ALRj/sEgL8Vtj6dFqEGUwFGp8rw6RVseAC51BPXLWqdOp1mDpiBx+nF/OsQM3
+	iNgW4Am3eBEqNWb4fr9eE+NPg0AYgj8dqTpWHXAcmVW+VoM4s+y03zP747zV/0uJaRvRYPCiWiB
+	HWUtWZsa0NSswm1OzNYHdCPMCMTW8eoIoN9+/k50bHX/tQNcVzkxCaessBo0k9KH+tINsOtKXN1
+	zNiO3OT12ue+j+iMVrH0+2Hj12366ygD/o34pPuLJqwFoIHCJMcHgkEWvv8D7BQgWRi4qZXS7Uq
+	g7ztYG7MfGmGzkXTNbA7XqDRNLPzHdLcyFeydpFclJnA=
+X-Google-Smtp-Source: AGHT+IGiTDx72Ct0qq6LfR78hlyca9TI5FhuYQdGlgAMQ9n+t1eXNexwlAt4NBGtyPNmUoOOUbw4QA==
+X-Received: by 2002:aa7:d9c9:0:b0:61c:bd9f:7242 with SMTP id 4fb4d7f45d1cf-61cbd9f7594mr1690901a12.8.1756389448227;
+        Thu, 28 Aug 2025 06:57:28 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61c90ffd657sm5610219a12.44.2025.08.28.06.57.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Aug 2025 06:57:27 -0700 (PDT)
+Message-ID: <46f5d11d-8bed-4d01-9151-35a24cdacfa5@linaro.org>
+Date: Thu, 28 Aug 2025 15:57:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v5 08/13] drm/stm: ltdc: handle lvds pixel clock
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] media: dt-bindings: qcom,sm8550-iris: Do not reference
+ legacy venus properties
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250823155349.22344-2-krzysztof.kozlowski@linaro.org>
+ <20250825113734.iekrgyvctamhb5y7@hu-mojha-hyd.qualcomm.com>
+ <a3325bf1-2a3f-416a-ba2a-4fb1e9f85e61@linaro.org>
+ <05d40a3b-cc13-b704-cac7-0ecbeea0e59d@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Yannick Fertre
-	<yannick.fertre@foss.st.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Maxime
- Coquelin" <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250822-drm-misc-next-v5-0-9c825e28f733@foss.st.com>
- <20250822-drm-misc-next-v5-8-9c825e28f733@foss.st.com>
-From: Philippe CORNU <philippe.cornu@foss.st.com>
-In-Reply-To: <20250822-drm-misc-next-v5-8-9c825e28f733@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <05d40a3b-cc13-b704-cac7-0ecbeea0e59d@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-28_04,2025-08-28_01,2025-03-28_01
 
-
-
-On 8/22/25 16:34, Raphael Gallais-Pou wrote:
-> From: Yannick Fertre <yannick.fertre@foss.st.com>
+On 28/08/2025 15:49, Vikash Garodia wrote:
+>>>
+>>> Whether removing will not break any ABI as initial binding enables the IRIS
+>>> related code to use video-firmware, now we are removing it.
+>>> I believe, removing binding always break ABI ? or is it depend on driver
+>>> code not using it ?
+>>
+>> There is no single user of this, out of tree (I briefly checked) and
+>> in-tree, so there is no ABI impact. I am changing the documentation of
+>> the ABI, but there is no actual ABI break because impact is 0.
+>>
 > 
-> Handle LVDS pixel clock.
-> 
-> The LTDC operates with multiple clock domains for register access,
-> requiring all clocks to be provided during read/write operations.  This
-> imposes a dependency between the LVDS and LTDC to access correctly all
-> LTDC registers.  And because both IPs' pixel rates must be synchronized,
-> the LTDC has to handle the LVDS clock.
-> 
-> Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
-> Acked-by: Yannick Fertre <yannick.fertre@foss.st.com>
-> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> ---
->   drivers/gpu/drm/stm/ltdc.c | 22 +++++++++++++++++++++-
->   drivers/gpu/drm/stm/ltdc.h |  1 +
->   2 files changed, 22 insertions(+), 1 deletion(-)
+> My understanding here is that the interface "video-firmware" is already defined
+> in the binding. There could be possible out-of-tree users of it, might not be
 
-Hi Raphael,
+There are no such.
 
-Acked-by: Philippe Cornu <philippe.cornu@foss.st.com>
+> possible for us to look into all of those out=of-tree users.
 
-Thanks a lot
-Philippe :-)
+We both know there are no such so you claiming "maybe not possible" is
+quite misleading. Qualcomm does not use it and that's the only possible
+case. We can verify it and I did verify this.
+
+> I support such cleanups, but also need to understand how this is not an ABI
+
+You are just making up fake obstacles.
+
+
+> break, just that there are no in-tree DTS user means no ABI break ?
+> Would appreciate if you could point to any guidelines if my understanding is not
+> correct, i am currently referring to [1]
+
+There are hundreds of discussions describing this and I am not going to
+do your homework.
+
+In none of other qcom media camss/iris/venus patches affecting ABI you
+raised that problem. Even remotely, so I cannot understand these
+questions here differently than just spreading some sort of FUD over
+this patch just to keep that broken video-firmware design for future users.
+
+>> I am really sorry but it seems you ask about basics of DT, so please
+>> first get into docs and other existing discussions.
+
+Again, read the docs and existing discussions. I am not going to do your
+homework.
+
+Best regards,
+Krzysztof
 
