@@ -1,91 +1,153 @@
-Return-Path: <devicetree+bounces-210113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C360B3A4F9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 17:53:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 383A2B3A4FF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 17:56:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB82F680C15
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:53:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F2037AB09C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:55:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7CDD2522A1;
-	Thu, 28 Aug 2025 15:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PQwXLrgm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70E9E254AF5;
+	Thu, 28 Aug 2025 15:56:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B75AF2505AA;
-	Thu, 28 Aug 2025 15:53:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F4B1AF0C8;
+	Thu, 28 Aug 2025 15:56:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756396429; cv=none; b=LqkKk99tHkbUrUa9/GItbxl7C1jJdZrJ65bpaNT2FgH0NQtL9BZC6dkANWBEhr1z4yXA/v/ZcW3MI+Jg9GFLLfR3ET9UWZ/Xf0PVDyYo/C2ArhWGstNc/Lx+GHOh5GlXLvmjySqgOFIE7RpIEgmHiX46xsu2UPi5P6Ie+xIxGms=
+	t=1756396591; cv=none; b=GdmOnsNEsyH+5IWcEgYvh298yzFv4bslCRA0AieV1TT2Gkeo9eqETU1FCoGjywZKycw+xaGapTBPQsFZksNGyJHydnTIl8KBFOCibapFsMZBtXk05Et7g2jZyYCQSNQO/GvXTi831/906aipxILIv5flKB4IdIQYX6QBbRWgNDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756396429; c=relaxed/simple;
-	bh=HIE7vqMsij/Ls4YiN95VhdIT8axgc9qXGGvTPolxats=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=LGEGPsD4S5ukWj74oAR7qaVEhxteV8dd4jjrXmtf/HkLE5TvET6IXbeqcRXcAluT1YkS72coGj0kOQAfv2E6s3aZwCnuuluXdMzlB9s2KGJcxV/vtgQSGvfso7ZKnowNN5R8XYFhc/9b01R6HJy6zyI89shf6/mPInCNmtX5qX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PQwXLrgm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 854E5C4CEEB;
-	Thu, 28 Aug 2025 15:53:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756396428;
-	bh=HIE7vqMsij/Ls4YiN95VhdIT8axgc9qXGGvTPolxats=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=PQwXLrgmKhXTFOf7XrKvFJ8D5HLs1QsafBd5GCtKgqt4XMNk+iqcgQKgscEhs7Cxn
-	 wfGHdeyoUu16GP4ifwquJ5PEZtKdVmTaCDzAMxT77dCitX7rHiUiBrGEGPZe10BtGb
-	 rK4w/dKfDrzDjydwGkdu4t4rhfEWgusX0fAdBzo+qvXTSz5RThgp8w/n1TTPT+9uTZ
-	 EpjsbXTvYddyBlf4eUQCJUT+rdzaqE/UQMJqJTeTgSBlziZqrCOVJoJsRaO0cN0qpp
-	 zOhJcwT2G0Mcu/cw+3PGATyDkN4PBukG9z5VUXqKBJIZqRbgyK9FmVisxAvaVT/iAc
-	 Xu+UkdF/jzNTQ==
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: lkp@intel.com, huaqian.li@siemens.com
-Cc: baocheng.su@siemens.com, bhelgaas@google.com, 
- christophe.jaillet@wanadoo.fr, conor+dt@kernel.org, 
- devicetree@vger.kernel.org, diogo.ivo@siemens.com, helgaas@kernel.org, 
- jan.kiszka@siemens.com, kristo@kernel.org, krzk+dt@kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-pci@vger.kernel.org, lpieralisi@kernel.org, nm@ti.com, 
- oe-kbuild-all@lists.linux.dev, robh@kernel.org, s-vadapalli@ti.com, 
- ssantosh@kernel.org, vigneshr@ti.com, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-In-Reply-To: <20250728023701.116963-1-huaqian.li@siemens.com>
-References: <20250728023701.116963-1-huaqian.li@siemens.com>
-Subject: Re: (subset) [PATCH v12 0/7] soc: ti: Add and use PVU on K3-AM65
- for DMA isolation
-Message-Id: <175639642101.69919.15722042082613439643.b4-ty@kernel.org>
-Date: Thu, 28 Aug 2025 21:23:41 +0530
+	s=arc-20240116; t=1756396591; c=relaxed/simple;
+	bh=aSrkqHn+DyGSVPv6u/DJa9AVSHkMifHLrOO6OYspVnw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LknEpgvsERI8qP6dKIPirq5SWePAxJjx/9PEe7c41QQ1twQoHvTKqK1enSxeHr85pJO2lQGZrtsdvcGzIMf26geWXwh7am5JrP0bWZ/BtgGuLQqyRQh55/MJUj9nDX8vvqw+3RkCuHVOFvIG4GGfgI7SiO8mGG9BEWsclcsQt44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7218E1688;
+	Thu, 28 Aug 2025 08:56:19 -0700 (PDT)
+Received: from [10.1.196.42] (eglon.cambridge.arm.com [10.1.196.42])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 27D823F694;
+	Thu, 28 Aug 2025 08:56:22 -0700 (PDT)
+Message-ID: <0de34aa4-359c-4837-916c-88db0b740e39@arm.com>
+Date: Thu, 28 Aug 2025 16:56:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/33] ACPI / PPTT: Add a helper to fill a cpumask from a
+ processor container
+To: Ben Horgan <ben.horgan@arm.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: shameerali.kolothum.thodi@huawei.com,
+ D Scott Phillips OS <scott@os.amperecomputing.com>,
+ carl@os.amperecomputing.com, lcherian@marvell.com,
+ bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+ baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+ Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+ dfustini@baylibre.com, amitsinght@marvell.com,
+ David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
+ Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
+ Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+ baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+ Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-4-james.morse@arm.com>
+ <b032775e-1729-441a-8ec4-dd85f70055e8@arm.com>
+Content-Language: en-GB
+From: James Morse <james.morse@arm.com>
+In-Reply-To: <b032775e-1729-441a-8ec4-dd85f70055e8@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
 
+Hi Ben,
 
-On Mon, 28 Jul 2025 10:36:54 +0800, huaqian.li@siemens.com wrote:
-> From: Li Hua Qian <huaqian.li@siemens.com>
+On 26/08/2025 15:45, Ben Horgan wrote:
+> The patch logic update makes sense to me. Just a nit.
 > 
-> Changes in v12:
->  - Fix Sparse warnings by replacing plain integer 0 with NULL for
->    pointer arguments in ti_pvu_probe() (patch 3)
->    (Reported-by: kernel test robot lkp@intel.com)
-> 
-> [...]
+> On 8/22/25 16:29, James Morse wrote:
+>> The PPTT describes CPUs and caches, as well as processor containers.
+>> The ACPI table for MPAM describes the set of CPUs that can access an MSC
+>> with the UID of a processor container.
+>>
+>> Add a helper to find the processor container by its id, then walk
+>> the possible CPUs to fill a cpumask with the CPUs that have this
+>> processor container as a parent.
 
-Applied, thanks!
+>> diff --git a/drivers/acpi/pptt.c b/drivers/acpi/pptt.c
+>> index 54676e3d82dd..4791ca2bdfac 100644
+>> --- a/drivers/acpi/pptt.c
+>> +++ b/drivers/acpi/pptt.c
+>> @@ -298,6 +298,92 @@ static struct acpi_pptt_processor *acpi_find_processor_node(struct acpi_table_he
 
-[2/7] dt-bindings: PCI: ti,am65: Extend for use with PVU
-      commit: 57a48a2619c5f99d48748f9c34db510efe5ee7c9
+>> +/**
+>> + * acpi_pptt_get_cpus_from_container() - Populate a cpumask with all CPUs in a
+>> + *                                       processor containers
+>> + * @acpi_cpu_id:	The UID of the processor container.
+>> + * @cpus:		The resulting CPU mask.
+>> + *
+>> + * Find the specified Processor Container, and fill @cpus with all the cpus
+>> + * below it.
+>> + *
+>> + * Not all 'Processor' entries in the PPTT are either a CPU or a Processor
+>> + * Container, they may exist purely to describe a Private resource. CPUs
+>> + * have to be leaves, so a Processor Container is a non-leaf that has the
+>> + * 'ACPI Processor ID valid' flag set.
+>> + *
+>> + * Return: 0 for a complete walk, or an error if the mask is incomplete.
+>> + */
+>> +void acpi_pptt_get_cpus_from_container(u32 acpi_cpu_id, cpumask_t *cpus)
+>> +{
+>> +	struct acpi_pptt_processor *cpu_node;
+>> +	struct acpi_table_header *table_hdr;
+>> +	struct acpi_subtable_header *entry;
+>> +	unsigned long table_end;
+>> +	acpi_status status;
+>> +	bool leaf_flag;
+>> +	u32 proc_sz;
+>> +
+>> +	cpumask_clear(cpus);
+>> +
+>> +	status = acpi_get_table(ACPI_SIG_PPTT, 0, &table_hdr);
+>> +	if (ACPI_FAILURE(status))
+>> +		return;
+>> +
+>> +	table_end = (unsigned long)table_hdr + table_hdr->length;
+>> +	entry = ACPI_ADD_PTR(struct acpi_subtable_header, table_hdr,
+>> +			     sizeof(struct acpi_table_pptt));
+>> +	proc_sz = sizeof(struct acpi_pptt_processor);
+>> +	while ((unsigned long)entry + proc_sz <= table_end) {
+>> +		cpu_node = (struct acpi_pptt_processor *)entry;
+>> +		if (entry->type == ACPI_PPTT_TYPE_PROCESSOR &&
+>> +		    cpu_node->flags & ACPI_PPTT_ACPI_PROCESSOR_ID_VALID) {
+>> +			leaf_flag = acpi_pptt_leaf_node(table_hdr, cpu_node);
 
-Best regards,
--- 
-Manivannan Sadhasivam <mani@kernel.org>
+> nit: Consider dropping the boolean leaf_flag and just using
+> acpi_pptt_leaf_node() in the condition. The name leaf_flag is slightly
+> overloaded to include the case when the acpi leaf flag is not supported
+> and dropping it would make the code more succinct.
 
+Sure, this is a hangover from the earlier cleanup you suggested. It's readable enough
+without giving the result a name.
+
+
+Thanks,
+
+James
 
