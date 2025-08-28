@@ -1,122 +1,87 @@
-Return-Path: <devicetree+bounces-210140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75CD1B3A700
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:54:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 971E7B3A70E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:57:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51DE07B66B5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:53:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 518DF3AF910
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D08DE32274F;
-	Thu, 28 Aug 2025 16:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A954B322DD2;
+	Thu, 28 Aug 2025 16:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tk8fhy3a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f6baMZT0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2440E239591;
-	Thu, 28 Aug 2025 16:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80118322A26;
+	Thu, 28 Aug 2025 16:57:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756400069; cv=none; b=C1lR8GZ1FULk4USshPpyr0RMqVvInV7XIApFY7vyLyYsg2aFLqFo5OZfAVDIoJW0+3rKAKvlqdK7yDdbjrhEnj/5z0lxnQMwR7hSwDsa8+jS4WzKvNzGgBRkHqKaWEmV5nHoRujJv521HwvVc0Gr28uhFkOATHV7RR2/b6MDJiE=
+	t=1756400229; cv=none; b=PoAB0ykS1x35hXeryLNvrURJs3vpvFpFn4vcGvl8bgN7L5DT1QcWCbQcxVKa6RWYmNK/rfeVCghiZpWO4gydL7USav90KtpAIx9blDYTGxori0LsPvUJrpgiCkmXwjmUILUyOU6Csrc03wqiKnYvAuC/x8iKhLQJLlgdk4uoN5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756400069; c=relaxed/simple;
-	bh=viNyCIWqe5KCLAeA6tui7LQ8rd69iw2R5ocI3n/Zj9U=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=F5gwdIDZjUr17JIAdpiOlIOWcK4Najv++eOka0mTqcVomCdsgpCYEKBDVFGOua6ouqutUP6dsSFyT2ypeEOh70fIrt6IsCNUOOik83olaxr/AznJQPOi+wPUjIbOf0qctq6bhI4puos6Lr7y0aFsbghukiJUd594iBjg0DvzEa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tk8fhy3a; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-45b4d89217aso7535355e9.2;
-        Thu, 28 Aug 2025 09:54:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756400065; x=1757004865; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=o/S9spYbGe0FPlB/C0yhWG1tadTkgGdkbhIgR1f5N4Q=;
-        b=Tk8fhy3aPiJSbq3SYwCV0AjA8VigiD1WxG1u4eyvzr7kITgXDzw9DXqMPsuEH8RVy0
-         y12XX08MGKUMFC96ejnIu/w0FC97p3RODcd+Ut0bfdf045BhL0dDVtKQ62W/rIkcQ8eR
-         2JTMhfRT61ftgG4hqJN5U1UxLLqKl9Ucj0D1poSC1FYowJOFEyiQbbrw2SO/miJRpJlp
-         apSYCyFaKmVMZsLPKDa4V4wcpCGTq3w6BY9lVB6FhBR4IYcQRzjKdo45cYTA/deecLrF
-         9L1dy3W24gGKOEIBFK5LrUpKACmpKM5oDASsBVX752r4LBdYCCNzfeiw/KnO/tnhL2yS
-         n5sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756400065; x=1757004865;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o/S9spYbGe0FPlB/C0yhWG1tadTkgGdkbhIgR1f5N4Q=;
-        b=omdAPDAi6l1nhpzLMu/iIB8nJaho5bOZyistGQHGIrmp5ov/XVAl2mfQ4VTba6d49s
-         bi4AORaMr1+mg3keUB4MjC8cKCaYjMycewYOUCdrseXHJ9gFQb53J67Bkx5ab5pbqJLP
-         D7/aH9mKvLVxRha6Y83enETJ1VK03gyfHBVuL/w+k3Ibgoyq+O6n2oIaF/1YNUVWkxPl
-         nOouZ/3pVe7Ynz1cPPoJbD9ya25skPbFoq89NoHWT9E3G0cD6zgVBw1W/g4fJSx77zHW
-         vtyBUJ93BxFr2Vb5Sq5l5fdfgd3lA3PK1ViGNeJ8DGNVifki34QxIjxOuuyw88h5rrBI
-         fcyg==
-X-Forwarded-Encrypted: i=1; AJvYcCUidOFDcuVVrHIX1tIs5Msm8qbR9D0P5Luhreyn0zeYQ05/PyfM4MyEmgLZfJyTssnS9N9KwVZy1Q7H@vger.kernel.org, AJvYcCWngTs5cL5uw0t7EbT1CODHrEas+cXUFw/qQfthGwJ6cChx6nOWNCIBOzdplxZWKC7+0tuwF6qTN+m+dDse@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKwHq/2C23o0ouyJSnSGAqNmIUGH/j2FmkCIj+/EqS7hcV7RvH
-	OFo/8afxMvDxg2MaxjQ4pAQo1Ek/XDlRRkgL8XJH4GIurZIH8K0Z4JH6
-X-Gm-Gg: ASbGncuKLKnLSVymZr5AuxyYsOfxylC6MfmEi8Gyxj7O5WvaBhBv/pIpz8iaTj3uprH
-	4/9IdwH15ft0lZZa2XKtlDM0XsKkpq6RCmQcdpDsVPOmGtNMaGk0iFOhrjTNebobxx8oY0EeWnN
-	RQVWYe7y6jmD7YqQ55oeYI0sCoy4nMb6ekp+19tSedYC3vvL4G14aDGG3eNov69Z3UN+9ksmLuT
-	vf3R1tl95R3IVjhQv5ArDVTx/6mnofUaYXpRgzlTZNLyYNKbrsnoIKjmvetwfHwjVkEkUJO0AJa
-	LP5O/8YIbPD7uMY4Z5XcYlFip3UM137f0Xba7V5NCTPMGsm6S+aGHAx/kLdMnHxrcyIJ2z8LW+Y
-	th8Hu03r3n17yBG2UYQnrA99MPis=
-X-Google-Smtp-Source: AGHT+IFM9OS5cZ7H0ceO2f7sAP8sszHuEF9xmtBJC46ZU809/y4cnHB22I6xxBweh71b6M2mv9XnsA==
-X-Received: by 2002:a05:600c:a46:b0:456:19be:5e8 with SMTP id 5b1f17b1804b1-45b517d459dmr207436525e9.20.1756400065247;
-        Thu, 28 Aug 2025 09:54:25 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf34491a7fsm11393f8f.57.2025.08.28.09.54.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Aug 2025 09:54:24 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH] ARM: dts: rockchip: add CEC pinctrl to rk3288-miqi
-Date: Thu, 28 Aug 2025 16:54:21 +0000
-Message-Id: <20250828165421.3829740-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1756400229; c=relaxed/simple;
+	bh=twbEl6RIop6nZrrZWjYGdwphD6aGwt1zB9C3V1gHSlo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fHLQFo5PGcPnIlYkXUgW1UIQCzLvodNNad9x5dsYDCdzrsTkVXOy1resNHPUT1ebWZKyf9R+tppsMNsqkap1C2WHED6GtJyim0Bpq8VwocVcbr3Gacu7hxBjI01g+ge/B2777e8OMmlsmGjbRfYmgsCJH58ZkfknwujgQ3+t92E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f6baMZT0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35398C4CEEB;
+	Thu, 28 Aug 2025 16:57:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756400229;
+	bh=twbEl6RIop6nZrrZWjYGdwphD6aGwt1zB9C3V1gHSlo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f6baMZT0HtqWBcrbX+fYbmZkLsk+3QnIsdA0VS4USY0L3HGXsilySuDBdrDLeWYZ0
+	 uiwngObcZqJylx3m/I/vc5EGSlbzbL2qOJedAfvuLkQnW4ALGSYGm061j3Ba51VVwS
+	 xgJbVxaVBfh3NrGqpS0xvLq3rrBNHhWyDCVm4QXzhvsdqfgLfoFxb3Ay9EW1V19vfK
+	 XHcKn3LdodfBQN6icZ2CJ6hMEsZWevGfMIvAjlR4owY0a2j0CFjRpMygUMj0X2f8cY
+	 fWOFXJoQg8HHnO60Jc3HnIvUMbXcuxCI8q/Z0jAY9IWdpnHAgL5NR5ITnOBDOG8sc9
+	 A6pW9uU1ti6wg==
+Date: Thu, 28 Aug 2025 17:57:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH] dt-bindings: soc: rockchip: add missing clock reference
+ for rk3576-dcphy syscon
+Message-ID: <20250828-shame-stinger-e1443c61d31a@spud>
+References: <20250828131107.3531769-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="p9ZbeHQWfYofwOCV"
+Content-Disposition: inline
+In-Reply-To: <20250828131107.3531769-1-heiko@sntech.de>
 
-From: Alex Bee <knaerzche@gmail.com>
 
-Enable CEC control on the HDMI port for MiQi.
+--p9ZbeHQWfYofwOCV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm/boot/dts/rockchip/rk3288-miqi.dts | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/rockchip/rk3288-miqi.dts b/arch/arm/boot/dts/rockchip/rk3288-miqi.dts
-index 20df626547bd..a5f5c6d38f80 100644
---- a/arch/arm/boot/dts/rockchip/rk3288-miqi.dts
-+++ b/arch/arm/boot/dts/rockchip/rk3288-miqi.dts
-@@ -145,6 +145,8 @@ &gpu {
- 
- &hdmi {
- 	ddc-i2c-bus = <&i2c5>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&hdmi_cec_c0>;
- 	status = "okay";
- };
- 
--- 
-2.34.1
 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--p9ZbeHQWfYofwOCV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLCKYAAKCRB4tDGHoIJi
+0glBAP9334cjtxvGihXrVmnI3SiWQWYFgyyt8jz2Ht0U/JaZ7gEAy3V7xRCiRHkx
+ARtCHT1yuoOGr+Lio1IlQih2X4fixQM=
+=VoQr
+-----END PGP SIGNATURE-----
+
+--p9ZbeHQWfYofwOCV--
 
