@@ -1,411 +1,168 @@
-Return-Path: <devicetree+bounces-209935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 827E9B39939
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 12:11:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBFC8B3994A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 12:15:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EACE361DC0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 10:11:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54CF25E2127
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 10:15:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D0A3081C5;
-	Thu, 28 Aug 2025 10:11:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63FAA308F1C;
+	Thu, 28 Aug 2025 10:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i/D6/cS+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6D43019A5;
-	Thu, 28 Aug 2025 10:11:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1151263F40
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 10:15:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756375895; cv=none; b=QLeD2dDNIx3iOcMPa6PZNRw3YZvw6OQGkgW31Y4fimf5aJsJKQxzYmcMtCm40qebzMuBQsUJ7V77w90uPNoHEojbtNLap/MPS0lXzSiYJi7X6ZgKqBkNdoxF6NXxXE0nL6lTfpa+u84S4KFNVwrDf14snQMtvL9abeKw+bgo0dE=
+	t=1756376128; cv=none; b=OCVncuszD7j508nLpqxrMUwelu27SBveP51GhDI2tfIpctVDMUadERUzxCcMmO/R7NuqoWAkRIllPO1489EQqUTAt3D8wRNrECCLSoIFmrpLcts2GfX++LUNOi7iHFbZjVQjWXq3B4t/v6qwue0xsvKRPYB25/QNL8CPyN+Uhhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756375895; c=relaxed/simple;
-	bh=VCTNvX/f/d/+iWw0tqtTHF0g+u3hX7B5nMWWOQe1Ei0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dF7bHZ+gikPOIy6ONjL5rSopuxgH0NDDSeEkDniC6wtXdasHPxWrgI1M7Bf9NBpPxXaLi3XLwOm7gXYJegOqSdmLmSIOAMwX7USnaMYAccKRfAW6xIguktCZ5HPqVtDIWZnKw1V47QgME/NY7GHuTfS+WEA0P4IPtYzILLTdKSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E43EA1688;
-	Thu, 28 Aug 2025 03:11:23 -0700 (PDT)
-Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 11AD93F738;
-	Thu, 28 Aug 2025 03:11:25 -0700 (PDT)
-Message-ID: <13767875-3744-47f3-98ec-a808c0c22f21@arm.com>
-Date: Thu, 28 Aug 2025 11:11:24 +0100
+	s=arc-20240116; t=1756376128; c=relaxed/simple;
+	bh=x3Xcu1z+CtLQlbgjL7Gni2IBKCEYZWwIRYW4Gql8iLg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aA4caRMkGUwD8k7y0CoCdLlCoBp3mVic9UZnSB5mBLNcDuj3eW7IYVtMWsiciSnX4ZxykC/S6HhVO1uJVm1YkPp+/qSOcQiqKOyigLmjBOeX0hvYescAzEuVFVyuD4jcGAWWtS0RI1yNfNmq2nz8v84Z3Rhh+irB0ctndLNjSBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i/D6/cS+; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3b9edf4cf6cso560081f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 03:15:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756376124; x=1756980924; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5dtsWOrssFq6dCtiMfrdoC2rXhSI5ZG5/AkQSWPW1V4=;
+        b=i/D6/cS+be0Rd/q4pOhwhxG7GES+3JBl8WPBeHv+MqWhpUFGk+6RlI3anRKtnrKk3f
+         WoxN0ntwFMg76MrOAzhtNXlmHKgs9w0bSUMrXpG4aMrxUyLXkqwTo0AF4KZxml6ASIrQ
+         Kr5QnXwHv9LaxKSzbUW8Moeg5alQzA2W63E17PaBvVH0zN32qmE75Gl15lByS8c64E0l
+         c3y0l8psJJBkL/5X48eR28h/3Ba7GsK4VQyyHwWQoNc8XoMSdLH7EVy3DXuWiKn6GHF8
+         JW5j+AgV1LVT+/8YNp9V2OhaK903GXcH6QUgqi5x8NAiVQDExqk+TmmmZ89AyjJanSgI
+         mrvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756376124; x=1756980924;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5dtsWOrssFq6dCtiMfrdoC2rXhSI5ZG5/AkQSWPW1V4=;
+        b=Evth6MXuC7wzfVZANRbQct9CdboZlYElzXESGBu4tyuK86kpx+2Me/LMzSTIFosrhG
+         iQ/7j18ZefglCLf9hF0puMmZURLYJA45yb2cG/BDsmXAgrDMGsFx9ZFrSLTC2sOIk+Lb
+         MiiIVWW4KSEUSOi9LWFP9grG/m8Pp42HAZZCpGr2xVHXP7tUFYwNHf04Iq1k3TG7XYXg
+         3OVJ5NGJRLgTUBkT26qF5peZt+oTVrs3zfnWuYtXGIHoay7Wum6rWKlN8QAwt+6atmuu
+         rB7YPuHpTcPvRmZhD1YYQF8thTtioXbeXuU7l2tE1TUbFghY56PAKDOA89ZzkcTSUAdd
+         ldJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXja/Ne0/0wabHNnpWhUcOiVKav/AqvbMUCJI8NtEFzV2qJIbGdor0tds8vj4JIXSQHco/+HHzJxtua@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGAGllBjVm0EgmICnwfvJab0qykZ1KZfxEWTqulhyu20K43KlJ
+	IThHlPwBwKlDXAiXVGH5YK94AhBEBnMkM0uR6dq0s/6irRjmvoJncc/p4ZDOuieWTrY=
+X-Gm-Gg: ASbGnctAUHUl+4qodHVSl9ac6If/6W30U7ugqUftD9YX96UuCZdpbUU4talaEt53cSA
+	7pSZ0yMSEgmOGUZKpJpETnAo6WbgwTE7guvZvYL4lTWff74SgvsOB39uZTrWwtF/m8qXNSYojEd
+	7ftvm3J1EAOb7Mr44KM9/mZhqBSsDvPNBALeszlaGlSvGXC8DOrN/F83OQpuYEmydJgtGLdWq4d
+	EypzW8frtlJIo5R0CZks/md6WSM+9vTxYwB5f9mZ3nJfSON36ln/bVMgEcPmAvHN6ZkTWAUr2MZ
+	ovz/XjVxZvyNsy3dXCedmggB/1QMkose0t+m8bYsUU+gIakPWoMJx18ZVe3A5F/C5deSD2VjgIh
+	0lebZG4YiD7TOK7C6/Q0A/5L9aSuD3JdH6nIGUdYObw==
+X-Google-Smtp-Source: AGHT+IHKf2aG6pLYrFaDWGlL7FrtoqqzoGeCk3EgyukB/f1w9pdZhxPxMSnGHp2vNNZqCXF6rvJJMA==
+X-Received: by 2002:a05:6000:240c:b0:3c9:9ec0:203b with SMTP id ffacd0b85a97d-3c99ec02f4bmr11349567f8f.27.1756376124175;
+        Thu, 28 Aug 2025 03:15:24 -0700 (PDT)
+Received: from ho-tower-lan.lan ([185.48.76.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b66f2041fsm49976305e9.5.2025.08.28.03.15.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Aug 2025 03:15:23 -0700 (PDT)
+From: James Clark <james.clark@linaro.org>
+Subject: [PATCH v2 0/9] spi: spi-fsl-lpspi: Generic fixes and support for
+ S32G devices
+Date: Thu, 28 Aug 2025 11:14:39 +0100
+Message-Id: <20250828-james-nxp-lpspi-v2-0-6262b9aa9be4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 25/33] arm_mpam: Probe and reset the rest of the features
-To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: shameerali.kolothum.thodi@huawei.com,
- D Scott Phillips OS <scott@os.amperecomputing.com>,
- carl@os.amperecomputing.com, lcherian@marvell.com,
- bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
- baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
- Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
- dfustini@baylibre.com, amitsinght@marvell.com,
- David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
- Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
- Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
- baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
- Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>, Zeng Heng <zengheng4@huawei.com>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-26-james.morse@arm.com>
-From: Ben Horgan <ben.horgan@arm.com>
-Content-Language: en-US
-In-Reply-To: <20250822153048.2287-26-james.morse@arm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA8ssGgC/22PQQ6CMBBFr0K6toYplBZX3sO4KHSAGiykNQ2Gc
+ HcLMVGDy/+T9/7MTDw6g56ckpk4DMabwcbADgmpO2VbpEbHTFjKeCqA05u6o6d2Gmk/+tFQaFT
+ NJQqmeEkiNTpszLQZL9eYO+Mfg3tuAwHW9u3KYOcKQFOqy4JlQqomq6tzb6xyw3Fw7ereQAn5f
+ 7DkstBCAteQf4PrFYF9lmW6/yKwKMhE2YBWVSEQfwTLsrwANL898CkBAAA=
+To: Frank Li <Frank.Li@nxp.com>, Mark Brown <broonie@kernel.org>, 
+ Clark Wang <xiaoning.wang@nxp.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+ Larisa Grigore <larisa.grigore@oss.nxp.com>, 
+ Larisa Grigore <larisa.grigore@nxp.com>, 
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>, 
+ Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com
+Cc: James Clark <james.clark@linaro.org>, linux-spi@vger.kernel.org, 
+ imx@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+X-Mailer: b4 0.14.0
 
-Hi James,
+Various fixes for LPSI along with some refactorings. None of the fixes
+are strictly related to S32G, however these changes all originate from
+the work to support S32G devices. The only commits that are strictly
+related are for the new s32g2 and s32g3 compatible strings.
 
-On 8/22/25 16:30, James Morse wrote:
-> MPAM supports more features than are going to be exposed to resctrl.
-> For partid other than 0, the reset values of these controls isn't
-> known.
-> 
-> Discover the rest of the features so they can be reset to avoid any
-> side effects when resctrl is in use.
-> 
-> PARTID narrowing allows MSC/RIS to support less configuration space than
-> is usable. If this feature is found on a class of device we are likely
-> to use, then reduce the partid_max to make it usable. This allows us
-> to map a PARTID to itself.
-> 
-> CC: Rohit Mathew <Rohit.Mathew@arm.com>
-> CC: Zeng Heng <zengheng4@huawei.com>
-> CC: Dave Martin <Dave.Martin@arm.com>
-> Signed-off-by: James Morse <james.morse@arm.com>
-> ---
->  drivers/resctrl/mpam_devices.c  | 175 ++++++++++++++++++++++++++++++++
->  drivers/resctrl/mpam_internal.h |  16 ++-
->  2 files changed, 189 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-> index 8f6df2406c22..aedd743d6827 100644
-> --- a/drivers/resctrl/mpam_devices.c
-> +++ b/drivers/resctrl/mpam_devices.c
-> @@ -213,6 +213,15 @@ static void __mpam_part_sel(u8 ris_idx, u16 partid, struct mpam_msc *msc)
->  	__mpam_part_sel_raw(partsel, msc);
->  }
->  
-> +static void __mpam_intpart_sel(u8 ris_idx, u16 intpartid, struct mpam_msc *msc)
-> +{
-> +	u32 partsel = FIELD_PREP(MPAMCFG_PART_SEL_RIS, ris_idx) |
-> +		      FIELD_PREP(MPAMCFG_PART_SEL_PARTID_SEL, intpartid) |
-> +		      MPAMCFG_PART_SEL_INTERNAL;
-> +
-> +	__mpam_part_sel_raw(partsel, msc);
-> +}
-> +
->  int mpam_register_requestor(u16 partid_max, u8 pmg_max)
->  {
->  	int err = 0;
-> @@ -743,10 +752,35 @@ static void mpam_ris_hw_probe(struct mpam_msc_ris *ris)
->  	int err;
->  	struct mpam_msc *msc = ris->vmsc->msc;
->  	struct mpam_props *props = &ris->props;
-> +	struct mpam_class *class = ris->vmsc->comp->class;
->  
->  	lockdep_assert_held(&msc->probe_lock);
->  	lockdep_assert_held(&msc->part_sel_lock);
->  
-> +	/* Cache Capacity Partitioning */
-> +	if (FIELD_GET(MPAMF_IDR_HAS_CCAP_PART, ris->idr)) {
-> +		u32 ccap_features = mpam_read_partsel_reg(msc, CCAP_IDR);
-> +
-> +		props->cmax_wd = FIELD_GET(MPAMF_CCAP_IDR_CMAX_WD, ccap_features);
-> +		if (props->cmax_wd &&
-> +		    FIELD_GET(MPAMF_CCAP_IDR_HAS_CMAX_SOFTLIM, ccap_features))
-> +			mpam_set_feature(mpam_feat_cmax_softlim, props);
-> +
-> +		if (props->cmax_wd &&
-> +		    !FIELD_GET(MPAMF_CCAP_IDR_NO_CMAX, ccap_features))
-> +			mpam_set_feature(mpam_feat_cmax_cmax, props);
-> +
-> +		if (props->cmax_wd &&
-> +		    FIELD_GET(MPAMF_CCAP_IDR_HAS_CMIN, ccap_features))
-> +			mpam_set_feature(mpam_feat_cmax_cmin, props);
-> +
-> +		props->cassoc_wd = FIELD_GET(MPAMF_CCAP_IDR_CASSOC_WD, ccap_features);
-> +
-> +		if (props->cassoc_wd &&
-> +		    FIELD_GET(MPAMF_CCAP_IDR_HAS_CASSOC, ccap_features))
-> +			mpam_set_feature(mpam_feat_cmax_cassoc, props);
-> +	}
-> +
->  	/* Cache Portion partitioning */
->  	if (FIELD_GET(MPAMF_IDR_HAS_CPOR_PART, ris->idr)) {
->  		u32 cpor_features = mpam_read_partsel_reg(msc, CPOR_IDR);
-> @@ -769,6 +803,31 @@ static void mpam_ris_hw_probe(struct mpam_msc_ris *ris)
->  		props->bwa_wd = FIELD_GET(MPAMF_MBW_IDR_BWA_WD, mbw_features);
->  		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_MAX, mbw_features))
->  			mpam_set_feature(mpam_feat_mbw_max, props);
-> +
-> +		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_MIN, mbw_features))
-> +			mpam_set_feature(mpam_feat_mbw_min, props);
-> +
-> +		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_PROP, mbw_features))
-> +			mpam_set_feature(mpam_feat_mbw_prop, props);
-> +	}
-> +
-> +	/* Priority partitioning */
-> +	if (FIELD_GET(MPAMF_IDR_HAS_PRI_PART, ris->idr)) {
-> +		u32 pri_features = mpam_read_partsel_reg(msc, PRI_IDR);
-> +
-> +		props->intpri_wd = FIELD_GET(MPAMF_PRI_IDR_INTPRI_WD, pri_features);
-> +		if (props->intpri_wd && FIELD_GET(MPAMF_PRI_IDR_HAS_INTPRI, pri_features)) {
-> +			mpam_set_feature(mpam_feat_intpri_part, props);
-> +			if (FIELD_GET(MPAMF_PRI_IDR_INTPRI_0_IS_LOW, pri_features))
-> +				mpam_set_feature(mpam_feat_intpri_part_0_low, props);
-> +		}
-> +
-> +		props->dspri_wd = FIELD_GET(MPAMF_PRI_IDR_DSPRI_WD, pri_features);
-> +		if (props->dspri_wd && FIELD_GET(MPAMF_PRI_IDR_HAS_DSPRI, pri_features)) {
-> +			mpam_set_feature(mpam_feat_dspri_part, props);
-> +			if (FIELD_GET(MPAMF_PRI_IDR_DSPRI_0_IS_LOW, pri_features))
-> +				mpam_set_feature(mpam_feat_dspri_part_0_low, props);
-> +		}
->  	}
->  
->  	/* Performance Monitoring */
-> @@ -832,6 +891,21 @@ static void mpam_ris_hw_probe(struct mpam_msc_ris *ris)
->  			 */
->  		}
->  	}
-> +
-> +	/*
-> +	 * RIS with PARTID narrowing don't have enough storage for one
-> +	 * configuration per PARTID. If these are in a class we could use,
-> +	 * reduce the supported partid_max to match the number of intpartid.
-> +	 * If the class is unknown, just ignore it.
-> +	 */
-> +	if (FIELD_GET(MPAMF_IDR_HAS_PARTID_NRW, ris->idr) &&
-> +	    class->type != MPAM_CLASS_UNKNOWN) {
-> +		u32 nrwidr = mpam_read_partsel_reg(msc, PARTID_NRW_IDR);
-> +		u16 partid_max = FIELD_GET(MPAMF_PARTID_NRW_IDR_INTPARTID_MAX, nrwidr);
-> +
-> +		mpam_set_feature(mpam_feat_partid_nrw, props);
-> +		msc->partid_max = min(msc->partid_max, partid_max);
-> +	}
->  }
->  
->  static int mpam_msc_hw_probe(struct mpam_msc *msc)
-> @@ -929,13 +1003,29 @@ static void mpam_reset_msc_bitmap(struct mpam_msc *msc, u16 reg, u16 wd)
->  static void mpam_reprogram_ris_partid(struct mpam_msc_ris *ris, u16 partid,
->  				      struct mpam_config *cfg)
->  {
-> +	u32 pri_val = 0;
-> +	u16 cmax = MPAMCFG_CMAX_CMAX;
->  	u16 bwa_fract = MPAMCFG_MBW_MAX_MAX;
->  	struct mpam_msc *msc = ris->vmsc->msc;
->  	struct mpam_props *rprops = &ris->props;
-> +	u16 dspri = GENMASK(rprops->dspri_wd, 0);
-> +	u16 intpri = GENMASK(rprops->intpri_wd, 0);
->  
->  	mutex_lock(&msc->part_sel_lock);
->  	__mpam_part_sel(ris->ris_idx, partid, msc);
->  
-> +	if (mpam_has_feature(mpam_feat_partid_nrw, rprops)) {
-> +		/* Update the intpartid mapping */
-> +		mpam_write_partsel_reg(msc, INTPARTID,
-> +				       MPAMCFG_INTPARTID_INTERNAL | partid);
-> +
-> +		/*
-> +		 * Then switch to the 'internal' partid to update the
-> +		 * configuration.
-> +		 */
-> +		__mpam_intpart_sel(ris->ris_idx, partid, msc);
-> +	}
-> +
->  	if (mpam_has_feature(mpam_feat_cpor_part, rprops)) {
->  		if (mpam_has_feature(mpam_feat_cpor_part, cfg))
->  			mpam_write_partsel_reg(msc, CPBM, cfg->cpbm);
-> @@ -964,6 +1054,29 @@ static void mpam_reprogram_ris_partid(struct mpam_msc_ris *ris, u16 partid,
->  
->  	if (mpam_has_feature(mpam_feat_mbw_prop, rprops))
->  		mpam_write_partsel_reg(msc, MBW_PROP, bwa_fract);
-> +
-> +	if (mpam_has_feature(mpam_feat_cmax_cmax, rprops))
-> +		mpam_write_partsel_reg(msc, CMAX, cmax);
-> +
-> +	if (mpam_has_feature(mpam_feat_cmax_cmin, rprops))
-> +		mpam_write_partsel_reg(msc, CMIN, 0);
+Signed-off-by: James Clark <james.clark@linaro.org>
+---
+To: Frank Li <Frank.Li@nxp.com>
+To: Mark Brown <broonie@kernel.org>
+To: Clark Wang <xiaoning.wang@nxp.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Shawn Guo <shawnguo@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+To: Fabio Estevam <festevam@gmail.com>
+To: Larisa Grigore <larisa.grigore@oss.nxp.com>
+To: Larisa Grigore <larisa.grigore@nxp.com>
+To: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+To: Ciprianmarian Costea <ciprianmarian.costea@nxp.com>
+To: s32@nxp.com
+Cc: linux-spi@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
 
-Missing reset for cmax_cassoc. I wonder if it makes sense to have
-separate enums for partitioning features, which require reset, and the rest.
-> +
-> +	if (mpam_has_feature(mpam_feat_intpri_part, rprops) ||
-> +	    mpam_has_feature(mpam_feat_dspri_part, rprops)) {
-> +		/* aces high? */
-> +		if (!mpam_has_feature(mpam_feat_intpri_part_0_low, rprops))
-> +			intpri = 0;
-> +		if (!mpam_has_feature(mpam_feat_dspri_part_0_low, rprops))
-> +			dspri = 0;
-> +
-> +		if (mpam_has_feature(mpam_feat_intpri_part, rprops))
-> +			pri_val |= FIELD_PREP(MPAMCFG_PRI_INTPRI, intpri);
-> +		if (mpam_has_feature(mpam_feat_dspri_part, rprops))
-> +			pri_val |= FIELD_PREP(MPAMCFG_PRI_DSPRI, dspri);
-> +
-> +		mpam_write_partsel_reg(msc, PRI, pri_val);
-> +	}
-> +
->  	mutex_unlock(&msc->part_sel_lock);
->  }
->  
-> @@ -1529,6 +1642,16 @@ static bool mpam_has_bwa_wd_feature(struct mpam_props *props)
->  	return false;
->  }
->  
-> +/* Any of these features mean the CMAX_WD field is valid. */
-> +static bool mpam_has_cmax_wd_feature(struct mpam_props *props)
-> +{
-> +	if (mpam_has_feature(mpam_feat_cmax_cmax, props))
-> +		return true;
-> +	if (mpam_has_feature(mpam_feat_cmax_cmin, props))
-> +		return true;
-> +	return false;
-> +}
-> +
->  #define MISMATCHED_HELPER(parent, child, helper, field, alias)		\
->  	helper(parent) &&						\
->  	((helper(child) && (parent)->field != (child)->field) ||	\
-> @@ -1583,6 +1706,23 @@ static void __props_mismatch(struct mpam_props *parent,
->  		parent->bwa_wd = min(parent->bwa_wd, child->bwa_wd);
->  	}
->  
-> +	if (alias && !mpam_has_cmax_wd_feature(parent) && mpam_has_cmax_wd_feature(child)) {
-> +		parent->cmax_wd = child->cmax_wd;
-> +	} else if (MISMATCHED_HELPER(parent, child, mpam_has_cmax_wd_feature,
-> +				     cmax_wd, alias)) {
-> +		pr_debug("%s took the min cmax_wd\n", __func__);
-> +		parent->cmax_wd = min(parent->cmax_wd, child->cmax_wd);
-> +	}
-> +
-> +	if (CAN_MERGE_FEAT(parent, child, mpam_feat_cmax_cassoc, alias)) {
-> +		parent->cassoc_wd = child->cassoc_wd;
-> +	} else if (MISMATCHED_FEAT(parent, child, mpam_feat_cmax_cassoc,
-> +				   cassoc_wd, alias)) {
-> +		pr_debug("%s cleared cassoc_wd\n", __func__);
-> +		mpam_clear_feature(mpam_feat_cmax_cassoc, &parent->features);
-> +		parent->cassoc_wd = 0;
-> +	}
-> +
->  	/* For num properties, take the minimum */
->  	if (CAN_MERGE_FEAT(parent, child, mpam_feat_msmon_csu, alias)) {
->  		parent->num_csu_mon = child->num_csu_mon;
-> @@ -1600,6 +1740,41 @@ static void __props_mismatch(struct mpam_props *parent,
->  		parent->num_mbwu_mon = min(parent->num_mbwu_mon, child->num_mbwu_mon);
->  	}
->  
-> +	if (CAN_MERGE_FEAT(parent, child, mpam_feat_intpri_part, alias)) {
-> +		parent->intpri_wd = child->intpri_wd;
-> +	} else if (MISMATCHED_FEAT(parent, child, mpam_feat_intpri_part,
-> +				   intpri_wd, alias)) {
-> +		pr_debug("%s took the min intpri_wd\n", __func__);
-> +		parent->intpri_wd = min(parent->intpri_wd, child->intpri_wd);
-> +	}
-> +
-> +	if (CAN_MERGE_FEAT(parent, child, mpam_feat_dspri_part, alias)) {
-> +		parent->dspri_wd = child->dspri_wd;
-> +	} else if (MISMATCHED_FEAT(parent, child, mpam_feat_dspri_part,
-> +				   dspri_wd, alias)) {
-> +		pr_debug("%s took the min dspri_wd\n", __func__);
-> +		parent->dspri_wd = min(parent->dspri_wd, child->dspri_wd);
-> +	}
-> +
-> +	/* TODO: alias support for these two */
-> +	/* {int,ds}pri may not have differing 0-low behaviour */
-> +	if (mpam_has_feature(mpam_feat_intpri_part, parent) &&
-> +	    (!mpam_has_feature(mpam_feat_intpri_part, child) ||
-> +	     mpam_has_feature(mpam_feat_intpri_part_0_low, parent) !=
-> +	     mpam_has_feature(mpam_feat_intpri_part_0_low, child))) {
-> +		pr_debug("%s cleared intpri_part\n", __func__);
-> +		mpam_clear_feature(mpam_feat_intpri_part, &parent->features);
-> +		mpam_clear_feature(mpam_feat_intpri_part_0_low, &parent->features);
-> +	}
-> +	if (mpam_has_feature(mpam_feat_dspri_part, parent) &&
-> +	    (!mpam_has_feature(mpam_feat_dspri_part, child) ||
-> +	     mpam_has_feature(mpam_feat_dspri_part_0_low, parent) !=
-> +	     mpam_has_feature(mpam_feat_dspri_part_0_low, child))) {
-> +		pr_debug("%s cleared dspri_part\n", __func__);
-> +		mpam_clear_feature(mpam_feat_dspri_part, &parent->features);
-> +		mpam_clear_feature(mpam_feat_dspri_part_0_low, &parent->features);
-> +	}
-> +
->  	if (alias) {
->  		/* Merge features for aliased resources */
->  		parent->features |= child->features;
-> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
-> index 70cba9f22746..23445aedbabd 100644
-> --- a/drivers/resctrl/mpam_internal.h
-> +++ b/drivers/resctrl/mpam_internal.h
-> @@ -157,16 +157,23 @@ static inline void mpam_mon_sel_lock_held(struct mpam_msc *msc)
->   * When we compact the supported features, we don't care what they are.
->   * Storing them as a bitmap makes life easy.
->   */
-> -typedef u16 mpam_features_t;
-> +typedef u32 mpam_features_t;
->  
->  /* Bits for mpam_features_t */
->  enum mpam_device_features {
-> -	mpam_feat_ccap_part = 0,
-> +	mpam_feat_cmax_softlim,
-> +	mpam_feat_cmax_cmax,
-> +	mpam_feat_cmax_cmin,
-> +	mpam_feat_cmax_cassoc,
->  	mpam_feat_cpor_part,
->  	mpam_feat_mbw_part,
->  	mpam_feat_mbw_min,
->  	mpam_feat_mbw_max,
->  	mpam_feat_mbw_prop,
-> +	mpam_feat_intpri_part,
-> +	mpam_feat_intpri_part_0_low,
-> +	mpam_feat_dspri_part,
-> +	mpam_feat_dspri_part_0_low,
->  	mpam_feat_msmon,
->  	mpam_feat_msmon_csu,
->  	mpam_feat_msmon_csu_capture,
-> @@ -176,6 +183,7 @@ enum mpam_device_features {
->  	mpam_feat_msmon_mbwu_rwbw,
->  	mpam_feat_msmon_mbwu_hw_nrdy,
->  	mpam_feat_msmon_capt,
-> +	mpam_feat_partid_nrw,
->  	MPAM_FEATURE_LAST,
->  };
->  static_assert(BITS_PER_TYPE(mpam_features_t) >= MPAM_FEATURE_LAST);
-> @@ -187,6 +195,10 @@ struct mpam_props {
->  	u16			cpbm_wd;
->  	u16			mbw_pbm_bits;
->  	u16			bwa_wd;
-> +	u16			cmax_wd;
-> +	u16			cassoc_wd;
-> +	u16			intpri_wd;
-> +	u16			dspri_wd;
->  	u16			num_csu_mon;
->  	u16			num_mbwu_mon;
->  };
+---
+Changes in v2:
+- Drop changes to be able to swap input/output pins. It's not required
+  for generic S32G support and we don't know what board it's for.
+- Drop binding change for max num_cs value. Although the maximum is 3,
+  this would be autodetected so it should be left blank. 2 is the max
+  that is required to set manually.
+- Fix missing bitfield header for some compile targets
+- Keep prescale_max as a numeric value, but treat 0 as no limit
+- Put compatible string dt-bindings patch before driver change
+- Link to v1: https://lore.kernel.org/r/20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org
 
-Thanks,
+---
+James Clark (3):
+      spi: spi-fsl-lpspi: Constify devtype datas
+      spi: spi-fsl-lpspi: Treat prescale_max == 0 as no erratum
+      spi: spi-fsl-lpspi: Parameterize reading num-cs from hardware
 
-Ben
+Larisa Grigore (6):
+      spi: spi-fsl-lpspi: Fix transmissions when using CONT
+      spi: spi-fsl-lpspi: Set correct chip-select polarity bit
+      spi: spi-fsl-lpspi: Reset FIFO and disable module on transfer abort
+      spi: spi-fsl-lpspi: Clear status register after disabling the module
+      dt-bindings: lpspi: Document support for S32G
+      spi: spi-fsl-lpspi: Add compatible for S32G
+
+ .../devicetree/bindings/spi/spi-fsl-lpspi.yaml     |  5 +++
+ drivers/spi/spi-fsl-lpspi.c                        | 47 +++++++++++++---------
+ 2 files changed, 33 insertions(+), 19 deletions(-)
+---
+base-commit: 07d9df80082b8d1f37e05658371b087cb6738770
+change-id: 20250715-james-nxp-lpspi-1fac58e72a59
+
+Best regards,
+-- 
+James Clark <james.clark@linaro.org>
 
 
