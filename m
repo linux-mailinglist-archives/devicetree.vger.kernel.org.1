@@ -1,104 +1,167 @@
-Return-Path: <devicetree+bounces-210176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3917AB3AA1E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 20:39:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3FAB3AA4B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 20:50:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2CB5980D7F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:39:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0252417BD2F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8634A2773C6;
-	Thu, 28 Aug 2025 18:39:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45918322A2C;
+	Thu, 28 Aug 2025 18:50:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zQDqJvLI"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="7PhGVjWo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA74F26C3A6
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 18:39:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E4B830F52A;
+	Thu, 28 Aug 2025 18:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756406359; cv=none; b=NgYXrvEYc+MaMEYPESm51dXU9D9jQ+7KUKnYUzVLgDlWz7enTFIK5kJsVl7l9gZadj/1JCLPcxS7mmkw4PGVyGkDwzqEWV2goNl/24usK0GvQkRjtca0AC9kpD/t3ZTGxf68TYdkzW9tpDMTqId+lETx2nXIlQj7vJJYj8scHyc=
+	t=1756407037; cv=none; b=LkYJ9TCa/iMJigQz4gKZp6PUy2XgCb24rtxlRL68CB75mE/YfyS4fS0NRpwZz59zQO8dn4G/TLs1X8xnpaPWbp9HOZlW545B37QN+iRo203zi/OWiWwP0CewOE2Ce/lzYzNddsA/yjSiK1ybM5oz/598DvA0nyZbzB9OWXxIbEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756406359; c=relaxed/simple;
-	bh=E0ckteGAESBs8jcf8OZOftDZRFDWIXrQjnpmEjqlDzI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OvsTOmgL67vNngsHXT2XDU6wt2FNnfFqdj6IUHPkaDHrNwhF6M/fqZuiOAZ9JWydupukAgoPcAxy2gmknAOyxHwI3DtpEIV7mLwlIE3VijBTRvlgkJzNzweIu4Kkk/PJvqU76K9myl8LAcVX5oxOAwRaG3adkLwPplyLxeQcMjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zQDqJvLI; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-55f44d5e6f8so1387412e87.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 11:39:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756406355; x=1757011155; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E0ckteGAESBs8jcf8OZOftDZRFDWIXrQjnpmEjqlDzI=;
-        b=zQDqJvLIKbqGWjUKzrHVrChQY9QXq90cW8vvzTpfc8oTRFLyCDciuRJYg1b7fI6en9
-         v8mquGDvp1BHivXI4AYJ7NAyvVWY9ahoZLO8pkbkSfEBZvcJHO5Pxt1ugONIb2DNmKeR
-         /OGWmDUvUFDLiJIS5AxyibtUKF5inq50GhmDj3NOYZPDdgt2XYhUyYinQg0UsGQXOku6
-         gEZBnCOesbNtEMyrud1AFZLwcNRXVlCqmlS/zceGoTzlk/gwHr4CEspDRdgoJsgkJdPT
-         XNvMGxEjLBeekTsYWEpIwLvbwdKUveeP86l3ptC1e80xoK7cxk3yypjMAyovcFWOxzhX
-         EjxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756406355; x=1757011155;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E0ckteGAESBs8jcf8OZOftDZRFDWIXrQjnpmEjqlDzI=;
-        b=wkQtTvfmP5AouQzvxkrvSTDeNgN16Loc+9FW8z4WpS2cMcWXyAntlsyTXq+8xDWcfa
-         /7i5754P69ezqO+SaB0C1acSReiVwUPiBU1qKddgXbvLlScoz7be7v5WiVvKqu83072O
-         29H2A/5NcxboqOJzLyisluuCuei6bwbx5q1XOhFOoFrT5pWfHVAG1YyhSy48TGkTJ6VW
-         qChH6QOeJ6EylujQGDeCTINrP5BO27CLxfmma2Evkj++OygS4ndwMWCKBZW4OI3NWGFP
-         3W2MZXc1Pf0JZasHJeEUNXULajCqPZ3VuKGSGtXaZR3uNKnKBrtRAoAMwZeWyKtyI3UL
-         yBnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVwncvP3oxHBMokH5fkKx0wdNoOjMPo3Jxm1MGYJF/jnn9Z/8xiS5MhiinPo308WGHBbWz0f6atZVcv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZcGV7c7mVxvZoBzTs8BhIyWun2XZmkvCfzw5oGqGPMtYjjplG
-	pViFp4GMJP2m6MnKTFEa4E/igTDtVjWPguxxUpl/7WBJvdieTGn5AxNgFBsXzRDybaPZ6mo1Ri7
-	7OCx30ZDEtQwlyWzzvl+sXZG/pKwUw3QpfuQVWiTlWg==
-X-Gm-Gg: ASbGnctTNx7eYmUbxW14V4lSRRz/KXBPNni/Tx3o+4gebw+3a3oc7vCpIBFcqvlG2oO
-	PFggrrkZWb4EEjzinODXOx2wZs62O4+a5v3184+ddSSovXlh0nYUKCe0jff5hwwZyMXg8Z0+2iM
-	8/ia8+Q3PJsKrgDyRZ8Yw1FvD3vtBJiTH691BjGzhNL9CIa5oueIXjswipEbJdrYIUPoWeFapy/
-	Fo9a96rmX6wA1W6PA==
-X-Google-Smtp-Source: AGHT+IEW/rZTrjCCovtsKbGN3zvurPp8ZHpS2GVDC7ghNOSAMSVHLkB9FDrrp1lAJKfN2C09p5nry2jkSt7wbvI4iYo=
-X-Received: by 2002:a05:6512:3b09:b0:55f:4839:d05f with SMTP id
- 2adb3069b0e04-55f4839d30amr4000473e87.49.1756406354836; Thu, 28 Aug 2025
- 11:39:14 -0700 (PDT)
+	s=arc-20240116; t=1756407037; c=relaxed/simple;
+	bh=rDPt11hUyYEKYzRsksxc2au3/QreRdUJKeYIrv01Z1Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OQbhIZC0oJthhb9OWN6QVrP5a+EPi8wU9UzrDWESSPcrpaeaC/kIdhL7717JDDUgoAJTogf20e81HrBRB6f4PW3xsXnmatFVP9Dl9EEjGJ3yMevx35k+NrqgD7yYilZmLXTnmtLBxLdmkl1VFg+6IBxT3Hu5NhDfm0kfivChruw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=7PhGVjWo; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57SGK1Q6000314;
+	Thu, 28 Aug 2025 20:49:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	QngEIke0AHC8FxDBE5xQKqvSi6Ne/Qs63SuZOpgs9rU=; b=7PhGVjWors7Len+8
+	8boKa4Mku8xTRTVBQIwPckTq5qP62dkbDckuIoWUjJwRBQVkDO/NCvZ/Xd0f0lAc
+	qlMzdA0j+8xixjOEBDzfNE/bMlhcC43lIyqxbxLuD0mDYI/P53pBKDim9k2ond7K
+	DDEnnnkNsHh8ul7tnHtQkcbAN98RKbHDJ2kr7mEAZfVmQZDlc/Lhzv/v5bB+XRpC
+	4RVE5sqxff1+wnAQ9BtratCEwvItq0kJIPBIj1U+we+otSG3PWul6RlLRfkKN5kk
+	EZ2IBrk3RwkwnBuzL7MQ2Kt7kXS5AgcdWUIsu+Xd7OBNOZQ/yFhTSOIBk3mYIzUJ
+	DfW2Ag==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48q5xbwhff-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Aug 2025 20:49:56 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D36834004B;
+	Thu, 28 Aug 2025 20:48:10 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E170277A5A4;
+	Thu, 28 Aug 2025 20:46:34 +0200 (CEST)
+Received: from [10.130.77.120] (10.130.77.120) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 28 Aug
+ 2025 20:46:33 +0200
+Message-ID: <3a0afc93-a7ae-467e-97ad-f1c8d7d7a693@foss.st.com>
+Date: Thu, 28 Aug 2025 20:46:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250823212732.356620-1-alex.t.tran@gmail.com>
-In-Reply-To: <20250823212732.356620-1-alex.t.tran@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 28 Aug 2025 20:39:03 +0200
-X-Gm-Features: Ac12FXym_RsvFHR0V-adi-Z38di1fxjCCKa-fkpd5JJ5TmFdT4-cHh1WYo-j-eg
-Message-ID: <CACRpkdY4sCFZqK2D+XP7ctK_EJD3aOO4CGh40uQsdACyAUOofg@mail.gmail.com>
-Subject: Re: [PATCH] arch/arm/boot/dts/st/ste-ux500-samsung: dts bluetooth
- wakeup interrupt
-To: Alex Tran <alex.t.tran@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 06/11] PCI: stm32: Add PCIe Endpoint support for
+ STM32MP25
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: <lpieralisi@kernel.org>, <kwilczynski@kernel.org>, <mani@kernel.org>,
+        <robh@kernel.org>, <bhelgaas@google.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@foss.st.com>, <linus.walleij@linaro.org>,
+        <corbet@lwn.net>, <p.zabel@pengutronix.de>, <shradha.t@samsung.com>,
+        <mayank.rana@oss.qualcomm.com>, <namcao@linutronix.de>,
+        <qiang.yu@oss.qualcomm.com>, <thippeswamy.havalige@amd.com>,
+        <inochiama@gmail.com>, <quic_schintav@quicinc.com>,
+        <johan+linaro@kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20250828171622.GA945192@bhelgaas>
+From: Christian Bruel <christian.bruel@foss.st.com>
+Content-Language: en-US
+In-Reply-To: <20250828171622.GA945192@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-28_04,2025-08-28_01,2025-03-28_01
 
-On Sat, Aug 23, 2025 at 11:27=E2=80=AFPM Alex Tran <alex.t.tran@gmail.com> =
-wrote:
 
-> Interrupt support on host wakeup gpio for ste-ux500-samsung bluetooth.
->
-> Signed-off-by: Alex Tran <alex.t.tran@gmail.com>
 
-Patch applied!
+On 8/28/25 19:16, Bjorn Helgaas wrote:
+> On Thu, Aug 28, 2025 at 02:12:57PM +0200, Christian Bruel wrote:
+>> On 8/27/25 20:58, Bjorn Helgaas wrote:
+>>> On Wed, Aug 20, 2025 at 09:54:06AM +0200, Christian Bruel wrote:
+>>>> Add driver to configure the STM32MP25 SoC PCIe Gen1 2.5GT/s or Gen2 5GT/s
+>>>> controller based on the DesignWare PCIe core in endpoint mode.
+>>>
+>>>> +static void stm32_pcie_perst_deassert(struct dw_pcie *pci)
+>>>> +{
+>>>> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+>>>> +	struct device *dev = pci->dev;
+>>>> +	struct dw_pcie_ep *ep = &pci->ep;
+>>>> +	int ret;
+>>>> +
+>>>> +	dev_dbg(dev, "PERST de-asserted by host\n");
+>>>> +
+>>>> +	ret = pm_runtime_resume_and_get(dev);
+>>>> +	if (ret < 0) {
+>>>> +		dev_err(dev, "Failed to resume runtime PM: %d\n", ret);
+>>>> +		return;
+>>>> +	}
+>>>> +
+>>>> +	ret = stm32_pcie_enable_resources(stm32_pcie);
+>>>> +	if (ret) {
+>>>> +		dev_err(dev, "Failed to enable resources: %d\n", ret);
+>>>> +		goto err_pm_put_sync;
+>>>> +	}
+>>>> +
+>>>> +	/*
+>>>> +	 * Need to reprogram the configuration space registers here because the
+>>>> +	 * DBI registers were incorrectly reset by the PHY RCC during phy_init().
+>>>
+>>> Is this incorrect reset of DBI registers a software issue or some kind
+>>> of hardware erratum that might be fixed someday?  Or maybe it's just a
+>>> characteristic of the hardware and thus not really "incorrect"?
+>>>
+>>> I do see that qcom_pcie_perst_deassert() in pcie-qcom-ep.c also calls
+>>> dw_pcie_ep_init_registers() in the qcom_pcie_ep_perst_irq_thread()
+>>> path.
+>>>
+>>> So does pex_ep_event_pex_rst_deassert() (pcie-tegra194.c) in the
+>>> tegra_pcie_ep_pex_rst_irq() path.
+>>>
+>>> But as far as I can tell, none of the other dwc drivers need this, so
+>>> maybe it's something to do with the glue around the DWC core?
+>>
+>> The RCC PHY reset is connected to the Synopsys cold reset logic, which
+>> explains why the registers need to be restored. This point has been
+>> addressed in the reference manual.
+> 
+> OK.  I dropped "incorrectly" from the comment because I think future
+> readers will wonder about whether or how this could be fixed, and it
+> sounds like it's just a feature of the hardware that we need to deal
+> with.
 
-Yours,
-Linus Walleij
+OK, thank you. "unexpectedly" would have been appropriate, but just drop 
+it is even better.
+
+> 
+>>>> +	 */
+>>>> +	ret = dw_pcie_ep_init_registers(ep);
+>>>> +	if (ret) {
+>>>> +		dev_err(dev, "Failed to complete initialization: %d\n", ret);
+>>>> +		goto err_disable_resources;
+>>>> +	}
+>>
+
 
