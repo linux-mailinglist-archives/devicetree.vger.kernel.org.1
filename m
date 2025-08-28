@@ -1,83 +1,65 @@
-Return-Path: <devicetree+bounces-209984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C26DB39C51
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:09:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82060B39CE0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:20:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1F77685CE7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 12:09:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11E9C7BCB08
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 12:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA1E30F951;
-	Thu, 28 Aug 2025 12:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6593331194D;
+	Thu, 28 Aug 2025 12:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pq5n+JhH"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="gyABa5UR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D70F30F52A;
-	Thu, 28 Aug 2025 12:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A8C30F958;
+	Thu, 28 Aug 2025 12:16:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756382956; cv=none; b=kFpkKpm+GGJkyQy3GGFqFb48I/xbBVEHTv4gXVDlWBTJ9SFTBRbuo9l9h5uQC/+QXy/6RFEji9niZw3cq3xu7gvk0GUQptbKw9AO+cBW4JgJspGhEF7v2gUI/Lf8nFNiK0Yi8ceI4kMXUBBLnNM0qN82p3LfedSe1FM9SaU6AZs=
+	t=1756383416; cv=none; b=vCUUO3SPnnZkwwsvGK9lu2k+PN7rVTUd8OqOGMhaOe3+J4qWbFTG/g9P1NGptbr6lMkGczqprInYObL/8aVd8v0c8q5UfiBe0dD0S4wk3Wnr24LlbwGdomBtjgDUFK8XBrccZR7pAOEOJuFC/BNS6G2sS83PbS32bc0NGnRutYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756382956; c=relaxed/simple;
-	bh=68j3RZae3tXtdskGBYhKOWS2516C0lenOCKQJINDUDg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E2qdlU+gdN5DXNWk0aOa+G4yarN8uECtmahwtuCy2CA7Hqw7hJjpkISruD2Iu83SUntcf2IlwRvNEt2Ch4oxdg7j3Wfmrfa9WIpEPMfDf5CkHYy98dPED8IsRgke2HLEkgUtXoc6kpNIm2mEKIdG6PWnreslkD4E0/tdM0P9C2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pq5n+JhH; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-76e2ea933b7so733677b3a.1;
-        Thu, 28 Aug 2025 05:09:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756382953; x=1756987753; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=x6XN1t1iD6sB6HAWNyIKXI4VpqreT5hi/YqZ431JLoo=;
-        b=Pq5n+JhH/5UfKl2x3rq0sPFGy/lAG8cqRvscYKkyfoL64gPya4He78ids4PhhsZgtJ
-         13mFapOCz/Hqp6MU7Gr1YOknIE3EsfF6PCSUx9JU7ctbMnc0LcZ9XA2apOm3tPyaBT2L
-         JhS8GSEAre0C2tI0NoEFMBNZRUA9PieIRmFtXEReas6so5SoQ7h49eTEhQyWgTBfBttY
-         qMncoV2ys6LfgePtfsfg10tIGPiwqN3jFAumJcLTUNockhfIG9/AWWiMz8NpTOxd/MwI
-         anV0feMpPxoyjTS7Y2mAJDim/KiZrF3vxuBQF3KsHbR+yOpeshZFvDDXbqxXcsWn1Sh8
-         0V2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756382953; x=1756987753;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x6XN1t1iD6sB6HAWNyIKXI4VpqreT5hi/YqZ431JLoo=;
-        b=O2irur0g/UKvmRaawyrc66rAa/bOF5lbNX4TqaI3I9/j8Fr6jHDvCFkoJIvJ2p3ly8
-         z0eKcgcrdlhghiQz7HKqwd+OHoTwhRAkVUB8dx9nC/QNL3zWP86sanO9tcrb+njO7OpO
-         pPHOexlh3NfIIatnkIwN/TRr/R+RFtlpxMWqjj9i17qW2HDg3g0nSPN7zdRJlwUACfAM
-         fVDhWw2DY4I1qShutllEI2JrW8khtJssmdpAIpL/Q7mi+uukW9Yew6bppj32Oj0ONp0D
-         /ynqSdUj7qyZ1njrfL75r9Fq7lRSS61h4HKMGuVJiIhdCxMMo2j3lquYQcueWWcK0Q+E
-         A8Vw==
-X-Forwarded-Encrypted: i=1; AJvYcCW00ET8x8xbQY0O+mBuR6809gwHSD5RbrtvhXFg8hjqpu6NbYlAGL6laik6EZmWLmhEVMljQTLT6pt2NKSg@vger.kernel.org, AJvYcCXwvMmdh3DEv0R/VQ4TKQGgWfjqhvuK8sWGz8zN1bd5nEFZeX6RkHldGnOxEFmyh0xyGx9Yj6Utquiz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOMza8NnLncS7vef8uZowfy+NqHaQ9FV2n6VbZ0e497xscT6LW
-	iE8weJpwR0d0Bjnqkc0wN/lYMiRO35j8WkrsZ4wcm6d7x2Pvov22fZ31cb+dhw==
-X-Gm-Gg: ASbGnctGBe3r9x2YS+VRZdnp2Z18Gfy18JbQAnsPBzbMTuMB8LNQSygHuvrY5I3nB4W
-	Fs9VbjCY2dyDCSgQNFDSFso81f1Slr/+YRTv7dfdWbFTBUef7r7a/GDIv2+YnoGgvjwb4xs4hAH
-	UZ9ctgMh86fGwobHaOLX20RfInqgeoGdXVUbMUsjsY56xFJWUT7tp75CX6yONDCZ2ZxYBM+9TW8
-	Ub7+JaREu8B3g5GjyLrQBhsS2HyqFdUYVpPe8b7KZPVE47NdyDxNRWNOm7eckoqHnVv09S51OtU
-	245mmnXCVoP6XTsiPwsFWnXMXn9gXs2phOQScE+4hWjDG+nI80b5PWmfrQPhkiGejB1J3aA4dFn
-	lx4ht6LP5hZxs/nesgMp7dPO1xp5zoJTnTT7929ywMtVU2/1r3Z8qmwXycdlvP1Iwa4akKd6Hs3
-	VdRzg+Rw==
-X-Google-Smtp-Source: AGHT+IEVg99UW4ob/hBRTyJNwskhOBJrHlLhahTqd88VbfdTTr9jSDpEfYL4OfTtR8mEKj8mVmUoJg==
-X-Received: by 2002:a05:6a20:7f94:b0:240:1e4a:64cc with SMTP id adf61e73a8af0-2438facc679mr12942006637.12.1756382953384;
-        Thu, 28 Aug 2025 05:09:13 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4c3cd9e56esm4829034a12.14.2025.08.28.05.09.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Aug 2025 05:09:12 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <6e51d4b9-23fd-401b-afb1-2df943f85c3c@roeck-us.net>
-Date: Thu, 28 Aug 2025 05:09:10 -0700
+	s=arc-20240116; t=1756383416; c=relaxed/simple;
+	bh=aaV4x6280/CXvf8fKdJfOOVcKa+/PlLXRGgpk5EAZg0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=WmdKYjC3aMAubJ+0fIYe2i9K9RuZSMMiGOqyAu74nw89ofTBFRcFgKcjCB+h+Y6nt689b9XLw41Dq2tIklzHaGvlFUVL0ipoCqvDmUfINoVPxHXZC0XXuMYDXW+FVDeX0ksqNn98De8CMJwblDU0Ivp28leB6DFmp1CWy9/nJlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=gyABa5UR; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57SAJbT7003220;
+	Thu, 28 Aug 2025 14:15:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	H2VjxPIys7d1tJoSW05HXWGO8B1PQC1RoUMeQHH1la8=; b=gyABa5URoIdL0qys
+	8nCirTWeTflyOsuJyYXpsDDVA3hHboNWQpco+hkmcJZ4hpecA3kRy3o+RGR41538
+	YlgI7saSguc+YAAM6UsqKjzRb6l582ilE/u6LaPff8muKBs9qp2hDkdvdObtHIb6
+	Em6ELCC29h/Noubjyln1OLyPnAdp+HSOnO0de509FCkMiDJOkxL07lFkQ7nznvMy
+	ydQWuw7sEn3myU8qdzK2+gQ/Lyq41sz8ocCROVnTgiZv4TyRCADCeSh2/9bMTu6B
+	Wfv6BdSRNqc2ek/eZ9iJrCR1z9VRjVYabdE3vl9g3DLzWIDMGQV13qQd1y00iFFL
+	sZ5Jbw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48q5tt5139-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Aug 2025 14:15:55 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id EA37D40048;
+	Thu, 28 Aug 2025 14:14:08 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2A75372766C;
+	Thu, 28 Aug 2025 14:13:02 +0200 (CEST)
+Received: from [10.130.77.120] (10.130.77.120) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 28 Aug
+ 2025 14:13:00 +0200
+Message-ID: <9133348a-f6a4-4425-98e2-a784a7620b3a@foss.st.com>
+Date: Thu, 28 Aug 2025 14:12:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,89 +67,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] hwmon: (ina238) Add support for INA780
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>, jdelvare@suse.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250808030510.552724-1-chris.packham@alliedtelesis.co.nz>
- <20250808030510.552724-3-chris.packham@alliedtelesis.co.nz>
+From: Christian Bruel <christian.bruel@foss.st.com>
+Subject: Re: [PATCH v13 06/11] PCI: stm32: Add PCIe Endpoint support for
+ STM32MP25
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: <lpieralisi@kernel.org>, <kwilczynski@kernel.org>, <mani@kernel.org>,
+        <robh@kernel.org>, <bhelgaas@google.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@foss.st.com>, <linus.walleij@linaro.org>,
+        <corbet@lwn.net>, <p.zabel@pengutronix.de>, <shradha.t@samsung.com>,
+        <mayank.rana@oss.qualcomm.com>, <namcao@linutronix.de>,
+        <qiang.yu@oss.qualcomm.com>, <thippeswamy.havalige@amd.com>,
+        <inochiama@gmail.com>, <quic_schintav@quicinc.com>,
+        <johan+linaro@kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20250827185825.GA894342@bhelgaas>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20250808030510.552724-3-chris.packham@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <20250827185825.GA894342@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-28_03,2025-08-28_01,2025-03-28_01
 
-On 8/7/25 20:05, Chris Packham wrote:
-> Add support for the TI INA780 Digital Power Monitor. The INA780 uses
-> EZShunt(tm) technology, which means there are fixed LSB conversions for
-> a number of fields rather than needing to be calibrated.
+
+
+On 8/27/25 20:58, Bjorn Helgaas wrote:
+> On Wed, Aug 20, 2025 at 09:54:06AM +0200, Christian Bruel wrote:
+>> Add driver to configure the STM32MP25 SoC PCIe Gen1 2.5GT/s or Gen2 5GT/s
+>> controller based on the DesignWare PCIe core in endpoint mode.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>> +static void stm32_pcie_perst_deassert(struct dw_pcie *pci)
+>> +{
+>> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+>> +	struct device *dev = pci->dev;
+>> +	struct dw_pcie_ep *ep = &pci->ep;
+>> +	int ret;
+>> +
+>> +	dev_dbg(dev, "PERST de-asserted by host\n");
+>> +
+>> +	ret = pm_runtime_resume_and_get(dev);
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "Failed to resume runtime PM: %d\n", ret);
+>> +		return;
+>> +	}
+>> +
+>> +	ret = stm32_pcie_enable_resources(stm32_pcie);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to enable resources: %d\n", ret);
+>> +		goto err_pm_put_sync;
+>> +	}
+>> +
+>> +	/*
+>> +	 * Need to reprogram the configuration space registers here because the
+>> +	 * DBI registers were incorrectly reset by the PHY RCC during phy_init().
+> 
+> Is this incorrect reset of DBI registers a software issue or some kind
+> of hardware erratum that might be fixed someday?  Or maybe it's just a
+> characteristic of the hardware and thus not really "incorrect"?
+> 
+> I do see that qcom_pcie_perst_deassert() in pcie-qcom-ep.c also calls
+> dw_pcie_ep_init_registers() in the qcom_pcie_ep_perst_irq_thread()
+> path.
+> 
+> So does pex_ep_event_pex_rst_deassert() (pcie-tegra194.c) in the
+> tegra_pcie_ep_pex_rst_irq() path.
+> 
+> But as far as I can tell, none of the other dwc drivers need this, so
+> maybe it's something to do with the glue around the DWC core?
 
-Your patch does not apply, and I can't figure out its baseline. Please
-reparent on top of the current mainline and resubmit.
+The RCC PHY reset is connected to the Synopsys cold reset logic, which 
+explains why the registers need to be restored. This point has been 
+addressed in the reference manual.
 
-To simplify review, the patch should be split into preparation patches
-(such as adding .has_shunt and .temp_max options), followed by the actual
-added chip support.
+I am not sure if the tegra194 and qcom drivers restore the registers for 
+the same reason. But refactoring this into the DWC core would require a 
+runtime condition to test for persistent registers or support for warm 
+reset.
 
-Other (not a complete review):
+Best Regards
 
-I don't see the value of adding INA780_COL and INA780_CUL defines;
-those are really the same as the shunt voltage limits. Actually,
-the current limits _are_ available for existing chips, only they
-are expressed as voltage limits on the shunt voltages. For the ina_2xx
-driver I was able to resolve that quite easily; we should do the same
-for the ina238 driver. Maybe I have an evaluation board somewhere;
-I'll need to check.
+Christian
 
-[ Sorry for being so late with this; I am being swamped at work :-( ]
 
-Thanks,
-Guenter
+> 
+>> +	 */
+>> +	ret = dw_pcie_ep_init_registers(ep);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to complete initialization: %d\n", ret);
+>> +		goto err_disable_resources;
+>> +	}
 
 
