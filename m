@@ -1,112 +1,175 @@
-Return-Path: <devicetree+bounces-210126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7A7DB3A5D8
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:13:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 174A6B3A5DA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 18:14:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8052216B19F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:12:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BDFF581EAA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B30F2C236C;
-	Thu, 28 Aug 2025 16:12:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="F1fEnHG/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857252D543E;
+	Thu, 28 Aug 2025 16:13:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D67E126A0BD;
-	Thu, 28 Aug 2025 16:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB612D23B6;
+	Thu, 28 Aug 2025 16:13:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756397558; cv=none; b=hYPHcQT7lcptiJxqVfqvOp/mZunh5w2XA9RFX8uZINBOMHAMhDN4m0pUaOH7wEfl6MsoIpYBJw98j0mmxo49bPe6BtziVzqIiA6Eh4SfAlBl05qgmyqf/ujiH25xbEQI5Bs/acGH7Pb3Y8gZUV6O9UcP4+jOc2iyD01FEDq5Klc=
+	t=1756397602; cv=none; b=ef1JcG3SZH7ykuTGzrKBTsZXkOrgm9tZ5UqcHpGdzELX+MuLQylpa0DnXx77gbUXci/4cy4fCXeA6vEP68vTrHKA1f9CjRIaLegE66c94axGOU0rPXe8lWg8CoGgkLMz31kbnOZxUIVlMUONSUdJyWm00o/w8NJMBHXXe0uZ5kA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756397558; c=relaxed/simple;
-	bh=eaHfaCKF0V2Z+VnLTT0mS1E71eFLmvmfc4JWkwktky4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IZmQHqAqNNQGUFerQJ1Lzjyt7n8zd5Gc0NxV1m3J+waMYSU7xcihK2T2CsY5YnZIPm6CyfszKj6diTc3+1OnsjKTlfNR6sEduk8xG7q8Ts0dX65tC/2hR6fn/GOlX9vXX4RkxOjhdN1TWq32QinAl1w3LzvJ9EBfUuuARWHxsRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=F1fEnHG/; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756397557; x=1787933557;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eaHfaCKF0V2Z+VnLTT0mS1E71eFLmvmfc4JWkwktky4=;
-  b=F1fEnHG/W7IhJWC4QeLigKnCMHoeFB0HtOKUW83ti44oYzFMhZpKh9ZS
-   crL4pOkYj7i+i9pPlJrS7dfvgG4zFStfnGdou1k15NtbV8h2gyVAzBkX2
-   nIu375DlhThh9JH6hryoDiid9nr3KZO1Iu44fJ8nynoQ0TZk7EQg7ETPV
-   cIU/9yRc1B03BF/c/BTa1lMqK985oZwvzftfA8LqAuY4N75yx+1pMH9MB
-   /7k5Xtc1++mPLNrZB73sHy5qarQ1iR3/hOwarZyI8WBXZ4Jt2vnZQDdSY
-   zzbZ7Pi8A4p3V9u0uVdHwM7gFQcryvZt2J4eAkOkwXHVgR9EE+LJduvCJ
-   w==;
-X-CSE-ConnectionGUID: bPKKopkQTkaWaO5SGHYHCg==
-X-CSE-MsgGUID: aMfKlPtTScWfEb6/f7Ty6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="62321476"
-X-IronPort-AV: E=Sophos;i="6.18,220,1751266800"; 
-   d="scan'208";a="62321476"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2025 09:12:37 -0700
-X-CSE-ConnectionGUID: HVgnEwfnSCyMQyrCjhJyPw==
-X-CSE-MsgGUID: Zd52YH+BTwCfvVJ4hDHcHA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,220,1751266800"; 
-   d="scan'208";a="174533836"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.135])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2025 09:12:32 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 936C511F9D4;
-	Thu, 28 Aug 2025 19:12:29 +0300 (EEST)
-Date: Thu, 28 Aug 2025 19:12:29 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] media: i2c: add Sony IMX111 CMOS camera sensor
- driver
-Message-ID: <aLB_7YS9HsfzfadI@kekkonen.localdomain>
-References: <20250819120428.83437-1-clamor95@gmail.com>
+	s=arc-20240116; t=1756397602; c=relaxed/simple;
+	bh=O2M2ewyT9BTwMaGPRohrg857neoQ+0bApEVjgrSurBA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dmZUv0pmUMh91LtOTnbWgHoKSSyfYNypCCPCsanimTfesxD+ZYFANFo/9nwdHLx4txX6rddIDxaVZ9WWV+Sb2MCcMUnHh2SAAiwdpfdo3kmE5AsetwYsVn9kzIAulVU5tyP3kxLp0qnR3zq8/d4HegwKFkiypccqroUtKHW9mt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 89BC41688;
+	Thu, 28 Aug 2025 09:13:11 -0700 (PDT)
+Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 688EE3F694;
+	Thu, 28 Aug 2025 09:13:14 -0700 (PDT)
+Message-ID: <8635e616-79b7-4d7d-a8b8-aa76ba027bc4@arm.com>
+Date: Thu, 28 Aug 2025 17:13:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250819120428.83437-1-clamor95@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 20/33] arm_mpam: Add a helper to touch an MSC from any CPU
+To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: shameerali.kolothum.thodi@huawei.com,
+ D Scott Phillips OS <scott@os.amperecomputing.com>,
+ carl@os.amperecomputing.com, lcherian@marvell.com,
+ bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+ baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+ Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+ dfustini@baylibre.com, amitsinght@marvell.com,
+ David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
+ Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
+ Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+ baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+ Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-21-james.morse@arm.com>
+From: Ben Horgan <ben.horgan@arm.com>
+Content-Language: en-US
+In-Reply-To: <20250822153048.2287-21-james.morse@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Svyatoslaw,
+Hi James,
 
-On Tue, Aug 19, 2025 at 03:04:25PM +0300, Svyatoslav Ryhel wrote:
-> Add driver for Sony IMX111 CMOS sensor found in LG Optimus 4X and Vu
-> smartphones.
+On 8/22/25 16:30, James Morse wrote:
+> Resetting RIS entries from the cpuhp callback is easy as the
+> callback occurs on the correct CPU. This won't be true for any other
+> caller that wants to reset or configure an MSC.
+> 
+> Add a helper that schedules the provided function if necessary.
+> Prevent the cpuhp callbacks from changing the MSC state by taking the
+> cpuhp lock.
+At first, I thought this was referring to something done in the patch.
+Consider changing to something like:
 
-Thanks for the set.
+Callers should take the cpuhp lock to prevent the cpuhp callbacks from
+changing the MSC state.
 
-I wonder how would the sensor work with the CCS driver. The register layout
-appears to be very much aligned with that (I haven't checked whether there
-are MSRs that depend on the mode).
+Regardless, this looks good to me.
 
--- 
-Kind regards,
+Reviewed-by: Ben Horgan <ben.horgan@arm.com>
 
-Sakari Ailus
+> 
+> Signed-off-by: James Morse <james.morse@arm.com>
+> ---
+>  drivers/resctrl/mpam_devices.c | 37 +++++++++++++++++++++++++++++++---
+>  1 file changed, 34 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
+> index c1f01dd748ad..759244966736 100644
+> --- a/drivers/resctrl/mpam_devices.c
+> +++ b/drivers/resctrl/mpam_devices.c
+> @@ -906,20 +906,51 @@ static void mpam_reset_ris_partid(struct mpam_msc_ris *ris, u16 partid)
+>  	mutex_unlock(&msc->part_sel_lock);
+>  }
+>  
+> -static void mpam_reset_ris(struct mpam_msc_ris *ris)
+> +/*
+> + * Called via smp_call_on_cpu() to prevent migration, while still being
+> + * pre-emptible.
+> + */
+> +static int mpam_reset_ris(void *arg)
+>  {
+>  	u16 partid, partid_max;
+> +	struct mpam_msc_ris *ris = arg;
+>  
+>  	mpam_assert_srcu_read_lock_held();
+>  
+>  	if (ris->in_reset_state)
+> -		return;
+> +		return 0;
+>  
+>  	spin_lock(&partid_max_lock);
+>  	partid_max = mpam_partid_max;
+>  	spin_unlock(&partid_max_lock);
+>  	for (partid = 0; partid < partid_max; partid++)
+>  		mpam_reset_ris_partid(ris, partid);
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Get the preferred CPU for this MSC. If it is accessible from this CPU,
+> + * this CPU is preferred. This can be preempted/migrated, it will only result
+> + * in more work.
+> + */
+> +static int mpam_get_msc_preferred_cpu(struct mpam_msc *msc)
+> +{
+> +	int cpu = raw_smp_processor_id();
+> +
+> +	if (cpumask_test_cpu(cpu, &msc->accessibility))
+> +		return cpu;
+> +
+> +	return cpumask_first_and(&msc->accessibility, cpu_online_mask);
+> +}
+> +
+> +static int mpam_touch_msc(struct mpam_msc *msc, int (*fn)(void *a), void *arg)
+> +{
+> +	lockdep_assert_irqs_enabled();
+> +	lockdep_assert_cpus_held();
+> +	mpam_assert_srcu_read_lock_held();
+> +
+> +	return smp_call_on_cpu(mpam_get_msc_preferred_cpu(msc), fn, arg, true);
+>  }
+>  
+>  static void mpam_reset_msc(struct mpam_msc *msc, bool online)
+> @@ -932,7 +963,7 @@ static void mpam_reset_msc(struct mpam_msc *msc, bool online)
+>  	mpam_mon_sel_outer_lock(msc);
+>  	idx = srcu_read_lock(&mpam_srcu);
+>  	list_for_each_entry_srcu(ris, &msc->ris, msc_list, srcu_read_lock_held(&mpam_srcu)) {
+> -		mpam_reset_ris(ris);
+> +		mpam_touch_msc(msc, &mpam_reset_ris, ris);
+>  
+>  		/*
+>  		 * Set in_reset_state when coming online. The reset state
+
+Thanks,
+
+Ben
+
 
