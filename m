@@ -1,76 +1,73 @@
-Return-Path: <devicetree+bounces-209998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A4BB39D4E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:30:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 312EBB39D59
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:33:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA9A71726CD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 12:30:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 091A67A5E09
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 12:31:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FA7030F55F;
-	Thu, 28 Aug 2025 12:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="mY8/R/zy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C091307493;
+	Thu, 28 Aug 2025 12:33:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77AD71B0F1E;
-	Thu, 28 Aug 2025 12:30:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE3F145B16;
+	Thu, 28 Aug 2025 12:33:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=176.9.242.62
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756384220; cv=none; b=NNBExxx3kIlqh69zInZyDVuDqocd+hGOmel0IqgYUbzuaXBpYy2uiAxKksYdNxYacurZd5eB9asVdKsOFwfQKc8MXijQMAdUfQBfWI8L5p87vyG8oC8Hb4c5H9sZs8hO9ZEOhB1CsRQ6Aeaj70QR5dgNJbmFWdoq8pZPx79MdxQ=
+	t=1756384386; cv=none; b=KdLaT6cLC9/0JyQrPU2IVGMiTjXeCsNj6jBWhV7cdIxW0ihe4OElPePrXNppDoc2C06iNQhFE3TNtMcIbH7QaOnR7EIqONBcHK/M2VumzY3NdrlO3GjA1Md/AbDL3d29d2sjJmanwHgsmdG4NxwR8l+VENBWGME641AcPQ+UfBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756384220; c=relaxed/simple;
-	bh=uaVJpAMdPWrV9NtuD8VA/dcwu9Kie80TwIuBdrhSujE=;
+	s=arc-20240116; t=1756384386; c=relaxed/simple;
+	bh=4+KJ+Kkm+a9h5spaJ5UWIVT2oZP76H7I8YbeBR+5ZUU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DktvSIqlxi+KQJaFu4/KtrHdty3rbsGZ/hC3o006KGAnKsHs/+CyjeMjwBlds7ObCRqV7R7BCCb1FBpQg6okPloIo+vOUjMl9VmIyTxm+bj5AdJlx6PLfJ92YPyBlMu65YruxdF/ZsFr9IlG0mhxcH/q3PXyler/MQqO6MpAnxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=mY8/R/zy; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=gKv9reSnTFal7lXW3j+/yEjJ6IbCvDAdZ9nuha3XXs0=; b=mY8/R/zy6i0Kh4sWhO7Di3jfhe
-	O1fXCoavC+3xOR1GDmIBwvtHBmXI6uVfOS3xgp3smq4SaVR5AqwjFaeGah/392dLciS56KV4Gd2Nn
-	PlnfiS5M3FZfnoHd71YVXyepEf4+dQv4LBgbqlxmzAHIIOflkl7Jd6d+jZW8tY/TcUIs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1urbl7-006LUg-DP; Thu, 28 Aug 2025 14:29:41 +0200
-Date: Thu, 28 Aug 2025 14:29:41 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Vivian Wang <wangruikang@iscas.ac.cn>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=umjDUl3/izrSO3DI1zk0Xxq2Ewf6TLvCov5BDgZXL9TZR4/0HUbmCKcFk/dxmM9dwON4b64O98K2ubx8fORvITS3DjVOLNh2yszyj3cHvKqu2Ndnqvjh0kUfPm6x6b+NpbkXm/4+nXtsbqzN0QRvw5xQ7TA2yIUWoJRUS1INyU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de; spf=none smtp.mailfrom=h08.hostsharing.net; arc=none smtp.client-ip=176.9.242.62
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by bmailout3.hostsharing.net (Postfix) with ESMTPS id 23AC82C051CD;
+	Thu, 28 Aug 2025 14:32:54 +0200 (CEST)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id F2EB14E6B25; Thu, 28 Aug 2025 14:32:53 +0200 (CEST)
+Date: Thu, 28 Aug 2025 14:32:53 +0200
+From: Lukas Wunner <lukas@wunner.de>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Vivian Wang <uwu@dram.page>,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Junhui Liu <junhui.liu@pigmoral.tech>,
-	Simon Horman <horms@kernel.org>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v7 2/5] net: spacemit: Add K1 Ethernet MAC
-Message-ID: <ecd74582-6d65-42eb-999d-05dbfc898370@lunn.ch>
-References: <20250826-net-k1-emac-v7-0-5bc158d086ae@iscas.ac.cn>
- <20250826-net-k1-emac-v7-2-5bc158d086ae@iscas.ac.cn>
- <193454B6B44560D1+aK-x9J2EIB5aA9yr@LT-Guozexi>
- <6c221dcf-4310-4e31-b3e8-a8a3b68c3734@iscas.ac.cn>
- <D1B3E8CA05947AC1+aLAT40m4VCtlL2Yk@LT-Guozexi>
+	Conor Dooley <conor+dt@kernel.org>,
+	chaitanya chundru <quic_krichai@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Wilczy??ski <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, quic_vbadigan@quicnic.com,
+	amitk@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com,
+	linux-arm-kernel@lists.infradead.org,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Shawn Anastasio <sanastasio@raptorengineering.com>,
+	Timothy Pearson <tpearson@raptorengineering.com>
+Subject: Re: [PATCH v6 7/9] PCI: Add pcie_link_is_active() to determine if
+ the link is active
+Message-ID: <aLBMdeZbsplpPIsX@wunner.de>
+References: <20250828-qps615_v4_1-v6-0-985f90a7dd03@oss.qualcomm.com>
+ <20250828-qps615_v4_1-v6-7-985f90a7dd03@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,22 +76,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <D1B3E8CA05947AC1+aLAT40m4VCtlL2Yk@LT-Guozexi>
+In-Reply-To: <20250828-qps615_v4_1-v6-7-985f90a7dd03@oss.qualcomm.com>
 
-> > You tricked me! There's one more review comment below :P
-> Haha, You are so cute, Vivian.
-> I'm surprised you were able to find it, because I went back to check after
-> writing the last comment. So I wasn't able to find the final one myself.
+On Thu, Aug 28, 2025 at 05:39:04PM +0530, Krishna Chaitanya Chundru wrote:
+> Add pcie_link_is_active() a common API to check if the PCIe link is active,
+> replacing duplicate code in multiple locations.
 > 
->                 - Troy
-> 
-> (This really is the final one this time.)
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
+> Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
 
-A nice illustration of why trimming replies to just the needed context
-is a good idea.
+I think the submitter of the patch (who will become the git commit author)
+needs to come last in the Signed-off-by chain.
 
-Andrew
+> +++ b/drivers/pci/hotplug/pciehp_hpc.c
+> @@ -614,8 +587,8 @@ static void pciehp_ignore_link_change(struct controller *ctrl,
+>  	 * Synthesize it to ensure that it is acted on.
+>  	 */
+>  	down_read_nested(&ctrl->reset_lock, ctrl->depth);
+> -	if (!pciehp_check_link_active(ctrl) || pciehp_device_replaced(ctrl))
+> -		pciehp_request(ctrl, ignored_events);
+> +	if (!pcie_link_is_active(ctrl_dev(ctrl)) || pciehp_device_replaced(ctrl))
+> +		pciehp_request(ctrl, PCI_EXP_SLTSTA_DLLSC);
+>  	up_read(&ctrl->reset_lock);
+>  }
 
----
-pw-bot: cr
+You can just use "pdev" instead of "ctrl_dev(ctrl)" as argument to
+pcie_link_is_active() to shorten the line.
+
+With that addressed,
+Reviewed-by: Lukas Wunner <lukas@wunner.de>
 
