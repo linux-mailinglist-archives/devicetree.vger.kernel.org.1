@@ -1,126 +1,196 @@
-Return-Path: <devicetree+bounces-210204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 328A6B3ACAC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 23:22:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9343B3ACBD
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 23:30:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35D12688244
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 21:22:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B16CD5683E3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 21:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 849882BE7AC;
-	Thu, 28 Aug 2025 21:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D00C29B205;
+	Thu, 28 Aug 2025 21:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="lPlc/fxq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q0nDTyTz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5195E283FE9
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 21:22:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7E5B283FFD;
+	Thu, 28 Aug 2025 21:30:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756416130; cv=none; b=kCbTTjCN6AojYAr66QO9Lh/6TTQgErR33A98FyZutt1bVww/bxnn+R2obDyePTZZwGgm8IRMTTiS6w40ibXrD9npdI2NveKaAiRLX06SQObrWBb2MMxnwI8EvMp+FgoePYwkll+iuJM0Yh6Mrg73hNBQq9fUxAeYjgBatwxsank=
+	t=1756416640; cv=none; b=rJGC4lZSNHIurh8iX4NdcvAvrJCSk/vER9sj7H76UzCI1lyLu5fdzJpr1FM9Dk9WfrNt+qhK6PO1v93C2RlUrbLQPn+JcFXFaBwLP5siR8YOw83H5CYX9ZgkC0Yifz3CQipKZlfbUDctTa9+p3Om4rD2N0dok8QWrMOHbwTNzCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756416130; c=relaxed/simple;
-	bh=P/0XnDjjkYSpBEKxFbX5TnoxJtaTlc7T3bqpxvFmesc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=g1y8dVDh+NFSh26B/OIJlc+o1sHwiwCI+AtDUjDFAFmXWw3eISNfBfO7wl0snO6mbUQaM4j2y2hymTrqCDPeeMYFYHm94xPNAhqXxnWnQmSez6o3F4xb15YU9GgaajOnGg5b/Zh2N8UVWJCb0i6nCJFqca2QKtmg6F5oTusI8m0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=lPlc/fxq; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D12F12C0619;
-	Fri, 29 Aug 2025 09:22:05 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1756416125;
-	bh=P/0XnDjjkYSpBEKxFbX5TnoxJtaTlc7T3bqpxvFmesc=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=lPlc/fxqwI5kw+EK77PvNB5IEb065nQ9/qxocImdA0tiJWCj/GRdLQytA3l7GfWeO
-	 pMHuM8xiSzaZV1wT5UGVB6ZoO7xx5NjSlRMy8UbS6LSwXaOpgGC3lbdjHtO6sJNEHF
-	 8i6nOg02huNpfSzP5LxErF3wHWu3TjD9Bz1c5YHYaz9frU6LMcJBhwOFAQvdur95rF
-	 EAcfB+BpLk8R1+rEbqqcO6Z1kigHy6L4YJCx+IyCvMu5U49RVf/KJbIsxds4Z8Hlf1
-	 aoVvdhv7On6v2AF9yUiyG8cUOpIj2llDWB9xrgo69j3E3i571uZqn1GC0tUt/3Lwc5
-	 qFQcvuEUNaYwQ==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B68b0c87d0001>; Fri, 29 Aug 2025 09:22:05 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Fri, 29 Aug 2025 09:22:05 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1544.014; Fri, 29 Aug 2025 09:22:05 +1200
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Guenter Roeck <linux@roeck-us.net>, "jdelvare@suse.com"
-	<jdelvare@suse.com>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>
-CC: "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] hwmon: (ina238) Add support for INA780
-Thread-Topic: [PATCH v2 2/2] hwmon: (ina238) Add support for INA780
-Thread-Index: AQHcCBFCT9dgOoAuzUOPUPjlGL2uJ7R3T9IAgACae4A=
-Date: Thu, 28 Aug 2025 21:22:05 +0000
-Message-ID: <d5725c87-ff96-4a25-995a-d4c3cbcc13a9@alliedtelesis.co.nz>
-References: <20250808030510.552724-1-chris.packham@alliedtelesis.co.nz>
- <20250808030510.552724-3-chris.packham@alliedtelesis.co.nz>
- <6e51d4b9-23fd-401b-afb1-2df943f85c3c@roeck-us.net>
-In-Reply-To: <6e51d4b9-23fd-401b-afb1-2df943f85c3c@roeck-us.net>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F0328DDB173F624693B30BB87058D327@alliedtelesis.co.nz>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1756416640; c=relaxed/simple;
+	bh=Rd0xr0MhBmCf+FWFWjFdTrfsK8O7aobr0QTSWX9i//w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oiVuKLlLOrX6FK71ypPcUnjX/RVHq7GYxO0XBWufuxDzIDllrZpg0z3XRHpWPb/FGySYJRnNkRPDfNAIe8H0iMvKrB86UC6JXy+L2xAdwMyE6UT/Tw8bDyiiKvB2AcxWqiaexHpHCdu4pxVyRzwmfvZYnUku1YokMOx5+5CwV6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q0nDTyTz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A2C9C4CEEB;
+	Thu, 28 Aug 2025 21:30:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756416640;
+	bh=Rd0xr0MhBmCf+FWFWjFdTrfsK8O7aobr0QTSWX9i//w=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Q0nDTyTzp4ovb908QABKBN+Cl6h+PdlrrI4t2TYunvmoH8hXmeU2HbxjQfHXsT0qs
+	 Yk+KMAwAF04QXlrF3i+fMVSRK3/UNj/qrtCrOTD3y4DTGst/Gon6ATnt5+I0tgT/Wi
+	 Uc90I3mPhP+4lmHsFyqQe5jJcvqGSbsa3vAEvCRoO6PI2FS/UvEezMHCTsfq2H35YW
+	 dY0eFExRfdZwRhPKfpvb65Md6iy/wXqO6vBsiItGQIUyoahsstTgbS72AkGyd0OfOy
+	 z4kP2b0MMeWBxtdkCrsNhY6Fm0ZQYO2Q44xOdwQ4pHmnt6hasyPd5hisjofPftcrbV
+	 kDdiitq0guDaw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michal Simek <michal.simek@amd.com>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: xilinx: Drop undocumented "always-on" properties
+Date: Thu, 28 Aug 2025 16:30:26 -0500
+Message-ID: <20250828213028.2266805-1-robh@kernel.org>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=Yo+sRJYX c=1 sm=1 tr=0 ts=68b0c87d a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=WZTWi1HEeU2toEpxRV0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+Content-Transfer-Encoding: 8bit
 
-DQpPbiAyOS8wOC8yMDI1IDAwOjA5LCBHdWVudGVyIFJvZWNrIHdyb3RlOg0KPiBPbiA4LzcvMjUg
-MjA6MDUsIENocmlzIFBhY2toYW0gd3JvdGU6DQo+PiBBZGQgc3VwcG9ydCBmb3IgdGhlIFRJIElO
-QTc4MCBEaWdpdGFsIFBvd2VyIE1vbml0b3IuIFRoZSBJTkE3ODAgdXNlcw0KPj4gRVpTaHVudCh0
-bSkgdGVjaG5vbG9neSwgd2hpY2ggbWVhbnMgdGhlcmUgYXJlIGZpeGVkIExTQiBjb252ZXJzaW9u
-cyBmb3INCj4+IGEgbnVtYmVyIG9mIGZpZWxkcyByYXRoZXIgdGhhbiBuZWVkaW5nIHRvIGJlIGNh
-bGlicmF0ZWQuDQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgUGFja2hhbSA8Y2hyaXMucGFj
-a2hhbUBhbGxpZWR0ZWxlc2lzLmNvLm56Pg0KPg0KPiBZb3VyIHBhdGNoIGRvZXMgbm90IGFwcGx5
-LCBhbmQgSSBjYW4ndCBmaWd1cmUgb3V0IGl0cyBiYXNlbGluZS4gUGxlYXNlDQo+IHJlcGFyZW50
-IG9uIHRvcCBvZiB0aGUgY3VycmVudCBtYWlubGluZSBhbmQgcmVzdWJtaXQuDQpTdXJlIG5vIHBy
-b2JsZW0uIFRoZSBpbmEyMzggY2hhbmdlcyB3ZXJlIGRvbmUgb24gdG9wIG9mIG15IGluaXRpYWwg
-DQppbmE3ODAgc3R1ZmYgc28gdGhlIHNoYTEgcmVjb3JkZWQgaW4gdGhlIHBhdGNoIHdpbGwgYmUg
-YSBsb2NhbCBzaGExIHRoYXQgDQp5b3UgZG9uJ3QgaGF2ZS4gSSdsbCBjbGVhbiB0aGluZ3MgdXAg
-b24gdG9wIG9mIG1hc3RlciB3aXRob3V0IGFueSBsb2NhbCANCmp1bmsuDQo+DQo+IFRvIHNpbXBs
-aWZ5IHJldmlldywgdGhlIHBhdGNoIHNob3VsZCBiZSBzcGxpdCBpbnRvIHByZXBhcmF0aW9uIHBh
-dGNoZXMNCj4gKHN1Y2ggYXMgYWRkaW5nIC5oYXNfc2h1bnQgYW5kIC50ZW1wX21heCBvcHRpb25z
-KSwgZm9sbG93ZWQgYnkgdGhlIGFjdHVhbA0KPiBhZGRlZCBjaGlwIHN1cHBvcnQuDQpTdXJlLg0K
-Pg0KPiBPdGhlciAobm90IGEgY29tcGxldGUgcmV2aWV3KToNCj4NCj4gSSBkb24ndCBzZWUgdGhl
-IHZhbHVlIG9mIGFkZGluZyBJTkE3ODBfQ09MIGFuZCBJTkE3ODBfQ1VMIGRlZmluZXM7DQo+IHRo
-b3NlIGFyZSByZWFsbHkgdGhlIHNhbWUgYXMgdGhlIHNodW50IHZvbHRhZ2UgbGltaXRzLiBBY3R1
-YWxseSwNCj4gdGhlIGN1cnJlbnQgbGltaXRzIF9hcmVfIGF2YWlsYWJsZSBmb3IgZXhpc3Rpbmcg
-Y2hpcHMsIG9ubHkgdGhleQ0KPiBhcmUgZXhwcmVzc2VkIGFzIHZvbHRhZ2UgbGltaXRzIG9uIHRo
-ZSBzaHVudCB2b2x0YWdlcy4NCg0KTXkgbWFpbiBtb3RpdmF0aW9uIHdhcyB0cnlpbmcgdG8gbWF0
-Y2ggdGhlIHRlcm1zIHVzZWQgaW4gdGhlIElOQTc4MCANCmRhdGFzaGVldC4gSU5BNzgwIHVzZXMg
-Q09ML0NVTCwgSU5BMjM4IHVzZXMgU09WTC9TVVZMLiBJIGNhbiBraW5kIG9mIA0Kc3F1aW50IGFu
-ZCBzZWUgaG93IHRoZXkgYXJlIHNpbWlsYXIgdGhlIElOQTIzOCBpcyBqdXN0IG1vcmUgY29tcGxp
-Y2F0ZWQgDQpiZWNhdXNlIG9mIHRoZSBleHRlcm5hbCBzaHVudC4gSSBkaWQga2luZCBvZiB0aGlu
-ayBpdCBtdXN0IGJlIHBvc3NpYmxlIA0KdG8gZXhwcmVzcyB0aGUgSU5BNzgwIGJlaGF2aW91ciB3
-aXRoIHNvbWUgZml4ZWQgdmFsdWVzIGJ1dCBteSBtYXRoIA0Kc2tpbGxzIGZhaWxlZCBtZS4NCg0K
-PiBGb3IgdGhlIGluYV8yeHgNCj4gZHJpdmVyIEkgd2FzIGFibGUgdG8gcmVzb2x2ZSB0aGF0IHF1
-aXRlIGVhc2lseTsgd2Ugc2hvdWxkIGRvIHRoZSBzYW1lDQo+IGZvciB0aGUgaW5hMjM4IGRyaXZl
-ci4gTWF5YmUgSSBoYXZlIGFuIGV2YWx1YXRpb24gYm9hcmQgc29tZXdoZXJlOw0KPiBJJ2xsIG5l
-ZWQgdG8gY2hlY2suDQo+DQo+IFsgU29ycnkgZm9yIGJlaW5nIHNvIGxhdGUgd2l0aCB0aGlzOyBJ
-IGFtIGJlaW5nIHN3YW1wZWQgYXQgd29yayA6LSggXSANCg0KTm8gcHJvYmxlbS4gU2FtZSB0aGlu
-ZyBmb3IgbWUuDQoNCg==
+The "always-on" properties are not documented for "silabs,si5341"
+binding nor used by the Linux driver, so drop them.
+
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts | 8 --------
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts | 6 ------
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts | 6 ------
+ 3 files changed, 20 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+index e172a30e7b21..6bee21d4fa4d 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+@@ -552,42 +552,34 @@ si5341: clock-generator@36 { /* SI5341 - u69 */
+ 				si5341_0: out@0 {
+ 					/* refclk0 for PS-GT, used for DP */
+ 					reg = <0>;
+-					always-on;
+ 				};
+ 				si5341_2: out@2 {
+ 					/* refclk2 for PS-GT, used for USB3 */
+ 					reg = <2>;
+-					always-on;
+ 				};
+ 				si5341_3: out@3 {
+ 					/* refclk3 for PS-GT, used for SATA */
+ 					reg = <3>;
+-					always-on;
+ 				};
+ 				si5341_4: out@4 {
+ 					/* refclk4 for PS-GT, used for PCIE slot */
+ 					reg = <4>;
+-					always-on;
+ 				};
+ 				si5341_5: out@5 {
+ 					/* refclk5 for PS-GT, used for PCIE */
+ 					reg = <5>;
+-					always-on;
+ 				};
+ 				si5341_6: out@6 {
+ 					/* refclk6 PL CLK125 */
+ 					reg = <6>;
+-					always-on;
+ 				};
+ 				si5341_7: out@7 {
+ 					/* refclk7 PL CLK74 */
+ 					reg = <7>;
+-					always-on;
+ 				};
+ 				si5341_9: out@9 {
+ 					/* refclk9 used for PS_REF_CLK 33.3 MHz */
+ 					reg = <9>;
+-					always-on;
+ 				};
+ 			};
+ 		};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index cd132abf6e00..f450fad0edf8 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -551,32 +551,26 @@ si5341: clock-generator@36 { /* SI5341 - u69 */
+ 				si5341_0: out@0 {
+ 					/* refclk0 for PS-GT, used for DP */
+ 					reg = <0>;
+-					always-on;
+ 				};
+ 				si5341_2: out@2 {
+ 					/* refclk2 for PS-GT, used for USB3 */
+ 					reg = <2>;
+-					always-on;
+ 				};
+ 				si5341_3: out@3 {
+ 					/* refclk3 for PS-GT, used for SATA */
+ 					reg = <3>;
+-					always-on;
+ 				};
+ 				si5341_6: out@6 {
+ 					/* refclk6 PL CLK125 */
+ 					reg = <6>;
+-					always-on;
+ 				};
+ 				si5341_7: out@7 {
+ 					/* refclk7 PL CLK74 */
+ 					reg = <7>;
+-					always-on;
+ 				};
+ 				si5341_9: out@9 {
+ 					/* refclk9 used for PS_REF_CLK 33.3 MHz */
+ 					reg = <9>;
+-					always-on;
+ 				};
+ 			};
+ 
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+index 428b5558fbba..b4768f615182 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+@@ -439,32 +439,26 @@ si5341: clock-generator@36 { /* SI5341 - u46 */
+ 				si5341_0: out@0 {
+ 					/* refclk0 for PS-GT, used for DP */
+ 					reg = <0>;
+-					always-on;
+ 				};
+ 				si5341_2: out@2 {
+ 					/* refclk2 for PS-GT, used for USB3 */
+ 					reg = <2>;
+-					always-on;
+ 				};
+ 				si5341_3: out@3 {
+ 					/* refclk3 for PS-GT, used for SATA */
+ 					reg = <3>;
+-					always-on;
+ 				};
+ 				si5341_5: out@5 {
+ 					/* refclk5 PL CLK100 */
+ 					reg = <5>;
+-					always-on;
+ 				};
+ 				si5341_6: out@6 {
+ 					/* refclk6 PL CLK125 */
+ 					reg = <6>;
+-					always-on;
+ 				};
+ 				si5341_9: out@9 {
+ 					/* refclk9 used for PS_REF_CLK 33.3 MHz */
+ 					reg = <9>;
+-					always-on;
+ 				};
+ 			};
+ 		};
+-- 
+2.50.1
+
 
