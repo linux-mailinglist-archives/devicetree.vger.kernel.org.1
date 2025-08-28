@@ -1,149 +1,128 @@
-Return-Path: <devicetree+bounces-210078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD04FB3A1AD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:27:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D319B3A1DA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:31:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC4165848B7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:19:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BB82581ABD
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:23:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB2CB3148A5;
-	Thu, 28 Aug 2025 14:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326A33148A7;
+	Thu, 28 Aug 2025 14:20:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A15218ABD;
-	Thu, 28 Aug 2025 14:10:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92259313E37;
+	Thu, 28 Aug 2025 14:20:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756390234; cv=none; b=FBn69poAk6gTRC0xHAx6PoaUH9XNcBJ3M5aVnE/BaYejnl3Q0+2yBbO0o15Xd0Bay4KoaVKRTLLAc+4zcbsnqiFhDSR950kDR1nZ6AvY0zLB+Hc6HCPkf740dR8+irPDc17aiR/TslG34iZrJcV8hEjWOSJ99RaaRIOEhuaEPns=
+	t=1756390842; cv=none; b=Xqm6D7os0hETGYNfNdk/jRtZE2OV7+iVUqdsj+48GVF0QIODtW0lRlYPE656mXWWEVsyrreRoJ2Th2EUQPtHCOKDkhbsA3kiTc98RfBNtXhv7yYlklZ1uw4h3Fp+46NpMqRSB4P9/RSDjF10FQ9gtR/eew0UnuLtDXXbOgoTkhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756390234; c=relaxed/simple;
-	bh=JbfXuzndkTW2/wKmak9wb5k4WTaXXXZK9l9RYz1eD6M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SBa0eAZ17zixyNm/ezzu3+QcSVp4WO5ijlpJ6T2JOGVAZK91m+lplpf8WWYRXb81ThJzzAg+Zlz0UDQiVwMK1k/GRuTQTVwHOgsMXFOuLQjgV2jX8nw89GVoxTOaeXDmtQDXAEqgzYTdq9mDSZP971L0I/5+MRiAW6y9wg//ElQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E6FF31688;
-	Thu, 28 Aug 2025 07:10:23 -0700 (PDT)
-Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 95A893F694;
-	Thu, 28 Aug 2025 07:10:26 -0700 (PDT)
-Date: Thu, 28 Aug 2025 15:10:23 +0100
-From: Dave Martin <Dave.Martin@arm.com>
-To: James Morse <james.morse@arm.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-	shameerali.kolothum.thodi@huawei.com,
-	D Scott Phillips OS <scott@os.amperecomputing.com>,
-	carl@os.amperecomputing.com, lcherian@marvell.com,
-	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
-	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
-	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
-	dfustini@baylibre.com, amitsinght@marvell.com,
-	David Hildenbrand <david@redhat.com>,
-	Rex Nie <rex.nie@jaguarmicro.com>, Koba Ko <kobak@nvidia.com>,
-	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
-	baisheng.gao@unisoc.com,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
-	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: Re: [PATCH 02/33] drivers: base: cacheinfo: Add helper to find the
- cache size from cpu+level
-Message-ID: <aLBjTyTKk6Pod40v@e133380.arm.com>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-3-james.morse@arm.com>
- <aK7iDey7LATOXIUb@e133380.arm.com>
- <2ac66605-ee6a-495b-a0fb-910926abd8b0@arm.com>
+	s=arc-20240116; t=1756390842; c=relaxed/simple;
+	bh=2ZDkyCkiUNxd9czcFDf14yKQeJWgfOrXp25aVmloVWk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HC65hPGU6xud9XIxmhH7QbOWDTz8KAvk8hxRazfz4mzy1Ie0V76aEZEKE1l9+qiNg0fxc/v9ioGinnl2fDExpiOUF9qgslzwWhRjSjJWv7M6N/TC/QQNE64SM6mEEs2yeqKVjh3iKJh036NTemeGyXaQao3Wtox8XC9GNRLShAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
+Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
+	by localhost (Postfix) with ESMTP id 4cCNdk5SrLz9sSN;
+	Thu, 28 Aug 2025 16:12:42 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ctYw9B2ysKGN; Thu, 28 Aug 2025 16:12:42 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4cCNdk4lLRz9sSK;
+	Thu, 28 Aug 2025 16:12:42 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 8D9F48B764;
+	Thu, 28 Aug 2025 16:12:42 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+	with ESMTP id rt_hf7oHqOmD; Thu, 28 Aug 2025 16:12:42 +0200 (CEST)
+Received: from [192.168.235.99] (unknown [192.168.235.99])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 0BB338B763;
+	Thu, 28 Aug 2025 16:12:42 +0200 (CEST)
+Message-ID: <f21e27da-de26-4835-9660-b39e99695281@csgroup.eu>
+Date: Thu, 28 Aug 2025 16:12:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2ac66605-ee6a-495b-a0fb-910926abd8b0@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/6] dt-bindings: soc: fsl: qe: Add support of IRQ in
+ QE GPIO
+To: Rob Herring <robh@kernel.org>
+Cc: Qiang Zhao <qiang.zhao@nxp.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1756104334.git.christophe.leroy@csgroup.eu>
+ <17636607f2beac3b64c87b3bec035fa27ce8d195.1756104334.git.christophe.leroy@csgroup.eu>
+ <CAL_JsqKFvVQTVXV8mWX0z1=hd3nLDzLXq-0G_0bshMCvQ5kVvA@mail.gmail.com>
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+Content-Language: fr-FR
+In-Reply-To: <CAL_JsqKFvVQTVXV8mWX0z1=hd3nLDzLXq-0G_0bshMCvQ5kVvA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi James,
 
-On Wed, Aug 27, 2025 at 06:11:43PM +0100, James Morse wrote:
-> Hi Dave,
-> 
-> On 27/08/2025 11:46, Dave Martin wrote:
-> > Hi,
-> > 
-> > On Fri, Aug 22, 2025 at 03:29:43PM +0000, James Morse wrote:
-> >> MPAM needs to know the size of a cache associated with a particular CPU.
-> >> The DT/ACPI agnostic way of doing this is to ask cacheinfo.
-> >>
-> >> Add a helper to do this.
-> 
-> >> diff --git a/include/linux/cacheinfo.h b/include/linux/cacheinfo.h
-> >> index 2dcbb69139e9..e12d6f2c6a57 100644
-> >> --- a/include/linux/cacheinfo.h
-> >> +++ b/include/linux/cacheinfo.h
-> >> @@ -148,6 +148,21 @@ static inline int get_cpu_cacheinfo_id(int cpu, int level)
-> >>  	return ci ? ci->id : -1;
-> >>  }
-> >>  
-> >> +/**
-> >> + * get_cpu_cacheinfo_size() - Get the size of the cache.
-> >> + * @cpu:      The cpu that is associated with the cache.
-> >> + * @level:    The level of the cache as seen by @cpu.
-> >> + *
-> >> + * Callers must hold the cpuhp lock.
-> >> + * Returns the cache-size on success, or 0 for an error.
-> >> + */
-> > 
-> > Nit: Maybe use the wording
-> > 
-> > 	cpuhp lock must be held.
-> > 
-> > in the kerneldoc here, to match the other helpers it sits alongside.
-> > 
-> > Otherwise, looks reasonable.
-> 
-> Sure,
-> 
-> 
-> >> +static inline unsigned int get_cpu_cacheinfo_size(int cpu, int level)
-> >> +{
-> >> +	struct cacheinfo *ci = get_cpu_cacheinfo_level(cpu, level);
-> >> +
-> >> +	return ci ? ci->size : 0;
-> >> +}
-> >> +
-> > 
-> > Orphaned function?
-> > 
-> > Can fs/resctrl/rdtgroup.c:rdtgroup_cbm_to_size() be ported to use this?
-> > If so, this wouldn't just be dead code in this series.
-> 
-> Ah - I thought the MPAM driver was pulling this value in, but its the resctrl glue code.
-> I was trying to reduce the number of trees this touches - its probably best to kick this
-> into the next series that adds the resctrl code as its pretty trivial.
-> 
-> 
-> Thanks,
-> 
-> James
 
-Sure, that also works.
+Le 28/08/2025 à 15:28, Rob Herring a écrit :
+> On Mon, Aug 25, 2025 at 2:20 AM Christophe Leroy
+> <christophe.leroy@csgroup.eu> wrote:
+>>
+>> In the QE, a few GPIOs are IRQ capable. Similarly to
+>> commit 726bd223105c ("powerpc/8xx: Adding support of IRQ in MPC8xx
+>> GPIO"), add IRQ support to QE GPIO.
+>>
+>> Add property 'fsl,qe-gpio-irq-mask' similar to
+>> 'fsl,cpm1-gpio-irq-mask' that define which of the GPIOs have IRQs.
+> 
+> Why do you need to know this? The ones that have interrupts will be
+> referenced by an 'interrupts' property somewhere.
 
-Cheers
----Dave
+I don't follow you. The ones that have interrupts need to be reported by 
+gc->qe_gpio_to_irq[] so that gpiod_to_irq() return the IRQ number, for 
+instance to gpio_sysfs_request_irq() so that it can install an irq 
+handler. I can't see where they would be referenced by an "interrupts" 
+property.
+
+> 
+>> Here is an exemple for port B of mpc8323 which has IRQs for
+> 
+> typo
+> 
+>> GPIOs PB7, PB9, PB25 and PB27.
+>>
+>>          qe_pio_b: gpio-controller@1418 {
+>>                  compatible = "fsl,mpc8323-qe-pario-bank";
+>>                  reg = <0x1418 0x18>;
+>>                  interrupts = <4 5 6 7>;
+>>                  interrupt-parent = <&qepic>;
+>>                  gpio-controller;
+>>                  #gpio-cells = <2>;
+>>                  fsl,qe-gpio-irq-mask = <0x01400050>;
+>>          };
+> 
+> You are missing #interrupt-cells and interrupt-controller properties.
+
+The gpio controller is not an interrupt controller. The GPIO controller 
+is brought by patch 1/6 and documented in patch 6/6.
+
+> 
+> With multiple new properties, this should be converted to schema first.
+
+Ah. I didn't know, and checkpatch.pl doesn't know either it seems.
+
+Christophe
+
 
