@@ -1,186 +1,131 @@
-Return-Path: <devicetree+bounces-210110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B311BB3A475
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 17:31:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5578BB3A4E4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 17:47:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8239A02981
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:31:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AF003679D2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:47:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFD5F23A562;
-	Thu, 28 Aug 2025 15:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE05424A06B;
+	Thu, 28 Aug 2025 15:47:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="5PBWCHvR"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="e5TFz+es";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="K9T4V8hr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5A6923ABBD;
-	Thu, 28 Aug 2025 15:30:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA12B13C8E8;
+	Thu, 28 Aug 2025 15:47:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756395049; cv=none; b=clhBAE7tV6dDEoTmnvCoYDu1wpPBPrIXuj161LWO3zlEws1C9S7V65SkMDRTjQ1AakUeSncghyaGLUeQumKMCi9Q75u951joEM6PS95rrIFS4ASZlQigQlOdjgJkTDIOWnOv1xkMvSs/m4POFtDP/OhF3EjT6L8Hz3SbSx0zCGA=
+	t=1756396056; cv=none; b=rsXqhiUyHelZhuQaqgPtRs+khpcAWzK8Qvm8vL6JSeiRzzW5WGymCtBIa7MSzbjF/dpJmlvw3YQVJSj1F4aHa7OgGv/l3bRlkRw7R9/ajDiD15gWjVh7I4qr32Prjz6hXcRfptTLEe76qSrREqGqsYLzYUhNlKewhWr+JPlEXEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756395049; c=relaxed/simple;
-	bh=zcXQWGxBgys/9bCjZkggZ71XZareYPTP7nhInFsdrhI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=f0L4DOM0sJBihhuFObsun+oXqGBWtnABhbwX9QA7KCzm/Pa7w+m7qyE7EsywCb9UzT+8hjO0k/6FOG8mbBTD4vJbKcc7RYwJ8Jgvq/2/z0OIs2Ynws9MHm3qZUj9eLKy6Lx9hin+iO41VgS9XbCZrwdt7dqut7b+U7EP+3x/uKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=5PBWCHvR; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57SExhLc008165;
-	Thu, 28 Aug 2025 17:30:32 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	zcXQWGxBgys/9bCjZkggZ71XZareYPTP7nhInFsdrhI=; b=5PBWCHvR6BAKt5q+
-	lSmK889rAu3TIDu9s/WZRuzmFV+Gg4W9dRRNh+dFL48D7OL1yQ9uItfsuYCCJXry
-	vrCcbsqiVzolyGi9uQi7s67eFaWbOOdKpJqkM7vgmUybN1UI7yDHhkhF8hBSqVw1
-	ZgmYXjB5wAQvrOjAnMXARAz3Pk1TFOm5IrFB2zSdjWwaHG/15BXsiJwUtw4hLUbD
-	67O0xdpCSrc5deU6c+j0cJRrSUYpmQH2/Z/EHQNN/ZYcDmVo9q3kUGx2ZMLZ+usy
-	MFhMEbct9nuPWN4qe5QQ/dYEEtaJqj/LbB0qNKG+pNcbnPblkvAzwJq9lYwzk1er
-	ZBozVw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48qrkmtyc8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Aug 2025 17:30:31 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D4EB940048;
-	Thu, 28 Aug 2025 17:29:17 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0DB7976B31E;
-	Thu, 28 Aug 2025 17:28:05 +0200 (CEST)
-Received: from [10.252.2.182] (10.252.2.182) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 28 Aug
- 2025 17:28:03 +0200
-Message-ID: <ee447d45-a7af-4af4-ba6c-5341b8428db3@foss.st.com>
-Date: Thu, 28 Aug 2025 17:28:02 +0200
+	s=arc-20240116; t=1756396056; c=relaxed/simple;
+	bh=2r8JuaQhwU3JQVqoVpA5EK1c+0/BR4u5T9wwerVzMJY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=BxosJibRWgX7MeCNNGmrNplHWPk0ubOwA1gt0lpC4XPCWTNJnCikTXsfYAiiatYZ2576SuPu0Rw+k3iUVBe6i+6T4dR07dHuXWoB/wRa/DBLQ/j/KTHGpDSyIpSfM2hsrRmvbmZiB4o0NHQIoQIdMq9Oc4z7jucYhyc0DdGxpTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=e5TFz+es; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=K9T4V8hr; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cCQl24qzvz9t27;
+	Thu, 28 Aug 2025 17:47:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1756396046;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WadXZL4xRyYkG9x7mH4IyqdTnF/zmwImPo5Ep8A2GS8=;
+	b=e5TFz+esyDDl8FsR9REAo2FDXD8erHIhmjeFTRYYViNPPvjUJDeTY5RTeCXQxftWoazkSI
+	zknaeBGn20XYb7j/wi0bsHC1V8qCFeJ97n72zl1MmoNh51yfeJ/JxwHdFcSXfNl5hkxzPG
+	ieFAqcDC/3oETZC53lTNN/LUW95USyyxJssU232fW81GjXIZcQfg5M2a91PrVfd1Q1+NYW
+	2YGm/e5GCW3+bQne+Ze1E2F1c5EjAoSFG5m5bxUReQYuRMauIvE2oq8mG0tM16CZcKUMvf
+	QjAfl1xfW7wYMkyV33UAcj6RxOYMXulltuvI0OCgvoLbzqXQWeEjQCKbMMhc+w==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=K9T4V8hr;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
+Message-ID: <3ace8875-3288-4498-bac7-0fab1769a248@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1756396044;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WadXZL4xRyYkG9x7mH4IyqdTnF/zmwImPo5Ep8A2GS8=;
+	b=K9T4V8hrNi7K1vpFzvByrvt3YMIQaAsfi5Livr4xk1HBKlPIfhgtgnF/T86xLbA1vONewV
+	/pWD1JX/Zi+KqC1rwzbM/b+DJs1n4/dXiBUu3VxCeKNCARzZnQPGfIm75Uu27Xt98tslkz
+	YfXt5J0eel0T8lBK9wn+Ma0g4MK/aWbSJGCu/bFujHgUXgrhmn+rU0+56BnYNKHywlLLzT
+	/S++XoLBCl1MDObFlVKDhOxpyyX0L3jy+aT14DRQCKUbNz2MahGXK6hYlKrzN+3XB7Napb
+	1oSCiPnMKVsvUJKKDBab2QQE9g7aJ/tmVOrskxKie61KRWJmJX1Oz/ZfIhb9AA==
+Date: Thu, 28 Aug 2025 17:31:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 06/13] dt-bindings: arm: stm32: add required
- #clock-cells property
-To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
-        Yannick Fertre
-	<yannick.fertre@foss.st.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Alexandre Torgue" <alexandre.torgue@foss.st.com>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250822-drm-misc-next-v5-0-9c825e28f733@foss.st.com>
- <20250822-drm-misc-next-v5-6-9c825e28f733@foss.st.com>
- <4201bb6b-3ad8-4b35-b152-0d725310245b@foss.st.com>
+Subject: Re: [PATCH v4 1/4] arm64: dts: renesas: sparrow-hawk: Add overlay for
+ IMX219 on J1
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marek Vasut <marek.vasut+renesas@mailbox.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250827221424.640770-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250827221424.640770-2-niklas.soderlund+renesas@ragnatech.se>
 Content-Language: en-US
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <4201bb6b-3ad8-4b35-b152-0d725310245b@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20250827221424.640770-2-niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-28_04,2025-08-28_01,2025-03-28_01
+X-MBO-RS-ID: 7754e297abe6cfc53e7
+X-MBO-RS-META: wsc18webdw8uqp3e1s1nq3kgytro8sgp
+X-Rspamd-Queue-Id: 4cCQl24qzvz9t27
 
+On 8/28/25 12:14 AM, Niklas Söderlund wrote:
 
+Nitpicks only, see below.
 
-On 8/28/25 17:18, Christophe ROULLIER wrote:
-> On 8/22/25 16:34, Raphael Gallais-Pou wrote:
->> On STM32MP25 SoC, the syscfg peripheral provides a clock to the display
->> subsystem through a multiplexer.  Since it only provides a single clock,
->> the cell value is 0.
->>
->> Doing so allows the clock consumers to reach the peripheral and gate the
->> clock accordingly.
->>
->> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->> Reviewed-by: Yannick Fertre <yannick.fertre@foss.st.com>
->> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
->> ---
->>   .../bindings/arm/stm32/st,stm32-syscon.yaml        | 31 +++++++++++++++-------
->>   1 file changed, 21 insertions(+), 10 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
->> b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
->> index
->> ed97652c84922813e94b1818c07fe8714891c089..95d2319afe235fa86974d80f89c9deeae2275232
->> 100644
->> --- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
->> +++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
->> @@ -36,20 +36,31 @@ properties:
->>     clocks:
->>       maxItems: 1
->>   +  "#clock-cells":
->> +    const: 0
->> +
->>   required:
->>     - compatible
->>     - reg
->>   -if:
->> -  properties:
->> -    compatible:
->> -      contains:
->> -        enum:
->> -          - st,stm32mp157-syscfg
->> -          - st,stm32f4-gcan
->> -then:
->> -  required:
->> -    - clocks
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - st,stm32mp157-syscfg
->> +              - st,stm32f4-gcan
->> +    then:
->> +      required:
->> +        - clocks
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          const: st,stm32mp25-syscfg
->> +    then:
->> +      required:
->> +        - "#clock-cells"
->>     additionalProperties: false
->>  
-> Acked-by: Christophe Roullier <christophe.roullier@foss.st.com>
->
-> You can merge it on DRM MISC.
+[...]
 
-Thanks Christophe ! :)
+> +&{/} {
+> +	clk_cam_j1: clk_cam_j1 {
 
-Best regards,
-Raphaël
->
-> Best Regards,
->   Christophe
->
+-clk_cam_j1: clk_cam_j1
++clk_cam_j1: clk-cam-j1
+                 ^   ^
 
+The nodes in Sparrow Hawk root node use - instead of _ in their node names.
+
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24000000>;
+> +	};
+> +
+> +	/* Page 29 / CSI_IF_CN / J1 */
+> +	reg_cam_j1: reg_cam_j1 {
+
+Here as well.
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "reg_cam_j1";
+
+Is the "reg_" prefix needed ? Maybe "cam-J1" would be better ?
+
+> +		enable-active-high;
+> +		gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+> +	};
+> +};
+[...]
 
