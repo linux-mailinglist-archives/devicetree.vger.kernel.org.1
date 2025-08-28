@@ -1,227 +1,152 @@
-Return-Path: <devicetree+bounces-210038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F5E8B39F56
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:49:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B786B39F52
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:48:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52A261C23131
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:49:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E018464E8D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:48:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56621CDFD5;
-	Thu, 28 Aug 2025 13:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C2A30F7EA;
+	Thu, 28 Aug 2025 13:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YT3IM3+f"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="O6Vcntji"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAAEF3A1D2;
-	Thu, 28 Aug 2025 13:49:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3641D514B
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 13:48:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756388973; cv=none; b=SMf+GrQklt61LmFu4PTJ0OCa6jdZqqoSLHM5TTJqtQlPwBqo/MXPYywNQae5rKUK7IddEsdhBFPdiGQdzDq+mK+dPaYEqfB82A8l6PQPRcPy7/ruCy59oMkpsCQmMDt6+5o/ZahKeyP3cdhGn7N3Gy7SdWalGhGFHWhsXfFVfPY=
+	t=1756388897; cv=none; b=JEMnS/1oau/OL2jwwNzapXa3O2tzUGfLdkrR29NMOeCueBirjuByYveEym/f0yumc1jE5Bq+Yzz4V3Tz43TLAwnYkTszkpSX2urYF2lPtBPNh5DVhyfYMzQvsuZH6YNJQolbEDhYtv60os/3ZJMQCCQmGCeanFJ+I9WSGwNenPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756388973; c=relaxed/simple;
-	bh=ts3lX4sVajkpWMjKZR+jz9N6FmaajEQQONmx4tUzQbg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VM5xZXYkKH6CtfUmJLOgYC+CZrKwvv4D8712XK0oggK7lF/GFlkv4aGA77u3A3ABWin7Z+TotY6zwJclJLuTmgPVbXrMS/UnbqFH8tmtW82f15x5tgij4zU4p3/+R6PEQ75EjSvxF/6si0FuKYbEvZWbqbPC1Al4OYFSRrF16UI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YT3IM3+f; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57S60nUu008186;
-	Thu, 28 Aug 2025 13:49:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ScOdmCeZxWFAml3E7y2GsOfgjlvOHFEckFHlTVSaPjU=; b=YT3IM3+fnaAhtCjS
-	z55y5rsTKa49PrOwsQ24niBtkqkNLEcjCyEyqhk+2W5jjNrIC8sH2SkS3RMipaQY
-	VUhjO5uPaQZy/eC1fV/99C75XNmCyGUMC/lyIFvt6twnB9Fzm2OFu7BaihsfhWdX
-	CqKJL0ag+xhQQhrcMwokde8eIsnNo3KR0fUxfjs60K2RVeizAtrjgX95Hjsc3q2G
-	PAiqVpghC1kMEYsaVlASlLMZ+nyLR0DWgALePyooZQ5HFZUWZqFmZqEZvVk+KbiO
-	m4I4PagqvyhpFATTWd2eBrsfFZkQCI9Ww00BmS7G3VLPnTIzbgbKYOIu+++XrmUY
-	10aNIg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48sh8apnn4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Aug 2025 13:49:26 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57SDnP5f008699
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Aug 2025 13:49:25 GMT
-Received: from [10.216.32.160] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Thu, 28 Aug
- 2025 06:49:21 -0700
-Message-ID: <05d40a3b-cc13-b704-cac7-0ecbeea0e59d@quicinc.com>
-Date: Thu, 28 Aug 2025 19:19:18 +0530
+	s=arc-20240116; t=1756388897; c=relaxed/simple;
+	bh=yoqIoDX6mNRAd+QNlEthQLnCb5/yYRoOXkiDgoqlFBk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=VFOwE9kMuEFQgWB8FzYywkc/qnw65BoNeZjK3oRP6TtTAMXr1FT3RfIo+dO34MYpPO0P6gjGJMmhwzGPy/sJjyIObtAo/zIi0gEblqm61aQmmf/RNPsACm68amCeRgJzUmChZhTENrHquFTFHSp/bOMfMqqSH4cYttugv8M2LX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=O6Vcntji; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-61c325a4d18so1624971a12.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 06:48:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1756388891; x=1756993691; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8ofMDnt8aegB1RhhNAN0+9aJ+qAFEpSg+iG9bqL1LWI=;
+        b=O6VcntjikbvTAeRxEoR/jSHzdhKKepuyyOe+8pm5SqwKmA9Fjf3EZ5tP6ozmFjGe9w
+         oUlb87dOPTlhJaDQTPkkexKViXdeez4s3wBMbUj5o7RBsNtr+C5aMlPSIvEmQa4AmU1E
+         ylYiyS/QKQYUwE/qYklEgPSQ3W4V2+4HVWNmFJWbDZVUzZ7q30/Mp9NFmBfOlHpvJDnq
+         KpUu60uxg4cIuIWYFADiE4YWw+BZ4nUaQgVtRTrXLqo06hC3nalA5Xs9D54QB/LS9tMu
+         N4oWq+pMrBQ+eH7QbFwC79lZrp71Pg3/ecjTfpN6WU4u1/X9P8Ou17koG4cdpyR61St6
+         HpOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756388891; x=1756993691;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8ofMDnt8aegB1RhhNAN0+9aJ+qAFEpSg+iG9bqL1LWI=;
+        b=TQlvPCB64Xt4pE7wFNbmkaxdCjTtaitvjpplCEkTTPBowA4uNTNiMezsEOYG6OmJ6o
+         E6wmCJHbptNvaLn7pm0IeXepVyiHXKLJ68IRLoP2AYphgO6b/MmiYUpeyNwmNXOMypnW
+         uxiXP0S+m+dxefIQlnxV0L8T2wWaTb9LFDprY9X7w5zmDtte+KDWutekaFCom1G4GFC3
+         /AhEIJRc3MSVUnTADgUjm1kC2nhx8oS3urPAxww2b0h5roPLebNx8mMnCensAitQUv9u
+         32l6SEErK4w+RUy5yecVIIxTYHYqbIDsHg8ybrTdqjDaD7vKms5+8kZXxABoHGxfZCPW
+         y6Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCV+s91genb9LFuEKZIc/BINcAhjGoXlE0EGu2+je8G3pl2DaX6TJPTPSQklkxRGiupxRQbm8KiQw25m@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzg26uPeRfIhcCeq501p05IMOMnRKgGTQR1dCwv1XRNPlU1L70v
+	wOuqLXk1KW8gj8DGRRRY7fQI8ALVH4yBgjj+q58hkWK3J5yG6pUCh0mIOZjJw6mvbgA=
+X-Gm-Gg: ASbGnctn2O9Ook7rWOJZLs2oxrKZy/sGl+YasYizfLc032uAg5UcevjzHhZdHo3YTI+
+	IfLz+nG8ElTW+oXRai5frK6T+dV6iDjtNh+u3fXo0ONlT70pWE8ZBcwGRKJJGQNs8VpPy+tE4dK
+	NZTzHJL518LkR2mcFSz8a1ilj10ZT8sE2nBfeYw4VrBc4hEHhjG33zH7SS8sM/P8AfhE7R7uowk
+	j02DwQeqe/6cFPBmY7Ycuya3BQmdV+ygvE3NoF1zYxCWiYSweq92UwJnACgXdSjX2h9O1Ct/m9H
+	9bAvpK5/5EifWDkcOIdcR8g5FEh6bl8es9J9+eH+xyXpKLN6Mu3gSHRQCNMUxcz75pT5DdHcZX0
+	rkm3qSVysZimKU9PyE2dnF/RvPhAsXDd1692x5in0axCSBhb34VQj9Ddl+omBI6mu0BEXyMVG00
+	if9dptN6F4TaFRGHU5LdrnwtuXU0g=
+X-Google-Smtp-Source: AGHT+IFkrszRCxrFihFU24ZaJl7ZC3CwfnZHIryHv8hl7fJKUiWiXfcIaoNunoVL5GDO8tLcbR0fRQ==
+X-Received: by 2002:a05:6402:430d:b0:61c:9585:9eae with SMTP id 4fb4d7f45d1cf-61c9585a269mr8045358a12.6.1756388891487;
+        Thu, 28 Aug 2025 06:48:11 -0700 (PDT)
+Received: from localhost (host-79-36-0-44.retail.telecomitalia.it. [79.36.0.44])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61cc8d32821sm2092757a12.9.2025.08.28.06.48.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Aug 2025 06:48:11 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	iivanov@suse.de,
+	svarbanov@suse.de,
+	mbrugger@suse.com,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>
+Subject: [PATCH 1/2] arm64: dts: broadcom: rp1: Add USB nodes
+Date: Thu, 28 Aug 2025 15:50:03 +0200
+Message-ID: <4e026a66001da7b4924d75bd7bee158cbb978eed.1756387905.git.andrea.porta@suse.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] media: dt-bindings: qcom,sm8550-iris: Do not reference
- legacy venus properties
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mukesh Ojha
-	<mukesh.ojha@oss.qualcomm.com>
-CC: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar
-	<abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250823155349.22344-2-krzysztof.kozlowski@linaro.org>
- <20250825113734.iekrgyvctamhb5y7@hu-mojha-hyd.qualcomm.com>
- <a3325bf1-2a3f-416a-ba2a-4fb1e9f85e61@linaro.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <a3325bf1-2a3f-416a-ba2a-4fb1e9f85e61@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=cLDgskeN c=1 sm=1 tr=0 ts=68b05e66 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
- a=KKAkSRfTAAAA:8 a=A2wnt1OYZSGF17uXe9IA:9 a=QEXdDO2ut3YA:10 a=nI803oanCcYA:10
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI2MDE1MyBTYWx0ZWRfX0URI7wxdL1O2
- 2JUx40tLVtIRBN8pbq5x/nBHzOU8DGCqFb4qNvi90Qso6z+y6Fw5nKM5XgO+ZjMaHACf50JIUwh
- 3cATaJo0FAY9GycFqHI8qkQL5BB6t9QtuWzTSxx8IOBzlRIY/o0SS21HEz7nUVbrEI+HvI1i9Wj
- 4WD4xjDKFm0mFPLQ73fRgu9Tpdc7lYYTAotbwqP4VtpTdL9ldWR1bdX543uqodJ432oCZZ6g+C8
- UlsyGoKDhkcqBQM9wYlEXYDZwoZtivEhUIhjbBLGya7iZWMSeui1Crug1Uuxpxh+9oX3dEb9evf
- yLNH5eTZxTXJH7+CUZwkrWJ629XmB20QRnWk7Yx2cH2idX7+SmHTBSR6hmOxbujlkn84wLGTrV0
- Dc8KgSjr
-X-Proofpoint-GUID: M_iC15BxkkHxME8G0OIOxWBxYV_AP3K6
-X-Proofpoint-ORIG-GUID: M_iC15BxkkHxME8G0OIOxWBxYV_AP3K6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-28_04,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
- impostorscore=0 suspectscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508260153
+Content-Transfer-Encoding: 8bit
 
+The RaspberryPi 5 has RP1 chipset containing two USB host controller,
+while presenting two USB 2.0 and two USB 3.0 ports to the outside.
 
-On 8/25/2025 5:32 PM, Krzysztof Kozlowski wrote:
-> On 25/08/2025 13:37, Mukesh Ojha wrote:
->> On Sat, Aug 23, 2025 at 05:53:50PM +0200, Krzysztof Kozlowski wrote:
->>> The Qualcomm SoC Iris video codec is an evolution of previous Venus and
->>> it comes with its own Iris Linux drivers.  These new drivers were
->>> accepted under condition they actually improve state of afairs, instead
->>> of duplicating old, legacy solutions.
->>>
->>> Unfortunately binding still references common parts of Venus without
->>> actual need and benefit.  For example Iris does not use fake
->>> "video-firmware" device node (fake because there is no actual device
->>> underlying it and it was added only to work around some Linux issues
->>> with IOMMU mappings).
->>>
->>> Stop referencing venus-common schema in the new Qualcomm Iris bindings
->>> and move all necessary properties, except unused "video-firmware" (no
->>> driver usage, no DTS).
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>  .../devicetree/bindings/media/qcom,sm8550-iris.yaml | 13 ++++++++++++-
->>>  1 file changed, 12 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>> index c79bf2101812..320227f437a1 100644
->>> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>> @@ -26,6 +26,9 @@ properties:
->>>            - qcom,sm8550-iris
->>>            - qcom,sm8650-iris
->>>  
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>>    power-domains:
->>>      maxItems: 4
->>>  
->>> @@ -45,6 +48,12 @@ properties:
->>>        - const: core
->>>        - const: vcodec0_core
->>>  
->>> +  firmware-name:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>>    interconnects:
->>>      maxItems: 2
->>>  
->>> @@ -69,6 +78,9 @@ properties:
->>>  
->>>    dma-coherent: true
->>>  
->>> +  memory-region:
->>> +    maxItems: 1
->>> +
->>>    operating-points-v2: true
->>>  
->>>    opp-table:
->>> @@ -85,7 +97,6 @@ required:
->>>    - dma-coherent
->>>  
->>>  allOf:
->>> -  - $ref: qcom,venus-common.yaml#
->>>    - if:
->>
->> Saw your reply on 
->> https://lore.kernel.org/lkml/59951c47-1015-4598-a885-25f8f1a27c64@kernel.org/
->>
->> Just trying to understand ABI here, how all of a sudden we remove a binding
->> for a hardware just because it did not get noticed until yet that as it is
->> not a real device and we always say device tree binding should not depend on
->> drivers but the device but we are saying Iris does not use fake "video-firmware"
->> device node for removal. I am a bit confused.
-> 
-> About what? What is unclear in standard DT ABI rules?
-> 
->>
->> Whether removing will not break any ABI as initial binding enables the IRIS
->> related code to use video-firmware, now we are removing it.
->> I believe, removing binding always break ABI ? or is it depend on driver
->> code not using it ?
-> 
-> There is no single user of this, out of tree (I briefly checked) and
-> in-tree, so there is no ABI impact. I am changing the documentation of
-> the ABI, but there is no actual ABI break because impact is 0.
-> 
+Add the relevant USB nodes to the devicetree.
 
-My understanding here is that the interface "video-firmware" is already defined
-in the binding. There could be possible out-of-tree users of it, might not be
-possible for us to look into all of those out=of-tree users.
-I support such cleanups, but also need to understand how this is not an ABI
-break, just that there are no in-tree DTS user means no ABI break ?
-Would appreciate if you could point to any guidelines if my understanding is not
-correct, i am currently referring to [1]
+Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+---
+ arch/arm64/boot/dts/broadcom/rp1-common.dtsi | 28 ++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-[1]https://docs.kernel.org/devicetree/bindings/ABI.html
+diff --git a/arch/arm64/boot/dts/broadcom/rp1-common.dtsi b/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
+index 5002a375eb0b..116617fcb1eb 100644
+--- a/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
++++ b/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
+@@ -39,4 +39,32 @@ rp1_gpio: pinctrl@400d0000 {
+ 			     <1 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <2 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
++
++	rp1_usb0: usb@40200000 {
++		reg = <0x00 0x40200000  0x0 0x100000>;
++		compatible = "snps,dwc3";
++		dr_mode = "host";
++		interrupts = <31 IRQ_TYPE_EDGE_RISING>;
++		usb3-lpm-capable;
++		snps,dis_rxdet_inp3_quirk;
++		snps,parkmode-disable-ss-quirk;
++		snps,parkmode-disable-hs-quirk;
++		snps,tx-max-burst = /bits/ 8 <8>;
++		snps,tx-thr-num-pkt = /bits/ 8 <2>;
++		status = "disabled";
++	};
++
++	rp1_usb1: usb@40300000 {
++		reg = <0x00 0x40300000  0x0 0x100000>;
++		compatible = "snps,dwc3";
++		dr_mode = "host";
++		interrupts = <36 IRQ_TYPE_EDGE_RISING>;
++		usb3-lpm-capable;
++		snps,dis_rxdet_inp3_quirk;
++		snps,parkmode-disable-ss-quirk;
++		snps,parkmode-disable-hs-quirk;
++		snps,tx-max-burst = /bits/ 8 <8>;
++		snps,tx-thr-num-pkt = /bits/ 8 <2>;
++		status = "disabled";
++	};
+ };
+-- 
+2.35.3
 
-Regards,
-Vikash
-
-> I am really sorry but it seems you ask about basics of DT, so please
-> first get into docs and other existing discussions.
-> 
-> Best regards,
-> Krzysztof
 
