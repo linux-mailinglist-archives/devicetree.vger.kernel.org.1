@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-209837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D5EB39444
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 08:54:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC91B39469
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 08:56:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DB24200572
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 06:54:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 122961C22D9A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 06:56:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4068E299AAA;
-	Thu, 28 Aug 2025 06:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66E792C08A8;
+	Thu, 28 Aug 2025 06:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jn7yFfkh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QDMRUiU6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B9FC293C44;
-	Thu, 28 Aug 2025 06:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE6719FA8D;
+	Thu, 28 Aug 2025 06:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756364065; cv=none; b=s/ees6UxClTpPdQ1kKyTimAShBLgulZZLweFQx1ZgUsOWuFyR3OzSGbrYR4DYZK/am9IzkBIUVsGrLKAqoqWzO/H75JWYaNuM1I5DneO+0S9kInOcVTPzjOL1KscB6iycd+mv0W/kTOWL66ywO5/tuoMyzIbuEY1ikRNgYFyN40=
+	t=1756364173; cv=none; b=fdZC2HACDRlqMJAd8ytzI05D4zeKqVVRAd9UWJY+y0TCw12aO1m3jsAjZ3M4TdQj/PGpgUT9cAYnw5+N3fo7YM+De12PSHBP4sInjfKN5N3BGSGwLjK4cSc0XGAtkWc9KYmuqDMrEpH2rJ9yB6E/PzWFBhALjWdFEbVNPXzoc5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756364065; c=relaxed/simple;
-	bh=/oR092HKV45JV2FK9wkNxV9iN8AAPJogbzc0CL8maV8=;
+	s=arc-20240116; t=1756364173; c=relaxed/simple;
+	bh=SO3WVlFuenuLJDzM92EELg2b8Pa4R1OJ6xC3R69TLYc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZHnW/7/vpLm3M4hYect/fILiLI/yRC5TBBMY0zkEbslXw68hJceKO5JMfYpfWBacQ73zbI+iE2uI5LZg65WXtU/TD5MQ1E19oqcTjOz7lCrNyga/rviZr2m4F6NnzDtCcvhpipiplhSMj6M15pncaATSPVSx6V39vvSkRyxhKw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jn7yFfkh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59698C4CEEB;
-	Thu, 28 Aug 2025 06:54:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kjZHkgnurwrVD0THQDYz7Y/5v++VFn7L7qV9sYSzhWjuXfesdmRwWhVuBVhA1XJKkba2ZrM1hBSGQg4yDiGoejb/swY5jT67z6ifUT8Ku3QXW0/ETCZP7YQ5AVTTLIlRLUgP42ZDpAKoJTKjB77G3KvRi63JIf9Q/Aqpqmz9Cjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QDMRUiU6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A60DCC4CEEB;
+	Thu, 28 Aug 2025 06:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756364064;
-	bh=/oR092HKV45JV2FK9wkNxV9iN8AAPJogbzc0CL8maV8=;
+	s=k20201202; t=1756364172;
+	bh=SO3WVlFuenuLJDzM92EELg2b8Pa4R1OJ6xC3R69TLYc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jn7yFfkhi0Q8T7wqXMOiT0KhKNDqQFrGSEMGmmwR/aNB+HgUaQErcXTxb9Vfyy3HQ
-	 6PA3K1hXikCoVYicStbFZP7Wpg4dH/WR4WWZlwFXd0imGtK2cJBtqOHpYfmgR0EIxn
-	 AhXhY3FkAShf80nMvjoavL6uyznZk9PCY1IdcRoPTiVp+uwMU/H5YsBb3FMcw0cJr2
-	 hHaED8zRMnYQYYfhGtFDP9XS4QNZ7QESXA0vX/xuQIyjPkHl6ddNwZVz8N3ujwyUUb
-	 g6hVOL+TlJuKy7TP+xwUQKvqcNrc+Vg+jluTa5oW3E4/A3pLJ6ys9CWTWi1L4rlTvQ
-	 GZuHg7kd6sKvg==
-Message-ID: <e8934b5b-ef75-4ee0-b1e3-cc5db72b99ec@kernel.org>
-Date: Thu, 28 Aug 2025 08:54:18 +0200
+	b=QDMRUiU65/NKhyUSoifzA/2KQYug/emesBLJ05oZhTZ4WCWGM9+Zp0I2eplR7Cphl
+	 2UOzWI9xSdqAxrxIQFzOMe6iwzD2drrId8mRGQHWVgSteUDhVO56Hg/je1xbfxozkn
+	 dGq+KT4b+UtjT9r25dfWAyf6KWZhR0KV8r4GD5EAqpeVJqsk+SKcDmOscdEws2xqwf
+	 QwNriMKoHIBpPz09AVUDYsVtK71xTaPrf4PqRcnvso87J8Rax92XYvcx9MOyFwxael
+	 dHQqf9W0T+B8bD+UUuKhjs0AC2rS3l81qB24oeJgbRu7H9PeeO216N5jYJDT8xli3F
+	 gYua7NP+Q+kPg==
+Message-ID: <bab2e05a-140f-460c-8c28-358e37727c6b@kernel.org>
+Date: Thu, 28 Aug 2025 08:56:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 01/22] dt-bindings: usb: snps,dwc3: Allow multiple
- iommus
-To: Sven Peter <sven@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
- Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: lemans-evk: Extend peripheral and
+ subsystem support
+To: Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Richard Cochran <richardcochran@gmail.com>
+Cc: kernel@oss.qualcomm.com, linux-mmc@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-phy@lists.infradead.org
-References: <20250821-atcphy-6-17-v1-0-172beda182b8@kernel.org>
- <20250821-atcphy-6-17-v1-1-172beda182b8@kernel.org>
- <20250822-skinny-clay-harrier-64dc58@kuoka>
- <e4c730d2-6ee1-46d7-850b-8ebbe0a1bfcd@kernel.org>
- <a89ba427-b174-42c3-b3b4-5e4079942c3c@kernel.org>
+ linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+ Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+ Sushrut Shree Trivedi <quic_sushruts@quicinc.com>,
+ Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
+ Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
+ Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Monish Chunara <quic_mchunara@quicinc.com>,
+ Vishal Kumar Pal <quic_vispal@quicinc.com>
+References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
+ <20250826-lemans-evk-bu-v1-3-08016e0d3ce5@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,53 +116,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <a89ba427-b174-42c3-b3b4-5e4079942c3c@kernel.org>
+In-Reply-To: <20250826-lemans-evk-bu-v1-3-08016e0d3ce5@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/08/2025 18:07, Sven Peter wrote:
-> On 24.08.25 10:31, Krzysztof Kozlowski wrote:
->> On 22/08/2025 09:22, Krzysztof Kozlowski wrote:
->>> On Thu, Aug 21, 2025 at 03:38:53PM +0000, Sven Peter wrote:
->>>> Apple's dwc3 variant requires two iommus.
->>>>
->>>> Signed-off-by: Sven Peter <sven@kernel.org>
->>>> ---
->>>>   Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 +-
->>>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>> index 4380bb6fa2f08a475b557e80467abc2861f622e2..6d35dcc605c01977f4fc6fdb6f12976f1cef2b9e 100644
->>>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>> @@ -60,7 +60,7 @@ properties:
->>>>     dma-coherent: true
->>>>   
->>>>     iommus:
->>>> -    maxItems: 1
->>>> +    maxItems: 2
->>>
->>> Never tested. You anyway need specific constraints.
->> I realized that's pretty vague, so clarifying: you changed all bindings
->> to have two iommus and that's unexpected. All other devices have only
->> one IOMMU mapping here, so they need to stay like that. If these IOMMUs
->> differ, you should also list them, but probably that's not the case here.
-> 
-> Makes sense, thanks for the detailed explanation.
-> 
-> I don't quite understand why this controller needs two iommus but they 
-> must essentially be programmed to the same mapping for xhci to work.
+On 26/08/2025 20:21, Wasim Nazir wrote:
+> +
+> +&gpi_dma0 {
+> +	status = "okay";
+> +};
+> +
+> +&gpi_dma1 {
+> +	status = "okay";
+> +};
+> +
+> +&gpi_dma2 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c18 {
+> +	status = "okay";
+> +
+> +	expander0: pca953x@38 {
 
-That's fine.
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-> All of device mode goes through one of them and xhci buffers are split 
-> between the two iommus (iirc I saw the command ring using the first one 
-> and the event ring the second one and then just decided to program them 
-> the same since anything else would result in a big mess).
 
-Sure. But if you change existing bindings (existing devices) allowing
-them to have two IOMMUs, this must be explicitly mentioned in commit msg
-with some sort of rationale (even if rationale was "we just missed that").
+> +		compatible = "ti,tca9538";
+> +		#gpio-cells = <2>;
+> +		gpio-controller;
+> +		reg = <0x38>;
+> +	};
+> +
+
+
 
 Best regards,
 Krzysztof
