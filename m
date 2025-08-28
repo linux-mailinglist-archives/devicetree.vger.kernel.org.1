@@ -1,89 +1,115 @@
-Return-Path: <devicetree+bounces-210032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F27B39F00
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:32:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 833A3B39F11
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:35:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B1CC5E46D2
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:31:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98DDDA03739
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42E61313E04;
-	Thu, 28 Aug 2025 13:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BFC2314A63;
+	Thu, 28 Aug 2025 13:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="J8LKpzDb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UZJj84nM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6473128DC
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 13:30:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 481AD314A60;
+	Thu, 28 Aug 2025 13:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756387835; cv=none; b=XOsTTdzfVsGhahubi976Jaw9UwDIw0ycgL4cDLqvFktOo6R2WWqpO3lP1a1VvYY4o5w0jED7dzKTwl4xPQhT4w0WqhAW5JN6J7Pmk6BuJDFPCPBq5bCrw8SCWjRFSZRsF2PqO9q+PsGcEtruTJ8yXeb9xrSp75wHE0eUSt6c6GI=
+	t=1756388037; cv=none; b=p+9XbKZb36YJhdyypsiWftCULEXVh5Qcg8XTjGk/MH4EW9MBvtb3VzwfSe4I+NGDaEssSQ/A3YDomynuduHbShLEKw3E2kZFAV/n4pWjmTo2AmD99S+PTP3eJO++FABNKi7COnTA2Sdzkx8TvjJ5lwKnO6VNBbs5jhmDn8PfUB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756387835; c=relaxed/simple;
-	bh=0K1NNPtpVcskt9FacpjgMoVdHW76BpDIRq/6L2ZskJE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aK/ZEyXKdoTKxAldtjX8ZvfPsXEFBG+y6yni96Imu+vNe+sXF/mamQjUWRdlGqlUbA8bpjNLw7qQkfr7O6Df93AshO3/M5Y7bhUugfAU+rraDydV1mfoQHvhp2n6MO3NtVCJJEf1jBkT//L+aX+NxG0eRo0awCYUVzoDiXvN8x0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=J8LKpzDb; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=MCl/Zqf3cy1GqacBdD6E5ji+678H9QHvDvFzVAbpmkA=; b=J8LKpzDbGrKXGcpmawPb1/KmCv
-	8Qt9lx2aETiDd03fvKU09I7gmFhUToP/HvbiPEybXDx79pwaNVNk9nAL6VePDI371vhx0MM5z/gDy
-	0AAgBX3a0gTu8bRgRZh2+EqYpkWCuncxZR2N8/Gfcci8WY3qs1qXdosdYIshdKlBwxsaSUNdwX4ok
-	wn7lmsp2701YRJ8X+ucKCMYYMt7aBPFFpG14hdRWYEllZvtvhYmxKZqQlqYNsgaOLgEaNLruaa0gY
-	LJadONHKm9o9DZHpVvZTDUjmX1j3R90GGDvioXQWKH0oAGKbwuIqMOzdTnVNXv04Ybj7IiBIsftUD
-	fY89WXfw==;
-Received: from [185.205.242.134] (helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1urchz-0004qj-Ds; Thu, 28 Aug 2025 15:30:31 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Diederik de Haas <didi.debian@cknow.org>,
-	dsimic@manjaro.org,
-	Peter Robinson <pbrobinson@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Further describe the WiFi for the Pinebook Pro
-Date: Thu, 28 Aug 2025 15:30:28 +0200
-Message-ID: <175638782390.3533599.13934230022202341141.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250827143040.1644867-1-pbrobinson@gmail.com>
-References: <20250827143040.1644867-1-pbrobinson@gmail.com>
+	s=arc-20240116; t=1756388037; c=relaxed/simple;
+	bh=QlOPoW+AsqGV4UPZNL5CsgpuSr4uhjeiUp1aWP4DO9Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mOxHUz8oDvfH3DlRXwu4H5RZONmY0uEAbiZsJsvz7PQtB61gjk3lzfTWY6Tpt5waDSZBDVr1ngFb9qA7NpBungoHf1SpYKHO78Agu6c7pxI+2Ga006Krf+5GZ1v9+Y21cYKK6KQ6ayShH99jAqXIofOqiR6NQRisd+qA5L+upCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UZJj84nM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 754E8C4CEEB;
+	Thu, 28 Aug 2025 13:33:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756388037;
+	bh=QlOPoW+AsqGV4UPZNL5CsgpuSr4uhjeiUp1aWP4DO9Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UZJj84nMcM6FQJ29K/z+6yzfH5Le1m7JhSE37PCnJpJIFfuJv3xZWviaIy6OW1hdn
+	 OUkxrPCz2z0dYm9TWtG2xQa58ed8qYW185/irmFqdRMKJJtdpv9kODpEsnK7JfdMsW
+	 uf8w0P1mwtVr37tGcxWoJj+RHa1S9t96okO5M4tHC2qnAp9L+Yzse4qnfRE7fYtdgA
+	 Z+CBQktkgMgE58CW7w6MGc26Mn9luoTQHnWfl+1hiV33DQFsrYZC0ke1TgRdG6ASp4
+	 mHOoHeBJF+d4dbEO34e3yU1ucZjYJ4aVCLbXoa+dB/p4JMyAsxoap4vt8m3BkPpkD8
+	 CtD5/IXLzS65Q==
+Date: Thu, 28 Aug 2025 19:03:49 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, Brian Norris <briannorris@chromium.org>
+Subject: Re: [PATCH 4/6] PCI: of: Add an API to get the BDF for the device
+ node
+Message-ID: <zlh37vqxyqtx6u2a3i4og7xxlfbj4byu76egda5bmyxys6htap@ekaup4gslnzs>
+References: <20250819-pci-pwrctrl-perst-v1-0-4b74978d2007@oss.qualcomm.com>
+ <20250819-pci-pwrctrl-perst-v1-4-4b74978d2007@oss.qualcomm.com>
+ <20250822135147.GA3480664-robh@kernel.org>
+ <nphfnyl4ps7y76ra4bvlyhl2rwcaal42zyrspzlmeqqksqa5bi@zzpiolboiomp>
+ <20250825224315.GA771834-robh@kernel.org>
+ <jqgvw3u6lkewaz2ycjkozcfqrmdln5gacgrog4lhioazhvk5yz@3ph2z25zwqvj>
+ <CAL_Jsq+66jVM33oBCbCFjcZdd+veA-QKQRtG9iD6PP+8Bq7-Ug@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+66jVM33oBCbCFjcZdd+veA-QKQRtG9iD6PP+8Bq7-Ug@mail.gmail.com>
 
-
-On Wed, 27 Aug 2025 15:30:37 +0100, Peter Robinson wrote:
-> Update the wake-up pin and associated interupt details for the
-> Pinebook Pro WiFi module.
+On Tue, Aug 26, 2025 at 08:12:53AM GMT, Rob Herring wrote:
+> On Tue, Aug 26, 2025 at 2:15 AM Manivannan Sadhasivam <mani@kernel.org> wrote:
+> >
+> > On Mon, Aug 25, 2025 at 05:43:15PM GMT, Rob Herring wrote:
+> > > On Fri, Aug 22, 2025 at 07:57:41PM +0530, Manivannan Sadhasivam wrote:
+> > > > On Fri, Aug 22, 2025 at 08:51:47AM GMT, Rob Herring wrote:
+> > > > > On Tue, Aug 19, 2025 at 12:44:53PM +0530, Manivannan Sadhasivam wrote:
+> > > > > > Bus:Device:Function (BDF) numbers are used to uniquely identify a
+> > > > > > device/function on a PCI bus. Hence, add an API to get the BDF from the
+> > > > > > devicetree node of a device.
+> > > > >
+> > > > > For FDT, the bus should always be 0. It doesn't make sense for FDT. The
+> > > > > bus number in DT reflects how firmware configured the PCI buses, but
+> > > > > there's no firmware configuration of PCI for FDT.
+> > > >
+> > > > This API is targeted for DT platforms only, where it is used to uniquely
+> > > > identify a devfn. What should I do to make it DT specific and not FDT?
+> > >
+> > > I don't understand. There are FDT and OF (actual OpenFirmware)
+> > > platforms. I'm pretty sure you don't care about the latter.
+> > >
+> >
+> > Sorry, I mixed the terminologies. Yes, I did refer the platforms making use of
+> > the FDT binary and not OF platforms.
+> >
+> > In the DTS, we do use bus number to differentiate between devices, not just
+> > devfn. But I get your point, bus no other than 0 are not fixed and allocated by
+> > the OS during runtime or by the firmware.
+> >
+> > So how should we uniquely identify a PCIe node here, if not by BDF?
 > 
+> By path. Which is consistent since there is also no bus num in the unit-address.
 > 
 
-Applied, thanks!
+But there is no straightforward way to know the full path, isn't it? Anyway, for
+simplicity, I'll just use the node pointer itself to identify the node.
 
-[1/1] arm64: dts: rockchip: Further describe the WiFi for the Pinebook Pro
-      commit: 6d54d935062e2d4a7d3f779ceb9eeff108d0535d
+- Mani
 
-Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+மணிவண்ணன் சதாசிவம்
 
