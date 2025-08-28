@@ -1,180 +1,171 @@
-Return-Path: <devicetree+bounces-210081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3798FB3A17C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:24:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 080C9B3A1ED
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 16:32:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE2691C85D8D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:24:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E18A2460BA6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:24:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E7921D3E2;
-	Thu, 28 Aug 2025 14:22:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6FD021B9F1;
+	Thu, 28 Aug 2025 14:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c9UWA7qi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lqlIZZOH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 388D61FA15E;
-	Thu, 28 Aug 2025 14:22:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D065F2063E7
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 14:24:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756390943; cv=none; b=Q1V3UAamdv1CHaZCGiE4EtNq6LT7aBpE0HQpejO4Ab5/gpM8pn2ShIS1c98xb9jUkK3mxi5aEmJJ8HAtHqDr2cbrnl5v6wLOQhi3n5O47BOcNzbbgw3IbihfMRNhAEc5j5vZpChyTERoZ/Nc4nKdQe/QmYIMWZG6eN3Nmv8c28A=
+	t=1756391084; cv=none; b=D3ESKZ30fsSWO20AXo6OXIclMeQmVW2ELN5Ww/tkl9Mjs1M+5A7e+alVq1IpLEHraKiow9Xre020pc4/95KhO2/8OSK13qQpDuCD+ONfWHY6bYKLhbq88JpT3BDcbkX6jIF0EXq4lH7AlfQ2dIiDqWMDGpmh7+UVDDCdman3g6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756390943; c=relaxed/simple;
-	bh=ZNUOk/U5XHkyNmed5rNpKTvmqEEuZ1Qc8KSMKTF7N2A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VZIIYJHobbQ+mVvyz6LUskk8aiVbWL562wYydoFXAWxqBQCRyNHf7MqIYk2x2B+BVCaUjx0Sa6Lu8eDXQgJHASBi9QHk2xBUWYFqdsWpTYWwXksR4SUQTwB4EVUfMyobsf5rL+ecpMLQO8tr4XsUPTmzvlTfwzrB0UjUjQd9pqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c9UWA7qi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A761C4CEEB;
-	Thu, 28 Aug 2025 14:22:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756390942;
-	bh=ZNUOk/U5XHkyNmed5rNpKTvmqEEuZ1Qc8KSMKTF7N2A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c9UWA7qi1mCxALI/fcKN3YcVU6r7ymNdfLj7eTcXldzCR6zJit7gQ+5KOHpnKbm+T
-	 dhbMER4Rm403oplzlUJCyXAlhkX3xFaq1m3zp+Z9K3G/gN2ZWbvRhkpuB3S+3TyY5e
-	 8UpVhJuYv2NcCUbh4QCBulLMoC2/cqWBFAugEm42eA9BU7lmnYLS3eXGpiJn7eRPfP
-	 l8dzuY30A7ABSOMdKTzJstpikUD3zRCs09pjYhcDbF529t5uaGmXF4NIvzBtOg2D2m
-	 ZgZVZLKojrkpB3D753h4uk7Tm2EL78Zl/HK5T3rBtZ0Sm6e9CHPxpg+t5mA68wsQWV
-	 sMYDhmNK+NiNQ==
-Date: Thu, 28 Aug 2025 16:22:19 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Janne Grunau <j@jannau.net>
-Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hector Martin <marcan@marcan.st>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Mark Kettenis <kettenis@openbsd.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Sasha Finkelstein <fnkl.kernel@gmail.com>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	van Spriel <arend@broadcom.com>, Lee Jones <lee@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	Vinod Koul <vkoul@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Marc Zyngier <maz@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, iommu@lists.linux.dev,
-	linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-bluetooth@vger.kernel.org,
-	linux-wireless@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-clk@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-nvme@lists.infradead.org
-Subject: Re: [PATCH 30/37] ASoC: dt-bindings: apple,mca: Add t6020-mca
- compatible
-Message-ID: <aLBmG_YKAjfhclz5@finisterre.sirena.org.uk>
-Mail-Followup-To: Janne Grunau <j@jannau.net>, Sven Peter <sven@kernel.org>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hector Martin <marcan@marcan.st>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Mark Kettenis <kettenis@openbsd.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Sasha Finkelstein <fnkl.kernel@gmail.com>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	van Spriel <arend@broadcom.com>, Lee Jones <lee@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	Vinod Koul <vkoul@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Marc Zyngier <maz@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, iommu@lists.linux.dev,
-	linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-bluetooth@vger.kernel.org,
-	linux-wireless@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-clk@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-nvme@lists.infradead.org
-References: <20250828-dt-apple-t6020-v1-0-507ba4c4b98e@jannau.net>
- <20250828-dt-apple-t6020-v1-30-507ba4c4b98e@jannau.net>
+	s=arc-20240116; t=1756391084; c=relaxed/simple;
+	bh=/FUZ3GPbSoHCMLnSSqyt2z+YmIiFI7VibbClJvvxduQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=QdBA8EPRgFMGizzsYCp4kI180kUyZMMpi8gkf5f2LBNQ1IrFlAOzd7P4lWCSZWO61zMHNGyr5k6YXavyzO2XUETzzxvTk/X8OALK1Z7/svo4SFqMATOduFOOMNBgnYKJMF6sNYfYkF2qrUFytzP6Nal6p5HKsC5WfT2GDoPbvf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lqlIZZOH; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-afcb72d51dcso142520266b.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 07:24:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756391081; x=1756995881; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=8zQUneuXaOfUh+xTN94Xip4u0CuKfuimGc68GwyO7co=;
+        b=lqlIZZOHTZZ4xnW5Jelr/XU2Km2WfJUvHfQi0emQxM1RN8qSYHX5ZJSsMLfCqfDnwf
+         UOMod4sjvwZpd81O/N2etmRRYaOpLPDP1SSMj2g3y82T5ufgvFnDpO7Q53z8DuKtvHI4
+         h0o2CGP+gQvZGFUgDG4JI5OEjGKt8knAARZ+NDXoIVQO1vFFb3H122Wx1o5VACwITD8y
+         txfvi2kbwdHxwJo2trD2ImvIK+G/2zkmzYfnvsJihtTkjtDT7l7Cc2tda7TcGzvh8TAv
+         TZXzzl+bRqR67i3SWJt/pbYx+4eLAMC02yPWqXuAjOs0yC1tfkGOajbCHoYP1EOAYU+/
+         RNjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756391081; x=1756995881;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8zQUneuXaOfUh+xTN94Xip4u0CuKfuimGc68GwyO7co=;
+        b=oE1P+3z1U1hCPdCCwHs7SWg4lSTPQLUvb3TganqC3QdbE/V1PtMvfzFbQuIUCQ7Lpo
+         WWMgf2/FFaOqOpVZWRPOqQefkmCrpzmKJalCzzyfHaB3blo6oZF5tDfzZ5WFQf/SlkbH
+         voL3tJvIce5aWYlxoozvTr5dYjTrsJWQnlBRQc7fjXvkwUhxYlaqhEqY7GX7f9qvx9iO
+         /QIRwka5t1U9uwTZDFcqusF3KDFlMqz3sxCnRA5F42yi9SnjcikXhM9LaKrvBIO6GuSC
+         dKw4+ToDA87ccIWe1xM8oeWo/M5U+4i0prfJTCXfEdfmu+FA0HurkgUV6AqiHDt31RgW
+         dNnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV477RcMS6tnh+/fQJlEfGkKmWAIzxkWyDbF7a9mYHZHspYjWX0qcsT8vbV2srlM5YK6qU3EMxaNWN1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxww/OPw5Uj0isDcsVgxN8cXW8R4OFBf3DW5JZRUkGhFheidudb
+	wEJQIrmWd5PTL//cBQnootoQQ22lebR/I8O44OOl+euvoXn85Wb7Jqe734djCopViTc=
+X-Gm-Gg: ASbGncs+BMUqZhVQUhOQGh5wU7jDfeJW3mFOkMKEk7/pzcZLQhbn3uJLyaxKijQZ05N
+	xf1M8In8wON6MjyavY9CynVvKJt+oKtr1h0cdSsbxnEl8kpmTm6diH6OL6J8+q9rsJMLiPzETqr
+	qeH8AEks+c4a3wI+Ys44b8FGUPzWYphpqiLNAG6QbfA6N6u/OVsc7J8I1p01LArwT67YnHtT13D
+	4NISBYUb9Xzo8uWI34yULFD26uoBuiSLJhleJNxGCAAaefvATPMqruRc+TlxN75vLWH12PYtq0v
+	Q29mNWgIlpBQbf7QMgvOfmmc36HUPLw4ty3welT4lWxD5cxXildj2OWvCev6m/7bJ0RefuR/EMo
+	6Cb1A65jVx2kQULifnGqENatzpN9X1+cZwgnwbPKtnIoK5DJnE9G6vyEkb04BWrRvWCSKi2x3j5
+	DAYQ==
+X-Google-Smtp-Source: AGHT+IF1vN7HT36zey49ZEbRrWO4fa06Ex/wR33zWhhQXlp86FpsFXiY/mB0hsHLpGg2OthL7HWsng==
+X-Received: by 2002:a17:906:478f:b0:af9:8d61:2651 with SMTP id a640c23a62f3a-afe28ec535emr1937046766b.9.1756391081186;
+        Thu, 28 Aug 2025 07:24:41 -0700 (PDT)
+Received: from [10.41.150.230] ([77.241.232.9])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afef7489f8asm44327966b.69.2025.08.28.07.24.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Aug 2025 07:24:40 -0700 (PDT)
+Message-ID: <a9c40b7d-d70d-48fb-b4a0-deb773969936@linaro.org>
+Date: Thu, 28 Aug 2025 16:24:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="R/s8UvYbtRjS5rew"
-Content-Disposition: inline
-In-Reply-To: <20250828-dt-apple-t6020-v1-30-507ba4c4b98e@jannau.net>
-X-Cookie: Filmed before a live audience.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] media: dt-bindings: qcom,sm8550-iris: Do not reference
+ legacy venus properties
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250823155349.22344-2-krzysztof.kozlowski@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20250823155349.22344-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
---R/s8UvYbtRjS5rew
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Thu, Aug 28, 2025 at 04:01:49PM +0200, Janne Grunau wrote:
-> After discussion with the devicetree maintainers we agreed to not extend
-> lists with the generic compatible "apple,mca" anymore [1]. Use
-> "apple,t8103-mca" as base compatible as it is the SoC the driver and
-> bindings were written for.
-
-Acked-by: Mark Brown <broonie@kernel.org>
-
---R/s8UvYbtRjS5rew
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiwZhoACgkQJNaLcl1U
-h9DqSwf9Geew2GG8U08Cp3YSqes1Niq7rfNXO481mbApMr+kngCZ4cjnxRGwZ690
-77xnO5uGLJkfPBt8ZHzyyJK1A/u2sE+Smbb2mXKJoSNJ6Z2Yn/4i+Ez9OZ+ZyftL
-fZMNo3ol1vREKrfdKTcgL5IiDYy/VyYGS+TUTWrLjv5N+RFP8a2KZKTKKz7urWMl
-JuJt4kjIjX/7qY2ZM/VHS6F/yXZ1salKEYmdRATzPA6mAXix7sPVnAsfu3kkBJ65
-TZnb9NKtLK/ZB9V/X8GzXTxHuDeY9TmCpc/+eebbXeBZpOou9mTxYxpHoRAF3MXC
-WEXpefNWCR7pc3QpdL7HzMvzvIT5GQ==
-=4Q82
------END PGP SIGNATURE-----
-
---R/s8UvYbtRjS5rew--
+On 23/08/2025 17:53, Krzysztof Kozlowski wrote:
+> The Qualcomm SoC Iris video codec is an evolution of previous Venus and
+> it comes with its own Iris Linux drivers.  These new drivers were
+> accepted under condition they actually improve state of afairs, instead
+> of duplicating old, legacy solutions.
+> 
+> Unfortunately binding still references common parts of Venus without
+> actual need and benefit.  For example Iris does not use fake
+> "video-firmware" device node (fake because there is no actual device
+> underlying it and it was added only to work around some Linux issues
+> with IOMMU mappings).
+> 
+> Stop referencing venus-common schema in the new Qualcomm Iris bindings
+> and move all necessary properties, except unused "video-firmware" (no
+> driver usage, no DTS).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   .../devicetree/bindings/media/qcom,sm8550-iris.yaml | 13 ++++++++++++-
+>   1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> index c79bf2101812..320227f437a1 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> @@ -26,6 +26,9 @@ properties:
+>             - qcom,sm8550-iris
+>             - qcom,sm8650-iris
+>   
+> +  reg:
+> +    maxItems: 1
+> +
+>     power-domains:
+>       maxItems: 4
+>   
+> @@ -45,6 +48,12 @@ properties:
+>         - const: core
+>         - const: vcodec0_core
+>   
+> +  firmware-name:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+>     interconnects:
+>       maxItems: 2
+>   
+> @@ -69,6 +78,9 @@ properties:
+>   
+>     dma-coherent: true
+>   
+> +  memory-region:
+> +    maxItems: 1
+> +
+>     operating-points-v2: true
+>   
+>     opp-table:
+> @@ -85,7 +97,6 @@ required:
+>     - dma-coherent
+>   
+>   allOf:
+> -  - $ref: qcom,venus-common.yaml#
+>     - if:
+>         properties:
+>           compatible:
+Reviewed-by: Bryan O'Donoghue <bod@kernel.org>
 
