@@ -1,136 +1,117 @@
-Return-Path: <devicetree+bounces-210198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C87B3AC2B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 23:00:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED012B3AC71
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 23:06:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 576FD5806FA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 21:00:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A56FD18821D6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 21:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D1302C236E;
-	Thu, 28 Aug 2025 20:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6D829BDBA;
+	Thu, 28 Aug 2025 21:03:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dC1uDxHL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qDx38l6W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4A329BD82
-	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 20:59:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1FA2C11E9
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 21:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756414797; cv=none; b=cREdIqAamOFHCUGad6HA3kN9TLviV+VTE2ZhlUBLlQ+fphueyC+NDe2kVLbcrXj95frW9vyZVqqY95PetEPyZG+CCGA6uUEpsS4mmnS2+m6Idw2Ua2viJRh88HmJxLU4N60mH8n5zcuSCE9s0dR8xES7D6X1/+xRDphCbcGJy9g=
+	t=1756415021; cv=none; b=Fug5TRlLpl6lWpETfdbTy46vgh06kGyXBaONQtyPio4v7oo+N0aaE2OzcFF1ZTMcsEWEufWM62t6Gqtr6w1KNLATW9xKAfNKBpraw2F2aIonZCYz1I1MkvblhGoYhIeu/23CU5if8ni/2+ITSs60gIFBsAqy56KtG+Z07LbMRBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756414797; c=relaxed/simple;
-	bh=vcH+lJXlXkzbWh1s+giYmvp9r3m+hUxJ894v+cf3nQo=;
+	s=arc-20240116; t=1756415021; c=relaxed/simple;
+	bh=JpqemiYOa4qZgBu4emt/PYSqWqeke/6L1n6Biqi6C3E=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a5JNA7FNWVXu/kfPvebAyCGbKXN1kGNKCwDXZqK8oDFszL1Td/+opPPbEjOdvS6RrbeF1YZGIO5WVSIdQ1s1njxlYeNgo7m47FgRXJfDQP9Winn4zbTndk1Ymxgws/o9Hn7xNG+JOUTpCuoF9br7KR5BZv1Uh25nFoRkgjvPAig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dC1uDxHL; arc=none smtp.client-ip=209.85.208.175
+	 To:Cc:Content-Type; b=cT6OTeqv9uP41c+4Id1AGOPKv9R6Lo1XeFFeMoLxuRdQt13YD3Fjki4T8tKlHOjCwHqCxTZLoXJnogD2zcQSrjdlFsUbQ/Gf72xrScyGM041Kh3EpXD4S8lJgordORLOc/hco8E/JdOpfMthvT8cHSMNzPIeLujGUbG4Wb0mAXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qDx38l6W; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3366ce6889bso9965531fa.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 13:59:53 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-55f5dd58ee0so1271416e87.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 14:03:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756414792; x=1757019592; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1756415018; x=1757019818; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vcH+lJXlXkzbWh1s+giYmvp9r3m+hUxJ894v+cf3nQo=;
-        b=dC1uDxHLdzR89Uj56ebMGaoDeRvegTy02rmD4lDoUGNwIlNRsYa+MDnEwUwxYsuVya
-         Y8brW/f7t8jPxSO+kvkkj5EpDjPec/e6TYHDcu5+BEGKhiYpSHNcgh4PjIPQTjSrFuGv
-         29bmDkLl6eQ4isdMBsaJKvQxTXRA97n+Owzb0UaOKn2DK5J6NDKruHPhNyLdj28A6f1U
-         xa7AB1eEBovGXqonRimswFIIH/UBqn7V2U2Bz07sKbRA7ciRp74+aSbBdni3PZz/n9wh
-         ArMCqsNRws0dRWKWBV/F+8m8qKVhCtZunjvcaF8fk8oIzDZryq51BDa8XZkckv0/glo7
-         4tVw==
+        bh=JpqemiYOa4qZgBu4emt/PYSqWqeke/6L1n6Biqi6C3E=;
+        b=qDx38l6WdYgqxoFkRbvHMZmaBo0wsUZvg1lzXTBD81YUIeKxB9VRgpoPveh4Jus9T5
+         QlvXf0oPQhy0WodEb1wYlt03dSeV/kTK0L3y6AXRBqU4xZ8cxj8iNbtBoJwe/b/tt2GY
+         03Zn6WRhN/MS2xJ7Lb8VPns2VzzdQ+gRa9Rd1o2vEzpFoZpHbZTI+6UM8HyEcsJB/4Jo
+         xqhP7su99DofEiGTMcLtEbgH2SFkRpvUeiVWCp3k8WRQ/hY4b0IxeR/kbaxzgkrSWuEk
+         l3EE0a/B5cu4cW94B4EQVbq6Sw1zq96CjOLNDDmjNOWyUScrM49qW0FSTtboaDw7kYNG
+         leDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756414792; x=1757019592;
+        d=1e100.net; s=20230601; t=1756415018; x=1757019818;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vcH+lJXlXkzbWh1s+giYmvp9r3m+hUxJ894v+cf3nQo=;
-        b=n8+ArRN7wTJwhDnVO8CmkdEg1xNooG8Z3fUs05RkcaG/kb4iEqj5zWybzWzcBID3E3
-         EeZdwu4civXlxMh40nwUM5VyOt+DTbHXu1demeYvAhcoHOe3dqS6XBXILOZpS/GYWaTq
-         PCtvZKWDIXhCkel6y/PQoOHuWV/rIeCSFbr1cWSRlgGfTLH9oA4cl84L/81qQO+mn/+4
-         3kXKDT+j+9cjfhPXegKEgBeB0n8aUX6ZYyPhZdHOuVsCLOO5iU24W9fArDTvJbI1kS6f
-         5vX8pbn7HmkALjBxR9V8BgWEkwoWp/Yi8vIoGGY7O5FnkzRNwluCR5t/rh5dx0LVQjil
-         /AlA==
-X-Forwarded-Encrypted: i=1; AJvYcCVuDfAvqrTrj1l2cW3fqcDZDx8ONYOAXj/rQ4WZ2S5iQ7TJAwcg9sExZXPIawM6H8wdsMq0HUA0qgsL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRE6yk8cpN+P++hjUaEBrIDzAbLYloE4XC81ytTJQPBFYYm5ob
-	GptrqxcW5SvqkcAi/Rqixecjkc7b9QfKuNoN7FKlkpSYl/H7VwNqHQ5wLKs7now7mmPgTOhJ26X
-	fGQVnzSH09YfYq0Di9CxjiT/Df5eyQgwXcyTijuabLg==
-X-Gm-Gg: ASbGncsZBMvFwGM0OUm/JcX1QIvLZmqbocOZamWOqa5OZ4p4JRZSCB5AiDtlLnVOYk3
-	GZjiKmLO0jlPX93toj/3F3i5q2Q8+7ZOdN000Zcz9XDxkyhL/LuFbxz9KmHSlnfMb8ds0LAy5F6
-	4F2a3oQEPCq4lR628nLm6jE3WFJXEAEQ6Y0WU4Fjf85soFNXKsEw2KjyogByLljs1l91UGthA96
-	8HqGhc=
-X-Google-Smtp-Source: AGHT+IEvCK27Dx3T+NwB4QTV9UIlsAab63smCZ6D7uUks2NtQZowbM82iFbh3N6kvr8t1WPK8CdOU0xtB51L+4ds/dQ=
-X-Received: by 2002:a05:651c:3256:10b0:332:3fd0:15fb with SMTP id
- 38308e7fff4ca-33650ba8612mr48592831fa.0.1756414792241; Thu, 28 Aug 2025
- 13:59:52 -0700 (PDT)
+        bh=JpqemiYOa4qZgBu4emt/PYSqWqeke/6L1n6Biqi6C3E=;
+        b=r8dRNRdb+yiYcHhijnRcNu4YKQyDc+90K4Ug8/+hgOlaGyLoGuUGmIQ/WFrBQWBbs5
+         kopQ3SOvao3UauFCvK1Iyo4N3WhzqnwazFr2nyPBRqvduGVw3qE1ihvZcMbDlHFuVfmf
+         56uugyIYS/9/HCaNnWM6XX+hSVATi+sQnHPyzAygV+5K8uizvuqwhndkpgwX/IbkT+Os
+         PuEKeRw5GrnFdfKtAG5AZd0jvxgka3l6eolNMobTVdAXD3uPpiMUcfKxHuBsfa3gXgQY
+         P+cjyBnfcrYEZKg+yHjeiRK8ukb9RdYm2QaA5MANzSKJZ1sADn3w2ku9KJosC7+4pcWM
+         Aqnw==
+X-Forwarded-Encrypted: i=1; AJvYcCWxgu9sTg8fsuHOFpJWR8v1w7oHi52n35fdAN/p6CiBbTLP2ONjKQvups2Zd3ClTgNUAvkDFKd6TEfP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwObWT4+opD4pfW46HdVhLvRymQbtlREVRzIwIiRjAHglrF/kc7
+	zvP3lNrMDr1YpESmuZtq7CZVpmvXdnWjg4vnShtzfX3JizG1tL6BX+5C7xDbcc5ytE6+TiiUZmW
+	V9KdO8e+P+uXEqhd/E0WoSJ5SIabadcIkAkT0oi9H0Q==
+X-Gm-Gg: ASbGnct3JT/33CJ5WDM697AaJy8IUprTwNQcr2u8dzOqBltpz+jjLbIJOlc/5mDGKd6
+	JOIoOIFul6REHaDQA99DAIVLhpaEJPQs/XFs9xW3YbcBydbwKm2lpPlDuH+3iK7IhB2tZtfxiQQ
+	hRItXBgs5XU1phLZZreZ6s+yQDvwze3RJiVVTZnouC+lKXdpoWt5UYdHngdFUWmmf6+dwWzdAyd
+	bwqVwk=
+X-Google-Smtp-Source: AGHT+IEBjFJWFLGkbXGuhHAtRjCVWrmXlPYLpQwfq1rarphkzkuwgBTA1g4AurEUs7Vb+ka2DgQY9BMQPqm+5bNSxi8=
+X-Received: by 2002:ac2:568b:0:b0:55f:64b9:3ab4 with SMTP id
+ 2adb3069b0e04-55f64b946eemr717027e87.23.1756415018205; Thu, 28 Aug 2025
+ 14:03:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250828-dt-apple-t6020-v1-0-507ba4c4b98e@jannau.net> <20250828-dt-apple-t6020-v1-9-507ba4c4b98e@jannau.net>
-In-Reply-To: <20250828-dt-apple-t6020-v1-9-507ba4c4b98e@jannau.net>
+References: <20250827024222.588082-1-gary.yang@cixtech.com>
+ <20250827024222.588082-2-gary.yang@cixtech.com> <d5c85ba7-77ec-47f4-8ba1-39199e96da11@kernel.org>
+ <CACRpkdYXy9ZgbAZKUdquxdp0X0m5AHT82K74Ex-ZAyEx=Uwi1w@mail.gmail.com> <67e58bda-3cac-4689-831a-4e4116a0e19b@kernel.org>
+In-Reply-To: <67e58bda-3cac-4689-831a-4e4116a0e19b@kernel.org>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 28 Aug 2025 22:59:41 +0200
-X-Gm-Features: Ac12FXyoYnYKNXDomZzl4EdS0dXvIhCV2tkZJGb1B6Y1kaQgUA-l_NpqH411N_c
-Message-ID: <CACRpkdbg8KYcDpqDKn9fqs+rL9hLK9mGCj0PTXPBGDW7A_AZbw@mail.gmail.com>
-Subject: Re: [PATCH 09/37] dt-bindings: pinctrl: apple,pinctrl: Add
- apple,t6020-pinctrl compatible
-To: Janne Grunau <j@jannau.net>
-Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hector Martin <marcan@marcan.st>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Mark Kettenis <kettenis@openbsd.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sasha Finkelstein <fnkl.kernel@gmail.com>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Johannes Berg <johannes@sipsolutions.net>, 
-	van Spriel <arend@broadcom.com>, Lee Jones <lee@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Michael Turquette <mturquette@baylibre.com>, 
-	=?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
-	Vinod Koul <vkoul@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Marc Zyngier <maz@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, Keith Busch <kbusch@kernel.org>, 
-	Jens Axboe <axboe@kernel.dk>, Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-bluetooth@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dmaengine@vger.kernel.org, linux-sound@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-nvme@lists.infradead.org
+Date: Thu, 28 Aug 2025 23:03:26 +0200
+X-Gm-Features: Ac12FXxBf9FMZVXj6RcmihJXxBREGp-5LZAybPVE_Wl0j-njgxfgbqyikM_ygFc
+Message-ID: <CACRpkda+iUfHKFnnsTGmXrvxpPSy7WTQRKaAu=YgXtcrsjXthA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] pinctrl: cix: Add pin-controller support for sky1
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Gary Yang <gary.yang@cixtech.com>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 28, 2025 at 4:02=E2=80=AFPM Janne Grunau <j@jannau.net> wrote:
+On Thu, Aug 28, 2025 at 8:02=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 
-> After discussion with the devicetree maintainers we agreed to not extend
-> lists with the generic compatible "apple,pinctrl" anymore [1]. Use
-> "apple,t8103-pinctrl" as fallback compatible as it is the SoC the driver
-> and bindings were written for.
+> > If you see that the "hello world" from that driver is missing, you know=
+ it
+> > isn't probing, instead of finding it out after combing through the .con=
+fig
+> > for the third time.
 >
-> The M2 Pro/Max/Ultra SoCs use the same pinctrl hardware, so just add its
-> per-SoC compatible using the new base as fallback.
->
-> [1]: https://lore.kernel.org/asahi/12ab93b7-1fc2-4ce0-926e-c8141cfe81bf@k=
-ernel.org/
->
-> Signed-off-by: Janne Grunau <j@jannau.net>
+> Any tests for driver success should be checking in sysfs, not in dmesg.
+> Most of platforms have smaller or bigger tests for that.
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Yeah I understand the thinking.
+
+The typical symptom of a non-probed pin control driver is however
+eg that the system does not mount root because some pins
+connected to the eMMC are not muxed right.
+
+People find the problem sooner or later anyway, it's just that the
+print makes it sooner. And the mistake is pretty common (or
+at least for me, but I'm not the best developer...)
 
 Yours,
 Linus Walleij
