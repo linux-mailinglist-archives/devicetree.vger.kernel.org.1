@@ -1,56 +1,55 @@
-Return-Path: <devicetree+bounces-209845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82DB4B39517
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 09:25:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D028BB39520
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 09:27:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88F411B224B3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 07:25:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AECC57A3B21
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 07:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768972877E2;
-	Thu, 28 Aug 2025 07:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 755BE1FC0F0;
+	Thu, 28 Aug 2025 07:27:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LZl18nnn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="si8sV6//"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4722130CDA9;
-	Thu, 28 Aug 2025 07:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0A530CDA9;
+	Thu, 28 Aug 2025 07:27:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756365922; cv=none; b=CB5hxi30tm/BWlvjyxY9A1F78PUbaGCYvUFScb0EOZ9fNg1FuzXT4eHaW7rxVgtxnHVaMak/YPIP0OSzX1b79p+blmBF0hE8rsfaWcYgWyq0b82+kFJ0GjwKtHtGjo125RsZiJcoU6oTJAS1Won2nIcl+eg4yiQEBJ0YMFkz4PY=
+	t=1756366043; cv=none; b=uMXA6uXXIAYfdwcKPi7ESoO3IAcfRS0eh/yfxy9iE14x+9X+NngtATh5Myzf2vj+QcfDBBEgvF6UQyXZHYuMjTFPtI9x2NEwfFDOSlSdk1AYeB+YtsZHucRSCHtCRXkL0LaImOD7xycjGjAL5slRZQxbsSISd/BcUYjplm7LqVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756365922; c=relaxed/simple;
-	bh=2xmUxxbnZRFfY7nOW7Ta4ARgAuSVey3Yvt60WAVlxGo=;
+	s=arc-20240116; t=1756366043; c=relaxed/simple;
+	bh=xa14BhdchDFjYxmd2h7TTTS2JN4IdK7yK+ggkciPNes=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WMqZFLFQ4pTeYpnPFAQOT5YyW1FkvO6t5gKSkyk9vCr2XxHuQwujNDlnmiD6Ej/LvCxV9k710137u9Lklm1UFUZFFpBY0PNuU4QD2PtuHe4pQGNrZ0n4kaP08scmijCuc1sNN183hBfGVs7nV0jhyvLUbJ+PPfHFESpibNcynYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LZl18nnn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88E20C4CEF4;
-	Thu, 28 Aug 2025 07:25:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ox0zPUNRoDLghVz0Kd/TcOpdhmQsH9guv2SRQnHArFThkyIsNVKxElybK9x93P7m27wqsztNMW/tUJ3DNRKUsziFY8G4R9OYCyxNI2hst8L8/rlsGpIEIIwljcasCVG7PZovBn/bQySoRCI/pghd9W710rix9tq2aLZ5ctXEb90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=si8sV6//; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C844C4CEEB;
+	Thu, 28 Aug 2025 07:27:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756365921;
-	bh=2xmUxxbnZRFfY7nOW7Ta4ARgAuSVey3Yvt60WAVlxGo=;
+	s=k20201202; t=1756366041;
+	bh=xa14BhdchDFjYxmd2h7TTTS2JN4IdK7yK+ggkciPNes=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LZl18nnnx7Ol9IYoKSLa0ouYGiiMJQXROK7kPJtUk8pQSBwD9XYhFXpJDaD0O6Iv+
-	 QUZd2/BAlPbBxXSHt2St9uJDlfHs6AZUbezIQTHgylO7T5DkktmRIM5+lFHzPvPFyV
-	 4SqalD5VIXoiH78ef+OywLKR78qyk+mPXiWVRNYyUx07AywX7F5vQ1ACN6ylWG9SLX
-	 vOsy1ZsNOGUuduQxvPvtyfJ1I5oA3hkpchcRk+mL56IX3u/Hp22S9izH+mGrWmt1+f
-	 Qvn8B8A/s8bavLrseb+lllBmbJk66bJPlzJXPvtvoIz7As8JqcxWvodkwKEIaxwnlh
-	 s3h5vIpglTYvA==
-Date: Thu, 28 Aug 2025 09:25:19 +0200
+	b=si8sV6//UAwICGyYnYyZShPh3pKI2nIbP7ulu1tJ3espIjD68zScXxD9ZshaBdEVf
+	 tqPO6XdzyVFCnvNPLxYMHoip9Ls0HBMyCIs+rWRz4Bb+w+/wCwJiYI36b251KmF3Ne
+	 YJB4uYQdAgKSekZ2t3jPRXLOt/sL9mr3TekSa3U8Xuo2iCYW70ISpXcSmu/BEzNqM8
+	 QOH8rxDvaEmYAtZf5aOjKv9gmWjrKFxFFox6+qyI9oCIwvLgREmyfSXPw47hnJS85c
+	 9jJ587fqvCYc+Mxv30f36LlvIc0ujwSt0DYvSMM1R0iuiJHKrAH8UJNk/DSJDyD+zW
+	 alElQNYFKbaDg==
+Date: Thu, 28 Aug 2025 09:27:19 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: Add cix,sky1-pinctrl
-Message-ID: <20250828-ebony-frog-of-luck-dfbca6@kuoka>
-References: <20250827024222.588082-1-gary.yang@cixtech.com>
- <20250827024222.588082-3-gary.yang@cixtech.com>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor@kernel.org>, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: soc: renesas: Document R-Car X5H
+Message-ID: <20250828-esoteric-vivid-raccoon-a86c9a@kuoka>
+References: <87ldn4uyof.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,29 +58,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250827024222.588082-3-gary.yang@cixtech.com>
+In-Reply-To: <87ldn4uyof.wl-kuninori.morimoto.gx@renesas.com>
 
-On Wed, Aug 27, 2025 at 10:42:21AM +0800, Gary Yang wrote:
-> Add dt-bindings docs
+On Wed, Aug 27, 2025 at 11:34:09PM +0000, Kuninori Morimoto wrote:
+> Document the compatible values for the Renesas R-Car X5H (R8A78000) SoC
 > 
-> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > ---
->  .../bindings/pinctrl/cix,sky1-pinctrl.yaml    |  77 +++
->  include/dt-bindings/pinctrl/pads-sky1.h       | 592 ++++++++++++++++++
->  2 files changed, 669 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
->  create mode 100644 include/dt-bindings/pinctrl/pads-sky1.h
+> v1 -> v2
+> 	- add empty enum to avoid allowing invalid use.
+
+I don't understand why do you need this. Where is any user of it? There
+is no such in this patchset, so this must be explicitly explained in the
+commit msg.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..10a4a292188e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
+>  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+> index 5f9d541d177a..e2fec2afbc6d 100644
+> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+> @@ -473,6 +473,12 @@ properties:
+>            - const: renesas,r8a779mb
+>            - const: renesas,r8a7795
+>  
+> +      - description: R-Car X5H (R8A78000)
+> +        items:
+> +          - enum:
+> +              - {}               # avoid allowing invalid use. will be replaced to actual board name
 
-Also: Filename based on compatible
+We don't allow such cases because it is pointless.
 
-Bot reports here some warnings, so please confirm: did you test your
-bindings and there are no errors reported by the toolset?
+Otherwise explain in the commit msg why this is needed, why exception is
+justified.
+
+You have entire commit msg to explain anything unusual and if you look
+at source code you will not notice such syntax for boards, so clearly
+this is unusual.
 
 Best regards,
 Krzysztof
