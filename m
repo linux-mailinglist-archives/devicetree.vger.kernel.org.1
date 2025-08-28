@@ -1,253 +1,330 @@
-Return-Path: <devicetree+bounces-209880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F95AB39661
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 10:10:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73FE6B39689
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 10:14:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79BF446339C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 08:10:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F074B189BD9B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 08:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 335272EB84B;
-	Thu, 28 Aug 2025 08:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 123422DFF22;
+	Thu, 28 Aug 2025 08:13:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="jjNIXMT7"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="krGevMH+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2051.outbound.protection.outlook.com [40.107.237.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AFB22E03E4;
-	Thu, 28 Aug 2025 08:09:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756368559; cv=none; b=jGbf6eft+ShCnFgT5PB/fcnZZq6Uyz70lyG9AZR4OFM3Uf7gZ3r78L5BwTLjKLUapGVj24IWM5LdBT3kDRksJl0J79ge/IjrdB/9J4tXNZ0x9fO9bf8NH4UxqqQatiqj/1CP//tsBZfPHCgxEjm0kyVOcTjCjpM2MUACAw9v+VU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756368559; c=relaxed/simple;
-	bh=eG0Uh2+qDUks/kbwZozcTCpjEkrT1OM6gzuZl0bqCqA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VF32tWnGNtBQiC3palMk/EdU+w5hT2Pmkj5xF3JJnvafpBivhR21Cuymrs1m+LFcFLxawC1eBaJRqv/Ig5RxBlB19o9lqc2ET6gz3Is4K7BeGjr2clDfnCFBnRWbcs3lvrS4KrEDl91K//CAiwaaouCdpS+sX6sXwLV/UMFDcwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=jjNIXMT7; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 44d5fe5883e611f0bd5779446731db89-20250828
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=utMEZLQpB/iSzCTOgfYvzWLQ6vi7bXRKfstpmmrvNHs=;
-	b=jjNIXMT7Dze293Bjo7zj76yTxMNjLhJnnEHJTF4d7tCaaMICsVIeJ07S7OQECuGOV4l38SKggOq7b81TMgUUhyEaok2crPMOqWUx6xROXjtYPKvVLinMCf4PBduyZPVt7YPQyVwtsP19GfiURtenagZ64VBF2IaapfctxQRNgV4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.3,REQID:bfa70b67-1f62-49f1-8921-557d4afc3252,IP:0,UR
-	L:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-25
-X-CID-META: VersionHash:f1326cf,CLOUDID:130b9920-786d-4870-a017-e7b4f3839b3f,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:-5,Content:0|15|50,EDM:
-	-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,
-	AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 44d5fe5883e611f0bd5779446731db89-20250828
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-	(envelope-from <paul-pl.chen@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 733620803; Thu, 28 Aug 2025 16:09:06 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Thu, 28 Aug 2025 16:09:05 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Thu, 28 Aug 2025 16:09:06 +0800
-From: Paul Chen <paul-pl.chen@mediatek.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<chunkuang.hu@kernel.org>, <angelogioacchino.delregno@collabora.com>
-CC: <matthias.bgg@gmail.com>, <p.zabel@pengutronix.de>,
-	<jason-jh.lin@mediatek.com>, <nancy.lin@mediatek.com>,
-	<singo.chang@mediatek.com>, <xiandong.wang@mediatek.com>,
-	<sirius.wang@mediatek.com>, <paul-pl.chen@mediatek.com>,
-	<sunny.shen@mediatek.com>, <fshao@chromium.org>, <treapking@chromium.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v4 19/19] drm/mediatek: Add support for MT8196 multiple mmsys
-Date: Thu, 28 Aug 2025 16:07:14 +0800
-Message-ID: <20250828080855.3502514-20-paul-pl.chen@mediatek.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250828080855.3502514-1-paul-pl.chen@mediatek.com>
-References: <20250828080855.3502514-1-paul-pl.chen@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10EA22D7DED;
+	Thu, 28 Aug 2025 08:13:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756368810; cv=fail; b=iiZEI/fKLEpMX6n1am8YJfK87D/UHo/dbwdMnguLqvbfUfBl7D9gT3mxddTAXfZ2f0HBbXtH9D4Bynwj8THRwJk833K1/VKauiUiI5iAo2fQvYO2nXvXYdXr9u2V9uKyA1EYWo9wefw74lhtc/x716+6pbtp3NlfDXgQr+RfUR8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756368810; c=relaxed/simple;
+	bh=VpsjFqP/IhmL+TNYkEhW7AboWA7MSAtYMKxN7FqC5Xk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=QHmK/8tSlErCJRCbh96/Iz24W98FQ+VpEsZerqrYnP/6WtAUM83e26RFBgRFKqFXKc0ecJgoL7/Ntgc2NFpDbnCdi3Y3k9aNVfSeRaGKSAM3Fa9qy9OyShBu309AXuju+w/BMHN3ofYD484IL2+eB2hu0YvNeUBS69sfNpSHBbA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=krGevMH+; arc=fail smtp.client-ip=40.107.237.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GnPYvQjLKyz462aMSLpNHapKQixMJ2+TMYwCF0quYnhWHlaP8ABROwxxWsQAnDTUPToIwD7Y4/TdEfEMW+t+lTvA06EQ+5wpV8bQI/6nePwBZYBUfAQahDh9YAOxD5tFZD4MRRsK8iWqyLNgIlVx1cIixyfiW0fUIozHXYRehTcHA8E1GfJboXSL9S/fRbrf4AknJC170Z9NgfZ7NcCSo8ahuveiZVYQeRG0lYSPEMo2Uo9ZLeIwdaXNRG09fG8E/68nuy2+ntOlt2Va7SecxOaPbIWtffmCZ2kUHVRzXD0JedzPtqcMHsLTV6HTCEOISZEP/5aM15J/8doAxM94zg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GkDcyyb39tqBuQBSS5VcQK846GjQqUxQuFa8BIaE3Dg=;
+ b=yKfJ2EQzPTbHsyOUuQtRNcid6J34/9N5vYFJGDFMnFtXVC+YNR46DXzUoFdzVDvfb/n16577/f5k5AAoSpttKQSGY+BfbcTw+Wr3u8OGNgxMt6p617/cFxb+twQEhwRJkH9jDF+ktppEgUOdyyRdKVvylVWvzBAMLJUiwutteasDf6lxvwWZpencGubt4fNCTBPgUkjugJAhPtgJXHx4Kurzm0Nn7+SWTDKPV+YiDXNo11/9pqc0+q2jHfRRPd9zleYhLgy56Nb0bLBpVbVZpAsybvBbgrITm1MFtktyCwvjMF8QLKpKROhfpi6ADTaUr0GZHtpJoe/yCrS4s1Y8oA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GkDcyyb39tqBuQBSS5VcQK846GjQqUxQuFa8BIaE3Dg=;
+ b=krGevMH+QhmY5nKqER+sNwJd/iCZY5pTHcguNNiswLf+1J3MiPTn6qPrygiTQ2xHZ3Vrb7cenxT940wlZs/l/XvgM4LApCBX7Dso8OZ18nb3P5CrYWQvk7uhsgKbkTrD0RmAn3MVqidKU955CsitZDC2bKQfGhT7mYZ5J35k252roCllxzDYOcpnis8kIAmU9s+rzYWnb72cwK0WpDNOmfGpVejCWePQdBYcpx6hDp56OPRKySa2v8ecM1UHAja2d6+O8TWJSuaci6HwB/9SRR/ISHDhS8bF5Ca22/WQZ5uT9SxkF4EF5Ae3iFBnNS1lYLMMQw7+FVauvRJOVSS8iA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DM4PR12MB6494.namprd12.prod.outlook.com (2603:10b6:8:ba::19) by
+ IA1PR12MB6604.namprd12.prod.outlook.com (2603:10b6:208:3a0::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9052.21; Thu, 28 Aug 2025 08:13:26 +0000
+Received: from DM4PR12MB6494.namprd12.prod.outlook.com
+ ([fe80::346b:2daf:d648:2e11]) by DM4PR12MB6494.namprd12.prod.outlook.com
+ ([fe80::346b:2daf:d648:2e11%6]) with mapi id 15.20.9052.019; Thu, 28 Aug 2025
+ 08:13:25 +0000
+From: Mikko Perttunen <mperttunen@nvidia.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
+ Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Sowjanya Komatineni <skomatineni@nvidia.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Peter De Schrijver <pdeschrijver@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dmitry Osipenko <digetx@gmail.com>,
+ Charan Pedumuru <charan.pedumuru@gmail.com>, linux-media@vger.kernel.org,
+ linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
+Subject:
+ Re: [PATCH v1 01/19] clk: tegra: init CSUS clock for Tegra20 and Tegra30
+Date: Thu, 28 Aug 2025 17:13:22 +0900
+Message-ID: <1797126.QkHrqEjB74@senjougahara>
+In-Reply-To:
+ <CAPVz0n0kCBAh7W0R766A_dXbcM3E=EoSXemuc0_rOm+Qch-a+Q@mail.gmail.com>
+References:
+ <20250819121631.84280-1-clamor95@gmail.com>
+ <14287352.RDIVbhacDa@senjougahara>
+ <CAPVz0n0kCBAh7W0R766A_dXbcM3E=EoSXemuc0_rOm+Qch-a+Q@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ClientProxiedBy: TYCP286CA0070.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:31a::14) To DM4PR12MB6494.namprd12.prod.outlook.com
+ (2603:10b6:8:ba::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB6494:EE_|IA1PR12MB6604:EE_
+X-MS-Office365-Filtering-Correlation-Id: 248a41c4-328d-4a12-fcbe-08dde60ac338
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|366016|376014|1800799024|10070799003|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ajJNdkFIUGF6WjZPeWRJcVVQT1hoaFhDcVVOdDRwQll4Umo3dmg0RTJDUTJF?=
+ =?utf-8?B?YXNNVzRpQXFzV2hjdy9sTWhPTjRHNkRYOVkvaGRUbUZ5eE5takZYd2QvWGVl?=
+ =?utf-8?B?bDM2eXJMbWtiRHFvVHNibnB0dytKMlVnTm44TEFBaWFJVnE4UUk0WTl6VFRw?=
+ =?utf-8?B?WlM2L3FoOU9TM2VvUFM3eUJqWTZLNkdZLzRwSmg3UC9VcmRrbU02dkRXb1Fn?=
+ =?utf-8?B?b0owL1ljdExmRCt6dzU4TXhSTFh1WitIYklKRVEvUzlyams1RWN2SlltaWs5?=
+ =?utf-8?B?b1lKdW9kRFdydXRweGpNY2ZhbFE1MmNYNGtaUnUvbzZiNHpFNnF2aGxnR1V3?=
+ =?utf-8?B?NGl3dU9ybkZOU3E1VWt4UXRiWkxPNC9sekpUd0gvUlVoVGxJRk1NNmNhY1lV?=
+ =?utf-8?B?bFpjR2t6T3RXdk04aUk3YVgyMzRiTld4S2lZVVJJSXZxZ29MZ28zbUlUZk5m?=
+ =?utf-8?B?dHM5bVlYQTdOV3hhejdLMWFhNlo2bW1mQTQ3U25IczN3K0dCeHZtVS9OZG9S?=
+ =?utf-8?B?NTVHVmJXQzZaN1d2UEd2N3BjTEN6Qk1qTUYxa1o1cFYyUXdqcDEza2hCRG1u?=
+ =?utf-8?B?VnZiZDE5aGpIUmkvVk5RK1pmSk02LzBQUklUUnljaU83eDVvbG5zcVRYTGJa?=
+ =?utf-8?B?c3loWmJIQklteStpN1VNck05MU1xVmp6Z2tkUU9zd3F1SlJYRUtodWNvc0py?=
+ =?utf-8?B?MkxDeEpSdFVmaGNsckFCSDl5ckpEaEd3V1RxMnFBcWVJRkVmeklIdXdKZldJ?=
+ =?utf-8?B?enM2WmM2WGgrb3hyZ2pxVXNBaWNaVTdlVzNCaVV4Ri9UckZDNUxxUmUvaU9a?=
+ =?utf-8?B?YzBGRmRnd3BjeTlocVhSQ1NPZXVvV0dqYnluVVE2NC9URjg4WHNQK1RIMG5r?=
+ =?utf-8?B?TWE0ODB3UFB4eldqQXJBbjRQVWtZcHF4ZEJqanF1ZTVpOTA1Ty9YU1FFc0pi?=
+ =?utf-8?B?WElIT3k4NEF1RXVUK1ZzUXpocjIvdzFJdDdTeFRQb09pbjN0MkJLRW9DcSto?=
+ =?utf-8?B?blFpOHM2UjRqQ0lwdmsvQ3NBaDRRMVY3WWVZNmF4cDVkQTBnQzdiQ0lsVVJy?=
+ =?utf-8?B?aDFKejlXa1ErWnRnWWRDZVB0YUVlUkh1eXN2Q2ZjUFlJeHF0OC9aY1R0S1JO?=
+ =?utf-8?B?NS9DMnVuWjlLcnVhWmJvN2pCdTJvT09PRnBKYmlSeWprc0RUMVNqaHR2ZHpQ?=
+ =?utf-8?B?U0VWZXVzSXdhWXMwVzFxbnR3bEZRQ3c5N3VZd2djLytqNDJCc3VpVXNOaGYy?=
+ =?utf-8?B?WVVTUUdkZmJCclFSbnpPZlFWZy80V0NDdTdIY21yV2ltVDlySmZmRDNIeUpz?=
+ =?utf-8?B?VXR3amJxay9idWplVmFYbDRWZFR0R2llRlhtck5uUDNKWFRYQ21tbEgyVlFW?=
+ =?utf-8?B?bXQ3eTIyWjZsWVp3R1g3WWdwdEk0dDYwYTAzTWVlT05CZUxhYW1xWTFnVXNC?=
+ =?utf-8?B?aUtyU3hUQ1c0N2phbjhxbjN6SmV2VzBMVUs5a1dsTjFSVFF4TE9jaE0ySkR6?=
+ =?utf-8?B?OFNSRkpnR0RTd2dMK01CVUJ6T01vcnBpRUptZWJYcTVtY1kyUW4zU0x1RzBG?=
+ =?utf-8?B?RVZTUkkyVUp3OXZYSWVYN0VPSTZydDFZWmZiWVFnZFdVNVN0NzVzeDk2aWlj?=
+ =?utf-8?B?WlJ2SUUrY09nMEh2dlRrNFdKQkZKcEdUVS9WbjZLd0JlY1dIVHoweEJsWXli?=
+ =?utf-8?B?Z2pFaUpxaUl6ZGV4OEhrVDZLb2JockhxQ3FyQXlzS3dpR2lBZVhjZDE1UlFk?=
+ =?utf-8?B?dURYVXZseERqM3RuOHF1MkNGQ3lWVzU4cWZNQzF0d0xQZG1za0RSV2JGYkJW?=
+ =?utf-8?B?ZTVoYW12SG90MWRKL3lucVhVSldseWJKRWlpcW50Zkt5VzdWY29BejQ2Zjcz?=
+ =?utf-8?B?Q1pEUi9DbytNbjl0YmE4R3FqdGI5NmpHOTYzV3JCK1lQSys1elNsZ0FFVk85?=
+ =?utf-8?Q?XhL/Ptwm5gE=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6494.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(1800799024)(10070799003)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dnJkR2RKbktkb0NkZkpDV2hENlBLdkw2b3RrN1U4WHJXeDFWM25tL0ZnUStv?=
+ =?utf-8?B?bHR2a05kYWJuTWVwelF2clAyR3RwRE9PLyt3aVFIVytLaTQ2Vnd3bDdJS2xD?=
+ =?utf-8?B?ZFl2bzZlR3pYZnVZdUo1cWlUcnE2Wk5zTE1qN2w1TE1GWWc3UTdibWxSZTM0?=
+ =?utf-8?B?ZlNKSG0xbWlvWTRkdkdwV29lVzVxTWszY2xBUXZPSVRqd0xTdVB6ek1RMFRm?=
+ =?utf-8?B?bjJCWlVCMDFwZnBETW1ycG81ZCtZeDNzSWhEOWJYVHNyZ1UvU3dGa29JL0py?=
+ =?utf-8?B?dGplMWQ1ZmVsTDFVZm9ZN0xlS0pZeGljYVZjYXRUSmNOSlhKdU90cmwzTnNB?=
+ =?utf-8?B?QVorZzF2TDJjV1dDMnp0WHZaSEtIT0loa21HaC9kYStKYW4vS0l3dU1RN3FD?=
+ =?utf-8?B?TjhTa2RpczdaYmdscURrcXZHSUFXMEN0NU9xUlFNdEJnQWFWenQrdW1tT05S?=
+ =?utf-8?B?QkV1VXYwMWR6emRTakh4N1RXWStZWUxVTGdiSExrS1BFY0x4eSthNU9ZcWl4?=
+ =?utf-8?B?L1lFWFFQYm13TU9QajFsNkhEV3haYVByVVFBM0NLS0x4V2dRa1J5T0lhblU4?=
+ =?utf-8?B?b3dGMFpVclVnQ3J5WDFBeENZM0NNUVZ1anl2WHE1Zmk0ZVlCTWZaaG1oMEsr?=
+ =?utf-8?B?dnZmKzhGRTd3WnhtZVhSaWVsZ2N5UHFOWFI5QjlTSndvajROS2ZIYlRMUFZE?=
+ =?utf-8?B?ZGE4dVhaVlJ2TnBKbDJvd2F0bDZOTHVxdVVkNEJ2S1ppUzlabDV4MXFubE1R?=
+ =?utf-8?B?ZlFVQVpDRUg0NmQyNk1NTlllUU9ZNyt5RWJjMUZXUklESmN2YzlwandYZWNK?=
+ =?utf-8?B?VkJvSEU1VHJBcHA5MjJIQnVXUHJIV3J5WlhpcHNzeUFPYWhJRUpEbkUxZ09o?=
+ =?utf-8?B?bFJaL0lLNnhtWDl0L0lKM042dVNkV201RTVOaVAydTZJcVRFV0hwQ1NTMjlu?=
+ =?utf-8?B?dnpKMzVYaXk1ZG9zYU1heDRnQmRLdXdtSXlkSXlzTXdMY051cG9sSkEySitT?=
+ =?utf-8?B?bmdLMVp5eUFUbHFHOStuOGFVVHBtN2pldW1yNGs1STlpVVcwa0o3dHY4Z3Vj?=
+ =?utf-8?B?MEtDaXJZdmNyNE9uaGlIVmVSR3Z5WElja0FDdllzVDJkRk5Tb0dTUG1FaXRF?=
+ =?utf-8?B?YkdIODg4MnR3UHNMMUF0VDIycmFSWFB0LzkwcFJmK09vdll1d3F2WlN3NkRJ?=
+ =?utf-8?B?K1VTSDB3M28xSTBzWFlRbDVsWjdaeEVCbWlaeWVmNmM3WUJta2RVeEF3cUpi?=
+ =?utf-8?B?WFlqZEk4bGNuOUZiNWYxbkcxMHRuVUduOFpUTkpGeGVWaVF3Q0x3Kyt3WGZ6?=
+ =?utf-8?B?ayt1SmxTZm40UHc1bUp2YVBwZGR4RFIxNXI1RHJRenBMUllkWkN3TUlnL1Qw?=
+ =?utf-8?B?SEh6YmpidjR3Nm9NQ3hFVlhRU1A3Z2dlalVTSG84MXFkcmVPRUZyc3VsRXdq?=
+ =?utf-8?B?elZoU2tzRVYvYWtVRm4xdnQvdkc5UWNuMDBkQ2c5cFhYeUZBaFZGaktEbTQ5?=
+ =?utf-8?B?aCtXWVFGV3REMzlOOWpYNFR2TFM4Qll1Z1ZRcFprVU9TTWlaYlEwTXdPUXdk?=
+ =?utf-8?B?NVhMYkR2WW5BUnRBUWErWGtJYytnZXNwa3ZvaTRGZ2dQK3lrcWV5Witqb1FC?=
+ =?utf-8?B?Z3Fwd1VUNHRCREg3aVhHd3BmWGx0RVcrbGdWbVgyYXRHNjIrRTkxdEZRcjNh?=
+ =?utf-8?B?Um1VT2FQaEQ2NmNuVXF3aUFvWnlaWTF0NUxublk3NVlxak9HNWd5YXVpUjNl?=
+ =?utf-8?B?cGJzRHh3L2FmSUg5dW8wMGhvaFgvSFFxc0JCb3k2MjZBb2N6eFpkd0wrd1pT?=
+ =?utf-8?B?b2ZESG1FQmwvemNoQ2JyemJwazU3OU8zZ3VEUEoycDRldVhvVDZLWHZoVG1B?=
+ =?utf-8?B?QnVvSDBEeDVOMUhvbDJ6RmRUNG9QeEJSQUpJMXRzUFpKOS9vSm03V0FPcnhJ?=
+ =?utf-8?B?aExpUjJJR2JkTDlRK0F4OXVRamxRdWxaZUQ3ZzBBRkdZNmlBREg1V3BXdmpl?=
+ =?utf-8?B?RERlYlBaOTQrYmZwYi9GYXQ1YzVVcCtTMXJnams5emxRbkFXWkdWNUZzdHpU?=
+ =?utf-8?B?YTlPTWMydzhOWWpGMGVlUCtUS2xmY3FRMDI0a1Z6Q3RRV0xLeWdScElXSmk3?=
+ =?utf-8?B?b2VlbWY2WFIyd05mSHRCYno3aTNOTXBEU0NCdklzN1BJSzZJL3ljeDcrK0hG?=
+ =?utf-8?B?NFVyY2NMa2t4YzI1aXNNZTQ5b2Mwc1EweU1iZW8wL1QrWkw3aUQwa2pESWZp?=
+ =?utf-8?B?TnJJeHBzMVg3V0xSNGY4VGZHUDdnPT0=?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 248a41c4-328d-4a12-fcbe-08dde60ac338
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6494.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2025 08:13:25.8433
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cfTljlGZhcNcN+go+bhYLlRcYAnuFCMlYff87eIGWYOH+WPftf9m1jpceExb+las7EuEdlDS8zqghaNBxg7g7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6604
 
-From: Nancy Lin <nancy.lin@mediatek.com>
+On Wednesday, August 27, 2025 7:45=E2=80=AFPM Svyatoslav Ryhel wrote:
+> =D1=81=D1=80, 27 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 13=
+:36 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> > On Wednesday, August 27, 2025 1:32=E2=80=AFPM Svyatoslav wrote:
+> > > 27 =D1=81=D0=B5=D1=80=D0=BF=D0=BD=D1=8F 2025=E2=80=AF=D1=80. 07:09:45=
+ GMT+03:00, Mikko Perttunen
+> >=20
+> > <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> > > >On Tuesday, August 19, 2025 9:16=E2=80=AFPM Svyatoslav Ryhel wrote:
+> > > >> CSUS clock is required to be enabled on camera device configuratio=
+n
+> > > >> or
+> > > >> else camera module refuses to initiate properly.
+> > > >>=20
+> > > >> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > >> ---
+> > > >>=20
+> > > >>  drivers/clk/tegra/clk-tegra20.c | 1 +
+> > > >>  drivers/clk/tegra/clk-tegra30.c | 1 +
+> > > >>  2 files changed, 2 insertions(+)
+> > > >>=20
+> > > >> diff --git a/drivers/clk/tegra/clk-tegra20.c
+> > > >> b/drivers/clk/tegra/clk-tegra20.c index 551ef0cf0c9a..42f8150c6110
+> > > >> 100644
+> > > >> --- a/drivers/clk/tegra/clk-tegra20.c
+> > > >> +++ b/drivers/clk/tegra/clk-tegra20.c
+> > > >> @@ -1043,6 +1043,7 @@ static struct tegra_clk_init_table init_tabl=
+e[]
+> > > >> =3D {
+> > > >>=20
+> > > >>    { TEGRA20_CLK_GR3D, TEGRA20_CLK_PLL_C, 300000000, 0 },
+> > > >>    { TEGRA20_CLK_VDE, TEGRA20_CLK_PLL_C, 300000000, 0 },
+> > > >>    { TEGRA20_CLK_PWM, TEGRA20_CLK_PLL_P, 48000000, 0 },
+> > > >>=20
+> > > >> +  { TEGRA20_CLK_CSUS, TEGRA20_CLK_CLK_MAX, 6000000, 1 },
+> > > >>=20
+> > > >>    /* must be the last entry */
+> > > >>    { TEGRA20_CLK_CLK_MAX, TEGRA20_CLK_CLK_MAX, 0, 0 },
+> > > >> =20
+> > > >>  };
+> > > >>=20
+> > > >> diff --git a/drivers/clk/tegra/clk-tegra30.c
+> > > >> b/drivers/clk/tegra/clk-tegra30.c index 82a8cb9545eb..70e85e2949e0
+> > > >> 100644
+> > > >> --- a/drivers/clk/tegra/clk-tegra30.c
+> > > >> +++ b/drivers/clk/tegra/clk-tegra30.c
+> > > >> @@ -1237,6 +1237,7 @@ static struct tegra_clk_init_table init_tabl=
+e[]
+> > > >> =3D {
+> > > >>=20
+> > > >>    { TEGRA30_CLK_HDA, TEGRA30_CLK_PLL_P, 102000000, 0 },
+> > > >>    { TEGRA30_CLK_HDA2CODEC_2X, TEGRA30_CLK_PLL_P, 48000000, 0 },
+> > > >>    { TEGRA30_CLK_PWM, TEGRA30_CLK_PLL_P, 48000000, 0 },
+> > > >>=20
+> > > >> +  { TEGRA30_CLK_CSUS, TEGRA30_CLK_CLK_MAX, 6000000, 1 },
+> > > >>=20
+> > > >>    /* must be the last entry */
+> > > >>    { TEGRA30_CLK_CLK_MAX, TEGRA30_CLK_CLK_MAX, 0, 0 },
+> > > >> =20
+> > > >>  };
+> > > >
+> > > >I looked into what this clock does and it seems to be a gate for the
+> > > >CSUS
+> > > >pin, which provides an output clock for camera sensors (VI MCLK).
+> > > >Default
+> > > >source seems to be PLLC_OUT1. It would be good to note that on the
+> > > >commit
+> > > >message, as I can't find any documentation about the CSUS clock
+> > > >elsewhere.
+> > > >
+> > > >What is the 6MHz rate based on?
+> > >=20
+> > > 6mhz is the statistic value which I was not able to alter while testi=
+ng.
+> > > I
+> > > have tried 12mhz and 24mhz too but it remained 6mhz, so I left it 6mh=
+z.
+> > >=20
+> > > >Since this seems to be a clock consumed by the sensor, it seems to m=
+e
+> > > >that
+> > > >rather than making it always on, we could point to it in the sensor'=
+s
+> > > >device tree entry.
+> > >=20
+> > > Sensor device tree uses vi_sensor as clocks source and sensor drivers
+> > > don't
+> > > support multiple linked clocks.
+> >=20
+> > AIUI vi_sensor is an internal clock so the sensor cannot be receiving i=
+t
+> > directly. Perhaps the sensor is actually connected to csus, and the rea=
+son
+> > we need to enable it is to allow the vi_sensor clock to pass through th=
+e
+> > csus gate?
+> >=20
+> > That leaves the question of why the csus pad would be muxed to vi_senso=
+r
+> > by
+> > default, but perhaps there's an explanation for that.
+>=20
+> From downstream T30 sources csus and vi_sensor are always called in
+> pair (6MHz csus and 24MHz for vi_sensor), naturally I assumed that
+> latter is used as camera reference clock since most sensors has
+> reference clock around 24 MHz
 
-Add code to support MT8196 SOC Multi MMSYS Driver
+It's possible that the csus pad is still outputting 24MHz. The pinmux optio=
+ns=20
+for the csus pad are various clocks, so it would seem logical that the cloc=
+k=20
+source for the pad is one of those clocks. However, on the clock framework=
+=20
+side, the csus clock is just a gate. What I'm confused about is that since =
+on=20
+the clock framework side the parent of csus is currently set to clk_m, I do=
+n't=20
+know why setting the rate of csus would affect the output of the pad, given=
+=20
+clk_m is not one of the options for the pinmux.
 
-Signed-off-by: Nancy Lin <nancy.lin@mediatek.com>
-Signed-off-by: Paul-pl Chen <paul-pl.chen@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_drm_drv.c | 119 ++++++++++++++++++++++++-
- 1 file changed, 115 insertions(+), 4 deletions(-)
+It's be good to verify the register value for the csus pinmux to see where =
+it=20
+thinks the clock is coming from, and then check how that matches with what =
+we=20
+are seeing.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 13fceb0389cb..1cd37052e47c 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -192,6 +192,10 @@ static const struct mtk_drm_route mt8188_mtk_ddp_main_routes[] = {
- 	{0, DDP_COMPONENT_DSI0},
- };
- 
-+static const struct mtk_drm_route mt8196_mtk_ddp_routes[] = {
-+	{2, DDP_COMPONENT_DSI0},
-+};
-+
- static const unsigned int mt8192_mtk_ddp_main[] = {
- 	DDP_COMPONENT_OVL0,
- 	DDP_COMPONENT_OVL_2L0,
-@@ -230,6 +234,50 @@ static const unsigned int mt8195_mtk_ddp_ext[] = {
- 	DDP_COMPONENT_DP_INTF1,
- };
- 
-+static const unsigned int mt8196_mtk_ddp_ovl0_main[] = {
-+	DDP_COMPONENT_DRM_OVLSYS_ADAPTOR0,
-+	DDP_COMPONENT_OVL0_DLO_ASYNC5,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp0_main[] = {
-+	DDP_COMPONENT_DLI_ASYNC0,
-+	DDP_COMPONENT_DLO_ASYNC1,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp1_main[] = {
-+	DDP_COMPONENT_DLI_ASYNC21,
-+	DDP_COMPONENT_DVO0,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_ovl0_ext[] = {
-+	DDP_COMPONENT_DRM_OVLSYS_ADAPTOR1,
-+	DDP_COMPONENT_OVL0_DLO_ASYNC6,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp0_ext[] = {
-+	DDP_COMPONENT_DLI_ASYNC1,
-+	DDP_COMPONENT_DLO_ASYNC2,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp1_ext[] = {
-+	DDP_COMPONENT_DLI_ASYNC22,
-+	DDP_COMPONENT_DP_INTF0,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_ovl1_third[] = {
-+	DDP_COMPONENT_DRM_OVLSYS_ADAPTOR2,
-+	DDP_COMPONENT_OVL1_DLO_ASYNC5,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp0_third[] = {
-+	DDP_COMPONENT_DLI_ASYNC8,
-+	DDP_COMPONENT_DLO_ASYNC3,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp1_third[] = {
-+	DDP_COMPONENT_DLI_ASYNC23,
-+};
-+
- static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data = {
- 	.main_path = mt2701_mtk_ddp_main,
- 	.main_len = ARRAY_SIZE(mt2701_mtk_ddp_main),
-@@ -326,8 +374,65 @@ static const struct mtk_mmsys_driver_data mt8195_vdosys1_driver_data = {
- 	.min_height = 1,
- };
- 
--static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data = {
--	.mmsys_dev_num = 1,
-+static const struct mtk_mmsys_driver_data mt8196_dispsys0_driver_data = {
-+	.main_path = mt8196_mtk_ddp_disp0_main,
-+	.main_len = ARRAY_SIZE(mt8196_mtk_ddp_disp0_main),
-+	.main_order = 1,
-+	.ext_path = mt8196_mtk_ddp_disp0_ext,
-+	.ext_len = ARRAY_SIZE(mt8196_mtk_ddp_disp0_ext),
-+	.ext_order = 1,
-+	.third_path = mt8196_mtk_ddp_disp0_third,
-+	.third_len = ARRAY_SIZE(mt8196_mtk_ddp_disp0_third),
-+	.third_order = 1,
-+	.mmsys_id = DISPSYS0,
-+	.mmsys_dev_num = 4,
-+	.max_width = 8191,
-+	.min_width = 2, /* 2-pixel align when ethdr is bypassed */
-+	.min_height = 1,
-+};
-+
-+static const struct mtk_mmsys_driver_data mt8196_dispsys1_driver_data = {
-+	.main_path = mt8196_mtk_ddp_disp1_main,
-+	.main_len = ARRAY_SIZE(mt8196_mtk_ddp_disp1_main),
-+	.main_order = 2,
-+	.ext_path = mt8196_mtk_ddp_disp1_ext,
-+	.ext_len = ARRAY_SIZE(mt8196_mtk_ddp_disp1_ext),
-+	.ext_order = 2,
-+	.third_path = mt8196_mtk_ddp_disp1_third,
-+	.third_len = ARRAY_SIZE(mt8196_mtk_ddp_disp1_third),
-+	.conn_routes = mt8196_mtk_ddp_routes,
-+	.num_conn_routes = ARRAY_SIZE(mt8196_mtk_ddp_routes),
-+	.third_order = 2,
-+	.mmsys_id = DISPSYS1,
-+	.mmsys_dev_num = 4,
-+	.max_width = 8191,
-+	.min_width = 2, /* 2-pixel align when ethdr is bypassed */
-+	.min_height = 1,
-+};
-+
-+static const struct mtk_mmsys_driver_data mt8196_ovlsys0_driver_data = {
-+	.main_path = mt8196_mtk_ddp_ovl0_main,
-+	.main_len = ARRAY_SIZE(mt8196_mtk_ddp_ovl0_main),
-+	.main_order = 0,
-+	.ext_path = mt8196_mtk_ddp_ovl0_ext,
-+	.ext_len = ARRAY_SIZE(mt8196_mtk_ddp_ovl0_ext),
-+	.ext_order = 0,
-+	.mmsys_id = OVLSYS0,
-+	.mmsys_dev_num = 4,
-+	.max_width = 8191,
-+	.min_width = 2, /* 2-pixel align when ethdr is bypassed */
-+	.min_height = 1,
-+};
-+
-+static const struct mtk_mmsys_driver_data mt8196_ovlsys1_driver_data = {
-+	.third_path = mt8196_mtk_ddp_ovl1_third,
-+	.third_len = ARRAY_SIZE(mt8196_mtk_ddp_ovl1_third),
-+	.third_order = 0,
-+	.mmsys_id = OVLSYS1,
-+	.mmsys_dev_num = 4,
-+	.max_width = 8191,
-+	.min_width = 2, /* 2-pixel align when ethdr is bypassed */
-+	.min_height = 1,
- };
- 
- static const struct of_device_id mtk_drm_of_ids[] = {
-@@ -357,8 +462,14 @@ static const struct of_device_id mtk_drm_of_ids[] = {
- 	  .data = &mt8195_vdosys0_driver_data},
- 	{ .compatible = "mediatek,mt8195-vdosys1",
- 	  .data = &mt8195_vdosys1_driver_data},
--	{ .compatible = "mediatek,mt8365-mmsys",
--	  .data = &mt8365_mmsys_driver_data},
-+	{ .compatible = "mediatek,mt8196-dispsys0",
-+	  .data = &mt8196_dispsys0_driver_data},
-+	{ .compatible = "mediatek,mt8196-dispsys1",
-+	  .data = &mt8196_dispsys1_driver_data},
-+	{ .compatible = "mediatek,mt8196-ovlsys0",
-+	  .data = &mt8196_ovlsys0_driver_data},
-+	{ .compatible = "mediatek,mt8196-ovlsys1",
-+	  .data = &mt8196_ovlsys1_driver_data},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, mtk_drm_of_ids);
--- 
-2.45.2
+>=20
+> > > >Cheers,
+> > > >Mikko
+
+
+
 
 
