@@ -1,237 +1,183 @@
-Return-Path: <devicetree+bounces-210103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DEB9B3A397
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 17:10:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D079B3A3FB
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 17:18:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6497516CC1C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:06:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1040317B866
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 15:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5910252906;
-	Thu, 28 Aug 2025 15:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8FA421FF3F;
+	Thu, 28 Aug 2025 15:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="I6lcCzoS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="E+xFESxd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11976225403;
-	Thu, 28 Aug 2025 15:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4263A21C9EA
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 15:16:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756393565; cv=none; b=PX/KIjR+nwIC0YLvSDvEQl1uFhRTckp4aesZNAkmFX3eeu3ff6mptkIXh9kdutFLgNuEBkGzH/c32/oEWvrrGb15/BrndQXkmb1nCd7o9r9nh59l4kxNAPt/79vNZ7Iugzpj/dXXsu2zHP++iuy/lZkTIjvI83afCLz7Nd+rplo=
+	t=1756394163; cv=none; b=bz4TR8BQJW8ZMZ8fwTZWnCerkUVlP9JmZrPUJ6eEOfCknlgmaPE4nUJfDPnEBGkAJ8Zl/xsgS8f6ReDhd4xisPKLD7D2p612xKAlfzSLLKofMfq482OarR9ycu02LZw3mertYEg4T6HIIt5gtc9kLmSjA+y7H1o6HbH/mwncsvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756393565; c=relaxed/simple;
-	bh=QieCTB2OhbUlJkE8rHEy8bcwtp8tKNwQnc/vFJ8K6Ec=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lqD2Vbj4rriJh2kLmL5TpKRLTXAn4iU8u/al7uwg1kI9gfvAzf1u6iSFShzjSYF22CzSeSusUq632OkERZC2hvf0XJTON/jUlQIoAMHtanjLJhR5Vbg4RO9k3AwY9cV+LVX837QBts53u1vhEOYN042rSBZHGLrrQx50MCbfZAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=I6lcCzoS; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57SEHAxn008289;
-	Thu, 28 Aug 2025 15:05:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	s=arc-20240116; t=1756394163; c=relaxed/simple;
+	bh=URRU48cWWZKXWYFt8cB99iHFjpEreIFbVOTSGj9tHNo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U8mP2wKfrXz3ghGMMTavXuuDPSM+CoiGU74X9sXNdzfYggk/bXqAyfBFTfasbslmYN6lTJ1HhOJNL+5bhT59EReEk0szaKAZaE8lgJX3KfxcSmbbal77yu8+F/uQ7GfeKI+HRkR/F1pYYuSozX4CMFbPLRjd3wSsLWDaKMeNwHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=E+xFESxd; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57S9Sb0A005837
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 15:16:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=biXblON8ETT4KHt6o4R3rVwb
-	juE6EvQAQ5kHB7tyfF8=; b=I6lcCzoSX5IH+GUBZ0dxBtAOTV+96mJ2X7fFbk+I
-	9+quOM54pnlasCz3jONJADzP46QcathKDg6SDAAraT6XyFi5SWjJEam4JKQi3EnG
-	Nx8MFMeV8AtTEl7SLfW3AHgqbRoKvRco+0tP4ciovSSoZ468e0p38PhBdOx91cQV
-	4IgoJT4drq7Fk/PHx9GqyhFVi7G4ziAlufelocq7hWfeUxo2Rc4AP93/MJRhHEFw
-	XAC/x+HhiKKwh6hUgIqea5VR6cGkxEGOIoVnHs+1qTGtm5aSPBd/b1ZVOCzibXrc
-	I97aEHuGlyy3Uccf1kcBwZoRS+Krr2+MxOKbtkOgyOlRew==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48sh8apvr9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Aug 2025 15:05:58 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57SF5vXp006115
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Aug 2025 15:05:57 GMT
-Received: from hu-mchunara-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.24; Thu, 28 Aug 2025 08:05:51 -0700
-Date: Thu, 28 Aug 2025 20:35:47 +0530
-From: Monish Chunara <quic_mchunara@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
-        Ulf Hansson
-	<ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
+	:references:subject:to; s=qcppdkim1; bh=baDCJN4Ix+gOwGahkROrbNwU
+	3+styHRf+7rMYdXAkDA=; b=E+xFESxdnnEimTHToxuR/9tA8PbNJaiQUx+qdK9V
+	je7HYh6Yz2wxNfi+ENxmD85DkfWW1Ujm0SWws9G8YvBSeSJuGFXBK+7gcVHkFDx/
+	D6Zi6tKtmOKkjlOQ8WC78/Ex7LnxC8PYY/nrUudmnU1QVOu3l865mND3Q+To30y4
+	GKwPTD16++l0TPHutiTTdigM4zjsl9L6/7mq99w0jvqEVEWs2Ib1RKtKs5Ia0wUI
+	MiT+ZELzLYOmhkPeAFXg8BhuGX7VOKTcUHP2QyZ4XcMts5J9+Kx5r0CZkv3MneNg
+	IhZrzoxpuCyEh4RQgC/cXcaxqZ+jI2rgv2wceCSx9P4tEA==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48tbpgjcdd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 15:16:00 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-771b23c098dso892386b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Aug 2025 08:16:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756394160; x=1756998960;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=baDCJN4Ix+gOwGahkROrbNwU3+styHRf+7rMYdXAkDA=;
+        b=LLIUwnb/dyTqP3cMq+walimicMYBC8YLHPpJhAWivhorIgQ0KkpHvn9KbpVGKb/BBZ
+         k8pi3ma4wn8wjxV7AZ3zTrzRntF3h4tjE8IdFUUknvioU6sj2OxBJDH9eU8IaYuKksMQ
+         hkjtxU/WRZqGRQ7HRQeAdWHaLxkSt2pzo9E8Ybm43IwPvFygK4dSDf/vW3lncvl2Av9p
+         w9pUtvqnQFWSgmZDCjYc1rh6EFpIfjFS7NFVWlF58hocLC4WjLZXm1sj2z2+r6sf/AK1
+         dzojpmBnYvUlR/edM4JWDgvFdmm4yEWl70EXDS7+aFMqwD+dvdwswwNGlttP9VV3Gs5N
+         nHKA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOgz5nGeZFJdbkupdHBQN+H55xZwhMxaEGKdEGwQVIFghLjAk93ZXm1Uuiuix3tnciHdh7JjAFm+Fq@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOh32KxddVoJlCp5ZpJCQsRFapSK5TwmRL/EeMleJ8g6ZCh54V
+	r4jRjRs8IBCZbookCK1d1pxcVYyQNWF1v1LspNNoY96RBnPq4CGqUnI3ZleGPds6ucEl4qw3eRV
+	lELBup+42Pxmog/aOivD0Yx7yRlGK8YBeitX/auKm8XXz9W++xx44RXl2tYGNcDhI
+X-Gm-Gg: ASbGnctF73ti3nnXDlSyirEHHV7/Ojah2IhL4f4JlCR8IUFxbdtkctzkD5zOdR+mb8m
+	EnjrMfb4FhXDBhBcdE8qPMksPMhM0KaRWMM9fvR2ogte05rCyFW6MTGxWznv7E6EwPviMJXRkdD
+	KCo7/MuxSvUp7GBLU2AAaO7zOv4+XnyaZCO1coIJ0YzGxRdikmFg+Id4ouRo96GY2iQNt9JzK5P
+	pAQjfFdO0EjvfTET6c5Xl/1SB1sq6mD9Uad5MFjsNy8VTA7dpn8V5DPVw+n96Ujeha+VQ8gtv1l
+	Dh5HGE9jpiR95oXDUcppyYLrsb0dVynafvtnI9mscSJrhByhPB9C+sS1N8OEj1xFsS8z
+X-Received: by 2002:a05:6a00:2d85:b0:772:a5c:6eea with SMTP id d2e1a72fcca58-7720a5c7183mr8959031b3a.17.1756394159435;
+        Thu, 28 Aug 2025 08:15:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEr+f+TmPKCG2a3iQClc3TLskdjaiUttLjb5wUJrFV04qdT1/xLcvX7ROCMwXEmiI50+eK2WA==
+X-Received: by 2002:a05:6a00:2d85:b0:772:a5c:6eea with SMTP id d2e1a72fcca58-7720a5c7183mr8958959b3a.17.1756394158822;
+        Thu, 28 Aug 2025 08:15:58 -0700 (PDT)
+Received: from hu-wasimn-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-770eb8b94efsm12551158b3a.40.2025.08.28.08.15.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Aug 2025 08:15:58 -0700 (PDT)
+Date: Thu, 28 Aug 2025 20:45:49 +0530
+From: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>,
-        "Richard
- Cochran" <richardcochran@gmail.com>,
-        <kernel@oss.qualcomm.com>, <linux-mmc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org,
         Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
         Sushrut Shree Trivedi <quic_sushruts@quicinc.com>,
-        Nirmesh Kumar Singh
-	<quic_nkumarsi@quicinc.com>,
-        Krishna Kurapati
-	<krishna.kurapati@oss.qualcomm.com>,
-        Mohd Ayaan Anwar
-	<quic_mohdayaa@quicinc.com>,
+        Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
+        Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>,
         Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Monish Chunara <quic_mchunara@quicinc.com>,
         Vishal Kumar Pal <quic_vispal@quicinc.com>
 Subject: Re: [PATCH 3/5] arm64: dts: qcom: lemans-evk: Extend peripheral and
  subsystem support
-Message-ID: <aLBwS6HgYVsIPndP@hu-mchunara-hyd.qualcomm.com>
+Message-ID: <aLBypYX9y4KPPSji@hu-wasimn-hyd.qualcomm.com>
 References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
  <20250826-lemans-evk-bu-v1-3-08016e0d3ce5@oss.qualcomm.com>
- <kycmxk3qag7uigoiitzcxcak22cewdv253fazgaidjcnzgzlkz@htrh22msxteq>
+ <bab2e05a-140f-460c-8c28-358e37727c6b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <kycmxk3qag7uigoiitzcxcak22cewdv253fazgaidjcnzgzlkz@htrh22msxteq>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=cLDgskeN c=1 sm=1 tr=0 ts=68b07056 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=V4FsjfOxsU99ilCI8qUA:9 a=CjuIK1q_8ugA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI2MDE1MyBTYWx0ZWRfXwYOXlmrtilfJ
- 4Y0UXfU5MCmn0fpEc5xeXLF0x9bYPGydmb+I6Gzr7AHqvD3FhKcN4BOe/DNxOhWlu4BZbSdPkBG
- 6eWdPngVShly1HzWha1khqjY6v8mVKPF/1V7EYOJ2WqJ7Z5fxlqF6QgTgMwIE2Tcpx/H39o/bqp
- G/+YToAlP9F/eZWkvE78xcmjsRIE4eBJS5tcrZlbAZ9hpHgHrJDN//n9MVFWZueBUnal1bGMWdy
- vI/b3Zs/cyGarRYncpIy7g0byvlgt6R84/Pwq6zL7gua+zg9K0BQG7xk86s3tuzTHL1+qgAPWs6
- 1oEtGZK2UcJq05lkSvw+iYXkILpgdfCXvGEkZexo+CXIMHTzsbXi9n4pXFDP3e9hU6z9UvcZRAq
- My9mPhUE
-X-Proofpoint-GUID: d2_0MgMrCmlOsK91PDoM1IzMTQCPVIar
-X-Proofpoint-ORIG-GUID: d2_0MgMrCmlOsK91PDoM1IzMTQCPVIar
+In-Reply-To: <bab2e05a-140f-460c-8c28-358e37727c6b@kernel.org>
+X-Proofpoint-GUID: CTJnVukQHe8RmiI9scK-QB_kvxY2eXGn
+X-Proofpoint-ORIG-GUID: CTJnVukQHe8RmiI9scK-QB_kvxY2eXGn
+X-Authority-Analysis: v=2.4 cv=G7gcE8k5 c=1 sm=1 tr=0 ts=68b072b1 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=2OwXVqhp2XgA:10 a=UXIAUNObAAAA:8 a=ogXbWB_6-ELqwvBGSFsA:9
+ a=CjuIK1q_8ugA:10 a=bFq2RbqkfqsA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+ a=a1s67YnXd6TbAZZNj1wK:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI3MDE5OSBTYWx0ZWRfX6hm7ho5Sev12
+ M6wukhBBUgLG4/PprwEG4Qea8rAr9EE62bSGTAM6hxGVYwKwbaAs32qXIJ+KX18DzoSesYomxii
+ qKm+9ua696g2guy0kpknmmLGTyLrq7aJZvjj/Cxa6TAXqea8+PCEr6GB4CI0jEr/zLA7JRZ0XSE
+ e4HJfXp7uw9cibvyl2EmjjxRbtg4Z0pnHVVEeTHKYlx8CQmbCPNUHcG/sGBvd9HqDuflEOkcfVA
+ 194Ru0dtl4e8CwxN9JqF7c8B4ArgIezoY3U0z2Uj+LDThjLLCb0syagNI8Chb8kiQlyd/QlnHMq
+ cUvyfGq67DVfJ8pnKnrIgze4DODR0Xc4h8LtfF2TNm3BH3NRFhkxY67Fyy/qKFpBv4A4vAoXWjJ
+ 5VHGp0WQ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-28_04,2025-08-28_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
- impostorscore=0 suspectscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508260153
+ malwarescore=0 phishscore=0 priorityscore=1501 adultscore=0 impostorscore=0
+ bulkscore=0 suspectscore=0 clxscore=1015 spamscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508270199
 
-On Wed, Aug 27, 2025 at 04:35:59AM +0300, Dmitry Baryshkov wrote:
-> On Tue, Aug 26, 2025 at 11:51:02PM +0530, Wasim Nazir wrote:
-> > Enhance the Qualcomm Lemans EVK board file to support essential
-> > peripherals and improve overall hardware capabilities, as
-> > outlined below:
-> >   - Enable GPI (Generic Peripheral Interface) DMA-0/1/2 and QUPv3-0/2
-> >     controllers to facilitate DMA and peripheral communication.
-> >   - Add support for PCIe-0/1, including required regulators and PHYs,
-> >     to enable high-speed external device connectivity.
-> >   - Integrate the TCA9534 I/O expander via I2C to provide 8 additional
-> >     GPIO lines for extended I/O functionality.
-> >   - Enable the USB0 controller in device mode to support USB peripheral
-> >     operations.
-> >   - Activate remoteproc subsystems for supported DSPs such as Audio DSP,
-> >     Compute DSP-0/1 and Generic DSP-0/1, along with their corresponding
-> >     firmware.
-> >   - Configure nvmem-layout on the I2C EEPROM to store data for Ethernet
-> >     and other consumers.
-> >   - Enable the QCA8081 2.5G Ethernet PHY on port-0 and expose the
-> >     Ethernet MAC address via nvmem for network configuration.
-> >     It depends on CONFIG_QCA808X_PHY to use QCA8081 PHY.
-> >   - Add support for the Iris video decoder, including the required
-> >     firmware, to enable video decoding capabilities.
-> >   - Enable SD-card slot on SDHC.
-> > 
-> > Co-developed-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-> > Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-> > Co-developed-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
-> > Signed-off-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
-> > Co-developed-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-> > Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-> > Co-developed-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> > Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> > Co-developed-by: Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>
-> > Signed-off-by: Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>
-> > Co-developed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> > Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> > Co-developed-by: Monish Chunara <quic_mchunara@quicinc.com>
-> > Signed-off-by: Monish Chunara <quic_mchunara@quicinc.com>
-> > Co-developed-by: Vishal Kumar Pal <quic_vispal@quicinc.com>
-> > Signed-off-by: Vishal Kumar Pal <quic_vispal@quicinc.com>
-> > Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/lemans-evk.dts | 387 ++++++++++++++++++++++++++++++++
-> >  1 file changed, 387 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-> > index 9e415012140b..642b66c4ad1e 100644
-> > --- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
-> > +++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-> > @@ -16,7 +16,10 @@ / {
-> >  	compatible = "qcom,lemans-evk", "qcom,qcs9100", "qcom,sa8775p";
-> >  
-> >  	aliases {
-> > +		ethernet0 = &ethernet0;
-> > +		mmc1 = &sdhc;
-> >  		serial0 = &uart10;
-> > +		serial1 = &uart17;
-> >  	};
-> >  
-> >  	chosen {
-> > @@ -46,6 +49,30 @@ edp1_connector_in: endpoint {
-> >  			};
-> >  		};
-> >  	};
+On Thu, Aug 28, 2025 at 08:56:07AM +0200, Krzysztof Kozlowski wrote:
+> On 26/08/2025 20:21, Wasim Nazir wrote:
 > > +
-> > +	vmmc_sdc: regulator-vmmc-sdc {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "vmmc_sdc";
+> > +&gpi_dma0 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&gpi_dma1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&gpi_dma2 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c18 {
+> > +	status = "okay";
+> > +
+> > +	expander0: pca953x@38 {
 > 
-> Non-switchable, always enabled?
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
 
-According to the hardware schematic, the VMMC supply to the SD card is connected
-to an always-on rail. Therefore, it remains continuously enabled and cannot be
-turned off via software.
+Ack.
 
 > 
-> > +
-> > +		regulator-min-microvolt = <2950000>;
-> > +		regulator-max-microvolt = <2950000>;
+> > +		compatible = "ti,tca9538";
+> > +		#gpio-cells = <2>;
+> > +		gpio-controller;
+> > +		reg = <0x38>;
 > > +	};
 > > +
-> > +	vreg_sdc: regulator-vreg-sdc {
-> > +		compatible = "regulator-gpio";
-> > +
-> > +		regulator-min-microvolt = <1800000>;
-> > +		regulator-max-microvolt = <2950000>;
-> > +		regulator-name = "vreg_sdc";
-> > +		regulator-type = "voltage";
 > 
-> This one also can not be disabled?
-
-This is a voltage translator regulator for the SD Card IO lines (vqmmc), so it
-can be at either of the 2 mentioned voltage levels : 1.8 V or 2.95 V, and cannot
-be disabled.
-
 > 
-> > +
-> > +		startup-delay-us = <100>;
-> > +
-> > +		gpios = <&expander1 7 GPIO_ACTIVE_HIGH>;
-> > +
-> > +		states = <1800000 0x1
-> > +			  2950000 0x0>;
-> > +	};
-> >  };
-> >  
+> 
+> Best regards,
+> Krzysztof
 
+-- 
 Regards,
-Monish
+Wasim
 
