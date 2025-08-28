@@ -1,143 +1,105 @@
-Return-Path: <devicetree+bounces-209975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26AA2B39B89
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:29:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B09EB39BA4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 13:35:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1ABD3B87CC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 11:29:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3507E681E49
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 11:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2DB82C2345;
-	Thu, 28 Aug 2025 11:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B3930C62D;
+	Thu, 28 Aug 2025 11:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fA/q1P5S"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jLcgiJry"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03D814A23;
-	Thu, 28 Aug 2025 11:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E543265298;
+	Thu, 28 Aug 2025 11:35:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756380574; cv=none; b=e/h42XXMImkNyvKltSzJnmT6mz8usBvP5ohGzv+qOrpafNG+7SoBq19jTdxPlhYVTiA9HctKSzIHlMIzRgmr+Ys3K67BM6hfJPLHHvFFrfvvEqFHsuXEqQYEmqzhrhMkxj6eX90pmVSnw8CXe5aIHQISD8udalaoUitJE6dUh6U=
+	t=1756380925; cv=none; b=X3DPVzmGTYInqb3FN9OKlq02Pl5qgUs0MBDx/i5KM6NN0GQ/tWtTnx7anDUg0gcNSuWhPn+flTz6JBxkWP2A/lx9AgD5r4RVeIh/fIA21WvQFsT8kAUBq3SWNcuzipUJgTD0VM7OHeBzzbL8337vdSqCqtJtYXjmMBnoZf/tl8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756380574; c=relaxed/simple;
-	bh=iuvgF5WKbVY5namh3+dkboRF2JUpsrqrZHsv4Tz1zpA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GM4/t2dMZ0+vUsA1ND/fJ503Q9+eggdRi9M6RFoxjOs2sOP7eko6hUY8gcSwBgUt/P/JiT8xT/9+lGX89i39pfQIDC5kwZst7U+qRfQZ691Gl1zQrVoIQ1E58hof80q2ESCyunsALcsQHILdFEvvY6KLyVLHHszJOpgYJlgBhPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fA/q1P5S; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45b7c01a8c1so3601865e9.2;
-        Thu, 28 Aug 2025 04:29:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756380571; x=1756985371; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8g5+Genpp4nyEm3piiPRUqdPxA645wi1NPlIMX5vuFg=;
-        b=fA/q1P5Sp0lXXIyVHMDtyRQvxaAcUULsLecdUikoMdoVQ5o8IBJA8DZT3jXrYcM8G1
-         iI/4gGRsLlvd/+jVXyQWFKHxa2Hz5S5bawbzlwTQwFvlox4eLvRSif/SJpla97Glh3vS
-         rFIPxIZ69l7dZscBCcrTKtN45942rQKC6QT/PrRFMw8fmxpq/Rh5jboKk4ZHXeS3QhhU
-         kbi0ntymswrbT7bArbzXhAg9KR0g+H08Smj2QY1/5mm0S8FGiUjM59D+i7+zMuin11sL
-         isFAkwQb99rc6/6u1Gw8HfHyz20nkYxtjVnpDnzydh94hXd29HeW0LCeFsv3ilM77COq
-         F3aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756380571; x=1756985371;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8g5+Genpp4nyEm3piiPRUqdPxA645wi1NPlIMX5vuFg=;
-        b=Hb8ZDE4RfKUEvHIhTcdz8Ex7IjBI8NqJS6ht69GnJJFiPQlADtAJU9y02BJx5ghWQr
-         8WPRoUrNv1GT8M+mTkYuHKR604XRVUL15HrzcibnyRvAeZMIhC8lSIDoXjhTwiTm2v/D
-         t/nRqVhEjjDB1iK/XFZfNXoWIcnv71iZOVY0VKi32wxO7OAiEt36VFO/VQoLTlMCQAEt
-         VgjClMWJtqFf2kTsrni73qSDY8jc38+FoK38upavKRn7Y3IfMquw22vNOktkj3Oi5heP
-         n9cNN4Lu9Rw+tUfcI6EeNQ5OOjhA7MnMVXc+HD9drhOHRLD8L5lnYnBTLOjh3dTWIj0R
-         Y7cA==
-X-Forwarded-Encrypted: i=1; AJvYcCVbYgkfu5RtZwQwoVnYIxopBCkMUhDxEvepj5tTMpECtc4M4mwb8lCF1mmy97PohWC7+mm9SOb/smA4NZo=@vger.kernel.org, AJvYcCX4EJiMPaF6vqRlFEWpUzUhg2vvlxmQH9ejuCNm6WtCNM0EQGT+irzlvcWQiSXJeuqDUsBwMFWZqy/v@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoBQO8cgUtLsusCTEGGjKo7hKNQbge20NUsPTeg60ktzHMqyYp
-	RjpAUihnSd4QiVzOiocY1X1tNZ7evQjRDViU0UMDh+ST8w73+I4T1b/0
-X-Gm-Gg: ASbGnctPID19hFqteSehZmjXIUVvVmvOj2Cdz+qSHcB+qgIbhHaZQPvRnpHs0uMGve5
-	iqNHUmm0eXISvE0F3M1jc3mY3+wVvFi13bDp5edSbQ2gXdVbM3d13RaupY1OdvOdmzjBaJe/FRJ
-	5j5ifsGcLIOPfRC5qZ7CCYXCL9inEX0RSy5lslNn3vru9TtT8f/qMFXxGYW6/oXfcWs7RTRFAJI
-	N9GZFJ7EsQ5JccsUyYxWmEDE2eJRn5drmxS+j8VYvOxFJxZ8xn3fU+GXrFuEqa7n+l3lGCH7zT7
-	jP9szGkp2pz5gtsAathtrxOHVMl2krM6qpad5XPKaocowDltUZX5NgV3sHYSNuqKB/JxGJcrn9P
-	B+rYSaq27hFswsZZignf6yw7UZJNeVOgYP88tAINcUkMFsLdQEwkoZnET7MzsFavXRZI9eED2Tc
-	6DkehF+noNpdDovw==
-X-Google-Smtp-Source: AGHT+IH7NtIhvwSLMCKqELZD2VmYXgP4iXCniiQSilhq2S7js3HFZ2s/7U39G9yO17ptiDevFBdx8g==
-X-Received: by 2002:a05:600c:3b23:b0:45b:47e1:f600 with SMTP id 5b1f17b1804b1-45b517dc59bmr200319745e9.36.1756380570880;
-        Thu, 28 Aug 2025 04:29:30 -0700 (PDT)
-Received: from localhost (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3cca0dd7014sm6888118f8f.13.2025.08.28.04.29.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Aug 2025 04:29:29 -0700 (PDT)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Sheetal <sheetal@nvidia.com>,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: power: Add power domain IDs for Tegra264
-Date: Thu, 28 Aug 2025 13:29:24 +0200
-Message-ID: <20250828112924.3773782-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.50.0
+	s=arc-20240116; t=1756380925; c=relaxed/simple;
+	bh=EutqmllJa5MrsJcHizOYbfflLsXSe5J90Zg6yyrLEbg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cQFFECKL0xZTwSKmorsuqKQq9T6G5MCDF65Zd0Frq7iPGj4BJNLs/qVJkBiWG/o2hKJd+g83lA7tmTkwb5ib5FJ6rsAloJYRA+eM+Z52u98QLp1pfrkM03IkqyctzP0X9LPZp7gk9GohS3aX89KdR+x/v0L9S4EWsuPPCIsmn7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jLcgiJry; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 55395C6B397;
+	Thu, 28 Aug 2025 11:35:05 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id A39BB60303;
+	Thu, 28 Aug 2025 11:35:19 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 59CBF1C22D2C9;
+	Thu, 28 Aug 2025 13:35:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1756380918; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=EutqmllJa5MrsJcHizOYbfflLsXSe5J90Zg6yyrLEbg=;
+	b=jLcgiJrykap+ru207xJFh2urzLO1xQe2+/GPo4Qabl32Z4hKdD+HaMvMTahlp7aeZnDtiz
+	xMaE0EBJ5IK5ACn+2oFXKKJCu9DR8tqB9zP1If0FmwuaOfQSH0L+03nl40g4V5hkLTVxVQ
+	W8Spy7wsHlDYGo5nwsZQiYHi3S+4b8sHsT/EzTipCSyfjPTYNvQctS6rgETJgBVPwBTRKu
+	qeNTvci61b0YoMIfszj0ZYw+beboq6sokM9KW31Hb+1MZ3p7YQS8FKwVkjD7IrE93U1Y/l
+	3qD0U3gQAwCc9d7+NFEpXBG5vmgCDSsiZ6HhPYhe/nHEFSgZLW3I2b9ssfx5eQ==
+Date: Thu, 28 Aug 2025 13:35:11 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Piotr Kubik <piotr.kubik@adtran.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v7 2/2] net: pse-pd: Add Si3474 PSE controller
+ driver
+Message-ID: <20250828133511.315176a9@kmaincent-XPS-13-7390>
+In-Reply-To: <9b72c8cd-c8d3-4053-9c80-671b9481d166@adtran.com>
+References: <6af537dc-8a52-4710-8a18-dcfbb911cf23@adtran.com>
+	<9b72c8cd-c8d3-4053-9c80-671b9481d166@adtran.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Thierry Reding <treding@nvidia.com>
+Le Tue, 26 Aug 2025 14:41:58 +0000,
+Piotr Kubik <piotr.kubik@adtran.com> a =C3=A9crit :
 
-Add the set of power domain IDs available on the Tegra264 SoC so that
-they can be used in device tree files.
+> From: Piotr Kubik <piotr.kubik@adtran.com>
+>=20
+> Add a driver for the Skyworks Si3474 I2C Power Sourcing Equipment
+> controller.
+>=20
+> Driver supports basic features of Si3474 IC:
+> - get port status,
+> - get port power,
+> - get port voltage,
+> - enable/disable port power.
+>=20
+> Only 4p configurations are supported at this moment.
+>=20
+> Signed-off-by: Piotr Kubik <piotr.kubik@adtran.com>
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
-Changes in v2:
-- remove _MAX definition since it isn't needed
+Reviewed-by: Kory Maincent <kory.maincent@bootlin.com>
 
- .../power/nvidia,tegra264-powergate.h         | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
- create mode 100644 include/dt-bindings/power/nvidia,tegra264-powergate.h
-
-diff --git a/include/dt-bindings/power/nvidia,tegra264-powergate.h b/include/dt-bindings/power/nvidia,tegra264-powergate.h
-new file mode 100644
-index 000000000000..1e2acd50c099
---- /dev/null
-+++ b/include/dt-bindings/power/nvidia,tegra264-powergate.h
-@@ -0,0 +1,24 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)  */
-+/* Copyright (c) 2022-2024, NVIDIA CORPORATION.  All rights reserved. */
-+
-+#ifndef DT_BINDINGS_POWER_NVIDIA_TEGRA264_H
-+#define DT_BINDINGS_POWER_NVIDIA_TEGRA264_H
-+
-+#define TEGRA264_POWER_DOMAIN_DISP	1
-+#define TEGRA264_POWER_DOMAIN_AUD	2
-+/* reserved 3:9 */
-+#define TEGRA264_POWER_DOMAIN_XUSB_SS	10
-+#define TEGRA264_POWER_DOMAIN_XUSB_DEV	11
-+#define TEGRA264_POWER_DOMAIN_XUSB_HOST	12
-+#define TEGRA264_POWER_DOMAIN_MGBE0	13
-+#define TEGRA264_POWER_DOMAIN_MGBE1	14
-+#define TEGRA264_POWER_DOMAIN_MGBE2	15
-+#define TEGRA264_POWER_DOMAIN_MGBE3	16
-+#define TEGRA264_POWER_DOMAIN_VI	17
-+#define TEGRA264_POWER_DOMAIN_VIC	18
-+#define TEGRA264_POWER_DOMAIN_ISP0	19
-+#define TEGRA264_POWER_DOMAIN_ISP1	20
-+#define TEGRA264_POWER_DOMAIN_PVA0	21
-+#define TEGRA264_POWER_DOMAIN_GPU	22
-+
-+#endif /* DT_BINDINGS_POWER_NVIDIA_TEGRA264_H */
--- 
-2.50.0
-
+Thank you!
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
