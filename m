@@ -1,114 +1,126 @@
-Return-Path: <devicetree+bounces-209982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-209983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6D2B39C23
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:04:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B2A3B39C27
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 14:05:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3D991C234B4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 12:05:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B062A189FB8A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 12:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DADF30E83A;
-	Thu, 28 Aug 2025 12:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D613930F808;
+	Thu, 28 Aug 2025 12:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GgWj1biV"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="dXfse24o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28130801;
-	Thu, 28 Aug 2025 12:04:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5919F30F54D;
+	Thu, 28 Aug 2025 12:04:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756382676; cv=none; b=svasUMaLBkn9ttiuRgQ37/SjPAvD2vSGrRWRp36i30W1u5kTs95Kdu2ERAhaaJIYOvBUVLmwBVGoPydj4A3VmYx4PY/XNpDprVNVG2TJ3mSMUlYpFlET3V+LT8gUKoAtsR35daa05G+WlWlSqLbyczT9SkGAb1o86QH+tnnZnmY=
+	t=1756382700; cv=none; b=GFfwaDO6Z7HAaKXNyocGXcNem48Sn6bwokQjN0SrGP2cYUThXR5Nc1bpDTTm8LYTRWVikhTSgfcoWBCHjsamlfopl8VK/5QmJqw6FNHjsey7WFFtRw4QWdAfc76Wygy2LUFKbkxiTyZHGLNGJc4kootcD0jCRzguODsnEqbGidM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756382676; c=relaxed/simple;
-	bh=ZG9u2u7bKZkymBcTx/Gt+AldiV9hwBFMAEDP2AObum4=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lXlPhOYSd4w4K2LNJuzJ67c5fMcaSmS2EqHfos5bc5I5TKACD2ffQ28da8Hy/KCUQRC7Tp0h5RgJvXFgcRYEYjUr1sWIXEon0XRS0RdO60DxDaVz0fgnHmaVTnDatPmn7U8xE5/2nc1sIDjufxZPOdb4rj94y2sNhkxafajvwJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GgWj1biV; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57SC45LF2000489;
-	Thu, 28 Aug 2025 07:04:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756382645;
-	bh=q9G+kMKaEAMkwP/BhuP5u5wT04WjwEoiyWlNSJLDnQU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=GgWj1biVWL5DARFBUTJ1hBxtBXfo2T79G/u/UAhrMbnweVzxOOV4nrh+tEQQefzR/
-	 xOaP6X4YMcaf+UA1EEXN8IPEgkD4SDIi5ZqSYmZdsqMCyN67TOZ2JWL1A/xOGoOZ4Z
-	 PuAxSJPguHW57k4Ln6vSzUAuAOl6ASwVG0c9CUjQ=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57SC45243444468
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 28 Aug 2025 07:04:05 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 28
- Aug 2025 07:04:04 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 28 Aug 2025 07:04:04 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57SC44W6298429;
-	Thu, 28 Aug 2025 07:04:04 -0500
-Date: Thu, 28 Aug 2025 07:04:04 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <huaqian.li@siemens.com>
-CC: <mani@kernel.org>, <arnd@arndb.de>, <baocheng.su@siemens.com>,
-        <bhelgaas@google.com>, <christophe.jaillet@wanadoo.fr>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <diogo.ivo@siemens.com>, <helgaas@kernel.org>,
-        <jan.kiszka@siemens.com>, <kristo@kernel.org>, <krzk+dt@kernel.org>,
-        <kw@linux.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <lkp@intel.com>, <lpieralisi@kernel.org>,
-        <oe-kbuild-all@lists.linux.dev>, <robh@kernel.org>,
-        <s-vadapalli@ti.com>, <ssantosh@kernel.org>, <vigneshr@ti.com>
-Subject: Re: [PATCH v12 0/7] soc: ti: Add and use PVU on K3-AM65 for DMA
-Message-ID: <20250828120404.dtg5n7owgsot6uzf@tightwad>
-References: <yhbjfg7dqx3xud75rhwlhq7ayqa4d6wrsan2j7ki7ri3uynpeu@hdv2o33x4hdn>
- <20250828112434.2310936-1-huaqian.li@siemens.com>
+	s=arc-20240116; t=1756382700; c=relaxed/simple;
+	bh=hui+EEJxD/vnvKdapGOPLoICemUL0PTzMfP7GQy58oY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dL+2JyGaS/BdnpLZfaaJ4I088fwj1SgJ/SoEMB94Juy3kYFYe391w0bPLJC9IPcksG+hE0W3lFY3y6ZnnTkZKmJw3lF14xtQ1mrRrbW6G+q/qDH05EgmuF4TC8U8O3msdxWGbf89PqigxnP/kiHcazDR7JymzesRgmoBhfy9B1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=dXfse24o; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=vPdymbaCqau+yaCWSCW4KLmPAF+HpjkM+g2fCUR5lNY=; b=dXfse24ojcLjDHCLcShxSynjgY
+	N3lUpTszTBimpfq/1btLaJ5GmD2APYQLHOXc4DgzbEXb/MrcIWlyZKL4lIS5mG2MbF9glnlRmfRhT
+	me0SSegWwB5BxdHbpsmlFCgvJy4VgoZkLTtUjvjksXVm1Y5lpTDUhCqGkrtdFHe3gcKFAoCpOFIJB
+	764/UBax1SXtRp8cspT1503G4cSGfPKToIyaS7joNn/ldwsScvHDynbipeCcaulw9057Sxg6kDz1q
+	h+pciZ0fW0BLrTeIMjqZoALd147RFdPQjJFZhWNZCYLVAIUIAbdZM+Dcpq+pna1EeX7feXmYmg3ih
+	kyFo7bBQ==;
+Received: from [185.205.242.134] (helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1urbMy-0005X1-Ex; Thu, 28 Aug 2025 14:04:44 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Hide Hako <opi5plus@bcc.bai.ne.jp>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org, Hide Hako <opi5plus@bcc.bai.ne.jp>
+Subject:
+ Re: [PATCH v2] arm64: dts: rockchip: Enables sound output from the audio jack
+ on OrangePI5 Plus
+Date: Thu, 28 Aug 2025 14:04:43 +0200
+Message-ID: <9820114.4vTCxPXJkl@phil>
+In-Reply-To: <20250826134456.9636-2-opi5plus@bcc.bai.ne.jp>
+References: <20250826134456.9636-2-opi5plus@bcc.bai.ne.jp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250828112434.2310936-1-huaqian.li@siemens.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 19:24-20250828, huaqian.li@siemens.com wrote:
-> Hi Mani,
-> 
-> Thanks for your offer to help with the patch series. Yes, let's proceed
-> with splitting the submission:
-> 
-> Please go ahead and take the dt-bindings through the PCI tree. That would
-> be helpful to get them established early.
-> 
-> Hi Arnd,
-> 
-> Could you please take care of the driver code with the cross-dependencies
-> through the arm-soc tree? The PCI controller driver has the API dependency
-> with the SoC driver as Mani pointed out. Could you let me know which specific
-> components of the series you would be willing to take?
+Hi Hide Hako,
 
-I assume you have seen my reply [1] - I don't intent to carry code
-that we don't at least build and let bitrot over time, and we do not
-want to enable non-essential drivers as "y" in arm64 defconfig (you can
-find enough references in the list on the topic).
+Am Dienstag, 26. August 2025, 15:44:57 Mitteleurop=C3=A4ische Sommerzeit sc=
+hrieb Hide Hako:
+> Currently, analog sound is not output from the audio jack.
+> This patch allows you to select analog headphones in alsamixer.
+> Works with kernel 6.16.1, but not 6.17-rc1.
+>=20
+> Points of concern:
+> 6.16.1 kernel with ubuntu 25.04 Setting -> Sound -> Output Device
+>  I select Speakers Built-in Audio, the sound will be output from the audi=
+o jack.
+>=20
+> Changes since v1:
+> - As pointed out by Jimmy, the file to be modified has been changed
+>   from rk3588-orangepi-5.dtsi to rk3588-orangepi-5-plus.dts.
 
-[1] https://lore.kernel.org/all/20250729162338.so7evngndnysg4ui@cinnamon/
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-https://ti.com/opensource
+All of what Maud said, but also I think this deserves some
+
+=46ixes: 236d225e1ee7 ("arm64: dts: rockchip: Add board device tree for rk3=
+588-orangepi-5-plus")
+
+tag + could do the subject as=20
+  "arm64: dts: rockchip: Fix sound output from the audio jack on OrangePI5 =
+Plus"
+
+because this really sounds like it fixes functionality to is supposed
+to be working :-)
+
+
+Thanks a lot
+Heiko
+
+> Signed-off-by: Hide Hako <opi5plus@bcc.bai.ne.jp>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/ar=
+ch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> index 121e4d1c3..44bb15951 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> @@ -78,6 +78,7 @@ &analog_sound {
+>  	pinctrl-0 =3D <&hp_detect>;
+>  	simple-audio-card,aux-devs =3D <&speaker_amp>, <&headphone_amp>;
+>  	simple-audio-card,hp-det-gpios =3D <&gpio1 RK_PD3 GPIO_ACTIVE_LOW>;
+> +	simple-audio-card,pin-switches =3D "Speaker", "Headphones";
+>  	simple-audio-card,widgets =3D
+>  		"Microphone", "Onboard Microphone",
+>  		"Microphone", "Microphone Jack",
+>=20
+
+
+
+
 
