@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-210154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6BBDB3A874
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 19:42:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6890FB3A897
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 19:47:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93F971890899
-	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 17:42:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 126403AC0E0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Aug 2025 17:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D861F21B9F1;
-	Thu, 28 Aug 2025 17:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44F832C337;
+	Thu, 28 Aug 2025 17:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RW739Xh4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nnb9zVDv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9766322DB3;
-	Thu, 28 Aug 2025 17:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42C33277A4;
+	Thu, 28 Aug 2025 17:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756402916; cv=none; b=P085f2jmjxlj+iO3QVbH3cwDkZxQUnQz6Rq7eTRNV72PnOG1NnTkZN1O3gXeM7RkxwRGK9KTCw/hSFgpHnkPn99u4Kn03VVDyas4iy583yhyoZe2Qhk+stZDLtvlTG6KdvA3vggEdm21rOQb/tDa58kcbOC6F8Ne7J0bgb3YXK8=
+	t=1756403221; cv=none; b=On+BEGhUoInlNcZ2o0fjv42NeQoBNZrAz967kEQjGrgGdstJAngKSIYMCxNbzZNnIaMVYt2ZyUmUp3o5E3ZBGdAZSlNzMXzCxD5lz9XfTH7p1u9mE05gM4OhXRWw4+QFjFB8jxd5vjz/r5nMIudAHOyrazD2ZhWN7dl0ym3fUBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756402916; c=relaxed/simple;
-	bh=2UYNXGDieoZ95XzWgQcQITQA1YLH3BH5DbxP1Zj3114=;
+	s=arc-20240116; t=1756403221; c=relaxed/simple;
+	bh=2JX7tSgJLW61q55pctHadBppSEilC51VA6QlhnLswIM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MfVgwCEQIJbFJxNyC5gytQhfFd/ceFdkcAqda8/TvBsXY8AEoHbYG197Mx9YJ7J6xt6KwJgtDXRypu+cm1k8Aio4yfH+nWXr/ilu/0wo1fyG1VQMtqLWxLllpWWw9PFKJyu7OJJlD7P4Rz3fBaEH2MGem23Ou8RGCRqzux3KmWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RW739Xh4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A73F2C4CEED;
-	Thu, 28 Aug 2025 17:41:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EnmEviyc/T8CMQm5iB0pNYTTr9CXyC/FQrjwkKQ9lCay7i2PEIAhZhnJAJ3Qrf3x9Sa7e30dOpj8Kdf9uR0vjaFOAWADi0nn/weRuWQNIg11Yh0fAk9TizlnLtZ8tgKqNoqmpD3FGd3thaq9AuIywF1dTMMSQqAqLkohRpFVZrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nnb9zVDv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2197EC4CEEB;
+	Thu, 28 Aug 2025 17:46:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756402916;
-	bh=2UYNXGDieoZ95XzWgQcQITQA1YLH3BH5DbxP1Zj3114=;
+	s=k20201202; t=1756403220;
+	bh=2JX7tSgJLW61q55pctHadBppSEilC51VA6QlhnLswIM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RW739Xh45IPUVSlytuo2cI/g6ty1WeKTa43IsX5pNsnTlRiajWRKe8HqSuOvuAxpA
-	 1OJEu8ifJu9nUT4nt0ImxMrEin+B8tnpZyv/NVFqP10AyLwsZbLHpu/9OROY1FEOeJ
-	 mzj+Dr5oQq8fJWGM8s/wSWyyXUF5/Ezg3YgR23V2G155hVkhJcaucoPam0J4GiWW6E
-	 O9bqepTC5qee2hbj1viB9int9r1EgtMZeLvW6+rTBnyg3A9zCNq9XV+TFnhxo01sZL
-	 rU2zRahnLXgxwDLqmJ5D5dIpXX71e4LToXulw3cgmg+35LMVxcQNZempMJhxqcDrys
-	 9YPdOKzq2RW/w==
-Message-ID: <c73b16e5-bc48-493d-a1a7-06b779a7a7ab@kernel.org>
-Date: Thu, 28 Aug 2025 19:41:50 +0200
+	b=nnb9zVDvViLmXtS7BibaXkG9jWjT2Zo6Qgp8/GK8padJW0jkqiG54Lf8TyuKwAsXx
+	 P5/uWOZPgZ8FMs38ZZrlFY2Ez8UOnkklzFdXT9MsB/HrCbZHWWER0EbvS7//GA3YY5
+	 iXfemu1i8KRJjBAdN6TSTFnEwxUdRCqwJzSxuFxh7+0JWWThZcljwB6LZBRPTqYksz
+	 fLxsDrZEQSw8lm5WfNbd5uTQ77Lh8do9+bxkLjXWhjqil8E2vMHaqrTEaIZSWc55mt
+	 YqVnmq+7dZ0Nkmsr/l3JFz/ssyz8zC/Aq8NJaOdyhoYZXbgpECYFyvXMwci5iZPmgR
+	 DAxAA0yFzHABA==
+Message-ID: <2b1eb8fd-2a64-4745-ad93-abc53d240b69@kernel.org>
+Date: Thu, 28 Aug 2025 19:46:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/4] ufs: dt-bindings: Document gear and rate limit
- properties
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>,
- Bart Van Assche <bvanassche@acm.org>, alim.akhtar@samsung.com,
- avri.altman@wdc.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mani@kernel.org, James.Bottomley@HansenPartnership.com,
- martin.petersen@oracle.com
-Cc: linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20250826150855.7725-1-quic_rdwivedi@quicinc.com>
- <20250826150855.7725-2-quic_rdwivedi@quicinc.com>
- <9944c595-da68-43c0-8364-6a8665a0fc3f@acm.org>
- <8d705694-498a-4592-b93a-7df6a1dd5211@quicinc.com>
+Subject: Re: [PATCH v1 5/5] riscv: dts: microchip: add a device tree for
+ Discovery Kit
+To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>,
+ conor.dooley@microchip.com, daire.mcnamara@microchip.com,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, robh@kernel.org,
+ krzk+dt@kernel.org, aou@eecs.berkeley.edu, alex@ghiti.fr
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250825161952.3902672-1-valentina.fernandezalanis@microchip.com>
+ <20250825161952.3902672-6-valentina.fernandezalanis@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,52 +105,185 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <8d705694-498a-4592-b93a-7df6a1dd5211@quicinc.com>
+In-Reply-To: <20250825161952.3902672-6-valentina.fernandezalanis@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28/08/2025 18:45, Ram Kumar Dwivedi wrote:
-> 
-> 
-> On 26-Aug-25 9:05 PM, Bart Van Assche wrote:
->> On 8/26/25 8:08 AM, Ram Kumar Dwivedi wrote:
->>> +  limit-hs-gear:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    minimum: 1
->>> +    maximum: 5
->>> +    default: 5
->>> +    description:
->>> +      Restricts the maximum HS gear used in both TX and RX directions,
->>> +      typically for hardware or power constraints in automotive use cases.
->>
->> The UFSHCI 5.0 spec will add gear 6 soon. So why to restrict the maximum
->> gear to 5?
->>
->>> +  limit-rate:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [1, 2]
->>> +    default: 2
->>> +    description:
->>> +      Restricts the UFS controller to Rate A (1) or Rate B (2) for both
->>> +      TX and RX directions, often required in automotive environments due
->>> +      to hardware limitations.
->>
->> As far as I know no numeric values are associated with these rates in
->> the UFSHCI 4.1 standard nor in any of the previous versions of this
->> standard. Does the .yaml syntax support something like "enum: [A, B]"?
-> Hi Bart,
-> 
-> As per the MIPI UniPro spec:
-> 
-> In Section 5.7.12.3.2, the hs_series is defined as:
-> hs_series = Flags[3] + 1;
-> 
-> In Section 5.7.7.1, Flags[3] is described as:
-> Set to ‘0’ for Series A and ‘1’ for Series B (PA_HSSeries).
+On 25/08/2025 18:19, Valentina Fernandez wrote:
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-disco-kit-fabric.dtsi
+> @@ -0,0 +1,58 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/* Copyright (c) 2020-2025 Microchip Technology Inc */
+> +
+> +/ {
+> +	core_pwm0: pwm@40000000 {
+> +		compatible = "microchip,corepwm-rtl-v4";
+> +		reg = <0x0 0x40000000 0x0 0xF0>;
+> +		microchip,sync-update-mask = /bits/ 32 <0>;
+> +		#pwm-cells = <3>;
+> +		clocks = <&ccc_sw CLK_CCC_PLL0_OUT3>;
+> +		status = "disabled";
+> +	};
+> +
+> +	i2c2: i2c@40000200 {
+> +		compatible = "microchip,corei2c-rtl-v7";
+> +		reg = <0x0 0x40000200 0x0 0x100>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		clocks = <&ccc_sw CLK_CCC_PLL0_OUT3>;
+> +		interrupt-parent = <&plic>;
+> +		interrupts = <122>;
+> +		clock-frequency = <100000>;
+> +		status = "disabled";
+> +	};
+> +
+> +	ihc: mailbox {
+> +		compatible = "microchip,sbi-ipc";
+> +		interrupt-parent = <&plic>;
+> +		interrupts = <180>, <179>, <178>, <177>;
+> +		interrupt-names = "hart-1", "hart-2", "hart-3", "hart-4";
+> +		#mbox-cells = <1>;
+> +		status = "disabled";
+> +	};
+> +
+> +	mailbox@50000000 {
+> +		compatible = "microchip,miv-ihc-rtl-v2";
+> +		microchip,ihc-chan-disabled-mask = /bits/ 16 <0>;
 
-That's register value. Why are you using values as argument of actual
-meaning of rates?
+Does not look like following DTS coding style - order of properties.
 
+> +		reg = <0x0 0x50000000 0x0 0x1c000>;
+> +		interrupt-parent = <&plic>;
+> +		interrupts = <180>, <179>, <178>, <177>;
+> +		interrupt-names = "hart-1", "hart-2", "hart-3", "hart-4";
+> +		#mbox-cells = <1>;
+> +		status = "disabled";
+> +	};
+> +
+> +	refclk_ccc: cccrefclk {
+
+Please use name for all fixed clocks which matches current format
+recommendation: 'clock-<freq>' (see also the pattern in the binding for
+any other options).
+
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml
+
+Or anything more reasonable than just bunch of letters.
+
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+
+
+> +	};
+> +};
+> +
+> +&ccc_sw {
+> +	clocks = <&refclk_ccc>, <&refclk_ccc>, <&refclk_ccc>, <&refclk_ccc>,
+> +		 <&refclk_ccc>, <&refclk_ccc>;
+> +	clock-names = "pll0_ref0", "pll0_ref1", "pll1_ref0", "pll1_ref1",
+> +		      "dll0_ref", "dll1_ref";
+> +	status = "okay";
+> +};
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts
+> new file mode 100644
+> index 000000000000..742369470ab0
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts
+> @@ -0,0 +1,191 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/* Copyright (c) 2020-2025 Microchip Technology Inc */
+> +
+> +/dts-v1/;
+> +
+> +#include "mpfs.dtsi"
+> +#include "mpfs-disco-kit-fabric.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	model = "Microchip PolarFire-SoC Discovery Kit";
+> +	compatible = "microchip,mpfs-disco-kit-reference-rtl-v2507",
+> +		     "microchip,mpfs-disco-kit",
+> +		     "microchip,mpfs";
+> +
+> +	aliases {
+> +		ethernet0 = &mac0;
+> +		serial4 = &mmuart4;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial4:115200n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-1 {
+> +			gpios = <&gpio2 17 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_AMBER>;
+> +			label = "led1";
+> +		};
+> +
+> +		led-2 {
+> +			gpios = <&gpio2 18 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_RED>;
+> +			label = "led2";
+> +		};
+> +
+> +		led-3 {
+> +			gpios = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_AMBER>;
+> +			label = "led3";
+> +		};
+> +
+> +		led-4 {
+> +			gpios = <&gpio2 20 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_RED>;
+> +			label = "led4";
+> +		};
+> +
+> +		led-5 {
+> +			gpios = <&gpio2 21 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_AMBER>;
+> +			label = "led5";
+> +		};
+> +
+> +		led-6 {
+> +			gpios = <&gpio2 22 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_RED>;
+> +			label = "led6";
+> +		};
+> +
+> +		led-7 {
+> +			gpios = <&gpio2 23 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_AMBER>;
+> +			label = "led7";
+> +		};
+> +
+> +		led-8 {
+> +			gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_RED>;
+> +			label = "led8";
+> +		};
+> +	};
+> +
+> +	ddrc_cache_lo: memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x80000000 0x0 0x40000000>;
+> +		status = "okay";
+
+Why? Did you disable it anywhere?
+
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		hss_payload: region@BFC00000 {
+
+Don't mix cases. Should be lowercase hex everywhere.
 
 Best regards,
 Krzysztof
