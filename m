@@ -1,153 +1,129 @@
-Return-Path: <devicetree+bounces-210334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28F73B3B4A9
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 09:48:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A38CFB3B4C9
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 09:54:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6ABC01C838DF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 07:49:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C493B983CBF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 07:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907EF2848B1;
-	Fri, 29 Aug 2025 07:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 134282857C2;
+	Fri, 29 Aug 2025 07:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SQqO4OtE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vRld4nrX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665FE23ABBD;
-	Fri, 29 Aug 2025 07:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D662628507E;
+	Fri, 29 Aug 2025 07:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756453722; cv=none; b=sukxrMaK6P10xReuZ/oJrzKEQx5pMCTd8sQv/XSCkYSfX3IynsBc41qv3Cqy3/6zyzTO5pO53vSxzOlDHTyiMJUxWJXiluW6/P5EWKkbFRxsBvRbplJBImDrBYgsI5iQHPCPe5tc2h5kGkeCVykjuvctoe/ZKj8jZCgxtLJ5iwg=
+	t=1756454027; cv=none; b=l0m7/bvBrIOBk+0hn5DRXCEbRaTukXSeYkT6KkMTYSBrUijqRx3fKapIjOhUs4rUfS9ydSv2HRLrPv7t5N32DRJexQVJj2zr+bfxtIbnlAeyw0pnaNchV/up6+X6fhwCTQvV+gS3Sw/1xdVbUB6p7wBzzOpSTcLVo3JXvrDU3ZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756453722; c=relaxed/simple;
-	bh=0A4rOapR7uxRXHkEuZV4upawq7r3HH5Hovvx4aG4VPg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=USGvjwo5MqHGWW+ve+/T5hmGbeuq1aYObxtcphx9M3Y1K4IODPXMhvhLiHtlmipzV2r+SMy4WSJK0Xr82wBUb+glIL3nezv/a5mzoYQU8skaMSJhLXoojkOkJOm7Vs6tHBArzq/F8jzbxisMBSgALCEStGlROtYfTFkZrWUYWVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SQqO4OtE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAAC0C4CEF0;
-	Fri, 29 Aug 2025 07:48:38 +0000 (UTC)
+	s=arc-20240116; t=1756454027; c=relaxed/simple;
+	bh=T08v851Q2crHdE5uCS95kO54ArUzsuo7GpEza0t3CRM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yi8zS+h8OBIBw6vBdEZCG5FzYgbBX2UEMVMtnOBjbeYb5d2gSnvKmcxjmvnfwUSt91ZAb5zalqeW531bGHpMIp7HQ8/ZPnGoZ8CrmH6nesojlGKEeUmr+iipRQQhGik/Cc1ESzXEKSx92huwUfO90EAlkf8y2PIgCyPDSPswgFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vRld4nrX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE117C4CEF0;
+	Fri, 29 Aug 2025 07:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756453721;
-	bh=0A4rOapR7uxRXHkEuZV4upawq7r3HH5Hovvx4aG4VPg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SQqO4OtE8f4SwGiAZn3jS8yZB90ojBHpKfK/SF/ZQejldqv91+Goeee04F854Ze3O
-	 e9akjtP+6gRKmRBhdD3NYYruWaMIW71XZD3ppS62yXLm0+ZTsAa/2J+ZTH7d2y9cM6
-	 AMt+XTjOPSEZ0NEgbk/gE7CB3Ny9MJQOg1LAhRzjwwiYPosU/S4KbMlGaOd1mwFYRS
-	 CIKq21gO1vrzkJfBHraSk2lxIs60Qt3hzPvbL719+8k9DdP4sMNwHZPuklmyauJtse
-	 o635uN88q6b/qoUzVfCeevMH+tIUZ/swjlDNcaXLUwsKikG99TMhOyxc/v7aVDUZkw
-	 yoYBTBH//YVJg==
-Message-ID: <45eec9b1-d4cd-470b-abcc-03a823f397b2@kernel.org>
-Date: Fri, 29 Aug 2025 09:48:37 +0200
+	s=k20201202; t=1756454026;
+	bh=T08v851Q2crHdE5uCS95kO54ArUzsuo7GpEza0t3CRM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vRld4nrX3VpK7Gv76nwsR16PaFiM0vmCCIUU1zJ1XeVJPa9EpH4YyrHKWvbLp6Rtj
+	 eWwpj9xjmEqG8CyUtY2tcHvqrdS4phxUBh/w0h3Ik8+s0X8/3uFWN4zd14LS/N9sLe
+	 kVoaGj4dp3Z14YR6CLFo7cma8GSI34LpZibVDOoOsO3v0INm69ZYtCPUW7FuP5jOv6
+	 YkNJD8uNn6QvLYLqo3DsYbeXCYyDjH8gEdnBD4lJvLHm+t1DcsTPqmZONwGFZKHs7c
+	 KOtEpfF+m5zUHeJXN37IKu8iOQ+pff0JdE5OyoZo5r1QTED/qwEALO2VGQtz82UxRl
+	 qQuZUrSr2k+hA==
+Date: Fri, 29 Aug 2025 09:53:43 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Nino Zhang <ninozhang001@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, vkoul@kernel.org, rahulbedarkar89@gmail.com, 
+	linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: dma: img-mdc-dma: convert to DT schema
+Message-ID: <20250829-peculiar-pug-of-argument-1bfec0@kuoka>
+References: <20250825074141.560141-1-ninozhang001@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/6] dt-bindings: soc: fsl: qe: Add support of IRQ in
- QE GPIO
-To: Christophe Leroy <christophe.leroy@csgroup.eu>,
- Qiang Zhao <qiang.zhao@nxp.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <cover.1756104334.git.christophe.leroy@csgroup.eu>
- <17636607f2beac3b64c87b3bec035fa27ce8d195.1756104334.git.christophe.leroy@csgroup.eu>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <17636607f2beac3b64c87b3bec035fa27ce8d195.1756104334.git.christophe.leroy@csgroup.eu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250825074141.560141-1-ninozhang001@gmail.com>
 
-On 25/08/2025 08:53, Christophe Leroy wrote:
-> In the QE, a few GPIOs are IRQ capable. Similarly to
-> commit 726bd223105c ("powerpc/8xx: Adding support of IRQ in MPC8xx
-> GPIO"), add IRQ support to QE GPIO.
+On Mon, Aug 25, 2025 at 03:41:41PM +0800, Nino Zhang wrote:
+> Convert the img-mdc-dma binding from txt to YAML schema.
+> No functional changes except dropping the consumer node
+> (spi@18100f00) from the example, which belongs to the
+> consumer binding instead.
 > 
-> Add property 'fsl,qe-gpio-irq-mask' similar to
-> 'fsl,cpm1-gpio-irq-mask' that define which of the GPIOs have IRQs.
+> Signed-off-by: Nino Zhang <ninozhang001@gmail.com>
+> ---
+> v2 -> v3:
+> - Fix remaining issues based on Rob's and Krzysztof's comments.
+
+That's vague. What exactly did you change?
+
+Especially that this is not true. You never responded to comments, never
+implemented them.
+
+> - Link to v2: https://lore.kernel.org/all/20250824034509.445743-1-ninozhang001@gmail.com/
 > 
-> Here is an exemple for port B of mpc8323 which has IRQs for
-> GPIOs PB7, PB9, PB25 and PB27.
+> v1 -> v2:
+> - Addressed review comments from Rob.
+> - Link to v1: https://lore.kernel.org/all/20250821150255.236884-1-ninozhang001@gmail.com/
 > 
-> 	qe_pio_b: gpio-controller@1418 {
-> 		compatible = "fsl,mpc8323-qe-pario-bank";
-> 		reg = <0x1418 0x18>;
-> 		interrupts = <4 5 6 7>;
-> 		interrupt-parent = <&qepic>;
-> 		gpio-controller;
-> 		#gpio-cells = <2>;
-> 		fsl,qe-gpio-irq-mask = <0x01400050>;
+>  .../bindings/dma/img,pistachio-mdc-dma.yaml   | 89 +++++++++++++++++++
+>  .../devicetree/bindings/dma/img-mdc-dma.txt   | 57 ------------
+>  2 files changed, 89 insertions(+), 57 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/img,pistachio-mdc-dma.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/dma/img-mdc-dma.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/img,pistachio-mdc-dma.yaml b/Documentation/devicetree/bindings/dma/img,pistachio-mdc-dma.yaml
+> new file mode 100644
+> index 000000000000..198e80b528c8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/img,pistachio-mdc-dma.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/img,pistachio-mdc-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: IMG Multi-threaded DMA Controller (MDC)
+> +
+> +maintainers:
+> +  - Rahul Bedarkar <rahulbedarkar89@gmail.com>
+> +  - linux-mips@vger.kernel.org
+> +
+> +allOf:
+> +  - $ref: /schemas/dma/dma-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: img,pistachio-mdc-dma
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 32
 
-We see this from the patch. No need to repeat the patch contents in the
-commit msg.
-
-
->  Example:
->  	qe_pio_a: gpio-controller@1400 {
-> @@ -42,6 +51,16 @@ Example:
->  		gpio-controller;
->  	  };
->  
-> +	qe_pio_b: gpio-controller@1418 {
-> +		#gpio-cells = <2>;
-> +		compatible = "fsl,mpc8323-qe-pario-bank";
-
-Please follow DTS coding style.
-
-
+Nothing improved, so with vague commit msg it means you just ignored my
+comment.
 
 Best regards,
 Krzysztof
+
 
