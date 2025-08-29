@@ -1,116 +1,235 @@
-Return-Path: <devicetree+bounces-210649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9AB6B3C4E4
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 00:33:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D452AB3C578
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 01:04:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93A6F3ACA72
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 22:33:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E651C189A6E6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 23:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4595626FDBB;
-	Fri, 29 Aug 2025 22:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFC8F35A2B6;
+	Fri, 29 Aug 2025 23:04:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mBNs5hfY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n40IqzHf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649992A1AA
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 22:33:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B676635A2B3;
+	Fri, 29 Aug 2025 23:04:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756506799; cv=none; b=Kifakd0trWTms0VoTWQuQx6Ad+8YnBwUhmJUH6rWBYJIBXnkDJiOkeUtCS3uX+Axytkc/taL5SuUZjOr0X1RYmJzZFMQ+HihDOvOKbhXtrdgkwG28iq9ltps+JCt/2WXkqMQi0xaf19l737BJ2g7GQTDoLLquKsJdfDf6kv6Zuw=
+	t=1756508687; cv=none; b=KPg+xXqmyX3AArzpq8XZ1mctFhW/Vj2ExSgW3ojnSwNfXqxqunqd79eWPNVL9OUCdhFMvpeGMGTgSJe0P9MJywPUYOjTm7SM6Opw9bvAfwES4EdM1p/xyDjdTbdk/fYPOmY+mywtngIIi+Bi/vDHuKJsRCexRP3y3hBIk3etiVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756506799; c=relaxed/simple;
-	bh=0wxY1cewY1ZvhfXpTsBk4/4b0JZP8Tsxj1w3A5Y71M4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Bhr1TxfrImU1Cqr2Rwpy0TTe62ISGzCX1d1wsQInPgzlhmjTVwoIHWYX5TgF3WsYoONJcOVBqTOM9pYdNIxW5Occ55MPU40If2z5cRnWzoSwTx8i0If+2GwXua5wzZh1salSUsdaXFYuNw2h/lFzk9nKmDJFzhb8UYUj2QFQCj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mBNs5hfY; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-55f6bb0a364so1137287e87.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 15:33:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756506795; x=1757111595; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0wxY1cewY1ZvhfXpTsBk4/4b0JZP8Tsxj1w3A5Y71M4=;
-        b=mBNs5hfYK7pq+Kxceuu7QUq19RuooOofxBlQzeNFRYnDSccW5GOSZ0z0F0d0tcrBeD
-         cLyaZdnVb3IBWK0dDSpKffWDKvbZ7MDKCllsx+/rRX+n8+qmeV1KW+lJ+9kEzL68UUBR
-         BOXL6fqf3q2Pz68tGDvI2fRG0bSO0k/TeBPk2yp7IAo+PJlbeQrv+y0YSNtlWB2U0a8G
-         hBKRvY4E2l4b8ruSGNFBogxRZLMpukNp+MR++UBDIOmlCto0Bhvr8M1j9Luy65iaLkOc
-         jZstn58d/HaayudmBxnrxzm4vCjV0CnNZTvZ4tV/sa0cHp+pe843Xo0NzhGD7DVMRfp+
-         5RJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756506795; x=1757111595;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0wxY1cewY1ZvhfXpTsBk4/4b0JZP8Tsxj1w3A5Y71M4=;
-        b=P0w8gxYAtSp+65wVOavLo01laSGt9wbtE3TKIy25RJ9k/ZM4P7aRq2RD5gGXWMxug0
-         AnDJgX9p5lX5l+7pg5PwlPtCX8YH6kuHucf1MvQONeWgFC1tmFZ1ygsYW68laeajwLcN
-         OYc0Ay9U4WWQ05cjRH6t/X9uxaECIpEw+IwRIxOymnUP3H0Oiz+uniSibW+iGFdiTXK9
-         8mIU/he27piA8GFfDpDl4ha1pfVI3WV9OjH0ZbZnyynne1ngdmhBptygavpkZp/d1Vtg
-         ZO1pSKEr1SUJ5ehvt+xqaJuEc6SVHmAiaUgZWsRMiywWIvsl0VBuBqLnsTS+O/X/PE0R
-         a82w==
-X-Forwarded-Encrypted: i=1; AJvYcCW1MK/UzIs8sgtod/2e6SHZdN5xseKBDKcgAQmh04fcg70U0J0LjWe3JkN5Lql2etBya8cSV52m/Qq+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMxQCzVXi3u6/BH2COXlWiFstn7mG5p4yLBB8ELwZVmYoo7DF5
-	KOoUnEkQYVCtF2wjDjugnyqmY2axGcEe/XxY6gnydZIJeRz9HL0/3HwmnQohPpx+AQgxod051mG
-	nuunmR+ZFEKsBTDfnOqcTFHju3zHSlHnkRI2i1m64DQ==
-X-Gm-Gg: ASbGnct4s9WK2NlsMZ7+KzVXRPbODNsbsVSAThIf+JZFj3B+Q35zT3XhKCxCzm7pHyG
-	JvlTPfRLzCqkmuzBmmPpXHV73TB2tjiHieJAzS+a4di35WsTAqIk5Gy/NekQtNc+PI/qAPfKWrE
-	sX8yFQxXksSNJOOBEUoDbPqV02NNBHKrTamOfl9v7Jj9qu7GondlAwjB9OSJkSl3FOKmia0DBD9
-	k5hFJ28Xa00tXk3bA==
-X-Google-Smtp-Source: AGHT+IENJM3W17UfBxfWGD1X5J/SIfSe06hqmxkOMnpEu6fQZ9gf/LIwxzd5H/mcgzry4Ih0SpbYIZZoLdjS+5OjaVc=
-X-Received: by 2002:ac2:4e0a:0:b0:55b:8aa7:4c1e with SMTP id
- 2adb3069b0e04-55f709889famr48796e87.53.1756506795467; Fri, 29 Aug 2025
- 15:33:15 -0700 (PDT)
+	s=arc-20240116; t=1756508687; c=relaxed/simple;
+	bh=lVy0nGCp4W9LsUGnCrLcZC8nGhc9aZD0sfWzO1ugqb0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sOCw+GVbpKbfOwllbDbrVIf4MqjVz8ugZG83PNBrlDQJXoS4J5YDgxO3U48mJmEb+Q3R+pzaqZ55nEgjXqGvhwBKyiDRsEnvI6K7M261kRuO1UuI4NwSiRFoXpefe40C+tixTdKpCS1bcZkoG+3syMRxwEUOESdh5EhabCTBd2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n40IqzHf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12622C4CEF0;
+	Fri, 29 Aug 2025 23:04:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756508687;
+	bh=lVy0nGCp4W9LsUGnCrLcZC8nGhc9aZD0sfWzO1ugqb0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=n40IqzHf8NlGH+zlDQkwIjiMqxccwyPOgUi2Gb97TUhyJ0HxLOqJBAgDX/+Ruqrn2
+	 VGsGBVNI6hYorMB0LNfKslKl/xi6j1aEkFz5hRGbFm1MrZiPpLVNItHg7mVbW0Uuom
+	 yLXEkP8LY3BW/7XulqzHf4v6FbZy0xC4EHYRm0roxM3lCLz2QweX9EQVMczT6uTnXg
+	 IXL0w2yvzWfotuDdrbCoAYa3kw44y185fDNL3IbiY6+EDuqEwNL3xyOuZ9D+IXFzVQ
+	 wjvPjr8hfrAFVbxIiPjqDb13MgyUy2G318dovaYNXLWqU/hs5XByEtw7hU89n2o3/w
+	 V0EV0ZL8fXwhg==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Joel Stanley <joel@jms.id.au>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Lee Jones <lee@kernel.org>
+Cc: linux-aspeed@lists.ozlabs.org,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: gpu: Convert aspeed,ast2400-gfx to DT schema
+Date: Fri, 29 Aug 2025 18:04:40 -0500
+Message-ID: <20250829230442.1495926-1-robh@kernel.org>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250812203348.733749-1-robh@kernel.org>
-In-Reply-To: <20250812203348.733749-1-robh@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sat, 30 Aug 2025 00:33:04 +0200
-X-Gm-Features: Ac12FXzWrFcRGoOx38Qv15P8o1KozyPxEQDiElCEqh5pWjzn0dOAl2Zk_kHqKx0
-Message-ID: <CACRpkdb4TFRReKSNadeJKy29XC1qGGOO=H0G8WLZjB9D9FjTbQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: Convert brcm,iproc-gpio to DT schema
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Aug 12, 2025 at 10:33=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org=
-> wrote:
+Convert the ASpeed GFX Display Controller binding to DT schema format.
+There was a duplicate, incomplete binding in mfd which can be dropped.
 
-> Convert the Broadcom iProc/Cygnus GPIO/Pinconf binding to DT schema
-> format.
->
-> The child node structure is based on the example as there's not any
-> actual .dts files with child nodes.
->
-> The binding wasn't clear that "reg" can be 1 or 2 entries. The number of
-> "reg" entries doesn't appear to be based on compatible, so no per
-> compatible constraints for it
->
-> The "brcm,iproc-stingray-gpio" could possibly be dropped. There are no
-> .dts files using it, but the driver uses it.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/gpu/aspeed,ast2400-gfx.yaml      | 58 +++++++++++++++++++
+ .../devicetree/bindings/gpu/aspeed-gfx.txt    | 41 -------------
+ .../devicetree/bindings/mfd/aspeed-gfx.txt    | 17 ------
+ MAINTAINERS                                   |  2 +-
+ 4 files changed, 59 insertions(+), 59 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpu/aspeed,ast2400-gfx.yaml
+ delete mode 100644 Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
+ delete mode 100644 Documentation/devicetree/bindings/mfd/aspeed-gfx.txt
 
-Patch applied.
+diff --git a/Documentation/devicetree/bindings/gpu/aspeed,ast2400-gfx.yaml b/Documentation/devicetree/bindings/gpu/aspeed,ast2400-gfx.yaml
+new file mode 100644
+index 000000000000..77ec5ad10ac6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpu/aspeed,ast2400-gfx.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpu/aspeed,ast2400-gfx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ASPEED GFX Display Controller
++
++maintainers:
++  - Joel Stanley <joel@jms.id.au>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - aspeed,ast2500-gfx
++          - aspeed,ast2400-gfx
++      - const: syscon
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  memory-region:
++    maxItems: 1
++    description:
++      a reserved-memory region to use for the framebuffer.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++  - memory-region
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/aspeed-clock.h>
++
++    display@1e6e6000 {
++        compatible = "aspeed,ast2500-gfx", "syscon";
++        reg = <0x1e6e6000 0x1000>;
++        clocks = <&syscon ASPEED_CLK_GATE_D1CLK>;
++        resets = <&syscon ASPEED_RESET_CRT1>;
++        interrupts = <0x19>;
++        memory-region = <&gfx_memory>;
++    };
+diff --git a/Documentation/devicetree/bindings/gpu/aspeed-gfx.txt b/Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
+deleted file mode 100644
+index 958bdf962339..000000000000
+--- a/Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-Device tree configuration for the GFX display device on the ASPEED SoCs
+-
+-Required properties:
+-  - compatible
+-    * Must be one of the following:
+-      + aspeed,ast2500-gfx
+-      + aspeed,ast2400-gfx
+-    * In addition, the ASPEED pinctrl bindings require the 'syscon' property to
+-      be present
+-
+-  - reg: Physical base address and length of the GFX registers
+-
+-  - interrupts: interrupt number for the GFX device
+-
+-  - clocks: clock number used to generate the pixel clock
+-
+-  - resets: reset line that must be released to use the GFX device
+-
+-  - memory-region:
+-    Phandle to a memory region to allocate from, as defined in
+-    Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+-
+-
+-Example:
+-
+-gfx: display@1e6e6000 {
+-	compatible = "aspeed,ast2500-gfx", "syscon";
+-	reg = <0x1e6e6000 0x1000>;
+-	reg-io-width = <4>;
+-	clocks = <&syscon ASPEED_CLK_GATE_D1CLK>;
+-	resets = <&syscon ASPEED_RESET_CRT1>;
+-	interrupts = <0x19>;
+-	memory-region = <&gfx_memory>;
+-};
+-
+-gfx_memory: framebuffer {
+-	size = <0x01000000>;
+-	alignment = <0x01000000>;
+-	compatible = "shared-dma-pool";
+-	reusable;
+-};
+diff --git a/Documentation/devicetree/bindings/mfd/aspeed-gfx.txt b/Documentation/devicetree/bindings/mfd/aspeed-gfx.txt
+deleted file mode 100644
+index aea5370efd97..000000000000
+--- a/Documentation/devicetree/bindings/mfd/aspeed-gfx.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-* Device tree bindings for Aspeed SoC Display Controller (GFX)
+-
+-The Aspeed SoC Display Controller primarily does as its name suggests, but also
+-participates in pinmux requests on the g5 SoCs. It is therefore considered a
+-syscon device.
+-
+-Required properties:
+-- compatible:		"aspeed,ast2500-gfx", "syscon"
+-- reg:			contains offset/length value of the GFX memory
+-			region.
+-
+-Example:
+-
+-gfx: display@1e6e6000 {
+-	compatible = "aspeed,ast2500-gfx", "syscon";
+-	reg = <0x1e6e6000 0x1000>;
+-};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 11a58d3279ec..536a0403edda 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -7592,7 +7592,7 @@ M:	Joel Stanley <joel@jms.id.au>
+ L:	linux-aspeed@lists.ozlabs.org (moderated for non-subscribers)
+ S:	Supported
+ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
+-F:	Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
++F:	Documentation/devicetree/bindings/gpu/aspeed,ast2400-gfx.yaml
+ F:	drivers/gpu/drm/aspeed/
+ 
+ DRM DRIVER FOR AST SERVER GRAPHICS CHIPS
+-- 
+2.50.1
 
-Yours,
-Linus Walleij
 
