@@ -1,173 +1,110 @@
-Return-Path: <devicetree+bounces-210624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C2B3B3C34F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 21:51:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96ED1B3C399
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 22:10:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 534A91654A2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:51:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EC22586456
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 20:10:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4FF2417C5;
-	Fri, 29 Aug 2025 19:51:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uPYEnPUU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B22252522B4;
+	Fri, 29 Aug 2025 20:10:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vs81.iboxed.net (vs10.datenmanufaktur-hosting.net [213.160.73.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7D68224B09;
-	Fri, 29 Aug 2025 19:51:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1E1238171;
+	Fri, 29 Aug 2025 20:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.73.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756497084; cv=none; b=I4P70kSM/UbuEPJGCwvWVZTRmf7sNrLXJa/F0QKIaAhPuiG8DubsD/C9agQ3S+ZRu+yJ3Huj+5I2d3HUrLvpOnNfkEl9Z3BhMCURd09D66U5iIbaxtPsXX++qmGBNnpqn3gqIcqfc2bI6zRIxTBrUEsWUcAdKhZ13ZtkbGQ2R54=
+	t=1756498222; cv=none; b=NDouchGEHKGZNKGOFpE2ab9mu9C9gIu15gyBF3DoujiJVZ/M1WcNStVKjTNnySliPFjSghuvdX9oh6MTGALV+1XI5RF0/5IhG4i4jTeevfIsqraqSGow+SYPuEkjldx0dXXekMjN/oA6MXo/A3G3tGwbeHSHaQ1tfR8/vM/C57o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756497084; c=relaxed/simple;
-	bh=iE1fOPe+H/DOT9l+qqw7zhT3aTQ0dSMmo1kdS8d+f20=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FVoFiEY1/cOidwb5l7UbAnM/1QTc+m0Y7YN/xOXHOdRctYzwsNfS7hnUsAKBHvkXvCYayeo7cea5hHIWUJXK3zcXvhmP3Sr9eTLPQ7u1OIVF83kOvmXuo+mBEaRN2g12kJkIXRIGdCzrY1zXvXEkhf15h9XTeQQE+5677mu/DNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uPYEnPUU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 346BBC4CEF0;
-	Fri, 29 Aug 2025 19:51:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756497082;
-	bh=iE1fOPe+H/DOT9l+qqw7zhT3aTQ0dSMmo1kdS8d+f20=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uPYEnPUUg4/LuQVFtqhOOS0tGS/0OVJpM+KchdKwqnpfkH0/J3whjo1E0NBxW4gpi
-	 uJDXfPT2+7W9SvWuvKxITtr+9wgDa0PLPjlOlPveFqy+zGxeJXRW3bmLtv6e6tXZkm
-	 Lt0jKmNEbrsoJG57fd3KAzrHhMHII+VJCvAN8o9yIncXsE2LjVvdVRlbplw8VmHBsq
-	 nEieoqr4Hd58x1XnW+1xWPl9IbBCsaBFlrOtBOQRsS5iKDBvoMcj7GYIAOBvWu/48K
-	 9ZUoI9CDe2TXQXinfy+0J0W3S8zuoPtSs1TE+Ci/Y2CLPC2Ymd1DL36wGlg46kmRHz
-	 JZChNYlMpZoRQ==
-Date: Fri, 29 Aug 2025 14:51:19 -0500
-From: Rob Herring <robh@kernel.org>
-To: Janne Grunau <j@jannau.net>
-Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hector Martin <marcan@marcan.st>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Mark Kettenis <kettenis@openbsd.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Sasha Finkelstein <fnkl.kernel@gmail.com>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	van Spriel <arend@broadcom.com>, Lee Jones <lee@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	Vinod Koul <vkoul@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Marc Zyngier <maz@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, iommu@lists.linux.dev,
-	linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-bluetooth@vger.kernel.org,
-	linux-wireless@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-clk@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-nvme@lists.infradead.org
-Subject: Re: [PATCH 00/37] arm64: Add initial device trees for Apple M2
- Pro/Max/Ultra devices
-Message-ID: <20250829195119.GA1206685-robh@kernel.org>
-References: <20250828-dt-apple-t6020-v1-0-507ba4c4b98e@jannau.net>
+	s=arc-20240116; t=1756498222; c=relaxed/simple;
+	bh=9TRcTWzRNNqFqyLL0fhxlFhQ4FTBBHTXpufL0KAG85M=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GYdKJ+nixJa/IAUd1+CTqFRW4B6mBSYrjRpMneeuSTS/k4XfqytyK+bzj9txeYE1QOQ//cWUv8xSpWLb3zhRj/jRECElaCZGlyjlTcA2utcjs7MzhiX4ktc0e3axVoJvF+UJ6IWvhWr4Z/GcyCjJlwyirh2gM0wojXD2u+CS1Q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=blala.de; spf=pass smtp.mailfrom=blala.de; arc=none smtp.client-ip=213.160.73.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=blala.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blala.de
+Received: from blala.de (localhost [127.0.0.1])
+	by vs81.iboxed.net (8.15.2/8.15.2/Debian-14~deb10u1) with ESMTP id 57TKFIEV015417;
+	Fri, 29 Aug 2025 20:15:18 GMT
+Received: (from akurz@localhost)
+	by blala.de (8.15.2/8.15.2/Submit) id 57TKFIDH015416;
+	Fri, 29 Aug 2025 20:15:18 GMT
+From: Alexander Kurz <akurz@blala.de>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Dzmitry Sankouski <dsankouski@gmail.com>,
+        "Dr. David Alan Gilbert" <linux@treblig.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, Alexander Kurz <akurz@blala.de>
+Subject: [PATCH v3 0/7] Fix, extend and support OF to mc13xxx pwrbutton
+Date: Fri, 29 Aug 2025 20:15:10 +0000
+Message-Id: <20250829201517.15374-1-akurz@blala.de>
+X-Mailer: git-send-email 2.20.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250828-dt-apple-t6020-v1-0-507ba4c4b98e@jannau.net>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Aug 28, 2025 at 04:01:19PM +0200, Janne Grunau wrote:
-> This series adds device trees for Apple's M2 Pro, Max and Ultra based
-> devices. The M2 Pro (t6020), M2 Max (t6021) and M2 Ultra (t6022) SoCs
-> follow design of the t600x family so copy the structure of SoC *.dtsi
-> files.
-> 
-> t6020 is a cut-down version of t6021, so the former just includes the
-> latter and disables the missing bits.
-> 
-> t6022 is two connected t6021 dies. The implementation seems to use
-> t6021 and disables blocks based on whether it is useful to carry
-> multiple instances. The disabled blocks are mostly on the second die.
-> MMIO addresses on the second die have a constant offset. The interrupt
-> controller is multi-die aware. This setup can be represented in the
-> device tree with two top level "soc" nodes. The MMIO offset is applied
-> via "ranges" and devices are included with preprocessor macros to make
-> the node labels unique and to specify the die number for the interrupt
-> definition.
-> 
-> The devices itself are very similar to their M1 Pro, M1 Max and M1 Ultra
-> counterparts. The existing device templates are SoC agnostic so the new
-> devices can reuse them and include their t602{0,1,2}.dtsi file. The
-> minor differences in pinctrl and gpio numbers can be easily adjusted.
-> 
-> With the t602x SoC family Apple introduced two new devices:
-> 
-> The M2 Pro Mac mini is similar to the larger M1 and M2 Max Mac Studio. The
-> missing SDHCI card reader and two front USB3.1 type-c ports and their
-> internal USB hub can be easily deleted.
-> 
-> The M2 Ultra Mac Pro (tower and rack-mount cases) differs from all other
-> devices but may share some bits with the M2 Ultra Mac Studio. The PCIe
-> implementation on the M2 Ultra in the Mac Pro differs slightly. Apple
-> calls the PCIe controller "apcie-ge" in their device tree. The
-> implementation seems to be mostly compatible with the base t6020 PCIe
-> controller. The main difference is that there is only a single port with
-> with 8 or 16 PCIe Gen4 lanes. These ports connect to a Microchip
-> Switchtec PCIe switch with 100 lanes to which all internal PCIe devices
-> and PCIe slots connect too.
-> 
-> This series does not include PCIe support for the Mac Pro for two
-> reasons:
-> - the linux switchtec driver fails to probe and the downstream PCIe
->   connections come up as PCIe Gen1
-> - some of the internal devices require PERST# and power control to come
->   up. Since the device are connected via the PCIe switch the PCIe
->   controller can not do this. The PCI slot pwrctrl can be utilized for
->   power control but misses integration with PERST# as proposed in [1].
-> 
-> This series depends on "[PATCH v2 0/5] Apple device tree sync from
-> downstream kernel" [2] due to the reuse of the t600x device templates
-> (patch dependencies and DT compilation) and 4 page table level support
-> in apple-dart and io-pgtable-dart [3] since the dart instances report
-> 42-bit IAS (IOMMU device attach fails without the series).
-> 
-> After discussion with the devicetree maintainers we agreed to not extend
-> lists with the generic compatibles anymore [1]. Instead either the first
-> compatible SoC or t8103 is used as fallback compatible supported by the
-> drivers. t8103 is used as default since most drivers and bindings were
-> initially written for M1 based devices.
+Goal of this patch series is to make the mc13892 PWRON1 button usable,
+found e.g. on amazon kindle D01100/D01200/EY21 readers.
+A ten-year-old IRQ issue needed a fix, mc13783-pwrbutton had to be
+extended to the other to mc13xxx PMIC as well (keeping the mc13892
+PWRON3 key unsupported for simplicity) and adding OF support.
+The implementation has been tested on amazon kindle D01100 and D01200
+readers using PWRON1 of a mc13892.
 
-An issue here is any OS without the compatibles added to the drivers 
-won't work. Does that matter here? Soon as you need any new drivers or 
-significant driver changes it won't. The compatible additions could be 
-backported to stable. They aren't really any different than new PCI IDs 
-which get backported.
+Changes in v3:
+- Link to v2: https://lore.kernel.org/linux-input/20250823144441.12654-1-akurz@blala.de/
+- Undo all changes to led-control (rename to fsl,led-control), thanks Rob
+- Restructured the new buttons node for unevaluatedProperties: false
+- Various other remarks from Rob
+- Rebase to current state
 
-Rob
+Changes in v2:
+- Link to v1: https://lore.kernel.org/linux-input/20250817102751.29709-1-akurz@blala.de/
+- Convert dt-bindings from txt to fsl,mc13xxx.yaml and add vendor prefix
+  to led-control property, causing changes in dts and driver.
+- Change node name from pwrbuttons to buttons
+- Change property debounce-delay-value to debounce-delay-ms
+- Fixed a section mismatch error
+- Fixed https://lore.kernel.org/r/202508210551.VzAtE5re-lkp@intel.com/
+  (wrong index used when converting to array access)
+- Usage of generic device properties API in mc13783-pwrbutton.c
+- Provide chip-specific max button id via platform_device_id, therefore
+  swap patches 3 and 4.
+
+Alexander Kurz (7):
+  Input: mc13783-pwrbutton: fix irq mixup
+  Input: mc13783-pwrbutton: use managed resources
+  Input: mc13783-pwrbutton: convert pdata members to array
+  Input: mc13783-pwrbutton: enable other mc13xxx PMIC
+  dt-bindings: mfd: fsl,mc13xxx: convert txt to DT schema
+  dt-bindings: mfd: fsl,mc13xxx: add buttons node
+  Input: mc13783-pwrbutton: add OF support
+
+ .../devicetree/bindings/mfd/fsl,mc13xxx.yaml  | 288 ++++++++++++++++++
+ .../devicetree/bindings/mfd/mc13xxx.txt       | 156 ----------
+ drivers/input/misc/Kconfig                    |   4 +-
+ drivers/input/misc/mc13783-pwrbutton.c        | 235 ++++++++++----
+ include/linux/mfd/mc13783.h                   |   4 +-
+ include/linux/mfd/mc13xxx.h                   |  10 +-
+ 6 files changed, 472 insertions(+), 225 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/mc13xxx.txt
+
+-- 
+2.39.5
+
 
