@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-210439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F2C9B3B8B4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:29:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA80B3B8F3
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:35:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F20D51C28053
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:29:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF4AF582787
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80D13081B6;
-	Fri, 29 Aug 2025 10:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4EC330BBBA;
+	Fri, 29 Aug 2025 10:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oXZriuDk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ixVKxpab"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DA72BEFF6;
-	Fri, 29 Aug 2025 10:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A418C309DC0;
+	Fri, 29 Aug 2025 10:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756463349; cv=none; b=WtlTeykeNQFNiw7slbfcRDecbOIk6HwirwRNNtSuq/fnwCwJOIXND4uAS4aCwa7FjdbeBS5BNiGWy7Sj6nwmF4hSFrcEWJFvG1GF5/bjqffTTnanmEPir2svNsSg5KnnT6Uoz7FFwjmCHDTrxdzvU0lCtFv2f8GbFVlljaLK+2U=
+	t=1756463524; cv=none; b=Y0HbVGyWmoYdvMxc1MjOBspsr+Pdi229hQg62pJifdgGNCw8KqW1qp63P+1D3zjEF2jIirLqlU86x3Y6G/vt4gFnsQFpD6Xwd4+87Q1SU1DjtGcR6OT2Bg9OZhVJk4P11+kdnYQ17ySS4yU0zb7QZTY7vdjOqFqdu/Mw8WAFZyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756463349; c=relaxed/simple;
-	bh=rK4qkpQLHD4YV+ZOv6+7UA3F3GsCJ78MecmyuokwNhA=;
+	s=arc-20240116; t=1756463524; c=relaxed/simple;
+	bh=2HK9dPmt76X1vz8N9bbGM/cJkdjkqxzLRbvbl5x9FL0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PATegCY43OUlNEY0hbHyc28z8kCUYN1bHafnmxWmeCgbpiqcrRIi3zcqmbMI5ZMyaj62P3UDdM3fiDYQSbos9BSq99KOa0s6D7KcxR4CZnNev4ZeHMDXvYM/Gzv5NMzlGOw+lC9Trk+F9RJbIX8NGmFVr/xUh3p6aNYaaWY0TLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oXZriuDk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAE17C4CEF0;
-	Fri, 29 Aug 2025 10:28:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Voa+zHoXifIv48Ucred2FcWZW9AomNTFF4AheuZCOvgakskgO1K9RirBriCqyhC48zbT0yJX3rvdC9evM0W35QWU+9dHydAukWmA8NGmHWElusk5Mz2ZOMLCTwnOs7CUH7pk1pFo0czq++tTADqyg8WU4wtojszb0nvuNJe0Yy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ixVKxpab; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B3CDC4CEF0;
+	Fri, 29 Aug 2025 10:32:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756463349;
-	bh=rK4qkpQLHD4YV+ZOv6+7UA3F3GsCJ78MecmyuokwNhA=;
+	s=k20201202; t=1756463524;
+	bh=2HK9dPmt76X1vz8N9bbGM/cJkdjkqxzLRbvbl5x9FL0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oXZriuDkwQAQm9ce6gw+R5rqIDEB/OI+h2EsdRTbbciLZPFIKjLWfZfByzZNRVA0/
-	 4kwLvxPLFMjjcU7FhE23E4Nb788MSU9ScxDDFIqS1smxYrFHr4wvR75K9+EfvLht2v
-	 gAbbRULk70G1qnvHBT5yGLzNPic1WyvHUlehmuoL1pcVv3mfbOmpZ5gURvCtFC1bdX
-	 X6PkDrK7o2KywWgHhuJ1040CwOh+EOM2n02isZCWgSfyVnYcD+2j07j3km+PklsRab
-	 0qkA+5nZqsZREwAS9LYlPX2+0CiFCSATA9bC5niYDb7zTwA8+LOTQtrnrVtpcO6gmi
-	 ZHvq9jYIv/Qpg==
-Message-ID: <32dedafd-df52-48fe-a9b2-be96127bb9b7@kernel.org>
-Date: Fri, 29 Aug 2025 12:28:57 +0200
+	b=ixVKxpabcgrsV6WKSrcgxtO5Gt/zaeoMEsPiQWObwKMflQkQSI4c2iQmDcRupMRhg
+	 oY1RmbqWyjKzcm1BDfwP0Nvu+Vbai4VVObSxW4gxl5W1qkOp52tlSUK5OtjKA1CfO/
+	 CNjV3GF9wFO6alL5q8n1f/Iuu0ZyjdiGVq5eZMvWQEO654J5LEcArzyYMGDfzkSlk6
+	 vr3YWKd0u6gWf1TgINMSU7ZbXoXkbwMktFDjCtqcrnV1vPDKm6q3tvVVkBPd0zMvD1
+	 WpNmeZ0wASbxKoEWzD25QwlbLBvjARBjhQLTLKwXQeggc1KucXWvEYXmxoSKU/Vh/c
+	 RVp0W8RIxN4dw==
+Message-ID: <75b2db61-84ad-47a4-b809-da7e63e8dec8@kernel.org>
+Date: Fri, 29 Aug 2025 12:31:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/10] pinctrl: samsung: Add ARTPEC-8 SoC specific
- configuration
-To: Linus Walleij <linus.walleij@linaro.org>,
- Ravi Patel <ravi.patel@samsung.com>
-Cc: jesper.nilsson@axis.com, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- s.nawrocki@samsung.com, cw00.choi@samsung.com, alim.akhtar@samsung.com,
- tomasz.figa@gmail.com, catalin.marinas@arm.com, will@kernel.org,
- arnd@arndb.de, ksk4725@coasia.com, kenkim@coasia.com, pjsin865@coasia.com,
- gwk1013@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com,
- smn1196@coasia.com, pankaj.dubey@samsung.com, shradha.t@samsung.com,
- inbaraj.e@samsung.com, swathi.ks@samsung.com, hrishikesh.d@samsung.com,
- dj76.yang@samsung.com, hypmean.kim@samsung.com,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-arm-kernel@axis.com,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, soc@lists.linux.dev,
- Priyadarsini G <priya.ganesh@samsung.com>
-References: <CGME20250825120720epcas5p491e16bbfbdbcd751acbb0c0e55f9e2a2@epcas5p4.samsung.com>
- <20250825114436.46882-1-ravi.patel@samsung.com>
- <20250825114436.46882-6-ravi.patel@samsung.com>
- <CACRpkdZwz8C=MRgo1tQrkQzNtKMLV+P-LK8XyRA3eSFW-cbFCg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] iio: magnetometer: add support for Infineon
+ TLV493D 3D Magentic sensor
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250829-tlv493d-sensor-v6_16-rc5-v5-0-746e73bc6c11@gmail.com>
+ <20250829-tlv493d-sensor-v6_16-rc5-v5-1-746e73bc6c11@gmail.com>
+ <20250829-fluorescent-delicate-pogona-c96b5f@kuoka>
+ <CAFmh=S3jKfGMek=ZPUrfgh9fXZaaq6zNBOmCyEpoe0qGpfbt5w@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,39 +108,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CACRpkdZwz8C=MRgo1tQrkQzNtKMLV+P-LK8XyRA3eSFW-cbFCg@mail.gmail.com>
+In-Reply-To: <CAFmh=S3jKfGMek=ZPUrfgh9fXZaaq6zNBOmCyEpoe0qGpfbt5w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 29/08/2025 12:11, Linus Walleij wrote:
-> Hi Ravi / SeonGu,
-> 
-> thanks for your patch!
-> 
-> On Mon, Aug 25, 2025 at 2:07 PM Ravi Patel <ravi.patel@samsung.com> wrote:
-> 
->> From: SeonGu Kang <ksk4725@coasia.com>
+On 29/08/2025 12:07, Dixit Parmar wrote:
+>>> +INFINEON TLV493D Driver
+>>> +M:   Dixit Parmar <dixitparmar19@gmail.com>
+>>> +L:   linux-iio@vger.kernel.org
+>>> +S:   Maintained
+>>> +W:   https://www.infineon.com/part/TLV493D-A1B6
+>>> +F:   Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml
 >>
->> Add Axis ARTPEC-8 SoC specific configuration data to enable pinctrl.
+>> There is no such file here. Apply this *patch* and check by yourself.
+> That file is being added as a separate patch(Patch 2/2) of this same
+> patch series. It's already reviewed by you only(based on the name).
+
+No. Read my comment again:
+
+"Apply this *patch* and check by yourself."
+
+It does not matter if you add the file later. The file does not exist
+now, here.
+
+> https://lore.kernel.org/linux-iio/20250829-tlv493d-sensor-v6_16-rc5-v5-2-746e73bc6c11@gmail.com
 >>
->> Signed-off-by: SeonGu Kang <ksk4725@coasia.com>
->> Signed-off-by: Priyadarsini G <priya.ganesh@samsung.com>
->> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
-> 
-> Please avoid CC to soc@kernel.org on these patches, they end up in the
-> patchwork for immediate merging for SoC:
-> https://patchwork.kernel.org/project/linux-soc/patch/20250825114436.46882-6-ravi.patel@samsung.com/
+>> Your patchset is still incorrectly organized. See submitting patches in
+>> DT dir.
+> By "incorrectly organized" do you mean order of the patches in the
+> patchset or anything else?
 
-Yeah, that's odd - most likely old CC-list. This could happen if using
-b4 but there is no b4 being used here, so why Cc-ing according to some
-old files?
-
-> 
-> I think this is not you intention, the pinctrl portions will be merged by
-> Krzysztof who sends it to me once that part is finished reviewing.
-Version for review should not be merged via soc@, so that's wrong
-process in any case. But you are right that I will be taking everything,
-thus soc@ is not involved at all.
+I pointed to the docs, is anything unclear in there?
 
 Best regards,
 Krzysztof
