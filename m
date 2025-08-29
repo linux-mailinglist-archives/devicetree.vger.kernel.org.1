@@ -1,59 +1,69 @@
-Return-Path: <devicetree+bounces-210587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8763EB3C12A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:51:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 987B8B3C12D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:51:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA9C17B8969
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:49:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58681A22D6F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:51:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3841532C30B;
-	Fri, 29 Aug 2025 16:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6AF33470C;
+	Fri, 29 Aug 2025 16:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hREyhJjA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rcfMFq2A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFC3225416;
-	Fri, 29 Aug 2025 16:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A506225416;
+	Fri, 29 Aug 2025 16:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756486255; cv=none; b=iHHdaKvJkytiHSMrEpbnPNTSNArMPjJsuaO2EEJP1iJuZ/WCpLjhGPqvchdQJ9B8ykIT+IZjmm5ovH17t0jCaF1IdLDZ0/8i2GtMGsHt1v+ZFwZ4J5BK6E0jZdY+a9Qo+Ej5EKOpXnj5EQdGmWCi13s9CNUpCTKFpFs7kruxPYg=
+	t=1756486305; cv=none; b=Uwus0XWSs+IIRZP7h0x2g2LvbSevzr61cvWlkkUVbsaFCPbK+j93woM6sY9KBO/BAUJiCK8u0xGz+pIjx2irosCgKn3ADxmAiuMN204c3JgApaAnxlQacixjAKhSB9mAUW9jb1k+fwMCQoFGqtYP6/B2dN/u+GoZEPjIvOjsWts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756486255; c=relaxed/simple;
-	bh=jB6RPkxQ2Th0EoI02zrpFSQVhdODKW/Y9zT0Zky7ANc=;
+	s=arc-20240116; t=1756486305; c=relaxed/simple;
+	bh=03rk891EXzQgLlR+ox/B8qZcUcPShMCfgw1IOgKY9fY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tiC/44J7tcLiEg3oy9HdpMLha5pVM6RhCLamKSXvyCj1663lkGBUOBmzVmof6ZtapDRV8iK76jgQEGbSn8MjWNDiEJMO9ofZ0CqIZI+vWjGWJ4nvHa+01T9gBSe+hk/XQvVyqysv0yqE4rIWbZWcFZtwCjUCJnX44l/kswl3Cxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hREyhJjA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D41EC4CEF0;
-	Fri, 29 Aug 2025 16:50:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cXN/Su8f4Yx46B4h22we3zA8gEuIKlOUGd1vSVQtuf8NYPD72ikv3Pg2IvJAPReSMQ7SyW8vgpauWGYnnx4MgSpl8BOHvta/723q9R4L/ph9enQHIttAfYyX0Z2y9r06U62Av8UZzg5OPjlyhUdmHIU+sdLmHGTdnfsAFDZsH0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rcfMFq2A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1FA5C4CEF0;
+	Fri, 29 Aug 2025 16:51:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756486254;
-	bh=jB6RPkxQ2Th0EoI02zrpFSQVhdODKW/Y9zT0Zky7ANc=;
+	s=k20201202; t=1756486305;
+	bh=03rk891EXzQgLlR+ox/B8qZcUcPShMCfgw1IOgKY9fY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hREyhJjA9D74P6kA4Pp56ZO0IJsCeerdeIrVWlvYKAgjd+Jb17f0X4EN8170NUP3n
-	 jLc5P6xlU4rTU87fGNRW2LPizIbapQcvvhel8/wajrzZVkoYL69VWqd52LAtU/uWF3
-	 YizeD0DEAKM09D+bmsgjqERIcXiM559XJSEOjYtVSPmu9nDvnNUYLAqYE6LYaNFZar
-	 KeZN9qQ95PWNCc/tBfnHdjEgGQby3BvVIacHkR8ctFf4d/Tyy/CPULuewL4Gb9pexD
-	 5R6MqziWKh0Dc/KReUU7qCPOmW9E7B6T19HYVOXkj7t84KVWBNxLmQfCFNjA3xGzND
-	 Wvdcaxdg62eKQ==
-Date: Fri, 29 Aug 2025 11:50:53 -0500
+	b=rcfMFq2AC6QTawhxyDXciuX1Yxluc5AxBWNNeSo99EqnpfVKb32GzxpbzDqpvMcLr
+	 Jf93jPIOVlZEW/cwlqG+TAJ5+OaW8DlF/hL/KF8WF8BKA1UCZoqNoPB9BvtAM242oz
+	 Pzy8iEx4MUbMj97dgJ/WdNu9NfTX4mXIV4uzvYXj6a1yLqslGDBq6yhhWYET62Y8NK
+	 3c0lY04UQU0KUDEW1PIRxT/pTierHIiOafwW+nhLfidYeZ5gM29DAkkjYytpmbn1hv
+	 OCSgLghKAOHbT1tNaHgwP7pNbj9b2V6QEXkbXgfthvDKccBnRBYp5OEo7Oymp3QCfg
+	 4biL16bGUS6XA==
+Date: Fri, 29 Aug 2025 11:51:44 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-tegra@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	devicetree@vger.kernel.org, Thierry Reding <treding@nvidia.com>
-Subject: Re: [PATCH v5 1/4] dt-bindings: display: tegra: document EPP, ISP,
- MPE and TSEC for Tegra114+
-Message-ID: <175648625304.1001411.217793513914470413.robh@kernel.org>
-References: <20250827113734.52162-1-clamor95@gmail.com>
- <20250827113734.52162-2-clamor95@gmail.com>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+	linux-clk@vger.kernel.org,
+	Catalin Marinas <catalin.marinas@arm.com>, willmcvicker@google.com,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	linux-arm-kernel@lists.infradead.org, kernel-team@android.com,
+	Stephen Boyd <sboyd@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	linux-samsung-soc@vger.kernel.org,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: firmware: google,gs101-acpm-ipc: add
+ #clock-cells
+Message-ID: <175648630368.1002473.16179265827004487782.robh@kernel.org>
+References: <20250827-acpm-clk-v2-0-de5c86b49b64@linaro.org>
+ <20250827-acpm-clk-v2-1-de5c86b49b64@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,22 +72,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250827113734.52162-2-clamor95@gmail.com>
+In-Reply-To: <20250827-acpm-clk-v2-1-de5c86b49b64@linaro.org>
 
 
-On Wed, 27 Aug 2025 14:37:31 +0300, Svyatoslav Ryhel wrote:
-> The current EPP, ISP and MPE schemas are largely compatible with Tegra114+,
-> requiring only minor adjustments. Additionally, the TSEC schema for the
-> Security engine, which is available from Tegra114 onwards, is included.
+On Wed, 27 Aug 2025 12:42:11 +0000, Tudor Ambarus wrote:
+> The firmware exposes clocks that can be controlled via the
+> Alive Clock and Power Manager (ACPM) interface.
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Make the ACPM node a clock provider by adding the mandatory
+> "#clock-cells" property, which allows devices to reference its
+> clock outputs.
+> 
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 > ---
->  .../display/tegra/nvidia,tegra114-tsec.yaml   | 68 +++++++++++++++++++
->  .../display/tegra/nvidia,tegra20-epp.yaml     | 14 ++--
->  .../display/tegra/nvidia,tegra20-isp.yaml     | 15 ++--
->  .../display/tegra/nvidia,tegra20-mpe.yaml     | 18 +++--
->  4 files changed, 102 insertions(+), 13 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
+>  .../bindings/firmware/google,gs101-acpm-ipc.yaml          | 11 +++++++++++
+>  include/dt-bindings/clock/google,gs101.h                  | 15 +++++++++++++++
+>  2 files changed, 26 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
