@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-210600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BB1EB3C18F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:13:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C802EB3C19B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:16:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2CC374E0677
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:13:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8757C2017D0
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:16:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2788C335BB4;
-	Fri, 29 Aug 2025 17:13:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 688FA334394;
+	Fri, 29 Aug 2025 17:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XQwBaTjC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="twPkUgMz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE6C02222C4;
-	Fri, 29 Aug 2025 17:13:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39A37201033;
+	Fri, 29 Aug 2025 17:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756487614; cv=none; b=WIM28u4cYvdzeLZFfNXwwq0Xez6bZTJRSllAvuxRcQ9N6YHJSutfLHoGU5qkSqQwNd1M/mZD4hGGjsGh2amH7YAGMio+WsjeO6hhzJC+O2/TkczpvIEBghKFOsGufey6qS/ZSruHRoctGFiQD46EMFwMH2LeoWIg6N6/Klxnaes=
+	t=1756487786; cv=none; b=MKd48sNbZEjMyIuS9RwP/uTE6oL+OLwaVJlHkjMm4SMISR/qxVBD13CHstGO5rpxJwThS/QCAtYkP414CdwP2zoWjM1eoIEGhDLDw4Bs6Gw5afBKC0PpZddjTWP2Q5hrDGG769rUQgTxXgN51CjQ5JKU3FSnn3CkGRBu3KsY7ik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756487614; c=relaxed/simple;
-	bh=TDpt43ch3xVFskhEnjng4dGYL5sbO9BabNljtnfMN/0=;
+	s=arc-20240116; t=1756487786; c=relaxed/simple;
+	bh=NkhK1p1B1g1OXGW0TTzXh6oyW/wktWgGjhNbONvL0ck=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AlT0xgeRMtRdwdZ/2uEPa4G9ckfaa21wW2K9pYPe4KAm8AEu0vJUtKVgEUYupJk6MkEAoNZeWc0bC7Qjav3GlJ3xz/jarDvlBp4uCLg1hPy+DXrQxhZhHlXJwgjsi4IfM9OTDjheTMCwjFoLI7F55VgnDNkB5Y28K8PDRcI//HQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XQwBaTjC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D5A8C4CEF0;
-	Fri, 29 Aug 2025 17:13:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EtV85PcXD841ZOAkIAUB/FWThzMIOcGCCysRiyvde1nbEDa/rJzdau17xPfZmW3yMmViBnXN4ITe5KEGS28+TGRCoHOJ5/01d0BIvdS6vj4b9baAvGa+60N5LXZ4ZUHnluqjtW1KO3CZqKluZq2reI8Rda4gBplPyzAUbNuCb8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=twPkUgMz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A922CC4CEF0;
+	Fri, 29 Aug 2025 17:16:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756487612;
-	bh=TDpt43ch3xVFskhEnjng4dGYL5sbO9BabNljtnfMN/0=;
+	s=k20201202; t=1756487785;
+	bh=NkhK1p1B1g1OXGW0TTzXh6oyW/wktWgGjhNbONvL0ck=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XQwBaTjCL6KvIS8b+9WD6cJfEZVYh0GnSyDb+kxAYAu9n3ltNjoi7P+fq0HMWxwbi
-	 v87zT06R8+j4T/eRdvDOY7VhricaDjCyvgncYqxAd1nuLhoeCIDbcwz7iVsO9UeEH6
-	 1j3BIX3mdIUZxfQ655xmxjMjb9PZbpg62cTvL6eFzuRpgCbA/bi5S75EWU4cg6OqAN
-	 J/nbr8nICiMg0YmtI6CsTnQwbpSArhuIY7Im/XW5R31P6MqjBqbrgPtv+1l9LDdEdY
-	 AWp9ulPoRQO7nousGvMgM5z/jegWgDQ3YWfRn3GPGHPS3DQvbXVaIGV+NsOS8hfR1H
-	 7Nl0NwY+D0ROg==
-Date: Fri, 29 Aug 2025 12:13:31 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: unicorn_wang@outlook.com, tglx@linutronix.de, sophgo@lists.linux.dev,
-	aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
-	bhelgaas@google.com, lpieralisi@kernel.org, alex@ghiti.fr,
-	paul.walmsley@sifive.com, kwilczynski@kernel.org,
-	xiaoguang.xing@sophgo.com, conor+dt@kernel.org, kishon@kernel.org,
-	devicetree@vger.kernel.org, s-vadapalli@ti.com,
-	thomas.richard@bootlin.com, linux-kernel@vger.kernel.org,
-	sycamoremoon376@gmail.com, palmer@dabbelt.com, bwawrzyn@cisco.com,
-	chao.wei@sophgo.com, arnd@arndb.de, 18255117159@163.com,
-	fengchun.li@sophgo.com, u.kleine-koenig@baylibre.com,
-	krzk+dt@kernel.org, mani@kernel.org, linux-pci@vger.kernel.org,
-	rabenda.cn@gmail.com, inochiama@gmail.com
-Subject: Re: [PATCH 1/5] dt-bindings: pci: Add Sophgo SG2042 PCIe host
-Message-ID: <175648760972.1027309.4591259567798589217.robh@kernel.org>
-References: <cover.1756344464.git.unicorn_wang@outlook.com>
- <c9362bb49e4d48647db85d85c06040de8f38cb83.1756344464.git.unicorn_wang@outlook.com>
+	b=twPkUgMzYYFnifeH0CQK/tHCLW6lk1U1XRUws/fir+jyChH6lqXpyktSXxOv9sxn8
+	 CjYB6J6MZH3EsmaYoFoVW9htpqd19gu+ASZf5z50X5ijZmZRSTAdRhIVlx7RIp8tmN
+	 o1ne/W8BHqaIt0iRW/N2SjxWN4cZWxG551XhcMEovc9Tq5uuSt4ffW1/Q2GJUutbdy
+	 kmY/lSfnboTVWwYEPKKaW6mPhjEfdDcGSjpaqAGAubhdREneQAd7QE089bLIDEsT58
+	 nQoA3lQrla9HclE+k2HS91G3KgnVnsNzB4IE6aMxuQUVKkk/YXJ+t5f9D2GT4iV0wB
+	 zueFmj8PqFRNg==
+Date: Fri, 29 Aug 2025 12:16:24 -0500
+From: Rob Herring <robh@kernel.org>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: Add bindings for SpacemiT K1
+Message-ID: <20250829171624.GA1027608-robh@kernel.org>
+References: <20250828-k1-i2s-v2-0-09e7b40f002c@linux.spacemit.com>
+ <20250828-k1-i2s-v2-1-09e7b40f002c@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,21 +63,121 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c9362bb49e4d48647db85d85c06040de8f38cb83.1756344464.git.unicorn_wang@outlook.com>
+In-Reply-To: <20250828-k1-i2s-v2-1-09e7b40f002c@linux.spacemit.com>
 
-
-On Thu, 28 Aug 2025 10:16:54 +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+On Thu, Aug 28, 2025 at 11:37:32AM +0800, Troy Mitchell wrote:
+> Add dt-binding for the i2s driver of SpacemiT's K1 SoC.
 > 
-> Add binding for Sophgo SG2042 PCIe host controller.
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 > ---
->  .../bindings/pci/sophgo,sg2042-pcie-host.yaml | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
+>  .../devicetree/bindings/sound/spacemit,k1-i2s.yaml | 88 ++++++++++++++++++++++
+>  1 file changed, 88 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml b/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..042001c38ed8d434889183831e44289ea9c5aef2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/spacemit,k1-i2s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: K1 I2S controller
+> +
+> +description:
+> +  The I2S bus (Inter-IC sound bus) is a serial link for digital
+> +  audio data transfer between devices in the system.
+> +
+> +maintainers:
+> +  - Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: spacemit,k1-i2s
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: clock for I2S sysclk
+> +      - description: clock for I2S bclk
+> +      - description: clock for I2S bus
+> +      - description: clock for I2S controller
+> +
+> +  clock-names:
+> +    items:
+> +      - const: sysclk
+> +      - const: bclk
+> +      - const: bus
+> +      - const: func
+> +
+> +  dmas:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  dma-names:
+> +    oneOf:
+> +      - const: rx
+> +      - items:
+> +          - const: tx
+> +          - const: rx
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+If tx is optional, wouldn't this be simpler:
 
+minItems: 1
+items:
+  - const: rx
+  - const: tx
+
+
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  port:
+> +    $ref: audio-graph-port.yaml#
+> +    unevaluatedProperties: false
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - dmas
+> +  - dma-names
+> +  - resets
+> +  - "#sound-dai-cells"
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/spacemit,k1-syscon.h>
+> +    i2s@d4026000 {
+> +      compatible = "spacemit,k1-i2s";
+> +      reg = <0xd4026000 0x30>;
+> +      clocks = <&syscon_mpmu CLK_I2S_SYSCLK>,
+> +               <&syscon_mpmu CLK_I2S_BCLK>,
+> +               <&syscon_apbc CLK_SSPA0_BUS>,
+> +               <&syscon_apbc CLK_SSPA0>;
+> +      clock-names = "sysclk", "bclk", "bus", "func";
+> +      dmas = <&pdma0 21>, <&pdma0 22>;
+> +      dma-names = "tx", "rx";
+> +      resets = <&syscon_apbc RESET_SSPA0>;
+> +      #sound-dai-cells = <0>;
+> +    };
+> 
+> -- 
+> 2.50.1
+> 
 
