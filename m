@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-210451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33A66B3B905
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:39:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C01E7B3B90D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:40:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C538189546E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:39:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72387365208
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:40:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8333D3093A7;
-	Fri, 29 Aug 2025 10:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BD4630ACFA;
+	Fri, 29 Aug 2025 10:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j0YCRNWd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HIMywUM9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56A8E1DF256;
-	Fri, 29 Aug 2025 10:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8281DF256;
+	Fri, 29 Aug 2025 10:40:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756463946; cv=none; b=Xq723/tXz4NIzFhlmBl9u/FywzUvMZMR1MVQuyIkCRsT/oRWsTvhxKAgCmM0QlbxHxe/cX5Jdy1Uf5nWOJnFYqt/A5yAzf5ZD6IxCxuNQ/1m79ulYWbuMh5X7tqdDwkvyuFCaRfyjQGvRbmXQ7NIyh3SPktOJFe88Cm/xHFp4W8=
+	t=1756464012; cv=none; b=HlPCZjvYMA9HRkplSo0WcdHf0BXfJd17U/foKRYTjP1IF/WsOXo3E9GMGKD4nX+9LBVjR2ehvfhjb1h8COlpWkiGacW9q7PEcvjC55yjLWPUu5F7FNigA2Q91ayefbP4ZFy7Lt07TCQ2bfEaSjDkx+xQypc1AK5df/JIxikjc3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756463946; c=relaxed/simple;
-	bh=/peVqt9NTGN9k4jEtiweT1qPpb63RX6iogY8nuVswHw=;
+	s=arc-20240116; t=1756464012; c=relaxed/simple;
+	bh=IBT8NJmua99Bl7F9ZIpmFR9XFgOfeeeZG6Y421h59Hg=;
 	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=oRhZwTFQ5MfWOFnkWrcny5UOYuB+qSwCjLKSiq0uedTqEMFaLes8nykdSz/53OOJOgmXhJb1pO9Bpor12u3w2TfySbiIcYSCkFOeAzO3Jv8q7V+J37uCUlQaEFW7a/BTDALEgHv/koy6ZRJRMmvG6IWaBub1R91su9LMu1nKbjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j0YCRNWd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 805DFC4CEF0;
-	Fri, 29 Aug 2025 10:39:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756463944;
-	bh=/peVqt9NTGN9k4jEtiweT1qPpb63RX6iogY8nuVswHw=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=j0YCRNWdJqmbCxKo2Kf0tjk4Ukk3m3OJpb3WC/naTjTYpKXaq2qjUQoJaqjNcbigv
-	 UhgxQncms9beaNXV65oZViN5oDY3C5viRKVwFTH1tFdTgol2a3+5QZ1zSLG2SuwK0n
-	 9F4niVyiq9EW/iD1ghby37FifdRsUNg9B1wiPgupqz0KN2d9iB/BhZ6ZTaE5Hjv+B8
-	 WaxHPmf8QtVnZMb0QVAkZ0NxTiU3aDtAB+l1hTJMmgT1em3pYGZ+4cb6AFJIuq0VPe
-	 ZwMCfKHs2VK5Dm1GBpD73kctMYo7zzMdLT7WzvelUovsAx9SoSbTz1lOyNSR+aKAQf
-	 ufIFv2uEgpxTQ==
-Message-ID: <60e55e14-7712-4f82-93af-6751009327fd@kernel.org>
-Date: Fri, 29 Aug 2025 12:39:00 +0200
+	 In-Reply-To:Content-Type; b=PYVv5nJaRkt07RuQh7wrE9sLkgpYarvgiOIjM98kS/onftSVJumUS6e/NpHLmhvP8GLDQUmrLHHtl8oG+yLc5atd/YnnAdUJ4aQPTgQBCGt06v/43S+s3m3CbJVkED9yuctQYDbNOHdGH2JPle1dBvYsoT8qoevBvAQlPnDOjVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HIMywUM9; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-afec5651966so348512866b.2;
+        Fri, 29 Aug 2025 03:40:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756464008; x=1757068808; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Yl5p12U2uO9xfcN1YtAosyTJ9NoreSs1ECa/E0M81SM=;
+        b=HIMywUM9KSLl0z+MeXTdvcHNL4R39HLPG0BI2Oga58LJwClpSEfp5XKO7dXY9XlGmY
+         816wLexIFeGEd3GySDiUVadne7vq3I9ZH6Q2UWxPC7wqUtTbMGm2Y9AkAfMxwbesn0Kj
+         F/mhedQECEGSlTtTGmM4y4Yk8zFcSW4naaIJNFtzxwJYEmSKB9YXRmVRQy7ZG2Msheis
+         QABzzLhqg5wNCFAQc3v8GTAfIw2Ky1y0qjRyEVN4kKjiEnc0psvgJp4gjw0S4PR2uIUC
+         a/uTmt3vZM5rYl4uxEts1qAoXFDVmJekYYahKxPkt3kGSzaDMmcIIC3o0khYzjrBCsao
+         MWQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756464008; x=1757068808;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yl5p12U2uO9xfcN1YtAosyTJ9NoreSs1ECa/E0M81SM=;
+        b=itDZmrX6E4zTL+4TiqbXCTbPyfCuTjLa5UyfI7juZmKxCySUJki1MCMu1Wq6UoQf4x
+         wLdDMNcRbQPBBkXz1k/BoqqnFGjgtJ9ZvGXzkcOeEgGrkHI0AbGvUAaqB0ztoxVtAULq
+         hdnZHVPZto5ZnsmrJ5/UmhUk4OaLsP275syCrYksCTLVsXlo0ZxYE+60yburn/HHr/nN
+         Om9GjeLf1OWX4+OgMeRvEGa11DQ9RqJMCusGtC29AR3zxXrjzlUOKpppHFeDIGJtSRSk
+         aYwqh9538Wo5/FHS1Yc3b7/P8OnuRzVoDPBBsJFLXxh9kKtDkzd74gi1Dk5urXomLnmd
+         2cOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX9Dx/0BBBJ+6fwyLdm/CmkzEXt1A5GGSX8sD2/FZwDD/3ds0YTwlBETOfqG3o1cu+J87pYb5pJowSLzIaW@vger.kernel.org, AJvYcCXLLV4FZxg7gp7hlVZwmht3LHuPo9tewRokRHEiq6byfgZoPXPicOE5Bp7kqECv2BnPZf+ThArsA4Co@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhMKDWdgeXl4E8xy3brLaZE9pMkfVzoo4BJ5QlW0yOjvW2xKKM
+	6MdNKOq3ejy5ZxsbpFIM36HdBfwFbACh1AYpZ62NZiPkkkm1h8BzLbN3
+X-Gm-Gg: ASbGncv6GxHcxsE5MQ9QW7jZQbvFokkKVYaS0pH9Urg4RH6SGReetiHrrCC7SMKI6WI
+	KqbLVZl3UlpvSJt64qpG7KT1q/elTe2fkOZESTfysuvQat4+tkzogYk6qZ1Jx9AD3iCFAXa1JZ5
+	1sceieYbfuNS0LOn6TZqMskIyr4k/ScllDShsd3KFmLfbWMiib9CTuomTHQwHcNdbYa/yi35F95
+	2yDc0Raz6R8XEWmeZo4N/7nbXBHTFtkEaIU7VVSz1WZI5/+SP2wuRkfDo9TKYVgjhpR+0vY+FjQ
+	mL+sKN9UgkxP1K7KhHeowneZax+y//4D3uz0XJvV3yvHxU8WDMEXrj0wsGT387qhVpAqI4lDKZq
+	X+E5Bl7Hz11OjEI5K4Yql2roK7+MFejTGtydyaqGB4qjJq4sFsIbL7y6S11ux
+X-Google-Smtp-Source: AGHT+IGTd5VpriOznSSUF78PDJ+lBThAc5tfiaPYhgxFnl96GsT4FoZv2KEHpZmkv5khcyAgJC1N0Q==
+X-Received: by 2002:a17:907:3f9a:b0:afe:d21f:7af0 with SMTP id a640c23a62f3a-afed21f7e3cmr716079066b.14.1756464008284;
+        Fri, 29 Aug 2025 03:40:08 -0700 (PDT)
+Received: from [10.82.207.1] (212-39-89-51.ip.btc-net.bg. [212.39.89.51])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afefc7ee8d2sm172652866b.20.2025.08.29.03.40.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Aug 2025 03:40:07 -0700 (PDT)
+Message-ID: <31435f98-5701-4ae0-b822-11a99d1b2eef@gmail.com>
+Date: Fri, 29 Aug 2025 13:40:06 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,97 +82,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] brcmstb-memc-ddr binding updates for MIPS boards
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: linux-mips@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- "open list:MEMORY CONTROLLER DRIVERS" <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>
-References: <20250729205213.3392481-1-florian.fainelli@broadcom.com>
- <aLF_DEu6YNSCSRxu@alpha.franken.de>
- <dcb0c746-62ed-48f6-9247-03bdf36c6e92@kernel.org>
+Subject: Re: [PATCH v3 0/4] arm64: dts: exynos2200: introduce serial busses,
+ except spi
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250815070500.3275491-1-ivo.ivanov.ivanov1@gmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <dcb0c746-62ed-48f6-9247-03bdf36c6e92@kernel.org>
+In-Reply-To: <20250815070500.3275491-1-ivo.ivanov.ivanov1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/08/2025 12:37, Krzysztof Kozlowski wrote:
-> On 29/08/2025 12:21, Thomas Bogendoerfer wrote:
->> On Tue, Jul 29, 2025 at 01:52:11PM -0700, Florian Fainelli wrote:
->>> This patch series updates the MIPS-based Broadcom STB chips to use a
->>> proper compatible string for their memory controller node(s) after
->>> 501be7cecec9 ("dt-bindings: memory-controller: Define fallback
->>> compatible").
->>>
->>> Florian Fainelli (2):
->>>   dt-bindings: memory: Update brcmstb-memc-ddr binding with older chips
->>>   MIPS: BMIPS: Properly define memory controller compatible
->>>
->>>  .../bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml  | 4 ++++
->>>  arch/mips/boot/dts/brcm/bcm7346.dtsi                        | 3 ++-
->>>  arch/mips/boot/dts/brcm/bcm7360.dtsi                        | 3 ++-
->>>  arch/mips/boot/dts/brcm/bcm7362.dtsi                        | 3 ++-
->>>  arch/mips/boot/dts/brcm/bcm7425.dtsi                        | 6 ++++--
->>>  arch/mips/boot/dts/brcm/bcm7435.dtsi                        | 6 ++++--
->>>  6 files changed, 18 insertions(+), 7 deletions(-)
->>
->> series applied to mips-next.
-> 
-> Why entire series? You were notified two weeks ago that I already took
-> the driver subsystem patch.
+On 8/15/25 10:04, Ivaylo Ivanov wrote:
+> Hey, folks!
+>
+> This patchset adds serial busses, implemented in usi, for exynos2200.
+> It's missing spi, due to me having troubles with reads when testing.
+> Serial_0/1 have not been included in the patchset, as it seems like
+> they're encapsulated in usi blocks, but are the only implemented
+> protocol and/or do not have a dedicated register for setting other
+> protocols in a sysreg. That'd at least require patches in the usi
+> driver and bindings to add support for.
+>
+> About the naming convention for usi nodes, I've chosen to keep the
+> downstream one instead of relabelling all to avoid confusion when
+> cross-referencing the vendor DT and to keep consistency with clock
+> names. They're labelled the same in the bootloader too.
 
-...and you do not have even ack from memory-controllers for that patch.
+BUMP - when is this going to get merged? I had a few other things
+I wanted to upstream before merge cycle.
 
 Best regards,
-Krzysztof
+Ivaylo
+
+>
+> Best regards,
+> Ivaylo
+>
+> Changes in v3:
+> - drop the serial_0/1 patch
+> - add r-b tags from Sam
+> - increase the size of all syscon to 0x10000 and not 0x3000
+> - change description of last patch to be more meaningful regarding the
+> usiN and usiN_i2c mess
+> - s/usi6_i2c_cmgp/usi_i2c_cmgp6, following the TRM naming convention
+>
+> Changes in v2:
+> - add a patch that switches address and size cells to 1 in /soc
+> - adjust all new nodes to define reg props with 2 cells in total instead of 4
+>
+> Ivaylo Ivanov (4):
+>   arm64: dts: exynos2200: fix typo in hsi2c23 bus pins label
+>   arm64: dts: exynos2200: use 32-bit address space for /soc
+>   arm64: dts: exynos2200: increase the size of all syscons
+>   arm64: dts: exynos2200: define all usi nodes
+>
+>  .../boot/dts/exynos/exynos2200-pinctrl.dtsi   |    2 +-
+>  arch/arm64/boot/dts/exynos/exynos2200.dtsi    | 1433 ++++++++++++++++-
+>  2 files changed, 1398 insertions(+), 37 deletions(-)
+>
+
 
