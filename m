@@ -1,129 +1,156 @@
-Return-Path: <devicetree+bounces-210438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26808B3B8AE
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:28:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2C9B3B8B4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:29:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA6945E3F44
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:28:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F20D51C28053
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E76F0305065;
-	Fri, 29 Aug 2025 10:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80D13081B6;
+	Fri, 29 Aug 2025 10:29:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dek/wK62"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oXZriuDk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E98C1FDE31;
-	Fri, 29 Aug 2025 10:28:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DA72BEFF6;
+	Fri, 29 Aug 2025 10:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756463324; cv=none; b=nLdTE3+fsCc7xnRBUftL2OcSdOOPHhESN1Zlbd3sLl4UlM9b/OaJxm686oEX8zntBtyYzlP4RKWvGje8xiRL9eu3rPc3TDPdLhg/SkdeWAyq9loH4JYW2XJGvsBnqTTf9cRUtZZvNjfO2OivM4jZ8ALkScVf2vC0e38mLgyIOyo=
+	t=1756463349; cv=none; b=WtlTeykeNQFNiw7slbfcRDecbOIk6HwirwRNNtSuq/fnwCwJOIXND4uAS4aCwa7FjdbeBS5BNiGWy7Sj6nwmF4hSFrcEWJFvG1GF5/bjqffTTnanmEPir2svNsSg5KnnT6Uoz7FFwjmCHDTrxdzvU0lCtFv2f8GbFVlljaLK+2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756463324; c=relaxed/simple;
-	bh=35TNFwWDooLMAxwKP+GU9JtApHDptbvNUiHBTvQ/9O8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H/RWDH84Bzgu75+amFyuznsS36ABrF4sCMRO5LHBEq9RknCXSXIyGkww+HWm5cWM6lssbhIeCv7Nbw2sv/KjkiD1JHuLRGrEPpdcXE75jZB0saNhOeJ0NWCKdZwFIRN0gBc28r03/fa++IO2WQCMuAiRD7uWhg+EsjHWMHtdZM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dek/wK62; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756463323; x=1787999323;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=35TNFwWDooLMAxwKP+GU9JtApHDptbvNUiHBTvQ/9O8=;
-  b=dek/wK62H/jUecnUUDr/G0MIXQpwD2U5ydoz7TWhwH//4KAafVM4jPYa
-   r+oqfYW4NOijfh5FJjR0MJxIzu3BnLyZ6kMILg+d8z0F6WG5LT08OyIFN
-   BHdx8p0xJgGCS03b0Vdpk9cZAp1bL3E5bESfQIdT6KOfzHYhcDGz0Cg8E
-   W77Q46L+H370GkgTW2QcSsa9ynWXlMVQimj2ttReuArmUrugIbmW2qLKC
-   H3snmWXdDrOvHjYKE3APcoQF91TH9f2xMvryfETjm3fqUnYWBQ+F06+bD
-   z95Brt29cfnaaFM0PxGV68V8ec78oCLl9g9MFl6Tnz9XiMtdKjSY+Tqo1
-   g==;
-X-CSE-ConnectionGUID: Xj+JCI8yRqO3mkmPGwXIBg==
-X-CSE-MsgGUID: iP3Z7U1HSpCO+TYHI52shQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="70185493"
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; 
-   d="scan'208";a="70185493"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2025 03:28:42 -0700
-X-CSE-ConnectionGUID: 5Vy7ImHyQ6KY9BHswHlR3A==
-X-CSE-MsgGUID: m1XrijetQbSUAr2nOR5fsg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; 
-   d="scan'208";a="169603373"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.237])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2025 03:28:38 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 61F6B11F97F;
-	Fri, 29 Aug 2025 13:28:35 +0300 (EEST)
-Date: Fri, 29 Aug 2025 13:28:35 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-Cc: Silicon-Signals <siliconsignalsforgit@gmail.com>,
-	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Hans de Goede <hansg@kernel.org>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Matthias Fend <matthias.fend@emfend.at>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 0/2] media: i2c: Add ov2735 camera sensor driver
-Message-ID: <aLGA0zbWz_th4tzC@kekkonen.localdomain>
-References: <20250829090959.82966-1-hardevsinh.palaniya@siliconsignals.io>
+	s=arc-20240116; t=1756463349; c=relaxed/simple;
+	bh=rK4qkpQLHD4YV+ZOv6+7UA3F3GsCJ78MecmyuokwNhA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PATegCY43OUlNEY0hbHyc28z8kCUYN1bHafnmxWmeCgbpiqcrRIi3zcqmbMI5ZMyaj62P3UDdM3fiDYQSbos9BSq99KOa0s6D7KcxR4CZnNev4ZeHMDXvYM/Gzv5NMzlGOw+lC9Trk+F9RJbIX8NGmFVr/xUh3p6aNYaaWY0TLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oXZriuDk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAE17C4CEF0;
+	Fri, 29 Aug 2025 10:28:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756463349;
+	bh=rK4qkpQLHD4YV+ZOv6+7UA3F3GsCJ78MecmyuokwNhA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oXZriuDkwQAQm9ce6gw+R5rqIDEB/OI+h2EsdRTbbciLZPFIKjLWfZfByzZNRVA0/
+	 4kwLvxPLFMjjcU7FhE23E4Nb788MSU9ScxDDFIqS1smxYrFHr4wvR75K9+EfvLht2v
+	 gAbbRULk70G1qnvHBT5yGLzNPic1WyvHUlehmuoL1pcVv3mfbOmpZ5gURvCtFC1bdX
+	 X6PkDrK7o2KywWgHhuJ1040CwOh+EOM2n02isZCWgSfyVnYcD+2j07j3km+PklsRab
+	 0qkA+5nZqsZREwAS9LYlPX2+0CiFCSATA9bC5niYDb7zTwA8+LOTQtrnrVtpcO6gmi
+	 ZHvq9jYIv/Qpg==
+Message-ID: <32dedafd-df52-48fe-a9b2-be96127bb9b7@kernel.org>
+Date: Fri, 29 Aug 2025 12:28:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250829090959.82966-1-hardevsinh.palaniya@siliconsignals.io>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 05/10] pinctrl: samsung: Add ARTPEC-8 SoC specific
+ configuration
+To: Linus Walleij <linus.walleij@linaro.org>,
+ Ravi Patel <ravi.patel@samsung.com>
+Cc: jesper.nilsson@axis.com, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ s.nawrocki@samsung.com, cw00.choi@samsung.com, alim.akhtar@samsung.com,
+ tomasz.figa@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+ arnd@arndb.de, ksk4725@coasia.com, kenkim@coasia.com, pjsin865@coasia.com,
+ gwk1013@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com,
+ smn1196@coasia.com, pankaj.dubey@samsung.com, shradha.t@samsung.com,
+ inbaraj.e@samsung.com, swathi.ks@samsung.com, hrishikesh.d@samsung.com,
+ dj76.yang@samsung.com, hypmean.kim@samsung.com,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-arm-kernel@axis.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, soc@lists.linux.dev,
+ Priyadarsini G <priya.ganesh@samsung.com>
+References: <CGME20250825120720epcas5p491e16bbfbdbcd751acbb0c0e55f9e2a2@epcas5p4.samsung.com>
+ <20250825114436.46882-1-ravi.patel@samsung.com>
+ <20250825114436.46882-6-ravi.patel@samsung.com>
+ <CACRpkdZwz8C=MRgo1tQrkQzNtKMLV+P-LK8XyRA3eSFW-cbFCg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CACRpkdZwz8C=MRgo1tQrkQzNtKMLV+P-LK8XyRA3eSFW-cbFCg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Hardev,
-
-On Fri, Aug 29, 2025 at 02:39:49PM +0530, Hardevsinh Palaniya wrote:
-> From: Silicon-Signals <siliconsignalsforgit@gmail.com>
+On 29/08/2025 12:11, Linus Walleij wrote:
+> Hi Ravi / SeonGu,
 > 
-> The Omnivision OV2735 is a 1/2.7-Inch CMOS image sensor with an           
-> active array size of 1920 x 1080.                                         
->                                                                           
-> The following features are supported:                                     
-> - Manual exposure an gain control support.                                
-> - vblank/hblank control support.                                          
-> - Test pattern support control.                                           
-> - Supported resolution: 1920 x 1080 @ 30fps (SGRBG10).                    
->                                                                           
-> The driver is tested on mainline branch v6.14-rc6 on IMX8MP Debix Model a.
+> thanks for your patch!
 > 
-> v4l2-compliance 1.31.0-5387, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: 5508bc4301ac 2025-08-25 08:14:22
+> On Mon, Aug 25, 2025 at 2:07 PM Ravi Patel <ravi.patel@samsung.com> wrote:
 > 
-> Compliance test for rkisp1 device /dev/video0:
+>> From: SeonGu Kang <ksk4725@coasia.com>
+>>
+>> Add Axis ARTPEC-8 SoC specific configuration data to enable pinctrl.
+>>
+>> Signed-off-by: SeonGu Kang <ksk4725@coasia.com>
+>> Signed-off-by: Priyadarsini G <priya.ganesh@samsung.com>
+>> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
+> 
+> Please avoid CC to soc@kernel.org on these patches, they end up in the
+> patchwork for immediate merging for SoC:
+> https://patchwork.kernel.org/project/linux-soc/patch/20250825114436.46882-6-ravi.patel@samsung.com/
 
-Could you run this on the sensor sub-device, using -u option (currently
-/seems to be dev/v4l-subdev3)?
+Yeah, that's odd - most likely old CC-list. This could happen if using
+b4 but there is no b4 being used here, so why Cc-ing according to some
+old files?
 
--- 
-Regards,
+> 
+> I think this is not you intention, the pinctrl portions will be merged by
+> Krzysztof who sends it to me once that part is finished reviewing.
+Version for review should not be merged via soc@, so that's wrong
+process in any case. But you are right that I will be taking everything,
+thus soc@ is not involved at all.
 
-Sakari Ailus
+Best regards,
+Krzysztof
 
