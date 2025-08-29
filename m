@@ -1,67 +1,60 @@
-Return-Path: <devicetree+bounces-210556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E90B3BEFA
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:14:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 747DEB3BF05
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:16:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1BBE5E2591
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 15:14:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66819A00184
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 15:16:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92246322A1A;
-	Fri, 29 Aug 2025 15:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA050322DA6;
+	Fri, 29 Aug 2025 15:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K68jz20C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CgleI0+u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 691D8322773;
-	Fri, 29 Aug 2025 15:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED86313529;
+	Fri, 29 Aug 2025 15:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756480488; cv=none; b=gyLSxnqY8X6BVo9vHD4dszNO9sdZtnZ7g89ufva459PdEbOLvbVrg0lLHzGTIpIGlpxZhQplpRlaMIGhcC+oPh83jOkmToD1C62KOYmEP3clduIZGOuxvWb1XKmI+dkjZgeVg5SXJhucmEJt4BfoWuFZG60Nh3w9enWwF2+r5zg=
+	t=1756480594; cv=none; b=BaO5U7M/LoJY2lmx6WdzaIUtGp1VTdz+utt6aIUYMpV6VXwsaDpiPShzLNbu+bFButtYODhctP9u6LOqGPpJpMA4G8nYK6M/UPOOzZ7xqZH/PPeiDSo05Ks6aPDKbsXDuwGZFsswC1jyeLBKJJr94bVc8giHoEwEylpL2Twkbwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756480488; c=relaxed/simple;
-	bh=k+zd4T4lSzfL8coBryVKuV0leuYZBzr8PX3IWC/2ywA=;
+	s=arc-20240116; t=1756480594; c=relaxed/simple;
+	bh=FJtaleC68nhBHq+4faUuH/z5iHXXo3ZXutIEf+99VKo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WVX0tPNIXIYfb0PZroSS3wZe43FvELwnJyEyoc90q2UDI93kIzZ88caETwNC3H3+ZS1FMkIi1CQsHugTVTBHiBiI5ePjyPPXT9X5Y/DEaOeTnA8U27E7VIiReEKbu5WuVbym8HzqiW4K8oU+UcHqmDFaM1R2yGAJLi7jg+5e0kY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K68jz20C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E90DAC4CEF0;
-	Fri, 29 Aug 2025 15:14:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=COaJkylpvkPuNv9Es9ONm6c/FFsnjrE3RGEnHlvVIf6IhVvLEjwGqU+asRGXXVg6eSO511RubZ9P7seH58wZzhse8ZyqdMSUyPmUyFWN70yENQ9ZqVSpJU/3/lM1aSQz4uzwsdefzxuwDxVc6tTA6SxJwT3veo6ojzT77eM4X1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CgleI0+u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27324C4CEF0;
+	Fri, 29 Aug 2025 15:16:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756480488;
-	bh=k+zd4T4lSzfL8coBryVKuV0leuYZBzr8PX3IWC/2ywA=;
+	s=k20201202; t=1756480594;
+	bh=FJtaleC68nhBHq+4faUuH/z5iHXXo3ZXutIEf+99VKo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K68jz20CnBpOVER+ZgjqfAj4TaAjAF07Z8tT1lIK6bSlLdqjIqb97K/dXM1XdHh4Z
-	 SUvKQWTf/s96oTNV86+bHDFZ0NEjH3pcwNl5ANoEssKKhyoaJiGsAp3+tPT1X/cVBy
-	 R6h1mj4BbUcRCHcyzLFr/knrF5USp9y5DwbslgDVr7dyDBRSheSmc8Xe12+0L7ph8J
-	 C3dWO9SsUr332yNURgf6DcgpK+8C6OSBxUSux+A4JJpI2gj3wsKL/OIs4+hqYn2CXA
-	 8AH53kSlJ4T9/0UkD6wcjJKMyU1KlG0scfkWP2OukYkdHNZNcw7upVhqiRE6LbXI7C
-	 HZvTTybTwTVDg==
-Date: Fri, 29 Aug 2025 16:14:42 +0100
+	b=CgleI0+u1fSKPRmtgPucOUDLXfyM2Q7doDkt/Rbr2dC5a75yPl4Ew/36Qgp3hpHEW
+	 eBoQlyXsAqIjJO+zmCJdgLTlmlCkExK/Mjk+z/C8umEta4IDUkBkvfrRhvJoro3F+f
+	 OorXXLupNXgYoOPXvKug5gsNrJWWQzIbXtLXH+KRwLJceABl5rSHi9OlssteaWo6aC
+	 db3eBjTplH50HeQgU3ltTGfRae3BTZi3I0STSAlOVe3LFpjL3p64ZBDFn85LvqCHYW
+	 jdTuvDkbMYzRM50uFhJ4HaCF9Qw/H3cHignuSEbCTmRWa95GV0CHWW7Tu8cncQZYgl
+	 r8PWQlHIgKLzw==
+Date: Fri, 29 Aug 2025 16:16:29 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
+To: xianwei.zhao@amlogic.com
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: panel: lvds: Append edt,etml0700z8dha in
- panel-lvds
-Message-ID: <20250829-geek-unearned-786928b128af@spud>
-References: <20250829-drm-misc-next-v1-1-fedb48cf50dd@foss.st.com>
+	Liang Yang <liang.yang@amlogic.com>,
+	Feng Chen <feng.chen@amlogic.com>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v4 1/3] spi: dt-bindings: add Amlogic A113L2 SFC
+Message-ID: <20250829-ignore-scheme-d3d8b67ea125@spud>
+References: <20250829-spifc-v4-0-1e57fd39f584@amlogic.com>
+ <20250829-spifc-v4-1-1e57fd39f584@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,27 +62,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3aIRal9bDEDOJiKa"
+	protocol="application/pgp-signature"; boundary="/dYG5m5bU/0llhy+"
 Content-Disposition: inline
-In-Reply-To: <20250829-drm-misc-next-v1-1-fedb48cf50dd@foss.st.com>
+In-Reply-To: <20250829-spifc-v4-1-1e57fd39f584@amlogic.com>
 
 
---3aIRal9bDEDOJiKa
+--/dYG5m5bU/0llhy+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---3aIRal9bDEDOJiKa
+--/dYG5m5bU/0llhy+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHQEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLHD4gAKCRB4tDGHoIJi
-0gCIAPYv2+V8kpg5sN3cfWsDPpNNmCuk3Nvh3+yfi2YaQtm/AQDcZ0ZEpTENDEoa
-+f5cE4x5RJxDyD/okF68lUmTvCj9DA==
-=7dgQ
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLHETQAKCRB4tDGHoIJi
+0iQNAP9CvtzX1G5VfH9mTB3CnPaw1gwpTiQ3LJr6l25zrcRNDAD/T73b1fZtu7dk
+NsdcwCV2Q3N3CloTLpWKP/u7Ii+XLgc=
+=2/0u
 -----END PGP SIGNATURE-----
 
---3aIRal9bDEDOJiKa--
+--/dYG5m5bU/0llhy+--
 
