@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-210302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45468B3B3AF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:55:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9D62B3B3BE
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 09:02:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6ADD11C80406
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 06:55:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8ED8566433
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 07:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D3FA25F997;
-	Fri, 29 Aug 2025 06:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55282257AC2;
+	Fri, 29 Aug 2025 07:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mbqaHz2U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pq40eb4L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7F8818E377;
-	Fri, 29 Aug 2025 06:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D32F1FF60A;
+	Fri, 29 Aug 2025 07:02:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756450507; cv=none; b=TsZKSwOBZlilft2RNce1OKkvwct1EC54VcECgQpG5LoSqXeYkPwSjpH2IgBEzNoPgqozFIhfWbZuYoCTkDz+YXvpKx474GRGnzYj4YVZH+gzpKt++SxjPKqn2hL+8fUIpqqKKm1Gxhg48yh8PYYgBM7KEtBIUuUP3gYkRivEIIE=
+	t=1756450942; cv=none; b=WmpTNiFqgYGf0UIrhni/URiEvWwZgiKrCkRcRjcuBPHqye7CR3qXiKqGz4dHvcDgTalx4lhG8RU7hubOe3vmtrg4vL0T0IdcUzcuAtRkVAYUTzwBNUdYP6gRwpkhQEhNkv5WiQCRI+PopMmkEbRMcXm5xHSaiMcLIwOAG4iw6tA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756450507; c=relaxed/simple;
-	bh=v2HohlsHYo6pA7siTNEB6M/dNYVSNr2mWFTtHtWEkXY=;
+	s=arc-20240116; t=1756450942; c=relaxed/simple;
+	bh=xvJvKTjjtiON0JSS6tLpp6o58bMG15JPqSA8AG7nqoo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hfkuq4l7xIYQcf4vNifimPEjbVHMLHuEBqPdPU8QMtX928P4uQDHAiXCzs17iTUHliRI6cgMa15ELZ55cYzCRSSW4X90/L1y+a84LepxYUJZcodxA23pISGASW4gd3AMXMt17UvNCaV1T4ykmwbrnBfSTHhf9+Ij1S8OnuA89HA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mbqaHz2U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43280C4CEF0;
-	Fri, 29 Aug 2025 06:54:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZtFZ8Ce+7wC4VONKIQibpfA5Y+uxZh9XHs7MUgKNcZ5WCu6fhoWgSu/OAd55jRKojv9dVoRCNEl4vGrAheOKx5YkhrJtT3NNvI8P7H0bdlAo2O1vTOY5/EUbE+woZMxq4k6u/pUTAiH12+UYUo6911FMLePHyPEij5GKiTlR0q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pq40eb4L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D8B1C4CEF0;
+	Fri, 29 Aug 2025 07:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756450506;
-	bh=v2HohlsHYo6pA7siTNEB6M/dNYVSNr2mWFTtHtWEkXY=;
+	s=k20201202; t=1756450941;
+	bh=xvJvKTjjtiON0JSS6tLpp6o58bMG15JPqSA8AG7nqoo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mbqaHz2UQ/hJml+dSth4Qfs+j2RATzeSsy3V8Qb7EzvweX0l/Wh/14m7hMACiQ/cA
-	 bV89hs8pbMl7EX0bDgsAeyOYur9Ycy9obKqTRhihvv8QZrnudI0r3REVrAae8kLW8I
-	 5G+hlldlluVt21h8o17AT8lxHAGIKEgfIVZApp+MBg4GKk+hcd72B0BUscFtWgBJdW
-	 PUkvRD2p5wOxMsFtPp2Gsh8icfT9Y+8UFys1eXsCya4Cey0P5d2aTRwuODTDMdRPK0
-	 T//MWO4Wr847e1oEX5WbL0QoEMj2o6vvS0sNNt/Pnp77TVHIVdUHNMpVNqx888buIc
-	 WjEIKgM1U0yaw==
-Message-ID: <e705ec14-cba6-4e86-88c9-c418c15e5c7c@kernel.org>
-Date: Fri, 29 Aug 2025 08:54:57 +0200
+	b=Pq40eb4L8br+D4UvkOJhu2OLSyW+DlxlEo9FByareyOSbjSEe4nKCxdBya8lzuNwl
+	 fiiq8vIRkKhoQnqg4vbv2ksfTjq6VYV2wbAY8EeTkPN916QtN1QOQW9FxRkyCKd+4C
+	 qgtdQY9s0houPBfuDDJu8Q/O4eeQwy6ICb4HTJqK/hfalnXm003lkYmOgGA0H+BVSj
+	 OxcxVHnCGr9imXQKvFX4LvDPeDi/pYMdihxebnItac4Emx792JY+DuSuVstpdWq1Gj
+	 Ly4sN6vCIgyQwhoSlaqRBUxUc2hk2B/fdGYg0MflLVF/Ms43uAoCJR/fjNGTBM6H+x
+	 g/zNVb9TpEiWQ==
+Message-ID: <74d6175b-a886-4db5-8419-69ca6ed217c7@kernel.org>
+Date: Fri, 29 Aug 2025 09:02:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,33 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 02/19] dt-bindings: clock: tegra20: Add IDs for CSI PAD
- clocks
-To: Mikko Perttunen <mperttunen@nvidia.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Sowjanya Komatineni <skomatineni@nvidia.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Peter De Schrijver <pdeschrijver@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Osipenko <digetx@gmail.com>,
- Charan Pedumuru <charan.pedumuru@gmail.com>, Svyatoslav <clamor95@gmail.com>
-Cc: linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-staging@lists.linux.dev
-References: <20250819121631.84280-1-clamor95@gmail.com>
- <2451218.NG923GbCHz@senjougahara>
- <268A6593-1FAC-4A4D-925A-801FB6FEE9F6@gmail.com>
- <3173051.CbtlEUcBR6@senjougahara>
+Subject: Re: [PATCH] arm64: dts: xilinx: Drop undocumented "always-on"
+ properties
+To: Mike Looijmans <mike.looijmans@topic.nl>,
+ Michal Simek <michal.simek@amd.com>, "Rob Herring (Arm)" <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250828213028.2266805-1-robh@kernel.org>
+ <769c2a21-15c7-4c6d-84b7-cf1153106dfb@amd.com>
+ <5ca5b18a-96bc-41da-8784-171116d75b50@topic.nl>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -122,75 +105,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <3173051.CbtlEUcBR6@senjougahara>
+In-Reply-To: <5ca5b18a-96bc-41da-8784-171116d75b50@topic.nl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 27/08/2025 12:27, Mikko Perttunen wrote:
-> On Wednesday, August 27, 2025 1:28 PM Svyatoslav wrote:
->> 27 серпня 2025 р. 07:19:39 GMT+03:00, Mikko Perttunen 
-> <mperttunen@nvidia.com> пише:
->>> On Tuesday, August 19, 2025 9:16 PM Svyatoslav Ryhel wrote:
->>>> Tegra30 has CSI PAD clock enable bits embedded into PLLD/PLLD2 registers.
->>>> Add ids for these clocks.
->>>>
->>>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
->>>> ---
->>>>
->>>>  include/dt-bindings/clock/tegra30-car.h | 4 +++-
->>>>  1 file changed, 3 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/include/dt-bindings/clock/tegra30-car.h
->>>> b/include/dt-bindings/clock/tegra30-car.h index
->>>> f193663e6f28..14b83e90a0fc
->>>> 100644
->>>> --- a/include/dt-bindings/clock/tegra30-car.h
->>>> +++ b/include/dt-bindings/clock/tegra30-car.h
->>>> @@ -271,6 +271,8 @@
->>>>
->>>>  #define TEGRA30_CLK_AUDIO3_MUX 306
->>>>  #define TEGRA30_CLK_AUDIO4_MUX 307
->>>>  #define TEGRA30_CLK_SPDIF_MUX 308
->>>>
->>>> -#define TEGRA30_CLK_CLK_MAX 309
->>>> +#define TEGRA30_CLK_CSIA_PAD 309
->>>> +#define TEGRA30_CLK_CSIB_PAD 310
->>>> +#define TEGRA30_CLK_CLK_MAX 311
->>>>
->>>>  #endif	/* _DT_BINDINGS_CLOCK_TEGRA30_CAR_H */
->>>
->>> The commit message refers to tegra20, but contents are tegra30.
+On 29/08/2025 08:25, Mike Looijmans wrote:
+> On 29-08-2025 07:46, Michal Simek wrote:
+>> Hi,
 >>
->> My, bad, it should be tegra30
+>> On 8/28/25 23:30, Rob Herring (Arm) wrote:
+>>> The "always-on" properties are not documented for "silabs,si5341"
+>>> binding nor used by the Linux driver, so drop them.
 >>
->>> Regarding the CLK_MAX define, I agree that it would be better to get rid of
->>> it. Perhaps you can check if it would be reasonable to calculate it
->>> dynamically in the driver, but a define and sanity check in the driver
->>> would work too, I think.
+>> Binding
+>> Documentation/devicetree/bindings/clock/silabs,si5341.txt
+>> doesn't contain it
+>> but driver drivers/clk/clk-si5341.c is reading it.
 >>
->> It is not unreasonable, but moving this elsewhere may cause issues with
->> adding new clocks. Addind new clocks would require updating not only header
-
-No, there are no such issues.
-
->> but also a place where max clocks are moved to and ai am not sure how can I
->> dinamically calculate amount of clocks in the driver without updating both
->> header and driver with each new clock added. Maybe you can propose a
->> method?
+>> 1345                 config[num].always_on =
+>> 1346                         of_property_read_bool(child, "always-on");
+>>
+>> It is there from 2019 when driver has been added.
+>>
+>> If it is not standard clock property it should be moved to standard one.
 > 
-> Looking at the code, it's probably better to just move the CLK_MAX define into 
+> Agree - either "always-on" should become a standard property, or it should be 
+> removed from the driver.
+> 
+> As a standard property, akin to "regulator-always-on", maybe it should 
+> probably be renamed to "clock-always-on"?
+> 
+> I'd be happy to provide a patch either way.
 
-Just like every other driver.
+That's an implied ABI now, so you cannot remove it, but about
+"clock-always-on" - it does not look like a property we want in DT. If
+on one board this is always connected (but on other not), you should
+take the proper clock reference.
 
-> the source code. We can leave a comment here as reminder to update the define 
-> in the code if any new clocks are added. This happens so rarely that I don't 
-> think it should be a problem.
-No, don't leave comments here. There is no single risk of breakage,
-there is no issue to fix with that comment.
+> 
 
-If you add clock to the driver WITHOUT binding, nothing, absolutely
-nothing bad will happen. You will just not have a way to use that clock
-in DTS.
 
 Best regards,
 Krzysztof
