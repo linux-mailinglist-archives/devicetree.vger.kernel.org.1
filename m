@@ -1,92 +1,130 @@
-Return-Path: <devicetree+bounces-210571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96037B3C07A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:19:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8CDB3C07C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:19:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 366877A8590
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:17:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C86E61C80375
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:20:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E754322A25;
-	Fri, 29 Aug 2025 16:19:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DEB9322DAA;
+	Fri, 29 Aug 2025 16:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k2dkYqBB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yk1hHyns"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FA952D321D;
-	Fri, 29 Aug 2025 16:19:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A162D321D
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 16:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756484364; cv=none; b=SqcV1UJCTNRz2BgfsqvxFY1zrNA/cxMb7/P5zznDuciNhTpK4Dkj5CfdgOAVP8ReRPm2n/Ip4OPh68MAygme18K2nSP0F3ygrAUCg/GUkO1IDF6SAu26fODHXeLWofhLy6FuQVxX3lc9c6LaE/FYKbnfqrgFGRTSCXtS0WmG5wc=
+	t=1756484374; cv=none; b=K6rbE5Ag1ivm/4/Imsbu8Fm/yLDShZi+bcGyIMEyhw5Yrk4PKlptMulAwHhgCZ19FwdB+6Smfs7vhw01+IAkU6suPwOc4uQCgJik/fhhFAGq/rhfmcyzkhAoyMglifPRW0XvthHaKj6cuCYsB3cKsAe2P0fAdLUnfGDo81hPNV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756484364; c=relaxed/simple;
-	bh=mG06DgRB9nSB41YmoGRe5I5pTt9S8mEWzesAoRYSmno=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bUhp45/ZDmAvLor+zJW08a29kmEDedZaV1V+3dtt+RymziPfeOGLpoI4hure7DkF0/Q/eDBWSRljahwzYHHP6wvtVEKxx4JnSnzvxJmLCBoPWYcGkMnJdOALG6Q19sXibj57uElOcycYTsa9Hg1ZUJp1xVLdn+nTFBexzTM3y7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k2dkYqBB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 829CFC4CEF0;
-	Fri, 29 Aug 2025 16:19:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756484363;
-	bh=mG06DgRB9nSB41YmoGRe5I5pTt9S8mEWzesAoRYSmno=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k2dkYqBBgpdKvZQ69UQRmmauu5XkxtkM3t/GeoYUbquRoN0fuRemfm4y1wzB9GyEY
-	 uFdZYwd7VcVHIR++d+dp8rdfQ2RhLjzvaBFsEb/kwvA1pHRO85BprD9uk2g8v/pf4p
-	 Jo86m6LTAqE/4w24ediycijdUy1X6o+Z+gQgmDgWM3s7NAPegMGCbjKwQMMMiv1mwq
-	 4I129egsd+BuUHxCQmvD1aQ51aAKi1CYR5q82B2boRkpkqnvlKQPQOT19dZt5a48R6
-	 r4SKK313p31441p83U7wz9eLEsDE4gvEtZGWYeYPmBafhNGIXEYhYO+2RXrHbZqCeM
-	 TKR4oruUaHBlg==
-Date: Fri, 29 Aug 2025 11:19:22 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Brian Norris <briannorris@chromium.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Georgi Djakov <djakov@kernel.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	Odelu Kukatla <quic_okukatla@quicinc.com>,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: interconnect: qcom: make sc7280
- aggre{1,2}-noc clocks optional
-Message-ID: <175648436198.935222.9794956520699193444.robh@kernel.org>
-References: <20250825155557.v2.1.I018984907c1e6322cf4710bd1ce805580ed33261@changeid>
+	s=arc-20240116; t=1756484374; c=relaxed/simple;
+	bh=DEb+rLyFLAAC2UTbNeB5RKFyMlAT9QhJEkzS1NHnSv0=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=RVkmwjYBsLvzbzqRYlUSRbAIMUwD4DephFHF3Az5ypa8AqQ5a+wwxs7ZSA8CH/gFa6zCamb0V3EdaMW/Xz3d5YSK47QRA5qPgL82y5RIkC2PeRQd3q/o53qg7/3SSdLYp+XWf+5PhtvP2w29jkCQuVTQIbZgvSg6rYwk3j2q+HM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yk1hHyns; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-55f4834fc49so279758e87.3
+        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 09:19:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756484371; x=1757089171; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SDzPs5+Y62RH0rRjBPSWe/GpABAvJ0cBPrKFUSkTbdI=;
+        b=yk1hHynsB5xdXf1AF8wE0HiieaHWsthWcJiyL3Hdis4cH66OjMygIoy3SC1IVciZ4c
+         5uM2IPHRqb5/vblr7k9O0764DLKhIKfMT0n2Ww7nAKelliommJ/7Qq+nkzAZIVggP4n8
+         wGBQG7RWFe+V3Uz9bCQqd8wsTKh/TznCtC5dWX+yBMcQdTJe29cenKr1qrNYBctq6G7I
+         YdTbPjDbgyZ6TicwtvunJmWcEX4xPPN4RHZvppwG5EG/C3UnrVIwUIk9yJJprlUbGA2b
+         Wp5yT+vyTyDhQJVMcbp/4KN12u+a1Y6/MTyqh8QkezaRkEk2rLQnQU9rvEF38hVm6AXT
+         woXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756484371; x=1757089171;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=SDzPs5+Y62RH0rRjBPSWe/GpABAvJ0cBPrKFUSkTbdI=;
+        b=MB193Iz2DerkxJVx4BRB9FO1gA+SHnOTWr8+RPFw+UdBTFjR0zXklkgN6zJdQXvBnf
+         OkX7EvSToXrd9esJmZbV2rHc7Yck6iusosmjVuc73wDWXBdIIAb38FRQHJ7ioFTvmNsz
+         5zXh87mEyPN9pqVISPL7oIxkGgWi1EPQ13gSoNUyviTlrYesPCL08lA6fIp6BH692d0s
+         gZb6S79nyMGeRSBUsSfNDwLrJmP+ZPr09cvNe5rmMQ1qG6NX+pZhGHAhLkwgAM+tPsBB
+         0imDfFwPD6ID1tGGwR01Z7mjWQE7PBtQ5MTfPmnQlxuPzO++FV2P1Pq0CsAevBGEKsOV
+         zgxA==
+X-Forwarded-Encrypted: i=1; AJvYcCWx2z5JR2Q95HAOBv87Ycelp+jkIENLuTPkBt5O/CnURTuaY3DqofFa3Edb+rtU3OzwEPOR2voxpOGi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxtkk9yaaiI5lwvYNCnN/UhzOCLZeywo/XyAbSm+UopMOe4PJQb
+	QGtiytaMW7SVDtmVgjHsYeEG9qa3/pcnUcwSZWnvH9n79ZGUItiAa2/mUYRhUxvhoSI=
+X-Gm-Gg: ASbGncsZZ23CeL3OLNE5AMtGtmtvYD6KpjJ/3rsxr9lw/2P2Weh3PgbCbZ6juf3GL5r
+	H89Aof/wmfC95V5tWkui/ck6ObwAl+gvpQ8dB0DN7QElQMu6YzlJiQsRifcLJf+1l/5rKdHLW/T
+	e+AyD9gnPzIxu//lv0RsS6xC3YdSHJ+UUlkLyW1GJVBZHCF4TIutqwYH11ObJ9A3MHZMDS2frRt
+	43rE43RJR9eeaoSIRC5zmj+vD5I3ku1q7rfWu3SO5VpYZA6WyFm9+F7oEicvKpUcRxE+gEsOM4V
+	hu5ZLY9+bwz7ApjuNkQvJQWg5BxnXWhDrxyYfGroTLuz0tNjZOKEaD5zqrM59jCq6DEnf8u7QAc
+	ZJea5d9nu1zFlLd5Wiro5N1wErr0/3wBnRE4MUs7bRBvI0BCdIlVDMxbX2BiWw81MHZGTigY4cP
+	KW
+X-Google-Smtp-Source: AGHT+IGBA0Om8aXqgaQfO5bqLiwz99OhoM1dRN5Nb9hQZ+wq5lz/yuN7Lkr8Q2HfRntN3vzDhj65mQ==
+X-Received: by 2002:a05:6512:39d1:b0:55f:4741:a82e with SMTP id 2adb3069b0e04-55f68ceae50mr396339e87.11.1756484371248;
+        Fri, 29 Aug 2025 09:19:31 -0700 (PDT)
+Received: from [192.168.1.100] (88-112-128-43.elisa-laajakaista.fi. [88.112.128.43])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55f678501f4sm731590e87.105.2025.08.29.09.19.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Aug 2025 09:19:30 -0700 (PDT)
+Message-ID: <f27b035a-91f0-4f62-b90f-3370b25e828a@linaro.org>
+Date: Fri, 29 Aug 2025 19:19:29 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250825155557.v2.1.I018984907c1e6322cf4710bd1ce805580ed33261@changeid>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] media: i2c: Add OmniVision OG0VE1B image sensor
+ driver
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Tarang Raval <tarang.raval@siliconsignals.io>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250829144242.236732-1-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250829144242.236732-1-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 8/29/25 17:42, Vladimir Zapolskiy wrote:
+> OmniVision OG0VE1B is a monochrome image sensor, which produces frames
+> in 8/10-bit raw output format and supports 640x480, 400x400, 200x200
+> and 100x100 output image resolution modes.
+> 
+> At the moment the only supported resolution in the device driver is
+> 640x480@120fps (Y8).
+> 
+> The driver version is based on top of media/master, which contains
+> a new devm_v4l2_sensor_clk_get() helper function.
+> 
+> Output of v4l2-compliance tool from v4l-utils-1.20.0:
+> 
+> ----8<----
+> v4l2-compliance SHA: not available, 64 bits, 64-bit time_t
+> 
+> Compliance test for device /dev/v4l-subdev30:
+> 
+> Required ioctls:
+> 
+> Allow for multiple opens:
+> 	test second /dev/v4l-subdev28 open: OK
 
-On Mon, 25 Aug 2025 15:55:56 -0700, Brian Norris wrote:
-> We've found that some device firmware does not expose all the QoS
-> resources necessary to manage these interconnects, and that the driver
-> code that starts using them crashes. Leave 'clocks' as optional for
-> qcom,sc7280-aggre1-noc and qcom,sc7280-aggre2-noc instead.
-> 
-> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Brian Norris <briannorris@chromium.org>
-> ---
-> 
-> Changes in v2:
->  * new in v2
-> 
->  .../interconnect/qcom,sc7280-rpmh.yaml         | 18 +++++++++---------
->  1 file changed, 9 insertions(+), 9 deletions(-)
-> 
+FWIW I've copied a part of the output from querying another sensor,
+the outputs are one in one equal anyways.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+-- 
+Best wishes,
+Vladimir
 
