@@ -1,88 +1,89 @@
-Return-Path: <devicetree+bounces-210348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3437AB3B53F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB8D2B3B541
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:02:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 612E5A046DB
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:01:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95C96A03D71
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:01:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C19F82C2374;
-	Fri, 29 Aug 2025 07:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A9CB2D23A8;
+	Fri, 29 Aug 2025 07:58:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LXJuG4K3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eU6zkGB+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA5FF28641F
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 07:58:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6DCB2D12E7
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 07:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756454299; cv=none; b=Abqv/Wb55EjpzgHltyhE0Z9g67BNyAI8i6/DAfU2RkVgxtgm3/TSuO5H7wu5gms+hCCVzgX4t9Ts8jYxCiJMzOo2eXEjQUcBqoAowS8K01rmUnf7RH6YI21bLVYshJvKTQ/knTsiTvwggI0nSCLfORfPoo70KtewPkf18tdf6u4=
+	t=1756454304; cv=none; b=VKGaoa7HAXrRpYb0Zhm/P4LeUr40cxWWD0s4jaDF2L/tQsLrIrB4GqBnrvrpH39phl4QbQ9T3dRkZGYtisTnvt85LFbWK/ZXuD79/NfnfC0VkL7deoKZPrnTkdT+PCnEkHDW2eran5igbq86QYgOE+EP7/rqRnzMMk3TOau+ZSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756454299; c=relaxed/simple;
-	bh=2PKGQycBUFlWqOeCmczdNYF3bcFIHeNZBIXA8HRAk4E=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qybwTPdFBvm2tWG6oZx00H/+PkK4RQo8qiA92hV12YjcipCMRvGgayxAvAwsvDlJmTc3SsrDMJL94pC7cG82zTL3Wm+QVp7jFpJ6DOWGncC+W6e2cGsXeMSRztyzIcD+B7HGnbBi6+oPw1JLY9u9YDs+slDbQySWXE8R8qFx9zc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LXJuG4K3; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1756454304; c=relaxed/simple;
+	bh=z9drRjXdTT0KA8t2VNi+iNMOxRn/Ma7SLpUA/tpJQcg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=BxK5XknsPazDa/PJWA7n8uZoYqf7IgQBnIO1/iXToGtVE4iAnI8gWDjnCKyaOA6CJcY5QUWKDsOdFU3IXw6XqcbJK9Oh6sgQ4bX8dBRrngD/ZDUS2Xdqn1rTYexxljiaiebfPQ6lgPIiOvifykdE8odcQxUnljy9VToErWqtXxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eU6zkGB+; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57T5tTaF015339
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 07:58:17 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57T5tTDh021666
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 07:58:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=nMmvvuBBHOBvmrBWmarNJi
-	Kf7qrOg4JEex2f2Ps3aKM=; b=LXJuG4K3BgRrfeZMimgCglFvWnzC3A6JB0c5b1
-	gWZAlKyZD1vBDheU1lkx2rB7d86lUE6d8hZMb7hzJ2dYvgVmpOrfddeR9oVHFmRp
-	qD4EtZbCxAIWzC7vEta6BXyasLicDH0iYYIFySMPxFlUIIs8kfTr9lJ7QXEOe3VY
-	uQTNShypSf92R2zOpM7NTtiAQGxqaR4skZMEP0btSOnQpAgurJ5lNQeNhpo/9OdS
-	lZYGdh8DuGL6z5OeuPxKu3iKb6BEA9uRmmIgpcv0UCMgo/XEHyaDRi2haDWIdJ26
-	cKognMvQdFp56GC3U2sapYvWcsMUUZDa4Gz5YU907J/N7VjA==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48rtpf5h54-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Tg0TadezHCZinWRaUOrMAwdmXaDSKwhZG9ok3+9UXoM=; b=eU6zkGB+GKqAa4gf
+	GGY6VP76EZQkLEXK0s+MO2GmTH+pFdhWHO7rFZgb3e7zy9oR9rA4omnPos8Lfl7h
+	+3pSRsBn4PDatZwsYmYvuHyPp6Arb2vmBFXTMcNIDKVPRVQN2L60TrpSr4fdHob9
+	lVU4MAQ0gnu7Lh9IiIBjAsaBkVK/ueiWlh/lhmh6lOQ1i9ZG3zdeCKPJETwStN99
+	e2V1rGf9AS4k82baaN2V538k99KrfbOG2q/9LB64KbhR0vPz3F4Hb+EDplhV5gBG
+	wRlsdhLO3ZWagiyoKsePJRdZEdB8MxRy7Z808Vp+CFeSximG7wiUnW04BEJOTR0j
+	zbcRSA==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q615u5x7-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 07:58:16 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b4c1f0cc4fdso1195268a12.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 00:58:16 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 07:58:21 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b4d7b23ad44so114688a12.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 00:58:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756454295; x=1757059095;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nMmvvuBBHOBvmrBWmarNJiKf7qrOg4JEex2f2Ps3aKM=;
-        b=iM970dInPshpYGGsMH771A6DnwoGgRsa3vqDOrZhUveAkLG+onwwE7cLWq8rCFar5i
-         fkGa+Q5ktofR4Lji/vMH/jFAtvKh+gMheXPgz2zQOJ7fXdPIe7bBzTqi7waXA0TcS2uD
-         fJdMlegNXN2iP/HH6ccr8s3nbQ1TlsFRFUzm270PbAMmgrIWGHQo3AXAfxb6oaIS+5xs
-         fYL1AcHSIKJT0RShUp8DPS+lf522eAq0n/VFqtgW9mZ9vtSr9j9xSVBICzRRd3J2WLo+
-         +Ker7/i552ViAhtsIPECsWMK82RYr8haCVJZab/iDm4jk5CFbNGaIMERiN7LjLDb9w/D
-         cFnw==
-X-Forwarded-Encrypted: i=1; AJvYcCXQ9voggR1BZIZEDZdwBhQKPodfXWTXD5391yIlVVIEXdmUSh+POeGd4T0N8OU5gTTUKeUTTKxVCb0t@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyGnY5V/UmurYwXRQ3UPf57vQyRrzk6f1dYWDed5rrNOPvCler
-	Fk67fGGTEWZNdlGuAhOZfN6xPEtC1v7SpM4TtdPBP5pRAw/OnU08PIhGT/U4mjqPdBhTwzzlKWn
-	UT76bctnReLvPCuFWl2qql+VKxBtDpapFN8psmNFTvS53AnjEg6nv6uZxjGT5wrjL
-X-Gm-Gg: ASbGncvk8KKEtzEiEiVHwd7KYN9gjmB23+Gwz7Om8UX5cqRVQQ72IOC29IRlwLa5yS+
-	9lDYfTKzk2HT6o3h/1zddOCjMG7nRT6mqrwH3SOr8FzKCyoscUn54SEswiAL60r5xbaPIldSd1H
-	SVG81ThCRZ0Swc2Et/T0C34V/etQt41BIEGQXmUVceCkWApIkNjj1FLDLSp3tVEmd2mxj8FwnO3
-	a6Fdo1FgypT7hwzb1XCneR9KcTlTZPLbJsdSa7AKJmQ2gQAN6x5SlZLpY1Jnq6lbq4p8YSJSe9u
-	sJ9igtCLZKulFvyejOyeaos1cKJdRncPz1Hu/g4wlIHV/1gBFhH532VtdZWCW+pd
-X-Received: by 2002:a05:6a20:3d08:b0:243:7136:2fee with SMTP id adf61e73a8af0-24371363240mr24723750637.16.1756454295487;
-        Fri, 29 Aug 2025 00:58:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHfNF9XR64zX9+kWe4I9diEOKRZ4goaSDhqBkb/7GI5U8d7hw0kot9p8BjaG3AyVB9EFyxlvA==
-X-Received: by 2002:a05:6a20:3d08:b0:243:7136:2fee with SMTP id adf61e73a8af0-24371363240mr24723722637.16.1756454295007;
-        Fri, 29 Aug 2025 00:58:15 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756454301; x=1757059101;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Tg0TadezHCZinWRaUOrMAwdmXaDSKwhZG9ok3+9UXoM=;
+        b=tjbVHlVZgibm+loJ6x8fvvFOKYKqXCpfTBmVoiMcx6aH98AZ4/PwxWvzsa6A2xatkE
+         Kk5ir3qLELa5z+NzAA5Qg7ms98flKJASqyjR4Ul29u1LfwsIK2e9ba8niJ6hH2GSXPjD
+         Fwmr0wIJ7bMHWb28T3YWYujAoDn6JfzaS3Wh7Jbdff/vkJ5GwzdhDjAY8x3pOXj9MKoP
+         ks72SZw32w4Dh2mt9tksYkT6ZWy3lk/goXTQdc6CCVGwlFpyS3PSmv7Cor/oDMM/3twc
+         yA3omt9WuAQcVu4PKINJtBxLioShznSiV04mK1wnRouhlIrvL85PvIHYCOyApUnu5Zlm
+         04cA==
+X-Forwarded-Encrypted: i=1; AJvYcCWuBgLWnkhn/jeLeiyMCAgQR9TZIRlpeSLO7VAs/P+U6hGEvHjsWStd6ChM5gBdbYySQMU7udO0FK8F@vger.kernel.org
+X-Gm-Message-State: AOJu0YyG+wb7NZE0kfn2t5gFyrpGFPiiNz2KgNw3pDRPNG/t5XIE39NI
+	vHKXs0z1OHfaxOO2NhFK/v9p+Crvs4SeChOkHma3tp0f0f1UPZ9T0Xk/PyR3+K7pDMXGiQe1UJ6
+	tFf1Izj4AhEJTRZAJ0ZU3HyyYzX06NSl3REfrK1XsXpZIXmViegrs/htJUjno7D+L
+X-Gm-Gg: ASbGncsh727tGdQhtv9nxiBduyLemTmja3Q8YB6RDKkltm38c+BbhZeiUk54s+jR+PA
+	0hkPpaoC4rTwfB05uu9T9/VJY63WW9nHs4ba3mp04AzkumrzLI5aTYOq+Mr8TwLintmBidfnwgJ
+	MDGfEy6wzW6jKfLCmFxrIQcgI53tJolhRIoJ+7YSMIvcqKZ+6rvcckg+8l2QI1Ww28O0xh2Oy1r
+	Jb2EJ3U/D2CcLniaqEo+lWnlWuGkV+gqvHNdKez55TvxJ91c4VJIhSxb0qopZhyrPJEM4Jy1jJA
+	s9qmwGMkLUOEn9DKVFKAkJcTTW0BGAjHavXv3zQY9FFrdz2Dnr0s0yUsB3XycUZa
+X-Received: by 2002:a05:6a20:9191:b0:243:a251:cf51 with SMTP id adf61e73a8af0-243a251d3eemr12213708637.54.1756454300450;
+        Fri, 29 Aug 2025 00:58:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEh6zQOpPVgv4227fwAgRWkPOqZi3+XUDXi949ObJPhcXPGNdm2RttgZhvvfTGIdNbP+4uPmQ==
+X-Received: by 2002:a05:6a20:9191:b0:243:a251:cf51 with SMTP id adf61e73a8af0-243a251d3eemr12213663637.54.1756454299950;
+        Fri, 29 Aug 2025 00:58:19 -0700 (PDT)
 Received: from hu-tdas-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7722a4bb5dasm1554416b3a.55.2025.08.29.00.58.10
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7722a4bb5dasm1554416b3a.55.2025.08.29.00.58.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Aug 2025 00:58:14 -0700 (PDT)
+        Fri, 29 Aug 2025 00:58:19 -0700 (PDT)
 From: Taniya Das <taniya.das@oss.qualcomm.com>
-Subject: [PATCH 0/2] Add support for Display clock controllers for Glymur
- SoC
-Date: Fri, 29 Aug 2025 13:28:02 +0530
-Message-Id: <20250829-glymur-disp-clock-controllers-v1-0-0ce6fabd837c@oss.qualcomm.com>
+Date: Fri, 29 Aug 2025 13:28:03 +0530
+Subject: [PATCH 1/2] dt-bindings: clock: Add DISPCC and reset controller
+ for GLYMUR SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,11 +92,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAIpdsWgC/yWNSW4DIRAAvzLiHCRgFpr5SuRDd9PYKLMFxlEiy
- 38Pso9Vh6qHqlKyVDV3D1XkJ9e8bw3sR6f4httVdI6NlTNuNOCCvi5/673omOuhedn5S/O+nWV
- fFilVjyZ5BwCeUFRrHEVS/n31Py9vLvJ9b5vzLdWBJ9/aZO6SBe8QrBiKCQI5cVMffAShKbJl8
- SLI9tUlrNLG65rPuTNp4NAnLwSTRUYaex9JwjAMFqxH500zlNTl+fwHS8mF//EAAAA=
-X-Change-ID: 20250829-glymur-disp-clock-controllers-50f728887bae
+Message-Id: <20250829-glymur-disp-clock-controllers-v1-1-0ce6fabd837c@oss.qualcomm.com>
+References: <20250829-glymur-disp-clock-controllers-v1-0-0ce6fabd837c@oss.qualcomm.com>
+In-Reply-To: <20250829-glymur-disp-clock-controllers-v1-0-0ce6fabd837c@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -107,61 +106,265 @@ Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
         linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Taniya Das <taniya.das@oss.qualcomm.com>
 X-Mailer: b4 0.15-dev-aa3f6
-X-Proofpoint-GUID: 8z2ijMoSMyTFIM3taH8sRdqr2nOwjNoz
-X-Proofpoint-ORIG-GUID: 8z2ijMoSMyTFIM3taH8sRdqr2nOwjNoz
-X-Authority-Analysis: v=2.4 cv=Hd8UTjE8 c=1 sm=1 tr=0 ts=68b15d98 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=01lUyKRgbtoGor2CX9EA:9 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI1MDE0MiBTYWx0ZWRfX4jAYqZ8q8uRe
- 8w8+R7FSQ8OXDjZ6552+zBGtWPrSil3t8b7mOLgd4cheiuUZnQFzS/kuesrNhituJA8LJWfDM1s
- HqoBbONrIkPUOkVqbEpaYGL1puG9Qgbn2CKRfnVTQt+wNVlQ04dQCwjB8NxpM5csRIvonI2ahMX
- sX7e/jxwHSOTvAxu5u0CPkmtJFmIMXTw8+tGAAwdBfbnWSoL+XjPLV78C2Rsu/ljUfFQUCex7er
- gPEc7LPyMExD6muvNL4e49tXsZ4MlRFOmxz2bgot99tyID7CnMb0kb0ZTmFVA4iSIkIuwQJZv/T
- 5icXSb0YBR1KJIVvNXTOhUTJBFfsGz41wnEcU6y5p2ILra7OuMgadQLsXfSmw52wxxfPCplR6OZ
- nYL/C0mO
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzNCBTYWx0ZWRfX4aH8wwK37e04
+ sNzlrOwMffL8yj93ZH+Lzn5v/yac6+92r3uSgICiW4eIuG91G35TQShMjOLPX9LjuWze1PRgWCy
+ 2ikcZ7vNDPot9rZ7JZaLXRrmjk0aoxYcWhCZ1R7zkyejSOK5Fzv7nhHM6v/w67FfSMXZpGcFxA/
+ LyhubyYrpLr29Jss5hjZaAW5btrCx5R7UnGcPpwYZJ+1NaQKx9HwS/Cofby8DHE42ycL8H8T/KG
+ 5D0tv/a4iEt6adAmrw42QORHzPi2ARSQ11N2z2ICa27IzIcGnQGtS7eyzWuGP01Rgty8wigf0jA
+ jXQ7lvxDaML6kRhuZesk4QsVjeXOrd8ZipTKMCOABH54h373c2I92HCn2DJJAzzd682eQF2FNzQ
+ LUaSkhs6
+X-Proofpoint-GUID: UHk0DQA1DiaB_d3j2kwbDMMvfzd85fGk
+X-Authority-Analysis: v=2.4 cv=K+AiHzWI c=1 sm=1 tr=0 ts=68b15d9d cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=vLIBROXKFhWHEpkJx9gA:9 a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+ a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-ORIG-GUID: UHk0DQA1DiaB_d3j2kwbDMMvfzd85fGk
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-29_02,2025-08-28_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
- adultscore=0 clxscore=1015 impostorscore=0 spamscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508250142
+ malwarescore=0 suspectscore=0 bulkscore=0 clxscore=1015 adultscore=0
+ impostorscore=0 priorityscore=1501 phishscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230034
 
-Introduce the support for Display clock controller(DISPCC) for
-
-Qualcomm's next gen compute SoC - Glymur.
-
-Device tree changes aren't part of this series and will be posted separately after the
-official announcement of the Glymur SoC.
-
-This series has a dependency on the GCC clock controller series posted
-https://lore.kernel.org/all/20250825-glymur-clock-controller-v5-v5-0-01b8c8681bcd@oss.qualcomm.com/
-
-Compilation of the series is dependent on which has been added as
-dependency.
-https://lore.kernel.org/all/20250825-glymur-clock-controller-v5-v5-5-01b8c8681bcd@oss.qualcomm.com/
+Add the device tree bindings for the display clock controller which are
+required on Qualcomm Glymur SoC.
 
 Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 ---
-Taniya Das (2):
-      dt-bindings: clock: Add DISPCC and reset controller for GLYMUR SoC
-      clk: qcom: dispcc-glymur: Add support for Display Clock Controller
+ .../bindings/clock/qcom,glymur-dispcc.yaml         |  99 ++++++++++++++++++
+ include/dt-bindings/clock/qcom,glymur-dispcc.h     | 114 +++++++++++++++++++++
+ 2 files changed, 213 insertions(+)
 
- .../bindings/clock/qcom,glymur-dispcc.yaml         |   99 +
- drivers/clk/qcom/Kconfig                           |   10 +
- drivers/clk/qcom/Makefile                          |    1 +
- drivers/clk/qcom/dispcc-glymur.c                   | 1982 ++++++++++++++++++++
- include/dt-bindings/clock/qcom,glymur-dispcc.h     |  114 ++
- 5 files changed, 2206 insertions(+)
----
-base-commit: 0f4c93f7eb861acab537dbe94441817a270537bf
-change-id: 20250829-glymur-disp-clock-controllers-50f728887bae
-prerequisite-patch-id: f1872a81e0bdf89b2e26397d8eb6dc1ce7eeac1e
+diff --git a/Documentation/devicetree/bindings/clock/qcom,glymur-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,glymur-dispcc.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..063da2416dbaed764b8579a090bc5fc0531ab60d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,glymur-dispcc.yaml
+@@ -0,0 +1,99 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,glymur-dispcc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Display Clock & Reset Controller on GLYMUR
++
++maintainers:
++  - Taniya Das <taniya.das@oss.qualcomm.com>
++
++description: |
++  Qualcomm display clock control module which supports the clocks, resets and
++  power domains for the MDSS instances on GLYMUR SoC.
++
++  See also:
++    include/dt-bindings/clock/qcom,dispcc-glymur.h
++
++properties:
++  compatible:
++    enum:
++      - qcom,glymur-dispcc
++
++  clocks:
++    items:
++      - description: Board CXO clock
++      - description: Board sleep clock
++      - description: DisplayPort 0 link clock
++      - description: DisplayPort 0 VCO div clock
++      - description: DisplayPort 1 link clock
++      - description: DisplayPort 1 VCO div clock
++      - description: DisplayPort 2 link clock
++      - description: DisplayPort 2 VCO div clock
++      - description: DisplayPort 3 link clock
++      - description: DisplayPort 3 VCO div clock
++      - description: DSI 0 PLL byte clock
++      - description: DSI 0 PLL DSI clock
++      - description: DSI 1 PLL byte clock
++      - description: DSI 1 PLL DSI clock
++      - description: Standalone PHY 0 PLL link clock
++      - description: Standalone PHY 0 VCO div clock
++      - description: Standalone PHY 1 PLL link clock
++      - description: Standalone PHY 1 VCO div clock
++
++  power-domains:
++    description:
++      A phandle and PM domain specifier for the MMCX power domain.
++    maxItems: 1
++
++  required-opps:
++    description:
++      A phandle to an OPP node describing required MMCX performance point.
++    maxItems: 1
++
++required:
++  - compatible
++  - clocks
++  - power-domains
++  - '#power-domain-cells'
++
++allOf:
++  - $ref: qcom,gcc.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,glymur-dispcc.h>
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/power/qcom,rpmhpd.h>
++
++    clock-controller@af00000 {
++      compatible = "qcom,glymur-dispcc";
++      reg = <0x0af00000 0x20000>;
++      clocks = <&rpmhcc RPMH_CXO_CLK>,
++               <&sleep_clk>,
++               <&mdss_dp_phy0 0>,
++               <&mdss_dp_phy0 1>,
++               <&mdss_dp_phy1 0>,
++               <&mdss_dp_phy1 1>,
++               <&mdss_dp_phy2 0>,
++               <&mdss_dp_phy2 1>,
++               <&mdss_dp_phy3 0>,
++               <&mdss_dp_phy3 1>,
++               <&mdss_dsi0_phy 0>,
++               <&mdss_dsi0_phy 1>,
++               <&mdss_dsi1_phy 0>,
++               <&mdss_dsi1_phy 1>,
++               <&mdss_phy0_link 0>,
++               <&mdss_phy0_vco_div 0>,
++               <&mdss_phy1_link 1>,
++               <&mdss_phy1_vco_div 1>;
++      power-domains = <&rpmhpd RPMHPD_MMCX>;
++      required-opps = <&rpmhpd_opp_low_svs>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++...
+diff --git a/include/dt-bindings/clock/qcom,glymur-dispcc.h b/include/dt-bindings/clock/qcom,glymur-dispcc.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..a845d76defe282d953e82e8b595433c5f9cd364a
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,glymur-dispcc.h
+@@ -0,0 +1,114 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2025, Qualcomm Technologies, Inc. and/or its subsidiaries.
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_GLYMUR_H
++#define _DT_BINDINGS_CLK_QCOM_DISP_CC_GLYMUR_H
++
++/* DISP_CC clocks */
++#define DISP_CC_ESYNC0_CLK					0
++#define DISP_CC_ESYNC0_CLK_SRC					1
++#define DISP_CC_ESYNC1_CLK					2
++#define DISP_CC_ESYNC1_CLK_SRC					3
++#define DISP_CC_MDSS_ACCU_SHIFT_CLK				4
++#define DISP_CC_MDSS_AHB1_CLK					5
++#define DISP_CC_MDSS_AHB_CLK					6
++#define DISP_CC_MDSS_AHB_CLK_SRC				7
++#define DISP_CC_MDSS_BYTE0_CLK					8
++#define DISP_CC_MDSS_BYTE0_CLK_SRC				9
++#define DISP_CC_MDSS_BYTE0_DIV_CLK_SRC				10
++#define DISP_CC_MDSS_BYTE0_INTF_CLK				11
++#define DISP_CC_MDSS_BYTE1_CLK					12
++#define DISP_CC_MDSS_BYTE1_CLK_SRC				13
++#define DISP_CC_MDSS_BYTE1_DIV_CLK_SRC				14
++#define DISP_CC_MDSS_BYTE1_INTF_CLK				15
++#define DISP_CC_MDSS_DPTX0_AUX_CLK				16
++#define DISP_CC_MDSS_DPTX0_AUX_CLK_SRC				17
++#define DISP_CC_MDSS_DPTX0_LINK_CLK				18
++#define DISP_CC_MDSS_DPTX0_LINK_CLK_SRC				19
++#define DISP_CC_MDSS_DPTX0_LINK_DIV_CLK_SRC			20
++#define DISP_CC_MDSS_DPTX0_LINK_DPIN_CLK			21
++#define DISP_CC_MDSS_DPTX0_LINK_DPIN_DIV_CLK_SRC		22
++#define DISP_CC_MDSS_DPTX0_LINK_INTF_CLK			23
++#define DISP_CC_MDSS_DPTX0_PIXEL0_CLK				24
++#define DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC			25
++#define DISP_CC_MDSS_DPTX0_PIXEL1_CLK				26
++#define DISP_CC_MDSS_DPTX0_PIXEL1_CLK_SRC			27
++#define DISP_CC_MDSS_DPTX0_USB_ROUTER_LINK_INTF_CLK		28
++#define DISP_CC_MDSS_DPTX1_AUX_CLK				29
++#define DISP_CC_MDSS_DPTX1_AUX_CLK_SRC				30
++#define DISP_CC_MDSS_DPTX1_LINK_CLK				31
++#define DISP_CC_MDSS_DPTX1_LINK_CLK_SRC				32
++#define DISP_CC_MDSS_DPTX1_LINK_DIV_CLK_SRC			33
++#define DISP_CC_MDSS_DPTX1_LINK_DPIN_CLK			34
++#define DISP_CC_MDSS_DPTX1_LINK_DPIN_DIV_CLK_SRC		35
++#define DISP_CC_MDSS_DPTX1_LINK_INTF_CLK			36
++#define DISP_CC_MDSS_DPTX1_PIXEL0_CLK				37
++#define DISP_CC_MDSS_DPTX1_PIXEL0_CLK_SRC			38
++#define DISP_CC_MDSS_DPTX1_PIXEL1_CLK				39
++#define DISP_CC_MDSS_DPTX1_PIXEL1_CLK_SRC			40
++#define DISP_CC_MDSS_DPTX1_USB_ROUTER_LINK_INTF_CLK		41
++#define DISP_CC_MDSS_DPTX2_AUX_CLK				42
++#define DISP_CC_MDSS_DPTX2_AUX_CLK_SRC				43
++#define DISP_CC_MDSS_DPTX2_LINK_CLK				44
++#define DISP_CC_MDSS_DPTX2_LINK_CLK_SRC				45
++#define DISP_CC_MDSS_DPTX2_LINK_DIV_CLK_SRC			46
++#define DISP_CC_MDSS_DPTX2_LINK_DPIN_CLK			47
++#define DISP_CC_MDSS_DPTX2_LINK_DPIN_DIV_CLK_SRC		48
++#define DISP_CC_MDSS_DPTX2_LINK_INTF_CLK			49
++#define DISP_CC_MDSS_DPTX2_PIXEL0_CLK				50
++#define DISP_CC_MDSS_DPTX2_PIXEL0_CLK_SRC			51
++#define DISP_CC_MDSS_DPTX2_PIXEL1_CLK				52
++#define DISP_CC_MDSS_DPTX2_PIXEL1_CLK_SRC			53
++#define DISP_CC_MDSS_DPTX2_USB_ROUTER_LINK_INTF_CLK		54
++#define DISP_CC_MDSS_DPTX3_AUX_CLK				55
++#define DISP_CC_MDSS_DPTX3_AUX_CLK_SRC				56
++#define DISP_CC_MDSS_DPTX3_LINK_CLK				57
++#define DISP_CC_MDSS_DPTX3_LINK_CLK_SRC				58
++#define DISP_CC_MDSS_DPTX3_LINK_DIV_CLK_SRC			59
++#define DISP_CC_MDSS_DPTX3_LINK_DPIN_CLK			60
++#define DISP_CC_MDSS_DPTX3_LINK_DPIN_DIV_CLK_SRC		61
++#define DISP_CC_MDSS_DPTX3_LINK_INTF_CLK			62
++#define DISP_CC_MDSS_DPTX3_PIXEL0_CLK				63
++#define DISP_CC_MDSS_DPTX3_PIXEL0_CLK_SRC			64
++#define DISP_CC_MDSS_ESC0_CLK					65
++#define DISP_CC_MDSS_ESC0_CLK_SRC				66
++#define DISP_CC_MDSS_ESC1_CLK					67
++#define DISP_CC_MDSS_ESC1_CLK_SRC				68
++#define DISP_CC_MDSS_MDP1_CLK					69
++#define DISP_CC_MDSS_MDP_CLK					70
++#define DISP_CC_MDSS_MDP_CLK_SRC				71
++#define DISP_CC_MDSS_MDP_LUT1_CLK				72
++#define DISP_CC_MDSS_MDP_LUT_CLK				73
++#define DISP_CC_MDSS_NON_GDSC_AHB_CLK				74
++#define DISP_CC_MDSS_PCLK0_CLK					75
++#define DISP_CC_MDSS_PCLK0_CLK_SRC				76
++#define DISP_CC_MDSS_PCLK1_CLK					77
++#define DISP_CC_MDSS_PCLK1_CLK_SRC				78
++#define DISP_CC_MDSS_PCLK2_CLK					79
++#define DISP_CC_MDSS_PCLK2_CLK_SRC				80
++#define DISP_CC_MDSS_RSCC_AHB_CLK				81
++#define DISP_CC_MDSS_RSCC_VSYNC_CLK				82
++#define DISP_CC_MDSS_VSYNC1_CLK					83
++#define DISP_CC_MDSS_VSYNC_CLK					84
++#define DISP_CC_MDSS_VSYNC_CLK_SRC				85
++#define DISP_CC_OSC_CLK						86
++#define DISP_CC_OSC_CLK_SRC					87
++#define DISP_CC_PLL0						88
++#define DISP_CC_PLL1						89
++#define DISP_CC_SLEEP_CLK					90
++#define DISP_CC_SLEEP_CLK_SRC					91
++#define DISP_CC_XO_CLK						92
++#define DISP_CC_XO_CLK_SRC					93
++
++/* DISP_CC power domains */
++#define DISP_CC_MDSS_CORE_GDSC					0
++#define DISP_CC_MDSS_CORE_INT2_GDSC				1
++
++/* DISP_CC resets */
++#define DISP_CC_MDSS_CORE_BCR					0
++#define DISP_CC_MDSS_CORE_INT2_BCR				1
++#define DISP_CC_MDSS_RSCC_BCR					2
++
++#endif
 
-Best regards,
 -- 
-Taniya Das <taniya.das@oss.qualcomm.com>
+2.34.1
 
 
