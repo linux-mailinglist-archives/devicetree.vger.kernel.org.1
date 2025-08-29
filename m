@@ -1,324 +1,179 @@
-Return-Path: <devicetree+bounces-210394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B710AB3B700
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 11:20:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 246E2B3B707
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 11:21:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A32EE3B6955
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 09:20:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C59C2564429
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 09:21:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D6A3302767;
-	Fri, 29 Aug 2025 09:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C8A13043C8;
+	Fri, 29 Aug 2025 09:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kDFRkjSl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DRyib/iq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6348D29E10B;
-	Fri, 29 Aug 2025 09:20:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D2AE303CA3
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 09:20:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756459209; cv=none; b=b6ZpsnuYLKzYoX/7wBM94itlc+IUnwswxKuIHAwWPAf+XrGeYU60qpXJpvJLgBo0PAtKwDkeNhG/BwaR0uOaSA5n0L4FKCB0hsoWKc+g/FJQDU953+Aofa/rGH933rhw0qcew3hUXZF2N5ijJThjyJRBjeOYcL+sXiDQmXY9Qfw=
+	t=1756459253; cv=none; b=JqH6WiNl4emr27InKS4TaU6acLGsyW+K3sivUWKTbE+5MAs8Wa7S6+rCHJr7284CplmBLRVolTrajUomQZzrHL1HvJErJSxGGQ+MStZesYZv1yCImRbMhPeBkRxqzaL+Bw3frAMU8Me3h960fLCJBLm8xirvXqcfQbVTaP1rCYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756459209; c=relaxed/simple;
-	bh=50TguRS/Evm2Or/dlQlWRsV6e2qqkAlX4YelhUCK/e8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=N3hqnpuHKWx3J9pI1NTN7qtvI2uPTziZzqaf7/ySmzAcDBDLTILiMVh3ugcP61PFABLzqCWdrdqrWklh9VtOyUsl2MExqNE8oNfATPA9caYBMP1PPrMV4x6UsF4BSEGyFNbyRXALhzmOhz9NefkB4Lp8GkVn0p0zAO+yQYtoRsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kDFRkjSl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0C8FCC4CEF7;
-	Fri, 29 Aug 2025 09:20:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756459209;
-	bh=50TguRS/Evm2Or/dlQlWRsV6e2qqkAlX4YelhUCK/e8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=kDFRkjSlFhInJWPB8JNZmhVeMSxa3kh7K9Mchd2tbAWySpY/yEeWNBHT1glhHB2Fo
-	 mSYFVuFSl/74YcX2sGGu2jI9SIeH5EFueJ1c3uD4GbP2Hnic3KQBWtVZSegrrLG3jd
-	 5o+6t8OhkYwvI143CjF1SI+3zXrgj4NWHp9t9q9a+eNh59WSp7YymRsEpHE5evVfqR
-	 SP/RddxNklJXxzZsjiGbesj9A9ZURFo349jcdlx3zqwLlsaTBjkF6Vmbv7wlCHQZrh
-	 eZbTcdBwt14gcsfjlKWkDGtYhwjT4Bfff0tyPLCfq1E4D1t4jB4g9AyxJPm7a0xzYK
-	 ogx5Cr+g9O1LQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F16AECA0FFF;
-	Fri, 29 Aug 2025 09:20:08 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Fri, 29 Aug 2025 11:19:59 +0200
-Subject: [PATCH v2 2/2] phy: add basic support for NXPs TJA1145 CAN
- transceiver
+	s=arc-20240116; t=1756459253; c=relaxed/simple;
+	bh=41cPbZW2JuUamvHD0ni/4zW5qEt98VIFHzay0uJyE64=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ktkQ/TCazm3pTEbif3MA4g4Q101vw9vLTQ/4FT5gSK9vB6eLiQM1kwjtXbdt4+caZqIX8G2/YYBXZoFI8s7uBl7byJBnZ+7z6d3GrS+9YngPg/4OsmPMHXLq76+VQry17iCFT7m4GZ248u8bMR5hQh09mnB7lFQuzfdj0VSAJ5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DRyib/iq; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57T85KkY027095
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 09:20:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=VsGRi9TWtut80xRESvMijlEz
+	Jj+9BIG8rviOsUN+Q2w=; b=DRyib/iqMVUgY+4U2/xa1PZEfrNYqH+CO6TheLAM
+	f754gQa0ypq9f/ZcukNVmys08FJn+FxHy1J22okyW5Sb8nIUWpHGAjLDQoBaSNyz
+	Kv/+IfVKWqKJMBfn2XtQMUIC/lj1JBTbjMudKe/c0HfCVJCrclLXhYwxIr44m4Sy
+	cyyl3s1k3F+H47dD7qF4OHNWDkXq3KGkP/uj15XGoBit9PPFJSTpwnYbaJlP+Kqv
+	TpVVCx8N0k0FHJGoSYDC7Xk6lJVFiZklYyvXo6qOCXfbynPAjcT0VUMuqqPmfOhS
+	Ze80Ap2WaPsTEU6KQ1IeVoOdZPDjKLV2RztEoLrPWKEMYg==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48tbpgn70y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 09:20:49 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-70de0bdb600so34972756d6.1
+        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 02:20:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756459249; x=1757064049;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VsGRi9TWtut80xRESvMijlEzJj+9BIG8rviOsUN+Q2w=;
+        b=SQqVk4efWbPfOYlbC+sweIM4rgeuVUtYQd+6MAK8DLa4AJGwDAwo74AMA3Kv20jz62
+         TP7xrntE7U08wy0hIz/X5f6LIzHyCTujzWalNxQ4KXfn/tjfJ4Of/JZSmB9tYnTF2kk7
+         AYWuSgo9c8qYsbxQBNzdPNf4ZL1+jKOQE93f22VG0CgKbrIRKTtTFDjDY8ae/4nu8iRf
+         004igtdKaSvQ1vE8O8Vj4ML5xfa+EjKTLBSMlX9c1Qmllecmbwas9OxabJ3+1m2JivR3
+         CXQi/F/pYhU12Lk/uBawAHLnc13Ti1LyoGd3W9Itu6Q4TzhUxSYPdY8JhUBjWNeXPZNj
+         9X5w==
+X-Forwarded-Encrypted: i=1; AJvYcCW2KTb67lYJUZMtwAhYyrWwB54sbvwmPCNvhQx4a/F6aNhz0JWOlMohJTjl5ThwPyFc1J76IGabJuFL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCg0LBE1VKwRIM9LocwwbNdIO2oS2xU6NS6yXXov+vDjyEBj7C
+	zXqlx7GK6FafWyTlgF3YV/ElEsfKYXuq9ttccfoFzh5IULaOxMoFWNKLuzsDY4n3P/gckASjfQV
+	bj7dy8zhjyB4PTD5kHdiPfLNLAmODGo+greysvyhgWyqVeduGvs7Ws8h0iFlIV7LL
+X-Gm-Gg: ASbGncsE5zhRhBxNRXmcbVvP/Su4/AId5zDj9NTbhjJOTd1lFM1LNUIt0kieE3TSRq1
+	ihHvZ4CwMpfxNG3sllfqLAET6dCayXeQA5wCM9zuuCWVFSKySJ8tbW6RJFGI9JnZsE4cxQZsMfd
+	RoEEf/gHyELaIqOtgM00zD+f2U7ODtgkxqFLimJ3wJpqh2KN3GKi8LqrFc0qP7azuepOgZewoKp
+	fsKnbKzNemUZk1Ci9mjbkPY34ErXsdsqOlcNANcPwrufnI5SumavLpvYVht54aXVf78teITsccI
+	69OA8iq0ElRi+1H+71rDnRW+4TdOKojFu57uFazoH9GFGP0s8+dP/ASTpHS0cyLn08X5DsSrLK0
+	4vHbL5OSuXiIN5SIZUQ/2/jWl6O1hiKDtH5Be8dlcfHg1elU1RyZS
+X-Received: by 2002:ad4:5ce4:0:b0:70d:d5eb:cb09 with SMTP id 6a1803df08f44-70dd5ebccafmr134046366d6.20.1756459249038;
+        Fri, 29 Aug 2025 02:20:49 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFu+l8+GZuUy+NaTPLiPmyXfppCCrSzXfTWjiiARcq2CiwkxvRqPIvCjYJyzT2ulw8LGLrwHQ==
+X-Received: by 2002:ad4:5ce4:0:b0:70d:d5eb:cb09 with SMTP id 6a1803df08f44-70dd5ebccafmr134046086d6.20.1756459248542;
+        Fri, 29 Aug 2025 02:20:48 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-336b9462e97sm2472451fa.11.2025.08.29.02.20.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Aug 2025 02:20:47 -0700 (PDT)
+Date: Fri, 29 Aug 2025 12:20:45 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>, jic23@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        agross@kernel.org, andersson@kernel.org, lumag@kernel.org,
+        konradybcio@kernel.org, daniel.lezcano@linaro.org, sboyd@kernel.org,
+        amitk@kernel.org, thara.gopinath@gmail.com, lee@kernel.org,
+        rafael@kernel.org, subbaraman.narayanamurthy@oss.qualcomm.com,
+        david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
+        kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com,
+        lukasz.luba@arm.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
+        neil.armstrong@linaro.org, stephan.gerhold@linaro.org
+Subject: Re: [PATCH V7 0/5] Add support for QCOM SPMI PMIC5 Gen3 ADC
+Message-ID: <nsyhau4pnn2nbxdf35npwq4gvjiphocrftrwi4seirxqzurww6@6jgyzzmjyg7q>
+References: <20250826083657.4005727-1-jishnu.prakash@oss.qualcomm.com>
+ <20250829-demonic-soft-guppy-512c13@kuoka>
+ <zgm2k2osmasdal6anba66pw24a7fiypgwlf3c36kvteshz7uef@wee4had7x54u>
+ <8fdc99b6-4ad2-4a08-9dca-6289c8fdddd6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250829-tja1145-support-v2-2-60997f328979@liebherr.com>
-References: <20250829-tja1145-support-v2-0-60997f328979@liebherr.com>
-In-Reply-To: <20250829-tja1145-support-v2-0-60997f328979@liebherr.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>, 
- Marc Kleine-Budde <mkl@pengutronix.de>, linux-can@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756459207; l=7265;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=QbZwerPtcW9uCm9P1dXPNhN6L03SdF6Z/qVX8cgl44k=;
- b=OPXUrHIg4Ns6KcYoRRUz/2NeKchkc5B40uYMKPr0c22Ke0Q2vS8ioicdasqNQGXOqOCFngvYf
- S5rdppcnXXWC/lw4/KfQK5UF/BH8wz2m1eJ/msanOG8lyKzBJACKD6M
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8fdc99b6-4ad2-4a08-9dca-6289c8fdddd6@linaro.org>
+X-Proofpoint-GUID: 67J6DvCXEFwRHGBag2ZfxbBOBRWIWWzn
+X-Proofpoint-ORIG-GUID: 67J6DvCXEFwRHGBag2ZfxbBOBRWIWWzn
+X-Authority-Analysis: v=2.4 cv=G7gcE8k5 c=1 sm=1 tr=0 ts=68b170f2 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=cXZZpXjwJqeueyEXUCgA:9 a=CjuIK1q_8ugA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI3MDE5OSBTYWx0ZWRfX9xnmrGYc0edC
+ J1+o/Rll+FLVXOpCFYbckKE7VLhRsn/GBRrwAZQssVedMKrU9MnL1pN6dsM+fso7n3w04D0JARD
+ RhYe59txXMGMGwvQ6QT6SAPxGjdq0MQFBQ+VprlFyFT/Xja8DhvMK9yFvfDTL7EyDHDpDgU25iz
+ MO1QEMO2iT/5ZIaeU9tjXxR6WlKxaSv4okVJolC0f1BoQJv13w5PmgkXZ4HDfFM/F3qObHq5Q/B
+ Rj+a+/1LMfdUvWcOn7kSBZG/1W9leUwka3X91Ot4HlBntagE1hFtVQapoaV/R0Fy08L/DTwg+SC
+ Iup/KDFC7ImPMP17xNZ68kfkxNLD6UMgtj9mxv2RXjynUODrjJO5DQEXavmVBEwmDPe9qQaogA2
+ CqBndWF8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-29_03,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 priorityscore=1501 adultscore=0 impostorscore=0
+ bulkscore=0 suspectscore=0 clxscore=1015 spamscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508270199
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+On Fri, Aug 29, 2025 at 11:11:48AM +0200, Krzysztof Kozlowski wrote:
+> On 29/08/2025 10:09, Dmitry Baryshkov wrote:
+> > On Fri, Aug 29, 2025 at 09:12:59AM +0200, Krzysztof Kozlowski wrote:
+> >> On Tue, Aug 26, 2025 at 02:06:52PM +0530, Jishnu Prakash wrote:
+> >>>  create mode 100644 drivers/iio/adc/qcom-spmi-adc5-gen3.c
+> >>>  create mode 100644 drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
+> >>>  create mode 100644 include/dt-bindings/iio/adc/qcom,pm8550-adc5-gen3.h
+> >>>  create mode 100644 include/dt-bindings/iio/adc/qcom,pm8550b-adc5-gen3.h
+> >>>  create mode 100644 include/dt-bindings/iio/adc/qcom,pm8550vx-adc5-gen3.h
+> >>>  create mode 100644 include/dt-bindings/iio/adc/qcom,pmk8550-adc5-gen3.h
+> >>>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm7325.h (98%)
+> >>>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h (98%)
+> >>>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h (99%)
+> >>>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h (97%)
+> >>>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h (95%)
+> >>>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h (95%)
+> >>>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-smb139x.h (93%)
+> >>>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (78%)
+> >>>  create mode 100644 include/linux/iio/adc/qcom-adc5-gen3-common.h
+> >>>
+> >>>
+> >>> base-commit: 0f4c93f7eb861acab537dbe94441817a270537bf
+> >>
+> >> What's the base commit?
+> >>
+> >> git show 0f4c93f7eb861acab537dbe94441817a270537bf
+> >> fatal: bad object 0f4c93f7eb861acab537dbe94441817a270537bf
+> > 
+> > https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20250822&id=0f4c93f7eb861acab537dbe94441817a270537bf
+> 
+> I see:
+> "Notice: this object is not reachable from any branch."
+> 
+> I guess you think this is 20250822?
 
-Add basic driver support for NXPs TJA1145 CAN transceiver which brings the
-PHY up/down by switching to normal/standby mode using SPI commands.
-
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/phy/Kconfig           |  10 +++
- drivers/phy/Makefile          |   1 +
- drivers/phy/phy-nxp-tja1145.c | 185 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 196 insertions(+)
-
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 58c911e1b2d20a0398f02550e938ce62633230d4..c47e2b62fa6279ee610493b028d3c14f6499ca85 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -101,6 +101,16 @@ config PHY_NXP_PTN3222
- 	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
- 	  Speed and High Speed.
- 
-+config PHY_NXP_TJA1145
-+	tristate "NXP TJA1145 CAN transceiver PHY"
-+	select GENERIC_PHY
-+	select REGMAP_SPI
-+	depends on SPI
-+	help
-+	  This option enables support for NXPs TJA1145 CAN transceiver as a PHY.
-+	  This driver provides function for putting the transceiver in various
-+	  functional modes using SPI commands.
-+
- source "drivers/phy/allwinner/Kconfig"
- source "drivers/phy/amlogic/Kconfig"
- source "drivers/phy/broadcom/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index c670a8dac46807863c9ef990beb149082238ad16..16da564c74b0f14befb486366dcd10cd5fc67741 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -13,6 +13,7 @@ obj-$(CONFIG_PHY_SNPS_EUSB2)		+= phy-snps-eusb2.o
- obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
- obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
- obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
-+obj-$(CONFIG_PHY_NXP_TJA1145)		+= phy-nxp-tja1145.o
- obj-y					+= allwinner/	\
- 					   amlogic/	\
- 					   broadcom/	\
-diff --git a/drivers/phy/phy-nxp-tja1145.c b/drivers/phy/phy-nxp-tja1145.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..4d3aa5bfcd88d5755fa37e0d42bfa8293dee2155
---- /dev/null
-+++ b/drivers/phy/phy-nxp-tja1145.c
-@@ -0,0 +1,185 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025 Liebherr-Electronics and Drives GmbH
-+ */
-+#include <linux/bitfield.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+
-+#include <linux/phy/phy.h>
-+#include <linux/spi/spi.h>
-+
-+#define TJA1145_MODE_CTRL		0x01
-+#define TJA1145_MODE_CTRL_MC		GENMASK(2, 0)
-+#define TJA1145_MODE_CRTL_STBY		BIT(2)
-+#define TJA1145_MODE_CRTL_NORMAL	TJA1145_MODE_CTRL_MC
-+
-+#define TJA1145_CAN_CTRL		0x20
-+#define TJA1145_CAN_CTRL_CMC		GENMASK(1, 0)
-+#define TJA1145_CAN_CTRL_ACTIVE		BIT(1)
-+
-+#define TJA1145_IDENT			0x7e
-+#define TJA1145_IDENT_TJA1145T		0x70
-+
-+#define TJA1145_SPI_READ_BIT		BIT(0)
-+#define TJA1145T_MAX_BITRATE		1000000
-+
-+static int tja1145_phy_power_on(struct phy *phy)
-+{
-+	struct regmap *map = phy_get_drvdata(phy);
-+	int ret;
-+
-+	/*
-+	 * Switch operating mode to normal which is the active operating mode.
-+	 * In this mode, the device is fully operational.
-+	 */
-+	ret = regmap_update_bits(map, TJA1145_MODE_CTRL, TJA1145_MODE_CTRL_MC,
-+				 TJA1145_MODE_CRTL_NORMAL);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Switch to CAN operating mode active where the PHY can transmit and
-+	 * receive data.
-+	 */
-+	return regmap_update_bits(map, TJA1145_CAN_CTRL, TJA1145_CAN_CTRL_CMC,
-+				  TJA1145_CAN_CTRL_ACTIVE);
-+}
-+
-+static int tja1145_phy_power_off(struct phy *phy)
-+{
-+	struct regmap *map = phy_get_drvdata(phy);
-+
-+	/*
-+	 * Switch to operating mode standby, the PHY is unable to transmit or
-+	 * receive data in standby mode.
-+	 */
-+	return regmap_update_bits(map, TJA1145_MODE_CTRL, TJA1145_MODE_CTRL_MC,
-+				  TJA1145_MODE_CRTL_STBY);
-+}
-+
-+static const struct phy_ops tja1145_phy_ops = {
-+	.power_on = tja1145_phy_power_on,
-+	.power_off = tja1145_phy_power_off,
-+};
-+
-+static const struct regmap_range tja1145_wr_holes_ranges[] = {
-+	regmap_reg_range(0x00, 0x00),
-+	regmap_reg_range(0x02, 0x03),
-+	regmap_reg_range(0x05, 0x05),
-+	regmap_reg_range(0x0b, 0x1f),
-+	regmap_reg_range(0x21, 0x22),
-+	regmap_reg_range(0x24, 0x25),
-+	regmap_reg_range(0x30, 0x4b),
-+	regmap_reg_range(0x4d, 0x60),
-+	regmap_reg_range(0x62, 0x62),
-+	regmap_reg_range(0x65, 0x67),
-+	regmap_reg_range(0x70, 0xff),
-+};
-+
-+static const struct regmap_access_table tja1145_wr_table = {
-+	.no_ranges = tja1145_wr_holes_ranges,
-+	.n_no_ranges = ARRAY_SIZE(tja1145_wr_holes_ranges),
-+};
-+
-+static const struct regmap_range tja1145_rd_holes_ranges[] = {
-+	regmap_reg_range(0x00, 0x00),
-+	regmap_reg_range(0x02, 0x02),
-+	regmap_reg_range(0x05, 0x05),
-+	regmap_reg_range(0x0b, 0x1f),
-+	regmap_reg_range(0x21, 0x21),
-+	regmap_reg_range(0x24, 0x25),
-+	regmap_reg_range(0x30, 0x4a),
-+	regmap_reg_range(0x4d, 0x5f),
-+	regmap_reg_range(0x62, 0x62),
-+	regmap_reg_range(0x65, 0x67),
-+	regmap_reg_range(0x70, 0x7d),
-+	regmap_reg_range(0x7f, 0xff),
-+};
-+
-+static const struct regmap_access_table tja1145_rd_table = {
-+	.no_ranges = tja1145_rd_holes_ranges,
-+	.n_no_ranges = ARRAY_SIZE(tja1145_rd_holes_ranges),
-+};
-+
-+
-+static const struct regmap_config tja1145_regmap_config = {
-+	.reg_bits = 8,
-+	.reg_shift = -1,
-+	.val_bits = 8,
-+	.wr_table = &tja1145_wr_table,
-+	.rd_table = &tja1145_rd_table,
-+	.read_flag_mask = TJA1145_SPI_READ_BIT,
-+	.max_register = TJA1145_IDENT,
-+};
-+
-+static int tja1145_check_ident(struct device *dev, struct regmap *map)
-+{
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(map, TJA1145_IDENT, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val != TJA1145_IDENT_TJA1145T) {
-+		dev_err(dev, "Expected device id: 0x%02x, got: 0x%02x\n",
-+			TJA1145_IDENT_TJA1145T, val);
-+		return -ENODEV;
-+	}
-+
-+	return 0;
-+}
-+
-+static int tja1145_probe(struct spi_device *spi)
-+{
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &spi->dev;
-+	struct regmap *map;
-+	struct phy *phy;
-+	int ret;
-+
-+	map = devm_regmap_init_spi(spi, &tja1145_regmap_config);
-+	if (IS_ERR(map))
-+		return dev_err_probe(dev, PTR_ERR(map), "failed to init regmap\n");
-+
-+	ret = tja1145_check_ident(dev, map);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to identify device\n");
-+
-+	phy = devm_phy_create(dev, dev->of_node, &tja1145_phy_ops);
-+	if (IS_ERR(phy))
-+		return dev_err_probe(dev, PTR_ERR(phy), "failed to create PHY\n");
-+
-+	phy->attrs.max_link_rate = TJA1145T_MAX_BITRATE;
-+	phy_set_drvdata(phy, map);
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct spi_device_id tja1145_spi_id[] = {
-+	{ "tja1145" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, tja1145_spi_id);
-+
-+static const struct of_device_id tja1145_of_match[] = {
-+	{ .compatible = "nxp,tja1145-can" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, tja1145_of_match);
-+
-+static struct spi_driver tja1145_driver = {
-+	.driver = {
-+		.name = "tja1145",
-+		.of_match_table = tja1145_of_match,
-+	},
-+	.probe = tja1145_probe,
-+	.id_table = tja1145_spi_id,
-+};
-+module_spi_driver(tja1145_driver);
-+
-+MODULE_DESCRIPTION("NXP TJA1145 CAN transceiver PHY driver");
-+MODULE_AUTHOR("Dimitri Fedrau <dimitri.fedrau@liebherr.com>");
-+MODULE_LICENSE("GPL");
+Well, it kinda is. It's a commit by Stephen, it has proper contents,
+etc.  next-20250822 is not a branch, but a tag, that's why you observe
+the warning from gitweb. You can verify it yourself by manually pulling
+the tag from the repo.
 
 -- 
-2.39.5
-
-
+With best wishes
+Dmitry
 
