@@ -1,96 +1,40 @@
-Return-Path: <devicetree+bounces-210583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0DD8B3C0D0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:33:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26E95B3C0F1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:39:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99E56164106
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:32:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 526C81CC2BB6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:39:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE4372F3C1F;
-	Fri, 29 Aug 2025 16:31:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="PjP3Fdup"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 727D732A3D9;
+	Fri, 29 Aug 2025 16:39:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f228.google.com (mail-pf1-f228.google.com [209.85.210.228])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50EA42222C4
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 16:31:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.228
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5799432A3CC;
+	Fri, 29 Aug 2025 16:39:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756485116; cv=none; b=CQMq1aQXh2xoD8iDCiDjsogw/fVMrRZ99UU3TIcNt9/ugn9Jo8CpA8pkogik02qiCBG/CpG4ZcVeP80W4s3IG8tKo7yq/qXsmJs/EQ93+eEOXycTy9RTThqmEoKr2v5Ew3XAzDKqGcNjD7pSoeJKUjMY/psCxwvsJSIbOjD6tLs=
+	t=1756485568; cv=none; b=VWJndUzrV/QjsPchPOAe63B8Ru3iJxnm1u2Vrvde/oht5aQ1ckQE0+BZxWkwVIa/YLbKlhzt7J7NTn511S9CTvsukNgPFyJojN+jmgsKq9GmC6zlxWpCMwGQbSuM812nb6C7Ckxzuk0izzMIClPU3bDL9HLFoL7W+lhVKyRvQ+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756485116; c=relaxed/simple;
-	bh=ieabnZMrlcZvydqsa6hfVj58aHEfh4wULnYXh7hZVI4=;
+	s=arc-20240116; t=1756485568; c=relaxed/simple;
+	bh=LiufvYLN3N0v9a6NqAyygZVjAXotK4sKZTliv0DtNZQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YrJsunZUf+1VvWwIfTZZNmnncOhKadU5pciqhglnfHu2/cZ8VTpdONa1CetKZniylbAViQFaKPaRYIYGVM+iqQpIRmRugB2pVrRzV0/h2NsTwO1CnG2ehI4RcL/qf+yypSdEzRdUESTsDz+Q4wUCM+swb3wlpAxaBsygqolJ5U0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=PjP3Fdup; arc=none smtp.client-ip=209.85.210.228
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f228.google.com with SMTP id d2e1a72fcca58-76e2ea933b7so2106043b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 09:31:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756485115; x=1757089915;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:dkim-signature:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q7yfMSKVog9zrx0IzSOm5CThV+YrzQFJbwE5ZBoSV/E=;
-        b=cUEMGAziPeVkAp7Ab8b41SMzOMv9JDUezzSczrYs57pqIgtqsd1NEsc/nQLpaHNE0r
-         047L43EjIJZun14V0zo9L0wW6R1SH7AIw5HAgyEDmhwkVLJqA2WkyFFzvq9Kex0ZzE3w
-         tq+UmOixzEnNMRiV77TPmj66ET8X0dFWBN+Ric8TVgJVDMo3kULLSFh/WxTvvMngHohw
-         PsjJY/yGk8JZEHmb245a9XQxY8xqcqAEAkrtL78Q5pUL+yvjjOYmaTKJKX9unc4bXJoC
-         XY4Dve4vWPz0MPIpmywzquChdOmQwzF2bF70J/dFDwd9nEBwEBkEgIOi6V8abdgMfkNX
-         jkRA==
-X-Forwarded-Encrypted: i=1; AJvYcCXEYMxmc5OkA4yCfhkE0rZJAz1XzmAnK2t4BnjOSGiq2p/4pSWSYw5NkID+5ZSISFaqdRynN+v3bUm4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzU28eijCspE/nSIKWPv5elkMeh2CnS/JJPeBJ69NfRTo3WUBUN
-	XprAA7J9TBx8zO4sr7pAmusq99EL0THyYvXALMaxgSrGR2Gfe6OnaBSlRdFSgXYuKW/TU64u809
-	BMf/b9bE5bCMoJt5xpEeG5ozQUV3eb5+fhnecuidyMw1IVKHyIZdGS48UHaocqIRd3o5jVRoRug
-	HtpTsmVxDC4B6lSvfF+ROjMnxOj/qyIPLCYCw2gpwnpwLGsKIEAHlBIbERUOJUzqUOJ8Elcqvy/
-	Z3SWd72FlQiIxd8Z/38Ag==
-X-Gm-Gg: ASbGnctGsXQpN9eskKeHtOtdPGaJpnJ9XoyBO4vayLd9C8uXa+J8N3+4lJFll1uGo4u
-	FTustAQSkiwqq2mCJgHb/4mAWRJdM2Ej8x+5Ou/tkYaR3oVEOdunGD8H36mspAMAxygTuco4/dw
-	HersiAE3m6gTpjivafSde2ljqLtVMCuDOtoxHeKb0T/T8vncgzOS28Qj8chgLUEVQf4m0i7by4b
-	St4vvAFnxwDdbaaqE/eg+VKiCSUXdpVTv5DT/waWGYAx7cCmAD90xpgcYWh2YXBiquH8cUDDHq6
-	BPL6qy1m5oJeETkNi2wO8YPf8XcYuoxZVs4OA0Dhrbtsoh/TvOtqh6gk0oT8n3Eoj370qtFH1lg
-	DvWFwPBKGrsU35VuwYQjkePaoV3JpUgu6yHoNezvyCReKWePkFwh5fJ4oP3DdpV6gTbsJItaR/M
-	tbjfv7
-X-Google-Smtp-Source: AGHT+IHxQWDVz1bTLZyl0y6XGoRtsBpKAUX45QTK5VQaDq/APbb6zlORFXgtgZA8jSkCLBFsW03Tctml9Jf+
-X-Received: by 2002:a05:6a00:2d07:b0:76e:7aba:cb43 with SMTP id d2e1a72fcca58-771fc296dd3mr17357990b3a.15.1756485114583;
-        Fri, 29 Aug 2025 09:31:54 -0700 (PDT)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-14.dlp.protect.broadcom.com. [144.49.247.14])
-        by smtp-relay.gmail.com with ESMTPS id d2e1a72fcca58-7722a2b78cbsm186401b3a.3.2025.08.29.09.31.54
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 29 Aug 2025 09:31:54 -0700 (PDT)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7e86f8f27e1so518334685a.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 09:31:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1756485113; x=1757089913; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=q7yfMSKVog9zrx0IzSOm5CThV+YrzQFJbwE5ZBoSV/E=;
-        b=PjP3FdupTScaW5LFAAntlnz7mZwKVYybP9e+zZcFtY0kZXvB5OPMMBhanPI/S5hlOZ
-         qLONMHS8Vbt5ZKlE/epnKv+bxnsv00M5PSf0hHg35sSSAV+BCSHq6EL9Sg1/3Ym+6XOQ
-         RQTTKgtNX1N7gn9y7VvU+dW42wyLU4ZsH+Ey8=
-X-Forwarded-Encrypted: i=1; AJvYcCU6Z6Pb4oxsawsNl/dD02/51NUdWgStVgxBuV8PXFHAN+0BhtExqulW+o6rrr+fXR/K8IDLFcOzjAC/@vger.kernel.org
-X-Received: by 2002:a05:620a:46ab:b0:7f0:5524:477b with SMTP id af79cd13be357-7f58da36412mr1648510585a.3.1756485112942;
-        Fri, 29 Aug 2025 09:31:52 -0700 (PDT)
-X-Received: by 2002:a05:620a:46ab:b0:7f0:5524:477b with SMTP id af79cd13be357-7f58da36412mr1648503985a.3.1756485112272;
-        Fri, 29 Aug 2025 09:31:52 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7fcbc17487bsm142438285a.27.2025.08.29.09.31.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Aug 2025 09:31:51 -0700 (PDT)
-Message-ID: <c76ab4d7-37aa-4d99-888d-e0762deb2342@broadcom.com>
-Date: Fri, 29 Aug 2025 09:31:48 -0700
+	 In-Reply-To:Content-Type; b=F/ZXgyZChVgiESJxAVweC6MAnTzeJglP1z1+LTMzHOtA0WwI+QEKBmHizJutEva3d8CceE76LCEXw/7z6CReCTs9k2Rge16+7+ckzD+nLJt0docsbhYddbw8+4PhBC5lOKheuQpzoUSrsNngL/1nrsQ+1lMnDJXHgHU84+iqE/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 158C519F0;
+	Fri, 29 Aug 2025 09:39:17 -0700 (PDT)
+Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4DBEB3F694;
+	Fri, 29 Aug 2025 09:39:20 -0700 (PDT)
+Message-ID: <a3d26a1d-6887-47a4-8679-4567e417f65e@arm.com>
+Date: Fri, 29 Aug 2025 17:39:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,101 +42,207 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] brcmstb-memc-ddr binding updates for MIPS boards
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-mips@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- "open list:MEMORY CONTROLLER DRIVERS" <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>
-References: <20250729205213.3392481-1-florian.fainelli@broadcom.com>
- <aLF_DEu6YNSCSRxu@alpha.franken.de>
- <dcb0c746-62ed-48f6-9247-03bdf36c6e92@kernel.org>
- <60e55e14-7712-4f82-93af-6751009327fd@kernel.org>
- <aLHI7arPfcMDEhzM@alpha.franken.de>
+Subject: Re: [PATCH 30/33] arm_mpam: Use long MBWU counters if supported
+To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: shameerali.kolothum.thodi@huawei.com,
+ D Scott Phillips OS <scott@os.amperecomputing.com>,
+ carl@os.amperecomputing.com, lcherian@marvell.com,
+ bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+ baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+ Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+ dfustini@baylibre.com, amitsinght@marvell.com,
+ David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
+ Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
+ Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+ baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+ Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-31-james.morse@arm.com>
+From: Ben Horgan <ben.horgan@arm.com>
 Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <aLHI7arPfcMDEhzM@alpha.franken.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <20250822153048.2287-31-james.morse@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 
-On 8/29/25 08:36, Thomas Bogendoerfer wrote:
-> On Fri, Aug 29, 2025 at 12:39:00PM +0200, Krzysztof Kozlowski wrote:
->> On 29/08/2025 12:37, Krzysztof Kozlowski wrote:
->>> On 29/08/2025 12:21, Thomas Bogendoerfer wrote:
->>>> On Tue, Jul 29, 2025 at 01:52:11PM -0700, Florian Fainelli wrote:
->>>>> This patch series updates the MIPS-based Broadcom STB chips to use a
->>>>> proper compatible string for their memory controller node(s) after
->>>>> 501be7cecec9 ("dt-bindings: memory-controller: Define fallback
->>>>> compatible").
->>>>>
->>>>> Florian Fainelli (2):
->>>>>    dt-bindings: memory: Update brcmstb-memc-ddr binding with older chips
->>>>>    MIPS: BMIPS: Properly define memory controller compatible
->>>>>
->>>>>   .../bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml  | 4 ++++
->>>>>   arch/mips/boot/dts/brcm/bcm7346.dtsi                        | 3 ++-
->>>>>   arch/mips/boot/dts/brcm/bcm7360.dtsi                        | 3 ++-
->>>>>   arch/mips/boot/dts/brcm/bcm7362.dtsi                        | 3 ++-
->>>>>   arch/mips/boot/dts/brcm/bcm7425.dtsi                        | 6 ++++--
->>>>>   arch/mips/boot/dts/brcm/bcm7435.dtsi                        | 6 ++++--
->>>>>   6 files changed, 18 insertions(+), 7 deletions(-)
->>>>
->>>> series applied to mips-next.
->>>
->>> Why entire series? You were notified two weeks ago that I already took
->>> the driver subsystem patch.
+Hi James,
+
+On 8/22/25 16:30, James Morse wrote:
+> From: Rohit Mathew <rohit.mathew@arm.com>
 > 
-> I haven't got a mail in this thread from you about taking the first patch.
-
-That is curious, it was in response to patch #1 and you were copied:
-
-https://lore.kernel.org/all/175508140104.40429.8279921018476182386.b4-ty@linaro.org/
-
+> If the 44 bit (long) or 63 bit (LWD) counters are detected on probing
+> the RIS, use long/LWD counter instead of the regular 31 bit mbwu
+> counter.
 > 
->> ...and you do not have even ack from memory-controllers for that patch.
+> Only 32bit accesses to the MSC are required to be supported by the
+> spec, but these registers are 64bits. The lower half may overflow
+> into the higher half between two 32bit reads. To avoid this, use
+> a helper that reads the top half multiple times to check for overflow.
 > 
-> sorry, I'll drop the patch then.
+> Signed-off-by: Rohit Mathew <rohit.mathew@arm.com>
+> [morse: merged multiple patches from Rohit]
+> Signed-off-by: James Morse <james.morse@arm.com>
+> ---
+> Changes since RFC:
+>  * Commit message wrangling.
+>  * Refer to 31 bit counters as opposed to 32 bit (registers).
+> ---
+>  drivers/resctrl/mpam_devices.c | 89 ++++++++++++++++++++++++++++++----
+>  1 file changed, 80 insertions(+), 9 deletions(-)
+> 
+Looks good to me.
 
-Thanks!
+Reviewed-by: Ben Horgan <ben.horgan@arm.com>
+
+> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
+> index 2ab7f127baaa..8fbcf6eb946a 100644
+> --- a/drivers/resctrl/mpam_devices.c
+> +++ b/drivers/resctrl/mpam_devices.c
+> @@ -1002,6 +1002,48 @@ struct mon_read {
+>  	int				err;
+>  };
+>  
+> +static bool mpam_ris_has_mbwu_long_counter(struct mpam_msc_ris *ris)
+> +{
+> +	return (mpam_has_feature(mpam_feat_msmon_mbwu_63counter, &ris->props) ||
+> +		mpam_has_feature(mpam_feat_msmon_mbwu_44counter, &ris->props));
+> +}
+> +
+> +static u64 mpam_msc_read_mbwu_l(struct mpam_msc *msc)
+> +{
+> +	int retry = 3;
+> +	u32 mbwu_l_low;
+> +	u64 mbwu_l_high1, mbwu_l_high2;
+> +
+> +	mpam_mon_sel_lock_held(msc);
+> +
+> +	WARN_ON_ONCE((MSMON_MBWU_L + sizeof(u64)) > msc->mapped_hwpage_sz);
+> +	WARN_ON_ONCE(!cpumask_test_cpu(smp_processor_id(), &msc->accessibility));
+> +
+> +	mbwu_l_high2 = __mpam_read_reg(msc, MSMON_MBWU_L + 4);
+> +	do {
+> +		mbwu_l_high1 = mbwu_l_high2;
+> +		mbwu_l_low = __mpam_read_reg(msc, MSMON_MBWU_L);
+> +		mbwu_l_high2 = __mpam_read_reg(msc, MSMON_MBWU_L + 4);
+> +
+> +		retry--;
+> +	} while (mbwu_l_high1 != mbwu_l_high2 && retry > 0);
+> +
+> +	if (mbwu_l_high1 == mbwu_l_high2)
+> +		return (mbwu_l_high1 << 32) | mbwu_l_low;
+> +	return MSMON___NRDY_L;
+> +}
+> +
+> +static void mpam_msc_zero_mbwu_l(struct mpam_msc *msc)
+> +{
+> +	mpam_mon_sel_lock_held(msc);
+> +
+> +	WARN_ON_ONCE((MSMON_MBWU_L + sizeof(u64)) > msc->mapped_hwpage_sz);
+> +	WARN_ON_ONCE(!cpumask_test_cpu(smp_processor_id(), &msc->accessibility));
+> +
+> +	__mpam_write_reg(msc, MSMON_MBWU_L, 0);
+> +	__mpam_write_reg(msc, MSMON_MBWU_L + 4, 0);
+> +}
+> +
+>  static void gen_msmon_ctl_flt_vals(struct mon_read *m, u32 *ctl_val,
+>  				   u32 *flt_val)
+>  {
+> @@ -1058,6 +1100,7 @@ static void read_msmon_ctl_flt_vals(struct mon_read *m, u32 *ctl_val,
+>  static void clean_msmon_ctl_val(u32 *cur_ctl)
+>  {
+>  	*cur_ctl &= ~MSMON_CFG_x_CTL_OFLOW_STATUS;
+> +	*cur_ctl &= ~MSMON_CFG_MBWU_CTL_OFLOW_STATUS_L;
+I observe that this bit is res0, in the CSU case, and so the clearing is ok.
+>  }
+>  
+>  static void write_msmon_ctl_flt_vals(struct mon_read *m, u32 ctl_val,
+> @@ -1080,7 +1123,11 @@ static void write_msmon_ctl_flt_vals(struct mon_read *m, u32 ctl_val,
+>  	case mpam_feat_msmon_mbwu:
+>  		mpam_write_monsel_reg(msc, CFG_MBWU_FLT, flt_val);
+>  		mpam_write_monsel_reg(msc, CFG_MBWU_CTL, ctl_val);
+> -		mpam_write_monsel_reg(msc, MBWU, 0);
+> +		if (mpam_ris_has_mbwu_long_counter(m->ris))
+> +			mpam_msc_zero_mbwu_l(m->ris->vmsc->msc);
+> +		else
+> +			mpam_write_monsel_reg(msc, MBWU, 0);
+> +
+>  		mpam_write_monsel_reg(msc, CFG_MBWU_CTL, ctl_val | MSMON_CFG_x_CTL_EN);
+>  
+>  		mbwu_state = &m->ris->mbwu_state[m->ctx->mon];
+> @@ -1095,8 +1142,13 @@ static void write_msmon_ctl_flt_vals(struct mon_read *m, u32 ctl_val,
+>  
+>  static u64 mpam_msmon_overflow_val(struct mpam_msc_ris *ris)
+>  {
+> -	/* TODO: scaling, and long counters */
+> -	return GENMASK_ULL(30, 0);
+> +	/* TODO: implement scaling counters */
+> +	if (mpam_has_feature(mpam_feat_msmon_mbwu_63counter, &ris->props))
+> +		return GENMASK_ULL(62, 0);
+> +	else if (mpam_has_feature(mpam_feat_msmon_mbwu_44counter, &ris->props))
+> +		return GENMASK_ULL(43, 0);
+> +	else
+> +		return GENMASK_ULL(30, 0);
+>  }
+>  
+>  /* Call with MSC lock held */
+> @@ -1138,10 +1190,24 @@ static void __ris_msmon_read(void *arg)
+>  		now = FIELD_GET(MSMON___VALUE, now);
+>  		break;
+>  	case mpam_feat_msmon_mbwu:
+> -		now = mpam_read_monsel_reg(msc, MBWU);
+> -		if (mpam_has_feature(mpam_feat_msmon_mbwu_hw_nrdy, rprops))
+> -			nrdy = now & MSMON___NRDY;
+> -		now = FIELD_GET(MSMON___VALUE, now);
+> +		/*
+> +		 * If long or lwd counters are supported, use them, else revert
+> +		 * to the 31 bit counter.
+> +		 */
+> +		if (mpam_ris_has_mbwu_long_counter(ris)) {
+> +			now = mpam_msc_read_mbwu_l(msc);
+> +			if (mpam_has_feature(mpam_feat_msmon_mbwu_hw_nrdy, rprops))
+> +				nrdy = now & MSMON___NRDY_L;
+> +			if (mpam_has_feature(mpam_feat_msmon_mbwu_63counter, rprops))
+> +				now = FIELD_GET(MSMON___LWD_VALUE, now);
+> +			else
+> +				now = FIELD_GET(MSMON___L_VALUE, now);
+> +		} else {
+> +			now = mpam_read_monsel_reg(msc, MBWU);
+> +			if (mpam_has_feature(mpam_feat_msmon_mbwu_hw_nrdy, rprops))
+> +				nrdy = now & MSMON___NRDY;
+> +			now = FIELD_GET(MSMON___VALUE, now);
+> +		}
+>  
+>  		if (nrdy)
+>  			break;
+> @@ -1433,8 +1499,13 @@ static int mpam_save_mbwu_state(void *arg)
+>  		cur_ctl = mpam_read_monsel_reg(msc, CFG_MBWU_CTL);
+>  		mpam_write_monsel_reg(msc, CFG_MBWU_CTL, 0);
+>  
+> -		val = mpam_read_monsel_reg(msc, MBWU);
+> -		mpam_write_monsel_reg(msc, MBWU, 0);
+> +		if (mpam_ris_has_mbwu_long_counter(ris)) {
+> +			val = mpam_msc_read_mbwu_l(msc);
+> +			mpam_msc_zero_mbwu_l(msc);
+> +		} else {
+> +			val = mpam_read_monsel_reg(msc, MBWU);
+> +			mpam_write_monsel_reg(msc, MBWU, 0);
+> +		}
+>  
+>  		cfg->mon = i;
+>  		cfg->pmg = FIELD_GET(MSMON_CFG_MBWU_FLT_PMG, cur_flt);
+
 -- 
-Florian
+Thanks,
+
+Ben
+
 
