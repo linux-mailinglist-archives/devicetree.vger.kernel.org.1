@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-210290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A0ACB3B33C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:19:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D008B3B345
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:21:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB7033B76F2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 06:19:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1F731C824FB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 06:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79394239E8B;
-	Fri, 29 Aug 2025 06:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA8D221F0A;
+	Fri, 29 Aug 2025 06:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VlAr7cp1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FGlrlaZy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D699207A20;
-	Fri, 29 Aug 2025 06:19:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD8E30CD9F;
+	Fri, 29 Aug 2025 06:21:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756448342; cv=none; b=bllLAzzvLZygy6YSNG8mzD/5a5pYu1EkHhb1BCY8Wc0gl72wCLXHSqcMaDjvzV/YLU5KEIt4qyox9t94eixCaFbNLEKA6KTycIjY5yrG7VKi6KmkLXAi1+Fp0iC61RJ2YaKmFFhN10C89w7fH2hTfVfGxYF9wM7qPFBFLKLcigc=
+	t=1756448490; cv=none; b=ScEoj55X8jTfrLD41n6yIsfJ8CRgOtzaqfopq3AA9ZZiycAgQPltGtvwspWur+AKw7+XwHVzEXYZyuzFMeJaWi98dn/1HzhWcCnaRS+DTAjKBQ/jkZY/GDvpvk7efdIhp2SkZwbCHP31b3BL4HF5DB6LesgktNSkRcpwCYaoJFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756448342; c=relaxed/simple;
-	bh=P9Q0SmdKT4+QR+pS62JZey3140CaFSXQyb5AfpmgPrc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kMIBOUhLauIr5WA84CaULcEJx971avEC7WuEqDP13mdyiOIU2Zp28t1BQjo6kfX907pElhFByZJ5HAvEYkT65u39amIee8kfeFAhEyDXvbCF5mLZEeoToAq/W6tzw37f7I2Z6Hw+jsK0rp537tYU3qjlApnjGfaaexIAeP1Bl84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VlAr7cp1; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57T6IrnH2151732;
-	Fri, 29 Aug 2025 01:18:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756448333;
-	bh=3IPwZazoSn4ZeSr5DFrwiRXhN0snIHoAAJIH9eLfr9U=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=VlAr7cp1b4CRn3SlUE3hf7hIh7IZy/hHvtEir/A8wQug1degH7AhhyKmubIkPa5vl
-	 9lfYiNyPXKy4wnhWicf7HGtm5Nhzt5rkxHrpwHVirZBN72EcpOaIC1QZfRBNW0/Szi
-	 pYdaqIVn8+Ff7bc2ksiE7BHEllszOJ4pIEEFRTKc=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57T6IqF43805307
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 29 Aug 2025 01:18:53 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 29
- Aug 2025 01:18:52 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 29 Aug 2025 01:18:52 -0500
-Received: from [172.24.20.139] (lt5cd2489kgj.dhcp.ti.com [172.24.20.139])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57T6ImNR1891002;
-	Fri, 29 Aug 2025 01:18:48 -0500
-Message-ID: <c542ad3f-8e6d-405a-92d3-4e45cbcfc2a3@ti.com>
-Date: Fri, 29 Aug 2025 11:48:47 +0530
+	s=arc-20240116; t=1756448490; c=relaxed/simple;
+	bh=xFsvfzrgNoRpMr9Z15ppUi0wkOKIZR9k1HX8ANNHk1g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lOLkeJuL4cAlqn0Kg2O/IImzFMk81mGqLfh3utVqEanP6fZKu2SElIUIcnGNCFL5lOWQn7OcWsPOzY274/OISFfGe8qCK8RwAa9K+Yw/eFqbhDaXDaWTYgBrq/QiE+DlAHMvDr7YF3WzZ4fw5ruPWzXztl3omSbzoZ1T1QkXUcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FGlrlaZy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E09DBC4CEF0;
+	Fri, 29 Aug 2025 06:21:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756448490;
+	bh=xFsvfzrgNoRpMr9Z15ppUi0wkOKIZR9k1HX8ANNHk1g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FGlrlaZyBp0AcQze/fXNotB6j8FspsiYVJnEM4FviOuWNewI3t+6AIwR5LMbt6mTQ
+	 Ira1Cj2302QBzQZjWuJuTzjYBVUnJs7vRV874SNIzhuau8HoFt78kLdVjpl4tjFdsk
+	 sje7Ospx+n0DDHgceS1dUAsAUTSLO6sR9CQwbNlgt+s9MwIFkChdKwN8vbIM37qJCA
+	 2m637kqPEtpU9zeHgkXvk8WXapstQmouN/1mJkA5SPvA2Z4Uuo4RBw+1i7RK8kYTEl
+	 QSD6ljYKvf21RtcLf6F9gTikmEPOJ9dVCOISHOw460G4oWCiQdCC1pnu+swHOsSckR
+	 MFmz/svkC2+wQ==
+Message-ID: <3e0fb880-ef2a-482d-b008-9afcb46f9fec@kernel.org>
+Date: Fri, 29 Aug 2025 08:21:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,81 +50,179 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j742s2-mcu-wakeup: Override
- firmware-name for MCU R5F cores
-To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <afd@ti.com>, <hnagalla@ti.com>, <jm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <u-kumar1@ti.com>
-References: <20250823163111.2237199-1-b-padhi@ti.com>
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTog5Zue5aSNOiDlm57lpI06IFtQQVRDSCAxLzNdIHBp?=
+ =?UTF-8?Q?nctrl=3A_cix=3A_Add_pin-controller_support_for_sky1?=
+To: Gary Yang <gary.yang@cixtech.com>,
+ "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
+Cc: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
+References: <20250827024222.588082-1-gary.yang@cixtech.com>
+ <20250827024222.588082-2-gary.yang@cixtech.com>
+ <d5c85ba7-77ec-47f4-8ba1-39199e96da11@kernel.org>
+ <PUZPR06MB5887BFF27AAD64ACA625126BEF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+ <5d8aa064-6dcf-40ce-9e73-feaebca06965@kernel.org>
+ <PUZPR06MB5887436E03C17498E80E43C7EF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+ <f54d43ca-87cc-40bb-a56b-e49ee6a0a441@kernel.org>
+ <PUZPR06MB58879645FFBD2B7D2B7E9BE4EF3AA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20250823163111.2237199-1-b-padhi@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <PUZPR06MB58879645FFBD2B7D2B7E9BE4EF3AA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+
+On 29/08/2025 06:33, Gary Yang wrote:
+> Hi Krzysztof,
+>>
+>> On 28/08/2025 10:32, Gary Yang wrote:
+>>> Hi Krzysztof,
+>>>
+>>>>
+>>>> On 28/08/2025 08:44, Gary Yang wrote:
+>>>>>>
+>>>>>>> +     if (ret) {
+>>>>>>> +             dev_err(&pdev->dev, "fail to probe dt
+>>>>>>> + properties\n");
+>>>>>>
+>>>>>> You are printing same error twice. Drop this and just handle error
+>>>>>> printing in sky1_pinctrl_probe_dt().
+>>>>>> Especially that you now print errors on ENOMEM.
+>>>>>>
+>>>>>
+>>>>> Sorry, this print message is only once, not twice, please give more
+>>>>> information
+>>>>
+>>>> Trigger the error and check how many error messages you see. I see two.
+>>>> You should know your code better than me...
+>>>>
+>>>
+>>> There are two pin-controller on sky1. They share the same driver. The probe
+>> is called twice.
+>>>
+>>> So we see the print message twice.
+>>
+>>
+>> No, you don't really understand how this works. Test your code and its error
+>> paths and you will see FOR ONE BIND more than one error message.
+>> Plus my second comment which you completely ignored.
+>>
+>> I am sorry, but this is basic C.
+>>
+> 
+> In order to trigger a error, we add a sentence in sky1_pinctrl_probe_dt() as follow:
+> 
+> static int sky1_pinctrl_probe_dt(struct platform_device *pdev,
+>                                  struct sky1_pinctrl *spctl)
+> {
+> 
+> +         return -ENODEV;
+>           .......
+> }
+> 
+> dmesg shows as following:
+> 
+> [    0.812780] /soc@0/pinctrl@4170000: Fixed dependency cycle(s) with /soc@0/pinctrl@4170000/hog-pins
+> [    0.821920] sky1-pinctrl 4170000.pinctrl: fail to probe dt properties
+> [    0.828503] /soc@0/pinctrl@16007000: Fixed dependency cycle(s) with /soc@0/pinctrl@16007000/hog-s5-pins
+> [    0.838058] sky1-pinctrl 16007000.pinctrl: fail to probe dt properties
+> 
+> I don't see the error message twice per one. There are two pin-controller. One is /soc@0/pinctrl@4170000. Other is /soc@0/pinctrl@16007000.
+
+And the next error case from sky1_pinctrl_probe_dt? ... and then the
+next one? And another one?
+
+Really, either you didn't read your own code or you just push the same
+poor code, regardless of review, because you want it to get merged?
+
+This will lead you nowhere.
+
+You have:
+
++static int sky1_pinctrl_probe_dt(struct platform_device *pdev,
++				struct sky1_pinctrl *spctl)
+...
++		if (!function)
++			return -ENOMEM;
+...
++	if (ret) {
++		dev_err(&pdev->dev, "fail to probe dt properties\n");
++		return ret;
++	}
+
+That's a clear NAK.
+
+Then you have:
+
++		if (nfuncs == 0) {
++			dev_err(&pdev->dev, "no functions defined\n");
++			return -EINVAL;
+...
++	if (ret) {
++		dev_err(&pdev->dev, "fail to probe dt properties\n");
++		return ret;
++	}
+
+that's useless duplicated message. TWICE.
+
+You could easily spot it yourself instead of keep bugging the reviewer
+for such trivial stuff.
+
+NAK, please remember to never waste reviewers time.
+
+> 
+> So you see the twice, once per one pin-controller. BTW as you suggested before, we will print the value of ret in the error message.
+> 
+> If I miss any information, please kindly remind me. Thanks
+
+You still ignored my second comment.
 
 
-On 8/23/2025 10:01 PM, Beleswar Padhi wrote:
-> The J742S2 SoC reuses the common k3-j784s4-j742s2-mcu-wakeup-common.dtsi
-> for its MCU domain, but it does not override the firmware-name property
-> for its R5F cores. This causes the wrong firmware binaries to be
-> referenced.
->
-> Introduce a new k3-j742s2-mcu-wakeup.dtsi file to override the
-> firmware-name property with correct names for J742s2.
->
-> Fixes: 38fd90a3e1ac ("arm64: dts: ti: Introduce J742S2 SoC family")
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> ---
-> v2: Changelog:
-> 1. Posted this patch as a fix as decided in v1, so added Fixes tag.
->
-> Link to v1:
-> https://lore.kernel.org/all/20250522073426.329344-2-b-padhi@ti.com/
->
->   .../arm64/boot/dts/ti/k3-j742s2-mcu-wakeup.dtsi | 17 +++++++++++++++++
->   arch/arm64/boot/dts/ti/k3-j742s2.dtsi           |  1 +
->   2 files changed, 18 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j742s2-mcu-wakeup.dtsi
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j742s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j742s2-mcu-wakeup.dtsi
-> new file mode 100644
-> index 000000000000..61db2348d6a4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j742s2-mcu-wakeup.dtsi
-> @@ -0,0 +1,17 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
-> + * Device Tree Source for J742S2 SoC Family
-> + *
-> + * TRM: https://www.ti.com/lit/pdf/spruje3
-> + *
-> + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + */
-> +
-> +&mcu_r5fss0_core0 {
-> +	firmware-name = "j742s2-mcu-r5f0_0-fw";
-> +};
-> +
-> +&mcu_r5fss0_core1 {
-> +	firmware-name = "j742s2-mcu-r5f0_1-fw";
-> +};
-
-
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-
-
-> diff --git a/arch/arm64/boot/dts/ti/k3-j742s2.dtsi b/arch/arm64/boot/dts/ti/k3-j742s2.dtsi
-> index 7a72f82f56d6..d265df1abade 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j742s2.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j742s2.dtsi
-> @@ -96,3 +96,4 @@ cpu3: cpu@3 {
->   };
->   
->   #include "k3-j742s2-main.dtsi"
-> +#include "k3-j742s2-mcu-wakeup.dtsi"
+Best regards,
+Krzysztof
 
