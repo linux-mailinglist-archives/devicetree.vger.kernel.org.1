@@ -1,130 +1,152 @@
-Return-Path: <devicetree+bounces-210288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 730A6B3B2F7
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:07:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AF54B3B30C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:13:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B82D01C22329
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 06:08:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB40E7C166C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 06:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C0D220686;
-	Fri, 29 Aug 2025 06:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5734D1F09BF;
+	Fri, 29 Aug 2025 06:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iQ4/Pjs1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="emcXEQNb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9043B207A20;
-	Fri, 29 Aug 2025 06:07:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1A98BEC;
+	Fri, 29 Aug 2025 06:13:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756447660; cv=none; b=C/GYkOZLDzwC6c/R/YxlOUWTUdIq08wP6dcH5t5XHIesEnJOz0GUHg0Zusw7aOMU4bAuqGmi6I4cXzocflAZZwZIpv6YiN0kZwOh3yDi392/1HoXGzBDD305IYSGsMs1VLpgvH8LEn7SQpMWlrT7NzHjwbRDMzTk4phw8un/COw=
+	t=1756447985; cv=none; b=GT2lnwzzC5D+ArPKglQQ9d7oLkdeNwBlfRl0JySQ8VGF7mfaxX9Pc8o/pSzdrTKqya50FIz61Vt7jsKwvkG6QeLCRjL4MkFF8aLOhsvi/ymGub/MW6fQNQCFb9IAgKtagytrNtd6mjtpXhv6ldcrmbXoG1KRhbuejV0gEJAs8ik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756447660; c=relaxed/simple;
-	bh=bNPJL1ko4F0rvgQSBPm+EwIcNe+DLd83LxTZHBNx+vw=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=XcUTO6bMJRoTMTnbhvYFKO85otTXQ1n7QpRbTvZ0m6EHcVVvVX4D10d5ttt02eLKpoZ+w6cdJlURxCMmqbpbCx6wrmD/muzQCHrwG+nMS+oMowVs+h2bFGFCbQ9YWra6wf/7EKoJ39S7FrC03KPLz9kCEi3r1/71l4ubGOFL6Vg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iQ4/Pjs1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C30DC4CEF0;
-	Fri, 29 Aug 2025 06:07:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756447660;
-	bh=bNPJL1ko4F0rvgQSBPm+EwIcNe+DLd83LxTZHBNx+vw=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=iQ4/Pjs1D46J56drVIpNPY0jAbsPfhlvv9n6GEYvB+17KB3QySTlxOo7DdNy49wNe
-	 t2XIgBFLysgBDp0TfxURTPRwbz8tVgBPPNzH4BM9HfaiKdr6BD0xX2dfOw60juFO3c
-	 sAi3zIp7rlDCoiMNhAtMkhVBVWPDTLCwOn4IMSmnzTHa3EnmgR8b6pTjO0bD942nfX
-	 M55ubFK5HXTj0yj/xcRMcjMycVAUaSz43Zyz9SDyCHRu2v7ifJp/As3j476o4FdgbM
-	 YgYfuEdMkZHwtcQMTw0mGqIUXN/nPzf162sCak/0L7YmcrXFytwbaLGlfV8QCU2kXX
-	 Vsc9k4XKh2OFQ==
-Message-ID: <4420d5fe-a847-4def-9ad0-ba39ad6f6b5d@kernel.org>
-Date: Fri, 29 Aug 2025 08:07:34 +0200
+	s=arc-20240116; t=1756447985; c=relaxed/simple;
+	bh=l91ux3+Pvhq5FZeurV7FijYDFgWSVXtEaVgdjXVEbi8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Mvw9DV/lF6jSB8UVZe9rcKclBId7mOVYZFK7BxXupzCG360v8nG3zO5d7OTdqySxrAKk1dx7s+ha1bfmq5Qt9MfVwULafY0v/46cye7B7efPrBSA8NgcvYFzgglM1r70uOVGuFwppBfV3MRZ2/pEfbnPn938Gr5NQa74XGGqkuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=emcXEQNb; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e96ff518c08so1395538276.1;
+        Thu, 28 Aug 2025 23:13:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756447982; x=1757052782; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l91ux3+Pvhq5FZeurV7FijYDFgWSVXtEaVgdjXVEbi8=;
+        b=emcXEQNb/JtYGK2kcrITfMRPnm/o2/qJiDvJBtadV4lmOBWLbS6LF+29cLBHOtlPqU
+         xLui0GAdHIpWpqupCMdmp3PHRH0H5StO0SK3BBZGM6dvfQDn0NE+xh4rrURL+u9Ladw7
+         iJMHVnG4mW8akxWLTgNL9KhcDUQoj6qN4gjtN2ws9TEkduQA6h/hbH2ICt2C2q4j+pLi
+         kGYbA2v8+RU7flY67p+QXrTZ/nai1fAi4DqT7gFq0EQP51sWE86pyRn0tB0jQ+sZBAx6
+         bxyHB9+tpYY6UdBb7ABd7kV2QUbPcIXxmdI2IVOkiYGQ8uGS9zeZKHEEwPHixJyCu/dT
+         GV3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756447982; x=1757052782;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l91ux3+Pvhq5FZeurV7FijYDFgWSVXtEaVgdjXVEbi8=;
+        b=fTyKOJJRzif+DxRQ5KQEU4u+oEVaqi7CvOX8dfOY1JxnQNYosXiPn/IoFXZeNpFdG/
+         FtDn0LxwlDHNIJe12Vou7RjINr6pM7NMSeVWDrUNdmeJZfKgabDlkU/bLzuIygGcXZiy
+         ttWC7tz/p8UO9MkMXm4eVosNHgaeMctzZI+2GA/KmhNjOPHGCIzdBxqFFpBc7YZphLsj
+         4/hgxAzd0Vvf5cafRHFAEeLmimAnop3xpismZ73Xsvy0X49JaXkLMWl/Bi5ru8Wv4Wqb
+         kVLplYGU7t6R92RLOpg6bUn0TzcGwYd8Yb8GxgurXKvZEvZPEGtOlSWikFBCKXOHaQQH
+         lTKg==
+X-Forwarded-Encrypted: i=1; AJvYcCU9iAVcBRbI9bER2r62JRunuk21/RXwCSUGVsuLYoY4rjA5QD+YRtokLjy0a3CI7SVWIApeSOKZgnWjRA==@vger.kernel.org, AJvYcCVGzizzLIdCpscDRyAgU3UycoCY97BiPjMq+ciBgNAy1XEIRGFWSFW35WcS7/QOlQgDfe6IY8zlVWH5OKkXUHI=@vger.kernel.org, AJvYcCVZUXf9TL22SUf8ImqcfMpXT7YxEXJnuJmQ/x1HqOdM/zJ6SOSBdEx5iDgnT7xCeWcbUJcvEpobvrx99Uqi@vger.kernel.org, AJvYcCWNnwsaCsUbg5G9vN9JMn6f6wnjzl3faKEtGLc/FRy9HBJsKKky77KFJ0fllhSPA5P8hitcb4RS/5n3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXnUIcWk3E8CdFZfyZlHZ2lYZbdhtstFcFIecVaVVQZexzCB6b
+	6ZcMb1YzgSHmwtI+ZEGYp7m5EMvZcqTh0/yyXUJxtyz3hPzi2UhJB9rNPjbsVfubqhq32D5uCTL
+	s0FqTavP5tE0SrivVH1KTD/KGMSb0B2A=
+X-Gm-Gg: ASbGncs96v8u32NBadLTvMjNVuhbfzgJ/dpQ0Joi2fqlzXzGGlxFri7K8JKFMLo2EoI
+	kKu9UJiT4iK8QAbXg5nsfCfq2blPKO5AX5jrI8GOnY9IVlZK6xD6PlYoLcPqMKZufCDorMutjlX
+	EIwEZHpoD+6Mu/8UX4uJihzhQZVYPi0OEhFQU6NaDbsDMb99L51f5IwCPWu7PAUetDdTGib05Tg
+	m+j3q9ybC+mMYPv8Bcr7hBiuhkjlOVB5AWZvGfFurYPSQIvjIyaQEpzW3iNyomsuzo7og==
+X-Google-Smtp-Source: AGHT+IHSy/2BbuT5BBnMMeA82aFWaW+gHIBMJGQ0IfV06xy4CtgRumYMAtG4iaoPpvDBRT6Pc0nC8zl6L8hnzFloH+0=
+X-Received: by 2002:a05:690c:892:b0:71f:b871:da32 with SMTP id
+ 00721157ae682-71fdc2d938amr354421277b3.12.1756447982321; Thu, 28 Aug 2025
+ 23:13:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] dt-bindings: pinctrl: qcom: Add SDM660 LPI pinctrl
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: setotau@yandex.ru, Bjorn Andersson <andersson@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht,
- Richard Acayan <mailingradian@gmail.com>
-References: <20250828-sdm660-lpass-lpi-v4-0-af4afdd52965@yandex.ru>
- <20250828-sdm660-lpass-lpi-v4-2-af4afdd52965@yandex.ru>
- <fcd25026-97f0-472a-a274-af342b1dce9c@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <fcd25026-97f0-472a-a274-af342b1dce9c@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250827005658.3464-1-rosenp@gmail.com> <20250827005658.3464-2-rosenp@gmail.com>
+ <175638709817.1370637.10754263567298002001.robh@kernel.org>
+ <CAKxU2N-Zfme=84rqxQ=uJro1YMeFGorveT-uRhx6_HpJmB-fxA@mail.gmail.com> <9208c440-f9e3-4289-9c33-81bb35383d53@kernel.org>
+In-Reply-To: <9208c440-f9e3-4289-9c33-81bb35383d53@kernel.org>
+From: Rosen Penev <rosenp@gmail.com>
+Date: Thu, 28 Aug 2025 23:12:51 -0700
+X-Gm-Features: Ac12FXwKbnby6LF69ay3A5pTgzG023i-hm7L-4gqEAYIyg35KbPDvm5j_vKU5Rs
+Message-ID: <CAKxU2N9o_jJd7mfVQE2yab5xX+-gKa8qB8hLkKJPqZq+YmzE4Q@mail.gmail.com>
+Subject: Re: [PATCHv4 1/3] dt-bindings: net: wireless: ath9k: add led bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, Johannes Berg <johannes@sipsolutions.net>, 
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org, 
+	linux-wireless@vger.kernel.org, =?UTF-8?B?VG9rZSBIw7hpbGFuZC1Kw7hyZ2Vuc2Vu?= <toke@toke.dk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 29/08/2025 08:06, Krzysztof Kozlowski wrote:
-> On 28/08/2025 21:23, Nickolay Goppen via B4 Relay wrote:
->> From: Nickolay Goppen <setotau@yandex.ru>
->>
->> Add bindings for pin controller in SDM660 Low Power Audio SubSystem
->> LPASS).
->>
->> Co-developed-by: Richard Acayan <mailingradian@gmail.com>
->> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
->> Signed-off-by: Nickolay Goppen <setotau@yandex.ru>
-> 
-> Completely reversed/messed chain.
+On Thu, Aug 28, 2025 at 11:02=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 29/08/2025 03:47, Rosen Penev wrote:
+> >> dtschema/dtc warnings/errors:
+> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:9=
+2.15-25: Warning (reg_format): /example-2/ahb/wifi@180c0000/led:reg: proper=
+ty has invalid length (4 bytes) (#address-cells =3D=3D 2, #size-cells =3D=
+=3D 1)
+> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:9=
+1.17-94.15: Warning (unit_address_vs_reg): /example-2/ahb/wifi@180c0000/led=
+: node has a reg or ranges property, but no unit name
+> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
+Warning (pci_device_reg): Failed prerequisite 'reg_format'
+> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
+Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
+Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
+Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
+Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:9=
+1.17-94.15: Warning (avoid_default_addr_size): /example-2/ahb/wifi@180c0000=
+/led: Relying on default #address-cells value
+> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:9=
+1.17-94.15: Warning (avoid_default_addr_size): /example-2/ahb/wifi@180c0000=
+/led: Relying on default #size-cells value
+> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
+Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_defaul=
+t_addr_size'
+> >>
+> >> doc reference errors (make refcheckdocs):
+> >>
+> >> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202=
+50827005658.3464-2-rosenp@gmail.com
+> > FFS. These reviews were garbage. The next series will effectively be
+>
+> What? My and Conor reviews were garbage?
+I was specifically referring to replacing led-sources with reg. The
+latter needs address and size-cells specified which is verbose for no
+good reason.
 
-Ah no, sorry, it's ok. I missed who is the sender here.
+Meaning the initial patchset was almost ideal. Just
+of_device_is_available needed to be fixed.
 
-Best regards,
-Krzysztof
+I'm irritated as this will be up to v5 when it should have been up to v2.
+
+>
+> It is your patches which never got tested, code was completely messed up
+> (see v2 mixing two different things).
+>
+> I am not going to review your patches.
+>
+> Best regards,
+> Krzysztof
 
