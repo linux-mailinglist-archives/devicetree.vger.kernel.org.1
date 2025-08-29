@@ -1,87 +1,90 @@
-Return-Path: <devicetree+bounces-210457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7676B3B940
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:53:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 927D3B3B947
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:53:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 256D83B8610
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:53:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE6551B27D02
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:53:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B61E830FC1E;
-	Fri, 29 Aug 2025 10:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B0433101D4;
+	Fri, 29 Aug 2025 10:53:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Z+nz1taA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4351230FC00;
-	Fri, 29 Aug 2025 10:52:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF242310655
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 10:53:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756464778; cv=none; b=NuAQ5xQxEpvnFRAOZBgMb2mQNFw44a/pE9pS4ceHSyVVFZB4XLonjNGwNlyV6rPuaUOllrjrzINkP6KLJ2xQc26CrRHjGjUOQs59JEZ9hHbHZ22VVUUPfyz+2Vmprx3sdK764PgGka9NxRAWSbLlN3Xrd76QhX9z7fm2k20zumM=
+	t=1756464796; cv=none; b=blgEQuZLRpxIHwsBsD8M2E+L3aSa2ZMou7pSBRKO/W9Q5SmVUm7TyZLc9Wx73NLnKc1mHSyidhsIGRcdDd5xjPpqwrzI44HMdSeqkXf6Cc279CRaPAaxRaxohs4lqGynsLeG/MtWg+ylNiNMyp2WaI9VcbaHtaLPbS0DtL/8LMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756464778; c=relaxed/simple;
-	bh=2l67HPkV8juKuiJ0waqffOy2czHKCxwzQB9FinAHhAI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D39M2Hw0QBdlZ9d4/g/US2Ebf+L9rgPPFG3CsgUk7XDGZfeJcIJwEWF79kf74lg7PJcPNZlt8w5i5ZwxXqjKX1Yreg9vaTw+D1kPamjSky5HeHdnUIHkYzmMPrnOT0rWRAzPjNzKK6SgwpYoLpvknN73sq3wctdxB+PKSq8ERbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6DE9719F0;
-	Fri, 29 Aug 2025 03:52:48 -0700 (PDT)
-Received: from [10.57.2.173] (unknown [10.57.2.173])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 374673F738;
-	Fri, 29 Aug 2025 03:52:55 -0700 (PDT)
-Message-ID: <857fd009-bfef-4da9-b6a8-832f0c8b3154@arm.com>
-Date: Fri, 29 Aug 2025 11:52:51 +0100
+	s=arc-20240116; t=1756464796; c=relaxed/simple;
+	bh=WQdwzz6q9eAjbBzKBHklBItXSbQR9QZQCqps1gmAqJI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lvfafpE8e4chwvKSs48bgWBDdDOwsOWRQOlOPECbcIKOSxtIKU78oEfj+l7sm0TYVYnwCZI7QlFd4mmiY34RR+d0UZ0VkboFtFbAlUbaVlQiUdM2mLnHm8+99ek0d7vpoPSfaIkCKl//RDCedahBVNsjZxttPif7GwdeCQw/mi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Z+nz1taA; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=E2se
+	b6RdzeP44v6HWYjoVuEzf39+ad3i9v38SGIR650=; b=Z+nz1taA3zHfqbeUagJY
+	jvBend6sl1lhVZAyvWeeMCtt1l8k/VcROV4s4iVGxJC52/p2BsPBz4eQxfKJJJ5f
+	Dfcu/WFDnjSvOK8n0xP/AMOSTXOKllyjoGPtFTk7oPbwqSZy+V6aeyqOgCM9USIO
+	3WdH0Oiflcr22+8JYkgLkOL+7Ul7rSu/6Fx3T20ucjY7wsJittD3XkR98SDIMpWI
+	yvJlpLBmTmKT4sp3+qgNvVwcn2byqPbzMWGak27TXFqfED6s/5STlT3aNl0Wk6uw
+	8Z5ovYCpoLdvMunoGsDoSznB4DXchatRH4l/JcW7foTcpCc7jF+LtPytuvL0fBUy
+	gw==
+Received: (qmail 1425040 invoked from network); 29 Aug 2025 12:53:12 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 29 Aug 2025 12:53:12 +0200
+X-UD-Smtp-Session: l3s3148p1@3KsB1H49CucgAwDPXwOZADQgI+b4m0Li
+Date: Fri, 29 Aug 2025 12:53:12 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	geert+renesas@glider.be, magnus.damm@gmail.com,
+	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5 0/7] Add initial USB support for the Renesas RZ/G3S SoC
+Message-ID: <aLGGmI8bpKNVaSAa@shikoro>
+References: <20250819054212.486426-1-claudiu.beznea.uj@bp.renesas.com>
+ <aLAZprjeKtk4pusw@shikoro>
+ <ae53d367-2ee5-49aa-82ba-86f9e84d4d25@tuxon.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/14] dmaengine: dma350: Add missing dch->coherent
- setting
-To: Jisheng Zhang <jszhang@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250823154009.25992-1-jszhang@kernel.org>
- <20250823154009.25992-3-jszhang@kernel.org>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250823154009.25992-3-jszhang@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ae53d367-2ee5-49aa-82ba-86f9e84d4d25@tuxon.dev>
 
-On 2025-08-23 4:39 pm, Jisheng Zhang wrote:
-> The dch->coherent setting is missing.
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->   drivers/dma/arm-dma350.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/dma/arm-dma350.c b/drivers/dma/arm-dma350.c
-> index bf3962f00650..24cbadc5f076 100644
-> --- a/drivers/dma/arm-dma350.c
-> +++ b/drivers/dma/arm-dma350.c
-> @@ -587,6 +587,7 @@ static int d350_probe(struct platform_device *pdev)
->   	for (int i = 0; i < nchan; i++) {
->   		struct d350_chan *dch = &dmac->channels[i];
->   
-> +		dch->coherent = coherent;
+Hi Claudiu,
 
-Nit: I'd put this a bit further down with the CH_LINKATTR setup, but 
-otherwise,
+> I just checked it on latest linux-next and all good on my side. Would it be
+> possible that you don't have commit 2da2740fb9c8 ("soc: renesas: rz-sysc:
+> Add syscon/regmap support") in your tree?
 
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+Yes, I added it and it made the error go away, but still no USB. I
+switched to linux-next as of today, did neither help.
 
->   		dch->base = base + DMACH(i);
->   		writel_relaxed(CH_CMD_CLEAR, dch->base + CH_CMD);
->   
+> This is how my tree looks like:
+
+Mine is similar, except for a newer -next.
+
+Let's try your config file next?
+
+Thanks for the support,
+
+   Wolfram
 
 
