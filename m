@@ -1,144 +1,253 @@
-Return-Path: <devicetree+bounces-210361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F3F4B3B5F9
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:24:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC06DB3B5E8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:23:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4EB977BD856
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:19:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5D681C85AEE
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EBCA28505C;
-	Fri, 29 Aug 2025 08:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5F7286402;
+	Fri, 29 Aug 2025 08:23:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B3821E8324;
-	Fri, 29 Aug 2025 08:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1461273811;
+	Fri, 29 Aug 2025 08:23:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756455667; cv=none; b=tlOhcHgIJkZ6tzOJQeNinuhUbmi0QWN0G2fdkx6MyVAZR3RKKzztkKIeh3WtFIqnyh2u4fEvr10DLo6PDKPUb4stugi+QjItSnfats8hwRBA16c4xCdTTZ7QPYcuCK7EF3stEffuU6ibqT94gV508Qh6SEd2Osej1i+GiK9ixw4=
+	t=1756455786; cv=none; b=LfuJHf7uVX9zbuB6CHtJ7IdNDAzYIEf7z2JG93D79/vqDNCVrIoT47m8iODiPvxuByJxmbRm3xN9au8EZH3SFwKqHkn+HZ0Bz2Je7EMrX534rD9VbqUZgzZfVP5e5thcB2dndMnbv07CzZgkX/sM2/ayGZVxOv/6kd/mTJkCc6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756455667; c=relaxed/simple;
-	bh=zYHLkfGYlush9y5rRs4PMn/zClN6Vxh+u4+Ok4/hpHk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ph2kbhl5K0+T00VdzBWjlr83yn4h2h2uvgTZgBvi+7PLDIvvoAAh9Caxl/+0XtqGCDbr5haoEnY8pMM7B8kqY74EdJ+nk63TktOK/I3aJyrZHLn+wNkE+ZONPpVLg/GtWnPbmrHfnWLDWSbI1de5AJVtHSlW89HPYk4coDONnzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3F29F1BCB;
-	Fri, 29 Aug 2025 01:20:56 -0700 (PDT)
-Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B62B73F694;
-	Fri, 29 Aug 2025 01:20:58 -0700 (PDT)
-Message-ID: <e715a048-3d21-4bcf-9fff-f63e6be48d46@arm.com>
-Date: Fri, 29 Aug 2025 09:20:57 +0100
+	s=arc-20240116; t=1756455786; c=relaxed/simple;
+	bh=xGs36GmUR4Ma64Vpf/dnzJmRSRvQApj2NRbJ7tAqxwE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=WOhUpNgMZQnI4mMSG9pdUPrnGsn3CPaXaWm8dQ9q8jR+achbyfaMec6HDva7uIfH+awfMw0T2fNVlH+j5TL85D9ACWHYhumuOEmhNgp7n1+JZTDnknw+j1e75t2oviU/IfB3kVN1k9erWrrAYQ+mSIip3S1dG0m1r37z0qtw8w0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0004758DT.eswin.cn (unknown [10.12.96.83])
+	by app1 (Coremail) with SMTP id TAJkCgAXLxBQY7Fo2gvFAA--.9196S2;
+	Fri, 29 Aug 2025 16:22:42 +0800 (CST)
+From: zhangsenchuan@eswincomputing.com
+To: bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	p.zabel@pengutronix.de,
+	johan+linaro@kernel.org,
+	quic_schintav@quicinc.com,
+	shradha.t@samsung.com,
+	cassel@kernel.org,
+	thippeswamy.havalige@amd.com,
+	mayank.rana@oss.qualcomm.com,
+	inochiama@gmail.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700 PCIe host controller
+Date: Fri, 29 Aug 2025 16:22:37 +0800
+Message-ID: <20250829082237.1064-1-zhangsenchuan@eswincomputing.com>
+X-Mailer: git-send-email 2.49.0.windows.1
+In-Reply-To: <20250829082021.49-1-zhangsenchuan@eswincomputing.com>
+References: <20250829082021.49-1-zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/33] arm64: kconfig: Add Kconfig entry for MPAM
-To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: shameerali.kolothum.thodi@huawei.com,
- D Scott Phillips OS <scott@os.amperecomputing.com>,
- carl@os.amperecomputing.com, lcherian@marvell.com,
- bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
- baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
- Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
- dfustini@baylibre.com, amitsinght@marvell.com,
- David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
- Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
- Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
- baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
- Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-8-james.morse@arm.com>
- <0c8a6a7c-3d0d-4093-8bc5-3a04f70b00fa@arm.com>
- <fb8731ac-49ef-4a1a-91f2-daa1531c9ea7@arm.com>
-From: Ben Horgan <ben.horgan@arm.com>
-Content-Language: en-US
-In-Reply-To: <fb8731ac-49ef-4a1a-91f2-daa1531c9ea7@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgAXLxBQY7Fo2gvFAA--.9196S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxZw1kXr45urWkWryxJFW8WFg_yoWrJryrpF
+	WDGFykCr48Xr13Zw48JF1jkF13JanYkFnYyrn7Wa13trZ5ta4qqr43KF13C343Gr1jq34Y
+	gFnIvr1xtw17A3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRmZXOUUUUU=
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/
 
-Hi James,
+From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 
-On 8/28/25 16:58, James Morse wrote:
-> Hi Ben,
-> 
-> On 27/08/2025 09:53, Ben Horgan wrote:
->> On 8/22/25 16:29, James Morse wrote:
->>> The bulk of the MPAM driver lives outside the arch code because it
->>> largely manages MMIO devices that generate interrupts. The driver
->>> needs a Kconfig symbol to enable it, as MPAM is only found on arm64
->>> platforms, that is where the Kconfig option makes the most sense.
->>>
->>> This Kconfig option will later be used by the arch code to enable
->>> or disable the MPAM context-switch code, and registering the CPUs
->>> properties with the MPAM driver.
-> 
->>> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
->>> index e9bbfacc35a6..658e47fc0c5a 100644
->>> --- a/arch/arm64/Kconfig
->>> +++ b/arch/arm64/Kconfig
->>> @@ -2060,6 +2060,23 @@ config ARM64_TLB_RANGE
->>>  	  ARMv8.4-TLBI provides TLBI invalidation instruction that apply to a
->>>  	  range of input addresses.
->>>  
->>> +config ARM64_MPAM
->>> +	bool "Enable support for MPAM"
->>> +	help
->>> +	  Memory Partitioning and Monitoring is an optional extension
->>> +	  that allows the CPUs to mark load and store transactions with
->>> +	  labels for partition-id and performance-monitoring-group.
->>> +	  System components, such as the caches, can use the partition-id
->>> +	  to apply a performance policy. MPAM monitors can use the
->>> +	  partition-id and performance-monitoring-group to measure the
->>> +	  cache occupancy or data throughput.
->>> +
->>> +	  Use of this extension requires CPU support, support in the
->>> +	  memory system components (MSC), and a description from firmware
->>> +	  of where the MSC are in the address space.
->>> +
->>> +	  MPAM is exposed to user-space via the resctrl pseudo filesystem.
->>> +
->>>  endmenu # "ARMv8.4 architectural features"
-> 
->> Should this be moved to "ARMv8.2 architectural features" rather than the
->> 8.4 menu? In the arm reference manual, version L.b, I see FEAT_MPAM
->> listed in the section A2.2.3.1 Features added to the Armv8.2 extension
->> in later releases.
-> 
-> Hmmm, I don't think we've done that anywhere else. I'm only aware of one v8.2 platform
-> that had it, and those are not widely available. As it was a headline v8.4 feature I'd
-> prefer to keep it there.
-> 
-> I think its more confusing to put it under v8.2!
+Add Device Tree binding documentation for the ESWIN EIC7700
+PCIe controller module,the PCIe controller enables the core
+to correctly initialize and manage the PCIe bus and connected
+devices.
 
-Ok, always best to minimise confusion. Keep it in v8.4.
- >
-> Thanks,
-> 
-> James
+Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
+Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+---
+ .../bindings/pci/eswin,eic7700-pcie.yaml      | 142 ++++++++++++++++++
+ 1 file changed, 142 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
 
--- 
-Thanks,
-
-Ben
+diff --git a/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+new file mode 100644
+index 000000000000..65f640902b11
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+@@ -0,0 +1,142 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/eswin,eic7700-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Eswin EIC7700 PCIe host controller
++
++maintainers:
++  - Yu Ning <ningyu@eswincomputing.com>
++  - Senchuan Zhang <zhangsenchuan@eswincomputing.com>
++
++description:
++  The PCIe controller on EIC7700 SoC.
++
++allOf:
++  - $ref: /schemas/pci/pci-host-bridge.yaml#
++
++properties:
++  compatible:
++    const: eswin,eic7700-pcie
++
++  reg:
++    maxItems: 3
++
++  reg-names:
++    items:
++      - const: dbi
++      - const: config
++      - const: mgmt
++
++  ranges:
++    maxItems: 3
++
++  num-lanes:
++    const: 4
++
++  '#interrupt-cells':
++    const: 1
++
++  interrupts:
++    maxItems: 9
++
++  interrupt-names:
++    items:
++      - const: msi
++      - const: inta
++      - const: intb
++      - const: intc
++      - const: intd
++      - const: inte
++      - const: intf
++      - const: intg
++      - const: inth
++
++  interrupt-map:
++    maxItems: 4
++
++  interrupt-map-mask:
++    items:
++      - const: 0
++      - const: 0
++      - const: 0
++      - const: 7
++
++  clocks:
++    maxItems: 4
++
++  clock-names:
++    items:
++      - const: mstr
++      - const: dbi
++      - const: pclk
++      - const: aux
++
++  resets:
++    maxItems: 3
++
++  reset-names:
++    items:
++      - const: cfg
++      - const: powerup
++      - const: pwren
++
++required:
++  - compatible
++  - reg
++  - ranges
++  - num-lanes
++  - interrupts
++  - interrupt-names
++  - interrupt-map-mask
++  - interrupt-map
++  - '#interrupt-cells'
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        pcie@54000000 {
++            compatible = "eswin,eic7700-pcie";
++            reg = <0x0 0x54000000 0x0 0x4000000>,
++                  <0x0 0x40000000 0x0 0x800000>,
++                  <0x0 0x50000000 0x0 0x100000>;
++            reg-names = "dbi", "config", "mgmt";
++            #address-cells = <3>;
++            #size-cells = <2>;
++            #interrupt-cells = <1>;
++            ranges = <0x81000000 0x0 0x40800000 0x0 0x40800000 0x0 0x800000>,
++                     <0x82000000 0x0 0x41000000 0x0 0x41000000 0x0 0xf000000>,
++                     <0xc3000000 0x80 0x00000000 0x80 0x00000000 0x2 0x00000000>;
++            bus-range = <0x0 0xff>;
++            clocks = <&clock 562>,
++                     <&clock 563>,
++                     <&clock 564>,
++                     <&clock 565>;
++            clock-names = "mstr", "dbi", "pclk", "aux";
++            resets = <&reset 8 (1 << 0)>,
++                     <&reset 8 (1 << 1)>,
++                     <&reset 8 (1 << 2)>;
++            reset-names = "cfg", "powerup", "pwren";
++            interrupts = <220>, <179>, <180>, <181>, <182>, <183>, <184>, <185>, <186>;
++            interrupt-names = "msi", "inta", "intb", "intc", "intd",
++                              "inte", "intf", "intg", "inth";
++            interrupt-parent = <&plic>;
++            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
++            interrupt-map = <0x0 0x0 0x0 0x1 &plic 179>,
++                            <0x0 0x0 0x0 0x2 &plic 180>,
++                            <0x0 0x0 0x0 0x3 &plic 181>,
++                            <0x0 0x0 0x0 0x4 &plic 182>;
++            device_type = "pci";
++            num-lanes = <0x4>;
++        };
++    };
+--
+2.25.1
 
 
