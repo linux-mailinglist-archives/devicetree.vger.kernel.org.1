@@ -1,79 +1,114 @@
-Return-Path: <devicetree+bounces-210637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4991B3C3C9
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 22:29:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47071B3C3D5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 22:38:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85E6BA212AF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 20:29:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00EA2A603B4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 20:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B0A531A06E;
-	Fri, 29 Aug 2025 20:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="58sUxyqJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 739652737EB;
+	Fri, 29 Aug 2025 20:38:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C324A11;
-	Fri, 29 Aug 2025 20:29:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2FFA265CB3;
+	Fri, 29 Aug 2025 20:38:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756499365; cv=none; b=KDrsRQmGieI4zbli7wjBxTinnmn+HtfqIP9ggqS8YyHOwnZUt3mTyT1kWvMAaexCoRI4ZsrxQhGz+HpxrTwtS/qV9fejdKJuiVgk+kJVwhOpOjYkzvZkd6AcxQt4TQeybDG2AKtM8TPRXwTCDTrUR9Fd7HvAbZXCbqUkCJpMqgo=
+	t=1756499884; cv=none; b=UfJAqP8Smzp1RiriY8fM/u8bzyNIHKUMw1GgrmCeTdDo6i+mtYKHALz9RaauNKvvwWO/eNQJ2NGtlDNniICK0++zM621nJ65fT9KXt/W69e28rY71aIhtt61DC0rsroKfYD3wVpnZLyAeyHFu10PdFMvb21au9fiHjt0jYFYroY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756499365; c=relaxed/simple;
-	bh=AMLA6d3C0PIuutYGZ+DzXaU/OpSZ/1KsUe+SUs1nDfc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W/4LBek84tQ+xgbMJ5HtNJABnCtmnnHKYOyJCMs7zH0S9tJxF03ZohkTfCpXk0NRSCx/zgu8yoZkXoH9Dw32Sbh6tjgS+HNJZDyp9n//7KoGxHJBoAwW2vV4DC72YlXB06Tdw8zBX/7SBf7ayYYHItzR22h2xdd/Gv8ZW84CGbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=58sUxyqJ; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=DXcbRx/NAviKdAFr32evPhO45ja7AxzeOWxSifbKFvs=; b=58sUxyqJHNYG51t91dNOpgjgA5
-	HCvv0JoGO/IjhdIvfgjwPWoc6lltltcF0imXEwQxPlC7Hxigq/s+3bNOM/ecHXXtnBCd6ZEVDgRPF
-	daPHHSA9jEHvm5omJxSZnJ+5xhD+ZzQQX9d2eXLbYQpoIttu2jZjaaeG0TUMN3nDcZVo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1us5ir-006WPm-RO; Fri, 29 Aug 2025 22:29:21 +0200
-Date: Fri, 29 Aug 2025 22:29:21 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jack Ping CHNG <jchng@maxlinear.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, davem@davemloft.net,
-	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, yzhu@maxlinear.com,
-	sureshnagaraj@maxlinear.com
-Subject: Re: [PATCH net-next v3 2/2] net: maxlinear: Add support for MxL LGM
- SoC
-Message-ID: <d296ac31-35d1-4436-8ddd-14ceef02264c@lunn.ch>
-References: <20250829124843.881786-1-jchng@maxlinear.com>
- <20250829124843.881786-3-jchng@maxlinear.com>
+	s=arc-20240116; t=1756499884; c=relaxed/simple;
+	bh=VdyVIwGgGCcRDMlwtZ1rKUBY8IL4eB0Lh3n+XkQ6ZYw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ptWiqYVXVu2sNBd9QHKCNIrNbMhc+kWuSZeHq85gw6gPHvziL14gGUrH2Ae4kaS3qzESHBl3+NvlVmx3AbwhBwYr5ygX1ySXCzCpT/8OmZ9S7vRGpgb1Zmlg7xJ24PjQVD9zl3sumt7t1JQg53WPXuw4gD5UidmHOlsOE2/z6YQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3EF7B1BA8;
+	Fri, 29 Aug 2025 13:37:52 -0700 (PDT)
+Received: from [10.57.3.75] (unknown [10.57.3.75])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 373033F63F;
+	Fri, 29 Aug 2025 13:37:59 -0700 (PDT)
+Message-ID: <12082d54-6014-4a63-8c51-8353f9dd6613@arm.com>
+Date: Fri, 29 Aug 2025 21:37:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250829124843.881786-3-jchng@maxlinear.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/14] dmaengine: dma350: Register the DMA controller to
+ DT DMA helpers
+To: Jisheng Zhang <jszhang@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250823154009.25992-1-jszhang@kernel.org>
+ <20250823154009.25992-6-jszhang@kernel.org>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250823154009.25992-6-jszhang@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> +#define MXL_NUM_PORT		4
+On 2025-08-23 4:40 pm, Jisheng Zhang wrote:
+> Register the DMA controller to DT DMA helpers so that we convert a DT
+> phandle to a dma_chan structure.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>   drivers/dma/arm-dma350.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/dma/arm-dma350.c b/drivers/dma/arm-dma350.c
+> index 17af9bb2a18f..6a9f81f941b0 100644
+> --- a/drivers/dma/arm-dma350.c
+> +++ b/drivers/dma/arm-dma350.c
+> @@ -7,6 +7,7 @@
+>   #include <linux/dma-mapping.h>
+>   #include <linux/io.h>
+>   #include <linux/of.h>
+> +#include <linux/of_dma.h>
+>   #include <linux/module.h>
+>   #include <linux/platform_device.h>
+>   
+> @@ -635,7 +636,7 @@ static int d350_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		return dev_err_probe(dev, ret, "Failed to register DMA device\n");
+>   
+> -	return 0;
+> +	return of_dma_controller_register(dev->of_node, of_dma_xlate_by_chan_id, &dmac->dma);
 
-> +	if (of_property_read_u32(np, "reg", &priv->port_id) < 0) {
-> +		dev_err(&pdev->dev, "failed to get port id\n");
-> +		return -EINVAL;
-> +	}
+This only works for channels with HAS_TRIGSEL=0 (where I guess HAS_TRIG 
+can be assumed from DT describing one) - with selectable triggers the 
+trigger number (which the dma-cell specifier actually is) doesn't bear 
+any relation to the channel number, so channel selection is both simpler 
+and more complicated at the same time, since we could pick any free 
+channel with HAS_TRIGSEL, but that's not necessarily just *any* free 
+channel...
 
-So the value of the port_id/reg does not matter? In device tree i
-could use 42, 1024, 65535, 24?
+Given that at this point the driver only considers nominal trigger 
+capability for channels with HAS_TRIGSEL=1, this patch seems effectively 
+broken.
 
-	Andrew
+Thanks,
+Robin.
+
+>   }
+>   
+>   static void d350_remove(struct platform_device *pdev)
+> @@ -643,6 +644,7 @@ static void d350_remove(struct platform_device *pdev)
+>   	struct d350 *dmac = platform_get_drvdata(pdev);
+>   
+>   	dma_async_device_unregister(&dmac->dma);
+> +	of_dma_controller_free(pdev->dev.of_node);
+>   }
+>   
+>   static const struct of_device_id d350_of_match[] __maybe_unused = {
 
