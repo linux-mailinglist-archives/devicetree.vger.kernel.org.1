@@ -1,54 +1,61 @@
-Return-Path: <devicetree+bounces-210326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34646B3B47B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 09:38:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EA33B3B491
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 09:43:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B2481889C9C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 07:38:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A6B27C4035
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 07:43:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB885275AFA;
-	Fri, 29 Aug 2025 07:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857FD27AC2E;
+	Fri, 29 Aug 2025 07:43:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NvfiFxAY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8109422A4D5;
-	Fri, 29 Aug 2025 07:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EFC2773DA;
+	Fri, 29 Aug 2025 07:43:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756453085; cv=none; b=hdfaBnPnFoVLIzB9kVHDNiHSUB0Lk6mehScMBTBejHwIGalPT+nkpziEnkf6IiTNUm/tGkv7KAcPUfYLYrMRgBc74+1QgoMihOO/DRADGktpmPV94xm2OPu2kZ2nN7o8k8RGvpgrBkwJm2ub5coXy2Ez3w/sfaK3e7nB2gnoYYk=
+	t=1756453413; cv=none; b=d9DYozuR6do39rRQOJws2B0362iZIayszjgSalo3rpeMGfbjND9Tlv0spscMmoEK7Ggq1JQ7BmVi3z2fW2OBUja312byKD9dDgYX7W7YcFtDBBjYA9EVautfHJYIDMyxU7A5FDJ58eARacO/7cp+SdFKoX0BW1gnItxTNP2OEVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756453085; c=relaxed/simple;
-	bh=Tl11kOoBn9+Z8c4phzkCXnlIR9PQSdgakpVZpWjZPB4=;
+	s=arc-20240116; t=1756453413; c=relaxed/simple;
+	bh=UK2uW67ec5x+08v6vV2jlWqCPKcZr8vv4roBxG38sHY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=txRTni1onmod4xKWrNnOo2/cJvILLJt1E0pPLUpun37vtljwNwpQ+VMPX/Zpbb7BSO/4jNNKeM3oK5gr9ATJmHJLYwRc46+UTH5V3BLbkZP+JkuYwMaOgRX0w+6ithl7e0CVJ/ZqRHWGKrPM91kFeCjO3A8tFpp5RIvxvV6YPak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B299C4CEF0;
-	Fri, 29 Aug 2025 07:38:04 +0000 (UTC)
-Date: Fri, 29 Aug 2025 09:38:02 +0200
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Varadarajan Narayanan <quic_varada@quicinc.com>, Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Anusha Rao <quic_anusha@quicinc.com>, Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, 
-	Devi Priya <quic_devipriy@quicinc.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Richard Cochran <richardcochran@gmail.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com, quic_leiwei@quicinc.com, 
-	quic_pavir@quicinc.com, quic_suruchia@quicinc.com
-Subject: Re: [PATCH v4 07/10] dt-bindings: clock: qcom: Add NSS clock
- controller for IPQ5424 SoC
-Message-ID: <20250829-quick-green-pigeon-a15507@kuoka>
-References: <20250828-qcom_ipq5424_nsscc-v4-0-cb913b205bcb@quicinc.com>
- <20250828-qcom_ipq5424_nsscc-v4-7-cb913b205bcb@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LZY17VA+NP1y7D4ft6vjMxvlKoNBbZkGCoHydIo/CB1Mwd3PPDam3mq7A/zNNO5gJuxlm3xaiQO2p4Ghfz154VpNbkPSv8AFVFwwzGBuAWeKOdTu2gBi1WQ08D5Y1mxNh/9Ef0RQ0jgWvNUGeZBL/AFhwmbR/tl6bw3WvB1NWJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NvfiFxAY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92DD7C4CEF0;
+	Fri, 29 Aug 2025 07:43:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756453413;
+	bh=UK2uW67ec5x+08v6vV2jlWqCPKcZr8vv4roBxG38sHY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NvfiFxAYJ7gJJr1nu2uBXoz8U6xai4fMXhrg3dEmLBMVEOQoB6cW3wn5loGt4Qshd
+	 6bWokTKBP4rPg7MtN9FpXLwasYeTPN47LIhv8Fq6vxwCifTxj1/1SK1RvCUSArLq91
+	 0rxOHkKL4FG7FCqYwz0qbw+WG7zfePy3um0+POPsmbNMG7Yjzg6CyY7l3Fhwxpir8I
+	 fYPX18UOLiIPNwQKkVTHtY2jXaPsBQERnV8PZK3cDjvSwiDSuFGR3GCpCZUWdCZEM4
+	 5dvqQvwnV/Twy+m0AnrwwqGGB2URxnDt3dqBaNxVOyodeuGAv3/JbbsF5tEr32C/ec
+	 EWl0YbIXEoc9w==
+Date: Fri, 29 Aug 2025 09:43:30 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Baojun Xu <baojun.xu@ti.com>
+Cc: broonie@kernel.org, tiwai@suse.de, andriy.shevchenko@linux.intel.com, 
+	13916275206@139.com, alsa-devel@alsa-project.org, shenghao-ding@ti.com, 
+	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, lgirdwood@gmail.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, k-yi@ti.com, henry.lo@ti.com, robinchen@ti.com, jesse-ji@ti.com, 
+	will-wang@ti.com, jim.shil@goertek.com, toastcheng@google.com, 
+	chinkaiting@google.com
+Subject: Re: [PATCH v3 2/2] ASoC: tas2781: Add tas2118, tas2x20, tas5825
+ support
+Message-ID: <20250829-turquoise-jackdaw-of-joy-cc91fc@kuoka>
+References: <20250825034039.9713-1-baojun.xu@ti.com>
+ <20250825034039.9713-2-baojun.xu@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,33 +64,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250828-qcom_ipq5424_nsscc-v4-7-cb913b205bcb@quicinc.com>
+In-Reply-To: <20250825034039.9713-2-baojun.xu@ti.com>
 
-On Thu, Aug 28, 2025 at 06:32:20PM +0800, Luo Jie wrote:
-> NSS clock controller provides the clocks and resets to the networking
-> blocks such as PPE (Packet Process Engine) and UNIPHY (PCS) on IPQ5424
-> devices.
-> 
-> Add support for the compatible string "qcom,ipq5424-nsscc" based on the
-> existing IPQ9574 NSS clock controller Device Tree binding. Additionally,
-> update the clock names for PPE and NSS for newer SoC additions like
-> IPQ5424 to use generic and reusable identifiers "nss" and "ppe" without
-> the clock rate suffix.
-> 
-> Also add master/slave ids for IPQ5424 networking interfaces, which is
-> used by nss-ipq5424 driver for providing interconnect services using
-> icc-clk framework.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> ---
->  .../bindings/clock/qcom,ipq9574-nsscc.yaml         | 62 ++++++++++++++++++---
->  include/dt-bindings/clock/qcom,ipq5424-nsscc.h     | 65 ++++++++++++++++++++++
->  include/dt-bindings/interconnect/qcom,ipq5424.h    | 13 +++++
->  include/dt-bindings/reset/qcom,ipq5424-nsscc.h     | 46 +++++++++++++++
->  4 files changed, 178 insertions(+), 8 deletions(-)
+On Mon, Aug 25, 2025 at 11:40:39AM +0800, Baojun Xu wrote:
+>  allOf:
+>    - $ref: dai-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,tas2020
+> +              - ti,tas2118
+> +              - ti,tas2120
+> +              - ti,tas2320
+> +    then:
+> +      properties:
+> +        reg:
+> +          description:
+> +            I2C address, in multiple-AMP case, all the i2c address
+> +            aggregate as one Audio Device to support multiple audio slots.
 
+I don't think you resolved Rob's comment.
 
-Are you going to change the binding in next version?
+> +          maxItems: 4
+> +          items:
+> +            minimum: 0x48
+> +            maximum: 0x4b
+
+Also, fix finally order of patches so docs go before the user (see
+submitting patches in DT dir).
 
 Best regards,
 Krzysztof
