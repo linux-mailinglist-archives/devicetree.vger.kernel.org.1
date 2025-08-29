@@ -1,116 +1,105 @@
-Return-Path: <devicetree+bounces-210468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB36FB3B9A2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:04:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05E6AB3B9B0
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:08:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C37A8360395
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 11:04:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B980A7A6EAB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 11:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C051F313537;
-	Fri, 29 Aug 2025 11:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E473043CA;
+	Fri, 29 Aug 2025 11:08:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="VORTWOy2"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="qmzm6zVB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70F643128CB
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 11:04:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9B7E26D4CD;
+	Fri, 29 Aug 2025 11:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756465465; cv=none; b=OchoiAmEUml/t2Ybp/BJDGm7LPZmpbLJ49N1mfZCCfiYxViIvpR1r1eT3t5K9wMvRLF+A+jLwcvpbz9GD/M6R5oQ1fP3dgJu6vqvvwHsJDGQNj3TaZUM6OOQGu6JvmF6qedRN3pDpLv3QPacnFKp1gQUCw7k7gUuHm9rABdXmpQ=
+	t=1756465714; cv=none; b=tSeDRD3XgcXX+4PjEMzQpY09sDgi11l6RMP1oryZRwPOwjGPmcr4nLE+1ev99U1iPfzNI5qYeNDeysi3mRdZge5uAW5CKBJGLiv1WAvX5+WfuaUMN5eitSb1TaRHOaKUGPBljSOxmK6Um0VSX60sDrQ0fy9JqxNwqGPzMYyxXJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756465465; c=relaxed/simple;
-	bh=7L7tIxp28iHdwGx+yyV8tn2ybILyzU3KKi9eUDFzJnQ=;
-	h=From:To:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=UNXZbLnHucgkql2wWROnaafcZ3os9DKZN5vnyWcYbwiZc9EFZJoPttzPcEL0JpgZ8+QoB0mw2KyMwSyixTStd11pHSGMCNRyjjFw4b1TKMfqUFYtaOaGrMjIHXQkkBq+9LoiNBDzfdO0sEsSyIFrS8lxdrvX/YNjEnfQvyYZwcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=VORTWOy2; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250829110420epoutp04d95a1949a8765eeee0c4f05b54db23ef~gOAfDxbid0213602136epoutp04S
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 11:04:20 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250829110420epoutp04d95a1949a8765eeee0c4f05b54db23ef~gOAfDxbid0213602136epoutp04S
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756465460;
-	bh=7L7tIxp28iHdwGx+yyV8tn2ybILyzU3KKi9eUDFzJnQ=;
-	h=From:To:In-Reply-To:Subject:Date:References:From;
-	b=VORTWOy224KaeLooY5g47tq5zVTcMTcGosppxHtcA4QJEbcxpjdptFnswY29OrEV/
-	 A3CUi2jLxPWhrcmZV0m3Fkd/kEkfjS8uLKPABntkm/Cq/iK5nA3rTayTswacSo1yKI
-	 u4dJEL8qxiyrbgr1J6cXsxU1GzqSFPzrpvJ2Ki7o=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250829110420epcas5p357d652ed6ae1444487ef4e97d369560e~gOAeocNpJ1820418204epcas5p3r;
-	Fri, 29 Aug 2025 11:04:20 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.90]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4cCwPv3vfTz3hhT9; Fri, 29 Aug
-	2025 11:04:19 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250829110418epcas5p183ad72839fc6cce33835ddf0c9bde53b~gOAdcM9D92447624476epcas5p1d;
-	Fri, 29 Aug 2025 11:04:18 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250829110417epsmtip21ab963b0b3d34a58966d8d60e6db17c9~gOAb1AUNn0933009330epsmtip2e;
-	Fri, 29 Aug 2025 11:04:17 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>, "'Ivaylo
- Ivanov'" <ivo.ivanov.ivanov1@gmail.com>, "'Rob Herring'" <robh@kernel.org>,
-	"'Krzysztof Kozlowski'" <krzk+dt@kernel.org>, "'Conor Dooley'"
-	<conor+dt@kernel.org>, "'Peter Griffin'" <peter.griffin@linaro.org>,
-	=?UTF-8?Q?'Andr=C3=A9_Draszik'?= <andre.draszik@linaro.org>, "'Tudor
- Ambarus'" <tudor.ambarus@linaro.org>, <linux-fsd@tesla.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-In-Reply-To: <20250822121423.228500-8-krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH 4/4] arm64: dts: exynos2200: Add default GIC address
- cells
-Date: Fri, 29 Aug 2025 16:34:16 +0530
-Message-ID: <263c01dc18d4$aa870120$ff950360$@samsung.com>
+	s=arc-20240116; t=1756465714; c=relaxed/simple;
+	bh=vYp1GJUgd0jvWoYxmkF2wAdQScdbtSOlmuOcuwJ/qZg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ek/5Q8RCWrK+CMKAiQZZYRhUl3PnJWwgsrwoJAS2aYcGkp7pRKRXMjUqbwFLCDpHilbi3GoQzCat4YrFFXtPnCy/uzoexhYZpBvGYXaIpEqwircIcpVzZD8lrQMJLS7N3HCu6ZlG2P7Q1Yl1xnbJID4v1cGay19KoOgvOZPgZb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=qmzm6zVB; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 99D5FC8F1C5;
+	Fri, 29 Aug 2025 11:08:16 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1F0A9606B9;
+	Fri, 29 Aug 2025 11:08:31 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B6BD31C22D962;
+	Fri, 29 Aug 2025 13:08:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1756465710; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=R6yBXaQXe2oIXf/DQf9Ce386Jx+9APGT/J/ebwN0uM0=;
+	b=qmzm6zVBnsoG+Pob4yDIgmvkx8TGiac+/mO4nsCQ3BvSrWO50YEmBpKQRRuXEJ4LxVS0lM
+	0lH8g3gNXoHrREa0XTXSB0aqhF+/4LjjiQNRpoVi5AvPadCRRgIgF6RDkK6z+Rb/ActnVs
+	0SVnKTdoQV2DYS1jzf12QVtOpE2+LdTWAQ385zulknQp+KDihidM8PsytgOomujCFyWcmk
+	ETw2MY9mnZsUgH6JnD4ZWYFLihs9fk3Aq1UypVUQmKGx6g1MM+Rpx3nY9yrQQee9y8pOyS
+	il1Uvi5ERIh+TUpoe38LSYu06vgJk2ApIGx4E/Q/+WyRGUm5mL/YWEf5HPgbgw==
+Date: Fri, 29 Aug 2025 13:08:21 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Rob Herring <robh@kernel.org>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Ayush Singh <ayush@beagleboard.org>, Andi
+ Shyti <andi.shyti@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree-spec@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 1/1] schemas: i2c: Introduce I2C bus extensions
+Message-ID: <20250829130821.472a96dc@bootlin.com>
+In-Reply-To: <aLGHvqY6N5oI54eT@shikoro>
+References: <20250618082313.549140-1-herve.codina@bootlin.com>
+	<20250618082313.549140-2-herve.codina@bootlin.com>
+	<CAL_JsqJ=jmXVwjtNCjRpUKj02dnJEz4GHMX2wMRaWw=M+sZQ0w@mail.gmail.com>
+	<20250808180746.6fa6a6f9@booty>
+	<CAL_JsqLxsfpaaCvV3AcniMYxAYVir7ddL4umCNY3u-ggVTiZcg@mail.gmail.com>
+	<aK2-we94b-x2fgW_@shikoro>
+	<20250829125238.4117947f@bootlin.com>
+	<aLGHvqY6N5oI54eT@shikoro>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJyWVpz9P/Dzbtkobqw1IWAkgYZWwJZwFW7ARdQs12zMW310A==
-Content-Language: en-us
-X-CMS-MailID: 20250829110418epcas5p183ad72839fc6cce33835ddf0c9bde53b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250822121440epcas5p2d67b57b6b165f1f555bea881145cc9db
-References: <20250822121423.228500-5-krzysztof.kozlowski@linaro.org>
-	<CGME20250822121440epcas5p2d67b57b6b165f1f555bea881145cc9db@epcas5p2.samsung.com>
-	<20250822121423.228500-8-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Krzysztof
+Hi Wolfram,
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
-> Sent: Friday, August 22, 2025 5:44 PM
-> To: Ivaylo Ivanov <ivo.ivanov.ivanov1=40gmail.com>; Rob Herring
-> <robh=40kernel.org>; Krzysztof Kozlowski <krzk+dt=40kernel.org>; Conor
-> Dooley <conor+dt=40kernel.org>; Alim Akhtar <alim.akhtar=40samsung.com>;
-> Peter Griffin <peter.griffin=40linaro.org>; Andr=C3=A9=20Draszik=0D=0A>=
-=20<andre.draszik=40linaro.org>;=20Tudor=20Ambarus=20<tudor.ambarus=40linar=
-o.org>;=0D=0A>=20linux-fsd=40tesla.com;=20linux-arm-kernel=40lists.infradea=
-d.org;=20linux-samsung-=0D=0A>=20soc=40vger.kernel.org;=20devicetree=40vger=
-.kernel.org;=20linux-=0D=0A>=20kernel=40vger.kernel.org=0D=0A>=20Cc:=20Krzy=
-sztof=20Kozlowski=20<krzysztof.kozlowski=40linaro.org>=0D=0A>=20Subject:=20=
-=5BPATCH=204/4=5D=20arm64:=20dts:=20exynos2200:=20Add=20default=20GIC=20add=
-ress=20cells=0D=0A>=20=0D=0A>=20Add=20missing=20address-cells=200=20to=20GI=
-C=20interrupt=20node.=20=20Value=20'0'=20is=20correct=0D=0A>=20because=20GI=
-C=20interrupt=20controller=20does=20not=20have=20children.=0D=0A>=20=0D=0A>=
-=20Signed-off-by:=20Krzysztof=20Kozlowski=20<krzysztof.kozlowski=40linaro.o=
-rg>=0D=0A>=20---=0D=0AReviewed-by:=20Alim=20Akhtar=20<alim.akhtar=40samsung=
-.com>=0D=0A=0D=0A=0D=0A
+On Fri, 29 Aug 2025 12:58:06 +0200
+Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
+
+> Hi Hervé,
+> 
+> > the only solution I see is to parse the full DT in order to find extension
+> > nodes when we need to register adapter children (adapter probe() step).
+> > 
+> > A matching extension node will be a node where:
+> >  1) compatible = "i2c-bus-extension"
+> >  2) "i2c-parent" phandle points to the expected adapter.  
+> 
+> Would that be so bad? It will not be done often, or?
+
+Ok I will propose a binding update in that sense (dtschema repo) and an
+implementation (kernel repo).
+
+Best regards,
+Hervé
 
