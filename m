@@ -1,120 +1,86 @@
-Return-Path: <devicetree+bounces-210554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66CA6B3BED8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:07:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 915B8B3BEF5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:13:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C94177A9197
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 15:05:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAE711C839BA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 15:14:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7483218D0;
-	Fri, 29 Aug 2025 15:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E8B6322767;
+	Fri, 29 Aug 2025 15:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RZv4R8T6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RhHRRbhI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A6363218C5;
-	Fri, 29 Aug 2025 15:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB931E25F9;
+	Fri, 29 Aug 2025 15:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756480017; cv=none; b=H0UzAsbFW0Obs5HPlkOq/LCbr4F46cyEjGL5E5lewUf0aWYNrVWYJf+JHWpAAziovvbwE/+hNZ2PCfR+XtNPzoWSRO1wDe6MPAhSWaF7WElRVDzTMAtFB20hG9PZ0WhCQyITYY3Negu5dAoW/j/XzS5dzOPwXFrZQa9WK5rc1tY=
+	t=1756480433; cv=none; b=pJIXVCMiwSFBdbjunNmmX0KtFusj8IHQRkCgrHfHCkSxKXKGs5Xp4vaKb/of8JGHAx+84BHv9Q+oK9qh4rFuPOHA5II/haJF/XGmY4+J/iX5dwJTNEdXZb+f+wv0YOVlX2jso42flpmQTlRFby/eCz73H0+rfF6cu6cm7kaWfVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756480017; c=relaxed/simple;
-	bh=0d8UuK8zHiUX85nUGp6oB76FtqUuTIyEA+Ua7Pj2hVM=;
+	s=arc-20240116; t=1756480433; c=relaxed/simple;
+	bh=M4ZFAtBXnhHid/kXClWiR6yLGswDzXLC71DhzzXbeR8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MiITig7OXUwBrqL8U5PhggOLACQ9rxYJL7IamH0TRBLOvdtSXxyHqpO1fafw0w5SR37vmcwrsz0v03GEJsTqI9AocCFgR1kxv78aovyGc3qhNKFCVTiQzkx6ErLoueOs57jgGsAVlnI7tIfSRtsHK8/1ns4IXEQH0NcE5C2sI0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RZv4R8T6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2838C4CEF0;
-	Fri, 29 Aug 2025 15:06:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rEqLdd//HPDvNv+awn7iMF8M6j0uJr68u/XkaLuB3TBvnvBKvhP121bitVVpWMGQOkFhgOCW+Q+V+myrQDrIsjdP5bSQ6y/iO509nPv+nmhCQV2PI3bx6BuW47NDaSp3JnWOYRs1SK5tmDmjxCL4p6g5ZGI1oQ15dJdLq1k963o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RhHRRbhI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E72EC4CEF0;
+	Fri, 29 Aug 2025 15:13:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756480017;
-	bh=0d8UuK8zHiUX85nUGp6oB76FtqUuTIyEA+Ua7Pj2hVM=;
+	s=k20201202; t=1756480432;
+	bh=M4ZFAtBXnhHid/kXClWiR6yLGswDzXLC71DhzzXbeR8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RZv4R8T63sYSP22IGdTAfZk3RKBxXmcUCOcz1VWJYvkjQsx4JtMIk85tvw1zIfqIr
-	 /M1Ms8Tn55fEUW6lbJfyuz4x5a8CHyPmuUVxhcVF4j+dvapp/GPmwaIinS7zattY8Q
-	 GZsAEKNWkEYAzaHxPWvKLxJQeQ7cGZ2Eh/rPt3kHZtp1NZDYMsDNl1En5wZCisTUdn
-	 8ptwDsWO+SgaXMixbXYLapFuCqzBpjb7xEmR0v63O3u77mzfnzcym/SwGxtDleB7lS
-	 newQXL5VuHN3DTehzzxLRrCsRsBw4/djxdJaV15dxrvKl7GBC9ZjAX1StA42PPAfPC
-	 +TmZnFdPBZkuA==
-Date: Fri, 29 Aug 2025 10:06:55 -0500
-From: Rob Herring <robh@kernel.org>
-To: Shenwei Wang <shenwei.wang@nxp.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 1/4] dt-bindings: remoteproc: imx_rproc: Add "rpmsg"
- subnode support
-Message-ID: <20250829150655.GA782291-robh@kernel.org>
-References: <20250818204420.794554-1-shenwei.wang@nxp.com>
- <20250818204420.794554-2-shenwei.wang@nxp.com>
- <20250826200904.GA375876-robh@kernel.org>
- <PAXPR04MB9185EAFBDF13143860910C3A8938A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+	b=RhHRRbhIXC9QLGd8swlqTnR3Ky+1cQZDs6bS3FcozvB3YpBzxB8PIrVRGEZjMpnBk
+	 kNBpVO+cxJMdWeAHt5IlaClz8YAztIBKhmkljgRc/ZBT3+fDQhCYyL+9KBAXvydDnr
+	 5EhCs3VseuCp8AonBfMm9QSN/8dK4ZjSnyqPn5FJ2TPE1pBW3O7lJTIkBaF94FMggY
+	 4t5bsfEnrnEfCNzyajMqcmKsfv57cV9wSf7BTs7Ri8s41z72QJ4OIC2F9rFm/ToTDv
+	 O/dBjjszzBxgHbm7SO6D3ij7dVuvoEAaqyYNzESXwYKRoEGLkwC+mTEXteUUfUBBGt
+	 4J8S4Wtk29w+w==
+Date: Fri, 29 Aug 2025 16:13:48 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 3/6] dt-bindings: iio: adc: add ade9000
+Message-ID: <20250829-freckles-cytoplasm-81cedd872215@spud>
+References: <20250829115227.47712-1-antoniu.miclaus@analog.com>
+ <20250829115227.47712-4-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2IWGEOdF0WqegXag"
+Content-Disposition: inline
+In-Reply-To: <20250829115227.47712-4-antoniu.miclaus@analog.com>
+
+
+--2IWGEOdF0WqegXag
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <PAXPR04MB9185EAFBDF13143860910C3A8938A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 
-On Wed, Aug 27, 2025 at 02:49:54PM +0000, Shenwei Wang wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: Tuesday, August 26, 2025 3:09 PM
-> > To: Shenwei Wang <shenwei.wang@nxp.com>
-> > Cc: Bjorn Andersson <andersson@kernel.org>; Mathieu Poirier
-> > <mathieu.poirier@linaro.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor
-> > Dooley <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha
-> > Hauer <s.hauer@pengutronix.de>; Linus Walleij <linus.walleij@linaro.org>;
-> > Bartosz Golaszewski <brgl@bgdev.pl>; Pengutronix Kernel Team
-> > <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; Peng Fan
-> > <peng.fan@nxp.com>; linux-remoteproc@vger.kernel.org;
-> > devicetree@vger.kernel.org; imx@lists.linux.dev; linux-arm-
-> > kernel@lists.infradead.org; linux-kernel@vger.kernel.org; dl-linux-imx <linux-
-> > imx@nxp.com>
-> > Subject: [EXT] Re: [PATCH 1/4] dt-bindings: remoteproc: imx_rproc: Add "rpmsg"
-> > subnode support
-> > > Each subnode within "rpmsg" represents an individual RPMSG channel.
-> > > The name of each subnode corresponds to the channel name as defined by
-> > > the remote processor.
-> > >
-> > > All remote devices associated with a given channel are defined as
-> > > child nodes under the corresponding channel node.
-> > 
-> > How is each channel addressed? Are they really grouped by type first (i2c, gpio,
-> > etc.) then an address within the group? Or is there some flat channel numbering?
-> > If the latter, then the addresses in the DT shoulc match the channel number.
-> > 
-> 
-> Yes, the channels are grouped by type and identified by unique channel names assigned 
-> by the remote processor.
-> 
-> The RPMSG bus dynamically assigns addresses to each channel at runtime. Because these 
-> addresses are not static, they cannot be pre-defined in the dts.
 
-But you did define addresses. How do you know which channel 'gpio@1' 
-corresponds to if RPMSG dynamically assigns addresses?
 
-Rob
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+--2IWGEOdF0WqegXag
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLHDrAAKCRB4tDGHoIJi
+0nCMAP4lOT4YeLX3fQZGEkaBE3vbt9fWSKxZa3W++z8Kk9cU8AEAsOT2PjPFR1fo
+CCtIvQIzBHjqxU328vD5ojF5qg1x9Qs=
+=WM/+
+-----END PGP SIGNATURE-----
+
+--2IWGEOdF0WqegXag--
 
