@@ -1,166 +1,110 @@
-Return-Path: <devicetree+bounces-210298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B27FB3B392
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:42:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 958A6B3B39F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:48:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEC057A47DE
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 06:41:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8A3E1C82585
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 06:49:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988E125744D;
-	Fri, 29 Aug 2025 06:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19010257459;
+	Fri, 29 Aug 2025 06:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nn09N6k9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UYKrrjM9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB4F25394A;
-	Fri, 29 Aug 2025 06:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3C291553A3;
+	Fri, 29 Aug 2025 06:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756449765; cv=none; b=dVSEYuppMYh0nj7nP2/AxQkqVI2hWC9G7nMnr6poMS0zMccky3yLhmrDUrB93/hk/tJCmtY6TWYpTVRMCwUD7b4IKb8SGWmnIIXTtk2sT5w8/SFSNub0x2hLhdlDKvKYNifaTBJagsVVUT0kYUZWd3HstKcrKY79zrgRlhxGkgo=
+	t=1756450124; cv=none; b=WteJOaHKXrHOVvqxLPwMWFFaxepnJLhXhwLLyqX4Ihj4wLXycVSXaHgZjJxbIN7CXVRJksANfBGQFSiXEbtR8Gje0FVk+TKRmVmzWtBIZ47bUKUuNMu24zmnElcFm8EOimOyoEAbniVeWGxoiiYUYle27MxPRf81273WcoLuLjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756449765; c=relaxed/simple;
-	bh=kVuD7W376c6FrZNyHaO5XNEGImOvvlZo36DWNaRRpy0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EbmgXf/z41UNBUOp6L14IIS9SChQRWsxJVGlJMK4lFX9qQQK7y9PxI3mqQdFYCERIq49pklWnHhbr50JNySf9glzQKhR7Em21HqPNJQgMNaXav/P9nJcgVQfNlhvhSmRpCl/Cc9xQb1YzLZrKfGDSGHY3XOXveHh+nAk+MW45Hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nn09N6k9; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3c73d3ebff0so1313410f8f.1;
-        Thu, 28 Aug 2025 23:42:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756449762; x=1757054562; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QWSNy/JRqLkLoJxnOEcFDdNep+6HQzRpiS/0aFPTMrQ=;
-        b=nn09N6k9F65ztBjTgb/lbslL/gqROChSuBduyEO8+2QuOo2nCmo1/QWvZ10eqI2f3g
-         TGcr0lhl/shkmLgn0e/b7gTVFJDMHRTUSzDGGBoouMv0lLyCMVn885ZkBfD7PHVzL2An
-         PMytXSjkR6XPfN3jKa2lFYIbQOUmZUOeMZ6rHWGICS/nD98V8/Pe8P+0aTmPvT6bUP5h
-         mQGRyELKKQZPlNUhFsdBcM56bAnawdQdVKxfIf+okq7ETHd+nVRdWn+rEkuxqdEHomNo
-         XUEbTWs/cuxluCXhXIKUOJPi9yv0kow6p6XL20x5Ne8TGEDd9sRgnaYkCsNsxu4W4pgI
-         43bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756449762; x=1757054562;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QWSNy/JRqLkLoJxnOEcFDdNep+6HQzRpiS/0aFPTMrQ=;
-        b=q/5HB/8zFNZyan0nZVrrOqINm5ZxRLV3PPfm4JGIFmkJKKfER8J/jOpgwMtzOcnZnw
-         m6IrbG5no/FLCTZHBrCMYO1A9NxxpUWAZ0g1+BjTjrOo1ZHkq4kFAeuk8n3Y/Wc5PzAg
-         kpEcAH2iuoNhEfgRkDYpzdhyBe6B9ju7HDuMKccz2+yI/8dSz4ZJSdrdYqVZKm9qYwWU
-         yO4bmnjCAjamA34Apby3J1NlP4L7JJNWES4BRtoTHQ4OdsmOsCwdX5wqVQTfrXLP4PdM
-         nUKtsgAhzdwwz9vtUyj/zrWX5F6NEgO5SYqEVr3oC7hKH6sVKrLDjmpJscKDUq+cCnS3
-         gA2A==
-X-Forwarded-Encrypted: i=1; AJvYcCVY3Re4VRlUdqzMEf+WVWiGtiDg1sbvEOvB9/Xk7iy7NpU4lXljHqDpDQtmYDSxV6v/4+jwAknrZD5gViw=@vger.kernel.org, AJvYcCWBcYxjAYth3k4XUcfmAxUpFs07oxkGrKAwDuETGdJ1jOP+JEh7AsC9o1UC/FE729sH11obiAMxOu5W@vger.kernel.org, AJvYcCWRhrR8fDTYq4jsA8hrhl5LaBt7qPwyBSVVzYHt/BpCW/4I0m/6b2SYAiwYDdCIvToe1pDOTsDe9gFpK4k=@vger.kernel.org, AJvYcCWYyRiS1JL410XTZR4o4caRv8yCynQuO2XaPuzRkz+F1NCQyEId1USrnamSFZaikZgbdBeedyEGyESG@vger.kernel.org, AJvYcCXJT1LVJ3BrKiqh9/H2YJspa74b97yt5aQi08i7pbRe3TO3WYOEdWu9x177iuHOUiMxTu4zOtmUAOjrfDb4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhGSASguC2Wr65cRGHpnXAgR12xoppRt1VLfp9bSRsSDY28Xc5
-	vteKpraYCw1z9HsGrSiEevOE82RNJXuWDXwtb3ZPn8cnfVek6zp3y2PdLTGyOJAzQzBfs5yBQ/L
-	VUm0KozQnUoXvcbmRdEl6E5c2BVb/mqs=
-X-Gm-Gg: ASbGnctyNqH95wps2pe36QSrlkdtHOXLgK/X89/6kWEHUPxFzngxNnc+DWZBmgz3U3V
-	sWWkdDV1QiZbQaAHfIunztuwUVEKL+FgbVANZ2ofbmA3FQHFbesWhw22O9gJGO96qNUiM7lofBH
-	THLiwVf9SZw+dPYh0BWWq41LaNhHUHEAwcZ4QE/hDzfFYZzOFTckSoiF/H0MgN7v+i21SFq90W4
-	tscYTm/
-X-Google-Smtp-Source: AGHT+IHjRL9sOfRC6KlJXM91TuBldUFCTWN+6IKyuNVfAGqivuS+QA4CO7lbMYhZ/89R1DWqkhTaNLnSJ6XXeiMAmew=
-X-Received: by 2002:a05:6000:40ca:b0:3d0:c6bf:60c6 with SMTP id
- ffacd0b85a97d-3d0c6bf6478mr507752f8f.13.1756449761912; Thu, 28 Aug 2025
- 23:42:41 -0700 (PDT)
+	s=arc-20240116; t=1756450124; c=relaxed/simple;
+	bh=J0rKrdxOhHWwS+mtwdjmhTwdm1+u+noFAQcTkYElpqs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=um5MVBG/6RiS4Zf0EqMQudzC42sopyz4zvKkb05ptNLPbPJNArACkneAyf0BwoQ+f2MbocLcE2Dv2DCYVGFZEdCj3im2Uxx643ZX4XG/akbOFB4LrEqkSiJ3ltjl5+WtwL/Sfx14w94Xqy0Id+RTjkOiQnxkJS73bE8u/pSR2CQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UYKrrjM9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7D00C4CEF0;
+	Fri, 29 Aug 2025 06:48:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756450123;
+	bh=J0rKrdxOhHWwS+mtwdjmhTwdm1+u+noFAQcTkYElpqs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UYKrrjM92oN1VUFRgvdGGp9Hu4bdSz74SMy/6aaX+JLVjwIjJG/EWB9yKZQhT+epD
+	 rejPLq+1EPDIEPj9rPyYcq8uQBKHiKNuMXkgEY51lBcF7pQ0mpOdQP9gI/Ip5miQYX
+	 5Yn2YQuyrHu3HousmJeHdXt5/BwZf2jd/Y90WeTO48FJWFB/lGj6oFKU7qqyhbUWS2
+	 vk4THj86pu0EvVDvOijBv6JjxM+QcNsbh8XTLm+ZXX9kFS82d1Mx4WtXwQWLYAQ3Fd
+	 MyYvEhh5PtNnRkoHuFxXph3MLihdStZDNWZt0hFaMdW1XmPKsuUXrQAhCuaZu7ovUz
+	 d4W4OMzG3ZRtA==
+Date: Fri, 29 Aug 2025 08:48:40 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Paul Chen <paul-pl.chen@mediatek.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	chunkuang.hu@kernel.org, angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com, 
+	p.zabel@pengutronix.de, jason-jh.lin@mediatek.com, nancy.lin@mediatek.com, 
+	singo.chang@mediatek.com, xiandong.wang@mediatek.com, sirius.wang@mediatek.com, 
+	sunny.shen@mediatek.com, fshao@chromium.org, treapking@chromium.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v4 03/19] dt-bindings: display: mediatek: add EXDMA yaml
+ for MT8196
+Message-ID: <20250829-industrious-economic-jacamar-ce264d@kuoka>
+References: <20250828080855.3502514-1-paul-pl.chen@mediatek.com>
+ <20250828080855.3502514-4-paul-pl.chen@mediatek.com>
+ <20250829-solemn-herring-of-conversion-ec5b1a@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250819121631.84280-1-clamor95@gmail.com> <20250819121631.84280-5-clamor95@gmail.com>
- <20250819202722.GA1264491-robh@kernel.org>
-In-Reply-To: <20250819202722.GA1264491-robh@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Fri, 29 Aug 2025 09:42:30 +0300
-X-Gm-Features: Ac12FXxicf5syu3ZrQDe1liim-jpvbuNbb6FjdElmnqfyMSBMVU7aVm-Nae8-uI
-Message-ID: <CAPVz0n1CN_rXu6EvgiMBeCvpOK6Ep96pax+naRha-=9THBifZQ@mail.gmail.com>
-Subject: Re: [PATCH v1 04/19] dt-bindings: display: tegra: document Tegra30 VIP
-To: Rob Herring <robh@kernel.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Sowjanya Komatineni <skomatineni@nvidia.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Peter De Schrijver <pdeschrijver@nvidia.com>, 
-	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dmitry Osipenko <digetx@gmail.com>, 
-	Charan Pedumuru <charan.pedumuru@gmail.com>, linux-media@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250829-solemn-herring-of-conversion-ec5b1a@kuoka>
 
-=D0=B2=D1=82, 19 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 23:2=
-7 Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Tue, Aug 19, 2025 at 03:16:16PM +0300, Svyatoslav Ryhel wrote:
-> > Parallel VI interface found in Tegra30 is exactly the same as Tegra20 h=
-as.
->
-> That's not what the compatible schema says. 'exactly the same' implies a
-> fallback to whatever it is exactly the same as.
->
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+On Fri, Aug 29, 2025 at 08:35:23AM +0200, Krzysztof Kozlowski wrote:
+> On Thu, Aug 28, 2025 at 04:06:58PM +0800, Paul Chen wrote:
+> > From: Paul-pl Chen <paul-pl.chen@mediatek.com>
+> > 
+> > Add mediatek,exdma.yaml to support EXDMA for MT8196.
+> > The MediaTek display overlap extended DMA engine, namely
+> > OVL_EXDMA or EXDMA, primarily functions as a DMA engine
+> > for reading data from DRAM with various DRAM footprints
+> > and data formats.
+> > 
+> > Signed-off-by: Paul-pl Chen <paul-pl.chen@mediatek.com>
 > > ---
-> >  .../devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml    | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,teg=
-ra20-vip.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegr=
-a20-vip.yaml
-> > index 14294edb8d8c..39e9b3297dbd 100644
-> > --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi=
-p.yaml
-> > +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi=
-p.yaml
-> > @@ -13,6 +13,7 @@ properties:
-> >    compatible:
-> >      enum:
-> >        - nvidia,tegra20-vip
-> > +      - nvidia,tegra30-vip
-> >
+> >  .../bindings/dma/mediatek,exdma.yaml          | 68 +++++++++++++++++++
+> 
+> 
+> Your changelog says NOTHING changed here and this fails tests, so does it
+> mean you received that warnings before but you keep sending same broken
+> code?
+> 
+> Last two weeks of contributions from mediatek are absolutely terrible.
+> Very poor code, basic in-house reviews not done, basic testing not done.
+> 
+> I talked about this at OSSE 25 with some friends and got reasons why
+> your setup is broken. Well, it's on you.
+> 
+> I was already raising this with Mediatek, but we are now back to square
+> one.
+> 
+> NAK, because this patch WAS NEVER tested.
 
-Rob, may I use this:
 
-properties:
-  compatible:
-    one0f:
-      - const: nvidia,tegra20-vip
-      - items:
-          - const: nvidia,tegra30-vip
-          - const: nvidia,tegra20-vip
+And now I found you got EXACTLY the same error at v3, so you just never
+tested and ignored OUR test reports.
 
-Among all Tegra SoC only 2 have VIP support Tegra20 and Tegra30.
-Tegra30 is backwards compatible with Tegra20 so we can use fallback.
-There should be no new generation added to this schema.
+This is unfortunately an example how you waste reviewers' time.
 
-OR should I use enum?
+Best regards,
+Krzysztof
 
-properties:
-  compatible:
-      one0f:
-        - enum:
-          - nvidia,tegra20-vip
-
-        - items:
-          - const: nvidia,tegra30-vip
-          - const: nvidia,tegra20-vip
-
-> >    ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> > --
-> > 2.48.1
-> >
 
