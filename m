@@ -1,89 +1,89 @@
-Return-Path: <devicetree+bounces-210433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87BC3B3B879
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:17:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB88B3B87A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:17:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D11E958131F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:17:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2CA81CC0E34
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:18:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6902230ACEA;
-	Fri, 29 Aug 2025 10:15:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33EFD30BB90;
+	Fri, 29 Aug 2025 10:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="a5DMs3Wp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XB80ctCD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F9E02C11F5
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 10:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F83730AD08
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 10:15:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756462534; cv=none; b=Mt/GIc7b0hpluThQ3GRZhAhT4PpipEZIWpqNEUrxf30+T1HxNuxWzTmzutlUm2w9IgLc3JTMEToV3/w9d8ZulZJXsbHUTb/SYUzbP9vPGwiXW6P0d/u7vYC1JvKOft3O00TZRsF8hZ6oCGyc0ZMu7f/beRi4CUiQ95gSreA/QD0=
+	t=1756462537; cv=none; b=saf1ho23xY/zxs/xybFiicTWw8V5qPDUjB+ooxo7hK5K8UuH1I6r6aios4raCxUEmR6QCXn4cxQ6UuZro7B6jt06v7oULn5Npk0WXcvda/9S7bTI54AJD2YVr/R1ecPW3DwwSX7W4rf3jJ1yceUdp91Bey4bExW4il0XtQ+0lSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756462534; c=relaxed/simple;
-	bh=O6Mny0d3NcWye/pa17Z21QvQoVkQuVKY8Az2O2Pwlvw=;
+	s=arc-20240116; t=1756462537; c=relaxed/simple;
+	bh=e3gKlIgcNEy2r9Mx1i7bMF3/Ao/g9nApBx5pbLsL/sA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=b5ApDa7bEhqCmGqwO70QTqX5pl3buTyZcMaTlvR8t70a+FIBuTpgIXwqk6XCjL0jSO0sp7+3ahS91M3TBKacvd0kvOnTx0RGhKrKRXqUx+LQwaa1kspuvewm6wSHSMriMTLsMudukXJSwvACjpr2pESS0SWY4HAzls5FaybXuxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=a5DMs3Wp; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=Zzid8EvfF6L7JGFaKvxIU6rLS+PWfZCTMBNMekgnfTHuysBAUWKl8oJmWxrZZ8JqJkzzX2YeEyuszejI+PGYicFa5FiveT16LuyvLULR3/NelKdko39h3rAv/YkldCg5//49OjtLzqDon1ESnAOMwZc5aHEkwxClpTI1aSyxwGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XB80ctCD; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57T85Pv2027140
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 10:15:30 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57T85wDs012864
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 10:15:34 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0FPq/lTS4AeYWLkTBpagiaokL1Hd/X/PEFyY1CbPsh0=; b=a5DMs3WpubgufhGF
-	ZBQ16Oj28MjGnNdoI3GOwBDvQg5tytBf8Vh/N7m6a7rLFh9t+WfjLaFzPHXNdnGc
-	J3tZnqkwiVjPdzNFRT4U9NEGIwVp16B6L6y+OKxI1nnSE2cDFXwnWTdiLEWp0TOA
-	/W7UDwure3Fhg2nBCKGDoN1NcqK0x18puzOCSkTFucS6mF74BcBBXTdJTFJV1vvs
-	gpXbN6WfwmAnWhAqbFvZsNH+fJ9KCf3recVEPddVBo44Npx3f5Qlkb4VeOtyewwd
-	ba01Om9khDCgrckOs2euMsnlYhlCVRw1bMCu2pzyoTRL/zlB8fA6tiTujMw/aVLk
-	Qs5s+g==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48tbpgnb4t-1
+	spEKHx63+sJKj605M8Bf9cWcS/D+6tO2xX01XfJCvsc=; b=XB80ctCDZ/V39jPL
+	2fIQJVIBWU15W4dToNmy77O87oVfb9XXISvxOWSyXJ85KvKGJjn06SWJe4gh/YHq
+	k/a+dMYKUXPYogkE+H5cxjwCjVJwD4be/o7uW7qfQ5o8+J0wjcPM+aG6QrjwoVCj
+	xPl8aBpKp1Dwk5p9gws22KbwVCo0mRPbJs6u/rvyIRoz1qoacFTnTrPZ297rGeWC
+	y2/GuJrflthzEpuojCVG7Imlcqc1WJirW/rGhJPWRDyh6K55T+NF0iO6zTXmNnWE
+	3CS3A7aej3ChsxHjqoCfSxcMaKwQBc3ZFeibBF1ZLV4XMTH5diRYVE0LXDKslahm
+	eY7n+g==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q615uh3b-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 10:15:30 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-24925f21966so2860195ad.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 03:15:30 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 10:15:34 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-248f7745075so19518045ad.3
+        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 03:15:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756462529; x=1757067329;
+        d=1e100.net; s=20230601; t=1756462533; x=1757067333;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0FPq/lTS4AeYWLkTBpagiaokL1Hd/X/PEFyY1CbPsh0=;
-        b=ln0QS4/6Hboe8SgBGUSQekqZrLTczIeFkUOKj2SfSErEdkdD6QFYkzxSt4N6PS718M
-         3oc1njUDaHf0OmfgRdStDbf9HB/6c9h8vRVemXLNFEECliy43qDypPOEO4S1hpMeeVZT
-         oZrARJWVDwLr3dsBOwhWNxB5wq47674/IJqPexqhBf5lGuBekmVlyzW+/8UQBZqOFjBf
-         AAlIW3a+pS6k+d71AjlMrUBV53nZ4Pz8RQF3YmHUfuWJvHnfD4c4x47BN2GJcSCu7YIl
-         mtWUxeyzyfhZHWNMBbunMk8rOH2MyySte5PjqObvpDQlbldog5TKiBPmbF1eGwfBZ8ss
-         Lm7A==
-X-Forwarded-Encrypted: i=1; AJvYcCW60ps7R+BQbDThkN3cUoFZF7VcOHNDrieftRsZbE38re3tL7JoJRWipiK4p3zw44aR08kPKCHbz9fR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYPh6jr1pbcQo/oQq3HDjF/g8RwhUCACWvITdtJLGp5AjLmiFs
-	Px0nmJfhqbdLKtJzH+Zg7y1Vxv7t1dsg+StY76AqYAe3yiapnFfgb0AyPIDrvx643rU+rxDnFpS
-	rp8N+5PStmczLE8xTIJ3VLAp5S7RPbJqGjugMSjD12UoheHVFACboKUoiJQVmGfIjDklv0PA0
-X-Gm-Gg: ASbGncuPZLlH24oVznohZp+xDzwc4dPp2VmyZOJanP9l4qpmSmuePTJukcyxSkRBwls
-	0NnxxBIEQVw+dGx2EJZwr++qEhArYI43WSUpCKJtXdQpJWqXEQ1KJLHJaS67c5Rm5S6FxhNV5xG
-	4aMwBxrbDp7mym7w1Szc17eY7ASo5H6YF73NbzaWHSDJJMQfo6HrtYT/skdPnPvKwvShr5eh5hV
-	2v4iFMjxvhjL2Kt5TTWX1cRXUx/aRf+r5zdy903Gxo8Q9uX6VMK4KDHFjD+6kcQoaO+LpzAK7yy
-	k/2P/0Cm+rtH9TcEiqrSKXPxRixP5dJ0dTzZjvUhn1KMtQuzb0iZ6p3BJ6HXqxB4
-X-Received: by 2002:a17:903:124c:b0:234:d292:be7a with SMTP id d9443c01a7336-2462ee0b991mr357448755ad.1.1756462528660;
-        Fri, 29 Aug 2025 03:15:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEld9WAS7PefNHcO4cwh1kQXSdou68Xzfiyst5T+t0EqwcyyL4eKB2damNsES8FC82eDU/lYQ==
-X-Received: by 2002:a17:903:124c:b0:234:d292:be7a with SMTP id d9443c01a7336-2462ee0b991mr357448305ad.1.1756462528115;
-        Fri, 29 Aug 2025 03:15:28 -0700 (PDT)
+        bh=spEKHx63+sJKj605M8Bf9cWcS/D+6tO2xX01XfJCvsc=;
+        b=Z0QMnMDtqwbrWF4WKtGfrY4aMImlPQCNbaLkpkMFqi4YA/nKpYV4IGehVJSwCztUSd
+         28A74Dvj1jw8hOnJreheNjkkHEzeb7RX5MgEyd0kGBDrtZA5qjnevg43U3MswpOPqlcf
+         FjDMfuwbcYxqcHINvWknKqkSRqipJ11etkjXldP44NLoR/YCsy3uUbFA43jr+l7bFLGG
+         2GDtTu+VW+hERQ5CAKLbWFMCBAWD7l0pFs6bC6HqYZlmHnAoAlMUP9q2Ny9YHL9ASgN3
+         S8nEjdGLz/43NxusRq0VPnEMfqNsQujY5QrYekMhRgbsW4BGYmhkhpxl8dACHxsuM+kB
+         7+ag==
+X-Forwarded-Encrypted: i=1; AJvYcCXENthT4cEJpG269mXQRxOW01c1IB9/MPwKiKIVn+vGb6hLW/4md+/TYLnFRYRDO3L/oVfLk+IiWGZJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzy59f6GIOGQ9rCojGBp/hiK9HHPBaK98D7rwFB77kAohWqDdYb
+	WR5qicz0I295r77ebHbf6Sl4AFbTJ8vMqmgk3Wwzg/rI8JrZBe5CHUHOgtS/grkFjxB5UlB/BbN
+	Fw/1roiQwKZKS4+v/ckNMywABQQrr9GeKh1A2A58DDKcI3lrqxgcnsz3RGQEmCW/U
+X-Gm-Gg: ASbGncvralk/2cFojGN4fXZUrXyvV308QfcMCMuKLalmxs+BGQ5dRZQ7DVxa9PaLpxd
+	dptIWS3PQ0SfOifIwrDNykC8AOweGvKC44SjcIZg7oWTHye3/7kA8jdJ4kBrDmFExyvV95f29je
+	z2e57FqJhOtSi28OjWZ7YZ3YzNvqfCNLACyHIObOSoM8qwtjNjTu5NYVWDtF0vCt3Cxxt2QauH0
+	I75wKpmmjbmqHHYf2phcgRlpnS/Tj0/Alo0QVpPC7Oih4jcqFol9eEeh9Ehog1JbTsNL3UsF7X0
+	vb43PegbTISbfoO4JGYUa/wd+oaYWEJAJQ5PuHlUjtEJ5WSMqtPDre8keB4k6Q5+
+X-Received: by 2002:a17:902:c952:b0:245:f7f3:6759 with SMTP id d9443c01a7336-2462ef1571cmr350083205ad.50.1756462532947;
+        Fri, 29 Aug 2025 03:15:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEA8Xh2vbyvcy6mdjaLep3b6m9rvTPrB3vfrqANTg067b9b8/FGFP60iDb4AjB5RBjfuPIKWA==
+X-Received: by 2002:a17:902:c952:b0:245:f7f3:6759 with SMTP id d9443c01a7336-2462ef1571cmr350082855ad.50.1756462532408;
+        Fri, 29 Aug 2025 03:15:32 -0700 (PDT)
 Received: from hu-tdas-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-249065d1b19sm20102775ad.131.2025.08.29.03.15.24
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-249065d1b19sm20102775ad.131.2025.08.29.03.15.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Aug 2025 03:15:27 -0700 (PDT)
+        Fri, 29 Aug 2025 03:15:32 -0700 (PDT)
 From: Taniya Das <taniya.das@oss.qualcomm.com>
-Date: Fri, 29 Aug 2025 15:45:17 +0530
-Subject: [PATCH v2 1/3] clk: qcom: branch: Extend invert logic for branch2
- mem clocks
+Date: Fri, 29 Aug 2025 15:45:18 +0530
+Subject: [PATCH v2 2/3] dt-bindings: clock: qcom: Add SM8750 video clock
+ controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,7 +92,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250829-sm8750-videocc-v2-v2-1-4517a5300e41@oss.qualcomm.com>
+Message-Id: <20250829-sm8750-videocc-v2-v2-2-4517a5300e41@oss.qualcomm.com>
 References: <20250829-sm8750-videocc-v2-v2-0-4517a5300e41@oss.qualcomm.com>
 In-Reply-To: <20250829-sm8750-videocc-v2-v2-0-4517a5300e41@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -106,97 +106,122 @@ Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
         linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, Taniya Das <taniya.das@oss.qualcomm.com>
 X-Mailer: b4 0.15-dev-aa3f6
-X-Proofpoint-GUID: MT9O_5pVVrKlK1SvzSG2K0qbSK1TG3xE
-X-Proofpoint-ORIG-GUID: MT9O_5pVVrKlK1SvzSG2K0qbSK1TG3xE
-X-Authority-Analysis: v=2.4 cv=G7gcE8k5 c=1 sm=1 tr=0 ts=68b17dc2 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=TPL9fEiPDwMg0gBHboQA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI3MDE5OSBTYWx0ZWRfXxm5tj9n8gJIu
- 5P+AwWRKTzA+MxW3GXBZ+JQCj0KJ99vBkLwbpnMx/Qa502YTtuWn+Vru8MDJwHuZqRepQt25xJl
- 7zG1YDyDMEJjHAJwAARhV+bexIJXdnegb1JZrGqRoyidZ8NcExYF7oKdMgyecuaqpKvc+2wbJXV
- jPcF98riJNdCHPZUTv5alvY879TpTD3+vrySu4IWW/5a0EJwKzrLZV/jYh5O/tSNMwicBe4HFdk
- hOhl/M9tV0f/rvQRQuUWmdp4kyBQ1l4PIqeDvkyBCZ46FlBICAR17OWfqCnVwk3R9EkC0lZIH+X
- DVPSBDAktM93TSAmUDLx0EFGpjiyaFhV+Gr6XeuO03qmg/KTQkgMoWHakgfwXhshGMYIAmClSzM
- 1GPn+vrL
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzNCBTYWx0ZWRfX5wmEB9Eltmrj
+ rD2wlim213DBMY39gLMB31ocPyj/fVFC2CeQHnG//6JcGmFZg/BWYebrreSBz5ZS/rJ04HuYPhV
+ b4EMPY44jxAJgVZGmnAFwxkhux0ekI7I5ZofU21tLm5iefmFiBCs+U7IuMYxqME0ylfRT4indqr
+ jRAO4HTkARA1p8Mh6lsrUKYdCS3CZ8MM1xVO7lsLaKmsQ59iPIDYCCcd/xrZt14zSjFM89s6iXU
+ f4ovVDa+uCnt2Nz6EGsTKmT5+q0ietPlFHdYgLYaMGh2n+BPtwwgdAYkz/NSpJJbtbu1+/O7b05
+ 47/pigEG6vpHgwCBqH+uzdjkA6LPD50KcFf75mKZMlxwfxlByMUauvMPN1Tr79lWfsJLb+Vy6AG
+ MYoBsRBy
+X-Proofpoint-GUID: LI0LSg9cO9A6D58t6-Qr9fUvKiiePzTY
+X-Authority-Analysis: v=2.4 cv=K+AiHzWI c=1 sm=1 tr=0 ts=68b17dc6 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=1oqufa9daVNmb7UKLHcA:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22 a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: LI0LSg9cO9A6D58t6-Qr9fUvKiiePzTY
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-29_03,2025-08-28_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 priorityscore=1501 adultscore=0 impostorscore=0
- bulkscore=0 suspectscore=0 clxscore=1015 spamscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508270199
+ malwarescore=0 suspectscore=0 bulkscore=0 clxscore=1015 adultscore=0
+ impostorscore=0 priorityscore=1501 phishscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230034
 
-Some clock branches require inverted logic for memory gating, where
-disabling the memory involves setting a bit and enabling it involves
-clearing the same bit. This behavior differs from the standard approach
-memory branch clocks ops where enabling typically sets the bit.
-
-Introducing the mem_enable_invert to allow conditional handling of
-these sequences of the inverted control logic for memory operations
-required on those memory clock branches.
+Add compatible string for SM8750 video clock controller and the bindings
+for SM8750 Qualcomm SoC.
 
 Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- drivers/clk/qcom/clk-branch.c | 14 +++++++++++---
- drivers/clk/qcom/clk-branch.h |  4 ++++
- 2 files changed, 15 insertions(+), 3 deletions(-)
+ .../bindings/clock/qcom,sm8450-videocc.yaml        |  5 ++-
+ include/dt-bindings/clock/qcom,sm8750-videocc.h    | 40 ++++++++++++++++++++++
+ 2 files changed, 44 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
-index 0f10090d4ae681babbdbbb1b6c68ffe77af7a784..90da1c94b4736f65c87aec92303d511c4aa9a173 100644
---- a/drivers/clk/qcom/clk-branch.c
-+++ b/drivers/clk/qcom/clk-branch.c
-@@ -142,8 +142,12 @@ static int clk_branch2_mem_enable(struct clk_hw *hw)
- 	u32 val;
- 	int ret;
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+index fcd2727dae46711650fc8fe71221a06630040026..b31bd833552937fa896f69966cfe5c79d9cfdd21 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Qualcomm Video Clock & Reset Controller on SM8450
  
--	regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
--			   mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
-+	if (mem_br->mem_enable_invert)
-+		regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
-+				  mem_br->mem_enable_mask, 0);
-+	else
-+		regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
-+				  mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
+ maintainers:
+-  - Taniya Das <quic_tdas@quicinc.com>
++  - Taniya Das <taniya.das@oss.qualcomm.com>
+   - Jagadeesh Kona <quic_jkona@quicinc.com>
  
- 	ret = regmap_read_poll_timeout(branch.clkr.regmap, mem_br->mem_ack_reg,
- 				       val, val & mem_br->mem_enable_ack_mask, 0, 200);
-@@ -159,7 +163,11 @@ static void clk_branch2_mem_disable(struct clk_hw *hw)
- {
- 	struct clk_mem_branch *mem_br = to_clk_mem_branch(hw);
+ description: |
+@@ -17,6 +17,7 @@ description: |
+   See also:
+     include/dt-bindings/clock/qcom,sm8450-videocc.h
+     include/dt-bindings/clock/qcom,sm8650-videocc.h
++    include/dt-bindings/clock/qcom,sm8750-videocc.h
  
--	regmap_update_bits(mem_br->branch.clkr.regmap, mem_br->mem_enable_reg,
-+	if (mem_br->mem_enable_invert)
-+		regmap_update_bits(mem_br->branch.clkr.regmap, mem_br->mem_enable_reg,
-+			   mem_br->mem_enable_mask, mem_br->mem_enable_mask);
-+	else
-+		regmap_update_bits(mem_br->branch.clkr.regmap, mem_br->mem_enable_reg,
- 			   mem_br->mem_enable_ack_mask, 0);
+ properties:
+   compatible:
+@@ -25,6 +26,7 @@ properties:
+       - qcom,sm8475-videocc
+       - qcom,sm8550-videocc
+       - qcom,sm8650-videocc
++      - qcom,sm8750-videocc
+       - qcom,x1e80100-videocc
  
- 	return clk_branch2_disable(hw);
-diff --git a/drivers/clk/qcom/clk-branch.h b/drivers/clk/qcom/clk-branch.h
-index 292756435f53648640717734af198442a315272e..6bc2ba2b5350554005b7f0c84f933580b7582fc7 100644
---- a/drivers/clk/qcom/clk-branch.h
-+++ b/drivers/clk/qcom/clk-branch.h
-@@ -44,6 +44,8 @@ struct clk_branch {
-  * @mem_enable_reg: branch clock memory gating register
-  * @mem_ack_reg: branch clock memory ack register
-  * @mem_enable_ack_mask: branch clock memory enable and ack field in @mem_ack_reg
-+ * @mem_enable_mask: branch clock memory enable mask
-+ * @mem_enable_invert: branch clock memory enable and disable has invert logic
-  * @branch: branch clock gating handle
-  *
-  * Clock which can gate its memories.
-@@ -52,6 +54,8 @@ struct clk_mem_branch {
- 	u32	mem_enable_reg;
- 	u32	mem_ack_reg;
- 	u32	mem_enable_ack_mask;
-+	u32	mem_enable_mask;
-+	bool	mem_enable_invert;
- 	struct clk_branch branch;
- };
- 
+   clocks:
+@@ -61,6 +63,7 @@ allOf:
+             enum:
+               - qcom,sm8450-videocc
+               - qcom,sm8550-videocc
++              - qcom,sm8750-videocc
+     then:
+       required:
+         - required-opps
+diff --git a/include/dt-bindings/clock/qcom,sm8750-videocc.h b/include/dt-bindings/clock/qcom,sm8750-videocc.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..f3bfa2ba51607d0133efcdad9c7729eb7a49b177
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,sm8750-videocc.h
+@@ -0,0 +1,40 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_VIDEO_CC_SM8750_H
++#define _DT_BINDINGS_CLK_QCOM_VIDEO_CC_SM8750_H
++
++/* VIDEO_CC clocks */
++#define VIDEO_CC_AHB_CLK					0
++#define VIDEO_CC_AHB_CLK_SRC					1
++#define VIDEO_CC_MVS0_CLK					2
++#define VIDEO_CC_MVS0_CLK_SRC					3
++#define VIDEO_CC_MVS0_DIV_CLK_SRC				4
++#define VIDEO_CC_MVS0_FREERUN_CLK				5
++#define VIDEO_CC_MVS0_SHIFT_CLK					6
++#define VIDEO_CC_MVS0C_CLK					7
++#define VIDEO_CC_MVS0C_DIV2_DIV_CLK_SRC				8
++#define VIDEO_CC_MVS0C_FREERUN_CLK				9
++#define VIDEO_CC_MVS0C_SHIFT_CLK				10
++#define VIDEO_CC_PLL0						11
++#define VIDEO_CC_SLEEP_CLK					12
++#define VIDEO_CC_SLEEP_CLK_SRC					13
++#define VIDEO_CC_XO_CLK						14
++#define VIDEO_CC_XO_CLK_SRC					15
++
++/* VIDEO_CC power domains */
++#define VIDEO_CC_MVS0_GDSC					0
++#define VIDEO_CC_MVS0C_GDSC					1
++
++/* VIDEO_CC resets */
++#define VIDEO_CC_INTERFACE_BCR					0
++#define VIDEO_CC_MVS0_BCR					1
++#define VIDEO_CC_MVS0C_CLK_ARES					2
++#define VIDEO_CC_MVS0C_BCR					3
++#define VIDEO_CC_MVS0_FREERUN_CLK_ARES				4
++#define VIDEO_CC_MVS0C_FREERUN_CLK_ARES				5
++#define VIDEO_CC_XO_CLK_ARES					6
++
++#endif
 
 -- 
 2.34.1
