@@ -1,85 +1,136 @@
-Return-Path: <devicetree+bounces-210590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0272B3C137
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:52:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8C9AB3C154
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:55:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AE8DA235B9
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:52:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9F641897FC6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EA6733CEB8;
-	Fri, 29 Aug 2025 16:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857D733CEB4;
+	Fri, 29 Aug 2025 16:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l2d3bcUX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d9ngOEEt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E50D33CEA8;
-	Fri, 29 Aug 2025 16:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A0B1C5F39;
+	Fri, 29 Aug 2025 16:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756486364; cv=none; b=o0BBHE04i1FQFB+SnNtg49YV5yODIYvrj1L90iLpVaeqgOPVrvem88hx+OFK3haOhT/mn5c3etn8JwIvuNzu3WWkbTDEleoBd9ln6xRAVjpkKS/RWGuny0//4KqE7Ho8nLP6/yFvQFy9xbLv0FAPiP9og/21M8bIDg3ocaUmv7I=
+	t=1756486443; cv=none; b=LYQ1Cv/1NRk9H+CGlCB0SAEFG4X1NZ9SG/Y16aMaKQzJTFZYWmSIYb1xtNoiTuij5jb2iMvBht/y/c0LAi+zed4tHMHZz9HRgITFURFCwiam2ZupT5zVZDiUE30Q/2FmmuYyc9F3HiHYotlfmuMYf8P+/1a2SRVStIwmQV1EgtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756486364; c=relaxed/simple;
-	bh=6iWGrg8lIE6nrEWZVFb+ILIqRczqtE/L08CgEe7QCUw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LOJeuSZDCA107Q0Rvh3rfggZaNzoSOqeibUPOXdjATJeb9V2oKD39r9iYlW63vLALSohvoM3F7J73NU6eEnNuvDs4gnQGAQMyZEfzgOLsz49/7gzZdErL9c601iH9ti02IRnLLJg/1s010mGfwvS2ya25yEdeQH4iD1rP3nW1Eo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l2d3bcUX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6AB4C4CEF0;
-	Fri, 29 Aug 2025 16:52:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756486363;
-	bh=6iWGrg8lIE6nrEWZVFb+ILIqRczqtE/L08CgEe7QCUw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l2d3bcUX/2RhJdXetaddzTQO02hP9VwrPcQso0CRpQvKQdP9+CyAtzqP1k/HSEGLR
-	 UtumUOS8iUDpHtALhCG2luwbWk6D+3MYxWyOD29qGF++reAJNvWSIkMWAs8EPx9g0d
-	 pgdIw+9t5kmi96kckiRZGIgk3wgisX8SW9a9LDZqGgtmbmZeEXs4wr57qehb/2zzSh
-	 Iuqme5uiaaTcxcWtO3kNsYwtyEaQKmzpAwWDAo29O6NcDsiTY72byM9R9jlAc1wKLK
-	 gNjMJOZikYCLvyaFaoM4ZuuUhkha4nyUA5TEbZDpTkrp8WmIvOgj6MrRaY0JOjz6YM
-	 Q13vby9mAELkA==
-Date: Fri, 29 Aug 2025 11:52:42 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	s=arc-20240116; t=1756486443; c=relaxed/simple;
+	bh=/Zx6EuJdVsMaChgJrLRAWufLoMX5wE9nNg/FXJkVlKk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QmAiVoekFdywTpXnz6eNcJxMGS/osx3k0n0yhWP9sVgD5fbbV8NH7LE1YXL36EBdcr4akRS9alptTckeQnEGWRbykKoNrvun/Sg16iWWSgTbUwQ2Hwd0hf38pBl5d5tkHzrvWUAyLWSbyTI35aPOkpZEdG1ZuzCIRLqV6OIgoNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d9ngOEEt; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-61cb4374d2fso3050214a12.2;
+        Fri, 29 Aug 2025 09:54:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756486440; x=1757091240; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JSiXnFNMhbGWyzrQUq1p1OLKuc73ypZQPHqffR4Wb5E=;
+        b=d9ngOEEtGVZX6D2XB/Yh946pUzCoyEU11QPnnsZTw9spX+s5sL8wESb8tbdlpPGxhT
+         5Pbde/G9Y2o8GUWMwYKWMH+xLL48BMUUFBgkUWrbizG+z8MgdWh3oneSmPCTl733cpM4
+         w/sVeS7crhSOgC9OHeG/QN3PiwzmeNDyQCbR6lR3sJP64ahKLxzTGBKb1SrDtiQmPVtR
+         6tT8XEAN1KOAGuGL6oIO/CYWG0Lk0YsbLdszYdOYhDfWAWb+4F0pvPRJEXYc7yraZ/om
+         6Ff7qTru21Bs5W6EGABEZ2hZmh1kONeJamfU1tjbZZ5d81i977Sde9NI+YnlnP/SmJLr
+         lDfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756486440; x=1757091240;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JSiXnFNMhbGWyzrQUq1p1OLKuc73ypZQPHqffR4Wb5E=;
+        b=ZsrTDed2390J0YZ9WvKDP3kwhlPIUVVakZZZMdRmA3OusnXdHXYr4kW/ACflA2mey9
+         LhQS1DWiKKE9qpX65kIfp6zSm0eFfQLwmZgQwYyq3023gPZUwdUljM5Ywa/P6TIV5K2x
+         LL3FS41+darkKtR8IQ8V0bBByd200T7ezuDEa1GmHMPnmGADW84T5y3V7q/ATOehWJyk
+         1Vo42Z4+KKRvufQopQAUF4aVxXZJ+L2mATDAOPeLCiS8jjgVLVMYMquk8vkbtd0Dgv+I
+         nqpAU/VzoaTJ3GRUuDBzKwpeuBACsQeL0V4b1XmVkURzX47+Sbdp4zu9nzlhWQPYOm8M
+         S7cw==
+X-Forwarded-Encrypted: i=1; AJvYcCUIeLd8MwXJHGhCtdx8+qeXxN7B4iRfQQUcTGAQoA8jrXMC1AktHAQ+NnV0QoAOmzOqEFtSI19VtYwl7Gs=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNceYb6zOHelJW85js7OUxtfLp437OjT4QvsyDhw8nNd2W3tDe
+	l5dDS+ybeLmCgKxdz7g35VZm4nYMz/TJjLqUQ0HrC17AmxGN7l9UY+qZlJ9ICArv
+X-Gm-Gg: ASbGncvy+fVvFwIn6J1P7qF5FPIRPxlMFk9KCgVih0TM8CVoZtUFauyggwXX7QXAc6h
+	8KJbAcTW1VbQ3fho9CjnEe0lGaMsh0yhDZ2aEolFHm24zPi3xOuww0fIruyabUUoGVoJuo4ECot
+	9crQsKU45WqB0mDhGAKggqMOpMKGP+onefEV5sYfGxWkKqMUrusQqYoqAP1U4amCn76FLy4jAU9
+	3wdAx6Zx/7QxTYb1aLvXHtvQFmGlOo2D3nQVGRw2B1bQ2kGL3udtM30KfgcZzXR1p/hBIMsxpUH
+	nMDk6DD7PTJiuSE+x8DAEwSZoWtrfN0Dk+IAsRxf4hO+AWaPRbM7v23EuwGphpZP1EGHsyITU3Y
+	LK2R7OL+1a/yQynH+vXc9Vn17HzSsvn8/xZnPf+qzDpMVeAzKeZzlpI3Oy5EIKnA1G+Z6bXMdJ5
+	UE2s9Y4MycRDfhUc1E
+X-Google-Smtp-Source: AGHT+IHtrSLNKTu7xS6Qz+TQBOEpQiXNuNzq5jN5nWhxoEPMOUPi29C7dPZp8V5L6mpyiEmvm2PQxA==
+X-Received: by 2002:a05:6402:5041:b0:61c:f91f:4365 with SMTP id 4fb4d7f45d1cf-61cf91f52f8mr4225211a12.7.1756486439709;
+        Fri, 29 Aug 2025 09:53:59 -0700 (PDT)
+Received: from Lord-Beerus.station (net-93-70-53-177.cust.vodafonedsl.it. [93.70.53.177])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61cfc1c7848sm2130350a12.2.2025.08.29.09.53.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Aug 2025 09:53:58 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Stefano Radaelli <stefano.radaelli21@gmail.com>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rui Miguel Silva <rmfrfs@gmail.com>, devicetree@vger.kernel.org,
-	Hans de Goede <hansg@kernel.org>, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH 1/1] media: dt-bindings: ovti,ov2680: Use
- unevaluatedProperties for endpoint
-Message-ID: <175648636241.1003708.4368545914280443801.robh@kernel.org>
-References: <20250827194919.82725-1-Frank.Li@nxp.com>
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v5 0/3] Add support for Variscite VAR-SOM-AM62P5 and Symphony board
+Date: Fri, 29 Aug 2025 18:53:16 +0200
+Message-ID: <20250829165327.20007-1-stefano.radaelli21@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250827194919.82725-1-Frank.Li@nxp.com>
+Content-Transfer-Encoding: 8bit
+
+This patch series adds support for the Variscite VAR-SOM-AM62P system on module
+and the Symphony carrier board.
+
+The VAR-SOM-AM62P is a compact SOM based on the TI AM62P Sitara processor,
+featuring up to 8GB DDR4 memory, eMMC storage, Gigabit Ethernet, and various
+peripheral interfaces. The Symphony board is a feature-rich carrier board that
+showcases the SOM capabilities.
+
+The series includes:
+- Device tree bindings documentation
+- SOM device tree with common peripherals
+- Symphony carrier board device tree with board-specific features
+
+The implementation follows the standard SOM + carrier board pattern where the
+SOM dtsi contains only peripherals mounted on the module, while carrier-specific
+interfaces are enabled in the board dts.
+
+Tested on VAR-SOM-AM62P with Symphony carrier board.
+
+Stefano Radaelli (3):
+  dt-bindings: arm: ti: Add bindings for Variscite VAR-SOM-AM62P
+  arm64: dts: ti: Add support for Variscite VAR-SOM-AM62P
+  arm64: dts: ti: var-som-am62p: Add support for Variscite Symphony
+    Board
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
+ arch/arm64/boot/dts/ti/Makefile               |   1 +
+ .../dts/ti/k3-am62p5-var-som-symphony.dts     | 500 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi | 387 ++++++++++++++
+ 4 files changed, 894 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62p5-var-som-symphony.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
 
 
-On Wed, 27 Aug 2025 15:49:18 -0400, Frank Li wrote:
-> The endpoint ref to /schemas/media/video-interfaces.yaml#, so replace
-> additionalProperties with unevaluatedProperties to allow use common
-> properties.
-> 
-> Fix below CHECK_DTBS warnings:
->   arch/arm/boot/dts/nxp/imx/imx7s-warp.dtb: camera@36 (ovti,ov2680): port:endpoint: 'clock-lanes', 'data-lanes' do not match any of the regexes: '^pinctrl-[0-9]+$'
-> 	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+base-commit: 07d9df80082b8d1f37e05658371b087cb6738770
+-- 
+2.43.0
 
 
