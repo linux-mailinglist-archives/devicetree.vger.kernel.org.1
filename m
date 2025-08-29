@@ -1,117 +1,114 @@
-Return-Path: <devicetree+bounces-210263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A2AAB3B257
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 07:16:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE14B3B261
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 07:23:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B72D85E8813
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 05:16:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 866C2203D80
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 05:23:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09A1A217F3D;
-	Fri, 29 Aug 2025 05:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6CD31E1DF2;
+	Fri, 29 Aug 2025 05:23:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TPZqy6+Q"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="IhTfS0sI";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="LwAnA4HG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D07B720F08E;
-	Fri, 29 Aug 2025 05:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ACFE8488;
+	Fri, 29 Aug 2025 05:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756444580; cv=none; b=lQOGx70wxZ1N+E/Dis3vYT21WQ4m3il/N5tZDHZKcd4WvKpN1/Mp746CVTKRhZy91HSFcaxw0b/8pE9w1AacG04MXvvInZfIQQA5as+9A3XeKljvh9wD989DaEdUb2HeUGKiU8/6wjJvKHpdms14xJ3zr+PaXce8eMCuRb04Jq8=
+	t=1756444985; cv=none; b=ShRK3wUNh2tVOHSY/FCQ+Atn4CK40IeeR783HpgTzlPdT6MiLOazRck+uIgAHyFULbgYxPbt/8eAed5xxy+hfRHZboWcF8CGE0PjvddbzT/yc1wF+SfIq/h0fDVYJdBxBBFsiB53vgYZd1w81wklXV8qXNqrwnPI175Tivyx+lM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756444580; c=relaxed/simple;
-	bh=SGZ/ztM0Jh+alQljhSybFcNPM0P2ohWIF7g13dEMIfs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cFbo19lDU4h1V3ulHiBFMQNWaRWocdOxmWulFVitIaqmnO7V73ct/hVsgEd/gOyjk0qnl/hVVy260PkRqsZSc919oF72q9yVlvLEDQKfO6d5uYC7QP3p6mseiTl5IULSuCmr69fNV9XwdDEawvzsbM3ep+IciCw9VEQP57cQq/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TPZqy6+Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4E8EEC4AF09;
-	Fri, 29 Aug 2025 05:16:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756444580;
-	bh=SGZ/ztM0Jh+alQljhSybFcNPM0P2ohWIF7g13dEMIfs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=TPZqy6+QmXsYc/+CGukthovVe8FlDnC7irWBe17LoP+rAMXz1lrmX3uZvumG++MhT
-	 t2eEx6uEYXJzOPx90D5vhSMkbNHtbec5foMKo719UYeiSgRSfQueOpL9cu1LSK6i0Z
-	 0IdUQcT+CKW4psslIUfAD3e68Rn5skU8032LlKsM05nDQ895obccHSjDAs7kZJUroK
-	 Kc3CABsPRg/+d0bW/XLoicXsdhq+1xZeVw5MikK0HSv20EVPoDgU6mCk/a5plCyZyD
-	 VuvrRcE29kaNnUQas/rsPBQPu6V7vA0OP9JuRc65VAQUAt0zRJBgwaauTNxLYaQwWg
-	 ow1slnfKv6HvQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FA63C8303F;
-	Fri, 29 Aug 2025 05:16:20 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 29 Aug 2025 13:16:15 +0800
-Subject: [PATCH v4 3/3] MAINTAINERS: Add an entry for Amlogic spifc driver
+	s=arc-20240116; t=1756444985; c=relaxed/simple;
+	bh=FP1KpwwplKZdgCaYZIEW3o8UFzFg9D+V36y12tW5uW8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=M7vrVWqIS4jzrnyELKgUc63d53Cyqb1yMh4Iy8C9pJkD9NZjNDTEey2HxwucBEGDDZzx2/9ZXcJv+0TsBdVcvhc09Ga1yU5X584LyQ8g1fVmqRKJzDI9JoVOwM+Ob7iECYEyeaOnmrPoCIXGN9/DS4puZe35cpyCeGu6lD3THdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=IhTfS0sI; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=LwAnA4HG; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cCmr528zCz9tSk;
+	Fri, 29 Aug 2025 07:23:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1756444981;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=oBuY1bgfTNlKDPqDfF9q1Kr+TPBTQ0Xqwrre5sa8b5Y=;
+	b=IhTfS0sI0XFRJ1NLPq93wtZnkfUBNEPOKpnhiz7evRim/+G+0VwnpoCENJZa39OYOJYo5j
+	cKE7To13VyMZwAoFeo9Bjz8zfqBG453yyW0VpdpJYFwetgRIDjgJ1Vz6LBUxj631WF/PCD
+	cKlGxhqP/JQbybTN5dTETtEL4FiyQ6JH5TzUaHv6l5uxD0sBHVwMNDAQb32bdpl9wgtryb
+	oqxRZb3X1PYAdSp1593V6lCAUeJtdraMFUAXf22xY989odKao8SVtxifoWn7E2hMQugvwU
+	xUGv7UBfDrsEpoZcHBeET/0NLExcIfOig+1cq2oa1YOBvqmQsAfzXJJmE518nw==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=LwAnA4HG;
+	spf=pass (outgoing_mbo_mout: domain of alexander.stein@mailbox.org designates 2001:67c:2050:b231:465::1 as permitted sender) smtp.mailfrom=alexander.stein@mailbox.org
+From: Alexander Stein <alexander.stein@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1756444979;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=oBuY1bgfTNlKDPqDfF9q1Kr+TPBTQ0Xqwrre5sa8b5Y=;
+	b=LwAnA4HGAVj6JafDYqYk2JLc+e9UgD8rJMEBsOfRMtb3+BWHzzydY6JqCOLGLY+goyJquW
+	eaycpg1EtQ29hmqrbV9CakIlqZg3ndLzxY1HJpNhvgIGcOL5hEDtOePSUyviDMs9dnB2jp
+	k/skdOwvpP3X5W1Csj1Tb3ehwwZMT7UUUOGZTVIAQns4DnChlKZzQ2YVrReGpUvcBY2qfN
+	F1GoiXrmJieXJnZc3IcQ293EIefUOUEFdNTqA9a3F73U5Pi8VedU4qiL4daJnDutQ4acb/
+	boLq5BuKy9L+stEvXi6vlzEJ5vJ1QarNXMvSFZaqlT+KyPkrfs16ouSZb2BBvQ==
+To: Tony Lindgren <tony@atomide.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Alexander Stein <alexander.stein@mailbox.org>,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] ARM: dts: ti: omap: am335x-baltos: Fix TPS property
+Date: Fri, 29 Aug 2025 07:22:32 +0200
+Message-ID: <20250829052233.26821-1-alexander.stein@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250829-spifc-v4-3-1e57fd39f584@amlogic.com>
-References: <20250829-spifc-v4-0-1e57fd39f584@amlogic.com>
-In-Reply-To: <20250829-spifc-v4-0-1e57fd39f584@amlogic.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
- Feng Chen <feng.chen@amlogic.com>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756444578; l=935;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=waH2I+tfwvOLzp50Qi+Yg091qChCxHO4Mz5PuoGKYLg=;
- b=qPzTb7RTVjnIOz8LAOv7eRTOVyg8cqtn52vtIbh35of0wr0uJPfoPQJeDyBGeSUU48JdG0wls
- PCAGKx2PLDpD0T13JcFXzCK/EWbyhwgvV1HEiNPEZzA9bXQaspVAed6
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: e7ut9frqq557tkytxkaoesod6r89wdgk
+X-MBO-RS-ID: 9f21b2ca30b53a96085
+X-Rspamd-Queue-Id: 4cCmr528zCz9tSk
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+ti,en-ck32k-xtal is a boolean value. So remove the value and keep the
+property by itself. Fixes the dtbs_check warning:
+  ti/omap/am335x-netcom-plus-2xx.dtb: tps@2d (ti,tps65910):
+    ti,en-ck32k-xtal: 1 is not of type 'boolean'
 
-Add Amlogic spi flash controller entry to MAINTAINERS
-to clarify the maintainers.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
 ---
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b1c081f9c567..9f1f337e9b6d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1306,6 +1306,16 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
- F:	drivers/rtc/rtc-amlogic-a4.c
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi b/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi
+index ae2e8dffbe04..ea47f9960c35 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi
++++ b/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi
+@@ -269,7 +269,7 @@ &tps {
+ 	vcc7-supply = <&vbat>;
+ 	vccio-supply = <&vbat>;
  
-+AMLOGIC SPIFC DRIVER
-+M:	Liang Yang <liang.yang@amlogic.com>
-+M:	Feng Chen <feng.chen@amlogic.com>
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+L:	linux-spi@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/spi/amlogic,a4-spifc.yaml
-+F:	drivers/spi/spi-amlogic-spifc-a4.c
-+
- AMLOGIC SPISG DRIVER
- M:	Sunny Luo <sunny.luo@amlogic.com>
- M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-
+-	ti,en-ck32k-xtal = <1>;
++	ti,en-ck32k-xtal;
+ 
+ 	regulators {
+ 		vrtc_reg: regulator@0 {
 -- 
-2.37.1
-
+2.51.0
 
 
