@@ -1,130 +1,135 @@
-Return-Path: <devicetree+bounces-210572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8CDB3C07C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:19:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D8ABB3C087
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:22:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C86E61C80375
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:20:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A931E7A6842
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DEB9322DAA;
-	Fri, 29 Aug 2025 16:19:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E1E32BF41;
+	Fri, 29 Aug 2025 16:22:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yk1hHyns"
+	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="HXjX7YEC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A162D321D
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 16:19:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934D314F125;
+	Fri, 29 Aug 2025 16:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756484374; cv=none; b=K6rbE5Ag1ivm/4/Imsbu8Fm/yLDShZi+bcGyIMEyhw5Yrk4PKlptMulAwHhgCZ19FwdB+6Smfs7vhw01+IAkU6suPwOc4uQCgJik/fhhFAGq/rhfmcyzkhAoyMglifPRW0XvthHaKj6cuCYsB3cKsAe2P0fAdLUnfGDo81hPNV0=
+	t=1756484555; cv=none; b=A0aegC7r8V2QfANnJF9kP7EqgqlJWyB/V09eC9hw+XMgD73OqSusiWkdShSTqmTFL9yuSJwUV0KxO0g1QRxaEVps4Upef62fj6vWryua3pIkLuWdtPKozd/mNl5lBW4YWqjQew9qFWPQTNaQvljNuJ1JzhdbYYyPfCucI+Fcz8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756484374; c=relaxed/simple;
-	bh=DEb+rLyFLAAC2UTbNeB5RKFyMlAT9QhJEkzS1NHnSv0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=RVkmwjYBsLvzbzqRYlUSRbAIMUwD4DephFHF3Az5ypa8AqQ5a+wwxs7ZSA8CH/gFa6zCamb0V3EdaMW/Xz3d5YSK47QRA5qPgL82y5RIkC2PeRQd3q/o53qg7/3SSdLYp+XWf+5PhtvP2w29jkCQuVTQIbZgvSg6rYwk3j2q+HM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yk1hHyns; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-55f4834fc49so279758e87.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 09:19:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756484371; x=1757089171; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SDzPs5+Y62RH0rRjBPSWe/GpABAvJ0cBPrKFUSkTbdI=;
-        b=yk1hHynsB5xdXf1AF8wE0HiieaHWsthWcJiyL3Hdis4cH66OjMygIoy3SC1IVciZ4c
-         5uM2IPHRqb5/vblr7k9O0764DLKhIKfMT0n2Ww7nAKelliommJ/7Qq+nkzAZIVggP4n8
-         wGBQG7RWFe+V3Uz9bCQqd8wsTKh/TznCtC5dWX+yBMcQdTJe29cenKr1qrNYBctq6G7I
-         YdTbPjDbgyZ6TicwtvunJmWcEX4xPPN4RHZvppwG5EG/C3UnrVIwUIk9yJJprlUbGA2b
-         Wp5yT+vyTyDhQJVMcbp/4KN12u+a1Y6/MTyqh8QkezaRkEk2rLQnQU9rvEF38hVm6AXT
-         woXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756484371; x=1757089171;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SDzPs5+Y62RH0rRjBPSWe/GpABAvJ0cBPrKFUSkTbdI=;
-        b=MB193Iz2DerkxJVx4BRB9FO1gA+SHnOTWr8+RPFw+UdBTFjR0zXklkgN6zJdQXvBnf
-         OkX7EvSToXrd9esJmZbV2rHc7Yck6iusosmjVuc73wDWXBdIIAb38FRQHJ7ioFTvmNsz
-         5zXh87mEyPN9pqVISPL7oIxkGgWi1EPQ13gSoNUyviTlrYesPCL08lA6fIp6BH692d0s
-         gZb6S79nyMGeRSBUsSfNDwLrJmP+ZPr09cvNe5rmMQ1qG6NX+pZhGHAhLkwgAM+tPsBB
-         0imDfFwPD6ID1tGGwR01Z7mjWQE7PBtQ5MTfPmnQlxuPzO++FV2P1Pq0CsAevBGEKsOV
-         zgxA==
-X-Forwarded-Encrypted: i=1; AJvYcCWx2z5JR2Q95HAOBv87Ycelp+jkIENLuTPkBt5O/CnURTuaY3DqofFa3Edb+rtU3OzwEPOR2voxpOGi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxtkk9yaaiI5lwvYNCnN/UhzOCLZeywo/XyAbSm+UopMOe4PJQb
-	QGtiytaMW7SVDtmVgjHsYeEG9qa3/pcnUcwSZWnvH9n79ZGUItiAa2/mUYRhUxvhoSI=
-X-Gm-Gg: ASbGncsZZ23CeL3OLNE5AMtGtmtvYD6KpjJ/3rsxr9lw/2P2Weh3PgbCbZ6juf3GL5r
-	H89Aof/wmfC95V5tWkui/ck6ObwAl+gvpQ8dB0DN7QElQMu6YzlJiQsRifcLJf+1l/5rKdHLW/T
-	e+AyD9gnPzIxu//lv0RsS6xC3YdSHJ+UUlkLyW1GJVBZHCF4TIutqwYH11ObJ9A3MHZMDS2frRt
-	43rE43RJR9eeaoSIRC5zmj+vD5I3ku1q7rfWu3SO5VpYZA6WyFm9+F7oEicvKpUcRxE+gEsOM4V
-	hu5ZLY9+bwz7ApjuNkQvJQWg5BxnXWhDrxyYfGroTLuz0tNjZOKEaD5zqrM59jCq6DEnf8u7QAc
-	ZJea5d9nu1zFlLd5Wiro5N1wErr0/3wBnRE4MUs7bRBvI0BCdIlVDMxbX2BiWw81MHZGTigY4cP
-	KW
-X-Google-Smtp-Source: AGHT+IGBA0Om8aXqgaQfO5bqLiwz99OhoM1dRN5Nb9hQZ+wq5lz/yuN7Lkr8Q2HfRntN3vzDhj65mQ==
-X-Received: by 2002:a05:6512:39d1:b0:55f:4741:a82e with SMTP id 2adb3069b0e04-55f68ceae50mr396339e87.11.1756484371248;
-        Fri, 29 Aug 2025 09:19:31 -0700 (PDT)
-Received: from [192.168.1.100] (88-112-128-43.elisa-laajakaista.fi. [88.112.128.43])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55f678501f4sm731590e87.105.2025.08.29.09.19.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Aug 2025 09:19:30 -0700 (PDT)
-Message-ID: <f27b035a-91f0-4f62-b90f-3370b25e828a@linaro.org>
-Date: Fri, 29 Aug 2025 19:19:29 +0300
+	s=arc-20240116; t=1756484555; c=relaxed/simple;
+	bh=JKCcxAlK8TvFpSk8Bwd4W00kEBYetq9vMdyLZwN3ick=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=o4b7bs/fJrFBnC7yAK9cVSqirsFZziO0W4i0BvTcjiQEbLcOUpMLvd9eCVpgetMwnh/petDx++Coq9xkPpMwwjG52BFF10IDUweeTANgeU8uyhDXU4TOu2DMCdmNIw2lq/f2yuMgUi1tuD2WRZsih/zMi7YwmjSJcfiGBZpnJ9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=HXjX7YEC; arc=none smtp.client-ip=37.205.8.231
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
+DKIM-Signature: a=rsa-sha256; bh=yDgwwhibV5G6rD0wsVW6JGZiOr/aZ4s7RO0qSoDe2CQ=;
+ c=relaxed/relaxed; d=dujemihanovic.xyz;
+ h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:Message-Id:Message-Id:References:Autocrypt:Openpgp;
+ i=@dujemihanovic.xyz; s=default; t=1756484468; v=1; x=1756916468;
+ b=HXjX7YECBV/VZQYLZ4WUzLI5X7f7X41NlS0kc7Isujoh63tPJasWMBaGhlLFrsIokoqibE2q
+ NiqCOLeI7tpIyV/sCX4UWg02Jo5+JSY+zOQzBCqWG2L6uDUwjNtMSbXkz2R26efmt6GabFVUiVi
+ 1vizWN93Jb7m4yso8ZlWDZBPm46PmQru9/E0fPQNZMZqK7iTfMLXclVcy3A36Lpa8Zuk78x/Dq5
+ ygSOzPxtGpiqOINmQ05xJ3OM3ZG67ya9sobSZ9mcpBOzZ2tPqTaMnIQRB/Lxi5G/fek4c1b1HD8
+ hddumAsHcpjVSIZdMd1r/Ix4PZgCKAOKzI8vHwJBEpDYg==
+Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
+ ESMTPS id 8670617b; Fri, 29 Aug 2025 18:21:08 +0200
+From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+Subject: [PATCH v3 0/4] Marvell PXA1908 power domains
+Date: Fri, 29 Aug 2025 18:21:03 +0200
+Message-Id: <20250829-pxa1908-genpd-v3-0-2aacaaaca271@dujemihanovic.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] media: i2c: Add OmniVision OG0VE1B image sensor
- driver
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250829144242.236732-1-vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20250829144242.236732-1-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAG/TsWgC/23O0QqCMBTG8VeRXbfY2dRcV71HdKHbUU+QylZDE
+ 9+9KQQhXf4PnB/fzDw6Qs/OycwcBvLUdzHUIWGmLbsGOdnYTAqZiUIoPowlaFHwBrvBcsg0FLb
+ KZC4Miz+Dw5rGzbveYrfkn72bNj7Aev1K+U4KwAWHPBVaCV2bk7zY1x0fFEf0gcxxnN5sFYP8U
+ STsFRkVrMoUFFobZ/1TlmX5APyqmaT4AAAA
+X-Change-ID: 20250803-pxa1908-genpd-15918db5260c
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2164;
+ i=duje@dujemihanovic.xyz; s=20240706; h=from:subject:message-id;
+ bh=JKCcxAlK8TvFpSk8Bwd4W00kEBYetq9vMdyLZwN3ick=;
+ b=owGbwMvMwCW21nBykGv/WmbG02pJDBkbLxefDhNeZcY4aarJStZZsfvvx2VtyBNoC1p8ZIPpZ
+ Z5UrzmTO0pZGMS4GGTFFFly/zte4/0ssnV79jIDmDmsTCBDGLg4BWAi6QcZGZY68N9/xByordPt
+ cWq1ns/e8+EdvXkvY/wZn0QcnOumsYqR4WXc7YtL/K2eyCTsXPRusVLFB7/Ouv6Mif/Ybzw9+rf
+ 7NDMA
+X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
+ fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
 
-On 8/29/25 17:42, Vladimir Zapolskiy wrote:
-> OmniVision OG0VE1B is a monochrome image sensor, which produces frames
-> in 8/10-bit raw output format and supports 640x480, 400x400, 200x200
-> and 100x100 output image resolution modes.
-> 
-> At the moment the only supported resolution in the device driver is
-> 640x480@120fps (Y8).
-> 
-> The driver version is based on top of media/master, which contains
-> a new devm_v4l2_sensor_clk_get() helper function.
-> 
-> Output of v4l2-compliance tool from v4l-utils-1.20.0:
-> 
-> ----8<----
-> v4l2-compliance SHA: not available, 64 bits, 64-bit time_t
-> 
-> Compliance test for device /dev/v4l-subdev30:
-> 
-> Required ioctls:
-> 
-> Allow for multiple opens:
-> 	test second /dev/v4l-subdev28 open: OK
+Hello,
 
-FWIW I've copied a part of the output from querying another sensor,
-the outputs are one in one equal anyways.
+This series implements support for the power domains found in Marvell's
+PXA1908 SoC. The domains control power for the graphics, video and image
+processors along with the DSI PHY.
 
+Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
+---
+Changes in v3:
+- Move driver back to pmdomain subsystem
+- Instantiate using auxiliary bus
+- Small fixes and refactors
+- Rebase on v6.17-rc3
+- Link to v2: https://lore.kernel.org/r/20250821-pxa1908-genpd-v2-0-eba413edd526@dujemihanovic.xyz
+
+Changes in v2:
+- Move driver to clk subsystem (domains are instantiated by clock
+  driver)
+- Drop power controller schema
+- Drop RFC prefix
+- Rebase on v6.17-rc2
+- Link to v1: https://lore.kernel.org/r/20250806-pxa1908-genpd-v1-0-16409309fc72@dujemihanovic.xyz
+
+---
+Duje Mihanović (4):
+      dt-bindings: clock: marvell,pxa1908: Add syscon compatible to apmu
+      pmdomain: marvell: Add PXA1908 power domains
+      clk: mmp: pxa1908: Instantiate power driver through auxiliary bus
+      arm64: dts: marvell: pxa1908: Add power domains
+
+ .../devicetree/bindings/clock/marvell,pxa1908.yaml |  30 ++-
+ MAINTAINERS                                        |   4 +
+ .../marvell/mmp/pxa1908-samsung-coreprimevelte.dts |   1 +
+ arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi       |   5 +-
+ drivers/clk/Kconfig                                |   1 +
+ drivers/clk/mmp/Kconfig                            |  10 +
+ drivers/clk/mmp/Makefile                           |   5 +-
+ drivers/clk/mmp/clk-pxa1908-apmu.c                 |  20 ++
+ drivers/pmdomain/Kconfig                           |   1 +
+ drivers/pmdomain/Makefile                          |   1 +
+ drivers/pmdomain/marvell/Kconfig                   |  18 ++
+ drivers/pmdomain/marvell/Makefile                  |   3 +
+ .../pmdomain/marvell/pxa1908-power-controller.c    | 268 +++++++++++++++++++++
+ include/dt-bindings/power/marvell,pxa1908-power.h  |  17 ++
+ 14 files changed, 376 insertions(+), 8 deletions(-)
+---
+base-commit: 1b237f190eb3d36f52dffe07a40b5eb210280e00
+change-id: 20250803-pxa1908-genpd-15918db5260c
+
+Best regards,
 -- 
-Best wishes,
-Vladimir
+Duje Mihanović <duje@dujemihanovic.xyz>
+
 
