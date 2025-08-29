@@ -1,526 +1,132 @@
-Return-Path: <devicetree+bounces-210618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD7FB3C287
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 20:36:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE597B3C2E0
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 21:11:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 013D8188A3B2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:37:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C151566C50
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31596337695;
-	Fri, 29 Aug 2025 18:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E47B239E62;
+	Fri, 29 Aug 2025 19:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l+ebCSYq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DFp9jkIt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250B015E5D4;
-	Fri, 29 Aug 2025 18:36:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F286238D54;
+	Fri, 29 Aug 2025 19:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756492607; cv=none; b=MwB3tCRf2I62DsaOxewyuEtRS2KSS14i2pc9e/7TFJqQKzoT0tzFWJJjHUvK/UxeR7w2Nn4sCYXTGZAsVU50ZD6jiFMwvQz65EuzT6JcMwEKo5F5CnlAesGrl+PMarmHHoc+u9Gp9MQd2H/shRT640GMHavFPpfosaHpUTH/8fo=
+	t=1756494714; cv=none; b=CENS/XBhTuJNatc29+YPAiLGF4MRZJGyAwnN1vj1lq75R5FVH0970sM0dwfASnSxpqsuo1FMB8N3dHOfZHpR7IcrNK63wEcGRaeGlRUUxSEpHBRPut7xqg+k1QfmbbVM0M6yZUbf12/a2Ilr2o/510tdzqJ5UAp4o/l4WQgkppk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756492607; c=relaxed/simple;
-	bh=5SEZLB5P5tAtJYSFJdqN01R6qaz2spv5H0JSXrIukVM=;
+	s=arc-20240116; t=1756494714; c=relaxed/simple;
+	bh=Fuj6D0zW+DGqNmXsWTSh98hjxolyVyCn1KRczDru8/c=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XOalo7BEptL6MxTkOFPKRbMjXKldzHKvKv7xmPEF2OwByudCaf0TGcYUMXAU6s3piAYswDUhVppmg2NAlsmbrPDVmuf3xFlvmQbJJkPpxSf4jjWPJ9OLHgOyozsaGXZN2aYPksDJdUx1/uF18h6Pa3nNuV8jtsY6oL+Wa9A6QUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l+ebCSYq; arc=none smtp.client-ip=209.85.218.50
+	 To:Cc:Content-Type; b=Wwf0G0gFo8C+jzxzJSgn+cNw8eWGtVe8PiZ3OPEsvQTFKd2ckYvD5Hf9n6AjncY6PsnkS3FJQEr/jI+FiifL0vqhffhcYuUaAmf510TTBimbJ8p5IPUeabtDbbJzT3IbAAX03zGvOlJZO11Nm7e16mK76w1ozpr3caXwh5WXu0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DFp9jkIt; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afcb7a16441so360460266b.2;
-        Fri, 29 Aug 2025 11:36:44 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afeee20b7c0so305440366b.3;
+        Fri, 29 Aug 2025 12:11:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756492603; x=1757097403; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1756494711; x=1757099511; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=h9H602sjBeOEb7jNXYDroFmxkNYxH9PUbkSHvi5DgQU=;
-        b=l+ebCSYqP7sj4LetXJX/jRtgnooUT11BLdT8OVjsZFkeTcxQ3CvwnGqNctMyIcNiYm
-         g33pLy4om/wWRlnGjOV6WkqgSEkz0EzJXI0Nszu/ZBPX6wkpPIwFW4QiURHtXfM0oX2c
-         O2qsCOHsuzV91Zrozq+p6lP8Wk3nTqqaR+lIl1y0n6a49y9Wz3K4TcFdirdvvdJcbCtG
-         0pYJyMuVVweHFCXVWlRKNHRh3QGKrhSrzq6TAz4WDrBuH1X6r+k8Cq+Dlz6qaYBRRx/r
-         rfGXqP0qz7iDNupa7BP7jveJFoyQv8G/zs1C3ULP78hX8joPEN9zTcRl89JIB10ZCpTx
-         u1Ow==
+        bh=1KrY9Cwk2A6SDLbzKOA/S9ShMFQemtMswFHSYX9H3MQ=;
+        b=DFp9jkItqraztkoG/oH5fLGTCYivNWq7wBJjNJVjCUCVPXGwXGyYo22A2Se9agF9PS
+         ZEFSA1o7L3FOow+POHdEiT8hrRbkEkqrpyaT7yx5tERVMJADnRkOQKpOjbXrZcCOX52Y
+         a8djwXrRo0DHsjnKIrqCoZTjUFdYF4+hbL/ezRUzJ40XqAGuy+2ow5e4GozFS4AsW36B
+         fcJ40Fpww5UXLv/hmcBDdOn0vi7djsstRIOqeTBDx26KwOaFkjy2iq6hpfAcHOabvG35
+         2vxC1HPteSn/UDudorJirTT/ni+eNCAhhayn9TmAFWoxnOIH/5r6OB5R51c8D38it3HN
+         tmLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756492603; x=1757097403;
+        d=1e100.net; s=20230601; t=1756494711; x=1757099511;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=h9H602sjBeOEb7jNXYDroFmxkNYxH9PUbkSHvi5DgQU=;
-        b=RCS5VwhzZd7HbD+Fsu38MZKILTkvht+AG7zjlfqqq25hJPzRvSSmtSMmIm4Gdp8WQW
-         CTS2I4Y4290X3LnuQ100UxuCWyfi3M1+Oz65ekJED9qJVHrO6VVTujlLdLKWCUR0E3XD
-         1chPXcqLQJlioabDoYhX5WBoXYAuVCL3U6hl4KuDKCbFBkkxCMmEw8zQO1W3BaXqZnAz
-         UEF4VBNCbHhB3OaB51p502d0HjLAi1FHysyCqRGnt+UgOBnMgafSkSH6HBYutfIltwhR
-         wJ1JP8hEtzgUhWUzXWPkSOp1u12akIAq3FZu/EB6vPF+C3drzQJ9c1j9IFCxT5jknNyS
-         x7MQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVHfY+mf7+QjEj1txmWPeYbXQmcZINrQg4avE984MbonKWMPzelaxCwyXsk8gZpDkxnTvy4KZqhO4W2@vger.kernel.org, AJvYcCWCjpTq4uIwujOlP3rSj2Zbsuc91Ft+Iaw1Jfclz/wN4mHnIH693iGKtlDqX7fccQvjeFm5j/DV4t8ZVfrm@vger.kernel.org, AJvYcCWIqPl+/Y1eKF5qWAv3UteNWPW6hkHkD9r+Rw4IgA4P3Q82BbWUfbHBcO7lbdjM7KD08rz98+wXNE1E@vger.kernel.org
-X-Gm-Message-State: AOJu0YxajV5eRQznx2FIDfacu2hsZOc7q7Pbw4wAptsbnkRbtAAaGJkN
-	cSCExFobXKTr3m5nALkUOP7YweBrPItrwvn4L7tMxRSRn2VTNe/jRvOAolWVZkyPdaA2U1RVPzE
-	8tiqNM5wqF9KeztmWiQ6068cOuCapfJ4=
-X-Gm-Gg: ASbGncu0Z9AWvrWDKyWAMoMK6gkC+ckJIMbohulATauJ3iNTMbWln3n26skpLuKWD1i
-	Jly7BZ72c+7sZ1dJVT6v3pf0kPKfgRKKc/kog3lkIcXZZ2vavm24wVy1MWmniWSNusUlGNFcXio
-	w7z1LMYoDQOpMC8vTAZWWa9fJjoQCcqBU1vIFzRrh7Oe0OrVWklOK8jKp/AMrjk8MJVXhreOExN
-	RbcLU0cmG3aLZPHQA==
-X-Google-Smtp-Source: AGHT+IEZDUxIUCP3/+5xY+/z+Ba4/VI8zYWQojd+Pgi5Hhf5t8yekcvjzqyswMF+bxZUm19uZ7DLYComDZ+1wxvSInk=
-X-Received: by 2002:a17:907:3ccc:b0:afe:f651:118e with SMTP id
- a640c23a62f3a-afef6511206mr517745866b.49.1756492603178; Fri, 29 Aug 2025
- 11:36:43 -0700 (PDT)
+        bh=1KrY9Cwk2A6SDLbzKOA/S9ShMFQemtMswFHSYX9H3MQ=;
+        b=l8Y6TNrYtx4INKJivoMpldELAno70Ztm/DwzZ9MM9SPA9z+gXMDG45OhNhD22TeZqC
+         lwLdp/FF0QtxNXn2XKz+Y0InAX8FsV9wqqfWt41zI5DK/Wx9HMFAvx52BBo+4P83zv8e
+         KgJak0rh1KP6gJkr/0Gif2WSfDO03UlWelWeMF5Cd6s/60IC26CMzEGt1/vwShdNAt0n
+         52/Bm/YGN1W81lpCYNiBDqXjaXmiQvUxKIwArsgBOI7sMyEZ4MQYBAaWl/nCNNrbOaOR
+         OMOgrtcb/x+FonmPCebPJzszGWD83IgcgVNAg/lwHBSEf512s6x0EvvOqd+0Rb0SnfDz
+         E1UA==
+X-Forwarded-Encrypted: i=1; AJvYcCUYi/PecOElsxK0hLP7CsWY3kq9XJO6lxcFeLTBZvFZ5IRwSFWJQGvGeVOCURvnbSu8X0Vk6CZBpW5FqGs/@vger.kernel.org, AJvYcCWx9vIHaSJfbvzsIvPAleobJOU8LB3UoDcRNN9WGxO5ufmqtVm24x1qa4JtY3XU6WDTglxRO7d7Gqti@vger.kernel.org, AJvYcCXQuFppz0Heur6cTZ/xPjl35oNc4KDfJ0nCa1QzEoFm2zotf8Bk64dN+4B+sx5s9VqxOhqsCewdfq1W@vger.kernel.org
+X-Gm-Message-State: AOJu0Yys6SCoTPGz6Ncw/AOLAFeIyVsxSdrs6DvDG4HWxe2ddX+9+2MU
+	EJAhp89sMhGwQvhhKXAaFMau6kXP+eZKf4olrai3tiic0qAFyXWGGLNdkRJ6A8AOlO6ExefgSNw
+	4smixCj37UQgYWCUG+3ajz0y2ggDU/VE=
+X-Gm-Gg: ASbGncsLNcMtOcHPfDNId825v6lCCy/VN/CZSCBKHOMda2CNWGZnkjC/b4PDD5A0OTQ
+	SBvy//XjspBInCjxb7GmVm8kvJiFofhGpe/MiDerzNnQQBNZOfEX/B/fZCE/iR9MMxDETSmoe3l
+	rx/k5YYira9D7oCfc1mugYBqL4hWVlapORuiax4TvwPR4RZRvc8u2u3qfEf1EP22zAyIMRINyhw
+	/ruepLYWkZ+Vqe8qIA0tu3vMQZD
+X-Google-Smtp-Source: AGHT+IHoLfOYIGXesMOJz7PlMIWE8EucCQX6fHarlka2VTVEP4xLnkqmHESieocix4CFJxHjmjzYogGgzh9h96yewgM=
+X-Received: by 2002:a17:907:1c92:b0:afc:b617:de96 with SMTP id
+ a640c23a62f3a-afe2963b638mr2378979366b.49.1756494710438; Fri, 29 Aug 2025
+ 12:11:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250829143447.18893-1-victor.duicu@microchip.com> <20250829143447.18893-3-victor.duicu@microchip.com>
-In-Reply-To: <20250829143447.18893-3-victor.duicu@microchip.com>
+References: <20250828-iio-adc-ad7124-proper-clock-support-v3-0-0b317b4605e5@baylibre.com>
+ <20250828-iio-adc-ad7124-proper-clock-support-v3-3-0b317b4605e5@baylibre.com>
+ <CAHp75VdtQ8vKULomgqPxwX=WZWUde7PC129BEznYqefd-U4DEQ@mail.gmail.com> <a20356ca-05ca-4c99-819b-4b278e799f2a@baylibre.com>
+In-Reply-To: <a20356ca-05ca-4c99-819b-4b278e799f2a@baylibre.com>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 29 Aug 2025 21:36:05 +0300
-X-Gm-Features: Ac12FXx97Wy5aAQBQOH5ryhw9e9JOGQXI-jB-j4EUwlJIbUC9iIQoid7ozNC1vs
-Message-ID: <CAHp75Vct9BMqFcCjpjgkKr+vNOi5uFsi0FST-Hz5EzqA8UJueQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] iio: temperature: add support for MCP998X
-To: victor.duicu@microchip.com
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	marius.cristea@microchip.com, linux-iio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Date: Fri, 29 Aug 2025 22:11:12 +0300
+X-Gm-Features: Ac12FXxOhkvK29FRssLfGKIp7tr3Tyfrj4DQU3WAlTOm9wwu2MUZHEFn0xlevUM
+Message-ID: <CAHp75Vf8fAFin1tJ-yjr22RPuDgBEBnj6JO3GkjDcZsmYoOfYA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] iio: adc: ad7124: add external clock support
+To: David Lechner <dlechner@baylibre.com>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 29, 2025 at 5:35=E2=80=AFPM <victor.duicu@microchip.com> wrote:
+On Fri, Aug 29, 2025 at 8:19=E2=80=AFPM David Lechner <dlechner@baylibre.co=
+m> wrote:
+> On 8/29/25 10:53 AM, Andy Shevchenko wrote:
+> > On Fri, Aug 29, 2025 at 12:55=E2=80=AFAM David Lechner <dlechner@baylib=
+re.com> wrote:
+
+...
+
+> >> +                       if (clk_hz > MEGA) {
+> >
+> > I read your answer, but maybe I missed something?  Can we use (1 *
+> > HZ_PER_MHZ) here?
 >
-> This is the driver for Microchip MCP998X/33 and MCP998XD/33D
-> Multichannel Automotive Temperature Monitor Family.
-
-...
-
-> +MICROCHIP MCP9982 TEMPERATURE DRIVER
-> +M:     Victor Duicu <victor.duicu@microchip.com>
-> +L:     linux-iio@vger.kernel.org
-> +S:     Supported
-
-> +F:     Documentation/devicetree/bindings/iio/temperature/microchip,mcp99=
-82.yaml
-
-This file is orphaned in accordance with checkpatch, that's why we
-usually add MAINTAINERS entry with the first file added to the tree,
-i.e. DT bindings in this case.
-
-> +F:     drivers/iio/temperature/mcp9982.c
-
-> +config MCP9982
-> +       tristate "Microchip Technology MCP9982 driver"
-> +       depends on I2C
-> +       help
-> +         Say yes here to build support for Microchip Technology's MCP998=
-X/33
-> +         and MCP998XD/33D Multichannel Automotive Temperature Monitor Fa=
-mily.
-> +
-> +         This driver can also be built as a module. If so, the module
-> +         will be called mcp9982.
-
-...
-
-> +#include <linux/array_size.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/delay.h>
-> +#include <linux/device/devres.h>
-> +#include <linux/dev_printk.h>
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/math64.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +#include <linux/string.h>
-> +#include <linux/units.h>
-
-...
-
-> +#define MCP9982_INTERNAL_HIGH_LIMIT_ADDR       0x0B
-> +#define MCP9982_INTERNAL_LOW_LIMIT_ADDR                0x0C
-
-For this and other similar registers, can't we use __be16 and read
-properly these data?
-
-...
-
-> +#define MCP9982_CHAN(index, si, __address) ({                           =
-               \
-> +       struct iio_chan_spec __chan =3D {                                =
-                 \
-> +               .type =3D IIO_TEMP,                                      =
-                 \
-> +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),          =
-                 \
-> +               .info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INFO_=
-SAMP_FREQ) |     \
-> +               BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),        =
-               \
-> +               .info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_SAMP_FREQ)=
- |               \
-> +               BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY) |       =
-               \
-> +               BIT(IIO_CHAN_INFO_HYSTERESIS) |                          =
-               \
-> +               BIT(IIO_CHAN_INFO_OFFSET) |                              =
-               \
-> +               BIT(IIO_CHAN_INFO_SCALE),                                =
-               \
-> +               .channel =3D index,                                      =
-                 \
-> +               .address =3D __address,                                  =
-                 \
-> +               .scan_index =3D si,                                      =
-                 \
-> +               .scan_type =3D {                                         =
-                 \
-> +                       .sign =3D 'u',                                   =
-                 \
-> +                       .realbits =3D 8,                                 =
-                 \
-> +                       .storagebits =3D 8,                              =
-                 \
-> +               },                                                       =
-               \
-> +               .indexed =3D 1,                                          =
-                 \
-> +       };                                                               =
-               \
-> +       __chan;                                                          =
-               \
-> +})
-
-Instead of a GCC expression, please use compound literal. It will make
-it shorter and neater.
-
-...
-
-> +struct mcp9982_features {
-> +       const char      *name;
-> +       u8              phys_channels;
-> +       bool            hw_thermal_shutdown;
-> +       bool            allow_apdd;
-> +};
-> +
-> +static const struct mcp9982_features mcp9933_chip_config =3D {
-> +       .name =3D "mcp9933",
-> +       .phys_channels =3D 3,
-
-> +       .hw_thermal_shutdown =3D 0,
-> +       .allow_apdd =3D 1,
-
-AFAICS they are booleans, please avoid unneeded type conversions.
-Same for all other assignments of these fields.
-
-> +};
-
-...
-
-> +/* (Sampling_Frequency(Hz) * 1000000) / (Window_Size * 2) */
-> +static unsigned int mcp9982_calc_all_3db_values(void)
-> +{
-> +       u32 denominator, remainder;
-> +       unsigned int i, j;
-> +       u64 numerator;
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(mcp9982_window_size); i++) {
-> +               for (j =3D 0; j <  ARRAY_SIZE(mcp9982_sampl_fr); j++) {
-
-> +                       numerator =3D MICRO * mcp9982_sampl_fr[j].integer=
-;
-
-The comment above doesn't really explain this MICRO part. Please,
-elaborate more on it.
-
-> +                       denominator =3D 2 * mcp9982_window_size[i] *
-> +                                     mcp9982_sampl_fr[j].fract;
-> +                       remainder =3D do_div(numerator, denominator);
-> +                       remainder =3D do_div(numerator, MICRO);
-> +                       mcp9982_3db_values_map_tbl[j][i][0] =3D numerator=
-;
-> +                       mcp9982_3db_values_map_tbl[j][i][1] =3D remainder=
-;
-> +               }
-> +       }
-> +       return 0;
-> +}
-
-...
-
-> +struct mcp9982_priv {
-> +       struct regmap *regmap;
-> +       const struct mcp9982_features *chip;
-> +       /*
-> +        * Synchronize access to private members, and ensure atomicity of
-> +        * consecutive regmap operations.
-> +        */
-
-This comment doesn't make clear where the private members are.
-
-> +       struct mutex lock;
-> +       struct iio_chan_spec *iio_chan;
-> +       const char *labels[MCP9982_MAX_NUM_CHANNELS];
-> +       unsigned int ideality_value[4];
-> +       unsigned int sampl_idx;
-> +       unsigned long  time_limit;
-> +       bool recd34_enable;
-> +       bool recd12_enable;
-> +       bool apdd_enable;
-> +       bool run_state;
-> +       bool wait_before_read;
-
-Taking into account the above and thinking of what those members, the
-booleans might be converted to bit-flags to occupy less space (makes
-sense only if 3+ booleans can be combined.
-
-> +       u8 num_channels;
-> +};
-> +
-> +static int mcp9982_read_avail(struct iio_dev *indio_dev,
-> +                             struct iio_chan_spec const *chan, const int=
- **vals,
-> +                             int *type, int *length, long mask)
-> +{
-> +       struct mcp9982_priv *priv =3D iio_priv(indio_dev);
-> +       unsigned int idx =3D 0;
-> +       unsigned int sub =3D 0;
-
-Instead of these assignments, make them an 'else' branch. This will be
-compact in one place and make code more robust against some subtle
-changes.
-
-> +       if (priv->chip->hw_thermal_shutdown) {
-> +               idx =3D 4;
-> +               sub =3D 8;
-> +       }
-> +       switch (mask) {
-> +       case IIO_CHAN_INFO_SAMP_FREQ:
-> +               *type =3D IIO_VAL_INT_PLUS_MICRO;
-> +               *vals =3D mcp9982_conv_rate[idx];
-> +               *length =3D ARRAY_SIZE(mcp9982_conv_rate) * 2 - sub;
-> +               return IIO_AVAIL_LIST;
-> +       case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-> +               *type =3D IIO_VAL_INT_PLUS_MICRO;
-> +               *vals =3D mcp9982_3db_values_map_tbl[priv->sampl_idx][0];
-> +               *length =3D ARRAY_SIZE(mcp9982_3db_values_map_tbl[priv->s=
-ampl_idx]) * 2;
-> +               return IIO_AVAIL_LIST;
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +}
-
-...
-
-> +       if (!priv->run_state) {
-
-Make it positive conditional, it's slightly easier to read.
-
-> +               ret =3D regmap_write(priv->regmap, MCP9982_ONE_SHOT_ADDR,=
- 1);
-> +               if (ret)
-> +                       return ret;
-> +               /*
-> +                * This delay waits for system start-up, as specified by
-> +                * time to first conversion from standby
-
-Missing period.
-
-> +                */
-> +               mdelay(125);
-
-The comment poorly explains why we need so long _atomic_ (!) delay.
-This needs to be _very well_ justified.
-
-> +               ret =3D regmap_read_poll_timeout(priv->regmap, MCP9982_ST=
-ATUS_ADDR,
-> +                                              reg_status,
-> +                                              !(reg_status & MCP9982_STA=
-TUS_BUSY),
-> +                                              mcp9982_delay_ms[priv->sam=
-pl_idx] * 1000,
-
-USEC_PER_MSEC
-
-> +                                              1000 * mcp9982_delay_ms[pr=
-iv->sampl_idx] * 1000);
-
-USEC_PER_MSEC and MSEC_PER_SEC
-
-> +               if (ret)
-> +                       return ret;
-> +       } else {
-> +               /*
-> +                * When working in Run mode, after modifying a parameter =
-(like sampling
-> +                * frequency) we have to wait a delay before reading the =
-new values.
-> +                * We can't determine when the conversion is done based o=
-n BUSY bit.
-
-the BUSY
-
-> +                */
-> +               if (priv->wait_before_read) {
-> +                       if (!time_after(jiffies, priv->time_limit))
-> +                               mdelay(jiffies_to_msecs(priv->time_limit =
-- jiffies));
-
-Ditto.
-
-> +                       priv->wait_before_read =3D false;
-> +               }
-> +       }
-
-...
-
-> +static int mcp9982_read_label(struct iio_dev *indio_dev,
-> +                             struct iio_chan_spec const *chan, char *lab=
-el)
-> +{
-> +       struct mcp9982_priv *priv =3D iio_priv(indio_dev);
-> +
-> +       if (chan->channel < 0 || chan->channel > 4)
-
-Is the channel signed?
-
-> +               return -EINVAL;
-> +
-> +       return sysfs_emit(label, "%s\n", priv->labels[chan->channel]);
-> +}
-
-...
-
-> +               /*
-> +                * in Run mode, when changing the frequency, wait a delay=
- based
-> +                * on the previous value to ensure the new value becomes =
-active
-> +                */
-
-Respect English grammar and punctuation.
-
-...
-
-> +       case IIO_CHAN_INFO_HYSTERESIS:
-> +               if (val < 0 || val > 255)
-
-Do you want to check if it's U8_MAX? Or are these HW related values?
-
-> +                       return -EINVAL;
-> +
-> +               ret =3D regmap_write(priv->regmap, MCP9982_HYS_ADDR, val)=
-;
-> +               if (ret)
-> +                       return ret;
-> +               break;
-
-...
-
-> +       /*
-> +        * Chips with "D" work in Run state and those without work
-> +        * in Standby state
-> +        */
-
-Missing period. Just fix all multi-line comments to be the same style,
-i.e. with proper English grammar and punctuation.
-
-> +       if (priv->chip->hw_thermal_shutdown)
-> +               priv->run_state =3D 1;
-> +       else
-> +               priv->run_state =3D 0;
-
-  ->hw_thermal_shutdown =3D ->run_state;
-
-No condition needed.
-
-...
-
-> +       /* Set auto-detection beta compensation for channels 1 and 2 */
-
-Why only these channels? Comment needs elaboration.
-
-> +       for (i =3D 0; i < 2; i++) {
-> +               ret =3D regmap_write(priv->regmap, MCP9982_EXT_BETA_CFG_A=
-DDR(i),
-> +                                  MCP9982_BETA_AUTODETECT);
-> +               if (ret)
-> +                       return ret;
-> +       }
-
-...
-
-> +static int mcp9982_parse_of_config(struct iio_dev *indio_dev, struct dev=
-ice *dev,
-
-Replace _of part by _fw as this is agnostic.
-
-> +                                  int device_nr_channels)
-
-...
-
-> +       device_for_each_child_node_scoped(dev, child) {
-> +               fwnode_property_read_u32(child, "reg", &reg_nr);
-
-I don't see where you assign the default value for reg_nr. And better
-to check the return value here as it seems to be mandatory property.
-
-> +               if (!reg_nr || reg_nr >=3D device_nr_channels)
-> +                       return dev_err_probe(dev, -EINVAL,
-> +                                    "The index of the channels does not =
-match the chip\n");
-> +
-> +               priv->ideality_value[reg_nr - 1] =3D 18;
-> +               if (fwnode_property_present(child, "microchip,ideality-fa=
-ctor")) {
-> +                       fwnode_property_read_u32(child, "microchip,ideali=
-ty-factor",
-> +                                                &priv->ideality_value[re=
-g_nr - 1]);
-> +                       if (priv->ideality_value[reg_nr - 1] > 63)
-> +                               return dev_err_probe(dev, -EOVERFLOW,
-> +                                    "The ideality value is higher than m=
-aximum\n");
-> +               }
-> +
-> +               fwnode_property_read_string(child, "label",
-> +                                           &priv->labels[reg_nr]);
-> +
-> +               priv->iio_chan[iio_idx++] =3D MCP9982_CHAN(reg_nr, reg_nr=
-,
-> +                                                        MCP9982_INT_VALU=
-E_ADDR(reg_nr));
-> +       }
-
-...
-
-> +       chip =3D i2c_get_match_data(client);
-> +       if (!chip)
-> +               return -EINVAL;
-> +       priv->chip =3D chip;
-
-You can use priv->chip directly, no local variable is needed, But OTOH
-this makes code shorter.
-
-...
-
-> +       ret =3D mcp9982_parse_of_config(indio_dev, &client->dev, chip->ph=
-ys_channels);
-
-You have dev, use it.
-
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "Parameter parsing error\n=
-");
-
-
---
+> I suppose we can. But it doesn't add any additional information.
+> We already know we are dealing with Hz because of clk_hz and 1
+> is implicit. So it is just a matter of style preference. Since I
+> read a lot of code, I tend to prefer the minimal approach - it is
+> less to read and still has the same meaning.
+
+Physicist in me prefers pedantism in comparison of the units. We don't
+compare kilometers with kilograms (maybe not the best example, though,
+if you understand what I mean :-).
+
+> >> +                               clk_sel =3D AD7124_ADC_CONTROL_CLK_SEL=
+_EXT_DIV4;
+> >> +                               st->clk_hz =3D clk_hz / 4;
+> >> +                       } else {
+> >> +                               clk_sel =3D AD7124_ADC_CONTROL_CLK_SEL=
+_EXT;
+> >> +                               st->clk_hz =3D clk_hz;
+> >> +                       }
+
+
+--=20
 With Best Regards,
 Andy Shevchenko
 
