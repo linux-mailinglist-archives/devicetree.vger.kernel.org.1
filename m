@@ -1,383 +1,311 @@
-Return-Path: <devicetree+bounces-210368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA2BB3B628
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:42:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 667C2B3B637
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:47:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 075B1983556
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:42:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7D85A02E09
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326542882A7;
-	Fri, 29 Aug 2025 08:42:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E0C72BEC27;
+	Fri, 29 Aug 2025 08:47:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chipsnmedia.com header.i=@chipsnmedia.com header.b="T4AvYNgf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FBCC22FE11;
-	Fri, 29 Aug 2025 08:42:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756456973; cv=none; b=MIyeFrCO4TdYEGbONJHiNSq8mOK4PBUaMRlzEcZycMDEwCs4eC1FjrGOBqFIZw8Iacw08rggXBdzfXgBRJe1BgDvug8KE+pL4fwh0G5bixctlaTYKTe6F2LOfMJcdVrTjFdoxSDkWNfUoPE32KSu2SHoLPk4NJ3q1wEvGkyBZJE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756456973; c=relaxed/simple;
-	bh=mfrRanxbSr8aQIEQmSfcmyOyh0JQwiZqJUwQuFnkT8E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GZyQyS3uCMSagiCMuohznZtH7pBhCAsVIkMZEYNxmi6dh0yrqe0G9ZJyHKkH7KdDhbFUJb6eMqnPP+awhfpJ8A6PgqFyNaRgPZS0khab8AY+YowIfgzwBFC4IcySJDEAFo+vdLWpfFwMZ6PIpY1xEc61zRfdW/ZvKnSHqaxhOCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1E31E1BCB;
-	Fri, 29 Aug 2025 01:42:42 -0700 (PDT)
-Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 378363F694;
-	Fri, 29 Aug 2025 01:42:45 -0700 (PDT)
-Message-ID: <c183c51a-b094-44d7-8865-d2495478ff7b@arm.com>
-Date: Fri, 29 Aug 2025 09:42:43 +0100
+Received: from PUWP216CU001.outbound.protection.outlook.com (mail-koreasouthazon11020136.outbound.protection.outlook.com [52.101.156.136])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B7E5296BB3;
+	Fri, 29 Aug 2025 08:47:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.156.136
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756457250; cv=fail; b=cwtFRqV0fouWO3Hq7k83qKMgT5VenZefiCOVTfgLu6i5dPc9hYCJH9rxU8szaDfeLNflC48yU2a5Oqlu+oBeuhRNLRRaeDLEfdRftAI+puHvAFP3MQtrqeGplIRGmwtC/TAirxCAPUYte1y6W+2aId7LFIPRbd6i+rt5IdYzBWw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756457250; c=relaxed/simple;
+	bh=ABrnrTovhAVFd8RKSZAeDM6O2uQH4vTzCsKS/eQi4+8=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=ToNicjIU85iNfjL87BVzJsFaBlQ3Dsbw9mtVQ3V2o0nA6ydF9tCe4LrOAsGW7Po+GRrxpFtno3BmdnRZEUpDN52UGk1EiK9mKC7/v/0YstDmJdY6EJwt5q5Bcy19IsQtSKXo0egTN9/KS+p3xrdt71DbVnEfddMVW7b9SiRjTe0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chipsnmedia.com; spf=fail smtp.mailfrom=chipsnmedia.com; dkim=pass (1024-bit key) header.d=chipsnmedia.com header.i=@chipsnmedia.com header.b=T4AvYNgf; arc=fail smtp.client-ip=52.101.156.136
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chipsnmedia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=chipsnmedia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SbwwSSC7Dv4T+3PuSH/1aJn3hpUBVZTpj1+wxgTmNWZkR7bANWUaSu6viN7JKOAStei5qR1xc3msJr2jPqJSvrcYvGZ/cO8dJNDsA34EpVGO10fMGCkfRIcgk6ICzOFbYFedbEHwQdzHy9d9Hs3jVnLoD3iI+vZD5i+Pt3GOVAuw/AZOxQ4RjsHKc1UdbmytmjsBfLkzL3fZkdyP845KesUhjI935Xn08JfDqtzNBhx02LeA+uUcb7iiK6AzLV74M9XLZY1KV0lmhCsmRRPFf9Fq4+peLFLhmwC/h2++QS0wquk1VT6frVMVop2LHa4yeeAdwJKZTMlUgShiNNClKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fFr98gTw0neOW+GYDEc9t68Jl9kUFvOi4fqzO55OHwU=;
+ b=hs+C5UYTiwYBJHFd2ogNzXyB7vVqTGYbgIHYQapWKUXoyw1sASqdArZwGpGYtzZqP1GIFSwFvBmOENlcv/a+o1JEJYKH9CDdvG6sUqsh5Tzc5PmHSv9nGNsDEshtw6kJc0/2V9HzoIZqFyfgbbO/It2lkzYP+tkm5dsztgkMvG6pAmN8lgyME4a/VVTFQp7Ql3M8sGh8IbHI/c/D1TbnNVULMeLIU6jc4FS5UAB2a1xdl/hU+pCkPIdE8ijwfoM/NcA8Ufd/OaC2C1EoUtigCAl9w6OiSF8255nLoVBIUNtTvn2ARtmqqNwBvi/b3QwLkpbZWcDNEF2ybT1llqbFkg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=chipsnmedia.com; dmarc=pass action=none
+ header.from=chipsnmedia.com; dkim=pass header.d=chipsnmedia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chipsnmedia.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fFr98gTw0neOW+GYDEc9t68Jl9kUFvOi4fqzO55OHwU=;
+ b=T4AvYNgfuSub0IvUD0FSzGjZ6jNhFhBsxR6Mkda8AeVN+LYk+DyWEAc2sbHVCQYbVpGShT2LrWGaXXNa8f/GHqF5hoybM5v7uVSRyZAiHaLZAVSt5Qhm01R9XiiNEwHuZQrFyRyiJcLB6xtMlbBJ5fO6ZiW8EN56CPBxGHQAW7g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=chipsnmedia.com;
+Received: from SL2P216MB1246.KORP216.PROD.OUTLOOK.COM (2603:1096:101:a::9) by
+ SL2P216MB1418.KORP216.PROD.OUTLOOK.COM (2603:1096:101:33::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9073.13; Fri, 29 Aug 2025 08:47:22 +0000
+Received: from SL2P216MB1246.KORP216.PROD.OUTLOOK.COM
+ ([fe80::9e3d:ee20:8cc7:3c07]) by SL2P216MB1246.KORP216.PROD.OUTLOOK.COM
+ ([fe80::9e3d:ee20:8cc7:3c07%5]) with mapi id 15.20.9052.011; Fri, 29 Aug 2025
+ 08:47:22 +0000
+From: Nas Chung <nas.chung@chipsnmedia.com>
+To: mchehab@kernel.org,
+	hverkuil@xs4all.nl,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-imx@nxp.com,
+	linux-arm-kernel@lists.infradead.org,
+	jackson.lee@chipsnmedia.com,
+	lafley.kim@chipsnmedia.com,
+	Nas Chung <nas.chung@chipsnmedia.com>
+Subject: [PATCH v3 0/9] Add support for Wave6 video codec driver
+Date: Fri, 29 Aug 2025 17:46:40 +0900
+Message-Id: <20250829084649.359-1-nas.chung@chipsnmedia.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SEWP216CA0122.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:101:2b9::6) To SL2P216MB1246.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:101:a::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/33] arm_mpam: Add MPAM MSC register layout definitions
-To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: shameerali.kolothum.thodi@huawei.com,
- D Scott Phillips OS <scott@os.amperecomputing.com>,
- carl@os.amperecomputing.com, lcherian@marvell.com,
- bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
- baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
- Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
- dfustini@baylibre.com, amitsinght@marvell.com,
- David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
- Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
- Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
- baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
- Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-14-james.morse@arm.com>
-From: Ben Horgan <ben.horgan@arm.com>
-Content-Language: en-US
-In-Reply-To: <20250822153048.2287-14-james.morse@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SL2P216MB1246:EE_|SL2P216MB1418:EE_
+X-MS-Office365-Filtering-Correlation-Id: c09b527f-d906-4f6b-d402-08dde6d8ab52
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?pFnrslCRC4swl5pBqrX+dTj6f3ltvBfmZ6zlMqKX2cU3jbOkXvK+Jql2jtuU?=
+ =?us-ascii?Q?jLcOcy19TI6aaj0JdzElEz1hqKXDe4ixbFpiSA2iGxWWR5134sbDwCpWcXtl?=
+ =?us-ascii?Q?LmZG3uNdeAgfIcZMIRjNRdj/fk70U8Ac1s2p4tK/L05LxOee5wGVbgq2huB9?=
+ =?us-ascii?Q?4kqY+Si4CYCrAPqVyIdljIQX8qkNb6lAFZF45Ger8w6+iBAarPIuHgfW3aB7?=
+ =?us-ascii?Q?GMhlRmItNssljt9Q36JQTM9vVQZ8/5YY1OVQ8xXTipMG0+qr6NtkGaViAqTg?=
+ =?us-ascii?Q?MfX2J2nLIxTWiyd92sHEtcBoh81diuFVA1Q3d7Ri/Ih0Xwklrxpy4MNu7Acl?=
+ =?us-ascii?Q?gbM3rqwyf6nZDABcToSwJ+td9fNxMb402cXjjYp+WQsBu8piIjgPF26N/2Lc?=
+ =?us-ascii?Q?qk4f5laDi/C9hwI0psuJtd5/LSPGTouZ39dlOo5tdTGWKjoxpmkWrWWtEw0/?=
+ =?us-ascii?Q?1qHM5jpqzPluN1dYoDeJOOSe7qTdYj5gXxMjAap2QgonofW98RewNfSWe+WZ?=
+ =?us-ascii?Q?CPVgnRGDVXJ7oS874FYaXipVDxJhis8x08OL9AOgDi0VRWalqR7lr0knYRul?=
+ =?us-ascii?Q?sb5a8Yf0O91a+qb9/bcl9Tno3PUbUoP+QmMHkIJIO4i+n1Nk8/ryBygn/suJ?=
+ =?us-ascii?Q?r62YW6ZGgt2pMOuoOyWvC3RrWp7jaRpHiGFk/eVSgzP9GCQ/fTlehDWRDqrQ?=
+ =?us-ascii?Q?OSeYuEzitBzfnzsHOdq7tEDPVOVRWQXbOzDy3GtPai9k4Ulo4RXJ+DpLPU/a?=
+ =?us-ascii?Q?/CuPjWQs+vLTB1bW1Fy9WtzeoUQNDYwlk+VmMys5KOZ7WY9avwKEPJZJvcKk?=
+ =?us-ascii?Q?y8ugcHyFj19q9/nbZa6IhmzaJRn5Vbvub7J9kNtsInjYmcxhBQc7NrWMMI+G?=
+ =?us-ascii?Q?r92qrtcEyKWzzCOOOIcCthY3A3BrLYrUYVKCSveclyVtNTZ+gskldtCIlag7?=
+ =?us-ascii?Q?3M/jmxa2LdG9cMbfUIEPv4o6O/NPg/tMK4KSNdEAHShHLGK12G/5Hh8JxDAn?=
+ =?us-ascii?Q?4niSKtXj6cQgAdq6A29XemtB6ZV1G25Wj91mrOSBMIGQgu+m4RiOFTMcL+6J?=
+ =?us-ascii?Q?z0Edu6fPye3qpXzlL3SQr++Wv7rpWXN3CQTW4OndTZ7EOrhMd7QARCSoEKDi?=
+ =?us-ascii?Q?wftjMnskvp7gYhFwj1RzgH4WEbJ3Lf8OKj0a4if1qFMHjQ3jI1fYtaAlJrSA?=
+ =?us-ascii?Q?pPaXBU6dJrjD52lKBb0R9k6GAnY3ALjqF0m2SfL+qItTsJyhnaZGQm0p8TX8?=
+ =?us-ascii?Q?/jm/lGCvhiDpODb4gfVAVFKSaiOflyW4NcMcqm6Xc9sx3f5R1VtFZFWwOXcB?=
+ =?us-ascii?Q?aeU7jHA1WLlX0TnKzgX4vLajnTdE7r9ClubUGPeYhUfhLwH0O6ciie2npowv?=
+ =?us-ascii?Q?rcXX0tmxjPNm/M6Ltk96MqQUY1Pt/WwNbA2tmzLdJvhcjJNnvfu9TNhj1Xq+?=
+ =?us-ascii?Q?4iUaehCGD7saJ09VjX3/4UPEH4TrtD4EgIiBH6WjZ40fdLv7r9ZApQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SL2P216MB1246.KORP216.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?UMiVhfIAz7hdp2ou4TIha1PTFkeCl+IbBQDgk9SF7wBq4Mdy0EddN67dMZ2Z?=
+ =?us-ascii?Q?a+Rs6zrvGzw9Nqp7Cqh4MQIy0t/OgvUbxKVefOrW3EnwNz37uiPMpZJvKeEs?=
+ =?us-ascii?Q?TnoZ9jG0nSfZ2DlqgKwnp/J1gSSXPQw7LXKvmRX5yridF9BCsw9DUPL+6RXg?=
+ =?us-ascii?Q?3fX7sXSqoDxtta/hTuT8yTLcICjzDuh238JlzesZ2VWW3vATnCB5l5SDRaSJ?=
+ =?us-ascii?Q?uY7MfEdo1nwhHC5wWlTKQ9GNwAbgaTzlVboDPKbd9pzf+42JMjkxH6NkAlQ4?=
+ =?us-ascii?Q?dVD/4AGsoci6fkhTM9U0p6iczE/J8bMKd7vt2C8HOa34+lrm4SSi5KokIb0+?=
+ =?us-ascii?Q?rMysT5xhkYro29ho7K2OcoIqvru4kN1bpXRWideIx0MwbB/ZEMtVnO4K7meL?=
+ =?us-ascii?Q?vNMqElY9rw6aQjUVoKaJhoMUiTOGSJY1BUPi/1Dh5EP2SNRGa11g5adOT7yx?=
+ =?us-ascii?Q?WAMPwKZwG4S572iOquQI08suSkUaolM4LCUJcbfWsqWebBtvT0kTj23IdTPF?=
+ =?us-ascii?Q?86oDvDIHZp7g+cq76P9xIEe+mVT/mlqv8QdqSu2sz3Gm/XAWOyVvO6mlJQPD?=
+ =?us-ascii?Q?PGEHD4pLC88B1KZI1FOQ3uajKUNPHNcXQhriEWZvAigTYec+xAA+C/s3qiR5?=
+ =?us-ascii?Q?D+79VvtS084yKk/IjEAFujzNoGnZG8Gvf2pZ2zhOek3N11awqVJ1rSN9w80P?=
+ =?us-ascii?Q?bfp5NSyioUDoOmqqcUcvdGuzgVUg4IOmaz+ctytqkarZVdOQuDo+feSkRscf?=
+ =?us-ascii?Q?GEgnpaW1o41dp4CoygUTTj5X+9AHuLoA09K/CQNll2yXvUmiamK+pwaAZNJ7?=
+ =?us-ascii?Q?ERvv8NxHFSI5mnAHHAGeJEev7GPP5pE6Wo8A6PaAe8CcxJXwt8IOpnKslh8x?=
+ =?us-ascii?Q?GSqjDdKATd/1/pxsn2d0H54XmBrZ0BmmxoKsbnj7fZ4G4TWhJ5DE63wPLpHR?=
+ =?us-ascii?Q?Fx4Bbmp+7YePHoRHt8y1msxC12AcTDyxkmRxqwTtZsz9/nn+3K8OwXF8mH7q?=
+ =?us-ascii?Q?Ti3IPm1teEZUBsnmZWHFWGz7iDCSL9gFeuj0Z9dxN4u1/T3GxWSReQRCd0wG?=
+ =?us-ascii?Q?cx+6T01FtnGKwsJBZc+HfWiz73z6JWkK+E63gF/4v0i+5S7gRScDLOs6+Kcq?=
+ =?us-ascii?Q?U67lymdsql5fTiFUhpVAyCXz+ZanOQuqL37xAdpiBSWk8+NpwENUPlY/QfQy?=
+ =?us-ascii?Q?7lyfZRJiIiXmbq9yQiscOres62n7JgaSUkxVLVwpAhZTAV9BQbaT6G2wC2Fb?=
+ =?us-ascii?Q?IC9GgdAUoWXHUj5oI/J+wGmtNu4c6cP6asR5+MGDUle16+9QuzdkHRNF2LsG?=
+ =?us-ascii?Q?44gOU5Tqu5q+f8nx9DOU5FGxKIEAu/vNWN5ApKaTm3LicnMMJPvfKZGNfbLo?=
+ =?us-ascii?Q?7KShGzLgRIJ31rOSmmr3tXiOdp1hFBYAwpUt1T5QHHoKQv5h0LfRHl4oGjdg?=
+ =?us-ascii?Q?RvavcZ3SzsgMHlVhD7EmefdsP5vgXxQbVCSzZQrSZAbKtkrMaEQb7X2FumAO?=
+ =?us-ascii?Q?MLAjpCGIQbEefJcUZZI7l2Qf/6kRt4u1UH/eCQVKRhWIYw05Vgm4aVBJjvZz?=
+ =?us-ascii?Q?BYTcmpwrMymIe6M8SGOK3ysTb/CLuzO1aT4KIfdYP1dk68zBDF4fiHVBebz6?=
+ =?us-ascii?Q?7g=3D=3D?=
+X-OriginatorOrg: chipsnmedia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c09b527f-d906-4f6b-d402-08dde6d8ab52
+X-MS-Exchange-CrossTenant-AuthSource: SL2P216MB1246.KORP216.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2025 08:47:22.0771
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4d70c8e9-142b-4389-b7f2-fa8a3c68c467
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OOBfphmRfYzSikP/d1j9hnsah4zEFe4C8AofItB8gfKaeZTvVqXTUl0g4kT81xYW0TPJbWKhYx5K+TvZQ5s171A1u8M2gRbtxN/P8c12rN4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SL2P216MB1418
 
-Hi James,
+This patch series introduces support for the Chips&Media Wave6 video
+codec IP, a completely different hardware architecture compared to Wave5.
 
-On 8/22/25 16:29, James Morse wrote:
-> Memory Partitioning and Monitoring (MPAM) has memory mapped devices
-> (MSCs) with an identity/configuration page.
-> 
-> Add the definitions for these registers as offset within the page(s).
-> 
-> Link: https://developer.arm.com/documentation/ihi0099/latest/
-> Signed-off-by: James Morse <james.morse@arm.com>
-> ---
-> Changes since RFC:
->  * Renamed MSMON_CFG_MBWU_CTL_TYPE_CSU as MSMON_CFG_CSU_CTL_TYPE_CSU
->  * Whitepsace churn.
->  * Cite a more recent document.
->  * Removed some stale feature, fixed some names etc.
-> ---
->  drivers/resctrl/mpam_internal.h | 266 ++++++++++++++++++++++++++++++++
->  1 file changed, 266 insertions(+)
-> 
-> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
-> index d49bb884b433..6e0982a1a9ac 100644
-> --- a/drivers/resctrl/mpam_internal.h
-> +++ b/drivers/resctrl/mpam_internal.h
-> @@ -150,4 +150,270 @@ extern struct list_head mpam_classes;
->  int mpam_get_cpumask_from_cache_id(unsigned long cache_id, u32 cache_level,
->  				   cpumask_t *affinity);
->  
-> +/*
-> + * MPAM MSCs have the following register layout. See:
-> + * Arm Memory System Resource Partitioning and Monitoring (MPAM) System
-> + * Component Specification.
-> + * https://developer.arm.com/documentation/ihi0099/latest/
-> + */
-> +#define MPAM_ARCHITECTURE_V1    0x10
-> +
-> +/* Memory mapped control pages: */
-> +/* ID Register offsets in the memory mapped page */
-> +#define MPAMF_IDR		0x0000  /* features id register */
-> +#define MPAMF_MSMON_IDR		0x0080  /* performance monitoring features */
-> +#define MPAMF_IMPL_IDR		0x0028  /* imp-def partitioning */
-> +#define MPAMF_CPOR_IDR		0x0030  /* cache-portion partitioning */
-> +#define MPAMF_CCAP_IDR		0x0038  /* cache-capacity partitioning */
-> +#define MPAMF_MBW_IDR		0x0040  /* mem-bw partitioning */
-> +#define MPAMF_PRI_IDR		0x0048  /* priority partitioning */
-> +#define MPAMF_CSUMON_IDR	0x0088  /* cache-usage monitor */
-> +#define MPAMF_MBWUMON_IDR	0x0090  /* mem-bw usage monitor */
-> +#define MPAMF_PARTID_NRW_IDR	0x0050  /* partid-narrowing */
-> +#define MPAMF_IIDR		0x0018  /* implementer id register */
-> +#define MPAMF_AIDR		0x0020  /* architectural id register */
-> +
-> +/* Configuration and Status Register offsets in the memory mapped page */
-> +#define MPAMCFG_PART_SEL	0x0100  /* partid to configure: */
-> +#define MPAMCFG_CPBM		0x1000  /* cache-portion config */
-> +#define MPAMCFG_CMAX		0x0108  /* cache-capacity config */
-> +#define MPAMCFG_CMIN		0x0110  /* cache-capacity config */
-> +#define MPAMCFG_MBW_MIN		0x0200  /* min mem-bw config */
-> +#define MPAMCFG_MBW_MAX		0x0208  /* max mem-bw config */
-> +#define MPAMCFG_MBW_WINWD	0x0220  /* mem-bw accounting window config */
-> +#define MPAMCFG_MBW_PBM		0x2000  /* mem-bw portion bitmap config */
-> +#define MPAMCFG_PRI		0x0400  /* priority partitioning config */
-> +#define MPAMCFG_MBW_PROP	0x0500  /* mem-bw stride config */
-> +#define MPAMCFG_INTPARTID	0x0600  /* partid-narrowing config */
-> +
-> +#define MSMON_CFG_MON_SEL	0x0800  /* monitor selector */
-> +#define MSMON_CFG_CSU_FLT	0x0810  /* cache-usage monitor filter */
-> +#define MSMON_CFG_CSU_CTL	0x0818  /* cache-usage monitor config */
-> +#define MSMON_CFG_MBWU_FLT	0x0820  /* mem-bw monitor filter */
-> +#define MSMON_CFG_MBWU_CTL	0x0828  /* mem-bw monitor config */
-> +#define MSMON_CSU		0x0840  /* current cache-usage */
-> +#define MSMON_CSU_CAPTURE	0x0848  /* last cache-usage value captured */
-> +#define MSMON_MBWU		0x0860  /* current mem-bw usage value */
-> +#define MSMON_MBWU_CAPTURE	0x0868  /* last mem-bw value captured */
-> +#define MSMON_MBWU_L		0x0880  /* current long mem-bw usage value */
-> +#define MSMON_MBWU_CAPTURE_L	0x0890  /* last long mem-bw value captured */
-> +#define MSMON_CAPT_EVNT		0x0808  /* signal a capture event */
-> +#define MPAMF_ESR		0x00F8  /* error status register */
-> +#define MPAMF_ECR		0x00F0  /* error control register */
-> +
-> +/* MPAMF_IDR - MPAM features ID register */
-> +#define MPAMF_IDR_PARTID_MAX		GENMASK(15, 0)
-> +#define MPAMF_IDR_PMG_MAX		GENMASK(23, 16)
-> +#define MPAMF_IDR_HAS_CCAP_PART		BIT(24)
-> +#define MPAMF_IDR_HAS_CPOR_PART		BIT(25)
-> +#define MPAMF_IDR_HAS_MBW_PART		BIT(26)
-> +#define MPAMF_IDR_HAS_PRI_PART		BIT(27)
-> +#define MPAMF_IDR_EXT			BIT(28)
-> +#define MPAMF_IDR_HAS_IMPL_IDR		BIT(29)
-> +#define MPAMF_IDR_HAS_MSMON		BIT(30)
-> +#define MPAMF_IDR_HAS_PARTID_NRW	BIT(31)
-> +#define MPAMF_IDR_HAS_RIS		BIT(32)
-> +#define MPAMF_IDR_HAS_EXTD_ESR		BIT(38)
-> +#define MPAMF_IDR_HAS_ESR		BIT(39)
-> +#define MPAMF_IDR_RIS_MAX		GENMASK(59, 56)
-> +
-> +/* MPAMF_MSMON_IDR - MPAM performance monitoring ID register */
-> +#define MPAMF_MSMON_IDR_MSMON_CSU		BIT(16)
-> +#define MPAMF_MSMON_IDR_MSMON_MBWU		BIT(17)
-> +#define MPAMF_MSMON_IDR_HAS_LOCAL_CAPT_EVNT	BIT(31)
-> +
-> +/* MPAMF_CPOR_IDR - MPAM features cache portion partitioning ID register */
-> +#define MPAMF_CPOR_IDR_CPBM_WD			GENMASK(15, 0)
-> +
-> +/* MPAMF_CCAP_IDR - MPAM features cache capacity partitioning ID register */
-> +#define MPAMF_CCAP_IDR_CMAX_WD			GENMASK(5, 0)
-> +#define MPAMF_CCAP_IDR_CASSOC_WD		GENMASK(12, 8)
-> +#define MPAMF_CCAP_IDR_HAS_CASSOC		BIT(28)
-> +#define MPAMF_CCAP_IDR_HAS_CMIN			BIT(29)
-> +#define MPAMF_CCAP_IDR_NO_CMAX			BIT(30)
-> +#define MPAMF_CCAP_IDR_HAS_CMAX_SOFTLIM		BIT(31)
-> +
-> +/* MPAMF_MBW_IDR - MPAM features memory bandwidth partitioning ID register */
-> +#define MPAMF_MBW_IDR_BWA_WD		GENMASK(5, 0)
-> +#define MPAMF_MBW_IDR_HAS_MIN		BIT(10)
-> +#define MPAMF_MBW_IDR_HAS_MAX		BIT(11)
-> +#define MPAMF_MBW_IDR_HAS_PBM		BIT(12)
-> +#define MPAMF_MBW_IDR_HAS_PROP		BIT(13)
-> +#define MPAMF_MBW_IDR_WINDWR		BIT(14)
-> +#define MPAMF_MBW_IDR_BWPBM_WD		GENMASK(28, 16)
-> +
-> +/* MPAMF_PRI_IDR - MPAM features priority partitioning ID register */
-> +#define MPAMF_PRI_IDR_HAS_INTPRI	BIT(0)
-> +#define MPAMF_PRI_IDR_INTPRI_0_IS_LOW	BIT(1)
-> +#define MPAMF_PRI_IDR_INTPRI_WD		GENMASK(9, 4)
-> +#define MPAMF_PRI_IDR_HAS_DSPRI		BIT(16)
-> +#define MPAMF_PRI_IDR_DSPRI_0_IS_LOW	BIT(17)
-> +#define MPAMF_PRI_IDR_DSPRI_WD		GENMASK(25, 20)
-> +
-> +/* MPAMF_CSUMON_IDR - MPAM cache storage usage monitor ID register */
-> +#define MPAMF_CSUMON_IDR_NUM_MON	GENMASK(15, 0)
-> +#define MPAMF_CSUMON_IDR_HAS_OFLOW_CAPT	BIT(24)
-> +#define MPAMF_CSUMON_IDR_HAS_CEVNT_OFLW	BIT(25)
-> +#define MPAMF_CSUMON_IDR_HAS_OFSR	BIT(26)
-> +#define MPAMF_CSUMON_IDR_HAS_OFLOW_LNKG	BIT(27)
-> +#define MPAMF_CSUMON_IDR_HAS_XCL	BIT(29)
-> +#define MPAMF_CSUMON_IDR_CSU_RO		BIT(30)
-> +#define MPAMF_CSUMON_IDR_HAS_CAPTURE	BIT(31)
-> +
-> +/* MPAMF_MBWUMON_IDR - MPAM memory bandwidth usage monitor ID register */
-> +#define MPAMF_MBWUMON_IDR_NUM_MON	GENMASK(15, 0)
-> +#define MPAMF_MBWUMON_IDR_HAS_RWBW	BIT(28)
-> +#define MPAMF_MBWUMON_IDR_LWD		BIT(29)
-> +#define MPAMF_MBWUMON_IDR_HAS_LONG	BIT(30)
-> +#define MPAMF_MBWUMON_IDR_HAS_CAPTURE	BIT(31)
-> +
-> +/* MPAMF_PARTID_NRW_IDR - MPAM PARTID narrowing ID register */
-> +#define MPAMF_PARTID_NRW_IDR_INTPARTID_MAX      GENMASK(15, 0)
+The wave6 driver is a M2M stateful encoder/decoder driver.
+It supports various video formats, including H.264 and H.265,
+for both encoding and decoding.
+While other versions of the Wave6 IP may support VP9 decoding and
+AV1 decoding and encoding those formats are not implemented or validated
+in this driver at this time.
 
-nit: spaces used instead of tabs
-> +
-> +/* MPAMF_IIDR - MPAM implementation ID register */
-> +#define MPAMF_IIDR_PRODUCTID	GENMASK(31, 20)
-> +#define MPAMF_IIDR_PRODUCTID_SHIFT	20
-> +#define MPAMF_IIDR_VARIANT	GENMASK(19, 16)
-> +#define MPAMF_IIDR_VARIANT_SHIFT	16
-> +#define MPAMF_IIDR_REVISON	GENMASK(15, 12)
-> +#define MPAMF_IIDR_REVISON_SHIFT	12
-> +#define MPAMF_IIDR_IMPLEMENTER	GENMASK(11, 0)
-> +#define MPAMF_IIDR_IMPLEMENTER_SHIFT	0
-> +
-> +/* MPAMF_AIDR - MPAM architecture ID register */
-> +#define MPAMF_AIDR_ARCH_MAJOR_REV	GENMASK(7, 4)
-> +#define MPAMF_AIDR_ARCH_MINOR_REV	GENMASK(3, 0)
-> +
-> +/* MPAMCFG_PART_SEL - MPAM partition configuration selection register */
-> +#define MPAMCFG_PART_SEL_PARTID_SEL	GENMASK(15, 0)
-> +#define MPAMCFG_PART_SEL_INTERNAL	BIT(16)
-> +#define MPAMCFG_PART_SEL_RIS		GENMASK(27, 24)
-> +
-> +/* MPAMCFG_CMAX - MPAM cache capacity configuration register */
-> +#define MPAMCFG_CMAX_SOFTLIM		BIT(31)
-> +#define MPAMCFG_CMAX_CMAX		GENMASK(15, 0)
-> +
-> +/* MPAMCFG_CMIN - MPAM cache capacity configuration register */
-> +#define MPAMCFG_CMIN_CMIN		GENMASK(15, 0)
-> +
-> +/*
-> + * MPAMCFG_MBW_MIN - MPAM memory minimum bandwidth partitioning configuration
-> + *                   register
-> + */
-> +#define MPAMCFG_MBW_MIN_MIN		GENMASK(15, 0)
-> +
-> +/*
-> + * MPAMCFG_MBW_MAX - MPAM memory maximum bandwidth partitioning configuration
-> + *                   register
-> + */
-> +#define MPAMCFG_MBW_MAX_MAX		GENMASK(15, 0)
-> +#define MPAMCFG_MBW_MAX_HARDLIM		BIT(31)
-> +
-> +/*
-> + * MPAMCFG_MBW_WINWD - MPAM memory bandwidth partitioning window width
-> + *                     register
-> + */
-> +#define MPAMCFG_MBW_WINWD_US_FRAC	GENMASK(7, 0)
-> +#define MPAMCFG_MBW_WINWD_US_INT	GENMASK(23, 8)
-> +
-> +/* MPAMCFG_PRI - MPAM priority partitioning configuration register */
-> +#define MPAMCFG_PRI_INTPRI		GENMASK(15, 0)
-> +#define MPAMCFG_PRI_DSPRI		GENMASK(31, 16)
-> +
-> +/*
-> + * MPAMCFG_MBW_PROP - Memory bandwidth proportional stride partitioning
-> + *                    configuration register
-> + */
-> +#define MPAMCFG_MBW_PROP_STRIDEM1	GENMASK(15, 0)
-> +#define MPAMCFG_MBW_PROP_EN		BIT(31)
-> +
-> +/*
-> + * MPAMCFG_INTPARTID - MPAM internal partition narrowing configuration register
-> + */
-> +#define MPAMCFG_INTPARTID_INTPARTID	GENMASK(15, 0)
-> +#define MPAMCFG_INTPARTID_INTERNAL	BIT(16)
-> +
-> +/* MSMON_CFG_MON_SEL - Memory system performance monitor selection register */
-> +#define MSMON_CFG_MON_SEL_MON_SEL	GENMASK(15, 0)
-> +#define MSMON_CFG_MON_SEL_RIS		GENMASK(27, 24)
-> +
-> +/* MPAMF_ESR - MPAM Error Status Register */
-> +#define MPAMF_ESR_PARTID_MON	GENMASK(15, 0)
-> +#define MPAMF_ESR_PMG		GENMASK(23, 16)
-> +#define MPAMF_ESR_ERRCODE	GENMASK(27, 24)
-> +#define MPAMF_ESR_OVRWR		BIT(31)
-> +#define MPAMF_ESR_RIS		GENMASK(35, 32)
-> +
-> +/* MPAMF_ECR - MPAM Error Control Register */
-> +#define MPAMF_ECR_INTEN		BIT(0)
-> +
-> +/* Error conditions in accessing memory mapped registers */
-> +#define MPAM_ERRCODE_NONE			0
-> +#define MPAM_ERRCODE_PARTID_SEL_RANGE		1
-> +#define MPAM_ERRCODE_REQ_PARTID_RANGE		2
-> +#define MPAM_ERRCODE_MSMONCFG_ID_RANGE		3
-> +#define MPAM_ERRCODE_REQ_PMG_RANGE		4
-> +#define MPAM_ERRCODE_MONITOR_RANGE		5
-> +#define MPAM_ERRCODE_INTPARTID_RANGE		6
-> +#define MPAM_ERRCODE_UNEXPECTED_INTERNAL	7
-> +
-> +/*
-> + * MSMON_CFG_CSU_FLT - Memory system performance monitor configure cache storage
-> + *                    usage monitor filter register
-> + */
-> +#define MSMON_CFG_CSU_FLT_PARTID	GENMASK(15, 0)
-> +#define MSMON_CFG_CSU_FLT_PMG		GENMASK(23, 16)
-> +
-> +/*
-> + * MSMON_CFG_CSU_CTL - Memory system performance monitor configure cache storage
-> + *                    usage monitor control register
-> + * MSMON_CFG_MBWU_CTL - Memory system performance monitor configure memory
-> + *                     bandwidth usage monitor control register
-> + */
-> +#define MSMON_CFG_x_CTL_TYPE			GENMASK(7, 0)
-> +#define MSMON_CFG_MBWU_CTL_OFLOW_STATUS_L	BIT(15)
-> +#define MSMON_CFG_x_CTL_MATCH_PARTID		BIT(16)
-> +#define MSMON_CFG_x_CTL_MATCH_PMG		BIT(17)
-> +#define MSMON_CFG_x_CTL_SCLEN			BIT(19)
-> +#define MSMON_CFG_x_CTL_SUBTYPE			GENMASK(22, 20)
-> +#define MSMON_CFG_x_CTL_OFLOW_FRZ		BIT(24)
-> +#define MSMON_CFG_x_CTL_OFLOW_INTR		BIT(25)
-> +#define MSMON_CFG_x_CTL_OFLOW_STATUS		BIT(26)
-> +#define MSMON_CFG_x_CTL_CAPT_RESET		BIT(27)
-> +#define MSMON_CFG_x_CTL_CAPT_EVNT		GENMASK(30, 28)
-> +#define MSMON_CFG_x_CTL_EN			BIT(31)
-> +
-> +#define MSMON_CFG_MBWU_CTL_TYPE_MBWU			0x42
-> +#define MSMON_CFG_CSU_CTL_TYPE_CSU			0
-> +
-> +/*
-> + * MSMON_CFG_MBWU_FLT - Memory system performance monitor configure memory
-> + *                     bandwidth usage monitor filter register
-> + */
-> +#define MSMON_CFG_MBWU_FLT_PARTID		GENMASK(15, 0)
-> +#define MSMON_CFG_MBWU_FLT_PMG			GENMASK(23, 16)
-> +#define MSMON_CFG_MBWU_FLT_RWBW			GENMASK(31, 30)
-> +
-> +/*
-> + * MSMON_CSU - Memory system performance monitor cache storage usage monitor
-> + *            register
-> + * MSMON_CSU_CAPTURE -  Memory system performance monitor cache storage usage
-> + *                     capture register
-> + * MSMON_MBWU  - Memory system performance monitor memory bandwidth usage
-> + *               monitor register
-> + * MSMON_MBWU_CAPTURE - Memory system performance monitor memory bandwidth usage
-> + *                     capture register
-> + */
-> +#define MSMON___VALUE		GENMASK(30, 0)
-> +#define MSMON___NRDY		BIT(31)
-> +#define MSMON___NRDY_L		BIT(63)
-> +#define MSMON___L_VALUE		GENMASK(43, 0)
-> +#define MSMON___LWD_VALUE	GENMASK(62, 0)
-> +
-> +/*
-> + * MSMON_CAPT_EVNT - Memory system performance monitoring capture event
-> + *                  generation register
-> + */
-> +#define MSMON_CAPT_EVNT_NOW	BIT(0)
-> +
->  #endif /* MPAM_INTERNAL_H */
+On NXP i.MX SoCs, the Wave6 IP functionality is split between two regions:
+VPU Control region, Manages shared resources such as firmware memory.
+VPU Core region, Provides encoding and decoding capabilities.
+The VPU core cannot operate independently without the VPU control region.
 
-The names and values match the specification.
+The firmware tested by this driver has been upstreamed in linux-firmware:
+- Path: cnm/wave633c_imx9_codec_fw.bin
 
-Reviewed-by: Ben Horgan <ben.horgan@arm.com>
+This driver has been tested with GStreamer on:
+- NXP i.MX95 board
+- pre-silicon FPGA environment
 
-Thanks,
+Test results for decoder fluster:
+- JVT-AVC_V1, Ran 77/135 tests successfully              in 43.050 secs
+- JVT-FR-EXT, Ran 25/69 tests successfully               in 20.654 secs
+- JCT-VC-HEVC_V1, Ran 132/147 tests successfully         in 87.940 secs
+- All failures are due to unsupported hardware features:
+-- 10bit, Resolutions higher than 4K, FMO, MBAFF
+-- Extended profile, Field encoding and High422 sreams.
 
-Ben
+Test results for v4l2-compliance:
+v4l2-compliance 1.31.0-5386, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 48316b8a20aa 2025-08-12 12:44:56
+
+Compliance test for wave6-dec device /dev/video0:
+                fail: v4l2-test-controls.cpp(1204): !have_source_change || !have_eos
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: FAIL
+Total for wave6-dec device /dev/video0: 48, Succeeded: 47, Failed: 1, Warnings: 0
+
+Compliance test for wave6-enc device /dev/video1:
+                fail: v4l2-test-controls.cpp(1193): node->codec_mask & STATEFUL_ENCODER
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: FAIL
+Total for wave6-enc device /dev/video1: 48, Succeeded: 47, Failed: 1, Warnings: 0
+
+Note: the failures are all related with the eos event.
+
+Changelog:
+
+v3:
+- Removed ambiguous SUPPORT_FOLLOWER feature
+- Used WARN_ON() for unexpected programming errors
+- Split thermal device code into wave6-vpu-thermal.c/h
+- Dropped wave6_cooling_disable module parameter
+- Replaced mutex_lock() with guard()
+- Added lockdep_assert_held() to clarify locking regions
+- Removed exported function due to dual-license and used function pointer
+- Added documentation and validation for state transitions
+- Added documentation for device structures
+- Added patch to enable VPU device in imx95 DTS
+- Updated DT bindings and driver to align with parent(vpu) and child(vpu-core)
+- Replaced magic numbers with mask and offset macros when accessing registers
+- Placed goto statements after an empty line
+- Printed HW info (e.g. product_code) via dev_dbg() for debugging
+- Replaced wave6_vpu_dec_give_command() with dedicated functions
+
+v2:
+- Refined DT bindings to better represent the hardware
+- Reworked driver to align with the parent(VPU) and child(CTRL, CORE)
+- Fixed build issues reported by CI tools (Smatch, Sparse, TRACE)
+- Improved commit messages with clearer descriptions
+- Added kernel-doc for exported functions
+- Removed redundant print statements and unused code
+- Reordered patches to prevent build failures
+
+Nas Chung (9):
+  media: v4l2-common: Add YUV24 format info
+  dt-bindings: media: nxp: Add Wave6 video codec device
+  media: chips-media: wave6: Add Wave6 VPU interface
+  media: chips-media: wave6: Add v4l2 m2m driver support
+  media: chips-media: wave6: Add Wave6 core driver
+  media: chips-media: wave6: Improve debugging capabilities
+  media: chips-media: wave6: Add Wave6 thermal cooling device
+  media: chips-media: wave6: Add Wave6 control driver
+  arm64: dts: freescale: imx95: Add video codec node
+
+ .../bindings/media/nxp,imx95-vpu.yaml         |  145 +
+ MAINTAINERS                                   |    8 +
+ .../boot/dts/freescale/imx95-15x15-evk.dts    |    5 +
+ .../boot/dts/freescale/imx95-19x19-evk.dts    |   10 +
+ .../dts/freescale/imx95-phycore-fpsc.dtsi     |   10 +
+ .../boot/dts/freescale/imx95-tqma9596sa.dtsi  |    5 +
+ arch/arm64/boot/dts/freescale/imx95.dtsi      |   43 +
+ drivers/media/platform/chips-media/Kconfig    |    1 +
+ drivers/media/platform/chips-media/Makefile   |    1 +
+ .../media/platform/chips-media/wave6/Kconfig  |   17 +
+ .../media/platform/chips-media/wave6/Makefile |   17 +
+ .../platform/chips-media/wave6/wave6-hw.c     | 2929 +++++++++++++++++
+ .../platform/chips-media/wave6/wave6-hw.h     |   73 +
+ .../chips-media/wave6/wave6-regdefine.h       |  638 ++++
+ .../platform/chips-media/wave6/wave6-trace.h  |  286 ++
+ .../platform/chips-media/wave6/wave6-vdi.h    |   92 +
+ .../chips-media/wave6/wave6-vpu-core.c        |  406 +++
+ .../chips-media/wave6/wave6-vpu-core.h        |  133 +
+ .../chips-media/wave6/wave6-vpu-dbg.c         |  225 ++
+ .../chips-media/wave6/wave6-vpu-dbg.h         |   14 +
+ .../chips-media/wave6/wave6-vpu-dec.c         | 1863 +++++++++++
+ .../chips-media/wave6/wave6-vpu-enc.c         | 2690 +++++++++++++++
+ .../chips-media/wave6/wave6-vpu-thermal.c     |  136 +
+ .../chips-media/wave6/wave6-vpu-thermal.h     |   25 +
+ .../chips-media/wave6/wave6-vpu-v4l2.c        |  507 +++
+ .../platform/chips-media/wave6/wave6-vpu.c    |  654 ++++
+ .../platform/chips-media/wave6/wave6-vpu.h    |  131 +
+ .../platform/chips-media/wave6/wave6-vpuapi.c |  725 ++++
+ .../platform/chips-media/wave6/wave6-vpuapi.h | 1010 ++++++
+ .../chips-media/wave6/wave6-vpuconfig.h       |   71 +
+ .../chips-media/wave6/wave6-vpuerror.h        |  262 ++
+ drivers/media/v4l2-core/v4l2-common.c         |    1 +
+ 32 files changed, 13133 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/nxp,imx95-vpu.yaml
+ create mode 100644 drivers/media/platform/chips-media/wave6/Kconfig
+ create mode 100644 drivers/media/platform/chips-media/wave6/Makefile
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-hw.c
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-hw.h
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-regdefine.h
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-trace.h
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vdi.h
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-core.c
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-core.h
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-dbg.c
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-dbg.h
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-dec.c
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-enc.c
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-thermal.c
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-thermal.h
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-v4l2.c
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu.c
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu.h
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpuapi.c
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpuapi.h
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpuconfig.h
+ create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpuerror.h
+
+-- 
+2.31.1
 
 
