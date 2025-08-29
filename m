@@ -1,175 +1,173 @@
-Return-Path: <devicetree+bounces-210623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E42B3C347
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 21:47:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C2B3B3C34F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 21:51:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56C65A2775E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:47:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 534A91654A2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:51:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40A7226CF7;
-	Fri, 29 Aug 2025 19:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4FF2417C5;
+	Fri, 29 Aug 2025 19:51:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="H3O+12gQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uPYEnPUU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DEF41AA7A6
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 19:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7D68224B09;
+	Fri, 29 Aug 2025 19:51:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756496831; cv=none; b=QQyezhLrX9P8iVQ1CpUDe5jw7LxYkmsRISY0FNW7qDUl8cZrmutTcNpNiNTErOXGUwGla1RCgcNZE+NqcxeSUtIn3y8UM4zk0miRcYSZl36dYpBmEDmaAXyff790no0h3bbHi5BguSbxe7+XsIGa1mCZEC24MgqeyeOx5Od0cxc=
+	t=1756497084; cv=none; b=I4P70kSM/UbuEPJGCwvWVZTRmf7sNrLXJa/F0QKIaAhPuiG8DubsD/C9agQ3S+ZRu+yJ3Huj+5I2d3HUrLvpOnNfkEl9Z3BhMCURd09D66U5iIbaxtPsXX++qmGBNnpqn3gqIcqfc2bI6zRIxTBrUEsWUcAdKhZ13ZtkbGQ2R54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756496831; c=relaxed/simple;
-	bh=01xYwzEgQqARR+trB3+eOkbrnHfqiRT5HTlVuT4VGJ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=MF6bjRBIGIVOQaSAsgXaSB5594JXwyZaFfMa9WStqvwRmidO9FdXsEEqciuaeQPpKwivt9+HQVnLxS05Lg1aVuylwB95ySRBW+J0w1eqYfbYKfVf/1box5YEJlRnrDAaRk6GhteUJ9/auWYJtC4PcpzJU/US9imj4/aL3k2pHFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=H3O+12gQ; arc=none smtp.client-ip=209.85.210.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-7454509f088so1741426a34.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 12:47:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756496828; x=1757101628; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=JVGUg0SDLAjEzLHUVtikB/WVSwbBEdHlzNQeODDBtr8=;
-        b=H3O+12gQhMEoHO+spTEJmboBEeydxF0GtBvT+vg+4/AqsbIcOdFPk/gpwx9h+fOtwo
-         O+/UDYztpqt1tZUnZ5Db452Ue2g/xhtOXAC6sFOd1BteRdP8f0javz8rX50QtaSZqJ5w
-         rDpkdOO+PXORbNJMLJLSFUg4IXSvYc15kfJbAw1i3RU7jt2MoO1zXO4JxNQUpCXaIFQe
-         aG/DwSBb21ISzOuzZ4vTK6JC/y1w/8fas1AxunVEa+o0wbdTDRPNsyKWxTB0RqaVehPQ
-         rz+rK/479O4f1dQOk9tmrTEwDN0IBjIEHVgax1BAP/OcUXhan9fcwtgDaFPk55vgC7wX
-         ZJjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756496828; x=1757101628;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JVGUg0SDLAjEzLHUVtikB/WVSwbBEdHlzNQeODDBtr8=;
-        b=PepHVrpEsYJw6p9mvm2adcUOcjOMEkphu8bDWj1nGRGy8EuGiiaKcDJNMVMhIrJbWn
-         Vz/smg5oOTywgprh27wEnzLfFn+1RAa+wDNlSpaoqV7HzcEkLGvoVRR6fYwlxyZy6HaG
-         6vZjoLTvUPIq2OqRIkJt8l87FUsUFDHSb1/5EelimnUlGHU1IXY3WRX6ABM3qnTdhMXu
-         6mGYQYD+z/TAudc+x/4TSkVUjr1JdHQwYd6nHSMvlyibOUK4g8w6+lUaKKiRsgEqK8My
-         zZMaun6+f5vwIBnDuHRU5HoKhLL48sARa/rtgG4YZBZBgJyaPaBtqUBOi6ZmdwbeF95F
-         uoFg==
-X-Forwarded-Encrypted: i=1; AJvYcCWQERAqya4jsuwUofX7sUYOzNkwwYvnwlEtY3BN9tLlZqqWSh9z6tpgXeq4809766oMadM0bmrJZ4XK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNBTSjMLuO7hQNMztRoyF0Ai6iqO/H8ux6xCYLSBIg7j13mltB
-	kDQUeOZ9VQPK7N0KN3s5EhuUKWBY/EmZ1ui5c+2Y5notrB21ovr4+lQBXFVGDavAPRQ=
-X-Gm-Gg: ASbGncuQjIo+2Ey0a8Ky74SBblVXs4AYo11Ef9Myb1Szwm95Qoso2Se+pG5H+SIIlBG
-	jDwpPk5jV2FQUuhgKwinSazDY6089K4yaMZvpGbDuJB+m/jXcD5UCIi+tds9mbVdrgCS4LynjEa
-	4EP3/EYbbEKqLaDpM0N1V/hUxgCBMi8X8gg6ynFmC3ekWchnuNNJFv89Ju+yySnkzSh9HPOC99W
-	0Q0W9gfqgrb8x+xVlRh71kNzPujQex8O1ay0J5j9VFdmbc5SlCq87UuL9xEEWmG3+2+AxYxlUXv
-	681NaU8w8kG5dIlCDYyAAxyRm6kguLr4pk8STAxA9V8M+HULEdBlbnOJSpR3SXJa31xzUND374/
-	tmvP6wOI52ZwSBku8EjWC+fD91cX9j4XALIkgzpsIgR/tHrQ26dYcAOwXOtIYh8MrbQAvDK+bOL
-	k=
-X-Google-Smtp-Source: AGHT+IHkZbHxDOuHzCi5F+tf8HGqWEtfZdGb6ilH+q4mQdnXgfq0WBgXtPNPqptAdN4u6rI4AG7U/w==
-X-Received: by 2002:a05:6808:a5c7:10b0:437:ae34:16b7 with SMTP id 5614622812f47-437ae341c86mr6947930b6e.31.1756496828382;
-        Fri, 29 Aug 2025 12:47:08 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:8d0a:2553:5881:1318? ([2600:8803:e7e4:1d00:8d0a:2553:5881:1318])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-315afc5a74asm1579763fac.11.2025.08.29.12.47.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Aug 2025 12:47:07 -0700 (PDT)
-Message-ID: <1350f948-85d3-410d-9e9c-8d0fe4237a32@baylibre.com>
-Date: Fri, 29 Aug 2025 14:47:07 -0500
+	s=arc-20240116; t=1756497084; c=relaxed/simple;
+	bh=iE1fOPe+H/DOT9l+qqw7zhT3aTQ0dSMmo1kdS8d+f20=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FVoFiEY1/cOidwb5l7UbAnM/1QTc+m0Y7YN/xOXHOdRctYzwsNfS7hnUsAKBHvkXvCYayeo7cea5hHIWUJXK3zcXvhmP3Sr9eTLPQ7u1OIVF83kOvmXuo+mBEaRN2g12kJkIXRIGdCzrY1zXvXEkhf15h9XTeQQE+5677mu/DNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uPYEnPUU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 346BBC4CEF0;
+	Fri, 29 Aug 2025 19:51:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756497082;
+	bh=iE1fOPe+H/DOT9l+qqw7zhT3aTQ0dSMmo1kdS8d+f20=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uPYEnPUUg4/LuQVFtqhOOS0tGS/0OVJpM+KchdKwqnpfkH0/J3whjo1E0NBxW4gpi
+	 uJDXfPT2+7W9SvWuvKxITtr+9wgDa0PLPjlOlPveFqy+zGxeJXRW3bmLtv6e6tXZkm
+	 Lt0jKmNEbrsoJG57fd3KAzrHhMHII+VJCvAN8o9yIncXsE2LjVvdVRlbplw8VmHBsq
+	 nEieoqr4Hd58x1XnW+1xWPl9IbBCsaBFlrOtBOQRsS5iKDBvoMcj7GYIAOBvWu/48K
+	 9ZUoI9CDe2TXQXinfy+0J0W3S8zuoPtSs1TE+Ci/Y2CLPC2Ymd1DL36wGlg46kmRHz
+	 JZChNYlMpZoRQ==
+Date: Fri, 29 Aug 2025 14:51:19 -0500
+From: Rob Herring <robh@kernel.org>
+To: Janne Grunau <j@jannau.net>
+Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hector Martin <marcan@marcan.st>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Mark Kettenis <kettenis@openbsd.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Sasha Finkelstein <fnkl.kernel@gmail.com>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Johannes Berg <johannes@sipsolutions.net>,
+	van Spriel <arend@broadcom.com>, Lee Jones <lee@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	Vinod Koul <vkoul@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, iommu@lists.linux.dev,
+	linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-bluetooth@vger.kernel.org,
+	linux-wireless@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-clk@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-nvme@lists.infradead.org
+Subject: Re: [PATCH 00/37] arm64: Add initial device trees for Apple M2
+ Pro/Max/Ultra devices
+Message-ID: <20250829195119.GA1206685-robh@kernel.org>
+References: <20250828-dt-apple-t6020-v1-0-507ba4c4b98e@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/6] iio: add power and energy measurement modifiers
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250829115227.47712-1-antoniu.miclaus@analog.com>
- <20250829115227.47712-3-antoniu.miclaus@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250829115227.47712-3-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250828-dt-apple-t6020-v1-0-507ba4c4b98e@jannau.net>
 
-On 8/29/25 6:41 AM, Antoniu Miclaus wrote:
-> Add new IIO modifiers to support power and energy measurement devices:
+On Thu, Aug 28, 2025 at 04:01:19PM +0200, Janne Grunau wrote:
+> This series adds device trees for Apple's M2 Pro, Max and Ultra based
+> devices. The M2 Pro (t6020), M2 Max (t6021) and M2 Ultra (t6022) SoCs
+> follow design of the t600x family so copy the structure of SoC *.dtsi
+> files.
 > 
-> Power modifiers:
-> - IIO_MOD_ACTIVE: Real power consumed by the load
-> - IIO_MOD_REACTIVE: Power that oscillates between source and load
-> - IIO_MOD_APPARENT: Magnitude of complex power
-> - IIO_MOD_FUND_REACTIVE: Reactive power at fundamental frequency
-> - IIO_MOD_FACTOR: Power factor (ratio of active to apparent power)
+> t6020 is a cut-down version of t6021, so the former just includes the
+> latter and disables the missing bits.
 > 
-> Signal quality modifiers:
-> - IIO_MOD_RMS: Root Mean Square value
-
-The message doesn't match what got implemented in the patch.
-
+> t6022 is two connected t6021 dies. The implementation seems to use
+> t6021 and disables blocks based on whether it is useful to carry
+> multiple instances. The disabled blocks are mostly on the second die.
+> MMIO addresses on the second die have a constant offset. The interrupt
+> controller is multi-die aware. This setup can be represented in the
+> device tree with two top level "soc" nodes. The MMIO offset is applied
+> via "ranges" and devices are included with preprocessor macros to make
+> the node labels unique and to specify the die number for the interrupt
+> definition.
 > 
-> These modifiers enable proper representation of power measurement
-> devices like energy meters and power analyzers.
+> The devices itself are very similar to their M1 Pro, M1 Max and M1 Ultra
+> counterparts. The existing device templates are SoC agnostic so the new
+> devices can reuse them and include their t602{0,1,2}.dtsi file. The
+> minor differences in pinctrl and gpio numbers can be easily adjusted.
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
+> With the t602x SoC family Apple introduced two new devices:
+> 
+> The M2 Pro Mac mini is similar to the larger M1 and M2 Max Mac Studio. The
+> missing SDHCI card reader and two front USB3.1 type-c ports and their
+> internal USB hub can be easily deleted.
+> 
+> The M2 Ultra Mac Pro (tower and rack-mount cases) differs from all other
+> devices but may share some bits with the M2 Ultra Mac Studio. The PCIe
+> implementation on the M2 Ultra in the Mac Pro differs slightly. Apple
+> calls the PCIe controller "apcie-ge" in their device tree. The
+> implementation seems to be mostly compatible with the base t6020 PCIe
+> controller. The main difference is that there is only a single port with
+> with 8 or 16 PCIe Gen4 lanes. These ports connect to a Microchip
+> Switchtec PCIe switch with 100 lanes to which all internal PCIe devices
+> and PCIe slots connect too.
+> 
+> This series does not include PCIe support for the Mac Pro for two
+> reasons:
+> - the linux switchtec driver fails to probe and the downstream PCIe
+>   connections come up as PCIe Gen1
+> - some of the internal devices require PERST# and power control to come
+>   up. Since the device are connected via the PCIe switch the PCIe
+>   controller can not do this. The PCI slot pwrctrl can be utilized for
+>   power control but misses integration with PERST# as proposed in [1].
+> 
+> This series depends on "[PATCH v2 0/5] Apple device tree sync from
+> downstream kernel" [2] due to the reuse of the t600x device templates
+> (patch dependencies and DT compilation) and 4 page table level support
+> in apple-dart and io-pgtable-dart [3] since the dart instances report
+> 42-bit IAS (IOMMU device attach fails without the series).
+> 
+> After discussion with the devicetree maintainers we agreed to not extend
+> lists with the generic compatibles anymore [1]. Instead either the first
+> compatible SoC or t8103 is used as fallback compatible supported by the
+> drivers. t8103 is used as default since most drivers and bindings were
+> initially written for M1 based devices.
 
-...
+An issue here is any OS without the compatibles added to the drivers 
+won't work. Does that matter here? Soon as you need any new drivers or 
+significant driver changes it won't. The compatible additions could be 
+backported to stable. They aren't really any different than new PCI IDs 
+which get backported.
 
-> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-> index 8c9098668772..9e372ed38552 100644
-> --- a/drivers/iio/industrialio-core.c
-> +++ b/drivers/iio/industrialio-core.c
-> @@ -153,6 +153,10 @@ static const char * const iio_modifier_names[] = {
->  	[IIO_MOD_PITCH] = "pitch",
->  	[IIO_MOD_YAW] = "yaw",
->  	[IIO_MOD_ROLL] = "roll",
-> +	[IIO_MOD_RMS] = "rms",
-> +	[IIO_MOD_ACTIVE] = "active",
-> +	[IIO_MOD_REACTIVE] = "reactive",
-> +	[IIO_MOD_APPARENT] = "apparent",
->  };
->  
->  /* relies on pairs of these shared then separate */
-> @@ -190,6 +194,7 @@ static const char * const iio_chan_info_postfix[] = {
->  	[IIO_CHAN_INFO_ZEROPOINT] = "zeropoint",
->  	[IIO_CHAN_INFO_TROUGH] = "trough_raw",
->  	[IIO_CHAN_INFO_CONVDELAY] = "convdelay",
-> +	[IIO_CHAN_INFO_POWERFACTOR] = "powerfactor",
->  };
->  /**
->   * iio_device_id() - query the unique ID for the device
-> diff --git a/include/linux/iio/types.h b/include/linux/iio/types.h
-> index ad2761efcc83..34eebad12d2c 100644
-> --- a/include/linux/iio/types.h
-> +++ b/include/linux/iio/types.h
-> @@ -70,6 +70,7 @@ enum iio_chan_info_enum {
->  	IIO_CHAN_INFO_ZEROPOINT,
->  	IIO_CHAN_INFO_TROUGH,
->  	IIO_CHAN_INFO_CONVDELAY,
-> +	IIO_CHAN_INFO_POWERFACTOR,
->  };
->  
->  #endif /* _IIO_TYPES_H_ */
-> diff --git a/include/uapi/linux/iio/types.h b/include/uapi/linux/iio/types.h
-> index 3c3cc1497a1e..6d269b844271 100644
-> --- a/include/uapi/linux/iio/types.h
-> +++ b/include/uapi/linux/iio/types.h
-> @@ -109,6 +109,10 @@ enum iio_modifier {
->  	IIO_MOD_ROLL,
->  	IIO_MOD_LIGHT_UVA,
->  	IIO_MOD_LIGHT_UVB,
-> +	IIO_MOD_RMS,
-> +	IIO_MOD_ACTIVE,
-> +	IIO_MOD_REACTIVE,
-> +	IIO_MOD_APPARENT,
->  };
->  
->  enum iio_event_type {
-
-
-Do we need to add these to tools/iio/iio_event_monitor.c as well?
+Rob
 
