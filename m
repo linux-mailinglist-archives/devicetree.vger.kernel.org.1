@@ -1,170 +1,254 @@
-Return-Path: <devicetree+bounces-210535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B21CB3BDA8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:28:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8121B3BDD1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:32:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 389947BCA44
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 14:27:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE0E1CC3BB5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 14:31:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C0C732255C;
-	Fri, 29 Aug 2025 14:27:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893DD3203B6;
+	Fri, 29 Aug 2025 14:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fEh/s44C"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="DB0wTz5W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013045.outbound.protection.outlook.com [52.101.72.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71CFF322550;
-	Fri, 29 Aug 2025 14:27:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756477658; cv=none; b=kBirZUYrh7k0Cm0bGRQDWY75dYCeis/8gjoct+1wn7GDr3U5iZ0/h/F7KNgkQ6/XX84RzFq0cUEgmnKda99h7NTFCGHadpjv2RbV5pmvcDialylTO/8obRZNkQlQ7YBeGoR6tANb0/WH9rihDhNFQYKt3BTyyqDer4ZVSVeyi8U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756477658; c=relaxed/simple;
-	bh=wezfen2NyW1g63oJmTankGv6tGgS4A3qTbITYW8tay8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=qFTPxA8Kn8yS0122vB+3oaYUEPduQatOWNoEY+zjd//2/WbEcxEcErktePQlOHfC2R5OPV81vz253qyIrgvnhwDtY8KeDKX9B7aETfZqCNrm6YNwK4zDPmFso88IF0jlEQ8fAOH7OUBlrgDHEl0ta2gzOrXTLo+A/thzO9JV3Lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fEh/s44C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8FB7C4CEF9;
-	Fri, 29 Aug 2025 14:27:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756477657;
-	bh=wezfen2NyW1g63oJmTankGv6tGgS4A3qTbITYW8tay8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=fEh/s44CthjHB264VbrUi5WgkrsPckj8N6QbxdPs4Q8+RqzXOkjJUyF0YrM/Q/QtT
-	 ZQDjqBiReYDgPSa2y0IBNnbB09vlBZ1C38BXIA8SwUMBMhCPsmjpUAB7DrZCrLbLB/
-	 8jGKvcmKZS48I7vGCc0ioEqVs0H/DHvNpyY5yvnmQn14pJ8cesXIIS/mVDdBh3+QSu
-	 TUZ9wsSJYLIduG/Jl+ThdJI/QiZauUYzG9Cz+qFeIUWqdciXPuF7j7eTTNK3JywMl6
-	 1tojvB73Nxwdbio7ugvf04dpVfYI5Skp8t1TGmnfATNZz1caFYi7a+gErGV0ygaYmm
-	 C9JQqRXcaj5gQ==
-Date: Fri, 29 Aug 2025 09:27:36 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E801322A3D;
+	Fri, 29 Aug 2025 14:30:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756477807; cv=fail; b=svork1DiyhKyueD4l5hK5qrEoryiojGKYGPfFdDiAVRuHarv431IEzjh4jdylLHG6Aar3x/7jE4EPXRIc5mtqdTm3sduHwCtBdgBz9+tYuO94M7dwRnK+ZpLLarTBDjYVuW9gfW+k4Df1eXY04VP283lAlqKx2TUANhqUWdeiwY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756477807; c=relaxed/simple;
+	bh=4raSwcPzqhMYJnzPJRy/cz5giOdrcOoWYRGK3YmAEeQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=j5FCJsReilh7hnOBWW0gn6W91N/BaNx3SgSE+VToape2sjWErgWzksaWWTvcoisLVehnFPb3FBvHJ7lhIrKVh8fYQUo2F6TSOC9QWGDhO4Us2bdF9gvAL2qPiP5xxlo+cM+cCRls9gyTnBFJ+hbuUEc7nlBmJPVkXZzNLnSlDbw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=DB0wTz5W; arc=fail smtp.client-ip=52.101.72.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JPvw9WmQ8732RPJXn/AQCYmzjBNSOk+hImj9Mv1QzBr5cgfuRrFDYKaDFHa2KHv8EeNvJQghqw6GqrHZzGHKzW5Qza7wS3WBVoTYWtKqrktjoXV7NVM6MHFoms7VXp8sh7V5iRjwYqcpahqCs2e54U6VhmTt/c0cHBI35xPl/Sy5roJUA/6E5Hkct1i+D8glx0vepXCChSz/054v9p6i6zUJArfw4OEm7tK3rGfRvlyWW4C4FtsWnZczoU438ES8+pSyUCeIrAukRjovPMUsHRTdOPA1iplyty3LXIvilMJhtAC4AZ9rMgAAzynRb37ZWF9KKHgKmgl0caBzQRInYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=S3gXZ7lsIraGy1WszJGwL+w6/y9DQE0xhXqjtBzm/pw=;
+ b=BB+WkGZtqXfZVhO9D2NoxQycDdxFKOe8qhO0bHJNY6qWqEa4TjxSdRW1yK1gCFKKFcolsLNi1goNvKIi1yWfA/ZrSNG7cw4NRDKVXkJU1/tjIf+C4UEE/UGqQXBckYR7XaRe83FgTpW77LY8n2xhXckxSSKT0sX7F2skMT4Pi9FQWuX9MGxEjHPNrfcL7tw5olY0N9/xyyEYhGqx3aV6u72QlLZOb2pDIXeVq2RIpwZaaakCki6uIBhSjCIX+RQcdkEFMaPzzr4fdOCNWh0aijPTaq7cINLZFpcH6VItvc3zfybJtCNs9J7o4yzdtaHgyrkKM2HG7LubbrgnN9RP3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S3gXZ7lsIraGy1WszJGwL+w6/y9DQE0xhXqjtBzm/pw=;
+ b=DB0wTz5WM952OM2DIF6iwRC9VZW8oBFr4NnR/LhROexp24M6cxLNnN+YTwD8dgPdUKTFZEkERFExmeAwEUE8eTOV1NXvYp2J4+/CK2MynACbfUL/sXi1iM8M0ZjOOYO9NIUX24Bp/gSq06JD9wvSApkvCOqecg0xXvKSuSmUchda+NOeAXPz781Sh5mVgeZ/aYjkOst3PLiA7ugbWLWk6KxE2GncUAEUHjWDjlygGvVIsS7fjm3S3999IbF8tVxpLRGTg4llu/Wv3wUlTtYfM9ptljm84xiGbRV+jRXy25rdEbfT7jwzzHvWcYrr3v3jGXYhV1NORS2S9SMUIhBtGw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
+ by AS8PR04MB8660.eurprd04.prod.outlook.com (2603:10a6:20b:42b::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.14; Fri, 29 Aug
+ 2025 14:30:02 +0000
+Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
+ ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
+ ([fe80::a84d:82bf:a9ff:171e%5]) with mapi id 15.20.9052.014; Fri, 29 Aug 2025
+ 14:30:02 +0000
+Date: Fri, 29 Aug 2025 10:29:53 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aswath Govindraju <a-govindraju@ti.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Haibo Chen <haibo.chen@nxp.com>,
+	linux-can@vger.kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: phy: ti,tcan104x-can: Document NXP
+ TJA105X/1048
+Message-ID: <aLG5YQvw1rVRc//I@lizhi-Precision-Tower-5810>
+References: <20250829-can-v3-0-3b2f34094f59@nxp.com>
+ <20250829-can-v3-1-3b2f34094f59@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250829-can-v3-1-3b2f34094f59@nxp.com>
+X-ClientProxiedBy: PH7P221CA0065.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:328::31) To AS4PR04MB9621.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4ff::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Alexandre Ghiti <alex@ghiti.fr>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Albert Ou <aou@eecs.berkeley.edu>
-To: Lukas Schmid <lukas.schmid@netcube.li>
-In-Reply-To: <20250829123800.1232645-1-lukas.schmid@netcube.li>
-References: <20250829123800.1232645-1-lukas.schmid@netcube.li>
-Message-Id: <175647746592.734566.14945277763815880419.robh@kernel.org>
-Subject: Re: [PATCH v6 0/5] Add support for NetCube Systems Nagami SoM and
- its carrier boards
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|AS8PR04MB8660:EE_
+X-MS-Office365-Filtering-Correlation-Id: cb61d927-d6be-4645-c5c0-08dde7088a34
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|52116014|366016|7416014|376014|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?mQX2mxw1FP6yx878sHU9U7Fc74O4c476nYKu3ytwy2OLxFuhrEPXnF/hSLG2?=
+ =?us-ascii?Q?Sy+rPUxejNGevdWmx1NJ4WLpT4xOSw4tr2VHLG4PamrfwY+Bs6vXpHJU3INL?=
+ =?us-ascii?Q?DpuMvBzB/mpoxPgKSZKfRvbaHqMaJDPJtGnj2vuL3E3F4dnOWQq7MroyVcwE?=
+ =?us-ascii?Q?GxhU2OGgkQ1VEElauibspZiKoumoVETaBbXDV5zzKEhXxoo7w/b2sTFdspVk?=
+ =?us-ascii?Q?xWgUdJmHyBVOmTuxBsR93LREQFDZoZVKO7yHgiHEorZTHl0OoL1oY5D14H0h?=
+ =?us-ascii?Q?ihgA9G4ZWK3Cis7S937OowzVC3CKa8JZh/XVez46SKPgyzEWsDY4rU9CuQOn?=
+ =?us-ascii?Q?nlyvQ7nLSXnPZsMggCLvGcZEd49Gr1Bkf8sgrZT0vnIn0DlJ9B+fOwEc/SFV?=
+ =?us-ascii?Q?2pH6y2Vto4ctYiJgLh3/U6CrNgoI5YvaAeCkFkLbHAmq9cy0m7YaGHdiiogF?=
+ =?us-ascii?Q?rG40THuL+7dDrM5ETE0+D+eWAuH+cvpg5fc6BCEZjEA/0BhvEUB9pWUknJ1h?=
+ =?us-ascii?Q?du5hKZzCfXLGIhi/WEX4HRTepE+wWK1LFpjHUuk2seHrZwff5tdDiQONa1Yu?=
+ =?us-ascii?Q?AF6bu7BgC3Go2Zz1EOb5/oHdr03QuGIOv3ZvozXtgOyDEiQgvUa5MGeJAu4m?=
+ =?us-ascii?Q?Kot9goLQrf0+EJFbwYa/q8Iwmb0lLW3r1V2D1JUzyPAHbV5xJ5LqbRHyByQp?=
+ =?us-ascii?Q?g0zb9+YN0WNNNgd+Cs8yI/AN3yzLzor1MOD98gv8dS83RowcfsQf5SRW4Ble?=
+ =?us-ascii?Q?V29IH93JIkJbVhr1HNArQN3zYvyRwmtIzMltlwhddUZDCyi2OhmbRv4JV8Ag?=
+ =?us-ascii?Q?woxBAiRqAaGGUtdA4hc0HRFn+S5kY+VNTqv/4XMnpoWl3VA9Kb9HLmkRt3q4?=
+ =?us-ascii?Q?2Hx+6r/zf5o9RjH6mXsXVibAf1IRdSObX06Z4c8Mrq01czCDkVwK/rGv6Kbi?=
+ =?us-ascii?Q?gLgnmu+5g7bML3m6TUcaSKC1Ke9ip9jp6whZ/s3inAVvn7fig2KgQfIBMYu9?=
+ =?us-ascii?Q?M+fxdWCa/P4it2CcrJYxeNIhEZKjA6jKPjGLylDBkFG75tcMnsZhRF4ZuHKj?=
+ =?us-ascii?Q?qjgnk+IiFLpFIVN7++WLjQoJapuVu7TaL9NkZlnVwqti4/Yf/CRrLQFpvWVM?=
+ =?us-ascii?Q?KDHUB/RDOZTqz/1j9NO6nYxQoM8vo3H9k20v1aDdI+zhobU1i9u6HcVFvBx0?=
+ =?us-ascii?Q?+7hdfa2vC/N4zmL0+M+MxdC5/OY+LdilRfr+5M8ZuHMZUmO8+ZoiuJbMx8as?=
+ =?us-ascii?Q?0AcyLfTN+dMphphQIFhC2/xXs+YIjTWpACJrBS8xyGXzOECwk8/RGiV0lUOJ?=
+ =?us-ascii?Q?qhDKBqwyZg1Lo2Xgq2VtNa/pjtMTdlv2tm5f0KCOl3IUYrcD8t7rGLqg51ru?=
+ =?us-ascii?Q?6gAYlFSD83nCnfjkxwcnXIj9TVdgYHT3xb7s82iNQg6+TPPNuDJ3NidH7uVr?=
+ =?us-ascii?Q?hFntJVxX1yqCr6TrXnMJzOhnSx19q093dTjk2NN44GUoAJ6EugpdjA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(366016)(7416014)(376014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?sSmAfqZmLWi+PPEOS6d4v0DQI5EsJiOhl/kyP6IHb5Ki+TOaP2dst2W2g/74?=
+ =?us-ascii?Q?LRTYUJlKDi22/TSCgdblAlTkfX5/L1LEHVH2TEuPwQJl5NheLFdb58d9X9+I?=
+ =?us-ascii?Q?QiKAFQDJ0r8i+/nH8dz9JJC5dBJuecP0upgZQZg+bq2JGgHhQLlEaiWNP9wg?=
+ =?us-ascii?Q?YhLV7xpr2sVWe5rLfiLjz8HK3qQMvJlIPFgouPwYdxPmS5cH0oe70m74qDSf?=
+ =?us-ascii?Q?SxT/wXkafrtoc7UWcJQRXNQdGhVzJWWSqWsw6sH70WwDxD1Sskg9p8SEAIiv?=
+ =?us-ascii?Q?yHUgaPnaQFO7eUOon5ezbjXGvpmDZasVacoBljw5O5ccvv+iYPOCo2ZE+5Nq?=
+ =?us-ascii?Q?N3zJrNfQ52+z6hn6Djd2io0z/bRkhHaxbdUuckKvk+9nOTP/M43Kio0g+X2j?=
+ =?us-ascii?Q?8UDklJC0gV4yNAe54o0f+i1Cp/fC9U+m4jRnavT2yOJVyUrAiNTZUZ7NU8fI?=
+ =?us-ascii?Q?eTGJW8T8dPR/2FsFPzRN7LzzgqWqDck01GtcvKIbbHq67+XzY+Yk7/8Eezp2?=
+ =?us-ascii?Q?Djv+0XoJ7XWsP6rQwcYdnk1oXIC9DTXYHm4uj1lhiIpCCYh+iyp5gCOTMc8w?=
+ =?us-ascii?Q?Z5gPTURYSAMelAb5a2EeoBG4UjrpBZbILD6MtfvdghYTpJkqlvY9RjiLSFkm?=
+ =?us-ascii?Q?zstBYZa8CTRhgsE4Tb1TuHffZ0Vd/SIaTRV562gei6GZQu/Tv82w7bYuKo3/?=
+ =?us-ascii?Q?vRKJvFlQ9oUNdnLgf8iwWW76/9zA0kH+945kd4c3WOcktsRGlZXYR+Eb2tuC?=
+ =?us-ascii?Q?YInQlSSXbtFyGedw9r6dSoD0yPZukv7J0/gik6AHcgs8TSf2OVQW5HGdVBiu?=
+ =?us-ascii?Q?IEqAz0wHLeSBYVsV1RlIc/aDotQXzO9AD7KR4AsjmdUNJSdldo30ULQH4Cr1?=
+ =?us-ascii?Q?UZXC3D5+boUyQs7mATPT3O/C8o/Z1qwIeWerdfMQBr7DIQbU6L9+9LeqHPe8?=
+ =?us-ascii?Q?vpS/hIA9jokjzsQeXRCGVAOWHri1pJkG+nyw0MzY7to4NctwZ7OxFeFRgfYC?=
+ =?us-ascii?Q?ObnO83atfdy9BRF9eA1Hphj+zIkoTR32bVwtDUooPH0XDBygG5Q1ID+ruJ30?=
+ =?us-ascii?Q?FCwPa7W4ZURk9ydzOlr7qnd5v4Io+yPNok716UX/5P/YgeyIPi8AZYV5rosg?=
+ =?us-ascii?Q?aOo/43eUcrqvM1QQ32py1FnwVGL70IQaHZjdjUWivQ1bkITWGoXiWW8kK4tQ?=
+ =?us-ascii?Q?Ej2aCBMmtCxMF+kZoqRXdWhDSVYzGoRlIltRz0BNfsplp7HkQ4hCa91oBupm?=
+ =?us-ascii?Q?xTG5/M3zGxwpatPIDGRWVXLiYCbb7sQ2tTQmp1fkQUnaHsAu3Pesr1z3sZMF?=
+ =?us-ascii?Q?9FZrVsN4KLV3syaJNs0XpRjhxXB1G1A4rDP53RYTZp4/lXx21SDpVIzV4gz+?=
+ =?us-ascii?Q?UGGH9K43zEcsz6j9R/ATwk0asgcBQ2cyPibJoojG7fdQWdCzIMF6hbitRpF6?=
+ =?us-ascii?Q?aa3HcEpoOk7tzMY1ynjtgEpYsqvngEJynA5wET3GMyG/TnphEJ++dsywd6nn?=
+ =?us-ascii?Q?bIl1LTEHSPf4qRhVGnEfQbAejUlp4kMRL/IybyR91wQdaUheblDmKT2TFa9E?=
+ =?us-ascii?Q?5Qw8JdxEIAxryRGUKKsQ9SV8H4I/geRWdBRlNZoR?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb61d927-d6be-4645-c5c0-08dde7088a34
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2025 14:30:02.3342
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4SL6OF3sI/POnGTij0RF6c998yMk/dzf2BcMrL8rlKadtjpUOVEGAYOoFpyCOCLm7asu4ZhahYlbYZeBSvKzrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8660
 
-
-On Fri, 29 Aug 2025 14:37:53 +0200, Lukas Schmid wrote:
-> This series adds support for the NetCube Systems Nagami SoM and its
-> associated carrier boards, the Nagami Basic Carrier and the Nagami Keypad
-> Carrier.
-> 
-> Changes in v6:
->   - Add 'usb0-enable-hog' to the som to enable the USB-OTG port by default
->   - Update the keypad carrier dts to match actual board revision
-> 
-> Changes in v5:
->   - Re-add the non-removable property to the ESP32 interface
->   - Add the mmc-pwrseq node for the ESP32 to initialize the ESP32 correctly
->   - Remove the unused ehci0 and ohci0 nodes from the Keypad Carrier since
->     USB port is peripheral only
-> 
-> Changes in v4:
->   - Disable the default interfaces on the card-edge but keep the pinctrl
->     definitions for them
->   - Split the pinctrl definitions for the SPI interface into the basic spi
->     pins and the hold/wp pins
->   - Move some mmc0 properties to the Basic Carrier dts
->   - Remove non-removable property from the ESP32 interface
->   - Fix typo in the keypad matrix definition
-> 
-> Changes in v3:
->   - Add missing dcxo node to the SoM dtsi
->   - Rename the multi-led node
->   - Change dr_mode to "peripheral" for the Keypad Carrier
-> 
-> Changes in v2:
->  - Squash the binding patches into one patch
->  - Fix formatting of the phy node in the SoM dtsi
->  - Add description on where the phy is located in the SoM dtsi
->  - Fix the phy address in the SoM dtsi
->  - Move the carrier bindings into the same description as enums
-> 
-> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+On Fri, Aug 29, 2025 at 03:08:56PM +0800, Peng Fan wrote:
+> The TJA105[1,7] is a high-speed CAN transceiver which is a pin-compatible
+> alternative for TI TCAN1043 with sleep mode supported, and has a compatible
+> programming model, therefore use ti,tcan1043 as fallback compatible.
+>
+> The TJA1048 is a dual high-speed CAN transceiver with sleep mode supported.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
-> Lukas Schmid (5):
->   dt-bindings: arm: sunxi: Add NetCube Systems Nagami SoM and carrier
->     board bindings
->   riscv: dts: allwinner: d1s-t113: Add pinctrl's required by NetCube
->     Systems Nagami SoM
->   ARM: dts: sunxi: add support for NetCube Systems Nagami SoM
->   ARM: dts: sunxi: add support for NetCube Systems Nagami Basic Carrier
->   ARM: dts: sunxi: add support for NetCube Systems Nagami Keypad Carrier
-> 
->  .../devicetree/bindings/arm/sunxi.yaml        |   8 +
->  arch/arm/boot/dts/allwinner/Makefile          |   3 +
->  ...n8i-t113s-netcube-nagami-basic-carrier.dts |  67 +++++
->  ...8i-t113s-netcube-nagami-keypad-carrier.dts | 156 +++++++++++
->  .../allwinner/sun8i-t113s-netcube-nagami.dtsi | 249 ++++++++++++++++++
->  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  48 ++++
->  6 files changed, 531 insertions(+)
->  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-basic-carrier.dts
->  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
->  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami.dtsi
-> 
+>  .../devicetree/bindings/phy/ti,tcan104x-can.yaml   | 32 ++++++++++++++++++++--
+>  1 file changed, 30 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> index 4a8c3829d85d3c4a4963750d03567c1c345beb91..a225540545301e443e3460b933effbad48786597 100644
+> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> @@ -19,18 +19,25 @@ properties:
+>            - enum:
+>                - microchip,ata6561
+>            - const: ti,tcan1042
+> +      - items:
+> +          - enum:
+> +              - nxp,tja1051
+> +              - nxp,tja1057
+> +          - const: ti,tcan1043
+>        - enum:
+>            - ti,tcan1042
+>            - ti,tcan1043
+> +          - nxp,tja1048
+>            - nxp,tjr1443
+>
+>    '#phy-cells':
+> -    const: 0
+> +    enum: [0, 1]
+>
+>    standby-gpios:
+>      description:
+>        gpio node to toggle standby signal on transceiver
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>
+>    enable-gpios:
+>      description:
+> @@ -53,6 +60,27 @@ required:
+>    - compatible
+>    - '#phy-cells'
+>
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nxp,tja1048
+> +    then:
+> +      properties:
+> +        '#phy-cells':
+> +          const: 1
+> +        standby-gpios:
+> +          minItems: 2
+> +          maxItems: 2
+
+maxItems already 2 at top.
+
+> +    else:
+> +      properties:
+> +        '#phy-cells':
+> +          const: 0
+> +        standby-gpios:
+> +          minItems: 1
+
+minItems already 1 at top
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+
+> +          maxItems: 1
+> +
+>  additionalProperties: false
+>
+>  examples:
+>
 > --
-> 2.39.5
-> 
-> 
-> 
-> 
-
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250828 (best guess, 2/3 blobs matched)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/allwinner/' for 20250829123800.1232645-1-lukas.schmid@netcube.li:
-
-arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dtb: pinctrl@2000000 (allwinner,sun20i-d1-pinctrl): 'usb0-enable-hog' does not match any of the regexes: '^([rs]-)?(([a-z0-9]{3,}|[a-oq-z][a-z0-9]*?)?-)+?(p[a-ilm][0-9]*?-)??pins?$', '^pinctrl-[0-9]+$', '^vcc-p[a-ilm]-supply$'
-	from schema $id: http://devicetree.org/schemas/pinctrl/allwinner,sun4i-a10-pinctrl.yaml#
-arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dtb: /soc/i2c@2502800/keypad@34: failed to match any schema with compatible: ['ti,tca8418']
-arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-basic-carrier.dtb: pinctrl@2000000 (allwinner,sun20i-d1-pinctrl): 'usb0-enable-hog' does not match any of the regexes: '^([rs]-)?(([a-z0-9]{3,}|[a-oq-z][a-z0-9]*?)?-)+?(p[a-ilm][0-9]*?-)??pins?$', '^pinctrl-[0-9]+$', '^vcc-p[a-ilm]-supply$'
-	from schema $id: http://devicetree.org/schemas/pinctrl/allwinner,sun4i-a10-pinctrl.yaml#
-
-
-
-
-
+> 2.37.1
+>
 
