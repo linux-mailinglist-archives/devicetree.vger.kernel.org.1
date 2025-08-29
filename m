@@ -1,129 +1,145 @@
-Return-Path: <devicetree+bounces-210642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDBD7B3C429
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 23:13:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E286B3C45E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 23:50:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4751B7BDA1C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 21:12:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28CA05A3514
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 21:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87EEA2882A9;
-	Fri, 29 Aug 2025 21:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D3C27054B;
+	Fri, 29 Aug 2025 21:50:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t1XC+i7J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oiej0Fcj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF3027CCE2;
-	Fri, 29 Aug 2025 21:13:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE23D275AEB;
+	Fri, 29 Aug 2025 21:50:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756502017; cv=none; b=KOWd/4TRGFVT8nHHdneEHvO+3Sjgd3rvW4r9JkDBzgDvZOgpK07DjkgWhmiLsm6HU9wUWsW3s8VU8YDtR+SA3CMd9Elx56t9mRnvY3QB35uv5pCyHLqtsHEpkSqyBIRRIeB6FDzk/T3EXJwYVF4A5uOhA12mXDMVYxO2iKdM+UA=
+	t=1756504235; cv=none; b=CXUZ+Ir801moNQS9hl/MGBUWIq/zzjdKsv+OScwAWDR79t9ahbKQiadIGmxEVXCFS6DH+f5Cv8VzbB56KAWrZ17l6YJFywb56XQTwv/2px2iXaelCIYxE3VE5U9Stvh6muennXX30LgZhrExlUwsRXSf4LxJY1H5J6k+PkFaCpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756502017; c=relaxed/simple;
-	bh=sbyw8T8JAdvdlkAq4zux1rD5z1Wak6PP9egfwjKNvFI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=unpK1nBO9nd/iGewfgnQAj+9CMYXZYGBUjwQpqeBiLYG3Nz8RKJ+GHtomVqWc71D6fH/z02bLTJwop/F1jfhCwpl8LLVfCp07fIkiZ1vbBOcvddx7uYqVme8g/IXFUeLTtIZCVaTU+9SBFne7iRD3U2S0mc2dgaJzmkz/ly5fI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t1XC+i7J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9429BC4CEF0;
-	Fri, 29 Aug 2025 21:13:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756502017;
-	bh=sbyw8T8JAdvdlkAq4zux1rD5z1Wak6PP9egfwjKNvFI=;
-	h=From:To:Cc:Subject:Date:From;
-	b=t1XC+i7JMTzBN6/YM6iXaXxS7ND02N38fa8g3j1r5h082lgjCMsr2HzDxexxBeJOm
-	 jmMTeZcSldK/7MG4RwWhIiSweMqSNzncUGPerbH/X7m/kSwZNvPjtWs//EJG0oSdKX
-	 rJ8p4XB3nx6rcRPvFH8Tf/AYy35sc7kE9cGob1NbMXN33Dl7O8eWgU9DTU9lFdwG5o
-	 WCvmH7SowZYmgHQ6wk5CfvZmi6BZxJr/W1opkRFMeE3r22eiLsEkrUnM8tEp0Iut5V
-	 ePbHt7lQzyusXkqHnfxgb0gXRKnffyBgWCTptVBtK4JBXQCwTFwzTShkA7pEzlUjGc
-	 +KxTU45ry+h+A==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: aspeed: Drop syscon "reg-io-width" properties
-Date: Fri, 29 Aug 2025 16:13:29 -0500
-Message-ID: <20250829211330.1336274-1-robh@kernel.org>
-X-Mailer: git-send-email 2.50.1
+	s=arc-20240116; t=1756504235; c=relaxed/simple;
+	bh=oPNcCKmYSFesMMVug0H5hxc9ayrY0QdtNp19H5l1bxg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cuYnWqoDKLcuDmHp2+cbanbjS7cSbKD5fX4o4HIV+AYUg22mE9xBTeS45fmdidBkLC+Aczl0uur1TZJsXJhazNGNdciov4UEkxj+l8mzv4Un20fB7pSqR/DRBMrc9CVeFbV4SOipySSYjq9lTOh6VJLBKjFDAD/NeceTXodrobQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oiej0Fcj; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-71d603a9cfaso19670747b3.1;
+        Fri, 29 Aug 2025 14:50:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756504233; x=1757109033; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9q+jxiJZlQB5ZBqFSf18qlf9A4B0dAOQ/wntSaPJcjE=;
+        b=Oiej0Fcj6nY2LCyNZSV0f9RP9QvL5yYs9gwaVxaRi3u+qzCbXODqXstlhVDRSK08m1
+         sDTwNegyC+qOnHOPtOgEeqvByKO4KxAki+uolhY3vJ2wQQQMMbnV06qZbThUv7l8hKC+
+         FCNj6eDKg3YGYSqtzhxJLGrWYVHfppV/ioRkXKVoFY9e5N6eZJ0o0enazGDTlF7p4SUq
+         64tXs5huefhDXu35V1VRxOuWGVMOIBUCBIAhrwA9SO4qMg23g/kAVkfFqyPsRehrlcHY
+         daJe1poci1wyJo3I1tnOgrBwv/Ao+rBXfdWqz98A8khkrRmC+3o8jCKBM2106wRiR8bE
+         j6vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756504233; x=1757109033;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9q+jxiJZlQB5ZBqFSf18qlf9A4B0dAOQ/wntSaPJcjE=;
+        b=lT8uAL9Srb06p9uW03BQfd2JOrjQIQNU1epbBY/6a3iz8LXquf+lLx7ncK5c6ieMZf
+         5CM6tNFKXi9OjSMMJsvQ0gH2jDSiwUqc3tjHMbu/synWdKg5Imuhm1T3+DX2B2P9nWti
+         wFLr7V9cWGjoqlgaDS9WaS9H7IEE0y25j2UKoneNJ9e0rpR+0vid9yabfzUbe2dS+uva
+         ckWrCoxPUEwr385iKNLLzmg6RHyZtHQ8dhP8Pmr4ufCfPANGhe7WNSR/GBN+bXZS8mqr
+         qXrE4FHsgOsddeIkffFjT5dbIzxJsgRqomkXdoD5l6Xjl1BtBY0TO0Wb6VKHy/Akmaou
+         x7iA==
+X-Forwarded-Encrypted: i=1; AJvYcCWG8HUpLO6Jzg2bph+LvQeVjdSfIL3lBYtVtq7pJT0azDPXnunduaUXaZMH9DZdMclnMi9nJs/qiMvXj8JI@vger.kernel.org, AJvYcCXsre96sDnSmCDzYjymrL4tG07z0LLkt5ep23J/ATS1KSELuMVk9mAVtVeU7D4xvsaI1rh9sWHmK211@vger.kernel.org
+X-Gm-Message-State: AOJu0YwL4C+Cl7hC2bySyJ/TK8oMgUBmcj5I8u4k7PFeYyJQaJwCZXmB
+	U4MVl7XIhvzBEEFYZDUcBh2oDLIvydnIKwFLM69nadk71vCIEtGmnEDvivQLY9GxsPrvQed/Yf3
+	nl9p5hLv6l+e3WGuv8Ao8n2LNe51dDf2qzCtl1DCfhg==
+X-Gm-Gg: ASbGncuNL39k40Av5/jVze1GIbiEJDRenqF8d9/JvuI24NrZiCCYCY6HWX8dDhcbJk8
+	erpUMGzaTnv/oKQ7FlvFzDfOmVE1YCjzOalxtfFKJLrnyEdNPPN0HhRvpf+Hwp7GCmfQDP5tyvg
+	X5UyhbK3Dk1zRTzj3miRJF8+XqrkHrbVrfM0T3wdqfVPSP/DUhZ2Brw7aBGneaoeyeo0olMcNup
+	DuMWIibJaT9EpQvEfoo+kVRxlGh5UraOcDg+KX1
+X-Google-Smtp-Source: AGHT+IGjg9C8+gDlUZd5wXGQOESzGBuvn3UbTua0+WEP1zD2LAYBsQPLu/csxwx8MuvlkFvU99dMLaFufFMuXcizmVs=
+X-Received: by 2002:a05:690c:7088:b0:71f:f3bc:3b9 with SMTP id
+ 00721157ae682-722764aca8cmr1699697b3.29.1756504232569; Fri, 29 Aug 2025
+ 14:50:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250828201806.3541261-1-olvaffe@gmail.com> <ac4838eb-7613-4642-a007-577a9f665984@arm.com>
+In-Reply-To: <ac4838eb-7613-4642-a007-577a9f665984@arm.com>
+From: Chia-I Wu <olvaffe@gmail.com>
+Date: Fri, 29 Aug 2025 14:50:21 -0700
+X-Gm-Features: Ac12FXxWORzRnCGgs-ncJDRqcsocabemqRb0a-BtSr2XrSnm8PhUgTVO3SI4oew
+Message-ID: <CAPaKu7SYptoVNfUgT8ok1mwRk9BZpU7z_XG=vE2_nkJ5hAj_8Q@mail.gmail.com>
+Subject: Re: [PATCH 0/2] drm/panthor: add custom ASN hash support
+To: Steven Price <steven.price@arm.com>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The default width is 4 bytes for "syscon" devices, so "reg-io-width" is
-redundant and can be dropped.
+On Fri, Aug 29, 2025 at 6:41=E2=80=AFAM Steven Price <steven.price@arm.com>=
+ wrote:
+>
+> On 28/08/2025 21:18, Chia-I Wu wrote:
+> > Some socs such as mt8196 require custom ASN hash.
+>
+> I don't know the full details of this, but I'm puzzled by the "require"
+> here.
+>
+> AIUI the "custom ASN hash support" (or L2C_SLICE_HASH as it was renamed)
+> affects the efficiency of the L2 caches in the GPU. It basically
+> determines how addresses are striped over the individual caches.
+>
+> So (unless there is a specific errata) not setting a custom hash will
+> work just fine, but the performance might be slightly reduced.
+All memory access results in faults unless custom ASN hash is enabled on mt=
+8196.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- arch/arm/boot/dts/aspeed/aspeed-g4.dtsi | 1 -
- arch/arm/boot/dts/aspeed/aspeed-g5.dtsi | 2 --
- arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 2 --
- 3 files changed, 5 deletions(-)
+It sounds like this is a soc-specific quirk.  I will check with the
+vendor, and likely turn this into a quirk.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi
-index 78c967812492..c3d4d916c69b 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi
-+++ b/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi
-@@ -356,7 +356,6 @@ vuart: serial@1e787000 {
- 			lpc: lpc@1e789000 {
- 				compatible = "aspeed,ast2400-lpc-v2", "simple-mfd", "syscon";
- 				reg = <0x1e789000 0x1000>;
--				reg-io-width = <4>;
- 
- 				#address-cells = <1>;
- 				#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
-index 57a699a7c149..39500bdb4747 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
-+++ b/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
-@@ -273,7 +273,6 @@ hace: crypto@1e6e3000 {
- 			gfx: display@1e6e6000 {
- 				compatible = "aspeed,ast2500-gfx", "syscon";
- 				reg = <0x1e6e6000 0x1000>;
--				reg-io-width = <4>;
- 				clocks = <&syscon ASPEED_CLK_GATE_D1CLK>;
- 				resets = <&syscon ASPEED_RESET_CRT1>;
- 				syscon = <&syscon>;
-@@ -441,7 +440,6 @@ vuart: serial@1e787000 {
- 			lpc: lpc@1e789000 {
- 				compatible = "aspeed,ast2500-lpc-v2", "simple-mfd", "syscon";
- 				reg = <0x1e789000 0x1000>;
--				reg-io-width = <4>;
- 
- 				#address-cells = <1>;
- 				#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-index 61983feb2a4e..f8662c8ac089 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-@@ -382,7 +382,6 @@ rng: hwrng@1e6e2524 {
- 			gfx: display@1e6e6000 {
- 				compatible = "aspeed,ast2600-gfx", "syscon";
- 				reg = <0x1e6e6000 0x1000>;
--				reg-io-width = <4>;
- 				clocks = <&syscon ASPEED_CLK_GATE_D1CLK>;
- 				resets = <&syscon ASPEED_RESET_GRAPHICS>;
- 				syscon = <&syscon>;
-@@ -572,7 +571,6 @@ peci0: peci-controller@1e78b000 {
- 			lpc: lpc@1e789000 {
- 				compatible = "aspeed,ast2600-lpc-v2", "simple-mfd", "syscon";
- 				reg = <0x1e789000 0x1000>;
--				reg-io-width = <4>;
- 
- 				#address-cells = <1>;
- 				#size-cells = <1>;
--- 
-2.50.1
-
+>
+> kbase provides both a DT option and a module parameter which can be used
+> to override the defaults (although the parameter descriptions say "for
+> testing" which I think is somewhat telling).
+>
+> How we should describe this somewhat depends on whether this is a
+> specific workaround for a SoC - in which case Boris's suggestion of
+> using a different compatible string and panthor_soc_data seems like a
+> good choice. Or if this is exposed as a general "tuning" parameter, in
+> which case this might be appropriate.
+>
+> I believe the tuning is related to more than just a SoC (the external
+> memory system has an impact). So I guess a DT level knob makes most
+> sense here.
+>
+> Steve
+>
+> > Chia-I Wu (2):
+> >   dt-bindings: gpu: mali-valhall-csf: add asn-hash
+> >   drm/panthor: add asn-hash support
+> >
+> >  .../bindings/gpu/arm,mali-valhall-csf.yaml    |  8 ++++++
+> >  drivers/gpu/drm/panthor/panthor_device.c      | 28 +++++++++++++++++++
+> >  drivers/gpu/drm/panthor/panthor_device.h      |  6 ++++
+> >  drivers/gpu/drm/panthor/panthor_gpu.c         | 17 +++++++++++
+> >  drivers/gpu/drm/panthor/panthor_regs.h        |  4 +++
+> >  5 files changed, 63 insertions(+)
+> >
+>
 
