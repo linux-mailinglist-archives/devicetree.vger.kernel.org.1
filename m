@@ -1,105 +1,115 @@
-Return-Path: <devicetree+bounces-210470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05E6AB3B9B0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:08:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24230B3B9B6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:09:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B980A7A6EAB
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 11:07:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3A4EA04B68
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 11:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E473043CA;
-	Fri, 29 Aug 2025 11:08:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="qmzm6zVB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FAA2313E2F;
+	Fri, 29 Aug 2025 11:08:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9B7E26D4CD;
-	Fri, 29 Aug 2025 11:08:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDEF31282F;
+	Fri, 29 Aug 2025 11:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756465714; cv=none; b=tSeDRD3XgcXX+4PjEMzQpY09sDgi11l6RMP1oryZRwPOwjGPmcr4nLE+1ev99U1iPfzNI5qYeNDeysi3mRdZge5uAW5CKBJGLiv1WAvX5+WfuaUMN5eitSb1TaRHOaKUGPBljSOxmK6Um0VSX60sDrQ0fy9JqxNwqGPzMYyxXJQ=
+	t=1756465728; cv=none; b=lAa020fG7+Kei5SsNP4L0+HJgUIvF89jUk0YrHugEOfsR4XdGYy9Azb5IEKKkAr68O43hQwHPyVag3S47bxyx/xbAHJcOo8JfOL2OVqgbjwDb6DNzrEX30dpmoLgrggH3cC4uy2UQx6mPrS0eJpkaf/HHhWig7VdesPuABWjzO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756465714; c=relaxed/simple;
-	bh=vYp1GJUgd0jvWoYxmkF2wAdQScdbtSOlmuOcuwJ/qZg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ek/5Q8RCWrK+CMKAiQZZYRhUl3PnJWwgsrwoJAS2aYcGkp7pRKRXMjUqbwFLCDpHilbi3GoQzCat4YrFFXtPnCy/uzoexhYZpBvGYXaIpEqwircIcpVzZD8lrQMJLS7N3HCu6ZlG2P7Q1Yl1xnbJID4v1cGay19KoOgvOZPgZb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=qmzm6zVB; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 99D5FC8F1C5;
-	Fri, 29 Aug 2025 11:08:16 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 1F0A9606B9;
-	Fri, 29 Aug 2025 11:08:31 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B6BD31C22D962;
-	Fri, 29 Aug 2025 13:08:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1756465710; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=R6yBXaQXe2oIXf/DQf9Ce386Jx+9APGT/J/ebwN0uM0=;
-	b=qmzm6zVBnsoG+Pob4yDIgmvkx8TGiac+/mO4nsCQ3BvSrWO50YEmBpKQRRuXEJ4LxVS0lM
-	0lH8g3gNXoHrREa0XTXSB0aqhF+/4LjjiQNRpoVi5AvPadCRRgIgF6RDkK6z+Rb/ActnVs
-	0SVnKTdoQV2DYS1jzf12QVtOpE2+LdTWAQ385zulknQp+KDihidM8PsytgOomujCFyWcmk
-	ETw2MY9mnZsUgH6JnD4ZWYFLihs9fk3Aq1UypVUQmKGx6g1MM+Rpx3nY9yrQQee9y8pOyS
-	il1Uvi5ERIh+TUpoe38LSYu06vgJk2ApIGx4E/Q/+WyRGUm5mL/YWEf5HPgbgw==
-Date: Fri, 29 Aug 2025 13:08:21 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Rob Herring <robh@kernel.org>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Ayush Singh <ayush@beagleboard.org>, Andi
- Shyti <andi.shyti@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree-spec@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 1/1] schemas: i2c: Introduce I2C bus extensions
-Message-ID: <20250829130821.472a96dc@bootlin.com>
-In-Reply-To: <aLGHvqY6N5oI54eT@shikoro>
-References: <20250618082313.549140-1-herve.codina@bootlin.com>
-	<20250618082313.549140-2-herve.codina@bootlin.com>
-	<CAL_JsqJ=jmXVwjtNCjRpUKj02dnJEz4GHMX2wMRaWw=M+sZQ0w@mail.gmail.com>
-	<20250808180746.6fa6a6f9@booty>
-	<CAL_JsqLxsfpaaCvV3AcniMYxAYVir7ddL4umCNY3u-ggVTiZcg@mail.gmail.com>
-	<aK2-we94b-x2fgW_@shikoro>
-	<20250829125238.4117947f@bootlin.com>
-	<aLGHvqY6N5oI54eT@shikoro>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1756465728; c=relaxed/simple;
+	bh=JH9+5xWCRS+y0xr4rLS+aEPLZZBo64/HbQylL0LRVfE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BeBnvLNmR9g0aid3eEq0X27SfbNPrT6YH5zkATtA5Ygr1i3sBWml9P5JTLMz3lT6Pgh3ZMpIoMBvN3Fhszq0yww1vsL4KaflbKsZr9ZU/CmsjFf3UOI6VTk76sIX7TUOYcxx1t3/gBJR0WkhoL6vB7f2RZ3ZjdVMOuNHsecrpeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8AC8519F0;
+	Fri, 29 Aug 2025 04:08:37 -0700 (PDT)
+Received: from [10.57.2.173] (unknown [10.57.2.173])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5B8C53F738;
+	Fri, 29 Aug 2025 04:08:44 -0700 (PDT)
+Message-ID: <7230cb2a-2a66-49d4-bb37-b0df2a79f7d0@arm.com>
+Date: Fri, 29 Aug 2025 12:08:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/14] dt-bindings: dma: dma350: Document interrupt-names
+To: Jisheng Zhang <jszhang@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250823154009.25992-1-jszhang@kernel.org>
+ <20250823154009.25992-9-jszhang@kernel.org>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250823154009.25992-9-jszhang@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Wolfram,
+On 2025-08-23 4:40 pm, Jisheng Zhang wrote:
+> Currently, the dma350 driver assumes all channels are available to
+> linux,
 
-On Fri, 29 Aug 2025 12:58:06 +0200
-Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
+No, it doesn't - the CH_CFG_HAS_CMDLINK check is designed to safely skip 
+channels reserved for Secure world (or that don't exist due to an FVP 
+bug...), since their CH_BUILDCFG1 will as zero.
 
-> Hi Hervé,
+> this may not be true on some platforms, so it's possible no
+> irq(s) for the unavailable channel(s). What's more, the available
+> channels may not be continuous. To handle this case, we'd better
+> get the irq of each channel by name.
+
+Unless you're suggesting these channels physically do not have their 
+IRQs wired up to anything at all, what's wrong with describing the 
+hardware in DT? Linux won't request IRQs for channels it isn't actually 
+using, and nor should any other reasonable DT consumer - precisely 
+because channels *can* be arbitrarily taken by the Secure world, and 
+that can be entirely dynamic based on firmware configuration even for a 
+single hardware platform.
+
+And even in the weird case that some channel literally has no IRQ, my 
+thought was we'd just have a placeholder entry in the array, such that 
+attempting to request it would fail.
+
+Thanks,
+Robin.
+
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>   Documentation/devicetree/bindings/dma/arm,dma-350.yaml | 5 +++++
+>   1 file changed, 5 insertions(+)
 > 
-> > the only solution I see is to parse the full DT in order to find extension
-> > nodes when we need to register adapter children (adapter probe() step).
-> > 
-> > A matching extension node will be a node where:
-> >  1) compatible = "i2c-bus-extension"
-> >  2) "i2c-parent" phandle points to the expected adapter.  
-> 
-> Would that be so bad? It will not be done often, or?
+> diff --git a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+> index 429f682f15d8..94752516e51a 100644
+> --- a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+> +++ b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+> @@ -32,6 +32,10 @@ properties:
+>         - description: Channel 6 interrupt
+>         - description: Channel 7 interrupt
+>   
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 8
+> +
+>     "#dma-cells":
+>       const: 1
+>       description: The cell is the trigger input number
+> @@ -40,5 +44,6 @@ required:
+>     - compatible
+>     - reg
+>     - interrupts
+> +  - interrupt-names
+>   
+>   unevaluatedProperties: false
 
-Ok I will propose a binding update in that sense (dtschema repo) and an
-implementation (kernel repo).
-
-Best regards,
-Hervé
 
