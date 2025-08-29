@@ -1,132 +1,87 @@
-Return-Path: <devicetree+bounces-210458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19A33B3B944
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:53:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7676B3B940
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:53:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 405581682D2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:53:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 256D83B8610
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:53:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAFDE310625;
-	Fri, 29 Aug 2025 10:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="upOucZnx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B61E830FC1E;
+	Fri, 29 Aug 2025 10:52:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41973112D9
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 10:53:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4351230FC00;
+	Fri, 29 Aug 2025 10:52:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756464790; cv=none; b=SRd3FLsGxYiq8eaZFjH8DP4J69Nb9l71IKvn4QQ0iIbFyq/Qxe/g6QVZLt9DDgRv64eMyCxHNxKx2MXKafa9HTaFYaD8i/qrkvRa5YvHdHZ0xQybd6PSj4FgqHhc0+JzbT8AYVBBAuvOylSzoirXCxYfqcfnU0YttiJgEkBr3Rw=
+	t=1756464778; cv=none; b=NuAQ5xQxEpvnFRAOZBgMb2mQNFw44a/pE9pS4ceHSyVVFZB4XLonjNGwNlyV6rPuaUOllrjrzINkP6KLJ2xQc26CrRHjGjUOQs59JEZ9hHbHZ22VVUUPfyz+2Vmprx3sdK764PgGka9NxRAWSbLlN3Xrd76QhX9z7fm2k20zumM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756464790; c=relaxed/simple;
-	bh=mfy+YuX2F4NtAR8pwTND/xpdBP0nizDaFodXwa419jM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lL3cxhb7D/iTFG/bMCDAYejGfnlYSvmTj1uwRtNGVlBndLJAqVOkeWO+i7YJeRJA7UqAFyD2hGhHleByS6ksU1blolJ+7rXuOOd74N8Luvjt+QDeYBEvsSsexivyzWAmDeb39njbD4xnpWqSsSeAYTRD2g+btzavAcVVc3sQ9xI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=upOucZnx; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 1D3311A0DE4;
-	Fri, 29 Aug 2025 10:53:01 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D33FE606B9;
-	Fri, 29 Aug 2025 10:53:00 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9F6DE1C22CEB8;
-	Fri, 29 Aug 2025 12:52:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1756464780; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=/yZivrEaPavxvETAY4MYad6XxcQTsMFNQbbqh28IxHM=;
-	b=upOucZnx2+ZWY2gIAJ/ExxOo9ufNMXfABewxDIa/FGZ8ExyjBdYg0C5syIxWldcQA3BYY4
-	3Cg6E1AeybYmEsN81IxEIubyubR7LRc3MJnOWArICFGWFM2k3xqXasxlLmDEVvC7YfWeLY
-	4Pr6qDUJ1ToPRV5zRoqq5nLpk73MT8OZZs5wQubXGfEbrIvSMb/vVaWUfCbziytHYYiftd
-	9UwXdNf+B2G9p3tNw5eqk7oeXc35IJqwL+M5ok4q/Bl22Ui9l2HE9DAe/FyQcccjnnHMkd
-	6KosUHcckb940gRxdTBhDa/3MBbhbrs8f6GX6go329p8VtZEFq8fCuQdCso0zg==
-Date: Fri, 29 Aug 2025 12:52:38 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Rob Herring <robh@kernel.org>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Ayush Singh <ayush@beagleboard.org>, Andi
- Shyti <andi.shyti@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree-spec@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 1/1] schemas: i2c: Introduce I2C bus extensions
-Message-ID: <20250829125238.4117947f@bootlin.com>
-In-Reply-To: <aK2-we94b-x2fgW_@shikoro>
-References: <20250618082313.549140-1-herve.codina@bootlin.com>
-	<20250618082313.549140-2-herve.codina@bootlin.com>
-	<CAL_JsqJ=jmXVwjtNCjRpUKj02dnJEz4GHMX2wMRaWw=M+sZQ0w@mail.gmail.com>
-	<20250808180746.6fa6a6f9@booty>
-	<CAL_JsqLxsfpaaCvV3AcniMYxAYVir7ddL4umCNY3u-ggVTiZcg@mail.gmail.com>
-	<aK2-we94b-x2fgW_@shikoro>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1756464778; c=relaxed/simple;
+	bh=2l67HPkV8juKuiJ0waqffOy2czHKCxwzQB9FinAHhAI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D39M2Hw0QBdlZ9d4/g/US2Ebf+L9rgPPFG3CsgUk7XDGZfeJcIJwEWF79kf74lg7PJcPNZlt8w5i5ZwxXqjKX1Yreg9vaTw+D1kPamjSky5HeHdnUIHkYzmMPrnOT0rWRAzPjNzKK6SgwpYoLpvknN73sq3wctdxB+PKSq8ERbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6DE9719F0;
+	Fri, 29 Aug 2025 03:52:48 -0700 (PDT)
+Received: from [10.57.2.173] (unknown [10.57.2.173])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 374673F738;
+	Fri, 29 Aug 2025 03:52:55 -0700 (PDT)
+Message-ID: <857fd009-bfef-4da9-b6a8-832f0c8b3154@arm.com>
+Date: Fri, 29 Aug 2025 11:52:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/14] dmaengine: dma350: Add missing dch->coherent
+ setting
+To: Jisheng Zhang <jszhang@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250823154009.25992-1-jszhang@kernel.org>
+ <20250823154009.25992-3-jszhang@kernel.org>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250823154009.25992-3-jszhang@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Wolfram,
-
-On Tue, 26 Aug 2025 16:03:45 +0200
-Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
-
-> Hi,
+On 2025-08-23 4:39 pm, Jisheng Zhang wrote:
+> The dch->coherent setting is missing.
 > 
-> > > A different option is to only have the "i2c-parent" phandle in the
-> > > extension node and nothing else in DT (no bidirectional link, no
-> > > compatible string), without any full-tree searches.
-> > >
-> > > On the implementation side, the connector driver when probing would
-> > > register the extension nodes at the I2C core, which would maintain a
-> > > list of extension nodes. This is important when the connector probes
-> > > first. Then when any adapter probes the core would iterate over the
-> > > list to check whether the newly-probed adapter is pointed to by one of
-> > > the registered bus extensions, and then start populating the devices on
-> > > the matching bus extension(s).
-> > >
-> > > A lot of care would have to be put in the disconnection path and while
-> > > removing any bus extension from the global list, which could race with
-> > > the I2C core using the list itself. The drive core wouldn't do it for
-> > > us for free.  
-> > 
-> > I'll defer to Wolfram on I2C core implementation...  
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>   drivers/dma/arm-dma350.c | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> One input already before we dive into the unconference. I don't want to
-> maintain the above solution, i.e. handling lists with sublte race issues
-> which could be (and should be IMO) handled by the driver core anyhow.
+> diff --git a/drivers/dma/arm-dma350.c b/drivers/dma/arm-dma350.c
+> index bf3962f00650..24cbadc5f076 100644
+> --- a/drivers/dma/arm-dma350.c
+> +++ b/drivers/dma/arm-dma350.c
+> @@ -587,6 +587,7 @@ static int d350_probe(struct platform_device *pdev)
+>   	for (int i = 0; i < nchan; i++) {
+>   		struct d350_chan *dch = &dmac->channels[i];
+>   
+> +		dch->coherent = coherent;
 
-Wolfram, could it be ok if this list is not global but related to the
-adapter the extension belongs to?
+Nit: I'd put this a bit further down with the CH_LINKATTR setup, but 
+otherwise,
 
-If the list is really a nogo, registering extensions cannot be done and
-so with:
- 1) "i2c-parent" phandle and the compatible string "i2c-bus-extension" in
-    the extension node.
- 2) No registering extensions capabilities available
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
 
-the only solution I see is to parse the full DT in order to find extension
-nodes when we need to register adapter children (adapter probe() step).
+>   		dch->base = base + DMACH(i);
+>   		writel_relaxed(CH_CMD_CLEAR, dch->base + CH_CMD);
+>   
 
-A matching extension node will be a node where:
- 1) compatible = "i2c-bus-extension"
- 2) "i2c-parent" phandle points to the expected adapter.
-
-Wolfram, is it a solution you can accept?
-
-Best regards,
-Hervé
 
