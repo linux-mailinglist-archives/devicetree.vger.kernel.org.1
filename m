@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-210641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5CAEB3C424
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 23:13:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDBD7B3C429
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 23:13:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81C3CA62BCC
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 21:13:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4751B7BDA1C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 21:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB3D287515;
-	Fri, 29 Aug 2025 21:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87EEA2882A9;
+	Fri, 29 Aug 2025 21:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aqXMinr0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t1XC+i7J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2016230BDF;
-	Fri, 29 Aug 2025 21:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF3027CCE2;
+	Fri, 29 Aug 2025 21:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756502006; cv=none; b=ZH6zdQLg75W8YQr0IqKolqpbq4+dCmxP1YSLyZnsex8AnUpb4tZu/d15joYh6oh81eH8UOujSNiK+EEupegG+k5w88rv2+s4ESLCcHvKlzzJejpBN9fKaAyyjNsBW2fasrTZuUcbCXnUENSROj60QLLmkZC4yVS2/mm9Ky4DiX4=
+	t=1756502017; cv=none; b=KOWd/4TRGFVT8nHHdneEHvO+3Sjgd3rvW4r9JkDBzgDvZOgpK07DjkgWhmiLsm6HU9wUWsW3s8VU8YDtR+SA3CMd9Elx56t9mRnvY3QB35uv5pCyHLqtsHEpkSqyBIRRIeB6FDzk/T3EXJwYVF4A5uOhA12mXDMVYxO2iKdM+UA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756502006; c=relaxed/simple;
-	bh=JZ0CWieAD+hPk8tcHz5WX7FBAOxPPfeaj0F6aTNx4zg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TSP7BN5LNhEvnKjwJpnTJVg0zgOYhpe8oe9tyLYqFDgFSrBHmQFfbPGpVfpni4YYygRAkh5depUgWcnv92eA77UVAmgfrd5KZg/H2n1dEQ9UTGJcl5yXrnOZExukgZJlTiCheNPX3mxT9+4xxS5iVuQY1I3QRTz8atatM14L7D4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aqXMinr0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADEDC4CEF0;
-	Fri, 29 Aug 2025 21:13:25 +0000 (UTC)
+	s=arc-20240116; t=1756502017; c=relaxed/simple;
+	bh=sbyw8T8JAdvdlkAq4zux1rD5z1Wak6PP9egfwjKNvFI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=unpK1nBO9nd/iGewfgnQAj+9CMYXZYGBUjwQpqeBiLYG3Nz8RKJ+GHtomVqWc71D6fH/z02bLTJwop/F1jfhCwpl8LLVfCp07fIkiZ1vbBOcvddx7uYqVme8g/IXFUeLTtIZCVaTU+9SBFne7iRD3U2S0mc2dgaJzmkz/ly5fI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t1XC+i7J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9429BC4CEF0;
+	Fri, 29 Aug 2025 21:13:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756502006;
-	bh=JZ0CWieAD+hPk8tcHz5WX7FBAOxPPfeaj0F6aTNx4zg=;
+	s=k20201202; t=1756502017;
+	bh=sbyw8T8JAdvdlkAq4zux1rD5z1Wak6PP9egfwjKNvFI=;
 	h=From:To:Cc:Subject:Date:From;
-	b=aqXMinr0mzFFf3X/Qxc61FXYoalDlBqS+T9E1Unr43Jv3nAytC2tYjUPS8H7H6aVJ
-	 GOOcOMlX0CXlYaFGiD27NXRr6HQ+SPdQtw0AWMhcAsTraMdIqeXvwt7wyAbxCUvIN0
-	 Yfl4/n2cRQ25OMuhUDPlqNL5ICChxRmnh6CY5k70wMMb6ZrK42UyVCUsEJjV2NnoEo
-	 YNJ9OFyNjVmn0mEL4PF5QprtjxR9P2jDbL/y0UA/oQ65w6ScBRIiajsb0shF1ITVaO
-	 SjJ1Ix36+X83Zpk5cDCNdUhLYB4cGUQf30kfNc0U2n9TO3FefHDBroMbaItRVUnR3V
-	 zrlPT9+9a6G9g==
+	b=t1XC+i7JMTzBN6/YM6iXaXxS7ND02N38fa8g3j1r5h082lgjCMsr2HzDxexxBeJOm
+	 jmMTeZcSldK/7MG4RwWhIiSweMqSNzncUGPerbH/X7m/kSwZNvPjtWs//EJG0oSdKX
+	 rJ8p4XB3nx6rcRPvFH8Tf/AYy35sc7kE9cGob1NbMXN33Dl7O8eWgU9DTU9lFdwG5o
+	 WCvmH7SowZYmgHQ6wk5CfvZmi6BZxJr/W1opkRFMeE3r22eiLsEkrUnM8tEp0Iut5V
+	 ePbHt7lQzyusXkqHnfxgb0gXRKnffyBgWCTptVBtK4JBXQCwTFwzTShkA7pEzlUjGc
+	 +KxTU45ry+h+A==
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
@@ -49,9 +49,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-aspeed@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: aspeed: Drop "sdhci" compatibles
-Date: Fri, 29 Aug 2025 16:13:17 -0500
-Message-ID: <20250829211318.1335862-1-robh@kernel.org>
+Subject: [PATCH] ARM: dts: aspeed: Drop syscon "reg-io-width" properties
+Date: Fri, 29 Aug 2025 16:13:29 -0500
+Message-ID: <20250829211330.1336274-1-robh@kernel.org>
 X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -61,36 +61,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The "sdhci" compatible is not documented nor very useful on its own given
-the various features and quirks of SDHCI implementations.
+The default width is 4 bytes for "syscon" devices, so "reg-io-width" is
+redundant and can be dropped.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/aspeed/aspeed-g4.dtsi | 1 -
+ arch/arm/boot/dts/aspeed/aspeed-g5.dtsi | 2 --
+ arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 2 --
+ 3 files changed, 5 deletions(-)
 
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi
+index 78c967812492..c3d4d916c69b 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi
++++ b/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi
+@@ -356,7 +356,6 @@ vuart: serial@1e787000 {
+ 			lpc: lpc@1e789000 {
+ 				compatible = "aspeed,ast2400-lpc-v2", "simple-mfd", "syscon";
+ 				reg = <0x1e789000 0x1000>;
+-				reg-io-width = <4>;
+ 
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
+index 57a699a7c149..39500bdb4747 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
++++ b/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
+@@ -273,7 +273,6 @@ hace: crypto@1e6e3000 {
+ 			gfx: display@1e6e6000 {
+ 				compatible = "aspeed,ast2500-gfx", "syscon";
+ 				reg = <0x1e6e6000 0x1000>;
+-				reg-io-width = <4>;
+ 				clocks = <&syscon ASPEED_CLK_GATE_D1CLK>;
+ 				resets = <&syscon ASPEED_RESET_CRT1>;
+ 				syscon = <&syscon>;
+@@ -441,7 +440,6 @@ vuart: serial@1e787000 {
+ 			lpc: lpc@1e789000 {
+ 				compatible = "aspeed,ast2500-lpc-v2", "simple-mfd", "syscon";
+ 				reg = <0x1e789000 0x1000>;
+-				reg-io-width = <4>;
+ 
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
 diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-index acdb6ae74b27..61983feb2a4e 100644
+index 61983feb2a4e..f8662c8ac089 100644
 --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
 +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-@@ -662,7 +662,7 @@ sdc: sdc@1e740000 {
- 				status = "disabled";
+@@ -382,7 +382,6 @@ rng: hwrng@1e6e2524 {
+ 			gfx: display@1e6e6000 {
+ 				compatible = "aspeed,ast2600-gfx", "syscon";
+ 				reg = <0x1e6e6000 0x1000>;
+-				reg-io-width = <4>;
+ 				clocks = <&syscon ASPEED_CLK_GATE_D1CLK>;
+ 				resets = <&syscon ASPEED_RESET_GRAPHICS>;
+ 				syscon = <&syscon>;
+@@ -572,7 +571,6 @@ peci0: peci-controller@1e78b000 {
+ 			lpc: lpc@1e789000 {
+ 				compatible = "aspeed,ast2600-lpc-v2", "simple-mfd", "syscon";
+ 				reg = <0x1e789000 0x1000>;
+-				reg-io-width = <4>;
  
- 				sdhci0: sdhci@1e740100 {
--					compatible = "aspeed,ast2600-sdhci", "sdhci";
-+					compatible = "aspeed,ast2600-sdhci";
- 					reg = <0x100 0x100>;
- 					interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
- 					sdhci,auto-cmd12;
-@@ -671,7 +671,7 @@ sdhci0: sdhci@1e740100 {
- 				};
- 
- 				sdhci1: sdhci@1e740200 {
--					compatible = "aspeed,ast2600-sdhci", "sdhci";
-+					compatible = "aspeed,ast2600-sdhci";
- 					reg = <0x200 0x100>;
- 					interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
- 					sdhci,auto-cmd12;
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
 -- 
 2.50.1
 
