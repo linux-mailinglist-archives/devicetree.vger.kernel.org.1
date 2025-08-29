@@ -1,177 +1,124 @@
-Return-Path: <devicetree+bounces-210502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 464DEB3BB3C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 14:23:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DD8DB3BB78
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 14:35:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E2BD585424
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:23:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D208CA20862
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:35:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3E5319878;
-	Fri, 29 Aug 2025 12:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919C3315776;
+	Fri, 29 Aug 2025 12:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H5WpQMN7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Tk57L5po"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96FA317715;
-	Fri, 29 Aug 2025 12:23:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9237B3164B0;
+	Fri, 29 Aug 2025 12:35:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756470185; cv=none; b=TLf08DU2wNNvIpq1lH9DwxIMaUYzhuayI9vr4YIZ4Q/FbXufiexfsj2DyMdS/WG/sNlGT3i2TEg0I39CLlccE+I7BXyg2Z/D5GIhbriJ4pEyg52HsSVpkYR7INbqnZeiXxlkbbi2GgmkIhONEU3Wx7nY5RklrBtYzVF7xyFktUs=
+	t=1756470950; cv=none; b=DpxZlY4ETDGA4xpElH0R0PLK0wh6IXtgaDXwUV80g9AcxnpjXAUjRvauSZtuQ4PN/AMAue02R5OeSrVATh1rFWeOI81+p5htYi7XXED9ERFXxBRYZe+TxtSMwTXmQ6HDuU0sA0hk0z9V+gnjn3vDR7g35rjaMb+1v0j/3wIM8Q0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756470185; c=relaxed/simple;
-	bh=MXUu9QPmMd3rT7yOj7o+ms6cmx2K03QYdIn0E/ZLtF0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OwNrE/giFPdLBUxMepXyXRf2mooG8eapBnNrZgaFBbCZ7RRh3VEwsLha2vDbeMU0KqGZolU7+xFX+R21yClwjL53r4M2AbLzlM99zVNeQwNDkzYGKlkUymNezK+RX0f0fbjsdInt32mVZd5ryL3AKXTqnGxSqXtlt9/W+9c1qyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H5WpQMN7; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-afe9358fe77so257325566b.1;
-        Fri, 29 Aug 2025 05:23:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756470182; x=1757074982; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QV/43b5wZcr7oH1WYrVSWi9FWU3xmsqmK7c9FuV3Om4=;
-        b=H5WpQMN7V8d4tzjyimoWHoqELUiaBaEjES+VoiPogF/yRdSBjPtgmDZWNGGxXbJhj5
-         Ti72+CPKskT2fmQMePMG+J4FYhij5sWJPiFURaJ1AvXCFclOVSn7HDEPqpHqFimKBzJd
-         uWeFldfBLjk/1RYAR5f5yD7PxHjk61ZBRPfgyYFzCLzV06JYkpjNbugMeDqfp8rDvIEH
-         9m7a/uUR6wK7kwL2GPYqyz/GLPIpWF3tdBWYQZlsDzwV/OEW9TeWEUfxK0NbnSruDPrl
-         jdiG7yqw9jlS7jFYDM7XsSvI/GxW2hrF4/1C8P0aMPwr/PYRX4J/Wioqwaxz1evsPYmY
-         ACeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756470182; x=1757074982;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QV/43b5wZcr7oH1WYrVSWi9FWU3xmsqmK7c9FuV3Om4=;
-        b=GPaOkied5dZ9ju8LZUmZQPNdXZ10RRfwrlqBjD8CSMHE5WoDMVygWE6oqfSiRP4gL4
-         oA2nE7ZjXIDwga9VSaCuy8WC4mNn0l6oKjhhW0IHIROUqUWyHQ2RPJW14IBcCpvhx5u/
-         wk/w8pTl1Tnrx/R8KRLm7U9GiGPUEY8blwNJV28zVlnpIiq/CjnRVhzcN/PmP8gf7qha
-         bXbfvNlrjzirBGZ+gU0TlP3yU7A6t1p+dhx8LHRaZG9GIIDOB0jn6KGiaLPlmR0/lcDg
-         PLwafaOPn56ypP4BGj11fis6hIq0IoEymM1e9FOsEkLujodi7Tft+mRYQlKJL2vRpiHl
-         gQFA==
-X-Forwarded-Encrypted: i=1; AJvYcCXDCiALGy6vNYO4aGBSPOnminD0O1diZEZd4KGxR4w8SdVIileJ7/KO5n+y6Z0UTPUU4EMVmmrcCJExSVQz@vger.kernel.org, AJvYcCXEYWuCZnZOLKtulOfxq0x/di3YwC4LNzxXxBrS5BfD2peEhDLPvmbVngB8hhH1SVJm4VeZrFTnBec=@vger.kernel.org, AJvYcCXdw78i9dqWmwYxBQKZM8G8D/oPVghB4nNycVotoHjj59rrnHagZa7JOGb+qci9snOrc6hxhvU8zLGHOp8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIMqYUVgtjAoYW7sGYXYOthjC+0heoE5RHeiEV6ZziOvkRw+Ya
-	5MLZuT11318wjSPLliEzSVIV6T5FZaZJqBLz5Sdkknzl9RCT9J3QWuJA
-X-Gm-Gg: ASbGncuKylG5OuNCOc7AyCpsP4IEwimMUdyFtKNf1P8QQPaQfrQSdZcVJq5SNQIKIKz
-	Rd/DikTAQYO5jotGMaF9whMgGuBYUEU9A6x4N47gxk7VzD1+4zZmexbIj+E/mJuABhp0FmzQtd7
-	Iaa5qZTVaFQqlJRh6Fz1LaImXUlWmNYCPwJUh87EGX67nCiIzXo/jR2QQ7oH5cduC8O/9saTVZ7
-	YrBlDuiJzr3xYW2xMBKHuJwakd2ensFTC9XwnzZkcUpgpdk2wYYPQdJ9ntBzlhO6Z6khxdGk5B9
-	r8qNSaI0N6xYSokOyWiI8Hsi9rsvXDUOINUE+L7EuIgZeBeXHcO8aeUPMUPQDtKXgzMpKvApxcW
-	AUc64cbYZCyjtCaj+yhZtBTPo
-X-Google-Smtp-Source: AGHT+IGvpJb6E7O7Cx1ORoFMxIhbdRAYFHmg2T22N2yoFC3HZ0zze+lDuibNTZqMBpYt2X2E/gXPrQ==
-X-Received: by 2002:a17:907:2d2c:b0:ad8:a935:b905 with SMTP id a640c23a62f3a-afe29031d11mr2364154966b.22.1756470181806;
-        Fri, 29 Aug 2025 05:23:01 -0700 (PDT)
-Received: from xeon.. ([188.163.112.70])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afefcbd7047sm188662166b.51.2025.08.29.05.23.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Aug 2025 05:23:01 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Thierry Reding <thierry.reding@gmail.com>,
-	Thierry Reding <treding@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Prashant Gaikwad <pgaikwad@nvidia.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v5 4/4] ARM: tegra: Add DFLL clock support for Tegra114
-Date: Fri, 29 Aug 2025 15:22:34 +0300
-Message-ID: <20250829122235.119745-5-clamor95@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250829122235.119745-1-clamor95@gmail.com>
-References: <20250829122235.119745-1-clamor95@gmail.com>
+	s=arc-20240116; t=1756470950; c=relaxed/simple;
+	bh=gUgQmgM69ezNRy0MhybUfrydozkV44PPK+5UXHb8G9s=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GOfClYoswKrtWEtTMRZkyJHRiX6wXjmWvPpfkitXGdz5BqbI7qLZQWR9wuodQxXgJ2MoYEEhb/51E24SIMQaFDq2A8MCRgA/7I59lHE+0nSfs03cd9SR33o+36omDCeDFnoMNqsTeRTQf8AsCnaMUItW2qbHWK6E8DrVryQmEB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Tk57L5po; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57TCZfPc2214201;
+	Fri, 29 Aug 2025 07:35:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756470941;
+	bh=YMeXDFVGR/9Ki+05emD4cN7qoUvEGzwRqloEtgQvvfA=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=Tk57L5po0BFIwaihbCd69YgO9O3FHszFUGt8fgCLzBvtXKXzBU1SqdUDz0hUvgmr4
+	 yBKhFWIT+CAm/7D1vil0UFQyZRE2JuXKUdgfx8cfviDd4pNyfpLal3pw2LuOsypbnp
+	 Go3rdyCDyjA/OLnyGbAL+BHAhMhLBsIDGmbQQMo8=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57TCZfGN020241
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 29 Aug 2025 07:35:41 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 29
+ Aug 2025 07:35:41 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 29 Aug 2025 07:35:41 -0500
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57TCZfx52065041;
+	Fri, 29 Aug 2025 07:35:41 -0500
+Date: Fri, 29 Aug 2025 07:35:41 -0500
+From: Bryan Brattlof <bb@ti.com>
+To: Anshul Dalal <anshuld@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 0/4] Add support for TI AM6254atl SiP
+Message-ID: <20250829123541.332xfrmzgar2dn4y@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20250814134531.2743874-1-anshuld@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20250814134531.2743874-1-anshuld@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add DFLL clock node to common Tegra114 device tree along with clocks
-property to cpu node.
+On August 14, 2025 thus sayeth Anshul Dalal:
+> Hi all,
+> 
+> This patch series adds support for AM6254atl SiP (or AM62x SiP for short)
+> to the linux device-tree.
+> 
+> The OPN (Orderable Part Number) 'AM6254atl' expands as follows[1]:
+> 
+> AM6254atl
+>      ||||
+>      |||+-- Feature Lookup (L indicates 512MiB of integrated LPDDR4)
+>      ||+--- Device Speed Grade (T indicates 1.25GHz/1.4GHz on the A53 cores)
+>      |+---- Silicon PG Revision (A indicates SR 1.0)
+>      +----- Core configuration (4 indicates A53's in Quad core config)
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Reviewed-by: Mikko Perttunen <mperttunen@nvidia.com>
----
- arch/arm/boot/dts/nvidia/tegra114.dtsi | 33 ++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+It stinks we put the integrated DRAM density so far down in the part 
+code. But I guess there isn't much we can do about it now. :/
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra114.dtsi b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-index 4caf2073c556..a2a50f959927 100644
---- a/arch/arm/boot/dts/nvidia/tegra114.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-@@ -4,6 +4,7 @@
- #include <dt-bindings/memory/tegra114-mc.h>
- #include <dt-bindings/pinctrl/pinctrl-tegra.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/reset/nvidia,tegra114-car.h>
- #include <dt-bindings/soc/tegra-pmc.h>
- 
- / {
-@@ -693,6 +694,29 @@ mipi: mipi@700e3000 {
- 		#nvidia,mipi-calibrate-cells = <1>;
- 	};
- 
-+	dfll: clock@70110000 {
-+		compatible = "nvidia,tegra114-dfll";
-+		reg = <0x70110000 0x100>, /* DFLL control */
-+		      <0x70110000 0x100>, /* I2C output control */
-+		      <0x70110100 0x100>, /* Integrated I2C controller */
-+		      <0x70110200 0x100>; /* Look-up table RAM */
-+		interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&tegra_car TEGRA114_CLK_DFLL_SOC>,
-+			 <&tegra_car TEGRA114_CLK_DFLL_REF>,
-+			 <&tegra_car TEGRA114_CLK_I2C5>;
-+		clock-names = "soc", "ref", "i2c";
-+		resets = <&tegra_car TEGRA114_RST_DFLL_DVCO>;
-+		reset-names = "dvco";
-+		#clock-cells = <0>;
-+		clock-output-names = "dfllCPU_out";
-+		nvidia,droop-ctrl = <0x00000f00>;
-+		nvidia,force-mode = <1>;
-+		nvidia,cf = <10>;
-+		nvidia,ci = <0>;
-+		nvidia,cg = <2>;
-+		status = "disabled";
-+	};
-+
- 	mmc@78000000 {
- 		compatible = "nvidia,tegra114-sdhci";
- 		reg = <0x78000000 0x200>;
-@@ -824,6 +848,15 @@ cpu0: cpu@0 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a15";
- 			reg = <0>;
-+
-+			clocks = <&tegra_car TEGRA114_CLK_CCLK_G>,
-+				 <&tegra_car TEGRA114_CLK_CCLK_LP>,
-+				 <&tegra_car TEGRA114_CLK_PLL_X>,
-+				 <&tegra_car TEGRA114_CLK_PLL_P>,
-+				 <&dfll>;
-+			clock-names = "cpu_g", "cpu_lp", "pll_x", "pll_p", "dfll";
-+			/* FIXME: what's the actual transition time? */
-+			clock-latency = <300000>;
- 		};
- 
- 		cpu1: cpu@1 {
--- 
-2.48.1
+> 
+> AM62x SiP provides the existing AM62x SoC with 512MiB of DDR integrated in a
+> single packages.
+> 
+> This patch set adds the new 'k3-am6254atl' SoC level dtsi alongside the
+> 'k3-am6254atl-sk' dts for the EVM (Evaluation Module board). The newly added
+> 'k3-am625-sk-common' dtsi includes the common hardware between the existing
+> AM62x EVM and the new EVM for AM62x SiP.
+> 
+> Regards,
+> Anshul
+> ---
+> [1]: https://www.ti.com/lit/ds/symlink/am625sip.pdf Page#21
+> Product Page:
+>     https://www.ti.com/product/AM625SIP/part-details/AM6254ATLHJAMKR
+> ---
+> Anshul Dalal (4):
+>   arm64: dts: ti: k3-am62*: remove SoC dtsi from common dtsi
+>   dt-bindings: arm: ti: Add binding for AM625 SiP
+>   arm64: dts: ti: Introduce base support for AM6254atl SiP
+>   arm64: dts: ti: Add support for AM6254atl SiP SK
 
+Reviewed-by: Bryan Brattlof <bb@ti.com>
+
+~Bryan
 
