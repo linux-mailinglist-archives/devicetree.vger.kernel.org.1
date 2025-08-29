@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-210611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14853B3C20F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:50:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72451B3C215
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:52:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8B4F7C4888
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:50:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C6C858619D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:52:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008F32153ED;
-	Fri, 29 Aug 2025 17:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88E6B3375DF;
+	Fri, 29 Aug 2025 17:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iy1WN3LL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q5OCkg4F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83501F4631;
-	Fri, 29 Aug 2025 17:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5724E32C32D;
+	Fri, 29 Aug 2025 17:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756489849; cv=none; b=IIhEpY/tAJ2PNLMgcO6uNWCD6O2kzztr/ToVq6yFOs5yeNcuXfSEoXdB743b/dNR/FxvUUXzZK/69noQAfP+TTiez32B48VhJyTktbgl5X5fWwBg8Zne0a96VSkYyw34OB/+NN17WjRZ3SuLrVVgYG1ncyUDoRUC8nhhf++oLJ8=
+	t=1756489973; cv=none; b=sfzNrNXCiBCSJ8+ubqSmCZvQrKZYu70w3I/NKi3B/bMJheLonm8VEFH2Cn2xRxEp1n91yraj0vWMlbTXYM+QfJoODddAyDVShUcp6TAvIJgF8o8DUAxdlVC029CfhQVXUw2ZmuTsMPYKYUcEvSk3GTOd7K1y7GFOtAiziwEvKOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756489849; c=relaxed/simple;
-	bh=7qIvpZlYTi//fSzjgZvpyX5N/FgxRpkmRhI5BQCHWyo=;
+	s=arc-20240116; t=1756489973; c=relaxed/simple;
+	bh=cPpcFQUzbuutVeKl8aE/0slH8JOuPl9Xymm4xKi2SFE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MNJkT/+uhAXJBPrxa06NJupTa0+Gdc3jHA7AM3oUZCMZIU2p+sMAD5Kk+/5W0xpVTTuBu8xk35LSfXz4o17+Dot/WapRFPENSRYmHMCoJJvICks7FlREWgSIyq1h1QWa15VZqfZ7VhscyC+hL+/SK5QBrGLQ6yhZ4bO9JR4j16M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iy1WN3LL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47E33C4CEF0;
-	Fri, 29 Aug 2025 17:50:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mVaeRHDoi5ND0llktzjyZ1CauvnR70fbAcKF0ITM9pmjtIO7LOP1R2S4dWM1ungDdvwG7xY9l9kkrh2UgpDXTWbUnw8RGSbXABk0/rtHxjU2hyKlC9WahUy2OabE2DG2qVw/l31um5wKAwvAQMnbCmxVTbU3g4Lx7V1kqLwpaWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q5OCkg4F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B325BC4CEF0;
+	Fri, 29 Aug 2025 17:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756489849;
-	bh=7qIvpZlYTi//fSzjgZvpyX5N/FgxRpkmRhI5BQCHWyo=;
+	s=k20201202; t=1756489972;
+	bh=cPpcFQUzbuutVeKl8aE/0slH8JOuPl9Xymm4xKi2SFE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Iy1WN3LLMTh8o28cBvQ2uz8LR2949jBvHlcSEag1c6FkEswp5kPcpdnM8oJyTt/Tu
-	 hBKNMlhvZpUXkkvoryVlxfH3gfZM4OYVZ8v/M+WKlgdZcxGaw/pKyQ16bdmcF4QGa4
-	 zB4J/T1fuluugizSv00DOXYekb9hauLY69nOyusgmM8NgT4jUXlSn9Y7UWW74G2VBQ
-	 dlT+jNyIa3zC0iWqD2tKdI745xbuxi9BUA7fyfgIdvngQc96Zx1y4HdHgwWAdgPDVf
-	 PHfQYNt4qYn7LjMQNimQ6xgA2T5L95TzF4ZNLyJ38o62nwV/r+nZVDZAhjL5Jq+EdK
-	 X0/WWfIdsZLhw==
-Date: Fri, 29 Aug 2025 12:50:47 -0500
+	b=q5OCkg4FTWL+k5V0z7jqf9GuYZo0khzXnogeposoA2knfWpK3tmAv4CJ9Oy3hSAMl
+	 cUQ/0akIm1+kePxA8FMVCyaE8K+/Q363wcZOt2+fSTek2yd9M7XPT9EUIuUnHBKZKV
+	 UR2Z4mO5uCFpRCmcEWUmL5Dc3dN8kxPe6/s11NJwnc6sViCqRFQNm87MbqKvu6jfW3
+	 Nmb64v+NKhN9SBfOHbsYTdUSvSouHiuzo3fXrhd5ZPt82/GKqJ1lRzOYARgE6DRxdm
+	 0v5kN3td8nqlcMI31Bxyy3n8RTi5l5OQE7Rk5nQcmD7glbZerRIkaCC8iIhYZ2URhz
+	 m5VJ0kyBy8O/Q==
+Date: Fri, 29 Aug 2025 12:52:51 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Cc: coresight@lists.linaro.org, kernel@oss.qualcomm.com,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	linux-kernel@vger.kernel.org, James Clark <james.clark@linaro.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Mike Leach <mike.leach@linaro.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: qcom: Add Coresight
- Interconnect TNOC
-Message-ID: <175648984746.1068381.2779865131984484045.robh@kernel.org>
-References: <20250828-itnoc-v3-0-f1b55dea7a27@oss.qualcomm.com>
- <20250828-itnoc-v3-1-f1b55dea7a27@oss.qualcomm.com>
+To: James Clark <james.clark@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Larisa Grigore <larisa.grigore@nxp.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Ciprianmarian Costea <ciprianmarian.costea@nxp.com>,
+	Larisa Grigore <larisa.grigore@oss.nxp.com>, s32@nxp.com,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev,
+	linux-spi@vger.kernel.org, Clark Wang <xiaoning.wang@nxp.com>,
+	Mark Brown <broonie@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v2 5/9] dt-bindings: lpspi: Document support for S32G
+Message-ID: <175648997150.1070762.3258877988488262868.robh@kernel.org>
+References: <20250828-james-nxp-lpspi-v2-0-6262b9aa9be4@linaro.org>
+ <20250828-james-nxp-lpspi-v2-5-6262b9aa9be4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,19 +68,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250828-itnoc-v3-1-f1b55dea7a27@oss.qualcomm.com>
+In-Reply-To: <20250828-james-nxp-lpspi-v2-5-6262b9aa9be4@linaro.org>
 
 
-On Thu, 28 Aug 2025 02:27:22 -0700, Yuanfang Zhang wrote:
-> Add device tree binding for Qualcomm Coresight Interconnect Trace
-> Network On Chip (ITNOC). This TNOC acts as a CoreSight
-> graph link that forwards trace data from a subsystem to the
-> Aggregator TNOC, without aggregation or ATID functionality.
+On Thu, 28 Aug 2025 11:14:44 +0100, James Clark wrote:
+> From: Larisa Grigore <larisa.grigore@nxp.com>
 > 
-> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+> Add compatible strings 'nxp,s32g2-lpspi' and 'nxp,s32g3-lpspi' for S32G2
+> and S32G3. Require nxp,s32g3-lpspi to fallback to nxp,s32g2-lpspi since
+> they are currently compatible.
+> 
+> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: James Clark <james.clark@linaro.org>
 > ---
->  .../bindings/arm/qcom,coresight-itnoc.yaml         | 90 ++++++++++++++++++++++
->  1 file changed, 90 insertions(+)
+>  Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
