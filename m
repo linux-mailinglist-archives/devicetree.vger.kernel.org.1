@@ -1,246 +1,351 @@
-Return-Path: <devicetree+bounces-210607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45077B3C1EA
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:38:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9390BB3C1F1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:39:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55592166E0C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:38:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0D543A8986
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15AB5342C99;
-	Fri, 29 Aug 2025 17:38:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DAF23431F1;
+	Fri, 29 Aug 2025 17:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u0gF4l6g"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="d2hAqdtQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE77132039E;
-	Fri, 29 Aug 2025 17:38:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6A4238C0A
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 17:39:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756489087; cv=none; b=p8IxSx5GWMfbW/92VIoE8jQwx25JAqUrW/5sD2PXm3l4yHSEJKRJDOxdqtvowMJjlH9Ckt30GBR8oGOD4Gms4j0XfEzIobBJU2kcAfe6IHSYRc63B+H6dWD3/SsdAEQFbVCv88S2b3rq3Uq9XOQOH4SROxyxoG1vQ5p9QuUk2Uw=
+	t=1756489175; cv=none; b=jIxXkS04qcJystcpqCEXtQUvAcAPJ3O7kVY7SV5tXOCbH8WbWlPOtMczC33aOKMD28aPkQQoH/fO8pMo0oZ1eB/W8bhbBt3nT3lG/bafMGuNUNCArbnI7rLnsEKAehNgRAJsZ8Xp71pT8sgBp4SVEAw73aeHd0YmS1LQJVPciNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756489087; c=relaxed/simple;
-	bh=L5QOuOSEv9g6+gvzQ1RcLIv6NONgTjAIFzcmQ/bnMBc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I3dfxeDKFA9VVcF8f/k5ckcepMlwQFgyt36U7J4sRdxUtsW0TCjw3U1Ud7OEbVkkVLcvaw0+HkudAwScdoVRhqZmMi/79uvBjQGbnF6zML5K9GIo2zKTGfQF44tJvH6FT5KH2N9HRD2Mjw9X9rhS1fMxdsHZ/Ffv+6DZKcYgfJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u0gF4l6g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2BDEC4CEF0;
-	Fri, 29 Aug 2025 17:38:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756489086;
-	bh=L5QOuOSEv9g6+gvzQ1RcLIv6NONgTjAIFzcmQ/bnMBc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u0gF4l6gWaRtgs50hiD/Br1pg2DZkaAezQPMRZt7QljBwcaz/LHif/lqQ8mpwCYQ9
-	 lCBPixgxsGKryPAjEw1gD/np4t14UBI/CHUksYruTIRlCnUKJkJeqyCYSqFm2DYWK6
-	 Jk1VB+hDKkfqZ7o2P+qrYFfZPDneWSbbC2Kj8NJL+5gY8tXiTVwRKqgl+fuZOTHKz7
-	 wIPPg0l39rHbWEyQ0WOdDpQVY1MMWN7V9qe+rdn4U6Fo4Vl4ga7/wWtSX+3Nqo+uVw
-	 cQD5JWT3xhzcYhMdfPhXGINJTE8j9AlN70CFS5VKJAg0YGuUfbnz5w94Yf9PyJLCKC
-	 ayyFqqUmMTxRw==
-Date: Fri, 29 Aug 2025 12:38:05 -0500
-From: Rob Herring <robh@kernel.org>
-To: Pet Weng <pet.weng@ite.com.tw>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Hermes Wu <hermes.Wu@ite.com.tw>,
-	Kenneth Hung <kenneth.Hung@ite.com.tw>,
-	Pin-yen Lin <treapking@google.com>
-Subject: Re: [PATCH v2 1/3] dt-binding: display: Add ITE IT61620 MIPI DSI to
- HDMI bridge
-Message-ID: <20250829173805.GA1030887-robh@kernel.org>
-References: <20250828-it61620-0714-v2-0-586f5934d5f8@ite.com.tw>
- <20250828-it61620-0714-v2-1-586f5934d5f8@ite.com.tw>
+	s=arc-20240116; t=1756489175; c=relaxed/simple;
+	bh=qQjs5GDGkvcvFun76J+EWArVcumILWtYVXrqlvPj73Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CeRgjfN+SCgplALbJURNFv42wYkw2HEukbZxuDYxiQbwxqsPBRB0JZUw7O9Gfo5biRuVZPemRE4NXPx8XenFPHVVseKa2nqGhTHZGJUNbW8cfdU/2MRvPm0U0x1rRJxoPvY26JJE9Zj9lJYOvp3jNDBVf6hEgn1P4EZ8yp7HltU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=d2hAqdtQ; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-315a297f9a3so1553015fac.3
+        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 10:39:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756489172; x=1757093972; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vyTrrC0VRvJoF9rtObeEzNC1mAjV1qvohGvctYe1UZ0=;
+        b=d2hAqdtQJpnDVJ7HNCoyUDUbb5JDzbSM5Daexay5I+hJZCS197G1yNozlVQayIE2VZ
+         WTox20cmxTfO5WHd130soPs9alBHzwNtYHmEa4WFGSe03+tUz468x62Vgts7O2BCiT1j
+         2MKtEpUxNmPcIArHDtX1bEuOy17jTgYzSE129WC+rPwjC1tCaYKdGrj7UK4sJbSftesl
+         NVxJ5J3t3soxEPCHqTOPhcxjm6ByumHCIZN5/JpK7dV5OmgeczFNGFax+6qYk3wUhFSU
+         lyRn/Fw9HhTjyraLeAxB+ec63W8XdmzUXzOgFrkq4N6DcuMJkBOBhIfJ4U0eCUcc0QjR
+         w2cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756489172; x=1757093972;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vyTrrC0VRvJoF9rtObeEzNC1mAjV1qvohGvctYe1UZ0=;
+        b=xCY+qYNX458c5uyZm6efUtyvJ9lwPiT/oAp2fM71IIAQkMKgvoQ8JuNwaoFMUjFZep
+         HQhmTASIaQprbk6SstBLFlRL57tcfWod+QNLuUVrhuYU2bj5Qh8LG8xYP66G9cKdgcpg
+         3yHYN79L8Mi9krqWTnV0P6aqHRFJdRjAwBQyNi7D5h8WrxWZ+fTlzUe/r7VgUI6XjsxC
+         Zrk67cqp7BvEMsUERiwee0Umayo9U38YMIeVESu7E1imyA4dBlu2aVH6c2zLJA30HAyv
+         /RZ7jVI4td6jCccZhPnz4FvkBySl52zMX9XCF0kR+O3cJp4Vj85wUgawwgSCeXQa+aaI
+         76iw==
+X-Forwarded-Encrypted: i=1; AJvYcCVHhFB22GpZX2u0RYoqyXhrfgdLp4GpMxrqFPI5Q/oFIvmMvkn0NxS/33MrKI2R2OIo6G6UzJoXQk5d@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZJUWRnR2qnJXCoEg0/XbxiRqo9fQWxg6NXUHBMvegysxUEeul
+	jHfGWLQpLeHsdQwd9biD2MRQRyNrhMrhD5SCyZO6vGAC94uxZhLMQvYmDGlW7hwFvhM=
+X-Gm-Gg: ASbGnctTxq4pp12aB45qW2SWC2EiYx+jADzRgUq1DgG1dSkGAGYeLWvlH2PhrdkwUoe
+	3WibRiGAv07zkFAwuin8A2Djr7/NP4taA8JtJ2YuLbdTFsb9tBNoD+IKkTzEC11n/yyy9md673w
+	3LsUJS3MLjS7yQcZ36Nm3/QaJDeUJIL9akAPq4X+o+WF/F58mpu5qKAaCyVMirD+0o8Zi3rIHum
+	Z/171Ioh/ersh3PyHioEOBqHEh8OFGbjKA3VaRiqz1kobzM1+nhzgyHVRdEdQ5EKQ23obrNwiQ3
+	HFUzA/xa5XMcJu9UPiSrlmEQfTv9nSujfnwioFOdG7J515x/6SIVhD3Y/O3TEQEb+A5MhfXECEd
+	2EgxKd1wlcoDf04JpJ2AcO7PNaxn3XoBx7EfNhQU/sQQStxzC4JoIwEilLggo9N/owAEl4q9sQ4
+	U=
+X-Google-Smtp-Source: AGHT+IESMHvlCtBzcRBdU7jRG2XMNsNINqPRQCqVz5I0okbAWpHF0/0FHmvHrhMDXKCe2hPr9vw9+g==
+X-Received: by 2002:a05:6871:e49b:b0:2f3:4720:f7ca with SMTP id 586e51a60fabf-314dcad7cfbmr13935852fac.2.1756489172303;
+        Fri, 29 Aug 2025 10:39:32 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:8d0a:2553:5881:1318? ([2600:8803:e7e4:1d00:8d0a:2553:5881:1318])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-315afe62235sm1497011fac.23.2025.08.29.10.39.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Aug 2025 10:39:31 -0700 (PDT)
+Message-ID: <1aa4d7d1-be47-471a-8411-1adaffc1659f@baylibre.com>
+Date: Fri, 29 Aug 2025 12:39:31 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250828-it61620-0714-v2-1-586f5934d5f8@ite.com.tw>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: temperature: add support for
+ MCP998X
+To: victor.duicu@microchip.com, jic23@kernel.org, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: marius.cristea@microchip.com, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250829143447.18893-1-victor.duicu@microchip.com>
+ <20250829143447.18893-2-victor.duicu@microchip.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250829143447.18893-2-victor.duicu@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 28, 2025 at 12:01:18PM +0800, Pet Weng wrote:
-> This chip receives MIPI DSI input and outputs HDMI, and is commonly
-> connected to SoCs via I2C and DSI.
+On 8/29/25 9:34 AM, victor.duicu@microchip.com wrote:
+> From: Victor Duicu <victor.duicu@microchip.com>
 > 
-> Signed-off-by: Pet Weng <pet.weng@ite.com.tw>
+> This is the devicetree schema for Microchip MCP998X/33 and MCP998XD/33D
+> Multichannel Automotive Temperature Monitor Family.
+> 
+> Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
 > ---
->  .../bindings/display/bridge/ite,it61620.yaml       | 143 +++++++++++++++++++++
->  1 file changed, 143 insertions(+)
+>  .../iio/temperature/microchip,mcp9982.yaml    | 203 ++++++++++++++++++
+>  1 file changed, 203 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it61620.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it61620.yaml
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..dd8a54a1e0aa9bbbd9d02e68398bb5df65b821a8
+> index 000000000000..2f092e376fe8
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it61620.yaml
-> @@ -0,0 +1,143 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml
+> @@ -0,0 +1,203 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/display/bridge/ite,it61620.yaml#
+> +$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9982.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: ITE IT61620 MIPI DSI to HDMI Bridge
+> +title: Microchip MCP998X/33 and MCP998XD/33D Multichannel Automotive
+> +       Temperature Monitor Family
 > +
 > +maintainers:
-> +  - Pet Weng <pet.weng@ite.com.tw>
+> +  - Victor Duicu <victor.duicu@microchip.com>
 > +
 > +description: |
-> +  The ITE IT61620 is a high-performance, low-power HDMI bridge that converts
-> +  MIPI DSI input to HDMI 1.4b TMDS output. It supports up to 4 lanes of MIPI
-> +  D-PHY 2.0 input at 2.5Gbps per lane (10Gbps total), compatible with DSI-2 v2.0.
-
-Wrap lines at 80 char.
-
-> +
-> +  The HDMI transmitter side supports up to 4Kx2K@30Hz resolutions, and is
-> +  compliant with HDMI 1.4b and HDCP 1.4.
-> +
-> +  For audio, the IT61620 supports up to 8-channel LPCM via I2S (multi-line or
-> +  TDM mode), with optional S/PDIF or DSD (for SACD). It supports audio
-> +  sampling rates up to 192kHz.
-> +
-> +allOf:
-> +  - $ref: /schemas/sound/dai-common.yaml#
+> +  The MCP998X/33 and MCP998XD/33D family is a high-accuracy 2-wire multichannel
+> +  automotive temperature monitor.
+> +  The datasheet can be found here:
+> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP998X-Family-Data-Sheet-DS20006827.pdf
 > +
 > +properties:
 > +  compatible:
-> +    const: ite,it61620
+> +    enum:
+> +      - microchip,mcp9933
+> +      - microchip,mcp9933d
+> +      - microchip,mcp9982
+> +      - microchip,mcp9982d
+> +      - microchip,mcp9983
+> +      - microchip,mcp9983d
+> +      - microchip,mcp9984
+> +      - microchip,mcp9984d
+> +      - microchip,mcp9985
+> +      - microchip,mcp9985d
 > +
 > +  reg:
 > +    maxItems: 1
 > +
 > +  interrupts:
-> +    maxItems: 1
-> +    description: interrupt specifier of INT pin
+> +    minItems: 2
+> +    maxItems: 2
+
+Why can't we just have one of the interrupt pins wired up?
+
 > +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: GPIO specifier of RESET pin
-> +
-> +  ivdd-supply:
-> +    description: core voltage
-> +
-> +  ovdd-supply:
-> +    description: I/O voltage
-> +
-> +  ovdd1833-supply:
-> +    description: flexible I/O votage
-> +
-> +  pinctrl-names:
+> +  interrupt-names:
+> +    description:
+> +      -alert-therm is used to handle a HIGH or LOW limit.
+> +      -therm-addr is used to handle a THERM limit on chips
+> +      without "D" in the name.
+> +      -sys-shutdown is used to handle a THERM limit on chips
+> +      with "D" in the name.
+
+Descriptions can be moved below:
+
 > +    items:
-> +      - const: default
+> +      - const: alert-therm
+           description: Interrupt line connected to the ALERT/THERM pin.
+> +      - const: therm-addr
+           description: ...
+> +      - const: sys-shutdown
+           description: ...
+
+The device tree only cares how things are wired, not how they are used
+so I suggested a different description.
+
 > +
-> +  pinctrl-0:
-> +    maxItems: 1
+> +  "#address-cells":
+> +    const: 1
 > +
-> +  "#sound-dai-cells":
+> +  "#size-cells":
 > +    const: 0
 > +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
+> +  microchip,enable-anti-parallel:
+> +    description:
+> +      Enable anti-parallel diode mode operation.
+> +      MCP9984/84D/85/85D and MCP9933/33D support reading two external diodes
+> +      in anti-parallel connection on the same set of pins.
+> +    type: boolean
+> +
+> +  microchip,parasitic-res-on-channel1-2:
+> +    description:
+> +      Indicates that the chip and the diodes/transistors are sufficiently far
+> +      apart that a parasitic resistance is added to the wires, which can affect
+> +      the measurements. Due to the anti-parallel diode connections, channels
+> +      1 and 2 are affected together.
+> +    type: boolean
+> +
+> +  microchip,parasitic-res-on-channel3-4:
+> +    description:
+> +      Indicates that the chip and the diodes/transistors are sufficiently far
+> +      apart that a parasitic resistance is added to the wires, which can affect
+> +      the measurements. Due to the anti-parallel diode connections, channels
+> +      3 and 4 are affected together.
+> +    type: boolean
+> +
+> +  vdd-supply: true
+> +
+> +patternProperties:
+> +  "^channel@[1-4]$":
+> +    description:
+> +      Represents the external temperature channels to which
+> +      a remote diode is connected.
+> +    type: object
 > +
 > +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: Input port for MIPI DSI
+> +      reg:
+> +        items:
+> +          minimum: 1
+> +          maximum: 4
 > +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
+> +      microchip,ideality-factor:
+> +        description:
+> +          Each channel has an ideality factor.
+> +          Beta compensation and resistance error correction automatically
+> +          correct for most ideality errors. So ideality factor does not need
+> +          to be adjusted in general.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        default: 18
+
+Are there minimum and maximum values?
+
 > +
-> +            properties:
-> +              data-lanes: true
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output port for HDMI output
+> +      label:
+> +        description: Unique name to identify which channel this is.
 > +
 > +    required:
-> +      - port@0
-> +      - port@1
+> +      - reg
+> +
+> +    additionalProperties: false
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - interrupts
-> +  - reset-gpios
-> +  - ivdd-supply
-> +  - ovdd-supply
-> +  - ovdd1833-supply
-> +  - ports
+> +  - vdd-supply
 > +
-> +unevaluatedProperties: false
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - microchip,mcp9982d
+> +              - microchip,mcp9983d
+> +              - microchip,mcp9984d
+> +              - microchip,mcp9985d
+> +              - microchip,mcp9933d
+
+Could use a pattern instead of listing all matches.
+
+		pattern: .+d$
+
+> +    then:
+> +      properties:
+> +        interrupts-names:
+> +          items:
+> +            - const: alert-therm
+> +            - const: sys-shutdown
+> +    else:
+> +      properties:
+> +        interrupts-names:
+> +          items:
+> +            - const: alert-therm
+> +            - const: therm-addr
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - microchip,mcp9982
+> +              - microchip,mcp9983
+> +              - microchip,mcp9982d
+> +              - microchip,mcp9983d
+> +    then:
+> +      properties:
+> +        microchip,enable-anti-parallel: false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - microchip,mcp9982d
+> +              - microchip,mcp9983d
+> +              - microchip,mcp9984d
+> +              - microchip,mcp9985d
+> +              - microchip,mcp9933d
+
+This looks like the same "if" as above, so could be combined.
+
+> +    then:
+> +      properties:
+> +        microchip,parasitic-res-on-channel1-2: false
+> +        microchip,parasitic-res-on-channel3-4: false
+
+> +        microchip,ideality-factor: false
+
+microchip,ideality-factor is a channel property, so this has no effect.
+It needs to be moved to the correct place under patternProperties.
+
+> +
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
 > +    i2c {
 > +        #address-cells = <1>;
 > +        #size-cells = <0>;
 > +
-> +        ite61620@58 {
-
-bridge@58
-
-> +                compatible = "ite,it61620";
-> +                reg = <0x58>;
-> +                #sound-dai-cells = <0>;
-> +                interrupt-parent = <&pio>;
-> +                interrupts = <128 IRQ_TYPE_LEVEL_LOW>;
-> +                pinctrl-names = "default";
-> +                pinctrl-0 = <&it61620_pins>;
-> +                reset-gpios = <&pio 127 GPIO_ACTIVE_LOW>;
-> +                ivdd-supply = <&pp1000_hdmi_x>;
-> +                ovdd-supply = <&pp3300_vio28_x>;
-> +                ovdd1833-supply = <&pp1800_vcamio_x>;
+> +        temperature-sensor@4c {
+> +            compatible = "microchip,mcp9985";
+> +            reg = <0x4c>;
 > +
-> +                ports {
-> +                        #address-cells = <1>;
-> +                        #size-cells = <0>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
 > +
-> +                        port@0 {
-> +                                reg = <0>;
-> +                                it61620_dsi_in: endpoint {
-> +                                        data-lanes = <0 1 2 3>;
-> +                                        remote-endpoint = <&dsi_out>;
-> +                                };
-> +                        };
+> +            microchip,enable-anti-parallel;
+> +            microchip,parasitic-res-on-channel1-2;
+> +            microchip,parasitic-res-on-channel3-4;
+> +            vdd-supply = <&vdd>;
 > +
-> +                        port@1 {
-> +                                reg = <1>;
-> +                                it61620_hdmi_out: endpoint {
-> +                                        remote-endpoint = <&hdmi_connector_in>;
-> +                                };
-> +                        };
-> +                };
+> +            channel@1 {
+> +                reg = <1>;
+> +                label = "CPU Temperature";
+> +            };
+> +
+> +            channel@2 {
+> +                reg = <2>;
+> +                label = "GPU Temperature";
+> +            };
 > +        };
 > +    };
-> 
-> -- 
-> 2.34.1
-> 
+> +
+> +...
+
 
