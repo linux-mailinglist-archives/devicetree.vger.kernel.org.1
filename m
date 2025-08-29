@@ -1,248 +1,281 @@
-Return-Path: <devicetree+bounces-210584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26E95B3C0F1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 954C9B3C10F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 18:42:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 526C81CC2BB6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:39:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DF371CC468B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 727D732A3D9;
-	Fri, 29 Aug 2025 16:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26DA3337689;
+	Fri, 29 Aug 2025 16:40:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T4xOVhID"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5799432A3CC;
-	Fri, 29 Aug 2025 16:39:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5E93375D5;
+	Fri, 29 Aug 2025 16:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756485568; cv=none; b=VWJndUzrV/QjsPchPOAe63B8Ru3iJxnm1u2Vrvde/oht5aQ1ckQE0+BZxWkwVIa/YLbKlhzt7J7NTn511S9CTvsukNgPFyJojN+jmgsKq9GmC6zlxWpCMwGQbSuM812nb6C7Ckxzuk0izzMIClPU3bDL9HLFoL7W+lhVKyRvQ+w=
+	t=1756485659; cv=none; b=o5wEZ9Hjp2rXoXRiBNNwKmbz4kBs4oNffHCH8b9+FKlSpbeQyST2X7IX16wubx6/AtqeUcc2N5vsd7csgD0lz9kf1KlDjzmZ7ENKLFsQ79J5tX9sgYQJgHg7t8zAtf9sQKDXb7YUh5HU6aCu/vT8IpNO/LMsHI6hlD9n6F9EWEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756485568; c=relaxed/simple;
-	bh=LiufvYLN3N0v9a6NqAyygZVjAXotK4sKZTliv0DtNZQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F/ZXgyZChVgiESJxAVweC6MAnTzeJglP1z1+LTMzHOtA0WwI+QEKBmHizJutEva3d8CceE76LCEXw/7z6CReCTs9k2Rge16+7+ckzD+nLJt0docsbhYddbw8+4PhBC5lOKheuQpzoUSrsNngL/1nrsQ+1lMnDJXHgHU84+iqE/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 158C519F0;
-	Fri, 29 Aug 2025 09:39:17 -0700 (PDT)
-Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4DBEB3F694;
-	Fri, 29 Aug 2025 09:39:20 -0700 (PDT)
-Message-ID: <a3d26a1d-6887-47a4-8679-4567e417f65e@arm.com>
-Date: Fri, 29 Aug 2025 17:39:18 +0100
+	s=arc-20240116; t=1756485659; c=relaxed/simple;
+	bh=RQx3k9ICtqz81FINdTuayS6/7Dq2k0lIJ6C2JyMWlIc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fxrIPCT8OZXEI7p+Xs0S71HyIftjDwaiB7yMcJKj8K79diTjd2RWISHbwUdZNjBLb0N3iWX0PgWu2X3MvQ3R8QIyriuaCvxMailoy9qYz8TkmRI7DWhGdf+KahyaSSSz7Qg2E3uYdJ+eMxun1/zStF7Osr0IlM2WfE3wVdEYIh4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T4xOVhID; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8881DC4CEF0;
+	Fri, 29 Aug 2025 16:40:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756485658;
+	bh=RQx3k9ICtqz81FINdTuayS6/7Dq2k0lIJ6C2JyMWlIc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=T4xOVhIDRV5duZ1GpPtBu0+6fshz/3NrsQrkdmFaUSY8AOpusTD94aeN2gst44zpd
+	 ZhwDpjky2b0/wq9sWQzJkeeVDbSFOsdHfp2C3Y4KVopYG3x5cI4191potu3DGLy7lP
+	 Gm7LhA0RQWOborD5EVfMODfkVxs8N35QzduH/DmnookgDoTj+Dtob1Ml2b67igB4Dt
+	 6BvhQX7LI5LLUnTdr1paCJMFi2ZdLFFJ2+d5RnXfqmK+KYVnZ8Xr1+ODKCPYkIGmtr
+	 stuklWrxlbDep/kyZ4A9Gp5yavNZj6kje2Rr1BxFE9tub+RnlqqLQhw9oNa8vr1FVd
+	 k33l4jW/UYRcg==
+Date: Fri, 29 Aug 2025 11:40:57 -0500
+From: Rob Herring <robh@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v2 02/11] dt-bindings: hwmon: Add Apple System Management
+ Controller hwmon schema
+Message-ID: <20250829164057.GA976361-robh@kernel.org>
+References: <20250827-macsmc-subdevs-v2-0-ce5e99d54c28@gmail.com>
+ <20250827-macsmc-subdevs-v2-2-ce5e99d54c28@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 30/33] arm_mpam: Use long MBWU counters if supported
-To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: shameerali.kolothum.thodi@huawei.com,
- D Scott Phillips OS <scott@os.amperecomputing.com>,
- carl@os.amperecomputing.com, lcherian@marvell.com,
- bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
- baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
- Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
- dfustini@baylibre.com, amitsinght@marvell.com,
- David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
- Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
- Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
- baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
- Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-31-james.morse@arm.com>
-From: Ben Horgan <ben.horgan@arm.com>
-Content-Language: en-US
-In-Reply-To: <20250822153048.2287-31-james.morse@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250827-macsmc-subdevs-v2-2-ce5e99d54c28@gmail.com>
 
-Hi James,
-
-On 8/22/25 16:30, James Morse wrote:
-> From: Rohit Mathew <rohit.mathew@arm.com>
+On Wed, Aug 27, 2025 at 09:22:36PM +1000, James Calligeros wrote:
+> Apple Silicon devices integrate a vast array of sensors, monitoring
+> current, power, temperature, and voltage across almost every part of
+> the system. The sensors themselves are all connected to the System
+> Management Controller (SMC). The SMC firmware exposes the data
+> reported by these sensors via its standard FourCC-based key-value
+> API. The SMC is also responsible for monitoring and controlling any
+> fans connected to the system, exposing them in the same way.
 > 
-> If the 44 bit (long) or 63 bit (LWD) counters are detected on probing
-> the RIS, use long/LWD counter instead of the regular 31 bit mbwu
-> counter.
+> For reasons known only to Apple, each device exposes its sensors with
+> an almost totally unique set of keys. This is true even for devices
+> which share an SoC. An M1 Mac mini, for example, will report its core
+> temperatures on different keys to an M1 MacBook Pro. Worse still, the
+> SMC does not provide a way to enumerate the available keys at runtime,
+> nor do the keys follow any sort of reasonable or consistent naming
+> rules that could be used to deduce their purpose. We must therefore
+> know which keys are present on any given device, and which function
+> they serve, ahead of time.
 > 
-> Only 32bit accesses to the MSC are required to be supported by the
-> spec, but these registers are 64bits. The lower half may overflow
-> into the higher half between two 32bit reads. To avoid this, use
-> a helper that reads the top half multiple times to check for overflow.
+> Add a schema so that we can describe the available sensors for a given
+> Apple Silicon device in the Devicetree.
 > 
-> Signed-off-by: Rohit Mathew <rohit.mathew@arm.com>
-> [morse: merged multiple patches from Rohit]
-> Signed-off-by: James Morse <james.morse@arm.com>
+> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
 > ---
-> Changes since RFC:
->  * Commit message wrangling.
->  * Refer to 31 bit counters as opposed to 32 bit (registers).
-> ---
->  drivers/resctrl/mpam_devices.c | 89 ++++++++++++++++++++++++++++++----
->  1 file changed, 80 insertions(+), 9 deletions(-)
+>  .../bindings/hwmon/apple,smc-hwmon.yaml  | 132 +++++++++++++++++++++++++
+>  .../bindings/mfd/apple,smc.yaml          |  36 +++++++
+>  MAINTAINERS                              |   1 +
+>  3 files changed, 169 insertions(+)
 > 
-Looks good to me.
+> diff --git a/Documentation/devicetree/bindings/hwmon/apple,smc-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/apple,smc-hwmon.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..08cc4f55f3a41ca8b3b428088f96240266fa42e8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/apple,smc-hwmon.yaml
+> @@ -0,0 +1,132 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/apple,smc-hwmon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple SMC Hardware Monitoring
+> +
+> +description:
+> +  Apple's System Management Controller (SMC) exposes a vast array of
+> +  hardware monitoring sensors, including temperature probes, current and
+> +  voltage sense, power meters, and fan speeds. It also provides endpoints
+> +  to manually control the speed of each fan individually. Each Apple
+> +  Silicon device exposes a different set of endpoints via SMC keys. This
+> +  is true even when two machines share an SoC. The CPU core temperature
+> +  sensor keys on an M1 Mac mini are different to those on an M1 MacBook
+> +  Pro, for example.
+> +
+> +maintainers:
+> +  - James Calligeros <jcalligeros99@gmail.com>
+> +
+> +definitions:
 
-Reviewed-by: Ben Horgan <ben.horgan@arm.com>
+$defs
 
-> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-> index 2ab7f127baaa..8fbcf6eb946a 100644
-> --- a/drivers/resctrl/mpam_devices.c
-> +++ b/drivers/resctrl/mpam_devices.c
-> @@ -1002,6 +1002,48 @@ struct mon_read {
->  	int				err;
->  };
->  
-> +static bool mpam_ris_has_mbwu_long_counter(struct mpam_msc_ris *ris)
-> +{
-> +	return (mpam_has_feature(mpam_feat_msmon_mbwu_63counter, &ris->props) ||
-> +		mpam_has_feature(mpam_feat_msmon_mbwu_44counter, &ris->props));
-> +}
-> +
-> +static u64 mpam_msc_read_mbwu_l(struct mpam_msc *msc)
-> +{
-> +	int retry = 3;
-> +	u32 mbwu_l_low;
-> +	u64 mbwu_l_high1, mbwu_l_high2;
-> +
-> +	mpam_mon_sel_lock_held(msc);
-> +
-> +	WARN_ON_ONCE((MSMON_MBWU_L + sizeof(u64)) > msc->mapped_hwpage_sz);
-> +	WARN_ON_ONCE(!cpumask_test_cpu(smp_processor_id(), &msc->accessibility));
-> +
-> +	mbwu_l_high2 = __mpam_read_reg(msc, MSMON_MBWU_L + 4);
-> +	do {
-> +		mbwu_l_high1 = mbwu_l_high2;
-> +		mbwu_l_low = __mpam_read_reg(msc, MSMON_MBWU_L);
-> +		mbwu_l_high2 = __mpam_read_reg(msc, MSMON_MBWU_L + 4);
-> +
-> +		retry--;
-> +	} while (mbwu_l_high1 != mbwu_l_high2 && retry > 0);
-> +
-> +	if (mbwu_l_high1 == mbwu_l_high2)
-> +		return (mbwu_l_high1 << 32) | mbwu_l_low;
-> +	return MSMON___NRDY_L;
-> +}
-> +
-> +static void mpam_msc_zero_mbwu_l(struct mpam_msc *msc)
-> +{
-> +	mpam_mon_sel_lock_held(msc);
-> +
-> +	WARN_ON_ONCE((MSMON_MBWU_L + sizeof(u64)) > msc->mapped_hwpage_sz);
-> +	WARN_ON_ONCE(!cpumask_test_cpu(smp_processor_id(), &msc->accessibility));
-> +
-> +	__mpam_write_reg(msc, MSMON_MBWU_L, 0);
-> +	__mpam_write_reg(msc, MSMON_MBWU_L + 4, 0);
-> +}
-> +
->  static void gen_msmon_ctl_flt_vals(struct mon_read *m, u32 *ctl_val,
->  				   u32 *flt_val)
->  {
-> @@ -1058,6 +1100,7 @@ static void read_msmon_ctl_flt_vals(struct mon_read *m, u32 *ctl_val,
->  static void clean_msmon_ctl_val(u32 *cur_ctl)
->  {
->  	*cur_ctl &= ~MSMON_CFG_x_CTL_OFLOW_STATUS;
-> +	*cur_ctl &= ~MSMON_CFG_MBWU_CTL_OFLOW_STATUS_L;
-I observe that this bit is res0, in the CSU case, and so the clearing is ok.
->  }
->  
->  static void write_msmon_ctl_flt_vals(struct mon_read *m, u32 ctl_val,
-> @@ -1080,7 +1123,11 @@ static void write_msmon_ctl_flt_vals(struct mon_read *m, u32 ctl_val,
->  	case mpam_feat_msmon_mbwu:
->  		mpam_write_monsel_reg(msc, CFG_MBWU_FLT, flt_val);
->  		mpam_write_monsel_reg(msc, CFG_MBWU_CTL, ctl_val);
-> -		mpam_write_monsel_reg(msc, MBWU, 0);
-> +		if (mpam_ris_has_mbwu_long_counter(m->ris))
-> +			mpam_msc_zero_mbwu_l(m->ris->vmsc->msc);
-> +		else
-> +			mpam_write_monsel_reg(msc, MBWU, 0);
-> +
->  		mpam_write_monsel_reg(msc, CFG_MBWU_CTL, ctl_val | MSMON_CFG_x_CTL_EN);
->  
->  		mbwu_state = &m->ris->mbwu_state[m->ctx->mon];
-> @@ -1095,8 +1142,13 @@ static void write_msmon_ctl_flt_vals(struct mon_read *m, u32 ctl_val,
->  
->  static u64 mpam_msmon_overflow_val(struct mpam_msc_ris *ris)
->  {
-> -	/* TODO: scaling, and long counters */
-> -	return GENMASK_ULL(30, 0);
-> +	/* TODO: implement scaling counters */
-> +	if (mpam_has_feature(mpam_feat_msmon_mbwu_63counter, &ris->props))
-> +		return GENMASK_ULL(62, 0);
-> +	else if (mpam_has_feature(mpam_feat_msmon_mbwu_44counter, &ris->props))
-> +		return GENMASK_ULL(43, 0);
-> +	else
-> +		return GENMASK_ULL(30, 0);
->  }
->  
->  /* Call with MSC lock held */
-> @@ -1138,10 +1190,24 @@ static void __ris_msmon_read(void *arg)
->  		now = FIELD_GET(MSMON___VALUE, now);
->  		break;
->  	case mpam_feat_msmon_mbwu:
-> -		now = mpam_read_monsel_reg(msc, MBWU);
-> -		if (mpam_has_feature(mpam_feat_msmon_mbwu_hw_nrdy, rprops))
-> -			nrdy = now & MSMON___NRDY;
-> -		now = FIELD_GET(MSMON___VALUE, now);
-> +		/*
-> +		 * If long or lwd counters are supported, use them, else revert
-> +		 * to the 31 bit counter.
-> +		 */
-> +		if (mpam_ris_has_mbwu_long_counter(ris)) {
-> +			now = mpam_msc_read_mbwu_l(msc);
-> +			if (mpam_has_feature(mpam_feat_msmon_mbwu_hw_nrdy, rprops))
-> +				nrdy = now & MSMON___NRDY_L;
-> +			if (mpam_has_feature(mpam_feat_msmon_mbwu_63counter, rprops))
-> +				now = FIELD_GET(MSMON___LWD_VALUE, now);
-> +			else
-> +				now = FIELD_GET(MSMON___L_VALUE, now);
-> +		} else {
-> +			now = mpam_read_monsel_reg(msc, MBWU);
-> +			if (mpam_has_feature(mpam_feat_msmon_mbwu_hw_nrdy, rprops))
-> +				nrdy = now & MSMON___NRDY;
-> +			now = FIELD_GET(MSMON___VALUE, now);
-> +		}
->  
->  		if (nrdy)
->  			break;
-> @@ -1433,8 +1499,13 @@ static int mpam_save_mbwu_state(void *arg)
->  		cur_ctl = mpam_read_monsel_reg(msc, CFG_MBWU_CTL);
->  		mpam_write_monsel_reg(msc, CFG_MBWU_CTL, 0);
->  
-> -		val = mpam_read_monsel_reg(msc, MBWU);
-> -		mpam_write_monsel_reg(msc, MBWU, 0);
-> +		if (mpam_ris_has_mbwu_long_counter(ris)) {
-> +			val = mpam_msc_read_mbwu_l(msc);
-> +			mpam_msc_zero_mbwu_l(msc);
-> +		} else {
-> +			val = mpam_read_monsel_reg(msc, MBWU);
-> +			mpam_write_monsel_reg(msc, MBWU, 0);
-> +		}
->  
->  		cfg->mon = i;
->  		cfg->pmg = FIELD_GET(MSMON_CFG_MBWU_FLT_PMG, cur_flt);
+definitions was convention. $defs is in json-schema spec now.
 
--- 
-Thanks,
+> +  apple,key-id:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    pattern: "^[A-Za-z0-9]{4}$"
+> +    description: The SMC FourCC key of the desired sensor.
+> +      Must match the node's suffix.
+> +
+> +  label:
+> +    description: Human-readable name for the sensor
+> +
+> +properties:
+> +  compatible:
+> +    const: apple,smc-hwmon
+> +
+> +patternProperties:
+> +  "^current-[A-Za-z0-9]{4}$":
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      apple,key-id:
+> +        $ref: "#/definitions/apple,key-id"
+> +
+> +      label:
+> +        $ref: "#/definitions/label"
+> +
+> +    required:
+> +      - apple,key-id
+> +      - label
 
-Ben
+This should be something like this:
 
+"^current-[A-Za-z0-9]{4}$":
+  $ref: "#/$defs/sensor"
+  unevaluatedProperties: false
+
+With the $defs/sensor being:
+
+$defs:
+  sensor:
+    type: object
+    
+    properties:
+      apple,key-id:
+        $ref: /schemas/types.yaml#/definitions/string
+        pattern: "^[A-Za-z0-9]{4}$"
+        description: 
+          The SMC FourCC key of the desired sensor. Must match the 
+          node's suffix.
+
+      label:
+        description: Human-readable name for the sensor
+
+    required:
+      - apple,key-id
+      - label
+
+Though in general, 'label' should never be required being just for human 
+convenience.
+
+> +
+> +  "^fan-[A-Za-z0-9]{4}$":
+> +    type: object
+> +    additionalProperties: false
+
+And this one the same as above, but with the additional fan properties 
+listed here.
+
+> +
+> +    properties:
+> +      apple,key-id:
+> +        $ref: "#/definitions/apple,key-id"
+> +
+> +      apple,fan-minimum:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        pattern: "^[A-Za-z0-9]{4}$"
+> +        description: SMC key containing the fan's minimum speed
+> +
+> +      apple,fan-maximum:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        pattern: "^[A-Za-z0-9]{4}$"
+> +        description: SMC key containing the fan's maximum speed
+> +
+> +      apple,fan-target:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        pattern: "^[A-Za-z0-9]{4}$"
+> +        description: Writeable endpoint for setting desired fan speed
+> +
+> +      apple,fan-mode:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        pattern: "^[A-Za-z0-9]{4}$"
+> +        description: Writeable key to enable/disable manual fan control
+> +
+> +      label:
+> +        $ref: "#/definitions/label"
+> +
+> +    required:
+> +      - apple,key-id
+> +      - label
+> +
+> +  "^power-[A-Za-z0-9]{4}$":
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      apple,key-id:
+> +        $ref: "#/definitions/apple,key-id"
+> +
+> +      label:
+> +        $ref: "#/definitions/label"
+> +
+> +    required:
+> +      - apple,key-id
+> +      - label
+> +
+> +  "^temperature-[A-Za-z0-9]{4}$":
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      apple,key-id:
+> +        $ref: "#/definitions/apple,key-id"
+> +
+> +      label:
+> +        $ref: "#/definitions/label"
+> +
+> +    required:
+> +      - apple,key-id
+> +      - label
+> +
+> +  "^voltage-[A-Za-z0-9]{4}$":
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      apple,key-id:
+> +        $ref: "#/definitions/apple,key-id"
+> +
+> +      label:
+> +        $ref: "#/definitions/label"
+> +
+> +    required:
+> +      - apple,key-id
+> +      - label
+> +
+> +additionalProperties: false
 
