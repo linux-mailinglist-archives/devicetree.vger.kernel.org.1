@@ -1,80 +1,40 @@
-Return-Path: <devicetree+bounces-210452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C01E7B3B90D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:40:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD19B3B916
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:42:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72387365208
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:40:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4EB318978AF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 10:42:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BD4630ACFA;
-	Fri, 29 Aug 2025 10:40:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HIMywUM9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1B93081D6;
+	Fri, 29 Aug 2025 10:42:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8281DF256;
-	Fri, 29 Aug 2025 10:40:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A681F1DF256;
+	Fri, 29 Aug 2025 10:42:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756464012; cv=none; b=HlPCZjvYMA9HRkplSo0WcdHf0BXfJd17U/foKRYTjP1IF/WsOXo3E9GMGKD4nX+9LBVjR2ehvfhjb1h8COlpWkiGacW9q7PEcvjC55yjLWPUu5F7FNigA2Q91ayefbP4ZFy7Lt07TCQ2bfEaSjDkx+xQypc1AK5df/JIxikjc3g=
+	t=1756464140; cv=none; b=u3+aR8gZwU2TzJ9H5LdW39gftJAet+2ucZPESSOb/jqMUDae7d7y8Qjf/DjrX6JPU1izCTQV+V1chWVgNqDB4qyIgU4+5T4e1uPNQ7omnck28b5Kn5am6PEIrVIyD/MpVDSAinzcRK4FedeA+Loa3EKVWujJ7fm6iITBh8aEQ0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756464012; c=relaxed/simple;
-	bh=IBT8NJmua99Bl7F9ZIpmFR9XFgOfeeeZG6Y421h59Hg=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PYVv5nJaRkt07RuQh7wrE9sLkgpYarvgiOIjM98kS/onftSVJumUS6e/NpHLmhvP8GLDQUmrLHHtl8oG+yLc5atd/YnnAdUJ4aQPTgQBCGt06v/43S+s3m3CbJVkED9yuctQYDbNOHdGH2JPle1dBvYsoT8qoevBvAQlPnDOjVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HIMywUM9; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-afec5651966so348512866b.2;
-        Fri, 29 Aug 2025 03:40:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756464008; x=1757068808; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Yl5p12U2uO9xfcN1YtAosyTJ9NoreSs1ECa/E0M81SM=;
-        b=HIMywUM9KSLl0z+MeXTdvcHNL4R39HLPG0BI2Oga58LJwClpSEfp5XKO7dXY9XlGmY
-         816wLexIFeGEd3GySDiUVadne7vq3I9ZH6Q2UWxPC7wqUtTbMGm2Y9AkAfMxwbesn0Kj
-         F/mhedQECEGSlTtTGmM4y4Yk8zFcSW4naaIJNFtzxwJYEmSKB9YXRmVRQy7ZG2Msheis
-         QABzzLhqg5wNCFAQc3v8GTAfIw2Ky1y0qjRyEVN4kKjiEnc0psvgJp4gjw0S4PR2uIUC
-         a/uTmt3vZM5rYl4uxEts1qAoXFDVmJekYYahKxPkt3kGSzaDMmcIIC3o0khYzjrBCsao
-         MWQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756464008; x=1757068808;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yl5p12U2uO9xfcN1YtAosyTJ9NoreSs1ECa/E0M81SM=;
-        b=itDZmrX6E4zTL+4TiqbXCTbPyfCuTjLa5UyfI7juZmKxCySUJki1MCMu1Wq6UoQf4x
-         wLdDMNcRbQPBBkXz1k/BoqqnFGjgtJ9ZvGXzkcOeEgGrkHI0AbGvUAaqB0ztoxVtAULq
-         hdnZHVPZto5ZnsmrJ5/UmhUk4OaLsP275syCrYksCTLVsXlo0ZxYE+60yburn/HHr/nN
-         Om9GjeLf1OWX4+OgMeRvEGa11DQ9RqJMCusGtC29AR3zxXrjzlUOKpppHFeDIGJtSRSk
-         aYwqh9538Wo5/FHS1Yc3b7/P8OnuRzVoDPBBsJFLXxh9kKtDkzd74gi1Dk5urXomLnmd
-         2cOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX9Dx/0BBBJ+6fwyLdm/CmkzEXt1A5GGSX8sD2/FZwDD/3ds0YTwlBETOfqG3o1cu+J87pYb5pJowSLzIaW@vger.kernel.org, AJvYcCXLLV4FZxg7gp7hlVZwmht3LHuPo9tewRokRHEiq6byfgZoPXPicOE5Bp7kqECv2BnPZf+ThArsA4Co@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhMKDWdgeXl4E8xy3brLaZE9pMkfVzoo4BJ5QlW0yOjvW2xKKM
-	6MdNKOq3ejy5ZxsbpFIM36HdBfwFbACh1AYpZ62NZiPkkkm1h8BzLbN3
-X-Gm-Gg: ASbGncv6GxHcxsE5MQ9QW7jZQbvFokkKVYaS0pH9Urg4RH6SGReetiHrrCC7SMKI6WI
-	KqbLVZl3UlpvSJt64qpG7KT1q/elTe2fkOZESTfysuvQat4+tkzogYk6qZ1Jx9AD3iCFAXa1JZ5
-	1sceieYbfuNS0LOn6TZqMskIyr4k/ScllDShsd3KFmLfbWMiib9CTuomTHQwHcNdbYa/yi35F95
-	2yDc0Raz6R8XEWmeZo4N/7nbXBHTFtkEaIU7VVSz1WZI5/+SP2wuRkfDo9TKYVgjhpR+0vY+FjQ
-	mL+sKN9UgkxP1K7KhHeowneZax+y//4D3uz0XJvV3yvHxU8WDMEXrj0wsGT387qhVpAqI4lDKZq
-	X+E5Bl7Hz11OjEI5K4Yql2roK7+MFejTGtydyaqGB4qjJq4sFsIbL7y6S11ux
-X-Google-Smtp-Source: AGHT+IGTd5VpriOznSSUF78PDJ+lBThAc5tfiaPYhgxFnl96GsT4FoZv2KEHpZmkv5khcyAgJC1N0Q==
-X-Received: by 2002:a17:907:3f9a:b0:afe:d21f:7af0 with SMTP id a640c23a62f3a-afed21f7e3cmr716079066b.14.1756464008284;
-        Fri, 29 Aug 2025 03:40:08 -0700 (PDT)
-Received: from [10.82.207.1] (212-39-89-51.ip.btc-net.bg. [212.39.89.51])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afefc7ee8d2sm172652866b.20.2025.08.29.03.40.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Aug 2025 03:40:07 -0700 (PDT)
-Message-ID: <31435f98-5701-4ae0-b822-11a99d1b2eef@gmail.com>
-Date: Fri, 29 Aug 2025 13:40:06 +0300
+	s=arc-20240116; t=1756464140; c=relaxed/simple;
+	bh=aFdcT1yGvukedW5XAGEkcoVpZvRVh3oYvF7vpSbvAOc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jiy7hgiNkykhlji6SVCpOfFhy8cOipSc8e2y+22XPjXGSvDdW/DKNGczK1p0ztmZBg2KuLaWpHXB1+b0Xf2xBEs1wSh3MMhtZ1/j0J5F5xR3aK4Ge0bI1KtZGdreJePcx0VDMJDFo23US2sKBmiDl4xhK5OeP6vHRj8nYgLNwjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BAC301758;
+	Fri, 29 Aug 2025 03:42:09 -0700 (PDT)
+Received: from [10.57.2.173] (unknown [10.57.2.173])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7F63F3F694;
+	Fri, 29 Aug 2025 03:42:16 -0700 (PDT)
+Message-ID: <57528c01-2a1c-4d70-b70c-ed4b64bd93fc@arm.com>
+Date: Fri, 29 Aug 2025 11:42:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,66 +42,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] arm64: dts: exynos2200: introduce serial busses,
- except spi
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH 04/14] dmaengine: dma350: Check dma_cookie_status() ret
+ code and txstate
+To: Jisheng Zhang <jszhang@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250815070500.3275491-1-ivo.ivanov.ivanov1@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20250815070500.3275491-1-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+References: <20250823154009.25992-1-jszhang@kernel.org>
+ <20250823154009.25992-5-jszhang@kernel.org>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250823154009.25992-5-jszhang@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 8/15/25 10:04, Ivaylo Ivanov wrote:
-> Hey, folks!
->
-> This patchset adds serial busses, implemented in usi, for exynos2200.
-> It's missing spi, due to me having troubles with reads when testing.
-> Serial_0/1 have not been included in the patchset, as it seems like
-> they're encapsulated in usi blocks, but are the only implemented
-> protocol and/or do not have a dedicated register for setting other
-> protocols in a sysreg. That'd at least require patches in the usi
-> driver and bindings to add support for.
->
-> About the naming convention for usi nodes, I've chosen to keep the
-> downstream one instead of relabelling all to avoid confusion when
-> cross-referencing the vendor DT and to keep consistency with clock
-> names. They're labelled the same in the bootloader too.
+On 2025-08-23 4:39 pm, Jisheng Zhang wrote:
+> If dma_cookie_status() returns DMA_COMPLETE, we can return immediately.
+> 
+>  From another side, the txstate is an optional parameter used to get a
+> struct with auxilary transfer status information. When not provided
+> the call to device_tx_status() should return the status of the dma
+> cookie. Return the status of dma cookie when the txstate optional
+> parameter is not provided.
 
-BUMP - when is this going to get merged? I had a few other things
-I wanted to upstream before merge cycle.
+Again, the current code was definitely intentional - I think this was 
+down to the hardware error case, where for reasons I now can't remember 
+I still had to nominally complete the aborted descriptor from the IRQ 
+handler to avoid causing some worse problem, and hence we don't return 
+early without cross-checking dch->status here, because returning 
+DMA_COMPLETE when the descriptor hasn't done its job makes dmatest unhappy.
 
-Best regards,
-Ivaylo
+I did spend a *lot* of time exercising all the error cases, and trying 
+to get a sensible result across all of the different reporting APIs was 
+fiddly to say the least - there's a huge lack of consistency between 
+drivers in this regard, and this was just my attempt to be the 
+least-worst one :)
 
->
-> Best regards,
-> Ivaylo
->
-> Changes in v3:
-> - drop the serial_0/1 patch
-> - add r-b tags from Sam
-> - increase the size of all syscon to 0x10000 and not 0x3000
-> - change description of last patch to be more meaningful regarding the
-> usiN and usiN_i2c mess
-> - s/usi6_i2c_cmgp/usi_i2c_cmgp6, following the TRM naming convention
->
-> Changes in v2:
-> - add a patch that switches address and size cells to 1 in /soc
-> - adjust all new nodes to define reg props with 2 cells in total instead of 4
->
-> Ivaylo Ivanov (4):
->   arm64: dts: exynos2200: fix typo in hsi2c23 bus pins label
->   arm64: dts: exynos2200: use 32-bit address space for /soc
->   arm64: dts: exynos2200: increase the size of all syscons
->   arm64: dts: exynos2200: define all usi nodes
->
->  .../boot/dts/exynos/exynos2200-pinctrl.dtsi   |    2 +-
->  arch/arm64/boot/dts/exynos/exynos2200.dtsi    | 1433 ++++++++++++++++-
->  2 files changed, 1398 insertions(+), 37 deletions(-)
->
+Thanks,
+Robin.
+
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>   drivers/dma/arm-dma350.c | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/dma/arm-dma350.c b/drivers/dma/arm-dma350.c
+> index 96350d15ed85..17af9bb2a18f 100644
+> --- a/drivers/dma/arm-dma350.c
+> +++ b/drivers/dma/arm-dma350.c
+> @@ -377,6 +377,8 @@ static enum dma_status d350_tx_status(struct dma_chan *chan, dma_cookie_t cookie
+>   	u32 residue = 0;
+>   
+>   	status = dma_cookie_status(chan, cookie, state);
+> +	if (status == DMA_COMPLETE || !state)
+> +		return status;
+>   
+>   	spin_lock_irqsave(&dch->vc.lock, flags);
+>   	if (cookie == dch->cookie) {
 
 
